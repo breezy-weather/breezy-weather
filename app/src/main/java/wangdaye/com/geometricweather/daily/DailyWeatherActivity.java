@@ -70,7 +70,7 @@ public class DailyWeatherActivity extends GeoActivity {
             mSubtitle.setVisibility(View.GONE);
         }
 
-        String formattedId = mFormattedId;
+        final String formattedId = mFormattedId;
         AsyncHelper.runOnIO(emitter -> {
             Location location = null;
 

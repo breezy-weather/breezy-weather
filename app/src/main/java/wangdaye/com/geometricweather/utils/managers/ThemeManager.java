@@ -31,6 +31,11 @@ public class ThemeManager {
     }
 
     private @Nullable WeatherView mWeatherView;
+    private @Size(3) @ColorInt int[] mLightWeatherThemeColors;
+    private @Size(3) @ColorInt int[] mDarkWeatherThemeColors;
+    private @ColorInt int mWeatherBackgroundColor;
+    private @Px int mHeaderHeight;
+
     private boolean mDaytime;
     private DarkMode mDarkMode;
 
@@ -38,20 +43,28 @@ public class ThemeManager {
 
     public ThemeManager(Context context) {
         mWeatherView = null;
+        mLightWeatherThemeColors = new int[] {Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT};
+        mDarkWeatherThemeColors = new int[] {Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT};
+        mWeatherBackgroundColor = Color.TRANSPARENT;
+        mHeaderHeight = 0;
         update(context);
     }
 
-    public void update(Context context) {
+    public synchronized void update(Context context) {
         innerUpdate(context, null);
     }
 
-    public void update(Context context, @NonNull WeatherView weatherView) {
+    public synchronized void update(Context context, @NonNull WeatherView weatherView) {
         innerUpdate(context, weatherView);
     }
 
-    private void innerUpdate(Context context, @Nullable WeatherView weatherView) {
+    private synchronized void innerUpdate(Context context, @Nullable WeatherView weatherView) {
         if (weatherView != null) {
             mWeatherView = weatherView;
+            mLightWeatherThemeColors = weatherView.getThemeColors(true);
+            mDarkWeatherThemeColors = weatherView.getThemeColors(false);
+            mWeatherBackgroundColor = weatherView.getBackgroundColor();
+            mHeaderHeight = weatherView.getHeaderHeight();
         }
         mDaytime = TimeManager.getInstance(context).isDayTime();
         mDarkMode = SettingsOptionManager.getInstance(context).getDarkMode();
@@ -75,20 +88,19 @@ public class ThemeManager {
         }
     }
 
-    @Nullable
-    public WeatherView getWeatherView() {
-        return mWeatherView;
+    public synchronized void unregisterWeatherView() {
+        mWeatherView = null;
     }
 
-    public boolean isDaytime() {
+    public synchronized boolean isDaytime() {
         return mDaytime;
     }
 
-    public DarkMode getDarkMode() {
+    public synchronized DarkMode getDarkMode() {
         return mDarkMode;
     }
 
-    public boolean isLightTheme() {
+    public synchronized boolean isLightTheme() {
         return mLightTheme;
     }
 
@@ -113,31 +125,32 @@ public class ThemeManager {
      *
      * */
     @ColorInt @Size(3)
-    public int[] getWeatherThemeColors() {
+    public synchronized int[] getWeatherThemeColors() {
         if (mWeatherView != null) {
-            return mWeatherView.getThemeColors(mLightTheme);
+            mLightWeatherThemeColors = mWeatherView.getThemeColors(true);
+            mDarkWeatherThemeColors = mWeatherView.getThemeColors(false);
         }
-        return new int[] {Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT};
+        return isLightTheme() ? mLightWeatherThemeColors : mDarkWeatherThemeColors;
     }
 
     @ColorInt
-    public int getWeatherBackgroundColor() {
+    public synchronized int getWeatherBackgroundColor() {
         if (mWeatherView != null) {
-            return mWeatherView.getBackgroundColor();
+            mWeatherBackgroundColor = mWeatherView.getBackgroundColor();
         }
-        return Color.TRANSPARENT;
+        return mWeatherBackgroundColor;
     }
 
     @Px
-    public int getHeaderHeight() {
+    public synchronized int getHeaderHeight() {
         if (mWeatherView != null) {
-            return mWeatherView.getHeaderHeight();
+            mHeaderHeight = mWeatherView.getHeaderHeight();
         }
-        return 0;
+        return mHeaderHeight;
     }
 
     @ColorInt
-    public int getHeaderTextColor(Context context) {
+    public synchronized int getHeaderTextColor(Context context) {
         return Color.WHITE;
     }
 

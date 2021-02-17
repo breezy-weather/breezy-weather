@@ -40,11 +40,11 @@ public class TimeManager {
                 .getBoolean(KEY_DAY_TIME, true);
     }
 
-    public boolean isDayTime() {
+    public synchronized boolean isDayTime() {
         return mDayTime;
     }
 
-    public TimeManager update(Context context, @Nullable Location location) {
+    public synchronized TimeManager update(Context context, @Nullable Location location) {
         if (location == null) {
             return this;
         }

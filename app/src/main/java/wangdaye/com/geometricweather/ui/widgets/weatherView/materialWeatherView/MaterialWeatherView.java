@@ -376,10 +376,8 @@ public class MaterialWeatherView extends View implements WeatherView {
         int color = getBackgroundColor();
         if (!lightTheme) {
             color = getBrighterColor(color);
-            return new int[] {color, color, ColorUtils.setAlphaComponent(color, (int) (0.5 * 255))};
-        } else {
-            return new int[] {color, color, ColorUtils.setAlphaComponent(color, (int) (0.5 * 255))};
         }
+        return new int[] {color, color, ColorUtils.setAlphaComponent(color, (int) (0.5 * 255))};
     }
 
     public static int[] getThemeColors(Context context,
@@ -387,10 +385,8 @@ public class MaterialWeatherView extends View implements WeatherView {
         int color = innerGetBackgroundColor(context, weatherKind, lightTheme);
         if (!lightTheme) {
             color = getBrighterColor(color);
-            return new int[] {color, color, ColorUtils.setAlphaComponent(color, (int) (0.5 * 255))};
-        } else {
-            return new int[] {color, color, ColorUtils.setAlphaComponent(color, (int) (0.5 * 255))};
         }
+        return new int[] {color, color, ColorUtils.setAlphaComponent(color, (int) (0.5 * 255))};
     }
 
     @Override

@@ -31,7 +31,7 @@ public class FirstCardHeaderController
 
     private final GeoActivity mActivity;
     private final View mView;
-    private @Nullable Weather mWeather;
+    private final String mFormattedId;
 
     private @Nullable LinearLayout mContainer;
 
@@ -39,6 +39,7 @@ public class FirstCardHeaderController
     public FirstCardHeaderController(@NonNull GeoActivity activity, @NonNull Location location) {
         mActivity = activity;
         mView = LayoutInflater.from(activity).inflate(R.layout.container_main_first_card_header, null);
+        mFormattedId = location.getFormattedId();
 
         AppCompatImageView timeIcon = mView.findViewById(R.id.container_main_first_card_header_timeIcon);
         TextView refreshTime = mView.findViewById(R.id.container_main_first_card_header_timeText);
@@ -49,12 +50,12 @@ public class FirstCardHeaderController
         ThemeManager themeManager = ThemeManager.getInstance(activity);
 
         if (location.getWeather() != null) {
-            mWeather = location.getWeather();
+            Weather weather = location.getWeather();
 
             mView.setOnClickListener(v -> ((MainActivity) activity).setManagementFragmentVisibility(true));
             mView.setEnabled(!MainModuleUtils.isMultiFragmentEnabled(activity));
 
-            if (mWeather.getAlertList().size() == 0) {
+            if (weather.getAlertList().size() == 0) {
                 timeIcon.setEnabled(false);
                 timeIcon.setImageResource(R.drawable.ic_time);
             } else {
@@ -67,14 +68,14 @@ public class FirstCardHeaderController
             );
             timeIcon.setContentDescription(
                     activity.getString(R.string.content_desc_weather_alert_button)
-                            .replace("$", "" + mWeather.getAlertList().size())
+                            .replace("$", "" + weather.getAlertList().size())
             );
             timeIcon.setOnClickListener(this);
 
             refreshTime.setText(
                     activity.getString(R.string.refresh_at)
                             + " "
-                            + Base.getTime(activity, mWeather.getBase().getUpdateDate())
+                            + Base.getTime(activity, weather.getBase().getUpdateDate())
             );
             refreshTime.setTextColor(themeManager.getTextContentColor(activity));
 
@@ -94,22 +95,22 @@ public class FirstCardHeaderController
                 );
             }
 
-            if (mWeather.getAlertList().size() == 0) {
+            if (weather.getAlertList().size() == 0) {
                 alert.setVisibility(View.GONE);
                 line.setVisibility(View.GONE);
             } else {
                 alert.setVisibility(View.VISIBLE);
                 StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < mWeather.getAlertList().size(); i ++) {
-                    builder.append(mWeather.getAlertList().get(i).getDescription())
+                for (int i = 0; i < weather.getAlertList().size(); i ++) {
+                    builder.append(weather.getAlertList().get(i).getDescription())
                             .append(", ")
                             .append(
                                     DateFormat.getDateTimeInstance(
                                             DateFormat.LONG,
                                             DateFormat.DEFAULT
-                                    ).format(mWeather.getAlertList().get(i).getDate())
+                                    ).format(weather.getAlertList().get(i).getDate())
                             );
-                    if (i != mWeather.getAlertList().size() - 1) {
+                    if (i != weather.getAlertList().size() - 1) {
                         builder.append("\n");
                     }
                 }
@@ -143,9 +144,7 @@ public class FirstCardHeaderController
         switch (v.getId()) {
             case R.id.container_main_first_card_header_timeIcon:
             case R.id.container_main_first_card_header_alert:
-                if (mWeather != null) {
-                    IntentHelper.startAlertActivity(mActivity, mWeather);
-                }
+                IntentHelper.startAlertActivity(mActivity, mFormattedId);
                 break;
         }
     }

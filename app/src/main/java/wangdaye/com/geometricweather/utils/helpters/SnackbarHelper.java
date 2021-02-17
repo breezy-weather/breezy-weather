@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.ui.snackbar;
+package wangdaye.com.geometricweather.utils.helpters;
 
 import android.content.Context;
 import android.graphics.Color;

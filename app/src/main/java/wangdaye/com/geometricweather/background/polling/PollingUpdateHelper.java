@@ -142,7 +142,6 @@ public class PollingUpdateHelper {
                     mListener.onUpdateCompleted(requestLocation, mOld, true, mIndex, mTotal);
                 }
                 IntentHelper.sendBackgroundUpdateBroadcast(mContext, requestLocation);
-                IntentHelper.sendBackgroundUpdateBroadcast(mContext, requestLocation);
 
                 if (mIndex + 1 < mTotal) {
                     requestData(mIndex + 1, false);

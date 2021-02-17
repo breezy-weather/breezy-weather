@@ -99,6 +99,7 @@
                 <action android:name="com.wangdaye.geometricweather.Main" />
                 <action android:name="com.wangdaye.geomtricweather.ACTION_SHOW_ALERTS" />
                 <action android:name="com.wangdaye.geomtricweather.ACTION_SHOW_DAILY_FORECAST" />
+                <action android:name="com.wangdaye.geomtricweather.ACTION_MANAGEMENT" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

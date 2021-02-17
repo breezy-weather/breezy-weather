@@ -1,20 +1,24 @@
 package wangdaye.com.geometricweather.ui.activities;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.text.TextUtils;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
+import wangdaye.com.geometricweather.basic.models.Location;
 import wangdaye.com.geometricweather.basic.models.weather.Alert;
+import wangdaye.com.geometricweather.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.ui.adapters.AlertAdapter;
 import wangdaye.com.geometricweather.ui.decotarions.ListDecoration;
+import wangdaye.com.geometricweather.utils.helpters.AsyncHelper;
 
 /**
  * Alert activity.
@@ -22,34 +26,40 @@ import wangdaye.com.geometricweather.ui.decotarions.ListDecoration;
 
 public class AlertActivity extends GeoActivity {
 
-    private List<Alert> mAlarmList;
-    public static final String KEY_ALERT_ACTIVITY_ALERT_LIST = "ALERT_ACTIVITY_ALERT_LIST";
+    public static final String KEY_FORMATTED_ID = "formatted_id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alert);
-        initData();
-        initWidget();
-    }
 
-    @SuppressLint("MissingSuperCall")
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        // do nothing.
-    }
+        final String formattedId = getIntent().getStringExtra(KEY_FORMATTED_ID);
+        AsyncHelper.runOnIO((AsyncHelper.Task<List<Alert>>) emitter -> {
 
-    private void initData() {
-        mAlarmList = getIntent().getParcelableArrayListExtra(KEY_ALERT_ACTIVITY_ALERT_LIST);
-    }
+            Location location = null;
+            if (TextUtils.isEmpty(formattedId)) {
+                location = DatabaseHelper.getInstance(this).readLocation(formattedId);
+            }
+            if (location == null) {
+                location = DatabaseHelper.getInstance(this).readLocationList().get(0);
+            }
 
-    private void initWidget() {
+            Weather weather = DatabaseHelper.getInstance(this).readWeather(location);
+            if (weather != null) {
+                emitter.send(weather.getAlertList(), true);
+            } else {
+                emitter.send(new ArrayList<>(), true);
+            }
+        }, (alerts, done) -> {
+            RecyclerView recyclerView = findViewById(R.id.activity_alert_recyclerView);
+            recyclerView.setAdapter(new AlertAdapter(alerts));
+        });
+
         Toolbar toolbar = findViewById(R.id.activity_alert_toolbar);
         toolbar.setNavigationOnClickListener(v -> finish());
 
         RecyclerView recyclerView = findViewById(R.id.activity_alert_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         recyclerView.addItemDecoration(new ListDecoration(this));
-        recyclerView.setAdapter(new AlertAdapter(mAlarmList));
     }
 }

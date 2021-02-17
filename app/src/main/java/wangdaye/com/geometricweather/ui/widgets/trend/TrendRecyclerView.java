@@ -11,6 +11,9 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.MotionEvent;
+import android.view.ViewConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,10 +44,19 @@ public class TrendRecyclerView extends RecyclerView {
     private int mTextMargin;
     private int mLineWidth;
 
+    private int mPointerId;
+    private float mInitialX;
+    private float mInitialY;
+    private int mTouchSlop;
+    private boolean mIsBeingDragged;
+    private boolean mIsHorizontalDragged;
+
     private static final int LINE_WIDTH_DIP = 1;
     private static final int TEXT_SIZE_DIP = 10;
     private static final int TEXT_MARGIN_DIP = 2;
     public static final int ITEM_MARGIN_BOTTOM_DIP = 16;
+
+    private static final String TAG = "TrendRecyclerView";
 
     public static class KeyLine {
 
@@ -95,6 +107,8 @@ public class TrendRecyclerView extends RecyclerView {
         setLineColor(Color.GRAY);
 
         mKeyLineList = new ArrayList<>();
+
+        mTouchSlop = ViewConfiguration.get(getContext()).getScaledTouchSlop();
     }
 
     @Override
@@ -173,6 +187,72 @@ public class TrendRecyclerView extends RecyclerView {
                     break;
             }
         }
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        switch (ev.getActionMasked()) {
+            case MotionEvent.ACTION_DOWN:
+                mIsBeingDragged = false;
+                mIsHorizontalDragged = false;
+
+                mPointerId = ev.getPointerId(0);
+                mInitialX = ev.getX();
+                mInitialY = ev.getY();
+
+                getParent().requestDisallowInterceptTouchEvent(true);
+                break;
+
+            case MotionEvent.ACTION_POINTER_DOWN: {
+                int index = ev.getActionIndex();
+                mPointerId = ev.getPointerId(index);
+                mInitialX = ev.getX(index);
+                mInitialY = ev.getY(index);
+                break;
+            }
+            case MotionEvent.ACTION_MOVE: {
+                int index = ev.findPointerIndex(mPointerId);
+                if (index == -1) {
+                    Log.e(TAG, "Invalid pointerId=" + mPointerId + " in onTouchEvent");
+                    break;
+                }
+
+                float x = ev.getX(index);
+                float y = ev.getY(index);
+
+                if (!mIsBeingDragged && !mIsHorizontalDragged) {
+                    if (Math.abs(x - mInitialX) > mTouchSlop || Math.abs(y - mInitialY) > mTouchSlop) {
+                        mIsBeingDragged = true;
+                        if (Math.abs(x - mInitialX) > Math.abs(y - mInitialY)) {
+                            mIsHorizontalDragged = true;
+                        } else {
+                            getParent().requestDisallowInterceptTouchEvent(false);
+                        }
+                    }
+                }
+                break;
+            }
+            case MotionEvent.ACTION_POINTER_UP: {
+                int index = ev.getActionIndex();
+                int id = ev.getPointerId(index);
+                if (mPointerId == id) {
+                    int newIndex = index == 0 ? 1 : 0;
+
+                    this.mPointerId = ev.getPointerId(newIndex);
+                    mInitialX = (int) ev.getX(newIndex);
+                    mInitialY = (int) ev.getY(newIndex);
+                }
+                break;
+            }
+            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_CANCEL:
+                mIsBeingDragged = false;
+                mIsHorizontalDragged = false;
+                getParent().requestDisallowInterceptTouchEvent(false);
+                break;
+        }
+
+        return super.onInterceptTouchEvent(ev) && mIsBeingDragged && mIsHorizontalDragged;
     }
 
     // control.

@@ -238,3 +238,8 @@ public static java.lang.String TABLENAME;
 ## RxLifeCycle
 -keep class com.trello.rxlifecycle2.** { *; }
 -keep interface com.trello.rxlifecycle2.** { *; }
+
+## DataStore
+-keepclassmembers class * extends androidx.datastore.preferences.protobuf.GeneratedMessageLite {
+    <fields>;
+}

@@ -7,6 +7,7 @@ import androidx.annotation.ColorInt;
 import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
@@ -281,323 +282,323 @@ public class SettingsOptionManager {
                 context.getString(R.string.key_notification_hide_big_view), false);
     }
 
-    public boolean isBackgroundFree() {
+    public synchronized boolean isBackgroundFree() {
         return backgroundFree;
     }
 
-    public void setBackgroundFree(boolean backgroundFree) {
+    public synchronized void setBackgroundFree(boolean backgroundFree) {
         this.backgroundFree = backgroundFree;
     }
 
-    public boolean isAlertPushEnabled() {
+    public synchronized boolean isAlertPushEnabled() {
         return alertPushEnabled;
     }
 
-    public void setAlertPushEnabled(boolean alertPushEnabled) {
+    public synchronized void setAlertPushEnabled(boolean alertPushEnabled) {
         this.alertPushEnabled = alertPushEnabled;
     }
 
-    public boolean isPrecipitationPushEnabled() {
+    public synchronized boolean isPrecipitationPushEnabled() {
         return precipitationPushEnabled;
     }
 
-    public void setPrecipitationPushEnabled(boolean precipitationPushEnabled) {
+    public synchronized void setPrecipitationPushEnabled(boolean precipitationPushEnabled) {
         this.precipitationPushEnabled = precipitationPushEnabled;
     }
 
-    public UpdateInterval getUpdateInterval() {
+    public synchronized UpdateInterval getUpdateInterval() {
         return updateInterval;
     }
 
-    public void setUpdateInterval(UpdateInterval updateInterval) {
+    public synchronized void setUpdateInterval(UpdateInterval updateInterval) {
         this.updateInterval = updateInterval;
     }
 
-    public DarkMode getDarkMode() {
+    public synchronized DarkMode getDarkMode() {
         return darkMode;
     }
 
-    public void setDarkMode(DarkMode darkMode) {
+    public synchronized void setDarkMode(DarkMode darkMode) {
         this.darkMode = darkMode;
     }
 
-    public WeatherSource getWeatherSource() {
+    public synchronized WeatherSource getWeatherSource() {
         return weatherSource;
     }
 
-    public void setWeatherSource(WeatherSource weatherSource) {
+    public synchronized void setWeatherSource(WeatherSource weatherSource) {
         this.weatherSource = weatherSource;
     }
 
-    public LocationProvider getLocationProvider() {
+    public synchronized LocationProvider getLocationProvider() {
         return locationProvider;
     }
 
-    public void setLocationProvider(LocationProvider locationProvider) {
+    public synchronized void setLocationProvider(LocationProvider locationProvider) {
         this.locationProvider = locationProvider;
     }
 
-    public TemperatureUnit getTemperatureUnit() {
+    public synchronized TemperatureUnit getTemperatureUnit() {
         return temperatureUnit;
     }
 
-    public void setTemperatureUnit(TemperatureUnit temperatureUnit) {
+    public synchronized void setTemperatureUnit(TemperatureUnit temperatureUnit) {
         this.temperatureUnit = temperatureUnit;
     }
 
-    public DistanceUnit getDistanceUnit() {
+    public synchronized DistanceUnit getDistanceUnit() {
         return distanceUnit;
     }
 
-    public void setDistanceUnit(DistanceUnit distanceUnit) {
+    public synchronized void setDistanceUnit(DistanceUnit distanceUnit) {
         this.distanceUnit = distanceUnit;
     }
 
-    public PrecipitationUnit getPrecipitationUnit() {
+    public synchronized PrecipitationUnit getPrecipitationUnit() {
         return precipitationUnit;
     }
 
-    public void setPrecipitationUnit(PrecipitationUnit precipitationUnit) {
+    public synchronized void setPrecipitationUnit(PrecipitationUnit precipitationUnit) {
         this.precipitationUnit = precipitationUnit;
     }
 
-    public PressureUnit getPressureUnit() {
+    public synchronized PressureUnit getPressureUnit() {
         return pressureUnit;
     }
 
-    public void setPressureUnit(PressureUnit pressureUnit) {
+    public synchronized void setPressureUnit(PressureUnit pressureUnit) {
         this.pressureUnit = pressureUnit;
     }
 
-    public SpeedUnit getSpeedUnit() {
+    public synchronized SpeedUnit getSpeedUnit() {
         return speedUnit;
     }
 
-    public void setSpeedUnit(SpeedUnit speedUnit) {
+    public synchronized void setSpeedUnit(SpeedUnit speedUnit) {
         this.speedUnit = speedUnit;
     }
 
-    public UIStyle getUiStyle() {
+    public synchronized UIStyle getUiStyle() {
         return uiStyle;
     }
 
-    public void setUiStyle(UIStyle uiStyle) {
+    public synchronized void setUiStyle(UIStyle uiStyle) {
         this.uiStyle = uiStyle;
     }
 
-    public String getIconProvider() {
+    public synchronized String getIconProvider() {
         return iconProvider;
     }
 
-    public void setIconProvider(String iconProvider) {
+    public synchronized void setIconProvider(String iconProvider) {
         this.iconProvider = iconProvider;
     }
 
-    public List<CardDisplay> getCardDisplayList() {
-        return cardDisplayList;
+    public synchronized List<CardDisplay> getCardDisplayList() {
+        return new ArrayList<>(cardDisplayList);
     }
 
-    public void setCardDisplayList(List<CardDisplay> cardDisplayList) {
+    public synchronized void setCardDisplayList(List<CardDisplay> cardDisplayList) {
         this.cardDisplayList = cardDisplayList;
     }
 
-    public List<DailyTrendDisplay> getDailyTrendDisplayList() {
-        return dailyTrendDisplayList;
+    public synchronized List<DailyTrendDisplay> getDailyTrendDisplayList() {
+        return new ArrayList<>(dailyTrendDisplayList);
     }
 
-    public void setDailyTrendDisplayList(List<DailyTrendDisplay> dailyTrendDisplayList) {
+    public synchronized void setDailyTrendDisplayList(List<DailyTrendDisplay> dailyTrendDisplayList) {
         this.dailyTrendDisplayList = dailyTrendDisplayList;
     }
 
-    public boolean isTrendHorizontalLinesEnabled() {
+    public synchronized boolean isTrendHorizontalLinesEnabled() {
         return trendHorizontalLinesEnabled;
     }
 
-    public void setTrendHorizontalLinesEnabled(boolean trendHorizontalLinesEnabled) {
+    public synchronized void setTrendHorizontalLinesEnabled(boolean trendHorizontalLinesEnabled) {
         this.trendHorizontalLinesEnabled = trendHorizontalLinesEnabled;
     }
 
-    public boolean isExchangeDayNightTempEnabled() {
+    public synchronized boolean isExchangeDayNightTempEnabled() {
         return exchangeDayNightTempEnabled;
     }
 
-    public void setExchangeDayNightTempEnabled(boolean exchangeDayNightTempEnabled) {
+    public synchronized void setExchangeDayNightTempEnabled(boolean exchangeDayNightTempEnabled) {
         this.exchangeDayNightTempEnabled = exchangeDayNightTempEnabled;
     }
 
-    public boolean isGravitySensorEnabled() {
+    public synchronized boolean isGravitySensorEnabled() {
         return gravitySensorEnabled;
     }
 
-    public void setGravitySensorEnabled(boolean gravitySensorEnabled) {
+    public synchronized void setGravitySensorEnabled(boolean gravitySensorEnabled) {
         this.gravitySensorEnabled = gravitySensorEnabled;
     }
 
-    public boolean isListAnimationEnabled() {
+    public synchronized boolean isListAnimationEnabled() {
         return listAnimationEnabled;
     }
 
-    public void setListAnimationEnabled(boolean listAnimationEnabled) {
+    public synchronized void setListAnimationEnabled(boolean listAnimationEnabled) {
         this.listAnimationEnabled = listAnimationEnabled;
     }
 
-    public boolean isItemAnimationEnabled() {
+    public synchronized boolean isItemAnimationEnabled() {
         return itemAnimationEnabled;
     }
 
-    public void setItemAnimationEnabled(boolean itemAnimationEnabled) {
+    public synchronized void setItemAnimationEnabled(boolean itemAnimationEnabled) {
         this.itemAnimationEnabled = itemAnimationEnabled;
     }
 
-    public Language getLanguage() {
+    public synchronized Language getLanguage() {
         return language;
     }
 
-    public void setLanguage(Language language) {
+    public synchronized void setLanguage(Language language) {
         this.language = language;
     }
 
-    public boolean isTodayForecastEnabled() {
+    public synchronized boolean isTodayForecastEnabled() {
         return todayForecastEnabled;
     }
 
-    public void setTodayForecastEnabled(boolean todayForecastEnabled) {
+    public synchronized void setTodayForecastEnabled(boolean todayForecastEnabled) {
         this.todayForecastEnabled = todayForecastEnabled;
     }
 
-    public String getTodayForecastTime() {
+    public synchronized String getTodayForecastTime() {
         return todayForecastTime;
     }
 
-    public void setTodayForecastTime(String todayForecastTime) {
+    public synchronized void setTodayForecastTime(String todayForecastTime) {
         this.todayForecastTime = todayForecastTime;
     }
 
-    public boolean isTomorrowForecastEnabled() {
+    public synchronized boolean isTomorrowForecastEnabled() {
         return tomorrowForecastEnabled;
     }
 
-    public void setTomorrowForecastEnabled(boolean tomorrowForecastEnabled) {
+    public synchronized void setTomorrowForecastEnabled(boolean tomorrowForecastEnabled) {
         this.tomorrowForecastEnabled = tomorrowForecastEnabled;
     }
 
-    public String getTomorrowForecastTime() {
+    public synchronized String getTomorrowForecastTime() {
         return tomorrowForecastTime;
     }
 
-    public void setTomorrowForecastTime(String tomorrowForecastTime) {
+    public synchronized void setTomorrowForecastTime(String tomorrowForecastTime) {
         this.tomorrowForecastTime = tomorrowForecastTime;
     }
 
-    public WidgetWeekIconMode getWidgetWeekIconMode() {
+    public synchronized WidgetWeekIconMode getWidgetWeekIconMode() {
         return widgetWeekIconMode;
     }
 
-    public void setWidgetWeekIconMode(WidgetWeekIconMode widgetWeekIconMode) {
+    public synchronized void setWidgetWeekIconMode(WidgetWeekIconMode widgetWeekIconMode) {
         this.widgetWeekIconMode = widgetWeekIconMode;
     }
 
-    public boolean isWidgetMinimalIconEnabled() {
+    public synchronized boolean isWidgetMinimalIconEnabled() {
         return widgetMinimalIconEnabled;
     }
 
-    public void setWidgetMinimalIconEnabled(boolean widgetMinimalIconEnabled) {
+    public synchronized void setWidgetMinimalIconEnabled(boolean widgetMinimalIconEnabled) {
         this.widgetMinimalIconEnabled = widgetMinimalIconEnabled;
     }
 
-    public boolean isWidgetClickToRefreshEnabled() {
+    public synchronized boolean isWidgetClickToRefreshEnabled() {
         return widgetClickToRefreshEnabled;
     }
 
-    public void setWidgetClickToRefreshEnabled(boolean widgetClickToRefreshEnabled) {
+    public synchronized void setWidgetClickToRefreshEnabled(boolean widgetClickToRefreshEnabled) {
         this.widgetClickToRefreshEnabled = widgetClickToRefreshEnabled;
     }
 
-    public boolean isNotificationEnabled() {
+    public synchronized boolean isNotificationEnabled() {
         return notificationEnabled;
     }
 
-    public void setNotificationEnabled(boolean notificationEnabled) {
+    public synchronized void setNotificationEnabled(boolean notificationEnabled) {
         this.notificationEnabled = notificationEnabled;
     }
 
-    public NotificationStyle getNotificationStyle() {
+    public synchronized NotificationStyle getNotificationStyle() {
         return notificationStyle;
     }
 
-    public void setNotificationStyle(NotificationStyle notificationStyle) {
+    public synchronized void setNotificationStyle(NotificationStyle notificationStyle) {
         this.notificationStyle = notificationStyle;
     }
 
-    public boolean isNotificationMinimalIconEnabled() {
+    public synchronized boolean isNotificationMinimalIconEnabled() {
         return notificationMinimalIconEnabled;
     }
 
-    public void setNotificationMinimalIconEnabled(boolean notificationMinimalIconEnabled) {
+    public synchronized void setNotificationMinimalIconEnabled(boolean notificationMinimalIconEnabled) {
         this.notificationMinimalIconEnabled = notificationMinimalIconEnabled;
     }
 
-    public boolean isNotificationTemperatureIconEnabled() {
+    public synchronized boolean isNotificationTemperatureIconEnabled() {
         return notificationTemperatureIconEnabled;
     }
 
-    public void setNotificationTemperatureIconEnabled(boolean notificationTemperatureIconEnabled) {
+    public synchronized void setNotificationTemperatureIconEnabled(boolean notificationTemperatureIconEnabled) {
         this.notificationTemperatureIconEnabled = notificationTemperatureIconEnabled;
     }
 
-    public boolean isNotificationCustomColorEnabled() {
+    public synchronized boolean isNotificationCustomColorEnabled() {
         return notificationCustomColorEnabled;
     }
 
-    public void setNotificationCustomColorEnabled(boolean notificationCustomColorEnabled) {
+    public synchronized void setNotificationCustomColorEnabled(boolean notificationCustomColorEnabled) {
         this.notificationCustomColorEnabled = notificationCustomColorEnabled;
     }
 
-    public int getNotificationBackgroundColor() {
+    public synchronized int getNotificationBackgroundColor() {
         return notificationBackgroundColor;
     }
 
-    public void setNotificationBackgroundColor(int notificationBackgroundColor) {
+    public synchronized void setNotificationBackgroundColor(int notificationBackgroundColor) {
         this.notificationBackgroundColor = notificationBackgroundColor;
     }
 
-    public NotificationTextColor getNotificationTextColor() {
+    public synchronized NotificationTextColor getNotificationTextColor() {
         return notificationTextColor;
     }
 
-    public void setNotificationTextColor(NotificationTextColor notificationTextColor) {
+    public synchronized void setNotificationTextColor(NotificationTextColor notificationTextColor) {
         this.notificationTextColor = notificationTextColor;
     }
 
-    public boolean isNotificationCanBeClearedEnabled() {
+    public synchronized boolean isNotificationCanBeClearedEnabled() {
         return notificationCanBeClearedEnabled;
     }
 
-    public void setNotificationCanBeClearedEnabled(boolean notificationCanBeClearedEnabled) {
+    public synchronized void setNotificationCanBeClearedEnabled(boolean notificationCanBeClearedEnabled) {
         this.notificationCanBeClearedEnabled = notificationCanBeClearedEnabled;
     }
 
-    public boolean isNotificationHideIconEnabled() {
+    public synchronized boolean isNotificationHideIconEnabled() {
         return notificationHideIconEnabled;
     }
 
-    public void setNotificationHideIconEnabled(boolean notificationHideIconEnabled) {
+    public synchronized void setNotificationHideIconEnabled(boolean notificationHideIconEnabled) {
         this.notificationHideIconEnabled = notificationHideIconEnabled;
     }
 
-    public boolean isNotificationHideInLockScreenEnabled() {
+    public synchronized boolean isNotificationHideInLockScreenEnabled() {
         return notificationHideInLockScreenEnabled;
     }
 
-    public void setNotificationHideInLockScreenEnabled(boolean notificationHideInLockScreenEnabled) {
+    public synchronized void setNotificationHideInLockScreenEnabled(boolean notificationHideInLockScreenEnabled) {
         this.notificationHideInLockScreenEnabled = notificationHideInLockScreenEnabled;
     }
 
-    public boolean isNotificationHideBigViewEnabled() {
+    public synchronized boolean isNotificationHideBigViewEnabled() {
         return notificationHideBigViewEnabled;
     }
 
-    public void setNotificationHideBigViewEnabled(boolean notificationHideBigViewEnabled) {
+    public synchronized void setNotificationHideBigViewEnabled(boolean notificationHideBigViewEnabled) {
         this.notificationHideBigViewEnabled = notificationHideBigViewEnabled;
     }
 }

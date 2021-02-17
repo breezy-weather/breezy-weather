@@ -50,7 +50,7 @@ import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widgets.insets.FitBottomSystemBarNestedScrollView;
 import wangdaye.com.geometricweather.ui.widgets.insets.FitTopSystemBarAppBarLayout;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
-import wangdaye.com.geometricweather.ui.snackbar.SnackbarHelper;
+import wangdaye.com.geometricweather.utils.helpters.SnackbarHelper;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 /**

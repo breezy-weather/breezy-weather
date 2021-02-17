@@ -20,9 +20,9 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
@@ -30,7 +30,6 @@ import wangdaye.com.geometricweather.background.polling.PollingManager;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.models.Location;
 import wangdaye.com.geometricweather.basic.models.options.DarkMode;
-import wangdaye.com.geometricweather.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.databinding.ActivityMainBinding;
 import wangdaye.com.geometricweather.main.dialogs.BackgroundLocationDialog;
 import wangdaye.com.geometricweather.main.dialogs.LocationPermissionStatementDialog;
@@ -44,9 +43,9 @@ import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
 import wangdaye.com.geometricweather.search.SearchActivity;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.settings.activities.SelectProviderActivity;
-import wangdaye.com.geometricweather.ui.snackbar.SnackbarHelper;
 import wangdaye.com.geometricweather.utils.helpters.AsyncHelper;
 import wangdaye.com.geometricweather.utils.helpters.IntentHelper;
+import wangdaye.com.geometricweather.utils.helpters.SnackbarHelper;
 import wangdaye.com.geometricweather.utils.managers.ShortcutsManager;
 import wangdaye.com.geometricweather.utils.managers.ThemeManager;
 import wangdaye.com.geometricweather.utils.managers.TimeManager;
@@ -62,9 +61,6 @@ public class MainActivity extends GeoActivity
     private ActivityMainBinding mBinding;
     private MainActivityViewModel mViewModel;
 
-    private @Nullable String mPendingAction;
-    private @Nullable HashMap<String, Object> mPendingExtraMap;
-
     public static final int SETTINGS_ACTIVITY = 1;
     public static final int CARD_MANAGE_ACTIVITY = 3;
     public static final int SEARCH_ACTIVITY = 4;
@@ -77,6 +73,9 @@ public class MainActivity extends GeoActivity
     public static final String ACTION_UPDATE_WEATHER_IN_BACKGROUND
             = "com.wangdaye.geomtricweather.ACTION_UPDATE_WEATHER_IN_BACKGROUND";
     public static final String KEY_LOCATION = "LOCATION";
+
+    public static final String ACTION_MANAGEMENT
+            = "com.wangdaye.geomtricweather.ACTION_MANAGEMENT";
 
     public static final String ACTION_SHOW_ALERTS
             = "com.wangdaye.geomtricweather.ACTION_SHOW_ALERTS";
@@ -91,7 +90,7 @@ public class MainActivity extends GeoActivity
     private final BroadcastReceiver backgroundUpdateReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Location location = (Location) intent.getSerializableExtra(KEY_LOCATION);
+            Location location = (Location) intent.getParcelableExtra(KEY_LOCATION);
             if (location == null) {
                 return;
             }
@@ -107,7 +106,6 @@ public class MainActivity extends GeoActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        pendingIntentAction(getIntent());
 
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
@@ -115,19 +113,20 @@ public class MainActivity extends GeoActivity
         initModel(savedInstanceState == null);
         initView();
 
-        registerReceiver(
+        LocalBroadcastManager.getInstance(this).registerReceiver(
                 backgroundUpdateReceiver,
                 new IntentFilter(ACTION_UPDATE_WEATHER_IN_BACKGROUND)
         );
         refreshBackgroundViews(true, mViewModel.getValidLocationList(),
                 false, false);
+
+        consumeIntentAction(getIntent());
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        pendingIntentAction(intent);
-        mViewModel.init(getLocationId(intent));
+        consumeIntentAction(getIntent());
     }
 
     @Override
@@ -180,7 +179,7 @@ public class MainActivity extends GeoActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unregisterReceiver(backgroundUpdateReceiver);
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(backgroundUpdateReceiver);
     }
 
     // init.
@@ -236,8 +235,6 @@ public class MainActivity extends GeoActivity
             refreshBackgroundViews(
                     false, mViewModel.getValidLocationList(), resource.defaultLocation,
                     resource.event != LocationResource.Event.BACKGROUND_UPDATE);
-
-            consumeIntentAction();
         });
 
         mViewModel.getPermissionsRequest().observe(this, request -> {
@@ -320,6 +317,30 @@ public class MainActivity extends GeoActivity
 
     // control.
 
+    private void consumeIntentAction(Intent intent) {
+        String action = intent.getAction();
+        if (TextUtils.isEmpty(action)) {
+            return;
+        }
+
+        String formattedId = intent.getStringExtra(KEY_MAIN_ACTIVITY_LOCATION_FORMATTED_ID);
+
+        if (ACTION_SHOW_ALERTS.equals(action)) {
+            IntentHelper.startAlertActivity(this, formattedId);
+            return;
+        }
+
+        if (ACTION_SHOW_DAILY_FORECAST.equals(action)) {
+            int index = intent.getIntExtra(KEY_DAILY_INDEX, 0);
+            IntentHelper.startDailyWeatherActivity(this, formattedId, index);
+            return;
+        }
+
+        if (ACTION_MANAGEMENT.equals(action)) {
+            setManagementFragmentVisibility(true);
+        }
+    }
+
     private void setDarkMode(boolean dayTime) {
         if (SettingsOptionManager.getInstance(this).getDarkMode() == DarkMode.AUTO) {
             int mode = dayTime ? AppCompatDelegate.MODE_NIGHT_NO : AppCompatDelegate.MODE_NIGHT_YES;
@@ -400,52 +421,6 @@ public class MainActivity extends GeoActivity
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
                 ShortcutsManager.refreshShortcutsInNewThread(this, locationList);
-            }
-        }
-    }
-
-    private void pendingIntentAction(Intent intent) {
-        String action = intent.getAction();
-        if (TextUtils.isEmpty(action)) {
-            mPendingAction = null;
-            mPendingExtraMap = null;
-            return;
-        }
-
-        if (action.equals(ACTION_SHOW_ALERTS)) {
-            mPendingAction = ACTION_SHOW_ALERTS;
-            mPendingExtraMap = new HashMap<>();
-        } else if (action.equals(ACTION_SHOW_DAILY_FORECAST)) {
-            mPendingAction = ACTION_SHOW_DAILY_FORECAST;
-
-            mPendingExtraMap = new HashMap<>();
-            mPendingExtraMap.put(KEY_DAILY_INDEX, intent.getIntExtra(KEY_DAILY_INDEX, 0));
-        }
-    }
-
-    private void consumeIntentAction() {
-        String action = mPendingAction;
-        HashMap<String, Object> extraMap = mPendingExtraMap;
-        mPendingAction = null;
-        mPendingExtraMap = null;
-        if (TextUtils.isEmpty(action) || extraMap == null) {
-            return;
-        }
-
-        if (ACTION_SHOW_ALERTS.equals(action)) {
-            Location location = mViewModel.getCurrentLocationValue();
-            if (location != null) {
-                Weather weather = location.getWeather();
-                if (weather != null) {
-                    IntentHelper.startAlertActivity(this, weather);
-                }
-            }
-        } else if (ACTION_SHOW_DAILY_FORECAST.equals(action)) {
-            String formattedId = mViewModel.getCurrentFormattedId();
-            Integer index = (Integer) extraMap.get(KEY_DAILY_INDEX);
-            if (formattedId != null && index != null) {
-                IntentHelper.startDailyWeatherActivity(
-                        this, mViewModel.getCurrentFormattedId(), index);
             }
         }
     }

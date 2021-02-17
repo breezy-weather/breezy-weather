@@ -16,7 +16,7 @@ import wangdaye.com.geometricweather.main.MainActivityViewModel;
 import wangdaye.com.geometricweather.ui.dialogs.LearnMoreAboutResidentLocationDialog;
 import wangdaye.com.geometricweather.ui.widgets.slidingItem.SlidingItemTouchCallback;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
-import wangdaye.com.geometricweather.ui.snackbar.SnackbarHelper;
+import wangdaye.com.geometricweather.utils.helpters.SnackbarHelper;
 
 public class LocationItemTouchCallback extends SlidingItemTouchCallback {
 

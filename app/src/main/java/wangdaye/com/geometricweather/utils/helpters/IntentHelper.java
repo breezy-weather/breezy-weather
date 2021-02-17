@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Parcelable;
 import android.provider.Settings;
 import android.view.View;
 
@@ -19,13 +18,11 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.util.Pair;
-
-import java.util.ArrayList;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.polling.basic.AwakeForegroundUpdateService;
 import wangdaye.com.geometricweather.basic.models.Location;
-import wangdaye.com.geometricweather.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.daily.DailyWeatherActivity;
 import wangdaye.com.geometricweather.main.MainActivity;
 import wangdaye.com.geometricweather.search.SearchActivity;
@@ -37,7 +34,6 @@ import wangdaye.com.geometricweather.settings.activities.SelectProviderActivity;
 import wangdaye.com.geometricweather.settings.activities.SettingsActivity;
 import wangdaye.com.geometricweather.ui.activities.AlertActivity;
 import wangdaye.com.geometricweather.ui.activities.AllergenActivity;
-import wangdaye.com.geometricweather.ui.snackbar.SnackbarHelper;
 import wangdaye.com.geometricweather.wallpaper.MaterialLiveWallpaperService;
 
 /**
@@ -54,8 +50,16 @@ public class IntentHelper {
         );
     }
 
+    public static void startMainActivityForManagement(Activity activity) {
+        activity.startActivity(
+                new Intent(MainActivity.ACTION_MANAGEMENT)
+                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        );
+    }
+
     public static Intent buildMainActivityIntent(@Nullable Location location) {
-        String formattedId = "";
+        String formattedId = null;
         if (location != null) {
             formattedId = location.getFormattedId();
         }
@@ -67,7 +71,7 @@ public class IntentHelper {
     }
 
     public static Intent buildMainActivityShowAlertsIntent(@Nullable Location location) {
-        String formattedId = "";
+        String formattedId = null;
         if (location != null) {
             formattedId = location.getFormattedId();
         }
@@ -80,7 +84,7 @@ public class IntentHelper {
 
     public static Intent buildMainActivityShowDailyForecastIntent(@Nullable Location location,
                                                                   int index) {
-        String formattedId = "";
+        String formattedId = null;
         if (location != null) {
             formattedId = location.getFormattedId();
         }
@@ -97,19 +101,17 @@ public class IntentHelper {
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     }
 
-    public static void startDailyWeatherActivity(Activity activity, String formattedId, int index) {
+    public static void startDailyWeatherActivity(Activity activity,
+                                                 @Nullable String formattedId, int index) {
         Intent intent = new Intent(activity, DailyWeatherActivity.class);
         intent.putExtra(DailyWeatherActivity.KEY_FORMATTED_LOCATION_ID, formattedId);
         intent.putExtra(DailyWeatherActivity.KEY_CURRENT_DAILY_INDEX, index);
         activity.startActivity(intent);
     }
 
-    public static void startAlertActivity(Activity activity, Weather weather) {
+    public static void startAlertActivity(Activity activity, @Nullable String formattedId) {
         Intent intent = new Intent(activity, AlertActivity.class);
-        intent.putParcelableArrayListExtra(
-                AlertActivity.KEY_ALERT_ACTIVITY_ALERT_LIST,
-                (ArrayList<? extends Parcelable>) weather.getAlertList()
-        );
+        intent.putExtra(AlertActivity.KEY_FORMATTED_ID, formattedId);
         activity.startActivity(intent);
     }
 
@@ -262,7 +264,7 @@ public class IntentHelper {
     }
 
     public static void sendBackgroundUpdateBroadcast(Context context, Location location) {
-        context.sendBroadcast(
+        LocalBroadcastManager.getInstance(context).sendBroadcast(
                 new Intent(MainActivity.ACTION_UPDATE_WEATHER_IN_BACKGROUND)
                         .putExtra(MainActivity.KEY_LOCATION, location)
         );

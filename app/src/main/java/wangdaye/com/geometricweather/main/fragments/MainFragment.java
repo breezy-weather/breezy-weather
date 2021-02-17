@@ -32,7 +32,7 @@ import wangdaye.com.geometricweather.main.models.LocationResource;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.resource.providers.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.ui.snackbar.SnackbarHelper;
+import wangdaye.com.geometricweather.utils.helpters.SnackbarHelper;
 import wangdaye.com.geometricweather.ui.widgets.SwipeSwitchLayout;
 import wangdaye.com.geometricweather.ui.widgets.insets.FitHorizontalSystemBarRootLayout;
 import wangdaye.com.geometricweather.ui.widgets.weatherView.WeatherView;
@@ -98,7 +98,7 @@ public class MainFragment extends Fragment {
 
         resetUIUpdateFlag();
         ensureResourceProvider();
-        updateThemeManager();
+        updateThemeManager(true);
 
         initModel();
         initView();
@@ -117,6 +117,12 @@ public class MainFragment extends Fragment {
     public void onPause() {
         super.onPause();
         mWeatherView.setDrawable(false);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        updateThemeManager(false);
     }
 
     // init.
@@ -257,7 +263,7 @@ public class MainFragment extends Fragment {
             resetUIUpdateFlag();
             ensureResourceProvider();
         }
-        updateThemeManager();
+        updateThemeManager(true);
 
         FitHorizontalSystemBarRootLayout rootLayout = ((GeoActivity) requireActivity())
                 .getFitHorizontalSystemBarRootLayout();
@@ -347,11 +353,15 @@ public class MainFragment extends Fragment {
         }
     }
 
-    public void updateThemeManager() {
+    public void updateThemeManager(boolean registerWeatherView) {
         if (mThemeManager == null) {
             mThemeManager = ThemeManager.getInstance(requireContext());
         }
-        mThemeManager.update(requireContext(), mWeatherView);
+        if (registerWeatherView) {
+            mThemeManager.update(requireContext(), mWeatherView);
+        } else {
+            mThemeManager.unregisterWeatherView();
+        }
     }
 
     private void setRefreshing(final boolean b) {
