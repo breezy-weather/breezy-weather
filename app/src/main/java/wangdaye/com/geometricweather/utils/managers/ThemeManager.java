@@ -49,7 +49,7 @@ public class ThemeManager {
         innerUpdate(context, weatherView);
     }
 
-    public void innerUpdate(Context context, @Nullable WeatherView weatherView) {
+    private void innerUpdate(Context context, @Nullable WeatherView weatherView) {
         if (weatherView != null) {
             mWeatherView = weatherView;
         }

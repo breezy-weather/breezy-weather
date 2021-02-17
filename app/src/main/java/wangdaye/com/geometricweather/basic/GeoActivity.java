@@ -1,13 +1,14 @@
 package wangdaye.com.geometricweather.basic;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
@@ -22,6 +23,7 @@ import wangdaye.com.geometricweather.utils.managers.ThemeManager;
 
 public abstract class GeoActivity extends AppCompatActivity {
 
+    private CoordinatorLayout mSnackbarContainer;
     private FitHorizontalSystemBarRootLayout mFitHorizontalSystemBarRootLayout;
 
     private @Nullable GeoDialog mTopDialog;
@@ -36,6 +38,15 @@ public abstract class GeoActivity extends AppCompatActivity {
         mFitHorizontalSystemBarRootLayout = new FitHorizontalSystemBarRootLayout(this);
         mFitHorizontalSystemBarRootLayout.setRootColor(ThemeManager.getInstance(this).getRootColor(this));
         mFitHorizontalSystemBarRootLayout.setLineColor(ThemeManager.getInstance(this).getLineColor(this));
+
+        mSnackbarContainer = new CoordinatorLayout(this);
+        mSnackbarContainer.addView(
+                mFitHorizontalSystemBarRootLayout,
+                new CoordinatorLayout.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT
+                )
+        );
 
         GeometricWeather.getInstance().addActivity(this);
 
@@ -57,18 +68,24 @@ public abstract class GeoActivity extends AppCompatActivity {
         ViewGroup decorChild = (ViewGroup) decorView.getChildAt(0);
 
         decorView.removeView(decorChild);
-        if (mFitHorizontalSystemBarRootLayout.getParent() != null) {
-            decorView.removeView(mFitHorizontalSystemBarRootLayout);
+        if (mSnackbarContainer.getParent() != null) {
+            decorView.removeView(mSnackbarContainer);
         }
-        decorView.addView(mFitHorizontalSystemBarRootLayout);
+        decorView.addView(mSnackbarContainer);
 
         mFitHorizontalSystemBarRootLayout.removeAllViews();
         mFitHorizontalSystemBarRootLayout.addView(decorChild);
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        GeometricWeather.getInstance().setTopActivity(this);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         GeometricWeather.getInstance().setTopActivity(this);
     }
 
@@ -95,9 +112,11 @@ public abstract class GeoActivity extends AppCompatActivity {
         GeometricWeather.getInstance().removeActivity(this);
     }
 
-    public abstract View getSnackbarContainer();
+    public ViewGroup getSnackbarContainer() {
+        return mFitHorizontalSystemBarRootLayout;
+    }
 
-    public View provideSnackbarContainer(boolean[] fromActivity) {
+    public ViewGroup provideSnackbarContainer(boolean[] fromActivity) {
         GeoDialog topDialog = getTopDialog();
         if (topDialog == null) {
             fromActivity[0] = true;

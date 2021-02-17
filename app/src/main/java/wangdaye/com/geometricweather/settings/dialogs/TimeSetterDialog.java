@@ -86,7 +86,7 @@ public class TimeSetterDialog extends GeoDialog
     }
 
     @Override
-    public View getSnackbarContainer() {
+    public ViewGroup getSnackbarContainer() {
         return requireDialog().findViewById(R.id.dialog_time_setter_container);
     }
 

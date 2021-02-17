@@ -13,7 +13,7 @@ import wangdaye.com.geometricweather.basic.models.Location;
 import wangdaye.com.geometricweather.basic.models.options.provider.LocationProvider;
 import wangdaye.com.geometricweather.basic.models.options.provider.WeatherSource;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
-import wangdaye.com.geometricweather.utils.helpters.SnackbarHelper;
+import wangdaye.com.geometricweather.ui.snackbar.SnackbarHelper;
 
 /**
  * Service provider settings fragment.

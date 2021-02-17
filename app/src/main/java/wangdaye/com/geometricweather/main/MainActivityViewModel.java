@@ -23,14 +23,15 @@ import wangdaye.com.geometricweather.main.models.LocationResource;
 import wangdaye.com.geometricweather.main.models.PermissionsRequest;
 import wangdaye.com.geometricweather.main.models.SelectableLocationListResource;
 import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
+import wangdaye.com.geometricweather.utils.managers.TimeManager;
 
 public class MainActivityViewModel extends GeoViewModel
         implements MainActivityRepository.WeatherRequestCallback {
 
     private final MutableLiveData<LocationResource> mCurrentLocation;
-    private final MutableLiveData<SelectableLocationListResource> mListResource;
     private final MutableLiveData<Indicator> mIndicator;
     private final MutableLiveData<PermissionsRequest> mPermissionsRequest;
+    private final MutableLiveData<SelectableLocationListResource> mListResource;
 
     private final SavedStateHandle mSavedStateHandle;
     private final MainActivityRepository mRepository;
@@ -432,6 +433,8 @@ public class MainActivityViewModel extends GeoViewModel
                                                      Indicator indicator,
                                                      @Nullable String forceUpdateId,
                                                      @NonNull SelectableLocationListResource.Source source) {
+        TimeManager.getInstance(getApplication()).update(getApplication(), location);
+
         switch (mStatus) {
             case INITIALIZING:
                 mCurrentLocation.setValue(
@@ -457,13 +460,13 @@ public class MainActivityViewModel extends GeoViewModel
                 break;
         }
 
+        mIndicator.setValue(indicator);
+
         assert mTotalList != null;
         if (mStatus != Status.INITIALIZING) {
             mListResource.setValue(new SelectableLocationListResource(
                     new ArrayList<>(mTotalList), location.getFormattedId(), forceUpdateId, source));
         }
-
-        mIndicator.setValue(indicator);
     }
 
     private static int indexLocation(List<Location> locationList, @Nullable String formattedId) {
@@ -507,16 +510,16 @@ public class MainActivityViewModel extends GeoViewModel
         return mCurrentLocation;
     }
 
-    public MutableLiveData<SelectableLocationListResource> getListResource() {
-        return mListResource;
-    }
-
     public MutableLiveData<Indicator> getIndicator() {
         return mIndicator;
     }
 
     public MutableLiveData<PermissionsRequest> getPermissionsRequest() {
         return mPermissionsRequest;
+    }
+
+    public MutableLiveData<SelectableLocationListResource> getListResource() {
+        return mListResource;
     }
 
     @Nullable
@@ -612,6 +615,8 @@ public class MainActivityViewModel extends GeoViewModel
         }
 
         Indicator indicator = new Indicator(validList.size(), validIndex);
+
+        TimeManager.getInstance(getApplication()).update(getApplication(), location);
 
         mCurrentLocation.setValue(resource);
         mIndicator.setValue(indicator);

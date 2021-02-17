@@ -4,11 +4,9 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
-import android.view.View;
 
 import java.util.List;
 
@@ -23,8 +21,6 @@ import wangdaye.com.geometricweather.ui.decotarions.ListDecoration;
  * */
 
 public class AlertActivity extends GeoActivity {
-
-    private CoordinatorLayout mContainer;
 
     private List<Alert> mAlarmList;
     public static final String KEY_ALERT_ACTIVITY_ALERT_LIST = "ALERT_ACTIVITY_ALERT_LIST";
@@ -43,18 +39,11 @@ public class AlertActivity extends GeoActivity {
         // do nothing.
     }
 
-    @Override
-    public View getSnackbarContainer() {
-        return mContainer;
-    }
-
     private void initData() {
         mAlarmList = getIntent().getParcelableArrayListExtra(KEY_ALERT_ACTIVITY_ALERT_LIST);
     }
 
     private void initWidget() {
-        mContainer = findViewById(R.id.activity_alert_container);
-
         Toolbar toolbar = findViewById(R.id.activity_alert_toolbar);
         toolbar.setNavigationOnClickListener(v -> finish());
 

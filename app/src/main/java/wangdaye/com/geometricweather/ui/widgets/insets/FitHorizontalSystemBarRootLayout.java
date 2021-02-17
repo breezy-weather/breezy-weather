@@ -79,7 +79,7 @@ public class FitHorizontalSystemBarRootLayout extends FrameLayout {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
         canvas.drawColor(mRootColor);

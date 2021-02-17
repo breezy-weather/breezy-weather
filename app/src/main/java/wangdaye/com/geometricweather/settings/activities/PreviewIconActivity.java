@@ -3,11 +3,9 @@ package wangdaye.com.geometricweather.settings.activities;
 import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,8 +29,6 @@ import wangdaye.com.geometricweather.utils.helpters.IntentHelper;
 
 public class PreviewIconActivity extends GeoActivity {
 
-    private CoordinatorLayout mContainer;
-
     private ResourceProvider mProvider;
     private List<WeatherIconAdapter.Item> mItemList;
 
@@ -51,11 +47,6 @@ public class PreviewIconActivity extends GeoActivity {
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         // do nothing.
-    }
-
-    @Override
-    public View getSnackbarContainer() {
-        return mContainer;
     }
 
     private void initData() {
@@ -163,8 +154,6 @@ public class PreviewIconActivity extends GeoActivity {
 
     @SuppressLint("NonConstantResourceId")
     private void initWidget() {
-        mContainer = findViewById(R.id.activity_preview_icon_container);
-
         Toolbar toolbar = findViewById(R.id.activity_preview_icon_toolbar);
         toolbar.setTitle(mProvider.getProviderName());
         toolbar.setNavigationOnClickListener(v -> finish());

@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.appcompat.widget.Toolbar;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import java.util.Arrays;
 
@@ -20,8 +19,6 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 
 public class LiveWallpaperConfigActivity extends GeoActivity {
-    
-    protected CoordinatorLayout mContainer;
 
     protected String mWeatherKindValueNow;
     protected String[] mWeatherKinds;
@@ -37,11 +34,6 @@ public class LiveWallpaperConfigActivity extends GeoActivity {
         setContentView(R.layout.activity_live_wallpaper_config);
         initData();
         initView();
-    }
-
-    @Override
-    public View getSnackbarContainer() {
-        return mContainer;
     }
 
     @SuppressLint("MissingSuperCall")
@@ -67,8 +59,6 @@ public class LiveWallpaperConfigActivity extends GeoActivity {
         Toolbar toolbar = findViewById(R.id.activity_live_wallpaper_config_toolbar);
         toolbar.setNavigationOnClickListener(view -> finish());
 
-        mContainer = findViewById(R.id.activity_live_wallpaper_config_container);
-        
         AppCompatSpinner weatherKindSpinner = findViewById(R.id.activity_live_wallpaper_config_weatherKindSpinner);
         weatherKindSpinner.setOnItemSelectedListener(new WeatherKindSpinnerSelectedListener());
         weatherKindSpinner.setAdapter(

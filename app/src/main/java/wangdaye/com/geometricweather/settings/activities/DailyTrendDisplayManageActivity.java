@@ -6,7 +6,6 @@ import android.annotation.SuppressLint;
 import android.graphics.Canvas;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 
@@ -180,11 +179,6 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
                 ).apply();
         SettingsOptionManager.getInstance(this).setDailyTrendDisplayList(
                 mDailyTrendDisplayAdapter.getDailyTrendDisplayList());
-    }
-
-    @Override
-    public View getSnackbarContainer() {
-        return mBinding.container;
     }
 
     @SuppressLint("MissingSuperCall")

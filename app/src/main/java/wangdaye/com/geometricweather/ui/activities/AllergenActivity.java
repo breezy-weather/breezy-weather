@@ -3,11 +3,9 @@ package wangdaye.com.geometricweather.ui.activities;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import wangdaye.com.geometricweather.R;
@@ -19,8 +17,6 @@ import wangdaye.com.geometricweather.ui.decotarions.ListDecoration;
 import wangdaye.com.geometricweather.ui.widgets.insets.FitBottomSystemBarRecyclerView;
 
 public class AllergenActivity extends GeoActivity {
-    
-    private CoordinatorLayout mContainer;
 
     private Location mLocation;
     public static final String KEY_ALLERGEN_ACTIVITY_LOCATION_FORMATTED_ID = "ALLERGEN_ACTIVITY_LOCATION_FORMATTED_ID";
@@ -39,11 +35,6 @@ public class AllergenActivity extends GeoActivity {
         // do nothing.
     }
 
-    @Override
-    public View getSnackbarContainer() {
-        return mContainer;
-    }
-
     private void initData() {
         String formattedId = getIntent().getStringExtra(KEY_ALLERGEN_ACTIVITY_LOCATION_FORMATTED_ID);
         if (!TextUtils.isEmpty(formattedId)) {
@@ -56,8 +47,6 @@ public class AllergenActivity extends GeoActivity {
     }
 
     private void initWidget() {
-        mContainer = findViewById(R.id.activity_allergen_container);
-
         Toolbar toolbar = findViewById(R.id.activity_allergen_toolbar);
         toolbar.setNavigationOnClickListener(v -> finish());
 

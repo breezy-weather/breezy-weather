@@ -20,7 +20,7 @@ import wangdaye.com.geometricweather.basic.models.weather.Temperature;
 import wangdaye.com.geometricweather.resource.providers.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.settings.dialogs.ProvidersPreviewerDialog;
-import wangdaye.com.geometricweather.utils.helpters.SnackbarHelper;
+import wangdaye.com.geometricweather.ui.snackbar.SnackbarHelper;
 import wangdaye.com.geometricweather.utils.helpters.IntentHelper;
 
 /**

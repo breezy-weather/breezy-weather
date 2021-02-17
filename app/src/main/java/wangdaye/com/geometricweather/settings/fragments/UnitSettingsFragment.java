@@ -10,7 +10,7 @@ import wangdaye.com.geometricweather.basic.models.options.unit.PrecipitationUnit
 import wangdaye.com.geometricweather.basic.models.options.unit.PressureUnit;
 import wangdaye.com.geometricweather.basic.models.options.unit.SpeedUnit;
 import wangdaye.com.geometricweather.basic.models.options.unit.TemperatureUnit;
-import wangdaye.com.geometricweather.utils.helpters.SnackbarHelper;
+import wangdaye.com.geometricweather.ui.snackbar.SnackbarHelper;
 
 /**
  * Unit settings fragment.

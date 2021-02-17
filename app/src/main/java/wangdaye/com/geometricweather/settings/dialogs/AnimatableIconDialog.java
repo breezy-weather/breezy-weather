@@ -86,7 +86,7 @@ public class AnimatableIconDialog extends GeoDialog {
     }
 
     @Override
-    public View getSnackbarContainer() {
+    public ViewGroup getSnackbarContainer() {
         return requireDialog().findViewById(R.id.dialog_animatable_icon_container);
     }
 }

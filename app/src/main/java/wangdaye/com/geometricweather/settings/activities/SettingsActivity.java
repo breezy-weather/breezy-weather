@@ -2,7 +2,6 @@ package wangdaye.com.geometricweather.settings.activities;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.preference.PreferenceFragmentCompat;
@@ -40,11 +39,6 @@ public class SettingsActivity extends GeoActivity {
                 .beginTransaction()
                 .replace(R.id.activity_settings_container, settingsFragment)
                 .commit();
-    }
-
-    @Override
-    public View getSnackbarContainer() {
-        return findViewById(R.id.activity_settings_container);
     }
 
     @Override

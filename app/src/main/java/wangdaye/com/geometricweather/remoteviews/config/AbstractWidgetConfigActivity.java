@@ -12,15 +12,6 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-
-import androidx.annotation.CallSuper;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.widget.AppCompatSpinner;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.core.widget.NestedScrollView;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
@@ -38,6 +29,13 @@ import android.widget.RemoteViews;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import androidx.annotation.CallSuper;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.widget.AppCompatSpinner;
+import androidx.core.widget.NestedScrollView;
+
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -47,12 +45,12 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.polling.PollingManager;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.models.Location;
+import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.ui.widgets.insets.FitBottomSystemBarNestedScrollView;
 import wangdaye.com.geometricweather.ui.widgets.insets.FitTopSystemBarAppBarLayout;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
-import wangdaye.com.geometricweather.utils.helpters.SnackbarHelper;
-import wangdaye.com.geometricweather.db.DatabaseHelper;
+import wangdaye.com.geometricweather.ui.snackbar.SnackbarHelper;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 /**
@@ -66,7 +64,6 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
     protected ImageView mWallpaper;
     protected FrameLayout mWidgetContainer;
 
-    protected CoordinatorLayout mContainer;
     protected NestedScrollView mScrollView;
     protected RelativeLayout mViewTypeContainer;
     protected RelativeLayout mCardStyleContainer;
@@ -157,11 +154,6 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
 
         mLastBackPressedTime = time;
         SnackbarHelper.showSnackbar(getString(R.string.feedback_click_again_to_exit));
-    }
-
-    @Override
-    public View getSnackbarContainer() {
-        return mContainer;
     }
 
     @Override
@@ -288,8 +280,6 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         } else {
             mWidgetContainer.setPadding(paddingHorizontal, 0, paddingHorizontal, 0);
         }
-
-        mContainer = findViewById(R.id.activity_widget_config_container);
 
         mScrollView = findViewById(R.id.activity_widget_config_scrollView);
 

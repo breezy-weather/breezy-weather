@@ -133,7 +133,7 @@ public class ProvidersPreviewerDialog extends GeoDialog {
     }
 
     @Override
-    public View getSnackbarContainer() {
+    public ViewGroup getSnackbarContainer() {
         return requireDialog().findViewById(R.id.dialog_providers_previewer_container);
     }
 }

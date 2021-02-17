@@ -34,7 +34,7 @@ import wangdaye.com.geometricweather.main.models.SelectableLocationListResource;
 import wangdaye.com.geometricweather.main.ui.LocationItemTouchCallback;
 import wangdaye.com.geometricweather.ui.adapters.location.LocationAdapter;
 import wangdaye.com.geometricweather.ui.decotarions.ListDecoration;
-import wangdaye.com.geometricweather.utils.helpters.SnackbarHelper;
+import wangdaye.com.geometricweather.ui.snackbar.SnackbarHelper;
 import wangdaye.com.geometricweather.utils.managers.ThemeManager;
 
 public class ManagementFragment extends Fragment
@@ -128,7 +128,8 @@ public class ManagementFragment extends Fragment
     }
 
     private void setThemeStyle() {
-        ThemeManager themeManager = ThemeManager.getInstance(requireActivity());
+        ThemeManager themeManager = ThemeManager.getInstance(requireContext());
+        themeManager.update(requireContext());
 
         ImageViewCompat.setImageTintList(
                 mBinding.searchIcon,

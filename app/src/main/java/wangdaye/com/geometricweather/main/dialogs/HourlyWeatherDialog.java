@@ -141,7 +141,7 @@ public class HourlyWeatherDialog extends GeoDialog {
     }
 
     @Override
-    public View getSnackbarContainer() {
+    public ViewGroup getSnackbarContainer() {
         return requireDialog().findViewById(R.id.dialog_weather_hourly_container);
     }
 }

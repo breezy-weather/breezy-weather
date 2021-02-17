@@ -2,6 +2,7 @@ package wangdaye.com.geometricweather.basic;
 
 import android.content.Context;
 import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
@@ -47,7 +48,7 @@ public abstract class GeoDialog extends DialogFragment {
         ((GeoActivity) requireActivity()).checkToCleanTopDialog(this);
     }
 
-    public abstract View getSnackbarContainer();
+    public abstract ViewGroup getSnackbarContainer();
 
     public boolean isForeground() {
         return mForeground;

@@ -60,7 +60,7 @@ public class RunningInBackgroundODialog extends GeoDialog
     }
 
     @Override
-    public View getSnackbarContainer() {
+    public ViewGroup getSnackbarContainer() {
         return requireDialog().findViewById(R.id.dialog_running_in_background_o_container);
     }
 }

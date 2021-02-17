@@ -37,6 +37,7 @@ import wangdaye.com.geometricweather.settings.activities.SelectProviderActivity;
 import wangdaye.com.geometricweather.settings.activities.SettingsActivity;
 import wangdaye.com.geometricweather.ui.activities.AlertActivity;
 import wangdaye.com.geometricweather.ui.activities.AllergenActivity;
+import wangdaye.com.geometricweather.ui.snackbar.SnackbarHelper;
 import wangdaye.com.geometricweather.wallpaper.MaterialLiveWallpaperService;
 
 /**

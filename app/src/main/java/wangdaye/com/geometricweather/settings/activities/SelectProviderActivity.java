@@ -3,7 +3,6 @@ package wangdaye.com.geometricweather.settings.activities;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.appcompat.widget.Toolbar;
 
@@ -36,11 +35,6 @@ public class SelectProviderActivity extends GeoActivity {
                 .beginTransaction()
                 .replace(R.id.activity_settings_container, f)
                 .commit();
-    }
-
-    @Override
-    public View getSnackbarContainer() {
-        return findViewById(R.id.activity_settings_container);
     }
 
     @SuppressLint("MissingSuperCall")

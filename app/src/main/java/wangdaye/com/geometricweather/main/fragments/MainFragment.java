@@ -12,7 +12,6 @@ import android.view.animation.DecelerateInterpolator;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
@@ -22,7 +21,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.basic.GeoActivity;
 import wangdaye.com.geometricweather.basic.models.Location;
-import wangdaye.com.geometricweather.basic.models.options.DarkMode;
 import wangdaye.com.geometricweather.basic.models.options.provider.WeatherSource;
 import wangdaye.com.geometricweather.basic.models.resources.Resource;
 import wangdaye.com.geometricweather.databinding.FragmentMainBinding;
@@ -34,6 +32,7 @@ import wangdaye.com.geometricweather.main.models.LocationResource;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.resource.providers.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.ui.snackbar.SnackbarHelper;
 import wangdaye.com.geometricweather.ui.widgets.SwipeSwitchLayout;
 import wangdaye.com.geometricweather.ui.widgets.insets.FitHorizontalSystemBarRootLayout;
 import wangdaye.com.geometricweather.ui.widgets.weatherView.WeatherView;
@@ -41,7 +40,6 @@ import wangdaye.com.geometricweather.ui.widgets.weatherView.WeatherViewControlle
 import wangdaye.com.geometricweather.ui.widgets.weatherView.circularSkyView.CircularSkyWeatherView;
 import wangdaye.com.geometricweather.ui.widgets.weatherView.materialWeatherView.MaterialWeatherView;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
-import wangdaye.com.geometricweather.utils.helpters.SnackbarHelper;
 import wangdaye.com.geometricweather.utils.managers.ThemeManager;
 import wangdaye.com.geometricweather.utils.managers.TimeManager;
 
@@ -255,28 +253,25 @@ public class MainFragment extends Fragment {
             resetUI(location);
         }
 
-        boolean oldDaytime = TimeManager.getInstance(requireContext()).isDayTime();
-        boolean daytime = TimeManager.getInstance(requireContext())
-                .update(requireContext(), location)
-                .isDayTime();
-
-        setDarkMode(daytime);
-
         if (initialize) {
             resetUIUpdateFlag();
             ensureResourceProvider();
         }
-        if (initialize || oldDaytime != daytime) {
-            updateThemeManager();
+        updateThemeManager();
 
-            FitHorizontalSystemBarRootLayout rootLayout = ((GeoActivity) requireActivity())
-                    .getFitHorizontalSystemBarRootLayout();
-            rootLayout.setRootColor(mThemeManager.getRootColor(requireContext()));
-            rootLayout.setLineColor(mThemeManager.getLineColor(requireContext()));
-        }
+        FitHorizontalSystemBarRootLayout rootLayout = ((GeoActivity) requireActivity())
+                .getFitHorizontalSystemBarRootLayout();
+        rootLayout.setRootColor(mThemeManager.getRootColor(requireContext()));
+        rootLayout.setLineColor(mThemeManager.getLineColor(requireContext()));
 
         WeatherViewController.setWeatherCode(
-                mWeatherView, location.getWeather(), daytime, mResourceProvider);
+                mWeatherView,
+                location.getWeather(),
+                TimeManager.getInstance(requireContext())
+                        .update(requireContext(), location)
+                        .isDayTime(),
+                mResourceProvider
+        );
 
         mBinding.refreshLayout.setColorSchemeColors(mWeatherView.getThemeColors(mThemeManager.isLightTheme())[0]);
         mBinding.refreshLayout.setProgressBackgroundColorSchemeColor(mThemeManager.getRootColor(requireContext()));
@@ -357,19 +352,6 @@ public class MainFragment extends Fragment {
             mThemeManager = ThemeManager.getInstance(requireContext());
         }
         mThemeManager.update(requireContext(), mWeatherView);
-    }
-
-    @SuppressLint("RestrictedApi")
-    private void setDarkMode(boolean dayTime) {
-        if (SettingsOptionManager.getInstance(requireContext()).getDarkMode() == DarkMode.AUTO) {
-            int mode = dayTime ? AppCompatDelegate.MODE_NIGHT_NO : AppCompatDelegate.MODE_NIGHT_YES;
-            ((GeoActivity) requireActivity()).getDelegate().setLocalNightMode(mode);
-            AppCompatDelegate.setDefaultNightMode(mode);
-        } else if (SettingsOptionManager.getInstance(requireContext()).getDarkMode() == DarkMode.SYSTEM) {
-            int mode = AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
-            ((GeoActivity) requireActivity()).getDelegate().setLocalNightMode(mode);
-            AppCompatDelegate.setDefaultNightMode(mode);
-        }
     }
 
     private void setRefreshing(final boolean b) {

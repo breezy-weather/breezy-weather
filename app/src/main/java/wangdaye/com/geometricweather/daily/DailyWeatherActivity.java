@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.viewpager.widget.ViewPager;
 
@@ -36,7 +35,6 @@ import wangdaye.com.geometricweather.utils.managers.ThemeManager;
 
 public class DailyWeatherActivity extends GeoActivity {
 
-    private CoordinatorLayout mContainer;
     private Toolbar mToolbar;
     private TextView mTitle;
     private TextView mSubtitle;
@@ -56,19 +54,12 @@ public class DailyWeatherActivity extends GeoActivity {
         initWidget();
     }
 
-    @Override
-    public View getSnackbarContainer() {
-        return mContainer;
-    }
-
     private void initData() {
         mFormattedId = getIntent().getStringExtra(KEY_FORMATTED_LOCATION_ID);
         mPosition = getIntent().getIntExtra(KEY_CURRENT_DAILY_INDEX, 0);
     }
 
     private void initWidget() {
-        mContainer = findViewById(R.id.activity_weather_daily_container);
-
         mToolbar = findViewById(R.id.activity_weather_daily_toolbar);
         mToolbar.setNavigationOnClickListener(v -> finish());
 

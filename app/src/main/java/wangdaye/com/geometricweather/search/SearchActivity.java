@@ -39,7 +39,7 @@ import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.ui.adapters.location.LocationAdapter;
 import wangdaye.com.geometricweather.ui.decotarions.ListDecoration;
 import wangdaye.com.geometricweather.utils.DisplayUtils;
-import wangdaye.com.geometricweather.utils.helpters.SnackbarHelper;
+import wangdaye.com.geometricweather.ui.snackbar.SnackbarHelper;
 
 /**
  * Search activity.
@@ -124,11 +124,6 @@ public class SearchActivity extends GeoActivity
         } else {
             super.onBackPressed();
         }
-    }
-
-    @Override
-    public View getSnackbarContainer() {
-        return mBinding.container;
     }
 
     // init.

@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/background"
+    android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorRoot">
+    android:layout_height="match_parent">
 
     <wangdaye.com.geometricweather.ui.widgets.DrawerLayout
         android:id="@+id/drawerLayout"
@@ -19,6 +17,7 @@
             android:name="wangdaye.com.geometricweather.main.fragments.ManagementFragment"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:background="@color/colorRoot"
             android:elevation="2dp"
             tools:ignore="UnusedAttribute" />
 
@@ -27,8 +26,9 @@
             android:name="wangdaye.com.geometricweather.main.fragments.MainFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/colorRoot"
             tools:ignore="UnusedAttribute" />
 
     </wangdaye.com.geometricweather.ui.widgets.DrawerLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</FrameLayout>

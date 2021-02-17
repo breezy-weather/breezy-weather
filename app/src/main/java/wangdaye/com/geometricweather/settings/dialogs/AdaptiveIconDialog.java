@@ -92,7 +92,7 @@ public class AdaptiveIconDialog extends GeoDialog {
     }
 
     @Override
-    public View getSnackbarContainer() {
+    public ViewGroup getSnackbarContainer() {
         return requireDialog().findViewById(R.id.dialog_adaptive_icon_container);
     }
 }

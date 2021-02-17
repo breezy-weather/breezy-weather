@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.text.format.DateFormat;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -43,7 +44,11 @@ public class TimeManager {
         return mDayTime;
     }
 
-    public TimeManager update(Context context, @NonNull Location location) {
+    public TimeManager update(Context context, @Nullable Location location) {
+        if (location == null) {
+            return this;
+        }
+
         mDayTime = isDaylight(location);
 
         SharedPreferences.Editor editor = context.getSharedPreferences(

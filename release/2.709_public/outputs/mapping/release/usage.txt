@@ -4170,7 +4170,7 @@ wangdaye.com.geometricweather.ui.widgets.trend.TrendRecyclerViewAdapter:
 androidx.appcompat.widget.PopupMenu
 com.google.android.gms.common.internal.zal:
     public void <init>()
-wangdaye.com.geometricweather.utils.helpters.SnackbarHelper:
+wangdaye.com.geometricweather.ui.snackbar.SnackbarHelper:
     public void <init>()
 com.google.android.gms.common.api.internal.LifecycleCallback:
     protected static com.google.android.gms.common.api.internal.LifecycleFragment getFragment(com.google.android.gms.common.api.internal.LifecycleActivity)

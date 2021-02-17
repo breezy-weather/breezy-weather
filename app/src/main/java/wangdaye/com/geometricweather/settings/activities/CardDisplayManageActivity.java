@@ -6,7 +6,6 @@ import android.annotation.SuppressLint;
 import android.graphics.Canvas;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
@@ -181,11 +180,6 @@ public class CardDisplayManageActivity extends GeoActivity {
                         CardDisplay.toValue(mCardDisplayAdapter.getCardDisplayList())
                 ).apply();
         SettingsOptionManager.getInstance(this).setCardDisplayList(mCardDisplayAdapter.getCardDisplayList());
-    }
-
-    @Override
-    public View getSnackbarContainer() {
-        return findViewById(R.id.activity_card_display_manage_container);
     }
 
     @SuppressLint("MissingSuperCall")

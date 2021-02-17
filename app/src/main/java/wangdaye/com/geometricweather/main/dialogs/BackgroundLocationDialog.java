@@ -38,7 +38,7 @@ public class BackgroundLocationDialog extends GeoDialog {
     }
 
     @Override
-    public View getSnackbarContainer() {
+    public ViewGroup getSnackbarContainer() {
         return requireDialog().findViewById(R.id.dialog_background_location_container);
     }
 }

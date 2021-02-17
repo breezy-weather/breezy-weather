@@ -38,7 +38,7 @@ public class LocationPermissionStatementDialog extends GeoDialog {
     }
 
     @Override
-    public View getSnackbarContainer() {
+    public ViewGroup getSnackbarContainer() {
         return requireDialog().findViewById(R.id.dialog_location_permission_statement_container);
     }
 }

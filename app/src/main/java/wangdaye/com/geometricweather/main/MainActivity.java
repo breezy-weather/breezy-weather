@@ -16,6 +16,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -43,10 +44,12 @@ import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
 import wangdaye.com.geometricweather.search.SearchActivity;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.settings.activities.SelectProviderActivity;
+import wangdaye.com.geometricweather.ui.snackbar.SnackbarHelper;
 import wangdaye.com.geometricweather.utils.helpters.AsyncHelper;
 import wangdaye.com.geometricweather.utils.helpters.IntentHelper;
-import wangdaye.com.geometricweather.utils.helpters.SnackbarHelper;
 import wangdaye.com.geometricweather.utils.managers.ShortcutsManager;
+import wangdaye.com.geometricweather.utils.managers.ThemeManager;
+import wangdaye.com.geometricweather.utils.managers.TimeManager;
 
 /**
  * Main activity.
@@ -131,9 +134,8 @@ public class MainActivity extends GeoActivity
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
-            case SETTINGS_ACTIVITY: {
+            case SETTINGS_ACTIVITY:
                 mViewModel.init();
-
                 // update notification immediately.
                 if (mViewModel.getValidLocationList() != null) {
                     AsyncHelper.runOnIO(() -> NotificationUtils.updateNotificationIfNecessary(
@@ -143,7 +145,7 @@ public class MainActivity extends GeoActivity
                 refreshBackgroundViews(true, mViewModel.getValidLocationList(),
                         true, true);
                 break;
-            }
+
             case CARD_MANAGE_ACTIVITY:
                 if (resultCode == RESULT_OK) {
                     mViewModel.init();
@@ -181,11 +183,6 @@ public class MainActivity extends GeoActivity
         unregisterReceiver(backgroundUpdateReceiver);
     }
 
-    @Override
-    public View getSnackbarContainer() {
-        return mBinding.background;
-    }
-
     // init.
 
     private void initModel(boolean newActivity) {
@@ -221,6 +218,19 @@ public class MainActivity extends GeoActivity
         mViewModel.getCurrentLocation().observe(this, resource -> {
             if (resource == null) {
                 return;
+            }
+
+            setDarkMode(TimeManager.getInstance(this).isDayTime());
+            final ThemeManager manager = ThemeManager.getInstance(this);
+            manager.update(this);
+            if (mBinding.fragmentDrawer != null) {
+                mBinding.fragmentDrawer.setBackgroundColor(manager.getRootColor(this));
+            }
+            if (mBinding.fragmentMain != null) {
+                mBinding.fragmentMain.setBackgroundColor(manager.getRootColor(this));
+            }
+            if (mBinding.fragment != null) {
+                mBinding.fragment.setBackgroundColor(manager.getRootColor(this));
             }
 
             refreshBackgroundViews(
@@ -310,6 +320,18 @@ public class MainActivity extends GeoActivity
 
     // control.
 
+    private void setDarkMode(boolean dayTime) {
+        if (SettingsOptionManager.getInstance(this).getDarkMode() == DarkMode.AUTO) {
+            int mode = dayTime ? AppCompatDelegate.MODE_NIGHT_NO : AppCompatDelegate.MODE_NIGHT_YES;
+            getDelegate().setLocalNightMode(mode);
+            AppCompatDelegate.setDefaultNightMode(mode);
+        } else if (SettingsOptionManager.getInstance(this).getDarkMode() == DarkMode.SYSTEM) {
+            int mode = AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
+            getDelegate().setLocalNightMode(mode);
+            AppCompatDelegate.setDefaultNightMode(mode);
+        }
+    }
+
     private boolean isManagementFragmentVisible() {
         if (mBinding.drawerLayout != null) {
             return mBinding.drawerLayout.isUnfold();
@@ -328,11 +350,11 @@ public class MainActivity extends GeoActivity
                         .beginTransaction()
                         .setCustomAnimations(
                                 R.anim.fragment_manange_enter,
-                                0,
-                                0,
+                                R.anim.fragment_main_exit,
+                                R.anim.fragment_main_pop_enter,
                                 R.anim.fragment_manange_pop_exit
                         )
-                        .add(R.id.fragment, ManagementFragment.class, null, TAG_FRAGMENT_MANAGEMENT)
+                        .replace(R.id.fragment, ManagementFragment.class, null, TAG_FRAGMENT_MANAGEMENT)
                         .addToBackStack(null)
                         .commit();
             } else {
