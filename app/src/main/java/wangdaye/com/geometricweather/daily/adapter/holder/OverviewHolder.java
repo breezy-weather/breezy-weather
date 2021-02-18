@@ -43,6 +43,6 @@ public class OverviewHolder extends DailyWeatherAdapter.ViewHolder {
                 mProvider.getWeatherAnimators(overview.getHalfDay().getWeatherCode(), overview.isDaytime())
         );
         mTitle.setText(overview.getHalfDay().getWeatherText()
-                + " " + overview.getHalfDay().getTemperature().getTemperature(mTitle.getContext(), mTemperatureUnit));
+                + ", " + overview.getHalfDay().getTemperature().getTemperature(mTitle.getContext(), mTemperatureUnit));
     }
 }

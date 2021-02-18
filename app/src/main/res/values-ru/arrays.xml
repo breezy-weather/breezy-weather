@@ -150,6 +150,7 @@
     <!-- precipitation unit. -->
     <string-array name="precipitation_units">
         <item>мм</item>
+        <item>см</item>
         <item>дюйм</item>
         <item>л/м²</item>
     </string-array>

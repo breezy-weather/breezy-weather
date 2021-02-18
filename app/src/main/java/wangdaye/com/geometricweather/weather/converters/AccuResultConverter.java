@@ -4,15 +4,19 @@ import android.content.Context;
 import android.graphics.Color;
 import android.text.TextUtils;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
+import wangdaye.com.geometricweather.common.basic.models.options.unit.PrecipitationUnit;
 import wangdaye.com.geometricweather.common.basic.models.weather.AirQuality;
 import wangdaye.com.geometricweather.common.basic.models.weather.Alert;
 import wangdaye.com.geometricweather.common.basic.models.weather.Astro;
@@ -34,13 +38,14 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.common.basic.models.weather.Wind;
 import wangdaye.com.geometricweather.common.basic.models.weather.WindDegree;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.weather.json.accu.AccuAlertResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuAqiResult;
+import wangdaye.com.geometricweather.weather.json.accu.AccuCurrentResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuDailyResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuHourlyResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuLocationResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuMinuteResult;
-import wangdaye.com.geometricweather.weather.json.accu.AccuCurrentResult;
 
 public class AccuResultConverter {
 
@@ -166,8 +171,8 @@ public class AccuResultConverter {
                             toInt(currentResult.DewPoint.Metric.Value),
                             currentResult.CloudCover,
                             (float) (currentResult.Ceiling.Metric.Value / 1000.0),
-                            dailyResult.Headline.Text,
-                            minuteResult != null ? minuteResult.Summary.LongPhrase : null
+                            convertUnit(context, dailyResult.Headline.Text),
+                            convertUnit(context, minuteResult != null ? minuteResult.Summary.LongPhrase : null)
                     ),
                     new History(
                             new Date((currentResult.EpochTime - 24 * 60 * 60) * 1000),
@@ -198,7 +203,7 @@ public class AccuResultConverter {
                             forecasts.Date,
                             forecasts.EpochDate * 1000,
                             new HalfDay(
-                                    forecasts.Day.LongPhrase,
+                                    convertUnit(context, forecasts.Day.LongPhrase),
                                     forecasts.Day.ShortPhrase,
                                     getWeatherCode(forecasts.Day.Icon),
                                     new Temperature(
@@ -240,7 +245,7 @@ public class AccuResultConverter {
                                     forecasts.Day.CloudCover
                             ),
                             new HalfDay(
-                                    forecasts.Night.LongPhrase,
+                                    convertUnit(context, forecasts.Night.LongPhrase),
                                     forecasts.Night.ShortPhrase,
                                     getWeatherCode(forecasts.Night.Icon),
                                     new Temperature(
@@ -474,5 +479,75 @@ public class AccuResultConverter {
         } else {
             return WeatherCode.CLOUDY;
         }
+    }
+
+    private static String convertUnit(Context context, @Nullable String str) {
+        if (TextUtils.isEmpty(str)) {
+            return str;
+        }
+
+        // precipitation.
+        PrecipitationUnit precipitationUnit = SettingsOptionManager.getInstance(context).getPrecipitationUnit();
+
+        // cm.
+        str = convertUnit(context, str, PrecipitationUnit.CM, precipitationUnit);
+
+        // mm.
+        str = convertUnit(context, str, PrecipitationUnit.MM, precipitationUnit);
+
+        return str;
+    }
+
+    private interface MilliMeterConverter {
+        float toMilliMeters(float value);
+    }
+
+    private static String convertUnit(Context context,
+                                      @NonNull String str,
+                                      PrecipitationUnit targetUnit,
+                                      PrecipitationUnit resultUnit) {
+        try {
+            String numberPattern = "\\d+-\\d+(\\s+)?";
+            Matcher matcher = Pattern.compile(numberPattern + targetUnit).matcher(str);
+
+            List<String> targetList = new ArrayList<>();
+            List<String> resultList = new ArrayList<>();
+
+            while (matcher.find()) {
+                String target = str.substring(matcher.start(), matcher.end());
+                targetList.add(target);
+
+                String[] targetSplitResults = target.replaceAll(" ", "").split(
+                        targetUnit.getAbbreviation(context));
+                String[] numberTexts = targetSplitResults[0].split("-");
+
+                for (int i = 0; i < numberTexts.length; i ++) {
+                    float number = Float.parseFloat(numberTexts[i]);
+                    number = targetUnit.getMilliMeters(number);
+                    numberTexts[i] = resultUnit.getPrecipitationTextWithoutUnit(number);
+                }
+
+                resultList.add(arrayToString(numberTexts) + " " + resultUnit.getAbbreviation(context));
+            }
+
+            for (int i = 0; i < targetList.size(); i ++) {
+                str = str.replace(targetList.get(i), resultList.get(i));
+            }
+
+            return str;
+        } catch (Exception ignore) {
+            return str;
+        }
+    }
+
+    private static String arrayToString(String[] array) {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < array.length; i++) {
+            builder.append(array[i]);
+            if (i < array.length - 1) {
+                builder.append("-");
+            }
+        }
+        return builder.toString();
     }
 }

@@ -84,8 +84,8 @@ public class MainActivity extends GeoActivity
             = "com.wangdaye.geomtricweather.ACTION_SHOW_DAILY_FORECAST";
     public static final String KEY_DAILY_INDEX = "DAILY_INDEX";
 
-    private static final String TAG_FRAGMENT_MAIN = "fragment_main";
-    private static final String TAG_FRAGMENT_MANAGEMENT = "fragment_management";
+    public static final String TAG_FRAGMENT_MAIN = "fragment_main";
+    public static final String TAG_FRAGMENT_MANAGEMENT = "fragment_management";
 
     private final BroadcastReceiver backgroundUpdateReceiver = new BroadcastReceiver() {
         @Override

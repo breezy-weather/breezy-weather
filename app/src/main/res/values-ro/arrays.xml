@@ -161,6 +161,7 @@
     <!-- precipitation unit. -->
     <string-array name="precipitation_units">
         <item>mm</item>
+        <item>cm</item>
         <item>inch</item>
         <item>L/m²</item>
     </string-array>

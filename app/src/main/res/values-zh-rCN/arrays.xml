@@ -163,11 +163,13 @@
     <!-- precipitation unit. -->
     <string-array name="precipitation_units">
         <item>毫米</item>
+        <item>厘米</item>
         <item>英寸</item>
         <item>升/米²</item>
     </string-array>
     <string-array name="precipitation_unit_voices">
         <item>毫米</item>
+        <item>厘米</item>
         <item>英寸</item>
         <item>升每平方米</item>
     </string-array>

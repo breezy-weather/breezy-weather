@@ -112,21 +112,40 @@ public class DrawerLayout extends ViewGroup {
             mContent = getChildAt(1);
         }
 
-        if (mDrawer != null) {
-            mDrawer.layout(
-                    (int) (mDrawer.getMeasuredWidth() * (mProgress - 1)),
-                    0,
-                    (int) (mDrawer.getMeasuredWidth() * mProgress),
-                    mDrawer.getMeasuredHeight()
-            );
-        }
-        if (mContent != null) {
-            mContent.layout(
-                    mDrawer.getRight(),
-                    0,
-                    mDrawer.getRight() + mContent.getMeasuredWidth(),
-                    mContent.getMeasuredHeight()
-            );
+        if (DisplayUtils.isRtl(getContext())) {
+            if (mDrawer != null) {
+                mDrawer.layout(
+                        (int) (getMeasuredWidth() - mDrawer.getMeasuredWidth() * mProgress),
+                        0,
+                        (int) (getMeasuredWidth() + mDrawer.getMeasuredWidth() * (1 - mProgress)),
+                        mDrawer.getMeasuredHeight()
+                );
+            }
+            if (mContent != null) {
+                mContent.layout(
+                        0,
+                        0,
+                        mDrawer.getLeft(),
+                        mContent.getMeasuredHeight()
+                );
+            }
+        } else {
+            if (mDrawer != null) {
+                mDrawer.layout(
+                        (int) (mDrawer.getMeasuredWidth() * (mProgress - 1)),
+                        0,
+                        (int) (mDrawer.getMeasuredWidth() * mProgress),
+                        mDrawer.getMeasuredHeight()
+                );
+            }
+            if (mContent != null) {
+                mContent.layout(
+                        mDrawer.getRight(),
+                        0,
+                        mDrawer.getRight() + mContent.getMeasuredWidth(),
+                        mContent.getMeasuredHeight()
+                );
+            }
         }
     }
 

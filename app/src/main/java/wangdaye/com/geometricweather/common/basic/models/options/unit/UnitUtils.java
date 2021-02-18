@@ -9,6 +9,10 @@ class UnitUtils {
     }
 
     static String formatFloat(float value, int decimalNumber) {
+        float factor = (float) Math.pow(10, decimalNumber);
+        if (Math.round(value) * factor == Math.round(value * factor)) {
+            return String.valueOf(Math.round(value));
+        }
         return String.format(
                 "%." + decimalNumber + "f",
                 value

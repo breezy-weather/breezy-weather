@@ -30,6 +30,7 @@ import wangdaye.com.geometricweather.common.ui.adapters.location.LocationAdapter
 import wangdaye.com.geometricweather.common.ui.decotarions.ListDecoration;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpters.SnackbarHelper;
+import wangdaye.com.geometricweather.main.MainActivity;
 import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 import wangdaye.com.geometricweather.databinding.FragmentManagementBinding;
 import wangdaye.com.geometricweather.main.MainActivityViewModel;
@@ -62,7 +63,7 @@ public class ManagementFragment extends Fragment
                              @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = FragmentManagementBinding.inflate(getLayoutInflater(), container, false);
         initModel();
-        initView();
+        initView(savedInstanceState == null);
         setCallback((Callback) requireActivity());
         return mBinding.getRoot();
     }
@@ -79,7 +80,7 @@ public class ManagementFragment extends Fragment
         mViewModel = new ViewModelProvider(requireActivity()).get(MainActivityViewModel.class);
     }
 
-    private void initView() {
+    private void initView(boolean init) {
         mBinding.searchBar.setOnClickListener(v -> {
             if (mCallback != null) {
                 mCallback.onSearchBarClicked(mBinding.searchBar);
@@ -105,9 +106,22 @@ public class ManagementFragment extends Fragment
                 holder -> mItemTouchHelper.startDrag(holder), // on drag.
                 mViewModel.getThemeManager()
         );
-        mBinding.recyclerView.setAdapter(new LocationAdapterAnimWrapper(requireContext(), mAdapter));
+        LocationAdapterAnimWrapper wrapper = new LocationAdapterAnimWrapper(requireContext(), mAdapter);
+        if (!init || !MainActivity.TAG_FRAGMENT_MANAGEMENT.equals(getTag())) {
+            // only execute list animation while user opening this fragment in vertical.
+            wrapper.setLastPosition(Integer.MAX_VALUE);
+        }
+        mBinding.recyclerView.setAdapter(wrapper);
         mBinding.recyclerView.setLayoutManager(new LinearLayoutManager(
                 requireActivity(), RecyclerView.VERTICAL, false));
+        mBinding.recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                if (dy != 0) {
+                    wrapper.setScrolled();
+                }
+            }
+        });
 
         mItemDecoration = new ListDecoration(
                 requireActivity(),

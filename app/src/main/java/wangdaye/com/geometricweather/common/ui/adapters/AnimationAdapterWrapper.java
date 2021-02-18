@@ -88,13 +88,9 @@ public abstract class AnimationAdapterWrapper<A extends RecyclerView.Adapter<VH>
         mInner.onBindViewHolder(holder, position);
 
         if (!mFirstOnly || position > mLastPosition) {
-            Animator a = mAnimatorSet.get(position);
-            if (a != null) {
-                a.cancel();
-                mAnimatorSet.remove(position);
-            }
+            clear(holder.itemView, position);
 
-            a = getAnimator(holder.itemView, mAnimatorSet.size());
+            Animator a = getAnimator(holder.itemView, mAnimatorSet.size());
             if (a != null) {
                 setInitState(holder.itemView);
 
@@ -112,17 +108,21 @@ public abstract class AnimationAdapterWrapper<A extends RecyclerView.Adapter<VH>
                 return;
             }
         }
-        clear(holder.itemView);
+        clear(holder.itemView, position);
     }
 
-    private void clear(View view) {
+    private void clear(View view, int position) {
+        Animator a = mAnimatorSet.get(position);
+        if (a != null) {
+            a.cancel();
+            mAnimatorSet.remove(position);
+        }
+
         view.setAlpha(1f);
 
         view.setRotation(0f);
         view.setRotationX(0f);
         view.setRotationY(0f);
-        view.setPivotX(view.getMeasuredWidth() / 2f);
-        view.setPivotY(view.getMeasuredHeight() / 2f);
 
         view.setScaleX(1f);
         view.setScaleY(1f);
@@ -137,13 +137,7 @@ public abstract class AnimationAdapterWrapper<A extends RecyclerView.Adapter<VH>
     public void onViewRecycled(@NonNull VH holder) {
         super.onViewRecycled(holder);
         mInner.onViewRecycled(holder);
-
-        Animator a = mAnimatorSet.get(holder.getAdapterPosition());
-        if (a != null) {
-            a.cancel();
-            mAnimatorSet.remove(holder.getAdapterPosition());
-            clear(holder.itemView);
-        }
+        clear(holder.itemView, holder.getAdapterPosition());
     }
 
     @Override

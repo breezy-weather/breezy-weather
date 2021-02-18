@@ -114,7 +114,7 @@ public class HourlyWeatherDialog extends GeoDialog {
 
         StringBuilder builder = new StringBuilder(
                 hourly.getWeatherText()
-                        + "  "
+                        + ",  "
                         + hourly.getTemperature().getTemperature(requireActivity(), temperatureUnit)
         );
         if (hourly.getTemperature().getRealFeelTemperature() != null) {

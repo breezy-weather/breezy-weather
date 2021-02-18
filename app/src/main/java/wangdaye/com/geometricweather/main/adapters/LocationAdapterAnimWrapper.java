@@ -25,6 +25,7 @@ public class LocationAdapterAnimWrapper
 
     private final Interpolator mDecelerate;
     private boolean mStartAnimation;
+    private boolean mScrolled;
 
     private final float mDY;
     private final float mDZ;
@@ -37,6 +38,7 @@ public class LocationAdapterAnimWrapper
 
         mDecelerate = new DecelerateInterpolator(1f);
         mStartAnimation = false;
+        mScrolled = false;
 
         mDY = DisplayUtils.dpToPx(context, 256);
         mDZ = DisplayUtils.dpToPx(context, 10);
@@ -58,19 +60,21 @@ public class LocationAdapterAnimWrapper
                 BASE_DURATION - pendingCount * 50,
                 BASE_DURATION - MAX_TENSOR_COUNT * 50
         );
-        final long delay = pendingCount * 100;
-        final float overShootTensor = 0.25f + Math.min(
-                pendingCount * 0.5f,
-                MAX_TENSOR_COUNT * 0.5f
+        final long delay = mScrolled
+                ? 50
+                : (pendingCount * 100);
+        final float overShootTensor = 0.2f + Math.min(
+                pendingCount * 0.4f,
+                MAX_TENSOR_COUNT * 0.4f
         );
-
-        Animator translation = ObjectAnimator
-                .ofFloat(view, "translationY", mDY, 0f).setDuration(duration);
-        translation.setInterpolator(new OvershootInterpolator(overShootTensor));
 
         Animator alpha = ObjectAnimator
                 .ofFloat(view, "alpha", 0f, 1f).setDuration(duration / 4 * 3);
         alpha.setInterpolator(mDecelerate);
+
+        Animator translation = ObjectAnimator
+                .ofFloat(view, "translationY", mDY, 0f).setDuration(duration);
+        translation.setInterpolator(new OvershootInterpolator(overShootTensor));
 
         AnimatorSet set = new AnimatorSet();
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
@@ -86,7 +90,7 @@ public class LocationAdapterAnimWrapper
 
             Animator scaleY = ObjectAnimator
                     .ofFloat(view, "scaleY", 1.1f, 1f).setDuration(duration);
-            scaleX.setInterpolator(mDecelerate);
+            scaleY.setInterpolator(mDecelerate);
 
             set.playTogether(translation, alpha, z, scaleX, scaleY);
         }
@@ -107,7 +111,6 @@ public class LocationAdapterAnimWrapper
 
     @Override
     protected void setInitState(View view) {
-        view.setTranslationY(mDY);
         view.setAlpha(0f);
         view.setScaleX(0f);
         view.setScaleY(0f);
@@ -121,5 +124,9 @@ public class LocationAdapterAnimWrapper
         view.setStateListAnimator(enabled
                 ? AnimatorInflater.loadStateListAnimator(view.getContext(), R.animator.touch_raise)
                 : null);
+    }
+
+    public void setScrolled() {
+        mScrolled = true;
     }
 }

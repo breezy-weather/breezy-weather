@@ -138,6 +138,7 @@
     <!-- precipitation unit. -->
     <string-array name="precipitation_units">
         <item>ملم</item>
+        <item>cm</item>
         <item>إنش</item>
         <item>لتر/م²</item>
     </string-array>

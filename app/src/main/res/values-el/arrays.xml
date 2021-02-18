@@ -153,6 +153,7 @@
     <!-- precipitation unit. -->
     <string-array name="precipitation_units">
         <item>Χιλιοστά</item>
+        <item>cm</item>
         <item>Ίντσες</item>
         <item>Λ/Μ²</item>
     </string-array>

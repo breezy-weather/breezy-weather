@@ -363,16 +363,19 @@
     <!-- precipitation unit. -->
     <string-array name="precipitation_units">
         <item>mm</item>
+        <item>cm</item>
         <item>inch</item>
         <item>L/m²</item>
     </string-array>
     <string-array name="precipitation_unit_voices">
         <item>Millimeters</item>
+        <item>Centimeter</item>
         <item>Inches</item>
         <item>Liters per square meter</item>
     </string-array>
     <string-array name="precipitation_unit_values">
         <item>mm</item>
+        <item>cm</item>
         <item>in</item>
         <item>lpsqm</item>
     </string-array>
