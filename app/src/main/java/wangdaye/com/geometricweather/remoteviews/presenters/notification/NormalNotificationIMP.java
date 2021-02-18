@@ -31,11 +31,10 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.remoteviews.presenters.AbstractRemoteViewsPresenter;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.resource.providers.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.common.utils.LanguageUtils;
 import wangdaye.com.geometricweather.common.utils.helpters.LunarHelper;
-import wangdaye.com.geometricweather.common.utils.managers.TimeManager;
 
 /**
  * Normal notification utils.
@@ -62,7 +61,7 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
 
         TemperatureUnit temperatureUnit = settings.getTemperatureUnit();
 
-        boolean dayTime = TimeManager.isDaylight(location);
+        boolean dayTime = location.isDaylight();
 
         boolean minimalIcon = settings.isNotificationMinimalIconEnabled()
                 && Build.VERSION.SDK_INT <= Build.VERSION_CODES.P;

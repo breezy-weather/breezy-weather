@@ -22,9 +22,8 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Temperature;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.resource.providers.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.common.utils.managers.TimeManager;
 
 public class MultiCityWidgetIMP extends AbstractRemoteViewsPresenter {
 
@@ -53,7 +52,7 @@ public class MultiCityWidgetIMP extends AbstractRemoteViewsPresenter {
 
         Location location = locationList.get(0);
         Weather weather = location.getWeather();
-        boolean dayTime = TimeManager.isDaylight(location);
+        boolean dayTime = location.isDaylight();
 
         ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
 
@@ -109,7 +108,7 @@ public class MultiCityWidgetIMP extends AbstractRemoteViewsPresenter {
         if (locationList.size() >= 2) {
             location = locationList.get(1);
             weather = location.getWeather();
-            dayTime = TimeManager.isDaylight(location);
+            dayTime = location.isDaylight();
 
             views.setViewVisibility(R.id.widget_multi_city_horizontal_weather_2, View.VISIBLE);
             if (weather != null) {
@@ -151,7 +150,7 @@ public class MultiCityWidgetIMP extends AbstractRemoteViewsPresenter {
         if (locationList.size() >= 3) {
             location = locationList.get(2);
             weather = location.getWeather();
-            dayTime = TimeManager.isDaylight(location);
+            dayTime = location.isDaylight();
 
             views.setViewVisibility(R.id.widget_multi_city_horizontal_weather_3, View.VISIBLE);
             if (weather != null) {

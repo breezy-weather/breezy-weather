@@ -17,10 +17,10 @@ import wangdaye.com.geometricweather.background.polling.PollingUpdateHelper;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.utils.helpters.AsyncHelper;
-import wangdaye.com.geometricweather.common.utils.managers.ShortcutsManager;
+import wangdaye.com.geometricweather.common.utils.helpters.ShortcutsHelper;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.location.LocationHelper;
-import wangdaye.com.geometricweather.remoteviews.NotificationUtils;
+import wangdaye.com.geometricweather.remoteviews.NotificationHelper;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 /**
@@ -99,8 +99,8 @@ public abstract class UpdateService extends Service
                 if (i == 0) {
                     updateView(this, location);
                     if (succeed) {
-                        NotificationUtils.checkAndSendAlert(this, location, old);
-                        NotificationUtils.checkAndSendPrecipitationForecast(this, location, old);
+                        NotificationHelper.checkAndSendAlert(this, location, old);
+                        NotificationHelper.checkAndSendPrecipitationForecast(this, location, old);
                     } else {
                         mFailed = true;
                     }
@@ -114,7 +114,7 @@ public abstract class UpdateService extends Service
     public void onPollingCompleted() {
         updateView(this, mLocationList);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-            ShortcutsManager.refreshShortcutsInNewThread(this, mLocationList);
+            ShortcutsHelper.refreshShortcutsInNewThread(this, mLocationList);
         }
         stopService(mFailed);
     }

@@ -11,14 +11,14 @@ import io.reactivex.disposables.CompositeDisposable;
 import wangdaye.com.geometricweather.common.basic.models.ChineseCity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.weather.SchedulerTransformer;
+import wangdaye.com.geometricweather.common.rxjava.SchedulerTransformer;
 import wangdaye.com.geometricweather.weather.apis.CNWeatherApi;
 import wangdaye.com.geometricweather.weather.apis.CaiYunApi;
 import wangdaye.com.geometricweather.weather.converters.CaiyunResultConverter;
 import wangdaye.com.geometricweather.weather.json.caiyun.CaiYunForecastResult;
 import wangdaye.com.geometricweather.weather.json.caiyun.CaiYunMainlyResult;
-import wangdaye.com.geometricweather.weather.observers.BaseObserver;
-import wangdaye.com.geometricweather.weather.observers.ObserverContainer;
+import wangdaye.com.geometricweather.common.rxjava.BaseObserver;
+import wangdaye.com.geometricweather.common.rxjava.ObserverContainer;
 
 /**
  * CaiYun weather service.

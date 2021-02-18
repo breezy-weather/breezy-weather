@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.common.utils.managers;
+package wangdaye.com.geometricweather.common.utils.helpters;
 
 import android.content.Context;
 import android.content.pm.ShortcutInfo;
@@ -21,19 +21,17 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
+import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.db.DatabaseHelper;
-import wangdaye.com.geometricweather.resource.providers.ResourcesProviderFactory;
-import wangdaye.com.geometricweather.common.utils.helpters.AsyncHelper;
-import wangdaye.com.geometricweather.common.utils.helpters.IntentHelper;
+import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
 
 /**
  * Shortcuts manager.
  * */
 
 @RequiresApi(api = Build.VERSION_CODES.N_MR1)
-public class ShortcutsManager {
+public class ShortcutsHelper {
 
     public static void refreshShortcutsInNewThread(final Context c, List<Location> locationList) {
         AsyncHelper.runOnIO(() -> {
@@ -81,13 +79,13 @@ public class ShortcutsManager {
                         icon = getAdaptiveIcon(
                                 provider,
                                 weather.getCurrent().getWeatherCode(),
-                                TimeManager.isDaylight(list.get(i))
+                                list.get(i).isDaylight()
                         );
                     } else {
                         icon = getIcon(
                                 provider,
                                 weather.getCurrent().getWeatherCode(),
-                                TimeManager.isDaylight(list.get(i))
+                                list.get(i).isDaylight()
                         );
                     }
                 } else {

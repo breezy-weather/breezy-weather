@@ -24,10 +24,10 @@ import wangdaye.com.geometricweather.remoteviews.presenters.TextWidgetIMP;
 import wangdaye.com.geometricweather.remoteviews.presenters.WeekWidgetIMP;
 
 /**
- * Widget utils.
+ * Widget manager.
  * */
 
-public class WidgetUtils {
+public class WidgetHelper {
 
     public static void updateWidgetIfNecessary(Context context, Location location) {
         if (DayWidgetIMP.isEnable(context)) {

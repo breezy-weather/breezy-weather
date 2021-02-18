@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.weather;
+package wangdaye.com.geometricweather.common.retrofit;
 
 import android.os.Build;
 import android.util.Log;

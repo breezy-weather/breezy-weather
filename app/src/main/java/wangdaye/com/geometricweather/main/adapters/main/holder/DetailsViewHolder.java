@@ -13,6 +13,7 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.main.adapters.DetailsAdapter;
+import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 
 public class DetailsViewHolder extends AbstractMainCardViewHolder {
@@ -22,9 +23,9 @@ public class DetailsViewHolder extends AbstractMainCardViewHolder {
     private final TextView mTitle;
     private final RecyclerView mDetailsRecyclerView;
 
-    public DetailsViewHolder(ViewGroup parent) {
+    public DetailsViewHolder(ViewGroup parent, MainThemeManager themeManager) {
         super(LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.container_main_details, parent, false));
+                R.layout.container_main_details, parent, false), themeManager);
 
         mCard = itemView.findViewById(R.id.container_main_details);
         mTitle = itemView.findViewById(R.id.container_main_details_title);
@@ -38,12 +39,12 @@ public class DetailsViewHolder extends AbstractMainCardViewHolder {
                 listAnimationEnabled, itemAnimationEnabled, firstCard);
 
         if (location.getWeather() != null) {
-            mCard.setCardBackgroundColor(mThemeManager.getRootColor(mContext));
+            mCard.setCardBackgroundColor(themeManager.getRootColor(context));
 
-            mTitle.setTextColor(mThemeManager.getWeatherThemeColors()[0]);
+            mTitle.setTextColor(themeManager.getWeatherThemeColors()[0]);
 
-            mDetailsRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-            mDetailsRecyclerView.setAdapter(new DetailsAdapter(mContext, location.getWeather()));
+            mDetailsRecyclerView.setLayoutManager(new LinearLayoutManager(context));
+            mDetailsRecyclerView.setAdapter(new DetailsAdapter(context, location.getWeather(), themeManager));
         }
     }
 }

@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.ThumbnailUtils;
 import android.os.Build;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.view.Window;
 
@@ -218,5 +219,9 @@ public class DisplayUtils {
         int color_g = dcg * (0xff - sa) / 0xff + scg * sa / 0xff;
         int color_b = dcb * (0xff - sa) / 0xff + scb * sa / 0xff;
         return ((color_r << 16) + (color_g << 8) + color_b) | (0xff000000);
+    }
+
+    public static boolean is12Hour(Context context) {
+        return !DateFormat.is24HourFormat(context);
     }
 }

@@ -214,7 +214,7 @@ androidx.recyclerview.widget.AsyncListDiffer$ListListener
 io.reactivex.internal.schedulers.ImmediateThinScheduler$ImmediateThinWorker
 androidx.recyclerview.widget.MessageThreadUtil$1$1
 androidx.constraintlayout.solver.state.helpers.AlignHorizontallyReference
-wangdaye.com.geometricweather.resource.ResourceUtils:
+wangdaye.com.geometricweather.resource.utils.ResourceUtils:
     public void <init>()
 wangdaye.com.geometricweather.databinding.ItemAboutTitleBinding
 io.reactivex.internal.operators.maybe.MaybeIsEmptySingle
@@ -1301,7 +1301,7 @@ com.google.android.material.transition.platform.MaterialContainerTransformShared
 io.reactivex.internal.operators.flowable.FlowableSkipUntil$SkipUntilMainSubscriber$OtherSubscriber
 com.google.android.material.timepicker.TimePickerPresenter
 androidx.appcompat.app.ActionBarDrawerToggle$1
-wangdaye.com.geometricweather.resource.Constants:
+wangdaye.com.geometricweather.resource.utils.Constants:
     public void <init>()
     public static final java.lang.String ACTION_ICON_PROVIDER
     public static final java.lang.String CATEGORY_CHRONUS_ICON_PACK
@@ -2946,7 +2946,7 @@ androidx.core.app.NotificationCompat$Extender
 io.reactivex.internal.operators.maybe.MaybeFlatMapNotification
 androidx.recyclerview.widget.StaggeredGridLayoutManager$LazySpanLookup:
     private static final int MIN_SIZE
-wangdaye.com.geometricweather.remoteviews.WidgetUtils:
+wangdaye.com.geometricweather.remoteviews.WidgetHelper:
     public void <init>()
 androidx.core.view.LayoutInflaterCompat$Factory2Wrapper
 androidx.appcompat.widget.DropDownListView:
@@ -4920,7 +4920,7 @@ io.reactivex.subjects.UnicastSubject:
     public java.lang.Throwable getThrowable()
     public boolean hasThrowable()
     public boolean hasComplete()
-wangdaye.com.geometricweather.weather.TLSCompactHelper:
+wangdaye.com.geometricweather.common.utils.retrofit.TLSCompactHelper:
     public void <init>()
 androidx.collection.ArraySet:
     public void <init>(androidx.collection.ArraySet)
@@ -7915,7 +7915,7 @@ androidx.transition.R
 wangdaye.com.geometricweather.databinding.WidgetTextEndBinding
 io.reactivex.internal.operators.flowable.FlowableGenerate$GeneratorSubscription
 com.google.android.gms.internal.location.zzba
-wangdaye.com.geometricweather.remoteviews.NotificationUtils:
+wangdaye.com.geometricweather.remoteviews.NotificationHelper:
     public void <init>()
     private static final java.lang.String NOTIFICATION_GROUP_KEY
     private static final java.lang.String PREFERENCE_NOTIFICATION
@@ -8738,7 +8738,7 @@ androidx.appcompat.view.menu.MenuPopupHelper:
     public android.widget.ListView getListView()
     private static final int TOUCH_EPICENTER_SIZE_DP
 io.reactivex.internal.operators.completable.CompletableToObservable$ObserverCompletableObserver
-wangdaye.com.geometricweather.resource.XmlHelper:
+wangdaye.com.geometricweather.resource.utils.XmlHelper:
     public void <init>()
 androidx.viewpager2.widget.FakeDrag:
     private void beginFakeVelocityTracker()

@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.main.utils;
+package wangdaye.com.geometricweather.main.widgets;
 
 import android.graphics.Canvas;
 import android.view.View;
@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
-import wangdaye.com.geometricweather.common.ui.dialogs.LearnMoreAboutResidentLocationDialog;
+import wangdaye.com.geometricweather.main.dialogs.LearnMoreAboutResidentLocationDialog;
 import wangdaye.com.geometricweather.common.ui.widgets.slidingItem.SlidingItemTouchCallback;
 import wangdaye.com.geometricweather.common.utils.helpters.SnackbarHelper;
 import wangdaye.com.geometricweather.main.MainActivityViewModel;

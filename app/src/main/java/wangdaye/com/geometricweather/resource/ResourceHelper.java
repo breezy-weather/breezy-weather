@@ -17,6 +17,7 @@ import wangdaye.com.geometricweather.common.basic.models.options.NotificationTex
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.resource.providers.DefaultResourceProvider;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
+import wangdaye.com.geometricweather.resource.utils.ResourceUtils;
 
 public class ResourceHelper {
 

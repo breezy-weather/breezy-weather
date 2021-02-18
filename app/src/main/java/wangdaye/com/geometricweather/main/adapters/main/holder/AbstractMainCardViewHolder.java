@@ -14,6 +14,7 @@ import androidx.cardview.widget.CardView;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.main.adapters.main.FirstCardHeaderController;
+import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 
 public abstract class AbstractMainCardViewHolder extends AbstractMainViewHolder {
@@ -21,8 +22,8 @@ public abstract class AbstractMainCardViewHolder extends AbstractMainViewHolder 
     private FirstCardHeaderController mFirstCardHeaderController;
 
     @SuppressLint("ObjectAnimatorBinding")
-    public AbstractMainCardViewHolder(@NonNull View view) {
-        super(view);
+    public AbstractMainCardViewHolder(@NonNull View view, MainThemeManager themeManager) {
+        super(view, themeManager);
     }
 
     @CallSuper
@@ -33,22 +34,22 @@ public abstract class AbstractMainCardViewHolder extends AbstractMainViewHolder 
 
         CardView card = (CardView) itemView;
 
-        card.setRadius(mThemeManager.getCardRadius(activity));
+        card.setRadius(themeManager.getCardRadius(activity));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            card.setElevation(mThemeManager.getCardElevation(activity));
+            card.setElevation(themeManager.getCardElevation(activity));
         }
 
         ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) card.getLayoutParams();
         params.setMargins(
-                mThemeManager.getCardMarginsHorizontal(activity),
+                themeManager.getCardMarginsHorizontal(activity),
                 0,
-                mThemeManager.getCardMarginsHorizontal(activity),
-                mThemeManager.getCardMarginsVertical(activity)
+                themeManager.getCardMarginsHorizontal(activity),
+                themeManager.getCardMarginsVertical(activity)
         );
         card.setLayoutParams(params);
 
         if (firstCard) {
-            mFirstCardHeaderController = new FirstCardHeaderController(activity, location);
+            mFirstCardHeaderController = new FirstCardHeaderController(activity, location, themeManager);
             mFirstCardHeaderController.bind((LinearLayout) card.getChildAt(0));
         }
     }

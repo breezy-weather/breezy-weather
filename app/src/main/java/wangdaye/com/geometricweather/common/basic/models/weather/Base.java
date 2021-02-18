@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import wangdaye.com.geometricweather.common.utils.managers.TimeManager;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 
 /**
  * Base.
@@ -62,7 +62,7 @@ public class Base implements Serializable {
 
     @SuppressLint("SimpleDateFormat")
     public static String getTime(Context context, Date date) {
-        return getTime(date, TimeManager.is12Hour(context));
+        return getTime(date, DisplayUtils.is12Hour(context));
     }
 
     @SuppressLint("SimpleDateFormat")

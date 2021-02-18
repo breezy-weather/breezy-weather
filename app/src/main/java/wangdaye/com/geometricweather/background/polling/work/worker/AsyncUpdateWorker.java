@@ -16,8 +16,8 @@ import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.location.LocationHelper;
-import wangdaye.com.geometricweather.remoteviews.NotificationUtils;
-import wangdaye.com.geometricweather.common.utils.managers.ShortcutsManager;
+import wangdaye.com.geometricweather.remoteviews.NotificationHelper;
+import wangdaye.com.geometricweather.common.utils.helpters.ShortcutsHelper;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 public abstract class AsyncUpdateWorker extends AsyncWorker
@@ -74,8 +74,8 @@ public abstract class AsyncUpdateWorker extends AsyncWorker
                 if (i == 0) {
                     updateView(getApplicationContext(), location);
                     if (succeed) {
-                        NotificationUtils.checkAndSendAlert(getApplicationContext(), location, old);
-                        NotificationUtils.checkAndSendPrecipitationForecast(getApplicationContext(), location, old);
+                        NotificationHelper.checkAndSendAlert(getApplicationContext(), location, old);
+                        NotificationHelper.checkAndSendPrecipitationForecast(getApplicationContext(), location, old);
                     } else {
                         mFailed = true;
                     }
@@ -90,7 +90,7 @@ public abstract class AsyncUpdateWorker extends AsyncWorker
     public void onPollingCompleted() {
         updateView(getApplicationContext(), mLocationList);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-            ShortcutsManager.refreshShortcutsInNewThread(getApplicationContext(), mLocationList);
+            ShortcutsHelper.refreshShortcutsInNewThread(getApplicationContext(), mLocationList);
         }
         handleUpdateResult(mFuture, mFailed);
     }

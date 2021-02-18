@@ -17,12 +17,12 @@ import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.utils.LanguageUtils;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
-import wangdaye.com.geometricweather.weather.SchedulerTransformer;
+import wangdaye.com.geometricweather.common.rxjava.SchedulerTransformer;
 import wangdaye.com.geometricweather.weather.apis.CNWeatherApi;
 import wangdaye.com.geometricweather.weather.converters.CNResultConverter;
 import wangdaye.com.geometricweather.weather.json.cn.CNWeatherResult;
-import wangdaye.com.geometricweather.weather.observers.BaseObserver;
-import wangdaye.com.geometricweather.weather.observers.ObserverContainer;
+import wangdaye.com.geometricweather.common.rxjava.BaseObserver;
+import wangdaye.com.geometricweather.common.rxjava.ObserverContainer;
 
 /**
  * CN weather service.

@@ -11,6 +11,7 @@ import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.PrecipitationUnit;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.main.adapters.trend.hourly.HourlyTemperatureAdapter;
+import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.main.adapters.trend.hourly.AbsHourlyTrendAdapter;
@@ -25,13 +26,13 @@ public class HourlyTrendAdapter  extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     public void temperature(GeoActivity activity, TrendRecyclerView parent, Location location,
-                            ResourceProvider provider, TemperatureUnit unit) {
-        mAdapter = new HourlyTemperatureAdapter(activity, parent, location, provider, unit);
+                            ResourceProvider provider, MainThemeManager themeManager, TemperatureUnit unit) {
+        mAdapter = new HourlyTemperatureAdapter(activity, parent, location, provider, themeManager, unit);
     }
 
     public void precipitation(GeoActivity activity, TrendRecyclerView parent, Location location,
-                              ResourceProvider provider, PrecipitationUnit unit) {
-        mAdapter = new HourlyPrecipitationAdapter(activity, parent, location, provider, unit);
+                              ResourceProvider provider, MainThemeManager themeManager, PrecipitationUnit unit) {
+        mAdapter = new HourlyPrecipitationAdapter(activity, parent, location, provider, themeManager, unit);
     }
 
     @NonNull

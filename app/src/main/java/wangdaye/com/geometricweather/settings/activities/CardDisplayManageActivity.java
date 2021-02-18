@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Px;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -31,6 +32,7 @@ import wangdaye.com.geometricweather.common.ui.adapters.TagAdapter;
 import wangdaye.com.geometricweather.common.ui.decotarions.GridMarginsDecoration;
 import wangdaye.com.geometricweather.common.ui.decotarions.ListDecoration;
 import wangdaye.com.geometricweather.common.ui.widgets.slidingItem.SlidingItemTouchCallback;
+import wangdaye.com.geometricweather.common.theme.DefaultThemeManager;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.settings.adapters.CardDisplayAdapter;
 
@@ -113,7 +115,8 @@ public class CardDisplayManageActivity extends GeoActivity {
 
         RecyclerView recyclerView = findViewById(R.id.activity_card_display_manage_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.addItemDecoration(new ListDecoration(this));
+        recyclerView.addItemDecoration(new ListDecoration(
+                this, ContextCompat.getColor(this, R.color.colorLine)));
         recyclerView.setAdapter(mCardDisplayAdapter);
 
         this.mCardDisplayItemTouchHelper = new ItemTouchHelper(new CardDisplaySwipeCallback());
@@ -138,13 +141,13 @@ public class CardDisplayManageActivity extends GeoActivity {
         for (CardDisplay card : otherCards) {
             tagList.add(new CardTag(card));
         }
-        mTagAdapter = new TagAdapter(this, tagList, (checked, oldPosition, newPosition) -> {
+        mTagAdapter = new TagAdapter(tagList, (checked, oldPosition, newPosition) -> {
             setResult(RESULT_OK);
             CardTag tag = (CardTag) mTagAdapter.removeItem(newPosition);
             mCardDisplayAdapter.insertItem(tag.card);
             resetBottomBarVisibility();
             return true;
-        });
+        }, new DefaultThemeManager());
 
         mBottomBar = findViewById(R.id.activity_card_display_manage_bottomBar);
         ViewCompat.setOnApplyWindowInsetsListener(mBottomBar, (v, insets) -> {

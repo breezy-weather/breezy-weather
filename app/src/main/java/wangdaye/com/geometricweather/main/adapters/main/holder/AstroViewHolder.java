@@ -28,6 +28,7 @@ import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.Daily;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.common.ui.widgets.astro.MoonPhaseView;
@@ -58,9 +59,9 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
 
     @Size(3) private final AnimatorSet[] mAttachAnimatorSets;
 
-    public AstroViewHolder(ViewGroup parent) {
+    public AstroViewHolder(ViewGroup parent, MainThemeManager themeManager) {
         super(LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.container_main_sun_moon, parent, false));
+                R.layout.container_main_sun_moon, parent, false), themeManager);
 
         mCard = itemView.findViewById(R.id.container_main_sun_moon);
         mTitle = itemView.findViewById(R.id.container_main_sun_moon_title);
@@ -87,13 +88,13 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
         mTimeZone = location.getTimeZone();
         assert mWeather != null;
 
-        int[] themeColors = mThemeManager.getWeatherThemeColors();
+        int[] themeColors = themeManager.getWeatherThemeColors();
         StringBuilder talkBackBuilder = new StringBuilder(mTitle.getText());
 
         ensureTime(mWeather);
         ensurePhaseAngle(mWeather);
 
-        mCard.setCardBackgroundColor(mThemeManager.getRootColor(mContext));
+        mCard.setCardBackgroundColor(themeManager.getRootColor(context));
 
         mTitle.setTextColor(themeColors[0]);
 
@@ -102,13 +103,13 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
             mPhaseView.setVisibility(View.GONE);
         } else {
             mPhaseText.setVisibility(View.VISIBLE);
-            mPhaseText.setTextColor(mThemeManager.getTextContentColor(mContext));
-            mPhaseText.setText(mWeather.getDailyForecast().get(0).getMoonPhase().getMoonPhase(mContext));
+            mPhaseText.setTextColor(themeManager.getTextContentColor(context));
+            mPhaseText.setText(mWeather.getDailyForecast().get(0).getMoonPhase().getMoonPhase(context));
             mPhaseView.setVisibility(View.VISIBLE);
             mPhaseView.setColor(
-                    ContextCompat.getColor(mContext, R.color.colorTextContent_dark),
-                    ContextCompat.getColor(mContext, R.color.colorTextContent_light),
-                    mThemeManager.getTextContentColor(mContext)
+                    ContextCompat.getColor(context, R.color.colorTextContent_dark),
+                    ContextCompat.getColor(context, R.color.colorTextContent_light),
+                    themeManager.getTextContentColor(context)
             );
 
             talkBackBuilder.append(", ").append(mPhaseText.getText());
@@ -128,27 +129,27 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
             mSunMoonView.setNightIndicatorRotation(0);
             mPhaseView.setSurfaceAngle(mPhaseAngle);
         }
-        if (mThemeManager.isLightTheme()) {
+        if (themeManager.isLightTheme()) {
             mSunMoonView.setColors(
                     themeColors[0],
                     ColorUtils.setAlphaComponent(themeColors[1], (int) (0.66 * 255)),
                     ColorUtils.setAlphaComponent(themeColors[1], (int) (0.33 * 255)),
-                    mThemeManager.getRootColor(mContext),
-                    mThemeManager.isLightTheme()
+                    themeManager.getRootColor(context),
+                    themeManager.isLightTheme()
             );
         } else {
             mSunMoonView.setColors(
                     themeColors[2],
                     ColorUtils.setAlphaComponent(themeColors[2], (int) (0.5 * 255)),
                     ColorUtils.setAlphaComponent(themeColors[2], (int) (0.2 * 255)),
-                    mThemeManager.getRootColor(mContext),
-                    mThemeManager.isLightTheme()
+                    themeManager.getRootColor(context),
+                    themeManager.isLightTheme()
             );
         }
 
         if (mWeather.getDailyForecast().get(0).sun().isValid()) {
-            String sunriseTime = mWeather.getDailyForecast().get(0).sun().getRiseTime(mContext);
-            String sunsetTime = mWeather.getDailyForecast().get(0).sun().getSetTime(mContext);
+            String sunriseTime = mWeather.getDailyForecast().get(0).sun().getRiseTime(context);
+            String sunsetTime = mWeather.getDailyForecast().get(0).sun().getSetTime(context);
 
             mSunContainer.setVisibility(View.VISIBLE);
             mSunTxt.setText(sunriseTime + "↑" + "\n" + sunsetTime + "↓");
@@ -163,8 +164,8 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
             mSunContainer.setVisibility(View.GONE);
         }
         if (mWeather.getDailyForecast().get(0).moon().isValid()) {
-            String moonriseTime = mWeather.getDailyForecast().get(0).moon().getRiseTime(mContext);
-            String moonsetTime = mWeather.getDailyForecast().get(0).moon().getSetTime(mContext);
+            String moonriseTime = mWeather.getDailyForecast().get(0).moon().getRiseTime(context);
+            String moonsetTime = mWeather.getDailyForecast().get(0).moon().getSetTime(context);
 
             mMoonContainer.setVisibility(View.VISIBLE);
             mMoonTxt.setText(moonriseTime + "↑" + "\n" + moonsetTime + "↓");
@@ -184,7 +185,7 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
 
     @Override
     public void onEnterScreen() {
-        if (mItemAnimationEnabled && mWeather != null) {
+        if (itemAnimationEnabled && mWeather != null) {
             ValueAnimator timeDay = ValueAnimator.ofObject(new FloatEvaluator(), mStartTimes[0], mCurrentTimes[0]);
             timeDay.addUpdateListener(animation -> {
                 mAnimCurrentTimes[0] = (Float) animation.getAnimatedValue();

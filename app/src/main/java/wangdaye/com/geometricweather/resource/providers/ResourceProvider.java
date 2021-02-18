@@ -12,7 +12,7 @@ import androidx.annotation.RequiresApi;
 import androidx.annotation.Size;
 
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
-import wangdaye.com.geometricweather.resource.ResourceUtils;
+import wangdaye.com.geometricweather.resource.utils.ResourceUtils;
 
 public abstract class ResourceProvider {
 

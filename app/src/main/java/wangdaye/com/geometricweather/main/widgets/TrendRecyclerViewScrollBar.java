@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.common.ui.widgets.trend;
+package wangdaye.com.geometricweather.main.widgets;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -13,11 +13,13 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
-import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
+import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 
 public class TrendRecyclerViewScrollBar extends RecyclerView.ItemDecoration {
 
     private Paint mPaint = null;
+    private final MainThemeManager mThemeManager;
+
     private int mScrollBarWidth;
     private int mScrollBarHeight;
 
@@ -26,8 +28,9 @@ public class TrendRecyclerViewScrollBar extends RecyclerView.ItemDecoration {
     private @ColorInt int mEndPointsColor;
     private @ColorInt int mCenterColor;
 
-    public TrendRecyclerViewScrollBar(Context context) {
+    public TrendRecyclerViewScrollBar(Context context, MainThemeManager themeManager) {
         mLightTheme = null;
+        mThemeManager = themeManager;
         ensureColor(context);
     }
 
@@ -76,13 +79,13 @@ public class TrendRecyclerViewScrollBar extends RecyclerView.ItemDecoration {
     }
 
     private void ensureColor(Context context) {
-        boolean lightTheme = ThemeManager.getInstance(context).isLightTheme();
+        boolean lightTheme = mThemeManager.isLightTheme();
 
         if (mLightTheme == null || mLightTheme != lightTheme) {
             mLightTheme = lightTheme;
             mThemeChanged = true;
 
-            mEndPointsColor = ThemeManager.getInstance(context).getRootColor(context);
+            mEndPointsColor = mThemeManager.getRootColor(context);
             mCenterColor = DisplayUtils.blendColor(
                     lightTheme
                             ? Color.argb((int) (0.02 * 255), 0, 0, 0)

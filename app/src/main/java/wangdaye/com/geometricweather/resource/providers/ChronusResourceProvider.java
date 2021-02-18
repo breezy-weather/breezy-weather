@@ -21,8 +21,8 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
-import wangdaye.com.geometricweather.resource.Constants;
-import wangdaye.com.geometricweather.resource.ResourceUtils;
+import wangdaye.com.geometricweather.resource.utils.Constants;
+import wangdaye.com.geometricweather.resource.utils.ResourceUtils;
 
 public class ChronusResourceProvider extends ResourceProvider {
 
@@ -32,8 +32,8 @@ public class ChronusResourceProvider extends ResourceProvider {
     private String mProviderName;
     @Nullable private Drawable mIconDrawable;
 
-    ChronusResourceProvider(@NonNull Context c, @NonNull String pkgName,
-                            @NonNull ResourceProvider defaultProvider) {
+    public ChronusResourceProvider(@NonNull Context c, @NonNull String pkgName,
+                                   @NonNull ResourceProvider defaultProvider) {
         mDefaultProvider = defaultProvider;
 
         try {
@@ -57,8 +57,8 @@ public class ChronusResourceProvider extends ResourceProvider {
     }
 
     @NonNull
-    static List<ChronusResourceProvider> getProviderList(@NonNull Context context,
-                                                         @NonNull ResourceProvider defaultProvider) {
+    public static List<ChronusResourceProvider> getProviderList(@NonNull Context context,
+                                                                @NonNull ResourceProvider defaultProvider) {
         List<ChronusResourceProvider> providerList = new ArrayList<>();
 
         List<ResolveInfo> infoList = context.getPackageManager().queryIntentActivities(
@@ -78,7 +78,7 @@ public class ChronusResourceProvider extends ResourceProvider {
         return providerList;
     }
 
-    static boolean isChronusIconProvider(@NonNull Context context, @NonNull String packageName) {
+    public static boolean isChronusIconProvider(@NonNull Context context, @NonNull String packageName) {
         List<ResolveInfo> infoList = context.getPackageManager().queryIntentActivities(
                 new Intent(Intent.ACTION_MAIN).addCategory(Constants.CATEGORY_CHRONUS_ICON_PACK),
                 PackageManager.GET_RESOLVED_FILTER

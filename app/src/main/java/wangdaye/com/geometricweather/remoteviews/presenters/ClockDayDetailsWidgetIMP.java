@@ -20,13 +20,12 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.RelativeHu
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.common.basic.models.weather.Temperature;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
+import wangdaye.com.geometricweather.remoteviews.WidgetHelper;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.resource.providers.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.common.utils.helpters.LunarHelper;
-import wangdaye.com.geometricweather.common.utils.managers.TimeManager;
 
 public class ClockDayDetailsWidgetIMP extends AbstractRemoteViewsPresenter {
 
@@ -61,7 +60,7 @@ public class ClockDayDetailsWidgetIMP extends AbstractRemoteViewsPresenter {
 
         ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
 
-        boolean dayTime = TimeManager.isDaylight(location);
+        boolean dayTime = location.isDaylight();
 
         SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
         TemperatureUnit temperatureUnit = settings.getTemperatureUnit();
@@ -222,7 +221,7 @@ public class ClockDayDetailsWidgetIMP extends AbstractRemoteViewsPresenter {
                     + ")";
         } else {
             return context.getString(R.string.humidity) + " " + RelativeHumidityUnit.PERCENT.getRelativeHumidityText(
-                    WidgetUtils.getNonNullValue(weather.getCurrent().getRelativeHumidity(), 0));
+                    WidgetHelper.getNonNullValue(weather.getCurrent().getRelativeHumidity(), 0));
         }
     }
 

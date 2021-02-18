@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.resource.providers;
+package wangdaye.com.geometricweather.resource;
 
 import android.content.Context;
 
@@ -6,6 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.GeometricWeather;
+import wangdaye.com.geometricweather.resource.providers.ChronusResourceProvider;
+import wangdaye.com.geometricweather.resource.providers.DefaultResourceProvider;
+import wangdaye.com.geometricweather.resource.providers.IconPackResourcesProvider;
+import wangdaye.com.geometricweather.resource.providers.PixelResourcesProvider;
+import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 
 public class ResourcesProviderFactory {

@@ -2,15 +2,14 @@ package wangdaye.com.geometricweather.common.ui.adapters.location;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DiffUtil;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.turingtechnologies.materialscrollbar.ICustomAdapter;
 
@@ -19,12 +18,12 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
+import wangdaye.com.geometricweather.common.ui.adapters.SyncListAdapter;
+import wangdaye.com.geometricweather.common.theme.ThemeManager;
 import wangdaye.com.geometricweather.databinding.ItemLocationBinding;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.resource.providers.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.common.ui.adapters.SyncListAdapter;
-import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
 
 /**
  * Location adapter.
@@ -53,7 +52,8 @@ public class LocationAdapter extends SyncListAdapter<LocationModel, LocationHold
                            List<Location> locationList,
                            @Nullable String selectedId,
                            @NonNull OnLocationItemClickListener clickListener,
-                           @Nullable OnLocationItemDragListener dragListener) {
+                           @Nullable OnLocationItemDragListener dragListener,
+                           @NonNull ThemeManager themeManager) {
         super(new ArrayList<>(), new DiffUtil.ItemCallback<LocationModel>() {
             @Override
             public boolean areItemsTheSame(@NonNull LocationModel oldItem, @NonNull LocationModel newItem) {
@@ -69,7 +69,7 @@ public class LocationAdapter extends SyncListAdapter<LocationModel, LocationHold
         mClickListener = clickListener;
         mDragListener = dragListener;
 
-        mThemeManager = ThemeManager.getInstance(context);
+        mThemeManager = themeManager;
         mResourceProvider = ResourcesProviderFactory.getNewInstance();
         mTemperatureUnit = SettingsOptionManager.getInstance(context).getTemperatureUnit();
 
@@ -81,6 +81,7 @@ public class LocationAdapter extends SyncListAdapter<LocationModel, LocationHold
     public LocationHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new LocationHolder(
                 ItemLocationBinding.inflate(LayoutInflater.from(parent.getContext())),
+                mThemeManager,
                 mClickListener,
                 mDragListener
         );
@@ -99,7 +100,7 @@ public class LocationAdapter extends SyncListAdapter<LocationModel, LocationHold
                             mContext,
                             model.location,
                             mTemperatureUnit,
-                            mThemeManager.isLightTheme(),
+                            mThemeManager.isLightTheme(mContext),
                             model.location.getFormattedId().equals(selectedId),
                             false
                     )
@@ -118,7 +119,7 @@ public class LocationAdapter extends SyncListAdapter<LocationModel, LocationHold
                             mContext,
                             l,
                             mTemperatureUnit,
-                            mThemeManager.isLightTheme(),
+                            mThemeManager.isLightTheme(mContext),
                             l.getFormattedId().equals(selectedId),
                             l.getFormattedId().equals(forceUpdateId)
                     )

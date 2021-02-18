@@ -18,7 +18,7 @@ import wangdaye.com.geometricweather.common.basic.models.weather.UV;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.chart.PolylineAndHistogramView;
-import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
+import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 
 /**
  * Daily UV adapter.
@@ -26,7 +26,7 @@ import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
 
 public class DailyUVAdapter extends AbsDailyTrendAdapter<DailyUVAdapter.ViewHolder> {
 
-    private final ThemeManager mThemeManager;
+    private final MainThemeManager mThemeManager;
 
     private int highestIndex;
     private int mSize;
@@ -42,7 +42,7 @@ public class DailyUVAdapter extends AbsDailyTrendAdapter<DailyUVAdapter.ViewHold
         }
 
         @SuppressLint({"SetTextI18n, InflateParams", "DefaultLocale"})
-        void onBindView(GeoActivity activity, Location location, ThemeManager themeManager, int position) {
+        void onBindView(GeoActivity activity, Location location, MainThemeManager themeManager, int position) {
             StringBuilder talkBackBuilder = new StringBuilder(activity.getString(R.string.tag_uv));
 
             super.onBindView(activity, location, themeManager, talkBackBuilder, position);
@@ -81,12 +81,15 @@ public class DailyUVAdapter extends AbsDailyTrendAdapter<DailyUVAdapter.ViewHold
     }
 
     @SuppressLint("SimpleDateFormat")
-    public DailyUVAdapter(GeoActivity activity, TrendRecyclerView parent, Location location) {
+    public DailyUVAdapter(GeoActivity activity,
+                          TrendRecyclerView parent,
+                          Location location,
+                          MainThemeManager themeManager) {
         super(activity, location);
 
         Weather weather = location.getWeather();
         assert weather != null;
-        mThemeManager = ThemeManager.getInstance(activity);
+        mThemeManager = themeManager;
 
         highestIndex = Integer.MIN_VALUE;
         boolean valid = false;

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.viewpager.widget.ViewPager;
 
@@ -20,14 +21,13 @@ import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.Daily;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.daily.adapter.DailyWeatherAdapter;
-import wangdaye.com.geometricweather.db.DatabaseHelper;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.common.ui.widgets.insets.FitBottomSystemBarRecyclerView;
 import wangdaye.com.geometricweather.common.ui.widgets.insets.FitBottomSystemBarViewPager;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpters.AsyncHelper;
-import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
+import wangdaye.com.geometricweather.daily.adapter.DailyWeatherAdapter;
+import wangdaye.com.geometricweather.db.DatabaseHelper;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 
 /**
  * Daily weather activity.
@@ -123,7 +123,7 @@ public class DailyWeatherActivity extends GeoActivity {
             FitBottomSystemBarViewPager pager = findViewById(R.id.activity_weather_daily_pager);
             pager.setAdapter(new FitBottomSystemBarViewPager.FitBottomSystemBarPagerAdapter(pager, viewList, titleList));
             pager.setPageMargin((int) DisplayUtils.dpToPx(this, 1));
-            pager.setPageMarginDrawable(new ColorDrawable(ThemeManager.getInstance(this).getLineColor(this)));
+            pager.setPageMarginDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorLine)));
             pager.setCurrentItem(mPosition);
             pager.clearOnPageChangeListeners();
             pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

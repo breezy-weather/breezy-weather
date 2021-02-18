@@ -12,7 +12,7 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 
 import wangdaye.com.geometricweather.GeometricWeather;
-import wangdaye.com.geometricweather.location.LocationException;
+import wangdaye.com.geometricweather.location.utils.LocationException;
 import wangdaye.com.geometricweather.common.utils.helpters.BuglyHelper;
 
 /**

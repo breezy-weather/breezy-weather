@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.weather.observers;
+package wangdaye.com.geometricweather.common.rxjava;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

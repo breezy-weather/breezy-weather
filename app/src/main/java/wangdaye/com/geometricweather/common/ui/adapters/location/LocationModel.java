@@ -17,7 +17,6 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Alert;
 import wangdaye.com.geometricweather.common.basic.models.weather.Temperature;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.common.utils.managers.TimeManager;
 
 public class LocationModel {
 
@@ -49,7 +48,7 @@ public class LocationModel {
         this.location = location;
 
         if (location.getWeather() != null) {
-            this.weatherCode = TimeManager.isDaylight(location)
+            this.weatherCode = location.isDaylight()
                     ? location.getWeather().getDailyForecast().get(0).day().getWeatherCode()
                     : location.getWeather().getDailyForecast().get(0).night().getWeatherCode();
         } else {

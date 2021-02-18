@@ -17,35 +17,35 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpters.AsyncHelper;
-import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
 
 public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
 
-    protected Context mContext;
-    protected ResourceProvider mProvider;
-    protected ThemeManager mThemeManager;
-    protected boolean mItemAnimationEnabled;
+    protected Context context;
+    protected ResourceProvider provider;
+    protected MainThemeManager themeManager;
+    protected boolean itemAnimationEnabled;
     private boolean mInScreen;
 
     private @Nullable Animator mItemAnimator;
     private @Nullable AsyncHelper.Controller mDelayController;
 
     @SuppressLint("ObjectAnimatorBinding")
-    public AbstractMainViewHolder(@NonNull View view) {
+    public AbstractMainViewHolder(@NonNull View view, MainThemeManager themeManager) {
         super(view);
-        mThemeManager = ThemeManager.getInstance(view.getContext());
+        this.themeManager = themeManager;
     }
 
     @CallSuper
     public void onBindView(Context context, @NonNull Location location,
                            @NonNull ResourceProvider provider,
                            boolean listAnimationEnabled, boolean itemAnimationEnabled) {
-        mContext = context;
-        mProvider = provider;
-        mItemAnimationEnabled = itemAnimationEnabled;
+        this.context = context;
+        this.provider = provider;
+        this.itemAnimationEnabled = itemAnimationEnabled;
         mInScreen = false;
         mDelayController = null;
 
@@ -96,7 +96,7 @@ public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
         set.playTogether(
                 ObjectAnimator.ofFloat(itemView, "alpha", 0f, 1f),
                 ObjectAnimator.ofFloat(
-                        itemView, "translationY", DisplayUtils.dpToPx(mContext, 40), 0f
+                        itemView, "translationY", DisplayUtils.dpToPx(context, 40), 0f
                 )
         );
         set.setDuration(450);

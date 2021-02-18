@@ -10,7 +10,7 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.Temperatur
 import wangdaye.com.geometricweather.daily.adapter.DailyWeatherAdapter;
 import wangdaye.com.geometricweather.daily.adapter.model.Overview;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.resource.providers.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.common.ui.widgets.AnimatableIconView;
 

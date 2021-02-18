@@ -26,7 +26,7 @@ import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoDialog;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.resource.providers.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.adapters.IconProviderAdapter;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpters.AsyncHelper;

@@ -14,11 +14,10 @@ import androidx.core.widget.ImageViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
+import wangdaye.com.geometricweather.common.theme.ThemeManager;
 import wangdaye.com.geometricweather.databinding.ItemLocationBinding;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.common.utils.DisplayUtils;
-import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
-import wangdaye.com.geometricweather.common.utils.managers.TimeManager;
 
 public class LocationHolder extends RecyclerView.ViewHolder {
 
@@ -28,11 +27,12 @@ public class LocationHolder extends RecyclerView.ViewHolder {
     private @Nullable final LocationAdapter.OnLocationItemDragListener mDragListener;
 
     protected LocationHolder(ItemLocationBinding binding,
+                             ThemeManager themeManager,
                              @NonNull LocationAdapter.OnLocationItemClickListener clickListener,
                              @Nullable LocationAdapter.OnLocationItemDragListener dragListener) {
         super(binding.getRoot());
         mBinding = binding;
-        mThemeManager = ThemeManager.getInstance(binding.getRoot().getContext());
+        mThemeManager = themeManager;
         mClickListener = clickListener;
         mDragListener = dragListener;
     }
@@ -89,7 +89,7 @@ public class LocationHolder extends RecyclerView.ViewHolder {
             mBinding.weatherIcon.setImageDrawable(
                     resourceProvider.getWeatherIcon(
                             model.weatherCode,
-                            TimeManager.isDaylight(model.location)
+                            model.location.isDaylight()
                     )
             );
         } else {

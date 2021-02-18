@@ -19,12 +19,11 @@ import wangdaye.com.geometricweather.common.basic.models.options.WidgetWeekIconM
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.common.basic.models.weather.Temperature;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
+import wangdaye.com.geometricweather.remoteviews.WidgetHelper;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.resource.providers.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.common.utils.managers.TimeManager;
 
 public class WeekWidgetIMP extends AbstractRemoteViewsPresenter {
 
@@ -63,7 +62,7 @@ public class WeekWidgetIMP extends AbstractRemoteViewsPresenter {
 
         ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
 
-        boolean dayTime = TimeManager.isDaylight(location);
+        boolean dayTime = location.isDaylight();
 
         SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
         TemperatureUnit temperatureUnit = settings.getTemperatureUnit();
@@ -84,19 +83,19 @@ public class WeekWidgetIMP extends AbstractRemoteViewsPresenter {
         // weather view.
         views.setTextViewText(
                 R.id.widget_week_week_1,
-                WidgetUtils.getDailyWeek(context, weather, 0));
+                WidgetHelper.getDailyWeek(context, weather, 0));
         views.setTextViewText(
                 R.id.widget_week_week_2,
-                WidgetUtils.getDailyWeek(context, weather, 1));
+                WidgetHelper.getDailyWeek(context, weather, 1));
         views.setTextViewText(
                 R.id.widget_week_week_3,
-                WidgetUtils.getDailyWeek(context, weather, 2));
+                WidgetHelper.getDailyWeek(context, weather, 2));
         views.setTextViewText(
                 R.id.widget_week_week_4,
-                WidgetUtils.getDailyWeek(context, weather, 3));
+                WidgetHelper.getDailyWeek(context, weather, 3));
         views.setTextViewText(
                 R.id.widget_week_week_5,
-                WidgetUtils.getDailyWeek(context, weather, 4));
+                WidgetHelper.getDailyWeek(context, weather, 4));
 
         views.setTextViewText(
                 R.id.widget_week_temp,

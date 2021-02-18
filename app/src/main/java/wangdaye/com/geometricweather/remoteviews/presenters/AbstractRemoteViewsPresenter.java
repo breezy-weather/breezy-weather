@@ -37,10 +37,10 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.RelativeHu
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.common.basic.models.weather.Base;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
+import wangdaye.com.geometricweather.remoteviews.WidgetHelper;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
-import wangdaye.com.geometricweather.resource.ResourceUtils;
+import wangdaye.com.geometricweather.resource.utils.ResourceUtils;
 import wangdaye.com.geometricweather.common.utils.helpters.IntentHelper;
 import wangdaye.com.geometricweather.common.utils.helpters.LunarHelper;
 
@@ -280,7 +280,7 @@ public abstract class AbstractRemoteViewsPresenter {
                         "$cpb$",
                         ProbabilityUnit.PERCENT.getProbabilityText(
                                 context,
-                                WidgetUtils.getNonNullValue(
+                                WidgetHelper.getNonNullValue(
                                         weather.getCurrent()
                                                 .getPrecipitationProbability()
                                                 .getTotal(),
@@ -291,7 +291,7 @@ public abstract class AbstractRemoteViewsPresenter {
                         "$cp$",
                         precipitationUnit.getPrecipitationText(
                                 context,
-                                WidgetUtils.getNonNullValue(
+                                WidgetHelper.getNonNullValue(
                                         weather.getCurrent()
                                                 .getPrecipitation()
                                                 .getTotal(),
@@ -308,7 +308,7 @@ public abstract class AbstractRemoteViewsPresenter {
                 .replace(
                         "$ch$",
                         RelativeHumidityUnit.PERCENT.getRelativeHumidityText(
-                                WidgetUtils.getNonNullValue(
+                                WidgetHelper.getNonNullValue(
                                         weather.getCurrent().getRelativeHumidity(),
                                         0
                                 )
@@ -317,7 +317,7 @@ public abstract class AbstractRemoteViewsPresenter {
                         "$cps$",
                         pressureUnit.getPressureText(
                                 context,
-                                WidgetUtils.getNonNullValue(
+                                WidgetHelper.getNonNullValue(
                                         weather.getCurrent().getPressure(),
                                         0
                                 )
@@ -326,7 +326,7 @@ public abstract class AbstractRemoteViewsPresenter {
                         "$cv$",
                         distanceUnit.getDistanceText(
                                 context,
-                                WidgetUtils.getNonNullValue(
+                                WidgetHelper.getNonNullValue(
                                         weather.getCurrent().getVisibility(),
                                         0
                                 )
@@ -335,7 +335,7 @@ public abstract class AbstractRemoteViewsPresenter {
                         "$cdp$",
                         temperatureUnit.getTemperatureText(
                                 context,
-                                WidgetUtils.getNonNullValue(
+                                WidgetHelper.getNonNullValue(
                                         weather.getCurrent().getDewPoint(),
                                         0
                                 )
@@ -494,7 +494,7 @@ public abstract class AbstractRemoteViewsPresenter {
                     "$" + i + "dp$",
                     ProbabilityUnit.PERCENT.getProbabilityText(
                             context,
-                            WidgetUtils.getNonNullValue(
+                            WidgetHelper.getNonNullValue(
                                     weather.getDailyForecast()
                                             .get(i)
                                             .day()
@@ -516,7 +516,7 @@ public abstract class AbstractRemoteViewsPresenter {
                     "$" + i + "np$",
                     ProbabilityUnit.PERCENT.getProbabilityText(
                             context,
-                            WidgetUtils.getNonNullValue(
+                            WidgetHelper.getNonNullValue(
                                     weather.getDailyForecast()
                                             .get(i)
                                             .night()

@@ -9,8 +9,8 @@ import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.background.polling.basic.ForegroundUpdateService;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.background.polling.permanent.PermanentServiceHelper;
-import wangdaye.com.geometricweather.remoteviews.NotificationUtils;
-import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
+import wangdaye.com.geometricweather.remoteviews.NotificationHelper;
+import wangdaye.com.geometricweather.remoteviews.WidgetHelper;
 
 /**
  * Foreground normal update service.
@@ -21,13 +21,13 @@ public class ForegroundNormalUpdateService extends ForegroundUpdateService {
 
     @Override
     public void updateView(Context context, Location location) {
-        WidgetUtils.updateWidgetIfNecessary(context, location);
+        WidgetHelper.updateWidgetIfNecessary(context, location);
     }
 
     @Override
     public void updateView(Context context, List<Location> locationList) {
-        WidgetUtils.updateWidgetIfNecessary(context, locationList);
-        NotificationUtils.updateNotificationIfNecessary(context, locationList);
+        WidgetHelper.updateWidgetIfNecessary(context, locationList);
+        NotificationHelper.updateNotificationIfNecessary(context, locationList);
     }
 
     @Override

@@ -1,9 +1,10 @@
-package wangdaye.com.geometricweather.common.utils.helpters;
+package wangdaye.com.geometricweather.settings.utils;
 
 import android.didikee.donate.AlipayDonate;
 import android.didikee.donate.WeiXinDonate;
 
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
+import wangdaye.com.geometricweather.common.utils.helpters.SnackbarHelper;
 import wangdaye.com.geometricweather.settings.dialogs.WechatDonateDialog;
 
 /**

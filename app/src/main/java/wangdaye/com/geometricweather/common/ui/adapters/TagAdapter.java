@@ -1,6 +1,5 @@
 package wangdaye.com.geometricweather.common.ui.adapters;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,21 +7,20 @@ import android.view.ViewGroup;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.ui.widgets.TagView;
-import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
+import wangdaye.com.geometricweather.common.theme.ThemeManager;
 
 public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
 
     private final List<Tag> mTagList;
-    private @ColorInt final int mCheckedBackgroundColor;
+    private final @ColorInt int mCheckedBackgroundColor;
     private final OnTagCheckedListener mListener;
-    private @Nullable final ThemeManager mThemeManager;
+    private final @NonNull ThemeManager mThemeManager;
     private int mCheckedIndex;
 
     public static final int UNCHECKABLE_INDEX = -1;
@@ -78,16 +76,21 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
         String getName();
     }
 
-    public TagAdapter(Context context, List<Tag> tagList, OnTagCheckedListener listener) {
-        this(context, tagList, Color.TRANSPARENT, listener, UNCHECKABLE_INDEX);
+    public TagAdapter(List<Tag> tagList,
+                      OnTagCheckedListener listener,
+                      @NonNull ThemeManager themeManager) {
+        this(tagList, Color.TRANSPARENT, listener, themeManager, UNCHECKABLE_INDEX);
     }
 
-    public TagAdapter(Context context, List<Tag> tagList, @ColorInt int checkedBackgroundColor,
-                      OnTagCheckedListener listener, int checkedIndex) {
+    public TagAdapter(List<Tag> tagList,
+                      @ColorInt int checkedBackgroundColor,
+                      OnTagCheckedListener listener,
+                      @NonNull ThemeManager themeManager,
+                      int checkedIndex) {
         mTagList = tagList;
         mCheckedBackgroundColor = checkedBackgroundColor;
         mListener = listener;
-        mThemeManager = ThemeManager.getInstance(context);
+        mThemeManager = themeManager;
         mCheckedIndex = checkedIndex;
     }
 

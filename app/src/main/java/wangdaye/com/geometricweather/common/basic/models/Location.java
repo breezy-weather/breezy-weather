@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
 
@@ -280,6 +281,19 @@ public class Location
         }
         return Math.abs(latitude - location.latitude) < 0.8
                 && Math.abs(longitude - location.longitude) < 0.8;
+    }
+
+    public boolean isDaylight() {
+        if (weather != null ) {
+            return weather.isDaylight(getTimeZone());
+        }
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeZone(getTimeZone());
+        int time = 60 * calendar.get(Calendar.HOUR_OF_DAY) + calendar.get(Calendar.MINUTE);
+        int sr = 60 * 6;
+        int ss = 60 * 18;
+        return sr < time && time < ss;
     }
 
     @Override

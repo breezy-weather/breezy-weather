@@ -20,10 +20,9 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.Temperatur
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.resource.providers.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.common.utils.helpters.LunarHelper;
-import wangdaye.com.geometricweather.common.utils.managers.TimeManager;
 
 public class ClockDayHorizontalWidgetIMP extends AbstractRemoteViewsPresenter {
 
@@ -58,7 +57,7 @@ public class ClockDayHorizontalWidgetIMP extends AbstractRemoteViewsPresenter {
 
         ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
 
-        boolean dayTime = TimeManager.isDaylight(location);
+        boolean dayTime = location.isDaylight();
 
         SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
         TemperatureUnit temperatureUnit = settings.getTemperatureUnit();

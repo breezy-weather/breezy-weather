@@ -3,16 +3,16 @@ package wangdaye.com.geometricweather.common.ui.widgets.weatherView.circularSkyV
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import androidx.core.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 
+import androidx.core.content.ContextCompat;
+
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
-import wangdaye.com.geometricweather.common.utils.managers.TimeManager;
 
 /**
  * Circle view.
@@ -86,7 +86,22 @@ public class CircleView extends View {
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setAntiAlias(true);
 
-        mDayTime = TimeManager.getInstance(getContext()).isDayTime();
+        try {
+            mDayTime = ((CircularSkyWeatherView) getParent().getParent()).isDaytime();
+        } catch (Exception e) {
+            mDayTime = true;
+        }
+        setColor();
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        try {
+            mDayTime = ((CircularSkyWeatherView) getParent().getParent()).isDaytime();
+        } catch (Exception e) {
+            mDayTime = true;
+        }
         setColor();
     }
 
@@ -100,7 +115,7 @@ public class CircleView extends View {
             mInitRadius[i] = unitRadius * (i + 1);
             mRealRadius[i] = mInitRadius[i];
         }
-        mCX = getMeasuredWidth() / 2;
+        mCX = getMeasuredWidth() / 2f;
         mCY = getMeasuredHeight();
     }
 

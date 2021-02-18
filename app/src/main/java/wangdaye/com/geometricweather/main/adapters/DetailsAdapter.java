@@ -21,8 +21,8 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.CloudCover
 import wangdaye.com.geometricweather.common.basic.models.options.unit.RelativeHumidityUnit;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.SpeedUnit;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
 
 /**
  * Details adapter.
@@ -31,7 +31,7 @@ import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
 public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHolder> {
 
     private final List<Index> mIndexList;
-    private final ThemeManager mThemeManager;
+    private final MainThemeManager mThemeManager;
 
     private static class Index {
         @DrawableRes int iconId;
@@ -86,7 +86,7 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
         }
     }
 
-    public DetailsAdapter(Context context, @NonNull Weather weather) {
+    public DetailsAdapter(Context context, @NonNull Weather weather, MainThemeManager themeManager) {
         mIndexList = new ArrayList<>();
         SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
 
@@ -198,7 +198,7 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
             );
         }
 
-        mThemeManager = ThemeManager.getInstance(context);
+        mThemeManager = themeManager;
     }
 
     @NonNull

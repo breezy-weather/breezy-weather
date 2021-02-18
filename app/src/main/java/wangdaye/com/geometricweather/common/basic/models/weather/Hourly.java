@@ -11,7 +11,6 @@ import java.util.Date;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
-import wangdaye.com.geometricweather.common.utils.managers.TimeManager;
 
 /**
  * Hourly.
@@ -78,7 +77,7 @@ public class Hourly implements Serializable {
     }
 
     public String getHour(Context context) {
-        return getHour(context, TimeManager.is12Hour(context), DisplayUtils.isRtl(context));
+        return getHour(context, DisplayUtils.is12Hour(context), DisplayUtils.isRtl(context));
     }
 
     @SuppressLint("DefaultLocale")

@@ -8,8 +8,8 @@ import dagger.hilt.android.AndroidEntryPoint;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.background.polling.PollingManager;
-import wangdaye.com.geometricweather.remoteviews.NotificationUtils;
-import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
+import wangdaye.com.geometricweather.remoteviews.NotificationHelper;
+import wangdaye.com.geometricweather.remoteviews.WidgetHelper;
 
 /**
  * Awake foreground update service.
@@ -20,13 +20,13 @@ public class AwakeForegroundUpdateService extends ForegroundUpdateService {
 
     @Override
     public void updateView(Context context, Location location) {
-        WidgetUtils.updateWidgetIfNecessary(context, location);
+        WidgetHelper.updateWidgetIfNecessary(context, location);
     }
 
     @Override
     public void updateView(Context context, List<Location> locationList) {
-        WidgetUtils.updateWidgetIfNecessary(context, locationList);
-        NotificationUtils.updateNotificationIfNecessary(context, locationList);
+        WidgetHelper.updateWidgetIfNecessary(context, locationList);
+        NotificationHelper.updateNotificationIfNecessary(context, locationList);
     }
 
     @Override

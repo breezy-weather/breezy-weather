@@ -8,13 +8,11 @@ import android.service.quicksettings.Tile;
 import androidx.annotation.RequiresApi;
 
 import wangdaye.com.geometricweather.common.basic.models.Location;
-import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.utils.helpters.IntentHelper;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
-import wangdaye.com.geometricweather.resource.providers.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.common.utils.helpters.IntentHelper;
-import wangdaye.com.geometricweather.common.utils.managers.TimeManager;
 
 /**
  * Tile service.
@@ -65,17 +63,17 @@ public class TileService extends android.service.quicksettings.TileService {
             return;
         }
         Location location = DatabaseHelper.getInstance(context).readLocationList().get(0);
-        Weather weather = DatabaseHelper.getInstance(context).readWeather(location);
-        if (weather != null) {
+        location.setWeather(DatabaseHelper.getInstance(context).readWeather(location));
+        if (location.getWeather() != null) {
             tile.setIcon(
                     ResourceHelper.getMinimalIcon(
                             ResourcesProviderFactory.getNewInstance(),
-                            weather.getCurrent().getWeatherCode(),
-                            TimeManager.getInstance(context).isDayTime()
+                            location.getWeather().getCurrent().getWeatherCode(),
+                            location.isDaylight()
                     )
             );
             tile.setLabel(
-                    weather.getCurrent().getTemperature().getTemperature(
+                    location.getWeather().getCurrent().getTemperature().getTemperature(
                             context,
                             SettingsOptionManager.getInstance(context).getTemperatureUnit())
             );

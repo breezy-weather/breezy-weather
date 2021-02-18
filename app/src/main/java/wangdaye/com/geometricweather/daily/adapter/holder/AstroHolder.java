@@ -13,10 +13,9 @@ import androidx.core.content.ContextCompat;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.weather.Astro;
 import wangdaye.com.geometricweather.common.basic.models.weather.MoonPhase;
+import wangdaye.com.geometricweather.common.ui.widgets.astro.MoonPhaseView;
 import wangdaye.com.geometricweather.daily.adapter.DailyWeatherAdapter;
 import wangdaye.com.geometricweather.daily.adapter.model.DailyAstro;
-import wangdaye.com.geometricweather.common.ui.widgets.astro.MoonPhaseView;
-import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
 
 public class AstroHolder extends DailyWeatherAdapter.ViewHolder {
 
@@ -86,7 +85,7 @@ public class AstroHolder extends DailyWeatherAdapter.ViewHolder {
             mMoonPhaseIcon.setColor(
                     ContextCompat.getColor(context, R.color.colorTextContent_dark),
                     ContextCompat.getColor(context, R.color.colorTextContent_light),
-                    ThemeManager.getInstance(context).getTextContentColor(context)
+                    ContextCompat.getColor(context, R.color.colorTextContent)
             );
             mMoonPhaseText.setText(p.getMoonPhase(context));
         } else {

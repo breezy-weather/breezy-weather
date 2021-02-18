@@ -21,7 +21,7 @@ import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.chart.DoubleHistogramView;
-import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
+import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 
 /**
  * Daily precipitation adapter.
@@ -29,7 +29,7 @@ import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
 public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter<DailyPrecipitationAdapter.ViewHolder> {
 
     private final ResourceProvider mResourceProvider;
-    private final ThemeManager mThemeManager;
+    private final MainThemeManager mThemeManager;
     private final PrecipitationUnit mPrecipitationUnit;
 
     private float mHighestPrecipitation;
@@ -45,7 +45,7 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter<DailyPrecipi
         }
 
         @SuppressLint("SetTextI18n, InflateParams")
-        void onBindView(GeoActivity activity, Location location, ThemeManager themeManager, int position) {
+        void onBindView(GeoActivity activity, Location location, MainThemeManager themeManager, int position) {
             StringBuilder talkBackBuilder = new StringBuilder(activity.getString(R.string.tag_precipitation));
 
             super.onBindView(activity, location, themeManager, talkBackBuilder, position);
@@ -100,14 +100,18 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter<DailyPrecipi
     }
 
     @SuppressLint("SimpleDateFormat")
-    public DailyPrecipitationAdapter(GeoActivity activity, TrendRecyclerView parent, Location location,
-                                     ResourceProvider provider, PrecipitationUnit unit) {
+    public DailyPrecipitationAdapter(GeoActivity activity,
+                                     TrendRecyclerView parent,
+                                     Location location,
+                                     ResourceProvider provider,
+                                     MainThemeManager themeManager,
+                                     PrecipitationUnit unit) {
         super(activity, location);
 
         Weather weather = location.getWeather();
         assert weather != null;
         mResourceProvider = provider;
-        mThemeManager = ThemeManager.getInstance(activity);
+        mThemeManager = themeManager;
         mPrecipitationUnit = unit;
 
         mHighestPrecipitation = Integer.MIN_VALUE;

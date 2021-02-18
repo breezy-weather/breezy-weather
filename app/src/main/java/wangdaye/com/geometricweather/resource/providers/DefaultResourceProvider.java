@@ -25,9 +25,9 @@ import java.util.Objects;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
-import wangdaye.com.geometricweather.resource.Constants;
-import wangdaye.com.geometricweather.resource.ResourceUtils;
-import wangdaye.com.geometricweather.resource.XmlHelper;
+import wangdaye.com.geometricweather.resource.utils.Constants;
+import wangdaye.com.geometricweather.resource.utils.ResourceUtils;
+import wangdaye.com.geometricweather.resource.utils.XmlHelper;
 import wangdaye.com.geometricweather.common.ui.images.MoonDrawable;
 import wangdaye.com.geometricweather.common.ui.images.SunDrawable;
 
@@ -58,7 +58,7 @@ public class DefaultResourceProvider extends ResourceProvider {
         }
     }
 
-    static boolean isDefaultIconProvider(@NonNull String packageName) {
+    public static boolean isDefaultIconProvider(@NonNull String packageName) {
         return packageName.equals(
                 GeometricWeather.getInstance().getPackageName());
     }

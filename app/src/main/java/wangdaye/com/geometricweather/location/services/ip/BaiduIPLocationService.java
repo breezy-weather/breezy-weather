@@ -9,9 +9,9 @@ import javax.inject.Inject;
 import io.reactivex.disposables.CompositeDisposable;
 import wangdaye.com.geometricweather.BuildConfig;
 import wangdaye.com.geometricweather.location.services.LocationService;
-import wangdaye.com.geometricweather.weather.SchedulerTransformer;
-import wangdaye.com.geometricweather.weather.observers.BaseObserver;
-import wangdaye.com.geometricweather.weather.observers.ObserverContainer;
+import wangdaye.com.geometricweather.common.rxjava.SchedulerTransformer;
+import wangdaye.com.geometricweather.common.rxjava.BaseObserver;
+import wangdaye.com.geometricweather.common.rxjava.ObserverContainer;
 
 public class BaiduIPLocationService extends LocationService {
 

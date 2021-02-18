@@ -3,6 +3,10 @@ package wangdaye.com.geometricweather.main.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.qualifiers.ActivityContext;
+
 public class StatementManager {
 
     private boolean locationPermissionDeclared;
@@ -12,7 +16,8 @@ public class StatementManager {
     private static final String KEY_LOCATION_PERMISSION_DECLARED = "location_permission_declared";
     private static final String KEY_BACKGROUND_LOCATION_DECLARED = "background_location_declared";
 
-    public StatementManager(Context context) {
+    @Inject
+    public StatementManager(@ActivityContext Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(
                 SP_STATEMENT_RECORD, Context.MODE_PRIVATE);
 

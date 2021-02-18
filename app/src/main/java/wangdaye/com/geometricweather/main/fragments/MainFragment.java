@@ -29,8 +29,9 @@ import wangdaye.com.geometricweather.main.adapters.main.MainAdapter;
 import wangdaye.com.geometricweather.main.dialogs.LocationHelpDialog;
 import wangdaye.com.geometricweather.main.layouts.MainLayoutManager;
 import wangdaye.com.geometricweather.main.models.LocationResource;
+import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.resource.providers.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.common.utils.helpters.SnackbarHelper;
 import wangdaye.com.geometricweather.common.ui.widgets.SwipeSwitchLayout;
@@ -40,8 +41,6 @@ import wangdaye.com.geometricweather.common.ui.widgets.weatherView.WeatherViewCo
 import wangdaye.com.geometricweather.common.ui.widgets.weatherView.circularSkyView.CircularSkyWeatherView;
 import wangdaye.com.geometricweather.common.ui.widgets.weatherView.materialWeatherView.MaterialWeatherView;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
-import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
-import wangdaye.com.geometricweather.common.utils.managers.TimeManager;
 
 public class MainFragment extends Fragment {
 
@@ -53,7 +52,6 @@ public class MainFragment extends Fragment {
     private @Nullable AnimatorSet mRecyclerViewAnimator;
 
     private ResourceProvider mResourceProvider;
-    private ThemeManager mThemeManager;
 
     private @Nullable String mCurrentLocationFormattedId;
     private @Nullable WeatherSource mCurrentWeatherSource;
@@ -75,6 +73,8 @@ public class MainFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         mBinding = FragmentMainBinding.inflate(getLayoutInflater(), container, false);
 
+        initModel();
+
         // attach weather view.
         switch (SettingsOptionManager.getInstance(requireContext()).getUiStyle()) {
             case MATERIAL:
@@ -82,7 +82,8 @@ public class MainFragment extends Fragment {
                 break;
 
             case CIRCULAR:
-                mWeatherView = new CircularSkyWeatherView(requireContext());
+                mWeatherView = new CircularSkyWeatherView(requireContext(),
+                        mViewModel.getThemeManager().ismDaytime());
                 break;
         }
         ((CoordinatorLayout) mBinding.switchLayout.getParent()).addView(
@@ -95,12 +96,11 @@ public class MainFragment extends Fragment {
         );
         mWeatherView.setSystemBarStyle(requireContext(), requireActivity().getWindow(),
                 false, false, true, false);
+        mViewModel.getThemeManager().registerWeatherView(mWeatherView);
 
         resetUIUpdateFlag();
         ensureResourceProvider();
-        updateThemeManager(true);
 
-        initModel();
         initView();
         setCallback((Callback) requireActivity());
 
@@ -122,7 +122,7 @@ public class MainFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        updateThemeManager(false);
+        mViewModel.getThemeManager().unregisterWeatherView();
     }
 
     // init.
@@ -174,7 +174,7 @@ public class MainFragment extends Fragment {
         boolean listAnimationEnabled = SettingsOptionManager.getInstance(requireContext()).isListAnimationEnabled();
         boolean itemAnimationEnabled = SettingsOptionManager.getInstance(requireContext()).isItemAnimationEnabled();
         mAdapter = new MainAdapter((GeoActivity) requireActivity(), mWeatherView, null, mResourceProvider,
-                listAnimationEnabled, itemAnimationEnabled);
+                mViewModel.getThemeManager(), listAnimationEnabled, itemAnimationEnabled);
 
         mBinding.recyclerView.setAdapter(mAdapter);
         mBinding.recyclerView.setLayoutManager(new MainLayoutManager());
@@ -263,29 +263,28 @@ public class MainFragment extends Fragment {
             resetUIUpdateFlag();
             ensureResourceProvider();
         }
-        updateThemeManager(true);
+
+        MainThemeManager themeManager = mViewModel.getThemeManager();
 
         FitHorizontalSystemBarRootLayout rootLayout = ((GeoActivity) requireActivity())
                 .getFitHorizontalSystemBarRootLayout();
-        rootLayout.setRootColor(mThemeManager.getRootColor(requireContext()));
-        rootLayout.setLineColor(mThemeManager.getLineColor(requireContext()));
+        rootLayout.setRootColor(themeManager.getRootColor(requireContext()));
+        rootLayout.setLineColor(themeManager.getLineColor(requireContext()));
 
         WeatherViewController.setWeatherCode(
                 mWeatherView,
                 location.getWeather(),
-                TimeManager.getInstance(requireContext())
-                        .update(requireContext(), location)
-                        .isDayTime(),
+                location.isDaylight(),
                 mResourceProvider
         );
 
-        mBinding.refreshLayout.setColorSchemeColors(mWeatherView.getThemeColors(mThemeManager.isLightTheme())[0]);
-        mBinding.refreshLayout.setProgressBackgroundColorSchemeColor(mThemeManager.getRootColor(requireContext()));
+        mBinding.refreshLayout.setColorSchemeColors(mWeatherView.getThemeColors(themeManager.isLightTheme())[0]);
+        mBinding.refreshLayout.setProgressBackgroundColorSchemeColor(themeManager.getRootColor(requireContext()));
 
         boolean listAnimationEnabled = SettingsOptionManager.getInstance(requireContext()).isListAnimationEnabled();
         boolean itemAnimationEnabled = SettingsOptionManager.getInstance(requireContext()).isItemAnimationEnabled();
         mAdapter.update((GeoActivity) requireActivity(), mWeatherView, location, mResourceProvider,
-                listAnimationEnabled, itemAnimationEnabled);
+                mViewModel.getThemeManager(), listAnimationEnabled, itemAnimationEnabled);
         mAdapter.notifyDataSetChanged();
 
         OnScrollListener l = new OnScrollListener();
@@ -293,8 +292,8 @@ public class MainFragment extends Fragment {
         mBinding.recyclerView.addOnScrollListener(l);
         mBinding.recyclerView.post(() -> l.onScrolled(mBinding.recyclerView, 0, 0));
 
-        mBinding.indicator.setCurrentIndicatorColor(mThemeManager.getAccentColor(requireContext()));
-        mBinding.indicator.setIndicatorColor(mThemeManager.getTextSubtitleColor(requireContext()));
+        mBinding.indicator.setCurrentIndicatorColor(themeManager.getAccentColor(requireContext()));
+        mBinding.indicator.setIndicatorColor(themeManager.getTextSubtitleColor(requireContext()));
 
         if (!listAnimationEnabled) {
             mBinding.recyclerView.setAlpha(0f);
@@ -315,14 +314,17 @@ public class MainFragment extends Fragment {
     }
 
     private void resetUI(Location location) {
+        MainThemeManager themeManager = mViewModel.getThemeManager();
+
         if (mWeatherView.getWeatherKind() == WeatherView.WEATHER_KING_NULL
                 && location.getWeather() == null) {
             WeatherViewController.setWeatherCode(
-                    mWeatherView, null, mThemeManager.isLightTheme(), mResourceProvider);
+                    mWeatherView, null, themeManager.isLightTheme(), mResourceProvider);
             mBinding.refreshLayout.setColorSchemeColors(
-                    mWeatherView.getThemeColors(mThemeManager.isLightTheme())[0]);
+                    mWeatherView.getThemeColors(themeManager.isLightTheme())[0]);
             mBinding.refreshLayout.setProgressBackgroundColorSchemeColor(
-                    mThemeManager.getRootColor(requireContext()));
+                    themeManager.getRootColor(requireContext())
+            );
         }
         mWeatherView.setGravitySensorEnabled(
                 SettingsOptionManager.getInstance(requireContext()).isGravitySensorEnabled());
@@ -350,17 +352,6 @@ public class MainFragment extends Fragment {
         if (mResourceProvider == null
                 || !mResourceProvider.getPackageName().equals(iconProvider)) {
             mResourceProvider = ResourcesProviderFactory.getNewInstance();
-        }
-    }
-
-    public void updateThemeManager(boolean registerWeatherView) {
-        if (mThemeManager == null) {
-            mThemeManager = ThemeManager.getInstance(requireContext());
-        }
-        if (registerWeatherView) {
-            mThemeManager.update(requireContext(), mWeatherView);
-        } else {
-            mThemeManager.unregisterWeatherView();
         }
     }
 
@@ -427,7 +418,7 @@ public class MainFragment extends Fragment {
                     WeatherViewController.setWeatherCode(
                             mWeatherView,
                             mLocation.getWeather(),
-                            TimeManager.isDaylight(mLocation),
+                            mLocation.isDaylight(),
                             mResourceProvider
                     );
                 }

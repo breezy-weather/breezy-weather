@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.resource;
+package wangdaye.com.geometricweather.resource.utils;
 
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 

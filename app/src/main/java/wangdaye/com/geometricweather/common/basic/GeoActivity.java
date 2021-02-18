@@ -9,13 +9,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.content.ContextCompat;
 
 import wangdaye.com.geometricweather.GeometricWeather;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.ui.widgets.insets.FitHorizontalSystemBarRootLayout;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.LanguageUtils;
-import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 
 /**
  * Geometric weather activity.
@@ -36,8 +37,8 @@ public abstract class GeoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         mFitHorizontalSystemBarRootLayout = new FitHorizontalSystemBarRootLayout(this);
-        mFitHorizontalSystemBarRootLayout.setRootColor(ThemeManager.getInstance(this).getRootColor(this));
-        mFitHorizontalSystemBarRootLayout.setLineColor(ThemeManager.getInstance(this).getLineColor(this));
+        mFitHorizontalSystemBarRootLayout.setRootColor(ContextCompat.getColor(this, R.color.colorRoot));
+        mFitHorizontalSystemBarRootLayout.setLineColor(ContextCompat.getColor(this, R.color.colorLine));
 
         mSnackbarContainer = new CoordinatorLayout(this);
         mSnackbarContainer.addView(

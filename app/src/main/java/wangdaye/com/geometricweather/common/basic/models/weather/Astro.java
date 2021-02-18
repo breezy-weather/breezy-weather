@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import wangdaye.com.geometricweather.common.utils.managers.TimeManager;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 
 /**
  * Astro.
@@ -40,7 +40,7 @@ public class Astro implements Serializable {
 
     @Nullable
     public String getRiseTime(Context context) {
-        return getRiseTime(TimeManager.is12Hour(context));
+        return getRiseTime(DisplayUtils.is12Hour(context));
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -58,7 +58,7 @@ public class Astro implements Serializable {
 
     @Nullable
     public String getSetTime(Context context) {
-        return getSetTime(TimeManager.is12Hour(context));
+        return getSetTime(DisplayUtils.is12Hour(context));
     }
 
     @SuppressLint("SimpleDateFormat")

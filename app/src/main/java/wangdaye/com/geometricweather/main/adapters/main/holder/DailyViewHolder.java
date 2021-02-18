@@ -22,12 +22,13 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.main.adapters.main.MainTag;
 import wangdaye.com.geometricweather.main.adapters.trend.DailyTrendAdapter;
 import wangdaye.com.geometricweather.main.layouts.TrendHorizontalLinearLayoutManager;
+import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.common.ui.adapters.TagAdapter;
 import wangdaye.com.geometricweather.common.ui.decotarions.GridMarginsDecoration;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
-import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerViewScrollBar;
+import wangdaye.com.geometricweather.main.widgets.TrendRecyclerViewScrollBar;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 
 public class DailyViewHolder extends AbstractMainCardViewHolder {
@@ -41,9 +42,9 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
     private final TrendRecyclerView mTrendRecyclerView;
     private final DailyTrendAdapter mTrendAdapter;
 
-    public DailyViewHolder(ViewGroup parent) {
-        super(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.container_main_daily_trend_card, parent, false));
+    public DailyViewHolder(ViewGroup parent, MainThemeManager themeManager) {
+        super(LayoutInflater.from(parent.getContext()).inflate(
+                R.layout.container_main_daily_trend_card, parent, false), themeManager);
 
         mCard = itemView.findViewById(R.id.container_main_daily_trend_card);
         mTitle = itemView.findViewById(R.id.container_main_daily_trend_card_title);
@@ -51,7 +52,7 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
         mTagView = itemView.findViewById(R.id.container_main_daily_trend_card_tagView);
 
         mTrendRecyclerView = itemView.findViewById(R.id.container_main_daily_trend_card_trendRecyclerView);
-        mTrendRecyclerView.addItemDecoration(new TrendRecyclerViewScrollBar(parent.getContext()));
+        mTrendRecyclerView.addItemDecoration(new TrendRecyclerViewScrollBar(parent.getContext(), themeManager));
         mTrendRecyclerView.setHasFixedSize(true);
 
         mTrendAdapter = new DailyTrendAdapter();
@@ -66,9 +67,9 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
         Weather weather = location.getWeather();
         assert weather != null;
 
-        int weatherColor = mThemeManager.getWeatherThemeColors()[0];
+        int weatherColor = themeManager.getWeatherThemeColors()[0];
 
-        mCard.setCardBackgroundColor(mThemeManager.getRootColor(mContext));
+        mCard.setCardBackgroundColor(themeManager.getRootColor(context));
 
         mTitle.setTextColor(weatherColor);
 
@@ -90,30 +91,30 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
             }
             mTagView.addItemDecoration(
                     new GridMarginsDecoration(
-                            mContext.getResources().getDimension(R.dimen.little_margin),
-                            mContext.getResources().getDimension(R.dimen.normal_margin),
+                            context.getResources().getDimension(R.dimen.little_margin),
+                            context.getResources().getDimension(R.dimen.normal_margin),
                             mTagView
                     )
             );
 
-            mTagView.setLayoutManager(new TrendHorizontalLinearLayoutManager(mContext));
+            mTagView.setLayoutManager(new TrendHorizontalLinearLayoutManager(context));
             mTagView.setAdapter(
-                    new TagAdapter(mContext, tagList, weatherColor, (checked, oldPosition, newPosition) -> {
+                    new TagAdapter(tagList, weatherColor, (checked, oldPosition, newPosition) -> {
                         setTrendAdapterByTag(location, (MainTag) tagList.get(newPosition));
                         return false;
-                    }, 0)
+                    }, themeManager, 0)
             );
         }
 
         mTrendRecyclerView.setLayoutManager(
                 new TrendHorizontalLinearLayoutManager(
-                        mContext,
-                        DisplayUtils.isLandscape(mContext) ? 7 : 5
+                        context,
+                        DisplayUtils.isLandscape(context) ? 7 : 5
                 )
         );
         mTrendRecyclerView.setAdapter(mTrendAdapter);
         mTrendRecyclerView.setKeyLineVisibility(
-                SettingsOptionManager.getInstance(mContext).isTrendHorizontalLinesEnabled());
+                SettingsOptionManager.getInstance(context).isTrendHorizontalLinesEnabled());
         setTrendAdapterByTag(location, (MainTag) tagList.get(0));
     }
 
@@ -121,39 +122,42 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
         switch (tag.getType()) {
             case TEMPERATURE:
                 mTrendAdapter.temperature(
-                        (GeoActivity) mContext,
+                        (GeoActivity) context,
                         mTrendRecyclerView,
                         location,
-                        mProvider,
-                        SettingsOptionManager.getInstance(mContext).getTemperatureUnit()
+                        provider,
+                        themeManager,
+                        SettingsOptionManager.getInstance(context).getTemperatureUnit()
                 );
                 break;
 
             case WIND:
                 mTrendAdapter.wind(
-                        (GeoActivity) mContext,
+                        (GeoActivity) context,
                         mTrendRecyclerView,
                         location,
-                        SettingsOptionManager.getInstance(mContext).getSpeedUnit()
+                        themeManager,
+                        SettingsOptionManager.getInstance(context).getSpeedUnit()
                 );
                 break;
 
             case PRECIPITATION:
                 mTrendAdapter.precipitation(
-                        (GeoActivity) mContext,
+                        (GeoActivity) context,
                         mTrendRecyclerView,
                         location,
-                        mProvider,
-                        SettingsOptionManager.getInstance(mContext).getPrecipitationUnit()
+                        provider,
+                        themeManager,
+                        SettingsOptionManager.getInstance(context).getPrecipitationUnit()
                 );
                 break;
 
             case AIR_QUALITY:
-                mTrendAdapter.airQuality((GeoActivity) mContext, mTrendRecyclerView, location);
+                mTrendAdapter.airQuality((GeoActivity) context, mTrendRecyclerView, location, themeManager);
                 break;
 
             case UV_INDEX:
-                mTrendAdapter.uv((GeoActivity) mContext, mTrendRecyclerView, location);
+                mTrendAdapter.uv((GeoActivity) context, mTrendRecyclerView, location, themeManager);
                 break;
         }
         mTrendAdapter.notifyDataSetChanged();
@@ -162,17 +166,17 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
     private List<TagAdapter.Tag> getTagList(Weather weather) {
         List<TagAdapter.Tag> tagList = new ArrayList<>();
         List<DailyTrendDisplay> displayList
-                = SettingsOptionManager.getInstance(mContext).getDailyTrendDisplayList();
+                = SettingsOptionManager.getInstance(context).getDailyTrendDisplayList();
         for (DailyTrendDisplay display : displayList) {
             switch (display) {
                 case TAG_TEMPERATURE:
-                    tagList.add(new MainTag(mContext.getString(R.string.tag_temperature), MainTag.Type.TEMPERATURE));
+                    tagList.add(new MainTag(context.getString(R.string.tag_temperature), MainTag.Type.TEMPERATURE));
                     break;
 
                 case TAG_AIR_QUALITY:
                     for (Daily daily : weather.getDailyForecast()) {
                         if (daily.getAirQuality().isValid()) {
-                            tagList.add(new MainTag(mContext.getString(R.string.tag_aqi), MainTag.Type.AIR_QUALITY));
+                            tagList.add(new MainTag(context.getString(R.string.tag_aqi), MainTag.Type.AIR_QUALITY));
                             break;
                         }
                     }
@@ -182,7 +186,7 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
                     for (Daily daily : weather.getDailyForecast()) {
                         if (daily.day().getWind().isValidSpeed()
                                 && daily.night().getWind().isValidSpeed() ) {
-                            tagList.add(new MainTag(mContext.getString(R.string.tag_wind), MainTag.Type.WIND));
+                            tagList.add(new MainTag(context.getString(R.string.tag_wind), MainTag.Type.WIND));
                             break;
                         }
                     }
@@ -191,7 +195,7 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
                 case TAG_UV_INDEX:
                     for (Daily daily : weather.getDailyForecast()) {
                         if (daily.getUV().isValid()) {
-                            tagList.add(new MainTag(mContext.getString(R.string.tag_uv), MainTag.Type.UV_INDEX));
+                            tagList.add(new MainTag(context.getString(R.string.tag_uv), MainTag.Type.UV_INDEX));
                             break;
                         }
                     }
@@ -203,7 +207,7 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
             }
         }
         if (tagList.size() == 0) {
-            tagList.add(new MainTag(mContext.getString(R.string.tag_temperature), MainTag.Type.TEMPERATURE));
+            tagList.add(new MainTag(context.getString(R.string.tag_temperature), MainTag.Type.TEMPERATURE));
         }
 
         return tagList;
@@ -221,7 +225,7 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
             return new ArrayList<>();
         } else {
             List<TagAdapter.Tag> list = new ArrayList<>();
-            list.add(new MainTag(mContext.getString(R.string.tag_precipitation), MainTag.Type.PRECIPITATION));
+            list.add(new MainTag(context.getString(R.string.tag_precipitation), MainTag.Type.PRECIPITATION));
             return list;
         }
     }

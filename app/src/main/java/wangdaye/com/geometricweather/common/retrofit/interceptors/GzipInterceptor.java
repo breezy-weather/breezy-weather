@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.weather.interceptors;
+package wangdaye.com.geometricweather.common.retrofit.interceptors;
 
 import org.jetbrains.annotations.NotNull;
 

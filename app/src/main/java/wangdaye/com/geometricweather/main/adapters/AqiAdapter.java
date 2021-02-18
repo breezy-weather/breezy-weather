@@ -28,7 +28,7 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.AirQuality
 import wangdaye.com.geometricweather.common.basic.models.weather.AirQuality;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.ui.widgets.RoundProgress;
-import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
+import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 
 /**
  * Aqi adapter.
@@ -38,7 +38,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
 
     private final List<AqiItem> mItemList;
     private final List<ViewHolder> mHolderList;
-    private final ThemeManager mThemeManager;
+    private final MainThemeManager mThemeManager;
 
     private static class AqiItem {
         @ColorInt int color;
@@ -150,7 +150,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
         }
     }
 
-    public AqiAdapter(Context context, @Nullable Weather weather, boolean executeAnimation) {
+    public AqiAdapter(Context context, @Nullable Weather weather, MainThemeManager themeManager, boolean executeAnimation) {
         mItemList = new ArrayList<>();
         if (weather != null && weather.getCurrent().getAirQuality().isValid()) {
             AirQuality airQuality = weather.getCurrent().getAirQuality();
@@ -241,7 +241,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
         }
 
         mHolderList = new ArrayList<>();
-        mThemeManager = ThemeManager.getInstance(context);
+        mThemeManager = themeManager;
     }
 
     @NonNull

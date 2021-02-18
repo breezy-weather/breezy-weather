@@ -17,7 +17,7 @@ import wangdaye.com.geometricweather.common.basic.models.options.appearance.Dail
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.Language;
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.UIStyle;
 import wangdaye.com.geometricweather.common.basic.models.weather.Temperature;
-import wangdaye.com.geometricweather.resource.providers.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.settings.dialogs.ProvidersPreviewerDialog;
 import wangdaye.com.geometricweather.common.utils.helpters.SnackbarHelper;

@@ -13,8 +13,8 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.location.LocationHelper;
-import wangdaye.com.geometricweather.remoteviews.NotificationUtils;
-import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
+import wangdaye.com.geometricweather.remoteviews.NotificationHelper;
+import wangdaye.com.geometricweather.remoteviews.WidgetHelper;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 public class NormalUpdateWorker extends AsyncUpdateWorker {
@@ -29,13 +29,13 @@ public class NormalUpdateWorker extends AsyncUpdateWorker {
 
     @Override
     public void updateView(Context context, Location location) {
-        WidgetUtils.updateWidgetIfNecessary(context, location);
+        WidgetHelper.updateWidgetIfNecessary(context, location);
     }
 
     @Override
     public void updateView(Context context, List<Location> locationList) {
-        WidgetUtils.updateWidgetIfNecessary(context, locationList);
-        NotificationUtils.updateNotificationIfNecessary(context, locationList);
+        WidgetHelper.updateWidgetIfNecessary(context, locationList);
+        NotificationHelper.updateNotificationIfNecessary(context, locationList);
     }
 
     @SuppressLint("RestrictedApi")

@@ -24,8 +24,9 @@ import wangdaye.com.geometricweather.main.models.Indicator;
 import wangdaye.com.geometricweather.main.models.LocationResource;
 import wangdaye.com.geometricweather.main.models.PermissionsRequest;
 import wangdaye.com.geometricweather.main.models.SelectableLocationListResource;
+import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
-import wangdaye.com.geometricweather.common.utils.managers.TimeManager;
+import wangdaye.com.geometricweather.main.utils.StatementManager;
 
 public class MainActivityViewModel extends GeoViewModel
         implements MainActivityRepository.WeatherRequestCallback {
@@ -48,12 +49,17 @@ public class MainActivityViewModel extends GeoViewModel
         INITIALIZING, IMPLICIT_INITIALIZING, IDLE
     }
 
+    private final StatementManager mStatementManager;
+    private final MainThemeManager mThemeManager;
+
     private static final String KEY_FORMATTED_ID = "formatted_id";
 
     @ViewModelInject
     public MainActivityViewModel(Application application,
                                  @Assisted SavedStateHandle handle,
-                                 MainActivityRepository repository) {
+                                 MainActivityRepository repository,
+                                 StatementManager statementManager,
+                                 MainThemeManager themeManager) {
         super(application);
 
         mCurrentLocation = new MutableLiveData<>();
@@ -78,6 +84,9 @@ public class MainActivityViewModel extends GeoViewModel
         mValidList = null;
 
         mStatus = Status.IDLE;
+
+        mStatementManager = statementManager;
+        mThemeManager = themeManager;
     }
 
     @Override
@@ -433,7 +442,7 @@ public class MainActivityViewModel extends GeoViewModel
                                                      Indicator indicator,
                                                      @Nullable String forceUpdateId,
                                                      @NonNull SelectableLocationListResource.Source source) {
-        TimeManager.getInstance(getApplication()).update(getApplication(), location);
+        mThemeManager.update(getApplication(), location);
 
         switch (mStatus) {
             case INITIALIZING:
@@ -570,6 +579,14 @@ public class MainActivityViewModel extends GeoViewModel
         return mStatus == Status.IDLE;
     }
 
+    public StatementManager getStatementManager() {
+        return mStatementManager;
+    }
+
+    public MainThemeManager getThemeManager() {
+        return mThemeManager;
+    }
+
     // weather request callback.
 
     @Override
@@ -616,7 +633,7 @@ public class MainActivityViewModel extends GeoViewModel
 
         Indicator indicator = new Indicator(validList.size(), validIndex);
 
-        TimeManager.getInstance(getApplication()).update(getApplication(), location);
+        mThemeManager.update(getApplication(), location);
 
         mCurrentLocation.setValue(resource);
         mIndicator.setValue(indicator);

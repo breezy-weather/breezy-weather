@@ -1,11 +1,9 @@
 package wangdaye.com.geometricweather.main.fragments;
 
-import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,6 +12,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.graphics.ColorUtils;
 import androidx.core.widget.ImageViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -27,15 +26,16 @@ import java.util.List;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.ui.adapters.location.LocationAdapter;
+import wangdaye.com.geometricweather.common.ui.decotarions.ListDecoration;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
+import wangdaye.com.geometricweather.common.utils.helpters.SnackbarHelper;
+import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 import wangdaye.com.geometricweather.databinding.FragmentManagementBinding;
 import wangdaye.com.geometricweather.main.MainActivityViewModel;
 import wangdaye.com.geometricweather.main.adapters.LocationAdapterAnimWrapper;
 import wangdaye.com.geometricweather.main.models.SelectableLocationListResource;
-import wangdaye.com.geometricweather.main.utils.LocationItemTouchCallback;
-import wangdaye.com.geometricweather.common.ui.adapters.location.LocationAdapter;
-import wangdaye.com.geometricweather.common.ui.decotarions.ListDecoration;
-import wangdaye.com.geometricweather.common.utils.helpters.SnackbarHelper;
-import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
+import wangdaye.com.geometricweather.main.widgets.LocationItemTouchCallback;
 
 public class ManagementFragment extends Fragment
         implements LocationItemTouchCallback.OnSelectProviderActivityStartedCallback {
@@ -45,7 +45,7 @@ public class ManagementFragment extends Fragment
 
     private LocationAdapter mAdapter;
     private ItemTouchHelper mItemTouchHelper;
-    private @Nullable RecyclerView.ItemDecoration mItemDecoration;
+    private ListDecoration mItemDecoration;
 
     private ValueAnimator mColorAnimator;
 
@@ -102,11 +102,18 @@ public class ManagementFragment extends Fragment
                     mViewModel.setLocation(formattedId);
                     getParentFragmentManager().popBackStack();
                 },
-                holder -> mItemTouchHelper.startDrag(holder) // on drag.
+                holder -> mItemTouchHelper.startDrag(holder), // on drag.
+                mViewModel.getThemeManager()
         );
         mBinding.recyclerView.setAdapter(new LocationAdapterAnimWrapper(requireContext(), mAdapter));
         mBinding.recyclerView.setLayoutManager(new LinearLayoutManager(
                 requireActivity(), RecyclerView.VERTICAL, false));
+
+        mItemDecoration = new ListDecoration(
+                requireActivity(),
+                mViewModel.getThemeManager().getLineColor(requireActivity())
+        );
+        mBinding.recyclerView.addItemDecoration(mItemDecoration);
 
         mItemTouchHelper = new ItemTouchHelper(new LocationItemTouchCallback(
                 (GeoActivity) requireActivity(), mViewModel, this));
@@ -128,8 +135,7 @@ public class ManagementFragment extends Fragment
     }
 
     private void setThemeStyle() {
-        ThemeManager themeManager = ThemeManager.getInstance(requireContext());
-        themeManager.update(requireContext());
+        MainThemeManager themeManager = mViewModel.getThemeManager();
 
         ImageViewCompat.setImageTintList(
                 mBinding.searchIcon,
@@ -148,34 +154,39 @@ public class ManagementFragment extends Fragment
             mColorAnimator = null;
         }
 
-        int oldColor = Color.TRANSPARENT;
-        Drawable background = mBinding.recyclerView.getBackground();
-        if (background instanceof ColorDrawable) {
-            oldColor = ((ColorDrawable) background).getColor();
-        }
-        int newColor = themeManager.getRootColor(requireActivity());
+        final int oldBackgroundColor = mBinding.recyclerView.getBackground() instanceof ColorDrawable
+                ? ((ColorDrawable) mBinding.recyclerView.getBackground()).getColor()
+                : Color.TRANSPARENT;
+        final int newBackgroundColor = themeManager.getRootColor(requireContext());
 
-        if (newColor != oldColor) {
-            mColorAnimator = ValueAnimator.ofObject(new ArgbEvaluator(), oldColor, newColor);
+        final int oldLineColor = mItemDecoration.getColor();
+        final int newLineColor = themeManager.getLineColor(requireContext());
+
+        if (newBackgroundColor != oldBackgroundColor || newLineColor != oldLineColor) {
+            final float[] progress = new float[1];
+            final int[] colors = new int[2];
+            mColorAnimator = ValueAnimator.ofFloat(0, 1);
             mColorAnimator.addUpdateListener(animation -> {
-                mBinding.searchBar.setCardBackgroundColor((Integer) animation.getAnimatedValue());
-                mBinding.recyclerView.setBackgroundColor((Integer) animation.getAnimatedValue());
+                progress[0] = (float) animation.getAnimatedValue();
+                colors[0] = DisplayUtils.blendColor(
+                        ColorUtils.setAlphaComponent(newBackgroundColor, (int) (255 * progress[0])),
+                        oldBackgroundColor
+                );
+                colors[1] = DisplayUtils.blendColor(
+                        ColorUtils.setAlphaComponent(newLineColor, (int) (255 * progress[0])),
+                        oldLineColor
+                );
+                mBinding.searchBar.setCardBackgroundColor(colors[0]);
+                mBinding.recyclerView.setBackgroundColor(colors[0]);
+                mItemDecoration.setColor(colors[1]);
             });
-            mColorAnimator.setDuration(450);
+            mColorAnimator.setDuration(500); // same as 2 * changeDuration of default item animator.
             mColorAnimator.start();
         } else {
-            mBinding.searchBar.setCardBackgroundColor(newColor);
-            mBinding.recyclerView.setBackgroundColor(newColor);
+            mBinding.searchBar.setCardBackgroundColor(newBackgroundColor);
+            mBinding.recyclerView.setBackgroundColor(newBackgroundColor);
+            mItemDecoration.setColor(newLineColor);
         }
-
-        if (mItemDecoration != null) {
-            mBinding.recyclerView.removeItemDecoration(mItemDecoration);
-        }
-        mItemDecoration = new ListDecoration(
-                requireActivity(),
-                ThemeManager.getInstance(requireActivity()).getLineColor(requireActivity())
-        );
-        mBinding.recyclerView.addItemDecoration(mItemDecoration);
     }
 
     private void setCurrentLocationButtonEnabled(List<Location> list) {

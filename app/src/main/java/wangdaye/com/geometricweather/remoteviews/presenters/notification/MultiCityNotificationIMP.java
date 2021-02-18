@@ -29,11 +29,10 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.remoteviews.presenters.AbstractRemoteViewsPresenter;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.resource.providers.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.common.utils.LanguageUtils;
 import wangdaye.com.geometricweather.common.utils.helpters.LunarHelper;
-import wangdaye.com.geometricweather.common.utils.managers.TimeManager;
 
 /**
  * Normal notification utils.
@@ -287,7 +286,7 @@ public class MultiCityNotificationIMP extends AbstractRemoteViewsPresenter {
         if (locationList.size() > 1 && locationList.get(1).getWeather() != null) {
             Location location = locationList.get(1);
             weather = location.getWeather();
-            boolean cityDayTime = TimeManager.isDaylight(location);
+            boolean cityDayTime = location.isDaylight();
 
             views.setViewVisibility(R.id.notification_multi_city_1, View.VISIBLE);
 
@@ -313,7 +312,7 @@ public class MultiCityNotificationIMP extends AbstractRemoteViewsPresenter {
         if (locationList.size() > 2 && locationList.get(2).getWeather() != null) {
             Location location = locationList.get(2);
             weather = location.getWeather();
-            boolean cityDayTime = TimeManager.isDaylight(location);
+            boolean cityDayTime = location.isDaylight();
 
             views.setViewVisibility(R.id.notification_multi_city_2, View.VISIBLE);
 
@@ -339,7 +338,7 @@ public class MultiCityNotificationIMP extends AbstractRemoteViewsPresenter {
         if (locationList.size() > 3 && locationList.get(3).getWeather() != null) {
             Location location = locationList.get(3);
             weather = location.getWeather();
-            boolean cityDayTime = TimeManager.isDaylight(location);
+            boolean cityDayTime = location.isDaylight();
 
             views.setViewVisibility(R.id.notification_multi_city_3, View.VISIBLE);
 

@@ -4,7 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 public class Weather
         implements Serializable {
@@ -75,5 +78,29 @@ public class Weather
         long currentTime = System.currentTimeMillis();
         return currentTime >= updateTime
                 && currentTime - updateTime < hour * 60 * 60 * 1000;
+    }
+
+    public boolean isDaylight(TimeZone timeZone) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeZone(timeZone);
+        int time = 60 * calendar.get(Calendar.HOUR_OF_DAY) + calendar.get(Calendar.MINUTE);
+
+        Date riseDate = getDailyForecast().get(0).sun().getRiseDate();
+        Date setDate = getDailyForecast().get(0).sun().getSetDate();
+        if (riseDate != null && setDate != null) {
+            calendar.setTimeZone(TimeZone.getDefault());
+
+            calendar.setTime(riseDate);
+            int sunrise = 60 * calendar.get(Calendar.HOUR_OF_DAY) + calendar.get(Calendar.MINUTE);
+
+            calendar.setTime(setDate);
+            int sunset = 60 * calendar.get(Calendar.HOUR_OF_DAY) + calendar.get(Calendar.MINUTE);
+
+            return sunrise < time && time < sunset;
+        }
+
+        int sr = 60 * 6;
+        int ss = 60 * 18;
+        return sr < time && time < ss;
     }
 }

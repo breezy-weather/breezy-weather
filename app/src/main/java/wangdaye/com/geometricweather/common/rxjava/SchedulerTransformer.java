@@ -1,4 +1,6 @@
-package wangdaye.com.geometricweather.weather;
+package wangdaye.com.geometricweather.common.rxjava;
+
+import org.jetbrains.annotations.NotNull;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
@@ -12,6 +14,7 @@ public class SchedulerTransformer<T> implements ObservableTransformer<T, T> {
         return new SchedulerTransformer<>();
     }
 
+    @NotNull
     @Override
     public ObservableSource<T> apply(Observable<T> upstream) {
         return upstream

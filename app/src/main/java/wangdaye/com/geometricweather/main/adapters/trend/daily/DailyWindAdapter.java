@@ -23,14 +23,14 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Wind;
 import wangdaye.com.geometricweather.common.ui.images.RotateDrawable;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.chart.DoubleHistogramView;
-import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
+import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 
 /**
  * Daily wind adapter.
  * */
 public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.ViewHolder> {
 
-    private final ThemeManager mThemeManager;
+    private final MainThemeManager mThemeManager;
     private final SpeedUnit mSpeedUnit;
 
     private float mHighestWindSpeed;
@@ -48,7 +48,7 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
         }
 
         @SuppressLint("SetTextI18n, InflateParams")
-        void onBindView(GeoActivity activity, Location location, ThemeManager themeManager, int position) {
+        void onBindView(GeoActivity activity, Location location, MainThemeManager themeManager, int position) {
             StringBuilder talkBackBuilder = new StringBuilder(activity.getString(R.string.tag_wind));
 
             super.onBindView(activity, location, themeManager, talkBackBuilder, position);
@@ -99,12 +99,12 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
 
     @SuppressLint("SimpleDateFormat")
     public DailyWindAdapter(GeoActivity activity, TrendRecyclerView parent,
-                            Location location, SpeedUnit unit) {
+                            Location location, MainThemeManager themeManager, SpeedUnit unit) {
         super(activity, location);
 
         Weather weather = location.getWeather();
         assert weather != null;
-        mThemeManager = ThemeManager.getInstance(activity);
+        mThemeManager = themeManager;
         mSpeedUnit = unit;
 
         mHighestWindSpeed = Integer.MIN_VALUE;

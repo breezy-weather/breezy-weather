@@ -22,9 +22,9 @@ import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.Base;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.main.MainActivity;
+import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
 import wangdaye.com.geometricweather.common.utils.helpters.IntentHelper;
-import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
 
 public class FirstCardHeaderController
         implements View.OnClickListener {
@@ -36,7 +36,8 @@ public class FirstCardHeaderController
     private @Nullable LinearLayout mContainer;
 
     @SuppressLint({"SetTextI18n", "InflateParams"})
-    public FirstCardHeaderController(@NonNull GeoActivity activity, @NonNull Location location) {
+    public FirstCardHeaderController(@NonNull GeoActivity activity, @NonNull Location location,
+                                     MainThemeManager themeManager) {
         mActivity = activity;
         mView = LayoutInflater.from(activity).inflate(R.layout.container_main_first_card_header, null);
         mFormattedId = location.getFormattedId();
@@ -46,8 +47,6 @@ public class FirstCardHeaderController
         TextClock localTime = mView.findViewById(R.id.container_main_first_card_header_localTimeText);
         TextView alert = mView.findViewById(R.id.container_main_first_card_header_alert);
         View line = mView.findViewById(R.id.container_main_first_card_header_line);
-
-        ThemeManager themeManager = ThemeManager.getInstance(activity);
 
         if (location.getWeather() != null) {
             Weather weather = location.getWeather();

@@ -24,6 +24,7 @@ import wangdaye.com.geometricweather.main.adapters.main.holder.DetailsViewHolder
 import wangdaye.com.geometricweather.main.adapters.main.holder.FooterViewHolder;
 import wangdaye.com.geometricweather.main.adapters.main.holder.HeaderViewHolder;
 import wangdaye.com.geometricweather.main.adapters.main.holder.HourlyViewHolder;
+import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.common.ui.widgets.weatherView.WeatherView;
@@ -34,6 +35,7 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
     private WeatherView mWeatherView;
     private @Nullable Location mLocation;
     private ResourceProvider mProvider;
+    private MainThemeManager mThemeManager;
 
     private List<Integer> mViewTypeList;
     private @Nullable Integer mFirstCardPosition;
@@ -42,19 +44,20 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
     private boolean mListAnimationEnabled;
     private boolean mItemAnimationEnabled;
 
-    public MainAdapter(@NonNull GeoActivity activity, @NonNull WeatherView weatherView,
-                       @Nullable Location location, @NonNull ResourceProvider provider,
+    public MainAdapter(@NonNull GeoActivity activity, @NonNull WeatherView weatherView, @Nullable Location location,
+                       @NonNull ResourceProvider provider, @NonNull MainThemeManager themeManager,
                        boolean listAnimationEnabled, boolean itemAnimationEnabled) {
-        update(activity, weatherView, location, provider, listAnimationEnabled, itemAnimationEnabled);
+        update(activity, weatherView, location, provider, themeManager, listAnimationEnabled, itemAnimationEnabled);
     }
 
-    public void update(@NonNull GeoActivity activity, @NonNull WeatherView weatherView,
-                       @Nullable Location location, @NonNull ResourceProvider provider,
+    public void update(@NonNull GeoActivity activity, @NonNull WeatherView weatherView, @Nullable Location location,
+                       @NonNull ResourceProvider provider, @NonNull MainThemeManager themeManager,
                        boolean listAnimationEnabled, boolean itemAnimationEnabled) {
         mActivity = activity;
         mWeatherView = weatherView;
         mLocation = location;
         mProvider = provider;
+        mThemeManager = themeManager;
 
         mViewTypeList = new ArrayList<>();
         mFirstCardPosition = null;
@@ -99,28 +102,28 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
     public AbstractMainViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         switch (viewType) {
             case ViewType.HEADER:
-                return new HeaderViewHolder(parent, mWeatherView);
+                return new HeaderViewHolder(parent, mWeatherView, mThemeManager);
 
             case ViewType.DAILY:
-                return new DailyViewHolder(parent);
+                return new DailyViewHolder(parent, mThemeManager);
 
             case ViewType.HOURLY:
-                return new HourlyViewHolder(parent);
+                return new HourlyViewHolder(parent, mThemeManager);
 
             case ViewType.AIR_QUALITY:
-                return new AirQualityViewHolder(parent);
+                return new AirQualityViewHolder(parent, mThemeManager);
 
             case ViewType.ALLERGEN:
-                return new AllergenViewHolder(parent);
+                return new AllergenViewHolder(parent, mThemeManager);
 
             case ViewType.ASTRO:
-                return new AstroViewHolder(parent);
+                return new AstroViewHolder(parent, mThemeManager);
 
             case ViewType.DETAILS:
-                return new DetailsViewHolder(parent);
+                return new DetailsViewHolder(parent, mThemeManager);
 
             default: // FOOTER.
-                return new FooterViewHolder(parent);
+                return new FooterViewHolder(parent, mThemeManager);
         }
     }
 

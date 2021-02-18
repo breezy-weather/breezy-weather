@@ -22,6 +22,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,6 +36,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.theme.DefaultThemeManager;
 import wangdaye.com.geometricweather.databinding.ActivitySearchBinding;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.common.ui.adapters.location.LocationAdapter;
@@ -174,8 +176,7 @@ public class SearchActivity extends GeoActivity
                             return;
                         }
                     }
-                },
-                null
+                }, null, new DefaultThemeManager()
         );
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(
@@ -186,7 +187,8 @@ public class SearchActivity extends GeoActivity
         while (mBinding.recyclerView.getItemDecorationCount() > 0) {
             mBinding.recyclerView.removeItemDecorationAt(0);
         }
-        mBinding.recyclerView.addItemDecoration(new ListDecoration(this));
+        mBinding.recyclerView.addItemDecoration(new ListDecoration(
+                this, ContextCompat.getColor(this, R.color.colorLine)));
 
         mBinding.scrollBar.setIndicator(
                 new WeatherSourceIndicator(this).setTextSize(16), true);

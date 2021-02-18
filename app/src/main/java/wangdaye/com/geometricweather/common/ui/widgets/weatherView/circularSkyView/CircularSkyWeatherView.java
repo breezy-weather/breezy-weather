@@ -11,19 +11,17 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-
-import androidx.annotation.ColorInt;
-import androidx.annotation.Nullable;
-import androidx.annotation.Size;
-import androidx.core.content.ContextCompat;
-import androidx.appcompat.widget.AppCompatImageView;
-
-import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.FrameLayout;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.Nullable;
+import androidx.annotation.Size;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.core.content.ContextCompat;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
@@ -31,7 +29,6 @@ import wangdaye.com.geometricweather.common.ui.widgets.weatherView.WeatherView;
 import wangdaye.com.geometricweather.common.ui.widgets.weatherView.WeatherViewController;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpters.ImageHelper;
-import wangdaye.com.geometricweather.common.utils.managers.TimeManager;
 import wangdaye.com.geometricweather.databinding.ContainerCircularSkyViewBinding;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
@@ -40,6 +37,7 @@ import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
  * Circular sky weather view.
  * */
 
+@SuppressLint("ViewConstructor")
 public class CircularSkyWeatherView extends FrameLayout
         implements WeatherView, WeatherIconControlView.OnWeatherIconChangingListener {
 
@@ -93,24 +91,14 @@ public class CircularSkyWeatherView extends FrameLayout
             }
     };
 
-    public CircularSkyWeatherView(Context context) {
+    public CircularSkyWeatherView(Context context, boolean daytime) {
         super(context);
-        initialize();
-    }
-
-    public CircularSkyWeatherView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        initialize();
-    }
-
-    public CircularSkyWeatherView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        initialize();
+        initialize(daytime);
     }
 
     @SuppressLint("InflateParams")
-    private void initialize() {
-        mDaytime = TimeManager.getInstance(getContext()).isDayTime();
+    private void initialize(boolean daytime) {
+        mDaytime = daytime;
 
         mBackgroundColor = getBackgroundColor();
         setBackgroundColor(mBackgroundColor);
@@ -200,6 +188,10 @@ public class CircularSkyWeatherView extends FrameLayout
     }
 
     // interface.
+
+    boolean isDaytime() {
+        return mDaytime;
+    }
 
     @Override
     public void setWeather(@WeatherKindRule int weatherKind, boolean daytime,

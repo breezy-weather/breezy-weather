@@ -16,7 +16,7 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerViewAdapter;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.item.DailyTrendItemView;
 import wangdaye.com.geometricweather.common.utils.helpters.IntentHelper;
-import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
+import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 
 public abstract class AbsDailyTrendAdapter<VH extends RecyclerView.ViewHolder> extends TrendRecyclerViewAdapter<VH>  {
 
@@ -32,7 +32,7 @@ public abstract class AbsDailyTrendAdapter<VH extends RecyclerView.ViewHolder> e
         }
 
         @SuppressLint({"SetTextI18n, InflateParams", "DefaultLocale"})
-        void onBindView(GeoActivity activity, Location location, ThemeManager themeManager,
+        void onBindView(GeoActivity activity, Location location, MainThemeManager themeManager,
                         StringBuilder talkBackBuilder, int position) {
             Context context = itemView.getContext();
             Weather weather = location.getWeather();

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -37,7 +38,7 @@ public class AlertActivity extends GeoActivity {
         AsyncHelper.runOnIO((AsyncHelper.Task<List<Alert>>) emitter -> {
 
             Location location = null;
-            if (TextUtils.isEmpty(formattedId)) {
+            if (!TextUtils.isEmpty(formattedId)) {
                 location = DatabaseHelper.getInstance(this).readLocation(formattedId);
             }
             if (location == null) {
@@ -60,6 +61,6 @@ public class AlertActivity extends GeoActivity {
 
         RecyclerView recyclerView = findViewById(R.id.activity_alert_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
-        recyclerView.addItemDecoration(new ListDecoration(this));
+        recyclerView.addItemDecoration(new ListDecoration(this, ContextCompat.getColor(this, R.color.colorLine)));
     }
 }

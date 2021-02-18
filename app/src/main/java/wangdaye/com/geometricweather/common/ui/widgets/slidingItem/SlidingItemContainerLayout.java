@@ -17,7 +17,6 @@ import androidx.core.widget.ImageViewCompat;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
-import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
 
 public class SlidingItemContainerLayout extends FrameLayout {
 
@@ -53,7 +52,7 @@ public class SlidingItemContainerLayout extends FrameLayout {
         ImageViewCompat.setImageTintList(mIcon, ColorStateList.valueOf(Color.WHITE));
         addView(mIcon, new LayoutParams(iconSize, iconSize, Gravity.CENTER_VERTICAL));
 
-        setBackgroundColor(ThemeManager.getInstance(context).getRootColor(context));
+        setBackgroundColor(Color.GRAY);
 
         mChild = null;
 
@@ -112,7 +111,7 @@ public class SlidingItemContainerLayout extends FrameLayout {
                 ));
             }
         } else {
-            setBackgroundColor(ThemeManager.getInstance(getContext()).getRootColor(getContext()));
+            setBackgroundColor(Color.GRAY);
         }
 
         mSwipeX = totalX;

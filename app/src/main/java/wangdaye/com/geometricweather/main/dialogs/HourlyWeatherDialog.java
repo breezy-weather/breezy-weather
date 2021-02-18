@@ -1,14 +1,12 @@
 package wangdaye.com.geometricweather.main.dialogs;
 
 import android.annotation.SuppressLint;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -23,12 +21,12 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.Temperatur
 import wangdaye.com.geometricweather.common.basic.models.weather.Hourly;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
+import wangdaye.com.geometricweather.common.ui.widgets.AnimatableIconView;
+import wangdaye.com.geometricweather.main.utils.MainPalette;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.resource.providers.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.common.ui.widgets.AnimatableIconView;
-import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
 
 /**
  * Hourly weather dialog.
@@ -40,13 +38,15 @@ public class HourlyWeatherDialog extends GeoDialog {
 
     private static final String KEY_WEATHER = "weather";
     private static final String KEY_POSITION = "position";
-    private static final String KEY_COLOR = "color";
+    private static final String KEY_PALETTE = "palette";
 
-    public static HourlyWeatherDialog getInstance(Weather weather, int position, @ColorInt int color) {
+    public static HourlyWeatherDialog getInstance(Weather weather,
+                                                  int position,
+                                                  MainPalette palette) {
         Bundle bundle = new Bundle();
         bundle.putSerializable(KEY_WEATHER, weather);
         bundle.putInt(KEY_POSITION, position);
-        bundle.putInt(KEY_COLOR, color);
+        bundle.putParcelable(KEY_PALETTE, palette);
 
         HourlyWeatherDialog dialog = new HourlyWeatherDialog();
         dialog.setArguments(bundle);
@@ -75,8 +75,8 @@ public class HourlyWeatherDialog extends GeoDialog {
 
         Weather weather = (Weather) bundle.getSerializable(KEY_WEATHER);
         int position = bundle.getInt(KEY_POSITION, 0);
-        int color = bundle.getInt(KEY_COLOR, Color.TRANSPARENT);
-        if (weather == null) {
+        MainPalette palette = bundle.getParcelable(KEY_PALETTE);
+        if (weather == null || palette == null) {
             return;
         }
 
@@ -85,15 +85,15 @@ public class HourlyWeatherDialog extends GeoDialog {
         Hourly hourly = weather.getHourlyForecast().get(position);
 
         CoordinatorLayout container = view.findViewById(R.id.dialog_weather_hourly_container);
-        container.setBackgroundColor(ThemeManager.getInstance(requireActivity()).getRootColor(getActivity()));
+        container.setBackgroundColor(palette.rootColor);
 
         TextView title = view.findViewById(R.id.dialog_weather_hourly_title);
         title.setText(hourly.getHour(getActivity()));
-        title.setTextColor(color);
+        title.setTextColor(palette.themeColors[0]);
 
         TextView subtitle = view.findViewById(R.id.dialog_weather_hourly_subtitle);
         subtitle.setText(new SimpleDateFormat(getString(R.string.date_format_widget_long)).format(hourly.getDate()));
-        subtitle.setTextColor(ThemeManager.getInstance(requireActivity()).getTextSubtitleColor(getActivity()));
+        subtitle.setTextColor(palette.subtitleColor);
 
         view.findViewById(R.id.dialog_weather_hourly_weatherContainer).setOnClickListener(v -> mWeatherIcon.startAnimators());
 
@@ -106,7 +106,7 @@ public class HourlyWeatherDialog extends GeoDialog {
         );
 
         TextView weatherText = view.findViewById(R.id.dialog_weather_hourly_text);
-        weatherText.setTextColor(ThemeManager.getInstance(requireActivity()).getTextContentColor(getActivity()));
+        weatherText.setTextColor(palette.contentColor);
 
         SettingsOptionManager settings = SettingsOptionManager.getInstance(getActivity());
         TemperatureUnit temperatureUnit = settings.getTemperatureUnit();

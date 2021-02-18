@@ -15,6 +15,7 @@
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragment_drawer"
             android:name="wangdaye.com.geometricweather.main.fragments.ManagementFragment"
+            android:tag="fragment_management_land"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@color/colorRoot"
@@ -24,6 +25,7 @@
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragment_main"
             android:name="wangdaye.com.geometricweather.main.fragments.MainFragment"
+            android:tag="fragment_main_land"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorRoot"

@@ -19,11 +19,10 @@ import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.remoteviews.presenters.AbstractRemoteViewsPresenter;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.resource.providers.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.common.ui.widgets.weatherView.WeatherViewController;
 import wangdaye.com.geometricweather.common.utils.LanguageUtils;
-import wangdaye.com.geometricweather.common.utils.managers.TimeManager;
 
 /**
  * Forecast notification utils.
@@ -72,7 +71,7 @@ public class ForecastNotificationIMP extends AbstractRemoteViewsPresenter {
         WeatherCode weatherCode;
         boolean daytime;
         if (today) {
-            daytime = TimeManager.isDaylight(location);
+            daytime = location.isDaylight();
             weatherCode = daytime 
                     ? weather.getDailyForecast().get(0).day().getWeatherCode() 
                     : weather.getDailyForecast().get(0).night().getWeatherCode();

@@ -18,7 +18,7 @@ import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.settings.models.AboutAppLibrary;
 import wangdaye.com.geometricweather.settings.models.AboutAppLink;
 import wangdaye.com.geometricweather.settings.models.AboutAppTranslator;
-import wangdaye.com.geometricweather.common.utils.helpters.DonateHelper;
+import wangdaye.com.geometricweather.settings.utils.DonateHelper;
 import wangdaye.com.geometricweather.common.utils.helpters.ImageHelper;
 import wangdaye.com.geometricweather.common.utils.helpters.IntentHelper;
 

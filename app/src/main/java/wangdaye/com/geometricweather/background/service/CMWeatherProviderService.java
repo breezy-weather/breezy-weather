@@ -21,7 +21,6 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.location.LocationHelper;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
-import wangdaye.com.geometricweather.common.utils.managers.TimeManager;
 
 /**
  * CM weather provider service.
@@ -173,7 +172,7 @@ public class CMWeatherProviderService extends WeatherProviderService
                 ).setWeatherCondition(
                                 WeatherConditionConvertHelper.getConditionCode(
                                         weather.getCurrent().getWeatherCode(),
-                                        TimeManager.isDaylight(requestLocation)
+                                        requestLocation.isDaylight()
                                 ))
                         .setTodaysHigh(weather.getDailyForecast().get(0).day().getTemperature().getTemperature())
                         .setTodaysLow(weather.getDailyForecast().get(0).night().getTemperature().getTemperature())

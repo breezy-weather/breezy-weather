@@ -23,6 +23,7 @@ import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.main.adapters.AqiAdapter;
+import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.common.ui.widgets.ArcProgress;
 
@@ -41,8 +42,9 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
     private boolean mEnable;
     @Nullable private AnimatorSet mAttachAnimatorSet;
 
-    public AirQualityViewHolder(ViewGroup parent) {
-        super(LayoutInflater.from(parent.getContext()).inflate(R.layout.container_main_aqi, parent, false));
+    public AirQualityViewHolder(ViewGroup parent, MainThemeManager themeManager) {
+        super(LayoutInflater.from(parent.getContext()).inflate(
+                R.layout.container_main_aqi, parent, false), themeManager);
 
         mCard = itemView.findViewById(R.id.container_main_aqi);
         mTitle = itemView.findViewById(R.id.container_main_aqi_title);
@@ -67,53 +69,53 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
 
         mEnable = true;
 
-        mCard.setCardBackgroundColor(mThemeManager.getRootColor(mContext));
-        mTitle.setTextColor(mThemeManager.getWeatherThemeColors()[0]);
+        mCard.setCardBackgroundColor(themeManager.getRootColor(context));
+        mTitle.setTextColor(themeManager.getWeatherThemeColors()[0]);
 
         if (itemAnimationEnabled) {
             mProgress.setProgress(0);
             mProgress.setText(String.format("%d", 0));
             mProgress.setProgressColor(
-                    ContextCompat.getColor(mContext, R.color.colorLevel_1),
-                    mThemeManager.isLightTheme()
+                    ContextCompat.getColor(context, R.color.colorLevel_1),
+                    themeManager.isLightTheme()
             );
-            mProgress.setArcBackgroundColor(mThemeManager.getLineColor(mContext));
+            mProgress.setArcBackgroundColor(themeManager.getLineColor(context));
         } else {
             int aqiColor = mWeather.getCurrent().getAirQuality().getAqiColor(mProgress.getContext());
             mProgress.setProgress(mAqiIndex);
             mProgress.setText(String.format("%d", mAqiIndex));
-            mProgress.setProgressColor(aqiColor, mThemeManager.isLightTheme());
+            mProgress.setProgressColor(aqiColor, themeManager.isLightTheme());
             mProgress.setArcBackgroundColor(
                     ColorUtils.setAlphaComponent(aqiColor, (int) (255 * 0.1))
             );
         }
-        mProgress.setTextColor(mThemeManager.getTextContentColor(mContext));
+        mProgress.setTextColor(themeManager.getTextContentColor(context));
         mProgress.setBottomText(mWeather.getCurrent().getAirQuality().getAqiText());
-        mProgress.setBottomTextColor(mThemeManager.getTextSubtitleColor(mContext));
+        mProgress.setBottomTextColor(themeManager.getTextSubtitleColor(context));
         mProgress.setContentDescription(mAqiIndex + ", " + mWeather.getCurrent().getAirQuality().getAqiText());
 
-        mAdapter = new AqiAdapter(mContext, mWeather, itemAnimationEnabled);
+        mAdapter = new AqiAdapter(context, mWeather, themeManager, itemAnimationEnabled);
         mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
     }
 
     @SuppressLint("DefaultLocale")
     @Override
     public void onEnterScreen() {
-        if (mItemAnimationEnabled && mEnable && mWeather != null) {
+        if (itemAnimationEnabled && mEnable && mWeather != null) {
             int aqiColor = mWeather.getCurrent().getAirQuality().getAqiColor(mProgress.getContext());
 
             ValueAnimator progressColor = ValueAnimator.ofObject(
                     new ArgbEvaluator(),
-                    ContextCompat.getColor(mContext, R.color.colorLevel_1),
+                    ContextCompat.getColor(context, R.color.colorLevel_1),
                     aqiColor
             );
             progressColor.addUpdateListener(animation -> mProgress.setProgressColor(
-                    (Integer) animation.getAnimatedValue(), mThemeManager.isLightTheme()));
+                    (Integer) animation.getAnimatedValue(), themeManager.isLightTheme()));
 
             ValueAnimator backgroundColor = ValueAnimator.ofObject(
                     new ArgbEvaluator(),
-                    mThemeManager.getLineColor(mContext),
+                    themeManager.getLineColor(context),
                     ColorUtils.setAlphaComponent(aqiColor, (int) (255 * 0.1))
             );
             backgroundColor.addUpdateListener(animation ->

@@ -11,14 +11,14 @@ import androidx.annotation.Size;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
-import wangdaye.com.geometricweather.resource.Constants;
-import wangdaye.com.geometricweather.resource.ResourceUtils;
+import wangdaye.com.geometricweather.resource.utils.Constants;
+import wangdaye.com.geometricweather.resource.utils.ResourceUtils;
 import wangdaye.com.geometricweather.common.ui.images.pixel.PixelMoonDrawable;
 import wangdaye.com.geometricweather.common.ui.images.pixel.PixelSunDrawable;
 
 public class PixelResourcesProvider extends IconPackResourcesProvider {
 
-    PixelResourcesProvider(@NonNull ResourceProvider defaultProvider) {
+    public PixelResourcesProvider(@NonNull ResourceProvider defaultProvider) {
         super(
                 GeometricWeather.getInstance(),
                 GeometricWeather.getInstance().getPackageName(),
@@ -26,7 +26,7 @@ public class PixelResourcesProvider extends IconPackResourcesProvider {
         );
     }
 
-    static boolean isPixelIconProvider(@NonNull String packageName) {
+    public static boolean isPixelIconProvider(@NonNull String packageName) {
         return packageName.equals(
                 GeometricWeather.getInstance().getPackageName() + ".Pixel"
         );

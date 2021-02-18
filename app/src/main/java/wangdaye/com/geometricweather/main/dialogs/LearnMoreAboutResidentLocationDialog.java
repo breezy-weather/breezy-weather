@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.common.ui.dialogs;
+package wangdaye.com.geometricweather.main.dialogs;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

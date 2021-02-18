@@ -18,7 +18,7 @@ import wangdaye.com.geometricweather.BuildConfig;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.weather.SchedulerTransformer;
+import wangdaye.com.geometricweather.common.rxjava.SchedulerTransformer;
 import wangdaye.com.geometricweather.weather.apis.AtmoAuraIqaApi;
 import wangdaye.com.geometricweather.weather.apis.MfWeatherApi;
 import wangdaye.com.geometricweather.weather.converters.MfResultConverter;
@@ -30,8 +30,8 @@ import wangdaye.com.geometricweather.weather.json.mf.MfForecastV2Result;
 import wangdaye.com.geometricweather.weather.json.mf.MfLocationResult;
 import wangdaye.com.geometricweather.weather.json.mf.MfRainResult;
 import wangdaye.com.geometricweather.weather.json.mf.MfWarningsResult;
-import wangdaye.com.geometricweather.weather.observers.BaseObserver;
-import wangdaye.com.geometricweather.weather.observers.ObserverContainer;
+import wangdaye.com.geometricweather.common.rxjava.BaseObserver;
+import wangdaye.com.geometricweather.common.rxjava.ObserverContainer;
 
 /**
  * Mf weather service.

@@ -14,7 +14,7 @@ import wangdaye.com.geometricweather.weather.apis.AtmoAuraIqaApi;
 import wangdaye.com.geometricweather.weather.apis.CNWeatherApi;
 import wangdaye.com.geometricweather.weather.apis.CaiYunApi;
 import wangdaye.com.geometricweather.weather.apis.MfWeatherApi;
-import wangdaye.com.geometricweather.weather.interceptors.GzipInterceptor;
+import wangdaye.com.geometricweather.common.retrofit.interceptors.GzipInterceptor;
 
 @InstallIn(ApplicationComponent.class)
 @Module

@@ -19,7 +19,7 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Daily;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.chart.PolylineAndHistogramView;
-import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
+import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 
 /**
  * Daily air quality adapter.
@@ -27,7 +27,7 @@ import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
 
 public class DailyAirQualityAdapter extends AbsDailyTrendAdapter<DailyAirQualityAdapter.ViewHolder> {
 
-    private final ThemeManager mThemeManager;
+    private final MainThemeManager mThemeManager;
 
     private int mHighestIndex;
     private int mSize;
@@ -43,7 +43,10 @@ public class DailyAirQualityAdapter extends AbsDailyTrendAdapter<DailyAirQuality
         }
 
         @SuppressLint("DefaultLocale")
-        void onBindView(GeoActivity activity, Location location, ThemeManager themeManager, int position) {
+        void onBindView(GeoActivity activity,
+                        Location location,
+                        MainThemeManager themeManager,
+                        int position) {
             StringBuilder talkBackBuilder = new StringBuilder(activity.getString(R.string.tag_aqi));
 
             super.onBindView(activity, location, themeManager, talkBackBuilder, position);
@@ -80,12 +83,13 @@ public class DailyAirQualityAdapter extends AbsDailyTrendAdapter<DailyAirQuality
     }
 
     @SuppressLint("SimpleDateFormat")
-    public DailyAirQualityAdapter(GeoActivity activity, TrendRecyclerView parent, Location location) {
+    public DailyAirQualityAdapter(GeoActivity activity, TrendRecyclerView parent, Location location,
+                                  MainThemeManager themeManager) {
         super(activity, location);
 
         Weather weather = location.getWeather();
         assert weather != null;
-        mThemeManager = ThemeManager.getInstance(activity);
+        mThemeManager = themeManager;
 
         mHighestIndex = Integer.MIN_VALUE;
         boolean valid = false;

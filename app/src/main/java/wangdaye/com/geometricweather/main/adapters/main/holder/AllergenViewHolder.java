@@ -18,6 +18,7 @@ import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.Daily;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.common.ui.adapters.DailyPollenAdapter;
 import wangdaye.com.geometricweather.common.utils.helpters.IntentHelper;
@@ -78,8 +79,9 @@ public class AllergenViewHolder extends AbstractMainCardViewHolder {
         }
     }
 
-    public AllergenViewHolder(ViewGroup parent) {
-        super(LayoutInflater.from(parent.getContext()).inflate(R.layout.container_main_pollen, parent, false));
+    public AllergenViewHolder(ViewGroup parent, MainThemeManager themeManager) {
+        super(LayoutInflater.from(parent.getContext()).inflate(
+                R.layout.container_main_pollen, parent, false), themeManager);
 
         mCard = itemView.findViewById(R.id.container_main_pollen);
         mTitle = itemView.findViewById(R.id.container_main_pollen_title);
@@ -100,9 +102,9 @@ public class AllergenViewHolder extends AbstractMainCardViewHolder {
 
         assert location.getWeather() != null;
 
-        mCard.setCardBackgroundColor(mThemeManager.getRootColor(mContext));
-        mTitle.setTextColor(mThemeManager.getWeatherThemeColors()[0]);
-        mSubtitle.setTextColor(mThemeManager.getTextSubtitleColor(mContext));
+        mCard.setCardBackgroundColor(themeManager.getRootColor(context));
+        mTitle.setTextColor(themeManager.getWeatherThemeColors()[0]);
+        mSubtitle.setTextColor(themeManager.getTextSubtitleColor(context));
 
         mPager.setAdapter(new DailyPollenPagerAdapter(location.getWeather()));
         mPager.setCurrentItem(0);
@@ -111,7 +113,7 @@ public class AllergenViewHolder extends AbstractMainCardViewHolder {
         mPager.registerOnPageChangeCallback(mCallback);
 
         itemView.setContentDescription(mTitle.getText());
-        itemView.setOnClickListener(v -> IntentHelper.startAllergenActivity((GeoActivity) mContext, location));
+        itemView.setOnClickListener(v -> IntentHelper.startAllergenActivity((GeoActivity) context, location));
     }
 
     @Override

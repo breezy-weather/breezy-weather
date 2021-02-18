@@ -6,6 +6,7 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import wangdaye.com.geometricweather.R;
@@ -53,7 +54,7 @@ public class AllergenActivity extends GeoActivity {
         if (mLocation.getWeather() != null) {
             FitBottomSystemBarRecyclerView recyclerView = findViewById(R.id.activity_allergen_recyclerView);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            recyclerView.addItemDecoration(new ListDecoration(this));
+            recyclerView.addItemDecoration(new ListDecoration(this, ContextCompat.getColor(this, R.color.colorLine)));
             recyclerView.setAdapter(new DailyPollenAdapter(mLocation.getWeather()));
         } else {
             finish();

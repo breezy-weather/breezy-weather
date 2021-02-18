@@ -27,10 +27,10 @@ import java.util.Map;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
-import wangdaye.com.geometricweather.resource.Config;
-import wangdaye.com.geometricweather.resource.Constants;
-import wangdaye.com.geometricweather.resource.ResourceUtils;
-import wangdaye.com.geometricweather.resource.XmlHelper;
+import wangdaye.com.geometricweather.resource.utils.Config;
+import wangdaye.com.geometricweather.resource.utils.Constants;
+import wangdaye.com.geometricweather.resource.utils.ResourceUtils;
+import wangdaye.com.geometricweather.resource.utils.XmlHelper;
 
 public class IconPackResourcesProvider extends ResourceProvider {
 
@@ -46,8 +46,8 @@ public class IconPackResourcesProvider extends ResourceProvider {
     private Map<String, String> mShortcutFilter;
     private Map<String, String> mSunMoonFilter;
 
-    IconPackResourcesProvider(@NonNull Context c, @NonNull String pkgName,
-                              @NonNull ResourceProvider defaultProvider) {
+    public IconPackResourcesProvider(@NonNull Context c, @NonNull String pkgName,
+                                     @NonNull ResourceProvider defaultProvider) {
         mDefaultProvider = defaultProvider;
 
         try {
@@ -123,8 +123,8 @@ public class IconPackResourcesProvider extends ResourceProvider {
     }
 
     @NonNull
-    static List<IconPackResourcesProvider> getProviderList(@NonNull Context context,
-                                                           @NonNull ResourceProvider defaultProvider) {
+    public static List<IconPackResourcesProvider> getProviderList(@NonNull Context context,
+                                                                  @NonNull ResourceProvider defaultProvider) {
         List<IconPackResourcesProvider> providerList = new ArrayList<>();
 
         List<ResolveInfo> infoList = context.getPackageManager().queryIntentActivities(
@@ -144,7 +144,7 @@ public class IconPackResourcesProvider extends ResourceProvider {
         return providerList;
     }
 
-    static boolean isIconPackIconProvider(@NonNull Context context, @NonNull String packageName) {
+    public static boolean isIconPackIconProvider(@NonNull Context context, @NonNull String packageName) {
         List<ResolveInfo> infoList = context.getPackageManager().queryIntentActivities(
                 new Intent(Constants.ACTION_ICON_PROVIDER),
                 PackageManager.GET_RESOLVED_FILTER

@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,16 +27,15 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.Alert;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.common.utils.helpters.IntentHelper;
-import wangdaye.com.geometricweather.common.utils.managers.TimeManager;
 import wangdaye.com.geometricweather.remoteviews.presenters.notification.NormalNotificationIMP;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 
 /**
- * Notification utils.
+ * Notification helper.
  * */
 
-public class NotificationUtils {
+public class NotificationHelper {
 
     private static final String NOTIFICATION_GROUP_KEY = "geometric_weather_alert_notification_group";
     private static final String PREFERENCE_NOTIFICATION = "NOTIFICATION_PREFERENCE";
@@ -54,41 +54,28 @@ public class NotificationUtils {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private static NotificationChannel getAlertNotificationChannel(Context context) {
+    private static NotificationChannel getAlertNotificationChannel(Context context, @ColorInt int color) {
         NotificationChannel channel = new NotificationChannel(
                 GeometricWeather.NOTIFICATION_CHANNEL_ID_ALERT,
                 GeometricWeather.getNotificationChannelName(
                         context, GeometricWeather.NOTIFICATION_CHANNEL_ID_ALERT),
                 NotificationManager.IMPORTANCE_DEFAULT);
         channel.setShowBadge(true);
-        channel.setLightColor(
-                ContextCompat.getColor(
-                        context,
-                        TimeManager.getInstance(context).isDayTime()
-                                ? R.color.lightPrimary_5
-                                : R.color.darkPrimary_5
-                )
-        );
+        channel.setLightColor(color);
         return channel;
     }
 
     private static NotificationCompat.Builder getNotificationBuilder(Context context, @DrawableRes int iconId,
                                                                      String title, String subtitle, String content,
-                                                                     PendingIntent intent) {
+                                                                     @ColorInt int color, PendingIntent intent) {
         return new NotificationCompat.Builder(context, GeometricWeather.NOTIFICATION_CHANNEL_ID_ALERT)
                 .setSmallIcon(iconId)
                 .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher))
                 .setContentTitle(title)
                 .setSubText(subtitle)
                 .setContentText(content)
-                .setColor(
-                        ContextCompat.getColor(
-                                context,
-                                TimeManager.getInstance(context).isDayTime()
-                                        ? R.color.lightPrimary_5
-                                        : R.color.darkPrimary_5
-                        )
-                ).setAutoCancel(true)
+                .setColor(color)
+                .setAutoCancel(true)
                 .setOnlyAlertOnce(true)
                 .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
                 .setContentIntent(intent);
@@ -133,7 +120,9 @@ public class NotificationUtils {
                                               Location location, Alert alert, boolean inGroup) {
         NotificationManagerCompat manager = NotificationManagerCompat.from(context);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            manager.createNotificationChannel(getAlertNotificationChannel(context));
+            manager.createNotificationChannel(
+                    getAlertNotificationChannel(context, getColor(context, location))
+            );
         }
 
         int notificationId = getAlertNotificationId(context);
@@ -164,6 +153,7 @@ public class NotificationUtils {
                 alert.getDescription(),
                 time,
                 alert.getContent(),
+                getColor(context, location),
                 PendingIntent.getActivity(
                         context,
                         notificationId,
@@ -190,14 +180,8 @@ public class NotificationUtils {
                 .setSmallIcon(R.drawable.ic_alert)
                 .setContentTitle(alert.getDescription())
                 .setGroup(NOTIFICATION_GROUP_KEY)
-                .setColor(
-                        ContextCompat.getColor(
-                                context,
-                                TimeManager.getInstance(context).isDayTime()
-                                        ? R.color.lightPrimary_5
-                                        : R.color.darkPrimary_5
-                        )
-                ).setGroupSummary(true)
+                .setColor(getColor(context, location))
+                .setGroupSummary(true)
                 .setOnlyAlertOnce(true)
                 .setContentIntent(
                         PendingIntent.getActivity(
@@ -236,7 +220,9 @@ public class NotificationUtils {
         }
         NotificationManagerCompat manager = NotificationManagerCompat.from(context);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            manager.createNotificationChannel(getAlertNotificationChannel(context));
+            manager.createNotificationChannel(
+                    getAlertNotificationChannel(context, getColor(context, location))
+            );
         }
 
         Weather weather = location.getWeather();
@@ -258,6 +244,7 @@ public class NotificationUtils {
                             weather.getDailyForecast().get(0).getDate(
                                     context.getString(R.string.date_format_widget_long)),
                             context.getString(R.string.feedback_short_term_precipitation_alert),
+                            getColor(context, location),
                             PendingIntent.getActivity(
                                     context,
                                     GeometricWeather.NOTIFICATION_ID_PRECIPITATION,
@@ -285,6 +272,7 @@ public class NotificationUtils {
                             weather.getDailyForecast().get(0).getDate(
                                     context.getString(R.string.date_format_widget_long)),
                             context.getString(R.string.feedback_today_precipitation_alert),
+                            getColor(context, location),
                             PendingIntent.getActivity(
                                     context,
                                     GeometricWeather.NOTIFICATION_ID_PRECIPITATION,
@@ -314,5 +302,12 @@ public class NotificationUtils {
     private static boolean isLiquidDay(Weather weather) {
         return weather.getDailyForecast().get(0).day().getWeatherCode().isPrecipitation()
                 || weather.getDailyForecast().get(0).night().getWeatherCode().isPrecipitation();
+    }
+
+    @ColorInt
+    private static int getColor(Context context, Location location) {
+        return ContextCompat.getColor(context,
+                location.isDaylight() ? R.color.lightPrimary_5 : R.color.darkPrimary_5);
+
     }
 }

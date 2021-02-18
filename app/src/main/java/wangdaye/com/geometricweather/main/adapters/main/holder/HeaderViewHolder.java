@@ -21,6 +21,7 @@ import io.reactivex.disposables.Disposable;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
+import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.common.ui.widgets.NumberAnimTextView;
@@ -38,9 +39,9 @@ public class HeaderViewHolder extends AbstractMainViewHolder {
     private TemperatureUnit mTemperatureUnit;
     private @Nullable Disposable mDisposable;
 
-    public HeaderViewHolder(ViewGroup parent, WeatherView weatherView) {
+    public HeaderViewHolder(ViewGroup parent, WeatherView weatherView, MainThemeManager themeManager) {
         super(LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.container_main_header, parent, false));
+                R.layout.container_main_header, parent, false), themeManager);
 
         mContainer = itemView.findViewById(R.id.container_main_header);
         mTemperature = itemView.findViewById(R.id.container_main_header_tempTxt);
@@ -62,10 +63,10 @@ public class HeaderViewHolder extends AbstractMainViewHolder {
         super.onBindView(context, location, provider, listAnimationEnabled, itemAnimationEnabled);
 
         ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) mContainer.getLayoutParams();
-        params.height = mThemeManager.getHeaderHeight();
+        params.height = themeManager.getHeaderHeight();
         mContainer.setLayoutParams(params);
 
-        int textColor = mThemeManager.getHeaderTextColor(context);
+        int textColor = themeManager.getHeaderTextColor(context);
         mTemperature.setTextColor(textColor);
         mWeather.setTextColor(textColor);
         mAqiOrWind.setTextColor(textColor);

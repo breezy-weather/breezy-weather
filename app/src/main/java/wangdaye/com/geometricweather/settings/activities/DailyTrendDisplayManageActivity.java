@@ -11,6 +11,7 @@ import android.view.animation.DecelerateInterpolator;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Px;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -29,6 +30,7 @@ import wangdaye.com.geometricweather.common.ui.adapters.TagAdapter;
 import wangdaye.com.geometricweather.common.ui.decotarions.GridMarginsDecoration;
 import wangdaye.com.geometricweather.common.ui.decotarions.ListDecoration;
 import wangdaye.com.geometricweather.common.ui.widgets.slidingItem.SlidingItemTouchCallback;
+import wangdaye.com.geometricweather.common.theme.DefaultThemeManager;
 import wangdaye.com.geometricweather.databinding.ActivityDailyTrendDisplayManageBinding;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.settings.adapters.DailyTrendDisplayAdapter;
@@ -114,7 +116,8 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
         );
 
         mBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mBinding.recyclerView.addItemDecoration(new ListDecoration(this));
+        mBinding.recyclerView.addItemDecoration(new ListDecoration(
+                this, ContextCompat.getColor(this, R.color.colorLine)));
         mBinding.recyclerView.setAdapter(mDailyTrendDisplayAdapter);
 
         mDailyTrendDisplayItemTouchHelper = new ItemTouchHelper(new CardDisplaySwipeCallback());
@@ -138,13 +141,13 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
         for (DailyTrendDisplay tag : otherTags) {
             tagList.add(new DailyTrendTag(tag));
         }
-        mTagAdapter = new TagAdapter(this, tagList, (checked, oldPosition, newPosition) -> {
+        mTagAdapter = new TagAdapter(tagList, (checked, oldPosition, newPosition) -> {
             setResult(RESULT_OK);
             DailyTrendTag tag = (DailyTrendTag) mTagAdapter.removeItem(newPosition);
             mDailyTrendDisplayAdapter.insertItem(tag.tag);
             resetBottomBarVisibility();
             return true;
-        });
+        }, new DefaultThemeManager());
 
 
         ViewCompat.setOnApplyWindowInsetsListener(mBinding.bottomBar, (v, insets) -> {

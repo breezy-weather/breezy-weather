@@ -32,7 +32,6 @@ import wangdaye.com.geometricweather.common.ui.widgets.weatherView.materialWeath
 import wangdaye.com.geometricweather.common.ui.widgets.weatherView.materialWeatherView.WeatherImplementorFactory;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpters.AsyncHelper;
-import wangdaye.com.geometricweather.common.utils.managers.TimeManager;
 
 public class MaterialLiveWallpaperService extends WallpaperService {
 
@@ -313,7 +312,7 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                     boolean daytime = true;
                     switch (dayNightType) {
                         case "auto":
-                            daytime = TimeManager.isDaylight(location);
+                            daytime = location.isDaylight();
                             break;
 
                         case "day":

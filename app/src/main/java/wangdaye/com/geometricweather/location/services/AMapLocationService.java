@@ -13,7 +13,7 @@ import com.amap.api.location.AMapLocationListener;
 import com.amap.api.location.CoordinateConverter;
 
 import wangdaye.com.geometricweather.GeometricWeather;
-import wangdaye.com.geometricweather.location.LocationException;
+import wangdaye.com.geometricweather.location.utils.LocationException;
 import wangdaye.com.geometricweather.common.utils.helpters.BuglyHelper;
 
 /**

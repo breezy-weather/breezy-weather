@@ -13,7 +13,8 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.main.dialogs.HourlyWeatherDialog;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerViewAdapter;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.item.HourlyTrendItemView;
-import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
+import wangdaye.com.geometricweather.main.utils.MainPalette;
+import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 
 public abstract class AbsHourlyTrendAdapter<VH extends RecyclerView.ViewHolder> extends TrendRecyclerViewAdapter<VH>  {
 
@@ -28,7 +29,7 @@ public abstract class AbsHourlyTrendAdapter<VH extends RecyclerView.ViewHolder> 
             hourlyItem = itemView.findViewById(R.id.item_trend_hourly);
         }
 
-        void onBindView(GeoActivity activity, Location location, ThemeManager themeManager,
+        void onBindView(GeoActivity activity, Location location, MainThemeManager themeManager,
                         StringBuilder talkBackBuilder, int position) {
             Context context = itemView.getContext();
             Weather weather = location.getWeather();
@@ -42,7 +43,9 @@ public abstract class AbsHourlyTrendAdapter<VH extends RecyclerView.ViewHolder> 
             hourlyItem.setHourText(hourly.getHour(context));
             hourlyItem.setTextColor(themeManager.getTextContentColor(context));
 
-            hourlyItem.setOnClickListener(v -> onItemClicked(activity, location, getAdapterPosition()));
+            hourlyItem.setOnClickListener(v -> onItemClicked(
+                    activity, location, getAdapterPosition(), themeManager
+            ));
         }
     }
 
@@ -51,12 +54,15 @@ public abstract class AbsHourlyTrendAdapter<VH extends RecyclerView.ViewHolder> 
         mActivity = activity;
     }
 
-    protected static void onItemClicked(GeoActivity activity, Location location, int adapterPosition) {
+    protected static void onItemClicked(GeoActivity activity,
+                                        Location location,
+                                        int adapterPosition,
+                                        MainThemeManager themeManager) {
         if (activity.isForeground()) {
             HourlyWeatherDialog.getInstance(
                     location.getWeather(),
                     adapterPosition,
-                    ThemeManager.getInstance(activity).getWeatherThemeColors()[0]
+                    new MainPalette(activity, themeManager)
             ).show(activity.getSupportFragmentManager(), null);
         }
     }

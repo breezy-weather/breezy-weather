@@ -24,11 +24,7 @@ import wangdaye.com.geometricweather.location.services.BaiduLocationService;
 import wangdaye.com.geometricweather.location.services.LocationService;
 import wangdaye.com.geometricweather.location.services.ip.BaiduIPLocationService;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.weather.WeatherHelper;
-import wangdaye.com.geometricweather.weather.services.AccuWeatherService;
-import wangdaye.com.geometricweather.weather.services.CNWeatherService;
-import wangdaye.com.geometricweather.weather.services.CaiYunWeatherService;
-import wangdaye.com.geometricweather.weather.services.MfWeatherService;
+import wangdaye.com.geometricweather.weather.WeatherServiceSet;
 import wangdaye.com.geometricweather.weather.services.WeatherService;
 
 /**
@@ -38,7 +34,7 @@ import wangdaye.com.geometricweather.weather.services.WeatherService;
 public class LocationHelper {
 
     private final LocationService mLocationService;
-    private final WeatherService[] mWeatherServices;
+    private final WeatherServiceSet mWeatherServiceSet;
 
     public interface OnRequestLocationListener {
         void requestLocationSuccess(Location requestLocation);
@@ -48,10 +44,7 @@ public class LocationHelper {
     @Inject
     public LocationHelper(@ApplicationContext Context context,
                           BaiduIPLocationService baiduIPService,
-                          AccuWeatherService accuWeatherService,
-                          CNWeatherService cnWeatherService,
-                          CaiYunWeatherService caiYunWeatherService,
-                          MfWeatherService mfWeatherService) {
+                          WeatherServiceSet weatherServiceSet) {
         switch (SettingsOptionManager.getInstance(context).getLocationProvider()) {
             case BAIDU:
                 mLocationService = new BaiduLocationService(context);
@@ -70,12 +63,7 @@ public class LocationHelper {
                 break;
         }
 
-        mWeatherServices = new WeatherService[] {
-                accuWeatherService,
-                cnWeatherService,
-                caiYunWeatherService,
-                mfWeatherService
-        };
+        mWeatherServiceSet = weatherServiceSet;
     }
 
     public void requestLocation(Context context, Location location, boolean background,
@@ -125,7 +113,7 @@ public class LocationHelper {
         WeatherSource source = SettingsOptionManager.getInstance(context).getWeatherSource();
         final Location target = new Location(location, source);
 
-        final WeatherService service = WeatherHelper.getWeatherService(mWeatherServices, source);
+        final WeatherService service = mWeatherServiceSet.get(source);
         service.requestLocation(context, target, new WeatherService.RequestLocationCallback() {
             @Override
             public void requestLocationSuccess(String query, List<Location> locationList) {
@@ -148,7 +136,7 @@ public class LocationHelper {
 
     public void cancel() {
         mLocationService.cancel();
-        for (WeatherService s : mWeatherServices) {
+        for (WeatherService s : mWeatherServiceSet.getAll()) {
             s.cancel();
         }
     }

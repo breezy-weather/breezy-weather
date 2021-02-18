@@ -18,11 +18,11 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.Temperatur
 import wangdaye.com.geometricweather.common.basic.models.weather.Hourly;
 import wangdaye.com.geometricweather.common.basic.models.weather.Temperature;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.chart.PolylineAndHistogramView;
-import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
 
 /**
  * Hourly temperature adapter.
@@ -31,7 +31,7 @@ import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
 public class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<HourlyTemperatureAdapter.ViewHolder> {
 
     private final ResourceProvider mResourceProvider;
-    private final ThemeManager mThemeManager;
+    private final MainThemeManager mThemeManager;
     private final TemperatureUnit mTemperatureUnit;
 
     private final float[] mTemperatures;
@@ -50,7 +50,7 @@ public class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<HourlyTemper
             hourlyItem.setChartItemView(mPolylineAndHistogramView);
         }
 
-        void onBindView(GeoActivity activity, Location location, ThemeManager themeManager, int position) {
+        void onBindView(GeoActivity activity, Location location, MainThemeManager themeManager, int position) {
             StringBuilder talkBackBuilder = new StringBuilder(activity.getString(R.string.tag_temperature));
 
             super.onBindView(activity, location, themeManager, talkBackBuilder, position);
@@ -117,8 +117,9 @@ public class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<HourlyTemper
     }
 
     public HourlyTemperatureAdapter(GeoActivity activity, TrendRecyclerView parent, Location location,
-                                    ResourceProvider provider, TemperatureUnit unit) {
-        this(activity, parent, location, true, provider, unit);
+                                    ResourceProvider provider, MainThemeManager themeManager,
+                                    TemperatureUnit unit) {
+        this(activity, parent, location, true, provider, themeManager, unit);
     }
 
     public HourlyTemperatureAdapter(GeoActivity activity,
@@ -126,13 +127,14 @@ public class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<HourlyTemper
                                     Location location,
                                     boolean showPrecipitationProbability,
                                     ResourceProvider provider,
+                                    MainThemeManager themeManager,
                                     TemperatureUnit unit) {
         super(activity, location);
 
         Weather weather = location.getWeather();
         assert weather != null;
         mResourceProvider = provider;
-        mThemeManager = ThemeManager.getInstance(activity);
+        mThemeManager = themeManager;
         mTemperatureUnit = unit;
 
         mTemperatures = new float[Math.max(0, weather.getHourlyForecast().size() * 2 - 1)];

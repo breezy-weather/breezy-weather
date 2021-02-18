@@ -19,11 +19,11 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.Temperatur
 import wangdaye.com.geometricweather.common.basic.models.weather.Daily;
 import wangdaye.com.geometricweather.common.basic.models.weather.Temperature;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.chart.PolylineAndHistogramView;
-import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
 
 /**
  * Daily temperature adapter.
@@ -32,7 +32,7 @@ import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
 public class DailyTemperatureAdapter extends AbsDailyTrendAdapter<DailyTemperatureAdapter.ViewHolder> {
 
     private final ResourceProvider mResourceProvider;
-    private final ThemeManager mThemeManager;
+    private final MainThemeManager mThemeManager;
     private final TemperatureUnit mTemperatureUnit;
 
     private final float[] mDaytimeTemperatures;
@@ -53,7 +53,7 @@ public class DailyTemperatureAdapter extends AbsDailyTrendAdapter<DailyTemperatu
         }
 
         @SuppressLint("SetTextI18n, InflateParams")
-        void onBindView(GeoActivity activity, Location location, ThemeManager themeManager, int position) {
+        void onBindView(GeoActivity activity, Location location, MainThemeManager themeManager, int position) {
             StringBuilder talkBackBuilder = new StringBuilder(activity.getString(R.string.tag_temperature));
 
             super.onBindView(activity, location, themeManager, talkBackBuilder, position);
@@ -134,8 +134,9 @@ public class DailyTemperatureAdapter extends AbsDailyTrendAdapter<DailyTemperatu
                                    TrendRecyclerView parent,
                                    Location location,
                                    ResourceProvider provider,
+                                   MainThemeManager themeManager,
                                    TemperatureUnit unit) {
-        this(activity, parent, location, true, provider, unit);
+        this(activity, parent, location, true, provider, themeManager, unit);
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -144,13 +145,14 @@ public class DailyTemperatureAdapter extends AbsDailyTrendAdapter<DailyTemperatu
                                    Location location,
                                    boolean showPrecipitationProbability,
                                    ResourceProvider provider,
+                                   MainThemeManager themeManager,
                                    TemperatureUnit unit) {
         super(activity, location);
 
         Weather weather = location.getWeather();
         assert weather != null;
         mResourceProvider = provider;
-        mThemeManager = ThemeManager.getInstance(activity);
+        mThemeManager = themeManager;
         mTemperatureUnit = unit;
 
         mDaytimeTemperatures = new float[Math.max(0, weather.getDailyForecast().size() * 2 - 1)];

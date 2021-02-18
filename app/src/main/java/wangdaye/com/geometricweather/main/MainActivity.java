@@ -25,14 +25,16 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import dagger.hilt.android.AndroidEntryPoint;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.polling.PollingManager;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.DarkMode;
+import wangdaye.com.geometricweather.common.utils.helpters.AsyncHelper;
+import wangdaye.com.geometricweather.common.utils.helpters.IntentHelper;
+import wangdaye.com.geometricweather.common.utils.helpters.SnackbarHelper;
+import wangdaye.com.geometricweather.common.utils.helpters.ShortcutsHelper;
 import wangdaye.com.geometricweather.databinding.ActivityMainBinding;
 import wangdaye.com.geometricweather.main.dialogs.BackgroundLocationDialog;
 import wangdaye.com.geometricweather.main.dialogs.LocationPermissionStatementDialog;
@@ -40,18 +42,12 @@ import wangdaye.com.geometricweather.main.fragments.MainFragment;
 import wangdaye.com.geometricweather.main.fragments.ManagementFragment;
 import wangdaye.com.geometricweather.main.models.LocationResource;
 import wangdaye.com.geometricweather.main.models.PermissionsRequest;
-import wangdaye.com.geometricweather.main.utils.StatementManager;
-import wangdaye.com.geometricweather.remoteviews.NotificationUtils;
-import wangdaye.com.geometricweather.remoteviews.WidgetUtils;
+import wangdaye.com.geometricweather.main.utils.MainThemeManager;
+import wangdaye.com.geometricweather.remoteviews.NotificationHelper;
+import wangdaye.com.geometricweather.remoteviews.WidgetHelper;
 import wangdaye.com.geometricweather.search.SearchActivity;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.settings.activities.SelectProviderActivity;
-import wangdaye.com.geometricweather.common.utils.helpters.AsyncHelper;
-import wangdaye.com.geometricweather.common.utils.helpters.IntentHelper;
-import wangdaye.com.geometricweather.common.utils.helpters.SnackbarHelper;
-import wangdaye.com.geometricweather.common.utils.managers.ShortcutsManager;
-import wangdaye.com.geometricweather.common.utils.managers.ThemeManager;
-import wangdaye.com.geometricweather.common.utils.managers.TimeManager;
 
 /**
  * Main activity.
@@ -64,8 +60,6 @@ public class MainActivity extends GeoActivity
 
     private ActivityMainBinding mBinding;
     private MainActivityViewModel mViewModel;
-
-    @Inject StatementManager mStatementManager;
 
     public static final int SETTINGS_ACTIVITY = 1;
     public static final int CARD_MANAGE_ACTIVITY = 3;
@@ -90,13 +84,13 @@ public class MainActivity extends GeoActivity
             = "com.wangdaye.geomtricweather.ACTION_SHOW_DAILY_FORECAST";
     public static final String KEY_DAILY_INDEX = "DAILY_INDEX";
 
-    private static final String TAG_FRAGMENT_MAIN = "tag_fragment_main";
-    private static final String TAG_FRAGMENT_MANAGEMENT = "tag_fragment_management";
+    private static final String TAG_FRAGMENT_MAIN = "fragment_main";
+    private static final String TAG_FRAGMENT_MANAGEMENT = "fragment_management";
 
     private final BroadcastReceiver backgroundUpdateReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Location location = (Location) intent.getParcelableExtra(KEY_LOCATION);
+            Location location = intent.getParcelableExtra(KEY_LOCATION);
             if (location == null) {
                 return;
             }
@@ -143,7 +137,7 @@ public class MainActivity extends GeoActivity
                 mViewModel.init();
                 // update notification immediately.
                 if (mViewModel.getValidLocationList() != null) {
-                    AsyncHelper.runOnIO(() -> NotificationUtils.updateNotificationIfNecessary(
+                    AsyncHelper.runOnIO(() -> NotificationHelper.updateNotificationIfNecessary(
                             this, mViewModel.getValidLocationList()
                     ));
                 }
@@ -213,21 +207,13 @@ public class MainActivity extends GeoActivity
 
     @SuppressLint({"ClickableViewAccessibility", "NonConstantResourceId"})
     private void initView() {
-        if (findMainFragment() == null && findManagementFragment() == null) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment, MainFragment.class, null, TAG_FRAGMENT_MAIN)
-                    .commit();
-        }
-
         mViewModel.getCurrentLocation().observe(this, resource -> {
             if (resource == null) {
                 return;
             }
 
-            setDarkMode(TimeManager.getInstance(this).isDayTime());
-            final ThemeManager manager = ThemeManager.getInstance(this);
-            manager.update(this);
+            setDarkMode(resource.data.isDaylight());
+            MainThemeManager manager = mViewModel.getThemeManager();
             if (mBinding.fragmentDrawer != null) {
                 mBinding.fragmentDrawer.setBackgroundColor(manager.getRootColor(this));
             }
@@ -259,7 +245,7 @@ public class MainActivity extends GeoActivity
                     break;
                 }
             }
-            if (needShowDialog && !mStatementManager.isLocationPermissionDeclared()) {
+            if (needShowDialog && !mViewModel.getStatementManager().isLocationPermissionDeclared()) {
                 // only show dialog once.
                 LocationPermissionStatementDialog dialog = new LocationPermissionStatementDialog();
                 dialog.setCancelable(false);
@@ -296,7 +282,7 @@ public class MainActivity extends GeoActivity
 
         // check background location permissions.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
-                && !mStatementManager.isBackgroundLocationDeclared()
+                && !mViewModel.getStatementManager().isBackgroundLocationDeclared()
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             new BackgroundLocationDialog().show(getSupportFragmentManager(), null);
@@ -418,14 +404,14 @@ public class MainActivity extends GeoActivity
         if (updateRemoteViews && locationList != null && locationList.size() > 0) {
             AsyncHelper.delayRunOnIO(() -> {
                 if (defaultLocationChanged) {
-                    WidgetUtils.updateWidgetIfNecessary(this, locationList.get(0));
-                    NotificationUtils.updateNotificationIfNecessary(this, locationList);
+                    WidgetHelper.updateWidgetIfNecessary(this, locationList.get(0));
+                    NotificationHelper.updateNotificationIfNecessary(this, locationList);
                 }
-                WidgetUtils.updateWidgetIfNecessary(this, locationList);
+                WidgetHelper.updateWidgetIfNecessary(this, locationList);
             }, 1000);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-                ShortcutsManager.refreshShortcutsInNewThread(this, locationList);
+                ShortcutsHelper.refreshShortcutsInNewThread(this, locationList);
             }
         }
     }
@@ -461,7 +447,7 @@ public class MainActivity extends GeoActivity
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void requestLocationPermissions() {
-        mStatementManager.setLocationPermissionDeclared(this);
+        mViewModel.getStatementManager().setLocationPermissionDeclared(this);
 
         PermissionsRequest request = mViewModel.getPermissionsRequestValue();
         if (request.permissionList.size() != 0 && request.target != null) {
@@ -474,7 +460,7 @@ public class MainActivity extends GeoActivity
     @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
     public void requestBackgroundLocationPermission() {
-        mStatementManager.setBackgroundLocationDeclared(this);
+        mViewModel.getStatementManager().setBackgroundLocationDeclared(this);
 
         List<String> permissionList = new ArrayList<>();
         permissionList.add(Manifest.permission.ACCESS_BACKGROUND_LOCATION);
