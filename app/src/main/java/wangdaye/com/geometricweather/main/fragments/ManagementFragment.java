@@ -31,7 +31,7 @@ import wangdaye.com.geometricweather.databinding.FragmentManagementBinding;
 import wangdaye.com.geometricweather.main.MainActivityViewModel;
 import wangdaye.com.geometricweather.main.adapters.LocationAdapterAnimWrapper;
 import wangdaye.com.geometricweather.main.models.SelectableLocationListResource;
-import wangdaye.com.geometricweather.main.ui.LocationItemTouchCallback;
+import wangdaye.com.geometricweather.main.utils.LocationItemTouchCallback;
 import wangdaye.com.geometricweather.common.ui.adapters.location.LocationAdapter;
 import wangdaye.com.geometricweather.common.ui.decotarions.ListDecoration;
 import wangdaye.com.geometricweather.common.utils.helpters.SnackbarHelper;

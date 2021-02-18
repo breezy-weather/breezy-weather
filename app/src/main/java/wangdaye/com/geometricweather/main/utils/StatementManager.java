@@ -5,16 +5,6 @@ import android.content.SharedPreferences;
 
 public class StatementManager {
 
-    private volatile static StatementManager sInstance;
-    public static synchronized StatementManager getInstance(Context context) {
-        synchronized (StatementManager.class) {
-            if (sInstance == null) {
-                sInstance = new StatementManager(context);
-            }
-        }
-        return sInstance;
-    }
-
     private boolean locationPermissionDeclared;
     private boolean backgroundLocationDeclared;
 
@@ -22,7 +12,7 @@ public class StatementManager {
     private static final String KEY_LOCATION_PERMISSION_DECLARED = "location_permission_declared";
     private static final String KEY_BACKGROUND_LOCATION_DECLARED = "background_location_declared";
 
-    private StatementManager(Context context) {
+    public StatementManager(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(
                 SP_STATEMENT_RECORD, Context.MODE_PRIVATE);
 

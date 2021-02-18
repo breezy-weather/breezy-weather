@@ -1,14 +1,20 @@
 package wangdaye.com.geometricweather.main.adapters;
 
 import android.animation.Animator;
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.os.Build;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
+import android.view.animation.Interpolator;
+import android.view.animation.OvershootInterpolator;
 
 import androidx.annotation.Nullable;
 
+import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.ui.adapters.AnimationAdapterWrapper;
 import wangdaye.com.geometricweather.common.ui.adapters.location.LocationAdapter;
 import wangdaye.com.geometricweather.common.ui.adapters.location.LocationHolder;
@@ -17,14 +23,23 @@ import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 public class LocationAdapterAnimWrapper
         extends AnimationAdapterWrapper<LocationAdapter, LocationHolder> {
 
+    private final Interpolator mDecelerate;
     private boolean mStartAnimation;
 
     private final float mDY;
+    private final float mDZ;
+
+    private static final long BASE_DURATION = 600;
+    private static final int MAX_TENSOR_COUNT = 6;
 
     public LocationAdapterAnimWrapper(Context context, LocationAdapter adapter) {
-        super(adapter, 400, new DecelerateInterpolator(), true);
+        super(adapter, true);
+
+        mDecelerate = new DecelerateInterpolator(1f);
         mStartAnimation = false;
-        mDY = DisplayUtils.dpToPx(context, 128);
+
+        mDY = DisplayUtils.dpToPx(context, 256);
+        mDZ = DisplayUtils.dpToPx(context, 10);
     }
 
     @Nullable
@@ -39,19 +54,54 @@ public class LocationAdapterAnimWrapper
             }
         }
 
+        final long duration = Math.max(
+                BASE_DURATION - pendingCount * 50,
+                BASE_DURATION - MAX_TENSOR_COUNT * 50
+        );
+        final long delay = pendingCount * 100;
+        final float overShootTensor = 0.25f + Math.min(
+                pendingCount * 0.5f,
+                MAX_TENSOR_COUNT * 0.5f
+        );
+
         Animator translation = ObjectAnimator
-                .ofFloat(view, "translationY", mDY, 0f)
-                .setDuration(getDuration());
-        translation.setInterpolator(getInterpolator());
+                .ofFloat(view, "translationY", mDY, 0f).setDuration(duration);
+        translation.setInterpolator(new OvershootInterpolator(overShootTensor));
+
+        Animator alpha = ObjectAnimator
+                .ofFloat(view, "alpha", 0f, 1f).setDuration(duration / 4 * 3);
+        alpha.setInterpolator(mDecelerate);
 
         AnimatorSet set = new AnimatorSet();
-        set.playTogether(
-                translation,
-                ObjectAnimator.ofFloat(view, "alpha", 0f, 1f).setDuration(getDuration()),
-                ObjectAnimator.ofFloat(view, "scaleX", 0f, 1f).setDuration(1),
-                ObjectAnimator.ofFloat(view, "scaleY", 0f, 1f).setDuration(1)
-        );
-        set.setStartDelay(pendingCount * 50);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            set.playTogether(translation, alpha);
+        } else {
+            Animator z = ObjectAnimator
+                    .ofFloat(view, "translationZ", mDZ, 0f).setDuration(duration);
+            z.setInterpolator(mDecelerate);
+
+            Animator scaleX = ObjectAnimator
+                    .ofFloat(view, "scaleX", 1.1f, 1f).setDuration(duration);
+            scaleX.setInterpolator(mDecelerate);
+
+            Animator scaleY = ObjectAnimator
+                    .ofFloat(view, "scaleY", 1.1f, 1f).setDuration(duration);
+            scaleX.setInterpolator(mDecelerate);
+
+            set.playTogether(translation, alpha, z, scaleX, scaleY);
+        }
+        set.setStartDelay(delay);
+        set.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationCancel(Animator animation) {
+                setItemStateListAnimator(view, true);
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                setItemStateListAnimator(view, true);
+            }
+        });
         return set;
     }
 
@@ -61,5 +111,15 @@ public class LocationAdapterAnimWrapper
         view.setAlpha(0f);
         view.setScaleX(0f);
         view.setScaleY(0f);
+        setItemStateListAnimator(view, false);
+    }
+
+    private void setItemStateListAnimator(View view, boolean enabled) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            return;
+        }
+        view.setStateListAnimator(enabled
+                ? AnimatorInflater.loadStateListAnimator(view.getContext(), R.animator.touch_raise)
+                : null);
     }
 }

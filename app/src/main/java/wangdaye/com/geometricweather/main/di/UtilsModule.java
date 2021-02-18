@@ -15,6 +15,6 @@ public class UtilsModule {
 
     @Provides
     public StatementManager provideStatementManager(@ActivityContext Context context) {
-        return StatementManager.getInstance(context);
+        return new StatementManager(context);
     }
 }

@@ -1,27 +1,29 @@
-package wangdaye.com.geometricweather.main.ui;
+package wangdaye.com.geometricweather.main.utils;
 
 import android.graphics.Canvas;
-import android.os.Build;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.Px;
+import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
-import wangdaye.com.geometricweather.main.MainActivityViewModel;
 import wangdaye.com.geometricweather.common.ui.dialogs.LearnMoreAboutResidentLocationDialog;
 import wangdaye.com.geometricweather.common.ui.widgets.slidingItem.SlidingItemTouchCallback;
-import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpters.SnackbarHelper;
+import wangdaye.com.geometricweather.main.MainActivityViewModel;
 
 public class LocationItemTouchCallback extends SlidingItemTouchCallback {
 
     private final GeoActivity mActivity;
     private final MainActivityViewModel mViewModel;
+
+    private final @Px int mElevation;
 
     private boolean mDragged;
     private final @NonNull OnSelectProviderActivityStartedCallback mCallback;
@@ -33,8 +35,12 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
     public LocationItemTouchCallback(GeoActivity activity, MainActivityViewModel viewModel,
                                      @NonNull OnSelectProviderActivityStartedCallback callback) {
         super();
+
         mActivity = activity;
         mViewModel = viewModel;
+
+        mElevation = activity.getResources().getDimensionPixelSize(R.dimen.touch_rise_z);
+
         mDragged = false;
         mCallback = callback;
     }
@@ -117,10 +123,8 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
                             @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder,
                             float dX, float dY, int actionState, boolean isCurrentlyActive) {
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
-                && actionState == ItemTouchHelper.ACTION_STATE_DRAG) {
-            viewHolder.itemView.setElevation(DisplayUtils.dpToPx(mActivity, dY == 0 ? 0 : 10));
-        }
+        ViewCompat.setElevation(viewHolder.itemView,
+                (dY != 0 || isCurrentlyActive) ? mElevation : 0);
     }
 
     // on click listener.

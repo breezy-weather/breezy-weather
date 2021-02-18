@@ -4,7 +4,6 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.graphics.Canvas;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
@@ -12,7 +11,9 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.Px;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.ViewCompat;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,13 +27,12 @@ import java.util.List;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.CardDisplay;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.settings.adapters.CardDisplayAdapter;
 import wangdaye.com.geometricweather.common.ui.adapters.TagAdapter;
 import wangdaye.com.geometricweather.common.ui.decotarions.GridMarginsDecoration;
 import wangdaye.com.geometricweather.common.ui.decotarions.ListDecoration;
 import wangdaye.com.geometricweather.common.ui.widgets.slidingItem.SlidingItemTouchCallback;
-import wangdaye.com.geometricweather.common.utils.DisplayUtils;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.adapters.CardDisplayAdapter;
 
 public class CardDisplayManageActivity extends GeoActivity {
 
@@ -44,6 +44,7 @@ public class CardDisplayManageActivity extends GeoActivity {
     private FrameLayout mBottomBar;
     private @Nullable AnimatorSet mBottomAnimator;
     private @Nullable Boolean mBottomBarVisibility;
+    private @Px int mElevation;
 
     private class CardTag implements TagAdapter.Tag {
 
@@ -84,12 +85,8 @@ public class CardDisplayManageActivity extends GeoActivity {
                                 @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder,
                                 float dX, float dY, int actionState, boolean isCurrentlyActive) {
             super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
-                    && actionState == ItemTouchHelper.ACTION_STATE_DRAG) {
-                viewHolder.itemView.setElevation(
-                        DisplayUtils.dpToPx(CardDisplayManageActivity.this, dY == 0 ? 0 : 10)
-                );
-            }
+            ViewCompat.setElevation(viewHolder.itemView,
+                    (dY != 0 || isCurrentlyActive) ? mElevation : 0);
         }
     }
 
@@ -97,6 +94,8 @@ public class CardDisplayManageActivity extends GeoActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_card_display_manage);
+
+        mElevation = getResources().getDimensionPixelSize(R.dimen.touch_rise_z);
 
         Toolbar toolbar = findViewById(R.id.activity_card_display_manage_toolbar);
         toolbar.setNavigationOnClickListener(view -> finish());
@@ -148,12 +147,10 @@ public class CardDisplayManageActivity extends GeoActivity {
         });
 
         mBottomBar = findViewById(R.id.activity_card_display_manage_bottomBar);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
-            mBottomBar.setOnApplyWindowInsetsListener((v, insets) -> {
-                mBottomBar.setPadding(0, 0, 0, insets.getSystemWindowInsetBottom());
-                return insets;
-            });
-        }
+        ViewCompat.setOnApplyWindowInsetsListener(mBottomBar, (v, insets) -> {
+            mBottomBar.setPadding(0, 0, 0, insets.getSystemWindowInsetBottom());
+            return insets;
+        });
 
         RecyclerView bottomRecyclerView = findViewById(R.id.activity_card_display_manage_bottomRecyclerView);
         bottomRecyclerView.setLayoutManager(

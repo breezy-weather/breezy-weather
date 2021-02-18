@@ -4,13 +4,14 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.graphics.Canvas;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.Px;
+import androidx.core.view.ViewCompat;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,14 +25,13 @@ import java.util.List;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.DailyTrendDisplay;
-import wangdaye.com.geometricweather.databinding.ActivityDailyTrendDisplayManageBinding;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.settings.adapters.DailyTrendDisplayAdapter;
 import wangdaye.com.geometricweather.common.ui.adapters.TagAdapter;
 import wangdaye.com.geometricweather.common.ui.decotarions.GridMarginsDecoration;
 import wangdaye.com.geometricweather.common.ui.decotarions.ListDecoration;
 import wangdaye.com.geometricweather.common.ui.widgets.slidingItem.SlidingItemTouchCallback;
-import wangdaye.com.geometricweather.common.utils.DisplayUtils;
+import wangdaye.com.geometricweather.databinding.ActivityDailyTrendDisplayManageBinding;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.adapters.DailyTrendDisplayAdapter;
 
 public class DailyTrendDisplayManageActivity extends GeoActivity {
 
@@ -44,6 +44,7 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
 
     private @Nullable AnimatorSet mBottomAnimator;
     private @Nullable Boolean mBottomBarVisibility;
+    private @Px int mElevation;
 
     private class DailyTrendTag implements TagAdapter.Tag {
 
@@ -85,12 +86,8 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
                                 @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder,
                                 float dX, float dY, int actionState, boolean isCurrentlyActive) {
             super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
-                    && actionState == ItemTouchHelper.ACTION_STATE_DRAG) {
-                viewHolder.itemView.setElevation(
-                        DisplayUtils.dpToPx(DailyTrendDisplayManageActivity.this, dY == 0 ? 0 : 10)
-                );
-            }
+            ViewCompat.setElevation(viewHolder.itemView,
+                    (dY != 0 || isCurrentlyActive) ? mElevation : 0);
         }
     }
 
@@ -99,6 +96,8 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
         super.onCreate(savedInstanceState);
         mBinding = ActivityDailyTrendDisplayManageBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
+
+        mElevation = getResources().getDimensionPixelSize(R.dimen.touch_rise_z);
 
         mBinding.toolbar.setNavigationOnClickListener(view -> finish());
 
@@ -147,12 +146,11 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
             return true;
         });
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
-            mBinding.bottomBar.setOnApplyWindowInsetsListener((v, insets) -> {
-                mBinding.bottomBar.setPadding(0, 0, 0, insets.getSystemWindowInsetBottom());
-                return insets;
-            });
-        }
+
+        ViewCompat.setOnApplyWindowInsetsListener(mBinding.bottomBar, (v, insets) -> {
+            mBinding.bottomBar.setPadding(0, 0, 0, insets.getSystemWindowInsetBottom());
+            return insets;
+        });
 
         mBinding.bottomRecyclerView.setLayoutManager(
                 new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));

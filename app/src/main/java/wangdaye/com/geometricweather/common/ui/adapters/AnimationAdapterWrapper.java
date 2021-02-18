@@ -2,10 +2,9 @@ package wangdaye.com.geometricweather.common.ui.adapters;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Interpolator;
-import android.view.animation.LinearInterpolator;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,23 +19,19 @@ public abstract class AnimationAdapterWrapper<A extends RecyclerView.Adapter<VH>
     private final A mInner;
     private final Map<Integer, Animator> mAnimatorSet;
 
-    private int mDuration;
-    private Interpolator mInterpolator;
     private int mLastPosition;
     private boolean mFirstOnly;
 
     public AnimationAdapterWrapper(A adapter) {
-        this(adapter, 300, new LinearInterpolator(), true);
+        this(adapter, true);
     }
 
-    public AnimationAdapterWrapper(A adapter, int duration, Interpolator interpolator, boolean firstOnly) {
+    public AnimationAdapterWrapper(A adapter, boolean firstOnly) {
         super.setHasStableIds(adapter.hasStableIds());
 
         mInner = adapter;
         mAnimatorSet = new HashMap<>();
 
-        mDuration = duration;
-        mInterpolator = interpolator;
         mLastPosition = -1;
         mFirstOnly = firstOnly;
     }
@@ -122,15 +117,20 @@ public abstract class AnimationAdapterWrapper<A extends RecyclerView.Adapter<VH>
 
     private void clear(View view) {
         view.setAlpha(1f);
-        view.setScaleX(1f);
-        view.setScaleY(1f);
-        view.setTranslationX(0f);
-        view.setTranslationY(0f);
+
         view.setRotation(0f);
         view.setRotationX(0f);
         view.setRotationY(0f);
         view.setPivotX(view.getMeasuredWidth() / 2f);
         view.setPivotY(view.getMeasuredHeight() / 2f);
+
+        view.setScaleX(1f);
+        view.setScaleY(1f);
+        view.setTranslationX(0f);
+        view.setTranslationY(0f);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            view.setTranslationZ(0f);
+        }
     }
 
     @Override
@@ -171,27 +171,11 @@ public abstract class AnimationAdapterWrapper<A extends RecyclerView.Adapter<VH>
         return mInner;
     }
 
-    public void setDuration(int duration) {
-        mDuration = duration;
-    }
-
-    public void setInterpolator(Interpolator interpolator) {
-        mInterpolator = interpolator;
-    }
-
     public void setLastPosition(int lastPosition) {
         mLastPosition = lastPosition;
     }
 
     public void setFirstOnly(boolean firstOnly) {
         mFirstOnly = firstOnly;
-    }
-
-    public int getDuration() {
-        return mDuration;
-    }
-
-    public Interpolator getInterpolator() {
-        return mInterpolator;
     }
 }
