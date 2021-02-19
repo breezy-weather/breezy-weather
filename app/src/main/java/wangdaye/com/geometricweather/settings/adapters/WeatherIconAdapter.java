@@ -146,7 +146,7 @@ public class WeatherIconAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     public static GridLayoutManager.SpanSizeLookup getSpanSizeLookup(int columnCount,
-                                                                     List<WeatherIconAdapter.Item> itemList) {
+                                                                     List<Item> itemList) {
         return new SpanSizeLookup(columnCount, itemList);
     }
 }

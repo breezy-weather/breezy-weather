@@ -1,25 +1,23 @@
 package wangdaye.com.geometricweather.location.services;
 
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationManager;
+import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.Settings;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
-
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
-import com.google.android.gms.location.LocationServices;
 
 import java.io.IOException;
 import java.util.List;
@@ -27,76 +25,130 @@ import java.util.List;
 import wangdaye.com.geometricweather.common.utils.LanguageUtils;
 import wangdaye.com.geometricweather.common.utils.helpters.AsyncHelper;
 
-public class GMSLocationService extends LocationService {
+/**
+ * Android Location service.
+ * */
+
+@SuppressLint("MissingPermission")
+public class AndroidLocationService extends LocationService {
 
     private final Context mContext;
     private final Handler mTimer;
 
-    private final FusedLocationProviderClient mGMSClient;
-    @Nullable private GMSLocationListener mGMSLocationListener;
+    @Nullable private LocationManager mLocationManager;
+
+    @Nullable private LocationListener mNetworkListener;
+    @Nullable private LocationListener mGPSListener;
+
     @Nullable private LocationCallback mLocationCallback;
     @Nullable private Location mLastKnownLocation;
 
     private static final long TIMEOUT_MILLIS = 10 * 1000;
 
-    private class GMSLocationListener extends com.google.android.gms.location.LocationCallback {
+    private class LocationListener implements android.location.LocationListener {
 
-        public void onLocationResult(LocationResult locationResult) {
-            if (locationResult != null && locationResult.getLocations().size() > 0) {
-                handleLocation(locationResult.getLocations().get(0));
+        @Override
+        public void onLocationChanged(Location location) {
+            if (location != null) {
+                stopLocationUpdates();
+                handleLocation(location);
             }
+        }
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+            // do nothing.
+        }
+
+        @Override
+        public void onProviderEnabled(String provider) {
+            // do nothing.
+        }
+
+        @Override
+        public void onProviderDisabled(String provider) {
+            // do nothing.
         }
     }
 
-    public GMSLocationService(Context c) {
+    public AndroidLocationService(Context c) {
         mContext = c;
         mTimer = new Handler(Looper.getMainLooper());
 
-        mGMSClient = LocationServices.getFusedLocationProviderClient(mContext);
-        mGMSLocationListener = null;
+        mNetworkListener = null;
+        mGPSListener = null;
+
         mLocationCallback = null;
         mLastKnownLocation = null;
     }
 
-    @SuppressLint("MissingPermission")
     @Override
-    public void requestLocation(Context context, @NonNull LocationCallback callback) {
-        if (!hasPermissions(context)) {
+    public void requestLocation(Context context, @NonNull LocationCallback callback){
+        mLocationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+
+        if (mLocationManager == null
+                || !locationEnabled(context, mLocationManager)
+                || !hasPermissions(context)) {
             callback.onCompleted(null);
             return;
         }
 
-        mGMSLocationListener = new GMSLocationListener();
+        mNetworkListener = new LocationListener();
+        mGPSListener = new LocationListener();
+
         mLocationCallback = callback;
-        mLastKnownLocation = null;
+        mLastKnownLocation = getLastKnownLocation();
 
-        mGMSClient.getLastLocation().addOnSuccessListener(location -> mLastKnownLocation = location);
-
-        LocationRequest request = LocationRequest.create();
-        request.setNumUpdates(1);
-        request.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
-
-        mGMSClient.requestLocationUpdates(request, mGMSLocationListener, Looper.getMainLooper());
+        if (mLocationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+            mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
+                    0, 0, mNetworkListener, Looper.getMainLooper());
+        }
+        if (mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+                    0, 0, mGPSListener, Looper.getMainLooper());
+        }
 
         mTimer.postDelayed(() -> {
-            if (mGMSLocationListener != null) {
-                mGMSClient.removeLocationUpdates(mGMSLocationListener);
-                mGMSLocationListener = null;
-            }
+            stopLocationUpdates();
             handleLocation(mLastKnownLocation);
         }, TIMEOUT_MILLIS);
     }
 
-    @Override
-    public void cancel() {
-        mTimer.removeCallbacksAndMessages(null);
-
-        if (mGMSLocationListener != null) {
-            mGMSClient.removeLocationUpdates(mGMSLocationListener);
-            mGMSLocationListener = null;
+    @Nullable
+    private Location getLastKnownLocation() {
+        if (mLocationManager == null) {
+            return null;
         }
 
+        Location location = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        if (location != null) {
+            return location;
+        }
+        location = mLocationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+        if (location != null) {
+            return location;
+        }
+        return mLocationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
+    }
+
+    @Override
+    public void cancel() {
+        stopLocationUpdates();
         mLocationCallback = null;
+        mTimer.removeCallbacksAndMessages(null);
+    }
+
+    private void stopLocationUpdates() {
+        if (mLocationManager != null) {
+            if (mNetworkListener != null) {
+                mLocationManager.removeUpdates(mNetworkListener);
+                mNetworkListener = null;
+            }
+            if (mGPSListener != null) {
+                mLocationManager.removeUpdates(mGPSListener);
+                mGPSListener = null;
+            }
+        }
     }
 
     @Override
@@ -183,8 +235,25 @@ public class GMSLocationService extends LocationService {
         return result;
     }
 
-    public static boolean isEnabled(Context context) {
-        return GoogleApiAvailability.getInstance()
-                .isGooglePlayServicesAvailable(context) == ConnectionResult.SUCCESS;
+    private static boolean locationEnabled(Context context, @NonNull LocationManager manager) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            if (!manager.isLocationEnabled()) {
+                return false;
+            }
+        } else {
+            int locationMode = -1;
+            try {
+                locationMode = Settings.Secure.getInt(
+                        context.getContentResolver(), Settings.Secure.LOCATION_MODE);
+            } catch (Settings.SettingNotFoundException e) {
+                e.printStackTrace();
+            }
+            if (locationMode == Settings.Secure.LOCATION_MODE_OFF) {
+                return false;
+            }
+        }
+
+        return manager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+                || manager.isProviderEnabled(LocationManager.GPS_PROVIDER);
     }
 }

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import wangdaye.com.geometricweather.BuildConfig;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.settings.models.AboutAppLibrary;
@@ -122,15 +123,18 @@ public class AboutAdapter extends RecyclerView.Adapter<AboutAdapter.ViewHolder> 
 class HeaderHolder extends AboutAdapter.ViewHolder {
 
     private final AppCompatImageView mImage;
+    private final TextView mVersion;
 
     HeaderHolder(GeoActivity activity, View itemView) {
         super(activity, itemView);
         mImage = itemView.findViewById(R.id.item_about_header_appIcon);
+        mVersion = itemView.findViewById(R.id.item_about_header_appVersion);
     }
 
     @Override
     void onBindView(GeoActivity activity, Object model) {
         ImageHelper.load(activity, mImage, R.drawable.ic_launcher);
+        mVersion.setText(BuildConfig.VERSION_NAME);
     }
 }
 

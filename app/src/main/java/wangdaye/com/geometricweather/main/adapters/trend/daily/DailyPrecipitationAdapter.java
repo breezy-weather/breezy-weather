@@ -170,14 +170,14 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter<DailyPrecipi
 
     @NonNull
     @Override
-    public DailyPrecipitationAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_trend_daily, parent, false);
-        return new DailyPrecipitationAdapter.ViewHolder(view);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DailyPrecipitationAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.onBindView(getActivity(), getLocation(), mThemeManager, position);
     }
 

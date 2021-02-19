@@ -1,10 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="MissingTranslation">
+
     <!-- app. -->
     <string name="app_name">Weather</string>
     <string name="geometric_weather">Geometric Weather</string>
-    <string name="package_name">wangdaye.com.geometricweather</string><!-- Do not translate. -->
-    <string name="version_code">v2.709</string><!-- Do not translate. -->
 
     <!-- keyword. -->
     <string name="current_location">Current location</string>

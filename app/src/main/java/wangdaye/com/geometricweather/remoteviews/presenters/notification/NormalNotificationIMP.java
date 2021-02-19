@@ -194,7 +194,7 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
         builder.setOnlyAlertOnce(true);
 
         Notification notification = builder.build();
-        if (!tempIcon && Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+        if (!tempIcon && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             try {
                 notification.getClass()
                         .getMethod("setSmallIcon", Icon.class)

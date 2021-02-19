@@ -140,7 +140,7 @@ public class ForecastNotificationIMP extends AbstractRemoteViewsPresenter {
         builder.setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL);
 
         Notification notification = builder.build();
-        if (Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             try {
                 notification.getClass()
                         .getMethod("setSmallIcon", Icon.class)

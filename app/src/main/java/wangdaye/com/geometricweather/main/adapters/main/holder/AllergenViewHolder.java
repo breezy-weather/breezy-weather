@@ -41,8 +41,8 @@ public class AllergenViewHolder extends AbstractMainCardViewHolder {
 
         @NonNull
         @Override
-        public DailyPollenAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            DailyPollenAdapter.ViewHolder holder = super.onCreateViewHolder(parent, viewType);
+        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            ViewHolder holder = super.onCreateViewHolder(parent, viewType);
             holder.itemView.setLayoutParams(
                     new ViewGroup.LayoutParams(
                             ViewGroup.LayoutParams.MATCH_PARENT,

@@ -41,14 +41,14 @@ public interface WeatherView {
             WEATHER_KIND_WIND
     }) @interface WeatherKindRule {}
 
-    void setWeather(@WeatherView.WeatherKindRule int weatherKind, boolean daytime,
+    void setWeather(@WeatherKindRule int weatherKind, boolean daytime,
                     @Nullable ResourceProvider provider);
 
     void onClick();
 
     void onScroll(int scrollY);
 
-    @WeatherView.WeatherKindRule
+    @WeatherKindRule
     int getWeatherKind();
 
     /**

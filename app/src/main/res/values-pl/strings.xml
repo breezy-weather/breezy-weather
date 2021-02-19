@@ -1,5 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools"
-    tools:ignore="MissingTranslation">
+<resources xmlns:tools="http://schemas.android.com/tools">
 
 <!--
     EN # Some translations can be untranslated or skipped cause of not having certain terms in Polish language. If there were any mistakes in the translation, I apologize in advance.

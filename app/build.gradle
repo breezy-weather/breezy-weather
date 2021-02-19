@@ -36,10 +36,6 @@ android {
             }
         }
     }
-    lintOptions {
-        checkReleaseBuilds false
-        abortOnError false
-    }
     buildTypes.each {
         it.buildConfigField 'String', 'CN_WEATHER_BASE_URL', CN_WEATHER_BASE_URL
         it.buildConfigField 'String', 'CAIYUN_WEATHER_BASE_URL', CAIYUN_WEATHER_BASE_URL
@@ -57,8 +53,16 @@ android {
         it.buildConfigField 'String', 'IQA_ATMO_AURA_URL', IQA_ATMO_AURA_URL
         it.buildConfigField 'String', 'IQA_ATMO_SUD_URL', IQA_ATMO_SUD_URL
     }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
     sourceSets{
-        main{
+        pub {
+            jniLibs.srcDir 'libs'
+            jni.srcDirs = []
+        }
+        gplay {
             jniLibs.srcDir 'libs'
             jni.srcDirs = []
         }
@@ -79,6 +83,26 @@ android {
             unitTests.returnDefaultValues = true
         }
     }
+    flavorDimensions "store"
+    productFlavors {
+        pub {
+            dimension "store"
+            versionNameSuffix "_pub"
+        }
+        gplay {
+            dimension "store"
+            versionNameSuffix "_gplay"
+            repositories {
+                maven {
+                    url "https://dl.bintray.com/qichuan/maven/"
+                }
+            }
+        }
+        fdroid {
+            dimension "store"
+            versionNameSuffix "_fdroid"
+        }
+    }
 }
 
 allprojects {
@@ -89,9 +113,6 @@ allprojects {
         maven {
             url "https://jitpack.io"
         }
-        maven {
-            url "https://dl.bintray.com/qichuan/maven/"
-        }
     }
 }
 
@@ -101,7 +122,8 @@ greendao {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    pubImplementation fileTree(include: ['*.jar'], dir: 'libs')
+    gplayImplementation fileTree(include: ['*.jar'], dir: 'libs')
 
     // test.
     testImplementation 'junit:junit:4.12'
@@ -149,10 +171,12 @@ dependencies {
     annotationProcessor 'androidx.hilt:hilt-compiler:1.0.0-alpha01'
 
     // a map.
-    implementation 'com.amap.api:location:4.7.2'
+    pubImplementation 'com.amap.api:location:4.7.2'
+    gplayImplementation 'com.amap.api:location:4.7.2'
 
     // gms.
-    implementation "com.google.android.gms:play-services-location:17.1.0"
+    pubImplementation "com.google.android.gms:play-services-location:17.1.0"
+    gplayImplementation "com.google.android.gms:play-services-location:17.1.0"
 
     // glide.
     implementation 'com.github.bumptech.glide:glide:4.11.0'
@@ -177,8 +201,8 @@ dependencies {
     implementation 'org.cyanogenmod:platform.sdk:5.0'
 
     // bugly.
-    implementation 'com.tencent.bugly:crashreport:2.8.6.0'
-    implementation 'com.tencent.bugly:nativecrashreport:3.6.0.1'
+    pubImplementation 'com.tencent.bugly:crashreport:2.8.6.0'
+    pubImplementation 'com.tencent.bugly:nativecrashreport:3.6.0.1'
 
     // rx java.
     implementation "io.reactivex.rxjava2:rxjava:2.2.9"

@@ -921,7 +921,7 @@ public class InkPageIndicator extends View
         return savedState;
     }
 
-    static class SavedState extends View.BaseSavedState {
+    static class SavedState extends BaseSavedState {
         int currentPage;
 
         public SavedState(Parcelable superState) {
@@ -940,7 +940,7 @@ public class InkPageIndicator extends View
         }
 
         @SuppressWarnings("UnusedDeclaration")
-        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() {
+        public static final Creator<SavedState> CREATOR = new Creator<SavedState>() {
             @Override
             public SavedState createFromParcel(Parcel in) {
                 return new SavedState(in);
