@@ -21,8 +21,8 @@ import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.Daily;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.common.ui.widgets.insets.FitBottomSystemBarRecyclerView;
-import wangdaye.com.geometricweather.common.ui.widgets.insets.FitBottomSystemBarViewPager;
+import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarRecyclerView;
+import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarViewPager;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpters.AsyncHelper;
 import wangdaye.com.geometricweather.daily.adapter.DailyWeatherAdapter;
@@ -108,7 +108,8 @@ public class DailyWeatherActivity extends GeoActivity {
             for (int i = 0; i < weather.getDailyForecast().size(); i ++) {
                 Daily d = weather.getDailyForecast().get(i);
 
-                FitBottomSystemBarRecyclerView recyclerView = new FitBottomSystemBarRecyclerView(this);
+                FitSystemBarRecyclerView recyclerView = new FitSystemBarRecyclerView(this);
+                recyclerView.setFitSide(FitSystemBarRecyclerView.SIDE_BOTTOM);
                 recyclerView.setClipToPadding(false);
                 DailyWeatherAdapter dailyWeatherAdapter = new DailyWeatherAdapter(this, d, 3);
                 GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
@@ -120,8 +121,8 @@ public class DailyWeatherActivity extends GeoActivity {
                 titleList.add(String.valueOf(i + 1));
             }
 
-            FitBottomSystemBarViewPager pager = findViewById(R.id.activity_weather_daily_pager);
-            pager.setAdapter(new FitBottomSystemBarViewPager.FitBottomSystemBarPagerAdapter(pager, viewList, titleList));
+            FitSystemBarViewPager pager = findViewById(R.id.activity_weather_daily_pager);
+            pager.setAdapter(new FitSystemBarViewPager.FitBottomSystemBarPagerAdapter(pager, viewList, titleList));
             pager.setPageMargin((int) DisplayUtils.dpToPx(this, 1));
             pager.setPageMarginDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorLine)));
             pager.setCurrentItem(mPosition);

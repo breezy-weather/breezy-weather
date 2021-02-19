@@ -149,12 +149,6 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
             return true;
         }, new DefaultThemeManager());
 
-
-        ViewCompat.setOnApplyWindowInsetsListener(mBinding.bottomBar, (v, insets) -> {
-            mBinding.bottomBar.setPadding(0, 0, 0, insets.getSystemWindowInsetBottom());
-            return insets;
-        });
-
         mBinding.bottomRecyclerView.setLayoutManager(
                 new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         mBinding.bottomRecyclerView.addItemDecoration(
@@ -198,10 +192,10 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
             }
             mBottomAnimator = new AnimatorSet();
             mBottomAnimator.playTogether(
-                    ObjectAnimator.ofFloat(mBinding.bottomBar, "alpha",
-                            mBinding.bottomBar.getAlpha(), visible ? 1 : 0),
-                    ObjectAnimator.ofFloat(mBinding.bottomBar, "translationY",
-                            mBinding.bottomBar.getTranslationY(), visible ? 0 : mBinding.bottomBar.getMeasuredHeight())
+                    ObjectAnimator.ofFloat(mBinding.bottomRecyclerView, "alpha",
+                            mBinding.bottomRecyclerView.getAlpha(), visible ? 1 : 0),
+                    ObjectAnimator.ofFloat(mBinding.bottomRecyclerView, "translationY",
+                            mBinding.bottomRecyclerView.getTranslationY(), visible ? 0 : mBinding.bottomRecyclerView.getMeasuredHeight())
             );
             mBottomAnimator.setDuration(visible ? 350 : 150);
             mBottomAnimator.setInterpolator(visible

@@ -12,11 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <wangdaye.com.geometricweather.common.ui.widgets.insets.FitTopSystemBarAppBarLayout
+        <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
             android:id="@+id/searchBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
             android:background="@color/colorSearchBarBackground"
             android:transitionName="@string/transition_activity_search_bar"
             tools:targetApi="lollipop">
@@ -63,7 +62,7 @@
 
             </RelativeLayout>
 
-        </wangdaye.com.geometricweather.common.ui.widgets.insets.FitTopSystemBarAppBarLayout>
+        </wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -82,12 +81,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <wangdaye.com.geometricweather.common.ui.widgets.insets.FitBottomSystemBarRecyclerView
+                <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarRecyclerView
                     android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:fitsSystemWindows="true"
-                    android:clipToPadding="false" />
+                    android:clipToPadding="false"
+                    app:rv_side="bottom" />
 
                 <com.turingtechnologies.materialscrollbar.DragScrollBar
                     android:id="@+id/scrollBar"

@@ -6,7 +6,6 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowInsets;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,17 +16,17 @@ import androidx.viewpager.widget.ViewPager;
 
 import java.util.List;
 
-public class FitBottomSystemBarViewPager extends ViewPager {
+public class FitSystemBarViewPager extends ViewPager {
 
     private Rect mWindowInsets = new Rect(0, 0, 0, 0);
 
     public static class FitBottomSystemBarPagerAdapter extends PagerAdapter {
 
-        private final FitBottomSystemBarViewPager mPager;
+        private final FitSystemBarViewPager mPager;
         private final List<View> mViewList;
         public List<String> mTitleList;
 
-        public FitBottomSystemBarPagerAdapter(FitBottomSystemBarViewPager pager,
+        public FitBottomSystemBarPagerAdapter(FitSystemBarViewPager pager,
                                               List<View> viewList, List<String> titleList) {
             mPager = pager;
             mViewList = viewList;
@@ -73,20 +72,22 @@ public class FitBottomSystemBarViewPager extends ViewPager {
         }
 
         private void setWindowInsets(View view, Rect insets) {
-            if (view instanceof FitBottomSystemBarNestedScrollView) {
-                ((FitBottomSystemBarNestedScrollView) view).fitSystemWindows(insets);
-            } else if (view instanceof FitBottomSystemBarRecyclerView) {
-                ((FitBottomSystemBarRecyclerView) view).fitSystemWindows(insets);
+            if (view instanceof FitSystemBarNestedScrollView) {
+                ((FitSystemBarNestedScrollView) view).fitSystemWindows(insets);
+            } else if (view instanceof FitSystemBarRecyclerView) {
+                ((FitSystemBarRecyclerView) view).fitSystemWindows(insets);
             }
         }
     }
 
-    public FitBottomSystemBarViewPager(@NonNull Context context) {
+    public FitSystemBarViewPager(@NonNull Context context) {
         this(context, null);
     }
 
-    public FitBottomSystemBarViewPager(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public FitSystemBarViewPager(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+
+        setFitsSystemWindows(false);
         ViewCompat.setOnApplyWindowInsetsListener(this, null);
     }
 
@@ -95,14 +96,11 @@ public class FitBottomSystemBarViewPager extends ViewPager {
     public void setOnApplyWindowInsetsListener(OnApplyWindowInsetsListener listener) {
         super.setOnApplyWindowInsetsListener((v, insets) -> {
             if (listener != null) {
-                WindowInsets result = listener.onApplyWindowInsets(v, insets);
-                fitSystemWindows(
-                        new Rect(getPaddingLeft(), getPaddingTop(), getPaddingRight(), getPaddingBottom()));
-                return result;
+                return listener.onApplyWindowInsets(v, insets);
             }
 
             Rect waterfull = Utils.getWaterfullInsets(insets);
-            fitSystemWindows(
+            fitSystemBar(
                     new Rect(
                             insets.getSystemWindowInsetLeft() + waterfull.left,
                             insets.getSystemWindowInsetTop() + waterfull.top,
@@ -116,11 +114,16 @@ public class FitBottomSystemBarViewPager extends ViewPager {
 
     @Override
     protected boolean fitSystemWindows(Rect insets) {
-        mWindowInsets = insets;
+        super.fitSystemWindows(insets);
+        fitSystemBar(insets);
         return false;
     }
 
-    public Rect getWindowInsets() {
+    private void fitSystemBar(Rect insets) {
+        mWindowInsets = insets;
+    }
+
+    private Rect getWindowInsets() {
         return mWindowInsets;
     }
 }

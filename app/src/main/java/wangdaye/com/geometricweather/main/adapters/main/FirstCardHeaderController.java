@@ -23,7 +23,6 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Base;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.main.MainActivity;
 import wangdaye.com.geometricweather.main.utils.MainThemeManager;
-import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
 import wangdaye.com.geometricweather.common.utils.helpters.IntentHelper;
 
 public class FirstCardHeaderController
@@ -52,7 +51,6 @@ public class FirstCardHeaderController
             Weather weather = location.getWeather();
 
             mView.setOnClickListener(v -> ((MainActivity) activity).setManagementFragmentVisibility(true));
-            mView.setEnabled(!MainModuleUtils.isMultiFragmentEnabled(activity));
 
             if (weather.getAlertList().size() == 0) {
                 timeIcon.setEnabled(false);

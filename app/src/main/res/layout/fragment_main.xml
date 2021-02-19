@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarSwipeRefreshLayout
             android:id="@+id/refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -20,19 +20,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scrollbars="none"
-                android:fitsSystemWindows="true"
-                android:clipToPadding="false" />
+                android:clipToPadding="false"
+                android:descendantFocusability="blocksDescendants" />
 
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        </wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarSwipeRefreshLayout>
 
     </wangdaye.com.geometricweather.common.ui.widgets.SwipeSwitchLayout>
 
-    <wangdaye.com.geometricweather.common.ui.widgets.insets.FitTopSystemBarAppBarLayout
+    <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
         android:id="@+id/app_bar"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
         android:background="@android:color/transparent"
         app:elevation="0dp">
 
@@ -44,7 +43,7 @@
             app:theme="@style/GeometricWeatherTheme.AppbarTheme"
             app:popupTheme="@style/GeometricWeatherTheme.AppbarPopupTheme" />
 
-    </wangdaye.com.geometricweather.common.ui.widgets.insets.FitTopSystemBarAppBarLayout>
+    </wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout>
 
     <wangdaye.com.geometricweather.common.ui.widgets.InkPageIndicator
         android:id="@+id/indicator"

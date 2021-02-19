@@ -1,11 +1,11 @@
 package wangdaye.com.geometricweather.settings.fragments;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.preference.EditTextPreference;
 import androidx.preference.EditTextPreferenceDialogFragmentCompat;
@@ -31,12 +31,10 @@ public abstract class AbstractSettingsFragment extends PreferenceFragmentCompat 
         RecyclerView rv = super.onCreateRecyclerView(inflater, parent, savedInstanceState);
         rv.setClipToPadding(false);
         rv.setFitsSystemWindows(true);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
-            rv.setOnApplyWindowInsetsListener((v, insets) -> {
-                v.setPadding(0, 0, 0, insets.getSystemWindowInsetBottom());
-                return insets;
-            });
-        }
+        ViewCompat.setOnApplyWindowInsetsListener(rv, (v, insets) -> {
+            v.setPadding(0, 0, 0, insets.getSystemWindowInsetBottom());
+            return insets;
+        });
         return rv;
     }
 

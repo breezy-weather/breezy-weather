@@ -36,18 +36,11 @@ public abstract class GeoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mSnackbarContainer = new CoordinatorLayout(this);
+
         mFitHorizontalSystemBarRootLayout = new FitHorizontalSystemBarRootLayout(this);
         mFitHorizontalSystemBarRootLayout.setRootColor(ContextCompat.getColor(this, R.color.colorRoot));
         mFitHorizontalSystemBarRootLayout.setLineColor(ContextCompat.getColor(this, R.color.colorLine));
-
-        mSnackbarContainer = new CoordinatorLayout(this);
-        mSnackbarContainer.addView(
-                mFitHorizontalSystemBarRootLayout,
-                new CoordinatorLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.MATCH_PARENT
-                )
-        );
 
         GeometricWeather.getInstance().addActivity(this);
 
@@ -65,6 +58,8 @@ public abstract class GeoActivity extends AppCompatActivity {
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
+        // decor -> snackbar container -> fit horizontal system bar -> decor child.
+
         ViewGroup decorView = (ViewGroup) getWindow().getDecorView();
         ViewGroup decorChild = (ViewGroup) decorView.getChildAt(0);
 
@@ -74,8 +69,19 @@ public abstract class GeoActivity extends AppCompatActivity {
         }
         decorView.addView(mSnackbarContainer);
 
+        mSnackbarContainer.removeAllViews();
+        mSnackbarContainer.addView(
+                mFitHorizontalSystemBarRootLayout,
+                new CoordinatorLayout.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT
+                )
+        );
+
         mFitHorizontalSystemBarRootLayout.removeAllViews();
         mFitHorizontalSystemBarRootLayout.addView(decorChild);
+
+
     }
 
     @Override

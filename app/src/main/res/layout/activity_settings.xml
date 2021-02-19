@@ -6,10 +6,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <wangdaye.com.geometricweather.common.ui.widgets.insets.FitTopSystemBarAppBarLayout
+    <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
         app:theme="@style/GeometricWeatherTheme.AppbarTheme" >
 
         <androidx.appcompat.widget.Toolbar
@@ -21,7 +20,7 @@
             app:navigationContentDescription="@string/content_desc_back"
             app:popupTheme="@style/GeometricWeatherTheme.AppbarPopupTheme" />
 
-    </wangdaye.com.geometricweather.common.ui.widgets.insets.FitTopSystemBarAppBarLayout>
+    </wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/activity_settings_container"

@@ -13,7 +13,7 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.ui.decotarions.ListDecoration;
-import wangdaye.com.geometricweather.common.ui.widgets.insets.FitBottomSystemBarRecyclerView;
+import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarRecyclerView;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.common.ui.adapters.DailyPollenAdapter;
 
@@ -52,7 +52,7 @@ public class AllergenActivity extends GeoActivity {
         toolbar.setNavigationOnClickListener(v -> finish());
 
         if (mLocation.getWeather() != null) {
-            FitBottomSystemBarRecyclerView recyclerView = findViewById(R.id.activity_allergen_recyclerView);
+            FitSystemBarRecyclerView recyclerView = findViewById(R.id.activity_allergen_recyclerView);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             recyclerView.addItemDecoration(new ListDecoration(this, ContextCompat.getColor(this, R.color.colorLine)));
             recyclerView.setAdapter(new DailyPollenAdapter(mLocation.getWeather()));

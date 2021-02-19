@@ -7,7 +7,6 @@ import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
-import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,11 +27,11 @@ import java.util.List;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.CardDisplay;
+import wangdaye.com.geometricweather.common.theme.DefaultThemeManager;
 import wangdaye.com.geometricweather.common.ui.adapters.TagAdapter;
 import wangdaye.com.geometricweather.common.ui.decotarions.GridMarginsDecoration;
 import wangdaye.com.geometricweather.common.ui.decotarions.ListDecoration;
 import wangdaye.com.geometricweather.common.ui.widgets.slidingItem.SlidingItemTouchCallback;
-import wangdaye.com.geometricweather.common.theme.DefaultThemeManager;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.settings.adapters.CardDisplayAdapter;
 
@@ -43,7 +42,7 @@ public class CardDisplayManageActivity extends GeoActivity {
 
     private TagAdapter mTagAdapter;
 
-    private FrameLayout mBottomBar;
+    private RecyclerView mBottomRecyclerView;
     private @Nullable AnimatorSet mBottomAnimator;
     private @Nullable Boolean mBottomBarVisibility;
     private @Px int mElevation;
@@ -149,25 +148,19 @@ public class CardDisplayManageActivity extends GeoActivity {
             return true;
         }, new DefaultThemeManager());
 
-        mBottomBar = findViewById(R.id.activity_card_display_manage_bottomBar);
-        ViewCompat.setOnApplyWindowInsetsListener(mBottomBar, (v, insets) -> {
-            mBottomBar.setPadding(0, 0, 0, insets.getSystemWindowInsetBottom());
-            return insets;
-        });
-
-        RecyclerView bottomRecyclerView = findViewById(R.id.activity_card_display_manage_bottomRecyclerView);
-        bottomRecyclerView.setLayoutManager(
+        mBottomRecyclerView = findViewById(R.id.activity_card_display_manage_bottomRecyclerView);
+        mBottomRecyclerView.setLayoutManager(
                 new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
-        bottomRecyclerView.addItemDecoration(
+        mBottomRecyclerView.addItemDecoration(
                 new GridMarginsDecoration(
-                        getResources().getDimension(R.dimen.normal_margin), bottomRecyclerView
+                        getResources().getDimension(R.dimen.normal_margin), mBottomRecyclerView
                 )
         );
-        bottomRecyclerView.setAdapter(mTagAdapter);
+        mBottomRecyclerView.setAdapter(mTagAdapter);
 
         mBottomAnimator = null;
         mBottomBarVisibility = false;
-        bottomRecyclerView.post(this::resetBottomBarVisibility);
+        mBottomRecyclerView.post(this::resetBottomBarVisibility);
     }
 
     @Override
@@ -198,10 +191,10 @@ public class CardDisplayManageActivity extends GeoActivity {
             }
             mBottomAnimator = new AnimatorSet();
             mBottomAnimator.playTogether(
-                    ObjectAnimator.ofFloat(mBottomBar, "alpha",
-                            mBottomBar.getAlpha(), visible ? 1 : 0),
-                    ObjectAnimator.ofFloat(mBottomBar, "translationY",
-                            mBottomBar.getTranslationY(), visible ? 0 : mBottomBar.getMeasuredHeight())
+                    ObjectAnimator.ofFloat(mBottomRecyclerView, "alpha",
+                            mBottomRecyclerView.getAlpha(), visible ? 1 : 0),
+                    ObjectAnimator.ofFloat(mBottomRecyclerView, "translationY",
+                            mBottomRecyclerView.getTranslationY(), visible ? 0 : mBottomRecyclerView.getMeasuredHeight())
             );
             mBottomAnimator.setDuration(visible ? 350 : 150);
             mBottomAnimator.setInterpolator(visible

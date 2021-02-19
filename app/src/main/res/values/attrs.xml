@@ -65,4 +65,22 @@
         <attr name="unfold" format="boolean" />
     </declare-styleable>
 
+    <!-- Fit system bar. -->
+    <declare-styleable name="FitSystemBarRecyclerView">
+        <attr name="rv_side">
+            <enum name="none" value="0" />
+            <enum name="top" value="1" />
+            <enum name="bottom" value="2" />
+            <enum name="both" value="3" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="FitSystemBarNestedScrollView">
+        <attr name="sv_side">
+            <enum name="none" value="0" />
+            <enum name="top" value="1" />
+            <enum name="bottom" value="2" />
+            <enum name="both" value="3" />
+        </attr>
+    </declare-styleable>
+
 </resources>

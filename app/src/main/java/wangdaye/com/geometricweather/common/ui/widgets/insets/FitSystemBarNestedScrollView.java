@@ -1,10 +1,10 @@
 package wangdaye.com.geometricweather.common.ui.widgets.insets;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Rect;
 import android.os.Build;
 import android.util.AttributeSet;
-import android.view.WindowInsets;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,28 +12,37 @@ import androidx.annotation.RequiresApi;
 import androidx.core.view.ViewCompat;
 import androidx.core.widget.NestedScrollView;
 
+import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 
-public class FitBottomSystemBarNestedScrollView extends NestedScrollView {
+public class FitSystemBarNestedScrollView extends NestedScrollView {
 
     private Rect mWindowInsets = new Rect(0, 0, 0, 0);
     private boolean mAdaptiveWidthEnabled = true;
+    private int mFitSide;
 
-    public FitBottomSystemBarNestedScrollView(@NonNull Context context) {
+    public static final int SIDE_NONE = 0;
+    public static final int SIDE_TOP = 1;
+    public static final int SIDE_BOTTOM = 2;
+    public static final int SIDE_BOTH = 3;
+
+    public FitSystemBarNestedScrollView(@NonNull Context context) {
         this(context, null);
     }
 
-    public FitBottomSystemBarNestedScrollView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public FitSystemBarNestedScrollView(@NonNull Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public FitBottomSystemBarNestedScrollView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public FitSystemBarNestedScrollView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        ViewCompat.setOnApplyWindowInsetsListener(this, null);
-    }
 
-    public void setAdaptiveWidthEnabled(boolean enabled) {
-        mAdaptiveWidthEnabled = enabled;
+        final TypedArray a = context.obtainStyledAttributes(
+                attrs, R.styleable.FitSystemBarNestedScrollView, defStyleAttr, 0);
+        mFitSide = a.getInt(R.styleable.FitSystemBarNestedScrollView_sv_side, SIDE_BOTH);
+        a.recycle();
+
+        ViewCompat.setOnApplyWindowInsetsListener(this, null);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
@@ -41,10 +50,7 @@ public class FitBottomSystemBarNestedScrollView extends NestedScrollView {
     public void setOnApplyWindowInsetsListener(OnApplyWindowInsetsListener listener) {
         super.setOnApplyWindowInsetsListener((v, insets) -> {
             if (listener != null) {
-                WindowInsets result = listener.onApplyWindowInsets(v, insets);
-                fitSystemWindows(
-                        new Rect(getPaddingLeft(), getPaddingTop(), getPaddingRight(), getPaddingBottom()));
-                return result;
+                return listener.onApplyWindowInsets(v, insets);
             }
 
             Rect waterfull = Utils.getWaterfullInsets(insets);
@@ -74,10 +80,25 @@ public class FitBottomSystemBarNestedScrollView extends NestedScrollView {
         int viewWidth = getMeasuredWidth();
         int adaptiveWidth = DisplayUtils.getTabletListAdaptiveWidth(getContext(), viewWidth);
         int paddingHorizontal = mAdaptiveWidthEnabled ? ((viewWidth - adaptiveWidth) / 2) : 0;
-        setPadding(paddingHorizontal, 0, paddingHorizontal, mWindowInsets.bottom);
+        setPadding(
+                paddingHorizontal,
+                (mFitSide == SIDE_TOP || mFitSide == SIDE_BOTH) ? mWindowInsets.top : 0,
+                paddingHorizontal,
+                (mFitSide == SIDE_BOTTOM || mFitSide == SIDE_BOTH) ? mWindowInsets.bottom : 0
+        );
     }
 
     public Rect getWindowInsets() {
         return mWindowInsets;
+    }
+
+    public void setAdaptiveWidthEnabled(boolean enabled) {
+        mAdaptiveWidthEnabled = enabled;
+        requestLayout();
+    }
+
+    public void setFitSide(int side) {
+        mFitSide = side;
+        requestLayout();
     }
 }

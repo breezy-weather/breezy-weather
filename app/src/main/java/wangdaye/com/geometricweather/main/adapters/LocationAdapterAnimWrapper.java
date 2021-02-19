@@ -76,23 +76,23 @@ public class LocationAdapterAnimWrapper
                 .ofFloat(view, "translationY", mDY, 0f).setDuration(duration);
         translation.setInterpolator(new OvershootInterpolator(overShootTensor));
 
+        Animator scaleX = ObjectAnimator
+                .ofFloat(view, "scaleX", 1.1f, 1f).setDuration(duration);
+        scaleX.setInterpolator(mDecelerate);
+
+        Animator scaleY = ObjectAnimator
+                .ofFloat(view, "scaleY", 1.1f, 1f).setDuration(duration);
+        scaleY.setInterpolator(mDecelerate);
+
         AnimatorSet set = new AnimatorSet();
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            set.playTogether(translation, alpha);
+            set.playTogether(translation, alpha, scaleX, scaleY);
         } else {
             Animator z = ObjectAnimator
                     .ofFloat(view, "translationZ", mDZ, 0f).setDuration(duration);
             z.setInterpolator(mDecelerate);
 
-            Animator scaleX = ObjectAnimator
-                    .ofFloat(view, "scaleX", 1.1f, 1f).setDuration(duration);
-            scaleX.setInterpolator(mDecelerate);
-
-            Animator scaleY = ObjectAnimator
-                    .ofFloat(view, "scaleY", 1.1f, 1f).setDuration(duration);
-            scaleY.setInterpolator(mDecelerate);
-
-            set.playTogether(translation, alpha, z, scaleX, scaleY);
+            set.playTogether(translation, alpha, scaleX, scaleY, z);
         }
         set.setStartDelay(delay);
         set.addListener(new AnimatorListenerAdapter() {

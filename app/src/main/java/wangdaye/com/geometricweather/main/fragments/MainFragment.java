@@ -158,16 +158,6 @@ public class MainFragment extends Fragment {
 
         mBinding.switchLayout.setOnSwitchListener(switchListener);
 
-        ViewCompat.setOnApplyWindowInsetsListener(mBinding.refreshLayout, (v, insets) -> {
-            int startPosition = insets.getSystemWindowInsetTop()
-                    + getResources().getDimensionPixelSize(R.dimen.normal_margin);
-            mBinding.refreshLayout.setProgressViewOffset(
-                    false,
-                    startPosition,
-                    (int) (startPosition + 64 * getResources().getDisplayMetrics().density)
-            );
-            return insets;
-        });
         mBinding.refreshLayout.setOnRefreshListener(() ->
                 mViewModel.updateWeather(true, true));
 

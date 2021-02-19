@@ -47,8 +47,8 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.polling.PollingManager;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
-import wangdaye.com.geometricweather.common.ui.widgets.insets.FitBottomSystemBarNestedScrollView;
-import wangdaye.com.geometricweather.common.ui.widgets.insets.FitTopSystemBarAppBarLayout;
+import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarNestedScrollView;
+import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpters.SnackbarHelper;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
@@ -79,7 +79,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
     protected RelativeLayout mAlignEndContainer;
 
     private BottomSheetBehavior mBottomSheetBehavior;
-    private FitBottomSystemBarNestedScrollView mBottomSheetScrollView;
+    private FitSystemBarNestedScrollView mBottomSheetScrollView;
     private TextInputLayout mSubtitleInputLayout;
     private TextInputEditText mSubtitleEditText;
 
@@ -451,7 +451,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         scrollContainer.post(() -> scrollContainer.setPaddingRelative(
                 0, 0, 0, mSubtitleInputLayout.getMeasuredHeight()));
 
-        FitTopSystemBarAppBarLayout bottomSheet = findViewById(R.id.activity_widget_config_custom_subtitle);
+        FitSystemBarAppBarLayout bottomSheet = findViewById(R.id.activity_widget_config_custom_subtitle);
         mBottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
         mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
         bottomSheet.post(() -> {

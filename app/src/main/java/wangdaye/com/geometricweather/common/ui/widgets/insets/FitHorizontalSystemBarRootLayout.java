@@ -7,7 +7,6 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Build;
 import android.util.AttributeSet;
-import android.view.WindowInsets;
 import android.widget.FrameLayout;
 
 import androidx.annotation.ColorInt;
@@ -19,8 +18,6 @@ import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 public class FitHorizontalSystemBarRootLayout extends FrameLayout {
 
     private final Paint mPaint;
-    private Rect mWindowInsets = new Rect(0, 0, 0, 0);
-
     private @ColorInt int mRootColor;
     private @ColorInt int mLineColor;
 
@@ -43,6 +40,7 @@ public class FitHorizontalSystemBarRootLayout extends FrameLayout {
         mLineColor = Color.GRAY;
 
         setWillNotDraw(false);
+        setFitsSystemWindows(false);
         ViewCompat.setOnApplyWindowInsetsListener(this, null);
     }
 
@@ -51,14 +49,11 @@ public class FitHorizontalSystemBarRootLayout extends FrameLayout {
     public void setOnApplyWindowInsetsListener(OnApplyWindowInsetsListener listener) {
         super.setOnApplyWindowInsetsListener((v, insets) -> {
             if (listener != null) {
-                WindowInsets result = listener.onApplyWindowInsets(v, insets);
-                fitSystemWindows(
-                        new Rect(getPaddingLeft(), getPaddingTop(), getPaddingRight(), getPaddingBottom()));
-                return result;
+                return listener.onApplyWindowInsets(v, insets);
             }
 
             Rect waterfull = Utils.getWaterfullInsets(insets);
-            fitSystemWindows(
+            fitSystemBar(
                     new Rect(
                             insets.getSystemWindowInsetLeft() + waterfull.left,
                             insets.getSystemWindowInsetTop() + waterfull.top,
@@ -72,10 +67,14 @@ public class FitHorizontalSystemBarRootLayout extends FrameLayout {
 
     @Override
     protected boolean fitSystemWindows(Rect insets) {
-        mWindowInsets = insets;
+        super.fitSystemWindows(insets);
+        fitSystemBar(insets);
+        return false;
+    }
+
+    private void fitSystemBar(Rect insets) {
         setPadding(insets.left, 0, insets.right, 0);
         invalidate();
-        return false;
     }
 
     @Override
@@ -102,9 +101,5 @@ public class FitHorizontalSystemBarRootLayout extends FrameLayout {
     public void setRootColor(@ColorInt int rootColor) {
         mRootColor = rootColor;
         invalidate();
-    }
-
-    public Rect getWindowInsets() {
-        return mWindowInsets;
     }
 }
