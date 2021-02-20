@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.animation.Animation;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,13 +31,12 @@ import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.ui.adapters.location.LocationAdapter;
 import wangdaye.com.geometricweather.common.ui.decotarions.ListDecoration;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
-import wangdaye.com.geometricweather.common.utils.helpters.SnackbarHelper;
-import wangdaye.com.geometricweather.main.MainActivity;
-import wangdaye.com.geometricweather.main.utils.MainThemeManager;
+import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
 import wangdaye.com.geometricweather.databinding.FragmentManagementBinding;
 import wangdaye.com.geometricweather.main.MainActivityViewModel;
 import wangdaye.com.geometricweather.main.adapters.LocationAdapterAnimWrapper;
 import wangdaye.com.geometricweather.main.models.SelectableLocationListResource;
+import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 import wangdaye.com.geometricweather.main.widgets.LocationItemTouchCallback;
 
 public class ManagementFragment extends Fragment
@@ -45,6 +46,7 @@ public class ManagementFragment extends Fragment
     private MainActivityViewModel mViewModel;
 
     private LocationAdapter mAdapter;
+    private LocationAdapterAnimWrapper mAdapterAnimWrapper;
     private ItemTouchHelper mItemTouchHelper;
     private ListDecoration mItemDecoration;
 
@@ -52,9 +54,20 @@ public class ManagementFragment extends Fragment
 
     private @Nullable Callback mCallback;
 
+    public static final String KEY_CONTROL_SYSTEM_BAR = "control_system_bar";
+
     public interface Callback {
         void onSearchBarClicked(View searchBar);
         void onSelectProviderActivityStarted();
+    }
+
+    public static ManagementFragment getInstance(boolean controlSystemBar) {
+        Bundle b = new Bundle();
+        b.putBoolean(KEY_CONTROL_SYSTEM_BAR, controlSystemBar);
+
+        ManagementFragment f = new ManagementFragment();
+        f.setArguments(b);
+        return f;
     }
 
     @Nullable
@@ -63,8 +76,20 @@ public class ManagementFragment extends Fragment
                              @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = FragmentManagementBinding.inflate(getLayoutInflater(), container, false);
         initModel();
-        initView(savedInstanceState == null);
+        initView();
+
         setCallback((Callback) requireActivity());
+
+        Bundle b = getArguments();
+        if (b != null) {
+            boolean controlSystemBar = b.getBoolean(KEY_CONTROL_SYSTEM_BAR, false);
+            if (controlSystemBar) {
+                DisplayUtils.setSystemBarStyle(requireContext(), requireActivity().getWindow(),
+                        false, false, true,
+                        mViewModel.getThemeManager().isLightTheme());
+            }
+        }
+
         return mBinding.getRoot();
     }
 
@@ -76,11 +101,20 @@ public class ManagementFragment extends Fragment
         }
     }
 
+    @Nullable
+    @Override
+    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
+        if (enter && nextAnim != 0 && mAdapterAnimWrapper != null) {
+            mAdapterAnimWrapper.setLastPosition(-1);
+        }
+        return super.onCreateAnimation(transit, enter, nextAnim);
+    }
+
     private void initModel() {
         mViewModel = new ViewModelProvider(requireActivity()).get(MainActivityViewModel.class);
     }
 
-    private void initView(boolean init) {
+    private void initView() {
         mBinding.searchBar.setOnClickListener(v -> {
             if (mCallback != null) {
                 mCallback.onSearchBarClicked(mBinding.searchBar);
@@ -106,19 +140,16 @@ public class ManagementFragment extends Fragment
                 holder -> mItemTouchHelper.startDrag(holder), // on drag.
                 mViewModel.getThemeManager()
         );
-        LocationAdapterAnimWrapper wrapper = new LocationAdapterAnimWrapper(requireContext(), mAdapter);
-        if (!init || !MainActivity.TAG_FRAGMENT_MANAGEMENT.equals(getTag())) {
-            // only execute list animation while user opening this fragment in vertical.
-            wrapper.setLastPosition(Integer.MAX_VALUE);
-        }
-        mBinding.recyclerView.setAdapter(wrapper);
+        mAdapterAnimWrapper = new LocationAdapterAnimWrapper(requireContext(), mAdapter);
+        mAdapterAnimWrapper.setLastPosition(Integer.MAX_VALUE);
+        mBinding.recyclerView.setAdapter(mAdapterAnimWrapper);
         mBinding.recyclerView.setLayoutManager(new LinearLayoutManager(
                 requireActivity(), RecyclerView.VERTICAL, false));
         mBinding.recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 if (dy != 0) {
-                    wrapper.setScrolled();
+                    mAdapterAnimWrapper.setScrolled();
                 }
             }
         });
@@ -213,6 +244,20 @@ public class ManagementFragment extends Fragment
         }
         mBinding.currentLocationButton.setEnabled(enabled);
         mBinding.currentLocationButton.setAlpha(enabled ? 1 : .5f);
+    }
+
+    public void prepareReenterTransition() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            postponeEnterTransition();
+            mBinding.searchBar.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+                @Override
+                public boolean onPreDraw() {
+                    mBinding.searchBar.getViewTreeObserver().removeOnPreDrawListener(this);
+                    startPostponedEnterTransition();
+                    return true;
+                }
+            });
+        }
     }
 
     // interface.

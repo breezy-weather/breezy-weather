@@ -10,6 +10,8 @@ import androidx.annotation.Px;
 import androidx.annotation.Size;
 import androidx.core.content.ContextCompat;
 
+import java.util.TimeZone;
+
 import javax.inject.Inject;
 
 import dagger.hilt.android.qualifiers.ActivityContext;
@@ -34,7 +36,7 @@ public class MainThemeManager extends ThemeManager {
     public MainThemeManager(@ActivityContext Context context) {
         mWeatherView = null;
         mDaytime = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
-                .getBoolean(KEY_DAY_TIME, true);
+                .getBoolean(KEY_DAY_TIME, DisplayUtils.isDaylight(TimeZone.getDefault()));
         update(context, null);
     }
 
@@ -88,7 +90,7 @@ public class MainThemeManager extends ThemeManager {
         return mLightTheme;
     }
 
-    public boolean ismDaytime() {
+    public boolean isDaytime() {
         return mDaytime;
     }
 

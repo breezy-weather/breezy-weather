@@ -10,8 +10,8 @@ android {
         applicationId "wangdaye.com.geometricweather"
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 27009
-        versionName "2.709"
+        versionCode 30000
+        versionName "3.000"
         multiDexEnabled true
         ndk {
             abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
@@ -59,10 +59,17 @@ android {
     }
     sourceSets{
         pub {
+            java.srcDirs = ["src/bugly", "src/proprietary"]
+            manifest.srcFile "proprietary/AndroidManifest.xml"
             jniLibs.srcDir 'libs'
             jni.srcDirs = []
         }
+        fdroid {
+            java.srcDirs = ["src/nobugly", "src/opensource"]
+        }
         gplay {
+            java.srcDirs = ["src/nobugly", "src/proprietary"]
+            manifest.srcFile "proprietary/AndroidManifest.xml"
             jniLibs.srcDir 'libs'
             jni.srcDirs = []
         }
@@ -137,15 +144,19 @@ dependencies {
     testImplementation "org.powermock:powermock-classloading-xstream:2.0.9"
     testImplementation 'org.robolectric:robolectric:4.2.1'
 
-    // jetpack.
+    // material design.
     implementation 'com.google.android.material:material:1.3.0-alpha03'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
+    // preference.
     implementation 'androidx.preference:preference:1.1.1'
 
+    // work.
     implementation "androidx.work:work-runtime:2.4.0"
+
+    // lifecycle.
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel:2.2.0"
     implementation "androidx.lifecycle:lifecycle-livedata:2.2.0"
@@ -156,7 +167,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-reactivestreams:2.2.0"
 
     // multi dex.
-    implementation 'com.android.support:multidex:1.0.3'
+    implementation "androidx.multidex:multidex:2.0.1"
 
     // hilt.
     implementation "com.google.dagger:hilt-android:2.28-alpha"

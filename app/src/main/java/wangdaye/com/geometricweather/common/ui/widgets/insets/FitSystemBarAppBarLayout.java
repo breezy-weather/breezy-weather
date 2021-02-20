@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,6 +14,12 @@ import androidx.core.view.ViewCompat;
 import com.google.android.material.appbar.AppBarLayout;
 
 public class FitSystemBarAppBarLayout extends AppBarLayout {
+
+    private @Nullable OnFitSystemBarListener mFitSystemBarListener;
+
+    public interface OnFitSystemBarListener {
+        void onFitSystemBar(View view, Rect insets);
+    }
 
     public FitSystemBarAppBarLayout(@NonNull Context context) {
         this(context, null);
@@ -56,5 +63,12 @@ public class FitSystemBarAppBarLayout extends AppBarLayout {
 
     private void fitSystemBar(Rect insets) {
         setPadding(0, insets.top, 0, 0);
+        if (mFitSystemBarListener != null) {
+            mFitSystemBarListener.onFitSystemBar(this, insets);
+        }
+    }
+
+    public void setOnFitSystemBarListener(@Nullable OnFitSystemBarListener l) {
+        mFitSystemBarListener = l;
     }
 }

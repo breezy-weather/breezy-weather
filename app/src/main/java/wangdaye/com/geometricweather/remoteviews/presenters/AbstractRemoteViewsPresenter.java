@@ -41,8 +41,8 @@ import wangdaye.com.geometricweather.remoteviews.WidgetHelper;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.resource.utils.ResourceUtils;
-import wangdaye.com.geometricweather.common.utils.helpters.IntentHelper;
-import wangdaye.com.geometricweather.common.utils.helpters.LunarHelper;
+import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
+import wangdaye.com.geometricweather.common.utils.helpers.LunarHelper;
 
 public abstract class AbstractRemoteViewsPresenter {
 

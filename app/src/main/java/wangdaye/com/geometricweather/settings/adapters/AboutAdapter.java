@@ -20,8 +20,8 @@ import wangdaye.com.geometricweather.settings.models.AboutAppLibrary;
 import wangdaye.com.geometricweather.settings.models.AboutAppLink;
 import wangdaye.com.geometricweather.settings.models.AboutAppTranslator;
 import wangdaye.com.geometricweather.settings.utils.DonateHelper;
-import wangdaye.com.geometricweather.common.utils.helpters.ImageHelper;
-import wangdaye.com.geometricweather.common.utils.helpters.IntentHelper;
+import wangdaye.com.geometricweather.common.utils.helpers.ImageHelper;
+import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
 
 /**
  * About adapter.

@@ -4,7 +4,7 @@ import android.didikee.donate.AlipayDonate;
 import android.didikee.donate.WeiXinDonate;
 
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
-import wangdaye.com.geometricweather.common.utils.helpters.SnackbarHelper;
+import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
 import wangdaye.com.geometricweather.settings.dialogs.WechatDonateDialog;
 
 /**

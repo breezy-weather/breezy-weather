@@ -13,7 +13,6 @@ import android.view.animation.DecelerateInterpolator;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,11 +28,12 @@ import wangdaye.com.geometricweather.main.adapters.main.MainAdapter;
 import wangdaye.com.geometricweather.main.dialogs.LocationHelpDialog;
 import wangdaye.com.geometricweather.main.layouts.MainLayoutManager;
 import wangdaye.com.geometricweather.main.models.LocationResource;
+import wangdaye.com.geometricweather.main.utils.MainPalette;
 import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.common.utils.helpters.SnackbarHelper;
+import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
 import wangdaye.com.geometricweather.common.ui.widgets.SwipeSwitchLayout;
 import wangdaye.com.geometricweather.common.ui.widgets.insets.FitHorizontalSystemBarRootLayout;
 import wangdaye.com.geometricweather.common.ui.widgets.weatherView.WeatherView;
@@ -83,7 +83,7 @@ public class MainFragment extends Fragment {
 
             case CIRCULAR:
                 mWeatherView = new CircularSkyWeatherView(requireContext(),
-                        mViewModel.getThemeManager().ismDaytime());
+                        mViewModel.getThemeManager().isDaytime());
                 break;
         }
         ((CoordinatorLayout) mBinding.switchLayout.getParent()).addView(
@@ -184,7 +184,9 @@ public class MainFragment extends Fragment {
                 SnackbarHelper.showSnackbar(
                         getString(R.string.feedback_location_failed),
                         getString(R.string.help),
-                        v -> new LocationHelpDialog().show(getParentFragmentManager(), null)
+                        v -> LocationHelpDialog.getInstance(
+                                new MainPalette(requireContext(), mViewModel.getThemeManager())
+                        ).show(getParentFragmentManager(), null)
                 );
             } else if (resource.status == Resource.Status.ERROR) {
                 SnackbarHelper.showSnackbar(getString(R.string.feedback_get_weather_failed));

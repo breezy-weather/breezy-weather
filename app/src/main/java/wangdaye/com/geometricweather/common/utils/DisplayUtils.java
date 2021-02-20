@@ -19,6 +19,9 @@ import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 
+import java.util.Calendar;
+import java.util.TimeZone;
+
 import wangdaye.com.geometricweather.R;
 
 /**
@@ -223,5 +226,15 @@ public class DisplayUtils {
 
     public static boolean is12Hour(Context context) {
         return !DateFormat.is24HourFormat(context);
+    }
+
+    public static boolean isDaylight(TimeZone timeZone) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeZone(timeZone);
+        int time = 60 * calendar.get(Calendar.HOUR_OF_DAY) + calendar.get(Calendar.MINUTE);
+
+        int sr = 60 * 6;
+        int ss = 60 * 18;
+        return sr < time && time < ss;
     }
 }

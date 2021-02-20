@@ -493,7 +493,7 @@ public class MainActivityViewModel extends GeoViewModel
     }
 
     private List<String> getDeniedPermissionList() {
-        List<String> permissionList = mRepository.getLocatePermissionList();
+        List<String> permissionList = mRepository.getLocatePermissionList(getApplication());
         for (int i = permissionList.size() - 1; i >= 0; i --) {
             if (ActivityCompat.checkSelfPermission(getApplication(), permissionList.get(i))
                     == PackageManager.PERMISSION_GRANTED) {

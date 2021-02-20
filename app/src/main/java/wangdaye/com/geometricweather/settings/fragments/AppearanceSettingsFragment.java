@@ -20,8 +20,8 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Temperature;
 import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.settings.dialogs.ProvidersPreviewerDialog;
-import wangdaye.com.geometricweather.common.utils.helpters.SnackbarHelper;
-import wangdaye.com.geometricweather.common.utils.helpters.IntentHelper;
+import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
+import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
 
 /**
  * Appearance settings fragment.

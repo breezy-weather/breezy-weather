@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "wangdaye.com.geometricweather",
+  "variantName": "processPubReleaseResources",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "versionCode": 30000,
+      "versionName": "3.000_pub",
+      "outputFile": "GeometricWeather 3.000_pub.apk"
+    }
+  ]
+}

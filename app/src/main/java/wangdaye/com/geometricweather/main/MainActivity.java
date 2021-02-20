@@ -31,10 +31,10 @@ import wangdaye.com.geometricweather.background.polling.PollingManager;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.DarkMode;
-import wangdaye.com.geometricweather.common.utils.helpters.AsyncHelper;
-import wangdaye.com.geometricweather.common.utils.helpters.IntentHelper;
-import wangdaye.com.geometricweather.common.utils.helpters.SnackbarHelper;
-import wangdaye.com.geometricweather.common.utils.helpters.ShortcutsHelper;
+import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper;
+import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
+import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
+import wangdaye.com.geometricweather.common.utils.helpers.ShortcutsHelper;
 import wangdaye.com.geometricweather.databinding.ActivityMainBinding;
 import wangdaye.com.geometricweather.main.dialogs.BackgroundLocationDialog;
 import wangdaye.com.geometricweather.main.dialogs.LocationPermissionStatementDialog;
@@ -84,8 +84,8 @@ public class MainActivity extends GeoActivity
             = "com.wangdaye.geomtricweather.ACTION_SHOW_DAILY_FORECAST";
     public static final String KEY_DAILY_INDEX = "DAILY_INDEX";
 
-    public static final String TAG_FRAGMENT_MAIN = "fragment_main";
-    public static final String TAG_FRAGMENT_MANAGEMENT = "fragment_management";
+    private static final String TAG_FRAGMENT_MAIN = "fragment_main";
+    private static final String TAG_FRAGMENT_MANAGEMENT = "fragment_management";
 
     private final BroadcastReceiver backgroundUpdateReceiver = new BroadcastReceiver() {
         @Override
@@ -130,6 +130,17 @@ public class MainActivity extends GeoActivity
     }
 
     @Override
+    public void onActivityReenter(int resultCode, Intent data) {
+        super.onActivityReenter(resultCode, data);
+        if (resultCode == SEARCH_ACTIVITY) {
+            ManagementFragment f = findManagementFragment();
+            if (f != null) {
+                f.prepareReenterTransition();
+            }
+        }
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
@@ -154,15 +165,19 @@ public class MainActivity extends GeoActivity
             case SEARCH_ACTIVITY:
                 if (resultCode == RESULT_OK && data != null) {
                     Location location = data.getParcelableExtra(SearchActivity.KEY_LOCATION);
-                    mViewModel.addLocation(location);
-                    SnackbarHelper.showSnackbar(getString(R.string.feedback_collect_succeed));
+                    if (location != null) {
+                        mViewModel.addLocation(location);
+                        SnackbarHelper.showSnackbar(getString(R.string.feedback_collect_succeed));
+                    }
                 }
                 break;
 
             case SELECT_PROVIDER_ACTIVITY:
                 if (resultCode == RESULT_OK && data != null) {
                     Location location = data.getParcelableExtra(SelectProviderActivity.KEY_LOCATION);
-                    mViewModel.forceUpdateLocation(location);
+                    if (location != null) {
+                        mViewModel.forceUpdateLocation(location);
+                    }
                 }
                 break;
         }
@@ -365,8 +380,7 @@ public class MainActivity extends GeoActivity
                                 R.anim.fragment_main_exit,
                                 R.anim.fragment_main_pop_enter,
                                 R.anim.fragment_manange_pop_exit
-                        )
-                        .replace(R.id.fragment, ManagementFragment.class, null, TAG_FRAGMENT_MANAGEMENT)
+                        ).replace(R.id.fragment, ManagementFragment.getInstance(true), TAG_FRAGMENT_MANAGEMENT)
                         .addToBackStack(null)
                         .commit();
             } else {

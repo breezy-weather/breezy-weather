@@ -31,7 +31,7 @@ import wangdaye.com.geometricweather.remoteviews.trend.TrendLinearLayout;
 import wangdaye.com.geometricweather.remoteviews.trend.WidgetItemView;
 import wangdaye.com.geometricweather.common.ui.widgets.weatherView.WeatherViewController;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
-import wangdaye.com.geometricweather.common.utils.helpters.AsyncHelper;
+import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper;
 
 public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
 

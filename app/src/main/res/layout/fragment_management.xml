@@ -61,6 +61,8 @@
                         android:layout_centerVertical="true"
                         android:layout_toEndOf="@id/searchIcon"
                         android:layout_toStartOf="@id/currentLocationButton"
+                        android:maxLines="1"
+                        android:ellipsize="end"
                         tools:ignore="RtlHardcoded" />
 
                 </RelativeLayout>

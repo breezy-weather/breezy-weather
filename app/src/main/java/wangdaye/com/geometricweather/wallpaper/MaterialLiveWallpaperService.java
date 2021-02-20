@@ -31,7 +31,7 @@ import wangdaye.com.geometricweather.common.ui.widgets.weatherView.materialWeath
 import wangdaye.com.geometricweather.common.ui.widgets.weatherView.materialWeatherView.MaterialWeatherView;
 import wangdaye.com.geometricweather.common.ui.widgets.weatherView.materialWeatherView.WeatherImplementorFactory;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
-import wangdaye.com.geometricweather.common.utils.helpters.AsyncHelper;
+import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper;
 
 public class MaterialLiveWallpaperService extends WallpaperService {
 

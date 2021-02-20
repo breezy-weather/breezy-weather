@@ -69,10 +69,10 @@ public class RoundCornerTransition extends Transition {
                 @Override
                 public void getOutline(View view, Outline outline) {
                     outline.setRoundRect(
-                            view.getPaddingLeft(),
-                            view.getPaddingTop(),
-                            view.getWidth() - view.getPaddingRight(),
-                            view.getHeight() - view.getPaddingBottom(),
+                            0,
+                            0,
+                            view.getWidth(),
+                            view.getHeight(),
                             (Float) valueAnimator.getAnimatedValue()
                     );
                 }

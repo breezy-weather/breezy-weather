@@ -17,7 +17,7 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.location.LocationHelper;
 import wangdaye.com.geometricweather.remoteviews.NotificationHelper;
-import wangdaye.com.geometricweather.common.utils.helpters.ShortcutsHelper;
+import wangdaye.com.geometricweather.common.utils.helpers.ShortcutsHelper;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 public abstract class AsyncUpdateWorker extends AsyncWorker

@@ -23,8 +23,8 @@ import james.adaptiveicon.AdaptiveIconView;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
-import wangdaye.com.geometricweather.common.utils.helpters.ImageHelper;
-import wangdaye.com.geometricweather.common.utils.helpters.IntentHelper;
+import wangdaye.com.geometricweather.common.utils.helpers.ImageHelper;
+import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
 
 public class IconProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 

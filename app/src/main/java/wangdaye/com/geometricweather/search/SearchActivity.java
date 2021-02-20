@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
@@ -22,6 +23,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.SharedElementCallback;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -37,12 +39,12 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.theme.DefaultThemeManager;
-import wangdaye.com.geometricweather.databinding.ActivitySearchBinding;
-import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.common.ui.adapters.location.LocationAdapter;
 import wangdaye.com.geometricweather.common.ui.decotarions.ListDecoration;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
-import wangdaye.com.geometricweather.common.utils.helpters.SnackbarHelper;
+import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
+import wangdaye.com.geometricweather.databinding.ActivitySearchBinding;
+import wangdaye.com.geometricweather.db.DatabaseHelper;
 
 /**
  * Search activity.
@@ -107,8 +109,20 @@ public class SearchActivity extends GeoActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         mBinding = ActivitySearchBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            postponeEnterTransition();
+            mBinding.searchBar.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+                @Override
+                public boolean onPreDraw() {
+                    mBinding.searchBar.getViewTreeObserver().removeOnPreDrawListener(this);
+                    startPostponedEnterTransition();
+                    return true;
+                }
+            });
+        }
 
         boolean lightTheme = !DisplayUtils.isDarkMode(this);
         DisplayUtils.setSystemBarStyle(this, getWindow(),
@@ -137,10 +151,6 @@ public class SearchActivity extends GeoActivity
     }
 
     private void initView() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mBinding.searchBar.setTransitionName(getString(R.string.transition_activity_search_bar));
-        }
-
         mBinding.backBtn.setOnClickListener(v -> finishSelf(null));
         mBinding.filterBtn.setOnClickListener(v -> {
             mViewModel.switchMultiSourceEnabled();
@@ -209,14 +219,21 @@ public class SearchActivity extends GeoActivity
 
         mBinding.progress.setAlpha(0);
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            mBinding.searchContainer.setAlpha(1f);
-        } else {
-            AnimatorSet animationSet = (AnimatorSet) AnimatorInflater.loadAnimator(
-                    this, R.animator.search_container_in);
-            animationSet.setStartDelay(350);
-            animationSet.setTarget(mBinding.searchContainer);
-            animationSet.start();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setEnterSharedElementCallback(new SharedElementCallback() {
+                @Override
+                public void onSharedElementStart(List<String> sharedElementNames,
+                                                 List<View> sharedElements,
+                                                 List<View> sharedElementSnapshots) {
+                    mBinding.searchContainer.setAlpha(0f);
+
+                    AnimatorSet animationSet = (AnimatorSet) AnimatorInflater.loadAnimator(
+                            SearchActivity.this, R.animator.search_container_in);
+                    animationSet.setStartDelay(400);
+                    animationSet.setTarget(mBinding.searchContainer);
+                    animationSet.start();
+                }
+            });
         }
 
         mViewModel.getListResource().observe(this, loadableLocationList -> {
@@ -242,10 +259,7 @@ public class SearchActivity extends GeoActivity
     // control.
 
     private void finishSelf(@Nullable Location location) {
-        setResult(
-                location != null ? RESULT_OK : RESULT_CANCELED,
-                new Intent().putExtra(KEY_LOCATION, location)
-        );
+        setResult(RESULT_OK, new Intent().putExtra(KEY_LOCATION, location));
         mBinding.searchContainer.setAlpha(0);
         ActivityCompat.finishAfterTransition(this);
     }

@@ -21,7 +21,7 @@ import javax.inject.Inject;
 import dagger.hilt.android.HiltAndroidApp;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.utils.LanguageUtils;
-import wangdaye.com.geometricweather.common.utils.helpters.BuglyHelper;
+import wangdaye.com.geometricweather.common.utils.helpers.BuglyHelper;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 
 /**

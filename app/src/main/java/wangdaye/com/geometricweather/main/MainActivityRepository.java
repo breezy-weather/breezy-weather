@@ -16,7 +16,7 @@ import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.location.LocationHelper;
-import wangdaye.com.geometricweather.common.utils.helpters.AsyncHelper;
+import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 public class MainActivityRepository {
@@ -162,9 +162,9 @@ public class MainActivityRepository {
         });
     }
 
-    public List<String> getLocatePermissionList() {
+    public List<String> getLocatePermissionList(Context context) {
         return new ArrayList<>(
-                Arrays.asList(mLocationHelper.getPermissions())
+                Arrays.asList(mLocationHelper.getPermissions(context))
         );
     }
 

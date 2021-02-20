@@ -3,17 +3,21 @@ package wangdaye.com.geometricweather.settings.fragments;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import wangdaye.com.geometricweather.BuildConfig;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.provider.LocationProvider;
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
-import wangdaye.com.geometricweather.common.utils.helpters.SnackbarHelper;
+import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 
 /**
  * Service provider settings fragment.
@@ -41,9 +45,9 @@ public class ServiceProviderSettingsFragment extends AbstractSettingsFragment {
 
     private void initPreferences() {
         // weather source.
-        Preference chineseSource = findPreference(getString(R.string.key_weather_source));
-        chineseSource.setSummary(getSettingsOptionManager().getWeatherSource().getSourceName(requireContext()));
-        chineseSource.setOnPreferenceChangeListener((preference, newValue) -> {
+        Preference weatherSource = findPreference(getString(R.string.key_weather_source));
+        weatherSource.setSummary(getSettingsOptionManager().getWeatherSource().getSourceName(requireContext()));
+        weatherSource.setOnPreferenceChangeListener((preference, newValue) -> {
             WeatherSource source = WeatherSource.getInstance((String) newValue);
 
             getSettingsOptionManager().setWeatherSource(source);
@@ -68,7 +72,30 @@ public class ServiceProviderSettingsFragment extends AbstractSettingsFragment {
         });
 
         // location source.
-        Preference locationService = findPreference(getString(R.string.key_location_service));
+        ListPreference locationService = findPreference(getString(R.string.key_location_service));
+
+        // Remove closed source providers if building the F-Droid flavor
+        if (getBuildFlavor().contains("fdroid")) {
+            // set provider as native if necessary.
+            LocationProvider provider = SettingsOptionManager.getInstance(requireContext()).getLocationProvider();
+            if (provider == LocationProvider.AMAP || provider == LocationProvider.BAIDU) {
+                SettingsOptionManager.getInstance(requireContext()).setLocationProvider(LocationProvider.NATIVE);
+                locationService.setValue("native");
+            }
+
+            // lock the entries and values.
+            List<CharSequence> locationEntries = new ArrayList<>();
+            List<CharSequence> locationValues = new ArrayList<>();
+            for (int i = 0; i < locationService.getEntries().length; ++i) {
+                if (LocationProvider.getInstance((String) locationService.getEntryValues()[i]) != LocationProvider.AMAP
+                        && LocationProvider.getInstance((String) locationService.getEntryValues()[i]) != LocationProvider.BAIDU) {
+                    locationEntries.add(locationService.getEntries()[i]);
+                    locationValues.add(locationService.getEntryValues()[i]);
+                }
+            }
+            setListPreferenceValues(locationService, locationEntries, locationValues);
+        }
+
         locationService.setSummary(getSettingsOptionManager().getLocationProvider().getProviderName(requireContext()));
         locationService.setOnPreferenceChangeListener((preference, newValue) -> {
             getSettingsOptionManager().setLocationProvider(LocationProvider.getInstance((String) newValue));
@@ -80,6 +107,19 @@ public class ServiceProviderSettingsFragment extends AbstractSettingsFragment {
             );
             return true;
         });
+    }
+
+    private static void setListPreferenceValues(ListPreference pref, List<CharSequence> entries, List<CharSequence> values) {
+        CharSequence[] contents = new CharSequence[entries.size()];
+        entries.toArray(contents);
+        pref.setEntries(contents);
+        contents = new CharSequence[values.size()];
+        values.toArray(contents);
+        pref.setEntryValues(contents);
+    }
+
+    private String getBuildFlavor() {
+        return BuildConfig.FLAVOR;
     }
 
     public void setOnWeatherSourceChangedListener(@Nullable OnWeatherSourceChangedListener l) {

@@ -9,6 +9,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
+
 public class Weather
         implements Serializable {
 
@@ -81,26 +83,23 @@ public class Weather
     }
 
     public boolean isDaylight(TimeZone timeZone) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeZone(timeZone);
-        int time = 60 * calendar.get(Calendar.HOUR_OF_DAY) + calendar.get(Calendar.MINUTE);
-
         Date riseDate = getDailyForecast().get(0).sun().getRiseDate();
         Date setDate = getDailyForecast().get(0).sun().getSetDate();
         if (riseDate != null && setDate != null) {
-            calendar.setTimeZone(TimeZone.getDefault());
 
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeZone(timeZone);
+            int time = 60 * calendar.get(Calendar.HOUR_OF_DAY) + calendar.get(Calendar.MINUTE);
+
+            calendar.setTimeZone(TimeZone.getDefault());
             calendar.setTime(riseDate);
             int sunrise = 60 * calendar.get(Calendar.HOUR_OF_DAY) + calendar.get(Calendar.MINUTE);
-
             calendar.setTime(setDate);
             int sunset = 60 * calendar.get(Calendar.HOUR_OF_DAY) + calendar.get(Calendar.MINUTE);
 
             return sunrise < time && time < sunset;
         }
 
-        int sr = 60 * 6;
-        int ss = 60 * 18;
-        return sr < time && time < ss;
+        return DisplayUtils.isDaylight(timeZone);
     }
 }

@@ -34,7 +34,7 @@ import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.common.utils.LanguageUtils;
-import wangdaye.com.geometricweather.common.utils.helpters.LunarHelper;
+import wangdaye.com.geometricweather.common.utils.helpers.LunarHelper;
 
 /**
  * Normal notification utils.

@@ -9,13 +9,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.LanguageUtils;
 
 /**
@@ -288,12 +288,7 @@ public class Location
             return weather.isDaylight(getTimeZone());
         }
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeZone(getTimeZone());
-        int time = 60 * calendar.get(Calendar.HOUR_OF_DAY) + calendar.get(Calendar.MINUTE);
-        int sr = 60 * 6;
-        int ss = 60 * 18;
-        return sr < time && time < ss;
+        return DisplayUtils.isDaylight(getTimeZone());
     }
 
     @Override

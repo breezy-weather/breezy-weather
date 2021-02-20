@@ -39,14 +39,21 @@
             android:clipToPadding="false"
             android:paddingBottom="128dp" />
 
-        <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarRecyclerView
-            android:id="@+id/bottomRecyclerView"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/bottomBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:background="@color/colorRoot"
-            android:elevation="2dp"
-            tools:ignore="RtlSymmetry,UnusedAttribute" />
+            android:layout_alignParentBottom="true">
+
+            <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarRecyclerView
+                android:id="@+id/bottomRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:rv_side="bottom"
+                tools:ignore="RtlSymmetry,UnusedAttribute" />
+
+        </com.google.android.material.appbar.AppBarLayout>
 
     </RelativeLayout>
 

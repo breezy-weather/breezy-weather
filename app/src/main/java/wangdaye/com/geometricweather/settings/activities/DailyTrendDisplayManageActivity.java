@@ -151,6 +151,7 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
 
         mBinding.bottomRecyclerView.setLayoutManager(
                 new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+        mBinding.bottomRecyclerView.setAdaptiveWidthEnabled(false);
         mBinding.bottomRecyclerView.addItemDecoration(
                 new GridMarginsDecoration(
                         getResources().getDimension(R.dimen.normal_margin), mBinding.bottomRecyclerView
@@ -192,10 +193,10 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
             }
             mBottomAnimator = new AnimatorSet();
             mBottomAnimator.playTogether(
-                    ObjectAnimator.ofFloat(mBinding.bottomRecyclerView, "alpha",
-                            mBinding.bottomRecyclerView.getAlpha(), visible ? 1 : 0),
-                    ObjectAnimator.ofFloat(mBinding.bottomRecyclerView, "translationY",
-                            mBinding.bottomRecyclerView.getTranslationY(), visible ? 0 : mBinding.bottomRecyclerView.getMeasuredHeight())
+                    ObjectAnimator.ofFloat(mBinding.bottomBar, "alpha",
+                            mBinding.bottomBar.getAlpha(), visible ? 1 : 0),
+                    ObjectAnimator.ofFloat(mBinding.bottomBar, "translationY",
+                            mBinding.bottomBar.getTranslationY(), visible ? 0 : mBinding.bottomBar.getMeasuredHeight())
             );
             mBottomAnimator.setDuration(visible ? 350 : 150);
             mBottomAnimator.setInterpolator(visible

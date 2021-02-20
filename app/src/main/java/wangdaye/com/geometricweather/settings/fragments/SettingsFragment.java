@@ -45,7 +45,7 @@ import wangdaye.com.geometricweather.remoteviews.presenters.notification.NormalN
 import wangdaye.com.geometricweather.settings.dialogs.RunningInBackgroundDialog;
 import wangdaye.com.geometricweather.settings.dialogs.RunningInBackgroundODialog;
 import wangdaye.com.geometricweather.settings.dialogs.TimeSetterDialog;
-import wangdaye.com.geometricweather.common.utils.helpters.IntentHelper;
+import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
 
 /**
  * Settings fragment.

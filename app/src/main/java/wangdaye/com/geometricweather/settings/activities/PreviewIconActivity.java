@@ -25,7 +25,7 @@ import wangdaye.com.geometricweather.settings.dialogs.AdaptiveIconDialog;
 import wangdaye.com.geometricweather.settings.dialogs.AnimatableIconDialog;
 import wangdaye.com.geometricweather.settings.dialogs.MinimalIconDialog;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
-import wangdaye.com.geometricweather.common.utils.helpters.IntentHelper;
+import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
 
 public class PreviewIconActivity extends GeoActivity {
 

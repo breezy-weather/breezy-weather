@@ -15,6 +15,7 @@ import javax.inject.Inject;
 
 import dagger.hilt.android.qualifiers.ApplicationContext;
 import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.options.provider.LocationProvider;
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
 import wangdaye.com.geometricweather.common.utils.NetworkUtils;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
@@ -33,7 +34,7 @@ import wangdaye.com.geometricweather.weather.services.WeatherService;
 
 public class LocationHelper {
 
-    private final LocationService mLocationService;
+    private final LocationService[] mLocationServices;
     private final WeatherServiceSet mWeatherServiceSet;
 
     public interface OnRequestLocationListener {
@@ -45,30 +46,37 @@ public class LocationHelper {
     public LocationHelper(@ApplicationContext Context context,
                           BaiduIPLocationService baiduIPService,
                           WeatherServiceSet weatherServiceSet) {
-        switch (SettingsOptionManager.getInstance(context).getLocationProvider()) {
-            case BAIDU:
-                mLocationService = new BaiduLocationService(context);
-                break;
-
-            case BAIDU_IP:
-                mLocationService = baiduIPService;
-                break;
-
-            case AMAP:
-                mLocationService = new AMapLocationService(context);
-                break;
-
-            default: // NATIVE
-                mLocationService = new AndroidLocationService(context);
-                break;
-        }
+        mLocationServices = new LocationService[] {
+                new AndroidLocationService(context),
+                new BaiduLocationService(context),
+                baiduIPService,
+                new AMapLocationService(context)
+        };
 
         mWeatherServiceSet = weatherServiceSet;
     }
 
+    private LocationService getLocationService(LocationProvider provider) {
+        switch (provider) {
+            case BAIDU:
+                return mLocationServices[1];
+
+            case BAIDU_IP:
+                return mLocationServices[2];
+
+            case AMAP:
+                return mLocationServices[3];
+
+            default: // NATIVE
+                return mLocationServices[0];
+        }
+    }
+
     public void requestLocation(Context context, Location location, boolean background,
                                 @NonNull OnRequestLocationListener l) {
-        if (mLocationService.getPermissions().length != 0) {
+        final LocationProvider provider = SettingsOptionManager.getInstance(context).getLocationProvider();
+        final LocationService service = getLocationService(provider);
+        if (service.getPermissions().length != 0) {
             // if needs any location permission.
             if (!NetworkUtils.isAvailable(context)
                     || ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -91,7 +99,7 @@ public class LocationHelper {
         // 1. get location by location service.
         // 2. get available location by weather service.
 
-        mLocationService.requestLocation(
+        service.requestLocation(
                 context,
                 result -> {
                     if (result == null) {
@@ -135,20 +143,25 @@ public class LocationHelper {
     }
 
     public void cancel() {
-        mLocationService.cancel();
+        for (LocationService s : mLocationServices) {
+            s.cancel();
+        }
         for (WeatherService s : mWeatherServiceSet.getAll()) {
             s.cancel();
         }
     }
 
-    public String[] getPermissions() {
+    public String[] getPermissions(Context context) {
         // if IP:    none.
         // else:
         //      R:   foreground location. (set background location enabled manually)
         //      Q:   foreground location + background location.
         //      K-P: foreground location.
 
-        String[] permissions = mLocationService.getPermissions();
+        final LocationProvider provider = SettingsOptionManager.getInstance(context).getLocationProvider();
+        final LocationService service = getLocationService(provider);
+
+        String[] permissions = service.getPermissions();
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q || permissions.length == 0) {
             // device has no background location permission or locate by IP.
             return permissions;

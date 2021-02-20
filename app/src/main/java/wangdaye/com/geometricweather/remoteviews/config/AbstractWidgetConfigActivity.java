@@ -36,6 +36,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.core.widget.NestedScrollView;
 
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -48,9 +49,8 @@ import wangdaye.com.geometricweather.background.polling.PollingManager;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarNestedScrollView;
-import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
-import wangdaye.com.geometricweather.common.utils.helpters.SnackbarHelper;
+import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
@@ -413,6 +413,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         });
 
         mBottomSheetScrollView = findViewById(R.id.activity_widget_config_custom_scrollView);
+        mBottomSheetScrollView.setAdaptiveWidthEnabled(false);
 
         mSubtitleInputLayout = findViewById(R.id.activity_widget_config_subtitle_inputLayout);
 
@@ -451,7 +452,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         scrollContainer.post(() -> scrollContainer.setPaddingRelative(
                 0, 0, 0, mSubtitleInputLayout.getMeasuredHeight()));
 
-        FitSystemBarAppBarLayout bottomSheet = findViewById(R.id.activity_widget_config_custom_subtitle);
+        AppBarLayout bottomSheet = findViewById(R.id.activity_widget_config_custom_subtitle);
         mBottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
         mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
         bottomSheet.post(() -> {
