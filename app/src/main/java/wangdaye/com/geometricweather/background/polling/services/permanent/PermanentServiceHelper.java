@@ -1,10 +1,10 @@
-package wangdaye.com.geometricweather.background.polling.permanent;
+package wangdaye.com.geometricweather.background.polling.services.permanent;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 
-import wangdaye.com.geometricweather.background.polling.permanent.observer.TimeObserverService;
+import wangdaye.com.geometricweather.background.polling.services.permanent.observer.TimeObserverService;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 
 /**

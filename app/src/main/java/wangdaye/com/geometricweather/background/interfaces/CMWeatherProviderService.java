@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.background.service;
+package wangdaye.com.geometricweather.background.interfaces;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

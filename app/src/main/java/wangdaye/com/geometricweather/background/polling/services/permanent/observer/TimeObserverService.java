@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.background.polling.permanent.observer;
+package wangdaye.com.geometricweather.background.polling.services.permanent.observer;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -20,9 +20,9 @@ import java.util.Calendar;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.background.polling.permanent.update.ForegroundNormalUpdateService;
-import wangdaye.com.geometricweather.background.polling.permanent.update.ForegroundTodayForecastUpdateService;
-import wangdaye.com.geometricweather.background.polling.permanent.update.ForegroundTomorrowForecastUpdateService;
+import wangdaye.com.geometricweather.background.polling.services.permanent.update.ForegroundNormalUpdateService;
+import wangdaye.com.geometricweather.background.polling.services.permanent.update.ForegroundTodayForecastUpdateService;
+import wangdaye.com.geometricweather.background.polling.services.permanent.update.ForegroundTomorrowForecastUpdateService;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 
 /**

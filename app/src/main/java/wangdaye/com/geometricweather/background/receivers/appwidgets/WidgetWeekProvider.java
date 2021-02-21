@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.background.receiver.widget;
+package wangdaye.com.geometricweather.background.receivers.appwidgets;
 
 /**
  * Widget week provider.

@@ -1,21 +1,26 @@
 package wangdaye.com.geometricweather.background.polling;
 
 import android.content.Context;
+import android.os.Build;
 
-import wangdaye.com.geometricweather.background.polling.permanent.PermanentServiceHelper;
+import wangdaye.com.geometricweather.background.polling.services.permanent.PermanentServiceHelper;
 import wangdaye.com.geometricweather.background.polling.work.WorkerHelper;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
 
 /**
- * Background manager.
+ * Polling manager.
  * */
 public class PollingManager {
 
     public static void resetAllBackgroundTask(Context context, boolean forceRefresh) {
         if (forceRefresh) {
-            IntentHelper.startAwakeForegroundUpdateService(context);
-            return;
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
+                IntentHelper.startAwakeForegroundUpdateService(context);
+                return;
+            } else {
+                WorkerHelper.setExpeditedPollingWork(context);
+            }
         }
 
         SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
@@ -48,8 +53,12 @@ public class PollingManager {
 
     public static void resetNormalBackgroundTask(Context context, boolean forceRefresh) {
         if (forceRefresh) {
-            IntentHelper.startAwakeForegroundUpdateService(context);
-            return;
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
+                IntentHelper.startAwakeForegroundUpdateService(context);
+                return;
+            } else {
+                WorkerHelper.setExpeditedPollingWork(context);
+            }
         }
 
         if (SettingsOptionManager.getInstance(context).isBackgroundFree()) {
@@ -70,8 +79,12 @@ public class PollingManager {
     public static void resetTodayForecastBackgroundTask(Context context, boolean forceRefresh,
                                                         boolean nextDay) {
         if (forceRefresh) {
-            IntentHelper.startAwakeForegroundUpdateService(context);
-            return;
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
+                IntentHelper.startAwakeForegroundUpdateService(context);
+                return;
+            } else {
+                WorkerHelper.setExpeditedPollingWork(context);
+            }
         }
 
         SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
@@ -95,8 +108,12 @@ public class PollingManager {
     public static void resetTomorrowForecastBackgroundTask(Context context, boolean forceRefresh,
                                                            boolean nextDay) {
         if (forceRefresh) {
-            IntentHelper.startAwakeForegroundUpdateService(context);
-            return;
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
+                IntentHelper.startAwakeForegroundUpdateService(context);
+                return;
+            } else {
+                WorkerHelper.setExpeditedPollingWork(context);
+            }
         }
 
         SettingsOptionManager settings = SettingsOptionManager.getInstance(context);

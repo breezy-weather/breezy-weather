@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.background.polling.permanent.update;
+package wangdaye.com.geometricweather.background.polling.services.permanent.update;
 
 import android.content.Context;
 
@@ -9,7 +9,7 @@ import java.util.List;
 import dagger.hilt.android.AndroidEntryPoint;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.background.polling.basic.ForegroundUpdateService;
+import wangdaye.com.geometricweather.background.polling.services.basic.ForegroundUpdateService;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.remoteviews.presenters.notification.ForecastNotificationIMP;
 
@@ -18,12 +18,12 @@ import wangdaye.com.geometricweather.remoteviews.presenters.notification.Forecas
  * */
 
 @AndroidEntryPoint
-public class ForegroundTodayForecastUpdateService extends ForegroundUpdateService {
+public class ForegroundTomorrowForecastUpdateService extends ForegroundUpdateService {
 
     @Override
     public void updateView(Context context, Location location) {
-        if (ForecastNotificationIMP.isEnable(this, true)) {
-            ForecastNotificationIMP.buildForecastAndSendIt(context, location, true);
+        if (ForecastNotificationIMP.isEnable(this, false)) {
+            ForecastNotificationIMP.buildForecastAndSendIt(context, location, false);
         }
     }
 
@@ -44,6 +44,6 @@ public class ForegroundTodayForecastUpdateService extends ForegroundUpdateServic
 
     @Override
     public int getForegroundNotificationId() {
-        return GeometricWeather.NOTIFICATION_ID_UPDATING_TODAY_FORECAST;
+        return GeometricWeather.NOTIFICATION_ID_UPDATING_TOMORROW_FORECAST;
     }
 }

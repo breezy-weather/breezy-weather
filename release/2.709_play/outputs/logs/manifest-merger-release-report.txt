@@ -606,7 +606,7 @@ ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:2
 		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:300:13-53
 	android:name
 		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:299:13-104
-service#wangdaye.com.geometricweather.background.service.TileService
+service#wangdaye.com.geometricweather.background.interfaces.TileService
 ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:302:9-310:19
 	android:label
 		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:304:13-54
@@ -622,7 +622,7 @@ action#android.service.quicksettings.action.QS_TILE
 ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:308:17-87
 	android:name
 		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:308:25-84
-service#wangdaye.com.geometricweather.background.service.CMWeatherProviderService
+service#wangdaye.com.geometricweather.background.interfaces.CMWeatherProviderService
 ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:312:9-321:19
 	android:permission
 		ADDED from C:\androidProject\GeometricWeather\app\src\main\AndroidManifest.xml:314:13-86

@@ -5,11 +5,11 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion "android-S"
     defaultConfig {
         applicationId "wangdaye.com.geometricweather"
+        targetSdkVersion "S"
         minSdkVersion 19
-        targetSdkVersion 30
         versionCode 30000
         versionName "3.000"
         multiDexEnabled true
@@ -153,8 +153,8 @@ dependencies {
     // preference.
     implementation 'androidx.preference:preference:1.1.1'
 
-    // work.
-    implementation "androidx.work:work-runtime:2.4.0"
+    // work manager.
+    implementation "androidx.work:work-runtime:2.7.0-alpha01"
 
     // lifecycle.
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"

@@ -15,7 +15,7 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.background.receiver.widget.WidgetMultiCityProvider;
+import wangdaye.com.geometricweather.background.receivers.appwidgets.WidgetMultiCityProvider;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.common.basic.models.weather.Temperature;

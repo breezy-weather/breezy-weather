@@ -191,15 +191,17 @@ public abstract class AbstractRemoteViewsPresenter {
         }
     }
 
+    @SuppressLint("InlinedApi")
     public static PendingIntent getWeatherPendingIntent(Context context,
                                                         @Nullable Location location, int requestCode) {
         return PendingIntent.getActivity(
                 context,
                 requestCode,
                 IntentHelper.buildMainActivityIntent(location),
-                PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
+    @SuppressLint("InlinedApi")
     public static PendingIntent getDailyForecastPendingIntent(Context context,
                                                               @Nullable Location location, int index,
                                                               int requestCode) {
@@ -207,25 +209,28 @@ public abstract class AbstractRemoteViewsPresenter {
                 context,
                 requestCode,
                 IntentHelper.buildMainActivityShowDailyForecastIntent(location, index),
-                PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
+    @SuppressLint("InlinedApi")
     public static PendingIntent getRefreshPendingIntent(Context context, int requestCode) {
         return PendingIntent.getService(
                 context,
                 requestCode,
                 IntentHelper.getAwakeForegroundUpdateServiceIntent(context),
-                PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
+    @SuppressLint("InlinedApi")
     public static PendingIntent getAlarmPendingIntent(Context context, int requestCode) {
         return PendingIntent.getActivity(
                 context,
                 requestCode,
                 new Intent(AlarmClock.ACTION_SHOW_ALARMS),
-                PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
+    @SuppressLint("InlinedApi")
     public static PendingIntent getCalendarPendingIntent(Context context, int requestCode) {
         Uri.Builder builder = CalendarContract.CONTENT_URI.buildUpon();
         builder.appendPath("time");
@@ -234,7 +239,7 @@ public abstract class AbstractRemoteViewsPresenter {
                 context,
                 requestCode,
                 new Intent(Intent.ACTION_VIEW).setData(builder.build()),
-                PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
     @NonNull

@@ -1,10 +1,11 @@
-package wangdaye.com.geometricweather.background.receiver;
+package wangdaye.com.geometricweather.background.receivers;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 
+import wangdaye.com.geometricweather.background.polling.PollingManager;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
 
 /**
@@ -22,7 +23,7 @@ public class MainReceiver extends BroadcastReceiver {
         switch (action) {
             case Intent.ACTION_BOOT_COMPLETED:
             case Intent.ACTION_WALLPAPER_CHANGED:
-                IntentHelper.startAwakeForegroundUpdateService(context);
+                PollingManager.resetAllBackgroundTask(context, true);
                 break;
         }
     }

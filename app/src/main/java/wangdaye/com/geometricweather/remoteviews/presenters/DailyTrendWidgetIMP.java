@@ -20,7 +20,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.background.receiver.widget.WidgetTrendDailyProvider;
+import wangdaye.com.geometricweather.background.receivers.appwidgets.WidgetTrendDailyProvider;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.common.basic.models.weather.Daily;

@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.background.service;
+package wangdaye.com.geometricweather.background.interfaces;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

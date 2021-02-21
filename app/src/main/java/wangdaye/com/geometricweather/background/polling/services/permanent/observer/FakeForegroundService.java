@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.background.polling.permanent.observer;
+package wangdaye.com.geometricweather.background.polling.services.permanent.observer;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;

@@ -393,8 +393,8 @@ public static java.lang.String TABLENAME;
 -keep class wangdaye.com.geometricweather.background.receiver.widget.WidgetTrendDailyProvider { <init>(); }
 -keep class wangdaye.com.geometricweather.background.receiver.widget.WidgetTrendHourlyProvider { <init>(); }
 -keep class wangdaye.com.geometricweather.background.receiver.widget.WidgetWeekProvider { <init>(); }
--keep class wangdaye.com.geometricweather.background.service.CMWeatherProviderService { <init>(); }
--keep class wangdaye.com.geometricweather.background.service.TileService { <init>(); }
+-keep class wangdaye.com.geometricweather.background.interfaces.CMWeatherProviderService { <init>(); }
+-keep class wangdaye.com.geometricweather.background.interfaces.TileService { <init>(); }
 -keep class wangdaye.com.geometricweather.common.ui.activities.AlertActivity { <init>(); }
 -keep class wangdaye.com.geometricweather.common.ui.activities.AllergenActivity { <init>(); }
 -keep class wangdaye.com.geometricweather.common.ui.activities.AwakeUpdateActivity { <init>(); }

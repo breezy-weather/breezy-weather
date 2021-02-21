@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.background.polling.basic;
+package wangdaye.com.geometricweather.background.polling.services.permanent.update;
 
 import android.content.Context;
 
@@ -6,17 +6,18 @@ import java.util.List;
 
 import dagger.hilt.android.AndroidEntryPoint;
 import wangdaye.com.geometricweather.GeometricWeather;
+import wangdaye.com.geometricweather.background.polling.services.basic.ForegroundUpdateService;
 import wangdaye.com.geometricweather.common.basic.models.Location;
-import wangdaye.com.geometricweather.background.polling.PollingManager;
+import wangdaye.com.geometricweather.background.polling.services.permanent.PermanentServiceHelper;
 import wangdaye.com.geometricweather.remoteviews.NotificationHelper;
 import wangdaye.com.geometricweather.remoteviews.WidgetHelper;
 
 /**
- * Awake foreground update service.
+ * Foreground normal update service.
  * */
 
 @AndroidEntryPoint
-public class AwakeForegroundUpdateService extends ForegroundUpdateService {
+public class ForegroundNormalUpdateService extends ForegroundUpdateService {
 
     @Override
     public void updateView(Context context, Location location) {
@@ -31,11 +32,11 @@ public class AwakeForegroundUpdateService extends ForegroundUpdateService {
 
     @Override
     public void handlePollingResult(boolean failed) {
-        PollingManager.resetAllBackgroundTask(this, false);
+        PermanentServiceHelper.updatePollingService(this, failed);
     }
 
     @Override
     public int getForegroundNotificationId() {
-        return GeometricWeather.NOTIFICATION_ID_UPDATING_AWAKE;
+        return GeometricWeather.NOTIFICATION_ID_UPDATING_NORMALLY;
     }
 }

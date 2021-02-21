@@ -9462,7 +9462,7 @@ androidx.constraintlayout.solver.widgets.Flow:
     public static final int WRAP_ALIGNED
 com.google.android.material.shape.MaterialShapeDrawable$CompatibilityShadowMode
 androidx.annotation.IntegerRes
-wangdaye.com.geometricweather.background.service.WeatherConditionConvertHelper:
+wangdaye.com.geometricweather.background.interfaces.WeatherConditionConvertHelper:
     void <init>()
 androidx.core.R
 androidx.core.view.accessibility.AccessibilityNodeInfoCompat$CollectionItemInfoCompat:

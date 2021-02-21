@@ -15,7 +15,7 @@ import java.util.Date;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.Location;
-import wangdaye.com.geometricweather.background.receiver.widget.WidgetClockDayHorizontalProvider;
+import wangdaye.com.geometricweather.background.receivers.appwidgets.WidgetClockDayHorizontalProvider;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.resource.ResourceHelper;

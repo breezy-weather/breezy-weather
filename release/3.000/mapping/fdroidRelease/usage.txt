@@ -4884,7 +4884,7 @@ io.reactivex.internal.operators.maybe.MaybeConcatArrayDelayError$ConcatMaybeObse
 wangdaye.com.geometricweather.background.service.CMWeatherProviderService_MembersInjector:
     public void <init>(javax.inject.Provider,javax.inject.Provider)
     public static dagger.MembersInjector create(javax.inject.Provider,javax.inject.Provider)
-    public void injectMembers(wangdaye.com.geometricweather.background.service.CMWeatherProviderService)
+    public void injectMembers(wangdaye.com.geometricweather.background.interfaces.CMWeatherProviderService)
     public synthetic bridge void injectMembers(java.lang.Object)
     private final javax.inject.Provider mLocationHelperProvider
     private final javax.inject.Provider mWeatherHelperProvider
@@ -8531,7 +8531,7 @@ wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarRecyclerView:
     public static final int SIDE_TOP
     public static final int SIDE_BOTTOM
     public static final int SIDE_BOTH
-wangdaye.com.geometricweather.background.service.WeatherConditionConvertHelper:
+wangdaye.com.geometricweather.background.interfaces.WeatherConditionConvertHelper:
     void <init>()
 dagger.hilt.internal.generatesrootinput.GeneratesRootInputPropagatedData
 androidx.core.R

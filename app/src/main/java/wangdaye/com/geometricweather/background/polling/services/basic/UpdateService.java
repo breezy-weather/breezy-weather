@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.background.polling.basic;
+package wangdaye.com.geometricweather.background.polling.services.basic;
 
 import android.app.Service;
 import android.content.Context;

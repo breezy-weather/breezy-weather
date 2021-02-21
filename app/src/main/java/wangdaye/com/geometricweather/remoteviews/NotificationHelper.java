@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.remoteviews;
 
+import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -139,6 +140,7 @@ public class NotificationHelper {
         }
     }
 
+    @SuppressLint("InlinedApi")
     private static Notification buildSingleAlertNotification(Context context,
                                                              Location location,
                                                              Alert alert,
@@ -158,7 +160,7 @@ public class NotificationHelper {
                         context,
                         notificationId,
                         IntentHelper.buildMainActivityShowAlertsIntent(location),
-                        PendingIntent.FLAG_UPDATE_CURRENT
+                        PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
                 )
         ).setStyle(
                 new NotificationCompat.BigTextStyle()
@@ -172,6 +174,7 @@ public class NotificationHelper {
         return builder.build();
     }
 
+    @SuppressLint("InlinedApi")
     private static Notification buildAlertGroupSummaryNotification(Context context,
                                                                    Location location,
                                                                    Alert alert,
@@ -188,7 +191,7 @@ public class NotificationHelper {
                                 context,
                                 notificationId,
                                 IntentHelper.buildMainActivityShowAlertsIntent(location),
-                                PendingIntent.FLAG_UPDATE_CURRENT
+                                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
                         )
                 ).build();
     }
@@ -212,6 +215,7 @@ public class NotificationHelper {
 
     // precipitation.
 
+    @SuppressLint("InlinedApi")
     public static void checkAndSendPrecipitationForecast(Context context,
                                                          Location location, @Nullable Weather oldResult) {
         if (!SettingsOptionManager.getInstance(context).isPrecipitationPushEnabled()
@@ -249,7 +253,7 @@ public class NotificationHelper {
                                     context,
                                     GeometricWeather.NOTIFICATION_ID_PRECIPITATION,
                                     IntentHelper.buildMainActivityIntent(location),
-                                    PendingIntent.FLAG_UPDATE_CURRENT
+                                    PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
                             )
                     ).build()
             );
@@ -277,7 +281,7 @@ public class NotificationHelper {
                                     context,
                                     GeometricWeather.NOTIFICATION_ID_PRECIPITATION,
                                     IntentHelper.buildMainActivityIntent(location),
-                                    PendingIntent.FLAG_UPDATE_CURRENT
+                                    PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
                             )
                     ).build()
             );
