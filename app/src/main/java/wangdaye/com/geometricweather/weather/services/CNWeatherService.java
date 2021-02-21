@@ -14,15 +14,14 @@ import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.disposables.CompositeDisposable;
 import wangdaye.com.geometricweather.common.basic.models.ChineseCity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
-import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.rxjava.BaseObserver;
+import wangdaye.com.geometricweather.common.rxjava.ObserverContainer;
+import wangdaye.com.geometricweather.common.rxjava.SchedulerTransformer;
 import wangdaye.com.geometricweather.common.utils.LanguageUtils;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
-import wangdaye.com.geometricweather.common.rxjava.SchedulerTransformer;
 import wangdaye.com.geometricweather.weather.apis.CNWeatherApi;
 import wangdaye.com.geometricweather.weather.converters.CNResultConverter;
 import wangdaye.com.geometricweather.weather.json.cn.CNWeatherResult;
-import wangdaye.com.geometricweather.common.rxjava.BaseObserver;
-import wangdaye.com.geometricweather.common.rxjava.ObserverContainer;
 
 /**
  * CN weather service.
@@ -47,9 +46,9 @@ public class CNWeatherService extends WeatherService {
                 .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<CNWeatherResult>() {
                     @Override
                     public void onSucceed(CNWeatherResult cnWeatherResult) {
-                        Weather weather = CNResultConverter.convert(context, location, cnWeatherResult);
-                        if (weather != null) {
-                            location.setWeather(weather);
+                        WeatherResultWrapper wrapper = CNResultConverter.convert(context, location, cnWeatherResult);
+                        if (wrapper.result != null) {
+                            location.setWeather(wrapper.result);
                             callback.requestWeatherSuccess(location);
                         } else {
                             onFailed();

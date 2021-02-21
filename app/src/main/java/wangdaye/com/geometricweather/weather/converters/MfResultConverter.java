@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.text.TextUtils;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.text.SimpleDateFormat;
@@ -44,10 +45,12 @@ import wangdaye.com.geometricweather.weather.json.mf.MfForecastV2Result;
 import wangdaye.com.geometricweather.weather.json.mf.MfLocationResult;
 import wangdaye.com.geometricweather.weather.json.mf.MfRainResult;
 import wangdaye.com.geometricweather.weather.json.mf.MfWarningsResult;
+import wangdaye.com.geometricweather.weather.services.WeatherService;
 
 public class MfResultConverter {
 
     // Result of a coordinates search
+    @NonNull
     public static Location convert(@Nullable Location location, MfForecastV2Result result) {
         if (location != null
                 && !TextUtils.isEmpty(location.getProvince())
@@ -100,6 +103,7 @@ public class MfResultConverter {
     }
 
     // Result of a query string search
+    @NonNull
     public static Location convert(@Nullable Location location, MfLocationResult result) {
         if (location != null
                 && !TextUtils.isEmpty(location.getProvince())
@@ -151,16 +155,17 @@ public class MfResultConverter {
         }
     }
 
-    public static Weather convert(Context context,
-                                  Location location,
-                                  MfCurrentResult currentResult,
-                                  MfForecastResult forecastResult,
-                                  MfEphemerisResult ephemerisResult,
-                                  MfRainResult rainResult,
-                                  MfWarningsResult warningsResult,
-                                  @Nullable AtmoAuraQAResult aqiAtmoAuraResult) {
+    @NonNull
+    public static WeatherService.WeatherResultWrapper convert(Context context,
+                                                              Location location,
+                                                              MfCurrentResult currentResult,
+                                                              MfForecastResult forecastResult,
+                                                              MfEphemerisResult ephemerisResult,
+                                                              MfRainResult rainResult,
+                                                              MfWarningsResult warningsResult,
+                                                              @Nullable AtmoAuraQAResult aqiAtmoAuraResult) {
         try {
-            return new Weather(
+            Weather weather = new Weather(
                     new Base(
                             location.getCityId(),
                             System.currentTimeMillis(),
@@ -223,12 +228,13 @@ public class MfResultConverter {
                     getMinutelyList(forecastResult.dailyForecasts.get(0).sun.rise, forecastResult.dailyForecasts.get(0).sun.set, rainResult),
                     getWarningsList(warningsResult)
             );
+            return new WeatherService.WeatherResultWrapper(weather);
         } catch (Exception ignored) {
             Log.d("GEOM", ignored.getMessage());
             for (StackTraceElement stackTraceElement : ignored.getStackTrace()) {
                 Log.d("GEOM", stackTraceElement.toString());
             }
-            return null;
+            return new WeatherService.WeatherResultWrapper(null);
         }
     }
 

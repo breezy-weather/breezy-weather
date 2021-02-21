@@ -38,13 +38,16 @@ import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.common.basic.models.weather.Wind;
 import wangdaye.com.geometricweather.common.basic.models.weather.WindDegree;
 import wangdaye.com.geometricweather.weather.json.cn.CNWeatherResult;
+import wangdaye.com.geometricweather.weather.services.WeatherService;
 
 public class CNResultConverter {
 
-    public static Weather convert(Context context,
-                                  @NonNull Location location, @Nullable CNWeatherResult result) {
+    @NonNull
+    public static WeatherService.WeatherResultWrapper convert(Context context,
+                                                              @NonNull Location location,
+                                                              @Nullable CNWeatherResult result) {
         if (result == null) {
-            return null;
+            return new WeatherService.WeatherResultWrapper(null);
         }
 
         try {
@@ -58,7 +61,7 @@ public class CNResultConverter {
             );
             result.weather.remove(0);
 
-            return new Weather(
+            Weather weather = new Weather(
                     new Base(
                             location.getCityId(),
                             System.currentTimeMillis(),
@@ -134,9 +137,10 @@ public class CNResultConverter {
                     new ArrayList<>(),
                     getAlertList(result.alert)
             );
+            return new WeatherService.WeatherResultWrapper(weather);
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return new WeatherService.WeatherResultWrapper(null);
         }
     }
 

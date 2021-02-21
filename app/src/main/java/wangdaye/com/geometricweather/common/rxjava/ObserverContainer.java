@@ -25,7 +25,7 @@ public class ObserverContainer<T> extends DisposableObserver<T> {
     }
 
     @Override
-    public void onNext(T t) {
+    public void onNext(@NonNull T t) {
         if (observer != null) {
             observer.onNext(t);
         }

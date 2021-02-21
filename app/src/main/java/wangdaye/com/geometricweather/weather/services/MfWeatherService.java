@@ -43,7 +43,7 @@ public class MfWeatherService extends WeatherService {
     private final AtmoAuraIqaApi mAtmoAuraApi;
     private final CompositeDisposable mCompositeDisposable;
 
-    private static final String PREFERENCE_LOCAL = "LOCAL_PREFERENCE";
+    private static final String PREFERENCE_LOCAL = "LOCAL_PREFERENCE_MF";
     private static final String KEY_OLD_DISTRICT = "OLD_DISTRICT";
     private static final String KEY_OLD_CITY = "OLD_CITY";
     private static final String KEY_OLD_PROVINCE = "OLD_PROVINCE";
@@ -125,8 +125,10 @@ public class MfWeatherService extends WeatherService {
                 Observable.create(emitter -> emitter.onNext(new EmptyWarningsResult()))
         );
 
-        Observable<AtmoAuraQAResult> aqiAtmoAura = null;
-        if (location.getProvince().equals("Auvergne-Rhône-Alpes") || location.getProvince().equals("01")
+        Observable<AtmoAuraQAResult> aqiAtmoAura;
+        if (location.getProvince() == null) {
+            aqiAtmoAura = Observable.create(emitter -> emitter.onNext(new EmptyAtmoAuraQAResult()));
+        } else if (location.getProvince().equals("Auvergne-Rhône-Alpes") || location.getProvince().equals("01")
                 || location.getProvince().equals("03") || location.getProvince().equals("07")
                 || location.getProvince().equals("15") || location.getProvince().equals("26")
                 || location.getProvince().equals("38") || location.getProvince().equals("42")
@@ -156,11 +158,11 @@ public class MfWeatherService extends WeatherService {
                         aqiAtmoAuraResult instanceof EmptyAtmoAuraQAResult ? null : aqiAtmoAuraResult
                 )
         ).compose(SchedulerTransformer.create())
-                .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<Weather>() {
+                .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<WeatherResultWrapper>() {
                     @Override
-                    public void onSucceed(Weather weather) {
-                        if (weather != null) {
-                            location.setWeather(weather);
+                    public void onSucceed(WeatherResultWrapper wrapper) {
+                        if (wrapper.result != null) {
+                            location.setWeather(wrapper.result);
                             callback.requestWeatherSuccess(location);
                         } else {
                             onFailed();

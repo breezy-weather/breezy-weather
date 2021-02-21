@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.text.TextUtils;
 
 import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
@@ -36,15 +37,16 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Wind;
 import wangdaye.com.geometricweather.common.basic.models.weather.WindDegree;
 import wangdaye.com.geometricweather.weather.json.caiyun.CaiYunForecastResult;
 import wangdaye.com.geometricweather.weather.json.caiyun.CaiYunMainlyResult;
+import wangdaye.com.geometricweather.weather.services.WeatherService;
 
 public class CaiyunResultConverter {
 
-    @Nullable
-    public static Weather convert(Context context, Location location,
-                                  CaiYunMainlyResult mainlyResult,
-                                  CaiYunForecastResult forecastResult) {
+    @NonNull
+    public static WeatherService.WeatherResultWrapper convert(Context context, Location location,
+                                                              CaiYunMainlyResult mainlyResult,
+                                                              CaiYunForecastResult forecastResult) {
         try {
-            return new Weather(
+            Weather weather = new Weather(
                     new Base(
                             location.getCityId(),
                             System.currentTimeMillis(),
@@ -129,15 +131,21 @@ public class CaiyunResultConverter {
                     ),
                     getAlertList(mainlyResult)
             );
+            return new WeatherService.WeatherResultWrapper(weather);
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return new WeatherService.WeatherResultWrapper(null);
         }
     }
 
     private static AirQuality getAirQuality(Context context, CaiYunMainlyResult result) {
-        String quality = CommonConverter.getAqiQuality(
-                context, Integer.parseInt(result.aqi.aqi));
+        String quality;
+        try {
+            quality = CommonConverter.getAqiQuality(
+                    context, Integer.parseInt(result.aqi.aqi));
+        } catch (Exception e) {
+            quality = null;
+        }
 
         Integer index;
         try {
@@ -324,8 +332,12 @@ public class CaiyunResultConverter {
                             new Astro(null, null),
                             new MoonPhase(null, null),
                             new AirQuality(
-                                    CommonConverter.getAqiQuality(context, forecast.aqi.value.get(i)),
-                                    forecast.aqi.value.get(i),
+                                    forecast.aqi != null && forecast.aqi.value != null && forecast.aqi.value.size() > i
+                                            ? CommonConverter.getAqiQuality(context, forecast.aqi.value.get(i))
+                                            : null,
+                                    forecast.aqi != null && forecast.aqi.value != null && forecast.aqi.value.size() > i
+                                            ? forecast.aqi.value.get(i)
+                                            : null,
                                     null,
                                     null,
                                     null,
