@@ -4,10 +4,12 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import java.util.List;
 
+import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.utils.LanguageUtils;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 
@@ -16,6 +18,14 @@ import wangdaye.com.geometricweather.common.basic.models.Location;
  * */
 
 public abstract class WeatherService {
+
+    public static class WeatherResultWrapper {
+        final Weather result;
+
+        public WeatherResultWrapper(@Nullable Weather weather) {
+            result = weather;
+        }
+    }
 
     public interface RequestWeatherCallback {
         void requestWeatherSuccess(@NonNull Location requestLocation);
