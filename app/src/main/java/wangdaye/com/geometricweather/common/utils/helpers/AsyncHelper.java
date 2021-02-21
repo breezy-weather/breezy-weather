@@ -100,10 +100,10 @@ public class AsyncHelper {
 
     public static <T> Controller delayRunOnIO(Runnable runnable, long milliSeconds) {
         return new Controller(
-                Observable.create((ObservableOnSubscribe<T>) emitter -> runnable.run())
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .delay(milliSeconds, TimeUnit.MILLISECONDS)
+                Observable.timer(milliSeconds, TimeUnit.MILLISECONDS)
+                        .subscribeOn(AndroidSchedulers.mainThread())
+                        .observeOn(Schedulers.io())
+                        .doOnComplete(runnable::run)
                         .subscribe()
         );
     }
