@@ -1,5 +1,8 @@
 package wangdaye.com.geometricweather.common.rxjava;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import io.reactivex.observers.DisposableObserver;
 
 public abstract class BaseObserver<T> extends DisposableObserver<T> {
@@ -9,7 +12,7 @@ public abstract class BaseObserver<T> extends DisposableObserver<T> {
     public abstract void onFailed();
 
     @Override
-    public void onNext(T t) {
+    public void onNext(@Nullable T t) {
         if (t == null) {
             onFailed();
         } else {
@@ -18,7 +21,7 @@ public abstract class BaseObserver<T> extends DisposableObserver<T> {
     }
 
     @Override
-    public void onError(Throwable e) {
+    public void onError(@NonNull Throwable e) {
         onFailed();
     }
 

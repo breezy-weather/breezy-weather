@@ -160,6 +160,11 @@
     <string name="feedback_request_location_permission_success">Permission de localisation accordée</string>
     <string name="feedback_request_location_permission_failed">Permission de localisation échouée</string>
 
+    <string name="feedback_location_permissions_title">Accéder aux informations de localisation</string>
+    <string name="feedback_location_permissions_statement">Geometric Weather a besoin de récupérer vos informations de localisation quand l’application est utilisée ou en arrière-plan pour fournir les données météo de votre position actuelle. Pour cela, nous avons besoin de certaines permissions. Ces informations ne seront utilisées que pour obtenir les données météo de votre position actuelle. Si vous ne souhaitez pas partager vos informations de localisation, vous pouvez toujours refuser et définir manuellement un emplacement depuis la recherche.</string>
+    <string name="feedback_background_location_title">Accéder à la localisation en arrière-plan</string>
+    <string name="feedback_background_location_summary">Afin d’autoriser l’application à accéder à la localisation en arrière-plan, veuillez définir la permission de localisation à « Toujours autoriser ».</string>
+
     <string name="feedback_location_failed">Échec de localisation</string>
     <string name="feedback_get_weather_failed">Échec de récupération données météo</string>
     <string name="feedback_location_help_title">Vous ne parvenez pas à être localisé ?</string>
@@ -167,9 +172,6 @@
     <string name="feedback_enable_location_information">Activez les informations de localisation</string>
     <string name="feedback_select_location_provider">Sélectionnez un fournisseur de localisation</string>
     <string name="feedback_add_location_manually">Ajoutez manuellement la localisation et supprimez \'$\'</string>
-    <string name="feedback_background_location_title">Accéder à la localisation en arrière-plan</string>
-    <string name="feedback_background_location_summary">Afin d’autoriser l’application à accéder à la localisation en arrière-plan, veuillez définir la permission de localisation à « Toujours autoriser ».</string>
-
     <string name="feedback_view_style">Apparence</string>
     <string name="feedback_show_widget_card">Couleur d’arrière-plan</string>
     <string name="feedback_show_widget_card_alpha">Transparence</string>
@@ -275,6 +277,37 @@
 
     <string name="feedback_click_to_get_more">Appuyez pour en voir plus…</string>
     <string name="feedback_click_again_to_exit">Appuyez à nouveau pour quitter</string>
+
+    <!-- content description -->
+    <string name="content_desc_back">Retour</string>
+    <string name="content_desc_check_details">Plus de détails</string>
+    <string name="content_desc_weather_alert_button">$ vigilances météo</string> <!-- $ = alert count. -->
+    <string name="content_des_pm25">PM deux point cinq</string>
+    <string name="content_des_pm10">PM dix</string>
+    <string name="content_des_so2">Dioxyde de soufre</string>
+    <string name="content_des_no2">Dioxyde d’azote</string>
+    <string name="content_des_o3">Ozone</string>
+    <string name="content_des_co">Monoxyde de carbone</string>
+    <string name="content_des_m3">Monoxyde de carbone</string>
+    <string name="content_des_sunrise">Lever de soleil à $</string> <!-- $ = time. -->
+    <string name="content_des_sunset">Coucher de soleil à $</string> <!-- $ = time. -->
+    <string name="content_des_moonrise">Lever de lune à $</string> <!-- $ = time. -->
+    <string name="content_des_moonset">Coucher de lune à $</string> <!-- $ = time. -->
+    <string name="content_des_no_precipitation">Pas de précipitations</string>
+    <string name="content_des_minutely_precipitation">Précipitationss entre $1 et $2</string> <!-- $1 = start time, $2 = end time. -->
+    <string name="content_des_add_current_location">Ajouter la position actuelle</string>
+    <string name="content_des_drag_flag">Maintenez pour déplacer les éléments de la liste et les ordonner</string>
+    <string name="content_des_delete_flag">Supprimer cet élément</string>
+    <string name="content_des_swipe_left_to_delete">Vous pouvez glisser vers la gauche pour supprimer cet élément</string>
+    <string name="content_des_swipe_right_to_delete">Vous pouvez glisser vers la droite pour supprimer cet élément</string>
+    <string name="content_desc_search_filter_on">Ne montrer que les emplacements de la source météo par défaut</string>
+    <string name="content_desc_search_filter_off">Montrer les emplacements de toutes les sources météo</string>
+    <string name="content_desc_powered_by">Fourni par $</string> <!-- $ = weather source. -->
+    <string name="content_desc_wechat_payment_code">QR code de paiement par WeChat</string>
+    <string name="content_desc_weather_icon">Icône météo</string>
+    <string name="content_desc_weather_icon_light">Icône claire</string>
+    <string name="content_desc_weather_icon_grey">Icône grise</string>
+    <string name="content_desc_weather_icon_dark">Icône sombre</string>
 
     <!-- action -->
     <string name="action_alert">Vigilance</string>

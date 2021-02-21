@@ -16,9 +16,10 @@ import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
 import wangdaye.com.geometricweather.BuildConfig;
 import wangdaye.com.geometricweather.common.basic.models.Location;
-import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.common.rxjava.BaseObserver;
+import wangdaye.com.geometricweather.common.rxjava.ObserverContainer;
 import wangdaye.com.geometricweather.common.rxjava.SchedulerTransformer;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.weather.apis.AccuWeatherApi;
 import wangdaye.com.geometricweather.weather.converters.AccuResultConverter;
 import wangdaye.com.geometricweather.weather.json.accu.AccuAlertResult;
@@ -28,8 +29,6 @@ import wangdaye.com.geometricweather.weather.json.accu.AccuDailyResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuHourlyResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuLocationResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuMinuteResult;
-import wangdaye.com.geometricweather.common.rxjava.BaseObserver;
-import wangdaye.com.geometricweather.common.rxjava.ObserverContainer;
 
 /**
  * Accu weather service.
@@ -139,11 +138,11 @@ public class AccuWeatherService extends WeatherService {
                          accuAlertResults
                  )
         ).compose(SchedulerTransformer.create())
-                .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<Weather>() {
+                .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<WeatherResultWrapper>() {
                     @Override
-                    public void onSucceed(Weather weather) {
-                        if (weather != null) {
-                            location.setWeather(weather);
+                    public void onSucceed(WeatherResultWrapper wrapper) {
+                        if (wrapper.result != null) {
+                            location.setWeather(wrapper.result);
                             callback.requestWeatherSuccess(location);
                         } else {
                             onFailed();

@@ -10,15 +10,14 @@ import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
 import wangdaye.com.geometricweather.common.basic.models.ChineseCity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
-import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.rxjava.BaseObserver;
+import wangdaye.com.geometricweather.common.rxjava.ObserverContainer;
 import wangdaye.com.geometricweather.common.rxjava.SchedulerTransformer;
 import wangdaye.com.geometricweather.weather.apis.CNWeatherApi;
 import wangdaye.com.geometricweather.weather.apis.CaiYunApi;
 import wangdaye.com.geometricweather.weather.converters.CaiyunResultConverter;
 import wangdaye.com.geometricweather.weather.json.caiyun.CaiYunForecastResult;
 import wangdaye.com.geometricweather.weather.json.caiyun.CaiYunMainlyResult;
-import wangdaye.com.geometricweather.common.rxjava.BaseObserver;
-import wangdaye.com.geometricweather.common.rxjava.ObserverContainer;
 
 /**
  * CaiYun weather service.
@@ -68,11 +67,11 @@ public class CaiYunWeatherService extends CNWeatherService {
         Observable.zip(mainly, forecast, (mainlyResult, forecastResult) ->
                 CaiyunResultConverter.convert(context, location, mainlyResult, forecastResult)
         ).compose(SchedulerTransformer.create())
-                .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<Weather>() {
+                .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<WeatherResultWrapper>() {
                     @Override
-                    public void onSucceed(Weather weather) {
-                        if (weather != null) {
-                            location.setWeather(weather);
+                    public void onSucceed(WeatherResultWrapper wrapper) {
+                        if (wrapper.result != null) {
+                            location.setWeather(wrapper.result);
                             callback.requestWeatherSuccess(location);
                         } else {
                             callback.requestWeatherFailed(location);

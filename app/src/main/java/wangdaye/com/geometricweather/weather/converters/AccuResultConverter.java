@@ -46,9 +46,11 @@ import wangdaye.com.geometricweather.weather.json.accu.AccuDailyResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuHourlyResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuLocationResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuMinuteResult;
+import wangdaye.com.geometricweather.weather.services.WeatherService;
 
 public class AccuResultConverter {
 
+    @NonNull
     public static Location convert(@Nullable Location location, AccuLocationResult result,
                                    @Nullable String zipCode) {
         if (location != null
@@ -101,16 +103,17 @@ public class AccuResultConverter {
         }
     }
 
-    public static Weather convert(Context context,
-                                  Location location,
-                                  AccuCurrentResult currentResult,
-                                  AccuDailyResult dailyResult,
-                                  List<AccuHourlyResult> hourlyResultList,
-                                  @Nullable AccuMinuteResult minuteResult,
-                                  @Nullable AccuAqiResult aqiResult,
-                                  List<AccuAlertResult> alertResultList) {
+    @NonNull
+    public static WeatherService.WeatherResultWrapper convert(Context context,
+                                                              Location location,
+                                                              AccuCurrentResult currentResult,
+                                                              AccuDailyResult dailyResult,
+                                                              List<AccuHourlyResult> hourlyResultList,
+                                                              @Nullable AccuMinuteResult minuteResult,
+                                                              @Nullable AccuAqiResult aqiResult,
+                                                              List<AccuAlertResult> alertResultList) {
         try {
-            return new Weather(
+            Weather weather = new Weather(
                     new Base(
                             location.getCityId(),
                             System.currentTimeMillis(),
@@ -189,8 +192,9 @@ public class AccuResultConverter {
                     ),
                     getAlertList(alertResultList)
             );
+            return new WeatherService.WeatherResultWrapper(weather);
         } catch (Exception ignored) {
-            return null;
+            return new WeatherService.WeatherResultWrapper(null);
         }
     }
 
