@@ -15943,4 +15943,4 @@ Skipped unused resource res/layout/mtrl_alert_select_dialog_item.xml: 588 bytes 
 Skipped unused resource res/layout/mtrl_alert_select_dialog_multichoice.xml: 940 bytes (replaced with small dummy file of size 104 bytes)
 Skipped unused resource res/layout/mtrl_alert_select_dialog_singlechoice.xml: 940 bytes (replaced with small dummy file of size 104 bytes)
 Skipped unused resource res/layout/spinner_text.xml: 472 bytes (replaced with small dummy file of size 104 bytes)
-Resource shrinking did not work (grew from 5199785 to 5199796); using original instead
+Resource shrinking did not work (grew from 5199861 to 5199871); using original instead
