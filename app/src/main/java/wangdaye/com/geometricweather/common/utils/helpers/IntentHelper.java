@@ -21,7 +21,7 @@ import androidx.core.util.Pair;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.background.polling.basic.AwakeForegroundUpdateService;
+import wangdaye.com.geometricweather.background.polling.services.basic.AwakeForegroundUpdateService;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.daily.DailyWeatherActivity;
 import wangdaye.com.geometricweather.main.MainActivity;

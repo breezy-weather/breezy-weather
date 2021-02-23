@@ -2,6 +2,7 @@ package wangdaye.com.geometricweather.settings;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 
 import androidx.annotation.ColorInt;
 import androidx.core.content.ContextCompat;
@@ -117,8 +118,11 @@ public class SettingsOptionManager {
 
         // basic.
 
+        // force set background free on android 12+.
         backgroundFree = sharedPreferences.getBoolean(
-                context.getString(R.string.key_background_free), true);
+                context.getString(R.string.key_background_free),
+                true
+        ); // || Build.VERSION.SDK_INT >= Build.VERSION_CODES.S;
 
         alertPushEnabled = sharedPreferences.getBoolean(
                 context.getString(R.string.key_alert_notification_switch), true);
