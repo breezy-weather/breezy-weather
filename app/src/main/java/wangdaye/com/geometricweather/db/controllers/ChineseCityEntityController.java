@@ -153,7 +153,8 @@ public class ChineseCityEntityController extends AbsEntityController {
         QueryBuilder<ChineseCityEntity> builder = dao.queryBuilder();
         builder.whereOr(
                 ChineseCityEntityDao.Properties.District.like("%" + name + "%"),
-                ChineseCityEntityDao.Properties.City.like("%" + name + "%")
+                ChineseCityEntityDao.Properties.City.like("%" + name + "%"),
+                ChineseCityEntityDao.Properties.Province.like("%" + name + "%")
         );
 
         return getNonNullList(builder.list());

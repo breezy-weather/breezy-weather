@@ -134,6 +134,23 @@ public class MainActivityViewModel extends GeoViewModel
         });
     }
 
+    public void checkWhetherToChangeTheme() {
+        Location location = getCurrentLocationValue();
+        if (location == null) {
+            return;
+        }
+
+        boolean lightTheme = mThemeManager.isLightTheme();
+        mThemeManager.update(getApplication(), location);
+        if (mThemeManager.isLightTheme() == lightTheme) {
+            return;
+        }
+
+        LocationResource resource = mCurrentLocation.getValue();
+        mCurrentLocation.setValue(new LocationResource(
+                location, resource.status, resource.defaultLocation, resource.locateFailed, resource.event));
+    }
+
     public void updateLocationFromBackground(Location location) {
         mStatus = Status.IMPLICIT_INITIALIZING;
         mRepository.readWeatherCache(getApplication(), location, (weather, done) -> {
@@ -218,7 +235,7 @@ public class MainActivityViewModel extends GeoViewModel
         mRepository.cancelWeatherRequest();
 
         Location location = mCurrentLocation.getValue().data;
-
+        mThemeManager.update(getApplication(), location);
         mCurrentLocation.setValue(
                 LocationResource.loading(
                         location,
@@ -254,6 +271,7 @@ public class MainActivityViewModel extends GeoViewModel
             return;
         }
 
+        mThemeManager.update(getApplication(), location);
         mCurrentLocation.setValue(
                 LocationResource.error(
                         location,
@@ -634,7 +652,6 @@ public class MainActivityViewModel extends GeoViewModel
         Indicator indicator = new Indicator(validList.size(), validIndex);
 
         mThemeManager.update(getApplication(), location);
-
         mCurrentLocation.setValue(resource);
         mIndicator.setValue(indicator);
         mListResource.setValue(new SelectableLocationListResource(

@@ -329,7 +329,7 @@
 
         <!-- receiver -->
         <receiver
-            android:name=".background.receivers.MainReceiver"
+            android:name=".background.receiver.MainReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -339,7 +339,7 @@
 
         <!-- widget -->
         <receiver
-            android:name=".background.receivers.appwidgets.WidgetDayProvider"
+            android:name=".background.receiver.widget.WidgetDayProvider"
             android:label="@string/widget_day"
             android:exported="true">
             <meta-data
@@ -352,7 +352,7 @@
         </receiver>
 
         <receiver
-            android:name=".background.receivers.appwidgets.WidgetWeekProvider"
+            android:name=".background.receiver.widget.WidgetWeekProvider"
             android:label="@string/widget_week"
             android:exported="true">
             <meta-data
@@ -365,7 +365,7 @@
         </receiver>
 
         <receiver
-            android:name=".background.receivers.appwidgets.WidgetDayWeekProvider"
+            android:name=".background.receiver.widget.WidgetDayWeekProvider"
             android:label="@string/widget_day_week"
             android:exported="true">
             <meta-data
@@ -378,7 +378,7 @@
         </receiver>
 
         <receiver
-            android:name=".background.receivers.appwidgets.WidgetClockDayHorizontalProvider"
+            android:name=".background.receiver.widget.WidgetClockDayHorizontalProvider"
             android:label="@string/widget_clock_day_horizontal"
             android:exported="true">
             <meta-data
@@ -391,7 +391,7 @@
         </receiver>
 
         <receiver
-            android:name=".background.receivers.appwidgets.WidgetClockDayDetailsProvider"
+            android:name=".background.receiver.widget.WidgetClockDayDetailsProvider"
             android:label="@string/widget_clock_day_details"
             android:exported="true">
             <meta-data
@@ -404,7 +404,7 @@
         </receiver>
 
         <receiver
-            android:name=".background.receivers.appwidgets.WidgetClockDayVerticalProvider"
+            android:name=".background.receiver.widget.WidgetClockDayVerticalProvider"
             android:label="@string/widget_clock_day_vertical"
             android:exported="true">
             <meta-data
@@ -417,7 +417,7 @@
         </receiver>
 
         <receiver
-            android:name=".background.receivers.appwidgets.WidgetClockDayWeekProvider"
+            android:name=".background.receiver.widget.WidgetClockDayWeekProvider"
             android:label="@string/widget_clock_day_week"
             android:exported="true">
             <meta-data
@@ -430,7 +430,7 @@
         </receiver>
 
         <receiver
-            android:name=".background.receivers.appwidgets.WidgetTextProvider"
+            android:name=".background.receiver.widget.WidgetTextProvider"
             android:label="@string/widget_text"
             android:exported="true">
             <meta-data
@@ -443,7 +443,7 @@
         </receiver>
 
         <receiver
-            android:name=".background.receivers.appwidgets.WidgetTrendDailyProvider"
+            android:name=".background.receiver.widget.WidgetTrendDailyProvider"
             android:label="@string/widget_trend_daily"
             android:exported="true">
             <meta-data
@@ -456,7 +456,7 @@
         </receiver>
 
         <receiver
-            android:name=".background.receivers.appwidgets.WidgetTrendHourlyProvider"
+            android:name=".background.receiver.widget.WidgetTrendHourlyProvider"
             android:label="@string/widget_trend_hourly"
             android:exported="true">
             <meta-data
@@ -469,7 +469,7 @@
         </receiver>
 
         <receiver
-            android:name=".background.receivers.appwidgets.WidgetMultiCityProvider"
+            android:name=".background.receiver.widget.WidgetMultiCityProvider"
             android:label="@string/widget_multi_city"
             android:exported="true">
             <meta-data

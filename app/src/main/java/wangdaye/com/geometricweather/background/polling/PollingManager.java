@@ -1,12 +1,11 @@
 package wangdaye.com.geometricweather.background.polling;
 
 import android.content.Context;
-import android.os.Build;
 
 import wangdaye.com.geometricweather.background.polling.services.permanent.PermanentServiceHelper;
 import wangdaye.com.geometricweather.background.polling.work.WorkerHelper;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 
 /**
  * Polling manager.
@@ -14,16 +13,13 @@ import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
 public class PollingManager {
 
     public static void resetAllBackgroundTask(Context context, boolean forceRefresh) {
+        SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
+
         if (forceRefresh) {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
-                IntentHelper.startAwakeForegroundUpdateService(context);
-                return;
-            } else {
-                WorkerHelper.setExpeditedPollingWork(context);
-            }
+            forceRefresh(context, settings.isBackgroundFree());
+            return;
         }
 
-        SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
         if (settings.isBackgroundFree()) {
             PermanentServiceHelper.stopPollingService(context);
 
@@ -52,16 +48,14 @@ public class PollingManager {
     }
 
     public static void resetNormalBackgroundTask(Context context, boolean forceRefresh) {
+        SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
+
         if (forceRefresh) {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
-                IntentHelper.startAwakeForegroundUpdateService(context);
-                return;
-            } else {
-                WorkerHelper.setExpeditedPollingWork(context);
-            }
+            forceRefresh(context, settings.isBackgroundFree());
+            return;
         }
 
-        if (SettingsOptionManager.getInstance(context).isBackgroundFree()) {
+        if (settings.isBackgroundFree()) {
             PermanentServiceHelper.stopPollingService(context);
 
             WorkerHelper.setNormalPollingWork(
@@ -78,16 +72,13 @@ public class PollingManager {
 
     public static void resetTodayForecastBackgroundTask(Context context, boolean forceRefresh,
                                                         boolean nextDay) {
+        SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
+
         if (forceRefresh) {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
-                IntentHelper.startAwakeForegroundUpdateService(context);
-                return;
-            } else {
-                WorkerHelper.setExpeditedPollingWork(context);
-            }
+            forceRefresh(context, settings.isBackgroundFree());
+            return;
         }
 
-        SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
         if (settings.isBackgroundFree()) {
             PermanentServiceHelper.stopPollingService(context);
 
@@ -107,16 +98,13 @@ public class PollingManager {
 
     public static void resetTomorrowForecastBackgroundTask(Context context, boolean forceRefresh,
                                                            boolean nextDay) {
+        SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
+
         if (forceRefresh) {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
-                IntentHelper.startAwakeForegroundUpdateService(context);
-                return;
-            } else {
-                WorkerHelper.setExpeditedPollingWork(context);
-            }
+            forceRefresh(context, settings.isBackgroundFree());
+            return;
         }
 
-        SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
         if (settings.isBackgroundFree()) {
             PermanentServiceHelper.stopPollingService(context);
 
@@ -132,5 +120,16 @@ public class PollingManager {
 
             PermanentServiceHelper.startPollingService(context);
         }
+    }
+
+    private static void forceRefresh(Context context, boolean backgroundFree) {
+        IntentHelper.startAwakeForegroundUpdateService(context);
+        /*
+        if (backgroundFree) {
+            WorkerHelper.setExpeditedPollingWork(context);
+        } else {
+            IntentHelper.startAwakeForegroundUpdateService(context);
+        }
+        */
     }
 }

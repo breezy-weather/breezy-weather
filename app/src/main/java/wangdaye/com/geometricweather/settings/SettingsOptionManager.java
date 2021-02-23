@@ -122,7 +122,7 @@ public class SettingsOptionManager {
         backgroundFree = sharedPreferences.getBoolean(
                 context.getString(R.string.key_background_free),
                 true
-        ) || Build.VERSION.SDK_INT >= Build.VERSION_CODES.S;
+        ); // || Build.VERSION.SDK_INT >= Build.VERSION_CODES.S;
 
         alertPushEnabled = sharedPreferences.getBoolean(
                 context.getString(R.string.key_alert_notification_switch), true);

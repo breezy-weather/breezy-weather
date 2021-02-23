@@ -9,7 +9,6 @@ import androidx.work.ExistingPeriodicWorkPolicy;
 import androidx.work.ExistingWorkPolicy;
 import androidx.work.NetworkType;
 import androidx.work.OneTimeWorkRequest;
-import androidx.work.OutOfQuotaPolicy;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
 
@@ -25,7 +24,6 @@ public class WorkerHelper {
     private static final long MINUTES_PER_HOUR = 60;
     private static final long BACKOFF_DELAY_MINUTES = 15;
 
-    private static final String WORK_NAME_EXPEDITED = "EXPEDITED";
     private static final String WORK_NAME_NORMAL_VIEW = "NORMAL_VIEW";
     private static final String WORK_NAME_TODAY_FORECAST = "TODAY_FORECAST";
     private static final String WORK_NAME_TOMORROW_FORECAST = "TOMORROW_FORECAST";
@@ -38,11 +36,10 @@ public class WorkerHelper {
                                 .setRequiredNetworkType(NetworkType.CONNECTED)
                                 .build()
                 )
-                .setExpedited(OutOfQuotaPolicy.RUN_AS_NON_EXPEDITED_WORK_REQUEST)
+                // .setExpedited(OutOfQuotaPolicy.RUN_AS_NON_EXPEDITED_WORK_REQUEST)
                 .build();
 
-        WorkManager.getInstance(context).enqueueUniqueWork(
-                WORK_NAME_EXPEDITED, ExistingWorkPolicy.KEEP, request);
+        WorkManager.getInstance(context).enqueue(request);
     }
 
     public static void setNormalPollingWork(Context context, float pollingRate) {

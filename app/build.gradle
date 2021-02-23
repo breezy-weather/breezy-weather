@@ -5,13 +5,13 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
 
 android {
-    compileSdkVersion "android-S"
+    compileSdkVersion 30
     defaultConfig {
         applicationId "wangdaye.com.geometricweather"
-        targetSdkVersion "S"
+        targetSdkVersion 30
         minSdkVersion 19
-        versionCode 30003
-        versionName "3.003"
+        versionCode 30004
+        versionName "3.004"
         multiDexEnabled true
         ndk {
             abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'

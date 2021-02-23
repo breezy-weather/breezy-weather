@@ -35,6 +35,8 @@ public class TimeObserverService extends Service {
 
     private static float sPollingRate;
     private static long sLastUpdateNormalViewTime;
+    private static long sLastTodayForecastTime;
+    private static long sLastTomorrowForecastTime;
     private static String sTodayForecastTime;
     private static String sTomorrowForecastTime;
 
@@ -59,7 +61,9 @@ public class TimeObserverService extends Service {
 
                 case Intent.ACTION_TIME_CHANGED:
                 case Intent.ACTION_TIMEZONE_CHANGED:
-                    sLastUpdateNormalViewTime = -1;
+                    sLastUpdateNormalViewTime = System.currentTimeMillis();
+                    sLastTodayForecastTime = System.currentTimeMillis();
+                    sLastTomorrowForecastTime = System.currentTimeMillis();
                     doRefreshWork();
                     break;
             }
@@ -100,12 +104,16 @@ public class TimeObserverService extends Service {
         sTodayForecastTime = SettingsOptionManager.DEFAULT_TODAY_FORECAST_TIME;
         sTomorrowForecastTime = SettingsOptionManager.DEFAULT_TOMORROW_FORECAST_TIME;
         sLastUpdateNormalViewTime = System.currentTimeMillis();
+        sLastTodayForecastTime = System.currentTimeMillis();
+        sLastTomorrowForecastTime = System.currentTimeMillis();
     }
 
     private void readData(Intent intent) {
         if (intent != null) {
             if (intent.getBooleanExtra(KEY_CONFIG_CHANGED, false)) {
                 sPollingRate = intent.getFloatExtra(KEY_POLLING_RATE, 1.5f);
+                sLastTodayForecastTime = System.currentTimeMillis();
+                sLastTomorrowForecastTime = System.currentTimeMillis();
                 sTodayForecastTime = intent.getStringExtra(KEY_TODAY_FORECAST_TIME);
                 sTomorrowForecastTime = intent.getStringExtra(KEY_TOMORROW_FORECAST_TIME);
             }
@@ -116,31 +124,28 @@ public class TimeObserverService extends Service {
     }
 
     private void doRefreshWork() {
-        if (sLastUpdateNormalViewTime < 0
-                || System.currentTimeMillis() - sLastUpdateNormalViewTime > getPollingInterval()) {
+        if (System.currentTimeMillis() - sLastUpdateNormalViewTime > getPollingInterval()) {
+
             sLastUpdateNormalViewTime = System.currentTimeMillis();
+
             Intent intent = new Intent(this, ForegroundNormalUpdateService.class);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                startForegroundService(intent);
-            } else {
-                startService(intent);
-            }
+            ContextCompat.startForegroundService(this, intent);
         }
-        if (!TextUtils.isEmpty(sTodayForecastTime) && isForecastTime(sTodayForecastTime)) {
+        if (!TextUtils.isEmpty(sTodayForecastTime)
+                && isForecastTime(sTodayForecastTime, sLastTodayForecastTime)) {
+
+            sLastTodayForecastTime = System.currentTimeMillis();
+
             Intent intent = new Intent(this, ForegroundTodayForecastUpdateService.class);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                startForegroundService(intent);
-            } else {
-                startService(intent);
-            }
+            ContextCompat.startForegroundService(this, intent);
         }
-        if (!TextUtils.isEmpty(sTomorrowForecastTime) && isForecastTime(sTomorrowForecastTime)) {
+        if (!TextUtils.isEmpty(sTomorrowForecastTime)
+                && isForecastTime(sTomorrowForecastTime, sLastTomorrowForecastTime)) {
+
+            sLastTomorrowForecastTime = System.currentTimeMillis();
+
             Intent intent = new Intent(this, ForegroundTomorrowForecastUpdateService.class);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                startForegroundService(intent);
-            } else {
-                startService(intent);
-            }
+            ContextCompat.startForegroundService(this, intent);
         }
     }
 
@@ -209,15 +214,14 @@ public class TimeObserverService extends Service {
         return (long) (sPollingRate * 1000 * 60 * 60);
     }
 
-    private static boolean isForecastTime(String time) {
-        int[] realTimes = new int[]{
-                Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
-                Calendar.getInstance().get(Calendar.MINUTE)
-        };
-        int[] setTimes = new int[]{
-                Integer.parseInt(time.split(":")[0]),
-                Integer.parseInt(time.split(":")[1])
-        };
-        return realTimes[0] == setTimes[0] && realTimes[1] == setTimes[1];
+    private static boolean isForecastTime(String time, long lastForecastTime) {
+        final long currentTime = System.currentTimeMillis();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(time.split(":")[0]));
+        calendar.set(Calendar.MINUTE, Integer.parseInt(time.split(":")[1]));
+        final long configTime = calendar.getTimeInMillis();
+
+        return currentTime >= configTime && configTime > lastForecastTime;
     }
 }

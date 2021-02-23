@@ -198,7 +198,8 @@ public abstract class AbstractRemoteViewsPresenter {
                 context,
                 requestCode,
                 IntentHelper.buildMainActivityIntent(location),
-                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent.FLAG_UPDATE_CURRENT);
+                // PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
     @SuppressLint("InlinedApi")
@@ -209,7 +210,8 @@ public abstract class AbstractRemoteViewsPresenter {
                 context,
                 requestCode,
                 IntentHelper.buildMainActivityShowDailyForecastIntent(location, index),
-                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent.FLAG_UPDATE_CURRENT);
+        // PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
     @SuppressLint("InlinedApi")
@@ -218,7 +220,8 @@ public abstract class AbstractRemoteViewsPresenter {
                 context,
                 requestCode,
                 IntentHelper.getAwakeForegroundUpdateServiceIntent(context),
-                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent.FLAG_UPDATE_CURRENT);
+        // PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
     @SuppressLint("InlinedApi")
@@ -227,7 +230,8 @@ public abstract class AbstractRemoteViewsPresenter {
                 context,
                 requestCode,
                 new Intent(AlarmClock.ACTION_SHOW_ALARMS),
-                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent.FLAG_UPDATE_CURRENT);
+        // PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
     @SuppressLint("InlinedApi")
@@ -239,7 +243,8 @@ public abstract class AbstractRemoteViewsPresenter {
                 context,
                 requestCode,
                 new Intent(Intent.ACTION_VIEW).setData(builder.build()),
-                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent.FLAG_UPDATE_CURRENT);
+        // PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
     @NonNull
