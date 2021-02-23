@@ -44,6 +44,8 @@
             android:textSize="@dimen/title_text_size"
             android:includeFontPadding="false"
             android:layout_marginEnd="@dimen/little_margin"
+            android:maxLines="1"
+            android:ellipsize="end"
             style="@style/notification_title_text"
             tools:text="Partly Cloudy" />
 
@@ -53,6 +55,8 @@
             android:textSize="@dimen/content_text_size"
             android:includeFontPadding="false"
             android:layout_marginEnd="@dimen/little_margin"
+            android:maxLines="1"
+            android:ellipsize="end"
             style="@style/notification_content_text"
             tools:text="Air Quality - Fresh Air" />
 
@@ -62,6 +66,8 @@
             android:textSize="@dimen/widget_time_text_size"
             android:includeFontPadding="false"
             android:layout_marginEnd="@dimen/little_margin"
+            android:maxLines="1"
+            android:ellipsize="end"
             style="@style/notification_subtitle_text"
             tools:text="青岛, 更新于 周三 10:00 正月初二"
             tools:ignore="RtlHardcoded,SmallSp" />
