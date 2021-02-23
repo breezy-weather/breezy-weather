@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.background.polling.work;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
 import androidx.work.BackoffPolicy;
@@ -26,6 +27,20 @@ public class WorkerHelper {
     private static final String WORK_NAME_NORMAL_VIEW = "NORMAL_VIEW";
     private static final String WORK_NAME_TODAY_FORECAST = "TODAY_FORECAST";
     private static final String WORK_NAME_TOMORROW_FORECAST = "TOMORROW_FORECAST";
+
+    @SuppressLint("UnsafeExperimentalUsageError")
+    public static void setExpeditedPollingWork(Context context) {
+        OneTimeWorkRequest request = new OneTimeWorkRequest.Builder(NormalUpdateWorker.class)
+                .setConstraints(
+                        new Constraints.Builder()
+                                .setRequiredNetworkType(NetworkType.CONNECTED)
+                                .build()
+                )
+                // .setExpedited(OutOfQuotaPolicy.RUN_AS_NON_EXPEDITED_WORK_REQUEST)
+                .build();
+
+        WorkManager.getInstance(context).enqueue(request);
+    }
 
     public static void setNormalPollingWork(Context context, float pollingRate) {
         PeriodicWorkRequest request = new PeriodicWorkRequest.Builder(

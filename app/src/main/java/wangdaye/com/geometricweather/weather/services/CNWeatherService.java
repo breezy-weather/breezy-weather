@@ -82,52 +82,42 @@ public class CNWeatherService extends WeatherService {
 
     @Override
     public void requestLocation(Context context, Location location, @NonNull RequestLocationCallback callback) {
-        if (location.hasGeocodeInformation()) {
-            searchLocationsInThread(
-                    context,
-                    location.getProvince(),
-                    location.getCity(),
-                    location.getDistrict(),
-                    callback
-            );
-        } else {
-            searchLocationsInThread(
-                    context,
-                    location.getLatitude(),
-                    location.getLongitude(),
-                    callback
-            );
-        }
-    }
 
-    private void searchLocationsInThread(Context context,
-                                         String province, String city, String district,
-                                         RequestLocationCallback callback) {
-        if (callback == null) {
-            return;
-        }
-
-        final String finalProvince = formatLocationString(convertChinese(province));
-        final String finalCity = formatLocationString(convertChinese(city));
-        final String finalDistrict = formatLocationString(convertChinese(district));
+        final boolean hasGeocodeInformation = location.hasGeocodeInformation();
 
         Observable.create((ObservableOnSubscribe<List<Location>>) emitter -> {
             DatabaseHelper.getInstance(context).ensureChineseCityList(context);
-
             List<Location> locationList = new ArrayList<>();
+
+            if (hasGeocodeInformation) {
+                ChineseCity chineseCity = DatabaseHelper.getInstance(context).readChineseCity(
+                        formatLocationString(convertChinese(location.getProvince())),
+                        formatLocationString(convertChinese(location.getCity())),
+                        formatLocationString(convertChinese(location.getDistrict()))
+                );
+                if (chineseCity != null) {
+                    locationList.add(chineseCity.toLocation(getSource()));
+                }
+            }
+            if (locationList.size() > 0) {
+                emitter.onNext(locationList);
+                return;
+            }
+
             ChineseCity chineseCity = DatabaseHelper.getInstance(context).readChineseCity(
-                    finalProvince, finalCity, finalDistrict);
+                    location.getLatitude(), location.getLongitude());
             if (chineseCity != null) {
                 locationList.add(chineseCity.toLocation(getSource()));
             }
 
             emitter.onNext(locationList);
+
         }).compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<List<Location>>() {
                     @Override
                     public void onSucceed(List<Location> locations) {
                         if (locations.size() > 0) {
-                            callback.requestLocationSuccess(finalDistrict, locations);
+                            callback.requestLocationSuccess(location.getFormattedId(), locations);
                         } else {
                             onFailed();
                         }
@@ -135,41 +125,7 @@ public class CNWeatherService extends WeatherService {
 
                     @Override
                     public void onFailed() {
-                        callback.requestLocationFailed(finalDistrict);
-                    }
-                }));
-    }
-
-    private void searchLocationsInThread(Context context, float latitude, float longitude,
-                                         RequestLocationCallback callback) {
-        if (callback == null) {
-            return;
-        }
-
-        Observable.create((ObservableOnSubscribe<List<Location>>) emitter -> {
-            DatabaseHelper.getInstance(context).ensureChineseCityList(context);
-
-            List<Location> locationList = new ArrayList<>();
-            ChineseCity chineseCity = DatabaseHelper.getInstance(context).readChineseCity(latitude, longitude);
-            if (chineseCity != null) {
-                locationList.add(chineseCity.toLocation(getSource()));
-            }
-
-            emitter.onNext(locationList);
-        }).compose(SchedulerTransformer.create())
-                .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<List<Location>>() {
-                    @Override
-                    public void onSucceed(List<Location> locations) {
-                        if (locations.size() > 0) {
-                            callback.requestLocationSuccess(latitude + "," + longitude, locations);
-                        } else {
-                            onFailed();
-                        }
-                    }
-
-                    @Override
-                    public void onFailed() {
-                        callback.requestLocationFailed(latitude + "," + longitude);
+                        callback.requestLocationFailed(location.getFormattedId());
                     }
                 }));
     }

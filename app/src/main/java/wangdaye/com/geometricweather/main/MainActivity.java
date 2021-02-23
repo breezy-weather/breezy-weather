@@ -192,6 +192,12 @@ public class MainActivity extends GeoActivity
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        mViewModel.checkWhetherToChangeTheme();
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         LocalBroadcastManager.getInstance(this).unregisterReceiver(backgroundUpdateReceiver);

@@ -73,7 +73,8 @@
             android:label="@string/app_name"
             android:theme="@style/GeometricWeatherTheme.Main"
             android:screenOrientation="user"
-            android:configChanges="uiMode">
+            android:configChanges="uiMode"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -144,7 +145,8 @@
 
         <activity
             android:name=".common.ui.activities.AwakeUpdateActivity"
-            android:launchMode="singleInstance">
+            android:launchMode="singleInstance"
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.wangdaye.geometricweather.UPDATE" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -163,7 +165,8 @@
         <activity
             android:name=".remoteviews.config.DayWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
-            android:screenOrientation="user">
+            android:screenOrientation="user"
+            android:exported="true">
             <intent-filter>
                 <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
@@ -172,7 +175,8 @@
         <activity
             android:name=".remoteviews.config.WeekWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
-            android:screenOrientation="user">
+            android:screenOrientation="user"
+            android:exported="true">
             <intent-filter>
                 <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
@@ -181,7 +185,8 @@
         <activity
             android:name=".remoteviews.config.DayWeekWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
-            android:screenOrientation="user">
+            android:screenOrientation="user"
+            android:exported="true">
             <intent-filter>
                 <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
@@ -190,7 +195,8 @@
         <activity
             android:name=".remoteviews.config.ClockDayHorizontalWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
-            android:screenOrientation="user">
+            android:screenOrientation="user"
+            android:exported="true">
             <intent-filter>
                 <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
@@ -199,7 +205,8 @@
         <activity
             android:name=".remoteviews.config.ClockDayDetailsWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
-            android:screenOrientation="user">
+            android:screenOrientation="user"
+            android:exported="true">
             <intent-filter>
                 <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
@@ -208,7 +215,8 @@
         <activity
             android:name=".remoteviews.config.ClockDayVerticalWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
-            android:screenOrientation="user">
+            android:screenOrientation="user"
+            android:exported="true">
             <intent-filter>
                 <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
@@ -217,7 +225,8 @@
         <activity
             android:name=".remoteviews.config.ClockDayWeekWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
-            android:screenOrientation="user">
+            android:screenOrientation="user"
+            android:exported="true">
             <intent-filter>
                 <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
@@ -226,7 +235,8 @@
         <activity
             android:name=".remoteviews.config.TextWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
-            android:screenOrientation="user">
+            android:screenOrientation="user"
+            android:exported="true">
             <intent-filter>
                 <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
@@ -235,7 +245,8 @@
         <activity
             android:name=".remoteviews.config.DailyTrendWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
-            android:screenOrientation="user">
+            android:screenOrientation="user"
+            android:exported="true">
             <intent-filter>
                 <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
@@ -244,7 +255,8 @@
         <activity
             android:name=".remoteviews.config.HourlyTrendWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
-            android:screenOrientation="user">
+            android:screenOrientation="user"
+            android:exported="true">
             <intent-filter>
                 <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
@@ -253,7 +265,8 @@
         <activity
             android:name=".remoteviews.config.MultiCityWidgetConfigActivity"
             android:theme="@style/GeometricWeatherTheme"
-            android:screenOrientation="user">
+            android:screenOrientation="user"
+            android:exported="true">
             <intent-filter>
                 <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
@@ -261,37 +274,39 @@
 
         <!-- service -->
         <service
-            android:name=".background.polling.basic.AwakeForegroundUpdateService"
+            android:name=".background.polling.services.basic.AwakeForegroundUpdateService"
             android:foregroundServiceType="location" />
 
         <service
-            android:name=".background.polling.permanent.observer.TimeObserverService"
+            android:name=".background.polling.services.permanent.observer.TimeObserverService"
             android:process=":polling" />
-        <service android:name=".background.polling.permanent.observer.FakeForegroundService" />
+        <service android:name=".background.polling.services.permanent.observer.FakeForegroundService" />
 
         <service
-            android:name=".background.polling.permanent.update.ForegroundNormalUpdateService"
+            android:name=".background.polling.services.permanent.update.ForegroundNormalUpdateService"
             android:foregroundServiceType="location" />
         <service
-            android:name=".background.polling.permanent.update.ForegroundTodayForecastUpdateService"
+            android:name=".background.polling.services.permanent.update.ForegroundTodayForecastUpdateService"
             android:foregroundServiceType="location" />
         <service
-            android:name=".background.polling.permanent.update.ForegroundTomorrowForecastUpdateService"
+            android:name=".background.polling.services.permanent.update.ForegroundTomorrowForecastUpdateService"
             android:foregroundServiceType="location" />
 
         <service
-            android:name=".background.service.TileService"
+            android:name=".background.interfaces.TileService"
             android:label="@string/geometric_weather"
             android:icon="@drawable/weather_clear_day_mini_light"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
         </service>
 
         <service
-            android:name=".background.service.CMWeatherProviderService"
-            android:permission="cyanogenmod.permission.BIND_WEATHER_PROVIDER_SERVICE">
+            android:name=".background.interfaces.CMWeatherProviderService"
+            android:permission="cyanogenmod.permission.BIND_WEATHER_PROVIDER_SERVICE"
+            android:exported="true">
             <intent-filter>
                 <action android:name="cyanogenmod.weatherservice.WeatherProviderService" />
             </intent-filter>
@@ -302,7 +317,8 @@
 
         <service
             android:name=".wallpaper.MaterialLiveWallpaperService"
-            android:permission="android.permission.BIND_WALLPAPER">
+            android:permission="android.permission.BIND_WALLPAPER"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.service.wallpaper.WallpaperService" />
             </intent-filter>
@@ -313,7 +329,8 @@
 
         <!-- receiver -->
         <receiver
-            android:name=".background.receiver.MainReceiver">
+            android:name=".background.receiver.MainReceiver"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.WALLPAPER_CHANGED" />
@@ -323,7 +340,8 @@
         <!-- widget -->
         <receiver
             android:name=".background.receiver.widget.WidgetDayProvider"
-            android:label="@string/widget_day">
+            android:label="@string/widget_day"
+            android:exported="true">
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_day" />
@@ -335,7 +353,8 @@
 
         <receiver
             android:name=".background.receiver.widget.WidgetWeekProvider"
-            android:label="@string/widget_week">
+            android:label="@string/widget_week"
+            android:exported="true">
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_week" />
@@ -347,7 +366,8 @@
 
         <receiver
             android:name=".background.receiver.widget.WidgetDayWeekProvider"
-            android:label="@string/widget_day_week">
+            android:label="@string/widget_day_week"
+            android:exported="true">
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_day_week" />
@@ -359,7 +379,8 @@
 
         <receiver
             android:name=".background.receiver.widget.WidgetClockDayHorizontalProvider"
-            android:label="@string/widget_clock_day_horizontal">
+            android:label="@string/widget_clock_day_horizontal"
+            android:exported="true">
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_clock_day_horizontal" />
@@ -371,7 +392,8 @@
 
         <receiver
             android:name=".background.receiver.widget.WidgetClockDayDetailsProvider"
-            android:label="@string/widget_clock_day_details">
+            android:label="@string/widget_clock_day_details"
+            android:exported="true">
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_clock_day_details" />
@@ -383,7 +405,8 @@
 
         <receiver
             android:name=".background.receiver.widget.WidgetClockDayVerticalProvider"
-            android:label="@string/widget_clock_day_vertical">
+            android:label="@string/widget_clock_day_vertical"
+            android:exported="true">
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_clock_day_vertical" />
@@ -395,7 +418,8 @@
 
         <receiver
             android:name=".background.receiver.widget.WidgetClockDayWeekProvider"
-            android:label="@string/widget_clock_day_week">
+            android:label="@string/widget_clock_day_week"
+            android:exported="true">
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_clock_day_week" />
@@ -407,7 +431,8 @@
 
         <receiver
             android:name=".background.receiver.widget.WidgetTextProvider"
-            android:label="@string/widget_text">
+            android:label="@string/widget_text"
+            android:exported="true">
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_text" />
@@ -419,7 +444,8 @@
 
         <receiver
             android:name=".background.receiver.widget.WidgetTrendDailyProvider"
-            android:label="@string/widget_trend_daily">
+            android:label="@string/widget_trend_daily"
+            android:exported="true">
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_trend_daily" />
@@ -431,7 +457,8 @@
 
         <receiver
             android:name=".background.receiver.widget.WidgetTrendHourlyProvider"
-            android:label="@string/widget_trend_hourly">
+            android:label="@string/widget_trend_hourly"
+            android:exported="true">
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_trend_hourly" />
@@ -443,7 +470,8 @@
 
         <receiver
             android:name=".background.receiver.widget.WidgetMultiCityProvider"
-            android:label="@string/widget_multi_city">
+            android:label="@string/widget_multi_city"
+            android:exported="true">
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_multi_city" />

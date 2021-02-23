@@ -7,7 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
+import wangdaye.com.geometricweather.background.polling.PollingManager;
 
 public class AwakeUpdateActivity extends AppCompatActivity {
 
@@ -15,7 +15,7 @@ public class AwakeUpdateActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Toast.makeText(getApplicationContext(), R.string.refresh, Toast.LENGTH_SHORT).show();
-        IntentHelper.startAwakeForegroundUpdateService(getApplicationContext());
+        PollingManager.resetAllBackgroundTask(this, true);
         finish();
     }
 }

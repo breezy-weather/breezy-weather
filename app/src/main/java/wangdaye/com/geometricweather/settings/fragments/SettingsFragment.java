@@ -102,6 +102,9 @@ public class SettingsFragment extends AbstractSettingsFragment {
 
     private void initBasicPart() {
         // background free.
+        // force set background free on android 12+.
+        // findPreference(getString(R.string.key_background_free)).setVisible(
+        //         Build.VERSION.SDK_INT < Build.VERSION_CODES.S);
         findPreference(getString(R.string.key_background_free)).setOnPreferenceChangeListener((preference, newValue) -> {
             boolean backgroundFree = (boolean) newValue;
             getSettingsOptionManager().setBackgroundFree(backgroundFree);
