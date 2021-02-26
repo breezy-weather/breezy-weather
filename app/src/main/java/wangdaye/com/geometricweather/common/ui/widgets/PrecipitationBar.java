@@ -63,7 +63,7 @@ public class PrecipitationBar extends View {
             return;
         }
 
-        float itemWidth = getMeasuredWidth() / mMinutelyList.size();
+        float itemWidth = 1.f * getMeasuredWidth() / mMinutelyList.size();
         float itemHeight = getMeasuredHeight();
 
         canvas.drawColor(mBackgroundColor);
