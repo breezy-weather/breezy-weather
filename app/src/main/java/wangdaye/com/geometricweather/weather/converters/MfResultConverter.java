@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
@@ -224,7 +225,7 @@ public class MfResultConverter {
                             toInt(forecastResult.dailyForecasts.get(0).temperature.min)
                     ),
                     getDailyList(context, forecastResult, ephemerisResult, aqiAtmoAuraResult),
-                    getHourlyList(forecastResult.forecasts),
+                    getHourlyList(forecastResult.forecasts, forecastResult.probabilityForecast),
                     getMinutelyList(forecastResult.dailyForecasts.get(0).sun.rise, forecastResult.dailyForecasts.get(0).sun.set, rainResult),
                     getWarningsList(warningsResult)
             );
@@ -351,8 +352,8 @@ public class MfResultConverter {
                                             null,
                                             null
                                     ),
-                                    new Precipitation( // FIXME
-                                            null,
+                                    new Precipitation(
+                                            (dailyForecast.precipitation != null && dailyForecast.precipitation.cumul24H != null) ? dailyForecast.precipitation.cumul24H : null,
                                             null,
                                             null,
                                             null,
@@ -395,7 +396,124 @@ public class MfResultConverter {
         return dailyList;
     }
 
-    private static List<Hourly> getHourlyList(List<MfForecastResult.Forecast> hourlyForecastResult) {
+    private static Float getRainCumul(MfForecastResult.Forecast.Rain rain) {
+        if (rain.cumul1H != null) {
+            return rain.cumul1H;
+        }
+        if (rain.cumul3H != null) {
+            return rain.cumul3H;
+        }
+        if (rain.cumul6H != null) {
+            return rain.cumul6H;
+        }
+        if (rain.cumul12H != null) {
+            return rain.cumul12H;
+        }
+        if (rain.cumul24H != null) {
+            return rain.cumul24H;
+        }
+        return null;
+    }
+
+    private static Float getSnowCumul(MfForecastResult.Forecast.Snow snow) {
+        if (snow.cumul1H != null) {
+            return snow.cumul1H;
+        }
+        if (snow.cumul3H != null) {
+            return snow.cumul3H;
+        }
+        if (snow.cumul6H != null) {
+            return snow.cumul6H;
+        }
+        if (snow.cumul12H != null) {
+            return snow.cumul12H;
+        }
+        if (snow.cumul24H != null) {
+            return snow.cumul24H;
+        }
+        return null;
+    }
+
+    private static Precipitation getHourlyPrecipitation(MfForecastResult.Forecast hourlyForecast) {
+        Float rainCumul = getRainCumul(hourlyForecast.rain);
+        Float snowCumul = getSnowCumul(hourlyForecast.snow);
+        Float totalCumul = null;
+
+        if (rainCumul == null) {
+            totalCumul = snowCumul;
+        } else if (snowCumul == null) {
+            totalCumul = rainCumul;
+        } else {
+            totalCumul = snowCumul + rainCumul;
+        }
+
+        return new Precipitation(
+                totalCumul,
+                null,
+                rainCumul,
+                snowCumul,
+                null
+        );
+    }
+
+    private static PrecipitationProbability getHourlyPrecipitationProbability(List<MfForecastResult.ProbabilityForecast> probabilityForecastResult, long dt) {
+        Float rainProbability = null;
+        Float snowProbability = null;
+        Float iceProbability = null;
+
+        for (MfForecastResult.ProbabilityForecast probabilityForecast : probabilityForecastResult) {
+            /*
+             * Probablity are given every 3 hours, sometimes every 6 hours.
+             * Sometimes every 3 hour-schedule give 3 hours probability AND 6 hours probability,
+             * sometimes only one of them
+             * It's not very clear but we take all hours in order.
+             */
+            if (probabilityForecast.dt == dt || (probabilityForecast.dt + 3600) == dt || (probabilityForecast.dt + 3600 * 2) == dt) {
+                if (probabilityForecast.rain.proba3H != null) {
+                    rainProbability = probabilityForecast.rain.proba3H * 1f;
+                }
+                if (probabilityForecast.rain.proba6H != null) {
+                    rainProbability = probabilityForecast.rain.proba6H * 1f;
+                }
+                if (probabilityForecast.snow.proba3H != null) {
+                    snowProbability = probabilityForecast.snow.proba3H * 1f;
+                }
+                if (probabilityForecast.snow.proba6H != null) {
+                    snowProbability = probabilityForecast.snow.proba6H * 1f;
+                }
+                iceProbability = probabilityForecast.freezing * 1f;
+            }
+
+            /*
+             * If it's found as part of the "6 hour schedule" and we find later a "3 hour schedule"
+             * the "3 hour schedule" will overwrite the "6 hour schedule" below with the above
+             */
+            if ((probabilityForecast.dt + 3600 * 3) == dt || (probabilityForecast.dt + 3600 * 4) == dt || (probabilityForecast.dt + 3600 * 5) == dt) {
+                if (probabilityForecast.rain.proba6H != null) {
+                    rainProbability = probabilityForecast.rain.proba6H * 1f;
+                }
+                if (probabilityForecast.snow.proba6H != null) {
+                    snowProbability = probabilityForecast.snow.proba6H * 1f;
+                }
+                iceProbability = probabilityForecast.freezing * 1f;
+            }
+        }
+
+        List<Float> allProbabilities = new ArrayList<>();
+        allProbabilities.add(rainProbability != null ? rainProbability : 0f);
+        allProbabilities.add(snowProbability != null ? snowProbability : 0f);
+        allProbabilities.add(iceProbability != null ? iceProbability : 0f);
+
+        return new PrecipitationProbability(
+                Collections.max(allProbabilities, null),
+                null,
+                rainProbability,
+                snowProbability,
+                iceProbability
+        );
+    }
+
+    private static List<Hourly> getHourlyList(List<MfForecastResult.Forecast> hourlyForecastResult, List<MfForecastResult.ProbabilityForecast> probabilityForecastResult) {
         List<Hourly> hourlyList = new ArrayList<>(hourlyForecastResult.size());
         for (MfForecastResult.Forecast hourlyForecast : hourlyForecastResult) {
             hourlyList.add(
@@ -416,20 +534,8 @@ public class MfResultConverter {
                                     null,
                                     null
                             ),
-                            new Precipitation(
-                                    null,
-                                    null,
-                                    hourlyForecast.rain.cumul1H,
-                                    hourlyForecast.snow.cumul1H,
-                                    null
-                            ),
-                            new PrecipitationProbability(
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null
-                            )
+                            getHourlyPrecipitation(hourlyForecast),
+                            getHourlyPrecipitationProbability(probabilityForecastResult, hourlyForecast.dt)
                     )
             );
         }
