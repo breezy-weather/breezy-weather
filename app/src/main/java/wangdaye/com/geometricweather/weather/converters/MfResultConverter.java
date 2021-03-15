@@ -352,8 +352,8 @@ public class MfResultConverter {
                                             null,
                                             null
                                     ),
-                                    new Precipitation(
-                                            (dailyForecast.precipitation != null && dailyForecast.precipitation.cumul24H != null) ? dailyForecast.precipitation.cumul24H : null,
+                                    new Precipitation( // FIXME
+                                            null,
                                             null,
                                             null,
                                             null,
