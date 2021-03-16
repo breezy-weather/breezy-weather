@@ -22,9 +22,9 @@ public enum ProbabilityUnit {
     private String getProbabilityText(Context context, float percent, boolean rtl) {
         if (rtl) {
             return BidiFormatter.getInstance().unicodeWrap(UnitUtils.formatInt((int) percent))
-                    + unitAbbreviation;
+                    + "\u202f" +  unitAbbreviation;
         } else {
-            return UnitUtils.formatInt((int) percent) + unitAbbreviation;
+            return UnitUtils.formatInt((int) percent) + "\u202f" +  unitAbbreviation;
         }
     }
 }

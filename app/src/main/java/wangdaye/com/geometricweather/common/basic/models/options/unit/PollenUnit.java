@@ -39,10 +39,10 @@ public enum PollenUnit {
     private String getPollenText(Context context, int value, boolean rtl) {
         if (rtl) {
             return BidiFormatter.getInstance().unicodeWrap(UnitUtils.formatInt(value))
-                    + context.getResources().getStringArray(R.array.pollen_units)[unitArrayIndex];
+                    + "\u202f" +  context.getResources().getStringArray(R.array.pollen_units)[unitArrayIndex];
         } else {
             return UnitUtils.formatInt(value)
-                    + context.getResources().getStringArray(R.array.pollen_units)[unitArrayIndex];
+                    + "\u202f" +  context.getResources().getStringArray(R.array.pollen_units)[unitArrayIndex];
         }
     }
 
@@ -61,10 +61,10 @@ public enum PollenUnit {
     private String getPollenVoice(Context context, int value, boolean rtl) {
         if (rtl) {
             return BidiFormatter.getInstance().unicodeWrap(UnitUtils.formatInt(value))
-                    + context.getResources().getStringArray(R.array.pollen_unit_voices)[unitArrayIndex];
+                    + "\u202f" +  context.getResources().getStringArray(R.array.pollen_unit_voices)[unitArrayIndex];
         } else {
             return UnitUtils.formatInt(value)
-                    + context.getResources().getStringArray(R.array.pollen_unit_voices)[unitArrayIndex];
+                    + "\u202f" +  context.getResources().getStringArray(R.array.pollen_unit_voices)[unitArrayIndex];
         }
     }
 }

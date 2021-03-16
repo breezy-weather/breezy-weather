@@ -32,10 +32,10 @@ public enum DurationUnit {
         if (rtl) {
             return BidiFormatter.getInstance().unicodeWrap(
                     UnitUtils.formatFloat(h * unitFactor, 1)
-            ) + context.getResources().getStringArray(R.array.duration_units)[unitArrayIndex];
+            ) + "\u202f" +  context.getResources().getStringArray(R.array.duration_units)[unitArrayIndex];
         } else {
             return UnitUtils.formatFloat(h * unitFactor, 1)
-                    + context.getResources().getStringArray(R.array.duration_units)[unitArrayIndex];
+                    + "\u202f" +  context.getResources().getStringArray(R.array.duration_units)[unitArrayIndex];
         }
     }
 
@@ -47,10 +47,10 @@ public enum DurationUnit {
         if (rtl) {
             return BidiFormatter.getInstance().unicodeWrap(
                     UnitUtils.formatFloat(h * unitFactor, 1)
-            ) + context.getResources().getStringArray(R.array.duration_unit_voices)[unitArrayIndex];
+            ) + "\u202f" +  context.getResources().getStringArray(R.array.duration_unit_voices)[unitArrayIndex];
         } else {
             return UnitUtils.formatFloat(h * unitFactor, 1)
-                    + context.getResources().getStringArray(R.array.duration_unit_voices)[unitArrayIndex];
+                    + "\u202f" +  context.getResources().getStringArray(R.array.duration_unit_voices)[unitArrayIndex];
         }
     }
 }
