@@ -11,6 +11,6 @@ public enum CloudCoverUnit {
     }
 
     public String getCloudCoverText(int percent) {
-        return UnitUtils.formatInt(percent) + unitAbbreviation;
+        return UnitUtils.formatInt(percent) + "\u202f" +  unitAbbreviation;
     }
 }
