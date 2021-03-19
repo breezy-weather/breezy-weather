@@ -31,7 +31,7 @@ public enum SpeedUnit {
     }
 
     public String getSpeedText(Context context, float kph) {
-        return getSpeedTextWithoutUnit(kph) + getAbbreviation(context);
+        return getSpeedTextWithoutUnit(kph) + "\u202f" +  getAbbreviation(context);
     }
 
     public String getSpeedTextWithoutUnit(float kph) {
@@ -44,7 +44,7 @@ public enum SpeedUnit {
 
     public String getSpeedVoice(Context context, float kph) {
         return getSpeedTextWithoutUnit(kph)
-                + context.getResources().getStringArray(R.array.speed_unit_voices)[unitArrayIndex];
+                + "\u202f" +  context.getResources().getStringArray(R.array.speed_unit_voices)[unitArrayIndex];
     }
 
     public static SpeedUnit getInstance(String value) {
