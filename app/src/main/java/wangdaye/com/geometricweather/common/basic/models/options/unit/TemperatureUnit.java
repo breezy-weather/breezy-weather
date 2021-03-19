@@ -42,9 +42,9 @@ public enum TemperatureUnit {
         if (rtl) {
             return BidiFormatter.getInstance().unicodeWrap(
                     UnitUtils.formatInt(getTemperature(c))
-            ) + getAbbreviation(context);
+            ) + "\u202f" +  getAbbreviation(context);
         } else {
-            return getTemperature(c) + getAbbreviation(context);
+            return getTemperature(c) + "\u202f" +  getAbbreviation(context);
         }
     }
 
@@ -56,9 +56,9 @@ public enum TemperatureUnit {
         if (rtl) {
             return BidiFormatter.getInstance().unicodeWrap(
                     UnitUtils.formatInt(getTemperature(c))
-            ) + getLongAbbreviation(context);
+            ) + "\u202f" +  getLongAbbreviation(context);
         } else {
-            return getTemperature(c) + getLongAbbreviation(context);
+            return getTemperature(c) + "\u202f" +  getLongAbbreviation(context);
         }
     }
 

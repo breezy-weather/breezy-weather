@@ -30,7 +30,7 @@ public enum PrecipitationUnit {
     }
 
     public String getPrecipitationText(Context context, float mm) {
-        return getPrecipitationTextWithoutUnit(mm) + getAbbreviation(context);
+        return getPrecipitationTextWithoutUnit(mm) + "\u202f" +  getAbbreviation(context);
     }
 
     public String getPrecipitationTextWithoutUnit(float mm) {
@@ -51,7 +51,7 @@ public enum PrecipitationUnit {
 
     public String getPrecipitationVoice(Context context, float mm) {
         return getPrecipitationTextWithoutUnit(mm)
-                + context.getResources().getStringArray(R.array.precipitation_unit_voices)[unitArrayIndex];
+                + "\u202f" +  context.getResources().getStringArray(R.array.precipitation_unit_voices)[unitArrayIndex];
     }
 
     public static PrecipitationUnit getInstance(String value) {

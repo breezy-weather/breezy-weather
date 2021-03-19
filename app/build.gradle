@@ -8,8 +8,8 @@ android {
     compileSdkVersion 30
     defaultConfig {
         applicationId "wangdaye.com.geometricweather"
-        targetSdkVersion 30
         minSdkVersion 19
+        targetSdkVersion 30
         versionCode 30004
         versionName "3.004"
         multiDexEnabled true
@@ -153,8 +153,8 @@ dependencies {
     // preference.
     implementation 'androidx.preference:preference:1.1.1'
 
-    // work manager.
-    implementation "androidx.work:work-runtime:2.7.0-alpha01"
+    // work.
+    implementation "androidx.work:work-runtime:2.4.0"
 
     // lifecycle.
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"

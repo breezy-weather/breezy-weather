@@ -33,7 +33,7 @@ public enum PressureUnit {
     }
 
     public String getPressureText(Context context, float mb) {
-        return UnitUtils.formatFloat(mb * unitFactor) + getAbbreviation(context);
+        return UnitUtils.formatFloat(mb * unitFactor) + "\u202f" +  getAbbreviation(context);
     }
 
     public String getAbbreviation(Context context) {
@@ -42,7 +42,7 @@ public enum PressureUnit {
 
     public String getPressureVoice(Context context, float mb) {
         return UnitUtils.formatFloat(mb * unitFactor)
-                + context.getResources().getStringArray(R.array.pressure_unit_voices)[unitArrayIndex];
+                + "\u202f" +  context.getResources().getStringArray(R.array.pressure_unit_voices)[unitArrayIndex];
     }
 
     public static PressureUnit getInstance(String value) {

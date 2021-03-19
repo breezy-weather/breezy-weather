@@ -36,10 +36,10 @@ public enum AirQualityCOUnit {
         if (rtl) {
             return BidiFormatter.getInstance().unicodeWrap(
                     UnitUtils.formatFloat(mgpcum * unitFactor, 1)
-            ) + context.getResources().getStringArray(R.array.air_quality_co_units)[unitArrayIndex];
+            ) + "\u202f" + context.getResources().getStringArray(R.array.air_quality_co_units)[unitArrayIndex];
         } else {
             return UnitUtils.formatFloat(mgpcum * unitFactor, 1)
-                    + context.getResources().getStringArray(R.array.air_quality_co_units)[unitArrayIndex];
+                    + "\u202f" +  context.getResources().getStringArray(R.array.air_quality_co_units)[unitArrayIndex];
         }
     }
 
@@ -51,10 +51,10 @@ public enum AirQualityCOUnit {
         if (rtl) {
             return BidiFormatter.getInstance().unicodeWrap(
                     UnitUtils.formatFloat(mgpcum * unitFactor, 1)
-            ) + context.getResources().getStringArray(R.array.air_quality_co_unit_voices)[unitArrayIndex];
+            ) + "\u202f" +  context.getResources().getStringArray(R.array.air_quality_co_unit_voices)[unitArrayIndex];
         } else {
             return UnitUtils.formatFloat(mgpcum * unitFactor, 1)
-                    + context.getResources().getStringArray(R.array.air_quality_co_unit_voices)[unitArrayIndex];
+                    + "\u202f" +  context.getResources().getStringArray(R.array.air_quality_co_unit_voices)[unitArrayIndex];
         }
     }
 }

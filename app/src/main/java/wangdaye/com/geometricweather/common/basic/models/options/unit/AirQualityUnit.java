@@ -36,10 +36,10 @@ public enum AirQualityUnit {
         if (rtl) {
             return BidiFormatter.getInstance().unicodeWrap(
                     UnitUtils.formatFloat(mugpcum * unitFactor, 1)
-            ) + context.getResources().getStringArray(R.array.air_quality_units)[unitArrayIndex];
+            ) + "\u202f" +  context.getResources().getStringArray(R.array.air_quality_units)[unitArrayIndex];
         } else {
             return UnitUtils.formatFloat(mugpcum * unitFactor, 1)
-                    + context.getResources().getStringArray(R.array.air_quality_units)[unitArrayIndex];
+                    + "\u202f" +  context.getResources().getStringArray(R.array.air_quality_units)[unitArrayIndex];
         }
     }
 
@@ -51,10 +51,10 @@ public enum AirQualityUnit {
         if (rtl) {
             return BidiFormatter.getInstance().unicodeWrap(
                     UnitUtils.formatFloat(mugpcum * unitFactor, 1)
-            ) + context.getResources().getStringArray(R.array.air_quality_unit_voices)[unitArrayIndex];
+            ) + "\u202f" +  context.getResources().getStringArray(R.array.air_quality_unit_voices)[unitArrayIndex];
         } else {
             return UnitUtils.formatFloat(mugpcum * unitFactor, 1)
-                    + context.getResources().getStringArray(R.array.air_quality_unit_voices)[unitArrayIndex];
+                    + "\u202f" +  context.getResources().getStringArray(R.array.air_quality_unit_voices)[unitArrayIndex];
         }
     }
 }
