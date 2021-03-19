@@ -11,6 +11,6 @@ public enum RelativeHumidityUnit {
     }
 
     public String getRelativeHumidityText(float percent) {
-        return UnitUtils.formatInt((int) percent) + unitAbbreviation;
+        return UnitUtils.formatInt((int) percent) + "\u202f" +  unitAbbreviation;
     }
 }

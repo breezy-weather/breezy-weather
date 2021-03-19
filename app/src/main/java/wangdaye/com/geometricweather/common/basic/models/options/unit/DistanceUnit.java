@@ -31,7 +31,7 @@ public enum DistanceUnit {
     }
 
     public String getDistanceText(Context context, float km) {
-        return UnitUtils.formatFloat(km * unitFactor, 2) + getAbbreviation(context);
+        return UnitUtils.formatFloat(km * unitFactor, 2) + "\u202f" +  getAbbreviation(context);
     }
 
     public String getAbbreviation(Context context) {
@@ -40,7 +40,7 @@ public enum DistanceUnit {
 
     public String getDistanceVoice(Context context, float km) {
         return UnitUtils.formatFloat(km * unitFactor, 2)
-                + context.getResources().getStringArray(R.array.distance_unit_voices)[unitArrayIndex];
+                + "\u202f" +  context.getResources().getStringArray(R.array.distance_unit_voices)[unitArrayIndex];
     }
 
     public static DistanceUnit getInstance(String value) {

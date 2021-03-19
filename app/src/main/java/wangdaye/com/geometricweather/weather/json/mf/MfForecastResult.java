@@ -62,6 +62,7 @@ public class MfForecastResult {
         public long dt;
         public Integer humidity;
         public Integer iso0;
+        public Precipitation precipitation;
         public Rain rain;
         @SerializedName("rain snow limit")
         public Object rainSnowLimitRaw;
@@ -72,6 +73,11 @@ public class MfForecastResult {
         public Temperature temperature;
         public Weather weather;
         public Wind wind;
+
+        public static class Precipitation {
+            @SerializedName("24h")
+            public Float cumul24H;
+        }
 
         public static class Rain {
             @SerializedName("12h")
