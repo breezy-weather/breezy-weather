@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
@@ -165,6 +166,7 @@ public class MfResultConverter {
                                                               MfWarningsResult warningsResult,
                                                               @Nullable AtmoAuraQAResult aqiAtmoAuraResult) {
         try {
+            List<Hourly> hourly = getHourlyList(forecastResult.forecasts, forecastResult.probabilityForecast);
             Weather weather = new Weather(
                     new Base(
                             location.getCityId(),
@@ -223,8 +225,8 @@ public class MfResultConverter {
                             toInt(forecastResult.dailyForecasts.get(0).temperature.max),
                             toInt(forecastResult.dailyForecasts.get(0).temperature.min)
                     ),
-                    getDailyList(context, forecastResult, ephemerisResult, aqiAtmoAuraResult),
-                    getHourlyList(forecastResult.forecasts),
+                    getDailyList(context, forecastResult, hourly, ephemerisResult, aqiAtmoAuraResult),
+                    hourly,
                     getMinutelyList(forecastResult.dailyForecasts.get(0).sun.rise, forecastResult.dailyForecasts.get(0).sun.set, rainResult),
                     getWarningsList(warningsResult)
             );
@@ -288,7 +290,106 @@ public class MfResultConverter {
         }
     }
 
-    private static List<Daily> getDailyList(Context context, MfForecastResult forecastsResult, MfEphemerisResult ephemerisResult, @Nullable AtmoAuraQAResult aqiAtmoAuraResult) {
+    private static HalfDay getHalfDay(boolean isDaytime, List<Hourly> hourly, MfForecastResult.DailyForecast dailyForecast) {
+        Integer temp = isDaytime ? toInt(dailyForecast.temperature.max) : toInt(dailyForecast.temperature.min);
+        Integer tempWindChill = null;
+
+        Float precipitationTotal = 0.0f;
+        Float precipitationRain = 0.0f;
+        Float precipitationSnow = 0.0f;
+
+        Float probPrecipitationTotal = 0.0f;
+        Float probPrecipitationRain = 0.0f;
+        Float probPrecipitationSnow = 0.0f;
+        Float probPrecipitationIce = 0.0f;
+
+        for (Hourly hour : hourly) {
+            if ((isDaytime && (hour.getTime() / 1000) >= dailyForecast.dt + 6 * 3600 && (hour.getTime() / 1000) < dailyForecast.dt + 18 * 3600)
+            || (!isDaytime && (hour.getTime() / 1000) >= dailyForecast.dt + 18 * 3600 && (hour.getTime() / 1000) < dailyForecast.dt + 30 * 3600)) {
+                // Temperature
+                if (isDaytime) {
+                    if (temp == null || hour.getTemperature().getTemperature() > temp) {
+                        temp = hour.getTemperature().getTemperature();
+                    }
+                    if (tempWindChill == null || hour.getTemperature().getWindChillTemperature() > tempWindChill) {
+                        tempWindChill = hour.getTemperature().getWindChillTemperature();
+                    }
+                }
+                if (!isDaytime) {
+                    if (temp == null || hour.getTemperature().getTemperature() < temp) {
+                        temp = hour.getTemperature().getTemperature();
+                    }
+                    if (tempWindChill == null || hour.getTemperature().getWindChillTemperature() < tempWindChill) {
+                        tempWindChill = hour.getTemperature().getWindChillTemperature();
+                    }
+                }
+
+                // Precipitation
+                precipitationTotal += hour.getPrecipitation().getTotal();
+                precipitationRain += hour.getPrecipitation().getRain();
+                precipitationSnow += hour.getPrecipitation().getSnow();
+
+                // Precipitation probability
+                if (hour.getPrecipitationProbability().getTotal() != null && hour.getPrecipitationProbability().getTotal() > probPrecipitationTotal) {
+                    probPrecipitationTotal = hour.getPrecipitationProbability().getTotal();
+                }
+                if (hour.getPrecipitationProbability().getRain() != null && hour.getPrecipitationProbability().getRain() > probPrecipitationRain) {
+                    probPrecipitationRain = hour.getPrecipitationProbability().getRain();
+                }
+                if (hour.getPrecipitationProbability().getSnow() != null && hour.getPrecipitationProbability().getSnow() > probPrecipitationSnow) {
+                    probPrecipitationSnow = hour.getPrecipitationProbability().getSnow();
+                }
+                if (hour.getPrecipitationProbability().getIce() != null && hour.getPrecipitationProbability().getIce() > probPrecipitationIce) {
+                    probPrecipitationIce = hour.getPrecipitationProbability().getIce();
+                }
+            }
+        }
+
+        return new HalfDay(
+                dailyForecast.weather12H == null ? "" : dailyForecast.weather12H.desc,
+                dailyForecast.weather12H == null ? "" : dailyForecast.weather12H.desc,
+                dailyForecast.weather12H == null ? WeatherCode.CLEAR : getWeatherCode(dailyForecast.weather12H.icon),
+                new Temperature(
+                        temp,
+                        null,
+                        null,
+                        null,
+                        tempWindChill,
+                        null,
+                        null
+                ),
+                new Precipitation(
+                        precipitationTotal,
+                        null,
+                        precipitationRain,
+                        precipitationSnow,
+                        null
+                ),
+                new PrecipitationProbability(
+                        probPrecipitationTotal,
+                        null,
+                        probPrecipitationRain,
+                        probPrecipitationSnow,
+                        probPrecipitationIce
+                ),
+                new PrecipitationDuration(
+                        null,
+                        null,
+                        null,
+                        null,
+                        null
+                ),
+                new Wind( // FIXME: Get this info from hourly
+                        "Pas d’info",
+                        new WindDegree(0, false),
+                        null,
+                        "Pas d’info"
+                ),
+                null // FIXME: Get this info from hourly
+        );
+    }
+
+    private static List<Daily> getDailyList(Context context, MfForecastResult forecastsResult, List<Hourly> hourly, MfEphemerisResult ephemerisResult, @Nullable AtmoAuraQAResult aqiAtmoAuraResult) {
         List<Daily> dailyList = new ArrayList<>(forecastsResult.dailyForecasts.size());
 
         for (MfForecastResult.DailyForecast dailyForecast : forecastsResult.dailyForecasts) {
@@ -296,90 +397,8 @@ public class MfResultConverter {
                     new Daily(
                             new Date(dailyForecast.dt * 1000),
                             dailyForecast.dt * 1000,
-                            new HalfDay(
-                                    dailyForecast.weather12H == null ? "" : dailyForecast.weather12H.desc,
-                                    dailyForecast.weather12H == null ? "" : dailyForecast.weather12H.desc,
-                                    dailyForecast.weather12H == null ? WeatherCode.CLEAR : getWeatherCode(dailyForecast.weather12H.icon),
-                                    new Temperature(
-                                            dailyForecast.temperature.max == null ? 0 : toInt(dailyForecast.temperature.max), // FIXME ?
-                                            null,
-                                            null,
-                                            null,
-                                            null,
-                                            null,
-                                            null
-                                    ),
-                                    new Precipitation( // FIXME
-                                            null,
-                                            null,
-                                            null,
-                                            null,
-                                            null
-                                    ),
-                                    new PrecipitationProbability( // FIXME
-                                            null,
-                                            null,
-                                            null,
-                                            null,
-                                            null
-                                    ),
-                                    new PrecipitationDuration( // FIXME
-                                            null,
-                                            null,
-                                            null,
-                                            null,
-                                            null
-                                    ),
-                                    new Wind( // FIXME: Info does not exist
-                                            "Pas d’info",
-                                            new WindDegree(0, false),
-                                            null,
-                                            "Pas d’info"
-                                    ),
-                                    null
-                            ),
-                            new HalfDay(
-                                    dailyForecast.weather12H == null ? "" : dailyForecast.weather12H.desc,
-                                    dailyForecast.weather12H == null ? "" : dailyForecast.weather12H.desc,
-                                    dailyForecast.weather12H == null ? WeatherCode.CLEAR : getWeatherCode(dailyForecast.weather12H.icon), // FIXME
-                                    new Temperature(
-                                            dailyForecast.temperature.min == null ? 0 : toInt(dailyForecast.temperature.min), // FIXME ?
-                                            null,
-                                            null,
-                                            null,
-                                            null,
-                                            null,
-                                            null
-                                    ),
-                                    new Precipitation( // FIXME
-                                            null,
-                                            null,
-                                            null,
-                                            null,
-                                            null
-                                    ),
-                                    new PrecipitationProbability( // FIXME
-                                            null,
-                                            null,
-                                            null,
-                                            null,
-                                            null
-                                    ),
-                                    new PrecipitationDuration( // FIXME
-                                            null,
-                                            null,
-                                            null,
-                                            null,
-                                            null
-                                    ),
-                                    new Wind( // FIXME: Info does not exist
-                                            "Pas d’info",
-                                            new WindDegree(0, false),
-                                            null,
-                                            "Pas d’info"
-                                    ),
-                                    null
-                            ),
+                            getHalfDay(true, hourly, dailyForecast),
+                            getHalfDay(false, hourly, dailyForecast),
                             new Astro(new Date(dailyForecast.sun.rise * 1000), new Date(dailyForecast.sun.set * 1000)),
                             // Note: Below is the same moon data for all days, but since we are only showing the data for the current day in the app, this does not matter
                             //new Astro(ephemerisResult.properties.ephemeris.moonriseTime, ephemerisResult.properties.ephemeris.moonsetTime), // FIXME: Weird issue, input is UTC (due to Z) but system thinks it's system timezone
@@ -395,7 +414,124 @@ public class MfResultConverter {
         return dailyList;
     }
 
-    private static List<Hourly> getHourlyList(List<MfForecastResult.Forecast> hourlyForecastResult) {
+    private static Float getRainCumul(MfForecastResult.Forecast.Rain rain) {
+        if (rain.cumul1H != null) {
+            return rain.cumul1H;
+        }
+        if (rain.cumul3H != null) {
+            return rain.cumul3H;
+        }
+        if (rain.cumul6H != null) {
+            return rain.cumul6H;
+        }
+        if (rain.cumul12H != null) {
+            return rain.cumul12H;
+        }
+        if (rain.cumul24H != null) {
+            return rain.cumul24H;
+        }
+        return null;
+    }
+
+    private static Float getSnowCumul(MfForecastResult.Forecast.Snow snow) {
+        if (snow.cumul1H != null) {
+            return snow.cumul1H;
+        }
+        if (snow.cumul3H != null) {
+            return snow.cumul3H;
+        }
+        if (snow.cumul6H != null) {
+            return snow.cumul6H;
+        }
+        if (snow.cumul12H != null) {
+            return snow.cumul12H;
+        }
+        if (snow.cumul24H != null) {
+            return snow.cumul24H;
+        }
+        return null;
+    }
+
+    private static Precipitation getHourlyPrecipitation(MfForecastResult.Forecast hourlyForecast) {
+        Float rainCumul = getRainCumul(hourlyForecast.rain);
+        Float snowCumul = getSnowCumul(hourlyForecast.snow);
+        Float totalCumul = null;
+
+        if (rainCumul == null) {
+            totalCumul = snowCumul;
+        } else if (snowCumul == null) {
+            totalCumul = rainCumul;
+        } else {
+            totalCumul = snowCumul + rainCumul;
+        }
+
+        return new Precipitation(
+                totalCumul,
+                null,
+                rainCumul,
+                snowCumul,
+                null
+        );
+    }
+
+    private static PrecipitationProbability getHourlyPrecipitationProbability(List<MfForecastResult.ProbabilityForecast> probabilityForecastResult, long dt) {
+        Float rainProbability = null;
+        Float snowProbability = null;
+        Float iceProbability = null;
+
+        for (MfForecastResult.ProbabilityForecast probabilityForecast : probabilityForecastResult) {
+            /*
+             * Probablity are given every 3 hours, sometimes every 6 hours.
+             * Sometimes every 3 hour-schedule give 3 hours probability AND 6 hours probability,
+             * sometimes only one of them
+             * It's not very clear but we take all hours in order.
+             */
+            if (probabilityForecast.dt == dt || (probabilityForecast.dt + 3600) == dt || (probabilityForecast.dt + 3600 * 2) == dt) {
+                if (probabilityForecast.rain.proba3H != null) {
+                    rainProbability = probabilityForecast.rain.proba3H * 1f;
+                }
+                if (probabilityForecast.rain.proba6H != null) {
+                    rainProbability = probabilityForecast.rain.proba6H * 1f;
+                }
+                if (probabilityForecast.snow.proba3H != null) {
+                    snowProbability = probabilityForecast.snow.proba3H * 1f;
+                }
+                if (probabilityForecast.snow.proba6H != null) {
+                    snowProbability = probabilityForecast.snow.proba6H * 1f;
+                }
+                iceProbability = probabilityForecast.freezing * 1f;
+            }
+
+            /*
+             * If it's found as part of the "6 hour schedule" and we find later a "3 hour schedule"
+             * the "3 hour schedule" will overwrite the "6 hour schedule" below with the above
+             */
+            if ((probabilityForecast.dt + 3600 * 3) == dt || (probabilityForecast.dt + 3600 * 4) == dt || (probabilityForecast.dt + 3600 * 5) == dt) {
+                if (probabilityForecast.rain.proba6H != null) {
+                    rainProbability = probabilityForecast.rain.proba6H * 1f;
+                }
+                if (probabilityForecast.snow.proba6H != null) {
+                    snowProbability = probabilityForecast.snow.proba6H * 1f;
+                }
+                iceProbability = probabilityForecast.freezing * 1f;
+            }
+        }
+
+        List<Float> allProbabilities = new ArrayList<>();
+        allProbabilities.add(rainProbability != null ? rainProbability : 0f);
+        allProbabilities.add(snowProbability != null ? snowProbability : 0f);
+        allProbabilities.add(iceProbability != null ? iceProbability : 0f);
+
+        return new PrecipitationProbability(
+                Collections.max(allProbabilities, null),
+                null,
+                rainProbability,
+                snowProbability,
+                iceProbability
+        );
+    }
+
+    private static List<Hourly> getHourlyList(List<MfForecastResult.Forecast> hourlyForecastResult, List<MfForecastResult.ProbabilityForecast> probabilityForecastResult) {
         List<Hourly> hourlyList = new ArrayList<>(hourlyForecastResult.size());
         for (MfForecastResult.Forecast hourlyForecast : hourlyForecastResult) {
             hourlyList.add(
@@ -416,20 +552,8 @@ public class MfResultConverter {
                                     null,
                                     null
                             ),
-                            new Precipitation(
-                                    null,
-                                    null,
-                                    hourlyForecast.rain.cumul1H,
-                                    hourlyForecast.snow.cumul1H,
-                                    null
-                            ),
-                            new PrecipitationProbability(
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null
-                            )
+                            getHourlyPrecipitation(hourlyForecast),
+                            getHourlyPrecipitationProbability(probabilityForecastResult, hourlyForecast.dt)
                     )
             );
         }
