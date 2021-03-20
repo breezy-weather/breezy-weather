@@ -291,9 +291,7 @@ public class MfResultConverter {
     }
 
     private static HalfDay getHalfDay(boolean isDaytime, List<Hourly> hourly, MfForecastResult.DailyForecast dailyForecast) {
-        Integer temp = isDaytime
-                ? (dailyForecast.temperature.max == null ? 0 : toInt(dailyForecast.temperature.max)) // FIXME: Temperature is not nullable
-                : (dailyForecast.temperature.min == null ? 0 : toInt(dailyForecast.temperature.min)); // FIXME: Temperature is not nullable
+        Integer temp = isDaytime? toInt(dailyForecast.temperature.max) : toInt(dailyForecast.temperature.min);
         Integer tempWindChill = null;
 
         Float precipitationTotal = 0.0f;
@@ -395,23 +393,26 @@ public class MfResultConverter {
         List<Daily> dailyList = new ArrayList<>(forecastsResult.dailyForecasts.size());
 
         for (MfForecastResult.DailyForecast dailyForecast : forecastsResult.dailyForecasts) {
-            dailyList.add(
-                    new Daily(
-                            new Date(dailyForecast.dt * 1000),
-                            dailyForecast.dt * 1000,
-                            getHalfDay(true, hourly, dailyForecast),
-                            getHalfDay(false, hourly, dailyForecast),
-                            new Astro(new Date(dailyForecast.sun.rise * 1000), new Date(dailyForecast.sun.set * 1000)),
-                            // Note: Below is the same moon data for all days, but since we are only showing the data for the current day in the app, this does not matter
-                            //new Astro(ephemerisResult.properties.ephemeris.moonriseTime, ephemerisResult.properties.ephemeris.moonsetTime), // FIXME: Weird issue, input is UTC (due to Z) but system thinks it's system timezone
-                            new Astro(null, null),
-                            new MoonPhase(CommonConverter.getMoonPhaseAngle(ephemerisResult.properties.ephemeris.moonPhaseDescription), ephemerisResult.properties.ephemeris.moonPhaseDescription),
-                            getAirQuality(new Date(dailyForecast.dt * 1000), aqiAtmoAuraResult),
-                            new Pollen(null, null, null, null, null, null, null, null, null, null, null, null),
-                            new UV(dailyForecast.uv, null, null),
-                            getHoursOfDay(new Date(dailyForecast.sun.rise * 1000), new Date(dailyForecast.sun.set * 1000))
-                    )
-            );
+            // Don't add day if temperature is given null as it would crash the app (not nullable)
+            if (dailyForecast.temperature.min != null && dailyForecast.temperature.max != null) {
+                dailyList.add(
+                        new Daily(
+                                new Date(dailyForecast.dt * 1000),
+                                dailyForecast.dt * 1000,
+                                getHalfDay(true, hourly, dailyForecast),
+                                getHalfDay(false, hourly, dailyForecast),
+                                new Astro(new Date(dailyForecast.sun.rise * 1000), new Date(dailyForecast.sun.set * 1000)),
+                                // Note: Below is the same moon data for all days, but since we are only showing the data for the current day in the app, this does not matter
+                                //new Astro(ephemerisResult.properties.ephemeris.moonriseTime, ephemerisResult.properties.ephemeris.moonsetTime), // FIXME: Weird issue, input is UTC (due to Z) but system thinks it's system timezone
+                                new Astro(null, null),
+                                new MoonPhase(CommonConverter.getMoonPhaseAngle(ephemerisResult.properties.ephemeris.moonPhaseDescription), ephemerisResult.properties.ephemeris.moonPhaseDescription),
+                                getAirQuality(new Date(dailyForecast.dt * 1000), aqiAtmoAuraResult),
+                                new Pollen(null, null, null, null, null, null, null, null, null, null, null, null),
+                                new UV(dailyForecast.uv, null, null),
+                                getHoursOfDay(new Date(dailyForecast.sun.rise * 1000), new Date(dailyForecast.sun.set * 1000))
+                        )
+                );
+            }
         }
         return dailyList;
     }
