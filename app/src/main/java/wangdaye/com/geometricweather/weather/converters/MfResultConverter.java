@@ -290,7 +290,7 @@ public class MfResultConverter {
         }
     }
 
-    private static HalfDay getHalfDay(boolean isDaytime, List<Hourly> hourly, MfForecastResult.DailyForecast dailyForecast) {
+    private static HalfDay getHalfDay(Context context, boolean isDaytime, List<Hourly> hourly, List<MfForecastResult.Forecast> hourlyForecast, MfForecastResult.DailyForecast dailyForecast) {
         Integer temp = isDaytime? toInt(dailyForecast.temperature.max) : toInt(dailyForecast.temperature.min);
         Integer tempWindChill = null;
 
@@ -345,6 +345,30 @@ public class MfResultConverter {
             }
         }
 
+        Integer cloudCover = null;
+        String windDirection = "Pas d’info";
+        WindDegree windDegree = new WindDegree(0, false);
+        Float windSpeed = null;
+        String windLevel = "Pas d’info";
+
+        for (MfForecastResult.Forecast hourForecast : hourlyForecast) {
+            if ((isDaytime && hourForecast.dt >= dailyForecast.dt + 6 * 3600 && hourForecast.dt < dailyForecast.dt + 18 * 3600)
+                    || (!isDaytime && hourForecast.dt >= dailyForecast.dt + 18 * 3600 && hourForecast.dt < dailyForecast.dt + 30 * 3600)) {
+                if (cloudCover == null || hourForecast.clouds > cloudCover) {
+                    cloudCover = hourForecast.clouds;
+                }
+                //Log.d("GEOM", "Direction:" + hourForecast.wind.icon);
+                //Log.d("GEOM", "Degree:" + hourForecast.wind.direction);
+                //Log.d("GEOM", "Speed:" + hourForecast.wind.speed);
+                if (windSpeed == null || hourForecast.wind.speed * 3.6f > windSpeed) {
+                    windDirection = hourForecast.wind.icon;
+                    windDegree = new WindDegree(hourForecast.wind.direction.equals("Variable") ? 0.0f : Float.parseFloat(hourForecast.wind.direction), hourForecast.wind.direction.equals("Variable"));
+                    windSpeed = hourForecast.wind.speed * 3.6f;
+                    windLevel = CommonConverter.getWindLevel(context, hourForecast.wind.speed * 3.6f);
+                }
+            }
+        }
+
         return new HalfDay(
                 dailyForecast.weather12H == null ? "" : dailyForecast.weather12H.desc,
                 dailyForecast.weather12H == null ? "" : dailyForecast.weather12H.desc,
@@ -379,13 +403,13 @@ public class MfResultConverter {
                         null,
                         null
                 ),
-                new Wind( // FIXME: Get this info from hourly
-                        "Pas d’info",
-                        new WindDegree(0, false),
-                        null,
-                        "Pas d’info"
+                new Wind(
+                        windDirection,
+                        windDegree,
+                        windSpeed,
+                        windLevel
                 ),
-                null // FIXME: Get this info from hourly
+                cloudCover
         );
     }
 
@@ -399,8 +423,8 @@ public class MfResultConverter {
                         new Daily(
                                 new Date(dailyForecast.dt * 1000),
                                 dailyForecast.dt * 1000,
-                                getHalfDay(true, hourly, dailyForecast),
-                                getHalfDay(false, hourly, dailyForecast),
+                                getHalfDay(context, true, hourly, forecastsResult.forecasts, dailyForecast),
+                                getHalfDay(context, false, hourly, forecastsResult.forecasts, dailyForecast),
                                 new Astro(new Date(dailyForecast.sun.rise * 1000), new Date(dailyForecast.sun.set * 1000)),
                                 // Note: Below is the same moon data for all days, but since we are only showing the data for the current day in the app, this does not matter
                                 //new Astro(ephemerisResult.properties.ephemeris.moonriseTime, ephemerisResult.properties.ephemeris.moonsetTime), // FIXME: Weird issue, input is UTC (due to Z) but system thinks it's system timezone
