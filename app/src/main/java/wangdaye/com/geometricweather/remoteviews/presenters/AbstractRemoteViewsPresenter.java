@@ -128,11 +128,6 @@ public abstract class AbstractRemoteViewsPresenter {
     }
 
     public static boolean isLightWallpaper(Context context) {
-        if (ActivityCompat.checkSelfPermission(context,
-                Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            return false;
-        }
-
         try {
             WallpaperManager manager = WallpaperManager.getInstance(context);
             if (manager == null) {
