@@ -205,7 +205,7 @@ public class MfResultConverter {
                             new Wind(
                                     currentResult.observation.wind.icon,
                                     new WindDegree(currentResult.observation.wind.direction, currentResult.observation.wind.direction == -1),
-                                    (float) currentResult.observation.wind.speed,
+                                    currentResult.observation.wind.speed * 3.6f,
                                     CommonConverter.getWindLevel(context, currentResult.observation.wind.speed)
                             ),
                             new UV(null, null, null),
