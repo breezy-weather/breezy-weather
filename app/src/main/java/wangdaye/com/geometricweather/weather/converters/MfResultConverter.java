@@ -291,7 +291,9 @@ public class MfResultConverter {
     }
 
     private static HalfDay getHalfDay(boolean isDaytime, List<Hourly> hourly, MfForecastResult.DailyForecast dailyForecast) {
-        Integer temp = isDaytime ? toInt(dailyForecast.temperature.max) : toInt(dailyForecast.temperature.min);
+        Integer temp = isDaytime
+                ? (dailyForecast.temperature.max == null ? 0 : toInt(dailyForecast.temperature.max)) // FIXME: Temperature is not nullable
+                : (dailyForecast.temperature.min == null ? 0 : toInt(dailyForecast.temperature.min)); // FIXME: Temperature is not nullable
         Integer tempWindChill = null;
 
         Float precipitationTotal = 0.0f;
