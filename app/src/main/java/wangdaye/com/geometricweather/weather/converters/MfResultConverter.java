@@ -227,10 +227,10 @@ public class MfResultConverter {
             );
             return new WeatherService.WeatherResultWrapper(weather);
         } catch (Exception ignored) {
-            Log.d("GEOM", ignored.getMessage());
+            /*Log.d("GEOM", ignored.getMessage());
             for (StackTraceElement stackTraceElement : ignored.getStackTrace()) {
                 Log.d("GEOM", stackTraceElement.toString());
-            }
+            }*/
             return new WeatherService.WeatherResultWrapper(null);
         }
     }
@@ -352,9 +352,6 @@ public class MfResultConverter {
                 if (cloudCover == null || hourForecast.clouds > cloudCover) {
                     cloudCover = hourForecast.clouds;
                 }
-                //Log.d("GEOM", "Direction:" + hourForecast.wind.icon);
-                //Log.d("GEOM", "Degree:" + hourForecast.wind.direction);
-                //Log.d("GEOM", "Speed:" + hourForecast.wind.speed);
                 if (windSpeed == null || hourForecast.wind.speed * 3.6f > windSpeed) {
                     windDirection = hourForecast.wind.icon;
                     windDegree = new WindDegree(hourForecast.wind.direction.equals("Variable") ? 0.0f : Float.parseFloat(hourForecast.wind.direction), hourForecast.wind.direction.equals("Variable"));
