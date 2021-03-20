@@ -1,13 +1,11 @@
 package wangdaye.com.geometricweather.remoteviews.config;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.WallpaperManager;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -32,7 +30,6 @@ import android.widget.TextView;
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.core.widget.NestedScrollView;
 
@@ -264,7 +261,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
     @CallSuper
     public void initView() {
         mWallpaper = findViewById(R.id.activity_widget_config_wall);
-        bindWallpaper(true);
+        bindWallpaper();
 
         mWidgetContainer = findViewById(R.id.activity_widget_config_widgetContainer);
 
@@ -605,14 +602,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         SnackbarHelper.showSnackbar(getString(R.string.feedback_get_weather_failed));
     }
 
-    private void bindWallpaper(boolean checkPermissions) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkPermissions) {
-            boolean hasPermission = checkPermissions(0);
-            if (!hasPermission) {
-                return;
-            }
-        }
-
+    private void bindWallpaper() {
         try {
             WallpaperManager manager = WallpaperManager.getInstance(this);
             if (manager != null) {
@@ -626,21 +616,6 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         }
     }
 
-    /**
-     * @return true : already got permissions.
-     *         false: request permissions.
-     * */
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    private boolean checkPermissions(int requestCode) {
-        if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(
-                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, requestCode);
-            return false;
-        }
-        return true;
-    }
-
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions,
@@ -649,14 +624,14 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
 
         switch (requestCode) {
             case 0:
-                bindWallpaper(false);
+                bindWallpaper();
                 if (textColorValueNow.equals("auto")) {
                     updateHostView();
                 }
                 break;
 
             case 1:
-                bindWallpaper(false);
+                bindWallpaper();
                 updateHostView();
                 break;
         }
@@ -759,13 +734,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
                     return;
                 }
 
-                boolean hasPermission = true;
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    hasPermission = checkPermissions(1);
-                }
-                if (hasPermission) {
-                    updateHostView();
-                }
+                updateHostView();
             }
         }
 

@@ -3,7 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="wangdaye.com.geometricweather">
 
-    <application tools:ignore="AllowBackup,UnusedAttribute">
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INSTANT_APP_FOREGROUND_SERVICE" tools:ignore="ProtectedPermissions" />
+
+    <application
+        tools:ignore="AllowBackup,UnusedAttribute"
+        android:requestLegacyExternalStorage="true">
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
