@@ -219,12 +219,7 @@ public class MfResultConverter {
                             null,
                             null
                     ),
-                    new History( // FIXME: Fill in with data from yesterday observation instead of today
-                            new Date((forecastResult.updatedOn - 24 * 60 * 60) * 1000),
-                            (forecastResult.updatedOn - 24 * 60 * 60) * 1000,
-                            toInt(forecastResult.dailyForecasts.get(0).temperature.max),
-                            toInt(forecastResult.dailyForecasts.get(0).temperature.min)
-                    ),
+                    null, // TODO: Fill in with observation data instead
                     getDailyList(context, forecastResult, hourly, ephemerisResult, aqiAtmoAuraResult),
                     hourly,
                     getMinutelyList(forecastResult.dailyForecasts.get(0).sun.rise, forecastResult.dailyForecasts.get(0).sun.set, rainResult),
