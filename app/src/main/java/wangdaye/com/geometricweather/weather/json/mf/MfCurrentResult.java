@@ -25,8 +25,8 @@ public class MfCurrentResult {
         public Weather weather;
 
         public static class Wind {
-            public double speed;
-            public double gust;
+            public Float speed;
+            public Float gust;
             public Integer direction;
             public String icon;
         }
