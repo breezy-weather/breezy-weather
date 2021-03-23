@@ -1,135 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<wangdaye.com.geometricweather.common.ui.widgets.slidingItem.SlidingItemContainerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:foreground="@drawable/selectable_item_background"
-    android:background="@color/striking_red"
     android:stateListAnimator="@animator/touch_raise"
     tools:ignore="UnusedAttribute">
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/swipeIcon_start"
-        android:src="@drawable/ic_delete"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:padding="@dimen/normal_margin"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true"
-        android:tint="@android:color/white"
-        tools:ignore="ContentDescription,RtlHardcoded" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/swipeIcon_end"
-        android:src="@drawable/ic_star_outline"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:padding="@dimen/normal_margin"
-        android:layout_centerVertical="true"
-        android:layout_alignParentEnd="true"
-        android:tint="@android:color/white"
-        tools:ignore="ContentDescription,RtlHardcoded" />
 
     <LinearLayout
         android:id="@+id/item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorRoot"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
 
-        <RelativeLayout
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/sort_button"
+            android:src="@drawable/ic_drag"
+            android:layout_margin="0dp"
+            android:contentDescription="@string/content_des_drag_flag"
+            style="@style/material_image_button"
+            tools:ignore="ContentDescription" />
+
+        <LinearLayout
+            android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/normal_margin"
-            android:layout_marginBottom="2dp"
-            android:layout_marginStart="@dimen/normal_margin"
-            android:layout_marginEnd="@dimen/normal_margin"
-            tools:ignore="UseCompoundDrawables">
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/weather_icon"
-                android:layout_width="@dimen/material_icon_size"
-                android:layout_height="@dimen/material_icon_size"
-                android:layout_marginEnd="@dimen/little_margin"
-                android:layout_centerVertical="true"
-                tools:src="@drawable/weather_clear_day"
-                tools:ignore="ContentDescription" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:layout_marginBottom="2dp"
+                android:layout_marginEnd="@dimen/normal_margin"
+                tools:ignore="UseCompoundDrawables">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/resident_icon"
-                android:src="@drawable/ic_circle_medium"
-                android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true"
-                android:layout_margin="0dp"
-                style="@style/material_icon"
-                app:tint="@color/colorTextAlert" />
+                <ImageView
+                    android:id="@+id/weather_icon"
+                    android:layout_width="@dimen/material_icon_size"
+                    android:layout_height="@dimen/material_icon_size"
+                    android:layout_marginEnd="@dimen/little_margin"
+                    android:layout_centerVertical="true"
+                    tools:src="@drawable/weather_clear_day"
+                    tools:ignore="ContentDescription" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/resident_icon"
+                    android:src="@drawable/ic_circle_medium"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="0dp"
+                    style="@style/material_icon"
+                    app:tint="@color/colorTextAlert" />
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textAlignment="viewStart"
+                    android:textStyle="bold"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/weather_icon"
+                    android:layout_toStartOf="@id/resident_icon"
+                    style="@style/title_text"
+                    tools:text="Current Location, 5°/13°"
+                    tools:ignore="RtlHardcoded" />
+
+            </RelativeLayout>
 
             <TextView
-                android:id="@+id/title"
+                android:id="@+id/alerts"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/normal_margin"
+                android:layout_marginBottom="@dimen/normal_margin"
+                android:textAlignment="viewStart"
+                style="@style/subtitle_text"
+                tools:text="大雾黄色预警, 发布于2018-07-10 02:32\n大风蓝色预警, 发布于2018-07-10 03:34"/>
+
+            <TextView
+                android:id="@+id/subtitle"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="@dimen/normal_margin"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorTextContent"
+                style="@style/subtitle_text"
+                tools:text="中国 山东省 青岛市 李沧区"
+                tools:ignore="RtlHardcoded" />
+            <!--
+            <TextView
+                android:id="@+id/geo_position"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="@dimen/normal_margin"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorTextSubtitle"
+                style="@style/subtitle_text"
+                tools:text="23.66 22.58, GMT+8"
+                tools:ignore="RtlHardcoded" />
+            -->
+            <TextView
+                android:id="@+id/source"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="@dimen/normal_margin"
+                android:layout_marginBottom="@dimen/normal_margin"
+                android:textStyle="bold"
+                android:textSize="10sp"
                 android:maxLines="1"
                 android:ellipsize="end"
                 android:textAlignment="viewStart"
-                android:textStyle="bold"
-                android:layout_centerVertical="true"
-                android:layout_toEndOf="@id/weather_icon"
-                android:layout_toStartOf="@id/resident_icon"
-                style="@style/title_text"
-                tools:text="Current Location, 5°/13°"
-                tools:ignore="RtlHardcoded" />
+                style="@style/subtitle_text"
+                tools:text="Powered by 彩云天气"
+                tools:ignore="RtlHardcoded,SmallSp" />
 
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/alerts"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/normal_margin"
-            android:layout_marginEnd="@dimen/normal_margin"
-            android:layout_marginBottom="@dimen/normal_margin"
-            android:textAlignment="viewStart"
-            style="@style/subtitle_text"
-            tools:text="大雾黄色预警, 发布于2018-07-10 02:32\n大风蓝色预警, 发布于2018-07-10 03:34"/>
-
-        <TextView
-            android:id="@+id/subtitle"
-            android:layout_width="match_parent"
-            android:layout_marginStart="@dimen/normal_margin"
-            android:layout_marginEnd="@dimen/normal_margin"
-            android:textAlignment="viewStart"
-            android:textColor="@color/colorTextContent"
-            style="@style/subtitle_text"
-            tools:text="中国 山东省 青岛市 李沧区"
-            tools:ignore="RtlHardcoded" />
-<!--
-        <TextView
-            android:id="@+id/geo_position"
-            android:layout_width="match_parent"
-            android:layout_marginStart="@dimen/normal_margin"
-            android:layout_marginEnd="@dimen/normal_margin"
-            android:textAlignment="viewStart"
-            android:textColor="@color/colorTextSubtitle"
-            style="@style/subtitle_text"
-            tools:text="23.66 22.58, GMT+8"
-            tools:ignore="RtlHardcoded" />
--->
-        <TextView
-            android:id="@+id/source"
-            android:layout_width="match_parent"
-            android:layout_marginStart="@dimen/normal_margin"
-            android:layout_marginEnd="@dimen/normal_margin"
-            android:layout_marginBottom="@dimen/normal_margin"
-            android:textStyle="bold"
-            android:textSize="10sp"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:textAlignment="viewStart"
-            style="@style/subtitle_text"
-            tools:text="Powered by 彩云天气"
-            tools:ignore="RtlHardcoded,SmallSp" />
+        </LinearLayout>
 
     </LinearLayout>
 
-</RelativeLayout>
+</wangdaye.com.geometricweather.common.ui.widgets.slidingItem.SlidingItemContainerLayout>

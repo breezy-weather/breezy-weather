@@ -1,7 +1,7 @@
 package wangdaye.com.geometricweather.daily.adapter.model;
 
-import wangdaye.com.geometricweather.basic.model.weather.Astro;
-import wangdaye.com.geometricweather.basic.model.weather.MoonPhase;
+import wangdaye.com.geometricweather.common.basic.models.weather.Astro;
+import wangdaye.com.geometricweather.common.basic.models.weather.MoonPhase;
 import wangdaye.com.geometricweather.daily.adapter.DailyWeatherAdapter;
 
 public class DailyAstro implements DailyWeatherAdapter.ViewModel {

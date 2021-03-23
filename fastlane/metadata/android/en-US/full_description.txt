@@ -1,0 +1,15 @@
+Geometric Weather is a free and open-source Android weather app.
+This build flavor has all proprietary dependencies and related code stripped out to make it eligible for inclusion on F-Droid.
+In the app, you'll find:<ul>
+<li>Real-time temperature</li>
+<li>Daily forecasts up to 15 days, and hourly forecasts for the next 24 hours</li>
+<li>Air quality and allergen information</li>
+<li>Severe weather and precipitation alerts</li></ul>
+The app has a strong focus on design, with a simple, clean UX, smooth animations, and Material Design all over, plus lots of customizability:<ul>
+<li>Automatic dark theme</li>
+<li>Custom icon themes</li>
+<li>Large selection of home screen widgets for at-a-glance information</li>
+<li>Live wallpaper</li></ul>
+Current supported weather providers in F-Droid flavor:<ul>
+<li>AccuWeather</li>
+<li>Météo France</li></ul>

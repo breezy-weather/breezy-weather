@@ -12,6 +12,7 @@
     <!-- Dark mode. -->
     <string-array name="dark_modes">
         <item>Automático</item>
+        <item>Follow system</item>
         <item>Sempre Claro</item>
         <item>Sempre Escuro</item>
     </string-array>

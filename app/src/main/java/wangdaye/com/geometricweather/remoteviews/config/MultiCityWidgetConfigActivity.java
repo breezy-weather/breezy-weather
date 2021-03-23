@@ -5,14 +5,17 @@ import android.widget.RemoteViews;
 
 import java.util.List;
 
+import dagger.hilt.android.AndroidEntryPoint;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.location.Location;
+import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
-import wangdaye.com.geometricweather.remoteviews.presenter.MultiCityWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenters.MultiCityWidgetIMP;
 
 /**
  * Multi city widget config activity.
  * */
+
+@AndroidEntryPoint
 public class MultiCityWidgetConfigActivity extends AbstractWidgetConfigActivity {
 
     private List<Location> locationList;
@@ -29,11 +32,10 @@ public class MultiCityWidgetConfigActivity extends AbstractWidgetConfigActivity 
     @Override
     public void initView() {
         super.initView();
-        viewTypeContainer.setVisibility(View.GONE);
-        hideSubtitleContainer.setVisibility(View.GONE);
-        subtitleDataContainer.setVisibility(View.GONE);
-        clockFontContainer.setVisibility(View.GONE);
-        hideLunarContainer.setVisibility(View.GONE);
+        mCardStyleContainer.setVisibility(View.VISIBLE);
+        mCardAlphaContainer.setVisibility(View.VISIBLE);
+        mTextColorContainer.setVisibility(View.VISIBLE);
+        mTextSizeContainer.setVisibility(View.VISIBLE);
     }
 
     @Override

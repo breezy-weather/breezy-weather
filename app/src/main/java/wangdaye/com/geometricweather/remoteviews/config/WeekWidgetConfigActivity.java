@@ -3,13 +3,15 @@ package wangdaye.com.geometricweather.remoteviews.config;
 import android.view.View;
 import android.widget.RemoteViews;
 
+import dagger.hilt.android.AndroidEntryPoint;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.remoteviews.presenter.WeekWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenters.WeekWidgetIMP;
 
 /**
  * Week widget config activity.
  * */
 
+@AndroidEntryPoint
 public class WeekWidgetConfigActivity extends AbstractWidgetConfigActivity {
 
     @Override
@@ -32,10 +34,11 @@ public class WeekWidgetConfigActivity extends AbstractWidgetConfigActivity {
     @Override
     public void initView() {
         super.initView();
-        hideSubtitleContainer.setVisibility(View.GONE);
-        subtitleDataContainer.setVisibility(View.GONE);
-        clockFontContainer.setVisibility(View.GONE);
-        hideLunarContainer.setVisibility(View.GONE);
+        mViewTypeContainer.setVisibility(View.VISIBLE);
+        mCardStyleContainer.setVisibility(View.VISIBLE);
+        mCardAlphaContainer.setVisibility(View.VISIBLE);
+        mTextColorContainer.setVisibility(View.VISIBLE);
+        mTextSizeContainer.setVisibility(View.VISIBLE);
     }
 
     @Override

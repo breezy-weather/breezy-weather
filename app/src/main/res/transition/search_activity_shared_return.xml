@@ -7,7 +7,6 @@
 
     <changeBounds
         android:interpolator="@android:interpolator/fast_out_slow_in"
-        android:duration="350"
         tools:ignore="NewApi">
         <targets>
             <target android:targetId="@id/searchBar" />
@@ -15,9 +14,8 @@
     </changeBounds>
 
     <transition
-        class="wangdaye.com.geometricweather.ui.transition.RoundCornerTransition"
+        class="wangdaye.com.geometricweather.common.ui.transitions.RoundCornerTransition"
         android:interpolator="@android:interpolator/fast_out_slow_in"
-        android:duration="350"
         app:radius_from="0dp"
         app:radius_to="8dp"
         tools:ignore="NewApi">

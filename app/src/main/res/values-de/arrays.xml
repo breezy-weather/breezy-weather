@@ -25,6 +25,7 @@
 
     <string-array name="dark_modes">
         <item>Automatisch</item>
+        <item>Follow system</item>
         <item>Immer hell</item>
         <item>Immer dunkel</item>
     </string-array>

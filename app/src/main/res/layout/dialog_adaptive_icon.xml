@@ -30,6 +30,7 @@
             android:layout_marginTop="@dimen/normal_margin"
             android:layout_marginBottom="40dp"
             android:layout_centerHorizontal="true"
+            android:contentDescription="@string/content_desc_weather_icon"
             tools:background="@drawable/shortcuts_clear_day"/>
 
     </RelativeLayout>

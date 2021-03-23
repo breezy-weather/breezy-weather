@@ -11,6 +11,7 @@
         <item name="android:windowBackground">@color/colorRoot</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="dialogCornerRadius">8dp</item>
     </style>
 
     <style name="GeometricWeatherTheme.Main" parent="GeometricWeatherTheme">

@@ -11,21 +11,23 @@ import wangdaye.com.geometricweather.daily.adapter.model.Value;
 
 public class ValueHolder extends DailyWeatherAdapter.ViewHolder {
 
-    private TextView title;
-    private TextView value;
+    private final TextView mTitle;
+    private final TextView mValue;
 
     public ValueHolder(ViewGroup parent) {
         super(LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_weather_daily_value, parent, false));
-        title = itemView.findViewById(R.id.item_weather_daily_value_title);
-        value = itemView.findViewById(R.id.item_weather_daily_value_value);
+        mTitle = itemView.findViewById(R.id.item_weather_daily_value_title);
+        mValue = itemView.findViewById(R.id.item_weather_daily_value_value);
     }
 
     @SuppressLint("RtlHardcoded")
     @Override
     public void onBindView(DailyWeatherAdapter.ViewModel model, int position) {
         Value v = (Value) model;
-        title.setText(v.getTitle());
-        value.setText(v.getValue());
+        mTitle.setText(v.getTitle());
+        mValue.setText(v.getValue());
+
+        itemView.setContentDescription(mTitle.getText() + ", " + mValue.getText());
     }
 }

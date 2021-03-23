@@ -1,10 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Do not translate those arrays which named "xxx_values". -->
+    <!-- Do not translate those items with a value of "@string/xxx". -->
+
+    <!-- Weather sources -->
+    <string-array name="weather_sources">
+        <item>weather.com.cn (Chine uniquement)</item>
+        <item>caiyunapp.com (Chine uniquement)</item>
+        <item>AccuWeather</item>
+        <item>Météo France</item>
+    </string-array>
+
+    <!-- Location service. -->
+    <string-array name="location_services">
+        <item>Baidu Location</item>
+        <item>Baidu IP Location (Chine uniquement)</item>
+        <item>AMap Location</item>
+        <item>API native</item>
+    </string-array>
+
+    <!-- Dark mode. -->
+    <string-array name="dark_modes">
+        <item>Automatique</item>
+        <item>Préférence système</item>
+        <item>Toujours clair</item>
+        <item>Toujours sombre</item>
+    </string-array>
 
     <!-- UI style. -->
     <string-array name="ui_styles">
-        <item>Circular sky</item>
-        <item>Material animation</item>
+        <item>Ciel circulaire</item>
+        <item>Animation Material</item>
+    </string-array>
+
+    <!-- automatic refresh rate. -->
+    <string-array name="automatic_refresh_rates">
+        <item>30 min</item>
+        <item>1 heure</item>
+        <item>1 h 30</item>
+        <item>2 heures</item>
+        <item>2 h 30</item>
+        <item>3 heures</item>
+        <item>3 h 30</item>
+        <item>4 heures</item>
+        <item>4 h 30</item>
+        <item>5 heures</item>
+        <item>5 h 30</item>
+        <item>6 heures</item>
+    </string-array>
+
+    <!-- widget week icon mode. -->
+    <string-array name="week_icon_modes">
+        <item>Automatique</item>
+        <item>@string/daytime</item><!-- do not translate. -->
+        <item>@string/nighttime</item><!-- do not translate. -->
+    </string-array>
+
+    <!-- notification style. -->
+    <string-array name="notification_styles">
+        <item>Native</item>
+        <item>Villes</item>
+        <item>@string/daily_overview</item><!-- do not translate. -->
+        <item>@string/hourly_overview</item><!-- do not translate. -->
     </string-array>
 
     <!-- notification text color. -->
@@ -25,17 +82,61 @@
         <item>Vertical</item>
         <item>Oreo</item>
         <item>Oreo (Google sans)</item>
-        <item>Temperature</item>
+        <item>Température</item>
+    </string-array>
+
+    <!-- week widget style. -->
+    <string-array name="week_widget_styles">
+        <item>5 jours</item>
+        <item>3 jours</item>
     </string-array>
 
     <!-- Widget subtitle data. -->
     <string-array name="subtitle_data">
         <item>Heure rafraichissement</item>
-        <item>AQI (Indispo en France)</item>
+        <item>AQI (indispo en France)</item>
         <item>Vent</item>
         <item>Temp. ressentie</item>
-        <item>Lunar Calendar</item>
-        <item>Custom</item>
+        <item>Calendrier lunaire</item>
+        <item>Personnalisé</item>
     </string-array>
 
+    <!-- widget card style. -->
+    <string-array name="widget_card_styles">
+        <item>Aucun</item>
+        <item>Mode Jour Nuit</item>
+        <item>Clair</item>
+        <item>Sombre</item>
+    </string-array>
+
+    <!-- widget clock font. -->
+    <string-array name="widget_text_colors">
+        <item>Clair</item>
+        <item>Sombre</item>
+        <item>Automatique</item>
+    </string-array>
+
+    <!-- live wallpaper weather kind. -->
+    <string-array name="live_wallpaper_weather_kinds">
+        <item>Automatique</item>
+        <item>Dégagé</item>
+        <item>Partiellement couvert</item>
+        <item>Nuageux</item>
+        <item>Pluie</item>
+        <item>Neige</item>
+        <item>Neige fondue</item>
+        <item>Grêle</item>
+        <item>Brouillard</item>
+        <item>Brume</item>
+        <item>Tonnerre</item>
+        <item>Orage</item>
+        <item>Vent</item>
+    </string-array>
+
+    <!-- live wallpaper weather kind. -->
+    <string-array name="live_wallpaper_day_night_types">
+        <item>Automatique</item>
+        <item>Toujours de jour</item>
+        <item>Toujours de nuit</item>
+    </string-array>
 </resources>

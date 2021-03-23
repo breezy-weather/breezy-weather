@@ -51,5 +51,36 @@
         <attr name="checked_background_color" format="color" />
         <attr name="unchecked_background_color" format="color" />
     </declare-styleable>
+    
+    <!-- Sliding item container layout. -->
+    <declare-styleable name="SlidingItemContainerLayout">
+        <attr name="iconResStart" format="reference" />
+        <attr name="iconResEnd" format="reference" />
+        <attr name="backgroundColorStart" format="color" />
+        <attr name="backgroundColorEnd" format="color" />
+    </declare-styleable>
+
+    <!-- Drawer layout. -->
+    <declare-styleable name="DrawerLayout">
+        <attr name="unfold" format="boolean" />
+    </declare-styleable>
+
+    <!-- Fit system bar. -->
+    <declare-styleable name="FitSystemBarRecyclerView">
+        <attr name="rv_side">
+            <enum name="none" value="0" />
+            <enum name="top" value="1" />
+            <enum name="bottom" value="2" />
+            <enum name="both" value="3" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="FitSystemBarNestedScrollView">
+        <attr name="sv_side">
+            <enum name="none" value="0" />
+            <enum name="top" value="1" />
+            <enum name="bottom" value="2" />
+            <enum name="both" value="3" />
+        </attr>
+    </declare-styleable>
 
 </resources>

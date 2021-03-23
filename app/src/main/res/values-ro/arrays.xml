@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Do not translate those arrays which named "xxx_values". -->
+    <!-- Do not translate those items with a value of "@string/xxx". -->
+
+    <!-- Chinese source. -->
+    <string-array name="weather_sources">
+        <item>weather.com.cn (Exclusiv pentru China)</item>
+        <item> caiyunapp.com (Exclusiv pentru China)</item>
+        <item>accuweather.com</item>
+        <item>Météo France</item>
+    </string-array>
+
+    <!-- Location service. -->
+    <string-array name="location_services">
+        <item>Locație Baidu</item>
+        <item>Locație Baidu IP (Exclusiv pentru China)</item>
+        <item>Locație AMap</item>
+        <item>API Nativ</item>
+    </string-array>
+
+    <!-- Dark mode. -->
+    <string-array name="dark_modes">
+        <item>Automat</item>
+        <item>La fel ca tema sistemului</item>
+        <item>Întunecat</item>
+        <item>Luminos</item>
+    </string-array>
+
+    <!-- UI style. -->
+    <string-array name="ui_styles">
+        <item>Cer static</item>
+        <item>Cer animat</item>
+    </string-array>
+
+    <!-- automatic refresh rate. -->
+    <string-array name="automatic_refresh_rates">
+        <item> 30 minute</item>
+        <item>1 oră</item>
+        <item>1.5 ore</item>
+        <item>2 ore</item>
+        <item>2.5 ore</item>
+        <item>3 ore</item>
+        <item>3.5 ore</item>
+        <item>4 ore</item>
+        <item>4.5 ore</item>
+        <item>5 ore</item>
+        <item>5.5 ore</item>
+        <item>6 ore</item>
+    </string-array>
+
+    <!-- widget week icon mode. -->
+    <string-array name="week_icon_modes">
+        <item>Automat</item>
+        <item>@string/daytime</item><!-- do not translate. -->
+        <item>@string/nighttime</item><!-- do not translate. -->
+    </string-array>
+
+    <!-- notification style. -->
+    <string-array name="notification_styles">
+        <item>sistem</item>
+        <item>Orașe</item>
+        <item>@string/daily_overview</item><!-- do not translate. -->
+        <item>@string/hourly_overview</item><!-- do not translate. -->
+    </string-array>
+
+    <!-- notification text color. -->
+    <string-array name="notification_text_colors">
+        <item>Închis la culoare</item>
+        <item>Gri</item>
+        <item>Deschis la culoare</item>
+    </string-array>
+
+    <!-- widget style. -->
+    <string-array name="widget_styles">
+        <item>Dreptunghi</item>
+        <item>Simetric</item>
+        <item>Compact</item>
+        <item>Mini</item>
+        <item>Nano</item>
+        <item>Pixel</item>
+        <item>Vertical</item>
+        <item>Oreo</item>
+        <item>Oreo (Google sans)</item>
+        <item>Temperatură</item>
+    </string-array>
+
+    <!-- week widget style. -->
+    <string-array name="week_widget_styles">
+        <item>5 zile</item>
+        <item>3 zile</item>
+    </string-array>
+
+    <!-- Widget subtitle data. -->
+    <string-array name="subtitle_data">
+        <item>Oră actualizare</item>
+        <item>Calitatea aerului (Invalid în unele zone.)</item>
+        <item>Vânt</item>
+        <item>Temp. resimțită</item>
+        <item>Calendar Lunar</item>
+        <item>Personalizat</item>
+    </string-array>
+
+    <!-- widget clock font. -->
+    <string-array name="clock_font">
+        <item>sans-serif-light</item>
+        <item>sans-serif</item>
+        <item>sans-serif-black</item>
+        <item>analog</item>
+    </string-array>
+
+    <!-- widget card style. -->
+    <string-array name="widget_card_styles">
+        <item>Nici unul</item>
+        <item>Mod zi - noapte</item>
+        <item>Luminos</item>
+        <item>Întunecat</item>
+    </string-array>
+
+    <!-- widget clock font. -->
+    <string-array name="widget_text_colors">
+        <item>Deschis la culoare</item>
+        <item>Închis la culoare</item>
+        <item>Automat</item>
+    </string-array>
+
+    <!-- live wallpaper weather kind. -->
+    <string-array name="live_wallpaper_weather_kinds">
+        <item>Automat</item>
+        <item>Senin</item>
+        <item>Parțial noros</item>
+        <item>Noros</item>
+        <item>Ploaie</item>
+        <item>Ninsoare</item>
+        <item>Lapoviță</item>
+        <item>Grindină</item>
+        <item>Ceață</item>
+        <item>Vizibilitate redusă</item>
+        <item>Trăsnet</item>
+        <item>Furtună</item>
+        <item>Vânt</item>
+    </string-array>
+
+    <!-- live wallpaper weather kind. -->
+    <string-array name="live_wallpaper_day_night_types">
+        <item>Automat</item>
+        <item>Zi</item>
+        <item>Noapte</item>
+    </string-array>
+
+    <!-- speed unit. -->
+    <string-array name="speed_units">
+        <item>km/h</item>
+        <item>m/s</item>
+        <item>kn</item>
+        <item>mph</item>
+        <item>ft/s</item>
+    </string-array>
+
+    <!-- precipitation unit. -->
+    <string-array name="precipitation_units">
+        <item>mm</item>
+        <item>cm</item>
+        <item>inch</item>
+        <item>L/m²</item>
+    </string-array>
+
+    <!-- temperature unit. -->
+    <string-array name="temperature_units">
+        <item>℃</item>
+        <item>℉</item>
+        <item>K</item>
+    </string-array>
+    <string-array name="temperature_units_short">
+        <item>°</item>
+        <item>°</item>
+        <item>K</item>
+    </string-array>
+    <string-array name="temperature_units_long">
+        <item>°C</item>
+        <item>°F</item>
+        <item>K</item>
+    </string-array>
+
+    <!-- distance unit. -->
+    <string-array name="distance_units">
+        <item>km</item>
+        <item>m</item>
+        <item>mi</item>
+        <item>nmi</item>
+        <item>ft</item>
+    </string-array>
+
+    <!-- pressure unit. -->
+    <string-array name="pressure_units">
+        <item>mb</item>
+        <item>kPa</item>
+        <item>hPa</item>
+        <item>atm</item>
+        <item>mmHg</item>
+        <item>inHg</item>
+        <item>kgf/cm²</item>
+    </string-array>
+
+    <!-- air quality unit. -->
+    <string-array name="air_quality_units">
+        <item>μg/m³</item>
+    </string-array>
+
+    <!-- air quality co unit. -->
+    <string-array name="air_quality_co_units">
+        <item>mg/m³</item>
+    </string-array>
+
+    <!-- duration unit. -->
+    <string-array name="duration_units">
+        <item>h</item> <!-- hour -->
+    </string-array>
+
+    <!-- pollen unit. -->
+    <string-array name="pollen_units">
+        <item>/m³</item>
+    </string-array>
+
+</resources>

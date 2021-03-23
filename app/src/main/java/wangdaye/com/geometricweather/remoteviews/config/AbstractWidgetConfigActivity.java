@@ -1,26 +1,15 @@
 package wangdaye.com.geometricweather.remoteviews.config;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.WallpaperManager;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-
-import androidx.annotation.CallSuper;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.widget.AppCompatSpinner;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.core.widget.NestedScrollView;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
@@ -38,21 +27,29 @@ import android.widget.RemoteViews;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import androidx.annotation.CallSuper;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatSpinner;
+import androidx.core.widget.NestedScrollView;
+
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.xw.repo.BubbleSeekBar;
 
+import javax.inject.Inject;
+
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.polling.PollingManager;
-import wangdaye.com.geometricweather.basic.GeoActivity;
-import wangdaye.com.geometricweather.basic.model.location.Location;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.ui.widget.insets.FitBottomSystemBarNestedScrollView;
-import wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout;
-import wangdaye.com.geometricweather.utils.DisplayUtils;
-import wangdaye.com.geometricweather.utils.SnackbarUtils;
+import wangdaye.com.geometricweather.common.basic.GeoActivity;
+import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarNestedScrollView;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
+import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 /**
@@ -62,30 +59,30 @@ import wangdaye.com.geometricweather.weather.WeatherHelper;
 public abstract class AbstractWidgetConfigActivity extends GeoActivity
         implements WeatherHelper.OnRequestWeatherListener {
 
-    protected FrameLayout topContainer;
-    protected ImageView wallpaper;
-    protected FrameLayout widgetContainer;
+    protected FrameLayout mTopContainer;
+    protected ImageView mWallpaper;
+    protected FrameLayout mWidgetContainer;
 
-    protected CoordinatorLayout container;
-    protected NestedScrollView scrollView;
-    protected RelativeLayout viewTypeContainer;
-    protected RelativeLayout cardStyleContainer;
-    protected RelativeLayout cardAlphaContainer;
-    protected RelativeLayout hideSubtitleContainer;
-    protected RelativeLayout subtitleDataContainer;
-    protected RelativeLayout textColorContainer;
-    protected RelativeLayout textSizeContainer;
-    protected RelativeLayout clockFontContainer;
-    protected RelativeLayout hideLunarContainer;
+    protected NestedScrollView mScrollView;
+    protected RelativeLayout mViewTypeContainer;
+    protected RelativeLayout mCardStyleContainer;
+    protected RelativeLayout mCardAlphaContainer;
+    protected RelativeLayout mHideSubtitleContainer;
+    protected RelativeLayout mSubtitleDataContainer;
+    protected RelativeLayout mTextColorContainer;
+    protected RelativeLayout mTextSizeContainer;
+    protected RelativeLayout mClockFontContainer;
+    protected RelativeLayout mHideLunarContainer;
+    protected RelativeLayout mAlignEndContainer;
 
-    private BottomSheetBehavior bottomSheetBehavior;
-    private FitBottomSystemBarNestedScrollView bottomSheetScrollView;
-    private TextInputLayout subtitleInputLayout;
-    private TextInputEditText subtitleInputter;
+    private BottomSheetBehavior mBottomSheetBehavior;
+    private FitSystemBarNestedScrollView mBottomSheetScrollView;
+    private TextInputLayout mSubtitleInputLayout;
+    private TextInputEditText mSubtitleEditText;
 
     protected Location locationNow;
 
-    protected WeatherHelper weatherHelper;
+    @Inject WeatherHelper weatherHelper;
     protected boolean destroyed;
 
     protected String viewTypeValueNow;
@@ -116,7 +113,9 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
 
     protected boolean hideLunar;
 
-    private long lastBackPressedTime = -1;
+    protected boolean alignEnd;
+
+    private long mLastBackPressedTime = -1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -141,24 +140,19 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
 
     @Override
     public void onBackPressed() {
-        if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+        if (mBottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
             setBottomSheetState(true);
             return;
         }
 
         long time = System.currentTimeMillis();
-        if (time - lastBackPressedTime < 2000) {
+        if (time - mLastBackPressedTime < 2000) {
             super.onBackPressed();
             return;
         }
 
-        lastBackPressedTime = time;
-        SnackbarUtils.showSnackbar(this, getString(R.string.feedback_click_again_to_exit));
-    }
-
-    @Override
-    public View getSnackbarContainer() {
-        return container;
+        mLastBackPressedTime = time;
+        SnackbarHelper.showSnackbar(getString(R.string.feedback_click_again_to_exit));
     }
 
     @Override
@@ -199,53 +193,54 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         locationNow = DatabaseHelper.getInstance(this).readLocationList().get(0);
         locationNow.setWeather(DatabaseHelper.getInstance(this).readWeather(locationNow));
 
-        weatherHelper = new WeatherHelper();
         destroyed = false;
-        
+
         Resources res = getResources();
-        
-        this.viewTypeValueNow = "rectangle";
-        this.viewTypes = res.getStringArray(R.array.widget_styles);
-        this.viewTypeValues = res.getStringArray(R.array.widget_style_values);
 
-        this.cardStyleValueNow = "none";
-        this.cardStyles = res.getStringArray(R.array.widget_card_styles);
-        this.cardStyleValues = res.getStringArray(R.array.widget_card_style_values);
+        viewTypeValueNow = "rectangle";
+        viewTypes = res.getStringArray(R.array.widget_styles);
+        viewTypeValues = res.getStringArray(R.array.widget_style_values);
 
-        this.cardAlpha = 100;
+        cardStyleValueNow = "none";
+        cardStyles = res.getStringArray(R.array.widget_card_styles);
+        cardStyleValues = res.getStringArray(R.array.widget_card_style_values);
 
-        this.hideSubtitle = false;
+        cardAlpha = 100;
 
-        this.subtitleDataValueNow = "time";
+        hideSubtitle = false;
+
+        subtitleDataValueNow = "time";
         String[] data = res.getStringArray(R.array.subtitle_data);
         String[] dataValues = res.getStringArray(R.array.subtitle_data_values);
         if (SettingsOptionManager.getInstance(this).getLanguage().isChinese()) {
-            this.subtitleData = new String[] {
+            subtitleData = new String[] {
                     data[0], data[1], data[2], data[3], data[4], data[5]
             };
-            this.subtitleDataValues = new String[] {
+            subtitleDataValues = new String[] {
                     dataValues[0], dataValues[1], dataValues[2], dataValues[3], dataValues[4], dataValues[5]
             };
         } else {
-            this.subtitleData = new String[] {
+            subtitleData = new String[] {
                     data[0], data[1], data[2], data[3], data[5]
             };
-            this.subtitleDataValues = new String[] {
+            subtitleDataValues = new String[] {
                     dataValues[0], dataValues[1], dataValues[2], dataValues[3], dataValues[5]
             };
         }
 
-        this.textColorValueNow = "light";
-        this.textColors = res.getStringArray(R.array.widget_text_colors);
-        this.textColorValues = res.getStringArray(R.array.widget_text_color_values);
+        textColorValueNow = "light";
+        textColors = res.getStringArray(R.array.widget_text_colors);
+        textColorValues = res.getStringArray(R.array.widget_text_color_values);
 
-        this.textSize = 100;
+        textSize = 100;
 
-        this.clockFontValueNow = "light";
-        this.clockFonts = res.getStringArray(R.array.clock_font);
-        this.clockFontValues = res.getStringArray(R.array.clock_font_values);
+        clockFontValueNow = "light";
+        clockFonts = res.getStringArray(R.array.clock_font);
+        clockFontValues = res.getStringArray(R.array.clock_font_values);
 
-        this.hideLunar = false;
+        hideLunar = false;
+
+        alignEnd = false;
     }
 
     private void readConfig() {
@@ -259,44 +254,42 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         textSize = sharedPreferences.getInt(getString(R.string.key_text_size), textSize);
         clockFontValueNow = sharedPreferences.getString(getString(R.string.key_clock_font), clockFontValueNow);
         hideLunar = sharedPreferences.getBoolean(getString(R.string.key_hide_lunar), hideLunar);
+        alignEnd = sharedPreferences.getBoolean(getString(R.string.key_align_end), alignEnd);
     }
 
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
     @CallSuper
     public void initView() {
-        this.wallpaper = findViewById(R.id.activity_widget_config_wall);
-        bindWallpaper(true);
+        mWallpaper = findViewById(R.id.activity_widget_config_wall);
+        bindWallpaper();
 
-        this.widgetContainer = findViewById(R.id.activity_widget_config_widgetContainer);
+        mWidgetContainer = findViewById(R.id.activity_widget_config_widgetContainer);
 
-        this.topContainer = findViewById(R.id.activity_widget_config_top);
+        mTopContainer = findViewById(R.id.activity_widget_config_top);
         int screenWidth = getResources().getDisplayMetrics().widthPixels;
         int adaptiveWidth = DisplayUtils.getTabletListAdaptiveWidth(this, screenWidth);
         int paddingHorizontal = (screenWidth - adaptiveWidth) / 2;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
-            topContainer.setOnApplyWindowInsetsListener((v, insets) -> {
-                widgetContainer.setPadding(
-                        Math.max(paddingHorizontal, insets.getSystemWindowInsetLeft()),
-                        insets.getSystemWindowInsetTop(),
-                        Math.max(paddingHorizontal, insets.getSystemWindowInsetRight()),
-                        0
-                );
+            mTopContainer.setOnApplyWindowInsetsListener((v, insets) -> {
+                mWidgetContainer.setPadding(paddingHorizontal, insets.getSystemWindowInsetTop(),
+                        paddingHorizontal, 0);
                 return insets;
             });
         } else {
-            widgetContainer.setPadding(paddingHorizontal, 0, paddingHorizontal, 0);
+            mWidgetContainer.setPadding(paddingHorizontal, 0, paddingHorizontal, 0);
         }
 
-        this.container = findViewById(R.id.activity_widget_config_container);
+        mScrollView = findViewById(R.id.activity_widget_config_scrollView);
 
-        this.scrollView = findViewById(R.id.activity_widget_config_scrollView);
-
-        this.viewTypeContainer = findViewById(R.id.activity_widget_config_viewStyleContainer);
+        mViewTypeContainer = findViewById(R.id.activity_widget_config_viewStyleContainer);
+        mViewTypeContainer.setVisibility(View.GONE);
         AppCompatSpinner viewTypeSpinner = findViewById(R.id.activity_widget_config_styleSpinner);
         viewTypeSpinner.setOnItemSelectedListener(new ViewTypeSpinnerSelectedListener());
         viewTypeSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, viewTypes));
         viewTypeSpinner.setSelection(indexValue(viewTypeValues, viewTypeValueNow), true);
 
-        this.cardStyleContainer = findViewById(R.id.activity_widget_config_showCardContainer);
+        mCardStyleContainer = findViewById(R.id.activity_widget_config_showCardContainer);
+        mCardStyleContainer.setVisibility(View.GONE);
         AppCompatSpinner cardStyleSpinner = findViewById(R.id.activity_widget_config_showCardSpinner);
         cardStyleSpinner.setOnItemSelectedListener(new CardStyleSpinnerSelectedListener());
         cardStyleSpinner.setAdapter(
@@ -304,7 +297,8 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         );
         cardStyleSpinner.setSelection(indexValue(cardStyleValues, cardStyleValueNow), true);
 
-        this.cardAlphaContainer = findViewById(R.id.activity_widget_config_cardAlphaContainer);
+        mCardAlphaContainer = findViewById(R.id.activity_widget_config_cardAlphaContainer);
+        mCardAlphaContainer.setVisibility(View.GONE);
         BubbleSeekBar cardAlphaSeekBar = findViewById(R.id.activity_widget_config_cardAlphaSeekBar);
         cardAlphaSeekBar.setCustomSectionTextArray((sectionCount, array) -> {
             array.clear();
@@ -319,12 +313,14 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         cardAlphaSeekBar.setOnProgressChangedListener(new CardAlphaChangedListener());
         cardAlphaSeekBar.setProgress(cardAlpha);
 
-        this.hideSubtitleContainer = findViewById(R.id.activity_widget_config_hideSubtitleContainer);
+        mHideSubtitleContainer = findViewById(R.id.activity_widget_config_hideSubtitleContainer);
+        mHideSubtitleContainer.setVisibility(View.GONE);
         Switch hideSubtitleSwitch = findViewById(R.id.activity_widget_config_hideSubtitleSwitch);
         hideSubtitleSwitch.setOnCheckedChangeListener(new HideSubtitleSwitchCheckListener());
         hideSubtitleSwitch.setChecked(hideSubtitle);
 
-        this.subtitleDataContainer = findViewById(R.id.activity_widget_config_subtitleDataContainer);
+        mSubtitleDataContainer = findViewById(R.id.activity_widget_config_subtitleDataContainer);
+        mSubtitleDataContainer.setVisibility(View.GONE);
         AppCompatSpinner subtitleDataSpinner = findViewById(R.id.activity_widget_config_subtitleDataSpinner);
         subtitleDataSpinner.setOnItemSelectedListener(new SubtitleDataSpinnerSelectedListener());
         subtitleDataSpinner.setAdapter(
@@ -335,7 +331,8 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
                 true
         );
 
-        this.textColorContainer = findViewById(R.id.activity_widget_config_blackTextContainer);
+        mTextColorContainer = findViewById(R.id.activity_widget_config_blackTextContainer);
+        mTextColorContainer.setVisibility(View.GONE);
         AppCompatSpinner textStyleSpinner = findViewById(R.id.activity_widget_config_blackTextSpinner);
         textStyleSpinner.setOnItemSelectedListener(new TextColorSpinnerSelectedListener());
         textStyleSpinner.setAdapter(
@@ -343,7 +340,8 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         );
         textStyleSpinner.setSelection(indexValue(textColorValues, textColorValueNow), true);
 
-        this.textSizeContainer = findViewById(R.id.activity_widget_config_textSizeContainer);
+        mTextSizeContainer = findViewById(R.id.activity_widget_config_textSizeContainer);
+        mTextSizeContainer.setVisibility(View.GONE);
         BubbleSeekBar textSizeSeekBar = findViewById(R.id.activity_widget_config_textSizeSeekBar);
         textSizeSeekBar.setCustomSectionTextArray((sectionCount, array) -> {
             array.clear();
@@ -356,7 +354,8 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         textSizeSeekBar.setOnProgressChangedListener(new TextSizeChangedListener());
         textSizeSeekBar.setProgress(textSize);
 
-        this.clockFontContainer = findViewById(R.id.activity_widget_config_clockFontContainer);
+        mClockFontContainer = findViewById(R.id.activity_widget_config_clockFontContainer);
+        mClockFontContainer.setVisibility(View.GONE);
         AppCompatSpinner clockFontSpinner = findViewById(R.id.activity_widget_config_clockFontSpinner);
         clockFontSpinner.setOnItemSelectedListener(new ClockFontSpinnerSelectedListener());
         clockFontSpinner.setAdapter(
@@ -364,15 +363,17 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         );
         clockFontSpinner.setSelection(indexValue(clockFontValues, cardStyleValueNow), true);
 
-        this.hideLunarContainer = findViewById(R.id.activity_widget_config_hideLunarContainer);
-        hideLunarContainer.setVisibility(
-                SettingsOptionManager.getInstance(this).getLanguage().isChinese()
-                        ? View.VISIBLE
-                        : View.GONE
-        );
+        mHideLunarContainer = findViewById(R.id.activity_widget_config_hideLunarContainer);
+        mHideLunarContainer.setVisibility(View.GONE);
         Switch hideLunarSwitch = findViewById(R.id.activity_widget_config_hideLunarSwitch);
         hideLunarSwitch.setOnCheckedChangeListener(new HideLunarSwitchCheckListener());
         hideLunarSwitch.setChecked(hideLunar);
+
+        mAlignEndContainer = findViewById(R.id.activity_widget_config_alignEndContainer);
+        mAlignEndContainer.setVisibility(View.GONE);
+        Switch alignEndSwitch = findViewById(R.id.activity_widget_config_alignEndSwitch);
+        alignEndSwitch.setOnCheckedChangeListener(new AlignEndSwitchCheckListener());
+        alignEndSwitch.setChecked(alignEnd);
 
         Button doneButton = findViewById(R.id.activity_widget_config_doneButton);
         doneButton.setOnClickListener(v -> {
@@ -387,6 +388,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
                     .putInt(getString(R.string.key_text_size), textSize)
                     .putString(getString(R.string.key_clock_font), clockFontValueNow)
                     .putBoolean(getString(R.string.key_hide_lunar), hideLunar)
+                    .putBoolean(getString(R.string.key_align_end), alignEnd)
                     .apply();
 
             Intent intent = getIntent();
@@ -407,12 +409,13 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
             finish();
         });
 
-        bottomSheetScrollView = findViewById(R.id.activity_widget_config_custom_scrollView);
+        mBottomSheetScrollView = findViewById(R.id.activity_widget_config_custom_scrollView);
+        mBottomSheetScrollView.setAdaptiveWidthEnabled(false);
 
-        subtitleInputLayout = findViewById(R.id.activity_widget_config_subtitle_inputLayout);
+        mSubtitleInputLayout = findViewById(R.id.activity_widget_config_subtitle_inputLayout);
 
-        subtitleInputter = findViewById(R.id.activity_widget_config_subtitle_inputter);
-        subtitleInputter.addTextChangedListener(new TextWatcher() {
+        mSubtitleEditText = findViewById(R.id.activity_widget_config_subtitle_inputter);
+        mSubtitleEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 // do nothing.
@@ -434,9 +437,9 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
             }
         });
         if (isCustomSubtitle()) {
-            subtitleInputter.setText(subtitleDataValueNow);
+            mSubtitleEditText.setText(subtitleDataValueNow);
         } else {
-            subtitleInputter.setText("");
+            mSubtitleEditText.setText("");
         }
 
         TextView subtitleCustomKeywords = findViewById(R.id.activity_widget_config_custom_subtitle_keywords);
@@ -444,38 +447,38 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
 
         LinearLayout scrollContainer = findViewById(R.id.activity_widget_config_scrollContainer);
         scrollContainer.post(() -> scrollContainer.setPaddingRelative(
-                0, 0, 0, subtitleInputLayout.getMeasuredHeight()));
+                0, 0, 0, mSubtitleInputLayout.getMeasuredHeight()));
 
-        FitTopSystemBarAppBarLayout bottomSheet = findViewById(R.id.activity_widget_config_custom_subtitle);
-        bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
-        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+        AppBarLayout bottomSheet = findViewById(R.id.activity_widget_config_custom_subtitle);
+        mBottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
+        mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
         bottomSheet.post(() -> {
-            bottomSheetBehavior.setPeekHeight(
-                    subtitleInputLayout.getMeasuredHeight()
-                            + bottomSheetScrollView.getWindowInsets().bottom
+            mBottomSheetBehavior.setPeekHeight(
+                    mSubtitleInputLayout.getMeasuredHeight()
+                            + mBottomSheetScrollView.getWindowInsets().bottom
             );
             setBottomSheetState(isCustomSubtitle());
         });
     }
 
     public final void updateHostView() {
-        widgetContainer.removeAllViews();
+        mWidgetContainer.removeAllViews();
 
-        View view = getRemoteViews().apply(getApplicationContext(), widgetContainer);
+        View view = getRemoteViews().apply(getApplicationContext(), mWidgetContainer);
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT
         );
-        widgetContainer.addView(view, params);
+        mWidgetContainer.addView(view, params);
     }
 
     private void setBottomSheetState(boolean visible) {
         if (visible) {
-            bottomSheetBehavior.setHideable(false);
-            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+            mBottomSheetBehavior.setHideable(false);
+            mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         } else {
-            bottomSheetBehavior.setHideable(true);
-            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+            mBottomSheetBehavior.setHideable(true);
+            mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
         }
     }
 
@@ -565,6 +568,12 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
                 getString(R.string.feedback_custom_subtitle_keyword_xmp);
     }
 
+    protected int isHideLunarContainerVisible() {
+        return SettingsOptionManager.getInstance(this).getLanguage().isChinese()
+                ? View.VISIBLE
+                : View.GONE;
+    }
+
     // interface.
 
     // on request weather listener.
@@ -590,28 +599,16 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         }
         locationNow = requestLocation;
         updateHostView();
-        SnackbarUtils.showSnackbar(this, getString(R.string.feedback_get_weather_failed));
+        SnackbarHelper.showSnackbar(getString(R.string.feedback_get_weather_failed));
     }
 
-    private void bindWallpaper(boolean checkPermissions) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkPermissions) {
-            boolean hasPermission = checkPermissions((requestCode, permission, grantResult) -> {
-                bindWallpaper(false);
-                if (textColorValueNow.equals("auto")) {
-                    updateHostView();
-                }
-            });
-            if (!hasPermission) {
-                return;
-            }
-        }
-
+    private void bindWallpaper() {
         try {
             WallpaperManager manager = WallpaperManager.getInstance(this);
             if (manager != null) {
                 Drawable drawable = manager.getDrawable();
                 if (drawable != null) {
-                    wallpaper.setImageDrawable(drawable);
+                    mWallpaper.setImageDrawable(drawable);
                 }
             }
         } catch (Exception ignore) {
@@ -619,19 +616,25 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         }
     }
 
-    /**
-     * @return true : already got permissions.
-     *         false: request permissions.
-     * */
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    private boolean checkPermissions(@NonNull OnRequestPermissionsResultListener l) {
-        if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(
-                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 0, l);
-            return false;
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        switch (requestCode) {
+            case 0:
+                bindWallpaper();
+                if (textColorValueNow.equals("auto")) {
+                    updateHostView();
+                }
+                break;
+
+            case 1:
+                bindWallpaper();
+                updateHostView();
+                break;
         }
-        return true;
     }
 
     // on check changed listener(switch).
@@ -650,6 +653,15 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             hideLunar = isChecked;
+            updateHostView();
+        }
+    }
+
+    private class AlignEndSwitchCheckListener implements CompoundButton.OnCheckedChangeListener {
+
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            alignEnd = isChecked;
             updateHostView();
         }
     }
@@ -693,7 +705,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
 
             if (!subtitleDataValueNow.equals(subtitleDataValues[i])) {
                 if (subtitleDataValues[i].equals("custom")) {
-                    Editable editable = subtitleInputter.getText();
+                    Editable editable = mSubtitleEditText.getText();
                     if (editable != null) {
                         subtitleDataValueNow = editable.toString();
                     } else {
@@ -722,16 +734,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
                     return;
                 }
 
-                boolean hasPermission = true;
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    hasPermission = checkPermissions((requestCode, permission, grantResult) -> {
-                        bindWallpaper(false);
-                        updateHostView();
-                    });
-                }
-                if (hasPermission) {
-                    updateHostView();
-                }
+                updateHostView();
             }
         }
 

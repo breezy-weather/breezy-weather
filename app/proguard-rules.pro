@@ -16,10 +16,10 @@
 #   public *;
 #}
 
--keep class wangdaye.com.geometricweather.basic.model.** { *; }
+-keep class wangdaye.com.geometricweather.common.basic.models.** { *; }
 -keep class wangdaye.com.geometricweather.weather.json.** { *; }
--keep class wangdaye.com.geometricweather.db.entity.** { *; }
--keep class wangdaye.com.geometricweather.location.service.ip.** { *; }
+-keep class wangdaye.com.geometricweather.db.entities.** { *; }
+-keep class wangdaye.com.geometricweather.location.services.ip.** { *; }
 
 -dontskipnonpubliclibraryclassmembers
 -printconfiguration
@@ -238,3 +238,8 @@ public static java.lang.String TABLENAME;
 ## RxLifeCycle
 -keep class com.trello.rxlifecycle2.** { *; }
 -keep interface com.trello.rxlifecycle2.** { *; }
+
+## DataStore
+-keepclassmembers class * extends androidx.datastore.preferences.protobuf.GeneratedMessageLite {
+    <fields>;
+}

@@ -1,6 +1,6 @@
 package wangdaye.com.geometricweather.daily.adapter.model;
 
-import wangdaye.com.geometricweather.basic.model.weather.AirQuality;
+import wangdaye.com.geometricweather.common.basic.models.weather.AirQuality;
 import wangdaye.com.geometricweather.daily.adapter.DailyWeatherAdapter;
 
 public class DailyAirQuality implements DailyWeatherAdapter.ViewModel {
