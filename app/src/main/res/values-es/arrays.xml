@@ -35,15 +35,12 @@
         <item>Ubicación de AMap</item>
         <item>API Nativa</item>
     </string-array>
-<<<<<<< HEAD
     <string-array name="location_service_values">
         <item>baidu</item>
         <item>baidu_ip</item>
         <item>amap</item>
         <item>native</item>
     </string-array>
-=======
->>>>>>> 1c9a714095c94c98ec59fd31d3d0d59d5011b493
 
     <!-- Dark mode. -->
     <string-array name="dark_modes">
@@ -245,7 +242,6 @@
         <item>Oreo (Google Sans)</item>
         <item>Temperatura</item>
     </string-array>
-<<<<<<< HEAD
     <string-array name="widget_style_values">
         <item>rectangle</item>
         <item>symmetry</item>
@@ -258,20 +254,15 @@
         <item>oreo_google_sans</item>
         <item>temp</item>
     </string-array>
-=======
->>>>>>> 1c9a714095c94c98ec59fd31d3d0d59d5011b493
 
     <!-- week widget style. -->
     <string-array name="week_widget_styles">
         <item>5 días</item>
         <item>3 días</item>
-<<<<<<< HEAD
     </string-array>
     <string-array name="week_widget_style_values">
         <item>5_days</item>
         <item>3_days</item>
-=======
->>>>>>> 1c9a714095c94c98ec59fd31d3d0d59d5011b493
     </string-array>
 
     <!-- Widget subtitle data. -->
@@ -283,7 +274,6 @@
         <item>Calendario Lunar</item>
         <item>Personalizado</item>
     </string-array>
-<<<<<<< HEAD
     <string-array name="subtitle_data_values">
         <item>time</item>
         <item>aqi</item>
@@ -292,8 +282,6 @@
         <item>lunar</item>
         <item>custom</item>
     </string-array>
-=======
->>>>>>> 1c9a714095c94c98ec59fd31d3d0d59d5011b493
 
     <!-- widget clock font. -->
     <string-array name="clock_font">
@@ -301,15 +289,12 @@
         <item>Sans-Serif</item>
         <item>Sans-Serif-Black</item>
         <item>Analog</item>
-<<<<<<< HEAD
     </string-array>
     <string-array name="clock_font_values">
         <item>light</item>
         <item>normal</item>
         <item>black</item>
         <item>analog</item>
-=======
->>>>>>> 1c9a714095c94c98ec59fd31d3d0d59d5011b493
     </string-array>
 
     <!-- widget card style. -->
