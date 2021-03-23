@@ -13,16 +13,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.option.unit.DurationUnit;
-import wangdaye.com.geometricweather.basic.model.option.unit.PrecipitationUnit;
-import wangdaye.com.geometricweather.basic.model.option.unit.ProbabilityUnit;
-import wangdaye.com.geometricweather.basic.model.option.unit.TemperatureUnit;
-import wangdaye.com.geometricweather.basic.model.weather.Daily;
-import wangdaye.com.geometricweather.basic.model.weather.HalfDay;
-import wangdaye.com.geometricweather.basic.model.weather.Precipitation;
-import wangdaye.com.geometricweather.basic.model.weather.PrecipitationDuration;
-import wangdaye.com.geometricweather.basic.model.weather.PrecipitationProbability;
-import wangdaye.com.geometricweather.basic.model.weather.Temperature;
+import wangdaye.com.geometricweather.common.basic.models.options.unit.DurationUnit;
+import wangdaye.com.geometricweather.common.basic.models.options.unit.PrecipitationUnit;
+import wangdaye.com.geometricweather.common.basic.models.options.unit.ProbabilityUnit;
+import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
+import wangdaye.com.geometricweather.common.basic.models.weather.Daily;
+import wangdaye.com.geometricweather.common.basic.models.weather.HalfDay;
+import wangdaye.com.geometricweather.common.basic.models.weather.Precipitation;
+import wangdaye.com.geometricweather.common.basic.models.weather.PrecipitationDuration;
+import wangdaye.com.geometricweather.common.basic.models.weather.PrecipitationProbability;
+import wangdaye.com.geometricweather.common.basic.models.weather.Temperature;
 import wangdaye.com.geometricweather.daily.adapter.holder.AirQualityHolder;
 import wangdaye.com.geometricweather.daily.adapter.holder.AstroHolder;
 import wangdaye.com.geometricweather.daily.adapter.holder.LargeTitleHolder;
@@ -50,8 +50,8 @@ import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 
 public class DailyWeatherAdapter extends RecyclerView.Adapter<DailyWeatherAdapter.ViewHolder> {
 
-    private List<ViewModel> modelList;
-    private int spanCount;
+    private final List<ViewModel> mModelList;
+    private final int mSpanCount;
 
     public interface ViewModel {
         int getCode();
@@ -73,47 +73,50 @@ public class DailyWeatherAdapter extends RecyclerView.Adapter<DailyWeatherAdapte
             if (Value.isCode(viewType)) {
                 return 1;
             } else {
-                return spanCount;
+                return mSpanCount;
             }
         }
     };
 
     public DailyWeatherAdapter(Context context, Daily daily, int spanCount) {
-        this.modelList = new ArrayList<>();
-        this.spanCount = spanCount;
+        // model list.
+        mModelList = new ArrayList<>();
 
-        modelList.add(new LargeTitle(context.getString(R.string.daytime)));
-        modelList.add(new Overview(daily.day(), true));
-        modelList.add(new DailyWind(daily.day().getWind()));
-        modelList.addAll(getHalfDayOptionalModelList(context, daily.day()));
+        mModelList.add(new LargeTitle(context.getString(R.string.daytime)));
+        mModelList.add(new Overview(daily.day(), true));
+        mModelList.add(new DailyWind(daily.day().getWind()));
+        mModelList.addAll(getHalfDayOptionalModelList(context, daily.day()));
 
-        modelList.add(new Line());
-        modelList.add(new LargeTitle(context.getString(R.string.nighttime)));
-        modelList.add(new Overview(daily.night(), false));
-        modelList.add(new DailyWind(daily.night().getWind()));
-        modelList.addAll(getHalfDayOptionalModelList(context, daily.night()));
+        mModelList.add(new Line());
+        mModelList.add(new LargeTitle(context.getString(R.string.nighttime)));
+        mModelList.add(new Overview(daily.night(), false));
+        mModelList.add(new DailyWind(daily.night().getWind()));
+        mModelList.addAll(getHalfDayOptionalModelList(context, daily.night()));
 
-        modelList.add(new Line());
-        modelList.add(new LargeTitle(context.getString(R.string.life_details)));
-        modelList.add(new DailyAstro(daily.sun(), daily.moon(), daily.getMoonPhase()));
+        mModelList.add(new Line());
+        mModelList.add(new LargeTitle(context.getString(R.string.life_details)));
+        mModelList.add(new DailyAstro(daily.sun(), daily.moon(), daily.getMoonPhase()));
         if (daily.getAirQuality().isValid()) {
-            modelList.add(new Title(R.drawable.weather_haze_mini_xml, context.getString(R.string.air_quality)));
-            modelList.add(new DailyAirQuality(daily.getAirQuality()));
+            mModelList.add(new Title(R.drawable.weather_haze_mini_xml, context.getString(R.string.air_quality)));
+            mModelList.add(new DailyAirQuality(daily.getAirQuality()));
         }
         if (daily.getPollen().isValid()) {
-            modelList.add(new Title(R.drawable.ic_flower, context.getString(R.string.allergen)));
-            modelList.add(new DailyPollen(daily.getPollen()));
+            mModelList.add(new Title(R.drawable.ic_flower, context.getString(R.string.allergen)));
+            mModelList.add(new DailyPollen(daily.getPollen()));
         }
         if (daily.getUV().isValid()) {
-            modelList.add(new Title(R.drawable.ic_uv, context.getString(R.string.uv_index)));
-            modelList.add(new DailyUV(daily.getUV()));
+            mModelList.add(new Title(R.drawable.ic_uv, context.getString(R.string.uv_index)));
+            mModelList.add(new DailyUV(daily.getUV()));
         }
-        modelList.add(new Line());
-        modelList.add(new Value(
+        mModelList.add(new Line());
+        mModelList.add(new Value(
                 context.getString(R.string.hours_of_sun),
                 DurationUnit.H.getDurationText(context, daily.getHoursOfSun())
         ));
-        modelList.add(new Margin());
+        mModelList.add(new Margin());
+
+        // span count.
+        mSpanCount = spanCount;
     }
 
     @NonNull
@@ -151,17 +154,17 @@ public class DailyWeatherAdapter extends RecyclerView.Adapter<DailyWeatherAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(modelList.get(position), position);
+        holder.onBindView(mModelList.get(position), position);
     }
 
     @Override
     public int getItemViewType(int position) {
-        return modelList.get(position).getCode();
+        return mModelList.get(position).getCode();
     }
 
     @Override
     public int getItemCount() {
-        return modelList.size();
+        return mModelList.size();
     }
 
     private List<ViewModel> getHalfDayOptionalModelList(Context context, HalfDay halfDay) {

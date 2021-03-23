@@ -1,84 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/background"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorRoot">
 
-    <LinearLayout
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment"
+        android:name="wangdaye.com.geometricweather.main.fragments.MainFragment"
+        android:tag="fragment_main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:background="@color/colorRoot"
+        tools:ignore="UnusedAttribute" />
 
-        <FrameLayout
-            android:id="@+id/location_container"
-            android:layout_width="@dimen/main_location_container_width"
-            android:layout_height="match_parent"
-            android:elevation="2dp"
-            tools:ignore="UnusedAttribute" />
-
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <wangdaye.com.geometricweather.ui.widget.SwipeSwitchLayout
-                android:id="@+id/switch_layout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalSwipeRefreshLayout
-                    android:id="@+id/refresh_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalRecyclerView
-                        android:id="@+id/recycler_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scrollbars="none"
-                        android:fitsSystemWindows="true"
-                        android:clipToPadding="false" />
-
-                </wangdaye.com.geometricweather.ui.widget.verticalScrollView.VerticalSwipeRefreshLayout>
-
-            </wangdaye.com.geometricweather.ui.widget.SwipeSwitchLayout>
-
-            <wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout
-                android:id="@+id/app_bar"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fitsSystemWindows="true"
-                android:background="@android:color/transparent"
-                app:elevation="0dp">
-
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:background="@android:color/transparent"
-                    app:theme="@style/GeometricWeatherTheme.AppbarTheme"
-                    app:popupTheme="@style/GeometricWeatherTheme.AppbarPopupTheme" />
-
-            </wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout>
-
-            <wangdaye.com.geometricweather.ui.widget.InkPageIndicator
-                android:id="@+id/indicator"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/normal_margin"
-                android:alpha="0"
-                android:fitsSystemWindows="true"
-                app:layout_behavior=".ui.behavior.InkPageIndicatorBehavior"
-                app:dotDiameter="8dp"
-                app:dotGap="8dp"
-                app:animationDuration="300" />
-
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-    </LinearLayout>
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</FrameLayout>

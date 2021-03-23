@@ -6,6 +6,13 @@
         <item>中国天气网（仅中国地区）</item>
         <item>彩云天气（仅中国地区）</item>
         <item>Accu Weather</item>
+        <item>Météo France</item>
+    </string-array>
+    <string-array name="weather_source_voices">
+        <item>中国天气网</item>
+        <item>彩云天气</item>
+        <item>ACCU天气</item>
+        <item>Météo France</item>
     </string-array>
 
     <!-- Location service. -->
@@ -19,6 +26,7 @@
     <!-- Dark mode. -->
     <string-array name="dark_modes">
         <item>自动</item>
+        <item>跟随系统</item>
         <item>亮色主题</item>
         <item>暗色主题</item>
     </string-array>
@@ -56,7 +64,8 @@
     <string-array name="notification_styles">
         <item>原生</item>
         <item>多城市</item>
-        <item>@string/geometric_weather</item>
+        <item>@string/daily_overview</item><!-- do not translate. -->
+        <item>@string/hourly_overview</item><!-- do not translate. -->
     </string-array>
 
     <!-- notification text color. -->
@@ -143,16 +152,37 @@
         <item>英里/时</item>
         <item>英尺/秒</item>
     </string-array>
+    <string-array name="speed_unit_voices">
+        <item>千米每小时</item>
+        <item>米每秒</item>
+        <item>节</item>
+        <item>英里每小时</item>
+        <item>英尺每秒</item>
+    </string-array>
 
     <!-- precipitation unit. -->
     <string-array name="precipitation_units">
         <item>毫米</item>
+        <item>厘米</item>
         <item>英寸</item>
         <item>升/米²</item>
+    </string-array>
+    <string-array name="precipitation_unit_voices">
+        <item>毫米</item>
+        <item>厘米</item>
+        <item>英寸</item>
+        <item>升每平方米</item>
     </string-array>
 
     <!-- distance unit. -->
     <string-array name="distance_units">
+        <item>千米</item>
+        <item>米</item>
+        <item>英里</item>
+        <item>海里</item>
+        <item>英尺</item>
+    </string-array>
+    <string-array name="distance_unit_voices">
         <item>千米</item>
         <item>米</item>
         <item>英里</item>
@@ -170,20 +200,46 @@
         <item>英寸汞柱</item>
         <item>千克力/米²</item>
     </string-array>
+    <string-array name="pressure_unit_voices">
+        <item>毫巴</item>
+        <item>千帕</item>
+        <item>百帕</item>
+        <item>大气压</item>
+        <item>毫米汞柱</item>
+        <item>英寸汞柱</item>
+        <item>千克力每平方米</item>
+    </string-array>
 
     <!-- air quality unit. -->
     <string-array name="air_quality_units">
         <item>微克/米³</item>
+    </string-array>
+    <string-array name="air_quality_unit_voices">
+        <item>微克每立方米</item>
+    </string-array>
+
+    <!-- air quality co unit. -->
+    <string-array name="air_quality_co_units">
+        <item>毫克/米³</item>
+    </string-array>
+    <string-array name="air_quality_co_unit_voices">
+        <item>毫克每立方米</item>
     </string-array>
 
     <!-- duration unit. -->
     <string-array name="duration_units">
         <item>小时</item> <!-- hour -->
     </string-array>
+    <string-array name="duration_unit_voices">
+        <item>小时</item>
+    </string-array>
 
     <!-- pollen unit. -->
     <string-array name="pollen_units">
         <item>/米³</item>
+    </string-array>
+    <string-array name="pollen_unit_voices">
+        <item>每立方米</item>
     </string-array>
 
 </resources>

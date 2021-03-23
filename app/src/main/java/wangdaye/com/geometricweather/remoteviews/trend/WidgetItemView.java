@@ -13,41 +13,41 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.ui.widget.trend.chart.PolylineAndHistogramView;
-import wangdaye.com.geometricweather.utils.DisplayUtils;
+import wangdaye.com.geometricweather.common.ui.widgets.trend.chart.PolylineAndHistogramView;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 
 /**
  * Widget item view.
  * */
 public class WidgetItemView extends ViewGroup {
 
-    private PolylineAndHistogramView trend;
-    private Paint paint;
+    private PolylineAndHistogramView mTrend;
+    private Paint mPaint;
 
-    private float width;
+    private float mWidth;
 
-    @Nullable private String titleText;
-    @Nullable private String subtitleText;
+    @Nullable private String mTitleText;
+    @Nullable private String mSubtitleText;
 
-    @Nullable private Drawable topIconDrawable;
-    @Nullable private Drawable bottomIconDrawable;
+    @Nullable private Drawable mTopIconDrawable;
+    @Nullable private Drawable mBottomIconDrawable;
 
-    @ColorInt private int contentColor;
-    @ColorInt private int subtitleColor;
+    @ColorInt private int mContentColor;
+    @ColorInt private int mSubtitleColor;
 
-    private float titleTextBaseLine;
+    private float mTitleTextBaseLine;
 
-    private float subtitleTextBaseLine;
+    private float mSubtitleTextBaseLine;
 
-    private float topIconLeft;
-    private float topIconTop;
+    private float mTopIconLeft;
+    private float mTopIconTop;
 
-    private float trendViewTop;
+    private float mTrendViewTop;
 
-    private float bottomIconLeft;
-    private float bottomIconTop;
+    private float mBottomIconLeft;
+    private float mBottomIconTop;
 
-    private int iconSize;
+    private int mIconSize;
 
     protected static final int ICON_SIZE_DIP = 32;
     protected static final int TREND_VIEW_HEIGHT_DIP_1X = 96;
@@ -59,39 +59,39 @@ public class WidgetItemView extends ViewGroup {
 
     public WidgetItemView(Context context) {
         super(context);
-        this.initialize();
+        initialize();
     }
 
     public WidgetItemView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        this.initialize();
+        initialize();
     }
 
     public WidgetItemView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        this.initialize();
+        initialize();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public WidgetItemView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        this.initialize();
+        initialize();
     }
 
     private void initialize() {
         setWillNotDraw(false);
 
-        trend = new PolylineAndHistogramView(getContext());
-        addView(trend);
+        mTrend = new PolylineAndHistogramView(getContext());
+        addView(mTrend);
 
-        paint = new Paint();
-        paint.setAntiAlias(true);
-        paint.setTextSize(getResources().getDimensionPixelSize(R.dimen.widget_content_text_size));
-        paint.setTextAlign(Paint.Align.CENTER);
+        mPaint = new Paint();
+        mPaint.setAntiAlias(true);
+        mPaint.setTextSize(getResources().getDimensionPixelSize(R.dimen.widget_content_text_size));
+        mPaint.setTextAlign(Paint.Align.CENTER);
 
         setColor(true);
 
-        iconSize = (int) DisplayUtils.dpToPx(getContext(), ICON_SIZE_DIP);
+        mIconSize = (int) DisplayUtils.dpToPx(getContext(), ICON_SIZE_DIP);
     }
 
     @Override
@@ -101,97 +101,97 @@ public class WidgetItemView extends ViewGroup {
         float textMargin = DisplayUtils.dpToPx(getContext(), TEXT_MARGIN_DIP);
         float iconMargin = DisplayUtils.dpToPx(getContext(), ICON_MARGIN_DIP);
 
-        Paint.FontMetrics fontMetrics = paint.getFontMetrics();
+        Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
 
         // title text.
-        if (titleText != null) {
+        if (mTitleText != null) {
             height += DisplayUtils.dpToPx(getContext(), MARGIN_VERTICAL_DIP);
-            titleTextBaseLine = height - fontMetrics.top;
+            mTitleTextBaseLine = height - fontMetrics.top;
             height += fontMetrics.bottom - fontMetrics.top;
             height += textMargin;
         }
 
         // subtitle text.
-        if (subtitleText != null) {
+        if (mSubtitleText != null) {
             height += textMargin;
-            subtitleTextBaseLine = height - fontMetrics.top;
+            mSubtitleTextBaseLine = height - fontMetrics.top;
             height += fontMetrics.bottom - fontMetrics.top;
             height += textMargin;
         }
 
         // top icon.
-        if (topIconDrawable != null) {
+        if (mTopIconDrawable != null) {
             height += iconMargin;
-            topIconLeft = (width - iconSize) / 2f;
-            topIconTop = height;
-            height += iconSize;
+            mTopIconLeft = (mWidth - mIconSize) / 2f;
+            mTopIconTop = height;
+            height += mIconSize;
             height += iconMargin;
         }
 
         // trend item view.
-        trendViewTop = height;
-        int trendViewHeight = bottomIconDrawable == null
+        mTrendViewTop = height;
+        int trendViewHeight = mBottomIconDrawable == null
                 ? (int) DisplayUtils.dpToPx(getContext(), TREND_VIEW_HEIGHT_DIP_1X)
                 : (int) DisplayUtils.dpToPx(getContext(), TREND_VIEW_HEIGHT_DIP_2X);
-        trend.measure(
-                MeasureSpec.makeMeasureSpec((int) width, MeasureSpec.EXACTLY),
+        mTrend.measure(
+                MeasureSpec.makeMeasureSpec((int) mWidth, MeasureSpec.EXACTLY),
                 MeasureSpec.makeMeasureSpec(trendViewHeight, MeasureSpec.EXACTLY)
         );
-        height += trend.getMeasuredHeight();
+        height += mTrend.getMeasuredHeight();
 
         // bottom icon.
-        if (bottomIconDrawable != null) {
+        if (mBottomIconDrawable != null) {
             height += iconMargin;
-            bottomIconLeft = (width - iconSize) / 2f;
-            bottomIconTop = height;
-            height += iconSize;
+            mBottomIconLeft = (mWidth - mIconSize) / 2f;
+            mBottomIconTop = height;
+            height += mIconSize;
         }
 
         // margin bottom.
         height += (int) (DisplayUtils.dpToPx(getContext(), MARGIN_VERTICAL_DIP));
 
-        setMeasuredDimension((int) width, (int) height);
+        setMeasuredDimension((int) mWidth, (int) height);
     }
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        trend.layout(
+        mTrend.layout(
                 0,
-                (int) trendViewTop,
-                trend.getMeasuredWidth(),
-                (int) (trendViewTop + trend.getMeasuredHeight())
+                (int) mTrendViewTop,
+                mTrend.getMeasuredWidth(),
+                (int) (mTrendViewTop + mTrend.getMeasuredHeight())
         );
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         // week text.
-        if (titleText != null) {
-            paint.setColor(contentColor);
-            canvas.drawText(titleText, getMeasuredWidth() / 2f, titleTextBaseLine, paint);
+        if (mTitleText != null) {
+            mPaint.setColor(mContentColor);
+            canvas.drawText(mTitleText, getMeasuredWidth() / 2f, mTitleTextBaseLine, mPaint);
         }
 
         // date text.
-        if (subtitleText != null) {
-            paint.setColor(subtitleColor);
-            canvas.drawText(subtitleText, getMeasuredWidth() / 2f, subtitleTextBaseLine, paint);
+        if (mSubtitleText != null) {
+            mPaint.setColor(mSubtitleColor);
+            canvas.drawText(mSubtitleText, getMeasuredWidth() / 2f, mSubtitleTextBaseLine, mPaint);
         }
 
         int restoreCount;
 
         // day icon.
-        if (topIconDrawable != null) {
+        if (mTopIconDrawable != null) {
             restoreCount = canvas.save();
-            canvas.translate(topIconLeft, topIconTop);
-            topIconDrawable.draw(canvas);
+            canvas.translate(mTopIconLeft, mTopIconTop);
+            mTopIconDrawable.draw(canvas);
             canvas.restoreToCount(restoreCount);
         }
 
         // night icon.
-        if (bottomIconDrawable != null) {
+        if (mBottomIconDrawable != null) {
             restoreCount = canvas.save();
-            canvas.translate(bottomIconLeft, bottomIconTop);
-            bottomIconDrawable.draw(canvas);
+            canvas.translate(mBottomIconLeft, mBottomIconTop);
+            mBottomIconDrawable.draw(canvas);
             canvas.restoreToCount(restoreCount);
         }
     }
@@ -200,49 +200,49 @@ public class WidgetItemView extends ViewGroup {
 
     public void setColor(boolean daytime) {
         if (daytime) {
-            contentColor = ContextCompat.getColor(getContext(), R.color.colorTextContent_light);
-            subtitleColor = ContextCompat.getColor(getContext(), R.color.colorTextSubtitle_light);
+            mContentColor = ContextCompat.getColor(getContext(), R.color.colorTextContent_light);
+            mSubtitleColor = ContextCompat.getColor(getContext(), R.color.colorTextSubtitle_light);
         } else {
-            contentColor = ContextCompat.getColor(getContext(), R.color.colorTextContent_dark);
-            subtitleColor = ContextCompat.getColor(getContext(), R.color.colorTextSubtitle_dark);
+            mContentColor = ContextCompat.getColor(getContext(), R.color.colorTextContent_dark);
+            mSubtitleColor = ContextCompat.getColor(getContext(), R.color.colorTextSubtitle_dark);
         }
     }
 
     public void setSize(float width) {
-        this.width = width;
+        mWidth = width;
     }
 
     public void setTitleText(@Nullable String titleText) {
-        this.titleText = titleText;
+        mTitleText = titleText;
     }
 
     public void setSubtitleText(@Nullable String subtitleText) {
-        this.subtitleText = subtitleText;
+        mSubtitleText = subtitleText;
     }
 
     public void setTopIconDrawable(@Nullable Drawable d) {
-        topIconDrawable = d;
+        mTopIconDrawable = d;
         if (d != null) {
             d.setVisible(true, true);
             d.setCallback(this);
-            d.setBounds(0, 0, iconSize, iconSize);
+            d.setBounds(0, 0, mIconSize, mIconSize);
         }
     }
 
     public void setBottomIconDrawable(@Nullable Drawable d) {
-        bottomIconDrawable = d;
+        mBottomIconDrawable = d;
         if (d != null) {
             d.setVisible(true, true);
             d.setCallback(this);
-            d.setBounds(0, 0, iconSize, iconSize);
+            d.setBounds(0, 0, mIconSize, mIconSize);
         }
     }
 
     public PolylineAndHistogramView getTrendItemView() {
-        return trend;
+        return mTrend;
     }
 
     public int getIconSize() {
-        return iconSize;
+        return mIconSize;
     }
 }

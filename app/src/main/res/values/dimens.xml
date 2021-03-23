@@ -5,6 +5,9 @@
     <dimen name="normal_margin">16dp</dimen>
     <dimen name="little_margin">8dp</dimen>
 
+    <!-- elevator. -->
+    <dimen name="touch_rise_z">10dp</dimen>
+
     <!-- image. -->
     <dimen name="current_weather_icon_container_size">128dp</dimen>
     <dimen name="current_weather_icon_size">80dp</dimen>
@@ -21,7 +24,7 @@
     <dimen name="trend_item_width">56dp</dimen>
     <dimen name="daily_trend_item_height">298dp</dimen>
     <dimen name="hourly_trend_item_height">208dp</dimen>
-    <dimen name="main_location_container_width">380dp</dimen>
+    <dimen name="default_drawer_width">380dp</dimen>
 
     <!-- text. -->
     <dimen name="main_title_text_size">72sp</dimen>

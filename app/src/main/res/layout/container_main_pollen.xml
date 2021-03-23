@@ -6,190 +6,49 @@
     style="@style/material_card">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/normal_margin">
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/container_main_pollen_title"
-            android:text="@string/allergen"
-            android:textSize="@dimen/title_text_size"
-            android:textStyle="bold"
-            android:layout_marginTop="@dimen/normal_margin"
-            android:layout_marginStart="@dimen/normal_margin"
-            android:layout_marginEnd="@dimen/normal_margin"
-            style="@style/content_text" />
-
-        <TextView
-            android:id="@+id/container_main_pollen_subtitle"
-            android:text="@string/feedback_click_to_get_more"
-            android:layout_marginTop="2dp"
-            android:layout_marginStart="@dimen/normal_margin"
-            android:layout_marginEnd="@dimen/normal_margin"
-            android:layout_marginBottom="@dimen/normal_margin"
-            style="@style/subtitle_text"
-            tools:ignore="RtlHardcoded" />
-
-        <LinearLayout
-            android:orientation="horizontal"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:ignore="DisableBaselineAlignment">
+            android:layout_height="wrap_content">
 
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
+            <TextView
+                android:id="@+id/container_main_pollen_title"
+                android:text="@string/allergen"
+                android:textSize="@dimen/title_text_size"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:layout_marginStart="@dimen/normal_margin"
+                android:layout_marginEnd="@dimen/normal_margin"
+                style="@style/content_text" />
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/container_main_pollen_grassIcon"
-                    android:src="@drawable/ic_circle_medium"
-                    android:layout_centerVertical="true"
-                    style="@style/material_icon"
-                    tools:tint="@color/colorLevel_1"
-                    tools:ignore="ContentDescription" />
+            <TextView
+                android:id="@+id/container_main_pollen_subtitle"
+                android:text="@string/feedback_click_to_get_more"
+                android:layout_below="@id/container_main_pollen_title"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="@dimen/normal_margin"
+                android:layout_marginEnd="@dimen/normal_margin"
+                android:layout_marginBottom="@dimen/normal_margin"
+                style="@style/subtitle_text"
+                tools:ignore="RtlHardcoded" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="@dimen/normal_margin"
-                    android:layout_marginBottom="@dimen/normal_margin"
-                    android:layout_toEndOf="@id/container_main_pollen_grassIcon"
-                    android:layout_centerVertical="true">
+            <TextView
+                android:id="@+id/container_main_pollen_indicator"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="@dimen/normal_margin"
+                style="@style/subtitle_text"
+                tools:text="3/15" />
 
-                    <TextView
-                        android:id="@+id/container_main_pollen_grassTitle"
-                        style="@style/content_text"
-                        tools:text="草地花粉" />
+        </RelativeLayout>
 
-                    <TextView
-                        android:id="@+id/container_main_pollen_grassValue"
-                        style="@style/subtitle_text"
-                        tools:text="2/m³ - 低" />
-
-                </LinearLayout>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/container_main_pollen_ragweedIcon"
-                    android:src="@drawable/ic_circle_medium"
-                    android:layout_centerVertical="true"
-                    style="@style/material_icon"
-                    tools:tint="@color/colorLevel_1"
-                    tools:ignore="ContentDescription" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="@dimen/normal_margin"
-                    android:layout_marginBottom="@dimen/normal_margin"
-                    android:layout_toEndOf="@id/container_main_pollen_ragweedIcon"
-                    android:layout_centerVertical="true">
-
-                    <TextView
-                        android:id="@+id/container_main_pollen_ragweedTitle"
-                        style="@style/content_text"
-                        tools:text="草地花粉" />
-
-                    <TextView
-                        android:id="@+id/container_main_pollen_ragweedValue"
-                        style="@style/subtitle_text"
-                        tools:text="2/m³ - 低" />
-
-                </LinearLayout>
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/container_main_pollen_pager"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:ignore="DisableBaselineAlignment">
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/container_main_pollen_treeIcon"
-                    android:src="@drawable/ic_circle_medium"
-                    android:layout_centerVertical="true"
-                    style="@style/material_icon"
-                    tools:tint="@color/colorLevel_1"
-                    tools:ignore="ContentDescription" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="@dimen/normal_margin"
-                    android:layout_marginBottom="@dimen/normal_margin"
-                    android:layout_toEndOf="@id/container_main_pollen_treeIcon"
-                    android:layout_centerVertical="true">
-
-                    <TextView
-                        android:id="@+id/container_main_pollen_treeTitle"
-                        style="@style/content_text"
-                        tools:text="草地花粉" />
-
-                    <TextView
-                        android:id="@+id/container_main_pollen_treeValue"
-                        style="@style/subtitle_text"
-                        tools:text="2/m³ - 低" />
-
-                </LinearLayout>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/container_main_pollen_moldIcon"
-                    android:src="@drawable/ic_circle_medium"
-                    android:layout_centerVertical="true"
-                    style="@style/material_icon"
-                    tools:tint="@color/colorLevel_1"
-                    tools:ignore="ContentDescription" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="@dimen/normal_margin"
-                    android:layout_marginBottom="@dimen/normal_margin"
-                    android:layout_toEndOf="@id/container_main_pollen_moldIcon"
-                    android:layout_centerVertical="true">
-
-                    <TextView
-                        android:id="@+id/container_main_pollen_moldTitle"
-                        style="@style/content_text"
-                        tools:text="草地花粉" />
-
-                    <TextView
-                        android:id="@+id/container_main_pollen_moldValue"
-                        style="@style/subtitle_text"
-                        tools:text="2/m³ - 低" />
-
-                </LinearLayout>
-
-            </RelativeLayout>
-
-        </LinearLayout>
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 

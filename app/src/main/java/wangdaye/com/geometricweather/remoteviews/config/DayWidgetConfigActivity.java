@@ -4,13 +4,15 @@ import android.os.Build;
 import android.view.View;
 import android.widget.RemoteViews;
 
+import dagger.hilt.android.AndroidEntryPoint;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.remoteviews.presenter.DayWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenters.DayWidgetIMP;
 
 /**
  * Day widget config activity.
  * */
 
+@AndroidEntryPoint
 public class DayWidgetConfigActivity extends AbstractWidgetConfigActivity {
 
     @Override
@@ -49,8 +51,13 @@ public class DayWidgetConfigActivity extends AbstractWidgetConfigActivity {
     @Override
     public void initView() {
         super.initView();
-        clockFontContainer.setVisibility(View.GONE);
-        hideLunarContainer.setVisibility(View.GONE);
+        mViewTypeContainer.setVisibility(View.VISIBLE);
+        mCardStyleContainer.setVisibility(View.VISIBLE);
+        mCardAlphaContainer.setVisibility(View.VISIBLE);
+        mHideSubtitleContainer.setVisibility(View.VISIBLE);
+        mSubtitleDataContainer.setVisibility(View.VISIBLE);
+        mTextColorContainer.setVisibility(View.VISIBLE);
+        mTextSizeContainer.setVisibility(View.VISIBLE);
     }
 
     @Override

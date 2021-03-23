@@ -17,7 +17,7 @@
         style="@style/content_text"
         tools:text="PM 2.5"/>
 
-    <wangdaye.com.geometricweather.ui.widget.RoundProgress
+    <wangdaye.com.geometricweather.common.ui.widgets.RoundProgress
         android:id="@+id/item_aqi_progress"
         android:layout_width="match_parent"
         android:layout_height="6dp" />

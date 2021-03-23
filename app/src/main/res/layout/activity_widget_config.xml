@@ -33,13 +33,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <wangdaye.com.geometricweather.ui.widget.insets.FitBottomSystemBarNestedScrollView
+        <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarNestedScrollView
             android:id="@+id/activity_widget_config_scrollView"
             android:scrollbars="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            android:clipToPadding="false">
+            android:clipToPadding="false"
+            app:sv_side="bottom">
 
             <LinearLayout
                 android:id="@+id/activity_widget_config_scrollContainer"
@@ -158,7 +158,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="@dimen/normal_margin"
                         style="@style/my_switch"
-                        tools:ignore="RtlHardcoded" />
+                        tools:ignore="RtlHardcoded,UseSwitchCompatOrMaterialXml" />
 
                 </RelativeLayout>
 
@@ -301,7 +301,30 @@
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="@dimen/normal_margin"
                         style="@style/my_switch"
-                        tools:ignore="RtlHardcoded" />
+                        tools:ignore="RtlHardcoded,UseSwitchCompatOrMaterialXml" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/activity_widget_config_alignEndContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/activity_widget_config_alignEndTitle"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/normal_margin"
+                        android:text="@string/feedback_align_end"
+                        android:layout_alignParentStart="true"
+                        style="@style/content_text" />
+
+                    <Switch
+                        android:id="@+id/activity_widget_config_alignEndSwitch"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/normal_margin"
+                        style="@style/my_switch"
+                        tools:ignore="RtlHardcoded,UseSwitchCompatOrMaterialXml" />
 
                 </RelativeLayout>
 
@@ -322,9 +345,9 @@
 
             </LinearLayout>
 
-        </wangdaye.com.geometricweather.ui.widget.insets.FitBottomSystemBarNestedScrollView>
+        </wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarNestedScrollView>
 
-        <wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout
+        <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/activity_widget_config_custom_subtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -332,12 +355,12 @@
             app:behavior_hideable="true"
             app:layout_behavior="@string/bottom_sheet_behavior">
 
-            <wangdaye.com.geometricweather.ui.widget.insets.FitBottomSystemBarNestedScrollView
+            <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarNestedScrollView
                 android:id="@+id/activity_widget_config_custom_scrollView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fitsSystemWindows="true"
-                android:clipToPadding="false">
+                android:clipToPadding="false"
+                app:sv_side="bottom">
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -383,9 +406,9 @@
 
                 </LinearLayout>
 
-            </wangdaye.com.geometricweather.ui.widget.insets.FitBottomSystemBarNestedScrollView>
+            </wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarNestedScrollView>
 
-        </wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

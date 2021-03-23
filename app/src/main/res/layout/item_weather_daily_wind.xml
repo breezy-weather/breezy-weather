@@ -30,12 +30,14 @@
             android:orientation="vertical">
 
             <TextView
-                style="@style/subtitle_text"
-                android:text="@string/wind_direction" />
+                android:text="@string/wind_direction"
+                android:importantForAccessibility="no"
+                style="@style/subtitle_text" />
 
             <TextView
                 android:id="@+id/item_weather_daily_wind_directionValue"
                 android:textStyle="bold"
+                android:importantForAccessibility="no"
                 style="@style/title_text"
                 tools:text="西南偏西" />
 
@@ -49,12 +51,14 @@
             android:orientation="vertical">
 
             <TextView
-                style="@style/subtitle_text"
-                android:text="@string/wind_speed" />
+                android:text="@string/wind_speed"
+                android:importantForAccessibility="no"
+                style="@style/subtitle_text" />
 
             <TextView
                 android:id="@+id/item_weather_daily_wind_speedValue"
                 android:textStyle="bold"
+                android:importantForAccessibility="no"
                 style="@style/title_text"
                 tools:text="12m/s" />
 
@@ -68,12 +72,14 @@
             android:orientation="vertical">
 
             <TextView
-                style="@style/subtitle_text"
-                android:text="@string/wind_level" />
+                android:text="@string/wind_level"
+                android:importantForAccessibility="no"
+                style="@style/subtitle_text" />
 
             <TextView
                 android:id="@+id/item_weather_daily_wind_levelValue"
                 android:textStyle="bold"
+                android:importantForAccessibility="no"
                 style="@style/title_text"
                 tools:text="三级" />
 

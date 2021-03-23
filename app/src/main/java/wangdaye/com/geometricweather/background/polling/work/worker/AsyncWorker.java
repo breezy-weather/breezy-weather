@@ -19,12 +19,12 @@ public abstract class AsyncWorker extends ListenableWorker {
         super(context, workerParams);
     }
 
-    public abstract void doAsyncWork(SettableFuture<ListenableWorker.Result> future);
+    public abstract void doAsyncWork(SettableFuture<Result> future);
 
     @SuppressLint("RestrictedApi")
     @Override
     public final @NonNull
-    ListenableFuture<ListenableWorker.Result> startWork() {
+    ListenableFuture<Result> startWork() {
         // Package-private to avoid synthetic accessor.
         SettableFuture<Result> future = SettableFuture.create();
         doAsyncWork(future);

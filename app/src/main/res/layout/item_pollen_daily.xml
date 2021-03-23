@@ -5,24 +5,27 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:foreground="@drawable/selectable_item_background"
     tools:ignore="UnusedAttribute">
 
     <TextView
         android:id="@+id/title"
+        android:layout_width="match_parent"
         android:layout_marginTop="@dimen/normal_margin"
         android:layout_marginStart="@dimen/normal_margin"
         android:layout_marginEnd="@dimen/normal_margin"
         android:textStyle="bold"
+        android:importantForAccessibility="no"
         style="@style/title_text"
         tools:text="11月8日 星期五" />
 
     <TextView
         android:id="@+id/subtitle"
+        android:layout_width="match_parent"
         android:layout_marginTop="2dp"
         android:layout_marginStart="@dimen/normal_margin"
         android:layout_marginEnd="@dimen/normal_margin"
         android:layout_marginBottom="@dimen/normal_margin"
+        android:importantForAccessibility="no"
         style="@style/subtitle_text"
         tools:text="晴朗 / 小雨" />
 
@@ -46,21 +49,24 @@
                 tools:ignore="ContentDescription" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginTop="@dimen/normal_margin"
                 android:layout_marginBottom="@dimen/normal_margin"
+                android:layout_marginEnd="@dimen/normal_margin"
                 android:layout_toEndOf="@id/grassIcon"
                 android:layout_centerVertical="true">
 
                 <TextView
                     android:id="@+id/grassTitle"
+                    android:importantForAccessibility="no"
                     style="@style/content_text"
                     tools:text="草地花粉" />
 
                 <TextView
                     android:id="@+id/grassValue"
+                    android:importantForAccessibility="no"
                     style="@style/subtitle_text"
                     tools:text="2/m³ - 低" />
 
@@ -82,21 +88,24 @@
                 tools:ignore="ContentDescription" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginTop="@dimen/normal_margin"
                 android:layout_marginBottom="@dimen/normal_margin"
+                android:layout_marginEnd="@dimen/normal_margin"
                 android:layout_toEndOf="@id/ragweedIcon"
                 android:layout_centerVertical="true">
 
                 <TextView
                     android:id="@+id/ragweedTitle"
+                    android:importantForAccessibility="no"
                     style="@style/content_text"
                     tools:text="草地花粉" />
 
                 <TextView
                     android:id="@+id/ragweedValue"
+                    android:importantForAccessibility="no"
                     style="@style/subtitle_text"
                     tools:text="2/m³ - 低" />
 
@@ -127,21 +136,24 @@
                 tools:ignore="ContentDescription" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginTop="@dimen/normal_margin"
                 android:layout_marginBottom="@dimen/normal_margin"
+                android:layout_marginEnd="@dimen/normal_margin"
                 android:layout_toEndOf="@id/treeIcon"
                 android:layout_centerVertical="true">
 
                 <TextView
                     android:id="@+id/treeTitle"
+                    android:importantForAccessibility="no"
                     style="@style/content_text"
                     tools:text="草地花粉" />
 
                 <TextView
                     android:id="@+id/treeValue"
+                    android:importantForAccessibility="no"
                     style="@style/subtitle_text"
                     tools:text="2/m³ - 低" />
 
@@ -163,21 +175,24 @@
                 tools:ignore="ContentDescription" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginTop="@dimen/normal_margin"
                 android:layout_marginBottom="@dimen/normal_margin"
+                android:layout_marginEnd="@dimen/normal_margin"
                 android:layout_toEndOf="@id/moldIcon"
                 android:layout_centerVertical="true">
 
                 <TextView
                     android:id="@+id/moldTitle"
+                    android:importantForAccessibility="no"
                     style="@style/content_text"
                     tools:text="草地花粉" />
 
                 <TextView
                     android:id="@+id/moldValue"
+                    android:importantForAccessibility="no"
                     style="@style/subtitle_text"
                     tools:text="2/m³ - 低" />
 

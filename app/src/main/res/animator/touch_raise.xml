@@ -2,20 +2,37 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:state_enabled="true" android:state_pressed="true">
-        <objectAnimator
-            android:duration="@android:integer/config_shortAnimTime"
-            android:propertyName="translationZ"
-            android:valueTo="10dp"
-            android:valueType="floatType" />
+        <set android:duration="@android:integer/config_shortAnimTime">
+            <objectAnimator
+                android:propertyName="translationZ"
+                android:valueTo="@dimen/touch_rise_z"
+                android:valueType="floatType" />
+            <objectAnimator
+                android:propertyName="scaleX"
+                android:valueTo="1.025"
+                android:valueType="floatType" />
+            <objectAnimator
+                android:propertyName="scaleY"
+                android:valueTo="1.025"
+                android:valueType="floatType" />
+        </set>
     </item>
 
-    <item>
-        <objectAnimator
-            android:duration="@android:integer/config_shortAnimTime"
-            android:propertyName="translationZ"
-            android:valueTo="0dp"
-            android:valueType="floatType" />
-
+    <item android:state_enabled="true" android:state_pressed="false">
+        <set android:duration="@android:integer/config_shortAnimTime">
+            <objectAnimator
+                android:propertyName="translationZ"
+                android:valueTo="0dp"
+                android:valueType="floatType" />
+            <objectAnimator
+                android:propertyName="scaleX"
+                android:valueTo="1"
+                android:valueType="floatType" />
+            <objectAnimator
+                android:propertyName="scaleY"
+                android:valueTo="1"
+                android:valueType="floatType" />
+        </set>
     </item>
 
 </selector>

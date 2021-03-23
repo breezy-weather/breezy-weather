@@ -12,11 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout
+        <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
             android:id="@+id/searchBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
             android:background="@color/colorSearchBarBackground"
             android:transitionName="@string/transition_activity_search_bar"
             tools:targetApi="lollipop">
@@ -24,23 +23,22 @@
             <RelativeLayout
                 android:id="@+id/searchContainer"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:alpha="0">
+                android:layout_height="?attr/actionBarSize">
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/backBtn"
                     android:src="@drawable/ic_back"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    style="@style/material_image_button"
-                    tools:ignore="ContentDescription" />
+                    android:contentDescription="@string/content_desc_back"
+                    style="@style/material_image_button" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/clearBtn"
-                    android:src="@drawable/ic_close"
+                    android:id="@+id/filterBtn"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     style="@style/material_image_button"
+                    tools:src="@drawable/ic_filter"
                     tools:ignore="ContentDescription,RtlHardcoded" />
 
                 <EditText
@@ -58,12 +56,12 @@
                     android:background="@android:color/transparent"
                     android:layout_centerVertical="true"
                     android:layout_toEndOf="@id/backBtn"
-                    android:layout_toStartOf="@id/clearBtn"
+                    android:layout_toStartOf="@id/filterBtn"
                     tools:ignore="Autofill,RtlHardcoded" />
 
             </RelativeLayout>
 
-        </wangdaye.com.geometricweather.ui.widget.insets.FitTopSystemBarAppBarLayout>
+        </wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -82,12 +80,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <wangdaye.com.geometricweather.ui.widget.insets.FitBottomSystemBarRecyclerView
+                <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarRecyclerView
                     android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:fitsSystemWindows="true"
-                    android:clipToPadding="false" />
+                    android:clipToPadding="false"
+                    app:rv_side="bottom" />
 
                 <com.turingtechnologies.materialscrollbar.DragScrollBar
                     android:id="@+id/scrollBar"

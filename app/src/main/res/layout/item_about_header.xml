@@ -25,11 +25,11 @@
 
     <TextView
         android:id="@+id/item_about_header_appVersion"
-        android:text="@string/version_code"
         android:textStyle="bold"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/item_about_header_appName"
         android:layout_marginTop="@dimen/little_margin"
-        style="@style/title_text" />
+        style="@style/title_text"
+        tools:text="2.703_pub" />
 
 </RelativeLayout>

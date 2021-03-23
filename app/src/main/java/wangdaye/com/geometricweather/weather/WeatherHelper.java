@@ -1,24 +1,25 @@
 package wangdaye.com.geometricweather.weather;
 
 import android.content.Context;
+
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
-import wangdaye.com.geometricweather.basic.model.location.Location;
-import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
-import wangdaye.com.geometricweather.basic.model.weather.Weather;
+import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
+import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
-import wangdaye.com.geometricweather.weather.observer.BaseObserver;
-import wangdaye.com.geometricweather.weather.observer.ObserverContainer;
-import wangdaye.com.geometricweather.weather.service.AccuWeatherService;
-import wangdaye.com.geometricweather.weather.service.CNWeatherService;
-import wangdaye.com.geometricweather.weather.service.CaiYunWeatherService;
-import wangdaye.com.geometricweather.weather.service.WeatherService;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.common.rxjava.BaseObserver;
+import wangdaye.com.geometricweather.common.rxjava.ObserverContainer;
+import wangdaye.com.geometricweather.weather.services.WeatherService;
+import wangdaye.com.geometricweather.common.rxjava.SchedulerTransformer;
 
 /**
  * Weather helper.
@@ -26,34 +27,29 @@ import wangdaye.com.geometricweather.weather.service.WeatherService;
 
 public class WeatherHelper {
 
-    @Nullable private WeatherService weatherService;
+    private final WeatherServiceSet mServiceSet;
+    private final CompositeDisposable mCompositeDisposable;
 
-    @Nullable private WeatherService[] searchServices;
-    private CompositeDisposable compositeDisposable;
-
-    public WeatherHelper() {
-        weatherService = null;
-        searchServices = null;
-        compositeDisposable = new CompositeDisposable();
+    public interface OnRequestWeatherListener {
+        void requestWeatherSuccess(@NonNull Location requestLocation);
+        void requestWeatherFailed(@NonNull Location requestLocation);
     }
 
-    @NonNull
-    private static WeatherService getWeatherService(WeatherSource source) {
-        switch (source) {
-            case CN:
-                return new CNWeatherService();
+    public interface OnRequestLocationListener {
+        void requestLocationSuccess(String query, List<Location> locationList);
+        void requestLocationFailed(String query);
+    }
 
-            case CAIYUN:
-                return new CaiYunWeatherService();
-
-            default: // ACCU.
-                return new AccuWeatherService();
-        }
+    @Inject
+    public WeatherHelper(WeatherServiceSet weatherServiceSet,
+                         CompositeDisposable compositeDisposable) {
+        mServiceSet = weatherServiceSet;
+        mCompositeDisposable = compositeDisposable;
     }
 
     public void requestWeather(Context c, Location location, @NonNull final OnRequestWeatherListener l) {
-        weatherService = getWeatherService(location.getWeatherSource());
-        weatherService.requestWeather(c, location, new WeatherService.RequestWeatherCallback() {
+        final WeatherService service = mServiceSet.get(location.getWeatherSource());
+        service.requestWeather(c, location, new WeatherService.RequestWeatherCallback() {
 
             @Override
             public void requestWeatherSuccess(@NonNull Location requestLocation) {
@@ -78,30 +74,45 @@ public class WeatherHelper {
         });
     }
 
-    public void requestLocation(Context context, String query, @NonNull final OnRequestLocationListener l) {
-        searchServices = new WeatherService[] {
-                getWeatherService(WeatherSource.ACCU),
-                getWeatherService(WeatherSource.CN),
-                getWeatherService(WeatherSource.CAIYUN)
-        };
+    public void requestLocation(Context context, String query, boolean multiSource,
+                                @NonNull final OnRequestLocationListener l) {
+        // build weather source list.
+        List<WeatherSource> sourceList = new ArrayList<>();
+        // default weather source at first index.
+        sourceList.add(SettingsOptionManager.getInstance(context).getWeatherSource());
+        if (multiSource) {
+            // ensure no duplicates.
+            for (WeatherSource source : WeatherSource.values()) {
+                if (sourceList.get(0) != source) {
+                    sourceList.add(source);
+                }
+            }
+        }
 
-        Observable<List<Location>> accu = Observable.create(emitter ->
-                emitter.onNext(searchServices[0].requestLocation(context, query)));
+        // generate weather services.
+        final WeatherService[] services = new WeatherService[sourceList.size()];
+        for (int i = 0; i < services.length; i ++) {
+            services[i] = mServiceSet.get(sourceList.get(i));
+        }
 
-        Observable<List<Location>> cn = Observable.create(emitter ->
-                emitter.onNext(searchServices[1].requestLocation(context, query)));
+        // generate observable list.
+        List<Observable<List<Location>>> observableList = new ArrayList<>();
+        for (int i = 0; i < services.length; i ++) {
+            int finalI = i;
+            observableList.add(
+                    Observable.create(emitter ->
+                            emitter.onNext(services[finalI].requestLocation(context, query)))
+            );
+        }
 
-        Observable<List<Location>> caiyun = Observable.create(emitter ->
-                emitter.onNext(searchServices[2].requestLocation(context, query)));
-
-        Observable.zip(accu, cn, caiyun, (accuList, cnList, caiyunList) -> {
+        Observable.zip(observableList, objects -> {
             List<Location> locationList = new ArrayList<>();
-            locationList.addAll(accuList);
-            locationList.addAll(cnList);
-            locationList.addAll(caiyunList);
+            for (Object o : objects) {
+                locationList.addAll((List<Location>) o);
+            }
             return locationList;
         }).compose(SchedulerTransformer.create())
-                .subscribe(new ObserverContainer<>(compositeDisposable, new BaseObserver<List<Location>>() {
+                .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<List<Location>>() {
                     @Override
                     public void onSucceed(List<Location> locationList) {
                         if (locationList != null && locationList.size() != 0) {
@@ -119,28 +130,9 @@ public class WeatherHelper {
     }
 
     public void cancel() {
-        if (weatherService != null) {
-            weatherService.cancel();
+        for (WeatherService s : mServiceSet.getAll()) {
+            s.cancel();
         }
-        if (searchServices != null) {
-            for (WeatherService s : searchServices) {
-                if (s != null) {
-                    s.cancel();
-                }
-            }
-        }
-        compositeDisposable.clear();
-    }
-
-    // interface.
-
-    public interface OnRequestWeatherListener {
-        void requestWeatherSuccess(@NonNull Location requestLocation);
-        void requestWeatherFailed(@NonNull Location requestLocation);
-    }
-
-    public interface OnRequestLocationListener {
-        void requestLocationSuccess(String query, List<Location> locationList);
-        void requestLocationFailed(String query);
+        mCompositeDisposable.clear();
     }
 }

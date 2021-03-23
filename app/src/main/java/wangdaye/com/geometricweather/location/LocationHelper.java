@@ -11,20 +11,22 @@ import androidx.core.app.ActivityCompat;
 import java.util.List;
 import java.util.TimeZone;
 
-import wangdaye.com.geometricweather.basic.model.location.Location;
-import wangdaye.com.geometricweather.basic.model.option.provider.WeatherSource;
+import javax.inject.Inject;
+
+import dagger.hilt.android.qualifiers.ApplicationContext;
+import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.options.provider.LocationProvider;
+import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
+import wangdaye.com.geometricweather.common.utils.NetworkUtils;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
-import wangdaye.com.geometricweather.location.service.AMapLocationService;
-import wangdaye.com.geometricweather.location.service.AndroidLocationService;
-import wangdaye.com.geometricweather.location.service.ip.BaiduIPLocationService;
-import wangdaye.com.geometricweather.location.service.BaiduLocationService;
-import wangdaye.com.geometricweather.location.service.LocationService;
+import wangdaye.com.geometricweather.location.services.AMapLocationService;
+import wangdaye.com.geometricweather.location.services.AndroidLocationService;
+import wangdaye.com.geometricweather.location.services.BaiduLocationService;
+import wangdaye.com.geometricweather.location.services.LocationService;
+import wangdaye.com.geometricweather.location.services.ip.BaiduIPLocationService;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.utils.NetworkUtils;
-import wangdaye.com.geometricweather.weather.service.AccuWeatherService;
-import wangdaye.com.geometricweather.weather.service.CNWeatherService;
-import wangdaye.com.geometricweather.weather.service.CaiYunWeatherService;
-import wangdaye.com.geometricweather.weather.service.WeatherService;
+import wangdaye.com.geometricweather.weather.WeatherServiceSet;
+import wangdaye.com.geometricweather.weather.services.WeatherService;
 
 /**
  * Location helper.
@@ -32,37 +34,49 @@ import wangdaye.com.geometricweather.weather.service.WeatherService;
 
 public class LocationHelper {
 
-    @NonNull private final LocationService locationService;
-    @NonNull private final WeatherService accuWeather;
-    @NonNull private final WeatherService cnWeather;
-    @NonNull private final WeatherService caiyunWeather;
+    private final LocationService[] mLocationServices;
+    private final WeatherServiceSet mWeatherServiceSet;
 
-    public LocationHelper(Context context) {
-        switch (SettingsOptionManager.getInstance(context).getLocationProvider()) {
+    public interface OnRequestLocationListener {
+        void requestLocationSuccess(Location requestLocation);
+        void requestLocationFailed(Location requestLocation);
+    }
+
+    @Inject
+    public LocationHelper(@ApplicationContext Context context,
+                          BaiduIPLocationService baiduIPService,
+                          WeatherServiceSet weatherServiceSet) {
+        mLocationServices = new LocationService[] {
+                new AndroidLocationService(context),
+                new BaiduLocationService(context),
+                baiduIPService,
+                new AMapLocationService(context)
+        };
+
+        mWeatherServiceSet = weatherServiceSet;
+    }
+
+    private LocationService getLocationService(LocationProvider provider) {
+        switch (provider) {
             case BAIDU:
-                locationService = new BaiduLocationService(context);
-                break;
+                return mLocationServices[1];
 
             case BAIDU_IP:
-                locationService = new BaiduIPLocationService();
-                break;
+                return mLocationServices[2];
 
             case AMAP:
-                locationService = new AMapLocationService(context);
-                break;
-            default: // NATIVE
-                locationService = new AndroidLocationService(context);
-                break;
-        }
+                return mLocationServices[3];
 
-        accuWeather = new AccuWeatherService();
-        cnWeather = new CNWeatherService();
-        caiyunWeather = new CaiYunWeatherService();
+            default: // NATIVE
+                return mLocationServices[0];
+        }
     }
 
     public void requestLocation(Context context, Location location, boolean background,
                                 @NonNull OnRequestLocationListener l) {
-        if (locationService.getPermissions().length != 0) {
+        final LocationProvider provider = SettingsOptionManager.getInstance(context).getLocationProvider();
+        final LocationService service = getLocationService(provider);
+        if (service.getPermissions().length != 0) {
             // if needs any location permission.
             if (!NetworkUtils.isAvailable(context)
                     || ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -85,7 +99,7 @@ public class LocationHelper {
         // 1. get location by location service.
         // 2. get available location by weather service.
 
-        locationService.requestLocation(
+        service.requestLocation(
                 context,
                 result -> {
                     if (result == null) {
@@ -93,13 +107,10 @@ public class LocationHelper {
                         return;
                     }
 
-                    location.updateLocationResult(
-                            result.latitude, result.longitude, TimeZone.getDefault(),
-                            result.country, result.province, result.city, result.district,
-                            result.inChina
-                    );
-
-                    requestAvailableWeatherLocation(context, location, l);
+                    requestAvailableWeatherLocation(context, new Location(
+                            location, result.latitude, result.longitude, TimeZone.getDefault(),
+                            result.country, result.province, result.city, result.district, result.inChina
+                    ), l);
                 }
         );
     }
@@ -107,34 +118,52 @@ public class LocationHelper {
     private void requestAvailableWeatherLocation(Context context,
                                                  @NonNull Location location,
                                                  @NonNull OnRequestLocationListener l) {
-        switch (SettingsOptionManager.getInstance(context).getWeatherSource()) {
-            case ACCU:
-                location.setWeatherSource(WeatherSource.ACCU);
-                accuWeather.requestLocation(context, location, new AccuLocationCallback(context, location, l));
-                break;
+        WeatherSource source = SettingsOptionManager.getInstance(context).getWeatherSource();
+        final Location target = new Location(location, source);
 
-            case CN:
-                location.setWeatherSource(WeatherSource.CN);
-                cnWeather.requestLocation(context, location, new ChineseCityLocationCallback(context, location, l));
-                break;
+        final WeatherService service = mWeatherServiceSet.get(source);
+        service.requestLocation(context, target, new WeatherService.RequestLocationCallback() {
+            @Override
+            public void requestLocationSuccess(String query, List<Location> locationList) {
+                if (locationList.size() > 0) {
+                    Location src = locationList.get(0);
+                    Location result = new Location(src, true, src.isResidentPosition());
+                    DatabaseHelper.getInstance(context).writeLocation(result);
+                    l.requestLocationSuccess(result);
+                } else {
+                    requestLocationFailed(query);
+                }
+            }
 
-            case CAIYUN:
-                location.setWeatherSource(WeatherSource.CAIYUN);
-                caiyunWeather.requestLocation(context, location, new ChineseCityLocationCallback(context, location, l));
-                break;
-        }
+            @Override
+            public void requestLocationFailed(String query) {
+                l.requestLocationFailed(target);
+            }
+        });
     }
 
     public void cancel() {
-        locationService.cancel();
-        accuWeather.cancel();
-        cnWeather.cancel();
-        caiyunWeather.cancel();
+        for (LocationService s : mLocationServices) {
+            s.cancel();
+        }
+        for (WeatherService s : mWeatherServiceSet.getAll()) {
+            s.cancel();
+        }
     }
 
-    public String[] getPermissions(boolean background) {
-        String[] permissions = locationService.getPermissions();
+    public String[] getPermissions(Context context) {
+        // if IP:    none.
+        // else:
+        //      R:   foreground location. (set background location enabled manually)
+        //      Q:   foreground location + background location.
+        //      K-P: foreground location.
+
+        final LocationProvider provider = SettingsOptionManager.getInstance(context).getLocationProvider();
+        final LocationService service = getLocationService(provider);
+
+        String[] permissions = service.getPermissions();
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q || permissions.length == 0) {
+            // device has no background location permission or locate by IP.
             return permissions;
         }
 
@@ -145,77 +174,6 @@ public class LocationHelper {
             return qPermissions;
         }
 
-        if (background) {
-            return new String[] {Manifest.permission.ACCESS_BACKGROUND_LOCATION};
-        } else {
-            return permissions;
-        }
-    }
-
-    // interface.
-
-    public interface OnRequestLocationListener {
-        void requestLocationSuccess(Location requestLocation);
-        void requestLocationFailed(Location requestLocation);
-    }
-}
-
-class AccuLocationCallback implements WeatherService.RequestLocationCallback {
-
-    private Context context;
-    private Location location;
-    private LocationHelper.OnRequestLocationListener listener;
-
-    AccuLocationCallback(Context context, Location location,
-                         @NonNull LocationHelper.OnRequestLocationListener l) {
-        this.context = context;
-        this.location = location;
-        this.listener = l;
-    }
-
-    @Override
-    public void requestLocationSuccess(String query, List<Location> locationList) {
-        if (locationList.size() > 0) {
-            Location location = locationList.get(0).setCurrentPosition();
-            DatabaseHelper.getInstance(context).writeLocation(location);
-            listener.requestLocationSuccess(location);
-        } else {
-            requestLocationFailed(query);
-        }
-    }
-
-    @Override
-    public void requestLocationFailed(String query) {
-        listener.requestLocationFailed(location);
-    }
-}
-
-class ChineseCityLocationCallback implements WeatherService.RequestLocationCallback {
-
-    private Context context;
-    private Location location;
-    private LocationHelper.OnRequestLocationListener listener;
-
-    ChineseCityLocationCallback(Context context, Location location,
-                                @NonNull LocationHelper.OnRequestLocationListener l) {
-        this.context = context;
-        this.location = location;
-        this.listener = l;
-    }
-
-    @Override
-    public void requestLocationSuccess(String query, List<Location> locationList) {
-        if (locationList.size() > 0) {
-            Location location = locationList.get(0).setCurrentPosition();
-            DatabaseHelper.getInstance(context).writeLocation(location);
-            listener.requestLocationSuccess(location);
-        } else {
-            requestLocationFailed(query);
-        }
-    }
-
-    @Override
-    public void requestLocationFailed(String query) {
-        listener.requestLocationFailed(location);
+        return permissions;
     }
 }

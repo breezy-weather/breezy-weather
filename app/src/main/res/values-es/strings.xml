@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <resources xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="MissingTranslation">
     <!-- app. -->
@@ -5,6 +6,13 @@
     <string name="geometric_weather">Clima Geométrico</string>
     <string name="package_name">wangdaye.com.geometricweather</string><!-- Do not translate. -->
     <string name="version_code">v2.608</string><!-- Do not translate. -->
+=======
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- app. -->
+    <string name="app_name">Clima</string>
+    <string name="geometric_weather">Clima Geométrico</string>
+>>>>>>> 1c9a714095c94c98ec59fd31d3d0d59d5011b493
 
     <!-- keyword. -->
     <string name="current_location">Ubicación actual</string>
@@ -111,12 +119,21 @@
     <string name="phase_waning_gibbous">Menguante convexa</string>
     <string name="phase_third">Cuarto menguante</string>
     <string name="phase_waning_crescent">Menguante cóncava</string>
+<<<<<<< HEAD
 
     <string name="grass">Pasto</string>
     <string name="mold">Moho</string>
     <string name="ragweed">Ambrosía</string>
     <string name="tree">Árbol</string>
 
+=======
+
+    <string name="grass">Pasto</string>
+    <string name="mold">Moho</string>
+    <string name="ragweed">Ambrosía</string>
+    <string name="tree">Árbol</string>
+
+>>>>>>> 1c9a714095c94c98ec59fd31d3d0d59d5011b493
     <string name="daily_overview">Pronóstico por día</string>
     <string name="hourly_overview">Pronóstico por hora</string>
     <string name="minutely_overview">Pronóstico por minuto</string>
@@ -248,10 +265,17 @@
     <string name="feedback_custom_subtitle_keyword_xmr">$0mr$, $1mr$, …, $4mr$ : \nAnochecer de Hoy, Tmw, …, 4 días después\n</string>
     <string name="feedback_custom_subtitle_keyword_xms">$0ms$, $1ms$, …, $4ms$ : \nPuesta de la Luna de Hoy, Tmw, …, 4 días después\n</string>
     <string name="feedback_custom_subtitle_keyword_xmp">$0mp$, $1mp$, …, $4mp$ : \nFase lunar de Hoy, Tmw, …, 4 días después\n</string>
+<<<<<<< HEAD
 
     <string name="feedback_live_wallpaper_weather_kind">Clima</string>
     <string name="feedback_live_wallpaper_day_night_type">Hora</string>
 
+=======
+
+    <string name="feedback_live_wallpaper_weather_kind">Clima</string>
+    <string name="feedback_live_wallpaper_day_night_type">Hora</string>
+
+>>>>>>> 1c9a714095c94c98ec59fd31d3d0d59d5011b493
     <string name="feedback_click_toggle">Toca el gráfico para alternar los datos</string>
     <string name="feedback_no_data">SIN DATOS</string>
 
@@ -285,10 +309,17 @@
 
     <string name="feedback_ignore_battery_optimizations_title">Ignorar optimización de la batería</string>
     <string name="feedback_ignore_battery_optimizations_content">Para asegurar que los servicios en segundo plano continúen funcionando, por favor ignora la optimización de batería para GeometricWeather.</string>
+<<<<<<< HEAD
     
     <string name="feedback_cannot_start_live_wallpaper_activity">No se logró iniciar el contexto de previsulización del fondo de pantalla animado</string>
 
     <string name="feedback_unusable_geocoder">Este dispositivo no contiene un geocodificador válido. El proveedor de ubicación fué cambiado a Baidu.</string>
+=======
+
+    <string name="feedback_cannot_start_live_wallpaper_activity">No se logró iniciar el contexto de previsulización del fondo de pantalla animado</string>
+
+    <string name="feedback_unusable_geocoder">Este dispositivo no contiene un geocodificador válido. El proveedor de ubicación fue cambiado a Baidu.</string>
+>>>>>>> 1c9a714095c94c98ec59fd31d3d0d59d5011b493
     <string name="feedback_about_geocoder">Geocodificador es un componente que convierte el resultado de ubicación de un formato latitud-longitud a un formato del estilo \'ciudad XX, provincia YY\'. En ausencia de este componente, solo se podrá obtener datos meteorológicos a través de AccuWeather cuando se utilice la API nativa como proveedor de ubicación.</string>
 
     <string name="feedback_today_precipitation_alert">Puede que hoy haya precipitationes.</string>
@@ -391,6 +422,7 @@
     <string name="settings_title_notification_hide_big_view">Estilo extendido</string>
     <string name="settings_notification_hide_big_view_on">Oculto</string>
     <string name="settings_notification_hide_big_view_off">Visible</string>
+<<<<<<< HEAD
 
     <!--share preference-->
     <!-- Do not translate the following set of strings. -->
@@ -478,5 +510,7 @@
     <!-- Do not translate the following set of strings. -->
     <string name="transition_activity_search_bar">activity_search_bar</string>
     <string name="transition_activity_search_txt">activity_search_txt</string>
+=======
+>>>>>>> 1c9a714095c94c98ec59fd31d3d0d59d5011b493
 
 </resources>

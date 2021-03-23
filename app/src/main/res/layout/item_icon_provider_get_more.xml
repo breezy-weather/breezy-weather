@@ -50,6 +50,7 @@
             android:layout_gravity="center"
             android:layout_margin="@dimen/normal_margin"
             android:background="@drawable/selectable_item_background_borderless"
+            android:contentDescription="@string/content_desc_app_store"
             tools:src="@drawable/ic_play_store"/>
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -61,7 +62,9 @@
             android:layout_marginBottom="@dimen/normal_margin"
             android:layout_marginEnd="@dimen/normal_margin"
             android:background="@drawable/selectable_item_background_borderless"
-            tools:src="@drawable/ic_github_dark"/>
+            android:contentDescription="Git hub"
+            tools:src="@drawable/ic_github_dark"
+            tools:ignore="HardcodedText" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/item_icon_provider_get_more_chronus"
@@ -72,7 +75,9 @@
             android:layout_marginBottom="@dimen/normal_margin"
             android:layout_marginEnd="@dimen/normal_margin"
             android:background="@drawable/selectable_item_background_borderless"
-            tools:src="@drawable/ic_chronus"/>
+            android:contentDescription="Chronus"
+            tools:src="@drawable/ic_chronus"
+            tools:ignore="HardcodedText" />
 
     </LinearLayout>
 

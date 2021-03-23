@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <wangdaye.com.geometricweather.ui.widget.ArcProgress
+            <wangdaye.com.geometricweather.common.ui.widgets.ArcProgress
                 android:id="@+id/container_main_aqi_progress"
                 android:layout_width="120dp"
                 android:layout_height="120dp"

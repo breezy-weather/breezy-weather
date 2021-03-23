@@ -12,24 +12,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.appcompat.widget.Toolbar;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import java.util.Arrays;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.GeoActivity;
+import wangdaye.com.geometricweather.common.basic.GeoActivity;
 
 public class LiveWallpaperConfigActivity extends GeoActivity {
-    
-    protected CoordinatorLayout container;
 
-    protected String weatherKindValueNow;
-    protected String[] weatherKinds;
-    protected String[] weatherKindValues;
+    protected String mWeatherKindValueNow;
+    protected String[] mWeatherKinds;
+    protected String[] mWeatherKindValues;
 
-    protected String dayNightTypeValueNow;
-    protected String[] dayNightTypes;
-    protected String[] dayNightTypeValues;
+    protected String mDayNightTypeValueNow;
+    protected String[] mDayNightTypes;
+    protected String[] mDayNightTypeValues;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,11 +34,6 @@ public class LiveWallpaperConfigActivity extends GeoActivity {
         setContentView(R.layout.activity_live_wallpaper_config);
         initData();
         initView();
-    }
-
-    @Override
-    public View getSnackbarContainer() {
-        return container;
     }
 
     @SuppressLint("MissingSuperCall")
@@ -54,40 +46,37 @@ public class LiveWallpaperConfigActivity extends GeoActivity {
         LiveWallpaperConfigManager configManager = LiveWallpaperConfigManager.getInstance(this);
         Resources res = getResources();
 
-        this.weatherKindValueNow = configManager.getWeatherKind();
-        this.weatherKinds = res.getStringArray(R.array.live_wallpaper_weather_kinds);
-        this.weatherKindValues = res.getStringArray(R.array.live_wallpaper_weather_kind_values);
+        mWeatherKindValueNow = configManager.getWeatherKind();
+        mWeatherKinds = res.getStringArray(R.array.live_wallpaper_weather_kinds);
+        mWeatherKindValues = res.getStringArray(R.array.live_wallpaper_weather_kind_values);
 
-        this.dayNightTypeValueNow = configManager.getDayNightType();
-        this.dayNightTypes = res.getStringArray(R.array.live_wallpaper_day_night_types);
-        this.dayNightTypeValues = res.getStringArray(R.array.live_wallpaper_day_night_type_values);
+        mDayNightTypeValueNow = configManager.getDayNightType();
+        mDayNightTypes = res.getStringArray(R.array.live_wallpaper_day_night_types);
+        mDayNightTypeValues = res.getStringArray(R.array.live_wallpaper_day_night_type_values);
     }
 
     public void initView() {
         Toolbar toolbar = findViewById(R.id.activity_live_wallpaper_config_toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_toolbar_back);
         toolbar.setNavigationOnClickListener(view -> finish());
 
-        this.container = findViewById(R.id.activity_live_wallpaper_config_container);
-        
         AppCompatSpinner weatherKindSpinner = findViewById(R.id.activity_live_wallpaper_config_weatherKindSpinner);
         weatherKindSpinner.setOnItemSelectedListener(new WeatherKindSpinnerSelectedListener());
         weatherKindSpinner.setAdapter(
-                new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, weatherKinds)
+                new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, mWeatherKinds)
         );
-        weatherKindSpinner.setSelection(Arrays.binarySearch(weatherKindValues, weatherKindValueNow));
+        weatherKindSpinner.setSelection(Arrays.binarySearch(mWeatherKindValues, mWeatherKindValueNow));
 
         AppCompatSpinner dayNightTypeSpinner = findViewById(R.id.activity_live_wallpaper_config_dayNightTypeSpinner);
         dayNightTypeSpinner.setOnItemSelectedListener(new DayNightTypeSpinnerSelectedListener());
         dayNightTypeSpinner.setAdapter(
-                new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, dayNightTypes)
+                new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, mDayNightTypes)
         );
-        dayNightTypeSpinner.setSelection(Arrays.binarySearch(dayNightTypeValues, dayNightTypeValueNow));
+        dayNightTypeSpinner.setSelection(Arrays.binarySearch(mDayNightTypeValues, mDayNightTypeValueNow));
 
         Button doneButton = findViewById(R.id.activity_live_wallpaper_config_doneButton);
         doneButton.setOnClickListener(v -> {
             LiveWallpaperConfigManager.update(
-                    this, weatherKindValueNow, dayNightTypeValueNow);
+                    this, mWeatherKindValueNow, mDayNightTypeValueNow);
             finish();
         });
     }
@@ -99,7 +88,7 @@ public class LiveWallpaperConfigActivity extends GeoActivity {
     private class WeatherKindSpinnerSelectedListener implements AppCompatSpinner.OnItemSelectedListener {
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            weatherKindValueNow = weatherKindValues[i];
+            mWeatherKindValueNow = mWeatherKindValues[i];
         }
 
         @Override
@@ -111,7 +100,7 @@ public class LiveWallpaperConfigActivity extends GeoActivity {
     private class DayNightTypeSpinnerSelectedListener implements AppCompatSpinner.OnItemSelectedListener {
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            dayNightTypeValueNow = dayNightTypeValues[i];
+            mDayNightTypeValueNow = mDayNightTypeValues[i];
         }
 
         @Override

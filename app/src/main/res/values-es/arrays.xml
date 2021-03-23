@@ -17,6 +17,17 @@
         <item>accu</item>
     </string-array>
 
+    <!-- Do not translate those arrays which named "xxx_values". -->
+    <!-- Do not translate those items with a value of "@string/xxx". -->
+
+    <!-- Chinese source. -->
+    <string-array name="weather_sources">
+        <item>weather.com.cn (Solo para China)</item>
+        <item>caiyun.com (Solo para China)</item>
+        <item>accuweather.com</item>
+        <item>Météo France</item>
+    </string-array>
+
     <!-- Location service. -->
     <string-array name="location_services">
         <item>Ubicación de Baidu</item>
@@ -24,16 +35,20 @@
         <item>Ubicación de AMap</item>
         <item>API Nativa</item>
     </string-array>
+<<<<<<< HEAD
     <string-array name="location_service_values">
         <item>baidu</item>
         <item>baidu_ip</item>
         <item>amap</item>
         <item>native</item>
     </string-array>
+=======
+>>>>>>> 1c9a714095c94c98ec59fd31d3d0d59d5011b493
 
     <!-- Dark mode. -->
     <string-array name="dark_modes">
         <item>Automático</item>
+        <item>Follow system</item>
         <item>Siempre claro</item>
         <item>Siempre oscuro</item>
     </string-array>
@@ -108,6 +123,12 @@
         <item>japanese</item>
     </string-array>
 
+    <!-- UI style. -->
+    <string-array name="ui_styles">
+        <item>Circular sky</item>
+        <item>Material animation</item>
+    </string-array>
+
     <!-- automatic refresh rate. -->
     <string-array name="automatic_refresh_rates">
         <item>30 minutos</item>
@@ -162,6 +183,21 @@
         <item>geometric</item>
     </string-array>
 
+    <!-- widget week icon mode. -->
+    <string-array name="week_icon_modes">
+        <item>Automático</item>
+        <item>@string/daytime</item><!-- do not translate. -->
+        <item>@string/nighttime</item><!-- do not translate. -->
+    </string-array>
+
+    <!-- notification style. -->
+    <string-array name="notification_styles">
+        <item>Nativo</item>
+        <item>Ciudades</item>
+        <item>@string/daily_overview</item><!-- do not translate. -->
+        <item>@string/hourly_overview</item><!-- do not translate. -->
+    </string-array>
+
     <!-- notification text color. -->
     <string-array name="notification_text_colors">
         <item>Oscuro</item>
@@ -173,6 +209,17 @@
         <item>grey</item>
         <item>light</item>
     </string-array>
+
+    <!-- notification background colors. -->
+    <!-- Do not translate this array. -->
+    <integer-array name="notification_background_colors">
+        <item>@color/notification_background_l</item>
+        <item>@color/notification_background_m</item>
+        <item>@color/notification_background_o</item>
+        <item>@color/notification_background_rootLight</item>
+        <item>@color/notification_background_rootDark</item>
+        <item>@color/notification_background_primary</item>
+    </integer-array>
 
     <!-- notification background colors. -->
     <!-- Do not translate this array. -->
@@ -198,6 +245,7 @@
         <item>Oreo (Google Sans)</item>
         <item>Temperatura</item>
     </string-array>
+<<<<<<< HEAD
     <string-array name="widget_style_values">
         <item>rectangle</item>
         <item>symmetry</item>
@@ -210,15 +258,20 @@
         <item>oreo_google_sans</item>
         <item>temp</item>
     </string-array>
+=======
+>>>>>>> 1c9a714095c94c98ec59fd31d3d0d59d5011b493
 
     <!-- week widget style. -->
     <string-array name="week_widget_styles">
         <item>5 días</item>
         <item>3 días</item>
+<<<<<<< HEAD
     </string-array>
     <string-array name="week_widget_style_values">
         <item>5_days</item>
         <item>3_days</item>
+=======
+>>>>>>> 1c9a714095c94c98ec59fd31d3d0d59d5011b493
     </string-array>
 
     <!-- Widget subtitle data. -->
@@ -230,6 +283,7 @@
         <item>Calendario Lunar</item>
         <item>Personalizado</item>
     </string-array>
+<<<<<<< HEAD
     <string-array name="subtitle_data_values">
         <item>time</item>
         <item>aqi</item>
@@ -238,6 +292,8 @@
         <item>lunar</item>
         <item>custom</item>
     </string-array>
+=======
+>>>>>>> 1c9a714095c94c98ec59fd31d3d0d59d5011b493
 
     <!-- widget clock font. -->
     <string-array name="clock_font">
@@ -245,12 +301,15 @@
         <item>Sans-Serif</item>
         <item>Sans-Serif-Black</item>
         <item>Analog</item>
+<<<<<<< HEAD
     </string-array>
     <string-array name="clock_font_values">
         <item>light</item>
         <item>normal</item>
         <item>black</item>
         <item>analog</item>
+=======
+>>>>>>> 1c9a714095c94c98ec59fd31d3d0d59d5011b493
     </string-array>
 
     <!-- widget card style. -->
@@ -431,6 +490,30 @@
     </string-array>
     <string-array name="pollen_unit_values">
         <item>ppcm</item>
+    </string-array>
+
+    <!-- live wallpaper weather kind. -->
+    <string-array name="live_wallpaper_weather_kinds">
+        <item>Automático</item>
+        <item>Despejado</item>
+        <item>Parcialmente nublado</item>
+        <item>Nublado</item>
+        <item>Lluvia</item>
+        <item>Nieve</item>
+        <item>Aguanieve</item>
+        <item>Granizo</item>
+        <item>Niebla</item>
+        <item>Neblina</item>
+        <item>Trueno</item>
+        <item>Tormenta</item>
+        <item>Viento</item>
+    </string-array>
+
+    <!-- live wallpaper weather kind. -->
+    <string-array name="live_wallpaper_day_night_types">
+        <item>Automático</item>
+        <item>Siempre diurno</item>
+        <item>Siempre nocturno</item>
     </string-array>
 
 </resources>

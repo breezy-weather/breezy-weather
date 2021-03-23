@@ -17,7 +17,7 @@
             android:text="@string/feedback_location_help_title"
             android:textSize="@dimen/large_title_text_size"
             android:textStyle="bold"
-            android:layout_margin="@dimen/normal_margin"
+            android:layout_margin="@dimen/large_margin"
             style="@style/title_text" />
 
         <RelativeLayout

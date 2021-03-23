@@ -7,10 +7,10 @@
 
     <LinearLayout
         android:id="@+id/widget_text_container"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        tools:ignore="UselessParent">
+        tools:ignore="RtlHardcoded,UselessParent">
 
         <TextClock
             android:id="@+id/widget_text_date"

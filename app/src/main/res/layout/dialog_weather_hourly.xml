@@ -43,7 +43,7 @@
             android:foreground="@drawable/selectable_item_background_borderless"
             tools:ignore="UnusedAttribute">
 
-            <wangdaye.com.geometricweather.ui.widget.AnimatableIconView
+            <wangdaye.com.geometricweather.common.ui.widgets.AnimatableIconView
                 android:id="@+id/dialog_weather_hourly_icon"
                 android:layout_width="@dimen/standard_weather_icon_container_size"
                 android:layout_height="@dimen/standard_weather_icon_container_size"

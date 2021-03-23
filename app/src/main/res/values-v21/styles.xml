@@ -19,6 +19,7 @@
     </style>
 
     <style name="GeometricWeatherTheme.Search" parent="GeometricWeatherTheme">
+        <item name="android:windowContentTransitions">true</item>
         <item name="android:windowEnterTransition">@transition/search_activity_enter</item>
         <item name="android:windowReturnTransition">@transition/search_activity_return</item>
         <item name="android:windowSharedElementEnterTransition">@transition/search_activity_shared_enter</item>

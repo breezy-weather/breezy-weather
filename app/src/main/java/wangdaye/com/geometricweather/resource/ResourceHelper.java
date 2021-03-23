@@ -13,10 +13,11 @@ import androidx.annotation.RequiresApi;
 import androidx.annotation.Size;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.basic.model.option.NotificationTextColor;
-import wangdaye.com.geometricweather.basic.model.weather.WeatherCode;
-import wangdaye.com.geometricweather.resource.provider.DefaultResourceProvider;
-import wangdaye.com.geometricweather.resource.provider.ResourceProvider;
+import wangdaye.com.geometricweather.common.basic.models.options.NotificationTextColor;
+import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
+import wangdaye.com.geometricweather.resource.providers.DefaultResourceProvider;
+import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
+import wangdaye.com.geometricweather.resource.utils.ResourceUtils;
 
 public class ResourceHelper {
 

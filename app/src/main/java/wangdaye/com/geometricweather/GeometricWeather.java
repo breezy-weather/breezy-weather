@@ -3,10 +3,12 @@ package wangdaye.com.geometricweather;
 import android.app.Activity;
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.hilt.work.HiltWorkerFactory;
 import androidx.multidex.MultiDexApplication;
-
-import com.google.gson.GsonBuilder;
+import androidx.work.Configuration;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -14,32 +16,30 @@ import java.io.FileReader;
 import java.util.HashSet;
 import java.util.Set;
 
-import okhttp3.OkHttpClient;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
-import wangdaye.com.geometricweather.basic.GeoActivity;
+import javax.inject.Inject;
+
+import dagger.hilt.android.HiltAndroidApp;
+import wangdaye.com.geometricweather.common.basic.GeoActivity;
+import wangdaye.com.geometricweather.common.utils.LanguageUtils;
+import wangdaye.com.geometricweather.common.utils.helpers.BuglyHelper;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.utils.helpter.BuglyHelper;
-import wangdaye.com.geometricweather.weather.TLSCompactHelper;
-import wangdaye.com.geometricweather.utils.LanguageUtils;
-import wangdaye.com.geometricweather.utils.manager.TimeManager;
 
 /**
  * Geometric weather application class.
  * */
 
-public class GeometricWeather extends MultiDexApplication {
+@HiltAndroidApp
+public class GeometricWeather extends MultiDexApplication implements Configuration.Provider {
 
-    private static GeometricWeather instance;
+    private static GeometricWeather sInstance;
     public static GeometricWeather getInstance() {
-        return instance;
+        return sInstance;
     }
 
-    private Set<GeoActivity> activitySet;
+    private @Nullable Set<GeoActivity> mActivitySet;
+    private @Nullable GeoActivity mTopActivity;
 
-    private OkHttpClient okHttpClient;
-    private GsonConverterFactory gsonConverterFactory;
-    private RxJava2CallAdapterFactory rxJava2CallAdapterFactory;
+    @Inject HiltWorkerFactory mWorkerFactory;
 
     public static final String NOTIFICATION_CHANNEL_ID_NORMALLY = "normally";
     public static final String NOTIFICATION_CHANNEL_ID_ALERT = "alert";
@@ -142,7 +142,13 @@ public class GeometricWeather extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        initialize();
+
+        sInstance = this;
+
+        LanguageUtils.setLanguage(this,
+                SettingsOptionManager.getInstance(this).getLanguage().getLocale());
+
+        BuglyHelper.init(this);
 
         String processName = getProcessName();
         if (processName != null && processName.equals(getPackageName())) {
@@ -150,40 +156,33 @@ public class GeometricWeather extends MultiDexApplication {
         }
     }
 
-    private void initialize() {
-        instance = this;
-        activitySet = new HashSet<>();
-
-        okHttpClient = TLSCompactHelper.getClientBuilder().build();
-        gsonConverterFactory = GsonConverterFactory.create(
-                new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create());
-                // new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX").create());
-        rxJava2CallAdapterFactory = RxJava2CallAdapterFactory.create();
-
-        LanguageUtils.setLanguage(
-                this, SettingsOptionManager.getInstance(this).getLanguage().getLocale());
-
-        BuglyHelper.init(this);
-    }
-
     public void addActivity(GeoActivity a) {
-        activitySet.add(a);
+        if (mActivitySet == null) {
+            mActivitySet = new HashSet<>();
+        }
+        mActivitySet.add(a);
     }
 
     public void removeActivity(GeoActivity a) {
-        activitySet.remove(a);
+        if (mActivitySet == null) {
+            mActivitySet = new HashSet<>();
+        }
+        mActivitySet.remove(a);
     }
 
-    public OkHttpClient getOkHttpClient() {
-        return okHttpClient;
+    @Nullable
+    public GeoActivity getTopActivity() {
+        return mTopActivity;
     }
 
-    public GsonConverterFactory getGsonConverterFactory() {
-        return gsonConverterFactory;
+    public void setTopActivity(@NonNull GeoActivity a) {
+        mTopActivity = a;
     }
 
-    public RxJava2CallAdapterFactory getRxJava2CallAdapterFactory() {
-        return rxJava2CallAdapterFactory;
+    public void checkToCleanTopActivity(@NonNull GeoActivity a) {
+        if (mTopActivity == a) {
+            mTopActivity = null;
+        }
     }
 
     public static String getProcessName() {
@@ -221,12 +220,17 @@ public class GeometricWeather extends MultiDexApplication {
     public void resetDayNightMode() {
         switch (SettingsOptionManager.getInstance(this).getDarkMode()) {
             case AUTO:
+                /*
                 AppCompatDelegate.setDefaultNightMode(
-                        TimeManager.getInstance(this).isDayTime()
+                        ThemeManager.getInstance(this).isDaytime()
                                 ? AppCompatDelegate.MODE_NIGHT_NO
                                 : AppCompatDelegate.MODE_NIGHT_YES
                 );
+                 */
                 break;
+
+            case SYSTEM:
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
 
             case LIGHT:
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
@@ -239,8 +243,19 @@ public class GeometricWeather extends MultiDexApplication {
     }
 
     public void recreateAllActivities() {
-        for (Activity a : activitySet) {
+        if (mActivitySet == null) {
+            mActivitySet = new HashSet<>();
+        }
+        for (Activity a : mActivitySet) {
             a.recreate();
         }
+    }
+
+    @NonNull
+    @Override
+    public Configuration getWorkManagerConfiguration() {
+        return new Configuration.Builder()
+                .setWorkerFactory(mWorkerFactory)
+                .build();
     }
 }

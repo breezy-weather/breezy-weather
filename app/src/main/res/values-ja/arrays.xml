@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools"
-    tools:ignore="MissingTranslation">
+<resources>
 
     <!-- Do not translate those arrays which named "xxx_values". -->
     <!-- Do not translate those items with a value of "@string/xxx". -->
@@ -8,8 +7,9 @@
     <!-- Chinese source. -->
     <string-array name="weather_sources">
         <item>weather.com.cn (中国のみ)</item>
-        <item>caiyun.com (中国のみ)</item>
+        <item>caiyunapp.com (中国のみ)</item>
         <item>accuweather.com</item>
+        <item>Météo France</item>
     </string-array>
 
     <!-- Location service. -->
@@ -23,6 +23,7 @@
     <!-- Dark mode. -->
     <string-array name="dark_modes">
         <item>自動</item>
+        <item>Follow system</item>
         <item>ライトモード</item>
         <item>ダークモード</item>
     </string-array>
@@ -60,7 +61,8 @@
     <string-array name="notification_styles">
         <item>Native</item>
         <item>Cities</item>
-        <item>@string/geometric_weather</item><!-- do not translate. -->
+        <item>@string/daily_overview</item><!-- do not translate. -->
+        <item>@string/hourly_overview</item><!-- do not translate. -->
     </string-array>
 
     <!-- notification text color. -->

@@ -3,13 +3,15 @@ package wangdaye.com.geometricweather.remoteviews.config;
 import android.view.View;
 import android.widget.RemoteViews;
 
+import dagger.hilt.android.AndroidEntryPoint;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.remoteviews.presenter.ClockDayVerticalWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenters.ClockDayVerticalWidgetIMP;
 
 /**
  * Clock day vertical widget config activity.
  * */
 
+@AndroidEntryPoint
 public class ClockDayVerticalWidgetConfigActivity extends AbstractWidgetConfigActivity {
 
     @Override
@@ -41,7 +43,15 @@ public class ClockDayVerticalWidgetConfigActivity extends AbstractWidgetConfigAc
     @Override
     public void initView() {
         super.initView();
-        hideLunarContainer.setVisibility(View.GONE);
+
+        mViewTypeContainer.setVisibility(View.VISIBLE);
+        mCardStyleContainer.setVisibility(View.VISIBLE);
+        mCardAlphaContainer.setVisibility(View.VISIBLE);
+        mHideSubtitleContainer.setVisibility(View.VISIBLE);
+        mSubtitleDataContainer.setVisibility(View.VISIBLE);
+        mTextColorContainer.setVisibility(View.VISIBLE);
+        mTextSizeContainer.setVisibility(View.VISIBLE);
+        mClockFontContainer.setVisibility(View.VISIBLE);
     }
 
     @Override
