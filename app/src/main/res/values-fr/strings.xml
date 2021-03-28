@@ -5,11 +5,11 @@
 
     <!-- mots-clés -->
     <string name="current_location">Emplacement actuel</string>
-    <string name="resident_location">Emplacement maison</string>
+    <string name="resident_location">Emplacement domicile</string>
     <string name="default_location">Emplacement par défaut</string>
     <string name="live">En ce moment</string>
     <string name="today">Auj.</string>
-    <string name="refresh_at">Interrogé à</string>
+    <string name="refresh_at">Consulté à</string>
     <string name="local_time">Heure locale</string>
     <string name="precipitation">Précipitation</string>
     <string name="precipitation_probability">Probabilité de précipitation</string>
@@ -17,7 +17,7 @@
     <string name="maxi_temp">temp. max</string>
     <string name="mini_temp">temp. min</string>
     <string name="time">time</string>
-    <string name="day">jour</string>
+    <string name="day">journée</string>
     <string name="night">nuit</string>
     <string name="temperature">Température</string>
     <string name="wind">Vent</string>
