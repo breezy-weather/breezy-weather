@@ -112,7 +112,7 @@ public class ForecastNotificationIMP extends AbstractRemoteViewsPresenter {
         } else {
             builder.setContentTitle(context.getString(R.string.day)
                     + " " + weather.getDailyForecast().get(1).day().getWeatherText()
-                    + " " + weather.getDailyForecast().get(0).day().getTemperature().getTemperature(context, temperatureUnit)
+                    + " " + weather.getDailyForecast().get(1).day().getTemperature().getTemperature(context, temperatureUnit)
             ).setContentText(context.getString(R.string.night)
                     + " " + weather.getDailyForecast().get(1).night().getWeatherText()
                     + " " + weather.getDailyForecast().get(1).night().getTemperature().getTemperature(context, temperatureUnit)
