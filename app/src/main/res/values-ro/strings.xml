@@ -193,7 +193,7 @@
     <string name="feedback_check_location_permission">Verifică permisiunile de Localizare.</string>
     <string name="feedback_enable_location_information">Activați informațiile despre locație</string>
     <string name="feedback_select_location_provider">Selectați furnizorul de servicii de localizare</string>
-    <string name="feedback_add_location_manually">Adăugați locația manual și ștergeți \ '$ \' </string>
+    <string name="feedback_add_location_manually">Adăugați locația manual și ștergeți \'$ \' </string>
     <string name="feedback_view_style">Tip vizualizare</string>
     <string name="feedback_show_widget_card">Culoare fundal</string>
     <string name="feedback_show_widget_card_alpha">Transparență</string>

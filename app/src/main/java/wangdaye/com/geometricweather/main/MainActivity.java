@@ -19,6 +19,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
@@ -33,8 +34,8 @@ import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.DarkMode;
 import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
-import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
 import wangdaye.com.geometricweather.common.utils.helpers.ShortcutsHelper;
+import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
 import wangdaye.com.geometricweather.databinding.ActivityMainBinding;
 import wangdaye.com.geometricweather.main.dialogs.BackgroundLocationDialog;
 import wangdaye.com.geometricweather.main.dialogs.LocationPermissionStatementDialog;
@@ -379,16 +380,19 @@ public class MainActivity extends GeoActivity
             mBinding.drawerLayout.setUnfold(visible);
         } else if (visible != isManagementFragmentVisible()) {
             if (visible) {
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .setCustomAnimations(
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(
                                 R.anim.fragment_manange_enter,
                                 R.anim.fragment_main_exit,
                                 R.anim.fragment_main_pop_enter,
                                 R.anim.fragment_manange_pop_exit
-                        ).replace(R.id.fragment, ManagementFragment.getInstance(true), TAG_FRAGMENT_MANAGEMENT)
-                        .addToBackStack(null)
-                        .commit();
+                        ).add(R.id.fragment, ManagementFragment.getInstance(true), TAG_FRAGMENT_MANAGEMENT)
+                        .addToBackStack(null);
+                Fragment main = findMainFragment();
+                if (main != null) {
+                    transaction.hide(main);
+                }
+                transaction.commit();
             } else {
                 getSupportFragmentManager().popBackStack();
             }

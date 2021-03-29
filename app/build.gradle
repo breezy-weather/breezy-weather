@@ -133,10 +133,10 @@ dependencies {
     gplayImplementation fileTree(include: ['*.jar'], dir: 'libs')
 
     // test.
-    testImplementation 'junit:junit:4.12'
-    testImplementation 'androidx.test:core:1.2.0'
-    testImplementation 'androidx.test:runner:1.2.0'
-    testImplementation 'androidx.test:rules:1.2.0'
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'androidx.test:core:1.3.0'
+    testImplementation 'androidx.test:runner:1.3.0'
+    testImplementation 'androidx.test:rules:1.3.0'
     testImplementation 'org.mockito:mockito-core:3.3.3'
     testImplementation 'org.powermock:powermock-api-mockito2:2.0.9'
     testImplementation 'org.powermock:powermock-module-junit4:2.0.9'
@@ -145,7 +145,7 @@ dependencies {
     testImplementation 'org.robolectric:robolectric:4.2.1'
 
     // material design.
-    implementation 'com.google.android.material:material:1.3.0-alpha03'
+    implementation 'com.google.android.material:material:1.3.0-beta01'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
@@ -173,11 +173,11 @@ dependencies {
     implementation "com.google.dagger:hilt-android:2.28-alpha"
     kapt "com.google.dagger:hilt-android-compiler:2.28-alpha"
 
-    implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha01'
+    implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02'
     kapt 'androidx.hilt:hilt-compiler:1.0.0-alpha01'
     annotationProcessor 'androidx.hilt:hilt-compiler:1.0.0-alpha01'
 
-    implementation 'androidx.hilt:hilt-work:1.0.0-alpha01'
+    implementation 'androidx.hilt:hilt-work:1.0.0-alpha02'
     kapt 'androidx.hilt:hilt-compiler:1.0.0-alpha01'
     annotationProcessor 'androidx.hilt:hilt-compiler:1.0.0-alpha01'
 
@@ -206,7 +206,7 @@ dependencies {
     implementation 'io.github.yuweiguocn:GreenDaoUpgradeHelper:v2.2.1'
 
     // gson.
-    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.google.code.gson:gson:2.8.6'
 
     // cm.
     implementation 'org.cyanogenmod:platform.sdk:5.0'

@@ -616,27 +616,6 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         }
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        switch (requestCode) {
-            case 0:
-                bindWallpaper();
-                if (textColorValueNow.equals("auto")) {
-                    updateHostView();
-                }
-                break;
-
-            case 1:
-                bindWallpaper();
-                updateHostView();
-                break;
-        }
-    }
-
     // on check changed listener(switch).
 
     private class HideSubtitleSwitchCheckListener implements CompoundButton.OnCheckedChangeListener {
