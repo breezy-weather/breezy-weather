@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <!-- app. -->
     <string name="app_name">Clima</string>
@@ -126,7 +126,7 @@
 
     <string name="next">SIGUIENTE</string>
     <string name="done">HECHO</string>
-    <string name="cancel" tools:ignore="ButtonCase">CANCELAR</string>
+    <string name="cancel">CANCELAR</string>
     <string name="on">Habilitado</string>
     <string name="off">Deshabilitado</string>
     <string name="go_to_set">ESTABLECER</string>
@@ -153,13 +153,6 @@
     <string name="date_format_widget_short">EEEE, MMM d</string>
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
-
-    <!-- Do not translate the following set of strings. -->
-    <string name="tag_temperature">@string/temperature</string>
-    <string name="tag_wind">@string/wind</string>
-    <string name="tag_precipitation">@string/precipitation</string>
-    <string name="tag_aqi">@string/air_quality</string>
-    <string name="tag_uv">@string/uv_index</string>
 
     <!-- about. -->
     <!-- Optional, the following set of strings are not necessarily translated. -->
@@ -283,10 +276,10 @@
 
     <string name="feedback_ignore_battery_optimizations_title">Ignorar optimización de la batería</string>
     <string name="feedback_ignore_battery_optimizations_content">Para asegurar que los servicios en segundo plano continúen funcionando, por favor ignora la optimización de batería para GeometricWeather.</string>
-
+    
     <string name="feedback_cannot_start_live_wallpaper_activity">No se logró iniciar el contexto de previsulización del fondo de pantalla animado</string>
 
-    <string name="feedback_unusable_geocoder">Este dispositivo no contiene un geocodificador válido. El proveedor de ubicación fue cambiado a Baidu.</string>
+    <string name="feedback_unusable_geocoder">Este dispositivo no contiene un geocodificador válido. El proveedor de ubicación fué cambiado a Baidu.</string>
     <string name="feedback_about_geocoder">Geocodificador es un componente que convierte el resultado de ubicación de un formato latitud-longitud a un formato del estilo \'ciudad XX, provincia YY\'. En ausencia de este componente, solo se podrá obtener datos meteorológicos a través de AccuWeather cuando se utilice la API nativa como proveedor de ubicación.</string>
 
     <string name="feedback_today_precipitation_alert">Puede que hoy haya precipitationes.</string>

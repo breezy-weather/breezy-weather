@@ -117,7 +117,7 @@ public class MfForecastResult {
         }
 
         public static class Wind {
-            public Integer direction;
+            public String direction;
             public Integer gust;
             public String icon;
             public Integer speed;
