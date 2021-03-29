@@ -110,7 +110,7 @@ public class MainFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        mWeatherView.setDrawable(true);
+        mWeatherView.setDrawable(!isHidden());
     }
 
     @Override
@@ -123,6 +123,14 @@ public class MainFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         mViewModel.getThemeManager().unregisterWeatherView();
+        mAdapter = null;
+        mBinding.recyclerView.clearOnScrollListeners();
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        mWeatherView.setDrawable(!hidden);
     }
 
     // init.
@@ -163,11 +171,12 @@ public class MainFragment extends Fragment {
 
         boolean listAnimationEnabled = SettingsOptionManager.getInstance(requireContext()).isListAnimationEnabled();
         boolean itemAnimationEnabled = SettingsOptionManager.getInstance(requireContext()).isItemAnimationEnabled();
-        mAdapter = new MainAdapter((GeoActivity) requireActivity(), mWeatherView, null, mResourceProvider,
-                mViewModel.getThemeManager(), listAnimationEnabled, itemAnimationEnabled);
+        mAdapter = new MainAdapter((GeoActivity) requireActivity(), mBinding.recyclerView, mWeatherView,
+                null, mResourceProvider, mViewModel.getThemeManager(), listAnimationEnabled, itemAnimationEnabled);
 
         mBinding.recyclerView.setAdapter(mAdapter);
         mBinding.recyclerView.setLayoutManager(new MainLayoutManager());
+        mBinding.recyclerView.addOnScrollListener(new OnScrollListener());
         mBinding.recyclerView.setOnTouchListener(indicatorStateListener);
 
         mBinding.indicator.setSwitchView(mBinding.switchLayout);
@@ -275,14 +284,9 @@ public class MainFragment extends Fragment {
 
         boolean listAnimationEnabled = SettingsOptionManager.getInstance(requireContext()).isListAnimationEnabled();
         boolean itemAnimationEnabled = SettingsOptionManager.getInstance(requireContext()).isItemAnimationEnabled();
-        mAdapter.update((GeoActivity) requireActivity(), mWeatherView, location, mResourceProvider,
-                mViewModel.getThemeManager(), listAnimationEnabled, itemAnimationEnabled);
+        mAdapter.update((GeoActivity) requireActivity(), mBinding.recyclerView, mWeatherView, location,
+                mResourceProvider, mViewModel.getThemeManager(), listAnimationEnabled, itemAnimationEnabled);
         mAdapter.notifyDataSetChanged();
-
-        OnScrollListener l = new OnScrollListener();
-        mBinding.recyclerView.clearOnScrollListeners();
-        mBinding.recyclerView.addOnScrollListener(l);
-        mBinding.recyclerView.post(() -> l.onScrolled(mBinding.recyclerView, 0, 0));
 
         mBinding.indicator.setCurrentIndicatorColor(themeManager.getAccentColor(requireContext()));
         mBinding.indicator.setIndicatorColor(themeManager.getTextSubtitleColor(requireContext()));
@@ -465,23 +469,23 @@ public class MainFragment extends Fragment {
 
             mWeatherView.onScroll(mScrollY);
             if (mAdapter != null) {
-                mAdapter.onScroll(recyclerView);
+                mAdapter.onScroll();
             }
 
             // set translation y of toolbar.
             if (mAdapter != null && mFirstCardMarginTop > 0) {
                 if (mFirstCardMarginTop
-                        >= mBinding.appBar.getMeasuredHeight() + mAdapter.getCurrentTemperatureTextHeight(recyclerView)) {
+                        >= mBinding.appBar.getMeasuredHeight() + mAdapter.getCurrentTemperatureTextHeight()) {
                     if (mScrollY < mFirstCardMarginTop
                             - mBinding.appBar.getMeasuredHeight()
-                            - mAdapter.getCurrentTemperatureTextHeight(recyclerView)) {
+                            - mAdapter.getCurrentTemperatureTextHeight()) {
                         mBinding.appBar.setTranslationY(0);
                     } else if (mScrollY > mFirstCardMarginTop - mBinding.appBar.getY()) {
                         mBinding.appBar.setTranslationY(-mBinding.appBar.getMeasuredHeight());
                     } else {
                         mBinding.appBar.setTranslationY(
                                 mFirstCardMarginTop
-                                        - mAdapter.getCurrentTemperatureTextHeight(recyclerView)
+                                        - mAdapter.getCurrentTemperatureTextHeight()
                                         - mScrollY
                                         - mBinding.appBar.getMeasuredHeight()
                         );

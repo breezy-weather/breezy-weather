@@ -58,8 +58,12 @@ public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
         return itemView.getTop();
     }
 
-    public final void enterScreen(List<Animator> pendingAnimatorList,
-                                  boolean listAnimationEnabled) {
+    public final void checkEnterScreen(RecyclerView host,
+                                       List<Animator> pendingAnimatorList,
+                                       boolean listAnimationEnabled) {
+        if (getTop() >= host.getMeasuredHeight()) {
+            return;
+        }
         if (!mInScreen) {
             mInScreen = true;
             if (listAnimationEnabled) {

@@ -14,6 +14,7 @@ import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.CardDisplay;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.ui.widgets.weatherView.WeatherView;
 import wangdaye.com.geometricweather.main.adapters.main.holder.AbstractMainCardViewHolder;
 import wangdaye.com.geometricweather.main.adapters.main.holder.AbstractMainViewHolder;
 import wangdaye.com.geometricweather.main.adapters.main.holder.AirQualityViewHolder;
@@ -27,11 +28,11 @@ import wangdaye.com.geometricweather.main.adapters.main.holder.HourlyViewHolder;
 import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.common.ui.widgets.weatherView.WeatherView;
 
 public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
 
     private GeoActivity mActivity;
+    private RecyclerView mHost;
     private WeatherView mWeatherView;
     private @Nullable Location mLocation;
     private ResourceProvider mProvider;
@@ -44,16 +45,19 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
     private boolean mListAnimationEnabled;
     private boolean mItemAnimationEnabled;
 
-    public MainAdapter(@NonNull GeoActivity activity, @NonNull WeatherView weatherView, @Nullable Location location,
+    public MainAdapter(@NonNull GeoActivity activity, @NonNull RecyclerView host,
+                       @NonNull WeatherView weatherView, @Nullable Location location,
                        @NonNull ResourceProvider provider, @NonNull MainThemeManager themeManager,
                        boolean listAnimationEnabled, boolean itemAnimationEnabled) {
-        update(activity, weatherView, location, provider, themeManager, listAnimationEnabled, itemAnimationEnabled);
+        update(activity, host, weatherView, location, provider, themeManager, listAnimationEnabled, itemAnimationEnabled);
     }
 
-    public void update(@NonNull GeoActivity activity, @NonNull WeatherView weatherView, @Nullable Location location,
+    public void update(@NonNull GeoActivity activity, @NonNull RecyclerView host,
+                       @NonNull WeatherView weatherView, @Nullable Location location,
                        @NonNull ResourceProvider provider, @NonNull MainThemeManager themeManager,
                        boolean listAnimationEnabled, boolean itemAnimationEnabled) {
         mActivity = activity;
+        mHost = host;
         mWeatherView = weatherView;
         mLocation = location;
         mProvider = provider;
@@ -142,6 +146,7 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
         } else {
             holder.onBindView(mActivity, mLocation, mProvider, mListAnimationEnabled, mItemAnimationEnabled);
         }
+        holder.checkEnterScreen(mHost, mPendingAnimatorList, mListAnimationEnabled);
     }
 
     @Override
@@ -175,9 +180,9 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
         }
     }
 
-    public int getCurrentTemperatureTextHeight(RecyclerView recyclerView) {
+    public int getCurrentTemperatureTextHeight() {
         if (mHeaderCurrentTemperatureTextHeight <= 0 && getItemCount() > 0) {
-            AbstractMainViewHolder holder = (AbstractMainViewHolder) recyclerView.findViewHolderForAdapterPosition(0);
+            AbstractMainViewHolder holder = (AbstractMainViewHolder) mHost.findViewHolderForAdapterPosition(0);
             if (holder instanceof HeaderViewHolder) {
                 mHeaderCurrentTemperatureTextHeight
                         = ((HeaderViewHolder) holder).getCurrentTemperatureHeight();
@@ -186,12 +191,12 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
         return mHeaderCurrentTemperatureTextHeight;
     }
 
-    public void onScroll(RecyclerView recyclerView) {
+    public void onScroll() {
         AbstractMainViewHolder holder;
         for (int i = 0; i < getItemCount(); i ++) {
-            holder = (AbstractMainViewHolder) recyclerView.findViewHolderForAdapterPosition(i);
-            if (holder != null && holder.getTop() < recyclerView.getMeasuredHeight()) {
-                holder.enterScreen(mPendingAnimatorList, mListAnimationEnabled);
+            holder = (AbstractMainViewHolder) mHost.findViewHolderForAdapterPosition(i);
+            if (holder != null) {
+                holder.checkEnterScreen(mHost, mPendingAnimatorList, mListAnimationEnabled);
             }
         }
     }
