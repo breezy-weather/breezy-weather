@@ -205,8 +205,8 @@ public class MfResultConverter {
                             new Wind(
                                     currentResult.observation.wind.icon,
                                     new WindDegree(currentResult.observation.wind.direction, currentResult.observation.wind.direction == -1),
-                                    (float) currentResult.observation.wind.speed,
-                                    CommonConverter.getWindLevel(context, currentResult.observation.wind.speed)
+                                    currentResult.observation.wind.speed * 3.6f,
+                                    CommonConverter.getWindLevel(context, currentResult.observation.wind.speed * 3.6f)
                             ),
                             new UV(null, null, null),
                             getAirQuality(new Date(), aqiAtmoAuraResult),
@@ -219,12 +219,7 @@ public class MfResultConverter {
                             null,
                             null
                     ),
-                    new History( // FIXME: Fill in with data from yesterday observation instead of today
-                            new Date((forecastResult.updatedOn - 24 * 60 * 60) * 1000),
-                            (forecastResult.updatedOn - 24 * 60 * 60) * 1000,
-                            toInt(forecastResult.dailyForecasts.get(0).temperature.max),
-                            toInt(forecastResult.dailyForecasts.get(0).temperature.min)
-                    ),
+                    null, // TODO: Fill in with observation data instead
                     getDailyList(context, forecastResult, hourly, ephemerisResult, aqiAtmoAuraResult),
                     hourly,
                     getMinutelyList(forecastResult.dailyForecasts.get(0).sun.rise, forecastResult.dailyForecasts.get(0).sun.set, rainResult),
@@ -232,10 +227,10 @@ public class MfResultConverter {
             );
             return new WeatherService.WeatherResultWrapper(weather);
         } catch (Exception ignored) {
-            Log.d("GEOM", ignored.getMessage());
+            /*Log.d("GEOM", ignored.getMessage());
             for (StackTraceElement stackTraceElement : ignored.getStackTrace()) {
                 Log.d("GEOM", stackTraceElement.toString());
-            }
+            }*/
             return new WeatherService.WeatherResultWrapper(null);
         }
     }
@@ -290,10 +285,8 @@ public class MfResultConverter {
         }
     }
 
-    private static HalfDay getHalfDay(boolean isDaytime, List<Hourly> hourly, MfForecastResult.DailyForecast dailyForecast) {
-        Integer temp = isDaytime
-                ? (dailyForecast.temperature.max == null ? 0 : toInt(dailyForecast.temperature.max)) // FIXME: Temperature is not nullable
-                : (dailyForecast.temperature.min == null ? 0 : toInt(dailyForecast.temperature.min)); // FIXME: Temperature is not nullable
+    private static HalfDay getHalfDay(Context context, boolean isDaytime, List<Hourly> hourly, List<MfForecastResult.Forecast> hourlyForecast, MfForecastResult.DailyForecast dailyForecast) {
+        Integer temp = isDaytime? toInt(dailyForecast.temperature.max) : toInt(dailyForecast.temperature.min);
         Integer tempWindChill = null;
 
         Float precipitationTotal = 0.0f;
@@ -347,6 +340,27 @@ public class MfResultConverter {
             }
         }
 
+        Integer cloudCover = null;
+        String windDirection = "Pas d’info";
+        WindDegree windDegree = new WindDegree(0, false);
+        Float windSpeed = null;
+        String windLevel = "Pas d’info";
+
+        for (MfForecastResult.Forecast hourForecast : hourlyForecast) {
+            if ((isDaytime && hourForecast.dt >= dailyForecast.dt + 6 * 3600 && hourForecast.dt < dailyForecast.dt + 18 * 3600)
+                    || (!isDaytime && hourForecast.dt >= dailyForecast.dt + 18 * 3600 && hourForecast.dt < dailyForecast.dt + 30 * 3600)) {
+                if (cloudCover == null || hourForecast.clouds > cloudCover) {
+                    cloudCover = hourForecast.clouds;
+                }
+                if (windSpeed == null || hourForecast.wind.speed * 3.6f > windSpeed) {
+                    windDirection = hourForecast.wind.icon;
+                    windDegree = new WindDegree(hourForecast.wind.direction.equals("Variable") ? 0.0f : Float.parseFloat(hourForecast.wind.direction), hourForecast.wind.direction.equals("Variable"));
+                    windSpeed = hourForecast.wind.speed * 3.6f;
+                    windLevel = CommonConverter.getWindLevel(context, hourForecast.wind.speed * 3.6f);
+                }
+            }
+        }
+
         return new HalfDay(
                 dailyForecast.weather12H == null ? "" : dailyForecast.weather12H.desc,
                 dailyForecast.weather12H == null ? "" : dailyForecast.weather12H.desc,
@@ -381,13 +395,13 @@ public class MfResultConverter {
                         null,
                         null
                 ),
-                new Wind( // FIXME: Get this info from hourly
-                        "Pas d’info",
-                        new WindDegree(0, false),
-                        null,
-                        "Pas d’info"
+                new Wind(
+                        windDirection,
+                        windDegree,
+                        windSpeed,
+                        windLevel
                 ),
-                null // FIXME: Get this info from hourly
+                cloudCover
         );
     }
 
@@ -395,23 +409,26 @@ public class MfResultConverter {
         List<Daily> dailyList = new ArrayList<>(forecastsResult.dailyForecasts.size());
 
         for (MfForecastResult.DailyForecast dailyForecast : forecastsResult.dailyForecasts) {
-            dailyList.add(
-                    new Daily(
-                            new Date(dailyForecast.dt * 1000),
-                            dailyForecast.dt * 1000,
-                            getHalfDay(true, hourly, dailyForecast),
-                            getHalfDay(false, hourly, dailyForecast),
-                            new Astro(new Date(dailyForecast.sun.rise * 1000), new Date(dailyForecast.sun.set * 1000)),
-                            // Note: Below is the same moon data for all days, but since we are only showing the data for the current day in the app, this does not matter
-                            //new Astro(ephemerisResult.properties.ephemeris.moonriseTime, ephemerisResult.properties.ephemeris.moonsetTime), // FIXME: Weird issue, input is UTC (due to Z) but system thinks it's system timezone
-                            new Astro(null, null),
-                            new MoonPhase(CommonConverter.getMoonPhaseAngle(ephemerisResult.properties.ephemeris.moonPhaseDescription), ephemerisResult.properties.ephemeris.moonPhaseDescription),
-                            getAirQuality(new Date(dailyForecast.dt * 1000), aqiAtmoAuraResult),
-                            new Pollen(null, null, null, null, null, null, null, null, null, null, null, null),
-                            new UV(dailyForecast.uv, null, null),
-                            getHoursOfDay(new Date(dailyForecast.sun.rise * 1000), new Date(dailyForecast.sun.set * 1000))
-                    )
-            );
+            // Don't add day if temperature is given null as it would crash the app (not nullable)
+            if (dailyForecast.temperature.min != null && dailyForecast.temperature.max != null) {
+                dailyList.add(
+                        new Daily(
+                                new Date(dailyForecast.dt * 1000),
+                                dailyForecast.dt * 1000,
+                                getHalfDay(context, true, hourly, forecastsResult.forecasts, dailyForecast),
+                                getHalfDay(context, false, hourly, forecastsResult.forecasts, dailyForecast),
+                                new Astro(new Date(dailyForecast.sun.rise * 1000), new Date(dailyForecast.sun.set * 1000)),
+                                // Note: Below is the same moon data for all days, but since we are only showing the data for the current day in the app, this does not matter
+                                //new Astro(ephemerisResult.properties.ephemeris.moonriseTime, ephemerisResult.properties.ephemeris.moonsetTime), // FIXME: Weird issue, input is UTC (due to Z) but system thinks it's system timezone
+                                new Astro(null, null),
+                                new MoonPhase(CommonConverter.getMoonPhaseAngle(ephemerisResult.properties.ephemeris.moonPhaseDescription), ephemerisResult.properties.ephemeris.moonPhaseDescription),
+                                getAirQuality(new Date(dailyForecast.dt * 1000), aqiAtmoAuraResult),
+                                new Pollen(null, null, null, null, null, null, null, null, null, null, null, null),
+                                new UV(dailyForecast.uv, null, null),
+                                getHoursOfDay(new Date(dailyForecast.sun.rise * 1000), new Date(dailyForecast.sun.set * 1000))
+                        )
+                );
+            }
         }
         return dailyList;
     }
