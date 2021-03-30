@@ -105,12 +105,12 @@ public class OwmWeatherService extends WeatherService {
         );
 
         Observable.zip(oneCall, airPollutionCurrent, airPollutionForecast,
-                (owmOneCallResult, owmAirPollutionCurrentResult, owmAirPollutionResult) -> OwmResultConverter.convert(
+                (owmOneCallResult, owmAirPollutionCurrentResult, owmAirPollutionForecastResult) -> OwmResultConverter.convert(
                         context,
                         location,
                         owmOneCallResult,
                         owmAirPollutionCurrentResult instanceof EmptyAqiResult ? null : owmAirPollutionCurrentResult,
-                        owmAirPollutionResult instanceof EmptyAqiResult ? null : owmAirPollutionResult
+                        owmAirPollutionForecastResult instanceof EmptyAqiResult ? null : owmAirPollutionForecastResult
                 )
         ).compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<WeatherResultWrapper>() {

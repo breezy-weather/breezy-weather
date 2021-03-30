@@ -3,7 +3,6 @@ package wangdaye.com.geometricweather.weather.converters;
 import android.content.Context;
 import android.graphics.Color;
 import android.text.TextUtils;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,12 +12,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
-import wangdaye.com.geometricweather.common.basic.models.options.unit.PrecipitationUnit;
 import wangdaye.com.geometricweather.common.basic.models.weather.AirQuality;
 import wangdaye.com.geometricweather.common.basic.models.weather.Alert;
 import wangdaye.com.geometricweather.common.basic.models.weather.Astro;
@@ -26,7 +22,6 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Base;
 import wangdaye.com.geometricweather.common.basic.models.weather.Current;
 import wangdaye.com.geometricweather.common.basic.models.weather.Daily;
 import wangdaye.com.geometricweather.common.basic.models.weather.HalfDay;
-import wangdaye.com.geometricweather.common.basic.models.weather.History;
 import wangdaye.com.geometricweather.common.basic.models.weather.Hourly;
 import wangdaye.com.geometricweather.common.basic.models.weather.Minutely;
 import wangdaye.com.geometricweather.common.basic.models.weather.MoonPhase;
@@ -40,8 +35,6 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.common.basic.models.weather.Wind;
 import wangdaye.com.geometricweather.common.basic.models.weather.WindDegree;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.weather.json.atmoaura.AtmoAuraQAResult;
 import wangdaye.com.geometricweather.weather.json.owm.OwmAirPollutionResult;
 import wangdaye.com.geometricweather.weather.json.owm.OwmLocationResult;
 import wangdaye.com.geometricweather.weather.json.owm.OwmOneCallResult;
@@ -131,10 +124,10 @@ public class OwmResultConverter {
                                     null
                             ),
                             new Precipitation(
+                                    getTotalPrecipitation((oneCallResult.current.rain != null) ? oneCallResult.current.rain.cumul1h : null, (oneCallResult.current.snow != null) ? oneCallResult.current.snow.cumul1h : null),
                                     null,
-                                    null,
-                                    null,
-                                    null,
+                                    (oneCallResult.current.rain != null) ? oneCallResult.current.rain.cumul1h : null,
+                                    (oneCallResult.current.snow != null) ? oneCallResult.current.snow.cumul1h : null,
                                     null
                             ),
                             new PrecipitationProbability(
@@ -155,8 +148,8 @@ public class OwmResultConverter {
                                     null, null, null, null,
                                     null, null, null, null
                             ) : new AirQuality(
-                                    CommonConverter.getAqiQuality(context, airPollutionCurrentResult.list.get(0).main.aqi),
-                                    airPollutionCurrentResult.list.get(0).main.aqi,
+                                    CommonConverter.getAqiQuality(context, getAqiFromIndex(airPollutionCurrentResult.list.get(0).main.aqi)),
+                                    getAqiFromIndex(airPollutionCurrentResult.list.get(0).main.aqi),
                                     (float) airPollutionCurrentResult.list.get(0).components.pm2_5,
                                     (float) airPollutionCurrentResult.list.get(0).components.pm10,
                                     (float) airPollutionCurrentResult.list.get(0).components.so2,
@@ -382,14 +375,32 @@ public class OwmResultConverter {
         return minutelyList;
     }
 
+    private static Integer getAqiFromIndex (Integer aqi) {
+        if (aqi == null || aqi <= 0) {
+            return null;
+        } if (aqi <= AirQuality.AQI_INDEX_1) {
+            return AirQuality.AQI_INDEX_1;
+        } else if (aqi <= AirQuality.AQI_INDEX_2) {
+            return AirQuality.AQI_INDEX_2;
+        } else if (aqi <= AirQuality.AQI_INDEX_3) {
+            return AirQuality.AQI_INDEX_3;
+        } else if (aqi <= AirQuality.AQI_INDEX_4) {
+            return AirQuality.AQI_INDEX_4;
+        } else if (aqi <= AirQuality.AQI_INDEX_5) {
+            return AirQuality.AQI_INDEX_5;
+        } else {
+            return 400;
+        }
+    }
+
     private static AirQuality getAirQuality(Context context, Date requestedDate, @Nullable OwmAirPollutionResult owmAirPollutionForecastResult) {
         if (owmAirPollutionForecastResult != null) {
             SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
             for (OwmAirPollutionResult.AirPollution airPollutionForecast : owmAirPollutionForecastResult.list) {
-                if (fmt.format(requestedDate).equals(fmt.format(airPollutionForecast.dt))) {
+                if (fmt.format(requestedDate).equals(fmt.format(airPollutionForecast.dt * 1000))) {
                     return new AirQuality(
-                            CommonConverter.getAqiQuality(context, airPollutionForecast.main.aqi),
-                            airPollutionForecast.main.aqi,
+                            CommonConverter.getAqiQuality(context, getAqiFromIndex(airPollutionForecast.main.aqi)),
+                            getAqiFromIndex(airPollutionForecast.main.aqi),
                             (float) airPollutionForecast.components.pm2_5,
                             (float) airPollutionForecast.components.pm10,
                             (float) airPollutionForecast.components.so2,
