@@ -7,7 +7,7 @@ import java.util.List;
  * */
 
 public class OwmAirPollutionResult {
-    public double[] coord;
+    //public double[] coord;
     public List<AirPollution> list;
 
     public static class AirPollution {

@@ -39,6 +39,8 @@ public class OwmOneCallResult {
         @SerializedName("wind_deg")
         public int windDeg;
         public List<Weather> weather;
+        public Precipitation rain;
+        public Precipitation snow;
     }
 
     public static class Minutely {
@@ -66,11 +68,11 @@ public class OwmOneCallResult {
         public Float pop;
         public Precipitation rain;
         public Precipitation snow;
+    }
 
-        public static class Precipitation {
-            @SerializedName("1h")
-            public Float cumul1h;
-        }
+    public static class Precipitation {
+        @SerializedName("1h")
+        public Float cumul1h;
     }
 
     public static class Daily {
