@@ -1,18 +1,20 @@
 package wangdaye.com.geometricweather.background.polling;
 
 import android.content.Context;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import android.widget.Toast;
 
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper;
+import wangdaye.com.geometricweather.common.utils.helpers.BusHelper;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.location.LocationHelper;
-import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 /**
@@ -23,42 +25,57 @@ public class PollingUpdateHelper {
 
     private final Context mContext;
 
+    private @Nullable AsyncHelper.Controller mIOController;
     private final LocationHelper mLocationHelper;
     private final WeatherHelper mWeatherHelper;
 
-    private final List<Location> mLocationList;
+    private List<Location> mLocationList;
 
     private OnPollingUpdateListener mListener;
 
     public interface OnPollingUpdateListener {
         void onUpdateCompleted(@NonNull Location location, @Nullable Weather old,
                                boolean succeed, int index, int total);
-        void onPollingCompleted();
+        void onPollingCompleted(List<Location> locationList);
     }
 
     public PollingUpdateHelper(Context context,
                                LocationHelper locationHelper,
-                               WeatherHelper weatherHelper,
-                               List<Location> locationList) {
+                               WeatherHelper weatherHelper) {
         mContext = context;
+
+        mIOController = null;
         mLocationHelper = locationHelper;
         mWeatherHelper = weatherHelper;
-        mLocationList = locationList;
+
+        mLocationList = null;
     }
 
     // control.
 
     public void pollingUpdate() {
-        requestData(0, false);
+        mIOController = AsyncHelper.runOnIO(emitter -> {
+            List<Location> list = DatabaseHelper.getInstance(mContext).readLocationList();
+            for (Location l : list) {
+                l.setWeather(DatabaseHelper.getInstance(mContext).readWeather(l));
+            }
+            emitter.send(list, true);
+        }, (AsyncHelper.Callback<List<Location>>) (locations, done) -> {
+            mLocationList = locations;
+            requestData(0, false);
+        });
     }
 
     public void cancel() {
+        if (mIOController != null) {
+            mIOController.cancel();
+        }
         mLocationHelper.cancel();
         mWeatherHelper.cancel();
     }
 
     private void requestData(int position, boolean located) {
-        Weather old = DatabaseHelper.getInstance(mContext).readWeather(mLocationList.get(position));
+        Weather old = mLocationList.get(position).getWeather();
         if (old != null && old.isValid(0.25F)) {
             mLocationList.get(position).setWeather(old);
             new RequestWeatherCallback(old, position, mLocationList.size()).requestWeatherSuccess(
@@ -141,16 +158,11 @@ public class PollingUpdateHelper {
             if (weather != null
                     && (mOld == null
                     || weather.getBase().getTimeStamp() != mOld.getBase().getTimeStamp())) {
+                BusHelper.postLocationChanged(requestLocation);
                 if (mListener != null) {
                     mListener.onUpdateCompleted(requestLocation, mOld, true, mIndex, mTotal);
                 }
-                IntentHelper.sendBackgroundUpdateBroadcast(mContext, requestLocation);
-
-                if (mIndex + 1 < mTotal) {
-                    requestData(mIndex + 1, false);
-                } else if (mListener != null) {
-                    mListener.onPollingCompleted();
-                }
+                checkToRequestNextOrCompleted();
             } else {
                 requestWeatherFailed(requestLocation);
             }
@@ -163,10 +175,16 @@ public class PollingUpdateHelper {
             if (mListener != null) {
                 mListener.onUpdateCompleted(requestLocation, mOld, false, mIndex, mTotal);
             }
+            checkToRequestNextOrCompleted();
+        }
+
+        private void checkToRequestNextOrCompleted() {
             if (mIndex + 1 < mTotal) {
                 requestData(mIndex + 1, false);
-            } else if (mListener != null) {
-                mListener.onPollingCompleted();
+            } else {
+                if (mListener != null) {
+                    mListener.onPollingCompleted(mLocationList);
+                }
             }
         }
     }

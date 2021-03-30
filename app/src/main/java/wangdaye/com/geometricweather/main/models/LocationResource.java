@@ -12,7 +12,7 @@ public class LocationResource extends Resource<Location> {
     
     public final Event event;
     public enum Event {
-        INITIALIZE, BACKGROUND_UPDATE, UPDATE
+        INITIALIZE, UPDATE, BACKGROUND_UPDATE_CURRENT, BACKGROUND_UPDATE_OTHERS
     }
 
     public LocationResource(@NonNull Location data, @NonNull Status status,

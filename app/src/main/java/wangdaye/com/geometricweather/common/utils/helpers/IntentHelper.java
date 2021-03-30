@@ -18,11 +18,12 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.util.Pair;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.polling.services.basic.AwakeForegroundUpdateService;
 import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.ui.activities.AlertActivity;
+import wangdaye.com.geometricweather.common.ui.activities.AllergenActivity;
 import wangdaye.com.geometricweather.daily.DailyWeatherActivity;
 import wangdaye.com.geometricweather.main.MainActivity;
 import wangdaye.com.geometricweather.search.SearchActivity;
@@ -32,8 +33,6 @@ import wangdaye.com.geometricweather.settings.activities.DailyTrendDisplayManage
 import wangdaye.com.geometricweather.settings.activities.PreviewIconActivity;
 import wangdaye.com.geometricweather.settings.activities.SelectProviderActivity;
 import wangdaye.com.geometricweather.settings.activities.SettingsActivity;
-import wangdaye.com.geometricweather.common.ui.activities.AlertActivity;
-import wangdaye.com.geometricweather.common.ui.activities.AllergenActivity;
 import wangdaye.com.geometricweather.wallpaper.MaterialLiveWallpaperService;
 
 /**
@@ -260,13 +259,6 @@ public class IntentHelper {
         } else {
             SnackbarHelper.showSnackbar("Unavailable battery optimization activity.");
         }
-    }
-
-    public static void sendBackgroundUpdateBroadcast(Context context, Location location) {
-        LocalBroadcastManager.getInstance(context).sendBroadcast(
-                new Intent(MainActivity.ACTION_UPDATE_WEATHER_IN_BACKGROUND)
-                        .putExtra(MainActivity.KEY_LOCATION, location)
-        );
     }
 
     public static void startAwakeForegroundUpdateService(Context context) {

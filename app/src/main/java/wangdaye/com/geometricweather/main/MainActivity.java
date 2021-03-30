@@ -2,10 +2,7 @@ package wangdaye.com.geometricweather.main;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Build;
@@ -20,8 +17,8 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +30,7 @@ import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.DarkMode;
 import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper;
+import wangdaye.com.geometricweather.common.utils.helpers.BusHelper;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
 import wangdaye.com.geometricweather.common.utils.helpers.ShortcutsHelper;
 import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
@@ -62,6 +60,22 @@ public class MainActivity extends GeoActivity
     private ActivityMainBinding mBinding;
     private MainActivityViewModel mViewModel;
 
+    private final Observer<Location> mBackgroundUpdateObserver = new Observer<Location>() {
+
+        @Override
+        public void onChanged(Location location) {
+            if (location == null) {
+                return;
+            }
+
+            mViewModel.updateLocationFromBackground(location);
+            if (isForeground()
+                    && location.getFormattedId().equals(mViewModel.getCurrentFormattedId())) {
+                SnackbarHelper.showSnackbar(getString(R.string.feedback_updated_in_background));
+            }
+        }
+    };
+
     public static final int SETTINGS_ACTIVITY = 1;
     public static final int CARD_MANAGE_ACTIVITY = 3;
     public static final int SEARCH_ACTIVITY = 4;
@@ -70,10 +84,6 @@ public class MainActivity extends GeoActivity
     public static final String ACTION_MAIN = "com.wangdaye.geometricweather.Main";
     public static final String KEY_MAIN_ACTIVITY_LOCATION_FORMATTED_ID
             = "MAIN_ACTIVITY_LOCATION_FORMATTED_ID";
-
-    public static final String ACTION_UPDATE_WEATHER_IN_BACKGROUND
-            = "com.wangdaye.geomtricweather.ACTION_UPDATE_WEATHER_IN_BACKGROUND";
-    public static final String KEY_LOCATION = "LOCATION";
 
     public static final String ACTION_MANAGEMENT
             = "com.wangdaye.geomtricweather.ACTION_MANAGEMENT";
@@ -88,22 +98,6 @@ public class MainActivity extends GeoActivity
     private static final String TAG_FRAGMENT_MAIN = "fragment_main";
     private static final String TAG_FRAGMENT_MANAGEMENT = "fragment_management";
 
-    private final BroadcastReceiver backgroundUpdateReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            Location location = intent.getParcelableExtra(KEY_LOCATION);
-            if (location == null) {
-                return;
-            }
-
-            mViewModel.updateLocationFromBackground(location);
-            if (isForeground()
-                    && location.getFormattedId().equals(mViewModel.getCurrentFormattedId())) {
-                SnackbarHelper.showSnackbar(getString(R.string.feedback_updated_in_background));
-            }
-        }
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,10 +108,8 @@ public class MainActivity extends GeoActivity
         initModel(savedInstanceState == null);
         initView();
 
-        LocalBroadcastManager.getInstance(this).registerReceiver(
-                backgroundUpdateReceiver,
-                new IntentFilter(ACTION_UPDATE_WEATHER_IN_BACKGROUND)
-        );
+        BusHelper.observeLocationChangedForever(mBackgroundUpdateObserver);
+
         refreshBackgroundViews(true, mViewModel.getValidLocationList(),
                 false, false);
 
@@ -201,7 +193,7 @@ public class MainActivity extends GeoActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(backgroundUpdateReceiver);
+        BusHelper.cancelObserveLocationChanged(mBackgroundUpdateObserver);
     }
 
     // init.
@@ -248,7 +240,8 @@ public class MainActivity extends GeoActivity
 
             refreshBackgroundViews(
                     false, mViewModel.getValidLocationList(), resource.defaultLocation,
-                    resource.event != LocationResource.Event.BACKGROUND_UPDATE);
+                    resource.event != LocationResource.Event.BACKGROUND_UPDATE_CURRENT
+                            && resource.event != LocationResource.Event.BACKGROUND_UPDATE_OTHERS);
         });
 
         mViewModel.getPermissionsRequest().observe(this, request -> {
