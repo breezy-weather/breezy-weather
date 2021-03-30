@@ -18,7 +18,6 @@ import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper;
 import wangdaye.com.geometricweather.common.utils.helpers.ShortcutsHelper;
-import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.location.LocationHelper;
 import wangdaye.com.geometricweather.remoteviews.NotificationHelper;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
@@ -33,7 +32,6 @@ public abstract class UpdateService extends Service
     private PollingUpdateHelper mPollingHelper;
     @Inject LocationHelper mLocationHelper;
     @Inject WeatherHelper mWeatherHelper;
-    private List<Location> mLocationList;
     private AsyncHelper.Controller mDelayController;
     private boolean mFailed;
 
@@ -43,10 +41,7 @@ public abstract class UpdateService extends Service
 
         mFailed = false;
 
-        mLocationList = DatabaseHelper.getInstance(this).readLocationList();
-
-        mPollingHelper = new PollingUpdateHelper(
-                this, mLocationHelper, mWeatherHelper, mLocationList);
+        mPollingHelper = new PollingUpdateHelper(this, mLocationHelper, mWeatherHelper);
         mPollingHelper.setOnPollingUpdateListener(this);
         mPollingHelper.pollingUpdate();
 
@@ -93,28 +88,22 @@ public abstract class UpdateService extends Service
     @Override
     public void onUpdateCompleted(@NonNull Location location, @Nullable Weather old,
                                   boolean succeed, int index, int total) {
-        for (int i = 0; i < mLocationList.size(); i ++) {
-            if (mLocationList.get(i).equals(location)) {
-                mLocationList.set(i, location);
-                if (i == 0) {
-                    updateView(this, location);
-                    if (succeed) {
-                        NotificationHelper.checkAndSendAlert(this, location, old);
-                        NotificationHelper.checkAndSendPrecipitationForecast(this, location, old);
-                    } else {
-                        mFailed = true;
-                    }
-                }
-                return;
+        if (index == 0) {
+            updateView(this, location);
+            if (succeed) {
+                NotificationHelper.checkAndSendAlert(this, location, old);
+                NotificationHelper.checkAndSendPrecipitationForecast(this, location, old);
+            } else {
+                mFailed = true;
             }
         }
     }
 
     @Override
-    public void onPollingCompleted() {
-        updateView(this, mLocationList);
+    public void onPollingCompleted(List<Location> locationList) {
+        updateView(this, locationList);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-            ShortcutsHelper.refreshShortcutsInNewThread(this, mLocationList);
+            ShortcutsHelper.refreshShortcutsInNewThread(this, locationList);
         }
         stopService(mFailed);
     }

@@ -13,10 +13,9 @@ import java.util.concurrent.Executors;
 import javax.inject.Inject;
 
 import wangdaye.com.geometricweather.common.basic.models.Location;
-import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.location.LocationHelper;
-import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 public class MainActivityRepository {
@@ -38,7 +37,6 @@ public class MainActivityRepository {
     }
 
     public void destroy() {
-        mSingleThreadExecutor.shutdown();
         cancelWeatherRequest();
     }
 
@@ -63,13 +61,6 @@ public class MainActivityRepository {
             }
             emitter.send(list, true);
         }, callback, mSingleThreadExecutor);
-    }
-
-    public void readWeatherCache(Context context, Location location,
-                                 AsyncHelper.Callback<Weather> callback) {
-        AsyncHelper.runOnExecutor(emitter -> emitter.send(
-                DatabaseHelper.getInstance(context).readWeather(location), true
-        ), callback, mSingleThreadExecutor);
     }
 
     public void writeLocation(Context context, Location location) {

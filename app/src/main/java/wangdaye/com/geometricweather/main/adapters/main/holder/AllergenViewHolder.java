@@ -9,7 +9,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
-import androidx.viewpager2.widget.ViewPager2;
 
 import java.util.TimeZone;
 
@@ -18,6 +17,7 @@ import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.Daily;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.ui.widgets.horizontal.HorizontalViewPager2;
 import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.common.ui.adapters.DailyPollenAdapter;
@@ -29,7 +29,7 @@ public class AllergenViewHolder extends AbstractMainCardViewHolder {
     private final TextView mTitle;
     private final TextView mSubtitle;
     private final TextView mIndicator;
-    private final ViewPager2 mPager;
+    private final HorizontalViewPager2 mPager;
 
     private @Nullable DailyPollenPageChangeCallback mCallback;
 
@@ -53,7 +53,7 @@ public class AllergenViewHolder extends AbstractMainCardViewHolder {
         }
     }
 
-    private class DailyPollenPageChangeCallback extends ViewPager2.OnPageChangeCallback {
+    private class DailyPollenPageChangeCallback extends HorizontalViewPager2.OnPageChangeCallback {
 
         private final Context mContext;
         private final Location mLocation;

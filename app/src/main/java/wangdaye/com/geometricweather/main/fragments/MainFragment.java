@@ -49,6 +49,7 @@ public class MainFragment extends Fragment {
 
     private WeatherView mWeatherView;
     private MainAdapter mAdapter;
+    private OnScrollListener mScrollListener;
     private @Nullable AnimatorSet mRecyclerViewAnimator;
 
     private ResourceProvider mResourceProvider;
@@ -176,7 +177,7 @@ public class MainFragment extends Fragment {
 
         mBinding.recyclerView.setAdapter(mAdapter);
         mBinding.recyclerView.setLayoutManager(new MainLayoutManager());
-        mBinding.recyclerView.addOnScrollListener(new OnScrollListener());
+        mBinding.recyclerView.addOnScrollListener(mScrollListener = new OnScrollListener());
         mBinding.recyclerView.setOnTouchListener(indicatorStateListener);
 
         mBinding.indicator.setSwitchView(mBinding.switchLayout);
@@ -287,6 +288,8 @@ public class MainFragment extends Fragment {
         mAdapter.update((GeoActivity) requireActivity(), mBinding.recyclerView, mWeatherView, location,
                 mResourceProvider, mViewModel.getThemeManager(), listAnimationEnabled, itemAnimationEnabled);
         mAdapter.notifyDataSetChanged();
+
+        mScrollListener.postReset(mBinding.recyclerView);
 
         mBinding.indicator.setCurrentIndicatorColor(themeManager.getAccentColor(requireContext()));
         mBinding.indicator.setIndicatorColor(themeManager.getTextSubtitleColor(requireContext()));
@@ -454,6 +457,20 @@ public class MainFragment extends Fragment {
 
             mScrollY = 0;
             mLastAppBarTranslationY = 0;
+        }
+
+        void postReset(@NonNull RecyclerView recyclerView) {
+            recyclerView.post(() -> {
+                mTopChanged = null;
+                mTopOverlap = false;
+
+                mFirstCardMarginTop = 0;
+
+                mScrollY = 0;
+                mLastAppBarTranslationY = 0;
+
+                onScrolled(recyclerView, 0, 0);
+            });
         }
 
         @Override
