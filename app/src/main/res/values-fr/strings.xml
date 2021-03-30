@@ -5,11 +5,11 @@
 
     <!-- mots-clés -->
     <string name="current_location">Emplacement actuel</string>
-    <string name="resident_location">Emplacement maison</string>
+    <string name="resident_location">Emplacement domicile</string>
     <string name="default_location">Emplacement par défaut</string>
     <string name="live">En ce moment</string>
-    <string name="today">Auj.</string>
-    <string name="refresh_at">Interrogé à</string>
+    <string name="today">Auj</string>
+    <string name="refresh_at">Consulté à</string>
     <string name="local_time">Heure locale</string>
     <string name="precipitation">Précipitation</string>
     <string name="precipitation_probability">Probabilité de précipitation</string>
@@ -17,7 +17,7 @@
     <string name="maxi_temp">temp. max</string>
     <string name="mini_temp">temp. min</string>
     <string name="time">time</string>
-    <string name="day">jour</string>
+    <string name="day">journée</string>
     <string name="night">nuit</string>
     <string name="temperature">Température</string>
     <string name="wind">Vent</string>
@@ -270,7 +270,7 @@
     <string name="feedback_about_geocoder">Un géocodeur est un composant qui convertit un résultat de localisation du format lat-lon à un format du style \'ville XXy, province YY \'. En l’absence du composant, vous ne pouvez avoir des données météo que via AccuWeather lorsque l’API native est utilisée comme fournisseur de localisation.</string>
 
     <string name="feedback_today_precipitation_alert">Des précipitations peuvent avoir lieu aujourd’hui.</string>
-    <string name="feedback_short_term_precipitation_alert">Des précipitations peuvent avoir lieu dans les heures à venir.</string>
+    <string name="feedback_short_term_precipitation_alert">Précipitations possibles dans les heures à venir.</string>
 
     <string name="feedback_resident_location">Définir en tant que ville de résidence</string>
     <string name="feedback_resident_location_description">GeometricWeather affichera et masquera automatiquement les villes de résidence selon votre localisation actuelle.\nFor example, you can set your hometown as a resident city. You can check the weather in your hometown while you are traveling. When you get home, the weather in your hometown will be hidden and replaced by the weather for your current location.</string>
