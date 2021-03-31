@@ -43,6 +43,8 @@ android {
         it.buildConfigField 'String', 'ACCU_WEATHER_KEY', ACCU_WEATHER_KEY
         it.buildConfigField 'String', 'ACCU_CURRENT_KEY', ACCU_CURRENT_KEY
         it.buildConfigField 'String', 'ACCU_AQI_KEY', ACCU_AQI_KEY
+        it.buildConfigField 'String', 'OWM_KEY', OWM_KEY
+        it.buildConfigField 'String', 'OWM_BASE_URL', OWM_BASE_URL
         it.buildConfigField 'String', 'BAIDU_IP_LOCATION_BASE_URL', BAIDU_IP_LOCATION_BASE_URL
         it.buildConfigField 'String', 'BAIDU_IP_LOCATION_AK', BAIDU_IP_LOCATION_AK
         it.buildConfigField 'String', 'MF_WSFT_KEY', MF_WSFT_KEY
