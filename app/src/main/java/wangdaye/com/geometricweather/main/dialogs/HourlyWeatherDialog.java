@@ -121,6 +121,7 @@ public class HourlyWeatherDialog extends GeoDialog {
         if (hourly.getTemperature().getRealFeelTemperature() != null) {
             builder.append("\n")
                     .append(getString(R.string.feels_like))
+                    .append(" ")
                     .append(hourly.getTemperature().getRealFeelTemperature(requireActivity(), temperatureUnit));
         }
         if (hourly.getPrecipitation().getTotal() != null) {

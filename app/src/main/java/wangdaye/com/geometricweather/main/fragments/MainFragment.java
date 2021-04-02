@@ -54,6 +54,7 @@ public class MainFragment extends GeoFragment {
 
     private @Nullable String mCurrentLocationFormattedId;
     private @Nullable WeatherSource mCurrentWeatherSource;
+    private @Nullable Boolean mCurrentLightTheme;
     private long mCurrentWeatherTimeStamp;
 
     private @Nullable Callback mCallback;
@@ -225,16 +226,21 @@ public class MainFragment extends GeoFragment {
         if (location.equals(mCurrentLocationFormattedId)
                 && location.getWeatherSource() == mCurrentWeatherSource
                 && location.getWeather() != null
-                && location.getWeather().getBase().getTimeStamp() == mCurrentWeatherTimeStamp) {
+                && location.getWeather().getBase().getTimeStamp() == mCurrentWeatherTimeStamp
+                && mCurrentLightTheme != null
+                && mCurrentLightTheme == mViewModel.getThemeManager().isLightTheme()) {
             return;
         }
 
         boolean needToResetUI = !location.equals(mCurrentLocationFormattedId)
                 || mCurrentWeatherSource != location.getWeatherSource()
-                || mCurrentWeatherTimeStamp != INVALID_CURRENT_WEATHER_TIME_STAMP;
+                || mCurrentWeatherTimeStamp != INVALID_CURRENT_WEATHER_TIME_STAMP
+                || mCurrentLightTheme == null
+                || mCurrentLightTheme != mViewModel.getThemeManager().isLightTheme();
 
         mCurrentLocationFormattedId = location.getFormattedId();
         mCurrentWeatherSource = location.getWeatherSource();
+        mCurrentLightTheme = mViewModel.getThemeManager().isLightTheme();
         mCurrentWeatherTimeStamp = location.getWeather() != null
                 ? location.getWeather().getBase().getTimeStamp()
                 : INVALID_CURRENT_WEATHER_TIME_STAMP;
