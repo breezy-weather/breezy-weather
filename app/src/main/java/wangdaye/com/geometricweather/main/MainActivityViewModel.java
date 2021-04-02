@@ -19,7 +19,6 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.common.basic.GeoViewModel;
 import wangdaye.com.geometricweather.common.basic.models.Location;
-import wangdaye.com.geometricweather.common.basic.models.resources.Resource;
 import wangdaye.com.geometricweather.main.models.Indicator;
 import wangdaye.com.geometricweather.main.models.LocationResource;
 import wangdaye.com.geometricweather.main.models.PermissionsRequest;
@@ -433,16 +432,14 @@ public class MainActivityViewModel extends GeoViewModel
                             LocationResource.loading(location, defaultLocation, event));
                     updateWeather(false, true);
                 } else {
+                    mRepository.cancelWeatherRequest();
                     mCurrentLocation.setValue(
                             LocationResource.success(location, defaultLocation, event));
                 }
                 break;
 
             case BACKGROUND_UPDATE_CURRENT: {
-                LocationResource old = mCurrentLocation.getValue();
-                if (old != null && old.status == Resource.Status.LOADING) {
-                    mRepository.cancelWeatherRequest();
-                }
+                mRepository.cancelWeatherRequest();
                 mCurrentLocation.setValue(
                         LocationResource.success(location, defaultLocation, event));
                 break;

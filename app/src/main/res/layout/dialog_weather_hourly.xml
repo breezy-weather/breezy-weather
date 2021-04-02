@@ -53,7 +53,10 @@
 
             <TextView
                 android:id="@+id/dialog_weather_hourly_text"
+                android:layout_width="match_parent"
                 android:layout_marginEnd="@dimen/normal_margin"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:layout_marginBottom="@dimen/normal_margin"
                 android:gravity="start"
                 android:textAlignment="gravity"
                 android:textStyle="bold"
