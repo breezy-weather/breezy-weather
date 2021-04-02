@@ -27,6 +27,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.polling.PollingManager;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
+import wangdaye.com.geometricweather.common.basic.GeoFragment;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.DarkMode;
 import wangdaye.com.geometricweather.common.snackbar.SnackbarContainer;
@@ -202,10 +203,17 @@ public class MainActivity extends GeoActivity
         if (mBinding.drawerLayout != null) {
             return super.getSnackbarContainer();
         }
+        GeoFragment f;
         if (isManagementFragmentVisible()) {
-            return findManagementFragment().getSnackbarContainer();
+            f = findManagementFragment();
+        } else {
+            f = findMainFragment();
         }
-        return findMainFragment().getSnackbarContainer();
+        if (f != null) {
+            return f.getSnackbarContainer();
+        }
+
+        return super.getSnackbarContainer();
     }
 
     // init.

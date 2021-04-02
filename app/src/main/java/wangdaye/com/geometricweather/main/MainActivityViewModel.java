@@ -134,6 +134,7 @@ public class MainActivityViewModel extends GeoViewModel
         }
 
         LocationResource resource = mCurrentLocation.getValue();
+        assert resource != null;
         mCurrentLocation.setValue(new LocationResource(
                 location, resource.status, resource.defaultLocation, resource.locateFailed, resource.event));
     }
