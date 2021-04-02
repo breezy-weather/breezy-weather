@@ -90,9 +90,4 @@ public class AdaptiveIconDialog extends GeoDialog {
         );
         iconView.setPath(new Random().nextInt(AdaptiveIconView.PATH_TEARDROP + 1));
     }
-
-    @Override
-    public ViewGroup getSnackbarContainer() {
-        return requireDialog().findViewById(R.id.dialog_adaptive_icon_container);
-    }
 }

@@ -2,12 +2,9 @@ package wangdaye.com.geometricweather.main.adapters.main.holder;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.View;
-import android.view.animation.DecelerateInterpolator;
 
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
@@ -17,10 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper;
+import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
 import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.common.utils.DisplayUtils;
-import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper;
 
 public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
 
@@ -61,7 +58,7 @@ public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
     public final void checkEnterScreen(RecyclerView host,
                                        List<Animator> pendingAnimatorList,
                                        boolean listAnimationEnabled) {
-        if (getTop() >= host.getMeasuredHeight()) {
+        if (!itemView.isLaidOut() || getTop() >= host.getMeasuredHeight()) {
             return;
         }
         if (!mInScreen) {
@@ -96,17 +93,7 @@ public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
 
     @NonNull
     protected Animator getEnterAnimator(List<Animator> pendingAnimatorList) {
-        AnimatorSet set = new AnimatorSet();
-        set.playTogether(
-                ObjectAnimator.ofFloat(itemView, "alpha", 0f, 1f),
-                ObjectAnimator.ofFloat(
-                        itemView, "translationY", DisplayUtils.dpToPx(context, 40), 0f
-                )
-        );
-        set.setDuration(450);
-        set.setInterpolator(new DecelerateInterpolator(2f));
-        set.setStartDelay(pendingAnimatorList.size() * 150);
-        return set;
+        return MainModuleUtils.getEnterAnimator(itemView, pendingAnimatorList.size());
     }
 
     public void onEnterScreen() {

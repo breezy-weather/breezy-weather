@@ -243,3 +243,6 @@ public static java.lang.String TABLENAME;
 -keepclassmembers class * extends androidx.datastore.preferences.protobuf.GeneratedMessageLite {
     <fields>;
 }
+
+## Material Sheet FAB
+-keep class io.codetail.animation.arcanimator.** { *; }

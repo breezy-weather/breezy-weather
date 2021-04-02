@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.common.ui.widgets.insets;
+package wangdaye.com.geometricweather.common.ui.widgets.insets.both;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -10,36 +10,36 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.view.ViewCompat;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.core.widget.NestedScrollView;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.common.ui.widgets.insets.Utils;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 
-public class FitSystemBarRecyclerView extends RecyclerView {
+public class FitSystemBarNestedScrollView extends NestedScrollView
+        implements FitBothSideBarView {
 
     private Rect mWindowInsets = new Rect(0, 0, 0, 0);
+
     private boolean mAdaptiveWidthEnabled = true;
-    private int mFitSide;
+    private @FitSide int mFitSide;
+    private boolean mFitTopSideEnabled = true;
+    private boolean mFitBottomSideEnabled = true;
 
-    public static final int SIDE_NONE = 0;
-    public static final int SIDE_TOP = 1;
-    public static final int SIDE_BOTTOM = 2;
-    public static final int SIDE_BOTH = 3;
-
-    public FitSystemBarRecyclerView(@NonNull Context context) {
+    public FitSystemBarNestedScrollView(@NonNull Context context) {
         this(context, null);
     }
 
-    public FitSystemBarRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public FitSystemBarNestedScrollView(@NonNull Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public FitSystemBarRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public FitSystemBarNestedScrollView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         final TypedArray a = context.obtainStyledAttributes(
-                attrs, R.styleable.FitSystemBarRecyclerView, defStyleAttr, 0);
-        mFitSide = a.getInt(R.styleable.FitSystemBarRecyclerView_rv_side, SIDE_BOTH);
+                attrs, R.styleable.FitSystemBarNestedScrollView, defStyleAttr, 0);
+        mFitSide = a.getInt(R.styleable.FitSystemBarNestedScrollView_sv_side, SIDE_TOP | SIDE_BOTTOM);
         a.recycle();
 
         ViewCompat.setOnApplyWindowInsetsListener(this, null);
@@ -67,7 +67,7 @@ public class FitSystemBarRecyclerView extends RecyclerView {
     }
 
     @Override
-    protected boolean fitSystemWindows(Rect insets) {
+    public boolean fitSystemWindows(Rect insets) {
         mWindowInsets = insets;
         requestLayout();
         return false;
@@ -82,9 +82,9 @@ public class FitSystemBarRecyclerView extends RecyclerView {
         int paddingHorizontal = mAdaptiveWidthEnabled ? ((viewWidth - adaptiveWidth) / 2) : 0;
         setPadding(
                 paddingHorizontal,
-                (mFitSide == SIDE_TOP || mFitSide == SIDE_BOTH) ? mWindowInsets.top : 0,
+                ((mFitSide & SIDE_TOP) != 0 && mFitTopSideEnabled) ? mWindowInsets.top : 0,
                 paddingHorizontal,
-                (mFitSide == SIDE_BOTTOM || mFitSide == SIDE_BOTH) ? mWindowInsets.bottom : 0
+                ((mFitSide & SIDE_BOTTOM) != 0 && mFitBottomSideEnabled) ? mWindowInsets.bottom : 0
         );
     }
 
@@ -97,8 +97,26 @@ public class FitSystemBarRecyclerView extends RecyclerView {
         requestLayout();
     }
 
-    public void setFitSide(int side) {
-        mFitSide = side;
-        requestLayout();
+    public void addFitSide(@FitSide int side) {
+        if ((mFitSide & side) != 0) {
+            mFitSide |= side;
+            requestLayout();
+        }
+    }
+
+    public void removeFitSide(@FitSide int side) {
+        if ((mFitSide & side) != 0) {
+            mFitSide |= side;
+            requestLayout();
+        }
+    }
+
+    @Override
+    public void setFitSystemBarEnabled(boolean top, boolean bottom) {
+        if (mFitTopSideEnabled != top || mFitBottomSideEnabled != bottom) {
+            mFitTopSideEnabled = top;
+            mFitBottomSideEnabled = bottom;
+            requestLayout();
+        }
     }
 }

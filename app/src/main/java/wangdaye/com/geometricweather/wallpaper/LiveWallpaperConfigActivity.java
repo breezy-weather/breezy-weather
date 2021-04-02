@@ -17,6 +17,7 @@ import java.util.Arrays;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
+import wangdaye.com.geometricweather.common.snackbar.SnackbarContainer;
 
 public class LiveWallpaperConfigActivity extends GeoActivity {
 
@@ -40,6 +41,12 @@ public class LiveWallpaperConfigActivity extends GeoActivity {
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         // do nothing.
+    }
+
+    @Override
+    public SnackbarContainer getSnackbarContainer() {
+        return new SnackbarContainer(this,
+                findViewById(R.id.activity_live_wallpaper_config_container), true);
     }
 
     public void initData() {

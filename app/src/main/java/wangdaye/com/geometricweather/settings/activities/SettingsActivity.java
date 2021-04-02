@@ -10,8 +10,9 @@ import org.jetbrains.annotations.NotNull;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
-import wangdaye.com.geometricweather.settings.fragments.SettingsFragment;
+import wangdaye.com.geometricweather.common.snackbar.SnackbarContainer;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
+import wangdaye.com.geometricweather.settings.fragments.SettingsFragment;
 
 /**
  * Settings activity.
@@ -54,6 +55,12 @@ public class SettingsActivity extends GeoActivity {
     @Override
     protected void onSaveInstanceState(@NotNull Bundle outState) {
         // do nothing.
+    }
+
+    @Override
+    public SnackbarContainer getSnackbarContainer() {
+        return new SnackbarContainer(this,
+                findViewById(R.id.activity_settings_container), true);
     }
 
     public void pushFragment(PreferenceFragmentCompat f, String tag) {

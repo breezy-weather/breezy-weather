@@ -8,6 +8,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.LifecycleEventObserver;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.common.snackbar.SnackbarContainer;
 
 public abstract class GeoDialog extends DialogFragment {
 
@@ -47,7 +48,9 @@ public abstract class GeoDialog extends DialogFragment {
         ((GeoActivity) requireActivity()).checkToCleanTopDialog(this);
     }
 
-    public abstract ViewGroup getSnackbarContainer();
+    public SnackbarContainer getSnackbarContainer() {
+        return new SnackbarContainer(this, (ViewGroup) getView(), false);
+    }
 
     public boolean isForeground() {
         return mForeground;

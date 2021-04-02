@@ -8,9 +8,6 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.os.Build;
 import android.view.View;
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.Interpolator;
-import android.view.animation.OvershootInterpolator;
 
 import androidx.annotation.Nullable;
 
@@ -23,12 +20,13 @@ import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 public class LocationAdapterAnimWrapper
         extends AnimationAdapterWrapper<LocationAdapter, LocationHolder> {
 
-    private final Interpolator mDecelerate;
     private boolean mStartAnimation;
     private boolean mScrolled;
 
     private final float mDY;
     private final float mDZ;
+
+    private static final float SCALE_FROM = 1.1f;
 
     private static final long BASE_DURATION = 600;
     private static final int MAX_TENSOR_COUNT = 6;
@@ -36,7 +34,6 @@ public class LocationAdapterAnimWrapper
     public LocationAdapterAnimWrapper(Context context, LocationAdapter adapter) {
         super(adapter, true);
 
-        mDecelerate = new DecelerateInterpolator(1f);
         mStartAnimation = false;
         mScrolled = false;
 
@@ -70,29 +67,23 @@ public class LocationAdapterAnimWrapper
 
         Animator alpha = ObjectAnimator
                 .ofFloat(view, "alpha", 0f, 1f).setDuration(duration / 4 * 3);
-        alpha.setInterpolator(mDecelerate);
+        alpha.setInterpolator(DisplayUtils.FLOATING_DECELERATE_INTERPOLATOR);
 
-        Animator translation = ObjectAnimator
-                .ofFloat(view, "translationY", mDY, 0f).setDuration(duration);
-        translation.setInterpolator(new OvershootInterpolator(overShootTensor));
-
-        Animator scaleX = ObjectAnimator
-                .ofFloat(view, "scaleX", 1.1f, 1f).setDuration(duration);
-        scaleX.setInterpolator(mDecelerate);
-
-        Animator scaleY = ObjectAnimator
-                .ofFloat(view, "scaleY", 1.1f, 1f).setDuration(duration);
-        scaleY.setInterpolator(mDecelerate);
+        Animator[] animators = DisplayUtils.getFloatingOvershotEnterAnimators(view, overShootTensor,
+                mDY, 1.1f, 1.1f);
+        for (Animator a : animators) {
+            a.setDuration(duration);
+        }
 
         AnimatorSet set = new AnimatorSet();
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            set.playTogether(translation, alpha, scaleX, scaleY);
+            set.playTogether(alpha, animators[0], animators[1], animators[2]);
         } else {
             Animator z = ObjectAnimator
                     .ofFloat(view, "translationZ", mDZ, 0f).setDuration(duration);
-            z.setInterpolator(mDecelerate);
+            z.setInterpolator(DisplayUtils.FLOATING_DECELERATE_INTERPOLATOR);
 
-            set.playTogether(translation, alpha, scaleX, scaleY, z);
+            set.playTogether(alpha, animators[0], animators[1], animators[2], z);
         }
         set.setStartDelay(delay);
         set.addListener(new AnimatorListenerAdapter() {
@@ -112,8 +103,9 @@ public class LocationAdapterAnimWrapper
     @Override
     protected void setInitState(View view) {
         view.setAlpha(0f);
-        view.setScaleX(0f);
-        view.setScaleY(0f);
+        view.setTranslationY(mDY);
+        view.setScaleX(SCALE_FROM);
+        view.setScaleY(SCALE_FROM);
         setItemStateListAnimator(view, false);
     }
 

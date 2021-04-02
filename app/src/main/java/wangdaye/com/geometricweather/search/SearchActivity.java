@@ -12,7 +12,6 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.view.inputmethod.InputMethodManager;
@@ -29,6 +28,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.gordonwong.materialsheetfab.MaterialSheetFab;
+import com.gordonwong.materialsheetfab.MaterialSheetFabEventListener;
 import com.turingtechnologies.materialscrollbar.CustomIndicator;
 
 import java.util.ArrayList;
@@ -45,6 +46,8 @@ import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
 import wangdaye.com.geometricweather.databinding.ActivitySearchBinding;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
+import wangdaye.com.geometricweather.search.ui.FABView;
+import wangdaye.com.geometricweather.search.ui.adapter.WeatherSourceAdapter;
 
 /**
  * Search activity.
@@ -60,7 +63,11 @@ public class SearchActivity extends GeoActivity
     private LocationAdapter mAdapter;
     private List<Location> mCurrentList;
 
+    private KeyboardCompactMaterialSheetFab mMaterialSheetFab;
+    private @Nullable WeatherSourceAdapter mSourceAdapter;
+
     private @Nullable LoadableLocationList.Status mStatus;
+    private boolean mKeyboardExpanded = false;
 
     public static final String KEY_LOCATION = "location";
 
@@ -106,6 +113,30 @@ public class SearchActivity extends GeoActivity
         }
     }
 
+    private class KeyboardCompactMaterialSheetFab extends MaterialSheetFab<FABView> {
+
+        public KeyboardCompactMaterialSheetFab(FABView fabView, View sheet, View overlay,
+                                               int sheetColor, int fabColor) {
+            super(fabView, sheet, overlay, sheetColor, fabColor);
+        }
+
+        @Override
+        public void showSheet() {
+            if (mKeyboardExpanded) {
+                fab.setEnabled(false);
+
+                hideKeyboard();
+                fab.postDelayed(() -> {
+                    super.showSheet();
+                    fab.setEnabled(true);
+                }, 300);
+                return;
+            }
+
+            super.showSheet();
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,15 +163,18 @@ public class SearchActivity extends GeoActivity
 
         initModel();
         initView();
+
+        setOnKeyboardStateChangedListener(expanded -> mKeyboardExpanded = expanded);
     }
 
     @Override
     public void onBackPressed() {
-        if (getWindow().getAttributes().softInputMode
-                != WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE) {
-            finishSelf(null);
+        if (mMaterialSheetFab.isSheetVisible()) {
+            mMaterialSheetFab.hideSheet();
+        } else if (mKeyboardExpanded) {
+            hideKeyboard();
         } else {
-            super.onBackPressed();
+            finishSelf(null);
         }
     }
 
@@ -152,17 +186,12 @@ public class SearchActivity extends GeoActivity
 
     private void initView() {
         mBinding.backBtn.setOnClickListener(v -> finishSelf(null));
-        mBinding.filterBtn.setOnClickListener(v -> {
-            mViewModel.switchMultiSourceEnabled();
-            if (!TextUtils.isEmpty(mViewModel.getQueryValue())) {
-                mViewModel.requestLocationList();
-            }
-        });
 
         mBinding.editText.setOnEditorActionListener(this);
         new Handler().post(() -> {
             mBinding.editText.requestFocus();
-            InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            InputMethodManager inputManager = (InputMethodManager) getSystemService(
+                    Context.INPUT_METHOD_SERVICE);
             if (inputManager != null) {
                 inputManager.showSoftInput(mBinding.editText, 0);
             }
@@ -204,15 +233,14 @@ public class SearchActivity extends GeoActivity
                 new WeatherSourceIndicator(this).setTextSize(16), true);
         mBinding.recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
-            @ColorInt int color;
+            private @ColorInt int mColor;
 
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                color = mAdapter.getItemSourceColor(layoutManager.findFirstVisibleItemPosition());
-                if (color != Color.TRANSPARENT) {
-                    mBinding.scrollBar.setHandleColor(color);
-                    mBinding.scrollBar.setHandleOffColor(color);
+                mColor = mAdapter.getItemSourceColor(layoutManager.findFirstVisibleItemPosition());
+                if (mColor != Color.TRANSPARENT) {
+                    mBinding.scrollBar.setHandleColor(mColor);
+                    mBinding.scrollBar.setHandleOffColor(mColor);
                 }
             }
         });
@@ -236,19 +264,44 @@ public class SearchActivity extends GeoActivity
             });
         }
 
+        mMaterialSheetFab = new KeyboardCompactMaterialSheetFab(
+                mBinding.fab,
+                mBinding.fabSheet,
+                mBinding.overlay,
+                getResources().getColor(R.color.colorRoot),
+                getResources().getColor(R.color.colorPrimary)
+        );
+        mMaterialSheetFab.setEventListener(new MaterialSheetFabEventListener() {
+            @Override
+            public void onShowSheet() {
+                mBinding.sourceList.setAdapter(
+                        mSourceAdapter = new WeatherSourceAdapter(mViewModel.getEnabledSourcesValue())
+                );
+            }
+        });
+
+        mBinding.sourceList.setLayoutManager(new LinearLayoutManager(this));
+        mBinding.sourceEnter.setOnClickListener(v -> {
+            if (mMaterialSheetFab.isSheetVisible()) {
+                mMaterialSheetFab.hideSheet();
+            }
+            if (mSourceAdapter != null) {
+                mViewModel.setEnabledSources(mSourceAdapter.getValidWeatherSources());
+            }
+            if (!TextUtils.isEmpty(mViewModel.getQueryValue())) {
+                mViewModel.requestLocationList();
+            }
+        });
+
         mViewModel.getListResource().observe(this, loadableLocationList -> {
             setStatus(loadableLocationList.status);
-            mBinding.filterBtn.setEnabled(loadableLocationList.status != LoadableLocationList.Status.LOADING);
+            mBinding.sourceEnter.setEnabled(
+                    loadableLocationList.status != LoadableLocationList.Status.LOADING);
+            mBinding.sourceEnter.setAlpha(mBinding.sourceEnter.isEnabled() ? 1 : 0.5f);
             mAdapter.update(loadableLocationList.dataList, null, null);
         });
 
-        mViewModel.getMultiSourceEnabled().observe(this, enabled -> {
-            mBinding.filterBtn.setImageResource(enabled
-                    ? R.drawable.ic_filter_off
-                    : R.drawable.ic_filter);
-            mBinding.filterBtn.setContentDescription(getString(enabled
-                    ? R.string.content_desc_search_filter_off
-                    : R.string.content_desc_search_filter_on));
+        mViewModel.getEnabledSources().observe(this, enabled -> {
         });
         mViewModel.getQuery().observe(this, query -> {
             mBinding.editText.setText(query);
@@ -297,6 +350,13 @@ public class SearchActivity extends GeoActivity
         mStatus = newStatus;
     }
 
+    private void hideKeyboard() {
+        InputMethodManager manager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        if (manager != null) {
+            manager.hideSoftInputFromWindow(mBinding.editText.getWindowToken(), 0);
+        }
+    }
+
     // interface.
 
     // on editor action listener.
@@ -304,10 +364,7 @@ public class SearchActivity extends GeoActivity
     @Override
     public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
         if (!TextUtils.isEmpty(textView.getText().toString())) {
-            InputMethodManager manager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-            if (manager != null) {
-                manager.hideSoftInputFromWindow(mBinding.editText.getWindowToken(), 0);
-            }
+            hideKeyboard();
 
             String query = textView.getText().toString();
             mViewModel.requestLocationList(query);

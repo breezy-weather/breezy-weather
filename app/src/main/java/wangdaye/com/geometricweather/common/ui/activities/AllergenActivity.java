@@ -13,7 +13,7 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.ui.decotarions.ListDecoration;
-import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarRecyclerView;
+import wangdaye.com.geometricweather.common.ui.widgets.insets.both.FitSystemBarRecyclerView;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.common.ui.adapters.DailyPollenAdapter;
 

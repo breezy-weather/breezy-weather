@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarNestedScrollView
+        <wangdaye.com.geometricweather.common.ui.widgets.insets.both.FitSystemBarNestedScrollView
             android:id="@+id/activity_live_wallpaper_config_scrollView"
             android:scrollbars="vertical"
             android:layout_width="match_parent"
@@ -119,7 +119,7 @@
 
             </LinearLayout>
 
-        </wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarNestedScrollView>
+        </wangdaye.com.geometricweather.common.ui.widgets.insets.both.FitSystemBarNestedScrollView>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

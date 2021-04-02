@@ -134,6 +134,8 @@
     <string name="help">HELP</string>
     <string name="learn_more">LEARN MORE</string>
 
+    <string name="filter_weather_sources">Filter</string>
+
     <string name="about_app">ABOUT APP</string>
     <string name="introduce">introduce</string>
     <string name="email">E-mail</string>
@@ -333,6 +335,7 @@
     <string name="content_desc_weather_icon_light">Light icon</string>
     <string name="content_desc_weather_icon_grey">Grey icon</string>
     <string name="content_desc_weather_icon_dark">Dark icon</string>
+    <string name="content_desc_filter_weather_sources">Filter weather sources</string>
 
     <!-- action -->
     <string name="action_alert">Alert</string>

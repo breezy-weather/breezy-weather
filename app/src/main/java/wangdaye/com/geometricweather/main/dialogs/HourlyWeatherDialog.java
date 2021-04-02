@@ -95,7 +95,8 @@ public class HourlyWeatherDialog extends GeoDialog {
         subtitle.setText(new SimpleDateFormat(getString(R.string.date_format_widget_long)).format(hourly.getDate()));
         subtitle.setTextColor(palette.subtitleColor);
 
-        view.findViewById(R.id.dialog_weather_hourly_weatherContainer).setOnClickListener(v -> mWeatherIcon.startAnimators());
+        view.findViewById(R.id.dialog_weather_hourly_weatherContainer).setOnClickListener(v ->
+                mWeatherIcon.startAnimators());
 
         mWeatherIcon = view.findViewById(R.id.dialog_weather_hourly_icon);
         WeatherCode weatherCode = hourly.getWeatherCode();
@@ -138,10 +139,5 @@ public class HourlyWeatherDialog extends GeoDialog {
                     .append(ProbabilityUnit.PERCENT.getProbabilityText(requireActivity(), p));
         }
         weatherText.setText(builder.toString());
-    }
-
-    @Override
-    public ViewGroup getSnackbarContainer() {
-        return requireDialog().findViewById(R.id.dialog_weather_hourly_container);
     }
 }

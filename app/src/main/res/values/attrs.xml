@@ -45,6 +45,14 @@
         <attr name="radius_to" format="dimension" />
     </declare-styleable>
 
+    <!-- Scale transition. -->
+    <declare-styleable name="ScaleTransition">
+        <attr name="scale_type">
+            <enum name="show" value="1" />
+            <enum name="hide" value="2" />
+        </attr>
+    </declare-styleable>
+
     <!-- Tag view. -->
     <declare-styleable name="TagView">
         <attr name="checked" format="boolean" />
@@ -68,18 +76,23 @@
     <!-- Fit system bar. -->
     <declare-styleable name="FitSystemBarRecyclerView">
         <attr name="rv_side">
-            <enum name="none" value="0" />
-            <enum name="top" value="1" />
-            <enum name="bottom" value="2" />
-            <enum name="both" value="3" />
+            <flag name="none" value="0" />
+            <flag name="top" value="1" />
+            <flag name="bottom" value="2" />
         </attr>
     </declare-styleable>
     <declare-styleable name="FitSystemBarNestedScrollView">
         <attr name="sv_side">
-            <enum name="none" value="0" />
-            <enum name="top" value="1" />
-            <enum name="bottom" value="2" />
-            <enum name="both" value="3" />
+            <flag name="none" value="0" />
+            <flag name="top" value="1" />
+            <flag name="bottom" value="2" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="FitSystemBarCoordinatorLayout">
+        <attr name="cl_side">
+            <flag name="none" value="0" />
+            <flag name="top" value="1" />
+            <flag name="bottom" value="2" />
         </attr>
     </declare-styleable>
 

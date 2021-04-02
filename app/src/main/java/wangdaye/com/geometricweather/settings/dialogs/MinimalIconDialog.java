@@ -90,9 +90,4 @@ public class MinimalIconDialog extends GeoDialog {
         darkIconView.setImageDrawable(ResourceHelper.getWidgetNotificationIcon(
                 provider, code, daytime, true, "dark"));
     }
-
-    @Override
-    public ViewGroup getSnackbarContainer() {
-        return requireDialog().findViewById(R.id.dialog_minimal_icon_container);
-    }
 }

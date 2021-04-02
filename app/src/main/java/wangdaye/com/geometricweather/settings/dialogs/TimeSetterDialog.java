@@ -85,11 +85,6 @@ public class TimeSetterDialog extends GeoDialog
         timePicker.setOnTimeChangedListener(this);
     }
 
-    @Override
-    public ViewGroup getSnackbarContainer() {
-        return requireDialog().findViewById(R.id.dialog_time_setter_container);
-    }
-
     // interface.
 
     // on time changed listener.

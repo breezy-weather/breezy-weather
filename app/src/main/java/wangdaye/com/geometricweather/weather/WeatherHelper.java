@@ -14,12 +14,11 @@ import io.reactivex.disposables.CompositeDisposable;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.db.DatabaseHelper;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.common.rxjava.BaseObserver;
 import wangdaye.com.geometricweather.common.rxjava.ObserverContainer;
-import wangdaye.com.geometricweather.weather.services.WeatherService;
 import wangdaye.com.geometricweather.common.rxjava.SchedulerTransformer;
+import wangdaye.com.geometricweather.db.DatabaseHelper;
+import wangdaye.com.geometricweather.weather.services.WeatherService;
 
 /**
  * Weather helper.
@@ -74,25 +73,12 @@ public class WeatherHelper {
         });
     }
 
-    public void requestLocation(Context context, String query, boolean multiSource,
+    public void requestLocation(Context context, String query, List<WeatherSource> enabledSources,
                                 @NonNull final OnRequestLocationListener l) {
-        // build weather source list.
-        List<WeatherSource> sourceList = new ArrayList<>();
-        // default weather source at first index.
-        sourceList.add(SettingsOptionManager.getInstance(context).getWeatherSource());
-        if (multiSource) {
-            // ensure no duplicates.
-            for (WeatherSource source : WeatherSource.values()) {
-                if (sourceList.get(0) != source) {
-                    sourceList.add(source);
-                }
-            }
-        }
-
         // generate weather services.
-        final WeatherService[] services = new WeatherService[sourceList.size()];
+        final WeatherService[] services = new WeatherService[enabledSources.size()];
         for (int i = 0; i < services.length; i ++) {
-            services[i] = mServiceSet.get(sourceList.get(i));
+            services[i] = mServiceSet.get(enabledSources.get(i));
         }
 
         // generate observable list.

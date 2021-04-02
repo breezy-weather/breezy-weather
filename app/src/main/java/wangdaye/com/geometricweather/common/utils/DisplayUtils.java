@@ -1,5 +1,7 @@
 package wangdaye.com.geometricweather.common.utils;
 
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
@@ -11,11 +13,15 @@ import android.os.Build;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.view.Window;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.Interpolator;
+import android.view.animation.OvershootInterpolator;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Px;
 import androidx.annotation.RequiresApi;
+import androidx.annotation.Size;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 
@@ -29,6 +35,9 @@ import wangdaye.com.geometricweather.R;
  * */
 
 public class DisplayUtils {
+
+    public static final Interpolator FLOATING_DECELERATE_INTERPOLATOR
+            = new DecelerateInterpolator(1f);
 
     private static final int MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_PHONE = 512;
     private static final int MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_TABLET = 600;
@@ -236,5 +245,38 @@ public class DisplayUtils {
         int sr = 60 * 6;
         int ss = 60 * 18;
         return sr < time && time < ss;
+    }
+
+    // translationY, scaleX, scaleY
+    @Size(3)
+    public static Animator[] getFloatingOvershotEnterAnimators(View view) {
+        return getFloatingOvershotEnterAnimators(view, 1.5f);
+    }
+
+    @Size(3)
+    public static Animator[] getFloatingOvershotEnterAnimators(View view, float overshootFactor) {
+        return getFloatingOvershotEnterAnimators(view, overshootFactor,
+                view.getTranslationY(), view.getScaleX(), view.getScaleY());
+    }
+
+    @Size(3)
+    public static Animator[] getFloatingOvershotEnterAnimators(View view,
+                                                               float overshootFactor,
+                                                               float translationYFrom,
+                                                               float scaleXFrom,
+                                                               float scaleYFrom) {
+        Animator translation = ObjectAnimator.ofFloat(
+                view, "translationY", translationYFrom, 0f);
+        translation.setInterpolator(new OvershootInterpolator(overshootFactor));
+
+        Animator scaleX = ObjectAnimator.ofFloat(
+                view, "scaleX", scaleXFrom, 1f);
+        scaleX.setInterpolator(FLOATING_DECELERATE_INTERPOLATOR);
+
+        Animator scaleY = ObjectAnimator.ofFloat(
+                view, "scaleY", scaleYFrom, 1f);
+        scaleY.setInterpolator(FLOATING_DECELERATE_INTERPOLATOR);
+
+        return new Animator[] {translation, scaleX, scaleY};
     }
 }
