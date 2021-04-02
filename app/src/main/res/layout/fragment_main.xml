@@ -2,6 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -15,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarRecyclerView
+            <wangdaye.com.geometricweather.common.ui.widgets.insets.both.FitSystemBarRecyclerView
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -51,8 +52,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/normal_margin"
         android:alpha="0"
-        android:fitsSystemWindows="true"
-        app:layout_behavior=".common.ui.behaviors.InkPageIndicatorBehavior"
+        android:layout_gravity="bottom|center_horizontal"
+        app:layout_behavior=".common.ui.behaviors.FloatingAboveSnackbarBehavior"
         app:dotDiameter="8dp"
         app:dotGap="8dp"
         app:animationDuration="300" />

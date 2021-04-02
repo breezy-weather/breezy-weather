@@ -16,6 +16,9 @@ import androidx.viewpager.widget.ViewPager;
 
 import java.util.List;
 
+import wangdaye.com.geometricweather.common.ui.widgets.insets.both.FitSystemBarNestedScrollView;
+import wangdaye.com.geometricweather.common.ui.widgets.insets.both.FitSystemBarRecyclerView;
+
 public class FitSystemBarViewPager extends ViewPager {
 
     private Rect mWindowInsets = new Rect(0, 0, 0, 0);

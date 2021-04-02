@@ -146,7 +146,7 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
         } else {
             holder.onBindView(mActivity, mLocation, mProvider, mListAnimationEnabled, mItemAnimationEnabled);
         }
-        holder.checkEnterScreen(mHost, mPendingAnimatorList, mListAnimationEnabled);
+        mHost.post(() -> holder.checkEnterScreen(mHost, mPendingAnimatorList, mListAnimationEnabled));
     }
 
     @Override

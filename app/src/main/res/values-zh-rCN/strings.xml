@@ -129,6 +129,8 @@
     <string name="help">帮助</string>
     <string name="learn_more">了解更多</string>
 
+    <string name="filter_weather_sources">筛选</string>
+
     <string name="about_app">概览</string>
     <string name="introduce">介绍</string>
     <string name="email">E-mail</string>
@@ -301,6 +303,7 @@
     <string name="content_desc_weather_icon_light">亮色图标</string>
     <string name="content_desc_weather_icon_grey">灰色图标</string>
     <string name="content_desc_weather_icon_dark">暗色图标</string>
+    <string name="content_desc_filter_weather_sources">筛选天气源</string>
 
     <!-- action -->
     <string name="action_alert">预警</string>

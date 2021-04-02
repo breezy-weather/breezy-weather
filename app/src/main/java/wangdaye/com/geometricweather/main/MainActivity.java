@@ -29,6 +29,7 @@ import wangdaye.com.geometricweather.background.polling.PollingManager;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.DarkMode;
+import wangdaye.com.geometricweather.common.snackbar.SnackbarContainer;
 import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper;
 import wangdaye.com.geometricweather.common.utils.helpers.BusHelper;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
@@ -194,6 +195,17 @@ public class MainActivity extends GeoActivity
     protected void onDestroy() {
         super.onDestroy();
         BusHelper.cancelObserveLocationChanged(mBackgroundUpdateObserver);
+    }
+
+    @Override
+    public SnackbarContainer getSnackbarContainer() {
+        if (mBinding.drawerLayout != null) {
+            return super.getSnackbarContainer();
+        }
+        if (isManagementFragmentVisible()) {
+            return findManagementFragment().getSnackbarContainer();
+        }
+        return findMainFragment().getSnackbarContainer();
     }
 
     // init.

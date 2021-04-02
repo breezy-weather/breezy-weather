@@ -58,9 +58,4 @@ public class RunningInBackgroundODialog extends GeoDialog
                 break;
         }
     }
-
-    @Override
-    public ViewGroup getSnackbarContainer() {
-        return requireDialog().findViewById(R.id.dialog_running_in_background_o_container);
-    }
 }

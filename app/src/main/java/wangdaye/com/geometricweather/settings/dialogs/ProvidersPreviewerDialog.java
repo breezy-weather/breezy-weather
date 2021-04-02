@@ -131,9 +131,4 @@ public class ProvidersPreviewerDialog extends GeoDialog {
         mProgress.startAnimation(out);
         mProgress.setVisibility(View.GONE);
     }
-
-    @Override
-    public ViewGroup getSnackbarContainer() {
-        return requireDialog().findViewById(R.id.dialog_providers_previewer_container);
-    }
 }

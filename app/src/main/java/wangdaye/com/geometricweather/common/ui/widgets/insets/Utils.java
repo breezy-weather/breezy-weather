@@ -6,15 +6,30 @@ import android.os.Build;
 import android.view.DisplayCutout;
 import android.view.WindowInsets;
 
-class Utils {
+import androidx.core.view.DisplayCutoutCompat;
+import androidx.core.view.WindowInsetsCompat;
 
-    static Rect getWaterfullInsets(WindowInsets insets) {
+public class Utils {
+
+    public static Rect getWaterfullInsets(WindowInsets insets) {
         Rect waterfull = new Rect();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             DisplayCutout cutout = insets.getDisplayCutout();
             if (cutout != null) {
                 Insets i = cutout.getWaterfallInsets();
                 waterfull = new Rect(i.left, i.top, i.right, i.bottom);
+            }
+        }
+        return waterfull;
+    }
+
+    public static Rect getWaterfullInsets(WindowInsetsCompat insets) {
+        Rect waterfull = new Rect();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            DisplayCutoutCompat cutout = insets.getDisplayCutout();
+            if (cutout != null) {
+                waterfull = new Rect(cutout.getSafeInsetLeft(), cutout.getSafeInsetTop(),
+                        cutout.getSafeInsetRight(), cutout.getSafeInsetBottom());
             }
         }
         return waterfull;

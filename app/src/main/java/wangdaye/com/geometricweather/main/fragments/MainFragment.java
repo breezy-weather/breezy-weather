@@ -1,48 +1,46 @@
 package wangdaye.com.geometricweather.main.fragments;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
+import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.DecelerateInterpolator;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
+import wangdaye.com.geometricweather.common.basic.GeoFragment;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
 import wangdaye.com.geometricweather.common.basic.models.resources.Resource;
-import wangdaye.com.geometricweather.databinding.FragmentMainBinding;
-import wangdaye.com.geometricweather.main.MainActivityViewModel;
-import wangdaye.com.geometricweather.main.adapters.main.MainAdapter;
-import wangdaye.com.geometricweather.main.dialogs.LocationHelpDialog;
-import wangdaye.com.geometricweather.main.layouts.MainLayoutManager;
-import wangdaye.com.geometricweather.main.models.LocationResource;
-import wangdaye.com.geometricweather.main.utils.MainPalette;
-import wangdaye.com.geometricweather.main.utils.MainThemeManager;
-import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
-import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
 import wangdaye.com.geometricweather.common.ui.widgets.SwipeSwitchLayout;
 import wangdaye.com.geometricweather.common.ui.widgets.insets.FitHorizontalSystemBarRootLayout;
 import wangdaye.com.geometricweather.common.ui.widgets.weatherView.WeatherView;
 import wangdaye.com.geometricweather.common.ui.widgets.weatherView.WeatherViewController;
 import wangdaye.com.geometricweather.common.ui.widgets.weatherView.circularSkyView.CircularSkyWeatherView;
 import wangdaye.com.geometricweather.common.ui.widgets.weatherView.materialWeatherView.MaterialWeatherView;
-import wangdaye.com.geometricweather.common.utils.DisplayUtils;
+import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
+import wangdaye.com.geometricweather.databinding.FragmentMainBinding;
+import wangdaye.com.geometricweather.main.MainActivityViewModel;
+import wangdaye.com.geometricweather.main.adapters.main.MainAdapter;
+import wangdaye.com.geometricweather.main.dialogs.LocationHelpDialog;
+import wangdaye.com.geometricweather.main.layouts.MainLayoutManager;
+import wangdaye.com.geometricweather.main.models.LocationResource;
+import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
+import wangdaye.com.geometricweather.main.utils.MainPalette;
+import wangdaye.com.geometricweather.main.utils.MainThemeManager;
+import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 
-public class MainFragment extends Fragment {
+public class MainFragment extends GeoFragment {
 
     private FragmentMainBinding mBinding;
     private MainActivityViewModel mViewModel;
@@ -50,7 +48,7 @@ public class MainFragment extends Fragment {
     private WeatherView mWeatherView;
     private MainAdapter mAdapter;
     private OnScrollListener mScrollListener;
-    private @Nullable AnimatorSet mRecyclerViewAnimator;
+    private @Nullable Animator mRecyclerViewAnimator;
 
     private ResourceProvider mResourceProvider;
 
@@ -296,17 +294,7 @@ public class MainFragment extends Fragment {
 
         if (!listAnimationEnabled) {
             mBinding.recyclerView.setAlpha(0f);
-            mRecyclerViewAnimator = new AnimatorSet();
-            mRecyclerViewAnimator.playTogether(
-                    ObjectAnimator.ofFloat(mBinding.recyclerView, "alpha", 0f, 1f),
-                    ObjectAnimator.ofFloat(
-                            mBinding.recyclerView,
-                            "translationY",
-                            DisplayUtils.dpToPx(requireContext(), 40), 0f
-                    )
-            );
-            mRecyclerViewAnimator.setDuration(450);
-            mRecyclerViewAnimator.setInterpolator(new DecelerateInterpolator(2f));
+            mRecyclerViewAnimator = MainModuleUtils.getEnterAnimator(mBinding.recyclerView, 0);
             mRecyclerViewAnimator.setStartDelay(150);
             mRecyclerViewAnimator.start();
         }

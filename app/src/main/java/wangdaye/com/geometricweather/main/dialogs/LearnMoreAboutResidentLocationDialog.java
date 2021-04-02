@@ -25,9 +25,4 @@ public class LearnMoreAboutResidentLocationDialog extends GeoDialog {
         return LayoutInflater.from(getActivity()).inflate(
                 R.layout.dialog_resident_location, container, false);
     }
-
-    @Override
-    public ViewGroup getSnackbarContainer() {
-        return requireDialog().findViewById(R.id.dialog_resident_location_container);
-    }
 }

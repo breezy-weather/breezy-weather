@@ -87,9 +87,4 @@ public class LocationHelpDialog extends GeoDialog {
                 )
         );
     }
-
-    @Override
-    public ViewGroup getSnackbarContainer() {
-        return requireDialog().findViewById(R.id.dialog_location_help_container);
-    }
 }

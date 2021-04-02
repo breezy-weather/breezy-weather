@@ -9,7 +9,6 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import wangdaye.com.geometricweather.BuildConfig;
-import wangdaye.com.geometricweather.common.retrofit.interceptors.GzipInterceptor;
 import wangdaye.com.geometricweather.weather.apis.AccuWeatherApi;
 import wangdaye.com.geometricweather.weather.apis.AtmoAuraIqaApi;
 import wangdaye.com.geometricweather.weather.apis.CNWeatherApi;
@@ -23,12 +22,11 @@ public class ApiModule {
 
     @Provides
     public AccuWeatherApi provideAccuWeatherApi(OkHttpClient client,
-                                                GzipInterceptor interceptor,
                                                 GsonConverterFactory converterFactory,
                                                 RxJava2CallAdapterFactory callAdapterFactory) {
         return new Retrofit.Builder()
                 .baseUrl(BuildConfig.ACCU_WEATHER_BASE_URL)
-                .client(client.newBuilder().addInterceptor(interceptor).build())
+                .client(client)
                 .addConverterFactory(converterFactory)
                 .addCallAdapterFactory(callAdapterFactory)
                 .build()
@@ -37,12 +35,11 @@ public class ApiModule {
 
     @Provides
     public OwmApi provideOpenWeatherMapApi(OkHttpClient client,
-                                           GzipInterceptor interceptor,
                                            GsonConverterFactory converterFactory,
                                            RxJava2CallAdapterFactory callAdapterFactory) {
         return new Retrofit.Builder()
                 .baseUrl(BuildConfig.OWM_BASE_URL)
-                .client(client.newBuilder().addInterceptor(interceptor).build())
+                .client(client)
                 .addConverterFactory(converterFactory)
                 .addCallAdapterFactory(callAdapterFactory)
                 .build()
@@ -51,12 +48,11 @@ public class ApiModule {
 
     @Provides
     public CaiYunApi provideCaiYunApi(OkHttpClient client,
-                                      GzipInterceptor interceptor,
                                       GsonConverterFactory converterFactory,
                                       RxJava2CallAdapterFactory callAdapterFactory) {
         return new Retrofit.Builder()
                 .baseUrl(BuildConfig.CAIYUN_WEATHER_BASE_URL)
-                .client(client.newBuilder().addInterceptor(interceptor).build())
+                .client(client)
                 .addConverterFactory(converterFactory)
                 .addCallAdapterFactory(callAdapterFactory)
                 .build()
@@ -65,12 +61,11 @@ public class ApiModule {
 
     @Provides
     public CNWeatherApi provideCNWeatherApi(OkHttpClient client,
-                                            GzipInterceptor interceptor,
                                             GsonConverterFactory converterFactory,
                                             RxJava2CallAdapterFactory callAdapterFactory) {
         return new Retrofit.Builder()
                 .baseUrl(BuildConfig.CN_WEATHER_BASE_URL)
-                .client(client.newBuilder().addInterceptor(interceptor).build())
+                .client(client)
                 .addConverterFactory(converterFactory)
                 .addCallAdapterFactory(callAdapterFactory)
                 .build()
@@ -79,12 +74,11 @@ public class ApiModule {
 
     @Provides
     public MfWeatherApi provideMfWeatherApi(OkHttpClient client,
-                                            GzipInterceptor interceptor,
                                             GsonConverterFactory converterFactory,
                                             RxJava2CallAdapterFactory callAdapterFactory) {
         return new Retrofit.Builder()
                 .baseUrl(BuildConfig.MF_WSFT_BASE_URL)
-                .client(client.newBuilder().addInterceptor(interceptor).build())
+                .client(client)
                 .addConverterFactory(converterFactory)
                 .addCallAdapterFactory(callAdapterFactory)
                 .build()
@@ -93,12 +87,11 @@ public class ApiModule {
 
     @Provides
     public AtmoAuraIqaApi provideAtmoAuraIqaApi(OkHttpClient client,
-                                                GzipInterceptor interceptor,
                                                 GsonConverterFactory converterFactory,
                                                 RxJava2CallAdapterFactory callAdapterFactory) {
         return new Retrofit.Builder()
                 .baseUrl(BuildConfig.IQA_ATMO_AURA_URL)
-                .client(client.newBuilder().addInterceptor(interceptor).build())
+                .client(client)
                 .addConverterFactory(converterFactory)
                 .addCallAdapterFactory(callAdapterFactory)
                 .build()

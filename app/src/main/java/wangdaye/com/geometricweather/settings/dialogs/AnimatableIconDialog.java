@@ -84,9 +84,4 @@ public class AnimatableIconDialog extends GeoDialog {
         CoordinatorLayout container = view.findViewById(R.id.dialog_animatable_icon_container);
         container.setOnClickListener(v -> iconView.startAnimators());
     }
-
-    @Override
-    public ViewGroup getSnackbarContainer() {
-        return requireDialog().findViewById(R.id.dialog_animatable_icon_container);
-    }
 }

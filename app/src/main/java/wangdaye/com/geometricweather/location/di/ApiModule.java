@@ -21,7 +21,7 @@ public class ApiModule {
                                                         RxJava2CallAdapterFactory callAdapterFactory) {
         return new Retrofit.Builder()
                 .baseUrl(BuildConfig.BAIDU_IP_LOCATION_BASE_URL)
-                .client(client.newBuilder().build())
+                .client(client)
                 .addConverterFactory(converterFactory)
                 .addCallAdapterFactory(callAdapterFactory)
                 .build()

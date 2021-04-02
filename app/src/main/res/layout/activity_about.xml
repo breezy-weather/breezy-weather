@@ -23,7 +23,7 @@
 
     </wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout>
 
-    <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarRecyclerView
+    <wangdaye.com.geometricweather.common.ui.widgets.insets.both.FitSystemBarRecyclerView
         android:id="@+id/activity_about_recyclerView"
         android:scrollbars="none"
         android:layout_width="match_parent"

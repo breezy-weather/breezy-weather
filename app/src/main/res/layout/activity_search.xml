@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<wangdaye.com.geometricweather.common.ui.widgets.insets.both.FitSystemBarCoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container"
@@ -33,18 +34,11 @@
                     android:contentDescription="@string/content_desc_back"
                     style="@style/material_image_button" />
 
-                <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/filterBtn"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    style="@style/material_image_button"
-                    tools:src="@drawable/ic_filter"
-                    tools:ignore="ContentDescription,RtlHardcoded" />
-
                 <EditText
                     android:id="@+id/editText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/normal_margin"
                     android:hint="@string/feedback_search_location"
                     android:textSize="@dimen/title_text_size"
                     android:textColor="@color/colorTextContent"
@@ -56,7 +50,6 @@
                     android:background="@android:color/transparent"
                     android:layout_centerVertical="true"
                     android:layout_toEndOf="@id/backBtn"
-                    android:layout_toStartOf="@id/filterBtn"
                     tools:ignore="Autofill,RtlHardcoded" />
 
             </RelativeLayout>
@@ -80,7 +73,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarRecyclerView
+                <wangdaye.com.geometricweather.common.ui.widgets.insets.both.FitSystemBarRecyclerView
                     android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -106,4 +99,68 @@
 
     </LinearLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <wangdaye.com.geometricweather.search.ui.FABView
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/normal_margin"
+        android:layout_gravity="bottom|end"
+        android:textColor="@android:color/white"
+        android:theme="@style/Theme.MaterialComponents"
+        android:contentDescription="@string/content_desc_filter_weather_sources"
+        android:src="@drawable/ic_filter"
+        app:tint="@android:color/white"
+        app:backgroundTint="@color/colorPrimary"
+        app:layout_behavior=".search.ui.BottomBehavior" />
+
+    <com.gordonwong.materialsheetfab.DimOverlayFrameLayout
+        android:id="@+id/overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <io.codetail.widget.RevealLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="end|bottom"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/fab_sheet"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_margin="@dimen/normal_margin"
+            style="@style/material_card"
+            app:cardBackgroundColor="@color/colorRoot">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/source_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorLine" />
+
+                <Button
+                    android:id="@+id/source_enter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/done"
+                    android:textColor="@color/colorTextTitle"
+                    style="@style/material_button"
+                    tools:ignore="UnusedAttribute" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </io.codetail.widget.RevealLinearLayout>
+
+</wangdaye.com.geometricweather.common.ui.widgets.insets.both.FitSystemBarCoordinatorLayout>

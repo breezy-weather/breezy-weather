@@ -29,9 +29,4 @@ public class WechatDonateDialog extends GeoDialog {
         ImageHelper.load(requireActivity(), image, R.drawable.donate_wechat);
         return view;
     }
-
-    @Override
-    public ViewGroup getSnackbarContainer() {
-        return requireDialog().findViewById(R.id.dialog_donate_wechat);
-    }
 }

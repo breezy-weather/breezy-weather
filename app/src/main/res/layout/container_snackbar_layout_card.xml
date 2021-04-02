@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<view xmlns:android="http://schemas.android.com/apk/res/android"
+    class="wangdaye.com.geometricweather.common.snackbar.Snackbar$CardSnackbarLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom|center_horizontal"
+    android:background="@android:color/transparent"
+    style="@style/Widget.Design.Snackbar" />

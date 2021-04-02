@@ -84,6 +84,8 @@ public class DailyPollenAdapter extends RecyclerView.Adapter<DailyPollenAdapter.
                     + " : " + mPollenUnit.getPollenVoice(context, pollen.getMoldIndex())
                     + " - " + pollen.getMoldDescription()
             );
+            itemView.setOnClickListener(v -> {
+            });
         }
     }
 

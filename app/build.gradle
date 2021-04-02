@@ -229,6 +229,7 @@ dependencies {
     implementation 'com.xw.repo:bubbleseekbar:3.20-lite'
     implementation 'me.jfenn:AdaptiveIconView:0.0.1'
     implementation 'com.github.turing-tech:MaterialScrollBar:13.3.2'
+    implementation 'com.gordonwong:material-sheet-fab:1.2.1'
 
     // utils.
     implementation 'org.jetbrains:annotations-java5:15.0'

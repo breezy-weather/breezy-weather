@@ -12,7 +12,9 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.common.retrofit.TLSCompactHelper;
+import wangdaye.com.geometricweather.common.retrofit.interceptors.GzipInterceptor;
 
 @InstallIn(ApplicationComponent.class)
 @Module
@@ -20,8 +22,12 @@ public class RetrofitModule {
 
     @Provides
     @Singleton
-    public OkHttpClient provideOkHttpClient() {
-        return TLSCompactHelper.getClientBuilder().build();
+    public OkHttpClient provideOkHttpClient(GzipInterceptor gzipInterceptor,
+                                            HttpLoggingInterceptor loggingInterceptor) {
+        return TLSCompactHelper.getClientBuilder()
+                .addInterceptor(gzipInterceptor)
+                .addInterceptor(loggingInterceptor)
+                .build();
     }
 
     @Provides
@@ -41,6 +47,10 @@ public class RetrofitModule {
     @Provides
     @Singleton
     public HttpLoggingInterceptor provideHttpLoggingInterceptor() {
-        return new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
+        return new HttpLoggingInterceptor().setLevel(
+                GeometricWeather.getInstance().isDebug()
+                        ? HttpLoggingInterceptor.Level.BODY
+                        : HttpLoggingInterceptor.Level.NONE
+        );
     }
 }

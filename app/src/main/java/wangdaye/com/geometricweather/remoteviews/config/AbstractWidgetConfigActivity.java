@@ -45,7 +45,8 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.polling.PollingManager;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
-import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarNestedScrollView;
+import wangdaye.com.geometricweather.common.snackbar.SnackbarContainer;
+import wangdaye.com.geometricweather.common.ui.widgets.insets.both.FitSystemBarNestedScrollView;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
@@ -75,7 +76,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
     protected RelativeLayout mHideLunarContainer;
     protected RelativeLayout mAlignEndContainer;
 
-    private BottomSheetBehavior mBottomSheetBehavior;
+    private BottomSheetBehavior<?> mBottomSheetBehavior;
     private FitSystemBarNestedScrollView mBottomSheetScrollView;
     private TextInputLayout mSubtitleInputLayout;
     private TextInputEditText mSubtitleEditText;
@@ -186,6 +187,12 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         // do nothing.
+    }
+
+    @Override
+    public SnackbarContainer getSnackbarContainer() {
+        return new SnackbarContainer(this,
+                findViewById(R.id.activity_widget_config_container), true);
     }
 
     @CallSuper

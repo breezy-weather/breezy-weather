@@ -33,9 +33,4 @@ public class RunningInBackgroundDialog extends GeoDialog {
                 IntentHelper.startBatteryOptimizationActivity(requireActivity()));
         return view;
     }
-
-    @Override
-    public ViewGroup getSnackbarContainer() {
-        return requireDialog().findViewById(R.id.dialog_running_in_background_container);
-    }
 }

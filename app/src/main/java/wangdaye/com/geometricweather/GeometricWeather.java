@@ -2,6 +2,7 @@ package wangdaye.com.geometricweather;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,6 +39,8 @@ public class GeometricWeather extends MultiDexApplication implements Configurati
 
     private @Nullable Set<GeoActivity> mActivitySet;
     private @Nullable GeoActivity mTopActivity;
+
+    private @Nullable Boolean debugMode;
 
     @Inject HiltWorkerFactory mWorkerFactory;
 
@@ -196,6 +199,14 @@ public class GeometricWeather extends MultiDexApplication implements Configurati
             e.printStackTrace();
             return null;
         }
+    }
+
+    public boolean isDebug() {
+        if (debugMode == null) {
+            debugMode = getApplicationInfo() != null
+                    && (getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
+        }
+        return debugMode;
     }
 
     public static String getNotificationChannelName(Context c, String channelId) {

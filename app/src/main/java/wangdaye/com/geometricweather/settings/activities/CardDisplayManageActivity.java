@@ -33,7 +33,7 @@ import wangdaye.com.geometricweather.common.theme.DefaultThemeManager;
 import wangdaye.com.geometricweather.common.ui.adapters.TagAdapter;
 import wangdaye.com.geometricweather.common.ui.decotarions.GridMarginsDecoration;
 import wangdaye.com.geometricweather.common.ui.decotarions.ListDecoration;
-import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarRecyclerView;
+import wangdaye.com.geometricweather.common.ui.widgets.insets.both.FitSystemBarRecyclerView;
 import wangdaye.com.geometricweather.common.ui.widgets.slidingItem.SlidingItemTouchCallback;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.settings.adapters.CardDisplayAdapter;

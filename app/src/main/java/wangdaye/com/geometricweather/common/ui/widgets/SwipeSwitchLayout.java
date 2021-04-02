@@ -340,12 +340,14 @@ public class SwipeSwitchLayout extends FrameLayout
 
     @Override
     public void onNestedScrollAccepted(@NonNull View child, @NonNull View target, int axes, int type) {
-        mIsBeingNestedScrolling = true;
-        if ((!target.canScrollHorizontally(-1) && !target.canScrollHorizontally(1))
-                || mSwipeDistance != 0) {
-            mNestedScrollingDistance = mNestedScrollingTrigger;
-        } else {
-            mNestedScrollingDistance = 0;
+        if (!mIsBeingNestedScrolling) {
+            mIsBeingNestedScrolling = true;
+            if ((!target.canScrollHorizontally(-1) && !target.canScrollHorizontally(1))
+                    || mSwipeDistance != 0) {
+                mNestedScrollingDistance = mNestedScrollingTrigger;
+            } else {
+                mNestedScrollingDistance = 0;
+            }
         }
     }
 
