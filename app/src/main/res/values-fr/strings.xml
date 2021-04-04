@@ -30,7 +30,7 @@
     <string name="hours_of_sun">Heures d’ensoleillement</string>
     <string name="forecast">Prévisions</string>
     <string name="briefings">Bulletin</string>
-    <string name="daytime">Jour</string>
+    <string name="daytime">Journée</string>
     <string name="nighttime">Nuit</string>
     <string name="publish_at">Actualisé à</string>
     <string name="feels_like">Ressenti</string>
@@ -319,15 +319,15 @@
     <string name="action_appStore">Magasin d’applications</string>
 
     <!-- widget -->
-    <string name="widget_day">Journée</string>
+    <string name="widget_day">Jour</string>
     <string name="widget_week">Semaine</string>
-    <string name="widget_day_week">Journée + Semaine</string>
-    <string name="widget_clock_day_horizontal">Horloge + Journée (à l’horizontale)</string>
-    <string name="widget_clock_day_details">Horloge + Journée (détaillé)</string>
-    <string name="widget_clock_day_vertical">Horloge + Journée (à la verticale)</string>
-    <string name="widget_clock_day_week">Horloge + Journée + Semaine</string>
+    <string name="widget_day_week">Jours + Semaine</string>
+    <string name="widget_clock_day_horizontal">Horloge + Jours (à l’horizontale)</string>
+    <string name="widget_clock_day_details">Horloge + Jours (détaillé)</string>
+    <string name="widget_clock_day_vertical">Horloge + Jours (à la verticale)</string>
+    <string name="widget_clock_day_week">Horloge + Jours + Semaine</string>
     <string name="widget_text">Textuel</string>
-    <string name="widget_trend_daily">Tendances journalières</string>
+    <string name="widget_trend_daily">Tendances quotidiennes</string>
     <string name="widget_trend_hourly">Tendances heure par heure</string>
     <string name="widget_multi_city">Plusieurs villes</string>
     <string name="wait_refresh">patientez</string>
