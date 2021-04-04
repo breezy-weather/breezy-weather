@@ -26,7 +26,7 @@
     <string name="wind_level">Niveau de vent</string>
     <string name="sensible_temp">Temp. ressentie</string>
     <string name="humidity">Humidité</string>
-    <string name="uv_index">Index UV</string>
+    <string name="uv_index">Indice UV</string>
     <string name="hours_of_sun">Heures d’ensoleillement</string>
     <string name="forecast">Prévisions</string>
     <string name="briefings">Bulletin</string>
