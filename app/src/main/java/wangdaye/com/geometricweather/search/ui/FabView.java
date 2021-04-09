@@ -9,17 +9,17 @@ import androidx.annotation.Nullable;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.gordonwong.materialsheetfab.AnimatedFab;
 
-public class FABView extends FloatingActionButton implements AnimatedFab {
+public class FabView extends FloatingActionButton implements AnimatedFab {
 
-    public FABView(@NonNull Context context) {
-        super(context);
+    public FabView(@NonNull Context context) {
+        this(context, null);
     }
 
-    public FABView(@NonNull Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
+    public FabView(@NonNull Context context, @Nullable AttributeSet attrs) {
+        this(context, attrs, 0);
     }
 
-    public FABView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public FabView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -30,6 +30,8 @@ public class FABView extends FloatingActionButton implements AnimatedFab {
 
     @Override
     public void show(float translationX, float translationY) {
+        setTranslationX(translationX);
+        setTranslationY(translationY);
         super.show();
     }
 

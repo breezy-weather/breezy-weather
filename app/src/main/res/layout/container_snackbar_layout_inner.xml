@@ -50,4 +50,5 @@
             tools:ignore="RtlHardcoded" />
 
     </LinearLayout>
+
 </androidx.cardview.widget.CardView>

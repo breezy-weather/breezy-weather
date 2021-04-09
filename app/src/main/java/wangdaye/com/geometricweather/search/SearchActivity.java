@@ -46,7 +46,7 @@ import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
 import wangdaye.com.geometricweather.databinding.ActivitySearchBinding;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
-import wangdaye.com.geometricweather.search.ui.FABView;
+import wangdaye.com.geometricweather.search.ui.FabView;
 import wangdaye.com.geometricweather.search.ui.adapter.WeatherSourceAdapter;
 
 /**
@@ -63,11 +63,10 @@ public class SearchActivity extends GeoActivity
     private LocationAdapter mAdapter;
     private List<Location> mCurrentList;
 
-    private KeyboardCompactMaterialSheetFab mMaterialSheetFab;
+    private MaterialSheetFab<FabView> mMaterialSheetFab;
     private @Nullable WeatherSourceAdapter mSourceAdapter;
 
     private @Nullable LoadableLocationList.Status mStatus;
-    private boolean mKeyboardExpanded = false;
 
     public static final String KEY_LOCATION = "location";
 
@@ -113,30 +112,6 @@ public class SearchActivity extends GeoActivity
         }
     }
 
-    private class KeyboardCompactMaterialSheetFab extends MaterialSheetFab<FABView> {
-
-        public KeyboardCompactMaterialSheetFab(FABView fabView, View sheet, View overlay,
-                                               int sheetColor, int fabColor) {
-            super(fabView, sheet, overlay, sheetColor, fabColor);
-        }
-
-        @Override
-        public void showSheet() {
-            if (mKeyboardExpanded) {
-                fab.setEnabled(false);
-
-                hideKeyboard();
-                fab.postDelayed(() -> {
-                    super.showSheet();
-                    fab.setEnabled(true);
-                }, 300);
-                return;
-            }
-
-            super.showSheet();
-        }
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -163,16 +138,12 @@ public class SearchActivity extends GeoActivity
 
         initModel();
         initView();
-
-        setOnKeyboardStateChangedListener(expanded -> mKeyboardExpanded = expanded);
     }
 
     @Override
     public void onBackPressed() {
         if (mMaterialSheetFab.isSheetVisible()) {
             mMaterialSheetFab.hideSheet();
-        } else if (mKeyboardExpanded) {
-            hideKeyboard();
         } else {
             finishSelf(null);
         }
@@ -264,7 +235,7 @@ public class SearchActivity extends GeoActivity
             });
         }
 
-        mMaterialSheetFab = new KeyboardCompactMaterialSheetFab(
+        mMaterialSheetFab = new MaterialSheetFab<>(
                 mBinding.fab,
                 mBinding.fabSheet,
                 mBinding.overlay,

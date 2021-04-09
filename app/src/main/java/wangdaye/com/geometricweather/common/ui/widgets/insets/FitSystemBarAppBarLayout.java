@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.os.Build;
 import android.util.AttributeSet;
-import android.view.View;
+import android.view.WindowInsets;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,12 +14,6 @@ import androidx.core.view.ViewCompat;
 import com.google.android.material.appbar.AppBarLayout;
 
 public class FitSystemBarAppBarLayout extends AppBarLayout {
-
-    private @Nullable OnFitSystemBarListener mFitSystemBarListener;
-
-    public interface OnFitSystemBarListener {
-        void onFitSystemBar(View view, Rect insets);
-    }
 
     public FitSystemBarAppBarLayout(@NonNull Context context) {
         this(context, null);
@@ -36,23 +30,14 @@ public class FitSystemBarAppBarLayout extends AppBarLayout {
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
     @Override
-    public void setOnApplyWindowInsetsListener(OnApplyWindowInsetsListener listener) {
-        super.setOnApplyWindowInsetsListener((v, insets) -> {
-            if (listener != null) {
-                return listener.onApplyWindowInsets(v, insets);
-            }
-
-            Rect waterfull = Utils.getWaterfullInsets(insets);
-            fitSystemBar(
-                    new Rect(
-                            insets.getSystemWindowInsetLeft() + waterfull.left,
-                            insets.getSystemWindowInsetTop() + waterfull.top,
-                            insets.getSystemWindowInsetRight() + waterfull.right,
-                            insets.getSystemWindowInsetBottom() + waterfull.bottom
-                    )
-            );
-            return insets;
-        });
+    public WindowInsets onApplyWindowInsets(WindowInsets insets) {
+        fitSystemBar(new Rect(
+                insets.getSystemWindowInsetLeft(),
+                insets.getSystemWindowInsetTop(),
+                insets.getSystemWindowInsetRight(),
+                insets.getSystemWindowInsetBottom()
+        ));
+        return insets;
     }
 
     @Override
@@ -63,12 +48,5 @@ public class FitSystemBarAppBarLayout extends AppBarLayout {
 
     private void fitSystemBar(Rect insets) {
         setPadding(0, insets.top, 0, 0);
-        if (mFitSystemBarListener != null) {
-            mFitSystemBarListener.onFitSystemBar(this, insets);
-        }
-    }
-
-    public void setOnFitSystemBarListener(@Nullable OnFitSystemBarListener l) {
-        mFitSystemBarListener = l;
     }
 }

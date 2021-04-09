@@ -21,7 +21,7 @@ import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.Daily;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.common.ui.widgets.insets.both.FitSystemBarRecyclerView;
+import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarRecyclerView;
 import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarViewPager;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper;
@@ -108,17 +108,17 @@ public class DailyWeatherActivity extends GeoActivity {
             for (int i = 0; i < weather.getDailyForecast().size(); i ++) {
                 Daily d = weather.getDailyForecast().get(i);
 
-                FitSystemBarRecyclerView recyclerView = new FitSystemBarRecyclerView(this);
-                recyclerView.removeFitSide(FitSystemBarRecyclerView.SIDE_TOP);
-                recyclerView.addFitSide(FitSystemBarRecyclerView.SIDE_BOTTOM);
-                recyclerView.setClipToPadding(false);
+                FitSystemBarRecyclerView rv = new FitSystemBarRecyclerView(this);
+                rv.removeFitSide(FitSystemBarRecyclerView.SIDE_TOP);
+                rv.addFitSide(FitSystemBarRecyclerView.SIDE_BOTTOM);
+                rv.setClipToPadding(false);
                 DailyWeatherAdapter dailyWeatherAdapter = new DailyWeatherAdapter(this, d, 3);
                 GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
                 gridLayoutManager.setSpanSizeLookup(dailyWeatherAdapter.spanSizeLookup);
-                recyclerView.setAdapter(dailyWeatherAdapter);
-                recyclerView.setLayoutManager(gridLayoutManager);
+                rv.setAdapter(dailyWeatherAdapter);
+                rv.setLayoutManager(gridLayoutManager);
 
-                viewList.add(recyclerView);
+                viewList.add(rv);
                 titleList.add(String.valueOf(i + 1));
             }
 

@@ -6,6 +6,7 @@ import android.text.TextUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -14,6 +15,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
 import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 public class SearchActivityRepository {
@@ -23,6 +25,9 @@ public class SearchActivityRepository {
 
     private static final String PREFERENCE_SEARCH_CONFIG = "SEARCH_CONFIG";
     private static final String KEY_DISABLED_SOURCES = "DISABLED_SOURCES";
+    private static final String KEY_LAST_DEFAULT_SOURCE = "LAST_DEFAULT_SOURCE";
+
+    private static final String DEFAULT_DISABLED_SOURCES_VALUE = "ENABLE_DEFAULT_SOURCE_ONLY";
 
     @Inject
     SearchActivityRepository(@ApplicationContext Context context, WeatherHelper weatherHelper) {
@@ -46,12 +51,38 @@ public class SearchActivityRepository {
         });
     }
 
-    public List<WeatherSource> getValidWeatherSources() {
+    public List<WeatherSource> getValidWeatherSources(Context context) {
         WeatherSource[] totals = WeatherSource.ACCU.getDeclaringClass().getEnumConstants();
+        if (totals == null) {
+            return new ArrayList<>();
+        }
 
-        String value = mSharedPreferences.getString(KEY_DISABLED_SOURCES, "");
+        WeatherSource defaultSource = SettingsOptionManager.getInstance(context).getWeatherSource();
+
+        String lastDefaultSource = mSharedPreferences.getString(KEY_LAST_DEFAULT_SOURCE, "");
+        String value;
+        if (!defaultSource.getSourceId().equals(lastDefaultSource)) {
+            // last default source is not equal to current default source which is set by user.
+
+            // we need reset the value.
+            value = DEFAULT_DISABLED_SOURCES_VALUE;
+            mSharedPreferences.edit()
+                    .putString(KEY_DISABLED_SOURCES, value)
+                    .putString(KEY_LAST_DEFAULT_SOURCE, defaultSource.getSourceId())
+                    .apply();
+        } else {
+            value = mSharedPreferences.getString(KEY_DISABLED_SOURCES, "");
+            mSharedPreferences.edit()
+                    .putString(KEY_LAST_DEFAULT_SOURCE, defaultSource.getSourceId())
+                    .apply();
+        }
+
         if (TextUtils.isEmpty(value)) {
             return Arrays.asList(totals);
+        }
+
+        if (value.equals(DEFAULT_DISABLED_SOURCES_VALUE)) {
+            return Collections.singletonList(defaultSource);
         }
 
         String[] ids = value.split(",");
@@ -72,6 +103,9 @@ public class SearchActivityRepository {
 
     public void setValidWeatherSources(List<WeatherSource> validList) {
         WeatherSource[] totals = WeatherSource.ACCU.getDeclaringClass().getEnumConstants();
+        if (totals == null) {
+            return;
+        }
 
         StringBuilder b = new StringBuilder();
         for (WeatherSource source : totals) {

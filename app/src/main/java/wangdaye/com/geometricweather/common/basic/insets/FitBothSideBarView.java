@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.common.ui.widgets.insets.both;
+package wangdaye.com.geometricweather.common.basic.insets;
 
 import androidx.annotation.IntDef;
 
@@ -16,5 +16,13 @@ public interface FitBothSideBarView {
     @interface FitSide {
     }
 
+    void addFitSide(@FitSide int side);
+
+    void removeFitSide(@FitSide int side);
+
     void setFitSystemBarEnabled(boolean top, boolean bottom);
+
+    int getTopWindowInset();
+
+    int getBottomWindowInset();
 }

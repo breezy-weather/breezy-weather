@@ -7,11 +7,11 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.view.WindowInsets;
 import android.widget.FrameLayout;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.RequiresApi;
-import androidx.core.view.ViewCompat;
 
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 
@@ -40,29 +40,19 @@ public class FitHorizontalSystemBarRootLayout extends FrameLayout {
         mLineColor = Color.GRAY;
 
         setWillNotDraw(false);
-        setFitsSystemWindows(false);
-        ViewCompat.setOnApplyWindowInsetsListener(this, null);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
     @Override
-    public void setOnApplyWindowInsetsListener(OnApplyWindowInsetsListener listener) {
-        super.setOnApplyWindowInsetsListener((v, insets) -> {
-            if (listener != null) {
-                return listener.onApplyWindowInsets(v, insets);
-            }
-
-            Rect waterfull = Utils.getWaterfullInsets(insets);
-            fitSystemBar(
-                    new Rect(
-                            insets.getSystemWindowInsetLeft() + waterfull.left,
-                            insets.getSystemWindowInsetTop() + waterfull.top,
-                            insets.getSystemWindowInsetRight() + waterfull.right,
-                            insets.getSystemWindowInsetBottom() + waterfull.bottom
-                    )
-            );
-            return insets;
-        });
+    public WindowInsets onApplyWindowInsets(WindowInsets insets) {
+        fitSystemBar(new Rect(
+                insets.getSystemWindowInsetLeft(),
+                insets.getSystemWindowInsetTop(),
+                insets.getSystemWindowInsetRight(),
+                insets.getSystemWindowInsetBottom()
+        ));
+        return insets.replaceSystemWindowInsets(0, insets.getSystemWindowInsetTop(),
+                0, insets.getSystemWindowInsetBottom());
     }
 
     @Override

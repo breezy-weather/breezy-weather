@@ -36,7 +36,6 @@ import java.lang.annotation.RetentionPolicy;
 import javax.annotation.Nullable;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.common.ui.widgets.insets.Utils;
 
 public final class Snackbar {
 
@@ -209,14 +208,12 @@ public final class Snackbar {
         return this;
     }
 
-
     @NonNull
     public Snackbar setText(@NonNull CharSequence message) {
         final TextView tv = mView.getMessageView();
         tv.setText(message);
         return this;
     }
-
 
     @NonNull
     public Snackbar setText(@StringRes int resId) {
@@ -327,7 +324,7 @@ public final class Snackbar {
             mAnimator.cancel();
         }
 
-        mAnimator = AnimationUtils.getEnterAnimator(mView, mCardStyle);
+        mAnimator = wangdaye.com.geometricweather.common.snackbar.Utils.getEnterAnimator(mView, mCardStyle);
         mAnimator.setDuration(ANIMATION_DURATION);
         mAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
@@ -355,7 +352,7 @@ public final class Snackbar {
         mAnimator = ObjectAnimator.ofFloat(
                 mView, "translationY", mView.getTranslationY(), mView.getHeight()
         ).setDuration(ANIMATION_DURATION);
-        mAnimator.setInterpolator(AnimationUtils.FAST_OUT_SLOW_IN_INTERPOLATOR);
+        mAnimator.setInterpolator(wangdaye.com.geometricweather.common.snackbar.Utils.FAST_OUT_SLOW_IN_INTERPOLATOR);
         mAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animation) {
@@ -405,7 +402,10 @@ public final class Snackbar {
         return false;
     }
 
-    public static class SnackbarLayout extends FrameLayout {
+    public static class SnackbarLayout extends ViewGroup {
+
+        private View mParent;
+        private final Rect mWindowInsets;
 
         private TextView mMessageView;
         private Button mActionView;
@@ -431,6 +431,9 @@ public final class Snackbar {
         public SnackbarLayout(Context context, AttributeSet attrs) {
             super(context, attrs);
 
+            mParent = null;
+            mWindowInsets = new Rect();
+
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SnackbarLayout);
             mMaxWidth = a.getDimensionPixelSize(R.styleable.SnackbarLayout_android_maxWidth, -1);
             a.recycle();
@@ -443,17 +446,20 @@ public final class Snackbar {
                     ViewCompat.ACCESSIBILITY_LIVE_REGION_POLITE);
 
             ViewCompat.setOnApplyWindowInsetsListener(this, (v, insets) -> {
-                Rect waterfull = Utils.getWaterfullInsets(insets);
                 fitSystemWindows(
                         new Rect(
-                                insets.getSystemWindowInsetLeft() + waterfull.left,
-                                insets.getSystemWindowInsetTop() + waterfull.top,
-                                insets.getSystemWindowInsetRight() + waterfull.right,
-                                insets.getSystemWindowInsetBottom() + waterfull.bottom
+                                insets.getSystemWindowInsetLeft(),
+                                insets.getSystemWindowInsetTop(),
+                                insets.getSystemWindowInsetRight(),
+                                insets.getSystemWindowInsetBottom()
                         )
                 );
                 return insets;
             });
+        }
+
+        public @LayoutRes int getLayoutId() {
+            return R.layout.container_snackbar_layout_inner;
         }
 
         @Override
@@ -461,10 +467,6 @@ public final class Snackbar {
             super.onFinishInflate();
             mMessageView = findViewById(R.id.snackbar_text);
             mActionView = findViewById(R.id.snackbar_action);
-        }
-
-        public @LayoutRes int getLayoutId() {
-            return R.layout.container_snackbar_layout_inner;
         }
 
         TextView getMessageView() {
@@ -477,17 +479,83 @@ public final class Snackbar {
 
         @Override
         protected boolean fitSystemWindows(Rect insets) {
-            setPadding(0, 0, 0, insets.bottom);
+            mWindowInsets.set(insets.left, insets.top, insets.right, insets.bottom);
+            requestLayout();
             return false;
         }
 
         @Override
-        protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-            super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        protected LayoutParams generateLayoutParams(LayoutParams p) {
+            return new MarginLayoutParams(p);
+        }
 
-            if (mMaxWidth > 0 && getMeasuredWidth() > mMaxWidth) {
+        @Override
+        protected LayoutParams generateDefaultLayoutParams() {
+            return new MarginLayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        }
+
+        @Override
+        public LayoutParams generateLayoutParams(AttributeSet attrs) {
+            return new MarginLayoutParams(getContext(), attrs);
+        }
+
+        @Override
+        protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+            int width;
+            int height;
+
+            View child = getChildAt(0);
+            int widthUsed = mWindowInsets.left + mWindowInsets.right;
+            int heightUsed = mWindowInsets.bottom;
+
+            measureChildWithMargins(child, widthMeasureSpec, widthUsed, heightMeasureSpec, heightUsed);
+            MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
+
+            width = child.getMeasuredWidth() + widthUsed + lp.leftMargin + lp.rightMargin
+                    + getPaddingLeft() + getPaddingRight();
+            height = child.getMeasuredHeight() + heightUsed + lp.topMargin + lp.bottomMargin
+                    + getPaddingTop() + getPaddingBottom();
+
+            if (mMaxWidth > 0 && width > mMaxWidth) {
                 widthMeasureSpec = MeasureSpec.makeMeasureSpec(mMaxWidth, MeasureSpec.EXACTLY);
-                super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+                measureChildWithMargins(child, widthMeasureSpec, widthUsed, heightMeasureSpec, heightUsed);
+                lp = (MarginLayoutParams) child.getLayoutParams();
+
+                width = child.getMeasuredWidth() + widthUsed + lp.leftMargin + lp.rightMargin
+                        + getPaddingLeft() + getPaddingRight();
+                height = child.getMeasuredHeight() + heightUsed + lp.topMargin + lp.bottomMargin
+                        + getPaddingTop() + getPaddingBottom();
+            }
+
+            setMeasuredDimension(width, height);
+        }
+
+        @Override
+        protected void onLayout(boolean changed, int l, int t, int r, int b) {
+            View child = getChildAt(0);
+            int x = (getMeasuredWidth() - child.getMeasuredWidth()) / 2;
+            child.layout(x, 0, x + child.getMeasuredWidth(), child.getMeasuredHeight());
+
+            if (mOnLayoutChangeListener != null) {
+                mOnLayoutChangeListener.onLayoutChange(this, l, t, r, b);
+            }
+        }
+
+        @Override
+        protected void onAttachedToWindow() {
+            super.onAttachedToWindow();
+            if (mOnAttachStateChangeListener != null) {
+                mOnAttachStateChangeListener.onViewAttachedToWindow(this);
+            }
+            ViewCompat.requestApplyInsets(this);
+        }
+
+        @Override
+        protected void onDetachedFromWindow() {
+            super.onDetachedFromWindow();
+            if (mOnAttachStateChangeListener != null) {
+                mOnAttachStateChangeListener.onViewDetachedFromWindow(this);
             }
         }
 
@@ -524,31 +592,6 @@ public final class Snackbar {
                         .setDuration(duration)
                         .setStartDelay(delay)
                         .start();
-            }
-        }
-
-        @Override
-        protected void onLayout(boolean changed, int l, int t, int r, int b) {
-            super.onLayout(changed, l, t, r, b);
-            if (mOnLayoutChangeListener != null) {
-                mOnLayoutChangeListener.onLayoutChange(this, l, t, r, b);
-            }
-        }
-
-        @Override
-        protected void onAttachedToWindow() {
-            super.onAttachedToWindow();
-            if (mOnAttachStateChangeListener != null) {
-                mOnAttachStateChangeListener.onViewAttachedToWindow(this);
-            }
-            ViewCompat.requestApplyInsets(this);
-        }
-
-        @Override
-        protected void onDetachedFromWindow() {
-            super.onDetachedFromWindow();
-            if (mOnAttachStateChangeListener != null) {
-                mOnAttachStateChangeListener.onViewDetachedFromWindow(this);
             }
         }
 
