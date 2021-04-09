@@ -1671,6 +1671,7 @@ Referenced Strings:
   android.permission.ACCESS_MEDIA_LOCATION
   android.permission.ACCESS_NETWORK_STATE
   android.permission.CAPTURE_AUDIO_HOTWORD
+  android.permission.READ_EXTERNAL_STORAGE
   android.provider.extra.APP_PACKAGE
   android.resource
   android.resource://

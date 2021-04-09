@@ -16057,4 +16057,4 @@ Skipped unused resource res/layout/mtrl_layout_snackbar.xml: 492 bytes (replaced
 Skipped unused resource res/layout/mtrl_layout_snackbar_include.xml: 952 bytes (replaced with small dummy file of size 104 bytes)
 Skipped unused resource res/layout/spinner_text.xml: 472 bytes (replaced with small dummy file of size 104 bytes)
 Skipped unused resource res/layout-sw600dp-v13/mtrl_layout_snackbar.xml: 492 bytes (replaced with small dummy file of size 104 bytes)
-Resource shrinking did not work (grew from 5219674 to 5227527); using original instead
+Resource shrinking did not work (grew from 5219642 to 5227496); using original instead
