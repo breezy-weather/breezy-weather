@@ -10,8 +10,8 @@ android {
         applicationId "wangdaye.com.geometricweather"
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 30004
-        versionName "3.004"
+        versionCode 30006
+        versionName "3.006"
         multiDexEnabled true
         ndk {
             abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
@@ -61,19 +61,19 @@ android {
     }
     sourceSets{
         pub {
-            java.srcDirs = ["src/bugly", "src/proprietary"]
+            java.srcDirs = ["src/bugly", "src/amap", "src/proprietary"]
+            manifest.srcFile "proprietary/AndroidManifest.xml"
+            jniLibs.srcDir 'libs'
+            jni.srcDirs = []
+        }
+        gplay {
+            java.srcDirs = ["src/nobugly", "src/noamap", "src/proprietary"]
             manifest.srcFile "proprietary/AndroidManifest.xml"
             jniLibs.srcDir 'libs'
             jni.srcDirs = []
         }
         fdroid {
-            java.srcDirs = ["src/nobugly", "src/opensource"]
-        }
-        gplay {
-            java.srcDirs = ["src/nobugly", "src/proprietary"]
-            manifest.srcFile "proprietary/AndroidManifest.xml"
-            jniLibs.srcDir 'libs'
-            jni.srcDirs = []
+            java.srcDirs = ["src/nobugly", "src/noamap", "src/opensource"]
         }
         test {
             java.srcDir 'test'
@@ -232,6 +232,7 @@ dependencies {
     implementation 'com.gordonwong:material-sheet-fab:1.2.1'
 
     // utils.
+    implementation 'androidx.core:core:1.5.0-beta01'
     implementation 'org.jetbrains:annotations-java5:15.0'
     implementation 'com.github.XhinLiang:LunarCalendar:3.0.0'
     implementation 'com.github.didikee:AndroidDonate:0.1.0'

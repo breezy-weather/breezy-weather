@@ -1,11 +1,14 @@
 package wangdaye.com.geometricweather.settings.fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.core.view.ViewCompat;
+import androidx.core.view.AccessibilityDelegateCompat;
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.preference.EditTextPreference;
 import androidx.preference.EditTextPreferenceDialogFragmentCompat;
@@ -15,9 +18,13 @@ import androidx.preference.MultiSelectListPreference;
 import androidx.preference.MultiSelectListPreferenceDialogFragmentCompat;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.PreferenceGroupAdapter;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerViewAccessibilityDelegate;
 
 import wangdaye.com.geometricweather.common.basic.GeoDialog;
+import wangdaye.com.geometricweather.common.basic.insets.FitBothSideBarView;
+import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarRecyclerView;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.settings.activities.SettingsActivity;
 
@@ -26,15 +33,66 @@ public abstract class AbstractSettingsFragment extends PreferenceFragmentCompat 
     private static final String DIALOG_FRAGMENT_TAG
             = "androidx.preference.PreferenceFragment.DIALOG";
 
+    @SuppressLint("RestrictedApi")
+    private static class PreferenceRecyclerViewAccessibilityDelegate
+            extends RecyclerViewAccessibilityDelegate {
+        @SuppressWarnings("WeakerAccess") /* synthetic access */
+        final RecyclerView mRecyclerView;
+        @SuppressWarnings("WeakerAccess") /* synthetic access */
+        final AccessibilityDelegateCompat mDefaultItemDelegate = super.getItemDelegate();
+
+        public PreferenceRecyclerViewAccessibilityDelegate(RecyclerView recyclerView) {
+            super(recyclerView);
+            mRecyclerView = recyclerView;
+        }
+
+        @NonNull
+        @Override
+        public AccessibilityDelegateCompat getItemDelegate() {
+            return mItemDelegate;
+        }
+        @SuppressWarnings("WeakerAccess") /* synthetic access */
+        final AccessibilityDelegateCompat mItemDelegate = new AccessibilityDelegateCompat() {
+            @Override
+            public void onInitializeAccessibilityNodeInfo(View host, AccessibilityNodeInfoCompat info) {
+                mDefaultItemDelegate.onInitializeAccessibilityNodeInfo(host, info);
+                int position = mRecyclerView.getChildAdapterPosition(host);
+
+                RecyclerView.Adapter<?> adapter = mRecyclerView.getAdapter();
+                if (!(adapter instanceof PreferenceGroupAdapter)) {
+                    return;
+                }
+
+                PreferenceGroupAdapter preferenceGroupAdapter = (PreferenceGroupAdapter) adapter;
+                Preference preference = preferenceGroupAdapter.getItem(position);
+                if (preference == null) {
+                    return;
+                }
+
+                preference.onInitializeAccessibilityNodeInfo(info);
+            }
+
+            @Override
+            public boolean performAccessibilityAction(View host, int action, Bundle args) {
+                // Must forward actions since the default delegate will handle actions.
+                return mDefaultItemDelegate.performAccessibilityAction(host, action, args);
+            }
+        };
+    }
+
     @Override
     public RecyclerView onCreateRecyclerView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        RecyclerView rv = super.onCreateRecyclerView(inflater, parent, savedInstanceState);
+        FitSystemBarRecyclerView rv = new FitSystemBarRecyclerView(inflater.getContext());
+        parent.addView(rv);
+
         rv.setClipToPadding(false);
-        rv.setFitsSystemWindows(true);
-        ViewCompat.setOnApplyWindowInsetsListener(rv, (v, insets) -> {
-            v.setPadding(0, 0, 0, insets.getSystemWindowInsetBottom());
-            return insets;
-        });
+        rv.removeFitSide(FitBothSideBarView.SIDE_TOP);
+        rv.addFitSide(FitBothSideBarView.SIDE_BOTTOM);
+
+        rv.setLayoutManager(onCreateLayoutManager());
+        rv.setAccessibilityDelegateCompat(
+                new PreferenceRecyclerViewAccessibilityDelegate(rv));
+
         return rv;
     }
 

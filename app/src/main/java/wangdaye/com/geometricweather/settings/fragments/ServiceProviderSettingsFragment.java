@@ -73,9 +73,9 @@ public class ServiceProviderSettingsFragment extends AbstractSettingsFragment {
 
         // location source.
         ListPreference locationService = findPreference(getString(R.string.key_location_service));
-
-        // Remove closed source providers if building the F-Droid flavor
         if (getBuildFlavor().contains("fdroid")) {
+            // Remove closed source providers if building the F-Droid flavor
+
             // set provider as native if necessary.
             LocationProvider provider = SettingsOptionManager.getInstance(requireContext()).getLocationProvider();
             if (provider == LocationProvider.AMAP || provider == LocationProvider.BAIDU) {
@@ -89,6 +89,26 @@ public class ServiceProviderSettingsFragment extends AbstractSettingsFragment {
             for (int i = 0; i < locationService.getEntries().length; ++i) {
                 if (LocationProvider.getInstance((String) locationService.getEntryValues()[i]) != LocationProvider.AMAP
                         && LocationProvider.getInstance((String) locationService.getEntryValues()[i]) != LocationProvider.BAIDU) {
+                    locationEntries.add(locationService.getEntries()[i]);
+                    locationValues.add(locationService.getEntryValues()[i]);
+                }
+            }
+            setListPreferenceValues(locationService, locationEntries, locationValues);
+        } else if (getBuildFlavor().contains("gplay")) {
+            // Remove closed source providers if building the Google Play flavor
+
+            // set provider as native if necessary.
+            LocationProvider provider = SettingsOptionManager.getInstance(requireContext()).getLocationProvider();
+            if (provider == LocationProvider.AMAP) {
+                SettingsOptionManager.getInstance(requireContext()).setLocationProvider(LocationProvider.NATIVE);
+                locationService.setValue("native");
+            }
+
+            // lock the entries and values.
+            List<CharSequence> locationEntries = new ArrayList<>();
+            List<CharSequence> locationValues = new ArrayList<>();
+            for (int i = 0; i < locationService.getEntries().length; ++i) {
+                if (LocationProvider.getInstance((String) locationService.getEntryValues()[i]) != LocationProvider.AMAP) {
                     locationEntries.add(locationService.getEntries()[i]);
                     locationValues.add(locationService.getEntryValues()[i]);
                 }

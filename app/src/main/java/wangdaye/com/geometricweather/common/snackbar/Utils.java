@@ -9,7 +9,7 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 
-public class AnimationUtils extends android.view.animation.AnimationUtils {
+class Utils extends android.view.animation.AnimationUtils {
 
     public static final Interpolator FAST_OUT_SLOW_IN_INTERPOLATOR = new FastOutSlowInInterpolator();
 

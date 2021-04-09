@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.common.basic;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -11,19 +12,16 @@ import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
 
-import java.lang.ref.WeakReference;
 import java.util.LinkedList;
 import java.util.Queue;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.common.basic.insets.FitBothSideBarView;
 import wangdaye.com.geometricweather.common.snackbar.SnackbarContainer;
 import wangdaye.com.geometricweather.common.ui.widgets.insets.FitHorizontalSystemBarRootLayout;
-import wangdaye.com.geometricweather.common.ui.widgets.insets.both.FitBothSideBarView;
-import wangdaye.com.geometricweather.common.ui.widgets.insets.both.FitSystemBarCoordinatorLayout;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.LanguageUtils;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
@@ -40,26 +38,20 @@ public abstract class GeoActivity extends AppCompatActivity {
 
     private boolean mForeground = false;
 
-    @Nullable OnKeyboardStateChangedListener mKeyboardListener;
-
     private static class KeyboardResizeBugWorkaround {
 
         // For more information, see https://issuetracker.google.com/issues/36911528
         // To use this class, simply invoke assistActivity() on an Activity that already has its content view set.
 
-        public static void assistActivity (GeoActivity activity) {
+        public static void assistActivity (Activity activity) {
             new KeyboardResizeBugWorkaround(activity);
         }
-
-        private final WeakReference<GeoActivity> mHost;
 
         private final View mContentChild;
         private final FrameLayout.LayoutParams mContentChildParams;
         private int mUsableHeightPrevious;
 
-        private KeyboardResizeBugWorkaround(GeoActivity activity) {
-            mHost = new WeakReference<>(activity);
-
+        private KeyboardResizeBugWorkaround(Activity activity) {
             FrameLayout content = activity.findViewById(android.R.id.content);
             mContentChild = content.getChildAt(0);
             mContentChild.getViewTreeObserver().addOnGlobalLayoutListener(this::possiblyResizeChildOfContent);
@@ -77,26 +69,18 @@ public abstract class GeoActivity extends AppCompatActivity {
                     // keyboard probably just became hidden.
                     mContentChildParams.height = contentViewHeight;
                 }
-                mContentChild.requestLayout();
                 mUsableHeightPrevious = usableHeightNow;
+                mContentChild.requestLayout();
 
                 setChildrenFitBottomBarEnabled(mContentChild,
                         mContentChildParams.height != usableHeightNow);
-                notifyListener(mContentChildParams.height == usableHeightNow);
             }
         }
 
         private int computeUsableHeight() {
             Rect r = new Rect();
-            mContentChild.getWindowVisibleDisplayFrame(r);
+            DisplayUtils.getVisibleDisplayFrame(mContentChild, r);
             return r.bottom; // - r.top; --> Do not reduce the height of status bar.
-        }
-
-        private void notifyListener(boolean expanded) {
-            GeoActivity a = mHost.get();
-            if (a != null && a.mKeyboardListener != null) {
-                a.mKeyboardListener.onKeyboardStateChanged(expanded);
-            }
         }
 
         private void setChildrenFitBottomBarEnabled(View view, boolean enabled) {
@@ -106,29 +90,16 @@ public abstract class GeoActivity extends AppCompatActivity {
             while (!queue.isEmpty()) {
                 view = queue.poll();
 
+                // Currently, a FitBothSideBarView won't contain another FitBothSideBarView.
                 if (view instanceof FitBothSideBarView) {
                     ((FitBothSideBarView) view).setFitSystemBarEnabled(true, enabled);
-
-                    if (!(view instanceof FitSystemBarCoordinatorLayout)) {
-                        continue;
-                    }
-                }
-
-                if (view instanceof ViewGroup) {
+                } else if (view instanceof ViewGroup) {
                     for (int i = 0; i < ((ViewGroup) view).getChildCount(); i ++) {
                         queue.add(((ViewGroup) view).getChildAt(i));
                     }
                 }
             }
         }
-    }
-
-    public interface OnKeyboardStateChangedListener {
-        void onKeyboardStateChanged(boolean expanded);
-    }
-
-    public void setOnKeyboardStateChangedListener(@Nullable OnKeyboardStateChangedListener l) {
-        mKeyboardListener = l;
     }
 
     @CallSuper
@@ -163,13 +134,7 @@ public abstract class GeoActivity extends AppCompatActivity {
         ViewGroup decorChild = (ViewGroup) decorView.getChildAt(0);
 
         decorView.removeView(decorChild);
-        decorView.addView(
-                mFitHorizontalSystemBarRootLayout,
-                new CoordinatorLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.MATCH_PARENT
-                )
-        );
+        decorView.addView(mFitHorizontalSystemBarRootLayout);
 
         mFitHorizontalSystemBarRootLayout.removeAllViews();
         mFitHorizontalSystemBarRootLayout.addView(decorChild);

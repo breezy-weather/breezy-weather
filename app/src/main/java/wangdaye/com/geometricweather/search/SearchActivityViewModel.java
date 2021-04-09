@@ -33,7 +33,7 @@ public class SearchActivityViewModel extends GeoViewModel {
         mQuery.setValue("");
 
         mEnabledSources = new MutableLiveData<>();
-        mEnabledSources.setValue(repository.getValidWeatherSources());
+        mEnabledSources.setValue(repository.getValidWeatherSources(getApplication()));
 
         mRepository = repository;
     }

@@ -7,12 +7,16 @@ import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.media.ThumbnailUtils;
 import android.os.Build;
 import android.text.format.DateFormat;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowInsets;
+import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.view.animation.OvershootInterpolator;
@@ -278,5 +282,28 @@ public class DisplayUtils {
         scaleY.setInterpolator(FLOATING_DECELERATE_INTERPOLATOR);
 
         return new Animator[] {translation, scaleX, scaleY};
+    }
+
+    public static void getVisibleDisplayFrame(View view, Rect rect) {
+        /*
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            DisplayMetrics metrics = new DisplayMetrics();
+            WindowManager wm = (WindowManager) view.getContext().getSystemService(
+                    Context.WINDOW_SERVICE);
+            wm.getDefaultDisplay().getRealMetrics(metrics);
+
+            WindowInsets insets = view.getRootWindowInsets();
+
+            rect.set(
+                    insets.getSystemWindowInsetLeft(),
+                    insets.getSystemWindowInsetTop(),
+                    metrics.widthPixels - insets.getSystemWindowInsetRight(),
+                    metrics.heightPixels - insets.getSystemWindowInsetBottom()
+            );
+        } else {
+            view.getWindowVisibleDisplayFrame(rect);
+        }
+        */
+        view.getWindowVisibleDisplayFrame(rect);
     }
 }

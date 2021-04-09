@@ -6,18 +6,15 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowInsets;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.core.view.ViewCompat;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import java.util.List;
-
-import wangdaye.com.geometricweather.common.ui.widgets.insets.both.FitSystemBarNestedScrollView;
-import wangdaye.com.geometricweather.common.ui.widgets.insets.both.FitSystemBarRecyclerView;
 
 public class FitSystemBarViewPager extends ViewPager {
 
@@ -89,35 +86,22 @@ public class FitSystemBarViewPager extends ViewPager {
 
     public FitSystemBarViewPager(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-
-        setFitsSystemWindows(false);
-        ViewCompat.setOnApplyWindowInsetsListener(this, null);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
     @Override
-    public void setOnApplyWindowInsetsListener(OnApplyWindowInsetsListener listener) {
-        super.setOnApplyWindowInsetsListener((v, insets) -> {
-            if (listener != null) {
-                return listener.onApplyWindowInsets(v, insets);
-            }
-
-            Rect waterfull = Utils.getWaterfullInsets(insets);
-            fitSystemBar(
-                    new Rect(
-                            insets.getSystemWindowInsetLeft() + waterfull.left,
-                            insets.getSystemWindowInsetTop() + waterfull.top,
-                            insets.getSystemWindowInsetRight() + waterfull.right,
-                            insets.getSystemWindowInsetBottom() + waterfull.bottom
-                    )
-            );
-            return insets;
-        });
+    public WindowInsets onApplyWindowInsets(WindowInsets insets) {
+        fitSystemBar(new Rect(
+                insets.getSystemWindowInsetLeft(),
+                insets.getSystemWindowInsetTop(),
+                insets.getSystemWindowInsetRight(),
+                insets.getSystemWindowInsetBottom()
+        ));
+        return insets;
     }
 
     @Override
     protected boolean fitSystemWindows(Rect insets) {
-        super.fitSystemWindows(insets);
         fitSystemBar(insets);
         return false;
     }

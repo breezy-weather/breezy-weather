@@ -46,7 +46,7 @@ import wangdaye.com.geometricweather.background.polling.PollingManager;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.snackbar.SnackbarContainer;
-import wangdaye.com.geometricweather.common.ui.widgets.insets.both.FitSystemBarNestedScrollView;
+import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarNestedScrollView;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
@@ -460,10 +460,8 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         mBottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
         mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
         bottomSheet.post(() -> {
-            mBottomSheetBehavior.setPeekHeight(
-                    mSubtitleInputLayout.getMeasuredHeight()
-                            + mBottomSheetScrollView.getWindowInsets().bottom
-            );
+            mBottomSheetBehavior.setPeekHeight(mSubtitleInputLayout.getMeasuredHeight()
+                    + mBottomSheetScrollView.getBottomWindowInset());
             setBottomSheetState(isCustomSubtitle());
         });
     }
