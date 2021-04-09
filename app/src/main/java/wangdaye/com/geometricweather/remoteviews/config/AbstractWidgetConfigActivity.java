@@ -1,11 +1,13 @@
 package wangdaye.com.geometricweather.remoteviews.config;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.WallpaperManager;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -30,6 +32,7 @@ import android.widget.TextView;
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.core.widget.NestedScrollView;
 
@@ -45,7 +48,6 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.polling.PollingManager;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
-import wangdaye.com.geometricweather.common.snackbar.SnackbarContainer;
 import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarNestedScrollView;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
@@ -189,12 +191,6 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         // do nothing.
     }
 
-    @Override
-    public SnackbarContainer getSnackbarContainer() {
-        return new SnackbarContainer(this,
-                findViewById(R.id.activity_widget_config_container), true);
-    }
-
     @CallSuper
     public void initData() {
         locationNow = DatabaseHelper.getInstance(this).readLocationList().get(0);
@@ -268,7 +264,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
     @CallSuper
     public void initView() {
         mWallpaper = findViewById(R.id.activity_widget_config_wall);
-        bindWallpaper();
+        bindWallpaper(true);
 
         mWidgetContainer = findViewById(R.id.activity_widget_config_widgetContainer);
 
@@ -460,8 +456,10 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         mBottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
         mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
         bottomSheet.post(() -> {
-            mBottomSheetBehavior.setPeekHeight(mSubtitleInputLayout.getMeasuredHeight()
-                    + mBottomSheetScrollView.getBottomWindowInset());
+            mBottomSheetBehavior.setPeekHeight(
+                    mSubtitleInputLayout.getMeasuredHeight()
+                            + mBottomSheetScrollView.getBottomWindowInset()
+            );
             setBottomSheetState(isCustomSubtitle());
         });
     }
@@ -492,7 +490,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
     public Location getLocationNow() {
         return locationNow;
     }
-    
+
     public abstract String getSharedPreferencesName();
 
     private int indexValue(String[] values, String current) {
@@ -607,7 +605,14 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         SnackbarHelper.showSnackbar(getString(R.string.feedback_get_weather_failed));
     }
 
-    private void bindWallpaper() {
+    private void bindWallpaper(boolean checkPermissions) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkPermissions) {
+            boolean hasPermission = checkPermissions(0);
+            if (!hasPermission) {
+                return;
+            }
+        }
+
         try {
             WallpaperManager manager = WallpaperManager.getInstance(this);
             if (manager != null) {
@@ -618,6 +623,42 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
             }
         } catch (Exception ignore) {
             // do nothing.
+        }
+    }
+
+    /**
+     * @return true : already got permissions.
+     *         false: request permissions.
+     * */
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private boolean checkPermissions(int requestCode) {
+        if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, requestCode);
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        switch (requestCode) {
+            case 0:
+                bindWallpaper(false);
+                if (textColorValueNow.equals("auto")) {
+                    updateHostView();
+                }
+                break;
+
+            case 1:
+                bindWallpaper(false);
+                updateHostView();
+                break;
         }
     }
 
@@ -718,7 +759,13 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
                     return;
                 }
 
-                updateHostView();
+                boolean hasPermission = true;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    hasPermission = checkPermissions(1);
+                }
+                if (hasPermission) {
+                    updateHostView();
+                }
             }
         }
 
