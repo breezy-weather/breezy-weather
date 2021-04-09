@@ -28,7 +28,7 @@ public class TextWidgetConfigActivity extends AbstractWidgetConfigActivity {
     }
 
     @Override
-    public String getSharedPreferencesName() {
+    public String getConfigStoreName() {
         return getString(R.string.sp_widget_text_setting);
     }
 }

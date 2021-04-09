@@ -48,7 +48,7 @@ public class ClockDayWeekWidgetConfigActivity extends AbstractWidgetConfigActivi
     }
 
     @Override
-    public String getSharedPreferencesName() {
+    public String getConfigStoreName() {
         return getString(R.string.sp_widget_clock_day_week_setting);
     }
 }

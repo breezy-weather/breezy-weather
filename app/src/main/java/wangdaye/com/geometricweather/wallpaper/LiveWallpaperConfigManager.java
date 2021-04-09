@@ -1,7 +1,8 @@
 package wangdaye.com.geometricweather.wallpaper;
 
 import android.content.Context;
-import android.content.SharedPreferences;
+
+import wangdaye.com.geometricweather.settings.ConfigStore;
 
 public class LiveWallpaperConfigManager {
 
@@ -13,10 +14,9 @@ public class LiveWallpaperConfigManager {
     private static final String KEY_DAY_NIGHT_TYPE = "day_night_type";
 
     private LiveWallpaperConfigManager(Context context) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(
-                SP_LIVE_WALLPAPER_CONFIG, Context.MODE_PRIVATE);
-        mWeatherKind = sharedPreferences.getString(KEY_WEATHER_KIND, "auto");
-        mDayNightType = sharedPreferences.getString(KEY_DAY_NIGHT_TYPE, "auto");
+        ConfigStore config = ConfigStore.getInstance(context, SP_LIVE_WALLPAPER_CONFIG);
+        mWeatherKind = config.getString(KEY_WEATHER_KIND, "auto");
+        mDayNightType = config.getString(KEY_DAY_NIGHT_TYPE, "auto");
     }
 
     public static LiveWallpaperConfigManager getInstance(Context context) {
@@ -32,7 +32,7 @@ public class LiveWallpaperConfigManager {
     }
 
     public static void update(Context context, String weatherKind, String dayNightType) {
-        context.getSharedPreferences(SP_LIVE_WALLPAPER_CONFIG, Context.MODE_PRIVATE)
+        ConfigStore.getInstance(context, SP_LIVE_WALLPAPER_CONFIG)
                 .edit()
                 .putString(KEY_WEATHER_KIND, weatherKind)
                 .putString(KEY_DAY_NIGHT_TYPE, dayNightType)

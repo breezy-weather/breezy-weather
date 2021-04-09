@@ -43,7 +43,7 @@ public class HourlyTrendWidgetConfigActivity extends AbstractWidgetConfigActivit
     }
 
     @Override
-    public String getSharedPreferencesName() {
+    public String getConfigStoreName() {
         return getString(R.string.sp_widget_hourly_trend_setting);
     }
 }

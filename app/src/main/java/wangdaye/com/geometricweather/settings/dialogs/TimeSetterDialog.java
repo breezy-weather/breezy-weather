@@ -2,7 +2,6 @@ package wangdaye.com.geometricweather.settings.dialogs;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,12 +12,12 @@ import android.widget.TimePicker;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import androidx.preference.PreferenceManager;
 
 import java.util.Calendar;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoDialog;
+import wangdaye.com.geometricweather.settings.ConfigStore;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 
 /**
@@ -121,8 +120,7 @@ public class TimeSetterDialog extends GeoDialog
                     minuteText = Integer.toString(mMinute);
                 }
 
-                SharedPreferences.Editor editor
-                        = PreferenceManager.getDefaultSharedPreferences(requireActivity()).edit();
+                ConfigStore.Editor editor = ConfigStore.getInstance(requireActivity()).edit();
                 if (mToday) {
                     SettingsOptionManager.getInstance(requireActivity())
                             .setTodayForecastTime(hourText + ":" + minuteText);

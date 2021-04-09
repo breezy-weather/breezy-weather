@@ -43,7 +43,7 @@ public class DailyTrendWidgetConfigActivity extends AbstractWidgetConfigActivity
     }
 
     @Override
-    public String getSharedPreferencesName() {
+    public String getConfigStoreName() {
         return getString(R.string.sp_widget_daily_trend_setting);
     }
 }

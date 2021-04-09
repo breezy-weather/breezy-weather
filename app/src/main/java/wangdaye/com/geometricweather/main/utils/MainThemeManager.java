@@ -1,7 +1,6 @@
 package wangdaye.com.geometricweather.main.utils;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 
 import androidx.annotation.ColorInt;
@@ -21,6 +20,7 @@ import wangdaye.com.geometricweather.common.ui.widgets.weatherView.WeatherView;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.theme.ThemeManager;
 import wangdaye.com.geometricweather.resource.utils.ResourceUtils;
+import wangdaye.com.geometricweather.settings.ConfigStore;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 
 public class MainThemeManager extends ThemeManager {
@@ -35,8 +35,8 @@ public class MainThemeManager extends ThemeManager {
     @Inject
     public MainThemeManager(@ActivityContext Context context) {
         mWeatherView = null;
-        mDaytime = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
-                .getBoolean(KEY_DAY_TIME, DisplayUtils.isDaylight(TimeZone.getDefault()));
+        mDaytime = ConfigStore.getInstance(context, PREFERENCE_NAME).getBoolean(
+                KEY_DAY_TIME, DisplayUtils.isDaylight(TimeZone.getDefault()));
         update(context, null);
     }
 
@@ -71,11 +71,10 @@ public class MainThemeManager extends ThemeManager {
 
         mDaytime = location.isDaylight();
 
-        SharedPreferences.Editor editor = context.getSharedPreferences(
-                PREFERENCE_NAME, Context.MODE_PRIVATE
-        ).edit();
-        editor.putBoolean(KEY_DAY_TIME, mDaytime);
-        editor.apply();
+        ConfigStore.getInstance(context, PREFERENCE_NAME)
+                .edit()
+                .putBoolean(KEY_DAY_TIME, mDaytime)
+                .apply();
     }
 
     public synchronized void registerWeatherView(WeatherView weatherView) {

@@ -6,7 +6,6 @@ import android.app.WallpaperManager;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
@@ -52,6 +51,7 @@ import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarNested
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
+import wangdaye.com.geometricweather.settings.ConfigStore;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
@@ -247,17 +247,17 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
     }
 
     private void readConfig() {
-        SharedPreferences sharedPreferences = getSharedPreferences(getSharedPreferencesName(), MODE_PRIVATE);
-        viewTypeValueNow = sharedPreferences.getString(getString(R.string.key_view_type), viewTypeValueNow);
-        cardStyleValueNow = sharedPreferences.getString(getString(R.string.key_card_style), cardStyleValueNow);
-        cardAlpha = sharedPreferences.getInt(getString(R.string.key_card_alpha), cardAlpha);
-        hideSubtitle = sharedPreferences.getBoolean(getString(R.string.key_hide_subtitle), hideSubtitle);
-        subtitleDataValueNow = sharedPreferences.getString(getString(R.string.key_subtitle_data), subtitleDataValueNow);
-        textColorValueNow = sharedPreferences.getString(getString(R.string.key_text_color), textColorValueNow);
-        textSize = sharedPreferences.getInt(getString(R.string.key_text_size), textSize);
-        clockFontValueNow = sharedPreferences.getString(getString(R.string.key_clock_font), clockFontValueNow);
-        hideLunar = sharedPreferences.getBoolean(getString(R.string.key_hide_lunar), hideLunar);
-        alignEnd = sharedPreferences.getBoolean(getString(R.string.key_align_end), alignEnd);
+        ConfigStore config = ConfigStore.getInstance(this, getConfigStoreName());
+        viewTypeValueNow = config.getString(getString(R.string.key_view_type), viewTypeValueNow);
+        cardStyleValueNow = config.getString(getString(R.string.key_card_style), cardStyleValueNow);
+        cardAlpha = config.getInt(getString(R.string.key_card_alpha), cardAlpha);
+        hideSubtitle = config.getBoolean(getString(R.string.key_hide_subtitle), hideSubtitle);
+        subtitleDataValueNow = config.getString(getString(R.string.key_subtitle_data), subtitleDataValueNow);
+        textColorValueNow = config.getString(getString(R.string.key_text_color), textColorValueNow);
+        textSize = config.getInt(getString(R.string.key_text_size), textSize);
+        clockFontValueNow = config.getString(getString(R.string.key_clock_font), clockFontValueNow);
+        hideLunar = config.getBoolean(getString(R.string.key_hide_lunar), hideLunar);
+        alignEnd = config.getBoolean(getString(R.string.key_align_end), alignEnd);
     }
 
     @SuppressLint("UseSwitchCompatOrMaterialCode")
@@ -380,7 +380,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
 
         Button doneButton = findViewById(R.id.activity_widget_config_doneButton);
         doneButton.setOnClickListener(v -> {
-            getSharedPreferences(getSharedPreferencesName(), MODE_PRIVATE)
+            getSharedPreferences(getConfigStoreName(), MODE_PRIVATE)
                     .edit()
                     .putString(getString(R.string.key_view_type), viewTypeValueNow)
                     .putString(getString(R.string.key_card_style), cardStyleValueNow)
@@ -491,7 +491,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         return locationNow;
     }
 
-    public abstract String getSharedPreferencesName();
+    public abstract String getConfigStoreName();
 
     private int indexValue(String[] values, String current) {
         for (int i = 0; i < values.length; i ++) {

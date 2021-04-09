@@ -1,11 +1,11 @@
 package wangdaye.com.geometricweather.main.utils;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 
 import javax.inject.Inject;
 
 import dagger.hilt.android.qualifiers.ActivityContext;
+import wangdaye.com.geometricweather.settings.ConfigStore;
 
 public class StatementManager {
 
@@ -18,13 +18,12 @@ public class StatementManager {
 
     @Inject
     public StatementManager(@ActivityContext Context context) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(
-                SP_STATEMENT_RECORD, Context.MODE_PRIVATE);
+        ConfigStore config = ConfigStore.getInstance(context, SP_STATEMENT_RECORD);
 
-        locationPermissionDeclared = sharedPreferences.getBoolean(
+        locationPermissionDeclared = config.getBoolean(
                 KEY_LOCATION_PERMISSION_DECLARED, false);
 
-        backgroundLocationDeclared = sharedPreferences.getBoolean(
+        backgroundLocationDeclared = config.getBoolean(
                 KEY_BACKGROUND_LOCATION_DECLARED, false);
     }
 
@@ -35,8 +34,9 @@ public class StatementManager {
     public void setLocationPermissionDeclared(Context context) {
         locationPermissionDeclared = true;
 
-        context.getSharedPreferences(SP_STATEMENT_RECORD, Context.MODE_PRIVATE)
-                .edit().putBoolean(KEY_LOCATION_PERMISSION_DECLARED, true)
+        ConfigStore.getInstance(context, SP_STATEMENT_RECORD)
+                .edit()
+                .putBoolean(KEY_LOCATION_PERMISSION_DECLARED, true)
                 .apply();
     }
 
@@ -47,8 +47,9 @@ public class StatementManager {
     public void setBackgroundLocationDeclared(Context context) {
         backgroundLocationDeclared = true;
 
-        context.getSharedPreferences(SP_STATEMENT_RECORD, Context.MODE_PRIVATE)
-                .edit().putBoolean(KEY_BACKGROUND_LOCATION_DECLARED, true)
+        ConfigStore.getInstance(context, SP_STATEMENT_RECORD)
+                .edit()
+                .putBoolean(KEY_BACKGROUND_LOCATION_DECLARED, true)
                 .apply();
     }
 }

@@ -1,7 +1,6 @@
 package wangdaye.com.geometricweather.weather.services;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
@@ -19,6 +18,7 @@ import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.rxjava.BaseObserver;
 import wangdaye.com.geometricweather.common.rxjava.ObserverContainer;
 import wangdaye.com.geometricweather.common.rxjava.SchedulerTransformer;
+import wangdaye.com.geometricweather.settings.ConfigStore;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.weather.apis.OwmApi;
 import wangdaye.com.geometricweather.weather.converters.OwmResultConverter;
@@ -35,7 +35,7 @@ public class OwmWeatherService extends WeatherService {
     private final OwmApi mApi;
     private final CompositeDisposable mCompositeDisposable;
 
-    private static final String PREFERENCE_LOCAL = "LOCAL_PREFERENCE";
+    private static final String CONFIG_NAME_LOCAL = "LOCAL_PREFERENCE_OWM";
     private static final String KEY_OLD_DISTRICT = "OLD_DISTRICT";
     private static final String KEY_OLD_CITY = "OLD_CITY";
     private static final String KEY_OLD_PROVINCE = "OLD_PROVINCE";
@@ -55,7 +55,7 @@ public class OwmWeatherService extends WeatherService {
         @Override
         public void requestLocationSuccess(String query, List<Location> locationList) {
             if (!TextUtils.isEmpty(locationList.get(0).getCityId())) {
-                mContext.getSharedPreferences(PREFERENCE_LOCAL, Context.MODE_PRIVATE)
+                mContext.getSharedPreferences(CONFIG_NAME_LOCAL, Context.MODE_PRIVATE)
                         .edit()
                         .putString(KEY_OLD_KEY, locationList.get(0).getCityId())
                         .apply();
@@ -65,7 +65,7 @@ public class OwmWeatherService extends WeatherService {
 
         @Override
         public void requestLocationFailed(String query) {
-            mContext.getSharedPreferences(PREFERENCE_LOCAL, Context.MODE_PRIVATE)
+            mContext.getSharedPreferences(CONFIG_NAME_LOCAL, Context.MODE_PRIVATE)
                     .edit()
                     .putString(KEY_OLD_DISTRICT, "")
                     .putString(KEY_OLD_CITY, "")
@@ -155,14 +155,11 @@ public class OwmWeatherService extends WeatherService {
     @Override
     public void requestLocation(Context context, Location location,
                                 @NonNull RequestLocationCallback callback) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(
-                PREFERENCE_LOCAL,
-                Context.MODE_PRIVATE
-        );
-        String oldDistrict = sharedPreferences.getString(KEY_OLD_DISTRICT, "");
-        String oldCity = sharedPreferences.getString(KEY_OLD_CITY, "");
-        String oldProvince = sharedPreferences.getString(KEY_OLD_PROVINCE, "");
-        String oldKey = sharedPreferences.getString(KEY_OLD_KEY, "");
+        ConfigStore config = ConfigStore.getInstance(context, CONFIG_NAME_LOCAL);
+        String oldDistrict = config.getString(KEY_OLD_DISTRICT, "");
+        String oldCity = config.getString(KEY_OLD_CITY, "");
+        String oldProvince = config.getString(KEY_OLD_PROVINCE, "");
+        String oldKey = config.getString(KEY_OLD_KEY, "");
 
         if (location.hasGeocodeInformation()
                 && queryEqualsIgnoreEmpty(location.getDistrict(), oldDistrict)
@@ -178,7 +175,7 @@ public class OwmWeatherService extends WeatherService {
             return;
         }
 
-        sharedPreferences.edit()
+        config.edit()
                 .putString(KEY_OLD_DISTRICT, location.getDistrict())
                 .putString(KEY_OLD_CITY, location.getCity())
                 .putString(KEY_OLD_PROVINCE, location.getProvince())

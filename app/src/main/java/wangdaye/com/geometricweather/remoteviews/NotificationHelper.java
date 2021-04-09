@@ -6,7 +6,6 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 
@@ -30,6 +29,7 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Alert;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
 import wangdaye.com.geometricweather.remoteviews.presenters.notification.NormalNotificationIMP;
+import wangdaye.com.geometricweather.settings.ConfigStore;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 
 /**
@@ -199,18 +199,17 @@ public class NotificationHelper {
     }
 
     private static int getAlertNotificationId(Context context) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(
-                PREFERENCE_NOTIFICATION, Context.MODE_PRIVATE);
+        ConfigStore config = ConfigStore.getInstance(context, PREFERENCE_NOTIFICATION);
 
-        int id = sharedPreferences.getInt(
+        int id = config.getInt(
                 KEY_NOTIFICATION_ID, GeometricWeather.NOTIFICATION_ID_ALERT_MIN) + 1;
         if (id > GeometricWeather.NOTIFICATION_ID_ALERT_MAX) {
             id = GeometricWeather.NOTIFICATION_ID_ALERT_MIN;
         }
 
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt(KEY_NOTIFICATION_ID, id);
-        editor.apply();
+        config.edit()
+                .putInt(KEY_NOTIFICATION_ID, id)
+                .apply();
 
         return id;
     }
@@ -233,10 +232,10 @@ public class NotificationHelper {
 
         Weather weather = location.getWeather();
 
-        SharedPreferences sharedPreferences = context.getSharedPreferences(
-                PREFERENCE_SHORT_TERM_PRECIPITATION_ALERT, Context.MODE_PRIVATE);
-        String locationKey = sharedPreferences.getString(KEY_PRECIPITATION_LOCATION_KEY, null);
-        long date = sharedPreferences.getLong(KEY_PRECIPITATION_DATE, 0);
+        ConfigStore config = ConfigStore.getInstance(
+                context, PREFERENCE_SHORT_TERM_PRECIPITATION_ALERT);
+        String locationKey = config.getString(KEY_PRECIPITATION_LOCATION_KEY, null);
+        long date = config.getLong(KEY_PRECIPITATION_DATE, 0);
 
         if ((!location.getFormattedId().equals(locationKey)
                 || isDifferentDays(date, weather.getBase().getPublishTime()))
@@ -260,7 +259,7 @@ public class NotificationHelper {
                             )
                     ).build()
             );
-            sharedPreferences.edit()
+            config.edit()
                     .putString(KEY_PRECIPITATION_LOCATION_KEY, location.getFormattedId())
                     .putLong(KEY_PRECIPITATION_DATE, weather.getBase().getPublishTime())
                     .apply();

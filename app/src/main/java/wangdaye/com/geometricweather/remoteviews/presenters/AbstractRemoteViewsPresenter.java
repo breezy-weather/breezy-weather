@@ -1,14 +1,11 @@
 package wangdaye.com.geometricweather.remoteviews.presenters;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.app.WallpaperManager;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -20,7 +17,6 @@ import android.text.TextUtils;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -37,12 +33,13 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.RelativeHu
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.common.basic.models.weather.Base;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.remoteviews.WidgetHelper;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
-import wangdaye.com.geometricweather.resource.utils.ResourceUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
 import wangdaye.com.geometricweather.common.utils.helpers.LunarHelper;
+import wangdaye.com.geometricweather.remoteviews.WidgetHelper;
+import wangdaye.com.geometricweather.resource.utils.ResourceUtils;
+import wangdaye.com.geometricweather.settings.ConfigStore;
+import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 
 public abstract class AbstractRemoteViewsPresenter {
 
@@ -77,54 +74,51 @@ public abstract class AbstractRemoteViewsPresenter {
     }
 
     public static WidgetConfig getWidgetConfig(Context context, String sharedPreferencesName) {
-        WidgetConfig config = new WidgetConfig();
+        WidgetConfig widgetConfig = new WidgetConfig();
 
-        SharedPreferences sharedPreferences = context.getSharedPreferences(
-                sharedPreferencesName,
-                Context.MODE_PRIVATE
-        );
-        config.viewStyle = sharedPreferences.getString(
+        ConfigStore configStore = ConfigStore.getInstance(context, sharedPreferencesName);
+        widgetConfig.viewStyle = configStore.getString(
                 context.getString(R.string.key_view_type),
                 "rectangle"
         );
-        config.cardStyle = sharedPreferences.getString(
+        widgetConfig.cardStyle = configStore.getString(
                 context.getString(R.string.key_card_style),
                 "none"
         );
-        config.cardAlpha = sharedPreferences.getInt(
+        widgetConfig.cardAlpha = configStore.getInt(
                 context.getString(R.string.key_card_alpha),
                 100
         );
-        config.textColor = sharedPreferences.getString(
+        widgetConfig.textColor = configStore.getString(
                 context.getString(R.string.key_text_color),
                 "light"
         );
-        config.textSize = sharedPreferences.getInt(
+        widgetConfig.textSize = configStore.getInt(
                 context.getString(R.string.key_text_size),
                 100
         );
-        config.hideSubtitle = sharedPreferences.getBoolean(
+        widgetConfig.hideSubtitle = configStore.getBoolean(
                 context.getString(R.string.key_hide_subtitle),
                 false
         );
-        config.subtitleData = sharedPreferences.getString(
+        widgetConfig.subtitleData = configStore.getString(
                 context.getString(R.string.key_subtitle_data),
                 "time"
         );
-        config.clockFont = sharedPreferences.getString(
+        widgetConfig.clockFont = configStore.getString(
                 context.getString(R.string.key_clock_font),
                 "light"
         );
-        config.hideLunar = sharedPreferences.getBoolean(
+        widgetConfig.hideLunar = configStore.getBoolean(
                 context.getString(R.string.key_hide_lunar),
                 false
         );
-        config.alignEnd = sharedPreferences.getBoolean(
+        widgetConfig.alignEnd = configStore.getBoolean(
                 context.getString(R.string.key_align_end),
                 false
         );
 
-        return config;
+        return widgetConfig;
     }
 
     public static boolean isLightWallpaper(Context context) {
