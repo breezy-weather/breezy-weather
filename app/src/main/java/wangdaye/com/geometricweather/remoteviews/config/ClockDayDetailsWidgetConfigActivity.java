@@ -50,7 +50,7 @@ public class ClockDayDetailsWidgetConfigActivity extends AbstractWidgetConfigAct
     }
 
     @Override
-    public String getSharedPreferencesName() {
+    public String getConfigStoreName() {
         return getString(R.string.sp_widget_clock_day_details_setting);
     }
 }

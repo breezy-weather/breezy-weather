@@ -1,8 +1,9 @@
 package wangdaye.com.geometricweather.search;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.text.TextUtils;
+
+import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,13 +16,17 @@ import dagger.hilt.android.qualifiers.ApplicationContext;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
 import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper;
+import wangdaye.com.geometricweather.settings.ConfigStore;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 public class SearchActivityRepository {
 
     private final WeatherHelper mWeatherHelper;
-    private final SharedPreferences mSharedPreferences;
+    private final ConfigStore mConfig;
+
+    private @Nullable List<WeatherSource> mValidSourceCache;
+    private @Nullable WeatherSource mLastDefaultSourceCache;
 
     private static final String PREFERENCE_SEARCH_CONFIG = "SEARCH_CONFIG";
     private static final String KEY_DISABLED_SOURCES = "DISABLED_SOURCES";
@@ -32,8 +37,10 @@ public class SearchActivityRepository {
     @Inject
     SearchActivityRepository(@ApplicationContext Context context, WeatherHelper weatherHelper) {
         mWeatherHelper = weatherHelper;
-        mSharedPreferences = context.getSharedPreferences(
-                PREFERENCE_SEARCH_CONFIG, Context.MODE_PRIVATE);
+        mConfig = ConfigStore.getInstance(context, PREFERENCE_SEARCH_CONFIG);
+
+        mValidSourceCache = null;
+        mLastDefaultSourceCache = null;
     }
     
     public void searchLocationList(Context context, String query, List<WeatherSource> enabledSources,
@@ -52,27 +59,33 @@ public class SearchActivityRepository {
     }
 
     public List<WeatherSource> getValidWeatherSources(Context context) {
+        WeatherSource defaultSource = SettingsOptionManager.getInstance(context).getWeatherSource();
+
+        if (mValidSourceCache != null && defaultSource == mLastDefaultSourceCache) {
+            return mValidSourceCache;
+        }
+
         WeatherSource[] totals = WeatherSource.ACCU.getDeclaringClass().getEnumConstants();
         if (totals == null) {
             return new ArrayList<>();
         }
 
-        WeatherSource defaultSource = SettingsOptionManager.getInstance(context).getWeatherSource();
+        String lastDefaultSource = mConfig.getString(KEY_LAST_DEFAULT_SOURCE, "");
+        mLastDefaultSourceCache = WeatherSource.getInstance(lastDefaultSource);
 
-        String lastDefaultSource = mSharedPreferences.getString(KEY_LAST_DEFAULT_SOURCE, "");
         String value;
         if (!defaultSource.getSourceId().equals(lastDefaultSource)) {
             // last default source is not equal to current default source which is set by user.
 
             // we need reset the value.
             value = DEFAULT_DISABLED_SOURCES_VALUE;
-            mSharedPreferences.edit()
+            mConfig.edit()
                     .putString(KEY_DISABLED_SOURCES, value)
                     .putString(KEY_LAST_DEFAULT_SOURCE, defaultSource.getSourceId())
                     .apply();
         } else {
-            value = mSharedPreferences.getString(KEY_DISABLED_SOURCES, "");
-            mSharedPreferences.edit()
+            value = mConfig.getString(KEY_DISABLED_SOURCES, "");
+            mConfig.edit()
                     .putString(KEY_LAST_DEFAULT_SOURCE, defaultSource.getSourceId())
                     .apply();
         }
@@ -98,10 +111,14 @@ public class SearchActivityRepository {
                 validList.add(source);
             }
         }
+
+        mValidSourceCache = validList;
         return validList;
     }
 
     public void setValidWeatherSources(List<WeatherSource> validList) {
+        mValidSourceCache = validList;
+
         WeatherSource[] totals = WeatherSource.ACCU.getDeclaringClass().getEnumConstants();
         if (totals == null) {
             return;
@@ -115,7 +132,7 @@ public class SearchActivityRepository {
         }
 
         String value = b.length() > 0 ? b.substring(1) : "";
-        mSharedPreferences.edit().putString(KEY_DISABLED_SOURCES, value).apply();
+        mConfig.edit().putString(KEY_DISABLED_SOURCES, value).apply();
     }
 
     public void cancel() {

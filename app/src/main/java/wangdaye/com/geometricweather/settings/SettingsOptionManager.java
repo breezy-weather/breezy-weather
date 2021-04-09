@@ -1,12 +1,9 @@
 package wangdaye.com.geometricweather.settings;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.os.Build;
 
 import androidx.annotation.ColorInt;
 import androidx.core.content.ContextCompat;
-import androidx.preference.PreferenceManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -114,175 +111,175 @@ public class SettingsOptionManager {
     private boolean notificationHideBigViewEnabled;
 
     private SettingsOptionManager(Context context) {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        ConfigStore config = ConfigStore.getInstance(context);
 
         // basic.
 
         // force set background free on android 12+.
-        backgroundFree = sharedPreferences.getBoolean(
+        backgroundFree = config.getBoolean(
                 context.getString(R.string.key_background_free),
                 true
         ); // || Build.VERSION.SDK_INT >= Build.VERSION_CODES.S;
 
-        alertPushEnabled = sharedPreferences.getBoolean(
+        alertPushEnabled = config.getBoolean(
                 context.getString(R.string.key_alert_notification_switch), true);
 
-        precipitationPushEnabled = sharedPreferences.getBoolean(
+        precipitationPushEnabled = config.getBoolean(
                 context.getString(R.string.key_precipitation_notification_switch), false);
 
         updateInterval = UpdateInterval.getInstance(
-                sharedPreferences.getString(
+                config.getString(
                         context.getString(R.string.key_refresh_rate), "1:30")
         );
 
         darkMode = DarkMode.getInstance(
-                sharedPreferences.getString(
+                config.getString(
                         context.getString(R.string.key_dark_mode), "auto")
         );
 
         // service provider.
 
         weatherSource = WeatherSource.getInstance(
-                sharedPreferences.getString(
+                config.getString(
                         context.getString(R.string.key_weather_source), "accu")
         );
 
         locationProvider = LocationProvider.getInstance(
-                sharedPreferences.getString(
+                config.getString(
                         context.getString(R.string.key_location_service), "native")
         );
 
         // unit.
 
         temperatureUnit = TemperatureUnit.getInstance(
-                sharedPreferences.getString(
+                config.getString(
                         context.getString(R.string.key_temperature_unit), "c")
         );
         distanceUnit = DistanceUnit.getInstance(
-                sharedPreferences.getString(
+                config.getString(
                         context.getString(R.string.key_distance_unit), "km")
         );
         precipitationUnit = PrecipitationUnit.getInstance(
-                sharedPreferences.getString(
+                config.getString(
                         context.getString(R.string.key_precipitation_unit), "mm")
         );
         pressureUnit = PressureUnit.getInstance(
-                sharedPreferences.getString(
+                config.getString(
                         context.getString(R.string.key_pressure_unit), "mb")
         );
         speedUnit = SpeedUnit.getInstance(
-                sharedPreferences.getString(
+                config.getString(
                         context.getString(R.string.key_speed_unit), "mps")
         );
 
         // appearance.
 
         uiStyle = UIStyle.getInstance(
-                sharedPreferences.getString(
+                config.getString(
                         context.getString(R.string.key_ui_style), "material")
         );
 
-        iconProvider = sharedPreferences.getString(
+        iconProvider = config.getString(
                 context.getString(R.string.key_icon_provider),
                 context.getPackageName()
         );
 
         cardDisplayList = CardDisplay.toCardDisplayList(
-                sharedPreferences.getString(context.getString(R.string.key_card_display), DEFAULT_CARD_DISPLAY)
+                config.getString(context.getString(R.string.key_card_display), DEFAULT_CARD_DISPLAY)
         );
 
         dailyTrendDisplayList = DailyTrendDisplay.toDailyTrendDisplayList(
-                sharedPreferences.getString(
+                config.getString(
                         context.getString(R.string.key_daily_trend_display),
                         DEFAULT_DAILY_TREND_DISPLAY
                 )
         );
 
-        trendHorizontalLinesEnabled = sharedPreferences.getBoolean(
+        trendHorizontalLinesEnabled = config.getBoolean(
                 context.getString(R.string.key_trend_horizontal_line_switch), true);
 
-        exchangeDayNightTempEnabled = sharedPreferences.getBoolean(
+        exchangeDayNightTempEnabled = config.getBoolean(
                 context.getString(R.string.key_exchange_day_night_temp_switch), false);
 
-        gravitySensorEnabled = sharedPreferences.getBoolean(
+        gravitySensorEnabled = config.getBoolean(
                 context.getString(R.string.key_gravity_sensor_switch), true);
 
-        listAnimationEnabled = sharedPreferences.getBoolean(
+        listAnimationEnabled = config.getBoolean(
                 context.getString(R.string.key_list_animation_switch), true);
 
-        itemAnimationEnabled = sharedPreferences.getBoolean(
+        itemAnimationEnabled = config.getBoolean(
                 context.getString(R.string.key_item_animation_switch), true);
 
         language = Language.getInstance(
-                sharedPreferences.getString(
+                config.getString(
                         context.getString(R.string.key_language), "follow_system")
         );
 
         // forecast.
 
-        todayForecastEnabled = sharedPreferences.getBoolean(
+        todayForecastEnabled = config.getBoolean(
                 context.getString(R.string.key_forecast_today), false);
 
-        todayForecastTime = sharedPreferences.getString(
+        todayForecastTime = config.getString(
                 context.getString(R.string.key_forecast_today_time), DEFAULT_TODAY_FORECAST_TIME);
 
-        tomorrowForecastEnabled = sharedPreferences.getBoolean(
+        tomorrowForecastEnabled = config.getBoolean(
                 context.getString(R.string.key_forecast_tomorrow), false);
 
-        tomorrowForecastTime = sharedPreferences.getString(
+        tomorrowForecastTime = config.getString(
                 context.getString(R.string.key_forecast_tomorrow_time), DEFAULT_TOMORROW_FORECAST_TIME);
 
         // widget.
 
         widgetWeekIconMode = WidgetWeekIconMode.getInstance(
-                sharedPreferences.getString(
+                config.getString(
                         context.getString(R.string.key_week_icon_mode), "auto")
         );
 
-        widgetMinimalIconEnabled = sharedPreferences.getBoolean(
+        widgetMinimalIconEnabled = config.getBoolean(
                 context.getString(R.string.key_widget_minimal_icon), false);
 
-        widgetClickToRefreshEnabled = sharedPreferences.getBoolean(
+        widgetClickToRefreshEnabled = config.getBoolean(
                 context.getString(R.string.key_click_widget_to_refresh), false);
 
         // notification.
 
-        notificationEnabled = sharedPreferences.getBoolean(
+        notificationEnabled = config.getBoolean(
                 context.getString(R.string.key_notification), false);
 
         notificationStyle = NotificationStyle.getInstance(
-                sharedPreferences.getString(
+                config.getString(
                         context.getString(R.string.key_notification_style), "daily")
         );
 
-        notificationMinimalIconEnabled = sharedPreferences.getBoolean(
+        notificationMinimalIconEnabled = config.getBoolean(
                 context.getString(R.string.key_notification_minimal_icon), false);
 
-        notificationTemperatureIconEnabled = sharedPreferences.getBoolean(
+        notificationTemperatureIconEnabled = config.getBoolean(
                 context.getString(R.string.key_notification_temp_icon), false);
 
-        notificationCustomColorEnabled = sharedPreferences.getBoolean(
+        notificationCustomColorEnabled = config.getBoolean(
                 context.getString(R.string.key_notification_custom_color), false);
 
-        notificationBackgroundColor = sharedPreferences.getInt(
+        notificationBackgroundColor = config.getInt(
                 context.getString(R.string.key_notification_background_color),
                 ContextCompat.getColor(context, R.color.notification_background_l));
 
         notificationTextColor = NotificationTextColor.getInstance(
-                sharedPreferences.getString(
+                config.getString(
                         context.getString(R.string.key_notification_text_color), "dark")
         );
 
-        notificationCanBeClearedEnabled = sharedPreferences.getBoolean(
+        notificationCanBeClearedEnabled = config.getBoolean(
                 context.getString(R.string.key_notification_can_be_cleared), false);
 
-        notificationHideIconEnabled = sharedPreferences.getBoolean(
+        notificationHideIconEnabled = config.getBoolean(
                 context.getString(R.string.key_notification_hide_icon), false);
 
-        notificationHideInLockScreenEnabled = sharedPreferences.getBoolean(
+        notificationHideInLockScreenEnabled = config.getBoolean(
                 context.getString(R.string.key_notification_hide_in_lockScreen), false);
 
-        notificationHideBigViewEnabled = sharedPreferences.getBoolean(
+        notificationHideBigViewEnabled = config.getBoolean(
                 context.getString(R.string.key_notification_hide_big_view), false);
     }
 

@@ -56,7 +56,7 @@ public class DayWeekWidgetConfigActivity extends AbstractWidgetConfigActivity {
     }
 
     @Override
-    public String getSharedPreferencesName() {
+    public String getConfigStoreName() {
         return getString(R.string.sp_widget_day_week_setting);
     }
 }

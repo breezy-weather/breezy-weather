@@ -9,7 +9,6 @@ import wangdaye.com.geometricweather.common.basic.models.options._utils.Utils;
 
 public enum WeatherSource {
 
-
     ACCU("accu", 0xffef5823, "accuweather.com"),
     OWM("owm", 0xffeb6e4b, "openweathermap.org"),
     MF("mf", 0xff005892, "meteofrance.com"),

@@ -62,7 +62,8 @@ public abstract class GeoActivity extends AppCompatActivity {
             int usableHeightNow = computeUsableHeight();
             if (usableHeightNow != mUsableHeightPrevious) {
                 int contentViewHeight = mContentChild.getRootView().getHeight();
-                if (contentViewHeight - usableHeightNow > contentViewHeight / 5) {
+                if (DisplayUtils.isKeyboardExpanded(contentViewHeight,
+                        contentViewHeight - usableHeightNow)) {
                     // keyboard probably just became visible.
                     mContentChildParams.height = usableHeightNow;
                 } else {

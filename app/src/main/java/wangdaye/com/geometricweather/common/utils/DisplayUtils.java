@@ -12,11 +12,8 @@ import android.graphics.drawable.Drawable;
 import android.media.ThumbnailUtils;
 import android.os.Build;
 import android.text.format.DateFormat;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowInsets;
-import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.view.animation.OvershootInterpolator;
@@ -284,6 +281,10 @@ public class DisplayUtils {
         return new Animator[] {translation, scaleX, scaleY};
     }
 
+    public static boolean isKeyboardExpanded(int screenHeight, int bottomInset) {
+        return screenHeight - bottomInset > screenHeight / 5;
+    }
+
     public static void getVisibleDisplayFrame(View view, Rect rect) {
         /*
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -304,6 +305,7 @@ public class DisplayUtils {
             view.getWindowVisibleDisplayFrame(rect);
         }
         */
+        // looks like has a good performance.
         view.getWindowVisibleDisplayFrame(rect);
     }
 }

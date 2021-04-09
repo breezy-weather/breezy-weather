@@ -50,7 +50,7 @@ public class WeekWidgetConfigActivity extends AbstractWidgetConfigActivity {
     }
 
     @Override
-    public String getSharedPreferencesName() {
+    public String getConfigStoreName() {
         return getString(R.string.sp_widget_week_setting);
     }
 }

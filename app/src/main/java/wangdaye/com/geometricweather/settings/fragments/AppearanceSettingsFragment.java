@@ -8,7 +8,6 @@ import android.os.Bundle;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.preference.Preference;
-import androidx.preference.PreferenceManager;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
@@ -18,6 +17,7 @@ import wangdaye.com.geometricweather.common.basic.models.options.appearance.Lang
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.UIStyle;
 import wangdaye.com.geometricweather.common.basic.models.weather.Temperature;
 import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.settings.ConfigStore;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 import wangdaye.com.geometricweather.settings.dialogs.ProvidersPreviewerDialog;
 import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
@@ -38,7 +38,7 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
             }
 
             getSettingsOptionManager().setIconProvider(packageName);
-            PreferenceManager.getDefaultSharedPreferences(requireActivity())
+            ConfigStore.getInstance(context)
                     .edit()
                     .putString(getString(R.string.key_icon_provider), packageName)
                     .apply();

@@ -64,7 +64,7 @@ public class ClockDayVerticalWidgetConfigActivity extends AbstractWidgetConfigAc
     }
 
     @Override
-    public String getSharedPreferencesName() {
+    public String getConfigStoreName() {
         return getString(R.string.sp_widget_clock_day_vertical_setting);
     }
 }

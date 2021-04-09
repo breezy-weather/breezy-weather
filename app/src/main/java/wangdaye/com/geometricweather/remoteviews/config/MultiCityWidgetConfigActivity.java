@@ -49,7 +49,7 @@ public class MultiCityWidgetConfigActivity extends AbstractWidgetConfigActivity 
     }
 
     @Override
-    public String getSharedPreferencesName() {
+    public String getConfigStoreName() {
         return getString(R.string.sp_widget_multi_city);
     }
 }

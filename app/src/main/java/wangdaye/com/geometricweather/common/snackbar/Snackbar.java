@@ -458,6 +458,14 @@ public final class Snackbar {
             });
         }
 
+        @Override
+        protected boolean fitSystemWindows(Rect insets) {
+            mWindowInsets.set(insets.left, insets.top, insets.right, insets.bottom);
+            Utils.fitKeyboardExpand(this, mWindowInsets);
+            requestLayout();
+            return false;
+        }
+
         public @LayoutRes int getLayoutId() {
             return R.layout.container_snackbar_layout_inner;
         }
@@ -475,13 +483,6 @@ public final class Snackbar {
 
         Button getActionView() {
             return mActionView;
-        }
-
-        @Override
-        protected boolean fitSystemWindows(Rect insets) {
-            mWindowInsets.set(insets.left, insets.top, insets.right, insets.bottom);
-            requestLayout();
-            return false;
         }
 
         @Override
