@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Rect;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
@@ -16,6 +17,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+import android.view.WindowInsets;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -24,6 +26,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.IntDef;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.annotation.StringRes;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.view.ViewCompat;
@@ -404,7 +407,6 @@ public final class Snackbar {
 
     public static class SnackbarLayout extends ViewGroup {
 
-        private View mParent;
         private final Rect mWindowInsets;
 
         private TextView mMessageView;
@@ -431,7 +433,6 @@ public final class Snackbar {
         public SnackbarLayout(Context context, AttributeSet attrs) {
             super(context, attrs);
 
-            mParent = null;
             mWindowInsets = new Rect();
 
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SnackbarLayout);
@@ -444,24 +445,23 @@ public final class Snackbar {
 
             ViewCompat.setAccessibilityLiveRegion(this,
                     ViewCompat.ACCESSIBILITY_LIVE_REGION_POLITE);
+        }
 
-            ViewCompat.setOnApplyWindowInsetsListener(this, (v, insets) -> {
-                fitSystemWindows(
-                        new Rect(
-                                insets.getSystemWindowInsetLeft(),
-                                insets.getSystemWindowInsetTop(),
-                                insets.getSystemWindowInsetRight(),
-                                insets.getSystemWindowInsetBottom()
-                        )
-                );
-                return insets;
-            });
+        @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
+        @Override
+        public WindowInsets onApplyWindowInsets(WindowInsets insets) {
+            mWindowInsets.set(
+                    insets.getSystemWindowInsetLeft(), insets.getSystemWindowInsetTop(),
+                    insets.getSystemWindowInsetRight(), insets.getSystemWindowInsetBottom()
+            );
+            Utils.consumeInsets(this, mWindowInsets);
+            return insets;
         }
 
         @Override
         protected boolean fitSystemWindows(Rect insets) {
-            mWindowInsets.set(insets.left, insets.top, insets.right, insets.bottom);
-            requestLayout();
+            mWindowInsets.set(insets);
+            Utils.consumeInsets(this, mWindowInsets);
             return false;
         }
 
