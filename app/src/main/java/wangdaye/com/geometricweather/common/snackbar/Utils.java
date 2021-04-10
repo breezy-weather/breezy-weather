@@ -2,11 +2,14 @@ package wangdaye.com.geometricweather.common.snackbar;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
+import android.graphics.Rect;
 import android.view.View;
 import android.view.animation.Interpolator;
 
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
+import wangdaye.com.geometricweather.common.basic.insets.FitBothSideBarHelper;
+import wangdaye.com.geometricweather.common.basic.insets.FitBothSideBarView;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 
 class Utils extends android.view.animation.AnimationUtils {
@@ -26,5 +29,14 @@ class Utils extends android.view.animation.AnimationUtils {
         AnimatorSet set = new AnimatorSet();
         set.playTogether(animators[0], animators[1], animators[2]);
         return set;
+    }
+
+    static void consumeInsets(View view, Rect insets) {
+        FitBothSideBarHelper fitInsetsHelper = new FitBothSideBarHelper(
+                view, FitBothSideBarView.SIDE_BOTTOM);
+        fitInsetsHelper.fitSystemWindows(insets, () -> {
+            insets.set(fitInsetsHelper.getWindowInsets());
+            view.requestLayout();
+        });
     }
 }

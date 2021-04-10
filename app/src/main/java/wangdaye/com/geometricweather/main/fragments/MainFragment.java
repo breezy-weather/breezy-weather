@@ -21,7 +21,7 @@ import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
 import wangdaye.com.geometricweather.common.basic.models.resources.Resource;
 import wangdaye.com.geometricweather.common.ui.widgets.SwipeSwitchLayout;
-import wangdaye.com.geometricweather.common.ui.widgets.insets.FitHorizontalSystemBarRootLayout;
+import wangdaye.com.geometricweather.common.basic.insets.FitHorizontalSystemBarRootLayout;
 import wangdaye.com.geometricweather.common.ui.widgets.weatherView.WeatherView;
 import wangdaye.com.geometricweather.common.ui.widgets.weatherView.WeatherViewController;
 import wangdaye.com.geometricweather.common.ui.widgets.weatherView.circularSkyView.CircularSkyWeatherView;

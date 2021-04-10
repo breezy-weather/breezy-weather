@@ -17,6 +17,7 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.rxjava.BaseObserver;
 import wangdaye.com.geometricweather.common.rxjava.ObserverContainer;
 import wangdaye.com.geometricweather.common.rxjava.SchedulerTransformer;
+import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.weather.services.WeatherService;
 
@@ -75,6 +76,10 @@ public class WeatherHelper {
 
     public void requestLocation(Context context, String query, List<WeatherSource> enabledSources,
                                 @NonNull final OnRequestLocationListener l) {
+        if (enabledSources == null || enabledSources.isEmpty()) {
+            AsyncHelper.delayRunOnUI(() -> l.requestLocationFailed(query), 0);
+        }
+
         // generate weather services.
         final WeatherService[] services = new WeatherService[enabledSources.size()];
         for (int i = 0; i < services.length; i ++) {

@@ -14,7 +14,7 @@ import androidx.core.content.ContextCompat;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.snackbar.SnackbarContainer;
-import wangdaye.com.geometricweather.common.ui.widgets.insets.FitHorizontalSystemBarRootLayout;
+import wangdaye.com.geometricweather.common.basic.insets.FitHorizontalSystemBarRootLayout;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.LanguageUtils;
 import wangdaye.com.geometricweather.settings.SettingsOptionManager;
@@ -55,7 +55,7 @@ public abstract class GeoActivity extends AppCompatActivity {
             if (usableHeightNow != mUsableHeightPrevious) {
 
                 int screenHeight = mRoot.getRootView().getHeight();
-                boolean keyboardExpanded = false;
+                boolean keyboardExpanded;
 
                 if (screenHeight - usableHeightNow > screenHeight / 5) {
                     // keyboard probably just became visible.
@@ -63,6 +63,7 @@ public abstract class GeoActivity extends AppCompatActivity {
                     mRootParams.height = usableHeightNow;
                 } else {
                     // keyboard probably just became hidden.
+                    keyboardExpanded = false;
                     mRootParams.height = screenHeight;
                 }
                 mUsableHeightPrevious = usableHeightNow;

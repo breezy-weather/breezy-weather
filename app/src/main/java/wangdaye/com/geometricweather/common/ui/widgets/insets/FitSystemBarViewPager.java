@@ -16,9 +16,13 @@ import androidx.viewpager.widget.ViewPager;
 
 import java.util.List;
 
-public class FitSystemBarViewPager extends ViewPager {
+import wangdaye.com.geometricweather.common.basic.insets.FitBothSideBarHelper;
+import wangdaye.com.geometricweather.common.basic.insets.FitBothSideBarView;
 
-    private Rect mWindowInsets = new Rect(0, 0, 0, 0);
+public class FitSystemBarViewPager extends ViewPager
+        implements FitBothSideBarView {
+
+    final FitBothSideBarHelper helper;
 
     public static class FitBottomSystemBarPagerAdapter extends PagerAdapter {
 
@@ -46,7 +50,7 @@ public class FitSystemBarViewPager extends ViewPager {
         @NonNull
         @Override
         public Object instantiateItem(@NonNull ViewGroup container, int position) {
-            setWindowInsetsForViewTree(mViewList.get(position), mPager.getWindowInsets());
+            setWindowInsetsForViewTree(mViewList.get(position), mPager.helper.getWindowInsets());
             container.addView(mViewList.get(position));
             return mViewList.get(position);
         }
@@ -86,31 +90,42 @@ public class FitSystemBarViewPager extends ViewPager {
 
     public FitSystemBarViewPager(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        helper = new FitBothSideBarHelper(this, SIDE_TOP);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
     @Override
     public WindowInsets onApplyWindowInsets(WindowInsets insets) {
-        fitSystemBar(new Rect(
-                insets.getSystemWindowInsetLeft(),
-                insets.getSystemWindowInsetTop(),
-                insets.getSystemWindowInsetRight(),
-                insets.getSystemWindowInsetBottom()
-        ));
-        return insets;
+        return helper.onApplyWindowInsets(insets);
     }
 
     @Override
     protected boolean fitSystemWindows(Rect insets) {
-        fitSystemBar(insets);
-        return false;
+        return helper.fitSystemWindows(insets);
     }
 
-    private void fitSystemBar(Rect insets) {
-        mWindowInsets = insets;
+    @Override
+    public void addFitSide(@FitSide int side) {
+        helper.addFitSide(side);
     }
 
-    private Rect getWindowInsets() {
-        return mWindowInsets;
+    @Override
+    public void removeFitSide(@FitSide int side) {
+        helper.removeFitSide(side);
+    }
+
+    @Override
+    public void setFitSystemBarEnabled(boolean top, boolean bottom) {
+        helper.setFitSystemBarEnabled(top, bottom);
+    }
+
+    @Override
+    public int getTopWindowInset() {
+        return helper.top();
+    }
+
+    @Override
+    public int getBottomWindowInset() {
+        return helper.bottom();
     }
 }
