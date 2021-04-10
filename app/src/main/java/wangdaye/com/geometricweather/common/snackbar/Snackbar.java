@@ -461,7 +461,6 @@ public final class Snackbar {
         @Override
         protected boolean fitSystemWindows(Rect insets) {
             mWindowInsets.set(insets.left, insets.top, insets.right, insets.bottom);
-            Utils.fitKeyboardExpand(this, mWindowInsets);
             requestLayout();
             return false;
         }

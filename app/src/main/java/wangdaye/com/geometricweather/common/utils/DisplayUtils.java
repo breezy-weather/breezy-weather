@@ -281,10 +281,6 @@ public class DisplayUtils {
         return new Animator[] {translation, scaleX, scaleY};
     }
 
-    public static boolean isKeyboardExpanded(int screenHeight, int bottomInset) {
-        return screenHeight - bottomInset > screenHeight / 5;
-    }
-
     public static void getVisibleDisplayFrame(View view, Rect rect) {
         /*
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
