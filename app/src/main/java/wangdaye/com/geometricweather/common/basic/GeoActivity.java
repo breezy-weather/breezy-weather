@@ -1,12 +1,9 @@
 package wangdaye.com.geometricweather.common.basic;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
@@ -14,12 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import java.util.LinkedList;
-import java.util.Queue;
-
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.common.basic.insets.FitBothSideBarView;
 import wangdaye.com.geometricweather.common.snackbar.SnackbarContainer;
 import wangdaye.com.geometricweather.common.ui.widgets.insets.FitHorizontalSystemBarRootLayout;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
@@ -32,7 +25,7 @@ import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 
 public abstract class GeoActivity extends AppCompatActivity {
 
-    private FitHorizontalSystemBarRootLayout mFitHorizontalSystemBarRootLayout;
+    FitHorizontalSystemBarRootLayout fitHorizontalSystemBarRootLayout;
 
     private @Nullable GeoDialog mTopDialog;
 
@@ -43,63 +36,45 @@ public abstract class GeoActivity extends AppCompatActivity {
         // For more information, see https://issuetracker.google.com/issues/36911528
         // To use this class, simply invoke assistActivity() on an Activity that already has its content view set.
 
-        public static void assistActivity (Activity activity) {
+        public static void assistActivity (GeoActivity activity) {
             new KeyboardResizeBugWorkaround(activity);
         }
 
-        private final View mContentChild;
-        private final FrameLayout.LayoutParams mContentChildParams;
+        private final FitHorizontalSystemBarRootLayout mRoot;
+        private final ViewGroup.LayoutParams mRootParams;
         private int mUsableHeightPrevious;
 
-        private KeyboardResizeBugWorkaround(Activity activity) {
-            FrameLayout content = activity.findViewById(android.R.id.content);
-            mContentChild = content.getChildAt(0);
-            mContentChild.getViewTreeObserver().addOnGlobalLayoutListener(this::possiblyResizeChildOfContent);
-            mContentChildParams = (FrameLayout.LayoutParams) mContentChild.getLayoutParams();
+        private KeyboardResizeBugWorkaround(GeoActivity activity) {
+            mRoot = activity.fitHorizontalSystemBarRootLayout;
+            mRoot.getViewTreeObserver().addOnGlobalLayoutListener(this::possiblyResizeChildOfContent);
+            mRootParams = mRoot.getLayoutParams();
         }
 
         private void possiblyResizeChildOfContent() {
             int usableHeightNow = computeUsableHeight();
             if (usableHeightNow != mUsableHeightPrevious) {
-                int contentViewHeight = mContentChild.getRootView().getHeight();
-                if (DisplayUtils.isKeyboardExpanded(contentViewHeight,
-                        contentViewHeight - usableHeightNow)) {
+
+                int screenHeight = mRoot.getRootView().getHeight();
+                boolean keyboardExpanded = false;
+
+                if (screenHeight - usableHeightNow > screenHeight / 5) {
                     // keyboard probably just became visible.
-                    mContentChildParams.height = usableHeightNow;
+                    keyboardExpanded = true;
+                    mRootParams.height = usableHeightNow;
                 } else {
                     // keyboard probably just became hidden.
-                    mContentChildParams.height = contentViewHeight;
+                    mRootParams.height = screenHeight;
                 }
                 mUsableHeightPrevious = usableHeightNow;
-                mContentChild.requestLayout();
 
-                setChildrenFitBottomBarEnabled(mContentChild,
-                        mContentChildParams.height != usableHeightNow);
+                mRoot.setFitKeyboardExpanded(keyboardExpanded);
             }
         }
 
         private int computeUsableHeight() {
             Rect r = new Rect();
-            DisplayUtils.getVisibleDisplayFrame(mContentChild, r);
+            DisplayUtils.getVisibleDisplayFrame(mRoot, r);
             return r.bottom; // - r.top; --> Do not reduce the height of status bar.
-        }
-
-        private void setChildrenFitBottomBarEnabled(View view, boolean enabled) {
-            Queue<View> queue = new LinkedList<>();
-            queue.add(view);
-
-            while (!queue.isEmpty()) {
-                view = queue.poll();
-
-                // Currently, a FitBothSideBarView won't contain another FitBothSideBarView.
-                if (view instanceof FitBothSideBarView) {
-                    ((FitBothSideBarView) view).setFitSystemBarEnabled(true, enabled);
-                } else if (view instanceof ViewGroup) {
-                    for (int i = 0; i < ((ViewGroup) view).getChildCount(); i ++) {
-                        queue.add(((ViewGroup) view).getChildAt(i));
-                    }
-                }
-            }
         }
     }
 
@@ -108,9 +83,9 @@ public abstract class GeoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mFitHorizontalSystemBarRootLayout = new FitHorizontalSystemBarRootLayout(this);
-        mFitHorizontalSystemBarRootLayout.setRootColor(ContextCompat.getColor(this, R.color.colorRoot));
-        mFitHorizontalSystemBarRootLayout.setLineColor(ContextCompat.getColor(this, R.color.colorLine));
+        fitHorizontalSystemBarRootLayout = new FitHorizontalSystemBarRootLayout(this);
+        fitHorizontalSystemBarRootLayout.setRootColor(ContextCompat.getColor(this, R.color.colorRoot));
+        fitHorizontalSystemBarRootLayout.setLineColor(ContextCompat.getColor(this, R.color.colorLine));
 
         GeometricWeather.getInstance().addActivity(this);
 
@@ -127,18 +102,19 @@ public abstract class GeoActivity extends AppCompatActivity {
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        KeyboardResizeBugWorkaround.assistActivity(this);
 
-        // decor -> snackbar container -> fit horizontal system bar -> decor child.
+        // decor -> fit horizontal system bar -> decor child.
 
         ViewGroup decorView = (ViewGroup) getWindow().getDecorView();
         ViewGroup decorChild = (ViewGroup) decorView.getChildAt(0);
 
         decorView.removeView(decorChild);
-        decorView.addView(mFitHorizontalSystemBarRootLayout);
+        decorView.addView(fitHorizontalSystemBarRootLayout);
 
-        mFitHorizontalSystemBarRootLayout.removeAllViews();
-        mFitHorizontalSystemBarRootLayout.addView(decorChild);
+        fitHorizontalSystemBarRootLayout.removeAllViews();
+        fitHorizontalSystemBarRootLayout.addView(decorChild);
+
+        KeyboardResizeBugWorkaround.assistActivity(this);
     }
 
     @Override
@@ -213,6 +189,6 @@ public abstract class GeoActivity extends AppCompatActivity {
     }
 
     public FitHorizontalSystemBarRootLayout getFitHorizontalSystemBarRootLayout() {
-        return mFitHorizontalSystemBarRootLayout;
+        return fitHorizontalSystemBarRootLayout;
     }
 }

@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "wangdaye.com.geometricweather",
+  "variantName": "processGplayReleaseResources",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "versionCode": 30008,
+      "versionName": "3.008_gplay",
+      "outputFile": "GeometricWeather 3.008_gplay.apk"
+    }
+  ]
+}

@@ -21,6 +21,8 @@ public class FitHorizontalSystemBarRootLayout extends FrameLayout {
     private @ColorInt int mRootColor;
     private @ColorInt int mLineColor;
 
+    private boolean mFitKeyboardExpanded;
+
     public FitHorizontalSystemBarRootLayout(Context context) {
         this(context, null);
     }
@@ -39,6 +41,8 @@ public class FitHorizontalSystemBarRootLayout extends FrameLayout {
         mRootColor = Color.TRANSPARENT;
         mLineColor = Color.GRAY;
 
+        mFitKeyboardExpanded = false;
+
         setWillNotDraw(false);
     }
 
@@ -51,12 +55,17 @@ public class FitHorizontalSystemBarRootLayout extends FrameLayout {
                 insets.getSystemWindowInsetRight(),
                 insets.getSystemWindowInsetBottom()
         ));
-        return insets.replaceSystemWindowInsets(0, insets.getSystemWindowInsetTop(),
-                0, insets.getSystemWindowInsetBottom());
+        return insets.replaceSystemWindowInsets(0, insets.getSystemWindowInsetTop(), 0,
+                mFitKeyboardExpanded ? 0 : insets.getSystemWindowInsetBottom());
     }
 
     @Override
     protected boolean fitSystemWindows(Rect insets) {
+        if (mFitKeyboardExpanded) {
+            insets.bottom = 0;
+        }
+        insets.left = 0;
+        insets.right = 0;
         super.fitSystemWindows(insets);
         fitSystemBar(insets);
         return false;
@@ -91,5 +100,10 @@ public class FitHorizontalSystemBarRootLayout extends FrameLayout {
     public void setRootColor(@ColorInt int rootColor) {
         mRootColor = rootColor;
         invalidate();
+    }
+
+    public void setFitKeyboardExpanded(boolean fit) {
+        mFitKeyboardExpanded = fit;
+        requestLayout();
     }
 }
