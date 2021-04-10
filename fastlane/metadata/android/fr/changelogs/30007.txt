@@ -1,0 +1,9 @@
+<ul><li>Version initiale disponible sur F-Droid.</li>
+<li>Nouveau fournisseur météo : OpenWeatherMap.</li>
+<li>Nouvelles animations pour l’interface principale.</li>
+<li>Nouvelles animations pour les « snackbar ».</li>
+<li>Nouvelle vue de filtre pour la page de recherche.</li>
+<li>Améliorations des données disponibles avec Météo France.</li>
+<li>Mise à jour des traductions françaises et espagnoles.</li>
+<li>Corrections d’anomalies.</li></ul>
+
