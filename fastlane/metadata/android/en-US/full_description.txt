@@ -1,15 +1,34 @@
 Geometric Weather is a free and open-source Android weather app.
 This build flavor has all proprietary dependencies and related code stripped out to make it eligible for inclusion on F-Droid.
+
 In the app, you'll find:<ul>
 <li>Real-time temperature</li>
 <li>Daily forecasts up to 15 days, and hourly forecasts for the next 24 hours</li>
 <li>Air quality and allergen information</li>
 <li>Severe weather and precipitation alerts</li></ul>
+
 The app has a strong focus on design, with a simple, clean UX, smooth animations, and Material Design all over, plus lots of customizability:<ul>
 <li>Automatic dark theme</li>
 <li>Custom icon themes</li>
 <li>Large selection of home screen widgets for at-a-glance information</li>
 <li>Live wallpaper</li></ul>
+
 Current supported weather providers in F-Droid flavor:<ul>
 <li>AccuWeather</li>
+<li>OpenWeatherMap</li>
 <li>Météo France</li></ul>
+
+This app requests a number of permissions; some required, some optional.
+
+Required permissions:<ul>
+<li>Network (ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE, INTERNET): Allows the app to fetch weather data from providers over the Internet</li>
+<li>Background updates (RECEIVE_BOOT_COMPLETED, WAKE_LOCK, FOREGROUND_SERVICE, SET_ALARM): Allows the app to refresh weather data in the background</li>
+<li>Tile (EXPAND_STATUS_BAR): Allows the app to launch itself from Quick Settings</li>
+</ul>
+
+Optional permissions: <ul>
+<li>Location (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): Allows the app to show weather in your current location</li>
+<li>Storage (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE): Allows the app to set the live weather wallpaper and/or widgets on some devices</li>
+<li>Ignore battery optimizations (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS): Prevents the app from being killed in the background. Potentially more reliable method for fetching background weather data on some devices</li>
+<li>Read phone state (READ_PHONE_STATE): Required by an app dependency: not actually used, but can't be removed. It's okay to never enable this.</li>
+</ul>

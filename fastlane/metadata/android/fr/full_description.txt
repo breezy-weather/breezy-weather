@@ -1,0 +1,34 @@
+Geometric Weather est une application météo Android libre et gratuite.
+Cette version ne comporte aucune dépendance propriétaire, en respectant les critères d’inclusion de F-Droid.
+
+Vous trouverez dans cette application, de façon non exhaustive :<ul>
+<li>Les températures en temps réel</li>
+<li>Les prévisions quotidiennes jusqu’à 15 jours, et des prévisions horaires pour les 24 prochaines heures</li>
+<li>Des informations sur la qualité de l’air et les allergènes</li>
+<li>Vigilances météo et alertes de précipitations</li></ul>
+
+L’application met l’accent sur l’esthétique, avec une expérience utilisateur simple et épurée, des animations fluides, en Material Design, ainsi que plusieurs personnalisations:<ul>
+<li>Thème sombre automatique</li>
+<li>Thèmes d’icônes personnalisées</li>
+<li>Une large sélection de widgets pour l’écran d’accueil pour disposer de l’information en un coup d’œil</li>
+<li>Fond d’écrans animés</li></ul>
+
+Les fournisseurs de données météo disponibles dans la version F-Droid sont les suivants :<ul>
+<li>AccuWeather</li>
+<li>OpenWeatherMap</li>
+<li>Météo France</li></ul>
+
+L’application nécessite un certain nombre de permissions ; certaines obligatoires, d’autres facultatives.
+
+Permissions obligatoires :<ul>
+<li>Réseau (ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE, INTERNET) : permet à l’application de récupérer des données météo depuis des fournisseurs sur Internet</li>
+<li>Mises à jour en arrière-plan (RECEIVE_BOOT_COMPLETED, WAKE_LOCK, FOREGROUND_SERVICE, SET_ALARM) : permet à l’application de rafraîchir les données météo en arrière-plan</li>
+<li>Icône système (EXPAND_STATUS_BAR) : permet à l’application de se lancer depuis les paramètres rapides</li>
+</ul>
+
+Permissions facultatives :<ul>
+<li>Localisation (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION) : permet à l’application d’afficher la météo pour votre position actuelle</li>
+<li>Stockage (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE) : permet à l’application de définir le fond d’écran animé et/ou les widgets sur certains appareils</li>
+<li>Ignorer l’optimisation de la batterie (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS) : empêche l’application d’être tuée en arrière-plan. Méthode potentiellement plus fiable pour récupérer les mises à jour de données météo sur certains appareils</li>
+<li>Téléphone (READ_PHONE_STATE) : requis par une dépendance de l’application, n’est pas réellement utilisée mais ne peut être enlevée. Elle peut rester désactivée sans problèmes.</li>
+</ul>
