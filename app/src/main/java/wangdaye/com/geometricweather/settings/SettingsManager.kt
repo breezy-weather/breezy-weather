@@ -100,7 +100,7 @@ class SettingsManager private constructor(context: Context){
     private var notificationCustomColorEnabled: Boolean
 
     @ColorInt
-    private var notificationBackgroundColor = 0
+    private var notificationBackgroundColor: Int
     private var notificationTextColor: NotificationTextColor
     private var notificationCanBeClearedEnabled: Boolean
     private var notificationHideIconEnabled: Boolean

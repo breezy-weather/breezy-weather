@@ -215,6 +215,10 @@ dependencies {
     implementation 'org.greenrobot:greendao:3.3.0'
     implementation 'io.github.yuweiguocn:GreenDaoUpgradeHelper:v2.2.1'
 
+    // data store
+    // implementation "androidx.datastore:datastore-preferences:1.0.0-alpha07"
+    // implementation "androidx.datastore:datastore-preferences-rxjava2:1.0.0-alpha07"
+
     // gson.
     implementation 'com.google.code.gson:gson:2.8.6'
 
