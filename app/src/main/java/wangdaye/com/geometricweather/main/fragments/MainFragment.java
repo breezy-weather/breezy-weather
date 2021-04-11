@@ -94,8 +94,7 @@ public class MainFragment extends GeoFragment {
                         ViewGroup.LayoutParams.MATCH_PARENT
                 )
         );
-        mWeatherView.setSystemBarStyle(requireContext(), requireActivity().getWindow(),
-                false, false, true, false);
+        setSystemBarStyle();
         mViewModel.getThemeManager().registerWeatherView(mWeatherView);
 
         resetUIUpdateFlag();
@@ -125,12 +124,17 @@ public class MainFragment extends GeoFragment {
         mViewModel.getThemeManager().unregisterWeatherView();
         mAdapter = null;
         mBinding.recyclerView.clearOnScrollListeners();
+        mScrollListener = null;
     }
 
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         mWeatherView.setDrawable(!hidden);
+
+        if (!hidden) {
+            setSystemBarStyle();
+        }
     }
 
     // init.
@@ -352,6 +356,12 @@ public class MainFragment extends GeoFragment {
         mBinding.refreshLayout.post(() -> mBinding.refreshLayout.setRefreshing(b));
     }
 
+    private void setSystemBarStyle() {
+        boolean statusShader = mScrollListener != null && mScrollListener.topOverlap;
+        mWeatherView.setSystemBarStyle(requireContext(), requireActivity().getWindow(),
+                statusShader, false, true, false);
+    }
+
     // interface.
 
     public void setCallback(@Nullable Callback callback) {
@@ -434,7 +444,7 @@ public class MainFragment extends GeoFragment {
     private class OnScrollListener extends RecyclerView.OnScrollListener {
 
         private @Nullable Boolean mTopChanged;
-        private boolean mTopOverlap;
+        boolean topOverlap;
 
         private int mFirstCardMarginTop;
 
@@ -445,7 +455,7 @@ public class MainFragment extends GeoFragment {
             super();
 
             mTopChanged = null;
-            mTopOverlap = false;
+            topOverlap = false;
 
             mFirstCardMarginTop = 0;
 
@@ -456,7 +466,7 @@ public class MainFragment extends GeoFragment {
         void postReset(@NonNull RecyclerView recyclerView) {
             recyclerView.post(() -> {
                 mTopChanged = null;
-                mTopOverlap = false;
+                topOverlap = false;
 
                 mFirstCardMarginTop = 0;
 
@@ -509,15 +519,15 @@ public class MainFragment extends GeoFragment {
             // set system bar style.
             if (mFirstCardMarginTop <= 0) {
                 mTopChanged = true;
-                mTopOverlap = false;
+                topOverlap = false;
             } else {
                 mTopChanged = (mBinding.appBar.getTranslationY() != 0) != (mLastAppBarTranslationY != 0);
-                mTopOverlap = mBinding.appBar.getTranslationY() != 0;
+                topOverlap = mBinding.appBar.getTranslationY() != 0;
             }
 
             if (mTopChanged) {
                 mWeatherView.setSystemBarColor(requireContext(), requireActivity().getWindow(),
-                        mTopOverlap, false, true, false);
+                        topOverlap, false, true, false);
             }
         }
     }
