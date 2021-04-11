@@ -1,0 +1,3 @@
+<ul><li>Corrections d’anomalies.</li>
+<li>(Version Google Play) App Bundle publié avec la signature d’application Play</li></ul>
+
