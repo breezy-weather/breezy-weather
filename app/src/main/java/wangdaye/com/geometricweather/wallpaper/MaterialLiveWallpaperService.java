@@ -23,7 +23,7 @@ import androidx.annotation.Size;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.common.ui.widgets.weatherView.WeatherView;
 import wangdaye.com.geometricweather.common.ui.widgets.weatherView.WeatherViewController;
 import wangdaye.com.geometricweather.common.ui.widgets.weatherView.materialWeatherView.DelayRotateController;
@@ -335,7 +335,7 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                     setWeatherImplementor();
                     setIntervalComputer();
                     setOpenGravitySensor(
-                            SettingsOptionManager.getInstance(getApplicationContext()).isGravitySensorEnabled());
+                            SettingsManager.getInstance(getApplicationContext()).isGravitySensorEnabled());
 
                     float screenRefreshRate;
                     WindowManager windowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);

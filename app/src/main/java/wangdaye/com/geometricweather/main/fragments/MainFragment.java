@@ -38,7 +38,7 @@ import wangdaye.com.geometricweather.main.utils.MainPalette;
 import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 
 public class MainFragment extends GeoFragment {
 
@@ -76,7 +76,7 @@ public class MainFragment extends GeoFragment {
         initModel();
 
         // attach weather view.
-        switch (SettingsOptionManager.getInstance(requireContext()).getUiStyle()) {
+        switch (SettingsManager.getInstance(requireContext()).getUiStyle()) {
             case MATERIAL:
                 mWeatherView = new MaterialWeatherView(requireContext());
                 break;
@@ -173,8 +173,8 @@ public class MainFragment extends GeoFragment {
         mBinding.refreshLayout.setOnRefreshListener(() ->
                 mViewModel.updateWeather(true, true));
 
-        boolean listAnimationEnabled = SettingsOptionManager.getInstance(requireContext()).isListAnimationEnabled();
-        boolean itemAnimationEnabled = SettingsOptionManager.getInstance(requireContext()).isItemAnimationEnabled();
+        boolean listAnimationEnabled = SettingsManager.getInstance(requireContext()).isListAnimationEnabled();
+        boolean itemAnimationEnabled = SettingsManager.getInstance(requireContext()).isItemAnimationEnabled();
         mAdapter = new MainAdapter((GeoActivity) requireActivity(), mBinding.recyclerView, mWeatherView,
                 null, mResourceProvider, mViewModel.getThemeManager(), listAnimationEnabled, itemAnimationEnabled);
 
@@ -291,8 +291,8 @@ public class MainFragment extends GeoFragment {
         mBinding.refreshLayout.setColorSchemeColors(mWeatherView.getThemeColors(themeManager.isLightTheme())[0]);
         mBinding.refreshLayout.setProgressBackgroundColorSchemeColor(themeManager.getRootColor(requireContext()));
 
-        boolean listAnimationEnabled = SettingsOptionManager.getInstance(requireContext()).isListAnimationEnabled();
-        boolean itemAnimationEnabled = SettingsOptionManager.getInstance(requireContext()).isItemAnimationEnabled();
+        boolean listAnimationEnabled = SettingsManager.getInstance(requireContext()).isListAnimationEnabled();
+        boolean itemAnimationEnabled = SettingsManager.getInstance(requireContext()).isItemAnimationEnabled();
         mAdapter.update((GeoActivity) requireActivity(), mBinding.recyclerView, mWeatherView, location,
                 mResourceProvider, mViewModel.getThemeManager(), listAnimationEnabled, itemAnimationEnabled);
         mAdapter.notifyDataSetChanged();
@@ -324,7 +324,7 @@ public class MainFragment extends GeoFragment {
             );
         }
         mWeatherView.setGravitySensorEnabled(
-                SettingsOptionManager.getInstance(requireContext()).isGravitySensorEnabled());
+                SettingsManager.getInstance(requireContext()).isGravitySensorEnabled());
 
         mBinding.toolbar.setTitle(location.getCityName(requireContext()));
 
@@ -345,7 +345,7 @@ public class MainFragment extends GeoFragment {
     }
 
     public void ensureResourceProvider() {
-        String iconProvider = SettingsOptionManager.getInstance(requireContext()).getIconProvider();
+        String iconProvider = SettingsManager.getInstance(requireContext()).getIconProvider();
         if (mResourceProvider == null
                 || !mResourceProvider.getPackageName().equals(iconProvider)) {
             mResourceProvider = ResourcesProviderFactory.getNewInstance();

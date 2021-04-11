@@ -28,7 +28,7 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.remoteviews.trend.TrendLinearLayout;
 import wangdaye.com.geometricweather.remoteviews.trend.WidgetItemView;
 import wangdaye.com.geometricweather.common.ui.widgets.weatherView.WeatherViewController;
@@ -86,8 +86,8 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
         int highestTemperature;
         int lowestTemperature;
 
-        boolean minimalIcon = SettingsOptionManager.getInstance(context).isWidgetMinimalIconEnabled();
-        TemperatureUnit temperatureUnit = SettingsOptionManager.getInstance(context).getTemperatureUnit();
+        boolean minimalIcon = SettingsManager.getInstance(context).isWidgetMinimalIconEnabled();
+        TemperatureUnit temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit();
 
         daytimeTemperatures = new float[itemCount * 2 - 1];
         for (int i = 0; i < daytimeTemperatures.length; i += 2) {
@@ -258,7 +258,7 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
                 context,
                 views,
                 location,
-                SettingsOptionManager.getInstance(context).isWidgetClickToRefreshEnabled()
+                SettingsManager.getInstance(context).isWidgetClickToRefreshEnabled()
         );
 
         return views;

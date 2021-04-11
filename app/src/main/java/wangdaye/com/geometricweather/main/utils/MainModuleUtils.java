@@ -8,14 +8,14 @@ import android.view.View;
 
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 
 public class MainModuleUtils {
 
     private static final long BASE_ENTER_DURATION = 500;
 
     public static boolean needUpdate(Context context, Location location) {
-        float pollingIntervalInHour = SettingsOptionManager.getInstance(context)
+        float pollingIntervalInHour = SettingsManager.getInstance(context)
                 .getUpdateInterval()
                 .getIntervalInHour();
         return !location.isUsable()

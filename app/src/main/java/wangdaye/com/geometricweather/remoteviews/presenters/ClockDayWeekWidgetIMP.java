@@ -25,7 +25,7 @@ import wangdaye.com.geometricweather.remoteviews.WidgetHelper;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.common.utils.helpers.LunarHelper;
 
 public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
@@ -63,7 +63,7 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
 
         boolean dayTime = location.isDaylight();
 
-        SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
+        SettingsManager settings = SettingsManager.getInstance(context);
         TemperatureUnit temperatureUnit = settings.getTemperatureUnit();
         WidgetWeekIconMode weekIconMode = settings.getWidgetWeekIconMode();
         boolean minimalIcon = settings.isWidgetMinimalIconEnabled();

@@ -30,7 +30,7 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
 import wangdaye.com.geometricweather.remoteviews.presenters.notification.NormalNotificationIMP;
 import wangdaye.com.geometricweather.settings.ConfigStore;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 
 /**
  * Notification helper.
@@ -88,7 +88,7 @@ public class NotificationHelper {
                                          Location location, @Nullable Weather oldResult) {
         Weather weather = location.getWeather();
         if (weather == null
-                || !SettingsOptionManager.getInstance(context).isAlertPushEnabled()) {
+                || !SettingsManager.getInstance(context).isAlertPushEnabled()) {
             return;
         }
 
@@ -219,7 +219,7 @@ public class NotificationHelper {
     @SuppressLint("InlinedApi")
     public static void checkAndSendPrecipitationForecast(Context context,
                                                          Location location, @Nullable Weather oldResult) {
-        if (!SettingsOptionManager.getInstance(context).isPrecipitationPushEnabled()
+        if (!SettingsManager.getInstance(context).isPrecipitationPushEnabled()
                 || location.getWeather() == null) {
             return;
         }

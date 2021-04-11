@@ -23,7 +23,7 @@ import dagger.hilt.android.HiltAndroidApp;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.utils.LanguageUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.BuglyHelper;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 
 /**
  * Geometric weather application class.
@@ -149,7 +149,7 @@ public class GeometricWeather extends MultiDexApplication implements Configurati
         sInstance = this;
 
         LanguageUtils.setLanguage(this,
-                SettingsOptionManager.getInstance(this).getLanguage().getLocale());
+                SettingsManager.getInstance(this).getLanguage().getLocale());
 
         BuglyHelper.init(this);
 
@@ -229,7 +229,7 @@ public class GeometricWeather extends MultiDexApplication implements Configurati
     }
 
     public void resetDayNightMode() {
-        switch (SettingsOptionManager.getInstance(this).getDarkMode()) {
+        switch (SettingsManager.getInstance(this).getDarkMode()) {
             case AUTO:
                 /*
                 AppCompatDelegate.setDefaultNightMode(

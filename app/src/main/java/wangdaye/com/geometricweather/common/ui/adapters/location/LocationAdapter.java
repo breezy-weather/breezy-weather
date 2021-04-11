@@ -23,7 +23,7 @@ import wangdaye.com.geometricweather.common.theme.ThemeManager;
 import wangdaye.com.geometricweather.databinding.ItemLocationBinding;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 
 /**
  * Location adapter.
@@ -71,7 +71,7 @@ public class LocationAdapter extends SyncListAdapter<LocationModel, LocationHold
 
         mThemeManager = themeManager;
         mResourceProvider = ResourcesProviderFactory.getNewInstance();
-        mTemperatureUnit = SettingsOptionManager.getInstance(context).getTemperatureUnit();
+        mTemperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit();
 
         update(locationList, selectedId, null);
     }

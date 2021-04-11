@@ -11,13 +11,13 @@ import wangdaye.com.geometricweather.resource.providers.DefaultResourceProvider;
 import wangdaye.com.geometricweather.resource.providers.IconPackResourcesProvider;
 import wangdaye.com.geometricweather.resource.providers.PixelResourcesProvider;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 
 public class ResourcesProviderFactory {
 
     public static ResourceProvider getNewInstance() {
         return getNewInstance(
-                SettingsOptionManager.getInstance(
+                SettingsManager.getInstance(
                         GeometricWeather.getInstance()
                 ).getIconProvider()
         );

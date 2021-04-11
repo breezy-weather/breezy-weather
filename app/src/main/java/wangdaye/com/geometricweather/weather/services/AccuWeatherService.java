@@ -19,7 +19,7 @@ import wangdaye.com.geometricweather.common.rxjava.BaseObserver;
 import wangdaye.com.geometricweather.common.rxjava.ObserverContainer;
 import wangdaye.com.geometricweather.common.rxjava.SchedulerTransformer;
 import wangdaye.com.geometricweather.settings.ConfigStore;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.weather.apis.AccuWeatherApi;
 import wangdaye.com.geometricweather.weather.converters.AccuResultConverter;
 import wangdaye.com.geometricweather.weather.json.accu.AccuAlertResult;
@@ -93,7 +93,7 @@ public class AccuWeatherService extends WeatherService {
 
     @Override
     public void requestWeather(Context context, Location location, @NonNull RequestWeatherCallback callback) {
-        String languageCode = SettingsOptionManager.getInstance(context).getLanguage().getCode();
+        String languageCode = SettingsManager.getInstance(context).getLanguage().getCode();
 
         Observable<List<AccuCurrentResult>> realtime = mApi.getCurrent(
                 location.getCityId(), BuildConfig.ACCU_CURRENT_KEY, languageCode, true);
@@ -159,7 +159,7 @@ public class AccuWeatherService extends WeatherService {
     @Override
     @NonNull
     public List<Location> requestLocation(Context context, String query) {
-        String languageCode = SettingsOptionManager.getInstance(context).getLanguage().getCode();
+        String languageCode = SettingsManager.getInstance(context).getLanguage().getCode();
         List<AccuLocationResult> resultList = null;
         try {
             resultList = mApi.callWeatherLocation(
@@ -212,7 +212,7 @@ public class AccuWeatherService extends WeatherService {
                 .putString(KEY_OLD_PROVINCE, location.getProvince())
                 .apply();
 
-        String languageCode = SettingsOptionManager.getInstance(context).getLanguage().getCode();
+        String languageCode = SettingsManager.getInstance(context).getLanguage().getCode();
         final CacheLocationRequestCallback finalCallback = new CacheLocationRequestCallback(context, callback);
 
         mApi.getWeatherLocationByGeoPosition(
@@ -244,7 +244,7 @@ public class AccuWeatherService extends WeatherService {
 
     public void requestLocation(Context context, String query,
                                 @NonNull RequestLocationCallback callback) {
-        String languageCode = SettingsOptionManager.getInstance(context).getLanguage().getCode();
+        String languageCode = SettingsManager.getInstance(context).getLanguage().getCode();
         String zipCode = query.matches("[a-zA-Z0-9]") ? query : null;
 
         mApi.getWeatherLocation("Always", BuildConfig.ACCU_WEATHER_KEY, query, languageCode)

@@ -10,7 +10,7 @@ import androidx.annotation.Size;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.common.ui.widgets.weatherView.circularSkyView.CircularSkyWeatherView;
 import wangdaye.com.geometricweather.common.ui.widgets.weatherView.materialWeatherView.MaterialWeatherView;
 
@@ -124,7 +124,7 @@ public class WeatherViewController {
     @ColorInt
     @Size(3)
     public static int[] getThemeColors(Context context, @NonNull Weather weather, boolean lightTheme) {
-        switch (SettingsOptionManager.getInstance(context).getUiStyle()) {
+        switch (SettingsManager.getInstance(context).getUiStyle()) {
             case MATERIAL:
                 return MaterialWeatherView.getThemeColors(
                         context, getWeatherKind(weather), lightTheme);

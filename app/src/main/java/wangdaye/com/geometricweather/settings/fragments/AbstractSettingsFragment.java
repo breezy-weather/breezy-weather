@@ -25,7 +25,7 @@ import androidx.recyclerview.widget.RecyclerViewAccessibilityDelegate;
 import wangdaye.com.geometricweather.common.basic.GeoDialog;
 import wangdaye.com.geometricweather.common.basic.insets.FitBothSideBarView;
 import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarRecyclerView;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.settings.activities.SettingsActivity;
 
 public abstract class AbstractSettingsFragment extends PreferenceFragmentCompat {
@@ -134,8 +134,8 @@ public abstract class AbstractSettingsFragment extends PreferenceFragmentCompat 
         }
     }
 
-    protected SettingsOptionManager getSettingsOptionManager() {
-        return SettingsOptionManager.getInstance(requireActivity());
+    protected SettingsManager getSettingsOptionManager() {
+        return SettingsManager.getInstance(requireActivity());
     }
 
     protected void pushFragment(PreferenceFragmentCompat f, String key) {

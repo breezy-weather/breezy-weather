@@ -27,7 +27,7 @@ import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper;
 import wangdaye.com.geometricweather.daily.adapter.DailyWeatherAdapter;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 
 /**
  * Daily weather activity.
@@ -66,7 +66,7 @@ public class DailyWeatherActivity extends GeoActivity {
         mTitle = findViewById(R.id.activity_weather_daily_title);
         mSubtitle = findViewById(R.id.activity_weather_daily_subtitle);
         mIndicator = findViewById(R.id.activity_weather_daily_indicator);
-        if (!SettingsOptionManager.getInstance(this).getLanguage().isChinese()){
+        if (!SettingsManager.getInstance(this).getLanguage().isChinese()){
             mSubtitle.setVisibility(View.GONE);
         }
 

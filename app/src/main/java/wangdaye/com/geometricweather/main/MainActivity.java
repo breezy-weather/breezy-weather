@@ -47,7 +47,7 @@ import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 import wangdaye.com.geometricweather.remoteviews.NotificationHelper;
 import wangdaye.com.geometricweather.remoteviews.WidgetHelper;
 import wangdaye.com.geometricweather.search.SearchActivity;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.settings.activities.SelectProviderActivity;
 
 /**
@@ -181,7 +181,7 @@ public class MainActivity extends GeoActivity
     @Override
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        if (SettingsOptionManager.getInstance(this).getDarkMode() == DarkMode.SYSTEM) {
+        if (SettingsManager.getInstance(this).getDarkMode() == DarkMode.SYSTEM) {
             mViewModel.init();
         }
     }
@@ -368,11 +368,11 @@ public class MainActivity extends GeoActivity
     }
 
     private void setDarkMode(boolean dayTime) {
-        if (SettingsOptionManager.getInstance(this).getDarkMode() == DarkMode.AUTO) {
+        if (SettingsManager.getInstance(this).getDarkMode() == DarkMode.AUTO) {
             int mode = dayTime ? AppCompatDelegate.MODE_NIGHT_NO : AppCompatDelegate.MODE_NIGHT_YES;
             getDelegate().setLocalNightMode(mode);
             AppCompatDelegate.setDefaultNightMode(mode);
-        } else if (SettingsOptionManager.getInstance(this).getDarkMode() == DarkMode.SYSTEM) {
+        } else if (SettingsManager.getInstance(this).getDarkMode() == DarkMode.SYSTEM) {
             int mode = AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
             getDelegate().setLocalNightMode(mode);
             AppCompatDelegate.setDefaultNightMode(mode);

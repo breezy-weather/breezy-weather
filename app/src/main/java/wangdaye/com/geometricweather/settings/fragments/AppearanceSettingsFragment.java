@@ -18,7 +18,7 @@ import wangdaye.com.geometricweather.common.basic.models.options.appearance.UISt
 import wangdaye.com.geometricweather.common.basic.models.weather.Temperature;
 import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.ConfigStore;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.settings.dialogs.ProvidersPreviewerDialog;
 import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
@@ -91,7 +91,7 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
                         requireActivity(),
                         3,
                         7,
-                        SettingsOptionManager.getInstance(requireActivity()).getTemperatureUnit()
+                        SettingsManager.getInstance(requireActivity()).getTemperatureUnit()
                 )
         );
         exchangeDayNightTemperature.setOnPreferenceChangeListener((preference, newValue) -> {
@@ -101,7 +101,7 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
                             requireActivity(),
                             3,
                             7,
-                            SettingsOptionManager.getInstance(requireActivity()).getTemperatureUnit()
+                            SettingsManager.getInstance(requireActivity()).getTemperatureUnit()
                     )
             );
             return true;
@@ -148,7 +148,7 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
         Preference cardDisplay = findPreference(getString(R.string.key_card_display));
         cardDisplay.setSummary(CardDisplay.getSummary(
                 requireActivity(),
-                SettingsOptionManager.getInstance(requireActivity()).getCardDisplayList()
+                SettingsManager.getInstance(requireActivity()).getCardDisplayList()
         ));
         cardDisplay.setOnPreferenceClickListener(preference -> {
             IntentHelper.startCardDisplayManageActivityForResult(requireActivity(), 0);
@@ -159,7 +159,7 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
         Preference dailyTrendDisplay = findPreference(getString(R.string.key_daily_trend_display));
         dailyTrendDisplay.setSummary(DailyTrendDisplay.getSummary(
                 requireActivity(),
-                SettingsOptionManager.getInstance(requireActivity()).getDailyTrendDisplayList()
+                SettingsManager.getInstance(requireActivity()).getDailyTrendDisplayList()
         ));
         dailyTrendDisplay.setOnPreferenceClickListener(preference -> {
             IntentHelper.startDailyTrendDisplayManageActivityForResult(requireActivity(), 1);

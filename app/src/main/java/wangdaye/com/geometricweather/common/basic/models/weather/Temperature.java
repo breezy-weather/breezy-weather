@@ -7,7 +7,7 @@ import androidx.annotation.Nullable;
 import java.io.Serializable;
 
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 
 /**
  * Temperature.
@@ -115,7 +115,7 @@ public class Temperature implements Serializable {
                                              @Nullable Integer night, @Nullable Integer day,
                                              TemperatureUnit unit) {
         return getTrendTemperature(context, night, day, unit,
-                SettingsOptionManager.getInstance(context).isExchangeDayNightTempEnabled());
+                SettingsManager.getInstance(context).isExchangeDayNightTempEnabled());
     }
 
     @Nullable

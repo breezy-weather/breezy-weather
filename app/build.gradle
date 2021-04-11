@@ -125,6 +125,11 @@ allprojects {
     }
 }
 
+configurations {
+    cleanedAnnotations
+    compile.exclude group: 'org.jetbrains' , module:'annotations'
+}
+
 greendao {
     schemaVersion 60
     generateTests false
@@ -133,6 +138,9 @@ greendao {
 dependencies {
     pubImplementation fileTree(include: ['*.jar'], dir: 'libs')
     gplayImplementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    // kotlin.
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.32"
 
     // test.
     testImplementation 'junit:junit:4.13.2'
@@ -232,8 +240,10 @@ dependencies {
     implementation 'com.gordonwong:material-sheet-fab:1.2.1'
 
     // utils.
-    implementation 'androidx.core:core:1.5.0-beta01'
+    implementation 'androidx.core:core:1.6.0-alpha01'
     implementation 'org.jetbrains:annotations-java5:15.0'
     implementation 'com.github.XhinLiang:LunarCalendar:3.0.0'
     implementation 'com.github.didikee:AndroidDonate:0.1.0'
+    implementation "androidx.core:core-ktx:1.2.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
 }

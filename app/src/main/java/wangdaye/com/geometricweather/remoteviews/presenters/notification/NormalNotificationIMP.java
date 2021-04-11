@@ -32,7 +32,7 @@ import wangdaye.com.geometricweather.remoteviews.presenters.AbstractRemoteViewsP
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.common.utils.LanguageUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.LunarHelper;
 
@@ -53,11 +53,11 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
 
         LanguageUtils.setLanguage(
                 context,
-                SettingsOptionManager.getInstance(context).getLanguage().getLocale()
+                SettingsManager.getInstance(context).getLanguage().getLocale()
         );
 
         // get sp & realTimeWeather.
-        SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
+        SettingsManager settings = SettingsManager.getInstance(context);
 
         TemperatureUnit temperatureUnit = settings.getTemperatureUnit();
 
@@ -263,7 +263,7 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
 
         StringBuilder timeStr = new StringBuilder();
         timeStr.append(location.getCityName(context));
-        if (SettingsOptionManager.getInstance(context).getLanguage().isChinese()) {
+        if (SettingsManager.getInstance(context).getLanguage().isChinese()) {
             timeStr.append(", ")
                     .append(LunarHelper.getLunarDate(new Date()));
         } else {
@@ -314,7 +314,7 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
         if (daily) {
             // weekly.
             boolean weekIconDaytime = isWeekIconDaytime(
-                    SettingsOptionManager.getInstance(context).getWidgetWeekIconMode(), dayTime);
+                    SettingsManager.getInstance(context).getWidgetWeekIconMode(), dayTime);
             // 1
             views.setTextViewText( // set week 1.
                     R.id.notification_big_week_1,
@@ -550,6 +550,6 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
     }
 
     public static boolean isEnable(Context context) {
-        return SettingsOptionManager.getInstance(context).isNotificationEnabled();
+        return SettingsManager.getInstance(context).isNotificationEnabled();
     }
 }

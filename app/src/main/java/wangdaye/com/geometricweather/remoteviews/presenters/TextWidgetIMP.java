@@ -15,7 +15,7 @@ import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.background.receiver.widget.WidgetTextProvider;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 
 public class TextWidgetIMP extends AbstractRemoteViewsPresenter {
@@ -37,7 +37,7 @@ public class TextWidgetIMP extends AbstractRemoteViewsPresenter {
 
     public static RemoteViews getRemoteViews(Context context, Location location,
                                              String textColor, int textSize, boolean alignEnd) {
-        SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
+        SettingsManager settings = SettingsManager.getInstance(context);
         TemperatureUnit temperatureUnit = settings.getTemperatureUnit();
         boolean touchToRefresh = settings.isWidgetClickToRefreshEnabled();
 

@@ -27,7 +27,7 @@ import wangdaye.com.geometricweather.main.adapters.main.holder.HeaderViewHolder;
 import wangdaye.com.geometricweather.main.adapters.main.holder.HourlyViewHolder;
 import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 
 public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
 
@@ -72,7 +72,7 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
 
         if (location != null && location.getWeather() != null) {
             Weather weather = location.getWeather();
-            List<CardDisplay> cardDisplayList = SettingsOptionManager.getInstance(activity).getCardDisplayList();
+            List<CardDisplay> cardDisplayList = SettingsManager.getInstance(activity).getCardDisplayList();
             mViewTypeList.add(ViewType.HEADER);
             for (CardDisplay c : cardDisplayList) {
                 if (c == CardDisplay.CARD_AIR_QUALITY

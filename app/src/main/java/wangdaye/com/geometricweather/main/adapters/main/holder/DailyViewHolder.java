@@ -24,7 +24,7 @@ import wangdaye.com.geometricweather.main.adapters.trend.DailyTrendAdapter;
 import wangdaye.com.geometricweather.main.layouts.TrendHorizontalLinearLayoutManager;
 import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.common.ui.adapters.TagAdapter;
 import wangdaye.com.geometricweather.common.ui.decotarions.GridMarginsDecoration;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
@@ -114,7 +114,7 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
         );
         mTrendRecyclerView.setAdapter(mTrendAdapter);
         mTrendRecyclerView.setKeyLineVisibility(
-                SettingsOptionManager.getInstance(context).isTrendHorizontalLinesEnabled());
+                SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled());
         setTrendAdapterByTag(location, (MainTag) tagList.get(0));
     }
 
@@ -127,7 +127,7 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
                         location,
                         provider,
                         themeManager,
-                        SettingsOptionManager.getInstance(context).getTemperatureUnit()
+                        SettingsManager.getInstance(context).getTemperatureUnit()
                 );
                 break;
 
@@ -137,7 +137,7 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
                         mTrendRecyclerView,
                         location,
                         themeManager,
-                        SettingsOptionManager.getInstance(context).getSpeedUnit()
+                        SettingsManager.getInstance(context).getSpeedUnit()
                 );
                 break;
 
@@ -148,7 +148,7 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
                         location,
                         provider,
                         themeManager,
-                        SettingsOptionManager.getInstance(context).getPrecipitationUnit()
+                        SettingsManager.getInstance(context).getPrecipitationUnit()
                 );
                 break;
 
@@ -166,7 +166,7 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
     private List<TagAdapter.Tag> getTagList(Weather weather) {
         List<TagAdapter.Tag> tagList = new ArrayList<>();
         List<DailyTrendDisplay> displayList
-                = SettingsOptionManager.getInstance(context).getDailyTrendDisplayList();
+                = SettingsManager.getInstance(context).getDailyTrendDisplayList();
         for (DailyTrendDisplay display : displayList) {
             switch (display) {
                 case TAG_TEMPERATURE:

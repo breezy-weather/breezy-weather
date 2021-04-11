@@ -23,7 +23,7 @@ import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.common.ui.widgets.NumberAnimTextView;
 import wangdaye.com.geometricweather.common.ui.widgets.weatherView.WeatherView;
 
@@ -71,7 +71,7 @@ public class HeaderViewHolder extends AbstractMainViewHolder {
         mWeather.setTextColor(textColor);
         mAqiOrWind.setTextColor(textColor);
 
-        mTemperatureUnit = SettingsOptionManager.getInstance(context).getTemperatureUnit();
+        mTemperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit();
         if (location.getWeather() != null) {
             mTemperatureCFrom = mTemperatureCTo;
             mTemperatureCTo = location.getWeather().getCurrent().getTemperature().getTemperature();

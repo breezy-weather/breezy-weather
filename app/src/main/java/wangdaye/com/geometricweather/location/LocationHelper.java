@@ -24,7 +24,7 @@ import wangdaye.com.geometricweather.location.services.AndroidLocationService;
 import wangdaye.com.geometricweather.location.services.BaiduLocationService;
 import wangdaye.com.geometricweather.location.services.LocationService;
 import wangdaye.com.geometricweather.location.services.ip.BaiduIPLocationService;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.weather.WeatherServiceSet;
 import wangdaye.com.geometricweather.weather.services.WeatherService;
 
@@ -74,7 +74,7 @@ public class LocationHelper {
 
     public void requestLocation(Context context, Location location, boolean background,
                                 @NonNull OnRequestLocationListener l) {
-        final LocationProvider provider = SettingsOptionManager.getInstance(context).getLocationProvider();
+        final LocationProvider provider = SettingsManager.getInstance(context).getLocationProvider();
         final LocationService service = getLocationService(provider);
         if (service.getPermissions().length != 0) {
             // if needs any location permission.
@@ -118,7 +118,7 @@ public class LocationHelper {
     private void requestAvailableWeatherLocation(Context context,
                                                  @NonNull Location location,
                                                  @NonNull OnRequestLocationListener l) {
-        WeatherSource source = SettingsOptionManager.getInstance(context).getWeatherSource();
+        WeatherSource source = SettingsManager.getInstance(context).getWeatherSource();
         final Location target = new Location(location, source);
 
         final WeatherService service = mWeatherServiceSet.get(source);
@@ -158,7 +158,7 @@ public class LocationHelper {
         //      Q:   foreground location + background location.
         //      K-P: foreground location.
 
-        final LocationProvider provider = SettingsOptionManager.getInstance(context).getLocationProvider();
+        final LocationProvider provider = SettingsManager.getInstance(context).getLocationProvider();
         final LocationService service = getLocationService(provider);
 
         String[] permissions = service.getPermissions();

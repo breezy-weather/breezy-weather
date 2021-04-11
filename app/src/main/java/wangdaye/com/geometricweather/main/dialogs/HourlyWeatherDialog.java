@@ -26,7 +26,7 @@ import wangdaye.com.geometricweather.main.utils.MainPalette;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 
 /**
  * Hourly weather dialog.
@@ -109,7 +109,7 @@ public class HourlyWeatherDialog extends GeoDialog {
         TextView weatherText = view.findViewById(R.id.dialog_weather_hourly_text);
         weatherText.setTextColor(palette.contentColor);
 
-        SettingsOptionManager settings = SettingsOptionManager.getInstance(getActivity());
+        SettingsManager settings = SettingsManager.getInstance(getActivity());
         TemperatureUnit temperatureUnit = settings.getTemperatureUnit();
         PrecipitationUnit precipitationUnit = settings.getPrecipitationUnit();
 

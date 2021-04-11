@@ -39,7 +39,7 @@ import wangdaye.com.geometricweather.common.utils.helpers.LunarHelper;
 import wangdaye.com.geometricweather.remoteviews.WidgetHelper;
 import wangdaye.com.geometricweather.resource.utils.ResourceUtils;
 import wangdaye.com.geometricweather.settings.ConfigStore;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 
 public abstract class AbstractRemoteViewsPresenter {
 
@@ -247,10 +247,10 @@ public abstract class AbstractRemoteViewsPresenter {
         if (TextUtils.isEmpty(subtitle)) {
             return "";
         }
-        TemperatureUnit temperatureUnit = SettingsOptionManager.getInstance(context).getTemperatureUnit();
-        PrecipitationUnit precipitationUnit = SettingsOptionManager.getInstance(context).getPrecipitationUnit();
-        PressureUnit pressureUnit = SettingsOptionManager.getInstance(context).getPressureUnit();
-        DistanceUnit distanceUnit = SettingsOptionManager.getInstance(context).getDistanceUnit();
+        TemperatureUnit temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit();
+        PrecipitationUnit precipitationUnit = SettingsManager.getInstance(context).getPrecipitationUnit();
+        PressureUnit pressureUnit = SettingsManager.getInstance(context).getPressureUnit();
+        DistanceUnit distanceUnit = SettingsManager.getInstance(context).getDistanceUnit();
 
         assert subtitle != null;
         subtitle = subtitle

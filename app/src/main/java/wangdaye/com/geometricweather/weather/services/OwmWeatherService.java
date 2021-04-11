@@ -19,7 +19,7 @@ import wangdaye.com.geometricweather.common.rxjava.BaseObserver;
 import wangdaye.com.geometricweather.common.rxjava.ObserverContainer;
 import wangdaye.com.geometricweather.common.rxjava.SchedulerTransformer;
 import wangdaye.com.geometricweather.settings.ConfigStore;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.weather.apis.OwmApi;
 import wangdaye.com.geometricweather.weather.converters.OwmResultConverter;
 import wangdaye.com.geometricweather.weather.json.owm.OwmAirPollutionResult;
@@ -87,7 +87,7 @@ public class OwmWeatherService extends WeatherService {
 
     @Override
     public void requestWeather(Context context, Location location, @NonNull RequestWeatherCallback callback) {
-        String languageCode = SettingsOptionManager.getInstance(context).getLanguage().getCode();
+        String languageCode = SettingsManager.getInstance(context).getLanguage().getCode();
 
         Observable<OwmOneCallResult> oneCall = mApi.getOneCall(
                 BuildConfig.OWM_KEY, location.getLatitude(), location.getLongitude(), "metric", languageCode);

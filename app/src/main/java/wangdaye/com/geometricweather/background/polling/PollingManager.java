@@ -5,7 +5,7 @@ import android.content.Context;
 import wangdaye.com.geometricweather.background.polling.services.permanent.PermanentServiceHelper;
 import wangdaye.com.geometricweather.background.polling.work.WorkerHelper;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 
 /**
  * Polling manager.
@@ -13,7 +13,7 @@ import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 public class PollingManager {
 
     public static void resetAllBackgroundTask(Context context, boolean forceRefresh) {
-        SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
+        SettingsManager settings = SettingsManager.getInstance(context);
 
         if (forceRefresh) {
             forceRefresh(context, settings.isBackgroundFree());
@@ -25,7 +25,7 @@ public class PollingManager {
 
             WorkerHelper.setNormalPollingWork(
                     context,
-                    SettingsOptionManager.getInstance(context).getUpdateInterval().getIntervalInHour());
+                    SettingsManager.getInstance(context).getUpdateInterval().getIntervalInHour());
 
             if (settings.isTodayForecastEnabled()) {
                 WorkerHelper.setTodayForecastUpdateWork(context, settings.getTodayForecastTime(), false);
@@ -48,7 +48,7 @@ public class PollingManager {
     }
 
     public static void resetNormalBackgroundTask(Context context, boolean forceRefresh) {
-        SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
+        SettingsManager settings = SettingsManager.getInstance(context);
 
         if (forceRefresh) {
             forceRefresh(context, settings.isBackgroundFree());
@@ -60,7 +60,7 @@ public class PollingManager {
 
             WorkerHelper.setNormalPollingWork(
                     context,
-                    SettingsOptionManager.getInstance(context).getUpdateInterval().getIntervalInHour());
+                    SettingsManager.getInstance(context).getUpdateInterval().getIntervalInHour());
         } else {
             WorkerHelper.cancelNormalPollingWork(context);
             WorkerHelper.cancelTodayForecastUpdateWork(context);
@@ -72,7 +72,7 @@ public class PollingManager {
 
     public static void resetTodayForecastBackgroundTask(Context context, boolean forceRefresh,
                                                         boolean nextDay) {
-        SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
+        SettingsManager settings = SettingsManager.getInstance(context);
 
         if (forceRefresh) {
             forceRefresh(context, settings.isBackgroundFree());
@@ -98,7 +98,7 @@ public class PollingManager {
 
     public static void resetTomorrowForecastBackgroundTask(Context context, boolean forceRefresh,
                                                            boolean nextDay) {
-        SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
+        SettingsManager settings = SettingsManager.getInstance(context);
 
         if (forceRefresh) {
             forceRefresh(context, settings.isBackgroundFree());
