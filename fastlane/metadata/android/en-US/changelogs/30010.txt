@@ -1,0 +1,2 @@
+<ul><li>Bug fixed.</li>
+<li>(Google Play version) Published App Bundle with Play App Signing</li></ul>
