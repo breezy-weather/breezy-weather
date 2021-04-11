@@ -19,7 +19,7 @@ import wangdaye.com.geometricweather.common.rxjava.BaseObserver;
 import wangdaye.com.geometricweather.common.rxjava.ObserverContainer;
 import wangdaye.com.geometricweather.common.rxjava.SchedulerTransformer;
 import wangdaye.com.geometricweather.settings.ConfigStore;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.weather.apis.AtmoAuraIqaApi;
 import wangdaye.com.geometricweather.weather.apis.MfWeatherApi;
 import wangdaye.com.geometricweather.weather.converters.MfResultConverter;
@@ -98,7 +98,7 @@ public class MfWeatherService extends WeatherService {
 
     @Override
     public void requestWeather(Context context, Location location, @NonNull RequestWeatherCallback callback) {
-        String languageCode = SettingsOptionManager.getInstance(context).getLanguage().getCode();
+        String languageCode = SettingsManager.getInstance(context).getLanguage().getCode();
 
         Observable<MfCurrentResult> current = mMfApi.getCurrent(
                 location.getLatitude(), location.getLongitude(), languageCode, BuildConfig.MF_WSFT_KEY);
@@ -225,7 +225,7 @@ public class MfWeatherService extends WeatherService {
                 .putString(KEY_OLD_PROVINCE, location.getProvince())
                 .apply();
 
-        String languageCode = SettingsOptionManager.getInstance(context).getLanguage().getCode();
+        String languageCode = SettingsManager.getInstance(context).getLanguage().getCode();
         final CacheLocationRequestCallback finalCallback = new CacheLocationRequestCallback(context, callback);
 
         mMfApi.getForecastV2(

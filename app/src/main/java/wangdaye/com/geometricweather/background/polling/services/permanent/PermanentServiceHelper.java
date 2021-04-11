@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Build;
 
 import wangdaye.com.geometricweather.background.polling.services.permanent.observer.TimeObserverService;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 
 /**
  * Service helper.
@@ -14,7 +14,7 @@ import wangdaye.com.geometricweather.settings.SettingsOptionManager;
 public class PermanentServiceHelper {
 
     public static void startPollingService(Context context) {
-        SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
+        SettingsManager settings = SettingsManager.getInstance(context);
         if (!settings.isBackgroundFree()) {
             Intent intent = new Intent(context, TimeObserverService.class)
                     .putExtra(TimeObserverService.KEY_CONFIG_CHANGED, true)
@@ -41,7 +41,7 @@ public class PermanentServiceHelper {
     }
 
     public static void updatePollingService(Context context, boolean pollingFailed) {
-        if (!SettingsOptionManager.getInstance(context).isBackgroundFree()) {
+        if (!SettingsManager.getInstance(context).isBackgroundFree()) {
             Intent intent = new Intent(context, TimeObserverService.class);
             intent.putExtra(TimeObserverService.KEY_POLLING_FAILED, pollingFailed);
 

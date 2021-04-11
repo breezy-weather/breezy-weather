@@ -22,7 +22,7 @@ import wangdaye.com.geometricweather.remoteviews.presenters.AbstractRemoteViewsP
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.common.ui.widgets.weatherView.WeatherViewController;
 import wangdaye.com.geometricweather.common.utils.LanguageUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.LunarHelper;
@@ -46,7 +46,7 @@ class NativeNormalNotificationIMP extends AbstractRemoteViewsPresenter {
 
         LanguageUtils.setLanguage(
                 context,
-                SettingsOptionManager.getInstance(context).getLanguage().getLocale()
+                SettingsManager.getInstance(context).getLanguage().getLocale()
         );
 
         // create channel.
@@ -107,7 +107,7 @@ class NativeNormalNotificationIMP extends AbstractRemoteViewsPresenter {
 
         StringBuilder subtitle = new StringBuilder();
         subtitle.append(location.getCityName(context));
-        if (SettingsOptionManager.getInstance(context).getLanguage().isChinese()) {
+        if (SettingsManager.getInstance(context).getLanguage().isChinese()) {
             subtitle.append(", ").append(LunarHelper.getLunarDate(new Date()));
         } else {
             subtitle.append(", ")

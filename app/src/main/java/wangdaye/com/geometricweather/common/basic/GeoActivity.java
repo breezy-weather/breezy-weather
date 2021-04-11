@@ -17,7 +17,7 @@ import wangdaye.com.geometricweather.common.snackbar.SnackbarContainer;
 import wangdaye.com.geometricweather.common.basic.insets.FitHorizontalSystemBarRootLayout;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.LanguageUtils;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 
 /**
  * Geometric weather activity.
@@ -92,7 +92,7 @@ public abstract class GeoActivity extends AppCompatActivity {
 
         LanguageUtils.setLanguage(
                 this,
-                SettingsOptionManager.getInstance(this).getLanguage().getLocale()
+                SettingsManager.getInstance(this).getLanguage().getLocale()
         );
 
         boolean darkMode = DisplayUtils.isDarkMode(this);

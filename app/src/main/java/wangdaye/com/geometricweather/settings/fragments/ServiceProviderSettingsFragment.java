@@ -17,7 +17,7 @@ import wangdaye.com.geometricweather.common.basic.models.options.provider.Locati
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 
 /**
  * Service provider settings fragment.
@@ -77,9 +77,9 @@ public class ServiceProviderSettingsFragment extends AbstractSettingsFragment {
             // Remove closed source providers if building the F-Droid flavor
 
             // set provider as native if necessary.
-            LocationProvider provider = SettingsOptionManager.getInstance(requireContext()).getLocationProvider();
+            LocationProvider provider = SettingsManager.getInstance(requireContext()).getLocationProvider();
             if (provider == LocationProvider.AMAP || provider == LocationProvider.BAIDU) {
-                SettingsOptionManager.getInstance(requireContext()).setLocationProvider(LocationProvider.NATIVE);
+                SettingsManager.getInstance(requireContext()).setLocationProvider(LocationProvider.NATIVE);
                 locationService.setValue("native");
             }
 
@@ -98,9 +98,9 @@ public class ServiceProviderSettingsFragment extends AbstractSettingsFragment {
             // Remove closed source providers if building the Google Play flavor
 
             // set provider as native if necessary.
-            LocationProvider provider = SettingsOptionManager.getInstance(requireContext()).getLocationProvider();
+            LocationProvider provider = SettingsManager.getInstance(requireContext()).getLocationProvider();
             if (provider == LocationProvider.AMAP) {
-                SettingsOptionManager.getInstance(requireContext()).setLocationProvider(LocationProvider.NATIVE);
+                SettingsManager.getInstance(requireContext()).setLocationProvider(LocationProvider.NATIVE);
                 locationService.setValue("native");
             }
 

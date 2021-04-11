@@ -15,7 +15,7 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.SpeedUnit;
 import wangdaye.com.geometricweather.common.basic.models.weather.Wind;
 import wangdaye.com.geometricweather.daily.adapter.DailyWeatherAdapter;
 import wangdaye.com.geometricweather.daily.adapter.model.DailyWind;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 
 public class WindHolder extends DailyWeatherAdapter.ViewHolder {
 
@@ -40,7 +40,7 @@ public class WindHolder extends DailyWeatherAdapter.ViewHolder {
         mSpeedText = itemView.findViewById(R.id.item_weather_daily_wind_speedValue);
         mGaugeText = itemView.findViewById(R.id.item_weather_daily_wind_levelValue);
 
-        mSpeedUnit = SettingsOptionManager.getInstance(parent.getContext()).getSpeedUnit();
+        mSpeedUnit = SettingsManager.getInstance(parent.getContext()).getSpeedUnit();
     }
 
     @SuppressLint({"SetTextI18n", "RestrictedApi"})

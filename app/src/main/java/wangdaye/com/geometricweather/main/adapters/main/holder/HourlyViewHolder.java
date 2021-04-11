@@ -27,7 +27,7 @@ import wangdaye.com.geometricweather.main.adapters.trend.HourlyTrendAdapter;
 import wangdaye.com.geometricweather.main.layouts.TrendHorizontalLinearLayoutManager;
 import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.common.ui.adapters.TagAdapter;
 import wangdaye.com.geometricweather.common.ui.decotarions.GridMarginsDecoration;
 import wangdaye.com.geometricweather.common.ui.widgets.PrecipitationBar;
@@ -132,7 +132,7 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
         );
         mTrendRecyclerView.setAdapter(mTrendAdapter);
         mTrendRecyclerView.setKeyLineVisibility(
-                SettingsOptionManager.getInstance(context).isTrendHorizontalLinesEnabled());
+                SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled());
         setTrendAdapterByTag(location, (MainTag) tagList.get(0));
 
         // trendScrollBar = new TrendRecyclerViewScrollBar(context);
@@ -181,7 +181,7 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
                         location,
                         provider,
                         themeManager,
-                        SettingsOptionManager.getInstance(context).getTemperatureUnit()
+                        SettingsManager.getInstance(context).getTemperatureUnit()
                 );
                 break;
 
@@ -191,7 +191,7 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
                         location,
                         provider,
                         themeManager,
-                        SettingsOptionManager.getInstance(context).getPrecipitationUnit()
+                        SettingsManager.getInstance(context).getPrecipitationUnit()
                 );
                 break;
         }

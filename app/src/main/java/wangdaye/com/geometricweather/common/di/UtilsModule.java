@@ -8,7 +8,7 @@ import dagger.hilt.InstallIn;
 import dagger.hilt.android.components.ApplicationComponent;
 import dagger.hilt.android.qualifiers.ApplicationContext;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 
 @InstallIn(ApplicationComponent.class)
 @Module
@@ -20,7 +20,7 @@ public class UtilsModule {
     }
 
     @Provides
-    public SettingsOptionManager provideSettingsOptionManager(@ApplicationContext Context context) {
-        return SettingsOptionManager.getInstance(context);
+    public SettingsManager provideSettingsOptionManager(@ApplicationContext Context context) {
+        return SettingsManager.getInstance(context);
     }
 }

@@ -21,7 +21,7 @@ import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.theme.ThemeManager;
 import wangdaye.com.geometricweather.resource.utils.ResourceUtils;
 import wangdaye.com.geometricweather.settings.ConfigStore;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 
 public class MainThemeManager extends ThemeManager {
 
@@ -43,7 +43,7 @@ public class MainThemeManager extends ThemeManager {
     public synchronized MainThemeManager update(Context context, @Nullable Location location) {
         updateDaytime(context, location);
 
-        switch (SettingsOptionManager.getInstance(context).getDarkMode()) {
+        switch (SettingsManager.getInstance(context).getDarkMode()) {
             case AUTO:
                 mLightTheme = mDaytime;
                 break;

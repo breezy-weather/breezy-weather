@@ -46,7 +46,7 @@ import wangdaye.com.geometricweather.daily.adapter.model.Overview;
 import wangdaye.com.geometricweather.daily.adapter.model.Title;
 import wangdaye.com.geometricweather.daily.adapter.model.Value;
 import wangdaye.com.geometricweather.databinding.ItemWeatherDailyPollenBinding;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 
 public class DailyWeatherAdapter extends RecyclerView.Adapter<DailyWeatherAdapter.ViewHolder> {
 
@@ -171,9 +171,9 @@ public class DailyWeatherAdapter extends RecyclerView.Adapter<DailyWeatherAdapte
         List<ViewModel> list = new ArrayList<>();
         // temperature.
         Temperature temperature = halfDay.getTemperature();
-        TemperatureUnit temperatureUnit = SettingsOptionManager.getInstance(context).getTemperatureUnit();
+        TemperatureUnit temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit();
         if (temperature.isValid()) {
-            TemperatureUnit unit = SettingsOptionManager.getInstance(context).getTemperatureUnit();
+            TemperatureUnit unit = SettingsManager.getInstance(context).getTemperatureUnit();
             int resId;
             if (unit == TemperatureUnit.C) {
                 resId = R.drawable.ic_temperature_celsius;
@@ -224,7 +224,7 @@ public class DailyWeatherAdapter extends RecyclerView.Adapter<DailyWeatherAdapte
 
         // precipitation.
         Precipitation precipitation = halfDay.getPrecipitation();
-        PrecipitationUnit precipitationUnit = SettingsOptionManager.getInstance(context).getPrecipitationUnit();
+        PrecipitationUnit precipitationUnit = SettingsManager.getInstance(context).getPrecipitationUnit();
         if (precipitation.getTotal() != null && precipitation.getTotal() > 0) {
             list.add(new Title(R.drawable.ic_water, context.getString(R.string.precipitation)));
             list.add(new Value(

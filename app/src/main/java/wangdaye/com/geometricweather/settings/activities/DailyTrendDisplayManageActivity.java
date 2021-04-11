@@ -32,7 +32,7 @@ import wangdaye.com.geometricweather.common.ui.decotarions.ListDecoration;
 import wangdaye.com.geometricweather.common.ui.widgets.slidingItem.SlidingItemTouchCallback;
 import wangdaye.com.geometricweather.common.theme.DefaultThemeManager;
 import wangdaye.com.geometricweather.databinding.ActivityDailyTrendDisplayManageBinding;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.settings.adapters.DailyTrendDisplayAdapter;
 
 public class DailyTrendDisplayManageActivity extends GeoActivity {
@@ -104,7 +104,7 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
         mBinding.toolbar.setNavigationOnClickListener(view -> finish());
 
         List<DailyTrendDisplay> displayTags
-                = SettingsOptionManager.getInstance(this).getDailyTrendDisplayList();
+                = SettingsManager.getInstance(this).getDailyTrendDisplayList();
         mDailyTrendDisplayAdapter = new DailyTrendDisplayAdapter(
                 displayTags,
                 dailyTrendDisplay -> {
@@ -173,7 +173,7 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
                         getString(R.string.key_daily_trend_display),
                         DailyTrendDisplay.toValue(mDailyTrendDisplayAdapter.getDailyTrendDisplayList())
                 ).apply();
-        SettingsOptionManager.getInstance(this).setDailyTrendDisplayList(
+        SettingsManager.getInstance(this).setDailyTrendDisplayList(
                 mDailyTrendDisplayAdapter.getDailyTrendDisplayList());
     }
 

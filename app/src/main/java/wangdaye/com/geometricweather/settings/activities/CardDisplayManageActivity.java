@@ -35,7 +35,7 @@ import wangdaye.com.geometricweather.common.ui.decotarions.GridMarginsDecoration
 import wangdaye.com.geometricweather.common.ui.decotarions.ListDecoration;
 import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarRecyclerView;
 import wangdaye.com.geometricweather.common.ui.widgets.slidingItem.SlidingItemTouchCallback;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.settings.adapters.CardDisplayAdapter;
 
 public class CardDisplayManageActivity extends GeoActivity {
@@ -104,7 +104,7 @@ public class CardDisplayManageActivity extends GeoActivity {
         Toolbar toolbar = findViewById(R.id.activity_card_display_manage_toolbar);
         toolbar.setNavigationOnClickListener(view -> finish());
 
-        List<CardDisplay> displayCards = SettingsOptionManager.getInstance(this).getCardDisplayList();
+        List<CardDisplay> displayCards = SettingsManager.getInstance(this).getCardDisplayList();
         mCardDisplayAdapter = new CardDisplayAdapter(
                 displayCards,
                 cardDisplay -> {
@@ -178,7 +178,7 @@ public class CardDisplayManageActivity extends GeoActivity {
                         getString(R.string.key_card_display),
                         CardDisplay.toValue(mCardDisplayAdapter.getCardDisplayList())
                 ).apply();
-        SettingsOptionManager.getInstance(this).setCardDisplayList(mCardDisplayAdapter.getCardDisplayList());
+        SettingsManager.getInstance(this).setCardDisplayList(mCardDisplayAdapter.getCardDisplayList());
     }
 
     @SuppressLint("MissingSuperCall")

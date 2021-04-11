@@ -21,7 +21,7 @@ import wangdaye.com.geometricweather.common.basic.models.options.provider.Weathe
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.location.LocationHelper;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 /**
@@ -134,7 +134,7 @@ public class CMWeatherProviderService extends WeatherProviderService
     private void requestWeather(String cityName) {
         if (!TextUtils.isEmpty(cityName)) {
             List<WeatherSource> list = new ArrayList<>();
-            list.add(SettingsOptionManager.getInstance(this).getWeatherSource());
+            list.add(SettingsManager.getInstance(this).getWeatherSource());
             mWeatherHelper.requestLocation(this, cityName, list, weatherLocationListener);
         } else if (mRequest != null) {
             mRequest.fail();

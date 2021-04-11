@@ -17,7 +17,7 @@ import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
 import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper;
 import wangdaye.com.geometricweather.settings.ConfigStore;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 public class SearchActivityRepository {
@@ -59,7 +59,7 @@ public class SearchActivityRepository {
     }
 
     public List<WeatherSource> getValidWeatherSources(Context context) {
-        WeatherSource defaultSource = SettingsOptionManager.getInstance(context).getWeatherSource();
+        WeatherSource defaultSource = SettingsManager.getInstance(context).getWeatherSource();
 
         if (mValidSourceCache != null && defaultSource == mLastDefaultSourceCache) {
             return mValidSourceCache;

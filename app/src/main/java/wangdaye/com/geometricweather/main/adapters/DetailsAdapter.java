@@ -22,7 +22,7 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.RelativeHu
 import wangdaye.com.geometricweather.common.basic.models.options.unit.SpeedUnit;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.main.utils.MainThemeManager;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 
 /**
  * Details adapter.
@@ -88,7 +88,7 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
 
     public DetailsAdapter(Context context, @NonNull Weather weather, MainThemeManager themeManager) {
         mIndexList = new ArrayList<>();
-        SettingsOptionManager settings = SettingsOptionManager.getInstance(context);
+        SettingsManager settings = SettingsManager.getInstance(context);
 
         SpeedUnit speedUnit = settings.getSpeedUnit();
         String windTitle = context.getString(R.string.live)

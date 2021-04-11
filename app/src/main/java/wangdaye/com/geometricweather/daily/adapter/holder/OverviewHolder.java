@@ -11,7 +11,7 @@ import wangdaye.com.geometricweather.daily.adapter.DailyWeatherAdapter;
 import wangdaye.com.geometricweather.daily.adapter.model.Overview;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.common.ui.widgets.AnimatableIconView;
 
 public class OverviewHolder extends DailyWeatherAdapter.ViewHolder {
@@ -31,7 +31,7 @@ public class OverviewHolder extends DailyWeatherAdapter.ViewHolder {
         mTitle = itemView.findViewById(R.id.item_weather_daily_overview_text);
 
         mProvider = ResourcesProviderFactory.getNewInstance();
-        mTemperatureUnit = SettingsOptionManager.getInstance(parent.getContext()).getTemperatureUnit();
+        mTemperatureUnit = SettingsManager.getInstance(parent.getContext()).getTemperatureUnit();
     }
 
     @SuppressLint("SetTextI18n")

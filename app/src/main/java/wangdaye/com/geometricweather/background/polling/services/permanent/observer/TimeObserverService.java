@@ -23,7 +23,7 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.polling.services.permanent.update.ForegroundNormalUpdateService;
 import wangdaye.com.geometricweather.background.polling.services.permanent.update.ForegroundTodayForecastUpdateService;
 import wangdaye.com.geometricweather.background.polling.services.permanent.update.ForegroundTomorrowForecastUpdateService;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 
 /**
  * Time observer service.
@@ -101,8 +101,8 @@ public class TimeObserverService extends Service {
 
     private void initData() {
         sPollingRate = 1.5f;
-        sTodayForecastTime = SettingsOptionManager.DEFAULT_TODAY_FORECAST_TIME;
-        sTomorrowForecastTime = SettingsOptionManager.DEFAULT_TOMORROW_FORECAST_TIME;
+        sTodayForecastTime = SettingsManager.DEFAULT_TODAY_FORECAST_TIME;
+        sTomorrowForecastTime = SettingsManager.DEFAULT_TOMORROW_FORECAST_TIME;
         sLastUpdateNormalViewTime = System.currentTimeMillis();
         sLastTodayForecastTime = System.currentTimeMillis();
         sLastTomorrowForecastTime = System.currentTimeMillis();

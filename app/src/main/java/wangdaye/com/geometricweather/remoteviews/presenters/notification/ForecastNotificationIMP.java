@@ -20,7 +20,7 @@ import wangdaye.com.geometricweather.remoteviews.presenters.AbstractRemoteViewsP
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.common.ui.widgets.weatherView.WeatherViewController;
 import wangdaye.com.geometricweather.common.utils.LanguageUtils;
 
@@ -40,7 +40,7 @@ public class ForecastNotificationIMP extends AbstractRemoteViewsPresenter {
 
         LanguageUtils.setLanguage(
                 context,
-                SettingsOptionManager.getInstance(context).getLanguage().getLocale()
+                SettingsManager.getInstance(context).getLanguage().getLocale()
         );
         
         // create channel.
@@ -98,7 +98,7 @@ public class ForecastNotificationIMP extends AbstractRemoteViewsPresenter {
             builder.setSubText(context.getString(R.string.tomorrow));
         }
 
-        TemperatureUnit temperatureUnit = SettingsOptionManager.getInstance(context).getTemperatureUnit();
+        TemperatureUnit temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit();
 
         // title and content.
         if (today) {
@@ -165,9 +165,9 @@ public class ForecastNotificationIMP extends AbstractRemoteViewsPresenter {
 
     public static boolean isEnable(Context context, boolean today) {
         if (today) {
-            return SettingsOptionManager.getInstance(context).isTodayForecastEnabled();
+            return SettingsManager.getInstance(context).isTodayForecastEnabled();
         } else {
-            return SettingsOptionManager.getInstance(context).isTomorrowForecastEnabled();
+            return SettingsManager.getInstance(context).isTomorrowForecastEnabled();
         }
     }
 }

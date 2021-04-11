@@ -12,7 +12,7 @@ import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.resource.ResourceHelper;
 import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 
 /**
  * Tile service.
@@ -75,7 +75,7 @@ public class TileService extends android.service.quicksettings.TileService {
             tile.setLabel(
                     location.getWeather().getCurrent().getTemperature().getTemperature(
                             context,
-                            SettingsOptionManager.getInstance(context).getTemperatureUnit())
+                            SettingsManager.getInstance(context).getTemperatureUnit())
             );
             tile.setState(Tile.STATE_INACTIVE);
             tile.updateTile();

@@ -38,7 +38,7 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.common.basic.models.weather.Wind;
 import wangdaye.com.geometricweather.common.basic.models.weather.WindDegree;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.weather.json.accu.AccuAlertResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuAqiResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuCurrentResult;
@@ -491,7 +491,7 @@ public class AccuResultConverter {
         }
 
         // precipitation.
-        PrecipitationUnit precipitationUnit = SettingsOptionManager.getInstance(context).getPrecipitationUnit();
+        PrecipitationUnit precipitationUnit = SettingsManager.getInstance(context).getPrecipitationUnit();
 
         // cm.
         str = convertUnit(context, str, PrecipitationUnit.CM, precipitationUnit);

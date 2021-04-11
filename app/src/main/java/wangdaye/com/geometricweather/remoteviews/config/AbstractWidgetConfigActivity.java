@@ -52,7 +52,7 @@ import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.settings.ConfigStore;
-import wangdaye.com.geometricweather.settings.SettingsOptionManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 /**
@@ -215,7 +215,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         subtitleDataValueNow = "time";
         String[] data = res.getStringArray(R.array.subtitle_data);
         String[] dataValues = res.getStringArray(R.array.subtitle_data_values);
-        if (SettingsOptionManager.getInstance(this).getLanguage().isChinese()) {
+        if (SettingsManager.getInstance(this).getLanguage().isChinese()) {
             subtitleData = new String[] {
                     data[0], data[1], data[2], data[3], data[4], data[5]
             };
@@ -572,7 +572,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
     }
 
     protected int isHideLunarContainerVisible() {
-        return SettingsOptionManager.getInstance(this).getLanguage().isChinese()
+        return SettingsManager.getInstance(this).getLanguage().isChinese()
                 ? View.VISIBLE
                 : View.GONE;
     }
