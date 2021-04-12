@@ -380,7 +380,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
 
         Button doneButton = findViewById(R.id.activity_widget_config_doneButton);
         doneButton.setOnClickListener(v -> {
-            getSharedPreferences(getConfigStoreName(), MODE_PRIVATE)
+            ConfigStore.getInstance(this, getConfigStoreName())
                     .edit()
                     .putString(getString(R.string.key_view_type), viewTypeValueNow)
                     .putString(getString(R.string.key_card_style), cardStyleValueNow)

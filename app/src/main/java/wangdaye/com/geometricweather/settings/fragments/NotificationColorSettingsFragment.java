@@ -30,7 +30,6 @@ public class NotificationColorSettingsFragment extends AbstractSettingsFragment 
     private void initNotificationPart() {
         // notification custom color.
         findPreference(getString(R.string.key_notification_custom_color)).setOnPreferenceChangeListener((p, newValue) -> {
-            getSettingsOptionManager().setNotificationCustomColorEnabled((Boolean) newValue);
             initNotificationPart();
             PollingManager.resetNormalBackgroundTask(getActivity(), true);
             return true;
@@ -40,7 +39,6 @@ public class NotificationColorSettingsFragment extends AbstractSettingsFragment 
         ColorPreferenceCompat notificationBackgroundColor = findPreference(getString(R.string.key_notification_background_color));
         notificationBackgroundColor.setEnabled(getSettingsOptionManager().isNotificationCustomColorEnabled());
         notificationBackgroundColor.setOnPreferenceChangeListener((preference, newValue) -> {
-            getSettingsOptionManager().setNotificationBackgroundColor((Integer) newValue);
             PollingManager.resetNormalBackgroundTask(getActivity(), true);
             return true;
         });
@@ -49,15 +47,13 @@ public class NotificationColorSettingsFragment extends AbstractSettingsFragment 
         ListPreference notificationTextColor = findPreference(getString(R.string.key_notification_text_color));
         notificationTextColor.setSummary(
                 getSettingsOptionManager().getNotificationTextColor().getNotificationTextColorName(
-                        getActivity()
-                )
+                        requireContext())
         );
         notificationTextColor.setOnPreferenceChangeListener((preference, newValue) -> {
             PollingManager.resetNormalBackgroundTask(getActivity(), true);
             preference.setSummary(
                     getSettingsOptionManager().getNotificationTextColor().getNotificationTextColorName(
-                            getActivity()
-                    )
+                            requireContext())
             );
             return true;
         });

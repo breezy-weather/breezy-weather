@@ -73,10 +73,10 @@ public abstract class AbstractRemoteViewsPresenter {
         }
     }
 
-    public static WidgetConfig getWidgetConfig(Context context, String sharedPreferencesName) {
+    public static WidgetConfig getWidgetConfig(Context context, String configStoreName) {
         WidgetConfig widgetConfig = new WidgetConfig();
 
-        ConfigStore configStore = ConfigStore.getInstance(context, sharedPreferencesName);
+        ConfigStore configStore = ConfigStore.getInstance(context, configStoreName);
         widgetConfig.viewStyle = configStore.getString(
                 context.getString(R.string.key_view_type),
                 "rectangle"

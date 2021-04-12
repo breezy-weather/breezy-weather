@@ -17,7 +17,6 @@ import java.util.Calendar;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoDialog;
-import wangdaye.com.geometricweather.settings.ConfigStore;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 
 /**
@@ -120,17 +119,13 @@ public class TimeSetterDialog extends GeoDialog
                     minuteText = Integer.toString(mMinute);
                 }
 
-                ConfigStore.Editor editor = ConfigStore.getInstance(requireActivity()).edit();
                 if (mToday) {
-                    SettingsManager.getInstance(requireActivity())
-                            .setTodayForecastTime(hourText + ":" + minuteText);
-                    editor.putString(getString(R.string.key_forecast_today_time), hourText + ":" + minuteText);
+                    SettingsManager.getInstance(requireContext()).setTodayForecastTime(
+                            hourText + ":" + minuteText);
                 } else {
-                    SettingsManager.getInstance(requireActivity())
-                            .setTomorrowForecastTime(hourText + ":" + minuteText);
-                    editor.putString(getString(R.string.key_forecast_tomorrow_time), hourText + ":" + minuteText);
+                    SettingsManager.getInstance(requireContext()).setTomorrowForecastTime(
+                            hourText + ":" + minuteText);
                 }
-                editor.apply();
 
                 Intent intent = new Intent(ACTION_SET_TIME);
                 intent.putExtra(KEY_HOUR, mHour);

@@ -13,7 +13,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.Px;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
-import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -167,12 +166,6 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        PreferenceManager.getDefaultSharedPreferences(this)
-                .edit()
-                .putString(
-                        getString(R.string.key_daily_trend_display),
-                        DailyTrendDisplay.toValue(mDailyTrendDisplayAdapter.getDailyTrendDisplayList())
-                ).apply();
         SettingsManager.getInstance(this).setDailyTrendDisplayList(
                 mDailyTrendDisplayAdapter.getDailyTrendDisplayList());
     }
