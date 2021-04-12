@@ -61,7 +61,7 @@ public class MultiCityNotificationIMP extends AbstractRemoteViewsPresenter {
         SettingsManager settings = SettingsManager.getInstance(context);
 
         // background color.
-        int backgroundColor = settings.getNotificationBackgroundColor();
+        int backgroundColor = settings.getNotificationBackgroundColor(context);
 
         // get text color.
         NotificationTextColor textColor = settings.getNotificationTextColor();

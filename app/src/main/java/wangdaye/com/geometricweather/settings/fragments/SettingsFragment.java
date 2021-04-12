@@ -15,10 +15,8 @@ import androidx.preference.Preference;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.polling.PollingManager;
-import wangdaye.com.geometricweather.common.basic.models.options.DarkMode;
 import wangdaye.com.geometricweather.common.basic.models.options.NotificationStyle;
-import wangdaye.com.geometricweather.common.basic.models.options.UpdateInterval;
-import wangdaye.com.geometricweather.common.basic.models.options.WidgetWeekIconMode;
+import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
 import wangdaye.com.geometricweather.remoteviews.config.ClockDayDetailsWidgetConfigActivity;
 import wangdaye.com.geometricweather.remoteviews.config.ClockDayHorizontalWidgetConfigActivity;
 import wangdaye.com.geometricweather.remoteviews.config.ClockDayVerticalWidgetConfigActivity;
@@ -45,7 +43,6 @@ import wangdaye.com.geometricweather.remoteviews.presenters.notification.NormalN
 import wangdaye.com.geometricweather.settings.dialogs.RunningInBackgroundDialog;
 import wangdaye.com.geometricweather.settings.dialogs.RunningInBackgroundODialog;
 import wangdaye.com.geometricweather.settings.dialogs.TimeSetterDialog;
-import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
 
 /**
  * Settings fragment.
@@ -107,7 +104,6 @@ public class SettingsFragment extends AbstractSettingsFragment {
         //         Build.VERSION.SDK_INT < Build.VERSION_CODES.S);
         findPreference(getString(R.string.key_background_free)).setOnPreferenceChangeListener((preference, newValue) -> {
             boolean backgroundFree = (boolean) newValue;
-            getSettingsOptionManager().setBackgroundFree(backgroundFree);
 
             PollingManager.resetNormalBackgroundTask(requireActivity(), false);
             if (!backgroundFree) {
@@ -120,23 +116,10 @@ public class SettingsFragment extends AbstractSettingsFragment {
             return true;
         });
 
-        // alert notification.
-        findPreference(getString(R.string.key_alert_notification_switch)).setOnPreferenceChangeListener((p, newValue) -> {
-            getSettingsOptionManager().setAlertPushEnabled((Boolean) newValue);
-            return true;
-        });
-
-        // precipitation notification.
-        findPreference(getString(R.string.key_precipitation_notification_switch)).setOnPreferenceChangeListener((p, v) -> {
-            getSettingsOptionManager().setPrecipitationPushEnabled((Boolean) v);
-            return true;
-        });
-
         // update interval.
         Preference refreshRate = findPreference(getString(R.string.key_refresh_rate));
         refreshRate.setSummary(getSettingsOptionManager().getUpdateInterval().getUpdateIntervalName(requireActivity()));
         refreshRate.setOnPreferenceChangeListener((preference, newValue) -> {
-            getSettingsOptionManager().setUpdateInterval(UpdateInterval.getInstance((String) newValue));
             preference.setSummary(getSettingsOptionManager().getUpdateInterval().getUpdateIntervalName(requireActivity()));
             PollingManager.resetNormalBackgroundTask(requireActivity(), false);
             return true;
@@ -146,7 +129,6 @@ public class SettingsFragment extends AbstractSettingsFragment {
         Preference darkMode = findPreference(getString(R.string.key_dark_mode));
         darkMode.setSummary(getSettingsOptionManager().getDarkMode().getDarkModeName(requireActivity()));
         darkMode.setOnPreferenceChangeListener((preference, newValue) -> {
-            getSettingsOptionManager().setDarkMode(DarkMode.getInstance((String) newValue));
             preference.setSummary(getSettingsOptionManager().getDarkMode().getDarkModeName(requireActivity()));
             GeometricWeather.getInstance().resetDayNightMode();
             GeometricWeather.getInstance().recreateAllActivities();
@@ -181,7 +163,6 @@ public class SettingsFragment extends AbstractSettingsFragment {
     private void initForecastPart() {
         // today forecast.
         findPreference(getString(R.string.key_forecast_today)).setOnPreferenceChangeListener((preference, newValue) -> {
-            getSettingsOptionManager().setTodayForecastEnabled((Boolean) newValue);
             initForecastPart();
             PollingManager.resetNormalBackgroundTask(requireActivity(), false);
             return true;
@@ -198,7 +179,6 @@ public class SettingsFragment extends AbstractSettingsFragment {
 
         // tomorrow forecast.
         findPreference(getString(R.string.key_forecast_tomorrow)).setOnPreferenceChangeListener((preference, newValue) -> {
-            getSettingsOptionManager().setTomorrowForecastEnabled((Boolean) newValue);
             initForecastPart();
             PollingManager.resetNormalBackgroundTask(requireActivity(), false);
             return true;
@@ -221,7 +201,6 @@ public class SettingsFragment extends AbstractSettingsFragment {
                 getSettingsOptionManager().getWidgetWeekIconMode().getWidgetWeekIconModeName(requireActivity())
         );
         widgetWeekIconMode.setOnPreferenceChangeListener((preference, newValue) -> {
-            getSettingsOptionManager().setWidgetWeekIconMode(WidgetWeekIconMode.getInstance((String) newValue));
             initWidgetPart();
             preference.setSummary(
                     getSettingsOptionManager().getWidgetWeekIconMode().getWidgetWeekIconModeName(requireActivity())
@@ -232,14 +211,12 @@ public class SettingsFragment extends AbstractSettingsFragment {
 
         // widget minimal icon.
         findPreference(getString(R.string.key_widget_minimal_icon)).setOnPreferenceChangeListener((preference, newValue) -> {
-            getSettingsOptionManager().setWidgetMinimalIconEnabled((Boolean) newValue);
             PollingManager.resetNormalBackgroundTask(requireActivity(), true);
             return true;
         });
 
         // click widget to update.
         findPreference(getString(R.string.key_click_widget_to_refresh)).setOnPreferenceChangeListener((preference, newValue) -> {
-            getSettingsOptionManager().setWidgetClickToRefreshEnabled((Boolean) newValue);
             PollingManager.resetNormalBackgroundTask(requireActivity(), true);
             return true;
         });
@@ -338,7 +315,7 @@ public class SettingsFragment extends AbstractSettingsFragment {
         // notification enabled.
         findPreference(getString(R.string.key_notification)).setOnPreferenceChangeListener((preference, newValue) -> {
             boolean enabled = (boolean) newValue;
-            getSettingsOptionManager().setNotificationEnabled(enabled);
+
             initNotificationPart();
             if (enabled) { // open notification.
                 PollingManager.resetNormalBackgroundTask(requireActivity(), true);
@@ -355,7 +332,6 @@ public class SettingsFragment extends AbstractSettingsFragment {
                 getSettingsOptionManager().getNotificationStyle().getNotificationStyleName(requireActivity())
         );
         notificationStyle.setOnPreferenceChangeListener((preference, newValue) -> {
-            getSettingsOptionManager().setNotificationStyle(NotificationStyle.getInstance((String) newValue));
             initNotificationPart();
             preference.setSummary(
                     getSettingsOptionManager().getNotificationStyle().getNotificationStyleName(requireActivity())
@@ -370,7 +346,6 @@ public class SettingsFragment extends AbstractSettingsFragment {
             notificationMinimalIcon.setVisible(false);
         }
         notificationMinimalIcon.setOnPreferenceChangeListener((preference, newValue) -> {
-            getSettingsOptionManager().setNotificationMinimalIconEnabled((Boolean) newValue);
             PollingManager.resetNormalBackgroundTask(requireActivity(), true);
             return true;
         });
@@ -378,7 +353,6 @@ public class SettingsFragment extends AbstractSettingsFragment {
         // notification temp icon.
         CheckBoxPreference notificationTempIcon = findPreference(getString(R.string.key_notification_temp_icon));
         notificationTempIcon.setOnPreferenceChangeListener((preference, newValue) -> {
-            getSettingsOptionManager().setNotificationTemperatureIconEnabled((Boolean) newValue);
             PollingManager.resetNormalBackgroundTask(requireActivity(), true);
             return true;
         });
@@ -396,7 +370,6 @@ public class SettingsFragment extends AbstractSettingsFragment {
         // notification can be cleared.
         CheckBoxPreference notificationClearFlag = findPreference(getString(R.string.key_notification_can_be_cleared));
         notificationClearFlag.setOnPreferenceChangeListener((preference, newValue) -> {
-            getSettingsOptionManager().setNotificationCanBeClearedEnabled((Boolean) newValue);
             PollingManager.resetNormalBackgroundTask(requireActivity(), true);
             return true;
         });
@@ -404,7 +377,6 @@ public class SettingsFragment extends AbstractSettingsFragment {
         // notification hide icon.
         CheckBoxPreference hideNotificationIcon = findPreference(getString(R.string.key_notification_hide_icon));
         hideNotificationIcon.setOnPreferenceChangeListener((preference, newValue) -> {
-            getSettingsOptionManager().setNotificationHideIconEnabled((Boolean) newValue);
             PollingManager.resetNormalBackgroundTask(requireActivity(), true);
             return true;
         });
@@ -412,7 +384,6 @@ public class SettingsFragment extends AbstractSettingsFragment {
         // notification hide in lock screen.
         CheckBoxPreference hideNotificationInLockScreen = findPreference(getString(R.string.key_notification_hide_in_lockScreen));
         hideNotificationInLockScreen.setOnPreferenceChangeListener((preference, newValue) -> {
-            getSettingsOptionManager().setNotificationHideInLockScreenEnabled((Boolean) newValue);
             PollingManager.resetNormalBackgroundTask(requireActivity(), true);
             return true;
         });
@@ -420,7 +391,6 @@ public class SettingsFragment extends AbstractSettingsFragment {
         // notification hide big view.
         CheckBoxPreference notificationHideBigView = findPreference(getString(R.string.key_notification_hide_big_view));
         notificationHideBigView.setOnPreferenceChangeListener((preference, newValue) -> {
-            getSettingsOptionManager().setNotificationHideBigViewEnabled((Boolean) newValue);
             PollingManager.resetNormalBackgroundTask(requireActivity(), true);
             return true;
         });

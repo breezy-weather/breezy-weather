@@ -50,7 +50,6 @@ public class ServiceProviderSettingsFragment extends AbstractSettingsFragment {
         weatherSource.setOnPreferenceChangeListener((preference, newValue) -> {
             WeatherSource source = WeatherSource.getInstance((String) newValue);
 
-            getSettingsOptionManager().setWeatherSource(source);
             preference.setSummary(source.getSourceName(requireContext()));
 
             List<Location> locationList = DatabaseHelper.getInstance(requireActivity()).readLocationList();
@@ -118,7 +117,6 @@ public class ServiceProviderSettingsFragment extends AbstractSettingsFragment {
 
         locationService.setSummary(getSettingsOptionManager().getLocationProvider().getProviderName(requireContext()));
         locationService.setOnPreferenceChangeListener((preference, newValue) -> {
-            getSettingsOptionManager().setLocationProvider(LocationProvider.getInstance((String) newValue));
             preference.setSummary(getSettingsOptionManager().getLocationProvider().getProviderName(requireContext()));
             SnackbarHelper.showSnackbar(
                     getString(R.string.feedback_restart),

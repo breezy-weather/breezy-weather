@@ -49,628 +49,281 @@ class SettingsManager private constructor(context: Context){
         const val DEFAULT_TOMORROW_FORECAST_TIME = "21:00"
     }
 
+    private val config = ConfigStore.getInstance(context)
+
     // basic.
-    private var backgroundFree: Boolean
-    private var alertPushEnabled: Boolean
-    private var precipitationPushEnabled: Boolean
-    private var updateInterval: UpdateInterval
-    private var darkMode: DarkMode
+    private val backgroundFree = context.getString(R.string.key_background_free)
+    private val alertPushEnabled = context.getString(R.string.key_alert_notification_switch)
+    private val precipitationPushEnabled = context.getString(R.string.key_precipitation_notification_switch)
+    private val updateInterval = context.getString(R.string.key_refresh_rate)
+    private val darkMode = context.getString(R.string.key_dark_mode)
 
     // service provider.
-    private var weatherSource: WeatherSource
-    private var locationProvider: LocationProvider
+    private val weatherSource = context.getString(R.string.key_weather_source)
+    private val locationProvider = context.getString(R.string.key_location_service)
 
     // unit.
-    private var temperatureUnit: TemperatureUnit
-    private var distanceUnit: DistanceUnit
-    private var precipitationUnit: PrecipitationUnit
-    private var pressureUnit: PressureUnit
-    private var speedUnit: SpeedUnit
+    private val temperatureUnit = context.getString(R.string.key_temperature_unit)
+    private val distanceUnit = context.getString(R.string.key_distance_unit)
+    private val precipitationUnit = context.getString(R.string.key_precipitation_unit)
+    private val pressureUnit = context.getString(R.string.key_pressure_unit)
+    private val speedUnit = context.getString(R.string.key_speed_unit)
 
     // appearance.
-    private var uiStyle: UIStyle
-    private var iconProvider: String
-    private var cardDisplayList: List<CardDisplay>
-    private var dailyTrendDisplayList: List<DailyTrendDisplay>
+    private val uiStyle = context.getString(R.string.key_ui_style)
+    private val iconProvider = context.getString(R.string.key_icon_provider)
+    private val cardDisplayList = context.getString(R.string.key_card_display)
+    private val dailyTrendDisplayList = context.getString(R.string.key_daily_trend_display)
 
-    private var trendHorizontalLinesEnabled: Boolean
-    private var exchangeDayNightTempEnabled: Boolean
-    private var gravitySensorEnabled: Boolean
-    private var listAnimationEnabled: Boolean
-    private var itemAnimationEnabled: Boolean
-    private var language: Language
+    private val trendHorizontalLinesEnabled = context.getString(R.string.key_trend_horizontal_line_switch)
+    private val exchangeDayNightTempEnabled = context.getString(R.string.key_exchange_day_night_temp_switch)
+    private val gravitySensorEnabled = context.getString(R.string.key_gravity_sensor_switch)
+    private val listAnimationEnabled = context.getString(R.string.key_list_animation_switch)
+    private val itemAnimationEnabled = context.getString(R.string.key_item_animation_switch)
+    private val language = context.getString(R.string.key_language)
 
     // forecast.
-    private var todayForecastEnabled: Boolean
-    private var todayForecastTime: String
+    private val todayForecastEnabled = context.getString(R.string.key_forecast_today)
+    private val todayForecastTime = context.getString(R.string.key_forecast_today_time)
 
-    private var tomorrowForecastEnabled: Boolean
-    private var tomorrowForecastTime: String
+    private val tomorrowForecastEnabled = context.getString(R.string.key_forecast_tomorrow)
+    private val tomorrowForecastTime = context.getString(R.string.key_forecast_tomorrow_time)
 
     // widget.
-    private var widgetWeekIconMode: WidgetWeekIconMode
-    private var widgetMinimalIconEnabled: Boolean
-    private var widgetClickToRefreshEnabled: Boolean
+    private val widgetWeekIconMode = context.getString(R.string.key_week_icon_mode)
+    private val widgetMinimalIconEnabled = context.getString(R.string.key_widget_minimal_icon)
+    private val widgetClickToRefreshEnabled = context.getString(R.string.key_click_widget_to_refresh)
 
     // notification.
-    private var notificationEnabled: Boolean
-    private var notificationStyle: NotificationStyle
-    private var notificationMinimalIconEnabled: Boolean
-    private var notificationTemperatureIconEnabled: Boolean
-    private var notificationCustomColorEnabled: Boolean
+    private val notificationEnabled = context.getString(R.string.key_notification)
+    private val notificationStyle = context.getString(R.string.key_notification_style)
+    private val notificationMinimalIconEnabled = context.getString(R.string.key_notification_minimal_icon)
+    private val notificationTemperatureIconEnabled = context.getString(R.string.key_notification_temp_icon)
+    private val notificationCustomColorEnabled = context.getString(R.string.key_notification_custom_color)
 
-    @ColorInt
-    private var notificationBackgroundColor: Int
-    private var notificationTextColor: NotificationTextColor
-    private var notificationCanBeClearedEnabled: Boolean
-    private var notificationHideIconEnabled: Boolean
-    private var notificationHideInLockScreenEnabled: Boolean
-    private var notificationHideBigViewEnabled: Boolean
+    private val notificationBackgroundColor = context.getString(R.string.key_notification_background_color)
+    private val notificationTextColor = context.getString(R.string.key_notification_text_color)
+    private val notificationCanBeClearedEnabled = context.getString(R.string.key_notification_can_be_cleared)
+    private val notificationHideIconEnabled = context.getString(R.string.key_notification_hide_icon)
+    private val notificationHideInLockScreenEnabled = context.getString(R.string.key_notification_hide_in_lockScreen)
+    private val notificationHideBigViewEnabled = context.getString(R.string.key_notification_hide_big_view)
 
-    init {
-        val config = ConfigStore.getInstance(context)
+    fun preload() {
+        config.preload()
+    }
 
-        // basic.
+    fun isBackgroundFree(): Boolean {
+        return config.getBoolean(backgroundFree, true)
+                // || Build.VERSION.SDK_INT >= Build.VERSION_CODES.S;
+    }
 
-        // force set background free on android 12+.
-        backgroundFree = config.getBoolean(
-                context.getString(R.string.key_background_free),
-                true
-        ) // || Build.VERSION.SDK_INT >= Build.VERSION_CODES.S;
+    fun isAlertPushEnabled(): Boolean {
+        return config.getBoolean(alertPushEnabled, true)
+    }
 
-        alertPushEnabled = config.getBoolean(
-                context.getString(R.string.key_alert_notification_switch), true)
+    fun isPrecipitationPushEnabled(): Boolean {
+        return config.getBoolean(precipitationPushEnabled, false)
+    }
 
-        precipitationPushEnabled = config.getBoolean(
-                context.getString(R.string.key_precipitation_notification_switch), false)
+    fun getUpdateInterval(): UpdateInterval {
+        return UpdateInterval.getInstance(
+                config.getString(updateInterval, "1:30"))
+    }
 
-        updateInterval = UpdateInterval.getInstance(
-                config.getString(
-                        context.getString(R.string.key_refresh_rate), "1:30")
-        )
+    fun getDarkMode(): DarkMode {
+        return DarkMode.getInstance(
+                config.getString(darkMode, "auto"))
+    }
 
-        darkMode = DarkMode.getInstance(
-                config.getString(
-                        context.getString(R.string.key_dark_mode), "auto")
-        )
+    fun getWeatherSource(): WeatherSource {
+        return WeatherSource.getInstance(
+                config.getString(weatherSource, "accu"))
+    }
 
-        // service provider.
-        weatherSource = WeatherSource.getInstance(
-                config.getString(
-                        context.getString(R.string.key_weather_source), "accu")
-        )
+    fun getLocationProvider(): LocationProvider {
+        return LocationProvider.getInstance(
+                config.getString(locationProvider, "native"))
+    }
 
-        locationProvider = LocationProvider.getInstance(
-                config.getString(
-                        context.getString(R.string.key_location_service), "native")
-        )
+    fun setLocationProvider(provider: LocationProvider) {
+        config.edit().putString(locationProvider, provider.providerId).apply()
+    }
 
-        // unit.
-        temperatureUnit = TemperatureUnit.getInstance(
-                config.getString(
-                        context.getString(R.string.key_temperature_unit), "c")
-        )
-        distanceUnit = DistanceUnit.getInstance(
-                config.getString(
-                        context.getString(R.string.key_distance_unit), "km")
-        )
-        precipitationUnit = PrecipitationUnit.getInstance(
-                config.getString(
-                        context.getString(R.string.key_precipitation_unit), "mm")
-        )
-        pressureUnit = PressureUnit.getInstance(
-                config.getString(
-                        context.getString(R.string.key_pressure_unit), "mb")
-        )
-        speedUnit = SpeedUnit.getInstance(
-                config.getString(
-                        context.getString(R.string.key_speed_unit), "mps")
-        )
+    fun getTemperatureUnit(): TemperatureUnit {
+        return TemperatureUnit.getInstance(
+                config.getString(temperatureUnit, "c"))
+    }
 
-        // appearance.
-        uiStyle = UIStyle.getInstance(
-                config.getString(
-                        context.getString(R.string.key_ui_style), "material")
-        )
+    fun getDistanceUnit(): DistanceUnit {
+        return DistanceUnit.getInstance(
+                config.getString(distanceUnit, "km"))
+    }
 
-        iconProvider = config.getString(
-                context.getString(R.string.key_icon_provider),
-                context.packageName
-        )!!
+    fun getPrecipitationUnit(): PrecipitationUnit {
+        return PrecipitationUnit.getInstance(
+                config.getString(precipitationUnit, "mm"))
+    }
 
-        cardDisplayList = CardDisplay.toCardDisplayList(
-                config.getString(context.getString(R.string.key_card_display), DEFAULT_CARD_DISPLAY)
-        )
+    fun getPressureUnit(): PressureUnit {
+        return PressureUnit.getInstance(
+                config.getString(pressureUnit, "mb"))
+    }
 
-        dailyTrendDisplayList = DailyTrendDisplay.toDailyTrendDisplayList(
-                config.getString(
-                        context.getString(R.string.key_daily_trend_display),
-                        DEFAULT_DAILY_TREND_DISPLAY
+    fun getSpeedUnit(): SpeedUnit {
+        return SpeedUnit.getInstance(
+                config.getString(speedUnit, "mps"))
+    }
+
+    fun getUiStyle(): UIStyle {
+        return UIStyle.getInstance(
+                config.getString(uiStyle, "material"))
+    }
+
+    fun getIconProvider(context: Context): String {
+        return config.getString(iconProvider, context.packageName)!!
+    }
+
+    fun setIconProvider(packageName: String) {
+        config.edit().putString(iconProvider, packageName).apply()
+    }
+
+    fun getCardDisplayList(): List<CardDisplay> {
+        return ArrayList(
+                CardDisplay.toCardDisplayList(
+                        config.getString(cardDisplayList, DEFAULT_CARD_DISPLAY)
                 )
         )
-
-        trendHorizontalLinesEnabled = config.getBoolean(
-                context.getString(R.string.key_trend_horizontal_line_switch), true)
-
-        exchangeDayNightTempEnabled = config.getBoolean(
-                context.getString(R.string.key_exchange_day_night_temp_switch), false)
-
-        gravitySensorEnabled = config.getBoolean(
-                context.getString(R.string.key_gravity_sensor_switch), true)
-
-        listAnimationEnabled = config.getBoolean(
-                context.getString(R.string.key_list_animation_switch), true)
-
-        itemAnimationEnabled = config.getBoolean(
-                context.getString(R.string.key_item_animation_switch), true)
-
-        language = Language.getInstance(
-                config.getString(
-                        context.getString(R.string.key_language), "follow_system")
-        )
-
-        // forecast.
-        todayForecastEnabled = config.getBoolean(
-                context.getString(R.string.key_forecast_today), false)
-
-        todayForecastTime = config.getString(
-                context.getString(R.string.key_forecast_today_time), DEFAULT_TODAY_FORECAST_TIME)!!
-
-        tomorrowForecastEnabled = config.getBoolean(
-                context.getString(R.string.key_forecast_tomorrow), false)
-
-        tomorrowForecastTime = config.getString(
-                context.getString(R.string.key_forecast_tomorrow_time), DEFAULT_TOMORROW_FORECAST_TIME)!!
-
-        // widget.
-        widgetWeekIconMode = WidgetWeekIconMode.getInstance(
-                config.getString(
-                        context.getString(R.string.key_week_icon_mode), "auto")
-        )
-
-        widgetMinimalIconEnabled = config.getBoolean(
-                context.getString(R.string.key_widget_minimal_icon), false)
-
-        widgetClickToRefreshEnabled = config.getBoolean(
-                context.getString(R.string.key_click_widget_to_refresh), false)
-
-        // notification.
-        notificationEnabled = config.getBoolean(
-                context.getString(R.string.key_notification), false)
-
-        notificationStyle = NotificationStyle.getInstance(
-                config.getString(
-                        context.getString(R.string.key_notification_style), "daily")
-        )
-
-        notificationMinimalIconEnabled = config.getBoolean(
-                context.getString(R.string.key_notification_minimal_icon), false)
-
-        notificationTemperatureIconEnabled = config.getBoolean(
-                context.getString(R.string.key_notification_temp_icon), false)
-
-        notificationCustomColorEnabled = config.getBoolean(
-                context.getString(R.string.key_notification_custom_color), false)
-
-        notificationBackgroundColor = config.getInt(
-                context.getString(R.string.key_notification_background_color),
-                ContextCompat.getColor(context, R.color.notification_background_l))
-
-        notificationTextColor = NotificationTextColor.getInstance(
-                config.getString(
-                        context.getString(R.string.key_notification_text_color), "dark")
-        )
-
-        notificationCanBeClearedEnabled = config.getBoolean(
-                context.getString(R.string.key_notification_can_be_cleared), false)
-
-        notificationHideIconEnabled = config.getBoolean(
-                context.getString(R.string.key_notification_hide_icon), false)
-
-        notificationHideInLockScreenEnabled = config.getBoolean(
-                context.getString(R.string.key_notification_hide_in_lockScreen), false)
-
-        notificationHideBigViewEnabled = config.getBoolean(
-                context.getString(R.string.key_notification_hide_big_view), false)
     }
 
-    @Synchronized
-    fun isBackgroundFree(): Boolean {
-        return backgroundFree
+    fun setCardDisplayList(list: List<CardDisplay>) {
+        config.edit()
+                .putString(cardDisplayList, CardDisplay.toValue(list))
+                .apply()
     }
 
-    @Synchronized
-    fun setBackgroundFree(backgroundFree: Boolean) {
-        this.backgroundFree = backgroundFree
-    }
-
-    @Synchronized
-    fun isAlertPushEnabled(): Boolean {
-        return alertPushEnabled
-    }
-
-    @Synchronized
-    fun setAlertPushEnabled(alertPushEnabled: Boolean) {
-        this.alertPushEnabled = alertPushEnabled
-    }
-
-    @Synchronized
-    fun isPrecipitationPushEnabled(): Boolean {
-        return precipitationPushEnabled
-    }
-
-    @Synchronized
-    fun setPrecipitationPushEnabled(precipitationPushEnabled: Boolean) {
-        this.precipitationPushEnabled = precipitationPushEnabled
-    }
-
-    @Synchronized
-    fun getUpdateInterval(): UpdateInterval {
-        return updateInterval
-    }
-
-    @Synchronized
-    fun setUpdateInterval(updateInterval: UpdateInterval) {
-        this.updateInterval = updateInterval
-    }
-
-    @Synchronized
-    fun getDarkMode(): DarkMode {
-        return darkMode
-    }
-
-    @Synchronized
-    fun setDarkMode(darkMode: DarkMode) {
-        this.darkMode = darkMode
-    }
-
-    @Synchronized
-    fun getWeatherSource(): WeatherSource {
-        return weatherSource
-    }
-
-    @Synchronized
-    fun setWeatherSource(weatherSource: WeatherSource) {
-        this.weatherSource = weatherSource
-    }
-
-    @Synchronized
-    fun getLocationProvider(): LocationProvider {
-        return locationProvider
-    }
-
-    @Synchronized
-    fun setLocationProvider(locationProvider: LocationProvider) {
-        this.locationProvider = locationProvider
-    }
-
-    @Synchronized
-    fun getTemperatureUnit(): TemperatureUnit {
-        return temperatureUnit
-    }
-
-    @Synchronized
-    fun setTemperatureUnit(temperatureUnit: TemperatureUnit) {
-        this.temperatureUnit = temperatureUnit
-    }
-
-    @Synchronized
-    fun getDistanceUnit(): DistanceUnit {
-        return distanceUnit
-    }
-
-    @Synchronized
-    fun setDistanceUnit(distanceUnit: DistanceUnit) {
-        this.distanceUnit = distanceUnit
-    }
-
-    @Synchronized
-    fun getPrecipitationUnit(): PrecipitationUnit {
-        return precipitationUnit
-    }
-
-    @Synchronized
-    fun setPrecipitationUnit(precipitationUnit: PrecipitationUnit) {
-        this.precipitationUnit = precipitationUnit
-    }
-
-    @Synchronized
-    fun getPressureUnit(): PressureUnit {
-        return pressureUnit
-    }
-
-    @Synchronized
-    fun setPressureUnit(pressureUnit: PressureUnit) {
-        this.pressureUnit = pressureUnit
-    }
-
-    @Synchronized
-    fun getSpeedUnit(): SpeedUnit {
-        return speedUnit
-    }
-
-    @Synchronized
-    fun setSpeedUnit(speedUnit: SpeedUnit) {
-        this.speedUnit = speedUnit
-    }
-
-    @Synchronized
-    fun getUiStyle(): UIStyle {
-        return uiStyle
-    }
-
-    @Synchronized
-    fun setUiStyle(uiStyle: UIStyle) {
-        this.uiStyle = uiStyle
-    }
-
-    @Synchronized
-    fun getIconProvider(): String {
-        return iconProvider
-    }
-
-    @Synchronized
-    fun setIconProvider(iconProvider: String) {
-        this.iconProvider = iconProvider
-    }
-
-    @Synchronized
-    fun getCardDisplayList(): List<CardDisplay> {
-        return ArrayList(cardDisplayList)
-    }
-
-    @Synchronized
-    fun setCardDisplayList(cardDisplayList: List<CardDisplay>) {
-        this.cardDisplayList = cardDisplayList
-    }
-
-    @Synchronized
     fun getDailyTrendDisplayList(): List<DailyTrendDisplay> {
-        return ArrayList(dailyTrendDisplayList)
+        return ArrayList(
+                DailyTrendDisplay.toDailyTrendDisplayList(
+                        config.getString(dailyTrendDisplayList, DEFAULT_DAILY_TREND_DISPLAY)
+                )
+        )
     }
 
-    @Synchronized
-    fun setDailyTrendDisplayList(dailyTrendDisplayList: List<DailyTrendDisplay>) {
-        this.dailyTrendDisplayList = dailyTrendDisplayList
+    fun setDailyTrendDisplayList(list: List<DailyTrendDisplay>) {
+        config.edit()
+                .putString(dailyTrendDisplayList, DailyTrendDisplay.toValue(list))
+                .apply()
     }
 
-    @Synchronized
     fun isTrendHorizontalLinesEnabled(): Boolean {
-        return trendHorizontalLinesEnabled
+        return config.getBoolean(trendHorizontalLinesEnabled, true)
     }
 
-    @Synchronized
-    fun setTrendHorizontalLinesEnabled(trendHorizontalLinesEnabled: Boolean) {
-        this.trendHorizontalLinesEnabled = trendHorizontalLinesEnabled
-    }
-
-    @Synchronized
     fun isExchangeDayNightTempEnabled(): Boolean {
-        return exchangeDayNightTempEnabled
+        return config.getBoolean(exchangeDayNightTempEnabled, false)
     }
 
-    @Synchronized
-    fun setExchangeDayNightTempEnabled(exchangeDayNightTempEnabled: Boolean) {
-        this.exchangeDayNightTempEnabled = exchangeDayNightTempEnabled
-    }
-
-    @Synchronized
     fun isGravitySensorEnabled(): Boolean {
-        return gravitySensorEnabled
+        return config.getBoolean(gravitySensorEnabled, true)
     }
 
-    @Synchronized
-    fun setGravitySensorEnabled(gravitySensorEnabled: Boolean) {
-        this.gravitySensorEnabled = gravitySensorEnabled
-    }
-
-    @Synchronized
     fun isListAnimationEnabled(): Boolean {
-        return listAnimationEnabled
+        return config.getBoolean(listAnimationEnabled, true)
     }
 
-    @Synchronized
-    fun setListAnimationEnabled(listAnimationEnabled: Boolean) {
-        this.listAnimationEnabled = listAnimationEnabled
-    }
-
-    @Synchronized
     fun isItemAnimationEnabled(): Boolean {
-        return itemAnimationEnabled
+        return config.getBoolean(itemAnimationEnabled, true)
     }
 
-    @Synchronized
-    fun setItemAnimationEnabled(itemAnimationEnabled: Boolean) {
-        this.itemAnimationEnabled = itemAnimationEnabled
-    }
-
-    @Synchronized
     fun getLanguage(): Language {
-        return language
+        return Language.getInstance(
+                config.getString(language, "follow_system"))
     }
 
-    @Synchronized
-    fun setLanguage(language: Language) {
-        this.language = language
-    }
-
-    @Synchronized
     fun isTodayForecastEnabled(): Boolean {
-        return todayForecastEnabled
+        return config.getBoolean(todayForecastEnabled, false)
     }
 
-    @Synchronized
-    fun setTodayForecastEnabled(todayForecastEnabled: Boolean) {
-        this.todayForecastEnabled = todayForecastEnabled
-    }
-
-    @Synchronized
     fun getTodayForecastTime(): String {
-        return todayForecastTime
+        return config.getString(todayForecastTime, DEFAULT_TODAY_FORECAST_TIME)!!
     }
 
-    @Synchronized
-    fun setTodayForecastTime(todayForecastTime: String) {
-        this.todayForecastTime = todayForecastTime
+    fun setTodayForecastTime(time: String) {
+        return config.edit().putString(todayForecastTime, time).apply()
     }
 
-    @Synchronized
     fun isTomorrowForecastEnabled(): Boolean {
-        return tomorrowForecastEnabled
+        return config.getBoolean(tomorrowForecastEnabled, false)
     }
 
-    @Synchronized
-    fun setTomorrowForecastEnabled(tomorrowForecastEnabled: Boolean) {
-        this.tomorrowForecastEnabled = tomorrowForecastEnabled
-    }
-
-    @Synchronized
     fun getTomorrowForecastTime(): String {
-        return tomorrowForecastTime
+        return config.getString(tomorrowForecastTime, DEFAULT_TOMORROW_FORECAST_TIME)!!
     }
 
-    @Synchronized
-    fun setTomorrowForecastTime(tomorrowForecastTime: String) {
-        this.tomorrowForecastTime = tomorrowForecastTime
+    fun setTomorrowForecastTime(time: String) {
+        return config.edit().putString(tomorrowForecastTime, time).apply()
     }
 
-    @Synchronized
     fun getWidgetWeekIconMode(): WidgetWeekIconMode {
-        return widgetWeekIconMode
+        return WidgetWeekIconMode.getInstance(
+                config.getString(widgetWeekIconMode, "auto"))
     }
 
-    @Synchronized
-    fun setWidgetWeekIconMode(widgetWeekIconMode: WidgetWeekIconMode) {
-        this.widgetWeekIconMode = widgetWeekIconMode
-    }
-
-    @Synchronized
     fun isWidgetMinimalIconEnabled(): Boolean {
-        return widgetMinimalIconEnabled
+        return config.getBoolean(widgetMinimalIconEnabled, false)
     }
 
-    @Synchronized
-    fun setWidgetMinimalIconEnabled(widgetMinimalIconEnabled: Boolean) {
-        this.widgetMinimalIconEnabled = widgetMinimalIconEnabled
-    }
-
-    @Synchronized
     fun isWidgetClickToRefreshEnabled(): Boolean {
-        return widgetClickToRefreshEnabled
+        return config.getBoolean(widgetClickToRefreshEnabled, false)
     }
 
-    @Synchronized
-    fun setWidgetClickToRefreshEnabled(widgetClickToRefreshEnabled: Boolean) {
-        this.widgetClickToRefreshEnabled = widgetClickToRefreshEnabled
-    }
-
-    @Synchronized
     fun isNotificationEnabled(): Boolean {
-        return notificationEnabled
+        return config.getBoolean(notificationEnabled, false)
     }
 
-    @Synchronized
-    fun setNotificationEnabled(notificationEnabled: Boolean) {
-        this.notificationEnabled = notificationEnabled
-    }
-
-    @Synchronized
     fun getNotificationStyle(): NotificationStyle {
-        return notificationStyle
+        return NotificationStyle.getInstance(
+                config.getString(notificationStyle, "daily"))
     }
 
-    @Synchronized
-    fun setNotificationStyle(notificationStyle: NotificationStyle) {
-        this.notificationStyle = notificationStyle
-    }
-
-    @Synchronized
     fun isNotificationMinimalIconEnabled(): Boolean {
-        return notificationMinimalIconEnabled
+        return config.getBoolean(notificationMinimalIconEnabled, false)
     }
 
-    @Synchronized
-    fun setNotificationMinimalIconEnabled(notificationMinimalIconEnabled: Boolean) {
-        this.notificationMinimalIconEnabled = notificationMinimalIconEnabled
-    }
-
-    @Synchronized
     fun isNotificationTemperatureIconEnabled(): Boolean {
-        return notificationTemperatureIconEnabled
+        return config.getBoolean(notificationTemperatureIconEnabled, false)
     }
 
-    @Synchronized
-    fun setNotificationTemperatureIconEnabled(notificationTemperatureIconEnabled: Boolean) {
-        this.notificationTemperatureIconEnabled = notificationTemperatureIconEnabled
-    }
-
-    @Synchronized
     fun isNotificationCustomColorEnabled(): Boolean {
-        return notificationCustomColorEnabled
+        return config.getBoolean(notificationCustomColorEnabled, false)
     }
 
-    @Synchronized
-    fun setNotificationCustomColorEnabled(notificationCustomColorEnabled: Boolean) {
-        this.notificationCustomColorEnabled = notificationCustomColorEnabled
+    @ColorInt
+    fun getNotificationBackgroundColor(context: Context): Int {
+        return config.getInt(
+                notificationBackgroundColor,
+                ContextCompat.getColor(context, R.color.notification_background_l)
+        )
     }
 
-    @Synchronized
-    fun getNotificationBackgroundColor(): Int {
-        return notificationBackgroundColor
-    }
-
-    @Synchronized
-    fun setNotificationBackgroundColor(notificationBackgroundColor: Int) {
-        this.notificationBackgroundColor = notificationBackgroundColor
-    }
-
-    @Synchronized
     fun getNotificationTextColor(): NotificationTextColor {
-        return notificationTextColor
+        return NotificationTextColor.getInstance(
+                config.getString(notificationTextColor, "dark"))
     }
 
-    @Synchronized
-    fun setNotificationTextColor(notificationTextColor: NotificationTextColor) {
-        this.notificationTextColor = notificationTextColor
-    }
-
-    @Synchronized
     fun isNotificationCanBeClearedEnabled(): Boolean {
-        return notificationCanBeClearedEnabled
+        return config.getBoolean(notificationCanBeClearedEnabled, false)
     }
 
-    @Synchronized
-    fun setNotificationCanBeClearedEnabled(notificationCanBeClearedEnabled: Boolean) {
-        this.notificationCanBeClearedEnabled = notificationCanBeClearedEnabled
-    }
-
-    @Synchronized
     fun isNotificationHideIconEnabled(): Boolean {
-        return notificationHideIconEnabled
+        return config.getBoolean(notificationHideIconEnabled, false)
     }
 
-    @Synchronized
-    fun setNotificationHideIconEnabled(notificationHideIconEnabled: Boolean) {
-        this.notificationHideIconEnabled = notificationHideIconEnabled
-    }
-
-    @Synchronized
     fun isNotificationHideInLockScreenEnabled(): Boolean {
-        return notificationHideInLockScreenEnabled
+        return config.getBoolean(notificationHideInLockScreenEnabled, false)
     }
 
-    @Synchronized
-    fun setNotificationHideInLockScreenEnabled(notificationHideInLockScreenEnabled: Boolean) {
-        this.notificationHideInLockScreenEnabled = notificationHideInLockScreenEnabled
-    }
-
-    @Synchronized
     fun isNotificationHideBigViewEnabled(): Boolean {
-        return notificationHideBigViewEnabled
-    }
-
-    @Synchronized
-    fun setNotificationHideBigViewEnabled(notificationHideBigViewEnabled: Boolean) {
-        this.notificationHideBigViewEnabled = notificationHideBigViewEnabled
+        return config.getBoolean(notificationHideBigViewEnabled, false)
     }
 }

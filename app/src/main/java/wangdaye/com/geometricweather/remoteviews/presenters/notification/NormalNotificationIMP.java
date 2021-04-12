@@ -90,7 +90,7 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
         }
 
         // background color.
-        int backgroundColor = settings.getNotificationBackgroundColor();
+        int backgroundColor = settings.getNotificationBackgroundColor(context);
 
         // get text color.
         NotificationTextColor textColor = settings.getNotificationTextColor();

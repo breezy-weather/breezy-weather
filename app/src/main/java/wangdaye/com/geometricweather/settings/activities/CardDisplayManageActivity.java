@@ -14,7 +14,6 @@ import androidx.annotation.Px;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
-import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -172,12 +171,6 @@ public class CardDisplayManageActivity extends GeoActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        PreferenceManager.getDefaultSharedPreferences(this)
-                .edit()
-                .putString(
-                        getString(R.string.key_card_display),
-                        CardDisplay.toValue(mCardDisplayAdapter.getCardDisplayList())
-                ).apply();
         SettingsManager.getInstance(this).setCardDisplayList(mCardDisplayAdapter.getCardDisplayList());
     }
 

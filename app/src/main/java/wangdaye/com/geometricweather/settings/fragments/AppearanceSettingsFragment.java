@@ -13,15 +13,12 @@ import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.CardDisplay;
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.DailyTrendDisplay;
-import wangdaye.com.geometricweather.common.basic.models.options.appearance.Language;
-import wangdaye.com.geometricweather.common.basic.models.options.appearance.UIStyle;
 import wangdaye.com.geometricweather.common.basic.models.weather.Temperature;
+import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
+import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
 import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
-import wangdaye.com.geometricweather.settings.ConfigStore;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.settings.dialogs.ProvidersPreviewerDialog;
-import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
-import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
 
 /**
  * Appearance settings fragment.
@@ -38,10 +35,7 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
             }
 
             getSettingsOptionManager().setIconProvider(packageName);
-            ConfigStore.getInstance(context)
-                    .edit()
-                    .putString(getString(R.string.key_icon_provider), packageName)
-                    .apply();
+
             initIconProviderPreference();
             SnackbarHelper.showSnackbar(
                     getString(R.string.feedback_refresh_ui_after_refresh));
@@ -62,7 +56,6 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
         Preference uiStyle = findPreference(getString(R.string.key_ui_style));
         uiStyle.setSummary(getSettingsOptionManager().getUiStyle().getUIStyleName(requireActivity()));
         uiStyle.setOnPreferenceChangeListener((preference, newValue) -> {
-            getSettingsOptionManager().setUiStyle(UIStyle.getInstance((String) newValue));
             preference.setSummary(getSettingsOptionManager().getUiStyle().getUIStyleName(requireActivity()));
             SnackbarHelper.showSnackbar(
                     getString(R.string.feedback_restart),
@@ -78,12 +71,6 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
         // set card display preference in onStart().
         // set daily trend display preference in onStart().
 
-        // horizontal lines in trend.
-        findPreference(getString(R.string.key_trend_horizontal_line_switch)).setOnPreferenceChangeListener((preference, newValue) -> {
-            getSettingsOptionManager().setTrendHorizontalLinesEnabled((Boolean) newValue);
-            return true;
-        });
-
         // exchange day night temperature.
         Preference exchangeDayNightTemperature = findPreference(getString(R.string.key_exchange_day_night_temp_switch));
         exchangeDayNightTemperature.setSummary(
@@ -95,7 +82,6 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
                 )
         );
         exchangeDayNightTemperature.setOnPreferenceChangeListener((preference, newValue) -> {
-            getSettingsOptionManager().setExchangeDayNightTempEnabled((Boolean) newValue);
             preference.setSummary(
                     Temperature.getTrendTemperature(
                             requireActivity(),
@@ -107,29 +93,10 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
             return true;
         });
 
-        // sensor.
-        findPreference(getString(R.string.key_gravity_sensor_switch)).setOnPreferenceChangeListener((preference, newValue) -> {
-            getSettingsOptionManager().setGravitySensorEnabled((Boolean) newValue);
-            return true;
-        });
-
-        // list animation.
-        findPreference(getString(R.string.key_list_animation_switch)).setOnPreferenceChangeListener((preference, newValue) -> {
-            getSettingsOptionManager().setListAnimationEnabled((Boolean) newValue);
-            return true;
-        });
-
-        // item animation.
-        findPreference(getString(R.string.key_item_animation_switch)).setOnPreferenceChangeListener((preference, newValue) -> {
-            getSettingsOptionManager().setItemAnimationEnabled((Boolean) newValue);
-            return true;
-        });
-
         // language.
         Preference language = findPreference(getString(R.string.key_language));
         language.setSummary(getSettingsOptionManager().getLanguage().getLanguageName(requireActivity()));
         language.setOnPreferenceChangeListener((preference, newValue) -> {
-            getSettingsOptionManager().setLanguage(Language.getInstance((String) newValue));
             preference.setSummary(getSettingsOptionManager().getLanguage().getLanguageName(requireActivity()));
             SnackbarHelper.showSnackbar(
                     getString(R.string.feedback_restart),

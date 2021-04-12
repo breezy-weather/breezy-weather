@@ -345,7 +345,8 @@ public class MainFragment extends GeoFragment {
     }
 
     public void ensureResourceProvider() {
-        String iconProvider = SettingsManager.getInstance(requireContext()).getIconProvider();
+        String iconProvider = SettingsManager.getInstance(requireContext()).getIconProvider(
+                requireContext());
         if (mResourceProvider == null
                 || !mResourceProvider.getPackageName().equals(iconProvider)) {
             mResourceProvider = ResourcesProviderFactory.getNewInstance();

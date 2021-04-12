@@ -58,7 +58,7 @@ public class AccuWeatherService extends WeatherService {
         @Override
         public void requestLocationSuccess(String query, List<Location> locationList) {
             if (!TextUtils.isEmpty(locationList.get(0).getCityId())) {
-                mContext.getSharedPreferences(CONFIG_NAME_LOCAL, Context.MODE_PRIVATE)
+                ConfigStore.getInstance(mContext, CONFIG_NAME_LOCAL)
                         .edit()
                         .putString(KEY_OLD_KEY, locationList.get(0).getCityId())
                         .apply();
@@ -68,7 +68,7 @@ public class AccuWeatherService extends WeatherService {
 
         @Override
         public void requestLocationFailed(String query) {
-            mContext.getSharedPreferences(CONFIG_NAME_LOCAL, Context.MODE_PRIVATE)
+            ConfigStore.getInstance(mContext, CONFIG_NAME_LOCAL)
                     .edit()
                     .putString(KEY_OLD_DISTRICT, "")
                     .putString(KEY_OLD_CITY, "")
