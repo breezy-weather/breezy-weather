@@ -8,6 +8,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.os.Build;
+import android.text.TextUtils;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
@@ -94,17 +95,18 @@ public class NotificationHelper {
 
         List<Alert> alertList = new ArrayList<>();
         if (oldResult != null) {
-            for (int i = 0; i < weather.getAlertList().size(); i ++) {
-                boolean newAlert = true;
-                for (int j = 0; j < oldResult.getAlertList().size(); j ++) {
-                    if (weather.getAlertList().get(i).getAlertId()
-                            == oldResult.getAlertList().get(j).getAlertId()) {
-                        newAlert = false;
+            for (Alert newAlert : weather.getAlertList()) {
+                boolean exist = false;
+
+                for (Alert oldAlert : oldResult.getAlertList()) {
+                    if (newAlert.getAlertId() == oldAlert.getAlertId()
+                            || TextUtils.equals(newAlert.getDescription(), oldAlert.getDescription())) {
+                        exist = true;
                         break;
                     }
                 }
-                if (newAlert) {
-                    alertList.add(weather.getAlertList().get(i));
+                if (!exist) {
+                    alertList.add(newAlert);
                 }
             }
         } else {
