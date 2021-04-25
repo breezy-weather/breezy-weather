@@ -3,6 +3,7 @@ package wangdaye.com.geometricweather.settings
 import android.content.Context
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
+import wangdaye.com.geometricweather.BuildConfig
 import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.models.options.*
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.CardDisplay
@@ -107,6 +108,19 @@ class SettingsManager private constructor(context: Context){
     private val notificationHideIconEnabled = context.getString(R.string.key_notification_hide_icon)
     private val notificationHideInLockScreenEnabled = context.getString(R.string.key_notification_hide_in_lockScreen)
     private val notificationHideBigViewEnabled = context.getString(R.string.key_notification_hide_big_view)
+
+    // service providers
+    private val providerAccuWeatherKey = context.getString(R.string.key_provider_accu_weather_key)
+    private val providerAccuCurrentKey = context.getString(R.string.key_provider_accu_current_key)
+    private val providerAccuAqiKey = context.getString(R.string.key_provider_accu_aqi_key)
+
+    private val providerOwmKey = context.getString(R.string.key_provider_owm_key)
+
+    private val providerBaiduIpLocationAk = context.getString(R.string.key_provider_baidu_ip_location_ak)
+
+    private val providerMfWsftKey = context.getString(R.string.key_provider_mf_wsft_key)
+    private val providerIqaAirParifKey = context.getString(R.string.key_provider_iqa_air_parif_key)
+    private val providerIqaAtmoAuraKey = context.getString(R.string.key_provider_iqa_atmo_aura_key)
 
     fun preload() {
         config.preload()
@@ -325,5 +339,47 @@ class SettingsManager private constructor(context: Context){
 
     fun isNotificationHideBigViewEnabled(): Boolean {
         return config.getBoolean(notificationHideBigViewEnabled, false)
+    }
+
+    private fun getProviderSettingValue(key: String, defaultValue: String?, useDefaultValue: Boolean): String? {
+        val prefValue = config.getString(key, "")
+
+        return if (prefValue == null || prefValue.isEmpty()) {
+            if(useDefaultValue) defaultValue else null
+        } else {
+            prefValue
+        }
+    }
+
+    fun getProviderAccuWeatherKey(useDefaultValue: Boolean): String? {
+        return getProviderSettingValue(providerAccuWeatherKey, BuildConfig.ACCU_WEATHER_KEY, useDefaultValue);
+    }
+
+    fun getProviderAccuCurrentKey(useDefaultValue: Boolean): String? {
+        return getProviderSettingValue(providerAccuCurrentKey, BuildConfig.ACCU_CURRENT_KEY, useDefaultValue);
+    }
+
+    fun getProviderAccuAqiKey(useDefaultValue: Boolean): String? {
+        return getProviderSettingValue(providerAccuAqiKey, BuildConfig.ACCU_AQI_KEY, useDefaultValue);
+    }
+
+    fun getProviderOwmKey(useDefaultValue: Boolean): String? {
+        return getProviderSettingValue(providerOwmKey, BuildConfig.OWM_KEY, useDefaultValue);
+    }
+
+    fun getProviderBaiduIpLocationAk(useDefaultValue: Boolean): String? {
+        return getProviderSettingValue(providerBaiduIpLocationAk, BuildConfig.BAIDU_IP_LOCATION_AK, useDefaultValue);
+    }
+
+    fun getProviderMfWsftKey(useDefaultValue: Boolean): String? {
+        return getProviderSettingValue(providerMfWsftKey, BuildConfig.MF_WSFT_KEY, useDefaultValue);
+    }
+
+    fun getProviderIqaAirParifKey(useDefaultValue: Boolean): String? {
+        return getProviderSettingValue(providerIqaAirParifKey, BuildConfig.IQA_AIR_PARIF_KEY, useDefaultValue);
+    }
+
+    fun getProviderIqaAtmoAuraKey(useDefaultValue: Boolean): String? {
+        return getProviderSettingValue(providerIqaAtmoAuraKey, BuildConfig.IQA_ATMO_AURA_KEY, useDefaultValue);
     }
 }

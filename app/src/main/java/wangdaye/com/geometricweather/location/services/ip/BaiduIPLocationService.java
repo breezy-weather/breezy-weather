@@ -12,6 +12,7 @@ import wangdaye.com.geometricweather.location.services.LocationService;
 import wangdaye.com.geometricweather.common.rxjava.SchedulerTransformer;
 import wangdaye.com.geometricweather.common.rxjava.BaseObserver;
 import wangdaye.com.geometricweather.common.rxjava.ObserverContainer;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 
 public class BaiduIPLocationService extends LocationService {
 
@@ -27,7 +28,7 @@ public class BaiduIPLocationService extends LocationService {
 
     @Override
     public void requestLocation(Context context, @NonNull LocationCallback callback) {
-        mApi.getLocation(BuildConfig.BAIDU_IP_LOCATION_AK, "gcj02")
+        mApi.getLocation(SettingsManager.getInstance(context).getProviderBaiduIpLocationAk(true), "gcj02")
                 .compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(compositeDisposable, new BaseObserver<BaiduIPLocationResult>() {
                     @Override
