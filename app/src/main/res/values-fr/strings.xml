@@ -4,11 +4,11 @@
     <string name="app_name">Météo</string>
 
     <!-- mots-clés -->
-    <string name="current_location">Emplacement actuel</string>
+    <string name="current_location">Emplacement courant</string>
     <string name="resident_location">Emplacement domicile</string>
     <string name="default_location">Emplacement par défaut</string>
     <string name="live">Actuellement</string>
-    <string name="today">Auj</string>
+    <string name="today">Auj.</string>
     <string name="refresh_at">Service intérrogé à</string>
     <string name="local_time">Heure locale</string>
     <string name="precipitation">Précipitation</string>
@@ -23,7 +23,7 @@
     <string name="wind">Vent</string>
     <string name="wind_direction">Direction du vent</string>
     <string name="wind_speed">Vitesse du vent</string>
-    <string name="wind_level">Force du vent</string>
+    <string name="wind_level">Force du vent</string><!-- Echelle de Beaufort -->
     <string name="sensible_temp">Temp. ressentie</string>
     <string name="humidity">Humidité</string>
     <string name="uv_index">Indice UV</string>
@@ -171,7 +171,7 @@
     <string name="feedback_check_location_permission">Vérifiez les permissions de localisation</string>
     <string name="feedback_enable_location_information">Activez les informations de localisation</string>
     <string name="feedback_select_location_provider">Sélectionnez un fournisseur de localisation</string>
-    <string name="feedback_add_location_manually">Ajoutez manuellement la localisation et supprimez \'$\'</string>
+    <string name="feedback_add_location_manually">Ajouter manuellement la localisation et supprimer \'$\'</string>
     <string name="feedback_view_style">Apparence</string>
     <string name="feedback_show_widget_card">Couleur d’arrière-plan</string>
     <string name="feedback_show_widget_card_alpha">Transparence</string>
@@ -335,7 +335,7 @@
 
     <!-- paramètres -->
     <string name="settings_category_basic">Général</string>
-    <string name="settings_title_background_free">Interdire l'exécution en arrière-plan</string>
+    <string name="settings_title_background_free">Interdire l'exécution en arrière-plan</string><!-- La double négation est tordue, il faudrait revoir le code -->
     <string name="settings_summary_background_free_on">Oui\nSi les widgets et notifications ne s'actualisent pas automatiquement, merci de basculer cette option à 'Non'.</string>
     <string name="settings_summary_background_free_off">Non\nSi vous ne souhaitez pas que des services continuent à s'exécuter en arrière-plan, merci de basculer cette option à 'Oui'.</string>
     <string name="settings_title_live_wallpaper">Fond d’écran animé</string>
