@@ -9,7 +9,7 @@
     <string name="default_location">Emplacement par défaut</string>
     <string name="live">Maintenant</string>
     <string name="today">Auj.</string>
-    <string name="refresh_at">Service intérrogé à</string>
+    <string name="refresh_at">Service interrogé à</string>
     <string name="local_time">Heure locale</string>
     <string name="precipitation">Précipitation</string>
     <string name="precipitation_probability">Probabilité de précipitation</string>
@@ -23,7 +23,7 @@
     <string name="wind">Vent</string>
     <string name="wind_direction">Direction du vent</string>
     <string name="wind_speed">Vitesse du vent</string>
-    <string name="wind_level">Force du vent</string><!-- Echelle de Beaufort -->
+    <string name="wind_level">Force du vent</string><!-- Selon l'échelle de Beaufort -->
     <string name="sensible_temp">Temp. ressentie</string>
     <string name="humidity">Humidité</string>
     <string name="uv_index">Indice UV</string>
@@ -42,8 +42,8 @@
     <string name="cloud_cover">Couverture nuageuse</string>
     <string name="ceiling">Plafond nuageux</string>
     <string name="get_more">Voir plus</string>
-    <string name="get_more_store">Voir plus sur le magasin d’applications</string>
-    <string name="get_more_github">Voir plus sur GitHub</string>
+    <string name="get_more_store">Voir plus sur le magasin d’applications</string><!-- for reviewers: être homogène pour ces 2 chaines => dans ou sur ? -->
+    <string name="get_more_github">Voir plus sur GitHub</string><!-- for reviewers: être homogène pour ces 2 chaines => dans ou sur ? -->
     <string name="refresh">Actualiser</string>
     <string name="restart">Redémarrer</string>
     <string name="edit">Modifier</string>
@@ -52,7 +52,7 @@
     <string name="of_clock">:00</string>
     <string name="yesterday">hier</string>
     <string name="tomorrow">dem.</string>
-    <string name="week">sem</string>
+    <string name="week">sem.</string>
     <string name="week_1">Lun</string>
     <string name="week_2">Mar</string>
     <string name="week_3">Mer</string>
