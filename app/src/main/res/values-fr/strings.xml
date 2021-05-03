@@ -1,13 +1,13 @@
 <resources>
 
     <!-- app -->
-    <string name="app_name">Météo</string>
+    <string name="app_name">Météo (Geometric)</string>
 
     <!-- mots-clés -->
-    <string name="current_location">Emplacement courant</string>
-    <string name="resident_location">Emplacement domicile</string>
+    <string name="current_location">Ma position</string>
+    <string name="resident_location">Mon domicile</string>
     <string name="default_location">Emplacement par défaut</string>
-    <string name="live">Actuellement</string>
+    <string name="live">Maintenant</string>
     <string name="today">Auj.</string>
     <string name="refresh_at">Service intérrogé à</string>
     <string name="local_time">Heure locale</string>
