@@ -171,7 +171,7 @@
     <string name="feedback_check_location_permission">Vérifiez les permissions de localisation</string>
     <string name="feedback_enable_location_information">Activez les informations de localisation</string>
     <string name="feedback_select_location_provider">Sélectionnez un fournisseur de localisation</string>
-    <string name="feedback_add_location_manually">Ajouter manuellement la localisation et supprimer \'$\'</string>
+    <string name="feedback_add_location_manually">Ajoutez manuellement la localisation et supprimez \'$\'</string>
     <string name="feedback_view_style">Apparence</string>
     <string name="feedback_show_widget_card">Couleur d’arrière-plan</string>
     <string name="feedback_show_widget_card_alpha">Transparence</string>
@@ -273,8 +273,8 @@
     <string name="feedback_short_term_precipitation_alert">Précipitations possibles dans les heures à venir.</string>
 
     <string name="feedback_resident_location">Définir en tant que ville de résidence</string>
-    <string name="feedback_resident_location_description">GeometricWeather affichera et masquera automatiquement les villes de résidence selon votre localisation courante.\nFor example, you can set your hometown as a resident city. You can check the weather in your hometown while you are traveling. When you get home, the weather in your hometown will be hidden and replaced by the weather for your current location.</string>
-
+    <string name="feedback_resident_location_description">GeometricWeather affichera ou masquera automatiquement votre ville de résidence selon votre position.\nPar exemple, vous pouvez définir votre domicile comme ville de résidence. En déplacement, vous pourrez vérifier la météo pour ce lieu. De retour chez vous, la météo 'ville de résidence' sera masquée et remplacée par celle de votre position.</string>
+    
     <string name="feedback_click_to_get_more">Appuyez pour en voir plus…</string>
     <string name="feedback_click_again_to_exit">Appuyez à nouveau pour quitter</string>
 
@@ -295,8 +295,8 @@
     <string name="content_des_moonset">Coucher de lune à $</string> <!-- $ = time. -->
     <string name="content_des_no_precipitation">Aucune précipitation</string>
     <string name="content_des_minutely_precipitation">Précipitationss entre $1 et $2</string> <!-- $1 = start time, $2 = end time. -->
-    <string name="content_des_add_current_location">Ajouter la position courante</string>
-    <string name="content_des_drag_flag">Maintenez puis déplacer les éléments de la liste pour les ordonner</string>
+    <string name="content_des_add_current_location">Ajouter ma position</string>
+    <string name="content_des_drag_flag">Maintenez puis déplacez les éléments de la liste pour les ordonner</string>
     <string name="content_des_delete_flag">Supprimer cet élément</string>
     <string name="content_des_swipe_left_to_delete">Vous pouvez glisser vers la gauche pour supprimer cet élément</string>
     <string name="content_des_swipe_right_to_delete">Vous pouvez glisser vers la droite pour supprimer cet élément</string>
@@ -336,8 +336,8 @@
     <!-- paramètres -->
     <string name="settings_category_basic">Général</string>
     <string name="settings_title_background_free">Interdire l'exécution en arrière-plan</string><!-- La double négation est tordue, il faudrait revoir le code -->
-    <string name="settings_summary_background_free_on">Oui\nSi les widgets et notifications ne s'actualisent pas automatiquement, merci de basculer cette option à 'Non'.</string>
-    <string name="settings_summary_background_free_off">Non\nSi vous ne souhaitez pas que des services continuent à s'exécuter en arrière-plan, merci de basculer cette option à 'Oui'.</string>
+    <string name="settings_summary_background_free_on">Oui\nSi les widgets et notifications ne s'actualisent pas automatiquement, merci de basculer cette option à « Non ».</string>
+    <string name="settings_summary_background_free_off">Non\nSi vous ne souhaitez pas que des services continuent à s'exécuter en arrière-plan, merci de basculer cette option à « Oui ».</string>
     <string name="settings_title_live_wallpaper">Fond d’écran animé</string>
     <string name="settings_summary_live_wallpaper">Définir une animation météo Material en tant que fond d’écran animé</string>
     <string name="settings_title_service_provider">Fournisseur de service</string>
