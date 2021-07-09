@@ -128,7 +128,7 @@ class SettingsManager private constructor(context: Context){
 
     fun isBackgroundFree(): Boolean {
         return config.getBoolean(backgroundFree, true)
-                // || Build.VERSION.SDK_INT >= Build.VERSION_CODES.S;
+        // || Build.VERSION.SDK_INT >= Build.VERSION_CODES.S;
     }
 
     fun isAlertPushEnabled(): Boolean {
@@ -341,45 +341,81 @@ class SettingsManager private constructor(context: Context){
         return config.getBoolean(notificationHideBigViewEnabled, false)
     }
 
-    private fun getProviderSettingValue(key: String, defaultValue: String?, useDefaultValue: Boolean): String? {
+    private fun getProviderSettingValue(
+            key: String,
+            defaultValue: String?,
+            useDefaultValue: Boolean
+    ): String {
         val prefValue = config.getString(key, "")
 
-        return if (prefValue == null || prefValue.isEmpty()) {
-            if(useDefaultValue) defaultValue else null
+        return (if (prefValue == null || prefValue.isEmpty()) {
+            if (useDefaultValue) defaultValue else null
         } else {
             prefValue
-        }
+        }) ?: ""
     }
 
-    fun getProviderAccuWeatherKey(useDefaultValue: Boolean): String? {
-        return getProviderSettingValue(providerAccuWeatherKey, BuildConfig.ACCU_WEATHER_KEY, useDefaultValue);
+    fun getProviderAccuWeatherKey(useDefaultValue: Boolean): String {
+        return getProviderSettingValue(
+                providerAccuWeatherKey,
+                BuildConfig.ACCU_WEATHER_KEY,
+                useDefaultValue
+        )
     }
 
-    fun getProviderAccuCurrentKey(useDefaultValue: Boolean): String? {
-        return getProviderSettingValue(providerAccuCurrentKey, BuildConfig.ACCU_CURRENT_KEY, useDefaultValue);
+    fun getProviderAccuCurrentKey(useDefaultValue: Boolean): String {
+        return getProviderSettingValue(
+                providerAccuCurrentKey,
+                BuildConfig.ACCU_CURRENT_KEY,
+                useDefaultValue
+        )
     }
 
-    fun getProviderAccuAqiKey(useDefaultValue: Boolean): String? {
-        return getProviderSettingValue(providerAccuAqiKey, BuildConfig.ACCU_AQI_KEY, useDefaultValue);
+    fun getProviderAccuAqiKey(useDefaultValue: Boolean): String {
+        return getProviderSettingValue(
+                providerAccuAqiKey,
+                BuildConfig.ACCU_AQI_KEY,
+                useDefaultValue
+        )
     }
 
-    fun getProviderOwmKey(useDefaultValue: Boolean): String? {
-        return getProviderSettingValue(providerOwmKey, BuildConfig.OWM_KEY, useDefaultValue);
+    fun getProviderOwmKey(useDefaultValue: Boolean): String {
+        return getProviderSettingValue(
+                providerOwmKey,
+                BuildConfig.OWM_KEY,
+                useDefaultValue
+        )
     }
 
-    fun getProviderBaiduIpLocationAk(useDefaultValue: Boolean): String? {
-        return getProviderSettingValue(providerBaiduIpLocationAk, BuildConfig.BAIDU_IP_LOCATION_AK, useDefaultValue);
+    fun getProviderBaiduIpLocationAk(useDefaultValue: Boolean): String {
+        return getProviderSettingValue(
+                providerBaiduIpLocationAk,
+                BuildConfig.BAIDU_IP_LOCATION_AK,
+                useDefaultValue
+        )
     }
 
-    fun getProviderMfWsftKey(useDefaultValue: Boolean): String? {
-        return getProviderSettingValue(providerMfWsftKey, BuildConfig.MF_WSFT_KEY, useDefaultValue);
+    fun getProviderMfWsftKey(useDefaultValue: Boolean): String {
+        return getProviderSettingValue(
+                providerMfWsftKey,
+                BuildConfig.MF_WSFT_KEY,
+                useDefaultValue
+        )
     }
 
-    fun getProviderIqaAirParifKey(useDefaultValue: Boolean): String? {
-        return getProviderSettingValue(providerIqaAirParifKey, BuildConfig.IQA_AIR_PARIF_KEY, useDefaultValue);
+    fun getProviderIqaAirParifKey(useDefaultValue: Boolean): String {
+        return getProviderSettingValue(
+                providerIqaAirParifKey,
+                BuildConfig.IQA_AIR_PARIF_KEY,
+                useDefaultValue
+        )
     }
 
-    fun getProviderIqaAtmoAuraKey(useDefaultValue: Boolean): String? {
-        return getProviderSettingValue(providerIqaAtmoAuraKey, BuildConfig.IQA_ATMO_AURA_KEY, useDefaultValue);
+    fun getProviderIqaAtmoAuraKey(useDefaultValue: Boolean): String {
+        return getProviderSettingValue(
+                providerIqaAtmoAuraKey,
+                BuildConfig.IQA_ATMO_AURA_KEY,
+                useDefaultValue
+        )
     }
 }

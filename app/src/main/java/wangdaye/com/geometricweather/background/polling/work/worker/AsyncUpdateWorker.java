@@ -1,6 +1,5 @@
 package wangdaye.com.geometricweather.background.polling.work.worker;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
 
@@ -9,6 +8,9 @@ import androidx.annotation.Nullable;
 import androidx.work.WorkerParameters;
 import androidx.work.impl.utils.futures.SettableFuture;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.background.polling.PollingUpdateHelper;
@@ -20,7 +22,7 @@ import wangdaye.com.geometricweather.remoteviews.NotificationHelper;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
 public abstract class AsyncUpdateWorker extends AsyncWorker
-        implements PollingUpdateHelper.OnPollingUpdateListener {
+        implements PollingUpdateHelper.PollingResponder {
 
     private final PollingUpdateHelper mPollingUpdateHelper;
 
@@ -32,9 +34,8 @@ public abstract class AsyncUpdateWorker extends AsyncWorker
                              LocationHelper locationHelper,
                              WeatherHelper weatherHelper) {
         super(context, workerParams);
-
-        mPollingUpdateHelper = new PollingUpdateHelper(context, locationHelper, weatherHelper);
-        mPollingUpdateHelper.setOnPollingUpdateListener(this);
+        mPollingUpdateHelper = new PollingUpdateHelper(
+                context, locationHelper, weatherHelper, this);
     }
 
     @Override
@@ -61,8 +62,8 @@ public abstract class AsyncUpdateWorker extends AsyncWorker
     // on polling update listener.
 
     @Override
-    public void onUpdateCompleted(@NonNull Location location, @Nullable Weather old,
-                                  boolean succeed, int index, int total) {
+    public void responseSingleRequest(@NonNull Location location, @Nullable Weather old,
+                                      boolean succeed, int index, int total) {
         if (index == 0) {
             updateView(getApplicationContext(), location);
             if (succeed) {
@@ -74,12 +75,13 @@ public abstract class AsyncUpdateWorker extends AsyncWorker
         }
     }
 
-    @SuppressLint("RestrictedApi")
     @Override
-    public void onPollingCompleted(List<Location> locationList) {
-        updateView(getApplicationContext(), locationList);
+    public void responsePolling(@NotNull List<? extends Location> locationList) {
+        List<Location> list = new ArrayList<>(locationList);
+
+        updateView(getApplicationContext(), list);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-            ShortcutsHelper.refreshShortcutsInNewThread(getApplicationContext(), locationList);
+            ShortcutsHelper.refreshShortcutsInNewThread(getApplicationContext(), list);
         }
         handleUpdateResult(mFuture, mFailed);
     }

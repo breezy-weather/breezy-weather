@@ -59,8 +59,7 @@ import wangdaye.com.geometricweather.weather.WeatherHelper;
  * Abstract widget config activity.
  * */
 
-public abstract class AbstractWidgetConfigActivity extends GeoActivity
-        implements WeatherHelper.OnRequestWeatherListener {
+public abstract class AbstractWidgetConfigActivity extends GeoActivity {
 
     protected FrameLayout mTopContainer;
     protected ImageView mWallpaper;
@@ -85,6 +84,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
 
     protected Location locationNow;
 
+    private AbstractUpdateHelper mUpdateHelper;
     @Inject WeatherHelper weatherHelper;
     protected boolean destroyed;
 
@@ -130,15 +130,19 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         initView();
         updateHostView();
 
-        if (locationNow.isCurrentPosition()) {
-            if (locationNow.isUsable()) {
-                weatherHelper.requestWeather(this, locationNow, this);
-            } else {
-                weatherHelper.requestWeather(this, Location.buildDefaultLocation(), this);
+        mUpdateHelper = new AbstractUpdateHelper(weatherHelper, location -> {
+            if (destroyed) {
+                return;
             }
-        } else {
-            weatherHelper.requestWeather(this, locationNow, this);
-        }
+
+            locationNow = location;
+            updateHostView();
+
+            if (locationNow.getWeather() == null) {
+                SnackbarHelper.showSnackbar(getString(R.string.feedback_get_weather_failed));
+            }
+        });
+        mUpdateHelper.update(this, locationNow);
     }
 
     @Override
@@ -182,7 +186,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
     protected void onDestroy() {
         super.onDestroy();
         destroyed = true;
-        weatherHelper.cancel();
+        mUpdateHelper.cancel();
     }
 
     @SuppressLint("MissingSuperCall")
@@ -578,32 +582,6 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
     }
 
     // interface.
-
-    // on request weather listener.
-
-    @Override
-    public void requestWeatherSuccess(@NonNull Location requestLocation) {
-        if (destroyed) {
-            return;
-        }
-
-        locationNow = requestLocation;
-        if (requestLocation.getWeather() == null) {
-            requestWeatherFailed(requestLocation);
-        } else {
-            updateHostView();
-        }
-    }
-
-    @Override
-    public void requestWeatherFailed(@NonNull Location requestLocation) {
-        if (destroyed) {
-            return;
-        }
-        locationNow = requestLocation;
-        updateHostView();
-        SnackbarHelper.showSnackbar(getString(R.string.feedback_get_weather_failed));
-    }
 
     private void bindWallpaper(boolean checkPermissions) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkPermissions) {

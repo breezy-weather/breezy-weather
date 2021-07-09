@@ -196,7 +196,7 @@ public class MaterialWeatherView extends View implements WeatherView {
         DisplayMetrics metrics = res.getDisplayMetrics();
         mSizes = new int[] {metrics.widthPixels, metrics.heightPixels};
 
-        mFirstCardMarginTop = (int) (res.getDisplayMetrics().heightPixels * 0.55);
+        mFirstCardMarginTop = (int) (res.getDisplayMetrics().heightPixels * 0.66);
         mScrollTransparentTriggerDistance = mFirstCardMarginTop;
 
         mLastScrollRate = 0;

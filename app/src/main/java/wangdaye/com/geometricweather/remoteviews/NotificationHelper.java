@@ -95,21 +95,27 @@ public class NotificationHelper {
 
         List<Alert> alertList = new ArrayList<>();
         if (oldResult != null) {
+            if (weather.getBase().getTimeStamp() == oldResult.getBase().getTimeStamp()) {
+                return;
+            }
+
+            boolean existingFlag;
             for (Alert newAlert : weather.getAlertList()) {
-                boolean exist = false;
+                existingFlag = false;
 
                 for (Alert oldAlert : oldResult.getAlertList()) {
                     if (newAlert.getAlertId() == oldAlert.getAlertId()
                             || TextUtils.equals(newAlert.getDescription(), oldAlert.getDescription())) {
-                        exist = true;
+                        existingFlag = true;
                         break;
                     }
                 }
-                if (!exist) {
+                if (!existingFlag) {
                     alertList.add(newAlert);
                 }
             }
         } else {
+            // oldResult == null.
             alertList.addAll(weather.getAlertList());
         }
 

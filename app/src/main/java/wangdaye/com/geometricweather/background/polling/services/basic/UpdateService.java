@@ -9,6 +9,9 @@ import android.os.IBinder;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -27,7 +30,7 @@ import wangdaye.com.geometricweather.weather.WeatherHelper;
  * */
 
 public abstract class UpdateService extends Service
-        implements PollingUpdateHelper.OnPollingUpdateListener {
+        implements PollingUpdateHelper.PollingResponder {
 
     private PollingUpdateHelper mPollingHelper;
     @Inject LocationHelper mLocationHelper;
@@ -41,8 +44,7 @@ public abstract class UpdateService extends Service
 
         mFailed = false;
 
-        mPollingHelper = new PollingUpdateHelper(this, mLocationHelper, mWeatherHelper);
-        mPollingHelper.setOnPollingUpdateListener(this);
+        mPollingHelper = new PollingUpdateHelper(this, mLocationHelper, mWeatherHelper, this);
         mPollingHelper.pollingUpdate();
 
         mDelayController = AsyncHelper.delayRunOnIO(() -> stopService(true), 30 * 1000);
@@ -56,7 +58,6 @@ public abstract class UpdateService extends Service
             mDelayController = null;
         }
         if (mPollingHelper != null) {
-            mPollingHelper.setOnPollingUpdateListener(null);
             mPollingHelper.cancel();
             mPollingHelper = null;
         }
@@ -86,8 +87,8 @@ public abstract class UpdateService extends Service
     // on polling update listener.
 
     @Override
-    public void onUpdateCompleted(@NonNull Location location, @Nullable Weather old,
-                                  boolean succeed, int index, int total) {
+    public void responseSingleRequest(@NonNull Location location, @Nullable Weather old,
+                                      boolean succeed, int index, int total) {
         if (index == 0) {
             updateView(this, location);
             if (succeed) {
@@ -100,10 +101,12 @@ public abstract class UpdateService extends Service
     }
 
     @Override
-    public void onPollingCompleted(List<Location> locationList) {
-        updateView(this, locationList);
+    public void responsePolling(@NotNull List<? extends Location> locationList) {
+        List<Location> list = new ArrayList<>(locationList);
+
+        updateView(this, list);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-            ShortcutsHelper.refreshShortcutsInNewThread(this, locationList);
+            ShortcutsHelper.refreshShortcutsInNewThread(this, list);
         }
         stopService(mFailed);
     }

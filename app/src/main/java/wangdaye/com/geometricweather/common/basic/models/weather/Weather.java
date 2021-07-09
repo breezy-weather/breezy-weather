@@ -75,11 +75,11 @@ public class Weather
         return alertList;
     }
 
-    public boolean isValid(float hour) {
+    public boolean isValid(float pollingIntervalHours) {
         long updateTime = base.getUpdateTime();
         long currentTime = System.currentTimeMillis();
         return currentTime >= updateTime
-                && currentTime - updateTime < hour * 60 * 60 * 1000;
+                && currentTime - updateTime < pollingIntervalHours * 60 * 60 * 1000;
     }
 
     public boolean isDaylight(TimeZone timeZone) {
