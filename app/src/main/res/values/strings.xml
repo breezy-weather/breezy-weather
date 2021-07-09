@@ -370,6 +370,8 @@
     <string name="settings_summary_live_wallpaper">Set Material weather animation as live wallpaper</string>
     <string name="settings_title_service_provider">Service provider</string>
     <string name="settings_summary_service_provider">Select service provider of weather data and location information</string>
+    <string name="settings_title_service_provider_advanced">Advanced service provider settings</string>
+    <string name="settings_summary_service_provider_advanced">Proceed with caution</string>
     <string name="settings_title_weather_source">Weather source</string>
     <string name="settings_title_location_service">Location service</string>
     <string name="settings_title_dark_mode">Dark mode</string>
@@ -428,6 +430,19 @@
     <string name="settings_title_notification_hide_big_view">Extended style</string>
     <string name="settings_notification_hide_big_view_on">Hide</string>
     <string name="settings_notification_hide_big_view_off">Show</string>
+    <string name="settings_provider_default_value">Default (unchanged)</string>
+    <string name="settings_provider_accu_weather">AccuWeather</string>
+    <string name="settings_provider_accu_weather_key">AccuWeather weather key</string>
+    <string name="settings_provider_accu_current_key">AccuWeather current key</string>
+    <string name="settings_provider_accu_aqi_key">AccuWeather AQI key</string>
+    <string name="settings_provider_owm">OpenWeather</string>
+    <string name="settings_provider_owm_key">OpenWeather key</string>
+    <string name="settings_provider_baidu_ip_location">Baidu IP location</string>
+    <string name="settings_provider_baidu_ip_location_ak">Baidu IP location AK</string>
+    <string name="settings_provider_mf">Météo France</string>
+    <string name="settings_provider_mf_wsft_key">Météo France WSFT key</string>
+    <string name="settings_provider_iqa_air_parif_key">Air Parif key</string>
+    <string name="settings_provider_iqa_atmo_aura_key">ATMO AURA key</string>
 
     <!--share preference-->
     <!-- Do not translate the following set of strings. -->
@@ -457,6 +472,7 @@
     <string name="key_background_free">background_free_3</string>
     <string name="key_live_wallpaper">live_wallpaper</string>
     <string name="key_service_provider">service_provider</string>
+    <string name="key_service_provider_advanced">service_provider_advanced</string>
     <string name="key_weather_source">weather_source</string>
     <string name="key_location_service">location_service</string>
     <string name="key_dark_mode">dark_mode</string>
@@ -511,6 +527,14 @@
     <string name="key_notification_hide_icon">hide_notification_icon</string>
     <string name="key_notification_hide_in_lockScreen">hide_notification_in_lockScreen</string>
     <string name="key_notification_hide_big_view">hide_notification_big_view</string>
+    <string name="key_provider_accu_weather_key">provider_accu_weather_key</string>
+    <string name="key_provider_accu_current_key">provider_accu_current_key</string>
+    <string name="key_provider_accu_aqi_key">provider_accu_aqi_key</string>
+    <string name="key_provider_owm_key">provider_owm_key</string>
+    <string name="key_provider_baidu_ip_location_ak">provider_baidu_ip_location_ak</string>
+    <string name="key_provider_mf_wsft_key">provider_mf_wsft_key</string>
+    <string name="key_provider_iqa_air_parif_key">provider_iqa_air_parif_key</string>
+    <string name="key_provider_iqa_atmo_aura_key">provider_iqa_atmo_aura_key</string>
 
     <!-- transition. -->
     <!-- Do not translate the following set of strings. -->

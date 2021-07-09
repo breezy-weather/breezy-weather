@@ -101,24 +101,24 @@ public class MfWeatherService extends WeatherService {
         String languageCode = SettingsManager.getInstance(context).getLanguage().getCode();
 
         Observable<MfCurrentResult> current = mMfApi.getCurrent(
-                location.getLatitude(), location.getLongitude(), languageCode, BuildConfig.MF_WSFT_KEY);
+                location.getLatitude(), location.getLongitude(), languageCode, SettingsManager.getInstance(context).getProviderMfWsftKey(true));
 
         Observable<MfForecastResult> forecast = mMfApi.getForecast(
-                location.getLatitude(), location.getLongitude(), languageCode, BuildConfig.MF_WSFT_KEY);
+                location.getLatitude(), location.getLongitude(), languageCode, SettingsManager.getInstance(context).getProviderMfWsftKey(true));
 
         // TODO: Will allow us to display forecast for day and night in daily
         //Observable<MfForecastResult> dayNightForecast = api.getForecastInstants(
-        //        location.getLatitude(), location.getLongitude(), languageCode, "afternoon,night", BuildConfig.MF_WSFT_KEY);
+        //        location.getLatitude(), location.getLongitude(), languageCode, "afternoon,night", SettingsManager.getInstance(context).getProviderMfWsftKey(true));
 
         Observable<MfEphemerisResult> ephemeris = mMfApi.getEphemeris(
-                location.getLatitude(), location.getLongitude(), "en", BuildConfig.MF_WSFT_KEY);
+                location.getLatitude(), location.getLongitude(), "en", SettingsManager.getInstance(context).getProviderMfWsftKey(true));
         // English required to convert moon phase
 
         Observable<MfRainResult> rain = mMfApi.getRain(
-                location.getLatitude(), location.getLongitude(), languageCode, BuildConfig.MF_WSFT_KEY);
+                location.getLatitude(), location.getLongitude(), languageCode, SettingsManager.getInstance(context).getProviderMfWsftKey(true));
 
         Observable<MfWarningsResult> warnings = mMfApi.getWarnings(
-                location.getProvince(), null, BuildConfig.MF_WSFT_KEY
+                location.getProvince(), null, SettingsManager.getInstance(context).getProviderMfWsftKey(true)
         ).onExceptionResumeNext(
                 // FIXME: Will not report warnings if current location was searched through AccuWeather search because "province" is not the department
                 Observable.create(emitter -> emitter.onNext(new EmptyWarningsResult()))
@@ -135,7 +135,7 @@ public class MfWeatherService extends WeatherService {
                 || location.getProvince().equals("69") || location.getProvince().equals("73")
                 || location.getProvince().equals("74")) {
             aqiAtmoAura = mAtmoAuraApi.getQAFull(
-                    BuildConfig.IQA_ATMO_AURA_KEY,
+                    SettingsManager.getInstance(context).getProviderIqaAtmoAuraKey(true),
                     String.valueOf(location.getLatitude()),
                     String.valueOf(location.getLongitude())
             ).onExceptionResumeNext(
@@ -180,7 +180,7 @@ public class MfWeatherService extends WeatherService {
     public List<Location> requestLocation(Context context, String query) {
         List<MfLocationResult> resultList = null;
         try {
-            resultList = mMfApi.callWeatherLocation(query, 48.86d, 2.34d, BuildConfig.MF_WSFT_KEY).execute().body();
+            resultList = mMfApi.callWeatherLocation(query, 48.86d, 2.34d, SettingsManager.getInstance(context).getProviderMfWsftKey(true)).execute().body();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -232,7 +232,7 @@ public class MfWeatherService extends WeatherService {
                 location.getLatitude(),
                 location.getLongitude(),
                 languageCode,
-                BuildConfig.MF_WSFT_KEY
+                SettingsManager.getInstance(context).getProviderMfWsftKey(true)
         ).compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<MfForecastV2Result>() {
                     @Override
@@ -261,7 +261,7 @@ public class MfWeatherService extends WeatherService {
 
     public void requestLocation(Context context, String query,
                                 @NonNull RequestLocationCallback callback) {
-        mMfApi.getWeatherLocation(query, 48.86d, 2.34d, BuildConfig.MF_WSFT_KEY)
+        mMfApi.getWeatherLocation(query, 48.86d, 2.34d, SettingsManager.getInstance(context).getProviderMfWsftKey(true))
                 .compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<List<MfLocationResult>>() {
                     @Override

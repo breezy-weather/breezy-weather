@@ -96,16 +96,16 @@ public class AccuWeatherService extends WeatherService {
         String languageCode = SettingsManager.getInstance(context).getLanguage().getCode();
 
         Observable<List<AccuCurrentResult>> realtime = mApi.getCurrent(
-                location.getCityId(), BuildConfig.ACCU_CURRENT_KEY, languageCode, true);
+                location.getCityId(), SettingsManager.getInstance(context).getProviderAccuCurrentKey(true), languageCode, true);
 
         Observable<AccuDailyResult> daily = mApi.getDaily(
-                location.getCityId(), BuildConfig.ACCU_WEATHER_KEY, languageCode, true, true);
+                location.getCityId(), SettingsManager.getInstance(context).getProviderAccuWeatherKey(true), languageCode, true, true);
 
         Observable<List<AccuHourlyResult>> hourly = mApi.getHourly(
-                location.getCityId(), BuildConfig.ACCU_WEATHER_KEY, languageCode, true);
+                location.getCityId(), SettingsManager.getInstance(context).getProviderAccuWeatherKey(true), languageCode, true);
 
         Observable<AccuMinuteResult> minute = mApi.getMinutely(
-                BuildConfig.ACCU_WEATHER_KEY,
+                SettingsManager.getInstance(context).getProviderAccuWeatherKey(true),
                 languageCode,
                 true,
                 location.getLatitude() + "," + location.getLongitude()
@@ -114,11 +114,11 @@ public class AccuWeatherService extends WeatherService {
         );
 
         Observable<List<AccuAlertResult>> alert = mApi.getAlert(
-                location.getCityId(), BuildConfig.ACCU_WEATHER_KEY, languageCode, true);
+                location.getCityId(), SettingsManager.getInstance(context).getProviderAccuWeatherKey(true), languageCode, true);
 
         Observable<AccuAqiResult> aqi = mApi.getAirQuality(
                 location.getCityId(),
-                BuildConfig.ACCU_AQI_KEY
+                SettingsManager.getInstance(context).getProviderAccuAqiKey(true)
         ).onExceptionResumeNext(
                 Observable.create(emitter -> emitter.onNext(new EmptyAqiResult()))
         );
@@ -164,7 +164,7 @@ public class AccuWeatherService extends WeatherService {
         try {
             resultList = mApi.callWeatherLocation(
                     "Always",
-                    BuildConfig.ACCU_WEATHER_KEY,
+                    SettingsManager.getInstance(context).getProviderAccuWeatherKey(true),
                     query,
                     languageCode
             ).execute().body();
@@ -217,7 +217,7 @@ public class AccuWeatherService extends WeatherService {
 
         mApi.getWeatherLocationByGeoPosition(
                 "Always",
-                BuildConfig.ACCU_WEATHER_KEY,
+                SettingsManager.getInstance(context).getProviderAccuWeatherKey(true),
                 location.getLatitude() + "," + location.getLongitude(),
                 languageCode
         ).compose(SchedulerTransformer.create())
@@ -247,7 +247,7 @@ public class AccuWeatherService extends WeatherService {
         String languageCode = SettingsManager.getInstance(context).getLanguage().getCode();
         String zipCode = query.matches("[a-zA-Z0-9]") ? query : null;
 
-        mApi.getWeatherLocation("Always", BuildConfig.ACCU_WEATHER_KEY, query, languageCode)
+        mApi.getWeatherLocation("Always", SettingsManager.getInstance(context).getProviderAccuWeatherKey(true), query, languageCode)
                 .compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<List<AccuLocationResult>>() {
                     @Override
