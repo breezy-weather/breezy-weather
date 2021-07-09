@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/settings_title_service_provider_advanced">
+    <PreferenceCategory
+        android:title="@string/settings_provider_accu_weather">
+        <EditTextPreference
+            android:title="@string/settings_provider_accu_weather_key"
+            android:key="@string/key_provider_accu_weather_key" />
+
+        <EditTextPreference
+            android:title="@string/settings_provider_accu_current_key"
+            android:key="@string/key_provider_accu_current_key" />
+
+        <EditTextPreference
+            android:title="@string/settings_provider_accu_aqi_key"
+            android:key="@string/key_provider_accu_aqi_key" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/settings_provider_owm">
+        <EditTextPreference
+            android:title="@string/settings_provider_owm_key"
+            android:key="@string/key_provider_owm_key" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/settings_provider_baidu_ip_location">
+        <EditTextPreference
+            android:title="@string/settings_provider_baidu_ip_location_ak"
+            android:key="@string/key_provider_baidu_ip_location_ak" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/settings_provider_mf">
+        <EditTextPreference
+            android:title="@string/settings_provider_mf_wsft_key"
+            android:key="@string/key_provider_mf_wsft_key" />
+
+        <EditTextPreference
+            android:title="@string/settings_provider_iqa_air_parif_key"
+            android:key="@string/key_provider_iqa_air_parif_key" />
+
+        <EditTextPreference
+            android:title="@string/settings_provider_iqa_atmo_aura_key"
+            android:key="@string/key_provider_iqa_atmo_aura_key" />
+    </PreferenceCategory>
+</PreferenceScreen>

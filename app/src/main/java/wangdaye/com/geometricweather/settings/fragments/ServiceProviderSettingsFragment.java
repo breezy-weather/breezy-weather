@@ -125,6 +125,12 @@ public class ServiceProviderSettingsFragment extends AbstractSettingsFragment {
             );
             return true;
         });
+
+        // service provider.
+        findPreference(getString(R.string.key_service_provider_advanced)).setOnPreferenceClickListener(preference -> {
+            pushFragment(new ServiceProviderAdvancedSettingsFragment(), preference.getKey());
+            return true;
+        });
     }
 
     private static void setListPreferenceValues(ListPreference pref, List<CharSequence> entries, List<CharSequence> values) {

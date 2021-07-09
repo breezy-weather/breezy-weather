@@ -342,6 +342,8 @@
     <string name="settings_summary_live_wallpaper">Définir une animation météo Material en tant que fond d’écran animé</string>
     <string name="settings_title_service_provider">Fournisseur de service</string>
     <string name="settings_summary_service_provider">Sélectionnez un fournisseur de service de données météo et de localisation</string>
+    <string name="settings_title_service_provider_advanced">Options avancées des fournisseurs de service</string>
+    <string name="settings_summary_service_provider_advanced">À modifier avec prudence</string>
     <string name="settings_title_weather_source">Source des données météo</string>
     <string name="settings_title_location_service">Service de localisation</string>
     <string name="settings_title_dark_mode">Mode sombre</string>
@@ -400,4 +402,5 @@
     <string name="settings_title_notification_hide_big_view">Vue large</string>
     <string name="settings_notification_hide_big_view_on">Masquer</string>
     <string name="settings_notification_hide_big_view_off">Afficher</string>
+    <string name="settings_provider_default_value">Par défaut (inchangé)</string>
 </resources>

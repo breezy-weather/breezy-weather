@@ -16,9 +16,9 @@
 
 ### 上架情况
 
-* 酷安： http://www.coolapk.com/apk/wangdaye.com.geometricweather
-* Google Play： https://play.google.com/store/apps/details?id=wangdaye.com.geometricweather
-* F-Droid： https://apt.izzysoft.de/fdroid/index/apk/wangdaye.com.geometricweather
+* 酷安: http://www.coolapk.com/apk/wangdaye.com.geometricweather
+* Google Play: https://play.google.com/store/apps/details?id=wangdaye.com.geometricweather
+* F-Droid: https://f-droid.org/packages/wangdaye.com.geometricweather/
 
 
 ### 联系作者

@@ -18,4 +18,9 @@
         android:dialogTitle="@string/settings_title_location_service"
         android:defaultValue="native" />
 
+    <Preference
+        android:title="@string/settings_title_service_provider_advanced"
+        android:key="@string/key_service_provider_advanced"
+        android:summary="@string/settings_summary_service_provider_advanced" />
+
 </PreferenceScreen>

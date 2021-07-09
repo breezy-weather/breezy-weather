@@ -147,18 +147,11 @@
     <!-- Month : MMM(long) / M(short). -->
     <!-- Day   : dd(long) / d(short). -->
     <!-- Week  : EEEE(long) / EEE(short). -->
-    <string name="date_format_short">M-d</string>
-    <string name="date_format_long">MMM d</string>
-    <string name="date_format_widget_short">EEEE, MMM d</string>
-    <string name="date_format_widget_long">EEEE, MMM d</string>
-    <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
-
-    <!-- Do not translate the following set of strings. -->
-    <string name="tag_temperature">@string/temperature</string>
-    <string name="tag_wind">@string/wind</string>
-    <string name="tag_precipitation">@string/precipitation</string>
-    <string name="tag_aqi">@string/air_quality</string>
-    <string name="tag_uv">@string/uv_index</string>
+    <string name="date_format_short">d-M</string>
+    <string name="date_format_long">d MMM</string>
+    <string name="date_format_widget_short">EEEE, d MMM</string>
+    <string name="date_format_widget_long">EEEE, d MMM</string>
+    <string name="date_format_widget_oreo_style">EEEE, d MMM│</string>
 
     <!-- about. -->
     <!-- Optional, the following set of strings are not necessarily translated. -->
