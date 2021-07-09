@@ -45,7 +45,7 @@ public class OwmOneCallResult {
 
     public static class Minutely {
         public long dt;
-        public int precipitation;
+        public float precipitation;
     }
 
     public static class Hourly {
