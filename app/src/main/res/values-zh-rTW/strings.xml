@@ -346,6 +346,8 @@
     <string name="settings_summary_service_provider">選擇天氣數據和位置信息的數據提供商</string>
     <string name="settings_title_weather_source">天氣源</string>
     <string name="settings_title_location_service">位置服務</string>
+    <string name="settings_title_service_provider_advanced">設定服務提供商API KEY</string>
+    <string name="settings_summary_service_provider_advanced">請小心行事</string>
     <string name="settings_title_dark_mode">暗色模式</string>
     <string name="settings_title_appearance">外觀</string>
     <string name="settings_summary_appearance">UI風格，卡片順序，語言等…</string>
