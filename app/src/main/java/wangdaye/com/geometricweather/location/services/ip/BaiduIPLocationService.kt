@@ -10,19 +10,13 @@ class BaiduIPLocationService @Inject constructor(private val api: BaiduIPLocatio
 
     override suspend fun getLocation(context: Context): Result = coroutineScope {
         val ipResult = api.getLocation(
-                SettingsManager.getInstance(context).getProviderBaiduIpLocationAk(true),
-                "gcj02"
+            SettingsManager.getInstance(context).getProviderBaiduIpLocationAk(true),
+            "gcj02"
         )
-        val result = Result(ipResult.content.point.y.toFloat(), ipResult.content.point.x.toFloat())
-
-        result.setGeocodeInformation(
-                "中国",
-                ipResult.content.address_detail.province,
-                ipResult.content.address_detail.city,
-                ipResult.content.address_detail.district
+        return@coroutineScope Result(
+            ipResult.content.point.y.toFloat(),
+            ipResult.content.point.x.toFloat()
         )
-        result.inChina = true
-        return@coroutineScope result
     }
 
     override fun getPermissions(): Array<String> = emptyArray()

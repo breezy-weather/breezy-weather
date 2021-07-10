@@ -3,8 +3,6 @@ package wangdaye.com.geometricweather.location.services
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
-import android.location.Address
-import android.location.Geocoder
 import android.location.Location
 import android.location.LocationManager
 import android.os.Build
@@ -13,27 +11,21 @@ import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
 import android.provider.Settings.SettingNotFoundException
-import android.text.TextUtils
-import androidx.annotation.WorkerThread
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
 import com.google.android.gms.location.*
 import com.google.android.gms.tasks.CancellationTokenSource
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CancellableContinuation
-import wangdaye.com.geometricweather.common.utils.LanguageUtils
 import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper
 import wangdaye.com.geometricweather.common.utils.resumeSafely
 import wangdaye.com.geometricweather.common.utils.suspendCoroutineWithTimeout
-import java.io.IOException
 import javax.inject.Inject
 
 /**
  * Android Location service.
  */
 @SuppressLint("MissingPermission")
-open class AndroidLocationService @Inject constructor(
-        @ApplicationContext private val context: Context) : LocationService() {
+open class AndroidLocationService @Inject constructor() : LocationService() {
 
     companion object {
 
@@ -66,8 +58,7 @@ open class AndroidLocationService @Inject constructor(
 
     private var manager: LocationManager? = null
     private var gmsCancellationSource: CancellationTokenSource? = null
-    private var networkListener: LocationListener? = null
-    private var gpsListener: LocationListener? = null
+    private var nativeListener: LocationListener? = null
     private var geocoderController: AsyncHelper.Controller? = null
 
     private val handler = Handler(Looper.getMainLooper())
@@ -115,13 +106,7 @@ open class AndroidLocationService @Inject constructor(
                 return@runOnMainThread
             }
 
-            networkListener = object : LocationListener() {
-                override fun onLocationChanged(location: Location) {
-                    stopLocationUpdates()
-                    handleLocation(location)
-                }
-            }
-            gpsListener = object : LocationListener() {
+            nativeListener = object : LocationListener() {
                 override fun onLocationChanged(location: Location) {
                     stopLocationUpdates()
                     handleLocation(location)
@@ -129,6 +114,13 @@ open class AndroidLocationService @Inject constructor(
             }
 
             it.invokeOnCancellation { _ ->
+                getLastKnownLocation()?.let { loc ->
+                    nativeListener?.let { l ->
+                        l.onLocationChanged(loc)
+                        return@invokeOnCancellation
+                    }
+                }
+
                 stopLocationUpdates(it)
                 runOnMainThread {
                     geocoderController?.let {
@@ -138,16 +130,23 @@ open class AndroidLocationService @Inject constructor(
                 }
             }
 
-            networkListener?.let {
+            nativeListener?.let {
                 if (manager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
                     manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
-                            100, 0f, it, Looper.getMainLooper())
+                        0, 0f, it, Looper.getMainLooper())
+                    return@let
                 }
-            }
-            gpsListener?.let {
+
                 if (manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
                     manager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-                            100, 0f, it, Looper.getMainLooper())
+                        0, 0f, it, Looper.getMainLooper())
+                    return@let
+                }
+
+                handler.post {
+                    getLastKnownLocation()?.let { loc ->
+                        it.onLocationChanged(loc)
+                    }
                 }
             }
 
@@ -161,6 +160,15 @@ open class AndroidLocationService @Inject constructor(
                 handleLocation(it)
             }
         }
+    }
+
+    private fun getLastKnownLocation(): Location? {
+        manager?.let {
+            return it.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+                ?: it.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
+                ?: it.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER)
+        }
+        return null
     }
 
     private fun stopLocationUpdates(continuation: CancellableContinuation<Result?>? = null) {
@@ -177,10 +185,7 @@ open class AndroidLocationService @Inject constructor(
 
             // no location progress anymore. stop services at first, then resume the coroutine.
 
-            networkListener?.let {
-                manager?.removeUpdates(it)
-            }
-            gpsListener?.let {
+            nativeListener?.let {
                 manager?.removeUpdates(it)
             }
             gmsCancellationSource?.let {
@@ -204,61 +209,11 @@ open class AndroidLocationService @Inject constructor(
         }
     }
 
-    @WorkerThread
     private fun buildResult(location: Location): Result {
-        val result = Result(location.latitude.toFloat(), location.longitude.toFloat())
-        result.hasGeocodeInformation = false
-        if (!Geocoder.isPresent()) {
-            return result
-        }
-
-        var addressList: List<Address>? = null
-        try {
-            addressList = Geocoder(context, LanguageUtils.getCurrentLocale(context))
-                    .getFromLocation(
-                            location.latitude,
-                            location.longitude,
-                            1
-                    )
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-        if (addressList == null || addressList.isEmpty()) {
-            return result
-        }
-
-        result.setGeocodeInformation(
-                addressList[0].countryName,
-                addressList[0].adminArea,
-                if (TextUtils.isEmpty(addressList[0].locality)) {
-                    addressList[0].subAdminArea
-                } else {
-                    addressList[0].locality
-                },
-                addressList[0].subLocality
+        return Result(
+            location.latitude.toFloat(),
+            location.longitude.toFloat()
         )
-
-        val countryCode = addressList[0].countryCode
-        if (TextUtils.isEmpty(countryCode)) {
-            if (TextUtils.isEmpty(result.country)) {
-                result.inChina = false
-            } else {
-                result.inChina = result.country == "中国"
-                        || result.country == "香港"
-                        || result.country == "澳门"
-                        || result.country == "台湾"
-                        || result.country == "China"
-            }
-        } else {
-            result.inChina = countryCode == "CN"
-                    || countryCode == "cn"
-                    || countryCode == "HK"
-                    || countryCode == "hk"
-                    || countryCode == "TW"
-                    || countryCode == "tw"
-        }
-
-        return result
     }
 
     private fun publishResult(result: Result?) {

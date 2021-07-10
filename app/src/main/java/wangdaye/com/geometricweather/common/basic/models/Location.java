@@ -59,10 +59,9 @@ public class Location
     }
 
     public Location(Location src,
-                    float latitude, float longitude, TimeZone timeZone,
-                    String country, String province, String city, String district, boolean china) {
-        this(src.cityId, latitude, longitude, timeZone, country, province, city, district,
-                src.weather, src.weatherSource, src.currentPosition, src.residentPosition, china);
+                    float latitude, float longitude, TimeZone timeZone) {
+        this(src.cityId, latitude, longitude, timeZone, src.country, src.province, src.city, src.district,
+                src.weather, src.weatherSource, src.currentPosition, src.residentPosition, src.china);
     }
 
     public Location(String cityId, float latitude, float longitude, TimeZone timeZone,

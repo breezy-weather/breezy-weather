@@ -270,7 +270,6 @@ public class MainFragment extends GeoFragment {
         }
 
         if (initialize) {
-            resetUIUpdateFlag();
             ensureResourceProvider();
         }
 

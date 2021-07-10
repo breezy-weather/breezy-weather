@@ -8,7 +8,7 @@
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
-        <item name="android:windowBackground">@color/colorRoot</item>
+        <item name="android:windowBackground">@drawable/launch_background</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="dialogCornerRadius">8dp</item>
@@ -51,7 +51,7 @@
         <item name="android:layout_marginRight">@dimen/little_margin</item>
         <item name="android:layout_marginBottom">@dimen/little_margin</item>
         <item name="android:clickable">true</item>
-        <item name="cardCornerRadius">8dp</item>
+        <item name="cardCornerRadius">12dp</item>
         <item name="cardElevation">2dp</item>
         <item name="cardBackgroundColor">@color/colorRoot</item>
         <item name="android:stateListAnimator" tools:ignore="NewApi">@animator/touch_raise</item>

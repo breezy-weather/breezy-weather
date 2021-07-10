@@ -194,7 +194,7 @@ public class MainThemeManager extends ThemeManager {
 
     @Px
     public int getCardRadius(Context context) {
-        return (int) DisplayUtils.dpToPx(context, 8);
+        return (int) DisplayUtils.dpToPx(context, 12);
     }
 
     @Px

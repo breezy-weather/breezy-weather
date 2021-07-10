@@ -8,4 +8,4 @@ import javax.inject.Inject
  * Baidu location service.
  */
 class BaiduLocationService @Inject constructor(
-        @ApplicationContext context: Context) : AndroidLocationService(context)
+        @ApplicationContext context: Context) : AndroidLocationService()

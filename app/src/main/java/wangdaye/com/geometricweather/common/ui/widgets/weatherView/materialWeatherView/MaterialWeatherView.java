@@ -110,7 +110,8 @@ public class MaterialWeatherView extends View implements WeatherView {
                 double g2D = Math.sqrt(aX * aX + aY * aY);
                 double g3D = Math.sqrt(aX * aX + aY * aY + aZ * aZ);
                 double cos2D = Math.max(Math.min(1, aY / g2D), -1);
-                double cos3D = Math.max(Math.min(1, g2D * (aY >= 0 ? 1 : -1) / g3D), -1);
+                // double cos3D = Math.max(Math.min(1, g2D * (aY >= 0 ? 1 : -1) / g3D), -1);
+                double cos3D = Math.max(Math.min(1, g2D / g3D), -1);
                 mRotation2D = (float) Math.toDegrees(Math.acos(cos2D)) * (aX >= 0 ? 1 : -1);
                 mRotation3D = (float) Math.toDegrees(Math.acos(cos3D)) * (aZ >= 0 ? 1 : -1);
 
@@ -150,7 +151,9 @@ public class MaterialWeatherView extends View implements WeatherView {
         }
     };
 
-    private final OrientationEventListener mOrientationListener = new OrientationEventListener(getContext()) {
+    private final OrientationEventListener mOrientationListener = new OrientationEventListener(
+            getContext()
+    ) {
         @Override
         public void onOrientationChanged(int orientation) {
             mDeviceOrientation = getDeviceOrientation(orientation);
@@ -217,7 +220,10 @@ public class MaterialWeatherView extends View implements WeatherView {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         if (getMeasuredWidth() != 0 && getMeasuredHeight() != 0) {
-            final int width = DisplayUtils.getTabletListAdaptiveWidth(getContext(), getMeasuredWidth());
+            final int width = DisplayUtils.getTabletListAdaptiveWidth(
+                    getContext(),
+                    getMeasuredWidth()
+            );
             final int height = getMeasuredHeight();
             if (mSizes[0] != width || mSizes[1] != height) {
                 mSizes[0] = width;
@@ -300,7 +306,11 @@ public class MaterialWeatherView extends View implements WeatherView {
     }
 
     private void setWeatherImplementor() {
-        mImplementor = WeatherImplementorFactory.getWeatherImplementor(mWeatherKind, mDaytime, mSizes);
+        mImplementor = WeatherImplementorFactory.getWeatherImplementor(
+                mWeatherKind,
+                mDaytime,
+                mSizes
+        );
         mRotators = new RotateController[] {
                 new DelayRotateController(mRotation2D),
                 new DelayRotateController(mRotation3D)
@@ -313,9 +323,9 @@ public class MaterialWeatherView extends View implements WeatherView {
 
     private void setIntervalComputer() {
         if (mIntervalComputer == null) {
-            mIntervalComputer = new IntervalComputer(getContext());
+            mIntervalComputer = new IntervalComputer();
         } else {
-            mIntervalComputer.reset(getContext());
+            mIntervalComputer.reset();
         }
     }
 
@@ -332,7 +342,8 @@ public class MaterialWeatherView extends View implements WeatherView {
     // weather view.
 
     @Override
-    public void setWeather(@WeatherKindRule int weatherKind, boolean daytime,
+    public void setWeather(@WeatherKindRule int weatherKind,
+                           boolean daytime,
                            @Nullable ResourceProvider provider) {
         if (mWeatherKind == weatherKind && mDaytime == daytime) {
             return;
@@ -395,8 +406,13 @@ public class MaterialWeatherView extends View implements WeatherView {
     }
 
     private static int innerGetBackgroundColor(Context context,
-                                               @WeatherKindRule int weatherKind, boolean daytime) {
-        return WeatherImplementorFactory.getWeatherThemeColor(context, weatherKind, daytime);
+                                               @WeatherKindRule int weatherKind,
+                                               boolean daytime) {
+        return WeatherImplementorFactory.getWeatherThemeColor(
+                context,
+                weatherKind,
+                daytime
+        );
     }
 
     @Override

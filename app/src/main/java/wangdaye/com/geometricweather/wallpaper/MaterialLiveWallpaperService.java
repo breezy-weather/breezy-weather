@@ -84,8 +84,6 @@ public class MaterialLiveWallpaperService extends WallpaperService {
         private Handler mHandler;
         private final Runnable mDrawableRunnable = new Runnable() {
 
-            private Canvas mCanvas;
-
             @Override
             public void run() {
                 if (mIntervalComputer == null
@@ -115,20 +113,23 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                     setWeatherImplementor();
                 }
 
-                try {
-                    mCanvas = mHolder.lockCanvas();
-                    if (mCanvas != null) {
-                        mSizes[0] = mCanvas.getWidth();
-                        mSizes[1] = mCanvas.getHeight();
+                Canvas canvas = mHolder.lockCanvas();
+                if (canvas != null) {
+                    try {
+                        mSizes[0] = canvas.getWidth();
+                        mSizes[1] = canvas.getHeight();
                         mImplementor.draw(
-                                mSizes, mCanvas,
-                                mDisplayRate, 0,
-                                (float) mRotators[0].getRotation(), (float) mRotators[1].getRotation()
+                                mSizes,
+                                canvas,
+                                mDisplayRate,
+                                0,
+                                (float) mRotators[0].getRotation(),
+                                (float) mRotators[1].getRotation()
                         );
-                        mHolder.unlockCanvasAndPost(mCanvas);
+                    } catch (Exception ignored) {
+                        // do nothing.
                     }
-                } catch (Exception ignored) {
-                    // do nothing.
+                    mHolder.unlockCanvasAndPost(canvas);
                 }
             }
         };
@@ -222,9 +223,9 @@ public class MaterialLiveWallpaperService extends WallpaperService {
 
         private void setIntervalComputer() {
             if (mIntervalComputer == null) {
-                mIntervalComputer = new IntervalComputer(getApplicationContext());
+                mIntervalComputer = new IntervalComputer();
             } else {
-                mIntervalComputer.reset(getApplicationContext());
+                mIntervalComputer.reset();
             }
         }
 
@@ -286,22 +287,27 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                     mRotation3D = 0;
                     if (mSensorManager != null) {
                         mSensorManager.registerListener(
-                                mGravityListener, mGravitySensor, SensorManager.SENSOR_DELAY_FASTEST);
+                                mGravityListener,
+                                mGravitySensor,
+                                SensorManager.SENSOR_DELAY_FASTEST
+                        );
                     }
                     if (mOrientationListener.canDetectOrientation()) {
                         mOrientationListener.enable();
                     }
 
-                    Location location = DatabaseHelper.getInstance(MaterialLiveWallpaperService.this)
-                            .readLocationList()
-                            .get(0);
+                    Location location = DatabaseHelper.getInstance(
+                            MaterialLiveWallpaperService.this
+                    ).readLocationList().get(0);
                     location.setWeather(
-                            DatabaseHelper.getInstance(MaterialLiveWallpaperService.this)
-                                    .readWeather(location)
+                            DatabaseHelper.getInstance(
+                                    MaterialLiveWallpaperService.this
+                            ).readWeather(location)
                     );
 
-                    LiveWallpaperConfigManager configManager
-                            = LiveWallpaperConfigManager.getInstance(MaterialLiveWallpaperService.this);
+                    LiveWallpaperConfigManager configManager = LiveWallpaperConfigManager.getInstance(
+                            MaterialLiveWallpaperService.this
+                    );
                     String weatherKind = configManager.getWeatherKind();
                     if (weatherKind.equals("auto")) {
                         weatherKind = location.getWeather() != null

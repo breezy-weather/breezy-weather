@@ -48,7 +48,7 @@ public class RetrofitModule {
     @Singleton
     public HttpLoggingInterceptor provideHttpLoggingInterceptor() {
         return new HttpLoggingInterceptor().setLevel(
-                GeometricWeather.getInstance().isDebug()
+                GeometricWeather.getInstance().getDebugMode()
                         ? HttpLoggingInterceptor.Level.BODY
                         : HttpLoggingInterceptor.Level.NONE
         );

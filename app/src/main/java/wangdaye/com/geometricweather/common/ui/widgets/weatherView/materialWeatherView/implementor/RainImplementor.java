@@ -142,7 +142,7 @@ public class RainImplementor extends MaterialWeatherView.WeatherAnimationImpleme
         private void init() {
             progress = 0;
             duration = 300;
-            delay = new Random().nextInt(2000) + 1000;
+            delay = new Random().nextInt(5000) + 3000;
         }
 
         private void computeFrame() {
@@ -245,7 +245,12 @@ public class RainImplementor extends MaterialWeatherView.WeatherAnimationImpleme
                            float rotation2D, float rotation3D) {
 
         for (Rain r : mRains) {
-            r.move(interval, mLastRotation3D == INITIAL_ROTATION_3D ? 0 : rotation3D - mLastRotation3D);
+            r.move(
+                    interval,
+                    mLastRotation3D == INITIAL_ROTATION_3D
+                            ? 0
+                            : rotation3D - mLastRotation3D
+            );
         }
         if (mThunder != null) {
             mThunder.shine(interval);
@@ -280,7 +285,7 @@ public class RainImplementor extends MaterialWeatherView.WeatherAnimationImpleme
                 } else {
                     mPaint.setAlpha((int) ((1 - scrollRate) * 255));
                 }
-                canvas.drawRect(r.rectF, mPaint);
+                canvas.drawRoundRect(r.rectF, r.width / 2f, r.width / 2f, mPaint);
             }
             if (mThunder != null) {
                 canvas.drawColor(

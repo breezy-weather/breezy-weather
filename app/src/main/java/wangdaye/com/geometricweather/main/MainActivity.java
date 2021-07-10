@@ -318,8 +318,7 @@ public class MainActivity extends GeoActivity
         // check background location permissions.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
                 && !mViewModel.getStatementManager().isBackgroundLocationDeclared()
-                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             new BackgroundLocationDialog().show(getSupportFragmentManager(), null);
         }
 

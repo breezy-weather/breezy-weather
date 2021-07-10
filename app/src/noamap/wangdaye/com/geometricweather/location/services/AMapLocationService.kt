@@ -8,4 +8,4 @@ import javax.inject.Inject
  * A map location service.
  */
 class AMapLocationService @Inject constructor(
-        @ApplicationContext context: Context) : AndroidLocationService(context)
+        @ApplicationContext context: Context) : AndroidLocationService()

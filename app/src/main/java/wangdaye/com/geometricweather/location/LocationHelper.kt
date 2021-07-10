@@ -58,19 +58,23 @@ class LocationHelper @Inject constructor(androidLocationService: AndroidLocation
 
             if (service.getPermissions().isNotEmpty()) {
                 // if needs any location permission.
-                if (!NetworkUtils.isAvailable(context)
-                        || ActivityCompat.checkSelfPermission(context,
-                                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                        || ActivityCompat.checkSelfPermission(context,
-                                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                if (!NetworkUtils.isAvailable(context) || ActivityCompat.checkSelfPermission(
+                        context,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                    ) != PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(
+                        context,
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                    ) != PackageManager.PERMISSION_GRANTED) {
 
                     return@coroutineScope Response.failure(cache)
                 }
 
                 if (background
-                        && Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
-                        && ActivityCompat.checkSelfPermission(context,
-                                Manifest.permission.ACCESS_BACKGROUND_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    && Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
+                    && ActivityCompat.checkSelfPermission(
+                        context,
+                        Manifest.permission.ACCESS_BACKGROUND_LOCATION
+                    ) != PackageManager.PERMISSION_GRANTED) {
 
                     return@coroutineScope Response.failure(cache)
                 }
@@ -83,8 +87,10 @@ class LocationHelper @Inject constructor(androidLocationService: AndroidLocation
                 val availableLoc = getAvailableWeatherLocation(
                         context,
                         Location(
-                                location, it.latitude, it.longitude, TimeZone.getDefault(),
-                                it.country, it.province, it.city, it.district, it.inChina
+                            location,
+                            it.latitude,
+                            it.longitude,
+                            TimeZone.getDefault()
                         )
                 )
                 return@coroutineScope Response(availableLoc ?: cache, if (availableLoc != null) {

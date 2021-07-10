@@ -18,28 +18,7 @@ import wangdaye.com.geometricweather.R
  */
 abstract class LocationService {
 
-    class Result(var latitude: Float, var longitude: Float) {
-
-        var district = ""
-        var city = ""
-        var province = ""
-        var country = ""
-
-        var inChina = false
-        var hasGeocodeInformation = false
-
-        fun setGeocodeInformation(country: String,
-                                  province: String,
-                                  city: String,
-                                  district: String) {
-            hasGeocodeInformation = true
-
-            this.country = country
-            this.province = province
-            this.city = city
-            this.district = district
-        }
-    }
+    class Result(var latitude: Float, var longitude: Float)
 
     abstract suspend fun getLocation(context: Context): Result?
     abstract fun getPermissions(): Array<String>

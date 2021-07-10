@@ -65,13 +65,6 @@ class BaiduLocationService @Inject constructor() : LocationService() {
                                     bdLocation.latitude.toFloat(),
                                     bdLocation.longitude.toFloat()
                             )
-                            result.setGeocodeInformation(
-                                    bdLocation.country,
-                                    bdLocation.province,
-                                    bdLocation.city,
-                                    bdLocation.district
-                            )
-                            result.inChina = bdLocation.locationWhere == BDLocation.LOCATION_WHERE_IN_CN
                             publishResult(result)
                         }
                         else -> {

@@ -14,6 +14,7 @@ import kotlinx.coroutines.*
 import wangdaye.com.geometricweather.GeometricWeather
 import wangdaye.com.geometricweather.common.basic.GeoViewModel
 import wangdaye.com.geometricweather.common.basic.models.Location
+import wangdaye.com.geometricweather.db.DatabaseHelper
 import wangdaye.com.geometricweather.main.models.Indicator
 import wangdaye.com.geometricweather.main.models.LocationResource
 import wangdaye.com.geometricweather.main.models.PermissionsRequest
@@ -101,10 +102,29 @@ class MainActivityViewModel constructor(
     fun init(newFormattedId: String? = formattedId) {
         formattedId = newFormattedId
 
-        val oldList: List<Location> = if (totalList == null) {
+        var oldList: List<Location> = if (totalList == null) {
             ArrayList()
         } else {
             Collections.unmodifiableList(totalList)
+        }
+
+        if (oldList.isEmpty()) {
+            oldList = DatabaseHelper.getInstance(getApplication()).readLocationList()
+
+            val totalList = ArrayList(oldList)
+            val validList = Location.excludeInvalidResidentLocation(getApplication(), totalList)
+            val validIndex = indexLocation(validList, formattedId)
+            setInnerData(totalList, validList, validIndex)
+
+            val current = validList[validIndex]
+            current.weather = DatabaseHelper.getInstance(getApplication()).readWeather(current)
+
+            val indicator = Indicator(validList.size, validIndex)
+            val defaultLocation = validIndex == 0
+            val event = LocationResource.Event.INITIALIZE
+
+            setLocationResourceWithVerification(current, defaultLocation, event,
+                indicator, null, SelectableLocationListResource.DataSetChanged())
         }
 
         viewModelScope.launch {
