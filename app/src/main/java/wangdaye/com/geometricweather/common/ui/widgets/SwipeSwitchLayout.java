@@ -259,7 +259,7 @@ public class SwipeSwitchLayout extends FrameLayout
             }
 
             ResetAnimation resetAnimation = new ResetAnimation(triggerDistance, translateRatio);
-            resetAnimation.setDuration(300);
+            resetAnimation.setDuration(400);
             resetAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
             startAnimation(resetAnimation);
         }

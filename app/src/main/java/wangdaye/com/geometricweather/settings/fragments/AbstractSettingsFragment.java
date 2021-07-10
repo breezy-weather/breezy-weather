@@ -26,6 +26,7 @@ import wangdaye.com.geometricweather.common.basic.GeoDialog;
 import wangdaye.com.geometricweather.common.basic.insets.FitBothSideBarView;
 import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarRecyclerView;
 import wangdaye.com.geometricweather.settings.SettingsManager;
+import wangdaye.com.geometricweather.settings.activities.SelectProviderActivity;
 import wangdaye.com.geometricweather.settings.activities.SettingsActivity;
 
 public abstract class AbstractSettingsFragment extends PreferenceFragmentCompat {
@@ -139,6 +140,10 @@ public abstract class AbstractSettingsFragment extends PreferenceFragmentCompat 
     }
 
     protected void pushFragment(PreferenceFragmentCompat f, String key) {
-        ((SettingsActivity) requireActivity()).pushFragment(f, key);
+        if (requireActivity() instanceof SettingsActivity) {
+            ((SettingsActivity) requireActivity()).pushFragment(f, key);
+        } else if (requireActivity() instanceof SelectProviderActivity) {
+            ((SelectProviderActivity) requireActivity()).pushFragment(f, key);
+        }
     }
 }

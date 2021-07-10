@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.preference.PreferenceFragmentCompat;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -48,5 +49,14 @@ public class SelectProviderActivity extends GeoActivity {
         toolbar.setTitle(getString(R.string.settings_title_service_provider));
         toolbar.setNavigationIcon(R.drawable.ic_toolbar_back);
         toolbar.setNavigationOnClickListener(view -> finish());
+    }
+
+    public void pushFragment(PreferenceFragmentCompat f, String tag) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .setCustomAnimations(android.R.anim.fade_in, 0, android.R.anim.fade_in, 0)
+                .replace(R.id.activity_settings_container, f)
+                .addToBackStack(tag)
+                .commit();
     }
 }

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Path;
+import android.graphics.RectF;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.IntDef;
@@ -24,7 +24,6 @@ import wangdaye.com.geometricweather.common.ui.widgets.weatherView.materialWeath
 public class HailImplementor extends MaterialWeatherView.WeatherAnimationImplementor {
 
     private final Paint mPaint;
-    private final Path mPath;
     private final Hail[] mHails;
 
     private float mLastDisplayRate;
@@ -43,14 +42,19 @@ public class HailImplementor extends MaterialWeatherView.WeatherAnimationImpleme
 
     private static class Hail {
 
-        private float mCX;
-        private float mCY;
+        private float cx;
+        private float cy;
 
         float centerX;
         float centerY;
         float size;
+        float rotation;
 
-        float speed;
+        float speedY;
+        float speedX;
+        float speedRotation;
+
+        RectF rectF = new RectF();
 
         @ColorInt
         int color;
@@ -67,8 +71,8 @@ public class HailImplementor extends MaterialWeatherView.WeatherAnimationImpleme
 
             mCanvasSize = (int) Math.pow(viewWidth * viewWidth + viewHeight * viewHeight, 0.5);
 
-            this.size = (float) (0.0324 * viewWidth);
-            this.speed = viewWidth / 125f;
+            this.size = (float) (0.0324 * viewWidth) * 0.8f;
+            this.speedY = viewWidth / 200f;
             this.color = color;
             this.scale = scale;
 
@@ -77,27 +81,44 @@ public class HailImplementor extends MaterialWeatherView.WeatherAnimationImpleme
 
         private void init(boolean firstTime) {
             Random r = new Random();
-            mCX = r.nextInt(mCanvasSize);
+            cx = r.nextInt(mCanvasSize);
             if (firstTime) {
-                mCY = r.nextInt((int) (mCanvasSize - size)) - mCanvasSize;
+                cy = r.nextInt((int) (mCanvasSize - size)) - mCanvasSize;
             } else {
-                mCY = -size;
+                cy = -size;
             }
+            rotation = 360 * r.nextFloat();
+
+            speedRotation = 360.f / 500.f * r.nextFloat();
+            speedX = 0.75f * (r.nextFloat() * speedY * (r.nextBoolean() ? 1 : -1));
+
             computeCenterPosition();
         }
 
         private void computeCenterPosition() {
-            centerX = (float) (mCX - (mCanvasSize - mViewWidth) * 0.5);
-            centerY = (float) (mCY - (mCanvasSize - mViewHeight) * 0.5);
+            centerX = (float) (cx - (mCanvasSize - mViewWidth) * 0.5);
+            centerY = (float) (cy - (mCanvasSize - mViewHeight) * 0.5);
         }
 
         void move(long interval, float deltaRotation3D) {
-            mCY += speed * interval * (Math.pow(scale, 1.5) - 5 * Math.sin(deltaRotation3D * Math.PI / 180.0));
-            if (mCY - size >= mCanvasSize) {
+            cx += speedX * interval * Math.pow(scale, 1.5);
+            cy += speedY * interval * (
+                    Math.pow(scale, 1.5) - 5 * Math.sin(deltaRotation3D * Math.PI / 180.0)
+            );
+            rotation = (rotation + speedRotation * interval) % 360;
+
+            if (cy - size >= mCanvasSize) {
                 init(false);
             } else {
                 computeCenterPosition();
             }
+
+            rectF.set(
+                    cx - size * scale,
+                    cy - size * scale,
+                    cx + size * scale,
+                    cy + size * scale
+            );
         }
     }
 
@@ -105,8 +126,6 @@ public class HailImplementor extends MaterialWeatherView.WeatherAnimationImpleme
         mPaint = new Paint();
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setAntiAlias(true);
-
-        mPath = new Path();
 
         int[] colors = new int[3];
         switch (type) {
@@ -168,19 +187,16 @@ public class HailImplementor extends MaterialWeatherView.WeatherAnimationImpleme
                     canvasSizes[1] * 0.5F);
 
             for (Hail h : mHails) {
-                mPath.reset();
-                mPath.moveTo(h.centerX - h.size, h.centerY);
-                mPath.lineTo(h.centerX, h.centerY - h.size);
-                mPath.lineTo(h.centerX + h.size, h.centerY);
-                mPath.lineTo(h.centerX, h.centerY + h.size);
-                mPath.close();
                 mPaint.setColor(h.color);
                 if (displayRate < mLastDisplayRate) {
                     mPaint.setAlpha((int) (displayRate * (1 - scrollRate) * 255));
                 } else {
                     mPaint.setAlpha(255);
                 }
-                canvas.drawPath(mPath, mPaint);
+
+                canvas.rotate(h.rotation, h.cx, h.cy);
+                canvas.drawRect(h.rectF, mPaint);
+                canvas.rotate(-h.rotation, h.cx, h.cy);
             }
         }
 
