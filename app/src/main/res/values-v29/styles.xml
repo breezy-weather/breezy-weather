@@ -12,18 +12,16 @@
         <item name="android:textSize">@dimen/title_text_size</item>
     </style>
 
-    <style name="notification_content_text" parent="@style/TextAppearance.Compat.Notification.Title">
+    <style name="notification_content_text" parent="@style/TextAppearance.Compat.Notification.Line2">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/content_text_size</item>
-        <item name="android:alpha">0.66</item>
     </style>
 
-    <style name="notification_subtitle_text" parent="@style/TextAppearance.Compat.Notification.Title">
+    <style name="notification_subtitle_text" parent="@style/TextAppearance.Compat.Notification.Time">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/subtitle_text_size</item>
-        <item name="android:alpha">0.33</item>
     </style>
 
 </resources>

@@ -163,7 +163,7 @@ public class SettingsFragment extends AbstractSettingsFragment {
     private void initForecastPart() {
         // today forecast.
         findPreference(getString(R.string.key_forecast_today)).setOnPreferenceChangeListener((preference, newValue) -> {
-            initForecastPart();
+            requireView().post(this::initForecastPart);
             PollingManager.resetNormalBackgroundTask(requireActivity(), false);
             return true;
         });
@@ -179,7 +179,7 @@ public class SettingsFragment extends AbstractSettingsFragment {
 
         // tomorrow forecast.
         findPreference(getString(R.string.key_forecast_tomorrow)).setOnPreferenceChangeListener((preference, newValue) -> {
-            initForecastPart();
+            requireView().post(this::initForecastPart);
             PollingManager.resetNormalBackgroundTask(requireActivity(), false);
             return true;
         });
@@ -201,7 +201,7 @@ public class SettingsFragment extends AbstractSettingsFragment {
                 getSettingsOptionManager().getWidgetWeekIconMode().getWidgetWeekIconModeName(requireActivity())
         );
         widgetWeekIconMode.setOnPreferenceChangeListener((preference, newValue) -> {
-            initWidgetPart();
+            requireView().post(this::initWidgetPart);
             preference.setSummary(
                     getSettingsOptionManager().getWidgetWeekIconMode().getWidgetWeekIconModeName(requireActivity())
             );
@@ -316,7 +316,7 @@ public class SettingsFragment extends AbstractSettingsFragment {
         findPreference(getString(R.string.key_notification)).setOnPreferenceChangeListener((preference, newValue) -> {
             boolean enabled = (boolean) newValue;
 
-            initNotificationPart();
+            requireView().post(this::initNotificationPart);
             if (enabled) { // open notification.
                 PollingManager.resetNormalBackgroundTask(requireActivity(), true);
             } else { // close notification.
@@ -332,7 +332,7 @@ public class SettingsFragment extends AbstractSettingsFragment {
                 getSettingsOptionManager().getNotificationStyle().getNotificationStyleName(requireActivity())
         );
         notificationStyle.setOnPreferenceChangeListener((preference, newValue) -> {
-            initNotificationPart();
+            requireView().post(this::initNotificationPart);
             preference.setSummary(
                     getSettingsOptionManager().getNotificationStyle().getNotificationStyleName(requireActivity())
             );

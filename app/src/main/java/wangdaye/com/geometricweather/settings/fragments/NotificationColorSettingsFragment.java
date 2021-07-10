@@ -30,7 +30,7 @@ public class NotificationColorSettingsFragment extends AbstractSettingsFragment 
     private void initNotificationPart() {
         // notification custom color.
         findPreference(getString(R.string.key_notification_custom_color)).setOnPreferenceChangeListener((p, newValue) -> {
-            initNotificationPart();
+            requireView().post(this::initNotificationPart);
             PollingManager.resetNormalBackgroundTask(getActivity(), true);
             return true;
         });
