@@ -27,7 +27,7 @@
     <dimen name="default_drawer_width">380dp</dimen>
 
     <!-- text. -->
-    <dimen name="main_title_text_size">72sp</dimen>
+    <dimen name="main_title_text_size">88sp</dimen>
     <dimen name="design_title_text_size">48sp</dimen>
     <dimen name="large_title_text_size">20sp</dimen>
     <dimen name="title_text_size">16sp</dimen>
