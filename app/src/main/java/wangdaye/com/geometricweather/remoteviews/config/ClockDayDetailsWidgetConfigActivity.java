@@ -30,7 +30,6 @@ public class ClockDayDetailsWidgetConfigActivity extends AbstractWidgetConfigAct
     public void initView() {
         super.initView();
 
-        mViewTypeContainer.setVisibility(View.VISIBLE);
         mCardStyleContainer.setVisibility(View.VISIBLE);
         mCardAlphaContainer.setVisibility(View.VISIBLE);
         mTextColorContainer.setVisibility(View.VISIBLE);

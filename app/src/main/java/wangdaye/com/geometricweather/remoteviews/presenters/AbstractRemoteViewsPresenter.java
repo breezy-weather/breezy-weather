@@ -7,6 +7,7 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -14,9 +15,11 @@ import android.provider.AlarmClock;
 import android.provider.CalendarContract;
 import android.text.TextUtils;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -24,6 +27,7 @@ import java.util.Date;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.options.NotificationTextColor;
 import wangdaye.com.geometricweather.common.basic.models.options.WidgetWeekIconMode;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.DistanceUnit;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.PrecipitationUnit;
@@ -37,7 +41,6 @@ import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
 import wangdaye.com.geometricweather.common.utils.helpers.LunarHelper;
 import wangdaye.com.geometricweather.remoteviews.WidgetHelper;
-import wangdaye.com.geometricweather.resource.utils.ResourceUtils;
 import wangdaye.com.geometricweather.settings.ConfigStore;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 
@@ -59,17 +62,58 @@ public abstract class AbstractRemoteViewsPresenter {
     }
 
     public static class WidgetColor {
-        public boolean showCard;
-        public boolean darkCard;
-        public boolean darkText;
 
-        public WidgetColor(Context context, boolean dayTime, String cardStyle, String textColor) {
-            showCard = !cardStyle.equals("none");
-            darkCard = cardStyle.equals("dark") || (cardStyle.equals("auto") && !dayTime);
+        public final boolean showCard;
+        public final ColorType cardColor;
+        @ColorInt
+        public final int textColor;
+        public final boolean darkText;
 
-            darkText = showCard
-                    ? !darkCard // light card.
-                    : textColor.equals("dark") || (textColor.equals("auto") && isLightWallpaper(context));
+        enum ColorType {
+            LIGHT, DARK, AUTO
+        }
+
+        public WidgetColor(Context context, String cardStyle, String textColor) {
+            this.showCard = !cardStyle.equals("none");
+            this.cardColor = cardStyle.equals("auto")
+                    ? ColorType.AUTO
+                    : (cardStyle.equals("light") ? ColorType.LIGHT : ColorType.DARK);
+
+            if (showCard) {
+                if (cardColor == ColorType.AUTO) {
+                    this.textColor = Color.TRANSPARENT;
+                    this.darkText = false;
+                } else if (cardColor == ColorType.LIGHT) {
+                    this.textColor = ContextCompat.getColor(context, R.color.colorTextDark);
+                    this.darkText = true;
+                } else {
+                    this.textColor = ContextCompat.getColor(context, R.color.colorTextLight);
+                    this.darkText = false;
+                }
+            } else if (textColor.equals("dark")
+                    || (textColor.equals("auto") && isLightWallpaper(context))) {
+                this.textColor = ContextCompat.getColor(context, R.color.colorTextDark);
+                this.darkText = true;
+            } else {
+                this.textColor = ContextCompat.getColor(context, R.color.colorTextLight);
+                this.darkText = false;
+            }
+        }
+
+        public NotificationTextColor getMinimalIconColor() {
+            if (showCard) {
+                if (cardColor == ColorType.AUTO) {
+                    return NotificationTextColor.GREY;
+                } else if (cardColor == ColorType.LIGHT) {
+                    return NotificationTextColor.DARK;
+                } else {
+                    return NotificationTextColor.LIGHT;
+                }
+            } else if (darkText) {
+                return NotificationTextColor.DARK;
+            } else {
+                return NotificationTextColor.LIGHT;
+            }
         }
     }
 
@@ -142,28 +186,14 @@ public abstract class AbstractRemoteViewsPresenter {
     }
 
     @DrawableRes
-    public static int getCardBackgroundId(Context context, boolean darkCard, int cardAlpha) {
-        int resId;
-        if (darkCard) {
-            resId = ResourceUtils.getResId(
-                    context,
-                    "widget_card_dark_" + cardAlpha,
-                    "drawable"
-            );
-            if (resId != 0) {
-                return resId;
-            }
-            return R.drawable.widget_card_dark_100;
-        } else {
-            resId = ResourceUtils.getResId(
-                    context,
-                    "widget_card_light_" + cardAlpha,
-                    "drawable"
-            );
-            if (resId != 0) {
-                return resId;
-            }
-            return R.drawable.widget_card_light_100;
+    public static int getCardBackgroundId(WidgetColor.ColorType cardColor) {
+        switch (cardColor) {
+            case AUTO:
+                return R.drawable.widget_card_follow_system;
+            case LIGHT:
+                return R.drawable.widget_card_light;
+            default:
+                return R.drawable.widget_card_dark;
         }
     }
 

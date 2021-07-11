@@ -88,15 +88,6 @@ public class ResourceHelper {
     }
 
     @NonNull
-    public static Uri getWidgetNotificationIconUri(ResourceProvider provider,
-                                                   WeatherCode code, boolean dayTime,
-                                                   boolean minimal, boolean darkText) {
-        return getWidgetNotificationIconUri(provider, code, dayTime, minimal,
-                darkText ? NotificationTextColor.DARK : NotificationTextColor.LIGHT
-        );
-    }
-
-    @NonNull
     public static Drawable getMinimalXmlIcon(ResourceProvider provider,
                                              WeatherCode code, boolean daytime) {
         return provider.getMinimalXmlIcon(code, daytime);

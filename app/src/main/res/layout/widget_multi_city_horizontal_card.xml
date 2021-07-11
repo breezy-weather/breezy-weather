@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:background="@android:color/black">
 
+    <ImageView
+        android:id="@+id/widget_multi_city_horizontal_card"
+        style="@style/widget_background_card"
+        tools:ignore="ContentDescription" />
+
     <LinearLayout
         android:id="@+id/widget_multi_city_horizontal_weather"
         android:orientation="horizontal"
@@ -26,10 +31,6 @@
             <TextView
                 android:id="@+id/widget_multi_city_horizontal_title_1"
                 android:text="@string/ellipsis"
-                android:shadowColor="@color/colorTextDark2nd"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="1"
                 android:layout_margin="@dimen/normal_margin"
                 style="@style/widget_title_text"
                 tools:text="青岛" />
@@ -46,10 +47,6 @@
             <TextView
                 android:id="@+id/widget_multi_city_horizontal_content_1"
                 android:text="@string/ellipsis"
-                android:shadowColor="@color/colorTextDark2nd"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="1"
                 android:layout_margin="@dimen/normal_margin"
                 style="@style/widget_content_text"
                 tools:text="1°/9°" />
@@ -68,10 +65,6 @@
             <TextView
                 android:id="@+id/widget_multi_city_horizontal_title_2"
                 android:text="@string/ellipsis"
-                android:shadowColor="@color/colorTextDark2nd"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="1"
                 android:layout_margin="@dimen/normal_margin"
                 style="@style/widget_title_text"
                 tools:text="青岛" />
@@ -88,10 +81,6 @@
             <TextView
                 android:id="@+id/widget_multi_city_horizontal_content_2"
                 android:text="@string/ellipsis"
-                android:shadowColor="@color/colorTextDark2nd"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="1"
                 android:layout_margin="@dimen/normal_margin"
                 style="@style/widget_content_text"
                 tools:text="1°/9°" />
@@ -110,10 +99,6 @@
             <TextView
                 android:id="@+id/widget_multi_city_horizontal_title_3"
                 android:text="@string/ellipsis"
-                android:shadowColor="@color/colorTextDark2nd"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="1"
                 android:layout_margin="@dimen/normal_margin"
                 style="@style/widget_title_text"
                 tools:text="青岛" />
@@ -130,10 +115,6 @@
             <TextView
                 android:id="@+id/widget_multi_city_horizontal_content_3"
                 android:text="@string/ellipsis"
-                android:shadowColor="@color/colorTextDark2nd"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="1"
                 android:layout_margin="@dimen/normal_margin"
                 style="@style/widget_content_text"
                 tools:text="1°/9°" />

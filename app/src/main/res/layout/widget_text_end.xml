@@ -20,7 +20,6 @@
             android:layout_marginStart="@dimen/little_margin"
             android:layout_marginEnd="@dimen/little_margin"
             android:textSize="@dimen/widget_content_text_size"
-            android:textColor="@color/colorTextLight"
             android:shadowColor="@color/colorTextDark2nd"
             android:shadowDx="1"
             android:shadowDy="1"
@@ -38,13 +37,12 @@
             android:layout_marginBottom="@dimen/little_margin"
             android:text="@string/ellipsis"
             android:textSize="@dimen/widget_content_text_size"
-            android:textColor="@color/colorTextLight"
             android:maxLines="1"
             android:shadowColor="@color/colorTextDark2nd"
             android:shadowDx="1"
             android:shadowDy="1"
             android:shadowRadius="1"
-            style="@style/content_text"
+            style="@style/widget_content_text"
             tools:text="Partly Could"
             tools:ignore="RtlHardcoded" />
 
@@ -52,7 +50,6 @@
             android:id="@+id/widget_text_temperature"
             android:text="@string/ellipsis"
             android:textSize="48sp"
-            android:textColor="@color/colorTextLight"
             android:shadowColor="@color/colorTextDark2nd"
             android:shadowDx="1"
             android:shadowDy="1"
@@ -60,7 +57,7 @@
             android:layout_marginStart="@dimen/little_margin"
             android:layout_marginEnd="@dimen/little_margin"
             android:layout_marginTop="-12dp"
-            style="@style/content_text"
+            style="@style/widget_content_text"
             tools:text="21°"
             tools:ignore="RtlHardcoded,SpUsage" />
 

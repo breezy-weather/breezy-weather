@@ -6,11 +6,6 @@
     android:layout_height="match_parent"
     tools:background="@android:color/black">
 
-    <ImageView
-        android:id="@+id/widget_day_week_card"
-        style="@style/widget_background_card"
-        tools:ignore="ContentDescription" />
-
     <LinearLayout
         android:id="@+id/widget_day_week_weather"
         android:orientation="vertical"
@@ -38,13 +33,12 @@
                 android:layout_toStartOf="@id/widget_day_week_icon"
                 android:text="@string/ellipsis"
                 android:textSize="@dimen/widget_content_text_size"
-                android:textColor="@color/colorTextLight"
                 android:maxLines="2"
                 android:shadowColor="@color/colorTextDark2nd"
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="1"
-                style="@style/content_text"
+                style="@style/widget_content_text"
                 tools:text="Partly Could\n21℃"
                 tools:ignore="RtlHardcoded" />
 
@@ -54,14 +48,13 @@
                 android:layout_toEndOf="@+id/widget_day_week_icon"
                 android:text="@string/ellipsis"
                 android:textSize="@dimen/widget_content_text_size"
-                android:textColor="@color/colorTextLight"
                 android:maxLines="2"
                 android:textAlignment="viewEnd"
                 android:shadowColor="@color/colorTextDark2nd"
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="1"
-                style="@style/content_text"
+                style="@style/widget_content_text"
                 tools:text="              17°\n              23°"
                 tools:ignore="RtlHardcoded" />
 
@@ -86,14 +79,13 @@
                 <TextView
                     android:id="@+id/widget_day_week_time"
                     android:text="@string/wait_refresh"
-                    android:textColor="@color/colorTextLight"
                     android:textSize="@dimen/widget_time_text_size"
                     android:shadowColor="@color/colorTextDark2nd"
                     android:shadowDx="1"
                     android:shadowDy="1"
                     android:shadowRadius="1"
                     android:layout_centerInParent="true"
-                    style="@style/content_text"
+                    style="@style/widget_content_text"
                     tools:text="San Francisco 17:00"
                     tools:ignore="RtlHardcoded" />
 
@@ -117,7 +109,6 @@
                     android:id="@+id/widget_day_week_week_1"
                     android:text="@string/wait_refresh"
                     android:textSize="@dimen/widget_content_text_size"
-                    android:textColor="@color/colorTextLight"
                     android:maxLines="1"
                     android:shadowColor="@color/colorTextDark2nd"
                     android:shadowDx="1"
@@ -125,7 +116,7 @@
                     android:shadowRadius="1"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    style="@style/content_text"
+                    style="@style/widget_content_text"
                     tools:text="今日" />
 
                 <ImageView
@@ -144,14 +135,13 @@
                     android:id="@+id/widget_day_week_temp_1"
                     android:text="@string/ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
-                    android:textColor="@color/colorTextLight"
                     android:shadowColor="@color/colorTextDark2nd"
                     android:shadowDx="1"
                     android:shadowDy="1"
                     android:shadowRadius="1"
                     android:layout_below="@id/widget_day_week_icon_1"
                     android:layout_centerHorizontal="true"
-                    style="@style/content_text"
+                    style="@style/widget_content_text"
                     tools:text="4/9°" />
 
             </RelativeLayout>
@@ -165,7 +155,6 @@
                     android:id="@+id/widget_day_week_week_2"
                     android:text="@string/ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
-                    android:textColor="@color/colorTextLight"
                     android:maxLines="1"
                     android:shadowColor="@color/colorTextDark2nd"
                     android:shadowDx="1"
@@ -173,7 +162,7 @@
                     android:shadowRadius="1"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    style="@style/content_text"
+                    style="@style/widget_content_text"
                     tools:text="周三" />
 
                 <ImageView
@@ -192,7 +181,6 @@
                     android:id="@+id/widget_day_week_temp_2"
                     android:text="@string/ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
-                    android:textColor="@color/colorTextLight"
                     android:maxLines="1"
                     android:shadowColor="@color/colorTextDark2nd"
                     android:shadowDx="1"
@@ -200,7 +188,7 @@
                     android:shadowRadius="1"
                     android:layout_below="@id/widget_day_week_icon_2"
                     android:layout_centerHorizontal="true"
-                    style="@style/content_text"
+                    style="@style/widget_content_text"
                     tools:text="4/9°" />
 
             </RelativeLayout>
@@ -214,7 +202,6 @@
                     android:id="@+id/widget_day_week_week_3"
                     android:text="@string/ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
-                    android:textColor="@color/colorTextLight"
                     android:maxLines="1"
                     android:shadowColor="@color/colorTextDark2nd"
                     android:shadowDx="1"
@@ -222,7 +209,7 @@
                     android:shadowRadius="1"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    style="@style/content_text"
+                    style="@style/widget_content_text"
                     tools:text="周四" />
 
                 <ImageView
@@ -241,7 +228,6 @@
                     android:id="@+id/widget_day_week_temp_3"
                     android:text="@string/ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
-                    android:textColor="@color/colorTextLight"
                     android:maxLines="1"
                     android:shadowColor="@color/colorTextDark2nd"
                     android:shadowDx="1"
@@ -249,7 +235,7 @@
                     android:shadowRadius="1"
                     android:layout_below="@id/widget_day_week_icon_3"
                     android:layout_centerHorizontal="true"
-                    style="@style/content_text"
+                    style="@style/widget_content_text"
                     tools:text="4/9°" />
 
             </RelativeLayout>
@@ -263,7 +249,6 @@
                     android:id="@+id/widget_day_week_week_4"
                     android:text="@string/ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
-                    android:textColor="@color/colorTextLight"
                     android:maxLines="1"
                     android:shadowColor="@color/colorTextDark2nd"
                     android:shadowDx="1"
@@ -271,7 +256,7 @@
                     android:shadowRadius="1"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    style="@style/content_text"
+                    style="@style/widget_content_text"
                     tools:text="周五" />
 
                 <ImageView
@@ -290,7 +275,6 @@
                     android:id="@+id/widget_day_week_temp_4"
                     android:text="@string/ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
-                    android:textColor="@color/colorTextLight"
                     android:maxLines="1"
                     android:shadowColor="@color/colorTextDark2nd"
                     android:shadowDx="1"
@@ -298,7 +282,7 @@
                     android:shadowRadius="1"
                     android:layout_below="@id/widget_day_week_icon_4"
                     android:layout_centerHorizontal="true"
-                    style="@style/content_text"
+                    style="@style/widget_content_text"
                     tools:text="4/9°" />
 
             </RelativeLayout>
@@ -312,7 +296,6 @@
                     android:id="@+id/widget_day_week_week_5"
                     android:text="@string/ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
-                    android:textColor="@color/colorTextLight"
                     android:maxLines="1"
                     android:shadowColor="@color/colorTextDark2nd"
                     android:shadowDx="1"
@@ -320,7 +303,7 @@
                     android:shadowRadius="1"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    style="@style/content_text"
+                    style="@style/widget_content_text"
                     tools:text="周六" />
 
                 <ImageView
@@ -340,7 +323,6 @@
                     android:id="@+id/widget_day_week_temp_5"
                     android:text="@string/ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
-                    android:textColor="@color/colorTextLight"
                     android:maxLines="1"
                     android:shadowColor="@color/colorTextDark2nd"
                     android:shadowDx="1"
@@ -348,7 +330,7 @@
                     android:shadowRadius="1"
                     android:layout_below="@id/widget_day_week_icon_5"
                     android:layout_centerHorizontal="true"
-                    style="@style/content_text"
+                    style="@style/widget_content_text"
                     tools:text="4/9°" />
 
             </RelativeLayout>

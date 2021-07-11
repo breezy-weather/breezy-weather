@@ -85,7 +85,7 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
         boolean minimalIcon = SettingsManager.getInstance(context).isWidgetMinimalIconEnabled();
         TemperatureUnit temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit();
 
-        temperatures = new float[Math.max(0, itemCount * 2 - 1)];
+        temperatures = new float[itemCount * 2 - 1];
         for (int i = 0; i < temperatures.length; i += 2) {
             temperatures[i] = weather.getHourlyForecast().get(i / 2).getTemperature().getTemperature();
         }
@@ -182,7 +182,7 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
     @WorkerThread
     private static RemoteViews getRemoteViews(Context context, @Nullable View drawableView,
                                               Location location, int width,
-                                              boolean darkCard, int cardAlpha) {
+                                              int cardAlpha) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_remote);
         if (drawableView == null) {
             return views;
@@ -222,7 +222,12 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
 
         views.setImageViewResource(
                 R.id.widget_remote_card,
-                getCardBackgroundId(context, darkCard, cardAlpha)
+                getCardBackgroundId(WidgetColor.ColorType.AUTO)
+        );
+        views.setInt(
+                R.id.widget_remote_card,
+                "setImageAlpha",
+                (int) (cardAlpha / 100.0 * 255)
         );
 
         setOnClickPendingIntent(
@@ -257,7 +262,7 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
                 getDrawableView(context, location, lightTheme),
                 location,
                 width,
-                !lightTheme, cardAlpha
+                cardAlpha
         );
     }
 

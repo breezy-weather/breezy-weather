@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:background="@android:color/black">
 
+    <ImageView
+        android:id="@+id/widget_day_week_card"
+        style="@style/widget_background_card"
+        tools:ignore="ContentDescription" />
+
     <LinearLayout
         android:id="@+id/widget_day_week_weather"
         android:orientation="vertical"
@@ -17,77 +22,55 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/widget_day_week_icon"
-                android:layout_width="@dimen/widget_current_weather_icon_size"
-                android:layout_height="@dimen/widget_current_weather_icon_size"
-                android:layout_centerInParent="true"
-                android:layout_marginStart="@dimen/little_margin"
-                android:layout_marginEnd="@dimen/little_margin"
-                android:src="@drawable/weather_cloudy"
-                tools:ignore="ContentDescription" />
-
-            <TextView
-                android:id="@+id/widget_day_week_title"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@id/widget_day_week_icon"
-                android:text="@string/ellipsis"
-                android:textSize="@dimen/widget_content_text_size"
-                android:textAlignment="viewEnd"
-                android:maxLines="2"
-                android:shadowColor="@color/colorTextDark2nd"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="1"
-                style="@style/widget_content_text"
-                tools:text="San Francisco\n21℃"
-                tools:ignore="RtlHardcoded" />
-
-            <TextView
-                android:id="@+id/widget_day_week_subtitle"
-                android:layout_centerVertical="true"
-                android:layout_toEndOf="@+id/widget_day_week_icon"
-                android:text="@string/ellipsis"
-                android:textSize="@dimen/widget_content_text_size"
-                android:maxLines="2"
-                android:shadowColor="@color/colorTextDark2nd"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="1"
-                style="@style/widget_content_text"
-                tools:text="Partly Could\n17°/23°"
-                tools:ignore="RtlHardcoded" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <FrameLayout
-                android:id="@+id/widget_day_week_center"
-                android:layout_centerInParent="true"
-                android:layout_width="@dimen/widget_current_weather_icon_size"
-                android:layout_height="1dp" />
-
             <RelativeLayout
-                android:layout_width="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@id/widget_day_week_center"
-                android:layout_alignParentEnd="true">
+                android:layout_margin="@dimen/normal_margin"
+                tools:ignore="UselessParent">
 
-                <TextView
-                    android:id="@+id/widget_day_week_time"
-                    android:text="@string/wait_refresh"
-                    android:textSize="@dimen/widget_time_text_size"
-                    android:shadowColor="@color/colorTextDark2nd"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    android:shadowRadius="1"
-                    android:layout_centerInParent="true"
-                    style="@style/widget_content_text"
-                    tools:text="WEN 17:00"
-                    tools:ignore="RtlHardcoded" />
+                <ImageView
+                    android:id="@+id/widget_day_week_icon"
+                    android:layout_width="@dimen/widget_current_weather_icon_size"
+                    android:layout_height="@dimen/widget_current_weather_icon_size"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/weather_cloudy"
+                    tools:ignore="ContentDescription" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/little_margin"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/widget_day_week_icon"
+                    tools:ignore="RtlHardcoded">
+
+                    <TextView
+                        android:id="@+id/widget_day_week_title"
+                        android:text="@string/ellipsis"
+                        android:maxLines="1"
+                        style="@style/widget_content_text"
+                        tools:text="Partly Cloud 21℃"
+                        tools:ignore="RtlHardcoded" />
+
+                    <TextView
+                        android:id="@+id/widget_day_week_subtitle"
+                        android:text="@string/ellipsis"
+                        android:maxLines="1"
+                        style="@style/widget_content_text"
+                        tools:text="17°/23°"
+                        tools:ignore="RtlHardcoded" />
+
+                    <TextView
+                        android:id="@+id/widget_day_week_time"
+                        android:text="@string/wait_refresh"
+                        android:textSize="@dimen/widget_time_text_size"
+                        style="@style/widget_content_text"
+                        tools:text="San Francisco WEN 17:00"
+                        tools:ignore="RtlHardcoded" />
+
+                </LinearLayout>
 
             </RelativeLayout>
 
@@ -97,7 +80,6 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/little_margin"
             tools:ignore="DisableBaselineAlignment">
 
             <RelativeLayout
@@ -110,10 +92,6 @@
                     android:text="@string/wait_refresh"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
-                    android:shadowColor="@color/colorTextDark2nd"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    android:shadowRadius="1"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
@@ -136,10 +114,6 @@
                     android:text="@string/ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
-                    android:shadowColor="@color/colorTextDark2nd"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    android:shadowRadius="1"
                     android:layout_below="@id/widget_day_week_icon_1"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
@@ -157,10 +131,6 @@
                     android:text="@string/ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
-                    android:shadowColor="@color/colorTextDark2nd"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    android:shadowRadius="1"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
@@ -183,10 +153,6 @@
                     android:text="@string/ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
-                    android:shadowColor="@color/colorTextDark2nd"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    android:shadowRadius="1"
                     android:layout_below="@id/widget_day_week_icon_2"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
@@ -204,10 +170,6 @@
                     android:text="@string/ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
-                    android:shadowColor="@color/colorTextDark2nd"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    android:shadowRadius="1"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
@@ -230,10 +192,6 @@
                     android:text="@string/ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
-                    android:shadowColor="@color/colorTextDark2nd"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    android:shadowRadius="1"
                     android:layout_below="@id/widget_day_week_icon_3"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
@@ -251,10 +209,6 @@
                     android:text="@string/ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
-                    android:shadowColor="@color/colorTextDark2nd"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    android:shadowRadius="1"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
@@ -277,10 +231,6 @@
                     android:text="@string/ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
-                    android:shadowColor="@color/colorTextDark2nd"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    android:shadowRadius="1"
                     android:layout_below="@id/widget_day_week_icon_4"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
@@ -298,10 +248,6 @@
                     android:text="@string/ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
-                    android:shadowColor="@color/colorTextDark2nd"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    android:shadowRadius="1"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"
@@ -325,10 +271,6 @@
                     android:text="@string/ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
-                    android:shadowColor="@color/colorTextDark2nd"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    android:shadowRadius="1"
                     android:layout_below="@id/widget_day_week_icon_5"
                     android:layout_centerHorizontal="true"
                     style="@style/widget_content_text"

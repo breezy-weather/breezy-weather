@@ -6,33 +6,46 @@
     android:layout_height="match_parent"
     tools:background="@android:color/black">
 
+    <ImageView
+        android:id="@+id/widget_day_card"
+        style="@style/widget_background_card"
+        tools:ignore="ContentDescription" />
+
     <RelativeLayout
         android:id="@+id/widget_day_weather"
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:ignore="UselessParent">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/widget_day_icon"
-            android:layout_width="@dimen/widget_little_weather_icon_size"
-            android:layout_height="@dimen/widget_little_weather_icon_size"
+            android:layout_width="@dimen/widget_standard_weather_icon_size"
+            android:layout_height="@dimen/widget_standard_weather_icon_size"
             android:layout_centerHorizontal="true"
             android:src="@drawable/weather_cloudy"
+            android:layout_marginTop="2dp"
             tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/widget_day_title"
             android:text="@string/ellipsis"
             android:textSize="@dimen/widget_subtitle_text_size"
-            android:shadowColor="@color/colorTextDark2nd"
-            android:shadowDx="1"
-            android:shadowDy="1"
-            android:shadowRadius="1"
             android:layout_below="@id/widget_day_icon"
             android:layout_centerHorizontal="true"
             style="@style/widget_content_text"
-            tools:text="21℃"
+            tools:text="Partly Cloud 21℃"
+            tools:ignore="RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/widget_day_time"
+            android:text="@string/wait_refresh"
+            android:textSize="@dimen/widget_time_text_size"
+            android:textAlignment="center"
+            android:layout_below="@id/widget_day_title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="2dp"
+            style="@style/widget_content_text"
+            tools:text="San Francisco WEN 17:00"
             tools:ignore="RtlHardcoded" />
 
     </RelativeLayout>

@@ -210,8 +210,8 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
     @SuppressLint("WrongThread")
     @WorkerThread
     private static RemoteViews getRemoteViews(Context context, @Nullable View drawableView,
-                                             Location location, int width,
-                                              boolean darkCard, int cardAlpha) {
+                                              Location location, int width,
+                                              int cardAlpha) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_remote);
         if (drawableView == null) {
             return views;
@@ -251,7 +251,12 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
 
         views.setImageViewResource(
                 R.id.widget_remote_card,
-                getCardBackgroundId(context, darkCard, cardAlpha)
+                getCardBackgroundId(WidgetColor.ColorType.AUTO)
+        );
+        views.setInt(
+                R.id.widget_remote_card,
+                "setImageAlpha",
+                (int) (cardAlpha / 100.0 * 255)
         );
 
         setOnClickPendingIntent(
@@ -286,7 +291,7 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
                 getDrawableView(context, location, lightTheme),
                 location,
                 width,
-                !lightTheme, cardAlpha
+                cardAlpha
         );
     }
 

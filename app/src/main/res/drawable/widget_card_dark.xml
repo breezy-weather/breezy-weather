@@ -4,9 +4,9 @@
     android:visible="true" >
 
     <corners
-        android:radius="8dp" />
+        android:radius="12dp" />
 
     <solid
-        android:color="#33292929" />
+        android:color="#FF212121" />
 
 </shape>

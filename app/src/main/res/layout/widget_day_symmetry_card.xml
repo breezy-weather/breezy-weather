@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:background="@android:color/black">
 
+    <ImageView
+        android:id="@+id/widget_day_card"
+        style="@style/widget_background_card"
+        tools:ignore="ContentDescription" />
+
     <LinearLayout
         android:id="@+id/widget_day_weather"
         android:layout_centerInParent="true"
@@ -35,10 +40,6 @@
                 android:textSize="@dimen/widget_content_text_size"
                 android:textAlignment="viewEnd"
                 android:maxLines="2"
-                android:shadowColor="@color/colorTextDark2nd"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="1"
                 style="@style/widget_content_text"
                 tools:text="San Francisco\n21℃"
                 tools:ignore="RtlHardcoded" />
@@ -50,10 +51,6 @@
                 android:text="@string/ellipsis"
                 android:textSize="@dimen/widget_content_text_size"
                 android:maxLines="2"
-                android:shadowColor="@color/colorTextDark2nd"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="1"
                 style="@style/widget_content_text"
                 tools:text="Partly Could\n17/23°"
                 tools:ignore="RtlHardcoded" />
@@ -80,10 +77,6 @@
                     android:id="@+id/widget_day_time"
                     android:text="@string/wait_refresh"
                     android:textSize="@dimen/widget_time_text_size"
-                    android:shadowColor="@color/colorTextDark2nd"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    android:shadowRadius="1"
                     android:layout_centerInParent="true"
                     style="@style/widget_content_text"
                     tools:text="WEN 17:00"

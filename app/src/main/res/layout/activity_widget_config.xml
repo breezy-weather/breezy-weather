@@ -129,12 +129,12 @@
                         app:bsb_max="100"
                         app:bsb_progress="100"
                         app:bsb_section_count="5"
-                        app:bsb_seek_by_section="true"
                         app:bsb_bubble_text_color="@color/colorRoot"
                         app:bsb_show_section_text="true"
                         app:bsb_section_text_position="below_section_mark"
                         app:bsb_section_text_color="@color/colorTextSubtitle"
                         app:bsb_section_text_size="@dimen/subtitle_text_size"
+                        app:bsb_show_thumb_text="true"
                         tools:ignore="RtlHardcoded" />
 
                 </RelativeLayout>

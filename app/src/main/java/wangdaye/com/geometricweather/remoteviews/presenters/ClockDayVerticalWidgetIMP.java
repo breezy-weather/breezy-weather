@@ -5,8 +5,8 @@ import android.content.ComponentName;
 import android.content.Context;
 
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 
+import android.graphics.Color;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -61,20 +61,14 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
         boolean minimalIcon = settings.isWidgetMinimalIconEnabled();
         boolean touchToRefresh = settings.isWidgetClickToRefreshEnabled();
 
-        WidgetColor color = new WidgetColor(context, dayTime, cardStyle, textColor);
-
-        int textColorInt;
-        if (color.darkText) {
-            textColorInt = ContextCompat.getColor(context, R.color.colorTextDark);
-        } else {
-            textColorInt = ContextCompat.getColor(context, R.color.colorTextLight);
-        }
+        WidgetColor color = new WidgetColor(context, cardStyle, textColor);
 
         RemoteViews views = buildWidgetViewDayPart(
                 context, location,
                 temperatureUnit,
-                dayTime, textColorInt, textSize,
-                minimalIcon, color.darkText,
+                color,
+                dayTime, textSize,
+                minimalIcon,
                 clockFont, viewStyle,
                 hideSubtitle, subtitleData
         );
@@ -82,11 +76,13 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
         if (color.showCard) {
             views.setImageViewResource(
                     R.id.widget_clock_day_card,
-                    getCardBackgroundId(context, color.darkCard, cardAlpha)
+                    getCardBackgroundId(color.cardColor)
             );
-            views.setViewVisibility(R.id.widget_clock_day_card, View.VISIBLE);
-        } else {
-            views.setViewVisibility(R.id.widget_clock_day_card, View.GONE);
+            views.setInt(
+                    R.id.widget_clock_day_card,
+                    "setImageAlpha",
+                    (int) (cardAlpha / 100.0 * 255)
+            );
         }
 
         setOnClickPendingIntent(context, views, location, subtitleData, touchToRefresh);
@@ -96,35 +92,71 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
 
     private static RemoteViews buildWidgetViewDayPart(Context context, Location location,
                                                       TemperatureUnit temperatureUnit,
-                                                      boolean dayTime, int textColor, int textSize,
-                                                      boolean minimalIcon, boolean blackText,
+                                                      WidgetColor color,
+                                                      boolean dayTime, int textSize,
+                                                      boolean minimalIcon,
                                                       String clockFont, String viewStyle,
                                                       boolean hideSubtitle, String subtitleData) {
         Weather weather = location.getWeather();
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_symmetry);
+        RemoteViews views = new RemoteViews(
+                context.getPackageName(),
+                !color.showCard
+                        ? R.layout.widget_clock_day_symmetry
+                        : R.layout.widget_clock_day_symmetry_card
+        );
         switch (viewStyle) {
             case "rectangle":
-                views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_rectangle);
+                views = new RemoteViews(
+                        context.getPackageName(),
+                        !color.showCard
+                                ? R.layout.widget_clock_day_rectangle
+                                : R.layout.widget_clock_day_rectangle_card
+                );
                 break;
 
             case "symmetry":
-                views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_symmetry);
+                views = new RemoteViews(
+                        context.getPackageName(),
+                        !color.showCard
+                                ? R.layout.widget_clock_day_symmetry
+                                : R.layout.widget_clock_day_symmetry_card
+                );
                 break;
 
             case "tile":
-                views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_tile);
+                views = new RemoteViews(
+                        context.getPackageName(),
+                        !color.showCard
+                                ? R.layout.widget_clock_day_tile
+                                : R.layout.widget_clock_day_tile_card
+                );
                 break;
 
             case "mini":
-                views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_mini);
+                views = new RemoteViews(
+                        context.getPackageName(),
+                        !color.showCard
+                                ? R.layout.widget_clock_day_mini
+                                : R.layout.widget_clock_day_mini_card
+                );
                 break;
 
             case "vertical":
-                views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_vertical);
+                views = new RemoteViews(
+                        context.getPackageName(),
+                        !color.showCard
+                                ? R.layout.widget_clock_day_vertical
+                                : R.layout.widget_clock_day_vertical_card
+                );
                 break;
 
             case "temp":
-                views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_temp);
+                views = new RemoteViews(
+                        context.getPackageName(),
+                        !color.showCard
+                                ? R.layout.widget_clock_day_temp
+                                : R.layout.widget_clock_day_temp_card
+                );
                 break;
         }
         if (weather == null) {
@@ -140,7 +172,7 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
                         weather.getCurrent().getWeatherCode(),
                         dayTime,
                         minimalIcon,
-                        blackText
+                        color.getMinimalIconColor()
                 )
         );
         views.setTextViewText(
@@ -156,21 +188,24 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
                 getTimeText(context, location, viewStyle, subtitleData, temperatureUnit)
         );
 
-        views.setTextColor(R.id.widget_clock_day_clock_light, textColor);
-        views.setTextColor(R.id.widget_clock_day_clock_normal, textColor);
-        views.setTextColor(R.id.widget_clock_day_clock_black, textColor);
-        views.setTextColor(R.id.widget_clock_day_clock_aa_light, textColor);
-        views.setTextColor(R.id.widget_clock_day_clock_aa_normal, textColor);
-        views.setTextColor(R.id.widget_clock_day_clock_aa_black, textColor);
-        views.setTextColor(R.id.widget_clock_day_clock_1_light, textColor);
-        views.setTextColor(R.id.widget_clock_day_clock_1_normal, textColor);
-        views.setTextColor(R.id.widget_clock_day_clock_1_black, textColor);
-        views.setTextColor(R.id.widget_clock_day_clock_2_light, textColor);
-        views.setTextColor(R.id.widget_clock_day_clock_2_normal, textColor);
-        views.setTextColor(R.id.widget_clock_day_clock_2_black, textColor);
-        views.setTextColor(R.id.widget_clock_day_title, textColor);
-        views.setTextColor(R.id.widget_clock_day_subtitle, textColor);
-        views.setTextColor(R.id.widget_clock_day_time, textColor);
+        if (color.textColor != Color.TRANSPARENT) {
+            views.setTextColor(R.id.widget_clock_day_clock_light, color.textColor);
+            views.setTextColor(R.id.widget_clock_day_clock_normal, color.textColor);
+            views.setTextColor(R.id.widget_clock_day_clock_black, color.textColor);
+            views.setTextColor(R.id.widget_clock_day_clock_aa_light, color.textColor);
+            views.setTextColor(R.id.widget_clock_day_clock_aa_normal, color.textColor);
+            views.setTextColor(R.id.widget_clock_day_clock_aa_black, color.textColor);
+            views.setTextColor(R.id.widget_clock_day_clock_1_light, color.textColor);
+            views.setTextColor(R.id.widget_clock_day_clock_1_normal, color.textColor);
+            views.setTextColor(R.id.widget_clock_day_clock_1_black, color.textColor);
+            views.setTextColor(R.id.widget_clock_day_clock_2_light, color.textColor);
+            views.setTextColor(R.id.widget_clock_day_clock_2_normal, color.textColor);
+            views.setTextColor(R.id.widget_clock_day_clock_2_black, color.textColor);
+            views.setTextColor(R.id.widget_clock_day_date, color.textColor);
+            views.setTextColor(R.id.widget_clock_day_title, color.textColor);
+            views.setTextColor(R.id.widget_clock_day_subtitle, color.textColor);
+            views.setTextColor(R.id.widget_clock_day_time, color.textColor);
+        }
 
         if (textSize != 100) {
             float clockSize = context.getResources().getDimensionPixelSize(R.dimen.widget_current_weather_icon_size)
@@ -192,6 +227,8 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
             views.setTextViewTextSize(R.id.widget_clock_day_clock_2_normal, TypedValue.COMPLEX_UNIT_PX, verticalClockSize);
             views.setTextViewTextSize(R.id.widget_clock_day_clock_2_black, TypedValue.COMPLEX_UNIT_PX, verticalClockSize);
 
+            views.setTextViewTextSize(R.id.widget_clock_day_date, TypedValue.COMPLEX_UNIT_PX,
+                    getTitleSize(context, viewStyle) * textSize / 100f);
             views.setTextViewTextSize(R.id.widget_clock_day_title, TypedValue.COMPLEX_UNIT_PX,
                     getTitleSize(context, viewStyle) * textSize / 100f);
             views.setTextViewTextSize(R.id.widget_clock_day_subtitle, TypedValue.COMPLEX_UNIT_PX,
@@ -210,6 +247,7 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
                 views.setViewVisibility(R.id.widget_clock_day_clock_lightContainer, View.VISIBLE);
                 views.setViewVisibility(R.id.widget_clock_day_clock_normalContainer, View.GONE);
                 views.setViewVisibility(R.id.widget_clock_day_clock_blackContainer, View.GONE);
+                views.setViewVisibility(R.id.widget_clock_day_clock_analogContainer_auto, View.GONE);
                 views.setViewVisibility(R.id.widget_clock_day_clock_analogContainer_light, View.GONE);
                 views.setViewVisibility(R.id.widget_clock_day_clock_analogContainer_dark, View.GONE);
                 break;
@@ -218,6 +256,7 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
                 views.setViewVisibility(R.id.widget_clock_day_clock_lightContainer, View.GONE);
                 views.setViewVisibility(R.id.widget_clock_day_clock_normalContainer, View.VISIBLE);
                 views.setViewVisibility(R.id.widget_clock_day_clock_blackContainer, View.GONE);
+                views.setViewVisibility(R.id.widget_clock_day_clock_analogContainer_auto, View.GONE);
                 views.setViewVisibility(R.id.widget_clock_day_clock_analogContainer_light, View.GONE);
                 views.setViewVisibility(R.id.widget_clock_day_clock_analogContainer_dark, View.GONE);
                 break;
@@ -226,6 +265,7 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
                 views.setViewVisibility(R.id.widget_clock_day_clock_lightContainer, View.GONE);
                 views.setViewVisibility(R.id.widget_clock_day_clock_normalContainer, View.GONE);
                 views.setViewVisibility(R.id.widget_clock_day_clock_blackContainer, View.VISIBLE);
+                views.setViewVisibility(R.id.widget_clock_day_clock_analogContainer_auto, View.GONE);
                 views.setViewVisibility(R.id.widget_clock_day_clock_analogContainer_light, View.GONE);
                 views.setViewVisibility(R.id.widget_clock_day_clock_analogContainer_dark, View.GONE);
                 break;
@@ -235,12 +275,22 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
                 views.setViewVisibility(R.id.widget_clock_day_clock_normalContainer, View.GONE);
                 views.setViewVisibility(R.id.widget_clock_day_clock_blackContainer, View.GONE);
                 views.setViewVisibility(
+                        R.id.widget_clock_day_clock_analogContainer_auto,
+                        color.showCard && color.cardColor == WidgetColor.ColorType.AUTO
+                                ? View.VISIBLE
+                                : View.GONE
+                );
+                views.setViewVisibility(
                         R.id.widget_clock_day_clock_analogContainer_light,
-                        blackText ? View.GONE : View.VISIBLE
+                        color.showCard && color.cardColor == WidgetColor.ColorType.AUTO
+                                ? View.GONE
+                                : (color.darkText ? View.GONE : View.VISIBLE)
                 );
                 views.setViewVisibility(
                         R.id.widget_clock_day_clock_analogContainer_dark,
-                        blackText ? View.VISIBLE : View.GONE
+                        color.showCard && color.cardColor == WidgetColor.ColorType.AUTO
+                                ? View.GONE
+                                : (color.darkText ? View.VISIBLE : View.GONE)
                 );
                 break;
         }

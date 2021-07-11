@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:background="@android:color/black">
 
+    <ImageView
+        android:id="@+id/widget_clock_day_card"
+        style="@style/widget_background_card"
+        tools:ignore="ContentDescription" />
+
     <LinearLayout
         android:id="@+id/widget_clock_day_weather"
         android:layout_width="match_parent"
@@ -28,10 +33,6 @@
                 android:fontFamily="sans-serif-light"
                 android:layout_marginTop="-8dp"
                 android:layout_centerHorizontal="true"
-                android:shadowColor="@color/colorTextDark2nd"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="1"
                 style="@style/widget_text_clock"
                 tools:text="09" />
 
@@ -46,10 +47,6 @@
                 android:layout_marginBottom="-4dp"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/widget_clock_day_clock_1_light"
-                android:shadowColor="@color/colorTextDark2nd"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="1"
                 style="@style/widget_text_clock"
                 tools:text="10" />
 
@@ -70,10 +67,6 @@
                 android:format12Hour="hh"
                 android:layout_marginTop="-8dp"
                 android:layout_centerHorizontal="true"
-                android:shadowColor="@color/colorTextDark2nd"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="1"
                 style="@style/widget_text_clock"
                 tools:text="09" />
 
@@ -87,10 +80,6 @@
                 android:layout_marginBottom="-4dp"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/widget_clock_day_clock_1_normal"
-                android:shadowColor="@color/colorTextDark2nd"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="1"
                 style="@style/widget_text_clock"
                 tools:text="10" />
 
@@ -112,10 +101,6 @@
                 android:fontFamily="sans-serif-black"
                 android:layout_marginTop="-8dp"
                 android:layout_centerHorizontal="true"
-                android:shadowColor="@color/colorTextDark2nd"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="1"
                 style="@style/widget_text_clock"
                 tools:text="09" />
 
@@ -130,10 +115,6 @@
                 android:layout_marginBottom="-4dp"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/widget_clock_day_clock_1_black"
-                android:shadowColor="@color/colorTextDark2nd"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="1"
                 style="@style/widget_text_clock"
                 tools:text="10" />
 
@@ -203,10 +184,6 @@
                 android:id="@+id/widget_clock_day_title"
                 android:text="@string/ellipsis"
                 android:textSize="@dimen/widget_content_text_size"
-                android:shadowColor="@color/colorTextDark2nd"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="1"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/widget_clock_day_icon"
                 android:layout_marginTop="2dp"
@@ -219,10 +196,6 @@
                 android:text="@string/wait_refresh"
                 android:textSize="@dimen/widget_time_text_size"
                 android:textAlignment="center"
-                android:shadowColor="@color/colorTextDark2nd"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="1"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/widget_clock_day_title"
                 android:layout_marginTop="2dp"

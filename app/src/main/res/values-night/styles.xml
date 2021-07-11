@@ -1,5 +1,57 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="GeometricWeatherTheme.AppbarPopupTheme" parent="ThemeOverlay.AppCompat.Dark" />
+
+    <!-- widget -->
+    <style name="widget_text_clock">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:format24Hour">HH:mm</item>
+        <item name="android:format12Hour">h:mm</item>
+        <item name="android:textSize">@dimen/widget_current_weather_icon_size</item>
+        <item name="android:textColor">@color/colorTextTitle</item>
+        <!--        <item name="android:shadowColor">@color/colorTextDark2nd</item>-->
+        <!--        <item name="android:shadowDx">1</item>-->
+        <!--        <item name="android:shadowDy">1</item>-->
+        <!--        <item name="android:shadowRadius">1</item>-->
+    </style>
+
+    <style name="widget_text_clock_aa">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:format24Hour">\t</item>
+        <item name="android:format12Hour">aa</item>
+        <item name="android:textSize" tools:ignore="SpUsage">@dimen/widget_aa_text_size</item>
+        <item name="android:textColor">@color/colorTextTitle</item>
+        <!--        <item name="android:shadowColor">@color/colorTextDark2nd</item>-->
+        <!--        <item name="android:shadowDx">1</item>-->
+        <!--        <item name="android:shadowDy">1</item>-->
+        <!--        <item name="android:shadowRadius">1</item>-->
+    </style>
+
+    <style name="widget_text_clock_analog">
+        <item name="android:layout_width">128dp</item>
+        <item name="android:layout_height">128dp</item>
+        <item name="android:hand_hour">@drawable/clock_hour_light</item>
+        <item name="android:hand_minute">@drawable/clock_minute_light</item>
+        <item name="android:dial">@drawable/clock_dial_light</item>
+    </style>
+
+    <style name="widget_large_title_text" parent="large_title_text">
+        <item name="android:textColor">@color/colorTextTitle</item>
+    </style>
+
+    <style name="widget_title_text" parent="title_text">
+        <item name="android:textColor">@color/colorTextTitle</item>
+    </style>
+
+    <style name="widget_content_text" parent="content_text">
+        <item name="android:textColor">@color/colorTextTitle</item>
+    </style>
+
+    <style name="widget_subtitle_text" parent="subtitle_text">
+        <item name="android:textColor">@color/colorTextTitle</item>
+    </style>
 
 </resources>

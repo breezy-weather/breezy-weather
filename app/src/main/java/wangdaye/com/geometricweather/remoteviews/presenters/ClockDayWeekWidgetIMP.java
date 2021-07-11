@@ -4,8 +4,7 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 
-import androidx.core.content.ContextCompat;
-
+import android.graphics.Color;
 import android.net.Uri;
 import android.util.TypedValue;
 import android.view.View;
@@ -17,6 +16,7 @@ import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.background.receiver.widget.WidgetClockDayWeekProvider;
+import wangdaye.com.geometricweather.common.basic.models.options.NotificationTextColor;
 import wangdaye.com.geometricweather.common.basic.models.options.WidgetWeekIconMode;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.common.basic.models.weather.Temperature;
@@ -53,12 +53,6 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                                              String cardStyle, int cardAlpha,
                                              String textColor, int textSize, String clockFont,
                                              boolean hideLunar) {
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_clock_day_week);
-        Weather weather = location.getWeather();
-        if (weather == null) {
-            return views;
-        }
-
         ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
 
         boolean dayTime = location.isDaylight();
@@ -69,13 +63,17 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
         boolean minimalIcon = settings.isWidgetMinimalIconEnabled();
         boolean touchToRefresh = settings.isWidgetClickToRefreshEnabled();
 
-        WidgetColor color = new WidgetColor(context, dayTime, cardStyle, textColor);
+        WidgetColor color = new WidgetColor(context, cardStyle, textColor);
 
-        int textColorInt;
-        if (color.darkText) {
-            textColorInt = ContextCompat.getColor(context, R.color.colorTextDark);
-        } else {
-            textColorInt = ContextCompat.getColor(context, R.color.colorTextLight);
+        RemoteViews views = new RemoteViews(
+                context.getPackageName(),
+                !color.showCard
+                        ? R.layout.widget_clock_day_week
+                        : R.layout.widget_clock_day_week_card
+        );
+        Weather weather = location.getWeather();
+        if (weather == null) {
+            return views;
         }
 
         views.setImageViewUri(
@@ -85,7 +83,7 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                         weather.getCurrent().getWeatherCode(),
                         dayTime,
                         minimalIcon,
-                        color.darkText
+                        color.getMinimalIconColor()
                 )
         );
         views.setTextViewText(
@@ -148,7 +146,7 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 R.id.widget_clock_day_week_icon_1,
                 getIconDrawableUri(
                         provider, weather,
-                        weekIconDaytime, minimalIcon, color.darkText,
+                        weekIconDaytime, minimalIcon, color.getMinimalIconColor(),
                         0
                 )
         );
@@ -156,7 +154,7 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 R.id.widget_clock_day_week_icon_2,
                 getIconDrawableUri(
                         provider, weather,
-                        weekIconDaytime, minimalIcon, color.darkText,
+                        weekIconDaytime, minimalIcon, color.getMinimalIconColor(),
                         1
                 )
         );
@@ -164,7 +162,7 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 R.id.widget_clock_day_week_icon_3,
                 getIconDrawableUri(
                         provider, weather,
-                        weekIconDaytime, minimalIcon, color.darkText,
+                        weekIconDaytime, minimalIcon, color.getMinimalIconColor(),
                         2
                 )
         );
@@ -172,7 +170,7 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 R.id.widget_clock_day_week_icon_4,
                 getIconDrawableUri(
                         provider, weather,
-                        weekIconDaytime, minimalIcon, color.darkText,
+                        weekIconDaytime, minimalIcon, color.getMinimalIconColor(),
                         3
                 )
         );
@@ -180,30 +178,32 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 R.id.widget_clock_day_week_icon_5,
                 getIconDrawableUri(
                         provider, weather,
-                        weekIconDaytime, minimalIcon, color.darkText,
+                        weekIconDaytime, minimalIcon, color.getMinimalIconColor(),
                         4
                 )
         );
 
-        views.setTextColor(R.id.widget_clock_day_week_clock_light, textColorInt);
-        views.setTextColor(R.id.widget_clock_day_week_clock_normal, textColorInt);
-        views.setTextColor(R.id.widget_clock_day_week_clock_black, textColorInt);
-        views.setTextColor(R.id.widget_clock_day_week_clock_aa_light, textColorInt);
-        views.setTextColor(R.id.widget_clock_day_week_clock_aa_normal, textColorInt);
-        views.setTextColor(R.id.widget_clock_day_week_clock_aa_black, textColorInt);
-        views.setTextColor(R.id.widget_clock_day_week_title, textColorInt);
-        views.setTextColor(R.id.widget_clock_day_week_lunar, textColorInt);
-        views.setTextColor(R.id.widget_clock_day_week_subtitle, textColorInt);
-        views.setTextColor(R.id.widget_clock_day_week_week_1, textColorInt);
-        views.setTextColor(R.id.widget_clock_day_week_week_2, textColorInt);
-        views.setTextColor(R.id.widget_clock_day_week_week_3, textColorInt);
-        views.setTextColor(R.id.widget_clock_day_week_week_4, textColorInt);
-        views.setTextColor(R.id.widget_clock_day_week_week_5, textColorInt);
-        views.setTextColor(R.id.widget_clock_day_week_temp_1, textColorInt);
-        views.setTextColor(R.id.widget_clock_day_week_temp_2, textColorInt);
-        views.setTextColor(R.id.widget_clock_day_week_temp_3, textColorInt);
-        views.setTextColor(R.id.widget_clock_day_week_temp_4, textColorInt);
-        views.setTextColor(R.id.widget_clock_day_week_temp_5, textColorInt);
+        if (color.textColor != Color.TRANSPARENT) {
+            views.setTextColor(R.id.widget_clock_day_week_clock_light, color.textColor);
+            views.setTextColor(R.id.widget_clock_day_week_clock_normal, color.textColor);
+            views.setTextColor(R.id.widget_clock_day_week_clock_black, color.textColor);
+            views.setTextColor(R.id.widget_clock_day_week_clock_aa_light, color.textColor);
+            views.setTextColor(R.id.widget_clock_day_week_clock_aa_normal, color.textColor);
+            views.setTextColor(R.id.widget_clock_day_week_clock_aa_black, color.textColor);
+            views.setTextColor(R.id.widget_clock_day_week_title, color.textColor);
+            views.setTextColor(R.id.widget_clock_day_week_lunar, color.textColor);
+            views.setTextColor(R.id.widget_clock_day_week_subtitle, color.textColor);
+            views.setTextColor(R.id.widget_clock_day_week_week_1, color.textColor);
+            views.setTextColor(R.id.widget_clock_day_week_week_2, color.textColor);
+            views.setTextColor(R.id.widget_clock_day_week_week_3, color.textColor);
+            views.setTextColor(R.id.widget_clock_day_week_week_4, color.textColor);
+            views.setTextColor(R.id.widget_clock_day_week_week_5, color.textColor);
+            views.setTextColor(R.id.widget_clock_day_week_temp_1, color.textColor);
+            views.setTextColor(R.id.widget_clock_day_week_temp_2, color.textColor);
+            views.setTextColor(R.id.widget_clock_day_week_temp_3, color.textColor);
+            views.setTextColor(R.id.widget_clock_day_week_temp_4, color.textColor);
+            views.setTextColor(R.id.widget_clock_day_week_temp_5, color.textColor);
+        }
 
         if (textSize != 100) {
             float clockSize = context.getResources().getDimensionPixelSize(R.dimen.widget_current_weather_icon_size)
@@ -237,11 +237,13 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
         if (color.showCard) {
             views.setImageViewResource(
                     R.id.widget_clock_day_week_card,
-                    getCardBackgroundId(context, color.darkCard, cardAlpha)
+                    getCardBackgroundId(color.cardColor)
             );
-            views.setViewVisibility(R.id.widget_clock_day_week_card, View.VISIBLE);
-        } else {
-            views.setViewVisibility(R.id.widget_clock_day_week_card, View.GONE);
+            views.setInt(
+                    R.id.widget_clock_day_week_card,
+                    "setImageAlpha",
+                    (int) (cardAlpha / 100.0 * 255)
+            );
         }
 
         if (clockFont == null) {
@@ -290,7 +292,7 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
     }
 
     private static Uri getIconDrawableUri(ResourceProvider helper, Weather weather,
-                                          boolean dayTime, boolean minimalIcon, boolean blackText,
+                                          boolean dayTime, boolean minimalIcon, NotificationTextColor color,
                                           int index) {
         return ResourceHelper.getWidgetNotificationIconUri(
                 helper,
@@ -299,7 +301,7 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                         : weather.getDailyForecast().get(index).night().getWeatherCode(),
                 dayTime,
                 minimalIcon,
-                blackText
+                color
         );
     }
 

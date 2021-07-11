@@ -5,8 +5,8 @@ import android.content.ComponentName;
 import android.content.Context;
 
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 
+import android.graphics.Color;
 import android.net.Uri;
 import android.util.TypedValue;
 import android.view.View;
@@ -18,6 +18,7 @@ import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.background.receiver.widget.WidgetDayWeekProvider;
+import wangdaye.com.geometricweather.common.basic.models.options.NotificationTextColor;
 import wangdaye.com.geometricweather.common.basic.models.options.WidgetWeekIconMode;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.common.basic.models.weather.Base;
@@ -64,21 +65,15 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
         boolean minimalIcon = settings.isWidgetMinimalIconEnabled();
         boolean touchToRefresh = settings.isWidgetClickToRefreshEnabled();
 
-        WidgetColor color = new WidgetColor(context, dayTime, cardStyle, textColor);
-
-        int textColorInt;
-        if (color.darkText) {
-            textColorInt = ContextCompat.getColor(context, R.color.colorTextDark);
-        } else {
-            textColorInt = ContextCompat.getColor(context, R.color.colorTextLight);
-        }
+        WidgetColor color = new WidgetColor(context, cardStyle, textColor);
 
         // build day part.
         RemoteViews views = buildWidgetViewDayPart(
                 context, provider,
                 location, temperatureUnit,
-                dayTime, textColorInt, textSize,
-                minimalIcon, color.darkText,
+                color,
+                dayTime, textSize,
+                minimalIcon,
                 viewStyle, hideSubtitle, subtitleData);
         Weather weather = location.getWeather();
         if (weather == null) {
@@ -134,7 +129,7 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 R.id.widget_day_week_icon_1,
                 getIconDrawableUri(
                         provider, weather, weekIconDaytime,
-                        minimalIcon, color.darkText,
+                        minimalIcon, color.getMinimalIconColor(),
                         0
                 )
         );
@@ -142,7 +137,7 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 R.id.widget_day_week_icon_2,
                 getIconDrawableUri(
                         provider, weather, weekIconDaytime,
-                        minimalIcon, color.darkText,
+                        minimalIcon, color.getMinimalIconColor(),
                         1
                 )
         );
@@ -150,7 +145,7 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 R.id.widget_day_week_icon_3,
                 getIconDrawableUri(
                         provider, weather, weekIconDaytime,
-                        minimalIcon, color.darkText,
+                        minimalIcon, color.getMinimalIconColor(),
                         2
                 )
         );
@@ -158,7 +153,7 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 R.id.widget_day_week_icon_4,
                 getIconDrawableUri(
                         provider, weather, weekIconDaytime,
-                        minimalIcon, color.darkText,
+                        minimalIcon, color.getMinimalIconColor(),
                         3
                 )
         );
@@ -166,22 +161,24 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 R.id.widget_day_week_icon_5,
                 getIconDrawableUri(
                         provider, weather, weekIconDaytime,
-                        minimalIcon, color.darkText,
+                        minimalIcon, color.getMinimalIconColor(),
                         4
                 )
         );
 
         // set text color.
-        views.setTextColor(R.id.widget_day_week_week_1, textColorInt);
-        views.setTextColor(R.id.widget_day_week_week_2, textColorInt);
-        views.setTextColor(R.id.widget_day_week_week_3, textColorInt);
-        views.setTextColor(R.id.widget_day_week_week_4, textColorInt);
-        views.setTextColor(R.id.widget_day_week_week_5, textColorInt);
-        views.setTextColor(R.id.widget_day_week_temp_1, textColorInt);
-        views.setTextColor(R.id.widget_day_week_temp_2, textColorInt);
-        views.setTextColor(R.id.widget_day_week_temp_3, textColorInt);
-        views.setTextColor(R.id.widget_day_week_temp_4, textColorInt);
-        views.setTextColor(R.id.widget_day_week_temp_5, textColorInt);
+        if (color.textColor != Color.TRANSPARENT) {
+            views.setTextColor(R.id.widget_day_week_week_1, color.textColor);
+            views.setTextColor(R.id.widget_day_week_week_2, color.textColor);
+            views.setTextColor(R.id.widget_day_week_week_3, color.textColor);
+            views.setTextColor(R.id.widget_day_week_week_4, color.textColor);
+            views.setTextColor(R.id.widget_day_week_week_5, color.textColor);
+            views.setTextColor(R.id.widget_day_week_temp_1, color.textColor);
+            views.setTextColor(R.id.widget_day_week_temp_2, color.textColor);
+            views.setTextColor(R.id.widget_day_week_temp_3, color.textColor);
+            views.setTextColor(R.id.widget_day_week_temp_4, color.textColor);
+            views.setTextColor(R.id.widget_day_week_temp_5, color.textColor);
+        }
 
         // set text size.
         if (textSize != 100) {
@@ -199,15 +196,17 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
             views.setTextViewTextSize(R.id.widget_day_week_temp_5, TypedValue.COMPLEX_UNIT_PX, contentSize);
         }
 
-        // set card visibility.
+        // set card.
         if (color.showCard) {
             views.setImageViewResource(
                     R.id.widget_day_week_card,
-                    getCardBackgroundId(context, color.darkCard, cardAlpha)
+                    getCardBackgroundId(color.cardColor)
             );
-            views.setViewVisibility(R.id.widget_day_week_card, View.VISIBLE);
-        } else {
-            views.setViewVisibility(R.id.widget_day_week_card, View.GONE);
+            views.setInt(
+                    R.id.widget_day_week_card,
+                    "setImageAlpha",
+                    (int) (cardAlpha / 100.0 * 255)
+            );
         }
 
         // set intent.
@@ -218,21 +217,43 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
 
     private static RemoteViews buildWidgetViewDayPart(Context context, ResourceProvider helper,
                                                       Location location, TemperatureUnit temperatureUnit,
-                                                      boolean dayTime, int textColor, int textSize,
-                                                      boolean minimalIcon, boolean blackText,
+                                                      WidgetColor color,
+                                                      boolean dayTime, int textSize,
+                                                      boolean minimalIcon,
                                                       String viewStyle, boolean hideSubtitle, String subtitleData) {
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_day_week_symmetry);
+        RemoteViews views = new RemoteViews(
+                context.getPackageName(),
+                !color.showCard
+                        ? R.layout.widget_day_week_symmetry
+                        : R.layout.widget_day_week_symmetry_card
+        );
         switch (viewStyle) {
             case "rectangle":
-                views = new RemoteViews(context.getPackageName(), R.layout.widget_day_week_rectangle);
+                views = new RemoteViews(
+                        context.getPackageName(),
+                        !color.showCard
+                                ? R.layout.widget_day_week_rectangle
+                                : R.layout.widget_day_week_rectangle_card
+                );
                 break;
 
             case "symmetry":
-                views = new RemoteViews(context.getPackageName(), R.layout.widget_day_week_symmetry);
+                views = new RemoteViews(
+                        context.getPackageName(),
+                        !color.showCard
+                                ? R.layout.widget_day_week_symmetry
+                                : R.layout.widget_day_week_symmetry_card
+
+                );
                 break;
 
             case "tile":
-                views = new RemoteViews(context.getPackageName(), R.layout.widget_day_week_tile);
+                views = new RemoteViews(
+                        context.getPackageName(),
+                        !color.showCard
+                                ? R.layout.widget_day_week_tile
+                                : R.layout.widget_day_week_tile_card
+                );
                 break;
         }
         Weather weather = location.getWeather();
@@ -247,7 +268,7 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                         weather.getCurrent().getWeatherCode(),
                         dayTime,
                         minimalIcon,
-                        blackText
+                        color.getMinimalIconColor()
                 )
         );
         views.setTextViewText(
@@ -263,9 +284,11 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 getTimeText(context, location, viewStyle, subtitleData, temperatureUnit)
         );
 
-        views.setTextColor(R.id.widget_day_week_title, textColor);
-        views.setTextColor(R.id.widget_day_week_subtitle, textColor);
-        views.setTextColor(R.id.widget_day_week_time, textColor);
+        if (color.textColor != Color.TRANSPARENT) {
+            views.setTextColor(R.id.widget_day_week_title, color.textColor);
+            views.setTextColor(R.id.widget_day_week_subtitle, color.textColor);
+            views.setTextColor(R.id.widget_day_week_time, color.textColor);
+        }
 
         if (textSize != 100) {
             float contentSize = context.getResources().getDimensionPixelSize(R.dimen.widget_content_text_size)
@@ -421,14 +444,14 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
     }
 
     private static Uri getIconDrawableUri(ResourceProvider helper, Weather weather,
-                                          boolean dayTime, boolean minimalIcon, boolean blackText,
+                                          boolean dayTime, boolean minimalIcon, NotificationTextColor color,
                                           int index) {
         return ResourceHelper.getWidgetNotificationIconUri(
                 helper,
                 dayTime
                         ? weather.getDailyForecast().get(index).day().getWeatherCode()
                         : weather.getDailyForecast().get(index).night().getWeatherCode() ,
-                dayTime, minimalIcon, blackText
+                dayTime, minimalIcon, color
         );
     }
 

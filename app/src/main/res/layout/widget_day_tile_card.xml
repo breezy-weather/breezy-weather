@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:background="@android:color/black">
 
+    <ImageView
+        android:id="@+id/widget_day_card"
+        style="@style/widget_background_card"
+        tools:ignore="ContentDescription" />
+
     <RelativeLayout
         android:id="@+id/widget_day_weather"
         android:layout_centerInParent="true"
@@ -35,10 +40,6 @@
                 android:text="@string/ellipsis"
                 android:textSize="@dimen/widget_content_text_size"
                 android:maxLines="1"
-                android:shadowColor="@color/colorTextDark2nd"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="1"
                 style="@style/widget_content_text"
                 tools:text="Partly Cloud 21℃"
                 tools:ignore="RtlHardcoded" />
@@ -49,10 +50,6 @@
                 android:textSize="@dimen/widget_content_text_size"
                 android:maxLines="1"
                 android:textAlignment="viewEnd"
-                android:shadowColor="@color/colorTextDark2nd"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="1"
                 style="@style/widget_content_text"
                 tools:text="17/23°"
                 tools:ignore="RtlHardcoded" />
@@ -61,10 +58,6 @@
                 android:id="@+id/widget_day_time"
                 android:text="@string/wait_refresh"
                 android:textSize="@dimen/widget_time_text_size"
-                android:shadowColor="@color/colorTextDark2nd"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="1"
                 style="@style/widget_content_text"
                 tools:text="San Francisco WEN 17:00"
                 tools:ignore="RtlHardcoded" />

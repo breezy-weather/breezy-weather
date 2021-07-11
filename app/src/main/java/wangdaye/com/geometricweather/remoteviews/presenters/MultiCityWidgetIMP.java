@@ -3,13 +3,13 @@ package wangdaye.com.geometricweather.remoteviews.presenters;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
+import android.graphics.Color;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.RemoteViews;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.IntRange;
-import androidx.core.content.ContextCompat;
 
 import java.util.List;
 
@@ -48,8 +48,6 @@ public class MultiCityWidgetIMP extends AbstractRemoteViewsPresenter {
                                              List<Location> locationList,
                                              String cardStyle, int cardAlpha,
                                              String textColor, int textSize) {
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_multi_city_horizontal);
-
         Location location = locationList.get(0);
         Weather weather = location.getWeather();
         boolean dayTime = location.isDaylight();
@@ -61,14 +59,14 @@ public class MultiCityWidgetIMP extends AbstractRemoteViewsPresenter {
         boolean minimalIcon = settings.isWidgetMinimalIconEnabled();
         boolean touchToRefresh = settings.isWidgetClickToRefreshEnabled();
 
-        WidgetColor color = new WidgetColor(context, dayTime, cardStyle, textColor);
+        WidgetColor color = new WidgetColor(context, cardStyle, textColor);
 
-        int textColorInt;
-        if (color.darkText) {
-            textColorInt = ContextCompat.getColor(context, R.color.colorTextDark);
-        } else {
-            textColorInt = ContextCompat.getColor(context, R.color.colorTextLight);
-        }
+        RemoteViews views = new RemoteViews(
+                context.getPackageName(),
+                !color.showCard
+                        ? R.layout.widget_multi_city_horizontal
+                        : R.layout.widget_multi_city_horizontal_card
+        );
 
         // city 1.
         views.setViewVisibility(R.id.widget_multi_city_horizontal_weather_1, View.VISIBLE);
@@ -87,7 +85,7 @@ public class MultiCityWidgetIMP extends AbstractRemoteViewsPresenter {
                                     : weather.getDailyForecast().get(0).night().getWeatherCode(),
                             dayTime,
                             minimalIcon,
-                            color.darkText
+                            color.getMinimalIconColor()
                     )
             );
 
@@ -126,7 +124,7 @@ public class MultiCityWidgetIMP extends AbstractRemoteViewsPresenter {
                                         : weather.getDailyForecast().get(0).night().getWeatherCode(),
                                 dayTime,
                                 minimalIcon,
-                                color.darkText
+                                color.getMinimalIconColor()
                         )
                 );
 
@@ -168,7 +166,7 @@ public class MultiCityWidgetIMP extends AbstractRemoteViewsPresenter {
                                         : weather.getDailyForecast().get(0).night().getWeatherCode(),
                                 dayTime,
                                 minimalIcon,
-                                color.darkText
+                                color.getMinimalIconColor()
                         )
                 );
 
@@ -188,12 +186,14 @@ public class MultiCityWidgetIMP extends AbstractRemoteViewsPresenter {
             views.setViewVisibility(R.id.widget_multi_city_horizontal_weather_3, View.GONE);
         }
 
-        views.setTextColor(R.id.widget_multi_city_horizontal_title_1, textColorInt);
-        views.setTextColor(R.id.widget_multi_city_horizontal_title_2, textColorInt);
-        views.setTextColor(R.id.widget_multi_city_horizontal_title_3, textColorInt);
-        views.setTextColor(R.id.widget_multi_city_horizontal_content_1, textColorInt);
-        views.setTextColor(R.id.widget_multi_city_horizontal_content_2, textColorInt);
-        views.setTextColor(R.id.widget_multi_city_horizontal_content_3, textColorInt);
+        if (color.textColor != Color.TRANSPARENT) {
+            views.setTextColor(R.id.widget_multi_city_horizontal_title_1, color.textColor);
+            views.setTextColor(R.id.widget_multi_city_horizontal_title_2, color.textColor);
+            views.setTextColor(R.id.widget_multi_city_horizontal_title_3, color.textColor);
+            views.setTextColor(R.id.widget_multi_city_horizontal_content_1, color.textColor);
+            views.setTextColor(R.id.widget_multi_city_horizontal_content_2, color.textColor);
+            views.setTextColor(R.id.widget_multi_city_horizontal_content_3, color.textColor);
+        }
 
         if (textSize != 100) {
             float titleSize = context.getResources().getDimensionPixelSize(R.dimen.widget_title_text_size)
@@ -212,11 +212,13 @@ public class MultiCityWidgetIMP extends AbstractRemoteViewsPresenter {
         if (color.showCard) {
             views.setImageViewResource(
                     R.id.widget_multi_city_horizontal_card,
-                    getCardBackgroundId(context, color.darkCard, cardAlpha)
+                    getCardBackgroundId(color.cardColor)
             );
-            views.setViewVisibility(R.id.widget_multi_city_horizontal_card, View.VISIBLE);
-        } else {
-            views.setViewVisibility(R.id.widget_multi_city_horizontal_card, View.GONE);
+            views.setInt(
+                    R.id.widget_multi_city_horizontal_card,
+                    "setImageAlpha",
+                    (int) (cardAlpha / 100.0 * 255)
+            );
         }
 
         return views;

@@ -5,8 +5,8 @@ import android.content.ComponentName;
 import android.content.Context;
 
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 
+import android.graphics.Color;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -61,19 +61,20 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
         boolean minimalIcon = settings.isWidgetMinimalIconEnabled();
         boolean touchToRefresh = settings.isWidgetClickToRefreshEnabled();
 
-        WidgetColor color = new WidgetColor(context, dayTime, cardStyle, textColor);
+        WidgetColor color;
         if (viewStyle.equals("pixel") || viewStyle.equals("nano")
                 || viewStyle.equals("oreo") || viewStyle.equals("oreo_google_sans")
                 || viewStyle.equals("temp")) {
-            color.showCard = false;
-            color.darkText = textColor.equals("dark")
-                    || (textColor.equals("auto") && isLightWallpaper(context));
+            color = new WidgetColor(context, "none", textColor);
+        } else {
+            color = new WidgetColor(context, cardStyle, textColor);
         }
 
         RemoteViews views = buildWidgetView(
                 context, location, temperatureUnit,
+                color,
                 dayTime, minimalIcon,
-                viewStyle, color, textSize,
+                viewStyle, textSize,
                 hideSubtitle, subtitleData);
         Weather weather = location.getWeather();
         if (weather == null) {
@@ -83,11 +84,13 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
         if (color.showCard) {
             views.setImageViewResource(
                     R.id.widget_day_card,
-                    getCardBackgroundId(context, color.darkCard, cardAlpha)
+                    getCardBackgroundId(color.cardColor)
             );
-            views.setViewVisibility(R.id.widget_day_card, View.VISIBLE);
-        } else {
-            views.setViewVisibility(R.id.widget_day_card, View.GONE);
+            views.setInt(
+                    R.id.widget_day_card,
+                    "setImageAlpha",
+                    (int) (cardAlpha / 100.0 * 255)
+            );
         }
 
         setOnClickPendingIntent(context, views, location, viewStyle, subtitleData, touchToRefresh);
@@ -97,49 +100,105 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
 
     private static RemoteViews buildWidgetView(Context context, Location location, 
                                                TemperatureUnit temperatureUnit,
+                                               WidgetColor color,
                                                boolean dayTime, boolean minimalIcon,
-                                               String viewStyle, WidgetColor color, int textSize,
+                                               String viewStyle, int textSize,
                                                boolean hideSubtitle, String subtitleData) {
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_day_symmetry);
+        RemoteViews views = new RemoteViews(
+                context.getPackageName(),
+                !color.showCard
+                        ? R.layout.widget_day_symmetry
+                        : R.layout.widget_day_symmetry_card
+        );
         switch (viewStyle) {
             case "rectangle":
-                views = new RemoteViews(context.getPackageName(), R.layout.widget_day_rectangle);
+                views = new RemoteViews(
+                        context.getPackageName(),
+                        !color.showCard
+                                ? R.layout.widget_day_rectangle
+                                : R.layout.widget_day_rectangle_card
+                );
                 break;
 
             case "symmetry":
-                views = new RemoteViews(context.getPackageName(), R.layout.widget_day_symmetry);
+                views = new RemoteViews(
+                        context.getPackageName(),
+                        !color.showCard
+                                ? R.layout.widget_day_symmetry
+                                : R.layout.widget_day_symmetry_card
+                );
                 break;
 
             case "tile":
-                views = new RemoteViews(context.getPackageName(), R.layout.widget_day_tile);
+                views = new RemoteViews(
+                        context.getPackageName(),
+                        !color.showCard
+                                ? R.layout.widget_day_tile
+                                : R.layout.widget_day_tile_card
+                );
                 break;
 
             case "mini":
-                views = new RemoteViews(context.getPackageName(), R.layout.widget_day_mini);
+                views = new RemoteViews(
+                        context.getPackageName(),
+                        !color.showCard
+                                ? R.layout.widget_day_mini
+                                : R.layout.widget_day_mini_card
+                );
                 break;
 
             case "nano":
-                views = new RemoteViews(context.getPackageName(), R.layout.widget_day_nano);
+                views = new RemoteViews(
+                        context.getPackageName(),
+                        !color.showCard
+                                ? R.layout.widget_day_nano
+                                : R.layout.widget_day_nano_card
+                );
                 break;
 
             case "pixel":
-                views = new RemoteViews(context.getPackageName(), R.layout.widget_day_pixel);
+                views = new RemoteViews(
+                        context.getPackageName(),
+                        !color.showCard
+                                ? R.layout.widget_day_pixel
+                                : R.layout.widget_day_pixel_card
+                        );
                 break;
 
             case "vertical":
-                views = new RemoteViews(context.getPackageName(), R.layout.widget_day_vertical);
+                views = new RemoteViews(
+                        context.getPackageName(),
+                        !color.showCard
+                                ? R.layout.widget_day_vertical
+                                : R.layout.widget_day_vertical_card
+                );
                 break;
 
             case "oreo":
-                views = new RemoteViews(context.getPackageName(), R.layout.widget_day_oreo);
+                views = new RemoteViews(
+                        context.getPackageName(),
+                        !color.showCard
+                                ? R.layout.widget_day_oreo
+                                : R.layout.widget_day_oreo_card
+                );
                 break;
 
             case "oreo_google_sans":
-                views = new RemoteViews(context.getPackageName(), R.layout.widget_day_oreo_google_sans);
+                views = new RemoteViews(
+                        context.getPackageName(),
+                        !color.showCard
+                                ? R.layout.widget_day_oreo_google_sans
+                                : R.layout.widget_day_oreo_google_sans_card
+                );
                 break;
 
             case "temp":
-                views = new RemoteViews(context.getPackageName(), R.layout.widget_day_temp);
+                views = new RemoteViews(
+                        context.getPackageName(),
+                        !color.showCard
+                                ? R.layout.widget_day_temp
+                                : R.layout.widget_day_temp_card
+                );
                 break;
         }
         Weather weather = location.getWeather();
@@ -149,13 +208,6 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
 
         ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
 
-        int textColorInt;
-        if (color.darkText) {
-            textColorInt = ContextCompat.getColor(context, R.color.colorTextDark);
-        } else {
-            textColorInt = ContextCompat.getColor(context, R.color.colorTextLight);
-        }
-
         views.setImageViewUri(
                 R.id.widget_day_icon,
                 ResourceHelper.getWidgetNotificationIconUri(
@@ -163,7 +215,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
                         weather.getCurrent().getWeatherCode(),
                         dayTime,
                         minimalIcon,
-                        color.darkText
+                        color.getMinimalIconColor()
                 )
         );
         if (!viewStyle.equals("oreo") && !viewStyle.equals("oreo_google_sans")) {
@@ -191,11 +243,13 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
             );
         }
 
-        views.setTextColor(R.id.widget_day_title, textColorInt);
-        views.setTextColor(R.id.widget_day_sign, textColorInt);
-        views.setTextColor(R.id.widget_day_symbol, textColorInt);
-        views.setTextColor(R.id.widget_day_subtitle, textColorInt);
-        views.setTextColor(R.id.widget_day_time, textColorInt);
+        if (color.textColor != Color.TRANSPARENT) {
+            views.setTextColor(R.id.widget_day_title, color.textColor);
+            views.setTextColor(R.id.widget_day_sign, color.textColor);
+            views.setTextColor(R.id.widget_day_symbol, color.textColor);
+            views.setTextColor(R.id.widget_day_subtitle, color.textColor);
+            views.setTextColor(R.id.widget_day_time, color.textColor);
+        }
 
         if (textSize != 100) {
             float signSymbolSize = context.getResources().getDimensionPixelSize(R.dimen.widget_current_weather_icon_size)
