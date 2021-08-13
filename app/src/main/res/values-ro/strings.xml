@@ -366,7 +366,7 @@
     <string name="settings_category_notification">Notificări</string>
     <string name="settings_title_notification">Trimite notificări</string>
     <string name="settings_title_notification_style">Tip notificări</string>
-    <string name="settings_title_notification_temp_icon">Temperatura în baar de stare</string>
+    <string name="settings_title_notification_temp_icon">Temperatura în bara de stare</string>
     <string name="settings_title_notification_color">Culoare notificări</string>
     <string name="settings_title_notification_custom_color">Culoare personalizată</string>
     <string name="settings_title_notification_text_color">Culoare text</string>
