@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/widget_s_card_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@android:color/black"
+    tools:layout_width="148dp"
+    tools:layout_height="148dp">
+
+    <ImageView
+        android:id="@+id/widget_s_card_background"
+        style="@style/widget_background_card"
+        tools:ignore="ContentDescription" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingTop="@dimen/little_margin"
+                android:paddingStart="@dimen/little_margin"
+                android:paddingEnd="@dimen/little_margin"
+                tools:ignore="UseCompoundDrawables">
+
+                <TextView
+                    android:id="@+id/widget_s_card_background_city"
+                    android:text="@string/ellipsis"
+                    android:layout_marginStart="@dimen/little_margin"
+                    android:layout_marginEnd="@dimen/little_margin"
+                    android:textStyle="bold"
+                    style="@style/widget_title_text"
+                    tools:text="青岛市"
+                    tools:ignore="RtlHardcoded" />
+
+                <ImageView
+                    android:id="@+id/widget_s_card_background_currentIcon"
+                    android:layout_width="@dimen/widget_mini_weather_icon_size"
+                    android:layout_height="@dimen/widget_mini_weather_icon_size"
+                    android:src="@drawable/weather_cloudy"
+                    android:layout_marginEnd="@dimen/little_margin"
+                    tools:ignore="ContentDescription" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="-4dp"
+                android:paddingStart="@dimen/little_margin"
+                android:paddingEnd="@dimen/little_margin">
+
+                <TextView
+                    android:id="@+id/widget_s_card_background_currentTemperature"
+                    android:text="@string/ellipsis"
+                    android:layout_marginStart="@dimen/little_margin"
+                    android:layout_marginEnd="-4dp"
+                    android:textSize="36sp"
+                    style="@style/widget_large_title_text"
+                    tools:text="27°"
+                    tools:ignore="RtlHardcoded" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="end">
+
+                    <TextView
+                        android:id="@+id/widget_s_card_background_daytimeTemperature"
+                        android:text="@string/ellipsis"
+                        android:layout_marginStart="@dimen/little_margin"
+                        android:layout_marginEnd="@dimen/little_margin"
+                        android:textStyle="bold"
+                        style="@style/widget_subtitle_text"
+                        tools:text="31°"
+                        tools:ignore="RtlHardcoded" />
+
+                    <TextView
+                        android:id="@+id/widget_s_card_background_nighttimeTemperature"
+                        android:text="@string/ellipsis"
+                        android:layout_marginStart="@dimen/little_margin"
+                        android:layout_marginEnd="@dimen/little_margin"
+                        style="@style/widget_subtitle_text"
+                        tools:text="19°"
+                        tools:ignore="RtlHardcoded" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="bottom"
+            android:background="@drawable/widget_s_card_2x2_mask">
+
+            <TextView
+                android:id="@+id/widget_s_card_background_realFeelTemperature"
+                android:text="@string/ellipsis"
+                android:layout_marginStart="@dimen/normal_margin"
+                android:layout_marginEnd="@dimen/normal_margin"
+                android:layout_marginTop="@dimen/normal_margin"
+                style="@style/widget_subtitle_text"
+                tools:text="体感 34°"
+                tools:ignore="RtlHardcoded" />
+
+            <TextView
+                android:id="@+id/widget_s_card_background_windOrAqi"
+                android:text="@string/ellipsis"
+                android:layout_marginStart="@dimen/normal_margin"
+                android:layout_marginEnd="@dimen/normal_margin"
+                android:layout_marginBottom="@dimen/normal_margin"
+                android:textStyle="bold"
+                style="@style/widget_content_text"
+                tools:text="空气 - 轻度污染"
+                tools:ignore="RtlHardcoded" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</RelativeLayout>

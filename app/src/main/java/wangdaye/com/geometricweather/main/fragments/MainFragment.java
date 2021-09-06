@@ -227,7 +227,7 @@ public class MainFragment extends GeoFragment {
 
     @SuppressLint({"SetTextI18n", "ClickableViewAccessibility"})
     private void drawUI(Location location, boolean initialize) {
-        if (location.equals(mCurrentLocationFormattedId)
+        if (location.getFormattedId().equals(mCurrentLocationFormattedId)
                 && location.getWeatherSource() == mCurrentWeatherSource
                 && location.getWeather() != null
                 && location.getWeather().getBase().getTimeStamp() == mCurrentWeatherTimeStamp
@@ -236,7 +236,7 @@ public class MainFragment extends GeoFragment {
             return;
         }
 
-        boolean needToResetUI = !location.equals(mCurrentLocationFormattedId)
+        boolean needToResetUI = !location.getFormattedId().equals(mCurrentLocationFormattedId)
                 || mCurrentWeatherSource != location.getWeatherSource()
                 || mCurrentWeatherTimeStamp != INVALID_CURRENT_WEATHER_TIME_STAMP
                 || mCurrentLightTheme == null

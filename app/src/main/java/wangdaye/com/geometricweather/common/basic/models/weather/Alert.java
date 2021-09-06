@@ -8,7 +8,9 @@ import androidx.annotation.ColorInt;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Alert.
@@ -74,30 +76,24 @@ public class Alert implements Parcelable, Serializable {
     }
 
     public static void deduplication(List<Alert> alertList) {
-        for (int i = 0; i < alertList.size(); i ++) {
-            String type = alertList.get(i).getType();
-            for (int j = alertList.size() - 1; j > i; j --) {
-                if (alertList.get(j).getType().equals(type)) {
-                    alertList.remove(j);
-                }
+        Set<String> typeSet = new HashSet<>();
+
+        for (int i = alertList.size() - 1; i >= 0; i --) {
+            Alert alert = alertList.get(i);
+
+            if (typeSet.contains(alert.getType())) {
+                alertList.remove(i);
+            } else {
+                typeSet.add(alert.type);
             }
         }
     }
 
     public static void descByTime(List<Alert> alertList) {
-        for (int i = 0; i < alertList.size(); i ++) {
-            long maxTime = alertList.get(i).time;
-            int maxIndex = i;
-            for (int j = i + 1; j < alertList.size(); j ++) {
-                if (maxTime < alertList.get(j).time) {
-                    maxTime = alertList.get(j).time;
-                    maxIndex = j;
-                }
-            }
-            if (maxIndex != i) {
-                Collections.swap(alertList, maxIndex, i);
-            }
-        }
+        Collections.sort(
+                alertList,
+                (o1, o2) -> (int) (o2.getTime() - o1.getTime())
+        );
     }
 
     // parcelable.

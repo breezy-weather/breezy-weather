@@ -7,9 +7,6 @@ import wangdaye.com.geometricweather.background.polling.work.WorkerHelper;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 
-/**
- * Polling manager.
- * */
 public class PollingManager {
 
     public static void resetAllBackgroundTask(Context context, boolean forceRefresh) {
@@ -124,12 +121,10 @@ public class PollingManager {
 
     private static void forceRefresh(Context context, boolean backgroundFree) {
         IntentHelper.startAwakeForegroundUpdateService(context);
-        /*
-        if (backgroundFree) {
-            WorkerHelper.setExpeditedPollingWork(context);
-        } else {
-            IntentHelper.startAwakeForegroundUpdateService(context);
-        }
-        */
+//        if (backgroundFree) {
+//            WorkerHelper.setExpeditedPollingWork(context);
+//        } else {
+//            IntentHelper.startAwakeForegroundUpdateService(context);
+//        }
     }
 }

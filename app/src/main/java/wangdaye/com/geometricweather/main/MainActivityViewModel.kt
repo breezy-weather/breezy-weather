@@ -43,7 +43,7 @@ class MainActivityViewModel constructor(
                 return 0
             }
             for (i in locationList.indices) {
-                if (locationList[i].equals(formattedId)) {
+                if (locationList[i].formattedId.equals(formattedId)) {
                     return i
                 }
             }

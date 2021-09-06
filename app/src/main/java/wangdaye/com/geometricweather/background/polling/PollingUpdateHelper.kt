@@ -61,8 +61,9 @@ class PollingUpdateHelper @JvmOverloads constructor(
                         locationList[index] = response.result
 
                         val newWeather = response.result.weather
-                        if (newWeather != null && (oldWeather == null
-                                        || newWeather.base.timeStamp != oldWeather.base.timeStamp)) {
+                        if (newWeather != null
+                            && (oldWeather == null
+                                    || newWeather.base.timeStamp != oldWeather.base.timeStamp)) {
                             BusHelper.postLocationChanged(response.result)
                         }
                     }

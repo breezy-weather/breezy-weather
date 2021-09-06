@@ -85,4 +85,24 @@
     <color name="weather_source_cn">#033566</color>
     <color name="weather_source_caiyun">#5ebb8e</color>
 
+    <color name="dynamic_widget_background_clear_day">#fdbc4c</color>
+    <color name="dynamic_widget_background_clear_night">#141c2c</color>
+    <color name="dynamic_widget_background_partly_cloudy_day">#00a5d9</color>
+    <color name="dynamic_widget_background_partly_cloudy_night">#222d43</color>
+    <color name="dynamic_widget_background_cloudy_day">#607988</color>
+    <color name="dynamic_widget_background_cloudy_night">#222d43</color>
+    <color name="dynamic_widget_background_thunder">#2b1d45</color>
+    <color name="dynamic_widget_background_fog">#4f5d68</color>
+    <color name="dynamic_widget_background_haze">#424242</color>
+    <color name="dynamic_widget_background_rain_day">#4297e7</color>
+    <color name="dynamic_widget_background_rain_night">#264e8f</color>
+    <color name="dynamic_widget_background_sleet_day">#68baff</color>
+    <color name="dynamic_widget_background_sleet_night">#1a5b92</color>
+    <color name="dynamic_widget_background_thunderstorm">#2b1d45</color>
+    <color name="dynamic_widget_background_snow_day">#68baff</color>
+    <color name="dynamic_widget_background_snow_night">#1a5bf6</color>
+    <color name="dynamic_widget_background_hail_day">#5074c1</color>
+    <color name="dynamic_widget_background_hail_night">#2a3445</color>
+    <color name="dynamic_widget_background_wind">#e9993c</color>
+
 </resources>
