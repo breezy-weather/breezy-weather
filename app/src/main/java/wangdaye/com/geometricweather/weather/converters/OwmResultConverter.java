@@ -159,7 +159,7 @@ public class OwmResultConverter {
                             ),
                             (float) oneCallResult.current.humidity,
                             (float) oneCallResult.current.pressure,
-                            (float) oneCallResult.current.visibility,
+                            (float) (oneCallResult.current.visibility / 1000),
                             toInt(oneCallResult.current.dewPoint),
                             oneCallResult.current.clouds,
                             null,
