@@ -1,10 +1,18 @@
 package wangdaye.com.geometricweather.background.polling;
 
 import android.content.Context;
+import android.os.Build;
+
+import java.util.List;
 
 import wangdaye.com.geometricweather.background.polling.services.permanent.PermanentServiceHelper;
 import wangdaye.com.geometricweather.background.polling.work.WorkerHelper;
+import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
+import wangdaye.com.geometricweather.db.DatabaseHelper;
+import wangdaye.com.geometricweather.remoteviews.NotificationHelper;
+import wangdaye.com.geometricweather.remoteviews.WidgetHelper;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 
 public class PollingManager {
@@ -13,7 +21,7 @@ public class PollingManager {
         SettingsManager settings = SettingsManager.getInstance(context);
 
         if (forceRefresh) {
-            forceRefresh(context, settings.isBackgroundFree());
+            forceRefresh(context);
             return;
         }
 
@@ -48,7 +56,7 @@ public class PollingManager {
         SettingsManager settings = SettingsManager.getInstance(context);
 
         if (forceRefresh) {
-            forceRefresh(context, settings.isBackgroundFree());
+            forceRefresh(context);
             return;
         }
 
@@ -72,7 +80,7 @@ public class PollingManager {
         SettingsManager settings = SettingsManager.getInstance(context);
 
         if (forceRefresh) {
-            forceRefresh(context, settings.isBackgroundFree());
+            forceRefresh(context);
             return;
         }
 
@@ -98,7 +106,7 @@ public class PollingManager {
         SettingsManager settings = SettingsManager.getInstance(context);
 
         if (forceRefresh) {
-            forceRefresh(context, settings.isBackgroundFree());
+            forceRefresh(context);
             return;
         }
 
@@ -119,12 +127,22 @@ public class PollingManager {
         }
     }
 
-    private static void forceRefresh(Context context, boolean backgroundFree) {
-        IntentHelper.startAwakeForegroundUpdateService(context);
-//        if (backgroundFree) {
-//            WorkerHelper.setExpeditedPollingWork(context);
-//        } else {
-//            IntentHelper.startAwakeForegroundUpdateService(context);
-//        }
+    private static void forceRefresh(Context context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            AsyncHelper.runOnIO(() -> {
+                List<Location> locationList = DatabaseHelper.getInstance(context).readLocationList();
+                for (Location location : locationList) {
+                    location.setWeather(DatabaseHelper.getInstance(context).readWeather(location));
+                }
+
+                WidgetHelper.updateWidgetIfNecessary(context, locationList.get(0));
+                WidgetHelper.updateWidgetIfNecessary(context, locationList);
+                NotificationHelper.updateNotificationIfNecessary(context, locationList);
+            });
+
+            WorkerHelper.setExpeditedPollingWork(context);
+        } else {
+            IntentHelper.startAwakeForegroundUpdateService(context);
+        }
     }
 }

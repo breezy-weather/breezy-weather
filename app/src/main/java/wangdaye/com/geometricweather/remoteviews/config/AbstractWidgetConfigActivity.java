@@ -605,6 +605,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         SnackbarHelper.showSnackbar(getString(R.string.feedback_get_weather_failed));
     }
 
+    @SuppressLint("MissingPermission")
     private void bindWallpaper(boolean checkPermissions) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkPermissions) {
             boolean hasPermission = checkPermissions(0);
