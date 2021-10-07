@@ -225,7 +225,7 @@ public class MainFragment extends GeoFragment {
 
     // control.
 
-    @SuppressLint({"SetTextI18n", "ClickableViewAccessibility"})
+    @SuppressLint({"SetTextI18n", "ClickableViewAccessibility", "NotifyDataSetChanged"})
     private void drawUI(Location location, boolean initialize) {
         if (location.getFormattedId().equals(mCurrentLocationFormattedId)
                 && location.getWeatherSource() == mCurrentWeatherSource
@@ -309,6 +309,7 @@ public class MainFragment extends GeoFragment {
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private void resetUI(Location location) {
         MainThemeManager themeManager = mViewModel.getThemeManager();
 
@@ -391,10 +392,8 @@ public class MainFragment extends GeoFragment {
 
     // on swipe listener(swipe switch layout).
 
-    private final SwipeSwitchLayout.OnSwitchListener switchListener = new SwipeSwitchLayout.OnSwitchListener() {
-
-        private @Nullable Location mLocation;
-        private boolean mIndexSwitched;
+    private final SwipeSwitchLayout.OnSwitchListener switchListener
+            = new SwipeSwitchLayout.OnSwitchListener() {
 
         private float mLastProgress = 0;
 
@@ -402,29 +401,18 @@ public class MainFragment extends GeoFragment {
         public void onSwipeProgressChanged(int swipeDirection, float progress) {
             mBinding.indicator.setDisplayState(progress != 0);
 
-            mIndexSwitched = false;
-
-            if (progress >= 1 && mLastProgress < 0.5) {
-                mIndexSwitched = true;
-                mLocation = mViewModel.getLocationFromList(
-                        swipeDirection == SwipeSwitchLayout.SWIPE_DIRECTION_LEFT ? 1 : -1);
+            if (progress >= 1 && mLastProgress < 1) {
                 mLastProgress = 1;
-            } else if (progress < 0.5 && mLastProgress >= 1) {
-                mIndexSwitched = true;
-                mLocation = mViewModel.getLocationFromList(0);
+                updatePreviewView(
+                        mViewModel.getLocationFromList(
+                                swipeDirection == SwipeSwitchLayout.SWIPE_DIRECTION_LEFT ? 1 : -1
+                        )
+                );
+            } else if (progress < 1 && mLastProgress >= 1) {
                 mLastProgress = 0;
-            }
-
-            if (mIndexSwitched && mLocation != null) {
-                mBinding.toolbar.setTitle(mLocation.getCityName(requireContext()));
-                if (mLocation.getWeather() != null) {
-                    WeatherViewController.setWeatherCode(
-                            mWeatherView,
-                            mLocation.getWeather(),
-                            mLocation.isDaylight(),
-                            mResourceProvider
-                    );
-                }
+                updatePreviewView(
+                        mViewModel.getLocationFromList(0)
+                );
             }
         }
 
@@ -434,7 +422,25 @@ public class MainFragment extends GeoFragment {
                 resetUIUpdateFlag();
 
                 mBinding.indicator.setDisplayState(false);
-                mViewModel.setLocation(swipeDirection == SwipeSwitchLayout.SWIPE_DIRECTION_LEFT ? 1 : -1);
+                mViewModel.setLocation(
+                        swipeDirection == SwipeSwitchLayout.SWIPE_DIRECTION_LEFT ? 1 : -1
+                );
+            }
+        }
+
+        private void updatePreviewView(@Nullable Location location) {
+            if (location == null) {
+                return;
+            }
+
+            mBinding.toolbar.setTitle(location.getCityName(requireContext()));
+            if (location.getWeather() != null) {
+                WeatherViewController.setWeatherCode(
+                        mWeatherView,
+                        location.getWeather(),
+                        location.isDaylight(),
+                        mResourceProvider
+                );
             }
         }
     };

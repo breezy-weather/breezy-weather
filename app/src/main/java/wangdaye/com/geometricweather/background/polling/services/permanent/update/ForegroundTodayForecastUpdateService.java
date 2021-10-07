@@ -37,8 +37,8 @@ public class ForegroundTodayForecastUpdateService extends ForegroundUpdateServic
     }
 
     @Override
-    public NotificationCompat.Builder getForegroundNotification(int total) {
-        return super.getForegroundNotification(total)
+    public NotificationCompat.Builder getForegroundNotification(int index, int total) {
+        return super.getForegroundNotification(index, total)
                 .setContentTitle(getString(R.string.geometric_weather) + " " + getString(R.string.forecast));
     }
 

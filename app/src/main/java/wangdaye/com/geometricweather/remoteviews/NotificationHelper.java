@@ -162,8 +162,7 @@ public class NotificationHelper {
                         context,
                         notificationId,
                         IntentHelper.buildMainActivityShowAlertsIntent(location),
-                        PendingIntent.FLAG_UPDATE_CURRENT
-                        // PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
+                        PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
                 )
         ).setStyle(
                 new NotificationCompat.BigTextStyle()
@@ -194,8 +193,7 @@ public class NotificationHelper {
                                 context,
                                 notificationId,
                                 IntentHelper.buildMainActivityShowAlertsIntent(location),
-                                PendingIntent.FLAG_UPDATE_CURRENT
-                                // PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
+                                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
                         )
                 ).build();
     }
@@ -256,8 +254,7 @@ public class NotificationHelper {
                                     context,
                                     GeometricWeather.NOTIFICATION_ID_PRECIPITATION,
                                     IntentHelper.buildMainActivityIntent(location),
-                                    PendingIntent.FLAG_UPDATE_CURRENT
-                                    // PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
+                                    PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
                             )
                     ).build()
             );
@@ -285,8 +282,7 @@ public class NotificationHelper {
                                     context,
                                     GeometricWeather.NOTIFICATION_ID_PRECIPITATION,
                                     IntentHelper.buildMainActivityIntent(location),
-                                    PendingIntent.FLAG_UPDATE_CURRENT
-                                    // PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
+                                    PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
                             )
                     ).build()
             );

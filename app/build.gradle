@@ -1,15 +1,17 @@
-apply plugin: 'com.android.application'
-apply plugin: 'org.greenrobot.greendao'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'dagger.hilt.android.plugin'
+plugins {
+    id 'com.android.application'
+    id 'org.greenrobot.greendao'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
     defaultConfig {
         applicationId "wangdaye.com.geometricweather"
         minSdkVersion 19
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 30017
         versionName "3.017"
         multiDexEnabled true
@@ -19,7 +21,7 @@ android {
     }
     ndkVersion "22.0.6917172"
     buildFeatures {
-        viewBinding = true
+        viewBinding true
     }
     buildTypes {
         release {
@@ -140,7 +142,7 @@ dependencies {
     gplayImplementation fileTree(include: ['*.jar'], dir: 'libs')
 
     // kotlin.
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.32"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     // test.
     testImplementation 'junit:junit:4.13.2'
@@ -161,20 +163,20 @@ dependencies {
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
     // preference.
-    implementation 'androidx.preference:preference:1.1.1'
+    implementation 'androidx.preference:preference-ktx:1.1.1'
 
     // work.
-    implementation "androidx.work:work-runtime:2.5.0"
+    implementation "androidx.work:work-runtime:2.7.0-beta01"
 
     // lifecycle.
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
-    implementation "androidx.lifecycle:lifecycle-viewmodel:2.3.1"
-    implementation "androidx.lifecycle:lifecycle-livedata:2.3.1"
-    implementation "androidx.lifecycle:lifecycle-runtime:2.3.1"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.1"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
     //noinspection LifecycleAnnotationProcessorWithJava8
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:2.3.1"
     implementation "androidx.lifecycle:lifecycle-common-java8:2.3.1"
-    implementation "androidx.lifecycle:lifecycle-reactivestreams:2.3.1"
+    implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:2.3.1"
 
     // multi dex.
     implementation "androidx.multidex:multidex:2.0.1"
@@ -184,10 +186,8 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:2.28-alpha"
 
     implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02'
-    kapt 'androidx.hilt:hilt-compiler:1.0.0-alpha01'
-    annotationProcessor 'androidx.hilt:hilt-compiler:1.0.0-alpha01'
-
     implementation 'androidx.hilt:hilt-work:1.0.0-alpha02'
+
     kapt 'androidx.hilt:hilt-compiler:1.0.0-alpha01'
     annotationProcessor 'androidx.hilt:hilt-compiler:1.0.0-alpha01'
 
@@ -195,8 +195,8 @@ dependencies {
     pubImplementation 'com.amap.api:location:5.3.1'
 
     // gms.
-    pubImplementation "com.google.android.gms:play-services-location:17.1.0"
-    gplayImplementation "com.google.android.gms:play-services-location:17.1.0"
+    pubImplementation "com.google.android.gms:play-services-location:18.0.0"
+    gplayImplementation "com.google.android.gms:play-services-location:18.0.0"
 
     // glide.
     implementation 'com.github.bumptech.glide:glide:4.11.0'
@@ -246,7 +246,6 @@ dependencies {
 
     // utils.
     implementation 'androidx.core:core:1.7.0-alpha01'
-    implementation 'org.jetbrains:annotations-java5:15.0'
     implementation 'com.github.XhinLiang:LunarCalendar:3.0.0'
     implementation 'com.github.didikee:AndroidDonate:0.1.0'
     implementation "androidx.core:core-ktx:1.6.0"
