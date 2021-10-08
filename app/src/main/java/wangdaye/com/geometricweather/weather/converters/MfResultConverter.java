@@ -300,7 +300,7 @@ public class MfResultConverter {
 
         for (Hourly hour : hourly) {
             if ((isDaytime && (hour.getTime() / 1000) >= dailyForecast.dt + 6 * 3600 && (hour.getTime() / 1000) < dailyForecast.dt + 18 * 3600)
-            || (!isDaytime && (hour.getTime() / 1000) >= dailyForecast.dt + 18 * 3600 && (hour.getTime() / 1000) < dailyForecast.dt + 30 * 3600)) {
+                    || (!isDaytime && (hour.getTime() / 1000) >= dailyForecast.dt + 18 * 3600 && (hour.getTime() / 1000) < dailyForecast.dt + 30 * 3600)) {
                 // Temperature
                 if (isDaytime) {
                     if (temp == null || hour.getTemperature().getTemperature() > temp) {

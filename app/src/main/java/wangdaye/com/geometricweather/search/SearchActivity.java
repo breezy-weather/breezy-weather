@@ -174,14 +174,14 @@ public class SearchActivity extends GeoActivity
                 null,
                 (view, formattedId) -> {
                     for (int i = 0; i < mCurrentList.size(); i ++) {
-                        if (mCurrentList.get(i).equals(formattedId)) {
+                        if (mCurrentList.get(i).getFormattedId().equals(formattedId)) {
                             SnackbarHelper.showSnackbar(getString(R.string.feedback_collect_failed));
                             return;
                         }
                     }
 
                     for (Location l : mViewModel.getLocationList()) {
-                        if (l.equals(formattedId)) {
+                        if (l.getFormattedId().equals(formattedId)) {
                             finishSelf(l);
                             return;
                         }

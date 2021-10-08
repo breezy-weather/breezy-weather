@@ -2,7 +2,6 @@ package wangdaye.com.geometricweather.background.polling.services.basic;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-
 import android.content.Intent;
 import android.os.Build;
 
@@ -105,10 +104,9 @@ public abstract class ForegroundUpdateService extends UpdateService {
     public abstract int getForegroundNotificationId();
 
     @Override
-    public void responseSingleRequest(@NonNull Location location, @Nullable Weather old,
-                                      boolean succeed, int index, int total) {
-        super.responseSingleRequest(location, old, succeed, index, total);
-
+    public void onUpdateCompleted(@NonNull Location location, @Nullable Weather old,
+                                  boolean succeed, int index, int total) {
+        super.onUpdateCompleted(location, old, succeed, index, total);
         mFinishedCount ++;
         if (mFinishedCount != total) {
             NotificationManagerCompat.from(this).notify(

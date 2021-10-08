@@ -93,7 +93,6 @@ class SettingsManager private constructor(context: Context){
     // widget.
     private val widgetWeekIconMode = context.getString(R.string.key_week_icon_mode)
     private val widgetMinimalIconEnabled = context.getString(R.string.key_widget_minimal_icon)
-    private val widgetClickToRefreshEnabled = context.getString(R.string.key_click_widget_to_refresh)
 
     // notification.
     private val notificationEnabled = context.getString(R.string.key_notification)
@@ -285,10 +284,6 @@ class SettingsManager private constructor(context: Context){
 
     fun isWidgetMinimalIconEnabled(): Boolean {
         return config.getBoolean(widgetMinimalIconEnabled, false)
-    }
-
-    fun isWidgetClickToRefreshEnabled(): Boolean {
-        return config.getBoolean(widgetClickToRefreshEnabled, false)
     }
 
     fun isNotificationEnabled(): Boolean {

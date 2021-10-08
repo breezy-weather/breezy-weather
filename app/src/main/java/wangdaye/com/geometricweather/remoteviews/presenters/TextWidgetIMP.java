@@ -39,7 +39,6 @@ public class TextWidgetIMP extends AbstractRemoteViewsPresenter {
                                              String textColor, int textSize, boolean alignEnd) {
         SettingsManager settings = SettingsManager.getInstance(context);
         TemperatureUnit temperatureUnit = settings.getTemperatureUnit();
-        boolean touchToRefresh = settings.isWidgetClickToRefreshEnabled();
 
         RemoteViews views = new RemoteViews(
                 context.getPackageName(),
@@ -83,7 +82,7 @@ public class TextWidgetIMP extends AbstractRemoteViewsPresenter {
             views.setTextViewTextSize(R.id.widget_text_temperature, TypedValue.COMPLEX_UNIT_PX, temperatureSize);
         }
 
-        setOnClickPendingIntent(context, views, location, touchToRefresh);
+        setOnClickPendingIntent(context, views, location);
 
         return views;
     }
@@ -94,27 +93,16 @@ public class TextWidgetIMP extends AbstractRemoteViewsPresenter {
         return widgetIds != null && widgetIds.length > 0;
     }
 
-    private static void setOnClickPendingIntent(Context context, RemoteViews views, Location location,
-                                                boolean touchToRefresh) {
+    private static void setOnClickPendingIntent(Context context, RemoteViews views, Location location) {
         // headerContainer.
-        if (touchToRefresh) {
-            views.setOnClickPendingIntent(
-                    R.id.widget_text_container,
-                    getRefreshPendingIntent(
-                            context,
-                            GeometricWeather.WIDGET_TEXT_PENDING_INTENT_CODE_REFRESH
-                    )
-            );
-        } else {
-            views.setOnClickPendingIntent(
-                    R.id.widget_text_container,
-                    getWeatherPendingIntent(
-                            context,
-                            location,
-                            GeometricWeather.WIDGET_TEXT_PENDING_INTENT_CODE_WEATHER
-                    )
-            );
-        }
+        views.setOnClickPendingIntent(
+                R.id.widget_text_container,
+                getWeatherPendingIntent(
+                        context,
+                        location,
+                        GeometricWeather.WIDGET_TEXT_PENDING_INTENT_CODE_WEATHER
+                )
+        );
 
         // date.
         views.setOnClickPendingIntent(

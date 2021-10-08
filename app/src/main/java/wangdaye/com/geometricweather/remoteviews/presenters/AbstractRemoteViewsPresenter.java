@@ -1,11 +1,13 @@
 package wangdaye.com.geometricweather.remoteviews.presenters;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.app.WallpaperManager;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
@@ -19,6 +21,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import java.text.DateFormat;
@@ -172,6 +175,13 @@ public abstract class AbstractRemoteViewsPresenter {
                 return false;
             }
 
+            if (ActivityCompat.checkSelfPermission(
+                    context,
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED) {
+                return false;
+            }
+
             Drawable drawable = manager.getDrawable();
             if (!(drawable instanceof BitmapDrawable)) {
                 return false;
@@ -217,8 +227,7 @@ public abstract class AbstractRemoteViewsPresenter {
                 context,
                 requestCode,
                 IntentHelper.buildMainActivityIntent(location),
-                PendingIntent.FLAG_UPDATE_CURRENT);
-                // PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+               PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
     @SuppressLint("InlinedApi")
@@ -229,18 +238,7 @@ public abstract class AbstractRemoteViewsPresenter {
                 context,
                 requestCode,
                 IntentHelper.buildMainActivityShowDailyForecastIntent(location, index),
-                PendingIntent.FLAG_UPDATE_CURRENT);
-        // PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
-    }
-
-    @SuppressLint("InlinedApi")
-    public static PendingIntent getRefreshPendingIntent(Context context, int requestCode) {
-        return PendingIntent.getService(
-                context,
-                requestCode,
-                IntentHelper.getAwakeForegroundUpdateServiceIntent(context),
-                PendingIntent.FLAG_UPDATE_CURRENT);
-        // PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
     @SuppressLint("InlinedApi")
@@ -249,8 +247,7 @@ public abstract class AbstractRemoteViewsPresenter {
                 context,
                 requestCode,
                 new Intent(AlarmClock.ACTION_SHOW_ALARMS),
-                PendingIntent.FLAG_UPDATE_CURRENT);
-        // PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
     @SuppressLint("InlinedApi")
@@ -262,8 +259,7 @@ public abstract class AbstractRemoteViewsPresenter {
                 context,
                 requestCode,
                 new Intent(Intent.ACTION_VIEW).setData(builder.build()),
-                PendingIntent.FLAG_UPDATE_CURRENT);
-        // PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
     @NonNull

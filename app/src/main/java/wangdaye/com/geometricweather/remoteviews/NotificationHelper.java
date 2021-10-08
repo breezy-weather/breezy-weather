@@ -8,7 +8,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.os.Build;
-import android.text.TextUtils;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
@@ -21,7 +20,9 @@ import androidx.core.content.ContextCompat;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
@@ -94,29 +95,22 @@ public class NotificationHelper {
         }
 
         List<Alert> alertList = new ArrayList<>();
-        if (oldResult != null) {
-            if (weather.getBase().getTimeStamp() == oldResult.getBase().getTimeStamp()) {
-                return;
-            }
-
-            boolean existingFlag;
-            for (Alert newAlert : weather.getAlertList()) {
-                existingFlag = false;
-
-                for (Alert oldAlert : oldResult.getAlertList()) {
-                    if (newAlert.getAlertId() == oldAlert.getAlertId()
-                            || TextUtils.equals(newAlert.getDescription(), oldAlert.getDescription())) {
-                        existingFlag = true;
-                        break;
-                    }
-                }
-                if (!existingFlag) {
-                    alertList.add(newAlert);
-                }
-            }
-        } else {
-            // oldResult == null.
+        if (oldResult == null) {
             alertList.addAll(weather.getAlertList());
+        } else {
+            Set<Long> idSet = new HashSet<>();
+            Set<String> desSet = new HashSet<>();
+            for (Alert alert : oldResult.getAlertList()) {
+                idSet.add(alert.getAlertId());
+                desSet.add(alert.getDescription());
+            }
+
+            for (Alert alert : weather.getAlertList()) {
+                if (!idSet.contains(alert.getAlertId())
+                        && !desSet.contains(alert.getDescription())) {
+                    alertList.add(alert);
+                }
+            }
         }
 
         for (int i = 0; i < alertList.size(); i ++) {
@@ -168,8 +162,7 @@ public class NotificationHelper {
                         context,
                         notificationId,
                         IntentHelper.buildMainActivityShowAlertsIntent(location),
-                        PendingIntent.FLAG_UPDATE_CURRENT
-                        // PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
+                        PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
                 )
         ).setStyle(
                 new NotificationCompat.BigTextStyle()
@@ -200,8 +193,7 @@ public class NotificationHelper {
                                 context,
                                 notificationId,
                                 IntentHelper.buildMainActivityShowAlertsIntent(location),
-                                PendingIntent.FLAG_UPDATE_CURRENT
-                                // PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
+                                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
                         )
                 ).build();
     }
@@ -262,8 +254,7 @@ public class NotificationHelper {
                                     context,
                                     GeometricWeather.NOTIFICATION_ID_PRECIPITATION,
                                     IntentHelper.buildMainActivityIntent(location),
-                                    PendingIntent.FLAG_UPDATE_CURRENT
-                                    // PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
+                                    PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
                             )
                     ).build()
             );
@@ -291,8 +282,7 @@ public class NotificationHelper {
                                     context,
                                     GeometricWeather.NOTIFICATION_ID_PRECIPITATION,
                                     IntentHelper.buildMainActivityIntent(location),
-                                    PendingIntent.FLAG_UPDATE_CURRENT
-                                    // PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
+                                    PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
                             )
                     ).build()
             );

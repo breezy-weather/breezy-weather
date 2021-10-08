@@ -208,6 +208,7 @@
     <string name="feedback_clock_font">Clock font</string>
     <string name="feedback_hide_lunar">Hide lunar calendar</string>
     <string name="feedback_align_end">Align End</string>
+    <string name="feedback_colorful">Color widget by weather</string>
     <string name="feedback_custom_subtitle_explanation">You can input anything, but please pay attention to the length of the text. If you want to quote weather data, please use $ to reference the corresponding keyword.\n\nFor example, \"current weather = $cw$\" will be displayed as \"current weather = Clear Day\".</string>
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
@@ -358,6 +359,10 @@
     <string name="widget_trend_daily">Daily Trend</string>
     <string name="widget_trend_hourly">Hourly Trend</string>
     <string name="widget_multi_city">Multi City</string>
+    <string name="widget_android_s_weather_mini">Android S (S)</string>
+    <string name="widget_android_s_weather_medium">Android S (M)</string>
+    <string name="widget_android_s_weather_large">Android S (L)</string>
+    <string name="widget_android_s_weather_xlarge">Android S (xL)</string>
     <string name="wait_refresh">waiting</string>
     <string name="ellipsis">…</string>
 
@@ -457,9 +462,13 @@
     <string name="sp_widget_daily_trend_setting">widget_daily_trend_setting</string>
     <string name="sp_widget_hourly_trend_setting">widget_hourly_trend_setting</string>
     <string name="sp_widget_multi_city">widget_multi_city</string>
+    <string name="sp_widget_android_s_weather_mini">widget_android_s_weather_mini</string>
+    <string name="sp_widget_android_s_weather_medium">widget_android_s_weather_medium</string>
+    <string name="sp_widget_android_s_weather_large">widget_android_s_weather_large</string>
+    <string name="sp_widget_android_s_weather_xlarge">widget_android_s_weather_large</string>
     <string name="key_view_type">view_type</string>
     <string name="key_card_style">card_style</string>
-    <string name="key_card_alpha">card_alpha_1</string>
+    <string name="key_card_alpha" tools:ignore="Typos">card_alpha_1</string>
     <string name="key_hide_subtitle">hide_refresh_time</string>
     <string name="key_subtitle_data">subtitle_data</string>
     <string name="key_text_color">text_color</string>
@@ -467,6 +476,7 @@
     <string name="key_clock_font">clock_font</string>
     <string name="key_hide_lunar">hide_lunar</string>
     <string name="key_align_end">align_end</string>
+    <string name="key_colorful">colorful</string>
 
     <!-- Do not translate the following set of strings. -->
     <string name="key_background_free">background_free_3</string>

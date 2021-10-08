@@ -343,6 +343,55 @@
 
         <!-- widget -->
         <receiver
+            android:name=".background.receiver.widget.androidSWeather.WidgetAndroidSWeatherMiniProvider"
+            android:label="@string/widget_android_s_weather_mini"
+            android:exported="true">
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_android_s_weather_mini" />
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.ACTION_APPWIDGET_DISABLED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".background.receiver.widget.androidSWeather.WidgetAndroidSWeatherMediumProvider"
+            android:label="@string/widget_android_s_weather_medium"
+            android:exported="true">
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_android_s_weather_medium" />
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.ACTION_APPWIDGET_DISABLED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".background.receiver.widget.androidSWeather.WidgetAndroidSWeatherLargeProvider"
+            android:label="@string/widget_android_s_weather_large"
+            android:exported="true">
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_android_s_weather_large" />
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.ACTION_APPWIDGET_DISABLED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".background.receiver.widget.androidSWeather.WidgetAndroidSWeatherXLargeProvider"
+            android:label="@string/widget_android_s_weather_xlarge"
+            android:exported="true">
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_android_s_weather_xlarge" />
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.ACTION_APPWIDGET_DISABLED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
             android:name=".background.receiver.widget.WidgetDayProvider"
             android:label="@string/widget_day"
             android:exported="true">

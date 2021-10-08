@@ -63,7 +63,6 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
         TemperatureUnit temperatureUnit = settings.getTemperatureUnit();
         WidgetWeekIconMode weekIconMode = settings.getWidgetWeekIconMode();
         boolean minimalIcon = settings.isWidgetMinimalIconEnabled();
-        boolean touchToRefresh = settings.isWidgetClickToRefreshEnabled();
 
         WidgetColor color = new WidgetColor(context, cardStyle, textColor);
 
@@ -210,7 +209,7 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
         }
 
         // set intent.
-        setOnClickPendingIntent(context, views, location, subtitleData, touchToRefresh);
+        setOnClickPendingIntent(context, views, location, subtitleData);
 
         return views;
     }
@@ -456,26 +455,16 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
     }
 
     private static void setOnClickPendingIntent(Context context, RemoteViews views, Location location,
-                                                String subtitleData, boolean touchToRefresh) {
+                                                String subtitleData) {
         // weather.
-        if (touchToRefresh) {
-            views.setOnClickPendingIntent(
-                    R.id.widget_day_week_weather,
-                    getRefreshPendingIntent(
-                            context,
-                            GeometricWeather.WIDGET_DAY_WEEK_PENDING_INTENT_CODE_REFRESH
-                    )
-            );
-        } else {
-            views.setOnClickPendingIntent(
-                    R.id.widget_day_week_weather,
-                    getWeatherPendingIntent(
-                            context,
-                            location,
-                            GeometricWeather.WIDGET_DAY_WEEK_PENDING_INTENT_CODE_WEATHER
-                    )
-            );
-        }
+        views.setOnClickPendingIntent(
+                R.id.widget_day_week_weather,
+                getWeatherPendingIntent(
+                        context,
+                        location,
+                        GeometricWeather.WIDGET_DAY_WEEK_PENDING_INTENT_CODE_WEATHER
+                )
+        );
 
         // daily forecast.
         views.setOnClickPendingIntent(
@@ -531,14 +520,6 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                     getCalendarPendingIntent(
                             context,
                             GeometricWeather.WIDGET_DAY_WEEK_PENDING_INTENT_CODE_CALENDAR
-                    )
-            );
-        } else if (!touchToRefresh && subtitleData.equals("time")) {
-            views.setOnClickPendingIntent(
-                    R.id.widget_day_week_subtitle,
-                    getRefreshPendingIntent(
-                            context,
-                            GeometricWeather.WIDGET_DAY_WEEK_PENDING_INTENT_CODE_REFRESH
                     )
             );
         }

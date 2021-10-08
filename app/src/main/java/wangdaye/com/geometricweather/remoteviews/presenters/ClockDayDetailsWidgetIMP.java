@@ -59,7 +59,6 @@ public class ClockDayDetailsWidgetIMP extends AbstractRemoteViewsPresenter {
         SettingsManager settings = SettingsManager.getInstance(context);
         TemperatureUnit temperatureUnit = settings.getTemperatureUnit();
         boolean minimalIcon = settings.isWidgetMinimalIconEnabled();
-        boolean touchToRefresh = settings.isWidgetClickToRefreshEnabled();
 
         WidgetColor color = new WidgetColor(context, cardStyle, textColor);
 
@@ -200,7 +199,7 @@ public class ClockDayDetailsWidgetIMP extends AbstractRemoteViewsPresenter {
                 break;
         }
 
-        setOnClickPendingIntent(context, views, location, touchToRefresh);
+        setOnClickPendingIntent(context, views, location);
 
         return views;
     }
@@ -227,27 +226,16 @@ public class ClockDayDetailsWidgetIMP extends AbstractRemoteViewsPresenter {
         }
     }
 
-    private static void setOnClickPendingIntent(Context context, RemoteViews views, Location location,
-                                                boolean touchToRefresh) {
+    private static void setOnClickPendingIntent(Context context, RemoteViews views, Location location) {
         // weather.
-        if (touchToRefresh) {
-            views.setOnClickPendingIntent(
-                    R.id.widget_clock_day_weather,
-                    getRefreshPendingIntent(
-                            context,
-                            GeometricWeather.WIDGET_CLOCK_DAY_DETAILS_PENDING_INTENT_CODE_REFRESH
-                    )
-            );
-        } else {
-            views.setOnClickPendingIntent(
-                    R.id.widget_clock_day_weather,
-                    getWeatherPendingIntent(
-                            context,
-                            location,
-                            GeometricWeather.WIDGET_CLOCK_DAY_DETAILS_PENDING_INTENT_CODE_WEATHER
-                    )
-            );
-        }
+        views.setOnClickPendingIntent(
+                R.id.widget_clock_day_weather,
+                getWeatherPendingIntent(
+                        context,
+                        location,
+                        GeometricWeather.WIDGET_CLOCK_DAY_DETAILS_PENDING_INTENT_CODE_WEATHER
+                )
+        );
 
         // clock.
         views.setOnClickPendingIntent(

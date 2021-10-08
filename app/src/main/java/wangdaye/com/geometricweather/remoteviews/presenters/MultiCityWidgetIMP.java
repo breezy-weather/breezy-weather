@@ -57,7 +57,6 @@ public class MultiCityWidgetIMP extends AbstractRemoteViewsPresenter {
         SettingsManager settings = SettingsManager.getInstance(context);
         TemperatureUnit temperatureUnit = settings.getTemperatureUnit();
         boolean minimalIcon = settings.isWidgetMinimalIconEnabled();
-        boolean touchToRefresh = settings.isWidgetClickToRefreshEnabled();
 
         WidgetColor color = new WidgetColor(context, cardStyle, textColor);
 
@@ -100,7 +99,7 @@ public class MultiCityWidgetIMP extends AbstractRemoteViewsPresenter {
             );
         }
         setOnClickPendingIntent(context, views, location,
-                R.id.widget_multi_city_horizontal_weather_1, 0, touchToRefresh);
+                R.id.widget_multi_city_horizontal_weather_1, 0);
 
         // city 2.
         if (locationList.size() >= 2) {
@@ -139,7 +138,7 @@ public class MultiCityWidgetIMP extends AbstractRemoteViewsPresenter {
                 );
             }
             setOnClickPendingIntent(context, views, location,
-                    R.id.widget_multi_city_horizontal_weather_2, 1,  touchToRefresh);
+                    R.id.widget_multi_city_horizontal_weather_2, 1);
         } else {
             views.setViewVisibility(R.id.widget_multi_city_horizontal_weather_2, View.GONE);
         }
@@ -181,7 +180,7 @@ public class MultiCityWidgetIMP extends AbstractRemoteViewsPresenter {
                 );
             }
             setOnClickPendingIntent(context, views, location,
-                    R.id.widget_multi_city_horizontal_weather_3, 2, touchToRefresh);
+                    R.id.widget_multi_city_horizontal_weather_3, 2);
         } else {
             views.setViewVisibility(R.id.widget_multi_city_horizontal_weather_3, View.GONE);
         }
@@ -233,26 +232,14 @@ public class MultiCityWidgetIMP extends AbstractRemoteViewsPresenter {
     }
 
     private static void setOnClickPendingIntent(Context context, RemoteViews views, Location location,
-                                                @IdRes int resId, @IntRange(from = 0, to = 2) int index,
-                                                boolean touchToRefresh) {
-        // weather.
-        if (touchToRefresh) {
-            views.setOnClickPendingIntent(
-                    resId,
-                    getRefreshPendingIntent(
-                            context,
-                            GeometricWeather.WIDGET_MULTI_CITY_PENDING_INTENT_CODE_REFRESH_1 + 2 * index
-                    )
-            );
-        } else {
-            views.setOnClickPendingIntent(
-                    resId,
-                    getWeatherPendingIntent(
-                            context,
-                            location,
-                            GeometricWeather.WIDGET_MULTI_CITY_PENDING_INTENT_CODE_WEATHER_1 + 2 * index
-                    )
-            );
-        }
+                                                @IdRes int resId, @IntRange(from = 0, to = 2) int index) {
+        views.setOnClickPendingIntent(
+                resId,
+                getWeatherPendingIntent(
+                        context,
+                        location,
+                        GeometricWeather.WIDGET_MULTI_CITY_PENDING_INTENT_CODE_WEATHER_1 + 2 * index
+                )
+        );
     }
 }

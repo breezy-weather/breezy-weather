@@ -42,11 +42,12 @@ public class FitSystemBarSwipeRefreshLayout extends SwipeRefreshLayout
 
     private void fitSystemBar() {
         int startPosition = mHelper.top() + getResources().getDimensionPixelSize(R.dimen.normal_margin);
-        setProgressViewOffset(
-                false,
-                startPosition,
-                (int) (startPosition + 64 * getResources().getDisplayMetrics().density)
-        );
+        int endPosition = (int) (startPosition + 64 * getResources().getDisplayMetrics().density);
+
+        if (startPosition != getProgressViewStartOffset()
+                || endPosition != getProgressViewEndOffset()) {
+            setProgressViewOffset(false, startPosition, endPosition);
+        }
     }
 
     @Override

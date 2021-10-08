@@ -306,7 +306,7 @@ public class MainActivity extends GeoActivity
             if (isForegroundLocationPermission(permissions[i])
                     && grantResults[i] != PackageManager.PERMISSION_GRANTED) {
                 // denied basic location permissions.
-                if (request.target.isUsable()) {
+                if (request.target.isUsable() || isLocationPermissionsGranted()) {
                     mViewModel.updateWeather(request.triggeredByUser, false);
                 } else {
                     mViewModel.requestPermissionsFailed(request.target);
@@ -328,8 +328,7 @@ public class MainActivity extends GeoActivity
     private boolean isLocationPermission(String permission) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             return permission.equals(Manifest.permission.ACCESS_COARSE_LOCATION)
-                    || permission.equals(Manifest.permission.ACCESS_FINE_LOCATION)
-                    || permission.equals(Manifest.permission.ACCESS_BACKGROUND_LOCATION);
+                    || isForegroundLocationPermission(permission);
         } else {
             return isForegroundLocationPermission(permission);
         }
@@ -338,6 +337,16 @@ public class MainActivity extends GeoActivity
     private boolean isForegroundLocationPermission(String permission) {
         return permission.equals(Manifest.permission.ACCESS_COARSE_LOCATION)
                 || permission.equals(Manifest.permission.ACCESS_FINE_LOCATION);
+    }
+
+    private boolean isLocationPermissionsGranted() {
+        return ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED;
     }
 
     // control.

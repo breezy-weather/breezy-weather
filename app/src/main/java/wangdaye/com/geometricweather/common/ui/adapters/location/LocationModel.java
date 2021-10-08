@@ -123,7 +123,9 @@ public class LocationModel {
     }
 
     public boolean areItemsTheSame(@NonNull LocationModel newItem) {
-        return location.equals(newItem.location);
+        return location.getFormattedId().equals(
+                newItem.location.getFormattedId()
+        );
     }
 
     public boolean areContentsTheSame(@NonNull LocationModel newItem) {

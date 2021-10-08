@@ -47,8 +47,6 @@ public class MainLayoutManager extends RecyclerView.LayoutManager {
 
     @Override
     public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
-        super.onLayoutChildren(recycler, state);
-
         if (mDataSetChanged) {
             removeAndRecycleAllViews(recycler);
         } else {

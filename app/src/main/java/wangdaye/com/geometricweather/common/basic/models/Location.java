@@ -103,34 +103,41 @@ public class Location
         );
     }
 
-    public boolean equals(@Nullable Location location) {
-        if (location == null) {
-            return false;
-        } else {
-            return equals(location.getFormattedId());
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
         }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!getFormattedId().equals(
+                ((Location) o).getFormattedId()
+        )) {
+            return false;
+        }
+
+        Weather thisWeather = getWeather();
+        Weather otherWeather = ((Location) o).getWeather();
+        if (thisWeather == null && otherWeather == null) {
+            return true;
+        }
+        if (thisWeather != null && otherWeather != null) {
+            return thisWeather.getBase().getTimeStamp()
+                    == otherWeather.getBase().getTimeStamp();
+        }
+        return false;
     }
 
-    public boolean equals(@Nullable String formattedId) {
-        if (TextUtils.isEmpty(formattedId)) {
-            return false;
-        }
-        if (CURRENT_POSITION_ID.equals(formattedId)) {
-            return isCurrentPosition();
-        }
-        try {
-            assert formattedId != null;
-            String[] keys = formattedId.split("&");
-            return !isCurrentPosition()
-                    && cityId.equals(keys[0])
-                    && weatherSource.name().equals(keys[1]);
-        } catch (Exception e) {
-            return false;
-        }
+    @Override
+    public int hashCode() {
+        return getFormattedId().hashCode();
     }
 
     public String getFormattedId() {
-        return isCurrentPosition() ? CURRENT_POSITION_ID : (cityId + "&" + weatherSource.name());
+        return isCurrentPosition()
+                ? CURRENT_POSITION_ID
+                : (cityId + "&" + weatherSource.name());
     }
 
     public boolean isCurrentPosition() {

@@ -16,6 +16,7 @@
 
     <style name="GeometricWeatherTheme.Main" parent="GeometricWeatherTheme">
         <item name="colorAccent">@android:color/transparent</item>
+        <item name="android:windowBackground">@drawable/launch_background</item>
     </style>
 
     <style name="GeometricWeatherTheme.Search" parent="GeometricWeatherTheme">

@@ -106,12 +106,6 @@
             android:summaryOn="@string/on"
             android:summaryOff="@string/off" />
 
-        <CheckBoxPreference
-            android:title="@string/settings_title_click_widget_to_refresh"
-            android:key="@string/key_click_widget_to_refresh"
-            android:summaryOn="@string/on"
-            android:summaryOff="@string/off" />
-
         <Preference
             android:title="@string/widget_day"
             android:summary="@string/settings_title_widget_config"

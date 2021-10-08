@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:shape="rectangle"
+    android:visible="true">
+
+    <solid
+        android:color="?android:attr/colorBackground"
+        tools:ignore="NewApi" />
+
+    <corners
+        android:radius="12dp" />
+
+</shape>
