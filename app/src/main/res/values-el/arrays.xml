@@ -21,7 +21,7 @@
     <!-- Dark mode. -->
     <string-array name="dark_modes">
         <item>Αυτόματο</item>
-        <item>Follow system</item>
+        <item>Βάση συστήματος</item>
         <item>Πάντα φωτεινό</item>
         <item>Πάντα σκοτεινό</item>
     </string-array>
@@ -58,7 +58,7 @@
     <!-- notification style. -->
     <string-array name="notification_styles">
         <item>Σύστημα</item>
-        <item>Cities</item>
+        <item>Πόλεις</item>
         <item>@string/daily_overview</item><!-- do not translate. -->
         <item>@string/hourly_overview</item><!-- do not translate. -->
     </string-array>

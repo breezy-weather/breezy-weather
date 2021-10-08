@@ -21,12 +21,12 @@
     <string name="night">noapte</string>
     <string name="temperature">Temperatură</string>
     <string name="wind">Vânt</string>
-    <string name="wind_direction">Direcție vânt</string>
-    <string name="wind_speed">Vitezâ vânt</string>
+    <string name="wind_direction">Direcția vântului</string>
+    <string name="wind_speed">Viteza vântului</string>
     <string name="wind_level">Vânt</string>
     <string name="sensible_temp">Temp. resimțită</string>
     <string name="humidity">Umiditate</string>
-    <string name="uv_index">Index UV</string>
+    <string name="uv_index">Indice UV</string>
     <string name="hours_of_sun">Ore cu soare</string>
     <string name="forecast">Prognoză</string>
     <string name="briefings">Pe scurt</string>
@@ -36,7 +36,7 @@
     <string name="feels_like">Se simt</string>
     <string name="follow_system">La fel ca sistemul</string>
     <string name="background_information">Informații generale</string>
-    <string name="pressure">Presiune atmospherică</string>
+    <string name="pressure">Presiune atmosferică</string>
     <string name="visibility">Vizibilitate</string>
     <string name="dew_point">Punct de rouă</string>
     <string name="cloud_cover">Acoperire nori</string>
@@ -85,7 +85,7 @@
     <string name="wind_8">Vânt foarte puternic</string>
     <string name="wind_9">Furtună</string>
     <string name="wind_10">Furtună puternică</string>
-    <string name="wind_11">Furtună violentă </string>
+    <string name="wind_11">Furtună violentă</string>
     <string name="wind_12">Uragan</string>
 
     <string name="precipitation_light">Ploi uşoare</string>
@@ -121,7 +121,7 @@
     <string name="air_quality">Calitatea aerului</string>
     <string name="allergen">Alergeni</string>
     <string name="life_details">Detalii</string>
-    <string name="sunrise_sunset">Soare &amp; Lună</string>
+    <string name="sunrise_sunset">Soare și Lună</string>
 
     <string name="next">MAI DEPARTE</string>
     <string name="done">TERMINAT</string>
@@ -186,7 +186,7 @@
     <string name="feedback_check_location_permission">Verifică permisiunile de Localizare.</string>
     <string name="feedback_enable_location_information">Activați informațiile despre locație</string>
     <string name="feedback_select_location_provider">Selectați furnizorul de servicii de localizare</string>
-    <string name="feedback_add_location_manually">Adăugați locația manual și ștergeți \'$ \' </string>
+    <string name="feedback_add_location_manually">Adăugați locația manual și ștergeți \'$ \'</string>
     <string name="feedback_view_style">Tip vizualizare</string>
     <string name="feedback_show_widget_card">Culoare fundal</string>
     <string name="feedback_show_widget_card_alpha">Transparență</string>
@@ -360,13 +360,13 @@
     <string name="settings_title_forecast_tomorrow_time">Oră notif. mâine</string>
     <string name="settings_category_widget">Widget</string>
     <string name="settings_title_week_icon_mode">Mod icoane sapt.</string>
-    <string name="settings_title_minimal_icon">Icoane tip minimal</string>
+    <string name="settings_title_minimal_icon">Pictograme tip minimal</string>
     <string name="settings_title_click_widget_to_refresh">Atinge pt. actualizare</string>
     <string name="settings_title_widget_config">Configurare Widget</string>
     <string name="settings_category_notification">Notificări</string>
     <string name="settings_title_notification">Trimite notificări</string>
     <string name="settings_title_notification_style">Tip notificări</string>
-    <string name="settings_title_notification_temp_icon">Temperatura în status</string>
+    <string name="settings_title_notification_temp_icon">Temperatura în bara de stare</string>
     <string name="settings_title_notification_color">Culoare notificări</string>
     <string name="settings_title_notification_custom_color">Culoare personalizată</string>
     <string name="settings_title_notification_text_color">Culoare text</string>

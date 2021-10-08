@@ -300,7 +300,7 @@ public class MfResultConverter {
 
         for (Hourly hour : hourly) {
             if ((isDaytime && (hour.getTime() / 1000) >= dailyForecast.dt + 6 * 3600 && (hour.getTime() / 1000) < dailyForecast.dt + 18 * 3600)
-            || (!isDaytime && (hour.getTime() / 1000) >= dailyForecast.dt + 18 * 3600 && (hour.getTime() / 1000) < dailyForecast.dt + 30 * 3600)) {
+                    || (!isDaytime && (hour.getTime() / 1000) >= dailyForecast.dt + 18 * 3600 && (hour.getTime() / 1000) < dailyForecast.dt + 30 * 3600)) {
                 // Temperature
                 if (isDaytime) {
                     if (temp == null || hour.getTemperature().getTemperature() > temp) {
@@ -436,17 +436,13 @@ public class MfResultConverter {
     private static Float getRainCumul(MfForecastResult.Forecast.Rain rain) {
         if (rain.cumul1H != null) {
             return rain.cumul1H;
-        }
-        if (rain.cumul3H != null) {
+        } else if (rain.cumul3H != null) {
             return rain.cumul3H;
-        }
-        if (rain.cumul6H != null) {
+        } else if (rain.cumul6H != null) {
             return rain.cumul6H;
-        }
-        if (rain.cumul12H != null) {
+        } else if (rain.cumul12H != null) {
             return rain.cumul12H;
-        }
-        if (rain.cumul24H != null) {
+        } else if (rain.cumul24H != null) {
             return rain.cumul24H;
         }
         return null;
@@ -455,17 +451,13 @@ public class MfResultConverter {
     private static Float getSnowCumul(MfForecastResult.Forecast.Snow snow) {
         if (snow.cumul1H != null) {
             return snow.cumul1H;
-        }
-        if (snow.cumul3H != null) {
+        } else if (snow.cumul3H != null) {
             return snow.cumul3H;
-        }
-        if (snow.cumul6H != null) {
+        } else if (snow.cumul6H != null) {
             return snow.cumul6H;
-        }
-        if (snow.cumul12H != null) {
+        } else if (snow.cumul12H != null) {
             return snow.cumul12H;
-        }
-        if (snow.cumul24H != null) {
+        } else if (snow.cumul24H != null) {
             return snow.cumul24H;
         }
         return null;
@@ -508,14 +500,12 @@ public class MfResultConverter {
             if (probabilityForecast.dt == dt || (probabilityForecast.dt + 3600) == dt || (probabilityForecast.dt + 3600 * 2) == dt) {
                 if (probabilityForecast.rain.proba3H != null) {
                     rainProbability = probabilityForecast.rain.proba3H * 1f;
-                }
-                if (probabilityForecast.rain.proba6H != null) {
+                } else if (probabilityForecast.rain.proba6H != null) {
                     rainProbability = probabilityForecast.rain.proba6H * 1f;
                 }
                 if (probabilityForecast.snow.proba3H != null) {
                     snowProbability = probabilityForecast.snow.proba3H * 1f;
-                }
-                if (probabilityForecast.snow.proba6H != null) {
+                } else if (probabilityForecast.snow.proba6H != null) {
                     snowProbability = probabilityForecast.snow.proba6H * 1f;
                 }
                 iceProbability = probabilityForecast.freezing * 1f;
