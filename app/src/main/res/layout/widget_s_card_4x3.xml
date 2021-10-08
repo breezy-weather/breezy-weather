@@ -1,0 +1,833 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/widget_s_card_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/GeometricWeatherAndroidSWidget"
+    android:background="@drawable/widget_background_s_default"
+    tools:layout_height="388dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="86dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_gravity="top"
+                android:paddingTop="@dimen/little_margin"
+                android:paddingStart="@dimen/normal_margin"
+                android:paddingEnd="@dimen/normal_margin"
+                tools:ignore="UseCompoundDrawables">
+
+                <TextView
+                    android:id="@+id/widget_s_card_background_city"
+                    android:text="@string/ellipsis"
+                    android:textSize="@dimen/subtitle_text_size"
+                    android:textStyle="bold"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    style="@style/widget_title_text"
+                    tools:text="青岛市"
+                    tools:ignore="RtlHardcoded" />
+
+                <ImageView
+                    android:id="@+id/widget_s_card_background_currentIcon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/weather_cloudy"
+                    android:layout_marginStart="4dp"
+                    tools:ignore="ContentDescription" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="@dimen/little_margin"
+                android:paddingStart="@dimen/little_margin"
+                android:paddingEnd="@dimen/little_margin">
+
+                <TextView
+                    android:id="@+id/widget_s_card_background_currentTemperature"
+                    android:text="@string/ellipsis"
+                    android:layout_marginStart="@dimen/little_margin"
+                    android:layout_marginEnd="-4dp"
+                    android:textSize="36sp"
+                    android:textColor="?android:attr/textColorPrimary"
+                    style="@style/widget_large_title_text"
+                    tools:text="27°"
+                    tools:ignore="RtlHardcoded" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="end">
+
+                    <TextView
+                        android:id="@+id/widget_s_card_background_daytimeTemperature"
+                        android:text="@string/ellipsis"
+                        android:layout_marginStart="@dimen/little_margin"
+                        android:layout_marginEnd="@dimen/little_margin"
+                        android:textStyle="bold"
+                        android:textColor="?android:attr/textColorSecondary"
+                        style="@style/widget_subtitle_text"
+                        tools:text="31°"
+                        tools:ignore="RtlHardcoded" />
+
+                    <TextView
+                        android:id="@+id/widget_s_card_background_nighttimeTemperature"
+                        android:text="@string/ellipsis"
+                        android:layout_marginStart="@dimen/little_margin"
+                        android:layout_marginEnd="@dimen/little_margin"
+                        android:textColor="?android:attr/textColorSecondary"
+                        style="@style/widget_subtitle_text"
+                        tools:text="19°"
+                        tools:ignore="RtlHardcoded" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="end|bottom">
+
+                <TextView
+                    android:id="@+id/widget_s_card_background_realFeelTemperature"
+                    android:text="@string/ellipsis"
+                    android:layout_marginTop="@dimen/normal_margin"
+                    android:layout_marginStart="@dimen/normal_margin"
+                    android:layout_marginEnd="@dimen/normal_margin"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:layout_gravity="top|end"
+                    style="@style/widget_subtitle_text"
+                    tools:text="体感 34°"
+                    tools:ignore="RtlHardcoded" />
+
+                <TextView
+                    android:id="@+id/widget_s_card_background_windOrAqi"
+                    android:text="@string/ellipsis"
+                    android:layout_marginStart="@dimen/normal_margin"
+                    android:layout_marginEnd="@dimen/normal_margin"
+                    android:layout_marginBottom="@dimen/normal_margin"
+                    android:textSize="@dimen/subtitle_text_size"
+                    android:textStyle="bold"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:layout_gravity="bottom|end"
+                    style="@style/widget_content_text"
+                    tools:text="空气 - 优"
+                    tools:ignore="RtlHardcoded" />
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:layout_marginEnd="@dimen/normal_margin"
+            android:alpha="0.05"
+            android:background="@android:color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="bottom"
+            android:baselineAligned="false">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/widget_s_card_background_hour_1"
+                    style="@style/widget_content_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/little_margin"
+                    android:gravity="center"
+                    android:text="@string/ellipsis"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:textStyle="bold"
+                    tools:ignore="RtlHardcoded"
+                    tools:text="9:00" />
+
+                <ImageView
+                    android:id="@+id/widget_s_card_background_hourlyIcon_1"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/weather_cloudy"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/weather_partly_cloudy_day" />
+
+                <TextView
+                    android:id="@+id/widget_s_card_background_hourlyTemperature_1"
+                    style="@style/widget_content_text"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="@dimen/little_margin"
+                    android:layout_marginBottom="@dimen/little_margin"
+                    android:gravity="center"
+                    android:text="@string/ellipsis"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:textStyle="bold"
+                    tools:ignore="RtlHardcoded"
+                    tools:text="19°" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/widget_s_card_background_hour_2"
+                    style="@style/widget_content_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/little_margin"
+                    android:gravity="center"
+                    android:text="@string/ellipsis"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:textStyle="bold"
+                    tools:ignore="RtlHardcoded"
+                    tools:text="9:00" />
+
+                <ImageView
+                    android:id="@+id/widget_s_card_background_hourlyIcon_2"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/weather_cloudy"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/weather_partly_cloudy_day" />
+
+                <TextView
+                    android:id="@+id/widget_s_card_background_hourlyTemperature_2"
+                    style="@style/widget_content_text"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="@dimen/little_margin"
+                    android:layout_marginBottom="@dimen/little_margin"
+                    android:gravity="center"
+                    android:text="@string/ellipsis"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:textStyle="bold"
+                    tools:ignore="RtlHardcoded"
+                    tools:text="19°" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/widget_s_card_background_hour_3"
+                    style="@style/widget_content_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/little_margin"
+                    android:gravity="center"
+                    android:text="@string/ellipsis"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:textStyle="bold"
+                    tools:ignore="RtlHardcoded"
+                    tools:text="9:00" />
+
+                <ImageView
+                    android:id="@+id/widget_s_card_background_hourlyIcon_3"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/weather_cloudy"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/weather_partly_cloudy_day" />
+
+                <TextView
+                    android:id="@+id/widget_s_card_background_hourlyTemperature_3"
+                    style="@style/widget_content_text"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="@dimen/little_margin"
+                    android:layout_marginBottom="@dimen/little_margin"
+                    android:gravity="center"
+                    android:text="@string/ellipsis"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:textStyle="bold"
+                    tools:ignore="RtlHardcoded"
+                    tools:text="19°" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/widget_s_card_background_hour_4"
+                    style="@style/widget_content_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/little_margin"
+                    android:gravity="center"
+                    android:text="@string/ellipsis"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:textStyle="bold"
+                    tools:ignore="RtlHardcoded"
+                    tools:text="9:00" />
+
+                <ImageView
+                    android:id="@+id/widget_s_card_background_hourlyIcon_4"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/weather_cloudy"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/weather_partly_cloudy_day" />
+
+                <TextView
+                    android:id="@+id/widget_s_card_background_hourlyTemperature_4"
+                    style="@style/widget_content_text"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="@dimen/little_margin"
+                    android:layout_marginBottom="@dimen/little_margin"
+                    android:gravity="center"
+                    android:text="@string/ellipsis"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:textStyle="bold"
+                    tools:ignore="RtlHardcoded"
+                    tools:text="19°" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/widget_s_card_background_hour_5"
+                    style="@style/widget_content_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/little_margin"
+                    android:gravity="center"
+                    android:text="@string/ellipsis"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:textStyle="bold"
+                    tools:ignore="RtlHardcoded"
+                    tools:text="9:00" />
+
+                <ImageView
+                    android:id="@+id/widget_s_card_background_hourlyIcon_5"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/weather_cloudy"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/weather_partly_cloudy_day" />
+
+                <TextView
+                    android:id="@+id/widget_s_card_background_hourlyTemperature_5"
+                    style="@style/widget_content_text"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="@dimen/little_margin"
+                    android:layout_marginBottom="@dimen/little_margin"
+                    android:gravity="center"
+                    android:text="@string/ellipsis"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:textStyle="bold"
+                    tools:ignore="RtlHardcoded"
+                    tools:text="19°" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/widget_s_card_background_hour_6"
+                    style="@style/widget_content_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/little_margin"
+                    android:gravity="center"
+                    android:text="@string/ellipsis"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:textStyle="bold"
+                    tools:ignore="RtlHardcoded"
+                    tools:text="9:00" />
+
+                <ImageView
+                    android:id="@+id/widget_s_card_background_hourlyIcon_6"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/weather_cloudy"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/weather_partly_cloudy_day" />
+
+                <TextView
+                    android:id="@+id/widget_s_card_background_hourlyTemperature_6"
+                    style="@style/widget_content_text"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="@dimen/little_margin"
+                    android:layout_marginBottom="@dimen/little_margin"
+                    android:gravity="center"
+                    android:text="@string/ellipsis"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:textStyle="bold"
+                    tools:ignore="RtlHardcoded"
+                    tools:text="19°" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="@dimen/normal_margin"
+                tools:ignore="UselessParent">
+
+                <TextView
+                    android:id="@+id/widget_s_card_background_summary"
+                    style="@style/widget_subtitle_text"
+                    android:layout_marginStart="@dimen/normal_margin"
+                    android:layout_marginTop="@dimen/little_margin"
+                    android:layout_marginEnd="@dimen/normal_margin"
+                    android:layout_marginBottom="@dimen/little_margin"
+                    android:text="@string/ellipsis"
+                    android:textColor="?android:attr/textColorPrimary"
+                    tools:ignore="RtlHardcoded"
+                    tools:text="周末晴空万里" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="@dimen/normal_margin"
+                    android:layout_marginEnd="@dimen/normal_margin"
+                    android:alpha="0.05"
+                    android:background="@android:color/black" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/little_margin"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/widget_s_card_background_week_1"
+                            style="@style/widget_content_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/little_margin"
+                            android:gravity="center"
+                            android:text="@string/ellipsis"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textStyle="bold"
+                            tools:ignore="RtlHardcoded"
+                            tools:text="今日" />
+
+                        <ImageView
+                            android:id="@+id/widget_s_card_background_dayIcon_1"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/weather_cloudy"
+                            tools:ignore="ContentDescription"
+                            tools:src="@drawable/weather_partly_cloudy_day" />
+
+                        <TextView
+                            android:id="@+id/widget_s_card_background_dayTemperature_1"
+                            style="@style/widget_content_text"
+                            android:layout_width="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:gravity="center"
+                            android:text="@string/ellipsis"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textStyle="bold"
+                            tools:ignore="RtlHardcoded"
+                            tools:text="19°" />
+
+                        <TextView
+                            android:id="@+id/widget_s_card_background_nightTemperature_1"
+                            style="@style/widget_content_text"
+                            android:layout_width="wrap_content"
+                            android:layout_marginBottom="2dp"
+                            android:gravity="center"
+                            android:text="@string/ellipsis"
+                            android:textColor="?android:attr/textColorSecondary"
+                            tools:ignore="RtlHardcoded"
+                            tools:text="19°" />
+
+                        <ImageView
+                            android:id="@+id/widget_s_card_background_nightIcon_1"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/weather_cloudy"
+                            tools:ignore="ContentDescription"
+                            tools:src="@drawable/weather_partly_cloudy_day" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/widget_s_card_background_week_2"
+                            style="@style/widget_content_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/little_margin"
+                            android:gravity="center"
+                            android:text="@string/ellipsis"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textStyle="bold"
+                            tools:ignore="RtlHardcoded"
+                            tools:text="今日" />
+
+                        <ImageView
+                            android:id="@+id/widget_s_card_background_dayIcon_2"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/weather_cloudy"
+                            tools:ignore="ContentDescription"
+                            tools:src="@drawable/weather_partly_cloudy_day" />
+
+                        <TextView
+                            android:id="@+id/widget_s_card_background_dayTemperature_2"
+                            style="@style/widget_content_text"
+                            android:layout_width="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:gravity="center"
+                            android:text="@string/ellipsis"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textStyle="bold"
+                            tools:ignore="RtlHardcoded"
+                            tools:text="19°" />
+
+                        <TextView
+                            android:id="@+id/widget_s_card_background_nightTemperature_2"
+                            style="@style/widget_content_text"
+                            android:layout_width="wrap_content"
+                            android:layout_marginBottom="2dp"
+                            android:gravity="center"
+                            android:text="@string/ellipsis"
+                            android:textColor="?android:attr/textColorSecondary"
+                            tools:ignore="RtlHardcoded"
+                            tools:text="19°" />
+
+                        <ImageView
+                            android:id="@+id/widget_s_card_background_nightIcon_2"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/weather_cloudy"
+                            tools:ignore="ContentDescription"
+                            tools:src="@drawable/weather_partly_cloudy_day" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/widget_s_card_background_week_3"
+                            style="@style/widget_content_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/little_margin"
+                            android:gravity="center"
+                            android:text="@string/ellipsis"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textStyle="bold"
+                            tools:ignore="RtlHardcoded"
+                            tools:text="今日" />
+
+                        <ImageView
+                            android:id="@+id/widget_s_card_background_dayIcon_3"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/weather_cloudy"
+                            tools:ignore="ContentDescription"
+                            tools:src="@drawable/weather_partly_cloudy_day" />
+
+                        <TextView
+                            android:id="@+id/widget_s_card_background_dayTemperature_3"
+                            style="@style/widget_content_text"
+                            android:layout_width="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:gravity="center"
+                            android:text="@string/ellipsis"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textStyle="bold"
+                            tools:ignore="RtlHardcoded"
+                            tools:text="19°" />
+
+                        <TextView
+                            android:id="@+id/widget_s_card_background_nightTemperature_3"
+                            style="@style/widget_content_text"
+                            android:layout_width="wrap_content"
+                            android:layout_marginBottom="2dp"
+                            android:gravity="center"
+                            android:text="@string/ellipsis"
+                            android:textColor="?android:attr/textColorSecondary"
+                            tools:ignore="RtlHardcoded"
+                            tools:text="19°" />
+
+                        <ImageView
+                            android:id="@+id/widget_s_card_background_nightIcon_3"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/weather_cloudy"
+                            tools:ignore="ContentDescription"
+                            tools:src="@drawable/weather_partly_cloudy_day" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/widget_s_card_background_week_4"
+                            style="@style/widget_content_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/little_margin"
+                            android:gravity="center"
+                            android:text="@string/ellipsis"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textStyle="bold"
+                            tools:ignore="RtlHardcoded"
+                            tools:text="今日" />
+
+                        <ImageView
+                            android:id="@+id/widget_s_card_background_dayIcon_4"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/weather_cloudy"
+                            tools:ignore="ContentDescription"
+                            tools:src="@drawable/weather_partly_cloudy_day" />
+
+                        <TextView
+                            android:id="@+id/widget_s_card_background_dayTemperature_4"
+                            style="@style/widget_content_text"
+                            android:layout_width="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:gravity="center"
+                            android:text="@string/ellipsis"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textStyle="bold"
+                            tools:ignore="RtlHardcoded"
+                            tools:text="19°" />
+
+                        <TextView
+                            android:id="@+id/widget_s_card_background_nightTemperature_4"
+                            style="@style/widget_content_text"
+                            android:layout_width="wrap_content"
+                            android:layout_marginBottom="2dp"
+                            android:gravity="center"
+                            android:text="@string/ellipsis"
+                            android:textColor="?android:attr/textColorSecondary"
+                            tools:ignore="RtlHardcoded"
+                            tools:text="19°" />
+
+                        <ImageView
+                            android:id="@+id/widget_s_card_background_nightIcon_4"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/weather_cloudy"
+                            tools:ignore="ContentDescription"
+                            tools:src="@drawable/weather_partly_cloudy_day" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/widget_s_card_background_week_5"
+                            style="@style/widget_content_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/little_margin"
+                            android:gravity="center"
+                            android:text="@string/ellipsis"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textStyle="bold"
+                            tools:ignore="RtlHardcoded"
+                            tools:text="今日" />
+
+                        <ImageView
+                            android:id="@+id/widget_s_card_background_dayIcon_5"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/weather_cloudy"
+                            tools:ignore="ContentDescription"
+                            tools:src="@drawable/weather_partly_cloudy_day" />
+
+                        <TextView
+                            android:id="@+id/widget_s_card_background_dayTemperature_5"
+                            style="@style/widget_content_text"
+                            android:layout_width="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:gravity="center"
+                            android:text="@string/ellipsis"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textStyle="bold"
+                            tools:ignore="RtlHardcoded"
+                            tools:text="19°" />
+
+                        <TextView
+                            android:id="@+id/widget_s_card_background_nightTemperature_5"
+                            style="@style/widget_content_text"
+                            android:layout_width="wrap_content"
+                            android:layout_marginBottom="2dp"
+                            android:gravity="center"
+                            android:text="@string/ellipsis"
+                            android:textColor="?android:attr/textColorSecondary"
+                            tools:ignore="RtlHardcoded"
+                            tools:text="19°" />
+
+                        <ImageView
+                            android:id="@+id/widget_s_card_background_nightIcon_5"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/weather_cloudy"
+                            tools:ignore="ContentDescription"
+                            tools:src="@drawable/weather_partly_cloudy_day" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/widget_s_card_background_week_6"
+                            style="@style/widget_content_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/little_margin"
+                            android:gravity="center"
+                            android:text="@string/ellipsis"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textStyle="bold"
+                            tools:ignore="RtlHardcoded"
+                            tools:text="今日" />
+
+                        <ImageView
+                            android:id="@+id/widget_s_card_background_dayIcon_6"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/weather_cloudy"
+                            tools:ignore="ContentDescription"
+                            tools:src="@drawable/weather_partly_cloudy_day" />
+
+                        <TextView
+                            android:id="@+id/widget_s_card_background_dayTemperature_6"
+                            style="@style/widget_content_text"
+                            android:layout_width="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:gravity="center"
+                            android:text="@string/ellipsis"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textStyle="bold"
+                            tools:ignore="RtlHardcoded"
+                            tools:text="19°" />
+
+                        <TextView
+                            android:id="@+id/widget_s_card_background_nightTemperature_6"
+                            style="@style/widget_content_text"
+                            android:layout_width="wrap_content"
+                            android:layout_marginBottom="2dp"
+                            android:gravity="center"
+                            android:text="@string/ellipsis"
+                            android:textColor="?android:attr/textColorSecondary"
+                            tools:ignore="RtlHardcoded"
+                            tools:text="19°" />
+
+                        <ImageView
+                            android:id="@+id/widget_s_card_background_nightIcon_6"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/weather_cloudy"
+                            tools:ignore="ContentDescription"
+                            tools:src="@drawable/weather_partly_cloudy_day" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

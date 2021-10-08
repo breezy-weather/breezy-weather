@@ -59,7 +59,6 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
         SettingsManager settings = SettingsManager.getInstance(context);
         TemperatureUnit temperatureUnit = settings.getTemperatureUnit();
         boolean minimalIcon = settings.isWidgetMinimalIconEnabled();
-        boolean touchToRefresh = settings.isWidgetClickToRefreshEnabled();
 
         WidgetColor color = new WidgetColor(context, cardStyle, textColor);
 
@@ -85,7 +84,7 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
             );
         }
 
-        setOnClickPendingIntent(context, views, location, subtitleData, touchToRefresh);
+        setOnClickPendingIntent(context, views, location, subtitleData);
 
         return views;
     }
@@ -479,26 +478,16 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
     }
 
     private static void setOnClickPendingIntent(Context context, RemoteViews views, Location location,
-                                                String subtitleData, boolean touchToRefresh) {
+                                                String subtitleData) {
         // weather.
-        if (touchToRefresh) {
-            views.setOnClickPendingIntent(
-                    R.id.widget_clock_day_weather,
-                    getRefreshPendingIntent(
-                            context,
-                            GeometricWeather.WIDGET_CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_REFRESH
-                    )
-            );
-        } else {
-            views.setOnClickPendingIntent(
-                    R.id.widget_clock_day_weather,
-                    getWeatherPendingIntent(
-                            context,
-                            location,
-                            GeometricWeather.WIDGET_CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_WEATHER
-                    )
-            );
-        }
+        views.setOnClickPendingIntent(
+                R.id.widget_clock_day_weather,
+                getWeatherPendingIntent(
+                        context,
+                        location,
+                        GeometricWeather.WIDGET_CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_WEATHER
+                )
+        );
 
         // clock.
         views.setOnClickPendingIntent(
@@ -572,14 +561,6 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
                     getCalendarPendingIntent(
                             context,
                             GeometricWeather.WIDGET_DAY_PENDING_INTENT_CODE_CALENDAR
-                    )
-            );
-        } else if (!touchToRefresh && subtitleData.equals("time")) {
-            views.setOnClickPendingIntent(
-                    R.id.widget_clock_day_time,
-                    getRefreshPendingIntent(
-                            context,
-                            GeometricWeather.WIDGET_DAY_PENDING_INTENT_CODE_REFRESH
                     )
             );
         }

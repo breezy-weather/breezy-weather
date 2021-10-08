@@ -58,7 +58,6 @@ class GeometricWeather : MultiDexApplication(), Configuration.Provider {
 
         // day.
         const val WIDGET_DAY_PENDING_INTENT_CODE_WEATHER = 11
-        const val WIDGET_DAY_PENDING_INTENT_CODE_REFRESH = 12
         const val WIDGET_DAY_PENDING_INTENT_CODE_CALENDAR = 13
 
         // week.
@@ -68,7 +67,6 @@ class GeometricWeather : MultiDexApplication(), Configuration.Provider {
         const val WIDGET_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_3 = 213
         const val WIDGET_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_4 = 214
         const val WIDGET_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_5 = 215
-        const val WIDGET_WEEK_PENDING_INTENT_CODE_REFRESH = 22
 
         // day + week.
         const val WIDGET_DAY_WEEK_PENDING_INTENT_CODE_WEATHER = 31
@@ -77,12 +75,10 @@ class GeometricWeather : MultiDexApplication(), Configuration.Provider {
         const val WIDGET_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_3 = 313
         const val WIDGET_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_4 = 314
         const val WIDGET_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_5 = 315
-        const val WIDGET_DAY_WEEK_PENDING_INTENT_CODE_REFRESH = 32
         const val WIDGET_DAY_WEEK_PENDING_INTENT_CODE_CALENDAR = 33
 
         // clock + day (vertical).
         const val WIDGET_CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_WEATHER = 41
-        const val WIDGET_CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_REFRESH = 42
         const val WIDGET_CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_CLOCK_LIGHT = 43
         const val WIDGET_CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_CLOCK_NORMAL = 44
         const val WIDGET_CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_CLOCK_BLACK = 45
@@ -95,7 +91,6 @@ class GeometricWeather : MultiDexApplication(), Configuration.Provider {
 
         // clock + day (horizontal).
         const val WIDGET_CLOCK_DAY_HORIZONTAL_PENDING_INTENT_CODE_WEATHER = 61
-        const val WIDGET_CLOCK_DAY_HORIZONTAL_PENDING_INTENT_CODE_REFRESH = 62
         const val WIDGET_CLOCK_DAY_HORIZONTAL_PENDING_INTENT_CODE_CALENDAR = 63
         const val WIDGET_CLOCK_DAY_HORIZONTAL_PENDING_INTENT_CODE_CLOCK_LIGHT = 64
         const val WIDGET_CLOCK_DAY_HORIZONTAL_PENDING_INTENT_CODE_CLOCK_NORMAL = 65
@@ -103,7 +98,6 @@ class GeometricWeather : MultiDexApplication(), Configuration.Provider {
 
         // clock + day + details.
         const val WIDGET_CLOCK_DAY_DETAILS_PENDING_INTENT_CODE_WEATHER = 71
-        const val WIDGET_CLOCK_DAY_DETAILS_PENDING_INTENT_CODE_REFRESH = 72
         const val WIDGET_CLOCK_DAY_DETAILS_PENDING_INTENT_CODE_CALENDAR = 73
         const val WIDGET_CLOCK_DAY_DETAILS_PENDING_INTENT_CODE_CLOCK_LIGHT = 74
         const val WIDGET_CLOCK_DAY_DETAILS_PENDING_INTENT_CODE_CLOCK_NORMAL = 75
@@ -116,7 +110,6 @@ class GeometricWeather : MultiDexApplication(), Configuration.Provider {
         const val WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_3 = 823
         const val WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_4 = 824
         const val WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_5 = 825
-        const val WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_REFRESH = 82
         const val WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_CALENDAR = 83
         const val WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_CLOCK_LIGHT = 84
         const val WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_CLOCK_NORMAL = 85
@@ -124,24 +117,24 @@ class GeometricWeather : MultiDexApplication(), Configuration.Provider {
 
         // text.
         const val WIDGET_TEXT_PENDING_INTENT_CODE_WEATHER = 91
-        const val WIDGET_TEXT_PENDING_INTENT_CODE_REFRESH = 92
         const val WIDGET_TEXT_PENDING_INTENT_CODE_CALENDAR = 93
 
         // trend daily.
         const val WIDGET_TREND_DAILY_PENDING_INTENT_CODE_WEATHER = 101
-        const val WIDGET_TREND_DAILY_PENDING_INTENT_CODE_REFRESH = 102
 
         // trend hourly.
         const val WIDGET_TREND_HOURLY_PENDING_INTENT_CODE_WEATHER = 111
-        const val WIDGET_TREND_HOURLY_PENDING_INTENT_CODE_REFRESH = 112
 
         // multi city.
         const val WIDGET_MULTI_CITY_PENDING_INTENT_CODE_WEATHER_1 = 121
-        const val WIDGET_MULTI_CITY_PENDING_INTENT_CODE_REFRESH_1 = 122
         const val WIDGET_MULTI_CITY_PENDING_INTENT_CODE_WEATHER_2 = 123
-        const val WIDGET_MULTI_CITY_PENDING_INTENT_CODE_REFRESH_2 = 124
         const val WIDGET_MULTI_CITY_PENDING_INTENT_CODE_WEATHER_3 = 125
-        const val WIDGET_MULTI_CITY_PENDING_INTENT_CODE_REFRESH_3 = 126
+
+        // android S weather.
+        const val WIDGET_ANDROID_S_WEATHER_S_PENDING_INTENT_CODE_WEATHER = 131
+        const val WIDGET_ANDROID_S_WEATHER_M_PENDING_INTENT_CODE_WEATHER = 132
+        const val WIDGET_ANDROID_S_WEATHER_L_PENDING_INTENT_CODE_WEATHER = 133
+        const val WIDGET_ANDROID_S_WEATHER_XL_PENDING_INTENT_CODE_WEATHER = 134
 
         fun getProcessName(): String? = try {
             val file = File("/proc/" + Process.myPid() + "/" + "cmdline")

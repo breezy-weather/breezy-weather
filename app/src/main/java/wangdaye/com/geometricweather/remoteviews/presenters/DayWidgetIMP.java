@@ -59,7 +59,6 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
         SettingsManager settings = SettingsManager.getInstance(context);
         TemperatureUnit temperatureUnit = settings.getTemperatureUnit();
         boolean minimalIcon = settings.isWidgetMinimalIconEnabled();
-        boolean touchToRefresh = settings.isWidgetClickToRefreshEnabled();
 
         WidgetColor color;
         if (viewStyle.equals("pixel") || viewStyle.equals("nano")
@@ -93,7 +92,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
             );
         }
 
-        setOnClickPendingIntent(context, views, location, viewStyle, subtitleData, touchToRefresh);
+        setOnClickPendingIntent(context, views, location, viewStyle, subtitleData);
 
         return views;
     }
@@ -481,26 +480,16 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
     }
 
     private static void setOnClickPendingIntent(Context context, RemoteViews views, Location location,
-                                                String viewStyle, String subtitleData, boolean touchToRefresh) {
+                                                String viewStyle, String subtitleData) {
         // weather.
-        if (touchToRefresh) {
-            views.setOnClickPendingIntent(
-                    R.id.widget_day_weather,
-                    getRefreshPendingIntent(
-                            context,
-                            GeometricWeather.WIDGET_DAY_PENDING_INTENT_CODE_REFRESH
-                    )
-            );
-        } else {
-            views.setOnClickPendingIntent(
-                    R.id.widget_day_weather,
-                    getWeatherPendingIntent(
-                            context,
-                            location,
-                            GeometricWeather.WIDGET_DAY_PENDING_INTENT_CODE_WEATHER
-                    )
-            );
-        }
+        views.setOnClickPendingIntent(
+                R.id.widget_day_weather,
+                getWeatherPendingIntent(
+                        context,
+                        location,
+                        GeometricWeather.WIDGET_DAY_PENDING_INTENT_CODE_WEATHER
+                )
+        );
 
         // title.
         if (viewStyle.equals("oreo") || viewStyle.equals("oreo_google_sans")) {
@@ -520,14 +509,6 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
                     getCalendarPendingIntent(
                             context,
                             GeometricWeather.WIDGET_DAY_PENDING_INTENT_CODE_CALENDAR
-                    )
-            );
-        } else if (!touchToRefresh && subtitleData.equals("time")) {
-            views.setOnClickPendingIntent(
-                    R.id.widget_day_time,
-                    getRefreshPendingIntent(
-                            context,
-                            GeometricWeather.WIDGET_DAY_PENDING_INTENT_CODE_REFRESH
                     )
             );
         }

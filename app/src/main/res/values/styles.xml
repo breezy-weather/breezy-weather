@@ -273,4 +273,8 @@
         <item name="android:indeterminateTint" tools:ignore="NewApi">@color/lightPrimary_5</item>
     </style>
 
+    <!-- app widgets for android S. -->
+
+    <style name="GeometricWeatherAndroidSWidget" />
+
 </resources>

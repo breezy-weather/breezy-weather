@@ -242,15 +242,6 @@ public abstract class AbstractRemoteViewsPresenter {
     }
 
     @SuppressLint("InlinedApi")
-    public static PendingIntent getRefreshPendingIntent(Context context, int requestCode) {
-        return PendingIntent.getService(
-                context,
-                requestCode,
-                IntentHelper.getAwakeForegroundUpdateServiceIntent(context),
-                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
-    }
-
-    @SuppressLint("InlinedApi")
     public static PendingIntent getAlarmPendingIntent(Context context, int requestCode) {
         return PendingIntent.getActivity(
                 context,

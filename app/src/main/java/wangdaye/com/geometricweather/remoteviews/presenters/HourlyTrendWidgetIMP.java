@@ -230,12 +230,7 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
                 (int) (cardAlpha / 100.0 * 255)
         );
 
-        setOnClickPendingIntent(
-                context,
-                views,
-                location,
-                SettingsManager.getInstance(context).isWidgetClickToRefreshEnabled()
-        );
+        setOnClickPendingIntent(context, views, location);
 
         return views;
     }
@@ -289,24 +284,14 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
     }
 
     private static void setOnClickPendingIntent(Context context, RemoteViews views,
-                                                Location location, boolean touchToRefresh) {
-        if (touchToRefresh) {
-            views.setOnClickPendingIntent(
-                    R.id.widget_remote_drawable,
-                    getRefreshPendingIntent(
-                            context,
-                            GeometricWeather.WIDGET_TREND_HOURLY_PENDING_INTENT_CODE_REFRESH
-                    )
-            );
-        } else {
-            views.setOnClickPendingIntent(
-                    R.id.widget_remote_drawable,
-                    getWeatherPendingIntent(
-                            context,
-                            location,
-                            GeometricWeather.WIDGET_TREND_HOURLY_PENDING_INTENT_CODE_WEATHER
-                    )
-            );
-        }
+                                                Location location) {
+        views.setOnClickPendingIntent(
+                R.id.widget_remote_drawable,
+                getWeatherPendingIntent(
+                        context,
+                        location,
+                        GeometricWeather.WIDGET_TREND_HOURLY_PENDING_INTENT_CODE_WEATHER
+                )
+        );
     }
 }

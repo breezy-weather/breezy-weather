@@ -215,12 +215,6 @@ public class SettingsFragment extends AbstractSettingsFragment {
             return true;
         });
 
-        // click widget to update.
-        findPreference(getString(R.string.key_click_widget_to_refresh)).setOnPreferenceChangeListener((preference, newValue) -> {
-            PollingManager.resetNormalBackgroundTask(requireActivity(), true);
-            return true;
-        });
-
         // day.
         Preference day = findPreference(getString(R.string.key_widget_day));
         day.setVisible(DayWidgetIMP.isEnable(requireActivity()));

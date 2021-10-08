@@ -52,7 +52,6 @@ public class WeekWidgetIMP extends AbstractRemoteViewsPresenter {
         TemperatureUnit temperatureUnit = settings.getTemperatureUnit();
         WidgetWeekIconMode weekIconMode = settings.getWidgetWeekIconMode();
         boolean minimalIcon = settings.isWidgetMinimalIconEnabled();
-        boolean touchToRefresh = settings.isWidgetClickToRefreshEnabled();
 
         WidgetColor color = new WidgetColor(context, cardStyle, textColor);
 
@@ -204,7 +203,7 @@ public class WeekWidgetIMP extends AbstractRemoteViewsPresenter {
         }
 
         // set intent.
-        setOnClickPendingIntent(context, views, location, viewStyle, touchToRefresh);
+        setOnClickPendingIntent(context, views, location, viewStyle);
 
         // commit.
         return views;
@@ -238,26 +237,16 @@ public class WeekWidgetIMP extends AbstractRemoteViewsPresenter {
     }
 
     private static void setOnClickPendingIntent(Context context, RemoteViews views, Location location,
-                                                String viewType, boolean touchToRefresh) {
+                                                String viewType) {
         // weather.
-        if (touchToRefresh) {
-            views.setOnClickPendingIntent(
-                    R.id.widget_week_weather,
-                    getRefreshPendingIntent(
-                            context,
-                            GeometricWeather.WIDGET_WEEK_PENDING_INTENT_CODE_REFRESH
-                    )
-            );
-        } else {
-            views.setOnClickPendingIntent(
-                    R.id.widget_week_weather,
-                    getWeatherPendingIntent(
-                            context,
-                            location,
-                            GeometricWeather.WIDGET_WEEK_PENDING_INTENT_CODE_WEATHER
-                    )
-            );
-        }
+        views.setOnClickPendingIntent(
+                R.id.widget_week_weather,
+                getWeatherPendingIntent(
+                        context,
+                        location,
+                        GeometricWeather.WIDGET_WEEK_PENDING_INTENT_CODE_WEATHER
+                )
+        );
 
         // daily forecast.
         if (viewType.equals("3_days")) {

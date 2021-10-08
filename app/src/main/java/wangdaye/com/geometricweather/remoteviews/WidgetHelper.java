@@ -12,16 +12,20 @@ import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.remoteviews.presenters.ClockDayDetailsWidgetIMP;
-import wangdaye.com.geometricweather.remoteviews.presenters.DailyTrendWidgetIMP;
-import wangdaye.com.geometricweather.remoteviews.presenters.HourlyTrendWidgetIMP;
 import wangdaye.com.geometricweather.remoteviews.presenters.ClockDayHorizontalWidgetIMP;
 import wangdaye.com.geometricweather.remoteviews.presenters.ClockDayVerticalWidgetIMP;
 import wangdaye.com.geometricweather.remoteviews.presenters.ClockDayWeekWidgetIMP;
-import wangdaye.com.geometricweather.remoteviews.presenters.DayWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenters.DailyTrendWidgetIMP;
 import wangdaye.com.geometricweather.remoteviews.presenters.DayWeekWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenters.DayWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenters.HourlyTrendWidgetIMP;
 import wangdaye.com.geometricweather.remoteviews.presenters.MultiCityWidgetIMP;
 import wangdaye.com.geometricweather.remoteviews.presenters.TextWidgetIMP;
 import wangdaye.com.geometricweather.remoteviews.presenters.WeekWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenters.androidS.AndroidSWeatherLargeWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenters.androidS.AndroidSWeatherMediumWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenters.androidS.AndroidSWeatherMiniWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenters.androidS.AndroidSWeatherXLargeWidgetIMP;
 
 /**
  * Widget manager.
@@ -59,6 +63,20 @@ public class WidgetHelper {
         }
         if (HourlyTrendWidgetIMP.isEnable(context)) {
             HourlyTrendWidgetIMP.updateWidgetView(context, location);
+        }
+
+        // android S.
+        if (AndroidSWeatherMiniWidgetIMP.isEnable(context)) {
+            AndroidSWeatherMiniWidgetIMP.updateWidgetView(context, location);
+        }
+        if (AndroidSWeatherMediumWidgetIMP.isEnable(context)) {
+            AndroidSWeatherMediumWidgetIMP.updateWidgetView(context, location);
+        }
+        if (AndroidSWeatherLargeWidgetIMP.isEnable(context)) {
+            AndroidSWeatherLargeWidgetIMP.updateWidgetView(context, location);
+        }
+        if (AndroidSWeatherXLargeWidgetIMP.isEnable(context)) {
+            AndroidSWeatherXLargeWidgetIMP.updateWidgetView(context, location);
         }
     }
 
