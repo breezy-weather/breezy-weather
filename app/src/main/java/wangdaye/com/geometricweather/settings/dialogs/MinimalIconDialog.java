@@ -14,10 +14,10 @@ import androidx.appcompat.widget.AppCompatImageView;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoDialog;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
-import wangdaye.com.geometricweather.resource.ResourceHelper;
-import wangdaye.com.geometricweather.resource.providers.DefaultResourceProvider;
-import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
+import wangdaye.com.geometricweather.theme.resource.providers.DefaultResourceProvider;
+import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
+import wangdaye.com.geometricweather.theme.resource.ResourcesProviderFactory;
 
 /**
  * Adaptive icon dialog.

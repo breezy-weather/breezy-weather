@@ -1,15 +1,15 @@
 package wangdaye.com.geometricweather.settings
 
 import android.content.Context
-import androidx.annotation.ColorInt
-import androidx.core.content.ContextCompat
 import wangdaye.com.geometricweather.BuildConfig
 import wangdaye.com.geometricweather.R
-import wangdaye.com.geometricweather.common.basic.models.options.*
+import wangdaye.com.geometricweather.common.basic.models.options.DarkMode
+import wangdaye.com.geometricweather.common.basic.models.options.NotificationStyle
+import wangdaye.com.geometricweather.common.basic.models.options.UpdateInterval
+import wangdaye.com.geometricweather.common.basic.models.options.WidgetWeekIconMode
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.CardDisplay
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.DailyTrendDisplay
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.Language
-import wangdaye.com.geometricweather.common.basic.models.options.appearance.UIStyle
 import wangdaye.com.geometricweather.common.basic.models.options.provider.LocationProvider
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource
 import wangdaye.com.geometricweather.common.basic.models.options.unit.*
@@ -34,17 +34,21 @@ class SettingsManager private constructor(context: Context){
             return instance!!
         }
 
-        private const val DEFAULT_CARD_DISPLAY = ("daily_overview"
-                + "&hourly_overview"
-                + "&air_quality"
-                + "&allergen"
-                + "&sunrise_sunset"
-                + "&life_details")
-        private const val DEFAULT_DAILY_TREND_DISPLAY = ("temperature"
-                + "&air_quality"
-                + "&wind"
-                + "&uv_index"
-                + "&precipitation")
+        private const val DEFAULT_CARD_DISPLAY = (
+                "daily_overview"
+                        + "&hourly_overview"
+                        + "&air_quality"
+                        + "&allergen"
+                        + "&sunrise_sunset"
+                        + "&life_details"
+        )
+        private const val DEFAULT_DAILY_TREND_DISPLAY = (
+                "temperature"
+                        + "&air_quality"
+                        + "&wind"
+                        + "&uv_index"
+                        + "&precipitation"
+        )
 
         const val DEFAULT_TODAY_FORECAST_TIME = "07:00"
         const val DEFAULT_TOMORROW_FORECAST_TIME = "21:00"
@@ -71,7 +75,6 @@ class SettingsManager private constructor(context: Context){
     private val speedUnit = context.getString(R.string.key_speed_unit)
 
     // appearance.
-    private val uiStyle = context.getString(R.string.key_ui_style)
     private val iconProvider = context.getString(R.string.key_icon_provider)
     private val cardDisplayList = context.getString(R.string.key_card_display)
     private val dailyTrendDisplayList = context.getString(R.string.key_daily_trend_display)
@@ -97,16 +100,8 @@ class SettingsManager private constructor(context: Context){
     // notification.
     private val notificationEnabled = context.getString(R.string.key_notification)
     private val notificationStyle = context.getString(R.string.key_notification_style)
-    private val notificationMinimalIconEnabled = context.getString(R.string.key_notification_minimal_icon)
     private val notificationTemperatureIconEnabled = context.getString(R.string.key_notification_temp_icon)
-    private val notificationCustomColorEnabled = context.getString(R.string.key_notification_custom_color)
-
-    private val notificationBackgroundColor = context.getString(R.string.key_notification_background_color)
-    private val notificationTextColor = context.getString(R.string.key_notification_text_color)
     private val notificationCanBeClearedEnabled = context.getString(R.string.key_notification_can_be_cleared)
-    private val notificationHideIconEnabled = context.getString(R.string.key_notification_hide_icon)
-    private val notificationHideInLockScreenEnabled = context.getString(R.string.key_notification_hide_in_lockScreen)
-    private val notificationHideBigViewEnabled = context.getString(R.string.key_notification_hide_big_view)
 
     // service providers
     private val providerAccuWeatherKey = context.getString(R.string.key_provider_accu_weather_key)
@@ -140,56 +135,62 @@ class SettingsManager private constructor(context: Context){
 
     fun getUpdateInterval(): UpdateInterval {
         return UpdateInterval.getInstance(
-                config.getString(updateInterval, "1:30"))
+                config.getString(updateInterval, "1:30")
+        )
     }
 
     fun getDarkMode(): DarkMode {
         return DarkMode.getInstance(
-                config.getString(darkMode, "auto"))
+                config.getString(darkMode, "auto")
+        )
     }
 
     fun getWeatherSource(): WeatherSource {
         return WeatherSource.getInstance(
-                config.getString(weatherSource, "accu"))
+                config.getString(weatherSource, "accu")
+        )
     }
 
     fun getLocationProvider(): LocationProvider {
         return LocationProvider.getInstance(
-                config.getString(locationProvider, "native"))
+                config.getString(locationProvider, "native")
+        )
     }
 
     fun setLocationProvider(provider: LocationProvider) {
-        config.edit().putString(locationProvider, provider.providerId).apply()
+        config.edit()
+            .putString(locationProvider, provider.providerId)
+            .apply()
     }
 
     fun getTemperatureUnit(): TemperatureUnit {
         return TemperatureUnit.getInstance(
-                config.getString(temperatureUnit, "c"))
+                config.getString(temperatureUnit, "c")
+        )
     }
 
     fun getDistanceUnit(): DistanceUnit {
         return DistanceUnit.getInstance(
-                config.getString(distanceUnit, "km"))
+                config.getString(distanceUnit, "km")
+        )
     }
 
     fun getPrecipitationUnit(): PrecipitationUnit {
         return PrecipitationUnit.getInstance(
-                config.getString(precipitationUnit, "mm"))
+                config.getString(precipitationUnit, "mm")
+        )
     }
 
     fun getPressureUnit(): PressureUnit {
         return PressureUnit.getInstance(
-                config.getString(pressureUnit, "mb"))
+                config.getString(pressureUnit, "mb")
+        )
     }
 
     fun getSpeedUnit(): SpeedUnit {
         return SpeedUnit.getInstance(
-                config.getString(speedUnit, "mps"))
-    }
-
-    fun getUiStyle(): UIStyle {
-        return UIStyle.getInstance(
-                config.getString(uiStyle, "material"))
+                config.getString(speedUnit, "mps")
+        )
     }
 
     fun getIconProvider(context: Context): String {
@@ -197,7 +198,9 @@ class SettingsManager private constructor(context: Context){
     }
 
     fun setIconProvider(packageName: String) {
-        config.edit().putString(iconProvider, packageName).apply()
+        config.edit()
+            .putString(iconProvider, packageName)
+            .apply()
     }
 
     fun getCardDisplayList(): List<CardDisplay> {
@@ -250,7 +253,8 @@ class SettingsManager private constructor(context: Context){
 
     fun getLanguage(): Language {
         return Language.getInstance(
-                config.getString(language, "follow_system"))
+                config.getString(language, "follow_system")
+        )
     }
 
     fun isTodayForecastEnabled(): Boolean {
@@ -262,7 +266,9 @@ class SettingsManager private constructor(context: Context){
     }
 
     fun setTodayForecastTime(time: String) {
-        return config.edit().putString(todayForecastTime, time).apply()
+        return config.edit()
+            .putString(todayForecastTime, time)
+            .apply()
     }
 
     fun isTomorrowForecastEnabled(): Boolean {
@@ -274,12 +280,15 @@ class SettingsManager private constructor(context: Context){
     }
 
     fun setTomorrowForecastTime(time: String) {
-        return config.edit().putString(tomorrowForecastTime, time).apply()
+        return config.edit()
+            .putString(tomorrowForecastTime, time)
+            .apply()
     }
 
     fun getWidgetWeekIconMode(): WidgetWeekIconMode {
         return WidgetWeekIconMode.getInstance(
-                config.getString(widgetWeekIconMode, "auto"))
+                config.getString(widgetWeekIconMode, "auto")
+        )
     }
 
     fun isWidgetMinimalIconEnabled(): Boolean {
@@ -292,54 +301,22 @@ class SettingsManager private constructor(context: Context){
 
     fun getNotificationStyle(): NotificationStyle {
         return NotificationStyle.getInstance(
-                config.getString(notificationStyle, "daily"))
-    }
-
-    fun isNotificationMinimalIconEnabled(): Boolean {
-        return config.getBoolean(notificationMinimalIconEnabled, false)
+                config.getString(notificationStyle, "daily")
+        )
     }
 
     fun isNotificationTemperatureIconEnabled(): Boolean {
         return config.getBoolean(notificationTemperatureIconEnabled, false)
     }
 
-    fun isNotificationCustomColorEnabled(): Boolean {
-        return config.getBoolean(notificationCustomColorEnabled, false)
-    }
-
-    @ColorInt
-    fun getNotificationBackgroundColor(context: Context): Int {
-        return config.getInt(
-                notificationBackgroundColor,
-                ContextCompat.getColor(context, R.color.notification_background_l)
-        )
-    }
-
-    fun getNotificationTextColor(): NotificationTextColor {
-        return NotificationTextColor.getInstance(
-                config.getString(notificationTextColor, "dark"))
-    }
-
     fun isNotificationCanBeClearedEnabled(): Boolean {
         return config.getBoolean(notificationCanBeClearedEnabled, false)
     }
 
-    fun isNotificationHideIconEnabled(): Boolean {
-        return config.getBoolean(notificationHideIconEnabled, false)
-    }
-
-    fun isNotificationHideInLockScreenEnabled(): Boolean {
-        return config.getBoolean(notificationHideInLockScreenEnabled, false)
-    }
-
-    fun isNotificationHideBigViewEnabled(): Boolean {
-        return config.getBoolean(notificationHideBigViewEnabled, false)
-    }
-
     private fun getProviderSettingValue(
-            key: String,
-            defaultValue: String?,
-            useDefaultValue: Boolean
+        key: String,
+        defaultValue: String?,
+        useDefaultValue: Boolean
     ): String {
         val prefValue = config.getString(key, "")
 

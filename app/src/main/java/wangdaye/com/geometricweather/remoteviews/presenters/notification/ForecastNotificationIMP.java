@@ -17,11 +17,11 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.Temperatur
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.remoteviews.presenters.AbstractRemoteViewsPresenter;
-import wangdaye.com.geometricweather.resource.ResourceHelper;
-import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
+import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
+import wangdaye.com.geometricweather.theme.resource.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsManager;
-import wangdaye.com.geometricweather.common.ui.widgets.weatherView.WeatherViewController;
+import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
 import wangdaye.com.geometricweather.common.utils.LanguageUtils;
 
 /**

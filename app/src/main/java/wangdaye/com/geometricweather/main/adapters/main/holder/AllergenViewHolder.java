@@ -19,7 +19,7 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Daily;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.ui.widgets.horizontal.HorizontalViewPager2;
 import wangdaye.com.geometricweather.main.utils.MainThemeManager;
-import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
+import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.common.ui.adapters.DailyPollenAdapter;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
 

@@ -20,9 +20,9 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.Temperatur
 import wangdaye.com.geometricweather.common.basic.models.weather.Temperature;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.remoteviews.WidgetHelper;
-import wangdaye.com.geometricweather.resource.ResourceHelper;
-import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
+import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
+import wangdaye.com.geometricweather.theme.resource.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.common.utils.helpers.LunarHelper;
 

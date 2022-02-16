@@ -28,7 +28,7 @@ import java.util.List;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.CardDisplay;
-import wangdaye.com.geometricweather.common.theme.DefaultThemeManager;
+import wangdaye.com.geometricweather.theme.DefaultThemeManager;
 import wangdaye.com.geometricweather.common.ui.adapters.TagAdapter;
 import wangdaye.com.geometricweather.common.ui.decotarions.GridMarginsDecoration;
 import wangdaye.com.geometricweather.common.ui.decotarions.ListDecoration;

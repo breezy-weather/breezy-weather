@@ -486,7 +486,6 @@
     <string name="key_weather_source">weather_source</string>
     <string name="key_location_service">location_service</string>
     <string name="key_dark_mode">dark_mode</string>
-    <string name="key_ui_style">ui_style</string>
     <string name="key_icon_provider">icon_provider</string>
     <string name="key_appearance">appearance</string>
     <string name="key_card_display">card_display_2</string>
@@ -529,14 +528,7 @@
     <string name="key_notification_style">notification_style</string>
     <string name="key_notification_minimal_icon">notification_minimal_icon</string>
     <string name="key_notification_temp_icon">notification_temp_icon_switch</string>
-    <string name="key_notification_color">notification_color</string>
-    <string name="key_notification_custom_color">notification_custom_color</string>
-    <string name="key_notification_background_color">notification_background_color</string>
-    <string name="key_notification_text_color">notification_text_color</string>
     <string name="key_notification_can_be_cleared">notification_can_clear_switch</string>
-    <string name="key_notification_hide_icon">hide_notification_icon</string>
-    <string name="key_notification_hide_in_lockScreen">hide_notification_in_lockScreen</string>
-    <string name="key_notification_hide_big_view">hide_notification_big_view</string>
     <string name="key_provider_accu_weather_key">provider_accu_weather_key</string>
     <string name="key_provider_accu_current_key">provider_accu_current_key</string>
     <string name="key_provider_accu_aqi_key">provider_accu_aqi_key</string>

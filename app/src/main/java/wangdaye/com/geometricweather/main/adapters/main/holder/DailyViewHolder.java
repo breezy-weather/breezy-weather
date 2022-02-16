@@ -23,7 +23,7 @@ import wangdaye.com.geometricweather.main.adapters.main.MainTag;
 import wangdaye.com.geometricweather.main.adapters.trend.DailyTrendAdapter;
 import wangdaye.com.geometricweather.main.layouts.TrendHorizontalLinearLayoutManager;
 import wangdaye.com.geometricweather.main.utils.MainThemeManager;
-import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
+import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.common.ui.adapters.TagAdapter;
 import wangdaye.com.geometricweather.common.ui.decotarions.GridMarginsDecoration;

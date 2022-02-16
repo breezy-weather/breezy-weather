@@ -14,7 +14,7 @@ import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.main.adapters.DetailsAdapter;
 import wangdaye.com.geometricweather.main.utils.MainThemeManager;
-import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
+import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 
 public class DetailsViewHolder extends AbstractMainCardViewHolder {
 

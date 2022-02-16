@@ -8,9 +8,6 @@ import androidx.hilt.work.HiltWorkerFactory
 import androidx.multidex.MultiDexApplication
 import androidx.work.Configuration
 import dagger.hilt.android.HiltAndroidApp
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
 import wangdaye.com.geometricweather.common.basic.GeoActivity
 import wangdaye.com.geometricweather.common.basic.models.options.DarkMode
 import wangdaye.com.geometricweather.common.utils.LanguageUtils
@@ -21,11 +18,9 @@ import java.io.File
 import java.io.FileReader
 import javax.inject.Inject
 
-/**
- * Geometric weather application class.
- */
 @HiltAndroidApp
-class GeometricWeather : MultiDexApplication(), Configuration.Provider {
+class GeometricWeather : MultiDexApplication(),
+    Configuration.Provider {
 
     companion object {
 
@@ -139,7 +134,9 @@ class GeometricWeather : MultiDexApplication(), Configuration.Provider {
         fun getProcessName(): String? = try {
             val file = File("/proc/" + Process.myPid() + "/" + "cmdline")
             val mBufferedReader = BufferedReader(FileReader(file))
-            val processName = mBufferedReader.readLine().trim { it <= ' ' }
+            val processName = mBufferedReader.readLine().trim {
+                it <= ' '
+            }
             mBufferedReader.close()
 
             processName
@@ -152,18 +149,26 @@ class GeometricWeather : MultiDexApplication(), Configuration.Provider {
         @JvmStatic
         fun getNotificationChannelName(context: Context, channelId: String): String {
             return when (channelId) {
-                NOTIFICATION_CHANNEL_ID_ALERT -> (context.getString(R.string.geometric_weather)
-                        + " " + context.getString(R.string.action_alert))
-
-                NOTIFICATION_CHANNEL_ID_FORECAST -> (context.getString(R.string.geometric_weather)
-                        + " " + context.getString(R.string.forecast))
-
-                NOTIFICATION_CHANNEL_ID_LOCATION -> (context.getString(R.string.geometric_weather)
-                        + " " + context.getString(R.string.feedback_request_location))
-
-                NOTIFICATION_CHANNEL_ID_BACKGROUND -> (context.getString(R.string.geometric_weather)
-                        + " " + context.getString(R.string.background_information))
-
+                NOTIFICATION_CHANNEL_ID_ALERT -> (
+                        context.getString(R.string.geometric_weather)
+                                + " "
+                                + context.getString(R.string.action_alert)
+                )
+                NOTIFICATION_CHANNEL_ID_FORECAST -> (
+                        context.getString(R.string.geometric_weather)
+                                + " "
+                                + context.getString(R.string.forecast)
+                )
+                NOTIFICATION_CHANNEL_ID_LOCATION -> (
+                        context.getString(R.string.geometric_weather)
+                                + " "
+                                + context.getString(R.string.feedback_request_location)
+                )
+                NOTIFICATION_CHANNEL_ID_BACKGROUND -> (
+                        context.getString(R.string.geometric_weather)
+                                + " "
+                                + context.getString(R.string.background_information)
+                )
                 else -> context.getString(R.string.geometric_weather)
             }
         }
@@ -180,15 +185,16 @@ class GeometricWeather : MultiDexApplication(), Configuration.Provider {
                 && applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0
     }
 
-    val applicationScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
     @Inject lateinit var workerFactory: HiltWorkerFactory
 
     override fun onCreate() {
         super.onCreate()
 
         instance = this
-        LanguageUtils.setLanguage(this,
-                SettingsManager.getInstance(this).getLanguage().locale)
+        LanguageUtils.setLanguage(
+            this,
+            SettingsManager.getInstance(this).getLanguage().locale
+        )
 
         BuglyHelper.init(this)
 
@@ -224,8 +230,12 @@ class GeometricWeather : MultiDexApplication(), Configuration.Provider {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
-            DarkMode.LIGHT -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            DarkMode.DARK -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            DarkMode.LIGHT -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+            DarkMode.DARK -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }
         }
     }
 
@@ -235,7 +245,8 @@ class GeometricWeather : MultiDexApplication(), Configuration.Provider {
         }
     }
 
-    override fun getWorkManagerConfiguration() = Configuration.Builder()
+    override fun getWorkManagerConfiguration() =
+        Configuration.Builder()
             .setWorkerFactory(workerFactory)
             .build()
 }

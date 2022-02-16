@@ -22,10 +22,10 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.main.utils.MainThemeManager;
-import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
+import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.common.ui.widgets.NumberAnimTextView;
-import wangdaye.com.geometricweather.common.ui.widgets.weatherView.WeatherView;
+import wangdaye.com.geometricweather.theme.weatherView.WeatherView;
 
 public class HeaderViewHolder extends AbstractMainViewHolder {
 

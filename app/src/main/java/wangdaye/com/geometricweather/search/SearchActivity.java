@@ -5,7 +5,6 @@ import android.animation.AnimatorSet;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -39,7 +38,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
-import wangdaye.com.geometricweather.common.theme.DefaultThemeManager;
+import wangdaye.com.geometricweather.theme.DefaultThemeManager;
 import wangdaye.com.geometricweather.common.ui.adapters.location.LocationAdapter;
 import wangdaye.com.geometricweather.common.ui.decotarions.ListDecoration;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
@@ -118,17 +117,16 @@ public class SearchActivity extends GeoActivity
 
         mBinding = ActivitySearchBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            postponeEnterTransition();
-            mBinding.searchBar.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-                @Override
-                public boolean onPreDraw() {
-                    mBinding.searchBar.getViewTreeObserver().removeOnPreDrawListener(this);
-                    startPostponedEnterTransition();
-                    return true;
-                }
-            });
-        }
+
+        postponeEnterTransition();
+        mBinding.searchBar.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                mBinding.searchBar.getViewTreeObserver().removeOnPreDrawListener(this);
+                startPostponedEnterTransition();
+                return true;
+            }
+        });
 
         boolean lightTheme = !DisplayUtils.isDarkMode(this);
         DisplayUtils.setSystemBarStyle(this, getWindow(),
@@ -218,22 +216,20 @@ public class SearchActivity extends GeoActivity
 
         mBinding.progress.setAlpha(0);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            setEnterSharedElementCallback(new SharedElementCallback() {
-                @Override
-                public void onSharedElementStart(List<String> sharedElementNames,
-                                                 List<View> sharedElements,
-                                                 List<View> sharedElementSnapshots) {
-                    mBinding.searchContainer.setAlpha(0f);
+        setEnterSharedElementCallback(new SharedElementCallback() {
+            @Override
+            public void onSharedElementStart(List<String> sharedElementNames,
+                                             List<View> sharedElements,
+                                             List<View> sharedElementSnapshots) {
+                mBinding.searchContainer.setAlpha(0f);
 
-                    AnimatorSet animationSet = (AnimatorSet) AnimatorInflater.loadAnimator(
-                            SearchActivity.this, R.animator.search_container_in);
-                    animationSet.setStartDelay(400);
-                    animationSet.setTarget(mBinding.searchContainer);
-                    animationSet.start();
-                }
-            });
-        }
+                AnimatorSet animationSet = (AnimatorSet) AnimatorInflater.loadAnimator(
+                        SearchActivity.this, R.animator.search_container_in);
+                animationSet.setStartDelay(400);
+                animationSet.setTarget(mBinding.searchContainer);
+                animationSet.start();
+            }
+        });
 
         mMaterialSheetFab = new MaterialSheetFab<>(
                 mBinding.fab,

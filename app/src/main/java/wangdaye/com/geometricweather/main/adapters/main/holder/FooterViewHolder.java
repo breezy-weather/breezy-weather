@@ -21,7 +21,7 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.main.MainActivity;
 import wangdaye.com.geometricweather.main.utils.MainThemeManager;
-import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
+import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
 
 public class FooterViewHolder extends AbstractMainViewHolder {

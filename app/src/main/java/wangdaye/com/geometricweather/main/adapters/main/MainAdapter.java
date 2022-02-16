@@ -14,7 +14,7 @@ import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.CardDisplay;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.common.ui.widgets.weatherView.WeatherView;
+import wangdaye.com.geometricweather.theme.weatherView.WeatherView;
 import wangdaye.com.geometricweather.main.adapters.main.holder.AbstractMainCardViewHolder;
 import wangdaye.com.geometricweather.main.adapters.main.holder.AbstractMainViewHolder;
 import wangdaye.com.geometricweather.main.adapters.main.holder.AirQualityViewHolder;
@@ -26,7 +26,7 @@ import wangdaye.com.geometricweather.main.adapters.main.holder.FooterViewHolder;
 import wangdaye.com.geometricweather.main.adapters.main.holder.HeaderViewHolder;
 import wangdaye.com.geometricweather.main.adapters.main.holder.HourlyViewHolder;
 import wangdaye.com.geometricweather.main.utils.MainThemeManager;
-import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
+import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 
 public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {

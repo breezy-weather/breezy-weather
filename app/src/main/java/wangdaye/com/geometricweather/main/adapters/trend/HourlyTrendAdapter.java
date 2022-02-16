@@ -12,7 +12,7 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.Precipitat
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.main.adapters.trend.hourly.HourlyTemperatureAdapter;
 import wangdaye.com.geometricweather.main.utils.MainThemeManager;
-import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
+import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.main.adapters.trend.hourly.AbsHourlyTrendAdapter;
 import wangdaye.com.geometricweather.main.adapters.trend.hourly.HourlyPrecipitationAdapter;

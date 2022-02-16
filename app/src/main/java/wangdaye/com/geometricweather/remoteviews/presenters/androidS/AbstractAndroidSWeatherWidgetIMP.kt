@@ -2,16 +2,14 @@ package wangdaye.com.geometricweather.remoteviews.presenters.androidS
 
 import android.content.Context
 import android.graphics.Color
-import android.widget.FrameLayout
 import android.widget.RemoteViews
-import androidx.core.content.ContextCompat
 import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.models.Location
 import wangdaye.com.geometricweather.common.basic.models.options.NotificationTextColor
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode
 import wangdaye.com.geometricweather.remoteviews.presenters.AbstractRemoteViewsPresenter
-import wangdaye.com.geometricweather.resource.ResourceHelper
-import wangdaye.com.geometricweather.resource.ResourcesProviderFactory
+import wangdaye.com.geometricweather.theme.resource.ResourceHelper
+import wangdaye.com.geometricweather.theme.resource.ResourcesProviderFactory
 import wangdaye.com.geometricweather.settings.SettingsManager
 
 open class AbstractAndroidSWeatherWidgetIMP: AbstractRemoteViewsPresenter()

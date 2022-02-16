@@ -16,7 +16,7 @@ import wangdaye.com.geometricweather.common.basic.models.options.appearance.Dail
 import wangdaye.com.geometricweather.common.basic.models.weather.Temperature;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
 import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
-import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.theme.resource.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.settings.dialogs.ProvidersPreviewerDialog;
 
@@ -51,19 +51,6 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
                 selectResourceProviderCallback,
                 new IntentFilter(ProvidersPreviewerDialog.ACTION_RESOURCE_PROVIDER_CHANGED)
         );
-
-        // ui style.
-        Preference uiStyle = findPreference(getString(R.string.key_ui_style));
-        uiStyle.setSummary(getSettingsOptionManager().getUiStyle().getUIStyleName(requireActivity()));
-        uiStyle.setOnPreferenceChangeListener((preference, newValue) -> {
-            preference.setSummary(getSettingsOptionManager().getUiStyle().getUIStyleName(requireActivity()));
-            SnackbarHelper.showSnackbar(
-                    getString(R.string.feedback_restart),
-                    getString(R.string.restart),
-                    v -> GeometricWeather.getInstance().recreateAllActivities()
-            );
-            return true;
-        });
 
         // icon provider.
         initIconProviderPreference();

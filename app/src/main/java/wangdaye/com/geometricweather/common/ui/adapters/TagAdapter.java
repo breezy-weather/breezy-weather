@@ -13,7 +13,7 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.ui.widgets.TagView;
-import wangdaye.com.geometricweather.common.theme.ThemeManager;
+import wangdaye.com.geometricweather.theme.ThemeManager;
 
 public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
 

@@ -124,21 +124,15 @@ public class IntentHelper {
     }
 
     public static void startSearchActivityForResult(Activity activity, View bar, int requestCode) {
-        Intent intent = new Intent(activity, SearchActivity.class);
-
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            activity.startActivityForResult(intent, requestCode);
-        } else {
-            ActivityCompat.startActivityForResult(
-                    activity,
-                    intent,
-                    requestCode,
-                    ActivityOptionsCompat.makeSceneTransitionAnimation(
-                            activity,
-                            Pair.create(bar, activity.getString(R.string.transition_activity_search_bar))
-                    ).toBundle()
-            );
-        }
+        ActivityCompat.startActivityForResult(
+                activity,
+                new Intent(activity, SearchActivity.class),
+                requestCode,
+                ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        activity,
+                        Pair.create(bar, activity.getString(R.string.transition_activity_search_bar))
+                ).toBundle()
+        );
     }
 
     public static void startSettingsActivityForResult(Activity activity, int requestCode) {

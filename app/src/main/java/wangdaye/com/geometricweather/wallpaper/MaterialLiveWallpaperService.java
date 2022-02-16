@@ -24,12 +24,12 @@ import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.settings.SettingsManager;
-import wangdaye.com.geometricweather.common.ui.widgets.weatherView.WeatherView;
-import wangdaye.com.geometricweather.common.ui.widgets.weatherView.WeatherViewController;
-import wangdaye.com.geometricweather.common.ui.widgets.weatherView.materialWeatherView.DelayRotateController;
-import wangdaye.com.geometricweather.common.ui.widgets.weatherView.materialWeatherView.IntervalComputer;
-import wangdaye.com.geometricweather.common.ui.widgets.weatherView.materialWeatherView.MaterialWeatherView;
-import wangdaye.com.geometricweather.common.ui.widgets.weatherView.materialWeatherView.WeatherImplementorFactory;
+import wangdaye.com.geometricweather.theme.weatherView.WeatherView;
+import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
+import wangdaye.com.geometricweather.theme.weatherView.materialWeatherView.DelayRotateController;
+import wangdaye.com.geometricweather.theme.weatherView.materialWeatherView.IntervalComputer;
+import wangdaye.com.geometricweather.theme.weatherView.materialWeatherView.MaterialWeatherView;
+import wangdaye.com.geometricweather.theme.weatherView.materialWeatherView.WeatherImplementorFactory;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper;
 

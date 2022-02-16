@@ -15,9 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
-import wangdaye.com.geometricweather.common.theme.ThemeManager;
+import wangdaye.com.geometricweather.theme.ThemeManager;
 import wangdaye.com.geometricweather.databinding.ItemLocationBinding;
-import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
+import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 
 public class LocationHolder extends RecyclerView.ViewHolder {
 

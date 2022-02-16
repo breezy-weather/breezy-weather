@@ -23,9 +23,9 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.common.ui.widgets.AnimatableIconView;
 import wangdaye.com.geometricweather.main.utils.MainPalette;
-import wangdaye.com.geometricweather.resource.ResourceHelper;
-import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
+import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
+import wangdaye.com.geometricweather.theme.resource.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 
 /**

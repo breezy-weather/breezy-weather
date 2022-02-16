@@ -19,24 +19,24 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.Temperatur
 import wangdaye.com.geometricweather.common.basic.models.weather.Base;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.remoteviews.presenters.AbstractRemoteViewsPresenter;
-import wangdaye.com.geometricweather.resource.ResourceHelper;
-import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
+import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
+import wangdaye.com.geometricweather.theme.resource.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsManager;
-import wangdaye.com.geometricweather.common.ui.widgets.weatherView.WeatherViewController;
+import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
 import wangdaye.com.geometricweather.common.utils.LanguageUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.LunarHelper;
 
-/**
- * Forecast notification utils.
- * */
-
 class NativeNormalNotificationIMP extends AbstractRemoteViewsPresenter {
 
-    static void buildNotificationAndSendIt(Context context, Location location,
-                                           TemperatureUnit temperatureUnit, boolean daytime, boolean tempIcon,
-                                           boolean hideNotificationIcon, boolean hideNotificationInLockScreen,
-                                           boolean canBeCleared) {
+    static void buildNotificationAndSendIt(
+            Context context,
+            Location location,
+            TemperatureUnit temperatureUnit,
+            boolean daytime,
+            boolean tempIcon,
+            boolean canBeCleared
+    ) {
         Weather weather = location.getWeather();
         if (weather == null) {
             return;
@@ -58,29 +58,25 @@ class NativeNormalNotificationIMP extends AbstractRemoteViewsPresenter {
                             context,
                             GeometricWeather.NOTIFICATION_CHANNEL_ID_NORMALLY
                     ),
-                    hideNotificationIcon
-                            ? NotificationManager.IMPORTANCE_MIN
-                            : NotificationManager.IMPORTANCE_LOW
+                    NotificationManager.IMPORTANCE_LOW
             );
             channel.setShowBadge(false);
-            channel.setImportance(hideNotificationIcon
-                    ? NotificationManager.IMPORTANCE_UNSPECIFIED : NotificationManager.IMPORTANCE_HIGH);
-            channel.setLockscreenVisibility(hideNotificationInLockScreen
-                    ? NotificationCompat.VISIBILITY_SECRET : NotificationCompat.VISIBILITY_PUBLIC);
+            channel.setImportance(NotificationManager.IMPORTANCE_HIGH);
+            channel.setLockscreenVisibility(NotificationCompat.VISIBILITY_PUBLIC);
             manager.createNotificationChannel(channel);
         }
 
         // get manager & builder.
         NotificationCompat.Builder builder = new NotificationCompat.Builder(
-                context, GeometricWeather.NOTIFICATION_CHANNEL_ID_NORMALLY);
+                context,
+                GeometricWeather.NOTIFICATION_CHANNEL_ID_NORMALLY
+        );
 
         // set notification level.
-        builder.setPriority(hideNotificationIcon
-                ? NotificationCompat.PRIORITY_MIN : NotificationCompat.PRIORITY_MAX);
+        builder.setPriority(NotificationCompat.PRIORITY_MAX);
 
         // set notification visibility.
-        builder.setVisibility(hideNotificationInLockScreen
-                ? NotificationCompat.VISIBILITY_SECRET : NotificationCompat.VISIBILITY_PUBLIC);
+        builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
 
         // set small icon.
         builder.setSmallIcon(

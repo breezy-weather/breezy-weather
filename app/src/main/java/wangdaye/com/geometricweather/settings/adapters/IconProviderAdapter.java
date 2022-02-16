@@ -21,7 +21,7 @@ import java.util.List;
 import james.adaptiveicon.AdaptiveIcon;
 import james.adaptiveicon.AdaptiveIconView;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
+import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.ImageHelper;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;

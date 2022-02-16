@@ -19,10 +19,10 @@ import java.util.List;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.common.ui.adapters.SyncListAdapter;
-import wangdaye.com.geometricweather.common.theme.ThemeManager;
+import wangdaye.com.geometricweather.theme.ThemeManager;
 import wangdaye.com.geometricweather.databinding.ItemLocationBinding;
-import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.resource.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
+import wangdaye.com.geometricweather.theme.resource.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 
 /**

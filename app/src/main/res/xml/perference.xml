@@ -178,13 +178,7 @@
             android:entries="@array/notification_styles"
             android:entryValues="@array/notification_style_values"
             android:dialogTitle="@string/settings_title_notification_style"
-            android:defaultValue="geometric" />
-
-        <CheckBoxPreference
-            android:title="@string/settings_title_minimal_icon"
-            android:key="@string/key_notification_minimal_icon"
-            android:summaryOn="@string/on"
-            android:summaryOff="@string/off" />
+            android:defaultValue="daily" />
 
         <CheckBoxPreference
             android:title="@string/settings_title_notification_temp_icon"
@@ -192,33 +186,11 @@
             android:summaryOn="@string/on"
             android:summaryOff="@string/off" />
 
-        <Preference
-            android:title="@string/settings_title_notification_color"
-            android:key="@string/key_notification_color" />
-
         <CheckBoxPreference
             android:title="@string/settings_title_notification_can_be_cleared"
             android:key="@string/key_notification_can_be_cleared"
             android:summaryOn="@string/settings_notification_can_be_cleared_on"
             android:summaryOff="@string/settings_notification_can_be_cleared_off" />
-
-        <CheckBoxPreference
-            android:title="@string/settings_title_notification_hide_icon"
-            android:key="@string/key_notification_hide_icon"
-            android:summaryOn="@string/settings_notification_hide_icon_on"
-            android:summaryOff="@string/settings_notification_hide_icon_off" />
-
-        <CheckBoxPreference
-            android:title="@string/settings_title_notification_hide_in_lockScreen"
-            android:key="@string/key_notification_hide_in_lockScreen"
-            android:summaryOn="@string/settings_notification_hide_in_lockScreen_on"
-            android:summaryOff="@string/settings_notification_hide_in_lockScreen_off" />
-
-        <CheckBoxPreference
-            android:title="@string/settings_title_notification_hide_big_view"
-            android:key="@string/key_notification_hide_big_view"
-            android:summaryOn="@string/settings_notification_hide_big_view_on"
-            android:summaryOff="@string/settings_notification_hide_big_view_off" />
 
     </PreferenceCategory>
 

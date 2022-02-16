@@ -16,10 +16,10 @@ import javax.inject.Inject;
 import dagger.hilt.android.qualifiers.ActivityContext;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.Location;
-import wangdaye.com.geometricweather.common.ui.widgets.weatherView.WeatherView;
+import wangdaye.com.geometricweather.theme.weatherView.WeatherView;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
-import wangdaye.com.geometricweather.common.theme.ThemeManager;
-import wangdaye.com.geometricweather.resource.utils.ResourceUtils;
+import wangdaye.com.geometricweather.theme.ThemeManager;
+import wangdaye.com.geometricweather.theme.resource.utils.ResourceUtils;
 import wangdaye.com.geometricweather.settings.ConfigStore;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 

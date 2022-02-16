@@ -2,14 +2,6 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     android:title="@string/settings_title_appearance">
 
-    <ListPreference
-        android:title="@string/settings_title_ui_style"
-        android:key="@string/key_ui_style"
-        android:entries="@array/ui_styles"
-        android:entryValues="@array/ui_style_values"
-        android:dialogTitle="@string/settings_title_ui_style"
-        android:defaultValue="material" />
-
     <Preference
         android:title="@string/settings_title_icon_provider"
         android:key="@string/key_icon_provider" />

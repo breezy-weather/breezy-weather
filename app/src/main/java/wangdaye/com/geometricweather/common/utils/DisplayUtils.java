@@ -61,9 +61,6 @@ public class DisplayUtils {
     public static void setSystemBarStyle(Context context, Window window, boolean miniAlpha,
                                          boolean statusShader, boolean lightStatus,
                                          boolean navigationShader, boolean lightNavigation) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            return;
-        }
 
         // statusShader &= Build.VERSION.SDK_INT < Build.VERSION_CODES.Q;
         lightStatus &= Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
@@ -87,9 +84,6 @@ public class DisplayUtils {
     public static void setSystemBarColor(Context context, Window window, boolean miniAlpha,
                                          boolean statusShader, boolean lightStatus,
                                          boolean navigationShader, boolean lightNavigation) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            return;
-        }
 
         // statusShader &= Build.VERSION.SDK_INT < Build.VERSION_CODES.Q;
         lightStatus &= Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;

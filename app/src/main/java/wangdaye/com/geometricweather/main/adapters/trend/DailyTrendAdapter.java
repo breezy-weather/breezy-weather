@@ -13,7 +13,7 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.SpeedUnit;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.main.adapters.trend.daily.DailyTemperatureAdapter;
 import wangdaye.com.geometricweather.main.utils.MainThemeManager;
-import wangdaye.com.geometricweather.resource.providers.ResourceProvider;
+import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.main.adapters.trend.daily.AbsDailyTrendAdapter;
 import wangdaye.com.geometricweather.main.adapters.trend.daily.DailyAirQualityAdapter;

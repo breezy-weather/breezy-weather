@@ -11,10 +11,6 @@ import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.snackbar.Snackbar;
 import wangdaye.com.geometricweather.common.snackbar.SnackbarContainer;
 
-/**
- * Snackbar helper.
- * */
-
 public class SnackbarHelper {
 
     public static void showSnackbar(String content) {

@@ -13,11 +13,13 @@ class ConfigStore private constructor(sp: SharedPreferences) {
 
         @JvmStatic
         fun getInstance(context: Context, name: String? = null): ConfigStore {
-            return ConfigStore(if (name == null) {
-                PreferenceManager.getDefaultSharedPreferences(context)
-            } else {
-                context.getSharedPreferences(name, Context.MODE_PRIVATE)
-            })
+            return ConfigStore(
+                if (name == null) {
+                    PreferenceManager.getDefaultSharedPreferences(context)
+                } else {
+                    context.getSharedPreferences(name, Context.MODE_PRIVATE)
+                }
+            )
         }
     }
 
@@ -59,7 +61,7 @@ class ConfigStore private constructor(sp: SharedPreferences) {
         return Editor(this)
     }
 
-    class Editor internal constructor(private val host: ConfigStore) {
+    class Editor internal constructor(host: ConfigStore) {
 
         private val editor = host.preferences.edit()
 

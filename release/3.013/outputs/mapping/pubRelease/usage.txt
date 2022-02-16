@@ -14269,7 +14269,7 @@ com.bumptech.glide.load.engine.cache.DiskCacheWriteLocker$WriteLockPool:
 androidx.room.IMultiInstanceInvalidationCallback$Stub:
     private static final java.lang.String DESCRIPTOR
     static final int TRANSACTION_onInvalidation
-wangdaye.com.geometricweather.common.theme.DefaultThemeManager:
+wangdaye.com.geometricweather.theme.DefaultThemeManager:
     public int getAccentColor(android.content.Context)
     public int getSearchBarColor(android.content.Context)
 androidx.appcompat.view.menu.MenuPopupHelper:
@@ -17933,7 +17933,7 @@ com.google.gson.internal.Primitives:
     public static java.lang.Class wrap(java.lang.Class)
     public static java.lang.Class unwrap(java.lang.Class)
 androidx.coordinatorlayout.R
-wangdaye.com.geometricweather.common.theme.ThemeManager:
+wangdaye.com.geometricweather.theme.ThemeManager:
     public abstract int getAccentColor(android.content.Context)
     public abstract int getSearchBarColor(android.content.Context)
 androidx.core.util.LruCacheKt$lruCache$1
