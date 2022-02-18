@@ -4,7 +4,7 @@
     android:visible="true" >
 
     <corners
-        android:radius="12dp" />
+        android:radius="@dimen/view_corner_radius" />
 
     <solid
         android:color="#FF212121" />

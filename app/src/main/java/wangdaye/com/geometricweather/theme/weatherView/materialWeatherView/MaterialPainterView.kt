@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.theme.weatherView.materialWeatherView
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.hardware.Sensor
@@ -10,19 +11,26 @@ import android.view.OrientationEventListener
 import android.view.View
 import androidx.annotation.FloatRange
 import androidx.annotation.Size
+import androidx.core.content.res.ResourcesCompat
 import wangdaye.com.geometricweather.common.utils.DisplayUtils
 import wangdaye.com.geometricweather.theme.weatherView.WeatherView.WeatherKindRule
 import kotlin.math.abs
 import kotlin.math.acos
 import kotlin.math.sqrt
 
+@SuppressLint("ViewConstructor")
 class MaterialPainterView(
     context: Context?,
+
     @WeatherKindRule private val weatherKind: Int,
     private val daylight: Boolean,
+
     isDrawable: Boolean,
+    currentScrollRate: Float,
+
     var gravitySensorEnabled: Boolean,
 ) : View(context) {
+
     private var intervalComputer: IntervalComputer? = null
 
     private var impl: MaterialWeatherView.WeatherAnimationImplementor? = null
@@ -35,13 +43,6 @@ class MaterialPainterView(
     private var canvasSize = IntArray(2)
     private var rotation2D = 0f
     private var rotation3D = 0f
-
-    val backgroundColor: Int
-    get() = WeatherImplementorFactory.getWeatherThemeColor(
-        context,
-        weatherKind,
-        daylight
-    )
 
     @FloatRange(from = 0.0)
     private var lastScrollRate = 0f
@@ -169,12 +170,18 @@ class MaterialPainterView(
         val metrics = resources.displayMetrics
         canvasSize = intArrayOf(metrics.widthPixels, metrics.heightPixels)
 
-        lastScrollRate = 0f
-        scrollRate = 0f
         drawable = isDrawable
+        lastScrollRate = currentScrollRate
+        scrollRate = currentScrollRate
         mDeviceOrientation = DeviceOrientation.TOP
 
         resetDrawer()
+
+        background = ResourcesCompat.getDrawable(
+            resources,
+            WeatherImplementorFactory.getBackgroundId(weatherKind, daylight),
+            null
+        )
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
@@ -198,7 +205,6 @@ class MaterialPainterView(
         if (intervalComputer == null
             || rotators == null
             || impl == null) {
-            canvas.drawColor(backgroundColor)
             return
         }
 
@@ -213,7 +219,6 @@ class MaterialPainterView(
             rotators!![1].rotation.toFloat()
         )
 
-        canvas.drawColor(backgroundColor)
         if (impl != null && rotators != null) {
             canvas.save()
             canvas.translate(
@@ -223,7 +228,6 @@ class MaterialPainterView(
             impl!!.draw(
                 canvasSize,
                 canvas,
-                1.0f,
                 scrollRate,
                 rotators!![0].rotation.toFloat(),
                 rotators!![1].rotation.toFloat()

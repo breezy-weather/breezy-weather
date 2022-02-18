@@ -43,10 +43,7 @@ public class SunImplementor extends MaterialWeatherView.WeatherAnimationImplemen
 
     @Override
     public void draw(@Size(2) int[] canvasSizes, Canvas canvas,
-                     float displayRate, float scrollRate, float rotation2D, float rotation3D) {
-
-        canvas.drawColor(Color.argb((int) (displayRate * 255), 253, 188, 76));
-
+                     float scrollRate, float rotation2D, float rotation3D) {
         if (scrollRate < 1) {
             float deltaX = (float) (Math.sin(rotation2D * Math.PI / 180.0) * 0.3 * canvasSizes[0]);
             float deltaY = (float) (Math.sin(rotation3D * Math.PI / 180.0) * -0.3 * canvasSizes[0]);
@@ -55,7 +52,7 @@ public class SunImplementor extends MaterialWeatherView.WeatherAnimationImplemen
                     canvasSizes[0] + deltaX,
                     (float) (0.0333 * canvasSizes[0] + deltaY));
 
-            mPaint.setAlpha((int) (displayRate * (1 - scrollRate) * 255 * 0.40));
+            mPaint.setAlpha((int) ((1 - scrollRate) * 255 * 0.40));
             canvas.rotate(mAngles[0]);
             for (int i = 0; i < 4; i ++) {
                 canvas.drawRect(-mUnitSizes[0], -mUnitSizes[0], mUnitSizes[0], mUnitSizes[0], mPaint);
@@ -63,7 +60,7 @@ public class SunImplementor extends MaterialWeatherView.WeatherAnimationImplemen
             }
             canvas.rotate(-90 - mAngles[0]);
 
-            mPaint.setAlpha((int) (displayRate * (1 - scrollRate) * 255 * 0.16));
+            mPaint.setAlpha((int) ((1 - scrollRate) * 255 * 0.16));
             canvas.rotate(mAngles[1]);
             for (int i = 0; i < 4; i ++) {
                 canvas.drawRect(-mUnitSizes[1], -mUnitSizes[1], mUnitSizes[1], mUnitSizes[1], mPaint);
@@ -71,7 +68,7 @@ public class SunImplementor extends MaterialWeatherView.WeatherAnimationImplemen
             }
             canvas.rotate(-90 - mAngles[1]);
 
-            mPaint.setAlpha((int) (displayRate * (1 - scrollRate) * 255 * 0.08));
+            mPaint.setAlpha((int) ((1 - scrollRate) * 255 * 0.08));
             canvas.rotate(mAngles[2]);
             for (int i = 0; i < 4; i ++) {
                 canvas.drawRect(-mUnitSizes[2], -mUnitSizes[2], mUnitSizes[2], mUnitSizes[2], mPaint);

@@ -59,7 +59,7 @@
         <item name="android:layout_marginRight">@dimen/little_margin</item>
         <item name="android:layout_marginBottom">@dimen/little_margin</item>
         <item name="android:clickable">true</item>
-        <item name="cardCornerRadius">12dp</item>
+        <item name="cardCornerRadius">@dimen/view_corner_radius</item>
         <item name="cardElevation">2dp</item>
         <item name="cardBackgroundColor">@color/colorRoot</item>
         <item name="android:stateListAnimator" tools:ignore="NewApi">@animator/touch_raise</item>
@@ -280,9 +280,5 @@
         <item name="android:indeterminateTintMode" tools:ignore="NewApi">src_atop</item>
         <item name="android:indeterminateTint" tools:ignore="NewApi">@color/lightPrimary_5</item>
     </style>
-
-    <!-- app widgets for android S. -->
-
-    <style name="GeometricWeatherAndroidSWidget" />
 
 </resources>

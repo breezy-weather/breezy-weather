@@ -2,7 +2,10 @@ package wangdaye.com.geometricweather.wallpaper;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.PixelFormat;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -16,12 +19,14 @@ import android.view.OrientationEventListener;
 import android.view.SurfaceHolder;
 import android.view.WindowManager;
 
-import androidx.annotation.IntDef;
 import androidx.annotation.Nullable;
 import androidx.annotation.Size;
+import androidx.core.content.res.ResourcesCompat;
 
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
+import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.theme.weatherView.WeatherView;
@@ -30,22 +35,12 @@ import wangdaye.com.geometricweather.theme.weatherView.materialWeatherView.Delay
 import wangdaye.com.geometricweather.theme.weatherView.materialWeatherView.IntervalComputer;
 import wangdaye.com.geometricweather.theme.weatherView.materialWeatherView.MaterialWeatherView;
 import wangdaye.com.geometricweather.theme.weatherView.materialWeatherView.WeatherImplementorFactory;
-import wangdaye.com.geometricweather.common.utils.DisplayUtils;
-import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper;
 
 public class MaterialLiveWallpaperService extends WallpaperService {
-
-    private static final int STEP_DISPLAY = 1;
-    private static final int STEP_DISMISS = -1;
-
-    @IntDef({STEP_DISPLAY, STEP_DISMISS})
-    private @interface StepRule {}
 
     private enum DeviceOrientation {
         TOP, LEFT, BOTTOM, RIGHT
     }
-
-    private static final int SWITCH_ANIMATION_DURATION = 150;
 
     @Override
     public Engine onCreateEngine() {
@@ -56,9 +51,10 @@ public class MaterialLiveWallpaperService extends WallpaperService {
 
         private SurfaceHolder mHolder;
         @Nullable private IntervalComputer mIntervalComputer;
+        @Nullable private MaterialWeatherView.RotateController[] mRotators;
 
         @Nullable private MaterialWeatherView.WeatherAnimationImplementor mImplementor;
-        @Nullable private MaterialWeatherView.RotateController[] mRotators;
+        @Nullable private Drawable mBackground;
 
         private boolean mOpenGravitySensor;
         @Nullable private SensorManager mSensorManager;
@@ -71,10 +67,6 @@ public class MaterialLiveWallpaperService extends WallpaperService {
         @WeatherView.WeatherKindRule private int mWeatherKind;
         private boolean mDaytime;
 
-        private float mDisplayRate;
-
-        @StepRule
-        private int mStep;
         private boolean mVisible;
 
         private DeviceOrientation mDeviceOrientation;
@@ -88,6 +80,7 @@ public class MaterialLiveWallpaperService extends WallpaperService {
             public void run() {
                 if (mIntervalComputer == null
                         || mImplementor == null
+                        || mBackground == null
                         || mRotators == null
                         || mHandler == null) {
                     return;
@@ -103,25 +96,21 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                         (float) mRotators[0].getRotation(), (float) mRotators[1].getRotation()
                 );
 
-                mDisplayRate = (float) (mDisplayRate
-                        + (mStep == STEP_DISPLAY ? 1f : -1f)
-                        * mIntervalComputer.getInterval()
-                        / SWITCH_ANIMATION_DURATION);
-                mDisplayRate = Math.max(0, mDisplayRate);
-                mDisplayRate = Math.min(1, mDisplayRate);
-                if (mDisplayRate == 0) {
-                    setWeatherImplementor();
-                }
-
                 Canvas canvas = mHolder.lockCanvas();
                 if (canvas != null) {
                     try {
-                        mSizes[0] = canvas.getWidth();
-                        mSizes[1] = canvas.getHeight();
+                        if (mSizes[0] != canvas.getWidth()
+                                || mSizes[1] != canvas.getHeight()) {
+                            mSizes[0] = canvas.getWidth();
+                            mSizes[1] = canvas.getHeight();
+
+                            mBackground.setBounds(0, 0, mSizes[0], mSizes[1]);
+                        }
+
+                        mBackground.draw(canvas);
                         mImplementor.draw(
                                 mSizes,
                                 canvas,
-                                mDisplayRate,
                                 0,
                                 (float) mRotators[0].getRotation(),
                                 (float) mRotators[1].getRotation()
@@ -213,12 +202,24 @@ public class MaterialLiveWallpaperService extends WallpaperService {
         }
 
         private void setWeatherImplementor() {
-            mStep = STEP_DISPLAY;
-            mImplementor = WeatherImplementorFactory.getWeatherImplementor(mWeatherKind, mDaytime, mSizes);
+            mImplementor = WeatherImplementorFactory.getWeatherImplementor(
+                    mWeatherKind,
+                    mDaytime,
+                    mSizes
+            );
             mRotators = new MaterialWeatherView.RotateController[] {
                     new DelayRotateController(mRotation2D),
                     new DelayRotateController(mRotation3D)
             };
+
+            mBackground = ResourcesCompat.getDrawable(
+                    getResources(),
+                    WeatherImplementorFactory.getBackgroundId(mWeatherKind, mDaytime),
+                    null
+            );
+            if (mBackground != null) {
+                mBackground.setBounds(0, 0, mSizes[0], mSizes[1]);
+            }
         }
 
         private void setIntervalComputer() {
@@ -257,6 +258,7 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                 public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
                     mSizes[0] = width;
                     mSizes[1] = height;
+
                     setWeatherImplementor();
                 }
 
@@ -273,7 +275,6 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                 mGravitySensor = mSensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
             }
 
-            mStep = STEP_DISPLAY;
             mVisible = false;
             setWeather(WeatherView.WEATHER_KING_NULL, true);
         }

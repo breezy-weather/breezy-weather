@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/widget_s_card_container"
+    android:id="@android:id/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/widget_s_background"
     android:theme="@style/GeometricWeatherAndroidSWidget"
-    android:background="@drawable/widget_background_s_default"
+    style="@android:style/Widget"
     tools:layout_height="172dp">
 
     <FrameLayout
@@ -14,40 +15,35 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="86dp">
+            android:layout_height="98dp">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_gravity="top"
-                android:paddingTop="@dimen/little_margin"
-                android:paddingStart="@dimen/normal_margin"
-                android:paddingEnd="@dimen/normal_margin"
-                tools:ignore="UseCompoundDrawables">
+            <TextView
+                android:id="@+id/widget_s_card_background_city"
+                android:text="@string/ellipsis"
+                android:textSize="@dimen/subtitle_text_size"
+                android:textStyle="bold"
+                android:textColor="?android:attr/textColorPrimary"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_gravity="top|start"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:layout_marginStart="@dimen/normal_margin"
+                android:layout_marginEnd="68dp"
+                android:layout_width="match_parent"
+                style="@style/widget_title_text"
+                tools:text="青岛市"
+                tools:ignore="RtlHardcoded" />
 
-                <TextView
-                    android:id="@+id/widget_s_card_background_city"
-                    android:text="@string/ellipsis"
-                    android:textSize="@dimen/subtitle_text_size"
-                    android:textStyle="bold"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    style="@style/widget_title_text"
-                    tools:text="青岛市"
-                    tools:ignore="RtlHardcoded" />
-
-                <ImageView
-                    android:id="@+id/widget_s_card_background_currentIcon"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/weather_cloudy"
-                    android:layout_marginStart="4dp"
-                    tools:ignore="ContentDescription" />
-
-            </LinearLayout>
+            <ImageView
+                android:id="@+id/widget_s_card_background_currentIcon"
+                android:layout_width="@dimen/widget_mini_weather_icon_size"
+                android:layout_height="@dimen/widget_mini_weather_icon_size"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:layout_marginStart="@dimen/normal_margin"
+                android:layout_marginEnd="@dimen/normal_margin"
+                android:src="@drawable/weather_cloudy"
+                android:layout_gravity="top|end"
+                tools:ignore="ContentDescription" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -64,7 +60,7 @@
                     android:text="@string/ellipsis"
                     android:layout_marginStart="@dimen/little_margin"
                     android:layout_marginEnd="-4dp"
-                    android:textSize="36sp"
+                    android:textSize="42sp"
                     android:textColor="?android:attr/textColorPrimary"
                     style="@style/widget_large_title_text"
                     tools:text="27°"
@@ -81,8 +77,10 @@
                         android:text="@string/ellipsis"
                         android:layout_marginStart="@dimen/little_margin"
                         android:layout_marginEnd="@dimen/little_margin"
+                        android:textSize="@dimen/content_text_size"
                         android:textStyle="bold"
                         android:textColor="?android:attr/textColorSecondary"
+                        android:includeFontPadding="false"
                         style="@style/widget_subtitle_text"
                         tools:text="31°"
                         tools:ignore="RtlHardcoded" />
@@ -92,7 +90,11 @@
                         android:text="@string/ellipsis"
                         android:layout_marginStart="@dimen/little_margin"
                         android:layout_marginEnd="@dimen/little_margin"
+                        android:textSize="@dimen/content_text_size"
+                        android:textStyle="bold"
+                        android:alpha="0.66"
                         android:textColor="?android:attr/textColorSecondary"
+                        android:includeFontPadding="false"
                         style="@style/widget_subtitle_text"
                         tools:text="19°"
                         tools:ignore="RtlHardcoded" />
@@ -114,6 +116,7 @@
                     android:layout_marginStart="@dimen/normal_margin"
                     android:layout_marginEnd="@dimen/normal_margin"
                     android:textColor="?android:attr/textColorSecondary"
+                    android:textStyle="bold"
                     android:maxLines="1"
                     android:ellipsize="end"
                     android:layout_gravity="top|end"
@@ -127,7 +130,7 @@
                     android:layout_marginStart="@dimen/normal_margin"
                     android:layout_marginEnd="@dimen/normal_margin"
                     android:layout_marginBottom="@dimen/normal_margin"
-                    android:textSize="@dimen/subtitle_text_size"
+                    android:textSize="@dimen/content_text_size"
                     android:textStyle="bold"
                     android:textColor="?android:attr/textColorSecondary"
                     android:maxLines="1"

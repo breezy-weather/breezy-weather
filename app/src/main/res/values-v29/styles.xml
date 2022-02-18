@@ -24,4 +24,7 @@
         <item name="android:textSize">@dimen/subtitle_text_size</item>
     </style>
 
+    <style name="GeometricWeatherAndroidSWidget"
+        parent="@android:style/Theme.DeviceDefault" />
+
 </resources>

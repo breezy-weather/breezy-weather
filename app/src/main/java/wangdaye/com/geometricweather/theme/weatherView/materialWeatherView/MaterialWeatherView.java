@@ -55,7 +55,6 @@ public class MaterialWeatherView extends ViewGroup
         public abstract void draw(
                 @Size(2) int[] canvasSizes,
                 Canvas canvas,
-                float displayRatio,
                 float scrollRate,
                 float rotation2D,
                 float rotation3D
@@ -165,6 +164,7 @@ public class MaterialWeatherView extends ViewGroup
                 weatherKind,
                 daytime,
                 mDrawable,
+                mPreviousView != null ? mPreviousView.getScrollRate() : 0f,
                 mGravitySensorEnabled
         );
 

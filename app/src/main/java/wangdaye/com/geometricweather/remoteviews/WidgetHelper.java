@@ -22,14 +22,13 @@ import wangdaye.com.geometricweather.remoteviews.presenters.HourlyTrendWidgetIMP
 import wangdaye.com.geometricweather.remoteviews.presenters.MultiCityWidgetIMP;
 import wangdaye.com.geometricweather.remoteviews.presenters.TextWidgetIMP;
 import wangdaye.com.geometricweather.remoteviews.presenters.WeekWidgetIMP;
-import wangdaye.com.geometricweather.remoteviews.presenters.androidS.AndroidSWeatherLargeWidgetIMP;
-import wangdaye.com.geometricweather.remoteviews.presenters.androidS.AndroidSWeatherMediumWidgetIMP;
-import wangdaye.com.geometricweather.remoteviews.presenters.androidS.AndroidSWeatherMiniWidgetIMP;
-import wangdaye.com.geometricweather.remoteviews.presenters.androidS.AndroidSWeatherXLargeWidgetIMP;
-
-/**
- * Widget manager.
- * */
+import wangdaye.com.geometricweather.remoteviews.presenters.androidS.AndroidS2x1WidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenters.androidS.AndroidS2x2WidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenters.androidS.AndroidS3x1WidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenters.androidS.AndroidS3x2WidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenters.androidS.AndroidS4x1WidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenters.androidS.AndroidS4x2WidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenters.androidS.AndroidS4x3WidgetIMP;
 
 public class WidgetHelper {
 
@@ -66,17 +65,26 @@ public class WidgetHelper {
         }
 
         // android S.
-        if (AndroidSWeatherMiniWidgetIMP.isEnable(context)) {
-            AndroidSWeatherMiniWidgetIMP.updateWidgetView(context, location);
+        if (AndroidS2x1WidgetIMP.isEnable(context)) {
+            AndroidS2x1WidgetIMP.updateWidgetView(context, location);
         }
-        if (AndroidSWeatherMediumWidgetIMP.isEnable(context)) {
-            AndroidSWeatherMediumWidgetIMP.updateWidgetView(context, location);
+        if (AndroidS2x2WidgetIMP.isEnable(context)) {
+            AndroidS2x2WidgetIMP.updateWidgetView(context, location);
         }
-        if (AndroidSWeatherLargeWidgetIMP.isEnable(context)) {
-            AndroidSWeatherLargeWidgetIMP.updateWidgetView(context, location);
+        if (AndroidS3x1WidgetIMP.isEnable(context)) {
+            AndroidS3x1WidgetIMP.updateWidgetView(context, location);
         }
-        if (AndroidSWeatherXLargeWidgetIMP.isEnable(context)) {
-            AndroidSWeatherXLargeWidgetIMP.updateWidgetView(context, location);
+        if (AndroidS3x2WidgetIMP.isEnable(context)) {
+            AndroidS3x2WidgetIMP.updateWidgetView(context, location);
+        }
+        if (AndroidS4x1WidgetIMP.isEnable(context)) {
+            AndroidS4x1WidgetIMP.updateWidgetView(context, location);
+        }
+        if (AndroidS4x2WidgetIMP.isEnable(context)) {
+            AndroidS4x2WidgetIMP.updateWidgetView(context, location);
+        }
+        if (AndroidS4x3WidgetIMP.isEnable(context)) {
+            AndroidS4x3WidgetIMP.updateWidgetView(context, location);
         }
     }
 

@@ -166,6 +166,7 @@ dependencies {
     implementation 'androidx.preference:preference-ktx:1.1.1'
 
     // work.
+    implementation "androidx.core:core-ktx:1.7.0"
     implementation "androidx.work:work-runtime:2.7.0-beta01"
 
     // lifecycle.

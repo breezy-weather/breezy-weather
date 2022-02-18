@@ -10,7 +10,6 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.IntDef;
 import androidx.annotation.Size;
 import androidx.core.content.ContextCompat;
-import androidx.core.graphics.ColorUtils;
 
 import java.util.Random;
 
@@ -26,13 +25,8 @@ public class HailImplementor extends MaterialWeatherView.WeatherAnimationImpleme
     private final Paint mPaint;
     private final Hail[] mHails;
 
-    private float mLastDisplayRate;
-
     private float mLastRotation3D;
     private static final float INITIAL_ROTATION_3D = 1000;
-
-    @ColorInt
-    private int mBackgroundColor;
 
     public static final int TYPE_HAIL_DAY = 1;
     public static final int TYPE_HAIL_NIGHT = 2;
@@ -130,7 +124,6 @@ public class HailImplementor extends MaterialWeatherView.WeatherAnimationImpleme
         int[] colors = new int[3];
         switch (type) {
             case TYPE_HAIL_DAY:
-                mBackgroundColor = Color.rgb(80, 116, 193);
                 colors = new int[] {
                         Color.rgb(101, 134, 203),
                         Color.rgb(152, 175, 222),
@@ -138,7 +131,6 @@ public class HailImplementor extends MaterialWeatherView.WeatherAnimationImpleme
                 break;
 
             case TYPE_HAIL_NIGHT:
-                mBackgroundColor = Color.rgb(42, 52, 69);
                 colors = new int[] {
                         Color.rgb(64, 67, 85),
                         Color.rgb(127, 131, 154),
@@ -154,7 +146,6 @@ public class HailImplementor extends MaterialWeatherView.WeatherAnimationImpleme
                     colors[i * 3 / mHails.length], scales[i * 3 / mHails.length]);
         }
 
-        mLastDisplayRate = 0;
         mLastRotation3D = INITIAL_ROTATION_3D;
     }
 
@@ -169,16 +160,7 @@ public class HailImplementor extends MaterialWeatherView.WeatherAnimationImpleme
 
     @Override
     public void draw(@Size(2) int[] canvasSizes, Canvas canvas,
-                     float displayRate, float scrollRate, float rotation2D, float rotation3D) {
-
-        if (displayRate >= 1) {
-            canvas.drawColor(mBackgroundColor);
-        } else {
-            canvas.drawColor(
-                    ColorUtils.setAlphaComponent(
-                            mBackgroundColor,
-                            (int) (displayRate * 255)));
-        }
+                     float scrollRate, float rotation2D, float rotation3D) {
 
         if (scrollRate < 1) {
             canvas.rotate(
@@ -188,19 +170,13 @@ public class HailImplementor extends MaterialWeatherView.WeatherAnimationImpleme
 
             for (Hail h : mHails) {
                 mPaint.setColor(h.color);
-                if (displayRate < mLastDisplayRate) {
-                    mPaint.setAlpha((int) (displayRate * (1 - scrollRate) * 255));
-                } else {
-                    mPaint.setAlpha(255);
-                }
+                mPaint.setAlpha((int) ((1 - scrollRate) * 255));
 
                 canvas.rotate(h.rotation, h.cx, h.cy);
                 canvas.drawRect(h.rectF, mPaint);
                 canvas.rotate(-h.rotation, h.cx, h.cy);
             }
         }
-
-        mLastDisplayRate = displayRate;
     }
 
     @ColorInt

@@ -10,7 +10,6 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.IntDef;
 import androidx.annotation.Size;
 import androidx.core.content.ContextCompat;
-import androidx.core.graphics.ColorUtils;
 
 import java.util.Random;
 
@@ -27,13 +26,8 @@ public class RainImplementor extends MaterialWeatherView.WeatherAnimationImpleme
     private Rain[] mRains;
     private Thunder mThunder;
 
-    private float mLastDisplayRate;
-
     private float mLastRotation3D;
     private static final float INITIAL_ROTATION_3D = 1000;
-
-    @ColorInt
-    private int mBackgroundColor;
 
     public static final int TYPE_RAIN_DAY = 1;
     public static final int TYPE_RAIN_NIGHT = 2;
@@ -141,7 +135,9 @@ public class RainImplementor extends MaterialWeatherView.WeatherAnimationImpleme
         private long delay;
 
         Thunder() {
-            this.r = this.g = this. b = 255;
+            this.r = 81;
+            this.g = 67;
+            this.b = 168;
             init();
             computeFrame();
         }
@@ -187,7 +183,6 @@ public class RainImplementor extends MaterialWeatherView.WeatherAnimationImpleme
             case TYPE_RAIN_DAY:
                 mRains = new Rain[RAIN_COUNT];
                 mThunder = null;
-                mBackgroundColor = Color.rgb(64, 151, 231);
                 colors = new int[]{
                         Color.rgb(223, 179, 114),
                         Color.rgb(152, 175, 222),
@@ -197,7 +192,6 @@ public class RainImplementor extends MaterialWeatherView.WeatherAnimationImpleme
             case TYPE_RAIN_NIGHT:
                 mRains = new Rain[RAIN_COUNT];
                 mThunder = null;
-                mBackgroundColor = Color.rgb(38, 78, 143);
                 colors = new int[]{
                         Color.rgb(182, 142, 82),
                         Color.rgb(88, 92, 113),
@@ -207,7 +201,6 @@ public class RainImplementor extends MaterialWeatherView.WeatherAnimationImpleme
             case TYPE_THUNDERSTORM:
                 mRains = new Rain[RAIN_COUNT];
                 mThunder = new Thunder();
-                mBackgroundColor = Color.rgb(43, 29, 69);
                 colors = new int[]{
                         Color.rgb(182, 142, 82),
                         Color.rgb(88, 92, 113),
@@ -217,7 +210,6 @@ public class RainImplementor extends MaterialWeatherView.WeatherAnimationImpleme
             case TYPE_SLEET_DAY:
                 mRains = new Rain[SLEET_COUNT];
                 mThunder = null;
-                mBackgroundColor = Color.rgb(104, 186, 255);
                 colors = new int[] {
                         Color.rgb(128, 197, 255),
                         Color.rgb(185, 222, 255),
@@ -227,7 +219,6 @@ public class RainImplementor extends MaterialWeatherView.WeatherAnimationImpleme
             case TYPE_SLEET_NIGHT:
                 mRains = new Rain[SLEET_COUNT];
                 mThunder = null;
-                mBackgroundColor = Color.rgb(26, 91, 146);
                 colors = new int[] {
                         Color.rgb(40, 102, 155),
                         Color.rgb(99, 144, 182),
@@ -246,7 +237,6 @@ public class RainImplementor extends MaterialWeatherView.WeatherAnimationImpleme
             );
         }
 
-        mLastDisplayRate = 0;
         mLastRotation3D = INITIAL_ROTATION_3D;
     }
 
@@ -270,16 +260,7 @@ public class RainImplementor extends MaterialWeatherView.WeatherAnimationImpleme
 
     @Override
     public void draw(@Size(2) int[] canvasSizes, Canvas canvas,
-                     float displayRate, float scrollRate, float rotation2D, float rotation3D) {
-
-        if (displayRate >= 1) {
-            canvas.drawColor(mBackgroundColor);
-        } else {
-            canvas.drawColor(
-                    ColorUtils.setAlphaComponent(
-                            mBackgroundColor,
-                            (int) (displayRate * 255)));
-        }
+                     float scrollRate, float rotation2D, float rotation3D) {
 
         if (scrollRate < 1) {
             rotation2D += 8;
@@ -290,24 +271,18 @@ public class RainImplementor extends MaterialWeatherView.WeatherAnimationImpleme
 
             for (Rain r : mRains) {
                 mPaint.setColor(r.color);
-                if (displayRate < mLastDisplayRate) {
-                    mPaint.setAlpha((int) (displayRate * (1 - scrollRate) * 255));
-                } else {
-                    mPaint.setAlpha((int) ((1 - scrollRate) * 255));
-                }
+                mPaint.setAlpha((int) ((1 - scrollRate) * 255));
                 canvas.drawRoundRect(r.rectF, r.width / 2f, r.width / 2f, mPaint);
             }
             if (mThunder != null) {
                 canvas.drawColor(
                         Color.argb(
-                                (int) (displayRate * (1 - scrollRate) * mThunder.alpha * 255),
+                                (int) ((1 - scrollRate) * mThunder.alpha * 255 * 0.66),
                                 mThunder.r,
                                 mThunder.g,
                                 mThunder.b));
             }
         }
-
-        mLastDisplayRate = displayRate;
     }
 
     @ColorInt

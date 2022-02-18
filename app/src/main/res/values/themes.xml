@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- app widgets for android S. -->
+
+    <style name="GeometricWeatherAndroidSWidget"
+        parent="@android:style/Theme.DeviceDefault" />
+
+</resources>

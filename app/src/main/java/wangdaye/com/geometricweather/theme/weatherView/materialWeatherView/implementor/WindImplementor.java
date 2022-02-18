@@ -7,7 +7,6 @@ import android.graphics.RectF;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.Size;
-import androidx.core.graphics.ColorUtils;
 
 import java.util.Random;
 
@@ -18,15 +17,10 @@ public class WindImplementor extends MaterialWeatherView.WeatherAnimationImpleme
     private final Paint mPaint;
     private final Wind[] mWinds;
 
-    private float mLastDisplayRate;
-
     private float mLastRotation3D;
     private static final float INITIAL_ROTATION_3D = 1000;
 
     private static final int WIND_COUNT = 240;
-
-    @ColorInt
-    private final int mBackgroundColor;
 
     private static class Wind {
 
@@ -118,7 +112,6 @@ public class WindImplementor extends MaterialWeatherView.WeatherAnimationImpleme
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setAntiAlias(true);
 
-        mBackgroundColor = Color.rgb(233, 158, 60);
         int[] colors = new int[] {
                 Color.rgb(240, 200, 148),
                 Color.rgb(237, 178, 100),
@@ -134,7 +127,6 @@ public class WindImplementor extends MaterialWeatherView.WeatherAnimationImpleme
                     scales[i * 3 / mWinds.length]);
         }
 
-        mLastDisplayRate = 0;
         mLastRotation3D = INITIAL_ROTATION_3D;
     }
 
@@ -149,16 +141,7 @@ public class WindImplementor extends MaterialWeatherView.WeatherAnimationImpleme
 
     @Override
     public void draw(@Size(2) int[] canvasSizes, Canvas canvas,
-                     float displayRate, float scrollRate, float rotation2D, float rotation3D) {
-
-        if (displayRate >= 1) {
-            canvas.drawColor(mBackgroundColor);
-        } else {
-            canvas.drawColor(
-                    ColorUtils.setAlphaComponent(
-                            mBackgroundColor,
-                            (int) (displayRate * 255)));
-        }
+                     float scrollRate, float rotation2D, float rotation3D) {
 
         if (scrollRate < 1) {
             rotation2D -= 16;
@@ -169,16 +152,10 @@ public class WindImplementor extends MaterialWeatherView.WeatherAnimationImpleme
 
             for (Wind w : mWinds) {
                 mPaint.setColor(w.color);
-                if (displayRate < mLastDisplayRate) {
-                    mPaint.setAlpha((int) (displayRate * (1 - scrollRate) * 255));
-                } else {
-                    mPaint.setAlpha((int) ((1 - scrollRate) * 255));
-                }
+                mPaint.setAlpha((int) ((1 - scrollRate) * 255));
                 canvas.drawRect(w.rectF, mPaint);
             }
         }
-
-        mLastDisplayRate = displayRate;
     }
 
     @ColorInt

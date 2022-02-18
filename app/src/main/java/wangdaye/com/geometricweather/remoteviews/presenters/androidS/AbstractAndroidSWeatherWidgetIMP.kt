@@ -1,16 +1,14 @@
 package wangdaye.com.geometricweather.remoteviews.presenters.androidS
 
 import android.content.Context
-import android.graphics.Color
 import android.widget.RemoteViews
 import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.models.Location
 import wangdaye.com.geometricweather.common.basic.models.options.NotificationTextColor
-import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode
 import wangdaye.com.geometricweather.remoteviews.presenters.AbstractRemoteViewsPresenter
+import wangdaye.com.geometricweather.settings.SettingsManager
 import wangdaye.com.geometricweather.theme.resource.ResourceHelper
 import wangdaye.com.geometricweather.theme.resource.ResourcesProviderFactory
-import wangdaye.com.geometricweather.settings.SettingsManager
 
 open class AbstractAndroidSWeatherWidgetIMP: AbstractRemoteViewsPresenter()
 
@@ -208,34 +206,6 @@ internal fun buildWeatherWidget(
         R.id.widget_s_card_background_hourlyTemperature_6,
         weather.hourlyForecast[5].temperature.getShortTemperature(context, temperatureUnit)
     )
-
-    // summary.
-
-    if (weather.alertList.isNotEmpty()) {
-        views.setTextViewText(
-            R.id.widget_s_card_background_summary,
-            weather.alertList[0].description
-        )
-    } else if (!weather.current.dailyForecast.isNullOrEmpty()) {
-        views.setTextViewText(
-            R.id.widget_s_card_background_summary,
-            weather.current.dailyForecast
-        )
-    } else if (!weather.current.hourlyForecast.isNullOrEmpty()) {
-        views.setTextViewText(
-            R.id.widget_s_card_background_summary,
-            weather.current.hourlyForecast
-        )
-    } else {
-        views.setTextViewText(
-            R.id.widget_s_card_background_summary,
-            if (dayTime) {
-                weather.dailyForecast[0].day().weatherText
-            } else {
-                weather.dailyForecast[0].night().weatherText
-            }
-        )
-    }
 
     // daily.
 
@@ -444,60 +414,9 @@ internal fun buildWeatherWidget(
         )
     )
 
-    // color.
-    if (false) {
-        // never color widget ... bad effect.
-        views.setInt(
-            R.id.widget_s_card_container,
-            "setBackgroundResource",
-            getWeatherBackgroundId(WeatherCode.CLEAR, true)
-        )
-
-        views.setTextColor(R.id.widget_s_card_background_city, Color.WHITE)
-        views.setTextColor(R.id.widget_s_card_background_currentTemperature, Color.WHITE)
-        views.setTextColor(R.id.widget_s_card_background_daytimeTemperature, Color.WHITE)
-        views.setTextColor(R.id.widget_s_card_background_nighttimeTemperature, Color.WHITE)
-        views.setTextColor(R.id.widget_s_card_background_realFeelTemperature, Color.WHITE)
-        views.setTextColor(R.id.widget_s_card_background_windOrAqi, Color.WHITE)
-
-        views.setTextColor(R.id.widget_s_card_background_hour_1, Color.WHITE)
-        views.setTextColor(R.id.widget_s_card_background_hour_2, Color.WHITE)
-        views.setTextColor(R.id.widget_s_card_background_hour_3, Color.WHITE)
-        views.setTextColor(R.id.widget_s_card_background_hour_4, Color.WHITE)
-        views.setTextColor(R.id.widget_s_card_background_hour_5, Color.WHITE)
-        views.setTextColor(R.id.widget_s_card_background_hour_6, Color.WHITE)
-        views.setTextColor(R.id.widget_s_card_background_hourlyTemperature_1, Color.WHITE)
-        views.setTextColor(R.id.widget_s_card_background_hourlyTemperature_2, Color.WHITE)
-        views.setTextColor(R.id.widget_s_card_background_hourlyTemperature_3, Color.WHITE)
-        views.setTextColor(R.id.widget_s_card_background_hourlyTemperature_4, Color.WHITE)
-        views.setTextColor(R.id.widget_s_card_background_hourlyTemperature_5, Color.WHITE)
-        views.setTextColor(R.id.widget_s_card_background_hourlyTemperature_6, Color.WHITE)
-
-        views.setTextColor(R.id.widget_s_card_background_summary, Color.WHITE)
-
-        views.setTextColor(R.id.widget_s_card_background_week_1, Color.WHITE)
-        views.setTextColor(R.id.widget_s_card_background_week_2, Color.WHITE)
-        views.setTextColor(R.id.widget_s_card_background_week_3, Color.WHITE)
-        views.setTextColor(R.id.widget_s_card_background_week_4, Color.WHITE)
-        views.setTextColor(R.id.widget_s_card_background_week_5, Color.WHITE)
-        views.setTextColor(R.id.widget_s_card_background_week_6, Color.WHITE)
-        views.setTextColor(R.id.widget_s_card_background_dayTemperature_1, Color.WHITE)
-        views.setTextColor(R.id.widget_s_card_background_dayTemperature_2, Color.WHITE)
-        views.setTextColor(R.id.widget_s_card_background_dayTemperature_3, Color.WHITE)
-        views.setTextColor(R.id.widget_s_card_background_dayTemperature_4, Color.WHITE)
-        views.setTextColor(R.id.widget_s_card_background_dayTemperature_5, Color.WHITE)
-        views.setTextColor(R.id.widget_s_card_background_dayTemperature_6, Color.WHITE)
-        views.setTextColor(R.id.widget_s_card_background_nightTemperature_1, Color.WHITE)
-        views.setTextColor(R.id.widget_s_card_background_nightTemperature_2, Color.WHITE)
-        views.setTextColor(R.id.widget_s_card_background_nightTemperature_3, Color.WHITE)
-        views.setTextColor(R.id.widget_s_card_background_nightTemperature_4, Color.WHITE)
-        views.setTextColor(R.id.widget_s_card_background_nightTemperature_5, Color.WHITE)
-        views.setTextColor(R.id.widget_s_card_background_nightTemperature_6, Color.WHITE)
-    }
-
     // pending intent.
     views.setOnClickPendingIntent(
-        R.id.widget_s_card_container,
+        android.R.id.background,
         AbstractRemoteViewsPresenter.getWeatherPendingIntent(
             context,
             location,
@@ -506,60 +425,4 @@ internal fun buildWeatherWidget(
     )
 
     return views
-}
-
-private fun getWeatherBackgroundId(weatherCode: WeatherCode, daylight: Boolean): Int {
-    when (weatherCode) {
-        WeatherCode.CLEAR -> return if (daylight) {
-            R.drawable.widget_background_s_clear_day
-        } else {
-            R.drawable.widget_background_s_clear_night
-        }
-
-        WeatherCode.PARTLY_CLOUDY -> return if (daylight) {
-            R.drawable.widget_background_s_partly_cloudy_day
-        } else {
-            R.drawable.widget_background_s_partly_cloudy_night
-        }
-
-        WeatherCode.CLOUDY -> return if (daylight) {
-            R.drawable.widget_background_s_cloudy_day
-        } else {
-            R.drawable.widget_background_s_cloudy_night
-        }
-
-        WeatherCode.RAIN -> return if (daylight) {
-            R.drawable.widget_background_s_rain_day
-        } else {
-            R.drawable.widget_background_s_rain_night
-        }
-
-        WeatherCode.SNOW -> return if (daylight) {
-            R.drawable.widget_background_s_snow_day
-        } else {
-            R.drawable.widget_background_s_snow_night
-        }
-
-        WeatherCode.WIND -> return R.drawable.widget_background_s_wind
-
-        WeatherCode.FOG -> return R.drawable.widget_background_s_fog
-
-        WeatherCode.HAZE -> return R.drawable.widget_background_s_haze
-
-        WeatherCode.SLEET -> return if (daylight) {
-            R.drawable.widget_background_s_sleet_day
-        } else {
-            R.drawable.widget_background_s_sleet_night
-        }
-
-        WeatherCode.HAIL -> return if (daylight) {
-            R.drawable.widget_background_s_hail_day
-        } else {
-            R.drawable.widget_background_s_hail_night
-        }
-
-        WeatherCode.THUNDER -> return R.drawable.widget_background_s_thunder
-
-        WeatherCode.THUNDERSTORM -> return R.drawable.widget_background_s_thunderstrom
-    }
 }
