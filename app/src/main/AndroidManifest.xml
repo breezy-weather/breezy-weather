@@ -343,84 +343,12 @@
 
         <!-- widget -->
         <receiver
-            android:name=".background.receiver.widget.androidSWeather.WidgetAndroidS2x1Provider"
-            android:label="@string/widget_android_s_2x1"
+            android:name=".background.receiver.widget.WidgetAndroidSProvider"
+            android:label="@string/widget_android_s"
             android:exported="true">
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/widget_android_s_2x1" />
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="android.appwidget.action.ACTION_APPWIDGET_DISABLED" />
-            </intent-filter>
-        </receiver>
-        <receiver
-            android:name=".background.receiver.widget.androidSWeather.WidgetAndroidS2x2Provider"
-            android:label="@string/widget_android_s_2x2"
-            android:exported="true">
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/widget_android_s_2x2" />
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="android.appwidget.action.ACTION_APPWIDGET_DISABLED" />
-            </intent-filter>
-        </receiver>
-        <receiver
-            android:name=".background.receiver.widget.androidSWeather.WidgetAndroidS3x1Provider"
-            android:label="@string/widget_android_s_3x1"
-            android:exported="true">
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/widget_android_s_3x1" />
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="android.appwidget.action.ACTION_APPWIDGET_DISABLED" />
-            </intent-filter>
-        </receiver>
-        <receiver
-            android:name=".background.receiver.widget.androidSWeather.WidgetAndroidS3x2Provider"
-            android:label="@string/widget_android_s_3x2"
-            android:exported="true">
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/widget_android_s_3x2" />
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="android.appwidget.action.ACTION_APPWIDGET_DISABLED" />
-            </intent-filter>
-        </receiver>
-        <receiver
-            android:name=".background.receiver.widget.androidSWeather.WidgetAndroidS4x1Provider"
-            android:label="@string/widget_android_s_4x1"
-            android:exported="true">
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/widget_android_s_4x1" />
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="android.appwidget.action.ACTION_APPWIDGET_DISABLED" />
-            </intent-filter>
-        </receiver>
-        <receiver
-            android:name=".background.receiver.widget.androidSWeather.WidgetAndroidS4x2Provider"
-            android:label="@string/widget_android_s_4x2"
-            android:exported="true">
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/widget_android_s_4x2" />
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="android.appwidget.action.ACTION_APPWIDGET_DISABLED" />
-            </intent-filter>
-        </receiver>
-        <receiver
-            android:name=".background.receiver.widget.androidSWeather.WidgetAndroidS4x3Provider"
-            android:label="@string/widget_android_s_4x3"
-            android:exported="true">
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/widget_android_s_4x3" />
+                android:resource="@xml/widget_android_s" />
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="android.appwidget.action.ACTION_APPWIDGET_DISABLED" />

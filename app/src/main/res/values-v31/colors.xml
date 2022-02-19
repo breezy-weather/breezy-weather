@@ -6,8 +6,8 @@
     <color name="colorPrimary">@android:color/system_accent1_600</color>
     <color name="colorPrimaryDark">@android:color/system_accent1_200</color>
 
-    <color name="colorAccent_light">@android:color/system_accent2_700</color>
-    <color name="colorAccent_dark">@android:color/system_accent1_300</color>
+    <color name="colorAccent_light">@android:color/system_accent3_700</color>
+    <color name="colorAccent_dark">@android:color/system_accent3_300</color>
 
     <color name="colorLine_light">@android:color/system_neutral1_50</color>
     <color name="colorLine_dark">@android:color/system_neutral1_800</color>
@@ -24,5 +24,13 @@
     <color name="colorTextAlert">@android:color/system_accent2_300</color>
 
     <color name="colorRipple">@android:color/system_accent2_300</color>
+
+    <!-- widget S. -->
+
+    <color name="colorWidgetSRoot_light">@android:color/system_accent1_50</color>
+    <color name="colorWidgetSRoot_dark">@android:color/system_neutral2_800</color>
+
+    <color name="colorWidgetSText_light">@color/colorTextTitle_light</color>
+    <color name="colorWidgetSText_dark">@color/colorTextTitle_dark</color>
 
 </resources>

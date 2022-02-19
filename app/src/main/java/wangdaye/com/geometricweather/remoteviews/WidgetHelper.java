@@ -11,6 +11,7 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.remoteviews.presenters.AndroidSWidgetIMP;
 import wangdaye.com.geometricweather.remoteviews.presenters.ClockDayDetailsWidgetIMP;
 import wangdaye.com.geometricweather.remoteviews.presenters.ClockDayHorizontalWidgetIMP;
 import wangdaye.com.geometricweather.remoteviews.presenters.ClockDayVerticalWidgetIMP;
@@ -22,13 +23,6 @@ import wangdaye.com.geometricweather.remoteviews.presenters.HourlyTrendWidgetIMP
 import wangdaye.com.geometricweather.remoteviews.presenters.MultiCityWidgetIMP;
 import wangdaye.com.geometricweather.remoteviews.presenters.TextWidgetIMP;
 import wangdaye.com.geometricweather.remoteviews.presenters.WeekWidgetIMP;
-import wangdaye.com.geometricweather.remoteviews.presenters.androidS.AndroidS2x1WidgetIMP;
-import wangdaye.com.geometricweather.remoteviews.presenters.androidS.AndroidS2x2WidgetIMP;
-import wangdaye.com.geometricweather.remoteviews.presenters.androidS.AndroidS3x1WidgetIMP;
-import wangdaye.com.geometricweather.remoteviews.presenters.androidS.AndroidS3x2WidgetIMP;
-import wangdaye.com.geometricweather.remoteviews.presenters.androidS.AndroidS4x1WidgetIMP;
-import wangdaye.com.geometricweather.remoteviews.presenters.androidS.AndroidS4x2WidgetIMP;
-import wangdaye.com.geometricweather.remoteviews.presenters.androidS.AndroidS4x3WidgetIMP;
 
 public class WidgetHelper {
 
@@ -65,26 +59,8 @@ public class WidgetHelper {
         }
 
         // android S.
-        if (AndroidS2x1WidgetIMP.isEnable(context)) {
-            AndroidS2x1WidgetIMP.updateWidgetView(context, location);
-        }
-        if (AndroidS2x2WidgetIMP.isEnable(context)) {
-            AndroidS2x2WidgetIMP.updateWidgetView(context, location);
-        }
-        if (AndroidS3x1WidgetIMP.isEnable(context)) {
-            AndroidS3x1WidgetIMP.updateWidgetView(context, location);
-        }
-        if (AndroidS3x2WidgetIMP.isEnable(context)) {
-            AndroidS3x2WidgetIMP.updateWidgetView(context, location);
-        }
-        if (AndroidS4x1WidgetIMP.isEnable(context)) {
-            AndroidS4x1WidgetIMP.updateWidgetView(context, location);
-        }
-        if (AndroidS4x2WidgetIMP.isEnable(context)) {
-            AndroidS4x2WidgetIMP.updateWidgetView(context, location);
-        }
-        if (AndroidS4x3WidgetIMP.isEnable(context)) {
-            AndroidS4x3WidgetIMP.updateWidgetView(context, location);
+        if (AndroidSWidgetIMP.isEnable(context)) {
+            AndroidSWidgetIMP.updateWidgetView(context, location);
         }
     }
 

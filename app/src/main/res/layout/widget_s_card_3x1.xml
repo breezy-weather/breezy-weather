@@ -7,8 +7,8 @@
     android:background="@drawable/widget_s_background"
     android:theme="@style/GeometricWeatherAndroidSWidget"
     style="@android:style/Widget"
-    tools:layout_width="148dp"
-    tools:layout_height="172dp">
+    tools:layout_width="192dp"
+    tools:layout_height="98dp">
 
     <FrameLayout
         android:layout_width="match_parent"

@@ -7,7 +7,7 @@
     android:background="@drawable/widget_s_background"
     android:theme="@style/GeometricWeatherAndroidSWidget"
     style="@android:style/Widget"
-    tools:layout_height="198dp">
+    tools:layout_height="172dp">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -350,6 +350,49 @@
 
                 <TextView
                     android:id="@+id/widget_s_card_background_hourlyTemperature_5"
+                    style="@style/widget_content_text"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="@dimen/little_margin"
+                    android:layout_marginBottom="@dimen/little_margin"
+                    android:gravity="center"
+                    android:text="@string/ellipsis"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:textStyle="bold"
+                    tools:ignore="RtlHardcoded"
+                    tools:text="19°" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/widget_s_card_background_hour_6"
+                    style="@style/widget_content_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/little_margin"
+                    android:gravity="center"
+                    android:text="@string/ellipsis"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:textStyle="bold"
+                    tools:ignore="RtlHardcoded"
+                    tools:text="9:00" />
+
+                <ImageView
+                    android:id="@+id/widget_s_card_background_hourlyIcon_6"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/weather_cloudy"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/weather_partly_cloudy_day" />
+
+                <TextView
+                    android:id="@+id/widget_s_card_background_hourlyTemperature_6"
                     style="@style/widget_content_text"
                     android:layout_width="wrap_content"
                     android:layout_marginTop="@dimen/little_margin"

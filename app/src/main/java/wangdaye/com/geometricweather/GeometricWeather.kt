@@ -125,11 +125,8 @@ class GeometricWeather : MultiDexApplication(),
         const val WIDGET_MULTI_CITY_PENDING_INTENT_CODE_WEATHER_2 = 123
         const val WIDGET_MULTI_CITY_PENDING_INTENT_CODE_WEATHER_3 = 125
 
-        // android S weather.
-        const val WIDGET_ANDROID_S_WEATHER_S_PENDING_INTENT_CODE_WEATHER = 131
-        const val WIDGET_ANDROID_S_WEATHER_M_PENDING_INTENT_CODE_WEATHER = 132
-        const val WIDGET_ANDROID_S_WEATHER_L_PENDING_INTENT_CODE_WEATHER = 133
-        const val WIDGET_ANDROID_S_WEATHER_XL_PENDING_INTENT_CODE_WEATHER = 134
+        // android S.
+        const val WIDGET_ANDROID_S_PENDING_INTENT_CODE_WEATHER = 131
 
         fun getProcessName(): String? = try {
             val file = File("/proc/" + Process.myPid() + "/" + "cmdline")

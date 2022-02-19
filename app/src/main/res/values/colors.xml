@@ -85,4 +85,12 @@
     <color name="weather_source_cn">#033566</color>
     <color name="weather_source_caiyun">#5ebb8e</color>
 
+    <!-- widget S. -->
+
+    <color name="colorWidgetSRoot_light">@color/colorRoot_light</color>
+    <color name="colorWidgetSRoot_dark">@color/colorRoot_dark</color>
+
+    <color name="colorWidgetSText_light">@color/colorTextTitle_light</color>
+    <color name="colorWidgetSText_dark">@color/colorTextTitle_dark</color>
+
 </resources>

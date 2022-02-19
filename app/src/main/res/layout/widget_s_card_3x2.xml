@@ -8,7 +8,7 @@
     android:theme="@style/GeometricWeatherAndroidSWidget"
     style="@android:style/Widget"
     tools:layout_width="148dp"
-    tools:layout_height="172dp">
+    tools:layout_height="198dp">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -101,8 +101,8 @@
 
             <ImageView
                 android:id="@+id/widget_s_card_background_currentIcon"
-                android:layout_width="@dimen/widget_mini_weather_icon_size"
-                android:layout_height="@dimen/widget_mini_weather_icon_size"
+                android:layout_width="@dimen/widget_little_weather_icon_size"
+                android:layout_height="@dimen/widget_little_weather_icon_size"
                 android:src="@drawable/weather_cloudy"
                 android:layout_marginTop="@dimen/normal_margin"
                 android:layout_marginStart="@dimen/normal_margin"
@@ -110,24 +110,10 @@
                 tools:ignore="ContentDescription" />
 
             <TextView
-                android:id="@+id/widget_s_card_background_realFeelTemperature"
+                android:id="@+id/widget_s_card_background_weatherText"
                 android:text="@string/ellipsis"
                 android:layout_marginStart="@dimen/normal_margin"
                 android:layout_marginEnd="@dimen/normal_margin"
-                android:textColor="?android:attr/textColorSecondary"
-                android:textStyle="bold"
-                android:maxLines="1"
-                android:ellipsize="end"
-                style="@style/widget_subtitle_text"
-                tools:text="体感 34°"
-                tools:ignore="RtlHardcoded" />
-
-            <TextView
-                android:id="@+id/widget_s_card_background_windOrAqi"
-                android:text="@string/ellipsis"
-                android:layout_marginStart="@dimen/normal_margin"
-                android:layout_marginEnd="@dimen/normal_margin"
-                android:layout_marginBottom="@dimen/normal_margin"
                 android:textSize="@dimen/content_text_size"
                 android:textStyle="bold"
                 android:textColor="?android:attr/textColorSecondary"
@@ -135,6 +121,21 @@
                 android:ellipsize="end"
                 style="@style/widget_content_text"
                 tools:text="空气 - 优"
+                tools:ignore="RtlHardcoded" />
+
+            <TextView
+                android:id="@+id/widget_s_card_background_aqiOrWind"
+                android:text="@string/ellipsis"
+                android:layout_marginStart="@dimen/normal_margin"
+                android:layout_marginEnd="@dimen/normal_margin"
+                android:layout_marginBottom="@dimen/normal_margin"
+                android:textColor="?android:attr/textColorSecondary"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:alpha="0.66"
+                style="@style/widget_subtitle_text"
+                tools:text="体感 34°"
                 tools:ignore="RtlHardcoded" />
 
         </LinearLayout>

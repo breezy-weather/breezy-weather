@@ -359,13 +359,7 @@
     <string name="widget_trend_daily">Daily Trend</string>
     <string name="widget_trend_hourly">Hourly Trend</string>
     <string name="widget_multi_city">Multi City</string>
-    <string name="widget_android_s_2x1">Android S (2x1)</string>
-    <string name="widget_android_s_2x2">Android S (2x2)</string>
-    <string name="widget_android_s_3x1">Android S (3x1)</string>
-    <string name="widget_android_s_3x2">Android S (3x2)</string>
-    <string name="widget_android_s_4x1">Android S (4x1)</string>
-    <string name="widget_android_s_4x2">Android S (4x2)</string>
-    <string name="widget_android_s_4x3">Android S (4x3)</string>
+    <string name="widget_android_s">Material You</string>
     <string name="wait_refresh">waiting</string>
     <string name="ellipsis">…</string>
 

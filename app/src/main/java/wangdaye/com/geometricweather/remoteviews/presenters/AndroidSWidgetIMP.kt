@@ -1,22 +1,113 @@
-package wangdaye.com.geometricweather.remoteviews.presenters.androidS
+package wangdaye.com.geometricweather.remoteviews.presenters
 
+import android.appwidget.AppWidgetManager
+import android.content.ComponentName
 import android.content.Context
+import android.os.Build
+import android.util.SizeF
 import android.widget.RemoteViews
+import androidx.annotation.LayoutRes
+import wangdaye.com.geometricweather.GeometricWeather
 import wangdaye.com.geometricweather.R
+import wangdaye.com.geometricweather.background.receiver.widget.WidgetAndroidSProvider
 import wangdaye.com.geometricweather.common.basic.models.Location
 import wangdaye.com.geometricweather.common.basic.models.options.NotificationTextColor
-import wangdaye.com.geometricweather.remoteviews.presenters.AbstractRemoteViewsPresenter
 import wangdaye.com.geometricweather.settings.SettingsManager
 import wangdaye.com.geometricweather.theme.resource.ResourceHelper
 import wangdaye.com.geometricweather.theme.resource.ResourcesProviderFactory
 
-open class AbstractAndroidSWeatherWidgetIMP: AbstractRemoteViewsPresenter()
+class AndroidSWidgetIMP: AbstractRemoteViewsPresenter() {
 
-internal fun buildWeatherWidget(
+    companion object {
+
+        @JvmStatic
+        fun isEnable(context: Context): Boolean {
+            return AppWidgetManager.getInstance(
+                context
+            ).getAppWidgetIds(
+                ComponentName(
+                    context,
+                    WidgetAndroidSProvider::class.java
+                )
+            ).isNotEmpty()
+        }
+
+        @JvmStatic
+        fun updateWidgetView(context: Context, location: Location) {
+            AppWidgetManager.getInstance(context).updateAppWidget(
+                ComponentName(context, WidgetAndroidSProvider::class.java),
+                buildWeatherWidget(context, location)
+            )
+        }
+    }
+}
+
+private fun buildWeatherWidget(
     context: Context,
-    layoutId: Int,
-    pendingIntentCode: Int,
     location: Location
+): RemoteViews = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+    RemoteViews(
+        mapOf(
+            SizeF(1.0f, 1.0f) to buildRemoteViews(
+                context,
+                location,
+                R.layout.widget_s_card_1x1
+            ),
+            SizeF (100.0f, 100.0f) to buildRemoteViews(
+                context,
+                location,
+                R.layout.widget_s_card_2x1
+            ),
+            SizeF (156.0f, 156.0f) to buildRemoteViews(
+                context,
+                location,
+                R.layout.widget_s_card_2x2
+            ),
+            SizeF (192.0f, 98.0f) to buildRemoteViews(
+                context,
+                location,
+                R.layout.widget_s_card_3x1
+            ),
+            SizeF (148.0f, 198.0f) to buildRemoteViews(
+                context,
+                location,
+                R.layout.widget_s_card_3x2
+            ),
+            SizeF (216.0f, 100.0f) to buildRemoteViews(
+                context,
+                location,
+                R.layout.widget_s_card_4x1
+            ),
+            SizeF (216.0f, 198.0f) to buildRemoteViews(
+                context,
+                location,
+                R.layout.widget_s_card_4x2
+            ),
+            SizeF (216.0f, 312.0f) to buildRemoteViews(
+                context,
+                location,
+                R.layout.widget_s_card_4x3
+            ),
+            SizeF (298.0f, 198.0f) to buildRemoteViews(
+                context,
+                location,
+                R.layout.widget_s_card_5x2
+            ),
+            SizeF (298.0f, 312.0f) to buildRemoteViews(
+                context,
+                location,
+                R.layout.widget_s_card_5x3
+            ),
+        )
+    )
+} else {
+    buildRemoteViews(context, location, R.layout.widget_s_card_4x3)
+}
+
+private fun buildRemoteViews(
+    context: Context,
+    location: Location,
+    @LayoutRes layoutId: Int,
 ): RemoteViews {
 
     val views = RemoteViews(
@@ -66,31 +157,21 @@ internal fun buildWeatherWidget(
         weather.dailyForecast[0].night().temperature.getShortTemperature(context, temperatureUnit)
     )
 
-    if (weather.current.temperature.realFeelTemperature != null) {
+    views.setTextViewText(
+        R.id.widget_s_card_background_weatherText,
+        location.weather!!.current.weatherText
+    )
+
+    if (weather.current.airQuality.isValid) {
         views.setTextViewText(
-            R.id.widget_s_card_background_realFeelTemperature,
-            context.getString(R.string.feels_like)
-                    + " "
-                    + weather.current.temperature.getShortRealFeeTemperature(context, temperatureUnit)
+            R.id.widget_s_card_background_aqiOrWind,
+             "AQI - " + weather.current.airQuality.aqiText
         )
     } else {
         views.setTextViewText(
-            R.id.widget_s_card_background_realFeelTemperature,
-            weather.current.weatherText
-        )
-    }
-
-    if (weather.current.airQuality.aqiText == null) {
-        views.setTextViewText(
-            R.id.widget_s_card_background_windOrAqi,
+            R.id.widget_s_card_background_aqiOrWind,
             context.getString(R.string.wind) + " - "
                     + location.weather!!.current.wind.shortWindDescription
-        )
-    } else {
-        views.setTextViewText(
-            R.id.widget_s_card_background_windOrAqi,
-            (context.getString(R.string.air_quality) + " - "
-                    + location.weather!!.current.airQuality.aqiText)
         )
     }
 
@@ -420,7 +501,7 @@ internal fun buildWeatherWidget(
         AbstractRemoteViewsPresenter.getWeatherPendingIntent(
             context,
             location,
-            pendingIntentCode
+            GeometricWeather.WIDGET_ANDROID_S_PENDING_INTENT_CODE_WEATHER
         )
     )
 
