@@ -8,8 +8,6 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
-import androidx.hilt.Assisted;
-import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.SavedStateHandle;
 
@@ -17,6 +15,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.lifecycle.HiltViewModel;
 import wangdaye.com.geometricweather.common.basic.GeoViewModel;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
@@ -28,6 +29,7 @@ import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
 import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 import wangdaye.com.geometricweather.main.utils.StatementManager;
 
+@HiltViewModel
 public class MainActivityViewModel extends GeoViewModel
         implements MainActivityRepository.WeatherRequestCallback {
 
@@ -49,12 +51,14 @@ public class MainActivityViewModel extends GeoViewModel
 
     private static final String KEY_FORMATTED_ID = "formatted_id";
 
-    @ViewModelInject
-    public MainActivityViewModel(Application application,
-                                 @Assisted SavedStateHandle handle,
-                                 MainActivityRepository repository,
-                                 StatementManager statementManager,
-                                 MainThemeManager themeManager) {
+    @Inject
+    public MainActivityViewModel(
+            Application application,
+            SavedStateHandle handle,
+            MainActivityRepository repository,
+            StatementManager statementManager,
+            MainThemeManager themeManager
+    ) {
         super(application);
 
         mCurrentLocation = new MutableLiveData<>();

@@ -3,7 +3,7 @@ package wangdaye.com.geometricweather.weather.di;
 import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
-import dagger.hilt.android.components.ApplicationComponent;
+import dagger.hilt.components.SingletonComponent;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -16,7 +16,7 @@ import wangdaye.com.geometricweather.weather.apis.CaiYunApi;
 import wangdaye.com.geometricweather.weather.apis.MfWeatherApi;
 import wangdaye.com.geometricweather.weather.apis.OwmApi;
 
-@InstallIn(ApplicationComponent.class)
+@InstallIn(SingletonComponent.class)
 @Module
 public class ApiModule {
 

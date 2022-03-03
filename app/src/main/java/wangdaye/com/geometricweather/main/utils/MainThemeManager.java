@@ -13,7 +13,7 @@ import java.util.TimeZone;
 
 import javax.inject.Inject;
 
-import dagger.hilt.android.qualifiers.ActivityContext;
+import dagger.hilt.android.qualifiers.ApplicationContext;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.theme.weatherView.WeatherView;
@@ -33,7 +33,7 @@ public class MainThemeManager extends ThemeManager {
     private static final String KEY_DAY_TIME = "day_time";
 
     @Inject
-    public MainThemeManager(@ActivityContext Context context) {
+    public MainThemeManager(@ApplicationContext Context context) {
         mWeatherView = null;
         mDaytime = ConfigStore.getInstance(context, PREFERENCE_NAME).getBoolean(
                 KEY_DAY_TIME, DisplayUtils.isDaylight(TimeZone.getDefault()));

@@ -4,7 +4,7 @@ import android.content.Context;
 
 import javax.inject.Inject;
 
-import dagger.hilt.android.qualifiers.ActivityContext;
+import dagger.hilt.android.qualifiers.ApplicationContext;
 import wangdaye.com.geometricweather.settings.ConfigStore;
 
 public class StatementManager {
@@ -17,7 +17,7 @@ public class StatementManager {
     private static final String KEY_BACKGROUND_LOCATION_DECLARED = "background_location_declared";
 
     @Inject
-    public StatementManager(@ActivityContext Context context) {
+    public StatementManager(@ApplicationContext Context context) {
         ConfigStore config = ConfigStore.getInstance(context, SP_STATEMENT_RECORD);
 
         locationPermissionDeclared = config.getBoolean(

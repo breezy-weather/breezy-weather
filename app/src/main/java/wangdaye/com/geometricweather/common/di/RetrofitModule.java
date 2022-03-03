@@ -7,7 +7,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
-import dagger.hilt.android.components.ApplicationComponent;
+import dagger.hilt.components.SingletonComponent;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -16,7 +16,7 @@ import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.common.retrofit.TLSCompactHelper;
 import wangdaye.com.geometricweather.common.retrofit.interceptors.GzipInterceptor;
 
-@InstallIn(ApplicationComponent.class)
+@InstallIn(SingletonComponent.class)
 @Module
 public class RetrofitModule {
 

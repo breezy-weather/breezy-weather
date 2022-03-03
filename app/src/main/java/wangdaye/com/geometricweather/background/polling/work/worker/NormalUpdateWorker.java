@@ -4,22 +4,24 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
-import androidx.hilt.Assisted;
-import androidx.hilt.work.WorkerInject;
+import androidx.hilt.work.HiltWorker;
 import androidx.work.WorkerParameters;
 import androidx.work.impl.utils.futures.SettableFuture;
 
 import java.util.List;
 
+import dagger.assisted.Assisted;
+import dagger.assisted.AssistedInject;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.location.LocationHelper;
 import wangdaye.com.geometricweather.remoteviews.NotificationHelper;
 import wangdaye.com.geometricweather.remoteviews.WidgetHelper;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
+@HiltWorker
 public class NormalUpdateWorker extends AsyncUpdateWorker {
 
-    @WorkerInject
+    @AssistedInject
     public NormalUpdateWorker(@Assisted @NonNull Context context,
                               @Assisted @NonNull WorkerParameters workerParams,
                               LocationHelper locationHelper,
