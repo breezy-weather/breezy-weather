@@ -52,7 +52,7 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
 
             if (mThemeManager != null) {
                 mTagView.setCheckedBackgroundColor(mCheckedBackgroundColor);
-                mTagView.setUncheckedBackgroundColor(mThemeManager.getLineColor(mTagView.getContext()));
+                mTagView.setUncheckedBackgroundColor(mThemeManager.getSeparatorColor(mTagView.getContext()));
             }
         }
 

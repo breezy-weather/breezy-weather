@@ -94,7 +94,7 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
         ensureTime(mWeather);
         ensurePhaseAngle(mWeather);
 
-        mCard.setCardBackgroundColor(themeManager.getRootColor(context));
+        mCard.setCardBackgroundColor(themeManager.getSurfaceColor(context));
 
         mTitle.setTextColor(themeColors[0]);
 
@@ -134,7 +134,7 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
                     themeColors[0],
                     ColorUtils.setAlphaComponent(themeColors[1], (int) (0.66 * 255)),
                     ColorUtils.setAlphaComponent(themeColors[1], (int) (0.33 * 255)),
-                    themeManager.getRootColor(context),
+                    themeManager.getSurfaceColor(context),
                     themeManager.isLightTheme()
             );
         } else {
@@ -142,7 +142,7 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
                     themeColors[2],
                     ColorUtils.setAlphaComponent(themeColors[2], (int) (0.5 * 255)),
                     ColorUtils.setAlphaComponent(themeColors[2], (int) (0.2 * 255)),
-                    themeManager.getRootColor(context),
+                    themeManager.getSurfaceColor(context),
                     themeManager.isLightTheme()
             );
         }

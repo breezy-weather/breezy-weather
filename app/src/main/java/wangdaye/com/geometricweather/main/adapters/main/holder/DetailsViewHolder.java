@@ -39,7 +39,7 @@ public class DetailsViewHolder extends AbstractMainCardViewHolder {
                 listAnimationEnabled, itemAnimationEnabled, firstCard);
 
         if (location.getWeather() != null) {
-            mCard.setCardBackgroundColor(themeManager.getRootColor(context));
+            mCard.setCardBackgroundColor(themeManager.getSurfaceColor(context));
 
             mTitle.setTextColor(themeManager.getWeatherThemeColors()[0]);
 

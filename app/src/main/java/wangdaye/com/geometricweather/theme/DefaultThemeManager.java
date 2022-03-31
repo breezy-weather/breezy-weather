@@ -19,8 +19,8 @@ public class DefaultThemeManager extends ThemeManager {
     }
 
     @Override
-    public int getLineColor(Context context) {
-        return ContextCompat.getColor(context, R.color.colorLine);
+    public int getSeparatorColor(Context context) {
+        return ContextCompat.getColor(context, R.color.colorSeparator);
     }
 
     @Override
@@ -29,8 +29,8 @@ public class DefaultThemeManager extends ThemeManager {
     }
 
     @Override
-    public int getSearchBarColor(Context context) {
-        return ContextCompat.getColor(context, R.color.colorSearchBarBackground);
+    public int getSurfaceColor(Context context) {
+        return ContextCompat.getColor(context, R.color.colorSurface);
     }
 
     @Override

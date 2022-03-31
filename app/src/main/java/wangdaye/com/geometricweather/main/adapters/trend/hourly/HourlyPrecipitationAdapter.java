@@ -80,7 +80,7 @@ public class HourlyPrecipitationAdapter extends AbsHourlyTrendAdapter<HourlyPrec
             mPolylineAndHistogramView.setLineColors(
                     hourly.getPrecipitation().getPrecipitationColor(activity),
                     hourly.getPrecipitation().getPrecipitationColor(activity),
-                    mThemeManager.getLineColor(activity)
+                    mThemeManager.getSeparatorColor(activity)
             );
             int[] themeColors = mThemeManager.getWeatherThemeColors();
             mPolylineAndHistogramView.setShadowColors(
@@ -138,7 +138,7 @@ public class HourlyPrecipitationAdapter extends AbsHourlyTrendAdapter<HourlyPrec
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
         );
-        parent.setLineColor(mThemeManager.getLineColor(activity));
+        parent.setLineColor(mThemeManager.getSeparatorColor(activity));
         parent.setData(keyLineList, highestPrecipitation, 0f);
     }
 

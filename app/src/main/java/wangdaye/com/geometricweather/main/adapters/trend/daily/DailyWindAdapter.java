@@ -82,7 +82,7 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
                     mSpeedUnit.getSpeedTextWithoutUnit(nighttimeWindSpeed == null ? 0 : nighttimeWindSpeed),
                     mHighestWindSpeed
             );
-            mDoubleHistogramView.setLineColors(daytimeWindColor, nighttimeWindColor, mThemeManager.getLineColor(activity));
+            mDoubleHistogramView.setLineColors(daytimeWindColor, nighttimeWindColor, mThemeManager.getSeparatorColor(activity));
             mDoubleHistogramView.setTextColors(mThemeManager.getTextContentColor(activity));
             mDoubleHistogramView.setHistogramAlphas(1f, 0.5f);
 
@@ -164,7 +164,7 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
                         TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
                 )
         );
-        parent.setLineColor(mThemeManager.getLineColor(activity));
+        parent.setLineColor(mThemeManager.getSeparatorColor(activity));
         parent.setData(keyLineList, mHighestWindSpeed, -mHighestWindSpeed);
     }
 

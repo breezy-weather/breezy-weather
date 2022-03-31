@@ -86,7 +86,7 @@ public class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<HourlyTemper
             );
             int[] themeColors = mThemeManager.getWeatherThemeColors();
             mPolylineAndHistogramView.setLineColors(
-                    themeColors[mThemeManager.isLightTheme() ? 1 : 2], themeColors[2], mThemeManager.getLineColor(activity));
+                    themeColors[mThemeManager.isLightTheme() ? 1 : 2], themeColors[2], mThemeManager.getSeparatorColor(activity));
             mPolylineAndHistogramView.setShadowColors(
                     themeColors[mThemeManager.isLightTheme() ? 1 : 2], themeColors[2], mThemeManager.isLightTheme());
             mPolylineAndHistogramView.setTextColors(
@@ -162,7 +162,7 @@ public class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<HourlyTemper
 
         mShowPrecipitationProbability = showPrecipitationProbability;
 
-        parent.setLineColor(mThemeManager.getLineColor(activity));
+        parent.setLineColor(mThemeManager.getSeparatorColor(activity));
         if (weather.getYesterday() == null) {
             parent.setData(null,0, 0);
         } else {

@@ -1,10 +1,38 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- app theme -->
-    <style name="GeometricWeatherTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <style name="GeometricWeatherTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/md_theme_primary</item>
+        <item name="colorOnPrimary">@color/md_theme_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/md_theme_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/md_theme_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/md_theme_secondary</item>
+        <item name="colorOnSecondary">@color/md_theme_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/md_theme_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/md_theme_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/md_theme_tertiary</item>
+        <item name="colorOnTertiary">@color/md_theme_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/md_theme_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/md_theme_onTertiaryContainer</item>
+        <item name="colorError">@color/md_theme_error</item>
+        <item name="colorErrorContainer">@color/md_theme_errorContainer</item>
+        <item name="colorOnError">@color/md_theme_onError</item>
+        <item name="colorOnErrorContainer">@color/md_theme_onErrorContainer</item>
+        <item name="android:colorBackground">@color/md_theme_background</item>
+        <item name="colorOnBackground">@color/md_theme_onBackground</item>
+        <item name="colorSurface">@color/md_theme_surface</item>
+        <item name="colorOnSurface">@color/md_theme_onSurface</item>
+        <item name="colorSurfaceVariant">@color/md_theme_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/md_theme_onSurfaceVariant</item>
+        <item name="colorOutline">@color/md_theme_outline</item>
+        <item name="colorOnSurfaceInverse">@color/md_theme_inverseOnSurface</item>
+        <item name="colorSurfaceInverse">@color/md_theme_inverseSurface</item>
+        <!--
+        <item name="colorInversePrimary">@color/md_theme_inversePrimary</item>
+        <item name="colorShadow">@color/md_theme_shadow</item>
+        -->
+        <item name="colorPrimaryInverse">@color/md_theme_primaryInverse</item>
+
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowIsTranslucent">false</item>
@@ -16,7 +44,6 @@
     </style>
 
     <style name="GeometricWeatherTheme.Main" parent="GeometricWeatherTheme">
-        <item name="colorAccent">@android:color/transparent</item>
         <item name="android:windowBackground">@drawable/launch_background</item>
     </style>
 
@@ -28,26 +55,9 @@
         <item name="android:windowSharedElementReturnTransition">@transition/search_activity_shared_return</item>
     </style>
 
-    <style name="GeometricWeatherTheme.AppbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="elevation">2dp</item>
-    </style>
-    <style name="GeometricWeatherTheme.AppbarPopupTheme" parent="ThemeOverlay.AppCompat.Light" />
-
-    <style name="GeometricWeatherTheme.AppbarTheme.Light" parent="ThemeOverlay.AppCompat.Light">
-        <item name="elevation">2dp</item>
-    </style>
-    <style name="GeometricWeatherTheme.AppbarPopupTheme.Light" parent="ThemeOverlay.AppCompat.Light" />
-
-    <style name="GeometricWeatherTheme.AppbarTheme.Dark" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="elevation">2dp</item>
-    </style>
-    <style name="GeometricWeatherTheme.AppbarPopupTheme.Dark" parent="ThemeOverlay.AppCompat.Dark" />
-
-    <style name="GeometricWeatherTheme.TabLayoutTheme" parent="Widget.Design.TabLayout">
-        <item name="tabIndicatorHeight">3dp</item>
-        <item name="tabIndicatorColor">@color/colorTextTitle</item>
-        <item name="tabSelectedTextColor">@color/colorTextTitle</item>
-        <item name="tabTextColor">@color/colorTextSubtitle</item>
+    <style name="GeometricWeatherTheme.ToolbarTheme"
+        parent="Widget.MaterialComponents.Toolbar.Primary">
+        <item name="navigationIconTint">?attr/colorOnPrimary</item>
     </style>
     
     <!-- card. -->
@@ -61,7 +71,7 @@
         <item name="android:clickable">true</item>
         <item name="cardCornerRadius">@dimen/view_corner_radius</item>
         <item name="cardElevation">2dp</item>
-        <item name="cardBackgroundColor">@color/colorRoot</item>
+        <item name="cardBackgroundColor">?attr/colorSurface</item>
         <item name="android:stateListAnimator" tools:ignore="NewApi">@animator/touch_raise</item>
         <item name="android:foreground">@drawable/selectable_item_background</item>
     </style>

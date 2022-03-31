@@ -1,7 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="GeometricWeatherTheme.AppbarPopupTheme" parent="ThemeOverlay.AppCompat.Dark" />
-
     <!-- widget -->
     <style name="widget_text_clock">
         <item name="android:layout_width">wrap_content</item>

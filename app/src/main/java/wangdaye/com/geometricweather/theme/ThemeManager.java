@@ -13,13 +13,13 @@ public abstract class ThemeManager {
     public abstract int getAccentColor(Context context);
 
     @ColorInt
-    public abstract int getLineColor(Context context);
+    public abstract int getSeparatorColor(Context context);
+
+    @ColorInt
+    public abstract int getSurfaceColor(Context context);
 
     @ColorInt
     public abstract int getRootColor(Context context);
-
-    @ColorInt
-    public abstract int getSearchBarColor(Context context);
 
     @ColorInt
     public abstract int getTextTitleColor(Context context);

@@ -86,7 +86,7 @@ public abstract class GeoActivity extends AppCompatActivity {
 
         fitHorizontalSystemBarRootLayout = new FitHorizontalSystemBarRootLayout(this);
         fitHorizontalSystemBarRootLayout.setRootColor(ContextCompat.getColor(this, R.color.colorRoot));
-        fitHorizontalSystemBarRootLayout.setLineColor(ContextCompat.getColor(this, R.color.colorLine));
+        fitHorizontalSystemBarRootLayout.setLineColor(ContextCompat.getColor(this, R.color.colorSeparator));
 
         GeometricWeather.getInstance().addActivity(this);
 

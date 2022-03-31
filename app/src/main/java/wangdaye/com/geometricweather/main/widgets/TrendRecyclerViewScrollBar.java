@@ -85,7 +85,7 @@ public class TrendRecyclerViewScrollBar extends RecyclerView.ItemDecoration {
             mLightTheme = lightTheme;
             mThemeChanged = true;
 
-            mEndPointsColor = mThemeManager.getRootColor(context);
+            mEndPointsColor = mThemeManager.getSurfaceColor(context);
             mCenterColor = DisplayUtils.blendColor(
                     lightTheme
                             ? Color.argb((int) (0.02 * 255), 0, 0, 0)

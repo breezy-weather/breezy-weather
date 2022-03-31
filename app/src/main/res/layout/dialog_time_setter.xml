@@ -5,7 +5,7 @@
     android:id="@+id/dialog_time_setter_container"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/colorRoot">
+    android:background="?attr/colorSurface">
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -49,7 +49,7 @@ public abstract class GeoDialog extends DialogFragment {
     }
 
     public SnackbarContainer getSnackbarContainer() {
-        return new SnackbarContainer(this, (ViewGroup) getView(), false);
+        return new SnackbarContainer(this, (ViewGroup) requireView(), false);
     }
 
     public boolean isForeground() {

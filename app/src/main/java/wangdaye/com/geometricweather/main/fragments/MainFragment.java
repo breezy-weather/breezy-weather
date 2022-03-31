@@ -286,7 +286,7 @@ public class MainFragment extends GeoFragment {
                 (GeoActivity) requireActivity()
         ).getFitHorizontalSystemBarRootLayout();
         rootLayout.setRootColor(themeManager.getRootColor(requireContext()));
-        rootLayout.setLineColor(themeManager.getLineColor(requireContext()));
+        rootLayout.setLineColor(themeManager.getSeparatorColor(requireContext()));
 
         WeatherViewController.setWeatherCode(
                 mWeatherView,
@@ -349,7 +349,7 @@ public class MainFragment extends GeoFragment {
                     mWeatherView.getThemeColors(themeManager.isLightTheme())[0]
             );
             mBinding.refreshLayout.setProgressBackgroundColorSchemeColor(
-                    themeManager.getRootColor(requireContext())
+                    themeManager.getSurfaceColor(requireContext())
             );
         }
         mWeatherView.setGravitySensorEnabled(

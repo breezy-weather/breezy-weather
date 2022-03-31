@@ -17,7 +17,7 @@
             android:id="@+id/searchBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorSearchBarBackground"
+            android:background="?attr/colorSurface"
             android:transitionName="@string/transition_activity_search_bar"
             tools:targetApi="lollipop">
 
@@ -151,7 +151,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/colorLine" />
+                        android:background="@color/colorSeparator" />
 
                     <Button
                         android:id="@+id/source_enter"

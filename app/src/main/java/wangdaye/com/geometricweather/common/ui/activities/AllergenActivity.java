@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
+import com.google.android.material.appbar.MaterialToolbar;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -48,13 +48,13 @@ public class AllergenActivity extends GeoActivity {
     }
 
     private void initWidget() {
-        Toolbar toolbar = findViewById(R.id.activity_allergen_toolbar);
+        MaterialToolbar toolbar = findViewById(R.id.activity_allergen_toolbar);
         toolbar.setNavigationOnClickListener(v -> finish());
 
         if (mLocation.getWeather() != null) {
             FitSystemBarRecyclerView recyclerView = findViewById(R.id.activity_allergen_recyclerView);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            recyclerView.addItemDecoration(new ListDecoration(this, ContextCompat.getColor(this, R.color.colorLine)));
+            recyclerView.addItemDecoration(new ListDecoration(this, ContextCompat.getColor(this, R.color.colorSeparator)));
             recyclerView.setAdapter(new DailyPollenAdapter(mLocation.getWeather()));
         } else {
             finish();

@@ -196,7 +196,7 @@ public class SearchActivity extends GeoActivity
             mBinding.recyclerView.removeItemDecorationAt(0);
         }
         mBinding.recyclerView.addItemDecoration(new ListDecoration(
-                this, ContextCompat.getColor(this, R.color.colorLine)));
+                this, ContextCompat.getColor(this, R.color.colorSeparator)));
 
         mBinding.scrollBar.setIndicator(
                 new WeatherSourceIndicator(this).setTextSize(16), true);

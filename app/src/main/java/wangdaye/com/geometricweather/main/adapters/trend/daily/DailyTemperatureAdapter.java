@@ -96,7 +96,7 @@ public class DailyTemperatureAdapter extends AbsDailyTrendAdapter<DailyTemperatu
             );
             int[] themeColors = mThemeManager.getWeatherThemeColors();
             mPolylineAndHistogramView.setLineColors(
-                    themeColors[1], themeColors[2], mThemeManager.getLineColor(activity));
+                    themeColors[1], themeColors[2], mThemeManager.getSeparatorColor(activity));
             mPolylineAndHistogramView.setShadowColors(
                     themeColors[1], themeColors[2], mThemeManager.isLightTheme());
             mPolylineAndHistogramView.setTextColors(
@@ -188,7 +188,7 @@ public class DailyTemperatureAdapter extends AbsDailyTrendAdapter<DailyTemperatu
 
         mShowPrecipitationProbability = showPrecipitationProbability;
 
-        parent.setLineColor(mThemeManager.getLineColor(activity));
+        parent.setLineColor(mThemeManager.getSeparatorColor(activity));
         if (weather.getYesterday() == null) {
             parent.setData(null,0, 0);
         } else {

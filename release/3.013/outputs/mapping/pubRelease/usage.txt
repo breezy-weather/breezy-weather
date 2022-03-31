@@ -5958,7 +5958,7 @@ kotlinx.coroutines.scheduling.CoroutineScheduler:
     private static final long PARKED_VERSION_INC
 kotlinx.coroutines.channels.ActorScope$DefaultImpls
 kotlinx.coroutines.flow.internal.FlowCoroutineKt
-androidx.appcompat.widget.Toolbar$SavedState:
+com.google.android.material.appbar.MaterialToolbar$SavedState:
     public void <init>(android.os.Parcel)
 io.reactivex.internal.operators.single.SingleDoOnSubscribe$DoOnSubscribeSingleObserver
 com.google.android.material.shape.MaterialShapeDrawable:
@@ -9847,7 +9847,7 @@ androidx.core.widget.AutoSizeableTextView:
     public abstract int[] getAutoSizeTextAvailableSizes()
 kotlinx.coroutines.channels.ConflatedBroadcastChannel$State
 com.google.android.material.snackbar.BaseTransientBottomBar$4
-androidx.appcompat.widget.Toolbar$ExpandedActionViewMenuPresenter:
+com.google.android.material.appbar.MaterialToolbar$ExpandedActionViewMenuPresenter:
     public androidx.appcompat.view.menu.MenuView getMenuView(android.view.ViewGroup)
     public void setCallback(androidx.appcompat.view.menu.MenuPresenter$Callback)
 com.bumptech.glide.load.model.ByteBufferFileLoader:
@@ -10324,7 +10324,7 @@ kotlinx.coroutines.internal.ThreadSafeHeapKt
 com.baidu.location.indoor.mapversion.a.a$c
 io.reactivex.internal.operators.flowable.FlowableCombineLatest$CombineLatestInnerSubscriber
 io.reactivex.internal.operators.flowable.FlowableWindowBoundary$WindowBoundaryInnerSubscriber
-androidx.appcompat.widget.Toolbar:
+com.google.android.material.appbar.MaterialToolbar:
     public void setTitleMargin(int,int,int,int)
     public boolean isTitleTruncated()
     public void setContentInsetsAbsolute(int,int)
@@ -11255,7 +11255,7 @@ androidx.work.impl.utils.package-info
 io.reactivex.internal.operators.single.SingleFlatMapIterableObservable
 androidx.constraintlayout.motion.widget.KeyCycleOscillator$IntDoubleSort
 com.google.android.gms.common.api.internal.zaax
-androidx.appcompat.widget.Toolbar$LayoutParams:
+com.google.android.material.appbar.MaterialToolbar$LayoutParams:
     public void <init>(int,int,int)
     public void <init>(int)
     static final int CUSTOM
@@ -16106,7 +16106,7 @@ kotlinx.coroutines.flow.FlowKt__ReduceKt$reduce$$inlined$collect$1$1
 androidx.appcompat.app.AppCompatDelegateImpl:
     void <init>(android.content.Context,android.view.Window,androidx.appcompat.app.AppCompatCallback)
     void <init>(android.content.Context,android.app.Activity,androidx.appcompat.app.AppCompatCallback)
-    public void setSupportActionBar(androidx.appcompat.widget.Toolbar)
+    public void setSupportActionBar(com.google.android.material.appbar.MaterialToolbar)
     public boolean hasWindowFeature(int)
     public void setHandleNativeActionModesEnabled(boolean)
     android.view.ViewGroup getSubDecor()
@@ -18620,7 +18620,7 @@ androidx.preference.PreferenceFragment$3
 kotlinx.coroutines.channels.ChannelIterator
 kotlin.collections.CollectionsKt___CollectionsKt$elementAt$1
 kotlin.collections.ArrayAsCollection
-androidx.appcompat.widget.ToolbarWidgetWrapper:
+com.google.android.material.appbar.MaterialToolbarWidgetWrapper:
     private void ensureSpinner()
     public java.lang.CharSequence getSubtitle()
     public boolean hasIcon()
@@ -20142,7 +20142,7 @@ androidx.appcompat.app.AppCompatDelegate:
     public static androidx.appcompat.app.AppCompatDelegate create(android.content.Context,android.app.Activity,androidx.appcompat.app.AppCompatCallback)
     public static void setCompatVectorFromResourcesEnabled(boolean)
     public static boolean isCompatVectorFromResourcesEnabled()
-    public abstract void setSupportActionBar(androidx.appcompat.widget.Toolbar)
+    public abstract void setSupportActionBar(com.google.android.material.appbar.MaterialToolbar)
     public abstract androidx.appcompat.app.ActionBarDrawerToggle$Delegate getDrawerToggleDelegate()
     public abstract boolean hasWindowFeature(int)
     public abstract androidx.appcompat.view.ActionMode startSupportActionMode(androidx.appcompat.view.ActionMode$Callback)
@@ -20312,7 +20312,7 @@ kotlin.sequences.SequencesKt__SequenceBuilderKt:
     private static final int State_Done
     private static final int State_Failed
 androidx.appcompat.app.ToolbarActionBar:
-    void <init>(androidx.appcompat.widget.Toolbar,java.lang.CharSequence,android.view.Window$Callback)
+    void <init>(com.google.android.material.appbar.MaterialToolbar,java.lang.CharSequence,android.view.Window$Callback)
     public android.view.Window$Callback getWrappedWindowCallback()
     public void setCustomView(android.view.View)
     public void setCustomView(android.view.View,androidx.appcompat.app.ActionBar$LayoutParams)
@@ -20371,7 +20371,7 @@ androidx.appcompat.app.ToolbarActionBar:
     public boolean isShowing()
     void populateOptionsMenu()
     boolean mToolbarMenuPrepared
-    private final androidx.appcompat.widget.Toolbar$OnMenuItemClickListener mMenuClicker
+    private final com.google.android.material.appbar.MaterialToolbar$OnMenuItemClickListener mMenuClicker
 androidx.core.hardware.fingerprint.FingerprintManagerCompat$AuthenticationResult
 androidx.fragment.app.Fragment$SavedState:
     void <init>(android.os.Bundle)
@@ -20806,9 +20806,9 @@ com.google.android.gms.common.internal.service.zaa
 com.google.android.material.badge.BadgeUtils:
     private void <init>()
     public static void attachBadgeDrawable(com.google.android.material.badge.BadgeDrawable,android.view.View)
-    public static void attachBadgeDrawable(com.google.android.material.badge.BadgeDrawable,androidx.appcompat.widget.Toolbar,int)
-    public static void attachBadgeDrawable(com.google.android.material.badge.BadgeDrawable,androidx.appcompat.widget.Toolbar,int,android.widget.FrameLayout)
-    public static void detachBadgeDrawable(com.google.android.material.badge.BadgeDrawable,androidx.appcompat.widget.Toolbar,int)
+    public static void attachBadgeDrawable(com.google.android.material.badge.BadgeDrawable,com.google.android.material.appbar.MaterialToolbar,int)
+    public static void attachBadgeDrawable(com.google.android.material.badge.BadgeDrawable,com.google.android.material.appbar.MaterialToolbar,int,android.widget.FrameLayout)
+    public static void detachBadgeDrawable(com.google.android.material.badge.BadgeDrawable,com.google.android.material.appbar.MaterialToolbar,int)
     private static final java.lang.String LOG_TAG
 kotlin.properties.ReadOnlyProperty
 androidx.transition.ChangeImageTransform$2
@@ -21157,7 +21157,7 @@ androidx.core.view.WindowInsetsCompat:
     private static final java.lang.String TAG
 androidx.appcompat.app.AppCompatActivity:
     public void <init>(int)
-    public void setSupportActionBar(androidx.appcompat.widget.Toolbar)
+    public void setSupportActionBar(com.google.android.material.appbar.MaterialToolbar)
     public boolean supportRequestWindowFeature(int)
     public androidx.appcompat.view.ActionMode startSupportActionMode(androidx.appcompat.view.ActionMode$Callback)
     public void setSupportProgressBarVisibility(boolean)

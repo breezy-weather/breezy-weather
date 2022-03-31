@@ -8,17 +8,16 @@
 
     <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:theme="@style/GeometricWeatherTheme.AppbarTheme" >
+        android:layout_height="wrap_content" >
 
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/activity_settings_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            style="@style/GeometricWeatherTheme.ToolbarTheme"
             app:title="@string/action_settings"
             app:navigationIcon="@drawable/ic_toolbar_back"
-            app:navigationContentDescription="@string/content_desc_back"
-            app:popupTheme="@style/GeometricWeatherTheme.AppbarPopupTheme" />
+            app:navigationContentDescription="@string/content_desc_back" />
 
     </wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout>
 

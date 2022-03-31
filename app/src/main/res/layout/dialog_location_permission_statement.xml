@@ -5,7 +5,7 @@
     android:id="@+id/dialog_location_permission_statement_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorRoot">
+    android:background="?attr/colorSurface">
 
     <LinearLayout
         android:orientation="vertical"

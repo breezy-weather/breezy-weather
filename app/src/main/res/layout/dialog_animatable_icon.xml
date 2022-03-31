@@ -5,7 +5,7 @@
     android:id="@+id/dialog_animatable_icon_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorRoot"
+    android:background="?attr/colorSurface"
     android:foreground="@drawable/selectable_item_background"
     tools:ignore="UnusedAttribute">
 

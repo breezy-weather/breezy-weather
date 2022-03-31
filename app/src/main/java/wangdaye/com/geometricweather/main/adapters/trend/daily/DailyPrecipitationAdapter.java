@@ -87,7 +87,7 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter<DailyPrecipi
             mDoubleHistogramView.setLineColors(
                     daily.day().getPrecipitation().getPrecipitationColor(activity),
                     daily.night().getPrecipitation().getPrecipitationColor(activity),
-                    mThemeManager.getLineColor(activity)
+                    mThemeManager.getSeparatorColor(activity)
             );
             mDoubleHistogramView.setTextColors(mThemeManager.getTextContentColor(activity));
             mDoubleHistogramView.setHistogramAlphas(1f, 0.5f);
@@ -164,7 +164,7 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter<DailyPrecipi
                         TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
                 )
         );
-        parent.setLineColor(mThemeManager.getLineColor(activity));
+        parent.setLineColor(mThemeManager.getSeparatorColor(activity));
         parent.setData(keyLineList, mHighestPrecipitation, -mHighestPrecipitation);
     }
 

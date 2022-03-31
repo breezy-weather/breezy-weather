@@ -5,7 +5,7 @@
     android:id="@+id/dialog_learn_more_about_geocoder_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorRoot">
+    android:background="?attr/colorSurface">
 
     <RelativeLayout
         android:layout_width="match_parent"

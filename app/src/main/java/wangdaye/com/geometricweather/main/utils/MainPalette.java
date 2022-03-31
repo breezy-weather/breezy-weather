@@ -14,7 +14,8 @@ public class MainPalette implements Parcelable {
     public final @ColorInt int headerTextColor;
     public final @ColorInt int accentColor;
     public final @ColorInt int rootColor;
-    public final @ColorInt int lineColor;
+    public final @ColorInt int surfaceColor;
+    public final @ColorInt int separatorColor;
     public final @ColorInt int titleColor;
     public final @ColorInt int contentColor;
     public final @ColorInt int subtitleColor;
@@ -25,7 +26,8 @@ public class MainPalette implements Parcelable {
         headerTextColor = manager.getHeaderTextColor(context);
         accentColor = manager.getAccentColor(context);
         rootColor = manager.getRootColor(context);
-        lineColor = manager.getLineColor(context);
+        surfaceColor = manager.getSurfaceColor(context);
+        separatorColor = manager.getSeparatorColor(context);
         titleColor = manager.getTextTitleColor(context);
         contentColor = manager.getTextContentColor(context);
         subtitleColor = manager.getTextSubtitleColor(context);
@@ -37,7 +39,8 @@ public class MainPalette implements Parcelable {
         headerTextColor = in.readInt();
         accentColor = in.readInt();
         rootColor = in.readInt();
-        lineColor = in.readInt();
+        surfaceColor = in.readInt();
+        separatorColor = in.readInt();
         titleColor = in.readInt();
         contentColor = in.readInt();
         subtitleColor = in.readInt();
@@ -50,7 +53,8 @@ public class MainPalette implements Parcelable {
         dest.writeInt(headerTextColor);
         dest.writeInt(accentColor);
         dest.writeInt(rootColor);
-        dest.writeInt(lineColor);
+        dest.writeInt(surfaceColor);
+        dest.writeInt(separatorColor);
         dest.writeInt(titleColor);
         dest.writeInt(contentColor);
         dest.writeInt(subtitleColor);

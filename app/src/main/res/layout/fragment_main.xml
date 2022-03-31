@@ -36,13 +36,13 @@
         android:background="@android:color/transparent"
         app:elevation="0dp">
 
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@android:color/transparent"
-            app:theme="@style/GeometricWeatherTheme.AppbarTheme"
-            app:popupTheme="@style/GeometricWeatherTheme.AppbarPopupTheme" />
+            app:navigationIconTint="@android:color/white"
+            app:titleTextColor="@android:color/white" />
 
     </wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout>
 

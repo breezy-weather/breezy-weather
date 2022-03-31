@@ -102,7 +102,7 @@ public class AllergenViewHolder extends AbstractMainCardViewHolder {
 
         assert location.getWeather() != null;
 
-        mCard.setCardBackgroundColor(themeManager.getRootColor(context));
+        mCard.setCardBackgroundColor(themeManager.getSurfaceColor(context));
         mTitle.setTextColor(themeManager.getWeatherThemeColors()[0]);
         mSubtitle.setTextColor(themeManager.getTextSubtitleColor(context));
 

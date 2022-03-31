@@ -69,7 +69,7 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
 
         mEnable = true;
 
-        mCard.setCardBackgroundColor(themeManager.getRootColor(context));
+        mCard.setCardBackgroundColor(themeManager.getSurfaceColor(context));
         mTitle.setTextColor(themeManager.getWeatherThemeColors()[0]);
 
         if (itemAnimationEnabled) {
@@ -79,7 +79,7 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
                     ContextCompat.getColor(context, R.color.colorLevel_1),
                     themeManager.isLightTheme()
             );
-            mProgress.setArcBackgroundColor(themeManager.getLineColor(context));
+            mProgress.setArcBackgroundColor(themeManager.getSeparatorColor(context));
         } else {
             int aqiColor = mWeather.getCurrent().getAirQuality().getAqiColor(mProgress.getContext());
             mProgress.setProgress(mAqiIndex);
@@ -115,7 +115,7 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
 
             ValueAnimator backgroundColor = ValueAnimator.ofObject(
                     new ArgbEvaluator(),
-                    themeManager.getLineColor(context),
+                    themeManager.getSeparatorColor(context),
                     ColorUtils.setAlphaComponent(aqiColor, (int) (255 * 0.1))
             );
             backgroundColor.addUpdateListener(animation ->

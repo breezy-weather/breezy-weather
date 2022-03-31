@@ -88,7 +88,7 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
 
         int weatherColor = themeManager.getWeatherThemeColors()[0];
 
-        mCard.setCardBackgroundColor(themeManager.getRootColor(context));
+        mCard.setCardBackgroundColor(themeManager.getSurfaceColor(context));
 
         mTitle.setTextColor(weatherColor);
 
@@ -144,7 +144,7 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
 
             mMinutelyTitle.setTextColor(themeManager.getTextContentColor(context));
 
-            mPrecipitationBar.setBackgroundColor(themeManager.getLineColor(context));
+            mPrecipitationBar.setBackgroundColor(themeManager.getSeparatorColor(context));
             mPrecipitationBar.setPrecipitationColor(themeManager.getWeatherThemeColors()[0]);
             mPrecipitationBar.setMinutelyList(minutelyList);
 

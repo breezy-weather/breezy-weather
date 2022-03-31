@@ -65,7 +65,7 @@ public class DailyUVAdapter extends AbsDailyTrendAdapter<DailyUVAdapter.ViewHold
             mPolylineAndHistogramView.setLineColors(
                     daily.getUV().getUVColor(activity),
                     daily.getUV().getUVColor(activity),
-                    mThemeManager.getLineColor(activity)
+                    mThemeManager.getSeparatorColor(activity)
             );
             int[] themeColors = mThemeManager.getWeatherThemeColors();
             mPolylineAndHistogramView.setShadowColors(
@@ -116,7 +116,7 @@ public class DailyUVAdapter extends AbsDailyTrendAdapter<DailyUVAdapter.ViewHold
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
         );
-        parent.setLineColor(mThemeManager.getLineColor(activity));
+        parent.setLineColor(mThemeManager.getSeparatorColor(activity));
         parent.setData(keyLineList, highestIndex, 0);
     }
 

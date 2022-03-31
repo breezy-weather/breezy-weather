@@ -24,7 +24,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/little_margin"
                 style="@style/material_card"
-                app:cardBackgroundColor="@color/colorSearchBarBackground">
+                app:cardBackgroundColor="?attr/colorSurface">
 
                 <RelativeLayout
                     android:layout_width="match_parent"

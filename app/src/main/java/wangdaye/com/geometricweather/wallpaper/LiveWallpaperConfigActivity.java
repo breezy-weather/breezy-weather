@@ -11,7 +11,7 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatSpinner;
-import androidx.appcompat.widget.Toolbar;
+import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.Arrays;
 
@@ -63,7 +63,7 @@ public class LiveWallpaperConfigActivity extends GeoActivity {
     }
 
     public void initView() {
-        Toolbar toolbar = findViewById(R.id.activity_live_wallpaper_config_toolbar);
+        MaterialToolbar toolbar = findViewById(R.id.activity_live_wallpaper_config_toolbar);
         toolbar.setNavigationOnClickListener(view -> finish());
 
         AppCompatSpinner weatherKindSpinner = findViewById(R.id.activity_live_wallpaper_config_weatherKindSpinner);

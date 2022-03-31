@@ -14,13 +14,13 @@
 
         <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:theme="@style/GeometricWeatherTheme.AppbarTheme">
+            android:layout_height="wrap_content">
 
-            <androidx.appcompat.widget.Toolbar
+            <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/activity_weather_daily_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                style="@style/GeometricWeatherTheme.ToolbarTheme"
                 app:navigationIcon="@drawable/ic_toolbar_back"
                 app:navigationContentDescription="@string/content_desc_back">
 
@@ -34,6 +34,7 @@
                         android:layout_centerVertical="true"
                         android:layout_alignParentEnd="true"
                         android:layout_margin="@dimen/normal_margin"
+                        android:textColor="?attr/colorOnPrimary"
                         style="@style/subtitle_text"
                         tools:text="3/15" />
 
@@ -51,7 +52,7 @@
                             android:id="@+id/activity_weather_daily_title"
                             android:layout_width="match_parent"
                             android:textStyle="bold"
-                            android:textColor="@android:color/white"
+                            android:textColor="?attr/colorOnPrimary"
                             android:importantForAccessibility="no"
                             style="@style/title_text"
                             tools:text="12-24 周五" />
@@ -61,6 +62,7 @@
                             android:layout_width="match_parent"
                             android:layout_marginTop="2dp"
                             android:importantForAccessibility="no"
+                            android:textColor="?attr/colorOnPrimary"
                             style="@style/subtitle_text"
                             tools:text="十一月初七"
                             tools:ignore="RtlHardcoded" />
@@ -69,7 +71,7 @@
 
                 </RelativeLayout>
 
-            </androidx.appcompat.widget.Toolbar>
+            </com.google.android.material.appbar.MaterialToolbar>
 
         </wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout>
 

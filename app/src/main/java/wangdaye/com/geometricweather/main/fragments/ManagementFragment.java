@@ -4,7 +4,6 @@ import android.animation.ValueAnimator;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -120,9 +119,9 @@ public class ManagementFragment extends GeoFragment
                 mCallback.onSearchBarClicked(mBinding.searchBar);
             }
         });
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mBinding.searchBar.setTransitionName(getString(R.string.transition_activity_search_bar));
-        }
+        mBinding.searchBar.setTransitionName(
+                getString(R.string.transition_activity_search_bar)
+        );
 
         mBinding.currentLocationButton.setOnClickListener(v -> {
             mViewModel.addLocation(Location.buildLocal());
@@ -156,7 +155,7 @@ public class ManagementFragment extends GeoFragment
 
         mItemDecoration = new ListDecoration(
                 requireActivity(),
-                mViewModel.getThemeManager().getLineColor(requireActivity())
+                mViewModel.getThemeManager().getSeparatorColor(requireActivity())
         );
         mBinding.recyclerView.addItemDecoration(mItemDecoration);
 
@@ -205,11 +204,16 @@ public class ManagementFragment extends GeoFragment
         final int newBackgroundColor = themeManager.getRootColor(requireContext());
 
         final int oldLineColor = mItemDecoration.getColor();
-        final int newLineColor = themeManager.getLineColor(requireContext());
+        final int newLineColor = themeManager.getSeparatorColor(requireContext());
 
-        if (newBackgroundColor != oldBackgroundColor || newLineColor != oldLineColor) {
+        final int oldSearchBarColor = mBinding.searchBar.getCardBackgroundColor().getDefaultColor();
+        final int newSearchBarColor = themeManager.getSurfaceColor(requireContext());
+
+        if (newBackgroundColor != oldBackgroundColor
+                || newLineColor != oldLineColor
+                || newSearchBarColor != oldSearchBarColor) {
             final float[] progress = new float[1];
-            final int[] colors = new int[2];
+            final int[] colors = new int[3];
             mColorAnimator = ValueAnimator.ofFloat(0, 1);
             mColorAnimator.addUpdateListener(animation -> {
                 progress[0] = (float) animation.getAnimatedValue();
@@ -221,16 +225,20 @@ public class ManagementFragment extends GeoFragment
                         ColorUtils.setAlphaComponent(newLineColor, (int) (255 * progress[0])),
                         oldLineColor
                 );
-                mBinding.searchBar.setCardBackgroundColor(colors[0]);
+                colors[2] = DisplayUtils.blendColor(
+                        ColorUtils.setAlphaComponent(newSearchBarColor, (int) (255 * progress[0])),
+                        oldSearchBarColor
+                );
                 mBinding.recyclerView.setBackgroundColor(colors[0]);
                 mItemDecoration.setColor(colors[1]);
+                mBinding.searchBar.setCardBackgroundColor(colors[2]);
             });
             mColorAnimator.setDuration(500); // same as 2 * changeDuration of default item animator.
             mColorAnimator.start();
         } else {
-            mBinding.searchBar.setCardBackgroundColor(newBackgroundColor);
             mBinding.recyclerView.setBackgroundColor(newBackgroundColor);
             mItemDecoration.setColor(newLineColor);
+            mBinding.searchBar.setCardBackgroundColor(newSearchBarColor);
         }
     }
 
@@ -247,17 +255,15 @@ public class ManagementFragment extends GeoFragment
     }
 
     public void prepareReenterTransition() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            postponeEnterTransition();
-            mBinding.searchBar.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-                @Override
-                public boolean onPreDraw() {
-                    mBinding.searchBar.getViewTreeObserver().removeOnPreDrawListener(this);
-                    startPostponedEnterTransition();
-                    return true;
-                }
-            });
-        }
+        postponeEnterTransition();
+        mBinding.searchBar.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                mBinding.searchBar.getViewTreeObserver().removeOnPreDrawListener(this);
+                startPostponedEnterTransition();
+                return true;
+            }
+        });
     }
 
     // interface.

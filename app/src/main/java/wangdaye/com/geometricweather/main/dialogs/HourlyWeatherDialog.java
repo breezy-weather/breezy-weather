@@ -85,7 +85,7 @@ public class HourlyWeatherDialog extends GeoDialog {
         Hourly hourly = weather.getHourlyForecast().get(position);
 
         CoordinatorLayout container = view.findViewById(R.id.dialog_weather_hourly_container);
-        container.setBackgroundColor(palette.rootColor);
+        container.setBackgroundColor(palette.surfaceColor);
 
         TextView title = view.findViewById(R.id.dialog_weather_hourly_title);
         title.setText(hourly.getHour(getActivity()));

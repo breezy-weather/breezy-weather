@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/colorLine"
+    android:background="@color/colorSeparator"
     android:layout_marginLeft="@dimen/large_margin"
     android:layout_marginRight="@dimen/large_margin"
     android:layout_marginTop="@dimen/material_icon_size"

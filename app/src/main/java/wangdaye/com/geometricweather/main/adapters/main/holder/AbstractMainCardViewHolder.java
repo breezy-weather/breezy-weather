@@ -35,9 +35,7 @@ public abstract class AbstractMainCardViewHolder extends AbstractMainViewHolder 
         CardView card = (CardView) itemView;
 
         card.setRadius(themeManager.getCardRadius(activity));
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            card.setElevation(themeManager.getCardElevation(activity));
-        }
+        card.setElevation(themeManager.getCardElevation(activity));
 
         ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) card.getLayoutParams();
         params.setMargins(

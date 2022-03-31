@@ -15,6 +15,6 @@
     android:foreground="@drawable/selectable_item_background"
     android:stateListAnimator="@animator/touch_raise"
     app:checked_background_color="@color/colorTextContent"
-    app:unchecked_background_color="@color/colorLine"
+    app:unchecked_background_color="@color/colorSeparator"
     tools:text="accuweather.com"
     tools:ignore="UnusedAttribute" />

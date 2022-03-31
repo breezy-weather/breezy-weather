@@ -116,7 +116,7 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
 
         mBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mBinding.recyclerView.addItemDecoration(new ListDecoration(
-                this, ContextCompat.getColor(this, R.color.colorLine)));
+                this, ContextCompat.getColor(this, R.color.colorSeparator)));
         mBinding.recyclerView.setAdapter(mDailyTrendDisplayAdapter);
 
         mDailyTrendDisplayItemTouchHelper = new ItemTouchHelper(new CardDisplaySwipeCallback());

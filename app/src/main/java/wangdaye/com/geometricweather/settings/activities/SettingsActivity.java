@@ -3,7 +3,7 @@ package wangdaye.com.geometricweather.settings.activities;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 
-import androidx.appcompat.widget.Toolbar;
+import com.google.android.material.appbar.MaterialToolbar;
 import androidx.preference.PreferenceFragmentCompat;
 
 import org.jetbrains.annotations.NotNull;
@@ -25,7 +25,7 @@ public class SettingsActivity extends GeoActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        Toolbar toolbar = findViewById(R.id.activity_settings_toolbar);
+        MaterialToolbar toolbar = findViewById(R.id.activity_settings_toolbar);
         toolbar.setNavigationOnClickListener(v -> finish());
         toolbar.inflateMenu(R.menu.activity_settings);
         toolbar.setOnMenuItemClickListener(item -> {

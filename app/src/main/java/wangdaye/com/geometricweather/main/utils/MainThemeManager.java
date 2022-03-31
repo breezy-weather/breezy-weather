@@ -153,8 +153,8 @@ public class MainThemeManager extends ThemeManager {
     }
 
     @Override
-    public int getLineColor(Context context) {
-        return getColor(context, "colorLine", isLightTheme());
+    public int getSeparatorColor(Context context) {
+        return getColor(context, "colorSeparator", isLightTheme());
     }
 
     @Override
@@ -163,8 +163,8 @@ public class MainThemeManager extends ThemeManager {
     }
 
     @Override
-    public int getSearchBarColor(Context context) {
-        return getColor(context, "colorSearchBarBackground", isLightTheme());
+    public int getSurfaceColor(Context context) {
+        return getColor(context, "colorSurface", isLightTheme());
     }
 
     @Override

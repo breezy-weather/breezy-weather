@@ -3,7 +3,7 @@ package wangdaye.com.geometricweather.common.ui.activities;
 import android.os.Bundle;
 import android.text.TextUtils;
 
-import androidx.appcompat.widget.Toolbar;
+import com.google.android.material.appbar.MaterialToolbar;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -56,11 +56,11 @@ public class AlertActivity extends GeoActivity {
             recyclerView.setAdapter(new AlertAdapter(alerts));
         });
 
-        Toolbar toolbar = findViewById(R.id.activity_alert_toolbar);
+        MaterialToolbar toolbar = findViewById(R.id.activity_alert_toolbar);
         toolbar.setNavigationOnClickListener(v -> finish());
 
         RecyclerView recyclerView = findViewById(R.id.activity_alert_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
-        recyclerView.addItemDecoration(new ListDecoration(this, ContextCompat.getColor(this, R.color.colorLine)));
+        recyclerView.addItemDecoration(new ListDecoration(this, ContextCompat.getColor(this, R.color.colorSeparator)));
     }
 }

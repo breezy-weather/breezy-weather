@@ -5,7 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
+import com.google.android.material.appbar.MaterialToolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -154,7 +154,7 @@ public class PreviewIconActivity extends GeoActivity {
 
     @SuppressLint("NonConstantResourceId")
     private void initWidget() {
-        Toolbar toolbar = findViewById(R.id.activity_preview_icon_toolbar);
+        MaterialToolbar toolbar = findViewById(R.id.activity_preview_icon_toolbar);
         toolbar.setTitle(mProvider.getProviderName());
         toolbar.setNavigationOnClickListener(v -> finish());
         toolbar.inflateMenu(R.menu.activity_preview_icon);

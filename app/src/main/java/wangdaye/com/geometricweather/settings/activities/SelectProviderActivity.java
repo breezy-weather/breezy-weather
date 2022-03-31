@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.appcompat.widget.Toolbar;
+import com.google.android.material.appbar.MaterialToolbar;
 import androidx.preference.PreferenceFragmentCompat;
 
 import org.jetbrains.annotations.NotNull;
@@ -45,7 +45,7 @@ public class SelectProviderActivity extends GeoActivity {
     }
 
     private void initToolbar() {
-        Toolbar toolbar = findViewById(R.id.activity_settings_toolbar);
+        MaterialToolbar toolbar = findViewById(R.id.activity_settings_toolbar);
         toolbar.setTitle(getString(R.string.settings_title_service_provider));
         toolbar.setNavigationIcon(R.drawable.ic_toolbar_back);
         toolbar.setNavigationOnClickListener(view -> finish());

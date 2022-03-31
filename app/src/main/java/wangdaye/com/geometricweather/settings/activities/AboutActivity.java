@@ -4,9 +4,10 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.appbar.MaterialToolbar;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
@@ -32,7 +33,7 @@ public class AboutActivity extends GeoActivity {
     }
 
     private void initWidget() {
-        Toolbar toolbar = findViewById(R.id.activity_about_toolbar);
+        MaterialToolbar toolbar = findViewById(R.id.activity_about_toolbar);
         toolbar.setNavigationOnClickListener(v -> finish());
 
         RecyclerView recyclerView = findViewById(R.id.activity_about_recyclerView);

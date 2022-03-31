@@ -3315,7 +3315,7 @@ org.greenrobot.greendao.rx.RxDao$22
 com.google.android.gms.common.api.internal.zaal
 com.google.android.gms.common.util.SharedPreferencesUtils
 androidx.recyclerview.widget.RecyclerView$Orientation
-androidx.appcompat.widget.Toolbar$SavedState:
+com.google.android.material.appbar.MaterialToolbar$SavedState:
     public void <init>(android.os.Parcel)
 io.reactivex.internal.operators.single.SingleDoOnSubscribe$DoOnSubscribeSingleObserver
 com.google.android.material.shape.MaterialShapeDrawable:
@@ -6207,7 +6207,7 @@ androidx.core.widget.AutoSizeableTextView:
     public abstract int getAutoSizeMaxTextSize()
     public abstract int[] getAutoSizeTextAvailableSizes()
 com.google.android.material.snackbar.BaseTransientBottomBar$4
-androidx.appcompat.widget.Toolbar$ExpandedActionViewMenuPresenter:
+com.google.android.material.appbar.MaterialToolbar$ExpandedActionViewMenuPresenter:
     public androidx.appcompat.view.menu.MenuView getMenuView(android.view.ViewGroup)
     public void setCallback(androidx.appcompat.view.menu.MenuPresenter$Callback)
 com.bumptech.glide.load.model.ByteBufferFileLoader:
@@ -6536,7 +6536,7 @@ com.jaredrummler.android.colorpicker.R
 com.baidu.location.indoor.mapversion.a.a$c
 io.reactivex.internal.operators.flowable.FlowableCombineLatest$CombineLatestInnerSubscriber
 io.reactivex.internal.operators.flowable.FlowableWindowBoundary$WindowBoundaryInnerSubscriber
-androidx.appcompat.widget.Toolbar:
+com.google.android.material.appbar.MaterialToolbar:
     public void setTitleMargin(int,int,int,int)
     public boolean isTitleTruncated()
     public void setContentInsetsAbsolute(int,int)
@@ -7373,7 +7373,7 @@ androidx.work.impl.utils.package-info
 io.reactivex.internal.operators.single.SingleFlatMapIterableObservable
 androidx.constraintlayout.motion.widget.KeyCycleOscillator$IntDoubleSort
 com.google.android.gms.common.api.internal.zaax
-androidx.appcompat.widget.Toolbar$LayoutParams:
+com.google.android.material.appbar.MaterialToolbar$LayoutParams:
     public void <init>(int,int,int)
     public void <init>(int)
     static final int CUSTOM
@@ -11180,7 +11180,7 @@ androidx.work.impl.WorkManagerImpl$1
 androidx.appcompat.app.AppCompatDelegateImpl:
     void <init>(android.content.Context,android.view.Window,androidx.appcompat.app.AppCompatCallback)
     void <init>(android.content.Context,android.app.Activity,androidx.appcompat.app.AppCompatCallback)
-    public void setSupportActionBar(androidx.appcompat.widget.Toolbar)
+    public void setSupportActionBar(com.google.android.material.appbar.MaterialToolbar)
     public boolean hasWindowFeature(int)
     public void setHandleNativeActionModesEnabled(boolean)
     android.view.ViewGroup getSubDecor()
@@ -13215,7 +13215,7 @@ io.reactivex.internal.operators.flowable.FlowableConcatWithCompletable$ConcatWit
 androidx.work.impl.model.PreferenceDao_Impl$2
 io.reactivex.internal.operators.maybe.MaybeSwitchIfEmpty
 androidx.preference.PreferenceFragment$3
-androidx.appcompat.widget.ToolbarWidgetWrapper:
+com.google.android.material.appbar.MaterialToolbarWidgetWrapper:
     private void ensureSpinner()
     public java.lang.CharSequence getSubtitle()
     public boolean hasIcon()
@@ -14594,7 +14594,7 @@ androidx.appcompat.app.AppCompatDelegate:
     public static androidx.appcompat.app.AppCompatDelegate create(android.content.Context,android.app.Activity,androidx.appcompat.app.AppCompatCallback)
     public static void setCompatVectorFromResourcesEnabled(boolean)
     public static boolean isCompatVectorFromResourcesEnabled()
-    public abstract void setSupportActionBar(androidx.appcompat.widget.Toolbar)
+    public abstract void setSupportActionBar(com.google.android.material.appbar.MaterialToolbar)
     public abstract androidx.appcompat.app.ActionBarDrawerToggle$Delegate getDrawerToggleDelegate()
     public abstract boolean hasWindowFeature(int)
     public abstract androidx.appcompat.view.ActionMode startSupportActionMode(androidx.appcompat.view.ActionMode$Callback)
@@ -14730,7 +14730,7 @@ wangdaye.com.geometricweather.settings.models.AboutAppLink:
     public static final java.lang.String LINK_ALIPAY
     public static final java.lang.String LINK_WECHAT
 androidx.appcompat.app.ToolbarActionBar:
-    void <init>(androidx.appcompat.widget.Toolbar,java.lang.CharSequence,android.view.Window$Callback)
+    void <init>(com.google.android.material.appbar.MaterialToolbar,java.lang.CharSequence,android.view.Window$Callback)
     public android.view.Window$Callback getWrappedWindowCallback()
     public void setCustomView(android.view.View)
     public void setCustomView(android.view.View,androidx.appcompat.app.ActionBar$LayoutParams)
@@ -14789,7 +14789,7 @@ androidx.appcompat.app.ToolbarActionBar:
     public boolean isShowing()
     void populateOptionsMenu()
     boolean mToolbarMenuPrepared
-    private final androidx.appcompat.widget.Toolbar$OnMenuItemClickListener mMenuClicker
+    private final com.google.android.material.appbar.MaterialToolbar$OnMenuItemClickListener mMenuClicker
 androidx.core.hardware.fingerprint.FingerprintManagerCompat$AuthenticationResult
 androidx.fragment.app.Fragment$SavedState:
     void <init>(android.os.Bundle)
@@ -15126,9 +15126,9 @@ com.google.android.gms.common.internal.service.zaa
 com.google.android.material.badge.BadgeUtils:
     private void <init>()
     public static void attachBadgeDrawable(com.google.android.material.badge.BadgeDrawable,android.view.View)
-    public static void attachBadgeDrawable(com.google.android.material.badge.BadgeDrawable,androidx.appcompat.widget.Toolbar,int)
-    public static void attachBadgeDrawable(com.google.android.material.badge.BadgeDrawable,androidx.appcompat.widget.Toolbar,int,android.widget.FrameLayout)
-    public static void detachBadgeDrawable(com.google.android.material.badge.BadgeDrawable,androidx.appcompat.widget.Toolbar,int)
+    public static void attachBadgeDrawable(com.google.android.material.badge.BadgeDrawable,com.google.android.material.appbar.MaterialToolbar,int)
+    public static void attachBadgeDrawable(com.google.android.material.badge.BadgeDrawable,com.google.android.material.appbar.MaterialToolbar,int,android.widget.FrameLayout)
+    public static void detachBadgeDrawable(com.google.android.material.badge.BadgeDrawable,com.google.android.material.appbar.MaterialToolbar,int)
     private static final java.lang.String LOG_TAG
 androidx.transition.ChangeImageTransform$2
 org.greenrobot.greendao.rx.RxDao$13
@@ -15401,7 +15401,7 @@ androidx.core.view.WindowInsetsCompat:
     private static final java.lang.String TAG
 androidx.appcompat.app.AppCompatActivity:
     public void <init>(int)
-    public void setSupportActionBar(androidx.appcompat.widget.Toolbar)
+    public void setSupportActionBar(com.google.android.material.appbar.MaterialToolbar)
     public boolean supportRequestWindowFeature(int)
     public androidx.appcompat.view.ActionMode startSupportActionMode(androidx.appcompat.view.ActionMode$Callback)
     public void setSupportProgressBarVisibility(boolean)

@@ -55,7 +55,9 @@ public class LocationHolder extends RecyclerView.ViewHolder {
             mBinding.container.setIconResEnd(
                     model.residentPosition ? R.drawable.ic_tag_off : R.drawable.ic_tag_plus);
         }
-        mBinding.container.setBackgroundColorStart(ContextCompat.getColor(context, R.color.striking_red));
+        mBinding.container.setBackgroundColorStart(
+                ContextCompat.getColor(context, R.color.striking_red)
+        );
         mBinding.container.setBackgroundColorEnd(
                 ContextCompat.getColor(
                         context,
@@ -66,7 +68,9 @@ public class LocationHolder extends RecyclerView.ViewHolder {
         );
 
         mBinding.item.setBackgroundColor(
-                model.selected ? mThemeManager.getLineColor(context) : mThemeManager.getRootColor(context)
+                model.selected
+                        ? mThemeManager.getSeparatorColor(context)
+                        : mThemeManager.getSurfaceColor(context)
         );
 
         ImageViewCompat.setImageTintList(

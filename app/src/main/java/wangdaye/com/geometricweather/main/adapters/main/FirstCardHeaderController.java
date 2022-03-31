@@ -115,7 +115,7 @@ public class FirstCardHeaderController
                 alert.setTextColor(themeManager.getTextSubtitleColor(activity));
 
                 line.setVisibility(View.VISIBLE);
-                line.setBackgroundColor(themeManager.getRootColor(activity));
+                line.setBackgroundColor(themeManager.getSurfaceColor(activity));
             }
             alert.setOnClickListener(this);
         }

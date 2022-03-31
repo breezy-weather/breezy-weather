@@ -3,18 +3,28 @@
 
     <!-- theme. -->
 
-    <color name="colorPrimary">#212121</color>
-    <color name="colorPrimaryDark">#1a1a1a</color>
-    <color name="colorAccent">@color/colorAccent_light</color>
+    <color name="colorPrimary">@color/lightPrimary_2</color>
+    <color name="colorPrimaryVariant">@color/lightPrimary_1</color>
+    <color name="colorOnPrimary">@android:color/black</color>
 
-    <color name="colorLine">@color/colorLine_light</color>
+    <color name="colorSecondary">@color/darkPrimary_1</color>
+    <color name="colorSecondaryVariant">@color/darkPrimary_2</color>
+    <color name="colorOnSecondary">@android:color/white</color>
+
+    <color name="colorError">#B00020</color>
+    <color name="colorOnError">@android:color/white</color>
+
+    <color name="colorSurface">@color/colorSurface_light</color>
+    <color name="colorOnSurface">@color/colorTextContent</color>
+
+    <color name="colorBackground">@color/colorRoot</color>
+    <color name="colorOnBackground">@color/colorTextContent</color>
+
+    <color name="colorSeparator">@color/colorSeparator_light</color>
     <color name="colorRoot">@color/colorRoot_light</color>
-    <color name="colorRootDark">@color/colorRootDark_light</color>
     <color name="colorTextTitle">@color/colorTextTitle_light</color>
     <color name="colorTextContent">@color/colorTextContent_light</color>
     <color name="colorTextSubtitle">@color/colorTextSubtitle_light</color>
-
-    <color name="colorSearchBarBackground">@color/colorSearchBarBackground_light</color>
 
     <!-- repository. -->
 
@@ -33,17 +43,14 @@
     <color name="darkPrimary_4">#20222f</color>
     <color name="darkPrimary_5">#1a1b22</color>
 
-    <color name="colorLine_light">#f1f1f1</color>
-    <color name="colorLine_dark">#363636</color>
+    <color name="colorSeparator_light">#f1f1f1</color>
+    <color name="colorSeparator_dark">#363636</color>
 
-    <color name="colorRoot_light">#fafafa</color>
-    <color name="colorRoot_dark">#1a1a1a</color>
+    <color name="colorRoot_light">@android:color/white</color>
+    <color name="colorRoot_dark">@android:color/black</color>
 
-    <color name="colorRootDark_light">#f5f5f5</color>
-    <color name="colorRootDark_dark">#212121</color>
-
-    <color name="colorSearchBarBackground_light">@color/colorRoot_light</color>
-    <color name="colorSearchBarBackground_dark">@color/colorRoot_dark</color>
+    <color name="colorSurface_light">#FDFCFF</color>
+    <color name="colorSurface_dark">#1B1B1B</color>
 
     <color name="colorTextTitle_light">@color/colorTextDark</color>
     <color name="colorTextTitle_dark">@color/colorTextLight</color>
@@ -87,10 +94,41 @@
 
     <!-- widget S. -->
 
-    <color name="colorWidgetSRoot_light">@color/colorRoot_light</color>
-    <color name="colorWidgetSRoot_dark">@color/colorRoot_dark</color>
+    <color name="colorWidgetSRoot_light">@color/lightPrimary_1</color>
+    <color name="colorWidgetSRoot_dark">@color/darkPrimary_1</color>
 
     <color name="colorWidgetSText_light">@color/colorTextTitle_light</color>
     <color name="colorWidgetSText_dark">@color/colorTextTitle_dark</color>
+
+    <!-- material 3. -->
+
+    <color name="md_theme_primary">#006970</color>
+    <color name="md_theme_onPrimary">#FFFFFF</color>
+    <color name="md_theme_primaryContainer">#6FF5FF</color>
+    <color name="md_theme_onPrimaryContainer">#002022</color>
+    <color name="md_theme_secondary">#4A57A9</color>
+    <color name="md_theme_onSecondary">#FFFFFF</color>
+    <color name="md_theme_secondaryContainer">#DDE0FF</color>
+    <color name="md_theme_onSecondaryContainer">#000C62</color>
+    <color name="md_theme_tertiary">#785A00</color>
+    <color name="md_theme_onTertiary">#FFFFFF</color>
+    <color name="md_theme_tertiaryContainer">#FFDF93</color>
+    <color name="md_theme_onTertiaryContainer">#261A00</color>
+    <color name="md_theme_error">#B3261E</color>
+    <color name="md_theme_errorContainer">#F9DEDC</color>
+    <color name="md_theme_onError">#FFFFFF</color>
+    <color name="md_theme_onErrorContainer">#410E0B</color>
+    <color name="md_theme_background">#FDFCFF</color>
+    <color name="md_theme_onBackground">#1B1B1B</color>
+    <color name="md_theme_surface">#FDFCFF</color>
+    <color name="md_theme_onSurface">#1B1B1B</color>
+    <color name="md_theme_surfaceVariant">#E7E0EC</color>
+    <color name="md_theme_onSurfaceVariant">#49454F</color>
+    <color name="md_theme_outline">#f1f1f1</color>
+    <color name="md_theme_inverseOnSurface">#F1F0F4</color>
+    <color name="md_theme_inverseSurface">#2F3033</color>
+    <color name="md_theme_inversePrimary">#4CD9E3</color>
+    <color name="md_theme_shadow">#000000</color>
+    <color name="md_theme_primaryInverse">#4CD9E3</color>
 
 </resources>

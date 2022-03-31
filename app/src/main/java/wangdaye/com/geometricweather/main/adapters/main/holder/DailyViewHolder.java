@@ -69,7 +69,7 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
 
         int weatherColor = themeManager.getWeatherThemeColors()[0];
 
-        mCard.setCardBackgroundColor(themeManager.getRootColor(context));
+        mCard.setCardBackgroundColor(themeManager.getSurfaceColor(context));
 
         mTitle.setTextColor(weatherColor);
 

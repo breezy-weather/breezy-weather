@@ -10,14 +10,13 @@
 
     <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:theme="@style/GeometricWeatherTheme.AppbarTheme" >
+        android:layout_height="wrap_content" >
 
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/activity_live_wallpaper_config_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
+            style="@style/GeometricWeatherTheme.ToolbarTheme"
             app:title="@string/settings_title_live_wallpaper"
             app:navigationIcon="@drawable/ic_toolbar_back"
             app:navigationContentDescription="@string/content_desc_back" />

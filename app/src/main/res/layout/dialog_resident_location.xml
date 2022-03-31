@@ -2,7 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/dialog_resident_location_container"
-    android:background="@color/colorRoot"
+    android:background="?attr/colorSurface"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
