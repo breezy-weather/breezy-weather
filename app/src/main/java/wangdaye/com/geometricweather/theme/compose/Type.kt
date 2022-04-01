@@ -8,7 +8,7 @@ import androidx.compose.ui.unit.sp
 //Replace with your font locations
 val Roboto = FontFamily.Default
 
-val AppTypography = Typography(
+val GeometricWeatherTypography = Typography(
 	displayLarge = TextStyle(
 		fontFamily = Roboto,
 		fontWeight = FontWeight.W400,

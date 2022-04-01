@@ -88,7 +88,7 @@ fun GeometricWeatherTheme(
             else ->
                 DarkThemeColors
         },
-        typography = AppTypography,
+        typography = GeometricWeatherTypography,
         content = content
     )
 }
