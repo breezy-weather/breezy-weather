@@ -32,35 +32,4 @@
     <color name="colorWidgetSText_light">@color/colorTextTitle_light</color>
     <color name="colorWidgetSText_dark">@color/colorTextTitle_dark</color>
 
-    <!-- material 3. -->
-
-    <color name="md_theme_primary">@android:color/system_accent1_600</color>
-    <color name="md_theme_onPrimary">@android:color/system_accent1_10</color>
-    <color name="md_theme_primaryContainer">@android:color/system_accent1_50</color>
-    <color name="md_theme_onPrimaryContainer">@android:color/system_accent1_800</color>
-    <color name="md_theme_secondary">@android:color/system_accent2_400</color>
-    <color name="md_theme_onSecondary">@android:color/system_accent2_10</color>
-    <color name="md_theme_secondaryContainer">@android:color/system_accent2_50</color>
-    <color name="md_theme_onSecondaryContainer">@android:color/system_accent2_800</color>
-    <color name="md_theme_tertiary">@android:color/system_accent3_400</color>
-    <color name="md_theme_onTertiary">@android:color/system_accent3_10</color>
-    <color name="md_theme_tertiaryContainer">@android:color/system_accent3_50</color>
-    <color name="md_theme_onTertiaryContainer">@android:color/system_accent3_800</color>
-    <color name="md_theme_error">#B3261E</color>
-    <color name="md_theme_errorContainer">#F9DEDC</color>
-    <color name="md_theme_onError">#FFFFFF</color>
-    <color name="md_theme_onErrorContainer">#370B1E</color>
-    <color name="md_theme_background">@android:color/system_neutral1_0</color>
-    <color name="md_theme_onBackground">@android:color/system_neutral1_900</color>
-    <color name="md_theme_surface">@android:color/system_neutral1_10</color>
-    <color name="md_theme_onSurface">@android:color/system_neutral1_800</color>
-    <color name="md_theme_surfaceVariant">@android:color/system_neutral2_50</color>
-    <color name="md_theme_onSurfaceVariant">@android:color/system_neutral2_700</color>
-    <color name="md_theme_outline">@android:color/system_neutral1_50</color>
-    <color name="md_theme_inverseOnSurface">@android:color/system_neutral1_100</color>
-    <color name="md_theme_inverseSurface">@android:color/system_neutral1_900</color>
-    <color name="md_theme_inversePrimary">@android:color/system_accent1_600</color>
-    <color name="md_theme_shadow">#000000</color>
-    <color name="md_theme_primaryInverse">@android:color/system_accent1_600</color>
-
 </resources>
