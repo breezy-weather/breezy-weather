@@ -7,7 +7,7 @@
 
     <item>
         <shape android:shape="oval">
-            <solid android:color="@color/colorRipple"/>
+            <solid android:color="?attr/colorControlHighlight"/>
         </shape>
     </item>
 

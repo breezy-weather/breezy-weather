@@ -318,7 +318,6 @@ public class MaterialWeatherView extends ViewGroup
         DisplayUtils.setSystemBarStyle(
                 context,
                 window,
-                true,
                 statusShader,
                 lightNavigation,
                 navigationShader,
@@ -335,10 +334,9 @@ public class MaterialWeatherView extends ViewGroup
             boolean navigationShader,
             boolean lightNavigation
     ) {
-        DisplayUtils.setSystemBarColor(
+        DisplayUtils.setSystemBarStyle(
                 context,
                 window,
-                true,
                 statusShader,
                 lightNavigation,
                 navigationShader,

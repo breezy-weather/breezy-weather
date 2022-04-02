@@ -35,6 +35,7 @@
 
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="colorControlHighlight">@color/colorRipple</item>
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:windowTranslucentStatus">false</item>
         <item name="android:windowTranslucentNavigation">false</item>
@@ -45,6 +46,7 @@
 
     <style name="GeometricWeatherTheme.Main" parent="GeometricWeatherTheme">
         <item name="android:windowBackground">@drawable/launch_background</item>
+        <item name="colorControlHighlight">@color/colorRipple_regular</item>
     </style>
 
     <style name="GeometricWeatherTheme.Search" parent="GeometricWeatherTheme">
@@ -55,9 +57,20 @@
         <item name="android:windowSharedElementReturnTransition">@transition/search_activity_shared_return</item>
     </style>
 
-    <style name="GeometricWeatherTheme.ToolbarTheme"
-        parent="Widget.MaterialComponents.Toolbar.Primary">
+    <style name="GeometricWeatherTheme.ToolbarTheme">
+        <item name="titleTextAppearance">?attr/textAppearanceHeadline6</item>
+        <item name="subtitleTextAppearance">?attr/textAppearanceSubtitle1</item>
+
+        <item name="android:elevation">@dimen/design_appbar_elevation</item>
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="titleTextColor">?attr/colorOnPrimary</item>
+        <item name="subtitleTextColor">@color/material_on_primary_emphasis_medium</item>
+
+        <item name="android:maxButtonHeight" tools:ignore="NewApi">@dimen/mtrl_toolbar_default_height</item>
         <item name="navigationIconTint">?attr/colorOnPrimary</item>
+
+        <item name="android:theme">@style/ThemeOverlay.MaterialComponents.Toolbar.Primary</item>
+        <item name="popupTheme">@style/ThemeOverlay.MaterialComponents.Toolbar.Popup.Primary</item>
     </style>
     
     <!-- card. -->

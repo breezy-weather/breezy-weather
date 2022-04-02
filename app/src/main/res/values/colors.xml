@@ -63,7 +63,8 @@
 
     <color name="colorTextAlert">#fcc96b</color>
 
-    <color name="colorRipple">#40808080</color>
+    <color name="colorRipple_regular">#40808080</color>
+    <color name="colorRipple">@color/md_theme_surfaceVariant</color>
 
     <color name="colorTextDark">#424242</color>
     <color name="colorTextDark2nd">#5f6267</color>

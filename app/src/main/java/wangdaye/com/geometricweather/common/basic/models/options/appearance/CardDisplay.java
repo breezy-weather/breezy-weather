@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
@@ -22,6 +23,15 @@ public enum CardDisplay {
 
     private final String value;
     private @StringRes final int nameId;
+
+    public static List<CardDisplay> defaultValues = Arrays.asList(
+            CARD_DAILY_OVERVIEW,
+            CARD_HOURLY_OVERVIEW,
+            CARD_AIR_QUALITY,
+            CARD_ALLERGEN,
+            CARD_SUNRISE_SUNSET,
+            CARD_LIFE_DETAILS
+    );
 
     CardDisplay(String value, int nameId) {
         this.value = value;

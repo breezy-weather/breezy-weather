@@ -96,8 +96,16 @@ public abstract class GeoActivity extends AppCompatActivity {
         );
 
         boolean darkMode = DisplayUtils.isDarkMode(this);
-        DisplayUtils.setSystemBarStyle(this, getWindow(),
-                false, false, true, !darkMode);
+        DisplayUtils.setSystemBarStyle(
+                this,
+                getWindow(),
+                false,
+                !DisplayUtils.isLightColor(
+                        DisplayUtils.getThemeColor(this, R.attr.colorOnPrimary)
+                ),
+                true,
+                !darkMode
+        );
     }
 
     @Override

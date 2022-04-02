@@ -1,6 +1,14 @@
 package wangdaye.com.geometricweather.theme.compose.night
 
+import android.R
+import android.content.Context
+import android.os.Build
+import androidx.annotation.RequiresApi
+import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.dynamicDarkColorScheme
+import androidx.compose.material3.dynamicLightColorScheme
+import androidx.compose.ui.graphics.Color
 
 val DarkThemeColors = darkColorScheme(
 
@@ -30,4 +38,11 @@ val DarkThemeColors = darkColorScheme(
 	inverseOnSurface = night_md_theme_dark_inverseOnSurface,
 	inverseSurface = night_md_theme_dark_inverseSurface,
 	inversePrimary = night_md_theme_dark_inversePrimary,
+)
+
+@RequiresApi(Build.VERSION_CODES.S)
+fun dynamicDarkColors(
+	context: Context
+): ColorScheme = dynamicDarkColorScheme(context).copy(
+	outline = Color(context.resources.getColor(R.color.system_neutral1_800, context.theme))
 )

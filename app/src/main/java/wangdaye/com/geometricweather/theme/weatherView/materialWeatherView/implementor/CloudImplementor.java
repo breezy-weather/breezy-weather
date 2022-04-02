@@ -250,7 +250,7 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
                     0
             );
             clouds[2] = new Cloud(
-                    viewWidth * 0.351f,
+                    viewWidth * 0.0351f,
                     viewWidth * (0.1701f * 1.4327f + 0.11f),
                     viewWidth * (0.4627f * 0.9f),
                     1.1f,
