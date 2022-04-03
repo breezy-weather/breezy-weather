@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/dialog_location_help_container"
     android:layout_width="match_parent"
@@ -30,10 +31,10 @@
             <ImageView
                 android:id="@+id/dialog_location_help_permissionIcon"
                 android:src="@drawable/ic_android"
-                android:tint="#68b545"
                 android:layout_centerVertical="true"
                 style="@style/material_icon"
-                tools:ignore="ContentDescription" />
+                tools:ignore="ContentDescription"
+                app:tint="#68b545" />
 
             <TextView
                 android:id="@+id/dialog_location_help_permissionTitle"
@@ -57,10 +58,10 @@
             <ImageView
                 android:id="@+id/dialog_location_help_locationIcon"
                 android:src="@drawable/ic_location"
-                android:tint="#2196f3"
                 android:layout_centerVertical="true"
                 style="@style/material_icon"
-                tools:ignore="ContentDescription" />
+                tools:ignore="ContentDescription"
+                app:tint="#2196f3" />
 
             <TextView
                 android:id="@+id/dialog_location_help_locationTitle"
@@ -84,10 +85,10 @@
             <ImageView
                 android:id="@+id/dialog_location_help_providerIcon"
                 android:src="@drawable/ic_router"
-                android:tint="#607d8b"
                 android:layout_centerVertical="true"
                 style="@style/material_icon"
-                tools:ignore="ContentDescription" />
+                tools:ignore="ContentDescription"
+                app:tint="#607d8b" />
 
             <TextView
                 android:id="@+id/dialog_location_help_providerTitle"
@@ -111,10 +112,10 @@
             <ImageView
                 android:id="@+id/dialog_location_help_manageIcon"
                 android:src="@drawable/ic_building"
-                android:tint="#bb86fc"
                 android:layout_centerVertical="true"
                 style="@style/material_icon"
-                tools:ignore="ContentDescription" />
+                tools:ignore="ContentDescription"
+                app:tint="#bb86fc" />
 
             <TextView
                 android:id="@+id/dialog_location_help_manageTitle"

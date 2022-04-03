@@ -12,16 +12,13 @@ import android.graphics.drawable.Drawable;
 import android.media.ThumbnailUtils;
 import android.os.Build;
 import android.text.format.DateFormat;
-import android.util.TypedValue;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.view.animation.OvershootInterpolator;
 
-import androidx.annotation.AttrRes;
 import androidx.annotation.ColorInt;
-import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Px;
 import androidx.annotation.Size;
@@ -260,11 +257,5 @@ public class DisplayUtils {
         */
         // looks like has a good performance.
         view.getWindowVisibleDisplayFrame(rect);
-    }
-
-    public static int getThemeColor (Context context, @AttrRes int id) {
-        final TypedValue value = new TypedValue();
-        context.getTheme().resolveAttribute(id, value, true);
-        return value.data;
     }
 }

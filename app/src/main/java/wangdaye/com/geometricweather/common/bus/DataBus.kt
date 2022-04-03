@@ -2,6 +2,7 @@ package wangdaye.com.geometricweather.common.bus
 
 import android.os.Handler
 import android.os.Looper
+import wangdaye.com.geometricweather.common.basic.livedata.BusLiveData
 import java.util.*
 
 class DataBus private constructor() {
@@ -14,17 +15,17 @@ class DataBus private constructor() {
         }
     }
 
-    private val liveDataMap = HashMap<String, LiveData<Any>>()
+    private val liveDataMap = HashMap<String, BusLiveData<Any>>()
     private val mainHandler = Handler(Looper.getMainLooper())
 
-    fun <T> with(key: String, type: Class<T>): LiveData<T> {
+    fun <T> with(type: Class<T>): BusLiveData<T> {
+        val key = key(type = type)
+
         if (!liveDataMap.containsKey(key)) {
-            liveDataMap[key] = LiveData(mainHandler)
+            liveDataMap[key] = BusLiveData(mainHandler)
         }
-        return liveDataMap[key] as LiveData<T>
+        return liveDataMap[key] as BusLiveData<T>
     }
 
-    fun with(key: String): LiveData<Any> {
-        return with(key, Any::class.java)
-    }
+    private fun <T> key(type: Class<T>) = type.name
 }

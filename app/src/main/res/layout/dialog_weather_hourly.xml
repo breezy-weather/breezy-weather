@@ -30,6 +30,7 @@
             android:layout_marginStart="@dimen/normal_margin"
             android:layout_marginEnd="@dimen/normal_margin"
             android:layout_marginBottom="@dimen/normal_margin"
+            android:textColor="?attr/colorCaptionText"
             style="@style/subtitle_text"
             tools:text="11月13日"
             tools:ignore="RtlHardcoded" />
@@ -60,6 +61,7 @@
                 android:gravity="start"
                 android:textAlignment="gravity"
                 android:textStyle="bold"
+                android:textColor="?attr/colorBodyText"
                 style="@style/title_text"
                 tools:text="晴 9℃\n东北风3-4级"
                 tools:ignore="RtlHardcoded" />

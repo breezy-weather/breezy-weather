@@ -35,13 +35,17 @@
 
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="colorControlHighlight">@color/colorRipple</item>
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:windowTranslucentStatus">false</item>
         <item name="android:windowTranslucentNavigation">false</item>
         <item name="android:windowBackground">@drawable/launch_background</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
+
+        <item name="colorControlHighlight">@color/colorRipple</item>
+        <item name="colorTitleText">@color/colorTextTitle</item>
+        <item name="colorBodyText">@color/colorTextContent</item>
+        <item name="colorCaptionText">@color/colorTextSubtitle</item>
     </style>
 
     <style name="GeometricWeatherTheme.Main" parent="GeometricWeatherTheme">
@@ -154,21 +158,21 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/title_text_size</item>
-        <item name="android:textColor">@color/colorTextTitle</item>
+        <item name="android:textColor">?attr/colorTitleText</item>
     </style>
 
     <style name="content_text" parent="TextAppearance.Material3.BodyMedium">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/content_text_size</item>
-        <item name="android:textColor">@color/colorTextContent</item>
+        <item name="android:textColor">?attr/colorBodyText</item>
     </style>
 
     <style name="subtitle_text" parent="TextAppearance.Material3.LabelMedium">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/subtitle_text_size</item>
-        <item name="android:textColor">@color/colorTextSubtitle</item>
+        <item name="android:textColor">?attr/colorCaptionText</item>
     </style>
 
     <style name="notification_large_title_text" parent="@style/TextAppearance.Compat.Notification.Title">

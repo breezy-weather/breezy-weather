@@ -51,32 +51,7 @@ public interface WeatherView {
     @WeatherKindRule
     int getWeatherKind();
 
-    /**
-     * @return colors[] {
-     *     theme color,
-     *     color of daytime chart line,
-     *     color of nighttime chart line
-     * }
-     *
-     * */
-    @ColorInt @Size(3)
-    int[] getThemeColors(boolean lightTheme);
-
-    @ColorInt
-    int getBackgroundColor();
-
-    @Px
-    int getHeaderHeight();
-
     void setDrawable(boolean drawable);
 
     void setGravitySensorEnabled(boolean enabled);
-
-    void setSystemBarStyle(Context context, Window window,
-                           boolean statusShader, boolean lightStatus,
-                           boolean navigationShader, boolean lightNavigation);
-
-    void setSystemBarColor(Context context, Window window,
-                           boolean statusShader, boolean lightStatus,
-                           boolean navigationShader, boolean lightNavigation);
 }

@@ -1,11 +1,8 @@
 package wangdaye.com.geometricweather.common.basic.insets;
 
 import android.graphics.Rect;
-import android.os.Build;
 import android.view.View;
 import android.view.WindowInsets;
-
-import androidx.annotation.RequiresApi;
 
 public class FitBothSideBarHelper {
 
@@ -49,12 +46,10 @@ public class FitBothSideBarHelper {
         sRootInsetsCache.set(rootInsets);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
     public WindowInsets onApplyWindowInsets(WindowInsets insets) {
         return onApplyWindowInsets(insets, mTarget::requestLayout);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
     public WindowInsets onApplyWindowInsets(WindowInsets insets, InsetsConsumer consumer) {
         mWindowInsets = new Rect(
                 insets.getSystemWindowInsetLeft(),
@@ -64,16 +59,6 @@ public class FitBothSideBarHelper {
         );
         consumer.consume();
         return insets;
-    }
-
-    public boolean fitSystemWindows(Rect r) {
-        return fitSystemWindows(r, mTarget::requestLayout);
-    }
-
-    public boolean fitSystemWindows(Rect r, InsetsConsumer consumer) {
-        mWindowInsets = r;
-        consumer.consume();
-        return false;
     }
 
     public Rect getWindowInsets() {

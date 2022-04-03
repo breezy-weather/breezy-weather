@@ -1,31 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- theme. -->
-
-    <color name="colorPrimary">@color/lightPrimary_2</color>
-    <color name="colorPrimaryVariant">@color/lightPrimary_1</color>
-    <color name="colorOnPrimary">@android:color/black</color>
-
-    <color name="colorSecondary">@color/darkPrimary_1</color>
-    <color name="colorSecondaryVariant">@color/darkPrimary_2</color>
-    <color name="colorOnSecondary">@android:color/white</color>
-
-    <color name="colorError">#B00020</color>
-    <color name="colorOnError">@android:color/white</color>
-
-    <color name="colorSurface">@color/colorSurface_light</color>
-    <color name="colorOnSurface">@color/colorTextContent</color>
-
-    <color name="colorBackground">@color/colorRoot</color>
-    <color name="colorOnBackground">@color/colorTextContent</color>
-
-    <color name="colorSeparator">@color/colorSeparator_light</color>
-    <color name="colorRoot">@color/colorRoot_light</color>
-    <color name="colorTextTitle">@color/colorTextTitle_light</color>
-    <color name="colorTextContent">@color/colorTextContent_light</color>
-    <color name="colorTextSubtitle">@color/colorTextSubtitle_light</color>
-
     <!-- repository. -->
 
     <color name="colorAccent_light">#212121</color>
@@ -42,26 +17,6 @@
     <color name="darkPrimary_3">#2c2f43</color>
     <color name="darkPrimary_4">#20222f</color>
     <color name="darkPrimary_5">#1a1b22</color>
-
-    <color name="colorSeparator_light">#f1f1f1</color>
-    <color name="colorSeparator_dark">#363636</color>
-
-    <color name="colorRoot_light">@android:color/white</color>
-    <color name="colorRoot_dark">@android:color/black</color>
-
-    <color name="colorSurface_light">#FDFCFF</color>
-    <color name="colorSurface_dark">#1B1B1B</color>
-
-    <color name="colorTextTitle_light">@color/colorTextDark</color>
-    <color name="colorTextTitle_dark">@color/colorTextLight</color>
-
-    <color name="colorTextContent_light">@color/colorTextDark2nd</color>
-    <color name="colorTextContent_dark">@color/colorTextLight2nd</color>
-
-    <color name="colorTextSubtitle_light">@color/colorTextGrey2nd</color>
-    <color name="colorTextSubtitle_dark">@color/colorTextGrey</color>
-
-    <color name="colorTextAlert">#fcc96b</color>
 
     <color name="colorRipple_regular">#40808080</color>
     <color name="colorRipple">@color/md_theme_surfaceVariant</color>
@@ -93,13 +48,17 @@
     <color name="weather_source_cn">#033566</color>
     <color name="weather_source_caiyun">#5ebb8e</color>
 
-    <!-- widget S. -->
+    <!-- theme. -->
 
-    <color name="colorWidgetSRoot_light">@color/lightPrimary_1</color>
-    <color name="colorWidgetSRoot_dark">@color/darkPrimary_1</color>
+    <color name="colorTextTitle">@color/colorTextDark</color>
+    <color name="colorTextContent">@color/colorTextDark2nd</color>
+    <color name="colorTextSubtitle">@color/colorTextGrey2nd</color>
 
-    <color name="colorWidgetSText_light">@color/colorTextTitle_light</color>
-    <color name="colorWidgetSText_dark">@color/colorTextTitle_dark</color>
+    <!-- widget. -->
+
+    <color name="colorWidgetRoot">@color/md_theme_surface</color>
+    <color name="colorWidgetSRoot">@color/lightPrimary_1</color>
+    <color name="colorWidgetSText">@color/colorTextLight</color>
 
     <!-- material 3. -->
 

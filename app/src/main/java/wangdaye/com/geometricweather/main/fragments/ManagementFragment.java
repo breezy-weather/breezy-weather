@@ -34,9 +34,10 @@ import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
 import wangdaye.com.geometricweather.databinding.FragmentManagementBinding;
 import wangdaye.com.geometricweather.main.MainActivityViewModel;
 import wangdaye.com.geometricweather.main.adapters.LocationAdapterAnimWrapper;
-import wangdaye.com.geometricweather.main.models.SelectableLocationListResource;
-import wangdaye.com.geometricweather.main.utils.MainThemeManager;
+import wangdaye.com.geometricweather.main.models.SelectableLocationList;
+import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
 import wangdaye.com.geometricweather.main.widgets.LocationItemTouchCallback;
+import wangdaye.com.geometricweather.theme.ThemeManager;
 
 public class ManagementFragment extends GeoFragment
         implements LocationItemTouchCallback.OnSelectProviderActivityStartedCallback {
@@ -83,9 +84,17 @@ public class ManagementFragment extends GeoFragment
         if (b != null) {
             boolean controlSystemBar = b.getBoolean(KEY_CONTROL_SYSTEM_BAR, false);
             if (controlSystemBar) {
-                DisplayUtils.setSystemBarStyle(requireContext(), requireActivity().getWindow(),
-                        false, false, true,
-                        mViewModel.getThemeManager().isLightTheme());
+                DisplayUtils.setSystemBarStyle(
+                        requireContext(),
+                        requireActivity().getWindow(),
+                        false,
+                        false,
+                        true,
+                        MainModuleUtils.isMainLightTheme(
+                                requireContext(),
+                                ThemeManager.getInstance(requireContext()).isDaylight()
+                        )
+                );
             }
         }
 
@@ -165,9 +174,9 @@ public class ManagementFragment extends GeoFragment
 
         mViewModel.getListResource().observe(getViewLifecycleOwner(), resource -> {
 
-            if (resource.source instanceof SelectableLocationListResource.ItemMoved) {
-                SelectableLocationListResource.ItemMoved source
-                        = (SelectableLocationListResource.ItemMoved) resource.source;
+            if (resource.source instanceof SelectableLocationList.ItemMoved) {
+                SelectableLocationList.ItemMoved source
+                        = (SelectableLocationList.ItemMoved) resource.source;
                 mAdapter.update(source.from, source.to);
             } else {
                 mAdapter.update(resource.dataList, resource.selectedId, resource.forceUpdateId);

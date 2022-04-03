@@ -6,18 +6,13 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Rect;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.Size;
-import androidx.core.graphics.ColorUtils;
 
-import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.theme.weatherView.WeatherView;
 
@@ -31,8 +26,7 @@ public class MaterialWeatherView extends ViewGroup
     @WeatherKindRule private int mWeatherKind;
     private boolean mDaytime;
 
-    private final int mFirstCardMarginTop;
-    private int mScrollTransparentTriggerDistance;
+    private int mFirstCardMarginTop;
 
     private boolean mGravitySensorEnabled;
     private boolean mDrawable;
@@ -75,20 +69,13 @@ public class MaterialWeatherView extends ViewGroup
 
         mGravitySensorEnabled = true;
         mDrawable = false;
-
-        mFirstCardMarginTop = (int) (getResources().getDisplayMetrics().heightPixels * 0.66);
-        mScrollTransparentTriggerDistance = mFirstCardMarginTop;
-    }
-
-    @Override
-    protected boolean fitSystemWindows(Rect insets) {
-        mScrollTransparentTriggerDistance = mFirstCardMarginTop - insets.top;
-        return false;
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+        mFirstCardMarginTop = (int) (getResources().getDisplayMetrics().heightPixels * 0.66);
 
         for (int index = 0; index < getChildCount(); index ++) {
             final View child = getChildAt(index);
@@ -112,14 +99,6 @@ public class MaterialWeatherView extends ViewGroup
                     child.getMeasuredHeight()
             );
         }
-    }
-
-    private static int getBrighterColor(int color){
-        float[] hsv = new float[3];
-        Color.colorToHSV(color, hsv);
-        hsv[1] = hsv[1] - 0.25F;
-        hsv[2] = hsv[2] + 0.25F;
-        return Color.HSVToColor(hsv);
     }
 
     // interface.
@@ -220,7 +199,7 @@ public class MaterialWeatherView extends ViewGroup
     @Override
     public void onScroll(int scrollY) {
         float scrollRate = (float) (
-                Math.min(1, 1.0 * scrollY / mScrollTransparentTriggerDistance)
+                Math.min(1, 1.0 * scrollY / (mFirstCardMarginTop))
         );
 
         if (mCurrentView != null) {
@@ -234,57 +213,6 @@ public class MaterialWeatherView extends ViewGroup
     @Override
     public int getWeatherKind() {
         return mWeatherKind;
-    }
-
-    @Override
-    public int[] getThemeColors(boolean lightTheme) {
-        int color = getBackgroundColor();
-        if (!lightTheme) {
-            color = getBrighterColor(color);
-        }
-        return new int[] {
-                color,
-                color,
-                ColorUtils.setAlphaComponent(color, (int) (0.5 * 255))
-        };
-    }
-
-    public static int[] getThemeColors(
-            Context context,
-            @WeatherKindRule int weatherKind,
-            boolean lightTheme
-    ) {
-        int color = innerGetBackgroundColor(context, weatherKind, lightTheme);
-        if (!lightTheme) {
-            color = getBrighterColor(color);
-        }
-        return new int[] {
-                color,
-                color,
-                ColorUtils.setAlphaComponent(color, (int) (0.5 * 255))
-        };
-    }
-
-    @Override
-    public int getBackgroundColor() {
-        return innerGetBackgroundColor(getContext(), mWeatherKind, mDaytime);
-    }
-
-    private static int innerGetBackgroundColor(
-            Context context,
-            @WeatherKindRule int weatherKind,
-            boolean daytime
-    ) {
-        return WeatherImplementorFactory.getWeatherThemeColor(
-                context,
-                weatherKind,
-                daytime
-        );
-    }
-
-    @Override
-    public int getHeaderHeight() {
-        return mFirstCardMarginTop;
     }
 
     public void setDrawable(boolean drawable) {
@@ -304,43 +232,5 @@ public class MaterialWeatherView extends ViewGroup
     @Override
     public void setGravitySensorEnabled(boolean enabled) {
         mGravitySensorEnabled = enabled;
-    }
-
-    @Override
-    public void setSystemBarStyle(
-            Context context,
-            Window window,
-            boolean statusShader,
-            boolean lightStatus,
-            boolean navigationShader,
-            boolean lightNavigation
-    ) {
-        DisplayUtils.setSystemBarStyle(
-                context,
-                window,
-                statusShader,
-                lightNavigation,
-                navigationShader,
-                lightNavigation
-        );
-    }
-
-    @Override
-    public void setSystemBarColor(
-            Context context,
-            Window window,
-            boolean statusShader,
-            boolean lightStatus,
-            boolean navigationShader,
-            boolean lightNavigation
-    ) {
-        DisplayUtils.setSystemBarStyle(
-                context,
-                window,
-                statusShader,
-                lightNavigation,
-                navigationShader,
-                lightNavigation
-        );
     }
 }

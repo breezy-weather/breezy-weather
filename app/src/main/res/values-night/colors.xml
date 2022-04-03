@@ -1,25 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorPrimary">@color/darkPrimary_1</color>
-    <color name="colorPrimaryVariant">@color/darkPrimary_2</color>
-    <color name="colorOnPrimary">@android:color/white</color>
+    <!-- theme. -->
 
-    <color name="colorSecondary">@color/lightPrimary_2</color>
-    <color name="colorSecondaryVariant">@color/lightPrimary_1</color>
-    <color name="colorOnSecondary">@android:color/black</color>
+    <color name="colorTextTitle">@color/colorTextLight</color>
+    <color name="colorTextContent">@color/colorTextLight2nd</color>
+    <color name="colorTextSubtitle">@color/colorTextGrey</color>
 
-    <color name="colorSurface">@color/colorSurface_dark</color>
-    <color name="colorOnSurface">@color/colorTextContent</color>
+    <!-- widget S. -->
 
-    <color name="colorBackground">@color/colorRoot</color>
-    <color name="colorOnBackground">@color/colorTextContent</color>
-    
-    <color name="colorSeparator">@color/colorSeparator_dark</color>
-    <color name="colorRoot">@color/colorRoot_dark</color>
-    <color name="colorTextTitle">@color/colorTextTitle_dark</color>
-    <color name="colorTextContent">@color/colorTextContent_dark</color>
-    <color name="colorTextSubtitle">@color/colorTextSubtitle_dark</color>
+    <color name="colorWidgetSRoot">@color/darkPrimary_1</color>
+    <color name="colorWidgetSText">@color/colorTextLight</color>
     
     <!-- material 3. -->
 

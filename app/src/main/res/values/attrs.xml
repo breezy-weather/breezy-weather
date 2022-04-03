@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- theme. -->
+    <attr name="colorTitleText" format="color|reference"/>
+    <attr name="colorBodyText" format="color|reference"/>
+    <attr name="colorCaptionText" format="color|reference"/>
+
     <!-- Ink page indicator. -->
     <declare-styleable name="InkPageIndicator">
         <attr name="dotDiameter" format="dimension" />

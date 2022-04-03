@@ -1,21 +1,12 @@
 package wangdaye.com.geometricweather.theme.weatherView.materialWeatherView
 
-import android.content.Context
-import android.graphics.Color
-import wangdaye.com.geometricweather.theme.weatherView.WeatherView.WeatherKindRule
-import wangdaye.com.geometricweather.theme.weatherView.materialWeatherView.MaterialWeatherView.WeatherAnimationImplementor
-import wangdaye.com.geometricweather.theme.weatherView.WeatherView
-import wangdaye.com.geometricweather.theme.weatherView.materialWeatherView.implementor.SunImplementor
-import wangdaye.com.geometricweather.theme.weatherView.materialWeatherView.implementor.MeteorShowerImplementor
-import wangdaye.com.geometricweather.theme.weatherView.materialWeatherView.implementor.CloudImplementor
-import wangdaye.com.geometricweather.theme.weatherView.materialWeatherView.implementor.HailImplementor
-import wangdaye.com.geometricweather.theme.weatherView.materialWeatherView.implementor.RainImplementor
-import wangdaye.com.geometricweather.theme.weatherView.materialWeatherView.implementor.SnowImplementor
-import wangdaye.com.geometricweather.theme.weatherView.materialWeatherView.implementor.WindImplementor
-import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 import androidx.annotation.Size
 import wangdaye.com.geometricweather.R
+import wangdaye.com.geometricweather.theme.weatherView.WeatherView
+import wangdaye.com.geometricweather.theme.weatherView.WeatherView.WeatherKindRule
+import wangdaye.com.geometricweather.theme.weatherView.materialWeatherView.MaterialWeatherView.WeatherAnimationImplementor
+import wangdaye.com.geometricweather.theme.weatherView.materialWeatherView.implementor.*
 
 object WeatherImplementorFactory {
 
@@ -87,73 +78,6 @@ object WeatherImplementorFactory {
         }
 
         else -> null
-    }
-
-    @JvmStatic
-    @ColorInt
-    fun getWeatherThemeColor(
-        context: Context?,
-        @WeatherKindRule weatherKind: Int,
-        daytime: Boolean
-    ): Int = when (weatherKind) {
-        WeatherView.WEATHER_KIND_CLEAR -> if (daytime) {
-            SunImplementor.getThemeColor()
-        } else {
-            MeteorShowerImplementor.getThemeColor()
-        }
-
-        WeatherView.WEATHER_KIND_CLOUDY -> if (daytime) {
-            CloudImplementor.getThemeColor(context, CloudImplementor.TYPE_CLOUDY_DAY)
-        } else {
-            CloudImplementor.getThemeColor(context, CloudImplementor.TYPE_CLOUDY_NIGHT)
-        }
-
-        WeatherView.WEATHER_KIND_CLOUD -> if (daytime) {
-            CloudImplementor.getThemeColor(context, CloudImplementor.TYPE_CLOUD_DAY)
-        } else {
-            CloudImplementor.getThemeColor(context, CloudImplementor.TYPE_CLOUD_NIGHT)
-        }
-
-        WeatherView.WEATHER_KIND_FOG ->
-            CloudImplementor.getThemeColor(context, CloudImplementor.TYPE_FOG)
-
-        WeatherView.WEATHER_KIND_HAIL -> if (daytime) {
-            HailImplementor.getThemeColor(context, HailImplementor.TYPE_HAIL_DAY)
-        } else {
-            HailImplementor.getThemeColor(context, HailImplementor.TYPE_HAIL_NIGHT)
-        }
-
-        WeatherView.WEATHER_KIND_HAZE ->
-            CloudImplementor.getThemeColor(context, CloudImplementor.TYPE_HAZE)
-
-        WeatherView.WEATHER_KIND_RAINY -> if (daytime) {
-            RainImplementor.getThemeColor(context, RainImplementor.TYPE_RAIN_DAY)
-        } else {
-            RainImplementor.getThemeColor(context, RainImplementor.TYPE_RAIN_NIGHT)
-        }
-
-        WeatherView.WEATHER_KIND_SLEET -> if (daytime) {
-            RainImplementor.getThemeColor(context, RainImplementor.TYPE_SLEET_DAY)
-        } else {
-            RainImplementor.getThemeColor(context, RainImplementor.TYPE_SLEET_NIGHT)
-        }
-
-        WeatherView.WEATHER_KIND_SNOW -> if (daytime) {
-            SnowImplementor.getThemeColor(context, SnowImplementor.TYPE_SNOW_DAY)
-        } else {
-            SnowImplementor.getThemeColor(context, SnowImplementor.TYPE_SNOW_NIGHT)
-        }
-
-        WeatherView.WEATHER_KIND_THUNDERSTORM ->
-            RainImplementor.getThemeColor(context, RainImplementor.TYPE_THUNDERSTORM)
-
-        WeatherView.WEATHER_KIND_THUNDER ->
-            CloudImplementor.getThemeColor(context, CloudImplementor.TYPE_THUNDER)
-
-        WeatherView.WEATHER_KIND_WIND ->
-            WindImplementor.getThemeColor()
-
-        else -> Color.TRANSPARENT
     }
 
     @JvmStatic
