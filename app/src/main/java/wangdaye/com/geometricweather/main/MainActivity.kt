@@ -191,17 +191,17 @@ class MainActivity : GeoActivity(),
     @SuppressLint("ClickableViewAccessibility", "NonConstantResourceId")
     private fun initView() {
         if (binding.fragmentDrawer != null) {
-            bind(binding.fragmentDrawer!!, R.attr.colorOnBackground) { color, _ ->
+            bind(binding.fragmentDrawer!!, android.R.attr.colorBackground) { color, _ ->
                 binding.fragmentDrawer!!.setBackgroundColor(color)
             }
         }
         if (binding.fragmentMain != null) {
-            bind(binding.fragmentMain!!, R.attr.colorOnBackground) { color, _ ->
+            bind(binding.fragmentMain!!, android.R.attr.colorBackground) { color, _ ->
                 binding.fragmentMain!!.setBackgroundColor(color)
             }
         }
         if (binding.fragment != null) {
-            bind(binding.fragment!!, R.attr.colorOnBackground) { color, _ ->
+            bind(binding.fragment!!, android.R.attr.colorBackground) { color, _ ->
                 binding.fragment!!.setBackgroundColor(color)
             }
         }

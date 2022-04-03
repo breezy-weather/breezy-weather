@@ -9,15 +9,15 @@ import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.common.snackbar.SnackbarContainer;
 import wangdaye.com.geometricweather.common.basic.insets.FitHorizontalSystemBarRootLayout;
+import wangdaye.com.geometricweather.common.snackbar.SnackbarContainer;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.LanguageUtils;
 import wangdaye.com.geometricweather.settings.SettingsManager;
+import wangdaye.com.geometricweather.theme.ThemeManager;
 
 /**
  * Geometric weather activity.
@@ -85,8 +85,16 @@ public abstract class GeoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         fitHorizontalSystemBarRootLayout = new FitHorizontalSystemBarRootLayout(this);
-        fitHorizontalSystemBarRootLayout.setRootColor(ContextCompat.getColor(this, R.color.colorRoot));
-        fitHorizontalSystemBarRootLayout.setLineColor(ContextCompat.getColor(this, R.color.colorSeparator));
+        fitHorizontalSystemBarRootLayout.setRootColor(
+                ThemeManager
+                        .getInstance(this)
+                        .getThemeColor(this, android.R.attr.colorBackground)
+        );
+        fitHorizontalSystemBarRootLayout.setLineColor(
+                ThemeManager
+                        .getInstance(this)
+                        .getThemeColor(this, R.attr.colorOutline)
+        );
 
         GeometricWeather.getInstance().addActivity(this);
 
@@ -101,7 +109,9 @@ public abstract class GeoActivity extends AppCompatActivity {
                 getWindow(),
                 false,
                 !DisplayUtils.isLightColor(
-                        DisplayUtils.getThemeColor(this, R.attr.colorOnPrimary)
+                        ThemeManager
+                                .getInstance(this)
+                                .getThemeColor(this, R.attr.colorOnPrimary)
                 ),
                 true,
                 !darkMode
