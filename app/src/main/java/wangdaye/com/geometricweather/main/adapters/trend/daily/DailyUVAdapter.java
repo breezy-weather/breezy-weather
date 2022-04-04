@@ -18,15 +18,16 @@ import wangdaye.com.geometricweather.common.basic.models.weather.UV;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.chart.PolylineAndHistogramView;
-import wangdaye.com.geometricweather.main.utils.MainThemeManager;
+import wangdaye.com.geometricweather.main.utils.DayNightColorWrapper;
+import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
+import wangdaye.com.geometricweather.theme.ThemeManager;
+import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
 
 /**
  * Daily UV adapter.
  * */
 
 public class DailyUVAdapter extends AbsDailyTrendAdapter<DailyUVAdapter.ViewHolder> {
-
-    private final MainThemeManager mThemeManager;
 
     private int highestIndex;
     private int mSize;
@@ -42,10 +43,10 @@ public class DailyUVAdapter extends AbsDailyTrendAdapter<DailyUVAdapter.ViewHold
         }
 
         @SuppressLint({"SetTextI18n, InflateParams", "DefaultLocale"})
-        void onBindView(GeoActivity activity, Location location, MainThemeManager themeManager, int position) {
+        void onBindView(GeoActivity activity, Location location, int position) {
             StringBuilder talkBackBuilder = new StringBuilder(activity.getString(R.string.tag_uv));
 
-            super.onBindView(activity, location, themeManager, talkBackBuilder, position);
+            super.onBindView(activity, location, talkBackBuilder, position);
 
             Weather weather = location.getWeather();
             assert weather != null;
@@ -65,16 +66,26 @@ public class DailyUVAdapter extends AbsDailyTrendAdapter<DailyUVAdapter.ViewHold
             mPolylineAndHistogramView.setLineColors(
                     daily.getUV().getUVColor(activity),
                     daily.getUV().getUVColor(activity),
-                    mThemeManager.getSeparatorColor(activity)
+                    ThemeManager.getInstance(activity).getThemeColor(activity, R.attr.colorOutline)
             );
-            int[] themeColors = mThemeManager.getWeatherThemeColors();
-            mPolylineAndHistogramView.setShadowColors(
-                    themeColors[1], themeColors[2], mThemeManager.isLightTheme());
+            int[] themeColors = ThemeManager
+                    .getInstance(itemView.getContext())
+                    .getWeatherThemeDelegate()
+                    .getThemeColors(
+                            itemView.getContext(),
+                            WeatherViewController.getWeatherKind(location.getWeather()),
+                            location.isDaylight()
+                    );
+            boolean lightTheme = MainModuleUtils.isMainLightTheme(
+                    itemView.getContext(),
+                    location.isDaylight()
+            );
+            mPolylineAndHistogramView.setShadowColors(themeColors[1], themeColors[2], lightTheme);
             mPolylineAndHistogramView.setTextColors(
-                    mThemeManager.getTextContentColor(activity),
-                    mThemeManager.getTextSubtitleColor(activity)
+                    ThemeManager.getInstance(activity).getThemeColor(activity, R.attr.colorBodyText),
+                    ThemeManager.getInstance(activity).getThemeColor(activity, R.attr.colorCaptionText)
             );
-            mPolylineAndHistogramView.setHistogramAlpha(mThemeManager.isLightTheme() ? 1f : 0.5f);
+            mPolylineAndHistogramView.setHistogramAlpha(lightTheme ? 1f : 0.5f);
 
             dailyItem.setContentDescription(talkBackBuilder.toString());
         }
@@ -83,13 +94,11 @@ public class DailyUVAdapter extends AbsDailyTrendAdapter<DailyUVAdapter.ViewHold
     @SuppressLint("SimpleDateFormat")
     public DailyUVAdapter(GeoActivity activity,
                           TrendRecyclerView parent,
-                          Location location,
-                          MainThemeManager themeManager) {
+                          Location location) {
         super(activity, location);
 
         Weather weather = location.getWeather();
         assert weather != null;
-        mThemeManager = themeManager;
 
         highestIndex = Integer.MIN_VALUE;
         boolean valid = false;
@@ -116,7 +125,6 @@ public class DailyUVAdapter extends AbsDailyTrendAdapter<DailyUVAdapter.ViewHold
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
         );
-        parent.setLineColor(mThemeManager.getSeparatorColor(activity));
         parent.setData(keyLineList, highestIndex, 0);
     }
 
@@ -130,7 +138,7 @@ public class DailyUVAdapter extends AbsDailyTrendAdapter<DailyUVAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(getActivity(), getLocation(), mThemeManager, position);
+        holder.onBindView(getActivity(), getLocation(), position);
     }
 
     @Override

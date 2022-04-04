@@ -17,11 +17,13 @@ import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.Daily;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.common.ui.widgets.horizontal.HorizontalViewPager2;
-import wangdaye.com.geometricweather.main.utils.MainThemeManager;
-import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.common.ui.adapters.DailyPollenAdapter;
+import wangdaye.com.geometricweather.common.ui.widgets.horizontal.HorizontalViewPager2;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
+import wangdaye.com.geometricweather.main.utils.DayNightColorWrapper;
+import wangdaye.com.geometricweather.theme.ThemeManager;
+import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
+import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
 
 public class AllergenViewHolder extends AbstractMainCardViewHolder {
 
@@ -71,7 +73,7 @@ public class AllergenViewHolder extends AbstractMainCardViewHolder {
             TimeZone timeZone = mLocation.getTimeZone();
             Daily daily = mLocation.getWeather().getDailyForecast().get(position);
 
-            if (timeZone != null && daily.isToday(timeZone)) {
+            if (daily.isToday(timeZone)) {
                 mIndicator.setText(mContext.getString(R.string.today));
             } else {
                 mIndicator.setText((position + 1) + "/" + mLocation.getWeather().getDailyForecast().size());
@@ -79,9 +81,12 @@ public class AllergenViewHolder extends AbstractMainCardViewHolder {
         }
     }
 
-    public AllergenViewHolder(ViewGroup parent, MainThemeManager themeManager) {
-        super(LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.container_main_pollen, parent, false), themeManager);
+    public AllergenViewHolder(ViewGroup parent) {
+        super(
+                LayoutInflater
+                        .from(parent.getContext())
+                        .inflate(R.layout.container_main_pollen, parent, false)
+        );
 
         mCard = itemView.findViewById(R.id.container_main_pollen);
         mTitle = itemView.findViewById(R.id.container_main_pollen_title);
@@ -102,9 +107,33 @@ public class AllergenViewHolder extends AbstractMainCardViewHolder {
 
         assert location.getWeather() != null;
 
-        mCard.setCardBackgroundColor(themeManager.getSurfaceColor(context));
-        mTitle.setTextColor(themeManager.getWeatherThemeColors()[0]);
-        mSubtitle.setTextColor(themeManager.getTextSubtitleColor(context));
+        DayNightColorWrapper.bind(
+                itemView,
+                new Integer[0],
+                (integers, aBoolean) -> {
+                    mCard.setCardBackgroundColor(
+                            ThemeManager.getInstance(context).getThemeColor(
+                                    context, R.attr.colorSurface
+                            )
+                    );
+                    mTitle.setTextColor(
+                            ThemeManager
+                                    .getInstance(context)
+                                    .getWeatherThemeDelegate()
+                                    .getThemeColors(
+                                            context,
+                                            WeatherViewController.getWeatherKind(location.getWeather()),
+                                            location.isDaylight()
+                                    )[0]
+                    );
+                    mSubtitle.setTextColor(
+                            ThemeManager.getInstance(context).getThemeColor(
+                                    context, R.attr.colorCaptionText
+                            )
+                    );
+                    return null;
+                }
+        );
 
         mPager.setAdapter(new DailyPollenPagerAdapter(location.getWeather()));
         mPager.setCurrentItem(0);

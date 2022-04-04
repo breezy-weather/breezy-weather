@@ -138,10 +138,10 @@ public class TrendLinearLayout extends LinearLayout {
     public void setColor(boolean lightTheme) {
         if (lightTheme) {
             mLineColor = ColorUtils.setAlphaComponent(Color.BLACK, (int) (255 * 0.05));
-            mTextColor = ContextCompat.getColor(getContext(), R.color.colorTextSubtitle_light);
+            mTextColor = ContextCompat.getColor(getContext(), R.color.colorTextGrey2nd);
         } else {
             mLineColor = ColorUtils.setAlphaComponent(Color.WHITE, (int) (255 * 0.1));
-            mTextColor = ContextCompat.getColor(getContext(), R.color.colorTextSubtitle_dark);
+            mTextColor = ContextCompat.getColor(getContext(), R.color.colorTextGrey);
         }
     }
 

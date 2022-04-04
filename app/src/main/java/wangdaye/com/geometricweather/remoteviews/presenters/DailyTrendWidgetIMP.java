@@ -25,6 +25,7 @@ import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.common.basic.models.weather.Daily;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.theme.ThemeManager;
 import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.theme.resource.ResourcesProviderFactory;
@@ -143,7 +144,9 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
                 drawableView.findViewById(R.id.widget_trend_daily_item_4),
                 drawableView.findViewById(R.id.widget_trend_daily_item_5)
         };
-        int[] colors = WeatherViewController.getThemeColors(context, weather, location.isDaylight());
+        int[] colors = ThemeManager.getInstance(context).getWeatherThemeDelegate().getThemeColors(
+                context, WeatherViewController.getWeatherKind(weather), location.isDaylight()
+        );
         for (int i = 0; i < items.length; i ++) {
             Daily daily = weather.getDailyForecast().get(i);
 
@@ -187,11 +190,11 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
             items[i].getTrendItemView().setShadowColors(colors[1], colors[2], lightTheme);
             items[i].getTrendItemView().setTextColors(
                     lightTheme
-                            ? ContextCompat.getColor(context, R.color.colorTextContent_light)
-                            : ContextCompat.getColor(context, R.color.colorTextContent_dark),
+                            ? ContextCompat.getColor(context, R.color.colorTextDark2nd)
+                            : ContextCompat.getColor(context, R.color.colorTextGrey2nd),
                     lightTheme
-                            ? ContextCompat.getColor(context, R.color.colorTextSubtitle_light)
-                            : ContextCompat.getColor(context, R.color.colorTextSubtitle_dark)
+                            ? ContextCompat.getColor(context, R.color.colorTextLight2nd)
+                            : ContextCompat.getColor(context, R.color.colorTextGrey)
             );
             items[i].getTrendItemView().setHistogramAlpha(lightTheme ? 0.2f : 0.5f);
 

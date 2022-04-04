@@ -1,17 +1,17 @@
 package wangdaye.com.geometricweather.main.adapters;
 
 import android.content.Context;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.core.widget.ImageViewCompat;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.core.widget.ImageViewCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.CloudCover
 import wangdaye.com.geometricweather.common.basic.models.options.unit.RelativeHumidityUnit;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.SpeedUnit;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.main.utils.MainThemeManager;
+import wangdaye.com.geometricweather.main.utils.DayNightColorWrapper;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 
 /**
@@ -31,7 +31,6 @@ import wangdaye.com.geometricweather.settings.SettingsManager;
 public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHolder> {
 
     private final List<Index> mIndexList;
-    private final MainThemeManager mThemeManager;
 
     private static class Index {
         @DrawableRes int iconId;
@@ -54,7 +53,7 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
         }
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
 
         private final AppCompatImageView mIcon;
         private final TextView mTitle;
@@ -65,28 +64,32 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
             mIcon = itemView.findViewById(R.id.item_details_icon);
             mTitle = itemView.findViewById(R.id.item_details_title);
             mContent = itemView.findViewById(R.id.item_details_content);
+
+            DayNightColorWrapper.bind(
+                    itemView,
+                    new Integer[]{
+                            R.attr.colorBodyText,
+                            R.attr.colorCaptionText,
+                    },
+                    (colors, aBoolean) -> {
+                        ImageViewCompat.setImageTintList(mIcon, ColorStateList.valueOf(colors[0]));
+                        mTitle.setTextColor(colors[0]);
+                        mContent.setTextColor(colors[1]);
+                        return null;
+                    }
+            );
         }
 
         void onBindView(Index index) {
-            Context context = itemView.getContext();
-
             itemView.setContentDescription(index.talkBack);
 
             mIcon.setImageResource(index.iconId);
-            ImageViewCompat.setImageTintList(
-                    mIcon,
-                    ColorStateList.valueOf(mThemeManager.getTextContentColor(context))
-            );
-
             mTitle.setText(index.title);
-            mTitle.setTextColor(mThemeManager.getTextContentColor(context));
-
             mContent.setText(index.content);
-            mContent.setTextColor(mThemeManager.getTextSubtitleColor(context));
         }
     }
 
-    public DetailsAdapter(Context context, @NonNull Weather weather, MainThemeManager themeManager) {
+    public DetailsAdapter(Context context, @NonNull Weather weather) {
         mIndexList = new ArrayList<>();
         SettingsManager settings = SettingsManager.getInstance(context);
 
@@ -197,8 +200,6 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
                     )
             );
         }
-
-        mThemeManager = themeManager;
     }
 
     @NonNull

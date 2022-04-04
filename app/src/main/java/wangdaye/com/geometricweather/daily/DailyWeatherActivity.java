@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.material.appbar.MaterialToolbar;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.viewpager.widget.ViewPager;
 
@@ -28,6 +27,7 @@ import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper;
 import wangdaye.com.geometricweather.daily.adapter.DailyWeatherAdapter;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.settings.SettingsManager;
+import wangdaye.com.geometricweather.theme.ThemeManager;
 
 /**
  * Daily weather activity.
@@ -125,7 +125,11 @@ public class DailyWeatherActivity extends GeoActivity {
             FitSystemBarViewPager pager = findViewById(R.id.activity_weather_daily_pager);
             pager.setAdapter(new FitSystemBarViewPager.FitBottomSystemBarPagerAdapter(pager, viewList, titleList));
             pager.setPageMargin((int) DisplayUtils.dpToPx(this, 1));
-            pager.setPageMarginDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorSeparator)));
+            pager.setPageMarginDrawable(
+                    new ColorDrawable(
+                            ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorOutline)
+                    )
+            );
             pager.setCurrentItem(mPosition);
             pager.clearOnPageChangeListeners();
             pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

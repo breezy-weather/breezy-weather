@@ -22,7 +22,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.SharedElementCallback;
-import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,7 +37,6 @@ import dagger.hilt.android.AndroidEntryPoint;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
-import wangdaye.com.geometricweather.theme.DefaultThemeManager;
 import wangdaye.com.geometricweather.common.ui.adapters.location.LocationAdapter;
 import wangdaye.com.geometricweather.common.ui.decotarions.ListDecoration;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
@@ -47,6 +45,7 @@ import wangdaye.com.geometricweather.databinding.ActivitySearchBinding;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.search.ui.FabView;
 import wangdaye.com.geometricweather.search.ui.adapter.WeatherSourceAdapter;
+import wangdaye.com.geometricweather.theme.ThemeManager;
 
 /**
  * Search activity.
@@ -184,7 +183,7 @@ public class SearchActivity extends GeoActivity
                             return;
                         }
                     }
-                }, null, new DefaultThemeManager()
+                }, null
         );
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(
@@ -196,7 +195,9 @@ public class SearchActivity extends GeoActivity
             mBinding.recyclerView.removeItemDecorationAt(0);
         }
         mBinding.recyclerView.addItemDecoration(new ListDecoration(
-                this, ContextCompat.getColor(this, R.color.colorSeparator)));
+                this,
+                ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorOutline))
+        );
 
         mBinding.scrollBar.setIndicator(
                 new WeatherSourceIndicator(this).setTextSize(16), true);
@@ -235,8 +236,8 @@ public class SearchActivity extends GeoActivity
                 mBinding.fab,
                 mBinding.fabSheet,
                 mBinding.overlay,
-                getResources().getColor(R.color.colorRoot),
-                getResources().getColor(R.color.colorPrimary)
+                ThemeManager.getInstance(this).getThemeColor(this, android.R.attr.colorBackground),
+                ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorSecondary)
         );
         mMaterialSheetFab.setEventListener(new MaterialSheetFabEventListener() {
             @Override
@@ -265,7 +266,7 @@ public class SearchActivity extends GeoActivity
             mBinding.sourceEnter.setEnabled(
                     loadableLocationList.status != LoadableLocationList.Status.LOADING);
             mBinding.sourceEnter.setAlpha(mBinding.sourceEnter.isEnabled() ? 1 : 0.5f);
-            mAdapter.update(loadableLocationList.dataList, null, null);
+            mAdapter.update(loadableLocationList.dataList, null);
         });
 
         mViewModel.getEnabledSources().observe(this, enabled -> {

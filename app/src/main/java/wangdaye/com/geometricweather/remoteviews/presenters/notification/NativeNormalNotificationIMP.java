@@ -19,6 +19,7 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.Temperatur
 import wangdaye.com.geometricweather.common.basic.models.weather.Base;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.remoteviews.presenters.AbstractRemoteViewsPresenter;
+import wangdaye.com.geometricweather.theme.ThemeManager;
 import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.theme.resource.ResourcesProviderFactory;
@@ -133,7 +134,11 @@ class NativeNormalNotificationIMP extends AbstractRemoteViewsPresenter {
         }
         builder.setContentText(contentText.toString());
 
-        builder.setColor(WeatherViewController.getThemeColors(context, weather, daytime)[0]);
+        builder.setColor(
+                ThemeManager.getInstance(context).getWeatherThemeDelegate().getThemeColors(
+                        context, WeatherViewController.getWeatherKind(weather), daytime
+                )[0]
+        );
 
         // set clear flag
         builder.setOngoing(!canBeCleared);

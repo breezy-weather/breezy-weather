@@ -112,7 +112,7 @@ public class LocationHelper {
 
                     requestAvailableWeatherLocation(
                             context,
-                            new Location(
+                            Location.copy(
                                     location,
                                     result.latitude,
                                     result.longitude,
@@ -135,7 +135,7 @@ public class LocationHelper {
             public void requestLocationSuccess(String query, List<Location> locationList) {
                 if (locationList.size() > 0) {
                     Location src = locationList.get(0);
-                    Location result = new Location(src, true, src.isResidentPosition());
+                    Location result = Location.copy(src, true, src.isResidentPosition());
                     DatabaseHelper.getInstance(context).writeLocation(result);
                     l.requestLocationSuccess(result);
                 } else {

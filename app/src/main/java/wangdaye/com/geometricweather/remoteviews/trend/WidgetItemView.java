@@ -200,11 +200,11 @@ public class WidgetItemView extends ViewGroup {
 
     public void setColor(boolean daytime) {
         if (daytime) {
-            mContentColor = ContextCompat.getColor(getContext(), R.color.colorTextContent_light);
-            mSubtitleColor = ContextCompat.getColor(getContext(), R.color.colorTextSubtitle_light);
+            mContentColor = ContextCompat.getColor(getContext(), R.color.colorTextDark2nd);
+            mSubtitleColor = ContextCompat.getColor(getContext(), R.color.colorTextGrey2nd);
         } else {
-            mContentColor = ContextCompat.getColor(getContext(), R.color.colorTextContent_dark);
-            mSubtitleColor = ContextCompat.getColor(getContext(), R.color.colorTextSubtitle_dark);
+            mContentColor = ContextCompat.getColor(getContext(), R.color.colorTextLight2nd);
+            mSubtitleColor = ContextCompat.getColor(getContext(), R.color.colorTextGrey);
         }
     }
 

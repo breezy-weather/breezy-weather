@@ -17,7 +17,7 @@
         android:id="@+id/item_card_display"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorRoot">
+        android:background="?android:colorBackground">
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/item_card_display_sortButton"

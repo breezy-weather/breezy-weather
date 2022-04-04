@@ -16,7 +16,7 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerViewAdapter;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.item.DailyTrendItemView;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
-import wangdaye.com.geometricweather.main.utils.MainThemeManager;
+import wangdaye.com.geometricweather.theme.ThemeManager;
 
 public abstract class AbsDailyTrendAdapter<VH extends RecyclerView.ViewHolder> extends TrendRecyclerViewAdapter<VH>  {
 
@@ -32,7 +32,7 @@ public abstract class AbsDailyTrendAdapter<VH extends RecyclerView.ViewHolder> e
         }
 
         @SuppressLint({"SetTextI18n, InflateParams", "DefaultLocale"})
-        void onBindView(GeoActivity activity, Location location, MainThemeManager themeManager,
+        void onBindView(GeoActivity activity, Location location,
                         StringBuilder talkBackBuilder, int position) {
             Context context = itemView.getContext();
             Weather weather = location.getWeather();
@@ -53,8 +53,8 @@ public abstract class AbsDailyTrendAdapter<VH extends RecyclerView.ViewHolder> e
             dailyItem.setDateText(daily.getShortDate(context));
 
             dailyItem.setTextColor(
-                    themeManager.getTextContentColor(context),
-                    themeManager.getTextSubtitleColor(context)
+                    ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorBodyText),
+                    ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorCaptionText)
             );
 
             dailyItem.setOnClickListener(v -> onItemClicked(activity, location, getAdapterPosition()));

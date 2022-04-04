@@ -61,6 +61,16 @@ public class FitBothSideBarHelper {
         return insets;
     }
 
+    public boolean fitSystemWindows(Rect r) {
+        return fitSystemWindows(r, mTarget::requestLayout);
+    }
+
+    public boolean fitSystemWindows(Rect r, InsetsConsumer consumer) {
+        mWindowInsets = r;
+        consumer.consume();
+        return false;
+    }
+
     public Rect getWindowInsets() {
         if (sRootInsetsCache.get() != null) {
             return sRootInsetsCache.get();

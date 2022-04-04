@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import android.view.Window
 import androidx.core.graphics.ColorUtils
+import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.utils.DisplayUtils
 import wangdaye.com.geometricweather.theme.weatherView.WeatherThemeDelegate
 import wangdaye.com.geometricweather.theme.weatherView.WeatherView
@@ -94,12 +95,10 @@ class MaterialWeatherThemeDelegate: WeatherThemeDelegate {
         context: Context,
         weatherKind: Int,
         daylight: Boolean,
-        lightTheme: Boolean,
     ): IntArray {
-        var color = innerGetBackgroundColor(context, weatherKind, daylight)
-        if (!lightTheme) {
-            color = getBrighterColor(color)
-        }
+        val color = getBrighterColor(
+            innerGetBackgroundColor(context, weatherKind, daylight)
+        )
         return intArrayOf(
             color,
             color,
@@ -119,6 +118,10 @@ class MaterialWeatherThemeDelegate: WeatherThemeDelegate {
             context.resources.displayMetrics.heightPixels * 0.66
     ).toInt()
 
+    override fun getHeaderTextColor(context: Context): Int {
+        return Color.WHITE
+    }
+
     override fun setSystemBarStyle(
         context: Context,
         window: Window,
@@ -136,4 +139,15 @@ class MaterialWeatherThemeDelegate: WeatherThemeDelegate {
             lightNavigation
         )
     }
+
+    override fun getHomeCardRadius(context: Context): Float = context
+        .resources
+        .getDimension(R.dimen.view_mini_corner_radius)
+
+    override fun getHomeCardElevation(context: Context): Float =
+        DisplayUtils.dpToPx(context, 2f)
+
+    override fun getHomeCardMargins(context: Context): Int = context
+        .resources
+        .getDimensionPixelSize(R.dimen.little_margin)
 }

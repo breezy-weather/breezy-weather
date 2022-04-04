@@ -69,15 +69,10 @@ public abstract class SyncListAdapter<T, VH extends RecyclerView.ViewHolder>
                         newList.get(newItemPosition)
                 );
             }
-        }, false);
+        }, true);
 
         mModelList = newList;
         result.dispatchUpdatesTo(this);
-    }
-
-    public void submitMove(int from, int to) {
-        Collections.swap(mModelList, from, to);
-        notifyItemMoved(from, to);
     }
 
     public List<T> getCurrentList() {

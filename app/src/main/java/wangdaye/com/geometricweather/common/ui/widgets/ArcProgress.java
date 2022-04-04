@@ -141,6 +141,10 @@ public class ArcProgress extends View {
         }
     }
 
+    public void setProgressColor(boolean lightTheme) {
+        setProgressColor(mProgressColor, lightTheme);
+    }
+
     public void setProgressColor(@ColorInt int progressColor, boolean lightTheme) {
         mProgressColor = progressColor;
         mShadowColor = getDarkerColor(progressColor);

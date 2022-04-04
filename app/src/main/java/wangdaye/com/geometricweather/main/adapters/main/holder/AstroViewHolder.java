@@ -28,11 +28,14 @@ import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.Daily;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.main.utils.MainThemeManager;
-import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
-import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.common.ui.widgets.astro.MoonPhaseView;
 import wangdaye.com.geometricweather.common.ui.widgets.astro.SunMoonView;
+import wangdaye.com.geometricweather.main.utils.DayNightColorWrapper;
+import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
+import wangdaye.com.geometricweather.theme.ThemeManager;
+import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
+import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
+import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
 
 public class AstroViewHolder extends AbstractMainCardViewHolder {
 
@@ -59,9 +62,12 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
 
     @Size(3) private final AnimatorSet[] mAttachAnimatorSets;
 
-    public AstroViewHolder(ViewGroup parent, MainThemeManager themeManager) {
-        super(LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.container_main_sun_moon, parent, false), themeManager);
+    public AstroViewHolder(ViewGroup parent) {
+        super(
+                LayoutInflater
+                        .from(parent.getContext())
+                        .inflate(R.layout.container_main_sun_moon, parent, false)
+        );
 
         mCard = itemView.findViewById(R.id.container_main_sun_moon);
         mTitle = itemView.findViewById(R.id.container_main_sun_moon_title);
@@ -88,30 +94,77 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
         mTimeZone = location.getTimeZone();
         assert mWeather != null;
 
-        int[] themeColors = themeManager.getWeatherThemeColors();
+        DayNightColorWrapper.bind(
+                itemView,
+                new Integer[0],
+                (integers, aBoolean) -> {
+                    int[] themeColors = ThemeManager
+                            .getInstance(context)
+                            .getWeatherThemeDelegate()
+                            .getThemeColors(
+                                    context,
+                                    WeatherViewController.getWeatherKind(location.getWeather()),
+                                    location.isDaylight()
+                            );
+
+                    mCard.setCardBackgroundColor(
+                            ThemeManager.getInstance(context).getThemeColor(
+                                    context, R.attr.colorSurface
+                            )
+                    );
+                    mTitle.setTextColor(themeColors[0]);
+
+                    mPhaseText.setTextColor(
+                            ThemeManager.getInstance(context).getThemeColor(
+                                    context, R.attr.colorBodyText
+                            )
+                    );
+                    mPhaseView.setColor(
+                            ContextCompat.getColor(context, R.color.colorTextLight2nd),
+                            ContextCompat.getColor(context, R.color.colorTextDark2nd),
+                            ThemeManager.getInstance(context).getThemeColor(
+                                    context, R.attr.colorBodyText
+                            )
+                    );
+
+                    if (MainModuleUtils.isMainLightTheme(context, location.isDaylight())) {
+                        mSunMoonView.setColors(
+                                themeColors[0],
+                                ColorUtils.setAlphaComponent(themeColors[1], (int) (0.66 * 255)),
+                                ColorUtils.setAlphaComponent(themeColors[1], (int) (0.33 * 255)),
+                                ThemeManager.getInstance(context).getThemeColor(
+                                        context, R.attr.colorSurface
+                                ),
+                                true
+                        );
+                    } else {
+                        mSunMoonView.setColors(
+                                themeColors[2],
+                                ColorUtils.setAlphaComponent(themeColors[2], (int) (0.5 * 255)),
+                                ColorUtils.setAlphaComponent(themeColors[2], (int) (0.2 * 255)),
+                                ThemeManager.getInstance(context).getThemeColor(
+                                        context, R.attr.colorSurface
+                                ),
+                                false
+                        );
+                    }
+                    return null;
+                }
+        );
+
         StringBuilder talkBackBuilder = new StringBuilder(mTitle.getText());
 
         ensureTime(mWeather);
         ensurePhaseAngle(mWeather);
-
-        mCard.setCardBackgroundColor(themeManager.getSurfaceColor(context));
-
-        mTitle.setTextColor(themeColors[0]);
 
         if (!mWeather.getDailyForecast().get(0).getMoonPhase().isValid()) {
             mPhaseText.setVisibility(View.GONE);
             mPhaseView.setVisibility(View.GONE);
         } else {
             mPhaseText.setVisibility(View.VISIBLE);
-            mPhaseText.setTextColor(themeManager.getTextContentColor(context));
-            mPhaseText.setText(mWeather.getDailyForecast().get(0).getMoonPhase().getMoonPhase(context));
             mPhaseView.setVisibility(View.VISIBLE);
-            mPhaseView.setColor(
-                    ContextCompat.getColor(context, R.color.colorTextContent_dark),
-                    ContextCompat.getColor(context, R.color.colorTextContent_light),
-                    themeManager.getTextContentColor(context)
-            );
 
+            mPhaseText.setText(mWeather.getDailyForecast().get(0).getMoonPhase().getMoonPhase(context));
             talkBackBuilder.append(", ").append(mPhaseText.getText());
         }
 
@@ -128,23 +181,6 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
             mSunMoonView.setDayIndicatorRotation(0);
             mSunMoonView.setNightIndicatorRotation(0);
             mPhaseView.setSurfaceAngle(mPhaseAngle);
-        }
-        if (themeManager.isLightTheme()) {
-            mSunMoonView.setColors(
-                    themeColors[0],
-                    ColorUtils.setAlphaComponent(themeColors[1], (int) (0.66 * 255)),
-                    ColorUtils.setAlphaComponent(themeColors[1], (int) (0.33 * 255)),
-                    themeManager.getSurfaceColor(context),
-                    themeManager.isLightTheme()
-            );
-        } else {
-            mSunMoonView.setColors(
-                    themeColors[2],
-                    ColorUtils.setAlphaComponent(themeColors[2], (int) (0.5 * 255)),
-                    ColorUtils.setAlphaComponent(themeColors[2], (int) (0.2 * 255)),
-                    themeManager.getSurfaceColor(context),
-                    themeManager.isLightTheme()
-            );
         }
 
         if (mWeather.getDailyForecast().get(0).sun().isValid()) {
@@ -183,6 +219,7 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
         itemView.setContentDescription(talkBackBuilder.toString());
     }
 
+    @SuppressLint("Recycle")
     @Override
     public void onEnterScreen() {
         if (itemAnimationEnabled && mWeather != null) {

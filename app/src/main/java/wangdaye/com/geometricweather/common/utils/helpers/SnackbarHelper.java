@@ -3,10 +3,8 @@ package wangdaye.com.geometricweather.common.utils.helpers;
 import android.view.View;
 
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 
 import wangdaye.com.geometricweather.GeometricWeather;
-import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.snackbar.Snackbar;
 import wangdaye.com.geometricweather.common.snackbar.SnackbarContainer;
@@ -56,7 +54,6 @@ public class SnackbarHelper {
 
         Snackbar.make(container.container, content, Snackbar.LENGTH_LONG, container.cardStyle)
                 .setAction(action, l)
-                .setActionTextColor(ContextCompat.getColor(activity, R.color.colorTextAlert))
                 .setCallback(callback)
                 .show();
     }

@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/little_margin"
     style="@style/material_card"
-    app:cardBackgroundColor="@color/colorSeparator_dark">
+    app:cardBackgroundColor="?attr/colorSurface">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,7 +24,7 @@
             android:paddingBottom="@dimen/design_snackbar_padding_vertical"
             android:paddingLeft="@dimen/design_snackbar_padding_horizontal"
             android:paddingRight="@dimen/design_snackbar_padding_horizontal"
-            android:textColor="@android:color/white"
+            android:textColor="?attr/colorOnSurface"
             android:textAppearance="@style/TextAppearance.Design.Snackbar.Message"
             android:maxLines="@integer/design_snackbar_text_max_lines"
             android:ellipsize="end"
@@ -43,7 +43,7 @@
             android:paddingLeft="@dimen/design_snackbar_padding_horizontal"
             android:paddingRight="@dimen/design_snackbar_padding_horizontal"
             android:visibility="gone"
-            android:textColor="?attr/colorAccent"
+            android:textColor="?attr/colorPrimary"
             style="?attr/borderlessButtonStyle"
             tools:visibility="visible"
             tools:text="Action"

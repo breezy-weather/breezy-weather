@@ -31,7 +31,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 app:max="400"
-                app:background_color="@color/colorSeparator"
+                app:background_color="?attr/colorOutline"
                 app:text_color="@color/colorTextContent"
                 app:bottom_text_color="@color/colorTextSubtitle"
                 app:arc_angle="240"

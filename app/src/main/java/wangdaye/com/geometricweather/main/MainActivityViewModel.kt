@@ -76,7 +76,7 @@ class MainActivityViewModel @Inject constructor(
             validList.first { it.formattedId == id }
         )
         validLocationList = MutableLiveData(
-            SelectableLocationList(locationList = validList, selectedId = id!!)
+            SelectableLocationList(locationList = validList, selectedId = id)
         )
         totalLocationList = MutableLiveData(
             SelectableLocationList(locationList = totalList, selectedId = id)
@@ -355,9 +355,6 @@ class MainActivityViewModel @Inject constructor(
         }
 
         if (currentLocation.value?.formattedId ?: "" == location.formattedId) {
-            if (updating) {
-                mainMessage.setValue(MainMessage.BACKGROUND_UPDATE)
-            }
             cancelRequest()
         }
         updateInnerData(location)
@@ -472,7 +469,13 @@ class MainActivityViewModel @Inject constructor(
         total.add(to, total.removeAt(from))
 
         updateInnerData(total)
-        repository.writeLocationList(context = getApplication(), locationList = total)
+    }
+
+    fun moveLocationFinish() {
+        repository.writeLocationList(
+            context = getApplication(),
+            locationList = totalLocationList.value?.locationList ?: emptyList()
+        )
     }
 
     fun updateLocation(location: Location) {
@@ -483,12 +486,14 @@ class MainActivityViewModel @Inject constructor(
         )
     }
 
-    fun deleteLocation(position: Int) {
+    fun deleteLocation(position: Int): Location {
         val total = ArrayList(totalLocationList.value?.locationList ?: emptyList())
         val location = total.removeAt(position)
 
         updateInnerData(total)
         repository.deleteLocation(context = getApplication(), location = location)
+
+        return location
     }
 
     // MARK: - getter.

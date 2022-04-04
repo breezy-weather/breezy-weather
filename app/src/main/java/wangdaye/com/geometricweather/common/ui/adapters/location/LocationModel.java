@@ -36,15 +36,12 @@ public class LocationModel {
 
     public @Nullable String alerts;
 
-    public boolean lightTheme;
     public boolean selected;
-
-    private final boolean mForceUpdate;
 
     public LocationModel(@NonNull Context context,
                          @NonNull Location location,
                          @NonNull TemperatureUnit unit,
-                         boolean lightTheme, boolean selected, boolean forceUpdate) {
+                         boolean selected) {
         this.location = location;
 
         if (location.getWeather() != null) {
@@ -116,10 +113,7 @@ public class LocationModel {
             alerts = null;
         }
 
-        this.lightTheme = lightTheme;
         this.selected = selected;
-
-        mForceUpdate = forceUpdate;
     }
 
     public boolean areItemsTheSame(@NonNull LocationModel newItem) {
@@ -129,26 +123,6 @@ public class LocationModel {
     }
 
     public boolean areContentsTheSame(@NonNull LocationModel newItem) {
-        return weatherCode == newItem.weatherCode
-                && weatherSource == newItem.weatherSource
-                && currentPosition == newItem.currentPosition
-                && residentPosition == newItem.residentPosition
-                && isSameString(title, newItem.title)
-                && isSameString(subtitle, newItem.subtitle)
-                && isSameString(alerts, newItem.alerts)
-                // && latitude == newItem.latitude
-                // && longitude == newItem.longitude
-                // && timeZone.getID().equals(newItem.timeZone.getID())
-                && lightTheme == newItem.lightTheme
-                && selected == newItem.selected
-                && !newItem.mForceUpdate;
-    }
-
-    private static boolean isSameString(String a, String b) {
-        if (!TextUtils.isEmpty(a) && !TextUtils.isEmpty(b)) {
-            return a.equals(b);
-        } else {
-            return TextUtils.isEmpty(a) && TextUtils.isEmpty(b);
-        }
+        return location.equals(newItem.location);
     }
 }

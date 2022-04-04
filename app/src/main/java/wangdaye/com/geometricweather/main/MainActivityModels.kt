@@ -58,7 +58,6 @@ class SelectableLocationList(
 }
 
 enum class MainMessage {
-    BACKGROUND_UPDATE,
     LOCATION_FAILED,
     WEATHER_REQ_FAILED,
 }

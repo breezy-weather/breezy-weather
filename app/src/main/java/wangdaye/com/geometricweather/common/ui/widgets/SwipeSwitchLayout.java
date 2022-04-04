@@ -18,10 +18,6 @@ import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.FrameLayout;
 
-/**
- * Swipe switch layout.
- * */
-
 public class SwipeSwitchLayout extends FrameLayout
         implements NestedScrollingParent2, NestedScrollingParent3 {
 
@@ -224,7 +220,7 @@ public class SwipeSwitchLayout extends FrameLayout
         realDistance = Math.max(realDistance, -triggerDistance);
 
         int swipeDirection = mSwipeDistance < 0 ? SWIPE_DIRECTION_LEFT : SWIPE_DIRECTION_RIGHT;
-        float progress = 1.f * Math.abs(realDistance) / triggerDistance;
+        float progress = Math.abs(realDistance) / triggerDistance;
 
         if (getChildCount() > 0) {
             mTarget = getChildAt(0);

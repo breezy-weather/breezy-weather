@@ -5,7 +5,7 @@
     android:id="@+id/dialog_minimal_icon_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorSeparator"
+    android:background="?attr/colorOutline"
     android:foreground="@drawable/selectable_item_background"
     tools:ignore="UnusedAttribute">
 

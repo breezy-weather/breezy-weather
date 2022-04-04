@@ -16,6 +16,7 @@ import wangdaye.com.geometricweather.common.basic.models.weather.MoonPhase;
 import wangdaye.com.geometricweather.common.ui.widgets.astro.MoonPhaseView;
 import wangdaye.com.geometricweather.daily.adapter.DailyWeatherAdapter;
 import wangdaye.com.geometricweather.daily.adapter.model.DailyAstro;
+import wangdaye.com.geometricweather.theme.ThemeManager;
 
 public class AstroHolder extends DailyWeatherAdapter.ViewHolder {
 
@@ -83,9 +84,11 @@ public class AstroHolder extends DailyWeatherAdapter.ViewHolder {
             mMoonPhase.setVisibility(View.VISIBLE);
             mMoonPhaseIcon.setSurfaceAngle(p.getAngle());
             mMoonPhaseIcon.setColor(
-                    ContextCompat.getColor(context, R.color.colorTextContent_dark),
-                    ContextCompat.getColor(context, R.color.colorTextContent_light),
-                    ContextCompat.getColor(context, R.color.colorTextContent)
+                    ContextCompat.getColor(context, R.color.colorTextLight2nd),
+                    ContextCompat.getColor(context, R.color.colorTextDark2nd),
+                    ThemeManager.getInstance(context).getThemeColor(
+                            context, R.attr.colorBodyText
+                    )
             );
             mMoonPhaseText.setText(p.getMoonPhase(context));
         } else {

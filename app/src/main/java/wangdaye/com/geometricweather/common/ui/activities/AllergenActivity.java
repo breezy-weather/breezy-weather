@@ -5,17 +5,18 @@ import android.os.Bundle;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
-import com.google.android.material.appbar.MaterialToolbar;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.google.android.material.appbar.MaterialToolbar;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.ui.adapters.DailyPollenAdapter;
 import wangdaye.com.geometricweather.common.ui.decotarions.ListDecoration;
 import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarRecyclerView;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
-import wangdaye.com.geometricweather.common.ui.adapters.DailyPollenAdapter;
+import wangdaye.com.geometricweather.theme.ThemeManager;
 
 public class AllergenActivity extends GeoActivity {
 
@@ -54,7 +55,12 @@ public class AllergenActivity extends GeoActivity {
         if (mLocation.getWeather() != null) {
             FitSystemBarRecyclerView recyclerView = findViewById(R.id.activity_allergen_recyclerView);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            recyclerView.addItemDecoration(new ListDecoration(this, ContextCompat.getColor(this, R.color.colorSeparator)));
+            recyclerView.addItemDecoration(
+                    new ListDecoration(
+                            this,
+                            ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorOutline)
+                    )
+            );
             recyclerView.setAdapter(new DailyPollenAdapter(mLocation.getWeather()));
         } else {
             finish();

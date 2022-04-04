@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.main.adapters.main.holder;
 
+import android.annotation.SuppressLint;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,17 +20,20 @@ import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.DailyTrendDisplay;
 import wangdaye.com.geometricweather.common.basic.models.weather.Daily;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.main.adapters.main.MainTag;
-import wangdaye.com.geometricweather.main.adapters.trend.DailyTrendAdapter;
-import wangdaye.com.geometricweather.main.layouts.TrendHorizontalLinearLayoutManager;
-import wangdaye.com.geometricweather.main.utils.MainThemeManager;
-import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.common.ui.adapters.TagAdapter;
 import wangdaye.com.geometricweather.common.ui.decotarions.GridMarginsDecoration;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
-import wangdaye.com.geometricweather.main.widgets.TrendRecyclerViewScrollBar;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
+import wangdaye.com.geometricweather.main.adapters.main.MainTag;
+import wangdaye.com.geometricweather.main.adapters.trend.DailyTrendAdapter;
+import wangdaye.com.geometricweather.main.layouts.TrendHorizontalLinearLayoutManager;
+import wangdaye.com.geometricweather.main.utils.DayNightColorWrapper;
+import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
+import wangdaye.com.geometricweather.main.widgets.TrendRecyclerViewScrollBar;
+import wangdaye.com.geometricweather.settings.SettingsManager;
+import wangdaye.com.geometricweather.theme.ThemeManager;
+import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
+import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
 
 public class DailyViewHolder extends AbstractMainCardViewHolder {
 
@@ -41,10 +45,14 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
 
     private final TrendRecyclerView mTrendRecyclerView;
     private final DailyTrendAdapter mTrendAdapter;
+    private final TrendRecyclerViewScrollBar mScrollBar;
 
-    public DailyViewHolder(ViewGroup parent, MainThemeManager themeManager) {
-        super(LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.container_main_daily_trend_card, parent, false), themeManager);
+    public DailyViewHolder(ViewGroup parent) {
+        super(
+                LayoutInflater
+                        .from(parent.getContext())
+                        .inflate(R.layout.container_main_daily_trend_card, parent, false)
+        );
 
         mCard = itemView.findViewById(R.id.container_main_daily_trend_card);
         mTitle = itemView.findViewById(R.id.container_main_daily_trend_card_title);
@@ -52,24 +60,50 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
         mTagView = itemView.findViewById(R.id.container_main_daily_trend_card_tagView);
 
         mTrendRecyclerView = itemView.findViewById(R.id.container_main_daily_trend_card_trendRecyclerView);
-        mTrendRecyclerView.addItemDecoration(new TrendRecyclerViewScrollBar(parent.getContext(), themeManager));
         mTrendRecyclerView.setHasFixedSize(true);
 
         mTrendAdapter = new DailyTrendAdapter();
+        mScrollBar = new TrendRecyclerViewScrollBar();
+        mTrendRecyclerView.addItemDecoration(mScrollBar);
+
+        DayNightColorWrapper.bind(
+                mTrendRecyclerView,
+                R.attr.colorOutline,
+                (color, aBoolean) -> {
+                    mTrendRecyclerView.setLineColor(color);
+                    return null;
+                }
+        );
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onBindView(GeoActivity activity, @NonNull Location location,
                            @NonNull ResourceProvider provider,
                            boolean listAnimationEnabled, boolean itemAnimationEnabled, boolean firstCard) {
         super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled, firstCard);
 
+        DayNightColorWrapper.bind(itemView, R.attr.colorSurface, (color, animated) -> {
+            mScrollBar.setColor(
+                    color,
+                    MainModuleUtils.isMainLightTheme(context, location.isDaylight())
+            );
+            mCard.setCardBackgroundColor(color);
+            mTrendAdapter.notifyDataSetChanged();
+            return null;
+        });
+
         Weather weather = location.getWeather();
         assert weather != null;
 
-        int weatherColor = themeManager.getWeatherThemeColors()[0];
-
-        mCard.setCardBackgroundColor(themeManager.getSurfaceColor(context));
+        int weatherColor = ThemeManager
+                .getInstance(context)
+                .getWeatherThemeDelegate()
+                .getThemeColors(
+                        context,
+                        WeatherViewController.getWeatherKind(weather),
+                        location.isDaylight()
+                )[0];
 
         mTitle.setTextColor(weatherColor);
 
@@ -98,12 +132,33 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
             );
 
             mTagView.setLayoutManager(new TrendHorizontalLinearLayoutManager(context));
-            mTagView.setAdapter(
-                    new TagAdapter(tagList, weatherColor, (checked, oldPosition, newPosition) -> {
-                        setTrendAdapterByTag(location, (MainTag) tagList.get(newPosition));
-                        return false;
-                    }, themeManager, 0)
-            );
+            DayNightColorWrapper.bind(mTagView, new Integer[0], (integers, aBoolean) -> {
+                int[] colors = ThemeManager
+                        .getInstance(context)
+                        .getWeatherThemeDelegate()
+                        .getThemeColors(
+                                context,
+                                WeatherViewController.getWeatherKind(weather),
+                                location.isDaylight()
+                        );
+
+                mTagView.setAdapter(
+                        new TagAdapter(
+                                tagList,
+                                ThemeManager
+                                        .getInstance(context)
+                                        .getThemeColor(context, R.attr.titleTextColor),
+                                colors[1],
+                                colors[2],
+                                (checked, oldPosition, newPosition) -> {
+                                    setTrendAdapterByTag(location, (MainTag) tagList.get(newPosition));
+                                    return false;
+                                },
+                                0
+                        )
+                );
+                return null;
+            });
         }
 
         mTrendRecyclerView.setLayoutManager(
@@ -118,6 +173,7 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
         setTrendAdapterByTag(location, (MainTag) tagList.get(0));
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private void setTrendAdapterByTag(Location location, MainTag tag) {
         switch (tag.getType()) {
             case TEMPERATURE:
@@ -126,7 +182,6 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
                         mTrendRecyclerView,
                         location,
                         provider,
-                        themeManager,
                         SettingsManager.getInstance(context).getTemperatureUnit()
                 );
                 break;
@@ -136,7 +191,6 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
                         (GeoActivity) context,
                         mTrendRecyclerView,
                         location,
-                        themeManager,
                         SettingsManager.getInstance(context).getSpeedUnit()
                 );
                 break;
@@ -147,17 +201,16 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
                         mTrendRecyclerView,
                         location,
                         provider,
-                        themeManager,
                         SettingsManager.getInstance(context).getPrecipitationUnit()
                 );
                 break;
 
             case AIR_QUALITY:
-                mTrendAdapter.airQuality((GeoActivity) context, mTrendRecyclerView, location, themeManager);
+                mTrendAdapter.airQuality((GeoActivity) context, mTrendRecyclerView, location);
                 break;
 
             case UV_INDEX:
-                mTrendAdapter.uv((GeoActivity) context, mTrendRecyclerView, location, themeManager);
+                mTrendAdapter.uv((GeoActivity) context, mTrendRecyclerView, location);
                 break;
         }
         mTrendAdapter.notifyDataSetChanged();

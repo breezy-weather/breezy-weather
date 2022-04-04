@@ -25,7 +25,6 @@ import wangdaye.com.geometricweather.main.adapters.main.holder.DetailsViewHolder
 import wangdaye.com.geometricweather.main.adapters.main.holder.FooterViewHolder;
 import wangdaye.com.geometricweather.main.adapters.main.holder.HeaderViewHolder;
 import wangdaye.com.geometricweather.main.adapters.main.holder.HourlyViewHolder;
-import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 
@@ -36,7 +35,6 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
     private WeatherView mWeatherView;
     private @Nullable Location mLocation;
     private ResourceProvider mProvider;
-    private MainThemeManager mThemeManager;
 
     private List<Integer> mViewTypeList;
     private @Nullable Integer mFirstCardPosition;
@@ -47,21 +45,20 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
 
     public MainAdapter(@NonNull GeoActivity activity, @NonNull RecyclerView host,
                        @NonNull WeatherView weatherView, @Nullable Location location,
-                       @NonNull ResourceProvider provider, @NonNull MainThemeManager themeManager,
+                       @NonNull ResourceProvider provider,
                        boolean listAnimationEnabled, boolean itemAnimationEnabled) {
-        update(activity, host, weatherView, location, provider, themeManager, listAnimationEnabled, itemAnimationEnabled);
+        update(activity, host, weatherView, location, provider, listAnimationEnabled, itemAnimationEnabled);
     }
 
     public void update(@NonNull GeoActivity activity, @NonNull RecyclerView host,
                        @NonNull WeatherView weatherView, @Nullable Location location,
-                       @NonNull ResourceProvider provider, @NonNull MainThemeManager themeManager,
+                       @NonNull ResourceProvider provider,
                        boolean listAnimationEnabled, boolean itemAnimationEnabled) {
         mActivity = activity;
         mHost = host;
         mWeatherView = weatherView;
         mLocation = location;
         mProvider = provider;
-        mThemeManager = themeManager;
 
         mViewTypeList = new ArrayList<>();
         mFirstCardPosition = null;
@@ -106,28 +103,28 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
     public AbstractMainViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         switch (viewType) {
             case ViewType.HEADER:
-                return new HeaderViewHolder(parent, mWeatherView, mThemeManager);
+                return new HeaderViewHolder(parent, mWeatherView);
 
             case ViewType.DAILY:
-                return new DailyViewHolder(parent, mThemeManager);
+                return new DailyViewHolder(parent);
 
             case ViewType.HOURLY:
-                return new HourlyViewHolder(parent, mThemeManager);
+                return new HourlyViewHolder(parent);
 
             case ViewType.AIR_QUALITY:
-                return new AirQualityViewHolder(parent, mThemeManager);
+                return new AirQualityViewHolder(parent);
 
             case ViewType.ALLERGEN:
-                return new AllergenViewHolder(parent, mThemeManager);
+                return new AllergenViewHolder(parent);
 
             case ViewType.ASTRO:
-                return new AstroViewHolder(parent, mThemeManager);
+                return new AstroViewHolder(parent);
 
             case ViewType.DETAILS:
-                return new DetailsViewHolder(parent, mThemeManager);
+                return new DetailsViewHolder(parent);
 
             default: // FOOTER.
-                return new FooterViewHolder(parent, mThemeManager);
+                return new FooterViewHolder(parent);
         }
     }
 

@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Px;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,7 +27,6 @@ import java.util.List;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.CardDisplay;
-import wangdaye.com.geometricweather.theme.DefaultThemeManager;
 import wangdaye.com.geometricweather.common.ui.adapters.TagAdapter;
 import wangdaye.com.geometricweather.common.ui.decotarions.GridMarginsDecoration;
 import wangdaye.com.geometricweather.common.ui.decotarions.ListDecoration;
@@ -36,6 +34,7 @@ import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarRecycl
 import wangdaye.com.geometricweather.common.ui.widgets.slidingItem.SlidingItemTouchCallback;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.settings.adapters.CardDisplayAdapter;
+import wangdaye.com.geometricweather.theme.ThemeManager;
 
 public class CardDisplayManageActivity extends GeoActivity {
 
@@ -116,8 +115,12 @@ public class CardDisplayManageActivity extends GeoActivity {
 
         RecyclerView recyclerView = findViewById(R.id.activity_card_display_manage_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.addItemDecoration(new ListDecoration(
-                this, ContextCompat.getColor(this, R.color.colorSeparator)));
+        recyclerView.addItemDecoration(
+                new ListDecoration(
+                        this,
+                        ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorOutline)
+                )
+        );
         recyclerView.setAdapter(mCardDisplayAdapter);
 
         this.mCardDisplayItemTouchHelper = new ItemTouchHelper(new CardDisplaySwipeCallback());
@@ -142,13 +145,19 @@ public class CardDisplayManageActivity extends GeoActivity {
         for (CardDisplay card : otherCards) {
             tagList.add(new CardTag(card));
         }
-        mTagAdapter = new TagAdapter(tagList, (checked, oldPosition, newPosition) -> {
-            setResult(RESULT_OK);
-            CardTag tag = (CardTag) mTagAdapter.removeItem(newPosition);
-            mCardDisplayAdapter.insertItem(tag.card);
-            resetBottomBarVisibility();
-            return true;
-        }, new DefaultThemeManager());
+        mTagAdapter = new TagAdapter(
+                tagList,
+                ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorOnBackground),
+                ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorPrimaryContainer),
+                ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorSecondaryContainer),
+                (checked, oldPosition, newPosition) -> {
+                    setResult(RESULT_OK);
+                    CardTag tag = (CardTag) mTagAdapter.removeItem(newPosition);
+                    mCardDisplayAdapter.insertItem(tag.card);
+                    resetBottomBarVisibility();
+                    return true;
+                }
+        );
 
         mBottomBar = findViewById(R.id.activity_card_display_manage_bottomBar);
 

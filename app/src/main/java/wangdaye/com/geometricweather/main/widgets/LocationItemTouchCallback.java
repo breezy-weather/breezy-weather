@@ -73,18 +73,21 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
     @Override
     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
         int position = viewHolder.getAdapterPosition();
-        assert mViewModel.getTotalLocationList() != null;
-        Location location = mViewModel.getTotalLocationList().get(position);
+        Location location = mViewModel.getTotalLocationList().getValue().getLocationList().get(position);
 
         switch (direction) {
             case ItemTouchHelper.START: {
                 if (location.isCurrentPosition()) {
-                    mViewModel.forceUpdateLocation(location, position);
+                    // TODO: force update.
+                    mViewModel.updateLocation(location);
                     mCallback.onSelectProviderActivityStarted();
                 } else {
-                    location = new Location(
-                            location, location.isCurrentPosition(), !location.isResidentPosition());
-                    mViewModel.forceUpdateLocation(location, position);
+                    location = Location.copy(
+                            location,
+                            location.isCurrentPosition(),
+                            !location.isResidentPosition()
+                    );
+                    mViewModel.updateLocation(location);
 
                     if (location.isResidentPosition()) {
                         SnackbarHelper.showSnackbar(
@@ -98,21 +101,19 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
                 break;
             }
             case ItemTouchHelper.END:
-                assert mViewModel.getTotalLocationList() != null;
-                if (mViewModel.getTotalLocationList().size() <= 1) {
-                    mViewModel.forceUpdateLocation(location, position);
+                if (mViewModel.totalLocationList.getValue().getLocationList().size() <= 1) {
+                    // TODO: force update.
+                    mViewModel.updateLocation(location);
                     SnackbarHelper.showSnackbar(
                             mActivity.getString(R.string.feedback_location_list_cannot_be_null)
                     );
                 } else {
                     location = mViewModel.deleteLocation(position);
-                    if (location != null) {
-                        SnackbarHelper.showSnackbar(
-                                mActivity.getString(R.string.feedback_delete_succeed),
-                                mActivity.getString(R.string.cancel),
-                                new CancelDeleteListener(location, position)
-                        );
-                    }
+                    SnackbarHelper.showSnackbar(
+                            mActivity.getString(R.string.feedback_delete_succeed),
+                            mActivity.getString(R.string.cancel),
+                            new CancelDeleteListener(location, position)
+                    );
                 }
                 break;
         }

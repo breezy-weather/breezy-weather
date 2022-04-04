@@ -5,7 +5,7 @@
     android:id="@+id/activity_weather_daily_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorRoot">
+    android:background="?android:attr/colorBackground">
 
     <LinearLayout
         android:orientation="vertical"

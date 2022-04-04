@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorRoot">
+    android:background="?android:attr/colorBackground">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment"
@@ -13,7 +13,7 @@
         android:tag="fragment_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorRoot"
+        android:background="?android:attr/colorBackground"
         tools:ignore="UnusedAttribute" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

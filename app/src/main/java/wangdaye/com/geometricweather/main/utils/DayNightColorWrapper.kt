@@ -8,8 +8,8 @@ import java.util.*
 
 class DayNightColorWrapper(
     context: Context,
-    @AttrRes val attrId: Int,
-    val colorConsumer: (color: Int, animated: Boolean) -> Unit,
+    @AttrRes val attrIds: Array<Int>,
+    val colorConsumer: (colors: Array<Int>, animated: Boolean) -> Unit,
 ) {
     companion object {
         @JvmStatic
@@ -20,26 +20,44 @@ class DayNightColorWrapper(
             view: View,
             @AttrRes attrId: Int,
             colorConsumer: (color: Int, animated: Boolean) -> Unit,
+        ) = bind(
+            view = view,
+            attrIds = arrayOf(attrId),
+            colorConsumer = { colors, animated -> colorConsumer(colors[0], animated) },
+        )
+
+        @JvmStatic
+        fun bind(
+            view: View,
+            @AttrRes attrIds: Array<Int>,
+            colorConsumer: (colors: Array<Int>, animated: Boolean) -> Unit,
         ) {
-            viewWrapperMap[view] = DayNightColorWrapper(view.context, attrId, colorConsumer)
+            viewWrapperMap[view] = DayNightColorWrapper(view.context, attrIds, colorConsumer)
         }
 
         @JvmStatic
         fun updateAll() {
             for (entry in viewWrapperMap) {
-                entry.value.colorConsumer(
-                    entry.value.getColor(entry.key.context),
-                    true,
+                entry.value.update(
+                    context = entry.key.context,
+                    animated = true,
                 )
             }
         }
     }
 
     init {
-        colorConsumer(getColor(context), false)
+        update(context = context, animated = false)
     }
 
-    private fun getColor(context: Context) = ThemeManager
+    private fun update(context: Context, animated: Boolean) {
+        colorConsumer(
+            attrIds.map { getColor(context, it) }.toTypedArray(),
+            animated
+        )
+    }
+
+    private fun getColor(context: Context, @AttrRes id: Int) = ThemeManager
         .getInstance(context)
-        .getThemeColor(context, attrId)
+        .getThemeColor(context, id)
 }

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.graphics.ColorUtils;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,26 +20,19 @@ import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.GeoFragment;
 import wangdaye.com.geometricweather.common.basic.insets.FitHorizontalSystemBarRootLayout;
 import wangdaye.com.geometricweather.common.basic.models.Location;
-import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
-import wangdaye.com.geometricweather.common.basic.models.resources.Resource;
 import wangdaye.com.geometricweather.common.ui.widgets.SwipeSwitchLayout;
-import wangdaye.com.geometricweather.theme.ThemeManager;
-import wangdaye.com.geometricweather.theme.weatherView.WeatherView;
-import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
-import wangdaye.com.geometricweather.theme.weatherView.materialWeatherView.MaterialWeatherView;
-import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
 import wangdaye.com.geometricweather.databinding.FragmentMainBinding;
 import wangdaye.com.geometricweather.main.MainActivityViewModel;
 import wangdaye.com.geometricweather.main.adapters.main.MainAdapter;
-import wangdaye.com.geometricweather.main.dialogs.LocationHelpDialog;
 import wangdaye.com.geometricweather.main.layouts.MainLayoutManager;
-import wangdaye.com.geometricweather.main.models.LocationResource;
+import wangdaye.com.geometricweather.main.utils.DayNightColorWrapper;
 import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
-import wangdaye.com.geometricweather.main.utils.MainPalette;
-import wangdaye.com.geometricweather.main.utils.MainThemeManager;
+import wangdaye.com.geometricweather.settings.SettingsManager;
+import wangdaye.com.geometricweather.theme.ThemeManager;
 import wangdaye.com.geometricweather.theme.resource.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.settings.SettingsManager;
+import wangdaye.com.geometricweather.theme.weatherView.WeatherView;
+import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
 
 public class MainFragment extends GeoFragment {
 
@@ -49,18 +43,18 @@ public class MainFragment extends GeoFragment {
     private MainAdapter mAdapter;
     private OnScrollListener mScrollListener;
     private @Nullable Animator mRecyclerViewAnimator;
-
     private ResourceProvider mResourceProvider;
 
-    private @Nullable String mCurrentLocationFormattedId;
-    private @Nullable WeatherSource mCurrentWeatherSource;
-    private @Nullable Boolean mCurrentLightTheme;
-    private long mCurrentWeatherTimeStamp;
+    private int previewOffset = 0;
+    private void setPreviewOffset(int offset) {
+        if (previewOffset == offset) {
+            return;
+        }
+        previewOffset = offset;
+        updatePreviewSubviews();
+    }
 
     private @Nullable Callback mCallback;
-
-    private static final long INVALID_CURRENT_WEATHER_TIME_STAMP = -1;
-
     public interface Callback {
         void onManageIconClicked();
         void onSettingsIconClicked();
@@ -91,9 +85,6 @@ public class MainFragment extends GeoFragment {
                 )
         );
         setSystemBarStyle();
-
-        resetUIUpdateFlag();
-        ensureResourceProvider();
 
         initView();
         setCallback((Callback) requireActivity());
@@ -137,8 +128,31 @@ public class MainFragment extends GeoFragment {
         mViewModel = new ViewModelProvider(requireActivity()).get(MainActivityViewModel.class);
     }
 
-    @SuppressLint({"ClickableViewAccessibility", "NonConstantResourceId"})
+    @SuppressLint({"ClickableViewAccessibility", "NonConstantResourceId", "NotifyDataSetChanged"})
     private void initView() {
+        ensureResourceProvider();
+
+        FitHorizontalSystemBarRootLayout rootLayout = ((GeoActivity) requireActivity())
+                .getFitHorizontalSystemBarRootLayout();
+        DayNightColorWrapper.bind(
+                rootLayout,
+                new Integer[]{
+                        android.R.attr.colorBackground,
+                        R.attr.colorOutline
+                },
+                (colors, animated) -> {
+                    rootLayout.setRootColor(colors[0]);
+                    rootLayout.setLineColor(colors[1]);
+                    return null;
+                }
+        );
+
+        updatePreviewSubviews();
+
+        mWeatherView.setGravitySensorEnabled(
+                SettingsManager.getInstance(requireContext()).isGravitySensorEnabled()
+        );
+
         mBinding.toolbar.setNavigationOnClickListener(v -> {
             if (mCallback != null) {
                 mCallback.onManageIconClicked();
@@ -163,15 +177,37 @@ public class MainFragment extends GeoFragment {
         });
 
         mBinding.switchLayout.setOnSwitchListener(switchListener);
+        mBinding.switchLayout.reset();
 
-        mBinding.refreshLayout.setOnRefreshListener(() -> mViewModel.updateWeather(
-                true,
-                true
-        ));
+        mBinding.indicator.setSwitchView(mBinding.switchLayout);
+        DayNightColorWrapper.bind(
+                mBinding.indicator,
+                new Integer[]{
+                        android.R.attr.colorBackground,
+                        R.attr.colorOnSurface
+                },
+                (colors, animated) -> {
+                    mBinding.indicator.setCurrentIndicatorColor(colors[0]);
+                    mBinding.indicator.setIndicatorColor(
+                            ColorUtils.setAlphaComponent(colors[1], (int) (0.5 * 255))
+                    );
+                    return null;
+                }
+        );
 
-        boolean listAnimationEnabled = SettingsManager.getInstance(requireContext())
+        DayNightColorWrapper.bind(mBinding.refreshLayout, R.attr.colorSurface, (color, animated) -> {
+            mBinding.refreshLayout.setProgressBackgroundColorSchemeColor(color);
+            return null;
+        });
+        mBinding.refreshLayout.setOnRefreshListener(() ->
+                mViewModel.updateWithUpdatingChecking(true, true)
+        );
+
+        boolean listAnimationEnabled = SettingsManager
+                .getInstance(requireContext())
                 .isListAnimationEnabled();
-        boolean itemAnimationEnabled = SettingsManager.getInstance(requireContext())
+        boolean itemAnimationEnabled = SettingsManager
+                .getInstance(requireContext())
                 .isItemAnimationEnabled();
         mAdapter = new MainAdapter(
                 (GeoActivity) requireActivity(),
@@ -179,7 +215,6 @@ public class MainFragment extends GeoFragment {
                 mWeatherView,
                 null,
                 mResourceProvider,
-                mViewModel.getThemeManager(),
                 listAnimationEnabled,
                 itemAnimationEnabled
         );
@@ -189,39 +224,24 @@ public class MainFragment extends GeoFragment {
         mBinding.recyclerView.addOnScrollListener(mScrollListener = new OnScrollListener());
         mBinding.recyclerView.setOnTouchListener(indicatorStateListener);
 
-        mBinding.indicator.setSwitchView(mBinding.switchLayout);
-
-        mViewModel.getCurrentLocation().observe(getViewLifecycleOwner(), resource -> {
-            if (resource == null) {
-                return;
-            }
-
-            setRefreshing(resource.status == Resource.Status.LOADING);
-            drawUI(resource.data, resource.event == LocationResource.Event.INITIALIZE);
-
-            if (resource.locateFailed) {
-                SnackbarHelper.showSnackbar(
-                        getString(R.string.feedback_location_failed),
-                        getString(R.string.help),
-                        v -> LocationHelpDialog
-                                .getInstance()
-                                .show(getParentFragmentManager(), null)
-                );
-            } else if (resource.status == Resource.Status.ERROR) {
-                SnackbarHelper.showSnackbar(getString(R.string.feedback_get_weather_failed));
-            }
+        mViewModel.currentLocation.observe(getViewLifecycleOwner(), location -> {
+            ensureResourceProvider();
+            updatePreviewSubviews();
+            updateContentViews(location);
         });
 
-        mViewModel.getIndicator().observe(getViewLifecycleOwner(), resource -> {
-            mBinding.switchLayout.setEnabled(resource.total > 1);
+        mViewModel.loading.observe(getViewLifecycleOwner(), this::setRefreshing);
 
-            if (mBinding.switchLayout.getTotalCount() != resource.total
-                    || mBinding.switchLayout.getPosition() != resource.index) {
-                mBinding.switchLayout.setData(resource.index, resource.total);
+        mViewModel.indicator.observe(getViewLifecycleOwner(), indicator -> {
+            mBinding.switchLayout.setEnabled(indicator.getTotal() > 1);
+
+            if (mBinding.switchLayout.getTotalCount() != indicator.getTotal()
+                    || mBinding.switchLayout.getPosition() != indicator.getIndex()) {
+                mBinding.switchLayout.setData(indicator.getIndex(), indicator.getTotal());
                 mBinding.indicator.setSwitchView(mBinding.switchLayout);
             }
 
-            if (resource.total > 1) {
+            if (indicator.getTotal() > 1) {
                 mBinding.indicator.setVisibility(View.VISIBLE);
             } else {
                 mBinding.indicator.setVisibility(View.GONE);
@@ -231,75 +251,35 @@ public class MainFragment extends GeoFragment {
 
     // control.
 
-    @SuppressLint({"SetTextI18n", "ClickableViewAccessibility", "NotifyDataSetChanged"})
-    private void drawUI(Location location, boolean initialize) {
-        if (location.getFormattedId().equals(mCurrentLocationFormattedId)
-                && location.getWeatherSource() == mCurrentWeatherSource
-                && location.getWeather() != null
-                && location.getWeather().getBase().getTimeStamp() == mCurrentWeatherTimeStamp
-                && mCurrentLightTheme != null
-                && mCurrentLightTheme == mViewModel.getThemeManager().isLightTheme()) {
-            return;
+    public void updateViews() {
+        ensureResourceProvider();
+        updatePreviewSubviews();
+        updateContentViews(mViewModel.currentLocation.getValue());
+    }
+
+    @SuppressLint({"ClickableViewAccessibility", "NotifyDataSetChanged"})
+    private void updateContentViews(Location location) {
+        if (mRecyclerViewAnimator != null) {
+            mRecyclerViewAnimator.cancel();
+            mRecyclerViewAnimator = null;
         }
 
-        boolean needToResetUI = !location.getFormattedId().equals(mCurrentLocationFormattedId)
-                || mCurrentWeatherSource != location.getWeatherSource()
-                || mCurrentWeatherTimeStamp != INVALID_CURRENT_WEATHER_TIME_STAMP
-                || mCurrentLightTheme == null
-                || mCurrentLightTheme != mViewModel.getThemeManager().isLightTheme();
-
-        mCurrentLocationFormattedId = location.getFormattedId();
-        mCurrentWeatherSource = location.getWeatherSource();
-        mCurrentLightTheme = mViewModel.getThemeManager().isLightTheme();
-        mCurrentWeatherTimeStamp = location.getWeather() != null
-                ? location.getWeather().getBase().getTimeStamp()
-                : INVALID_CURRENT_WEATHER_TIME_STAMP;
-
         if (location.getWeather() == null) {
-            resetUI(location);
+            mAdapter.setNullWeather();
+            mAdapter.notifyDataSetChanged();
 
             mBinding.recyclerView.setOnTouchListener((v, event) -> {
                 if (event.getAction() == MotionEvent.ACTION_DOWN
                         && !mBinding.refreshLayout.isRefreshing()) {
-                    mViewModel.updateWeather(true, true);
+                    mViewModel.updateWithUpdatingChecking(true, true);
                 }
                 return false;
             });
 
             return;
-        } else {
-            mBinding.recyclerView.setOnTouchListener(null);
         }
 
-        if (needToResetUI) {
-            resetUI(location);
-        }
-
-        if (initialize) {
-            ensureResourceProvider();
-        }
-
-        MainThemeManager themeManager = mViewModel.getThemeManager();
-
-        FitHorizontalSystemBarRootLayout rootLayout = (
-                (GeoActivity) requireActivity()
-        ).getFitHorizontalSystemBarRootLayout();
-        rootLayout.setRootColor(themeManager.getRootColor(requireContext()));
-        rootLayout.setLineColor(themeManager.getSeparatorColor(requireContext()));
-
-        WeatherViewController.setWeatherCode(
-                mWeatherView,
-                location.getWeather(),
-                location.isDaylight(),
-                mResourceProvider
-        );
-
-        mBinding.refreshLayout.setColorSchemeColors(
-                mWeatherView.getThemeColors(themeManager.isLightTheme())[0]
-        );
-        mBinding.refreshLayout.setProgressBackgroundColorSchemeColor(
-                themeManager.getRootColor(requireContext())
-        );
+        mBinding.recyclerView.setOnTouchListener(null);
 
         boolean listAnimationEnabled = SettingsManager.getInstance(
                 requireContext()
@@ -313,16 +293,12 @@ public class MainFragment extends GeoFragment {
                 mWeatherView,
                 location,
                 mResourceProvider,
-                mViewModel.getThemeManager(),
                 listAnimationEnabled,
                 itemAnimationEnabled
         );
         mAdapter.notifyDataSetChanged();
 
         mScrollListener.postReset(mBinding.recyclerView);
-
-        mBinding.indicator.setCurrentIndicatorColor(themeManager.getAccentColor(requireContext()));
-        mBinding.indicator.setIndicatorColor(themeManager.getTextSubtitleColor(requireContext()));
 
         if (!listAnimationEnabled) {
             mBinding.recyclerView.setAlpha(0f);
@@ -332,57 +308,40 @@ public class MainFragment extends GeoFragment {
         }
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    private void resetUI(Location location) {
-        MainThemeManager themeManager = mViewModel.getThemeManager();
-
-        if (mWeatherView.getWeatherKind() == WeatherView.WEATHER_KING_NULL
-                && location.getWeather() == null) {
-            WeatherViewController.setWeatherCode(
-                    mWeatherView,
-                    null,
-                    themeManager.isLightTheme(),
-                    mResourceProvider
-            );
-            mBinding.refreshLayout.setColorSchemeColors(
-                    mWeatherView.getThemeColors(themeManager.isLightTheme())[0]
-            );
-            mBinding.refreshLayout.setProgressBackgroundColorSchemeColor(
-                    themeManager.getSurfaceColor(requireContext())
-            );
-        }
-        mWeatherView.setGravitySensorEnabled(
-                SettingsManager.getInstance(requireContext()).isGravitySensorEnabled()
-        );
-
-        mBinding.toolbar.setTitle(location.getCityName(requireContext()));
-
-        mBinding.switchLayout.reset();
-
-        if (mRecyclerViewAnimator != null) {
-            mRecyclerViewAnimator.cancel();
-            mRecyclerViewAnimator = null;
-        }
-        mAdapter.setNullWeather();
-        mAdapter.notifyDataSetChanged();
-    }
-
-    public void resetUIUpdateFlag() {
-        mCurrentLocationFormattedId = null;
-        mCurrentWeatherSource = null;
-        mCurrentWeatherTimeStamp = INVALID_CURRENT_WEATHER_TIME_STAMP;
-    }
-
     public void ensureResourceProvider() {
-        String iconProvider = SettingsManager.getInstance(
-                requireContext()
-        ).getIconProvider(
-                requireContext()
-        );
+        String iconProvider = SettingsManager
+                .getInstance(requireContext())
+                .getIconProvider(requireContext());
         if (mResourceProvider == null
                 || !mResourceProvider.getPackageName().equals(iconProvider)) {
             mResourceProvider = ResourcesProviderFactory.getNewInstance();
         }
+    }
+
+    private void updatePreviewSubviews() {
+        Location location = mViewModel.getValidLocation(previewOffset);
+        boolean daylight = previewOffset == 0
+                ? ThemeManager.getInstance(requireContext()).isDaylight()
+                : location.isDaylight();
+
+        mBinding.toolbar.setTitle(location.getCityName(requireContext()));
+        WeatherViewController.setWeatherCode(
+                mWeatherView,
+                location.getWeather(),
+                daylight,
+                mResourceProvider
+        );
+
+        mBinding.refreshLayout.setColorSchemeColors(
+                ThemeManager
+                        .getInstance(requireContext())
+                        .getWeatherThemeDelegate()
+                        .getThemeColors(
+                                requireContext(),
+                                WeatherViewController.getWeatherKind(location.getWeather()),
+                                daylight
+                        )[0]
+        );
     }
 
     private void setRefreshing(final boolean b) {
@@ -390,15 +349,17 @@ public class MainFragment extends GeoFragment {
     }
 
     private void setSystemBarStyle() {
-        boolean statusShader = mScrollListener != null && mScrollListener.topOverlap;
-        mWeatherView.setSystemBarStyle(
-                requireContext(),
-                requireActivity().getWindow(),
-                statusShader,
-                false,
-                true,
-                false
-        );
+        ThemeManager
+                .getInstance(requireContext())
+                .getWeatherThemeDelegate()
+                .setSystemBarStyle(
+                        requireContext(),
+                        requireActivity().getWindow(),
+                        mScrollListener != null && mScrollListener.topOverlap,
+                        false,
+                        true,
+                        false
+                );
     }
 
     // interface.
@@ -441,44 +402,23 @@ public class MainFragment extends GeoFragment {
 
             if (progress >= 1 && mLastProgress < 1) {
                 mLastProgress = 1;
-                updatePreviewView(
-                        mViewModel.getLocationFromList(
-                                swipeDirection == SwipeSwitchLayout.SWIPE_DIRECTION_LEFT ? 1 : -1
-                        )
+                setPreviewOffset(
+                        swipeDirection == SwipeSwitchLayout.SWIPE_DIRECTION_LEFT ? 1 : -1
                 );
             } else if (progress < 1 && mLastProgress >= 1) {
                 mLastProgress = 0;
-                updatePreviewView(
-                        mViewModel.getLocationFromList(0)
-                );
+                setPreviewOffset(0);
             }
         }
 
         @Override
         public void onSwipeReleased(int swipeDirection, boolean doSwitch) {
             if (doSwitch) {
-                resetUIUpdateFlag();
-
                 mBinding.indicator.setDisplayState(false);
                 mViewModel.setLocation(
                         swipeDirection == SwipeSwitchLayout.SWIPE_DIRECTION_LEFT ? 1 : -1
                 );
-            }
-        }
-
-        private void updatePreviewView(@Nullable Location location) {
-            if (location == null) {
-                return;
-            }
-
-            mBinding.toolbar.setTitle(location.getCityName(requireContext()));
-            if (location.getWeather() != null) {
-                WeatherViewController.setWeatherCode(
-                        mWeatherView,
-                        location.getWeather(),
-                        location.isDaylight(),
-                        mResourceProvider
-                );
+                setPreviewOffset(0);
             }
         }
     };
@@ -570,8 +510,17 @@ public class MainFragment extends GeoFragment {
             }
 
             if (mTopChanged) {
-                mWeatherView.setSystemBarColor(requireContext(), requireActivity().getWindow(),
-                        topOverlap, false, true, false);
+                ThemeManager
+                        .getInstance(requireContext())
+                        .getWeatherThemeDelegate()
+                        .setSystemBarStyle(
+                                requireContext(),
+                                requireActivity().getWindow(),
+                                topOverlap,
+                                false,
+                                true,
+                                false
+                        );
             }
         }
     }

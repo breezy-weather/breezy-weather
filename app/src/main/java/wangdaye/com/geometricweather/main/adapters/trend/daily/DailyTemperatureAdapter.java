@@ -19,11 +19,13 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.Temperatur
 import wangdaye.com.geometricweather.common.basic.models.weather.Daily;
 import wangdaye.com.geometricweather.common.basic.models.weather.Temperature;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.main.utils.MainThemeManager;
+import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
+import wangdaye.com.geometricweather.theme.ThemeManager;
 import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.chart.PolylineAndHistogramView;
+import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
 
 /**
  * Daily temperature adapter.
@@ -32,7 +34,6 @@ import wangdaye.com.geometricweather.common.ui.widgets.trend.chart.PolylineAndHi
 public class DailyTemperatureAdapter extends AbsDailyTrendAdapter<DailyTemperatureAdapter.ViewHolder> {
 
     private final ResourceProvider mResourceProvider;
-    private final MainThemeManager mThemeManager;
     private final TemperatureUnit mTemperatureUnit;
 
     private final float[] mDaytimeTemperatures;
@@ -53,10 +54,10 @@ public class DailyTemperatureAdapter extends AbsDailyTrendAdapter<DailyTemperatu
         }
 
         @SuppressLint("SetTextI18n, InflateParams")
-        void onBindView(GeoActivity activity, Location location, MainThemeManager themeManager, int position) {
+        void onBindView(GeoActivity activity, Location location, int position) {
             StringBuilder talkBackBuilder = new StringBuilder(activity.getString(R.string.tag_temperature));
 
-            super.onBindView(activity, location, themeManager, talkBackBuilder, position);
+            super.onBindView(activity, location, talkBackBuilder, position);
 
             Weather weather = location.getWeather();
             assert weather != null;
@@ -94,16 +95,29 @@ public class DailyTemperatureAdapter extends AbsDailyTrendAdapter<DailyTemperatu
                     100f,
                     0f
             );
-            int[] themeColors = mThemeManager.getWeatherThemeColors();
-            mPolylineAndHistogramView.setLineColors(
-                    themeColors[1], themeColors[2], mThemeManager.getSeparatorColor(activity));
-            mPolylineAndHistogramView.setShadowColors(
-                    themeColors[1], themeColors[2], mThemeManager.isLightTheme());
-            mPolylineAndHistogramView.setTextColors(
-                    mThemeManager.getTextContentColor(activity),
-                    mThemeManager.getTextSubtitleColor(activity)
+            int[] themeColors = ThemeManager
+                    .getInstance(itemView.getContext())
+                    .getWeatherThemeDelegate()
+                    .getThemeColors(
+                            itemView.getContext(),
+                            WeatherViewController.getWeatherKind(location.getWeather()),
+                            location.isDaylight()
+                    );
+            boolean lightTheme = MainModuleUtils.isMainLightTheme(
+                    itemView.getContext(),
+                    location.isDaylight()
             );
-            mPolylineAndHistogramView.setHistogramAlpha(mThemeManager.isLightTheme() ? 0.2f : 0.5f);
+            mPolylineAndHistogramView.setLineColors(
+                    themeColors[1],
+                    themeColors[2],
+                    ThemeManager.getInstance(activity).getThemeColor(activity, R.attr.colorOutline)
+            );
+            mPolylineAndHistogramView.setShadowColors(themeColors[1], themeColors[2], lightTheme);
+            mPolylineAndHistogramView.setTextColors(
+                    ThemeManager.getInstance(activity).getThemeColor(activity, R.attr.colorBodyText),
+                    ThemeManager.getInstance(activity).getThemeColor(activity, R.attr.colorCaptionText)
+            );
+            mPolylineAndHistogramView.setHistogramAlpha(lightTheme ? 0.2f : 0.5f);
 
             dailyItem.setNightIconDrawable(
                     ResourceHelper.getWeatherIcon(mResourceProvider, daily.night().getWeatherCode(), false));
@@ -134,9 +148,8 @@ public class DailyTemperatureAdapter extends AbsDailyTrendAdapter<DailyTemperatu
                                    TrendRecyclerView parent,
                                    Location location,
                                    ResourceProvider provider,
-                                   MainThemeManager themeManager,
                                    TemperatureUnit unit) {
-        this(activity, parent, location, true, provider, themeManager, unit);
+        this(activity, parent, location, true, provider, unit);
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -145,14 +158,12 @@ public class DailyTemperatureAdapter extends AbsDailyTrendAdapter<DailyTemperatu
                                    Location location,
                                    boolean showPrecipitationProbability,
                                    ResourceProvider provider,
-                                   MainThemeManager themeManager,
                                    TemperatureUnit unit) {
         super(activity, location);
 
         Weather weather = location.getWeather();
         assert weather != null;
         mResourceProvider = provider;
-        mThemeManager = themeManager;
         mTemperatureUnit = unit;
 
         mDaytimeTemperatures = new float[Math.max(0, weather.getDailyForecast().size() * 2 - 1)];
@@ -188,7 +199,6 @@ public class DailyTemperatureAdapter extends AbsDailyTrendAdapter<DailyTemperatu
 
         mShowPrecipitationProbability = showPrecipitationProbability;
 
-        parent.setLineColor(mThemeManager.getSeparatorColor(activity));
         if (weather.getYesterday() == null) {
             parent.setData(null,0, 0);
         } else {
@@ -231,7 +241,7 @@ public class DailyTemperatureAdapter extends AbsDailyTrendAdapter<DailyTemperatu
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(getActivity(), getLocation(), mThemeManager, position);
+        holder.onBindView(getActivity(), getLocation(), position);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.main.adapters.main.holder;
 
+import android.annotation.SuppressLint;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import kotlin.Unit;
+import kotlin.jvm.functions.Function2;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
@@ -22,18 +25,21 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Base;
 import wangdaye.com.geometricweather.common.basic.models.weather.Hourly;
 import wangdaye.com.geometricweather.common.basic.models.weather.Minutely;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.main.adapters.main.MainTag;
-import wangdaye.com.geometricweather.main.adapters.trend.HourlyTrendAdapter;
-import wangdaye.com.geometricweather.main.layouts.TrendHorizontalLinearLayoutManager;
-import wangdaye.com.geometricweather.main.utils.MainThemeManager;
-import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.common.ui.adapters.TagAdapter;
 import wangdaye.com.geometricweather.common.ui.decotarions.GridMarginsDecoration;
 import wangdaye.com.geometricweather.common.ui.widgets.PrecipitationBar;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
-import wangdaye.com.geometricweather.main.widgets.TrendRecyclerViewScrollBar;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
+import wangdaye.com.geometricweather.main.adapters.main.MainTag;
+import wangdaye.com.geometricweather.main.adapters.trend.HourlyTrendAdapter;
+import wangdaye.com.geometricweather.main.layouts.TrendHorizontalLinearLayoutManager;
+import wangdaye.com.geometricweather.main.utils.DayNightColorWrapper;
+import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
+import wangdaye.com.geometricweather.main.widgets.TrendRecyclerViewScrollBar;
+import wangdaye.com.geometricweather.settings.SettingsManager;
+import wangdaye.com.geometricweather.theme.ThemeManager;
+import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
+import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
 
 public class HourlyViewHolder extends AbstractMainCardViewHolder {
 
@@ -45,6 +51,7 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
 
     private final TrendRecyclerView mTrendRecyclerView;
     private final HourlyTrendAdapter mTrendAdapter;
+    private final TrendRecyclerViewScrollBar mScrollBar;
 
     private final LinearLayout mMinutelyContainer;
     private final TextView mMinutelyTitle;
@@ -52,9 +59,13 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
     private final TextView mMinutelyStartText;
     private final TextView mMinutelyEndText;
 
-    public HourlyViewHolder(ViewGroup parent, MainThemeManager themeManager) {
-        super(LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.container_main_hourly_trend_card, parent, false), themeManager);
+    @SuppressLint("NotifyDataSetChanged")
+    public HourlyViewHolder(ViewGroup parent) {
+        super(
+                LayoutInflater
+                        .from(parent.getContext())
+                        .inflate(R.layout.container_main_hourly_trend_card, parent, false)
+        );
 
         mCard = itemView.findViewById(R.id.container_main_hourly_trend_card);
         mTitle = itemView.findViewById(R.id.container_main_hourly_trend_card_title);
@@ -62,7 +73,6 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
         mTagView = itemView.findViewById(R.id.container_main_hourly_trend_card_tagView);
 
         mTrendRecyclerView = itemView.findViewById(R.id.container_main_hourly_trend_card_trendRecyclerView);
-        mTrendRecyclerView.addItemDecoration(new TrendRecyclerViewScrollBar(parent.getContext(), themeManager));
         mTrendRecyclerView.setHasFixedSize(true);
 
         mMinutelyContainer = itemView.findViewById(R.id.container_main_hourly_trend_card_minutely);
@@ -72,10 +82,22 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
         mMinutelyEndText = itemView.findViewById(R.id.container_main_hourly_trend_card_minutelyEndText);
 
         mTrendAdapter = new HourlyTrendAdapter();
+        mScrollBar = new TrendRecyclerViewScrollBar();
+        mTrendRecyclerView.addItemDecoration(mScrollBar);
 
         mMinutelyContainer.setOnClickListener(v -> {
 
         });
+
+        DayNightColorWrapper.bind(
+                mTrendRecyclerView,
+                R.attr.colorOutline,
+                (color, aBoolean) -> {
+                    mTrendRecyclerView.setLineColor(color);
+                    mTrendAdapter.notifyDataSetChanged();
+                    return null;
+                }
+        );
     }
 
     @Override
@@ -83,12 +105,26 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
                            boolean listAnimationEnabled, boolean itemAnimationEnabled, boolean firstCard) {
         super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled, firstCard);
 
+        DayNightColorWrapper.bind(itemView, R.attr.colorSurface, (color, animated) -> {
+            mScrollBar.setColor(
+                    color,
+                    MainModuleUtils.isMainLightTheme(context, location.isDaylight())
+            );
+            mCard.setCardBackgroundColor(color);
+            return null;
+        });
+
         Weather weather = location.getWeather();
         assert weather != null;
 
-        int weatherColor = themeManager.getWeatherThemeColors()[0];
-
-        mCard.setCardBackgroundColor(themeManager.getSurfaceColor(context));
+        int weatherColor = ThemeManager
+                .getInstance(context)
+                .getWeatherThemeDelegate()
+                .getThemeColors(
+                        context,
+                        WeatherViewController.getWeatherKind(weather),
+                        location.isDaylight()
+                )[0];
 
         mTitle.setTextColor(weatherColor);
 
@@ -116,12 +152,33 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
             );
 
             mTagView.setLayoutManager(new TrendHorizontalLinearLayoutManager(context));
-            mTagView.setAdapter(
-                    new TagAdapter(tagList, weatherColor, (checked, oldPosition, newPosition) -> {
-                        setTrendAdapterByTag(location, (MainTag) tagList.get(newPosition));
-                        return false;
-                    }, themeManager, 0)
-            );
+            DayNightColorWrapper.bind(mTagView, new Integer[0], (integers, aBoolean) -> {
+                int[] colors = ThemeManager
+                        .getInstance(context)
+                        .getWeatherThemeDelegate()
+                        .getThemeColors(
+                                context,
+                                WeatherViewController.getWeatherKind(weather),
+                                location.isDaylight()
+                        );
+
+                mTagView.setAdapter(
+                        new TagAdapter(
+                                tagList,
+                                ThemeManager
+                                        .getInstance(context)
+                                        .getThemeColor(context, R.attr.titleTextColor),
+                                colors[1],
+                                colors[2],
+                                (checked, oldPosition, newPosition) -> {
+                                    setTrendAdapterByTag(location, (MainTag) tagList.get(newPosition));
+                                    return false;
+                                },
+                                0
+                        )
+                );
+                return null;
+            });
         }
 
         mTrendRecyclerView.setLayoutManager(
@@ -135,24 +192,15 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
                 SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled());
         setTrendAdapterByTag(location, (MainTag) tagList.get(0));
 
-        // trendScrollBar = new TrendRecyclerViewScrollBar(context);
-        // trendRecyclerView.addItemDecoration(trendScrollBar);
-
         List<Minutely> minutelyList = weather.getMinutelyForecast();
         if (minutelyList.size() != 0 && needToShowMinutelyForecast(minutelyList)) {
             mMinutelyContainer.setVisibility(View.VISIBLE);
 
-            mMinutelyTitle.setTextColor(themeManager.getTextContentColor(context));
-
-            mPrecipitationBar.setBackgroundColor(themeManager.getSeparatorColor(context));
-            mPrecipitationBar.setPrecipitationColor(themeManager.getWeatherThemeColors()[0]);
             mPrecipitationBar.setMinutelyList(minutelyList);
 
             int size = minutelyList.size();
             mMinutelyStartText.setText(Base.getTime(context, minutelyList.get(0).getDate()));
-            mMinutelyStartText.setTextColor(themeManager.getTextSubtitleColor(context));
             mMinutelyEndText.setText(Base.getTime(context, minutelyList.get(size - 1).getDate()));
-            mMinutelyEndText.setTextColor(themeManager.getTextSubtitleColor(context));
 
             mMinutelyContainer.setContentDescription(
                     activity.getString(R.string.content_des_minutely_precipitation)
@@ -162,6 +210,26 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
         } else {
             mMinutelyContainer.setVisibility(View.GONE);
         }
+
+        DayNightColorWrapper.bind(mMinutelyContainer, new Integer[0], (colors, animated) -> {
+            ThemeManager tm = ThemeManager.getInstance(context);
+
+            mMinutelyTitle.setTextColor(tm.getThemeColor(context, R.attr.colorBodyText));
+
+            mPrecipitationBar.setBackgroundColor(tm.getThemeColor(context, R.attr.colorOutline));
+            mPrecipitationBar.setPrecipitationColor(
+                    tm.getWeatherThemeDelegate().getThemeColors(
+                            context,
+                            WeatherViewController.getWeatherKind(weather),
+                            location.isDaylight()
+                    )[0]
+            );
+
+            mMinutelyStartText.setTextColor(tm.getThemeColor(context, R.attr.colorCaptionText));
+            mMinutelyEndText.setTextColor(tm.getThemeColor(context, R.attr.colorCaptionText));
+
+            return null;
+        });
     }
 
     private static boolean needToShowMinutelyForecast(List<Minutely> minutelyList) {
@@ -180,7 +248,6 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
                         (GeoActivity) context, mTrendRecyclerView,
                         location,
                         provider,
-                        themeManager,
                         SettingsManager.getInstance(context).getTemperatureUnit()
                 );
                 break;
@@ -190,7 +257,6 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
                         (GeoActivity) context, mTrendRecyclerView,
                         location,
                         provider,
-                        themeManager,
                         SettingsManager.getInstance(context).getPrecipitationUnit()
                 );
                 break;

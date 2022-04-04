@@ -34,7 +34,7 @@ import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
 import wangdaye.com.geometricweather.databinding.FragmentManagementBinding;
 import wangdaye.com.geometricweather.main.MainActivityViewModel;
 import wangdaye.com.geometricweather.main.adapters.LocationAdapterAnimWrapper;
-import wangdaye.com.geometricweather.main.models.SelectableLocationList;
+import wangdaye.com.geometricweather.main.utils.DayNightColorWrapper;
 import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
 import wangdaye.com.geometricweather.main.widgets.LocationItemTouchCallback;
 import wangdaye.com.geometricweather.theme.ThemeManager;
@@ -133,7 +133,7 @@ public class ManagementFragment extends GeoFragment
         );
 
         mBinding.currentLocationButton.setOnClickListener(v -> {
-            mViewModel.addLocation(Location.buildLocal());
+            mViewModel.addLocation(Location.buildLocal(), null);
             SnackbarHelper.showSnackbar(getString(R.string.feedback_collect_succeed));
         });
 
@@ -145,8 +145,7 @@ public class ManagementFragment extends GeoFragment
                     mViewModel.setLocation(formattedId);
                     getParentFragmentManager().popBackStack();
                 },
-                holder -> mItemTouchHelper.startDrag(holder), // on drag.
-                mViewModel.getThemeManager()
+                holder -> mItemTouchHelper.startDrag(holder) // on drag.
         );
         mAdapterAnimWrapper = new LocationAdapterAnimWrapper(requireContext(), mAdapter);
         mAdapterAnimWrapper.setLastPosition(Integer.MAX_VALUE);
@@ -162,93 +161,120 @@ public class ManagementFragment extends GeoFragment
             }
         });
 
-        mItemDecoration = new ListDecoration(
-                requireActivity(),
-                mViewModel.getThemeManager().getSeparatorColor(requireActivity())
-        );
-        mBinding.recyclerView.addItemDecoration(mItemDecoration);
+        registerDayNightColors();
 
-        mItemTouchHelper = new ItemTouchHelper(new LocationItemTouchCallback(
-                (GeoActivity) requireActivity(), mViewModel, this));
+        mItemTouchHelper = new ItemTouchHelper(
+                new LocationItemTouchCallback(
+                        (GeoActivity) requireActivity(),
+                        mViewModel,
+                        this
+                )
+        );
         mItemTouchHelper.attachToRecyclerView(mBinding.recyclerView);
 
-        mViewModel.getListResource().observe(getViewLifecycleOwner(), resource -> {
-
-            if (resource.source instanceof SelectableLocationList.ItemMoved) {
-                SelectableLocationList.ItemMoved source
-                        = (SelectableLocationList.ItemMoved) resource.source;
-                mAdapter.update(source.from, source.to);
-            } else {
-                mAdapter.update(resource.dataList, resource.selectedId, resource.forceUpdateId);
-            }
-
-            setThemeStyle();
-            setCurrentLocationButtonEnabled(resource.dataList);
+        mViewModel.totalLocationList.observe(getViewLifecycleOwner(), selectableLocationList -> {
+            mAdapter.update(
+                    selectableLocationList.getLocationList(),
+                    selectableLocationList.getSelectedId()
+            );
+            setCurrentLocationButtonEnabled(selectableLocationList.getLocationList());
         });
     }
 
-    private void setThemeStyle() {
-        MainThemeManager themeManager = mViewModel.getThemeManager();
+    private void registerDayNightColors() {
+        DayNightColorWrapper.bind(
+                mBinding.recyclerView,
+                new Integer[]{
+                        android.R.attr.colorBackground,
+                        R.attr.colorSurface,
+                        R.attr.colorOutline,
+                },
+                (colors, animated) -> {
+                    if (!animated) {
+                        mBinding.recyclerView.setBackgroundColor(colors[0]);
+                        mBinding.searchBar.setCardBackgroundColor(colors[1]);
 
-        ImageViewCompat.setImageTintList(
+                        mItemDecoration = new ListDecoration(requireContext(), colors[2]);
+
+                        while (mBinding.recyclerView.getItemDecorationCount() > 0) {
+                            mBinding.recyclerView.removeItemDecorationAt(0);
+                        }
+                        mBinding.recyclerView.addItemDecoration(mItemDecoration);
+
+                        return null;
+                    }
+
+                    if (mColorAnimator != null) {
+                        mColorAnimator.cancel();
+                    }
+
+                    final float[] progress = new float[1];
+                    final int[] oldColors = new int[] {
+                            mBinding.recyclerView.getBackground() instanceof ColorDrawable
+                                    ? ((ColorDrawable) mBinding.recyclerView.getBackground()).getColor()
+                                    : Color.TRANSPARENT,
+                            mBinding.searchBar.getCardBackgroundColor().getDefaultColor(),
+                            mItemDecoration.getColor(),
+                    };
+                    mColorAnimator = ValueAnimator.ofFloat(0, 1);
+                    mColorAnimator.addUpdateListener(animation -> {
+                        progress[0] = (float) animation.getAnimatedValue();
+                        mBinding.recyclerView.setBackgroundColor(
+                                DisplayUtils.blendColor(
+                                        ColorUtils.setAlphaComponent(colors[0], (int) (255 * progress[0])),
+                                        oldColors[0]
+                                )
+                        );
+                        mBinding.searchBar.setCardBackgroundColor(
+                                DisplayUtils.blendColor(
+                                        ColorUtils.setAlphaComponent(colors[1], (int) (255 * progress[0])),
+                                        oldColors[1]
+                                )
+                        );
+                        mItemDecoration.setColor(
+                                DisplayUtils.blendColor(
+                                        ColorUtils.setAlphaComponent(colors[2], (int) (255 * progress[0])),
+                                        oldColors[2]
+                                )
+                        );
+                    });
+                    mColorAnimator.setDuration(500); // same as 2 * changeDuration of default item animator.
+                    mColorAnimator.start();
+                    return null;
+                }
+        );
+        DayNightColorWrapper.bind(
                 mBinding.searchIcon,
-                ColorStateList.valueOf(themeManager.getTextContentColor(requireActivity()))
+                R.attr.colorBodyText,
+                (color, animated) -> {
+                    ImageViewCompat.setImageTintList(
+                            mBinding.searchIcon,
+                            ColorStateList.valueOf(color)
+                    );
+                    return null;
+                }
         );
-        ImageViewCompat.setImageTintList(
+        DayNightColorWrapper.bind(
                 mBinding.currentLocationButton,
-                ColorStateList.valueOf(themeManager.getTextContentColor(requireActivity()))
+                R.attr.colorBodyText,
+                (color, animated) -> {
+                    ImageViewCompat.setImageTintList(
+                            mBinding.currentLocationButton,
+                            ColorStateList.valueOf(color)
+                    );
+                    return null;
+                }
         );
-        mBinding.title.setTextColor(
-                ColorStateList.valueOf(themeManager.getTextSubtitleColor(requireActivity())));
-
-        // background.
-        if (mColorAnimator != null) {
-            mColorAnimator.cancel();
-            mColorAnimator = null;
-        }
-
-        final int oldBackgroundColor = mBinding.recyclerView.getBackground() instanceof ColorDrawable
-                ? ((ColorDrawable) mBinding.recyclerView.getBackground()).getColor()
-                : Color.TRANSPARENT;
-        final int newBackgroundColor = themeManager.getRootColor(requireContext());
-
-        final int oldLineColor = mItemDecoration.getColor();
-        final int newLineColor = themeManager.getSeparatorColor(requireContext());
-
-        final int oldSearchBarColor = mBinding.searchBar.getCardBackgroundColor().getDefaultColor();
-        final int newSearchBarColor = themeManager.getSurfaceColor(requireContext());
-
-        if (newBackgroundColor != oldBackgroundColor
-                || newLineColor != oldLineColor
-                || newSearchBarColor != oldSearchBarColor) {
-            final float[] progress = new float[1];
-            final int[] colors = new int[3];
-            mColorAnimator = ValueAnimator.ofFloat(0, 1);
-            mColorAnimator.addUpdateListener(animation -> {
-                progress[0] = (float) animation.getAnimatedValue();
-                colors[0] = DisplayUtils.blendColor(
-                        ColorUtils.setAlphaComponent(newBackgroundColor, (int) (255 * progress[0])),
-                        oldBackgroundColor
-                );
-                colors[1] = DisplayUtils.blendColor(
-                        ColorUtils.setAlphaComponent(newLineColor, (int) (255 * progress[0])),
-                        oldLineColor
-                );
-                colors[2] = DisplayUtils.blendColor(
-                        ColorUtils.setAlphaComponent(newSearchBarColor, (int) (255 * progress[0])),
-                        oldSearchBarColor
-                );
-                mBinding.recyclerView.setBackgroundColor(colors[0]);
-                mItemDecoration.setColor(colors[1]);
-                mBinding.searchBar.setCardBackgroundColor(colors[2]);
-            });
-            mColorAnimator.setDuration(500); // same as 2 * changeDuration of default item animator.
-            mColorAnimator.start();
-        } else {
-            mBinding.recyclerView.setBackgroundColor(newBackgroundColor);
-            mItemDecoration.setColor(newLineColor);
-            mBinding.searchBar.setCardBackgroundColor(newSearchBarColor);
-        }
+        DayNightColorWrapper.bind(
+                mBinding.title,
+                R.attr.colorCaptionText,
+                (color, animated) -> {
+                    mBinding.title.setTextColor(
+                            ColorStateList.valueOf(color)
+                    );
+                    return null;
+                }
+        );
     }
 
     private void setCurrentLocationButtonEnabled(List<Location> list) {

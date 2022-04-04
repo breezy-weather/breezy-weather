@@ -50,7 +50,7 @@ public class OwmResultConverter {
                 && !TextUtils.isEmpty(location.getCity())
                 && !TextUtils.isEmpty(location.getDistrict())) {
             return new Location(
-                    Double.toString(result.lat) + ',' + Double.toString(result.lon),
+                    Double.toString(result.lat) + ',' + result.lon,
                     (float) result.lat,
                     (float) result.lon,
                     TimeZone.getTimeZone("UTC"),
@@ -72,7 +72,7 @@ public class OwmResultConverter {
             );
         } else {
             return new Location(
-                    Double.toString(result.lat) + ',' + Double.toString(result.lon),
+                    Double.toString(result.lat) + ',' + result.lon,
                     (float) result.lat,
                     (float) result.lon,
                     TimeZone.getTimeZone("UTC"),

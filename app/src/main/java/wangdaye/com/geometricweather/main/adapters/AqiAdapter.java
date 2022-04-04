@@ -5,6 +5,11 @@ import android.animation.ArgbEvaluator;
 import android.animation.FloatEvaluator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
+import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
@@ -12,12 +17,6 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.DecelerateInterpolator;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +27,8 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.AirQuality
 import wangdaye.com.geometricweather.common.basic.models.weather.AirQuality;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.ui.widgets.RoundProgress;
-import wangdaye.com.geometricweather.main.utils.MainThemeManager;
+import wangdaye.com.geometricweather.main.utils.DayNightColorWrapper;
+import wangdaye.com.geometricweather.theme.ThemeManager;
 
 /**
  * Aqi adapter.
@@ -38,7 +38,6 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
 
     private final List<AqiItem> mItemList;
     private final List<ViewHolder> mHolderList;
-    private final MainThemeManager mThemeManager;
 
     private static class AqiItem {
         @ColorInt int color;
@@ -62,7 +61,8 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
         }
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
+
         private @Nullable AqiItem mItem;
         private boolean mExecuteAnimation;
         @Nullable private AnimatorSet mAttachAnimatorSet;
@@ -76,6 +76,19 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
             mTitle = itemView.findViewById(R.id.item_aqi_title);
             mContent = itemView.findViewById(R.id.item_aqi_content);
             mProgress = itemView.findViewById(R.id.item_aqi_progress);
+
+            DayNightColorWrapper.bind(
+                    itemView,
+                    new Integer[]{
+                            R.attr.colorBodyText,
+                            R.attr.colorCaptionText,
+                    },
+                    (colors, aBoolean) -> {
+                        mTitle.setTextColor(colors[0]);
+                        mContent.setTextColor(colors[1]);
+                        return null;
+                    }
+            );
         }
 
         void onBindView(AqiItem item) {
@@ -87,15 +100,14 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
             itemView.setContentDescription(item.talkBack);
 
             mTitle.setText(item.title);
-            mTitle.setTextColor(mThemeManager.getTextContentColor(context));
-
             mContent.setText(item.content);
-            mContent.setTextColor(mThemeManager.getTextSubtitleColor(context));
 
             if (mExecuteAnimation) {
                 mProgress.setProgress(0);
                 mProgress.setProgressColor(ContextCompat.getColor(context, R.color.colorLevel_1));
-                mProgress.setProgressBackgroundColor(mThemeManager.getSeparatorColor(context));
+                mProgress.setProgressBackgroundColor(
+                        ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorOutline)
+                );
             } else {
                 mProgress.setProgress((int) (100.0 * item.progress / item.max));
                 mProgress.setProgressColor(item.color);
@@ -120,7 +132,9 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
 
                 ValueAnimator backgroundColor = ValueAnimator.ofObject(
                         new ArgbEvaluator(),
-                        mThemeManager.getSeparatorColor(itemView.getContext()),
+                        ThemeManager
+                                .getInstance(itemView.getContext())
+                                .getThemeColor(itemView.getContext(), R.attr.colorOutline),
                         ColorUtils.setAlphaComponent(mItem.color, (int) (255 * 0.1))
                 );
                 backgroundColor.addUpdateListener(animation ->
@@ -150,7 +164,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
         }
     }
 
-    public AqiAdapter(Context context, @Nullable Weather weather, MainThemeManager themeManager, boolean executeAnimation) {
+    public AqiAdapter(Context context, @Nullable Weather weather, boolean executeAnimation) {
         mItemList = new ArrayList<>();
         if (weather != null && weather.getCurrent().getAirQuality().isValid()) {
             AirQuality airQuality = weather.getCurrent().getAirQuality();
@@ -163,7 +177,8 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
                                 "PM2.5",
                                 AirQualityUnit.MUGPCUM.getDensityText(context, airQuality.getPM25()),
                                 context.getString(R.string.content_des_pm25)
-                                        + ", " + AirQualityUnit.MUGPCUM.getDensityVoice(context, airQuality.getPM25()),
+                                        + ", "
+                                        + AirQualityUnit.MUGPCUM.getDensityVoice(context, airQuality.getPM25()),
                                 executeAnimation
                         )
                 );
@@ -241,7 +256,6 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
         }
 
         mHolderList = new ArrayList<>();
-        mThemeManager = themeManager;
     }
 
     @NonNull

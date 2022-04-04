@@ -21,7 +21,6 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Hourly;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.common.ui.widgets.AnimatableIconView;
-import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.theme.ThemeManager;
 import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
@@ -86,8 +85,7 @@ public class HourlyWeatherDialog extends GeoDialog {
                         .getThemeColors(
                                 requireContext(),
                                 WeatherViewController.getWeatherKind(weather),
-                                hourly.isDaylight(),
-                                MainModuleUtils.isMainLightTheme(requireContext(), hourly.isDaylight())
+                                hourly.isDaylight()
                         )[0]
         );
 

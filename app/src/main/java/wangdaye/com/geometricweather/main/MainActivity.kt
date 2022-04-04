@@ -28,6 +28,7 @@ import wangdaye.com.geometricweather.common.utils.helpers.ShortcutsHelper
 import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper
 import wangdaye.com.geometricweather.databinding.ActivityMainBinding
 import wangdaye.com.geometricweather.main.dialogs.BackgroundLocationDialog
+import wangdaye.com.geometricweather.main.dialogs.LocationHelpDialog
 import wangdaye.com.geometricweather.main.dialogs.LocationPermissionStatementDialog
 import wangdaye.com.geometricweather.main.fragments.MainFragment
 import wangdaye.com.geometricweather.main.fragments.ManagementFragment
@@ -38,6 +39,7 @@ import wangdaye.com.geometricweather.remoteviews.NotificationHelper
 import wangdaye.com.geometricweather.remoteviews.WidgetHelper
 import wangdaye.com.geometricweather.search.SearchActivity
 import wangdaye.com.geometricweather.settings.activities.SelectProviderActivity
+import wangdaye.com.geometricweather.theme.ThemeManager
 
 @AndroidEntryPoint
 class MainActivity : GeoActivity(),
@@ -50,6 +52,25 @@ class MainActivity : GeoActivity(),
     private lateinit var viewModel: MainActivityViewModel
 
     private var isLightTheme = false
+
+    companion object {
+        const val SETTINGS_ACTIVITY = 1
+        const val CARD_MANAGE_ACTIVITY = 3
+        const val SEARCH_ACTIVITY = 4
+        const val SELECT_PROVIDER_ACTIVITY = 5
+
+        const val ACTION_MAIN = "com.wangdaye.geometricweather.Main"
+        const val KEY_MAIN_ACTIVITY_LOCATION_FORMATTED_ID = "MAIN_ACTIVITY_LOCATION_FORMATTED_ID"
+
+        const val ACTION_MANAGEMENT = "com.wangdaye.geomtricweather.ACTION_MANAGEMENT"
+        const val ACTION_SHOW_ALERTS = "com.wangdaye.geomtricweather.ACTION_SHOW_ALERTS"
+
+        const val ACTION_SHOW_DAILY_FORECAST = "com.wangdaye.geomtricweather.ACTION_SHOW_DAILY_FORECAST"
+        const val KEY_DAILY_INDEX = "DAILY_INDEX"
+
+        private const val TAG_FRAGMENT_MAIN = "fragment_main"
+        private const val TAG_FRAGMENT_MANAGEMENT = "fragment_management"
+    }
 
     private val backgroundUpdateObserver: Observer<Location> = Observer { location ->
         if (location == null) {
@@ -96,8 +117,7 @@ class MainActivity : GeoActivity(),
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
             SETTINGS_ACTIVITY -> {
-
-                // TODO: 2022/4/3 rebuild recycler view.
+                findMainFragment()?.updateViews()
 
                 // update notification immediately.
                 AsyncHelper.runOnIO {
@@ -114,7 +134,7 @@ class MainActivity : GeoActivity(),
                 )
             }
             CARD_MANAGE_ACTIVITY -> if (resultCode == RESULT_OK) {
-                viewModel.init()
+                findMainFragment()?.updateViews()
             }
             SEARCH_ACTIVITY -> if (resultCode == RESULT_OK && data != null) {
                 val location: Location? = data.getParcelableExtra(SearchActivity.KEY_LOCATION)
@@ -206,34 +226,38 @@ class MainActivity : GeoActivity(),
             }
         }
 
+        ThemeManager.getInstance(this).homeUIMode.observe(this) {
+            delegate.localNightMode = it
+        }
+
         viewModel.currentLocation.observe(this) {
             checkToUpdateDayNightColors()
         }
-        viewModel.validLocationList.observe(this) { selectableLocationList ->
+        viewModel.validLocationList.observe(this) {
             // update notification immediately.
             AsyncHelper.runOnIO {
                 NotificationHelper.updateNotificationIfNecessary(
                     this,
-                    selectableLocationList.locationList
+                    it.locationList
                 )
             }
             refreshBackgroundViews(
                 resetBackground = false,
-                locationList = selectableLocationList.locationList,
+                locationList = it.locationList,
                 defaultLocationChanged = true,
                 updateRemoteViews = true
             )
         }
-        viewModel.permissionsRequest.observe(this) { request ->
+        viewModel.permissionsRequest.observe(this) {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M
-                || request.permissionList.isEmpty()
-                || !request.consume()) {
+                || it.permissionList.isEmpty()
+                || !it.consume()) {
                 return@observe
             }
 
             // only show dialog if we need request basic location permissions.
             var needShowDialog = false
-            for (permission in request.permissionList) {
+            for (permission in it.permissionList) {
                 if (isLocationPermission(permission)) {
                     needShowDialog = true
                     break
@@ -245,7 +269,28 @@ class MainActivity : GeoActivity(),
                 dialog.isCancelable = false
                 dialog.show(supportFragmentManager, null)
             } else {
-                requestPermissions(request.permissionList.toTypedArray(), 0)
+                requestPermissions(it.permissionList.toTypedArray(), 0)
+            }
+        }
+        viewModel.mainMessage.observe(this) {
+            it?. let { msg ->
+                when (msg) {
+                    MainMessage.LOCATION_FAILED -> {
+                        SnackbarHelper.showSnackbar(
+                            getString(R.string.feedback_location_failed),
+                            getString(R.string.help)
+                        ) {
+                            LocationHelpDialog
+                                .getInstance()
+                                .show(supportFragmentManager, null)
+                        }
+                    }
+                    MainMessage.WEATHER_REQ_FAILED -> {
+                        SnackbarHelper.showSnackbar(
+                            getString(R.string.feedback_get_weather_failed)
+                        )
+                    }
+                }
             }
         }
     }
@@ -469,21 +514,5 @@ class MainActivity : GeoActivity(),
         val permissionList: MutableList<String> = ArrayList()
         permissionList.add(Manifest.permission.ACCESS_BACKGROUND_LOCATION)
         requestPermissions(permissionList.toTypedArray(), 0)
-    }
-
-    companion object {
-        const val SETTINGS_ACTIVITY = 1
-        const val CARD_MANAGE_ACTIVITY = 3
-        const val SEARCH_ACTIVITY = 4
-        const val SELECT_PROVIDER_ACTIVITY = 5
-        const val ACTION_MAIN = "com.wangdaye.geometricweather.Main"
-        const val KEY_MAIN_ACTIVITY_LOCATION_FORMATTED_ID = "MAIN_ACTIVITY_LOCATION_FORMATTED_ID"
-        const val ACTION_MANAGEMENT = "com.wangdaye.geomtricweather.ACTION_MANAGEMENT"
-        const val ACTION_SHOW_ALERTS = "com.wangdaye.geomtricweather.ACTION_SHOW_ALERTS"
-        const val ACTION_SHOW_DAILY_FORECAST =
-            "com.wangdaye.geomtricweather.ACTION_SHOW_DAILY_FORECAST"
-        const val KEY_DAILY_INDEX = "DAILY_INDEX"
-        private const val TAG_FRAGMENT_MAIN = "fragment_main"
-        private const val TAG_FRAGMENT_MANAGEMENT = "fragment_management"
     }
 }

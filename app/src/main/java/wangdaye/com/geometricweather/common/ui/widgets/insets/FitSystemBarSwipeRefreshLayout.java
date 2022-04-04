@@ -1,7 +1,6 @@
 package wangdaye.com.geometricweather.common.ui.widgets.insets;
 
 import android.content.Context;
-import android.graphics.Rect;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.WindowInsets;
@@ -33,11 +32,6 @@ public class FitSystemBarSwipeRefreshLayout extends SwipeRefreshLayout
     @Override
     public WindowInsets onApplyWindowInsets(WindowInsets insets) {
         return mHelper.onApplyWindowInsets(insets, this::fitSystemBar);
-    }
-
-    @Override
-    protected boolean fitSystemWindows(Rect insets) {
-        return mHelper.fitSystemWindows(insets, this::fitSystemBar);
     }
 
     private void fitSystemBar() {

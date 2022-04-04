@@ -19,7 +19,6 @@ import java.util.List;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.common.ui.adapters.SyncListAdapter;
-import wangdaye.com.geometricweather.theme.ThemeManager;
 import wangdaye.com.geometricweather.databinding.ItemLocationBinding;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.theme.resource.ResourcesProviderFactory;
@@ -36,7 +35,6 @@ public class LocationAdapter extends SyncListAdapter<LocationModel, LocationHold
     private final OnLocationItemClickListener mClickListener;
     private @Nullable final OnLocationItemDragListener mDragListener;
 
-    private @NonNull final ThemeManager mThemeManager;
     private @NonNull final ResourceProvider mResourceProvider;
     private @NonNull final TemperatureUnit mTemperatureUnit;
 
@@ -52,8 +50,7 @@ public class LocationAdapter extends SyncListAdapter<LocationModel, LocationHold
                            List<Location> locationList,
                            @Nullable String selectedId,
                            @NonNull OnLocationItemClickListener clickListener,
-                           @Nullable OnLocationItemDragListener dragListener,
-                           @NonNull ThemeManager themeManager) {
+                           @Nullable OnLocationItemDragListener dragListener) {
         super(new ArrayList<>(), new DiffUtil.ItemCallback<LocationModel>() {
             @Override
             public boolean areItemsTheSame(@NonNull LocationModel oldItem, @NonNull LocationModel newItem) {
@@ -69,11 +66,10 @@ public class LocationAdapter extends SyncListAdapter<LocationModel, LocationHold
         mClickListener = clickListener;
         mDragListener = dragListener;
 
-        mThemeManager = themeManager;
         mResourceProvider = ResourcesProviderFactory.getNewInstance();
         mTemperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit();
 
-        update(locationList, selectedId, null);
+        update(locationList, selectedId);
     }
 
     @NonNull
@@ -81,7 +77,6 @@ public class LocationAdapter extends SyncListAdapter<LocationModel, LocationHold
     public LocationHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new LocationHolder(
                 ItemLocationBinding.inflate(LayoutInflater.from(parent.getContext())),
-                mThemeManager,
                 mClickListener,
                 mDragListener
         );
@@ -100,9 +95,7 @@ public class LocationAdapter extends SyncListAdapter<LocationModel, LocationHold
                             mContext,
                             model.location,
                             mTemperatureUnit,
-                            mThemeManager.isLightTheme(mContext),
-                            model.location.getFormattedId().equals(selectedId),
-                            false
+                            model.location.getFormattedId().equals(selectedId)
                     )
             );
         }
@@ -110,8 +103,7 @@ public class LocationAdapter extends SyncListAdapter<LocationModel, LocationHold
     }
 
     public void update(@NonNull List<Location> newList,
-                       @Nullable String selectedId,
-                       @Nullable String forceUpdateId) {
+                       @Nullable String selectedId) {
         List<LocationModel> modelList = new ArrayList<>(newList.size());
         for (Location l : newList) {
             modelList.add(
@@ -119,17 +111,11 @@ public class LocationAdapter extends SyncListAdapter<LocationModel, LocationHold
                             mContext,
                             l,
                             mTemperatureUnit,
-                            mThemeManager.isLightTheme(mContext),
-                            l.getFormattedId().equals(selectedId),
-                            l.getFormattedId().equals(forceUpdateId)
+                            l.getFormattedId().equals(selectedId)
                     )
             );
         }
         submitList(modelList);
-    }
-
-    public void update(int from, int to) {
-        submitMove(from, to);
     }
 
     @Override

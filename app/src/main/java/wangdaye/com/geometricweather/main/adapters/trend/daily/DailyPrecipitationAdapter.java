@@ -17,11 +17,11 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.Precipitat
 import wangdaye.com.geometricweather.common.basic.models.weather.Daily;
 import wangdaye.com.geometricweather.common.basic.models.weather.Precipitation;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.theme.ThemeManager;
 import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.chart.DoubleHistogramView;
-import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 
 /**
  * Daily precipitation adapter.
@@ -29,7 +29,6 @@ import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter<DailyPrecipitationAdapter.ViewHolder> {
 
     private final ResourceProvider mResourceProvider;
-    private final MainThemeManager mThemeManager;
     private final PrecipitationUnit mPrecipitationUnit;
 
     private float mHighestPrecipitation;
@@ -45,10 +44,10 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter<DailyPrecipi
         }
 
         @SuppressLint("SetTextI18n, InflateParams")
-        void onBindView(GeoActivity activity, Location location, MainThemeManager themeManager, int position) {
+        void onBindView(GeoActivity activity, Location location, int position) {
             StringBuilder talkBackBuilder = new StringBuilder(activity.getString(R.string.tag_precipitation));
 
-            super.onBindView(activity, location, themeManager, talkBackBuilder, position);
+            super.onBindView(activity, location, talkBackBuilder, position);
 
             Weather weather = location.getWeather();
             assert weather != null;
@@ -87,9 +86,11 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter<DailyPrecipi
             mDoubleHistogramView.setLineColors(
                     daily.day().getPrecipitation().getPrecipitationColor(activity),
                     daily.night().getPrecipitation().getPrecipitationColor(activity),
-                    mThemeManager.getSeparatorColor(activity)
+                    ThemeManager.getInstance(activity).getThemeColor(activity, R.attr.colorOutline)
             );
-            mDoubleHistogramView.setTextColors(mThemeManager.getTextContentColor(activity));
+            mDoubleHistogramView.setTextColors(
+                    ThemeManager.getInstance(activity).getThemeColor(activity, R.attr.colorBodyText)
+            );
             mDoubleHistogramView.setHistogramAlphas(1f, 0.5f);
 
             dailyItem.setNightIconDrawable(
@@ -104,14 +105,12 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter<DailyPrecipi
                                      TrendRecyclerView parent,
                                      Location location,
                                      ResourceProvider provider,
-                                     MainThemeManager themeManager,
                                      PrecipitationUnit unit) {
         super(activity, location);
 
         Weather weather = location.getWeather();
         assert weather != null;
         mResourceProvider = provider;
-        mThemeManager = themeManager;
         mPrecipitationUnit = unit;
 
         mHighestPrecipitation = Integer.MIN_VALUE;
@@ -164,7 +163,6 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter<DailyPrecipi
                         TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
                 )
         );
-        parent.setLineColor(mThemeManager.getSeparatorColor(activity));
         parent.setData(keyLineList, mHighestPrecipitation, -mHighestPrecipitation);
     }
 
@@ -178,7 +176,7 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter<DailyPrecipi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(getActivity(), getLocation(), mThemeManager, position);
+        holder.onBindView(getActivity(), getLocation(), position);
     }
 
     @Override

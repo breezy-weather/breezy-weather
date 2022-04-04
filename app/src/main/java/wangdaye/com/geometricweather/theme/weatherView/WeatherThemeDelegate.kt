@@ -24,7 +24,6 @@ interface WeatherThemeDelegate {
         context: Context,
         weatherKind: Int,
         daylight: Boolean,
-        lightTheme: Boolean,
     ): IntArray
 
     @ColorInt
@@ -37,6 +36,9 @@ interface WeatherThemeDelegate {
     @Px
     fun getHeaderHeight(context: Context): Int
 
+    @ColorInt
+    fun getHeaderTextColor(context: Context): Int
+
     fun setSystemBarStyle(
         context: Context,
         window: Window,
@@ -45,4 +47,13 @@ interface WeatherThemeDelegate {
         navigationShader: Boolean,
         lightNavigation: Boolean
     )
+
+    @Px
+    fun getHomeCardRadius(context: Context): Float
+
+    @Px
+    fun getHomeCardElevation(context: Context): Float
+
+    @Px
+    fun getHomeCardMargins(context: Context): Int
 }

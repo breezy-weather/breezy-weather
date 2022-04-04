@@ -4,11 +4,11 @@
     android:id="@+id/item_icon_provider_get_more_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorRoot"
+    android:background="?android:colorBackground"
     tools:ignore="UnusedAttribute">
 
     <View
-        android:background="@color/colorSeparator"
+        android:background="?attr/colorOutline"
         android:layout_width="match_parent"
         android:layout_height="1dp" />
 

@@ -9,30 +9,26 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.core.widget.ImageViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
-import wangdaye.com.geometricweather.theme.ThemeManager;
 import wangdaye.com.geometricweather.databinding.ItemLocationBinding;
+import wangdaye.com.geometricweather.theme.ThemeManager;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 
 public class LocationHolder extends RecyclerView.ViewHolder {
 
     private final ItemLocationBinding mBinding;
-    private final ThemeManager mThemeManager;
     private final LocationAdapter.OnLocationItemClickListener mClickListener;
     private @Nullable final LocationAdapter.OnLocationItemDragListener mDragListener;
 
     protected LocationHolder(ItemLocationBinding binding,
-                             ThemeManager themeManager,
                              @NonNull LocationAdapter.OnLocationItemClickListener clickListener,
                              @Nullable LocationAdapter.OnLocationItemDragListener dragListener) {
         super(binding.getRoot());
         mBinding = binding;
-        mThemeManager = themeManager;
         mClickListener = clickListener;
         mDragListener = dragListener;
     }
@@ -55,27 +51,30 @@ public class LocationHolder extends RecyclerView.ViewHolder {
             mBinding.container.setIconResEnd(
                     model.residentPosition ? R.drawable.ic_tag_off : R.drawable.ic_tag_plus);
         }
+
         mBinding.container.setBackgroundColorStart(
-                ContextCompat.getColor(context, R.color.striking_red)
+                ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorError)
         );
         mBinding.container.setBackgroundColorEnd(
-                ContextCompat.getColor(
-                        context,
-                        model.location.isCurrentPosition()
-                                ? R.color.colorPrimary
-                                : R.color.colorTextAlert
-                )
+                model.location.isCurrentPosition()
+                        ? ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorPrimaryContainer)
+                        : ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorSecondaryContainer)
         );
 
-        mBinding.item.setBackgroundColor(
-                model.selected
-                        ? mThemeManager.getSeparatorColor(context)
-                        : mThemeManager.getSurfaceColor(context)
+        mBinding.container.setTintColorStart(
+                ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorOnError)
+        );
+        mBinding.container.setTintColorEnd(
+                model.location.isCurrentPosition()
+                        ? ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorOnPrimaryContainer)
+                        : ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorOnSecondaryContainer)
         );
 
         ImageViewCompat.setImageTintList(
                 mBinding.sortButton,
-                ColorStateList.valueOf(mThemeManager.getTextContentColor(context))
+                ColorStateList.valueOf(
+                        ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorBodyText)
+                )
         );
         if (mDragListener == null) {
             mBinding.sortButton.setVisibility(View.GONE);
@@ -100,10 +99,14 @@ public class LocationHolder extends RecyclerView.ViewHolder {
             mBinding.weatherIcon.setVisibility(View.GONE);
         }
 
-        mBinding.title.setTextColor(mThemeManager.getTextTitleColor(context));
+        mBinding.title.setTextColor(
+                ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorTitleText)
+        );
         mBinding.title.setText(model.title);
 
-        mBinding.alerts.setTextColor(mThemeManager.getTextSubtitleColor(context));
+        mBinding.alerts.setTextColor(
+                ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorCaptionText)
+        );
         if (!TextUtils.isEmpty(model.alerts)) {
             mBinding.alerts.setVisibility(View.VISIBLE);
             mBinding.alerts.setText(model.alerts);
@@ -113,7 +116,9 @@ public class LocationHolder extends RecyclerView.ViewHolder {
             mBinding.alerts.setVisibility(View.GONE);
         }
 
-        mBinding.subtitle.setTextColor(mThemeManager.getTextContentColor(context));
+        mBinding.subtitle.setTextColor(
+                ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorBodyText)
+        );
         mBinding.subtitle.setText(model.subtitle);
 
         // binding.geoPosition.setText(model.latitude + ", " + model.longitude

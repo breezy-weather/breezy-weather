@@ -13,6 +13,7 @@ import wangdaye.com.geometricweather.common.basic.models.options.DarkMode
 import wangdaye.com.geometricweather.common.utils.LanguageUtils
 import wangdaye.com.geometricweather.common.utils.helpers.BuglyHelper
 import wangdaye.com.geometricweather.settings.SettingsManager
+import wangdaye.com.geometricweather.theme.ThemeManager
 import java.io.BufferedReader
 import java.io.File
 import java.io.FileReader
@@ -197,6 +198,9 @@ class GeometricWeather : MultiDexApplication(),
 
         if (getProcessName().equals(packageName)) {
             resetDayNightMode()
+            ThemeManager.getInstance(this).globalUIMode.observeForever {
+                AppCompatDelegate.setDefaultNightMode(it)
+            }
         }
     }
 
@@ -219,21 +223,12 @@ class GeometricWeather : MultiDexApplication(),
     }
 
     fun resetDayNightMode() {
-        when (SettingsManager.getInstance(this).getDarkMode()) {
-            DarkMode.AUTO -> {
-                // do nothing.
-            }
-            DarkMode.SYSTEM -> {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            }
-            DarkMode.LIGHT -> {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            }
-            DarkMode.DARK -> {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            }
+        val mode = when (SettingsManager.getInstance(this).getDarkMode()) {
+            DarkMode.LIGHT -> AppCompatDelegate.MODE_NIGHT_NO
+            DarkMode.DARK -> AppCompatDelegate.MODE_NIGHT_YES
+            else -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
         }
+        AppCompatDelegate.setDefaultNightMode(mode)
     }
 
     fun recreateAllActivities() {

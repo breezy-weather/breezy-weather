@@ -23,14 +23,13 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Wind;
 import wangdaye.com.geometricweather.common.ui.images.RotateDrawable;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.chart.DoubleHistogramView;
-import wangdaye.com.geometricweather.main.utils.MainThemeManager;
+import wangdaye.com.geometricweather.theme.ThemeManager;
 
 /**
  * Daily wind adapter.
  * */
 public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.ViewHolder> {
 
-    private final MainThemeManager mThemeManager;
     private final SpeedUnit mSpeedUnit;
 
     private float mHighestWindSpeed;
@@ -48,10 +47,10 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
         }
 
         @SuppressLint("SetTextI18n, InflateParams")
-        void onBindView(GeoActivity activity, Location location, MainThemeManager themeManager, int position) {
+        void onBindView(GeoActivity activity, Location location, int position) {
             StringBuilder talkBackBuilder = new StringBuilder(activity.getString(R.string.tag_wind));
 
-            super.onBindView(activity, location, themeManager, talkBackBuilder, position);
+            super.onBindView(activity, location, talkBackBuilder, position);
 
             Weather weather = location.getWeather();
             assert weather != null;
@@ -82,8 +81,14 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
                     mSpeedUnit.getSpeedTextWithoutUnit(nighttimeWindSpeed == null ? 0 : nighttimeWindSpeed),
                     mHighestWindSpeed
             );
-            mDoubleHistogramView.setLineColors(daytimeWindColor, nighttimeWindColor, mThemeManager.getSeparatorColor(activity));
-            mDoubleHistogramView.setTextColors(mThemeManager.getTextContentColor(activity));
+            mDoubleHistogramView.setLineColors(
+                    daytimeWindColor,
+                    nighttimeWindColor,
+                    ThemeManager.getInstance(activity).getThemeColor(activity, R.attr.colorOutline)
+            );
+            mDoubleHistogramView.setTextColors(
+                    ThemeManager.getInstance(activity).getThemeColor(activity, R.attr.colorBodyText)
+            );
             mDoubleHistogramView.setHistogramAlphas(1f, 0.5f);
 
             RotateDrawable nightIcon = daily.night().getWind().isValidSpeed()
@@ -99,12 +104,11 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
 
     @SuppressLint("SimpleDateFormat")
     public DailyWindAdapter(GeoActivity activity, TrendRecyclerView parent,
-                            Location location, MainThemeManager themeManager, SpeedUnit unit) {
+                            Location location, SpeedUnit unit) {
         super(activity, location);
 
         Weather weather = location.getWeather();
         assert weather != null;
-        mThemeManager = themeManager;
         mSpeedUnit = unit;
 
         mHighestWindSpeed = Integer.MIN_VALUE;
@@ -164,7 +168,6 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
                         TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
                 )
         );
-        parent.setLineColor(mThemeManager.getSeparatorColor(activity));
         parent.setData(keyLineList, mHighestWindSpeed, -mHighestWindSpeed);
     }
 
@@ -178,7 +181,7 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(getActivity(), getLocation(), mThemeManager, position);
+        holder.onBindView(getActivity(), getLocation(), position);
     }
 
     @Override

@@ -18,14 +18,19 @@ import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.TimeZone;
+
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.main.adapters.AqiAdapter;
-import wangdaye.com.geometricweather.main.utils.MainThemeManager;
-import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.common.ui.widgets.ArcProgress;
+import wangdaye.com.geometricweather.main.adapters.AqiAdapter;
+import wangdaye.com.geometricweather.main.utils.DayNightColorWrapper;
+import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
+import wangdaye.com.geometricweather.theme.ThemeManager;
+import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
+import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
 
 public class AirQualityViewHolder extends AbstractMainCardViewHolder {
 
@@ -37,14 +42,18 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
     private AqiAdapter mAdapter;
 
     @Nullable private Weather mWeather;
+    @Nullable private TimeZone mTimeZone;
     private int mAqiIndex;
 
     private boolean mEnable;
     @Nullable private AnimatorSet mAttachAnimatorSet;
 
-    public AirQualityViewHolder(ViewGroup parent, MainThemeManager themeManager) {
-        super(LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.container_main_aqi, parent, false), themeManager);
+    public AirQualityViewHolder(ViewGroup parent) {
+        super(
+                LayoutInflater
+                        .from(parent.getContext())
+                        .inflate(R.layout.container_main_aqi, parent, false)
+        );
 
         mCard = itemView.findViewById(R.id.container_main_aqi);
         mTitle = itemView.findViewById(R.id.container_main_aqi_title);
@@ -61,6 +70,7 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
                 listAnimationEnabled, itemAnimationEnabled, firstCard);
 
         mWeather = location.getWeather();
+        mTimeZone = location.getTimeZone();
         assert mWeather != null;
 
         mAqiIndex = mWeather.getCurrent().getAirQuality().getAqiIndex() == null
@@ -69,32 +79,72 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
 
         mEnable = true;
 
-        mCard.setCardBackgroundColor(themeManager.getSurfaceColor(context));
-        mTitle.setTextColor(themeManager.getWeatherThemeColors()[0]);
+        DayNightColorWrapper.bind(
+                itemView,
+                new Integer[]{
+                        R.attr.colorBodyText,
+                        R.attr.colorCaptionText,
+                },
+                (colors, animated) -> {
+                    mCard.setCardBackgroundColor(
+                            ThemeManager.getInstance(context).getThemeColor(
+                                    context, R.attr.colorSurface
+                            )
+                    );
+                    mTitle.setTextColor(
+                            ThemeManager
+                                    .getInstance(context)
+                                    .getWeatherThemeDelegate()
+                                    .getThemeColors(
+                                            context,
+                                            WeatherViewController.getWeatherKind(mWeather),
+                                            location.isDaylight()
+                                    )[0]
+                    );
+
+                    mProgress.setTextColor(colors[0]);
+                    mProgress.setBottomTextColor(colors[1]);
+
+                    return null;
+                }
+        );
 
         if (itemAnimationEnabled) {
             mProgress.setProgress(0);
             mProgress.setText(String.format("%d", 0));
             mProgress.setProgressColor(
                     ContextCompat.getColor(context, R.color.colorLevel_1),
-                    themeManager.isLightTheme()
+                    MainModuleUtils.isMainLightTheme(context, location.isDaylight())
             );
-            mProgress.setArcBackgroundColor(themeManager.getSeparatorColor(context));
+            mProgress.setArcBackgroundColor(
+                    ThemeManager.getInstance(context).getThemeColor(
+                            context, R.attr.colorOutline
+                    )
+            );
         } else {
             int aqiColor = mWeather.getCurrent().getAirQuality().getAqiColor(mProgress.getContext());
             mProgress.setProgress(mAqiIndex);
             mProgress.setText(String.format("%d", mAqiIndex));
-            mProgress.setProgressColor(aqiColor, themeManager.isLightTheme());
-            mProgress.setArcBackgroundColor(
-                    ColorUtils.setAlphaComponent(aqiColor, (int) (255 * 0.1))
+
+            DayNightColorWrapper.bind(
+                    mProgress,
+                    new Integer[0],
+                    (integers, aBoolean) -> {
+                        mProgress.setProgressColor(
+                                aqiColor,
+                                MainModuleUtils.isMainLightTheme(context, location.isDaylight())
+                        );
+                        mProgress.setArcBackgroundColor(
+                                ColorUtils.setAlphaComponent(aqiColor, (int) (255 * 0.1))
+                        );
+                        return null;
+                    }
             );
         }
-        mProgress.setTextColor(themeManager.getTextContentColor(context));
         mProgress.setBottomText(mWeather.getCurrent().getAirQuality().getAqiText());
-        mProgress.setBottomTextColor(themeManager.getTextSubtitleColor(context));
         mProgress.setContentDescription(mAqiIndex + ", " + mWeather.getCurrent().getAirQuality().getAqiText());
 
-        mAdapter = new AqiAdapter(context, mWeather, themeManager, itemAnimationEnabled);
+        mAdapter = new AqiAdapter(context, mWeather, itemAnimationEnabled);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
     }
@@ -111,11 +161,13 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
                     aqiColor
             );
             progressColor.addUpdateListener(animation -> mProgress.setProgressColor(
-                    (Integer) animation.getAnimatedValue(), themeManager.isLightTheme()));
+                    (Integer) animation.getAnimatedValue(),
+                    MainModuleUtils.isMainLightTheme(context, mWeather.isDaylight(mTimeZone))
+            ));
 
             ValueAnimator backgroundColor = ValueAnimator.ofObject(
                     new ArgbEvaluator(),
-                    themeManager.getSeparatorColor(context),
+                    ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorOutline),
                     ColorUtils.setAlphaComponent(aqiColor, (int) (255 * 0.1))
             );
             backgroundColor.addUpdateListener(animation ->
@@ -135,6 +187,30 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
             mAttachAnimatorSet.start();
 
             mAdapter.executeAnimation();
+
+            DayNightColorWrapper.bind(
+                    mProgress,
+                    new Integer[0],
+                    (colors, animated) -> {
+                        if (!animated) {
+                            return null;
+                        }
+
+                        if (mAttachAnimatorSet != null) {
+                            mAttachAnimatorSet.end();
+                            mAttachAnimatorSet = null;
+                        }
+
+                        mProgress.setProgressColor(
+                                aqiColor,
+                                MainModuleUtils.isMainLightTheme(context, mWeather.isDaylight(mTimeZone))
+                        );
+                        mProgress.setArcBackgroundColor(
+                                ColorUtils.setAlphaComponent(aqiColor, (int) (255 * 0.1))
+                        );
+                        return null;
+                    }
+            );
         }
     }
 
