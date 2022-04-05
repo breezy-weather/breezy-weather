@@ -21,8 +21,8 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.CloudCover
 import wangdaye.com.geometricweather.common.basic.models.options.unit.RelativeHumidityUnit;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.SpeedUnit;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.main.utils.DayNightColorWrapper;
 import wangdaye.com.geometricweather.settings.SettingsManager;
+import wangdaye.com.geometricweather.theme.ThemeManager;
 
 /**
  * Details adapter.
@@ -64,20 +64,6 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
             mIcon = itemView.findViewById(R.id.item_details_icon);
             mTitle = itemView.findViewById(R.id.item_details_title);
             mContent = itemView.findViewById(R.id.item_details_content);
-
-            DayNightColorWrapper.bind(
-                    itemView,
-                    new Integer[]{
-                            R.attr.colorBodyText,
-                            R.attr.colorCaptionText,
-                    },
-                    (colors, aBoolean) -> {
-                        ImageViewCompat.setImageTintList(mIcon, ColorStateList.valueOf(colors[0]));
-                        mTitle.setTextColor(colors[0]);
-                        mContent.setTextColor(colors[1]);
-                        return null;
-                    }
-            );
         }
 
         void onBindView(Index index) {
@@ -86,6 +72,28 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
             mIcon.setImageResource(index.iconId);
             mTitle.setText(index.title);
             mContent.setText(index.content);
+
+            ImageViewCompat.setImageTintList(
+                    mIcon,
+                    ColorStateList.valueOf(
+                            ThemeManager.getInstance(itemView.getContext()).getThemeColor(
+                                    itemView.getContext(),
+                                    R.attr.colorBodyText
+                            )
+                    )
+            );
+            mTitle.setTextColor(
+                    ThemeManager.getInstance(itemView.getContext()).getThemeColor(
+                            itemView.getContext(),
+                            R.attr.colorBodyText
+                    )
+            );
+            mContent.setTextColor(
+                    ThemeManager.getInstance(itemView.getContext()).getThemeColor(
+                            itemView.getContext(),
+                            R.attr.colorCaptionText
+                    )
+            );
         }
     }
 

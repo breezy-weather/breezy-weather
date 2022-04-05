@@ -145,7 +145,8 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
         }
         mTagAdapter = new TagAdapter(
                 tagList,
-                ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorOnBackground),
+                ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorOnPrimaryContainer),
+                ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorOnSecondaryContainer),
                 ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorPrimaryContainer),
                 ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorSecondaryContainer),
                 (checked, oldPosition, newPosition) -> {

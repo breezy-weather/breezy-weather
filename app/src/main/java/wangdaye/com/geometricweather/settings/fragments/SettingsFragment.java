@@ -12,7 +12,6 @@ import androidx.preference.CheckBoxPreference;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 
-import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.polling.PollingManager;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
@@ -42,6 +41,7 @@ import wangdaye.com.geometricweather.remoteviews.presenters.notification.NormalN
 import wangdaye.com.geometricweather.settings.dialogs.RunningInBackgroundDialog;
 import wangdaye.com.geometricweather.settings.dialogs.RunningInBackgroundODialog;
 import wangdaye.com.geometricweather.settings.dialogs.TimeSetterDialog;
+import wangdaye.com.geometricweather.theme.ThemeManager;
 
 /**
  * Settings fragment.
@@ -132,12 +132,14 @@ public class SettingsFragment extends AbstractSettingsFragment {
                         .getUpdateIntervalName(requireActivity())
         );
         refreshRate.setOnPreferenceChangeListener((preference, newValue) -> {
-            preference.setSummary(
-                    getSettingsOptionManager()
-                            .getUpdateInterval()
-                            .getUpdateIntervalName(requireActivity())
-            );
-            PollingManager.resetNormalBackgroundTask(requireActivity(), false);
+            requireView().post(() -> {
+                preference.setSummary(
+                        getSettingsOptionManager()
+                                .getUpdateInterval()
+                                .getUpdateIntervalName(requireActivity())
+                );
+                PollingManager.resetNormalBackgroundTask(requireActivity(), false);
+            });
             return true;
         });
 
@@ -149,13 +151,16 @@ public class SettingsFragment extends AbstractSettingsFragment {
                         .getDarkModeName(requireActivity())
         );
         darkMode.setOnPreferenceChangeListener((preference, newValue) -> {
-            preference.setSummary(
-                    getSettingsOptionManager()
-                            .getDarkMode()
-                            .getDarkModeName(requireActivity())
-            );
-            GeometricWeather.getInstance().resetDayNightMode();
-            GeometricWeather.getInstance().recreateAllActivities();
+            requireView().post(() -> {
+                preference.setSummary(
+                        getSettingsOptionManager()
+                                .getDarkMode()
+                                .getDarkModeName(requireActivity())
+                );
+                ThemeManager
+                        .getInstance(requireContext())
+                        .update(getSettingsOptionManager().getDarkMode());
+            });
             return true;
         });
 
@@ -231,13 +236,16 @@ public class SettingsFragment extends AbstractSettingsFragment {
                         .getWidgetWeekIconModeName(requireActivity())
         );
         widgetWeekIconMode.setOnPreferenceChangeListener((preference, newValue) -> {
-            requireView().post(this::initWidgetPart);
-            preference.setSummary(
-                    getSettingsOptionManager()
-                            .getWidgetWeekIconMode()
-                            .getWidgetWeekIconModeName(requireActivity())
-            );
-            PollingManager.resetNormalBackgroundTask(requireActivity(), true);
+            requireView().post(() -> {
+                initWidgetPart();
+
+                preference.setSummary(
+                        getSettingsOptionManager()
+                                .getWidgetWeekIconMode()
+                                .getWidgetWeekIconModeName(requireActivity())
+                );
+                PollingManager.resetNormalBackgroundTask(requireActivity(), true);
+            });
             return true;
         });
 
@@ -364,13 +372,16 @@ public class SettingsFragment extends AbstractSettingsFragment {
                         .getNotificationStyleName(requireActivity())
         );
         notificationStyle.setOnPreferenceChangeListener((preference, newValue) -> {
-            requireView().post(this::initNotificationPart);
-            preference.setSummary(
-                    getSettingsOptionManager()
-                            .getNotificationStyle()
-                            .getNotificationStyleName(requireActivity())
-            );
-            PollingManager.resetNormalBackgroundTask(requireActivity(), true);
+            requireView().post(() -> {
+                initNotificationPart();
+
+                preference.setSummary(
+                        getSettingsOptionManager()
+                                .getNotificationStyle()
+                                .getNotificationStyleName(requireActivity())
+                );
+                PollingManager.resetNormalBackgroundTask(requireActivity(), true);
+            });
             return true;
         });
 

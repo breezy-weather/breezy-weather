@@ -30,7 +30,6 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Daily;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.ui.widgets.astro.MoonPhaseView;
 import wangdaye.com.geometricweather.common.ui.widgets.astro.SunMoonView;
-import wangdaye.com.geometricweather.main.utils.DayNightColorWrapper;
 import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
 import wangdaye.com.geometricweather.theme.ThemeManager;
 import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
@@ -94,63 +93,21 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
         mTimeZone = location.getTimeZone();
         assert mWeather != null;
 
-        DayNightColorWrapper.bind(
-                itemView,
-                new Integer[0],
-                (integers, aBoolean) -> {
-                    int[] themeColors = ThemeManager
-                            .getInstance(context)
-                            .getWeatherThemeDelegate()
-                            .getThemeColors(
-                                    context,
-                                    WeatherViewController.getWeatherKind(location.getWeather()),
-                                    location.isDaylight()
-                            );
-
-                    mCard.setCardBackgroundColor(
-                            ThemeManager.getInstance(context).getThemeColor(
-                                    context, R.attr.colorSurface
-                            )
-                    );
-                    mTitle.setTextColor(themeColors[0]);
-
-                    mPhaseText.setTextColor(
-                            ThemeManager.getInstance(context).getThemeColor(
-                                    context, R.attr.colorBodyText
-                            )
-                    );
-                    mPhaseView.setColor(
-                            ContextCompat.getColor(context, R.color.colorTextLight2nd),
-                            ContextCompat.getColor(context, R.color.colorTextDark2nd),
-                            ThemeManager.getInstance(context).getThemeColor(
-                                    context, R.attr.colorBodyText
-                            )
-                    );
-
-                    if (MainModuleUtils.isMainLightTheme(context, location.isDaylight())) {
-                        mSunMoonView.setColors(
-                                themeColors[0],
-                                ColorUtils.setAlphaComponent(themeColors[1], (int) (0.66 * 255)),
-                                ColorUtils.setAlphaComponent(themeColors[1], (int) (0.33 * 255)),
-                                ThemeManager.getInstance(context).getThemeColor(
-                                        context, R.attr.colorSurface
-                                ),
-                                true
-                        );
-                    } else {
-                        mSunMoonView.setColors(
-                                themeColors[2],
-                                ColorUtils.setAlphaComponent(themeColors[2], (int) (0.5 * 255)),
-                                ColorUtils.setAlphaComponent(themeColors[2], (int) (0.2 * 255)),
-                                ThemeManager.getInstance(context).getThemeColor(
-                                        context, R.attr.colorSurface
-                                ),
-                                false
-                        );
-                    }
-                    return null;
-                }
+        mCard.setCardBackgroundColor(
+                ThemeManager.getInstance(context).getThemeColor(
+                        context, R.attr.colorSurface
+                )
         );
+
+        int[] themeColors = ThemeManager
+                .getInstance(context)
+                .getWeatherThemeDelegate()
+                .getThemeColors(
+                        context,
+                        WeatherViewController.getWeatherKind(location.getWeather()),
+                        location.isDaylight()
+                );
+        mTitle.setTextColor(themeColors[0]);
 
         StringBuilder talkBackBuilder = new StringBuilder(mTitle.getText());
 
@@ -164,12 +121,47 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
             mPhaseText.setVisibility(View.VISIBLE);
             mPhaseView.setVisibility(View.VISIBLE);
 
+            mPhaseText.setTextColor(
+                    ThemeManager.getInstance(context).getThemeColor(
+                            context, R.attr.colorBodyText
+                    )
+            );
+            mPhaseView.setColor(
+                    ContextCompat.getColor(context, R.color.colorTextLight2nd),
+                    ContextCompat.getColor(context, R.color.colorTextDark2nd),
+                    ThemeManager.getInstance(context).getThemeColor(
+                            context, R.attr.colorBodyText
+                    )
+            );
+
             mPhaseText.setText(mWeather.getDailyForecast().get(0).getMoonPhase().getMoonPhase(context));
             talkBackBuilder.append(", ").append(mPhaseText.getText());
         }
 
         mSunMoonView.setSunDrawable(ResourceHelper.getSunDrawable(provider));
         mSunMoonView.setMoonDrawable(ResourceHelper.getMoonDrawable(provider));
+
+        if (MainModuleUtils.isMainLightTheme(context, location.isDaylight())) {
+            mSunMoonView.setColors(
+                    themeColors[0],
+                    ColorUtils.setAlphaComponent(themeColors[1], (int) (0.66 * 255)),
+                    ColorUtils.setAlphaComponent(themeColors[1], (int) (0.33 * 255)),
+                    ThemeManager.getInstance(context).getThemeColor(
+                            context, R.attr.colorSurface
+                    ),
+                    true
+            );
+        } else {
+            mSunMoonView.setColors(
+                    themeColors[2],
+                    ColorUtils.setAlphaComponent(themeColors[2], (int) (0.5 * 255)),
+                    ColorUtils.setAlphaComponent(themeColors[2], (int) (0.2 * 255)),
+                    ThemeManager.getInstance(context).getThemeColor(
+                            context, R.attr.colorSurface
+                    ),
+                    false
+            );
+        }
 
         if (itemAnimationEnabled) {
             mSunMoonView.setTime(mStartTimes, mEndTimes, mStartTimes);

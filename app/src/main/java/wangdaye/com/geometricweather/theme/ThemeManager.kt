@@ -64,10 +64,10 @@ class ThemeManager private constructor(
     val homeUIMode: EqualtableLiveData<Int>
     val globalUIMode: EqualtableLiveData<Int>
     val daylight: EqualtableLiveData<Boolean>
+    var darkMode: EqualtableLiveData<DarkMode>
 
     val weatherThemeDelegate: WeatherThemeDelegate
 
-    private var darkMode: DarkMode
     private val typedValue = TypedValue()
 
     val isDaylight: Boolean
@@ -88,18 +88,18 @@ class ThemeManager private constructor(
             )
         )
         this.daylight = EqualtableLiveData(isDaylight)
+        this.darkMode = EqualtableLiveData(darkMode)
 
         this.weatherThemeDelegate = weatherThemeDelegate
-
-        this.darkMode = darkMode
     }
 
+    @JvmOverloads
     fun update(
         darkMode: DarkMode? = null,
         location: Location? = null,
     ) {
         darkMode?.let {
-            this.darkMode = it
+            this.darkMode.setValue(it)
         }
         location?.let {
             this.daylight.setValue(it.isDaylight)
@@ -107,13 +107,13 @@ class ThemeManager private constructor(
 
         homeUIMode.setValue(
             generateHomeUIMode(
-                darkMode = this.darkMode,
+                darkMode = this.darkMode.value!!,
                 daylight = this.daylight.value!!
             )
         )
         globalUIMode.setValue(
             generateGlobalUIMode(
-                darkMode = this.darkMode
+                darkMode = this.darkMode.value!!
             )
         )
     }

@@ -15,8 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import kotlin.Unit;
-import kotlin.jvm.functions.Function2;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
@@ -33,7 +31,6 @@ import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.main.adapters.main.MainTag;
 import wangdaye.com.geometricweather.main.adapters.trend.HourlyTrendAdapter;
 import wangdaye.com.geometricweather.main.layouts.TrendHorizontalLinearLayoutManager;
-import wangdaye.com.geometricweather.main.utils.DayNightColorWrapper;
 import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
 import wangdaye.com.geometricweather.main.widgets.TrendRecyclerViewScrollBar;
 import wangdaye.com.geometricweather.settings.SettingsManager;
@@ -88,16 +85,6 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
         mMinutelyContainer.setOnClickListener(v -> {
 
         });
-
-        DayNightColorWrapper.bind(
-                mTrendRecyclerView,
-                R.attr.colorOutline,
-                (color, aBoolean) -> {
-                    mTrendRecyclerView.setLineColor(color);
-                    mTrendAdapter.notifyDataSetChanged();
-                    return null;
-                }
-        );
     }
 
     @Override
@@ -105,28 +92,22 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
                            boolean listAnimationEnabled, boolean itemAnimationEnabled, boolean firstCard) {
         super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled, firstCard);
 
-        DayNightColorWrapper.bind(itemView, R.attr.colorSurface, (color, animated) -> {
-            mScrollBar.setColor(
-                    color,
-                    MainModuleUtils.isMainLightTheme(context, location.isDaylight())
-            );
-            mCard.setCardBackgroundColor(color);
-            return null;
-        });
-
         Weather weather = location.getWeather();
         assert weather != null;
 
-        int weatherColor = ThemeManager
+        mCard.setCardBackgroundColor(
+                ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorSurface)
+        );
+
+        int[] colors = ThemeManager
                 .getInstance(context)
                 .getWeatherThemeDelegate()
                 .getThemeColors(
                         context,
                         WeatherViewController.getWeatherKind(weather),
                         location.isDaylight()
-                )[0];
-
-        mTitle.setTextColor(weatherColor);
+                );
+        mTitle.setTextColor(colors[0]);
 
         if (TextUtils.isEmpty(weather.getCurrent().getHourlyForecast())) {
             mSubtitle.setVisibility(View.GONE);
@@ -152,33 +133,28 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
             );
 
             mTagView.setLayoutManager(new TrendHorizontalLinearLayoutManager(context));
-            DayNightColorWrapper.bind(mTagView, new Integer[0], (integers, aBoolean) -> {
-                int[] colors = ThemeManager
-                        .getInstance(context)
-                        .getWeatherThemeDelegate()
-                        .getThemeColors(
-                                context,
-                                WeatherViewController.getWeatherKind(weather),
-                                location.isDaylight()
-                        );
-
-                mTagView.setAdapter(
-                        new TagAdapter(
-                                tagList,
-                                ThemeManager
-                                        .getInstance(context)
-                                        .getThemeColor(context, R.attr.titleTextColor),
-                                colors[1],
-                                colors[2],
-                                (checked, oldPosition, newPosition) -> {
-                                    setTrendAdapterByTag(location, (MainTag) tagList.get(newPosition));
-                                    return false;
-                                },
-                                0
-                        )
-                );
-                return null;
-            });
+            mTagView.setAdapter(
+                    new TagAdapter(
+                            tagList,
+                            ThemeManager
+                                    .getInstance(context)
+                                    .getThemeColor(context, R.attr.colorOnSurfaceVariant),
+                            ThemeManager
+                                    .getInstance(context)
+                                    .getThemeColor(context, R.attr.colorTitleText),
+                            ThemeManager
+                                    .getInstance(context)
+                                    .getThemeColor(context, R.attr.colorSurfaceVariant),
+                            ThemeManager
+                                    .getInstance(context)
+                                    .getThemeColor(context, R.attr.colorOutline),
+                            (checked, oldPosition, newPosition) -> {
+                                setTrendAdapterByTag(location, (MainTag) tagList.get(newPosition));
+                                return false;
+                            },
+                            0
+                    )
+            );
         }
 
         mTrendRecyclerView.setLayoutManager(
@@ -187,10 +163,18 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
                         DisplayUtils.isLandscape(context) ? 7 : 5
                 )
         );
+        mTrendRecyclerView.setLineColor(
+                ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorOutline)
+        );
         mTrendRecyclerView.setAdapter(mTrendAdapter);
         mTrendRecyclerView.setKeyLineVisibility(
                 SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled());
         setTrendAdapterByTag(location, (MainTag) tagList.get(0));
+
+        mScrollBar.setColor(
+                ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorSurface),
+                MainModuleUtils.isMainLightTheme(context, location.isDaylight())
+        );
 
         List<Minutely> minutelyList = weather.getMinutelyForecast();
         if (minutelyList.size() != 0 && needToShowMinutelyForecast(minutelyList)) {
@@ -211,25 +195,21 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
             mMinutelyContainer.setVisibility(View.GONE);
         }
 
-        DayNightColorWrapper.bind(mMinutelyContainer, new Integer[0], (colors, animated) -> {
-            ThemeManager tm = ThemeManager.getInstance(context);
+        ThemeManager tm = ThemeManager.getInstance(context);
 
-            mMinutelyTitle.setTextColor(tm.getThemeColor(context, R.attr.colorBodyText));
+        mMinutelyTitle.setTextColor(tm.getThemeColor(context, R.attr.colorBodyText));
 
-            mPrecipitationBar.setBackgroundColor(tm.getThemeColor(context, R.attr.colorOutline));
-            mPrecipitationBar.setPrecipitationColor(
-                    tm.getWeatherThemeDelegate().getThemeColors(
-                            context,
-                            WeatherViewController.getWeatherKind(weather),
-                            location.isDaylight()
-                    )[0]
-            );
+        mPrecipitationBar.setBackgroundColor(tm.getThemeColor(context, R.attr.colorOutline));
+        mPrecipitationBar.setPrecipitationColor(
+                tm.getWeatherThemeDelegate().getThemeColors(
+                        context,
+                        WeatherViewController.getWeatherKind(weather),
+                        location.isDaylight()
+                )[0]
+        );
 
-            mMinutelyStartText.setTextColor(tm.getThemeColor(context, R.attr.colorCaptionText));
-            mMinutelyEndText.setTextColor(tm.getThemeColor(context, R.attr.colorCaptionText));
-
-            return null;
-        });
+        mMinutelyStartText.setTextColor(tm.getThemeColor(context, R.attr.colorCaptionText));
+        mMinutelyEndText.setTextColor(tm.getThemeColor(context, R.attr.colorCaptionText));
     }
 
     private static boolean needToShowMinutelyForecast(List<Minutely> minutelyList) {

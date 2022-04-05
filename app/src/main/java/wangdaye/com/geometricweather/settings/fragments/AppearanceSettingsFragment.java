@@ -69,14 +69,14 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
                 )
         );
         exchangeDayNightTemperature.setOnPreferenceChangeListener((preference, newValue) -> {
-            preference.setSummary(
+            requireView().post(() -> preference.setSummary(
                     Temperature.getTrendTemperature(
                             requireActivity(),
                             3,
                             7,
                             SettingsManager.getInstance(requireActivity()).getTemperatureUnit()
                     )
-            );
+            ));
             return true;
         });
 
@@ -84,12 +84,16 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
         Preference language = findPreference(getString(R.string.key_language));
         language.setSummary(getSettingsOptionManager().getLanguage().getLanguageName(requireActivity()));
         language.setOnPreferenceChangeListener((preference, newValue) -> {
-            preference.setSummary(getSettingsOptionManager().getLanguage().getLanguageName(requireActivity()));
-            SnackbarHelper.showSnackbar(
-                    getString(R.string.feedback_restart),
-                    getString(R.string.restart),
-                    v -> GeometricWeather.getInstance().recreateAllActivities()
-            );
+            requireView().post(() -> {
+                preference.setSummary(
+                        getSettingsOptionManager().getLanguage().getLanguageName(requireActivity())
+                );
+                SnackbarHelper.showSnackbar(
+                        getString(R.string.feedback_restart),
+                        getString(R.string.restart),
+                        v -> GeometricWeather.getInstance().recreateAllActivities()
+                );
+            });
             return true;
         });
     }

@@ -13,7 +13,6 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.main.adapters.DetailsAdapter;
-import wangdaye.com.geometricweather.main.utils.DayNightColorWrapper;
 import wangdaye.com.geometricweather.theme.ThemeManager;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
@@ -44,27 +43,19 @@ public class DetailsViewHolder extends AbstractMainCardViewHolder {
                 listAnimationEnabled, itemAnimationEnabled, firstCard);
 
         if (location.getWeather() != null) {
-            DayNightColorWrapper.bind(
-                    itemView,
-                    new Integer[0],
-                    (integers, aBoolean) -> {
-                        mCard.setCardBackgroundColor(
-                                ThemeManager.getInstance(context).getThemeColor(
-                                        context, R.attr.colorSurface
-                                )
-                        );
-                        mTitle.setTextColor(
-                                ThemeManager
-                                        .getInstance(context)
-                                        .getWeatherThemeDelegate()
-                                        .getThemeColors(
-                                                context,
-                                                WeatherViewController.getWeatherKind(location.getWeather()),
-                                                location.isDaylight()
-                                        )[0]
-                        );
-                        return null;
-                    }
+            mCard.setCardBackgroundColor(
+                    ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorSurface)
+            );
+
+            mTitle.setTextColor(
+                    ThemeManager
+                            .getInstance(context)
+                            .getWeatherThemeDelegate()
+                            .getThemeColors(
+                                    context,
+                                    WeatherViewController.getWeatherKind(location.getWeather()),
+                                    location.isDaylight()
+                            )[0]
             );
 
             mDetailsRecyclerView.setLayoutManager(new LinearLayoutManager(context));

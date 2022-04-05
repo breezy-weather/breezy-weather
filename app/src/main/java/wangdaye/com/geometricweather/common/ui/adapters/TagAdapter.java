@@ -16,7 +16,8 @@ import wangdaye.com.geometricweather.common.ui.widgets.TagView;
 public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
 
     private final List<Tag> mTagList;
-    private final @ColorInt int mTagTitleColor;
+    private final @ColorInt int mCheckedTitleColor;
+    private final @ColorInt int mUncheckedTitleColor;
     private final @ColorInt int mCheckedBackgroundColor;
     private final @ColorInt int mUncheckedBackgroundColor;
     private final OnTagCheckedListener mListener;
@@ -47,14 +48,15 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
 
         void onBindView(Tag tag, boolean checked) {
             mTagView.setText(tag.getName());
-            mTagView.setTextColor(mTagTitleColor);
-            setChecked(checked);
 
             mTagView.setCheckedBackgroundColor(mCheckedBackgroundColor);
             mTagView.setUncheckedBackgroundColor(mUncheckedBackgroundColor);
+
+            setChecked(checked);
         }
 
         public void setChecked(boolean checked) {
+            mTagView.setTextColor(checked ? mCheckedTitleColor : mUncheckedTitleColor);
             mTagView.setChecked(checked);
         }
     }
@@ -68,13 +70,15 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
     }
 
     public TagAdapter(List<Tag> tagList,
-                      @ColorInt int tagTitleColor,
+                      @ColorInt int checkedTitleColor,
+                      @ColorInt int uncheckedTitleColor,
                       @ColorInt int checkedBackgroundColor,
                       @ColorInt int uncheckedBackgroundColor,
                       OnTagCheckedListener listener) {
         this(
                 tagList,
-                tagTitleColor,
+                checkedTitleColor,
+                uncheckedTitleColor,
                 checkedBackgroundColor,
                 uncheckedBackgroundColor,
                 listener,
@@ -83,13 +87,15 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
     }
 
     public TagAdapter(List<Tag> tagList,
-                      @ColorInt int tagTitleColor,
+                      @ColorInt int checkedTitleColor,
+                      @ColorInt int uncheckedTitleColor,
                       @ColorInt int checkedBackgroundColor,
                       @ColorInt int uncheckedBackgroundColor,
                       OnTagCheckedListener listener,
                       int checkedIndex) {
         mTagList = tagList;
-        mTagTitleColor = tagTitleColor;
+        mCheckedTitleColor = checkedTitleColor;
+        mUncheckedTitleColor = uncheckedTitleColor;
         mCheckedBackgroundColor = checkedBackgroundColor;
         mUncheckedBackgroundColor = uncheckedBackgroundColor;
         mListener = listener;

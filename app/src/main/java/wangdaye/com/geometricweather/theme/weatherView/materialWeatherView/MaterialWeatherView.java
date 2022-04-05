@@ -1,7 +1,6 @@
 package wangdaye.com.geometricweather.theme.weatherView.materialWeatherView;
 
 import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -129,61 +128,52 @@ public class MaterialWeatherView extends ViewGroup
             mSwitchAnimator = null;
         }
 
-        // remove previous painter view.
+        // stop current painting work.
 
-        if (mPreviousView != null) {
-            removeView(mPreviousView);
+        if (mCurrentView != null) {
+            mCurrentView.setDrawable(false);
         }
 
-        // generate new painter view.
+        // generate new painter view or update painter cache.
 
+        MaterialPainterView prev = mPreviousView;
         mPreviousView = mCurrentView;
-        mCurrentView = new MaterialPainterView(
-                getContext(),
-                weatherKind,
-                daytime,
-                mDrawable,
-                mPreviousView != null ? mPreviousView.getScrollRate() : 0f,
-                mGravitySensorEnabled
-        );
+        mCurrentView = prev;
+        if (mCurrentView == null) {
+            mCurrentView = new MaterialPainterView(
+                    getContext(),
+                    weatherKind,
+                    daytime,
+                    mDrawable,
+                    mPreviousView != null ? mPreviousView.getScrollRate() : 0f,
+                    mGravitySensorEnabled
+            );
+            addView(mCurrentView);
+        } else {
+            mCurrentView.update(weatherKind, daytime, mGravitySensorEnabled);
+            mCurrentView.setDrawable(mDrawable);
+        }
 
-        // add new painter view.
-
-        mCurrentView.setAlpha(0f);
-        addView(mCurrentView);
+        // execute switch animation.
 
         if (mPreviousView == null) {
             mCurrentView.setAlpha(1f);
             return;
         }
 
-        // execute switch animation.
-
         AnimatorSet set = new AnimatorSet();
         set.setDuration(SWITCH_ANIMATION_DURATION);
         set.setInterpolator(new AccelerateDecelerateInterpolator());
-        set.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                // clear previous painter view when animation ended.
-                if (mPreviousView != null) {
-                    removeView(mPreviousView);
-                    mPreviousView = null;
-                }
-            }
-        });
         set.playTogether(
                 ObjectAnimator.ofFloat(
                         mCurrentView,
                         "alpha",
-                        mCurrentView.getAlpha(),
-                        1f
+                        0f, 1f
                 ),
                 ObjectAnimator.ofFloat(
                         mPreviousView,
                         "alpha",
-                        mPreviousView.getAlpha(),
-                        0f
+                        mPreviousView.getAlpha(), 0f
                 )
         );
 

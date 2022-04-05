@@ -9,6 +9,7 @@ import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
@@ -82,6 +83,9 @@ public abstract class GeoActivity extends AppCompatActivity {
     @CallSuper
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AppCompatDelegate.setDefaultNightMode(
+                ThemeManager.getInstance(this).getGlobalUIMode().getValue()
+        );
         super.onCreate(savedInstanceState);
 
         fitHorizontalSystemBarRootLayout = new FitHorizontalSystemBarRootLayout(this);

@@ -96,9 +96,10 @@ class MaterialWeatherThemeDelegate: WeatherThemeDelegate {
         weatherKind: Int,
         daylight: Boolean,
     ): IntArray {
-        val color = getBrighterColor(
-            innerGetBackgroundColor(context, weatherKind, daylight)
-        )
+        var color = innerGetBackgroundColor(context, weatherKind, daylight)
+        if (!daylight) {
+            color = getBrighterColor(color)
+        }
         return intArrayOf(
             color,
             color,

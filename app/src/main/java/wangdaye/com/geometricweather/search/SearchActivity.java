@@ -128,8 +128,14 @@ public class SearchActivity extends GeoActivity
         });
 
         boolean lightTheme = !DisplayUtils.isDarkMode(this);
-        DisplayUtils.setSystemBarStyle(this, getWindow(),
-                true, lightTheme, true, lightTheme);
+        DisplayUtils.setSystemBarStyle(
+                this,
+                getWindow(),
+                false,
+                lightTheme,
+                true,
+                lightTheme
+        );
 
         mCurrentList = DatabaseHelper.getInstance(this).readLocationList();
 

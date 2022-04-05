@@ -56,9 +56,8 @@ public class ServiceProviderSettingsFragment extends AbstractSettingsFragment {
             for (int i = 0; i < locationList.size(); i ++) {
                 Location src = locationList.get(i);
                 if (src.isCurrentPosition()) {
-                    if (src.getWeatherSource() != null) {
-                        DatabaseHelper.getInstance(requireActivity()).deleteWeather(src);
-                    }
+                    src.getWeatherSource();
+                    DatabaseHelper.getInstance(requireActivity()).deleteWeather(src);
                     locationList.set(i, Location.copy(src, source));
                     if (mListener != null) {
                         mListener.onWeatherSourceChanged(locationList.get(i));
@@ -117,12 +116,16 @@ public class ServiceProviderSettingsFragment extends AbstractSettingsFragment {
 
         locationService.setSummary(getSettingsOptionManager().getLocationProvider().getProviderName(requireContext()));
         locationService.setOnPreferenceChangeListener((preference, newValue) -> {
-            preference.setSummary(getSettingsOptionManager().getLocationProvider().getProviderName(requireContext()));
-            SnackbarHelper.showSnackbar(
-                    getString(R.string.feedback_restart),
-                    getString(R.string.restart),
-                    v -> GeometricWeather.getInstance().recreateAllActivities()
-            );
+            requireView().post(() -> {
+                preference.setSummary(
+                        getSettingsOptionManager().getLocationProvider().getProviderName(requireContext())
+                );
+                SnackbarHelper.showSnackbar(
+                        getString(R.string.feedback_restart),
+                        getString(R.string.restart),
+                        v -> GeometricWeather.getInstance().recreateAllActivities()
+                );
+            });
             return true;
         });
 

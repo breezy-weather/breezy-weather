@@ -23,7 +23,7 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Base;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
 import wangdaye.com.geometricweather.main.MainActivity;
-import wangdaye.com.geometricweather.main.utils.DayNightColorWrapper;
+import wangdaye.com.geometricweather.theme.ThemeManager;
 
 public class FirstCardHeaderController
         implements View.OnClickListener {
@@ -62,12 +62,21 @@ public class FirstCardHeaderController
                     activity.getString(R.string.content_desc_weather_alert_button)
                             .replace("$", "" + weather.getAlertList().size())
             );
+            ImageViewCompat.setImageTintList(
+                    timeIcon,
+                    ColorStateList.valueOf(
+                            ThemeManager.getInstance(activity).getThemeColor(activity, R.attr.colorBodyText)
+                    )
+            );
             timeIcon.setOnClickListener(this);
 
             refreshTime.setText(
                     activity.getString(R.string.refresh_at)
                             + " "
                             + Base.getTime(activity, weather.getBase().getUpdateDate())
+            );
+            refreshTime.setTextColor(
+                    ThemeManager.getInstance(activity).getThemeColor(activity, R.attr.colorBodyText)
             );
 
             long time = System.currentTimeMillis();
@@ -82,6 +91,9 @@ public class FirstCardHeaderController
                 );
                 localTime.setFormat24Hour(
                         activity.getString(R.string.date_format_widget_long) + ", HH:mm"
+                );
+                localTime.setTextColor(
+                        ThemeManager.getInstance(activity).getThemeColor(activity, R.attr.colorCaptionText)
                 );
             }
 
@@ -105,28 +117,17 @@ public class FirstCardHeaderController
                     }
                 }
                 alert.setText(builder.toString());
+                alert.setTextColor(
+                        ThemeManager.getInstance(activity).getThemeColor(activity, R.attr.colorCaptionText)
+                );
 
                 line.setVisibility(View.VISIBLE);
+                line.setBackgroundColor(
+                        ThemeManager.getInstance(activity).getThemeColor(activity, R.attr.colorSurface)
+                );
             }
             alert.setOnClickListener(this);
         }
-
-        DayNightColorWrapper.bind(
-                mView,
-                new Integer[]{
-                        R.attr.colorSurface,
-                        R.attr.colorBodyText,
-                        R.attr.colorCaptionText,
-                },
-                (colors, animated) -> {
-                    line.setBackgroundColor(colors[0]);
-                    ImageViewCompat.setImageTintList(timeIcon, ColorStateList.valueOf(colors[1]));
-                    refreshTime.setTextColor(colors[1]);
-                    localTime.setTextColor(colors[2]);
-                    alert.setTextColor(colors[2]);
-                    return null;
-                }
-        );
     }
 
     public void bind(LinearLayout firstCardContainer) {

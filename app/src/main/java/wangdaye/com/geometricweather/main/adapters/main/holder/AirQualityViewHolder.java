@@ -26,7 +26,6 @@ import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.ui.widgets.ArcProgress;
 import wangdaye.com.geometricweather.main.adapters.AqiAdapter;
-import wangdaye.com.geometricweather.main.utils.DayNightColorWrapper;
 import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
 import wangdaye.com.geometricweather.theme.ThemeManager;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
@@ -79,34 +78,19 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
 
         mEnable = true;
 
-        DayNightColorWrapper.bind(
-                itemView,
-                new Integer[]{
-                        R.attr.colorBodyText,
-                        R.attr.colorCaptionText,
-                },
-                (colors, animated) -> {
-                    mCard.setCardBackgroundColor(
-                            ThemeManager.getInstance(context).getThemeColor(
-                                    context, R.attr.colorSurface
-                            )
-                    );
-                    mTitle.setTextColor(
-                            ThemeManager
-                                    .getInstance(context)
-                                    .getWeatherThemeDelegate()
-                                    .getThemeColors(
-                                            context,
-                                            WeatherViewController.getWeatherKind(mWeather),
-                                            location.isDaylight()
-                                    )[0]
-                    );
+        mCard.setCardBackgroundColor(
+                ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorSurface)
+        );
 
-                    mProgress.setTextColor(colors[0]);
-                    mProgress.setBottomTextColor(colors[1]);
-
-                    return null;
-                }
+        mTitle.setTextColor(
+                ThemeManager
+                        .getInstance(context)
+                        .getWeatherThemeDelegate()
+                        .getThemeColors(
+                                context,
+                                WeatherViewController.getWeatherKind(mWeather),
+                                location.isDaylight()
+                        )[0]
         );
 
         if (itemAnimationEnabled) {
@@ -126,22 +110,22 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
             mProgress.setProgress(mAqiIndex);
             mProgress.setText(String.format("%d", mAqiIndex));
 
-            DayNightColorWrapper.bind(
-                    mProgress,
-                    new Integer[0],
-                    (integers, aBoolean) -> {
-                        mProgress.setProgressColor(
-                                aqiColor,
-                                MainModuleUtils.isMainLightTheme(context, location.isDaylight())
-                        );
-                        mProgress.setArcBackgroundColor(
-                                ColorUtils.setAlphaComponent(aqiColor, (int) (255 * 0.1))
-                        );
-                        return null;
-                    }
+            mProgress.setProgressColor(
+                    aqiColor,
+                    MainModuleUtils.isMainLightTheme(context, location.isDaylight())
+            );
+            mProgress.setArcBackgroundColor(
+                    ColorUtils.setAlphaComponent(aqiColor, (int) (255 * 0.1))
             );
         }
+
+        mProgress.setTextColor(
+                ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorBodyText)
+        );
         mProgress.setBottomText(mWeather.getCurrent().getAirQuality().getAqiText());
+        mProgress.setBottomTextColor(
+                ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorCaptionText)
+        );
         mProgress.setContentDescription(mAqiIndex + ", " + mWeather.getCurrent().getAirQuality().getAqiText());
 
         mAdapter = new AqiAdapter(context, mWeather, itemAnimationEnabled);
@@ -187,30 +171,6 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
             mAttachAnimatorSet.start();
 
             mAdapter.executeAnimation();
-
-            DayNightColorWrapper.bind(
-                    mProgress,
-                    new Integer[0],
-                    (colors, animated) -> {
-                        if (!animated) {
-                            return null;
-                        }
-
-                        if (mAttachAnimatorSet != null) {
-                            mAttachAnimatorSet.end();
-                            mAttachAnimatorSet = null;
-                        }
-
-                        mProgress.setProgressColor(
-                                aqiColor,
-                                MainModuleUtils.isMainLightTheme(context, mWeather.isDaylight(mTimeZone))
-                        );
-                        mProgress.setArcBackgroundColor(
-                                ColorUtils.setAlphaComponent(aqiColor, (int) (255 * 0.1))
-                        );
-                        return null;
-                    }
-            );
         }
     }
 

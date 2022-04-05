@@ -27,7 +27,6 @@ import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.main.adapters.main.MainTag;
 import wangdaye.com.geometricweather.main.adapters.trend.DailyTrendAdapter;
 import wangdaye.com.geometricweather.main.layouts.TrendHorizontalLinearLayoutManager;
-import wangdaye.com.geometricweather.main.utils.DayNightColorWrapper;
 import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
 import wangdaye.com.geometricweather.main.widgets.TrendRecyclerViewScrollBar;
 import wangdaye.com.geometricweather.settings.SettingsManager;
@@ -65,15 +64,6 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
         mTrendAdapter = new DailyTrendAdapter();
         mScrollBar = new TrendRecyclerViewScrollBar();
         mTrendRecyclerView.addItemDecoration(mScrollBar);
-
-        DayNightColorWrapper.bind(
-                mTrendRecyclerView,
-                R.attr.colorOutline,
-                (color, aBoolean) -> {
-                    mTrendRecyclerView.setLineColor(color);
-                    return null;
-                }
-        );
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -83,29 +73,23 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
                            boolean listAnimationEnabled, boolean itemAnimationEnabled, boolean firstCard) {
         super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled, firstCard);
 
-        DayNightColorWrapper.bind(itemView, R.attr.colorSurface, (color, animated) -> {
-            mScrollBar.setColor(
-                    color,
-                    MainModuleUtils.isMainLightTheme(context, location.isDaylight())
-            );
-            mCard.setCardBackgroundColor(color);
-            mTrendAdapter.notifyDataSetChanged();
-            return null;
-        });
-
         Weather weather = location.getWeather();
         assert weather != null;
 
-        int weatherColor = ThemeManager
+        mCard.setCardBackgroundColor(
+                ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorSurface)
+        );
+
+        int[] colors = ThemeManager
                 .getInstance(context)
                 .getWeatherThemeDelegate()
                 .getThemeColors(
                         context,
                         WeatherViewController.getWeatherKind(weather),
                         location.isDaylight()
-                )[0];
+                );
 
-        mTitle.setTextColor(weatherColor);
+        mTitle.setTextColor(colors[0]);
 
         if (TextUtils.isEmpty(weather.getCurrent().getDailyForecast())) {
             mSubtitle.setVisibility(View.GONE);
@@ -132,33 +116,28 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
             );
 
             mTagView.setLayoutManager(new TrendHorizontalLinearLayoutManager(context));
-            DayNightColorWrapper.bind(mTagView, new Integer[0], (integers, aBoolean) -> {
-                int[] colors = ThemeManager
-                        .getInstance(context)
-                        .getWeatherThemeDelegate()
-                        .getThemeColors(
-                                context,
-                                WeatherViewController.getWeatherKind(weather),
-                                location.isDaylight()
-                        );
-
-                mTagView.setAdapter(
-                        new TagAdapter(
-                                tagList,
-                                ThemeManager
-                                        .getInstance(context)
-                                        .getThemeColor(context, R.attr.titleTextColor),
-                                colors[1],
-                                colors[2],
-                                (checked, oldPosition, newPosition) -> {
-                                    setTrendAdapterByTag(location, (MainTag) tagList.get(newPosition));
-                                    return false;
-                                },
-                                0
-                        )
-                );
-                return null;
-            });
+            mTagView.setAdapter(
+                    new TagAdapter(
+                            tagList,
+                            ThemeManager
+                                    .getInstance(context)
+                                    .getThemeColor(context, R.attr.colorOnSurfaceVariant),
+                            ThemeManager
+                                    .getInstance(context)
+                                    .getThemeColor(context, R.attr.colorTitleText),
+                            ThemeManager
+                                    .getInstance(context)
+                                    .getThemeColor(context, R.attr.colorSurfaceVariant),
+                            ThemeManager
+                                    .getInstance(context)
+                                    .getThemeColor(context, R.attr.colorOutline),
+                            (checked, oldPosition, newPosition) -> {
+                                setTrendAdapterByTag(location, (MainTag) tagList.get(newPosition));
+                                return false;
+                            },
+                            0
+                    )
+            );
         }
 
         mTrendRecyclerView.setLayoutManager(
@@ -167,10 +146,18 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
                         DisplayUtils.isLandscape(context) ? 7 : 5
                 )
         );
+        mTrendRecyclerView.setLineColor(
+                ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorOutline)
+        );
         mTrendRecyclerView.setAdapter(mTrendAdapter);
         mTrendRecyclerView.setKeyLineVisibility(
                 SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled());
         setTrendAdapterByTag(location, (MainTag) tagList.get(0));
+
+        mScrollBar.setColor(
+                ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorSurface),
+                MainModuleUtils.isMainLightTheme(context, location.isDaylight())
+        );
     }
 
     @SuppressLint("NotifyDataSetChanged")

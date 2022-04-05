@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -22,18 +23,14 @@ import wangdaye.com.geometricweather.common.basic.GeoFragment
 import wangdaye.com.geometricweather.common.basic.models.Location
 import wangdaye.com.geometricweather.common.bus.DataBus
 import wangdaye.com.geometricweather.common.snackbar.SnackbarContainer
-import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper
-import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper
-import wangdaye.com.geometricweather.common.utils.helpers.ShortcutsHelper
-import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper
+import wangdaye.com.geometricweather.common.utils.helpers.*
 import wangdaye.com.geometricweather.databinding.ActivityMainBinding
 import wangdaye.com.geometricweather.main.dialogs.BackgroundLocationDialog
 import wangdaye.com.geometricweather.main.dialogs.LocationHelpDialog
 import wangdaye.com.geometricweather.main.dialogs.LocationPermissionStatementDialog
 import wangdaye.com.geometricweather.main.fragments.MainFragment
 import wangdaye.com.geometricweather.main.fragments.ManagementFragment
-import wangdaye.com.geometricweather.main.utils.DayNightColorWrapper.Companion.bind
-import wangdaye.com.geometricweather.main.utils.DayNightColorWrapper.Companion.updateAll
+import wangdaye.com.geometricweather.main.utils.DayNightColorWrapper
 import wangdaye.com.geometricweather.main.utils.MainModuleUtils
 import wangdaye.com.geometricweather.remoteviews.NotificationHelper
 import wangdaye.com.geometricweather.remoteviews.WidgetHelper
@@ -154,11 +151,14 @@ class MainActivity : GeoActivity(),
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        checkToUpdateDayNightColors()
+        DayNightColorWrapper.updateAll()
     }
 
     override fun onResume() {
         super.onResume()
+        AppCompatDelegate.setDefaultNightMode(
+            ThemeManager.getInstance(this).homeUIMode.value!!
+        )
         viewModel.checkToUpdate()
     }
 
@@ -211,27 +211,27 @@ class MainActivity : GeoActivity(),
     @SuppressLint("ClickableViewAccessibility", "NonConstantResourceId")
     private fun initView() {
         if (binding.fragmentDrawer != null) {
-            bind(binding.fragmentDrawer!!, android.R.attr.colorBackground) { color, _ ->
+            DayNightColorWrapper.bind(binding.fragmentDrawer!!, android.R.attr.colorBackground) { color, _ ->
                 binding.fragmentDrawer!!.setBackgroundColor(color)
             }
         }
         if (binding.fragmentMain != null) {
-            bind(binding.fragmentMain!!, android.R.attr.colorBackground) { color, _ ->
+            DayNightColorWrapper.bind(binding.fragmentMain!!, android.R.attr.colorBackground) { color, _ ->
                 binding.fragmentMain!!.setBackgroundColor(color)
             }
         }
         if (binding.fragment != null) {
-            bind(binding.fragment!!, android.R.attr.colorBackground) { color, _ ->
+            DayNightColorWrapper.bind(binding.fragment!!, android.R.attr.colorBackground) { color, _ ->
                 binding.fragment!!.setBackgroundColor(color)
             }
         }
 
         ThemeManager.getInstance(this).homeUIMode.observe(this) {
-            delegate.localNightMode = it
+            AppCompatDelegate.setDefaultNightMode(it)
         }
 
         viewModel.currentLocation.observe(this) {
-            checkToUpdateDayNightColors()
+            DayNightColorWrapper.updateAll()
         }
         viewModel.validLocationList.observe(this) {
             // update notification immediately.
@@ -367,16 +367,6 @@ class MainActivity : GeoActivity(),
         ) == PackageManager.PERMISSION_GRANTED
 
     // control.
-    private fun checkToUpdateDayNightColors() {
-        val lightTheme = MainModuleUtils.isMainLightTheme(
-            this,
-            viewModel.currentLocation.value!!.isDaylight
-        )
-        if (isLightTheme != lightTheme) {
-            isLightTheme = lightTheme
-            updateAll()
-        }
-    }
 
     private fun consumeIntentAction(intent: Intent) {
         val action = intent.action

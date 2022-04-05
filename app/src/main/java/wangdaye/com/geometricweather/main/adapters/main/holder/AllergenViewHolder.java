@@ -20,7 +20,6 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.ui.adapters.DailyPollenAdapter;
 import wangdaye.com.geometricweather.common.ui.widgets.horizontal.HorizontalViewPager2;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
-import wangdaye.com.geometricweather.main.utils.DayNightColorWrapper;
 import wangdaye.com.geometricweather.theme.ThemeManager;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
@@ -107,32 +106,21 @@ public class AllergenViewHolder extends AbstractMainCardViewHolder {
 
         assert location.getWeather() != null;
 
-        DayNightColorWrapper.bind(
-                itemView,
-                new Integer[0],
-                (integers, aBoolean) -> {
-                    mCard.setCardBackgroundColor(
-                            ThemeManager.getInstance(context).getThemeColor(
-                                    context, R.attr.colorSurface
-                            )
-                    );
-                    mTitle.setTextColor(
-                            ThemeManager
-                                    .getInstance(context)
-                                    .getWeatherThemeDelegate()
-                                    .getThemeColors(
-                                            context,
-                                            WeatherViewController.getWeatherKind(location.getWeather()),
-                                            location.isDaylight()
-                                    )[0]
-                    );
-                    mSubtitle.setTextColor(
-                            ThemeManager.getInstance(context).getThemeColor(
-                                    context, R.attr.colorCaptionText
-                            )
-                    );
-                    return null;
-                }
+        mCard.setCardBackgroundColor(
+                ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorSurface)
+        );
+        mTitle.setTextColor(
+                ThemeManager
+                        .getInstance(context)
+                        .getWeatherThemeDelegate()
+                        .getThemeColors(
+                                context,
+                                WeatherViewController.getWeatherKind(location.getWeather()),
+                                location.isDaylight()
+                        )[0]
+        );
+        mSubtitle.setTextColor(
+                ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorCaptionText)
         );
 
         mPager.setAdapter(new DailyPollenPagerAdapter(location.getWeather()));

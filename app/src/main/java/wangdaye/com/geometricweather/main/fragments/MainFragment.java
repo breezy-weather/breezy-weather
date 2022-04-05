@@ -19,6 +19,7 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.GeoFragment;
 import wangdaye.com.geometricweather.common.basic.insets.FitHorizontalSystemBarRootLayout;
+import wangdaye.com.geometricweather.common.basic.livedata.EqualtableLiveData;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.ui.widgets.SwipeSwitchLayout;
 import wangdaye.com.geometricweather.databinding.FragmentMainBinding;
@@ -45,14 +46,7 @@ public class MainFragment extends GeoFragment {
     private @Nullable Animator mRecyclerViewAnimator;
     private ResourceProvider mResourceProvider;
 
-    private int previewOffset = 0;
-    private void setPreviewOffset(int offset) {
-        if (previewOffset == offset) {
-            return;
-        }
-        previewOffset = offset;
-        updatePreviewSubviews();
-    }
+    private final EqualtableLiveData<Integer> mPreviewOffset = new EqualtableLiveData<>(0);
 
     private @Nullable Callback mCallback;
     public interface Callback {
@@ -146,8 +140,6 @@ public class MainFragment extends GeoFragment {
                     return null;
                 }
         );
-
-        updatePreviewSubviews();
 
         mWeatherView.setGravitySensorEnabled(
                 SettingsManager.getInstance(requireContext()).isGravitySensorEnabled()
@@ -247,6 +239,8 @@ public class MainFragment extends GeoFragment {
                 mBinding.indicator.setVisibility(View.GONE);
             }
         });
+
+        mPreviewOffset.observe(getViewLifecycleOwner(), offset -> updatePreviewSubviews());
     }
 
     // control.
@@ -263,6 +257,8 @@ public class MainFragment extends GeoFragment {
             mRecyclerViewAnimator.cancel();
             mRecyclerViewAnimator = null;
         }
+
+        mBinding.switchLayout.reset();
 
         if (location.getWeather() == null) {
             mAdapter.setNullWeather();
@@ -319,29 +315,29 @@ public class MainFragment extends GeoFragment {
     }
 
     private void updatePreviewSubviews() {
-        Location location = mViewModel.getValidLocation(previewOffset);
-        boolean daylight = previewOffset == 0
-                ? ThemeManager.getInstance(requireContext()).isDaylight()
-                : location.isDaylight();
+        mBinding.getRoot().post(() -> {
+            Location location = mViewModel.getValidLocation(mPreviewOffset.getValue());
+            boolean daylight = location.isDaylight();
 
-        mBinding.toolbar.setTitle(location.getCityName(requireContext()));
-        WeatherViewController.setWeatherCode(
-                mWeatherView,
-                location.getWeather(),
-                daylight,
-                mResourceProvider
-        );
+            mBinding.toolbar.setTitle(location.getCityName(requireContext()));
+            WeatherViewController.setWeatherCode(
+                    mWeatherView,
+                    location.getWeather(),
+                    daylight,
+                    mResourceProvider
+            );
 
-        mBinding.refreshLayout.setColorSchemeColors(
-                ThemeManager
-                        .getInstance(requireContext())
-                        .getWeatherThemeDelegate()
-                        .getThemeColors(
-                                requireContext(),
-                                WeatherViewController.getWeatherKind(location.getWeather()),
-                                daylight
-                        )[0]
-        );
+            mBinding.refreshLayout.setColorSchemeColors(
+                    ThemeManager
+                            .getInstance(requireContext())
+                            .getWeatherThemeDelegate()
+                            .getThemeColors(
+                                    requireContext(),
+                                    WeatherViewController.getWeatherKind(location.getWeather()),
+                                    daylight
+                            )[0]
+            );
+        });
     }
 
     private void setRefreshing(final boolean b) {
@@ -394,32 +390,26 @@ public class MainFragment extends GeoFragment {
     private final SwipeSwitchLayout.OnSwitchListener switchListener
             = new SwipeSwitchLayout.OnSwitchListener() {
 
-        private float mLastProgress = 0;
-
         @Override
-        public void onSwipeProgressChanged(int swipeDirection, float progress) {
+        public void onSwiped(int swipeDirection, float progress) {
             mBinding.indicator.setDisplayState(progress != 0);
 
-            if (progress >= 1 && mLastProgress < 1) {
-                mLastProgress = 1;
-                setPreviewOffset(
+            if (progress >= 1) {
+                mPreviewOffset.setValue(
                         swipeDirection == SwipeSwitchLayout.SWIPE_DIRECTION_LEFT ? 1 : -1
                 );
-            } else if (progress < 1 && mLastProgress >= 1) {
-                mLastProgress = 0;
-                setPreviewOffset(0);
+            } else {
+                mPreviewOffset.setValue(0);
             }
         }
 
         @Override
-        public void onSwipeReleased(int swipeDirection, boolean doSwitch) {
-            if (doSwitch) {
-                mBinding.indicator.setDisplayState(false);
-                mViewModel.setLocation(
-                        swipeDirection == SwipeSwitchLayout.SWIPE_DIRECTION_LEFT ? 1 : -1
-                );
-                setPreviewOffset(0);
-            }
+        public void onSwitched(int swipeDirection) {
+            mBinding.indicator.setDisplayState(false);
+            mViewModel.offsetLocation(
+                    swipeDirection == SwipeSwitchLayout.SWIPE_DIRECTION_LEFT ? 1 : -1
+            );
+            mPreviewOffset.setValue(0);
         }
     };
 
