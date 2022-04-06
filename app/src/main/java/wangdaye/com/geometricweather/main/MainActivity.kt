@@ -31,6 +31,8 @@ import wangdaye.com.geometricweather.main.dialogs.LocationHelpDialog
 import wangdaye.com.geometricweather.main.dialogs.LocationPermissionStatementDialog
 import wangdaye.com.geometricweather.main.fragments.HomeFragment
 import wangdaye.com.geometricweather.main.fragments.ManagementFragment
+import wangdaye.com.geometricweather.main.fragments.PushedManagementFragment
+import wangdaye.com.geometricweather.main.fragments.SplitManagementFragment
 import wangdaye.com.geometricweather.main.utils.DayNightColorWrapper
 import wangdaye.com.geometricweather.main.utils.MainModuleUtils
 import wangdaye.com.geometricweather.remoteviews.NotificationHelper
@@ -95,7 +97,7 @@ class MainActivity : GeoActivity(),
     private val fragmentLifecycleCallback = object : FragmentManager.FragmentLifecycleCallbacks() {
 
         override fun onFragmentAttached(fm: FragmentManager, f: Fragment, context: Context) {
-            if (binding.drawerLayout == null && f is ManagementFragment) {
+            if (binding.drawerLayout == null && f is PushedManagementFragment) {
                 isHomeFragmentInvisible = true
                 updateNightMode()
             }
@@ -107,21 +109,21 @@ class MainActivity : GeoActivity(),
             v: View,
             savedInstanceState: Bundle?
         ) {
-            if (binding.drawerLayout == null && f is ManagementFragment) {
+            if (binding.drawerLayout == null && f is PushedManagementFragment) {
                 isHomeFragmentInvisible = true
                 updateNightMode()
             }
         }
 
         override fun onFragmentViewDestroyed(fm: FragmentManager, f: Fragment) {
-            if (binding.drawerLayout == null && f is ManagementFragment) {
+            if (binding.drawerLayout == null && f is PushedManagementFragment) {
                 updateNightMode()
                 isHomeFragmentInvisible = false
             }
         }
 
         override fun onFragmentDetached(fm: FragmentManager, f: Fragment) {
-            if (binding.drawerLayout == null && f is ManagementFragment) {
+            if (binding.drawerLayout == null && f is PushedManagementFragment) {
                 updateNightMode()
                 isHomeFragmentInvisible = false
             }
@@ -487,7 +489,7 @@ class MainActivity : GeoActivity(),
                     )
                     .add(
                         R.id.fragment,
-                        ManagementFragment.getInstance(true),
+                        PushedManagementFragment.getInstance(true),
                         TAG_FRAGMENT_MANAGEMENT
                     )
                     .addToBackStack(null)
@@ -513,9 +515,9 @@ class MainActivity : GeoActivity(),
 
     private fun findManagementFragment(): ManagementFragment? {
         return if (binding.drawerLayout == null) {
-            supportFragmentManager.findFragmentByTag(TAG_FRAGMENT_MANAGEMENT) as ManagementFragment?
+            supportFragmentManager.findFragmentByTag(TAG_FRAGMENT_MANAGEMENT) as PushedManagementFragment?
         } else {
-            supportFragmentManager.findFragmentById(R.id.fragment_drawer) as ManagementFragment?
+            supportFragmentManager.findFragmentById(R.id.fragment_drawer) as SplitManagementFragment?
         }
     }
 

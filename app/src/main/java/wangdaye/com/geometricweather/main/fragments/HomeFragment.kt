@@ -229,7 +229,8 @@ class HomeFragment : GeoFragment() {
             if (pendingLocation == viewModel.currentLocation.value) {
                 updateViews(location = pendingLocation!!)
             }
-        } else if (lastValidUIMode != (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK)) {
+        } else if (lastValidUIMode != (
+                    resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK)) {
             updateViews(location = viewModel.currentLocation.value!!)
         }
         pendingLocation = null

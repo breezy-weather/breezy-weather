@@ -34,7 +34,19 @@ import wangdaye.com.geometricweather.main.widgets.LocationItemTouchCallback
 import wangdaye.com.geometricweather.main.widgets.LocationItemTouchCallback.TouchReactor
 import wangdaye.com.geometricweather.theme.ThemeManager.Companion.getInstance
 
-class ManagementFragment : GeoFragment(), TouchReactor {
+class PushedManagementFragment: ManagementFragment() {
+
+    companion object {
+        fun getInstance(controlSystemBar: Boolean) = PushedManagementFragment().apply {
+            arguments = Bundle().apply {
+                putBoolean(KEY_CONTROL_SYSTEM_BAR, controlSystemBar)
+            }
+        }
+    }
+}
+class SplitManagementFragment: ManagementFragment()
+
+open class ManagementFragment : GeoFragment(), TouchReactor {
 
     private lateinit var binding: FragmentManagementBinding
     private lateinit var viewModel: MainActivityViewModel
@@ -51,12 +63,6 @@ class ManagementFragment : GeoFragment(), TouchReactor {
 
     companion object {
         const val KEY_CONTROL_SYSTEM_BAR = "control_system_bar"
-
-        fun getInstance(controlSystemBar: Boolean) = ManagementFragment().apply {
-            arguments = Bundle().apply {
-                putBoolean(KEY_CONTROL_SYSTEM_BAR, controlSystemBar)
-            }
-        }
     }
 
     interface Callback {
