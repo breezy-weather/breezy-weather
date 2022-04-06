@@ -2,9 +2,7 @@ package wangdaye.com.geometricweather.wallpaper;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.PixelFormat;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -297,13 +295,15 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                         mOrientationListener.enable();
                     }
 
-                    Location location = DatabaseHelper.getInstance(
-                            MaterialLiveWallpaperService.this
-                    ).readLocationList().get(0);
-                    location.setWeather(
-                            DatabaseHelper.getInstance(
-                                    MaterialLiveWallpaperService.this
-                            ).readWeather(location)
+                    Location location = DatabaseHelper
+                            .getInstance(MaterialLiveWallpaperService.this)
+                            .readLocationList()
+                            .get(0);
+                    location = Location.copy(
+                            location,
+                            DatabaseHelper
+                                    .getInstance(MaterialLiveWallpaperService.this)
+                                    .readWeather(location)
                     );
 
                     LiveWallpaperConfigManager configManager = LiveWallpaperConfigManager.getInstance(

@@ -82,9 +82,7 @@ public class MfWeatherService extends WeatherService {
         );
 
         Observable<AtmoAuraQAResult> aqiAtmoAura;
-        if (location.getProvince() == null) {
-            aqiAtmoAura = Observable.create(emitter -> emitter.onNext(new EmptyAtmoAuraQAResult()));
-        } else if (location.getProvince().equals("Auvergne-Rhône-Alpes") || location.getProvince().equals("01")
+        if (location.getProvince().equals("Auvergne-Rhône-Alpes") || location.getProvince().equals("01")
                 || location.getProvince().equals("03") || location.getProvince().equals("07")
                 || location.getProvince().equals("15") || location.getProvince().equals("26")
                 || location.getProvince().equals("38") || location.getProvince().equals("42")
@@ -118,8 +116,9 @@ public class MfWeatherService extends WeatherService {
                     @Override
                     public void onSucceed(WeatherResultWrapper wrapper) {
                         if (wrapper.result != null) {
-                            location.setWeather(wrapper.result);
-                            callback.requestWeatherSuccess(location);
+                            callback.requestWeatherSuccess(
+                                    Location.copy(location, wrapper.result)
+                            );
                         } else {
                             onFailed();
                         }

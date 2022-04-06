@@ -81,8 +81,10 @@ public class DailyWeatherActivity extends GeoActivity {
                 location = DatabaseHelper.getInstance(this).readLocationList().get(0);
             }
 
-            location.setWeather(DatabaseHelper.getInstance(this).readWeather(location));
-            emitter.send(location, true);
+            emitter.send(
+                    Location.copy(location, DatabaseHelper.getInstance(this).readWeather(location)),
+                    true
+            );
         }, (AsyncHelper.Callback<Location>) (location, done) -> {
             if (location == null) {
                 finish();

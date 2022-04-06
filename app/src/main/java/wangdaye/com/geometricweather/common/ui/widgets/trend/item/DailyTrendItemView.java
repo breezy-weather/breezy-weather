@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.AttributeSet;
@@ -172,10 +173,12 @@ public class DailyTrendItemView extends AbsTrendItemView {
     @Override
     protected void onDraw(Canvas canvas) {
         // week text.
+        mPaint.setTypeface(Typeface.DEFAULT_BOLD);
         if (mWeekText != null) {
             mPaint.setColor(mContentColor);
             canvas.drawText(mWeekText, getMeasuredWidth() / 2f, mWeekTextBaseLine, mPaint);
         }
+        mPaint.setTypeface(Typeface.DEFAULT_BOLD);
 
         // date text.
         if (mDateText != null) {

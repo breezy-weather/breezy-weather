@@ -26,14 +26,18 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
     private final @Px int mElevation;
 
     private boolean mDragged;
-    private final @NonNull OnSelectProviderActivityStartedCallback mCallback;
+    private int mDragFrom;
+    private int mDragTo;
+    private final @NonNull TouchReactor mReactor;
 
-    public interface OnSelectProviderActivityStartedCallback {
-        void onSelectProviderActivityStarted();
+    public interface TouchReactor {
+        void resetViewHolderAt(int position);
+        void reorderByDrag(int from, int to);
+        void startSelectProviderActivityBySwipe();
     }
 
     public LocationItemTouchCallback(GeoActivity activity, MainActivityViewModel viewModel,
-                                     @NonNull OnSelectProviderActivityStartedCallback callback) {
+                                     @NonNull TouchReactor callback) {
         super();
 
         mActivity = activity;
@@ -42,7 +46,7 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
         mElevation = activity.getResources().getDimensionPixelSize(R.dimen.touch_rise_z);
 
         mDragged = false;
-        mCallback = callback;
+        mReactor = callback;
     }
 
     @Override
@@ -52,12 +56,16 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
             case ItemTouchHelper.ACTION_STATE_IDLE:
                 if (mDragged) {
                     mDragged = false;
-                    mViewModel.moveLocationFinish();
+                    mViewModel.moveLocation(mDragFrom, mDragTo);
                 }
                 break;
 
             case ItemTouchHelper.ACTION_STATE_DRAG:
-                mDragged = true;
+                if (!mDragged && viewHolder != null) {
+                    mDragged = true;
+                    mDragFrom = viewHolder.getAdapterPosition();
+                    mDragTo = mDragFrom;
+                }
                 break;
         }
     }
@@ -66,7 +74,8 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
     public boolean onMove(@NonNull RecyclerView recyclerView,
                           @NonNull RecyclerView.ViewHolder viewHolder,
                           @NonNull RecyclerView.ViewHolder target) {
-        mViewModel.moveLocation(viewHolder.getAdapterPosition(), target.getAdapterPosition());
+        mDragTo = target.getAdapterPosition();
+        mReactor.reorderByDrag(viewHolder.getAdapterPosition(), mDragTo);
         return true;
     }
 
@@ -78,9 +87,9 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
         switch (direction) {
             case ItemTouchHelper.START: {
                 if (location.isCurrentPosition()) {
-                    // TODO: force update.
                     mViewModel.updateLocation(location);
-                    mCallback.onSelectProviderActivityStarted();
+                    mReactor.startSelectProviderActivityBySwipe();
+                    mReactor.resetViewHolderAt(position);
                 } else {
                     location = Location.copy(
                             location,
@@ -93,8 +102,8 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
                         SnackbarHelper.showSnackbar(
                                 mActivity.getString(R.string.feedback_resident_location),
                                 mActivity.getString(R.string.learn_more),
-                                v -> new LearnMoreAboutResidentLocationDialog().show(
-                                        mActivity.getSupportFragmentManager(), null)
+                                v -> new LearnMoreAboutResidentLocationDialog()
+                                        .show(mActivity.getSupportFragmentManager(), null)
                         );
                     }
                 }

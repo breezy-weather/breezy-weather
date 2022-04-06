@@ -71,7 +71,7 @@ class ThemeManager private constructor(
     private val typedValue = TypedValue()
 
     val isDaylight: Boolean
-    get() = daylight.value ?: true
+        get() = daylight.value ?: true
 
     init {
         val isDaylight = DisplayUtils.isDaylight(TimeZone.getDefault())

@@ -71,8 +71,9 @@ public class CaiYunWeatherService extends CNWeatherService {
                     @Override
                     public void onSucceed(WeatherResultWrapper wrapper) {
                         if (wrapper.result != null) {
-                            location.setWeather(wrapper.result);
-                            callback.requestWeatherSuccess(location);
+                            callback.requestWeatherSuccess(
+                                    Location.copy(location, wrapper.result)
+                            );
                         } else {
                             callback.requestWeatherFailed(location);
                         }

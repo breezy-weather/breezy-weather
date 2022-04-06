@@ -45,7 +45,7 @@ public class AllergenActivity extends GeoActivity {
         if (mLocation == null) {
             mLocation = DatabaseHelper.getInstance(this).readLocationList().get(0);
         }
-        mLocation.setWeather(DatabaseHelper.getInstance(this).readWeather(mLocation));
+        mLocation = Location.copy(mLocation, DatabaseHelper.getInstance(this).readWeather(mLocation));
     }
 
     private void initWidget() {

@@ -242,8 +242,8 @@ public class SearchActivity extends GeoActivity
                 mBinding.fab,
                 mBinding.fabSheet,
                 mBinding.overlay,
-                ThemeManager.getInstance(this).getThemeColor(this, android.R.attr.colorBackground),
-                ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorSecondary)
+                ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorSurface),
+                ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorPrimary)
         );
         mMaterialSheetFab.setEventListener(new MaterialSheetFabEventListener() {
             @Override

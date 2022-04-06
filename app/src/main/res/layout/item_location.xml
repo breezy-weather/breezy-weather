@@ -56,7 +56,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_margin="0dp"
                     style="@style/material_icon"
-                    app:tint="?attr/colorSecondaryContainer" />
+                    app:tint="?attr/colorSecondary" />
 
                 <TextView
                     android:id="@+id/title"

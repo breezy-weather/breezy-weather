@@ -24,7 +24,7 @@ class Location(
     val city: String,
     val district: String,
 
-    var weather: Weather? = null,
+    val weather: Weather? = null,
     val weatherSource: WeatherSource,
 
     val isCurrentPosition: Boolean,
@@ -33,20 +33,20 @@ class Location(
 ) : Parcelable {
 
     val formattedId: String
-    get() = if (isCurrentPosition) {
-        CURRENT_POSITION_ID
-    } else {
-        cityId + "&" + weatherSource.name
-    }
+        get() = if (isCurrentPosition) {
+            CURRENT_POSITION_ID
+        } else {
+            cityId + "&" + weatherSource.name
+        }
 
     val isDaylight: Boolean
-    get() = weather?.isDaylight(timeZone) ?: DisplayUtils.isDaylight(timeZone)
+        get() = weather?.isDaylight(timeZone) ?: DisplayUtils.isDaylight(timeZone)
 
     val isUsable: Boolean
-    get() = cityId != NULL_ID
+        get() = cityId != NULL_ID
 
     val canUseChineseSource: Boolean
-    get() = LanguageUtils.isChinese(city) && isChina
+        get() = LanguageUtils.isChinese(city) && isChina
 
     companion object {
         private const val NULL_ID = "NULL_ID"
@@ -108,7 +108,7 @@ class Location(
                     break
                 }
             }
-            val result: MutableList<Location> = ArrayList(list.size)
+            val result = ArrayList<Location>(list.size)
             if (currentLocation == null) {
                 result.addAll(list)
             } else {
@@ -120,6 +120,14 @@ class Location(
             }
             return result
         }
+
+        @JvmStatic
+        fun copy(
+            src: Location,
+            weather: Weather?,
+        ) = src.copy(
+            weather = weather
+        )
 
         @JvmStatic
         fun copy(

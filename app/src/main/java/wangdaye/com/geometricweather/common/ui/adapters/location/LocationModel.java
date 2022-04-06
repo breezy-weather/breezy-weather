@@ -38,10 +38,12 @@ public class LocationModel {
 
     public boolean selected;
 
-    public LocationModel(@NonNull Context context,
-                         @NonNull Location location,
-                         @NonNull TemperatureUnit unit,
-                         boolean selected) {
+    public LocationModel(
+            @NonNull Context context,
+            @NonNull Location location,
+            @NonNull TemperatureUnit unit,
+            boolean selected
+    ) {
         this.location = location;
 
         if (location.getWeather() != null) {
@@ -66,8 +68,20 @@ public class LocationModel {
             builder.append(", ").append(
                     Temperature.getTrendTemperature(
                             context,
-                            location.getWeather().getDailyForecast().get(0).night().getTemperature().getTemperature(),
-                            location.getWeather().getDailyForecast().get(0).day().getTemperature().getTemperature(),
+                            location
+                                    .getWeather()
+                                    .getDailyForecast()
+                                    .get(0)
+                                    .night()
+                                    .getTemperature()
+                                    .getTemperature(),
+                            location
+                                    .getWeather()
+                                    .getDailyForecast()
+                                    .get(0)
+                                    .day()
+                                    .getTemperature()
+                                    .getTemperature(),
                             unit
                     )
             );

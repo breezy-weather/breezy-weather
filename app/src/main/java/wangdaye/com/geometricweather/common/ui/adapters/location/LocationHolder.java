@@ -53,7 +53,7 @@ public class LocationHolder extends RecyclerView.ViewHolder {
         }
 
         mBinding.container.setBackgroundColorStart(
-                ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorError)
+                ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorErrorContainer)
         );
         mBinding.container.setBackgroundColorEnd(
                 model.location.isCurrentPosition()
@@ -62,7 +62,7 @@ public class LocationHolder extends RecyclerView.ViewHolder {
         );
 
         mBinding.container.setTintColorStart(
-                ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorOnError)
+                ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorOnErrorContainer)
         );
         mBinding.container.setTintColorEnd(
                 model.location.isCurrentPosition()

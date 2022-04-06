@@ -48,8 +48,9 @@ public class CNWeatherService extends WeatherService {
                     public void onSucceed(CNWeatherResult cnWeatherResult) {
                         WeatherResultWrapper wrapper = CNResultConverter.convert(context, location, cnWeatherResult);
                         if (wrapper.result != null) {
-                            location.setWeather(wrapper.result);
-                            callback.requestWeatherSuccess(location);
+                            callback.requestWeatherSuccess(
+                                    Location.copy(location, wrapper.result)
+                            );
                         } else {
                             onFailed();
                         }

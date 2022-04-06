@@ -23,9 +23,15 @@ public class MultiCityWidgetConfigActivity extends AbstractWidgetConfigActivity 
     @Override
     public void initData() {
         super.initData();
+
         locationList = DatabaseHelper.getInstance(this).readLocationList();
-        for (Location l : locationList) {
-            l.setWeather(DatabaseHelper.getInstance(this).readWeather(l));
+        for (int i = 0; i < locationList.size(); i ++) {
+            locationList.set(
+                    i, Location.copy(
+                            locationList.get(i),
+                            DatabaseHelper.getInstance(this).readWeather(locationList.get(i))
+                    )
+            );
         }
     }
 

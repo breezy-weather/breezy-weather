@@ -117,11 +117,10 @@
             android:layout_margin="@dimen/normal_margin"
             android:layout_gravity="bottom|end"
             android:textColor="@android:color/white"
-            android:theme="@style/Theme.MaterialComponents"
             android:contentDescription="@string/content_desc_filter_weather_sources"
             android:src="@drawable/ic_filter"
-            app:tint="@android:color/white"
-            app:backgroundTint="@color/colorPrimary" />
+            app:tint="?attr/colorOnPrimary"
+            app:backgroundTint="?attr/colorPrimary" />
 
         <io.codetail.widget.RevealLinearLayout
             android:layout_width="match_parent"

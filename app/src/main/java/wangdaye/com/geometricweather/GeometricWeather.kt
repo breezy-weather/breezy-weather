@@ -196,7 +196,7 @@ class GeometricWeather : MultiDexApplication(),
         BuglyHelper.init(this)
 
         if (getProcessName().equals(packageName)) {
-            resetDayNightMode()
+            setDayNightMode()
         }
     }
 
@@ -218,7 +218,7 @@ class GeometricWeather : MultiDexApplication(),
         }
     }
 
-    private fun resetDayNightMode() {
+    private fun setDayNightMode() {
         val mode = when (SettingsManager.getInstance(this).getDarkMode()) {
             DarkMode.LIGHT -> AppCompatDelegate.MODE_NIGHT_NO
             DarkMode.DARK -> AppCompatDelegate.MODE_NIGHT_YES

@@ -128,7 +128,12 @@ public class CMWeatherProviderService extends WeatherProviderService
     // control.
 
     private void requestLocation() {
-        mLocationHelper.requestLocation(this, Location.buildLocal(), true, locationListener);
+        mLocationHelper.requestLocation(
+                this,
+                Location.buildLocal(),
+                true,
+                locationListener
+        );
     }
 
     private void requestWeather(String cityName) {
@@ -177,10 +182,14 @@ public class CMWeatherProviderService extends WeatherProviderService
                                 WeatherConditionConvertHelper.getConditionCode(
                                         weather.getCurrent().getWeatherCode(),
                                         requestLocation.isDaylight()
-                                ))
-                        .setTodaysHigh(weather.getDailyForecast().get(0).day().getTemperature().getTemperature())
-                        .setTodaysLow(weather.getDailyForecast().get(0).night().getTemperature().getTemperature())
-                        .setTimestamp(weather.getBase().getTimeStamp());
+                                )
+                ).setTodaysHigh(
+                        weather.getDailyForecast().get(0).day().getTemperature().getTemperature()
+                ).setTodaysLow(
+                        weather.getDailyForecast().get(0).night().getTemperature().getTemperature()
+                ).setTimestamp(
+                        weather.getBase().getTimeStamp()
+                );
                 if (weather.getCurrent().getRelativeHumidity() != null) {
                     builder.setHumidity(weather.getCurrent().getRelativeHumidity());
                 }

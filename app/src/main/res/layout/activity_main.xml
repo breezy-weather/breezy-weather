@@ -9,7 +9,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment"
-        android:name="wangdaye.com.geometricweather.main.fragments.MainFragment"
+        android:name="wangdaye.com.geometricweather.main.fragments.HomeFragment"
         android:tag="fragment_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -99,8 +99,9 @@ public class AccuWeatherService extends WeatherService {
                     @Override
                     public void onSucceed(WeatherResultWrapper wrapper) {
                         if (wrapper.result != null) {
-                            location.setWeather(wrapper.result);
-                            callback.requestWeatherSuccess(location);
+                            callback.requestWeatherSuccess(
+                                    Location.copy(location, wrapper.result)
+                            );
                         } else {
                             onFailed();
                         }

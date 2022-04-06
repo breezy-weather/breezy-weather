@@ -87,6 +87,12 @@ public class LocationAdapter extends SyncListAdapter<LocationModel, LocationHold
         holder.onBindView(mContext, getItem(position), mResourceProvider);
     }
 
+    @Override
+    public void onBindViewHolder(@NonNull LocationHolder holder, int position,
+                                 @NonNull List<Object> payloads) {
+        holder.onBindView(mContext, getItem(position), mResourceProvider);
+    }
+
     public void update(@Nullable String selectedId) {
         List<LocationModel> modelList = new ArrayList<>(getItemCount());
         for (LocationModel model : getCurrentList()) {
@@ -116,6 +122,10 @@ public class LocationAdapter extends SyncListAdapter<LocationModel, LocationHold
             );
         }
         submitList(modelList);
+    }
+
+    public void update(int from, int to) {
+        submitMove(from, to);
     }
 
     @Override

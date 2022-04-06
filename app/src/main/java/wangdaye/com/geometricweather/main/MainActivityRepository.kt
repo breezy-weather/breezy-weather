@@ -31,14 +31,18 @@ class MainActivityRepository @Inject constructor(
     fun initLocations(context: Context, formattedId: String): List<Location> {
         val list = DatabaseHelper.getInstance(context).readLocationList()
 
-        list.firstOrNull {
-            it.formattedId == formattedId
-        }?.let {
-            it.weather = DatabaseHelper.getInstance(context).readWeather(it)
-            return list
+        var index = 0
+        for (i in list.indices) {
+            if (list[i].formattedId == formattedId) {
+                index = i
+                break
+            }
         }
 
-        list[0].weather = DatabaseHelper.getInstance(context).readWeather(list[0])
+        list[index] = Location.copy(
+            src = list[index],
+            weather = DatabaseHelper.getInstance(context).readWeather(list[index])
+        )
         return list
     }
 
@@ -49,39 +53,25 @@ class MainActivityRepository @Inject constructor(
         callback: AsyncHelper.Callback<List<Location>>
     ) {
         AsyncHelper.runOnExecutor({ emitter ->
-            val newList = ArrayList(oldList)
-            newList.forEach {
-                if (it.formattedId != ignoredFormattedId) {
-                    it.weather = DatabaseHelper.getInstance(context).readWeather(it)
-                }
-            }
-
-            emitter.send(newList, true)
+            emitter.send(
+                oldList.map {
+                    if (it.formattedId == ignoredFormattedId) {
+                        it
+                    } else {
+                        Location.copy(
+                            src = it,
+                            weather = DatabaseHelper.getInstance(context).readWeather(it)
+                        )
+                    }
+                },
+                true
+            )
         }, callback, singleThreadExecutor)
-    }
-
-    fun writeLocation(context: Context, location: Location) {
-        AsyncHelper.runOnExecutor({
-            DatabaseHelper.getInstance(context).writeLocation(location)
-            location.weather?.let {
-                DatabaseHelper.getInstance(context).writeWeather(location, it)
-            }
-        }, singleThreadExecutor)
     }
 
     fun writeLocationList(context: Context, locationList: List<Location>) {
         AsyncHelper.runOnExecutor({ 
             DatabaseHelper.getInstance(context).writeLocationList(locationList)
-        }, singleThreadExecutor)
-    }
-
-    fun writeLocationList(context: Context, locationList: List<Location>, newIndex: Int) {
-        AsyncHelper.runOnExecutor({
-            DatabaseHelper.getInstance(context).writeLocationList(locationList)
-
-            locationList[newIndex].weather?.let {
-                DatabaseHelper.getInstance(context).writeWeather(locationList[newIndex], it)
-            }
         }, singleThreadExecutor)
     }
 
@@ -148,9 +138,10 @@ class MainActivityRepository @Inject constructor(
         location: Location,
         locationFailed: Boolean?,
         callback: WeatherRequestCallback,
-    ) {
-        weatherHelper.requestWeather(context, location, object : OnRequestWeatherListener {
-
+    ) = weatherHelper.requestWeather(
+        context,
+        location,
+        object : OnRequestWeatherListener {
             override fun requestWeatherSuccess(requestLocation: Location) {
                 if (requestLocation.formattedId != location.formattedId) {
                     return
@@ -172,8 +163,8 @@ class MainActivityRepository @Inject constructor(
                     weatherRequestFailed = true
                 )
             }
-        })
-    }
+        }
+    )
 
     fun getLocatePermissionList(context: Context) = locationHelper
         .getPermissions(context)

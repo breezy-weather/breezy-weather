@@ -63,7 +63,7 @@ public class TileService extends android.service.quicksettings.TileService {
             return;
         }
         Location location = DatabaseHelper.getInstance(context).readLocationList().get(0);
-        location.setWeather(DatabaseHelper.getInstance(context).readWeather(location));
+        location = Location.copy(location, DatabaseHelper.getInstance(context).readWeather(location));
         if (location.getWeather() != null) {
             tile.setIcon(
                     ResourceHelper.getMinimalIcon(

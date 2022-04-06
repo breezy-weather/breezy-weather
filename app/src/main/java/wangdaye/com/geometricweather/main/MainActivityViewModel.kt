@@ -25,7 +25,8 @@ class MainActivityViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
     private val repository: MainActivityRepository,
     val statementManager: StatementManager,
-) : GeoViewModel(application), MainActivityRepository.WeatherRequestCallback {
+) : GeoViewModel(application),
+    MainActivityRepository.WeatherRequestCallback {
 
     // live data.
 
@@ -134,7 +135,7 @@ class MainActivityViewModel @Inject constructor(
 
         var index = 0
         for (i in valid.indices) {
-            if (total[i].formattedId == currentLocation.value?.formattedId ?: "") {
+            if (total[i].formattedId == currentLocation.value?.formattedId) {
                 index = i
                 break
             }
@@ -146,10 +147,10 @@ class MainActivityViewModel @Inject constructor(
         setCurrentLocation(valid[index])
 
         // check difference in valid locations.
-        val diffInValidLocations = validLocationList.value?.locationList ?: emptyList() != valid
+        val diffInValidLocations = validLocationList.value?.locationList != valid
         if (
             diffInValidLocations
-            || validLocationList.value?.selectedId ?: "" != valid[index].formattedId
+            || validLocationList.value?.selectedId != valid[index].formattedId
         ) {
             validLocationList.value = SelectableLocationList(
                 locationList = valid,
@@ -165,22 +166,22 @@ class MainActivityViewModel @Inject constructor(
     }
 
     private fun setCurrentLocation(location: Location) {
+        ThemeManager.getInstance(getApplication()).update(location = location)
+
         currentLocation.setValue(location)
         savedStateHandle[KEY_FORMATTED_ID] = location.formattedId
-
-        ThemeManager.getInstance(getApplication()).update(location = location)
 
         checkToUpdateCurrentLocation()
     }
 
     private fun onUpdateResult(
         location: Location,
-        locationResult: Boolean?,
+        locationResult: Boolean,
         weatherUpdateResult: Boolean,
     ) {
         if (!weatherUpdateResult) {
             mainMessage.setValue(MainMessage.WEATHER_REQ_FAILED)
-        } else if (locationResult == false) {
+        } else if (!locationResult) {
             mainMessage.setValue(MainMessage.LOCATION_FAILED)
         }
 
@@ -354,7 +355,7 @@ class MainActivityViewModel @Inject constructor(
             return
         }
 
-        if (currentLocation.value?.formattedId ?: "" == location.formattedId) {
+        if (currentLocation.value?.formattedId == location.formattedId) {
             cancelRequest()
         }
         updateInnerData(location)
@@ -404,7 +405,7 @@ class MainActivityViewModel @Inject constructor(
         var index = 0
         validLocationList.value?.locationList?.let {
             for (i in it.indices) {
-                if (it[i].formattedId == currentLocation.value?.formattedId ?: "") {
+                if (it[i].formattedId == currentLocation.value?.formattedId) {
                     index = i
                     break
                 }
@@ -469,9 +470,7 @@ class MainActivityViewModel @Inject constructor(
         total.add(to, total.removeAt(from))
 
         updateInnerData(total)
-    }
 
-    fun moveLocationFinish() {
         repository.writeLocationList(
             context = getApplication(),
             locationList = totalLocationList.value?.locationList ?: emptyList()
@@ -503,7 +502,7 @@ class MainActivityViewModel @Inject constructor(
         var index = 0
         validLocationList.value?.locationList?.let {
             for (i in it.indices) {
-                if (it[i].formattedId == currentLocation.value?.formattedId ?: "") {
+                if (it[i].formattedId == currentLocation.value?.formattedId) {
                     index = i
                     break
                 }
@@ -529,7 +528,7 @@ class MainActivityViewModel @Inject constructor(
     ) {
         onUpdateResult(
             location = location,
-            locationResult = locationFailed == null || locationFailed == false,
+            locationResult = locationFailed != false,
             weatherUpdateResult = !weatherRequestFailed
         )
     }

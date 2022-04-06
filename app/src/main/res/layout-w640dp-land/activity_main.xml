@@ -24,8 +24,8 @@
             tools:ignore="UnusedAttribute" />
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragment_main"
-            android:name="wangdaye.com.geometricweather.main.fragments.MainFragment"
+            android:id="@+id/fragment_home"
+            android:name="wangdaye.com.geometricweather.main.fragments.HomeFragment"
             android:tag="fragment_main_w600dp_land"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
