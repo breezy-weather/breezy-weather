@@ -11,7 +11,7 @@ import java.util.List;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.common.bus.DataBus;
+import wangdaye.com.geometricweather.common.bus.EventBus;
 import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.location.LocationHelper;
@@ -164,7 +164,7 @@ public class PollingUpdateHelper {
                     && (mOld == null
                     || weather.getBase().getTimeStamp() != mOld.getBase().getTimeStamp())) {
 
-                DataBus
+                EventBus
                         .getInstance()
                         .with(Location.class)
                         .postValue(requestLocation);

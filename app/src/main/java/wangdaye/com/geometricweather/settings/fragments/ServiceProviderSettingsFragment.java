@@ -2,7 +2,6 @@ package wangdaye.com.geometricweather.settings.fragments;
 
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 
@@ -15,8 +14,10 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.provider.LocationProvider;
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
-import wangdaye.com.geometricweather.db.DatabaseHelper;
+import wangdaye.com.geometricweather.common.bus.EventBus;
 import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
+import wangdaye.com.geometricweather.db.DatabaseHelper;
+import wangdaye.com.geometricweather.settings.SettingsChangedMessage;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 
 /**
@@ -24,12 +25,6 @@ import wangdaye.com.geometricweather.settings.SettingsManager;
  * */
 
 public class ServiceProviderSettingsFragment extends AbstractSettingsFragment {
-
-    private @Nullable OnWeatherSourceChangedListener mListener;
-
-    public interface OnWeatherSourceChangedListener {
-        void onWeatherSourceChanged(Location location);
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,13 +54,14 @@ public class ServiceProviderSettingsFragment extends AbstractSettingsFragment {
                     src.getWeatherSource();
                     DatabaseHelper.getInstance(requireActivity()).deleteWeather(src);
                     locationList.set(i, Location.copy(src, source));
-                    if (mListener != null) {
-                        mListener.onWeatherSourceChanged(locationList.get(i));
-                    }
                     break;
                 }
             }
             DatabaseHelper.getInstance(requireActivity()).writeLocationList(locationList);
+
+            EventBus.getInstance()
+                    .with(SettingsChangedMessage.class)
+                    .postValue(new SettingsChangedMessage());
             return true;
         });
 
@@ -125,6 +121,10 @@ public class ServiceProviderSettingsFragment extends AbstractSettingsFragment {
                         getString(R.string.restart),
                         v -> GeometricWeather.getInstance().recreateAllActivities()
                 );
+
+                EventBus.getInstance()
+                        .with(SettingsChangedMessage.class)
+                        .postValue(new SettingsChangedMessage());
             });
             return true;
         });
@@ -147,9 +147,5 @@ public class ServiceProviderSettingsFragment extends AbstractSettingsFragment {
 
     private String getBuildFlavor() {
         return BuildConfig.FLAVOR;
-    }
-
-    public void setOnWeatherSourceChangedListener(@Nullable OnWeatherSourceChangedListener l) {
-        mListener = l;
     }
 }

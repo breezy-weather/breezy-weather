@@ -137,6 +137,6 @@ public class LocationModel {
     }
 
     public boolean areContentsTheSame(@NonNull LocationModel newItem) {
-        return location.equals(newItem.location);
+        return location.equals(newItem.location) && selected == newItem.selected;
     }
 }

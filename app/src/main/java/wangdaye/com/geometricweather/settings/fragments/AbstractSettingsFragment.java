@@ -81,6 +81,7 @@ public abstract class AbstractSettingsFragment extends PreferenceFragmentCompat 
         };
     }
 
+    @NonNull
     @Override
     public RecyclerView onCreateRecyclerView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         FitSystemBarRecyclerView rv = new FitSystemBarRecyclerView(inflater.getContext());
@@ -98,7 +99,7 @@ public abstract class AbstractSettingsFragment extends PreferenceFragmentCompat 
     }
 
     @Override
-    public void onDisplayPreferenceDialog(Preference preference) {
+    public void onDisplayPreferenceDialog(@NonNull Preference preference) {
         // check if dialog is already showing.
         if (getParentFragmentManager().findFragmentByTag(DIALOG_FRAGMENT_TAG) != null) {
             return;

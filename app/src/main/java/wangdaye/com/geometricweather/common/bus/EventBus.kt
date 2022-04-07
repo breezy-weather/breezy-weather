@@ -5,13 +5,13 @@ import android.os.Looper
 import wangdaye.com.geometricweather.common.basic.livedata.BusLiveData
 import java.util.*
 
-class DataBus private constructor() {
+class EventBus private constructor() {
 
     companion object {
 
         @JvmStatic
-        val instance: DataBus by lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
-            DataBus()
+        val instance: EventBus by lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
+            EventBus()
         }
     }
 

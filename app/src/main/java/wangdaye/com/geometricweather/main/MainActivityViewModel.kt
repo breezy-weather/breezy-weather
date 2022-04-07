@@ -30,22 +30,21 @@ class MainActivityViewModel @Inject constructor(
 
     // live data.
 
-    lateinit var currentLocation: EqualtableLiveData<Location>
-    lateinit var validLocationList: MutableLiveData<SelectableLocationList>
-    lateinit var totalLocationList: MutableLiveData<SelectableLocationList>
+    val currentLocation = EqualtableLiveData<Location>()
+    val validLocationList = MutableLiveData<SelectableLocationList>()
+    val totalLocationList = MutableLiveData<SelectableLocationList>()
 
-    lateinit var loading: EqualtableLiveData<Boolean>
-    lateinit var indicator: EqualtableLiveData<Indicator>
+    val loading = EqualtableLiveData<Boolean>()
+    val indicator = EqualtableLiveData<Indicator>()
 
-    lateinit var permissionsRequest: MutableLiveData<PermissionsRequest>
-    lateinit var mainMessage: BusLiveData<MainMessage?>
+    val permissionsRequest = MutableLiveData<PermissionsRequest>()
+    val mainMessage = BusLiveData<MainMessage>(Handler(Looper.getMainLooper()))
 
     // inner data.
 
     private var initCompleted = false
     private var updating = false
     private val pendingReloadDBCacheIdSet = HashSet<String>()
-    private val mainHandler = Handler(Looper.getMainLooper())
 
     companion object {
         private const val KEY_FORMATTED_ID = "formatted_id"
@@ -73,26 +72,19 @@ class MainActivityViewModel @Inject constructor(
 
         initCompleted = false
 
-        currentLocation = EqualtableLiveData(
-            validList.first { it.formattedId == id }
+        currentLocation.setValue(
+            validList.first { item -> item.formattedId == id }
         )
-        validLocationList = MutableLiveData(
-            SelectableLocationList(locationList = validList, selectedId = id)
-        )
-        totalLocationList = MutableLiveData(
-            SelectableLocationList(locationList = totalList, selectedId = id)
-        )
+        validLocationList.value = SelectableLocationList(locationList = validList, selectedId = id)
+        totalLocationList.value = SelectableLocationList(locationList = totalList, selectedId = id)
 
-        loading = EqualtableLiveData(false)
-        indicator = EqualtableLiveData(
+        loading.setValue(false)
+        indicator.setValue(
             Indicator(
                 total = validList.size,
                 index = validList.indexOfFirst { it.formattedId == id }
             )
         )
-
-        permissionsRequest = MutableLiveData()
-        mainMessage = BusLiveData(mainHandler)
 
         // update theme.
         currentLocation.value?.let {

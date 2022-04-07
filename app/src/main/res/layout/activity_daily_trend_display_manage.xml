@@ -16,7 +16,8 @@
             android:id="@+id/appBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true">
+            android:layout_alignParentTop="true"
+            style="@style/GeometricWeatherTheme.AppBarTheme">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"

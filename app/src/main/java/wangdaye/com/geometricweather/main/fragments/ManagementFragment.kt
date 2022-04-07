@@ -2,6 +2,7 @@ package wangdaye.com.geometricweather.main.fragments
 
 import android.animation.ValueAnimator
 import android.content.res.ColorStateList
+import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -28,23 +29,10 @@ import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper
 import wangdaye.com.geometricweather.databinding.FragmentManagementBinding
 import wangdaye.com.geometricweather.main.MainActivityViewModel
 import wangdaye.com.geometricweather.main.adapters.LocationAdapterAnimWrapper
-import wangdaye.com.geometricweather.main.utils.DayNightColorWrapper
 import wangdaye.com.geometricweather.main.utils.MainModuleUtils
 import wangdaye.com.geometricweather.main.widgets.LocationItemTouchCallback
 import wangdaye.com.geometricweather.main.widgets.LocationItemTouchCallback.TouchReactor
-import wangdaye.com.geometricweather.theme.ThemeManager.Companion.getInstance
-
-class PushedManagementFragment: ManagementFragment() {
-
-    companion object {
-        fun getInstance(controlSystemBar: Boolean) = PushedManagementFragment().apply {
-            arguments = Bundle().apply {
-                putBoolean(KEY_CONTROL_SYSTEM_BAR, controlSystemBar)
-            }
-        }
-    }
-}
-class SplitManagementFragment: ManagementFragment()
+import wangdaye.com.geometricweather.theme.ThemeManager
 
 open class ManagementFragment : GeoFragment(), TouchReactor {
 
@@ -58,11 +46,16 @@ open class ManagementFragment : GeoFragment(), TouchReactor {
     private var itemDecoration: ListDecoration? = null
 
     private var colorAnimator: ValueAnimator? = null
-
     private var callback: Callback? = null
 
     companion object {
         const val KEY_CONTROL_SYSTEM_BAR = "control_system_bar"
+
+        fun getInstance(controlSystemBar: Boolean) = ManagementFragment().apply {
+            arguments = Bundle().apply {
+                putBoolean(KEY_CONTROL_SYSTEM_BAR, controlSystemBar)
+            }
+        }
     }
 
     interface Callback {
@@ -78,27 +71,14 @@ open class ManagementFragment : GeoFragment(), TouchReactor {
 
         initModel()
         initView()
-
         setCallback(requireActivity() as Callback)
 
-        arguments?.let {
-            val controlSystemBar = it.getBoolean(KEY_CONTROL_SYSTEM_BAR, false)
-            if (controlSystemBar) {
-                DisplayUtils.setSystemBarStyle(
-                    requireContext(),
-                    requireActivity().window,
-                    false,
-                    false,
-                    true,
-                    MainModuleUtils.isMainLightTheme(
-                        requireContext(),
-                        getInstance(requireContext()).isDaylight
-                    )
-                )
-            }
-        }
-
         return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        checkToSetSystemBarStyle()
     }
 
     override fun onDestroyView() {
@@ -115,11 +95,26 @@ open class ManagementFragment : GeoFragment(), TouchReactor {
         return super.onCreateAnimation(transit, enter, nextAnim)
     }
 
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        updateDayNightColors()
+
+        val firstHolderPosition = layout.findFirstVisibleItemPosition()
+        adapter.notifyItemRangeChanged(
+            firstHolderPosition,
+            layout.findLastVisibleItemPosition() - firstHolderPosition + 1
+        )
+
+        checkToSetSystemBarStyle()
+    }
+
     private fun initModel() {
         viewModel = ViewModelProvider(requireActivity())[MainActivityViewModel::class.java]
     }
 
     private fun initView() {
+        updateDayNightColors()
+
         binding.searchBar.setOnClickListener {
             if (callback != null) {
                 callback!!.onSearchBarClicked(binding.searchBar)
@@ -132,22 +127,18 @@ open class ManagementFragment : GeoFragment(), TouchReactor {
             SnackbarHelper.showSnackbar(getString(R.string.feedback_collect_succeed))
         }
 
-        adapterAnimWrapper = LocationAdapterAnimWrapper(
-            requireContext(),
-            LocationAdapter(
-                requireActivity(),
-                ArrayList(),
-                null,
-                { _, formattedId ->  // on click.
-                    viewModel.setLocation(formattedId)
-                    parentFragmentManager.popBackStack()
-                }
-            ) { holder ->
-                itemTouchHelper.startDrag(holder)
-            }.also {
-                adapter = it
+        adapter = LocationAdapter(
+            requireActivity(),
+            ArrayList(),
+            null,
+            { _, formattedId ->  // on click.
+                viewModel.setLocation(formattedId)
+                parentFragmentManager.popBackStack()
             }
-        )
+        ) { holder ->
+            itemTouchHelper.startDrag(holder)
+        }
+        adapterAnimWrapper = LocationAdapterAnimWrapper(requireContext(), adapter)
         adapterAnimWrapper!!.setLastPosition(Int.MAX_VALUE)
         binding.recyclerView.adapter = adapterAnimWrapper
         binding.recyclerView.layoutManager = LinearLayoutManager(
@@ -162,8 +153,6 @@ open class ManagementFragment : GeoFragment(), TouchReactor {
                 }
             }
         })
-
-        registerDayNightColors()
 
         itemTouchHelper = ItemTouchHelper(
             LocationItemTouchCallback(
@@ -180,91 +169,111 @@ open class ManagementFragment : GeoFragment(), TouchReactor {
         }
     }
 
-    private fun registerDayNightColors() {
-        DayNightColorWrapper.bind(
-            binding.recyclerView,
-            arrayOf(
-                android.R.attr.colorBackground,
-                R.attr.colorSurface,
-                R.attr.colorOutline,
-                android.R.attr.colorPrimary,
-            )
-        ) { colors, animated ->
-            if (!animated) {
-                binding.appBar.setBackgroundColor(colors[3])
-                binding.recyclerView.setBackgroundColor(colors[0])
-                binding.searchBar.setCardBackgroundColor(colors[1])
+    private fun updateDayNightColors() {
+        val tm = ThemeManager.getInstance(requireContext())
 
-                itemDecoration = ListDecoration(requireContext(), colors[2])
+        colorAnimator?.cancel()
 
-                while (binding.recyclerView.itemDecorationCount > 0) {
-                    binding.recyclerView.removeItemDecorationAt(0)
-                }
-                binding.recyclerView.addItemDecoration(itemDecoration!!)
-            }
-
-            colorAnimator?.cancel()
-
-            val progress = FloatArray(1)
-            val oldColors = intArrayOf(
-                (binding.recyclerView.background as? ColorDrawable)?.color ?: Color.TRANSPARENT,
-                binding.searchBar.cardBackgroundColor.defaultColor,
-                itemDecoration!!.color,
-                (binding.appBar.background as? ColorDrawable)?.color ?: Color.TRANSPARENT,
-            )
-            colorAnimator = ValueAnimator.ofFloat(0f, 1f)
-            colorAnimator!!.addUpdateListener { animation ->
-                progress[0] = animation.animatedValue as Float
-
-                binding.recyclerView.setBackgroundColor(
-                    DisplayUtils.blendColor(
-                        ColorUtils.setAlphaComponent(colors[0], (255 * progress[0]).toInt()),
-                        oldColors[0]
-                    )
-                )
-                binding.searchBar.setCardBackgroundColor(
-                    DisplayUtils.blendColor(
-                        ColorUtils.setAlphaComponent(colors[1], (255 * progress[0]).toInt()),
-                        oldColors[1]
-                    )
-                )
-                itemDecoration!!.color = DisplayUtils.blendColor(
-                    ColorUtils.setAlphaComponent(colors[2], (255 * progress[0]).toInt()),
-                    oldColors[2]
-                )
-                binding.appBar.setBackgroundColor(
-                    DisplayUtils.blendColor(
-                        ColorUtils.setAlphaComponent(colors[3], (255 * progress[0]).toInt()),
-                        oldColors[3]
-                    )
-                )
-            }
-            colorAnimator!!.duration = 500 // same as 2 * changeDuration of default item animator.
-            colorAnimator!!.start()
-
-            val firstHolderPosition = layout.findFirstVisibleItemPosition()
-            adapter.notifyItemRangeChanged(
-                firstHolderPosition,
-                layout.findLastVisibleItemPosition() - firstHolderPosition + 1
+        if ((binding.appBar.background as? ColorDrawable)?.color == Color.BLACK) {
+            binding.appBar.setBackgroundColor(
+                tm.getThemeColor(context = requireContext(), id = R.attr.colorPrimaryContainer)
             )
         }
-        DayNightColorWrapper.bind(
+
+        if (itemDecoration == null) {
+            itemDecoration = ListDecoration(
+                requireContext(),
+                tm.getThemeColor(context = requireContext(), id = R.attr.colorOutline)
+            )
+            while (binding.recyclerView.itemDecorationCount > 0) {
+                binding.recyclerView.removeItemDecorationAt(0)
+            }
+            binding.recyclerView.addItemDecoration(itemDecoration!!)
+        }
+
+
+        val progress = FloatArray(1)
+        val oldColors = intArrayOf(
+            (binding.recyclerView.background as? ColorDrawable)?.color ?: Color.TRANSPARENT,
+            binding.searchBar.cardBackgroundColor.defaultColor,
+            itemDecoration!!.color,
+            (binding.appBar.background as? ColorDrawable)?.color ?: Color.TRANSPARENT,
+        )
+        val newColors = intArrayOf(
+            tm.getThemeColor(context = requireContext(), id = android.R.attr.colorBackground),
+            tm.getThemeColor(context = requireContext(), id = R.attr.colorSurface),
+            tm.getThemeColor(context = requireContext(), id = R.attr.colorOutline),
+            tm.getThemeColor(context = requireContext(), id = R.attr.colorPrimaryContainer),
+        )
+
+        colorAnimator = ValueAnimator.ofFloat(0f, 1f)
+        colorAnimator!!.addUpdateListener { animation ->
+            progress[0] = animation.animatedValue as Float
+
+            binding.recyclerView.setBackgroundColor(
+                DisplayUtils.blendColor(
+                    ColorUtils.setAlphaComponent(newColors[0], (255 * progress[0]).toInt()),
+                    oldColors[0]
+                )
+            )
+            binding.searchBar.setCardBackgroundColor(
+                DisplayUtils.blendColor(
+                    ColorUtils.setAlphaComponent(newColors[1], (255 * progress[0]).toInt()),
+                    oldColors[1]
+                )
+            )
+            itemDecoration!!.color = DisplayUtils.blendColor(
+                ColorUtils.setAlphaComponent(newColors[2], (255 * progress[0]).toInt()),
+                oldColors[2]
+            )
+            binding.appBar.setBackgroundColor(
+                DisplayUtils.blendColor(
+                    ColorUtils.setAlphaComponent(newColors[3], (255 * progress[0]).toInt()),
+                    oldColors[3]
+                )
+            )
+        }
+        colorAnimator!!.duration = 500 // same as 2 * changeDuration of default item animator.
+        colorAnimator!!.start()
+
+        ImageViewCompat.setImageTintList(
             binding.searchIcon,
-            R.attr.colorBodyText
-        ) { color, _ ->
-            ImageViewCompat.setImageTintList(binding.searchIcon, ColorStateList.valueOf(color))
-        }
-        DayNightColorWrapper.bind(
+            ColorStateList.valueOf(
+                tm.getThemeColor(context = requireContext(), id = R.attr.colorBodyText)
+            )
+        )
+        ImageViewCompat.setImageTintList(
             binding.currentLocationButton,
-            R.attr.colorBodyText
-        ) { color, _ ->
-            ImageViewCompat.setImageTintList(binding.currentLocationButton, ColorStateList.valueOf(color))
-        }
-        DayNightColorWrapper.bind(
-            binding.title,
-            R.attr.colorCaptionText
-        ) { color, _ ->
-            binding.title.setTextColor(ColorStateList.valueOf(color))
+            ColorStateList.valueOf(
+                tm.getThemeColor(context = requireContext(), id = R.attr.colorBodyText)
+            )
+        )
+        binding.title.setTextColor(
+            tm.getThemeColor(context = requireContext(), id = R.attr.colorCaptionText)
+        )
+    }
+
+    private fun checkToSetSystemBarStyle() {
+        arguments?.let {
+            val controlSystemBar = it.getBoolean(KEY_CONTROL_SYSTEM_BAR, false)
+            if (controlSystemBar) {
+                DisplayUtils.setSystemBarStyle(
+                    requireContext(),
+                    requireActivity().window,
+                    false,
+                    !DisplayUtils.isLightColor(
+                        ThemeManager.getInstance(requireContext()).getThemeColor(
+                            requireContext(),
+                            R.attr.colorOnPrimaryContainer
+                        )
+                    ),
+                    true,
+                    MainModuleUtils.isHomeLightTheme(
+                        requireContext(),
+                        ThemeManager.getInstance(requireContext()).isDaylight
+                    )
+                )
+            }
         }
     }
 

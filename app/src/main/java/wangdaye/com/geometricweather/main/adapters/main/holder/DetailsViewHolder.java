@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.main.adapters.main.holder;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -13,6 +14,7 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.main.adapters.DetailsAdapter;
+import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
 import wangdaye.com.geometricweather.theme.ThemeManager;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
@@ -43,9 +45,13 @@ public class DetailsViewHolder extends AbstractMainCardViewHolder {
                 listAnimationEnabled, itemAnimationEnabled, firstCard);
 
         if (location.getWeather() != null) {
-            mCard.setCardBackgroundColor(
-                    ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorSurface)
+            ThemeManager tm = ThemeManager.getInstance(context);
+            Context themeCtx = tm.generateThemeContext(
+                    context,
+                    MainModuleUtils.isHomeLightTheme(context, tm.isDaylight())
             );
+
+            mCard.setCardBackgroundColor(tm.getThemeColor(themeCtx, R.attr.colorSurface));
 
             mTitle.setTextColor(
                     ThemeManager

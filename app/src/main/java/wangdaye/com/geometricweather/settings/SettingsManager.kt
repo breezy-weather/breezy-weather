@@ -14,8 +14,9 @@ import wangdaye.com.geometricweather.common.basic.models.options.provider.Locati
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource
 import wangdaye.com.geometricweather.common.basic.models.options.unit.*
 
+class SettingsChangedMessage
 
-class SettingsManager private constructor(context: Context){
+class SettingsManager private constructor(context: Context) {
 
     companion object {
 

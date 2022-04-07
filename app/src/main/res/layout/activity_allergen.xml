@@ -9,7 +9,8 @@
 
     <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        style="@style/GeometricWeatherTheme.AppBarTheme">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/activity_allergen_toolbar"

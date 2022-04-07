@@ -22,11 +22,9 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.common.ui.widgets.AnimatableIconView;
 import wangdaye.com.geometricweather.settings.SettingsManager;
-import wangdaye.com.geometricweather.theme.ThemeManager;
 import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
 import wangdaye.com.geometricweather.theme.resource.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
 
 public class HourlyWeatherDialog extends GeoDialog {
 
@@ -35,8 +33,7 @@ public class HourlyWeatherDialog extends GeoDialog {
     private static final String KEY_WEATHER = "weather";
     private static final String KEY_POSITION = "position";
 
-    public static HourlyWeatherDialog getInstance(Weather weather,
-                                                  int position) {
+    public static HourlyWeatherDialog getInstance(Weather weather, int position) {
         Bundle bundle = new Bundle();
         bundle.putSerializable(KEY_WEATHER, weather);
         bundle.putInt(KEY_POSITION, position);
@@ -78,16 +75,6 @@ public class HourlyWeatherDialog extends GeoDialog {
 
         TextView title = view.findViewById(R.id.dialog_weather_hourly_title);
         title.setText(hourly.getHour(getActivity()));
-        title.setTextColor(
-                ThemeManager
-                        .getInstance(requireContext())
-                        .getWeatherThemeDelegate()
-                        .getThemeColors(
-                                requireContext(),
-                                WeatherViewController.getWeatherKind(weather),
-                                hourly.isDaylight()
-                        )[0]
-        );
 
         TextView subtitle = view.findViewById(R.id.dialog_weather_hourly_subtitle);
         subtitle.setText(new SimpleDateFormat(getString(R.string.date_format_widget_long)).format(hourly.getDate()));

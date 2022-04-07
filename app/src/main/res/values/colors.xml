@@ -3,9 +3,6 @@
 
     <!-- repository. -->
 
-    <color name="colorAccent_light">#212121</color>
-    <color name="colorAccent_dark">#fafafa</color>
-
     <color name="lightPrimary_1">#cfebf0</color>
     <color name="lightPrimary_2">#b6e3e7</color>
     <color name="lightPrimary_3">#96d6db</color>

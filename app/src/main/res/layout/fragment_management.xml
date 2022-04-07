@@ -12,7 +12,7 @@
         android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary">
+        android:background="@android:color/black">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -24,7 +24,8 @@
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/little_margin"
                 style="@style/material_card"
-                app:cardBackgroundColor="?attr/colorSurface">
+                app:cardBackgroundColor="?attr/colorSurface"
+                app:cardCornerRadius="23dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -55,14 +56,14 @@
                         android:id="@+id/title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/feedback_search_location"
-                        android:textSize="@dimen/content_text_size"
-                        android:textColor="@color/colorTextSubtitle"
                         android:layout_centerVertical="true"
-                        android:layout_toEndOf="@id/searchIcon"
                         android:layout_toStartOf="@id/currentLocationButton"
-                        android:maxLines="1"
+                        android:layout_toEndOf="@id/searchIcon"
                         android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="@string/feedback_search_location"
+                        android:textColor="@color/colorTextSubtitle"
+                        android:textSize="@dimen/content_text_size"
                         tools:ignore="RtlHardcoded" />
 
                 </RelativeLayout>

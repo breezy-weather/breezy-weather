@@ -27,11 +27,13 @@ import java.util.List;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.CardDisplay;
+import wangdaye.com.geometricweather.common.bus.EventBus;
 import wangdaye.com.geometricweather.common.ui.adapters.TagAdapter;
 import wangdaye.com.geometricweather.common.ui.decotarions.GridMarginsDecoration;
 import wangdaye.com.geometricweather.common.ui.decotarions.ListDecoration;
 import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarRecyclerView;
 import wangdaye.com.geometricweather.common.ui.widgets.slidingItem.SlidingItemTouchCallback;
+import wangdaye.com.geometricweather.settings.SettingsChangedMessage;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.settings.adapters.CardDisplayAdapter;
 import wangdaye.com.geometricweather.theme.ThemeManager;
@@ -66,9 +68,8 @@ public class CardDisplayManageActivity extends GeoActivity {
 
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView,
-                              @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-            setResult(RESULT_OK);
-
+                              @NonNull RecyclerView.ViewHolder viewHolder,
+                              @NonNull RecyclerView.ViewHolder target) {
             int fromPosition = viewHolder.getAdapterPosition();
             int toPosition = target.getAdapterPosition();
 
@@ -78,13 +79,13 @@ public class CardDisplayManageActivity extends GeoActivity {
 
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-            setResult(RESULT_OK);
             mCardDisplayAdapter.removeItem(viewHolder.getAdapterPosition());
         }
 
         @Override
         public void onChildDraw(@NonNull Canvas c,
-                                @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder,
+                                @NonNull RecyclerView recyclerView,
+                                @NonNull RecyclerView.ViewHolder viewHolder,
                                 float dX, float dY, int actionState, boolean isCurrentlyActive) {
             super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
             ViewCompat.setElevation(viewHolder.itemView,
@@ -181,7 +182,17 @@ public class CardDisplayManageActivity extends GeoActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        SettingsManager.getInstance(this).setCardDisplayList(mCardDisplayAdapter.getCardDisplayList());
+
+        List<CardDisplay> oldList = SettingsManager.getInstance(this).getCardDisplayList();
+        List<CardDisplay> newList = mCardDisplayAdapter.getCardDisplayList();
+        if (oldList.equals(newList)) {
+            return;
+        }
+
+        SettingsManager.getInstance(this).setCardDisplayList(newList);
+        EventBus.getInstance()
+                .with(SettingsChangedMessage.class)
+                .postValue(new SettingsChangedMessage());
     }
 
     @SuppressLint("MissingSuperCall")

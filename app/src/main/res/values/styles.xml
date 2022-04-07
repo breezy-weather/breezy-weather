@@ -61,17 +61,21 @@
         <item name="android:windowSharedElementReturnTransition">@transition/search_activity_shared_return</item>
     </style>
 
+    <style name="GeometricWeatherTheme.AppBarTheme">
+        <item name="android:background">?attr/colorPrimaryContainer</item>
+    </style>
+
     <style name="GeometricWeatherTheme.ToolbarTheme">
         <item name="titleTextAppearance">?attr/textAppearanceHeadline6</item>
         <item name="subtitleTextAppearance">?attr/textAppearanceSubtitle1</item>
 
         <item name="android:elevation">@dimen/design_appbar_elevation</item>
-        <item name="android:background">?attr/colorPrimary</item>
-        <item name="titleTextColor">?attr/colorOnPrimary</item>
+        <item name="android:background">?attr/colorPrimaryContainer</item>
+        <item name="titleTextColor">?attr/colorOnPrimaryContainer</item>
         <item name="subtitleTextColor">@color/material_on_primary_emphasis_medium</item>
 
         <item name="android:maxButtonHeight" tools:ignore="NewApi">@dimen/mtrl_toolbar_default_height</item>
-        <item name="navigationIconTint">?attr/colorOnPrimary</item>
+        <item name="navigationIconTint">?attr/colorOnPrimaryContainer</item>
 
         <item name="android:theme">@style/ThemeOverlay.MaterialComponents.Toolbar.Primary</item>
         <item name="popupTheme">@style/ThemeOverlay.MaterialComponents.Toolbar.Popup.Primary</item>

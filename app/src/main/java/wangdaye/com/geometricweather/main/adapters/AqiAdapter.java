@@ -27,7 +27,7 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.AirQuality
 import wangdaye.com.geometricweather.common.basic.models.weather.AirQuality;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.ui.widgets.RoundProgress;
-import wangdaye.com.geometricweather.main.utils.DayNightColorWrapper;
+import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
 import wangdaye.com.geometricweather.theme.ThemeManager;
 
 /**
@@ -36,6 +36,7 @@ import wangdaye.com.geometricweather.theme.ThemeManager;
 
 public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
 
+    private final Context mThemeCtx;
     private final List<AqiItem> mItemList;
     private final List<ViewHolder> mHolderList;
 
@@ -64,6 +65,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         private @Nullable AqiItem mItem;
+        private Context mThemeCtx;
         private boolean mExecuteAnimation;
         @Nullable private AnimatorSet mAttachAnimatorSet;
 
@@ -76,38 +78,28 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
             mTitle = itemView.findViewById(R.id.item_aqi_title);
             mContent = itemView.findViewById(R.id.item_aqi_content);
             mProgress = itemView.findViewById(R.id.item_aqi_progress);
-
-            DayNightColorWrapper.bind(
-                    itemView,
-                    new Integer[]{
-                            R.attr.colorBodyText,
-                            R.attr.colorCaptionText,
-                    },
-                    (colors, aBoolean) -> {
-                        mTitle.setTextColor(colors[0]);
-                        mContent.setTextColor(colors[1]);
-                        return null;
-                    }
-            );
         }
 
-        void onBindView(AqiItem item) {
+        void onBindView(Context themeCtx, AqiItem item) {
             Context context = itemView.getContext();
+            ThemeManager tm = ThemeManager.getInstance(context);
 
             mItem = item;
+            mThemeCtx = themeCtx;
             mExecuteAnimation = item.executeAnimation;
 
             itemView.setContentDescription(item.talkBack);
 
             mTitle.setText(item.title);
+            mTitle.setTextColor(tm.getThemeColor(themeCtx, R.attr.colorBodyText));
+
             mContent.setText(item.content);
+            mContent.setTextColor(tm.getThemeColor(themeCtx, R.attr.colorCaptionText));
 
             if (mExecuteAnimation) {
                 mProgress.setProgress(0);
                 mProgress.setProgressColor(ContextCompat.getColor(context, R.color.colorLevel_1));
-                mProgress.setProgressBackgroundColor(
-                        ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorOutline)
-                );
+                mProgress.setProgressBackgroundColor(tm.getThemeColor(themeCtx, R.attr.colorOutline));
             } else {
                 mProgress.setProgress((int) (100.0 * item.progress / item.max));
                 mProgress.setProgressColor(item.color);
@@ -132,9 +124,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
 
                 ValueAnimator backgroundColor = ValueAnimator.ofObject(
                         new ArgbEvaluator(),
-                        ThemeManager
-                                .getInstance(itemView.getContext())
-                                .getThemeColor(itemView.getContext(), R.attr.colorOutline),
+                        ThemeManager.getInstance(mThemeCtx).getThemeColor(mThemeCtx, R.attr.colorOutline),
                         ColorUtils.setAlphaComponent(mItem.color, (int) (255 * 0.1))
                 );
                 backgroundColor.addUpdateListener(animation ->
@@ -165,6 +155,14 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
     }
 
     public AqiAdapter(Context context, @Nullable Weather weather, boolean executeAnimation) {
+        mThemeCtx = ThemeManager.getInstance(context).generateThemeContext(
+                context,
+                MainModuleUtils.isHomeLightTheme(
+                        context,
+                        ThemeManager.getInstance(context).isDaylight()
+                )
+        );
+
         mItemList = new ArrayList<>();
         if (weather != null && weather.getCurrent().getAirQuality().isValid()) {
             AirQuality airQuality = weather.getCurrent().getAirQuality();
@@ -267,7 +265,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(mItemList.get(position));
+        holder.onBindView(mThemeCtx, mItemList.get(position));
         if (mItemList.get(position).executeAnimation) {
             mHolderList.add(holder);
         }

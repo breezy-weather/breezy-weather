@@ -35,6 +35,7 @@ public class SettingsActivity extends GeoActivity {
             return true;
         });
 
+        // post to register the fragment to wait for the correct ui-mode come into effect.
         SettingsFragment settingsFragment = new SettingsFragment();
         getSupportFragmentManager()
                 .beginTransaction()

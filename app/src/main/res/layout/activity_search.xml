@@ -18,8 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorSurface"
-            android:transitionName="@string/transition_activity_search_bar"
-            tools:targetApi="lollipop">
+            android:transitionName="@string/transition_activity_search_bar">
 
             <RelativeLayout
                 android:id="@+id/searchContainer"

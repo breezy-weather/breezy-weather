@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.main.adapters.trend.hourly;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,10 +52,10 @@ public class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<HourlyTemper
             hourlyItem.setChartItemView(mPolylineAndHistogramView);
         }
 
-        void onBindView(GeoActivity activity, Location location, int position) {
+        void onBindView(GeoActivity activity, Context themeCtx, Location location, int position) {
             StringBuilder talkBackBuilder = new StringBuilder(activity.getString(R.string.tag_temperature));
 
-            super.onBindView(activity, location, talkBackBuilder, position);
+            super.onBindView(activity, themeCtx, location, talkBackBuilder, position);
 
             Weather weather = location.getWeather();
             assert weather != null;
@@ -93,7 +94,7 @@ public class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<HourlyTemper
                             WeatherViewController.getWeatherKind(location.getWeather()),
                             location.isDaylight()
                     );
-            boolean lightTheme = MainModuleUtils.isMainLightTheme(
+            boolean lightTheme = MainModuleUtils.isHomeLightTheme(
                     itemView.getContext(),
                     location.isDaylight()
             );
@@ -219,7 +220,7 @@ public class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<HourlyTemper
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(getActivity(), getLocation(), position);
+        holder.onBindView(getActivity(), getThemeCtx(), getLocation(), position);
     }
 
     @Override

@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.preference.EditTextPreference;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.common.bus.EventBus;
+import wangdaye.com.geometricweather.settings.SettingsChangedMessage;
 
 /**
  * Service provider settings fragment.
@@ -46,6 +48,9 @@ public class ServiceProviderAdvancedSettingsFragment extends AbstractSettingsFra
             } else {
                 preference.setSummary(newValue.toString());
             }
+            EventBus.getInstance()
+                    .with(SettingsChangedMessage.class)
+                    .postValue(new SettingsChangedMessage());
             return true;
         });
     }

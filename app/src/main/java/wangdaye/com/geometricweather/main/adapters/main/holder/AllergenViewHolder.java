@@ -20,6 +20,7 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.ui.adapters.DailyPollenAdapter;
 import wangdaye.com.geometricweather.common.ui.widgets.horizontal.HorizontalViewPager2;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
+import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
 import wangdaye.com.geometricweather.theme.ThemeManager;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
@@ -106,9 +107,13 @@ public class AllergenViewHolder extends AbstractMainCardViewHolder {
 
         assert location.getWeather() != null;
 
-        mCard.setCardBackgroundColor(
-                ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorSurface)
+        ThemeManager tm = ThemeManager.getInstance(context);
+        Context themeCtx = tm.generateThemeContext(
+                context,
+                MainModuleUtils.isHomeLightTheme(context, tm.isDaylight())
         );
+
+        mCard.setCardBackgroundColor(tm.getThemeColor(themeCtx, R.attr.colorSurface));
         mTitle.setTextColor(
                 ThemeManager
                         .getInstance(context)
@@ -119,9 +124,7 @@ public class AllergenViewHolder extends AbstractMainCardViewHolder {
                                 location.isDaylight()
                         )[0]
         );
-        mSubtitle.setTextColor(
-                ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorCaptionText)
-        );
+        mSubtitle.setTextColor(tm.getThemeColor(themeCtx, R.attr.colorCaptionText));
 
         mPager.setAdapter(new DailyPollenPagerAdapter(location.getWeather()));
         mPager.setCurrentItem(0);

@@ -39,7 +39,7 @@ public class MainModuleUtils {
         return set;
     }
 
-    public static boolean isMainLightTheme(Context context, boolean daylight) {
+    public static boolean isHomeLightTheme(Context context, boolean daylight) {
         switch (SettingsManager.getInstance(context).getDarkMode()) {
             case AUTO:
                 return daylight;

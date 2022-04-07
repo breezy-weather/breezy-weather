@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.main.adapters.main.holder;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -95,9 +96,13 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
         Weather weather = location.getWeather();
         assert weather != null;
 
-        mCard.setCardBackgroundColor(
-                ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorSurface)
+        ThemeManager tm = ThemeManager.getInstance(context);
+        Context themeCtx = tm.generateThemeContext(
+                context,
+                MainModuleUtils.isHomeLightTheme(context, tm.isDaylight())
         );
+
+        mCard.setCardBackgroundColor(tm.getThemeColor(themeCtx, R.attr.colorSurface));
 
         int[] colors = ThemeManager
                 .getInstance(context)
@@ -136,18 +141,10 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
             mTagView.setAdapter(
                     new TagAdapter(
                             tagList,
-                            ThemeManager
-                                    .getInstance(context)
-                                    .getThemeColor(context, R.attr.colorOnSurfaceVariant),
-                            ThemeManager
-                                    .getInstance(context)
-                                    .getThemeColor(context, R.attr.colorTitleText),
-                            ThemeManager
-                                    .getInstance(context)
-                                    .getThemeColor(context, R.attr.colorSurfaceVariant),
-                            ThemeManager
-                                    .getInstance(context)
-                                    .getThemeColor(context, R.attr.colorOutline),
+                            tm.getThemeColor(themeCtx, R.attr.colorOnPrimaryContainer),
+                            tm.getThemeColor(themeCtx, R.attr.colorTitleText),
+                            tm.getThemeColor(themeCtx, R.attr.colorPrimaryContainer),
+                            tm.getThemeColor(themeCtx, R.attr.colorOutline),
                             (checked, oldPosition, newPosition) -> {
                                 setTrendAdapterByTag(location, (MainTag) tagList.get(newPosition));
                                 return false;
@@ -163,17 +160,15 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
                         DisplayUtils.isLandscape(context) ? 7 : 5
                 )
         );
-        mTrendRecyclerView.setLineColor(
-                ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorOutline)
-        );
+        mTrendRecyclerView.setLineColor(tm.getThemeColor(themeCtx, R.attr.colorOutline));
         mTrendRecyclerView.setAdapter(mTrendAdapter);
         mTrendRecyclerView.setKeyLineVisibility(
                 SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled());
         setTrendAdapterByTag(location, (MainTag) tagList.get(0));
 
         mScrollBar.setColor(
-                ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorSurface),
-                MainModuleUtils.isMainLightTheme(context, location.isDaylight())
+                tm.getThemeColor(themeCtx, R.attr.colorSurface),
+                MainModuleUtils.isHomeLightTheme(context, location.isDaylight())
         );
 
         List<Minutely> minutelyList = weather.getMinutelyForecast();
@@ -195,11 +190,9 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
             mMinutelyContainer.setVisibility(View.GONE);
         }
 
-        ThemeManager tm = ThemeManager.getInstance(context);
+        mMinutelyTitle.setTextColor(tm.getThemeColor(themeCtx, R.attr.colorBodyText));
 
-        mMinutelyTitle.setTextColor(tm.getThemeColor(context, R.attr.colorBodyText));
-
-        mPrecipitationBar.setBackgroundColor(tm.getThemeColor(context, R.attr.colorOutline));
+        mPrecipitationBar.setBackgroundColor(tm.getThemeColor(themeCtx, R.attr.colorOutline));
         mPrecipitationBar.setPrecipitationColor(
                 tm.getWeatherThemeDelegate().getThemeColors(
                         context,
@@ -208,8 +201,8 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
                 )[0]
         );
 
-        mMinutelyStartText.setTextColor(tm.getThemeColor(context, R.attr.colorCaptionText));
-        mMinutelyEndText.setTextColor(tm.getThemeColor(context, R.attr.colorCaptionText));
+        mMinutelyStartText.setTextColor(tm.getThemeColor(themeCtx, R.attr.colorCaptionText));
+        mMinutelyEndText.setTextColor(tm.getThemeColor(themeCtx, R.attr.colorCaptionText));
     }
 
     private static boolean needToShowMinutelyForecast(List<Minutely> minutelyList) {

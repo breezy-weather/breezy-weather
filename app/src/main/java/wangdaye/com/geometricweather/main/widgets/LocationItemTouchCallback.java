@@ -110,7 +110,7 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
                 break;
             }
             case ItemTouchHelper.END:
-                if (mViewModel.totalLocationList.getValue().getLocationList().size() <= 1) {
+                if (mViewModel.getTotalLocationList().getValue().getLocationList().size() <= 1) {
                     // TODO: force update.
                     mViewModel.updateLocation(location);
                     SnackbarHelper.showSnackbar(

@@ -14,6 +14,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.graphics.ColorUtils
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.GeoActivity
 import wangdaye.com.geometricweather.common.basic.GeoFragment
 import wangdaye.com.geometricweather.common.basic.livedata.EqualtableLiveData
@@ -24,7 +25,6 @@ import wangdaye.com.geometricweather.databinding.FragmentHomeBinding
 import wangdaye.com.geometricweather.main.MainActivityViewModel
 import wangdaye.com.geometricweather.main.adapters.main.MainAdapter
 import wangdaye.com.geometricweather.main.layouts.MainLayoutManager
-import wangdaye.com.geometricweather.main.utils.DayNightColorWrapper
 import wangdaye.com.geometricweather.main.utils.MainModuleUtils
 import wangdaye.com.geometricweather.settings.SettingsManager
 import wangdaye.com.geometricweather.theme.ThemeManager
@@ -45,12 +45,9 @@ class HomeFragment : GeoFragment() {
     private var resourceProvider: ResourceProvider? = null
 
     private val previewOffset = EqualtableLiveData(0)
-    private var pendingLocation: Location? = null
-    private var lastValidUIMode = Configuration.UI_MODE_NIGHT_UNDEFINED
     private var callback: Callback? = null
 
     interface Callback {
-        fun isHomeInvisible(): Boolean
         fun onManageIconClicked()
         fun onSettingsIconClicked()
     }
@@ -78,12 +75,16 @@ class HomeFragment : GeoFragment() {
             )
         )
 
+        initView()
         setSystemBarStyle()
         setCallback(requireActivity() as Callback)
 
-        initView()
-
         return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        setSystemBarStyle()
     }
 
     override fun onResume() {
@@ -111,6 +112,12 @@ class HomeFragment : GeoFragment() {
         }
     }
 
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        updateDayNightColors()
+        updateViews()
+    }
+
     // init.
 
     private fun initModel() {
@@ -121,18 +128,6 @@ class HomeFragment : GeoFragment() {
     private fun initView() {
         ensureResourceProvider()
 
-        val rootLayout = (requireActivity() as GeoActivity).fitHorizontalSystemBarRootLayout
-        DayNightColorWrapper.bind(
-            rootLayout,
-            arrayOf(
-                android.R.attr.colorBackground,
-                wangdaye.com.geometricweather.R.attr.colorOutline
-            )
-        ) { colors, _ ->
-            rootLayout.setRootColor(colors[0])
-            rootLayout.setLineColor(colors[1])
-        }
-
         weatherView.setGravitySensorEnabled(
             SettingsManager.getInstance(requireContext()).isGravitySensorEnabled()
         )
@@ -142,13 +137,13 @@ class HomeFragment : GeoFragment() {
                 callback!!.onManageIconClicked()
             }
         }
-        binding.toolbar.inflateMenu(wangdaye.com.geometricweather.R.menu.activity_main)
+        binding.toolbar.inflateMenu(R.menu.activity_main)
         binding.toolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
-                wangdaye.com.geometricweather.R.id.action_manage -> if (callback != null) {
+                R.id.action_manage -> if (callback != null) {
                     callback!!.onManageIconClicked()
                 }
-                wangdaye.com.geometricweather.R.id.action_settings -> if (callback != null) {
+                R.id.action_settings -> if (callback != null) {
                     callback!!.onSettingsIconClicked()
                 }
             }
@@ -163,12 +158,6 @@ class HomeFragment : GeoFragment() {
             ColorUtils.setAlphaComponent(Color.WHITE, (0.5 * 255).toInt())
         )
 
-        DayNightColorWrapper.bind(
-            binding.refreshLayout,
-            wangdaye.com.geometricweather.R.attr.colorSurface
-        ) { color, _ ->
-            binding.refreshLayout.setProgressBackgroundColorSchemeColor(color)
-        }
         binding.refreshLayout.setOnRefreshListener {
             viewModel.updateWithUpdatingChecking(
                 triggeredByUser = true,
@@ -197,12 +186,7 @@ class HomeFragment : GeoFragment() {
         binding.recyclerView.setOnTouchListener(indicatorStateListener)
 
         viewModel.currentLocation.observe(viewLifecycleOwner) {
-            if (callback?.isHomeInvisible() == true) {
-                pendingLocation = it
-            } else {
-                lastValidUIMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
-                updateViews(it)
-            }
+            updateViews(it)
         }
 
         viewModel.loading.observe(viewLifecycleOwner) { setRefreshing(it) }
@@ -219,28 +203,42 @@ class HomeFragment : GeoFragment() {
             binding.indicator.visibility = if (it.total > 1) View.VISIBLE else View.GONE
         }
 
-        previewOffset.observe(viewLifecycleOwner) { updatePreviewSubviews() }
+        previewOffset.observe(viewLifecycleOwner) {
+            binding.root.post {
+                if (isFragmentViewCreated) {
+                    updatePreviewSubviews()
+                }
+            }
+        }
+    }
+
+    private fun updateDayNightColors() {
+        val tm = ThemeManager.getInstance(requireContext())
+        val context = tm.generateThemeContext(
+            context = requireContext(),
+            daylight = MainModuleUtils.isHomeLightTheme(requireContext(), tm.isDaylight)
+        )
+
+        val root = (requireActivity() as GeoActivity).fitHorizontalSystemBarRootLayout
+        root.setRootColor(tm.getThemeColor(context = context, id = android.R.attr.colorBackground))
+        root.setLineColor(tm.getThemeColor(context = context, id = R.attr.colorOutline))
+
+        binding.refreshLayout.setProgressBackgroundColorSchemeColor(
+            tm.getThemeColor(context = context, id = R.attr.colorSurface)
+        )
     }
 
     // control.
 
-    fun becomeVisible() {
-        if (pendingLocation != null) {
-            if (pendingLocation == viewModel.currentLocation.value) {
-                updateViews(location = pendingLocation!!)
-            }
-        } else if (lastValidUIMode != (
-                    resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK)) {
-            updateViews(location = viewModel.currentLocation.value!!)
-        }
-        pendingLocation = null
-    }
-
     @JvmOverloads
     fun updateViews(location: Location = viewModel.currentLocation.value!!) {
         ensureResourceProvider()
-        updatePreviewSubviews()
         updateContentViews(location = location)
+        binding.root.post {
+            if (isFragmentViewCreated) {
+                updatePreviewSubviews()
+            }
+        }
     }
 
     @SuppressLint("ClickableViewAccessibility", "NotifyDataSetChanged")
@@ -251,6 +249,15 @@ class HomeFragment : GeoFragment() {
         }
 
         binding.switchLayout.reset()
+
+        val tm = ThemeManager.getInstance(requireContext())
+        val context = tm.generateThemeContext(
+            context = requireContext(),
+            daylight = MainModuleUtils.isHomeLightTheme(requireContext(), tm.isDaylight)
+        )
+        binding.refreshLayout.setProgressBackgroundColorSchemeColor(
+            tm.getThemeColor(context = context, id = R.attr.colorSurface)
+        )
 
         if (location.weather == null) {
             adapter!!.setNullWeather()
@@ -312,34 +319,36 @@ class HomeFragment : GeoFragment() {
     }
 
     private fun updatePreviewSubviews() {
-        binding.root.post {
-            val location = viewModel.getValidLocation(
-                previewOffset.value!!
-            )
-            val daylight = location.isDaylight
+        val location = viewModel.getValidLocation(
+            previewOffset.value!!
+        )
+        val daylight = location.isDaylight
 
-            binding.toolbar.title = location.getCityName(requireContext())
-            WeatherViewController.setWeatherCode(
-                weatherView,
-                location.weather,
-                daylight,
-                resourceProvider!!
-            )
-            binding.refreshLayout.setColorSchemeColors(
-                ThemeManager
-                    .getInstance(requireContext())
-                    .weatherThemeDelegate
-                    .getThemeColors(
-                        requireContext(),
-                        WeatherViewController.getWeatherKind(location.weather),
-                        daylight
-                    )[0]
-            )
-        }
+        binding.toolbar.title = location.getCityName(requireContext())
+        WeatherViewController.setWeatherCode(
+            weatherView,
+            location.weather,
+            daylight,
+            resourceProvider!!
+        )
+        binding.refreshLayout.setColorSchemeColors(
+            ThemeManager
+                .getInstance(requireContext())
+                .weatherThemeDelegate
+                .getThemeColors(
+                    requireContext(),
+                    WeatherViewController.getWeatherKind(location.weather),
+                    daylight
+                )[0]
+        )
     }
 
     private fun setRefreshing(b: Boolean) {
-        binding.refreshLayout.post { binding.refreshLayout.isRefreshing = b }
+        binding.refreshLayout.post {
+            if (isFragmentViewCreated) {
+                binding.refreshLayout.isRefreshing = b
+            }
+        }
     }
 
     private fun setSystemBarStyle() {
@@ -413,6 +422,9 @@ class HomeFragment : GeoFragment() {
 
         fun postReset(recyclerView: RecyclerView) {
             recyclerView.post {
+                if (!isFragmentViewCreated) {
+                    return@post
+                }
                 mTopChanged = null
                 topOverlap = false
                 mFirstCardMarginTop = 0

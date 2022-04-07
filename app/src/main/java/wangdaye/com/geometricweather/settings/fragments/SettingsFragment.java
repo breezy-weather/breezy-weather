@@ -14,6 +14,7 @@ import androidx.preference.Preference;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.polling.PollingManager;
+import wangdaye.com.geometricweather.common.bus.EventBus;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
 import wangdaye.com.geometricweather.remoteviews.config.ClockDayDetailsWidgetConfigActivity;
 import wangdaye.com.geometricweather.remoteviews.config.ClockDayHorizontalWidgetConfigActivity;
@@ -38,6 +39,7 @@ import wangdaye.com.geometricweather.remoteviews.presenters.MultiCityWidgetIMP;
 import wangdaye.com.geometricweather.remoteviews.presenters.TextWidgetIMP;
 import wangdaye.com.geometricweather.remoteviews.presenters.WeekWidgetIMP;
 import wangdaye.com.geometricweather.remoteviews.presenters.notification.NormalNotificationIMP;
+import wangdaye.com.geometricweather.settings.SettingsChangedMessage;
 import wangdaye.com.geometricweather.settings.dialogs.RunningInBackgroundDialog;
 import wangdaye.com.geometricweather.settings.dialogs.RunningInBackgroundODialog;
 import wangdaye.com.geometricweather.settings.dialogs.TimeSetterDialog;
@@ -121,6 +123,10 @@ public class SettingsFragment extends AbstractSettingsFragment {
                     new RunningInBackgroundDialog().show(getParentFragmentManager(), null);
                 }
             }
+
+            EventBus.getInstance()
+                    .with(SettingsChangedMessage.class)
+                    .postValue(new SettingsChangedMessage());
             return true;
         });
 
@@ -140,6 +146,10 @@ public class SettingsFragment extends AbstractSettingsFragment {
                 );
                 PollingManager.resetNormalBackgroundTask(requireActivity(), false);
             });
+
+            EventBus.getInstance()
+                    .with(SettingsChangedMessage.class)
+                    .postValue(new SettingsChangedMessage());
             return true;
         });
 
@@ -161,6 +171,10 @@ public class SettingsFragment extends AbstractSettingsFragment {
                         .getInstance(requireContext())
                         .update(getSettingsOptionManager().getDarkMode());
             });
+
+            EventBus.getInstance()
+                    .with(SettingsChangedMessage.class)
+                    .postValue(new SettingsChangedMessage());
             return true;
         });
 
@@ -196,6 +210,10 @@ public class SettingsFragment extends AbstractSettingsFragment {
         ).setOnPreferenceChangeListener((preference, newValue) -> {
             requireView().post(this::initForecastPart);
             PollingManager.resetNormalBackgroundTask(requireActivity(), false);
+
+            EventBus.getInstance()
+                    .with(SettingsChangedMessage.class)
+                    .postValue(new SettingsChangedMessage());
             return true;
         });
 
@@ -214,6 +232,10 @@ public class SettingsFragment extends AbstractSettingsFragment {
         ).setOnPreferenceChangeListener((preference, newValue) -> {
             requireView().post(this::initForecastPart);
             PollingManager.resetNormalBackgroundTask(requireActivity(), false);
+
+            EventBus.getInstance()
+                    .with(SettingsChangedMessage.class)
+                    .postValue(new SettingsChangedMessage());
             return true;
         });
 
@@ -245,6 +267,10 @@ public class SettingsFragment extends AbstractSettingsFragment {
                                 .getWidgetWeekIconModeName(requireActivity())
                 );
                 PollingManager.resetNormalBackgroundTask(requireActivity(), true);
+
+                EventBus.getInstance()
+                        .with(SettingsChangedMessage.class)
+                        .postValue(new SettingsChangedMessage());
             });
             return true;
         });
@@ -254,6 +280,10 @@ public class SettingsFragment extends AbstractSettingsFragment {
                 getString(R.string.key_widget_minimal_icon)
         ).setOnPreferenceChangeListener((preference, newValue) -> {
             PollingManager.resetNormalBackgroundTask(requireActivity(), true);
+
+            EventBus.getInstance()
+                    .with(SettingsChangedMessage.class)
+                    .postValue(new SettingsChangedMessage());
             return true;
         });
 
@@ -361,6 +391,10 @@ public class SettingsFragment extends AbstractSettingsFragment {
                 NormalNotificationIMP.cancelNotification(requireActivity());
                 PollingManager.resetNormalBackgroundTask(requireActivity(), false);
             }
+
+            EventBus.getInstance()
+                    .with(SettingsChangedMessage.class)
+                    .postValue(new SettingsChangedMessage());
             return true;
         });
 
@@ -381,6 +415,10 @@ public class SettingsFragment extends AbstractSettingsFragment {
                                 .getNotificationStyleName(requireActivity())
                 );
                 PollingManager.resetNormalBackgroundTask(requireActivity(), true);
+
+                EventBus.getInstance()
+                        .with(SettingsChangedMessage.class)
+                        .postValue(new SettingsChangedMessage());
             });
             return true;
         });
@@ -389,6 +427,10 @@ public class SettingsFragment extends AbstractSettingsFragment {
         CheckBoxPreference notificationTempIcon = findPreference(getString(R.string.key_notification_temp_icon));
         notificationTempIcon.setOnPreferenceChangeListener((preference, newValue) -> {
             PollingManager.resetNormalBackgroundTask(requireActivity(), true);
+
+            EventBus.getInstance()
+                    .with(SettingsChangedMessage.class)
+                    .postValue(new SettingsChangedMessage());
             return true;
         });
 
@@ -396,6 +438,10 @@ public class SettingsFragment extends AbstractSettingsFragment {
         CheckBoxPreference notificationClearFlag = findPreference(getString(R.string.key_notification_can_be_cleared));
         notificationClearFlag.setOnPreferenceChangeListener((preference, newValue) -> {
             PollingManager.resetNormalBackgroundTask(requireActivity(), true);
+
+            EventBus.getInstance()
+                    .with(SettingsChangedMessage.class)
+                    .postValue(new SettingsChangedMessage());
             return true;
         });
 

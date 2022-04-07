@@ -135,26 +135,20 @@ public class IntentHelper {
         );
     }
 
-    public static void startSettingsActivityForResult(Activity activity, int requestCode) {
-        activity.startActivityForResult(new Intent(activity, SettingsActivity.class), requestCode);
+    public static void startSettingsActivity(Activity activity) {
+        activity.startActivity(new Intent(activity, SettingsActivity.class));
     }
 
-    public static void startCardDisplayManageActivityForResult(Activity activity, int requestCode) {
-        activity.startActivityForResult(
-                new Intent(activity, CardDisplayManageActivity.class), requestCode);
+    public static void startCardDisplayManageActivity(Activity activity) {
+        activity.startActivity(new Intent(activity, CardDisplayManageActivity.class));
     }
 
-    public static void startDailyTrendDisplayManageActivityForResult(Activity activity, int requestCode) {
-        activity.startActivityForResult(
-                new Intent(activity, DailyTrendDisplayManageActivity.class), requestCode);
+    public static void startDailyTrendDisplayManageActivity(Activity activity) {
+        activity.startActivity(new Intent(activity, DailyTrendDisplayManageActivity.class));
     }
 
     public static void startSelectProviderActivity(Activity activity) {
         activity.startActivity(new Intent(activity, SelectProviderActivity.class));
-    }
-
-    public static void startSelectProviderActivityForResult(Activity activity, int requestCode) {
-        activity.startActivityForResult(new Intent(activity, SelectProviderActivity.class), requestCode);
     }
 
     public static void startPreviewIconActivity(Activity activity, String packageName) {

@@ -1,9 +1,11 @@
 package wangdaye.com.geometricweather.theme
 
 import android.content.Context
+import android.content.res.Configuration
 import android.util.TypedValue
 import androidx.annotation.AttrRes
 import androidx.appcompat.app.AppCompatDelegate
+import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.livedata.EqualtableLiveData
 import wangdaye.com.geometricweather.common.basic.models.Location
 import wangdaye.com.geometricweather.common.basic.models.options.DarkMode
@@ -14,8 +16,8 @@ import wangdaye.com.geometricweather.theme.weatherView.materialWeatherView.Mater
 import java.util.*
 
 class ThemeManager private constructor(
-    weatherThemeDelegate: WeatherThemeDelegate,
-    darkMode: DarkMode,
+    val weatherThemeDelegate: WeatherThemeDelegate,
+    var darkMode: DarkMode,
 ) {
 
     companion object {
@@ -38,20 +40,6 @@ class ThemeManager private constructor(
             return instance!!
         }
 
-        private fun generateHomeUIMode(
-            darkMode: DarkMode,
-            daylight: Boolean
-        ): Int = when (darkMode) {
-            DarkMode.AUTO -> if (daylight) {
-                AppCompatDelegate.MODE_NIGHT_NO
-            } else {
-                AppCompatDelegate.MODE_NIGHT_YES
-            }
-            DarkMode.LIGHT -> AppCompatDelegate.MODE_NIGHT_NO
-            DarkMode.DARK -> AppCompatDelegate.MODE_NIGHT_YES
-            DarkMode.SYSTEM -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
-        }
-
         private fun generateGlobalUIMode(
             darkMode: DarkMode
         ): Int = when (darkMode) {
@@ -61,37 +49,12 @@ class ThemeManager private constructor(
         }
     }
 
-    val homeUIMode: EqualtableLiveData<Int>
-    val globalUIMode: EqualtableLiveData<Int>
-    val daylight: EqualtableLiveData<Boolean>
-    var darkMode: EqualtableLiveData<DarkMode>
-
-    val weatherThemeDelegate: WeatherThemeDelegate
+    val uiMode: EqualtableLiveData<Int> = EqualtableLiveData(
+        generateGlobalUIMode(darkMode = darkMode)
+    )
+    var isDaylight = DisplayUtils.isDaylight(TimeZone.getDefault())
 
     private val typedValue = TypedValue()
-
-    val isDaylight: Boolean
-        get() = daylight.value ?: true
-
-    init {
-        val isDaylight = DisplayUtils.isDaylight(TimeZone.getDefault())
-
-        this.homeUIMode = EqualtableLiveData(
-            generateHomeUIMode(
-                darkMode = darkMode,
-                daylight = isDaylight
-            )
-        )
-        this.globalUIMode = EqualtableLiveData(
-            generateGlobalUIMode(
-                darkMode = darkMode
-            )
-        )
-        this.daylight = EqualtableLiveData(isDaylight)
-        this.darkMode = EqualtableLiveData(darkMode)
-
-        this.weatherThemeDelegate = weatherThemeDelegate
-    }
 
     @JvmOverloads
     fun update(
@@ -99,21 +62,15 @@ class ThemeManager private constructor(
         location: Location? = null,
     ) {
         darkMode?.let {
-            this.darkMode.setValue(it)
+            this.darkMode = it
         }
         location?.let {
-            this.daylight.setValue(it.isDaylight)
+            this.isDaylight = it.isDaylight
         }
 
-        homeUIMode.setValue(
-            generateHomeUIMode(
-                darkMode = this.darkMode.value!!,
-                daylight = this.daylight.value!!
-            )
-        )
-        globalUIMode.setValue(
+        uiMode.setValue(
             generateGlobalUIMode(
-                darkMode = this.darkMode.value!!
+                darkMode = this.darkMode
             )
         )
     }
@@ -121,5 +78,21 @@ class ThemeManager private constructor(
     fun getThemeColor(context: Context, @AttrRes id: Int): Int {
         context.theme.resolveAttribute(id, typedValue, true)
         return typedValue.data
+    }
+
+    fun generateThemeContext(
+        context: Context,
+        daylight: Boolean = isDaylight
+    ): Context = context.createConfigurationContext(
+        Configuration(context.resources.configuration).apply {
+            uiMode = uiMode and Configuration.UI_MODE_NIGHT_MASK.inv()
+            uiMode = uiMode or if (daylight) {
+                Configuration.UI_MODE_NIGHT_NO
+            } else {
+                Configuration.UI_MODE_NIGHT_YES
+            }
+        }
+    ).apply {
+        setTheme(R.style.GeometricWeatherTheme)
     }
 }

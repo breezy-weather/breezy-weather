@@ -14,8 +14,10 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.CardDisplay;
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.DailyTrendDisplay;
 import wangdaye.com.geometricweather.common.basic.models.weather.Temperature;
+import wangdaye.com.geometricweather.common.bus.EventBus;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
 import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
+import wangdaye.com.geometricweather.settings.SettingsChangedMessage;
 import wangdaye.com.geometricweather.theme.resource.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.settings.dialogs.ProvidersPreviewerDialog;
@@ -39,6 +41,10 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
             initIconProviderPreference();
             SnackbarHelper.showSnackbar(
                     getString(R.string.feedback_refresh_ui_after_refresh));
+
+            EventBus.getInstance()
+                    .with(SettingsChangedMessage.class)
+                    .postValue(new SettingsChangedMessage());
         }
     };
 
@@ -69,14 +75,20 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
                 )
         );
         exchangeDayNightTemperature.setOnPreferenceChangeListener((preference, newValue) -> {
-            requireView().post(() -> preference.setSummary(
-                    Temperature.getTrendTemperature(
-                            requireActivity(),
-                            3,
-                            7,
-                            SettingsManager.getInstance(requireActivity()).getTemperatureUnit()
-                    )
-            ));
+            requireView().post(() -> {
+                preference.setSummary(
+                        Temperature.getTrendTemperature(
+                                requireActivity(),
+                                3,
+                                7,
+                                SettingsManager.getInstance(requireActivity()).getTemperatureUnit()
+                        )
+                );
+
+                EventBus.getInstance()
+                        .with(SettingsChangedMessage.class)
+                        .postValue(new SettingsChangedMessage());
+            });
             return true;
         });
 
@@ -93,6 +105,10 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
                         getString(R.string.restart),
                         v -> GeometricWeather.getInstance().recreateAllActivities()
                 );
+
+                EventBus.getInstance()
+                        .with(SettingsChangedMessage.class)
+                        .postValue(new SettingsChangedMessage());
             });
             return true;
         });
@@ -109,7 +125,7 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
                 SettingsManager.getInstance(requireActivity()).getCardDisplayList()
         ));
         cardDisplay.setOnPreferenceClickListener(preference -> {
-            IntentHelper.startCardDisplayManageActivityForResult(requireActivity(), 0);
+            IntentHelper.startCardDisplayManageActivity(requireActivity());
             return true;
         });
 
@@ -120,7 +136,7 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
                 SettingsManager.getInstance(requireActivity()).getDailyTrendDisplayList()
         ));
         dailyTrendDisplay.setOnPreferenceClickListener(preference -> {
-            IntentHelper.startDailyTrendDisplayManageActivityForResult(requireActivity(), 1);
+            IntentHelper.startDailyTrendDisplayManageActivity(requireActivity());
             return true;
         });
     }

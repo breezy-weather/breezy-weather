@@ -20,7 +20,6 @@ import java.util.List;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
-import wangdaye.com.geometricweather.main.MainActivity;
 import wangdaye.com.geometricweather.theme.ThemeManager;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 
@@ -70,10 +69,9 @@ public class FooterViewHolder extends AbstractMainViewHolder {
                         .getWeatherThemeDelegate()
                         .getHeaderTextColor(mTitle.getContext())
         );
-        mEditButton.setOnClickListener(v -> IntentHelper.startCardDisplayManageActivityForResult(
-                (Activity) context,
-                MainActivity.CARD_MANAGE_ACTIVITY
-        ));
+        mEditButton.setOnClickListener(v ->
+                IntentHelper.startCardDisplayManageActivity((Activity) context)
+        );
     }
 
     @NotNull

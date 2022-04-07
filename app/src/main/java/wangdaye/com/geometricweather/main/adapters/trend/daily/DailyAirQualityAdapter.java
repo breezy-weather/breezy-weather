@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.main.adapters.trend.daily;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,11 +44,12 @@ public class DailyAirQualityAdapter extends AbsDailyTrendAdapter<DailyAirQuality
 
         @SuppressLint("DefaultLocale")
         void onBindView(GeoActivity activity,
+                        Context themeCtx,
                         Location location,
                         int position) {
             StringBuilder talkBackBuilder = new StringBuilder(activity.getString(R.string.tag_aqi));
 
-            super.onBindView(activity, location, talkBackBuilder, position);
+            super.onBindView(activity, themeCtx, location, talkBackBuilder, position);
 
             assert location.getWeather() != null;
             Daily daily = location.getWeather().getDailyForecast().get(position);
@@ -65,7 +67,7 @@ public class DailyAirQualityAdapter extends AbsDailyTrendAdapter<DailyAirQuality
             mPolylineAndHistogramView.setLineColors(
                     daily.getAirQuality().getAqiColor(activity),
                     daily.getAirQuality().getAqiColor(activity),
-                    ThemeManager.getInstance(activity).getThemeColor(activity, R.attr.colorOutline)
+                    ThemeManager.getInstance(activity).getThemeColor(themeCtx, R.attr.colorOutline)
             );
             int[] themeColors = ThemeManager
                     .getInstance(itemView.getContext())
@@ -75,14 +77,14 @@ public class DailyAirQualityAdapter extends AbsDailyTrendAdapter<DailyAirQuality
                             WeatherViewController.getWeatherKind(location.getWeather()),
                             location.isDaylight()
                     );
-            boolean lightTheme = MainModuleUtils.isMainLightTheme(
+            boolean lightTheme = MainModuleUtils.isHomeLightTheme(
                     itemView.getContext(),
                     location.isDaylight()
             );
             mPolylineAndHistogramView.setShadowColors(themeColors[1], themeColors[2], lightTheme);
             mPolylineAndHistogramView.setTextColors(
-                    ThemeManager.getInstance(activity).getThemeColor(activity, R.attr.colorBodyText),
-                    ThemeManager.getInstance(activity).getThemeColor(activity, R.attr.colorCaptionText)
+                    ThemeManager.getInstance(activity).getThemeColor(themeCtx, R.attr.colorBodyText),
+                    ThemeManager.getInstance(activity).getThemeColor(themeCtx, R.attr.colorCaptionText)
             );
             mPolylineAndHistogramView.setHistogramAlpha(lightTheme ? 1f : 0.5f);
 
@@ -151,7 +153,7 @@ public class DailyAirQualityAdapter extends AbsDailyTrendAdapter<DailyAirQuality
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(getActivity(), getLocation(), position);
+        holder.onBindView(getActivity(), getThemeCtx(), getLocation(), position);
     }
 
     @Override

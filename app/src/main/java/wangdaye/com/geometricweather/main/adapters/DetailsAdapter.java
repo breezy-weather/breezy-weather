@@ -21,6 +21,7 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.CloudCover
 import wangdaye.com.geometricweather.common.basic.models.options.unit.RelativeHumidityUnit;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.SpeedUnit;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.theme.ThemeManager;
 
@@ -30,6 +31,7 @@ import wangdaye.com.geometricweather.theme.ThemeManager;
 
 public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHolder> {
 
+    private final Context mThemeCtx;
     private final List<Index> mIndexList;
 
     private static class Index {
@@ -66,7 +68,7 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
             mContent = itemView.findViewById(R.id.item_details_content);
         }
 
-        void onBindView(Index index) {
+        void onBindView(Context themeCtx, Index index) {
             itemView.setContentDescription(index.talkBack);
 
             mIcon.setImageResource(index.iconId);
@@ -77,20 +79,20 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
                     mIcon,
                     ColorStateList.valueOf(
                             ThemeManager.getInstance(itemView.getContext()).getThemeColor(
-                                    itemView.getContext(),
+                                    themeCtx,
                                     R.attr.colorBodyText
                             )
                     )
             );
             mTitle.setTextColor(
                     ThemeManager.getInstance(itemView.getContext()).getThemeColor(
-                            itemView.getContext(),
+                            themeCtx,
                             R.attr.colorBodyText
                     )
             );
             mContent.setTextColor(
                     ThemeManager.getInstance(itemView.getContext()).getThemeColor(
-                            itemView.getContext(),
+                            themeCtx,
                             R.attr.colorCaptionText
                     )
             );
@@ -98,6 +100,14 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
     }
 
     public DetailsAdapter(Context context, @NonNull Weather weather) {
+        mThemeCtx = ThemeManager.getInstance(context).generateThemeContext(
+                context,
+                MainModuleUtils.isHomeLightTheme(
+                        context,
+                        ThemeManager.getInstance(context).isDaylight()
+                )
+        );
+
         mIndexList = new ArrayList<>();
         SettingsManager settings = SettingsManager.getInstance(context);
 
@@ -220,7 +230,7 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(mIndexList.get(position));
+        holder.onBindView(mThemeCtx, mIndexList.get(position));
     }
 
     @Override

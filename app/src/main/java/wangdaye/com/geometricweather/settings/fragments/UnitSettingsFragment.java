@@ -5,7 +5,9 @@ import android.os.Bundle;
 import androidx.preference.ListPreference;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.common.bus.EventBus;
 import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
+import wangdaye.com.geometricweather.settings.SettingsChangedMessage;
 
 /**
  * Unit settings fragment.
@@ -29,6 +31,10 @@ public class UnitSettingsFragment extends AbstractSettingsFragment {
                         getSettingsOptionManager().getTemperatureUnit().getAbbreviation(requireActivity())
                 );
                 SnackbarHelper.showSnackbar(getString(R.string.feedback_refresh_ui_after_refresh));
+
+                EventBus.getInstance()
+                        .with(SettingsChangedMessage.class)
+                        .postValue(new SettingsChangedMessage());
             });
             return true;
         });
@@ -42,6 +48,10 @@ public class UnitSettingsFragment extends AbstractSettingsFragment {
                     getSettingsOptionManager().getDistanceUnit().getAbbreviation(requireActivity())
                 );
                 SnackbarHelper.showSnackbar(getString(R.string.feedback_refresh_ui_after_refresh));
+
+                EventBus.getInstance()
+                        .with(SettingsChangedMessage.class)
+                        .postValue(new SettingsChangedMessage());
             });
             return true;
         });
@@ -55,6 +65,10 @@ public class UnitSettingsFragment extends AbstractSettingsFragment {
                         getSettingsOptionManager().getPrecipitationUnit().getAbbreviation(requireActivity())
                 );
                 SnackbarHelper.showSnackbar(getString(R.string.feedback_refresh_ui_after_refresh));
+
+                EventBus.getInstance()
+                        .with(SettingsChangedMessage.class)
+                        .postValue(new SettingsChangedMessage());
             });
             return true;
         });
@@ -68,6 +82,10 @@ public class UnitSettingsFragment extends AbstractSettingsFragment {
                         getSettingsOptionManager().getPressureUnit().getAbbreviation(requireActivity())
                 );
                 SnackbarHelper.showSnackbar(getString(R.string.feedback_refresh_ui_after_refresh));
+
+                EventBus.getInstance()
+                        .with(SettingsChangedMessage.class)
+                        .postValue(new SettingsChangedMessage());
             });
             return true;
         });
@@ -81,6 +99,10 @@ public class UnitSettingsFragment extends AbstractSettingsFragment {
                         getSettingsOptionManager().getSpeedUnit().getAbbreviation(requireActivity())
                 );
                 SnackbarHelper.showSnackbar(getString(R.string.feedback_refresh_ui_after_refresh));
+
+                EventBus.getInstance()
+                        .with(SettingsChangedMessage.class)
+                        .postValue(new SettingsChangedMessage());
             });
             return true;
         });

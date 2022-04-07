@@ -9,7 +9,7 @@ import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
+import androidx.lifecycle.Lifecycle;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
@@ -20,17 +20,10 @@ import wangdaye.com.geometricweather.common.utils.LanguageUtils;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.theme.ThemeManager;
 
-/**
- * Geometric weather activity.
- * */
-
 public abstract class GeoActivity extends AppCompatActivity {
 
     FitHorizontalSystemBarRootLayout fitHorizontalSystemBarRootLayout;
-
     private @Nullable GeoDialog mTopDialog;
-
-    private boolean mForeground = false;
 
     private static class KeyboardResizeBugWorkaround {
 
@@ -83,9 +76,6 @@ public abstract class GeoActivity extends AppCompatActivity {
     @CallSuper
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        AppCompatDelegate.setDefaultNightMode(
-                ThemeManager.getInstance(this).getGlobalUIMode().getValue()
-        );
         super.onCreate(savedInstanceState);
 
         fitHorizontalSystemBarRootLayout = new FitHorizontalSystemBarRootLayout(this);
@@ -115,7 +105,7 @@ public abstract class GeoActivity extends AppCompatActivity {
                 !DisplayUtils.isLightColor(
                         ThemeManager
                                 .getInstance(this)
-                                .getThemeColor(this, R.attr.colorOnPrimary)
+                                .getThemeColor(this, R.attr.colorOnPrimaryContainer)
                 ),
                 true,
                 !darkMode
@@ -156,7 +146,6 @@ public abstract class GeoActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mForeground = true;
         GeometricWeather.getInstance().setTopActivity(this);
     }
 
@@ -164,7 +153,6 @@ public abstract class GeoActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        mForeground = false;
         GeometricWeather.getInstance().checkToCleanTopActivity(this);
     }
 
@@ -192,8 +180,16 @@ public abstract class GeoActivity extends AppCompatActivity {
         }
     }
 
-    public boolean isForeground() {
-        return mForeground;
+    public boolean isActivityCreated() {
+        return getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.CREATED);
+    }
+
+    public boolean isActivityStarted() {
+        return getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED);
+    }
+
+    public boolean isActivityResumed() {
+        return getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.RESUMED);
     }
 
     @Nullable

@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.main.adapters.trend.daily;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,10 +45,10 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter<DailyPrecipi
         }
 
         @SuppressLint("SetTextI18n, InflateParams")
-        void onBindView(GeoActivity activity, Location location, int position) {
+        void onBindView(GeoActivity activity, Context themeCtx, Location location, int position) {
             StringBuilder talkBackBuilder = new StringBuilder(activity.getString(R.string.tag_precipitation));
 
-            super.onBindView(activity, location, talkBackBuilder, position);
+            super.onBindView(activity, themeCtx, location, talkBackBuilder, position);
 
             Weather weather = location.getWeather();
             assert weather != null;
@@ -86,10 +87,10 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter<DailyPrecipi
             mDoubleHistogramView.setLineColors(
                     daily.day().getPrecipitation().getPrecipitationColor(activity),
                     daily.night().getPrecipitation().getPrecipitationColor(activity),
-                    ThemeManager.getInstance(activity).getThemeColor(activity, R.attr.colorOutline)
+                    ThemeManager.getInstance(activity).getThemeColor(themeCtx, R.attr.colorOutline)
             );
             mDoubleHistogramView.setTextColors(
-                    ThemeManager.getInstance(activity).getThemeColor(activity, R.attr.colorBodyText)
+                    ThemeManager.getInstance(activity).getThemeColor(themeCtx, R.attr.colorBodyText)
             );
             mDoubleHistogramView.setHistogramAlphas(1f, 0.5f);
 
@@ -176,7 +177,7 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter<DailyPrecipi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(getActivity(), getLocation(), position);
+        holder.onBindView(getActivity(), getThemeCtx(), getLocation(), position);
     }
 
     @Override
