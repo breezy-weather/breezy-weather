@@ -25,7 +25,7 @@
                 android:layout_margin="@dimen/little_margin"
                 style="@style/material_card"
                 app:cardBackgroundColor="?attr/colorSurface"
-                app:cardCornerRadius="23dp">
+                app:cardCornerRadius="24dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"

@@ -18,7 +18,7 @@
         android:interpolator="@android:interpolator/fast_out_slow_in"
         android:duration="350"
         app:radius_from="0dp"
-        app:radius_to="23dp"
+        app:radius_to="24dp"
         tools:ignore="NewApi">
         <targets>
             <target android:targetId="@id/searchBar" />

@@ -17,7 +17,7 @@
         class="wangdaye.com.geometricweather.common.ui.transitions.RoundCornerTransition"
         android:interpolator="@android:interpolator/fast_out_slow_in"
         android:duration="350"
-        app:radius_from="23dp"
+        app:radius_from="24dp"
         app:radius_to="0dp"
         tools:ignore="NewApi">
         <targets>

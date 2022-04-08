@@ -45,6 +45,7 @@
         <item name="colorTitleText">@color/colorTextTitle</item>
         <item name="colorBodyText">@color/colorTextContent</item>
         <item name="colorCaptionText">@color/colorTextSubtitle</item>
+        <item name="actionBarSize">@dimen/action_bar_height</item>
     </style>
 
     <style name="GeometricWeatherTheme.Main" parent="GeometricWeatherTheme">
@@ -68,6 +69,7 @@
         <item name="titleTextAppearance">?attr/textAppearanceHeadline6</item>
         <item name="subtitleTextAppearance">?attr/textAppearanceSubtitle1</item>
 
+        <item name="android:height">?attr/actionBarSize</item>
         <item name="android:elevation">@dimen/design_appbar_elevation</item>
         <item name="android:background">?attr/colorPrimaryContainer</item>
         <item name="titleTextColor">?attr/colorOnPrimaryContainer</item>

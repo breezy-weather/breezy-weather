@@ -27,6 +27,7 @@
     <dimen name="daily_trend_item_height">298dp</dimen>
     <dimen name="hourly_trend_item_height">208dp</dimen>
     <dimen name="default_drawer_width">380dp</dimen>
+    <dimen name="action_bar_height">64dp</dimen>
 
     <!-- text. -->
     <dimen name="main_title_text_size">88sp</dimen>

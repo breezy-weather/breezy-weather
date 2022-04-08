@@ -110,9 +110,14 @@ class LiveWallpaperConfigActivity : GeoActivity() {
                                 )
                                 finish()
                             },
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = MaterialTheme.colorScheme.primary,
+                                contentColor = MaterialTheme.colorScheme.onPrimary,
+                            ),
                         ) {
                             Text(
                                 text = stringResource(R.string.done),
+                                color = MaterialTheme.colorScheme.onPrimary,
                                 fontWeight = FontWeight.Bold,
                                 style = MaterialTheme.typography.titleMedium,
                             )
