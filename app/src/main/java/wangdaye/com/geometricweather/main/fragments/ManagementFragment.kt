@@ -24,7 +24,6 @@ import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper
 import wangdaye.com.geometricweather.databinding.FragmentManagementBinding
 import wangdaye.com.geometricweather.main.MainActivityViewModel
 import wangdaye.com.geometricweather.main.adapters.LocationAdapterAnimWrapper
-import wangdaye.com.geometricweather.main.utils.MainModuleUtils
 import wangdaye.com.geometricweather.main.widgets.LocationItemTouchCallback
 import wangdaye.com.geometricweather.main.widgets.LocationItemTouchCallback.TouchReactor
 import wangdaye.com.geometricweather.theme.ThemeManager
@@ -48,10 +47,7 @@ class PushedManagementFragment: ManagementFragment() {
                 )
             ),
             true,
-            MainModuleUtils.isHomeLightTheme(
-                requireContext(),
-                viewModel.currentLocation.value!!.location.isDaylight
-            )
+            !DisplayUtils.isDarkMode(requireContext())
         )
     }
 }
@@ -82,7 +78,6 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
 
         initModel()
         initView()
-        checkToSetSystemBarStyle()
         setCallback(requireActivity() as Callback)
 
         return binding.root
@@ -115,8 +110,6 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
             firstHolderPosition,
             layout.findLastVisibleItemPosition() - firstHolderPosition + 1
         )
-
-        checkToSetSystemBarStyle()
     }
 
     private fun initModel() {

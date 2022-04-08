@@ -25,19 +25,15 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
     private final Thunder mThunder;
     private final Random mRandom;
 
-    public static final int TYPE_CLOUD_DAY = 1;
-    public static final int TYPE_CLOUD_NIGHT = 2;
-    public static final int TYPE_CLOUDY_DAY = 3;
-    public static final int TYPE_CLOUDY_NIGHT = 4;
+    public static final int TYPE_CLOUD = 1;
+    public static final int TYPE_CLOUDY = 3;
     public static final int TYPE_THUNDER = 5;
     public static final int TYPE_FOG = 6;
     public static final int TYPE_HAZE = 7;
 
     @IntDef({
-            TYPE_CLOUD_DAY,
-            TYPE_CLOUD_NIGHT,
-            TYPE_CLOUDY_DAY,
-            TYPE_CLOUDY_NIGHT,
+            TYPE_CLOUD,
+            TYPE_CLOUDY,
             TYPE_THUNDER,
             TYPE_FOG,
             TYPE_HAZE
@@ -206,25 +202,36 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
     }
 
     @SuppressLint("SwitchIntDef")
-    public CloudImplementor(@Size(2) int[] canvasSizes, @TypeRule int type) {
+    public CloudImplementor(@Size(2) int[] canvasSizes, @TypeRule int type, boolean daylight) {
         int viewWidth = canvasSizes[0];
         int viewHeight = canvasSizes[1];
         mRandom = new Random();
 
         if (type == TYPE_FOG || type == TYPE_HAZE) {
-            int[] cloudColors = type == TYPE_FOG ? new int[] {
-                    Color.rgb(85, 99, 110),
-                    Color.rgb(91, 104, 114),
-                    Color.rgb(99, 113, 123),
-            } : new int[]{
-                    Color.rgb(179, 158, 132),
-                    Color.rgb(179, 158, 132),
-                    Color.rgb(179, 158, 132),
-            };
+            int[] cloudColors;
+            float[] cloudAlphas;
 
-            float[] cloudAlphas = type == TYPE_FOG
-                    ? new float[] {0.8F, 0.8F, 0.8F}
-                    : new float[] {0.3F, 0.3F, 0.3F};
+            if (type == TYPE_FOG) {
+                cloudColors = daylight
+                        ? new int[] {0xFF717DA0, 0xFF717DA0, 0xFF717DA0}
+                        : new int[]{
+                                Color.rgb(85, 99, 110),
+                                Color.rgb(91, 104, 114),
+                                Color.rgb(99, 113, 123),
+                        };
+                cloudAlphas = daylight
+                        ? new float[] {0.1f, 0.1f, 0.1f}
+                        : new float[] {0.4f, 0.6f, 0.4f};
+            } else {
+                cloudColors = daylight
+                        ? new int[] {0xFFAC9D82, 0xFFAC9D82, 0xFFAC9D82}
+                        : new int[]{
+                                Color.rgb(179, 158, 132),
+                                Color.rgb(179, 158, 132),
+                                Color.rgb(179, 158, 132),
+                        };
+                cloudAlphas = new float[] {0.3f, 0.3f, 0.3f};
+            }
 
             Cloud[] clouds = new Cloud[9];
             clouds[0] = new Cloud(
@@ -328,33 +335,32 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
             );
 
             initialize(clouds, null);
-        } else if (type == TYPE_CLOUDY_DAY || type == TYPE_CLOUDY_NIGHT || type == TYPE_THUNDER) {
-            int[] cloudColors = new int[] {Color.DKGRAY, Color.LTGRAY};
-            float[] cloudAlphas = new float[] {0.3f, 0.8f};
+        } else if (type == TYPE_CLOUDY || type == TYPE_THUNDER) {
+            int[] cloudColors = new int[2];
+            float[] cloudAlphas = new float[2];
 
             switch (type) {
-                case TYPE_CLOUDY_DAY:
-                    cloudColors = new int[]{
-                            Color.rgb(160, 179, 191),
-                            Color.rgb(160, 179, 191),
-                    };
-                    cloudAlphas = new float[] {0.3f, 0.3f};
-                    break;
-
-                case TYPE_CLOUDY_NIGHT:
-                    cloudColors = new int[]{
-                            Color.rgb(95, 104, 108),
-                            Color.rgb(95, 104, 108),
-                    };
+                case TYPE_CLOUDY:
+                    cloudColors = daylight
+                            ? new int[]{
+                                    Color.rgb(160, 179, 191),
+                                    Color.rgb(160, 179, 191),
+                            }
+                            : new int[]{
+                                    Color.rgb(95, 104, 108),
+                                    Color.rgb(95, 104, 108),
+                            };
                     cloudAlphas = new float[] {0.3f, 0.3f};
                     break;
 
                 case TYPE_THUNDER:
-                    cloudColors = new int[]{
-                            Color.rgb(43, 30, 66),
-                            Color.rgb(53, 38, 78)
-                    };
-                    cloudAlphas = new float[] {0.8f, 0.8f};
+                    cloudColors = daylight
+                            ? new int[]{0xFFBCADC1, 0xFFBCADC1}
+                            : new int[]{
+                                    Color.rgb(43, 30, 66),
+                                    Color.rgb(43, 30, 66),
+                            };
+                    cloudAlphas = daylight ? new float[] {0.2f, 0.3f} : new float[] {0.8f, 0.8f};
                     break;
             }
 
@@ -430,12 +436,13 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
         } else {
             int cloudColor;
             float[] cloudAlphas;
-            if (type == TYPE_CLOUD_DAY) {
+            if (daylight) {
                 cloudColor = Color.rgb(203, 245, 255);
+                cloudAlphas = new float[] {0.40F, 0.10F};
             } else {
                 cloudColor = Color.rgb(151, 168, 202);
+                cloudAlphas = new float[] {0.40F, 0.10F};
             }
-            cloudAlphas = new float[] {0.40F, 0.10F};
 
             Cloud[] clouds = new Cloud[6];
             clouds[0] = new Cloud(
@@ -505,7 +512,7 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
                     0
             );
 
-            if (type == TYPE_CLOUD_DAY) {
+            if (daylight) {
                 initialize(clouds, null);
             } else {
                 int[] colors =  new int[] {
@@ -608,28 +615,22 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
     }
 
     @ColorInt
-    public static int getThemeColor(Context context, @TypeRule int type) {
+    public static int getThemeColor(Context context, @TypeRule int type, boolean daylight) {
         switch (type) {
-            case TYPE_CLOUDY_DAY:
-                return Color.rgb(96, 121, 136);
+            case TYPE_CLOUDY:
+                return daylight ? 0xFF9DAFC1 : 0xFF263238;
 
-            case TYPE_CLOUDY_NIGHT:
-                return Color.rgb(38, 50, 56);
-
-            case TYPE_CLOUD_DAY:
-                return Color.rgb(0, 165, 217);
-
-            case TYPE_CLOUD_NIGHT:
-                return Color.rgb(34, 45, 67);
+            case TYPE_CLOUD:
+                return daylight ? 0xFF00a5d9 : 0xFF222d43;
 
             case TYPE_THUNDER:
-                return Color.rgb(43, 29, 69);
+                return daylight ? 0xFFB296BD : 0xFF231739;
 
             case TYPE_FOG:
-                return Color.rgb(79, 93, 104);
+                return daylight ? 0xFFA3AEC2 : 0xFF4F5D68;
 
             case TYPE_HAZE:
-                return Color.rgb(66, 66, 66);
+                return daylight ? 0xFFE1C899 : 0xFF6c5c49;
         }
         return ContextCompat.getColor(context, R.color.colorPrimary);
     }

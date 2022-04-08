@@ -24,7 +24,7 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Base;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
 import wangdaye.com.geometricweather.main.MainActivity;
-import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
+import wangdaye.com.geometricweather.main.utils.MainThemeContextProvider;
 import wangdaye.com.geometricweather.theme.ThemeManager;
 
 public class FirstCardHeaderController
@@ -50,10 +50,7 @@ public class FirstCardHeaderController
 
         if (location.getWeather() != null) {
             ThemeManager tm = ThemeManager.getInstance(activity);
-            Context themeCtx = tm.generateThemeContext(
-                    activity,
-                    MainModuleUtils.isHomeLightTheme(activity, location.isDaylight())
-            );
+            Context themeCtx = MainThemeContextProvider.getContext(location);
 
             Weather weather = location.getWeather();
 

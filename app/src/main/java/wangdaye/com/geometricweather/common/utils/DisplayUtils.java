@@ -76,6 +76,7 @@ public class DisplayUtils {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 visibility |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
             } else {
+                lightStatus = false;
                 statusShader = true;
             }
         }
@@ -85,6 +86,7 @@ public class DisplayUtils {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 visibility |= View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
             } else {
+                lightNavigation = false;
                 navigationShader = true;
             }
         }
@@ -97,12 +99,22 @@ public class DisplayUtils {
         if (!statusShader) {
             window.setStatusBarColor(Color.TRANSPARENT);
         } else {
-            window.setStatusBarColor(ColorUtils.setAlphaComponent(Color.BLACK, (int) (0.2 * 255)));
+            window.setStatusBarColor(
+                    ColorUtils.setAlphaComponent(
+                            lightStatus ? Color.WHITE : Color.BLACK,
+                            (int) ((lightStatus ? 0.5 : 0.2) * 255)
+                    )
+            );
         }
         if (!navigationShader) {
             window.setNavigationBarColor(Color.TRANSPARENT);
         } else {
-            window.setNavigationBarColor(ColorUtils.setAlphaComponent(Color.BLACK, (int) (0.2 * 255)));
+            window.setNavigationBarColor(
+                    ColorUtils.setAlphaComponent(
+                            lightNavigation ? Color.WHITE : Color.BLACK,
+                            (int) ((lightNavigation ? 0.5 : 0.2) * 255)
+                    )
+            );
         }
     }
 

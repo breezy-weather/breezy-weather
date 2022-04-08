@@ -12,7 +12,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.ArrowDropUp
 import androidx.compose.material.ripple.rememberRipple
@@ -71,7 +70,12 @@ class LiveWallpaperConfigActivity : GeoActivity() {
     @Composable
     private fun ContentView() {
         Scaffold(
-            topBar = { TopBar() },
+            topBar = {
+                FitStatusBarTopAppBar(
+                    title = stringResource(R.string.settings_title_live_wallpaper),
+                    onBackPressed = { finish() },
+                )
+            },
         ) {
             LazyColumn(
                 modifier = Modifier
@@ -117,26 +121,6 @@ class LiveWallpaperConfigActivity : GeoActivity() {
                 }
             }
         }
-    }
-
-    @Composable
-    private fun TopBar() {
-        FitStatusBarTopAppBar(
-            title = {
-                Text(stringResource(R.string.settings_title_live_wallpaper))
-            },
-            navigationIcon = {
-                IconButton(onClick = { finish() }) {
-                    Icon(
-                        imageVector = Icons.Filled.ArrowBack,
-                        contentDescription = stringResource(R.string.content_desc_back),
-                        tint = MaterialTheme.colorScheme.onPrimaryContainer,
-                    )
-                }
-            },
-            backgroundColor = MaterialTheme.colorScheme.primaryContainer,
-            contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
-        )
     }
 
     @Composable

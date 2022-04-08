@@ -14,12 +14,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -229,12 +226,17 @@ class AboutActivity : GeoActivity() {
     @Composable
     private fun ContentView() {
         Scaffold(
-            topBar = { TopBar() },
+            topBar = {
+                FitStatusBarTopAppBar(
+                    title = stringResource(R.string.action_about),
+                    onBackPressed = { finish() },
+                )
+            },
         ) {
             LazyColumn(
                 modifier = Modifier
                     .fillMaxHeight()
-                    .background(MaterialTheme.colorScheme.background)
+                    .background(MaterialTheme.colorScheme.background),
             ) {
                 items(1) { Header() }
 
@@ -278,28 +280,12 @@ class AboutActivity : GeoActivity() {
                 items(translators) { item ->
                     Translator(name = item.name, url = item.url, flag = item.flag)
                 }
+
+                items(1) {
+                    Spacer(modifier = Modifier.windowInsetsBottomHeight(WindowInsets.navigationBars))
+                }
             }
         }
-    }
-
-    @Composable
-    private fun TopBar() {
-        FitStatusBarTopAppBar(
-            title = {
-                Text(stringResource(R.string.action_about))
-            },
-            navigationIcon = {
-                IconButton(onClick = { finish() }) {
-                    Icon(
-                        imageVector = Icons.Filled.ArrowBack,
-                        contentDescription = stringResource(R.string.content_desc_back),
-                        tint = MaterialTheme.colorScheme.onPrimaryContainer,
-                    )
-                }
-            },
-            backgroundColor = MaterialTheme.colorScheme.primaryContainer,
-            contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
-        )
     }
 
     @Composable

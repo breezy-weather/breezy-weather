@@ -11,6 +11,8 @@ import android.text.TextUtils
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,7 +34,7 @@ import wangdaye.com.geometricweather.main.fragments.HomeFragment
 import wangdaye.com.geometricweather.main.fragments.ManagementFragment
 import wangdaye.com.geometricweather.main.fragments.ModifyMainSystemBarMessage
 import wangdaye.com.geometricweather.main.fragments.PushedManagementFragment
-import wangdaye.com.geometricweather.main.utils.MainModuleUtils
+import wangdaye.com.geometricweather.main.utils.MainThemeContextProvider
 import wangdaye.com.geometricweather.remoteviews.NotificationHelper
 import wangdaye.com.geometricweather.remoteviews.WidgetHelper
 import wangdaye.com.geometricweather.search.SearchActivity
@@ -76,10 +78,31 @@ class MainActivity : GeoActivity(),
         }
     }
 
+    private val fragmentsLifecycleCallback = object : FragmentManager.FragmentLifecycleCallbacks() {
+
+        override fun onFragmentViewCreated(
+            fm: FragmentManager,
+            f: Fragment,
+            v: View,
+            savedInstanceState: Bundle?
+        ) {
+            updateSystemBarStyle()
+        }
+
+        override fun onFragmentViewDestroyed(fm: FragmentManager, f: Fragment) {
+            updateSystemBarStyle()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        supportFragmentManager.registerFragmentLifecycleCallbacks(
+            fragmentsLifecycleCallback, false
+        )
         setContentView(binding.root)
+
+        MainThemeContextProvider.bind(this)
 
         initModel(savedInstanceState == null)
         initView()
@@ -141,6 +164,7 @@ class MainActivity : GeoActivity(),
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
+        updateSystemBarStyle()
         updateDayNightColors()
     }
 
@@ -151,6 +175,7 @@ class MainActivity : GeoActivity(),
 
     override fun onDestroy() {
         super.onDestroy()
+        supportFragmentManager.unregisterFragmentLifecycleCallbacks(fragmentsLifecycleCallback)
         EventBus.instance
             .with(Location::class.java)
             .removeObserver(backgroundUpdateObserver)
@@ -190,9 +215,12 @@ class MainActivity : GeoActivity(),
 
     @SuppressLint("ClickableViewAccessibility", "NonConstantResourceId")
     private fun initView() {
-        viewModel.currentLocation.observe(this) {
-            updateDayNightColors()
+        binding.root.post {
+            if (isActivityCreated) {
+                updateDayNightColors()
+            }
         }
+
         viewModel.validLocationList.observe(this) {
             // update notification immediately.
             AsyncHelper.runOnIO {
@@ -329,21 +357,6 @@ class MainActivity : GeoActivity(),
 
     // control.
 
-    private fun updateDayNightColors() {
-        val tm = ThemeManager.getInstance(this)
-        val color = tm.getThemeColor(context = this, id = android.R.attr.colorBackground)
-
-        fitHorizontalSystemBarRootLayout.setRootColor(color)
-        fitHorizontalSystemBarRootLayout.setLineColor(
-            tm.getThemeColor(context = this, id = R.attr.colorOutline)
-        )
-
-        binding.fragment?.setBackgroundColor(color)
-        binding.fragmentDrawer?.setBackgroundColor(color)
-        binding.fragmentHome?.setBackgroundColor(color)
-
-    }
-
     private fun consumeIntentAction(intent: Intent) {
         val action = intent.action
         if (TextUtils.isEmpty(action)) {
@@ -375,6 +388,14 @@ class MainActivity : GeoActivity(),
         } else {
             findHomeFragment()?.setSystemBarStyle()
         }
+    }
+
+    private fun updateDayNightColors() {
+        fitHorizontalSystemBarRootLayout.setBackgroundColor(
+            ThemeManager.getInstance(this).getThemeColor(
+                this, android.R.attr.colorBackground
+            )
+        )
     }
 
     private val isOrWillManagementFragmentVisible: Boolean

@@ -28,6 +28,7 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.ui.widgets.ArcProgress;
 import wangdaye.com.geometricweather.main.adapters.AqiAdapter;
 import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
+import wangdaye.com.geometricweather.main.utils.MainThemeContextProvider;
 import wangdaye.com.geometricweather.theme.ThemeManager;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
@@ -81,10 +82,7 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
         mEnable = true;
 
         ThemeManager tm = ThemeManager.getInstance(context);
-        mThemeCtx = tm.generateThemeContext(
-                context,
-                MainModuleUtils.isHomeLightTheme(context, location.isDaylight())
-        );
+        mThemeCtx = MainThemeContextProvider.getContext(location);
 
         mCard.setCardBackgroundColor(tm.getThemeColor(mThemeCtx, R.attr.colorSurface));
 

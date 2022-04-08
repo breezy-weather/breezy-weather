@@ -29,13 +29,11 @@ public class RainImplementor extends MaterialWeatherView.WeatherAnimationImpleme
     private float mLastRotation3D;
     private static final float INITIAL_ROTATION_3D = 1000;
 
-    public static final int TYPE_RAIN_DAY = 1;
-    public static final int TYPE_RAIN_NIGHT = 2;
+    public static final int TYPE_RAIN = 1;
     public static final int TYPE_THUNDERSTORM = 3;
-    public static final int TYPE_SLEET_DAY = 4;
-    public static final int TYPE_SLEET_NIGHT = 5;
+    public static final int TYPE_SLEET = 4;
 
-    @IntDef({TYPE_RAIN_DAY, TYPE_RAIN_NIGHT, TYPE_THUNDERSTORM, TYPE_SLEET_DAY, TYPE_SLEET_NIGHT})
+    @IntDef({TYPE_RAIN, TYPE_THUNDERSTORM, TYPE_SLEET})
     @interface TypeRule {}
 
     private static final int RAIN_COUNT = 75;
@@ -173,56 +171,71 @@ public class RainImplementor extends MaterialWeatherView.WeatherAnimationImpleme
         }
     }
 
-    public RainImplementor(@Size(2) int[] canvasSizes, @TypeRule int type) {
+    public RainImplementor(@Size(2) int[] canvasSizes, @TypeRule int type, boolean daylight) {
         mPaint = new Paint();
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setAntiAlias(true);
 
         int[] colors = new int[3];
         switch (type) {
-            case TYPE_RAIN_DAY:
-                mRains = new Rain[RAIN_COUNT];
-                mThunder = null;
-                colors = new int[]{
-                        Color.rgb(223, 179, 114),
-                        Color.rgb(152, 175, 222),
-                        Color.rgb(255, 255, 255)};
-                break;
-
-            case TYPE_RAIN_NIGHT:
-                mRains = new Rain[RAIN_COUNT];
-                mThunder = null;
-                colors = new int[]{
-                        Color.rgb(182, 142, 82),
-                        Color.rgb(88, 92, 113),
-                        Color.rgb(255, 255, 255)};
+            case TYPE_RAIN:
+                if (daylight) {
+                    mRains = new Rain[RAIN_COUNT];
+                    mThunder = null;
+                    colors = new int[]{
+                            Color.rgb(223, 179, 114),
+                            Color.rgb(152, 175, 222),
+                            Color.rgb(255, 255, 255),
+                    };
+                } else {
+                    mRains = new Rain[RAIN_COUNT];
+                    mThunder = null;
+                    colors = new int[]{
+                            Color.rgb(182, 142, 82),
+                            Color.rgb(88, 92, 113),
+                            Color.rgb(255, 255, 255),
+                    };
+                }
                 break;
 
             case TYPE_THUNDERSTORM:
-                mRains = new Rain[RAIN_COUNT];
-                mThunder = new Thunder();
-                colors = new int[]{
-                        Color.rgb(182, 142, 82),
-                        Color.rgb(88, 92, 113),
-                        Color.rgb(255, 255, 255)};
+                if (daylight) {
+                    mRains = new Rain[RAIN_COUNT];
+                    mThunder = new Thunder();
+                    colors = new int[]{
+                            Color.rgb(182, 142, 82),
+                            0xFF6C5592,
+                            Color.rgb(255, 255, 255),
+                    };
+                } else {
+                    mRains = new Rain[RAIN_COUNT];
+                    mThunder = new Thunder();
+                    colors = new int[]{
+                            Color.rgb(182, 142, 82),
+                            Color.rgb(88, 92, 113),
+                            Color.rgb(255, 255, 255),
+                    };
+                }
                 break;
 
-            case TYPE_SLEET_DAY:
-                mRains = new Rain[SLEET_COUNT];
-                mThunder = null;
-                colors = new int[] {
-                        Color.rgb(128, 197, 255),
-                        Color.rgb(185, 222, 255),
-                        Color.rgb(255, 255, 255)};
-                break;
-
-            case TYPE_SLEET_NIGHT:
-                mRains = new Rain[SLEET_COUNT];
-                mThunder = null;
-                colors = new int[] {
-                        Color.rgb(40, 102, 155),
-                        Color.rgb(99, 144, 182),
-                        Color.rgb(255, 255, 255)};
+            case TYPE_SLEET:
+                if (daylight) {
+                    mRains = new Rain[SLEET_COUNT];
+                    mThunder = null;
+                    colors = new int[] {
+                            Color.rgb(128, 197, 255),
+                            Color.rgb(185, 222, 255),
+                            Color.rgb(255, 255, 255),
+                    };
+                } else {
+                    mRains = new Rain[SLEET_COUNT];
+                    mThunder = null;
+                    colors = new int[] {
+                            Color.rgb(40, 102, 155),
+                            Color.rgb(99, 144, 182),
+                            Color.rgb(255, 255, 255),
+                    };
+                }
                 break;
         }
 
@@ -286,22 +299,16 @@ public class RainImplementor extends MaterialWeatherView.WeatherAnimationImpleme
     }
 
     @ColorInt
-    public static int getThemeColor(Context context, @TypeRule int type) {
+    public static int getThemeColor(Context context, @TypeRule int type, boolean daylight) {
         switch (type) {
-            case TYPE_RAIN_DAY:
-                return Color.rgb(64, 151, 231);
+            case TYPE_RAIN:
+                return daylight ? 0xFF4297e7 : 0xFF264e8f;
 
-            case TYPE_RAIN_NIGHT:
-                return Color.rgb(38, 78, 143);
-
-            case TYPE_SLEET_DAY:
-                return Color.rgb(104, 186, 255);
-
-            case TYPE_SLEET_NIGHT:
-                return Color.rgb(26, 91, 146);
+            case TYPE_SLEET:
+                return daylight ? 0xFF68baff : 0xFF1a5b92;
 
             case TYPE_THUNDERSTORM:
-                return Color.rgb(43, 29, 69);
+                return daylight ? 0xFFB296BD : 0xFF231739;
         }
         return ContextCompat.getColor(context, R.color.colorPrimary);
     }

@@ -14,7 +14,7 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.main.adapters.DetailsAdapter;
-import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
+import wangdaye.com.geometricweather.main.utils.MainThemeContextProvider;
 import wangdaye.com.geometricweather.theme.ThemeManager;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
@@ -46,10 +46,7 @@ public class DetailsViewHolder extends AbstractMainCardViewHolder {
 
         if (location.getWeather() != null) {
             ThemeManager tm = ThemeManager.getInstance(context);
-            Context themeCtx = tm.generateThemeContext(
-                    context,
-                    MainModuleUtils.isHomeLightTheme(context, location.isDaylight())
-            );
+            Context themeCtx = MainThemeContextProvider.getContext(location);
 
             mCard.setCardBackgroundColor(tm.getThemeColor(themeCtx, R.attr.colorSurface));
 

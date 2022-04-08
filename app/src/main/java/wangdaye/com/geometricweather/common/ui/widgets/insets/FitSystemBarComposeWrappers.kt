@@ -3,14 +3,31 @@ package wangdaye.com.geometricweather.common.ui.widgets.insets
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.*
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import wangdaye.com.geometricweather.R
+
+private val AppBarHeight = 64.dp
+private val AppBarHorizontalPadding = 4.dp
+private val TitleInsetWithoutIcon = Modifier.width(16.dp - AppBarHorizontalPadding)
+private val TitleIconModifier = Modifier.fillMaxHeight()
+    .width(62.dp - AppBarHorizontalPadding)
 
 @Composable
 fun FitStatusBarTopAppBar(
@@ -18,7 +35,7 @@ fun FitStatusBarTopAppBar(
     modifier: Modifier = Modifier,
     navigationIcon: @Composable (() -> Unit)? = null,
     actions: @Composable RowScope.() -> Unit = {},
-    backgroundColor: Color = MaterialTheme.colors.primarySurface,
+    backgroundColor: Color = MaterialTheme.colorScheme.primaryContainer,
     contentColor: Color = contentColorFor(backgroundColor),
     elevation: Dp = AppBarDefaults.TopAppBarElevation
 ) {
@@ -31,14 +48,38 @@ fun FitStatusBarTopAppBar(
                     .fillMaxWidth(),
             )
             TopAppBar(
-                title = title,
-                modifier = modifier,
-                navigationIcon = navigationIcon,
-                actions = actions,
+                modifier = modifier.height(AppBarHeight),
                 backgroundColor = backgroundColor,
                 contentColor = contentColor,
                 elevation = elevation,
-            )
+            ) {
+                if (navigationIcon == null) {
+                    Spacer(TitleInsetWithoutIcon)
+                } else {
+                    Row(TitleIconModifier, verticalAlignment = Alignment.CenterVertically) {
+                        CompositionLocalProvider(
+                            LocalContentAlpha provides ContentAlpha.high,
+                            content = navigationIcon
+                        )
+                    }
+                }
+
+                Row(
+                    Modifier.fillMaxHeight().weight(1f),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    title()
+                }
+
+                CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
+                    Row(
+                        Modifier.fillMaxHeight(),
+                        horizontalArrangement = Arrangement.End,
+                        verticalAlignment = Alignment.CenterVertically,
+                        content = actions
+                    )
+                }
+            }
         }
         Spacer(
             modifier = Modifier
@@ -51,30 +92,59 @@ fun FitStatusBarTopAppBar(
 }
 
 @Composable
+fun FitStatusBarTopAppBar(
+    title: String,
+    onBackPressed: () -> Unit,
+    actions: @Composable RowScope.() -> Unit = {},
+) = FitStatusBarTopAppBar(
+    title = {
+        Text(
+            text = title,
+            style = MaterialTheme.typography.headlineMedium.copy(
+                fontWeight = FontWeight.Medium,
+                fontSize = 20.sp,
+                lineHeight = 24.sp,
+                letterSpacing = 0.15.sp,
+            )
+        )
+    },
+    navigationIcon = {
+        IconButton(onClick = onBackPressed) {
+            Icon(
+                imageVector = Icons.Filled.ArrowBack,
+                contentDescription = stringResource(R.string.content_desc_back),
+                tint = MaterialTheme.colorScheme.onPrimaryContainer,
+            )
+        }
+    },
+    actions = actions,
+    backgroundColor = MaterialTheme.colorScheme.primaryContainer,
+    contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+)
+
+@Composable
 fun FitNavigationBarBottomAppBar(
     modifier: Modifier = Modifier,
-    backgroundColor: Color = MaterialTheme.colors.primarySurface,
-    contentColor: Color = contentColorFor(backgroundColor),
-    cutoutShape: Shape? = null,
-    elevation: Dp = AppBarDefaults.BottomAppBarElevation,
-    contentPadding: PaddingValues = AppBarDefaults.ContentPadding,
+    containerColor: Color = MaterialTheme.colorScheme.primaryContainer,
+    contentColor: Color = contentColorFor(containerColor),
+    tonalElevation: Dp = AppBarDefaults.BottomAppBarElevation,
+    contentPadding: PaddingValues = BottomAppBarDefaults.ContentPadding,
     content: @Composable RowScope.() -> Unit
 ) {
     Box {
         Column {
             BottomAppBar(
                 modifier = modifier,
-                backgroundColor = backgroundColor,
+                containerColor = containerColor,
                 contentColor = contentColor,
-                cutoutShape = cutoutShape,
-                elevation = elevation,
+                tonalElevation = tonalElevation,
                 contentPadding = contentPadding,
                 content = content,
             )
         }
         Spacer(
             modifier = Modifier
-                .background(backgroundColor)
+                .background(containerColor)
                 .windowInsetsBottomHeight(WindowInsets.navigationBars)
                 .fillMaxWidth()
                 .align(Alignment.BottomCenter),

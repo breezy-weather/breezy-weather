@@ -18,17 +18,6 @@
         style="@style/title_text"
         tools:text="11月8日 星期五" />
 
-    <TextView
-        android:id="@+id/subtitle"
-        android:layout_width="match_parent"
-        android:layout_marginTop="2dp"
-        android:layout_marginStart="@dimen/normal_margin"
-        android:layout_marginEnd="@dimen/normal_margin"
-        android:layout_marginBottom="@dimen/normal_margin"
-        android:importantForAccessibility="no"
-        style="@style/subtitle_text"
-        tools:text="晴朗 / 小雨" />
-
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -61,12 +50,16 @@
                 <TextView
                     android:id="@+id/grassTitle"
                     android:importantForAccessibility="no"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     style="@style/content_text"
                     tools:text="草地花粉" />
 
                 <TextView
                     android:id="@+id/grassValue"
                     android:importantForAccessibility="no"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     style="@style/subtitle_text"
                     tools:text="2/m³ - 低" />
 
@@ -100,12 +93,16 @@
                 <TextView
                     android:id="@+id/ragweedTitle"
                     android:importantForAccessibility="no"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     style="@style/content_text"
                     tools:text="草地花粉" />
 
                 <TextView
                     android:id="@+id/ragweedValue"
                     android:importantForAccessibility="no"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     style="@style/subtitle_text"
                     tools:text="2/m³ - 低" />
 
@@ -148,12 +145,16 @@
                 <TextView
                     android:id="@+id/treeTitle"
                     android:importantForAccessibility="no"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     style="@style/content_text"
                     tools:text="草地花粉" />
 
                 <TextView
                     android:id="@+id/treeValue"
                     android:importantForAccessibility="no"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     style="@style/subtitle_text"
                     tools:text="2/m³ - 低" />
 
@@ -187,12 +188,16 @@
                 <TextView
                     android:id="@+id/moldTitle"
                     android:importantForAccessibility="no"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     style="@style/content_text"
                     tools:text="草地花粉" />
 
                 <TextView
                     android:id="@+id/moldValue"
                     android:importantForAccessibility="no"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     style="@style/subtitle_text"
                     tools:text="2/m³ - 低" />
 

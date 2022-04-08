@@ -27,7 +27,7 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.AirQuality
 import wangdaye.com.geometricweather.common.basic.models.options.unit.AirQualityUnit;
 import wangdaye.com.geometricweather.common.basic.models.weather.AirQuality;
 import wangdaye.com.geometricweather.common.ui.widgets.RoundProgress;
-import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
+import wangdaye.com.geometricweather.main.utils.MainThemeContextProvider;
 import wangdaye.com.geometricweather.theme.ThemeManager;
 
 public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
@@ -151,10 +151,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
     }
 
     public AqiAdapter(Context context, Location location, boolean executeAnimation) {
-        mThemeCtx = ThemeManager.getInstance(context).generateThemeContext(
-                context,
-                MainModuleUtils.isHomeLightTheme(context, location.isDaylight())
-        );
+        mThemeCtx = MainThemeContextProvider.getContext(location);
 
         mItemList = new ArrayList<>();
         if (location.getWeather() != null

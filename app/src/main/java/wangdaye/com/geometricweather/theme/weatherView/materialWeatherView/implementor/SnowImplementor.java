@@ -1,18 +1,14 @@
 package wangdaye.com.geometricweather.theme.weatherView.materialWeatherView.implementor;
 
-import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
 import androidx.annotation.ColorInt;
-import androidx.annotation.IntDef;
 import androidx.annotation.Size;
-import androidx.core.content.ContextCompat;
 
 import java.util.Random;
 
-import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.theme.weatherView.materialWeatherView.MaterialWeatherView;
 
 /**
@@ -28,12 +24,6 @@ public class SnowImplementor extends MaterialWeatherView.WeatherAnimationImpleme
     private static final float INITIAL_ROTATION_3D = 1000;
 
     private static final int SNOW_COUNT = 90;
-
-    public static final int TYPE_SNOW_DAY = 1;
-    public static final int TYPE_SNOW_NIGHT = 2;
-
-    @IntDef({TYPE_SNOW_DAY, TYPE_SNOW_NIGHT})
-    @interface TypeRule {}
 
     private static class Snow {
 
@@ -113,27 +103,22 @@ public class SnowImplementor extends MaterialWeatherView.WeatherAnimationImpleme
         }
     }
 
-    public SnowImplementor(@Size(2) int[] canvasSizes, @TypeRule int type) {
+    public SnowImplementor(@Size(2) int[] canvasSizes, boolean daylight) {
         mPaint = new Paint();
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setAntiAlias(true);
 
-        int[] colors = new int[3];
-        switch (type) {
-            case TYPE_SNOW_DAY:
-                colors = new int[] {
+        int[] colors = daylight
+                ? new int[] {
                         Color.rgb(128, 197, 255),
                         Color.rgb(185, 222, 255),
-                        Color.rgb(255, 255, 255)};
-                break;
-
-            case TYPE_SNOW_NIGHT:
-                colors = new int[] {
+                        Color.rgb(255, 255, 255)
+                }
+                : new int[] {
                         Color.rgb(40, 102, 155),
                         Color.rgb(99, 144, 182),
-                        Color.rgb(255, 255, 255)};
-                break;
-        }
+                        Color.rgb(255, 255, 255)
+                };
         float[] scales = new float[] {0.6F, 0.8F, 1};
 
         mSnows = new Snow[SNOW_COUNT];
@@ -176,14 +161,7 @@ public class SnowImplementor extends MaterialWeatherView.WeatherAnimationImpleme
     }
 
     @ColorInt
-    public static int getThemeColor(Context context, @TypeRule int type) {
-        switch (type) {
-            case TYPE_SNOW_DAY:
-                return Color.rgb(104, 186, 255);
-
-            case TYPE_SNOW_NIGHT:
-                return Color.rgb(26, 91, 146);
-        }
-        return ContextCompat.getColor(context, R.color.colorPrimary);
+    public static int getThemeColor(boolean daylight) {
+        return daylight ? 0xFF68baff : 0xFF1a5b92;
     }
 }

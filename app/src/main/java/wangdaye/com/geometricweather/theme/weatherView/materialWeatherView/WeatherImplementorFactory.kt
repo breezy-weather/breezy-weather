@@ -22,60 +22,38 @@ object WeatherImplementorFactory {
             MeteorShowerImplementor(sizes)
         }
 
-        WeatherView.WEATHER_KIND_CLOUDY -> if (daytime) {
-            CloudImplementor(sizes, CloudImplementor.TYPE_CLOUDY_DAY)
-        } else {
-            CloudImplementor(sizes, CloudImplementor.TYPE_CLOUDY_NIGHT)
-        }
+        WeatherView.WEATHER_KIND_CLOUDY ->
+            CloudImplementor(sizes, CloudImplementor.TYPE_CLOUDY, daytime)
 
-        WeatherView.WEATHER_KIND_CLOUD -> if (daytime) {
-            CloudImplementor(sizes, CloudImplementor.TYPE_CLOUD_DAY)
-        } else {
-            CloudImplementor(sizes, CloudImplementor.TYPE_CLOUD_NIGHT)
-        }
+        WeatherView.WEATHER_KIND_CLOUD ->
+            CloudImplementor(sizes, CloudImplementor.TYPE_CLOUD, daytime)
 
         WeatherView.WEATHER_KIND_FOG ->
-            CloudImplementor(sizes, CloudImplementor.TYPE_FOG)
+            CloudImplementor(sizes, CloudImplementor.TYPE_FOG, daytime)
 
-        WeatherView.WEATHER_KIND_HAIL -> if (daytime) {
-            HailImplementor(sizes, HailImplementor.TYPE_HAIL_DAY)
-        } else {
-            HailImplementor(sizes, HailImplementor.TYPE_HAIL_NIGHT)
-        }
+        WeatherView.WEATHER_KIND_HAIL ->
+            HailImplementor(sizes, daytime)
 
         WeatherView.WEATHER_KIND_HAZE ->
-            CloudImplementor(sizes, CloudImplementor.TYPE_HAZE)
+            CloudImplementor(sizes, CloudImplementor.TYPE_HAZE, daytime)
 
-        WeatherView.WEATHER_KIND_RAINY -> if (daytime) {
-            RainImplementor(sizes, RainImplementor.TYPE_RAIN_DAY)
-        } else {
-            RainImplementor(sizes, RainImplementor.TYPE_RAIN_NIGHT)
-        }
+        WeatherView.WEATHER_KIND_RAINY ->
+            RainImplementor(sizes, RainImplementor.TYPE_RAIN, daytime)
 
-        WeatherView.WEATHER_KIND_SNOW -> if (daytime) {
-            SnowImplementor(sizes, SnowImplementor.TYPE_SNOW_DAY)
-        } else {
-            SnowImplementor(sizes, SnowImplementor.TYPE_SNOW_NIGHT)
-        }
+        WeatherView.WEATHER_KIND_SNOW ->
+            SnowImplementor(sizes, daytime)
 
-        WeatherView.WEATHER_KIND_THUNDERSTORM -> RainImplementor(
-            sizes,
-            RainImplementor.TYPE_THUNDERSTORM
-        )
+        WeatherView.WEATHER_KIND_THUNDERSTORM ->
+            RainImplementor(sizes, RainImplementor.TYPE_THUNDERSTORM, daytime)
 
-        WeatherView.WEATHER_KIND_THUNDER -> CloudImplementor(
-            sizes,
-            CloudImplementor.TYPE_THUNDER
-        )
+        WeatherView.WEATHER_KIND_THUNDER ->
+            CloudImplementor(sizes, CloudImplementor.TYPE_THUNDER, daytime)
 
         WeatherView.WEATHER_KIND_WIND ->
-            WindImplementor(sizes)
+            WindImplementor(sizes, daytime)
 
-        WeatherView.WEATHER_KIND_SLEET -> if (daytime) {
-            RainImplementor(sizes, RainImplementor.TYPE_SLEET_DAY)
-        } else {
-            RainImplementor(sizes, RainImplementor.TYPE_SLEET_NIGHT)
-        }
+        WeatherView.WEATHER_KIND_SLEET ->
+            RainImplementor(sizes, RainImplementor.TYPE_SLEET, daytime)
 
         else -> null
     }
@@ -104,8 +82,11 @@ object WeatherImplementorFactory {
             R.drawable.weather_background_cloudy_night
         }
 
-        WeatherView.WEATHER_KIND_FOG ->
-            R.drawable.weather_background_fog
+        WeatherView.WEATHER_KIND_FOG -> if (daylight) {
+            R.drawable.weather_background_fog_day
+        } else {
+            R.drawable.weather_background_fog_night
+        }
 
         WeatherView.WEATHER_KIND_HAIL -> if (daylight) {
             R.drawable.weather_background_hail_day
@@ -113,8 +94,11 @@ object WeatherImplementorFactory {
             R.drawable.weather_background_hail_night
         }
 
-        WeatherView.WEATHER_KIND_HAZE ->
-            R.drawable.weather_background_haze
+        WeatherView.WEATHER_KIND_HAZE -> if (daylight) {
+            R.drawable.weather_background_haze_day
+        } else {
+            R.drawable.weather_background_haze_night
+        }
 
         WeatherView.WEATHER_KIND_RAINY -> if (daylight) {
             R.drawable.weather_background_rain_day
@@ -127,20 +111,25 @@ object WeatherImplementorFactory {
         } else {
             R.drawable.weather_background_sleet_night
         }
+
         WeatherView.WEATHER_KIND_SNOW -> if (daylight) {
             R.drawable.weather_background_snow_day
         } else {
             R.drawable.weather_background_snow_night
         }
 
-        WeatherView.WEATHER_KIND_THUNDER ->
-            R.drawable.weather_background_thunder
+        WeatherView.WEATHER_KIND_THUNDER,
+        WeatherView.WEATHER_KIND_THUNDERSTORM -> if (daylight) {
+            R.drawable.weather_background_thunder_day
+        } else {
+            R.drawable.weather_background_thunder_night
+        }
 
-        WeatherView.WEATHER_KIND_THUNDERSTORM ->
-            R.drawable.weather_background_thunderstrom
-
-        WeatherView.WEATHER_KIND_WIND ->
-            R.drawable.weather_background_wind
+        WeatherView.WEATHER_KIND_WIND -> if (daylight) {
+            R.drawable.weather_background_wind_day
+        } else {
+            R.drawable.weather_background_wind_night
+        }
 
         else ->
             R.drawable.weather_background_default

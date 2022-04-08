@@ -22,7 +22,7 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.CloudCover
 import wangdaye.com.geometricweather.common.basic.models.options.unit.RelativeHumidityUnit;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.SpeedUnit;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
+import wangdaye.com.geometricweather.main.utils.MainThemeContextProvider;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.theme.ThemeManager;
 
@@ -101,10 +101,7 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
     }
 
     public DetailsAdapter(Context context, Location location) {
-        mThemeCtx = ThemeManager.getInstance(context).generateThemeContext(
-                context,
-                MainModuleUtils.isHomeLightTheme(context, location.isDaylight())
-        );
+        mThemeCtx = MainThemeContextProvider.getContext(location);
 
         mIndexList = new ArrayList<>();
         SettingsManager settings = SettingsManager.getInstance(context);

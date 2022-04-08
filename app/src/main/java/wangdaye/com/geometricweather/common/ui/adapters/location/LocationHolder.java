@@ -72,7 +72,7 @@ public class LocationHolder extends RecyclerView.ViewHolder {
 
         mBinding.item.setBackgroundColor(
                 model.selected
-                        ? ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorSurfaceVariant)
+                        ? ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorOutline)
                         : ThemeManager.getInstance(context).getThemeColor(context, android.R.attr.colorBackground)
         );
         ImageViewCompat.setImageTintList(

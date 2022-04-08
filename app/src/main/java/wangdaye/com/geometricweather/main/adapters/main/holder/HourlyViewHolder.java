@@ -33,6 +33,7 @@ import wangdaye.com.geometricweather.main.adapters.main.MainTag;
 import wangdaye.com.geometricweather.main.adapters.trend.HourlyTrendAdapter;
 import wangdaye.com.geometricweather.main.layouts.TrendHorizontalLinearLayoutManager;
 import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
+import wangdaye.com.geometricweather.main.utils.MainThemeContextProvider;
 import wangdaye.com.geometricweather.main.widgets.TrendRecyclerViewScrollBar;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.theme.ThemeManager;
@@ -97,10 +98,7 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
         assert weather != null;
 
         ThemeManager tm = ThemeManager.getInstance(context);
-        Context themeCtx = tm.generateThemeContext(
-                context,
-                MainModuleUtils.isHomeLightTheme(context, location.isDaylight())
-        );
+        Context themeCtx = MainThemeContextProvider.getContext(location);
 
         mCard.setCardBackgroundColor(tm.getThemeColor(themeCtx, R.attr.colorSurface));
 

@@ -34,56 +34,38 @@ class MaterialWeatherThemeDelegate: WeatherThemeDelegate {
                 MeteorShowerImplementor.getThemeColor()
             }
 
-            WeatherView.WEATHER_KIND_CLOUDY -> if (daytime) {
-                CloudImplementor.getThemeColor(context, CloudImplementor.TYPE_CLOUDY_DAY)
-            } else {
-                CloudImplementor.getThemeColor(context, CloudImplementor.TYPE_CLOUDY_NIGHT)
-            }
+            WeatherView.WEATHER_KIND_CLOUDY ->
+                CloudImplementor.getThemeColor(context, CloudImplementor.TYPE_CLOUDY, daytime)
 
-            WeatherView.WEATHER_KIND_CLOUD -> if (daytime) {
-                CloudImplementor.getThemeColor(context, CloudImplementor.TYPE_CLOUD_DAY)
-            } else {
-                CloudImplementor.getThemeColor(context, CloudImplementor.TYPE_CLOUD_NIGHT)
-            }
+            WeatherView.WEATHER_KIND_CLOUD ->
+                CloudImplementor.getThemeColor(context, CloudImplementor.TYPE_CLOUD, daytime)
 
             WeatherView.WEATHER_KIND_FOG ->
-                CloudImplementor.getThemeColor(context, CloudImplementor.TYPE_FOG)
+                CloudImplementor.getThemeColor(context, CloudImplementor.TYPE_FOG, daytime)
 
-            WeatherView.WEATHER_KIND_HAIL -> if (daytime) {
-                HailImplementor.getThemeColor(context, HailImplementor.TYPE_HAIL_DAY)
-            } else {
-                HailImplementor.getThemeColor(context, HailImplementor.TYPE_HAIL_NIGHT)
-            }
+            WeatherView.WEATHER_KIND_HAIL ->
+                HailImplementor.getThemeColor(daytime)
 
             WeatherView.WEATHER_KIND_HAZE ->
-                CloudImplementor.getThemeColor(context, CloudImplementor.TYPE_HAZE)
+                CloudImplementor.getThemeColor(context, CloudImplementor.TYPE_HAZE, daytime)
 
-            WeatherView.WEATHER_KIND_RAINY -> if (daytime) {
-                RainImplementor.getThemeColor(context, RainImplementor.TYPE_RAIN_DAY)
-            } else {
-                RainImplementor.getThemeColor(context, RainImplementor.TYPE_RAIN_NIGHT)
-            }
+            WeatherView.WEATHER_KIND_RAINY ->
+                RainImplementor.getThemeColor(context, RainImplementor.TYPE_RAIN, daytime)
 
-            WeatherView.WEATHER_KIND_SLEET -> if (daytime) {
-                RainImplementor.getThemeColor(context, RainImplementor.TYPE_SLEET_DAY)
-            } else {
-                RainImplementor.getThemeColor(context, RainImplementor.TYPE_SLEET_NIGHT)
-            }
+            WeatherView.WEATHER_KIND_SLEET ->
+                RainImplementor.getThemeColor(context, RainImplementor.TYPE_SLEET, daytime)
 
-            WeatherView.WEATHER_KIND_SNOW -> if (daytime) {
-                SnowImplementor.getThemeColor(context, SnowImplementor.TYPE_SNOW_DAY)
-            } else {
-                SnowImplementor.getThemeColor(context, SnowImplementor.TYPE_SNOW_NIGHT)
-            }
+            WeatherView.WEATHER_KIND_SNOW ->
+                SnowImplementor.getThemeColor(daytime)
 
             WeatherView.WEATHER_KIND_THUNDERSTORM ->
-                RainImplementor.getThemeColor(context, RainImplementor.TYPE_THUNDERSTORM)
+                RainImplementor.getThemeColor(context, RainImplementor.TYPE_THUNDERSTORM, daytime)
 
             WeatherView.WEATHER_KIND_THUNDER ->
-                CloudImplementor.getThemeColor(context, CloudImplementor.TYPE_THUNDER)
+                CloudImplementor.getThemeColor(context, CloudImplementor.TYPE_THUNDER, daytime)
 
             WeatherView.WEATHER_KIND_WIND ->
-                WindImplementor.getThemeColor()
+                WindImplementor.getThemeColor(daytime)
 
             else -> Color.TRANSPARENT
         }

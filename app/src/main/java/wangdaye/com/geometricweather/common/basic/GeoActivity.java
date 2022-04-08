@@ -79,16 +79,6 @@ public abstract class GeoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         fitHorizontalSystemBarRootLayout = new FitHorizontalSystemBarRootLayout(this);
-        fitHorizontalSystemBarRootLayout.setRootColor(
-                ThemeManager
-                        .getInstance(this)
-                        .getThemeColor(this, android.R.attr.colorBackground)
-        );
-        fitHorizontalSystemBarRootLayout.setLineColor(
-                ThemeManager
-                        .getInstance(this)
-                        .getThemeColor(this, R.attr.colorOutline)
-        );
 
         GeometricWeather.getInstance().addActivity(this);
 
@@ -97,7 +87,6 @@ public abstract class GeoActivity extends AppCompatActivity {
                 SettingsManager.getInstance(this).getLanguage().getLocale()
         );
 
-        boolean darkMode = DisplayUtils.isDarkMode(this);
         DisplayUtils.setSystemBarStyle(
                 this,
                 getWindow(),
@@ -108,7 +97,7 @@ public abstract class GeoActivity extends AppCompatActivity {
                                 .getThemeColor(this, R.attr.colorOnPrimaryContainer)
                 ),
                 true,
-                !darkMode
+                !DisplayUtils.isDarkMode(this)
         );
     }
 

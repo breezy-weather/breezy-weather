@@ -10,10 +10,10 @@ import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.Hourly;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.main.dialogs.HourlyWeatherDialog;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerViewAdapter;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.item.HourlyTrendItemView;
-import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
+import wangdaye.com.geometricweather.main.dialogs.HourlyWeatherDialog;
+import wangdaye.com.geometricweather.main.utils.MainThemeContextProvider;
 import wangdaye.com.geometricweather.theme.ThemeManager;
 
 public abstract class AbsHourlyTrendAdapter<VH extends RecyclerView.ViewHolder> extends TrendRecyclerViewAdapter<VH>  {
@@ -55,10 +55,7 @@ public abstract class AbsHourlyTrendAdapter<VH extends RecyclerView.ViewHolder> 
     public AbsHourlyTrendAdapter(GeoActivity activity, Location location) {
         super(location);
         mActivity = activity;
-        mThemeCtx = ThemeManager.getInstance(activity).generateThemeContext(
-                activity,
-                MainModuleUtils.isHomeLightTheme(activity, location.isDaylight())
-        );
+        mThemeCtx = MainThemeContextProvider.getContext(location);
     }
 
     protected static void onItemClicked(GeoActivity activity,

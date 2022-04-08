@@ -25,6 +25,7 @@ import wangdaye.com.geometricweather.main.MainActivityViewModel
 import wangdaye.com.geometricweather.main.adapters.main.MainAdapter
 import wangdaye.com.geometricweather.main.layouts.MainLayoutManager
 import wangdaye.com.geometricweather.main.utils.MainModuleUtils
+import wangdaye.com.geometricweather.main.utils.MainThemeContextProvider
 import wangdaye.com.geometricweather.settings.SettingsManager
 import wangdaye.com.geometricweather.theme.ThemeManager
 import wangdaye.com.geometricweather.theme.resource.ResourcesProviderFactory
@@ -75,7 +76,6 @@ class HomeFragment : MainModuleFragment() {
         )
 
         initView()
-        checkToSetSystemBarStyle()
         setCallback(requireActivity() as Callback)
 
         return binding.root
@@ -101,9 +101,6 @@ class HomeFragment : MainModuleFragment() {
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
         weatherView.setDrawable(!hidden)
-        if (!hidden) {
-            checkToSetSystemBarStyle()
-        }
     }
 
     override fun setSystemBarStyle() {
@@ -222,12 +219,8 @@ class HomeFragment : MainModuleFragment() {
 
     private fun updateDayNightColors() {
         val tm = ThemeManager.getInstance(requireContext())
-        val context = tm.generateThemeContext(
-            context = requireContext(),
-            lightTheme = MainModuleUtils.isHomeLightTheme(
-                requireContext(),
-                viewModel.currentLocation.value!!.location.isDaylight
-            )
+        val context = MainThemeContextProvider.getContext(
+            viewModel.currentLocation.value!!.location
         )
         binding.refreshLayout.setProgressBackgroundColorSchemeColor(
             tm.getThemeColor(context = context, id = R.attr.colorSurface)

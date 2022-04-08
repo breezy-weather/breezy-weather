@@ -16,11 +16,11 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.Daily;
-import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.common.ui.adapters.DailyPollenAdapter;
 import wangdaye.com.geometricweather.common.ui.widgets.horizontal.HorizontalViewPager2;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
-import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
+import wangdaye.com.geometricweather.main.adapters.HomePollenAdapter;
+import wangdaye.com.geometricweather.main.adapters.HomePollenViewHolder;
+import wangdaye.com.geometricweather.main.utils.MainThemeContextProvider;
 import wangdaye.com.geometricweather.theme.ThemeManager;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
@@ -35,16 +35,16 @@ public class AllergenViewHolder extends AbstractMainCardViewHolder {
 
     private @Nullable DailyPollenPageChangeCallback mCallback;
 
-    private static class DailyPollenPagerAdapter extends DailyPollenAdapter {
+    private static class DailyPollenPagerAdapter extends HomePollenAdapter {
 
-        public DailyPollenPagerAdapter(Weather weather) {
-            super(weather);
+        public DailyPollenPagerAdapter(Location location) {
+            super(location);
         }
 
         @NonNull
         @Override
-        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            ViewHolder holder = super.onCreateViewHolder(parent, viewType);
+        public HomePollenViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            HomePollenViewHolder holder = super.onCreateViewHolder(parent, viewType);
             holder.itemView.setLayoutParams(
                     new ViewGroup.LayoutParams(
                             ViewGroup.LayoutParams.MATCH_PARENT,
@@ -108,10 +108,7 @@ public class AllergenViewHolder extends AbstractMainCardViewHolder {
         assert location.getWeather() != null;
 
         ThemeManager tm = ThemeManager.getInstance(context);
-        Context themeCtx = tm.generateThemeContext(
-                context,
-                MainModuleUtils.isHomeLightTheme(context, location.isDaylight())
-        );
+        Context themeCtx = MainThemeContextProvider.getContext(location);
 
         mCard.setCardBackgroundColor(tm.getThemeColor(themeCtx, R.attr.colorSurface));
         mTitle.setTextColor(
@@ -126,7 +123,7 @@ public class AllergenViewHolder extends AbstractMainCardViewHolder {
         );
         mSubtitle.setTextColor(tm.getThemeColor(themeCtx, R.attr.colorCaptionText));
 
-        mPager.setAdapter(new DailyPollenPagerAdapter(location.getWeather()));
+        mPager.setAdapter(new DailyPollenPagerAdapter(location));
         mPager.setCurrentItem(0);
 
         mCallback = new DailyPollenPageChangeCallback(activity, location);
