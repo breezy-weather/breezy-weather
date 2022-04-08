@@ -68,10 +68,7 @@ public abstract class AbsDailyTrendAdapter<VH extends RecyclerView.ViewHolder> e
         mActivity = activity;
         mThemeCtx = ThemeManager.getInstance(activity).generateThemeContext(
                 activity,
-                MainModuleUtils.isHomeLightTheme(
-                        activity,
-                        ThemeManager.getInstance(activity).isDaylight()
-                )
+                MainModuleUtils.isHomeLightTheme(activity, location.isDaylight())
         );
     }
 

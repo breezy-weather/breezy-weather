@@ -52,7 +52,7 @@ public class FirstCardHeaderController
             ThemeManager tm = ThemeManager.getInstance(activity);
             Context themeCtx = tm.generateThemeContext(
                     activity,
-                    MainModuleUtils.isHomeLightTheme(activity, tm.isDaylight())
+                    MainModuleUtils.isHomeLightTheme(activity, location.isDaylight())
             );
 
             Weather weather = location.getWeather();

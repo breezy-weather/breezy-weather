@@ -1,17 +1,13 @@
 package wangdaye.com.geometricweather.main.fragments
 
-import android.animation.ValueAnimator
 import android.content.res.ColorStateList
 import android.content.res.Configuration
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.view.animation.Animation
-import androidx.core.graphics.ColorUtils
 import androidx.core.widget.ImageViewCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -19,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.GeoActivity
-import wangdaye.com.geometricweather.common.basic.GeoFragment
 import wangdaye.com.geometricweather.common.basic.models.Location
 import wangdaye.com.geometricweather.common.basic.models.Location.Companion.buildLocal
 import wangdaye.com.geometricweather.common.ui.adapters.location.LocationAdapter
@@ -34,10 +29,37 @@ import wangdaye.com.geometricweather.main.widgets.LocationItemTouchCallback
 import wangdaye.com.geometricweather.main.widgets.LocationItemTouchCallback.TouchReactor
 import wangdaye.com.geometricweather.theme.ThemeManager
 
-open class ManagementFragment : GeoFragment(), TouchReactor {
+class PushedManagementFragment: ManagementFragment() {
+
+    companion object {
+        @JvmStatic
+        fun getInstance() = PushedManagementFragment()
+    }
+
+    override fun setSystemBarStyle() {
+        DisplayUtils.setSystemBarStyle(
+            requireContext(),
+            requireActivity().window,
+            false,
+            !DisplayUtils.isLightColor(
+                ThemeManager.getInstance(requireContext()).getThemeColor(
+                    requireContext(),
+                    R.attr.colorOnPrimaryContainer
+                )
+            ),
+            true,
+            MainModuleUtils.isHomeLightTheme(
+                requireContext(),
+                viewModel.currentLocation.value!!.location.isDaylight
+            )
+        )
+    }
+}
+
+open class ManagementFragment : MainModuleFragment(), TouchReactor {
 
     private lateinit var binding: FragmentManagementBinding
-    private lateinit var viewModel: MainActivityViewModel
+    protected lateinit var viewModel: MainActivityViewModel
 
     private lateinit var layout: LinearLayoutManager
     private lateinit var adapter: LocationAdapter
@@ -45,18 +67,7 @@ open class ManagementFragment : GeoFragment(), TouchReactor {
     private lateinit var itemTouchHelper: ItemTouchHelper
     private var itemDecoration: ListDecoration? = null
 
-    private var colorAnimator: ValueAnimator? = null
     private var callback: Callback? = null
-
-    companion object {
-        const val KEY_CONTROL_SYSTEM_BAR = "control_system_bar"
-
-        fun getInstance(controlSystemBar: Boolean) = ManagementFragment().apply {
-            arguments = Bundle().apply {
-                putBoolean(KEY_CONTROL_SYSTEM_BAR, controlSystemBar)
-            }
-        }
-    }
 
     interface Callback {
         fun onSearchBarClicked(searchBar: View)
@@ -71,14 +82,10 @@ open class ManagementFragment : GeoFragment(), TouchReactor {
 
         initModel()
         initView()
+        checkToSetSystemBarStyle()
         setCallback(requireActivity() as Callback)
 
         return binding.root
-    }
-
-    override fun onStart() {
-        super.onStart()
-        checkToSetSystemBarStyle()
     }
 
     override fun onDestroyView() {
@@ -93,6 +100,10 @@ open class ManagementFragment : GeoFragment(), TouchReactor {
             adapterAnimWrapper!!.setLastPosition(-1)
         }
         return super.onCreateAnimation(transit, enter, nextAnim)
+    }
+
+    override fun setSystemBarStyle() {
+        // do nothing.
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
@@ -172,69 +183,15 @@ open class ManagementFragment : GeoFragment(), TouchReactor {
     private fun updateDayNightColors() {
         val tm = ThemeManager.getInstance(requireContext())
 
-        colorAnimator?.cancel()
-
-        if ((binding.appBar.background as? ColorDrawable)?.color == Color.BLACK) {
-            binding.appBar.setBackgroundColor(
-                tm.getThemeColor(context = requireContext(), id = R.attr.colorPrimaryContainer)
-            )
-        }
-
-        if (itemDecoration == null) {
-            itemDecoration = ListDecoration(
-                requireContext(),
-                tm.getThemeColor(context = requireContext(), id = R.attr.colorOutline)
-            )
-            while (binding.recyclerView.itemDecorationCount > 0) {
-                binding.recyclerView.removeItemDecorationAt(0)
-            }
-            binding.recyclerView.addItemDecoration(itemDecoration!!)
-        }
-
-
-        val progress = FloatArray(1)
-        val oldColors = intArrayOf(
-            (binding.recyclerView.background as? ColorDrawable)?.color ?: Color.TRANSPARENT,
-            binding.searchBar.cardBackgroundColor.defaultColor,
-            itemDecoration!!.color,
-            (binding.appBar.background as? ColorDrawable)?.color ?: Color.TRANSPARENT,
+        binding.recyclerView.setBackgroundColor(
+            tm.getThemeColor(context = requireContext(), id = android.R.attr.colorBackground)
         )
-        val newColors = intArrayOf(
-            tm.getThemeColor(context = requireContext(), id = android.R.attr.colorBackground),
-            tm.getThemeColor(context = requireContext(), id = R.attr.colorSurface),
-            tm.getThemeColor(context = requireContext(), id = R.attr.colorOutline),
-            tm.getThemeColor(context = requireContext(), id = R.attr.colorPrimaryContainer),
+        binding.appBar.setBackgroundColor(
+            tm.getThemeColor(context = requireContext(), id = R.attr.colorPrimaryContainer)
         )
-
-        colorAnimator = ValueAnimator.ofFloat(0f, 1f)
-        colorAnimator!!.addUpdateListener { animation ->
-            progress[0] = animation.animatedValue as Float
-
-            binding.recyclerView.setBackgroundColor(
-                DisplayUtils.blendColor(
-                    ColorUtils.setAlphaComponent(newColors[0], (255 * progress[0]).toInt()),
-                    oldColors[0]
-                )
-            )
-            binding.searchBar.setCardBackgroundColor(
-                DisplayUtils.blendColor(
-                    ColorUtils.setAlphaComponent(newColors[1], (255 * progress[0]).toInt()),
-                    oldColors[1]
-                )
-            )
-            itemDecoration!!.color = DisplayUtils.blendColor(
-                ColorUtils.setAlphaComponent(newColors[2], (255 * progress[0]).toInt()),
-                oldColors[2]
-            )
-            binding.appBar.setBackgroundColor(
-                DisplayUtils.blendColor(
-                    ColorUtils.setAlphaComponent(newColors[3], (255 * progress[0]).toInt()),
-                    oldColors[3]
-                )
-            )
-        }
-        colorAnimator!!.duration = 500 // same as 2 * changeDuration of default item animator.
-        colorAnimator!!.start()
+        binding.searchBar.setCardBackgroundColor(
+            tm.getThemeColor(context = requireContext(), id = R.attr.colorSurface)
+        )
 
         ImageViewCompat.setImageTintList(
             binding.searchIcon,
@@ -251,29 +208,23 @@ open class ManagementFragment : GeoFragment(), TouchReactor {
         binding.title.setTextColor(
             tm.getThemeColor(context = requireContext(), id = R.attr.colorCaptionText)
         )
-    }
 
-    private fun checkToSetSystemBarStyle() {
-        arguments?.let {
-            val controlSystemBar = it.getBoolean(KEY_CONTROL_SYSTEM_BAR, false)
-            if (controlSystemBar) {
-                DisplayUtils.setSystemBarStyle(
-                    requireContext(),
-                    requireActivity().window,
-                    false,
-                    !DisplayUtils.isLightColor(
-                        ThemeManager.getInstance(requireContext()).getThemeColor(
-                            requireContext(),
-                            R.attr.colorOnPrimaryContainer
-                        )
-                    ),
-                    true,
-                    MainModuleUtils.isHomeLightTheme(
-                        requireContext(),
-                        ThemeManager.getInstance(requireContext()).isDaylight
-                    )
-                )
+        if (itemDecoration == null) {
+            itemDecoration = ListDecoration(
+                requireContext(),
+                tm.getThemeColor(context = requireContext(), id = R.attr.colorOutline)
+            ).also {
+                while (binding.recyclerView.itemDecorationCount > 0) {
+                    binding.recyclerView.removeItemDecorationAt(0)
+                }
+                binding.recyclerView.addItemDecoration(it)
             }
+        } else {
+            itemDecoration?.color = tm.getThemeColor(
+                context = requireContext(),
+                id = R.attr.colorOutline
+            )
+            binding.recyclerView.invalidateItemDecorations()
         }
     }
 

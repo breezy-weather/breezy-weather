@@ -101,7 +101,7 @@ public class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<HourlyTemper
             mPolylineAndHistogramView.setLineColors(
                     themeColors[lightTheme ? 1 : 2],
                     themeColors[2],
-                    ThemeManager.getInstance(activity).getThemeColor(activity, R.attr.colorOutline)
+                    ThemeManager.getInstance(activity).getThemeColor(themeCtx, R.attr.colorOutline)
             );
             mPolylineAndHistogramView.setShadowColors(
                     themeColors[lightTheme ? 1 : 2],
@@ -109,8 +109,8 @@ public class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<HourlyTemper
                     lightTheme
             );
             mPolylineAndHistogramView.setTextColors(
-                    ThemeManager.getInstance(activity).getThemeColor(activity, R.attr.colorBodyText),
-                    ThemeManager.getInstance(activity).getThemeColor(activity, R.attr.colorCaptionText)
+                    ThemeManager.getInstance(activity).getThemeColor(themeCtx, R.attr.colorBodyText),
+                    ThemeManager.getInstance(activity).getThemeColor(themeCtx, R.attr.colorCaptionText)
             );
             mPolylineAndHistogramView.setHistogramAlpha(lightTheme ? 0.2f : 0.5f);
 

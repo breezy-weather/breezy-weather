@@ -57,10 +57,7 @@ public abstract class AbsHourlyTrendAdapter<VH extends RecyclerView.ViewHolder> 
         mActivity = activity;
         mThemeCtx = ThemeManager.getInstance(activity).generateThemeContext(
                 activity,
-                MainModuleUtils.isHomeLightTheme(
-                        activity,
-                        ThemeManager.getInstance(activity).isDaylight()
-                )
+                MainModuleUtils.isHomeLightTheme(activity, location.isDaylight())
         );
     }
 
@@ -68,10 +65,9 @@ public abstract class AbsHourlyTrendAdapter<VH extends RecyclerView.ViewHolder> 
                                         Location location,
                                         int adapterPosition) {
         if (activity.isActivityResumed()) {
-            HourlyWeatherDialog.getInstance(
-                    location.getWeather(),
-                    adapterPosition
-            ).show(activity.getSupportFragmentManager(), null);
+            HourlyWeatherDialog
+                    .getInstance(location.getWeather(), adapterPosition)
+                    .show(activity.getSupportFragmentManager(), null);
         }
     }
 

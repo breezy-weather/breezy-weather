@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.CloudCoverUnit;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.RelativeHumidityUnit;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.SpeedUnit;
@@ -99,19 +100,18 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
         }
     }
 
-    public DetailsAdapter(Context context, @NonNull Weather weather) {
+    public DetailsAdapter(Context context, Location location) {
         mThemeCtx = ThemeManager.getInstance(context).generateThemeContext(
                 context,
-                MainModuleUtils.isHomeLightTheme(
-                        context,
-                        ThemeManager.getInstance(context).isDaylight()
-                )
+                MainModuleUtils.isHomeLightTheme(context, location.isDaylight())
         );
 
         mIndexList = new ArrayList<>();
         SettingsManager settings = SettingsManager.getInstance(context);
-
         SpeedUnit speedUnit = settings.getSpeedUnit();
+        Weather weather = location.getWeather();
+        assert weather != null;
+
         String windTitle = context.getString(R.string.live)
                 + " : "
                 + weather.getCurrent().getWind().getWindDescription(context, speedUnit);

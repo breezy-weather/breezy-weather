@@ -15,7 +15,6 @@ import wangdaye.com.geometricweather.common.basic.livedata.EqualtableLiveData
 import wangdaye.com.geometricweather.common.basic.models.Location
 import wangdaye.com.geometricweather.main.utils.StatementManager
 import wangdaye.com.geometricweather.settings.SettingsManager
-import wangdaye.com.geometricweather.theme.ThemeManager
 import javax.inject.Inject
 
 
@@ -30,7 +29,7 @@ class MainActivityViewModel @Inject constructor(
 
     // live data.
 
-    val currentLocation = EqualtableLiveData<Location>()
+    val currentLocation = EqualtableLiveData<DayNightLocation>()
     val validLocationList = MutableLiveData<SelectableLocationList>()
     val totalLocationList = MutableLiveData<SelectableLocationList>()
 
@@ -44,7 +43,6 @@ class MainActivityViewModel @Inject constructor(
 
     private var initCompleted = false
     private var updating = false
-    private val pendingReloadDBCacheIdSet = HashSet<String>()
 
     companion object {
         private const val KEY_FORMATTED_ID = "formatted_id"
@@ -69,12 +67,11 @@ class MainActivityViewModel @Inject constructor(
         val validList = Location.excludeInvalidResidentLocation(getApplication(), totalList)
 
         id = formattedId ?: validList[0].formattedId
+        val current = validList.first { item -> item.formattedId == id }
 
         initCompleted = false
 
-        currentLocation.setValue(
-            validList.first { item -> item.formattedId == id }
-        )
+        currentLocation.setValue(DayNightLocation(location = current))
         validLocationList.value = SelectableLocationList(locationList = validList, selectedId = id)
         totalLocationList.value = SelectableLocationList(locationList = totalList, selectedId = id)
 
@@ -85,11 +82,6 @@ class MainActivityViewModel @Inject constructor(
                 index = validList.indexOfFirst { it.formattedId == id }
             )
         )
-
-        // update theme.
-        currentLocation.value?.let {
-            ThemeManager.getInstance(getApplication()).update(location = it)
-        }
 
         // read weather caches.
         repository.getWeatherCacheForLocations(
@@ -127,7 +119,7 @@ class MainActivityViewModel @Inject constructor(
 
         var index = 0
         for (i in valid.indices) {
-            if (total[i].formattedId == currentLocation.value?.formattedId) {
+            if (total[i].formattedId == currentLocation.value?.location?.formattedId) {
                 index = i
                 break
             }
@@ -158,9 +150,7 @@ class MainActivityViewModel @Inject constructor(
     }
 
     private fun setCurrentLocation(location: Location) {
-        ThemeManager.getInstance(getApplication()).update(location = location)
-
-        currentLocation.setValue(location)
+        currentLocation.setValue(DayNightLocation(location = location))
         savedStateHandle[KEY_FORMATTED_ID] = location.formattedId
 
         checkToUpdateCurrentLocation()
@@ -184,46 +174,6 @@ class MainActivityViewModel @Inject constructor(
     }
 
     private fun checkToUpdateCurrentLocation() {
-        // if the pending reload db cache id set contains this location's formatted id
-        // we need to read cache data from database.
-        val shouldCheckNewDBCache = pendingReloadDBCacheIdSet.contains(
-            currentLocation.value?.formattedId ?: ""
-        )
-
-        // if the app is completed init progress and is not updating data,
-        // and it should check cache from db.
-        //
-        // then, read db.
-        if (
-            shouldCheckNewDBCache && !updating && initCompleted
-        ) {
-            loading.setValue(true)
-            updating = false
-            // read new cache from database.
-            repository.getWeatherCacheForLocations(
-                context = getApplication(),
-                oldList = listOf(currentLocation.value!!),
-                ignoredFormattedId = ""
-            ) { newList, _ ->
-                newList?.getOrNull(0)?.let {
-                    pendingReloadDBCacheIdSet.remove(it.formattedId)
-                    loading.setValue(false)
-                    updating = false
-                    updateInnerData(it)
-                }
-            }
-            return
-        }
-
-        // if should read db cache, but the app is updating or just in an init progress.
-        //
-        // then, we need delete the flag.
-        if (shouldCheckNewDBCache) {
-            pendingReloadDBCacheIdSet.remove(
-                currentLocation.value?.formattedId ?: ""
-            )
-        }
-
         // is not loading
         if (!updating) {
             // if already valid, just return.
@@ -249,7 +199,7 @@ class MainActivityViewModel @Inject constructor(
         // is loading, do nothing.
     }
 
-    private fun currentLocationIsValid() = currentLocation.value?.weather?.isValid(
+    private fun currentLocationIsValid() = currentLocation.value?.location?.weather?.isValid(
         SettingsManager.getInstance(getApplication()).getUpdateInterval().intervalInHour
     ) ?: false
 
@@ -268,14 +218,14 @@ class MainActivityViewModel @Inject constructor(
         // don't need to request any permission -> request data directly.
         if (
             Build.VERSION.SDK_INT < Build.VERSION_CODES.M
-            || currentLocation.value?.isCurrentPosition == false
+            || currentLocation.value?.location?.isCurrentPosition == false
             || !checkPermissions
         ) {
             updating = true
             repository.getWeather(
                 getApplication(),
-                currentLocation.value!!,
-                currentLocation.value!!.isCurrentPosition,
+                currentLocation.value!!.location,
+                currentLocation.value!!.location.isCurrentPosition,
                 this
             )
             return
@@ -288,7 +238,7 @@ class MainActivityViewModel @Inject constructor(
             updating = true
             repository.getWeather(
                 getApplication(),
-                currentLocation.value!!,
+                currentLocation.value!!.location,
                 true,
                 this
             )
@@ -299,7 +249,7 @@ class MainActivityViewModel @Inject constructor(
         updating = false
         permissionsRequest.value = PermissionsRequest(
             permissionList,
-            currentLocation.value!!,
+            currentLocation.value!!.location,
             triggeredByUser
         )
     }
@@ -330,15 +280,6 @@ class MainActivityViewModel @Inject constructor(
     }
 
     fun checkToUpdate() {
-        currentLocation.value?.let {
-            ThemeManager.getInstance(getApplication()).update(location = it)
-        }
-
-        pendingReloadDBCacheIdSet.clear()
-        totalLocationList.value?.locationList?.let { list ->
-            list.forEach { pendingReloadDBCacheIdSet.add(it.formattedId) }
-        }
-
         checkToUpdateCurrentLocation()
     }
 
@@ -347,7 +288,7 @@ class MainActivityViewModel @Inject constructor(
             return
         }
 
-        if (currentLocation.value?.formattedId == location.formattedId) {
+        if (currentLocation.value?.location?.formattedId == location.formattedId) {
             cancelRequest()
         }
         updateInnerData(location)
@@ -391,13 +332,13 @@ class MainActivityViewModel @Inject constructor(
     fun offsetLocation(offset: Int): Boolean {
         cancelRequest()
 
-        val oldFormattedId = currentLocation.value?.formattedId ?: ""
+        val oldFormattedId = currentLocation.value?.location?.formattedId ?: ""
 
         // ensure current index.
         var index = 0
         validLocationList.value?.locationList?.let {
             for (i in it.indices) {
-                if (it[i].formattedId == currentLocation.value?.formattedId) {
+                if (it[i].formattedId == currentLocation.value?.location?.formattedId) {
                     index = i
                     break
                 }
@@ -420,14 +361,14 @@ class MainActivityViewModel @Inject constructor(
 
         totalLocationList.value = SelectableLocationList(
             locationList = totalLocationList.value?.locationList ?: emptyList(),
-            selectedId = currentLocation.value?.formattedId ?: "",
+            selectedId = currentLocation.value?.location?.formattedId ?: "",
         )
         validLocationList.value = SelectableLocationList(
             locationList = validLocationList.value?.locationList ?: emptyList(),
-            selectedId = currentLocation.value?.formattedId ?: "",
+            selectedId = currentLocation.value?.location?.formattedId ?: "",
         )
 
-        return currentLocation.value?.formattedId != oldFormattedId
+        return currentLocation.value?.location?.formattedId != oldFormattedId
     }
 
     // list.
@@ -494,7 +435,7 @@ class MainActivityViewModel @Inject constructor(
         var index = 0
         validLocationList.value?.locationList?.let {
             for (i in it.indices) {
-                if (it[i].formattedId == currentLocation.value?.formattedId) {
+                if (it[i].formattedId == currentLocation.value?.location?.formattedId) {
                     index = i
                     break
                 }

@@ -22,17 +22,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.AirQualityCOUnit;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.AirQualityUnit;
 import wangdaye.com.geometricweather.common.basic.models.weather.AirQuality;
-import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.ui.widgets.RoundProgress;
 import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
 import wangdaye.com.geometricweather.theme.ThemeManager;
-
-/**
- * Aqi adapter.
- */
 
 public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
 
@@ -154,18 +150,17 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
         }
     }
 
-    public AqiAdapter(Context context, @Nullable Weather weather, boolean executeAnimation) {
+    public AqiAdapter(Context context, Location location, boolean executeAnimation) {
         mThemeCtx = ThemeManager.getInstance(context).generateThemeContext(
                 context,
-                MainModuleUtils.isHomeLightTheme(
-                        context,
-                        ThemeManager.getInstance(context).isDaylight()
-                )
+                MainModuleUtils.isHomeLightTheme(context, location.isDaylight())
         );
 
         mItemList = new ArrayList<>();
-        if (weather != null && weather.getCurrent().getAirQuality().isValid()) {
-            AirQuality airQuality = weather.getCurrent().getAirQuality();
+        if (location.getWeather() != null
+                && location.getWeather().getCurrent().getAirQuality().isValid()) {
+
+            AirQuality airQuality = location.getWeather().getCurrent().getAirQuality();
             if (airQuality.getPM25() != null) {
                 mItemList.add(
                         new AqiItem(

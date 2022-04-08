@@ -61,3 +61,21 @@ enum class MainMessage {
     LOCATION_FAILED,
     WEATHER_REQ_FAILED,
 }
+
+class DayNightLocation(
+    val location: Location,
+    val daylight: Boolean = location.isDaylight
+) {
+    override fun equals(other: Any?): Boolean {
+        if (this === other) {
+            return true
+        }
+
+        if (other is DayNightLocation) {
+            return location == other.location
+                    && daylight == other.daylight
+        }
+
+        return false
+    }
+}

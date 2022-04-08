@@ -48,7 +48,7 @@ public class DetailsViewHolder extends AbstractMainCardViewHolder {
             ThemeManager tm = ThemeManager.getInstance(context);
             Context themeCtx = tm.generateThemeContext(
                     context,
-                    MainModuleUtils.isHomeLightTheme(context, tm.isDaylight())
+                    MainModuleUtils.isHomeLightTheme(context, location.isDaylight())
             );
 
             mCard.setCardBackgroundColor(tm.getThemeColor(themeCtx, R.attr.colorSurface));
@@ -65,7 +65,7 @@ public class DetailsViewHolder extends AbstractMainCardViewHolder {
             );
 
             mDetailsRecyclerView.setLayoutManager(new LinearLayoutManager(context));
-            mDetailsRecyclerView.setAdapter(new DetailsAdapter(context, location.getWeather()));
+            mDetailsRecyclerView.setAdapter(new DetailsAdapter(context, location));
         }
     }
 }

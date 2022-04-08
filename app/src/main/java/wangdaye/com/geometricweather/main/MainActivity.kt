@@ -30,6 +30,8 @@ import wangdaye.com.geometricweather.main.dialogs.LocationHelpDialog
 import wangdaye.com.geometricweather.main.dialogs.LocationPermissionStatementDialog
 import wangdaye.com.geometricweather.main.fragments.HomeFragment
 import wangdaye.com.geometricweather.main.fragments.ManagementFragment
+import wangdaye.com.geometricweather.main.fragments.ModifyMainSystemBarMessage
+import wangdaye.com.geometricweather.main.fragments.PushedManagementFragment
 import wangdaye.com.geometricweather.main.utils.MainModuleUtils
 import wangdaye.com.geometricweather.remoteviews.NotificationHelper
 import wangdaye.com.geometricweather.remoteviews.WidgetHelper
@@ -68,7 +70,7 @@ class MainActivity : GeoActivity(),
             viewModel.updateLocationFromBackground(it)
 
             if (isActivityStarted
-                && it.formattedId == viewModel.currentLocation.value?.formattedId) {
+                && it.formattedId == viewModel.currentLocation.value?.location?.formattedId) {
                 SnackbarHelper.showSnackbar(getString(R.string.feedback_updated_in_background))
             }
         }
@@ -105,6 +107,9 @@ class MainActivity : GeoActivity(),
                 defaultLocationChanged = true,
                 updateRemoteViews = true
             )
+        }
+        EventBus.instance.with(ModifyMainSystemBarMessage::class.java).observe(this) {
+            updateSystemBarStyle()
         }
     }
 
@@ -166,6 +171,7 @@ class MainActivity : GeoActivity(),
     }
 
     // init.
+
     private fun initModel(newActivity: Boolean) {
         viewModel = ViewModelProvider(this)[MainActivityViewModel::class.java]
         if (!viewModel.checkIsNewInstance()) {
@@ -325,14 +331,17 @@ class MainActivity : GeoActivity(),
 
     private fun updateDayNightColors() {
         val tm = ThemeManager.getInstance(this)
-        val context = tm.generateThemeContext(
-            context = this,
-            daylight = MainModuleUtils.isHomeLightTheme(this, tm.isDaylight)
+        val color = tm.getThemeColor(context = this, id = android.R.attr.colorBackground)
+
+        fitHorizontalSystemBarRootLayout.setRootColor(color)
+        fitHorizontalSystemBarRootLayout.setLineColor(
+            tm.getThemeColor(context = this, id = R.attr.colorOutline)
         )
-        val color = tm.getThemeColor(context = context, id = android.R.attr.colorBackground)
+
         binding.fragment?.setBackgroundColor(color)
         binding.fragmentDrawer?.setBackgroundColor(color)
         binding.fragmentHome?.setBackgroundColor(color)
+
     }
 
     private fun consumeIntentAction(intent: Intent) {
@@ -352,6 +361,19 @@ class MainActivity : GeoActivity(),
         }
         if (ACTION_MANAGEMENT == action) {
             setManagementFragmentVisibility(true)
+        }
+    }
+
+    private fun updateSystemBarStyle() {
+        if (binding.drawerLayout != null) {
+            findHomeFragment()?.setSystemBarStyle()
+            return
+        }
+
+        if (isOrWillManagementFragmentVisible) {
+            findManagementFragment()?.setSystemBarStyle()
+        } else {
+            findHomeFragment()?.setSystemBarStyle()
         }
     }
 
@@ -384,7 +406,7 @@ class MainActivity : GeoActivity(),
                     )
                     .add(
                         R.id.fragment,
-                        ManagementFragment.getInstance(true),
+                        PushedManagementFragment.getInstance(),
                         TAG_FRAGMENT_MANAGEMENT
                     )
                     .addToBackStack(null)

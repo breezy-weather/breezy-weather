@@ -83,7 +83,7 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
         ThemeManager tm = ThemeManager.getInstance(context);
         mThemeCtx = tm.generateThemeContext(
                 context,
-                MainModuleUtils.isHomeLightTheme(context, tm.isDaylight())
+                MainModuleUtils.isHomeLightTheme(context, location.isDaylight())
         );
 
         mCard.setCardBackgroundColor(tm.getThemeColor(mThemeCtx, R.attr.colorSurface));
@@ -124,7 +124,7 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
         mProgress.setBottomTextColor(tm.getThemeColor(mThemeCtx, R.attr.colorCaptionText));
         mProgress.setContentDescription(mAqiIndex + ", " + mWeather.getCurrent().getAirQuality().getAqiText());
 
-        mAdapter = new AqiAdapter(context, mWeather, itemAnimationEnabled);
+        mAdapter = new AqiAdapter(context, location, itemAnimationEnabled);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
     }

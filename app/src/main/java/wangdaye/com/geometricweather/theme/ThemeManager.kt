@@ -7,13 +7,10 @@ import androidx.annotation.AttrRes
 import androidx.appcompat.app.AppCompatDelegate
 import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.livedata.EqualtableLiveData
-import wangdaye.com.geometricweather.common.basic.models.Location
 import wangdaye.com.geometricweather.common.basic.models.options.DarkMode
-import wangdaye.com.geometricweather.common.utils.DisplayUtils
 import wangdaye.com.geometricweather.settings.SettingsManager
 import wangdaye.com.geometricweather.theme.weatherView.WeatherThemeDelegate
 import wangdaye.com.geometricweather.theme.weatherView.materialWeatherView.MaterialWeatherThemeDelegate
-import java.util.*
 
 class ThemeManager private constructor(
     val weatherThemeDelegate: WeatherThemeDelegate,
@@ -52,21 +49,10 @@ class ThemeManager private constructor(
     val uiMode: EqualtableLiveData<Int> = EqualtableLiveData(
         generateGlobalUIMode(darkMode = darkMode)
     )
-    var isDaylight = DisplayUtils.isDaylight(TimeZone.getDefault())
-
     private val typedValue = TypedValue()
 
-    @JvmOverloads
-    fun update(
-        darkMode: DarkMode? = null,
-        location: Location? = null,
-    ) {
-        darkMode?.let {
-            this.darkMode = it
-        }
-        location?.let {
-            this.isDaylight = it.isDaylight
-        }
+    fun update(darkMode: DarkMode) {
+        this.darkMode = darkMode
 
         uiMode.setValue(
             generateGlobalUIMode(
@@ -82,11 +68,11 @@ class ThemeManager private constructor(
 
     fun generateThemeContext(
         context: Context,
-        daylight: Boolean = isDaylight
+        lightTheme: Boolean
     ): Context = context.createConfigurationContext(
         Configuration(context.resources.configuration).apply {
             uiMode = uiMode and Configuration.UI_MODE_NIGHT_MASK.inv()
-            uiMode = uiMode or if (daylight) {
+            uiMode = uiMode or if (lightTheme) {
                 Configuration.UI_MODE_NIGHT_NO
             } else {
                 Configuration.UI_MODE_NIGHT_YES

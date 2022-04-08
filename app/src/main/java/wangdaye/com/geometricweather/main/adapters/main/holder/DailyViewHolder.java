@@ -80,7 +80,7 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
         ThemeManager tm = ThemeManager.getInstance(context);
         Context themeCtx = tm.generateThemeContext(
                 context,
-                MainModuleUtils.isHomeLightTheme(context, tm.isDaylight())
+                MainModuleUtils.isHomeLightTheme(context, location.isDaylight())
         );
 
         mCard.setCardBackgroundColor(tm.getThemeColor(themeCtx, R.attr.colorSurface));
