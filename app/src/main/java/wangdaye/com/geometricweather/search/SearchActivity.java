@@ -37,14 +37,14 @@ import dagger.hilt.android.AndroidEntryPoint;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
-import wangdaye.com.geometricweather.common.ui.adapters.location.LocationAdapter;
 import wangdaye.com.geometricweather.common.ui.decotarions.ListDecoration;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
 import wangdaye.com.geometricweather.databinding.ActivitySearchBinding;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.search.ui.FabView;
-import wangdaye.com.geometricweather.search.ui.adapter.WeatherSourceAdapter;
+import wangdaye.com.geometricweather.search.ui.adapter.location.LocationAdapter;
+import wangdaye.com.geometricweather.search.ui.adapter.source.WeatherSourceAdapter;
 import wangdaye.com.geometricweather.theme.ThemeManager;
 
 /**
@@ -174,7 +174,6 @@ public class SearchActivity extends GeoActivity
         mAdapter = new LocationAdapter(
                 this,
                 new ArrayList<>(),
-                null,
                 (view, formattedId) -> {
                     for (int i = 0; i < mCurrentList.size(); i ++) {
                         if (mCurrentList.get(i).getFormattedId().equals(formattedId)) {
@@ -189,7 +188,7 @@ public class SearchActivity extends GeoActivity
                             return;
                         }
                     }
-                }, null
+                }
         );
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(
@@ -272,7 +271,7 @@ public class SearchActivity extends GeoActivity
             mBinding.sourceEnter.setEnabled(
                     loadableLocationList.status != LoadableLocationList.Status.LOADING);
             mBinding.sourceEnter.setAlpha(mBinding.sourceEnter.isEnabled() ? 1 : 0.5f);
-            mAdapter.update(loadableLocationList.dataList, null);
+            mAdapter.update(loadableLocationList.dataList);
         });
 
         mViewModel.getEnabledSources().observe(this, enabled -> {

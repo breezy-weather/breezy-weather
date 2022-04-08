@@ -13,8 +13,7 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerViewAdapter;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.item.HourlyTrendItemView;
 import wangdaye.com.geometricweather.main.dialogs.HourlyWeatherDialog;
-import wangdaye.com.geometricweather.main.utils.MainThemeContextProvider;
-import wangdaye.com.geometricweather.theme.ThemeManager;
+import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider;
 
 public abstract class AbsHourlyTrendAdapter<VH extends RecyclerView.ViewHolder> extends TrendRecyclerViewAdapter<VH>  {
 
@@ -30,7 +29,7 @@ public abstract class AbsHourlyTrendAdapter<VH extends RecyclerView.ViewHolder> 
             hourlyItem = itemView.findViewById(R.id.item_trend_hourly);
         }
 
-        void onBindView(GeoActivity activity, Context themeCtx, Location location,
+        void onBindView(GeoActivity activity, Location location,
                         StringBuilder talkBackBuilder, int position) {
             Context context = itemView.getContext();
             Weather weather = location.getWeather();
@@ -43,7 +42,7 @@ public abstract class AbsHourlyTrendAdapter<VH extends RecyclerView.ViewHolder> 
                     .append(", ").append(hourly.getHour(activity));
             hourlyItem.setHourText(hourly.getHour(context));
             hourlyItem.setTextColor(
-                    ThemeManager.getInstance(context).getThemeColor(themeCtx, R.attr.colorBodyText)
+                    MainThemeColorProvider.getColor(location, R.attr.colorBodyText)
             );
 
             hourlyItem.setOnClickListener(v -> onItemClicked(
@@ -55,7 +54,7 @@ public abstract class AbsHourlyTrendAdapter<VH extends RecyclerView.ViewHolder> 
     public AbsHourlyTrendAdapter(GeoActivity activity, Location location) {
         super(location);
         mActivity = activity;
-        mThemeCtx = MainThemeContextProvider.getContext(location);
+        mThemeCtx = MainThemeColorProvider.getContext(location);
     }
 
     protected static void onItemClicked(GeoActivity activity,

@@ -4,7 +4,6 @@ import android.animation.AnimatorSet;
 import android.animation.FloatEvaluator;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +31,7 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.ui.widgets.astro.MoonPhaseView;
 import wangdaye.com.geometricweather.common.ui.widgets.astro.SunMoonView;
 import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
-import wangdaye.com.geometricweather.main.utils.MainThemeContextProvider;
+import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider;
 import wangdaye.com.geometricweather.theme.ThemeManager;
 import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
@@ -95,10 +94,7 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
         mTimeZone = location.getTimeZone();
         assert mWeather != null;
 
-        ThemeManager tm = ThemeManager.getInstance(context);
-        Context themeCtx = MainThemeContextProvider.getContext(location);
-
-        mCard.setCardBackgroundColor(tm.getThemeColor(themeCtx, R.attr.colorSurface));
+        mCard.setCardBackgroundColor(MainThemeColorProvider.getColor(location, R.attr.colorSurface));
 
         int[] themeColors = ThemeManager
                 .getInstance(context)
@@ -122,11 +118,11 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
             mPhaseText.setVisibility(View.VISIBLE);
             mPhaseView.setVisibility(View.VISIBLE);
 
-            mPhaseText.setTextColor(tm.getThemeColor(themeCtx, R.attr.colorBodyText));
+            mPhaseText.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText));
             mPhaseView.setColor(
                     ContextCompat.getColor(context, R.color.colorTextLight2nd),
                     ContextCompat.getColor(context, R.color.colorTextDark2nd),
-                    tm.getThemeColor(themeCtx, R.attr.colorBodyText)
+                    MainThemeColorProvider.getColor(location, R.attr.colorBodyText)
             );
 
             mPhaseText.setText(mWeather.getDailyForecast().get(0).getMoonPhase().getMoonPhase(context));
@@ -141,7 +137,7 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
                     themeColors[0],
                     ColorUtils.setAlphaComponent(themeColors[1], (int) (0.66 * 255)),
                     ColorUtils.setAlphaComponent(themeColors[1], (int) (0.33 * 255)),
-                    tm.getThemeColor(themeCtx, R.attr.colorSurface),
+                    MainThemeColorProvider.getColor(location, R.attr.colorSurface),
                     true
             );
         } else {
@@ -149,7 +145,7 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
                     themeColors[2],
                     ColorUtils.setAlphaComponent(themeColors[2], (int) (0.5 * 255)),
                     ColorUtils.setAlphaComponent(themeColors[2], (int) (0.2 * 255)),
-                    tm.getThemeColor(themeCtx, R.attr.colorSurface),
+                    MainThemeColorProvider.getColor(location, R.attr.colorSurface),
                     false
             );
         }

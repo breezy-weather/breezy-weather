@@ -27,12 +27,11 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.AirQuality
 import wangdaye.com.geometricweather.common.basic.models.options.unit.AirQualityUnit;
 import wangdaye.com.geometricweather.common.basic.models.weather.AirQuality;
 import wangdaye.com.geometricweather.common.ui.widgets.RoundProgress;
-import wangdaye.com.geometricweather.main.utils.MainThemeContextProvider;
-import wangdaye.com.geometricweather.theme.ThemeManager;
+import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider;
 
 public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
 
-    private final Context mThemeCtx;
+    private final boolean mLightTheme;
     private final List<AqiItem> mItemList;
     private final List<ViewHolder> mHolderList;
 
@@ -61,7 +60,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         private @Nullable AqiItem mItem;
-        private Context mThemeCtx;
+        private Boolean mLightTheme;
         private boolean mExecuteAnimation;
         @Nullable private AnimatorSet mAttachAnimatorSet;
 
@@ -76,26 +75,25 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
             mProgress = itemView.findViewById(R.id.item_aqi_progress);
         }
 
-        void onBindView(Context themeCtx, AqiItem item) {
+        void onBindView(boolean lightTheme, AqiItem item) {
             Context context = itemView.getContext();
-            ThemeManager tm = ThemeManager.getInstance(context);
 
             mItem = item;
-            mThemeCtx = themeCtx;
+            mLightTheme = lightTheme;
             mExecuteAnimation = item.executeAnimation;
 
             itemView.setContentDescription(item.talkBack);
 
             mTitle.setText(item.title);
-            mTitle.setTextColor(tm.getThemeColor(themeCtx, R.attr.colorBodyText));
+            mTitle.setTextColor(MainThemeColorProvider.getColor(lightTheme, R.attr.colorBodyText));
 
             mContent.setText(item.content);
-            mContent.setTextColor(tm.getThemeColor(themeCtx, R.attr.colorCaptionText));
+            mContent.setTextColor(MainThemeColorProvider.getColor(lightTheme, R.attr.colorCaptionText));
 
             if (mExecuteAnimation) {
                 mProgress.setProgress(0);
                 mProgress.setProgressColor(ContextCompat.getColor(context, R.color.colorLevel_1));
-                mProgress.setProgressBackgroundColor(tm.getThemeColor(themeCtx, R.attr.colorOutline));
+                mProgress.setProgressBackgroundColor(MainThemeColorProvider.getColor(lightTheme, R.attr.colorOutline));
             } else {
                 mProgress.setProgress((int) (100.0 * item.progress / item.max));
                 mProgress.setProgressColor(item.color);
@@ -120,7 +118,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
 
                 ValueAnimator backgroundColor = ValueAnimator.ofObject(
                         new ArgbEvaluator(),
-                        ThemeManager.getInstance(mThemeCtx).getThemeColor(mThemeCtx, R.attr.colorOutline),
+                        MainThemeColorProvider.getColor(mLightTheme, R.attr.colorOutline),
                         ColorUtils.setAlphaComponent(mItem.color, (int) (255 * 0.1))
                 );
                 backgroundColor.addUpdateListener(animation ->
@@ -151,7 +149,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
     }
 
     public AqiAdapter(Context context, Location location, boolean executeAnimation) {
-        mThemeCtx = MainThemeContextProvider.getContext(location);
+        mLightTheme = location.isDaylight();
 
         mItemList = new ArrayList<>();
         if (location.getWeather() != null
@@ -257,7 +255,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(mThemeCtx, mItemList.get(position));
+        holder.onBindView(mLightTheme, mItemList.get(position));
         if (mItemList.get(position).executeAnimation) {
             mHolderList.add(holder);
         }

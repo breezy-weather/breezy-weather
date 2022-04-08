@@ -22,17 +22,12 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.CloudCover
 import wangdaye.com.geometricweather.common.basic.models.options.unit.RelativeHumidityUnit;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.SpeedUnit;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.main.utils.MainThemeContextProvider;
+import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider;
 import wangdaye.com.geometricweather.settings.SettingsManager;
-import wangdaye.com.geometricweather.theme.ThemeManager;
-
-/**
- * Details adapter.
- * */
 
 public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHolder> {
 
-    private final Context mThemeCtx;
+    private final boolean mLightTheme;
     private final List<Index> mIndexList;
 
     private static class Index {
@@ -69,7 +64,7 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
             mContent = itemView.findViewById(R.id.item_details_content);
         }
 
-        void onBindView(Context themeCtx, Index index) {
+        void onBindView(boolean lightTheme, Index index) {
             itemView.setContentDescription(index.talkBack);
 
             mIcon.setImageResource(index.iconId);
@@ -79,29 +74,20 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
             ImageViewCompat.setImageTintList(
                     mIcon,
                     ColorStateList.valueOf(
-                            ThemeManager.getInstance(itemView.getContext()).getThemeColor(
-                                    themeCtx,
-                                    R.attr.colorBodyText
-                            )
+                            MainThemeColorProvider.getColor(lightTheme, R.attr.colorBodyText)
                     )
             );
             mTitle.setTextColor(
-                    ThemeManager.getInstance(itemView.getContext()).getThemeColor(
-                            themeCtx,
-                            R.attr.colorBodyText
-                    )
+                    MainThemeColorProvider.getColor(lightTheme, R.attr.colorBodyText)
             );
             mContent.setTextColor(
-                    ThemeManager.getInstance(itemView.getContext()).getThemeColor(
-                            themeCtx,
-                            R.attr.colorCaptionText
-                    )
+                    MainThemeColorProvider.getColor(lightTheme, R.attr.colorCaptionText)
             );
         }
     }
 
     public DetailsAdapter(Context context, Location location) {
-        mThemeCtx = MainThemeContextProvider.getContext(location);
+        mLightTheme = location.isDaylight();
 
         mIndexList = new ArrayList<>();
         SettingsManager settings = SettingsManager.getInstance(context);
@@ -227,7 +213,7 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(mThemeCtx, mIndexList.get(position));
+        holder.onBindView(mLightTheme, mIndexList.get(position));
     }
 
     @Override

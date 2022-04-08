@@ -2,24 +2,22 @@ package wangdaye.com.geometricweather.main.utils
 
 import android.annotation.SuppressLint
 import android.os.Looper
+import androidx.annotation.AttrRes
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
-import wangdaye.com.geometricweather.GeometricWeather
 import wangdaye.com.geometricweather.common.basic.models.Location
-import wangdaye.com.geometricweather.common.basic.models.weather.Weather
 import wangdaye.com.geometricweather.main.MainActivity
 import wangdaye.com.geometricweather.theme.ThemeManager
-import java.util.*
 
-class MainThemeContextProvider(
+class MainThemeColorProvider(
     private val host: MainActivity
 ): LifecycleEventObserver {
 
     companion object {
         @SuppressLint("StaticFieldLeak")
         @Volatile
-        private var instance: MainThemeContextProvider? = null
+        private var instance: MainThemeColorProvider? = null
 
         @JvmStatic
         fun bind(mainActivity: MainActivity) {
@@ -37,7 +35,7 @@ class MainThemeContextProvider(
                 unbind()
             }
 
-            instance = MainThemeContextProvider(mainActivity)
+            instance = MainThemeColorProvider(mainActivity)
             mainActivity.lifecycle.addObserver(instance!!)
         }
 
@@ -56,40 +54,64 @@ class MainThemeContextProvider(
         @JvmStatic
         fun getContext(
             lightTheme: Boolean
-        ) = instance?.let {
-            if (lightTheme) {
-                it.lightContext
-            } else {
-                it.darkContext
-            }
-        } ?: GeometricWeather.instance
+        ) = if (lightTheme) {
+            instance!!.lightContext
+        } else {
+            instance!!.darkContext
+        }
 
         @JvmStatic
         fun getContext(
             location: Location
         ) = getContext(
-            lightTheme = instance?.let {
-                MainModuleUtils.isHomeLightTheme(it.host, location.isDaylight)
-            } ?: true
+            lightTheme = MainModuleUtils.isHomeLightTheme(
+                instance!!.host,
+                location.isDaylight
+            )
         )
 
         @JvmStatic
-        fun getContext(
-            weather: Weather,
-            timeZone: TimeZone
-        ) = getContext(
-            lightTheme = instance?.let {
-                MainModuleUtils.isHomeLightTheme(it.host, weather.isDaylight(timeZone))
-            } ?: true
+        fun getColor(
+            lightTheme: Boolean,
+            @AttrRes id: Int,
+        ): Int {
+            val cache = if (lightTheme) {
+                instance!!.lightColorCache
+            } else {
+                instance!!.darkColorCache
+            }
+
+            cache[id]?.let {
+                return it
+            }
+
+            val color = ThemeManager.getInstance(instance!!.host).getThemeColor(
+                context = getContext(lightTheme),
+                id = id
+            )
+            cache[id] = color
+            return color
+        }
+
+        @JvmStatic
+        fun getColor(
+            location: Location,
+            @AttrRes id: Int,
+        ) = getColor(
+            id = id,
+            lightTheme = location.isDaylight
         )
     }
 
     val lightContext = ThemeManager
         .getInstance(host)
         .generateThemeContext(context = host, lightTheme = true)
+    private val lightColorCache = HashMap<Int, Int>()
+
     val darkContext = ThemeManager
         .getInstance(host)
         .generateThemeContext(context = host, lightTheme = false)
+    private val darkColorCache = HashMap<Int, Int>()
 
     override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
         val currentState = host.lifecycle.currentState

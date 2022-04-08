@@ -1,7 +1,6 @@
 package wangdaye.com.geometricweather.main.adapters.main;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,8 +23,7 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Base;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
 import wangdaye.com.geometricweather.main.MainActivity;
-import wangdaye.com.geometricweather.main.utils.MainThemeContextProvider;
-import wangdaye.com.geometricweather.theme.ThemeManager;
+import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider;
 
 public class FirstCardHeaderController
         implements View.OnClickListener {
@@ -49,9 +47,6 @@ public class FirstCardHeaderController
         View line = mView.findViewById(R.id.container_main_first_card_header_line);
 
         if (location.getWeather() != null) {
-            ThemeManager tm = ThemeManager.getInstance(activity);
-            Context themeCtx = MainThemeContextProvider.getContext(location);
-
             Weather weather = location.getWeather();
 
             mView.setOnClickListener(v -> ((MainActivity) activity).setManagementFragmentVisibility(true));
@@ -69,7 +64,9 @@ public class FirstCardHeaderController
             );
             ImageViewCompat.setImageTintList(
                     timeIcon,
-                    ColorStateList.valueOf(tm.getThemeColor(themeCtx, R.attr.colorBodyText))
+                    ColorStateList.valueOf(
+                            MainThemeColorProvider.getColor(location, R.attr.colorBodyText)
+                    )
             );
             timeIcon.setOnClickListener(this);
 
@@ -78,7 +75,7 @@ public class FirstCardHeaderController
                             + " "
                             + Base.getTime(activity, weather.getBase().getUpdateDate())
             );
-            refreshTime.setTextColor(tm.getThemeColor(themeCtx, R.attr.colorBodyText));
+            refreshTime.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText));
 
             long time = System.currentTimeMillis();
             if (TimeZone.getDefault().getOffset(time) == location.getTimeZone().getOffset(time)) {
@@ -93,7 +90,7 @@ public class FirstCardHeaderController
                 localTime.setFormat24Hour(
                         activity.getString(R.string.date_format_widget_long) + ", HH:mm"
                 );
-                localTime.setTextColor(tm.getThemeColor(themeCtx, R.attr.colorCaptionText));
+                localTime.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorCaptionText));
             }
 
             if (weather.getAlertList().size() == 0) {
@@ -116,10 +113,10 @@ public class FirstCardHeaderController
                     }
                 }
                 alert.setText(builder.toString());
-                alert.setTextColor(tm.getThemeColor(themeCtx, R.attr.colorCaptionText));
+                alert.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorCaptionText));
 
                 line.setVisibility(View.VISIBLE);
-                line.setBackgroundColor(tm.getThemeColor(themeCtx, R.attr.colorSurface));
+                line.setBackgroundColor(MainThemeColorProvider.getColor(location, R.attr.colorSurface));
             }
             alert.setOnClickListener(this);
         }

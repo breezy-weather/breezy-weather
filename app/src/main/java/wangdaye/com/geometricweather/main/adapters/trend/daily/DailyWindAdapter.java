@@ -1,7 +1,6 @@
 package wangdaye.com.geometricweather.main.adapters.trend.daily;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.view.LayoutInflater;
@@ -24,7 +23,7 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Wind;
 import wangdaye.com.geometricweather.common.ui.images.RotateDrawable;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.chart.DoubleHistogramView;
-import wangdaye.com.geometricweather.theme.ThemeManager;
+import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider;
 
 /**
  * Daily wind adapter.
@@ -48,10 +47,10 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
         }
 
         @SuppressLint("SetTextI18n, InflateParams")
-        void onBindView(GeoActivity activity, Context themeCtx, Location location, int position) {
+        void onBindView(GeoActivity activity, Location location, int position) {
             StringBuilder talkBackBuilder = new StringBuilder(activity.getString(R.string.tag_wind));
 
-            super.onBindView(activity, themeCtx, location, talkBackBuilder, position);
+            super.onBindView(activity, location, talkBackBuilder, position);
 
             Weather weather = location.getWeather();
             assert weather != null;
@@ -85,10 +84,10 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
             mDoubleHistogramView.setLineColors(
                     daytimeWindColor,
                     nighttimeWindColor,
-                    ThemeManager.getInstance(activity).getThemeColor(themeCtx, R.attr.colorOutline)
+                    MainThemeColorProvider.getColor(location, R.attr.colorOutline)
             );
             mDoubleHistogramView.setTextColors(
-                    ThemeManager.getInstance(activity).getThemeColor(themeCtx, R.attr.colorBodyText)
+                    MainThemeColorProvider.getColor(location, R.attr.colorBodyText)
             );
             mDoubleHistogramView.setHistogramAlphas(1f, 0.5f);
 
@@ -182,7 +181,7 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(getActivity(), getThemeCtx(), getLocation(), position);
+        holder.onBindView(getActivity(), getLocation(), position);
     }
 
     @Override

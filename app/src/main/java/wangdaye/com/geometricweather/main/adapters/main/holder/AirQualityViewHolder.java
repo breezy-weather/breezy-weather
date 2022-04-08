@@ -5,7 +5,6 @@ import android.animation.ArgbEvaluator;
 import android.animation.FloatEvaluator;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
@@ -28,7 +27,7 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.ui.widgets.ArcProgress;
 import wangdaye.com.geometricweather.main.adapters.AqiAdapter;
 import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
-import wangdaye.com.geometricweather.main.utils.MainThemeContextProvider;
+import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider;
 import wangdaye.com.geometricweather.theme.ThemeManager;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
@@ -47,7 +46,6 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
     private int mAqiIndex;
 
     private boolean mEnable;
-    private Context mThemeCtx;
     @Nullable private AnimatorSet mAttachAnimatorSet;
 
     public AirQualityViewHolder(ViewGroup parent) {
@@ -81,13 +79,12 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
 
         mEnable = true;
 
-        ThemeManager tm = ThemeManager.getInstance(context);
-        mThemeCtx = MainThemeContextProvider.getContext(location);
-
-        mCard.setCardBackgroundColor(tm.getThemeColor(mThemeCtx, R.attr.colorSurface));
+        mCard.setCardBackgroundColor(MainThemeColorProvider.getColor(location, R.attr.colorSurface));
 
         mTitle.setTextColor(
-                tm.getWeatherThemeDelegate()
+                ThemeManager
+                        .getInstance(context)
+                        .getWeatherThemeDelegate()
                         .getThemeColors(
                                 context,
                                 WeatherViewController.getWeatherKind(mWeather),
@@ -102,7 +99,7 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
                     ContextCompat.getColor(context, R.color.colorLevel_1),
                     MainModuleUtils.isHomeLightTheme(context, location.isDaylight())
             );
-            mProgress.setArcBackgroundColor(tm.getThemeColor(mThemeCtx, R.attr.colorOutline));
+            mProgress.setArcBackgroundColor(MainThemeColorProvider.getColor(location, R.attr.colorOutline));
         } else {
             int aqiColor = mWeather.getCurrent().getAirQuality().getAqiColor(mProgress.getContext());
             mProgress.setProgress(mAqiIndex);
@@ -117,9 +114,9 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
             );
         }
 
-        mProgress.setTextColor(tm.getThemeColor(mThemeCtx, R.attr.colorBodyText));
+        mProgress.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText));
         mProgress.setBottomText(mWeather.getCurrent().getAirQuality().getAqiText());
-        mProgress.setBottomTextColor(tm.getThemeColor(mThemeCtx, R.attr.colorCaptionText));
+        mProgress.setBottomTextColor(MainThemeColorProvider.getColor(location, R.attr.colorCaptionText));
         mProgress.setContentDescription(mAqiIndex + ", " + mWeather.getCurrent().getAirQuality().getAqiText());
 
         mAdapter = new AqiAdapter(context, location, itemAnimationEnabled);
@@ -131,8 +128,6 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
     @Override
     public void onEnterScreen() {
         if (itemAnimationEnabled && mEnable && mWeather != null) {
-            ThemeManager tm = ThemeManager.getInstance(context);
-
             int aqiColor = mWeather.getCurrent().getAirQuality().getAqiColor(mProgress.getContext());
 
             ValueAnimator progressColor = ValueAnimator.ofObject(
@@ -147,7 +142,10 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
 
             ValueAnimator backgroundColor = ValueAnimator.ofObject(
                     new ArgbEvaluator(),
-                    tm.getThemeColor(mThemeCtx, R.attr.colorOutline),
+                    MainThemeColorProvider.getColor(
+                            mWeather.isDaylight(mTimeZone),
+                            R.attr.colorOutline
+                    ),
                     ColorUtils.setAlphaComponent(aqiColor, (int) (255 * 0.1))
             );
             backgroundColor.addUpdateListener(animation ->

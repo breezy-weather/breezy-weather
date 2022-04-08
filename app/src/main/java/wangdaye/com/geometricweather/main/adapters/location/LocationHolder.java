@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.common.ui.adapters.location;
+package wangdaye.com.geometricweather.main.adapters.location;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.databinding.ItemLocationBinding;
-import wangdaye.com.geometricweather.theme.ThemeManager;
+import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 
 public class LocationHolder extends RecyclerView.ViewHolder {
@@ -35,6 +35,8 @@ public class LocationHolder extends RecyclerView.ViewHolder {
 
     @SuppressLint({"SetTextI18n", "ClickableViewAccessibility"})
     protected void onBindView(Context context, LocationModel model, ResourceProvider resourceProvider) {
+        boolean lightTheme = !DisplayUtils.isDarkMode(context);
+
         StringBuilder talkBackBuilder = new StringBuilder(model.subtitle);
         if (model.currentPosition) {
             talkBackBuilder.append(", ").append(context.getString(R.string.current_location));
@@ -53,32 +55,32 @@ public class LocationHolder extends RecyclerView.ViewHolder {
         }
 
         mBinding.container.setBackgroundColorStart(
-                ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorErrorContainer)
+                MainThemeColorProvider.getColor(lightTheme, R.attr.colorErrorContainer)
         );
         mBinding.container.setBackgroundColorEnd(
                 model.location.isCurrentPosition()
-                        ? ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorTertiaryContainer)
-                        : ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorSecondaryContainer)
+                        ? MainThemeColorProvider.getColor(lightTheme, R.attr.colorTertiaryContainer)
+                        : MainThemeColorProvider.getColor(lightTheme, R.attr.colorSecondaryContainer)
         );
 
         mBinding.container.setTintColorStart(
-                ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorOnErrorContainer)
+                MainThemeColorProvider.getColor(lightTheme, R.attr.colorOnErrorContainer)
         );
         mBinding.container.setTintColorEnd(
                 model.location.isCurrentPosition()
-                        ? ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorOnTertiaryContainer)
-                        : ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorOnSecondaryContainer)
+                        ? MainThemeColorProvider.getColor(lightTheme, R.attr.colorOnTertiaryContainer)
+                        : MainThemeColorProvider.getColor(lightTheme, R.attr.colorOnSecondaryContainer)
         );
 
         mBinding.item.setBackgroundColor(
                 model.selected
-                        ? ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorOutline)
-                        : ThemeManager.getInstance(context).getThemeColor(context, android.R.attr.colorBackground)
+                        ? MainThemeColorProvider.getColor(lightTheme, R.attr.colorOutline)
+                        : MainThemeColorProvider.getColor(lightTheme, android.R.attr.colorBackground)
         );
         ImageViewCompat.setImageTintList(
                 mBinding.sortButton,
                 ColorStateList.valueOf(
-                        ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorBodyText)
+                        MainThemeColorProvider.getColor(lightTheme, R.attr.colorBodyText)
                 )
         );
         if (mDragListener == null) {
@@ -105,12 +107,12 @@ public class LocationHolder extends RecyclerView.ViewHolder {
         }
 
         mBinding.title.setTextColor(
-                ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorTitleText)
+                MainThemeColorProvider.getColor(lightTheme, R.attr.colorTitleText)
         );
         mBinding.title.setText(model.title);
 
         mBinding.alerts.setTextColor(
-                ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorCaptionText)
+                MainThemeColorProvider.getColor(lightTheme, R.attr.colorCaptionText)
         );
         if (!TextUtils.isEmpty(model.alerts)) {
             mBinding.alerts.setVisibility(View.VISIBLE);
@@ -122,7 +124,7 @@ public class LocationHolder extends RecyclerView.ViewHolder {
         }
 
         mBinding.subtitle.setTextColor(
-                ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorBodyText)
+                MainThemeColorProvider.getColor(lightTheme, R.attr.colorBodyText)
         );
         mBinding.subtitle.setText(model.subtitle);
 

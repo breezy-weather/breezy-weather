@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.common.ui.adapters.location;
+package wangdaye.com.geometricweather.main.adapters.location;
 
 import android.content.Context;
 import android.text.TextUtils;

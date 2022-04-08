@@ -23,6 +23,7 @@
             android:src="@drawable/ic_drag"
             android:layout_margin="0dp"
             android:contentDescription="@string/content_des_drag_flag"
+            android:tint="?attr/colorBodyText"
             style="@style/material_image_button"
             tools:ignore="ContentDescription" />
 
@@ -89,7 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_marginEnd="@dimen/normal_margin"
                 android:textAlignment="viewStart"
-                android:textColor="@color/colorTextContent"
+                android:textColor="?attr/colorBodyText"
                 style="@style/subtitle_text"
                 tools:text="中国 山东省 青岛市 李沧区"
                 tools:ignore="RtlHardcoded" />

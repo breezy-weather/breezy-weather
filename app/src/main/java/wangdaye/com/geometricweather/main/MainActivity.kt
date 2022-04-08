@@ -22,6 +22,7 @@ import wangdaye.com.geometricweather.common.basic.GeoActivity
 import wangdaye.com.geometricweather.common.basic.models.Location
 import wangdaye.com.geometricweather.common.bus.EventBus
 import wangdaye.com.geometricweather.common.snackbar.SnackbarContainer
+import wangdaye.com.geometricweather.common.utils.DisplayUtils
 import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper
 import wangdaye.com.geometricweather.common.utils.helpers.ShortcutsHelper
@@ -34,12 +35,11 @@ import wangdaye.com.geometricweather.main.fragments.HomeFragment
 import wangdaye.com.geometricweather.main.fragments.ManagementFragment
 import wangdaye.com.geometricweather.main.fragments.ModifyMainSystemBarMessage
 import wangdaye.com.geometricweather.main.fragments.PushedManagementFragment
-import wangdaye.com.geometricweather.main.utils.MainThemeContextProvider
+import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider
 import wangdaye.com.geometricweather.remoteviews.NotificationHelper
 import wangdaye.com.geometricweather.remoteviews.WidgetHelper
 import wangdaye.com.geometricweather.search.SearchActivity
 import wangdaye.com.geometricweather.settings.SettingsChangedMessage
-import wangdaye.com.geometricweather.theme.ThemeManager
 
 @AndroidEntryPoint
 class MainActivity : GeoActivity(),
@@ -102,7 +102,7 @@ class MainActivity : GeoActivity(),
         )
         setContentView(binding.root)
 
-        MainThemeContextProvider.bind(this)
+        MainThemeColorProvider.bind(this)
 
         initModel(savedInstanceState == null)
         initView()
@@ -392,8 +392,9 @@ class MainActivity : GeoActivity(),
 
     private fun updateDayNightColors() {
         fitHorizontalSystemBarRootLayout.setBackgroundColor(
-            ThemeManager.getInstance(this).getThemeColor(
-                this, android.R.attr.colorBackground
+            MainThemeColorProvider.getColor(
+                lightTheme =  !DisplayUtils.isDarkMode(this),
+                id = android.R.attr.colorBackground
             )
         )
     }

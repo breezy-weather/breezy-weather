@@ -12,13 +12,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Lifecycle;
 
 import wangdaye.com.geometricweather.GeometricWeather;
-import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.insets.FitHorizontalSystemBarRootLayout;
 import wangdaye.com.geometricweather.common.snackbar.SnackbarContainer;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.LanguageUtils;
 import wangdaye.com.geometricweather.settings.SettingsManager;
-import wangdaye.com.geometricweather.theme.ThemeManager;
 
 public abstract class GeoActivity extends AppCompatActivity {
 
@@ -91,11 +89,7 @@ public abstract class GeoActivity extends AppCompatActivity {
                 this,
                 getWindow(),
                 false,
-                !DisplayUtils.isLightColor(
-                        ThemeManager
-                                .getInstance(this)
-                                .getThemeColor(this, R.attr.colorOnPrimaryContainer)
-                ),
+                !DisplayUtils.isDarkMode(this),
                 true,
                 !DisplayUtils.isDarkMode(this)
         );

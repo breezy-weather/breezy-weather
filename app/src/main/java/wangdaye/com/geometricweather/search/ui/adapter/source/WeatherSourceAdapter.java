@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.search.ui.adapter;
+package wangdaye.com.geometricweather.search.ui.adapter.source;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;

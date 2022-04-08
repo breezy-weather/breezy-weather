@@ -17,16 +17,16 @@ import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.GeoActivity
 import wangdaye.com.geometricweather.common.basic.models.Location
 import wangdaye.com.geometricweather.common.basic.models.Location.Companion.buildLocal
-import wangdaye.com.geometricweather.common.ui.adapters.location.LocationAdapter
+import wangdaye.com.geometricweather.main.adapters.location.LocationAdapter
 import wangdaye.com.geometricweather.common.ui.decotarions.ListDecoration
 import wangdaye.com.geometricweather.common.utils.DisplayUtils
 import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper
 import wangdaye.com.geometricweather.databinding.FragmentManagementBinding
 import wangdaye.com.geometricweather.main.MainActivityViewModel
 import wangdaye.com.geometricweather.main.adapters.LocationAdapterAnimWrapper
+import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider
 import wangdaye.com.geometricweather.main.widgets.LocationItemTouchCallback
 import wangdaye.com.geometricweather.main.widgets.LocationItemTouchCallback.TouchReactor
-import wangdaye.com.geometricweather.theme.ThemeManager
 
 class PushedManagementFragment: ManagementFragment() {
 
@@ -40,12 +40,7 @@ class PushedManagementFragment: ManagementFragment() {
             requireContext(),
             requireActivity().window,
             false,
-            !DisplayUtils.isLightColor(
-                ThemeManager.getInstance(requireContext()).getThemeColor(
-                    requireContext(),
-                    R.attr.colorOnPrimaryContainer
-                )
-            ),
+            !DisplayUtils.isDarkMode(requireContext()),
             true,
             !DisplayUtils.isDarkMode(requireContext())
         )
@@ -131,17 +126,18 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
             SnackbarHelper.showSnackbar(getString(R.string.feedback_collect_succeed))
         }
 
-        adapter = LocationAdapter(
-            requireActivity(),
-            ArrayList(),
-            null,
-            { _, formattedId ->  // on click.
-                viewModel.setLocation(formattedId)
-                parentFragmentManager.popBackStack()
+        adapter =
+            LocationAdapter(
+                requireActivity(),
+                ArrayList(),
+                null,
+                { _, formattedId ->  // on click.
+                    viewModel.setLocation(formattedId)
+                    parentFragmentManager.popBackStack()
+                }
+            ) { holder ->
+                itemTouchHelper.startDrag(holder)
             }
-        ) { holder ->
-            itemTouchHelper.startDrag(holder)
-        }
         adapterAnimWrapper = LocationAdapterAnimWrapper(requireContext(), adapter)
         adapterAnimWrapper!!.setLastPosition(Int.MAX_VALUE)
         binding.recyclerView.adapter = adapterAnimWrapper
@@ -174,38 +170,59 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
     }
 
     private fun updateDayNightColors() {
-        val tm = ThemeManager.getInstance(requireContext())
+        val lightTheme = !DisplayUtils.isDarkMode(requireContext())
 
         binding.recyclerView.setBackgroundColor(
-            tm.getThemeColor(context = requireContext(), id = android.R.attr.colorBackground)
+            MainThemeColorProvider.getColor(
+                lightTheme = lightTheme,
+                id = android.R.attr.colorBackground
+            )
         )
         binding.appBar.setBackgroundColor(
-            tm.getThemeColor(context = requireContext(), id = R.attr.colorPrimaryContainer)
+            MainThemeColorProvider.getColor(
+                lightTheme = lightTheme,
+                id = R.attr.colorPrimaryContainer
+            )
         )
         binding.searchBar.setCardBackgroundColor(
-            tm.getThemeColor(context = requireContext(), id = R.attr.colorSurface)
+            MainThemeColorProvider.getColor(
+                lightTheme = lightTheme,
+                id = R.attr.colorSurface
+            )
         )
 
         ImageViewCompat.setImageTintList(
             binding.searchIcon,
             ColorStateList.valueOf(
-                tm.getThemeColor(context = requireContext(), id = R.attr.colorBodyText)
+                MainThemeColorProvider.getColor(
+                    lightTheme = lightTheme,
+                    id = R.attr.colorBodyText
+                )
             )
         )
         ImageViewCompat.setImageTintList(
             binding.currentLocationButton,
             ColorStateList.valueOf(
-                tm.getThemeColor(context = requireContext(), id = R.attr.colorBodyText)
+                MainThemeColorProvider.getColor(
+                    lightTheme = lightTheme,
+                    id = R.attr.colorBodyText
+                )
             )
         )
         binding.title.setTextColor(
-            tm.getThemeColor(context = requireContext(), id = R.attr.colorCaptionText)
+            MainThemeColorProvider.getColor(
+                lightTheme = lightTheme,
+                id = R.attr.colorCaptionText
+            )
         )
 
         if (itemDecoration == null) {
             itemDecoration = ListDecoration(
                 requireContext(),
-                tm.getThemeColor(context = requireContext(), id = R.attr.colorOutline)
+                MainThemeColorProvider.getColor(
+                    lightTheme = lightTheme,
+                    id = R.attr.colorOutline
+                )
             ).also {
                 while (binding.recyclerView.itemDecorationCount > 0) {
                     binding.recyclerView.removeItemDecorationAt(0)
@@ -213,8 +230,8 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                 binding.recyclerView.addItemDecoration(it)
             }
         } else {
-            itemDecoration?.color = tm.getThemeColor(
-                context = requireContext(),
+            itemDecoration?.color = MainThemeColorProvider.getColor(
+                lightTheme = lightTheme,
                 id = R.attr.colorOutline
             )
             binding.recyclerView.invalidateItemDecorations()

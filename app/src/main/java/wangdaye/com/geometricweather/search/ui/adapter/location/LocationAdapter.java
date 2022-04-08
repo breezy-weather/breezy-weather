@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.common.ui.adapters.location;
+package wangdaye.com.geometricweather.search.ui.adapter.location;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DiffUtil;
 
 import com.turingtechnologies.materialscrollbar.ICustomAdapter;
@@ -17,12 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.common.basic.models.Location;
-import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.common.ui.adapters.SyncListAdapter;
 import wangdaye.com.geometricweather.databinding.ItemLocationBinding;
-import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.theme.resource.ResourcesProviderFactory;
-import wangdaye.com.geometricweather.settings.SettingsManager;
 
 /**
  * Location adapter.
@@ -33,24 +28,14 @@ public class LocationAdapter extends SyncListAdapter<LocationModel, LocationHold
 
     private final Context mContext;
     private final OnLocationItemClickListener mClickListener;
-    private @Nullable final OnLocationItemDragListener mDragListener;
-
-    private @NonNull final ResourceProvider mResourceProvider;
-    private @NonNull final TemperatureUnit mTemperatureUnit;
 
     public interface OnLocationItemClickListener {
         void onClick(View view, String formattedId);
     }
 
-    public interface OnLocationItemDragListener {
-        void onDrag(LocationHolder holder);
-    }
-
     public LocationAdapter(Context context,
                            List<Location> locationList,
-                           @Nullable String selectedId,
-                           @NonNull OnLocationItemClickListener clickListener,
-                           @Nullable OnLocationItemDragListener dragListener) {
+                           @NonNull OnLocationItemClickListener clickListener) {
         super(new ArrayList<>(), new DiffUtil.ItemCallback<LocationModel>() {
             @Override
             public boolean areItemsTheSame(@NonNull LocationModel oldItem, @NonNull LocationModel newItem) {
@@ -64,12 +49,8 @@ public class LocationAdapter extends SyncListAdapter<LocationModel, LocationHold
         });
         mContext = context;
         mClickListener = clickListener;
-        mDragListener = dragListener;
 
-        mResourceProvider = ResourcesProviderFactory.getNewInstance();
-        mTemperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit();
-
-        update(locationList, selectedId);
+        update(locationList);
     }
 
     @NonNull
@@ -77,48 +58,26 @@ public class LocationAdapter extends SyncListAdapter<LocationModel, LocationHold
     public LocationHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new LocationHolder(
                 ItemLocationBinding.inflate(LayoutInflater.from(parent.getContext())),
-                mClickListener,
-                mDragListener
+                mClickListener
         );
     }
 
     @Override
     public void onBindViewHolder(@NonNull LocationHolder holder, int position) {
-        holder.onBindView(mContext, getItem(position), mResourceProvider);
+        holder.onBindView(mContext, getItem(position));
     }
 
     @Override
     public void onBindViewHolder(@NonNull LocationHolder holder, int position,
                                  @NonNull List<Object> payloads) {
-        holder.onBindView(mContext, getItem(position), mResourceProvider);
+        holder.onBindView(mContext, getItem(position));
     }
 
-    public void update(@Nullable String selectedId) {
-        List<LocationModel> modelList = new ArrayList<>(getItemCount());
-        for (LocationModel model : getCurrentList()) {
-            modelList.add(
-                    new LocationModel(
-                            mContext,
-                            model.location,
-                            mTemperatureUnit,
-                            model.location.getFormattedId().equals(selectedId)
-                    )
-            );
-        }
-        submitList(modelList);
-    }
-
-    public void update(@NonNull List<Location> newList,
-                       @Nullable String selectedId) {
+    public void update(@NonNull List<Location> newList) {
         List<LocationModel> modelList = new ArrayList<>(newList.size());
         for (Location l : newList) {
             modelList.add(
-                    new LocationModel(
-                            mContext,
-                            l,
-                            mTemperatureUnit,
-                            l.getFormattedId().equals(selectedId)
-                    )
+                    new LocationModel(mContext, l)
             );
         }
         submitList(modelList);

@@ -16,13 +16,11 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerViewAdapter;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.item.DailyTrendItemView;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
-import wangdaye.com.geometricweather.main.utils.MainThemeContextProvider;
-import wangdaye.com.geometricweather.theme.ThemeManager;
+import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider;
 
 public abstract class AbsDailyTrendAdapter<VH extends RecyclerView.ViewHolder> extends TrendRecyclerViewAdapter<VH>  {
 
     private final GeoActivity mActivity;
-    private final Context mThemeCtx;
 
     protected static class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -34,7 +32,7 @@ public abstract class AbsDailyTrendAdapter<VH extends RecyclerView.ViewHolder> e
         }
 
         @SuppressLint({"SetTextI18n, InflateParams", "DefaultLocale"})
-        void onBindView(GeoActivity activity, Context themeCtx, Location location,
+        void onBindView(GeoActivity activity, Location location,
                         StringBuilder talkBackBuilder, int position) {
             Context context = itemView.getContext();
             Weather weather = location.getWeather();
@@ -55,8 +53,8 @@ public abstract class AbsDailyTrendAdapter<VH extends RecyclerView.ViewHolder> e
             dailyItem.setDateText(daily.getShortDate(context));
 
             dailyItem.setTextColor(
-                    ThemeManager.getInstance(context).getThemeColor(themeCtx, R.attr.colorBodyText),
-                    ThemeManager.getInstance(context).getThemeColor(themeCtx, R.attr.colorCaptionText)
+                    MainThemeColorProvider.getColor(location, R.attr.colorBodyText),
+                    MainThemeColorProvider.getColor(location, R.attr.colorCaptionText)
             );
 
             dailyItem.setOnClickListener(v -> onItemClicked(activity, location, getAdapterPosition()));
@@ -66,7 +64,6 @@ public abstract class AbsDailyTrendAdapter<VH extends RecyclerView.ViewHolder> e
     public AbsDailyTrendAdapter(GeoActivity activity, Location location) {
         super(location);
         mActivity = activity;
-        mThemeCtx = MainThemeContextProvider.getContext(location);
     }
 
     protected static void onItemClicked(GeoActivity activity, Location location, int adapterPosition) {
@@ -77,9 +74,5 @@ public abstract class AbsDailyTrendAdapter<VH extends RecyclerView.ViewHolder> e
 
     public GeoActivity getActivity() {
         return mActivity;
-    }
-
-    public Context getThemeCtx() {
-        return mThemeCtx;
     }
 }

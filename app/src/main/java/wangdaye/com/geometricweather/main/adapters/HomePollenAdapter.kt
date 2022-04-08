@@ -11,7 +11,7 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.PollenUnit
 import wangdaye.com.geometricweather.common.basic.models.weather.Daily
 import wangdaye.com.geometricweather.common.basic.models.weather.Pollen
 import wangdaye.com.geometricweather.databinding.ItemPollenDailyBinding
-import wangdaye.com.geometricweather.main.utils.MainThemeContextProvider
+import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider
 import wangdaye.com.geometricweather.theme.ThemeManager
 
 open class HomePollenAdapter @JvmOverloads constructor(
@@ -46,59 +46,56 @@ class HomePollenViewHolder internal constructor(
         val context = itemView.context
         val pollen = daily.pollen
 
-        val tm = ThemeManager.getInstance(context)
-        val themeCtx = MainThemeContextProvider.getContext(location)
-
         binding.title.text = daily.getDate(context.getString(R.string.date_format_widget_long))
-        binding.title.setTextColor(tm.getThemeColor(themeCtx, R.attr.colorTitleText))
+        binding.title.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorTitleText))
 
         binding.grassIcon.supportImageTintList = ColorStateList.valueOf(
             Pollen.getPollenColor(itemView.context, pollen.grassLevel)
         )
         binding.grassTitle.text = context.getString(R.string.grass)
-        binding.grassTitle.setTextColor(tm.getThemeColor(themeCtx, R.attr.colorBodyText))
+        binding.grassTitle.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
         binding.grassValue.text = (
                 unit.getPollenText(context, pollen.grassIndex)
                         + " - "
                         + pollen.grassDescription
                 )
-        binding.grassValue.setTextColor(tm.getThemeColor(themeCtx, R.attr.colorCaptionText))
+        binding.grassValue.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorCaptionText))
 
         binding.ragweedIcon.supportImageTintList = ColorStateList.valueOf(
             Pollen.getPollenColor(itemView.context, pollen.ragweedLevel)
         )
         binding.ragweedTitle.text = context.getString(R.string.ragweed)
-        binding.ragweedTitle.setTextColor(tm.getThemeColor(themeCtx, R.attr.colorBodyText))
+        binding.ragweedTitle.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
         binding.ragweedValue.text = (
                 unit.getPollenText(context, pollen.ragweedIndex)
                         + " - "
                         + pollen.ragweedDescription
                 )
-        binding.ragweedValue.setTextColor(tm.getThemeColor(themeCtx, R.attr.colorCaptionText))
+        binding.ragweedValue.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorCaptionText))
 
         binding.treeIcon.supportImageTintList = ColorStateList.valueOf(
             Pollen.getPollenColor(itemView.context, pollen.treeLevel)
         )
         binding.treeTitle.text = context.getString(R.string.tree)
-        binding.treeTitle.setTextColor(tm.getThemeColor(themeCtx, R.attr.colorBodyText))
+        binding.treeTitle.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
         binding.treeValue.text = (
                 unit.getPollenText(context, pollen.treeIndex)
                         + " - "
                         + pollen.treeDescription
                 )
-        binding.treeValue.setTextColor(tm.getThemeColor(themeCtx, R.attr.colorCaptionText))
+        binding.treeValue.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorCaptionText))
 
         binding.moldIcon.supportImageTintList = ColorStateList.valueOf(
             Pollen.getPollenColor(itemView.context, pollen.moldLevel)
         )
         binding.moldTitle.text = context.getString(R.string.mold)
-        binding.moldTitle.setTextColor(tm.getThemeColor(themeCtx, R.attr.colorBodyText))
+        binding.moldTitle.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
         binding.moldValue.text = (
                 unit.getPollenText(context, pollen.moldIndex)
                         + " - "
                         + pollen.moldDescription
                 )
-        binding.moldValue.setTextColor(tm.getThemeColor(themeCtx, R.attr.colorCaptionText))
+        binding.moldValue.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorCaptionText))
 
         itemView.contentDescription = (
                 binding.title.text.toString()

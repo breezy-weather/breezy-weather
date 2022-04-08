@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.search.ui.adapter;
+package wangdaye.com.geometricweather.search.ui.adapter.source;
 
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
 
