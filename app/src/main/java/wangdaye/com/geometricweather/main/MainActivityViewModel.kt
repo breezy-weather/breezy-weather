@@ -36,8 +36,8 @@ class MainActivityViewModel @Inject constructor(
     val loading = EqualtableLiveData<Boolean>()
     val indicator = EqualtableLiveData<Indicator>()
 
-    val permissionsRequest = MutableLiveData<PermissionsRequest>()
-    val mainMessage = BusLiveData<MainMessage>(Handler(Looper.getMainLooper()))
+    val permissionsRequest = MutableLiveData<PermissionsRequest?>()
+    val mainMessage = BusLiveData<MainMessage?>(Handler(Looper.getMainLooper()))
 
     // inner data.
 
@@ -82,6 +82,9 @@ class MainActivityViewModel @Inject constructor(
                 index = validList.indexOfFirst { it.formattedId == id }
             )
         )
+
+        permissionsRequest.value = null
+        mainMessage.setValue(null)
 
         // read weather caches.
         repository.getWeatherCacheForLocations(
@@ -461,7 +464,7 @@ class MainActivityViewModel @Inject constructor(
     ) {
         onUpdateResult(
             location = location,
-            locationResult = locationFailed != false,
+            locationResult = locationFailed != true,
             weatherUpdateResult = !weatherRequestFailed
         )
     }

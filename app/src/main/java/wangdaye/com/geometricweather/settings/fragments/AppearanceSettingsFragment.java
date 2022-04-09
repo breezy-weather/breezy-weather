@@ -158,7 +158,7 @@ public class AppearanceSettingsFragment extends AbstractSettingsFragment {
         iconProvider.setSummary(ResourcesProviderFactory.getNewInstance().getProviderName());
         
         iconProvider.setOnPreferenceClickListener(preference -> {
-            new ProvidersPreviewerDialog().show(getParentFragmentManager(), null);
+            ProvidersPreviewerDialog.show(requireActivity());
             return true;
         });
     }

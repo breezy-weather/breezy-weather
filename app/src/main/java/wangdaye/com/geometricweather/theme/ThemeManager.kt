@@ -1,7 +1,9 @@
 package wangdaye.com.geometricweather.theme
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Configuration
+import android.graphics.Color
 import android.util.TypedValue
 import androidx.annotation.AttrRes
 import androidx.appcompat.app.AppCompatDelegate
@@ -11,6 +13,7 @@ import wangdaye.com.geometricweather.common.basic.models.options.DarkMode
 import wangdaye.com.geometricweather.settings.SettingsManager
 import wangdaye.com.geometricweather.theme.weatherView.WeatherThemeDelegate
 import wangdaye.com.geometricweather.theme.weatherView.materialWeatherView.MaterialWeatherThemeDelegate
+
 
 class ThemeManager private constructor(
     val weatherThemeDelegate: WeatherThemeDelegate,
@@ -64,6 +67,17 @@ class ThemeManager private constructor(
     fun getThemeColor(context: Context, @AttrRes id: Int): Int {
         context.theme.resolveAttribute(id, typedValue, true)
         return typedValue.data
+    }
+
+    @SuppressLint("ResourceType")
+    fun getThemeColors(context: Context, @AttrRes ids: IntArray): IntArray {
+        val a = context.theme.obtainStyledAttributes(ids)
+        val colors = ids.mapIndexed { index, _ ->
+            a.getColor(index, Color.TRANSPARENT)
+        }
+        a.recycle()
+
+        return colors.toIntArray()
     }
 
     fun generateThemeContext(

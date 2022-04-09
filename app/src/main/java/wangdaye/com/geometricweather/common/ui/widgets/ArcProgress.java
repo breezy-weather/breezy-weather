@@ -8,21 +8,17 @@ import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Shader;
-import androidx.annotation.ColorInt;
-import androidx.annotation.Size;
-import androidx.core.graphics.ColorUtils;
-
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.Size;
+import androidx.core.graphics.ColorUtils;
+
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
-
-/**
- * Acr progress.
- * */
 
 public class ArcProgress extends View {
 
@@ -98,7 +94,7 @@ public class ArcProgress extends View {
 
         mBottomText = attributes.getString(R.styleable.ArcProgress_bottom_text);
         mBottomTextSize = attributes.getDimension(
-                R.styleable.ArcProgress_bottom_text_size, DisplayUtils.dpToPx(getContext(), 12));
+                R.styleable.ArcProgress_bottom_text_size, DisplayUtils.dpToPx(getContext(), 14));
         mBottomTextColor = attributes.getColor(R.styleable.ArcProgress_bottom_text_color, Color.DKGRAY);
     }
 
@@ -295,8 +291,8 @@ public class ArcProgress extends View {
             mTextPaint.setColor(mBottomTextColor);
             mTextPaint.setTextSize(mBottomTextSize);
             float bottomTextBaseline = getHeight()
-                    - mArcBottomHeight
-                    - (mTextPaint.descent() + mTextPaint.ascent()) / 2;
+                    + (mTextPaint.descent() + mTextPaint.ascent()) / 2
+                    - mProgressWidth * 0.33f;
             canvas.drawText(
                     mBottomText,
                     (getWidth() - mTextPaint.measureText(mBottomText)) / 2.0f,

@@ -55,7 +55,7 @@
 
     <color name="colorWidgetRoot">@color/md_theme_surface</color>
     <color name="colorWidgetSRoot">@color/lightPrimary_1</color>
-    <color name="colorWidgetSText">@color/colorTextLight</color>
+    <color name="colorWidgetSText">@color/colorTextDark</color>
 
     <!-- material 3. -->
 

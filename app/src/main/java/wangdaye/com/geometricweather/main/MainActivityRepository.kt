@@ -121,14 +121,12 @@ class MainActivityRepository @Inject constructor(
                 if (requestLocation.formattedId != location.formattedId) {
                     return
                 }
-                if (requestLocation.isUsable) {
-                    getWeatherWithValidLocationInformation(
-                        context,
-                        requestLocation,
-                        true,
-                        callback
-                    )
-                }
+                getWeatherWithValidLocationInformation(
+                    context,
+                    requestLocation,
+                    true,
+                    callback
+                )
             }
         }
     )

@@ -100,6 +100,7 @@ fun FitStatusBarTopAppBar(
     title = {
         Text(
             text = title,
+            color = MaterialTheme.colorScheme.onPrimaryContainer,
             style = MaterialTheme.typography.headlineMedium.copy(
                 fontWeight = FontWeight.Medium,
                 fontSize = 20.sp,

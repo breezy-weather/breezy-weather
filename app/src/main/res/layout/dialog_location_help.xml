@@ -1,134 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/dialog_location_help_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/colorSurface">
+    android:orientation="vertical"
+    android:paddingTop="@dimen/normal_margin">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <RelativeLayout
+        android:id="@+id/dialog_location_help_permissionContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:foreground="@drawable/selectable_item_background"
+        tools:ignore="UnusedAttribute">
+
+        <ImageView
+            android:id="@+id/dialog_location_help_permissionIcon"
+            android:src="@drawable/ic_android"
+            android:layout_centerVertical="true"
+            style="@style/material_icon"
+            tools:ignore="ContentDescription"
+            app:tint="#68b545" />
 
         <TextView
-            android:id="@+id/dialog_location_help_title"
-            android:text="@string/feedback_location_help_title"
-            android:textSize="@dimen/large_title_text_size"
-            android:textStyle="bold"
-            android:layout_margin="@dimen/large_margin"
-            style="@style/title_text" />
+            android:id="@+id/dialog_location_help_permissionTitle"
+            android:text="@string/feedback_check_location_permission"
+            android:layout_marginTop="@dimen/normal_margin"
+            android:layout_marginBottom="@dimen/normal_margin"
+            android:layout_marginEnd="@dimen/normal_margin"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/dialog_location_help_permissionIcon"
+            style="@style/content_text" />
 
-        <RelativeLayout
-            android:id="@+id/dialog_location_help_permissionContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:foreground="@drawable/selectable_item_background"
-            tools:ignore="UnusedAttribute">
+    </RelativeLayout>
 
-            <ImageView
-                android:id="@+id/dialog_location_help_permissionIcon"
-                android:src="@drawable/ic_android"
-                android:layout_centerVertical="true"
-                style="@style/material_icon"
-                tools:ignore="ContentDescription"
-                app:tint="#68b545" />
+    <RelativeLayout
+        android:id="@+id/dialog_location_help_locationContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="@drawable/selectable_item_background"
+        tools:ignore="UnusedAttribute">
 
-            <TextView
-                android:id="@+id/dialog_location_help_permissionTitle"
-                android:text="@string/feedback_check_location_permission"
-                android:layout_marginTop="@dimen/normal_margin"
-                android:layout_marginBottom="@dimen/normal_margin"
-                android:layout_marginEnd="@dimen/normal_margin"
-                android:layout_centerVertical="true"
-                android:layout_toEndOf="@id/dialog_location_help_permissionIcon"
-                style="@style/content_text" />
+        <ImageView
+            android:id="@+id/dialog_location_help_locationIcon"
+            android:src="@drawable/ic_location"
+            android:layout_centerVertical="true"
+            style="@style/material_icon"
+            tools:ignore="ContentDescription"
+            app:tint="#2196f3" />
 
-        </RelativeLayout>
+        <TextView
+            android:id="@+id/dialog_location_help_locationTitle"
+            android:text="@string/feedback_enable_location_information"
+            android:layout_marginTop="@dimen/normal_margin"
+            android:layout_marginBottom="@dimen/normal_margin"
+            android:layout_marginEnd="@dimen/normal_margin"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/dialog_location_help_locationIcon"
+            style="@style/content_text" />
 
-        <RelativeLayout
-            android:id="@+id/dialog_location_help_locationContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:foreground="@drawable/selectable_item_background"
-            tools:ignore="UnusedAttribute">
+    </RelativeLayout>
 
-            <ImageView
-                android:id="@+id/dialog_location_help_locationIcon"
-                android:src="@drawable/ic_location"
-                android:layout_centerVertical="true"
-                style="@style/material_icon"
-                tools:ignore="ContentDescription"
-                app:tint="#2196f3" />
+    <RelativeLayout
+        android:id="@+id/dialog_location_help_providerContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="@drawable/selectable_item_background"
+        tools:ignore="UnusedAttribute">
 
-            <TextView
-                android:id="@+id/dialog_location_help_locationTitle"
-                android:text="@string/feedback_enable_location_information"
-                android:layout_marginTop="@dimen/normal_margin"
-                android:layout_marginBottom="@dimen/normal_margin"
-                android:layout_marginEnd="@dimen/normal_margin"
-                android:layout_centerVertical="true"
-                android:layout_toEndOf="@id/dialog_location_help_locationIcon"
-                style="@style/content_text" />
+        <ImageView
+            android:id="@+id/dialog_location_help_providerIcon"
+            android:src="@drawable/ic_router"
+            android:layout_centerVertical="true"
+            style="@style/material_icon"
+            tools:ignore="ContentDescription"
+            app:tint="#607d8b" />
 
-        </RelativeLayout>
+        <TextView
+            android:id="@+id/dialog_location_help_providerTitle"
+            android:text="@string/feedback_select_location_provider"
+            android:layout_marginTop="@dimen/normal_margin"
+            android:layout_marginBottom="@dimen/normal_margin"
+            android:layout_marginEnd="@dimen/normal_margin"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/dialog_location_help_providerIcon"
+            style="@style/content_text" />
 
-        <RelativeLayout
-            android:id="@+id/dialog_location_help_providerContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:foreground="@drawable/selectable_item_background"
-            tools:ignore="UnusedAttribute">
+    </RelativeLayout>
 
-            <ImageView
-                android:id="@+id/dialog_location_help_providerIcon"
-                android:src="@drawable/ic_router"
-                android:layout_centerVertical="true"
-                style="@style/material_icon"
-                tools:ignore="ContentDescription"
-                app:tint="#607d8b" />
+    <RelativeLayout
+        android:id="@+id/dialog_location_help_manageContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="@drawable/selectable_item_background"
+        tools:ignore="UnusedAttribute">
 
-            <TextView
-                android:id="@+id/dialog_location_help_providerTitle"
-                android:text="@string/feedback_select_location_provider"
-                android:layout_marginTop="@dimen/normal_margin"
-                android:layout_marginBottom="@dimen/normal_margin"
-                android:layout_marginEnd="@dimen/normal_margin"
-                android:layout_centerVertical="true"
-                android:layout_toEndOf="@id/dialog_location_help_providerIcon"
-                style="@style/content_text" />
+        <ImageView
+            android:id="@+id/dialog_location_help_manageIcon"
+            android:src="@drawable/ic_building"
+            android:layout_centerVertical="true"
+            style="@style/material_icon"
+            tools:ignore="ContentDescription"
+            app:tint="#bb86fc" />
 
-        </RelativeLayout>
+        <TextView
+            android:id="@+id/dialog_location_help_manageTitle"
+            android:text="@string/feedback_add_location_manually"
+            android:layout_marginTop="@dimen/normal_margin"
+            android:layout_marginBottom="@dimen/normal_margin"
+            android:layout_marginEnd="@dimen/normal_margin"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/dialog_location_help_manageIcon"
+            style="@style/content_text" />
 
-        <RelativeLayout
-            android:id="@+id/dialog_location_help_manageContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:foreground="@drawable/selectable_item_background"
-            tools:ignore="UnusedAttribute">
+    </RelativeLayout>
 
-            <ImageView
-                android:id="@+id/dialog_location_help_manageIcon"
-                android:src="@drawable/ic_building"
-                android:layout_centerVertical="true"
-                style="@style/material_icon"
-                tools:ignore="ContentDescription"
-                app:tint="#bb86fc" />
-
-            <TextView
-                android:id="@+id/dialog_location_help_manageTitle"
-                android:text="@string/feedback_add_location_manually"
-                android:layout_marginTop="@dimen/normal_margin"
-                android:layout_marginBottom="@dimen/normal_margin"
-                android:layout_marginEnd="@dimen/normal_margin"
-                android:layout_centerVertical="true"
-                android:layout_toEndOf="@id/dialog_location_help_manageIcon"
-                style="@style/content_text" />
-
-        </RelativeLayout>
-
-    </LinearLayout>
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>

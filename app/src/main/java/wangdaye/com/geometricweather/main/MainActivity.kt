@@ -9,12 +9,12 @@ import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
-import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.background.polling.PollingManager
@@ -28,9 +28,7 @@ import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper
 import wangdaye.com.geometricweather.common.utils.helpers.ShortcutsHelper
 import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper
 import wangdaye.com.geometricweather.databinding.ActivityMainBinding
-import wangdaye.com.geometricweather.main.dialogs.BackgroundLocationDialog
 import wangdaye.com.geometricweather.main.dialogs.LocationHelpDialog
-import wangdaye.com.geometricweather.main.dialogs.LocationPermissionStatementDialog
 import wangdaye.com.geometricweather.main.fragments.HomeFragment
 import wangdaye.com.geometricweather.main.fragments.ManagementFragment
 import wangdaye.com.geometricweather.main.fragments.ModifyMainSystemBarMessage
@@ -44,9 +42,7 @@ import wangdaye.com.geometricweather.settings.SettingsChangedMessage
 @AndroidEntryPoint
 class MainActivity : GeoActivity(),
     HomeFragment.Callback,
-    ManagementFragment.Callback,
-    LocationPermissionStatementDialog.Callback,
-    BackgroundLocationDialog.Callback {
+    ManagementFragment.Callback {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainActivityViewModel
@@ -181,19 +177,20 @@ class MainActivity : GeoActivity(),
             .removeObserver(backgroundUpdateObserver)
     }
 
-    override fun getSnackbarContainer(): SnackbarContainer {
-        if (binding.drawerLayout != null) {
-            return super.getSnackbarContainer()
-        }
+    override val snackbarContainer: SnackbarContainer?
+        get() {
+            if (binding.drawerLayout != null) {
+                return super.snackbarContainer
+            }
 
-        val f = if (isManagementFragmentVisible) {
-            findManagementFragment()
-        } else {
-            findHomeFragment()
-        }
+            val f = if (isManagementFragmentVisible) {
+                findManagementFragment()
+            } else {
+                findHomeFragment()
+            }
 
-        return f?.snackbarContainer ?: super.getSnackbarContainer()
-    }
+            return f?.snackbarContainer ?: super.snackbarContainer
+        }
 
     // init.
 
@@ -238,6 +235,7 @@ class MainActivity : GeoActivity(),
         }
         viewModel.permissionsRequest.observe(this) {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M
+                || it == null
                 || it.permissionList.isEmpty()
                 || !it.consume()) {
                 return@observe
@@ -253,9 +251,25 @@ class MainActivity : GeoActivity(),
             }
             if (needShowDialog && !viewModel.statementManager.isLocationPermissionDeclared) {
                 // only show dialog once.
-                val dialog = LocationPermissionStatementDialog()
-                dialog.isCancelable = false
-                dialog.show(supportFragmentManager, null)
+                MaterialAlertDialogBuilder(this)
+                    .setTitle(R.string.feedback_location_permissions_title)
+                    .setMessage(R.string.feedback_location_permissions_statement)
+                    .setPositiveButton(R.string.next) { _, _ ->
+                        // mark declared.
+                        viewModel.statementManager.setLocationPermissionDeclared(this)
+
+                        val request = viewModel.permissionsRequest.value
+                        if (request != null
+                            && request.permissionList.isNotEmpty()
+                            && request.target != null) {
+                            requestPermissions(
+                                request.permissionList.toTypedArray(),
+                                0
+                            )
+                        }
+                    }
+                    .setCancelable(false)
+                    .show()
             } else {
                 requestPermissions(it.permissionList.toTypedArray(), 0)
             }
@@ -268,9 +282,7 @@ class MainActivity : GeoActivity(),
                             getString(R.string.feedback_location_failed),
                             getString(R.string.help)
                         ) {
-                            LocationHelpDialog
-                                .getInstance()
-                                .show(supportFragmentManager, null)
+                            LocationHelpDialog.show(this)
                         }
                     }
                     MainMessage.WEATHER_REQ_FAILED -> {
@@ -297,23 +309,21 @@ class MainActivity : GeoActivity(),
             return
         }
 
-        var i = 0
-        while (i < permissions.size && i < grantResults.size) {
-            if (isForegroundLocationPermission(permissions[i])
-                && grantResults[i] != PackageManager.PERMISSION_GRANTED
-            ) {
-                // denied basic location permissions.
-                if (request.target.isUsable || isLocationPermissionsGranted) {
-                    viewModel.updateWithUpdatingChecking(
-                        request.triggeredByUser,
-                        false
-                    )
-                } else {
-                    viewModel.cancelRequest()
-                }
-                return
+        grantResults.zip(permissions).firstOrNull { // result, permission
+            it.first != PackageManager.PERMISSION_GRANTED
+                    && isEssentialLocationPermission(permission = it.second)
+        }?.let {
+            // if the user denied an essential location permissions.
+            if (request.target.isUsable || isLocationPermissionsGranted) {
+                viewModel.updateWithUpdatingChecking(
+                    request.triggeredByUser,
+                    false
+                )
+            } else {
+                viewModel.cancelRequest()
             }
-            i++
+
+            return
         }
 
         // check background location permissions.
@@ -324,7 +334,20 @@ class MainActivity : GeoActivity(),
                 Manifest.permission.ACCESS_BACKGROUND_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            BackgroundLocationDialog().show(supportFragmentManager, null)
+            MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.feedback_background_location_title)
+                .setMessage(R.string.feedback_background_location_summary)
+                .setPositiveButton(R.string.go_to_set) { _, _ ->
+                    // mark background location permission declared.
+                    viewModel.statementManager.setBackgroundLocationDeclared(this)
+                    // request background location permission.
+                    requestPermissions(
+                        arrayOf(Manifest.permission.ACCESS_BACKGROUND_LOCATION),
+                        0
+                    )
+                }
+                .setCancelable(false)
+                .show()
         }
         viewModel.updateWithUpdatingChecking(
             request.triggeredByUser,
@@ -332,16 +355,16 @@ class MainActivity : GeoActivity(),
         )
     }
 
-    private fun isLocationPermission(permission: String): Boolean {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            permission == Manifest.permission.ACCESS_COARSE_LOCATION
-                    || isForegroundLocationPermission(permission)
-        } else {
-            isForegroundLocationPermission(permission)
-        }
+    private fun isLocationPermission(
+        permission: String
+    ) = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        permission == Manifest.permission.ACCESS_BACKGROUND_LOCATION
+                || isEssentialLocationPermission(permission)
+    } else {
+        isEssentialLocationPermission(permission)
     }
 
-    private fun isForegroundLocationPermission(permission: String): Boolean {
+    private fun isEssentialLocationPermission(permission: String): Boolean {
         return permission == Manifest.permission.ACCESS_COARSE_LOCATION
                 || permission == Manifest.permission.ACCESS_FINE_LOCATION
     }
@@ -506,32 +529,5 @@ class MainActivity : GeoActivity(),
 
     override fun onSelectProviderActivityStarted() {
         IntentHelper.startSelectProviderActivity(this)
-    }
-
-    // location permissions statement callback.
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    override fun requestLocationPermissions() {
-        viewModel.statementManager.setLocationPermissionDeclared(this)
-
-        val request = viewModel.permissionsRequest.value
-        if (request != null
-            && request.permissionList.isNotEmpty()
-            && request.target != null) {
-            requestPermissions(
-                request.permissionList.toTypedArray(),
-                0
-            )
-        }
-    }
-
-    // background location permissions callback.
-
-    @RequiresApi(api = Build.VERSION_CODES.Q)
-    override fun requestBackgroundLocationPermission() {
-        viewModel.statementManager.setBackgroundLocationDeclared(this)
-        val permissionList: MutableList<String> = ArrayList()
-        permissionList.add(Manifest.permission.ACCESS_BACKGROUND_LOCATION)
-        requestPermissions(permissionList.toTypedArray(), 0)
     }
 }

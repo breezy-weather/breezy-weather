@@ -27,11 +27,12 @@
 
         </wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
+        <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarRecyclerView
             android:id="@+id/activity_preview_icon_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clipToPadding="false" />
+            android:clipToPadding="false"
+            app:rv_side="bottom" />
 
     </LinearLayout>
 

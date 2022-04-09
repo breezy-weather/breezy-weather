@@ -120,7 +120,6 @@ public abstract class AbstractSettingsFragment extends PreferenceFragmentCompat 
                             + "displaying a custom dialog for this Preference.");
         }
 
-        GeoDialog.injectStyle(f);
         f.setTargetFragment(this, 0);
         f.show(getParentFragmentManager(), DIALOG_FRAGMENT_TAG);
     }

@@ -1,66 +1,58 @@
 package wangdaye.com.geometricweather.main.dialogs;
 
 import android.annotation.SuppressLint;
-import android.os.Bundle;
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.common.basic.GeoDialog;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
 import wangdaye.com.geometricweather.main.MainActivity;
 
-public class LocationHelpDialog extends GeoDialog {
+public class LocationHelpDialog {
 
-    public static LocationHelpDialog getInstance() {
-        return new LocationHelpDialog();
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        super.onCreateView(inflater, container, savedInstanceState);
-
-        View view = LayoutInflater.from(getActivity()).inflate(
-                R.layout.dialog_location_help, container, false);
-        initWidget(view);
-        return view;
+    public static void show(Activity activity) {
+        View view = LayoutInflater
+                .from(activity)
+                .inflate(R.layout.dialog_location_help, null, false);
+        initWidget(
+                activity,
+                view,
+                new MaterialAlertDialogBuilder(activity)
+                        .setTitle(R.string.feedback_location_help_title)
+                        .setView(view)
+                        .show()
+        );
     }
 
     @SuppressLint("SetTextI18n")
-    private void initWidget(View view) {
-        Bundle bundle = getArguments();
-        if (bundle == null) {
-            return;
-        }
-
+    private static void initWidget(Activity activity, View view, AlertDialog dialog) {
         view.findViewById(R.id.dialog_location_help_permissionContainer)
-                .setOnClickListener(v -> IntentHelper.startApplicationDetailsActivity(getActivity()));
+                .setOnClickListener(v -> IntentHelper.startApplicationDetailsActivity(activity));
 
         view.findViewById(R.id.dialog_location_help_locationContainer)
-                .setOnClickListener(v -> IntentHelper.startLocationSettingsActivity(requireContext()));
+                .setOnClickListener(v -> IntentHelper.startLocationSettingsActivity(activity));
 
         view.findViewById(R.id.dialog_location_help_providerContainer)
-                .setOnClickListener(v -> IntentHelper.startSelectProviderActivity(requireActivity()));
+                .setOnClickListener(v -> IntentHelper.startSelectProviderActivity(activity));
 
         view.findViewById(R.id.dialog_location_help_manageContainer).setOnClickListener(v -> {
-            if (requireActivity() instanceof MainActivity) {
-                ((MainActivity) requireActivity()).setManagementFragmentVisibility(true);
+            if (activity instanceof MainActivity) {
+                ((MainActivity) activity).setManagementFragmentVisibility(true);
             } else {
-                IntentHelper.startMainActivityForManagement(requireActivity());
+                IntentHelper.startMainActivityForManagement(activity);
             }
-            dismiss();
+
+            dialog.dismiss();
         });
         ((TextView) view.findViewById(R.id.dialog_location_help_manageTitle)).setText(
-                getString(R.string.feedback_add_location_manually).replace(
-                        "$", getString(R.string.current_location)
+                activity.getString(R.string.feedback_add_location_manually).replace(
+                        "$", activity.getString(R.string.current_location)
                 )
         );
     }

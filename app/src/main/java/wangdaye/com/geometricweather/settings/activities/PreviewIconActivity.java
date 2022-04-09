@@ -221,8 +221,7 @@ class WeatherIcon extends BaseWeatherIcon {
 
     @Override
     public void onItemClicked(GeoActivity activity) {
-        AnimatableIconDialog.getInstance(weatherCode, daytime, provider)
-                .show(activity.getSupportFragmentManager(), null);
+        AnimatableIconDialog.show(activity, weatherCode, daytime, provider);
     }
 }
 
@@ -243,8 +242,7 @@ class MinimalIcon extends BaseWeatherIcon {
 
     @Override
     public void onItemClicked(GeoActivity activity) {
-        MinimalIconDialog.getInstance(weatherCode, daytime, provider)
-                .show(activity.getSupportFragmentManager(), null);
+        MinimalIconDialog.show(activity, weatherCode, daytime, provider);
     }
 }
 
@@ -261,8 +259,7 @@ class ShortcutIcon extends BaseWeatherIcon {
 
     @Override
     public void onItemClicked(GeoActivity activity) {
-        AdaptiveIconDialog.getInstance(weatherCode, daytime, provider).show(
-                activity.getSupportFragmentManager(), null);
+        AdaptiveIconDialog.show(activity, weatherCode, daytime, provider);
     }
 }
 

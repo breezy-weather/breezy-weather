@@ -220,7 +220,7 @@
     </style>
 
     <!-- button -->
-    <style name="material_button" parent="@style/Widget.AppCompat.Button.Borderless">
+    <style name="material_button" parent="@style/Widget.Material3.Button.TextButton">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/content_text_size</item>

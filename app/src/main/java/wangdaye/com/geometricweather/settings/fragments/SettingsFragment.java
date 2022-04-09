@@ -6,11 +6,15 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 
+import androidx.annotation.RequiresApi;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.preference.CheckBoxPreference;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.polling.PollingManager;
@@ -40,8 +44,6 @@ import wangdaye.com.geometricweather.remoteviews.presenters.TextWidgetIMP;
 import wangdaye.com.geometricweather.remoteviews.presenters.WeekWidgetIMP;
 import wangdaye.com.geometricweather.remoteviews.presenters.notification.NormalNotificationIMP;
 import wangdaye.com.geometricweather.settings.SettingsChangedMessage;
-import wangdaye.com.geometricweather.settings.dialogs.RunningInBackgroundDialog;
-import wangdaye.com.geometricweather.settings.dialogs.RunningInBackgroundODialog;
 import wangdaye.com.geometricweather.settings.dialogs.TimeSetterDialog;
 import wangdaye.com.geometricweather.theme.ThemeManager;
 
@@ -105,6 +107,39 @@ public class SettingsFragment extends AbstractSettingsFragment {
                 .unregisterReceiver(setTimeCallback);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void showBlockNotificationGroupDialog() {
+        new MaterialAlertDialogBuilder(requireContext())
+                .setTitle(R.string.feedback_interpret_notification_group_title)
+                .setMessage(R.string.feedback_interpret_notification_group_content)
+                .setPositiveButton(R.string.go_to_set, (dialogInterface, i) -> {
+                    Intent intent = new Intent();
+                    intent.setAction(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
+                    intent.putExtra(Settings.EXTRA_APP_PACKAGE, requireActivity().getPackageName());
+                    requireActivity().startActivity(intent);
+
+                    showIgnoreBatteryOptimizationDialog();
+                })
+                .setNeutralButton(R.string.done, (dialogInterface, i) ->
+                        showIgnoreBatteryOptimizationDialog()
+                )
+                .setCancelable(false)
+                .show();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void showIgnoreBatteryOptimizationDialog() {
+        new MaterialAlertDialogBuilder(requireContext())
+                .setTitle(R.string.feedback_ignore_battery_optimizations_title)
+                .setMessage(R.string.feedback_ignore_battery_optimizations_content)
+                .setPositiveButton(R.string.go_to_set, (dialogInterface, i) ->
+                        IntentHelper.startBatteryOptimizationActivity(requireActivity())
+                )
+                .setNeutralButton(R.string.done, (dialogInterface, i) -> {})
+                .setCancelable(false)
+                .show();
+    }
+
     private void initBasicPart() {
         // background free.
         // force set background free on android 12+.
@@ -118,9 +153,9 @@ public class SettingsFragment extends AbstractSettingsFragment {
             PollingManager.resetNormalBackgroundTask(requireActivity(), false);
             if (!backgroundFree) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    new RunningInBackgroundODialog().show(getParentFragmentManager(), null);
+                    showBlockNotificationGroupDialog();
                 } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    new RunningInBackgroundDialog().show(getParentFragmentManager(), null);
+                    showIgnoreBatteryOptimizationDialog();
                 }
             }
 
@@ -221,7 +256,7 @@ public class SettingsFragment extends AbstractSettingsFragment {
         Preference todayForecastTime = findPreference(getString(R.string.key_forecast_today_time));
         todayForecastTime.setSummary(getSettingsOptionManager().getTodayForecastTime());
         todayForecastTime.setOnPreferenceClickListener(preference -> {
-            TimeSetterDialog.getInstance(true).show(getParentFragmentManager(), null);
+            TimeSetterDialog.show(requireContext(), true);
             return true;
         });
         todayForecastTime.setEnabled(getSettingsOptionManager().isTodayForecastEnabled());
@@ -243,7 +278,7 @@ public class SettingsFragment extends AbstractSettingsFragment {
         Preference tomorrowForecastTime = findPreference(getString(R.string.key_forecast_tomorrow_time));
         tomorrowForecastTime.setSummary(getSettingsOptionManager().getTomorrowForecastTime());
         tomorrowForecastTime.setOnPreferenceClickListener(preference -> {
-            TimeSetterDialog.getInstance(false).show(getParentFragmentManager(), null);
+            TimeSetterDialog.show(requireContext(), false);
             return true;
         });
         tomorrowForecastTime.setEnabled(getSettingsOptionManager().isTomorrowForecastEnabled());

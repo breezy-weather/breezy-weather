@@ -74,6 +74,28 @@ public class LocationHelper {
 
     public void requestLocation(Context context, Location location, boolean background,
                                 @NonNull OnRequestLocationListener l) {
+        final OnRequestLocationListener usableCheckListener = new OnRequestLocationListener() {
+            @Override
+            public void requestLocationSuccess(Location requestLocation) {
+                l.requestLocationSuccess(requestLocation);
+            }
+
+            @Override
+            public void requestLocationFailed(Location requestLocation) {
+                if (requestLocation.isUsable()) {
+                    l.requestLocationFailed(requestLocation);
+                } else {
+                    Location finalLocation = Location.copy(
+                            Location.buildDefaultLocation(),
+                            true,
+                            false
+                    );
+                    DatabaseHelper.getInstance(context).writeLocation(finalLocation);
+                    l.requestLocationFailed(finalLocation);
+                }
+            }
+        };
+
         final LocationProvider provider = SettingsManager.getInstance(context).getLocationProvider();
         final LocationService service = getLocationService(provider);
         if (service.getPermissions().length != 0) {
@@ -85,7 +107,7 @@ public class LocationHelper {
                     context,
                     Manifest.permission.ACCESS_FINE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED)) {
-                l.requestLocationFailed(location);
+                usableCheckListener.requestLocationFailed(location);
                 return;
             }
             if (background) {
@@ -93,7 +115,7 @@ public class LocationHelper {
                         context,
                         Manifest.permission.ACCESS_BACKGROUND_LOCATION
                 ) != PackageManager.PERMISSION_GRANTED) {
-                    l.requestLocationFailed(location);
+                    usableCheckListener.requestLocationFailed(location);
                     return;
                 }
             }
@@ -106,7 +128,7 @@ public class LocationHelper {
                 context,
                 result -> {
                     if (result == null) {
-                        l.requestLocationFailed(location);
+                        usableCheckListener.requestLocationFailed(location);
                         return;
                     }
 
@@ -118,7 +140,7 @@ public class LocationHelper {
                                     result.longitude,
                                     TimeZone.getDefault()
                             ),
-                            l
+                            usableCheckListener
                     );
                 }
         );

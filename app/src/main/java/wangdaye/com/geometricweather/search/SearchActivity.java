@@ -159,6 +159,14 @@ public class SearchActivity extends GeoActivity
     }
 
     private void initView() {
+        int[] colors = ThemeManager.getInstance(this).getThemeColors(
+                this, new int[]{
+                        R.attr.colorOutline,
+                        R.attr.colorSurfaceVariant,
+                        R.attr.colorPrimaryContainer,
+                }
+        );
+
         mBinding.backBtn.setOnClickListener(v -> finishSelf(null));
 
         mBinding.editText.setOnEditorActionListener(this);
@@ -199,10 +207,7 @@ public class SearchActivity extends GeoActivity
         while (mBinding.recyclerView.getItemDecorationCount() > 0) {
             mBinding.recyclerView.removeItemDecorationAt(0);
         }
-        mBinding.recyclerView.addItemDecoration(new ListDecoration(
-                this,
-                ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorOutline))
-        );
+        mBinding.recyclerView.addItemDecoration(new ListDecoration(this, colors[0]));
 
         mBinding.scrollBar.setIndicator(
                 new WeatherSourceIndicator(this).setTextSize(16), true);
@@ -241,14 +246,16 @@ public class SearchActivity extends GeoActivity
                 mBinding.fab,
                 mBinding.fabSheet,
                 mBinding.overlay,
-                ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorSurface),
-                ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorPrimary)
+                colors[1],
+                colors[2]
         );
         mMaterialSheetFab.setEventListener(new MaterialSheetFabEventListener() {
             @Override
             public void onShowSheet() {
                 mBinding.sourceList.setAdapter(
-                        mSourceAdapter = new WeatherSourceAdapter(mViewModel.getEnabledSourcesValue())
+                        mSourceAdapter = new WeatherSourceAdapter(
+                                mViewModel.getEnabledSourcesValue()
+                        )
                 );
             }
         });

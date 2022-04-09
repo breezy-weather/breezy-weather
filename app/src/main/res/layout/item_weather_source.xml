@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/normal_margin"
         android:layout_centerVertical="true"
-        app:buttonTint="@color/colorPrimary" />
+        app:buttonTint="?attr/colorPrimary" />
 
     <TextView
         android:id="@+id/title"
@@ -24,7 +24,7 @@
         android:layout_marginBottom="@dimen/normal_margin"
         android:layout_marginEnd="@dimen/normal_margin"
         android:textStyle="bold"
-        android:textColor="@color/colorTextTitle"
+        android:textColor="?attr/colorOnSurfaceVariant"
         android:layout_alignParentEnd="true"
         android:layout_toEndOf="@id/checkbox"
         android:layout_centerVertical="true"

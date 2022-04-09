@@ -118,8 +118,9 @@
             android:textColor="@android:color/white"
             android:contentDescription="@string/content_desc_filter_weather_sources"
             android:src="@drawable/ic_filter"
-            app:tint="?attr/colorOnPrimary"
-            app:backgroundTint="?attr/colorPrimary" />
+            style="?attr/floatingActionButtonStyle"
+            app:tint="?attr/colorOnPrimaryContainer"
+            app:backgroundTint="?attr/colorPrimaryContainer" />
 
         <io.codetail.widget.RevealLinearLayout
             android:layout_width="match_parent"
@@ -130,10 +131,10 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/fab_sheet"
                 android:layout_width="300dp"
-                android:layout_height="300dp"
+                android:layout_height="360dp"
                 android:layout_margin="@dimen/normal_margin"
                 style="@style/material_card"
-                app:cardBackgroundColor="?android:attr/colorBackground">
+                app:cardBackgroundColor="?attr/colorPrimaryContainer">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -149,14 +150,17 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="?attr/colorOutline" />
+                        android:background="@android:color/darker_gray"
+                        android:alpha="0.1"/>
 
                     <Button
                         android:id="@+id/source_enter"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/normal_margin"
                         android:text="@string/done"
-                        android:textColor="@color/colorTextTitle"
+                        android:textColor="?attr/colorPrimary"
+                        android:textStyle="bold"
                         style="@style/material_button"
                         tools:ignore="UnusedAttribute" />
 

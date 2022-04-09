@@ -6,9 +6,46 @@ import androidx.annotation.AttrRes
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
+import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.models.Location
 import wangdaye.com.geometricweather.main.MainActivity
 import wangdaye.com.geometricweather.theme.ThemeManager
+
+private val preloadAttrIds = intArrayOf(
+    R.attr.colorPrimary,
+    R.attr.colorOnPrimary,
+    R.attr.colorPrimaryContainer,
+    R.attr.colorOnPrimaryContainer,
+
+    R.attr.colorSecondary,
+    R.attr.colorOnSecondary,
+    R.attr.colorSecondaryContainer,
+    R.attr.colorOnSecondaryContainer,
+
+    R.attr.colorTertiary,
+    R.attr.colorOnTertiary,
+    R.attr.colorTertiaryContainer,
+    R.attr.colorOnTertiaryContainer,
+
+    R.attr.colorTertiary,
+    R.attr.colorErrorContainer,
+    R.attr.colorOnError,
+    R.attr.colorOnErrorContainer,
+
+    android.R.attr.colorBackground,
+    R.attr.colorOnBackground,
+
+    R.attr.colorSurface,
+    R.attr.colorOnSurface,
+    R.attr.colorSurfaceVariant,
+    R.attr.colorOnSurfaceVariant,
+
+    R.attr.colorOutline,
+
+    R.attr.colorTitleText,
+    R.attr.colorBodyText,
+    R.attr.colorCaptionText,
+)
 
 class MainThemeColorProvider(
     private val host: MainActivity
@@ -112,6 +149,17 @@ class MainThemeColorProvider(
         .getInstance(host)
         .generateThemeContext(context = host, lightTheme = false)
     private val darkColorCache = HashMap<Int, Int>()
+
+    init {
+        preloadAttrIds.zip(
+            ThemeManager.getInstance(host).getThemeColors(lightContext, preloadAttrIds).zip(
+                ThemeManager.getInstance(host).getThemeColors(darkContext, preloadAttrIds)
+            )
+        ).forEach { // attr id, <light color, dark color>
+            lightColorCache[it.first] = it.second.first
+            darkColorCache[it.first] = it.second.second
+        }
+    }
 
     override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
         val currentState = host.lifecycle.currentState

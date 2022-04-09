@@ -18,7 +18,6 @@ import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider;
 public abstract class AbsHourlyTrendAdapter<VH extends RecyclerView.ViewHolder> extends TrendRecyclerViewAdapter<VH>  {
 
     private final GeoActivity mActivity;
-    private final Context mThemeCtx;
 
     protected static class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -54,16 +53,16 @@ public abstract class AbsHourlyTrendAdapter<VH extends RecyclerView.ViewHolder> 
     public AbsHourlyTrendAdapter(GeoActivity activity, Location location) {
         super(location);
         mActivity = activity;
-        mThemeCtx = MainThemeColorProvider.getContext(location);
     }
 
     protected static void onItemClicked(GeoActivity activity,
                                         Location location,
                                         int adapterPosition) {
         if (activity.isActivityResumed()) {
-            HourlyWeatherDialog
-                    .getInstance(location.getWeather(), adapterPosition)
-                    .show(activity.getSupportFragmentManager(), null);
+            HourlyWeatherDialog.show(
+                    activity,
+                    location.getWeather().getHourlyForecast().get(adapterPosition)
+            );
         }
     }
 
@@ -71,7 +70,4 @@ public abstract class AbsHourlyTrendAdapter<VH extends RecyclerView.ViewHolder> 
         return mActivity;
     }
 
-    public Context getThemeCtx() {
-        return mThemeCtx;
-    }
 }

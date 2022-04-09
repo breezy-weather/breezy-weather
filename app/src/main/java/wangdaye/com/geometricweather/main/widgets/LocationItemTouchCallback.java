@@ -10,10 +10,11 @@ import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
-import wangdaye.com.geometricweather.main.dialogs.LearnMoreAboutResidentLocationDialog;
 import wangdaye.com.geometricweather.common.ui.widgets.slidingItem.SlidingItemTouchCallback;
 import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
 import wangdaye.com.geometricweather.main.MainActivityViewModel;
@@ -102,8 +103,10 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
                         SnackbarHelper.showSnackbar(
                                 mActivity.getString(R.string.feedback_resident_location),
                                 mActivity.getString(R.string.learn_more),
-                                v -> new LearnMoreAboutResidentLocationDialog()
-                                        .show(mActivity.getSupportFragmentManager(), null)
+                                v -> new MaterialAlertDialogBuilder(mActivity)
+                                        .setTitle(R.string.resident_location)
+                                        .setMessage(R.string.feedback_resident_location_description)
+                                        .show()
                         );
                     }
                 }

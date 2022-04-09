@@ -142,12 +142,20 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
         for (DailyTrendDisplay tag : otherTags) {
             tagList.add(new DailyTrendTag(tag));
         }
+        int[] colors = ThemeManager.getInstance(this).getThemeColors(
+                this, new int[] {
+                        R.attr.colorOnPrimaryContainer,
+                        R.attr.colorOnSecondaryContainer,
+                        R.attr.colorPrimaryContainer,
+                        R.attr.colorSecondaryContainer
+                }
+        );
         mTagAdapter = new TagAdapter(
                 tagList,
-                ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorOnPrimaryContainer),
-                ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorOnSecondaryContainer),
-                ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorPrimaryContainer),
-                ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorSecondaryContainer),
+                colors[0],
+                colors[1],
+                colors[2],
+                colors[3],
                 (checked, oldPosition, newPosition) -> {
                     setResult(RESULT_OK);
                     DailyTrendTag tag = (DailyTrendTag) mTagAdapter.removeItem(newPosition);

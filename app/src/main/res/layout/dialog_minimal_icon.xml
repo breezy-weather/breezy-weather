@@ -1,101 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/dialog_minimal_icon_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/colorOutline"
     android:foreground="@drawable/selectable_item_background"
-    tools:ignore="UnusedAttribute">
+    tools:ignore="DisableBaselineAlignment,UnusedAttribute">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <wangdaye.com.geometricweather.common.ui.widgets.SquareFrameLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
 
-        <RelativeLayout
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/dialog_minimal_icon_lightIcon"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/material_icon_size"
+            android:contentDescription="@string/content_desc_weather_icon_light"
+            tools:background="@drawable/weather_clear_day_mini_light"/>
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/dialog_minimal_icon_xmlIcon"
-                android:layout_margin="@dimen/normal_margin"
-                android:layout_centerVertical="true"
-                style="@style/material_icon"
-                app:tint="@color/colorTextTitle"
-                tools:src="@drawable/weather_clear_day_mini_xml" />
+    </wangdaye.com.geometricweather.common.ui.widgets.SquareFrameLayout>
 
-            <TextView
-                android:id="@+id/dialog_minimal_icon_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorTextTitle"
-                android:textStyle="bold"
-                android:layout_marginTop="@dimen/normal_margin"
-                android:layout_marginEnd="@dimen/normal_margin"
-                android:layout_marginBottom="@dimen/normal_margin"
-                android:layout_toEndOf="@id/dialog_minimal_icon_xmlIcon"
-                android:layout_centerVertical="true"
-                style="@style/large_title_text"
-                tools:text="SHORTCUT_CLEAR_DAY" />
+    <wangdaye.com.geometricweather.common.ui.widgets.SquareFrameLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
 
-        </RelativeLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/dialog_minimal_icon_greyIcon"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/material_icon_size"
-            tools:ignore="DisableBaselineAlignment">
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/material_icon_size"
+            android:contentDescription="@string/content_desc_weather_icon_grey"
+            tools:background="@drawable/weather_clear_day_mini_grey"/>
 
-            <wangdaye.com.geometricweather.common.ui.widgets.SquareFrameLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
+    </wangdaye.com.geometricweather.common.ui.widgets.SquareFrameLayout>
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/dialog_minimal_icon_lightIcon"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="@dimen/material_icon_size"
-                    android:contentDescription="@string/content_desc_weather_icon_light"
-                    tools:background="@drawable/weather_clear_day_mini_light"/>
+    <wangdaye.com.geometricweather.common.ui.widgets.SquareFrameLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
 
-            </wangdaye.com.geometricweather.common.ui.widgets.SquareFrameLayout>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/dialog_minimal_icon_darkIcon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/material_icon_size"
+            android:contentDescription="@string/content_desc_weather_icon_dark"
+            tools:background="@drawable/weather_clear_day_mini_dark"/>
 
-            <wangdaye.com.geometricweather.common.ui.widgets.SquareFrameLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
+    </wangdaye.com.geometricweather.common.ui.widgets.SquareFrameLayout>
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/dialog_minimal_icon_greyIcon"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="@dimen/material_icon_size"
-                    android:contentDescription="@string/content_desc_weather_icon_grey"
-                    tools:background="@drawable/weather_clear_day_mini_grey"/>
-
-            </wangdaye.com.geometricweather.common.ui.widgets.SquareFrameLayout>
-
-            <wangdaye.com.geometricweather.common.ui.widgets.SquareFrameLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/dialog_minimal_icon_darkIcon"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="@dimen/material_icon_size"
-                    android:contentDescription="@string/content_desc_weather_icon_dark"
-                    tools:background="@drawable/weather_clear_day_mini_dark"/>
-
-            </wangdaye.com.geometricweather.common.ui.widgets.SquareFrameLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>

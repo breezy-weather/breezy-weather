@@ -17,9 +17,7 @@ public class WeatherSourceAdapter extends RecyclerView.Adapter<WeatherSourceHold
 
     public WeatherSourceAdapter(List<WeatherSource> enabledSources) {
         mModelList = new ArrayList<>();
-        WeatherSource[] totals = WeatherSource.ACCU.getDeclaringClass().getEnumConstants();
-
-        for (WeatherSource source : totals) {
+        for (WeatherSource source : WeatherSource.ACCU.getDeclaringClass().getEnumConstants()) {
             mModelList.add(new WeatherSourceModel(source, enabledSources.contains(source)));
         }
     }

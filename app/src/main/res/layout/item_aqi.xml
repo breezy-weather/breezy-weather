@@ -13,8 +13,8 @@
         android:id="@+id/item_aqi_title"
         android:maxLines="1"
         android:ellipsize="end"
-        android:textSize="@dimen/subtitle_text_size"
-        style="@style/content_text"
+        android:textSize="@dimen/content_text_size"
+        style="@style/title_text"
         tools:text="PM 2.5"/>
 
     <wangdaye.com.geometricweather.common.ui.widgets.RoundProgress

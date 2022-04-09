@@ -1,74 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/dialog_weather_hourly_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/colorSurface">
+    android:paddingTop="@dimen/normal_margin">
 
     <LinearLayout
+        android:id="@+id/dialog_weather_hourly_weatherContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:foreground="@drawable/selectable_item_background_borderless"
+        tools:ignore="UnusedAttribute,UselessParent">
+
+        <wangdaye.com.geometricweather.common.ui.widgets.AnimatableIconView
+            android:id="@+id/dialog_weather_hourly_icon"
+            android:layout_width="@dimen/standard_weather_icon_container_size"
+            android:layout_height="@dimen/standard_weather_icon_container_size"
+            app:inner_margins="@dimen/normal_margin"
+            tools:background="@drawable/weather_clear_day"
+            tools:ignore="ContentDescription" />
 
         <TextView
-            android:id="@+id/dialog_weather_hourly_title"
+            android:id="@+id/dialog_weather_hourly_text"
             android:layout_width="match_parent"
+            android:layout_marginEnd="@dimen/normal_margin"
             android:layout_marginTop="@dimen/normal_margin"
-            android:layout_marginStart="@dimen/normal_margin"
-            android:layout_marginEnd="@dimen/normal_margin"
-            android:textStyle="bold"
-            android:textColor="?attr/colorPrimary"
-            style="@style/title_text"
-            tools:text="13时" />
-
-        <TextView
-            android:id="@+id/dialog_weather_hourly_subtitle"
-            android:layout_width="match_parent"
-            android:layout_marginTop="2dp"
-            android:layout_marginStart="@dimen/normal_margin"
-            android:layout_marginEnd="@dimen/normal_margin"
             android:layout_marginBottom="@dimen/normal_margin"
-            android:textColor="?attr/colorCaptionText"
-            style="@style/subtitle_text"
-            tools:text="11月13日"
+            android:layout_gravity="center_vertical"
+            android:textAlignment="gravity"
+            style="@style/content_text"
+            tools:text="晴 9℃\n东北风3-4级"
             tools:ignore="RtlHardcoded" />
-
-        <LinearLayout
-            android:id="@+id/dialog_weather_hourly_weatherContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:foreground="@drawable/selectable_item_background_borderless"
-            tools:ignore="UnusedAttribute">
-
-            <wangdaye.com.geometricweather.common.ui.widgets.AnimatableIconView
-                android:id="@+id/dialog_weather_hourly_icon"
-                android:layout_width="@dimen/standard_weather_icon_container_size"
-                android:layout_height="@dimen/standard_weather_icon_container_size"
-                app:inner_margins="@dimen/normal_margin"
-                tools:background="@drawable/weather_clear_day"
-                tools:ignore="ContentDescription" />
-
-            <TextView
-                android:id="@+id/dialog_weather_hourly_text"
-                android:layout_width="match_parent"
-                android:layout_marginEnd="@dimen/normal_margin"
-                android:layout_marginTop="@dimen/normal_margin"
-                android:layout_marginBottom="@dimen/normal_margin"
-                android:gravity="start"
-                android:textAlignment="gravity"
-                android:textStyle="bold"
-                android:textColor="?attr/colorBodyText"
-                style="@style/title_text"
-                tools:text="晴 9℃\n东北风3-4级"
-                tools:ignore="RtlHardcoded" />
-
-        </LinearLayout>
 
     </LinearLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</FrameLayout>

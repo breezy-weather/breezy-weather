@@ -146,12 +146,20 @@ public class CardDisplayManageActivity extends GeoActivity {
         for (CardDisplay card : otherCards) {
             tagList.add(new CardTag(card));
         }
+        int[] colors = ThemeManager.getInstance(this).getThemeColors(
+                this, new int[] {
+                        R.attr.colorOnPrimaryContainer,
+                        R.attr.colorOnSecondaryContainer,
+                        R.attr.colorPrimaryContainer,
+                        R.attr.colorSecondaryContainer
+                }
+        );
         mTagAdapter = new TagAdapter(
                 tagList,
-                ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorOnPrimaryContainer),
-                ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorOnSecondaryContainer),
-                ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorPrimaryContainer),
-                ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorSecondaryContainer),
+                colors[0],
+                colors[1],
+                colors[2],
+                colors[3],
                 (checked, oldPosition, newPosition) -> {
                     setResult(RESULT_OK);
                     CardTag tag = (CardTag) mTagAdapter.removeItem(newPosition);
