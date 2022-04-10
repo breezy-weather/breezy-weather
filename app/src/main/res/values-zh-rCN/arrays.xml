@@ -3,14 +3,12 @@
 
     <!-- Chinese source. -->
     <string-array name="weather_sources">
-        <item>中国天气网（仅中国地区）</item>
         <item>彩云天气（仅中国地区）</item>
         <item>Accu Weather</item>
         <item>OpenWeather</item>
         <item>Météo France</item>
     </string-array>
     <string-array name="weather_source_voices">
-        <item>中国天气网</item>
         <item>彩云天气</item>
         <item>ACCU天气</item>
         <item>OPEN天气</item>

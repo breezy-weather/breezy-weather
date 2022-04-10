@@ -45,9 +45,6 @@ class Location(
     val isUsable: Boolean
         get() = cityId != NULL_ID
 
-    val canUseChineseSource: Boolean
-        get() = LanguageUtils.isChinese(city) && isChina
-
     companion object {
         private const val NULL_ID = "NULL_ID"
 
@@ -72,7 +69,7 @@ class Location(
         }
 
         @JvmStatic
-        fun buildDefaultLocation(): Location {
+        fun buildDefaultLocation(weatherSource: WeatherSource): Location {
             return Location(
                 cityId = "101924",
                 latitude = 39.904000f,
@@ -82,7 +79,7 @@ class Location(
                 province = "直辖市",
                 city = "北京",
                 district = "",
-                weatherSource = WeatherSource.ACCU,
+                weatherSource = weatherSource,
                 isCurrentPosition = false,
                 isResidentPosition = false,
                 isChina = true,

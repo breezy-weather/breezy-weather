@@ -200,7 +200,7 @@ class MainActivity : GeoActivity(),
             return
         }
         if (newActivity) {
-            viewModel.init(getLocationId(intent))
+            viewModel.init(formattedId = getLocationId(intent))
         } else {
             viewModel.init()
         }

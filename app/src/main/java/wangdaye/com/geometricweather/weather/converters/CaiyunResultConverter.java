@@ -112,7 +112,9 @@ public class CaiyunResultConverter {
                             null,
                             null,
                             null,
-                            forecastResult.precipitation.description
+                            forecastResult.precipitation != null
+                                    ? forecastResult.precipitation.description
+                                    : null
                     ),
                     getYesterday(mainlyResult),
                     getDailyList(context, mainlyResult.current.pubTime, mainlyResult.forecastDaily),
@@ -442,6 +444,10 @@ public class CaiyunResultConverter {
                                                   String currentWeatherText,
                                                   WeatherCode currentWeatherCode,
                                                   CaiYunForecastResult result) {
+        if (result.precipitation == null) {
+            return new ArrayList<>();
+        }
+
         Date current = result.precipitation.pubTime;
 
         List<Minutely> minutelyList = new ArrayList<>(result.precipitation.value.size());

@@ -16,7 +16,6 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.Temperatur
 import wangdaye.com.geometricweather.common.basic.models.weather.Alert;
 import wangdaye.com.geometricweather.common.basic.models.weather.Temperature;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
-import wangdaye.com.geometricweather.settings.SettingsManager;
 
 public class LocationModel {
 
@@ -54,9 +53,7 @@ public class LocationModel {
             this.weatherCode = null;
         }
 
-        this.weatherSource = location.isCurrentPosition()
-                ? SettingsManager.getInstance(context).getWeatherSource()
-                : location.getWeatherSource();
+        this.weatherSource = location.getWeatherSource();
 
         this.currentPosition = location.isCurrentPosition();
         this.residentPosition = location.isResidentPosition();

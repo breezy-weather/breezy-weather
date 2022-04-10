@@ -88,7 +88,6 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
         switch (direction) {
             case ItemTouchHelper.START: {
                 if (location.isCurrentPosition()) {
-                    mViewModel.updateLocation(location);
                     mReactor.startSelectProviderActivityBySwipe();
                     mReactor.resetViewHolderAt(position);
                 } else {

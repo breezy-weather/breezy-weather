@@ -57,6 +57,8 @@ class MainActivityViewModel @Inject constructor(
 
     @JvmOverloads
     fun init(formattedId: String? = null) {
+        onCleared()
+
         var id = formattedId ?: savedStateHandle[KEY_FORMATTED_ID]
 
         // init live data.
@@ -122,7 +124,7 @@ class MainActivityViewModel @Inject constructor(
 
         var index = 0
         for (i in valid.indices) {
-            if (total[i].formattedId == currentLocation.value?.location?.formattedId) {
+            if (valid[i].formattedId == currentLocation.value?.location?.formattedId) {
                 index = i
                 break
             }

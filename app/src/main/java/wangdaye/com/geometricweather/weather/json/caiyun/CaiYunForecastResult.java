@@ -63,7 +63,6 @@ public class CaiYunForecastResult {
         public Date pubTime;
         public String weather;
         public String description;
-        public boolean modifyInHour;
         public String shortDescription;
         public boolean isModify;
         public boolean isShow;
@@ -116,14 +115,6 @@ public class CaiYunForecastResult {
 
         public void setDescription(String description) {
             this.description = description;
-        }
-
-        public boolean isModifyInHour() {
-            return modifyInHour;
-        }
-
-        public void setModifyInHour(boolean modifyInHour) {
-            this.modifyInHour = modifyInHour;
         }
 
         public String getShortDescription() {

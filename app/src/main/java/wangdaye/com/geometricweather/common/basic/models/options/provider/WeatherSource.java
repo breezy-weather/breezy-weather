@@ -12,7 +12,6 @@ public enum WeatherSource {
     ACCU("accu", 0xffef5823, "accuweather.com"),
     OWM("owm", 0xffeb6e4b, "openweathermap.org"),
     MF("mf", 0xff005892, "meteofrance.com"),
-    CN("cn", 0xff033566, "weather.com.cn"),
     CAIYUN("caiyun", 0xff5ebb8e, " caiyunapp.com");
 
     private final String sourceId;
@@ -62,9 +61,6 @@ public enum WeatherSource {
 
             case "mf":
                 return MF;
-
-            case "cn":
-                return CN;
 
             case "caiyun":
                 return CAIYUN;

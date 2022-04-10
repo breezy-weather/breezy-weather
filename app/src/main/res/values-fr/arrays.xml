@@ -5,7 +5,6 @@
 
     <!-- Weather sources -->
     <string-array name="weather_sources">
-        <item>weather.com.cn (Chine uniquement)</item>
         <item>caiyunapp.com (Chine uniquement)</item>
         <item>AccuWeather</item>
         <item>OpenWeather</item>

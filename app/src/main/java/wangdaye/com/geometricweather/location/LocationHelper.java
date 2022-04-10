@@ -86,7 +86,9 @@ public class LocationHelper {
                     l.requestLocationFailed(requestLocation);
                 } else {
                     Location finalLocation = Location.copy(
-                            Location.buildDefaultLocation(),
+                            Location.buildDefaultLocation(
+                                    SettingsManager.getInstance(context).getWeatherSource()
+                            ),
                             true,
                             false
                     );
