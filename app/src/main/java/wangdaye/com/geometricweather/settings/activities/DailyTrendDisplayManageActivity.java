@@ -58,7 +58,7 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
 
         @Override
         public String getName() {
-            return tag.getTagName(DailyTrendDisplayManageActivity.this);
+            return tag.getName(DailyTrendDisplayManageActivity.this);
         }
     }
 

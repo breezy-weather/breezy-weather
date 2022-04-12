@@ -48,7 +48,7 @@ public class LocationHolder extends RecyclerView.ViewHolder {
 
         String talkBackBuilder = model.subtitle + ", " +
                 context.getString(R.string.content_desc_powered_by)
-                        .replace("$", model.weatherSource.getSourceVoice(context));
+                        .replace("$", model.weatherSource.getVoice(context));
         itemView.setContentDescription(talkBackBuilder);
     }
 }

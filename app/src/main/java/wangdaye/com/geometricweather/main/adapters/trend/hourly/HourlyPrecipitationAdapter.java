@@ -64,7 +64,7 @@ public class HourlyPrecipitationAdapter extends AbsHourlyTrendAdapter<HourlyPrec
 
             if (precipitation != 0) {
                 talkBackBuilder.append(", ")
-                        .append(mPrecipitationUnit.getPrecipitationVoice(activity, precipitation));
+                        .append(mPrecipitationUnit.getValueVoice(activity, precipitation));
             } else {
                 talkBackBuilder.append(", ")
                         .append(activity.getString(R.string.content_des_no_precipitation));
@@ -75,7 +75,7 @@ public class HourlyPrecipitationAdapter extends AbsHourlyTrendAdapter<HourlyPrec
                     null, null,
                     null, null,
                     precipitation,
-                    mPrecipitationUnit.getPrecipitationTextWithoutUnit(precipitation),
+                    mPrecipitationUnit.getValueTextWithoutUnit(precipitation),
                     highestPrecipitation,
                     0f
             );
@@ -140,7 +140,7 @@ public class HourlyPrecipitationAdapter extends AbsHourlyTrendAdapter<HourlyPrec
                 new TrendRecyclerView.KeyLine(
                         Precipitation.PRECIPITATION_LIGHT,
                         activity.getString(R.string.precipitation_light),
-                        unit.getPrecipitationTextWithoutUnit(Precipitation.PRECIPITATION_LIGHT),
+                        unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_LIGHT),
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
         );
@@ -148,7 +148,7 @@ public class HourlyPrecipitationAdapter extends AbsHourlyTrendAdapter<HourlyPrec
                 new TrendRecyclerView.KeyLine(
                         Precipitation.PRECIPITATION_HEAVY,
                         activity.getString(R.string.precipitation_heavy),
-                        unit.getPrecipitationTextWithoutUnit(Precipitation.PRECIPITATION_HEAVY),
+                        unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_HEAVY),
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
         );

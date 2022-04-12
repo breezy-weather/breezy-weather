@@ -33,7 +33,11 @@ public class SearchActivityViewModel extends GeoViewModel {
 
         mListResource = new MutableLiveData<>();
         mListResource.setValue(
-                new LoadableLocationList(new ArrayList<>(), LoadableLocationList.Status.SUCCESS));
+                new LoadableLocationList(
+                        new ArrayList<>(),
+                        LoadableLocationList.Status.SUCCESS
+                )
+        );
 
         mQuery = new MutableLiveData<>();
         mQuery.setValue("");
@@ -82,7 +86,7 @@ public class SearchActivityViewModel extends GeoViewModel {
         if (mListResource.getValue() == null) {
             return new ArrayList<>();
         }
-        return mListResource.getValue().dataList;
+        return mListResource.getValue().getDataList();
     }
 
     public MutableLiveData<LoadableLocationList> getListResource() {

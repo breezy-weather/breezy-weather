@@ -502,10 +502,6 @@ public class AccuResultConverter {
         return str;
     }
 
-    private interface MilliMeterConverter {
-        float toMilliMeters(float value);
-    }
-
     private static String convertUnit(Context context,
                                       @NonNull String str,
                                       PrecipitationUnit targetUnit,
@@ -522,16 +518,16 @@ public class AccuResultConverter {
                 targetList.add(target);
 
                 String[] targetSplitResults = target.replaceAll(" ", "").split(
-                        targetUnit.getAbbreviation(context));
+                        targetUnit.getName(context));
                 String[] numberTexts = targetSplitResults[0].split("-");
 
                 for (int i = 0; i < numberTexts.length; i ++) {
                     float number = Float.parseFloat(numberTexts[i]);
-                    number = targetUnit.getMilliMeters(number);
-                    numberTexts[i] = resultUnit.getPrecipitationTextWithoutUnit(number);
+                    number = targetUnit.getValueInDefaultUnit(number);
+                    numberTexts[i] = resultUnit.getValueWithoutUnit(number).toString();
                 }
 
-                resultList.add(arrayToString(numberTexts) + " " + resultUnit.getAbbreviation(context));
+                resultList.add(arrayToString(numberTexts) + " " + resultUnit.getName(context));
             }
 
             for (int i = 0; i < targetList.size(); i ++) {

@@ -74,19 +74,19 @@ public class SearchActivityRepository {
         mLastDefaultSourceCache = WeatherSource.getInstance(lastDefaultSource);
 
         String value;
-        if (!defaultSource.getSourceId().equals(lastDefaultSource)) {
+        if (!defaultSource.getId().equals(lastDefaultSource)) {
             // last default source is not equal to current default source which is set by user.
 
             // we need reset the value.
             value = DEFAULT_DISABLED_SOURCES_VALUE;
             mConfig.edit()
                     .putString(KEY_DISABLED_SOURCES, value)
-                    .putString(KEY_LAST_DEFAULT_SOURCE, defaultSource.getSourceId())
+                    .putString(KEY_LAST_DEFAULT_SOURCE, defaultSource.getId())
                     .apply();
         } else {
             value = mConfig.getString(KEY_DISABLED_SOURCES, "");
             mConfig.edit()
-                    .putString(KEY_LAST_DEFAULT_SOURCE, defaultSource.getSourceId())
+                    .putString(KEY_LAST_DEFAULT_SOURCE, defaultSource.getId())
                     .apply();
         }
 
@@ -127,7 +127,7 @@ public class SearchActivityRepository {
         StringBuilder b = new StringBuilder();
         for (WeatherSource source : totals) {
             if (!validList.contains(source)) {
-                b.append(",").append(source.getSourceId());
+                b.append(",").append(source.getId());
             }
         }
 

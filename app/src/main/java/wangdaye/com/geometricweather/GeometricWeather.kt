@@ -190,7 +190,7 @@ class GeometricWeather : MultiDexApplication(),
         instance = this
         LanguageUtils.setLanguage(
             this,
-            SettingsManager.getInstance(this).getLanguage().locale
+            SettingsManager.getInstance(this).language.locale
         )
 
         BuglyHelper.init(this)

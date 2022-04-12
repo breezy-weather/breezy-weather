@@ -82,7 +82,7 @@ public class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<HourlyTemper
                     (float) mHighestTemperature,
                     (float) mLowestTemperature,
                     p < 5 ? null : p,
-                    p < 5 ? null : ProbabilityUnit.PERCENT.getProbabilityText(activity, p),
+                    p < 5 ? null : ProbabilityUnit.PERCENT.getValueText(activity, (int) p),
                     100f,
                     0f
             );
@@ -234,7 +234,7 @@ public class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<HourlyTemper
     }
 
     protected int getTemperature(Weather weather, int index, TemperatureUnit unit) {
-        return unit.getTemperature(getTemperatureC(weather, index));
+        return unit.getValueWithoutUnit(getTemperatureC(weather, index));
     }
 
     protected String getTemperatureString(Weather weather, int index, TemperatureUnit unit) {

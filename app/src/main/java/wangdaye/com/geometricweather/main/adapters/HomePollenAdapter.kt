@@ -12,7 +12,6 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Daily
 import wangdaye.com.geometricweather.common.basic.models.weather.Pollen
 import wangdaye.com.geometricweather.databinding.ItemPollenDailyBinding
 import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider
-import wangdaye.com.geometricweather.theme.ThemeManager
 
 open class HomePollenAdapter @JvmOverloads constructor(
     private val location: Location,
@@ -55,7 +54,7 @@ class HomePollenViewHolder internal constructor(
         binding.grassTitle.text = context.getString(R.string.grass)
         binding.grassTitle.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
         binding.grassValue.text = (
-                unit.getPollenText(context, pollen.grassIndex)
+                unit.getValueText(context, pollen.grassIndex ?: 0)
                         + " - "
                         + pollen.grassDescription
                 )
@@ -67,7 +66,7 @@ class HomePollenViewHolder internal constructor(
         binding.ragweedTitle.text = context.getString(R.string.ragweed)
         binding.ragweedTitle.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
         binding.ragweedValue.text = (
-                unit.getPollenText(context, pollen.ragweedIndex)
+                unit.getValueText(context, pollen.ragweedIndex ?: 0)
                         + " - "
                         + pollen.ragweedDescription
                 )
@@ -79,7 +78,7 @@ class HomePollenViewHolder internal constructor(
         binding.treeTitle.text = context.getString(R.string.tree)
         binding.treeTitle.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
         binding.treeValue.text = (
-                unit.getPollenText(context, pollen.treeIndex)
+                unit.getValueText(context, pollen.treeIndex ?: 0)
                         + " - "
                         + pollen.treeDescription
                 )
@@ -91,7 +90,7 @@ class HomePollenViewHolder internal constructor(
         binding.moldTitle.text = context.getString(R.string.mold)
         binding.moldTitle.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
         binding.moldValue.text = (
-                unit.getPollenText(context, pollen.moldIndex)
+                unit.getValueText(context, pollen.moldIndex ?: 0)
                         + " - "
                         + pollen.moldDescription
                 )
@@ -100,16 +99,16 @@ class HomePollenViewHolder internal constructor(
         itemView.contentDescription = (
                 binding.title.text.toString()
                         + ", " + context.getString(R.string.grass)
-                        + " : " + unit.getPollenVoice(context, pollen.grassIndex)
+                        + " : " + unit.getValueVoice(context, pollen.grassIndex ?: 0)
                         + " - " + pollen.grassDescription //
                         + ", " + context.getString(R.string.ragweed)
-                        + " : " + unit.getPollenVoice(context, pollen.ragweedIndex)
+                        + " : " + unit.getValueVoice(context, pollen.ragweedIndex ?: 0)
                         + " - " + pollen.ragweedDescription //
                         + ", " + context.getString(R.string.tree)
-                        + " : " + unit.getPollenVoice(context, pollen.treeIndex)
+                        + " : " + unit.getValueVoice(context, pollen.treeIndex ?: 0)
                         + " - " + pollen.treeDescription //
                         + ", " + context.getString(R.string.mold)
-                        + " : " + unit.getPollenVoice(context, pollen.moldIndex)
+                        + " : " + unit.getValueVoice(context, pollen.moldIndex ?: 0)
                         + " - " + pollen.moldDescription
                 )
 

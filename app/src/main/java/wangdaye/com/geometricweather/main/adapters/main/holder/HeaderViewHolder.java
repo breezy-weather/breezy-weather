@@ -92,7 +92,7 @@ public class HeaderViewHolder extends AbstractMainViewHolder {
                             Math.abs(mTemperatureCTo - mTemperatureCFrom) / 10f * 1000
                     )
             );
-            mTemperature.setPostfixString(mTemperatureUnit.getShortAbbreviation(context));
+            mTemperature.setPostfixString(mTemperatureUnit.getShortName(context));
 
             StringBuilder title = new StringBuilder(location.getWeather().getCurrent().getWeatherText());
             if (location.getWeather().getCurrent().getTemperature().getRealFeelTemperature() != null) {
@@ -139,8 +139,8 @@ public class HeaderViewHolder extends AbstractMainViewHolder {
     public void onEnterScreen() {
         super.onEnterScreen();
         mTemperature.setNumberString(
-                String.format("%d", mTemperatureUnit.getTemperature(mTemperatureCFrom)),
-                String.format("%d", mTemperatureUnit.getTemperature(mTemperatureCTo))
+                String.format("%d", mTemperatureUnit.getValueWithoutUnit(mTemperatureCFrom)),
+                String.format("%d", mTemperatureUnit.getValueWithoutUnit(mTemperatureCTo))
         );
     }
 

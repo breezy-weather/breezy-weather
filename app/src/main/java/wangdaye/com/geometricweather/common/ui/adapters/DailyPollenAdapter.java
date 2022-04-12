@@ -41,46 +41,61 @@ public class DailyPollenAdapter extends RecyclerView.Adapter<DailyPollenAdapter.
                     Pollen.getPollenColor(itemView.getContext(), pollen.getGrassLevel())
             ));
             binding.grassTitle.setText(context.getString(R.string.grass));
-            binding.grassValue.setText(unit.getPollenText(context, pollen.getGrassIndex())
-                    + " - " + pollen.getGrassDescription());
+            binding.grassValue.setText(
+                    unit.getValueText(
+                            context, pollen.getGrassIndex() != null ? pollen.getGrassIndex() : 0
+                    ) + " - " + pollen.getGrassDescription()
+            );
 
             binding.ragweedIcon.setSupportImageTintList(ColorStateList.valueOf(
                     Pollen.getPollenColor(itemView.getContext(), pollen.getRagweedLevel())
             ));
             binding.ragweedTitle.setText(context.getString(R.string.ragweed));
-            binding.ragweedValue.setText(unit.getPollenText(context, pollen.getRagweedIndex())
-                    + " - " + pollen.getRagweedDescription());
+            binding.ragweedValue.setText(
+                    unit.getValueText(
+                            context,
+                            pollen.getRagweedIndex() != null ? pollen.getRagweedIndex() : 0
+                    ) + " - " + pollen.getRagweedDescription()
+            );
 
             binding.treeIcon.setSupportImageTintList(ColorStateList.valueOf(
                     Pollen.getPollenColor(itemView.getContext(), pollen.getTreeLevel())
             ));
             binding.treeTitle.setText(context.getString(R.string.tree));
-            binding.treeValue.setText(unit.getPollenText(context, pollen.getTreeIndex())
-                    + " - " + pollen.getTreeDescription());
+            binding.treeValue.setText(
+                    unit.getValueText(
+                            context,
+                            pollen.getTreeIndex() != null ? pollen.getTreeIndex() : 0
+                    ) + " - " + pollen.getTreeDescription()
+            );
 
             binding.moldIcon.setSupportImageTintList(ColorStateList.valueOf(
                     Pollen.getPollenColor(itemView.getContext(), pollen.getMoldLevel())
             ));
             binding.moldTitle.setText(context.getString(R.string.mold));
-            binding.moldValue.setText(unit.getPollenText(context, pollen.getMoldIndex())
-                    + " - " + pollen.getMoldDescription());
+            binding.moldValue.setText(
+                    unit.getValueText(
+                            context,
+                            pollen.getMoldIndex() != null ? pollen.getMoldIndex() : 0
+                    ) + " - " + pollen.getMoldDescription()
+            );
 
             itemView.setContentDescription(binding.title.getText()
                     //
                     + ", " + context.getString(R.string.grass)
-                    + " : " + unit.getPollenVoice(context, pollen.getGrassIndex())
+                    + " : " + unit.getValueVoice(context, pollen.getGrassIndex())
                     + " - " + pollen.getGrassDescription()
                     //
                     + ", " + context.getString(R.string.ragweed)
-                    + " : " + unit.getPollenVoice(context, pollen.getRagweedIndex())
+                    + " : " + unit.getValueVoice(context, pollen.getRagweedIndex())
                     + " - " + pollen.getRagweedDescription()
                     //
                     + ", " + context.getString(R.string.tree)
-                    + " : " + unit.getPollenVoice(context, pollen.getTreeIndex())
+                    + " : " + unit.getValueVoice(context, pollen.getTreeIndex())
                     + " - " + pollen.getTreeDescription()
                     //
                     + ", " + context.getString(R.string.mold)
-                    + " : " + unit.getPollenVoice(context, pollen.getMoldIndex())
+                    + " : " + unit.getValueVoice(context, pollen.getMoldIndex())
                     + " - " + pollen.getMoldDescription()
             );
             itemView.setOnClickListener(v -> {

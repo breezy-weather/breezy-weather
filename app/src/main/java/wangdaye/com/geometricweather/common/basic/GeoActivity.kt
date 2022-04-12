@@ -76,7 +76,7 @@ abstract class GeoActivity : AppCompatActivity() {
 
         LanguageUtils.setLanguage(
             this,
-            SettingsManager.getInstance(this).getLanguage().locale
+            SettingsManager.getInstance(this).language.locale
         )
 
         DisplayUtils.setSystemBarStyle(

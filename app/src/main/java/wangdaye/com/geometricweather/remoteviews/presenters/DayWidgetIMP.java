@@ -224,8 +224,9 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
             );
         }
         if (viewStyle.equals("vertical")) {
-            boolean negative = temperatureUnit.getTemperature(
-                    weather.getCurrent().getTemperature().getTemperature()) < 0;
+            boolean negative = temperatureUnit.getValueWithoutUnit(
+                    weather.getCurrent().getTemperature().getTemperature()
+            ) < 0;
             views.setViewVisibility(
                     R.id.widget_day_sign,
                     negative ? View.VISIBLE : View.GONE
@@ -310,7 +311,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
             case "vertical":
                 return String.valueOf(
                         Math.abs(
-                                unit.getTemperature(
+                                unit.getValueWithoutUnit(
                                         weather.getCurrent().getTemperature().getTemperature()
                                 )
                         )
@@ -352,7 +353,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
                 return weather.getCurrent().getTemperature().getTemperature(context, unit);
 
             case "oreo_google_sans":
-                return unit.getLongTemperatureText(context, weather.getCurrent().getTemperature().getTemperature());
+                return unit.getLongValueText(context, weather.getCurrent().getTemperature().getTemperature());
         }
         return "";
     }

@@ -77,8 +77,8 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
             mDoubleHistogramView.setData(
                     weather.getDailyForecast().get(position).day().getWind().getSpeed(),
                     weather.getDailyForecast().get(position).night().getWind().getSpeed(),
-                    mSpeedUnit.getSpeedTextWithoutUnit(daytimeWindSpeed == null ? 0 : daytimeWindSpeed),
-                    mSpeedUnit.getSpeedTextWithoutUnit(nighttimeWindSpeed == null ? 0 : nighttimeWindSpeed),
+                    mSpeedUnit.getValueTextWithoutUnit(daytimeWindSpeed == null ? 0 : daytimeWindSpeed),
+                    mSpeedUnit.getValueTextWithoutUnit(nighttimeWindSpeed == null ? 0 : nighttimeWindSpeed),
                     mHighestWindSpeed
             );
             mDoubleHistogramView.setLineColors(
@@ -139,7 +139,7 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
         keyLineList.add(
                 new TrendRecyclerView.KeyLine(
                         Wind.WIND_SPEED_3,
-                        unit.getSpeedTextWithoutUnit(Wind.WIND_SPEED_3),
+                        unit.getValueTextWithoutUnit(Wind.WIND_SPEED_3),
                         activity.getString(R.string.wind_3),
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
@@ -147,7 +147,7 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
         keyLineList.add(
                 new TrendRecyclerView.KeyLine(
                         Wind.WIND_SPEED_7,
-                        unit.getSpeedTextWithoutUnit(Wind.WIND_SPEED_7),
+                        unit.getValueTextWithoutUnit(Wind.WIND_SPEED_7),
                         activity.getString(R.string.wind_7),
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
@@ -155,7 +155,7 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
         keyLineList.add(
                 new TrendRecyclerView.KeyLine(
                         -Wind.WIND_SPEED_3,
-                        unit.getSpeedTextWithoutUnit(Wind.WIND_SPEED_3),
+                        unit.getValueTextWithoutUnit(Wind.WIND_SPEED_3),
                         activity.getString(R.string.wind_3),
                         TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
                 )
@@ -163,7 +163,7 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
         keyLineList.add(
                 new TrendRecyclerView.KeyLine(
                         -Wind.WIND_SPEED_7,
-                        unit.getSpeedTextWithoutUnit(Wind.WIND_SPEED_7),
+                        unit.getValueTextWithoutUnit(Wind.WIND_SPEED_7),
                         activity.getString(R.string.wind_7),
                         TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
                 )

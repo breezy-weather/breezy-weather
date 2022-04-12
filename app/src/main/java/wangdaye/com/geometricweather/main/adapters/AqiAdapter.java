@@ -163,10 +163,10 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
                                 airQuality.getPM25(),
                                 250,
                                 "PM2.5",
-                                AirQualityUnit.MUGPCUM.getDensityText(context, airQuality.getPM25()),
+                                AirQualityUnit.MUGPCUM.getValueText(context, airQuality.getPM25()),
                                 context.getString(R.string.content_des_pm25)
                                         + ", "
-                                        + AirQualityUnit.MUGPCUM.getDensityVoice(context, airQuality.getPM25()),
+                                        + AirQualityUnit.MUGPCUM.getValueVoice(context, airQuality.getPM25()),
                                 executeAnimation
                         )
                 );
@@ -178,9 +178,9 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
                                 airQuality.getPM10(),
                                 420,
                                 "PM10",
-                                AirQualityUnit.MUGPCUM.getDensityText(context, airQuality.getPM10()),
+                                AirQualityUnit.MUGPCUM.getValueText(context, airQuality.getPM10()),
                                 context.getString(R.string.content_des_pm10)
-                                        + ", " + AirQualityUnit.MUGPCUM.getDensityVoice(context, airQuality.getPM10()),
+                                        + ", " + AirQualityUnit.MUGPCUM.getValueVoice(context, airQuality.getPM10()),
                                 executeAnimation
                         )
                 );
@@ -192,9 +192,9 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
                                 airQuality.getSO2(),
                                 1600,
                                 "SO₂",
-                                AirQualityUnit.MUGPCUM.getDensityText(context, airQuality.getSO2()),
+                                AirQualityUnit.MUGPCUM.getValueText(context, airQuality.getSO2()),
                                 context.getString(R.string.content_des_so2)
-                                        + ", " + AirQualityUnit.MUGPCUM.getDensityVoice(context, airQuality.getSO2()),
+                                        + ", " + AirQualityUnit.MUGPCUM.getValueVoice(context, airQuality.getSO2()),
                                 executeAnimation
                         )
                 );
@@ -206,9 +206,9 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
                                 airQuality.getNO2(),
                                 565,
                                 "NO₂",
-                                AirQualityUnit.MUGPCUM.getDensityText(context, airQuality.getNO2()),
+                                AirQualityUnit.MUGPCUM.getValueText(context, airQuality.getNO2()),
                                 context.getString(R.string.content_des_no2)
-                                        + ", " + AirQualityUnit.MUGPCUM.getDensityVoice(context, airQuality.getNO2()),
+                                        + ", " + AirQualityUnit.MUGPCUM.getValueVoice(context, airQuality.getNO2()),
                                 executeAnimation
                         )
                 );
@@ -220,9 +220,9 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
                                 airQuality.getO3(),
                                 800,
                                 "O₃",
-                                AirQualityUnit.MUGPCUM.getDensityText(context, airQuality.getO3()),
+                                AirQualityUnit.MUGPCUM.getValueText(context, airQuality.getO3()),
                                 context.getString(R.string.content_des_o3)
-                                        + ", " + AirQualityUnit.MUGPCUM.getDensityVoice(context, airQuality.getO3()),
+                                        + ", " + AirQualityUnit.MUGPCUM.getValueVoice(context, airQuality.getO3()),
                                 executeAnimation
                         )
                 );
@@ -234,9 +234,9 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
                                 airQuality.getCO(),
                                 90,
                                 "CO",
-                                AirQualityCOUnit.MGPCUM.getDensityText(context, airQuality.getCO()),
+                                AirQualityCOUnit.MGPCUM.getValueText(context, airQuality.getCO()),
                                 context.getString(R.string.content_des_co)
-                                        + ", " + AirQualityCOUnit.MGPCUM.getDensityVoice(context, airQuality.getCO()),
+                                        + ", " + AirQualityCOUnit.MGPCUM.getValueVoice(context, airQuality.getCO()),
                                 executeAnimation
                         )
                 );

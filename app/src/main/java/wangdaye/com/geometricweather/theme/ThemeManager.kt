@@ -32,7 +32,7 @@ class ThemeManager private constructor(
                     if (instance == null) {
                         instance = ThemeManager(
                             weatherThemeDelegate = MaterialWeatherThemeDelegate(),
-                            darkMode = SettingsManager.getInstance(context).getDarkMode(),
+                            darkMode = SettingsManager.getInstance(context).darkMode,
                         )
                     }
                 }

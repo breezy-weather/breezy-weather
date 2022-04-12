@@ -14,7 +14,6 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.ArrowDropUp
-import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -34,6 +33,7 @@ import wangdaye.com.geometricweather.common.basic.GeoActivity
 import wangdaye.com.geometricweather.common.ui.widgets.insets.FitStatusBarTopAppBar
 import wangdaye.com.geometricweather.theme.compose.DayNightTheme
 import wangdaye.com.geometricweather.theme.compose.GeometricWeatherTheme
+import wangdaye.com.geometricweather.theme.compose.rememberThemeRipple
 
 class LiveWallpaperConfigActivity : GeoActivity() {
 
@@ -158,7 +158,7 @@ class LiveWallpaperConfigActivity : GeoActivity() {
                     }
                     .clickable(
                         interactionSource = remember { MutableInteractionSource() },
-                        indication = rememberRipple(color = MaterialTheme.colorScheme.surfaceVariant),
+                        indication = rememberThemeRipple(),
                         onClick = { expanded.value = !expanded.value },
                     ),
                 label = {

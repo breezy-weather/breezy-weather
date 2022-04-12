@@ -17,9 +17,9 @@ public class ResourcesProviderFactory {
 
     public static ResourceProvider getNewInstance() {
         return getNewInstance(
-                SettingsManager.getInstance(
-                        GeometricWeather.getInstance()
-                ).getIconProvider(GeometricWeather.getInstance())
+                SettingsManager
+                        .getInstance(GeometricWeather.getInstance())
+                        .getIconProvider()
         );
     }
 

@@ -134,7 +134,7 @@ class HomeFragment : MainModuleFragment() {
         ensureResourceProvider()
 
         weatherView.setGravitySensorEnabled(
-            SettingsManager.getInstance(requireContext()).isGravitySensorEnabled()
+            SettingsManager.getInstance(requireContext()).isGravitySensorEnabled
         )
 
         binding.toolbar.setNavigationOnClickListener {
@@ -172,10 +172,10 @@ class HomeFragment : MainModuleFragment() {
 
         val listAnimationEnabled = SettingsManager
             .getInstance(requireContext())
-            .isListAnimationEnabled()
+            .isListAnimationEnabled
         val itemAnimationEnabled = SettingsManager
             .getInstance(requireContext())
-            .isItemAnimationEnabled()
+            .isItemAnimationEnabled
         adapter = MainAdapter(
             (requireActivity() as GeoActivity),
             binding.recyclerView,
@@ -271,10 +271,10 @@ class HomeFragment : MainModuleFragment() {
 
         val listAnimationEnabled = SettingsManager
             .getInstance(requireContext())
-            .isListAnimationEnabled()
+            .isListAnimationEnabled
         val itemAnimationEnabled = SettingsManager
             .getInstance(requireContext())
-            .isItemAnimationEnabled()
+            .isItemAnimationEnabled
         adapter!!.update(
             (requireActivity() as GeoActivity),
             binding.recyclerView,
@@ -302,7 +302,7 @@ class HomeFragment : MainModuleFragment() {
     private fun ensureResourceProvider() {
         val iconProvider = SettingsManager
             .getInstance(requireContext())
-            .getIconProvider(requireContext())
+            .iconProvider
         if (resourceProvider == null
             || resourceProvider!!.packageName != iconProvider) {
             resourceProvider = ResourcesProviderFactory.getNewInstance()

@@ -15,7 +15,7 @@ class WeatherSourceHolder extends RecyclerView.ViewHolder {
 
     void onBind(WeatherSourceModel model) {
         mBinding.checkbox.setChecked(model.isEnabled());
-        mBinding.title.setText(model.getSource().getSourceName(itemView.getContext()));
+        mBinding.title.setText(model.getSource().getName(itemView.getContext()));
 
         mBinding.checkbox.setOnCheckedChangeListener((buttonView, isChecked) -> {
             model.setEnabled(isChecked);

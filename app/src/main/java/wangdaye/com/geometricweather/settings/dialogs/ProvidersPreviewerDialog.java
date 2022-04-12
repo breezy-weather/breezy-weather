@@ -1,7 +1,6 @@
 package wangdaye.com.geometricweather.settings.dialogs;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -10,7 +9,6 @@ import android.view.animation.Animation;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,7 +32,14 @@ public class ProvidersPreviewerDialog {
             = "com.wangdaye.geometricweather.RESOURCE_PROVIDER_CHANGED";
     public static final String KEY_PACKAGE_NAME = "package_name";
 
-    public static void show(Activity activity) {
+    public interface OnProviderSelectedCallback {
+        void onProviderSelected(String packageName);
+    }
+
+    public static void show(
+            Activity activity,
+            OnProviderSelectedCallback callback
+    ) {
         View view = LayoutInflater
                 .from(activity)
                 .inflate(R.layout.dialog_providers_previewer, null, false);
@@ -44,11 +49,17 @@ public class ProvidersPreviewerDialog {
                 new MaterialAlertDialogBuilder(activity)
                         .setTitle(R.string.settings_title_icon_provider)
                         .setView(view)
-                        .show()
+                        .show(),
+                callback
         );
     }
 
-    private static void initWidget(Activity activity, View view, AlertDialog dialog) {
+    private static void initWidget(
+            Activity activity,
+            View view,
+            AlertDialog dialog,
+            OnProviderSelectedCallback callback
+    ) {
         CircularProgressView progressView = view.findViewById(R.id.dialog_providers_previewer_progress);
         progressView.setVisibility(View.VISIBLE);
 
@@ -77,7 +88,8 @@ public class ProvidersPreviewerDialog {
                 listView,
                 progressView,
                 resourceProviders,
-                dialog
+                dialog,
+                callback
         ));
     }
 
@@ -85,17 +97,15 @@ public class ProvidersPreviewerDialog {
                                     RecyclerView listView,
                                     CircularProgressView progressView,
                                     List<ResourceProvider> providerList,
-                                    AlertDialog dialog) {
+                                    AlertDialog dialog,
+                                    OnProviderSelectedCallback callback) {
         listView.setAdapter(new IconProviderAdapter(
                 activity,
                 providerList,
                 new IconProviderAdapter.OnItemClickedListener() {
                     @Override
                     public void onItemClicked(ResourceProvider provider, int adapterPosition) {
-                        Intent intent = new Intent(ACTION_RESOURCE_PROVIDER_CHANGED);
-                        intent.putExtra(KEY_PACKAGE_NAME, provider.getPackageName());
-                        LocalBroadcastManager.getInstance(activity).sendBroadcast(intent);
-
+                        callback.onProviderSelected(provider.getPackageName());
                         dialog.dismiss();
                     }
 

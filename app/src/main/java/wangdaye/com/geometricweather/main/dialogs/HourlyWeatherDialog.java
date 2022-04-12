@@ -80,7 +80,7 @@ public class HourlyWeatherDialog {
             builder.append("\n")
                     .append(view.getContext().getString(R.string.precipitation))
                     .append(" : ")
-                    .append(precipitationUnit.getPrecipitationText(view.getContext(), p));
+                    .append(precipitationUnit.getValueText(view.getContext(), p));
         }
         if (hourly.getPrecipitationProbability().getTotal() != null
                 && hourly.getPrecipitationProbability().getTotal() > 0) {
@@ -88,7 +88,7 @@ public class HourlyWeatherDialog {
             builder.append("\n")
                     .append(view.getContext().getString(R.string.precipitation_probability))
                     .append(" : ")
-                    .append(ProbabilityUnit.PERCENT.getProbabilityText(view.getContext(), p));
+                    .append(ProbabilityUnit.PERCENT.getValueText(view.getContext(), (int) (float) p));
         }
         weatherText.setText(builder.toString());
     }

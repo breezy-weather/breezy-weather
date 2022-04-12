@@ -14,7 +14,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
-import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -36,6 +35,7 @@ import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper
 import wangdaye.com.geometricweather.settings.utils.DonateHelper
 import wangdaye.com.geometricweather.theme.compose.DayNightTheme
 import wangdaye.com.geometricweather.theme.compose.GeometricWeatherTheme
+import wangdaye.com.geometricweather.theme.compose.rememberThemeRipple
 
 private class AboutAppLinkItem(
     @DrawableRes val iconId: Int,
@@ -339,7 +339,7 @@ class AboutActivity : GeoActivity() {
                 .fillMaxWidth()
                 .clickable(
                     interactionSource = remember { MutableInteractionSource() },
-                    indication = rememberRipple(color = MaterialTheme.colorScheme.surfaceVariant),
+                    indication = rememberThemeRipple(),
                     onClick = onClick,
                 )
                 .padding(dimensionResource(R.dimen.normal_margin)),
@@ -367,7 +367,7 @@ class AboutActivity : GeoActivity() {
                 .fillMaxWidth()
                 .clickable(
                     interactionSource = remember { MutableInteractionSource() },
-                    indication = rememberRipple(color = MaterialTheme.colorScheme.surfaceVariant),
+                    indication = rememberThemeRipple(),
                     onClick = { IntentHelper.startWebViewActivity(this, url) },
                 )
                 .padding(dimensionResource(R.dimen.normal_margin)),

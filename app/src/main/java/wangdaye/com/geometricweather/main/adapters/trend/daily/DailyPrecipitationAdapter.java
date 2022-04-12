@@ -63,11 +63,11 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter<DailyPrecipi
                 talkBackBuilder.append(", ")
                         .append(activity.getString(R.string.daytime))
                         .append(" : ")
-                        .append(mPrecipitationUnit.getPrecipitationVoice(activity, daytimePrecipitation));
+                        .append(mPrecipitationUnit.getValueVoice(activity, daytimePrecipitation));
                 talkBackBuilder.append(", ")
                         .append(activity.getString(R.string.nighttime))
                         .append(" : ")
-                        .append(mPrecipitationUnit.getPrecipitationVoice(activity, nighttimePrecipitation));
+                        .append(mPrecipitationUnit.getValueVoice(activity, nighttimePrecipitation));
             } else {
                 talkBackBuilder.append(", ")
                         .append(activity.getString(R.string.content_des_no_precipitation));
@@ -79,8 +79,8 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter<DailyPrecipi
             mDoubleHistogramView.setData(
                     weather.getDailyForecast().get(position).day().getPrecipitation().getTotal(),
                     weather.getDailyForecast().get(position).night().getPrecipitation().getTotal(),
-                    mPrecipitationUnit.getPrecipitationTextWithoutUnit(daytimePrecipitation),
-                    mPrecipitationUnit.getPrecipitationTextWithoutUnit(nighttimePrecipitation),
+                    mPrecipitationUnit.getValueTextWithoutUnit(daytimePrecipitation),
+                    mPrecipitationUnit.getValueTextWithoutUnit(nighttimePrecipitation),
                     mHighestPrecipitation
             );
             mDoubleHistogramView.setLineColors(
@@ -134,7 +134,7 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter<DailyPrecipi
         keyLineList.add(
                 new TrendRecyclerView.KeyLine(
                         Precipitation.PRECIPITATION_LIGHT,
-                        unit.getPrecipitationTextWithoutUnit(Precipitation.PRECIPITATION_LIGHT),
+                        unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_LIGHT),
                         activity.getString(R.string.precipitation_light),
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
@@ -142,7 +142,7 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter<DailyPrecipi
         keyLineList.add(
                 new TrendRecyclerView.KeyLine(
                         Precipitation.PRECIPITATION_HEAVY,
-                        unit.getPrecipitationTextWithoutUnit(Precipitation.PRECIPITATION_HEAVY),
+                        unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_HEAVY),
                         activity.getString(R.string.precipitation_heavy),
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
@@ -150,7 +150,7 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter<DailyPrecipi
         keyLineList.add(
                 new TrendRecyclerView.KeyLine(
                         -Precipitation.PRECIPITATION_LIGHT,
-                        unit.getPrecipitationTextWithoutUnit(Precipitation.PRECIPITATION_LIGHT),
+                        unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_LIGHT),
                         activity.getString(R.string.precipitation_light),
                         TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
                 )
@@ -158,7 +158,7 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter<DailyPrecipi
         keyLineList.add(
                 new TrendRecyclerView.KeyLine(
                         -Precipitation.PRECIPITATION_HEAVY,
-                        unit.getPrecipitationTextWithoutUnit(Precipitation.PRECIPITATION_HEAVY),
+                        unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_HEAVY),
                         activity.getString(R.string.precipitation_heavy),
                         TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
                 )

@@ -121,8 +121,9 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
                     new Index(
                             R.drawable.ic_water_percent,
                             context.getString(R.string.humidity),
-                            RelativeHumidityUnit.PERCENT.getRelativeHumidityText(
-                                    weather.getCurrent().getRelativeHumidity()
+                            RelativeHumidityUnit.PERCENT.getValueText(
+                                    context,
+                                    (int) (float) weather.getCurrent().getRelativeHumidity()
                             )
                     )
             );
@@ -143,9 +144,9 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
                     new Index(
                             R.drawable.ic_gauge,
                             context.getString(R.string.pressure),
-                            settings.getPressureUnit().getPressureText(context, weather.getCurrent().getPressure()),
+                            settings.getPressureUnit().getValueText(context, weather.getCurrent().getPressure()),
                             context.getString(R.string.pressure)
-                                    + ", " + settings.getPressureUnit().getPressureVoice(context, weather.getCurrent().getPressure())
+                                    + ", " + settings.getPressureUnit().getValueVoice(context, weather.getCurrent().getPressure())
                     )
             );
         }
@@ -155,9 +156,9 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
                     new Index(
                             R.drawable.ic_eye,
                             context.getString(R.string.visibility),
-                            settings.getDistanceUnit().getDistanceText(context, weather.getCurrent().getVisibility()),
+                            settings.getDistanceUnit().getValueText(context, weather.getCurrent().getVisibility()),
                             context.getString(R.string.visibility)
-                                    + ", " + settings.getDistanceUnit().getDistanceVoice(context, weather.getCurrent().getVisibility())
+                                    + ", " + settings.getDistanceUnit().getValueVoice(context, weather.getCurrent().getVisibility())
                     )
             );
         }
@@ -167,7 +168,7 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
                     new Index(
                             R.drawable.ic_water,
                             context.getString(R.string.dew_point),
-                            settings.getTemperatureUnit().getTemperatureText(
+                            settings.getTemperatureUnit().getValueText(
                                     context,
                                     weather.getCurrent().getDewPoint()
                             )
@@ -180,7 +181,8 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
                     new Index(
                             R.drawable.ic_cloud,
                             context.getString(R.string.cloud_cover),
-                            CloudCoverUnit.PERCENT.getCloudCoverText(
+                            CloudCoverUnit.PERCENT.getValueText(
+                                    context,
                                     weather.getCurrent().getCloudCover()
                             )
                     )
@@ -192,11 +194,11 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
                     new Index(
                             R.drawable.ic_top,
                             context.getString(R.string.ceiling),
-                            settings.getDistanceUnit().getDistanceText(
+                            settings.getDistanceUnit().getValueText(
                                     context,
                                     weather.getCurrent().getCeiling()
                             ),
-                            context.getString(R.string.ceiling) + ", " + settings.getDistanceUnit().getDistanceVoice(
+                            context.getString(R.string.ceiling) + ", " + settings.getDistanceUnit().getValueVoice(
                                     context, weather.getCurrent().getCeiling())
                     )
             );

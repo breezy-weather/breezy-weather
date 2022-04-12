@@ -221,8 +221,14 @@ public class ClockDayDetailsWidgetIMP extends AbstractRemoteViewsPresenter {
                     + weather.getCurrent().getAirQuality().getAqiText()
                     + ")";
         } else {
-            return context.getString(R.string.humidity) + " " + RelativeHumidityUnit.PERCENT.getRelativeHumidityText(
-                    WidgetHelper.getNonNullValue(weather.getCurrent().getRelativeHumidity(), 0));
+            return context.getString(R.string.humidity)
+                    + " "
+                    + RelativeHumidityUnit.PERCENT.getValueText(
+                            context,
+                            (int) WidgetHelper.getNonNullValue(
+                                    weather.getCurrent().getRelativeHumidity(), 0
+                            )
+                    );
         }
     }
 

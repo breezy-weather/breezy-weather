@@ -121,7 +121,7 @@ private fun buildRemoteViews(
     val provider = ResourcesProviderFactory.getNewInstance()
 
     val settings = SettingsManager.getInstance(context)
-    val temperatureUnit = settings.getTemperatureUnit()
+    val temperatureUnit = settings.temperatureUnit
 
     views.setTextViewText(
         R.id.widget_s_card_background_city,

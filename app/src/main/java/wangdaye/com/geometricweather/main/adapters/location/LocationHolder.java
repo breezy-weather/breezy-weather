@@ -42,7 +42,7 @@ public class LocationHolder extends RecyclerView.ViewHolder {
             talkBackBuilder.append(", ").append(context.getString(R.string.current_location));
         }
         talkBackBuilder.append(", ").append(
-                context.getString(R.string.content_desc_powered_by).replace("$", model.weatherSource.getSourceVoice(context))
+                context.getString(R.string.content_desc_powered_by).replace("$", model.weatherSource.getVoice(context))
         );
 
         mBinding.container.swipe(0);

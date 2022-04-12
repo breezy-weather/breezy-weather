@@ -1,10 +1,7 @@
 package wangdaye.com.geometricweather.theme.compose
 
-import android.content.Context
 import android.os.Build
-import android.util.TypedValue
-import androidx.annotation.AttrRes
-import androidx.annotation.ColorInt
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
@@ -17,9 +14,6 @@ import wangdaye.com.geometricweather.theme.compose.night.dynamicDarkColors
 class GeometricWeatherColors {
 
     companion object {
-        val LightAccent = Color(0xff212121)
-        val DarkAccent = Color(0xfffafafa)
-
         val LightPrimary1 = Color(0xffcfebf0)
         val LightPrimary2 = Color(0xffb6e3e7)
         val LightPrimary3 = Color(0xff96d6db)
@@ -31,17 +25,6 @@ class GeometricWeatherColors {
         val DarkPrimary3 = Color(0xff2c2f43)
         val DarkPrimary4 = Color(0xff20222f)
         val DarkPrimary5 = Color(0xff1a1b22)
-
-        val LightSeparator = Color(0xfff1f1f1)
-        val DarkSeparator = Color(0xff363636)
-
-        val LightRoot = Color.White
-        val DarkRoot = Color.Black
-
-        val LightSurface = Color(0xfffafafa)
-        var DarkSurface = Color(0xff1a1a1a)
-
-        val AlertText = Color(0xfffcc96b)
 
         val DarkText = Color(0xff424242)
         val DarkText2nd = Color(0xff5f6267)
@@ -56,8 +39,6 @@ class GeometricWeatherColors {
         val Level4 = Color(0xffe52f35)
         val Level5 = Color(0xff99004c)
         val Level6 = Color(0xff7e0023)
-
-        val StrikingRed = Level4
 
         val WeatherSourceACCU = Color(0xffef5823)
         val WeatherSourceCN = Color(0xff033566)
@@ -170,3 +151,11 @@ class GeometricWeatherDayNightColors(
         isDark = isDark,
     )
 }
+
+@Composable
+fun rememberThemeRipple(
+    bounded: Boolean = true
+) = rememberRipple(
+    color = MaterialTheme.colorScheme.primary,
+    bounded = bounded
+)

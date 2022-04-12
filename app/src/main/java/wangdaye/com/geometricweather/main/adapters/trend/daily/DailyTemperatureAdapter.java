@@ -92,7 +92,7 @@ public class DailyTemperatureAdapter extends AbsDailyTrendAdapter<DailyTemperatu
                     (float) mHighestTemperature,
                     (float) mLowestTemperature,
                     p < 5 ? null : p,
-                    p < 5 ? null : ProbabilityUnit.PERCENT.getProbabilityText(activity, p),
+                    p < 5 ? null : ProbabilityUnit.PERCENT.getValueText(activity, (int) p),
                     100f,
                     0f
             );
@@ -260,11 +260,11 @@ public class DailyTemperatureAdapter extends AbsDailyTrendAdapter<DailyTemperatu
     }
 
     protected int getDaytimeTemperature(Weather weather, int index, TemperatureUnit unit) {
-        return unit.getTemperature(getDaytimeTemperatureC(weather, index));
+        return unit.getValueWithoutUnit(getDaytimeTemperatureC(weather, index));
     }
 
     protected int getNighttimeTemperature(Weather weather, int index, TemperatureUnit unit) {
-        return unit.getTemperature(getNighttimeTemperatureC(weather, index));
+        return unit.getValueWithoutUnit(getNighttimeTemperatureC(weather, index));
     }
 
     protected String getDaytimeTemperatureString(Weather weather, int index, TemperatureUnit unit) {

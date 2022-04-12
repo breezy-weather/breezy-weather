@@ -60,7 +60,7 @@ public class CardDisplayManageActivity extends GeoActivity {
 
         @Override
         public String getName() {
-            return card.getCardName(CardDisplayManageActivity.this);
+            return card.getName(CardDisplayManageActivity.this);
         }
     }
 

@@ -46,16 +46,16 @@ public class OwmWeatherService extends WeatherService {
         String languageCode = SettingsManager.getInstance(context).getLanguage().getCode();
 
         Observable<OwmOneCallResult> oneCall = mApi.getOneCall(
-                SettingsManager.getInstance(context).getProviderOwmKey(true), location.getLatitude(), location.getLongitude(), "metric", languageCode);
+                SettingsManager.getInstance(context).getProviderOwmKey(), location.getLatitude(), location.getLongitude(), "metric", languageCode);
 
         Observable<OwmAirPollutionResult> airPollutionCurrent = mApi.getAirPollutionCurrent(
-                SettingsManager.getInstance(context).getProviderOwmKey(true), location.getLatitude(), location.getLongitude()
+                SettingsManager.getInstance(context).getProviderOwmKey(), location.getLatitude(), location.getLongitude()
         ).onExceptionResumeNext(
                 Observable.create(emitter -> emitter.onNext(new EmptyAqiResult()))
         );
 
         Observable<OwmAirPollutionResult> airPollutionForecast = mApi.getAirPollutionForecast(
-                SettingsManager.getInstance(context).getProviderOwmKey(true), location.getLatitude(), location.getLongitude()
+                SettingsManager.getInstance(context).getProviderOwmKey(), location.getLatitude(), location.getLongitude()
         ).onExceptionResumeNext(
                 Observable.create(emitter -> emitter.onNext(new EmptyAqiResult()))
         );
@@ -93,7 +93,7 @@ public class OwmWeatherService extends WeatherService {
     public List<Location> requestLocation(Context context, String query) {
         List<OwmLocationResult> resultList = null;
         try {
-            resultList = mApi.callWeatherLocation(SettingsManager.getInstance(context).getProviderOwmKey(true), query).execute().body();
+            resultList = mApi.callWeatherLocation(SettingsManager.getInstance(context).getProviderOwmKey(), query).execute().body();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -114,7 +114,7 @@ public class OwmWeatherService extends WeatherService {
                                 @NonNull RequestLocationCallback callback) {
 
         mApi.getWeatherLocationByGeoPosition(
-                SettingsManager.getInstance(context).getProviderOwmKey(true), location.getLatitude(), location.getLongitude()
+                SettingsManager.getInstance(context).getProviderOwmKey(), location.getLatitude(), location.getLongitude()
         ).compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<List<OwmLocationResult>>() {
                     @Override
@@ -141,7 +141,7 @@ public class OwmWeatherService extends WeatherService {
                                 @NonNull RequestLocationCallback callback) {
         String zipCode = query.matches("[a-zA-Z0-9]") ? query : null;
 
-        mApi.getWeatherLocation(SettingsManager.getInstance(context).getProviderOwmKey(true), query)
+        mApi.getWeatherLocation(SettingsManager.getInstance(context).getProviderOwmKey(), query)
                 .compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<List<OwmLocationResult>>() {
                     @Override

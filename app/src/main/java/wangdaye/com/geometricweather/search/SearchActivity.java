@@ -274,11 +274,11 @@ public class SearchActivity extends GeoActivity
         });
 
         mViewModel.getListResource().observe(this, loadableLocationList -> {
-            setStatus(loadableLocationList.status);
+            setStatus(loadableLocationList.getStatus());
             mBinding.sourceEnter.setEnabled(
-                    loadableLocationList.status != LoadableLocationList.Status.LOADING);
+                    loadableLocationList.getStatus() != LoadableLocationList.Status.LOADING);
             mBinding.sourceEnter.setAlpha(mBinding.sourceEnter.isEnabled() ? 1 : 0.5f);
-            mAdapter.update(loadableLocationList.dataList);
+            mAdapter.update(loadableLocationList.getDataList());
         });
 
         mViewModel.getEnabledSources().observe(this, enabled -> {

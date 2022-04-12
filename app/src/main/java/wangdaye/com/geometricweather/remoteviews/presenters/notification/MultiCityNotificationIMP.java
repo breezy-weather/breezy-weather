@@ -86,9 +86,8 @@ public class MultiCityNotificationIMP extends AbstractRemoteViewsPresenter {
         builder.setSmallIcon(
                 tempIcon ? ResourceHelper.getTempIconId(
                         context,
-                        temperatureUnit.getTemperature(
+                        temperatureUnit.getValueWithoutUnit(
                                 weather.getCurrent().getTemperature().getTemperature()
-
                         )
                 ) : ResourceHelper.getDefaultMinimalXmlIconId(
                         weather.getCurrent().getWeatherCode(),
