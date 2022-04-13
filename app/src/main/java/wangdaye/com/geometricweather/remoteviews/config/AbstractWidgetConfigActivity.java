@@ -418,7 +418,6 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         });
 
         mBottomSheetScrollView = findViewById(R.id.activity_widget_config_custom_scrollView);
-        mBottomSheetScrollView.setAdaptiveWidthEnabled(false);
 
         mSubtitleInputLayout = findViewById(R.id.activity_widget_config_subtitle_inputLayout);
 

@@ -488,14 +488,14 @@ class MainActivity : GeoActivity(),
         defaultLocationChanged: Boolean, updateRemoteViews: Boolean
     ) {
         if (resetBackground) {
-            AsyncHelper.delayRunOnIO<Any>({
+            AsyncHelper.delayRunOnIO({
                 PollingManager.resetAllBackgroundTask(
                     this, false
                 )
             }, 1000)
         }
         if (updateRemoteViews && locationList != null && locationList.isNotEmpty()) {
-            AsyncHelper.delayRunOnIO<Any>({
+            AsyncHelper.delayRunOnIO({
                 if (defaultLocationChanged) {
                     WidgetHelper.updateWidgetIfNecessary(this, locationList[0])
                     NotificationHelper.updateNotificationIfNecessary(this, locationList)

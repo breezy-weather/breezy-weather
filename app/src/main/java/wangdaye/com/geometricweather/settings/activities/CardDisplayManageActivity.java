@@ -27,13 +27,11 @@ import java.util.List;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.CardDisplay;
-import wangdaye.com.geometricweather.common.bus.EventBus;
 import wangdaye.com.geometricweather.common.ui.adapters.TagAdapter;
 import wangdaye.com.geometricweather.common.ui.decotarions.GridMarginsDecoration;
 import wangdaye.com.geometricweather.common.ui.decotarions.ListDecoration;
 import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarRecyclerView;
 import wangdaye.com.geometricweather.common.ui.widgets.slidingItem.SlidingItemTouchCallback;
-import wangdaye.com.geometricweather.settings.SettingsChangedMessage;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.settings.adapters.CardDisplayAdapter;
 import wangdaye.com.geometricweather.theme.ThemeManager;
@@ -172,7 +170,6 @@ public class CardDisplayManageActivity extends GeoActivity {
         mBottomBar = findViewById(R.id.activity_card_display_manage_bottomBar);
 
         FitSystemBarRecyclerView bottomRecyclerView = findViewById(R.id.activity_card_display_manage_bottomRecyclerView);
-        bottomRecyclerView.setAdaptiveWidthEnabled(false);
         bottomRecyclerView.setLayoutManager(
                 new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         bottomRecyclerView.addItemDecoration(
@@ -193,14 +190,9 @@ public class CardDisplayManageActivity extends GeoActivity {
 
         List<CardDisplay> oldList = SettingsManager.getInstance(this).getCardDisplayList();
         List<CardDisplay> newList = mCardDisplayAdapter.getCardDisplayList();
-        if (oldList.equals(newList)) {
-            return;
+        if (!oldList.equals(newList)) {
+            SettingsManager.getInstance(this).setCardDisplayList(newList);
         }
-
-        SettingsManager.getInstance(this).setCardDisplayList(newList);
-        EventBus.getInstance()
-                .with(SettingsChangedMessage.class)
-                .postValue(new SettingsChangedMessage());
     }
 
     @SuppressLint("MissingSuperCall")

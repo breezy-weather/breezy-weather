@@ -230,7 +230,7 @@ fun ListPreferenceView(
                 ) {
                     Text(
                         text = stringResource(R.string.cancel),
-                        color = MaterialTheme.colorScheme.onSurface,
+                        color = MaterialTheme.colorScheme.primary,
                         style = MaterialTheme.typography.labelLarge,
                     )
                 }
@@ -276,6 +276,23 @@ private fun RadioButton(
     }
 }
 
+private fun timeToString(
+    hour: Int,
+    minute: Int
+) = when {
+    hour == 0 -> "00"
+    hour < 10 -> "0$hour"
+    else -> hour.toString()
+} + ":" + when {
+    minute == 0 -> "00"
+    minute < 10 -> "0$minute"
+    else -> minute.toString()
+}
+
+private fun stringToTime(
+    time: String
+) = time.split(":").map { it.toIntOrNull() ?: 0 }
+
 @Composable
 fun TimePickerPreferenceView(
     title: String,
@@ -284,6 +301,7 @@ fun TimePickerPreferenceView(
     enabled: Boolean = true,
     onValueChanged: (String) -> Unit,
 ) {
+
     val currentTimeState = remember { mutableStateOf(currentTime) }
     val dialogOpenState = remember { mutableStateOf(false) }
 
@@ -334,13 +352,23 @@ fun TimePickerPreferenceView(
             text = {
                 AndroidView(
                     factory = { context ->
-                        val timePicker = TimePicker(context, null, R.style.Widget_Material3_MaterialTimePicker)
+                        val timePicker = TimePicker(
+                            context,
+                            null,
+                            R.style.Widget_Material3_MaterialTimePicker
+                        )
                         timePicker.setIs24HourView(true)
                         timePicker.setOnTimeChangedListener { _, hour, minute ->
-                            pickerTimeState.value = (if (hour < 10) "0$hour" else hour.toString()
-                                    + ":"
-                                    + if (minute < 10) "0$minute" else minute.toString())
+                            pickerTimeState.value = timeToString(hour = hour, minute = minute)
                         }
+
+                        val time = stringToTime(currentTimeState.value)
+                        timePicker.currentHour = time.elementAtOrNull(0) ?: 0
+                        timePicker.currentMinute = time.elementAtOrNull(1) ?: 0
+                        pickerTimeState.value = timeToString(
+                            hour = timePicker.currentHour,
+                            minute = timePicker.currentMinute
+                        )
 
                         timePicker
                     }
@@ -356,7 +384,7 @@ fun TimePickerPreferenceView(
                 ) {
                     Text(
                         text = stringResource(R.string.done),
-                        color = MaterialTheme.colorScheme.onSurface,
+                        color = MaterialTheme.colorScheme.primary,
                         style = MaterialTheme.typography.labelLarge,
                     )
                 }
@@ -367,7 +395,7 @@ fun TimePickerPreferenceView(
                 ) {
                     Text(
                         text = stringResource(R.string.cancel),
-                        color = MaterialTheme.colorScheme.onSurface,
+                        color = MaterialTheme.colorScheme.primary,
                         style = MaterialTheme.typography.labelLarge,
                     )
                 }
@@ -467,7 +495,7 @@ fun EditTextPreferenceView(
                 ) {
                     Text(
                         text = stringResource(R.string.done),
-                        color = MaterialTheme.colorScheme.onSurface,
+                        color = MaterialTheme.colorScheme.primary,
                         style = MaterialTheme.typography.labelLarge,
                     )
                 }
@@ -478,7 +506,7 @@ fun EditTextPreferenceView(
                 ) {
                     Text(
                         text = stringResource(R.string.cancel),
-                        color = MaterialTheme.colorScheme.onSurface,
+                        color = MaterialTheme.colorScheme.primary,
                         style = MaterialTheme.typography.labelLarge,
                     )
                 }

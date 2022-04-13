@@ -2,15 +2,13 @@ package wangdaye.com.geometricweather.common.ui.widgets.insets
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
+import androidx.compose.material.AppBarDefaults
+import androidx.compose.material.ContentAlpha
+import androidx.compose.material.LocalContentAlpha
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
@@ -26,7 +24,8 @@ import wangdaye.com.geometricweather.R
 private val AppBarHeight = 64.dp
 private val AppBarHorizontalPadding = 4.dp
 private val TitleInsetWithoutIcon = Modifier.width(16.dp - AppBarHorizontalPadding)
-private val TitleIconModifier = Modifier.fillMaxHeight()
+private val TitleIconModifier = Modifier
+    .fillMaxHeight()
     .width(62.dp - AppBarHorizontalPadding)
 
 @Composable
@@ -65,7 +64,9 @@ fun FitStatusBarTopAppBar(
                 }
 
                 Row(
-                    Modifier.fillMaxHeight().weight(1f),
+                    Modifier
+                        .fillMaxHeight()
+                        .weight(1f),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     title()

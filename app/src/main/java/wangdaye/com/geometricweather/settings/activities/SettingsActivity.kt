@@ -19,8 +19,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.GeoActivity
+import wangdaye.com.geometricweather.common.bus.EventBus
 import wangdaye.com.geometricweather.common.ui.widgets.insets.FitStatusBarTopAppBar
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper
+import wangdaye.com.geometricweather.settings.SettingsChangedMessage
 import wangdaye.com.geometricweather.settings.SettingsManager
 import wangdaye.com.geometricweather.settings.compose.*
 import wangdaye.com.geometricweather.theme.compose.GeometricWeatherTheme
@@ -42,12 +44,18 @@ class SettingsActivity : GeoActivity() {
                 ContentView()
             }
         }
-    }
 
-    override fun onStart() {
-        super.onStart()
-        cardDisplayState.value = SettingsManager.getInstance(this).cardDisplayList
-        dailyTrendDisplayState.value = SettingsManager.getInstance(this).dailyTrendDisplayList
+        EventBus.instance.with(SettingsChangedMessage::class.java).observe(this) {
+            val cardDisplayList = SettingsManager.getInstance(this).cardDisplayList
+            if (cardDisplayState.value != cardDisplayList) {
+                cardDisplayState.value = cardDisplayList
+            }
+
+            val dailyTrendDisplayList = SettingsManager.getInstance(this).dailyTrendDisplayList
+            if (dailyTrendDisplayState.value != cardDisplayList) {
+                dailyTrendDisplayState.value = dailyTrendDisplayList
+            }
+        }
     }
 
     @Composable

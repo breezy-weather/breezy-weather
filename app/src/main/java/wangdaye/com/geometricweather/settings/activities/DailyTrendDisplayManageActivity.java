@@ -167,7 +167,6 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
 
         mBinding.bottomRecyclerView.setLayoutManager(
                 new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
-        mBinding.bottomRecyclerView.setAdaptiveWidthEnabled(false);
         mBinding.bottomRecyclerView.addItemDecoration(
                 new GridMarginsDecoration(
                         getResources().getDimension(R.dimen.normal_margin), mBinding.bottomRecyclerView
@@ -186,14 +185,9 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
 
         List<DailyTrendDisplay> oldList = SettingsManager.getInstance(this).getDailyTrendDisplayList();
         List<DailyTrendDisplay> newList = mDailyTrendDisplayAdapter.getDailyTrendDisplayList();
-        if (oldList.equals(newList)) {
-            return;
+        if (!oldList.equals(newList)) {
+            SettingsManager.getInstance(this).setDailyTrendDisplayList(newList);
         }
-
-        SettingsManager.getInstance(this).setDailyTrendDisplayList(newList);
-        EventBus.getInstance()
-                .with(SettingsChangedMessage.class)
-                .postValue(new SettingsChangedMessage());
     }
 
     @SuppressLint("MissingSuperCall")
