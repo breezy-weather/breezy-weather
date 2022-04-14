@@ -145,7 +145,7 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
 
         mScrollBar.setColor(
                 MainThemeColorProvider.getColor(location, R.attr.colorSurface),
-                MainModuleUtils.isHomeLightTheme(context, location.isDaylight())
+                MainThemeColorProvider.isLightTheme(context, location)
         );
     }
 

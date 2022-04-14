@@ -6,10 +6,11 @@ import org.greenrobot.greendao.annotation.Id;
 
 import java.util.Date;
 
-import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.common.basic.models.weather.Hourly;
+import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
+import wangdaye.com.geometricweather.common.basic.models.weather.WindDegree;
 import wangdaye.com.geometricweather.db.converters.WeatherCodeConverter;
-
+import wangdaye.com.geometricweather.db.converters.WindDegreeConverter;
 import org.greenrobot.greendao.annotation.Generated;
 
 /**
@@ -51,7 +52,18 @@ public class HourlyEntity {
     public Float rainPrecipitationProbability;
     public Float snowPrecipitationProbability;
     public Float icePrecipitationProbability;
-    @Generated(hash = 1553100243)
+
+    public String windDirection;
+    @Convert(converter = WindDegreeConverter.class, columnType = Float.class)
+    public WindDegree windDegree;
+    public Float windSpeed;
+    public String windLevel;
+
+    // uv.
+    public Integer uvIndex;
+    public String uvLevel;
+    public String uvDescription;
+    @Generated(hash = 764945270)
     public HourlyEntity(Long id, String cityId, String weatherSource, Date date,
             long time, boolean daylight, String weatherText,
             WeatherCode weatherCode, int temperature, Integer realFeelTemperature,
@@ -63,7 +75,9 @@ public class HourlyEntity {
             Float totalPrecipitationProbability,
             Float thunderstormPrecipitationProbability,
             Float rainPrecipitationProbability, Float snowPrecipitationProbability,
-            Float icePrecipitationProbability) {
+            Float icePrecipitationProbability, String windDirection,
+            WindDegree windDegree, Float windSpeed, String windLevel,
+            Integer uvIndex, String uvLevel, String uvDescription) {
         this.id = id;
         this.cityId = cityId;
         this.weatherSource = weatherSource;
@@ -89,6 +103,13 @@ public class HourlyEntity {
         this.rainPrecipitationProbability = rainPrecipitationProbability;
         this.snowPrecipitationProbability = snowPrecipitationProbability;
         this.icePrecipitationProbability = icePrecipitationProbability;
+        this.windDirection = windDirection;
+        this.windDegree = windDegree;
+        this.windSpeed = windSpeed;
+        this.windLevel = windLevel;
+        this.uvIndex = uvIndex;
+        this.uvLevel = uvLevel;
+        this.uvDescription = uvDescription;
     }
     @Generated(hash = 617074574)
     public HourlyEntity() {
@@ -247,5 +268,46 @@ public class HourlyEntity {
     public void setIcePrecipitationProbability(Float icePrecipitationProbability) {
         this.icePrecipitationProbability = icePrecipitationProbability;
     }
-
+    public String getWindDirection() {
+        return this.windDirection;
+    }
+    public void setWindDirection(String windDirection) {
+        this.windDirection = windDirection;
+    }
+    public WindDegree getWindDegree() {
+        return this.windDegree;
+    }
+    public void setWindDegree(WindDegree windDegree) {
+        this.windDegree = windDegree;
+    }
+    public Float getWindSpeed() {
+        return this.windSpeed;
+    }
+    public void setWindSpeed(Float windSpeed) {
+        this.windSpeed = windSpeed;
+    }
+    public String getWindLevel() {
+        return this.windLevel;
+    }
+    public void setWindLevel(String windLevel) {
+        this.windLevel = windLevel;
+    }
+    public Integer getUvIndex() {
+        return this.uvIndex;
+    }
+    public void setUvIndex(Integer uvIndex) {
+        this.uvIndex = uvIndex;
+    }
+    public String getUvLevel() {
+        return this.uvLevel;
+    }
+    public void setUvLevel(String uvLevel) {
+        this.uvLevel = uvLevel;
+    }
+    public String getUvDescription() {
+        return this.uvDescription;
+    }
+    public void setUvDescription(String uvDescription) {
+        this.uvDescription = uvDescription;
+    }
 }

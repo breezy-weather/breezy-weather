@@ -184,7 +184,7 @@ public class AccuResultConverter {
                             toInt(currentResult.TemperatureSummary.Past24HourRange.Minimum.Metric.Value)
                     ),
                     getDailyList(context, dailyResult),
-                    getHourlyList(hourlyResultList),
+                    getHourlyList(context, hourlyResultList),
                     getMinutelyList(
                             dailyResult.DailyForecasts.get(0).Sun.Rise,
                             dailyResult.DailyForecasts.get(0).Sun.Set,
@@ -366,7 +366,7 @@ public class AccuResultConverter {
         return null;
     }
 
-    private static List<Hourly> getHourlyList(List<AccuHourlyResult> resultList) {
+    private static List<Hourly> getHourlyList(Context context, List<AccuHourlyResult> resultList) {
         List<Hourly> hourlyList = new ArrayList<>(resultList.size());
         for (AccuHourlyResult result : resultList) {
             hourlyList.add(
@@ -378,27 +378,34 @@ public class AccuResultConverter {
                             getWeatherCode(result.WeatherIcon),
                             new Temperature(
                                     toInt(result.Temperature.Value),
+                                    toInt(result.RealFeelTemperature.Value),
+                                    toInt(result.RealFeelTemperatureShade.Value),
                                     null,
                                     null,
-                                    null,
-                                    null,
-                                    null,
+                                    toInt(result.WetBulbTemperature.Value),
                                     null
                             ),
                             new Precipitation(
+                                    (float) result.TotalLiquid.Value,
                                     null,
-                                    null,
-                                    null,
-                                    null,
-                                    null
+                                    (float) result.Rain.Value,
+                                    (float) (result.Snow.Value * 10),
+                                    (float) result.Ice.Value
                             ),
                             new PrecipitationProbability(
                                     (float) result.PrecipitationProbability,
-                                    null,
-                                    null,
-                                    null,
-                                    null
-                            )
+                                    (float) result.ThunderstormProbability,
+                                    (float) result.RainProbability,
+                                    (float) result.SnowProbability,
+                                    (float) result.IceProbability
+                            ),
+                            new Wind(
+                                    result.Wind.Direction.Localized,
+                                    new WindDegree(result.Wind.Direction.Degrees, false),
+                                    (float) result.WindGust.Speed.Value,
+                                    CommonConverter.getWindLevel(context, result.WindGust.Speed.Value)
+                            ),
+                            new UV(result.UVIndex, null, result.UVIndexText)
                     )
             );
         }
@@ -457,12 +464,12 @@ public class AccuResultConverter {
         if (icon == 1 || icon == 2 || icon == 30
                 || icon == 33 || icon == 34) {
             return WeatherCode.CLEAR;
-        } else if (icon == 3 || icon == 4 || icon == 6 || icon == 7
+        } else if (icon == 3 || icon == 4 || icon == 6
                 || icon == 35 || icon == 36 || icon == 38) {
             return WeatherCode.PARTLY_CLOUDY;
         } else if (icon == 5 || icon == 37) {
             return WeatherCode.HAZE;
-        } else if (icon == 8) {
+        } else if (icon == 7 || icon == 8) {
             return WeatherCode.CLOUDY;
         } else if (icon == 11) {
             return WeatherCode.FOG;

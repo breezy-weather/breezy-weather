@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.main.utils
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Looper
 import androidx.annotation.AttrRes
 import androidx.lifecycle.Lifecycle
@@ -8,8 +9,14 @@ import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.models.Location
+import wangdaye.com.geometricweather.common.basic.models.options.DarkMode
+import wangdaye.com.geometricweather.common.basic.models.weather.Weather
+import wangdaye.com.geometricweather.common.utils.DisplayUtils
 import wangdaye.com.geometricweather.main.MainActivity
+import wangdaye.com.geometricweather.settings.SettingsManager
 import wangdaye.com.geometricweather.theme.ThemeManager
+import java.util.*
+import kotlin.collections.HashMap
 
 private val preloadAttrIds = intArrayOf(
     R.attr.colorPrimary,
@@ -89,6 +96,36 @@ class MainThemeColorProvider(
         }
 
         @JvmStatic
+        fun isLightTheme(
+            context: Context,
+            location: Location,
+        ) = isLightTheme(
+            context = context,
+            daylight = location.isDaylight
+        )
+
+        @JvmStatic
+        fun isLightTheme(
+            context: Context,
+            weather: Weather,
+            timeZone: TimeZone,
+        ) = isLightTheme(
+            context = context,
+            daylight = weather.isDaylight(timeZone)
+        )
+
+        @JvmStatic
+        private fun isLightTheme(
+            context: Context,
+            daylight: Boolean,
+        ) = when (SettingsManager.getInstance(context).darkMode) {
+            DarkMode.AUTO -> instance?.host?.isDaylight ?: daylight
+            DarkMode.SYSTEM -> !DisplayUtils.isDarkMode(context)
+            DarkMode.LIGHT -> true
+            DarkMode.DARK -> false
+        }
+
+        @JvmStatic
         fun getContext(
             lightTheme: Boolean
         ) = if (lightTheme) {
@@ -101,9 +138,9 @@ class MainThemeColorProvider(
         fun getContext(
             location: Location
         ) = getContext(
-            lightTheme = MainModuleUtils.isHomeLightTheme(
+            lightTheme = isLightTheme(
                 instance!!.host,
-                location.isDaylight
+                location
             )
         )
 

@@ -131,6 +131,12 @@
             android:screenOrientation="user" />
 
         <activity
+            android:name=".settings.activities.HourlyTrendDisplayManageActivity"
+            android:label="@string/settings_title_hourly_trend_display"
+            android:theme="@style/GeometricWeatherTheme"
+            android:screenOrientation="user" />
+
+        <activity
             android:name=".settings.activities.SelectProviderActivity"
             android:label="@string/settings_title_service_provider"
             android:theme="@style/GeometricWeatherTheme"

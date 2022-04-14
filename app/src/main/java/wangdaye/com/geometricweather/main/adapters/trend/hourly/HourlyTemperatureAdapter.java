@@ -20,7 +20,6 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Temperature;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.chart.PolylineAndHistogramView;
-import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
 import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider;
 import wangdaye.com.geometricweather.theme.ThemeManager;
 import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
@@ -94,10 +93,7 @@ public class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<HourlyTemper
                             WeatherViewController.getWeatherKind(location.getWeather()),
                             location.isDaylight()
                     );
-            boolean lightTheme = MainModuleUtils.isHomeLightTheme(
-                    itemView.getContext(),
-                    location.isDaylight()
-            );
+            boolean lightTheme = MainThemeColorProvider.isLightTheme(itemView.getContext(), location);
             mPolylineAndHistogramView.setLineColors(
                     themeColors[lightTheme ? 1 : 2],
                     themeColors[2],

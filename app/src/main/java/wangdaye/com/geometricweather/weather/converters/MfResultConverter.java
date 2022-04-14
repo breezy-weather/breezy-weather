@@ -3,7 +3,6 @@ package wangdaye.com.geometricweather.weather.converters;
 import android.content.Context;
 import android.graphics.Color;
 import android.text.TextUtils;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,7 +23,6 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Base;
 import wangdaye.com.geometricweather.common.basic.models.weather.Current;
 import wangdaye.com.geometricweather.common.basic.models.weather.Daily;
 import wangdaye.com.geometricweather.common.basic.models.weather.HalfDay;
-import wangdaye.com.geometricweather.common.basic.models.weather.History;
 import wangdaye.com.geometricweather.common.basic.models.weather.Hourly;
 import wangdaye.com.geometricweather.common.basic.models.weather.Minutely;
 import wangdaye.com.geometricweather.common.basic.models.weather.MoonPhase;
@@ -166,7 +164,7 @@ public class MfResultConverter {
                                                               MfWarningsResult warningsResult,
                                                               @Nullable AtmoAuraQAResult aqiAtmoAuraResult) {
         try {
-            List<Hourly> hourly = getHourlyList(forecastResult.forecasts, forecastResult.probabilityForecast);
+            List<Hourly> hourly = getHourlyList(context, forecastResult.forecasts, forecastResult.probabilityForecast);
             Weather weather = new Weather(
                     new Base(
                             location.getCityId(),
@@ -540,7 +538,7 @@ public class MfResultConverter {
         );
     }
 
-    private static List<Hourly> getHourlyList(List<MfForecastResult.Forecast> hourlyForecastResult, List<MfForecastResult.ProbabilityForecast> probabilityForecastResult) {
+    private static List<Hourly> getHourlyList(Context context, List<MfForecastResult.Forecast> hourlyForecastResult, List<MfForecastResult.ProbabilityForecast> probabilityForecastResult) {
         List<Hourly> hourlyList = new ArrayList<>(hourlyForecastResult.size());
         for (MfForecastResult.Forecast hourlyForecast : hourlyForecastResult) {
             hourlyList.add(
@@ -562,7 +560,14 @@ public class MfResultConverter {
                                     null
                             ),
                             getHourlyPrecipitation(hourlyForecast),
-                            getHourlyPrecipitationProbability(probabilityForecastResult, hourlyForecast.dt)
+                            getHourlyPrecipitationProbability(probabilityForecastResult, hourlyForecast.dt),
+                            new Wind(
+                                    hourlyForecast.wind.icon,
+                                    new WindDegree(hourlyForecast.wind.direction.equals("Variable") ? 0.0f : Float.parseFloat(hourlyForecast.wind.direction), hourlyForecast.wind.direction.equals("Variable")),
+                                    hourlyForecast.wind.speed * 3.6f,
+                                    CommonConverter.getWindLevel(context, hourlyForecast.wind.speed * 3.6f)
+                            ),
+                            new UV(null, null, null)
                     )
             );
         }
@@ -570,25 +575,26 @@ public class MfResultConverter {
     }
 
     private static List<Minutely> getMinutelyList(long sunrise, long sunset, @Nullable MfRainResult rainResult) {
-        //if (rainResult == null) {
-        return new ArrayList<>();
-        //}
-        /*List<Minutely> minutelyList = new ArrayList<>(rainResult.rainForecasts.size());
+        if (rainResult == null) {
+            return new ArrayList<>();
+        }
+        List<Minutely> minutelyList = new ArrayList<>(rainResult.rainForecasts.size());
+        long minuteZero = rainResult.rainForecasts.get(0).date / 60;
         for (MfRainResult.RainForecast rainForecast : rainResult.rainForecasts) {
             minutelyList.add(
                     new Minutely(
                             new Date(rainForecast.date * 1000),
-                            rainForecast.date,
+                            rainForecast.date * 1000,
                             CommonConverter.isDaylight(new Date(sunrise * 1000), new Date(sunset * 1000), new Date(rainForecast.date * 1000)),
                             rainForecast.desc,
-                            getWeatherCode(interval.IconCode), // TODO
-                            0, // TODO
-                            0, // TODO
-                            0 // TODO
+                            rainForecast.rain > 1 ? WeatherCode.RAIN : getWeatherCode(null),
+                            toInt((rainForecast.date / 60) - minuteZero), // TODO
+                            null,
+                            null
                     )
             );
         }
-        return minutelyList;*/
+        return minutelyList;
     }
 
     private static List<Alert> getWarningsList(MfWarningsResult warningsResult) {

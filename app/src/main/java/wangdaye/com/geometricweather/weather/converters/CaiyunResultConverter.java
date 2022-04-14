@@ -112,13 +112,12 @@ public class CaiyunResultConverter {
                             null,
                             null,
                             null,
-                            forecastResult.precipitation != null
-                                    ? forecastResult.precipitation.description
-                                    : null
+                            forecastResult.precipitation.description
                     ),
                     getYesterday(mainlyResult),
                     getDailyList(context, mainlyResult.current.pubTime, mainlyResult.forecastDaily),
                     getHourlyList(
+                            context,
                             mainlyResult.current.pubTime,
                             mainlyResult.forecastDaily.sunRiseSet.value.get(0).from,
                             mainlyResult.forecastDaily.sunRiseSet.value.get(0).to,
@@ -391,7 +390,7 @@ public class CaiyunResultConverter {
         }
     }
 
-    private static List<Hourly> getHourlyList(Date publishDate,
+    private static List<Hourly> getHourlyList(Context context, Date publishDate,
                                               Date sunrise, Date sunset,
                                               CaiYunMainlyResult.ForecastHourlyBean forecast) {
         List<Hourly> hourlyList = new ArrayList<>(forecast.weather.value.size());
@@ -433,7 +432,20 @@ public class CaiyunResultConverter {
                                     null,
                                     null,
                                     null
-                            )
+                            ),
+                            new Wind(
+                                    getWindDirection(Float.parseFloat(forecast.wind.value.get(i).direction)),
+                                    new WindDegree(
+                                            Float.parseFloat(forecast.wind.value.get(i).direction),
+                                            false
+                                    ),
+                                    Float.parseFloat(forecast.wind.value.get(i).speed),
+                                    CommonConverter.getWindLevel(
+                                            context,
+                                            Float.parseFloat(forecast.wind.value.get(i).speed)
+                                    )
+                            ),
+                            new UV(null, null, null)
                     )
             );
         }
@@ -444,10 +456,6 @@ public class CaiyunResultConverter {
                                                   String currentWeatherText,
                                                   WeatherCode currentWeatherCode,
                                                   CaiYunForecastResult result) {
-        if (result.precipitation == null) {
-            return new ArrayList<>();
-        }
-
         Date current = result.precipitation.pubTime;
 
         List<Minutely> minutelyList = new ArrayList<>(result.precipitation.value.size());

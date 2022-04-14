@@ -38,21 +38,4 @@ public class MainModuleUtils {
         set.setStartDelay(pendingCount * 200L);
         return set;
     }
-
-    public static boolean isHomeLightTheme(Context context, boolean daylight) {
-        switch (SettingsManager.getInstance(context).getDarkMode()) {
-            case AUTO:
-                return daylight;
-
-            case SYSTEM:
-                return !DisplayUtils.isDarkMode(context);
-
-            case LIGHT:
-                return true;
-
-            case DARK:
-                return false;
-        }
-        return true;
-    }
 }

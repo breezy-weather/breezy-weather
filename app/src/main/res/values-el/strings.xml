@@ -25,7 +25,7 @@
     <string name="wind_direction">Κατεύθυνση ανέμου</string>
     <string name="wind_speed">Ταχύτητα ανέμου</string>
     <string name="wind_level">Ένταση ανέμου</string>
-    <string name="sensible_temp">Αίσθηση σαν</string>
+    <string name="sensible_temp">Αίσθηση</string>
     <string name="humidity">Υγρασία</string>
     <string name="uv_index">Δείκτης UV</string>
     <string name="hours_of_sun">Ώρες ηλιοφάνειας</string>
@@ -34,7 +34,7 @@
     <string name="daytime">Ημέρα</string>
     <string name="nighttime">Νύχτα</string>
     <string name="publish_at">Καταχωρήθηκε:</string>
-    <string name="feels_like">Αίσθηση σαν</string>
+    <string name="feels_like">Αίσθηση </string>
     <string name="follow_system">Βάση συστήματος</string>
     <string name="background_information">Γενικές πληροφορίες</string>
     <string name="pressure">Ατμοσφαιρική πίεση</string>
@@ -63,7 +63,7 @@
 
     <string name="real_feel_temperature">Πραγματική αίσθηση</string>
     <string name="real_feel_shade_temperature">Πραγματική αίσθηση υπό σκιά</string>
-    <string name="apparent_temperature">Αίσθηση σαν</string>
+    <string name="apparent_temperature">Αίσθηση </string>
     <string name="wind_chill_temperature">θερμοκρασία ψύχους αέρα</string>
     <string name="wet_bulb_temperature">θερμοκρασία υγρού βολβού</string>
     <string name="degree_day_temperature">θερμοκρασία ημέρας</string>
@@ -197,8 +197,8 @@
     <string name="feedback_custom_subtitle_keyword_cw">$cw$ : Ο καιρός τώρα\n</string>
     <string name="feedback_custom_subtitle_keyword_ct">$ct$ : Τρέχουσα θερμοκρασία (℃/℉)\n</string>
     <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : Τρέχουσα θερμοκρασία (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_at">$at$ : Αίσθηση σαν (℃/℉)\n</string>
-    <string name="feedback_custom_subtitle_keyword_atd">$atd$ : Αίσθηση σαν (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_at">$at$ : Αίσθηση  (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_atd">$atd$ : Αίσθηση  (°)\n</string>
     <string name="feedback_custom_subtitle_keyword_cpb">$cpb$ : Πιθανότητα βροχόπτωσης (%)\n</string>
     <string name="feedback_custom_subtitle_keyword_cp">$cp$ : Πιθανότητα βροχόπτωσης (mm/L/m²)\n</string>
     <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : Άνεμος\n</string>
@@ -267,7 +267,7 @@
 
     <string name="feedback_ignore_battery_optimizations_title">Βελτιστοποίηση μπαταρίας</string>
     <string name="feedback_ignore_battery_optimizations_content">Για να λειτουργήσει η υπηρεσία λειτουργίας στο παρασκήνιο, απενεργοποιήστε τη βελτιστοποίηση μπαταρίας για το GeometricWeather.</string>
-    
+
     <string name="feedback_cannot_start_live_wallpaper_activity">Αδυναμία εκκίνησης προεπισκόπησης ζωντανής ταπετσαρίας</string>
 
     <string name="feedback_unusable_geocoder">Αυτή η συσκευή δεν διαθέτει τον απαραίτητο geocoder - την υπηρεσία εντοπισμού θέσης. Ο παροχέας τοποθεσίας θα αλλάξει στην τοποθεσία Baidu</string>

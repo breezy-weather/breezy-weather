@@ -5,6 +5,8 @@ import android.view.View;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.TimeZone;
+
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
@@ -15,7 +17,8 @@ import wangdaye.com.geometricweather.common.ui.widgets.trend.item.HourlyTrendIte
 import wangdaye.com.geometricweather.main.dialogs.HourlyWeatherDialog;
 import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider;
 
-public abstract class AbsHourlyTrendAdapter<VH extends RecyclerView.ViewHolder> extends TrendRecyclerViewAdapter<VH>  {
+public abstract class AbsHourlyTrendAdapter<VH extends RecyclerView.ViewHolder>
+        extends TrendRecyclerViewAdapter<VH>  {
 
     private final GeoActivity mActivity;
 
@@ -32,16 +35,32 @@ public abstract class AbsHourlyTrendAdapter<VH extends RecyclerView.ViewHolder> 
                         StringBuilder talkBackBuilder, int position) {
             Context context = itemView.getContext();
             Weather weather = location.getWeather();
+            TimeZone timeZone = location.getTimeZone();
 
             assert weather != null;
             Hourly hourly = weather.getHourlyForecast().get(position);
+
+            if (hourly.isToday(timeZone)) {
+                talkBackBuilder.append(", ").append(context.getString(R.string.today));
+                hourlyItem.setDayText(context.getString(R.string.today));
+            } else {
+                // Week day
+                //talkBackBuilder.append(", ").append(hourly.getWeek(context));
+                //hourlyItem.setDayText(hourly.getWeek(context));
+                // Or date
+                talkBackBuilder.append(", ").append(hourly.getLongDate(context));
+                hourlyItem.setDayText(hourly.getShortDate(context));
+            }
+
 
             talkBackBuilder
                     .append(", ").append(hourly.getLongDate(activity))
                     .append(", ").append(hourly.getHour(activity));
             hourlyItem.setHourText(hourly.getHour(context));
+
             hourlyItem.setTextColor(
-                    MainThemeColorProvider.getColor(location, R.attr.colorBodyText)
+                    MainThemeColorProvider.getColor(location, R.attr.colorBodyText),
+                    MainThemeColorProvider.getColor(location, R.attr.colorCaptionText)
             );
 
             hourlyItem.setOnClickListener(v -> onItemClicked(
@@ -69,5 +88,4 @@ public abstract class AbsHourlyTrendAdapter<VH extends RecyclerView.ViewHolder> 
     public GeoActivity getActivity() {
         return mActivity;
     }
-
 }

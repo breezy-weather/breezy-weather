@@ -18,7 +18,6 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Daily;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.chart.PolylineAndHistogramView;
-import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
 import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider;
 import wangdaye.com.geometricweather.theme.ThemeManager;
 import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
@@ -76,10 +75,7 @@ public class DailyAirQualityAdapter extends AbsDailyTrendAdapter<DailyAirQuality
                             WeatherViewController.getWeatherKind(location.getWeather()),
                             location.isDaylight()
                     );
-            boolean lightTheme = MainModuleUtils.isHomeLightTheme(
-                    itemView.getContext(),
-                    location.isDaylight()
-            );
+            boolean lightTheme = MainThemeColorProvider.isLightTheme(itemView.getContext(), location);
             mPolylineAndHistogramView.setShadowColors(themeColors[1], themeColors[2], lightTheme);
             mPolylineAndHistogramView.setTextColors(
                     MainThemeColorProvider.getColor(location, R.attr.colorBodyText),

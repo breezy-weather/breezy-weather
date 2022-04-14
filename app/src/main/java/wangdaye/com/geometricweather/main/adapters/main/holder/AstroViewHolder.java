@@ -30,7 +30,6 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Daily;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.ui.widgets.astro.MoonPhaseView;
 import wangdaye.com.geometricweather.common.ui.widgets.astro.SunMoonView;
-import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
 import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider;
 import wangdaye.com.geometricweather.theme.ThemeManager;
 import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
@@ -132,7 +131,7 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
         mSunMoonView.setSunDrawable(ResourceHelper.getSunDrawable(provider));
         mSunMoonView.setMoonDrawable(ResourceHelper.getMoonDrawable(provider));
 
-        if (MainModuleUtils.isHomeLightTheme(context, location.isDaylight())) {
+        if (MainThemeColorProvider.isLightTheme(context, location)) {
             mSunMoonView.setColors(
                     themeColors[0],
                     ColorUtils.setAlphaComponent(themeColors[1], (int) (0.66 * 255)),

@@ -35,6 +35,9 @@ class SettingsActivity : GeoActivity() {
     private val dailyTrendDisplayState = mutableStateOf(
         SettingsManager.getInstance(this).dailyTrendDisplayList
     )
+    private val hourlyTrendDisplayState = mutableStateOf(
+        SettingsManager.getInstance(this).hourlyTrendDisplayList
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,8 +55,13 @@ class SettingsActivity : GeoActivity() {
             }
 
             val dailyTrendDisplayList = SettingsManager.getInstance(this).dailyTrendDisplayList
-            if (dailyTrendDisplayState.value != cardDisplayList) {
+            if (dailyTrendDisplayState.value != dailyTrendDisplayList) {
                 dailyTrendDisplayState.value = dailyTrendDisplayList
+            }
+
+            val hourlyTrendDisplayList = SettingsManager.getInstance(this).hourlyTrendDisplayList
+            if (hourlyTrendDisplayState.value != hourlyTrendDisplayList) {
+                hourlyTrendDisplayState.value = hourlyTrendDisplayList
             }
         }
     }
@@ -95,7 +103,8 @@ class SettingsActivity : GeoActivity() {
                     AppearanceSettingsScreen(
                         context = this@SettingsActivity,
                         cardDisplayList = remember { cardDisplayState }.value,
-                        dailyTrendDisplayList = remember { dailyTrendDisplayState }.value
+                        dailyTrendDisplayList = remember { dailyTrendDisplayState }.value,
+                        hourlyTrendDisplayList = remember { hourlyTrendDisplayState }.value,
                     )
                 }
                 composable(SettingsScreenRouter.ServiceProvider.route) {

@@ -9,6 +9,7 @@ import wangdaye.com.geometricweather.common.basic.models.options.UpdateInterval
 import wangdaye.com.geometricweather.common.basic.models.options.WidgetWeekIconMode
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.CardDisplay
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.DailyTrendDisplay
+import wangdaye.com.geometricweather.common.basic.models.options.appearance.HourlyTrendDisplay
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.Language
 import wangdaye.com.geometricweather.common.basic.models.options.provider.LocationProvider
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource
@@ -36,21 +37,21 @@ class SettingsManager private constructor(context: Context) {
             return instance!!
         }
 
-        private const val DEFAULT_CARD_DISPLAY = (
-                "daily_overview"
-                        + "&hourly_overview"
-                        + "&air_quality"
-                        + "&allergen"
-                        + "&sunrise_sunset"
-                        + "&life_details"
-                )
-        private const val DEFAULT_DAILY_TREND_DISPLAY = (
-                "temperature"
-                        + "&air_quality"
-                        + "&wind"
-                        + "&uv_index"
-                        + "&precipitation"
-                )
+        private const val DEFAULT_CARD_DISPLAY = ("daily_overview"
+                + "&hourly_overview"
+                + "&air_quality"
+                + "&allergen"
+                + "&sunrise_sunset"
+                + "&life_details")
+        private const val DEFAULT_DAILY_TREND_DISPLAY = ("temperature"
+                + "&air_quality"
+                + "&wind"
+                + "&uv_index"
+                + "&precipitation")
+        private const val DEFAULT_HOURLY_TREND_DISPLAY = ("temperature"
+                + "&wind"
+                + "&uv_index"
+                + "&precipitation")
 
         const val DEFAULT_TODAY_FORECAST_TIME = "07:00"
         const val DEFAULT_TOMORROW_FORECAST_TIME = "21:00"
@@ -203,6 +204,20 @@ class SettingsManager private constructor(context: Context) {
         get() = DailyTrendDisplay
             .toDailyTrendDisplayList(
                 config.getString("daily_trend_display", DEFAULT_DAILY_TREND_DISPLAY) ?: ""
+            )
+            .toList()
+
+    var hourlyTrendDisplayList: List<HourlyTrendDisplay>
+        set(value) {
+            config
+                .edit()
+                .putString("hourly_trend_display", HourlyTrendDisplay.toValue(value))
+                .apply()
+            notifySettingsChanged()
+        }
+        get() = HourlyTrendDisplay
+            .toHourlyTrendDisplayList(
+                config.getString("hourly_trend_display", DEFAULT_HOURLY_TREND_DISPLAY) ?: ""
             )
             .toList()
 

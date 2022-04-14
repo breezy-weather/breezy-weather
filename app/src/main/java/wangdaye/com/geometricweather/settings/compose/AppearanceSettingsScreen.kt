@@ -14,6 +14,7 @@ import wangdaye.com.geometricweather.GeometricWeather.Companion.instance
 import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.CardDisplay
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.DailyTrendDisplay
+import wangdaye.com.geometricweather.common.basic.models.options.appearance.HourlyTrendDisplay
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.Language
 import wangdaye.com.geometricweather.common.basic.models.weather.Temperature
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper
@@ -27,6 +28,7 @@ fun AppearanceSettingsScreen(
     context: Context,
     cardDisplayList: List<CardDisplay>,
     dailyTrendDisplayList: List<DailyTrendDisplay>,
+    hourlyTrendDisplayList: List<HourlyTrendDisplay>,
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxHeight()
@@ -68,6 +70,16 @@ fun AppearanceSettingsScreen(
             ) {
                 (context as? Activity)?.let {
                     IntentHelper.startDailyTrendDisplayManageActivity(it)
+                }
+            }
+        }
+        item {
+            PreferenceView(
+                title = stringResource(R.string.settings_title_hourly_trend_display),
+                summary = HourlyTrendDisplay.getSummary(context, hourlyTrendDisplayList),
+            ) {
+                (context as? Activity)?.let {
+                    IntentHelper.startHourlyTrendDisplayManageActivityForResult(it)
                 }
             }
         }

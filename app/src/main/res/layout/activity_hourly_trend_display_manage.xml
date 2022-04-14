@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:background="?android:attr/colorBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
+            android:id="@+id/appBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            style="@style/GeometricWeatherTheme.AppBarTheme">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                style="@style/GeometricWeatherTheme.ToolbarTheme"
+                app:title="@string/settings_title_card_display"
+                app:navigationIcon="@drawable/ic_toolbar_back"
+                app:navigationContentDescription="@string/content_desc_back" />
+
+        </wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/appBar"
+            android:clipToPadding="false"
+            android:paddingBottom="128dp" />
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/bottomBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/colorBackground"
+            android:layout_alignParentBottom="true">
+
+            <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarRecyclerView
+                android:id="@+id/bottomRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:rv_side="bottom"
+                tools:ignore="RtlSymmetry,UnusedAttribute" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+    </RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

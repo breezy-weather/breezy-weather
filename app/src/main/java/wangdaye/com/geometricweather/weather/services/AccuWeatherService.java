@@ -59,7 +59,7 @@ public class AccuWeatherService extends WeatherService {
                 location.getCityId(), SettingsManager.getInstance(context).getProviderAccuWeatherKey(), languageCode, true, true);
 
         Observable<List<AccuHourlyResult>> hourly = mApi.getHourly(
-                location.getCityId(), SettingsManager.getInstance(context).getProviderAccuWeatherKey(), languageCode, true);
+                location.getCityId(), SettingsManager.getInstance(context).getProviderAccuWeatherKey(), languageCode, true, true);
 
         Observable<AccuMinuteResult> minute = mApi.getMinutely(
                 SettingsManager.getInstance(context).getProviderAccuWeatherKey(),

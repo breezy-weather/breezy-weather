@@ -26,7 +26,6 @@ import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.ui.widgets.ArcProgress;
 import wangdaye.com.geometricweather.main.adapters.AqiAdapter;
-import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
 import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider;
 import wangdaye.com.geometricweather.theme.ThemeManager;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
@@ -97,7 +96,7 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
             mProgress.setText(String.format("%d", 0));
             mProgress.setProgressColor(
                     ContextCompat.getColor(context, R.color.colorLevel_1),
-                    MainModuleUtils.isHomeLightTheme(context, location.isDaylight())
+                    MainThemeColorProvider.isLightTheme(context, location)
             );
             mProgress.setArcBackgroundColor(MainThemeColorProvider.getColor(location, R.attr.colorOutline));
         } else {
@@ -107,7 +106,7 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
 
             mProgress.setProgressColor(
                     aqiColor,
-                    MainModuleUtils.isHomeLightTheme(context, location.isDaylight())
+                    MainThemeColorProvider.isLightTheme(context, location)
             );
             mProgress.setArcBackgroundColor(
                     ColorUtils.setAlphaComponent(aqiColor, (int) (255 * 0.1))
@@ -127,7 +126,7 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
     @SuppressLint("DefaultLocale")
     @Override
     public void onEnterScreen() {
-        if (itemAnimationEnabled && mEnable && mWeather != null) {
+        if (itemAnimationEnabled && mEnable && mWeather != null && mTimeZone != null) {
             int aqiColor = mWeather.getCurrent().getAirQuality().getAqiColor(mProgress.getContext());
 
             ValueAnimator progressColor = ValueAnimator.ofObject(
@@ -137,7 +136,7 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
             );
             progressColor.addUpdateListener(animation -> mProgress.setProgressColor(
                     (Integer) animation.getAnimatedValue(),
-                    MainModuleUtils.isHomeLightTheme(context, mWeather.isDaylight(mTimeZone))
+                    MainThemeColorProvider.isLightTheme(context, mWeather, mTimeZone)
             ));
 
             ValueAnimator backgroundColor = ValueAnimator.ofObject(

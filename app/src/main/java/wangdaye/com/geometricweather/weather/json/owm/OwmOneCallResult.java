@@ -61,7 +61,7 @@ public class OwmOneCallResult {
         public int clouds;
         public int visibility;
         @SerializedName("wind_speed")
-        public double windSpeed;
+        public Float windSpeed;
         @SerializedName("wind_deg")
         public int windDeg;
         public List<Weather> weather;

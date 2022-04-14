@@ -388,7 +388,7 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
                     0
             );
             clouds[2] = new Cloud(
-                    viewWidth * 0.351f,
+                    viewWidth * 0.0351f,
                     viewWidth * (0.1701f * 1.4327f + 0.11f),
                     viewWidth * (0.4627f * 0.9f),
                     1.1f,
@@ -438,11 +438,10 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
             float[] cloudAlphas;
             if (daylight) {
                 cloudColor = Color.rgb(203, 245, 255);
-                cloudAlphas = new float[] {0.40F, 0.10F};
             } else {
                 cloudColor = Color.rgb(151, 168, 202);
-                cloudAlphas = new float[] {0.40F, 0.10F};
             }
+            cloudAlphas = new float[] {0.40F, 0.10F};
 
             Cloud[] clouds = new Cloud[6];
             clouds[0] = new Cloud(

@@ -133,8 +133,11 @@ public class PolylineAndHistogramView extends AbsChartItemView {
 
         drawTimeLine(canvas);
 
-        if (mHistogramValue != null && mHistogramValue != 0 && mHistogramValueStr != null
-                && mHighestHistogramValue != null && mLowestHistogramValue != null) {
+        if (mHistogramValue != null
+                && (mHistogramValue != 0 || (mHighestPolylineValue == null && mLowestPolylineValue == null))
+                && mHistogramValueStr != null
+                && mHighestHistogramValue != null
+                && mLowestHistogramValue != null) {
             drawHistogram(canvas);
         }
         if (mHighestPolylineValue != null && mLowestPolylineValue != null) {

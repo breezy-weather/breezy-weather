@@ -378,6 +378,9 @@ class MainActivity : GeoActivity(),
             Manifest.permission.ACCESS_FINE_LOCATION
         ) == PackageManager.PERMISSION_GRANTED
 
+    val isDaylight
+        get() = viewModel.currentLocation.value!!.daylight
+
     // control.
 
     private fun consumeIntentAction(intent: Intent) {

@@ -30,6 +30,7 @@ import wangdaye.com.geometricweather.search.SearchActivity;
 import wangdaye.com.geometricweather.settings.activities.AboutActivity;
 import wangdaye.com.geometricweather.settings.activities.CardDisplayManageActivity;
 import wangdaye.com.geometricweather.settings.activities.DailyTrendDisplayManageActivity;
+import wangdaye.com.geometricweather.settings.activities.HourlyTrendDisplayManageActivity;
 import wangdaye.com.geometricweather.settings.activities.PreviewIconActivity;
 import wangdaye.com.geometricweather.settings.activities.SelectProviderActivity;
 import wangdaye.com.geometricweather.settings.activities.SettingsActivity;
@@ -145,6 +146,10 @@ public class IntentHelper {
 
     public static void startDailyTrendDisplayManageActivity(Activity activity) {
         activity.startActivity(new Intent(activity, DailyTrendDisplayManageActivity.class));
+    }
+
+    public static void startHourlyTrendDisplayManageActivityForResult(Activity activity) {
+        activity.startActivity(new Intent(activity, HourlyTrendDisplayManageActivity.class));
     }
 
     public static void startSelectProviderActivity(Activity activity) {
