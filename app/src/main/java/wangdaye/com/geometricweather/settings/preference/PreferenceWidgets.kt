@@ -1,5 +1,6 @@
-package wangdaye.com.geometricweather.settings.compose
+package wangdaye.com.geometricweather.settings.preference
 
+import android.content.Context
 import android.widget.TimePicker
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -18,6 +19,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -86,7 +88,7 @@ fun PreferenceView(
 @Composable
 fun CheckboxPreferenceView(
     title: String,
-    summary: @Composable (Boolean) -> String?,
+    summary: (Context, Boolean) -> String?,
     checked: Boolean,
     enabled: Boolean = true,
     onValueChanged: (Boolean) -> Unit,
@@ -118,7 +120,7 @@ fun CheckboxPreferenceView(
                 color = DayNightTheme.colors.titleColor,
                 style = MaterialTheme.typography.titleMedium,
             )
-            val currentSummary = summary(state.value)
+            val currentSummary = summary(LocalContext.current, state.value)
             if (currentSummary?.isNotEmpty() == true) {
                 Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
                 Text(
@@ -156,9 +158,10 @@ fun CheckboxPreferenceView(
 @Composable
 fun ListPreferenceView(
     title: String,
-    summary: @Composable (String) -> String?, // key -> summary.
+    summary: (Context, String) -> String?, // value -> summary.
     selectedKey: String,
-    keyNamePairList: List<Pair<String, String>>, // key, name.
+    valueArray: Array<String>,
+    nameArray: Array<String>,
     enabled: Boolean = true,
     onValueChanged: (String) -> Unit,
 ) {
@@ -185,7 +188,7 @@ fun ListPreferenceView(
                 color = DayNightTheme.colors.titleColor,
                 style = MaterialTheme.typography.titleMedium,
             )
-            val currentSummary = summary(listSelectedState.value)
+            val currentSummary = summary(LocalContext.current, listSelectedState.value)
             if (currentSummary?.isNotEmpty() == true) {
                 Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
                 Text(
@@ -211,7 +214,7 @@ fun ListPreferenceView(
                 LazyColumn(
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    items(keyNamePairList) {
+                    items(valueArray.zip(nameArray)) {
                         RadioButton(
                             selected = listSelectedState.value == it.first,
                             onClick = {
@@ -296,7 +299,7 @@ private fun stringToTime(
 @Composable
 fun TimePickerPreferenceView(
     title: String,
-    summary: (String) -> String?, // currentTime (xx:xx) -> summary.
+    summary: (Context, String) -> String?, // currentTime (xx:xx) -> summary.
     currentTime: String,
     enabled: Boolean = true,
     onValueChanged: (String) -> Unit,
@@ -325,7 +328,7 @@ fun TimePickerPreferenceView(
                 color = DayNightTheme.colors.titleColor,
                 style = MaterialTheme.typography.titleMedium,
             )
-            val currentSummary = summary(currentTimeState.value)
+            val currentSummary = summary(LocalContext.current, currentTimeState.value)
             if (currentSummary?.isNotEmpty() == true) {
                 Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
                 Text(
@@ -338,7 +341,7 @@ fun TimePickerPreferenceView(
     }
 
     if (dialogOpenState.value) {
-        val pickerTimeState = remember { mutableStateOf(currentTimeState.value) }
+        val timePickerState = remember { mutableStateOf(currentTimeState.value) }
 
         AlertDialog(
             onDismissRequest = { dialogOpenState.value = false },
@@ -359,13 +362,13 @@ fun TimePickerPreferenceView(
                         )
                         timePicker.setIs24HourView(true)
                         timePicker.setOnTimeChangedListener { _, hour, minute ->
-                            pickerTimeState.value = timeToString(hour = hour, minute = minute)
+                            timePickerState.value = timeToString(hour = hour, minute = minute)
                         }
 
                         val time = stringToTime(currentTimeState.value)
                         timePicker.currentHour = time.elementAtOrNull(0) ?: 0
                         timePicker.currentMinute = time.elementAtOrNull(1) ?: 0
-                        pickerTimeState.value = timeToString(
+                        timePickerState.value = timeToString(
                             hour = timePicker.currentHour,
                             minute = timePicker.currentMinute
                         )
@@ -377,7 +380,7 @@ fun TimePickerPreferenceView(
             confirmButton = {
                 TextButton(
                     onClick = {
-                        currentTimeState.value = pickerTimeState.value
+                        currentTimeState.value = timePickerState.value
                         dialogOpenState.value = false
                         onValueChanged(currentTimeState.value)
                     }
@@ -407,7 +410,7 @@ fun TimePickerPreferenceView(
 @Composable
 fun EditTextPreferenceView(
     title: String,
-    summary: (String) -> String?, // content -> summary.
+    summary: (Context, String) -> String?, // content -> summary.
     content: String,
     enabled: Boolean = true,
     onValueChanged: (String) -> Unit,
@@ -435,7 +438,7 @@ fun EditTextPreferenceView(
                 color = DayNightTheme.colors.titleColor,
                 style = MaterialTheme.typography.titleMedium,
             )
-            val currentSummary = summary(contentState.value)
+            val currentSummary = summary(LocalContext.current, contentState.value)
             if (currentSummary?.isNotEmpty() == true) {
                 Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
                 Text(
@@ -524,20 +527,21 @@ private fun DefaultPreview() {
         ) {
             CheckboxPreferenceView(
                 title = "Checkbox",
-                summary = { "currentSeldhauidhiashdiuashduiashdiuahsidhsaiudhasuihdiuashdiusahduiashdiusahduihasudhasudhsahduashdiuashdiuhaected = $it" },
+                summary = { _, it -> "currentSeldhauidhiashdiuashduiashdiuahsidhsaiudhasuihdiuashdiusahduiashdiusahduihasudhasudhsahduashdiuashdiuhaected = $it" },
                 checked = false,
                 onValueChanged = { /* do nothing */ }
             )
             ListPreferenceView(
                 title = "List Selector",
-                summary = { "currentSelected = $it" },
+                summary = { _, it -> "currentSelected = $it" },
                 selectedKey = "a",
-                keyNamePairList = listOf("a", "b", "c").zip(listOf("A", "B", "C")),
+                valueArray = arrayOf("a", "b", "c"),
+                nameArray = arrayOf("A", "B", "C"),
                 onValueChanged = { /* do nothing */ }
             )
             TimePickerPreferenceView(
                 title = "TimePicker",
-                summary = { "currentTime = $it" },
+                summary = { _, it -> "currentTime = $it" },
                 currentTime = "08:00",
                 onValueChanged = { /* do nothing */ }
             )

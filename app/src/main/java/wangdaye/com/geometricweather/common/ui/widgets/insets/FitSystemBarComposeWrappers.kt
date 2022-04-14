@@ -2,6 +2,7 @@ package wangdaye.com.geometricweather.common.ui.widgets.insets
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.material.AppBarDefaults
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.LocalContentAlpha
@@ -20,6 +21,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import wangdaye.com.geometricweather.R
+import wangdaye.com.geometricweather.settings.preference.SectionFooter
 
 private val AppBarHeight = 64.dp
 private val AppBarHorizontalPadding = 4.dp
@@ -152,4 +154,12 @@ fun FitNavigationBarBottomAppBar(
                 .align(Alignment.BottomCenter),
         )
     }
+}
+
+enum class BottomInsetKey { INSTANCE }
+fun LazyListScope.bottomInsetItem() = item(
+    key = { BottomInsetKey.INSTANCE },
+    contentType = { BottomInsetKey.INSTANCE },
+) {
+    Spacer(modifier = Modifier.windowInsetsBottomHeight(WindowInsets.navigationBars))
 }

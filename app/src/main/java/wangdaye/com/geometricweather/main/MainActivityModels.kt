@@ -78,4 +78,10 @@ class DayNightLocation(
 
         return false
     }
+
+    override fun hashCode(): Int {
+        var result = location.hashCode()
+        result = 31 * result + daylight.hashCode()
+        return result
+    }
 }
