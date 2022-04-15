@@ -91,8 +91,10 @@ class SettingsActivity : GeoActivity() {
             backgroundColor = MaterialTheme.colorScheme.background,
         ) {
             val navController = rememberNavController()
-
-            NavHost(navController, startDestination = SettingsScreenRouter.Root.route) {
+            NavHost(
+                navController = navController,
+                startDestination = SettingsScreenRouter.Root.route
+            ) {
                 composable(SettingsScreenRouter.Root.route) {
                     RootSettingsView(
                         context = this@SettingsActivity,

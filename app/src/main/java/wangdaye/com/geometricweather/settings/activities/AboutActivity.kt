@@ -31,6 +31,7 @@ import wangdaye.com.geometricweather.BuildConfig
 import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.GeoActivity
 import wangdaye.com.geometricweather.common.ui.widgets.insets.FitStatusBarTopAppBar
+import wangdaye.com.geometricweather.common.ui.widgets.insets.bottomInsetItem
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper
 import wangdaye.com.geometricweather.settings.utils.DonateHelper
 import wangdaye.com.geometricweather.theme.compose.DayNightTheme
@@ -349,9 +350,7 @@ class AboutActivity : GeoActivity() {
                     Translator(name = item.name, url = item.url, flag = item.flag)
                 }
 
-                item {
-                    Spacer(modifier = Modifier.windowInsetsBottomHeight(WindowInsets.navigationBars))
-                }
+                bottomInsetItem()
             }
         }
     }

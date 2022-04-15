@@ -25,6 +25,7 @@ import wangdaye.com.geometricweather.common.basic.GeoActivity
 import wangdaye.com.geometricweather.common.basic.models.Location
 import wangdaye.com.geometricweather.common.basic.models.weather.Alert
 import wangdaye.com.geometricweather.common.ui.widgets.insets.FitStatusBarTopAppBar
+import wangdaye.com.geometricweather.common.ui.widgets.insets.bottomInsetItem
 import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper
 import wangdaye.com.geometricweather.db.DatabaseHelper
 import wangdaye.com.geometricweather.theme.compose.DayNightTheme
@@ -114,6 +115,8 @@ class AlertActivity : GeoActivity() {
                         thickness = 1.dp,
                     )
                 }
+
+                bottomInsetItem()
             }
         }
     }

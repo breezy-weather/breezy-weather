@@ -43,8 +43,10 @@ class SelectProviderActivity : GeoActivity() {
             backgroundColor = MaterialTheme.colorScheme.background,
         ) {
             val navController = rememberNavController()
-
-            NavHost(navController, startDestination = SettingsScreenRouter.ServiceProvider.route) {
+            NavHost(
+                navController = navController,
+                startDestination = SettingsScreenRouter.ServiceProvider.route
+            ) {
                 composable(SettingsScreenRouter.ServiceProvider.route) {
                     ServiceProviderSettingsScreen(
                         context = this@SelectProviderActivity,

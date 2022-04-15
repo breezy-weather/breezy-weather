@@ -22,6 +22,9 @@ import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper
 import wangdaye.com.geometricweather.settings.SettingsManager
 import wangdaye.com.geometricweather.settings.dialogs.ProvidersPreviewerDialog
 import wangdaye.com.geometricweather.settings.preference.*
+import wangdaye.com.geometricweather.settings.preference.composables.CheckboxPreferenceView
+import wangdaye.com.geometricweather.settings.preference.composables.ListPreferenceView
+import wangdaye.com.geometricweather.settings.preference.composables.PreferenceView
 import wangdaye.com.geometricweather.theme.resource.ResourcesProviderFactory
 
 @Composable
@@ -95,86 +98,87 @@ fun AppearanceSettingsScreen(
                 }
             }
         }
-        preferenceItems(
-            listOf(
-                PreferenceModel.CheckboxPreferenceModel(
-                    titleId = R.string.settings_title_trend_horizontal_line_switch,
-                    summaryGenerator = { context, it ->
-                        context.getString(if (it) R.string.on else R.string.off)
-                    },
-                    checked = SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled,
-                    onValueChanged = {
-                        SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled = it
-                    }
-                ),
-                PreferenceModel.CheckboxPreferenceModel(
-                    titleId = R.string.settings_title_exchange_day_night_temp_switch,
-                    summaryGenerator = { context, it ->
-                        Temperature.getTrendTemperature(
-                            context,
-                            3,
-                            7,
-                            SettingsManager.getInstance(context).temperatureUnit,
-                            it
-                        )
-                    },
-                    checked = SettingsManager.getInstance(context).isExchangeDayNightTempEnabled,
-                    onValueChanged = {
-                        SettingsManager.getInstance(context).isExchangeDayNightTempEnabled = it
-                    }
-                ),
-                PreferenceModel.CheckboxPreferenceModel(
-                    titleId = R.string.settings_title_gravity_sensor_switch,
-                    summaryGenerator = {  context, it ->
-                        context.getString(if (it) R.string.on else R.string.off)
-                    },
-                    checked = SettingsManager.getInstance(context).isGravitySensorEnabled,
-                    onValueChanged = {
-                        SettingsManager.getInstance(context).isGravitySensorEnabled = it
-                    }
-                ),
-                PreferenceModel.CheckboxPreferenceModel(
-                    titleId = R.string.settings_title_list_animation_switch,
-                    summaryGenerator = {  context, it ->
-                        context.getString(if (it) R.string.on else R.string.off)
-                    },
-                    checked = SettingsManager.getInstance(context).isListAnimationEnabled,
-                    onValueChanged = {
-                        SettingsManager.getInstance(context).isListAnimationEnabled = it
-                    }
-                ),
-                PreferenceModel.CheckboxPreferenceModel(
-                    titleId = R.string.settings_title_item_animation_switch,
-                    summaryGenerator = {  context, it ->
-                        context.getString(if (it) R.string.on else R.string.off)
-                    },
-                    checked = SettingsManager.getInstance(context).isItemAnimationEnabled,
-                    onValueChanged = {
-                        SettingsManager.getInstance(context).isItemAnimationEnabled = it
-                    }
-                ),
-            ).map { mutableStateOf(it) }
-        )
-        preferenceItem(
-            mutableStateOf(
-                generateListPreferenceModel(
-                    titleId = R.string.settings_language,
-                    selectedKey = SettingsManager.getInstance(context).language.id,
-                    valueArrayId = R.array.language_values,
-                    nameArrayId = R.array.languages,
-                    onValueChanged = {
-                        SettingsManager.getInstance(context).language = Language.getInstance(it)
-
-                        SnackbarHelper.showSnackbar(
-                            context.getString(R.string.feedback_restart),
-                            context.getString(R.string.restart)
-                        ) {
-                            instance.recreateAllActivities()
-                        }
-                    }
-                )
+        checkboxPreferenceItem(R.string.settings_title_trend_horizontal_line_switch) { id ->
+            CheckboxPreferenceView(
+                titleId = id,
+                summaryOnId = R.string.on,
+                summaryOffId = R.string.off,
+                checked = SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled,
+                onValueChanged = {
+                    SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled = it
+                },
             )
-        )
+        }
+        checkboxPreferenceItem(R.string.settings_title_exchange_day_night_temp_switch) { id ->
+            CheckboxPreferenceView(
+                title = stringResource(id),
+                summary = { context, it ->
+                    Temperature.getTrendTemperature(
+                        context,
+                        3,
+                        7,
+                        SettingsManager.getInstance(context).temperatureUnit,
+                        it
+                    )
+                },
+                checked = SettingsManager.getInstance(context).isExchangeDayNightTempEnabled,
+                onValueChanged = {
+                    SettingsManager.getInstance(context).isExchangeDayNightTempEnabled = it
+                },
+            )
+        }
+        checkboxPreferenceItem(R.string.settings_title_gravity_sensor_switch) { id ->
+            CheckboxPreferenceView(
+                titleId = id,
+                summaryOnId = R.string.on,
+                summaryOffId = R.string.off,
+                checked = SettingsManager.getInstance(context).isGravitySensorEnabled,
+                onValueChanged = {
+                    SettingsManager.getInstance(context).isGravitySensorEnabled = it
+                },
+            )
+        }
+        checkboxPreferenceItem(R.string.settings_title_list_animation_switch) { id ->
+            CheckboxPreferenceView(
+                titleId = id,
+                summaryOnId = R.string.on,
+                summaryOffId = R.string.off,
+                checked = SettingsManager.getInstance(context).isListAnimationEnabled,
+                onValueChanged = {
+                    SettingsManager.getInstance(context).isListAnimationEnabled = it
+                },
+            )
+        }
+        checkboxPreferenceItem(R.string.settings_title_item_animation_switch) { id ->
+            CheckboxPreferenceView(
+                titleId = id,
+                summaryOnId = R.string.on,
+                summaryOffId = R.string.off,
+                checked = SettingsManager.getInstance(context).isItemAnimationEnabled,
+                onValueChanged = {
+                    SettingsManager.getInstance(context).isItemAnimationEnabled = it
+                },
+            )
+        }
+        listPreferenceItem(R.string.settings_language) { id ->
+            ListPreferenceView(
+                titleId = id,
+                valueArrayId = R.array.language_values,
+                nameArrayId = R.array.languages,
+                selectedKey = SettingsManager.getInstance(context).language.id,
+                onValueChanged = {
+                    SettingsManager.getInstance(context).language = Language.getInstance(it)
+
+                    SnackbarHelper.showSnackbar(
+                        context.getString(R.string.feedback_restart),
+                        context.getString(R.string.restart)
+                    ) {
+                        instance.recreateAllActivities()
+                    }
+                },
+            )
+        }
+
         bottomInsetItem()
     }
 }

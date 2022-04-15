@@ -21,7 +21,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import wangdaye.com.geometricweather.R
-import wangdaye.com.geometricweather.settings.preference.SectionFooter
 
 private val AppBarHeight = 64.dp
 private val AppBarHorizontalPadding = 4.dp

@@ -5,12 +5,9 @@ import android.content.Intent
 import android.os.Build
 import android.provider.Settings
 import androidx.annotation.RequiresApi
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -27,46 +24,8 @@ import wangdaye.com.geometricweather.remoteviews.presenters.*
 import wangdaye.com.geometricweather.remoteviews.presenters.notification.NormalNotificationIMP
 import wangdaye.com.geometricweather.settings.SettingsManager
 import wangdaye.com.geometricweather.settings.preference.*
+import wangdaye.com.geometricweather.settings.preference.composables.*
 import wangdaye.com.geometricweather.theme.ThemeManager
-
-@RequiresApi(api = Build.VERSION_CODES.O)
-private fun showBlockNotificationGroupDialog(context: Context) {
-    MaterialAlertDialogBuilder(context)
-        .setTitle(R.string.feedback_interpret_notification_group_title)
-        .setMessage(R.string.feedback_interpret_notification_group_content)
-        .setPositiveButton(R.string.go_to_set) { _, _ ->
-            val intent = Intent()
-            intent.action = Settings.ACTION_APP_NOTIFICATION_SETTINGS
-            intent.putExtra(
-                Settings.EXTRA_APP_PACKAGE,
-                context.packageName
-            )
-            context.startActivity(intent)
-            showIgnoreBatteryOptimizationDialog(context)
-        }
-        .setNeutralButton(
-            R.string.done
-        ) { _, _ -> 
-            showIgnoreBatteryOptimizationDialog(context) 
-        }
-        .setCancelable(false)
-        .show()
-}
-
-@RequiresApi(api = Build.VERSION_CODES.M)
-private fun showIgnoreBatteryOptimizationDialog(context: Context) {
-    MaterialAlertDialogBuilder(context)
-        .setTitle(R.string.feedback_ignore_battery_optimizations_title)
-        .setMessage(R.string.feedback_ignore_battery_optimizations_content)
-        .setPositiveButton(
-            R.string.go_to_set
-        ) { _, _ -> 
-            IntentHelper.startBatteryOptimizationActivity(context) 
-        }
-        .setNeutralButton(R.string.done) { _, _ -> }
-        .setCancelable(false)
-        .show()
-}
 
 @Composable
 fun RootSettingsView(context: Context, navController: NavHostController) {
@@ -92,199 +51,205 @@ fun RootSettingsView(context: Context, navController: NavHostController) {
         )
     }
 
-    LazyColumn(
-        modifier = Modifier.fillMaxHeight()
-    ) {
+    PreferenceScreen {
         // basic.
         sectionHeaderItem(R.string.settings_category_basic)
-        preferenceItems(
-            listOf(
-                PreferenceModel.CheckboxPreferenceModel(
-                    titleId = R.string.settings_title_background_free,
-                    summaryGenerator = { context, it ->
-                        context.getString(
-                            if (it) R.string.settings_summary_background_free_on
-                            else R.string.settings_summary_background_free_off
-                        )
-                    },
-                    checked = SettingsManager.getInstance(context).isBackgroundFree,
-                    onValueChanged = {
-                        SettingsManager.getInstance(context).isBackgroundFree = it
+        checkboxPreferenceItem(R.string.settings_title_background_free) { id ->
+            CheckboxPreferenceView(
+                titleId = id,
+                summaryOnId = R.string.settings_summary_background_free_on,
+                summaryOffId = R.string.settings_summary_background_free_off,
+                checked = SettingsManager.getInstance(context).isBackgroundFree,
+                onValueChanged = {
+                    SettingsManager.getInstance(context).isBackgroundFree = it
 
-                        PollingManager.resetNormalBackgroundTask(context, false)
-                        if (!it) {
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                showBlockNotificationGroupDialog(context)
-                            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                showIgnoreBatteryOptimizationDialog(context)
-                            }
+                    PollingManager.resetNormalBackgroundTask(context, false)
+                    if (!it) {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            showBlockNotificationGroupDialog(context)
+                        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            showIgnoreBatteryOptimizationDialog(context)
                         }
                     }
-                ),
-                PreferenceModel.CheckboxPreferenceModel(
-                    titleId = R.string.settings_title_alert_notification_switch,
-                    summaryGenerator = {  context, it ->
-                        context.getString(if (it) R.string.on else R.string.off)
-                    },
-                    checked = SettingsManager.getInstance(context).isAlertPushEnabled,
-                    onValueChanged = {
-                        SettingsManager.getInstance(context).isAlertPushEnabled = it
-                        PollingManager.resetNormalBackgroundTask(context, false)
-                    }
-                ),
-                PreferenceModel.CheckboxPreferenceModel(
-                    titleId = R.string.settings_title_precipitation_notification_switch,
-                    summaryGenerator = {  context, it ->
-                        context.getString(if (it) R.string.on else R.string.off)
-                    },
-                    checked = SettingsManager.getInstance(context).isPrecipitationPushEnabled,
-                    onValueChanged = {
-                        SettingsManager.getInstance(context).isPrecipitationPushEnabled = it
-                    }
-                ),
-                generateListPreferenceModel(
-                    titleId = R.string.settings_title_refresh_rate,
-                    selectedKey = SettingsManager.getInstance(context).updateInterval.id,
-                    valueArrayId = R.array.automatic_refresh_rate_values,
-                    nameArrayId = R.array.automatic_refresh_rates,
-                    onValueChanged = {
-                        SettingsManager
-                            .getInstance(context)
-                            .updateInterval = UpdateInterval.getInstance(it)
-                    }
-                ),
-                generateListPreferenceModel(
-                    titleId = R.string.settings_title_dark_mode,
-                    selectedKey = SettingsManager.getInstance(context).darkMode.id,
-                    valueArrayId = R.array.dark_mode_values,
-                    nameArrayId = R.array.dark_modes,
-                    onValueChanged = {
-                        SettingsManager
-                            .getInstance(context)
-                            .darkMode = DarkMode.getInstance(it)
+                },
+            )
+        }
+        checkboxPreferenceItem(R.string.settings_title_alert_notification_switch) { id ->
+            CheckboxPreferenceView(
+                titleId = id,
+                summaryOnId = R.string.on,
+                summaryOffId = R.string.off,
+                checked = SettingsManager.getInstance(context).isAlertPushEnabled,
+                onValueChanged = {
+                    SettingsManager.getInstance(context).isAlertPushEnabled = it
+                    PollingManager.resetNormalBackgroundTask(context, false)
+                },
+            )
+        }
+        checkboxPreferenceItem(R.string.settings_title_precipitation_notification_switch) { id ->
+            CheckboxPreferenceView(
+                titleId = id,
+                summaryOnId = R.string.on,
+                summaryOffId = R.string.off,
+                checked = SettingsManager.getInstance(context).isPrecipitationPushEnabled,
+                onValueChanged = {
+                    SettingsManager.getInstance(context).isPrecipitationPushEnabled = it
+                    PollingManager.resetNormalBackgroundTask(context, false)
+                },
+            )
+        }
+        listPreferenceItem(R.string.settings_title_refresh_rate) { id ->
+            ListPreferenceView(
+                titleId = id,
+                selectedKey = SettingsManager.getInstance(context).updateInterval.id,
+                valueArrayId = R.array.automatic_refresh_rate_values,
+                nameArrayId = R.array.automatic_refresh_rates,
+                onValueChanged = {
+                    SettingsManager
+                        .getInstance(context)
+                        .updateInterval = UpdateInterval.getInstance(it)
+                },
+            )
+        }
+        listPreferenceItem(R.string.settings_title_dark_mode) { id ->
+            ListPreferenceView(
+                titleId = id,
+                selectedKey = SettingsManager.getInstance(context).darkMode.id,
+                valueArrayId = R.array.dark_mode_values,
+                nameArrayId = R.array.dark_modes,
+                onValueChanged = {
+                    SettingsManager
+                        .getInstance(context)
+                        .darkMode = DarkMode.getInstance(it)
 
-                        AsyncHelper.delayRunOnUI({
-                            ThemeManager
-                                .getInstance(context)
-                                .update(darkMode = SettingsManager.getInstance(context).darkMode)
-                        },300)
-                    }
-                ),
-                PreferenceModel.ClickablePreferenceModel(
-                    titleId = R.string.settings_title_live_wallpaper,
-                    summaryId = R.string.settings_summary_live_wallpaper
-                ) {
-                    IntentHelper.startLiveWallpaperActivity(context)
+                    AsyncHelper.delayRunOnUI({
+                        ThemeManager
+                            .getInstance(context)
+                            .update(darkMode = SettingsManager.getInstance(context).darkMode)
+                    },300)
                 },
-                PreferenceModel.ClickablePreferenceModel(
-                    titleId = R.string.settings_title_service_provider,
-                    summaryId = R.string.settings_summary_service_provider
-                ) {
-                    navController.navigate(SettingsScreenRouter.ServiceProvider.route)
-                },
-                PreferenceModel.ClickablePreferenceModel(
-                    titleId = R.string.settings_title_unit,
-                    summaryId = R.string.settings_summary_unit
-                ) {
-                    navController.navigate(SettingsScreenRouter.Unit.route)
-                },
-                PreferenceModel.ClickablePreferenceModel(
-                    titleId = R.string.settings_title_appearance,
-                    summaryId = R.string.settings_summary_appearance
-                ) {
-                    navController.navigate(SettingsScreenRouter.Appearance.route)
-                },
-            ).map { mutableStateOf(it) }
-        )
+            )
+        }
+        clickablePreferenceItem(R.string.settings_title_live_wallpaper) { id ->
+            PreferenceView(
+                titleId = id,
+                summaryId = R.string.settings_summary_live_wallpaper
+            ) {
+                IntentHelper.startLiveWallpaperActivity(context)
+            }
+        }
+        clickablePreferenceItem(R.string.settings_title_service_provider) { id ->
+            PreferenceView(
+                titleId = id,
+                summaryId = R.string.settings_summary_service_provider
+            ) {
+                navController.navigate(SettingsScreenRouter.ServiceProvider.route)
+            }
+        }
+        clickablePreferenceItem(R.string.settings_title_unit) { id ->
+            PreferenceView(
+                titleId = id,
+                summaryId = R.string.settings_summary_unit
+            ) {
+                navController.navigate(SettingsScreenRouter.Unit.route)
+            }
+        }
+        clickablePreferenceItem(R.string.settings_title_appearance) { id ->
+            PreferenceView(
+                titleId = id,
+                summaryId = R.string.settings_summary_appearance
+            ) {
+                navController.navigate(SettingsScreenRouter.Appearance.route)
+            }
+        }
         sectionFooterItem(R.string.settings_category_basic)
 
         // forecast.
         sectionHeaderItem(R.string.settings_category_forecast)
-        preferenceItems(
-            listOf(
-                PreferenceModel.CheckboxPreferenceModel(
-                    titleId = R.string.settings_title_forecast_today,
-                    summaryGenerator = {  context, it ->
-                        context.getString(if (it) R.string.on else R.string.off)
-                    },
-                    checked = todayForecastEnabledState.value,
-                    onValueChanged = {
-                        todayForecastEnabledState.value = it
-                        PollingManager.resetNormalBackgroundTask(context, false)
-                    }
-                ),
-                PreferenceModel.TimePickerPreferenceModel(
-                    titleId = R.string.settings_title_forecast_today_time,
-                    summaryGenerator = { _, it -> it },
-                    currentTime = SettingsManager.getInstance(context).todayForecastTime,
-                    enabled = todayForecastEnabledState.value,
-                    onValueChanged = {
-                        SettingsManager.getInstance(context).todayForecastTime = it
-                        PollingManager.resetTodayForecastBackgroundTask(
-                            context,
-                            false,
-                            false
-                        )
-                    }
-                ),
-                PreferenceModel.CheckboxPreferenceModel(
-                    titleId = R.string.settings_title_forecast_tomorrow,
-                    summaryGenerator = {  context, it ->
-                        context.getString(if (it) R.string.on else R.string.off)
-                    },
-                    checked = tomorrowForecastEnabledState.value,
-                    onValueChanged = {
-                        tomorrowForecastEnabledState.value = it
-                        PollingManager.resetNormalBackgroundTask(context, false)
-                    }
-                ),
-                PreferenceModel.TimePickerPreferenceModel(
-                    titleId = R.string.settings_title_forecast_tomorrow_time,
-                    summaryGenerator = { _, it -> it },
-                    currentTime = SettingsManager.getInstance(context).tomorrowForecastTime,
-                    enabled = tomorrowForecastEnabledState.value,
-                    onValueChanged = {
-                        SettingsManager.getInstance(context).tomorrowForecastTime = it
-                        PollingManager.resetTodayForecastBackgroundTask(
-                            context,
-                            false,
-                            true
-                        )
-                    }
-                )
-            ).map { mutableStateOf(it) }
-        )
+        checkboxPreferenceItem(R.string.settings_title_forecast_today) { id ->
+            CheckboxPreferenceView(
+                titleId = id,
+                summaryOnId = R.string.on,
+                summaryOffId = R.string.off,
+                checked = todayForecastEnabledState.value,
+                onValueChanged = {
+                    todayForecastEnabledState.value = it
+                    PollingManager.resetNormalBackgroundTask(context, false)
+                },
+            )
+        }
+        timePickerPreferenceItem(R.string.settings_title_forecast_today_time) { id ->
+            TimePickerPreferenceView(
+                titleId = id,
+                currentTime = SettingsManager.getInstance(context).todayForecastTime,
+                enabled = todayForecastEnabledState.value,
+                onValueChanged = {
+                    SettingsManager.getInstance(context).todayForecastTime = it
+                    PollingManager.resetTodayForecastBackgroundTask(
+                        context,
+                        false,
+                        false
+                    )
+                },
+            )
+        }
+        checkboxPreferenceItem(R.string.settings_title_forecast_tomorrow) { id ->
+            CheckboxPreferenceView(
+                titleId = id,
+                summaryOnId = R.string.on,
+                summaryOffId = R.string.off,
+                checked = tomorrowForecastEnabledState.value,
+                onValueChanged = {
+                    tomorrowForecastEnabledState.value = it
+                    PollingManager.resetNormalBackgroundTask(context, false)
+                },
+            )
+        }
+        timePickerPreferenceItem(R.string.settings_title_forecast_tomorrow_time) { id ->
+            TimePickerPreferenceView(
+                titleId = id,
+                currentTime = SettingsManager.getInstance(context).tomorrowForecastTime,
+                enabled = tomorrowForecastEnabledState.value,
+                onValueChanged = {
+                    SettingsManager.getInstance(context).tomorrowForecastTime = it
+                    PollingManager.resetTomorrowForecastBackgroundTask(
+                        context,
+                        false,
+                        false
+                    )
+                },
+            )
+        }
         sectionFooterItem(R.string.settings_category_forecast)
 
         // widget.
         sectionHeaderItem(R.string.settings_category_widget)
-        preferenceItems(
-            listOf(
-                generateListPreferenceModel(
-                    titleId = R.string.settings_title_week_icon_mode,
-                    selectedKey = SettingsManager.getInstance(context).widgetWeekIconMode.id,
-                    valueArrayId = R.array.week_icon_mode_values,
-                    nameArrayId = R.array.week_icon_modes,
-                    onValueChanged = {
-                        SettingsManager
-                            .getInstance(context)
-                            .widgetWeekIconMode = WidgetWeekIconMode.getInstance(it)
-                        PollingManager.resetNormalBackgroundTask(context, true)
-                    }
-                ),
-                PreferenceModel.CheckboxPreferenceModel(
-                    titleId = R.string.settings_title_minimal_icon,
-                    summaryGenerator = {  context, it ->
-                        context.getString(if (it) R.string.on else R.string.off)
-                    },
-                    checked = SettingsManager.getInstance(context).isWidgetMinimalIconEnabled,
-                    onValueChanged = {
-                        SettingsManager.getInstance(context).isWidgetMinimalIconEnabled = it
-                        PollingManager.resetNormalBackgroundTask(context, true)
-                    }
-                )
-            ).map { mutableStateOf(it) }
-        )
+        listPreferenceItem(R.string.settings_title_week_icon_mode) { id ->
+            ListPreferenceView(
+                titleId = id,
+                selectedKey = SettingsManager.getInstance(context).widgetWeekIconMode.id,
+                valueArrayId = R.array.week_icon_mode_values,
+                nameArrayId = R.array.week_icon_modes,
+                onValueChanged = {
+                    SettingsManager
+                        .getInstance(context)
+                        .widgetWeekIconMode = WidgetWeekIconMode.getInstance(it)
+                    PollingManager.resetNormalBackgroundTask(context, true)
+                },
+            )
+        }
+        checkboxPreferenceItem(R.string.settings_title_minimal_icon) { id ->
+            CheckboxPreferenceView(
+                titleId = id,
+                summaryOnId = R.string.on,
+                summaryOffId = R.string.off,
+                checked = SettingsManager.getInstance(context).isWidgetMinimalIconEnabled,
+                onValueChanged = {
+                    SettingsManager.getInstance(context).isWidgetMinimalIconEnabled = it
+                    PollingManager.resetNormalBackgroundTask(context, true)
+                },
+            )
+        }
         if (DayWidgetIMP.isEnable(context)) {
             clickablePreferenceItem(R.string.key_widget_day) {
                 PreferenceView(title = stringResource(it)) {
@@ -366,74 +331,115 @@ fun RootSettingsView(context: Context, navController: NavHostController) {
 
         // notification.
         sectionHeaderItem(R.string.settings_category_notification)
-        preferenceItems(
-            listOf(
-                PreferenceModel.CheckboxPreferenceModel(
-                    titleId = R.string.settings_title_notification,
-                    summaryGenerator = {  context, it ->
-                        context.getString(if (it) R.string.on else R.string.off)
-                    },
-                    checked = notificationEnabledState.value,
-                    onValueChanged = {
-                        SettingsManager.getInstance(context).isNotificationEnabled = it
-                        notificationEnabledState.value = it
+        checkboxPreferenceItem(R.string.settings_title_notification) { id ->
+            CheckboxPreferenceView(
+                titleId = id,
+                summaryOnId = R.string.on,
+                summaryOffId = R.string.off,
+                checked = notificationEnabledState.value,
+                onValueChanged = {
+                    SettingsManager.getInstance(context).isNotificationEnabled = it
+                    notificationEnabledState.value = it
 
-                        if (it) { // open notification.
-                            PollingManager.resetNormalBackgroundTask(context, true)
-                        } else { // close notification.
-                            NormalNotificationIMP.cancelNotification(context)
-                            PollingManager.resetNormalBackgroundTask(context, false)
-                        }
-                    }
-                ),
-                generateListPreferenceModel(
-                    titleId = R.string.settings_title_notification_style,
-                    selectedKey = SettingsManager.getInstance(context).notificationStyle.id,
-                    valueArrayId = R.array.notification_style_values,
-                    nameArrayId = R.array.notification_styles,
-                    onValueChanged = {
-                        SettingsManager
-                            .getInstance(context)
-                            .notificationStyle = NotificationStyle.getInstance(it)
+                    if (it) { // open notification.
                         PollingManager.resetNormalBackgroundTask(context, true)
+                    } else { // close notification.
+                        NormalNotificationIMP.cancelNotification(context)
+                        PollingManager.resetNormalBackgroundTask(context, false)
                     }
-                ),
-                PreferenceModel.CheckboxPreferenceModel(
-                    titleId = R.string.settings_title_notification_temp_icon,
-                    summaryGenerator = {  context, it ->
-                        context.getString(if (it) R.string.on else R.string.off)
-                    },
-                    checked = SettingsManager
+                }
+            )
+        }
+        listPreferenceItem(R.string.settings_title_notification_style) { id ->
+            ListPreferenceView(
+                titleId = id,
+                selectedKey = SettingsManager.getInstance(context).notificationStyle.id,
+                valueArrayId = R.array.notification_style_values,
+                nameArrayId = R.array.notification_styles,
+                enabled = notificationEnabledState.value,
+                onValueChanged = {
+                    SettingsManager
                         .getInstance(context)
-                        .isNotificationTemperatureIconEnabled,
-                    enabled = notificationEnabledState.value,
-                    onValueChanged = {
-                        SettingsManager
-                            .getInstance(context)
-                            .isNotificationTemperatureIconEnabled = it
-                        PollingManager.resetNormalBackgroundTask(context, true)
-                    }
-                ),
-                PreferenceModel.CheckboxPreferenceModel(
-                    titleId = R.string.settings_title_notification_can_be_cleared,
-                    summaryGenerator = {  context, it ->
-                        context.getString(if (it) R.string.on else R.string.off)
-                    },
-                    checked = SettingsManager
+                        .notificationStyle = NotificationStyle.getInstance(it)
+                    PollingManager.resetNormalBackgroundTask(context, true)
+                },
+            )
+        }
+        checkboxPreferenceItem(R.string.settings_title_notification_temp_icon) { id ->
+            CheckboxPreferenceView(
+                titleId = id,
+                summaryOnId = R.string.on,
+                summaryOffId = R.string.off,
+                checked = SettingsManager
+                    .getInstance(context)
+                    .isNotificationTemperatureIconEnabled,
+                enabled = notificationEnabledState.value,
+                onValueChanged = {
+                    SettingsManager
                         .getInstance(context)
-                        .isNotificationCanBeClearedEnabled,
-                    enabled = notificationEnabledState.value,
-                    onValueChanged = {
-                        SettingsManager
-                            .getInstance(context)
-                            .isNotificationCanBeClearedEnabled = it
-                        PollingManager.resetNormalBackgroundTask(context, true)
-                    }
-                )
-            ).map { mutableStateOf(it) }
-        )
+                        .isNotificationTemperatureIconEnabled = it
+                    PollingManager.resetNormalBackgroundTask(context, true)
+                }
+            )
+        }
+        checkboxPreferenceItem(R.string.settings_title_notification_can_be_cleared) { id ->
+            CheckboxPreferenceView(
+                titleId = id,
+                summaryOnId = R.string.on,
+                summaryOffId = R.string.off,
+                checked = SettingsManager
+                    .getInstance(context)
+                    .isNotificationCanBeClearedEnabled,
+                enabled = notificationEnabledState.value,
+                onValueChanged = {
+                    SettingsManager
+                        .getInstance(context)
+                        .isNotificationCanBeClearedEnabled = it
+                    PollingManager.resetNormalBackgroundTask(context, true)
+                }
+            )
+        }
         sectionFooterItem(R.string.settings_category_notification)
 
         bottomInsetItem()
     }
+}
+
+@RequiresApi(api = Build.VERSION_CODES.O)
+private fun showBlockNotificationGroupDialog(context: Context) {
+    MaterialAlertDialogBuilder(context)
+        .setTitle(R.string.feedback_interpret_notification_group_title)
+        .setMessage(R.string.feedback_interpret_notification_group_content)
+        .setPositiveButton(R.string.go_to_set) { _, _ ->
+            val intent = Intent()
+            intent.action = Settings.ACTION_APP_NOTIFICATION_SETTINGS
+            intent.putExtra(
+                Settings.EXTRA_APP_PACKAGE,
+                context.packageName
+            )
+            context.startActivity(intent)
+            showIgnoreBatteryOptimizationDialog(context)
+        }
+        .setNeutralButton(
+            R.string.done
+        ) { _, _ ->
+            showIgnoreBatteryOptimizationDialog(context)
+        }
+        .setCancelable(false)
+        .show()
+}
+
+@RequiresApi(api = Build.VERSION_CODES.M)
+private fun showIgnoreBatteryOptimizationDialog(context: Context) {
+    MaterialAlertDialogBuilder(context)
+        .setTitle(R.string.feedback_ignore_battery_optimizations_title)
+        .setMessage(R.string.feedback_ignore_battery_optimizations_content)
+        .setPositiveButton(
+            R.string.go_to_set
+        ) { _, _ ->
+            IntentHelper.startBatteryOptimizationActivity(context)
+        }
+        .setNeutralButton(R.string.done) { _, _ -> }
+        .setCancelable(false)
+        .show()
 }
