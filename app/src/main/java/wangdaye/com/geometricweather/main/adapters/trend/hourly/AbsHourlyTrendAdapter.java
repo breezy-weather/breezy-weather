@@ -40,27 +40,21 @@ public abstract class AbsHourlyTrendAdapter<VH extends RecyclerView.ViewHolder>
             assert weather != null;
             Hourly hourly = weather.getHourlyForecast().get(position);
 
-            if (hourly.isToday(timeZone)) {
-                talkBackBuilder.append(", ").append(context.getString(R.string.today));
-                hourlyItem.setDayText(context.getString(R.string.today));
-            } else {
-                // Week day
-                //talkBackBuilder.append(", ").append(hourly.getWeek(context));
-                //hourlyItem.setDayText(hourly.getWeek(context));
-                // Or date
-                talkBackBuilder.append(", ").append(hourly.getLongDate(context));
-                hourlyItem.setDayText(hourly.getShortDate(context));
-            }
-
+            talkBackBuilder.append(", ").append(hourly.getLongDate(context));
+            hourlyItem.setDayText(hourly.getShortDate(context));
 
             talkBackBuilder
                     .append(", ").append(hourly.getLongDate(activity))
                     .append(", ").append(hourly.getHour(activity));
             hourlyItem.setHourText(hourly.getHour(context));
 
+            boolean useAccentColorForDate = position == 0 || hourly.getHourIn24Format() == 0;
             hourlyItem.setTextColor(
-                    MainThemeColorProvider.getColor(location, R.attr.colorBodyText),
-                    MainThemeColorProvider.getColor(location, R.attr.colorCaptionText)
+                    MainThemeColorProvider.getColor(location, R.attr.colorTitleText),
+                    MainThemeColorProvider.getColor(
+                            location,
+                            useAccentColorForDate ? R.attr.colorBodyText : R.attr.colorCaptionText
+                    )
             );
 
             hourlyItem.setOnClickListener(v -> onItemClicked(

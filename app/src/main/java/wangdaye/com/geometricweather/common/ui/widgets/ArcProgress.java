@@ -24,7 +24,8 @@ public class ArcProgress extends View {
 
     private Paint mProgressPaint;
     private Paint mShadowPaint;
-    private Paint mTextPaint;
+    private Paint mCenterTextPaint;
+    private Paint mBottomTextPaint;
 
     private final DayNightShaderWrapper mShaderWrapper;
 
@@ -109,9 +110,18 @@ public class ArcProgress extends View {
         mShadowPaint.setAntiAlias(true);
         mShadowPaint.setStyle(Paint.Style.FILL);
 
-        mTextPaint = new TextPaint();
-        mTextPaint.setTextSize(mTextSize);
-        mTextPaint.setAntiAlias(true);
+        mCenterTextPaint = new TextPaint();
+        mCenterTextPaint.setTextSize(mTextSize);
+        mCenterTextPaint.setAntiAlias(true);
+        mCenterTextPaint.setTypeface(
+                DisplayUtils.getTypefaceFromTextAppearance(getContext(), R.style.large_title_text)
+        );
+
+        mBottomTextPaint = new TextPaint();
+        mBottomTextPaint.set(mCenterTextPaint);
+        mBottomTextPaint.setTypeface(
+                DisplayUtils.getTypefaceFromTextAppearance(getContext(), R.style.content_text)
+        );
     }
 
     public float getProgress() {
@@ -269,15 +279,15 @@ public class ArcProgress extends View {
         }
 
         if (!TextUtils.isEmpty(mText)) {
-            mTextPaint.setColor(mTextColor);
-            mTextPaint.setTextSize(mTextSize);
-            float textHeight = mTextPaint.descent() + mTextPaint.ascent();
+            mCenterTextPaint.setColor(mTextColor);
+            mCenterTextPaint.setTextSize(mTextSize);
+            float textHeight = mCenterTextPaint.descent() + mCenterTextPaint.ascent();
             float textBaseline = (getHeight() - textHeight) / 2.0f;
             canvas.drawText(
                     mText,
-                    (getWidth() - mTextPaint.measureText(mText)) / 2.0f,
+                    (getWidth() - mCenterTextPaint.measureText(mText)) / 2.0f,
                     textBaseline,
-                    mTextPaint
+                    mCenterTextPaint
             );
         }
 
@@ -288,16 +298,16 @@ public class ArcProgress extends View {
         }
 
         if (!TextUtils.isEmpty(mBottomText)) {
-            mTextPaint.setColor(mBottomTextColor);
-            mTextPaint.setTextSize(mBottomTextSize);
+            mBottomTextPaint.setColor(mBottomTextColor);
+            mBottomTextPaint.setTextSize(mBottomTextSize);
             float bottomTextBaseline = getHeight()
-                    + (mTextPaint.descent() + mTextPaint.ascent()) / 2
+                    + (mBottomTextPaint.descent() + mBottomTextPaint.ascent()) / 2
                     - mProgressWidth * 0.33f;
             canvas.drawText(
                     mBottomText,
-                    (getWidth() - mTextPaint.measureText(mBottomText)) / 2.0f,
+                    (getWidth() - mBottomTextPaint.measureText(mBottomText)) / 2.0f,
                     bottomTextBaseline,
-                    mTextPaint
+                    mBottomTextPaint
             );
         }
     }

@@ -14,11 +14,10 @@
         <TextView
             android:id="@+id/container_main_hourly_trend_card_title"
             android:text="@string/hourly_overview"
-            android:textSize="@dimen/title_text_size"
             android:textStyle="bold"
             android:layout_marginTop="@dimen/normal_margin"
             android:layout_marginStart="@dimen/normal_margin"
-            style="@style/content_text"
+            style="@style/title_text"
             tools:ignore="RtlHardcoded" />
 
         <TextView
@@ -26,7 +25,7 @@
             android:layout_marginTop="2dp"
             android:layout_marginStart="@dimen/normal_margin"
             android:layout_marginEnd="@dimen/normal_margin"
-            style="@style/subtitle_text"
+            style="@style/content_text"
             tools:text="星期日天气宜人"
             tools:ignore="RtlHardcoded" />
 

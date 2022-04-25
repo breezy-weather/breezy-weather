@@ -78,8 +78,9 @@ public class DailyUVAdapter extends AbsDailyTrendAdapter<DailyUVAdapter.ViewHold
             boolean lightTheme = MainThemeColorProvider.isLightTheme(itemView.getContext(), location);
             mPolylineAndHistogramView.setShadowColors(themeColors[1], themeColors[2], lightTheme);
             mPolylineAndHistogramView.setTextColors(
+                    MainThemeColorProvider.getColor(location, R.attr.colorTitleText),
                     MainThemeColorProvider.getColor(location, R.attr.colorBodyText),
-                    MainThemeColorProvider.getColor(location, R.attr.colorCaptionText)
+                    MainThemeColorProvider.getColor(location, R.attr.colorTitleText)
             );
             mPolylineAndHistogramView.setHistogramAlpha(lightTheme ? 1f : 0.5f);
 

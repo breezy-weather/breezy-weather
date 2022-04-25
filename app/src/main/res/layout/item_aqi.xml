@@ -20,14 +20,14 @@
     <wangdaye.com.geometricweather.common.ui.widgets.RoundProgress
         android:id="@+id/item_aqi_progress"
         android:layout_width="match_parent"
-        android:layout_height="6dp" />
+        android:layout_height="8dp" />
 
     <TextView
         android:id="@+id/item_aqi_content"
         android:layout_gravity="end"
         android:maxLines="1"
         android:ellipsize="end"
-        style="@style/subtitle_text"
+        style="@style/content_text"
         tools:text="126 μg/m³"/>
 
 </LinearLayout>

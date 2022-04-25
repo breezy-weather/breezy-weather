@@ -40,7 +40,7 @@ public class TrendLinearLayout extends LinearLayout {
     private float TREND_MARGIN_TOP = 24;
     private float TREND_MARGIN_BOTTOM = 36;
     private float CHART_LINE_SIZE = 1;
-    private float TEXT_SIZE = 10;
+    private float TEXT_SIZE = 12;
     private float MARGIN_TEXT = 2;
 
     public TrendLinearLayout(Context context) {
@@ -64,6 +64,9 @@ public class TrendLinearLayout extends LinearLayout {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setStrokeCap(Paint.Cap.ROUND);
+        mPaint.setTypeface(
+                DisplayUtils.getTypefaceFromTextAppearance(getContext(), R.style.subtitle_text)
+        );
         mPaint.setTextSize(TEXT_SIZE);
 
         mTemperatureUnit = TemperatureUnit.C;

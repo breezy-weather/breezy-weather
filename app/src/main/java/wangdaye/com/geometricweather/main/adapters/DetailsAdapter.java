@@ -74,14 +74,14 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
             ImageViewCompat.setImageTintList(
                     mIcon,
                     ColorStateList.valueOf(
-                            MainThemeColorProvider.getColor(lightTheme, R.attr.colorBodyText)
+                            MainThemeColorProvider.getColor(lightTheme, R.attr.colorTitleText)
                     )
             );
             mTitle.setTextColor(
-                    MainThemeColorProvider.getColor(lightTheme, R.attr.colorBodyText)
+                    MainThemeColorProvider.getColor(lightTheme, R.attr.colorTitleText)
             );
             mContent.setTextColor(
-                    MainThemeColorProvider.getColor(lightTheme, R.attr.colorCaptionText)
+                    MainThemeColorProvider.getColor(lightTheme, R.attr.colorBodyText)
             );
         }
     }

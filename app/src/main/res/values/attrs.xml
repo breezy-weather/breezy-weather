@@ -5,6 +5,7 @@
     <attr name="colorTitleText" format="color|reference"/>
     <attr name="colorBodyText" format="color|reference"/>
     <attr name="colorCaptionText" format="color|reference"/>
+    <attr name="colorPrecipitationProbability" format="color|reference"/>
 
     <!-- Ink page indicator. -->
     <declare-styleable name="InkPageIndicator">

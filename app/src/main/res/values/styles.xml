@@ -45,6 +45,7 @@
         <item name="colorTitleText">@color/colorTextTitle</item>
         <item name="colorBodyText">@color/colorTextContent</item>
         <item name="colorCaptionText">@color/colorTextSubtitle</item>
+        <item name="colorPrecipitationProbability">@color/colorPrecipitationProbability</item>
         <item name="actionBarSize">@dimen/action_bar_height</item>
     </style>
 

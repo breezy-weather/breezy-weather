@@ -25,7 +25,7 @@
             android:id="@+id/widget_day_title"
             android:text="@string/ellipsis"
             android:textSize="@dimen/widget_subtitle_text_size"
-            android:shadowColor="@color/colorTextDark2nd"
+            android:shadowColor="@color/colorWidgetTextShadow"
             android:shadowDx="1"
             android:shadowDy="1"
             android:shadowRadius="1"

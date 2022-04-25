@@ -105,8 +105,9 @@ public class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<HourlyTemper
                     lightTheme
             );
             mPolylineAndHistogramView.setTextColors(
+                    MainThemeColorProvider.getColor(location, R.attr.colorTitleText),
                     MainThemeColorProvider.getColor(location, R.attr.colorBodyText),
-                    MainThemeColorProvider.getColor(location, R.attr.colorCaptionText)
+                    MainThemeColorProvider.getColor(location, R.attr.colorPrecipitationProbability)
             );
             mPolylineAndHistogramView.setHistogramAlpha(lightTheme ? 0.2f : 0.5f);
 

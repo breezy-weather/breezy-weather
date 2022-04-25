@@ -84,8 +84,9 @@ public class HourlyWindAdapter extends AbsHourlyTrendAdapter<HourlyWindAdapter.V
                     MainThemeColorProvider.getColor(location, R.attr.colorOutline)
             );
             mPolylineAndHistogramView.setTextColors(
+                    MainThemeColorProvider.getColor(location, R.attr.colorTitleText),
                     MainThemeColorProvider.getColor(location, R.attr.colorBodyText),
-                    MainThemeColorProvider.getColor(location, R.attr.colorCaptionText)
+                    MainThemeColorProvider.getColor(location, R.attr.colorTitleText)
             );
             mPolylineAndHistogramView.setHistogramAlpha(1f);
 

@@ -26,12 +26,12 @@ class GeometricWeatherColors {
         val DarkPrimary4 = Color(0xff20222f)
         val DarkPrimary5 = Color(0xff1a1b22)
 
-        val DarkText = Color(0xff424242)
-        val DarkText2nd = Color(0xff5f6267)
-        val GreyText = Color(0xff9e9e9e)
-        val GreyText2nd = Color(0xffbdbdbd)
-        val LightText = Color(0xfffafafa)
-        val LightText2nd = Color(0xfff5f5f5)
+        val DarkText = Color(0xff000000)
+        val DarkText2nd = Color(0xff666666)
+        val GreyText = Color(0xff4d4d4d)
+        val GreyText2nd = Color(0xffb2b2b2)
+        val LightText = Color(0xffffffff)
+        val LightText2nd = Color(0xff999999)
 
         val Level1 = Color(0xff72d572)
         val Level2 = Color(0xffffca28)

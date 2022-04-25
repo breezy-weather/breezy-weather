@@ -52,49 +52,49 @@ class HomePollenViewHolder internal constructor(
             Pollen.getPollenColor(itemView.context, pollen.grassLevel)
         )
         binding.grassTitle.text = context.getString(R.string.grass)
-        binding.grassTitle.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
+        binding.grassTitle.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorTitleText))
         binding.grassValue.text = (
                 unit.getValueText(context, pollen.grassIndex ?: 0)
                         + " - "
                         + pollen.grassDescription
                 )
-        binding.grassValue.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorCaptionText))
+        binding.grassValue.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
 
         binding.ragweedIcon.supportImageTintList = ColorStateList.valueOf(
             Pollen.getPollenColor(itemView.context, pollen.ragweedLevel)
         )
         binding.ragweedTitle.text = context.getString(R.string.ragweed)
-        binding.ragweedTitle.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
+        binding.ragweedTitle.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorTitleText))
         binding.ragweedValue.text = (
                 unit.getValueText(context, pollen.ragweedIndex ?: 0)
                         + " - "
                         + pollen.ragweedDescription
                 )
-        binding.ragweedValue.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorCaptionText))
+        binding.ragweedValue.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
 
         binding.treeIcon.supportImageTintList = ColorStateList.valueOf(
             Pollen.getPollenColor(itemView.context, pollen.treeLevel)
         )
         binding.treeTitle.text = context.getString(R.string.tree)
-        binding.treeTitle.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
+        binding.treeTitle.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorTitleText))
         binding.treeValue.text = (
                 unit.getValueText(context, pollen.treeIndex ?: 0)
                         + " - "
                         + pollen.treeDescription
                 )
-        binding.treeValue.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorCaptionText))
+        binding.treeValue.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
 
         binding.moldIcon.supportImageTintList = ColorStateList.valueOf(
             Pollen.getPollenColor(itemView.context, pollen.moldLevel)
         )
         binding.moldTitle.text = context.getString(R.string.mold)
-        binding.moldTitle.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
+        binding.moldTitle.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorTitleText))
         binding.moldValue.text = (
                 unit.getValueText(context, pollen.moldIndex ?: 0)
                         + " - "
                         + pollen.moldDescription
                 )
-        binding.moldValue.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorCaptionText))
+        binding.moldValue.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
 
         itemView.contentDescription = (
                 binding.title.text.toString()

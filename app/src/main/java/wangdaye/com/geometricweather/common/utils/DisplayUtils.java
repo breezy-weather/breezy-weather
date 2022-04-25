@@ -2,12 +2,14 @@ package wangdaye.com.geometricweather.common.utils;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.media.ThumbnailUtils;
 import android.os.Build;
@@ -22,7 +24,10 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Px;
 import androidx.annotation.Size;
+import androidx.annotation.StyleRes;
 import androidx.core.graphics.ColorUtils;
+
+import com.google.android.material.resources.TextAppearance;
 
 import java.util.Calendar;
 import java.util.TimeZone;
@@ -269,5 +274,13 @@ public class DisplayUtils {
         */
         // looks like has a good performance.
         view.getWindowVisibleDisplayFrame(rect);
+    }
+
+    @SuppressLint({"RestrictedApi", "VisibleForTests"})
+    public static Typeface getTypefaceFromTextAppearance(
+            Context context,
+            @StyleRes int textAppearanceId
+    ) {
+        return new TextAppearance(context, textAppearanceId).getFont(context);
     }
 }

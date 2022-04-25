@@ -53,8 +53,8 @@ public abstract class AbsDailyTrendAdapter<VH extends RecyclerView.ViewHolder> e
             dailyItem.setDateText(daily.getShortDate(context));
 
             dailyItem.setTextColor(
-                    MainThemeColorProvider.getColor(location, R.attr.colorBodyText),
-                    MainThemeColorProvider.getColor(location, R.attr.colorCaptionText)
+                    MainThemeColorProvider.getColor(location, R.attr.colorTitleText),
+                    MainThemeColorProvider.getColor(location, R.attr.colorBodyText)
             );
 
             dailyItem.setOnClickListener(v -> onItemClicked(activity, location, getAdapterPosition()));

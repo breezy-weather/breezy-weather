@@ -11,6 +11,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
 import androidx.annotation.Size;
 
+import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 
 /**
@@ -44,7 +45,7 @@ public class DoubleHistogramView extends AbsChartItemView {
     private static final float MARGIN_DIP = 24;
     private static final float MARGIN_CENTER_DIP = 4;
     private static final float HISTOGRAM_WIDTH_DIP = 8;
-    private static final float HISTOGRAM_TEXT_SIZE_DIP = 13;
+    private static final float HISTOGRAM_TEXT_SIZE_DIP = 14;
     private static final float CHART_LINE_SIZE_DIP = 1;
     private static final float TEXT_MARGIN_DIP = 2;
 
@@ -79,6 +80,9 @@ public class DoubleHistogramView extends AbsChartItemView {
         mPaint.setStrokeCap(Paint.Cap.ROUND);
         mPaint.setAntiAlias(true);
         mPaint.setFilterBitmap(true);
+        mPaint.setTypeface(
+                DisplayUtils.getTypefaceFromTextAppearance(getContext(), R.style.title_text)
+        );
 
         mHistogramAlphas = new float[] {1, 1};
     }

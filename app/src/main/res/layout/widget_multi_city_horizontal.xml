@@ -26,7 +26,7 @@
             <TextView
                 android:id="@+id/widget_multi_city_horizontal_title_1"
                 android:text="@string/ellipsis"
-                android:shadowColor="@color/colorTextDark2nd"
+                android:shadowColor="@color/colorWidgetTextShadow"
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="1"
@@ -46,7 +46,7 @@
             <TextView
                 android:id="@+id/widget_multi_city_horizontal_content_1"
                 android:text="@string/ellipsis"
-                android:shadowColor="@color/colorTextDark2nd"
+                android:shadowColor="@color/colorWidgetTextShadow"
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="1"
@@ -68,7 +68,7 @@
             <TextView
                 android:id="@+id/widget_multi_city_horizontal_title_2"
                 android:text="@string/ellipsis"
-                android:shadowColor="@color/colorTextDark2nd"
+                android:shadowColor="@color/colorWidgetTextShadow"
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="1"
@@ -88,7 +88,7 @@
             <TextView
                 android:id="@+id/widget_multi_city_horizontal_content_2"
                 android:text="@string/ellipsis"
-                android:shadowColor="@color/colorTextDark2nd"
+                android:shadowColor="@color/colorWidgetTextShadow"
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="1"
@@ -110,7 +110,7 @@
             <TextView
                 android:id="@+id/widget_multi_city_horizontal_title_3"
                 android:text="@string/ellipsis"
-                android:shadowColor="@color/colorTextDark2nd"
+                android:shadowColor="@color/colorWidgetTextShadow"
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="1"
@@ -130,7 +130,7 @@
             <TextView
                 android:id="@+id/widget_multi_city_horizontal_content_3"
                 android:text="@string/ellipsis"
-                android:shadowColor="@color/colorTextDark2nd"
+                android:shadowColor="@color/colorWidgetTextShadow"
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="1"

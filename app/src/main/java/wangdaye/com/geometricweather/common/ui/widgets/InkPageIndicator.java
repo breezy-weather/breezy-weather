@@ -24,6 +24,7 @@ import android.view.animation.Interpolator;
 import java.util.Arrays;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 
 /**
  * Ink page indicator.
@@ -146,6 +147,9 @@ public class InkPageIndicator extends View
         mSelectedPaint.setColor(mSelectedColour);
         mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mTextPaint.setColor(mSelectedColour);
+        mTextPaint.setTypeface(
+                DisplayUtils.getTypefaceFromTextAppearance(getContext(), R.style.subtitle_text)
+        );
         mInterpolator = new FastOutSlowInInterpolator();
 
         // create paths & rect now – reuse & rewind later

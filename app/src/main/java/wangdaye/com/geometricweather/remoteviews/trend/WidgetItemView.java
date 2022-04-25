@@ -22,7 +22,8 @@ import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 public class WidgetItemView extends ViewGroup {
 
     private PolylineAndHistogramView mTrend;
-    private Paint mPaint;
+    private Paint mTitleTextPaint;
+    private Paint mSubtitleTextPaint;
 
     private float mWidth;
 
@@ -84,10 +85,25 @@ public class WidgetItemView extends ViewGroup {
         mTrend = new PolylineAndHistogramView(getContext());
         addView(mTrend);
 
-        mPaint = new Paint();
-        mPaint.setAntiAlias(true);
-        mPaint.setTextSize(getResources().getDimensionPixelSize(R.dimen.widget_content_text_size));
-        mPaint.setTextAlign(Paint.Align.CENTER);
+        mTitleTextPaint = new Paint();
+        mTitleTextPaint.setAntiAlias(true);
+        mTitleTextPaint.setTextAlign(Paint.Align.CENTER);
+        mTitleTextPaint.setTypeface(
+                DisplayUtils.getTypefaceFromTextAppearance(getContext(), R.style.title_text)
+        );
+        mTitleTextPaint.setTextSize(
+                getContext().getResources().getDimensionPixelSize(R.dimen.title_text_size)
+        );
+
+        mSubtitleTextPaint = new Paint();
+        mSubtitleTextPaint.setAntiAlias(true);
+        mSubtitleTextPaint.setTextAlign(Paint.Align.CENTER);
+        mSubtitleTextPaint.setTypeface(
+                DisplayUtils.getTypefaceFromTextAppearance(getContext(), R.style.content_text)
+        );
+        mSubtitleTextPaint.setTextSize(
+                getContext().getResources().getDimensionPixelSize(R.dimen.content_text_size)
+        );
 
         setColor(true);
 
@@ -101,10 +117,9 @@ public class WidgetItemView extends ViewGroup {
         float textMargin = DisplayUtils.dpToPx(getContext(), TEXT_MARGIN_DIP);
         float iconMargin = DisplayUtils.dpToPx(getContext(), ICON_MARGIN_DIP);
 
-        Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
-
         // title text.
         if (mTitleText != null) {
+            Paint.FontMetrics fontMetrics = mTitleTextPaint.getFontMetrics();
             height += DisplayUtils.dpToPx(getContext(), MARGIN_VERTICAL_DIP);
             mTitleTextBaseLine = height - fontMetrics.top;
             height += fontMetrics.bottom - fontMetrics.top;
@@ -113,6 +128,7 @@ public class WidgetItemView extends ViewGroup {
 
         // subtitle text.
         if (mSubtitleText != null) {
+            Paint.FontMetrics fontMetrics = mSubtitleTextPaint.getFontMetrics();
             height += textMargin;
             mSubtitleTextBaseLine = height - fontMetrics.top;
             height += fontMetrics.bottom - fontMetrics.top;
@@ -167,14 +183,14 @@ public class WidgetItemView extends ViewGroup {
     protected void onDraw(Canvas canvas) {
         // week text.
         if (mTitleText != null) {
-            mPaint.setColor(mContentColor);
-            canvas.drawText(mTitleText, getMeasuredWidth() / 2f, mTitleTextBaseLine, mPaint);
+            mTitleTextPaint.setColor(mContentColor);
+            canvas.drawText(mTitleText, getMeasuredWidth() / 2f, mTitleTextBaseLine, mTitleTextPaint);
         }
 
         // date text.
         if (mSubtitleText != null) {
-            mPaint.setColor(mSubtitleColor);
-            canvas.drawText(mSubtitleText, getMeasuredWidth() / 2f, mSubtitleTextBaseLine, mPaint);
+            mSubtitleTextPaint.setColor(mSubtitleColor);
+            canvas.drawText(mSubtitleText, getMeasuredWidth() / 2f, mSubtitleTextBaseLine, mSubtitleTextPaint);
         }
 
         int restoreCount;

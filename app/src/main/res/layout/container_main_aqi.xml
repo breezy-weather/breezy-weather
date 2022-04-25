@@ -17,7 +17,7 @@
             android:layout_margin="@dimen/normal_margin"
             android:textSize="@dimen/title_text_size"
             android:textStyle="bold"
-            style="@style/content_text" />
+            style="@style/title_text" />
 
         <RelativeLayout
             android:layout_width="match_parent"

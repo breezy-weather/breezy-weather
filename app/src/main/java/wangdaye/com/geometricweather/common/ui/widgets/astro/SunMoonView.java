@@ -64,7 +64,7 @@ public class SunMoonView extends View {
     int iconSize;
 
     private final static float ICON_SIZE_DIP = 24;
-    private final static float LINE_SIZE_DIP = 3.5f;
+    private final static float LINE_SIZE_DIP = 5f;
     private final static float DOTTED_LINE_SIZE_DIP = 1;
     private final static float MARGIN_DIP = 16;
 

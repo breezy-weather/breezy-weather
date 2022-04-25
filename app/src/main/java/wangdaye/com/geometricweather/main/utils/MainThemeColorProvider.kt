@@ -138,10 +138,7 @@ class MainThemeColorProvider(
         fun getContext(
             location: Location
         ) = getContext(
-            lightTheme = isLightTheme(
-                instance!!.host,
-                location
-            )
+            lightTheme = isLightTheme(instance!!.host, location)
         )
 
         @JvmStatic
@@ -173,7 +170,7 @@ class MainThemeColorProvider(
             @AttrRes id: Int,
         ) = getColor(
             id = id,
-            lightTheme = location.isDaylight
+            lightTheme = isLightTheme(instance!!.host, location)
         )
     }
 

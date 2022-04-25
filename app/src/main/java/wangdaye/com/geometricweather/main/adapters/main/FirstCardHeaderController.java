@@ -65,7 +65,7 @@ public class FirstCardHeaderController
             ImageViewCompat.setImageTintList(
                     timeIcon,
                     ColorStateList.valueOf(
-                            MainThemeColorProvider.getColor(location, R.attr.colorBodyText)
+                            MainThemeColorProvider.getColor(location, R.attr.colorTitleText)
                     )
             );
             timeIcon.setOnClickListener(this);
@@ -75,7 +75,7 @@ public class FirstCardHeaderController
                             + " "
                             + Base.getTime(activity, weather.getBase().getUpdateDate())
             );
-            refreshTime.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText));
+            refreshTime.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorTitleText));
 
             long time = System.currentTimeMillis();
             if (TimeZone.getDefault().getOffset(time) == location.getTimeZone().getOffset(time)) {
@@ -113,7 +113,7 @@ public class FirstCardHeaderController
                     }
                 }
                 alert.setText(builder.toString());
-                alert.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorCaptionText));
+                alert.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText));
 
                 line.setVisibility(View.VISIBLE);
                 line.setBackgroundColor(MainThemeColorProvider.getColor(location, R.attr.colorSurface));

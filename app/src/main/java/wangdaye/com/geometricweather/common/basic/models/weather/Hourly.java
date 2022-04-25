@@ -90,6 +90,12 @@ public class Hourly implements Serializable {
         return uv;
     }
 
+    public int getHourIn24Format() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        return calendar.get(Calendar.HOUR_OF_DAY);
+    }
+
     public String getHour(Context context) {
         return getHour(context, DisplayUtils.is12Hour(context), DisplayUtils.isRtl(context));
     }

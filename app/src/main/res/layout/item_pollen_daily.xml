@@ -52,7 +52,7 @@
                     android:importantForAccessibility="no"
                     android:maxLines="1"
                     android:ellipsize="end"
-                    style="@style/content_text"
+                    style="@style/title_text"
                     tools:text="草地花粉" />
 
                 <TextView
@@ -60,7 +60,7 @@
                     android:importantForAccessibility="no"
                     android:maxLines="1"
                     android:ellipsize="end"
-                    style="@style/subtitle_text"
+                    style="@style/content_text"
                     tools:text="2/m³ - 低" />
 
             </LinearLayout>
@@ -95,7 +95,7 @@
                     android:importantForAccessibility="no"
                     android:maxLines="1"
                     android:ellipsize="end"
-                    style="@style/content_text"
+                    style="@style/title_text"
                     tools:text="草地花粉" />
 
                 <TextView
@@ -103,7 +103,7 @@
                     android:importantForAccessibility="no"
                     android:maxLines="1"
                     android:ellipsize="end"
-                    style="@style/subtitle_text"
+                    style="@style/content_text"
                     tools:text="2/m³ - 低" />
 
             </LinearLayout>
@@ -147,7 +147,7 @@
                     android:importantForAccessibility="no"
                     android:maxLines="1"
                     android:ellipsize="end"
-                    style="@style/content_text"
+                    style="@style/title_text"
                     tools:text="草地花粉" />
 
                 <TextView
@@ -155,7 +155,7 @@
                     android:importantForAccessibility="no"
                     android:maxLines="1"
                     android:ellipsize="end"
-                    style="@style/subtitle_text"
+                    style="@style/content_text"
                     tools:text="2/m³ - 低" />
 
             </LinearLayout>
@@ -190,7 +190,7 @@
                     android:importantForAccessibility="no"
                     android:maxLines="1"
                     android:ellipsize="end"
-                    style="@style/content_text"
+                    style="@style/title_text"
                     tools:text="草地花粉" />
 
                 <TextView
@@ -198,7 +198,7 @@
                     android:importantForAccessibility="no"
                     android:maxLines="1"
                     android:ellipsize="end"
-                    style="@style/subtitle_text"
+                    style="@style/content_text"
                     tools:text="2/m³ - 低" />
 
             </LinearLayout>

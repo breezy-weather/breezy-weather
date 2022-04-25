@@ -85,10 +85,10 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
             itemView.setContentDescription(item.talkBack);
 
             mTitle.setText(item.title);
-            mTitle.setTextColor(MainThemeColorProvider.getColor(lightTheme, R.attr.colorBodyText));
+            mTitle.setTextColor(MainThemeColorProvider.getColor(lightTheme, R.attr.colorTitleText));
 
             mContent.setText(item.content);
-            mContent.setTextColor(MainThemeColorProvider.getColor(lightTheme, R.attr.colorCaptionText));
+            mContent.setTextColor(MainThemeColorProvider.getColor(lightTheme, R.attr.colorBodyText));
 
             if (mExecuteAnimation) {
                 mProgress.setProgress(0);
