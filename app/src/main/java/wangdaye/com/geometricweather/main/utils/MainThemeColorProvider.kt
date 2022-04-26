@@ -52,6 +52,8 @@ private val preloadAttrIds = intArrayOf(
     R.attr.colorTitleText,
     R.attr.colorBodyText,
     R.attr.colorCaptionText,
+    R.attr.colorMainCardBackground,
+    R.attr.colorPrecipitationProbability,
 )
 
 class MainThemeColorProvider(

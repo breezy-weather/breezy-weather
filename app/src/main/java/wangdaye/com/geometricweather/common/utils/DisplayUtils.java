@@ -40,12 +40,18 @@ public class DisplayUtils {
     private static final int MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_PHONE = 512;
     private static final int MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_TABLET = 600;
 
+    public static final float DEFAULT_CARD_LIST_ITEM_ELEVATION_DP = 2f;
+
     public static float dpToPx(Context context, float dp) {
         return dp * (context.getResources().getDisplayMetrics().densityDpi / 160f);
     }
 
     public static float spToPx(Context context, int sp) {
         return sp * (context.getResources().getDisplayMetrics().scaledDensity);
+    }
+
+    public static float pxToDp(Context context, @Px int px) {
+        return px / (context.getResources().getDisplayMetrics().densityDpi / 160f);
     }
 
     public static void setSystemBarStyle(
@@ -282,5 +288,22 @@ public class DisplayUtils {
             @StyleRes int textAppearanceId
     ) {
         return new TextAppearance(context, textAppearanceId).getFont(context);
+    }
+
+    @ColorInt
+    public static int getWidgetSurfaceColor(
+            float elevationDp,
+            @ColorInt int tintColor,
+            @ColorInt int surfaceColor
+    ) {
+        if (elevationDp == 0) {
+            return surfaceColor;
+        }
+
+        int foreground = ColorUtils.setAlphaComponent(
+                tintColor,
+                (int) (((4.5f * Math.log(elevationDp + 1)) + 2f) / 100f * 255)
+        );
+        return blendColor(foreground, surfaceColor);
     }
 }

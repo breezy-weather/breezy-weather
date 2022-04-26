@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.view.animation.Animation
+import androidx.core.graphics.ColorUtils
 import androidx.core.widget.ImageViewCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -17,16 +18,18 @@ import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.GeoActivity
 import wangdaye.com.geometricweather.common.basic.models.Location
 import wangdaye.com.geometricweather.common.basic.models.Location.Companion.buildLocal
-import wangdaye.com.geometricweather.main.adapters.location.LocationAdapter
-import wangdaye.com.geometricweather.common.ui.decotarions.ListDecoration
+import wangdaye.com.geometricweather.common.ui.decotarions.Material3ListItemDecoration
 import wangdaye.com.geometricweather.common.utils.DisplayUtils
 import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper
 import wangdaye.com.geometricweather.databinding.FragmentManagementBinding
 import wangdaye.com.geometricweather.main.MainActivityViewModel
 import wangdaye.com.geometricweather.main.adapters.LocationAdapterAnimWrapper
+import wangdaye.com.geometricweather.main.adapters.location.LocationAdapter
 import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider
 import wangdaye.com.geometricweather.main.widgets.LocationItemTouchCallback
 import wangdaye.com.geometricweather.main.widgets.LocationItemTouchCallback.TouchReactor
+import kotlin.math.max
+import kotlin.math.min
 
 class PushedManagementFragment: ManagementFragment() {
 
@@ -56,8 +59,8 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
     private lateinit var adapter: LocationAdapter
     private var adapterAnimWrapper: LocationAdapterAnimWrapper? = null
     private lateinit var itemTouchHelper: ItemTouchHelper
-    private var itemDecoration: ListDecoration? = null
 
+    private var scrollOffset = 0f
     private var callback: Callback? = null
 
     interface Callback {
@@ -76,13 +79,6 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
         setCallback(requireActivity() as Callback)
 
         return binding.root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        itemDecoration?.let {
-            binding.recyclerView.removeItemDecoration(it)
-        }
     }
 
     override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {
@@ -146,8 +142,15 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
             RecyclerView.VERTICAL,
             false
         ).also { layout = it }
+        while (binding.recyclerView.itemDecorationCount > 0) {
+            binding.recyclerView.removeItemDecorationAt(0)
+        }
+        binding.recyclerView.addItemDecoration(Material3ListItemDecoration(requireContext()))
         binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                scrollOffset = recyclerView.computeVerticalScrollOffset().toFloat()
+                updateAppBarColor()
+
                 if (dy != 0) {
                     adapterAnimWrapper!!.setScrolled()
                 }
@@ -172,16 +175,12 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
     private fun updateDayNightColors() {
         val lightTheme = !DisplayUtils.isDarkMode(requireContext())
 
+        updateAppBarColor()
+
         binding.recyclerView.setBackgroundColor(
             MainThemeColorProvider.getColor(
                 lightTheme = lightTheme,
-                id = android.R.attr.colorBackground
-            )
-        )
-        binding.appBar.setBackgroundColor(
-            MainThemeColorProvider.getColor(
-                lightTheme = lightTheme,
-                id = R.attr.colorPrimaryContainer
+                id = R.attr.colorSurfaceVariant
             )
         )
         binding.searchBar.setCardBackgroundColor(
@@ -205,37 +204,42 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
             ColorStateList.valueOf(
                 MainThemeColorProvider.getColor(
                     lightTheme = lightTheme,
-                    id = R.attr.colorBodyText
+                    id = R.attr.colorPrimary
                 )
             )
         )
         binding.title.setTextColor(
             MainThemeColorProvider.getColor(
                 lightTheme = lightTheme,
-                id = R.attr.colorCaptionText
+                id = R.attr.colorBodyText
             )
         )
+    }
 
-        if (itemDecoration == null) {
-            itemDecoration = ListDecoration(
-                requireContext(),
+    private fun updateAppBarColor() {
+        val lightTheme = !DisplayUtils.isDarkMode(requireContext())
+        val ratio = max(
+            0f,
+            min(
+                scrollOffset / binding.appBar.height,
+                1f
+            )
+        )
+        binding.appBar.setBackgroundColor(
+            DisplayUtils.blendColor(
+                ColorUtils.setAlphaComponent(
+                    MainThemeColorProvider.getColor(
+                        lightTheme = lightTheme,
+                        id = R.attr.colorPrimary
+                    ),
+                    (255 * 0.2 * ratio).toInt()
+                ),
                 MainThemeColorProvider.getColor(
                     lightTheme = lightTheme,
-                    id = R.attr.colorOutline
+                    id = R.attr.colorSurfaceVariant
                 )
-            ).also {
-                while (binding.recyclerView.itemDecorationCount > 0) {
-                    binding.recyclerView.removeItemDecorationAt(0)
-                }
-                binding.recyclerView.addItemDecoration(it)
-            }
-        } else {
-            itemDecoration?.color = MainThemeColorProvider.getColor(
-                lightTheme = lightTheme,
-                id = R.attr.colorOutline
             )
-            binding.recyclerView.invalidateItemDecorations()
-        }
+        )
     }
 
     private fun setCurrentLocationButtonEnabled(list: List<Location>) {

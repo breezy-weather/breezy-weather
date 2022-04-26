@@ -20,6 +20,7 @@ import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.Daily;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout;
 import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarRecyclerView;
 import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarViewPager;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
@@ -60,7 +61,17 @@ public class DailyWeatherActivity extends GeoActivity {
     }
 
     private void initWidget() {
+        FitSystemBarAppBarLayout appBarLayout = findViewById(R.id.activity_weather_daily_appBar);
+        appBarLayout.injectDefaultSurfaceTintColor();
+
         mToolbar = findViewById(R.id.activity_weather_daily_toolbar);
+        mToolbar.setBackgroundColor(
+                DisplayUtils.getWidgetSurfaceColor(
+                        6f,
+                        ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorPrimary),
+                        ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorSurface)
+                )
+        );
         mToolbar.setNavigationOnClickListener(v -> finish());
 
         mTitle = findViewById(R.id.activity_weather_daily_title);

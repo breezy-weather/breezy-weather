@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    style="?attr/materialCardViewFilledStyle"
+    app:cardCornerRadius="@dimen/material3_card_list_item_corner_radius"
+    tools:ignore="UnusedAttribute">
+
+    <wangdaye.com.geometricweather.common.ui.widgets.slidingItem.SlidingItemContainerLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="@drawable/selectable_item_background"
+        tools:ignore="UnusedAttribute">
+
+        <LinearLayout
+            android:id="@+id/item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorSurface"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/sort_button"
+                android:src="@drawable/ic_drag"
+                android:tint="?attr/colorPrimary"
+                android:layout_margin="0dp"
+                android:contentDescription="@string/content_des_drag_flag"
+                style="@style/material_image_button"
+                tools:ignore="ContentDescription" />
+
+            <LinearLayout
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/normal_margin"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginEnd="@dimen/normal_margin"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <ImageView
+                        android:id="@+id/weather_icon"
+                        android:layout_width="@dimen/little_weather_icon_size"
+                        android:layout_height="@dimen/little_weather_icon_size"
+                        android:layout_marginEnd="@dimen/little_margin"
+                        android:layout_centerVertical="true"
+                        tools:src="@drawable/weather_clear_day"
+                        tools:ignore="ContentDescription" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/resident_icon"
+                        android:src="@drawable/ic_circle_medium"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_margin="0dp"
+                        style="@style/material_icon"
+                        app:tint="?attr/colorSecondary" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@id/weather_icon"
+                        android:layout_toStartOf="@id/resident_icon"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/title1"
+                            android:layout_width="match_parent"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:textAlignment="viewStart"
+                            android:textColor="?attr/colorTitleText"
+                            style="@style/title_text"
+                            tools:text="Current Location"
+                            tools:ignore="RtlHardcoded" />
+
+                        <TextView
+                            android:id="@+id/title2"
+                            android:layout_width="match_parent"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:textAlignment="viewStart"
+                            android:textColor="?attr/colorTitleText"
+                            android:alpha="0.5"
+                            style="@style/title_text"
+                            tools:text="5°/13°"
+                            tools:ignore="RtlHardcoded" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/subtitle"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/little_margin"
+                    android:layout_marginEnd="@dimen/normal_margin"
+                    android:textAlignment="viewStart"
+                    android:textColor="?attr/colorBodyText"
+                    style="@style/subtitle_text"
+                    tools:text="中国 山东省 青岛市 李沧区"
+                    tools:ignore="RtlHardcoded" />
+
+                <TextView
+                    android:id="@+id/source"
+                    android:layout_width="match_parent"
+                    android:layout_marginEnd="@dimen/normal_margin"
+                    android:layout_marginBottom="@dimen/normal_margin"
+                    android:textStyle="bold"
+                    android:textSize="10sp"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textAlignment="viewStart"
+                    style="@style/subtitle_text"
+                    tools:text="Powered by 彩云天气"
+                    tools:ignore="RtlHardcoded,SmallSp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </wangdaye.com.geometricweather.common.ui.widgets.slidingItem.SlidingItemContainerLayout>
+
+</com.google.android.material.card.MaterialCardView>

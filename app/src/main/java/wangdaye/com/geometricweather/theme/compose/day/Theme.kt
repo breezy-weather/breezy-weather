@@ -6,8 +6,6 @@ import androidx.annotation.RequiresApi
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 
 val LightThemeColors = lightColorScheme(
 
@@ -43,5 +41,5 @@ val LightThemeColors = lightColorScheme(
 fun dynamicLightColors(
 	context: Context
 ): ColorScheme = dynamicLightColorScheme(context).copy(
-	outline = Color(context.resources.getColor(android.R.color.system_neutral1_50, context.theme))
+	outline = day_md_theme_light_outline
 )

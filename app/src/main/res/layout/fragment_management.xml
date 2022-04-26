@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container"
-    android:background="?android:colorBackground"
+    android:background="?attr/colorSurface"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -12,7 +12,8 @@
         android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimaryContainer">
+        android:background="?attr/colorSurfaceVariant"
+        app:elevation="0dp">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -24,6 +25,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/little_margin"
                 style="@style/material_card"
+                app:cardElevation="0dp"
                 app:cardBackgroundColor="?attr/colorSurface"
                 app:cardCornerRadius="24dp">
 
@@ -34,6 +36,7 @@
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/searchIcon"
                         android:src="@drawable/ic_search"
+                        android:tint="?attr/colorBodyText"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:layout_marginTop="0dp"
@@ -46,6 +49,7 @@
                     <androidx.appcompat.widget.AppCompatImageButton
                         android:id="@+id/currentLocationButton"
                         android:src="@drawable/ic_location"
+                        android:tint="?attr/colorPrimary"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:layout_margin="0dp"
@@ -62,7 +66,7 @@
                         android:ellipsize="end"
                         android:maxLines="1"
                         android:text="@string/feedback_search_location"
-                        android:textColor="@color/colorTextSubtitle"
+                        android:textColor="?attr/colorBodyText"
                         android:textSize="@dimen/content_text_size"
                         tools:ignore="RtlHardcoded" />
 
@@ -78,8 +82,9 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?android:colorBackground"
+        android:background="?attr/colorSurface"
         android:clipToPadding="false"
+        android:paddingTop="@dimen/little_margin"
         android:scrollbars="vertical"
         app:rv_side="bottom"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />

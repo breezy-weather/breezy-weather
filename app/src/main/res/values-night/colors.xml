@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <!-- theme. -->
 
     <color name="colorTextTitle">#ffffff</color>
     <color name="colorTextContent">#999999</color>
     <color name="colorTextSubtitle">#4d4d4d</color>
+
+    <color name="colorMainCardBackground">#1C1B1F</color>
 
     <!-- widget S. -->
 
@@ -30,13 +32,13 @@
     <color name="md_theme_errorContainer">#8C1D18</color>
     <color name="md_theme_onError">#601410</color>
     <color name="md_theme_onErrorContainer">#F9DEDC</color>
-    <color name="md_theme_background">#1B1B1B</color>
+    <color name="md_theme_background">#000000</color>
     <color name="md_theme_onBackground">#E2E2E6</color>
     <color name="md_theme_surface">#1C1B1F</color>
     <color name="md_theme_onSurface">#E6E1E5</color>
     <color name="md_theme_surfaceVariant">#49454F</color>
     <color name="md_theme_onSurfaceVariant">#CAC4D0</color>
-    <color name="md_theme_outline">#363636</color>
+    <color name="md_theme_outline">#10ffffff</color>
     <color name="md_theme_inverseOnSurface">#1C1B1F</color>
     <color name="md_theme_inverseSurface">#E6E1E5</color>
     <color name="md_theme_inversePrimary">#3B5BA9</color>

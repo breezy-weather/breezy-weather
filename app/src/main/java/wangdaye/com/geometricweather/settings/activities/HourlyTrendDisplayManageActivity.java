@@ -28,6 +28,7 @@ import wangdaye.com.geometricweather.common.ui.adapters.TagAdapter;
 import wangdaye.com.geometricweather.common.ui.decotarions.GridMarginsDecoration;
 import wangdaye.com.geometricweather.common.ui.decotarions.ListDecoration;
 import wangdaye.com.geometricweather.common.ui.widgets.slidingItem.SlidingItemTouchCallback;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.databinding.ActivityHourlyTrendDisplayManageBinding;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.settings.adapters.HourlyTrendDisplayAdapter;
@@ -99,6 +100,15 @@ public class HourlyTrendDisplayManageActivity extends GeoActivity {
 
         mElevation = getResources().getDimensionPixelSize(R.dimen.touch_rise_z);
 
+        mBinding.appBar.injectDefaultSurfaceTintColor();
+
+        mBinding.toolbar.setBackgroundColor(
+                DisplayUtils.getWidgetSurfaceColor(
+                        6f,
+                        ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorPrimary),
+                        ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorSurface)
+                )
+        );
         mBinding.toolbar.setNavigationOnClickListener(view -> finish());
 
         List<HourlyTrendDisplay> displayTags

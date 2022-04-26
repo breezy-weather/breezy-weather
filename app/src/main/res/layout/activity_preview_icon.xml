@@ -3,9 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_preview_icon_container"
-    android:background="?android:attr/colorBackground"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface">
 
     <LinearLayout
         android:orientation="vertical"
@@ -13,9 +13,11 @@
         android:layout_height="match_parent">
 
         <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
+            android:id="@+id/activity_preview_icon_appBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/GeometricWeatherTheme.AppBarTheme">
+            style="@style/GeometricWeatherTheme.AppBarTheme"
+            app:elevation="0dp">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/activity_preview_icon_toolbar"

@@ -37,7 +37,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
-import wangdaye.com.geometricweather.common.ui.decotarions.ListDecoration;
+import wangdaye.com.geometricweather.common.ui.decotarions.Material3ListItemDecoration;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
 import wangdaye.com.geometricweather.databinding.ActivitySearchBinding;
@@ -207,7 +207,7 @@ public class SearchActivity extends GeoActivity
         while (mBinding.recyclerView.getItemDecorationCount() > 0) {
             mBinding.recyclerView.removeItemDecorationAt(0);
         }
-        mBinding.recyclerView.addItemDecoration(new ListDecoration(this, colors[0]));
+        mBinding.recyclerView.addItemDecoration(new Material3ListItemDecoration(this));
 
         mBinding.scrollBar.setIndicator(
                 new WeatherSourceIndicator(this).setTextSize(16), true);
@@ -246,7 +246,7 @@ public class SearchActivity extends GeoActivity
                 mBinding.fab,
                 mBinding.fabSheet,
                 mBinding.overlay,
-                colors[1],
+                Color.TRANSPARENT,
                 colors[2]
         );
         mMaterialSheetFab.setEventListener(new MaterialSheetFabEventListener() {

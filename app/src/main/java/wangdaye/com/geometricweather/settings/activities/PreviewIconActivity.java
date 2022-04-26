@@ -15,6 +15,8 @@ import java.util.List;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
+import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout;
+import wangdaye.com.geometricweather.theme.ThemeManager;
 import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
 import wangdaye.com.geometricweather.theme.resource.providers.DefaultResourceProvider;
 import wangdaye.com.geometricweather.theme.resource.providers.PixelResourcesProvider;
@@ -154,6 +156,9 @@ public class PreviewIconActivity extends GeoActivity {
 
     @SuppressLint("NonConstantResourceId")
     private void initWidget() {
+        FitSystemBarAppBarLayout appBarLayout = findViewById(R.id.activity_preview_icon_appBar);
+        appBarLayout.injectDefaultSurfaceTintColor();
+
         MaterialToolbar toolbar = findViewById(R.id.activity_preview_icon_toolbar);
         toolbar.setTitle(mProvider.getProviderName());
         toolbar.setNavigationOnClickListener(v -> finish());
@@ -180,6 +185,13 @@ public class PreviewIconActivity extends GeoActivity {
             }
             return true;
         });
+        toolbar.setBackgroundColor(
+                DisplayUtils.getWidgetSurfaceColor(
+                        6f,
+                        ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorPrimary),
+                        ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorSurface)
+                )
+        );
 
         RecyclerView recyclerView = findViewById(R.id.activity_preview_icon_recyclerView);
         GridLayoutManager manager = new GridLayoutManager(this, 4);

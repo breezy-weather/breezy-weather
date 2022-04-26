@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -27,7 +26,6 @@ import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.main.adapters.main.MainTag;
 import wangdaye.com.geometricweather.main.adapters.trend.DailyTrendAdapter;
 import wangdaye.com.geometricweather.main.layouts.TrendHorizontalLinearLayoutManager;
-import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
 import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider;
 import wangdaye.com.geometricweather.main.widgets.TrendRecyclerViewScrollBar;
 import wangdaye.com.geometricweather.settings.SettingsManager;
@@ -36,8 +34,6 @@ import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
 
 public class DailyViewHolder extends AbstractMainCardViewHolder {
-
-    private final CardView mCard;
 
     private final TextView mTitle;
     private final TextView mSubtitle;
@@ -54,7 +50,6 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
                         .inflate(R.layout.container_main_daily_trend_card, parent, false)
         );
 
-        mCard = itemView.findViewById(R.id.container_main_daily_trend_card);
         mTitle = itemView.findViewById(R.id.container_main_daily_trend_card_title);
         mSubtitle = itemView.findViewById(R.id.container_main_daily_trend_card_subtitle);
         mTagView = itemView.findViewById(R.id.container_main_daily_trend_card_tagView);
@@ -76,8 +71,6 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
 
         Weather weather = location.getWeather();
         assert weather != null;
-
-        mCard.setCardBackgroundColor(MainThemeColorProvider.getColor(location, R.attr.colorSurface));
 
         int[] colors = ThemeManager
                 .getInstance(context)

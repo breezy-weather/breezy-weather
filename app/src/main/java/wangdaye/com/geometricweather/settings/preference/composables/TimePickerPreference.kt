@@ -18,9 +18,11 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import wangdaye.com.geometricweather.R
+import wangdaye.com.geometricweather.common.ui.widgets.Material3CardListItem
+import wangdaye.com.geometricweather.common.ui.widgets.defaultCardListItemElevation
 import wangdaye.com.geometricweather.theme.compose.DayNightTheme
 import wangdaye.com.geometricweather.theme.compose.rememberThemeRipple
 
@@ -50,34 +52,37 @@ fun TimePickerPreferenceView(
     val currentTimeState = remember { mutableStateOf(currentTime) }
     val dialogOpenState = remember { mutableStateOf(false) }
 
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .alpha(if (enabled) 1f else 0.5f)
-            .clickable(
-                interactionSource = remember { MutableInteractionSource() },
-                indication = rememberThemeRipple(),
-                onClick = { dialogOpenState.value = true },
-                enabled = enabled,
-            )
-            .padding(dimensionResource(R.dimen.normal_margin)),
-        verticalArrangement = Arrangement.Center,
+    Material3CardListItem(
+        elevation = if (enabled) defaultCardListItemElevation else 0.dp
     ) {
-        Column {
-            Text(
-                text = title,
-                fontWeight = FontWeight.Bold,
-                color = DayNightTheme.colors.titleColor,
-                style = MaterialTheme.typography.titleMedium,
-            )
-            val currentSummary = summary(LocalContext.current, currentTimeState.value)
-            if (currentSummary?.isNotEmpty() == true) {
-                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
-                Text(
-                    text = currentSummary,
-                    color = DayNightTheme.colors.captionColor,
-                    style = MaterialTheme.typography.bodyMedium,
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .alpha(if (enabled) 1f else 0.5f)
+                .clickable(
+                    interactionSource = remember { MutableInteractionSource() },
+                    indication = rememberThemeRipple(),
+                    onClick = { dialogOpenState.value = true },
+                    enabled = enabled,
                 )
+                .padding(dimensionResource(R.dimen.normal_margin)),
+            verticalArrangement = Arrangement.Center,
+        ) {
+            Column {
+                Text(
+                    text = title,
+                    color = DayNightTheme.colors.titleColor,
+                    style = MaterialTheme.typography.titleMedium,
+                )
+                val currentSummary = summary(LocalContext.current, currentTimeState.value)
+                if (currentSummary?.isNotEmpty() == true) {
+                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                    Text(
+                        text = currentSummary,
+                        color = DayNightTheme.colors.bodyColor,
+                        style = MaterialTheme.typography.bodyMedium,
+                    )
+                }
             }
         }
     }

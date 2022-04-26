@@ -9,22 +9,23 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.graphics.ColorUtils;
 import androidx.core.widget.ImageViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
-import wangdaye.com.geometricweather.databinding.ItemLocationBinding;
+import wangdaye.com.geometricweather.databinding.ItemLocationCardBinding;
 import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 
 public class LocationHolder extends RecyclerView.ViewHolder {
 
-    private final ItemLocationBinding mBinding;
+    private final ItemLocationCardBinding mBinding;
     private final LocationAdapter.OnLocationItemClickListener mClickListener;
     private @Nullable final LocationAdapter.OnLocationItemDragListener mDragListener;
 
-    protected LocationHolder(ItemLocationBinding binding,
+    protected LocationHolder(ItemLocationCardBinding binding,
                              @NonNull LocationAdapter.OnLocationItemClickListener clickListener,
                              @Nullable LocationAdapter.OnLocationItemDragListener dragListener) {
         super(binding.getRoot());
@@ -36,6 +37,23 @@ public class LocationHolder extends RecyclerView.ViewHolder {
     @SuppressLint({"SetTextI18n", "ClickableViewAccessibility"})
     protected void onBindView(Context context, LocationModel model, ResourceProvider resourceProvider) {
         boolean lightTheme = !DisplayUtils.isDarkMode(context);
+
+        int elevatedSurfaceColor = DisplayUtils.getWidgetSurfaceColor(
+                DisplayUtils.DEFAULT_CARD_LIST_ITEM_ELEVATION_DP,
+                MainThemeColorProvider.getColor(lightTheme, R.attr.colorPrimary),
+                MainThemeColorProvider.getColor(lightTheme, R.attr.colorSurface)
+        );
+
+        if (model.selected) {
+            mBinding.getRoot().setStrokeWidth(
+                    (int) DisplayUtils.dpToPx(context, 4)
+            );
+            mBinding.getRoot().setStrokeColor(
+                    elevatedSurfaceColor
+            );
+        } else {
+            mBinding.getRoot().setStrokeWidth(0);
+        }
 
         StringBuilder talkBackBuilder = new StringBuilder(model.subtitle);
         if (model.currentPosition) {
@@ -73,14 +91,15 @@ public class LocationHolder extends RecyclerView.ViewHolder {
         );
 
         mBinding.item.setBackgroundColor(
-                model.selected
-                        ? MainThemeColorProvider.getColor(lightTheme, R.attr.colorOutline)
-                        : MainThemeColorProvider.getColor(lightTheme, android.R.attr.colorBackground)
+                model.selected ? DisplayUtils.blendColor(
+                        ColorUtils.setAlphaComponent(elevatedSurfaceColor, (int) (255 * 0.5)),
+                        MainThemeColorProvider.getColor(lightTheme, R.attr.colorSurfaceVariant)
+                ) : elevatedSurfaceColor
         );
         ImageViewCompat.setImageTintList(
                 mBinding.sortButton,
                 ColorStateList.valueOf(
-                        MainThemeColorProvider.getColor(lightTheme, R.attr.colorBodyText)
+                        MainThemeColorProvider.getColor(lightTheme, R.attr.colorPrimary)
                 )
         );
         if (mDragListener == null) {
@@ -106,30 +125,29 @@ public class LocationHolder extends RecyclerView.ViewHolder {
             mBinding.weatherIcon.setVisibility(View.GONE);
         }
 
-        mBinding.title.setTextColor(
-                MainThemeColorProvider.getColor(lightTheme, R.attr.colorTitleText)
+        mBinding.title1.setTextColor(
+                model.selected
+                        ? MainThemeColorProvider.getColor(lightTheme, R.attr.colorOnPrimaryContainer)
+                        : MainThemeColorProvider.getColor(lightTheme, R.attr.colorTitleText)
         );
-        mBinding.title.setText(model.title);
+        mBinding.title1.setText(model.title1);
 
-        mBinding.alerts.setTextColor(
-                MainThemeColorProvider.getColor(lightTheme, R.attr.colorCaptionText)
-        );
-        if (!TextUtils.isEmpty(model.alerts)) {
-            mBinding.alerts.setVisibility(View.VISIBLE);
-            mBinding.alerts.setText(model.alerts);
-
-            talkBackBuilder.append(", ").append(model.alerts);
+        if (TextUtils.isEmpty(model.title2)) {
+            mBinding.title2.setVisibility(View.GONE);
         } else {
-            mBinding.alerts.setVisibility(View.GONE);
+            mBinding.title2.setVisibility(View.VISIBLE);
+            mBinding.title2.setTextColor(
+                    model.selected
+                            ? MainThemeColorProvider.getColor(lightTheme, R.attr.colorOnPrimaryContainer)
+                            : MainThemeColorProvider.getColor(lightTheme, R.attr.colorTitleText)
+            );
+            mBinding.title2.setText(model.title2);
         }
 
         mBinding.subtitle.setTextColor(
                 MainThemeColorProvider.getColor(lightTheme, R.attr.colorBodyText)
         );
         mBinding.subtitle.setText(model.subtitle);
-
-        // binding.geoPosition.setText(model.latitude + ", " + model.longitude
-        //         + " - " + model.timeZone.getDisplayName(false, TimeZone.SHORT));
 
         // source.
         mBinding.source.setText("Powered by " + model.weatherSource.getSourceUrl());

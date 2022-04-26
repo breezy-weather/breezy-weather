@@ -1,7 +1,6 @@
 package wangdaye.com.geometricweather.main.adapters.location;
 
 import android.content.Context;
-import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,12 +25,9 @@ public class LocationModel {
     public boolean currentPosition;
     public boolean residentPosition;
 
-    public @NonNull String title;
+    public @NonNull String title1;
+    public @NonNull String title2;
     public @NonNull String subtitle;
-
-    // public float latitude;
-    // public float longitude;
-    // public TimeZone timeZone;
 
     public @Nullable String alerts;
 
@@ -58,32 +54,27 @@ public class LocationModel {
         this.currentPosition = location.isCurrentPosition();
         this.residentPosition = location.isResidentPosition();
 
-        StringBuilder builder = new StringBuilder(location.isCurrentPosition()
+        this.title1 = location.isCurrentPosition()
                 ? context.getString(R.string.current_location)
-                : location.getCityName(context));
-        if (location.getWeather() != null) {
-            builder.append(", ").append(
-                    Temperature.getTrendTemperature(
-                            context,
-                            location
-                                    .getWeather()
-                                    .getDailyForecast()
-                                    .get(0)
-                                    .night()
-                                    .getTemperature()
-                                    .getTemperature(),
-                            location
-                                    .getWeather()
-                                    .getDailyForecast()
-                                    .get(0)
-                                    .day()
-                                    .getTemperature()
-                                    .getTemperature(),
-                            unit
-                    )
-            );
-        }
-        title = builder.toString();
+                : location.getCityName(context);
+        this.title2 = location.getWeather() == null ? "" : Temperature.getTrendTemperature(
+                context,
+                location
+                        .getWeather()
+                        .getDailyForecast()
+                        .get(0)
+                        .night()
+                        .getTemperature()
+                        .getTemperature(),
+                location
+                        .getWeather()
+                        .getDailyForecast()
+                        .get(0)
+                        .day()
+                        .getTemperature()
+                        .getTemperature(),
+                unit
+        );
 
         if (!location.isCurrentPosition() || location.isUsable()) {
             subtitle = location.toString();
@@ -91,14 +82,10 @@ public class LocationModel {
             subtitle = context.getString(R.string.feedback_not_yet_location);
         }
 
-        // latitude = location.getLatitude();
-        // longitude = location.getLongitude();
-        // timeZone = location.getTimeZone();
-
         if (location.getWeather() != null) {
             List<Alert> alertList = location.getWeather().getAlertList();
             if (alertList.size() > 0) {
-                builder = new StringBuilder();
+                StringBuilder builder = new StringBuilder();
                 for (int i = 0; i < alertList.size(); i ++) {
                     builder.append(alertList.get(i).getDescription())
                             .append(", ")
@@ -113,10 +100,6 @@ public class LocationModel {
                     }
                 }
                 alerts = builder.toString();
-            } else if (!TextUtils.isEmpty(location.getWeather().getCurrent().getDailyForecast())) {
-                alerts = location.getWeather().getCurrent().getDailyForecast();
-            } else if (!TextUtils.isEmpty(location.getWeather().getCurrent().getHourlyForecast())) {
-                alerts = location.getWeather().getCurrent().getHourlyForecast();
             } else {
                 alerts = null;
             }

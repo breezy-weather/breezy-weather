@@ -9,7 +9,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -41,8 +40,6 @@ import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
 
 public class HourlyViewHolder extends AbstractMainCardViewHolder {
 
-    private final CardView mCard;
-
     private final TextView mTitle;
     private final TextView mSubtitle;
     private final RecyclerView mTagView;
@@ -65,7 +62,6 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
                         .inflate(R.layout.container_main_hourly_trend_card, parent, false)
         );
 
-        mCard = itemView.findViewById(R.id.container_main_hourly_trend_card);
         mTitle = itemView.findViewById(R.id.container_main_hourly_trend_card_title);
         mSubtitle = itemView.findViewById(R.id.container_main_hourly_trend_card_subtitle);
         mTagView = itemView.findViewById(R.id.container_main_hourly_trend_card_tagView);
@@ -95,8 +91,6 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
 
         Weather weather = location.getWeather();
         assert weather != null;
-
-        mCard.setCardBackgroundColor(MainThemeColorProvider.getColor(location, R.attr.colorSurface));
 
         int[] colors = ThemeManager
                 .getInstance(context)

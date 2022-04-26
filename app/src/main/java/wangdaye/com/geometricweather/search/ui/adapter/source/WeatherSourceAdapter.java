@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
+import wangdaye.com.geometricweather.databinding.ItemWeatherSourceBinding;
 
 public class WeatherSourceAdapter extends RecyclerView.Adapter<WeatherSourceHolder> {
 
@@ -26,7 +27,7 @@ public class WeatherSourceAdapter extends RecyclerView.Adapter<WeatherSourceHold
     @Override
     public WeatherSourceHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new WeatherSourceHolder(
-                wangdaye.com.geometricweather.databinding.ItemWeatherSourceBinding.inflate(
+                ItemWeatherSourceBinding.inflate(
                         LayoutInflater.from(parent.getContext())
                 )
         );

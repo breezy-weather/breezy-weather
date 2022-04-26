@@ -19,7 +19,7 @@ import java.util.List;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.common.ui.adapters.SyncListAdapter;
-import wangdaye.com.geometricweather.databinding.ItemLocationBinding;
+import wangdaye.com.geometricweather.databinding.ItemLocationCardBinding;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.theme.resource.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.settings.SettingsManager;
@@ -76,7 +76,7 @@ public class LocationAdapter extends SyncListAdapter<LocationModel, LocationHold
     @Override
     public LocationHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new LocationHolder(
-                ItemLocationBinding.inflate(LayoutInflater.from(parent.getContext())),
+                ItemLocationCardBinding.inflate(LayoutInflater.from(parent.getContext())),
                 mClickListener,
                 mDragListener
         );

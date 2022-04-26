@@ -15,7 +15,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Size;
-import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 
@@ -37,8 +36,6 @@ import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
 
 public class AstroViewHolder extends AbstractMainCardViewHolder {
-
-    private final CardView mCard;
 
     private final TextView mTitle;
     private final TextView mPhaseText;
@@ -68,7 +65,6 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
                         .inflate(R.layout.container_main_sun_moon, parent, false)
         );
 
-        mCard = itemView.findViewById(R.id.container_main_sun_moon);
         mTitle = itemView.findViewById(R.id.container_main_sun_moon_title);
         mPhaseText = itemView.findViewById(R.id.container_main_sun_moon_phaseText);
         mPhaseView = itemView.findViewById(R.id.container_main_sun_moon_phaseView);
@@ -92,8 +88,6 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
         mWeather = location.getWeather();
         mTimeZone = location.getTimeZone();
         assert mWeather != null;
-
-        mCard.setCardBackgroundColor(MainThemeColorProvider.getColor(location, R.attr.colorSurface));
 
         int[] themeColors = ThemeManager
                 .getInstance(context)

@@ -10,9 +10,11 @@ import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 
+import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.main.adapters.main.FirstCardHeaderController;
+import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider;
 import wangdaye.com.geometricweather.theme.ThemeManager;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.theme.weatherView.WeatherThemeDelegate;
@@ -39,6 +41,9 @@ public abstract class AbstractMainCardViewHolder extends AbstractMainViewHolder 
         CardView card = (CardView) itemView;
         card.setRadius(delegate.getHomeCardRadius(activity));
         card.setElevation(delegate.getHomeCardElevation(activity));
+        card.setCardBackgroundColor(
+                MainThemeColorProvider.getColor(location, R.attr.colorMainCardBackground)
+        );
 
         ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) card.getLayoutParams();
         params.setMargins(

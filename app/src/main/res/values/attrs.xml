@@ -5,6 +5,7 @@
     <attr name="colorTitleText" format="color|reference"/>
     <attr name="colorBodyText" format="color|reference"/>
     <attr name="colorCaptionText" format="color|reference"/>
+    <attr name="colorMainCardBackground" format="color|reference"/>
     <attr name="colorPrecipitationProbability" format="color|reference"/>
 
     <!-- Ink page indicator. -->
@@ -72,6 +73,8 @@
         <attr name="iconResEnd" format="reference" />
         <attr name="backgroundColorStart" format="color" />
         <attr name="backgroundColorEnd" format="color" />
+        <attr name="tintColorStart" format="color" />
+        <attr name="tintColorEnd" format="color" />
     </declare-styleable>
 
     <!-- Drawer layout. -->

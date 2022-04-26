@@ -66,6 +66,8 @@ public class SlidingItemContainerLayout extends FrameLayout {
         mIconResEnd = a.getResourceId(R.styleable.SlidingItemContainerLayout_iconResEnd, 0);
         mBackgroundColorStart = a.getColor(R.styleable.SlidingItemContainerLayout_backgroundColorStart, Color.DKGRAY);
         mBackgroundColorEnd = a.getColor(R.styleable.SlidingItemContainerLayout_backgroundColorEnd, Color.DKGRAY);
+        mTintColorStart = a.getColor(R.styleable.SlidingItemContainerLayout_tintColorStart, Color.WHITE);
+        mTintColorEnd = a.getColor(R.styleable.SlidingItemContainerLayout_tintColorEnd, Color.WHITE);
         a.recycle();
 
         mUpdateFlag = true;

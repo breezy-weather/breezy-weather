@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 
 import java.util.TimeZone;
 
@@ -27,7 +26,6 @@ import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
 
 public class AllergenViewHolder extends AbstractMainCardViewHolder {
 
-    private final CardView mCard;
     private final TextView mTitle;
     private final TextView mSubtitle;
     private final TextView mIndicator;
@@ -88,7 +86,6 @@ public class AllergenViewHolder extends AbstractMainCardViewHolder {
                         .inflate(R.layout.container_main_pollen, parent, false)
         );
 
-        mCard = itemView.findViewById(R.id.container_main_pollen);
         mTitle = itemView.findViewById(R.id.container_main_pollen_title);
         mSubtitle = itemView.findViewById(R.id.container_main_pollen_subtitle);
         mIndicator = itemView.findViewById(R.id.container_main_pollen_indicator);
@@ -107,7 +104,6 @@ public class AllergenViewHolder extends AbstractMainCardViewHolder {
 
         assert location.getWeather() != null;
 
-        mCard.setCardBackgroundColor(MainThemeColorProvider.getColor(location, R.attr.colorSurface));
         mTitle.setTextColor(
                 ThemeManager
                         .getInstance(context)

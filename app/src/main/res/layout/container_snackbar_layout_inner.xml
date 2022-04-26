@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     app:cardElevation="6dp"
     app:cardCornerRadius="0dp"
-    app:cardBackgroundColor="?attr/colorSurfaceVariant">
+    app:cardBackgroundColor="?attr/colorSurfaceInverse">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,7 +24,7 @@
             android:paddingBottom="@dimen/design_snackbar_padding_vertical"
             android:paddingLeft="@dimen/design_snackbar_padding_horizontal"
             android:paddingRight="@dimen/design_snackbar_padding_horizontal"
-            android:textColor="?attr/colorOnSurfaceVariant"
+            android:textColor="?attr/colorOnSurfaceInverse"
             android:textAppearance="@style/title_text"
             android:maxLines="@integer/design_snackbar_text_max_lines"
             android:ellipsize="end"
@@ -43,7 +43,7 @@
             android:paddingLeft="@dimen/design_snackbar_padding_horizontal"
             android:paddingRight="@dimen/design_snackbar_padding_horizontal"
             android:visibility="gone"
-            android:textColor="?attr/colorPrimary"
+            android:textColor="?attr/colorTertiaryContainer"
             android:textStyle="bold"
             style="?attr/borderlessButtonStyle"
             tools:visibility="visible"

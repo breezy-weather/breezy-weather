@@ -12,8 +12,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import wangdaye.com.geometricweather.R
+import wangdaye.com.geometricweather.common.ui.widgets.Material3CardListItem
+import wangdaye.com.geometricweather.common.ui.widgets.defaultCardListItemElevation
 import wangdaye.com.geometricweather.theme.compose.DayNightTheme
 import wangdaye.com.geometricweather.theme.compose.rememberThemeRipple
 
@@ -36,6 +38,8 @@ fun PreferenceView(
     summary: String? = null,
     enabled: Boolean = true,
     onClick: () -> Unit,
+) = Material3CardListItem(
+    elevation = if (enabled) defaultCardListItemElevation else 0.dp
 ) {
     Column(
         modifier = Modifier
@@ -51,7 +55,6 @@ fun PreferenceView(
     ) {
         Text(
             text = title,
-            fontWeight = FontWeight.Bold,
             color = DayNightTheme.colors.titleColor,
             style = MaterialTheme.typography.titleMedium,
         )
@@ -59,7 +62,7 @@ fun PreferenceView(
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
             Text(
                 text = summary,
-                color = DayNightTheme.colors.captionColor,
+                color = DayNightTheme.colors.bodyColor,
                 style = MaterialTheme.typography.bodyMedium,
             )
         }

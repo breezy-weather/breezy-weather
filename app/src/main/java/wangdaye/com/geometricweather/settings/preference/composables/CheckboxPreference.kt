@@ -19,8 +19,10 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import wangdaye.com.geometricweather.R
+import wangdaye.com.geometricweather.common.ui.widgets.Material3CardListItem
+import wangdaye.com.geometricweather.common.ui.widgets.defaultCardListItemElevation
 import wangdaye.com.geometricweather.theme.compose.DayNightTheme
 import wangdaye.com.geometricweather.theme.compose.rememberThemeRipple
 
@@ -52,62 +54,65 @@ fun CheckboxPreferenceView(
 ) {
     val state = remember { mutableStateOf(checked) }
 
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .alpha(if (enabled) 1f else 0.5f)
-            .clickable(
-                interactionSource = remember { MutableInteractionSource() },
-                indication = rememberThemeRipple(),
-                onClick = {
-                    state.value = !state.value
-                    onValueChanged(state.value)
-                },
-                enabled = enabled,
-            )
-            .padding(dimensionResource(R.dimen.normal_margin)),
-        verticalAlignment = Alignment.CenterVertically,
+    Material3CardListItem(
+        elevation = if (enabled) defaultCardListItemElevation else 0.dp
     ) {
-        Column(
-            modifier = Modifier.weight(1f)
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .alpha(if (enabled) 1f else 0.5f)
+                .clickable(
+                    interactionSource = remember { MutableInteractionSource() },
+                    indication = rememberThemeRipple(),
+                    onClick = {
+                        state.value = !state.value
+                        onValueChanged(state.value)
+                    },
+                    enabled = enabled,
+                )
+                .padding(dimensionResource(R.dimen.normal_margin)),
+            verticalAlignment = Alignment.CenterVertically,
         ) {
-            Text(
-                text = title,
-                fontWeight = FontWeight.Bold,
-                color = DayNightTheme.colors.titleColor,
-                style = MaterialTheme.typography.titleMedium,
-            )
-            val currentSummary = summary(LocalContext.current, state.value)
-            if (currentSummary?.isNotEmpty() == true) {
-                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+            Column(
+                modifier = Modifier.weight(1f)
+            ) {
                 Text(
-                    text = currentSummary,
-                    color = DayNightTheme.colors.captionColor,
-                    style = MaterialTheme.typography.bodyMedium,
+                    text = title,
+                    color = DayNightTheme.colors.titleColor,
+                    style = MaterialTheme.typography.titleMedium,
                 )
+                val currentSummary = summary(LocalContext.current, state.value)
+                if (currentSummary?.isNotEmpty() == true) {
+                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                    Text(
+                        text = currentSummary,
+                        color = DayNightTheme.colors.bodyColor,
+                        style = MaterialTheme.typography.bodyMedium,
+                    )
+                }
             }
-        }
 
-        Spacer(modifier = Modifier.width(dimensionResource(R.dimen.little_margin)))
-        Checkbox(
-            checked = state.value,
-            onCheckedChange = {
-                state.value = it
-                onValueChanged(it)
-            },
-            colors = CheckboxDefaults.colors(
-                checkedColor = MaterialTheme.colorScheme.primary,
-                uncheckedColor = MaterialTheme.colorScheme.onSurface.copy(
-                    alpha = 0.6f
-                ),
-                checkmarkColor = MaterialTheme.colorScheme.surface,
-                disabledColor = MaterialTheme.colorScheme.onSurface.copy(
-                    alpha = ContentAlpha.disabled
-                ),
-                disabledIndeterminateColor = MaterialTheme.colorScheme.primary.copy(
-                    alpha = ContentAlpha.disabled
+            Spacer(modifier = Modifier.width(dimensionResource(R.dimen.little_margin)))
+            Checkbox(
+                checked = state.value,
+                onCheckedChange = {
+                    state.value = it
+                    onValueChanged(it)
+                },
+                colors = CheckboxDefaults.colors(
+                    checkedColor = MaterialTheme.colorScheme.primary,
+                    uncheckedColor = MaterialTheme.colorScheme.onSurface.copy(
+                        alpha = 0.6f
+                    ),
+                    checkmarkColor = MaterialTheme.colorScheme.surface,
+                    disabledColor = MaterialTheme.colorScheme.onSurface.copy(
+                        alpha = ContentAlpha.disabled
+                    ),
+                    disabledIndeterminateColor = MaterialTheme.colorScheme.primary.copy(
+                        alpha = ContentAlpha.disabled
+                    )
                 )
             )
-        )
+        }
     }
 }

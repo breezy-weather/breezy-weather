@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,7 +32,6 @@ import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
 
 public class AirQualityViewHolder extends AbstractMainCardViewHolder {
 
-    private final CardView mCard;
     private final TextView mTitle;
 
     private final ArcProgress mProgress;
@@ -54,7 +52,6 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
                         .inflate(R.layout.container_main_aqi, parent, false)
         );
 
-        mCard = itemView.findViewById(R.id.container_main_aqi);
         mTitle = itemView.findViewById(R.id.container_main_aqi_title);
         mProgress = itemView.findViewById(R.id.container_main_aqi_progress);
         mRecyclerView = itemView.findViewById(R.id.container_main_aqi_recyclerView);
@@ -77,8 +74,6 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
                 : mWeather.getCurrent().getAirQuality().getAqiIndex();
 
         mEnable = true;
-
-        mCard.setCardBackgroundColor(MainThemeColorProvider.getColor(location, R.attr.colorSurface));
 
         mTitle.setTextColor(
                 ThemeManager

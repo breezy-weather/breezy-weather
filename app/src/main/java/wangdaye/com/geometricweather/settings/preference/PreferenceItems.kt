@@ -1,14 +1,14 @@
 package wangdaye.com.geometricweather.settings.preference
 
 import androidx.annotation.StringRes
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.navigationBars
-import androidx.compose.foundation.layout.windowInsetsBottomHeight
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import wangdaye.com.geometricweather.common.ui.widgets.getCardListItemMarginDp
 import wangdaye.com.geometricweather.settings.preference.composables.SectionFooter
 import wangdaye.com.geometricweather.settings.preference.composables.SectionHeader
 
@@ -42,10 +42,10 @@ fun LazyListScope.bottomInsetItem() {
         key = token.preferenceKey,
         contentType = token::class.java,
     ) {
-        Spacer(
-            modifier = Modifier
-                .windowInsetsBottomHeight(WindowInsets.navigationBars)
-        )
+        Column {
+            Spacer(modifier = Modifier.height(getCardListItemMarginDp(LocalContext.current).dp))
+            Spacer(modifier = Modifier.windowInsetsBottomHeight(WindowInsets.navigationBars))
+        }
     }
 }
 

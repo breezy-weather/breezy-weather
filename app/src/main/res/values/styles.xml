@@ -45,6 +45,7 @@
         <item name="colorTitleText">@color/colorTextTitle</item>
         <item name="colorBodyText">@color/colorTextContent</item>
         <item name="colorCaptionText">@color/colorTextSubtitle</item>
+        <item name="colorMainCardBackground">@color/colorMainCardBackground</item>
         <item name="colorPrecipitationProbability">@color/colorPrecipitationProbability</item>
         <item name="actionBarSize">@dimen/action_bar_height</item>
     </style>
@@ -63,7 +64,8 @@
     </style>
 
     <style name="GeometricWeatherTheme.AppBarTheme">
-        <item name="android:background">?attr/colorPrimaryContainer</item>
+        <item name="android:background">?attr/colorSurface</item>
+        <item name="elevation">0dp</item>
     </style>
 
     <style name="GeometricWeatherTheme.ToolbarTheme">
@@ -71,15 +73,15 @@
         <item name="subtitleTextAppearance">?attr/textAppearanceSubtitle1</item>
 
         <item name="android:height">?attr/actionBarSize</item>
-        <item name="android:elevation">@dimen/design_appbar_elevation</item>
-        <item name="android:background">?attr/colorPrimaryContainer</item>
-        <item name="titleTextColor">?attr/colorOnPrimaryContainer</item>
+        <item name="android:elevation">0dp</item>
+        <item name="android:background">?attr/colorSurface</item>
+        <item name="titleTextColor">?attr/colorOnSurface</item>
         <item name="subtitleTextColor">@color/material_on_primary_emphasis_medium</item>
 
         <item name="android:maxButtonHeight" tools:ignore="NewApi">@dimen/mtrl_toolbar_default_height</item>
-        <item name="navigationIconTint">?attr/colorOnPrimaryContainer</item>
+        <item name="navigationIconTint">?attr/colorOnSurface</item>
 
-        <item name="android:theme">@style/ThemeOverlay.MaterialComponents.Toolbar.Primary</item>
+        <item name="android:theme">@style/ThemeOverlay.MaterialComponents.Toolbar.Surface</item>
         <item name="popupTheme">@style/ThemeOverlay.MaterialComponents.Toolbar.Popup.Primary</item>
     </style>
     

@@ -53,7 +53,12 @@ public class FitSystemBarRecyclerView extends RecyclerView
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        setPadding(0, mHelper.top(), 0, mHelper.bottom());
+        setPadding(
+                0,
+                mHelper.top() == 0 ? getPaddingTop() : mHelper.top(),
+                0,
+                mHelper.bottom() == 0 ? getPaddingBottom() : mHelper.bottom()
+        );
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 

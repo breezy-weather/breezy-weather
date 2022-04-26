@@ -8,14 +8,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.databinding.ItemLocationBinding;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
+import wangdaye.com.geometricweather.databinding.ItemLocationCardBinding;
 
 public class LocationHolder extends RecyclerView.ViewHolder {
 
-    private final ItemLocationBinding mBinding;
+    private final ItemLocationCardBinding mBinding;
     private final LocationAdapter.OnLocationItemClickListener mClickListener;
 
-    protected LocationHolder(ItemLocationBinding binding,
+    protected LocationHolder(ItemLocationCardBinding binding,
                              @NonNull LocationAdapter.OnLocationItemClickListener clickListener) {
         super(binding.getRoot());
         mBinding = binding;
@@ -23,8 +24,17 @@ public class LocationHolder extends RecyclerView.ViewHolder {
     }
 
     @SuppressLint({"SetTextI18n", "ClickableViewAccessibility"})
-    protected void onBindView(Context context, LocationModel model) {
+    protected void onBindView(Context context, LocationModel model,
+                              int primaryColor, int surfaceColor) {
         mBinding.container.swipe(0);
+
+        mBinding.item.setBackgroundColor(
+                DisplayUtils.getWidgetSurfaceColor(
+                        DisplayUtils.DEFAULT_CARD_LIST_ITEM_ELEVATION_DP,
+                        primaryColor,
+                        surfaceColor
+                )
+        );
 
         mBinding.sortButton.setVisibility(View.GONE);
         mBinding.content.setPaddingRelative(
@@ -33,8 +43,8 @@ public class LocationHolder extends RecyclerView.ViewHolder {
         mBinding.residentIcon.setVisibility(View.GONE);
         mBinding.weatherIcon.setVisibility(View.GONE);
 
-        mBinding.title.setText(model.title);
-        mBinding.alerts.setVisibility(View.GONE);
+        mBinding.title1.setText(model.title);
+        mBinding.title2.setVisibility(View.GONE);
         mBinding.subtitle.setText(model.subtitle);
 
         // source.

@@ -12,14 +12,24 @@
         android:layout_height="wrap_content"
         style="@style/GeometricWeatherTheme.AppBarTheme">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/activity_allergen_toolbar"
+        <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            style="@style/GeometricWeatherTheme.ToolbarTheme"
-            app:title="@string/allergen"
-            app:navigationIcon="@drawable/ic_toolbar_back"
-            app:navigationContentDescription="@string/content_desc_back" />
+            android:layout_height="?attr/collapsingToolbarLayoutMediumSize"
+            style="?attr/collapsingToolbarLayoutMediumStyle"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            app:contentScrim="?attr/colorSurface">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/activity_allergen_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                style="@style/GeometricWeatherTheme.ToolbarTheme"
+                app:layout_collapseMode="pin"
+                app:title="@string/allergen"
+                app:navigationIcon="@drawable/ic_toolbar_back"
+                app:navigationContentDescription="@string/content_desc_back" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout>
 

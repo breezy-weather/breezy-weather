@@ -87,7 +87,7 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
     }
 
     public DetailsAdapter(Context context, Location location) {
-        mLightTheme = location.isDaylight();
+        mLightTheme = MainThemeColorProvider.isLightTheme(context, location);
 
         mIndexList = new ArrayList<>();
         SettingsManager settings = SettingsManager.getInstance(context);

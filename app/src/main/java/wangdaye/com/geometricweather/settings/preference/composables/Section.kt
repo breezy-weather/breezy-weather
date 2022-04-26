@@ -7,6 +7,7 @@ import androidx.compose.material.Text
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.font.FontWeight
 import wangdaye.com.geometricweather.R
@@ -27,5 +28,5 @@ fun SectionHeader(
 
 @Composable
 fun SectionFooter() {
-    Divider(color = MaterialTheme.colorScheme.outline)
+    Divider(color = Color.Transparent)
 }

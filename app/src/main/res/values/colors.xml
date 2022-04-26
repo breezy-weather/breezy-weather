@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <!-- repository. -->
 
@@ -51,6 +51,7 @@
     <color name="colorTextContent">#666666</color>
     <color name="colorTextSubtitle">#b2b2b2</color>
 
+    <color name="colorMainCardBackground">#FDFCFF</color>
     <color name="colorPrecipitationProbability">@color/md_theme_primary</color>
 
     <!-- widget. -->
@@ -78,13 +79,13 @@
     <color name="md_theme_errorContainer">#F9DEDC</color>
     <color name="md_theme_onError">#FFFFFF</color>
     <color name="md_theme_onErrorContainer">#410E0B</color>
-    <color name="md_theme_background">#FDFCFF</color>
+    <color name="md_theme_background">#FFFFFF</color>
     <color name="md_theme_onBackground">#1B1B1B</color>
     <color name="md_theme_surface">#FDFCFF</color>
     <color name="md_theme_onSurface">#1B1B1B</color>
     <color name="md_theme_surfaceVariant">#E7E0EC</color>
     <color name="md_theme_onSurfaceVariant">#49454F</color>
-    <color name="md_theme_outline">#f1f1f1</color>
+    <color name="md_theme_outline">#10000000</color>
     <color name="md_theme_inverseOnSurface">#F1F0F4</color>
     <color name="md_theme_inverseSurface">#2F3033</color>
     <color name="md_theme_inversePrimary">#59D5F8</color>

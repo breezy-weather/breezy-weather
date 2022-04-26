@@ -3,13 +3,11 @@ package wangdaye.com.geometricweather.wallpaper
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.annotation.StringRes
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
@@ -30,6 +28,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.toSize
 import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.GeoActivity
+import wangdaye.com.geometricweather.common.ui.widgets.Material3Scaffold
 import wangdaye.com.geometricweather.common.ui.widgets.insets.FitStatusBarTopAppBar
 import wangdaye.com.geometricweather.theme.compose.DayNightTheme
 import wangdaye.com.geometricweather.theme.compose.GeometricWeatherTheme
@@ -69,7 +68,7 @@ class LiveWallpaperConfigActivity : GeoActivity() {
 
     @Composable
     private fun ContentView() {
-        Scaffold(
+        Material3Scaffold(
             topBar = {
                 FitStatusBarTopAppBar(
                     title = stringResource(R.string.settings_title_live_wallpaper),
@@ -77,11 +76,7 @@ class LiveWallpaperConfigActivity : GeoActivity() {
                 )
             },
         ) {
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .background(MaterialTheme.colorScheme.background)
-            ) {
+            LazyColumn(modifier = Modifier.fillMaxHeight()) {
                 items(1) {
                     Spinner(
                         currentVal = weatherKindValueNow,

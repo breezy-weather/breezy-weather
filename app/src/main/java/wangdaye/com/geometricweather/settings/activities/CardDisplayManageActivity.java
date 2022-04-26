@@ -30,8 +30,10 @@ import wangdaye.com.geometricweather.common.basic.models.options.appearance.Card
 import wangdaye.com.geometricweather.common.ui.adapters.TagAdapter;
 import wangdaye.com.geometricweather.common.ui.decotarions.GridMarginsDecoration;
 import wangdaye.com.geometricweather.common.ui.decotarions.ListDecoration;
+import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout;
 import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarRecyclerView;
 import wangdaye.com.geometricweather.common.ui.widgets.slidingItem.SlidingItemTouchCallback;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.settings.adapters.CardDisplayAdapter;
 import wangdaye.com.geometricweather.theme.ThemeManager;
@@ -98,7 +100,17 @@ public class CardDisplayManageActivity extends GeoActivity {
 
         mElevation = getResources().getDimensionPixelSize(R.dimen.touch_rise_z);
 
+        FitSystemBarAppBarLayout appBarLayout = findViewById(R.id.activity_card_display_manage_appBar);
+        appBarLayout.injectDefaultSurfaceTintColor();
+
         Toolbar toolbar = findViewById(R.id.activity_card_display_manage_toolbar);
+        toolbar.setBackgroundColor(
+                DisplayUtils.getWidgetSurfaceColor(
+                        6f,
+                        ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorPrimary),
+                        ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorSurface)
+                )
+        );
         toolbar.setNavigationOnClickListener(view -> finish());
 
         List<CardDisplay> displayCards = SettingsManager.getInstance(this).getCardDisplayList();

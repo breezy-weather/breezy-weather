@@ -7,9 +7,12 @@ import android.view.WindowInsets
 import androidx.annotation.RequiresApi
 import androidx.core.view.ViewCompat
 import com.google.android.material.appbar.AppBarLayout
+import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.insets.FitBothSideBarHelper
 import wangdaye.com.geometricweather.common.basic.insets.FitBothSideBarView
 import wangdaye.com.geometricweather.common.basic.insets.FitBothSideBarView.FitSide
+import wangdaye.com.geometricweather.common.utils.DisplayUtils
+import wangdaye.com.geometricweather.theme.ThemeManager
 
 class FitSystemBarAppBarLayout @JvmOverloads constructor(
     context: Context,
@@ -23,6 +26,16 @@ class FitSystemBarAppBarLayout @JvmOverloads constructor(
     init {
         ViewCompat.setOnApplyWindowInsetsListener(this, null)
         mHelper = FitBothSideBarHelper(this, FitBothSideBarView.SIDE_TOP)
+    }
+
+    fun injectDefaultSurfaceTintColor() {
+        setBackgroundColor(
+            DisplayUtils.getWidgetSurfaceColor(
+                6f,
+                ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorPrimary),
+                ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorSurface)
+            )
+        )
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)

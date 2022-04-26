@@ -92,6 +92,11 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".search.SearchActivity"
+            android:label="@string/action_search"
+            android:theme="@style/GeometricWeatherTheme.Search"
+            android:windowSoftInputMode="adjustResize" />
+
         <activity
             android:name=".daily.DailyWeatherActivity"
             android:label="@string/daily_overview"
@@ -106,11 +111,6 @@
             android:name=".common.ui.activities.AllergenActivity"
             android:label="@string/allergen"
             android:theme="@style/GeometricWeatherTheme" />
-
-        <activity android:name=".search.SearchActivity"
-            android:label="@string/action_search"
-            android:theme="@style/GeometricWeatherTheme.Search"
-            android:windowSoftInputMode="adjustResize" />
 
         <activity
             android:name=".settings.activities.SettingsActivity"

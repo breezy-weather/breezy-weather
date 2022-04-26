@@ -15,9 +15,11 @@ import com.turingtechnologies.materialscrollbar.ICustomAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.ui.adapters.SyncListAdapter;
-import wangdaye.com.geometricweather.databinding.ItemLocationBinding;
+import wangdaye.com.geometricweather.databinding.ItemLocationCardBinding;
+import wangdaye.com.geometricweather.theme.ThemeManager;
 
 /**
  * Location adapter.
@@ -28,6 +30,11 @@ public class LocationAdapter extends SyncListAdapter<LocationModel, LocationHold
 
     private final Context mContext;
     private final OnLocationItemClickListener mClickListener;
+
+    @ColorInt
+    private final int primaryColor;
+    @ColorInt
+    private final int surfaceColor;
 
     public interface OnLocationItemClickListener {
         void onClick(View view, String formattedId);
@@ -49,6 +56,8 @@ public class LocationAdapter extends SyncListAdapter<LocationModel, LocationHold
         });
         mContext = context;
         mClickListener = clickListener;
+        primaryColor = ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorPrimary);
+        surfaceColor = ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorSurface);
 
         update(locationList);
     }
@@ -57,20 +66,20 @@ public class LocationAdapter extends SyncListAdapter<LocationModel, LocationHold
     @Override
     public LocationHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new LocationHolder(
-                ItemLocationBinding.inflate(LayoutInflater.from(parent.getContext())),
+                ItemLocationCardBinding.inflate(LayoutInflater.from(parent.getContext())),
                 mClickListener
         );
     }
 
     @Override
     public void onBindViewHolder(@NonNull LocationHolder holder, int position) {
-        holder.onBindView(mContext, getItem(position));
+        holder.onBindView(mContext, getItem(position), primaryColor, surfaceColor);
     }
 
     @Override
     public void onBindViewHolder(@NonNull LocationHolder holder, int position,
                                  @NonNull List<Object> payloads) {
-        holder.onBindView(mContext, getItem(position));
+        holder.onBindView(mContext, getItem(position), primaryColor, surfaceColor);
     }
 
     public void update(@NonNull List<Location> newList) {
