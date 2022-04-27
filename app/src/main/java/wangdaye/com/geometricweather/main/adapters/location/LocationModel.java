@@ -13,7 +13,6 @@ import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.common.basic.models.weather.Alert;
-import wangdaye.com.geometricweather.common.basic.models.weather.Temperature;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 
 public class LocationModel {
@@ -57,24 +56,19 @@ public class LocationModel {
         this.title1 = location.isCurrentPosition()
                 ? context.getString(R.string.current_location)
                 : location.getCityName(context);
-        this.title2 = location.getWeather() == null ? "" : Temperature.getTrendTemperature(
-                context,
-                location
-                        .getWeather()
-                        .getDailyForecast()
-                        .get(0)
-                        .night()
-                        .getTemperature()
-                        .getTemperature(),
-                location
-                        .getWeather()
-                        .getDailyForecast()
-                        .get(0)
-                        .day()
-                        .getTemperature()
-                        .getTemperature(),
-                unit
-        );
+        this.title2 = location.getWeather() == null
+                ? ""
+                : location.getWeather().getCurrent().getWeatherText()
+                + ", "
+                + unit
+                .getShortValueText(
+                        context,
+                        location
+                                .getWeather()
+                                .getCurrent()
+                                .getTemperature()
+                                .getTemperature()
+                );
 
         if (!location.isCurrentPosition() || location.isUsable()) {
             subtitle = location.toString();

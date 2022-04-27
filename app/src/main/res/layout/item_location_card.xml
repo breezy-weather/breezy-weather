@@ -90,9 +90,8 @@
                             android:maxLines="1"
                             android:ellipsize="end"
                             android:textAlignment="viewStart"
-                            android:textColor="?attr/colorTitleText"
-                            android:alpha="0.5"
-                            style="@style/title_text"
+                            android:textColor="?attr/colorBodyText"
+                            style="@style/content_text"
                             tools:text="5°/13°"
                             tools:ignore="RtlHardcoded" />
 
@@ -106,7 +105,6 @@
                     android:layout_marginTop="@dimen/little_margin"
                     android:layout_marginEnd="@dimen/normal_margin"
                     android:textAlignment="viewStart"
-                    android:textColor="?attr/colorBodyText"
                     style="@style/subtitle_text"
                     tools:text="中国 山东省 青岛市 李沧区"
                     tools:ignore="RtlHardcoded" />

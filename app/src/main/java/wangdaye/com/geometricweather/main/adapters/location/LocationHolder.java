@@ -137,15 +137,13 @@ public class LocationHolder extends RecyclerView.ViewHolder {
         } else {
             mBinding.title2.setVisibility(View.VISIBLE);
             mBinding.title2.setTextColor(
-                    model.selected
-                            ? MainThemeColorProvider.getColor(lightTheme, R.attr.colorOnPrimaryContainer)
-                            : MainThemeColorProvider.getColor(lightTheme, R.attr.colorTitleText)
+                    MainThemeColorProvider.getColor(lightTheme, R.attr.colorBodyText)
             );
             mBinding.title2.setText(model.title2);
         }
 
         mBinding.subtitle.setTextColor(
-                MainThemeColorProvider.getColor(lightTheme, R.attr.colorBodyText)
+                MainThemeColorProvider.getColor(lightTheme, R.attr.colorCaptionText)
         );
         mBinding.subtitle.setText(model.subtitle);
 

@@ -271,7 +271,7 @@ class Location(
     }
 
     fun getCityName(context: Context): String {
-        return if (!TextUtils.isEmpty(district) && district != "市辖区" && district != "无") {
+        val text = if (!TextUtils.isEmpty(district) && district != "市辖区" && district != "无") {
             district
         } else if (!TextUtils.isEmpty(city) && city != "市辖区") {
             city
@@ -282,6 +282,11 @@ class Location(
         } else {
             ""
         }
+
+        if (!text.endsWith(")")) {
+            return text
+        }
+        return text.substringBeforeLast('(')
     }
 
     override fun toString(): String {
