@@ -21,8 +21,10 @@ There are 3 build variants now. Specifically, the `fdroid` variant dose not cont
 ### Weather icon extensions
 If you want to build your own weather icon-pack, please read this document:
 * [IconProvider-For-GeometricWeather](https://github.com/WangDaYeeeeee/IconProvider-For-GeometricWeather)
+
 Also, you will find some icon-packs made by me here:
 * [IconPacks](https://github.com/WangDaYeeeeee/IconProvider-For-GeometricWeather/tree/master/apk)
+
 By the way, GeometricWeather is compatible with Chronus Weather IconPacks. You can download them from Google Play or any other app store you have.
 
 ### Help me to improve the translation
