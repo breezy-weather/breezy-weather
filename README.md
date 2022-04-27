@@ -36,6 +36,9 @@ If you want to contribute code to help me to improve GeometricWeather, please ma
 ### License
 * [LICENSE](/LICENSE)
 
+### Also see
+* [GeometricWeather For iOS](https://github.com/WangDaYeeeeee/GeometricWeather-iOS)
+
 ### What I gonna do next
 * Complete the migration to Material You.
 * More AppWidget with Material You style.
