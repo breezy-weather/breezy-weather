@@ -12,8 +12,8 @@ android {
         applicationId "wangdaye.com.geometricweather"
         minSdkVersion 21
         targetSdkVersion 32
-        versionCode 30017
-        versionName "3.017"
+        versionCode 30100
+        versionName "3.100"
         multiDexEnabled true
         ndk {
             abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'

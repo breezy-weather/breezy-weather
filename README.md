@@ -14,9 +14,16 @@
 ### How to run
 Clone this project and build it by AndroidStudio.
 
-### Build Variants
-Also, you can select a specific build variants in AndroidStudio.
+### Build variants
+You can select a specific build variants in AndroidStudio.
 There are 3 build variants now. Specifically, the `fdroid` variant dose not contain any closed source 3rd-party SDK, such as Baidu Location Service and Bugly. The `gplay` variant integrated the Google Play Service to improve accuracy of location. And finally, the `public` variant contains all closed source 3rd-party SDK which is not exist in `fdroid` version except the Google Play Service.
+
+### Weather icon extensions
+If you want to build your own weather icon-pack, please read this document:
+* [IconProvider-For-GeometricWeather](https://github.com/WangDaYeeeeee/IconProvider-For-GeometricWeather)
+Also, you will find some icon-packs made by me here:
+* [IconPacks](https://github.com/WangDaYeeeeee/IconProvider-For-GeometricWeather/tree/master/apk)
+By the way, GeometricWeather is compatible with Chronus Weather IconPacks. You can download them from Google Play or any other app store you have.
 
 ### Help me to improve the translation
 You can contact me by Email, or just submit a pull request.
