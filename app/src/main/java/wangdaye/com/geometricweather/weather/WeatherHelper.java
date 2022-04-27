@@ -17,13 +17,10 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.rxjava.BaseObserver;
 import wangdaye.com.geometricweather.common.rxjava.ObserverContainer;
 import wangdaye.com.geometricweather.common.rxjava.SchedulerTransformer;
+import wangdaye.com.geometricweather.common.utils.NetworkUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.weather.services.WeatherService;
-
-/**
- * Weather helper.
- * */
 
 public class WeatherHelper {
 
@@ -49,7 +46,12 @@ public class WeatherHelper {
 
     public void requestWeather(Context c, Location location, @NonNull final OnRequestWeatherListener l) {
         final WeatherService service = mServiceSet.get(location.getWeatherSource());
-        service.requestWeather(c, location, new WeatherService.RequestWeatherCallback() {
+        if (!NetworkUtils.isAvailable(c)) {
+            l.requestWeatherFailed(location);
+            return;
+        }
+
+        service.requestWeather(c, location.copy(), new WeatherService.RequestWeatherCallback() {
 
             @Override
             public void requestWeatherSuccess(@NonNull Location requestLocation) {
@@ -58,7 +60,8 @@ public class WeatherHelper {
                     DatabaseHelper.getInstance(c).writeWeather(requestLocation, weather);
                     if (weather.getYesterday() == null) {
                         weather.setYesterday(
-                                DatabaseHelper.getInstance(c).readHistory(requestLocation, weather));
+                                DatabaseHelper.getInstance(c).readHistory(requestLocation, weather)
+                        );
                     }
                     l.requestWeatherSuccess(requestLocation);
                 } else {
@@ -68,8 +71,12 @@ public class WeatherHelper {
 
             @Override
             public void requestWeatherFailed(@NonNull Location requestLocation) {
-                requestLocation.setWeather(DatabaseHelper.getInstance(c).readWeather(requestLocation));
-                l.requestWeatherFailed(requestLocation);
+                l.requestWeatherFailed(
+                        Location.copy(
+                                requestLocation,
+                                DatabaseHelper.getInstance(c).readWeather(requestLocation)
+                        )
+                );
             }
         });
     }

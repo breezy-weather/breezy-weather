@@ -16,11 +16,13 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.Precipitat
 import wangdaye.com.geometricweather.common.basic.models.weather.Hourly;
 import wangdaye.com.geometricweather.common.basic.models.weather.Precipitation;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.main.utils.MainThemeManager;
-import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
-import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.chart.PolylineAndHistogramView;
+import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider;
+import wangdaye.com.geometricweather.theme.ThemeManager;
+import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
+import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
+import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
 
 /**
  * Hourly precipitation adapter.
@@ -29,7 +31,6 @@ import wangdaye.com.geometricweather.common.ui.widgets.trend.chart.PolylineAndHi
 public class HourlyPrecipitationAdapter extends AbsHourlyTrendAdapter<HourlyPrecipitationAdapter.ViewHolder> {
 
     private final ResourceProvider mResourceProvider;
-    private final MainThemeManager mThemeManager;
     private final PrecipitationUnit mPrecipitationUnit;
 
     private float highestPrecipitation;
@@ -44,10 +45,10 @@ public class HourlyPrecipitationAdapter extends AbsHourlyTrendAdapter<HourlyPrec
             hourlyItem.setChartItemView(mPolylineAndHistogramView);
         }
 
-        void onBindView(GeoActivity activity, Location location, MainThemeManager themeManager, int position) {
+        void onBindView(GeoActivity activity, Location location, int position) {
             StringBuilder talkBackBuilder = new StringBuilder(activity.getString(R.string.tag_precipitation));
 
-            super.onBindView(activity, location, themeManager, talkBackBuilder, position);
+            super.onBindView(activity, location, talkBackBuilder, position);
 
             Weather weather = location.getWeather();
             assert weather != null;
@@ -62,7 +63,7 @@ public class HourlyPrecipitationAdapter extends AbsHourlyTrendAdapter<HourlyPrec
 
             if (precipitation != 0) {
                 talkBackBuilder.append(", ")
-                        .append(mPrecipitationUnit.getPrecipitationVoice(activity, precipitation));
+                        .append(mPrecipitationUnit.getValueVoice(activity, precipitation));
             } else {
                 talkBackBuilder.append(", ")
                         .append(activity.getString(R.string.content_des_no_precipitation));
@@ -73,23 +74,35 @@ public class HourlyPrecipitationAdapter extends AbsHourlyTrendAdapter<HourlyPrec
                     null, null,
                     null, null,
                     precipitation,
-                    mPrecipitationUnit.getPrecipitationTextWithoutUnit(precipitation),
+                    mPrecipitationUnit.getValueTextWithoutUnit(precipitation),
                     highestPrecipitation,
                     0f
             );
             mPolylineAndHistogramView.setLineColors(
                     hourly.getPrecipitation().getPrecipitationColor(activity),
                     hourly.getPrecipitation().getPrecipitationColor(activity),
-                    mThemeManager.getSeparatorColor(activity)
+                    MainThemeColorProvider.getColor(location, R.attr.colorOutline)
             );
-            int[] themeColors = mThemeManager.getWeatherThemeColors();
+            int[] themeColors = ThemeManager
+                    .getInstance(itemView.getContext())
+                    .getWeatherThemeDelegate()
+                    .getThemeColors(
+                            itemView.getContext(),
+                            WeatherViewController.getWeatherKind(location.getWeather()),
+                            location.isDaylight()
+                    );
+            boolean lightTheme = MainThemeColorProvider.isLightTheme(itemView.getContext(), location);
             mPolylineAndHistogramView.setShadowColors(
-                    themeColors[mThemeManager.isLightTheme() ? 1 : 2], themeColors[2], mThemeManager.isLightTheme());
-            mPolylineAndHistogramView.setTextColors(
-                    mThemeManager.getTextContentColor(activity),
-                    mThemeManager.getTextSubtitleColor(activity)
+                    themeColors[lightTheme ? 1 : 2],
+                    themeColors[2],
+                    lightTheme
             );
-            mPolylineAndHistogramView.setHistogramAlpha(mThemeManager.isLightTheme() ? 1f : 0.5f);
+            mPolylineAndHistogramView.setTextColors(
+                    MainThemeColorProvider.getColor(location, R.attr.colorTitleText),
+                    MainThemeColorProvider.getColor(location, R.attr.colorBodyText),
+                    MainThemeColorProvider.getColor(location, R.attr.colorTitleText)
+            );
+            mPolylineAndHistogramView.setHistogramAlpha(lightTheme ? 1f : 0.5f);
 
             hourlyItem.setContentDescription(talkBackBuilder.toString());
         }
@@ -99,14 +112,12 @@ public class HourlyPrecipitationAdapter extends AbsHourlyTrendAdapter<HourlyPrec
                                       TrendRecyclerView parent,
                                       Location location,
                                       ResourceProvider provider,
-                                      MainThemeManager themeManager,
                                       PrecipitationUnit unit) {
         super(activity, location);
 
         Weather weather = location.getWeather();
         assert weather != null;
         mResourceProvider = provider;
-        mThemeManager = themeManager;
         mPrecipitationUnit = unit;
 
         highestPrecipitation = Integer.MIN_VALUE;
@@ -126,7 +137,7 @@ public class HourlyPrecipitationAdapter extends AbsHourlyTrendAdapter<HourlyPrec
                 new TrendRecyclerView.KeyLine(
                         Precipitation.PRECIPITATION_LIGHT,
                         activity.getString(R.string.precipitation_light),
-                        unit.getPrecipitationTextWithoutUnit(Precipitation.PRECIPITATION_LIGHT),
+                        unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_LIGHT),
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
         );
@@ -134,11 +145,10 @@ public class HourlyPrecipitationAdapter extends AbsHourlyTrendAdapter<HourlyPrec
                 new TrendRecyclerView.KeyLine(
                         Precipitation.PRECIPITATION_HEAVY,
                         activity.getString(R.string.precipitation_heavy),
-                        unit.getPrecipitationTextWithoutUnit(Precipitation.PRECIPITATION_HEAVY),
+                        unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_HEAVY),
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
         );
-        parent.setLineColor(mThemeManager.getSeparatorColor(activity));
         parent.setData(keyLineList, highestPrecipitation, 0f);
     }
 
@@ -152,7 +162,7 @@ public class HourlyPrecipitationAdapter extends AbsHourlyTrendAdapter<HourlyPrec
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(getActivity(), getLocation(), mThemeManager, position);
+        holder.onBindView(getActivity(), getLocation(), position);
     }
 
     @Override

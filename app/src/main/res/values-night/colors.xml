@@ -1,24 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorPrimary">@color/darkPrimary_1</color>
-    <color name="colorPrimaryVariant">@color/darkPrimary_2</color>
-    <color name="colorOnPrimary">@android:color/white</color>
+    <!-- theme. -->
 
-    <color name="colorSecondary">@color/lightPrimary_2</color>
-    <color name="colorSecondaryVariant">@color/lightPrimary_1</color>
-    <color name="colorOnSecondary">@android:color/black</color>
+    <color name="colorTextTitle">#ffffff</color>
+    <color name="colorTextContent">#999999</color>
+    <color name="colorTextSubtitle">#4d4d4d</color>
 
-    <color name="colorSurface">@color/colorSurface_dark</color>
-    <color name="colorOnSurface">@color/colorTextContent</color>
+    <color name="colorMainCardBackground">#1C1B1F</color>
 
-    <color name="colorBackground">@color/colorRoot</color>
-    <color name="colorOnBackground">@color/colorTextContent</color>
+    <!-- widget S. -->
+
+    <color name="colorWidgetSRoot">@color/darkPrimary_1</color>
+    <color name="colorWidgetSText">@color/colorTextTitle</color>
     
-    <color name="colorSeparator">@color/colorSeparator_dark</color>
-    <color name="colorRoot">@color/colorRoot_dark</color>
-    <color name="colorTextTitle">@color/colorTextTitle_dark</color>
-    <color name="colorTextContent">@color/colorTextContent_dark</color>
-    <color name="colorTextSubtitle">@color/colorTextSubtitle_dark</color>
+    <!-- material 3. -->
+
+    <color name="md_theme_primary">#B0C5FF</color>
+    <color name="md_theme_onPrimary">#182778</color>
+    <color name="md_theme_primaryContainer">#313F90</color>
+    <color name="md_theme_onPrimaryContainer">#DDE0FF</color>
+    <color name="md_theme_secondary">#59D5F8</color>
+    <color name="md_theme_onSecondary">#003542</color>
+    <color name="md_theme_secondaryContainer">#004E60</color>
+    <color name="md_theme_onSecondaryContainer">#B1EBFF</color>
+    <color name="md_theme_tertiary">#EEC148</color>
+    <color name="md_theme_onTertiary">#3F2E00</color>
+    <color name="md_theme_tertiaryContainer">#5B4300</color>
+    <color name="md_theme_onTertiaryContainer">#FFDF95</color>
+    <color name="md_theme_error">#F2B8B5</color>
+    <color name="md_theme_errorContainer">#8C1D18</color>
+    <color name="md_theme_onError">#601410</color>
+    <color name="md_theme_onErrorContainer">#F9DEDC</color>
+    <color name="md_theme_background">#000000</color>
+    <color name="md_theme_onBackground">#E2E2E6</color>
+    <color name="md_theme_surface">#1C1B1F</color>
+    <color name="md_theme_onSurface">#E6E1E5</color>
+    <color name="md_theme_surfaceVariant">#49454F</color>
+    <color name="md_theme_onSurfaceVariant">#CAC4D0</color>
+    <color name="md_theme_outline">#10ffffff</color>
+    <color name="md_theme_inverseOnSurface">#1C1B1F</color>
+    <color name="md_theme_inverseSurface">#E6E1E5</color>
+    <color name="md_theme_inversePrimary">#3B5BA9</color>
+    <color name="md_theme_shadow">#000000</color>
+    <color name="md_theme_primaryInverse">#3B5BA9</color>
+>>>>>>> dev
 
 </resources>

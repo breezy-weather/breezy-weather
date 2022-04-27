@@ -40,12 +40,6 @@ public class FitBottomBarFrameLayout extends FrameLayout implements FitBothSideB
     }
 
     @Override
-    public boolean fitSystemWindows(Rect insets) {
-        return mHelper.fitSystemWindows(insets, () -> setPadding(
-                0, 0, 0, mHelper.bottom()));
-    }
-
-    @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }

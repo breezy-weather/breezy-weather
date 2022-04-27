@@ -11,8 +11,8 @@ import java.util.List;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.bus.EventBus;
 import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper;
-import wangdaye.com.geometricweather.common.utils.helpers.BusHelper;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.location.LocationHelper;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
@@ -56,8 +56,13 @@ public class PollingUpdateHelper {
     public void pollingUpdate() {
         mIOController = AsyncHelper.runOnIO(emitter -> {
             List<Location> list = DatabaseHelper.getInstance(mContext).readLocationList();
-            for (Location l : list) {
-                l.setWeather(DatabaseHelper.getInstance(mContext).readWeather(l));
+            for (int i = 0; i < list.size(); i ++) {
+                list.set(
+                        i, Location.copy(
+                                list.get(i),
+                                DatabaseHelper.getInstance(mContext).readWeather(list.get(i))
+                        )
+                );
             }
             emitter.send(list, true);
         }, (AsyncHelper.Callback<List<Location>>) (locations, done) -> {
@@ -77,7 +82,7 @@ public class PollingUpdateHelper {
     private void requestData(int position, boolean located) {
         Weather old = mLocationList.get(position).getWeather();
         if (old != null && old.isValid(0.25F)) {
-            mLocationList.get(position).setWeather(old);
+            mLocationList.set(position, Location.copy(mLocationList.get(position), old));
             new RequestWeatherCallback(old, position, mLocationList.size()).requestWeatherSuccess(
                     mLocationList.get(position));
             return;
@@ -158,7 +163,12 @@ public class PollingUpdateHelper {
             if (weather != null
                     && (mOld == null
                     || weather.getBase().getTimeStamp() != mOld.getBase().getTimeStamp())) {
-                BusHelper.postLocationChanged(requestLocation);
+
+                EventBus
+                        .getInstance()
+                        .with(Location.class)
+                        .postValue(requestLocation);
+
                 if (mListener != null) {
                     mListener.onUpdateCompleted(requestLocation, mOld, true, mIndex, mTotal);
                 }

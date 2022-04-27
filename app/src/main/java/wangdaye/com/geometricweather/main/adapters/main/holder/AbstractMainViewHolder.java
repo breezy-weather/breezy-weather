@@ -2,7 +2,6 @@ package wangdaye.com.geometricweather.main.adapters.main.holder;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.View;
 
@@ -16,24 +15,20 @@ import java.util.List;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper;
 import wangdaye.com.geometricweather.main.utils.MainModuleUtils;
-import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 
 public abstract class AbstractMainViewHolder extends RecyclerView.ViewHolder {
 
     protected Context context;
     protected ResourceProvider provider;
-    protected MainThemeManager themeManager;
     protected boolean itemAnimationEnabled;
     private boolean mInScreen;
 
     private @Nullable Animator mItemAnimator;
     private @Nullable AsyncHelper.Controller mDelayController;
 
-    @SuppressLint("ObjectAnimatorBinding")
-    public AbstractMainViewHolder(@NonNull View view, MainThemeManager themeManager) {
+    public AbstractMainViewHolder(@NonNull View view) {
         super(view);
-        this.themeManager = themeManager;
     }
 
     @CallSuper

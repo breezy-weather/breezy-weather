@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_card_display_manage_container"
-    android:background="@color/colorRoot"
+    android:background="?attr/colorSurface"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -16,7 +16,8 @@
             android:id="@+id/activity_card_display_manage_appBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true">
+            android:layout_alignParentTop="true"
+            style="@style/GeometricWeatherTheme.AppBarTheme">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/activity_card_display_manage_toolbar"
@@ -41,7 +42,7 @@
             android:id="@+id/activity_card_display_manage_bottomBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorRoot"
+            android:background="?android:attr/colorBackground"
             android:layout_alignParentBottom="true">
 
             <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarRecyclerView

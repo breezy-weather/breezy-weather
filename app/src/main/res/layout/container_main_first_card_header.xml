@@ -19,7 +19,7 @@
             android:layout_height="@dimen/standard_weather_icon_size"
             android:padding="@dimen/normal_margin"
             android:src="@drawable/ic_time"
-            android:tint="@color/colorTextContent"
+            android:tint="?attr/colorTitleText"
             android:background="@drawable/selectable_item_background"
             tools:ignore="ContentDescription,RtlHardcoded" />
 
@@ -33,7 +33,7 @@
             <TextView
                 android:id="@+id/container_main_first_card_header_timeText"
                 android:textStyle="bold"
-                style="@style/content_text"
+                style="@style/title_text"
                 tools:text="09:00"
                 tools:ignore="RelativeOverlap,RtlHardcoded,RtlSymmetry" />
 
@@ -60,6 +60,6 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="@dimen/little_margin"
-        android:background="@color/colorSeparator" />
+        android:background="?attr/colorSurface" />
 
 </LinearLayout>

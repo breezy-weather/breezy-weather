@@ -1,6 +1,5 @@
 package wangdaye.com.geometricweather.common.ui.adapters;
 
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,14 +12,15 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.ui.widgets.TagView;
-import wangdaye.com.geometricweather.theme.ThemeManager;
 
 public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
 
     private final List<Tag> mTagList;
+    private final @ColorInt int mCheckedTitleColor;
+    private final @ColorInt int mUncheckedTitleColor;
     private final @ColorInt int mCheckedBackgroundColor;
+    private final @ColorInt int mUncheckedBackgroundColor;
     private final OnTagCheckedListener mListener;
-    private final @NonNull ThemeManager mThemeManager;
     private int mCheckedIndex;
 
     public static final int UNCHECKABLE_INDEX = -1;
@@ -48,23 +48,16 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
 
         void onBindView(Tag tag, boolean checked) {
             mTagView.setText(tag.getName());
-            setChecked(checked);
 
-            if (mThemeManager != null) {
-                mTagView.setCheckedBackgroundColor(mCheckedBackgroundColor);
-                mTagView.setUncheckedBackgroundColor(mThemeManager.getSeparatorColor(mTagView.getContext()));
-            }
+            mTagView.setCheckedBackgroundColor(mCheckedBackgroundColor);
+            mTagView.setUncheckedBackgroundColor(mUncheckedBackgroundColor);
+
+            setChecked(checked);
         }
 
         public void setChecked(boolean checked) {
+            mTagView.setTextColor(checked ? mCheckedTitleColor : mUncheckedTitleColor);
             mTagView.setChecked(checked);
-            if (mThemeManager != null) {
-                if (checked) {
-                    mTagView.setTextColor(mThemeManager.getTextContentColor(mTagView.getContext()));
-                } else {
-                    mTagView.setTextColor(mThemeManager.getTextSubtitleColor(mTagView.getContext()));
-                }
-            }
         }
     }
 
@@ -77,20 +70,35 @@ public class TagAdapter extends RecyclerView.Adapter<TagAdapter.ViewHolder> {
     }
 
     public TagAdapter(List<Tag> tagList,
-                      OnTagCheckedListener listener,
-                      @NonNull ThemeManager themeManager) {
-        this(tagList, Color.TRANSPARENT, listener, themeManager, UNCHECKABLE_INDEX);
+                      @ColorInt int checkedTitleColor,
+                      @ColorInt int uncheckedTitleColor,
+                      @ColorInt int checkedBackgroundColor,
+                      @ColorInt int uncheckedBackgroundColor,
+                      OnTagCheckedListener listener) {
+        this(
+                tagList,
+                checkedTitleColor,
+                uncheckedTitleColor,
+                checkedBackgroundColor,
+                uncheckedBackgroundColor,
+                listener,
+                UNCHECKABLE_INDEX
+        );
     }
 
     public TagAdapter(List<Tag> tagList,
+                      @ColorInt int checkedTitleColor,
+                      @ColorInt int uncheckedTitleColor,
                       @ColorInt int checkedBackgroundColor,
+                      @ColorInt int uncheckedBackgroundColor,
                       OnTagCheckedListener listener,
-                      @NonNull ThemeManager themeManager,
                       int checkedIndex) {
         mTagList = tagList;
+        mCheckedTitleColor = checkedTitleColor;
+        mUncheckedTitleColor = uncheckedTitleColor;
         mCheckedBackgroundColor = checkedBackgroundColor;
+        mUncheckedBackgroundColor = uncheckedBackgroundColor;
         mListener = listener;
-        mThemeManager = themeManager;
         mCheckedIndex = checkedIndex;
     }
 

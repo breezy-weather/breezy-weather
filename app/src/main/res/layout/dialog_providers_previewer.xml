@@ -1,46 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/dialog_providers_previewer_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorSurface">
+    android:paddingTop="@dimen/normal_margin">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <com.github.rahatarmanahmed.cpv.CircularProgressView
+        android:id="@+id/dialog_providers_previewer_progress"
+        android:layout_width="@dimen/little_weather_icon_size"
+        android:layout_height="@dimen/little_weather_icon_size"
+        android:layout_margin="@dimen/large_margin"
+        android:layout_gravity="center"
+        app:cpv_color="?attr/colorPrimary"
+        app:cpv_indeterminate="true"
+        app:cpv_animAutostart="true" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/dialog_providers_previewer_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent" />
 
-        <TextView
-            android:id="@+id/dialog_providers_previewer_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/settings_title_icon_provider"
-            android:textColor="@color/colorTextTitle"
-            android:textStyle="bold"
-            android:textSize="@dimen/large_title_text_size"
-            android:background="@color/colorRoot"
-            android:padding="@dimen/large_margin"
-            style="@style/large_title_text"
-            tools:ignore="UnusedAttribute" />
-
-        <com.github.rahatarmanahmed.cpv.CircularProgressView
-            android:id="@+id/dialog_providers_previewer_progress"
-            android:layout_width="@dimen/little_weather_icon_size"
-            android:layout_height="@dimen/little_weather_icon_size"
-            android:layout_margin="@dimen/large_margin"
-            android:layout_gravity="center_horizontal"
-            app:cpv_color="@color/colorAccent"
-            app:cpv_indeterminate="true"
-            app:cpv_animAutostart="true" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/dialog_providers_previewer_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorRoot" />
-
-    </LinearLayout>
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</FrameLayout>

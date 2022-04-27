@@ -20,21 +20,24 @@
     <!-- view. -->
     <dimen name="view_corner_radius">12dp</dimen>
     <dimen name="view_mini_corner_radius">12dp</dimen>
+    <dimen name="material3_card_list_item_corner_radius">16dp</dimen>
+    <dimen name="material3_card_list_item_inner_radius">12dp</dimen>
     <dimen name="spinner_drop_width">150dp</dimen>
     <dimen name="share_view_height">260dp</dimen>
     <dimen name="progress_view_size">36dp</dimen>
     <dimen name="trend_item_width">56dp</dimen>
     <dimen name="daily_trend_item_height">298dp</dimen>
-    <dimen name="hourly_trend_item_height">208dp</dimen>
+    <dimen name="hourly_trend_item_height">256dp</dimen>
     <dimen name="default_drawer_width">380dp</dimen>
+    <dimen name="action_bar_height">64dp</dimen>
 
     <!-- text. -->
     <dimen name="main_title_text_size">88sp</dimen>
     <dimen name="design_title_text_size">48sp</dimen>
     <dimen name="large_title_text_size">20sp</dimen>
     <dimen name="title_text_size">16sp</dimen>
-    <dimen name="subtitle_text_size">12sp</dimen>
     <dimen name="content_text_size">14sp</dimen>
+    <dimen name="subtitle_text_size">12sp</dimen>
 
     <!-- widget. -->
     <dimen name="widget_grid_1">40dp</dimen>

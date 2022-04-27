@@ -132,7 +132,7 @@
     <string name="help">AIDE</string>
     <string name="learn_more">EN SAVOIR PLUS</string>
 
-    <string name="about_app">À PROPOS</string>
+    <string name="about_app">À propos</string>
     <string name="introduce">présentation</string>
     <string name="email">Courriel</string>
     <string name="donate">Don</string>
@@ -274,7 +274,7 @@
 
     <string name="feedback_resident_location">Définir en tant que ville de résidence</string>
     <string name="feedback_resident_location_description">GeometricWeather affichera ou masquera automatiquement votre ville de résidence selon votre position.\nPar exemple, vous pouvez définir votre domicile comme ville de résidence. En déplacement, vous pourrez vérifier la météo pour ce lieu. De retour chez vous, la météo « ville de résidence » sera masquée et remplacée par celle de votre position.</string>
-    
+
     <string name="feedback_click_to_get_more">Appuyez pour en voir plus…</string>
     <string name="feedback_click_again_to_exit">Appuyez à nouveau pour quitter</string>
 
@@ -352,7 +352,8 @@
     <string name="settings_title_appearance">Apparence</string>
     <string name="settings_summary_appearance">Thème de l’interface, ordre des cartes, langue…</string>
     <string name="settings_title_card_display">Cartes affichées</string>
-    <string name="settings_title_daily_trend_display">Afficher les tendances journalières</string>
+    <string name="settings_title_daily_trend_display">Tendances journalières affichées</string>
+    <string name="settings_title_hourly_trend_display">Tendances par heure affichées</string>
     <string name="settings_title_trend_horizontal_line_switch">Lignes horizontales dans les tendances</string>
     <string name="settings_title_exchange_day_night_temp_switch">Inverser les températures jour et nuit</string>
     <string name="settings_title_card_order">Ordre des cartes</string>

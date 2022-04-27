@@ -5,7 +5,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,21 +12,22 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.main.adapters.DetailsAdapter;
-import wangdaye.com.geometricweather.main.utils.MainThemeManager;
+import wangdaye.com.geometricweather.theme.ThemeManager;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
+import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
 
 public class DetailsViewHolder extends AbstractMainCardViewHolder {
-
-    private final CardView mCard;
 
     private final TextView mTitle;
     private final RecyclerView mDetailsRecyclerView;
 
-    public DetailsViewHolder(ViewGroup parent, MainThemeManager themeManager) {
-        super(LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.container_main_details, parent, false), themeManager);
+    public DetailsViewHolder(ViewGroup parent) {
+        super(
+                LayoutInflater
+                        .from(parent.getContext())
+                        .inflate(R.layout.container_main_details, parent, false)
+        );
 
-        mCard = itemView.findViewById(R.id.container_main_details);
         mTitle = itemView.findViewById(R.id.container_main_details_title);
         mDetailsRecyclerView = itemView.findViewById(R.id.container_main_details_recyclerView);
     }
@@ -39,12 +39,19 @@ public class DetailsViewHolder extends AbstractMainCardViewHolder {
                 listAnimationEnabled, itemAnimationEnabled, firstCard);
 
         if (location.getWeather() != null) {
-            mCard.setCardBackgroundColor(themeManager.getSurfaceColor(context));
-
-            mTitle.setTextColor(themeManager.getWeatherThemeColors()[0]);
+            mTitle.setTextColor(
+                    ThemeManager
+                            .getInstance(context)
+                            .getWeatherThemeDelegate()
+                            .getThemeColors(
+                                    context,
+                                    WeatherViewController.getWeatherKind(location.getWeather()),
+                                    location.isDaylight()
+                            )[0]
+            );
 
             mDetailsRecyclerView.setLayoutManager(new LinearLayoutManager(context));
-            mDetailsRecyclerView.setAdapter(new DetailsAdapter(context, location.getWeather(), themeManager));
+            mDetailsRecyclerView.setAdapter(new DetailsAdapter(context, location));
         }
     }
 }

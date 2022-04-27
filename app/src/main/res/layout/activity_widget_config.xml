@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@color/colorTextDark2nd"
+            android:src="?attr/colorPrimaryContainer"
             tools:ignore="contentDescription" />
 
         <FrameLayout
@@ -129,10 +129,10 @@
                         app:bsb_max="100"
                         app:bsb_progress="100"
                         app:bsb_section_count="5"
-                        app:bsb_bubble_text_color="@color/colorRoot"
+                        app:bsb_bubble_text_color="?android:attr/colorBackground"
                         app:bsb_show_section_text="true"
                         app:bsb_section_text_position="below_section_mark"
-                        app:bsb_section_text_color="@color/colorTextSubtitle"
+                        app:bsb_section_text_color="?attr/colorCaptionText"
                         app:bsb_section_text_size="@dimen/subtitle_text_size"
                         app:bsb_show_thumb_text="true"
                         tools:ignore="RtlHardcoded" />
@@ -244,10 +244,10 @@
                         app:bsb_max="300"
                         app:bsb_progress="100"
                         app:bsb_section_count="3"
-                        app:bsb_bubble_text_color="@color/colorRoot"
+                        app:bsb_bubble_text_color="?android:attr/colorBackground"
                         app:bsb_show_section_text="true"
                         app:bsb_section_text_position="below_section_mark"
-                        app:bsb_section_text_color="@color/colorTextSubtitle"
+                        app:bsb_section_text_color="?attr/colorCaptionText"
                         app:bsb_section_text_size="@dimen/subtitle_text_size"
                         app:bsb_show_thumb_text="true"
                         tools:ignore="RtlHardcoded" />
@@ -351,7 +351,7 @@
             android:id="@+id/activity_widget_config_custom_subtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorRoot"
+            android:background="?android:attr/colorBackground"
             app:behavior_hideable="true"
             app:layout_behavior="@string/bottom_sheet_behavior">
 

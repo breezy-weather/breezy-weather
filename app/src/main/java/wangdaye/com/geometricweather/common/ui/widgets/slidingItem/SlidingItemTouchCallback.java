@@ -1,10 +1,10 @@
 package wangdaye.com.geometricweather.common.ui.widgets.slidingItem;
 
 import android.graphics.Canvas;
-import android.os.Build;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,19 +36,21 @@ public abstract class SlidingItemTouchCallback extends ItemTouchHelper.Callback 
     public void onChildDraw(@NonNull Canvas c,
                             @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder,
                             float dX, float dY, int actionState, boolean isCurrentlyActive) {
-        if (Build.VERSION.SDK_INT >= 21 && isCurrentlyActive) {
-            Object originalElevation = viewHolder.itemView.getTag(R.id.item_touch_helper_previous_elevation);
+        SlidingItemContainerLayout slidingContainer = findSlidingContainer(viewHolder);
+
+        if (isCurrentlyActive) {
+            Object originalElevation = slidingContainer.getTag(R.id.item_touch_helper_previous_elevation);
             if (originalElevation == null) {
-                originalElevation = ViewCompat.getElevation(viewHolder.itemView);
-                float newElevation = 1.0F + findMaxElevation(recyclerView, viewHolder.itemView);
-                ViewCompat.setElevation(viewHolder.itemView, newElevation);
-                viewHolder.itemView.setTag(R.id.item_touch_helper_previous_elevation, originalElevation);
+                originalElevation = ViewCompat.getElevation(slidingContainer);
+                float newElevation = 1.0F + findMaxElevation(recyclerView, slidingContainer);
+                ViewCompat.setElevation(slidingContainer, newElevation);
+                slidingContainer.setTag(R.id.item_touch_helper_previous_elevation, originalElevation);
             }
         }
 
         viewHolder.itemView.setTranslationY(dY);
         if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
-            ((SlidingItemContainerLayout) viewHolder.itemView).swipe(dX);
+            slidingContainer.swipe(dX);
         }
     }
 
@@ -67,5 +69,19 @@ public abstract class SlidingItemTouchCallback extends ItemTouchHelper.Callback 
         }
 
         return max;
+    }
+
+    private static SlidingItemContainerLayout findSlidingContainer(
+            @NonNull RecyclerView.ViewHolder viewHolder
+    ) {
+        if (viewHolder.itemView instanceof SlidingItemContainerLayout) {
+            return (SlidingItemContainerLayout) viewHolder.itemView;
+        }
+
+        if (viewHolder.itemView instanceof CardView) {
+            return (SlidingItemContainerLayout) ((CardView) viewHolder.itemView).getChildAt(0);
+        }
+
+        throw new IllegalStateException("Cannot find a valid sliding container.");
     }
 }

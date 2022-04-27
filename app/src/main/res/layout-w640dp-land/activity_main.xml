@@ -19,17 +19,15 @@
             android:tag="fragment_management_w600dp_land"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="@color/colorRoot"
             android:elevation="2dp"
             tools:ignore="UnusedAttribute" />
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragment_main"
-            android:name="wangdaye.com.geometricweather.main.fragments.MainFragment"
+            android:id="@+id/fragment_home"
+            android:name="wangdaye.com.geometricweather.main.fragments.HomeFragment"
             android:tag="fragment_main_w600dp_land"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorRoot"
             tools:ignore="UnusedAttribute" />
 
     </wangdaye.com.geometricweather.common.ui.widgets.DrawerLayout>

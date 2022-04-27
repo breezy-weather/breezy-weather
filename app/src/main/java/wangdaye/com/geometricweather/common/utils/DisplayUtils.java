@@ -2,12 +2,14 @@ package wangdaye.com.geometricweather.common.utils;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.media.ThumbnailUtils;
 import android.os.Build;
@@ -21,19 +23,14 @@ import android.view.animation.OvershootInterpolator;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Px;
-import androidx.annotation.RequiresApi;
 import androidx.annotation.Size;
-import androidx.core.content.ContextCompat;
+import androidx.annotation.StyleRes;
 import androidx.core.graphics.ColorUtils;
+
+import com.google.android.material.resources.TextAppearance;
 
 import java.util.Calendar;
 import java.util.TimeZone;
-
-import wangdaye.com.geometricweather.R;
-
-/**
- * Display utils.
- * */
 
 public class DisplayUtils {
 
@@ -43,6 +40,8 @@ public class DisplayUtils {
     private static final int MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_PHONE = 512;
     private static final int MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_TABLET = 600;
 
+    public static final float DEFAULT_CARD_LIST_ITEM_ELEVATION_DP = 2f;
+
     public static float dpToPx(Context context, float dp) {
         return dp * (context.getResources().getDisplayMetrics().densityDpi / 160f);
     }
@@ -51,99 +50,83 @@ public class DisplayUtils {
         return sp * (context.getResources().getDisplayMetrics().scaledDensity);
     }
 
-    public static void setSystemBarStyle(Context context, Window window,
-                                         boolean statusShader, boolean lightStatus,
-                                         boolean navigationShader, boolean lightNavigation) {
-        setSystemBarStyle(context, window,
-                false, statusShader, lightStatus, navigationShader, lightNavigation);
+    public static float pxToDp(Context context, @Px int px) {
+        return px / (context.getResources().getDisplayMetrics().densityDpi / 160f);
     }
 
-    public static void setSystemBarStyle(Context context, Window window, boolean miniAlpha,
-                                         boolean statusShader, boolean lightStatus,
-                                         boolean navigationShader, boolean lightNavigation) {
+    public static void setSystemBarStyle(
+            Context context,
+            Window window,
+            boolean lightStatus,
+            boolean lightNavigation
+    ) {
+        setSystemBarStyle(
+                context,
+                window,
+                false,
+                lightStatus,
+                false,
+                lightNavigation
+        );
+    }
 
-        // statusShader &= Build.VERSION.SDK_INT < Build.VERSION_CODES.Q;
-        lightStatus &= Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
-        navigationShader &= Build.VERSION.SDK_INT < Build.VERSION_CODES.Q;
-        lightNavigation &= Build.VERSION.SDK_INT >= Build.VERSION_CODES.O;
-
+    public static void setSystemBarStyle(
+            Context context,
+            Window window,
+            boolean statusShader,
+            boolean lightStatus,
+            boolean navigationShader,
+            boolean lightNavigation
+    ) {
         int visibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+
+        // status bar.
         if (lightStatus) {
-            visibility |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                visibility |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            } else {
+                lightStatus = false;
+                statusShader = true;
+            }
         }
+
+        // navigation bar.
         if (lightNavigation) {
-            visibility |= View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                visibility |= View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
+            } else {
+                lightNavigation = false;
+                navigationShader = true;
+            }
         }
+        navigationShader &= Build.VERSION.SDK_INT < Build.VERSION_CODES.Q;
+
+        // flags.
         window.getDecorView().setSystemUiVisibility(visibility);
 
-        setSystemBarColor(context, window, miniAlpha, statusShader, lightStatus, navigationShader, lightNavigation);
-    }
-
-    public static void setSystemBarColor(Context context, Window window, boolean miniAlpha,
-                                         boolean statusShader, boolean lightStatus,
-                                         boolean navigationShader, boolean lightNavigation) {
-
-        // statusShader &= Build.VERSION.SDK_INT < Build.VERSION_CODES.Q;
-        lightStatus &= Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
-        navigationShader &= Build.VERSION.SDK_INT < Build.VERSION_CODES.Q;
-        lightNavigation &= Build.VERSION.SDK_INT >= Build.VERSION_CODES.O;
-
+        // colors.
         if (!statusShader) {
-            window.setStatusBarColor(Color.argb(0, 0, 0, 0));
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            window.setStatusBarColor(getStatusBarColor23(context, lightStatus, miniAlpha));
+            window.setStatusBarColor(Color.TRANSPARENT);
         } else {
-            window.setStatusBarColor(getStatusBarColor21());
+            window.setStatusBarColor(
+                    ColorUtils.setAlphaComponent(
+                            lightStatus ? Color.WHITE : Color.BLACK,
+                            (int) ((lightStatus ? 0.5 : 0.2) * 255)
+                    )
+            );
         }
         if (!navigationShader) {
-            window.setNavigationBarColor(Color.argb(0, 0, 0, 0));
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            window.setNavigationBarColor(getStatusBarColor26(context, lightNavigation, miniAlpha));
+            window.setNavigationBarColor(Color.TRANSPARENT);
         } else {
-            window.setNavigationBarColor(getNavigationBarColor21());
+            window.setNavigationBarColor(
+                    ColorUtils.setAlphaComponent(
+                            lightNavigation ? Color.WHITE : Color.BLACK,
+                            (int) ((lightNavigation ? 0.5 : 0.2) * 255)
+                    )
+            );
         }
-    }
-
-    @ColorInt
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    private static int getStatusBarColor21() {
-        return ColorUtils.setAlphaComponent(Color.BLACK, (int) (0.1 * 255));
-    }
-
-    @ColorInt
-    @RequiresApi(Build.VERSION_CODES.M)
-    private static int getStatusBarColor23(Context context, boolean light, boolean miniAlpha) {
-        if (miniAlpha) {
-            return light
-                    ? ColorUtils.setAlphaComponent(Color.WHITE, (int) (0.2 * 255))
-                    : ColorUtils.setAlphaComponent(Color.BLACK, (int) (0.1 * 255));
-        }
-        return ColorUtils.setAlphaComponent(
-                ContextCompat.getColor(context, light ? R.color.colorRoot_light : R.color.colorRoot_dark),
-                (int) (0.8 * 255)
-        );
-    }
-
-    @ColorInt
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    private static int getNavigationBarColor21() {
-        return ColorUtils.setAlphaComponent(Color.BLACK, (int) (0.1 * 255));
-    }
-
-    @ColorInt
-    @RequiresApi(Build.VERSION_CODES.O)
-    private static int getStatusBarColor26(Context context, boolean light, boolean miniAlpha) {
-        if (miniAlpha) {
-            return light
-                    ? ColorUtils.setAlphaComponent(Color.WHITE, (int) (0.2 * 255))
-                    : ColorUtils.setAlphaComponent(Color.BLACK, (int) (0.1 * 255));
-        }
-        return ColorUtils.setAlphaComponent(
-                ContextCompat.getColor(context, light ? R.color.colorRoot_light : R.color.colorRoot_dark),
-                (int) (0.8 * 255)
-        );
     }
 
     public static boolean isTabletDevice(Context context) {
@@ -297,5 +280,30 @@ public class DisplayUtils {
         */
         // looks like has a good performance.
         view.getWindowVisibleDisplayFrame(rect);
+    }
+
+    @SuppressLint({"RestrictedApi", "VisibleForTests"})
+    public static Typeface getTypefaceFromTextAppearance(
+            Context context,
+            @StyleRes int textAppearanceId
+    ) {
+        return new TextAppearance(context, textAppearanceId).getFont(context);
+    }
+
+    @ColorInt
+    public static int getWidgetSurfaceColor(
+            float elevationDp,
+            @ColorInt int tintColor,
+            @ColorInt int surfaceColor
+    ) {
+        if (elevationDp == 0) {
+            return surfaceColor;
+        }
+
+        int foreground = ColorUtils.setAlphaComponent(
+                tintColor,
+                (int) (((4.5f * Math.log(elevationDp + 1)) + 2f) / 100f * 255)
+        );
+        return blendColor(foreground, surfaceColor);
     }
 }

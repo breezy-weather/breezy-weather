@@ -53,16 +53,16 @@ public class AccuWeatherService extends WeatherService {
         String languageCode = SettingsManager.getInstance(context).getLanguage().getCode();
 
         Observable<List<AccuCurrentResult>> realtime = mApi.getCurrent(
-                location.getCityId(), SettingsManager.getInstance(context).getProviderAccuCurrentKey(true), languageCode, true);
+                location.getCityId(), SettingsManager.getInstance(context).getProviderAccuCurrentKey(), languageCode, true);
 
         Observable<AccuDailyResult> daily = mApi.getDaily(
-                location.getCityId(), SettingsManager.getInstance(context).getProviderAccuWeatherKey(true), languageCode, true, true);
+                location.getCityId(), SettingsManager.getInstance(context).getProviderAccuWeatherKey(), languageCode, true, true);
 
         Observable<List<AccuHourlyResult>> hourly = mApi.getHourly(
-                location.getCityId(), SettingsManager.getInstance(context).getProviderAccuWeatherKey(true), languageCode, true);
+                location.getCityId(), SettingsManager.getInstance(context).getProviderAccuWeatherKey(), languageCode, true, true);
 
         Observable<AccuMinuteResult> minute = mApi.getMinutely(
-                SettingsManager.getInstance(context).getProviderAccuWeatherKey(true),
+                SettingsManager.getInstance(context).getProviderAccuWeatherKey(),
                 languageCode,
                 true,
                 location.getLatitude() + "," + location.getLongitude()
@@ -71,11 +71,11 @@ public class AccuWeatherService extends WeatherService {
         );
 
         Observable<List<AccuAlertResult>> alert = mApi.getAlert(
-                location.getCityId(), SettingsManager.getInstance(context).getProviderAccuWeatherKey(true), languageCode, true);
+                location.getCityId(), SettingsManager.getInstance(context).getProviderAccuWeatherKey(), languageCode, true);
 
         Observable<AccuAqiResult> aqi = mApi.getAirQuality(
                 location.getCityId(),
-                SettingsManager.getInstance(context).getProviderAccuAqiKey(true)
+                SettingsManager.getInstance(context).getProviderAccuAqiKey()
         ).onExceptionResumeNext(
                 Observable.create(emitter -> emitter.onNext(new EmptyAqiResult()))
         );
@@ -99,8 +99,9 @@ public class AccuWeatherService extends WeatherService {
                     @Override
                     public void onSucceed(WeatherResultWrapper wrapper) {
                         if (wrapper.result != null) {
-                            location.setWeather(wrapper.result);
-                            callback.requestWeatherSuccess(location);
+                            callback.requestWeatherSuccess(
+                                    Location.copy(location, wrapper.result)
+                            );
                         } else {
                             onFailed();
                         }
@@ -121,7 +122,7 @@ public class AccuWeatherService extends WeatherService {
         try {
             resultList = mApi.callWeatherLocation(
                     "Always",
-                    SettingsManager.getInstance(context).getProviderAccuWeatherKey(true),
+                    SettingsManager.getInstance(context).getProviderAccuWeatherKey(),
                     query,
                     languageCode
             ).execute().body();
@@ -148,7 +149,7 @@ public class AccuWeatherService extends WeatherService {
 
         mApi.getWeatherLocationByGeoPosition(
                 "Always",
-                SettingsManager.getInstance(context).getProviderAccuWeatherKey(true),
+                SettingsManager.getInstance(context).getProviderAccuWeatherKey(),
                 location.getLatitude() + "," + location.getLongitude(),
                 languageCode
         ).compose(SchedulerTransformer.create())
@@ -181,7 +182,7 @@ public class AccuWeatherService extends WeatherService {
         String languageCode = SettingsManager.getInstance(context).getLanguage().getCode();
         String zipCode = query.matches("[a-zA-Z0-9]") ? query : null;
 
-        mApi.getWeatherLocation("Always", SettingsManager.getInstance(context).getProviderAccuWeatherKey(true), query, languageCode)
+        mApi.getWeatherLocation("Always", SettingsManager.getInstance(context).getProviderAccuWeatherKey(), query, languageCode)
                 .compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<List<AccuLocationResult>>() {
                     @Override

@@ -22,7 +22,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.SharedElementCallback;
-import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,15 +37,15 @@ import dagger.hilt.android.AndroidEntryPoint;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
-import wangdaye.com.geometricweather.theme.DefaultThemeManager;
-import wangdaye.com.geometricweather.common.ui.adapters.location.LocationAdapter;
-import wangdaye.com.geometricweather.common.ui.decotarions.ListDecoration;
+import wangdaye.com.geometricweather.common.ui.decotarions.Material3ListItemDecoration;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
 import wangdaye.com.geometricweather.databinding.ActivitySearchBinding;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.search.ui.FabView;
-import wangdaye.com.geometricweather.search.ui.adapter.WeatherSourceAdapter;
+import wangdaye.com.geometricweather.search.ui.adapter.location.LocationAdapter;
+import wangdaye.com.geometricweather.search.ui.adapter.source.WeatherSourceAdapter;
+import wangdaye.com.geometricweather.theme.ThemeManager;
 
 /**
  * Search activity.
@@ -129,8 +128,14 @@ public class SearchActivity extends GeoActivity
         });
 
         boolean lightTheme = !DisplayUtils.isDarkMode(this);
-        DisplayUtils.setSystemBarStyle(this, getWindow(),
-                true, lightTheme, true, lightTheme);
+        DisplayUtils.setSystemBarStyle(
+                this,
+                getWindow(),
+                false,
+                lightTheme,
+                true,
+                lightTheme
+        );
 
         mCurrentList = DatabaseHelper.getInstance(this).readLocationList();
 
@@ -154,6 +159,14 @@ public class SearchActivity extends GeoActivity
     }
 
     private void initView() {
+        int[] colors = ThemeManager.getInstance(this).getThemeColors(
+                this, new int[]{
+                        R.attr.colorOutline,
+                        R.attr.colorSurfaceVariant,
+                        R.attr.colorPrimaryContainer,
+                }
+        );
+
         mBinding.backBtn.setOnClickListener(v -> finishSelf(null));
 
         mBinding.editText.setOnEditorActionListener(this);
@@ -169,7 +182,6 @@ public class SearchActivity extends GeoActivity
         mAdapter = new LocationAdapter(
                 this,
                 new ArrayList<>(),
-                null,
                 (view, formattedId) -> {
                     for (int i = 0; i < mCurrentList.size(); i ++) {
                         if (mCurrentList.get(i).getFormattedId().equals(formattedId)) {
@@ -184,7 +196,7 @@ public class SearchActivity extends GeoActivity
                             return;
                         }
                     }
-                }, null, new DefaultThemeManager()
+                }
         );
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(
@@ -195,8 +207,7 @@ public class SearchActivity extends GeoActivity
         while (mBinding.recyclerView.getItemDecorationCount() > 0) {
             mBinding.recyclerView.removeItemDecorationAt(0);
         }
-        mBinding.recyclerView.addItemDecoration(new ListDecoration(
-                this, ContextCompat.getColor(this, R.color.colorSeparator)));
+        mBinding.recyclerView.addItemDecoration(new Material3ListItemDecoration(this));
 
         mBinding.scrollBar.setIndicator(
                 new WeatherSourceIndicator(this).setTextSize(16), true);
@@ -235,14 +246,16 @@ public class SearchActivity extends GeoActivity
                 mBinding.fab,
                 mBinding.fabSheet,
                 mBinding.overlay,
-                getResources().getColor(R.color.colorRoot),
-                getResources().getColor(R.color.colorPrimary)
+                Color.TRANSPARENT,
+                colors[2]
         );
         mMaterialSheetFab.setEventListener(new MaterialSheetFabEventListener() {
             @Override
             public void onShowSheet() {
                 mBinding.sourceList.setAdapter(
-                        mSourceAdapter = new WeatherSourceAdapter(mViewModel.getEnabledSourcesValue())
+                        mSourceAdapter = new WeatherSourceAdapter(
+                                mViewModel.getEnabledSourcesValue()
+                        )
                 );
             }
         });
@@ -261,11 +274,11 @@ public class SearchActivity extends GeoActivity
         });
 
         mViewModel.getListResource().observe(this, loadableLocationList -> {
-            setStatus(loadableLocationList.status);
+            setStatus(loadableLocationList.getStatus());
             mBinding.sourceEnter.setEnabled(
-                    loadableLocationList.status != LoadableLocationList.Status.LOADING);
+                    loadableLocationList.getStatus() != LoadableLocationList.Status.LOADING);
             mBinding.sourceEnter.setAlpha(mBinding.sourceEnter.isEnabled() ? 1 : 0.5f);
-            mAdapter.update(loadableLocationList.dataList, null, null);
+            mAdapter.update(loadableLocationList.getDataList());
         });
 
         mViewModel.getEnabledSources().observe(this, enabled -> {

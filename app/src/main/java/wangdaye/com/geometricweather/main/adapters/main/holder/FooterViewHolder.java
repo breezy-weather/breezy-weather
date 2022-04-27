@@ -19,19 +19,21 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.Location;
-import wangdaye.com.geometricweather.main.MainActivity;
-import wangdaye.com.geometricweather.main.utils.MainThemeManager;
-import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
+import wangdaye.com.geometricweather.theme.ThemeManager;
+import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 
 public class FooterViewHolder extends AbstractMainViewHolder {
 
     private final TextView mTitle;
     private final Button mEditButton;
 
-    public FooterViewHolder(ViewGroup parent, MainThemeManager themeManager) {
-        super(LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.container_main_footer, parent, false), themeManager);
+    public FooterViewHolder(ViewGroup parent) {
+        super(
+                LayoutInflater
+                        .from(parent.getContext())
+                        .inflate(R.layout.container_main_footer, parent, false)
+        );
 
         mTitle = itemView.findViewById(R.id.container_main_footer_title);
         mEditButton = itemView.findViewById(R.id.container_main_footer_editButton);
@@ -43,21 +45,33 @@ public class FooterViewHolder extends AbstractMainViewHolder {
                            boolean listAnimationEnabled, boolean itemAnimationEnabled) {
         super.onBindView(context, location, provider, listAnimationEnabled, itemAnimationEnabled);
 
-        float cardMarginsVertical = themeManager.getCardMarginsVertical(context);
+        float cardMarginsVertical = ThemeManager
+                .getInstance(context)
+                .getWeatherThemeDelegate()
+                .getHomeCardMargins(context);
         ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) itemView.getLayoutParams();
         if (cardMarginsVertical != 0) {
             params.setMargins(0, (int) -cardMarginsVertical, 0, 0);
         }
         itemView.setLayoutParams(params);
 
-        mTitle.setTextColor(themeManager.getHeaderTextColor(mTitle.getContext()));
+        mTitle.setTextColor(
+                ThemeManager
+                        .getInstance(context)
+                        .getWeatherThemeDelegate()
+                        .getHeaderTextColor(mTitle.getContext())
+        );
         mTitle.setText("* Powered by " + location.getWeatherSource().getSourceUrl());
 
-        mEditButton.setTextColor(themeManager.getHeaderTextColor(mEditButton.getContext()));
-        mEditButton.setOnClickListener(v -> IntentHelper.startCardDisplayManageActivityForResult(
-                (Activity) context,
-                MainActivity.CARD_MANAGE_ACTIVITY
-        ));
+        mEditButton.setTextColor(
+                ThemeManager
+                        .getInstance(context)
+                        .getWeatherThemeDelegate()
+                        .getHeaderTextColor(mTitle.getContext())
+        );
+        mEditButton.setOnClickListener(v ->
+                IntentHelper.startCardDisplayManageActivity((Activity) context)
+        );
     }
 
     @NotNull
@@ -66,7 +80,7 @@ public class FooterViewHolder extends AbstractMainViewHolder {
         Animator a = ObjectAnimator.ofFloat(itemView, "alpha", 0f, 1f);
         a.setDuration(450);
         a.setInterpolator(new FastOutSlowInInterpolator());
-        a.setStartDelay(pendingAnimatorList.size() * 150);
+        a.setStartDelay(pendingAnimatorList.size() * 150L);
         return a;
     }
 }

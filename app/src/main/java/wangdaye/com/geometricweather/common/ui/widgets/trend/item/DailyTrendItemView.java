@@ -13,9 +13,10 @@ import android.view.MotionEvent;
 import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.common.ui.widgets.trend.chart.AbsChartItemView;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
+import wangdaye.com.geometricweather.common.ui.widgets.trend.chart.AbsChartItemView;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 
 /**
@@ -24,7 +25,8 @@ import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 public class DailyTrendItemView extends AbsTrendItemView {
 
     private @Nullable AbsChartItemView mChartItem;
-    private Paint mPaint;
+    private Paint mWeekTextPaint;
+    private Paint mDateTextPaint;
 
     @Nullable private OnClickListener mClickListener;
 
@@ -55,7 +57,7 @@ public class DailyTrendItemView extends AbsTrendItemView {
     private int mChartBottom;
 
     private static final int ICON_SIZE_DIP = 32;
-    private static final int TEXT_MARGIN_DIP = 4;
+    private static final int TEXT_MARGIN_DIP = 2;
     private static final int ICON_MARGIN_DIP = 8;
 
     public DailyTrendItemView(Context context) {
@@ -82,10 +84,25 @@ public class DailyTrendItemView extends AbsTrendItemView {
     private void initialize() {
         setWillNotDraw(false);
 
-        mPaint = new Paint();
-        mPaint.setAntiAlias(true);
-        mPaint.setTextSize(getResources().getDimensionPixelSize(R.dimen.content_text_size));
-        mPaint.setTextAlign(Paint.Align.CENTER);
+        mWeekTextPaint = new Paint();
+        mWeekTextPaint.setAntiAlias(true);
+        mWeekTextPaint.setTextAlign(Paint.Align.CENTER);
+        mWeekTextPaint.setTypeface(
+                DisplayUtils.getTypefaceFromTextAppearance(getContext(), R.style.title_text)
+        );
+        mWeekTextPaint.setTextSize(
+                getContext().getResources().getDimensionPixelSize(R.dimen.title_text_size)
+        );
+
+        mDateTextPaint = new Paint();
+        mDateTextPaint.setAntiAlias(true);
+        mDateTextPaint.setTextAlign(Paint.Align.CENTER);
+        mDateTextPaint.setTypeface(
+                DisplayUtils.getTypefaceFromTextAppearance(getContext(), R.style.content_text)
+        );
+        mDateTextPaint.setTextSize(
+                getContext().getResources().getDimensionPixelSize(R.dimen.content_text_size)
+        );
 
         setTextColor(Color.BLACK, Color.GRAY);
 
@@ -105,15 +122,15 @@ public class DailyTrendItemView extends AbsTrendItemView {
         float textMargin = DisplayUtils.dpToPx(getContext(), TEXT_MARGIN_DIP);
         float iconMargin = DisplayUtils.dpToPx(getContext(), ICON_MARGIN_DIP);
 
-        Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
-
         // week text.
+        Paint.FontMetrics fontMetrics = mWeekTextPaint.getFontMetrics();
         y += textMargin;
         mWeekTextBaseLine = y - fontMetrics.top;
         y += fontMetrics.bottom - fontMetrics.top;
         y += textMargin;
 
         // date text.
+        fontMetrics = mDateTextPaint.getFontMetrics();
         y += textMargin;
         mDateTextBaseLine = y - fontMetrics.top;
         y += fontMetrics.bottom - fontMetrics.top;
@@ -173,14 +190,14 @@ public class DailyTrendItemView extends AbsTrendItemView {
     protected void onDraw(Canvas canvas) {
         // week text.
         if (mWeekText != null) {
-            mPaint.setColor(mContentColor);
-            canvas.drawText(mWeekText, getMeasuredWidth() / 2f, mWeekTextBaseLine, mPaint);
+            mWeekTextPaint.setColor(mContentColor);
+            canvas.drawText(mWeekText, getMeasuredWidth() / 2f, mWeekTextBaseLine, mWeekTextPaint);
         }
 
         // date text.
         if (mDateText != null) {
-            mPaint.setColor(mSubTitleColor);
-            canvas.drawText(mDateText, getMeasuredWidth() / 2f, mDateTextBaseLine, mPaint);
+            mDateTextPaint.setColor(mSubTitleColor);
+            canvas.drawText(mDateText, getMeasuredWidth() / 2f, mDateTextBaseLine, mDateTextPaint);
         }
 
         int restoreCount;

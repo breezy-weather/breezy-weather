@@ -1,6 +1,5 @@
 package wangdaye.com.geometricweather.main.widgets;
 
-import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
@@ -9,37 +8,41 @@ import android.graphics.Shader;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
-import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 
 public class TrendRecyclerViewScrollBar extends RecyclerView.ItemDecoration {
 
     private Paint mPaint = null;
-    private final MainThemeManager mThemeManager;
 
     private int mScrollBarWidth;
     private int mScrollBarHeight;
 
-    private @Nullable Boolean mLightTheme;
     private boolean mThemeChanged;
     private @ColorInt int mEndPointsColor;
     private @ColorInt int mCenterColor;
 
-    public TrendRecyclerViewScrollBar(Context context, MainThemeManager themeManager) {
-        mLightTheme = null;
-        mThemeManager = themeManager;
-        ensureColor(context);
+    public TrendRecyclerViewScrollBar() {
+        super();
+    }
+
+    public void setColor(@ColorInt int surfaceColor, boolean lightTheme) {
+        mThemeChanged = true;
+
+        mEndPointsColor = surfaceColor;
+        mCenterColor = DisplayUtils.blendColor(
+                lightTheme
+                        ? Color.argb((int) (0.02 * 255), 0, 0, 0)
+                        : Color.argb((int) (0.08 * 255), 0, 0, 0),
+                mEndPointsColor
+        );
     }
 
     @Override
     public void onDraw(@NonNull Canvas c,
                        @NonNull RecyclerView parent,
                        @NonNull RecyclerView.State state) {
-        ensureColor(parent.getContext());
-
         if (mPaint == null && parent.getChildCount() > 0) {
             mPaint = new Paint();
             mPaint.setAntiAlias(true);
@@ -74,23 +77,6 @@ public class TrendRecyclerViewScrollBar extends RecyclerView.ItemDecoration {
                     mScrollBarWidth + scrollBarOffsetX,
                     mScrollBarHeight,
                     mPaint
-            );
-        }
-    }
-
-    private void ensureColor(Context context) {
-        boolean lightTheme = mThemeManager.isLightTheme();
-
-        if (mLightTheme == null || mLightTheme != lightTheme) {
-            mLightTheme = lightTheme;
-            mThemeChanged = true;
-
-            mEndPointsColor = mThemeManager.getSurfaceColor(context);
-            mCenterColor = DisplayUtils.blendColor(
-                    lightTheme
-                            ? Color.argb((int) (0.02 * 255), 0, 0, 0)
-                            : Color.argb((int) (0.08 * 255), 0, 0, 0),
-                    mEndPointsColor
             );
         }
     }

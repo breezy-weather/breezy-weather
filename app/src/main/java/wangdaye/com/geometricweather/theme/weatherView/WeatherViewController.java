@@ -1,16 +1,12 @@
 package wangdaye.com.geometricweather.theme.weatherView;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.Size;
 
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
-import wangdaye.com.geometricweather.theme.weatherView.materialWeatherView.MaterialWeatherView;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 
 public class WeatherViewController {
@@ -115,26 +111,5 @@ public class WeatherViewController {
                 return WeatherView.WEATHER_KIND_THUNDERSTORM;
         }
         return WeatherView.WEATHER_KIND_CLEAR;
-    }
-
-    /**
-     * @return colors[] {
-     *     theme color,
-     *     color of daytime chart line,
-     *     color of nighttime chart line
-     * }
-     * */
-    @ColorInt
-    @Size(3)
-    public static int[] getThemeColors(
-            Context context,
-            @NonNull Weather weather,
-            boolean lightTheme
-    ) {
-        return MaterialWeatherView.getThemeColors(
-                context,
-                getWeatherKind(weather),
-                lightTheme
-        );
     }
 }

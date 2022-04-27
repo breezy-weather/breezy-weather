@@ -69,7 +69,7 @@ public abstract class SyncListAdapter<T, VH extends RecyclerView.ViewHolder>
                         newList.get(newItemPosition)
                 );
             }
-        }, false);
+        }, true);
 
         mModelList = newList;
         result.dispatchUpdatesTo(this);

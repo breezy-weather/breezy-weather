@@ -16,6 +16,7 @@ import androidx.core.graphics.ColorUtils;
 
 import android.util.AttributeSet;
 
+import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.ui.widgets.DayNightShaderWrapper;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 
@@ -55,7 +56,8 @@ public class PolylineAndHistogramView extends AbsChartItemView {
 
     private int[] mLineColors;
     private int[] mShadowColors;
-    private int mTextColor;
+    private int mHighTextColor;
+    private int mLowTextColor;
     private int mTextShadowColor;
     private int mHistogramTextColor;
 
@@ -63,10 +65,10 @@ public class PolylineAndHistogramView extends AbsChartItemView {
 
     private static final float MARGIN_TOP_DIP = 24;
     private static final float MARGIN_BOTTOM_DIP = 36;
-    private static final float POLYLINE_SIZE_DIP = 3.5f;
-    private static final float POLYLINE_TEXT_SIZE_DIP = 13;
-    private static final float HISTOGRAM_WIDTH_DIP = 3.5f;
-    private static final float HISTOGRAM_TEXT_SIZE_DIP = 11;
+    private static final float POLYLINE_SIZE_DIP = 5f;
+    private static final float POLYLINE_TEXT_SIZE_DIP = 14;
+    private static final float HISTOGRAM_WIDTH_DIP = 4.5f;
+    private static final float HISTOGRAM_TEXT_SIZE_DIP = 12;
     private static final float CHART_LINE_SIZE_DIP = 1;
     private static final float TEXT_MARGIN_DIP = 2;
 
@@ -92,7 +94,7 @@ public class PolylineAndHistogramView extends AbsChartItemView {
         mLineColors = new int[] {Color.BLACK, Color.DKGRAY, Color.LTGRAY};
         mShadowColors = new int[] {Color.BLACK, Color.WHITE};
 
-        setTextColors(Color.BLACK, Color.GRAY);
+        setTextColors(Color.BLACK, Color.DKGRAY, Color.GRAY);
         setHistogramAlpha(0.33f);
 
         mMarginTop = (int) DisplayUtils.dpToPx(getContext(), MARGIN_TOP_DIP);
@@ -108,6 +110,9 @@ public class PolylineAndHistogramView extends AbsChartItemView {
         mPaint.setStrokeCap(Paint.Cap.ROUND);
         mPaint.setAntiAlias(true);
         mPaint.setFilterBitmap(true);
+        mPaint.setTypeface(
+                DisplayUtils.getTypefaceFromTextAppearance(getContext(), R.style.title_text)
+        );
 
         mPath = new Path();
         mShaderWrapper = new DayNightShaderWrapper(getMeasuredWidth(), getMeasuredHeight());
@@ -133,8 +138,11 @@ public class PolylineAndHistogramView extends AbsChartItemView {
 
         drawTimeLine(canvas);
 
-        if (mHistogramValue != null && mHistogramValue != 0 && mHistogramValueStr != null
-                && mHighestHistogramValue != null && mLowestHistogramValue != null) {
+        if (mHistogramValue != null
+                && (mHistogramValue != 0 || (mHighestPolylineValue == null && mLowestPolylineValue == null))
+                && mHistogramValueStr != null
+                && mHighestHistogramValue != null
+                && mLowestHistogramValue != null) {
             drawHistogram(canvas);
         }
         if (mHighestPolylineValue != null && mLowestPolylineValue != null) {
@@ -239,7 +247,7 @@ public class PolylineAndHistogramView extends AbsChartItemView {
         }
 
         // text.
-        mPaint.setColor(mTextColor);
+        mPaint.setColor(mHighTextColor);
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setTextAlign(Paint.Align.CENTER);
         mPaint.setTextSize(mPolylineTextSize);
@@ -290,7 +298,7 @@ public class PolylineAndHistogramView extends AbsChartItemView {
         }
 
         // text.
-        mPaint.setColor(mTextColor);
+        mPaint.setColor(mLowTextColor);
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setTextAlign(Paint.Align.CENTER);
         mPaint.setTextSize(mPolylineTextSize);
@@ -384,8 +392,13 @@ public class PolylineAndHistogramView extends AbsChartItemView {
         invalidate();
     }
 
-    public void setTextColors(@ColorInt int textColor, @ColorInt int histogramTextColor) {
-        mTextColor = textColor;
+    public void setTextColors(
+            @ColorInt int highTextColor,
+            @ColorInt int lowTextColor,
+            @ColorInt int histogramTextColor
+    ) {
+        mHighTextColor = highTextColor;
+        mLowTextColor = lowTextColor;
         mTextShadowColor = Color.argb((int) (255 * 0.2), 0, 0, 0);
         mHistogramTextColor = histogramTextColor;
         invalidate();

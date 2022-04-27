@@ -21,7 +21,6 @@ public class FitSystemBarNestedScrollView extends NestedScrollView
         implements FitBothSideBarView {
 
     private final FitBothSideBarHelper mHelper;
-    private boolean mAdaptiveWidthEnabled = true;
 
     public FitSystemBarNestedScrollView(@NonNull Context context) {
         this(context, null);
@@ -55,17 +54,8 @@ public class FitSystemBarNestedScrollView extends NestedScrollView
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        setPadding(0, mHelper.top(), 0, mHelper.bottom());
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
-        int viewWidth = getMeasuredWidth();
-        int adaptiveWidth = DisplayUtils.getTabletListAdaptiveWidth(getContext(), viewWidth);
-        int paddingHorizontal = mAdaptiveWidthEnabled ? ((viewWidth - adaptiveWidth) / 2) : 0;
-        setPadding(paddingHorizontal, mHelper.top(), paddingHorizontal, mHelper.bottom());
-    }
-
-    public void setAdaptiveWidthEnabled(boolean enabled) {
-        mAdaptiveWidthEnabled = enabled;
-        requestLayout();
     }
 
     @Override

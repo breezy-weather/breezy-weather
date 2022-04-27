@@ -3,7 +3,6 @@
 
     <!-- Chinese source. -->
     <string-array name="weather_sources">
-        <item>weather.com.cn (Μόνο για Κίνα)</item>
         <item>caiyunapp.com (Μόνο για Κίνα)</item>
         <item>accuweather.com</item>
         <item>OpenWeather</item>

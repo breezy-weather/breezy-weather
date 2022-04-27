@@ -7,21 +7,18 @@
 
     <!-- Chinese source. -->
     <string-array name="weather_sources">
-        <item>weather.com.cn (Only For China)</item>
         <item>caiyunapp.com (Only For China)</item>
         <item>accuweather.com</item>
         <item>OpenWeather</item>
         <item>Météo France</item>
     </string-array>
     <string-array name="weather_source_voices">
-        <item>weather.com.CN</item>
         <item>CaiYun App.com</item>
         <item>ACCU weather.com</item>
         <item>Open Weather</item>
         <item>Météo France</item>
     </string-array>
     <string-array name="weather_source_values">
-        <item>cn</item>
         <item>caiyun</item>
         <item>accu</item>
         <item>owm</item>

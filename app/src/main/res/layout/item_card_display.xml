@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wangdaye.com.geometricweather.common.ui.widgets.slidingItem.SlidingItemContainerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<wangdaye.com.geometricweather.common.ui.widgets.slidingItem.SlidingItemContainerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:apps="http://schemas.android.com/apk/res-auto"
     android:id="@+id/item_card_display_container"
@@ -9,19 +10,22 @@
     android:stateListAnimator="@animator/touch_raise"
     apps:iconResStart="@drawable/ic_delete"
     apps:iconResEnd="@drawable/ic_delete"
-    apps:backgroundColorStart="@color/striking_red"
-    apps:backgroundColorEnd="@color/striking_red"
+    apps:backgroundColorStart="?attr/colorErrorContainer"
+    apps:backgroundColorEnd="?attr/colorErrorContainer"
+    apps:tintColorStart="?attr/colorOnErrorContainer"
+    apps:tintColorEnd="?attr/colorOnErrorContainer"
     tools:ignore="UnusedAttribute">
 
     <RelativeLayout
         android:id="@+id/item_card_display"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorRoot">
+        android:background="?attr/colorSurface">
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/item_card_display_sortButton"
             android:src="@drawable/ic_drag"
+            android:tint="?attr/colorPrimary"
             android:layout_centerVertical="true"
             android:layout_alignParentStart="true"
             android:contentDescription="@string/content_des_drag_flag"
@@ -29,10 +33,11 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/item_card_display_deleteBtn"
-            android:src="@drawable/ic_close"
-            android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
             android:contentDescription="@string/content_des_delete_flag"
+            android:src="@drawable/ic_close"
+            android:tint="?attr/colorPrimary"
             style="@style/material_image_button" />
 
         <TextView
@@ -42,6 +47,7 @@
             android:layout_toEndOf="@id/item_card_display_sortButton"
             android:maxLines="1"
             android:ellipsize="end"
+            android:textColor="?attr/colorOnSurface"
             style="@style/title_text"
             tools:text="@string/sunrise_sunset"
             tools:ignore="RtlHardcoded" />

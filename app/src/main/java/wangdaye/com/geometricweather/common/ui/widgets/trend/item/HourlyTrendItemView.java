@@ -13,9 +13,10 @@ import android.view.MotionEvent;
 import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.common.ui.widgets.trend.chart.AbsChartItemView;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
+import wangdaye.com.geometricweather.common.ui.widgets.trend.chart.AbsChartItemView;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 
 /**
@@ -24,15 +25,19 @@ import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 public class HourlyTrendItemView extends AbsTrendItemView {
 
     private @Nullable AbsChartItemView mChartItem;
-    private Paint mPaint;
+    private Paint mHourTextPaint;
+    private Paint mDateTextPaint;
 
     @Nullable private OnClickListener mClickListener;
 
     @Nullable private String mHourText;
+    @Nullable private String mDayText;
     @Nullable private Drawable mIconDrawable;
 
     @ColorInt private int mContentColor;
+    @ColorInt private int mSubTitleColor;
 
+    private float mDayTextBaseLine;
     private float mHourTextBaseLine;
 
     private float mIconLeft;
@@ -46,7 +51,7 @@ public class HourlyTrendItemView extends AbsTrendItemView {
     private int mChartBottom;
 
     private static final int ICON_SIZE_DIP = 32;
-    private static final int TEXT_MARGIN_DIP = 4;
+    private static final int TEXT_MARGIN_DIP = 2;
     private static final int ICON_MARGIN_DIP = 8;
 
     public HourlyTrendItemView(Context context) {
@@ -73,12 +78,27 @@ public class HourlyTrendItemView extends AbsTrendItemView {
     private void initialize() {
         setWillNotDraw(false);
 
-        mPaint = new Paint();
-        mPaint.setAntiAlias(true);
-        mPaint.setTextSize(getResources().getDimensionPixelSize(R.dimen.content_text_size));
-        mPaint.setTextAlign(Paint.Align.CENTER);
+        mHourTextPaint = new Paint();
+        mHourTextPaint.setAntiAlias(true);
+        mHourTextPaint.setTextAlign(Paint.Align.CENTER);
+        mHourTextPaint.setTypeface(
+                DisplayUtils.getTypefaceFromTextAppearance(getContext(), R.style.title_text)
+        );
+        mHourTextPaint.setTextSize(
+                getContext().getResources().getDimensionPixelSize(R.dimen.title_text_size)
+        );
 
-        setTextColor(Color.BLACK);
+        mDateTextPaint = new Paint();
+        mDateTextPaint.setAntiAlias(true);
+        mDateTextPaint.setTextAlign(Paint.Align.CENTER);
+        mDateTextPaint.setTypeface(
+                DisplayUtils.getTypefaceFromTextAppearance(getContext(), R.style.content_text)
+        );
+        mDateTextPaint.setTextSize(
+                getContext().getResources().getDimensionPixelSize(R.dimen.content_text_size)
+        );
+
+        setTextColor(Color.BLACK, Color.GRAY);
 
         mIconSize = (int) DisplayUtils.dpToPx(getContext(), ICON_SIZE_DIP);
 
@@ -95,11 +115,17 @@ public class HourlyTrendItemView extends AbsTrendItemView {
         float textMargin = DisplayUtils.dpToPx(getContext(), TEXT_MARGIN_DIP);
         float iconMargin = DisplayUtils.dpToPx(getContext(), ICON_MARGIN_DIP);
 
-        Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
-
-        // week text.
+        // hour text.
+        Paint.FontMetrics fontMetrics = mHourTextPaint.getFontMetrics();
         y += textMargin;
         mHourTextBaseLine = y - fontMetrics.top;
+        y += fontMetrics.bottom - fontMetrics.top;
+        y += textMargin;
+
+        // day text.
+        fontMetrics = mDateTextPaint.getFontMetrics();
+        y += textMargin;
+        mDayTextBaseLine = y - fontMetrics.top;
         y += fontMetrics.bottom - fontMetrics.top;
         y += textMargin;
 
@@ -150,10 +176,16 @@ public class HourlyTrendItemView extends AbsTrendItemView {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        // week text.
+        // hour text.
         if (mHourText != null) {
-            mPaint.setColor(mContentColor);
-            canvas.drawText(mHourText, getMeasuredWidth() / 2f, mHourTextBaseLine, mPaint);
+            mHourTextPaint.setColor(mContentColor);
+            canvas.drawText(mHourText, getMeasuredWidth() / 2f, mHourTextBaseLine, mHourTextPaint);
+        }
+
+        // day text.
+        if (mDayText != null) {
+            mDateTextPaint.setColor(mSubTitleColor);
+            canvas.drawText(mDayText, getMeasuredWidth() / 2f, mDayTextBaseLine, mDateTextPaint);
         }
 
         // day icon.
@@ -178,13 +210,19 @@ public class HourlyTrendItemView extends AbsTrendItemView {
         return super.onTouchEvent(event);
     }
 
+    public void setDayText(String dayText) {
+        mDayText = dayText;
+        invalidate();
+    }
+
     public void setHourText(String hourText) {
         mHourText = hourText;
         invalidate();
     }
 
-    public void setTextColor(@ColorInt int contentColor) {
+    public void setTextColor(@ColorInt int contentColor, @ColorInt int subTitleColor) {
         mContentColor = contentColor;
+        mSubTitleColor = subTitleColor;
         invalidate();
     }
 
@@ -234,4 +272,3 @@ public class HourlyTrendItemView extends AbsTrendItemView {
         return mChartBottom;
     }
 }
-

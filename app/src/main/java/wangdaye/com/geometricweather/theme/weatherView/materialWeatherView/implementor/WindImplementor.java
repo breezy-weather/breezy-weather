@@ -20,7 +20,7 @@ public class WindImplementor extends MaterialWeatherView.WeatherAnimationImpleme
     private float mLastRotation3D;
     private static final float INITIAL_ROTATION_3D = 1000;
 
-    private static final int WIND_COUNT = 240;
+    private static final int WIND_COUNT = 160;
 
     private static class Wind {
 
@@ -59,13 +59,13 @@ public class WindImplementor extends MaterialWeatherView.WeatherAnimationImpleme
             this.speed = (float) (
                     mCanvasSize / (
                             1000.0 * (0.5 + new Random().nextDouble())
-                    ) * 4.0
+                    ) * 6.0
             );
             this.color = color;
             this.scale = scale;
 
-            this.MAX_HEIGHT = 0.006f * mCanvasSize;
-            this.MIN_HEIGHT = 0.003f * mCanvasSize;
+            this.MAX_HEIGHT = 0.007f * mCanvasSize;
+            this.MIN_HEIGHT = 0.005f * mCanvasSize;
             this.MAX_WIDTH = this.MAX_HEIGHT * 10;
             this.MIN_WIDTH = this.MIN_HEIGHT * 6;
 
@@ -107,15 +107,23 @@ public class WindImplementor extends MaterialWeatherView.WeatherAnimationImpleme
         }
     }
 
-    public WindImplementor(@Size(2) int[] canvasSizes) {
+    public WindImplementor(@Size(2) int[] canvasSizes, boolean daylight) {
         mPaint = new Paint();
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setAntiAlias(true);
+        mPaint.setAlpha((int) ((daylight ? 1f : 0.33f) * 255));
 
-        int[] colors = new int[] {
-                Color.rgb(240, 200, 148),
-                Color.rgb(237, 178, 100),
-                Color.rgb(209, 142, 54),};
+        int[] colors = daylight
+                ? new int[] {
+                        Color.rgb(240, 200, 148),
+                        Color.rgb(237, 178, 100),
+                        Color.rgb(209, 142, 54),
+                }
+                : new int[] {
+                        Color.rgb(240, 200, 148),
+                        Color.rgb(237, 178, 100),
+                        Color.rgb(209, 142, 54),
+                };
         float[] scales = new float[] {0.6F, 0.8F, 1};
 
         mWinds = new Wind[WIND_COUNT];
@@ -159,7 +167,7 @@ public class WindImplementor extends MaterialWeatherView.WeatherAnimationImpleme
     }
 
     @ColorInt
-    public static int getThemeColor() {
-        return Color.rgb(233, 158, 60);
+    public static int getThemeColor(boolean daylight) {
+        return daylight ? 0xFFeacda3 : 0xFF958675;
     }
 }

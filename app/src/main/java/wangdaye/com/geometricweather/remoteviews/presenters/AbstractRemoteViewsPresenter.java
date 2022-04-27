@@ -303,9 +303,9 @@ public abstract class AbstractRemoteViewsPresenter {
                                 .getShortRealFeeTemperature(context, temperatureUnit) + ""
                 ).replace(
                         "$cpb$",
-                        ProbabilityUnit.PERCENT.getProbabilityText(
+                        ProbabilityUnit.PERCENT.getValueText(
                                 context,
-                                WidgetHelper.getNonNullValue(
+                                (int) WidgetHelper.getNonNullValue(
                                         weather.getCurrent()
                                                 .getPrecipitationProbability()
                                                 .getTotal(),
@@ -314,7 +314,7 @@ public abstract class AbstractRemoteViewsPresenter {
                         )
                 ).replace(
                         "$cp$",
-                        precipitationUnit.getPrecipitationText(
+                        precipitationUnit.getValueText(
                                 context,
                                 WidgetHelper.getNonNullValue(
                                         weather.getCurrent()
@@ -332,15 +332,16 @@ public abstract class AbstractRemoteViewsPresenter {
                 ).replace("$cuv$", weather.getCurrent().getUV().getShortUVDescription())
                 .replace(
                         "$ch$",
-                        RelativeHumidityUnit.PERCENT.getRelativeHumidityText(
-                                WidgetHelper.getNonNullValue(
+                        RelativeHumidityUnit.PERCENT.getValueText(
+                                context,
+                                (int) WidgetHelper.getNonNullValue(
                                         weather.getCurrent().getRelativeHumidity(),
                                         0
                                 )
                         )
                 ).replace(
                         "$cps$",
-                        pressureUnit.getPressureText(
+                        pressureUnit.getValueText(
                                 context,
                                 WidgetHelper.getNonNullValue(
                                         weather.getCurrent().getPressure(),
@@ -349,7 +350,7 @@ public abstract class AbstractRemoteViewsPresenter {
                         )
                 ).replace(
                         "$cv$",
-                        distanceUnit.getDistanceText(
+                        distanceUnit.getValueText(
                                 context,
                                 WidgetHelper.getNonNullValue(
                                         weather.getCurrent().getVisibility(),
@@ -358,7 +359,7 @@ public abstract class AbstractRemoteViewsPresenter {
                         )
                 ).replace(
                         "$cdp$",
-                        temperatureUnit.getTemperatureText(
+                        temperatureUnit.getValueText(
                                 context,
                                 WidgetHelper.getNonNullValue(
                                         weather.getCurrent().getDewPoint(),
@@ -517,9 +518,9 @@ public abstract class AbstractRemoteViewsPresenter {
         for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
             subtitle = subtitle.replace(
                     "$" + i + "dp$",
-                    ProbabilityUnit.PERCENT.getProbabilityText(
+                    ProbabilityUnit.PERCENT.getValueText(
                             context,
-                            WidgetHelper.getNonNullValue(
+                            (int) WidgetHelper.getNonNullValue(
                                     weather.getDailyForecast()
                                             .get(i)
                                             .day()
@@ -539,9 +540,9 @@ public abstract class AbstractRemoteViewsPresenter {
         for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
             subtitle = subtitle.replace(
                     "$" + i + "np$",
-                    ProbabilityUnit.PERCENT.getProbabilityText(
+                    ProbabilityUnit.PERCENT.getValueText(
                             context,
-                            WidgetHelper.getNonNullValue(
+                            (int) WidgetHelper.getNonNullValue(
                                     weather.getDailyForecast()
                                             .get(i)
                                             .night()

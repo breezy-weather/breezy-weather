@@ -95,7 +95,7 @@ public class Wind implements Serializable {
         StringBuilder builder = new StringBuilder();
         builder.append(direction);
         if (speed != null) {
-            builder.append(" ").append(unit.getSpeedText(context, speed));
+            builder.append(" ").append(unit.getValueText(context, speed));
         }
         builder.append(" ").append("(").append(level).append(")");
         if (!degree.isNoDirection()) {

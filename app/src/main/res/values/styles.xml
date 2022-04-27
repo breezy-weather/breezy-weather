@@ -10,14 +10,22 @@
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:windowTranslucentStatus">false</item>
         <item name="android:windowTranslucentNavigation">false</item>
-        <item name="android:windowBackground">@drawable/launch_background</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
+
+        <item name="colorControlHighlight">@color/colorRipple</item>
+        <item name="colorTitleText">@color/colorTextTitle</item>
+        <item name="colorBodyText">@color/colorTextContent</item>
+        <item name="colorCaptionText">@color/colorTextSubtitle</item>
+        <item name="colorMainCardBackground">@color/colorMainCardBackground</item>
+        <item name="colorPrecipitationProbability">@color/colorPrecipitationProbability</item>
+        <item name="actionBarSize">@dimen/action_bar_height</item>
     </style>
 
     <style name="GeometricWeatherTheme.Main" parent="GeometricWeatherTheme">
         <item name="colorAccent">@android:color/transparent</item>
         <item name="android:windowBackground">@drawable/launch_background</item>
+        <item name="colorControlHighlight">@color/colorRipple_regular</item>
     </style>
 
     <style name="GeometricWeatherTheme.Search" parent="GeometricWeatherTheme">
@@ -28,26 +36,26 @@
         <item name="android:windowSharedElementReturnTransition">@transition/search_activity_shared_return</item>
     </style>
 
-    <style name="GeometricWeatherTheme.AppbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="elevation">2dp</item>
+    <style name="GeometricWeatherTheme.AppBarTheme">
+        <item name="android:background">?attr/colorSurface</item>
+        <item name="elevation">0dp</item>
     </style>
-    <style name="GeometricWeatherTheme.AppbarPopupTheme" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="GeometricWeatherTheme.AppbarTheme.Light" parent="ThemeOverlay.AppCompat.Light">
-        <item name="elevation">2dp</item>
-    </style>
-    <style name="GeometricWeatherTheme.AppbarPopupTheme.Light" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="GeometricWeatherTheme.ToolbarTheme">
+        <item name="titleTextAppearance">?attr/textAppearanceHeadline6</item>
+        <item name="subtitleTextAppearance">?attr/textAppearanceSubtitle1</item>
 
-    <style name="GeometricWeatherTheme.AppbarTheme.Dark" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="elevation">2dp</item>
-    </style>
-    <style name="GeometricWeatherTheme.AppbarPopupTheme.Dark" parent="ThemeOverlay.AppCompat.Dark" />
+        <item name="android:height">?attr/actionBarSize</item>
+        <item name="android:elevation">0dp</item>
+        <item name="android:background">?attr/colorSurface</item>
+        <item name="titleTextColor">?attr/colorOnSurface</item>
+        <item name="subtitleTextColor">@color/material_on_primary_emphasis_medium</item>
 
-    <style name="GeometricWeatherTheme.TabLayoutTheme" parent="Widget.Design.TabLayout">
-        <item name="tabIndicatorHeight">3dp</item>
-        <item name="tabIndicatorColor">@color/colorTextTitle</item>
-        <item name="tabSelectedTextColor">@color/colorTextTitle</item>
-        <item name="tabTextColor">@color/colorTextSubtitle</item>
+        <item name="android:maxButtonHeight" tools:ignore="NewApi">@dimen/mtrl_toolbar_default_height</item>
+        <item name="navigationIconTint">?attr/colorOnSurface</item>
+
+        <item name="android:theme">@style/ThemeOverlay.MaterialComponents.Toolbar.Surface</item>
+        <item name="popupTheme">@style/ThemeOverlay.MaterialComponents.Toolbar.Popup.Primary</item>
     </style>
 
     <!-- card. -->
@@ -61,7 +69,7 @@
         <item name="android:clickable">true</item>
         <item name="cardCornerRadius">@dimen/view_corner_radius</item>
         <item name="cardElevation">2dp</item>
-        <item name="cardBackgroundColor">@color/colorRoot</item>
+        <item name="cardBackgroundColor">?attr/colorSurface</item>
         <item name="android:stateListAnimator" tools:ignore="NewApi">@animator/touch_raise</item>
         <item name="android:foreground">@drawable/selectable_item_background</item>
     </style>
@@ -120,32 +128,32 @@
     </style>
 
     <!-- text. -->
-    <style name="large_title_text">
+    <style name="large_title_text" parent="TextAppearance.Material3.TitleLarge">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/large_title_text_size</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
 
-    <style name="title_text">
+    <style name="title_text" parent="TextAppearance.Material3.TitleMedium">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/title_text_size</item>
-        <item name="android:textColor">@color/colorTextTitle</item>
+        <item name="android:textColor">?attr/colorTitleText</item>
     </style>
 
-    <style name="content_text">
+    <style name="content_text" parent="TextAppearance.Material3.BodyMedium">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/content_text_size</item>
-        <item name="android:textColor">@color/colorTextContent</item>
+        <item name="android:textColor">?attr/colorBodyText</item>
     </style>
 
-    <style name="subtitle_text">
+    <style name="subtitle_text" parent="TextAppearance.Material3.LabelMedium">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/subtitle_text_size</item>
-        <item name="android:textColor">@color/colorTextSubtitle</item>
+        <item name="android:textColor">?attr/colorCaptionText</item>
     </style>
 
     <style name="notification_large_title_text" parent="@style/TextAppearance.Compat.Notification.Title">
@@ -188,7 +196,7 @@
     </style>
 
     <!-- button -->
-    <style name="material_button" parent="@style/Widget.AppCompat.Button.Borderless">
+    <style name="material_button" parent="@style/Widget.Material3.Button.TextButton">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/content_text_size</item>

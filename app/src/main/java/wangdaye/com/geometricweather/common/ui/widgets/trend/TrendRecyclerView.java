@@ -41,7 +41,7 @@ public class TrendRecyclerView extends HorizontalRecyclerView {
     private final int mLineWidth;
 
     private static final int LINE_WIDTH_DIP = 1;
-    private static final int TEXT_SIZE_DIP = 10;
+    private static final int TEXT_SIZE_DIP = 12;
     private static final int TEXT_MARGIN_DIP = 2;
     public static final int ITEM_MARGIN_BOTTOM_DIP = 16;
 
@@ -78,6 +78,9 @@ public class TrendRecyclerView extends HorizontalRecyclerView {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setStrokeCap(Paint.Cap.ROUND);
+        mPaint.setTypeface(
+                DisplayUtils.getTypefaceFromTextAppearance(getContext(), R.style.subtitle_text)
+        );
 
         mTextSize = (int) DisplayUtils.dpToPx(getContext(), TEXT_SIZE_DIP);
         mTextMargin = (int) DisplayUtils.dpToPx(getContext(), TEXT_MARGIN_DIP);
@@ -130,7 +133,11 @@ public class TrendRecyclerView extends HorizontalRecyclerView {
 
             mPaint.setStyle(Paint.Style.FILL);
             mPaint.setTextSize(mTextSize);
-            mPaint.setColor(ContextCompat.getColor(getContext(), R.color.colorTextGrey2nd));
+            mPaint.setColor(
+                    DisplayUtils.isDarkMode(getContext())
+                            ? ContextCompat.getColor(getContext(), R.color.colorTextGrey)
+                            : ContextCompat.getColor(getContext(), R.color.colorTextGrey2nd)
+            );
             switch (line.contentPosition) {
                 case ABOVE_LINE:
                     mPaint.setTextAlign(Paint.Align.LEFT);

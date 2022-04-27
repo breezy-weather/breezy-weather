@@ -5,6 +5,11 @@ import android.animation.ArgbEvaluator;
 import android.animation.FloatEvaluator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
+import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
@@ -13,32 +18,22 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.DecelerateInterpolator;
-import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.AirQualityCOUnit;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.AirQualityUnit;
 import wangdaye.com.geometricweather.common.basic.models.weather.AirQuality;
-import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.ui.widgets.RoundProgress;
-import wangdaye.com.geometricweather.main.utils.MainThemeManager;
-
-/**
- * Aqi adapter.
- */
+import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider;
 
 public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
 
+    private final boolean mLightTheme;
     private final List<AqiItem> mItemList;
     private final List<ViewHolder> mHolderList;
-    private final MainThemeManager mThemeManager;
 
     private static class AqiItem {
         @ColorInt int color;
@@ -62,8 +57,10 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
         }
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
+
         private @Nullable AqiItem mItem;
+        private Boolean mLightTheme;
         private boolean mExecuteAnimation;
         @Nullable private AnimatorSet mAttachAnimatorSet;
 
@@ -78,24 +75,25 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
             mProgress = itemView.findViewById(R.id.item_aqi_progress);
         }
 
-        void onBindView(AqiItem item) {
+        void onBindView(boolean lightTheme, AqiItem item) {
             Context context = itemView.getContext();
 
             mItem = item;
+            mLightTheme = lightTheme;
             mExecuteAnimation = item.executeAnimation;
 
             itemView.setContentDescription(item.talkBack);
 
             mTitle.setText(item.title);
-            mTitle.setTextColor(mThemeManager.getTextContentColor(context));
+            mTitle.setTextColor(MainThemeColorProvider.getColor(lightTheme, R.attr.colorTitleText));
 
             mContent.setText(item.content);
-            mContent.setTextColor(mThemeManager.getTextSubtitleColor(context));
+            mContent.setTextColor(MainThemeColorProvider.getColor(lightTheme, R.attr.colorBodyText));
 
             if (mExecuteAnimation) {
                 mProgress.setProgress(0);
                 mProgress.setProgressColor(ContextCompat.getColor(context, R.color.colorLevel_1));
-                mProgress.setProgressBackgroundColor(mThemeManager.getSeparatorColor(context));
+                mProgress.setProgressBackgroundColor(MainThemeColorProvider.getColor(lightTheme, R.attr.colorOutline));
             } else {
                 mProgress.setProgress((int) (100.0 * item.progress / item.max));
                 mProgress.setProgressColor(item.color);
@@ -120,7 +118,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
 
                 ValueAnimator backgroundColor = ValueAnimator.ofObject(
                         new ArgbEvaluator(),
-                        mThemeManager.getSeparatorColor(itemView.getContext()),
+                        MainThemeColorProvider.getColor(mLightTheme, R.attr.colorOutline),
                         ColorUtils.setAlphaComponent(mItem.color, (int) (255 * 0.1))
                 );
                 backgroundColor.addUpdateListener(animation ->
@@ -150,10 +148,14 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
         }
     }
 
-    public AqiAdapter(Context context, @Nullable Weather weather, MainThemeManager themeManager, boolean executeAnimation) {
+    public AqiAdapter(Context context, Location location, boolean executeAnimation) {
+        mLightTheme = location.isDaylight();
+
         mItemList = new ArrayList<>();
-        if (weather != null && weather.getCurrent().getAirQuality().isValid()) {
-            AirQuality airQuality = weather.getCurrent().getAirQuality();
+        if (location.getWeather() != null
+                && location.getWeather().getCurrent().getAirQuality().isValid()) {
+
+            AirQuality airQuality = location.getWeather().getCurrent().getAirQuality();
             if (airQuality.getPM25() != null) {
                 mItemList.add(
                         new AqiItem(
@@ -161,9 +163,10 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
                                 airQuality.getPM25(),
                                 250,
                                 "PM2.5",
-                                AirQualityUnit.MUGPCUM.getDensityText(context, airQuality.getPM25()),
+                                AirQualityUnit.MUGPCUM.getValueText(context, airQuality.getPM25()),
                                 context.getString(R.string.content_des_pm25)
-                                        + ", " + AirQualityUnit.MUGPCUM.getDensityVoice(context, airQuality.getPM25()),
+                                        + ", "
+                                        + AirQualityUnit.MUGPCUM.getValueVoice(context, airQuality.getPM25()),
                                 executeAnimation
                         )
                 );
@@ -175,9 +178,9 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
                                 airQuality.getPM10(),
                                 420,
                                 "PM10",
-                                AirQualityUnit.MUGPCUM.getDensityText(context, airQuality.getPM10()),
+                                AirQualityUnit.MUGPCUM.getValueText(context, airQuality.getPM10()),
                                 context.getString(R.string.content_des_pm10)
-                                        + ", " + AirQualityUnit.MUGPCUM.getDensityVoice(context, airQuality.getPM10()),
+                                        + ", " + AirQualityUnit.MUGPCUM.getValueVoice(context, airQuality.getPM10()),
                                 executeAnimation
                         )
                 );
@@ -189,9 +192,9 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
                                 airQuality.getSO2(),
                                 1600,
                                 "SO₂",
-                                AirQualityUnit.MUGPCUM.getDensityText(context, airQuality.getSO2()),
+                                AirQualityUnit.MUGPCUM.getValueText(context, airQuality.getSO2()),
                                 context.getString(R.string.content_des_so2)
-                                        + ", " + AirQualityUnit.MUGPCUM.getDensityVoice(context, airQuality.getSO2()),
+                                        + ", " + AirQualityUnit.MUGPCUM.getValueVoice(context, airQuality.getSO2()),
                                 executeAnimation
                         )
                 );
@@ -203,9 +206,9 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
                                 airQuality.getNO2(),
                                 565,
                                 "NO₂",
-                                AirQualityUnit.MUGPCUM.getDensityText(context, airQuality.getNO2()),
+                                AirQualityUnit.MUGPCUM.getValueText(context, airQuality.getNO2()),
                                 context.getString(R.string.content_des_no2)
-                                        + ", " + AirQualityUnit.MUGPCUM.getDensityVoice(context, airQuality.getNO2()),
+                                        + ", " + AirQualityUnit.MUGPCUM.getValueVoice(context, airQuality.getNO2()),
                                 executeAnimation
                         )
                 );
@@ -217,9 +220,9 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
                                 airQuality.getO3(),
                                 800,
                                 "O₃",
-                                AirQualityUnit.MUGPCUM.getDensityText(context, airQuality.getO3()),
+                                AirQualityUnit.MUGPCUM.getValueText(context, airQuality.getO3()),
                                 context.getString(R.string.content_des_o3)
-                                        + ", " + AirQualityUnit.MUGPCUM.getDensityVoice(context, airQuality.getO3()),
+                                        + ", " + AirQualityUnit.MUGPCUM.getValueVoice(context, airQuality.getO3()),
                                 executeAnimation
                         )
                 );
@@ -231,9 +234,9 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
                                 airQuality.getCO(),
                                 90,
                                 "CO",
-                                AirQualityCOUnit.MGPCUM.getDensityText(context, airQuality.getCO()),
+                                AirQualityCOUnit.MGPCUM.getValueText(context, airQuality.getCO()),
                                 context.getString(R.string.content_des_co)
-                                        + ", " + AirQualityCOUnit.MGPCUM.getDensityVoice(context, airQuality.getCO()),
+                                        + ", " + AirQualityCOUnit.MGPCUM.getValueVoice(context, airQuality.getCO()),
                                 executeAnimation
                         )
                 );
@@ -241,7 +244,6 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
         }
 
         mHolderList = new ArrayList<>();
-        mThemeManager = themeManager;
     }
 
     @NonNull
@@ -253,7 +255,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(mItemList.get(position));
+        holder.onBindView(mLightTheme, mItemList.get(position));
         if (mItemList.get(position).executeAnimation) {
             mHolderList.add(holder);
         }

@@ -10,10 +10,11 @@ import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
-import wangdaye.com.geometricweather.main.dialogs.LearnMoreAboutResidentLocationDialog;
 import wangdaye.com.geometricweather.common.ui.widgets.slidingItem.SlidingItemTouchCallback;
 import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
 import wangdaye.com.geometricweather.main.MainActivityViewModel;
@@ -26,14 +27,18 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
     private final @Px int mElevation;
 
     private boolean mDragged;
-    private final @NonNull OnSelectProviderActivityStartedCallback mCallback;
+    private int mDragFrom;
+    private int mDragTo;
+    private final @NonNull TouchReactor mReactor;
 
-    public interface OnSelectProviderActivityStartedCallback {
-        void onSelectProviderActivityStarted();
+    public interface TouchReactor {
+        void resetViewHolderAt(int position);
+        void reorderByDrag(int from, int to);
+        void startSelectProviderActivityBySwipe();
     }
 
     public LocationItemTouchCallback(GeoActivity activity, MainActivityViewModel viewModel,
-                                     @NonNull OnSelectProviderActivityStartedCallback callback) {
+                                     @NonNull TouchReactor callback) {
         super();
 
         mActivity = activity;
@@ -42,7 +47,7 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
         mElevation = activity.getResources().getDimensionPixelSize(R.dimen.touch_rise_z);
 
         mDragged = false;
-        mCallback = callback;
+        mReactor = callback;
     }
 
     @Override
@@ -52,12 +57,16 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
             case ItemTouchHelper.ACTION_STATE_IDLE:
                 if (mDragged) {
                     mDragged = false;
-                    mViewModel.moveLocationFinish();
+                    mViewModel.moveLocation(mDragFrom, mDragTo);
                 }
                 break;
 
             case ItemTouchHelper.ACTION_STATE_DRAG:
-                mDragged = true;
+                if (!mDragged && viewHolder != null) {
+                    mDragged = true;
+                    mDragFrom = viewHolder.getAdapterPosition();
+                    mDragTo = mDragFrom;
+                }
                 break;
         }
     }
@@ -66,53 +75,56 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
     public boolean onMove(@NonNull RecyclerView recyclerView,
                           @NonNull RecyclerView.ViewHolder viewHolder,
                           @NonNull RecyclerView.ViewHolder target) {
-        mViewModel.moveLocation(viewHolder.getAdapterPosition(), target.getAdapterPosition());
+        mDragTo = target.getAdapterPosition();
+        mReactor.reorderByDrag(viewHolder.getAdapterPosition(), mDragTo);
         return true;
     }
 
     @Override
     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
         int position = viewHolder.getAdapterPosition();
-        assert mViewModel.getTotalLocationList() != null;
-        Location location = mViewModel.getTotalLocationList().get(position);
+        Location location = mViewModel.getTotalLocationList().getValue().getLocationList().get(position);
 
         switch (direction) {
             case ItemTouchHelper.START: {
                 if (location.isCurrentPosition()) {
-                    mViewModel.forceUpdateLocation(location, position);
-                    mCallback.onSelectProviderActivityStarted();
+                    mReactor.startSelectProviderActivityBySwipe();
+                    mReactor.resetViewHolderAt(position);
                 } else {
-                    location = new Location(
-                            location, location.isCurrentPosition(), !location.isResidentPosition());
-                    mViewModel.forceUpdateLocation(location, position);
+                    location = Location.copy(
+                            location,
+                            location.isCurrentPosition(),
+                            !location.isResidentPosition()
+                    );
+                    mViewModel.updateLocation(location);
 
                     if (location.isResidentPosition()) {
                         SnackbarHelper.showSnackbar(
                                 mActivity.getString(R.string.feedback_resident_location),
                                 mActivity.getString(R.string.learn_more),
-                                v -> new LearnMoreAboutResidentLocationDialog().show(
-                                        mActivity.getSupportFragmentManager(), null)
+                                v -> new MaterialAlertDialogBuilder(mActivity)
+                                        .setTitle(R.string.resident_location)
+                                        .setMessage(R.string.feedback_resident_location_description)
+                                        .show()
                         );
                     }
                 }
                 break;
             }
             case ItemTouchHelper.END:
-                assert mViewModel.getTotalLocationList() != null;
-                if (mViewModel.getTotalLocationList().size() <= 1) {
-                    mViewModel.forceUpdateLocation(location, position);
+                if (mViewModel.getTotalLocationList().getValue().getLocationList().size() <= 1) {
+                    // TODO: force update.
+                    mViewModel.updateLocation(location);
                     SnackbarHelper.showSnackbar(
                             mActivity.getString(R.string.feedback_location_list_cannot_be_null)
                     );
                 } else {
                     location = mViewModel.deleteLocation(position);
-                    if (location != null) {
-                        SnackbarHelper.showSnackbar(
-                                mActivity.getString(R.string.feedback_delete_succeed),
-                                mActivity.getString(R.string.cancel),
-                                new CancelDeleteListener(location, position)
-                        );
-                    }
+                    SnackbarHelper.showSnackbar(
+                            mActivity.getString(R.string.feedback_delete_succeed),
+                            mActivity.getString(R.string.cancel),
+                            new CancelDeleteListener(location, position)
+                    );
                 }
                 break;
         }

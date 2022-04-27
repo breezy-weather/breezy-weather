@@ -7,6 +7,6 @@
         android:radius="@dimen/view_corner_radius" />
 
     <solid
-        android:color="#FF212121" />
+        android:color="#FF1B1B1B" />
 
 </shape>

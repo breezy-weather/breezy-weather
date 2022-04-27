@@ -58,7 +58,7 @@ public class DailyTrendDisplayAdapter extends RecyclerView.Adapter<DailyTrendDis
         }
 
         void onBindView(DailyTrendDisplay dailyTrendDisplay) {
-            title.setText(dailyTrendDisplay.getTagName(title.getContext()));
+            title.setText(dailyTrendDisplay.getName(title.getContext()));
 
             container.swipe(0);
             container.setOnClickListener(v -> {

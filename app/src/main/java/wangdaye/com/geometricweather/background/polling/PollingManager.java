@@ -131,8 +131,13 @@ public class PollingManager {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             AsyncHelper.runOnIO(() -> {
                 List<Location> locationList = DatabaseHelper.getInstance(context).readLocationList();
-                for (Location location : locationList) {
-                    location.setWeather(DatabaseHelper.getInstance(context).readWeather(location));
+                for (int i = 0; i < locationList.size(); i ++) {
+                    locationList.set(
+                            i, Location.copy(
+                                    locationList.get(i),
+                                    DatabaseHelper.getInstance(context).readWeather(locationList.get(i))
+                            )
+                    );
                 }
 
                 WidgetHelper.updateWidgetIfNecessary(context, locationList.get(0));

@@ -11,7 +11,6 @@ import android.view.animation.DecelerateInterpolator;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Px;
-import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -29,10 +28,11 @@ import wangdaye.com.geometricweather.common.ui.adapters.TagAdapter;
 import wangdaye.com.geometricweather.common.ui.decotarions.GridMarginsDecoration;
 import wangdaye.com.geometricweather.common.ui.decotarions.ListDecoration;
 import wangdaye.com.geometricweather.common.ui.widgets.slidingItem.SlidingItemTouchCallback;
-import wangdaye.com.geometricweather.theme.DefaultThemeManager;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.databinding.ActivityDailyTrendDisplayManageBinding;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.settings.adapters.DailyTrendDisplayAdapter;
+import wangdaye.com.geometricweather.theme.ThemeManager;
 
 public class DailyTrendDisplayManageActivity extends GeoActivity {
 
@@ -57,7 +57,7 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
 
         @Override
         public String getName() {
-            return tag.getTagName(DailyTrendDisplayManageActivity.this);
+            return tag.getName(DailyTrendDisplayManageActivity.this);
         }
     }
 
@@ -67,8 +67,6 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
         public boolean onMove(@NonNull RecyclerView recyclerView,
                               @NonNull RecyclerView.ViewHolder viewHolder,
                               @NonNull RecyclerView.ViewHolder target) {
-            setResult(RESULT_OK);
-
             int fromPosition = viewHolder.getAdapterPosition();
             int toPosition = target.getAdapterPosition();
 
@@ -78,7 +76,6 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
 
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-            setResult(RESULT_OK);
             mDailyTrendDisplayAdapter.removeItem(viewHolder.getAdapterPosition());
         }
 
@@ -100,6 +97,15 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
 
         mElevation = getResources().getDimensionPixelSize(R.dimen.touch_rise_z);
 
+        mBinding.appBar.injectDefaultSurfaceTintColor();
+
+        mBinding.toolbar.setBackgroundColor(
+                DisplayUtils.getWidgetSurfaceColor(
+                        6f,
+                        ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorPrimary),
+                        ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorSurface)
+                )
+        );
         mBinding.toolbar.setNavigationOnClickListener(view -> finish());
 
         List<DailyTrendDisplay> displayTags
@@ -115,8 +121,12 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
         );
 
         mBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mBinding.recyclerView.addItemDecoration(new ListDecoration(
-                this, ContextCompat.getColor(this, R.color.colorSeparator)));
+        mBinding.recyclerView.addItemDecoration(
+                new ListDecoration(
+                this,
+                        ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorOutline)
+                )
+        );
         mBinding.recyclerView.setAdapter(mDailyTrendDisplayAdapter);
 
         mDailyTrendDisplayItemTouchHelper = new ItemTouchHelper(new CardDisplaySwipeCallback());
@@ -140,17 +150,31 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
         for (DailyTrendDisplay tag : otherTags) {
             tagList.add(new DailyTrendTag(tag));
         }
-        mTagAdapter = new TagAdapter(tagList, (checked, oldPosition, newPosition) -> {
-            setResult(RESULT_OK);
-            DailyTrendTag tag = (DailyTrendTag) mTagAdapter.removeItem(newPosition);
-            mDailyTrendDisplayAdapter.insertItem(tag.tag);
-            resetBottomBarVisibility();
-            return true;
-        }, new DefaultThemeManager());
+        int[] colors = ThemeManager.getInstance(this).getThemeColors(
+                this, new int[] {
+                        R.attr.colorOnPrimaryContainer,
+                        R.attr.colorOnSecondaryContainer,
+                        R.attr.colorPrimaryContainer,
+                        R.attr.colorSecondaryContainer
+                }
+        );
+        mTagAdapter = new TagAdapter(
+                tagList,
+                colors[0],
+                colors[1],
+                colors[2],
+                colors[3],
+                (checked, oldPosition, newPosition) -> {
+                    setResult(RESULT_OK);
+                    DailyTrendTag tag = (DailyTrendTag) mTagAdapter.removeItem(newPosition);
+                    mDailyTrendDisplayAdapter.insertItem(tag.tag);
+                    resetBottomBarVisibility();
+                    return true;
+                }
+        );
 
         mBinding.bottomRecyclerView.setLayoutManager(
                 new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
-        mBinding.bottomRecyclerView.setAdaptiveWidthEnabled(false);
         mBinding.bottomRecyclerView.addItemDecoration(
                 new GridMarginsDecoration(
                         getResources().getDimension(R.dimen.normal_margin), mBinding.bottomRecyclerView
@@ -166,8 +190,12 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        SettingsManager.getInstance(this).setDailyTrendDisplayList(
-                mDailyTrendDisplayAdapter.getDailyTrendDisplayList());
+
+        List<DailyTrendDisplay> oldList = SettingsManager.getInstance(this).getDailyTrendDisplayList();
+        List<DailyTrendDisplay> newList = mDailyTrendDisplayAdapter.getDailyTrendDisplayList();
+        if (!oldList.equals(newList)) {
+            SettingsManager.getInstance(this).setDailyTrendDisplayList(newList);
+        }
     }
 
     @SuppressLint("MissingSuperCall")

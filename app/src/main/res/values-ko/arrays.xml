@@ -3,7 +3,6 @@
 
     <!-- 날씨 제공처. -->
     <string-array name="weather_sources">
-        <item>weather.com.cn (중국 내수용)</item>
         <item>caiyunapp.com (중국 내수용)</item>
         <item>accuweather.com</item>
         <item>OpenWeather</item>

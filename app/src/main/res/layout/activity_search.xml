@@ -6,7 +6,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorRoot">
+    android:background="?attr/colorSurfaceVariant">
 
     <LinearLayout
         android:orientation="vertical"
@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:background="?attr/colorSurface"
             android:transitionName="@string/transition_activity_search_bar"
-            tools:targetApi="lollipop">
+            app:elevation="0dp">
 
             <RelativeLayout
                 android:id="@+id/searchContainer"
@@ -41,8 +41,8 @@
                     android:layout_marginEnd="@dimen/normal_margin"
                     android:hint="@string/feedback_search_location"
                     android:textSize="@dimen/title_text_size"
-                    android:textColor="@color/colorTextContent"
-                    android:textColorHint="@android:color/darker_gray"
+                    android:textColor="?attr/colorTitleText"
+                    android:textColorHint="?attr/colorCaptionText"
                     android:focusable="true"
                     android:focusableInTouchMode="true"
                     android:inputType="text"
@@ -66,7 +66,7 @@
                 android:layout_height="@dimen/little_weather_icon_size"
                 android:layout_centerInParent="true"
                 app:cpv_animAutostart="true"
-                app:cpv_color="@color/colorTextContent"
+                app:cpv_color="?attr/colorPrimary"
                 app:cpv_indeterminate="true" />
 
             <RelativeLayout
@@ -78,6 +78,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:clipToPadding="false"
+                    android:paddingTop="@dimen/little_margin"
                     app:rv_side="bottom" />
 
                 <com.turingtechnologies.materialscrollbar.DragScrollBar
@@ -89,9 +90,9 @@
                     app:msb_lightOnTouch="true"
                     app:msb_scrollMode="firstVisible"
                     app:msb_barColor="@color/colorTextSubtitle"
-                    app:msb_handleColor="@color/colorPrimary"
-                    app:msb_handleOffColor="@color/colorPrimary"
-                    app:msb_textColor="@color/colorRoot" />
+                    app:msb_handleColor="?attr/colorSecondary"
+                    app:msb_handleOffColor="?attr/colorSecondaryVariant"
+                    app:msb_textColor="?attr/colorOnSecondary" />
 
             </RelativeLayout>
 
@@ -117,11 +118,11 @@
             android:layout_margin="@dimen/normal_margin"
             android:layout_gravity="bottom|end"
             android:textColor="@android:color/white"
-            android:theme="@style/Theme.MaterialComponents"
             android:contentDescription="@string/content_desc_filter_weather_sources"
             android:src="@drawable/ic_filter"
-            app:tint="@android:color/white"
-            app:backgroundTint="@color/colorPrimary" />
+            style="?attr/floatingActionButtonLargeStyle"
+            app:tint="?attr/colorOnPrimaryContainer"
+            app:backgroundTint="?attr/colorPrimaryContainer" />
 
         <io.codetail.widget.RevealLinearLayout
             android:layout_width="match_parent"
@@ -129,42 +130,42 @@
             android:gravity="end|bottom"
             android:orientation="vertical">
 
-            <androidx.cardview.widget.CardView
+            <RelativeLayout
                 android:id="@+id/fab_sheet"
                 android:layout_width="300dp"
-                android:layout_height="300dp"
+                android:layout_height="326dp"
                 android:layout_margin="@dimen/normal_margin"
-                style="@style/material_card"
-                app:cardBackgroundColor="@color/colorRoot">
+                android:orientation="vertical">
 
-                <LinearLayout
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/source_enter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/done"
+                    android:textStyle="bold"
+                    android:textColor="?attr/colorOnPrimaryContainer"
+                    android:layout_alignParentBottom="true"
+                    style="@style/Widget.Material3.Button.ElevatedButton"
+                    app:backgroundTint="?attr/colorPrimaryContainer"
+                    tools:ignore="UnusedAttribute" />
+
+                <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_above="@id/source_enter"
+                    android:layout_marginBottom="@dimen/little_margin"
+                    style="?attr/materialCardViewFilledStyle"
+                    app:cardBackgroundColor="?attr/colorSurface"
+                    app:cardCornerRadius="@dimen/view_corner_radius">
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/source_list"
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1" />
+                        android:layout_height="match_parent" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/colorSeparator" />
+                </com.google.android.material.card.MaterialCardView>
 
-                    <Button
-                        android:id="@+id/source_enter"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/done"
-                        android:textColor="@color/colorTextTitle"
-                        style="@style/material_button"
-                        tools:ignore="UnusedAttribute" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
+            </RelativeLayout>
 
         </io.codetail.widget.RevealLinearLayout>
 

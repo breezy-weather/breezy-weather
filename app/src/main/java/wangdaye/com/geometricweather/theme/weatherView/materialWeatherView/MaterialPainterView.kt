@@ -22,8 +22,8 @@ import kotlin.math.sqrt
 class MaterialPainterView(
     context: Context?,
 
-    @WeatherKindRule private val weatherKind: Int,
-    private val daylight: Boolean,
+    @WeatherKindRule private var weatherKind: Int,
+    private var daylight: Boolean,
 
     isDrawable: Boolean,
     currentScrollRate: Float,
@@ -175,7 +175,27 @@ class MaterialPainterView(
         scrollRate = currentScrollRate
         mDeviceOrientation = DeviceOrientation.TOP
 
-        resetDrawer()
+        background = ResourcesCompat.getDrawable(
+            resources,
+            WeatherImplementorFactory.getBackgroundId(weatherKind, daylight),
+            null
+        )
+    }
+
+    fun update(
+        @WeatherKindRule weatherKind: Int,
+        daylight: Boolean,
+        gravitySensorEnabled: Boolean,
+    ) {
+        this.weatherKind = weatherKind
+        this.daylight = daylight
+        this.gravitySensorEnabled = gravitySensorEnabled
+
+        if (drawable) {
+            setWeatherImplementor()
+            setIntervalComputer()
+            postInvalidate()
+        }
 
         background = ResourcesCompat.getDrawable(
             resources,
@@ -234,12 +254,17 @@ class MaterialPainterView(
             )
             canvas.restore()
         }
+
+        if (!drawable) {
+            return
+        }
         if (lastScrollRate >= 1 && scrollRate >= 1) {
             lastScrollRate = scrollRate
             setIntervalComputer()
             return
         }
         lastScrollRate = scrollRate
+
         postInvalidate()
     }
 

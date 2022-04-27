@@ -8,6 +8,8 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Hourly;
 import wangdaye.com.geometricweather.common.basic.models.weather.Precipitation;
 import wangdaye.com.geometricweather.common.basic.models.weather.PrecipitationProbability;
 import wangdaye.com.geometricweather.common.basic.models.weather.Temperature;
+import wangdaye.com.geometricweather.common.basic.models.weather.UV;
+import wangdaye.com.geometricweather.common.basic.models.weather.Wind;
 import wangdaye.com.geometricweather.db.entities.HourlyEntity;
 import wangdaye.com.geometricweather.db.converters.WeatherSourceConverter;
 
@@ -18,7 +20,7 @@ public class HourlyEntityGenerator {
 
         entity.cityId = cityId;
         entity.weatherSource = new WeatherSourceConverter().convertToDatabaseValue(source);
-        
+
         entity.date = hourly.getDate();
         entity.time = hourly.getTime();
         entity.daylight = hourly.isDaylight();
@@ -45,6 +47,16 @@ public class HourlyEntityGenerator {
         entity.rainPrecipitationProbability = hourly.getPrecipitationProbability().getRain();
         entity.snowPrecipitationProbability = hourly.getPrecipitationProbability().getSnow();
         entity.icePrecipitationProbability = hourly.getPrecipitationProbability().getIce();
+
+        entity.windDirection = hourly.getWind().getDirection();
+        entity.windDegree = hourly.getWind().getDegree();
+        entity.windSpeed = hourly.getWind().getSpeed();
+        entity.windLevel = hourly.getWind().getLevel();
+
+        // uv.
+        entity.uvIndex = hourly.getUV().getIndex();
+        entity.uvLevel = hourly.getUV().getLevel();
+        entity.uvDescription = hourly.getUV().getDescription();
 
         return entity;
     }
@@ -84,7 +96,14 @@ public class HourlyEntityGenerator {
                         entity.rainPrecipitationProbability,
                         entity.snowPrecipitationProbability,
                         entity.icePrecipitationProbability
-                )
+                ),
+                new Wind(
+                        entity.windDirection,
+                        entity.windDegree,
+                        entity.windSpeed,
+                        entity.windLevel
+                ),
+                new UV(entity.uvIndex, entity.uvLevel, entity.uvDescription)
         );
     }
 

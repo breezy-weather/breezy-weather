@@ -12,7 +12,6 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.Precipitat
 import wangdaye.com.geometricweather.common.basic.models.options.unit.SpeedUnit;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.main.adapters.trend.daily.DailyTemperatureAdapter;
-import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.main.adapters.trend.daily.AbsDailyTrendAdapter;
@@ -30,25 +29,25 @@ public class DailyTrendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     }
 
     public void temperature(GeoActivity activity, TrendRecyclerView parent, Location location,
-                            ResourceProvider provider, MainThemeManager themeManager, TemperatureUnit unit) {
-        mAdapter = new DailyTemperatureAdapter(activity, parent, location, provider, themeManager, unit);
+                            ResourceProvider provider, TemperatureUnit unit) {
+        mAdapter = new DailyTemperatureAdapter(activity, parent, location, provider, unit);
     }
 
-    public void airQuality(GeoActivity activity, TrendRecyclerView parent, Location location, MainThemeManager themeManager) {
-        mAdapter = new DailyAirQualityAdapter(activity, parent, location, themeManager);
+    public void airQuality(GeoActivity activity, TrendRecyclerView parent, Location location) {
+        mAdapter = new DailyAirQualityAdapter(activity, parent, location);
     }
 
-    public void wind(GeoActivity activity, TrendRecyclerView parent, Location location, MainThemeManager themeManager, SpeedUnit unit) {
-        mAdapter = new DailyWindAdapter(activity, parent, location, themeManager, unit);
+    public void wind(GeoActivity activity, TrendRecyclerView parent, Location location, SpeedUnit unit) {
+        mAdapter = new DailyWindAdapter(activity, parent, location, unit);
     }
 
-    public void uv(GeoActivity activity, TrendRecyclerView parent, Location location, MainThemeManager themeManager) {
-        mAdapter = new DailyUVAdapter(activity, parent, location, themeManager);
+    public void uv(GeoActivity activity, TrendRecyclerView parent, Location location) {
+        mAdapter = new DailyUVAdapter(activity, parent, location);
     }
 
     public void precipitation(GeoActivity activity, TrendRecyclerView parent, Location location,
-                              ResourceProvider provider, MainThemeManager themeManager, PrecipitationUnit unit) {
-        mAdapter = new DailyPrecipitationAdapter(activity, parent, location, provider, themeManager, unit);
+                              ResourceProvider provider, PrecipitationUnit unit) {
+        mAdapter = new DailyPrecipitationAdapter(activity, parent, location, provider, unit);
     }
 
     @NonNull

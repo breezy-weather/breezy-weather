@@ -7,10 +7,6 @@ import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
 import wangdaye.com.geometricweather.settings.dialogs.WechatDonateDialog;
 
-/**
- * Donate helper.
- * */
-
 public class DonateHelper {
 
     public static void donateByAlipay(GeoActivity activity) {
@@ -23,7 +19,7 @@ public class DonateHelper {
 
     public static void donateByWechat(GeoActivity activity) {
         if (WeiXinDonate.hasInstalledWeiXinClient(activity)) {
-            new WechatDonateDialog().show(activity.getSupportFragmentManager(), null);
+            WechatDonateDialog.show(activity);
         } else {
             SnackbarHelper.showSnackbar("WeChat is not installed.");
         }

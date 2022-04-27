@@ -17,12 +17,11 @@
             <TextView
                 android:id="@+id/container_main_pollen_title"
                 android:text="@string/allergen"
-                android:textSize="@dimen/title_text_size"
                 android:textStyle="bold"
                 android:layout_marginTop="@dimen/normal_margin"
                 android:layout_marginStart="@dimen/normal_margin"
                 android:layout_marginEnd="@dimen/normal_margin"
-                style="@style/content_text" />
+                style="@style/title_text" />
 
             <TextView
                 android:id="@+id/container_main_pollen_subtitle"

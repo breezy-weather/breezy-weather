@@ -34,14 +34,13 @@
             <TextView
                 android:id="@+id/container_main_sun_moon_title"
                 android:text="@string/sunrise_sunset"
-                android:textSize="@dimen/title_text_size"
                 android:textStyle="bold"
                 android:layout_centerVertical="true"
                 android:layout_alignParentStart="true"
                 android:layout_toStartOf="@id/container_main_sun_moon_phaseText"
                 android:maxLines="1"
                 android:ellipsize="end"
-                style="@style/content_text" />
+                style="@style/title_text" />
 
         </RelativeLayout>
 
@@ -72,7 +71,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:layout_margin="0dp"
-                    android:tint="@color/colorTextSubtitle"
+                    android:tint="@color/colorTextContent"
                     style="@style/material_icon"
                     tools:ignore="ContentDescription,RtlHardcoded" />
 
@@ -81,7 +80,7 @@
                     android:layout_toEndOf="@id/container_main_sun_moon_sun_icon"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="4dp"
-                    style="@style/subtitle_text"
+                    style="@style/content_text"
                     tools:text="05:45↑\n17:45↓"
                     tools:ignore="RtlHardcoded" />
 
@@ -96,27 +95,27 @@
                 android:layout_marginEnd="@dimen/normal_margin"
                 tools:ignore="RtlHardcoded">
 
+                <TextView
+                    android:id="@+id/container_main_sun_moon_moonrise_moonset"
+                    android:layout_marginEnd="4dp"
+                    android:textAlignment="viewEnd"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    style="@style/content_text"
+                    tools:text="05:45↑\n17:45↓"
+                    tools:ignore="RtlHardcoded" />
+
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/container_main_sun_moon_moon_icon"
+                    android:layout_toEndOf="@id/container_main_sun_moon_moonrise_moonset"
+                    android:layout_centerVertical="true"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/weather_clear_night_mini_xml"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
                     android:layout_margin="0dp"
-                    android:tint="@color/colorTextSubtitle"
+                    android:tint="@color/colorTextContent"
                     style="@style/material_icon"
                     tools:ignore="ContentDescription,RtlHardcoded" />
-
-                <TextView
-                    android:id="@+id/container_main_sun_moon_moonrise_moonset"
-                    android:layout_toEndOf="@id/container_main_sun_moon_moon_icon"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="4dp"
-                    android:textAlignment="viewEnd"
-                    style="@style/subtitle_text"
-                    tools:text="05:45↑\n17:45↓"
-                    tools:ignore="RtlHardcoded" />
 
             </RelativeLayout>
 

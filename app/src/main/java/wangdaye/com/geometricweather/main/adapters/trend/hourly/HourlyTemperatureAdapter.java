@@ -18,11 +18,13 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.Temperatur
 import wangdaye.com.geometricweather.common.basic.models.weather.Hourly;
 import wangdaye.com.geometricweather.common.basic.models.weather.Temperature;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.main.utils.MainThemeManager;
-import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
-import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.chart.PolylineAndHistogramView;
+import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider;
+import wangdaye.com.geometricweather.theme.ThemeManager;
+import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
+import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
+import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
 
 /**
  * Hourly temperature adapter.
@@ -31,7 +33,6 @@ import wangdaye.com.geometricweather.common.ui.widgets.trend.chart.PolylineAndHi
 public class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<HourlyTemperatureAdapter.ViewHolder> {
 
     private final ResourceProvider mResourceProvider;
-    private final MainThemeManager mThemeManager;
     private final TemperatureUnit mTemperatureUnit;
 
     private final float[] mTemperatures;
@@ -50,10 +51,10 @@ public class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<HourlyTemper
             hourlyItem.setChartItemView(mPolylineAndHistogramView);
         }
 
-        void onBindView(GeoActivity activity, Location location, MainThemeManager themeManager, int position) {
+        void onBindView(GeoActivity activity, Location location, int position) {
             StringBuilder talkBackBuilder = new StringBuilder(activity.getString(R.string.tag_temperature));
 
-            super.onBindView(activity, location, themeManager, talkBackBuilder, position);
+            super.onBindView(activity, location, talkBackBuilder, position);
 
             Weather weather = location.getWeather();
             assert weather != null;
@@ -80,20 +81,35 @@ public class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<HourlyTemper
                     (float) mHighestTemperature,
                     (float) mLowestTemperature,
                     p < 5 ? null : p,
-                    p < 5 ? null : ProbabilityUnit.PERCENT.getProbabilityText(activity, p),
+                    p < 5 ? null : ProbabilityUnit.PERCENT.getValueText(activity, (int) p),
                     100f,
                     0f
             );
-            int[] themeColors = mThemeManager.getWeatherThemeColors();
+            int[] themeColors = ThemeManager
+                    .getInstance(itemView.getContext())
+                    .getWeatherThemeDelegate()
+                    .getThemeColors(
+                            itemView.getContext(),
+                            WeatherViewController.getWeatherKind(location.getWeather()),
+                            location.isDaylight()
+                    );
+            boolean lightTheme = MainThemeColorProvider.isLightTheme(itemView.getContext(), location);
             mPolylineAndHistogramView.setLineColors(
-                    themeColors[mThemeManager.isLightTheme() ? 1 : 2], themeColors[2], mThemeManager.getSeparatorColor(activity));
-            mPolylineAndHistogramView.setShadowColors(
-                    themeColors[mThemeManager.isLightTheme() ? 1 : 2], themeColors[2], mThemeManager.isLightTheme());
-            mPolylineAndHistogramView.setTextColors(
-                    mThemeManager.getTextContentColor(activity),
-                    mThemeManager.getTextSubtitleColor(activity)
+                    themeColors[lightTheme ? 1 : 2],
+                    themeColors[2],
+                    MainThemeColorProvider.getColor(location, R.attr.colorOutline)
             );
-            mPolylineAndHistogramView.setHistogramAlpha(mThemeManager.isLightTheme() ? 0.2f : 0.5f);
+            mPolylineAndHistogramView.setShadowColors(
+                    themeColors[lightTheme ? 1 : 2],
+                    themeColors[2],
+                    lightTheme
+            );
+            mPolylineAndHistogramView.setTextColors(
+                    MainThemeColorProvider.getColor(location, R.attr.colorTitleText),
+                    MainThemeColorProvider.getColor(location, R.attr.colorBodyText),
+                    MainThemeColorProvider.getColor(location, R.attr.colorPrecipitationProbability)
+            );
+            mPolylineAndHistogramView.setHistogramAlpha(lightTheme ? 0.2f : 0.5f);
 
             hourlyItem.setContentDescription(talkBackBuilder.toString());
         }
@@ -117,9 +133,8 @@ public class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<HourlyTemper
     }
 
     public HourlyTemperatureAdapter(GeoActivity activity, TrendRecyclerView parent, Location location,
-                                    ResourceProvider provider, MainThemeManager themeManager,
-                                    TemperatureUnit unit) {
-        this(activity, parent, location, true, provider, themeManager, unit);
+                                    ResourceProvider provider, TemperatureUnit unit) {
+        this(activity, parent, location, true, provider, unit);
     }
 
     public HourlyTemperatureAdapter(GeoActivity activity,
@@ -127,14 +142,12 @@ public class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<HourlyTemper
                                     Location location,
                                     boolean showPrecipitationProbability,
                                     ResourceProvider provider,
-                                    MainThemeManager themeManager,
                                     TemperatureUnit unit) {
         super(activity, location);
 
         Weather weather = location.getWeather();
         assert weather != null;
         mResourceProvider = provider;
-        mThemeManager = themeManager;
         mTemperatureUnit = unit;
 
         mTemperatures = new float[Math.max(0, weather.getHourlyForecast().size() * 2 - 1)];
@@ -162,7 +175,6 @@ public class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<HourlyTemper
 
         mShowPrecipitationProbability = showPrecipitationProbability;
 
-        parent.setLineColor(mThemeManager.getSeparatorColor(activity));
         if (weather.getYesterday() == null) {
             parent.setData(null,0, 0);
         } else {
@@ -205,7 +217,7 @@ public class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<HourlyTemper
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(getActivity(), getLocation(), mThemeManager, position);
+        holder.onBindView(getActivity(), getLocation(), position);
     }
 
     @Override
@@ -219,7 +231,7 @@ public class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter<HourlyTemper
     }
 
     protected int getTemperature(Weather weather, int index, TemperatureUnit unit) {
-        return unit.getTemperature(getTemperatureC(weather, index));
+        return unit.getValueWithoutUnit(getTemperatureC(weather, index));
     }
 
     protected String getTemperatureString(Weather weather, int index, TemperatureUnit unit) {

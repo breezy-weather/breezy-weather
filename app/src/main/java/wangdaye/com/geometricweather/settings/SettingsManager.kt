@@ -2,20 +2,23 @@ package wangdaye.com.geometricweather.settings
 
 import android.content.Context
 import wangdaye.com.geometricweather.BuildConfig
-import wangdaye.com.geometricweather.R
+import wangdaye.com.geometricweather.GeometricWeather
 import wangdaye.com.geometricweather.common.basic.models.options.DarkMode
 import wangdaye.com.geometricweather.common.basic.models.options.NotificationStyle
 import wangdaye.com.geometricweather.common.basic.models.options.UpdateInterval
 import wangdaye.com.geometricweather.common.basic.models.options.WidgetWeekIconMode
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.CardDisplay
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.DailyTrendDisplay
+import wangdaye.com.geometricweather.common.basic.models.options.appearance.HourlyTrendDisplay
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.Language
 import wangdaye.com.geometricweather.common.basic.models.options.provider.LocationProvider
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource
 import wangdaye.com.geometricweather.common.basic.models.options.unit.*
+import wangdaye.com.geometricweather.common.bus.EventBus
 
+class SettingsChangedMessage
 
-class SettingsManager private constructor(context: Context){
+class SettingsManager private constructor(context: Context) {
 
     companion object {
 
@@ -34,21 +37,21 @@ class SettingsManager private constructor(context: Context){
             return instance!!
         }
 
-        private const val DEFAULT_CARD_DISPLAY = (
-                "daily_overview"
-                        + "&hourly_overview"
-                        + "&air_quality"
-                        + "&allergen"
-                        + "&sunrise_sunset"
-                        + "&life_details"
-        )
-        private const val DEFAULT_DAILY_TREND_DISPLAY = (
-                "temperature"
-                        + "&air_quality"
-                        + "&wind"
-                        + "&uv_index"
-                        + "&precipitation"
-        )
+        private const val DEFAULT_CARD_DISPLAY = ("daily_overview"
+                + "&hourly_overview"
+                + "&air_quality"
+                + "&allergen"
+                + "&sunrise_sunset"
+                + "&life_details")
+        private const val DEFAULT_DAILY_TREND_DISPLAY = ("temperature"
+                + "&air_quality"
+                + "&wind"
+                + "&uv_index"
+                + "&precipitation")
+        private const val DEFAULT_HOURLY_TREND_DISPLAY = ("temperature"
+                + "&wind"
+                + "&uv_index"
+                + "&precipitation")
 
         const val DEFAULT_TODAY_FORECAST_TIME = "07:00"
         const val DEFAULT_TOMORROW_FORECAST_TIME = "21:00"
@@ -57,337 +60,410 @@ class SettingsManager private constructor(context: Context){
     private val config = ConfigStore.getInstance(context)
 
     // basic.
-    private val backgroundFree = context.getString(R.string.key_background_free)
-    private val alertPushEnabled = context.getString(R.string.key_alert_notification_switch)
-    private val precipitationPushEnabled = context.getString(R.string.key_precipitation_notification_switch)
-    private val updateInterval = context.getString(R.string.key_refresh_rate)
-    private val darkMode = context.getString(R.string.key_dark_mode)
 
-    // service provider.
-    private val weatherSource = context.getString(R.string.key_weather_source)
-    private val locationProvider = context.getString(R.string.key_location_service)
+    var isBackgroundFree: Boolean
+        set(value) {
+            config.edit().putBoolean("background_free_3", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config.getBoolean("background_free_3", true)
+
+    var isAlertPushEnabled: Boolean
+        set(value) {
+            config.edit().putBoolean("alert_notification_switch", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config.getBoolean("alert_notification_switch", true)
+
+    var isPrecipitationPushEnabled: Boolean
+        set(value) {
+            config.edit().putBoolean("precipitation_notification_switch", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config.getBoolean("precipitation_notification_switch", false)
+
+    var updateInterval: UpdateInterval
+        set(value) {
+            config.edit().putString("refresh_rate", value.id).apply()
+            notifySettingsChanged()
+        }
+        get() = UpdateInterval.getInstance(
+            config.getString("refresh_rate", "1:30") ?: ""
+        )
+
+    var darkMode: DarkMode
+        set(value) {
+            config.edit().putString("dark_mode", value.id).apply()
+            notifySettingsChanged()
+        }
+        get() = DarkMode.getInstance(
+            config.getString("dark_mode", "auto") ?: ""
+        )
+
+    // service providers.
+
+    var weatherSource: WeatherSource
+        set(value) {
+            config.edit().putString("weather_source", value.id).apply()
+            notifySettingsChanged()
+        }
+        get() = WeatherSource.getInstance(
+            config.getString("weather_source", "accu") ?: ""
+        )
+
+    var locationProvider: LocationProvider
+        set(value) {
+            config.edit().putString("location_service", value.id).apply()
+            notifySettingsChanged()
+        }
+        get() = LocationProvider.getInstance(
+            config.getString("location_service", "native") ?: ""
+        )
 
     // unit.
-    private val temperatureUnit = context.getString(R.string.key_temperature_unit)
-    private val distanceUnit = context.getString(R.string.key_distance_unit)
-    private val precipitationUnit = context.getString(R.string.key_precipitation_unit)
-    private val pressureUnit = context.getString(R.string.key_pressure_unit)
-    private val speedUnit = context.getString(R.string.key_speed_unit)
+
+    var temperatureUnit: TemperatureUnit
+        set(value) {
+            config.edit().putString("temperature_unit", value.id).apply()
+            notifySettingsChanged()
+        }
+        get() = TemperatureUnit.getInstance(
+            config.getString("temperature_unit", "c") ?: ""
+        )
+
+    var distanceUnit: DistanceUnit
+        set(value) {
+            config.edit().putString("distance_unit", value.id).apply()
+            notifySettingsChanged()
+        }
+        get() = DistanceUnit.getInstance(
+            config.getString("distance_unit", "km") ?: ""
+        )
+
+    var precipitationUnit: PrecipitationUnit
+        set(value) {
+            config.edit().putString("precipitation_unit", value.id).apply()
+            notifySettingsChanged()
+        }
+        get() = PrecipitationUnit.getInstance(
+            config.getString("precipitation_unit", "mm") ?: ""
+        )
+
+    var pressureUnit: PressureUnit
+        set(value) {
+            config.edit().putString("pressure_unit", value.id).apply()
+            notifySettingsChanged()
+        }
+        get() = PressureUnit.getInstance(
+            config.getString("pressure_unit", "mb") ?: ""
+        )
+
+    var speedUnit: SpeedUnit
+        set(value) {
+            config.edit().putString("speed_unit", value.id).apply()
+            notifySettingsChanged()
+        }
+        get() = SpeedUnit.getInstance(
+            config.getString("speed_unit", "mps") ?: ""
+        )
 
     // appearance.
-    private val iconProvider = context.getString(R.string.key_icon_provider)
-    private val cardDisplayList = context.getString(R.string.key_card_display)
-    private val dailyTrendDisplayList = context.getString(R.string.key_daily_trend_display)
 
-    private val trendHorizontalLinesEnabled = context.getString(R.string.key_trend_horizontal_line_switch)
-    private val exchangeDayNightTempEnabled = context.getString(R.string.key_exchange_day_night_temp_switch)
-    private val gravitySensorEnabled = context.getString(R.string.key_gravity_sensor_switch)
-    private val listAnimationEnabled = context.getString(R.string.key_list_animation_switch)
-    private val itemAnimationEnabled = context.getString(R.string.key_item_animation_switch)
-    private val language = context.getString(R.string.key_language)
+    var iconProvider: String
+        set(value) {
+            config
+                .edit()
+                .putString("iconProvider", value)
+                .apply()
+            notifySettingsChanged()
+        }
+        get() = config.getString("iconProvider", GeometricWeather.instance.packageName) ?: ""
+
+    var cardDisplayList: List<CardDisplay>
+        set(value) {
+            config
+                .edit()
+                .putString("card_display_2", CardDisplay.toValue(value))
+                .apply()
+            notifySettingsChanged()
+        }
+        get() = CardDisplay
+            .toCardDisplayList(
+                config.getString("card_display_2", DEFAULT_CARD_DISPLAY) ?: ""
+            )
+            .toList()
+
+    var dailyTrendDisplayList: List<DailyTrendDisplay>
+        set(value) {
+            config
+                .edit()
+                .putString("daily_trend_display", DailyTrendDisplay.toValue(value))
+                .apply()
+            notifySettingsChanged()
+        }
+        get() = DailyTrendDisplay
+            .toDailyTrendDisplayList(
+                config.getString("daily_trend_display", DEFAULT_DAILY_TREND_DISPLAY) ?: ""
+            )
+            .toList()
+
+    var hourlyTrendDisplayList: List<HourlyTrendDisplay>
+        set(value) {
+            config
+                .edit()
+                .putString("hourly_trend_display", HourlyTrendDisplay.toValue(value))
+                .apply()
+            notifySettingsChanged()
+        }
+        get() = HourlyTrendDisplay
+            .toHourlyTrendDisplayList(
+                config.getString("hourly_trend_display", DEFAULT_HOURLY_TREND_DISPLAY) ?: ""
+            )
+            .toList()
+
+    var isTrendHorizontalLinesEnabled: Boolean
+        set(value) {
+            config.edit().putBoolean("trend_horizontal_line_switch", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config.getBoolean("trend_horizontal_line_switch", true)
+
+    var isExchangeDayNightTempEnabled: Boolean
+        set(value) {
+            config.edit().putBoolean("exchange_day_night_temp_switch", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config.getBoolean("exchange_day_night_temp_switch", false)
+
+    var isGravitySensorEnabled: Boolean
+        set(value) {
+            config.edit().putBoolean("gravity_sensor_switch", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config.getBoolean("gravity_sensor_switch", true)
+
+    var isListAnimationEnabled: Boolean
+        set(value) {
+            config.edit().putBoolean("list_animation_switch", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config.getBoolean("list_animation_switch", true)
+
+    var isItemAnimationEnabled: Boolean
+        set(value) {
+            config.edit().putBoolean("item_animation_switch", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config.getBoolean("item_animation_switch", true)
+
+    var language: Language
+        set(value) {
+            config.edit().putString("language", value.id).apply()
+            notifySettingsChanged()
+        }
+        get() = Language.getInstance(
+            config.getString("language", "follow_system") ?: ""
+        )
 
     // forecast.
-    private val todayForecastEnabled = context.getString(R.string.key_forecast_today)
-    private val todayForecastTime = context.getString(R.string.key_forecast_today_time)
 
-    private val tomorrowForecastEnabled = context.getString(R.string.key_forecast_tomorrow)
-    private val tomorrowForecastTime = context.getString(R.string.key_forecast_tomorrow_time)
+    var isTodayForecastEnabled: Boolean
+        set(value) {
+            config.edit().putBoolean("timing_forecast_switch_today", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config.getBoolean("timing_forecast_switch_today", false)
+
+    var todayForecastTime: String
+        set(value) {
+            config.edit().putString("forecast_time_today", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config
+            .getString("forecast_time_today", DEFAULT_TODAY_FORECAST_TIME)
+            ?: DEFAULT_TODAY_FORECAST_TIME
+
+    var isTomorrowForecastEnabled: Boolean
+        set(value) {
+            config.edit().putBoolean("timing_forecast_switch_tomorrow", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config.getBoolean("timing_forecast_switch_tomorrow", false)
+
+    var tomorrowForecastTime: String
+        set(value) {
+            config.edit().putString("forecast_time_tomorrow", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config
+            .getString("forecast_time_tomorrow", DEFAULT_TOMORROW_FORECAST_TIME)
+            ?: DEFAULT_TOMORROW_FORECAST_TIME
 
     // widget.
-    private val widgetWeekIconMode = context.getString(R.string.key_week_icon_mode)
-    private val widgetMinimalIconEnabled = context.getString(R.string.key_widget_minimal_icon)
+
+    var widgetWeekIconMode: WidgetWeekIconMode
+        set(value) {
+            config.edit().putString("week_icon_mode", value.id).apply()
+            notifySettingsChanged()
+        }
+        get() = WidgetWeekIconMode.getInstance(
+            config.getString("week_icon_mode", "auto") ?: ""
+        )
+
+    var isWidgetMinimalIconEnabled: Boolean
+        set(value) {
+            config.edit().putBoolean("widget_minimal_icon", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config.getBoolean("widget_minimal_icon", false)
 
     // notification.
-    private val notificationEnabled = context.getString(R.string.key_notification)
-    private val notificationStyle = context.getString(R.string.key_notification_style)
-    private val notificationTemperatureIconEnabled = context.getString(R.string.key_notification_temp_icon)
-    private val notificationCanBeClearedEnabled = context.getString(R.string.key_notification_can_be_cleared)
 
-    // service providers
-    private val providerAccuWeatherKey = context.getString(R.string.key_provider_accu_weather_key)
-    private val providerAccuCurrentKey = context.getString(R.string.key_provider_accu_current_key)
-    private val providerAccuAqiKey = context.getString(R.string.key_provider_accu_aqi_key)
+    var isNotificationEnabled: Boolean
+        set(value) {
+            config.edit().putBoolean("notification_switch", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config.getBoolean("notification_switch", false)
 
-    private val providerOwmKey = context.getString(R.string.key_provider_owm_key)
-
-    private val providerBaiduIpLocationAk = context.getString(R.string.key_provider_baidu_ip_location_ak)
-
-    private val providerMfWsftKey = context.getString(R.string.key_provider_mf_wsft_key)
-    private val providerIqaAirParifKey = context.getString(R.string.key_provider_iqa_air_parif_key)
-    private val providerIqaAtmoAuraKey = context.getString(R.string.key_provider_iqa_atmo_aura_key)
-
-    fun preload() {
-        config.preload()
-    }
-
-    fun isBackgroundFree(): Boolean {
-        return config.getBoolean(backgroundFree, true)
-        // || Build.VERSION.SDK_INT >= Build.VERSION_CODES.S;
-    }
-
-    fun isAlertPushEnabled(): Boolean {
-        return config.getBoolean(alertPushEnabled, true)
-    }
-
-    fun isPrecipitationPushEnabled(): Boolean {
-        return config.getBoolean(precipitationPushEnabled, false)
-    }
-
-    fun getUpdateInterval(): UpdateInterval {
-        return UpdateInterval.getInstance(
-                config.getString(updateInterval, "1:30")
+    var notificationStyle: NotificationStyle
+        set(value) {
+            config.edit().putString("notification_style", value.id).apply()
+            notifySettingsChanged()
+        }
+        get() = NotificationStyle.getInstance(
+            config.getString("notification_style", "daily") ?: ""
         )
-    }
 
-    fun getDarkMode(): DarkMode {
-        return DarkMode.getInstance(
-                config.getString(darkMode, "auto")
+    var isNotificationTemperatureIconEnabled: Boolean
+        set(value) {
+            config.edit().putBoolean("notification_temp_icon_switch", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config.getBoolean("notification_temp_icon_switch", false)
+
+    var isNotificationCanBeClearedEnabled: Boolean
+        set(value) {
+            config.edit().putBoolean("notification_can_clear_switch", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config.getBoolean("notification_can_clear_switch", false)
+
+    // service provider advanced.
+
+    var customAccuWeatherKey: String
+        set(value) {
+            config.edit().putString("provider_accu_weather_key", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config.getString("provider_accu_weather_key", "") ?: ""
+
+    var customAccuCurrentKey: String
+        set(value) {
+            config.edit().putString("provider_accu_current_key", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config.getString("provider_accu_current_key", "") ?: ""
+
+    var customAccuAqiKey: String
+        set(value) {
+            config.edit().putString("provider_accu_aqi_key", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config.getString("provider_accu_aqi_key", "") ?: ""
+
+    var customOwmKey: String
+        set(value) {
+            config.edit().putString("provider_owm_key", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config.getString("provider_owm_key", "") ?: ""
+
+    var customBaiduIpLocationAk: String
+        set(value) {
+            config.edit().putString("provider_baidu_ip_location_ak", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config.getString("provider_baidu_ip_location_ak", "") ?: ""
+
+    var customMfWsftKey: String
+        set(value) {
+            config.edit().putString("provider_mf_wsft_key", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config.getString("provider_mf_wsft_key", "") ?: ""
+
+    var customIqaAirParifKey: String
+        set(value) {
+            config.edit().putString("provider_iqa_air_parif_key", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config.getString("provider_iqa_air_parif_key", "") ?: ""
+
+    var customIqaAtmoAuraKey: String
+        set(value) {
+            config.edit().putString("provider_iqa_atmo_aura_key", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config.getString("provider_iqa_atmo_aura_key", "") ?: ""
+
+    val providerAccuWeatherKey: String
+        get() = getProviderSettingValue(
+            customValue = customAccuWeatherKey,
+            defaultValue = BuildConfig.ACCU_WEATHER_KEY,
         )
-    }
 
-    fun getWeatherSource(): WeatherSource {
-        return WeatherSource.getInstance(
-                config.getString(weatherSource, "accu")
+    val providerAccuCurrentKey: String
+        get() = getProviderSettingValue(
+            customValue = customAccuCurrentKey,
+            defaultValue = BuildConfig.ACCU_CURRENT_KEY,
         )
-    }
 
-    fun getLocationProvider(): LocationProvider {
-        return LocationProvider.getInstance(
-                config.getString(locationProvider, "native")
+    val providerAccuAqiKey: String
+        get() = getProviderSettingValue(
+            customValue = customAccuAqiKey,
+            defaultValue = BuildConfig.ACCU_AQI_KEY,
         )
-    }
 
-    fun setLocationProvider(provider: LocationProvider) {
-        config.edit()
-            .putString(locationProvider, provider.providerId)
-            .apply()
-    }
-
-    fun getTemperatureUnit(): TemperatureUnit {
-        return TemperatureUnit.getInstance(
-                config.getString(temperatureUnit, "c")
+    val providerOwmKey: String
+        get() = getProviderSettingValue(
+            customValue = customOwmKey,
+            defaultValue = BuildConfig.OWM_KEY,
         )
-    }
 
-    fun getDistanceUnit(): DistanceUnit {
-        return DistanceUnit.getInstance(
-                config.getString(distanceUnit, "km")
+    val providerBaiduIpLocationAk: String
+        get() = getProviderSettingValue(
+            customValue = customBaiduIpLocationAk,
+            defaultValue = BuildConfig.BAIDU_IP_LOCATION_AK,
         )
-    }
 
-    fun getPrecipitationUnit(): PrecipitationUnit {
-        return PrecipitationUnit.getInstance(
-                config.getString(precipitationUnit, "mm")
+    val providerMfWsftKey: String
+        get() = getProviderSettingValue(
+            customValue = customMfWsftKey,
+            defaultValue = BuildConfig.MF_WSFT_KEY,
         )
-    }
 
-    fun getPressureUnit(): PressureUnit {
-        return PressureUnit.getInstance(
-                config.getString(pressureUnit, "mb")
+    val providerIqaAirParifKey: String
+        get() = getProviderSettingValue(
+            customValue = customIqaAirParifKey,
+            defaultValue = BuildConfig.IQA_AIR_PARIF_KEY,
         )
-    }
 
-    fun getSpeedUnit(): SpeedUnit {
-        return SpeedUnit.getInstance(
-                config.getString(speedUnit, "mps")
+    val providerIqaAtmoAuraKey: String
+        get() = getProviderSettingValue(
+            customValue = customIqaAtmoAuraKey,
+            defaultValue = BuildConfig.IQA_ATMO_AURA_KEY,
         )
-    }
-
-    fun getIconProvider(context: Context): String {
-        return config.getString(iconProvider, context.packageName)!!
-    }
-
-    fun setIconProvider(packageName: String) {
-        config.edit()
-            .putString(iconProvider, packageName)
-            .apply()
-    }
-
-    fun getCardDisplayList(): List<CardDisplay> {
-        return ArrayList(
-                CardDisplay.toCardDisplayList(
-                        config.getString(cardDisplayList, DEFAULT_CARD_DISPLAY)
-                )
-        )
-    }
-
-    fun setCardDisplayList(list: List<CardDisplay>) {
-        config.edit()
-                .putString(cardDisplayList, CardDisplay.toValue(list))
-                .apply()
-    }
-
-    fun getDailyTrendDisplayList(): List<DailyTrendDisplay> {
-        return ArrayList(
-                DailyTrendDisplay.toDailyTrendDisplayList(
-                        config.getString(dailyTrendDisplayList, DEFAULT_DAILY_TREND_DISPLAY)
-                )
-        )
-    }
-
-    fun setDailyTrendDisplayList(list: List<DailyTrendDisplay>) {
-        config.edit()
-                .putString(dailyTrendDisplayList, DailyTrendDisplay.toValue(list))
-                .apply()
-    }
-
-    fun isTrendHorizontalLinesEnabled(): Boolean {
-        return config.getBoolean(trendHorizontalLinesEnabled, true)
-    }
-
-    fun isExchangeDayNightTempEnabled(): Boolean {
-        return config.getBoolean(exchangeDayNightTempEnabled, false)
-    }
-
-    fun isGravitySensorEnabled(): Boolean {
-        return config.getBoolean(gravitySensorEnabled, true)
-    }
-
-    fun isListAnimationEnabled(): Boolean {
-        return config.getBoolean(listAnimationEnabled, true)
-    }
-
-    fun isItemAnimationEnabled(): Boolean {
-        return config.getBoolean(itemAnimationEnabled, true)
-    }
-
-    fun getLanguage(): Language {
-        return Language.getInstance(
-                config.getString(language, "follow_system")
-        )
-    }
-
-    fun isTodayForecastEnabled(): Boolean {
-        return config.getBoolean(todayForecastEnabled, false)
-    }
-
-    fun getTodayForecastTime(): String {
-        return config.getString(todayForecastTime, DEFAULT_TODAY_FORECAST_TIME)!!
-    }
-
-    fun setTodayForecastTime(time: String) {
-        return config.edit()
-            .putString(todayForecastTime, time)
-            .apply()
-    }
-
-    fun isTomorrowForecastEnabled(): Boolean {
-        return config.getBoolean(tomorrowForecastEnabled, false)
-    }
-
-    fun getTomorrowForecastTime(): String {
-        return config.getString(tomorrowForecastTime, DEFAULT_TOMORROW_FORECAST_TIME)!!
-    }
-
-    fun setTomorrowForecastTime(time: String) {
-        return config.edit()
-            .putString(tomorrowForecastTime, time)
-            .apply()
-    }
-
-    fun getWidgetWeekIconMode(): WidgetWeekIconMode {
-        return WidgetWeekIconMode.getInstance(
-                config.getString(widgetWeekIconMode, "auto")
-        )
-    }
-
-    fun isWidgetMinimalIconEnabled(): Boolean {
-        return config.getBoolean(widgetMinimalIconEnabled, false)
-    }
-
-    fun isNotificationEnabled(): Boolean {
-        return config.getBoolean(notificationEnabled, false)
-    }
-
-    fun getNotificationStyle(): NotificationStyle {
-        return NotificationStyle.getInstance(
-                config.getString(notificationStyle, "daily")
-        )
-    }
-
-    fun isNotificationTemperatureIconEnabled(): Boolean {
-        return config.getBoolean(notificationTemperatureIconEnabled, false)
-    }
-
-    fun isNotificationCanBeClearedEnabled(): Boolean {
-        return config.getBoolean(notificationCanBeClearedEnabled, false)
-    }
 
     private fun getProviderSettingValue(
-        key: String,
-        defaultValue: String?,
-        useDefaultValue: Boolean
-    ): String {
-        val prefValue = config.getString(key, "")
+        customValue: String,
+        defaultValue: String,
+    ) = customValue.ifEmpty { defaultValue }
 
-        return (if (prefValue == null || prefValue.isEmpty()) {
-            if (useDefaultValue) defaultValue else null
-        } else {
-            prefValue
-        }) ?: ""
-    }
-
-    fun getProviderAccuWeatherKey(useDefaultValue: Boolean): String {
-        return getProviderSettingValue(
-                providerAccuWeatherKey,
-                BuildConfig.ACCU_WEATHER_KEY,
-                useDefaultValue
-        )
-    }
-
-    fun getProviderAccuCurrentKey(useDefaultValue: Boolean): String {
-        return getProviderSettingValue(
-                providerAccuCurrentKey,
-                BuildConfig.ACCU_CURRENT_KEY,
-                useDefaultValue
-        )
-    }
-
-    fun getProviderAccuAqiKey(useDefaultValue: Boolean): String {
-        return getProviderSettingValue(
-                providerAccuAqiKey,
-                BuildConfig.ACCU_AQI_KEY,
-                useDefaultValue
-        )
-    }
-
-    fun getProviderOwmKey(useDefaultValue: Boolean): String {
-        return getProviderSettingValue(
-                providerOwmKey,
-                BuildConfig.OWM_KEY,
-                useDefaultValue
-        )
-    }
-
-    fun getProviderBaiduIpLocationAk(useDefaultValue: Boolean): String {
-        return getProviderSettingValue(
-                providerBaiduIpLocationAk,
-                BuildConfig.BAIDU_IP_LOCATION_AK,
-                useDefaultValue
-        )
-    }
-
-    fun getProviderMfWsftKey(useDefaultValue: Boolean): String {
-        return getProviderSettingValue(
-                providerMfWsftKey,
-                BuildConfig.MF_WSFT_KEY,
-                useDefaultValue
-        )
-    }
-
-    fun getProviderIqaAirParifKey(useDefaultValue: Boolean): String {
-        return getProviderSettingValue(
-                providerIqaAirParifKey,
-                BuildConfig.IQA_AIR_PARIF_KEY,
-                useDefaultValue
-        )
-    }
-
-    fun getProviderIqaAtmoAuraKey(useDefaultValue: Boolean): String {
-        return getProviderSettingValue(
-                providerIqaAtmoAuraKey,
-                BuildConfig.IQA_ATMO_AURA_KEY,
-                useDefaultValue
-        )
+    private fun notifySettingsChanged() {
+        EventBus
+            .instance
+            .with(SettingsChangedMessage::class.java)
+            .postValue(SettingsChangedMessage())
     }
 }

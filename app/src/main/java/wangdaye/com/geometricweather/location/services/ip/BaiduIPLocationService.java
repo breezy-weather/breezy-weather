@@ -27,7 +27,7 @@ public class BaiduIPLocationService extends LocationService {
 
     @Override
     public void requestLocation(Context context, @NonNull LocationCallback callback) {
-        mApi.getLocation(SettingsManager.getInstance(context).getProviderBaiduIpLocationAk(true), "gcj02")
+        mApi.getLocation(SettingsManager.getInstance(context).getProviderBaiduIpLocationAk(), "gcj02")
                 .compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(compositeDisposable, new BaseObserver<BaiduIPLocationResult>() {
                     @Override

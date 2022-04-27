@@ -98,7 +98,7 @@ public class AsyncHelper {
         );
     }
 
-    public static <T> Controller delayRunOnIO(Runnable runnable, long milliSeconds) {
+    public static Controller delayRunOnIO(Runnable runnable, long milliSeconds) {
         return new Controller(
                 Observable.timer(milliSeconds, TimeUnit.MILLISECONDS)
                         .subscribeOn(AndroidSchedulers.mainThread())

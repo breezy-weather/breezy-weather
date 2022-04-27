@@ -34,8 +34,8 @@ public class MainModuleUtils {
                 animators[1],
                 animators[2]
         );
-        set.setDuration(Math.max(BASE_ENTER_DURATION - pendingCount * 50, BASE_ENTER_DURATION / 2));
-        set.setStartDelay(pendingCount * 200);
+        set.setDuration(Math.max(BASE_ENTER_DURATION - pendingCount * 50L, BASE_ENTER_DURATION / 2));
+        set.setStartDelay(pendingCount * 200L);
         return set;
     }
 }

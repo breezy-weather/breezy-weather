@@ -32,28 +32,40 @@ public class PollenHolder extends DailyWeatherAdapter.ViewHolder {
                 Pollen.getPollenColor(itemView.getContext(), pollen.getGrassLevel())
         ));
         mBinding.grassTitle.setText(context.getString(R.string.grass));
-        mBinding.grassValue.setText(mPollenUnit.getPollenText(context, pollen.getGrassIndex())
-                + " - " + pollen.getGrassDescription());
+        mBinding.grassValue.setText(
+                mPollenUnit.getValueText(
+                        context, pollen.getGrassIndex() != null ? pollen.getGrassIndex() : 0
+                ) + " - " + pollen.getGrassDescription()
+        );
 
         mBinding.ragweedIcon.setSupportImageTintList(ColorStateList.valueOf(
                 Pollen.getPollenColor(itemView.getContext(), pollen.getRagweedLevel())
         ));
         mBinding.ragweedTitle.setText(context.getString(R.string.ragweed));
-        mBinding.ragweedValue.setText(mPollenUnit.getPollenText(context, pollen.getRagweedIndex())
-                + " - " + pollen.getRagweedDescription());
+        mBinding.ragweedValue.setText(
+                mPollenUnit.getValueText(
+                        context, pollen.getRagweedIndex() != null ? pollen.getRagweedIndex() : 0
+                ) + " - " + pollen.getRagweedDescription()
+        );
 
         mBinding.treeIcon.setSupportImageTintList(ColorStateList.valueOf(
                 Pollen.getPollenColor(itemView.getContext(), pollen.getTreeLevel())
         ));
         mBinding.treeTitle.setText(context.getString(R.string.tree));
-        mBinding.treeValue.setText(mPollenUnit.getPollenText(context, pollen.getTreeIndex())
-                + " - " + pollen.getTreeDescription());
+        mBinding.treeValue.setText(
+                mPollenUnit.getValueText(
+                        context, pollen.getTreeIndex() != null ? pollen.getTreeIndex() : 0
+                ) + " - " + pollen.getTreeDescription()
+        );
 
         mBinding.moldIcon.setSupportImageTintList(ColorStateList.valueOf(
                 Pollen.getPollenColor(itemView.getContext(), pollen.getMoldLevel())
         ));
         mBinding.moldTitle.setText(context.getString(R.string.mold));
-        mBinding.moldValue.setText(mPollenUnit.getPollenText(context, pollen.getMoldIndex())
-                + " - " + pollen.getMoldDescription());
+        mBinding.moldValue.setText(
+                mPollenUnit.getValueText(
+                        context, pollen.getMoldIndex() != null ? pollen.getMoldIndex() : 0
+                ) + " - " + pollen.getMoldDescription()
+        );
     }
 }

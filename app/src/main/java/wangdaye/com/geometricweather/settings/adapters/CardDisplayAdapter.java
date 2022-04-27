@@ -58,7 +58,7 @@ public class CardDisplayAdapter extends RecyclerView.Adapter<CardDisplayAdapter.
         }
 
         void onBindView(CardDisplay cardDisplay) {
-            title.setText(cardDisplay.getCardName(title.getContext()));
+            title.setText(cardDisplay.getName(title.getContext()));
             
             container.swipe(0);
             container.setOnClickListener(v -> {

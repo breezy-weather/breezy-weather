@@ -33,7 +33,7 @@ class ConfigStore private constructor(sp: SharedPreferences) {
         return preferences.getString(key, defValue)
     }
 
-    fun getStringSet(key: String, defValues: Set<String?>?): Set<String>? {
+    fun getStringSet(key: String, defValues: Set<String>?): Set<String>? {
         return preferences.getStringSet(key, defValues)
     }
 

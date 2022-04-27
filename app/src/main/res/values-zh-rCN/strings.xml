@@ -136,6 +136,7 @@
     <string name="email">E-mail</string>
     <string name="donate">捐赠</string>
     <string name="gitHub">GitHub</string>
+    <string name="contributor">贡献者</string>
     <string name="translator">译者</string>
     <string name="thanks">鸣谢</string>
 
@@ -350,6 +351,7 @@
     <string name="settings_title_card_display">卡片显示</string>
     <string name="settings_title_card_order">卡片顺序</string>
     <string name="settings_title_daily_trend_display">每日趋势顺序</string>
+    <string name="settings_title_hourly_trend_display">小时趋势顺序</string>
     <string name="settings_title_trend_horizontal_line_switch">趋势图横线</string>
     <string name="settings_title_exchange_day_night_temp_switch">交换日间夜间温度</string>
     <string name="settings_title_gravity_sensor_switch">重力感应</string>

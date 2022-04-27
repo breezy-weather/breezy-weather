@@ -21,10 +21,10 @@ import io.reactivex.disposables.Disposable;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
-import wangdaye.com.geometricweather.main.utils.MainThemeManager;
-import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.common.ui.widgets.NumberAnimTextView;
+import wangdaye.com.geometricweather.settings.SettingsManager;
+import wangdaye.com.geometricweather.theme.ThemeManager;
+import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 import wangdaye.com.geometricweather.theme.weatherView.WeatherView;
 
 public class HeaderViewHolder extends AbstractMainViewHolder {
@@ -39,9 +39,12 @@ public class HeaderViewHolder extends AbstractMainViewHolder {
     private TemperatureUnit mTemperatureUnit;
     private @Nullable Disposable mDisposable;
 
-    public HeaderViewHolder(ViewGroup parent, WeatherView weatherView, MainThemeManager themeManager) {
-        super(LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.container_main_header, parent, false), themeManager);
+    public HeaderViewHolder(ViewGroup parent, WeatherView weatherView) {
+        super(
+                LayoutInflater
+                        .from(parent.getContext())
+                        .inflate(R.layout.container_main_header, parent, false)
+        );
 
         mContainer = itemView.findViewById(R.id.container_main_header);
         mTemperature = itemView.findViewById(R.id.container_main_header_tempTxt);
@@ -63,10 +66,16 @@ public class HeaderViewHolder extends AbstractMainViewHolder {
         super.onBindView(context, location, provider, listAnimationEnabled, itemAnimationEnabled);
 
         ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) mContainer.getLayoutParams();
-        params.height = themeManager.getHeaderHeight();
+        params.height = ThemeManager
+                .getInstance(context)
+                .getWeatherThemeDelegate()
+                .getHeaderHeight(context);
         mContainer.setLayoutParams(params);
 
-        int textColor = themeManager.getHeaderTextColor(context);
+        int textColor = ThemeManager
+                .getInstance(context)
+                .getWeatherThemeDelegate()
+                .getHeaderTextColor(context);
         mTemperature.setTextColor(textColor);
         mWeather.setTextColor(textColor);
         mAqiOrWind.setTextColor(textColor);
@@ -83,7 +92,7 @@ public class HeaderViewHolder extends AbstractMainViewHolder {
                             Math.abs(mTemperatureCTo - mTemperatureCFrom) / 10f * 1000
                     )
             );
-            mTemperature.setPostfixString(mTemperatureUnit.getShortAbbreviation(context));
+            mTemperature.setPostfixString(mTemperatureUnit.getShortName(context));
 
             StringBuilder title = new StringBuilder(location.getWeather().getCurrent().getWeatherText());
             if (location.getWeather().getCurrent().getTemperature().getRealFeelTemperature() != null) {
@@ -130,8 +139,8 @@ public class HeaderViewHolder extends AbstractMainViewHolder {
     public void onEnterScreen() {
         super.onEnterScreen();
         mTemperature.setNumberString(
-                String.format("%d", mTemperatureUnit.getTemperature(mTemperatureCFrom)),
-                String.format("%d", mTemperatureUnit.getTemperature(mTemperatureCTo))
+                String.format("%d", mTemperatureUnit.getValueWithoutUnit(mTemperatureCFrom)),
+                String.format("%d", mTemperatureUnit.getValueWithoutUnit(mTemperatureCTo))
         );
     }
 

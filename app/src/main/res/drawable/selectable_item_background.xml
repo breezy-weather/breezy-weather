@@ -5,6 +5,6 @@
         android:state_pressed="false"
         android:drawable="@android:color/transparent" />
 
-    <item android:drawable="@color/colorRipple" />
+    <item android:drawable="?attr/colorControlHighlight" />
 
 </selector>

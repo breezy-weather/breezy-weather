@@ -1,35 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- theme. -->
-
-    <color name="colorPrimary">@color/lightPrimary_2</color>
-    <color name="colorPrimaryVariant">@color/lightPrimary_1</color>
-    <color name="colorOnPrimary">@android:color/black</color>
-
-    <color name="colorSecondary">@color/darkPrimary_1</color>
-    <color name="colorSecondaryVariant">@color/darkPrimary_2</color>
-    <color name="colorOnSecondary">@android:color/white</color>
-
-    <color name="colorError">#B00020</color>
-    <color name="colorOnError">@android:color/white</color>
-
-    <color name="colorSurface">@color/colorSurface_light</color>
-    <color name="colorOnSurface">@color/colorTextContent</color>
-
-    <color name="colorBackground">@color/colorRoot</color>
-    <color name="colorOnBackground">@color/colorTextContent</color>
-
-    <color name="colorSeparator">@color/colorSeparator_light</color>
-    <color name="colorRoot">@color/colorRoot_light</color>
-    <color name="colorTextTitle">@color/colorTextTitle_light</color>
-    <color name="colorTextContent">@color/colorTextContent_light</color>
-    <color name="colorTextSubtitle">@color/colorTextSubtitle_light</color>
-
     <!-- repository. -->
-
-    <color name="colorAccent_light">#212121</color>
-    <color name="colorAccent_dark">#fafafa</color>
 
     <color name="lightPrimary_1">#cfebf0</color>
     <color name="lightPrimary_2">#b6e3e7</color>
@@ -43,34 +15,8 @@
     <color name="darkPrimary_4">#20222f</color>
     <color name="darkPrimary_5">#1a1b22</color>
 
-    <color name="colorSeparator_light">#f1f1f1</color>
-    <color name="colorSeparator_dark">#363636</color>
-
-    <color name="colorRoot_light">@android:color/white</color>
-    <color name="colorRoot_dark">@android:color/black</color>
-
-    <color name="colorSurface_light">#FDFCFF</color>
-    <color name="colorSurface_dark">#1B1B1B</color>
-
-    <color name="colorTextTitle_light">@color/colorTextDark</color>
-    <color name="colorTextTitle_dark">@color/colorTextLight</color>
-
-    <color name="colorTextContent_light">@color/colorTextDark2nd</color>
-    <color name="colorTextContent_dark">@color/colorTextLight2nd</color>
-
-    <color name="colorTextSubtitle_light">@color/colorTextGrey2nd</color>
-    <color name="colorTextSubtitle_dark">@color/colorTextGrey</color>
-
-    <color name="colorTextAlert">#fcc96b</color>
-
-    <color name="colorRipple">#40808080</color>
-
-    <color name="colorTextDark">#424242</color>
-    <color name="colorTextDark2nd">#5f6267</color>
-    <color name="colorTextGrey">#9e9e9e</color>
-    <color name="colorTextGrey2nd">#bdbdbd</color>
-    <color name="colorTextLight">#fafafa</color>
-    <color name="colorTextLight2nd">#f5f5f5</color>
+    <color name="colorRipple_regular">#40808080</color>
+    <color name="colorRipple">@color/md_theme_surfaceVariant</color>
 
     <color name="colorLevel_1">#72d572</color>
     <color name="colorLevel_2">#ffca28</color>
@@ -92,12 +38,58 @@
     <color name="weather_source_cn">#033566</color>
     <color name="weather_source_caiyun">#5ebb8e</color>
 
-    <!-- widget S. -->
+    <!-- theme. -->
 
-    <color name="colorWidgetSRoot_light">@color/lightPrimary_1</color>
-    <color name="colorWidgetSRoot_dark">@color/darkPrimary_1</color>
+    <color name="colorTextDark">#000000</color>
+    <color name="colorTextDark2nd">#666666</color>
+    <color name="colorTextGrey">#4d4d4d</color>
+    <color name="colorTextGrey2nd">#b2b2b2</color>
+    <color name="colorTextLight">#ffffff</color>
+    <color name="colorTextLight2nd">#999999</color>
 
-    <color name="colorWidgetSText_light">@color/colorTextTitle_light</color>
-    <color name="colorWidgetSText_dark">@color/colorTextTitle_dark</color>
+    <color name="colorTextTitle">#000000</color>
+    <color name="colorTextContent">#666666</color>
+    <color name="colorTextSubtitle">#b2b2b2</color>
+
+    <color name="colorMainCardBackground">#FDFCFF</color>
+    <color name="colorPrecipitationProbability">@color/md_theme_primary</color>
+
+    <!-- widget. -->
+
+    <color name="colorWidgetRoot">@color/md_theme_surface</color>
+    <color name="colorWidgetSRoot">@color/lightPrimary_1</color>
+    <color name="colorWidgetSText">@color/colorTextTitle</color>
+    <color name="colorWidgetTextShadow">#99000000</color>
+
+    <!-- material 3. -->
+
+    <color name="md_theme_primary">#00677E</color>
+    <color name="md_theme_onPrimary">#FFFFFF</color>
+    <color name="md_theme_primaryContainer">#B1EBFF</color>
+    <color name="md_theme_onPrimaryContainer">#001F28</color>
+    <color name="md_theme_secondary">#3C5BA9</color>
+    <color name="md_theme_onSecondary">#FFFFFF</color>
+    <color name="md_theme_secondaryContainer">#DAE2FF</color>
+    <color name="md_theme_onSecondaryContainer">#00174B</color>
+    <color name="md_theme_tertiary">#785A00</color>
+    <color name="md_theme_onTertiary">#FFFFFF</color>
+    <color name="md_theme_tertiaryContainer">#FFDF93</color>
+    <color name="md_theme_onTertiaryContainer">#261A00</color>
+    <color name="md_theme_error">#B3261E</color>
+    <color name="md_theme_errorContainer">#F9DEDC</color>
+    <color name="md_theme_onError">#FFFFFF</color>
+    <color name="md_theme_onErrorContainer">#410E0B</color>
+    <color name="md_theme_background">#FFFFFF</color>
+    <color name="md_theme_onBackground">#1B1B1B</color>
+    <color name="md_theme_surface">#FDFCFF</color>
+    <color name="md_theme_onSurface">#1B1B1B</color>
+    <color name="md_theme_surfaceVariant">#E7E0EC</color>
+    <color name="md_theme_onSurfaceVariant">#49454F</color>
+    <color name="md_theme_outline">#10000000</color>
+    <color name="md_theme_inverseOnSurface">#F1F0F4</color>
+    <color name="md_theme_inverseSurface">#2F3033</color>
+    <color name="md_theme_inversePrimary">#59D5F8</color>
+    <color name="md_theme_shadow">#000000</color>
+    <color name="md_theme_primaryInverse">#59D5F8</color>
 
 </resources>

@@ -6,14 +6,12 @@
 
     <!-- Chinese source. -->
     <string-array name="weather_sources">
-        <item>weather.com.cn (Solo para China)</item>
         <item>caiyunapp.com (Solo para China)</item>
         <item>accuweather.com</item>
         <item>OpenWeather</item>
         <item>Météo France</item>
     </string-array>
     <string-array name="weather_source_voices">
-        <item>weather.com.CN</item>
         <item>CaiYun App.com</item>
         <item>ACCU weather.com</item>
         <item>Open Weather</item>

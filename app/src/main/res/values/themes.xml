@@ -3,7 +3,8 @@
 
     <!-- app widgets for android S. -->
 
-    <style name="GeometricWeatherAndroidSWidget"
-        parent="@android:style/Theme.DeviceDefault" />
+    <style name="GeometricWeatherAndroidSWidget" parent="@android:style/Theme.DeviceDefault">
+        <item name="android:textColorPrimary">@color/colorWidgetSText</item>
+    </style>
 
 </resources>

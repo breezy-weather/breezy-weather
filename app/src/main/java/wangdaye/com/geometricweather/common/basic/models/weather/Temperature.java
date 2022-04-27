@@ -98,7 +98,7 @@ public class Temperature implements Serializable {
         if (temperature == null) {
             return null;
         }
-        return unit.getTemperatureText(context, temperature);
+        return unit.getValueText(context, temperature);
     }
 
     @Nullable
@@ -107,7 +107,7 @@ public class Temperature implements Serializable {
         if (temperature == null) {
             return null;
         }
-        return unit.getShortTemperatureText(context, temperature);
+        return unit.getShortValueText(context, temperature);
     }
 
     @Nullable
@@ -119,10 +119,10 @@ public class Temperature implements Serializable {
     }
 
     @Nullable
-    private static String getTrendTemperature(Context context,
-                                              @Nullable Integer night, @Nullable Integer day,
-                                              TemperatureUnit unit,
-                                              boolean switchDayNight) {
+    public static String getTrendTemperature(Context context,
+                                             @Nullable Integer night, @Nullable Integer day,
+                                             TemperatureUnit unit,
+                                             boolean switchDayNight) {
         if (night == null || day == null) {
             return null;
         }

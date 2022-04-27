@@ -23,14 +23,13 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Wind;
 import wangdaye.com.geometricweather.common.ui.images.RotateDrawable;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.chart.DoubleHistogramView;
-import wangdaye.com.geometricweather.main.utils.MainThemeManager;
+import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider;
 
 /**
  * Daily wind adapter.
  * */
 public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.ViewHolder> {
 
-    private final MainThemeManager mThemeManager;
     private final SpeedUnit mSpeedUnit;
 
     private float mHighestWindSpeed;
@@ -48,10 +47,10 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
         }
 
         @SuppressLint("SetTextI18n, InflateParams")
-        void onBindView(GeoActivity activity, Location location, MainThemeManager themeManager, int position) {
+        void onBindView(GeoActivity activity, Location location, int position) {
             StringBuilder talkBackBuilder = new StringBuilder(activity.getString(R.string.tag_wind));
 
-            super.onBindView(activity, location, themeManager, talkBackBuilder, position);
+            super.onBindView(activity, location, talkBackBuilder, position);
 
             Weather weather = location.getWeather();
             assert weather != null;
@@ -78,12 +77,18 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
             mDoubleHistogramView.setData(
                     weather.getDailyForecast().get(position).day().getWind().getSpeed(),
                     weather.getDailyForecast().get(position).night().getWind().getSpeed(),
-                    mSpeedUnit.getSpeedTextWithoutUnit(daytimeWindSpeed == null ? 0 : daytimeWindSpeed),
-                    mSpeedUnit.getSpeedTextWithoutUnit(nighttimeWindSpeed == null ? 0 : nighttimeWindSpeed),
+                    mSpeedUnit.getValueTextWithoutUnit(daytimeWindSpeed == null ? 0 : daytimeWindSpeed),
+                    mSpeedUnit.getValueTextWithoutUnit(nighttimeWindSpeed == null ? 0 : nighttimeWindSpeed),
                     mHighestWindSpeed
             );
-            mDoubleHistogramView.setLineColors(daytimeWindColor, nighttimeWindColor, mThemeManager.getSeparatorColor(activity));
-            mDoubleHistogramView.setTextColors(mThemeManager.getTextContentColor(activity));
+            mDoubleHistogramView.setLineColors(
+                    daytimeWindColor,
+                    nighttimeWindColor,
+                    MainThemeColorProvider.getColor(location, R.attr.colorOutline)
+            );
+            mDoubleHistogramView.setTextColors(
+                    MainThemeColorProvider.getColor(location, R.attr.colorBodyText)
+            );
             mDoubleHistogramView.setHistogramAlphas(1f, 0.5f);
 
             RotateDrawable nightIcon = daily.night().getWind().isValidSpeed()
@@ -99,12 +104,11 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
 
     @SuppressLint("SimpleDateFormat")
     public DailyWindAdapter(GeoActivity activity, TrendRecyclerView parent,
-                            Location location, MainThemeManager themeManager, SpeedUnit unit) {
+                            Location location, SpeedUnit unit) {
         super(activity, location);
 
         Weather weather = location.getWeather();
         assert weather != null;
-        mThemeManager = themeManager;
         mSpeedUnit = unit;
 
         mHighestWindSpeed = Integer.MIN_VALUE;
@@ -135,7 +139,7 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
         keyLineList.add(
                 new TrendRecyclerView.KeyLine(
                         Wind.WIND_SPEED_3,
-                        unit.getSpeedTextWithoutUnit(Wind.WIND_SPEED_3),
+                        unit.getValueTextWithoutUnit(Wind.WIND_SPEED_3),
                         activity.getString(R.string.wind_3),
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
@@ -143,7 +147,7 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
         keyLineList.add(
                 new TrendRecyclerView.KeyLine(
                         Wind.WIND_SPEED_7,
-                        unit.getSpeedTextWithoutUnit(Wind.WIND_SPEED_7),
+                        unit.getValueTextWithoutUnit(Wind.WIND_SPEED_7),
                         activity.getString(R.string.wind_7),
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
@@ -151,7 +155,7 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
         keyLineList.add(
                 new TrendRecyclerView.KeyLine(
                         -Wind.WIND_SPEED_3,
-                        unit.getSpeedTextWithoutUnit(Wind.WIND_SPEED_3),
+                        unit.getValueTextWithoutUnit(Wind.WIND_SPEED_3),
                         activity.getString(R.string.wind_3),
                         TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
                 )
@@ -159,12 +163,11 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
         keyLineList.add(
                 new TrendRecyclerView.KeyLine(
                         -Wind.WIND_SPEED_7,
-                        unit.getSpeedTextWithoutUnit(Wind.WIND_SPEED_7),
+                        unit.getValueTextWithoutUnit(Wind.WIND_SPEED_7),
                         activity.getString(R.string.wind_7),
                         TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
                 )
         );
-        parent.setLineColor(mThemeManager.getSeparatorColor(activity));
         parent.setData(keyLineList, mHighestWindSpeed, -mHighestWindSpeed);
     }
 
@@ -178,7 +181,7 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(getActivity(), getLocation(), mThemeManager, position);
+        holder.onBindView(getActivity(), getLocation(), position);
     }
 
     @Override

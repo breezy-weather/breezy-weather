@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- theme. -->
+    <attr name="colorTitleText" format="color|reference"/>
+    <attr name="colorBodyText" format="color|reference"/>
+    <attr name="colorCaptionText" format="color|reference"/>
+    <attr name="colorMainCardBackground" format="color|reference"/>
+    <attr name="colorPrecipitationProbability" format="color|reference"/>
+
     <!-- Ink page indicator. -->
     <declare-styleable name="InkPageIndicator">
         <attr name="dotDiameter" format="dimension" />
@@ -66,6 +73,8 @@
         <attr name="iconResEnd" format="reference" />
         <attr name="backgroundColorStart" format="color" />
         <attr name="backgroundColorEnd" format="color" />
+        <attr name="tintColorStart" format="color" />
+        <attr name="tintColorEnd" format="color" />
     </declare-styleable>
 
     <!-- Drawer layout. -->

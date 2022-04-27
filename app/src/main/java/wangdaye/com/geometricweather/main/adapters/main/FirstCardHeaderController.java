@@ -21,9 +21,9 @@ import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.Base;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.main.MainActivity;
-import wangdaye.com.geometricweather.main.utils.MainThemeManager;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
+import wangdaye.com.geometricweather.main.MainActivity;
+import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider;
 
 public class FirstCardHeaderController
         implements View.OnClickListener {
@@ -35,8 +35,7 @@ public class FirstCardHeaderController
     private @Nullable LinearLayout mContainer;
 
     @SuppressLint({"SetTextI18n", "InflateParams"})
-    public FirstCardHeaderController(@NonNull GeoActivity activity, @NonNull Location location,
-                                     MainThemeManager themeManager) {
+    public FirstCardHeaderController(@NonNull GeoActivity activity, @NonNull Location location) {
         mActivity = activity;
         mView = LayoutInflater.from(activity).inflate(R.layout.container_main_first_card_header, null);
         mFormattedId = location.getFormattedId();
@@ -59,13 +58,15 @@ public class FirstCardHeaderController
                 timeIcon.setEnabled(true);
                 timeIcon.setImageResource(R.drawable.ic_alert);
             }
-            ImageViewCompat.setImageTintList(
-                    timeIcon,
-                    ColorStateList.valueOf(themeManager.getTextContentColor(activity))
-            );
             timeIcon.setContentDescription(
                     activity.getString(R.string.content_desc_weather_alert_button)
                             .replace("$", "" + weather.getAlertList().size())
+            );
+            ImageViewCompat.setImageTintList(
+                    timeIcon,
+                    ColorStateList.valueOf(
+                            MainThemeColorProvider.getColor(location, R.attr.colorTitleText)
+                    )
             );
             timeIcon.setOnClickListener(this);
 
@@ -74,7 +75,7 @@ public class FirstCardHeaderController
                             + " "
                             + Base.getTime(activity, weather.getBase().getUpdateDate())
             );
-            refreshTime.setTextColor(themeManager.getTextContentColor(activity));
+            refreshTime.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorTitleText));
 
             long time = System.currentTimeMillis();
             if (TimeZone.getDefault().getOffset(time) == location.getTimeZone().getOffset(time)) {
@@ -83,13 +84,13 @@ public class FirstCardHeaderController
             } else {
                 localTime.setVisibility(View.VISIBLE);
                 localTime.setTimeZone(location.getTimeZone().getID());
-                localTime.setTextColor(themeManager.getTextSubtitleColor(activity));
                 localTime.setFormat12Hour(
                         activity.getString(R.string.date_format_widget_long) + ", h:mm aa"
                 );
                 localTime.setFormat24Hour(
                         activity.getString(R.string.date_format_widget_long) + ", HH:mm"
                 );
+                localTime.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorCaptionText));
             }
 
             if (weather.getAlertList().size() == 0) {
@@ -112,10 +113,10 @@ public class FirstCardHeaderController
                     }
                 }
                 alert.setText(builder.toString());
-                alert.setTextColor(themeManager.getTextSubtitleColor(activity));
+                alert.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText));
 
                 line.setVisibility(View.VISIBLE);
-                line.setBackgroundColor(themeManager.getSurfaceColor(activity));
+                line.setBackgroundColor(MainThemeColorProvider.getColor(location, R.attr.colorSurface));
             }
             alert.setOnClickListener(this);
         }

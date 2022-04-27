@@ -134,7 +134,13 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
             if (locationNow.isUsable()) {
                 weatherHelper.requestWeather(this, locationNow, this);
             } else {
-                weatherHelper.requestWeather(this, Location.buildDefaultLocation(), this);
+                weatherHelper.requestWeather(
+                        this,
+                        Location.buildDefaultLocation(
+                                SettingsManager.getInstance(this).getWeatherSource()
+                        ),
+                        this
+                );
             }
         } else {
             weatherHelper.requestWeather(this, locationNow, this);
@@ -194,7 +200,10 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
     @CallSuper
     public void initData() {
         locationNow = DatabaseHelper.getInstance(this).readLocationList().get(0);
-        locationNow.setWeather(DatabaseHelper.getInstance(this).readWeather(locationNow));
+        locationNow = Location.copy(
+                locationNow,
+                DatabaseHelper.getInstance(this).readWeather(locationNow)
+        );
 
         destroyed = false;
 
@@ -272,15 +281,11 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         int screenWidth = getResources().getDisplayMetrics().widthPixels;
         int adaptiveWidth = DisplayUtils.getTabletListAdaptiveWidth(this, screenWidth);
         int paddingHorizontal = (screenWidth - adaptiveWidth) / 2;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
-            mTopContainer.setOnApplyWindowInsetsListener((v, insets) -> {
-                mWidgetContainer.setPadding(paddingHorizontal, insets.getSystemWindowInsetTop(),
-                        paddingHorizontal, 0);
-                return insets;
-            });
-        } else {
-            mWidgetContainer.setPadding(paddingHorizontal, 0, paddingHorizontal, 0);
-        }
+        mTopContainer.setOnApplyWindowInsetsListener((v, insets) -> {
+            mWidgetContainer.setPadding(paddingHorizontal, insets.getSystemWindowInsetTop(),
+                    paddingHorizontal, 0);
+            return insets;
+        });
 
         mScrollView = findViewById(R.id.activity_widget_config_scrollView);
 
@@ -413,7 +418,6 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         });
 
         mBottomSheetScrollView = findViewById(R.id.activity_widget_config_custom_scrollView);
-        mBottomSheetScrollView.setAdaptiveWidthEnabled(false);
 
         mSubtitleInputLayout = findViewById(R.id.activity_widget_config_subtitle_inputLayout);
 

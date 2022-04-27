@@ -111,7 +111,7 @@ public class DailyWeatherAdapter extends RecyclerView.Adapter<DailyWeatherAdapte
         mModelList.add(new Line());
         mModelList.add(new Value(
                 context.getString(R.string.hours_of_sun),
-                DurationUnit.H.getDurationText(context, daily.getHoursOfSun())
+                DurationUnit.H.getValueText(context, daily.getHoursOfSun())
         ));
         mModelList.add(new Margin());
 
@@ -186,37 +186,37 @@ public class DailyWeatherAdapter extends RecyclerView.Adapter<DailyWeatherAdapte
             if (temperature.getRealFeelTemperature() != null) {
                 list.add(new Value(
                         context.getString(R.string.real_feel_temperature),
-                        temperatureUnit.getTemperatureText(context, temperature.getRealFeelTemperature())
+                        temperatureUnit.getValueText(context, temperature.getRealFeelTemperature())
                 ));
             }
             if (temperature.getRealFeelShaderTemperature() != null) {
                 list.add(new Value(
                         context.getString(R.string.real_feel_shade_temperature),
-                        temperatureUnit.getTemperatureText(context, temperature.getRealFeelShaderTemperature())
+                        temperatureUnit.getValueText(context, temperature.getRealFeelShaderTemperature())
                 ));
             }
             if (temperature.getApparentTemperature() != null) {
                 list.add(new Value(
                         context.getString(R.string.apparent_temperature),
-                        temperatureUnit.getTemperatureText(context, temperature.getApparentTemperature())
+                        temperatureUnit.getValueText(context, temperature.getApparentTemperature())
                 ));
             }
             if (temperature.getWindChillTemperature() != null) {
                 list.add(new Value(
                         context.getString(R.string.wind_chill_temperature),
-                        temperatureUnit.getTemperatureText(context, temperature.getWindChillTemperature())
+                        temperatureUnit.getValueText(context, temperature.getWindChillTemperature())
                 ));
             }
             if (temperature.getWetBulbTemperature() != null) {
                 list.add(new Value(
                         context.getString(R.string.wet_bulb_temperature),
-                        temperatureUnit.getTemperatureText(context, temperature.getWetBulbTemperature())
+                        temperatureUnit.getValueText(context, temperature.getWetBulbTemperature())
                 ));
             }
             if (temperature.getDegreeDayTemperature() != null) {
                 list.add(new Value(
                         context.getString(R.string.degree_day_temperature),
-                        temperatureUnit.getTemperatureText(context, temperature.getDegreeDayTemperature())
+                        temperatureUnit.getValueText(context, temperature.getDegreeDayTemperature())
                 ));
             }
             list.add(new Margin());
@@ -229,30 +229,30 @@ public class DailyWeatherAdapter extends RecyclerView.Adapter<DailyWeatherAdapte
             list.add(new Title(R.drawable.ic_water, context.getString(R.string.precipitation)));
             list.add(new Value(
                     context.getString(R.string.total),
-                    precipitationUnit.getPrecipitationText(context, precipitation.getTotal())
+                    precipitationUnit.getValueText(context, precipitation.getTotal())
             ));
             if (precipitation.getRain() != null && precipitation.getRain() > 0) {
                 list.add(new Value(
                         context.getString(R.string.rain),
-                        precipitationUnit.getPrecipitationText(context, precipitation.getRain())
+                        precipitationUnit.getValueText(context, precipitation.getRain())
                 ));
             }
             if (precipitation.getSnow() != null && precipitation.getSnow() > 0) {
                 list.add(new Value(
                         context.getString(R.string.snow),
-                        precipitationUnit.getPrecipitationText(context, precipitation.getSnow())
+                        precipitationUnit.getValueText(context, precipitation.getSnow())
                 ));
             }
             if (precipitation.getIce() != null && precipitation.getIce() > 0) {
                 list.add(new Value(
                         context.getString(R.string.ice),
-                        precipitationUnit.getPrecipitationText(context, precipitation.getIce())
+                        precipitationUnit.getValueText(context, precipitation.getIce())
                 ));
             }
             if (precipitation.getThunderstorm() != null && precipitation.getThunderstorm() > 0) {
                 list.add(new Value(
                         context.getString(R.string.thunderstorm),
-                        precipitationUnit.getPrecipitationText(context, precipitation.getThunderstorm())
+                        precipitationUnit.getValueText(context, precipitation.getThunderstorm())
                 ));
             }
             list.add(new Margin());
@@ -264,30 +264,30 @@ public class DailyWeatherAdapter extends RecyclerView.Adapter<DailyWeatherAdapte
             list.add(new Title(R.drawable.ic_water_percent, context.getString(R.string.precipitation_probability)));
             list.add(new Value(
                     context.getString(R.string.total),
-                    ProbabilityUnit.PERCENT.getProbabilityText(context, probability.getTotal())
+                    ProbabilityUnit.PERCENT.getValueText(context, (int) (float) probability.getTotal())
             ));
             if (probability.getRain() != null && probability.getRain() > 0) {
                 list.add(new Value(
                         context.getString(R.string.rain),
-                        ProbabilityUnit.PERCENT.getProbabilityText(context, probability.getRain())
+                        ProbabilityUnit.PERCENT.getValueText(context, (int) (float) probability.getRain())
                 ));
             }
             if (probability.getSnow() != null && probability.getSnow() > 0) {
                 list.add(new Value(
                         context.getString(R.string.snow),
-                        ProbabilityUnit.PERCENT.getProbabilityText(context, probability.getSnow())
+                        ProbabilityUnit.PERCENT.getValueText(context, (int) (float) probability.getSnow())
                 ));
             }
             if (probability.getIce() != null && probability.getIce() > 0) {
                 list.add(new Value(
                         context.getString(R.string.ice),
-                        ProbabilityUnit.PERCENT.getProbabilityText(context, probability.getIce())
+                        ProbabilityUnit.PERCENT.getValueText(context, (int) (float) probability.getIce())
                 ));
             }
             if (probability.getThunderstorm() != null && probability.getThunderstorm() > 0) {
                 list.add(new Value(
                         context.getString(R.string.thunderstorm),
-                        ProbabilityUnit.PERCENT.getProbabilityText(context, probability.getThunderstorm())
+                        ProbabilityUnit.PERCENT.getValueText(context, (int) (float) probability.getThunderstorm())
                 ));
             }
             list.add(new Margin());
@@ -299,30 +299,30 @@ public class DailyWeatherAdapter extends RecyclerView.Adapter<DailyWeatherAdapte
             list.add(new Title(R.drawable.ic_time, context.getString(R.string.precipitation_duration)));
             list.add(new Value(
                     context.getString(R.string.total),
-                    DurationUnit.H.getDurationText(context, duration.getTotal())
+                    DurationUnit.H.getValueText(context, duration.getTotal())
             ));
             if (duration.getRain() != null && duration.getRain() > 0) {
                 list.add(new Value(
                         context.getString(R.string.rain),
-                        DurationUnit.H.getDurationText(context, duration.getRain())
+                        DurationUnit.H.getValueText(context, duration.getRain())
                 ));
             }
             if (duration.getSnow() != null && duration.getSnow() > 0) {
                 list.add(new Value(
                         context.getString(R.string.snow),
-                        DurationUnit.H.getDurationText(context, duration.getSnow())
+                        DurationUnit.H.getValueText(context, duration.getSnow())
                 ));
             }
             if (duration.getIce() != null && duration.getIce() > 0) {
                 list.add(new Value(
                         context.getString(R.string.ice),
-                        DurationUnit.H.getDurationText(context, duration.getIce())
+                        DurationUnit.H.getValueText(context, duration.getIce())
                 ));
             }
             if (duration.getThunderstorm() != null && duration.getThunderstorm() > 0) {
                 list.add(new Value(
                         context.getString(R.string.thunderstorm),
-                        DurationUnit.H.getDurationText(context, duration.getThunderstorm())
+                        DurationUnit.H.getValueText(context, duration.getThunderstorm())
                 ));
             }
             list.add(new Margin());

@@ -8,27 +8,24 @@ import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Shader;
-import androidx.annotation.ColorInt;
-import androidx.annotation.Size;
-import androidx.core.graphics.ColorUtils;
-
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.Size;
+import androidx.core.graphics.ColorUtils;
+
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
-
-/**
- * Acr progress.
- * */
 
 public class ArcProgress extends View {
 
     private Paint mProgressPaint;
     private Paint mShadowPaint;
-    private Paint mTextPaint;
+    private Paint mCenterTextPaint;
+    private Paint mBottomTextPaint;
 
     private final DayNightShaderWrapper mShaderWrapper;
 
@@ -98,7 +95,7 @@ public class ArcProgress extends View {
 
         mBottomText = attributes.getString(R.styleable.ArcProgress_bottom_text);
         mBottomTextSize = attributes.getDimension(
-                R.styleable.ArcProgress_bottom_text_size, DisplayUtils.dpToPx(getContext(), 12));
+                R.styleable.ArcProgress_bottom_text_size, DisplayUtils.dpToPx(getContext(), 14));
         mBottomTextColor = attributes.getColor(R.styleable.ArcProgress_bottom_text_color, Color.DKGRAY);
     }
 
@@ -113,9 +110,18 @@ public class ArcProgress extends View {
         mShadowPaint.setAntiAlias(true);
         mShadowPaint.setStyle(Paint.Style.FILL);
 
-        mTextPaint = new TextPaint();
-        mTextPaint.setTextSize(mTextSize);
-        mTextPaint.setAntiAlias(true);
+        mCenterTextPaint = new TextPaint();
+        mCenterTextPaint.setTextSize(mTextSize);
+        mCenterTextPaint.setAntiAlias(true);
+        mCenterTextPaint.setTypeface(
+                DisplayUtils.getTypefaceFromTextAppearance(getContext(), R.style.large_title_text)
+        );
+
+        mBottomTextPaint = new TextPaint();
+        mBottomTextPaint.set(mCenterTextPaint);
+        mBottomTextPaint.setTypeface(
+                DisplayUtils.getTypefaceFromTextAppearance(getContext(), R.style.content_text)
+        );
     }
 
     public float getProgress() {
@@ -139,6 +145,10 @@ public class ArcProgress extends View {
             mMax = max;
             invalidate();
         }
+    }
+
+    public void setProgressColor(boolean lightTheme) {
+        setProgressColor(mProgressColor, lightTheme);
     }
 
     public void setProgressColor(@ColorInt int progressColor, boolean lightTheme) {
@@ -269,15 +279,15 @@ public class ArcProgress extends View {
         }
 
         if (!TextUtils.isEmpty(mText)) {
-            mTextPaint.setColor(mTextColor);
-            mTextPaint.setTextSize(mTextSize);
-            float textHeight = mTextPaint.descent() + mTextPaint.ascent();
+            mCenterTextPaint.setColor(mTextColor);
+            mCenterTextPaint.setTextSize(mTextSize);
+            float textHeight = mCenterTextPaint.descent() + mCenterTextPaint.ascent();
             float textBaseline = (getHeight() - textHeight) / 2.0f;
             canvas.drawText(
                     mText,
-                    (getWidth() - mTextPaint.measureText(mText)) / 2.0f,
+                    (getWidth() - mCenterTextPaint.measureText(mText)) / 2.0f,
                     textBaseline,
-                    mTextPaint
+                    mCenterTextPaint
             );
         }
 
@@ -288,16 +298,16 @@ public class ArcProgress extends View {
         }
 
         if (!TextUtils.isEmpty(mBottomText)) {
-            mTextPaint.setColor(mBottomTextColor);
-            mTextPaint.setTextSize(mBottomTextSize);
+            mBottomTextPaint.setColor(mBottomTextColor);
+            mBottomTextPaint.setTextSize(mBottomTextSize);
             float bottomTextBaseline = getHeight()
-                    - mArcBottomHeight
-                    - (mTextPaint.descent() + mTextPaint.ascent()) / 2;
+                    + (mBottomTextPaint.descent() + mBottomTextPaint.ascent()) / 2
+                    - mProgressWidth * 0.33f;
             canvas.drawText(
                     mBottomText,
-                    (getWidth() - mTextPaint.measureText(mBottomText)) / 2.0f,
+                    (getWidth() - mBottomTextPaint.measureText(mBottomText)) / 2.0f,
                     bottomTextBaseline,
-                    mTextPaint
+                    mBottomTextPaint
             );
         }
     }

@@ -28,6 +28,9 @@ public class SlidingItemContainerLayout extends FrameLayout {
     private @DrawableRes int mIconResStart;
     private @DrawableRes int mIconResEnd;
 
+    private @ColorInt int mTintColorStart;
+    private @ColorInt int mTintColorEnd;
+
     private @ColorInt int mBackgroundColorStart;
     private @ColorInt int mBackgroundColorEnd;
 
@@ -63,6 +66,8 @@ public class SlidingItemContainerLayout extends FrameLayout {
         mIconResEnd = a.getResourceId(R.styleable.SlidingItemContainerLayout_iconResEnd, 0);
         mBackgroundColorStart = a.getColor(R.styleable.SlidingItemContainerLayout_backgroundColorStart, Color.DKGRAY);
         mBackgroundColorEnd = a.getColor(R.styleable.SlidingItemContainerLayout_backgroundColorEnd, Color.DKGRAY);
+        mTintColorStart = a.getColor(R.styleable.SlidingItemContainerLayout_tintColorStart, Color.WHITE);
+        mTintColorEnd = a.getColor(R.styleable.SlidingItemContainerLayout_tintColorEnd, Color.WHITE);
         a.recycle();
 
         mUpdateFlag = true;
@@ -87,7 +92,7 @@ public class SlidingItemContainerLayout extends FrameLayout {
 
         mChild.setTranslationX(totalX);
 
-        float progress = Math.abs(1.f * totalX / getMeasuredWidth());
+        float progress = Math.abs(totalX / getMeasuredWidth());
         progress = (float)(1.0f - Math.pow((1.0f - progress), 4));
 
         if (totalX != 0) { // need to draw background and sliding icon.
@@ -95,9 +100,11 @@ public class SlidingItemContainerLayout extends FrameLayout {
                 mUpdateFlag = false;
                 if (DisplayUtils.isRtl(getContext())) {
                     mIcon.setImageResource(totalX < 0 ? mIconResStart : mIconResEnd);
+                    mIcon.setImageTintList(ColorStateList.valueOf(totalX < 0 ? mTintColorStart : mTintColorEnd));
                     setBackgroundColor(totalX < 0 ? mBackgroundColorStart : mBackgroundColorEnd);
                 } else {
                     mIcon.setImageResource(totalX > 0 ? mIconResStart : mIconResEnd);
+                    mIcon.setImageTintList(ColorStateList.valueOf(totalX > 0 ? mTintColorStart : mTintColorEnd));
                     setBackgroundColor(totalX > 0 ? mBackgroundColorStart : mBackgroundColorEnd);
                 }
             }
@@ -150,6 +157,24 @@ public class SlidingItemContainerLayout extends FrameLayout {
 
     public void setBackgroundColorEnd(int backgroundColorEnd) {
         mBackgroundColorEnd = backgroundColorEnd;
+        mUpdateFlag = true;
+    }
+
+    public int getTintColorStart() {
+        return mTintColorStart;
+    }
+
+    public void setTintColorStart(int tintColorStart) {
+        mTintColorStart = tintColorStart;
+        mUpdateFlag = true;
+    }
+
+    public int getTintColorEnd() {
+        return mTintColorEnd;
+    }
+
+    public void setTintColorEnd(int tintColorEnd) {
+        mTintColorEnd = tintColorEnd;
         mUpdateFlag = true;
     }
 }

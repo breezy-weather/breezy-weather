@@ -100,11 +100,6 @@ public class FitSystemBarViewPager extends ViewPager
     }
 
     @Override
-    protected boolean fitSystemWindows(Rect insets) {
-        return helper.fitSystemWindows(insets);
-    }
-
-    @Override
     public void addFitSide(@FitSide int side) {
         helper.addFitSide(side);
     }

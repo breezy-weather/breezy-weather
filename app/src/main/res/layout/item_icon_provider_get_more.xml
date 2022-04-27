@@ -4,13 +4,7 @@
     android:id="@+id/item_icon_provider_get_more_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorRoot"
     tools:ignore="UnusedAttribute">
-
-    <View
-        android:background="@color/colorSeparator"
-        android:layout_width="match_parent"
-        android:layout_height="1dp" />
 
     <LinearLayout
         android:orientation="horizontal"

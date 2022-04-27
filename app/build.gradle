@@ -12,8 +12,8 @@ android {
         applicationId "wangdaye.com.geometricweather"
         minSdkVersion 21
         targetSdkVersion 32
-        versionCode 30017
-        versionName "3.017"
+        versionCode 30100
+        versionName "3.100"
         multiDexEnabled true
         ndk {
             abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
@@ -140,7 +140,7 @@ configurations {
 }
 
 greendao {
-    schemaVersion 60
+    schemaVersion 62
     generateTests false
 }
 
@@ -178,17 +178,20 @@ dependencies {
     implementation 'androidx.compose.material:material:1.1.1'
     implementation 'androidx.compose.animation:animation:1.1.1'
     implementation 'androidx.compose.ui:ui-tooling:1.1.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.5.0-alpha05'
+    implementation 'androidx.compose.foundation:foundation:1.2.0-alpha07'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.5.0-alpha06'
     androidTestImplementation 'androidx.compose.ui:ui-test-junit4:1.1.1'
     implementation "com.google.accompanist:accompanist-appcompat-theme:0.16.0"
-    implementation "androidx.compose.material3:material3:1.0.0-alpha08"
+    implementation "androidx.compose.material3:material3:1.0.0-alpha09"
+    implementation 'androidx.compose.material:material-icons-extended:1.2.0-alpha07'
+    implementation 'androidx.navigation:navigation-compose:2.4.2'
 
     // preference.
     implementation 'androidx.preference:preference-ktx:1.2.0'
 
     // work.
     implementation "androidx.core:core-ktx:1.7.0"
-    implementation "androidx.work:work-runtime:2.8.0-alpha01"
+    implementation "androidx.work:work-runtime:2.8.0-alpha02"
 
     // lifecycle.
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"

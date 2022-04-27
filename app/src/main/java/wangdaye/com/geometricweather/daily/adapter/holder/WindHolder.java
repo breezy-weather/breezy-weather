@@ -63,10 +63,10 @@ public class WindHolder extends DailyWeatherAdapter.ViewHolder {
 
         if (wind.getSpeed() != null && wind.getSpeed() > 0) {
             talkBackBuilder.append(", ")
-                    .append(mSpeedUnit.getSpeedText(mSpeedText.getContext(), wind.getSpeed()));
+                    .append(mSpeedUnit.getValueText(mSpeedText.getContext(), wind.getSpeed()));
 
             mSpeed.setVisibility(View.VISIBLE);
-            mSpeedText.setText(mSpeedUnit.getSpeedText(mSpeedText.getContext(), wind.getSpeed()));
+            mSpeedText.setText(mSpeedUnit.getValueText(mSpeedText.getContext(), wind.getSpeed()));
         } else {
             mSpeed.setVisibility(View.GONE);
         }

@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.material.appbar.MaterialToolbar;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.viewpager.widget.ViewPager;
 
@@ -21,6 +20,7 @@ import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.Daily;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout;
 import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarRecyclerView;
 import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarViewPager;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
@@ -28,6 +28,7 @@ import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper;
 import wangdaye.com.geometricweather.daily.adapter.DailyWeatherAdapter;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.settings.SettingsManager;
+import wangdaye.com.geometricweather.theme.ThemeManager;
 
 /**
  * Daily weather activity.
@@ -60,7 +61,17 @@ public class DailyWeatherActivity extends GeoActivity {
     }
 
     private void initWidget() {
+        FitSystemBarAppBarLayout appBarLayout = findViewById(R.id.activity_weather_daily_appBar);
+        appBarLayout.injectDefaultSurfaceTintColor();
+
         mToolbar = findViewById(R.id.activity_weather_daily_toolbar);
+        mToolbar.setBackgroundColor(
+                DisplayUtils.getWidgetSurfaceColor(
+                        6f,
+                        ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorPrimary),
+                        ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorSurface)
+                )
+        );
         mToolbar.setNavigationOnClickListener(v -> finish());
 
         mTitle = findViewById(R.id.activity_weather_daily_title);
@@ -81,8 +92,10 @@ public class DailyWeatherActivity extends GeoActivity {
                 location = DatabaseHelper.getInstance(this).readLocationList().get(0);
             }
 
-            location.setWeather(DatabaseHelper.getInstance(this).readWeather(location));
-            emitter.send(location, true);
+            emitter.send(
+                    Location.copy(location, DatabaseHelper.getInstance(this).readWeather(location)),
+                    true
+            );
         }, (AsyncHelper.Callback<Location>) (location, done) -> {
             if (location == null) {
                 finish();
@@ -125,7 +138,11 @@ public class DailyWeatherActivity extends GeoActivity {
             FitSystemBarViewPager pager = findViewById(R.id.activity_weather_daily_pager);
             pager.setAdapter(new FitSystemBarViewPager.FitBottomSystemBarPagerAdapter(pager, viewList, titleList));
             pager.setPageMargin((int) DisplayUtils.dpToPx(this, 1));
-            pager.setPageMarginDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.colorSeparator)));
+            pager.setPageMarginDrawable(
+                    new ColorDrawable(
+                            ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorOutline)
+                    )
+            );
             pager.setCurrentItem(mPosition);
             pager.clearOnPageChangeListeners();
             pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

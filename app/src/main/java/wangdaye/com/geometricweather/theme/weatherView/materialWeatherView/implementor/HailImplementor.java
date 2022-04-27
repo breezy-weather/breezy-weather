@@ -1,19 +1,15 @@
 package wangdaye.com.geometricweather.theme.weatherView.materialWeatherView.implementor;
 
-import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
 import androidx.annotation.ColorInt;
-import androidx.annotation.IntDef;
 import androidx.annotation.Size;
-import androidx.core.content.ContextCompat;
 
 import java.util.Random;
 
-import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.theme.weatherView.materialWeatherView.MaterialWeatherView;
 
 /**
@@ -27,12 +23,6 @@ public class HailImplementor extends MaterialWeatherView.WeatherAnimationImpleme
 
     private float mLastRotation3D;
     private static final float INITIAL_ROTATION_3D = 1000;
-
-    public static final int TYPE_HAIL_DAY = 1;
-    public static final int TYPE_HAIL_NIGHT = 2;
-
-    @IntDef({TYPE_HAIL_DAY, TYPE_HAIL_NIGHT})
-    @interface TypeRule {}
 
     private static class Hail {
 
@@ -116,26 +106,24 @@ public class HailImplementor extends MaterialWeatherView.WeatherAnimationImpleme
         }
     }
 
-    public HailImplementor(@Size(2) int[] canvasSizes, @TypeRule int type) {
+    public HailImplementor(@Size(2) int[] canvasSizes, boolean daylight) {
         mPaint = new Paint();
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setAntiAlias(true);
 
-        int[] colors = new int[3];
-        switch (type) {
-            case TYPE_HAIL_DAY:
-                colors = new int[] {
-                        Color.rgb(101, 134, 203),
-                        Color.rgb(152, 175, 222),
-                        Color.rgb(255, 255, 255),};
-                break;
-
-            case TYPE_HAIL_NIGHT:
-                colors = new int[] {
-                        Color.rgb(64, 67, 85),
-                        Color.rgb(127, 131, 154),
-                        Color.rgb(255, 255, 255),};
-                break;
+        int[] colors;
+        if (daylight) {
+            colors = new int[] {
+                    Color.rgb(128, 197, 255),
+                    Color.rgb(185, 222, 255),
+                    Color.rgb(255, 255, 255),
+            };
+        } else {
+            colors = new int[] {
+                    Color.rgb(40, 102, 155),
+                    Color.rgb(99, 144, 182),
+                    Color.rgb(255, 255, 255),
+            };
         }
         float[] scales = new float[] {0.6F, 0.8F, 1};
 
@@ -166,7 +154,8 @@ public class HailImplementor extends MaterialWeatherView.WeatherAnimationImpleme
             canvas.rotate(
                     rotation2D,
                     canvasSizes[0] * 0.5F,
-                    canvasSizes[1] * 0.5F);
+                    canvasSizes[1] * 0.5F
+            );
 
             for (Hail h : mHails) {
                 mPaint.setColor(h.color);
@@ -180,14 +169,7 @@ public class HailImplementor extends MaterialWeatherView.WeatherAnimationImpleme
     }
 
     @ColorInt
-    public static int getThemeColor(Context context, @TypeRule int type) {
-        switch (type) {
-            case TYPE_HAIL_DAY:
-                return Color.rgb(80, 116, 193);
-
-            case TYPE_HAIL_NIGHT:
-                return Color.rgb(42, 52, 69);
-        }
-        return ContextCompat.getColor(context, R.color.colorPrimary);
+    public static int getThemeColor(boolean daylight) {
+        return daylight ? 0xFF68baff : 0xFF1a5b92;
     }
 }

@@ -2,7 +2,6 @@ package wangdaye.com.geometricweather.main.adapters.main.holder;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -11,19 +10,22 @@ import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 
+import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.main.adapters.main.FirstCardHeaderController;
-import wangdaye.com.geometricweather.main.utils.MainThemeManager;
+import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider;
+import wangdaye.com.geometricweather.theme.ThemeManager;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
+import wangdaye.com.geometricweather.theme.weatherView.WeatherThemeDelegate;
 
 public abstract class AbstractMainCardViewHolder extends AbstractMainViewHolder {
 
     private FirstCardHeaderController mFirstCardHeaderController;
 
     @SuppressLint("ObjectAnimatorBinding")
-    public AbstractMainCardViewHolder(@NonNull View view, MainThemeManager themeManager) {
-        super(view, themeManager);
+    public AbstractMainCardViewHolder(@NonNull View view) {
+        super(view);
     }
 
     @CallSuper
@@ -32,22 +34,28 @@ public abstract class AbstractMainCardViewHolder extends AbstractMainViewHolder 
                            boolean listAnimationEnabled, boolean itemAnimationEnabled, boolean firstCard) {
         super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled);
 
-        CardView card = (CardView) itemView;
+        WeatherThemeDelegate delegate = ThemeManager
+                .getInstance(activity)
+                .getWeatherThemeDelegate();
 
-        card.setRadius(themeManager.getCardRadius(activity));
-        card.setElevation(themeManager.getCardElevation(activity));
+        CardView card = (CardView) itemView;
+        card.setRadius(delegate.getHomeCardRadius(activity));
+        card.setElevation(delegate.getHomeCardElevation(activity));
+        card.setCardBackgroundColor(
+                MainThemeColorProvider.getColor(location, R.attr.colorMainCardBackground)
+        );
 
         ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) card.getLayoutParams();
         params.setMargins(
-                themeManager.getCardMarginsHorizontal(activity),
+                delegate.getHomeCardMargins(context),
                 0,
-                themeManager.getCardMarginsHorizontal(activity),
-                themeManager.getCardMarginsVertical(activity)
+                delegate.getHomeCardMargins(context),
+                delegate.getHomeCardMargins(context)
         );
         card.setLayoutParams(params);
 
         if (firstCard) {
-            mFirstCardHeaderController = new FirstCardHeaderController(activity, location, themeManager);
+            mFirstCardHeaderController = new FirstCardHeaderController(activity, location);
             mFirstCardHeaderController.bind((LinearLayout) card.getChildAt(0));
         }
     }

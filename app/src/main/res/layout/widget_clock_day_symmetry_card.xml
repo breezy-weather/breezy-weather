@@ -203,7 +203,7 @@
                     android:id="@+id/widget_clock_day_time"
                     android:text="@string/wait_refresh"
                     android:textSize="@dimen/widget_time_text_size"
-                    android:shadowColor="@color/colorTextDark2nd"
+                    android:shadowColor="@color/colorWidgetTextShadow"
                     android:shadowDx="1"
                     android:shadowDy="1"
                     android:shadowRadius="1"

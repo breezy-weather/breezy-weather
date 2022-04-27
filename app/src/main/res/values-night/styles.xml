@@ -9,10 +9,6 @@
         <item name="android:format12Hour">h:mm</item>
         <item name="android:textSize">@dimen/widget_current_weather_icon_size</item>
         <item name="android:textColor">@color/colorTextTitle</item>
-        <!--        <item name="android:shadowColor">@color/colorTextDark2nd</item>-->
-        <!--        <item name="android:shadowDx">1</item>-->
-        <!--        <item name="android:shadowDy">1</item>-->
-        <!--        <item name="android:shadowRadius">1</item>-->
     </style>
 
     <style name="widget_text_clock_aa">
@@ -22,10 +18,6 @@
         <item name="android:format12Hour">aa</item>
         <item name="android:textSize" tools:ignore="SpUsage">@dimen/widget_aa_text_size</item>
         <item name="android:textColor">@color/colorTextTitle</item>
-        <!--        <item name="android:shadowColor">@color/colorTextDark2nd</item>-->
-        <!--        <item name="android:shadowDx">1</item>-->
-        <!--        <item name="android:shadowDy">1</item>-->
-        <!--        <item name="android:shadowRadius">1</item>-->
     </style>
 
     <style name="widget_text_clock_analog">

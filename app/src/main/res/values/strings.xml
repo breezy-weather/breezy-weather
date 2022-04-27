@@ -136,11 +136,12 @@
 
     <string name="filter_weather_sources">Filter</string>
 
-    <string name="about_app">ABOUT APP</string>
+    <string name="about_app">About app</string>
     <string name="introduce">introduce</string>
     <string name="email">E-mail</string>
     <string name="donate">Donate</string>
     <string name="gitHub">GitHub</string>
+    <string name="contributor">Contributors</string>
     <string name="translator">Translators</string>
     <string name="thanks">Thanks</string>
 
@@ -383,6 +384,7 @@
     <string name="settings_summary_appearance">Interface style, card order, language…</string>
     <string name="settings_title_card_display">Displayed cards</string>
     <string name="settings_title_daily_trend_display">Display daily trend</string>
+    <string name="settings_title_hourly_trend_display">Display hourly trend</string>
     <string name="settings_title_trend_horizontal_line_switch">Horizontal lines in trend</string>
     <string name="settings_title_exchange_day_night_temp_switch">Exchange day night temperature</string>
     <string name="settings_title_card_order">Card order</string>
@@ -476,38 +478,11 @@
     <string name="key_colorful">colorful</string>
 
     <!-- Do not translate the following set of strings. -->
-    <string name="key_background_free">background_free_3</string>
     <string name="key_live_wallpaper">live_wallpaper</string>
     <string name="key_service_provider">service_provider</string>
     <string name="key_service_provider_advanced">service_provider_advanced</string>
-    <string name="key_weather_source">weather_source</string>
-    <string name="key_location_service">location_service</string>
-    <string name="key_dark_mode">dark_mode</string>
-    <string name="key_icon_provider">icon_provider</string>
     <string name="key_appearance">appearance</string>
-    <string name="key_card_display">card_display_2</string>
-    <string name="key_daily_trend_display">daily_trend_display</string>
-    <string name="key_trend_horizontal_line_switch">trend_horizontal_line_switch</string>
-    <string name="key_exchange_day_night_temp_switch">exchange_day_night_temp_switch</string>
-    <string name="key_gravity_sensor_switch">gravity_sensor_switch</string>
-    <string name="key_list_animation_switch">list_animation_switch</string>
-    <string name="key_item_animation_switch">item_animation_switch</string>
-    <string name="key_language">language</string>
     <string name="key_unit">unit</string>
-    <string name="key_temperature_unit">temperature_unit</string>
-    <string name="key_distance_unit">distance_unit</string>
-    <string name="key_precipitation_unit">precipitation_unit</string>
-    <string name="key_pressure_unit">pressure_unit</string>
-    <string name="key_speed_unit">speed_unit</string>
-    <string name="key_refresh_rate">refresh_rate</string>
-    <string name="key_alert_notification_switch">alert_notification_switch</string>
-    <string name="key_precipitation_notification_switch">precipitation_notification_switch</string>
-    <string name="key_forecast_today">timing_forecast_switch_today</string>
-    <string name="key_forecast_today_time">forecast_time_today</string>
-    <string name="key_forecast_tomorrow">timing_forecast_switch_tomorrow</string>
-    <string name="key_forecast_tomorrow_time">forecast_time_tomorrow</string>
-    <string name="key_week_icon_mode">week_icon_mode</string>
-    <string name="key_widget_minimal_icon">widget_minimal_icon</string>
     <string name="key_click_widget_to_refresh">click_widget_to_refresh</string>
     <string name="key_widget_config">widget_config</string>
     <string name="key_widget_day">widget_day</string>
@@ -521,19 +496,7 @@
     <string name="key_widget_trend_daily">widget_trend_daily</string>
     <string name="key_widget_trend_hourly">widget_trend_hourly</string>
     <string name="key_widget_multi_city">widget_multi_city</string>
-    <string name="key_notification">notification_switch</string>
-    <string name="key_notification_style">notification_style</string>
     <string name="key_notification_minimal_icon">notification_minimal_icon</string>
-    <string name="key_notification_temp_icon">notification_temp_icon_switch</string>
-    <string name="key_notification_can_be_cleared">notification_can_clear_switch</string>
-    <string name="key_provider_accu_weather_key">provider_accu_weather_key</string>
-    <string name="key_provider_accu_current_key">provider_accu_current_key</string>
-    <string name="key_provider_accu_aqi_key">provider_accu_aqi_key</string>
-    <string name="key_provider_owm_key">provider_owm_key</string>
-    <string name="key_provider_baidu_ip_location_ak">provider_baidu_ip_location_ak</string>
-    <string name="key_provider_mf_wsft_key">provider_mf_wsft_key</string>
-    <string name="key_provider_iqa_air_parif_key">provider_iqa_air_parif_key</string>
-    <string name="key_provider_iqa_atmo_aura_key">provider_iqa_atmo_aura_key</string>
 
     <!-- transition. -->
     <!-- Do not translate the following set of strings. -->
