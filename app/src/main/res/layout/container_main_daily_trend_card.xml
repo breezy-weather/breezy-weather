@@ -17,6 +17,7 @@
             android:text="@string/daily_overview"
             android:layout_marginTop="@dimen/normal_margin"
             android:layout_marginStart="@dimen/normal_margin"
+            android:textStyle="bold"
             style="@style/title_text"
             tools:ignore="RtlHardcoded" />
 

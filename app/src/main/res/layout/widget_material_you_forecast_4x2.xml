@@ -18,7 +18,7 @@
             android:layout_height="98dp">
 
             <TextView
-                android:id="@+id/widget_s_card_background_city"
+                android:id="@+id/widget_material_you_forecast_city"
                 android:text="@string/ellipsis"
                 android:textSize="@dimen/subtitle_text_size"
                 android:textStyle="bold"
@@ -36,7 +36,7 @@
                 tools:ignore="RtlHardcoded" />
 
             <ImageView
-                android:id="@+id/widget_s_card_background_currentIcon"
+                android:id="@+id/widget_material_you_forecast_currentIcon"
                 android:layout_width="@dimen/widget_mini_weather_icon_size"
                 android:layout_height="@dimen/widget_mini_weather_icon_size"
                 android:layout_marginTop="@dimen/normal_margin"
@@ -60,7 +60,7 @@
                 android:paddingEnd="@dimen/little_margin">
 
                 <TextView
-                    android:id="@+id/widget_s_card_background_currentTemperature"
+                    android:id="@+id/widget_material_you_forecast_currentTemperature"
                     android:text="@string/ellipsis"
                     android:layout_marginStart="@dimen/little_margin"
                     android:layout_marginEnd="-4dp"
@@ -77,7 +77,7 @@
                     android:gravity="end">
 
                     <TextView
-                        android:id="@+id/widget_s_card_background_daytimeTemperature"
+                        android:id="@+id/widget_material_you_forecast_daytimeTemperature"
                         android:text="@string/ellipsis"
                         android:layout_marginStart="@dimen/little_margin"
                         android:layout_marginEnd="@dimen/little_margin"
@@ -90,7 +90,7 @@
                         tools:ignore="RtlHardcoded" />
 
                     <TextView
-                        android:id="@+id/widget_s_card_background_nighttimeTemperature"
+                        android:id="@+id/widget_material_you_forecast_nighttimeTemperature"
                         android:text="@string/ellipsis"
                         android:layout_marginStart="@dimen/little_margin"
                         android:layout_marginEnd="@dimen/little_margin"
@@ -117,7 +117,7 @@
                 android:layout_toEndOf="@id/widget_s_card_4x2_bottom_start_container">
 
                 <TextView
-                    android:id="@+id/widget_s_card_background_weatherText"
+                    android:id="@+id/widget_material_you_forecast_weatherText"
                     android:layout_width="match_parent"
                     android:text="@string/ellipsis"
                     android:textSize="@dimen/content_text_size"
@@ -131,7 +131,7 @@
                     tools:ignore="RtlHardcoded" />
 
                 <TextView
-                    android:id="@+id/widget_s_card_background_aqiOrWind"
+                    android:id="@+id/widget_material_you_forecast_aqiOrWind"
                     android:layout_width="match_parent"
                     android:text="@string/ellipsis"
                     android:textColor="?android:attr/textColorSecondary"
@@ -164,7 +164,7 @@
                 android:gravity="center">
 
                 <TextView
-                    android:id="@+id/widget_s_card_background_hour_1"
+                    android:id="@+id/widget_material_you_forecast_hour_1"
                     style="@style/widget_content_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -177,7 +177,7 @@
                     tools:text="9:00" />
 
                 <ImageView
-                    android:id="@+id/widget_s_card_background_hourlyIcon_1"
+                    android:id="@+id/widget_material_you_forecast_hourlyIcon_1"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/weather_cloudy"
@@ -185,7 +185,7 @@
                     tools:src="@drawable/weather_partly_cloudy_day" />
 
                 <TextView
-                    android:id="@+id/widget_s_card_background_hourlyTemperature_1"
+                    android:id="@+id/widget_material_you_forecast_hourlyTemperature_1"
                     style="@style/widget_content_text"
                     android:layout_width="wrap_content"
                     android:layout_marginTop="@dimen/little_margin"
@@ -207,7 +207,7 @@
                 android:gravity="center">
 
                 <TextView
-                    android:id="@+id/widget_s_card_background_hour_2"
+                    android:id="@+id/widget_material_you_forecast_hour_2"
                     style="@style/widget_content_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -220,7 +220,7 @@
                     tools:text="9:00" />
 
                 <ImageView
-                    android:id="@+id/widget_s_card_background_hourlyIcon_2"
+                    android:id="@+id/widget_material_you_forecast_hourlyIcon_2"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/weather_cloudy"
@@ -228,7 +228,7 @@
                     tools:src="@drawable/weather_partly_cloudy_day" />
 
                 <TextView
-                    android:id="@+id/widget_s_card_background_hourlyTemperature_2"
+                    android:id="@+id/widget_material_you_forecast_hourlyTemperature_2"
                     style="@style/widget_content_text"
                     android:layout_width="wrap_content"
                     android:layout_marginTop="@dimen/little_margin"
@@ -250,7 +250,7 @@
                 android:gravity="center">
 
                 <TextView
-                    android:id="@+id/widget_s_card_background_hour_3"
+                    android:id="@+id/widget_material_you_forecast_hour_3"
                     style="@style/widget_content_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -263,7 +263,7 @@
                     tools:text="9:00" />
 
                 <ImageView
-                    android:id="@+id/widget_s_card_background_hourlyIcon_3"
+                    android:id="@+id/widget_material_you_forecast_hourlyIcon_3"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/weather_cloudy"
@@ -271,7 +271,7 @@
                     tools:src="@drawable/weather_partly_cloudy_day" />
 
                 <TextView
-                    android:id="@+id/widget_s_card_background_hourlyTemperature_3"
+                    android:id="@+id/widget_material_you_forecast_hourlyTemperature_3"
                     style="@style/widget_content_text"
                     android:layout_width="wrap_content"
                     android:layout_marginTop="@dimen/little_margin"
@@ -293,7 +293,7 @@
                 android:gravity="center">
 
                 <TextView
-                    android:id="@+id/widget_s_card_background_hour_4"
+                    android:id="@+id/widget_material_you_forecast_hour_4"
                     style="@style/widget_content_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -306,7 +306,7 @@
                     tools:text="9:00" />
 
                 <ImageView
-                    android:id="@+id/widget_s_card_background_hourlyIcon_4"
+                    android:id="@+id/widget_material_you_forecast_hourlyIcon_4"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/weather_cloudy"
@@ -314,7 +314,7 @@
                     tools:src="@drawable/weather_partly_cloudy_day" />
 
                 <TextView
-                    android:id="@+id/widget_s_card_background_hourlyTemperature_4"
+                    android:id="@+id/widget_material_you_forecast_hourlyTemperature_4"
                     style="@style/widget_content_text"
                     android:layout_width="wrap_content"
                     android:layout_marginTop="@dimen/little_margin"
@@ -336,7 +336,7 @@
                 android:gravity="center">
 
                 <TextView
-                    android:id="@+id/widget_s_card_background_hour_5"
+                    android:id="@+id/widget_material_you_forecast_hour_5"
                     style="@style/widget_content_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -349,7 +349,7 @@
                     tools:text="9:00" />
 
                 <ImageView
-                    android:id="@+id/widget_s_card_background_hourlyIcon_5"
+                    android:id="@+id/widget_material_you_forecast_hourlyIcon_5"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/weather_cloudy"
@@ -357,7 +357,7 @@
                     tools:src="@drawable/weather_partly_cloudy_day" />
 
                 <TextView
-                    android:id="@+id/widget_s_card_background_hourlyTemperature_5"
+                    android:id="@+id/widget_material_you_forecast_hourlyTemperature_5"
                     style="@style/widget_content_text"
                     android:layout_width="wrap_content"
                     android:layout_marginTop="@dimen/little_margin"

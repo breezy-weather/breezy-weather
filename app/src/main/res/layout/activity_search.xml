@@ -29,6 +29,7 @@
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/backBtn"
                     android:src="@drawable/ic_back"
+                    android:tint="?attr/colorPrimary"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:contentDescription="@string/content_desc_back"
@@ -120,9 +121,9 @@
             android:textColor="@android:color/white"
             android:contentDescription="@string/content_desc_filter_weather_sources"
             android:src="@drawable/ic_filter"
-            style="?attr/floatingActionButtonLargeStyle"
-            app:tint="?attr/colorOnPrimaryContainer"
-            app:backgroundTint="?attr/colorPrimaryContainer" />
+            style="?attr/floatingActionButtonStyle"
+            app:tint="?attr/colorOnPrimary"
+            app:backgroundTint="?attr/colorPrimary" />
 
         <io.codetail.widget.RevealLinearLayout
             android:layout_width="match_parent"
@@ -143,10 +144,10 @@
                     android:layout_height="wrap_content"
                     android:text="@string/done"
                     android:textStyle="bold"
-                    android:textColor="?attr/colorOnPrimaryContainer"
+                    android:textColor="?attr/colorOnPrimary"
                     android:layout_alignParentBottom="true"
                     style="@style/Widget.Material3.Button.ElevatedButton"
-                    app:backgroundTint="?attr/colorPrimaryContainer"
+                    app:backgroundTint="?attr/colorPrimary"
                     tools:ignore="UnusedAttribute" />
 
                 <com.google.android.material.card.MaterialCardView

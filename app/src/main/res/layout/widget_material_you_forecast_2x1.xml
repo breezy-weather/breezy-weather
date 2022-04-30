@@ -15,7 +15,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/widget_s_card_background_currentTemperature"
+            android:id="@+id/widget_material_you_forecast_currentTemperature"
             android:text="@string/ellipsis"
             android:layout_margin="12dp"
             android:textSize="38sp"
@@ -26,7 +26,7 @@
             tools:ignore="RtlHardcoded" />
 
         <ImageView
-            android:id="@+id/widget_s_card_background_currentIcon"
+            android:id="@+id/widget_material_you_forecast_currentIcon"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:src="@drawable/weather_cloudy"

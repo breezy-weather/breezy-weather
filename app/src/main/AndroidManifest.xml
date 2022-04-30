@@ -349,12 +349,12 @@
 
         <!-- widget -->
         <receiver
-            android:name=".background.receiver.widget.WidgetAndroidSProvider"
-            android:label="@string/widget_android_s"
+            android:name=".background.receiver.widget.WidgetMaterialYouForecastProvider"
+            android:label="@string/widget_material_you_forecast"
             android:exported="true">
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/widget_android_s" />
+                android:resource="@xml/widget_material_you_forecast" />
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="android.appwidget.action.ACTION_APPWIDGET_DISABLED" />

@@ -163,7 +163,7 @@ public class SearchActivity extends GeoActivity
                 this, new int[]{
                         R.attr.colorOutline,
                         R.attr.colorSurfaceVariant,
-                        R.attr.colorPrimaryContainer,
+                        R.attr.colorPrimary,
                 }
         );
 

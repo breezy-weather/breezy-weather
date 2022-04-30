@@ -11,7 +11,7 @@
     tools:layout_height="100dp">
 
     <TextView
-        android:id="@+id/widget_s_card_background_city"
+        android:id="@+id/widget_material_you_forecast_city"
         android:text="@string/ellipsis"
         android:textSize="@dimen/subtitle_text_size"
         android:textStyle="bold"
@@ -29,7 +29,7 @@
         tools:ignore="RtlHardcoded" />
 
     <ImageView
-        android:id="@+id/widget_s_card_background_currentIcon"
+        android:id="@+id/widget_material_you_forecast_currentIcon"
         android:layout_width="@dimen/widget_mini_weather_icon_size"
         android:layout_height="@dimen/widget_mini_weather_icon_size"
         android:layout_marginTop="@dimen/normal_margin"
@@ -53,7 +53,7 @@
         android:paddingEnd="@dimen/little_margin">
 
         <TextView
-            android:id="@+id/widget_s_card_background_currentTemperature"
+            android:id="@+id/widget_material_you_forecast_currentTemperature"
             android:text="@string/ellipsis"
             android:layout_marginStart="@dimen/little_margin"
             android:layout_marginEnd="-4dp"
@@ -70,7 +70,7 @@
             android:gravity="end">
 
             <TextView
-                android:id="@+id/widget_s_card_background_daytimeTemperature"
+                android:id="@+id/widget_material_you_forecast_daytimeTemperature"
                 android:text="@string/ellipsis"
                 android:layout_marginStart="@dimen/little_margin"
                 android:layout_marginEnd="@dimen/little_margin"
@@ -83,7 +83,7 @@
                 tools:ignore="RtlHardcoded" />
 
             <TextView
-                android:id="@+id/widget_s_card_background_nighttimeTemperature"
+                android:id="@+id/widget_material_you_forecast_nighttimeTemperature"
                 android:text="@string/ellipsis"
                 android:layout_marginStart="@dimen/little_margin"
                 android:layout_marginEnd="@dimen/little_margin"
@@ -110,7 +110,7 @@
         android:layout_toEndOf="@id/widget_s_card_4x1_bottom_start_container">
 
         <TextView
-            android:id="@+id/widget_s_card_background_weatherText"
+            android:id="@+id/widget_material_you_forecast_weatherText"
             android:layout_width="match_parent"
             android:text="@string/ellipsis"
             android:textSize="@dimen/content_text_size"
@@ -124,7 +124,7 @@
             tools:ignore="RtlHardcoded" />
 
         <TextView
-            android:id="@+id/widget_s_card_background_aqiOrWind"
+            android:id="@+id/widget_material_you_forecast_aqiOrWind"
             android:layout_width="match_parent"
             android:text="@string/ellipsis"
             android:textColor="?android:attr/textColorSecondary"

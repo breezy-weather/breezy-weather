@@ -3,9 +3,9 @@
 ![Geometric Weather](/work/preview-header-android.png?raw=true)
 
 ### Download app
-* CoolAPK: http://www.coolapk.com/apk/wangdaye.com.geometricweather
-* GooglePlay: https://play.google.com/store/apps/details?id=wangdaye.com.geometricweather
-* F-Droid: https://f-droid.org/packages/wangdaye.com.geometricweather/
+* [CoolAPK](http://www.coolapk.com/apk/wangdaye.com.geometricweather)
+* [GooglePlay](https://play.google.com/store/apps/details?id=wangdaye.com.geometricweather)
+* [F-Droid](https://f-droid.org/packages/wangdaye.com.geometricweather)
 
 ### Contact me
 * By Email: wangdayeeeeee@gmail.com

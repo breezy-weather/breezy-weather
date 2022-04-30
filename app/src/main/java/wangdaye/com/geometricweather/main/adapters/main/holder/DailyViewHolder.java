@@ -111,10 +111,14 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
             mTagView.setAdapter(
                     new TagAdapter(
                             tagList,
-                            MainThemeColorProvider.getColor(location, R.attr.colorOnPrimaryContainer),
-                            MainThemeColorProvider.getColor(location, R.attr.colorTitleText),
-                            MainThemeColorProvider.getColor(location, R.attr.colorPrimaryContainer),
-                            MainThemeColorProvider.getColor(location, R.attr.colorOutline),
+                            MainThemeColorProvider.getColor(location, R.attr.colorOnPrimary),
+                            MainThemeColorProvider.getColor(location, R.attr.colorOnSurface),
+                            MainThemeColorProvider.getColor(location, R.attr.colorPrimary),
+                            DisplayUtils.getWidgetSurfaceColor(
+                                    DisplayUtils.DEFAULT_CARD_LIST_ITEM_ELEVATION_DP,
+                                    MainThemeColorProvider.getColor(location, R.attr.colorPrimary),
+                                    MainThemeColorProvider.getColor(location, R.attr.colorSurface)
+                            ),
                             (checked, oldPosition, newPosition) -> {
                                 setTrendAdapterByTag(location, (MainTag) tagList.get(newPosition));
                                 return false;

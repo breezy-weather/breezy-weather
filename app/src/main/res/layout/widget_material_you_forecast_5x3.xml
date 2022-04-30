@@ -34,7 +34,7 @@
                 android:gravity="center">
 
                 <TextView
-                    android:id="@+id/widget_s_card_background_week_1"
+                    android:id="@+id/widget_material_you_forecast_week_1"
                     style="@style/widget_content_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
                     tools:text="今日" />
 
                 <ImageView
-                    android:id="@+id/widget_s_card_background_dayIcon_1"
+                    android:id="@+id/widget_material_you_forecast_dayIcon_1"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/weather_cloudy"
@@ -55,7 +55,7 @@
                     tools:src="@drawable/weather_partly_cloudy_day" />
 
                 <TextView
-                    android:id="@+id/widget_s_card_background_dayTemperature_1"
+                    android:id="@+id/widget_material_you_forecast_dayTemperature_1"
                     style="@style/widget_content_text"
                     android:layout_width="wrap_content"
                     android:layout_marginTop="2dp"
@@ -67,7 +67,7 @@
                     tools:text="19°" />
 
                 <TextView
-                    android:id="@+id/widget_s_card_background_nightTemperature_1"
+                    android:id="@+id/widget_material_you_forecast_nightTemperature_1"
                     style="@style/widget_content_text"
                     android:layout_width="wrap_content"
                     android:layout_marginBottom="2dp"
@@ -80,7 +80,7 @@
                     tools:text="19°" />
 
                 <ImageView
-                    android:id="@+id/widget_s_card_background_nightIcon_1"
+                    android:id="@+id/widget_material_you_forecast_nightIcon_1"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/weather_cloudy"
@@ -97,7 +97,7 @@
                 android:gravity="center">
 
                 <TextView
-                    android:id="@+id/widget_s_card_background_week_2"
+                    android:id="@+id/widget_material_you_forecast_week_2"
                     style="@style/widget_content_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -110,7 +110,7 @@
                     tools:text="今日" />
 
                 <ImageView
-                    android:id="@+id/widget_s_card_background_dayIcon_2"
+                    android:id="@+id/widget_material_you_forecast_dayIcon_2"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/weather_cloudy"
@@ -118,7 +118,7 @@
                     tools:src="@drawable/weather_partly_cloudy_day" />
 
                 <TextView
-                    android:id="@+id/widget_s_card_background_dayTemperature_2"
+                    android:id="@+id/widget_material_you_forecast_dayTemperature_2"
                     style="@style/widget_content_text"
                     android:layout_width="wrap_content"
                     android:layout_marginTop="2dp"
@@ -130,7 +130,7 @@
                     tools:text="19°" />
 
                 <TextView
-                    android:id="@+id/widget_s_card_background_nightTemperature_2"
+                    android:id="@+id/widget_material_you_forecast_nightTemperature_2"
                     style="@style/widget_content_text"
                     android:layout_width="wrap_content"
                     android:layout_marginBottom="2dp"
@@ -143,7 +143,7 @@
                     tools:text="19°" />
 
                 <ImageView
-                    android:id="@+id/widget_s_card_background_nightIcon_2"
+                    android:id="@+id/widget_material_you_forecast_nightIcon_2"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/weather_cloudy"
@@ -160,7 +160,7 @@
                 android:gravity="center">
 
                 <TextView
-                    android:id="@+id/widget_s_card_background_week_3"
+                    android:id="@+id/widget_material_you_forecast_week_3"
                     style="@style/widget_content_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -173,7 +173,7 @@
                     tools:text="今日" />
 
                 <ImageView
-                    android:id="@+id/widget_s_card_background_dayIcon_3"
+                    android:id="@+id/widget_material_you_forecast_dayIcon_3"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/weather_cloudy"
@@ -181,7 +181,7 @@
                     tools:src="@drawable/weather_partly_cloudy_day" />
 
                 <TextView
-                    android:id="@+id/widget_s_card_background_dayTemperature_3"
+                    android:id="@+id/widget_material_you_forecast_dayTemperature_3"
                     style="@style/widget_content_text"
                     android:layout_width="wrap_content"
                     android:layout_marginTop="2dp"
@@ -193,7 +193,7 @@
                     tools:text="19°" />
 
                 <TextView
-                    android:id="@+id/widget_s_card_background_nightTemperature_3"
+                    android:id="@+id/widget_material_you_forecast_nightTemperature_3"
                     style="@style/widget_content_text"
                     android:layout_width="wrap_content"
                     android:layout_marginBottom="2dp"
@@ -206,7 +206,7 @@
                     tools:text="19°" />
 
                 <ImageView
-                    android:id="@+id/widget_s_card_background_nightIcon_3"
+                    android:id="@+id/widget_material_you_forecast_nightIcon_3"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/weather_cloudy"
@@ -223,7 +223,7 @@
                 android:gravity="center">
 
                 <TextView
-                    android:id="@+id/widget_s_card_background_week_4"
+                    android:id="@+id/widget_material_you_forecast_week_4"
                     style="@style/widget_content_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -236,7 +236,7 @@
                     tools:text="今日" />
 
                 <ImageView
-                    android:id="@+id/widget_s_card_background_dayIcon_4"
+                    android:id="@+id/widget_material_you_forecast_dayIcon_4"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/weather_cloudy"
@@ -244,7 +244,7 @@
                     tools:src="@drawable/weather_partly_cloudy_day" />
 
                 <TextView
-                    android:id="@+id/widget_s_card_background_dayTemperature_4"
+                    android:id="@+id/widget_material_you_forecast_dayTemperature_4"
                     style="@style/widget_content_text"
                     android:layout_width="wrap_content"
                     android:layout_marginTop="2dp"
@@ -256,7 +256,7 @@
                     tools:text="19°" />
 
                 <TextView
-                    android:id="@+id/widget_s_card_background_nightTemperature_4"
+                    android:id="@+id/widget_material_you_forecast_nightTemperature_4"
                     style="@style/widget_content_text"
                     android:layout_width="wrap_content"
                     android:layout_marginBottom="2dp"
@@ -269,7 +269,7 @@
                     tools:text="19°" />
 
                 <ImageView
-                    android:id="@+id/widget_s_card_background_nightIcon_4"
+                    android:id="@+id/widget_material_you_forecast_nightIcon_4"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/weather_cloudy"
@@ -286,7 +286,7 @@
                 android:gravity="center">
 
                 <TextView
-                    android:id="@+id/widget_s_card_background_week_5"
+                    android:id="@+id/widget_material_you_forecast_week_5"
                     style="@style/widget_content_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -299,7 +299,7 @@
                     tools:text="今日" />
 
                 <ImageView
-                    android:id="@+id/widget_s_card_background_dayIcon_5"
+                    android:id="@+id/widget_material_you_forecast_dayIcon_5"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/weather_cloudy"
@@ -307,7 +307,7 @@
                     tools:src="@drawable/weather_partly_cloudy_day" />
 
                 <TextView
-                    android:id="@+id/widget_s_card_background_dayTemperature_5"
+                    android:id="@+id/widget_material_you_forecast_dayTemperature_5"
                     style="@style/widget_content_text"
                     android:layout_width="wrap_content"
                     android:layout_marginTop="2dp"
@@ -319,7 +319,7 @@
                     tools:text="19°" />
 
                 <TextView
-                    android:id="@+id/widget_s_card_background_nightTemperature_5"
+                    android:id="@+id/widget_material_you_forecast_nightTemperature_5"
                     style="@style/widget_content_text"
                     android:layout_width="wrap_content"
                     android:layout_marginBottom="2dp"
@@ -332,7 +332,7 @@
                     tools:text="19°" />
 
                 <ImageView
-                    android:id="@+id/widget_s_card_background_nightIcon_5"
+                    android:id="@+id/widget_material_you_forecast_nightIcon_5"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/weather_cloudy"
@@ -349,7 +349,7 @@
                 android:gravity="center">
 
                 <TextView
-                    android:id="@+id/widget_s_card_background_week_6"
+                    android:id="@+id/widget_material_you_forecast_week_6"
                     style="@style/widget_content_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -362,7 +362,7 @@
                     tools:text="今日" />
 
                 <ImageView
-                    android:id="@+id/widget_s_card_background_dayIcon_6"
+                    android:id="@+id/widget_material_you_forecast_dayIcon_6"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/weather_cloudy"
@@ -370,7 +370,7 @@
                     tools:src="@drawable/weather_partly_cloudy_day" />
 
                 <TextView
-                    android:id="@+id/widget_s_card_background_dayTemperature_6"
+                    android:id="@+id/widget_material_you_forecast_dayTemperature_6"
                     style="@style/widget_content_text"
                     android:layout_width="wrap_content"
                     android:layout_marginTop="2dp"
@@ -382,7 +382,7 @@
                     tools:text="19°" />
 
                 <TextView
-                    android:id="@+id/widget_s_card_background_nightTemperature_6"
+                    android:id="@+id/widget_material_you_forecast_nightTemperature_6"
                     style="@style/widget_content_text"
                     android:layout_width="wrap_content"
                     android:layout_marginBottom="2dp"
@@ -395,7 +395,7 @@
                     tools:text="19°" />
 
                 <ImageView
-                    android:id="@+id/widget_s_card_background_nightIcon_6"
+                    android:id="@+id/widget_material_you_forecast_nightIcon_6"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/weather_cloudy"
@@ -435,7 +435,7 @@
             android:gravity="center">
 
             <TextView
-                android:id="@+id/widget_s_card_background_hour_1"
+                android:id="@+id/widget_material_you_forecast_hour_1"
                 style="@style/widget_content_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -448,7 +448,7 @@
                 tools:text="9:00" />
 
             <ImageView
-                android:id="@+id/widget_s_card_background_hourlyIcon_1"
+                android:id="@+id/widget_material_you_forecast_hourlyIcon_1"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@drawable/weather_cloudy"
@@ -456,7 +456,7 @@
                 tools:src="@drawable/weather_partly_cloudy_day" />
 
             <TextView
-                android:id="@+id/widget_s_card_background_hourlyTemperature_1"
+                android:id="@+id/widget_material_you_forecast_hourlyTemperature_1"
                 style="@style/widget_content_text"
                 android:layout_width="wrap_content"
                 android:layout_marginTop="@dimen/little_margin"
@@ -478,7 +478,7 @@
             android:gravity="center">
 
             <TextView
-                android:id="@+id/widget_s_card_background_hour_2"
+                android:id="@+id/widget_material_you_forecast_hour_2"
                 style="@style/widget_content_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -491,7 +491,7 @@
                 tools:text="9:00" />
 
             <ImageView
-                android:id="@+id/widget_s_card_background_hourlyIcon_2"
+                android:id="@+id/widget_material_you_forecast_hourlyIcon_2"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@drawable/weather_cloudy"
@@ -499,7 +499,7 @@
                 tools:src="@drawable/weather_partly_cloudy_day" />
 
             <TextView
-                android:id="@+id/widget_s_card_background_hourlyTemperature_2"
+                android:id="@+id/widget_material_you_forecast_hourlyTemperature_2"
                 style="@style/widget_content_text"
                 android:layout_width="wrap_content"
                 android:layout_marginTop="@dimen/little_margin"
@@ -521,7 +521,7 @@
             android:gravity="center">
 
             <TextView
-                android:id="@+id/widget_s_card_background_hour_3"
+                android:id="@+id/widget_material_you_forecast_hour_3"
                 style="@style/widget_content_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -534,7 +534,7 @@
                 tools:text="9:00" />
 
             <ImageView
-                android:id="@+id/widget_s_card_background_hourlyIcon_3"
+                android:id="@+id/widget_material_you_forecast_hourlyIcon_3"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@drawable/weather_cloudy"
@@ -542,7 +542,7 @@
                 tools:src="@drawable/weather_partly_cloudy_day" />
 
             <TextView
-                android:id="@+id/widget_s_card_background_hourlyTemperature_3"
+                android:id="@+id/widget_material_you_forecast_hourlyTemperature_3"
                 style="@style/widget_content_text"
                 android:layout_width="wrap_content"
                 android:layout_marginTop="@dimen/little_margin"
@@ -564,7 +564,7 @@
             android:gravity="center">
 
             <TextView
-                android:id="@+id/widget_s_card_background_hour_4"
+                android:id="@+id/widget_material_you_forecast_hour_4"
                 style="@style/widget_content_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -577,7 +577,7 @@
                 tools:text="9:00" />
 
             <ImageView
-                android:id="@+id/widget_s_card_background_hourlyIcon_4"
+                android:id="@+id/widget_material_you_forecast_hourlyIcon_4"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@drawable/weather_cloudy"
@@ -585,7 +585,7 @@
                 tools:src="@drawable/weather_partly_cloudy_day" />
 
             <TextView
-                android:id="@+id/widget_s_card_background_hourlyTemperature_4"
+                android:id="@+id/widget_material_you_forecast_hourlyTemperature_4"
                 style="@style/widget_content_text"
                 android:layout_width="wrap_content"
                 android:layout_marginTop="@dimen/little_margin"
@@ -607,7 +607,7 @@
             android:gravity="center">
 
             <TextView
-                android:id="@+id/widget_s_card_background_hour_5"
+                android:id="@+id/widget_material_you_forecast_hour_5"
                 style="@style/widget_content_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -620,7 +620,7 @@
                 tools:text="9:00" />
 
             <ImageView
-                android:id="@+id/widget_s_card_background_hourlyIcon_5"
+                android:id="@+id/widget_material_you_forecast_hourlyIcon_5"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@drawable/weather_cloudy"
@@ -628,7 +628,7 @@
                 tools:src="@drawable/weather_partly_cloudy_day" />
 
             <TextView
-                android:id="@+id/widget_s_card_background_hourlyTemperature_5"
+                android:id="@+id/widget_material_you_forecast_hourlyTemperature_5"
                 style="@style/widget_content_text"
                 android:layout_width="wrap_content"
                 android:layout_marginTop="@dimen/little_margin"
@@ -650,7 +650,7 @@
             android:gravity="center">
 
             <TextView
-                android:id="@+id/widget_s_card_background_hour_6"
+                android:id="@+id/widget_material_you_forecast_hour_6"
                 style="@style/widget_content_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -663,7 +663,7 @@
                 tools:text="9:00" />
 
             <ImageView
-                android:id="@+id/widget_s_card_background_hourlyIcon_6"
+                android:id="@+id/widget_material_you_forecast_hourlyIcon_6"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@drawable/weather_cloudy"
@@ -671,7 +671,7 @@
                 tools:src="@drawable/weather_partly_cloudy_day" />
 
             <TextView
-                android:id="@+id/widget_s_card_background_hourlyTemperature_6"
+                android:id="@+id/widget_material_you_forecast_hourlyTemperature_6"
                 style="@style/widget_content_text"
                 android:layout_width="wrap_content"
                 android:layout_marginTop="@dimen/little_margin"
@@ -692,7 +692,7 @@
         android:layout_height="98dp">
 
         <TextView
-            android:id="@+id/widget_s_card_background_city"
+            android:id="@+id/widget_material_you_forecast_city"
             android:text="@string/ellipsis"
             android:textSize="@dimen/subtitle_text_size"
             android:textStyle="bold"
@@ -710,7 +710,7 @@
             tools:ignore="RtlHardcoded" />
 
         <ImageView
-            android:id="@+id/widget_s_card_background_currentIcon"
+            android:id="@+id/widget_material_you_forecast_currentIcon"
             android:layout_width="@dimen/widget_mini_weather_icon_size"
             android:layout_height="@dimen/widget_mini_weather_icon_size"
             android:layout_marginTop="@dimen/normal_margin"
@@ -734,7 +734,7 @@
             android:paddingEnd="@dimen/little_margin">
 
             <TextView
-                android:id="@+id/widget_s_card_background_currentTemperature"
+                android:id="@+id/widget_material_you_forecast_currentTemperature"
                 android:text="@string/ellipsis"
                 android:layout_marginStart="@dimen/little_margin"
                 android:layout_marginEnd="-4dp"
@@ -751,7 +751,7 @@
                 android:gravity="end">
 
                 <TextView
-                    android:id="@+id/widget_s_card_background_daytimeTemperature"
+                    android:id="@+id/widget_material_you_forecast_daytimeTemperature"
                     android:text="@string/ellipsis"
                     android:layout_marginStart="@dimen/little_margin"
                     android:layout_marginEnd="@dimen/little_margin"
@@ -764,7 +764,7 @@
                     tools:ignore="RtlHardcoded" />
 
                 <TextView
-                    android:id="@+id/widget_s_card_background_nighttimeTemperature"
+                    android:id="@+id/widget_material_you_forecast_nighttimeTemperature"
                     android:text="@string/ellipsis"
                     android:layout_marginStart="@dimen/little_margin"
                     android:layout_marginEnd="@dimen/little_margin"
@@ -791,7 +791,7 @@
             android:layout_toEndOf="@id/widget_s_card_5x3_bottom_start_container">
 
             <TextView
-                android:id="@+id/widget_s_card_background_weatherText"
+                android:id="@+id/widget_material_you_forecast_weatherText"
                 android:layout_width="match_parent"
                 android:text="@string/ellipsis"
                 android:textSize="@dimen/content_text_size"
@@ -805,7 +805,7 @@
                 tools:ignore="RtlHardcoded" />
 
             <TextView
-                android:id="@+id/widget_s_card_background_aqiOrWind"
+                android:id="@+id/widget_material_you_forecast_aqiOrWind"
                 android:layout_width="match_parent"
                 android:text="@string/ellipsis"
                 android:textColor="?android:attr/textColorSecondary"
