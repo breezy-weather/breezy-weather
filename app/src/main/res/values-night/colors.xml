@@ -11,8 +11,8 @@
 
     <!-- widget S. -->
 
-    <color name="colorWidgetSRoot">@color/darkPrimary_1</color>
-    <color name="colorWidgetSText">@color/colorTextTitle</color>
+    <color name="colorWidgetM3Root">@color/darkPrimary_1</color>
+    <color name="colorWidgetM3Text">@color/lightPrimary_1</color>
     
     <!-- material 3. -->
 

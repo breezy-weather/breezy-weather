@@ -4,7 +4,7 @@
     android:id="@android:id/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/widget_s_background"
+    android:background="@drawable/widget_m3_background"
     android:theme="@style/GeometricWeatherAndroidSWidget"
     style="@android:style/Widget"
     tools:layout_width="86dp"

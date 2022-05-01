@@ -125,7 +125,7 @@ class MaterialWeatherThemeDelegate: WeatherThemeDelegate {
 
     override fun getHomeCardRadius(context: Context): Float = context
         .resources
-        .getDimension(R.dimen.view_mini_corner_radius)
+        .getDimension(R.dimen.material3_card_list_item_corner_radius)
 
     override fun getHomeCardElevation(context: Context): Float =
         DisplayUtils.dpToPx(context, 2f)

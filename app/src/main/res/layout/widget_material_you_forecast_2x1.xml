@@ -4,36 +4,36 @@
     android:id="@android:id/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/widget_s_background"
+    android:background="@drawable/widget_m3_background"
     android:theme="@style/GeometricWeatherAndroidSWidget"
     style="@android:style/Widget"
     tools:layout_width="120dp"
     tools:layout_height="120dp">
 
-    <FrameLayout
+    <TextView
+        android:id="@+id/widget_material_you_forecast_currentTemperature"
+        style="@style/widget_large_title_text"
+        android:layout_centerInParent="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_margin="12dp"
+        android:includeFontPadding="false"
+        android:text="@string/ellipsis"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="38dp"
+        android:textStyle="bold"
+        android:singleLine="true"
+        android:translationY="-16dp"
+        tools:ignore="RtlHardcoded,SpUsage"
+        tools:text="-127°" />
 
-        <TextView
-            android:id="@+id/widget_material_you_forecast_currentTemperature"
-            android:text="@string/ellipsis"
-            android:layout_margin="12dp"
-            android:textSize="38sp"
-            android:includeFontPadding="false"
-            android:textColor="?android:attr/textColorPrimary"
-            style="@style/widget_large_title_text"
-            tools:text="27°"
-            tools:ignore="RtlHardcoded" />
-
-        <ImageView
-            android:id="@+id/widget_material_you_forecast_currentIcon"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:src="@drawable/weather_cloudy"
-            android:layout_margin="12dp"
-            android:layout_gravity="bottom|end"
-            tools:ignore="ContentDescription" />
-
-    </FrameLayout>
+    <ImageView
+        android:id="@+id/widget_material_you_forecast_currentIcon"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
+        android:src="@drawable/weather_cloudy"
+        android:layout_centerInParent="true"
+        android:translationX="16dp"
+        android:translationY="16dp"
+        tools:ignore="ContentDescription" />
 
 </RelativeLayout>

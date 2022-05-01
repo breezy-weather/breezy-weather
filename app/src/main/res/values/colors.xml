@@ -57,8 +57,8 @@
     <!-- widget. -->
 
     <color name="colorWidgetRoot">@color/md_theme_surface</color>
-    <color name="colorWidgetSRoot">@color/lightPrimary_1</color>
-    <color name="colorWidgetSText">@color/colorTextTitle</color>
+    <color name="colorWidgetM3Root">@color/lightPrimary_1</color>
+    <color name="colorWidgetM3Text">@color/darkPrimary_1</color>
     <color name="colorWidgetTextShadow">#99000000</color>
 
     <!-- material 3. -->

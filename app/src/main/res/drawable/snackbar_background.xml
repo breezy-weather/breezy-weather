@@ -2,7 +2,7 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
 
-    <corners android:radius="@dimen/view_mini_corner_radius" />
+    <corners android:radius="@dimen/material3_card_list_item_corner_radius" />
     <solid android:color="?attr/colorSurface" />
     <padding
         android:left="@dimen/little_margin"

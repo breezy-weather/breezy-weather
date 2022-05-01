@@ -157,7 +157,7 @@
                     android:layout_marginBottom="@dimen/little_margin"
                     style="?attr/materialCardViewFilledStyle"
                     app:cardBackgroundColor="?attr/colorSurface"
-                    app:cardCornerRadius="@dimen/view_corner_radius">
+                    app:cardCornerRadius="@dimen/material3_card_list_item_corner_radius">
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/source_list"

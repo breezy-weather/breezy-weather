@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/GeometricWeatherAndroidSWidget"
+    style="@android:style/Widget">
+
+    <RelativeLayout
+        android:layout_width="156dp"
+        android:layout_height="156dp"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:id="@android:id/background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/widget_m3_current_background"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/widget_material_you_current_currentTemperature"
+            style="@style/widget_large_title_text"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_marginRight="24dp"
+            android:includeFontPadding="false"
+            android:gravity="right"
+            android:text="@string/ellipsis"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="42dp"
+            android:textStyle="bold"
+            android:textAlignment="gravity"
+            android:singleLine="true"
+            android:translationY="-16dp"
+            tools:ignore="RtlHardcoded,SpUsage"
+            tools:text="-1217°" />
+
+        <ImageView
+            android:id="@+id/widget_material_you_current_currentIcon"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:src="@drawable/weather_cloudy"
+            android:layout_centerInParent="true"
+            android:translationX="-16dp"
+            android:translationY="16dp"
+            tools:ignore="ContentDescription" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

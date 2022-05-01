@@ -16,7 +16,7 @@ import wangdaye.com.geometricweather.settings.SettingsManager
 import wangdaye.com.geometricweather.theme.resource.ResourceHelper
 import wangdaye.com.geometricweather.theme.resource.ResourcesProviderFactory
 
-class AndroidSWidgetIMP: AbstractRemoteViewsPresenter() {
+class MaterialYouForecastWidgetIMP: AbstractRemoteViewsPresenter() {
 
     companion object {
 
@@ -53,7 +53,7 @@ private fun buildWeatherWidget(
                 location,
                 R.layout.widget_material_you_forecast_1x1
             ),
-            SizeF (100.0f, 100.0f) to buildRemoteViews(
+            SizeF (120.0f, 120.0f) to buildRemoteViews(
                 context,
                 location,
                 R.layout.widget_material_you_forecast_2x1
@@ -73,17 +73,17 @@ private fun buildWeatherWidget(
                 location,
                 R.layout.widget_material_you_forecast_3x2
             ),
-            SizeF (216.0f, 100.0f) to buildRemoteViews(
+            SizeF (256.0f, 100.0f) to buildRemoteViews(
                 context,
                 location,
                 R.layout.widget_material_you_forecast_4x1
             ),
-            SizeF (216.0f, 198.0f) to buildRemoteViews(
+            SizeF (256.0f, 198.0f) to buildRemoteViews(
                 context,
                 location,
                 R.layout.widget_material_you_forecast_4x2
             ),
-            SizeF (216.0f, 312.0f) to buildRemoteViews(
+            SizeF (256.0f, 312.0f) to buildRemoteViews(
                 context,
                 location,
                 R.layout.widget_material_you_forecast_4x3
@@ -501,7 +501,7 @@ private fun buildRemoteViews(
         AbstractRemoteViewsPresenter.getWeatherPendingIntent(
             context,
             location,
-            GeometricWeather.WIDGET_ANDROID_S_PENDING_INTENT_CODE_WEATHER
+            GeometricWeather.WIDGET_MATERIAL_YOU_FORECAST_PENDING_INTENT_CODE_WEATHER
         )
     )
 

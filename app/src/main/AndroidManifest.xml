@@ -360,6 +360,18 @@
                 <action android:name="android.appwidget.action.ACTION_APPWIDGET_DISABLED" />
             </intent-filter>
         </receiver>
+        <receiver
+            android:name=".background.receiver.widget.WidgetMaterialYouCurrentProvider"
+            android:label="@string/widget_material_you_current"
+            android:exported="true">
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_material_you_current" />
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.ACTION_APPWIDGET_DISABLED" />
+            </intent-filter>
+        </receiver>
 
         <receiver
             android:name=".background.receiver.widget.WidgetDayProvider"
