@@ -24,7 +24,7 @@ public class UtilsTest {
                 "auto", "system", "light", "dark"
         });
         Assert.assertEquals(
-                Utils.getNameByValue(res, "auto", R.array.dark_modes, R.array.dark_mode_values),
+                Utils.INSTANCE.getNameByValue(res, "auto", R.array.dark_modes, R.array.dark_mode_values),
                 "Automatic"
         );
     }
