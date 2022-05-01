@@ -140,10 +140,7 @@ public class DailyViewHolder extends AbstractMainCardViewHolder {
                 SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled());
         setTrendAdapterByTag(location, (MainTag) tagList.get(0));
 
-        mScrollBar.setColor(
-                MainThemeColorProvider.getColor(location, R.attr.colorSurface),
-                MainThemeColorProvider.isLightTheme(context, location)
-        );
+        mScrollBar.resetColor(location);
     }
 
     @SuppressLint("NotifyDataSetChanged")

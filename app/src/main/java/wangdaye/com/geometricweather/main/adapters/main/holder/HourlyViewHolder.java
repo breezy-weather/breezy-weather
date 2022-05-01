@@ -158,10 +158,7 @@ public class HourlyViewHolder extends AbstractMainCardViewHolder {
                 SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled());
         setTrendAdapterByTag(location, (MainTag) tagList.get(0));
 
-        mScrollBar.setColor(
-                MainThemeColorProvider.getColor(location, R.attr.colorSurface),
-                MainThemeColorProvider.isLightTheme(context, location)
-        );
+        mScrollBar.resetColor(location);
 
         List<Minutely> minutelyList = weather.getMinutelyForecast();
         if (minutelyList.size() != 0 && needToShowMinutelyForecast(minutelyList)) {

@@ -59,6 +59,7 @@ public class MaterialLiveWallpaperService extends WallpaperService {
         @Nullable private Sensor mGravitySensor;
 
         @Size(2) private int[] mSizes;
+        @Size(2) private int[] mAdaptiveSize;
         private float mRotation2D;
         private float mRotation3D;
 
@@ -89,11 +90,6 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                 mRotators[0].updateRotation(mRotation2D, mIntervalComputer.getInterval());
                 mRotators[1].updateRotation(mRotation3D, mIntervalComputer.getInterval());
 
-                mImplementor.updateData(
-                        mSizes, (long) mIntervalComputer.getInterval(),
-                        (float) mRotators[0].getRotation(), (float) mRotators[1].getRotation()
-                );
-
                 Canvas canvas = mHolder.lockCanvas();
                 if (canvas != null) {
                     try {
@@ -102,17 +98,34 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                             mSizes[0] = canvas.getWidth();
                             mSizes[1] = canvas.getHeight();
 
+                            mAdaptiveSize[0] = DisplayUtils.getTabletListAdaptiveWidth(
+                                    getApplicationContext(),
+                                    mSizes[0]
+                            );
+                            mAdaptiveSize[1] = mSizes[1];
+
                             mBackground.setBounds(0, 0, mSizes[0], mSizes[1]);
                         }
 
                         mBackground.draw(canvas);
+
+                        canvas.save();
+                        canvas.translate(
+                                (mSizes[0] - mAdaptiveSize[0]) / 2f,
+                                (mSizes[1] - mAdaptiveSize[1]) / 2f
+                        );
+                        mImplementor.updateData(
+                                mAdaptiveSize, (long) mIntervalComputer.getInterval(),
+                                (float) mRotators[0].getRotation(), (float) mRotators[1].getRotation()
+                        );
                         mImplementor.draw(
-                                mSizes,
+                                mAdaptiveSize,
                                 canvas,
                                 0,
                                 (float) mRotators[0].getRotation(),
                                 (float) mRotators[1].getRotation()
                         );
+                        canvas.restore();
                     } catch (Exception ignored) {
                         // do nothing.
                     }
@@ -203,7 +216,7 @@ public class MaterialLiveWallpaperService extends WallpaperService {
             mImplementor = WeatherImplementorFactory.getWeatherImplementor(
                     mWeatherKind,
                     mDaytime,
-                    mSizes
+                    mAdaptiveSize
             );
             mRotators = new MaterialWeatherView.RotateController[] {
                     new DelayRotateController(mRotation2D),
@@ -244,6 +257,7 @@ public class MaterialLiveWallpaperService extends WallpaperService {
             mHandler = new Handler(mHandlerThread.getLooper());
 
             mSizes = new int[] {0, 0};
+            mAdaptiveSize = new int[] {0, 0};
 
             mHolder = surfaceHolder;
             mHolder.addCallback(new SurfaceHolder.Callback() {
@@ -256,6 +270,12 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                 public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
                     mSizes[0] = width;
                     mSizes[1] = height;
+
+                    mAdaptiveSize[0] = DisplayUtils.getTabletListAdaptiveWidth(
+                            getApplicationContext(),
+                            mSizes[0]
+                    );
+                    mAdaptiveSize[1] = height;
 
                     setWeatherImplementor();
                 }
@@ -312,8 +332,8 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                     String weatherKind = configManager.getWeatherKind();
                     if (weatherKind.equals("auto")) {
                         weatherKind = location.getWeather() != null
-                                ? location.getWeather().getCurrent().getWeatherCode().name()
-                                : null;
+                                ? location.getWeather().getCurrent().getWeatherCode().getId()
+                                : "";
                     }
                     String dayNightType = configManager.getDayNightType();
                     boolean daytime = true;
@@ -334,7 +354,7 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                     if (!TextUtils.isEmpty(weatherKind)) {
                         setWeather(
                                 WeatherViewController.getWeatherKind(
-                                        WeatherCode.valueOf(weatherKind)
+                                        WeatherCode.getInstance(weatherKind)
                                 ),
                                 daytime
                         );

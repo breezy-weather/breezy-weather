@@ -19,6 +19,9 @@ fun SettingsProviderAdvancedSettingsScreen(
     editTextPreferenceItem(R.string.settings_provider_accu_weather_key) { id ->
         EditTextPreferenceView(
             titleId = id,
+            summary = { _, _ ->
+                SettingsManager.getInstance(context).customAccuWeatherKey
+            },
             content = SettingsManager.getInstance(context).customAccuWeatherKey,
             onValueChanged = {
                 SettingsManager.getInstance(context).customAccuWeatherKey = it
@@ -28,6 +31,9 @@ fun SettingsProviderAdvancedSettingsScreen(
     editTextPreferenceItem(R.string.settings_provider_accu_current_key) { id ->
         EditTextPreferenceView(
             titleId = id,
+            summary = { _, _ ->
+                SettingsManager.getInstance(context).customAccuCurrentKey
+            },
             content = SettingsManager.getInstance(context).customAccuCurrentKey,
             onValueChanged = {
                 SettingsManager.getInstance(context).customAccuCurrentKey = it
@@ -37,6 +43,9 @@ fun SettingsProviderAdvancedSettingsScreen(
     editTextPreferenceItem(R.string.settings_provider_accu_aqi_key) { id ->
         EditTextPreferenceView(
             titleId = id,
+            summary = { _, _ ->
+                SettingsManager.getInstance(context).customAccuAqiKey
+            },
             content = SettingsManager.getInstance(context).customAccuAqiKey,
             onValueChanged = {
                 SettingsManager.getInstance(context).customAccuAqiKey = it
@@ -49,6 +58,9 @@ fun SettingsProviderAdvancedSettingsScreen(
     editTextPreferenceItem(R.string.settings_provider_owm_key) { id ->
         EditTextPreferenceView(
             titleId = id,
+            summary = { _, _ ->
+                SettingsManager.getInstance(context).customOwmKey
+            },
             content = SettingsManager.getInstance(context).customOwmKey,
             onValueChanged = {
                 SettingsManager.getInstance(context).customOwmKey = it
@@ -61,6 +73,9 @@ fun SettingsProviderAdvancedSettingsScreen(
     editTextPreferenceItem(R.string.settings_provider_baidu_ip_location) { id ->
         EditTextPreferenceView(
             titleId = id,
+            summary = { _, _ ->
+                SettingsManager.getInstance(context).customBaiduIpLocationAk
+            },
             content = SettingsManager.getInstance(context).customBaiduIpLocationAk,
             onValueChanged = {
                 SettingsManager.getInstance(context).customBaiduIpLocationAk = it
@@ -73,6 +88,9 @@ fun SettingsProviderAdvancedSettingsScreen(
     editTextPreferenceItem(R.string.settings_provider_mf_wsft_key) { id ->
         EditTextPreferenceView(
             titleId = id,
+            summary = { _, _ ->
+                SettingsManager.getInstance(context).customMfWsftKey
+            },
             content = SettingsManager.getInstance(context).customMfWsftKey,
             onValueChanged = {
                 SettingsManager.getInstance(context).customMfWsftKey = it
@@ -82,6 +100,9 @@ fun SettingsProviderAdvancedSettingsScreen(
     editTextPreferenceItem(R.string.settings_provider_iqa_air_parif_key) { id ->
         EditTextPreferenceView(
             titleId = id,
+            summary = { _, _ ->
+                SettingsManager.getInstance(context).customIqaAirParifKey
+            },
             content = SettingsManager.getInstance(context).customIqaAirParifKey,
             onValueChanged = {
                 SettingsManager.getInstance(context).customIqaAirParifKey = it
@@ -91,6 +112,9 @@ fun SettingsProviderAdvancedSettingsScreen(
     editTextPreferenceItem(R.string.settings_provider_iqa_atmo_aura_key) { id ->
         EditTextPreferenceView(
             titleId = id,
+            summary = { _, _ ->
+                SettingsManager.getInstance(context).customIqaAtmoAuraKey
+            },
             content = SettingsManager.getInstance(context).customIqaAtmoAuraKey,
             onValueChanged = {
                 SettingsManager.getInstance(context).customIqaAtmoAuraKey = it

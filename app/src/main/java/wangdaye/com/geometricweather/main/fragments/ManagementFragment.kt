@@ -251,8 +251,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
             }
         }
 
-        binding.currentLocationButton.isEnabled = enabled
-        binding.currentLocationButton.alpha = if (enabled) 1f else .5f
+        binding.currentLocationButton.visibility = if (enabled) View.VISIBLE else View.GONE
     }
 
     fun prepareReenterTransition() {

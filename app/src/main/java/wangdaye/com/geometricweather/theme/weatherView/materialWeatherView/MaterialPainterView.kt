@@ -168,7 +168,10 @@ class MaterialPainterView(
         gravitySensor = sensorManager?.getDefaultSensor(Sensor.TYPE_GRAVITY)
 
         val metrics = resources.displayMetrics
-        canvasSize = intArrayOf(metrics.widthPixels, metrics.heightPixels)
+        canvasSize = intArrayOf(
+            DisplayUtils.getTabletListAdaptiveWidth(context, metrics.widthPixels),
+            metrics.heightPixels
+        )
 
         drawable = isDrawable
         lastScrollRate = currentScrollRate

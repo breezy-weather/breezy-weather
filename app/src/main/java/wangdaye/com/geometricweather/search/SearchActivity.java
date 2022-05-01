@@ -47,10 +47,6 @@ import wangdaye.com.geometricweather.search.ui.adapter.location.LocationAdapter;
 import wangdaye.com.geometricweather.search.ui.adapter.source.WeatherSourceAdapter;
 import wangdaye.com.geometricweather.theme.ThemeManager;
 
-/**
- * Search activity.
- * */
-
 @AndroidEntryPoint
 public class SearchActivity extends GeoActivity
         implements EditText.OnEditorActionListener {

@@ -8,11 +8,12 @@ public class WeatherCodeConverter implements PropertyConverter<WeatherCode, Stri
 
     @Override
     public WeatherCode convertToEntityProperty(String databaseValue) {
-        return WeatherCode.valueOf(databaseValue);
+        // use get instance method but not getValue method.
+        return WeatherCode.getInstance(databaseValue);
     }
 
     @Override
     public String convertToDatabaseValue(WeatherCode entityProperty) {
-        return entityProperty.name();
+        return entityProperty.getId();
     }
 }

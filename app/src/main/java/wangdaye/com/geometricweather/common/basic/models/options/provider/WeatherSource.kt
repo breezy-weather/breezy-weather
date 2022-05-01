@@ -22,11 +22,18 @@ enum class WeatherSource(
         @JvmStatic
         fun getInstance(
             value: String
-        ) = when (value) {
-            "owm" -> OWM
-            "mf" -> MF
-            "caiyun" -> CAIYUN
-            else -> ACCU
+        ): WeatherSource {
+            if (value.lowercase().contains("owm")) {
+                return OWM
+            }
+            if (value.lowercase().contains("mf")) {
+                return MF
+            }
+            if (value.lowercase().contains("caiyun")
+                || value.lowercase().contains("cn")) {
+                return CAIYUN
+            }
+            return ACCU
         }
     }
 

@@ -130,7 +130,7 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
                     themeColors[0],
                     ColorUtils.setAlphaComponent(themeColors[1], (int) (0.66 * 255)),
                     ColorUtils.setAlphaComponent(themeColors[1], (int) (0.33 * 255)),
-                    MainThemeColorProvider.getColor(location, R.attr.colorSurface),
+                    MainThemeColorProvider.getColor(location, R.attr.colorMainCardBackground),
                     true
             );
         } else {
@@ -138,7 +138,7 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
                     themeColors[2],
                     ColorUtils.setAlphaComponent(themeColors[2], (int) (0.5 * 255)),
                     ColorUtils.setAlphaComponent(themeColors[2], (int) (0.2 * 255)),
-                    MainThemeColorProvider.getColor(location, R.attr.colorSurface),
+                    MainThemeColorProvider.getColor(location, R.attr.colorMainCardBackground),
                     false
             );
         }

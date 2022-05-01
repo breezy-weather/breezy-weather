@@ -8,9 +8,13 @@ import android.graphics.Shader;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
+import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.RecyclerView;
 
+import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
+import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider;
 
 public class TrendRecyclerViewScrollBar extends RecyclerView.ItemDecoration {
 
@@ -27,15 +31,19 @@ public class TrendRecyclerViewScrollBar extends RecyclerView.ItemDecoration {
         super();
     }
 
-    public void setColor(@ColorInt int surfaceColor, boolean lightTheme) {
+    public void resetColor(Location location) {
         mThemeChanged = true;
 
-        mEndPointsColor = surfaceColor;
+        mEndPointsColor = MainThemeColorProvider.getColor(location, R.attr.colorMainCardBackground);
         mCenterColor = DisplayUtils.blendColor(
-                lightTheme
-                        ? Color.argb((int) (0.02 * 255), 0, 0, 0)
-                        : Color.argb((int) (0.08 * 255), 0, 0, 0),
-                mEndPointsColor
+//                lightTheme
+//                        ? Color.argb((int) (0.02 * 255), 0, 0, 0)
+//                        : Color.argb((int) (0.08 * 255), 0, 0, 0),
+                ColorUtils.setAlphaComponent(
+                        MainThemeColorProvider.getColor(location, R.attr.colorPrimary),
+                        (int) (0.05 * 255)
+                ),
+                MainThemeColorProvider.getColor(location, R.attr.colorMainCardBackground)
         );
     }
 

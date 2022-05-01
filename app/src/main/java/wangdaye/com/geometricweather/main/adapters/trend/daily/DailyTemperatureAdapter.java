@@ -109,7 +109,11 @@ public class DailyTemperatureAdapter extends AbsDailyTrendAdapter<DailyTemperatu
                     themeColors[2],
                     MainThemeColorProvider.getColor(location, R.attr.colorOutline)
             );
-            mPolylineAndHistogramView.setShadowColors(themeColors[1], themeColors[2], lightTheme);
+            mPolylineAndHistogramView.setShadowColors(
+                    themeColors[1],
+                    themeColors[2],
+                    lightTheme
+            );
             mPolylineAndHistogramView.setTextColors(
                     MainThemeColorProvider.getColor(location, R.attr.colorTitleText),
                     MainThemeColorProvider.getColor(location, R.attr.colorBodyText),
