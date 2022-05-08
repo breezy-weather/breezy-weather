@@ -1,40 +1,41 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
 
     <!-- app. -->
     <string name="app_name">Počasí</string>
-    <string name="geometric_weather">Geometrické počasí</string>
+    <string name="geometric_weather">Geometric Weather</string>
 
     <!-- keyword. -->
-    <string name="current_location">Aktuální poloha</string>
-    <string name="resident_location">Poloha bydliště</string>
-    <string name="default_location">Výchozí poloha</string>
+    <string name="current_location">Současná lokace</string>
+    <string name="resident_location">Bydliště</string>
+    <string name="default_location">výchozí lokace</string>
     <string name="live">Živě</string>
     <string name="today">Dnes</string>
-    <string name="refresh_at">Aktualizováno v</string>
+    <string name="refresh_at">Aktualizováno</string>
     <string name="local_time">Místní čas</string>
     <string name="precipitation">Srážky</string>
     <string name="precipitation_probability">Pravděpodobnost srážek</string>
-    <string name="precipitation_duration">Doba srážek</string>
-    <string name="maxi_temp">denní čas</string>
-    <string name="mini_temp">noční čas</string>
+    <string name="precipitation_duration">Trvání srážek</string>
+    <string name="maxi_temp">den</string>
+    <string name="mini_temp">noc</string>
     <string name="time">čas</string>
-    <string name="day">denní čas</string>
-    <string name="night">noční čas</string>
+    <string name="day">den</string>
+    <string name="night">noc</string>
     <string name="temperature">Teplota</string>
     <string name="wind">Vítr</string>
     <string name="wind_direction">Směr větru</string>
     <string name="wind_speed">Rychlost větru</string>
     <string name="wind_level">Síla větru</string>
     <string name="sensible_temp">Znatelná teplota</string>
-    <string name="humidity">Vlhkost vzduchu</string>
-    <string name="uv_index">UV záření</string>
-    <string name="hours_of_sun">Doba slunce</string>
+    <string name="humidity">Vlhkost</string>
+    <string name="uv_index">Index UV záření</string>
+    <string name="hours_of_sun">Hodiny slunce</string>
     <string name="forecast">Předpověď</string>
     <string name="briefings">Instrukce</string>
-    <string name="daytime">Denní čas</string>
-    <string name="nighttime">Noční čas</string>
-    <string name="publish_at">Publikovat v</string>
-    <string name="feels_like">Pocitově</string>
+    <string name="daytime">Den</string>
+    <string name="nighttime">Noc</string>
+    <string name="publish_at">Publikovat</string>
+    <string name="feels_like">Pocitová teplota</string>
     <string name="follow_system">Podle systému</string>
     <string name="background_information">Informace na pozadí</string>
     <string name="pressure">Atmosférický tlak</string>
@@ -42,16 +43,17 @@
     <string name="dew_point">Rosný bod</string>
     <string name="cloud_cover">Oblačnost</string>
     <string name="ceiling">Výška mraků</string>
-    <string name="get_more">Zjisti víc</string>
-    <string name="get_more_store">Zjistit více v obchodu</string>
-    <string name="get_more_github">Zjisti více na Githubu</string>
+    <string name="get_more">Získat další</string>
+    <string name="get_more_store">Získat další z obchodu s aplikacemi</string>
+    <string name="get_more_github">Získat další z GitHubu</string>
     <string name="refresh">Obnovit</string>
     <string name="restart">Restartovat</string>
     <string name="edit">Upravit</string>
 
+    <!-- The following set of strings should be as short as possible. -->
     <string name="of_clock">:00</string>
     <string name="yesterday">rok/den</string>
-    <string name="tomorrow">čas/měsíc/týden</string>
+    <string name="tomorrow">zítra</string>
     <string name="week">týden</string>
     <string name="week_1">Po</string>
     <string name="week_2">Út</string>
@@ -114,250 +116,391 @@
     <string name="ragweed">Ambrózie</string>
     <string name="tree">Pyl</string>
 
-    <string name="daily_overview">Předpověď po dnech</string>
-    <string name="hourly_overview">Předpověď po hodinách</string>
-    <string name="minutely_overview">Předpověď po minutách</string>
+    <string name="daily_overview">Denní předpověď</string>
+    <string name="hourly_overview">Hodinová předpověď</string>
+    <string name="minutely_overview">Minutová předpověď</string>
     <string name="precipitation_overview">Předpověď srážek</string>
     <string name="air_quality">Kvalita vzduchu</string>
     <string name="allergen">Alergeny</string>
-    <string name="life_details">Detaily</string>
-    <string name="sunrise_sunset">Slunce a Měsíc</string>
+    <string name="life_details">Podrobnosti</string>
+    <string name="sunrise_sunset">Slunce a měsíc</string>
 
     <string name="next">DALŠÍ</string>
     <string name="done">HOTOVO</string>
     <string name="cancel" tools:ignore="ButtonCase">ZRUŠIT</string>
     <string name="on">Povoleno</string>
-    <string name="off">Zakázano</string>
+    <string name="off">Zakázáno</string>
     <string name="go_to_set">NASTAVIT</string>
-    <string name="help">POMOC</string>
+    <string name="help">NÁPOVĚDA</string>
     <string name="learn_more">ZJISTIT VÍCE</string>
 
+    <string name="filter_weather_sources">Filtr</string>
+
     <string name="about_app">O aplikaci</string>
-    <string name="introduce">Představit</string>
+    <string name="introduce">představení</string>
     <string name="email">E-mail</string>
-    <string name="donate">Přispět</string>
+    <string name="donate">Přispění</string>
     <string name="gitHub">GitHub</string>
-    <string name="translator">Pomoc s překladem</string>
+    <string name="contributor">Přispěvatelé</string>
+    <string name="translator">Překladatelé</string>
     <string name="thanks">Poděkování</string>
 
     <string name="alipay">Alipay</string>
     <string name="wechat">Wechat</string>
 
-    <string name="date_format_short">M-d</string>
-    <string name="date_format_long">MMM d</string>
-    <string name="date_format_widget_short">EEEE, MMM d</string>
-    <string name="date_format_widget_long">EEEE, MMM d</string>
-    <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
+    <!-- Date format strings. -->
+    <!-- Month : MMM(long) / M(short). -->
+    <!-- Day   : dd(long) / d(short). -->
+    <!-- Week  : EEEE(long) / EEE(short). -->
+    <string name="date_format_short">d.M.</string>
+    <string name="date_format_long">d. MMM</string>
+    <string name="date_format_widget_short">EEEE d MMM</string>
+    <string name="date_format_widget_long">EEEE d MMM</string>
+    <string name="date_format_widget_oreo_style">EEEE d MMM│</string>
+
+    <!-- Do not translate the following set of strings. -->
+    <string name="tag_temperature">@string/temperature</string>
+    <string name="tag_wind">@string/wind</string>
+    <string name="tag_precipitation">@string/precipitation</string>
+    <string name="tag_aqi">@string/air_quality</string>
+    <string name="tag_uv">@string/uv_index</string>
 
     <!-- about. -->
+    <!-- Optional, the following set of strings are not necessarily translated. -->
     <string name="retrofit">Retrofit 2.0</string>
-    <string name="about_retrofit">Type - safe je klient pro HTTP pro Android a Java od společnosti Square, Inc.</string>
+    <string name="about_retrofit">Type-safe HTTP client for Android and Java by Square, Inc.</string>
     <string name="glide">Glide</string>
-    <string name="about_glide">Knihovna načítání a ukládání do mezipaměti pro Android zaměřená na jemné posouvání v aplikaci</string>
+    <string name="about_glide">An image loading and caching library for Android focused on smooth scrolling.</string>
     <string name="gson">Gson</string>
-    <string name="about_gson">Knihovna serializace / deserializace Java, která umí přeměnit Java Objekty do formátu JSON a zpět.</string>
+    <string name="about_gson">A Java serialization/deserialization library that can convert Java Objects into JSON and back.</string>
     <string name="greenDAO">GreenDAO</string>
-    <string name="about_greenDAO">GreenDAO je jednoduché a rychlé řešení ORM pro Android, které mapuje objekty do databází SQLite.</string>
+    <string name="about_greenDAO">greenDAO is a light and fast ORM solution for Android that maps objects to SQLite databases.</string>
     <string name="page_indicator">InkPageIndicator</string>
-    <string name="about_page_indicator">InkPageIndicator vytvořil @nickbutcher pro Plaid https://github.com/nickbutcher/plaid a backportován Davidem Pacioianou pro API 14+ (4.0+).</string>
+    <string name="about_page_indicator">InkPageIndicator created by @nickbutcher for Plaid https://github.com/nickbutcher/plaid and backported by David Pacioianu for API 14+ (4.0+).</string>
     <string name="circular_progress_view">CircularProgressView</string>
-    <string name="about_circular_progress_view">Kruhový material design ukazatel průběhu pro Android.</string>
+    <string name="about_circular_progress_view">Material style circular progress bar for Android.</string>
 
     <!-- feedback. -->
-    <string name="feedback_request_permission">Povolení</string>
+    <string name="feedback_request_permission">Oprávnění</string>
     <string name="feedback_request_location">Poloha</string>
     <string name="feedback_request_location_in_background">Zjišťování polohy na pozadí</string>
     <string name="feedback_request_location_permission_success">Pokus o získání povolení k poloze uspěl</string>
     <string name="feedback_request_location_permission_failed">Pokus o získání povolení k poloze selhal</string>
 
-    <string name="feedback_location_failed">Pokus o získání polohy selhal</string>
-    <string name="feedback_get_weather_failed">Pokus o získání informací o počasí selhal</string>
-    <string name="feedback_location_help_title">Ukazuje aplikace špatnou polohu?</string>
-    <string name="feedback_check_location_permission">Zkontrolujte povolení k poloze</string>
-    <string name="feedback_enable_location_information">Povolte přístup k informacím o poloze</string>
-    <string name="feedback_select_location_provider">Vyberte způsob určení polohy</string>
-    <string name="feedback_add_location_manually">Přidejte polohu manuálně a odstraňte \'$\'</string>
+    <string name="feedback_location_permissions_title">Přístup k informacím o poloze</string>
+    <string name="feedback_location_permissions_statement">Aplikace Geometric Weather potřebuje sbírat na popředí nebo v pozadí informace o vaší poloze, aby mohla poskytnout údaje o počasí ve vaší současné lokaci. Z tohoto důvodu zažádáme o nějaká oprávnění. Informace o vaší poloze budou použity pouze k získání údajů o počasí ve vaší současné lokaci. Pokud nechcete, abychom sbírali informace o poloze, můžete tyto žádosti zamítnout a ručně nastavit vaší polohu na stránce nastavení.</string>
+    <string name="feedback_background_location_title">Přístup k poloze na pozadí</string>
+    <string name="feedback_background_location_summary">Abychom umožnili aplikaci přístup k informaci o poloze na pozadí a mohli díky tomu zjišťovat změny v poloze a poskytovat vám aktuální údaje o počasí, je potřeba abyste nastavili přístup k poloze na \"Povolit vždy\".</string>
 
-    <string name="feedback_view_style">Styl vzhledu</string>
+    <string name="feedback_location_failed">Poloha selhala</string>
+    <string name="feedback_get_weather_failed">Pokus o získání údajů o počasí selhal</string>
+    <string name="feedback_location_help_title">Ukazuje aplikace nesprávnou polohu?</string>
+    <string name="feedback_check_location_permission">Zkontrolujte oprávnění polohy</string>
+    <string name="feedback_enable_location_information">Povolte přístup k informacím o poloze</string>
+    <string name="feedback_select_location_provider">Vyberte poskytovatele polohy</string>
+    <string name="feedback_add_location_manually">Ručně přidat polohu a odstranit \'$\'</string>
+    <string name="feedback_view_style">Zobrazit styl</string>
     <string name="feedback_show_widget_card">Barva pozadí</string>
     <string name="feedback_show_widget_card_alpha">Průhlednost</string>
-    <string name="feedback_hide_subtitle">Schovat popis</string>
+    <string name="feedback_hide_subtitle">Skrýt popis</string>
     <string name="feedback_subtitle_data">Data popisu</string>
     <string name="feedback_black_text">Barva písma</string>
     <string name="feedback_text_size">Velikost písma</string>
-    <string name="feedback_clock_font">Font hodin</string>
-    <string name="feedback_custom_subtitle_explanation">Můžete napsat cokoliv, ale dávejte si prosím pozor na délku textu. Pokud chcete citovat data o počasí, tak prosím použijte znak $, aby jste odkazovaly na odpovídající klíčová slova.\n\nNa příklad, \"current weather = $cw$\" se ukáže jako \"current weather = Clear Day\".</string>
-
-    <string name="feedback_custom_subtitle_keyword_cw">$cw$ : Současné Počasí\n</string>
-    <string name="feedback_custom_subtitle_keyword_ct">$ct$ : Současná Teplota (℃/℉)\n</string>
-    <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : Současná Teplota (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_at">$at$ : Zdánlivá Teplota (℃/℉)\n</string>
-    <string name="feedback_custom_subtitle_keyword_atd">$atd$ : Zdánlivá Teplota (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_cpb">$cpb$ : Současná Pravděpodobnost Srážek (%)\n</string>
-    <string name="feedback_custom_subtitle_keyword_cp">$cp$ : Současné Srážky (mm/L/m²)\n</string>
-    <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : Současný Vítr\n</string>
+    <string name="feedback_clock_font">Písmo hodin</string>
+    <string name="feedback_hide_lunar">Skrýt lunární kalendář</string>
+    <string name="feedback_align_end">Zarovnat konec</string>
+    <string name="feedback_colorful">Barevný widget podle počasí</string>
+    <string name="feedback_custom_subtitle_explanation">Můžete zadat cokoli, ale dávejte pozor na délku textu. Pokud chcete citovat data o počasí, použijte znak $ pro odkazování na odpovídající klíčové slovo.\n\nNapříklad \"current weather = $cw$\" bude zobrazeno jako \"current weather = Clear Day\".</string>
+    <!-- keep those content with the format "$xxx$". -->
+    <!-- keep "\n" -->
+    <string name="feedback_custom_subtitle_keyword_cw">$cw$ : Současné počasí\n</string>
+    <string name="feedback_custom_subtitle_keyword_ct">$ct$ : Současná teplota (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : Současná teplota (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_at">$at$ : Zdánlivá teplota (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_atd">$atd$ : Zdánlivá teplota (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_cpb">$cpb$ : Současná pravděpodobnost srážek (%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_cp">$cp$ : Současná pravděpodobnost (mm/L/m²)\n</string>
+    <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : Současná vítr\n</string>
     <string name="feedback_custom_subtitle_keyword_cuv">$cuv$ : Současné UV\n</string>
-    <string name="feedback_custom_subtitle_keyword_ch">$ch$ : Současná Vlhkost\n</string>
-    <string name="feedback_custom_subtitle_keyword_cps">$cps$ : Současný Tlak\n</string>
-    <string name="feedback_custom_subtitle_keyword_cv">$cv$ : Současná Viditelnost\n</string>
-    <string name="feedback_custom_subtitle_keyword_cdp">$cdp$ : Současný Rosný Bod\n</string>
+    <string name="feedback_custom_subtitle_keyword_ch">$ch$ : Současná vlhkost\n</string>
+    <string name="feedback_custom_subtitle_keyword_cps">$cps$ : Současný tlak\n</string>
+    <string name="feedback_custom_subtitle_keyword_cv">$cv$ : Současná viditelnost\n</string>
+    <string name="feedback_custom_subtitle_keyword_cdp">$cdp$ : Současný rosný bod\n</string>
+    <string name="feedback_custom_subtitle_keyword_al">$al$ : Upozornění\n</string>
+    <string name="feedback_custom_subtitle_keyword_als">$als$ : Upozornění (krátká)\n</string>
     <string name="feedback_custom_subtitle_keyword_l">$l$ : Poloha\n</string>
-    <string name="feedback_custom_subtitle_keyword_lat">$lat$ : Zeměpisná Šířka\n</string>
+    <string name="feedback_custom_subtitle_keyword_lat">$lat$ : Zeměpisná šířka\n</string>
     <string name="feedback_custom_subtitle_keyword_lon">$lon$ : Zeměpisná délka\n</string>
-    <string name="feedback_custom_subtitle_keyword_ut">$ut$ : Čas Obnovy\n</string>
+    <string name="feedback_custom_subtitle_keyword_ut">$ut$ : Čas aktualizace\n</string>
     <string name="feedback_custom_subtitle_keyword_d">$d$ : Datum\n</string>
-    <string name="feedback_custom_subtitle_keyword_lc">$lc$ : Lunarní Kalendář\n</string>
+    <string name="feedback_custom_subtitle_keyword_lc">$lc$ : Lunářní kalendář\n</string>
     <string name="feedback_custom_subtitle_keyword_w">$w$ : Týden\n</string>
-    <string name="feedback_custom_subtitle_keyword_ws">$ws$ : Týden (Krátký)\n</string>
-    <string name="feedback_custom_subtitle_keyword_dd">$dd$ : Popis Dní\n</string>
-    <string name="feedback_custom_subtitle_keyword_hd">$hd$ : Popis Hodin\n</string>
-    <string name="feedback_custom_subtitle_keyword_enter">$enter$ : Zadat\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdw">$0dw$, $1dw$, …, $4dw$ : \nDnešní Počasí Přes Den, Tmw, …, O 4 dny později\n</string>
-    <string name="feedback_custom_subtitle_keyword_xnw">$0nw$, $1nw$, …, $4nw$ : \nDnešní Počasí Přes Noc, Tmw, …, O 4 dny později\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdt">$0dt$, $1dt$, …, $4dt$ : \nDnešní Teplota Přes Den, Tmw, …, O 4 dny později (℃/℉)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xnt">$0nt$, $1nt$, …, $4nt$ : \nDnešní Teplota Přes Noc, Tmw, …, O 4 dny později (℃/℉)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdtd">$0dtd$, $1dtd$, …, $4dtd$ : \nDnešní Teplota Přes Den, Tmw, …, O 4 dny později (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xntd">$0ntd$, $1ntd$, …, $4ntd$ : \nDnešní Teplota Přes Noc, Tmw, …, O 4 dny později (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdp">$0dp$, $1dp$, …, $4dp$ : \Dnešní Srážky Přes Den, Tmw, …, O 4 dny později (%)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xnp">$0np$, $1np$, …, $4np$ : \nDnešní srážky přes Noc, Tmw, …, O 4 dny později (%)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdwd">$0dwd$, $1dwd$, …, $4dwd$ : \nDnešní vítr přes den, Tmw, …, O 4 dny později\n</string>
-    <string name="feedback_custom_subtitle_keyword_xnwd">$0nwd$, $1nwd$, …, $4nwd$ : \nDnešní vítr přes noc, Tmw, …, O 4 dny později\n</string>
-    <string name="feedback_custom_subtitle_keyword_xsr">$0sr$, $1sr$, …, $4sr$ : \nDnešní čas východu slunce, Tmw, …, O 4 dny později\n</string>
-    <string name="feedback_custom_subtitle_keyword_xss">$0ss$, $1ss$, …, $4ss$ : \nDnešní čas západu slunce Tmw, …, O 4 dny později\n</string>
-    <string name="feedback_custom_subtitle_keyword_xmr">$0mr$, $1mr$, …, $4mr$ : \nDnešní čas východu měsíce, Tmw, …, O 4 dny později\n</string>
-    <string name="feedback_custom_subtitle_keyword_xms">$0ms$, $1ms$, …, $4ms$ : \nDnešní čas západu měsíce, Tmw, …, O 4 dny později\n</string>
-    <string name="feedback_custom_subtitle_keyword_xmp">$0mp$, $1mp$, …, $4mp$ : \nDnešní fáze měsíce, Tmw, …, O 4 dny později\n</string>
+    <string name="feedback_custom_subtitle_keyword_ws">$ws$ : Týden (krátký)\n</string>
+    <string name="feedback_custom_subtitle_keyword_dd">$dd$ : Denní popis\n</string>
+    <string name="feedback_custom_subtitle_keyword_hd">$hd$ : Hodinový popis\n</string>
+    <string name="feedback_custom_subtitle_keyword_enter">$enter$ : Enter\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdw">$0dw$, $1dw$, …, $4dw$ : \nDnešní denní počasí, zítra, …, o 4 dny později\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnw">$0nw$, $1nw$, …, $4nw$ : \nDnešní noční počasí, zítra, …, o 4 dny později\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdt">$0dt$, $1dt$, …, $4dt$ : \nDnešní denní teplota, zítra, …, o 4 dny později (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnt">$0nt$, $1nt$, …, $4nt$ : \nDnešní noční teplota, zítra, …, o 4 dny později (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdtd">$0dtd$, $1dtd$, …, $4dtd$ : \nDnešní denní teplota, zítra, …, o 4 dny později (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xntd">$0ntd$, $1ntd$, …, $4ntd$ : \nDnešní noční teplota, zítra, …, o 4 dny později (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdp">$0dp$, $1dp$, …, $4dp$ : \nDnešní denní srážky, zítra, …, o 4 dny později (%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnp">$0np$, $1np$, …, $4np$ : \nDnešní noční srážky, zítra, …, o 4 dny později (%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdwd">$0dwd$, $1dwd$, …, $4dwd$ : \nDnešní denní vítr, zítra, …, o 4 dny později\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnwd">$0nwd$, $1nwd$, …, $4nwd$ : \nDnešní noční vítr, zítra, …, o 4 dny později\n</string>
+    <string name="feedback_custom_subtitle_keyword_xsr">$0sr$, $1sr$, …, $4sr$ : \nDnešní východ slunce, zítra, …, o 4 dny později\n</string>
+    <string name="feedback_custom_subtitle_keyword_xss">$0ss$, $1ss$, …, $4ss$ : \nDnešní západ slunce, zítra, …, o 4 dny později\n</string>
+    <string name="feedback_custom_subtitle_keyword_xmr">$0mr$, $1mr$, …, $4mr$ : \nDnešní východ měsíce, zítra, …, o 4 dny později\n</string>
+    <string name="feedback_custom_subtitle_keyword_xms">$0ms$, $1ms$, …, $4ms$ : \nDnešní západ měsíce, zítra, …, o 4 dny později\n</string>
+    <string name="feedback_custom_subtitle_keyword_xmp">$0mp$, $1mp$, …, $4mp$ : \nDnešní fáze měsíce, zítra, …, o 4 dny později\n</string>
 
     <string name="feedback_live_wallpaper_weather_kind">Počasí</string>
     <string name="feedback_live_wallpaper_day_night_type">Čas</string>
 
-    <string name="feedback_click_toggle">Stiskněte graf pro přepnutí dat</string>
-    <string name="feedback_no_data">ŽÁDNÉ INFORMACE</string>
+    <string name="feedback_click_toggle">Ťukněte na graf pro přepnutí dat</string>
+    <string name="feedback_no_data">ŽÁDNÁ DATA</string>
 
     <string name="feedback_collect_failed">Tato poloha již existuje</string>
     <string name="feedback_collect_succeed">Poloha úspěšně přidána</string>
-    <string name="feedback_delete_succeed">Poloha úspěšně odstraněna </string>
+    <string name="feedback_delete_succeed">Poloha úspěšně odstraněna</string>
     <string name="feedback_location_list_cannot_be_null">Seznam poloh nemůže být prázdný</string>
 
     <string name="feedback_search_location">Vyhledat polohu…</string>
-    <string name="feedback_not_yet_location">Zatím nenalezena žádná poloha…</string>
-    <string name="feedback_search_nothing">Žádná poloha nenalazena</string>
-    <string name="feedback_initializing">Zprovozňování…</string>
+    <string name="feedback_not_yet_location">Zatím žádná poloha…</string>
+    <string name="feedback_search_nothing">Nenalezeny žádné polohy</string>
+    <string name="feedback_initializing">Načítání…</string>
 
-    <string name="feedback_refresh_notification_after_back">Změny se projeví poté, co se vrátíte na domovskou obrazovku.</string>
+    <string name="feedback_refresh_notification_after_back">Změny se projeví poté, co se vrátíte na domovskou obrazovku</string>
     <string name="feedback_refresh_notification_now">Obnovit nyní</string>
-    <string name="feedback_refresh_ui_after_refresh">Změny se projeví až po obnovení počasí</string>
-    <string name="feedback_restart">Změny se projeví až po restartování aplikace</string>
-    <string name="feedback_readd_location">Přidejte prosím polohy znovu</string>
-    <string name="feedback_readd_location_after_changing_source">Přidejte prosím polohy znovu, potom co změníte zdroj informací o počasí</string>
+    <string name="feedback_refresh_ui_after_refresh">Změny se projeví po obnovení dat</string>
+    <string name="feedback_restart">Změny se projeví po restartu</string>
+    <string name="feedback_readd_location">Znovu prosím přidejte polohy</string>
+    <string name="feedback_readd_location_after_changing_source">Po změně zdroje dat prosím znovu přidejte polohy</string>
 
-    <string name="feedback_running_in_background">Aplikace běží na pozadí aby zajistila aktualizace informací počasí</string>
-    <string name="feedback_updating_weather_data">Aktualizace informací o počasí</string>
+    <string name="feedback_running_in_background">Aplikace běží na pozadí pro zajištění aktualizace údajů</string>
+    <string name="feedback_updating_weather_data">Aktualizace údajů o počasí</string>
     <string name="feedback_updated_in_background">Aktualizováno na pozadí</string>
 
-    <string name="feedback_interpret_background_notification_content">Pokud na některých zařízeních zakážete možnost \'Běžet volně na pozadí\', tak oznámení které se možná zobrazí bude dočasně trvalé (nesmazatelné).</string>
+    <!-- there should be a "\" before single or double quotes. -->
+    <!-- Correct : ... after turning off \'Background free\', ... After turning off \"Free background\" ... -->
+    <!-- Wrong   : ... after turning off 'Background free', ... After turning off "Free background" ... -->
+    <string name="feedback_interpret_background_notification_content">Na některých zařízeních se po vypnutí funkce \'Neběžet na pozadí\' se může objevit oznámení, které nemůže být vymazáno.</string>
     <string name="feedback_interpret_notification_group_title">Blokovat skupinu oznámení</string>
-    <string name="feedback_interpret_notification_group_content">Pokud zakážete možnost "Běžet volně na pozadí" se v oznamovacím panelu zobrazí (trvalé) oznámení, které označuje aplikaci běžící na pozadí, aby se zamezilo zastavení aplikace. Pokud toto oznámení chcete blokovat jděte do informací o aplikaci do sekce notifikací a zakažte položku "Geometric Weather Background information".</string>
-    <string name="feedback_ignore_battery_optimizations_title">Ignorovat optimalizaci baterie</string>
-    <string name="feedback_ignore_battery_optimizations_content">Aby aplikace mohla fungovat i na pozadí, zakažte pro ni prosím optimalizaci baterie.</string>
+    <string name="feedback_interpret_notification_group_content">Po vypnutí funkce \"Neběžet na pozadí\" se zobrazí oznámení značící, že služba na pozadí je aktivní. Oznámení lze vypnout na informační stránce aplikace.</string>
 
-    <string name="feedback_cannot_start_live_wallpaper_activity">Nepodařilo se zobrazit náhled živé tapety</string>
+    <string name="feedback_ignore_battery_optimizations_title">Ignorovat optimalizace baterie</string>
+    <string name="feedback_ignore_battery_optimizations_content">Pro ujištění, že mohou služby na pozadí pokračovat v práci, je potřeba zapnout ignorování optimalizací baterie pro GeometricWeather.</string>
+    
+    <string name="feedback_cannot_start_live_wallpaper_activity">Nepodařilo se spustit náhled živého pozadí</string>
 
-    <string name="feedback_unusable_geocoder">Toto zařízení neobsahuje funkční geokodér. Poskytovatel polohy byl změněn na Baidu polohu.</string>
-    <string name="feedback_about_geocoder">Geokodér je komponent, který konvertuje výsledky polohy ze zeměpisné šířky a délky do formátu typu \'XX město, YY provincie \'. Pokud tento komponent chybí, můžete používat jako zdroj informací o počasí pouze z AccuWeather, pokud používáte nativní API pro získání polohy.</string>
+    <string name="feedback_unusable_geocoder">Vaše zařízení neobsahuje platný geokodér. Zprostředkovatel polohy byl změněn na Baidu Location..</string>
+    <string name="feedback_about_geocoder">Geokodér je komponenta, která převádí výsledek polohy z formátu lat-lon na formát \'XX město, YY provincie \'. Pokud tato komponenta není k dispozici, můžete při použití nativního rozhraní API jako poskytovatele polohy získat údaje o počasí pouze prostřednictvím služby AccuWeather.</string>
 
-    <string name="feedback_today_precipitation_alert">Dnes možná přijdou srážky</string>
-    <string name="feedback_short_term_precipitation_alert">V několika dalších hodinách možná přijdou srážky</string>
+    <string name="feedback_today_precipitation_alert">Dnes může pršet.</string>
+    <string name="feedback_short_term_precipitation_alert">V následujících hodinách mohou přijít srážky.</string>
 
     <string name="feedback_resident_location">Nastavit jako bydliště</string>
-    <string name="feedback_resident_location_description">Geometrické počasí automaticky ukáže a skryje navštěvovaná města na základě aktuální polohy.\nNa příklad si můžete nastavit svůj domov a jiná místa, která navštěvuješ aby si je měl vždy po ruce. Až se dostaneš domů,počasí ve tvém bydlišti bude skryto a zobrazí se počasí kolem tvé aktuální polohy.</string>
-    <string name="feedback_click_to_get_more">Klepni pro více info…</string>
+    <string name="feedback_resident_location_description">GeometricWeather automaticky zobrazí a skryje bydliště podle vaší současné lokace.\nJako bydliště můžete například nastavit vaše domovské město. Při cestování se můžete poté podívat na počasí ve vašem domovském městě. Když se vrátíte domů, počasí ve vašem domovském městě bude skryto a nahrazeno počasím ve vaší současné lokaci.</string>
+
+    <string name="feedback_click_to_get_more">Klepněte pro více informací…</string>
+    <string name="feedback_click_again_to_exit">Klepněte znovu pro opuštění</string>
+
+    <!-- content description -->
+    <string name="content_desc_back">Zpět</string>
+    <string name="content_desc_check_details">Zkontrolovat podrobnosti</string>
+    <string name="content_desc_weather_alert_button">$ varování o počasí</string> <!-- $ = alert count. -->
+    <string name="content_des_pm25">PM dvě celé pět</string>
+    <string name="content_des_pm10">PM deset</string>
+    <string name="content_des_so2">Oxid siřičitý</string>
+    <string name="content_des_no2">Oxid dusičitý</string>
+    <string name="content_des_o3">Ozón</string>
+    <string name="content_des_co">Oxid uhelnatý</string>
+    <string name="content_des_m3">Oxid uhelnatý</string>
+    <string name="content_des_sunrise">Východ slunce v $</string> <!-- $ = time. -->
+    <string name="content_des_sunset">Západ slunce v $</string> <!-- $ = time. -->
+    <string name="content_des_moonrise">Východ měsíce v $</string> <!-- $ = time. -->
+    <string name="content_des_moonset">Západ měsíce v $</string> <!-- $ = time. -->
+    <string name="content_des_no_precipitation">Žádné srážky</string>
+    <string name="content_des_minutely_precipitation">Srážky mezi $1 a $2</string> <!-- $1 = start time, $2 = end time. -->
+    <string name="content_des_add_current_location">Přidat současnou polohu</string>
+    <string name="content_des_drag_flag">Klepněte pro tažení položkami v seznamu pro seřazení</string>
+    <string name="content_des_delete_flag">Odstranit tuto položku</string>
+    <string name="content_des_swipe_left_to_delete">Pro odstranění této položky přejeďte prstem doleva</string>
+    <string name="content_des_swipe_right_to_delete">Pro odstranění této položky přejeďte prstem doprava</string>
+    <string name="content_desc_search_filter_on">Zobrazit pouze lokace z výchozího zdroje počasí</string>
+    <string name="content_desc_search_filter_off">Zobrazit lokace ze všech zdrojů počasí</string>
+    <string name="content_desc_powered_by">Používá $</string> <!-- $ = weather source. -->
+    <string name="content_desc_app_store">@string/action_appStore</string>
+    <string name="content_desc_wechat_payment_code">Platební QR kód WeChat</string>
+    <string name="content_desc_weather_icon">Ikona počasí</string>
+    <string name="content_desc_weather_icon_light">Světlá ikona</string>
+    <string name="content_desc_weather_icon_grey">Šedá ikona</string>
+    <string name="content_desc_weather_icon_dark">Tmavá ikona</string>
+    <string name="content_desc_filter_weather_sources">Filtrovat zdroje počasí</string>
 
     <!-- action -->
-    <string name="action_alert">Upozornit</string>
-    <string name="action_manage">Spravovat místa</string>l
+    <string name="action_alert">Upozornění</string>
+    <string name="action_manage">Spravovat</string>
     <string name="action_search">Hledat</string>
     <string name="action_settings">Nastavení</string>
-    <string name="action_preview">Přehled</string>
+    <string name="action_preview">Náhled</string>
     <string name="action_about">O aplikaci</string>
-    <string name="action_appStore">Obchod s aplikacemi</string>
+    <string name="action_appStore">Obchod</string>
 
     <!-- widget -->
     <string name="widget_day">Denní</string>
     <string name="widget_week">Týdenní</string>
-    <string name="widget_day_week">Denní + Týdenní</string>
-    <string name="widget_clock_day_horizontal">Hodiny + Denní (Horizontal style)</string>
-    <string name="widget_clock_day_details">Hodiny + Denní (Detaily)</string>
-    <string name="widget_clock_day_vertical">Hodiny + Denní (Svisle)</string>
-    <string name="widget_clock_day_week">Hodiny + Denní + Týdenní</string>
-    <string name="widget_text">Písmo</string>
-    <string name="widget_trend_daily">Graf po dnech</string>
-    <string name="widget_trend_hourly">Graf po hodinách</string>
-    <string name="wait_refresh">Načítání</string>
+    <string name="widget_day_week">Denní + týdenní</string>
+    <string name="widget_clock_day_horizontal">Hodiny + denní (horizontální)</string>
+    <string name="widget_clock_day_details">Hodiny + denní (podrobnosti)</string>
+    <string name="widget_clock_day_vertical">Hodiny + denní (vertikální)</string>
+    <string name="widget_clock_day_week">Hodiny + denní + týdenní</string>
+    <string name="widget_text">Text</string>
+    <string name="widget_trend_daily">Denní graf</string>
+    <string name="widget_trend_hourly">Hodinový graf</string>
+    <string name="widget_multi_city">Více měst</string>
+    <string name="widget_material_you_forecast">Material You - předpověď</string>
+    <string name="wait_refresh">čekám</string>
     <string name="ellipsis">…</string>
 
     <!-- settings -->
     <string name="settings_category_basic">Základní</string>
-    <string name="settings_title_background_free">Běžet volně na pozadí</string>
-    <string name="settings_summary_background_free_on">Povoleno\nPokud se widgety a oznámení neobnovují automaticky, tak prosím zakažte tuto možnost.</string>
-    <string name="settings_summary_background_free_off">Zakázáno\nPokud nechcete, aby tato aplikace pracovala na pozadí povolte prosím tuto možnost.</string>
-    <string name="settings_title_live_wallpaper">Živá tapeta</string>
-    <string name="settings_summary_live_wallpaper">Nastavit material design animaci jako živou tapetu</string>
+    <string name="settings_title_background_free">Neběžet na pozadí</string>
+    <string name="settings_summary_background_free_on">Povoleno\nPokud se widgety a oznámení automaticky neaktualizují, vypněte prosím tuto možnost.</string>
+    <string name="settings_summary_background_free_off">Zakázáno\nPokud nechcete, aby žádné služby pracovaly na pozadí, zapněte tuto možnost.</string>
+    <string name="settings_title_live_wallpaper">Živé pozadí</string>
+    <string name="settings_summary_live_wallpaper">Nastavit Material Design animaci počasí jako živé pozadí</string>
     <string name="settings_title_service_provider">Poskytovatel služeb</string>
-    <string name="settings_summary_service_provider">Vybrat poskytovatele polohy a informací o počasí</string>
-    <string name="settings_title_weather_source">Zdroj informací o počasí</string>
-    <string name="settings_title_location_service">Způsob určování polohy</string>
-    <string name="settings_title_dark_mode">Tmavý mód</string>
+    <string name="settings_summary_service_provider">Vyberte poskytovatele údajů o počasí a poloze</string>
+    <string name="settings_title_service_provider_advanced">Pokročilá nastavení poskytovatele služeb</string>
+    <string name="settings_summary_service_provider_advanced">Postupujte opatrně</string>
+    <string name="settings_title_weather_source">Zdroj počasí</string>
+    <string name="settings_title_location_service">Služba lokace</string>
+    <string name="settings_title_dark_mode">Tmavý režim</string>
     <string name="settings_title_ui_style">Styl rozhraní</string>
     <string name="settings_title_icon_provider">Balíček ikon</string>
     <string name="settings_title_appearance">Vzhled</string>
-    <string name="settings_summary_appearance">Styl rozhraní, řazení karet, jazyk atd…</string>
+    <string name="settings_summary_appearance">Styl rozhraní, pořadí karet, jazyk…</string>
     <string name="settings_title_card_display">Zobrazené karty</string>
-    <string name="settings_title_card_order">Řazení karet</string>
-    <string name="settings_title_gravity_sensor_switch">Použít gravitační senzor</string>
+    <string name="settings_title_daily_trend_display">Zobrazit denní graf</string>
+    <string name="settings_title_hourly_trend_display">Zobrazit hodinový graf</string>
+    <string name="settings_title_trend_horizontal_line_switch">Horizontální linky v grafu</string>
+    <string name="settings_title_exchange_day_night_temp_switch">Prohodit denní a noční teplotu</string>
+    <string name="settings_title_card_order">Pořadí karet</string>
+    <string name="settings_title_gravity_sensor_switch">Gravitační senzor</string>
     <string name="settings_title_list_animation_switch">Animace seznamu</string>
-    <string name="settings_title_item_animation_switch">Animace položky</string>
+    <string name="settings_title_item_animation_switch">Animace položek</string>
     <string name="settings_language">Jazyk</string>
     <string name="settings_title_unit">Jednotky</string>
-    <string name="settings_summary_unit">Nastavit jednotky informací o počasí</string>
-    <string name="settings_title_temperature_unit">Jednotky teploty</string>
-    <string name="settings_title_distance_unit">Jednotky vzdálenosti</string>
-    <string name="settings_title_precipitation_unit">Jednotky srážek</string>
-    <string name="settings_title_pressure_unit">Jednotky tlaku</string>
-    <string name="settings_title_speed_unit">Jednotky rychlosti</string>
-    <string name="settings_title_refresh_rate">Automatická obnovací frekvence</string>
-    <string name="settings_title_alert_notification_switch">Ukázat upozornění</string>
-    <string name="settings_title_precipitation_notification_switch">Ukázat předpověď srážek</string>
-    <string name="settings_title_permanent_service">Trvalá služba</string>
-    <string name="settings_category_forecast">Pravidelné hlášení (oznámení)</string>
-    <string name="settings_title_forecast_today">Předpověď pro dnešek</string>
-    <string name="settings_title_forecast_today_time">Čas předpovědi pro dnešek</string>
-    <string name="settings_title_forecast_tomorrow">Předpověď pro zítřek</string>
-    <string name="settings_title_forecast_tomorrow_time">Čas předpovědi pro zítřek</string>
+    <string name="settings_summary_unit">Nastavit jednotky údajů o počasí</string>
+    <string name="settings_title_temperature_unit">Jednotka teploty</string>
+    <string name="settings_title_distance_unit">Jednotka vzdálenosti</string>
+    <string name="settings_title_precipitation_unit">Jednotka srážek</string>
+    <string name="settings_title_pressure_unit">Jednotka tlaku</string>
+    <string name="settings_title_speed_unit">Jednotka rychlosti</string>
+    <string name="settings_title_refresh_rate">Automatické obnovení</string>
+    <string name="settings_title_alert_notification_switch">Poslat upozornění</string>
+    <string name="settings_title_precipitation_notification_switch">Poslat předpověď srážek</string>
+    <string name="settings_title_permanent_service">Stálá služba</string>
+    <string name="settings_category_forecast">Přepověď</string>
+    <string name="settings_title_forecast_today">Předpověď na dnešek</string>
+    <string name="settings_title_forecast_today_time">Čas předpovědi na dnešek</string>
+    <string name="settings_title_forecast_tomorrow">Předpověď na zítřek</string>
+    <string name="settings_title_forecast_tomorrow_time">Čas předpovědi na zítřek</string>
     <string name="settings_category_widget">Widget</string>
-    <string name="settings_title_week_icon_mode">Typ ikon</string>
+    <string name="settings_title_week_icon_mode">Režim týdenních ikon</string>
     <string name="settings_title_minimal_icon">Minimalistické ikony</string>
-    <string name="settings_title_click_widget_to_refresh">Obnovit widget klepnutím</string>
+    <string name="settings_title_click_widget_to_refresh">Obnovit widget při klepnutí</string>
+    <string name="settings_title_widget_config">Nastavení widgetu</string>
     <string name="settings_category_notification">Oznámení</string>
-    <string name="settings_title_notification">Trvalé oznámení</string>
+    <string name="settings_title_notification">Poslat oznámení</string>
     <string name="settings_title_notification_style">Styl oznámení</string>
-    <string name="settings_title_notification_temp_icon">Ikona teploty ve stavovém řádku</string>
+    <string name="settings_title_notification_temp_icon">Teplota jako ikona v liště</string>
     <string name="settings_title_notification_color">Barva oznámení</string>
     <string name="settings_title_notification_custom_color">Vlastní barva oznámení</string>
     <string name="settings_title_notification_text_color">Barva textu</string>
     <string name="settings_title_notification_background">Barva pozadí</string>
     <string name="settings_notification_background_off">Podle systému</string>
-    <string name="settings_title_notification_can_be_cleared">Odstranění widgetu tažením</string>
-    <string name="settings_notification_can_be_cleared_on">Povoleno</string>
-    <string name="settings_notification_can_be_cleared_off">Zakázáno</string>
-    <string name="settings_title_notification_hide_icon">Skrýt ikonu v oznámení</string>
-    <string name="settings_notification_hide_icon_on">Povoleno</string>
-    <string name="settings_notification_hide_icon_off">Zakázáno</string>
-    <string name="settings_title_notification_hide_in_lockScreen">Schovat na zamknuté obrazovce</string>
-    <string name="settings_notification_hide_in_lockScreen_on">Povoleno (je třeba použít systémové nastavení)</string>
-    <string name="settings_notification_hide_in_lockScreen_off">Zakázáno</string>
-    <string name="settings_title_notification_hide_big_view">Obsáhlejší styl</string>
-    <string name="settings_notification_hide_big_view_on">Zakázán</string>
-    <string name="settings_notification_hide_big_view_off">Povolen</string>
+    <string name="settings_title_notification_can_be_cleared">Lze vymazat</string>
+    <string name="settings_notification_can_be_cleared_on">Lze vymazat táhnutím</string>
+    <string name="settings_notification_can_be_cleared_off">Nelze vymazat</string>
+    <string name="settings_title_notification_hide_icon">Skrýt ikonu oznámení</string>
+    <string name="settings_notification_hide_icon_on">Skrýt</string>
+    <string name="settings_notification_hide_icon_off">Zobrazit</string>
+    <string name="settings_title_notification_hide_in_lockScreen">Skrýt v zamykací obrazovce</string>
+    <string name="settings_notification_hide_in_lockScreen_on">Skrýt (je potřeba otevřít systémová nastavení)</string>
+    <string name="settings_notification_hide_in_lockScreen_off">Zobrazit</string>
+    <string name="settings_title_notification_hide_big_view">Rozšířený styl</string>
+    <string name="settings_notification_hide_big_view_on">Skrýt</string>
+    <string name="settings_notification_hide_big_view_off">Zobrazit</string>
+    <string name="settings_provider_default_value">Výchozí (nezměněné)</string>
+    <string name="settings_provider_accu_weather">AccuWeather</string>
+    <string name="settings_provider_accu_weather_key">Klíč počasí AccuWeather</string>
+    <string name="settings_provider_accu_current_key">Klíč teploty AccuWeather</string>
+    <string name="settings_provider_accu_aqi_key">Klíč AccuWeather AQI</string>
+    <string name="settings_provider_owm">OpenWeather</string>
+    <string name="settings_provider_owm_key">Klíč OpenWeather</string>
+    <string name="settings_provider_baidu_ip_location">Poloha Baidu IP</string>
+    <string name="settings_provider_baidu_ip_location_ak">Poloha AK Baidu IP</string>
+    <string name="settings_provider_mf">Météo France</string>
+    <string name="settings_provider_mf_wsft_key">Klíč WSFT Météo France</string>
+    <string name="settings_provider_iqa_air_parif_key">Klíč Air Parif</string>
+    <string name="settings_provider_iqa_atmo_aura_key">Klíč ATMO AURA</string>
+
+    <!--share preference-->
+    <!-- Do not translate the following set of strings. -->
+    <string name="sp_widget_day_setting">widget_day_setting</string>
+    <string name="sp_widget_week_setting">widget_week_setting</string>
+    <string name="sp_widget_day_week_setting">widget_day_week_setting</string>
+    <string name="sp_widget_clock_day_horizontal_setting">widget_clock_day_horizontal_setting</string>
+    <string name="sp_widget_clock_day_details_setting">widget_clock_day_details_setting</string>
+    <string name="sp_widget_clock_day_vertical_setting">widget_clock_day_vertical_setting</string>
+    <string name="sp_widget_clock_day_week_setting">widget_clock_day_week_setting</string>
+    <string name="sp_widget_text_setting">widget_text_setting</string>
+    <string name="sp_widget_daily_trend_setting">widget_daily_trend_setting</string>
+    <string name="sp_widget_hourly_trend_setting">widget_hourly_trend_setting</string>
+    <string name="sp_widget_multi_city">widget_multi_city</string>
+    <string name="sp_widget_android_s_weather_mini">widget_android_s_weather_mini</string>
+    <string name="sp_widget_android_s_weather_medium">widget_android_s_weather_medium</string>
+    <string name="sp_widget_android_s_weather_large">widget_android_s_weather_large</string>
+    <string name="sp_widget_android_s_weather_xlarge">widget_android_s_weather_large</string>
+    <string name="key_view_type">view_type</string>
+    <string name="key_card_style">card_style</string>
+    <string name="key_card_alpha" tools:ignore="Typos">card_alpha_1</string>
+    <string name="key_hide_subtitle">hide_refresh_time</string>
+    <string name="key_subtitle_data">subtitle_data</string>
+    <string name="key_text_color">text_color</string>
+    <string name="key_text_size">text_size</string>
+    <string name="key_clock_font">clock_font</string>
+    <string name="key_hide_lunar">hide_lunar</string>
+    <string name="key_align_end">align_end</string>
+    <string name="key_colorful">colorful</string>
+
+    <!-- Do not translate the following set of strings. -->
+    <string name="key_live_wallpaper">live_wallpaper</string>
+    <string name="key_service_provider">service_provider</string>
+    <string name="key_service_provider_advanced">service_provider_advanced</string>
+    <string name="key_appearance">appearance</string>
+    <string name="key_unit">unit</string>
+    <string name="key_click_widget_to_refresh">click_widget_to_refresh</string>
+    <string name="key_widget_config">widget_config</string>
+    <string name="key_widget_day">widget_day</string>
+    <string name="key_widget_week">widget_week</string>
+    <string name="key_widget_day_week">widget_day_week</string>
+    <string name="key_widget_clock_day_horizontal">widget_clock_day_horizontal</string>
+    <string name="key_widget_clock_day_details">widget_clock_day_details</string>
+    <string name="key_widget_clock_day_vertical">widget_clock_day_vertical</string>
+    <string name="key_widget_clock_day_week">widget_clock_day_week</string>
+    <string name="key_widget_text">widget_text</string>
+    <string name="key_widget_trend_daily">widget_trend_daily</string>
+    <string name="key_widget_trend_hourly">widget_trend_hourly</string>
+    <string name="key_widget_multi_city">widget_multi_city</string>
+    <string name="key_notification_minimal_icon">notification_minimal_icon</string>
+
+    <!-- transition. -->
+    <!-- Do not translate the following set of strings. -->
+    <string name="transition_activity_search_bar">activity_search_bar</string>
+    <string name="transition_activity_search_txt">activity_search_txt</string>
 
 </resources>
