@@ -291,7 +291,7 @@
 
     <string name="feedback_ignore_battery_optimizations_title">Ignore battery optimization</string>
     <string name="feedback_ignore_battery_optimizations_content">In order to ensure that the background services can continue to work, please ignore the battery optimization for GeometricWeather.</string>
-    
+
     <string name="feedback_cannot_start_live_wallpaper_activity">Unable to start live wallpaper preview context</string>
 
     <string name="feedback_unusable_geocoder">This device does not contain a valid geocoder. The location provider has been changed to Baidu Location.</string>
@@ -417,6 +417,7 @@
     <string name="settings_title_notification">Send Notification</string>
     <string name="settings_title_notification_style">Notification style</string>
     <string name="settings_title_notification_temp_icon">Temperature as status bar icon</string>
+    <string name="settings_title_notification_feels_like">Use Feels Like temperature</string>
     <string name="settings_title_notification_color">Notification color</string>
     <string name="settings_title_notification_custom_color">Custom Notification Color</string>
     <string name="settings_title_notification_text_color">Text color</string>

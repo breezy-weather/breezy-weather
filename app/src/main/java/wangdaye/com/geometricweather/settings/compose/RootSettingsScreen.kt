@@ -382,6 +382,23 @@ fun RootSettingsView(context: Context, navController: NavHostController) {
                 }
             )
         }
+        checkboxPreferenceItem(R.string.settings_title_notification_feels_like) { id ->
+            CheckboxPreferenceView(
+                titleId = id,
+                summaryOnId = R.string.on,
+                summaryOffId = R.string.off,
+                checked = SettingsManager
+                    .getInstance(context)
+                    .isNotificationFeelsLike,
+                enabled = notificationEnabledState.value,
+                onValueChanged = {
+                    SettingsManager
+                        .getInstance(context)
+                        .isNotificationFeelsLike = it
+                    PollingManager.resetNormalBackgroundTask(context, true)
+                }
+            )
+        }
         checkboxPreferenceItem(R.string.settings_title_notification_can_be_cleared) { id ->
             CheckboxPreferenceView(
                 titleId = id,
