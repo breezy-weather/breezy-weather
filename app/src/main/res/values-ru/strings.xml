@@ -293,6 +293,8 @@
     <string name="settings_summary_live_wallpaper">Установить погодную Material анимацию как живые обои</string>
     <string name="settings_title_service_provider">Провайдер данных</string>
     <string name="settings_summary_service_provider">Выберите провайдера погодных данных, и данных о местоположении</string>
+	<string name="settings_title_service_provider_advanced">Расширенные настройки провайдера</string>
+    <string name="settings_summary_service_provider_advanced">Использовать с осторожностью</string>
     <string name="settings_title_weather_source">Погодный провайдер</string>
     <string name="settings_title_location_service">Провайдер местоположения</string>
     <string name="settings_title_dark_mode">Тёмная тема</string>
@@ -301,7 +303,8 @@
     <string name="settings_title_appearance">Вид</string>
     <string name="settings_summary_appearance">Стиль интерфейса, сортировка карточек, язык…</string>
     <string name="settings_title_card_display">Отображаемые карточки</string>
-    <string name="settings_title_daily_trend_display">Показывать тренд</string>
+    <string name="settings_title_daily_trend_display">Показывать дневной тренд</string>
+	<string name="settings_title_hourly_trend_display">Показывать часовой тренд</string>
     <string name="settings_title_trend_horizontal_line_switch">Горизонтальные линии в тренде</string>
     <string name="settings_title_exchange_day_night_temp_switch">Поменять местами мин/макс температуру</string>
     <string name="settings_title_card_order">Порядок карточек</string>
