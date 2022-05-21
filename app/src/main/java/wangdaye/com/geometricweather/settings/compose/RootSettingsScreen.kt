@@ -174,6 +174,7 @@ fun RootSettingsView(context: Context, navController: NavHostController) {
                 checked = todayForecastEnabledState.value,
                 onValueChanged = {
                     todayForecastEnabledState.value = it
+                    SettingsManager.getInstance(context).isTodayForecastEnabled = it
                     PollingManager.resetNormalBackgroundTask(context, false)
                 },
             )
@@ -201,6 +202,7 @@ fun RootSettingsView(context: Context, navController: NavHostController) {
                 checked = tomorrowForecastEnabledState.value,
                 onValueChanged = {
                     tomorrowForecastEnabledState.value = it
+                    SettingsManager.getInstance(context).isTomorrowForecastEnabled = it
                     PollingManager.resetNormalBackgroundTask(context, false)
                 },
             )

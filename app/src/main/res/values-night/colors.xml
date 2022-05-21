@@ -11,9 +11,8 @@
 
     <!-- widget S. -->
 
-    <color name="colorWidgetM3Root">@color/darkPrimary_1</color>
-    <color name="colorWidgetM3Text">@color/lightPrimary_1</color>
-    
+    <color name="colorWidgetM3TextPrimary">@android:color/white</color>
+
     <!-- material 3. -->
 
     <color name="md_theme_primary">#A8C7FF</color>

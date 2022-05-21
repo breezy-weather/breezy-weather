@@ -4,7 +4,8 @@
     <!-- widget S. -->
 
     <color name="colorWidgetM3Root">@android:color/system_accent1_50</color>
-    <color name="colorWidgetM3Text">@android:color/system_accent1_700</color>
+    <color name="colorWidgetM3TextPrimary">@android:color/system_accent1_700</color>
+    <color name="colorWidgetM3TextSecondary">@android:color/system_accent1_800</color>
 
     <!-- material 3. -->
 
