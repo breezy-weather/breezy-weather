@@ -1,42 +1,109 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- Do not translate those arrays which named "xxx_values". -->
+    <!-- Do not translate those items with a value of "@string/xxx". -->
+
+    <!-- Weather sources -->
+    <string-array name="weather_sources">
+        <item>caiyunapp.com (apenas para China)</item>
+        <item>AccuWeather</item>
+        <item>OpenWeather</item>
+        <item>Météo France</item>
+    </string-array>
 
     <!-- Location service. -->
     <string-array name="location_services">
         <item>Localização Baidu</item>
-        <item>Localização IP Baidu (China Somente)</item>
+        <item>Localização IP Baidu (apenas para China)</item>
         <item>Localização AMap</item>
-        <item>API Nativa</item>
+        <item>API nativa</item>
+    </string-array>
+    <string-array name="location_service_values">
+        <item>baidu</item>
+        <item>baidu_ip</item>
+        <item>amap</item>
+        <item>native</item>
     </string-array>
 
     <!-- Dark mode. -->
     <string-array name="dark_modes">
         <item>Automático</item>
-        <item>Follow system</item>
-        <item>Sempre Claro</item>
-        <item>Sempre Escuro</item>
+        <item>Padrão do sistema</item>
+        <item>Sempre claro</item>
+        <item>Sempre escuro</item>
+    </string-array>
+    <string-array name="dark_mode_values">
+        <item>auto</item>
+        <item>system</item>
+        <item>light</item>
+        <item>dark</item>
     </string-array>
 
     <!-- UI style. -->
     <string-array name="ui_styles">
-        <item>Céu Circular</item>
-        <item>Animação Material</item>
+        <item>Céu circular</item>
+        <item>Material</item>
+    </string-array>
+    <string-array name="ui_style_values">
+        <item>circular</item>
+        <item>material</item>
     </string-array>
 
     <!-- automatic refresh rate. -->
     <string-array name="automatic_refresh_rates">
-        <item>00:30</item>
-        <item>01:00</item>
-        <item>01:30</item>
-        <item>02:00</item>
-        <item>02:30</item>
-        <item>03:00</item>
-        <item>03:30</item>
-        <item>04:00</item>
-        <item>04:30</item>
-        <item>05:00</item>
-        <item>05:30</item>
-        <item>06:00</item>
+        <item>30 min</item>
+        <item>1 hora </item>
+        <item>1 h 30</item>
+        <item>2 horas</item>
+        <item>2 h 30</item>
+        <item>3 horas</item>
+        <item>3 h 30</item>
+        <item>4 horas</item>
+        <item>4 h 30</item>
+        <item>5 horas</item>
+        <item>5 h 30</item>
+        <item>6 horas</item>
+    </string-array>
+    <string-array name="automatic_refresh_rate_values">
+        <item>0:30</item>
+        <item>1:00</item>
+        <item>1:30</item>
+        <item>2:00</item>
+        <item>2:30</item>
+        <item>3:00</item>
+        <item>3:30</item>
+        <item>4:00</item>
+        <item>4:30</item>
+        <item>5:00</item>
+        <item>5:30</item>
+        <item>6:00</item>
+    </string-array>
+
+    <!-- widget week icon mode. -->
+    <string-array name="week_icon_modes">
+        <item>Automático</item>
+        <item>@string/daytime</item><!-- do not translate. -->
+        <item>@string/nighttime</item><!-- do not translate. -->
+    </string-array>
+    <string-array name="week_icon_mode_values">
+        <item>auto</item>
+        <item>day</item>
+        <item>night</item>
+    </string-array>
+
+    <!-- notification style. -->
+    <string-array name="notification_styles">
+        <item>Nativo</item>
+        <item>Cidades</item>
+        <item>@string/daily_overview</item><!-- do not translate. -->
+        <item>@string/hourly_overview</item><!-- do not translate. -->
+    </string-array>
+    <string-array name="notification_style_values">
+        <item>native</item>
+        <item>cities</item>
+        <item>daily</item>
+        <item>hourly</item>
     </string-array>
 
     <!-- notification text color. -->
@@ -45,29 +112,309 @@
         <item>Cinza</item>
         <item>Claro</item>
     </string-array>
+    <string-array name="notification_text_color_values">
+        <item>dark</item>
+        <item>grey</item>
+        <item>light</item>
+    </string-array>
 
     <!-- widget style. -->
     <string-array name="widget_styles">
         <item>Retangular</item>
         <item>Simétrico</item>
-        <item>Tile</item>
+        <item>Bloco</item>
         <item>Mini</item>
         <item>Nano</item>
         <item>Pixel</item>
         <item>Vertical</item>
         <item>Oreo</item>
-        <item>Oreo (Google sans)</item>
-        <item>Temperature</item>
+        <item>Oreo (Google Sans)</item>
+        <item>Temperatura</item>
+    </string-array>
+    <string-array name="widget_style_values">
+        <item>rectangle</item>
+        <item>symmetry</item>
+        <item>tile</item>
+        <item>mini</item>
+        <item>nano</item>
+        <item>pixel</item>
+        <item>vertical</item>
+        <item>oreo</item>
+        <item>oreo_google_sans</item>
+        <item>temp</item>
+    </string-array>
+
+    <!-- week widget style. -->
+    <string-array name="week_widget_styles">
+        <item>5 dias</item>
+        <item>3 dias</item>
+    </string-array>
+    <string-array name="week_widget_style_values">
+        <item>5_days</item>
+        <item>3_days</item>
     </string-array>
 
     <!-- Widget subtitle data. -->
     <string-array name="subtitle_data">
-        <item>Última atualização</item>
-        <item>AQI (Inválido em alguns locais.)</item>
+        <item>Tempo de atualização</item>
+        <item>AQI (indisp. no Brasil)</item>
         <item>Vento</item>
-        <item>Sensação Térmica</item>
-        <item>Calendário Lunar</item>
-        <item>Custom</item>
+        <item>Sensação térmica</item>
+        <item>Calendário lunar</item>
+        <item>Personalizado</item>
+    </string-array>
+    <string-array name="subtitle_data_values">
+        <item>time</item>
+        <item>aqi</item>
+        <item>wind</item>
+        <item>sensible_time</item>
+        <item>lunar</item>
+        <item>custom</item>
+    </string-array>
+
+    <!-- widget clock font. -->
+    <string-array name="clock_font">
+        <item>sans-serif-light</item>
+        <item>sans-serif</item>
+        <item>sans-serif-black</item>
+        <item>analog</item>
+    </string-array>
+    <string-array name="clock_font_values">
+        <item>light</item>
+        <item>normal</item>
+        <item>black</item>
+        <item>analog</item>
+    </string-array>
+
+    <!-- widget card style. -->
+    <string-array name="widget_card_styles">
+        <item>Nenhum</item>
+        <item>Automático</item>
+        <item>Claro</item>
+        <item>Escuro</item>
+    </string-array>
+    <string-array name="widget_card_style_values">
+        <item>none</item>
+        <item>auto</item>
+        <item>light</item>
+        <item>dark</item>
+    </string-array>
+
+    <!-- widget clock font. -->
+    <string-array name="widget_text_colors">
+        <item>Claro</item>
+        <item>Escuro</item>
+        <item>Automático</item>
+    </string-array>
+    <string-array name="widget_text_color_values">
+        <item>light</item>
+        <item>dark</item>
+        <item>auto</item>
+    </string-array>
+
+    <!-- live wallpaper weather kind. -->
+    <string-array name="live_wallpaper_weather_kinds">
+        <item>Automático</item>
+        <item>Limpo</item>
+        <item>Parcialmente nublado</item>
+        <item>Nublado</item>
+        <item>Chuva</item>
+        <item>Neve</item>
+        <item>Chuva de pedras</item>
+        <item>Granizo</item>
+        <item>Névoa</item>
+        <item>Neblina</item>
+        <item>Trovão</item>
+        <item>Trovoada</item>
+        <item>Vento</item>
+    </string-array>
+    <string-array name="live_wallpaper_weather_kind_values">
+        <item>auto</item>
+        <item>CLEAR</item>
+        <item>PARTLY_CLOUDY</item>
+        <item>CLOUDY</item>
+        <item>RAIN</item>
+        <item>SNOW</item>
+        <item>SLEET</item>
+        <item>HAIL</item>
+        <item>FOG</item>
+        <item>HAZE</item>
+        <item>THUNDER</item>
+        <item>THUNDERSTORM</item>
+        <item>WIND</item>
+    </string-array>
+
+    <!-- live wallpaper weather kind. -->
+    <string-array name="live_wallpaper_day_night_types">
+        <item>Automático</item>
+        <item>Sempre dia</item>
+        <item>Sempre noite</item>
+    </string-array>
+    <string-array name="live_wallpaper_day_night_type_values">
+        <item>auto</item>
+        <item>day</item>
+        <item>night</item>
+    </string-array>
+
+    <!-- speed unit. -->
+    <string-array name="speed_units">
+        <item>km/h</item>
+        <item>m/s</item>
+        <item>kn</item>
+        <item>mph</item>
+        <item>ft/s</item>
+    </string-array>
+    <string-array name="speed_unit_voices">
+        <item>Quilometros por hora</item>
+        <item>Metros por segundo</item>
+        <item>Nós</item>
+        <item>Milhas por hora</item>
+        <item>Pés por segundo</item>
+    </string-array>
+    <string-array name="speed_unit_values">
+        <item>kph</item>
+        <item>mps</item>
+        <item>kn</item>
+        <item>mph</item>
+        <item>ftps</item>
+    </string-array>
+
+    <!-- precipitation unit. -->
+    <string-array name="precipitation_units">
+        <item>mm</item>
+        <item>cm</item>
+        <item>inch</item>
+        <item>L/m²</item>
+    </string-array>
+    <string-array name="precipitation_unit_voices">
+        <item>Milímetros</item>
+        <item>Centímetro</item>
+        <item>Polegadas</item>
+        <item>Litros por metro quadrado</item>
+    </string-array>
+    <string-array name="precipitation_unit_values">
+        <item>mm</item>
+        <item>cm</item>
+        <item>in</item>
+        <item>lpsqm</item>
+    </string-array>
+
+    <!-- temperature unit. -->
+    <string-array name="temperature_units">
+        <item>℃</item>
+        <item>℉</item>
+        <item>K</item>
+    </string-array>
+    <string-array name="temperature_units_short">
+        <item>°</item>
+        <item>°</item>
+        <item>K</item>
+    </string-array>
+    <string-array name="temperature_units_long">
+        <item>°C</item>
+        <item>°F</item>
+        <item>K</item>
+    </string-array>
+    <string-array name="temperature_unit_values">
+        <item>c</item>
+        <item>f</item>
+        <item>k</item>
+    </string-array>
+
+    <!-- distance unit. -->
+    <string-array name="distance_units">
+        <item>km</item>
+        <item>m</item>
+        <item>mi</item>
+        <item>nmi</item>
+        <item>ft</item>
+    </string-array>
+    <string-array name="distance_unit_voices">
+        <item>Quilômetros</item>
+        <item>Metros</item>
+        <item>Milhas</item>
+        <item>Milhas náuticas</item>
+        <item>Pés</item>
+    </string-array>
+    <string-array name="distance_unit_values">
+        <item>km</item>
+        <item>m</item>
+        <item>mi</item>
+        <item>nmi</item>
+        <item>ft</item>
+    </string-array>
+
+    <!-- pressure unit. -->
+    <string-array name="pressure_units">
+        <item>mb</item>
+        <item>kPa</item>
+        <item>hPa</item>
+        <item>atm</item>
+        <item>mmHg</item>
+        <item>inHg</item>
+        <item>kgf/cm²</item>
+    </string-array>
+    <string-array name="pressure_unit_voices">
+        <item>Millibars</item>
+        <item>Quilopascais</item>
+        <item>Hectopascais</item>
+        <item>Atmosferas</item>
+        <item>Milímetros de mercúrio</item>
+        <item>Polegadas de mercúrio</item>
+        <item>Quilograma força por centímetro quadrado</item>
+    </string-array>
+    <string-array name="pressure_unit_values">
+        <item>mb</item>
+        <item>kpa</item>
+        <item>hpa</item>
+        <item>atm</item>
+        <item>mmhg</item>
+        <item>inhg</item>
+        <item>kgfpsqcm</item>
+    </string-array>
+
+    <!-- air quality unit. -->
+    <string-array name="air_quality_units">
+        <item>μg/m³</item>
+    </string-array>
+    <string-array name="air_quality_unit_voices">
+        <item>Microgramas por metro cúbico</item>
+    </string-array>
+    <string-array name="air_quality_unit_values">
+        <item>mugpcum</item>
+    </string-array>
+
+    <!-- air quality co unit. -->
+    <string-array name="air_quality_co_units">
+        <item>mg/m³</item>
+    </string-array>
+    <string-array name="air_quality_co_unit_voices">
+        <item>Miligramas por metro cúbico</item>
+    </string-array>
+    <string-array name="air_quality_co_unit_values">
+        <item>mgpcum</item>
+    </string-array>
+
+    <!-- duration unit. -->
+    <string-array name="duration_units">
+        <item>h</item> <!-- hour -->
+    </string-array>
+    <string-array name="duration_unit_voices">
+        <item>horas</item>
+    </string-array>
+    <string-array name="duration_unit_values">
+        <item>h</item>
+    </string-array>
+
+    <!-- pollen unit. -->
+    <string-array name="pollen_units">
+        <item>/m³</item>
+    </string-array>
+    <string-array name="pollen_unit_voices">
+        <item>Por metro cúbico</item>
+    </string-array>
+    <string-array name="pollen_unit_values">
+        <item>ppcm</item>
     </string-array>
 
 </resources>
