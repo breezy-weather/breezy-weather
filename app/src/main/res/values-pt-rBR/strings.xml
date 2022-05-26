@@ -42,8 +42,8 @@
     <string name="cloud_cover">Nebulosidade</string>
     <string name="ceiling">Teto de nuvens</string>
     <string name="get_more">Obter mais</string>
-    <string name="get_more_store">Obter mais na Play Store</string>
-    <string name="get_more_github">Obter mais no GitHub</string>
+    <string name="get_more_store">Obtenha mais na Play Store</string>
+    <string name="get_more_github">Obtenha mais no GitHub</string>
     <string name="refresh">Atualizar</string>
     <string name="restart">Reiniciar</string>
     <string name="edit">Editar</string>

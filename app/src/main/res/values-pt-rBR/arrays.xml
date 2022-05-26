@@ -53,7 +53,7 @@
     <!-- automatic refresh rate. -->
     <string-array name="automatic_refresh_rates">
         <item>30 min</item>
-        <item>1 hora </item>
+        <item>1 hora</item>
         <item>1 h 30</item>
         <item>2 horas</item>
         <item>2 h 30</item>
