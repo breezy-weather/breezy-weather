@@ -67,7 +67,7 @@ public abstract class AsyncUpdateWorker extends AsyncWorker
             updateView(getApplicationContext(), location);
             if (succeed) {
                 NotificationHelper.checkAndSendAlert(getApplicationContext(), location, old);
-                NotificationHelper.checkAndSendPrecipitationForecast(getApplicationContext(), location, old);
+                NotificationHelper.checkAndSendPrecipitationForecast(getApplicationContext(), location);
             } else {
                 mFailed = true;
             }

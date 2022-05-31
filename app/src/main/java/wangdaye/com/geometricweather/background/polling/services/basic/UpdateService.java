@@ -22,10 +22,6 @@ import wangdaye.com.geometricweather.location.LocationHelper;
 import wangdaye.com.geometricweather.remoteviews.NotificationHelper;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
 
-/**
- * Update service.
- * */
-
 public abstract class UpdateService extends Service
         implements PollingUpdateHelper.OnPollingUpdateListener {
 
@@ -92,7 +88,7 @@ public abstract class UpdateService extends Service
             updateView(this, location);
             if (succeed) {
                 NotificationHelper.checkAndSendAlert(this, location, old);
-                NotificationHelper.checkAndSendPrecipitationForecast(this, location, old);
+                NotificationHelper.checkAndSendPrecipitationForecast(this, location);
             } else {
                 mFailed = true;
             }

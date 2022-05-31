@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurfaceVariant">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
+            android:id="@+id/searchBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorSurface"
+            android:transitionName="@string/transition_activity_search_bar"
+            app:elevation="0dp">
+
+            <RelativeLayout
+                android:id="@+id/searchContainer"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/backBtn"
+                    android:src="@drawable/ic_back"
+                    android:tint="?attr/colorPrimary"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/content_desc_back"
+                    style="@style/material_image_button" />
+
+                <EditText
+                    android:id="@+id/editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/normal_margin"
+                    android:hint="@string/feedback_search_location"
+                    android:textSize="@dimen/title_text_size"
+                    android:textColor="?attr/colorTitleText"
+                    android:textColorHint="?attr/colorCaptionText"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:inputType="text"
+                    android:imeOptions="actionSearch"
+                    android:background="@android:color/transparent"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/backBtn"
+                    tools:ignore="Autofill,RtlHardcoded" />
+
+            </RelativeLayout>
+
+        </wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.github.rahatarmanahmed.cpv.CircularProgressView
+                android:id="@+id/progress"
+                android:layout_width="@dimen/little_weather_icon_size"
+                android:layout_height="@dimen/little_weather_icon_size"
+                android:layout_centerInParent="true"
+                app:cpv_animAutostart="true"
+                app:cpv_color="?attr/colorPrimary"
+                app:cpv_indeterminate="true" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarRecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:paddingTop="@dimen/little_margin"
+                    app:rv_side="bottom" />
+
+                <com.turingtechnologies.materialscrollbar.DragScrollBar
+                    android:id="@+id/scrollBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    app:msb_recyclerView="@id/recyclerView"
+                    app:msb_lightOnTouch="true"
+                    app:msb_scrollMode="firstVisible"
+                    app:msb_barColor="@color/colorTextSubtitle"
+                    app:msb_handleColor="?attr/colorSecondary"
+                    app:msb_handleOffColor="?attr/colorSecondaryVariant"
+                    app:msb_textColor="?attr/colorOnSecondary" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <com.gordonwong.materialsheetfab.DimOverlayFrameLayout
+        android:id="@+id/overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <wangdaye.com.geometricweather.search.ui.FitBottomBarFrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        app:layout_behavior=".common.ui.behaviors.FloatingAboveSnackbarBehavior">
+
+        <wangdaye.com.geometricweather.search.ui.FabView
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/normal_margin"
+            android:layout_gravity="bottom|end"
+            android:textColor="@android:color/white"
+            android:contentDescription="@string/content_desc_filter_weather_sources"
+            android:src="@drawable/ic_filter"
+            style="?attr/floatingActionButtonLargeStyle"
+            app:tint="?attr/colorOnPrimary"
+            app:backgroundTint="?attr/colorPrimary" />
+
+        <io.codetail.widget.RevealLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="end|bottom"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/fab_sheet"
+                android:layout_width="300dp"
+                android:layout_height="326dp"
+                android:layout_margin="@dimen/normal_margin"
+                android:orientation="vertical">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/source_enter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/done"
+                    android:textStyle="bold"
+                    android:textColor="?attr/colorOnPrimary"
+                    android:layout_alignParentBottom="true"
+                    style="@style/Widget.Material3.Button.ElevatedButton"
+                    app:backgroundTint="?attr/colorPrimary"
+                    tools:ignore="UnusedAttribute" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@id/source_enter"
+                    android:layout_marginBottom="@dimen/little_margin"
+                    style="?attr/materialCardViewFilledStyle"
+                    app:cardBackgroundColor="?attr/colorSurface"
+                    app:cardCornerRadius="@dimen/material3_card_list_item_corner_radius">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/source_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </RelativeLayout>
+
+        </io.codetail.widget.RevealLinearLayout>
+
+    </wangdaye.com.geometricweather.search.ui.FitBottomBarFrameLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
