@@ -129,7 +129,7 @@ class GeometricWeather : MultiDexApplication(),
         const val WIDGET_MATERIAL_YOU_FORECAST_PENDING_INTENT_CODE_WEATHER = 131
         const val WIDGET_MATERIAL_YOU_CURRENT_PENDING_INTENT_CODE_WEATHER = 132
 
-        fun getProcessName(): String? = try {
+        fun getProcessName() = try {
             val file = File("/proc/" + Process.myPid() + "/" + "cmdline")
             val mBufferedReader = BufferedReader(FileReader(file))
             val processName = mBufferedReader.readLine().trim {

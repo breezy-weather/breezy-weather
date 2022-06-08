@@ -85,21 +85,27 @@ public class Weather
     public boolean isDaylight(TimeZone timeZone) {
         Date riseDate = getDailyForecast().get(0).sun().getRiseDate();
         Date setDate = getDailyForecast().get(0).sun().getSetDate();
-        if (riseDate != null && setDate != null) {
+        if (riseDate == null || setDate == null) {
+            return DisplayUtils.isDaylight(timeZone);
+        }
 
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTimeZone(timeZone);
-            int time = 60 * calendar.get(Calendar.HOUR_OF_DAY) + calendar.get(Calendar.MINUTE);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeZone(timeZone);
+        int time = 60 * calendar.get(Calendar.HOUR_OF_DAY) + calendar.get(Calendar.MINUTE);
 
-            calendar.setTimeZone(TimeZone.getDefault());
-            calendar.setTime(riseDate);
-            int sunrise = 60 * calendar.get(Calendar.HOUR_OF_DAY) + calendar.get(Calendar.MINUTE);
-            calendar.setTime(setDate);
-            int sunset = 60 * calendar.get(Calendar.HOUR_OF_DAY) + calendar.get(Calendar.MINUTE);
+        calendar.setTime(riseDate);
+        int sunrise = 60 * calendar.get(Calendar.HOUR_OF_DAY) + calendar.get(Calendar.MINUTE);
+        calendar.setTime(setDate);
+        int sunset = 60 * calendar.get(Calendar.HOUR_OF_DAY) + calendar.get(Calendar.MINUTE);
 
+        if (sunset >= sunrise) {
+            // for example: rise at 07:00, set at 19:00.
+            // return ture if current time between the sun-rise time and the sun-set time.
             return sunrise < time && time < sunset;
         }
 
-        return DisplayUtils.isDaylight(timeZone);
+        // for example: rise at 03:00, set at 00:26 on the second day.
+        // return false if current time between the sun-set time and the sun-rise time.
+        return time <= sunset || time >= sunrise;
     }
 }

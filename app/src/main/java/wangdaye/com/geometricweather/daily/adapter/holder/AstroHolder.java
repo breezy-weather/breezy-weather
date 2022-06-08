@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 
+import java.util.TimeZone;
+
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.weather.Astro;
 import wangdaye.com.geometricweather.common.basic.models.weather.MoonPhase;
@@ -46,6 +48,7 @@ public class AstroHolder extends DailyWeatherAdapter.ViewHolder {
     @Override
     public void onBindView(DailyWeatherAdapter.ViewModel model, int position) {
         Context context = itemView.getContext();
+        TimeZone timeZone = ((DailyAstro) model).getTimeZone();
         Astro s = ((DailyAstro) model).getSun();
         Astro m = ((DailyAstro) model).getMoon();
         MoonPhase p = ((DailyAstro) model).getMoonPhase();
@@ -55,12 +58,12 @@ public class AstroHolder extends DailyWeatherAdapter.ViewHolder {
         if (s.isValid()) {
             talkBackBuilder
                     .append(", ")
-                    .append(context.getString(R.string.content_des_sunrise).replace("$", s.getRiseTime(context)))
+                    .append(context.getString(R.string.content_des_sunrise).replace("$", s.getRiseTime(context, timeZone)))
                     .append(", ")
-                    .append(context.getString(R.string.content_des_sunset).replace("$", s.getSetTime(context)));
+                    .append(context.getString(R.string.content_des_sunset).replace("$", s.getSetTime(context, timeZone)));
 
             mSun.setVisibility(View.VISIBLE);
-            mSunText.setText(s.getRiseTime(context) + "↑ / " + s.getSetTime(context) + "↓");
+            mSunText.setText(s.getRiseTime(context, timeZone) + "↑ / " + s.getSetTime(context, timeZone) + "↓");
         } else {
             mSun.setVisibility(View.GONE);
         }
@@ -68,12 +71,12 @@ public class AstroHolder extends DailyWeatherAdapter.ViewHolder {
         if (m.isValid()) {
             talkBackBuilder
                     .append(", ")
-                    .append(context.getString(R.string.content_des_moonrise).replace("$", m.getRiseTime(context)))
+                    .append(context.getString(R.string.content_des_moonrise).replace("$", m.getRiseTime(context, timeZone)))
                     .append(", ")
-                    .append(context.getString(R.string.content_des_moonset).replace("$", m.getSetTime(context)));
+                    .append(context.getString(R.string.content_des_moonset).replace("$", m.getSetTime(context, timeZone)));
 
             mMoon.setVisibility(View.VISIBLE);
-            mMoonText.setText(m.getRiseTime(context) + "↑ / " + m.getSetTime(context) + "↓");
+            mMoonText.setText(m.getRiseTime(context, timeZone) + "↑ / " + m.getSetTime(context, timeZone) + "↓");
         } else {
             mMoon.setVisibility(View.GONE);
         }
