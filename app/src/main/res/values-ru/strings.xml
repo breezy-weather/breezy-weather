@@ -281,6 +281,9 @@
     <string name="widget_text">Текст</string>
     <string name="widget_trend_daily">Дневной тренд</string>
     <string name="widget_trend_hourly">Часовой тренд</string>
+    <string name="widget_multi_city">Multi City</string>
+    <string name="widget_material_you_forecast">Material You - Прогноз</string>
+    <string name="widget_material_you_current">Material You - Текущая</string>
     <string name="wait_refresh">Ждите</string>
     <string name="ellipsis">…</string>
 
