@@ -12,14 +12,13 @@ import wangdaye.com.geometricweather.location.LocationHelper
 import wangdaye.com.geometricweather.weather.WeatherHelper
 import wangdaye.com.geometricweather.weather.WeatherHelper.OnRequestWeatherListener
 
-/**
- * Polling updateRotation helper.
- */
 class PollingUpdateHelper(
     private val context: Context,
     private val locationHelper: LocationHelper,
     private val weatherHelper: WeatherHelper
 ) {
+    private var isUpdating = false
+
     private var ioController: AsyncHelper.Controller? = null
     private var locationList = emptyList<Location>().toMutableList()
     private var listener: OnPollingUpdateListener? = null
@@ -39,6 +38,11 @@ class PollingUpdateHelper(
     // control.
 
     fun pollingUpdate() {
+        if (isUpdating) {
+            return
+        }
+        isUpdating = true
+
         ioController = AsyncHelper.runOnIO({ emitter ->
             val list = DatabaseHelper.getInstance(context).readLocationList().map {
                 it.copy(weather = DatabaseHelper.getInstance(context).readWeather(it))
@@ -53,16 +57,15 @@ class PollingUpdateHelper(
     }
 
     fun cancel() {
+        isUpdating = false
+
         ioController?.cancel()
         locationHelper.cancel()
         weatherHelper.cancel()
     }
 
     private fun requestData(position: Int, located: Boolean) {
-        val old = locationList[position].weather
-
-        if (old?.isValid(0.25f) == true) {
-            locationList[position] = locationList[position].copy(weather = old)
+        if (locationList[position].weather?.isValid(0.25f) == true) {
             RequestWeatherCallback(position, locationList.size).requestWeatherSuccess(locationList[position])
             return
         }
@@ -129,17 +132,17 @@ class PollingUpdateHelper(
     ) : OnRequestWeatherListener {
 
         override fun requestWeatherSuccess(requestLocation: Location) {
-            val old = locationList[index].weather
+            val oldWeather = locationList[index].weather
 
             if (requestLocation.weather != null
-                && (old == null || requestLocation.weather.base.timeStamp != old.base.timeStamp)) {
+                && (oldWeather == null || requestLocation.weather.base.timeStamp != oldWeather.base.timeStamp)) {
                 locationList[index] = requestLocation
 
                 EventBus.instance
                     .with(Location::class.java)
                     .postValue(requestLocation)
 
-                listener?.onUpdateCompleted(requestLocation, old, true, index, total)
+                listener?.onUpdateCompleted(requestLocation, oldWeather, true, index, total)
 
                 checkToRequestNextOrCompleted()
             } else {
@@ -157,11 +160,18 @@ class PollingUpdateHelper(
         }
 
         private fun checkToRequestNextOrCompleted() {
-            if (index + 1 < total) {
-                requestData(index + 1, false)
-            } else {
-                listener?.onPollingCompleted(locationList)
+            if (!isUpdating) {
+                return
             }
+
+            val next = index + 1
+            if (next < total) {
+                requestData(next, false)
+                return
+            }
+
+            listener?.onPollingCompleted(locationList)
+            isUpdating = false
         }
     }
 }

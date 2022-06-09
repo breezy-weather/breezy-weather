@@ -2,6 +2,7 @@ package wangdaye.com.geometricweather.main.adapters.main.holder;
 
 import android.animation.AnimatorSet;
 import android.animation.FloatEvaluator;
+import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
@@ -19,7 +20,6 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 
 import java.util.Calendar;
-import java.util.Objects;
 import java.util.TimeZone;
 
 import wangdaye.com.geometricweather.R;
@@ -50,10 +50,10 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
     @Nullable private Weather mWeather;
     private TimeZone mTimeZone;
 
-    @Size(2) private float[] mStartTimes;
-    @Size(2) private float[] mEndTimes;
-    @Size(2) private float[] mCurrentTimes;
-    @Size(2) private float[] mAnimCurrentTimes;
+    @Size(2) private long[] mStartTimes;
+    @Size(2) private long[] mEndTimes;
+    @Size(2) private long[] mCurrentTimes;
+    @Size(2) private long[] mAnimCurrentTimes;
     private int mPhaseAngle;
 
     @Size(3) private final AnimatorSet[] mAttachAnimatorSets;
@@ -191,13 +191,21 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
         itemView.setContentDescription(talkBackBuilder.toString());
     }
 
+    private static class LongEvaluator implements TypeEvaluator<Long> {
+
+        @Override
+        public Long evaluate(float fraction, Long startValue, Long endValue) {
+            return startValue + (long) ((endValue - startValue) * fraction);
+        }
+    }
+
     @SuppressLint("Recycle")
     @Override
     public void onEnterScreen() {
         if (itemAnimationEnabled && mWeather != null) {
-            ValueAnimator timeDay = ValueAnimator.ofObject(new FloatEvaluator(), mStartTimes[0], mCurrentTimes[0]);
+            ValueAnimator timeDay = ValueAnimator.ofObject(new LongEvaluator(), mStartTimes[0], mCurrentTimes[0]);
             timeDay.addUpdateListener(animation -> {
-                mAnimCurrentTimes[0] = (Float) animation.getAnimatedValue();
+                mAnimCurrentTimes[0] = (Long) animation.getAnimatedValue();
                 mSunMoonView.setTime(mStartTimes, mEndTimes, mAnimCurrentTimes);
             });
 
@@ -215,9 +223,9 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
             mAttachAnimatorSets[0].setDuration(getPathAnimatorDuration(0));
             mAttachAnimatorSets[0].start();
 
-            ValueAnimator timeNight = ValueAnimator.ofObject(new FloatEvaluator(), mStartTimes[1], mCurrentTimes[1]);
+            ValueAnimator timeNight = ValueAnimator.ofObject(new LongEvaluator(), mStartTimes[1], mCurrentTimes[1]);
             timeNight.addUpdateListener(animation -> {
-                mAnimCurrentTimes[1] = (Float) animation.getAnimatedValue();
+                mAnimCurrentTimes[1] = (Long) animation.getAnimatedValue();
                 mSunMoonView.setTime(mStartTimes, mEndTimes, mAnimCurrentTimes);
             });
 
@@ -266,59 +274,31 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeZone(mTimeZone);
-        int currentTime = SunMoonView.decodeTime(calendar);
+        long currentTime = calendar.getTime().getTime();
 
-        mStartTimes = new float[2];
-        mEndTimes = new float[2];
-        mCurrentTimes = new float[] {currentTime, currentTime};
+        mStartTimes = new long[2];
+        mEndTimes = new long[2];
+        mCurrentTimes = new long[] {currentTime, currentTime};
 
         // sun.
-        calendar.setTime(Objects.requireNonNull(today.sun().getRiseDate()));
-        int sunriseTime = SunMoonView.decodeTime(calendar);
-
-        calendar.setTime(Objects.requireNonNull(today.sun().getSetDate()));
-        int sunsetTime = SunMoonView.decodeTime(calendar);
-
-        if (sunriseTime <= sunsetTime) {
-            mStartTimes[0] = sunriseTime;
-            mEndTimes[0] = sunsetTime;
-        } else if (currentTime < sunsetTime) {
-            mStartTimes[0] = sunriseTime - 24 * 60;
-            mEndTimes[0] = sunsetTime;
+        if (today.sun().getRiseDate() == null || today.sun().getSetDate() == null) {
+            mStartTimes[0] = currentTime + 1;
+            mEndTimes[0] = currentTime + 1;
         } else {
-            mStartTimes[0] = sunriseTime;
-            mEndTimes[0] = sunsetTime + 24 * 60;
+            mStartTimes[0] = today.sun().getRiseDate().getTime();
+            mEndTimes[0] = today.sun().getSetDate().getTime();
         }
 
         // moon.
-        int moonriseTime;
-        int moonsetTime;
-
-        if (!today.moon().isValid()) {
-            // do not have moonrise and moonset data.
-            moonriseTime = sunsetTime;
-            moonsetTime = sunriseTime;
+        if (today.moon().getRiseDate() == null || today.moon().getSetDate() == null) {
+            mStartTimes[1] = currentTime + 1;
+            mEndTimes[1] = currentTime + 1;
         } else {
-            // have moonrise and moonset data.
-            calendar.setTime(Objects.requireNonNull(today.moon().getRiseDate()));
-            moonriseTime = SunMoonView.decodeTime(calendar);
-
-            calendar.setTime(Objects.requireNonNull(today.moon().getSetDate()));
-            moonsetTime = SunMoonView.decodeTime(calendar);
+            mStartTimes[1] = today.moon().getRiseDate().getTime();
+            mEndTimes[1] = today.moon().getSetDate().getTime();
         }
 
-        if (moonriseTime <= moonsetTime) {
-            mStartTimes[1] = moonriseTime;
-            mEndTimes[1] = moonsetTime;
-        } else if (currentTime < moonsetTime) {
-            mStartTimes[1] = moonriseTime - 24 * 60;
-            mEndTimes[1] = moonsetTime;
-        } else {
-            mStartTimes[1] = moonriseTime;
-            mEndTimes[1] = moonsetTime + 24 * 60;
-        }
-
-        mAnimCurrentTimes = new float[] {mCurrentTimes[0], mCurrentTimes[1]};
+        mAnimCurrentTimes = new long[] {mCurrentTimes[0], mCurrentTimes[1]};
     }
 
     private void ensurePhaseAngle(@NonNull Weather weather) {

@@ -91,21 +91,9 @@ public class Weather
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeZone(timeZone);
-        int time = 60 * calendar.get(Calendar.HOUR_OF_DAY) + calendar.get(Calendar.MINUTE);
+        long timestamp = calendar.getTime().getTime();
 
-        calendar.setTime(riseDate);
-        int sunrise = 60 * calendar.get(Calendar.HOUR_OF_DAY) + calendar.get(Calendar.MINUTE);
-        calendar.setTime(setDate);
-        int sunset = 60 * calendar.get(Calendar.HOUR_OF_DAY) + calendar.get(Calendar.MINUTE);
-
-        if (sunset >= sunrise) {
-            // for example: rise at 07:00, set at 19:00.
-            // return ture if current time between the sun-rise time and the sun-set time.
-            return sunrise < time && time < sunset;
-        }
-
-        // for example: rise at 03:00, set at 00:26 on the second day.
-        // return false if current time between the sun-set time and the sun-rise time.
-        return time <= sunset || time >= sunrise;
+        return riseDate.getTime() < timestamp
+                && timestamp < setDate.getTime();
     }
 }

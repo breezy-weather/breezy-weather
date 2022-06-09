@@ -162,13 +162,16 @@
 
             <TextView
                 android:id="@+id/widget_clock_day_subtitle"
+                android:layout_toEndOf="@id/widget_clock_day_lunar"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="@dimen/little_margin"
                 android:layout_marginEnd="@dimen/large_margin"
+                android:layout_width="match_parent"
                 android:text="@string/ellipsis"
                 android:textSize="@dimen/widget_content_text_size"
-                android:maxLines="1"
+                android:textAlignment="textEnd"
+                android:ellipsize="start"
+                android:singleLine="true"
                 style="@style/widget_content_text"
                 tools:text="青岛 8℃"
                 tools:ignore="RtlHardcoded" />
