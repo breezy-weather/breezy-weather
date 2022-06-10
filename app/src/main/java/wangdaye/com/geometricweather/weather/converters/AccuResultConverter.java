@@ -186,8 +186,8 @@ public class AccuResultConverter {
                     getDailyList(context, dailyResult),
                     getHourlyList(context, hourlyResultList),
                     getMinutelyList(
-                            dailyResult.DailyForecasts.get(0).Sun.Rise,
-                            dailyResult.DailyForecasts.get(0).Sun.Set,
+                            new Date(dailyResult.DailyForecasts.get(0).Sun.EpochRise * 1000),
+                            new Date(dailyResult.DailyForecasts.get(0).Sun.EpochSet * 1000),
                             minuteResult
                     ),
                     getAlertList(alertResultList)
@@ -290,8 +290,14 @@ public class AccuResultConverter {
                                     ),
                                     forecasts.Night.CloudCover
                             ),
-                            new Astro(forecasts.Sun.Rise, forecasts.Sun.Set),
-                            new Astro(forecasts.Moon.Rise, forecasts.Moon.Set),
+                            new Astro(
+                                    new Date(forecasts.Sun.EpochRise * 1000),
+                                    new Date(forecasts.Sun.EpochSet * 1000)
+                            ),
+                            new Astro(
+                                    new Date(forecasts.Moon.EpochRise * 1000),
+                                    new Date(forecasts.Moon.EpochSet * 1000)
+                            ),
                             new MoonPhase(
                                     CommonConverter.getMoonPhaseAngle(forecasts.Moon.Phase),
                                     forecasts.Moon.Phase

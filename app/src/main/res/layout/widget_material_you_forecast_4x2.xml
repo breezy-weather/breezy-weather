@@ -4,7 +4,7 @@
     android:id="@android:id/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/widget_s_background"
+    android:background="@drawable/widget_m3_background"
     android:theme="@style/GeometricWeatherAndroidSWidget"
     style="@android:style/Widget"
     tools:layout_height="198dp">
@@ -65,6 +65,7 @@
                     android:layout_marginStart="@dimen/little_margin"
                     android:layout_marginEnd="-4dp"
                     android:textSize="42sp"
+                    android:textStyle="bold"
                     android:textColor="?android:attr/textColorPrimary"
                     style="@style/widget_large_title_text"
                     tools:text="27°"

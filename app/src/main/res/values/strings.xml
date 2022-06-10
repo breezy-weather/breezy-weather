@@ -154,7 +154,7 @@
     <!-- Week  : EEEE(long) / EEE(short). -->
     <string name="date_format_short">M-d</string>
     <string name="date_format_long">MMM d</string>
-    <string name="date_format_widget_short">EEEE, MMM d</string>
+    <string name="date_format_widget_short">EEE, MMM d</string>
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
 
@@ -361,6 +361,7 @@
     <string name="widget_trend_hourly">Hourly Trend</string>
     <string name="widget_multi_city">Multi City</string>
     <string name="widget_material_you_forecast">Material You - Forecast</string>
+    <string name="widget_material_you_current">Material You - Current</string>
     <string name="wait_refresh">waiting</string>
     <string name="ellipsis">…</string>
 

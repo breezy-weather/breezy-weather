@@ -27,6 +27,7 @@ import androidx.core.content.ContextCompat;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.Location;
@@ -396,10 +397,10 @@ public abstract class AbstractRemoteViewsPresenter {
         subtitle = replaceNighttimePrecipitationSubtitle(context, subtitle, weather);
         subtitle = replaceDaytimeWindSubtitle(subtitle, weather);
         subtitle = replaceNighttimeWindSubtitle(subtitle, weather);
-        subtitle = replaceSunriseSubtitle(context, subtitle, weather);
-        subtitle = replaceSunsetSubtitle(context, subtitle, weather);
-        subtitle = replaceMoonriseSubtitle(context, subtitle, weather);
-        subtitle = replaceMoonsetSubtitle(context, subtitle, weather);
+        subtitle = replaceSunriseSubtitle(context, subtitle, weather, location.getTimeZone());
+        subtitle = replaceSunsetSubtitle(context, subtitle, weather, location.getTimeZone());
+        subtitle = replaceMoonriseSubtitle(context, subtitle, weather, location.getTimeZone());
+        subtitle = replaceMoonsetSubtitle(context, subtitle, weather, location.getTimeZone());
         subtitle = replaceMoonPhaseSubtitle(context, subtitle, weather);
         return subtitle;
     }
@@ -582,41 +583,61 @@ public abstract class AbstractRemoteViewsPresenter {
         return subtitle;
     }
 
-    private static String replaceSunriseSubtitle(Context context, @NonNull String subtitle, @NonNull Weather weather) {
+    private static String replaceSunriseSubtitle(
+            Context context,
+            @NonNull String subtitle,
+            @NonNull Weather weather,
+            @NonNull TimeZone timeZone
+    ) {
         for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
             subtitle = subtitle.replace(
                     "$" + i + "sr$",
-                    weather.getDailyForecast().get(i).sun().getRiseTime(context) + ""
+                    weather.getDailyForecast().get(i).sun().getRiseTime(context, timeZone) + ""
             );
         }
         return subtitle;
     }
 
-    private static String replaceSunsetSubtitle(Context context, @NonNull String subtitle, @NonNull Weather weather) {
+    private static String replaceSunsetSubtitle(
+            Context context,
+            @NonNull String subtitle,
+            @NonNull Weather weather,
+            @NonNull TimeZone timeZone
+    ) {
         for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
             subtitle = subtitle.replace(
                     "$" + i + "ss$",
-                    weather.getDailyForecast().get(i).sun().getSetTime(context) + ""
+                    weather.getDailyForecast().get(i).sun().getSetTime(context, timeZone) + ""
             );
         }
         return subtitle;
     }
 
-    private static String replaceMoonriseSubtitle(Context context, @NonNull String subtitle, @NonNull Weather weather) {
+    private static String replaceMoonriseSubtitle(
+            Context context,
+            @NonNull String subtitle,
+            @NonNull Weather weather,
+            @NonNull TimeZone timeZone
+    ) {
         for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
             subtitle = subtitle.replace(
                     "$" + i + "mr$",
-                    weather.getDailyForecast().get(i).moon().getRiseTime(context) + ""
+                    weather.getDailyForecast().get(i).moon().getRiseTime(context, timeZone) + ""
             );
         }
         return subtitle;
     }
 
-    private static String replaceMoonsetSubtitle(Context context, @NonNull String subtitle, @NonNull Weather weather) {
+    private static String replaceMoonsetSubtitle(
+            Context context,
+            @NonNull String subtitle,
+            @NonNull Weather weather,
+            @NonNull TimeZone timeZone
+    ) {
         for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
             subtitle = subtitle.replace(
                     "$" + i + "ms$",
-                    weather.getDailyForecast().get(i).moon().getSetTime(context) + ""
+                    weather.getDailyForecast().get(i).moon().getSetTime(context, timeZone) + ""
             );
         }
         return subtitle;

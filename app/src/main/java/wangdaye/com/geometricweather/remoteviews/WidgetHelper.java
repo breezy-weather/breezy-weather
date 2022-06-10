@@ -11,7 +11,8 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.remoteviews.presenters.AndroidSWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenters.MaterialYouCurrentWidgetIMP;
+import wangdaye.com.geometricweather.remoteviews.presenters.MaterialYouForecastWidgetIMP;
 import wangdaye.com.geometricweather.remoteviews.presenters.ClockDayDetailsWidgetIMP;
 import wangdaye.com.geometricweather.remoteviews.presenters.ClockDayHorizontalWidgetIMP;
 import wangdaye.com.geometricweather.remoteviews.presenters.ClockDayVerticalWidgetIMP;
@@ -58,9 +59,12 @@ public class WidgetHelper {
             HourlyTrendWidgetIMP.updateWidgetView(context, location);
         }
 
-        // android S.
-        if (AndroidSWidgetIMP.isEnable(context)) {
-            AndroidSWidgetIMP.updateWidgetView(context, location);
+        // material you.
+        if (MaterialYouForecastWidgetIMP.isEnable(context)) {
+            MaterialYouForecastWidgetIMP.updateWidgetView(context, location);
+        }
+        if (MaterialYouCurrentWidgetIMP.isEnable(context)) {
+            MaterialYouCurrentWidgetIMP.updateWidgetView(context, location);
         }
     }
 

@@ -36,11 +36,19 @@ public class LocationEntityGenerator {
 
     public static Location generate(LocationEntity entity) {
         return new Location(
-                entity.cityId,
-                entity.latitude, entity.longitude, entity.timeZone,
-                entity.country, entity.province, entity.city, entity.district,
-                null, entity.weatherSource,
-                entity.currentPosition, entity.residentPosition, entity.china
+                GeneratorUtils.nonNull(entity.cityId),
+                entity.latitude,
+                entity.longitude,
+                entity.timeZone,
+                GeneratorUtils.nonNull(entity.country),
+                GeneratorUtils.nonNull(entity.province),
+                GeneratorUtils.nonNull(entity.city),
+                GeneratorUtils.nonNull(entity.district),
+                null,
+                entity.weatherSource,
+                entity.currentPosition,
+                entity.residentPosition,
+                entity.china
         );
     }
 

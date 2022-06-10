@@ -4,7 +4,7 @@
     android:visible="true" >
 
     <corners
-        android:radius="@dimen/view_corner_radius" />
+        android:radius="@dimen/material3_widget_corner_radius" />
 
     <solid
         android:color="#FF1B1B1B" />

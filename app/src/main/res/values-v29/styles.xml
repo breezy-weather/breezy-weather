@@ -25,7 +25,8 @@
     </style>
 
     <style name="GeometricWeatherAndroidSWidget" parent="@android:style/Theme.DeviceDefault">
-        <item name="android:textColorPrimary">@color/colorWidgetSText</item>
+        <item name="android:textColorPrimary">@color/colorWidgetM3TextPrimary</item>
+        <item name="android:textColorSecondary">@color/colorWidgetM3TextSecondary</item>
     </style>
 
 </resources>

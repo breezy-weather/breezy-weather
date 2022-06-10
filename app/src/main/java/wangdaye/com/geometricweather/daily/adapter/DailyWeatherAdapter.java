@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TimeZone;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.DurationUnit;
@@ -78,7 +79,7 @@ public class DailyWeatherAdapter extends RecyclerView.Adapter<DailyWeatherAdapte
         }
     };
 
-    public DailyWeatherAdapter(Context context, Daily daily, int spanCount) {
+    public DailyWeatherAdapter(Context context, TimeZone timeZone, Daily daily, int spanCount) {
         // model list.
         mModelList = new ArrayList<>();
 
@@ -95,7 +96,7 @@ public class DailyWeatherAdapter extends RecyclerView.Adapter<DailyWeatherAdapte
 
         mModelList.add(new Line());
         mModelList.add(new LargeTitle(context.getString(R.string.life_details)));
-        mModelList.add(new DailyAstro(daily.sun(), daily.moon(), daily.getMoonPhase()));
+        mModelList.add(new DailyAstro(timeZone, daily.sun(), daily.moon(), daily.getMoonPhase()));
         if (daily.getAirQuality().isValid()) {
             mModelList.add(new Title(R.drawable.weather_haze_mini_xml, context.getString(R.string.air_quality)));
             mModelList.add(new DailyAirQuality(daily.getAirQuality()));

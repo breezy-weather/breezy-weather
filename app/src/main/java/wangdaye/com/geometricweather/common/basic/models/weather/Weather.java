@@ -85,21 +85,15 @@ public class Weather
     public boolean isDaylight(TimeZone timeZone) {
         Date riseDate = getDailyForecast().get(0).sun().getRiseDate();
         Date setDate = getDailyForecast().get(0).sun().getSetDate();
-        if (riseDate != null && setDate != null) {
-
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTimeZone(timeZone);
-            int time = 60 * calendar.get(Calendar.HOUR_OF_DAY) + calendar.get(Calendar.MINUTE);
-
-            calendar.setTimeZone(TimeZone.getDefault());
-            calendar.setTime(riseDate);
-            int sunrise = 60 * calendar.get(Calendar.HOUR_OF_DAY) + calendar.get(Calendar.MINUTE);
-            calendar.setTime(setDate);
-            int sunset = 60 * calendar.get(Calendar.HOUR_OF_DAY) + calendar.get(Calendar.MINUTE);
-
-            return sunrise < time && time < sunset;
+        if (riseDate == null || setDate == null) {
+            return DisplayUtils.isDaylight(timeZone);
         }
 
-        return DisplayUtils.isDaylight(timeZone);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeZone(timeZone);
+        long timestamp = calendar.getTime().getTime();
+
+        return riseDate.getTime() < timestamp
+                && timestamp < setDate.getTime();
     }
 }
