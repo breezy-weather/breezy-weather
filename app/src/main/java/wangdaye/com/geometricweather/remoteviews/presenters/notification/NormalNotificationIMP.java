@@ -118,6 +118,8 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                 tempIcon ? ResourceHelper.getTempIconId(
                         context,
                         temperatureUnit.getValueWithoutUnit(
+                                settings.isNotificationFeelsLike() ?
+                                weather.getCurrent().getTemperature().getRealFeelTemperature() :
                                 weather.getCurrent().getTemperature().getTemperature()
                         )
                 ) : ResourceHelper.getDefaultMinimalXmlIconId(
@@ -192,6 +194,8 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
             return views;
         }
 
+        SettingsManager settings = SettingsManager.getInstance(context);
+
         views.setImageViewUri(
                 R.id.notification_base_icon,
                 ResourceHelper.getWidgetNotificationIconUri(
@@ -207,6 +211,8 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                 R.id.notification_base_realtimeTemp,
                 Temperature.getShortTemperature(
                         context,
+                        settings.isNotificationFeelsLike() ?
+                        weather.getCurrent().getTemperature().getRealFeelTemperature() :
                         weather.getCurrent().getTemperature().getTemperature(),
                         temperatureUnit
                 )

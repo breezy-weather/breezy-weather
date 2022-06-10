@@ -87,6 +87,8 @@ public class MultiCityNotificationIMP extends AbstractRemoteViewsPresenter {
                 tempIcon ? ResourceHelper.getTempIconId(
                         context,
                         temperatureUnit.getValueWithoutUnit(
+                                SettingsManager.getInstance(context).isNotificationFeelsLike() ?
+                                weather.getCurrent().getTemperature().getRealFeelTemperature() :
                                 weather.getCurrent().getTemperature().getTemperature()
                         )
                 ) : ResourceHelper.getDefaultMinimalXmlIconId(
@@ -176,6 +178,8 @@ public class MultiCityNotificationIMP extends AbstractRemoteViewsPresenter {
                 R.id.notification_base_realtimeTemp,
                 Temperature.getShortTemperature(
                         context,
+                        SettingsManager.getInstance(context).isNotificationFeelsLike() ?
+                        weather.getCurrent().getTemperature().getRealFeelTemperature() :
                         weather.getCurrent().getTemperature().getTemperature(),
                         temperatureUnit
                 )

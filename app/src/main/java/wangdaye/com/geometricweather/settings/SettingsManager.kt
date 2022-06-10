@@ -319,6 +319,13 @@ class SettingsManager private constructor(context: Context) {
 
     // notification.
 
+    var isNotificationFeelsLike: Boolean
+        set(value) {
+            config.edit().putBoolean("notification_feelslike", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config.getBoolean("notification_feelslike", false)
+
     var isNotificationEnabled: Boolean
         set(value) {
             config.edit().putBoolean("notification_switch", value).apply()
