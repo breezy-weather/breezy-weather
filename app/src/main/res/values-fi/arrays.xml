@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Do not translate those arrays which named "xxx_values". -->
+    <!-- Do not translate those items with a value of "@string/xxx". -->
+
+    <!-- Weather sources -->
+    <string-array name="weather_sources">
+        <item>caiyunapp.com (Vain Kiinassa)</item>
+        <item>AccuWeather</item>
+        <item>OpenWeather</item>
+        <item>Météo France</item>
+    </string-array>
+
+    <!-- Location service. -->
+    <string-array name="location_services">
+        <item>Baidu Location</item>
+        <item>Baidu IP Location (Vain Kiinassa)</item>
+        <item>AMap Location</item>
+        <item>API native</item>
+    </string-array>
+
+    <!-- Dark mode. -->
+    <string-array name="dark_modes">
+        <item>Automaattinen</item>
+        <item>Seuraa järjestelmää</item>
+        <item>Aina vaalea</item>
+        <item>Aina tumma</item>
+    </string-array>
+
+    <!-- UI style. -->
+    <string-array name="ui_styles">
+        <item>Ympäröivä taivas</item>
+        <item>Material Animaatio</item>
+    </string-array>
+
+    <!-- automatic refresh rate. -->
+    <string-array name="automatic_refresh_rates">
+        <item>30 min</item>
+        <item>1 tunti</item>
+        <item>1,5 tuntia</item>
+        <item>2 tuntia</item>
+        <item>2,5 tuntia</item>
+        <item>3 tuntia</item>
+        <item>3,5 tuntia</item>
+        <item>4 tuntia</item>
+        <item>4,5 tuntia</item>
+        <item>5 tuntia</item>
+        <item>5,5 tuntia</item>
+        <item>6 tuntia</item>
+    </string-array>
+
+    <!-- widget week icon mode. -->
+    <string-array name="week_icon_modes">
+        <item>Automatattinen</item>
+        <item>@string/daytime</item><!-- do not translate. -->
+        <item>@string/nighttime</item><!-- do not translate. -->
+    </string-array>
+
+    <!-- notification style. -->
+    <string-array name="notification_styles">
+        <item>Native</item>
+        <item>Villes</item>
+        <item>@string/daily_overview</item><!-- do not translate. -->
+        <item>@string/hourly_overview</item><!-- do not translate. -->
+    </string-array>
+
+    <!-- notification text color. -->
+    <string-array name="notification_text_colors">
+        <item>Musta</item>
+        <item>Tumma</item>
+        <item>Vaalea</item>
+    </string-array>
+
+    <!-- widget style. -->
+    <string-array name="widget_styles">
+        <item>Suorakulmio</item>
+        <item>Symmetrinen</item>
+        <item>Laatta</item>
+        <item>Mini</item>
+        <item>Nano</item>
+        <item>Pixel</item>
+        <item>Pystysuora</item>
+        <item>Oreo</item>
+        <item>Oreo (Google sans)</item>
+        <item>Lämpötila</item>
+    </string-array>
+
+    <!-- week widget style. -->
+    <string-array name="week_widget_styles">
+        <item>5 päivää</item>
+        <item>3 päivää</item>
+    </string-array>
+
+    <!-- Widget subtitle data. -->
+    <string-array name="subtitle_data">
+        <item>Päivitetty</item>
+        <item>AQI (Ranskassa)</item>
+        <item>Tuuli</item>
+        <item>Lämpötila tuntuu kuin</item>
+        <item>Kuukalenteri</item>
+        <item>Mukautettu</item>
+    </string-array>
+
+    <!-- widget card style. -->
+    <string-array name="widget_card_styles">
+        <item>Ei mitään</item>
+        <item>Päivä-/yötila</item>
+        <item>VaaleaClair</item>
+        <item>Tumma</item>
+    </string-array>
+
+    <!-- widget clock font. -->
+    <string-array name="widget_text_colors">
+        <item>Vaalea</item>
+        <item>Tumma</item>
+        <item>Automaattinen</item>
+    </string-array>
+
+    <!-- live wallpaper weather kind. -->
+    <string-array name="live_wallpaper_weather_kinds">
+        <item>Automaattinen</item>
+        <item>Selkeää</item>
+        <item>Osittain pilvistä</item>
+        <item>Pilvistä</item>
+        <item>Sadetta</item>
+        <item>Lumisadetta</item>
+        <item>Räntäsadetta</item>
+        <item>Rakeita</item>
+        <item>Sumua</item>
+        <item>Usvaa</item>
+        <item>Ukkosta</item>
+        <item>Ukkosmyrskyä</item>
+        <item>Tuulta</item>
+    </string-array>
+
+    <!-- live wallpaper weather kind. -->
+    <string-array name="live_wallpaper_day_night_types">
+        <item>Automaattinen</item>
+        <item>Aina päivänäkymä</item>
+        <item>Aina yönäkymä</item>
+    </string-array>
+</resources>
