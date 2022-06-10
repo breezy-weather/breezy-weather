@@ -50,6 +50,13 @@ fun RootSettingsView(context: Context, navController: NavHostController) {
                 .isNotificationEnabled
         )
     }
+    val notificationTemperatureIconEnabledState = remember {
+        mutableStateOf(
+            SettingsManager
+                .getInstance(context)
+                .isNotificationTemperatureIconEnabled
+        )
+    }
 
     PreferenceScreen {
         // basic.
@@ -380,6 +387,8 @@ fun RootSettingsView(context: Context, navController: NavHostController) {
                     SettingsManager
                         .getInstance(context)
                         .isNotificationTemperatureIconEnabled = it
+                    notificationTemperatureIconEnabledState.value = it
+
                     PollingManager.resetNormalBackgroundTask(context, true)
                 }
             )
@@ -392,7 +401,8 @@ fun RootSettingsView(context: Context, navController: NavHostController) {
                 checked = SettingsManager
                     .getInstance(context)
                     .isNotificationFeelsLike,
-                enabled = notificationEnabledState.value,
+                enabled = notificationEnabledState.value
+                        && notificationTemperatureIconEnabledState.value,
                 onValueChanged = {
                     SettingsManager
                         .getInstance(context)

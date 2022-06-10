@@ -2,7 +2,7 @@
     tools:ignore="MissingTranslation">
 
     <!-- app. -->
-    <string name="app_name">Sää<sring>
+    <string name="app_name">Sää</string>
     <string name="geometric_weather">Geometric Weather</string>
 
     <!-- keyword. -->
@@ -10,7 +10,7 @@
     <string name="resident_location">Asuinpaikka</string>
     <string name="default_location">Oletussijainti</string>
     <string name="live">Nyt</string>
-    <string name="today">Tänään<string>
+    <string name="today">Tänään</string>
     <string name="refresh_at">Päivitetty</string>
     <string name="local_time">Paikallinen aika</string>
     <string name="precipitation">Sademäärä</string>
@@ -28,7 +28,7 @@
     <string name="wind_level">Tuulimittari</string>
     <string name="sensible_temp">Aistittu lämpötila</string>
     <string name="humidity">Ilmankosteus</string>
-    <string name="uv_index">UV-indeksi<string>
+    <string name="uv_index">UV-indeksi</string>
     <string name="hours_of_sun">Auringonpaisteen kesto</string>
     <string name="forecast">Ennuste</string>
     <string name="briefings">Tiedotteet</string>
@@ -43,7 +43,7 @@
     <string name="dew_point">Kastespiste</string>
     <string name="cloud_cover">Pilvisyys</string>
     <string name="ceiling">Pilvipeite</string>
-    <string name="get_more">Lisää...</string>
+    <string name="get_more">Lisää…</string>
     <string name="get_more_store">Lisää sovelluskaupasta</string>
     <string name="get_more_github">Lisää GitHubista</string>
     <string name="refresh">Päivitä</string>
@@ -86,7 +86,7 @@
     <string name="wind_7">Kova (Voimakas tuuli)</string>
     <string name="wind_8">Kova (Myrskyinen tuuli)</string>
     <string name="wind_9">Myrsky</string>
-    <string name="wind_10">Myrsky (Kova myrsky)/string>
+    <string name="wind_10">Myrsky (Kova myrsky)</string>
     <string name="wind_11">Myrsky (Ankara myrsky)</string>
     <string name="wind_12">Hirmumyrsky</string>
 
@@ -208,7 +208,7 @@
     <string name="feedback_clock_font">Kellon fontti</string>
     <string name="feedback_hide_lunar">Piilota kuukalenteri</string>
     <string name="feedback_align_end">Kohdista loppuun</string>
-    <string name="feedback_colorful">Widgetin väri sään mukaan<string>
+    <string name="feedback_colorful">Widgetin väri sään mukaan</string>
     <string name="feedback_custom_subtitle_explanation">Voit syöttää mitä tahansa, mutta kiinnitä huomiota tekstin pituuteen. Jos haluat viitata säädataan, käytä $ viitataksesi vastaavaan avainsanaan.\n\nEsimerkiksi, \"Tämänhetkinen sää = $cw$\" näytetään seuraavasti \"tämänhetkinen sää = Selkeä päivä\".</string>
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
@@ -359,7 +359,6 @@
     <string name="widget_trend_daily">Päivittäinen trendi</string>
     <string name="widget_trend_hourly">Tuntikohtainen trendi</string>
     <string name="widget_multi_city">Monen kaupungin</string>
-    <string name="widget_android_s">Material You</string>
     <string name="wait_refresh">odotetaan</string>
     <string name="ellipsis">…</string>
 
@@ -445,99 +444,5 @@
     <string name="settings_provider_mf_wsft_key">Météo France WSFT avain</string>
     <string name="settings_provider_iqa_air_parif_key">Air Parif avain</string>
     <string name="settings_provider_iqa_atmo_aura_key">ATMO AURA avain</string>
-
-    <!--share preference-->
-    <!-- Do not translate the following set of strings. -->
-    <string name="sp_widget_day_setting">widget_day_setting</string>
-    <string name="sp_widget_week_setting">widget_week_setting</string>
-    <string name="sp_widget_day_week_setting">widget_day_week_setting</string>
-    <string name="sp_widget_clock_day_horizontal_setting">widget_clock_day_horizontal_setting</string>
-    <string name="sp_widget_clock_day_details_setting">widget_clock_day_details_setting</string>
-    <string name="sp_widget_clock_day_vertical_setting">widget_clock_day_vertical_setting</string>
-    <string name="sp_widget_clock_day_week_setting">widget_clock_day_week_setting</string>
-    <string name="sp_widget_text_setting">widget_text_setting</string>
-    <string name="sp_widget_daily_trend_setting">widget_daily_trend_setting</string>
-    <string name="sp_widget_hourly_trend_setting">widget_hourly_trend_setting</string>
-    <string name="sp_widget_multi_city">widget_multi_city</string>
-    <string name="sp_widget_android_s_weather_mini">widget_android_s_weather_mini</string>
-    <string name="sp_widget_android_s_weather_medium">widget_android_s_weather_medium</string>
-    <string name="sp_widget_android_s_weather_large">widget_android_s_weather_large</string>
-    <string name="sp_widget_android_s_weather_xlarge">widget_android_s_weather_large</string>
-    <string name="key_view_type">view_type</string>
-    <string name="key_card_style">card_style</string>
-    <string name="key_card_alpha" tools:ignore="Typos">card_alpha_1</string>
-    <string name="key_hide_subtitle">hide_refresh_time</string>
-    <string name="key_subtitle_data">subtitle_data</string>
-    <string name="key_text_color">text_color</string>
-    <string name="key_text_size">text_size</string>
-    <string name="key_clock_font">clock_font</string>
-    <string name="key_hide_lunar">hide_lunar</string>
-    <string name="key_align_end">align_end</string>
-    <string name="key_colorful">colorful</string>
-
-    <!-- Do not translate the following set of strings. -->
-    <string name="key_background_free">background_free_3</string>
-    <string name="key_live_wallpaper">live_wallpaper</string>
-    <string name="key_service_provider">service_provider</string>
-    <string name="key_service_provider_advanced">service_provider_advanced</string>
-    <string name="key_weather_source">weather_source</string>
-    <string name="key_location_service">location_service</string>
-    <string name="key_dark_mode">dark_mode</string>
-    <string name="key_icon_provider">icon_provider</string>
-    <string name="key_appearance">appearance</string>
-    <string name="key_card_display">card_display_2</string>
-    <string name="key_daily_trend_display">daily_trend_display</string>
-    <string name="key_trend_horizontal_line_switch">trend_horizontal_line_switch</string>
-    <string name="key_exchange_day_night_temp_switch">exchange_day_night_temp_switch</string>
-    <string name="key_gravity_sensor_switch">gravity_sensor_switch</string>
-    <string name="key_list_animation_switch">list_animation_switch</string>
-    <string name="key_item_animation_switch">item_animation_switch</string>
-    <string name="key_language">language</string>
-    <string name="key_unit">unit</string>
-    <string name="key_temperature_unit">temperature_unit</string>
-    <string name="key_distance_unit">distance_unit</string>
-    <string name="key_precipitation_unit">precipitation_unit</string>
-    <string name="key_pressure_unit">pressure_unit</string>
-    <string name="key_speed_unit">speed_unit</string>
-    <string name="key_refresh_rate">refresh_rate</string>
-    <string name="key_alert_notification_switch">alert_notification_switch</string>
-    <string name="key_precipitation_notification_switch">precipitation_notification_switch</string>
-    <string name="key_forecast_today">timing_forecast_switch_today</string>
-    <string name="key_forecast_today_time">forecast_time_today</string>
-    <string name="key_forecast_tomorrow">timing_forecast_switch_tomorrow</string>
-    <string name="key_forecast_tomorrow_time">forecast_time_tomorrow</string>
-    <string name="key_week_icon_mode">week_icon_mode</string>
-    <string name="key_widget_minimal_icon">widget_minimal_icon</string>
-    <string name="key_click_widget_to_refresh">click_widget_to_refresh</string>
-    <string name="key_widget_config">widget_config</string>
-    <string name="key_widget_day">widget_day</string>
-    <string name="key_widget_week">widget_week</string>
-    <string name="key_widget_day_week">widget_day_week</string>
-    <string name="key_widget_clock_day_horizontal">widget_clock_day_horizontal</string>
-    <string name="key_widget_clock_day_details">widget_clock_day_details</string>
-    <string name="key_widget_clock_day_vertical">widget_clock_day_vertical</string>
-    <string name="key_widget_clock_day_week">widget_clock_day_week</string>
-    <string name="key_widget_text">widget_text</string>
-    <string name="key_widget_trend_daily">widget_trend_daily</string>
-    <string name="key_widget_trend_hourly">widget_trend_hourly</string>
-    <string name="key_widget_multi_city">widget_multi_city</string>
-    <string name="key_notification">notification_switch</string>
-    <string name="key_notification_style">notification_style</string>
-    <string name="key_notification_minimal_icon">notification_minimal_icon</string>
-    <string name="key_notification_temp_icon">notification_temp_icon_switch</string>
-    <string name="key_notification_can_be_cleared">notification_can_clear_switch</string>
-    <string name="key_provider_accu_weather_key">provider_accu_weather_key</string>
-    <string name="key_provider_accu_current_key">provider_accu_current_key</string>
-    <string name="key_provider_accu_aqi_key">provider_accu_aqi_key</string>
-    <string name="key_provider_owm_key">provider_owm_key</string>
-    <string name="key_provider_baidu_ip_location_ak">provider_baidu_ip_location_ak</string>
-    <string name="key_provider_mf_wsft_key">provider_mf_wsft_key</string>
-    <string name="key_provider_iqa_air_parif_key">provider_iqa_air_parif_key</string>
-    <string name="key_provider_iqa_atmo_aura_key">provider_iqa_atmo_aura_key</string>
-
-    <!-- transition. -->
-    <!-- Do not translate the following set of strings. -->
-    <string name="transition_activity_search_bar">activity_search_bar</string>
-    <string name="transition_activity_search_txt">activity_search_txt</string>
 
 </resources>
