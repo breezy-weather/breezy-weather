@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "wangdaye.com.geometricweather",
+  "variantName": "fdroidRelease",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 30101,
+      "versionName": "3.101_fdroid",
+      "outputFile": "GeometricWeather 3.101_fdroid.apk"
+    }
+  ],
+  "elementType": "File"
+}

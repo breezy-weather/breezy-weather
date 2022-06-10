@@ -81,7 +81,7 @@ private fun getLastKnownLocation(locationManager: LocationManager): Location? {
 // interface.
 
 @SuppressLint("MissingPermission")
-class AndroidLocationService : LocationService(), LocationListener {
+open class AndroidLocationService : LocationService(), LocationListener {
 
     private val timer = Handler(Looper.getMainLooper())
 

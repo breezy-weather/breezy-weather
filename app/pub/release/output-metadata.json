@@ -11,9 +11,9 @@
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 30100,
-      "versionName": "3.100_pub",
-      "outputFile": "GeometricWeather 3.100_pub.apk"
+      "versionCode": 30101,
+      "versionName": "3.101_pub",
+      "outputFile": "GeometricWeather 3.101_pub.apk"
     }
   ],
   "elementType": "File"
