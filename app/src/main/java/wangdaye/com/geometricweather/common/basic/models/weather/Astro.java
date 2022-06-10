@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 
@@ -39,38 +40,34 @@ public class Astro implements Serializable {
     }
 
     @Nullable
-    public String getRiseTime(Context context) {
-        return getRiseTime(DisplayUtils.is12Hour(context));
+    public String getRiseTime(Context context, TimeZone timeZone) {
+        return getRiseTime(DisplayUtils.is12Hour(context), timeZone);
     }
 
     @SuppressLint("SimpleDateFormat")
     @Nullable
-    private String getRiseTime(boolean twelveHour) {
+    private String getRiseTime(boolean twelveHour, TimeZone timeZone) {
         if (riseDate == null) {
             return null;
         }
-        if (twelveHour) {
-            return new SimpleDateFormat("h:mm aa").format(riseDate);
-        } else {
-            return new SimpleDateFormat("HH:mm").format(riseDate);
-        }
+        SimpleDateFormat df = new SimpleDateFormat(twelveHour ? "h:mm aa" : "HH:mm");
+        df.setTimeZone(timeZone);
+        return df.format(riseDate);
     }
 
     @Nullable
-    public String getSetTime(Context context) {
-        return getSetTime(DisplayUtils.is12Hour(context));
+    public String getSetTime(Context context, TimeZone timeZone) {
+        return getSetTime(DisplayUtils.is12Hour(context), timeZone);
     }
 
     @SuppressLint("SimpleDateFormat")
     @Nullable
-    private String getSetTime(boolean twelveHour) {
+    private String getSetTime(boolean twelveHour, TimeZone timeZone) {
         if (setDate == null) {
             return null;
         }
-        if (twelveHour) {
-            return new SimpleDateFormat("h:mm aa").format(setDate);
-        } else {
-            return new SimpleDateFormat("HH:mm").format(setDate);
-        }
+        SimpleDateFormat df = new SimpleDateFormat(twelveHour ? "h:mm aa" : "HH:mm");
+        df.setTimeZone(timeZone);
+        return df.format(setDate);
     }
 }

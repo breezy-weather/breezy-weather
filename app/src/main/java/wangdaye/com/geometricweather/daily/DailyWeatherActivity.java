@@ -125,7 +125,7 @@ public class DailyWeatherActivity extends GeoActivity {
                 rv.removeFitSide(FitSystemBarRecyclerView.SIDE_TOP);
                 rv.addFitSide(FitSystemBarRecyclerView.SIDE_BOTTOM);
                 rv.setClipToPadding(false);
-                DailyWeatherAdapter dailyWeatherAdapter = new DailyWeatherAdapter(this, d, 3);
+                DailyWeatherAdapter dailyWeatherAdapter = new DailyWeatherAdapter(this, location.getTimeZone(), d, 3);
                 GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
                 gridLayoutManager.setSpanSizeLookup(dailyWeatherAdapter.spanSizeLookup);
                 rv.setAdapter(dailyWeatherAdapter);

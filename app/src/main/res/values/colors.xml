@@ -57,23 +57,24 @@
     <!-- widget. -->
 
     <color name="colorWidgetRoot">@color/md_theme_surface</color>
-    <color name="colorWidgetSRoot">@color/lightPrimary_1</color>
-    <color name="colorWidgetSText">@color/colorTextTitle</color>
+    <color name="colorWidgetM3Root">@color/md_theme_surface</color>
+    <color name="colorWidgetM3TextPrimary">@android:color/black</color>
+    <color name="colorWidgetM3TextSecondary">@color/md_theme_onSurface</color>
     <color name="colorWidgetTextShadow">#99000000</color>
 
     <!-- material 3. -->
 
-    <color name="md_theme_primary">#006875</color>
+    <color name="md_theme_primary">#205DAF</color>
     <color name="md_theme_onPrimary">#FFFFFF</color>
-    <color name="md_theme_primaryContainer">#95F0FF</color>
-    <color name="md_theme_onPrimaryContainer">#001F24</color>
-    <color name="md_theme_secondary">#4658A9</color>
+    <color name="md_theme_primaryContainer">#D6E3FF</color>
+    <color name="md_theme_onPrimaryContainer">#001B3F</color>
+    <color name="md_theme_secondary">#00677E</color>
     <color name="md_theme_onSecondary">#FFFFFF</color>
-    <color name="md_theme_secondaryContainer">#DDE1FF</color>
-    <color name="md_theme_onSecondaryContainer">#00115A</color>
-    <color name="md_theme_tertiary">#765A00</color>
+    <color name="md_theme_secondaryContainer">#B1EBFF</color>
+    <color name="md_theme_onSecondaryContainer">#001F28</color>
+    <color name="md_theme_tertiary">#775A00</color>
     <color name="md_theme_onTertiary">#FFFFFF</color>
-    <color name="md_theme_tertiaryContainer">#FFDF8C</color>
+    <color name="md_theme_tertiaryContainer">#FFDF8E</color>
     <color name="md_theme_onTertiaryContainer">#251A00</color>
     <color name="md_theme_error">#B3261E</color>
     <color name="md_theme_errorContainer">#F9DEDC</color>
@@ -83,13 +84,13 @@
     <color name="md_theme_onBackground">#1B1B1D</color>
     <color name="md_theme_surface">#FDFBFF</color>
     <color name="md_theme_onSurface">#1B1B1D</color>
-    <color name="md_theme_surfaceVariant">#E7E0EC</color>
+    <color name="md_theme_surfaceVariant">#DCE1FC</color>
     <color name="md_theme_onSurfaceVariant">#49454F</color>
     <color name="md_theme_outline">#10000000</color>
     <color name="md_theme_inverseOnSurface">#F2F0F4</color>
     <color name="md_theme_inverseSurface">#2F3033</color>
-    <color name="md_theme_inversePrimary">#50D7EC</color>
+    <color name="md_theme_inversePrimary">#A8C7FF</color>
     <color name="md_theme_shadow">#000000</color>
-    <color name="md_theme_primaryInverse">#50D7EC</color>
+    <color name="md_theme_primaryInverse">#A8C7FF</color>
 
 </resources>

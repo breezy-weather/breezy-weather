@@ -9,13 +9,12 @@ import android.widget.FrameLayout;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.common.basic.GeoDialog;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.common.ui.widgets.AnimatableIconView;
 import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 
-public class AnimatableIconDialog extends GeoDialog {
+public class AnimatableIconDialog {
 
     public static void show(Context context,
                             WeatherCode code,

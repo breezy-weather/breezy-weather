@@ -2,6 +2,7 @@ package wangdaye.com.geometricweather.main.adapters.main.holder;
 
 import android.animation.AnimatorSet;
 import android.animation.FloatEvaluator;
+import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
@@ -19,7 +20,6 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 
 import java.util.Calendar;
-import java.util.Objects;
 import java.util.TimeZone;
 
 import wangdaye.com.geometricweather.R;
@@ -48,12 +48,12 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
     private final TextView mMoonTxt;
 
     @Nullable private Weather mWeather;
-    @Nullable private TimeZone mTimeZone;
+    private TimeZone mTimeZone;
 
-    @Size(2) private float[] mStartTimes;
-    @Size(2) private float[] mEndTimes;
-    @Size(2) private float[] mCurrentTimes;
-    @Size(2) private float[] mAnimCurrentTimes;
+    @Size(2) private long[] mStartTimes;
+    @Size(2) private long[] mEndTimes;
+    @Size(2) private long[] mCurrentTimes;
+    @Size(2) private long[] mAnimCurrentTimes;
     private int mPhaseAngle;
 
     @Size(3) private final AnimatorSet[] mAttachAnimatorSets;
@@ -156,8 +156,8 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
         }
 
         if (mWeather.getDailyForecast().get(0).sun().isValid()) {
-            String sunriseTime = mWeather.getDailyForecast().get(0).sun().getRiseTime(context);
-            String sunsetTime = mWeather.getDailyForecast().get(0).sun().getSetTime(context);
+            String sunriseTime = mWeather.getDailyForecast().get(0).sun().getRiseTime(context, mTimeZone);
+            String sunsetTime = mWeather.getDailyForecast().get(0).sun().getSetTime(context, mTimeZone);
 
             mSunContainer.setVisibility(View.VISIBLE);
             mSunTxt.setText(sunriseTime + "↑" + "\n" + sunsetTime + "↓");
@@ -172,8 +172,8 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
             mSunContainer.setVisibility(View.GONE);
         }
         if (mWeather.getDailyForecast().get(0).moon().isValid()) {
-            String moonriseTime = mWeather.getDailyForecast().get(0).moon().getRiseTime(context);
-            String moonsetTime = mWeather.getDailyForecast().get(0).moon().getSetTime(context);
+            String moonriseTime = mWeather.getDailyForecast().get(0).moon().getRiseTime(context, mTimeZone);
+            String moonsetTime = mWeather.getDailyForecast().get(0).moon().getSetTime(context, mTimeZone);
 
             mMoonContainer.setVisibility(View.VISIBLE);
             mMoonTxt.setText(moonriseTime + "↑" + "\n" + moonsetTime + "↓");
@@ -191,13 +191,21 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
         itemView.setContentDescription(talkBackBuilder.toString());
     }
 
+    private static class LongEvaluator implements TypeEvaluator<Long> {
+
+        @Override
+        public Long evaluate(float fraction, Long startValue, Long endValue) {
+            return startValue + (long) ((endValue - startValue) * fraction);
+        }
+    }
+
     @SuppressLint("Recycle")
     @Override
     public void onEnterScreen() {
         if (itemAnimationEnabled && mWeather != null) {
-            ValueAnimator timeDay = ValueAnimator.ofObject(new FloatEvaluator(), mStartTimes[0], mCurrentTimes[0]);
+            ValueAnimator timeDay = ValueAnimator.ofObject(new LongEvaluator(), mStartTimes[0], mCurrentTimes[0]);
             timeDay.addUpdateListener(animation -> {
-                mAnimCurrentTimes[0] = (Float) animation.getAnimatedValue();
+                mAnimCurrentTimes[0] = (Long) animation.getAnimatedValue();
                 mSunMoonView.setTime(mStartTimes, mEndTimes, mAnimCurrentTimes);
             });
 
@@ -215,9 +223,9 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
             mAttachAnimatorSets[0].setDuration(getPathAnimatorDuration(0));
             mAttachAnimatorSets[0].start();
 
-            ValueAnimator timeNight = ValueAnimator.ofObject(new FloatEvaluator(), mStartTimes[1], mCurrentTimes[1]);
+            ValueAnimator timeNight = ValueAnimator.ofObject(new LongEvaluator(), mStartTimes[1], mCurrentTimes[1]);
             timeNight.addUpdateListener(animation -> {
-                mAnimCurrentTimes[1] = (Float) animation.getAnimatedValue();
+                mAnimCurrentTimes[1] = (Long) animation.getAnimatedValue();
                 mSunMoonView.setTime(mStartTimes, mEndTimes, mAnimCurrentTimes);
             });
 
@@ -263,85 +271,34 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
 
     private void ensureTime(@NonNull Weather weather) {
         Daily today = weather.getDailyForecast().get(0);
-        Daily tomorrow = weather.getDailyForecast().get(1);
 
         Calendar calendar = Calendar.getInstance();
-        if (mTimeZone != null) {
-            calendar.setTimeZone(mTimeZone);
-        }
-        int currentTime = SunMoonView.decodeTime(calendar);
-        calendar.setTimeZone(TimeZone.getDefault());
+        calendar.setTimeZone(mTimeZone);
+        long currentTime = calendar.getTime().getTime();
 
-        calendar.setTime(Objects.requireNonNull(today.sun().getRiseDate()));
-        int sunriseTime = SunMoonView.decodeTime(calendar);
-        
-        calendar.setTime(Objects.requireNonNull(today.sun().getSetDate()));
-        int sunsetTime = SunMoonView.decodeTime(calendar);
-
-        mStartTimes = new float[2];
-        mEndTimes = new float[2];
-        mCurrentTimes = new float[] {currentTime, currentTime};
+        mStartTimes = new long[2];
+        mEndTimes = new long[2];
+        mCurrentTimes = new long[] {currentTime, currentTime};
 
         // sun.
-        mStartTimes[0] = sunriseTime;
-        mEndTimes[0] = sunsetTime;
-
-        // moon.
-        if (!today.moon().isValid() || !tomorrow.moon().isValid()) {
-            // do not have moonrise and moonset data.
-            if (currentTime < sunriseTime) {
-                // predawn. --> moon move from [sunset of yesterday] to [sunrise of today].
-                calendar.setTime(Objects.requireNonNull(
-                        today.sun().getSetDate()
-                ));
-                mStartTimes[1] = SunMoonView.decodeTime(calendar) - 24 * 60;
-                mEndTimes[1] = sunriseTime;
-            } else {
-                // moon move from [sunset of today] to [sunrise of tomorrow]
-                calendar.setTime(Objects.requireNonNull(
-                        today.sun().getSetDate()
-                ));
-                mStartTimes[1] = SunMoonView.decodeTime(calendar);
-
-                calendar.setTime(Objects.requireNonNull(
-                        tomorrow.sun().getRiseDate()
-                ));
-                mEndTimes[1] = SunMoonView.decodeTime(calendar) + 24 * 60;
-            }
+        if (today.sun().getRiseDate() == null || today.sun().getSetDate() == null) {
+            mStartTimes[0] = currentTime + 1;
+            mEndTimes[0] = currentTime + 1;
         } else {
-            // have moonrise and moonset data.
-            if (currentTime < sunriseTime) {
-                // predawn. --> moon move from [moonrise of yesterday] to [moonset of today].
-                calendar.setTime(Objects.requireNonNull(
-                        today.moon().getRiseDate()
-                ));
-                mStartTimes[1] = SunMoonView.decodeTime(calendar) - 24 * 60;
-
-                calendar.setTime(Objects.requireNonNull(
-                        today.moon().getSetDate()
-                ));
-                mEndTimes[1] = SunMoonView.decodeTime(calendar);
-                if (mEndTimes[1] < mStartTimes[1]) {
-                    mEndTimes[1] += 24 * 60;
-                }
-            } else {
-                // moon move from [moonrise of today] to [moonset of tomorrow].
-                calendar.setTime(Objects.requireNonNull(
-                        today.moon().getRiseDate()
-                ));
-                mStartTimes[1] = SunMoonView.decodeTime(calendar);
-
-                calendar.setTime(Objects.requireNonNull(
-                        tomorrow.moon().getSetDate()
-                ));
-                mEndTimes[1] = SunMoonView.decodeTime(calendar);
-                if (mEndTimes[1] < mStartTimes[1]) {
-                    mEndTimes[1] += 24 * 60;
-                }
-            }
+            mStartTimes[0] = today.sun().getRiseDate().getTime();
+            mEndTimes[0] = today.sun().getSetDate().getTime();
         }
 
-        mAnimCurrentTimes = new float[] {mCurrentTimes[0], mCurrentTimes[1]};
+        // moon.
+        if (today.moon().getRiseDate() == null || today.moon().getSetDate() == null) {
+            mStartTimes[1] = currentTime + 1;
+            mEndTimes[1] = currentTime + 1;
+        } else {
+            mStartTimes[1] = today.moon().getRiseDate().getTime();
+            mEndTimes[1] = today.moon().getSetDate().getTime();
+        }
+
+        mAnimCurrentTimes = new long[] {mCurrentTimes[0], mCurrentTimes[1]};
     }
 
     private void ensurePhaseAngle(@NonNull Weather weather) {

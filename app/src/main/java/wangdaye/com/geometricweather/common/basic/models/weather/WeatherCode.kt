@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.common.basic.models.weather
 
 enum class WeatherCode(val id: String) {
+
     CLEAR("clear"),
     PARTLY_CLOUDY("partly_cloudy"),
     CLOUDY("cloudy"),

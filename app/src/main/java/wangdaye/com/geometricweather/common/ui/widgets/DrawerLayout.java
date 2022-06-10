@@ -25,6 +25,9 @@ public class DrawerLayout extends ViewGroup {
 
     private @Nullable ValueAnimator mProgressAnimator;
 
+    private static final int MIN_DRAWER_WIDTH_DP = 280;
+    private static final int MAX_DRAWER_WIDTH_DP = 320;
+
     public DrawerLayout(Context context) {
         this(context, null);
     }
@@ -74,10 +77,10 @@ public class DrawerLayout extends ViewGroup {
                 if (width == 0) {
                     width = LayoutParams.MATCH_PARENT;
                 } else {
-                    width = Math.min(
-                            width,
-                            getResources().getDimensionPixelSize(R.dimen.default_drawer_width)
-                    );
+                    int minDrawerWidth = (int) DisplayUtils.dpToPx(getContext(), MIN_DRAWER_WIDTH_DP);
+                    int maxDrawerWidth = (int) DisplayUtils.dpToPx(getContext(), MAX_DRAWER_WIDTH_DP);
+                    width = Math.max(width, minDrawerWidth);
+                    width = Math.min(width, maxDrawerWidth);
                 }
             }
             mDrawer.measure(

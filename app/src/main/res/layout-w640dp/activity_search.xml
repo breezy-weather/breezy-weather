@@ -121,7 +121,7 @@
             android:textColor="@android:color/white"
             android:contentDescription="@string/content_desc_filter_weather_sources"
             android:src="@drawable/ic_filter"
-            style="?attr/floatingActionButtonStyle"
+            style="?attr/floatingActionButtonLargeStyle"
             app:tint="?attr/colorOnPrimary"
             app:backgroundTint="?attr/colorPrimary" />
 

@@ -138,8 +138,8 @@ public class LocationHelper {
                             context,
                             Location.copy(
                                     location,
-                                    result.latitude,
-                                    result.longitude,
+                                    result.getLatitude(),
+                                    result.getLongitude(),
                                     TimeZone.getDefault()
                             ),
                             usableCheckListener

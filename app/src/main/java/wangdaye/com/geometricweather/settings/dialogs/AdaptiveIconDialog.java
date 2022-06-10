@@ -14,12 +14,11 @@ import java.util.Random;
 import james.adaptiveicon.AdaptiveIcon;
 import james.adaptiveicon.AdaptiveIconView;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.common.basic.GeoDialog;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 
-public class AdaptiveIconDialog extends GeoDialog {
+public class AdaptiveIconDialog {
 
     public static void show(Context context,
                             WeatherCode code,

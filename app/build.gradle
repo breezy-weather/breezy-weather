@@ -1,9 +1,9 @@
 plugins {
-    id 'com.android.application'
-    id 'org.greenrobot.greendao'
-    id 'kotlin-android'
-    id 'kotlin-kapt'
-    id 'dagger.hilt.android.plugin'
+    id "com.android.application"
+    id "org.greenrobot.greendao"
+    id "kotlin-android"
+    id "kotlin-kapt"
+    id "dagger.hilt.android.plugin"
 }
 
 android {
@@ -16,7 +16,7 @@ android {
         versionName "3.100"
         multiDexEnabled true
         ndk {
-            abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+            abiFilters "armeabi", "x86", "armeabi-v7a", "x86_64", "arm64-v8a"
         }
     }
     ndkVersion "22.0.6917172"
@@ -30,7 +30,7 @@ android {
             shrinkResources true
             zipAlignEnabled true
             debuggable false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
 
             android.applicationVariants.all { variant ->
                 variant.outputs.all {
@@ -40,23 +40,23 @@ android {
         }
     }
     buildTypes.each {
-        it.buildConfigField 'String', 'CN_WEATHER_BASE_URL', CN_WEATHER_BASE_URL
-        it.buildConfigField 'String', 'CAIYUN_WEATHER_BASE_URL', CAIYUN_WEATHER_BASE_URL
-        it.buildConfigField 'String', 'ACCU_WEATHER_BASE_URL', ACCU_WEATHER_BASE_URL
-        it.buildConfigField 'String', 'ACCU_WEATHER_KEY', ACCU_WEATHER_KEY
-        it.buildConfigField 'String', 'ACCU_CURRENT_KEY', ACCU_CURRENT_KEY
-        it.buildConfigField 'String', 'ACCU_AQI_KEY', ACCU_AQI_KEY
-        it.buildConfigField 'String', 'OWM_KEY', OWM_KEY
-        it.buildConfigField 'String', 'OWM_BASE_URL', OWM_BASE_URL
-        it.buildConfigField 'String', 'BAIDU_IP_LOCATION_BASE_URL', BAIDU_IP_LOCATION_BASE_URL
-        it.buildConfigField 'String', 'BAIDU_IP_LOCATION_AK', BAIDU_IP_LOCATION_AK
-        it.buildConfigField 'String', 'MF_WSFT_KEY', MF_WSFT_KEY
-        it.buildConfigField 'String', 'MF_WSFT_BASE_URL', MF_WSFT_BASE_URL
-        it.buildConfigField 'String', 'IQA_AIR_PARIF_KEY', IQA_AIR_PARIF_KEY
-        it.buildConfigField 'String', 'IQA_AIR_PARIF_URL', IQA_AIR_PARIF_URL
-        it.buildConfigField 'String', 'IQA_ATMO_AURA_KEY', IQA_ATMO_AURA_KEY
-        it.buildConfigField 'String', 'IQA_ATMO_AURA_URL', IQA_ATMO_AURA_URL
-        it.buildConfigField 'String', 'IQA_ATMO_SUD_URL', IQA_ATMO_SUD_URL
+        it.buildConfigField "String", "CN_WEATHER_BASE_URL", CN_WEATHER_BASE_URL
+        it.buildConfigField "String", "CAIYUN_WEATHER_BASE_URL", CAIYUN_WEATHER_BASE_URL
+        it.buildConfigField "String", "ACCU_WEATHER_BASE_URL", ACCU_WEATHER_BASE_URL
+        it.buildConfigField "String", "ACCU_WEATHER_KEY", ACCU_WEATHER_KEY
+        it.buildConfigField "String", "ACCU_CURRENT_KEY", ACCU_CURRENT_KEY
+        it.buildConfigField "String", "ACCU_AQI_KEY", ACCU_AQI_KEY
+        it.buildConfigField "String", "OWM_KEY", OWM_KEY
+        it.buildConfigField "String", "OWM_BASE_URL", OWM_BASE_URL
+        it.buildConfigField "String", "BAIDU_IP_LOCATION_BASE_URL", BAIDU_IP_LOCATION_BASE_URL
+        it.buildConfigField "String", "BAIDU_IP_LOCATION_AK", BAIDU_IP_LOCATION_AK
+        it.buildConfigField "String", "MF_WSFT_KEY", MF_WSFT_KEY
+        it.buildConfigField "String", "MF_WSFT_BASE_URL", MF_WSFT_BASE_URL
+        it.buildConfigField "String", "IQA_AIR_PARIF_KEY", IQA_AIR_PARIF_KEY
+        it.buildConfigField "String", "IQA_AIR_PARIF_URL", IQA_AIR_PARIF_URL
+        it.buildConfigField "String", "IQA_ATMO_AURA_KEY", IQA_ATMO_AURA_KEY
+        it.buildConfigField "String", "IQA_ATMO_AURA_URL", IQA_ATMO_AURA_URL
+        it.buildConfigField "String", "IQA_ATMO_SUD_URL", IQA_ATMO_SUD_URL
     }
     lintOptions {
         checkReleaseBuilds false
@@ -66,23 +66,23 @@ android {
         pub {
             java.srcDirs = ["src/bugly", "src/amap", "src/proprietary"]
             manifest.srcFile "proprietary/AndroidManifest.xml"
-            jniLibs.srcDir 'libs'
+            jniLibs.srcDir "libs"
             jni.srcDirs = []
         }
         gplay {
             java.srcDirs = ["src/nobugly", "src/noamap", "src/proprietary"]
             manifest.srcFile "proprietary/AndroidManifest.xml"
-            jniLibs.srcDir 'libs'
+            jniLibs.srcDir "libs"
             jni.srcDirs = []
         }
         fdroid {
             java.srcDirs = ["src/nobugly", "src/noamap", "src/opensource"]
         }
         test {
-            java.srcDir 'test'
+            java.srcDir "test"
         }
         androidTest {
-            java.srcDir 'androidTest'
+            java.srcDir "androidTest"
         }
     }
     compileOptions {
@@ -93,7 +93,7 @@ android {
         jvmTarget = "1.8"
     }
     composeOptions {
-        kotlinCompilerExtensionVersion '1.0.5'
+        kotlinCompilerExtensionVersion "1.0.5"
     }
     testOptions {
         unitTests {
@@ -136,7 +136,7 @@ allprojects {
 
 configurations {
     cleanedAnnotations
-    compile.exclude group: 'org.jetbrains' , module:'annotations'
+    compile.exclude group: "org.jetbrains" , module:"annotations"
 }
 
 greendao {
@@ -149,45 +149,45 @@ kapt {
 }
 
 dependencies {
-    pubImplementation fileTree(include: ['*.jar'], dir: 'libs')
-    gplayImplementation fileTree(include: ['*.jar'], dir: 'libs')
+    pubImplementation fileTree(include: ["*.jar"], dir: "libs")
+    gplayImplementation fileTree(include: ["*.jar"], dir: "libs")
 
     // kotlin.
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     // test.
-    testImplementation 'junit:junit:4.13.2'
-    testImplementation 'androidx.test:core:1.4.0'
-    testImplementation 'androidx.test:runner:1.4.0'
-    testImplementation 'androidx.test:rules:1.4.0'
-    testImplementation 'org.mockito:mockito-core:3.3.3'
-    testImplementation 'org.powermock:powermock-api-mockito2:2.0.9'
-    testImplementation 'org.powermock:powermock-module-junit4:2.0.9'
-    testImplementation 'org.powermock:powermock-module-junit4-rule:2.0.9'
+    testImplementation "junit:junit:4.13.2"
+    testImplementation "androidx.test:core:1.4.0"
+    testImplementation "androidx.test:runner:1.4.0"
+    testImplementation "androidx.test:rules:1.4.0"
+    testImplementation "org.mockito:mockito-core:3.3.3"
+    testImplementation "org.powermock:powermock-api-mockito2:2.0.9"
+    testImplementation "org.powermock:powermock-module-junit4:2.0.9"
+    testImplementation "org.powermock:powermock-module-junit4-rule:2.0.9"
     testImplementation "org.powermock:powermock-classloading-xstream:2.0.9"
-    testImplementation 'org.robolectric:robolectric:4.3'
+    testImplementation "org.robolectric:robolectric:4.3"
 
     // material design.
-    implementation 'com.google.android.material:material:1.6.0-beta01'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    implementation "com.google.android.material:material:1.7.0-alpha02"
+    implementation "androidx.appcompat:appcompat:1.4.1"
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
     // compose.
-    implementation 'androidx.activity:activity-compose:1.4.0'
-    implementation 'androidx.compose.material:material:1.1.1'
-    implementation 'androidx.compose.animation:animation:1.1.1'
-    implementation 'androidx.compose.ui:ui-tooling:1.1.1'
-    implementation 'androidx.compose.foundation:foundation:1.2.0-alpha07'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.5.0-alpha06'
-    androidTestImplementation 'androidx.compose.ui:ui-test-junit4:1.1.1'
+    implementation "androidx.activity:activity-compose:1.4.0"
+    implementation "androidx.compose.material:material:1.1.1"
+    implementation "androidx.compose.animation:animation:1.1.1"
+    implementation "androidx.compose.ui:ui-tooling:1.1.1"
+    implementation "androidx.compose.foundation:foundation:1.2.0-beta02"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.5.0-rc01"
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:1.1.1"
     implementation "com.google.accompanist:accompanist-appcompat-theme:0.16.0"
     implementation "androidx.compose.material3:material3:1.0.0-alpha09"
-    implementation 'androidx.compose.material:material-icons-extended:1.2.0-alpha07'
-    implementation 'androidx.navigation:navigation-compose:2.4.2'
+    implementation "androidx.compose.material:material-icons-extended:1.2.0-beta02"
+    implementation "androidx.navigation:navigation-compose:2.4.2"
 
     // preference.
-    implementation 'androidx.preference:preference-ktx:1.2.0'
+    implementation "androidx.preference:preference-ktx:1.2.0"
 
     // work.
     implementation "androidx.core:core-ktx:1.7.0"
@@ -209,66 +209,66 @@ dependencies {
     // hilt.
     implementation "com.google.dagger:hilt-android:2.41"
     kapt "com.google.dagger:hilt-android-compiler:2.41"
-    annotationProcessor 'com.google.dagger:hilt-compiler:2.41'
+    annotationProcessor "com.google.dagger:hilt-compiler:2.41"
 
-    implementation 'androidx.hilt:hilt-work:1.0.0'
-    kapt 'androidx.hilt:hilt-compiler:1.0.0'
-    annotationProcessor 'androidx.hilt:hilt-compiler:1.0.0'
+    implementation "androidx.hilt:hilt-work:1.0.0"
+    kapt "androidx.hilt:hilt-compiler:1.0.0"
+    annotationProcessor "androidx.hilt:hilt-compiler:1.0.0"
 
     // a map.
-    pubImplementation 'com.amap.api:location:5.3.1'
+    pubImplementation "com.amap.api:location:5.3.1"
 
     // gms.
     pubImplementation "com.google.android.gms:play-services-location:19.0.1"
     gplayImplementation "com.google.android.gms:play-services-location:19.0.1"
 
     // glide.
-    implementation 'com.github.bumptech.glide:glide:4.11.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
-    implementation 'com.github.bumptech.glide:okhttp3-integration:4.11.0'
+    implementation "com.github.bumptech.glide:glide:4.11.0"
+    annotationProcessor "com.github.bumptech.glide:compiler:4.11.0"
+    implementation "com.github.bumptech.glide:okhttp3-integration:4.11.0"
 
     // retrofit.
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.6.2'
-    implementation('com.squareup.okhttp3:okhttp') {
-        version {strictly '3.12.12'}
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.6.2"
+    implementation("com.squareup.okhttp3:okhttp") {
+        version {strictly "3.12.12"}
     }
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.12.12'
+    implementation "com.squareup.okhttp3:logging-interceptor:3.12.12"
 
     // db.
-    implementation 'org.greenrobot:greendao:3.3.0'
-    implementation 'io.github.yuweiguocn:GreenDaoUpgradeHelper:v2.2.1'
+    implementation "org.greenrobot:greendao:3.3.0"
+    implementation "io.github.yuweiguocn:GreenDaoUpgradeHelper:v2.2.1"
 
     // data store
     // implementation "androidx.datastore:datastore-preferences:1.0.0-alpha07"
     // implementation "androidx.datastore:datastore-preferences-rxjava2:1.0.0-alpha07"
 
     // gson.
-    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation "com.google.code.gson:gson:2.8.6"
 
     // cm.
-    implementation 'org.cyanogenmod:platform.sdk:5.0'
+    implementation "org.cyanogenmod:platform.sdk:5.0"
 
     // bugly.
-    pubImplementation 'com.tencent.bugly:crashreport:2.8.6.0'
-    pubImplementation 'com.tencent.bugly:nativecrashreport:3.6.0.1'
+    pubImplementation "com.tencent.bugly:crashreport:2.8.6.0"
+    pubImplementation "com.tencent.bugly:nativecrashreport:3.6.0.1"
 
     // rx java.
     implementation "io.reactivex.rxjava2:rxjava:2.2.9"
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    implementation 'com.github.nekocode.rxlifecycle:rxlifecycle:2.0'
-    implementation 'com.github.nekocode.rxlifecycle:rxlifecycle-compact:2.0'
+    implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
+    implementation "com.github.nekocode.rxlifecycle:rxlifecycle:2.0"
+    implementation "com.github.nekocode.rxlifecycle:rxlifecycle-compact:2.0"
 
     // ui.
-    implementation 'com.github.rahatarmanahmed:circularprogressview:2.5.0'
-    implementation 'com.jaredrummler:colorpicker:1.1.0'
-    implementation 'com.xw.repo:bubbleseekbar:3.20-lite'
-    implementation 'me.jfenn:AdaptiveIconView:0.0.1'
-    implementation 'com.github.turing-tech:MaterialScrollBar:13.3.2'
-    implementation 'com.gordonwong:material-sheet-fab:1.2.1'
+    implementation "com.github.rahatarmanahmed:circularprogressview:2.5.0"
+    implementation "com.jaredrummler:colorpicker:1.1.0"
+    implementation "com.xw.repo:bubbleseekbar:3.20-lite"
+    implementation "me.jfenn:AdaptiveIconView:0.0.1"
+    implementation "com.github.turing-tech:MaterialScrollBar:13.3.2"
+    implementation "com.gordonwong:material-sheet-fab:1.2.1"
 
     // utils.
-    implementation 'com.github.XhinLiang:LunarCalendar:3.0.0'
-    implementation 'com.github.didikee:AndroidDonate:0.1.0'
+    implementation "com.github.XhinLiang:LunarCalendar:3.0.0"
+    implementation "com.github.didikee:AndroidDonate:0.1.0"
 }

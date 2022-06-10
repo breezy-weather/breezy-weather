@@ -25,8 +25,6 @@ import android.view.View;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.view.ViewCompat;
 
-import java.util.Calendar;
-
 import wangdaye.com.geometricweather.common.ui.widgets.DayNightShaderWrapper;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 
@@ -46,11 +44,11 @@ public class SunMoonView extends View {
     @Size(2) private float[] mIconAlphas;
     @Size(2) private float[][] mIconPositions;
 
-    @Size(2) private float[] mStartTimes;
-    @Size(2) private float[] mCurrentTimes;
-    @Size(2) private float[] mEndTimes;
-    @Size(2) private float[] mProgresses;
-    @Size(2) private float[] mMaxes;
+    @Size(2) private long[] mStartTimes;
+    @Size(2) private long[] mCurrentTimes;
+    @Size(2) private long[] mEndTimes;
+    @Size(2) private long[] mProgresses;
+    @Size(2) private long[] mMaxes;
 
     @Size(3) private int[] mLineColors;
     @Size(2) private int[] mX1ShaderColors;
@@ -95,11 +93,11 @@ public class SunMoonView extends View {
         mIconAlphas = new float[] {0, 0};
         mIconPositions = new float[][] {{0, 0}, {0, 0}};
 
-        mStartTimes = new float[] {decodeTime("6:00"), decodeTime("18:00")};
-        mEndTimes = new float[] {decodeTime("18:00"), decodeTime("6:00") + 24 * 60};
-        mCurrentTimes = new float[] {decodeTime("12:00"), decodeTime("12:00")};
-        mProgresses = new float[] {-1, -1};
-        mMaxes = new float[] {100, 100};
+        mStartTimes = new long[] {1, 1};
+        mEndTimes = new long[] {1, 1};
+        mCurrentTimes = new long[] {0, 0};
+        mProgresses = new long[] {-1, -1};
+        mMaxes = new long[] {100, 100};
 
         mLineColors = new int[] {Color.BLACK, Color.GRAY, Color.LTGRAY};
 
@@ -130,20 +128,11 @@ public class SunMoonView extends View {
         mRectF = new RectF();
     }
 
-    public static int decodeTime(String time) {
-        String[] t = time.split(":");
-        return decodeTime(Integer.parseInt(t[0]), Integer.parseInt(t[1]));
-    }
-
-    public static int decodeTime(Calendar calendar) {
-        return decodeTime(calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE));
-    }
-
-    public static int decodeTime(int hour, int minute) {
-        return hour * 60 + minute;
-    }
-
-    public void setTime(@Size(2) float[] startTimes, @Size(2) float[] endTimes, @Size(2) float[] currentTimes) {
+    public void setTime(
+            @Size(2) long[] startTimes,
+            @Size(2) long[] endTimes,
+            @Size(2) long[] currentTimes
+    ) {
         mStartTimes = startTimes;
         mEndTimes = endTimes;
         mCurrentTimes = currentTimes;

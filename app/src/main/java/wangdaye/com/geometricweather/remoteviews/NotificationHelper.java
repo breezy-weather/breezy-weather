@@ -34,10 +34,6 @@ import wangdaye.com.geometricweather.remoteviews.presenters.notification.NormalN
 import wangdaye.com.geometricweather.settings.ConfigStore;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 
-/**
- * Notification helper.
- * */
-
 public class NotificationHelper {
 
     private static final String NOTIFICATION_GROUP_KEY = "geometric_weather_alert_notification_group";
@@ -217,8 +213,7 @@ public class NotificationHelper {
     // precipitation.
 
     @SuppressLint("InlinedApi")
-    public static void checkAndSendPrecipitationForecast(Context context,
-                                                         Location location, @Nullable Weather oldResult) {
+    public static void checkAndSendPrecipitationForecast(Context context, Location location) {
         if (!SettingsManager.getInstance(context).isPrecipitationPushEnabled()
                 || location.getWeather() == null) {
             return;
@@ -233,50 +228,31 @@ public class NotificationHelper {
         Weather weather = location.getWeather();
 
         ConfigStore config = ConfigStore.getInstance(
-                context, PREFERENCE_SHORT_TERM_PRECIPITATION_ALERT);
-        String locationKey = config.getString(KEY_PRECIPITATION_LOCATION_KEY, null);
-        long date = config.getLong(KEY_PRECIPITATION_DATE, 0);
+                context,
+                PREFERENCE_SHORT_TERM_PRECIPITATION_ALERT
+        );
+        long timestamp = config.getLong(KEY_PRECIPITATION_DATE, 0);
 
-        if ((!location.getFormattedId().equals(locationKey)
-                || isDifferentDays(date, weather.getBase().getPublishTime()))
-                && isShortTermLiquid(weather)) {
-            manager.notify(
-                    GeometricWeather.NOTIFICATION_ID_PRECIPITATION,
-                    getNotificationBuilder(
-                            context,
-                            R.drawable.ic_precipitation,
-                            context.getString(R.string.precipitation_overview),
-                            weather.getDailyForecast().get(0).getDate(
-                                    context.getString(R.string.date_format_widget_long)),
-                            context.getString(R.string.feedback_short_term_precipitation_alert),
-                            getColor(context, location),
-                            PendingIntent.getActivity(
-                                    context,
-                                    GeometricWeather.NOTIFICATION_ID_PRECIPITATION,
-                                    IntentHelper.buildMainActivityIntent(location),
-                                    PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
-                            )
-                    ).build()
-            );
-            config.edit()
-                    .putString(KEY_PRECIPITATION_LOCATION_KEY, location.getFormattedId())
-                    .putLong(KEY_PRECIPITATION_DATE, weather.getBase().getPublishTime())
-                    .apply();
+        if (isSameDay(timestamp, System.currentTimeMillis())) {
+            // we only send precipitation alert once a day.
             return;
         }
 
-        if ((oldResult == null
-                || isDifferentDays(oldResult.getBase().getPublishTime(), weather.getBase().getPublishTime()))
-                && isLiquidDay(weather)) {
+        if (isShortTermLiquid(weather) || isLiquidDay(weather)) {
             manager.notify(
                     GeometricWeather.NOTIFICATION_ID_PRECIPITATION,
                     getNotificationBuilder(
                             context,
                             R.drawable.ic_precipitation,
                             context.getString(R.string.precipitation_overview),
-                            weather.getDailyForecast().get(0).getDate(
-                                    context.getString(R.string.date_format_widget_long)),
-                            context.getString(R.string.feedback_today_precipitation_alert),
+                            weather.getDailyForecast()
+                                    .get(0)
+                                    .getDate(context.getString(R.string.date_format_widget_long)),
+                            context.getString(
+                                    isShortTermLiquid(weather)
+                                            ? R.string.feedback_short_term_precipitation_alert
+                                            : R.string.feedback_today_precipitation_alert
+                            ),
                             getColor(context, location),
                             PendingIntent.getActivity(
                                     context,
@@ -286,7 +262,17 @@ public class NotificationHelper {
                             )
                     ).build()
             );
+
+            config.edit()
+                    .putString(KEY_PRECIPITATION_LOCATION_KEY, location.getFormattedId())
+                    .putLong(KEY_PRECIPITATION_DATE, System.currentTimeMillis())
+                    .apply();
         }
+    }
+
+    private static boolean isLiquidDay(Weather weather) {
+        return weather.getDailyForecast().get(0).day().getWeatherCode().isPrecipitation()
+                || weather.getDailyForecast().get(0).night().getWeatherCode().isPrecipitation();
     }
 
     private static boolean isShortTermLiquid(Weather weather) {
@@ -298,15 +284,10 @@ public class NotificationHelper {
         return false;
     }
 
-    private static boolean isDifferentDays(long time1, long time2) {
+    private static boolean isSameDay(long time1, long time2) {
         long day1 = time1 / 1000 / 60 / 60 / 24;
         long day2 = time2 / 1000 / 60 / 60 / 24;
         return day1 != day2;
-    }
-
-    private static boolean isLiquidDay(Weather weather) {
-        return weather.getDailyForecast().get(0).day().getWeatherCode().isPrecipitation()
-                || weather.getDailyForecast().get(0).night().getWeatherCode().isPrecipitation();
     }
 
     @ColorInt
