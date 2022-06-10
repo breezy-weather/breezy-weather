@@ -11,9 +11,9 @@
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 30101,
-      "versionName": "3.101_fdroid",
-      "outputFile": "GeometricWeather 3.101_fdroid.apk"
+      "versionCode": 30102,
+      "versionName": "3.102_fdroid",
+      "outputFile": "GeometricWeather 3.102_fdroid.apk"
     }
   ],
   "elementType": "File"

@@ -20,7 +20,7 @@
     <!-- Dark mode. -->
     <string-array name="dark_modes">
         <item>Автоматически</item>
-        <item>Follow system</item>
+        <item>Как в системе</item>
         <item>Всегда светлая</item>
         <item>Всегда тёмная</item>
     </string-array>

@@ -148,11 +148,11 @@
     <string name="alipay">Alipay</string>
     <string name="wechat">Wechat</string>
 
-    <string name="date_format_short">M-d</string>
-    <string name="date_format_long">MMM d</string>
-    <string name="date_format_widget_short">EEE, MMM d</string>
-    <string name="date_format_widget_long">EEEE, MMM d</string>
-    <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
+    <string name="date_format_short">d M</string>
+    <string name="date_format_long">d MMM</string>
+    <string name="date_format_widget_short">EEE, d MMM</string>
+    <string name="date_format_widget_long">EEEE, d MMM</string>
+    <string name="date_format_widget_oreo_style">EEEE, d MMM│</string>
 
     <string name="tag_temperature">@string/temperature</string>
     <string name="tag_wind">@string/wind</string>
