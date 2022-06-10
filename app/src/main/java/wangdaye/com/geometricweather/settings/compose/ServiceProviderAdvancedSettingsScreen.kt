@@ -20,7 +20,7 @@ fun SettingsProviderAdvancedSettingsScreen(
         EditTextPreferenceView(
             titleId = id,
             summary = { _, _ ->
-                SettingsManager.getInstance(context).customAccuWeatherKey
+                SettingsManager.getInstance(context).customAccuWeatherKey.ifEmpty { context.getString(R.string.settings_provider_default_value) }
             },
             content = SettingsManager.getInstance(context).customAccuWeatherKey,
             onValueChanged = {
@@ -32,7 +32,7 @@ fun SettingsProviderAdvancedSettingsScreen(
         EditTextPreferenceView(
             titleId = id,
             summary = { _, _ ->
-                SettingsManager.getInstance(context).customAccuCurrentKey
+                SettingsManager.getInstance(context).customAccuCurrentKey.ifEmpty { context.getString(R.string.settings_provider_default_value) }
             },
             content = SettingsManager.getInstance(context).customAccuCurrentKey,
             onValueChanged = {
@@ -44,7 +44,7 @@ fun SettingsProviderAdvancedSettingsScreen(
         EditTextPreferenceView(
             titleId = id,
             summary = { _, _ ->
-                SettingsManager.getInstance(context).customAccuAqiKey
+                SettingsManager.getInstance(context).customAccuAqiKey.ifEmpty { context.getString(R.string.settings_provider_default_value) }
             },
             content = SettingsManager.getInstance(context).customAccuAqiKey,
             onValueChanged = {
@@ -59,7 +59,7 @@ fun SettingsProviderAdvancedSettingsScreen(
         EditTextPreferenceView(
             titleId = id,
             summary = { _, _ ->
-                SettingsManager.getInstance(context).customOwmKey
+                SettingsManager.getInstance(context).customOwmKey.ifEmpty { context.getString(R.string.settings_provider_default_value) }
             },
             content = SettingsManager.getInstance(context).customOwmKey,
             onValueChanged = {
@@ -74,7 +74,7 @@ fun SettingsProviderAdvancedSettingsScreen(
         EditTextPreferenceView(
             titleId = id,
             summary = { _, _ ->
-                SettingsManager.getInstance(context).customBaiduIpLocationAk
+                SettingsManager.getInstance(context).customBaiduIpLocationAk.ifEmpty { context.getString(R.string.settings_provider_default_value) }
             },
             content = SettingsManager.getInstance(context).customBaiduIpLocationAk,
             onValueChanged = {
@@ -89,7 +89,7 @@ fun SettingsProviderAdvancedSettingsScreen(
         EditTextPreferenceView(
             titleId = id,
             summary = { _, _ ->
-                SettingsManager.getInstance(context).customMfWsftKey
+                SettingsManager.getInstance(context).customMfWsftKey.ifEmpty { context.getString(R.string.settings_provider_default_value) }
             },
             content = SettingsManager.getInstance(context).customMfWsftKey,
             onValueChanged = {
@@ -101,7 +101,7 @@ fun SettingsProviderAdvancedSettingsScreen(
         EditTextPreferenceView(
             titleId = id,
             summary = { _, _ ->
-                SettingsManager.getInstance(context).customIqaAirParifKey
+                SettingsManager.getInstance(context).customIqaAirParifKey.ifEmpty { context.getString(R.string.settings_provider_default_value) }
             },
             content = SettingsManager.getInstance(context).customIqaAirParifKey,
             onValueChanged = {
@@ -113,7 +113,7 @@ fun SettingsProviderAdvancedSettingsScreen(
         EditTextPreferenceView(
             titleId = id,
             summary = { _, _ ->
-                SettingsManager.getInstance(context).customIqaAtmoAuraKey
+                SettingsManager.getInstance(context).customIqaAtmoAuraKey.ifEmpty { context.getString(R.string.settings_provider_default_value) }
             },
             content = SettingsManager.getInstance(context).customIqaAtmoAuraKey,
             onValueChanged = {
