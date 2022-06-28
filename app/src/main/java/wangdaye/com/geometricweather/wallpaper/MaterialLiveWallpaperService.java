@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.wallpaper;
 
+import android.app.WallpaperColors;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.PixelFormat;
@@ -8,6 +9,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Process;
@@ -18,6 +20,7 @@ import android.view.SurfaceHolder;
 import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.annotation.Size;
 import androidx.core.content.res.ResourcesCompat;
 
@@ -230,6 +233,10 @@ public class MaterialLiveWallpaperService extends WallpaperService {
             );
             if (mBackground != null) {
                 mBackground.setBounds(0, 0, mSizes[0], mSizes[1]);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
+                    notifyColorsChanged();
+                }
             }
         }
 
@@ -390,6 +397,17 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                     }
                     mOrientationListener.disable();
                 }
+            }
+        }
+
+        @RequiresApi(Build.VERSION_CODES.O_MR1)
+        @Nullable
+        @Override
+        public WallpaperColors onComputeColors() {
+            if (mBackground != null) {
+                return WallpaperColors.fromDrawable(mBackground);
+            } else {
+                return null;
             }
         }
 
