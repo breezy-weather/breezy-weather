@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.main.adapters.trend.daily;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.view.LayoutInflater;
@@ -24,16 +25,15 @@ import wangdaye.com.geometricweather.common.ui.images.RotateDrawable;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.chart.DoubleHistogramView;
 import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 
 /**
  * Daily wind adapter.
  * */
-public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.ViewHolder> {
+public class DailyWindAdapter extends AbsDailyTrendAdapter {
 
     private final SpeedUnit mSpeedUnit;
-
     private float mHighestWindSpeed;
-    private int mSize;
 
     class ViewHolder extends AbsDailyTrendAdapter.ViewHolder {
 
@@ -103,18 +103,16 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
     }
 
     @SuppressLint("SimpleDateFormat")
-    public DailyWindAdapter(GeoActivity activity, TrendRecyclerView parent,
-                            Location location, SpeedUnit unit) {
+    public DailyWindAdapter(GeoActivity activity, Location location, SpeedUnit unit) {
         super(activity, location);
 
         Weather weather = location.getWeather();
         assert weather != null;
         mSpeedUnit = unit;
 
-        mHighestWindSpeed = Integer.MIN_VALUE;
+        mHighestWindSpeed = 0;
         Float daytimeWindSpeed;
         Float nighttimeWindSpeed;
-        boolean valid = false;
         for (int i = weather.getDailyForecast().size() - 1; i >= 0; i --) {
             daytimeWindSpeed = weather.getDailyForecast().get(i).day().getWind().getSpeed();
             nighttimeWindSpeed = weather.getDailyForecast().get(i).night().getWind().getSpeed();
@@ -124,51 +122,7 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
             if (nighttimeWindSpeed != null && nighttimeWindSpeed > mHighestWindSpeed) {
                 mHighestWindSpeed = nighttimeWindSpeed;
             }
-            if ((daytimeWindSpeed != null && daytimeWindSpeed != 0)
-                    || (nighttimeWindSpeed != null && nighttimeWindSpeed != 0)
-                    || valid) {
-                valid = true;
-                mSize++;
-            }
         }
-        if (mHighestWindSpeed == 0) {
-            mHighestWindSpeed = Wind.WIND_SPEED_11;
-        }
-
-        List<TrendRecyclerView.KeyLine> keyLineList = new ArrayList<>();
-        keyLineList.add(
-                new TrendRecyclerView.KeyLine(
-                        Wind.WIND_SPEED_3,
-                        unit.getValueTextWithoutUnit(Wind.WIND_SPEED_3),
-                        activity.getString(R.string.wind_3),
-                        TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
-                )
-        );
-        keyLineList.add(
-                new TrendRecyclerView.KeyLine(
-                        Wind.WIND_SPEED_7,
-                        unit.getValueTextWithoutUnit(Wind.WIND_SPEED_7),
-                        activity.getString(R.string.wind_7),
-                        TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
-                )
-        );
-        keyLineList.add(
-                new TrendRecyclerView.KeyLine(
-                        -Wind.WIND_SPEED_3,
-                        unit.getValueTextWithoutUnit(Wind.WIND_SPEED_3),
-                        activity.getString(R.string.wind_3),
-                        TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
-                )
-        );
-        keyLineList.add(
-                new TrendRecyclerView.KeyLine(
-                        -Wind.WIND_SPEED_7,
-                        unit.getValueTextWithoutUnit(Wind.WIND_SPEED_7),
-                        activity.getString(R.string.wind_7),
-                        TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
-                )
-        );
-        parent.setData(keyLineList, mHighestWindSpeed, -mHighestWindSpeed);
     }
 
     @NonNull
@@ -180,12 +134,62 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter<DailyWindAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(getActivity(), getLocation(), position);
+    public void onBindViewHolder(@NonNull AbsDailyTrendAdapter.ViewHolder holder, int position) {
+        ((ViewHolder) holder).onBindView(getActivity(), getLocation(), position);
     }
 
     @Override
     public int getItemCount() {
-        return mSize;
+        return getLocation().getWeather().getDailyForecast().size();
+    }
+
+    @Override
+    public boolean isValid(Location location) {
+        return mHighestWindSpeed > 0;
+    }
+
+    @Override
+    public String getDisplayName(Context context) {
+        return context.getString(R.string.tag_wind);
+    }
+
+    @Override
+    public void bindBackgroundForHost(TrendRecyclerView host) {
+        SpeedUnit unit = SettingsManager.getInstance(getActivity()).getSpeedUnit();
+
+        List<TrendRecyclerView.KeyLine> keyLineList = new ArrayList<>();
+        keyLineList.add(
+                new TrendRecyclerView.KeyLine(
+                        Wind.WIND_SPEED_3,
+                        unit.getValueTextWithoutUnit(Wind.WIND_SPEED_3),
+                        getActivity().getString(R.string.wind_3),
+                        TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
+                )
+        );
+        keyLineList.add(
+                new TrendRecyclerView.KeyLine(
+                        Wind.WIND_SPEED_7,
+                        unit.getValueTextWithoutUnit(Wind.WIND_SPEED_7),
+                        getActivity().getString(R.string.wind_7),
+                        TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
+                )
+        );
+        keyLineList.add(
+                new TrendRecyclerView.KeyLine(
+                        -Wind.WIND_SPEED_3,
+                        unit.getValueTextWithoutUnit(Wind.WIND_SPEED_3),
+                        getActivity().getString(R.string.wind_3),
+                        TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
+                )
+        );
+        keyLineList.add(
+                new TrendRecyclerView.KeyLine(
+                        -Wind.WIND_SPEED_7,
+                        unit.getValueTextWithoutUnit(Wind.WIND_SPEED_7),
+                        getActivity().getString(R.string.wind_7),
+                        TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
+                )
+        );
+        host.setData(keyLineList, mHighestWindSpeed, -mHighestWindSpeed);
     }
 }

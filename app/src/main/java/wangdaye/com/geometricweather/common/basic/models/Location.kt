@@ -6,9 +6,8 @@ import android.os.Parcelable
 import android.text.TextUtils
 import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource
+import wangdaye.com.geometricweather.common.basic.models.weather.Astro
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather
-import wangdaye.com.geometricweather.common.utils.DisplayUtils
-import wangdaye.com.geometricweather.common.utils.LanguageUtils
 import java.util.*
 import kotlin.math.abs
 
@@ -40,7 +39,7 @@ class Location(
         }
 
     val isDaylight: Boolean
-        get() = weather?.isDaylight(timeZone) ?: DisplayUtils.isDaylight(timeZone)
+        get() = isDayLight(this)
 
     val isUsable: Boolean
         get() = cityId != NULL_ID
@@ -49,6 +48,16 @@ class Location(
         private const val NULL_ID = "NULL_ID"
 
         const val CURRENT_POSITION_ID = "CURRENT_POSITION"
+
+        @JvmStatic
+        @JvmOverloads
+        fun isDayLight(location: Location? = null): Boolean {
+            val sunRiseProgress = Astro.getRiseProgress(
+                astro = location?.weather?.dailyForecast?.getOrNull(0)?.sun(),
+                timeZone = location?.timeZone ?: TimeZone.getDefault()
+            )
+            return 0 < sunRiseProgress && sunRiseProgress < 1
+        }
 
         @JvmStatic
         fun buildLocal(): Location {

@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.main.adapters.trend.daily;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,17 +21,17 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.chart.DoubleHistogramView;
 import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 
 /**
  * Daily precipitation adapter.
  * */
-public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter<DailyPrecipitationAdapter.ViewHolder> {
+public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter {
 
     private final ResourceProvider mResourceProvider;
     private final PrecipitationUnit mPrecipitationUnit;
-
     private float mHighestPrecipitation;
 
     class ViewHolder extends AbsDailyTrendAdapter.ViewHolder {
@@ -102,7 +103,6 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter<DailyPrecipi
 
     @SuppressLint("SimpleDateFormat")
     public DailyPrecipitationAdapter(GeoActivity activity,
-                                     TrendRecyclerView parent,
                                      Location location,
                                      ResourceProvider provider,
                                      PrecipitationUnit unit) {
@@ -113,7 +113,7 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter<DailyPrecipi
         mResourceProvider = provider;
         mPrecipitationUnit = unit;
 
-        mHighestPrecipitation = Integer.MIN_VALUE;
+        mHighestPrecipitation = 0;
         Float daytimePrecipitation;
         Float nighttimePrecipitation;
         for (int i = weather.getDailyForecast().size() - 1; i >= 0; i --) {
@@ -126,44 +126,6 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter<DailyPrecipi
                 mHighestPrecipitation = nighttimePrecipitation;
             }
         }
-        if (mHighestPrecipitation == 0) {
-            mHighestPrecipitation = Precipitation.PRECIPITATION_HEAVY;
-        }
-
-        List<TrendRecyclerView.KeyLine> keyLineList = new ArrayList<>();
-        keyLineList.add(
-                new TrendRecyclerView.KeyLine(
-                        Precipitation.PRECIPITATION_LIGHT,
-                        unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_LIGHT),
-                        activity.getString(R.string.precipitation_light),
-                        TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
-                )
-        );
-        keyLineList.add(
-                new TrendRecyclerView.KeyLine(
-                        Precipitation.PRECIPITATION_HEAVY,
-                        unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_HEAVY),
-                        activity.getString(R.string.precipitation_heavy),
-                        TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
-                )
-        );
-        keyLineList.add(
-                new TrendRecyclerView.KeyLine(
-                        -Precipitation.PRECIPITATION_LIGHT,
-                        unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_LIGHT),
-                        activity.getString(R.string.precipitation_light),
-                        TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
-                )
-        );
-        keyLineList.add(
-                new TrendRecyclerView.KeyLine(
-                        -Precipitation.PRECIPITATION_HEAVY,
-                        unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_HEAVY),
-                        activity.getString(R.string.precipitation_heavy),
-                        TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
-                )
-        );
-        parent.setData(keyLineList, mHighestPrecipitation, -mHighestPrecipitation);
     }
 
     @NonNull
@@ -175,13 +137,63 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter<DailyPrecipi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(getActivity(), getLocation(), position);
+    public void onBindViewHolder(@NonNull AbsDailyTrendAdapter.ViewHolder holder, int position) {
+        ((ViewHolder) holder).onBindView(getActivity(), getLocation(), position);
     }
 
     @Override
     public int getItemCount() {
         assert getLocation().getWeather() != null;
         return getLocation().getWeather().getDailyForecast().size();
+    }
+
+    @Override
+    public boolean isValid(Location location) {
+        return mHighestPrecipitation > 0;
+    }
+
+    @Override
+    public String getDisplayName(Context context) {
+        return context.getString(R.string.tag_precipitation);
+    }
+
+    @Override
+    public void bindBackgroundForHost(TrendRecyclerView host) {
+        PrecipitationUnit unit = SettingsManager.getInstance(getActivity()).getPrecipitationUnit();
+
+        List<TrendRecyclerView.KeyLine> keyLineList = new ArrayList<>();
+        keyLineList.add(
+                new TrendRecyclerView.KeyLine(
+                        Precipitation.PRECIPITATION_LIGHT,
+                        unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_LIGHT),
+                        getActivity().getString(R.string.precipitation_light),
+                        TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
+                )
+        );
+        keyLineList.add(
+                new TrendRecyclerView.KeyLine(
+                        Precipitation.PRECIPITATION_HEAVY,
+                        unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_HEAVY),
+                        getActivity().getString(R.string.precipitation_heavy),
+                        TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
+                )
+        );
+        keyLineList.add(
+                new TrendRecyclerView.KeyLine(
+                        -Precipitation.PRECIPITATION_LIGHT,
+                        unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_LIGHT),
+                        getActivity().getString(R.string.precipitation_light),
+                        TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
+                )
+        );
+        keyLineList.add(
+                new TrendRecyclerView.KeyLine(
+                        -Precipitation.PRECIPITATION_HEAVY,
+                        unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_HEAVY),
+                        getActivity().getString(R.string.precipitation_heavy),
+                        TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
+                )
+        );
+        host.setData(keyLineList, mHighestPrecipitation, -mHighestPrecipitation);
     }
 }

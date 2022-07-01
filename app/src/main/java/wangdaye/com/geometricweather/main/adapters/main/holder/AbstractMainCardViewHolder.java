@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 
 import wangdaye.com.geometricweather.R;
@@ -22,6 +23,7 @@ import wangdaye.com.geometricweather.theme.weatherView.WeatherThemeDelegate;
 public abstract class AbstractMainCardViewHolder extends AbstractMainViewHolder {
 
     private FirstCardHeaderController mFirstCardHeaderController;
+    protected @Nullable Location mLocation;
 
     @SuppressLint("ObjectAnimatorBinding")
     public AbstractMainCardViewHolder(@NonNull View view) {
@@ -33,6 +35,7 @@ public abstract class AbstractMainCardViewHolder extends AbstractMainViewHolder 
                            @NonNull ResourceProvider provider,
                            boolean listAnimationEnabled, boolean itemAnimationEnabled, boolean firstCard) {
         super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled);
+        mLocation = location;
 
         WeatherThemeDelegate delegate = ThemeManager
                 .getInstance(activity)

@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.main.adapters.trend.hourly;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.view.LayoutInflater;
@@ -28,12 +29,10 @@ import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider;
 /**
  * Hourly wind adapter.
  * */
-public class HourlyWindAdapter extends AbsHourlyTrendAdapter<HourlyWindAdapter.ViewHolder> {
+public class HourlyWindAdapter extends AbsHourlyTrendAdapter {
 
     private final SpeedUnit mSpeedUnit;
-
     private float mHighestWindSpeed;
-    private int mSize;
 
     class ViewHolder extends AbsHourlyTrendAdapter.ViewHolder {
 
@@ -95,66 +94,21 @@ public class HourlyWindAdapter extends AbsHourlyTrendAdapter<HourlyWindAdapter.V
     }
 
     @SuppressLint("SimpleDateFormat")
-    public HourlyWindAdapter(GeoActivity activity, TrendRecyclerView parent,
-                             Location location, SpeedUnit unit) {
+    public HourlyWindAdapter(GeoActivity activity, Location location, SpeedUnit unit) {
         super(activity, location);
 
         Weather weather = location.getWeather();
         assert weather != null;
         mSpeedUnit = unit;
 
-        mHighestWindSpeed = Integer.MIN_VALUE;
+        mHighestWindSpeed = 0;
         Float daytimeWindSpeed;
-        boolean valid = false;
         for (int i = weather.getHourlyForecast().size() - 1; i >= 0; i --) {
             daytimeWindSpeed = weather.getHourlyForecast().get(i).getWind().getSpeed();
             if (daytimeWindSpeed != null && daytimeWindSpeed > mHighestWindSpeed) {
                 mHighestWindSpeed = daytimeWindSpeed;
             }
-            if ((daytimeWindSpeed != null && daytimeWindSpeed != 0)
-                    || valid) {
-                valid = true;
-                mSize++;
-            }
         }
-        if (mHighestWindSpeed == 0) {
-            mHighestWindSpeed = Wind.WIND_SPEED_11;
-        }
-
-        List<TrendRecyclerView.KeyLine> keyLineList = new ArrayList<>();
-        keyLineList.add(
-                new TrendRecyclerView.KeyLine(
-                        Wind.WIND_SPEED_3,
-                        unit.getValueTextWithoutUnit(Wind.WIND_SPEED_3),
-                        activity.getString(R.string.wind_3),
-                        TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
-                )
-        );
-        keyLineList.add(
-                new TrendRecyclerView.KeyLine(
-                        Wind.WIND_SPEED_7,
-                        unit.getValueTextWithoutUnit(Wind.WIND_SPEED_7),
-                        activity.getString(R.string.wind_7),
-                        TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
-                )
-        );
-        keyLineList.add(
-                new TrendRecyclerView.KeyLine(
-                        -Wind.WIND_SPEED_3,
-                        unit.getValueTextWithoutUnit(Wind.WIND_SPEED_3),
-                        activity.getString(R.string.wind_3),
-                        TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
-                )
-        );
-        keyLineList.add(
-                new TrendRecyclerView.KeyLine(
-                        -Wind.WIND_SPEED_7,
-                        unit.getValueTextWithoutUnit(Wind.WIND_SPEED_7),
-                        activity.getString(R.string.wind_7),
-                        TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
-                )
-        );
-        parent.setData(keyLineList, mHighestWindSpeed, 0);
     }
 
     @NonNull
@@ -166,12 +120,60 @@ public class HourlyWindAdapter extends AbsHourlyTrendAdapter<HourlyWindAdapter.V
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(getActivity(), getLocation(), position);
+    public void onBindViewHolder(@NonNull AbsHourlyTrendAdapter.ViewHolder holder, int position) {
+        ((ViewHolder) holder).onBindView(getActivity(), getLocation(), position);
     }
 
     @Override
     public int getItemCount() {
-        return mSize;
+        return getLocation().getWeather().getHourlyForecast().size();
+    }
+
+    @Override
+    public boolean isValid(Location location) {
+        return mHighestWindSpeed > 0;
+    }
+
+    @Override
+    public String getDisplayName(Context context) {
+        return context.getString(R.string.tag_wind);
+    }
+
+    @Override
+    public void bindBackgroundForHost(TrendRecyclerView host) {
+        List<TrendRecyclerView.KeyLine> keyLineList = new ArrayList<>();
+        keyLineList.add(
+                new TrendRecyclerView.KeyLine(
+                        Wind.WIND_SPEED_3,
+                        mSpeedUnit.getValueTextWithoutUnit(Wind.WIND_SPEED_3),
+                        getActivity().getString(R.string.wind_3),
+                        TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
+                )
+        );
+        keyLineList.add(
+                new TrendRecyclerView.KeyLine(
+                        Wind.WIND_SPEED_7,
+                        mSpeedUnit.getValueTextWithoutUnit(Wind.WIND_SPEED_7),
+                        getActivity().getString(R.string.wind_7),
+                        TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
+                )
+        );
+        keyLineList.add(
+                new TrendRecyclerView.KeyLine(
+                        -Wind.WIND_SPEED_3,
+                        mSpeedUnit.getValueTextWithoutUnit(Wind.WIND_SPEED_3),
+                        getActivity().getString(R.string.wind_3),
+                        TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
+                )
+        );
+        keyLineList.add(
+                new TrendRecyclerView.KeyLine(
+                        -Wind.WIND_SPEED_7,
+                        mSpeedUnit.getValueTextWithoutUnit(Wind.WIND_SPEED_7),
+                        getActivity().getString(R.string.wind_7),
+                        TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
+                )
+        );
+        host.setData(keyLineList, mHighestWindSpeed, 0);
     }
 }

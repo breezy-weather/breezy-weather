@@ -17,8 +17,6 @@ import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.TimeZone;
-
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
@@ -38,8 +36,6 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
     private final RecyclerView mRecyclerView;
     private AqiAdapter mAdapter;
 
-    @Nullable private Weather mWeather;
-    @Nullable private TimeZone mTimeZone;
     private int mAqiIndex;
 
     private boolean mEnable;
@@ -65,13 +61,12 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
         super.onBindView(activity, location, provider,
                 listAnimationEnabled, itemAnimationEnabled, firstCard);
 
-        mWeather = location.getWeather();
-        mTimeZone = location.getTimeZone();
-        assert mWeather != null;
+        Weather weather = location.getWeather();
+        assert weather != null;
 
-        mAqiIndex = mWeather.getCurrent().getAirQuality().getAqiIndex() == null
+        mAqiIndex = weather.getCurrent().getAirQuality().getAqiIndex() == null
                 ? 0
-                : mWeather.getCurrent().getAirQuality().getAqiIndex();
+                : weather.getCurrent().getAirQuality().getAqiIndex();
 
         mEnable = true;
 
@@ -81,7 +76,7 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
                         .getWeatherThemeDelegate()
                         .getThemeColors(
                                 context,
-                                WeatherViewController.getWeatherKind(mWeather),
+                                WeatherViewController.getWeatherKind(weather),
                                 location.isDaylight()
                         )[0]
         );
@@ -95,7 +90,7 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
             );
             mProgress.setArcBackgroundColor(MainThemeColorProvider.getColor(location, R.attr.colorOutline));
         } else {
-            int aqiColor = mWeather.getCurrent().getAirQuality().getAqiColor(mProgress.getContext());
+            int aqiColor = weather.getCurrent().getAirQuality().getAqiColor(mProgress.getContext());
             mProgress.setProgress(mAqiIndex);
             mProgress.setText(String.format("%d", mAqiIndex));
 
@@ -109,9 +104,9 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
         }
 
         mProgress.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorTitleText));
-        mProgress.setBottomText(mWeather.getCurrent().getAirQuality().getAqiText());
+        mProgress.setBottomText(weather.getCurrent().getAirQuality().getAqiText());
         mProgress.setBottomTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText));
-        mProgress.setContentDescription(mAqiIndex + ", " + mWeather.getCurrent().getAirQuality().getAqiText());
+        mProgress.setContentDescription(mAqiIndex + ", " + weather.getCurrent().getAirQuality().getAqiText());
 
         mAdapter = new AqiAdapter(context, location, itemAnimationEnabled);
         mRecyclerView.setAdapter(mAdapter);
@@ -121,8 +116,10 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
     @SuppressLint("DefaultLocale")
     @Override
     public void onEnterScreen() {
-        if (itemAnimationEnabled && mEnable && mWeather != null && mTimeZone != null) {
-            int aqiColor = mWeather.getCurrent().getAirQuality().getAqiColor(mProgress.getContext());
+        if (itemAnimationEnabled && mEnable && mLocation != null && mLocation.getWeather() != null) {
+            Weather weather = mLocation.getWeather();
+
+            int aqiColor = weather.getCurrent().getAirQuality().getAqiColor(mProgress.getContext());
 
             ValueAnimator progressColor = ValueAnimator.ofObject(
                     new ArgbEvaluator(),
@@ -131,13 +128,13 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
             );
             progressColor.addUpdateListener(animation -> mProgress.setProgressColor(
                     (Integer) animation.getAnimatedValue(),
-                    MainThemeColorProvider.isLightTheme(context, mWeather, mTimeZone)
+                    MainThemeColorProvider.isLightTheme(context, mLocation)
             ));
 
             ValueAnimator backgroundColor = ValueAnimator.ofObject(
                     new ArgbEvaluator(),
                     MainThemeColorProvider.getColor(
-                            mWeather.isDaylight(mTimeZone),
+                            mLocation.isDaylight(),
                             R.attr.colorOutline
                     ),
                     ColorUtils.setAlphaComponent(aqiColor, (int) (255 * 0.1))

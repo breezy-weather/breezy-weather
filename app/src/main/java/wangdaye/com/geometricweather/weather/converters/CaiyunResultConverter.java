@@ -480,7 +480,7 @@ public class CaiyunResultConverter {
                                     currentWeatherCode
                             ),
                             1,
-                            null,
+                            (Integer) null,
                             null
                     )
             );

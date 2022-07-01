@@ -174,6 +174,20 @@
         <item>升每平方米</item>
     </string-array>
 
+    <!-- precipitation intensity unit. -->
+    <string-array name="precipitation_intensity_units">
+        <item>毫米/時</item>
+        <item>厘米/時</item>
+        <item>英寸/時</item>
+        <item>升/米²/時</item>
+    </string-array>
+    <string-array name="precipitation_intensity_unit_voices">
+        <item>毫米每小時</item>
+        <item>厘米每小時</item>
+        <item>英寸每小時</item>
+        <item>升每平方米每小時</item>
+    </string-array>
+
     <!-- distance unit. -->
     <string-array name="distance_units">
         <item>千米</item>

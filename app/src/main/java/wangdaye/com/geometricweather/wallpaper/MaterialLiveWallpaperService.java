@@ -343,12 +343,8 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                                 : "";
                     }
                     String dayNightType = configManager.getDayNightType();
-                    boolean daytime = true;
+                    boolean daytime = location.isDaylight();
                     switch (dayNightType) {
-                        case "auto":
-                            daytime = location.isDaylight();
-                            break;
-
                         case "day":
                             daytime = true;
                             break;

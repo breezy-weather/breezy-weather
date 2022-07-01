@@ -589,7 +589,7 @@ public class MfResultConverter {
                             rainForecast.desc,
                             rainForecast.rain > 1 ? WeatherCode.RAIN : getWeatherCode(null),
                             toInt((rainForecast.date / 60) - minuteZero), // TODO
-                            null,
+                            (Integer) null,
                             null
                     )
             );

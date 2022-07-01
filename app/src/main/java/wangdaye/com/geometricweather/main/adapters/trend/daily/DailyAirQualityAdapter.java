@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.main.adapters.trend.daily;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,10 +27,9 @@ import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
  * Daily air quality adapter.
  * */
 
-public class DailyAirQualityAdapter extends AbsDailyTrendAdapter<DailyAirQualityAdapter.ViewHolder> {
+public class DailyAirQualityAdapter extends AbsDailyTrendAdapter {
 
     private int mHighestIndex;
-    private int mSize;
 
     class ViewHolder extends AbsDailyTrendAdapter.ViewHolder {
 
@@ -89,54 +89,19 @@ public class DailyAirQualityAdapter extends AbsDailyTrendAdapter<DailyAirQuality
     }
 
     @SuppressLint("SimpleDateFormat")
-    public DailyAirQualityAdapter(GeoActivity activity, TrendRecyclerView parent, Location location) {
+    public DailyAirQualityAdapter(GeoActivity activity, Location location) {
         super(activity, location);
 
         Weather weather = location.getWeather();
         assert weather != null;
 
-        mHighestIndex = Integer.MIN_VALUE;
-        boolean valid = false;
+        mHighestIndex = 0;
         for (int i = weather.getDailyForecast().size() - 1; i >= 0; i --) {
             Integer index = weather.getDailyForecast().get(i).getAirQuality().getAqiIndex();
             if (index != null && index > mHighestIndex) {
                 mHighestIndex = index;
             }
-            if ((index != null && index != 0) || valid) {
-                valid = true;
-                mSize++;
-            }
         }
-        if (mHighestIndex == 0) {
-            mHighestIndex = AirQuality.AQI_INDEX_5;
-        }
-
-        List<TrendRecyclerView.KeyLine> keyLineList = new ArrayList<>();
-        keyLineList.add(
-                new TrendRecyclerView.KeyLine(
-                        AirQuality.AQI_INDEX_1,
-                        String.valueOf(AirQuality.AQI_INDEX_1),
-                        activity.getString(R.string.aqi_1),
-                        TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
-                )
-        );
-        keyLineList.add(
-                new TrendRecyclerView.KeyLine(
-                        AirQuality.AQI_INDEX_3,
-                        String.valueOf(AirQuality.AQI_INDEX_3),
-                        activity.getString(R.string.aqi_3),
-                        TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
-                )
-        );
-        keyLineList.add(
-                new TrendRecyclerView.KeyLine(
-                        AirQuality.AQI_INDEX_5,
-                        String.valueOf(AirQuality.AQI_INDEX_5),
-                        activity.getString(R.string.aqi_5),
-                        TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
-                )
-        );
-        parent.setData(keyLineList, mHighestIndex, 0);
     }
 
     @NonNull
@@ -148,12 +113,52 @@ public class DailyAirQualityAdapter extends AbsDailyTrendAdapter<DailyAirQuality
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(getActivity(), getLocation(), position);
+    public void onBindViewHolder(@NonNull AbsDailyTrendAdapter.ViewHolder holder, int position) {
+        ((ViewHolder)  holder).onBindView(getActivity(), getLocation(), position);
     }
 
     @Override
     public int getItemCount() {
-        return mSize;
+        return getLocation().getWeather().getDailyForecast().size();
+    }
+
+    @Override
+    public boolean isValid(Location location) {
+        return mHighestIndex > 0;
+    }
+
+    @Override
+    public String getDisplayName(Context context) {
+        return context.getString(R.string.tag_aqi);
+    }
+
+    @Override
+    public void bindBackgroundForHost(TrendRecyclerView host) {
+        List<TrendRecyclerView.KeyLine> keyLineList = new ArrayList<>();
+        keyLineList.add(
+                new TrendRecyclerView.KeyLine(
+                        AirQuality.AQI_INDEX_1,
+                        String.valueOf(AirQuality.AQI_INDEX_1),
+                        getActivity().getString(R.string.aqi_1),
+                        TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
+                )
+        );
+        keyLineList.add(
+                new TrendRecyclerView.KeyLine(
+                        AirQuality.AQI_INDEX_3,
+                        String.valueOf(AirQuality.AQI_INDEX_3),
+                        getActivity().getString(R.string.aqi_3),
+                        TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
+                )
+        );
+        keyLineList.add(
+                new TrendRecyclerView.KeyLine(
+                        AirQuality.AQI_INDEX_5,
+                        String.valueOf(AirQuality.AQI_INDEX_5),
+                        getActivity().getString(R.string.aqi_5),
+                        TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
+                )
+        );
+        host.setData(keyLineList, mHighestIndex, 0);
     }
 }

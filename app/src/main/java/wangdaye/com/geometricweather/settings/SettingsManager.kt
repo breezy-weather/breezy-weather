@@ -149,6 +149,11 @@ class SettingsManager private constructor(context: Context) {
             config.getString("precipitation_unit", "mm") ?: ""
         )
 
+    val precipitationIntensityUnit: PrecipitationIntensityUnit
+        get() = PrecipitationIntensityUnit.getInstance(
+            (config.getString("precipitation_unit", "mm") ?: "") + "ph"
+        )
+
     var pressureUnit: PressureUnit
         set(value) {
             config.edit().putString("pressure_unit", value.id).apply()

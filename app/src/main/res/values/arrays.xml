@@ -380,6 +380,26 @@
         <item>lpsqm</item>
     </string-array>
 
+    <!-- precipitation intensity unit. -->
+    <string-array name="precipitation_intensity_units">
+        <item>mm/h</item>
+        <item>cm/h</item>
+        <item>inch/h</item>
+        <item>L/m²/h</item>
+    </string-array>
+    <string-array name="precipitation_intensity_unit_voices">
+        <item>Millimeters per hour</item>
+        <item>Centimeter per hour</item>
+        <item>Inches per hour</item>
+        <item>Liters per square meter per hour</item>
+    </string-array>
+    <string-array name="precipitation_intensity_unit_values">
+        <item>mmph</item>
+        <item>cmph</item>
+        <item>inph</item>
+        <item>lpsqmph</item>
+    </string-array>
+
     <!-- temperature unit. -->
     <string-array name="temperature_units">
         <item>℃</item>

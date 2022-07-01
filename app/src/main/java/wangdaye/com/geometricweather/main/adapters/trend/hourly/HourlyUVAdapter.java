@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.main.adapters.trend.hourly;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,10 +27,9 @@ import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
  * Hourly UV adapter.
  * */
 
-public class HourlyUVAdapter extends AbsHourlyTrendAdapter<HourlyUVAdapter.ViewHolder> {
+public class HourlyUVAdapter extends AbsHourlyTrendAdapter {
 
-    private int highestIndex;
-    private int mSize;
+    private int mHighestIndex;
 
     class ViewHolder extends AbsHourlyTrendAdapter.ViewHolder {
 
@@ -59,7 +59,7 @@ public class HourlyUVAdapter extends AbsHourlyTrendAdapter<HourlyUVAdapter.ViewH
                     null, null,
                     (float) (index == null ? 0 : index),
                     String.format("%d", index == null ? 0 : index),
-                    (float) highestIndex,
+                    (float) mHighestIndex,
                     0f
             );
             mPolylineAndHistogramView.setLineColors(
@@ -93,40 +93,19 @@ public class HourlyUVAdapter extends AbsHourlyTrendAdapter<HourlyUVAdapter.ViewH
     }
 
     @SuppressLint("SimpleDateFormat")
-    public HourlyUVAdapter(GeoActivity activity,
-                           TrendRecyclerView parent,
-                           Location location) {
+    public HourlyUVAdapter(GeoActivity activity, Location location) {
         super(activity, location);
 
         Weather weather = location.getWeather();
         assert weather != null;
 
-        highestIndex = Integer.MIN_VALUE;
-        boolean valid = false;
+        mHighestIndex = 0;
         for (int i = weather.getHourlyForecast().size() - 1; i >= 0; i --) {
             Integer index = weather.getHourlyForecast().get(i).getUV().getIndex();
-            if (index != null && index > highestIndex) {
-                highestIndex = index;
-            }
-            if ((index != null && index != 0) || valid) {
-                valid = true;
-                mSize ++;
+            if (index != null && index > mHighestIndex) {
+                mHighestIndex = index;
             }
         }
-        if (highestIndex == 0) {
-            highestIndex = UV.UV_INDEX_EXCESSIVE;
-        }
-
-        List<TrendRecyclerView.KeyLine> keyLineList = new ArrayList<>();
-        keyLineList.add(
-                new TrendRecyclerView.KeyLine(
-                        UV.UV_INDEX_HIGH,
-                        String.valueOf(UV.UV_INDEX_HIGH),
-                        activity.getString(R.string.action_alert),
-                        TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
-                )
-        );
-        parent.setData(keyLineList, highestIndex, 0);
     }
 
     @NonNull
@@ -138,12 +117,36 @@ public class HourlyUVAdapter extends AbsHourlyTrendAdapter<HourlyUVAdapter.ViewH
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(getActivity(), getLocation(), position);
+    public void onBindViewHolder(@NonNull AbsHourlyTrendAdapter.ViewHolder holder, int position) {
+        ((ViewHolder) holder).onBindView(getActivity(), getLocation(), position);
     }
 
     @Override
     public int getItemCount() {
-        return mSize;
+        return getLocation().getWeather().getHourlyForecast().size();
+    }
+
+    @Override
+    public boolean isValid(Location location) {
+        return mHighestIndex > 0;
+    }
+
+    @Override
+    public String getDisplayName(Context context) {
+        return context.getString(R.string.tag_uv);
+    }
+
+    @Override
+    public void bindBackgroundForHost(TrendRecyclerView host) {
+        List<TrendRecyclerView.KeyLine> keyLineList = new ArrayList<>();
+        keyLineList.add(
+                new TrendRecyclerView.KeyLine(
+                        UV.UV_INDEX_HIGH,
+                        String.valueOf(UV.UV_INDEX_HIGH),
+                        getActivity().getString(R.string.action_alert),
+                        TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
+                )
+        );
+        host.setData(keyLineList, mHighestIndex, 0);
     }
 }

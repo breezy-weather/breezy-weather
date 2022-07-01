@@ -10,12 +10,10 @@ import androidx.lifecycle.LifecycleOwner
 import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.models.Location
 import wangdaye.com.geometricweather.common.basic.models.options.DarkMode
-import wangdaye.com.geometricweather.common.basic.models.weather.Weather
 import wangdaye.com.geometricweather.common.utils.DisplayUtils
 import wangdaye.com.geometricweather.main.MainActivity
 import wangdaye.com.geometricweather.settings.SettingsManager
 import wangdaye.com.geometricweather.theme.ThemeManager
-import java.util.*
 import kotlin.collections.HashMap
 
 private val preloadAttrIds = intArrayOf(
@@ -104,16 +102,6 @@ class MainThemeColorProvider(
         ) = isLightTheme(
             context = context,
             daylight = location.isDaylight
-        )
-
-        @JvmStatic
-        fun isLightTheme(
-            context: Context,
-            weather: Weather,
-            timeZone: TimeZone,
-        ) = isLightTheme(
-            context = context,
-            daylight = weather.isDaylight(timeZone)
         )
 
         @JvmStatic

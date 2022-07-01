@@ -215,16 +215,6 @@ public class DisplayUtils {
         return !DateFormat.is24HourFormat(context);
     }
 
-    public static boolean isDaylight(TimeZone timeZone) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeZone(timeZone);
-        int time = 60 * calendar.get(Calendar.HOUR_OF_DAY) + calendar.get(Calendar.MINUTE);
-
-        int sr = 60 * 6;
-        int ss = 60 * 18;
-        return sr < time && time < ss;
-    }
-
     // translationY, scaleX, scaleY
     @Size(3)
     public static Animator[] getFloatingOvershotEnterAnimators(View view) {

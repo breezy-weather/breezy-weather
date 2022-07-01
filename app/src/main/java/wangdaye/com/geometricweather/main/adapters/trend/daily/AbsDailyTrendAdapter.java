@@ -13,16 +13,17 @@ import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.Daily;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerViewAdapter;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.item.DailyTrendItemView;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
 import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider;
 
-public abstract class AbsDailyTrendAdapter<VH extends RecyclerView.ViewHolder> extends TrendRecyclerViewAdapter<VH>  {
+public abstract class AbsDailyTrendAdapter extends TrendRecyclerViewAdapter<AbsDailyTrendAdapter.ViewHolder>  {
 
     private final GeoActivity mActivity;
 
-    protected static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public final DailyTrendItemView dailyItem;
 
@@ -75,4 +76,14 @@ public abstract class AbsDailyTrendAdapter<VH extends RecyclerView.ViewHolder> e
     public GeoActivity getActivity() {
         return mActivity;
     }
+
+    public abstract boolean isValid(Location location);
+
+    public String getKey() {
+        return getClass().getName();
+    }
+
+    public abstract String getDisplayName(Context context);
+
+    public abstract void bindBackgroundForHost(TrendRecyclerView host);
 }

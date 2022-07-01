@@ -46,25 +46,25 @@
             android:id="@+id/container_main_hourly_trend_card_minutely"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/selectable_item_background"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/container_main_hourly_trend_card_minutelyTitle"
                 android:text="@string/precipitation_overview"
+                android:textStyle="bold"
                 android:layout_marginStart="@dimen/normal_margin"
                 android:layout_marginTop="2dp"
-                style="@style/content_text"
+                style="@style/title_text"
                 tools:ignore="RtlHardcoded" />
 
-            <wangdaye.com.geometricweather.common.ui.widgets.PrecipitationBar
+            <wangdaye.com.geometricweather.common.ui.widgets.precipitationBar.PrecipitationBar
                 android:id="@+id/container_main_hourly_trend_card_minutelyBar"
                 android:layout_width="match_parent"
-                android:layout_height="8dp"
-                android:layout_marginTop="@dimen/little_margin"
-                android:layout_marginBottom="@dimen/little_margin"
-                android:layout_marginStart="@dimen/normal_margin"
-                android:layout_marginEnd="@dimen/normal_margin"
+                android:layout_height="72dp"
+                android:paddingTop="36dp"
+                android:paddingStart="@dimen/normal_margin"
+                android:paddingEnd="@dimen/normal_margin"
+                android:paddingBottom="4dp"
                 tools:background="?attr/colorOutline" />
 
             <RelativeLayout
@@ -77,16 +77,45 @@
                 <TextView
                     android:id="@+id/container_main_hourly_trend_card_minutelyStartText"
                     android:layout_alignParentStart="true"
-                    style="@style/subtitle_text"
+                    style="@style/content_text"
                     tools:text="07:00"
+                    tools:ignore="RtlHardcoded" />
+
+                <TextView
+                    android:id="@+id/container_main_hourly_trend_card_minutelyCenterText"
+                    android:layout_centerInParent="true"
+                    style="@style/content_text"
+                    tools:text="08:00"
                     tools:ignore="RtlHardcoded" />
 
                 <TextView
                     android:id="@+id/container_main_hourly_trend_card_minutelyEndText"
                     android:layout_alignParentEnd="true"
-                    style="@style/subtitle_text"
+                    style="@style/content_text"
                     tools:text="09:00"
                     tools:ignore="RtlHardcoded" />
+
+                <View
+                    android:id="@+id/container_main_hourly_trend_card_minutelyStartLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?attr/colorOutline"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/container_main_hourly_trend_card_minutelyStartText"
+                    android:layout_toStartOf="@id/container_main_hourly_trend_card_minutelyCenterText"
+                    android:layout_marginStart="@dimen/little_margin"
+                    android:layout_marginEnd="@dimen/little_margin" />
+
+                <View
+                    android:id="@+id/container_main_hourly_trend_card_minutelyEndLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?attr/colorOutline"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/container_main_hourly_trend_card_minutelyCenterText"
+                    android:layout_toStartOf="@id/container_main_hourly_trend_card_minutelyEndText"
+                    android:layout_marginStart="@dimen/little_margin"
+                    android:layout_marginEnd="@dimen/little_margin" />
 
             </RelativeLayout>
 

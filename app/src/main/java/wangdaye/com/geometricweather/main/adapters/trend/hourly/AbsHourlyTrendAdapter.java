@@ -5,24 +5,22 @@ import android.view.View;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.TimeZone;
-
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.Hourly;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerViewAdapter;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.item.HourlyTrendItemView;
 import wangdaye.com.geometricweather.main.dialogs.HourlyWeatherDialog;
 import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider;
 
-public abstract class AbsHourlyTrendAdapter<VH extends RecyclerView.ViewHolder>
-        extends TrendRecyclerViewAdapter<VH>  {
+public abstract class AbsHourlyTrendAdapter extends TrendRecyclerViewAdapter<AbsHourlyTrendAdapter.ViewHolder>  {
 
     private final GeoActivity mActivity;
 
-    protected static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public final HourlyTrendItemView hourlyItem;
 
@@ -35,7 +33,6 @@ public abstract class AbsHourlyTrendAdapter<VH extends RecyclerView.ViewHolder>
                         StringBuilder talkBackBuilder, int position) {
             Context context = itemView.getContext();
             Weather weather = location.getWeather();
-            TimeZone timeZone = location.getTimeZone();
 
             assert weather != null;
             Hourly hourly = weather.getHourlyForecast().get(position);
@@ -82,4 +79,10 @@ public abstract class AbsHourlyTrendAdapter<VH extends RecyclerView.ViewHolder>
     public GeoActivity getActivity() {
         return mActivity;
     }
+
+    public abstract boolean isValid(Location location);
+
+    public abstract String getDisplayName(Context context);
+
+    public abstract void bindBackgroundForHost(TrendRecyclerView host);
 }

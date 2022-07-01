@@ -34,6 +34,19 @@ public class Minutely implements Serializable {
         this.cloudCover = cloudCover;
     }
 
+    public Minutely(Date date, long time, boolean daylight,
+                    String weatherText, WeatherCode weatherCode,
+                    int minuteInterval, @Nullable Double precipitationIntensity, @Nullable Integer cloudCover) {
+        this.date = date;
+        this.time = time;
+        this.daylight = daylight;
+        this.weatherText = weatherText;
+        this.weatherCode = weatherCode;
+        this.minuteInterval = minuteInterval;
+        this.dbz = precipitationIntensityToDBZ(precipitationIntensity);
+        this.cloudCover = cloudCover;
+    }
+
     public Date getDate() {
         return date;
     }
@@ -64,6 +77,20 @@ public class Minutely implements Serializable {
     }
 
     @Nullable
+    public Double getPrecipitationIntensity() {
+        if (dbz == null) {
+            return null;
+        }
+        if (dbz <= 5) {
+            return 0.0;
+        }
+        return Math.pow(
+                Math.pow(10, dbz / 10.0) / 200.0,
+                5.0 / 8.0
+        );
+    }
+
+    @Nullable
     public Integer getCloudCover() {
         return cloudCover;
     }
@@ -74,5 +101,17 @@ public class Minutely implements Serializable {
                 || weatherCode == WeatherCode.SLEET
                 || weatherCode == WeatherCode.HAIL
                 || weatherCode == WeatherCode.THUNDERSTORM;
+    }
+
+    @Nullable
+    private static Integer precipitationIntensityToDBZ(@Nullable Double intensity) {
+        if (intensity == null) {
+            return null;
+        }
+        return (int) (
+                10.0 * Math.log10(
+                        200.0 * Math.pow(intensity, 8.0 / 5.0)
+                )
+        );
     }
 }

@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.main.adapters.trend.daily;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.chart.PolylineAndHistogramView;
 import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.theme.ThemeManager;
 import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
@@ -31,7 +33,7 @@ import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
  * Daily temperature adapter.
  * */
 
-public class DailyTemperatureAdapter extends AbsDailyTrendAdapter<DailyTemperatureAdapter.ViewHolder> {
+public class DailyTemperatureAdapter extends AbsDailyTrendAdapter {
 
     private final ResourceProvider mResourceProvider;
     private final TemperatureUnit mTemperatureUnit;
@@ -147,16 +149,14 @@ public class DailyTemperatureAdapter extends AbsDailyTrendAdapter<DailyTemperatu
 
     @SuppressLint("SimpleDateFormat")
     public DailyTemperatureAdapter(GeoActivity activity,
-                                   TrendRecyclerView parent,
                                    Location location,
                                    ResourceProvider provider,
                                    TemperatureUnit unit) {
-        this(activity, parent, location, true, provider, unit);
+        this(activity, location, true, provider, unit);
     }
 
     @SuppressLint("SimpleDateFormat")
     public DailyTemperatureAdapter(GeoActivity activity,
-                                   TrendRecyclerView parent,
                                    Location location,
                                    boolean showPrecipitationProbability,
                                    ResourceProvider provider,
@@ -200,37 +200,6 @@ public class DailyTemperatureAdapter extends AbsDailyTrendAdapter<DailyTemperatu
         }
 
         mShowPrecipitationProbability = showPrecipitationProbability;
-
-        if (weather.getYesterday() == null) {
-            parent.setData(null,0, 0);
-        } else {
-            List<TrendRecyclerView.KeyLine> keyLineList = new ArrayList<>();
-            keyLineList.add(
-                    new TrendRecyclerView.KeyLine(
-                            weather.getYesterday().getDaytimeTemperature(),
-                            Temperature.getShortTemperature(
-                                    activity,
-                                    weather.getYesterday().getDaytimeTemperature(),
-                                    unit
-                            ),
-                            activity.getString(R.string.yesterday),
-                            TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
-                    )
-            );
-            keyLineList.add(
-                    new TrendRecyclerView.KeyLine(
-                            weather.getYesterday().getNighttimeTemperature(),
-                            Temperature.getShortTemperature(
-                                    activity,
-                                    weather.getYesterday().getNighttimeTemperature(),
-                                    unit
-                            ),
-                            activity.getString(R.string.yesterday),
-                            TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
-                    )
-            );
-            parent.setData(keyLineList, mHighestTemperature, mLowestTemperature);
-        }
     }
 
     @NonNull
@@ -242,14 +211,63 @@ public class DailyTemperatureAdapter extends AbsDailyTrendAdapter<DailyTemperatu
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(getActivity(), getLocation(), position);
+    public void onBindViewHolder(@NonNull AbsDailyTrendAdapter.ViewHolder holder, int position) {
+        ((ViewHolder) holder).onBindView(getActivity(), getLocation(), position);
     }
 
     @Override
     public int getItemCount() {
         assert getLocation().getWeather() != null;
         return getLocation().getWeather().getDailyForecast().size();
+    }
+
+    @Override
+    public boolean isValid(Location location) {
+        return true;
+    }
+
+    @Override
+    public String getDisplayName(Context context) {
+        return context.getString(R.string.tag_temperature);
+    }
+
+    @Override
+    public void bindBackgroundForHost(TrendRecyclerView host) {
+        Weather weather = getLocation().getWeather();
+        if (weather == null) {
+            return;
+        }
+
+        if (weather.getYesterday() == null) {
+            host.setData(null,0, 0);
+        } else {
+            List<TrendRecyclerView.KeyLine> keyLineList = new ArrayList<>();
+            keyLineList.add(
+                    new TrendRecyclerView.KeyLine(
+                            weather.getYesterday().getDaytimeTemperature(),
+                            Temperature.getShortTemperature(
+                                    getActivity(),
+                                    weather.getYesterday().getDaytimeTemperature(),
+                                    SettingsManager.getInstance(getActivity()).getTemperatureUnit()
+                            ),
+                            getActivity().getString(R.string.yesterday),
+                            TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
+                    )
+            );
+            keyLineList.add(
+                    new TrendRecyclerView.KeyLine(
+                            weather.getYesterday().getNighttimeTemperature(),
+                            Temperature.getShortTemperature(
+                                    getActivity(),
+                                    weather.getYesterday().getNighttimeTemperature(),
+                                    SettingsManager.getInstance(getActivity()).getTemperatureUnit()
+                            ),
+                            getActivity().getString(R.string.yesterday),
+                            TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
+                    )
+            );
+            host.setData(keyLineList, mHighestTemperature, mLowestTemperature);
+        }
     }
 
     protected int getDaytimeTemperatureC(Weather weather, int index) {

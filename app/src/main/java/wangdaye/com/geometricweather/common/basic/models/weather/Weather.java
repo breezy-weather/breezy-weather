@@ -81,19 +81,4 @@ public class Weather
         return currentTime >= updateTime
                 && currentTime - updateTime < pollingIntervalHours * 60 * 60 * 1000;
     }
-
-    public boolean isDaylight(TimeZone timeZone) {
-        Date riseDate = getDailyForecast().get(0).sun().getRiseDate();
-        Date setDate = getDailyForecast().get(0).sun().getSetDate();
-        if (riseDate == null || setDate == null) {
-            return DisplayUtils.isDaylight(timeZone);
-        }
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeZone(timeZone);
-        long timestamp = calendar.getTime().getTime();
-
-        return riseDate.getTime() < timestamp
-                && timestamp < setDate.getTime();
-    }
 }
