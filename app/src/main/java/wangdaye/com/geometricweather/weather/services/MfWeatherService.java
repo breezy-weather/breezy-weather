@@ -5,7 +5,10 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -89,10 +92,19 @@ public class MfWeatherService extends WeatherService {
                 || location.getProvince().equals("43") || location.getProvince().equals("63")
                 || location.getProvince().equals("69") || location.getProvince().equals("73")
                 || location.getProvince().equals("74")) {
-            aqiAtmoAura = mAtmoAuraApi.getQAFull(
+
+            SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+            Date tomorrow = new Date();
+            Calendar c = Calendar.getInstance();
+            c.setTime(tomorrow);
+            c.add(Calendar.DATE, 1);
+            tomorrow = c.getTime();
+            aqiAtmoAura = mAtmoAuraApi.getPointDetails(
                     SettingsManager.getInstance(context).getProviderIqaAtmoAuraKey(),
                     String.valueOf(location.getLatitude()),
-                    String.valueOf(location.getLongitude())
+                    String.valueOf(location.getLongitude()),
+                    fmt.format(tomorrow), // Tomorrow because it gives access to D-1 and D+1
+                    true
             ).onExceptionResumeNext(
                     Observable.create(emitter -> emitter.onNext(new EmptyAtmoAuraQAResult()))
             );
