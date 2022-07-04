@@ -12,9 +12,10 @@ import wangdaye.com.geometricweather.weather.json.atmoaura.AtmoAuraQAResult;
 
 public interface AtmoAuraIqaApi {
 
-    @GET("air2go/full_request")
-    Observable<AtmoAuraQAResult> getQAFull(@Query("api_token") String api_token,
-                                           @Query("latitude") String latitude,
-                                           @Query("longitude") String longitude);
-
+    @GET("air2go/v3/point")
+    Observable<AtmoAuraQAResult> getPointDetails(@Query("api_token") String api_token,
+                                                 @Query("y") String latitude,
+                                                 @Query("x") String longitude,
+                                                 @Query("datetime_echeance") String datetime_echeance,
+                                                 @Query("with_list") boolean with_list);
 }

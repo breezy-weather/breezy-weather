@@ -94,11 +94,11 @@
     <string name="precipitation_rainstorm">Torentielle</string>
 
     <string name="aqi_1">Bon</string>
-    <string name="aqi_2">Modéré</string>
-    <string name="aqi_3">Mauvais pour sensibles</string>
+    <string name="aqi_2">Moyen</string>
+    <string name="aqi_3">Dégradé</string>
     <string name="aqi_4">Mauvais</string>
     <string name="aqi_5">Très mauvais</string>
-    <string name="aqi_6">Dangereux</string>
+    <string name="aqi_6">Extrêmement mauvais</string>
 
     <string name="phase_new">Nouvelle lune</string>
     <string name="phase_waxing_crescent">Premier croissant</string>
