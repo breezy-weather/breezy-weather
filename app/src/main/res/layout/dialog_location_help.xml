@@ -99,7 +99,7 @@
 
         <ImageView
             android:id="@+id/dialog_location_help_manageIcon"
-            android:src="@drawable/ic_building"
+            android:src="@drawable/ic_bookmark"
             android:layout_centerVertical="true"
             style="@style/material_icon"
             tools:ignore="ContentDescription"
