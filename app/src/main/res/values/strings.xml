@@ -199,6 +199,9 @@
     <string name="feedback_enable_location_information">Enable Location Information</string>
     <string name="feedback_select_location_provider">Select Location Provider</string>
     <string name="feedback_add_location_manually">Add Location Manually And Delete \'$\'</string>
+    <string name="feedback_api_limit_reached">API requests limit reached</string>
+    <string name="feedback_api_help_title">API requests limit reached?</string>
+    <string name="feedback_add_api_key">To workaround the limit, add your own API key.</string>
     <string name="feedback_view_style">View style</string>
     <string name="feedback_show_widget_card">Background color</string>
     <string name="feedback_show_widget_card_alpha">Transparency</string>

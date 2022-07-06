@@ -172,6 +172,9 @@
     <string name="feedback_enable_location_information">Activez les informations de localisation</string>
     <string name="feedback_select_location_provider">Sélectionnez un fournisseur de localisation</string>
     <string name="feedback_add_location_manually">Ajoutez manuellement la localisation et supprimez \'$\'</string>
+    <string name="feedback_api_limit_reached">Limite de requêtes API atteinte</string>
+    <string name="feedback_api_help_title">Limite de requêtes API atteinte ?</string>
+    <string name="feedback_add_api_key">Pour contourner la limite, ajoutez votre propre clé API.</string>
     <string name="feedback_view_style">Apparence</string>
     <string name="feedback_show_widget_card">Couleur d’arrière-plan</string>
     <string name="feedback_show_widget_card_alpha">Transparence</string>

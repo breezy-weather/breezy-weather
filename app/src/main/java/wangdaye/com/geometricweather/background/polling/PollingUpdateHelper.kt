@@ -119,7 +119,7 @@ class PollingUpdateHelper(
             if (locationList[index].isUsable) {
                 requestData(index, true)
             } else {
-                RequestWeatherCallback(index, total).requestWeatherFailed(locationList[index])
+                RequestWeatherCallback(index, total).requestWeatherFailed(locationList[index], false)
             }
         }
     }
@@ -146,11 +146,11 @@ class PollingUpdateHelper(
 
                 checkToRequestNextOrCompleted()
             } else {
-                requestWeatherFailed(requestLocation)
+                requestWeatherFailed(requestLocation, false)
             }
         }
 
-        override fun requestWeatherFailed(requestLocation: Location) {
+        override fun requestWeatherFailed(requestLocation: Location, apiLimitReached: Boolean) {
             val old = locationList[index].weather
             locationList[index] = requestLocation
 

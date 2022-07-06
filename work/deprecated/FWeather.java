@@ -32,7 +32,7 @@ public class FWeather {
                     if (response.isSuccessful() && response.body() != null) {
                         l.requestWeatherSuccess(Weather.buildWeather(response.body()), location);
                     } else {
-                        l.requestWeatherFailed(location);
+                        l.requestWeatherFailed(location, false);
                     }
                 }
             }
@@ -40,7 +40,7 @@ public class FWeather {
             @Override
             public void onFailure(Call<FWResult> call, Throwable t) {
                 if (l != null) {
-                    l.requestWeatherFailed(location);
+                    l.requestWeatherFailed(location, false);
                 }
             }
         });

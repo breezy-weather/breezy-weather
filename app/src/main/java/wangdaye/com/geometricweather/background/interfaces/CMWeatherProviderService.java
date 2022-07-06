@@ -204,12 +204,12 @@ public class CMWeatherProviderService extends WeatherProviderService
                 mRequest.complete(new ServiceRequestResult.Builder(builder.build()).build());
             }
         } catch (Exception ignore) {
-            requestWeatherFailed(requestLocation);
+            requestWeatherFailed(requestLocation, false);
         }
     }
 
     @Override
-    public void requestWeatherFailed(@NonNull Location requestLocation) {
+    public void requestWeatherFailed(@NonNull Location requestLocation, @NonNull Boolean apiLimitReached) {
         if (mRequest != null) {
             mRequest.fail();
         }
