@@ -5,7 +5,7 @@
     <item android:id="@+id/action_manage"
         android:title="@string/action_manage"
         android:orderInCategory="100"
-        android:icon="@drawable/ic_building"
+        android:icon="@drawable/ic_bookmark"
         app:showAsAction="ifRoom" />
 
     <item android:id="@+id/action_settings"

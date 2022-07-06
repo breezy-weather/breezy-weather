@@ -48,7 +48,7 @@
 
                     <androidx.appcompat.widget.AppCompatImageButton
                         android:id="@+id/currentLocationButton"
-                        android:src="@drawable/ic_location"
+                        android:src="@drawable/ic_my_location"
                         android:tint="?attr/colorPrimary"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"

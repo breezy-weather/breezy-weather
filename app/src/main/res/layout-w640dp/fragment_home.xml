@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@android:color/transparent"
-            app:navigationIcon="@drawable/ic_building"
+            app:navigationIcon="@drawable/ic_bookmark"
             app:navigationContentDescription="@string/action_manage"
             app:navigationIconTint="@android:color/white"
             app:titleTextColor="@android:color/white"
