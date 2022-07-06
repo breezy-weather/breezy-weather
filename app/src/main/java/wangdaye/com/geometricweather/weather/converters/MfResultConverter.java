@@ -246,7 +246,9 @@ public class MfResultConverter {
             Integer highestO3 = null;
             Integer highestNO2 = null;
             Integer totalPM25 = null;
+            int countPM25 = 0;
             Integer totalPM10 = null;
+            int countPM10 = 0;
             Integer highestSO2 = null;
 
             String pattern;
@@ -281,6 +283,7 @@ public class MfResultConverter {
                                     } else {
                                         totalPM25 += horaire.concentration;
                                     }
+                                    ++countPM25;
                                     break;
                                 case "pm10":
                                     if (totalPM10 == null) {
@@ -288,6 +291,7 @@ public class MfResultConverter {
                                     } else {
                                         totalPM10 += horaire.concentration;
                                     }
+                                    ++countPM10;
                                     break;
                                 case "so2":
                                     if (highestSO2 == null || highestSO2 < horaire.concentration) {
@@ -303,18 +307,10 @@ public class MfResultConverter {
             Float aqiPM25 = null;
             Float aqiPM10 = null;
             if (totalPM25 != null) {
-                if (hourlyAqi) {
-                    aqiPM25 = totalPM25.floatValue();
-                } else {
-                    aqiPM25 = totalPM25.floatValue() / 24;
-                }
+                aqiPM25 = totalPM25.floatValue() / countPM25;
             }
             if (totalPM10 != null) {
-                if (hourlyAqi) {
-                    aqiPM10 = totalPM10.floatValue();
-                } else {
-                    aqiPM10 = totalPM10.floatValue() / 24;
-                }
+                aqiPM10 = totalPM10.floatValue() / countPM10;
             }
 
             Integer aqiIndex = getAqiIndex(aqiPM25, aqiPM10, highestNO2, highestO3, highestSO2);
