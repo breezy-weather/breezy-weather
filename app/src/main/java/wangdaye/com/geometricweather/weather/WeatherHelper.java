@@ -29,7 +29,7 @@ public class WeatherHelper {
 
     public interface OnRequestWeatherListener {
         void requestWeatherSuccess(@NonNull Location requestLocation);
-        void requestWeatherFailed(@NonNull Location requestLocation);
+        void requestWeatherFailed(@NonNull Location requestLocation, @NonNull Boolean apiLimitReached);
     }
 
     public interface OnRequestLocationListener {
@@ -47,7 +47,7 @@ public class WeatherHelper {
     public void requestWeather(Context c, Location location, @NonNull final OnRequestWeatherListener l) {
         final WeatherService service = mServiceSet.get(location.getWeatherSource());
         if (!NetworkUtils.isAvailable(c)) {
-            l.requestWeatherFailed(location);
+            l.requestWeatherFailed(location, false);
             return;
         }
 
@@ -65,17 +65,18 @@ public class WeatherHelper {
                     }
                     l.requestWeatherSuccess(requestLocation);
                 } else {
-                    requestWeatherFailed(requestLocation);
+                    requestWeatherFailed(requestLocation, false);
                 }
             }
 
             @Override
-            public void requestWeatherFailed(@NonNull Location requestLocation) {
+            public void requestWeatherFailed(@NonNull Location requestLocation, @NonNull Boolean apiLimitReached) {
                 l.requestWeatherFailed(
                         Location.copy(
                                 requestLocation,
                                 DatabaseHelper.getInstance(c).readWeather(requestLocation)
-                        )
+                        ),
+                        apiLimitReached
                 );
             }
         });

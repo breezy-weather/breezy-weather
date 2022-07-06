@@ -138,7 +138,7 @@ public class MfWeatherService extends WeatherService {
 
                     @Override
                     public void onFailed() {
-                        callback.requestWeatherFailed(location);
+                        callback.requestWeatherFailed(location, this.isApiLimitReached());
                     }
                 }));
     }

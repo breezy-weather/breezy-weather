@@ -75,13 +75,13 @@ public class CaiYunWeatherService extends WeatherService {
                                     Location.copy(location, wrapper.result)
                             );
                         } else {
-                            callback.requestWeatherFailed(location);
+                            onFailed();
                         }
                     }
 
                     @Override
                     public void onFailed() {
-                        callback.requestWeatherFailed(location);
+                        callback.requestWeatherFailed(location, this.isApiLimitReached());
                     }
                 }));
     }

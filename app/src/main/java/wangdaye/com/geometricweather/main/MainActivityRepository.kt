@@ -20,7 +20,8 @@ class MainActivityRepository @Inject constructor(
         fun onCompleted(
             location: Location,
             locationFailed: Boolean?,
-            weatherRequestFailed: Boolean
+            weatherRequestFailed: Boolean,
+            apiLimitReached: Boolean
         )
     }
 
@@ -147,18 +148,20 @@ class MainActivityRepository @Inject constructor(
                 callback.onCompleted(
                     requestLocation,
                     locationFailed = locationFailed,
-                    weatherRequestFailed = false
+                    weatherRequestFailed = false,
+                    apiLimitReached = false
                 )
             }
 
-            override fun requestWeatherFailed(requestLocation: Location) {
+            override fun requestWeatherFailed(requestLocation: Location, apiLimitReached: Boolean) {
                 if (requestLocation.formattedId != location.formattedId) {
                     return
                 }
                 callback.onCompleted(
                     requestLocation,
                     locationFailed = locationFailed,
-                    weatherRequestFailed = true
+                    weatherRequestFailed = true,
+                    apiLimitReached = apiLimitReached
                 )
             }
         }

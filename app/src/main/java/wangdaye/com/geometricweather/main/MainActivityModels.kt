@@ -60,6 +60,7 @@ class SelectableLocationList(
 enum class MainMessage {
     LOCATION_FAILED,
     WEATHER_REQ_FAILED,
+    API_LIMIT_REACHED,
 }
 
 class DayNightLocation(

@@ -42,7 +42,7 @@ public class HefengWeather {
                     if (response.isSuccessful() && response.body() != null) {
                         l.requestWeatherSuccess(Weather.buildWeather(oldResult, response.body()), location);
                     } else {
-                        l.requestWeatherFailed(location);
+                        l.requestWeatherFailed(location, false);
                     }
                 }
             }
@@ -50,7 +50,7 @@ public class HefengWeather {
             @Override
             public void onFailure(Call<HefengResult> call, Throwable t) {
                 if (l != null) {
-                    l.requestWeatherFailed(location);
+                    l.requestWeatherFailed(location, false);
                 }
             }
         });

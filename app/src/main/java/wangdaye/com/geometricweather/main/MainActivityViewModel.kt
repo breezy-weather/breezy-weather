@@ -165,8 +165,11 @@ class MainActivityViewModel @Inject constructor(
         location: Location,
         locationResult: Boolean,
         weatherUpdateResult: Boolean,
+        apiLimitReached: Boolean,
     ) {
-        if (!weatherUpdateResult) {
+        if (apiLimitReached) {
+            mainMessage.setValue(MainMessage.API_LIMIT_REACHED)
+        } else if (!weatherUpdateResult) {
             mainMessage.setValue(MainMessage.WEATHER_REQ_FAILED)
         } else if (!locationResult) {
             mainMessage.setValue(MainMessage.LOCATION_FAILED)
@@ -466,12 +469,14 @@ class MainActivityViewModel @Inject constructor(
     override fun onCompleted(
         location: Location,
         locationFailed: Boolean?,
-        weatherRequestFailed: Boolean
+        weatherRequestFailed: Boolean,
+        apiLimitReached: Boolean,
     ) {
         onUpdateResult(
             location = location,
             locationResult = locationFailed != true,
-            weatherUpdateResult = !weatherRequestFailed
+            weatherUpdateResult = !weatherRequestFailed,
+            apiLimitReached = apiLimitReached
         )
     }
 }
