@@ -245,12 +245,10 @@ public class MfResultConverter {
         } else {
             Integer highestO3 = null;
             Integer highestNO2 = null;
-            Integer highestPM25 = null;
-            Integer highestPM10 = null;
+            Integer totalPM25 = null;
+            Integer totalPM10 = null;
             Integer highestSO2 = null;
-            Integer tmpPolluant = null;
 
-            // For each day, we take the highest (worst) value from the day (we loop through the hourly result)
             String pattern;
             if (hourlyAqi) {
                 pattern = "yyyyMMddHH";
@@ -263,37 +261,67 @@ public class MfResultConverter {
             for (AtmoAuraQAResult.Polluant polluant : aqiAtmoAuraResult.polluants) {
                 for (AtmoAuraQAResult.Polluant.Horaire horaire : polluant.horaires) {
                     if (dateFormatUtc.format(requestedDate).equals(dateFormatLocal.format(horaire.datetimeEcheance))) {
-                        if (tmpPolluant == null || tmpPolluant < horaire.concentration) {
-                            tmpPolluant = horaire.concentration;
+                        if (horaire.concentration != null) {
+                            // For PM 2.5 and PM 10, it's the daily mean of the day
+                            // For the others (O3, No2, SO2), it's the maximum value
+                            switch (polluant.polluant) {
+                                case "o3":
+                                    if (highestO3 == null || highestO3 < horaire.concentration) {
+                                        highestO3 = horaire.concentration;
+                                    }
+                                    break;
+                                case "no2":
+                                    if (highestNO2 == null || highestNO2 < horaire.concentration) {
+                                        highestNO2 = horaire.concentration;
+                                    }
+                                    break;
+                                case "pm2.5":
+                                    if (totalPM25 == null) {
+                                        totalPM25 = horaire.concentration;
+                                    } else {
+                                        totalPM25 += horaire.concentration;
+                                    }
+                                    break;
+                                case "pm10":
+                                    if (totalPM10 == null) {
+                                        totalPM10 = horaire.concentration;
+                                    } else {
+                                        totalPM10 += horaire.concentration;
+                                    }
+                                    break;
+                                case "so2":
+                                    if (highestSO2 == null || highestSO2 < horaire.concentration) {
+                                        highestSO2 = horaire.concentration;
+                                    }
+                                    break;
+                            }
                         }
                     }
                 }
-                switch (polluant.polluant) {
-                    case "o3":
-                        highestO3 = tmpPolluant;
-                        break;
-                    case "no2":
-                        highestNO2 = tmpPolluant;
-                        break;
-                    case "pm25":
-                        highestPM25 = tmpPolluant;
-                        break;
-                    case "pm10":
-                        highestPM10 = tmpPolluant;
-                        break;
-                    case "so2":
-                        highestSO2 = tmpPolluant;
-                        break;
-                }
-
-                tmpPolluant = null;
             }
 
-            Integer aqiIndex = getAqiIndex(highestPM25, highestPM10, highestNO2, highestO3, highestSO2);
+            Float aqiPM25 = null;
+            Float aqiPM10 = null;
+            if (totalPM25 != null) {
+                if (hourlyAqi) {
+                    aqiPM25 = totalPM25.floatValue();
+                } else {
+                    aqiPM25 = totalPM25.floatValue() / 24;
+                }
+            }
+            if (totalPM10 != null) {
+                if (hourlyAqi) {
+                    aqiPM10 = totalPM10.floatValue();
+                } else {
+                    aqiPM10 = totalPM10.floatValue() / 24;
+                }
+            }
+
+            Integer aqiIndex = getAqiIndex(aqiPM25, aqiPM10, highestNO2, highestO3, highestSO2);
 
             return new AirQuality(
                 CommonConverter.getAqiQuality(context, aqiIndex), aqiIndex,
-                highestPM25 != null ? highestPM25.floatValue() : null, highestPM10 != null ? highestPM10.floatValue() : null,
+                aqiPM25, aqiPM10,
                 highestSO2 != null ? highestSO2.floatValue() : null, highestNO2 != null ? highestNO2.floatValue() : null,
                 highestO3 != null ? highestO3.floatValue() : null, null
             );
@@ -301,17 +329,17 @@ public class MfResultConverter {
     }
 
     // European AQI, values from https://www.atmo-nouvelleaquitaine.org/article/le-nouvel-indice-atmo-de-la-qualite-de-lair-plus-precis-et-plus-complet
-    private static Integer getAqiIndex(Integer pm25, Integer pm10, Integer no2, Integer o3, Integer so2) {
+    private static Integer getAqiIndex(Float pm25, Float pm10, Integer no2, Integer o3, Integer so2) {
         if (pm25 == null && pm10 == null && no2 == null && o3 == null && so2 == null) {
             return null;
         }
 
         // Avoids null pointer exceptions
         if (pm25 == null) {
-            pm25 = 0;
+            pm25 = 0f;
         }
         if (pm10 == null) {
-            pm10 = 0;
+            pm10 = 0f;
         }
         if (no2 == null) {
             no2 = 0;
@@ -323,22 +351,23 @@ public class MfResultConverter {
             so2 = 0;
         }
 
+        // As we don't have any values, we take middle values between minimum and maximum values for the index to be in the correct color
         if (pm25 > 75 || pm10 > 150 || no2 > 340 || o3 > 380 || so2 > 750) {
-            return AirQuality.AQI_INDEX_5 + 50;
+            return (AirQuality.AQI_INDEX_5 + ((AirQuality.AQI_INDEX_5 - AirQuality.AQI_INDEX_4) / 2));
         }
         if (pm25 > 50 || pm10 > 100 || no2 > 230 || o3 > 240 || so2 > 500) {
-            return AirQuality.AQI_INDEX_5;
+            return (AirQuality.AQI_INDEX_5 - ((AirQuality.AQI_INDEX_5 - AirQuality.AQI_INDEX_4) / 2));
         }
         if (pm25 > 25 || pm10 > 50 || no2 > 120 || o3 > 130 || so2 > 350) {
-            return AirQuality.AQI_INDEX_4;
+            return (AirQuality.AQI_INDEX_4 - ((AirQuality.AQI_INDEX_4 - AirQuality.AQI_INDEX_3) / 2));
         }
         if (pm25 > 20 || pm10 > 40 || no2 > 90 || o3 > 100 || so2 > 200) {
-            return AirQuality.AQI_INDEX_3;
+            return (AirQuality.AQI_INDEX_3 - ((AirQuality.AQI_INDEX_3 - AirQuality.AQI_INDEX_2) / 2));
         }
         if (pm25 > 10 || pm10 > 20 || no2 > 40 || o3 > 50 || so2 > 100) {
-            return AirQuality.AQI_INDEX_2;
+            return (AirQuality.AQI_INDEX_2 - ((AirQuality.AQI_INDEX_2 - AirQuality.AQI_INDEX_1) / 2));
         }
-        return AirQuality.AQI_INDEX_1;
+        return AirQuality.AQI_INDEX_1 / 2;
     }
 
     private static HalfDay getHalfDay(Context context, boolean isDaytime, List<Hourly> hourly, List<MfForecastResult.Forecast> hourlyForecast, MfForecastResult.DailyForecast dailyForecast) {
