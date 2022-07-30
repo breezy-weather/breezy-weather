@@ -10,6 +10,7 @@ import java.util.Date;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.weather.AirQuality;
+import wangdaye.com.geometricweather.common.basic.models.weather.UV;
 import wangdaye.com.geometricweather.common.basic.models.weather.Wind;
 
 public class CommonConverter {
@@ -121,5 +122,28 @@ public class CommonConverter {
         int currentTime = calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE);
 
         return sunriseTime < currentTime && currentTime < sunsetTime;
+    }
+
+    public static UV getCurrentUV(int dayMaxUV, Date currentDate, Date sunriseDate, Date sunsetDate) {
+        if (currentDate == null || sunriseDate == null || sunsetDate == null || sunriseDate.after(sunsetDate))
+            return new UV(null, null, null);
+
+        // You can visualize formula here: https://www.desmos.com/calculator/lna7dco4zi
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(currentDate);
+        float currentTime = calendar.get(Calendar.HOUR_OF_DAY) + calendar.get(Calendar.MINUTE) / 60f; // Approximating to the minute is enough
+
+        calendar.setTime(sunriseDate);
+        float sunRiseTime = calendar.get(Calendar.HOUR_OF_DAY) + calendar.get(Calendar.MINUTE) / 60f; // b in desmos graph
+
+        calendar.setTime(sunsetDate);
+        float sunSetTime = calendar.get(Calendar.HOUR_OF_DAY) + calendar.get(Calendar.MINUTE) / 60f; // c in desmos graph
+
+        float sunlightDuration = sunSetTime - sunRiseTime; // d in desmos graph
+
+        float sunRiseOffset = (float) -Math.PI * sunRiseTime / sunlightDuration; // o in desmos graph
+        double currentUV = dayMaxUV * Math.sin(Math.PI / sunlightDuration * currentTime + sunRiseOffset); // dayMaxUV = a in desmos graph
+
+        return new UV(Math.toIntExact(Math.round(currentUV)), null, null);
     }
 }
