@@ -206,7 +206,7 @@ public class MfResultConverter {
                                     currentResult.observation.wind.speed * 3.6f,
                                     CommonConverter.getWindLevel(context, currentResult.observation.wind.speed * 3.6f)
                             ),
-                            new UV(null, null, null),
+                            getCurrentUV(new Date(), forecastResult.dailyForecasts),
                             getAirQuality(context, new Date(), aqiAtmoAuraResult, true),
                             null,
                             null,
@@ -542,6 +542,17 @@ public class MfResultConverter {
             return snow.cumul24H;
         }
         return null;
+    }
+
+    private static UV getCurrentUV(Date currentDate, List<MfForecastResult.DailyForecast> dailyForecasts) {
+        if (dailyForecasts == null || dailyForecasts.isEmpty())
+            return new UV(null, null, null);
+
+        MfForecastResult.DailyForecast todayForecast = dailyForecasts.get(0);
+        if (todayForecast == null || todayForecast.sun.rise == null || todayForecast.sun.set == null)
+            return new UV(null, null, null);
+
+        return CommonConverter.getCurrentUV(todayForecast.uv, currentDate, new Date(todayForecast.sun.rise * 1000), new Date(todayForecast.sun.set * 1000));
     }
 
     private static Precipitation getHourlyPrecipitation(MfForecastResult.Forecast hourlyForecast) {
