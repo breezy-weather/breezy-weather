@@ -3,6 +3,7 @@ package wangdaye.com.geometricweather.common.retrofit;
 import android.os.Build;
 import android.util.Log;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -14,6 +15,7 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 
+import okhttp3.Cache;
 import okhttp3.ConnectionSpec;
 import okhttp3.OkHttpClient;
 import okhttp3.TlsVersion;
@@ -86,11 +88,23 @@ public class TLSCompactHelper {
         }
     }
 
+    private static Cache clientCache = null;
+    public static boolean createClientCache(File directory)
+    {
+        if (clientCache != null || directory == null || !directory.canWrite())
+            return false;
+
+        // cf. https://square.github.io/okhttp/features/caching/
+        clientCache = new Cache(directory, 64L * 1024L * 1024L); // 64 MiB
+        return true;
+    }
+
     public static OkHttpClient.Builder getClientBuilder() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.connectTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS)
-                .writeTimeout(45, TimeUnit.SECONDS);
+                .writeTimeout(45, TimeUnit.SECONDS)
+                .cache(clientCache);
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             try {
                 SSLContext sc = SSLContext.getInstance("TLSv1.2");
@@ -111,8 +125,7 @@ public class TLSCompactHelper {
                 builder.connectionSpecs(specs)
                         .followRedirects(true)
                         .followSslRedirects(true)
-                        .retryOnConnectionFailure(true)
-                        .cache(null);
+                        .retryOnConnectionFailure(true);
             } catch (Exception e) {
                 Log.e("OkHttpTLSCompat", "Error while setting TLS 1.2", e);
             }
