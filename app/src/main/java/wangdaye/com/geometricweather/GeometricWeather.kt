@@ -3,12 +3,14 @@ package wangdaye.com.geometricweather
 import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.os.Process
+import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.multidex.MultiDexApplication
 import androidx.work.Configuration
 import dagger.hilt.android.HiltAndroidApp
 import wangdaye.com.geometricweather.common.basic.GeoActivity
+import wangdaye.com.geometricweather.common.retrofit.TLSCompactHelper
 import wangdaye.com.geometricweather.common.utils.LanguageUtils
 import wangdaye.com.geometricweather.common.utils.helpers.BuglyHelper
 import wangdaye.com.geometricweather.settings.SettingsManager
@@ -187,6 +189,10 @@ class GeometricWeather : MultiDexApplication(),
 
     override fun onCreate() {
         super.onCreate()
+
+        val cacheCreated = TLSCompactHelper.createClientCache(baseContext.cacheDir)
+        if (!cacheCreated)
+            Log.e("GeometricWeather", "Failed to create Http client cache");
 
         instance = this
         LanguageUtils.setLanguage(
