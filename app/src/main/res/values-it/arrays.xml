@@ -12,31 +12,44 @@
     <!-- Dark mode. -->
     <string-array name="dark_modes">
         <item>Automatico</item>
-        <item>Follow system</item>
+        <item>Segui il sistema</item>
         <item>Chiaro</item>
         <item>Scuro</item>
     </string-array>
 
     <!-- UI style. -->
     <string-array name="ui_styles">
-        <item>Orbita</item>
-        <item>Material</item>
+        <item>Cielo circolare</item>
+        <item>Animazione material</item>
     </string-array>
 
     <!-- automatic refresh rate. -->
     <string-array name="automatic_refresh_rates">
-        <item>0:30</item>
-        <item>1:00</item>
-        <item>1:30</item>
-        <item>2:00</item>
-        <item>2:30</item>
-        <item>3:00</item>
-        <item>3:30</item>
-        <item>4:00</item>
-        <item>4:30</item>
-        <item>5:00</item>
-        <item>5:30</item>
-        <item>6:00</item>
+        <item>Mezz\'ora</item>
+        <item>1 ora</item>
+        <item>1,5 ore</item>
+        <item>2 ore</item>
+        <item>2,5 ore</item>
+        <item>3 ore</item>
+        <item>3,5 ore</item>
+        <item>4 ore</item>
+        <item>4,5 ore</item>
+        <item>5 ore</item>
+        <item>5,5 ore</item>
+        <item>6 ore</item>
+    </string-array>
+
+    <string-array name="week_icon_modes">
+        <item>Automatico</item>
+        <item>@string/daytime</item>
+        <item>@string/nighttime</item>
+    </string-array>
+
+    <string-array name="notification_styles">
+        <item>Nativo</item>
+        <item>Città</item>
+        <item>@string/daily_overview</item>
+        <item>@string/hourly_overview</item>
     </string-array>
 
     <!-- notification text color. -->
@@ -57,17 +70,22 @@
         <item>Verticale</item>
         <item>Oreo</item>
         <item>Oreo (Google sans)</item>
-        <item>Temperature</item>
+        <item>Temperatura</item>
+    </string-array>
+
+    <string-array name="week_widget_styles">
+        <item>5 giorni</item>
+        <item>3 giorni</item>
     </string-array>
 
     <!-- Widget subtitle data. -->
     <string-array name="subtitle_data">
         <item>Ultimo aggiornamento</item>
-        <item>Qualità aria</item>
+        <item>Qualità aria (non valido in alcune aree)</item>
         <item>Vento</item>
         <item>Temperatura percepita</item>
-        <item>Calendario Lunare</item>
-        <item>Custom</item>
+        <item>Calendario lunare</item>
+        <item>Personalizzato</item>
     </string-array>
 
     <!-- widget clock font. -->
@@ -85,4 +103,66 @@
         <item>Automatico</item>
     </string-array>
 
+    <string-array name="live_wallpaper_weather_kinds">
+        <item>Automatico</item>
+        <item>Sereno</item>
+        <item>Parzialmente nuvoloso</item>
+        <item>Nuvoloso</item>
+        <item>Pioggia</item>
+        <item>Neve</item>
+        <item>Nevischio</item>
+        <item>Grandine</item>
+        <item>Nebbia</item>
+        <item>Foschia</item>
+        <item>Tuono</item>
+        <item>Temporale</item>
+        <item>Vento</item>
+    </string-array>
+
+    <string-array name="live_wallpaper_day_night_types">
+        <item>Automatico</item>
+        <item>Sempre diurno</item>
+        <item>Sempre notturno</item>
+    </string-array>
+
+    <string-array name="precipitation_unit_voices">
+        <item>Millimetri</item>
+        <item>Centimetri</item>
+        <item>Pollici</item>
+        <item>Litri per metro quadrato</item>
+    </string-array>
+
+    <string-array name="distance_unit_voices">
+        <item>Chilometri</item>
+        <item>Metri</item>
+        <item>Miglia</item>
+        <item>Miglia nautiche</item>
+        <item>Piedi</item>
+    </string-array>
+
+    <string-array name="pressure_unit_voices">
+        <item>Millibar</item>
+        <item>Chilo pascal</item>
+        <item>Etto pascal</item>
+        <item>Atmosfere</item>
+        <item>Millimetri di mercurio</item>
+        <item>Pollici di mercurio</item>
+        <item>Chilogrammo forza per centimetro quadrato</item>
+    </string-array>
+
+    <string-array name="air_quality_unit_voices">
+        <item>Microgrammi per metro cubo</item>
+    </string-array>
+
+    <string-array name="air_quality_co_unit_voices">
+        <item>Milligrammi per metro cubo</item>
+    </string-array>
+
+    <string-array name="duration_unit_voices">
+        <item>ore</item>
+    </string-array>
+
+    <string-array name="pollen_unit_voices">
+        <item>Per metro cubo</item>
+    </string-array>
 </resources>
