@@ -1,0 +1,34 @@
+Geometric Weather è un'applicazione meteo per Android gratuita e open-source.
+Questa versione ha eliminato tutte le dipendenze proprietarie e il relativo codice per renderla idonea all'inclusione in F-Droid.
+
+Nell'app troverete:<ul>
+<li>Temperatura in tempo reale</li>
+<li>Previsioni giornaliere fino a 15 giorni e previsioni orarie per le 24 ore successive.</li>
+<li>Informazioni sulla qualità dell'aria e sugli allergeni</li>
+<li>Avvisi di maltempo e precipitazioni</li></ul>
+
+L'app è fortemente incentrata sul design, con una UX semplice e pulita, animazioni fluide e Material Design, oltre a un'ampia possibilità di personalizzazione.:<ul>
+<li>Tema scuro automatico</li>
+<li>Temi di icone personalizzati</li>
+<li>Ampia scelta di widget per la schermata iniziale, per avere informazioni immediate.</li>
+<li>Sfondo animato</li></ul>
+
+I fornitori di meteo attualmente supportati nella variante F-Droid:<ul>
+<li>AccuWeather</li>
+<li>OpenWeatherMap</li>
+<li>Météo France</li></ul>
+
+Questa applicazione richiede una serie di autorizzazioni, alcune obbligatorie, altre facoltative.
+
+Autorizzazioni obbligatorie:<ul>
+<li>Rete (ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE, INTERNET): consente all'applicazione di ottenere dati meteo da fornitori via Internet</li>
+<li>Aggiornamenti in background (RECEIVE_BOOT_COMPLETED, WAKE_LOCK, FOREGROUND_SERVICE, SET_ALARM): consente all'app di aggiornare i dati meteo in background</li>
+<li>Tile (EXPAND_STATUS_BAR): consente all'app di avviarsi dalle impostazioni rapide</li>
+</ul>
+
+Autorizzazioni facoltative: <ul>
+<li>Posizione (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): consente all'applicazione di mostrare il meteo nella posizione corrente</li>
+<li>Archiviazione (READ_EXTERNAL_STORAGE, dellaWRITE_EXTERNAL_STORAGE): Consente all'applicazione di impostare lo sfondo e/o i widget del meteo in tempo reale su alcuni dispositivi</li>
+<li>Ignora le ottimizzazioni  batteria (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS): impedisce che l'applicazione venga uccisa in background. Metodo potenzialmente più affidabile per recuperare i dati meteo in background su alcuni dispositivi</li>
+<li>Leggi lo stato del telefono (READ_PHONE_STATE): Richiesto da una dipendenza dell'applicazione: non viene utilizzato, ma non può essere rimosso. Va bene non abilitarlo mai.</li>
+</ul>
