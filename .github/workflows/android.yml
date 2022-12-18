@@ -2,7 +2,7 @@ name: Geometric Weather CI
 
 on:
   push:
-    branches: [ master, dev ]
+    branches: [ master, dev, new ]
     paths-ignore:
       - ".editorconfig"
       - "fastlane/*"
@@ -11,7 +11,7 @@ on:
       - "LICENSE"
       - "README.md"
   pull_request:
-    branches: [ master, dev ]
+    branches: [ master, dev, new ]
 
 jobs:
   build:
@@ -31,5 +31,5 @@ jobs:
         run: ./gradlew build
       - uses: actions/upload-artifact@v3
         with:
-          name: app-debug.apk
-          path: app/build/outputs/apk/debug/app-debug.apk
+          name: GeometricWeather_fdroidDebug.apk
+          path: app/build/outputs/apk/fdroid/debug/GeometricWeather.apk

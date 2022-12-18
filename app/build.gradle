@@ -34,7 +34,7 @@ android {
 
             android.applicationVariants.all { variant ->
                 variant.outputs.all {
-                    outputFileName = "GeometricWeather ${variant.versionName}.apk"
+                    outputFileName = "GeometricWeather.apk"
                 }
             }
         }
