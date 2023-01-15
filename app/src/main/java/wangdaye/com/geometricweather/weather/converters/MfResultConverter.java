@@ -506,7 +506,7 @@ public class MfResultConverter {
                                 getAirQuality(context, new Date(dailyForecast.dt * 1000), aqiAtmoAuraResult, false),
                                 new Pollen(null, null, null, null, null, null, null, null, null, null, null, null),
                                 new UV(dailyForecast.uv, null, null),
-                                getHoursOfDay(new Date(dailyForecast.sun.rise * 1000), new Date(dailyForecast.sun.set * 1000))
+                                CommonConverter.getHoursOfDay(new Date(dailyForecast.sun.rise * 1000), new Date(dailyForecast.sun.set * 1000))
                         )
                 );
             }
@@ -834,16 +834,6 @@ public class MfResultConverter {
             return WeatherCode.CLEAR;
         }
     }
-
-    private static float getHoursOfDay(Date sunrise, Date sunset) {
-        return (float) (
-                (sunset.getTime() - sunrise.getTime()) // get delta millisecond.
-                        / 1000 // second.
-                        / 60 // minutes.
-                        / 60.0 // hours.
-        );
-    }
-
 
     /*private static AirQuality getDailyAirQuality(Context context,
                                                  List<MfDailyResult.DailyForecasts.AirAndPollen> list) {

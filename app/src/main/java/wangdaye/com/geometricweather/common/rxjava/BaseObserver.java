@@ -16,7 +16,7 @@ public abstract class BaseObserver<T> extends DisposableObserver<T> {
     }
 
     public Boolean isApiLimitReached() {
-        return code == 429;
+        return code != null && code == 429;
     }
 
     @Override

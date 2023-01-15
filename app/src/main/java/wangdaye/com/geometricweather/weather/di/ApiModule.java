@@ -12,7 +12,9 @@ import wangdaye.com.geometricweather.BuildConfig;
 import wangdaye.com.geometricweather.weather.apis.AccuWeatherApi;
 import wangdaye.com.geometricweather.weather.apis.AtmoAuraIqaApi;
 import wangdaye.com.geometricweather.weather.apis.CaiYunApi;
+import wangdaye.com.geometricweather.weather.apis.MetNoApi;
 import wangdaye.com.geometricweather.weather.apis.MfWeatherApi;
+import wangdaye.com.geometricweather.weather.apis.NominatimApi;
 import wangdaye.com.geometricweather.weather.apis.OwmApi;
 
 @InstallIn(SingletonComponent.class)
@@ -30,6 +32,19 @@ public class ApiModule {
                 .addCallAdapterFactory(callAdapterFactory)
                 .build()
                 .create((AccuWeatherApi.class));
+    }
+
+    @Provides
+    public MetNoApi provideMetNoApi(OkHttpClient client,
+                                  GsonConverterFactory converterFactory,
+                                  RxJava2CallAdapterFactory callAdapterFactory) {
+        return new Retrofit.Builder()
+                .baseUrl(BuildConfig.METNO_BASE_URL)
+                .client(client)
+                .addConverterFactory(converterFactory)
+                .addCallAdapterFactory(callAdapterFactory)
+                .build()
+                .create((MetNoApi.class));
     }
 
     @Provides
@@ -82,5 +97,18 @@ public class ApiModule {
                 .addCallAdapterFactory(callAdapterFactory)
                 .build()
                 .create((AtmoAuraIqaApi.class));
+    }
+
+    @Provides
+    public NominatimApi provideNominatimApi(OkHttpClient client,
+                                            GsonConverterFactory converterFactory,
+                                            RxJava2CallAdapterFactory callAdapterFactory) {
+        return new Retrofit.Builder()
+                .baseUrl(BuildConfig.NOMINATIM_BASE_URL)
+                .client(client)
+                .addConverterFactory(converterFactory)
+                .addCallAdapterFactory(callAdapterFactory)
+                .build()
+                .create((NominatimApi.class));
     }
 }

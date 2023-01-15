@@ -7,12 +7,7 @@
         <item>accuweather.com</item>
         <item>OpenWeather</item>
         <item>Météo France</item>
-    </string-array>
-    <string-array name="weather_source_voices">
-        <item>CaiYun App.com</item>
-        <item>ACCU weather.com</item>
-        <item>Open Weather</item>
-        <item>Météo France</item>
+        <item>MET Norway / Nominatim</item>
     </string-array>
 
     <!-- Location service. -->

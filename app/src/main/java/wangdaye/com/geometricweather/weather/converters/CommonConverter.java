@@ -146,4 +146,13 @@ public class CommonConverter {
 
         return new UV(Math.toIntExact(Math.round(currentUV)), null, null);
     }
+
+    public static float getHoursOfDay(Date sunrise, Date sunset) {
+        return (float) (
+                (sunset.getTime() - sunrise.getTime()) // get delta millisecond.
+                        / 1000 // second.
+                        / 60 // minutes.
+                        / 60.0 // hours.
+        );
+    }
 }

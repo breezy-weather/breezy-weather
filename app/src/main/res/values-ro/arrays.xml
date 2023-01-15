@@ -10,6 +10,7 @@
         <item>accuweather.com</item>
         <item>OpenWeather</item>
         <item>Météo France</item>
+        <item>MET Norway / Nominatim</item>
     </string-array>
 
     <!-- Location service. -->

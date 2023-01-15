@@ -7,12 +7,14 @@
         <item>Accu Weather</item>
         <item>OpenWeather</item>
         <item>Météo France</item>
+        <item>MET Norway / Nominatim</item>
     </string-array>
     <string-array name="weather_source_voices">
         <item>彩云天气</item>
         <item>ACCU天气</item>
         <item>OPEN天气</item>
         <item>Météo France</item>
+        <item>The Norwegian Meteorological Institute + Nominatim</item>
     </string-array>
 
     <!-- Location service. -->

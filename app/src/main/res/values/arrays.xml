@@ -11,18 +11,21 @@
         <item>accuweather.com</item>
         <item>OpenWeather</item>
         <item>Météo France</item>
+        <item>MET Norway / Nominatim</item>
     </string-array>
     <string-array name="weather_source_voices">
         <item>CaiYun App.com</item>
         <item>ACCU weather.com</item>
         <item>Open Weather</item>
         <item>Météo France</item>
+        <item>The Norwegian Meteorological Institute + Nominatim</item>
     </string-array>
     <string-array name="weather_source_values">
         <item>caiyun</item>
         <item>accu</item>
         <item>owm</item>
         <item>mf</item>
+        <item>metno</item>
     </string-array>
 
     <!-- Location service. -->
