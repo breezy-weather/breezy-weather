@@ -673,22 +673,43 @@ public class MfResultConverter {
             return new ArrayList<>();
         }
         List<Minutely> minutelyList = new ArrayList<>(rainResult.rainForecasts.size());
-        long minuteZero = rainResult.rainForecasts.get(0).date / 60;
-        for (MfRainResult.RainForecast rainForecast : rainResult.rainForecasts) {
+        int minuteInterval;
+        for (int i = 0; i < rainResult.rainForecasts.size() ; ++i) {
+            if (i + 1 < rainResult.rainForecasts.size()) {
+                minuteInterval = toInt((rainResult.rainForecasts.get(i+1).date - rainResult.rainForecasts.get(i).date) / 60);
+            } else {
+                minuteInterval = 10; // Last one is 10 minutes
+            }
             minutelyList.add(
                     new Minutely(
-                            new Date(rainForecast.date * 1000),
-                            rainForecast.date * 1000,
-                            CommonConverter.isDaylight(new Date(sunrise * 1000), new Date(sunset * 1000), new Date(rainForecast.date * 1000)),
-                            rainForecast.desc,
-                            rainForecast.rain > 1 ? WeatherCode.RAIN : getWeatherCode(null),
-                            toInt((rainForecast.date / 60) - minuteZero), // TODO
-                            (Integer) null,
+                            new Date(rainResult.rainForecasts.get(i).date * 1000),
+                            rainResult.rainForecasts.get(i).date * 1000,
+                            CommonConverter.isDaylight(new Date(sunrise * 1000), new Date(sunset * 1000), new Date(rainResult.rainForecasts.get(i).date * 1000)),
+                            rainResult.rainForecasts.get(i).desc,
+                            rainResult.rainForecasts.get(i).rain > 1 ? WeatherCode.RAIN : getWeatherCode(null),
+                            minuteInterval,
+                            getPrecipitationIntensity(rainResult.rainForecasts.get(i).rain),
                             null
                     )
             );
         }
         return minutelyList;
+    }
+
+    private static Double getPrecipitationIntensity(Integer rain) {
+        switch(rain) {
+            case 4: // More than 8 mm/hr
+                return 10.0d;
+
+            case 3: // Between 4 and 7 mm/hr
+                return 5.5d;
+
+            case 2: // Between 1 and 3 mm/hr
+                return 2d;
+
+            default:
+                return 0d;
+        }
     }
 
     private static List<Alert> getWarningsList(MfWarningsResult warningsResult) {
