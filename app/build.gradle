@@ -57,6 +57,8 @@ android {
         it.buildConfigField "String", "IQA_ATMO_AURA_KEY", IQA_ATMO_AURA_KEY
         it.buildConfigField "String", "IQA_ATMO_AURA_URL", IQA_ATMO_AURA_URL
         it.buildConfigField "String", "IQA_ATMO_SUD_URL", IQA_ATMO_SUD_URL
+        it.buildConfigField "String", "METNO_BASE_URL", METNO_BASE_URL
+        it.buildConfigField "String", "NOMINATIM_BASE_URL", NOMINATIM_BASE_URL
     }
     lintOptions {
         checkReleaseBuilds false
