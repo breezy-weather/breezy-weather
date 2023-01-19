@@ -1,0 +1,386 @@
+<resources>
+
+    <!-- app. -->
+    <string name="app_name">Oratge</string>
+    <string name="geometric_weather">Oratge geomètric</string>
+
+    <!-- keyword. -->
+    <string name="current_location">Ubicació actual</string>
+    <string name="resident_location">Ubicació dels residents</string>
+    <string name="default_location">ubicació predeterminada</string>
+    <string name="live">Ara mateix</string>
+    <string name="today">Avui</string>
+    <string name="refresh_at">Actualitzat a les</string>
+    <string name="local_time">Hora local</string>
+    <string name="precipitation">Precipitació</string>
+    <string name="precipitation_probability">Probabilitat de precipitació</string>
+    <string name="precipitation_duration">Durada de precipitació</string>
+    <string name="maxi_temp">dia</string>
+    <string name="mini_temp">nit</string>
+    <string name="time">hora</string>
+    <string name="day">dia</string>
+    <string name="night">nit</string>
+    <string name="temperature">Temperatura</string>
+    <string name="wind">Vent</string>
+    <string name="wind_direction">Direcció del vent</string>
+    <string name="wind_speed">Velocitat del vent</string>
+    <string name="wind_level">Medició del vent</string>
+    <string name="sensible_temp">Sensació tèrmica</string>
+    <string name="humidity">Humitat</string>
+    <string name="uv_index">Índex UV</string>
+    <string name="hours_of_sun">Hores de sol</string>
+    <string name="forecast">Pronòstic</string>
+    <string name="briefings">Sessions informatives</string>
+    <string name="daytime">Dia</string>
+    <string name="nighttime">Nit</string>
+    <string name="publish_at">Publica a</string>
+    <string name="feels_like">Sensació de</string>
+    <string name="follow_system">Igual que el sistema</string>
+    <string name="background_information">Informació en segon pla</string>
+    <string name="pressure">Pressió atmosfèrica</string>
+    <string name="visibility">Visibilitat</string>
+    <string name="dew_point">Punt de rosada</string>
+    <string name="cloud_cover">Nuvolositat</string>
+    <string name="ceiling">Plafó</string>
+    <string name="get_more">Obtingues més</string>
+    <string name="get_more_store">Obtenir més a la botiga</string>
+    <string name="get_more_github">Obtenir més a GitHub</string>
+    <string name="refresh">Actualitza</string>
+    <string name="restart">Reinicia</string>
+    <string name="edit">Edita</string>
+
+    <!-- The following set of strings should be as short as possible. -->
+    <string name="of_clock">:00</string>
+    <string name="yesterday">ahir</string>
+    <string name="tomorrow">dmà</string>
+    <string name="week">set</string>
+    <string name="week_1">Dl</string>
+    <string name="week_2">Dt</string>
+    <string name="week_3">Dc</string>
+    <string name="week_4">Dj</string>
+    <string name="week_5">Dv</string>
+    <string name="week_6">Ds</string>
+    <string name="week_7">Dg</string>
+
+    <string name="real_feel_temperature">Sensació tèrmica</string>
+    <string name="real_feel_shade_temperature">Sensació tèrmica real</string>
+    <string name="apparent_temperature">Aparent</string>
+    <string name="wind_chill_temperature">Vent fred</string>
+    <string name="wet_bulb_temperature">Temperatura humida</string>
+    <string name="degree_day_temperature">Grau dia</string>
+
+    <string name="total">Total</string>
+    <string name="thunderstorm">Tempesta</string>
+    <string name="rain">Pluja</string>
+    <string name="snow">Neu</string>
+    <string name="ice">Gel</string>
+
+    <string name="wind_0">Calma</string>
+    <string name="wind_1">Aire lleuger</string>
+    <string name="wind_2">Brisa lleugera</string>
+    <string name="wind_3">Brisa suau</string>
+    <string name="wind_4">Brisa moderada</string>
+    <string name="wind_5">Brisa fresca</string>
+    <string name="wind_6">Brisa intensa</string>
+    <string name="wind_7">Vendaval moderat</string>
+    <string name="wind_8">Vendaval</string>
+    <string name="wind_9">Vendaval intens</string>
+    <string name="wind_10">Tempesta</string>
+    <string name="wind_11">Tempesta violenta</string>
+    <string name="wind_12">Huracà/Tifó</string>
+
+    <string name="precipitation_light">Plugim</string>
+    <string name="precipitation_middle">Pluja</string>
+    <string name="precipitation_heavy">Xàfec</string>
+    <string name="precipitation_rainstorm">Aiguat</string>
+
+    <string name="aqi_1">Aire fresc</string>
+    <string name="aqi_2">Aire net</string>
+    <string name="aqi_3">Contaminació lleugera</string>
+    <string name="aqi_4">Contaminació moderada</string>
+    <string name="aqi_5">Contaminació intensa</string>
+    <string name="aqi_6">Contaminació molt intensa</string>
+
+    <string name="phase_new">Lluna nova</string>
+    <string name="phase_waxing_crescent">Gibosa creixent</string>
+    <string name="phase_first">Quart creixent</string>
+    <string name="phase_waxing_gibbous">Creixent</string>
+    <string name="phase_full">Lluna plena</string>
+    <string name="phase_waning_gibbous">Gibosa minvant</string>
+    <string name="phase_third">Quart minvant</string>
+    <string name="phase_waning_crescent">Minvant</string>
+
+    <string name="grass">Gramínies</string>
+    <string name="mold">Floridura</string>
+    <string name="ragweed">Ambròsia</string>
+    <string name="tree">Arbre</string>
+
+    <string name="daily_overview">Pronòstic diari</string>
+    <string name="hourly_overview">Pronòstic horari</string>
+    <string name="minutely_overview">Pronòstic del minut</string>
+    <string name="precipitation_overview">Pronòstic per precipitació</string>
+    <string name="air_quality">Qualitat de l\'aire</string>
+    <string name="allergen">Al·lergen</string>
+    <string name="life_details">Detalls</string>
+    <string name="sunrise_sunset">Sol i lluna</string>
+
+    <string name="next">SEGÜENT</string>
+    <string name="done">FET</string>
+    <string name="cancel">CANCEL·LA</string>
+    <string name="on">Habilitat</string>
+    <string name="off">Deshabilitat</string>
+    <string name="go_to_set">ESTABLEIX</string>
+    <string name="help">AJUDA</string>
+    <string name="learn_more">SABER-NE MÉS</string>
+
+    <string name="about_app">Quant a l\'app</string>
+    <string name="introduce">introduïu</string>
+    <string name="email">Adreça electrònica</string>
+    <string name="donate">Doneu</string>
+    <string name="gitHub">GitHub</string>
+    <string name="translator">Traductors</string>
+    <string name="thanks">Agraïments</string>
+
+    <string name="alipay">Alipay</string>
+    <string name="wechat">Wechat</string>
+
+    <!-- Date format strings. -->
+    <!-- Month : MMM(long) / M(short). -->
+    <!-- Day   : dd(long) / d(short). -->
+    <!-- Week  : EEEE(long) / EEE(short). -->
+    <string name="date_format_short">M-d</string>
+    <string name="date_format_long">MMM d</string>
+    <string name="date_format_widget_short">EEE, MMM d</string>
+    <string name="date_format_widget_long">EEEE, MMM d</string>
+    <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
+
+    <!-- about. -->
+    <!-- Optional, the following set of strings are not necessarily translated. -->
+    <string name="retrofit">Retrofit 2.0</string>
+    <string name="about_retrofit">Client de Type-safe HTTP per a Android i Java d\'Square, Inc.</string>
+    <string name="glide">Glide</string>
+    <string name="about_glide">Una biblioteca de càrrega i memòria cau orientada al desplaçament suau.</string>
+    <string name="gson">Gson</string>
+    <string name="about_gson">Una biblioteca de serialització i deserialització de Java que pot convetir objectes a JSON i a l\'inrevés.</string>
+    <string name="greenDAO">GreenDAO</string>
+    <string name="about_greenDAO">Una solució d\'ORM lleugera i ràpida per a Android que mapeja objectes a bases de dades SQLite.</string>
+    <string name="page_indicator">InkPageIndicator</string>
+    <string name="about_page_indicator">InkPageIndicator, creat per @nickbutcher per a Plaid https://github.com/nickbutcher/plaid i adaptat per David Pacioianu per a l\'API 14+ (4.0+).</string>
+    <string name="circular_progress_view">CircularProgressView</string>
+    <string name="about_circular_progress_view">Barra de progrés circular d\'estil Material Design per a Android.</string>
+
+    <!-- feedback. -->
+    <string name="feedback_request_permission">Permisos</string>
+    <string name="feedback_request_location">Ubicació</string>
+    <string name="feedback_request_location_in_background">Ubicació en segon pla</string>
+    <string name="feedback_request_location_permission_success">Ha funcionat la sol·licitud d\'accés a la ubicació </string>
+    <string name="feedback_request_location_permission_failed">Ha fallat la sol·licitud d\'accés a la ubicació</string>
+
+    <string name="feedback_location_failed">Ha fallat l\'accés a la ubicació</string>
+    <string name="feedback_get_weather_failed">Ha fallat l\'accés a les dades de l\'oratge</string>
+    <string name="feedback_location_help_title">No funciona la ubicació?</string>
+    <string name="feedback_check_location_permission">Verifica els permisos d\'accés a la ubicació</string>
+    <string name="feedback_enable_location_information">Habilita la infomació d\'ubicació</string>
+    <string name="feedback_select_location_provider">Selecciona un proveïdor d\'ubicació</string>
+    <string name="feedback_add_location_manually">Especifica la ubicació manualment i esborra \'$\'</string>
+    <string name="feedback_background_location_title">Accés a la ubicació en segon pla</string>
+    <string name="feedback_background_location_summary">Per autoritzar que l\'aplicació pugui funcionar en segon pla, seleccioneu l\'opció \"Permet sempre\" al diàleg d\'autorització d\'accés a la ubicació.</string>
+
+    <string name="feedback_view_style">Estil de vista</string>
+    <string name="feedback_show_widget_card">Fons d\'un color</string>
+    <string name="feedback_show_widget_card_alpha">Transparència</string>
+    <string name="feedback_hide_subtitle">Oculta el subtítol</string>
+    <string name="feedback_subtitle_data">Dades del subtítol</string>
+    <string name="feedback_black_text">Color del text</string>
+    <string name="feedback_text_size">Mida del text</string>
+    <string name="feedback_clock_font">Font del rellotge</string>
+    <string name="feedback_hide_lunar">Oculta el calendari lunar</string>
+    <string name="feedback_custom_subtitle_explanation">Pots escriure-hi el que vulguis, però si us plau para atenció a la longitud del text. Si vols incloure-hi dades de l\'oratge, si us plau empra $ per a referenciar la paraula clau corresponent.\n\nPer exemple, \"oratge actual = $cw$\" es mostrarà com a \"oratge actual = Cel clar\".</string>
+    <!-- keep those content with the format "$xxx$". -->
+    <!-- keep "\n" -->
+    <string name="feedback_custom_subtitle_keyword_cw">$cw$ : Oratge actual\n</string>
+    <string name="feedback_custom_subtitle_keyword_ct">$ct$ : Temperatura actual (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : Temperatura actual (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_at">$at$ : Sensació tèrmica (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_atd">$atd$ : Sensació tèrmica (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_cpb">$cpb$ : Probabilitat de precipitació actual (%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_cp">$cp$ : Precipitació actual (mm/L/m²)\n</string>
+    <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : Vent actual\n</string>
+    <string name="feedback_custom_subtitle_keyword_cuv">$cuv$ : UV actual\n</string>
+    <string name="feedback_custom_subtitle_keyword_ch">$ch$ : Humitat actual\n</string>
+    <string name="feedback_custom_subtitle_keyword_cps">$cps$ : Pressió actual\n</string>
+    <string name="feedback_custom_subtitle_keyword_cv">$cv$ : Visibilitat actual\n</string>
+    <string name="feedback_custom_subtitle_keyword_cdp">$cdp$ : Rosada actual\n</string>
+    <string name="feedback_custom_subtitle_keyword_al">$al$ : Alertes\n</string>
+    <string name="feedback_custom_subtitle_keyword_als">$als$ : Alertes (versió breu)\n</string>
+    <string name="feedback_custom_subtitle_keyword_l">$l$ : Ubicació\n</string>
+    <string name="feedback_custom_subtitle_keyword_lat">$lat$ : Latitud\n</string>
+    <string name="feedback_custom_subtitle_keyword_lon">$lon$ : Longitud\n</string>
+    <string name="feedback_custom_subtitle_keyword_ut">$ut$ : Freqüència d\'actualització\n</string>
+    <string name="feedback_custom_subtitle_keyword_d">$d$ : Data\n</string>
+    <string name="feedback_custom_subtitle_keyword_lc">$lc$ : Calendari lunar\n</string>
+    <string name="feedback_custom_subtitle_keyword_w">$w$ : Setmana\n</string>
+    <string name="feedback_custom_subtitle_keyword_ws">$ws$ : Setmanal (versió breu)\n</string>
+    <string name="feedback_custom_subtitle_keyword_dd">$dd$ : Descripció per dia\n</string>
+    <string name="feedback_custom_subtitle_keyword_hd">$hd$ : Descripció per hores\n</string>
+    <string name="feedback_custom_subtitle_keyword_enter">$enter$ : Canvi de línia\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdw">$0dw$, $1dw$, …, $4dw$ : \nOratge diürn d\'avui, demà, …, d\'aquí a 4 dies\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnw">$0nw$, $1nw$, …, $4nw$ : \nOratge nocturn d\'avui, demà, …, d\'aquí a 4 dies\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdt">$0dt$, $1dt$, …, $4dt$ : \nTemperatura diürna d\'avui, demà, …, d\'aquí a 4 dies (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnt">$0nt$, $1nt$, …, $4nt$ : \nTemperatura nocturna d\'avui, demà, …, 4 dies després (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdtd">$0dtd$, $1dtd$, …, $4dtd$ : \nTemperatura diürna d\'avui, demà, …, 4 dies després (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xntd">$0ntd$, $1ntd$, …, $4ntd$ : \nTemperatura nocturna d\'avui, demà, …, 4 dies després (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdp">$0dp$, $1dp$, …, $4dp$ : \nPrecipitació diürna d\'avui, demà, …, 4 dies després (%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnp">$0np$, $1np$, …, $4np$ : \nPrecipitació nocturna d\'avui, demà, …, 4 dies després (%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdwd">$0dwd$, $1dwd$, …, $4dwd$ : \nVient diürn d\'avui, demà, …, 4 dies després\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnwd">$0nwd$, $1nwd$, …, $4nwd$ : \nVient nocturn d\'avui, demà, …, 4 dies després\n</string>
+    <string name="feedback_custom_subtitle_keyword_xsr">$0sr$, $1sr$, …, $4sr$ : \nSortida del sol d\'avui, demà, …, 4 dies després\n</string>
+    <string name="feedback_custom_subtitle_keyword_xss">$0ss$, $1ss$, …, $4ss$ : \nPosta del sol d\'avui, demà, …, 4 dies després\n</string>
+    <string name="feedback_custom_subtitle_keyword_xmr">$0mr$, $1mr$, …, $4mr$ : \nSortida de la lluna d\'avui, demà, …, 4 dies després\n</string>
+    <string name="feedback_custom_subtitle_keyword_xms">$0ms$, $1ms$, …, $4ms$ : \nPosta de la lluna d\'avui, demà, …, 4 dies després\n</string>
+    <string name="feedback_custom_subtitle_keyword_xmp">$0mp$, $1mp$, …, $4mp$ : \nFase lunar d\'avui, demà, …, 4 dies després\n</string>
+
+    <string name="feedback_live_wallpaper_weather_kind">Oratge</string>
+    <string name="feedback_live_wallpaper_day_night_type">Hora</string>
+
+    <string name="feedback_click_toggle">Toca la gràfica per a alternar les dades</string>
+    <string name="feedback_no_data">SENSE DADES</string>
+
+    <string name="feedback_collect_failed">Aquesta ubicació ja existeix</string>
+    <string name="feedback_collect_succeed">S\'ha afegit la ubicació correctament</string>
+    <string name="feedback_delete_succeed">S\'ha eliminat la ubicació correctament</string>
+    <string name="feedback_location_list_cannot_be_null">La llista d\'ubicacions no pot estar buida</string>
+
+    <string name="feedback_search_location">Cerca una ubicació…</string>
+    <string name="feedback_not_yet_location">No hi ha ubicacions…</string>
+    <string name="feedback_search_nothing">No es van trobar ubicacions</string>
+    <string name="feedback_initializing">S\'està iniciant…</string>
+
+    <string name="feedback_refresh_notification_after_back">Els canvis es faran efectius quan torneu a la pàgina principal</string>
+    <string name="feedback_refresh_notification_now">Actualitza ara</string>
+    <string name="feedback_refresh_ui_after_refresh">Els canvis es faran efectius quan s\'actualitzin les dades</string>
+    <string name="feedback_restart">Els canvis es faran efectius després de reiniciar</string>
+    <string name="feedback_readd_location">Si us plau afegeix novament les ubicacions</string>
+    <string name="feedback_readd_location_after_changing_source">Si us plau afegeix novament les ubicacions després de canviar la font de dades</string>
+
+    <string name="feedback_running_in_background">l\'actualització es continuarà produint en segon pla</string>
+    <string name="feedback_updating_weather_data">S\'estan actualitzant les dades de l\'oratge</string>
+    <string name="feedback_updated_in_background">Actualitzat en segon pla</string>
+
+    <!-- there should be a "\" before single or double quotes. -->
+    <!-- Correct : ... after turning off \'Background free\', ... After turning off \"Free background\" ... -->
+    <!-- Wrong   : ... after turning off 'Background free', ... After turning off "Free background" ... -->
+    <string name="feedback_interpret_background_notification_content">En alguns dispositius, després de desactivar \'No usis segon pla\', pot aparèixer una notificació permanent a la barra de notificacions.</string>
+    <string name="feedback_interpret_notification_group_title">Bloquejar grup de notificacions</string>
+    <string name="feedback_interpret_notification_group_content">Després de desactivar \"No usis segon pla\", apareixerà una notificació a la barra de notificacions indicant que el servei està funcionant en segon pla. Podeu desactivar el canal d\'informació en segon pla impedint aquestes notificacions en la pàgina d\'informació de l\'aplicació.</string>
+
+    <string name="feedback_ignore_battery_optimizations_title">Ignora l\'optimització de la bateria</string>
+    <string name="feedback_ignore_battery_optimizations_content">Per a assegurar que els serveis en segon pla continuïn funcionant, si us plau ignoreu l\'optimització de bateria per a Oratge Geomètric.</string>
+
+    <string name="feedback_cannot_start_live_wallpaper_activity">No s\'ha aconseguit iniciar el context de vista preliminar del fons de pantalla animat</string>
+
+    <string name="feedback_unusable_geocoder">Aquest dispositiu no conté un geocodificador vàlid. El proveïdor d\'ubicació s\'ha canviat a Baidu.</string>
+    <string name="feedback_about_geocoder">El geocodificador és un component que converteix el resultat d\'ubicació d\'un format latitud-longitud a un format de l\'estil \'ciutat XX, província YY\'. En absència d\'aquest component, només es podran obtenir les dades meteorològiques a través d\'AccuWeather quan s\'utilitzi l\'API nativa com a proveïdor d\'ubicació.</string>
+
+    <string name="feedback_today_precipitation_alert">Pot ser que avui hi hagi precipitations.</string>
+    <string name="feedback_short_term_precipitation_alert">Pot ser que la precipitació ocorri en les properes hores.</string>
+
+    <string name="feedback_resident_location">Estableix com a ciutat on residiu</string>
+    <string name="feedback_resident_location_description">Oratge Geomètric mostrarà i ocultarà automàticament les ciutats on residiu sobre la base de la teva ubicació actual.\nPer exemple, podeu establir la ciutat natal com una ciutat on residiu. Podeu consultar l\'oratge de ciutat natal mentre esteu viatjant. Quan arribeu a casa, l\'oratge de ciutat natal estarà ocult i reemplaçat pel de la teva ubicació actual.</string>
+
+    <string name="feedback_click_to_get_more">Premeu per saber-ne més…</string>
+    <string name="feedback_click_again_to_exit">Premeu de nou per a sortir</string>
+
+    <!-- action -->
+    <string name="action_alert">Alerta</string>
+    <string name="action_manage">Gestions</string>
+    <string name="action_search">Cerca</string>
+    <string name="action_settings">Configuració</string>
+    <string name="action_preview">Vista preliminar</string>
+    <string name="action_about">Quant a</string>
+    <string name="action_appStore">Botiga d\'aplicacions</string>
+
+    <!-- widget -->
+    <string name="widget_day">Diari</string>
+    <string name="widget_week">Setmanal</string>
+    <string name="widget_day_week">Diari + setmanal</string>
+    <string name="widget_clock_day_horizontal">Rellotge + diari (estil horitzontal)</string>
+    <string name="widget_clock_day_details">Rellotge + diari (detallat)</string>
+    <string name="widget_clock_day_vertical">Rellotge + diari (estil vertical)</string>
+    <string name="widget_clock_day_week">Rellotge + diari + setmanal</string>
+    <string name="widget_text">Text</string>
+    <string name="widget_trend_daily">Tendència diària</string>
+    <string name="widget_trend_hourly">Tendència horària</string>
+    <string name="widget_multi_city">Múltiples ciutats</string>
+    <string name="wait_refresh">carregant</string>
+    <string name="ellipsis">…</string>
+
+    <!-- settings -->
+    <string name="settings_category_basic">Bàsica</string>
+    <string name="settings_title_background_free">No usis segon pla</string>
+    <string name="settings_summary_background_free_on">Activat\nSi els ginys i notificacions no s\'actualitzen automàticament, si us plau desactiveu aquesta opció</string>
+    <string name="settings_summary_background_free_off">Desactivat\nSi no desitgeu que cap servei continuï treballant en segon pla, si us plau activeu aquesta opció.</string>
+    <string name="settings_title_live_wallpaper">Fons de pantalla animat</string>
+    <string name="settings_summary_live_wallpaper">Estableix l\'animació de l\'oratge estil Material Design com a fons de pantalla animat</string>
+    <string name="settings_title_service_provider">Proveïdor de servei</string>
+    <string name="settings_summary_service_provider">Seleccioneu el proveïdor de servei per a les dades de l\'oratge i la informació d\'ubicació</string>
+    <string name="settings_title_weather_source">Font de l\'oratge</string>
+    <string name="settings_title_location_service">Servei d\'ubicació</string>
+    <string name="settings_title_dark_mode">Mode fosc</string>
+    <string name="settings_title_ui_style">Estil de la interfície</string>
+    <string name="settings_title_icon_provider">Paquet d\'icones</string>
+    <string name="settings_title_appearance">Aparença</string>
+    <string name="settings_summary_appearance">Estil de la interfície, ordre de les targetes, idioma…</string>
+    <string name="settings_title_card_display">Targetes a mostrar</string>
+    <string name="settings_title_daily_trend_display">Mostra la tendència diària</string>
+    <string name="settings_title_trend_horizontal_line_switch">Línies horitzontals en la tendència</string>
+    <string name="settings_title_exchange_day_night_temp_switch">Intercanvia l\'ordre de la temperatura del dia i de la nit</string>
+    <string name="settings_title_card_order">Ordre de les targetes</string>
+    <string name="settings_title_gravity_sensor_switch">Sensor de gravetat</string>
+    <string name="settings_title_list_animation_switch">Animació de la llista</string>
+    <string name="settings_title_item_animation_switch">Animació de l\'element</string>
+    <string name="settings_language">Idioma</string>
+    <string name="settings_title_unit">Unitats</string>
+    <string name="settings_summary_unit">Estableix la unitat de les dades de l\'oratge</string>
+    <string name="settings_title_temperature_unit">Unitat de temperatura</string>
+    <string name="settings_title_distance_unit">Unitat de distància</string>
+    <string name="settings_title_precipitation_unit">Unitat de precipitació</string>
+    <string name="settings_title_pressure_unit">Unitat de pressió</string>
+    <string name="settings_title_speed_unit">Unitat de velocitat</string>
+    <string name="settings_title_refresh_rate">Cadència d\'actualització automàtica</string>
+    <string name="settings_title_alert_notification_switch">Envia notificacions d\'alerta</string>
+    <string name="settings_title_precipitation_notification_switch">Envia pronòstic de precipitacions</string>
+    <string name="settings_title_permanent_service">Servei permanent</string>
+    <string name="settings_category_forecast">Pronòstic</string>
+    <string name="settings_title_forecast_today">Pronòstic per a avui</string>
+    <string name="settings_title_forecast_today_time">Hora del pronòstic per a avui</string>
+    <string name="settings_title_forecast_tomorrow">Pronòstic per a demà</string>
+    <string name="settings_title_forecast_tomorrow_time">Hora del pronòstic per a demà</string>
+    <string name="settings_category_widget">Giny</string>
+    <string name="settings_title_week_icon_mode">Estil d\'icones setmanals</string>
+    <string name="settings_title_minimal_icon">icones minimalistes</string>
+    <string name="settings_title_click_widget_to_refresh">Actualiza el giny en prémer-lo</string>
+    <string name="settings_title_widget_config">Configuració del giny</string>
+    <string name="settings_category_notification">Notificacions</string>
+    <string name="settings_title_notification">Envia notificacions</string>
+    <string name="settings_title_notification_style">Estil de notificació</string>
+    <string name="settings_title_notification_temp_icon">Temperatura com a icona en la barra d\'estat</string>
+    <string name="settings_title_notification_color">Color de la notificació</string>
+    <string name="settings_title_notification_custom_color">Color personalitzat de la notificació</string>
+    <string name="settings_title_notification_text_color">Color del text</string>
+    <string name="settings_title_notification_background">Color del fons</string>
+    <string name="settings_notification_background_off">Igual que el sistema</string>
+    <string name="settings_title_notification_can_be_cleared">Es pot eliminar</string>
+    <string name="settings_notification_can_be_cleared_on">Es pot eliminar tot arrossegant-la</string>
+    <string name="settings_notification_can_be_cleared_off">No es pot eliminar</string>
+    <string name="settings_title_notification_hide_icon">Oculta la icona de notificació</string>
+    <string name="settings_notification_hide_icon_on">Oculta</string>
+    <string name="settings_notification_hide_icon_off">Visible</string>
+    <string name="settings_title_notification_hide_in_lockScreen">Oculta a la pantalla de bloqueig</string>
+    <string name="settings_notification_hide_in_lockScreen_on">Oculta (cal obrir la configuració del sistema)</string>
+    <string name="settings_notification_hide_in_lockScreen_off">Visible</string>
+    <string name="settings_title_notification_hide_big_view">Estil gran</string>
+    <string name="settings_notification_hide_big_view_on">Oculta</string>
+    <string name="settings_notification_hide_big_view_off">Visible</string>
+
+</resources>

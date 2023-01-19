@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Do not translate those arrays which named "xxx_values". -->
+    <!-- Do not translate those items with a value of "@string/xxx". -->
+
+    <!-- Chinese source. -->
+    <string-array name="weather_sources">
+        <item>caiyunapp.com (només per la Xina)</item>
+        <item>accuweather.com</item>
+        <item>OpenWeather</item>
+        <item>Météo France</item>
+    </string-array>
+    <string-array name="weather_source_voices">
+        <item>CaiYun App.com</item>
+        <item>ACCU weather.com</item>
+        <item>Open Weather</item>
+        <item>Météo France</item>
+    </string-array>
+
+    <!-- Location service. -->
+    <string-array name="location_services">
+        <item>Baidu Location</item>
+        <item>Baidu IP Location (només per la Xina)</item>
+        <item>AMap Location</item>
+        <item>API nativa</item>
+    </string-array>
+
+    <!-- Dark mode. -->
+    <string-array name="dark_modes">
+        <item>Automàtic</item>
+        <item>Igual que el sistema</item>
+        <item>Sempre clar</item>
+        <item>Sempre fosc</item>
+    </string-array>
+
+    <!-- UI style. -->
+    <string-array name="ui_styles">
+        <item>Cel circular</item>
+        <item>Animació Material Design</item>
+    </string-array>
+
+    <!-- automatic refresh rate. -->
+    <string-array name="automatic_refresh_rates">
+        <item>Mitja hora</item>
+        <item>1 hora</item>
+        <item>1,5 hores</item>
+        <item>2 hores</item>
+        <item>2,5 hores</item>
+        <item>3 hores</item>
+        <item>3,5 hores</item>
+        <item>4 hores</item>
+        <item>4,5 hores</item>
+        <item>5 hores</item>
+        <item>5,5 hores</item>
+        <item>6 hores</item>
+    </string-array>
+
+    <!-- widget week icon mode. -->
+    <string-array name="week_icon_modes">
+        <item>Automàtic</item>
+        <item>@string/daytime</item><!-- do not translate. -->
+        <item>@string/nighttime</item><!-- do not translate. -->
+    </string-array>
+
+    <!-- notification style. -->
+    <string-array name="notification_styles">
+        <item>Natiu</item>
+        <item>Ciutats</item>
+        <item>@string/daily_overview</item><!-- do not translate. -->
+        <item>@string/hourly_overview</item><!-- do not translate. -->
+    </string-array>
+
+<!-- notification text color. -->
+    <string-array name="notification_text_colors">
+        <item>Fosc</item>
+        <item>Gris</item>
+        <item>Clar</item>
+    </string-array>
+
+    <!-- widget style. -->
+    <string-array name="widget_styles">
+        <item>Rectangular</item>
+        <item>Simètric</item>
+        <item>Mosaic</item>
+        <item>Mini</item>
+        <item>Nano</item>
+        <item>Píxel</item>
+        <item>Vertical</item>
+        <item>Oreo</item>
+        <item>Oreo (Google Sans)</item>
+        <item>Temperatura</item>
+    </string-array>
+
+    <!-- week widget style. -->
+    <string-array name="week_widget_styles">
+        <item>5 dies</item>
+        <item>3 dies</item>
+    </string-array>
+
+    <!-- Widget subtitle data. -->
+    <string-array name="subtitle_data">
+        <item>Cadència d\'actualització</item>
+        <item>Índex de Qualitat de l\'Aire (no funciona en algunes àrees)</item>
+        <item>Vent</item>
+        <item>Sensació tèrmica</item>
+        <item>Calendari lunar</item>
+        <item>Personaliza</item>
+    </string-array>
+
+    <!-- widget clock font. -->
+    <string-array name="clock_font">
+        <item>Sans-Serif-Light</item>
+        <item>Sans-Serif</item>
+        <item>Sans-Serif-Black</item>
+        <item>Analog</item>
+    </string-array>
+
+    <!-- widget card style. -->
+    <string-array name="widget_card_styles">
+        <item>Cap</item>
+        <item>Automàtic</item>
+        <item>Clar</item>
+        <item>Fosc</item>
+    </string-array>
+
+    <!-- widget clock font. -->
+    <string-array name="widget_text_colors">
+        <item>Clar</item>
+        <item>Fosc</item>
+        <item>Automàtic</item>
+    </string-array>
+
+    <!-- live wallpaper weather kind. -->
+    <string-array name="live_wallpaper_weather_kinds">
+        <item>Automàtic</item>
+        <item>Clar</item>
+        <item>Parcialment ennuvolat</item>
+        <item>Núvols</item>
+        <item>Pluja</item>
+        <item>Neu</item>
+        <item>Aiguaneu</item>
+        <item>Calamarsa</item>
+        <item>Boira</item>
+        <item>Boirina</item>
+        <item>Trons</item>
+        <item>Tempesta elèctrica</item>
+        <item>Vent</item>
+    </string-array>
+
+    <!-- live wallpaper weather kind. -->
+    <string-array name="live_wallpaper_day_night_types">
+        <item>Automàtic</item>
+        <item>Sempre diürn</item>
+        <item>Sempre nocturn</item>
+    </string-array>
+
+    <!-- speed unit. -->
+    <string-array name="speed_units">
+        <item>km/h</item>
+        <item>m/s</item>
+        <item>kn</item>
+        <item>mph</item>
+        <item>ft/s</item>
+    </string-array>
+    <string-array name="speed_unit_voices">
+        <item>Kilòmetres per hora</item>
+        <item>Metres per segon</item>
+        <item>Nusos</item>
+        <item>Milles per hora</item>
+        <item>Peus per segon</item>
+    </string-array>
+
+    <!-- precipitation unit. -->
+    <string-array name="precipitation_units">
+        <item>mm</item>
+        <item>cm</item>
+        <item>inch</item>
+        <item>L/m²</item>
+    </string-array>
+    <string-array name="precipitation_unit_voices">
+        <item>Mil·límetre</item>
+        <item>Centímetre</item>
+        <item>Polzada</item>
+        <item>Litres per metre quadrat</item>
+    </string-array>
+
+    <!-- temperature unit. -->
+    <string-array name="temperature_units">
+        <item>℃</item>
+        <item>℉</item>
+        <item>K</item>
+    </string-array>
+    <string-array name="temperature_units_short">
+        <item>°</item>
+        <item>°</item>
+        <item>K</item>
+    </string-array>
+    <string-array name="temperature_units_long">
+        <item>°C</item>
+        <item>°F</item>
+        <item>K</item>
+    </string-array>
+
+    <!-- distance unit. -->
+    <string-array name="distance_units">
+        <item>km</item>
+        <item>m</item>
+        <item>mi</item>
+        <item>nmi</item>
+        <item>ft</item>
+    </string-array>
+    <string-array name="distance_unit_voices">
+        <item>Kilòmetres</item>
+        <item>Metres</item>
+        <item>Milles</item>
+        <item>Milles nàutiques</item>
+        <item>Peus</item>
+    </string-array>
+
+    <!-- pressure unit. -->
+    <string-array name="pressure_units">
+        <item>mb</item>
+        <item>kPa</item>
+        <item>hPa</item>
+        <item>atm</item>
+        <item>mmHg</item>
+        <item>inHg</item>
+        <item>kgf/cm²</item>
+    </string-array>
+    <string-array name="pressure_unit_voices">
+        <item>Mil·libars</item>
+        <item>Kilopascals</item>
+        <item>Hectopascals</item>
+        <item>Atmosferes</item>
+        <item>Mil·límetres de mercuri</item>
+        <item>Polzades de mercuri</item>
+        <item>Kilogram de força per centímetre quadrat</item>
+    </string-array>
+
+    <!-- air quality unit. -->
+    <string-array name="air_quality_units">
+        <item>μg/m³</item>
+    </string-array>
+    <string-array name="air_quality_unit_voices">
+        <item>Micrograms per metre cúbic</item>
+    </string-array>
+
+    <!-- air quality co unit. -->
+    <string-array name="air_quality_co_units">
+        <item>mg/m³</item>
+    </string-array>
+    <string-array name="air_quality_co_unit_voices">
+        <item>Mil·ligrams per metre cúbic</item>
+    </string-array>
+
+    <!-- duration unit. -->
+    <string-array name="duration_units">
+        <item>h</item> <!-- hour -->
+    </string-array>
+    <string-array name="duration_unit_voices">
+        <item>hores</item>
+    </string-array>
+
+    <!-- pollen unit. -->
+    <string-array name="pollen_units">
+        <item>/m³</item>
+    </string-array>
+    <string-array name="pollen_unit_voices">
+        <item>Per metre cúbic</item>
+    </string-array>
+
+</resources>
