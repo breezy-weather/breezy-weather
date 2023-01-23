@@ -10,25 +10,25 @@ import java.util.List;
 
 public class MfWarningsResult {
 
-    public List<WarningAdvice> advices;
-    public WarningComments comments;
-    public List<WarningConsequence> consequences;
-    @SerializedName("domain_id")
-    public String domain;
+    @SerializedName("update_time")
+    public long updateTime;
     @SerializedName("end_validity_time")
     public long endValidityTime;
+    @SerializedName("domain_id")
+    public String domain;
     @SerializedName("color_max")
     public int maxColor;
-    @SerializedName("max_count_items")
-    public List<WarningMaxCountItems> maxCountItems;
+    public List<WarningTimelaps> timelaps;
     @SerializedName("phenomenons_items")
     public List<PhenomenonMaxColor> phenomenonsItems;
+    public List<WarningAdvice> advices;
+    public List<WarningConsequence> consequences;
+    @SerializedName("max_count_items")
+    public List<WarningMaxCountItems> maxCountItems;
+    public WarningComments comments;
     public WarningComments text;
     @SerializedName("text_avalanche")
     public WarningComments textAvalanche;
-    public List<WarningTimelaps> timelaps;
-    @SerializedName("update_time")
-    public long updateTime;
 
     public static class WarningAdvice {
         @SerializedName("phenomenon_max_color_id")

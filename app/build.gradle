@@ -51,6 +51,7 @@ android {
         it.buildConfigField "String", "BAIDU_IP_LOCATION_BASE_URL", BAIDU_IP_LOCATION_BASE_URL
         it.buildConfigField "String", "BAIDU_IP_LOCATION_AK", BAIDU_IP_LOCATION_AK
         it.buildConfigField "String", "MF_WSFT_KEY", MF_WSFT_KEY
+        it.buildConfigField "String", "MF_WSFT_JWT_KEY", MF_WSFT_JWT_KEY
         it.buildConfigField "String", "MF_WSFT_BASE_URL", MF_WSFT_BASE_URL
         it.buildConfigField "String", "IQA_AIR_PARIF_KEY", IQA_AIR_PARIF_KEY
         it.buildConfigField "String", "IQA_AIR_PARIF_URL", IQA_AIR_PARIF_URL
@@ -249,6 +250,13 @@ dependencies {
 
     // gson.
     implementation "com.google.code.gson:gson:2.8.9"
+
+    // jwt
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    runtimeOnly('io.jsonwebtoken:jjwt-orgjson:0.11.5') {
+        exclude group: 'org.json', module: 'json' //provided by Android natively
+    }
 
     // cm.
     implementation "org.cyanogenmod:platform.sdk:5.0"
