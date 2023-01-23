@@ -442,6 +442,11 @@ public class MfResultConverter {
             }
         }
 
+        if (temp == null) {
+            // Only add the daily reported value if we have no hourly data
+            temp = toInt(isDaytime ? dailyForecast.temperature.max : dailyForecast.temperature.min);
+        }
+
         // Return null so we don't add a garbage day
         return temp == null ? null : new HalfDay(
                 dailyForecast.weather12H == null ? "" : dailyForecast.weather12H.desc,
