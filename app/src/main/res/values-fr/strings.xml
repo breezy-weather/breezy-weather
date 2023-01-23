@@ -173,8 +173,9 @@
     <string name="feedback_select_location_provider">Sélectionnez un fournisseur de localisation</string>
     <string name="feedback_add_location_manually">Ajoutez manuellement la localisation et supprimez \'$\'</string>
     <string name="feedback_api_limit_reached">Limite de requêtes API atteinte</string>
-    <string name="feedback_api_help_title">Limite de requêtes API atteinte ?</string>
-    <string name="feedback_add_api_key">Pour contourner la limite, ajoutez votre propre clé API.</string>
+    <string name="feedback_api_limit_reached_help">Pour contourner la limite, ajoutez votre propre clé API.</string>
+    <string name="feedback_api_unauthorized">Accès API non autorisé</string>
+    <string name="feedback_api_unauthorized_help">Pour certains fournisseurs météo, vous devez fournir votre propre clé API. Si vous l’avez déjà fait, vérifiez qu’il n’y a pas d’erreur dans la clé fournie.</string>
     <string name="feedback_view_style">Apparence</string>
     <string name="feedback_show_widget_card">Couleur d’arrière-plan</string>
     <string name="feedback_show_widget_card_alpha">Transparence</string>

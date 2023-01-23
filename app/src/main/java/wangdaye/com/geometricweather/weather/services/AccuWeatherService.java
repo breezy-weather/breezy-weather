@@ -109,7 +109,7 @@ public class AccuWeatherService extends WeatherService {
 
                     @Override
                     public void onFailed() {
-                        callback.requestWeatherFailed(location, this.isApiLimitReached());
+                        callback.requestWeatherFailed(location, this.isApiLimitReached(), this.isApiUnauthorized());
                     }
                 }));
     }

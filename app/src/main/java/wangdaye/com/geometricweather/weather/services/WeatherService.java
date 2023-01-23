@@ -29,7 +29,7 @@ public abstract class WeatherService {
 
     public interface RequestWeatherCallback {
         void requestWeatherSuccess(@NonNull Location requestLocation);
-        void requestWeatherFailed(@NonNull Location requestLocation, @NonNull Boolean apiLimitReached);
+        void requestWeatherFailed(@NonNull Location requestLocation, @NonNull Boolean apiLimitReached, @NonNull Boolean apiUnauthorized);
     }
 
     public interface RequestLocationCallback {

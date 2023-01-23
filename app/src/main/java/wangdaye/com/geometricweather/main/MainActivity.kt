@@ -28,7 +28,8 @@ import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper
 import wangdaye.com.geometricweather.common.utils.helpers.ShortcutsHelper
 import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper
 import wangdaye.com.geometricweather.databinding.ActivityMainBinding
-import wangdaye.com.geometricweather.main.dialogs.ApiKeyHelpDialog
+import wangdaye.com.geometricweather.main.dialogs.ApiLimitReachedHelp
+import wangdaye.com.geometricweather.main.dialogs.ApiUnauthorizedHelp
 import wangdaye.com.geometricweather.main.dialogs.LocationHelpDialog
 import wangdaye.com.geometricweather.main.fragments.HomeFragment
 import wangdaye.com.geometricweather.main.fragments.ManagementFragment
@@ -296,7 +297,15 @@ class MainActivity : GeoActivity(),
                             getString(R.string.feedback_api_limit_reached),
                             getString(R.string.help)
                         ) {
-                            ApiKeyHelpDialog.show(this)
+                            ApiLimitReachedHelp.show(this)
+                        }
+                    }
+                    MainMessage.API_UNAUTHORIZED -> {
+                        SnackbarHelper.showSnackbar(
+                            getString(R.string.feedback_api_unauthorized),
+                            getString(R.string.help)
+                        ) {
+                            ApiUnauthorizedHelp.show(this)
                         }
                     }
                 }

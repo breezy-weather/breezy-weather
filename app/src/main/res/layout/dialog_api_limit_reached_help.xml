@@ -17,7 +17,7 @@
         tools:ignore="UnusedAttribute">
 
         <ImageView
-            android:id="@+id/dialog_api_help_keyIcon"
+            android:id="@+id/dialog_api_limit_reached_help_keyIcon"
             android:src="@drawable/ic_router"
             android:layout_centerVertical="true"
             style="@style/material_icon"
@@ -25,13 +25,13 @@
             app:tint="#607d8b" />
 
         <TextView
-            android:id="@+id/dialog_api_help_keyTitle"
-            android:text="@string/feedback_add_api_key"
+            android:id="@+id/dialog_api_limit_reached_help_keyTitle"
+            android:text="@string/feedback_api_limit_reached_help"
             android:layout_marginTop="@dimen/normal_margin"
             android:layout_marginBottom="@dimen/normal_margin"
             android:layout_marginEnd="@dimen/normal_margin"
             android:layout_centerVertical="true"
-            android:layout_toEndOf="@id/dialog_api_help_keyIcon"
+            android:layout_toEndOf="@id/dialog_api_limit_reached_help_keyIcon"
             style="@style/content_text" />
 
     </RelativeLayout>
