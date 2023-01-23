@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.main
 
 import android.content.Context
+import androidx.annotation.NonNull
 import wangdaye.com.geometricweather.common.basic.models.Location
 import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper
 import wangdaye.com.geometricweather.db.DatabaseHelper
@@ -21,7 +22,8 @@ class MainActivityRepository @Inject constructor(
             location: Location,
             locationFailed: Boolean?,
             weatherRequestFailed: Boolean,
-            apiLimitReached: Boolean
+            apiLimitReached: Boolean,
+            apiUnauthorized: Boolean
         )
     }
 
@@ -149,11 +151,12 @@ class MainActivityRepository @Inject constructor(
                     requestLocation,
                     locationFailed = locationFailed,
                     weatherRequestFailed = false,
-                    apiLimitReached = false
+                    apiLimitReached = false,
+                    apiUnauthorized = false
                 )
             }
 
-            override fun requestWeatherFailed(requestLocation: Location, apiLimitReached: Boolean) {
+            override fun requestWeatherFailed(requestLocation: Location, apiLimitReached: Boolean, apiUnauthorized: Boolean) {
                 if (requestLocation.formattedId != location.formattedId) {
                     return
                 }
@@ -161,7 +164,8 @@ class MainActivityRepository @Inject constructor(
                     requestLocation,
                     locationFailed = locationFailed,
                     weatherRequestFailed = true,
-                    apiLimitReached = apiLimitReached
+                    apiLimitReached = apiLimitReached,
+                    apiUnauthorized = apiUnauthorized
                 )
             }
         }

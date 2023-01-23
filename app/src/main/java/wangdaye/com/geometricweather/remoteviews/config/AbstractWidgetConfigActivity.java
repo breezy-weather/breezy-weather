@@ -593,14 +593,14 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
 
         locationNow = requestLocation;
         if (requestLocation.getWeather() == null) {
-            requestWeatherFailed(requestLocation, false);
+            requestWeatherFailed(requestLocation, false, false);
         } else {
             updateHostView();
         }
     }
 
     @Override
-    public void requestWeatherFailed(@NonNull Location requestLocation, @NonNull Boolean apiLimitReached) {
+    public void requestWeatherFailed(@NonNull Location requestLocation, @NonNull Boolean apiLimitReached, @NonNull Boolean apiUnauthorized) {
         if (destroyed) {
             return;
         }

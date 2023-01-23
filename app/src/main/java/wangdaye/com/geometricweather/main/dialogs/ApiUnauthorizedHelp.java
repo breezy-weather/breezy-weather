@@ -12,17 +12,17 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
 
-public class ApiKeyHelpDialog {
+public class ApiUnauthorizedHelp {
 
     public static void show(Activity activity) {
         View view = LayoutInflater
                 .from(activity)
-                .inflate(R.layout.dialog_api_help, null, false);
+                .inflate(R.layout.dialog_api_unauthorized_help, null, false);
         initWidget(
                 activity,
                 view,
                 new MaterialAlertDialogBuilder(activity)
-                        .setTitle(R.string.feedback_api_help_title)
+                        .setTitle(R.string.feedback_api_unauthorized)
                         .setView(view)
                         .show()
         );

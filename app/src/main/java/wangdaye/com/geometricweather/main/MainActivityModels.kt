@@ -61,6 +61,7 @@ enum class MainMessage {
     LOCATION_FAILED,
     WEATHER_REQ_FAILED,
     API_LIMIT_REACHED,
+    API_UNAUTHORIZED,
 }
 
 class DayNightLocation(
