@@ -5,32 +5,35 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class MfRainResult {
-    public Position position;
-    public int quality;
-    @SerializedName("forecast")
-    public List<RainForecast> rainForecasts;
-    @SerializedName("updated_on")
-    public long updatedOn;
+    @SerializedName("update_time")
+    public long updateTime;
+    public Geometry geometry;
+    public ForecastProperties properties;
 
-    public static class Position {
-        public Integer alti;
-        public String country;
-        public String dept;
-        @SerializedName("rain_product_available")
-        public int hasRain;
-        @SerializedName("bulletin_cote")
-        public int hasSeaBulletin;
-        public String insee;
-        public double lat;
-        public double lon;
-        public String name;
-        public String timezone;
+    public static class Geometry {
+        public List<Float> coordinates;
+        public String type;
     }
 
-    public static class RainForecast {
-        @SerializedName("dt")
-        public long date;
-        public String desc;
-        public int rain;
+    public static class ForecastProperties {
+        public Integer altitude;
+        public String name;
+        public String country;
+        @SerializedName("french_department")
+        public String frenchDepartment;
+        @SerializedName("rain_product_available")
+        public Integer rainProductAvailable;
+        public String timezone;
+
+        @SerializedName("forecast")
+        public List<RainForecast> rainForecasts;
+
+        public static class RainForecast {
+            public long time;
+            @SerializedName("rain_intensity")
+            public int rainIntensity;
+            @SerializedName("rain_intensity_description")
+            public String rainIntensityDescription;
+        }
     }
 }

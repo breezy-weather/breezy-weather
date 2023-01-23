@@ -14,7 +14,7 @@ public class MfForecastV2Result {
     public ForecastProperties properties;
     public String type;
     @SerializedName("update_time")
-    public Date updateTime;
+    public Long updateTime;
 
     public static class Geometry {
         public List<Float> coordinates;
@@ -49,16 +49,16 @@ public class MfForecastV2Result {
             @SerializedName("relative_humidity_min")
             public Integer relativeHumidityMin;
             @SerializedName("sunrise_time")
-            public Date sunriseTime;
+            public Long sunriseTime;
             @SerializedName("sunset_time")
-            public Date sunsetTime;
+            public Long sunsetTime;
             @SerializedName("T_max")
             public Float tMax;
             @SerializedName("T_min")
             public Float tMin;
             @SerializedName("T_sea")
             public Float tSea;
-            public Date time;
+            public Long time;
             @SerializedName("total_precipitation_24h")
             public Float totalPrecipitation24h;
             @SerializedName("uv_index")
@@ -96,11 +96,10 @@ public class MfForecastV2Result {
             @SerializedName("snow_6h")
             public Float snow6h;
             @SerializedName("T")
-
             public Float t;
             @SerializedName("T_windchill")
             public Float tWindchill;
-            public Date time;
+            public Long time;
             @SerializedName("total_cloud_cover")
             public Integer totalCloudCover;
             @SerializedName("weather_description")
@@ -108,7 +107,7 @@ public class MfForecastV2Result {
             @SerializedName("weather_icon")
             public String weatherIcon;
             @SerializedName("wind_direction")
-            public Integer windDirection;
+            public String windDirection;
             @SerializedName("wind_icon")
             public String windIcon;
             @SerializedName("wind_speed")
@@ -130,7 +129,7 @@ public class MfForecastV2Result {
             public Integer snowHazard6h;
             @SerializedName("storm_hazard")
             public Integer stormHazard;
-            public Date time;
+            public Long time;
         }
     }
 }
