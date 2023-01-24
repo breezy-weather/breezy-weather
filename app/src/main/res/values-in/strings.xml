@@ -21,12 +21,12 @@
     <string name="time">waktu</string>
     <string name="day">pagi hari</string>
     <string name="night">malam hari</string>
-    <string name="temperature">Temperatur</string>
+    <string name="temperature">Suhu</string>
     <string name="wind">Angin</string>
     <string name="wind_direction">Arah angin</string>
     <string name="wind_speed">Kecepatan angin</string>
     <string name="wind_level">Level angin</string>
-    <string name="sensible_temp">Suhu yang masuk akal</string>
+    <string name="sensible_temp">Suhu yg terasa</string>
     <string name="humidity">Kelembaban</string>
     <string name="uv_index">Indeks UV</string>
     <string name="hours_of_sun">Jam matahari</string>
@@ -41,8 +41,8 @@
     <string name="pressure">Tekanan atmosfer</string>
     <string name="visibility">Visibilitas</string>
     <string name="dew_point">Titik embun</string>
-    <string name="cloud_cover">Cover awan</string>
-    <string name="ceiling">Atap</string>
+    <string name="cloud_cover">Cover awan</string><!-- ? -->
+    <string name="ceiling">Atap</string><!-- ? -->
     <string name="get_more">Dapatkan lebih banyak</string>
     <string name="get_more_store">Dapatkan lebih banyak dari app store</string>
     <string name="get_more_github">Dapatkan lebih banyak dari GitHub</string>
@@ -64,10 +64,10 @@
     <string name="week_7">Min</string>
 
     <string name="real_feel_temperature">Real feel</string>
-    <string name="real_feel_shade_temperature">Real feel shade</string>
+    <string name="real_feel_shade_temperature">Real feel shade</string><!-- ? -->
     <string name="apparent_temperature">Tampak</string>
     <string name="wind_chill_temperature">Angin dingin</string>
-    <string name="wet_bulb_temperature">Bohlam basah</string>
+    <string name="wet_bulb_temperature">Bohlam basah</string><!-- ? -->
     <string name="degree_day_temperature">Hari gelar</string>
 
     <string name="total">Total</string>
@@ -218,10 +218,10 @@
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
     <string name="feedback_custom_subtitle_keyword_cw">$cw$ : Cuaca saat ini\n</string>
-    <string name="feedback_custom_subtitle_keyword_ct">$ct$ : Temperatur saat ini (℃/℉)\n</string>
-    <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : Temperatur saat ini (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_at">$at$ : Temperature Terasa saat ini (℃/℉)\n</string>
-    <string name="feedback_custom_subtitle_keyword_atd">$atd$ : Temperature Terasa saat ini (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_ct">$ct$ : Suhu saat ini (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : Suhu saat ini (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_at">$at$ : Suhu terasa saat ini (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_atd">$atd$ : Suhu terasa saat ini (°)\n</string>
     <string name="feedback_custom_subtitle_keyword_cpb">$cpb$ : Probabilitas curah hujan saat ini (%)\n</string>
     <string name="feedback_custom_subtitle_keyword_cp">$cp$ : Curah hujan saat ini (mm/L/m²)\n</string>
     <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : Angin saat ini\n</string>
@@ -243,22 +243,21 @@
     <string name="feedback_custom_subtitle_keyword_dd">$dd$ : Deskripsi Harian\n</string>
     <string name="feedback_custom_subtitle_keyword_hd">$hd$ : Deskripsi per Jam\n</string>
     <string name="feedback_custom_subtitle_keyword_enter">$enter$ : Enter\n</string>
-    <!-- im too tired of translating this one. Anyone wanted to translate this monstrocity? -->
-    <string name="feedback_custom_subtitle_keyword_xdw">$0dw$, $1dw$, …, $4dw$ : \nDaytime Weather of Today, Tmw, …, 4 days later\n</string>
-    <string name="feedback_custom_subtitle_keyword_xnw">$0nw$, $1nw$, …, $4nw$ : \nNighttime Weather of Today, Tmw, …, 4 days later\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdt">$0dt$, $1dt$, …, $4dt$ : \nDaytime Temperature of Today, Tmw, …, 4 days later (℃/℉)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xnt">$0nt$, $1nt$, …, $4nt$ : \nNighttime Temperature of Today, Tmw, …, 4 days later (℃/℉)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdtd">$0dtd$, $1dtd$, …, $4dtd$ : \nDaytime Temperature of Today, Tmw, …, 4 days later (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xntd">$0ntd$, $1ntd$, …, $4ntd$ : \nNighttime Temperature of Today, Tmw, …, 4 days later (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdp">$0dp$, $1dp$, …, $4dp$ : \nDaytime Precipitation of Today, Tmw, …, 4 days later (%)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xnp">$0np$, $1np$, …, $4np$ : \nNighttime Precipitation of Today, Tmw, …, 4 days later (%)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdwd">$0dwd$, $1dwd$, …, $4dwd$ : \nDaytime Wind of Today, Tmw, …, 4 days later\n</string>
-    <string name="feedback_custom_subtitle_keyword_xnwd">$0nwd$, $1nwd$, …, $4nwd$ : \nNighttime Wind of Today, Tmw, …, 4 days later\n</string>
-    <string name="feedback_custom_subtitle_keyword_xsr">$0sr$, $1sr$, …, $4sr$ : \nSunrise of Today, Tmw, …, 4 days later\n</string>
-    <string name="feedback_custom_subtitle_keyword_xss">$0ss$, $1ss$, …, $4ss$ : \nSunset of Today, Tmw, …, 4 days later\n</string>
-    <string name="feedback_custom_subtitle_keyword_xmr">$0mr$, $1mr$, …, $4mr$ : \nMoonrise of Today, Tmw, …, 4 days later\n</string>
-    <string name="feedback_custom_subtitle_keyword_xms">$0ms$, $1ms$, …, $4ms$ : \nMoonset of Today, Tmw, …, 4 days later\n</string>
-    <string name="feedback_custom_subtitle_keyword_xmp">$0mp$, $1mp$, …, $4mp$ : \nMoon Phase of Today, Tmw, …, 4 days later\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdw">$0dw$, $1dw$, …, $4dw$ : \nSiang hari Cuaca Hari ini, Bsk, …, 4 hari kemudian\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnw">$0nw$, $1nw$, …, $4nw$ : \nMalam hari Cuaca Hari ini, Bsk, …, 4 hari kemudian\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdt">$0dt$, $1dt$, …, $4dt$ : \nSiang hari Suhu Hari ini, Bsk, …, 4 hari kemudian (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnt">$0nt$, $1nt$, …, $4nt$ : \nMalam hari Suhu Hari ini, Bsk, …, 4 hari kemudian (℃/℉)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdtd">$0dtd$, $1dtd$, …, $4dtd$ : \nSiang hari Suhu Hari ini, Bsk, …, 4 hari kemudian (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xntd">$0ntd$, $1ntd$, …, $4ntd$ : \nMalam hari Suhu Hari ini, Bsk, …, 4 hari kemudian (°)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdp">$0dp$, $1dp$, …, $4dp$ : \nSiang hari Presipitasi Hari ini, Bsk, …, 4 hari kemudian (%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnp">$0np$, $1np$, …, $4np$ : \nMalam hari Presipitasi Hari ini, Bsk, …, 4 hari kemudian (%)\n</string>
+    <string name="feedback_custom_subtitle_keyword_xdwd">$0dwd$, $1dwd$, …, $4dwd$ : \nSiang hari Angin Hari ini, Bsk, …, 4 hari kemudian\n</string>
+    <string name="feedback_custom_subtitle_keyword_xnwd">$0nwd$, $1nwd$, …, $4nwd$ : \nMalam hari Angin Hari ini, Bsk, …, 4 hari kemudian\n</string>
+    <string name="feedback_custom_subtitle_keyword_xsr">$0sr$, $1sr$, …, $4sr$ : \nMatahari terbit Hari ini, Bsk, …, 4 hari kemudian\n</string>
+    <string name="feedback_custom_subtitle_keyword_xss">$0ss$, $1ss$, …, $4ss$ : \nMatahari tenggelam Hari ini, Bsk, …, 4 hari kemudian\n</string>
+    <string name="feedback_custom_subtitle_keyword_xmr">$0mr$, $1mr$, …, $4mr$ : \nBulan terbit Hari ini, Bsk, …, 4 hari kemudian\n</string>
+    <string name="feedback_custom_subtitle_keyword_xms">$0ms$, $1ms$, …, $4ms$ : \nBulan tenggelam Hari ini, Bsk, …, 4 hari kemudian\n</string>
+    <string name="feedback_custom_subtitle_keyword_xmp">$0mp$, $1mp$, …, $4mp$ : \nFase bulan Hari ini, Bsk, …, 4 hari kemudian\n</string>
 
     <string name="feedback_live_wallpaper_weather_kind">Cuaca</string>
     <string name="feedback_live_wallpaper_day_night_type">Waktu</string>
@@ -291,7 +290,7 @@
     <!-- Correct : ... after turning off \'Background free\', ... After turning off \"Free background\" ... -->
     <!-- Wrong   : ... after turning off 'Background free', ... After turning off "Free background" ... -->
     <string name="feedback_interpret_background_notification_content">Di beberapa perangkat, setelah mematikan \'bebas latar-belakang\', mungkin ada pemberitahuan yang tidak dapat dibersihkan di bilah pemberitahuan.</string>
-    <string name="feedback_interpret_notification_group_title">Blokir grup notifikasi</string>
+    <string name="feedback_interpret_notification_group_title">Blokir grup pemberitahuan</string>
     <string name="feedback_interpret_notification_group_content">Setelah mematikan \"bebas latar-belakang\", pemberitahuan yang menunjukkan bahwa layanan latar belakang berjalan akan muncul di bilah pemberitahuan. Anda dapat mematikan saluran informasi latar belakang di halaman informasi aplikasi untuk memblokir pemberitahuan ini.</string>
 
     <string name="feedback_ignore_battery_optimizations_title">Abaikan pengoptimalan baterai</string>
@@ -303,7 +302,7 @@
     <string name="feedback_about_geocoder">Geocoder adalah komponen yang mengubah hasil lokasi dari format lat-lon menjadi format seperti \'Kota XX, Provinsi YY\'. Dengan tidak adanya komponen ini, Anda hanya bisa mendapatkan data cuaca melalui AccuWeather saat menggunakan API natif sebagai penyedia lokasi.</string>
 
     <string name="feedback_today_precipitation_alert">Mungkin ada presipitasi hari ini.</string>
-    <string name="feedback_short_term_precipitation_alert">Presipitasi dapat terjadi dalam beberapa jam ke depan.</string>
+    <string name="feedback_short_term_precipitation_alert">Curah hujan dapat terjadi dalam beberapa jam ke depan.</string>
 
     <string name="feedback_resident_location">Tetapkan sebagai kota penduduk</string>
     <string name="feedback_resident_location_description">Cuaca Geometris akan secara otomatis menampilkan dan menyembunyikan kota-kota residen berdasarkan lokasi Anda saat ini.\nUntuk contoh, Anda dapat mengatur kota asal Anda sebagai kota residen. Anda dapat memeriksa cuaca di kota asal Anda saat bepergian. Saat Anda sampai di rumah, cuaca di kota asal Anda akan disembunyikan dan digantikan oleh cuaca untuk lokasi Anda saat ini.</string>
@@ -327,7 +326,7 @@
     <string name="content_des_moonrise">Bulan terbit di $</string> <!-- $ = time. -->
     <string name="content_des_moonset">Bulan tenggelam di $</string> <!-- $ = time. -->
     <string name="content_des_no_precipitation">Tidak ada curah hujan</string>
-    <string name="content_des_minutely_precipitation">Presipitasi antara $1 dan $2</string> <!-- $1 = start time, $2 = end time. -->
+    <string name="content_des_minutely_precipitation">Curah hujan antara $1 dan $2</string> <!-- $1 = start time, $2 = end time. -->
     <string name="content_des_add_current_location">Tambah lokasi saat ini</string>
     <string name="content_des_drag_flag">Ketuk untuk menyeret item daftar untuk mengurutkan</string>
     <string name="content_des_delete_flag">Hapus item ini</string>
@@ -419,20 +418,20 @@
     <string name="settings_title_minimal_icon">Ikon minimalis</string>
     <string name="settings_title_click_widget_to_refresh">Muat ulang widget saat diklik</string>
     <string name="settings_title_widget_config">Konfigurasi widget</string>
-    <string name="settings_category_notification">Notifikasi</string>
-    <string name="settings_title_notification">Kirim Notifikasi</string>
-    <string name="settings_title_notification_style">Gaya notifikasi</string>
+    <string name="settings_category_notification">Pemberitahuan</string>
+    <string name="settings_title_notification">Kirim Pemberitahuan</string>
+    <string name="settings_title_notification_style">Gaya pemberitahuan</string>
     <string name="settings_title_notification_temp_icon">Suhu sebagai Ikon Bilah Status</string>
     <string name="settings_title_notification_feels_like">Gunakan suhu Feels Like</string>
-    <string name="settings_title_notification_color">Warna Notifikasi</string>
-    <string name="settings_title_notification_custom_color">Warna Notifikasi Kustom</string>
+    <string name="settings_title_notification_color">Warna Pemberitahuan</string>
+    <string name="settings_title_notification_custom_color">Warna Pemberitahuan Kustom</string>
     <string name="settings_title_notification_text_color">Warna teks</string>
     <string name="settings_title_notification_background">Warna latar</string>
     <string name="settings_notification_background_off">Ikuti sistem</string>
     <string name="settings_title_notification_can_be_cleared">Bisa dihapus</string>
     <string name="settings_notification_can_be_cleared_on">Bisa dihapus dengan menyeret</string>
     <string name="settings_notification_can_be_cleared_off">Tidak bisa dihapus</string>
-    <string name="settings_title_notification_hide_icon">Sembunyikan ikon notifikasi</string>
+    <string name="settings_title_notification_hide_icon">Sembunyikan ikon pemberitahuan</string>
     <string name="settings_notification_hide_icon_on">Sembunyikan</string>
     <string name="settings_notification_hide_icon_off">Tampilkan</string>
     <string name="settings_title_notification_hide_in_lockScreen">Sembunyikan di layar kunci</string>
