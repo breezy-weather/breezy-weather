@@ -32,36 +32,6 @@
         <item>Material Design animace</item>
     </string-array>
 
-    <!-- language. -->
-    <!-- Do not translate this array. -->
-    <string-array name="languages">
-        <item>@string/follow_system</item>
-        <item>中文</item>
-        <item>繁體中文</item>
-        <item>English (America)</item>
-        <item>English (Britain)</item>
-        <item>English (Australia)</item>
-        <item>Türkçe</item>
-        <item>Français</item>
-        <item>Pусский</item>
-        <item>Deutsch</item>
-        <item>Српски</item>
-        <item>Español</item>
-        <item>Italiano</item>
-        <item>Dutch</item>
-        <item>Magyar</item>
-        <item>Português</item>
-        <item>Português (Brasil)</item>
-        <item>Slovenščina</item>
-        <item>العربية</item>
-        <item>Čeština</item>
-        <item>Polski</item>
-        <item>한국어</item>
-        <item>Ελληνικά</item>
-        <item>日本語</item>
-        <item>Română</item>
-    </string-array>
-
     <!-- automatic refresh rate. -->
     <string-array name="automatic_refresh_rates">
         <item>Půl hodiny</item>
