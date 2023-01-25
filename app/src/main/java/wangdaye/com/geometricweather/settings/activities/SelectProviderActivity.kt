@@ -3,8 +3,6 @@ package wangdaye.com.geometricweather.settings.activities
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.Scaffold
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -48,7 +46,7 @@ class SelectProviderActivity : GeoActivity() {
                     scrollBehavior = scrollBehavior,
                 )
             },
-        ) {
+        ) { paddings ->
             val navController = rememberNavController()
             NavHost(
                 navController = navController,
@@ -57,12 +55,14 @@ class SelectProviderActivity : GeoActivity() {
                 composable(SettingsScreenRouter.ServiceProvider.route) {
                     ServiceProviderSettingsScreen(
                         context = this@SelectProviderActivity,
-                        navController = navController
+                        navController = navController,
+                        paddingValues = paddings,
                     )
                 }
                 composable(SettingsScreenRouter.ServiceProviderAdvanced.route) {
                     SettingsProviderAdvancedSettingsScreen(
-                        context = this@SelectProviderActivity
+                        context = this@SelectProviderActivity,
+                        paddingValues = paddings,
                     )
                 }
             }

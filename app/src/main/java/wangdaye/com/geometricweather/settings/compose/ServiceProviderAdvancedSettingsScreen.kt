@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.settings.compose
 
 import android.content.Context
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.settings.SettingsManager
@@ -13,8 +14,9 @@ import wangdaye.com.geometricweather.settings.preference.sectionHeaderItem
 
 @Composable
 fun SettingsProviderAdvancedSettingsScreen(
-    context: Context
-) = PreferenceScreen {
+    context: Context,
+    paddingValues: PaddingValues,
+) = PreferenceScreen(paddingValues = paddingValues) {
     sectionHeaderItem(R.string.settings_provider_accu_weather)
     editTextPreferenceItem(R.string.settings_provider_accu_weather_key) { id ->
         EditTextPreferenceView(

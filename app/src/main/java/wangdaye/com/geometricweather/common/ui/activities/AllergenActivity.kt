@@ -80,7 +80,10 @@ class AllergenActivity : GeoActivity() {
                 )
             },
         ) {
-            LazyColumn(modifier = Modifier.fillMaxHeight()) {
+            LazyColumn(
+                modifier = Modifier.fillMaxHeight(),
+                contentPadding = it,
+            ) {
                 items(weather.dailyForecast) { daily ->
                     val pollen = daily.pollen
 

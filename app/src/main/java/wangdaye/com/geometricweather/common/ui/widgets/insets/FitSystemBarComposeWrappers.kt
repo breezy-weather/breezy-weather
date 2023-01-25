@@ -16,7 +16,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import wangdaye.com.geometricweather.R
-import wangdaye.com.geometricweather.common.ui.widgets.getWidgetSurfaceColor
 import kotlin.math.ln
 
 private val topAppBarElevation = 6.dp
@@ -42,31 +41,23 @@ fun FitStatusBarTopAppBar(
     navigationIcon: @Composable (() -> Unit) = {},
     actions: @Composable RowScope.() -> Unit = {},
     scrollBehavior: TopAppBarScrollBehavior? = null,
-) = Column {
-    Spacer(
-        modifier = Modifier
-            .background(getWidgetSurfaceColor(topAppBarElevation))
-            .windowInsetsTopHeight(WindowInsets.statusBars)
-            .fillMaxWidth(),
-    )
-    MediumTopAppBar(
-        title = title,
-        modifier = modifier,
-        navigationIcon = navigationIcon,
-        actions = actions,
-        colors = TopAppBarDefaults.mediumTopAppBarColors(
-            containerColor = MaterialTheme.colorScheme.surface,
-            scrolledContainerColor = MaterialTheme.colorScheme.applyTonalElevation(
-                backgroundColor = MaterialTheme.colorScheme.surface,
-                elevation = topAppBarElevation,
-            ),
-            navigationIconContentColor = MaterialTheme.colorScheme.onSurface,
-            titleContentColor = MaterialTheme.colorScheme.onSurface,
-            actionIconContentColor = MaterialTheme.colorScheme.onSurface,
+) = MediumTopAppBar(
+    title = title,
+    modifier = modifier,
+    navigationIcon = navigationIcon,
+    actions = actions,
+    colors = TopAppBarDefaults.mediumTopAppBarColors(
+        containerColor = MaterialTheme.colorScheme.surface,
+        scrolledContainerColor = MaterialTheme.colorScheme.applyTonalElevation(
+            backgroundColor = MaterialTheme.colorScheme.surface,
+            elevation = topAppBarElevation,
         ),
-        scrollBehavior = scrollBehavior,
-    )
-}
+        navigationIconContentColor = MaterialTheme.colorScheme.onSurface,
+        titleContentColor = MaterialTheme.colorScheme.onSurface,
+        actionIconContentColor = MaterialTheme.colorScheme.onSurface,
+    ),
+    scrollBehavior = scrollBehavior,
+)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -124,11 +115,10 @@ enum class BottomInsetKey { INSTANCE }
 fun LazyListScope.bottomInsetItem(
     extraHeight: Dp = 0.dp,
 ) = item(
-    key = { BottomInsetKey.INSTANCE },
-    contentType = { BottomInsetKey.INSTANCE },
+    key = BottomInsetKey.INSTANCE,
+    contentType = BottomInsetKey.INSTANCE,
 ) {
     Column {
         Spacer(modifier = Modifier.height(extraHeight))
-        Spacer(modifier = Modifier.windowInsetsBottomHeight(WindowInsets.navigationBars))
     }
 }

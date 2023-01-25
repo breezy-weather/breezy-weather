@@ -113,7 +113,7 @@ fun ListPreferenceView(
             },
             text = {
                 LazyColumn(
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
                 ) {
                     items(valueArray.zip(nameArray)) {
                         RadioButton(

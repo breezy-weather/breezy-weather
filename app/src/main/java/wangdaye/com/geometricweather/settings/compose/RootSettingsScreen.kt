@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Build
 import android.provider.Settings
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -28,7 +29,11 @@ import wangdaye.com.geometricweather.settings.preference.composables.*
 import wangdaye.com.geometricweather.theme.ThemeManager
 
 @Composable
-fun RootSettingsView(context: Context, navController: NavHostController) {
+fun RootSettingsView(
+    context: Context,
+    navController: NavHostController,
+    paddingValues: PaddingValues,
+) {
     val todayForecastEnabledState = remember {
         mutableStateOf(
             SettingsManager
@@ -58,7 +63,7 @@ fun RootSettingsView(context: Context, navController: NavHostController) {
         )
     }
 
-    PreferenceScreen {
+    PreferenceScreen(paddingValues = paddingValues) {
         // basic.
         sectionHeaderItem(R.string.settings_category_basic)
         checkboxPreferenceItem(R.string.settings_title_background_free) { id ->

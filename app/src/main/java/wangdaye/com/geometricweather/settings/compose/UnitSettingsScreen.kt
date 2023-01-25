@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.settings.compose
 
 import android.content.Context
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.models.options.unit.*
@@ -12,8 +13,9 @@ import wangdaye.com.geometricweather.settings.preference.listPreferenceItem
 
 @Composable
 fun UnitSettingsScreen(
-    context: Context
-) = PreferenceScreen {
+    context: Context,
+    paddingValues: PaddingValues,
+) = PreferenceScreen(paddingValues = paddingValues) {
     listPreferenceItem(R.string.settings_title_temperature_unit) { id ->
         ListPreferenceView(
             titleId = id,
@@ -79,6 +81,4 @@ fun UnitSettingsScreen(
             },
         )
     }
-
-    bottomInsetItem()
 }

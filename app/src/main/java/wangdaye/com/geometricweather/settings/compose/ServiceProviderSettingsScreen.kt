@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.settings.compose
 
 import android.content.Context
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
@@ -23,9 +24,9 @@ import wangdaye.com.geometricweather.settings.preference.listPreferenceItem
 @Composable
 fun ServiceProviderSettingsScreen(
     context: Context,
-    navController: NavHostController
-) = PreferenceScreen {
-
+    navController: NavHostController,
+    paddingValues: PaddingValues,
+) = PreferenceScreen(paddingValues = paddingValues) {
     listPreferenceItem(R.string.settings_title_weather_source) { id ->
         ListPreferenceView(
             titleId = id,

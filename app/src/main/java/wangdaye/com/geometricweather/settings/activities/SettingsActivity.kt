@@ -95,7 +95,7 @@ class SettingsActivity : GeoActivity() {
                     scrollBehavior = scrollBehavior,
                 )
             },
-        ) {
+        ) { paddings ->
             val navController = rememberNavController()
             NavHost(
                 navController = navController,
@@ -104,7 +104,8 @@ class SettingsActivity : GeoActivity() {
                 composable(SettingsScreenRouter.Root.route) {
                     RootSettingsView(
                         context = this@SettingsActivity,
-                        navController = navController
+                        navController = navController,
+                        paddingValues = paddings,
                     )
                 }
                 composable(SettingsScreenRouter.Appearance.route) {
@@ -113,22 +114,26 @@ class SettingsActivity : GeoActivity() {
                         cardDisplayList = remember { cardDisplayState }.value,
                         dailyTrendDisplayList = remember { dailyTrendDisplayState }.value,
                         hourlyTrendDisplayList = remember { hourlyTrendDisplayState }.value,
+                        paddingValues = paddings,
                     )
                 }
                 composable(SettingsScreenRouter.ServiceProvider.route) {
                     ServiceProviderSettingsScreen(
                         context = this@SettingsActivity,
-                        navController = navController
+                        navController = navController,
+                        paddingValues = paddings,
                     )
                 }
                 composable(SettingsScreenRouter.ServiceProviderAdvanced.route) {
                     SettingsProviderAdvancedSettingsScreen(
-                        context = this@SettingsActivity
+                        context = this@SettingsActivity,
+                        paddingValues = paddings,
                     )
                 }
                 composable(SettingsScreenRouter.Unit.route) {
                     UnitSettingsScreen(
-                        context = this@SettingsActivity
+                        context = this@SettingsActivity,
+                        paddingValues = paddings,
                     )
                 }
             }

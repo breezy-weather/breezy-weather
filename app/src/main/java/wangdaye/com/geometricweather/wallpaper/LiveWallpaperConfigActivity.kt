@@ -76,7 +76,10 @@ class LiveWallpaperConfigActivity : GeoActivity() {
                 )
             },
         ) {
-            LazyColumn(modifier = Modifier.fillMaxHeight()) {
+            LazyColumn(
+                modifier = Modifier.fillMaxHeight(),
+                contentPadding = it,
+            ) {
                 items(1) {
                     Spinner(
                         currentVal = weatherKindValueNow,

@@ -2,6 +2,7 @@ package wangdaye.com.geometricweather.settings.compose
 
 import android.app.Activity
 import android.content.Context
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
@@ -33,11 +34,13 @@ fun AppearanceSettingsScreen(
     cardDisplayList: List<CardDisplay>,
     dailyTrendDisplayList: List<DailyTrendDisplay>,
     hourlyTrendDisplayList: List<HourlyTrendDisplay>,
+    paddingValues: PaddingValues,
 ) {
     LazyColumn(
         modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight()
+            .fillMaxHeight(),
+        contentPadding = paddingValues,
     ) {
         clickablePreferenceItem(
             R.string.settings_title_icon_provider

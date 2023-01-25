@@ -66,11 +66,8 @@ class AlertActivity : GeoActivity() {
             val weather = DatabaseHelper.getInstance(this).readWeather(
                 location!!
             )
-            if (weather != null) {
-                emitter.send(weather.alertList, true)
-            } else {
-                emitter.send(ArrayList(), true)
-            }
+
+            emitter.send(weather?.alertList ?: emptyList(), true)
         }) { alerts: List<Alert>?, _ ->
             alerts?.let { alertList.value = it }
         }
@@ -87,7 +84,10 @@ class AlertActivity : GeoActivity() {
                 )
             },
         ) {
-            LazyColumn(modifier = Modifier.fillMaxHeight()) {
+            LazyColumn(
+                modifier = Modifier.fillMaxHeight(),
+                contentPadding = it,
+            ) {
                 items(alertList.value) { alert ->
                     Material3CardListItem {
                         Column(

@@ -1,14 +1,12 @@
 package wangdaye.com.geometricweather.common.ui.widgets
 
 import android.content.Context
-import androidx.compose.animation.rememberSplineBasedDecay
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.compositeOver
@@ -38,10 +36,7 @@ fun getWidgetSurfaceColor(elevation: Dp): Color {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun generateCollapsedScrollBehavior(): TopAppBarScrollBehavior {
-    val decayAnimationSpec = rememberSplineBasedDecay<Float>()
-    return remember(decayAnimationSpec) {
-        TopAppBarDefaults.exitUntilCollapsedScrollBehavior(decayAnimationSpec)
-    }
+    return TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
 }
 
 // scaffold.
@@ -96,7 +91,9 @@ fun Material3CardListItem(
     shape = RoundedCornerShape(
         size = dimensionResource(R.dimen.material3_card_list_item_corner_radius)
     ),
-    containerColor = getWidgetSurfaceColor(elevation),
-    contentColor = MaterialTheme.colorScheme.onSurface,
+    colors = CardDefaults.cardColors(
+        containerColor = getWidgetSurfaceColor(elevation),
+        contentColor = MaterialTheme.colorScheme.onSurface
+    ),
     content = content
 )

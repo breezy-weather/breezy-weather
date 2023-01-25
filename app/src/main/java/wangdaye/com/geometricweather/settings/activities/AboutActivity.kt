@@ -298,6 +298,7 @@ class AboutActivity : GeoActivity() {
         ) {
             LazyColumn(
                 modifier = Modifier.fillMaxHeight(),
+                contentPadding = it,
             ) {
                 item {
                     Header()

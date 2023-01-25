@@ -124,6 +124,9 @@ class MaterialPainterView(
                             rotation2D += 180f
                         }
                     }
+                    else -> {
+                        // do nothing.
+                    }
                 }
                 if (60 < abs(rotation3D) && abs(rotation3D) < 120) {
                     rotation2D *= (abs(abs(rotation3D) - 90) / 30.0).toFloat()
