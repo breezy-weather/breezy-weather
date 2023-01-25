@@ -100,14 +100,16 @@ public class FirstCardHeaderController
                 alert.setVisibility(View.VISIBLE);
                 StringBuilder builder = new StringBuilder();
                 for (int i = 0; i < weather.getAlertList().size(); i ++) {
-                    builder.append(weather.getAlertList().get(i).getDescription())
-                            .append(", ")
-                            .append(
-                                    DateFormat.getDateTimeInstance(
-                                            DateFormat.LONG,
-                                            DateFormat.DEFAULT
-                                    ).format(weather.getAlertList().get(i).getDate())
-                            );
+                    builder.append(weather.getAlertList().get(i).getDescription());
+                    if (weather.getAlertList().get(i).getDate() != null) {
+                        builder.append(", ")
+                                .append(
+                                        DateFormat.getDateTimeInstance(
+                                                DateFormat.LONG,
+                                                DateFormat.DEFAULT
+                                        ).format(weather.getAlertList().get(i).getDate())
+                                );
+                    }
                     if (i != weather.getAlertList().size() - 1) {
                         builder.append("\n");
                     }

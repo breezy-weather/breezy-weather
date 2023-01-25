@@ -409,14 +409,16 @@ public abstract class AbstractRemoteViewsPresenter {
         StringBuilder defaultBuilder = new StringBuilder();
         StringBuilder shortBuilder = new StringBuilder();
         for (int i = 0; i < weather.getAlertList().size(); i ++) {
-            defaultBuilder.append(weather.getAlertList().get(i).getDescription())
-                    .append(", ")
-                    .append(
-                            DateFormat.getDateTimeInstance(
-                                    DateFormat.DEFAULT,
-                                    DateFormat.SHORT
-                            ).format(weather.getAlertList().get(i).getDate())
-                    );
+            defaultBuilder.append(weather.getAlertList().get(i).getDescription());
+            if (weather.getAlertList().get(i).getDate() != null) {
+                defaultBuilder.append(", ")
+                        .append(
+                                DateFormat.getDateTimeInstance(
+                                        DateFormat.DEFAULT,
+                                        DateFormat.SHORT
+                                ).format(weather.getAlertList().get(i).getDate())
+                        );
+            }
             shortBuilder.append(weather.getAlertList().get(i).getDescription());
 
             if (i != weather.getAlertList().size() - 1) {

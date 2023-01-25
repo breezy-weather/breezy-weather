@@ -447,10 +447,10 @@ public class AccuResultConverter {
             alertList.add(
                     new Alert(
                             result.AlertID,
-                            result.Area.get(0).StartTime,
-                            result.Area.get(0).EpochStartTime * 1000,
+                            result.Area.size() > 1 ? result.Area.get(0).StartTime : null,
+                            result.Area.size() > 1 ? result.Area.get(0).EpochStartTime * 1000 : 0,
                             result.Description.Localized,
-                            result.Area.get(0).Text,
+                            result.Area.size() > 1 ? result.Area.get(0).Text : "",
                             result.TypeID,
                             result.Priority,
                             Color.rgb(result.Color.Red, result.Color.Green, result.Color.Blue)

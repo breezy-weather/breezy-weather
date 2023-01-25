@@ -81,14 +81,16 @@ public class LocationModel {
             if (alertList.size() > 0) {
                 StringBuilder builder = new StringBuilder();
                 for (int i = 0; i < alertList.size(); i ++) {
-                    builder.append(alertList.get(i).getDescription())
-                            .append(", ")
-                            .append(
-                                    DateFormat.getDateTimeInstance(
-                                            DateFormat.SHORT,
-                                            DateFormat.SHORT
-                                    ).format(alertList.get(i).getDate())
-                            );
+                    if (alertList.get(i).getDate() != null) {
+                        builder.append(alertList.get(i).getDescription())
+                                .append(", ")
+                                .append(
+                                        DateFormat.getDateTimeInstance(
+                                                DateFormat.SHORT,
+                                                DateFormat.SHORT
+                                        ).format(alertList.get(i).getDate())
+                                );
+                    }
                     if (i != alertList.size() - 1) {
                         builder.append("\n");
                     }

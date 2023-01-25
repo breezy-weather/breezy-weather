@@ -50,6 +50,15 @@ class AlertActivity : GeoActivity() {
         }
     }
 
+    private fun getAlertDate(alert: Alert): String {
+        if (alert.date != null) {
+            return DateFormat
+                .getDateTimeInstance(DateFormat.LONG, DateFormat.DEFAULT)
+                .format(alert.date);
+        }
+        return "";
+    }
+
     @Composable
     private fun ContentView() {
         val alertList = remember { mutableStateOf(emptyList<Alert>()) }
@@ -100,9 +109,7 @@ class AlertActivity : GeoActivity() {
                                 style = MaterialTheme.typography.titleMedium,
                             )
                             Text(
-                                text = DateFormat
-                                    .getDateTimeInstance(DateFormat.LONG, DateFormat.DEFAULT)
-                                    .format(alert.date),
+                                text = getAlertDate(alert),
                                 color = DayNightTheme.colors.captionColor,
                                 style = MaterialTheme.typography.labelMedium,
                             )
