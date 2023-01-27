@@ -29,9 +29,6 @@ import androidx.core.graphics.ColorUtils;
 
 import com.google.android.material.resources.TextAppearance;
 
-import java.util.Calendar;
-import java.util.TimeZone;
-
 public class DisplayUtils {
 
     public static final Interpolator FLOATING_DECELERATE_INTERPOLATOR
@@ -249,25 +246,23 @@ public class DisplayUtils {
     }
 
     public static void getVisibleDisplayFrame(View view, Rect rect) {
-        /*
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            DisplayMetrics metrics = new DisplayMetrics();
-            WindowManager wm = (WindowManager) view.getContext().getSystemService(
-                    Context.WINDOW_SERVICE);
-            wm.getDefaultDisplay().getRealMetrics(metrics);
-
-            WindowInsets insets = view.getRootWindowInsets();
-
-            rect.set(
-                    insets.getSystemWindowInsetLeft(),
-                    insets.getSystemWindowInsetTop(),
-                    metrics.widthPixels - insets.getSystemWindowInsetRight(),
-                    metrics.heightPixels - insets.getSystemWindowInsetBottom()
-            );
-        } else {
-            view.getWindowVisibleDisplayFrame(rect);
-        }
-        */
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//            DisplayMetrics metrics = new DisplayMetrics();
+//            WindowManager wm = (WindowManager) view.getContext().getSystemService(
+//                    Context.WINDOW_SERVICE);
+//            wm.getDefaultDisplay().getRealMetrics(metrics);
+//
+//            WindowInsets insets = view.getRootWindowInsets();
+//
+//            rect.set(
+//                    insets.getSystemWindowInsetLeft(),
+//                    insets.getSystemWindowInsetTop(),
+//                    metrics.widthPixels - insets.getSystemWindowInsetRight(),
+//                    metrics.heightPixels - insets.getSystemWindowInsetBottom()
+//            );
+//        } else {
+//            view.getWindowVisibleDisplayFrame(rect);
+//        }
         // looks like has a good performance.
         view.getWindowVisibleDisplayFrame(rect);
     }

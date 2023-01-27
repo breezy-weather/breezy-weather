@@ -4,7 +4,8 @@
     android:id="@+id/widget_trend_hourly"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:theme="@style/GeometricWeatherTheme">
 
     <wangdaye.com.geometricweather.remoteviews.trend.WidgetItemView
         android:id="@+id/widget_trend_hourly_item_1"

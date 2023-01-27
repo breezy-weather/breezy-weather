@@ -14,7 +14,6 @@ import wangdaye.com.geometricweather.common.utils.DisplayUtils
 import wangdaye.com.geometricweather.main.MainActivity
 import wangdaye.com.geometricweather.settings.SettingsManager
 import wangdaye.com.geometricweather.theme.ThemeManager
-import kotlin.collections.HashMap
 
 private val preloadAttrIds = intArrayOf(
     R.attr.colorPrimary,
@@ -79,8 +78,9 @@ class MainThemeColorProvider(
                 unbind()
             }
 
-            instance = MainThemeColorProvider(mainActivity)
-            mainActivity.lifecycle.addObserver(instance!!)
+            val provider = MainThemeColorProvider(mainActivity)
+            mainActivity.lifecycle.addObserver(provider)
+            instance = provider
         }
 
         @JvmStatic
@@ -101,7 +101,7 @@ class MainThemeColorProvider(
             location: Location,
         ) = isLightTheme(
             context = context,
-            daylight = location.isDaylight
+            daylight = location.isDaylight,
         )
 
         @JvmStatic
@@ -118,50 +118,55 @@ class MainThemeColorProvider(
         @JvmStatic
         fun getContext(
             lightTheme: Boolean
-        ) = if (lightTheme) {
-            instance!!.lightContext
-        } else {
-            instance!!.darkContext
+        ) = instance?.let {
+            if (lightTheme) {
+                it.lightContext
+            } else {
+                it.darkContext
+            }
         }
 
         @JvmStatic
         fun getContext(
             location: Location
-        ) = getContext(
-            lightTheme = isLightTheme(instance!!.host, location)
-        )
+        ) = instance?.let {
+            getContext(
+                lightTheme = isLightTheme(it.host, location),
+            )
+        }
 
         @JvmStatic
         fun getColor(
             lightTheme: Boolean,
             @AttrRes id: Int,
-        ): Int {
+        ) = instance?.let { instance ->
             val cache = if (lightTheme) {
-                instance!!.lightColorCache
+                instance.lightColorCache
             } else {
-                instance!!.darkColorCache
+                instance.darkColorCache
             }
 
-            cache[id]?.let {
-                return it
+            if (cache[id] != null) {
+                return@let cache[id]
             }
 
-            val color = ThemeManager.getInstance(instance!!.host).getThemeColor(
-                context = getContext(lightTheme),
-                id = id
-            )
+            val color = getContext(lightTheme)?.let {
+                ThemeManager.getInstance(instance.host).getThemeColor(context = it, id = id)
+            } ?: 0
             cache[id] = color
-            return color
-        }
+            return@let color
+        } ?: 0
 
         @JvmStatic
         fun getColor(
             location: Location,
             @AttrRes id: Int,
-        ) = getColor(
-            id = id,
-            lightTheme = isLightTheme(instance!!.host, location)
-        )
+        ) = instance?.let {
+            getColor(
+                id = id,
+                lightTheme = isLightTheme(it.host, location),
+            )
+        } ?: 0
     }
 
     val lightContext = ThemeManager
@@ -176,9 +181,8 @@ class MainThemeColorProvider(
 
     init {
         preloadAttrIds.zip(
-            ThemeManager.getInstance(host).getThemeColors(lightContext, preloadAttrIds).zip(
-                ThemeManager.getInstance(host).getThemeColors(darkContext, preloadAttrIds)
-            )
+            ThemeManager.getInstance(host).getThemeColors(lightContext, preloadAttrIds)
+                .zip(ThemeManager.getInstance(host).getThemeColors(darkContext, preloadAttrIds))
         ).forEach { // attr id, <light color, dark color>
             lightColorCache[it.first] = it.second.first
             darkColorCache[it.first] = it.second.second

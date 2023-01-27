@@ -64,19 +64,17 @@ android {
     }
     sourceSets{
         pub {
-            java.srcDirs = ["src/bugly", "src/amap", "src/proprietary"]
-            manifest.srcFile "proprietary/AndroidManifest.xml"
+            java.srcDirs = ["src/src_bugly", "src/src_baidu", "src/src_amap", "src/src_gplay"]
+            manifest.srcFile "manifest_pub/AndroidManifest.xml"
             jniLibs.srcDir "libs"
             jni.srcDirs = []
         }
         gplay {
-            java.srcDirs = ["src/nobugly", "src/noamap", "src/proprietary"]
-            manifest.srcFile "proprietary/AndroidManifest.xml"
-            jniLibs.srcDir "libs"
-            jni.srcDirs = []
+            java.srcDirs = ["src/src_nobugly", "src/src_nobaidu", "src/src_noamap", "src/src_nogplay"]
+            manifest.srcFile "manifest_gplay/AndroidManifest.xml"
         }
         fdroid {
-            java.srcDirs = ["src/nobugly", "src/noamap", "src/opensource"]
+            java.srcDirs = ["src/src_nobugly", "src/src_nobaidu", "src/src_noamap", "src/src_nogplay"]
         }
         test {
             java.srcDir "test"

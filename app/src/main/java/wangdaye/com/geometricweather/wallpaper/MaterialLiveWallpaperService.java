@@ -93,9 +93,9 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                 mRotators[0].updateRotation(mRotation2D, mIntervalComputer.getInterval());
                 mRotators[1].updateRotation(mRotation3D, mIntervalComputer.getInterval());
 
-                Canvas canvas = mHolder.lockCanvas();
-                if (canvas != null) {
-                    try {
+                try {
+                    Canvas canvas = mHolder.lockCanvas();
+                    if (canvas != null) {
                         if (mSizes[0] != canvas.getWidth()
                                 || mSizes[1] != canvas.getHeight()) {
                             mSizes[0] = canvas.getWidth();
@@ -129,10 +129,10 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                                 (float) mRotators[1].getRotation()
                         );
                         canvas.restore();
-                    } catch (Exception ignored) {
-                        // do nothing.
+                        mHolder.unlockCanvasAndPost(canvas);
                     }
-                    mHolder.unlockCanvasAndPost(canvas);
+                } catch (Throwable ignore) {
+                    // do nothing.
                 }
             }
         };

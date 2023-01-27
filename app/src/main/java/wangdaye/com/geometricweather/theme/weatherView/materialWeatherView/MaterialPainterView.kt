@@ -181,11 +181,7 @@ class MaterialPainterView(
         scrollRate = currentScrollRate
         mDeviceOrientation = DeviceOrientation.TOP
 
-        background = ResourcesCompat.getDrawable(
-            resources,
-            WeatherImplementorFactory.getBackgroundId(weatherKind, daylight),
-            null
-        )
+        background = getWeatherBackgroundDrawable(weatherKind, daylight)
     }
 
     fun update(
@@ -203,11 +199,7 @@ class MaterialPainterView(
             postInvalidate()
         }
 
-        background = ResourcesCompat.getDrawable(
-            resources,
-            WeatherImplementorFactory.getBackgroundId(weatherKind, daylight),
-            null
-        )
+        background = getWeatherBackgroundDrawable(weatherKind, daylight)
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
@@ -292,6 +284,15 @@ class MaterialPainterView(
         setIntervalComputer()
         postInvalidate()
     }
+
+    private fun getWeatherBackgroundDrawable(
+        weatherKind: Int,
+        daylight: Boolean,
+    ) = ResourcesCompat.getDrawable(
+        resources,
+        WeatherImplementorFactory.getBackgroundId(weatherKind, daylight),
+        null
+    )
 
     private fun setWeatherImplementor() {
         impl = WeatherImplementorFactory.getWeatherImplementor(

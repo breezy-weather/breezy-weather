@@ -41,7 +41,7 @@ fun FitStatusBarTopAppBar(
     navigationIcon: @Composable (() -> Unit) = {},
     actions: @Composable RowScope.() -> Unit = {},
     scrollBehavior: TopAppBarScrollBehavior? = null,
-) = MediumTopAppBar(
+) = LargeTopAppBar(
     title = title,
     modifier = modifier,
     navigationIcon = navigationIcon,

@@ -114,17 +114,14 @@ class MainActivity : GeoActivity(),
             findHomeFragment()?.updateViews()
 
             // update notification immediately.
-            AsyncHelper.runOnIO {
-                NotificationHelper.updateNotificationIfNecessary(
-                    this,
-                    viewModel.validLocationList.value!!.locationList
-                )
+            viewModel.validLocationList.value?.locationList?.let {
+                AsyncHelper.runOnIO {
+                    NotificationHelper.updateNotificationIfNecessary(this, it)
+                }
             }
             refreshBackgroundViews(
                 resetBackground = true,
-                locationList = viewModel.validLocationList.value!!.locationList,
-                defaultLocationChanged = true,
-                updateRemoteViews = true
+                locationList = viewModel.validLocationList.value?.locationList,
             )
         }
         EventBus.instance.with(ModifyMainSystemBarMessage::class.java).observe(this) {
@@ -229,8 +226,6 @@ class MainActivity : GeoActivity(),
             refreshBackgroundViews(
                 resetBackground = false,
                 locationList = it.locationList,
-                defaultLocationChanged = true,
-                updateRemoteViews = true
             )
         }
         viewModel.permissionsRequest.observe(this) {
@@ -379,7 +374,7 @@ class MainActivity : GeoActivity(),
         ) == PackageManager.PERMISSION_GRANTED
 
     val isDaylight
-        get() = viewModel.currentLocation.value!!.daylight
+        get() = viewModel.currentLocation.value?.daylight ?: true
 
     // control.
 
@@ -426,48 +421,49 @@ class MainActivity : GeoActivity(),
     }
 
     private val isOrWillManagementFragmentVisible: Boolean
-        get() = if (binding.drawerLayout != null) {
-            binding.drawerLayout!!.isUnfold
-        } else {
-            findManagementFragment()?.let { !it.isRemoving } ?: false
-        }
+        get() = binding.drawerLayout?.isUnfold
+            ?: findManagementFragment()?.let { !it.isRemoving }
+            ?: false
 
     private val isManagementFragmentVisible: Boolean
-        get() = if (binding.drawerLayout != null) {
-            binding.drawerLayout!!.isUnfold
-        } else {
-            findManagementFragment()?.isVisible ?: false
-        }
+        get() = binding.drawerLayout?.isUnfold
+            ?: findManagementFragment()?.isVisible
+            ?: false
 
     fun setManagementFragmentVisibility(visible: Boolean) {
-        if (binding.drawerLayout != null) {
-            binding.drawerLayout!!.isUnfold = visible
-        } else if (visible != isOrWillManagementFragmentVisible) {
-            if (visible) {
-                val transaction = supportFragmentManager
-                    .beginTransaction()
-                    .setCustomAnimations(
-                        R.anim.fragment_manange_enter,
-                        R.anim.fragment_main_exit,
-                        R.anim.fragment_main_pop_enter,
-                        R.anim.fragment_manange_pop_exit
-                    )
-                    .add(
-                        R.id.fragment,
-                        PushedManagementFragment.getInstance(),
-                        TAG_FRAGMENT_MANAGEMENT
-                    )
-                    .addToBackStack(null)
-
-                findHomeFragment()?.let {
-                    transaction.hide(it)
-                }
-
-                transaction.commit()
-            } else {
-                supportFragmentManager.popBackStack()
-            }
+        val drawerLayout = binding.drawerLayout
+        if (drawerLayout != null) {
+            drawerLayout.isUnfold = visible
+            return
         }
+        if (visible == isOrWillManagementFragmentVisible) {
+            return
+        }
+        if (!visible) {
+            supportFragmentManager.popBackStack()
+            return
+        }
+
+        val transaction = supportFragmentManager
+            .beginTransaction()
+            .setCustomAnimations(
+                R.anim.fragment_manange_enter,
+                R.anim.fragment_main_exit,
+                R.anim.fragment_main_pop_enter,
+                R.anim.fragment_manange_pop_exit,
+            )
+            .add(
+                R.id.fragment,
+                PushedManagementFragment.getInstance(),
+                TAG_FRAGMENT_MANAGEMENT,
+            )
+            .addToBackStack(null)
+
+        findHomeFragment()?.let {
+            transaction.hide(it)
+        }
+
+        transaction.commit()
     }
 
     private fun findHomeFragment(): HomeFragment? {
@@ -486,10 +482,7 @@ class MainActivity : GeoActivity(),
         }
     }
 
-    private fun refreshBackgroundViews(
-        resetBackground: Boolean, locationList: List<Location>?,
-        defaultLocationChanged: Boolean, updateRemoteViews: Boolean
-    ) {
+    private fun refreshBackgroundViews(resetBackground: Boolean, locationList: List<Location>?) {
         if (resetBackground) {
             AsyncHelper.delayRunOnIO({
                 PollingManager.resetAllBackgroundTask(
@@ -497,17 +490,17 @@ class MainActivity : GeoActivity(),
                 )
             }, 1000)
         }
-        if (updateRemoteViews && locationList != null && locationList.isNotEmpty()) {
-            AsyncHelper.delayRunOnIO({
-                if (defaultLocationChanged) {
-                    WidgetHelper.updateWidgetIfNecessary(this, locationList[0])
-                    NotificationHelper.updateNotificationIfNecessary(this, locationList)
-                }
-                WidgetHelper.updateWidgetIfNecessary(this, locationList)
-            }, 1000)
+        locationList?.let {
+            if (it.isNotEmpty()) {
+                AsyncHelper.delayRunOnIO({
+                    WidgetHelper.updateWidgetIfNecessary(this, it[0])
+                    NotificationHelper.updateNotificationIfNecessary(this, it)
+                    WidgetHelper.updateWidgetIfNecessary(this, it)
+                }, 1000)
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-                ShortcutsHelper.refreshShortcutsInNewThread(this, locationList)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+                    ShortcutsHelper.refreshShortcutsInNewThread(this, it)
+                }
             }
         }
     }

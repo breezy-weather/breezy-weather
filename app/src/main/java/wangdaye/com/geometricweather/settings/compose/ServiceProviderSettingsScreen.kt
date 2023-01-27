@@ -59,14 +59,10 @@ fun ServiceProviderSettingsScreen(
         var nameList = stringArrayResource(R.array.location_services)
 
         // clear invalid config by build flavor.
-        if (BuildConfig.FLAVOR.contains("fdroid")) {
-            // Remove closed source providers if building the F-Droid flavor
+        if (BuildConfig.FLAVOR.contains("fdroid")
+            || BuildConfig.FLAVOR.contains("gplay")) {
             valueList = arrayOf(valueList[1], valueList[3])
             nameList = arrayOf(nameList[1], nameList[3])
-        } else if (BuildConfig.FLAVOR.contains("gplay")) {
-            // Remove closed source providers if building the Google Play flavor
-            valueList = arrayOf(valueList[0], valueList[1], valueList[3])
-            nameList = arrayOf(valueList[0], nameList[1], nameList[3])
         }
         if (!valueList.contains(currentSelectedKey)) {
             currentSelectedKey = LocationProvider.NATIVE.id
@@ -91,16 +87,16 @@ fun ServiceProviderSettingsScreen(
                 }
             }
         )
-
-        clickablePreferenceItem(R.string.settings_title_service_provider_advanced) {
-            PreferenceView(
-                titleId = it,
-                summaryId = R.string.settings_summary_service_provider_advanced,
-            ) {
-                navController.navigate(SettingsScreenRouter.ServiceProviderAdvanced.route)
-            }
-        }
-
-        bottomInsetItem()
     }
+
+    clickablePreferenceItem(R.string.settings_title_service_provider_advanced) {
+        PreferenceView(
+            titleId = it,
+            summaryId = R.string.settings_summary_service_provider_advanced,
+        ) {
+            navController.navigate(SettingsScreenRouter.ServiceProviderAdvanced.route)
+        }
+    }
+
+    bottomInsetItem()
 }
