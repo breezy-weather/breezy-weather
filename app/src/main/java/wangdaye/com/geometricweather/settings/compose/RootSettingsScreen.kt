@@ -6,9 +6,7 @@ import android.os.Build
 import android.provider.Settings
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -33,6 +31,7 @@ fun RootSettingsView(
     context: Context,
     navController: NavHostController,
     paddingValues: PaddingValues,
+    postNotificationPermissionEnsurer: (succeedCallback: () -> Unit) -> Unit,
 ) {
     val todayForecastEnabledState = remember {
         mutableStateOf(
@@ -74,13 +73,15 @@ fun RootSettingsView(
                 checked = SettingsManager.getInstance(context).isBackgroundFree,
                 onValueChanged = {
                     SettingsManager.getInstance(context).isBackgroundFree = it
-
-                    PollingManager.resetNormalBackgroundTask(context, false)
                     if (!it) {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                            showBlockNotificationGroupDialog(context)
-                        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                            showIgnoreBatteryOptimizationDialog(context)
+                        postNotificationPermissionEnsurer {
+                            PollingManager.resetNormalBackgroundTask(context, false)
+
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                showBlockNotificationGroupDialog(context)
+                            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                showIgnoreBatteryOptimizationDialog(context)
+                            }
                         }
                     }
                 },
@@ -94,7 +95,11 @@ fun RootSettingsView(
                 checked = SettingsManager.getInstance(context).isAlertPushEnabled,
                 onValueChanged = {
                     SettingsManager.getInstance(context).isAlertPushEnabled = it
-                    PollingManager.resetNormalBackgroundTask(context, false)
+                    if (it) {
+                        postNotificationPermissionEnsurer {
+                            PollingManager.resetNormalBackgroundTask(context, false)
+                        }
+                    }
                 },
             )
         }
@@ -106,7 +111,11 @@ fun RootSettingsView(
                 checked = SettingsManager.getInstance(context).isPrecipitationPushEnabled,
                 onValueChanged = {
                     SettingsManager.getInstance(context).isPrecipitationPushEnabled = it
-                    PollingManager.resetNormalBackgroundTask(context, false)
+                    if (it) {
+                        postNotificationPermissionEnsurer {
+                            PollingManager.resetNormalBackgroundTask(context, false)
+                        }
+                    }
                 },
             )
         }
@@ -356,7 +365,9 @@ fun RootSettingsView(
                     notificationEnabledState.value = it
 
                     if (it) { // open notification.
-                        PollingManager.resetNormalBackgroundTask(context, true)
+                        postNotificationPermissionEnsurer {
+                            PollingManager.resetNormalBackgroundTask(context, true)
+                        }
                     } else { // close notification.
                         NormalNotificationIMP.cancelNotification(context)
                         PollingManager.resetNormalBackgroundTask(context, false)

@@ -1,12 +1,15 @@
 package wangdaye.com.geometricweather.remoteviews.presenters.notification;
 
+import android.Manifest;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Icon;
 import android.os.Build;
 
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
@@ -171,6 +174,11 @@ class NativeNormalNotificationIMP extends AbstractRemoteViewsPresenter {
         }
 
         // commit.
-        manager.notify(GeometricWeather.NOTIFICATION_ID_NORMALLY, notification);
+        if (ActivityCompat.checkSelfPermission(
+                context,
+                Manifest.permission.POST_NOTIFICATIONS
+        ) == PackageManager.PERMISSION_GRANTED) {
+            manager.notify(GeometricWeather.NOTIFICATION_ID_NORMALLY, notification);
+        }
     }
 }

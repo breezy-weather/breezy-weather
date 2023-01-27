@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.main
 
+import android.Manifest
 import android.app.Application
 import android.content.pm.PackageManager
 import android.os.Build
@@ -16,7 +17,6 @@ import wangdaye.com.geometricweather.common.basic.models.Location
 import wangdaye.com.geometricweather.main.utils.StatementManager
 import wangdaye.com.geometricweather.settings.SettingsManager
 import javax.inject.Inject
-
 
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
@@ -241,7 +241,17 @@ class MainActivityViewModel @Inject constructor(
         }
 
         // check permissions.
-        val permissionList = getDeniedPermissionList()
+        val permissionList = repository
+            .getLocatePermissionList(getApplication())
+            .filter {
+                ActivityCompat.checkSelfPermission(getApplication(), it) != PackageManager.PERMISSION_GRANTED
+            }
+            .toMutableList()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
+            && !statementManager.isPostNotificationRequired) {
+            statementManager.setPostNotificationRequired(getApplication())
+            permissionList.add(Manifest.permission.POST_NOTIFICATIONS)
+        }
         if (permissionList.isEmpty()) {
             // already got all permissions -> request data directly.
             updating = true
@@ -261,25 +271,6 @@ class MainActivityViewModel @Inject constructor(
             currentLocation.value!!.location,
             triggeredByUser
         )
-    }
-
-    private fun getDeniedPermissionList(): List<String> {
-        val permissionList = repository
-            .getLocatePermissionList(getApplication())
-            .toMutableList()
-
-        for (i in permissionList.indices.reversed()) {
-            if (
-                ActivityCompat.checkSelfPermission(
-                    getApplication(),
-                    permissionList[i]
-                ) == PackageManager.PERMISSION_GRANTED
-            ) {
-                permissionList.removeAt(i)
-            }
-        }
-
-        return permissionList
     }
 
     fun cancelRequest() {

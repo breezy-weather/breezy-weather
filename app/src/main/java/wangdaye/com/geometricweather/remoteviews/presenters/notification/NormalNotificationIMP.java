@@ -1,14 +1,17 @@
 package wangdaye.com.geometricweather.remoteviews.presenters.notification;
 
+import android.Manifest;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.widget.RemoteViews;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
@@ -25,12 +28,13 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Hourly;
 import wangdaye.com.geometricweather.common.basic.models.weather.Temperature;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.utils.LanguageUtils;
+import wangdaye.com.geometricweather.common.utils.ObjectUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.LunarHelper;
 import wangdaye.com.geometricweather.remoteviews.presenters.AbstractRemoteViewsPresenter;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
 import wangdaye.com.geometricweather.theme.resource.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.settings.SettingsManager;
 
 public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
 
@@ -118,9 +122,9 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                 tempIcon ? ResourceHelper.getTempIconId(
                         context,
                         temperatureUnit.getValueWithoutUnit(
-                                settings.isNotificationFeelsLike() ?
-                                weather.getCurrent().getTemperature().getRealFeelTemperature() :
-                                weather.getCurrent().getTemperature().getTemperature()
+                                settings.isNotificationFeelsLike()
+                                        ? ObjectUtils.safeValueOf(weather.getCurrent().getTemperature().getRealFeelTemperature())
+                                        : weather.getCurrent().getTemperature().getTemperature()
                         )
                 ) : ResourceHelper.getDefaultMinimalXmlIconId(
                         weather.getCurrent().getWeatherCode(),
@@ -182,7 +186,12 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
         }
 
         // commit.
-        manager.notify(GeometricWeather.NOTIFICATION_ID_NORMALLY, notification);
+        if (ActivityCompat.checkSelfPermission(
+                context,
+                Manifest.permission.POST_NOTIFICATIONS
+        ) == PackageManager.PERMISSION_GRANTED) {
+            manager.notify(GeometricWeather.NOTIFICATION_ID_NORMALLY, notification);
+        }
     }
 
     private static RemoteViews buildBaseView(Context context, RemoteViews views,
@@ -211,9 +220,9 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                 R.id.notification_base_realtimeTemp,
                 Temperature.getShortTemperature(
                         context,
-                        settings.isNotificationFeelsLike() ?
-                        weather.getCurrent().getTemperature().getRealFeelTemperature() :
-                        weather.getCurrent().getTemperature().getTemperature(),
+                        settings.isNotificationFeelsLike()
+                                ? ObjectUtils.safeValueOf(weather.getCurrent().getTemperature().getRealFeelTemperature())
+                                : weather.getCurrent().getTemperature().getTemperature(),
                         temperatureUnit
                 )
         );

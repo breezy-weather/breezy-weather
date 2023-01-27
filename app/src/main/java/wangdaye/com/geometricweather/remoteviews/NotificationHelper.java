@@ -1,11 +1,13 @@
 package wangdaye.com.geometricweather.remoteviews;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 
@@ -14,6 +16,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
@@ -81,7 +84,6 @@ public class NotificationHelper {
     }
 
     // alert.
-
     public static void checkAndSendAlert(Context context,
                                          Location location, @Nullable Weather oldResult) {
         Weather weather = location.getWeather();
@@ -124,17 +126,23 @@ public class NotificationHelper {
             );
         }
 
-        int notificationId = getAlertNotificationId(context);
-        manager.notify(
-                notificationId,
-                buildSingleAlertNotification(context, location, alert, inGroup, notificationId)
-        );
+        if (ActivityCompat.checkSelfPermission(
+                context,
+                Manifest.permission.POST_NOTIFICATIONS
+        ) == PackageManager.PERMISSION_GRANTED) {
+            int notificationId = getAlertNotificationId(context);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && inGroup) {
             manager.notify(
-                    GeometricWeather.NOTIFICATION_ID_ALERT_GROUP,
-                    buildAlertGroupSummaryNotification(context, location, alert, notificationId)
+                    notificationId,
+                    buildSingleAlertNotification(context, location, alert, inGroup, notificationId)
             );
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && inGroup) {
+                manager.notify(
+                        GeometricWeather.NOTIFICATION_ID_ALERT_GROUP,
+                        buildAlertGroupSummaryNotification(context, location, alert, notificationId)
+                );
+            }
         }
     }
 
@@ -211,7 +219,6 @@ public class NotificationHelper {
     }
 
     // precipitation.
-
     @SuppressLint("InlinedApi")
     public static void checkAndSendPrecipitationForecast(Context context, Location location) {
         if (!SettingsManager.getInstance(context).isPrecipitationPushEnabled()
@@ -239,34 +246,39 @@ public class NotificationHelper {
         }
 
         if (isShortTermLiquid(weather) || isLiquidDay(weather)) {
-            manager.notify(
-                    GeometricWeather.NOTIFICATION_ID_PRECIPITATION,
-                    getNotificationBuilder(
-                            context,
-                            R.drawable.ic_precipitation,
-                            context.getString(R.string.precipitation_overview),
-                            weather.getDailyForecast()
-                                    .get(0)
-                                    .getDate(context.getString(R.string.date_format_widget_long)),
-                            context.getString(
-                                    isShortTermLiquid(weather)
-                                            ? R.string.feedback_short_term_precipitation_alert
-                                            : R.string.feedback_today_precipitation_alert
-                            ),
-                            getColor(context, location),
-                            PendingIntent.getActivity(
-                                    context,
-                                    GeometricWeather.NOTIFICATION_ID_PRECIPITATION,
-                                    IntentHelper.buildMainActivityIntent(location),
-                                    PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
-                            )
-                    ).build()
-            );
+            if (ActivityCompat.checkSelfPermission(
+                    context,
+                    Manifest.permission.POST_NOTIFICATIONS
+            ) == PackageManager.PERMISSION_GRANTED) {
+                manager.notify(
+                        GeometricWeather.NOTIFICATION_ID_PRECIPITATION,
+                        getNotificationBuilder(
+                                context,
+                                R.drawable.ic_precipitation,
+                                context.getString(R.string.precipitation_overview),
+                                weather.getDailyForecast()
+                                        .get(0)
+                                        .getDate(context.getString(R.string.date_format_widget_long)),
+                                context.getString(
+                                        isShortTermLiquid(weather)
+                                                ? R.string.feedback_short_term_precipitation_alert
+                                                : R.string.feedback_today_precipitation_alert
+                                ),
+                                getColor(context, location),
+                                PendingIntent.getActivity(
+                                        context,
+                                        GeometricWeather.NOTIFICATION_ID_PRECIPITATION,
+                                        IntentHelper.buildMainActivityIntent(location),
+                                        PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
+                                )
+                        ).build()
+                );
 
-            config.edit()
-                    .putString(KEY_PRECIPITATION_LOCATION_KEY, location.getFormattedId())
-                    .putLong(KEY_PRECIPITATION_DATE, System.currentTimeMillis())
-                    .apply();
+                config.edit()
+                        .putString(KEY_PRECIPITATION_LOCATION_KEY, location.getFormattedId())
+                        .putLong(KEY_PRECIPITATION_DATE, System.currentTimeMillis())
+                        .apply();
+            }
         }
     }
 

@@ -85,6 +85,7 @@ public class WeatherHelper {
                                 @NonNull final OnRequestLocationListener l) {
         if (enabledSources == null || enabledSources.isEmpty()) {
             AsyncHelper.delayRunOnUI(() -> l.requestLocationFailed(query), 0);
+            return;
         }
 
         // generate weather services.

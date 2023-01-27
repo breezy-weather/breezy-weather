@@ -1,12 +1,16 @@
 package wangdaye.com.geometricweather.remoteviews.presenters.notification;
 
+import android.Manifest;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Icon;
 import android.os.Build;
 
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
@@ -16,6 +20,7 @@ import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
+import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
 import wangdaye.com.geometricweather.remoteviews.presenters.AbstractRemoteViewsPresenter;
 import wangdaye.com.geometricweather.theme.ThemeManager;
 import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
@@ -160,12 +165,17 @@ public class ForecastNotificationIMP extends AbstractRemoteViewsPresenter {
         }
 
         // commit.
-        manager.notify(
-                today
-                        ? GeometricWeather.NOTIFICATION_ID_TODAY_FORECAST
-                        : GeometricWeather.NOTIFICATION_ID_TOMORROW_FORECAST,
-                notification
-        );
+        if (ActivityCompat.checkSelfPermission(
+                context,
+                Manifest.permission.POST_NOTIFICATIONS
+        ) == PackageManager.PERMISSION_GRANTED) {
+            manager.notify(
+                    today
+                            ? GeometricWeather.NOTIFICATION_ID_TODAY_FORECAST
+                            : GeometricWeather.NOTIFICATION_ID_TOMORROW_FORECAST,
+                    notification
+            );
+        }
     }
 
     public static boolean isEnable(Context context, boolean today) {

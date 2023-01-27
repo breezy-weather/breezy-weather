@@ -7,6 +7,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 public class ObjectUtils {
 
     @SuppressWarnings("unchecked")
@@ -18,5 +20,12 @@ public class ObjectUtils {
         ByteArrayInputStream byteIn = new ByteArrayInputStream(byteOut.toByteArray());
         ObjectInputStream in = new ObjectInputStream(byteIn);
         return (List<T>) in.readObject();
+    }
+
+    public static int safeValueOf(@Nullable Integer integer) {
+        if (integer == null) {
+            return 0;
+        }
+        return integer;
     }
 }

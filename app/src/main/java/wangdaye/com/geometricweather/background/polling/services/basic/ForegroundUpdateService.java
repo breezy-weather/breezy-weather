@@ -1,12 +1,15 @@
 package wangdaye.com.geometricweather.background.polling.services.basic;
 
+import android.Manifest;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
@@ -107,12 +110,17 @@ public abstract class ForegroundUpdateService extends UpdateService {
     public void onUpdateCompleted(@NonNull Location location, @Nullable Weather old,
                                   boolean succeed, int index, int total) {
         super.onUpdateCompleted(location, old, succeed, index, total);
-        mFinishedCount ++;
+        mFinishedCount++;
         if (mFinishedCount != total) {
-            NotificationManagerCompat.from(this).notify(
-                    getForegroundNotificationId(),
-                    getForegroundNotification(total).build()
-            );
+            if (ActivityCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.POST_NOTIFICATIONS
+            ) == PackageManager.PERMISSION_GRANTED) {
+                NotificationManagerCompat.from(this).notify(
+                        getForegroundNotificationId(),
+                        getForegroundNotification(total).build()
+                );
+            }
         }
     }
 }

@@ -27,6 +27,9 @@
     <!-- tiles. -->
     <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
 
+    <!-- notification. -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+
     <uses-feature android:name="android.software.live_wallpaper"
         android:required="true" />
     <uses-feature android:name="android.hardware.location.gps" />
@@ -51,6 +54,7 @@
         android:largeHeap="true"
         android:theme="@style/GeometricWeatherTheme"
         android:networkSecurityConfig="@xml/network_security_config"
+        android:enableOnBackInvokedCallback="true"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning,ManifestResource,RtlEnabled,UnusedAttribute"
         tools:replace="android:label"
         tools:targetApi="n">

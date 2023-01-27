@@ -374,7 +374,7 @@ class MainActivity : GeoActivity(),
         ) == PackageManager.PERMISSION_GRANTED
 
     val isDaylight
-        get() = viewModel.currentLocation.value?.daylight ?: true
+        get() = viewModel.currentLocation.value?.daylight
 
     // control.
 
