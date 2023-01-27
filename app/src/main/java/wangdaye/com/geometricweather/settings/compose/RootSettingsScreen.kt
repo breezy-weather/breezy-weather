@@ -274,77 +274,77 @@ fun RootSettingsView(
             )
         }
         if (DayWidgetIMP.isEnable(context)) {
-            clickablePreferenceItem(R.string.key_widget_day) {
+            clickablePreferenceItem(R.string.widget_day) {
                 PreferenceView(title = stringResource(it)) {
                     context.startActivity(Intent(context, DayWidgetConfigActivity::class.java))
                 }
             }
         }
         if (WeekWidgetIMP.isEnable(context)) {
-            clickablePreferenceItem(R.string.key_widget_week) {
+            clickablePreferenceItem(R.string.widget_week) {
                 PreferenceView(title = stringResource(it)) {
                     context.startActivity(Intent(context, WeekWidgetConfigActivity::class.java))
                 }
             }
         }
         if (DayWeekWidgetIMP.isEnable(context)) {
-            clickablePreferenceItem(R.string.key_widget_day_week) {
+            clickablePreferenceItem(R.string.widget_day_week) {
                 PreferenceView(title = stringResource(it)) {
                     context.startActivity(Intent(context, DayWeekWidgetConfigActivity::class.java))
                 }
             }
         }
         if (ClockDayHorizontalWidgetIMP.isEnable(context)) {
-            clickablePreferenceItem(R.string.key_widget_clock_day_horizontal) {
+            clickablePreferenceItem(R.string.widget_clock_day_horizontal) {
                 PreferenceView(title = stringResource(it)) {
                     context.startActivity(Intent(context, ClockDayHorizontalWidgetConfigActivity::class.java))
                 }
             }
         }
         if (ClockDayDetailsWidgetIMP.isEnable(context)) {
-            clickablePreferenceItem(R.string.key_widget_clock_day_details) {
+            clickablePreferenceItem(R.string.widget_clock_day_details) {
                 PreferenceView(title = stringResource(it)) {
                     context.startActivity(Intent(context, ClockDayDetailsWidgetConfigActivity::class.java))
                 }
             }
         }
         if (ClockDayVerticalWidgetIMP.isEnable(context)) {
-            clickablePreferenceItem(R.string.key_widget_clock_day_vertical) {
+            clickablePreferenceItem(R.string.widget_clock_day_vertical) {
                 PreferenceView(title = stringResource(it)) {
                     context.startActivity(Intent(context, ClockDayVerticalWidgetConfigActivity::class.java))
                 }
             }
         }
         if (ClockDayWeekWidgetIMP.isEnable(context)) {
-            clickablePreferenceItem(R.string.key_widget_clock_day_week) {
+            clickablePreferenceItem(R.string.widget_clock_day_week) {
                 PreferenceView(title = stringResource(it)) {
                     context.startActivity(Intent(context, ClockDayWeekWidgetConfigActivity::class.java))
                 }
             }
         }
         if (TextWidgetIMP.isEnable(context)) {
-            clickablePreferenceItem(R.string.key_widget_text) {
+            clickablePreferenceItem(R.string.widget_text) {
                 PreferenceView(title = stringResource(it)) {
                     context.startActivity(Intent(context, TextWidgetConfigActivity::class.java))
                 }
             }
         }
         if (DailyTrendWidgetIMP.isEnable(context)) {
-            clickablePreferenceItem(R.string.key_widget_trend_daily) {
+            clickablePreferenceItem(R.string.widget_trend_daily) {
                 PreferenceView(title = stringResource(it)) {
                     context.startActivity(Intent(context, DailyTrendWidgetConfigActivity::class.java))
                 }
             }
         }
         if (HourlyTrendWidgetIMP.isEnable(context)) {
-            clickablePreferenceItem(R.string.key_widget_trend_hourly) {
+            clickablePreferenceItem(R.string.widget_trend_hourly) {
                 PreferenceView(title = stringResource(it)) {
                     context.startActivity(Intent(context, HourlyTrendWidgetConfigActivity::class.java))
                 }
             }
         }
         if (MultiCityWidgetIMP.isEnable(context)) {
-            clickablePreferenceItem(R.string.key_widget_multi_city) {
+            clickablePreferenceItem(R.string.widget_multi_city) {
                 PreferenceView(title = stringResource(it)) {
                     context.startActivity(Intent(context, MultiCityWidgetConfigActivity::class.java))
                 }

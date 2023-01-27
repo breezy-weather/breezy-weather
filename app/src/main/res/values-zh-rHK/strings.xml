@@ -390,6 +390,7 @@
     <string name="settings_title_notification">開啟天氣通知</string>
     <string name="settings_title_notification_style">通知風格</string>
     <string name="settings_title_notification_temp_icon">將溫度作為通知小圖標</string>
+    <string name="settings_title_notification_feels_like">使用體感溫度作為小圖標</string>
     <string name="settings_title_notification_color">通知顔色</string>
     <string name="settings_title_notification_custom_color">自定義通知顔色</string>
     <string name="settings_title_notification_text_color">天氣通知字體顔色</string>
