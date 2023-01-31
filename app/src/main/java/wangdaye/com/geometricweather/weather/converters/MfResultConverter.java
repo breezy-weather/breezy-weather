@@ -435,7 +435,7 @@ public class MfResultConverter {
         for (MfForecastV2Result.ForecastProperties.HourForecast hourForecast : hourlyForecast) {
             if ((isDaytime && hourForecast.time >= dailyForecast.time + 6 * 3600 && hourForecast.time < dailyForecast.time + 18 * 3600)
                     || (!isDaytime && hourForecast.time >= dailyForecast.time + 18 * 3600 && hourForecast.time < dailyForecast.time + 30 * 3600)) {
-                if (cloudCover == null || hourForecast.totalCloudCover > cloudCover) {
+                if (cloudCover == null || (hourForecast.totalCloudCover != null && hourForecast.totalCloudCover > cloudCover)) {
                     cloudCover = hourForecast.totalCloudCover;
                 }
             }
@@ -443,7 +443,11 @@ public class MfResultConverter {
 
         if (temp == null) {
             // Only add the daily reported value if we have no hourly data
-            temp = toInt(isDaytime ? dailyForecast.tMax : dailyForecast.tMin);
+            if (isDaytime && dailyForecast.tMax != null) {
+                temp = toInt(dailyForecast.tMax);
+            } else if(!isDaytime && dailyForecast.tMin != null) {
+                temp = toInt(dailyForecast.tMin);
+            }
         }
 
         // Return null so we don't add a garbage day
