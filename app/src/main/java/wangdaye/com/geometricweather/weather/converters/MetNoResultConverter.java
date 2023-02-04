@@ -321,16 +321,16 @@ public class MetNoResultConverter {
                             halfDayDaytime,
                             halfDayNighttime,
                             new Astro(
-                                sunsetList.get(dateString).sunrise.time,
-                                sunsetList.get(dateString).sunset.time
+                                sunsetList.containsKey(dateString) && sunsetList.get(dateString).sunrise != null ? sunsetList.get(dateString).sunrise.time : null,
+                                sunsetList.containsKey(dateString) && sunsetList.get(dateString).sunset != null ? sunsetList.get(dateString).sunset.time : null
                             ),
                             new Astro(
-                                sunsetList.get(dateString).moonrise.time,
-                                sunsetList.get(dateString).moonset.time
+                                sunsetList.containsKey(dateString) && sunsetList.get(dateString).moonrise != null ? sunsetList.get(dateString).moonrise.time : null,
+                                sunsetList.containsKey(dateString) && sunsetList.get(dateString).moonset != null ? sunsetList.get(dateString).moonset.time : null
                             ),
                             new MoonPhase(
-                                toInt(Double.valueOf(sunsetList.get(dateString).moonposition.phase)),
-                                sunsetList.get(dateString).moonposition.desc
+                                sunsetList.containsKey(dateString) && sunsetList.get(dateString).moonposition != null ? toInt(Double.valueOf(sunsetList.get(dateString).moonposition.phase)) : null,
+                                sunsetList.containsKey(dateString) && sunsetList.get(dateString).moonposition != null ? sunsetList.get(dateString).moonposition.desc : null
                             ),
                             new AirQuality(
                                 null, null, null, null,
@@ -338,10 +338,10 @@ public class MetNoResultConverter {
                             ),
                             new Pollen(null, null, null, null, null, null, null, null, null, null, null, null),
                             new UV(null, null, null),
-                            CommonConverter.getHoursOfDay(
+                            sunsetList.containsKey(dateString) && sunsetList.get(dateString).sunrise != null && sunsetList.get(dateString).sunset != null ? CommonConverter.getHoursOfDay(
                                 sunsetList.get(dateString).sunrise.time,
                                 sunsetList.get(dateString).sunset.time
-                            )
+                            ) : 0
                         )
                     );
                 }
