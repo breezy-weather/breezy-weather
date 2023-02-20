@@ -2,12 +2,10 @@ package wangdaye.com.geometricweather.common.basic.insets;
 
 import android.content.Context;
 import android.graphics.Rect;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.WindowInsets;
 import android.widget.FrameLayout;
 
-import androidx.annotation.RequiresApi;
 import androidx.core.view.ViewCompat;
 
 public class FitHorizontalSystemBarRootLayout extends FrameLayout {
@@ -27,7 +25,6 @@ public class FitHorizontalSystemBarRootLayout extends FrameLayout {
         mFitKeyboardExpanded = false;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
     @Override
     public WindowInsets onApplyWindowInsets(WindowInsets insets) {
         Rect r = new Rect(

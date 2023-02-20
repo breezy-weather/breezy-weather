@@ -2,7 +2,6 @@ package wangdaye.com.geometricweather.common.ui.adapters;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -128,9 +127,7 @@ public abstract class AnimationAdapterWrapper<A extends RecyclerView.Adapter<VH>
         view.setScaleY(1f);
         view.setTranslationX(0f);
         view.setTranslationY(0f);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            view.setTranslationZ(0f);
-        }
+        view.setTranslationZ(0f);
     }
 
     @Override

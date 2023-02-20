@@ -58,9 +58,9 @@ class AlertActivity : GeoActivity() {
         if (alert.date != null) {
             return DateFormat
                 .getDateTimeInstance(DateFormat.LONG, DateFormat.DEFAULT)
-                .format(alert.date);
+                .format(alert.date)
         }
-        return "";
+        return ""
     }
 
     @Composable

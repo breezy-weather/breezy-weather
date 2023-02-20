@@ -6,13 +6,11 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
@@ -69,7 +67,6 @@ public class HourlyTrendItemView extends AbsTrendItemView {
         initialize();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public HourlyTrendItemView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         initialize();
@@ -200,12 +197,10 @@ public class HourlyTrendItemView extends AbsTrendItemView {
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_UP:
-                if (mClickListener != null) {
-                    mClickListener.onClick(this);
-                }
-                break;
+        if (event.getAction() == MotionEvent.ACTION_UP) {
+            if (mClickListener != null) {
+                mClickListener.onClick(this);
+            }
         }
         return super.onTouchEvent(event);
     }

@@ -1,14 +1,12 @@
 package wangdaye.com.geometricweather.search.ui;
 
 import android.content.Context;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.WindowInsets;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 
 import wangdaye.com.geometricweather.common.basic.insets.FitBothSideBarHelper;
 import wangdaye.com.geometricweather.common.basic.insets.FitBothSideBarView;
@@ -31,7 +29,6 @@ public class FitBottomBarFrameLayout extends FrameLayout implements FitBothSideB
         mHelper = new FitBothSideBarHelper(this, FitBothSideBarView.SIDE_BOTTOM);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
     @Override
     public WindowInsets onApplyWindowInsets(WindowInsets insets) {
         return mHelper.onApplyWindowInsets(insets, () -> setPadding(

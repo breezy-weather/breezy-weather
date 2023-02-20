@@ -2,7 +2,6 @@ package wangdaye.com.geometricweather.common.ui.widgets.insets;
 
 import android.content.Context;
 import android.graphics.Rect;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,6 @@ import android.view.WindowInsets;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
@@ -93,7 +91,6 @@ public class FitSystemBarViewPager extends ViewPager
         helper = new FitBothSideBarHelper(this, SIDE_TOP);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
     @Override
     public WindowInsets onApplyWindowInsets(WindowInsets insets) {
         return helper.onApplyWindowInsets(insets);

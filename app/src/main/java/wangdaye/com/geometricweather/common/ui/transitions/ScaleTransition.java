@@ -5,17 +5,13 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.os.Build;
 import android.transition.Transition;
 import android.transition.TransitionValues;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 
-import androidx.annotation.RequiresApi;
-
 import wangdaye.com.geometricweather.R;
 
-@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 public class ScaleTransition extends Transition {
 
     private final boolean mShow;

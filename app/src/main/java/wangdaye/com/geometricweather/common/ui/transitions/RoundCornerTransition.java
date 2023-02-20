@@ -5,7 +5,6 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Outline;
-import android.os.Build;
 import android.transition.Transition;
 import android.transition.TransitionValues;
 import android.util.AttributeSet;
@@ -13,11 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
 
-import androidx.annotation.RequiresApi;
-
 import wangdaye.com.geometricweather.R;
 
-@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 public class RoundCornerTransition extends Transition {
 
     private final float mRadiusFrom;
@@ -65,7 +61,6 @@ public class RoundCornerTransition extends Transition {
         );
         animator.addUpdateListener(valueAnimator -> {
             endValues.view.setOutlineProvider(new ViewOutlineProvider() {
-                @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                 @Override
                 public void getOutline(View view, Outline outline) {
                     outline.setRoundRect(

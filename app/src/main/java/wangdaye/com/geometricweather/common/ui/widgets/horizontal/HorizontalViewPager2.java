@@ -153,7 +153,6 @@ public class HorizontalViewPager2 extends ViewGroup {
         initialize(context);
     }
 
-    @RequiresApi(21)
     public HorizontalViewPager2(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr,
                                 int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
@@ -911,7 +910,6 @@ public class HorizontalViewPager2 extends ViewGroup {
     }
 
     @Override
-    @RequiresApi(17)
     public void setLayoutDirection(int layoutDirection) {
         super.setLayoutDirection(layoutDirection);
         mAccessibilityProvider.onSetLayoutDirection();
@@ -923,7 +921,6 @@ public class HorizontalViewPager2 extends ViewGroup {
         mAccessibilityProvider.onInitializeAccessibilityNodeInfo(info);
     }
 
-    @RequiresApi(16)
     @Override
     public boolean performAccessibilityAction(int action, Bundle arguments) {
         if (mAccessibilityProvider.handlesPerformAccessibilityAction(action, arguments)) {
@@ -1389,9 +1386,6 @@ public class HorizontalViewPager2 extends ViewGroup {
         @Override
         public void onSetUserInputEnabled() {
             updatePageAccessibilityActions();
-            if (Build.VERSION.SDK_INT < 21) {
-                sendAccessibilityEvent(AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED);
-            }
         }
 
         @Override
@@ -1402,9 +1396,7 @@ public class HorizontalViewPager2 extends ViewGroup {
         @Override
         public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo info) {
             addCollectionInfo(info);
-            if (Build.VERSION.SDK_INT >= 16) {
-                addScrollActions(info);
-            }
+            addScrollActions(info);
         }
 
         @Override
@@ -2316,10 +2308,7 @@ final class AnimateLayoutChangeDetector {
 
         // Check that the pages fill the whole screen
         int pageSize = bounds[0][1] - bounds[0][0];
-        if (bounds[0][0] > 0 || bounds[childCount - 1][1] < pageSize) {
-            return false;
-        }
-        return true;
+        return bounds[0][0] <= 0 && bounds[childCount - 1][1] >= pageSize;
     }
 
     private boolean hasRunningChangingLayoutTransition() {

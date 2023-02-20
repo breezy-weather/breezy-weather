@@ -55,24 +55,21 @@ public class WeekWidgetIMP extends AbstractRemoteViewsPresenter {
         WidgetColor color = new WidgetColor(context, cardStyle, textColor);
 
         RemoteViews views;
-        switch (viewStyle) {
-            case "3_days":
-                views = new RemoteViews(
-                        context.getPackageName(),
-                        !color.showCard
-                                ? R.layout.widget_week_3
-                                : R.layout.widget_week_3_card
-                );
-                break;
-
-            default: // 5_days
-                views = new RemoteViews(
-                        context.getPackageName(),
-                        !color.showCard
-                                ? R.layout.widget_week
-                                : R.layout.widget_week_card
-                );
-                break;
+        // 5_days
+        if ("3_days".equals(viewStyle)) {
+            views = new RemoteViews(
+                    context.getPackageName(),
+                    !color.showCard
+                            ? R.layout.widget_week_3
+                            : R.layout.widget_week_3_card
+            );
+        } else {
+            views = new RemoteViews(
+                    context.getPackageName(),
+                    !color.showCard
+                            ? R.layout.widget_week
+                            : R.layout.widget_week_card
+            );
         }
 
         Weather weather = location.getWeather();

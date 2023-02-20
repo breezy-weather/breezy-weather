@@ -191,11 +191,11 @@ class GeometricWeather : MultiDexApplication(),
     override fun onCreate() {
         super.onCreate()
 
-        NetworkUtils.registerNetworkCallback(applicationContext);
+        NetworkUtils.registerNetworkCallback(applicationContext)
 
         val cacheCreated = TLSCompactHelper.createClientCache(baseContext.cacheDir)
         if (!cacheCreated)
-            Log.e("GeometricWeather", "Failed to create Http client cache");
+            Log.e("GeometricWeather", "Failed to create Http client cache")
 
         instance = this
         LanguageUtils.setLanguage(

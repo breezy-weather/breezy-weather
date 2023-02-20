@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Rect;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
@@ -26,7 +25,6 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.IntDef;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.annotation.StringRes;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.view.ViewCompat;
@@ -447,7 +445,6 @@ public final class Snackbar {
                     ViewCompat.ACCESSIBILITY_LIVE_REGION_POLITE);
         }
 
-        @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
         @Override
         public WindowInsets onApplyWindowInsets(WindowInsets insets) {
             mWindowInsets.set(

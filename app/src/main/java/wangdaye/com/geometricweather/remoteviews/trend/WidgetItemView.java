@@ -4,13 +4,11 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
 import wangdaye.com.geometricweather.R;
@@ -74,7 +72,6 @@ public class WidgetItemView extends ViewGroup {
         initialize();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public WidgetItemView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         initialize();

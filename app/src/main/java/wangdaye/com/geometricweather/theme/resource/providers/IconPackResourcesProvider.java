@@ -580,7 +580,7 @@ public class IconPackResourcesProvider extends ResourceProvider {
     @Nullable
     private Drawable getReflectDrawable(@Nullable String className) {
         try {
-            Class clazz = mContext.getClassLoader().loadClass(className);
+            Class<?> clazz = mContext.getClassLoader().loadClass(className);
             return (Drawable) clazz.newInstance();
         } catch (Exception e) {
             return null;

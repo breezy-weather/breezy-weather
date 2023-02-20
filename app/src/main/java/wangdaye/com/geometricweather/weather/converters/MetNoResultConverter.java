@@ -193,8 +193,8 @@ public class MetNoResultConverter {
     private static HalfDay getHalfDay(Context context, boolean isDaytime, Date date, List<Hourly> hourly, HashMap<String, MetNoSunsetResult.Location.Time> sunsetList) {
         Integer temp = null;
 
-        Float precipitationTotal = 0.0f;
-        Float precipitationRain = 0.0f;
+        float precipitationTotal = 0.0f;
+        float precipitationRain = 0.0f;
 
         Float probPrecipitationTotal = 0.0f;
         Float probPrecipitationThunderstorm = 0.0f;

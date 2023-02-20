@@ -1,13 +1,11 @@
 package wangdaye.com.geometricweather.common.ui.widgets.insets;
 
 import android.content.Context;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.WindowInsets;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import wangdaye.com.geometricweather.R;
@@ -28,7 +26,6 @@ public class FitSystemBarSwipeRefreshLayout extends SwipeRefreshLayout
         mHelper = new FitBothSideBarHelper(this, SIDE_TOP);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
     @Override
     public WindowInsets onApplyWindowInsets(WindowInsets insets) {
         return mHelper.onApplyWindowInsets(insets, this::fitSystemBar);

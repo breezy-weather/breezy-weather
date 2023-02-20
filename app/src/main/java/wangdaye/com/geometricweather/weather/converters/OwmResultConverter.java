@@ -362,12 +362,12 @@ public class OwmResultConverter {
 
     private static List<Minutely> getMinutelyList(long sunrise, long sunset,
                                                   @Nullable List<OwmOneCallResult.Minutely> minuteResult) {
-        if (minuteResult == null) {
+        //if (minuteResult == null) {
             return new ArrayList<>();
-        }
+        /*}
         List<Minutely> minutelyList = new ArrayList<>(minuteResult.size());
         for (OwmOneCallResult.Minutely interval : minuteResult) {
-            /*minutelyList.add(
+            minutelyList.add(
                     new Minutely(
                             interval.StartDateTime,
                             interval.StartEpochDateTime,
@@ -378,9 +378,9 @@ public class OwmResultConverter {
                             toInt(interval.Dbz),
                             interval.CloudCover
                     )
-            );*/
+            );
         }
-        return minutelyList;
+        return minutelyList;*/
     }
 
     private static Integer getAqiFromIndex (Integer aqi) {

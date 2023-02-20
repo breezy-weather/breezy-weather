@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <item
-        android:state_pressed="false"
-        android:drawable="@android:color/transparent" />
-
-    <item android:drawable="?attr/colorControlHighlight" />
-
-</selector>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="?attr/colorControlHighlight">
+    <item android:id="@android:id/mask">
+        <color android:color="@android:color/white" />
+    </item>
+</ripple>

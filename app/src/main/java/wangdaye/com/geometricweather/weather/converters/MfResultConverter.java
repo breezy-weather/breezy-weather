@@ -365,13 +365,13 @@ public class MfResultConverter {
         return AirQuality.AQI_INDEX_1 / 2;
     }
 
-    private static HalfDay getHalfDay(Context context, boolean isDaytime, List<Hourly> hourly, List<MfForecastV2Result.ForecastProperties.HourForecast> hourlyForecast, MfForecastV2Result.ForecastProperties.ForecastV2 dailyForecast) {
+    private static HalfDay getHalfDay(boolean isDaytime, List<Hourly> hourly, List<MfForecastV2Result.ForecastProperties.HourForecast> hourlyForecast, MfForecastV2Result.ForecastProperties.ForecastV2 dailyForecast) {
         Integer temp = null;
         Integer tempWindChill = null;
 
-        Float precipitationTotal = 0.0f;
-        Float precipitationRain = 0.0f;
-        Float precipitationSnow = 0.0f;
+        float precipitationTotal = 0.0f;
+        float precipitationRain = 0.0f;
+        float precipitationSnow = 0.0f;
 
         Float probPrecipitationTotal = 0.0f;
         Float probPrecipitationRain = 0.0f;
@@ -494,8 +494,8 @@ public class MfResultConverter {
         List<Daily> dailyList = new ArrayList<>(forecastsResult.dailyForecast.size());
 
         for (MfForecastV2Result.ForecastProperties.ForecastV2 dailyForecast : forecastsResult.dailyForecast) {
-            HalfDay halfDayDaytime = getHalfDay(context, true, hourly, forecastsResult.forecast, dailyForecast);
-            HalfDay halfDayNighttime = getHalfDay(context, false, hourly, forecastsResult.forecast, dailyForecast);
+            HalfDay halfDayDaytime = getHalfDay(true, hourly, forecastsResult.forecast, dailyForecast);
+            HalfDay halfDayNighttime = getHalfDay(false, hourly, forecastsResult.forecast, dailyForecast);
 
             // Don’t add to the list if we have no data on it
             if (halfDayDaytime != null && halfDayNighttime != null) {
@@ -563,7 +563,7 @@ public class MfResultConverter {
     private static Precipitation getHourlyPrecipitation(MfForecastV2Result.ForecastProperties.HourForecast hourlyForecast) {
         Float rainCumul = getRainCumul(hourlyForecast);
         Float snowCumul = getSnowCumul(hourlyForecast);
-        Float totalCumul = null;
+        Float totalCumul;
 
         if (rainCumul == null) {
             totalCumul = snowCumul;

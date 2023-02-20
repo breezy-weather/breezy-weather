@@ -435,7 +435,7 @@ public class InkPageIndicator extends View
 
         if ((joiningFraction == 0f || joiningFraction == INVALID_FRACTION)
                 && dotRevealFraction == 0f
-                && !(page == mCurrentPage && mSelectedDotInPosition == true)) {
+                && !(page == mCurrentPage && mSelectedDotInPosition)) {
 
             // case #1 – At rest
             mUnselectedDotPath.addCircle(mDotCenterX[page], mDotCenterY, mDotRadius, Path.Direction.CW);
@@ -683,8 +683,8 @@ public class InkPageIndicator extends View
         });
         // slightly delay the start to give the joins a chance to run
         // unless dot isn't in position yet – then don't delay!
-        moveSelected.setStartDelay(mSelectedDotInPosition ? mAnimDuration / 4l : 0l);
-        moveSelected.setDuration(mAnimDuration * 3l / 4l);
+        moveSelected.setStartDelay(mSelectedDotInPosition ? mAnimDuration / 4L : 0L);
+        moveSelected.setDuration(mAnimDuration * 3L / 4L);
         moveSelected.setInterpolator(mInterpolator);
         return moveSelected;
     }

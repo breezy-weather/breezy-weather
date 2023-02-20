@@ -34,10 +34,9 @@ class SnackbarManager {
     private SnackbarManager() {
         mLock = new Object();
         mHandler = new Handler(Looper.getMainLooper(), message -> {
-            switch (message.what) {
-                case MSG_TIMEOUT:
-                    handleTimeout((SnackbarRecord) message.obj);
-                    return true;
+            if (message.what == MSG_TIMEOUT) {
+                handleTimeout((SnackbarRecord) message.obj);
+                return true;
             }
             return false;
         });

@@ -119,7 +119,10 @@ class PollingUpdateHelper(
             if (locationList[index].isUsable) {
                 requestData(index, true)
             } else {
-                RequestWeatherCallback(index, total).requestWeatherFailed(locationList[index], false, false)
+                RequestWeatherCallback(index, total).requestWeatherFailed(locationList[index],
+                    apiLimitReached = false,
+                    apiUnauthorized = false
+                )
             }
         }
     }
@@ -146,7 +149,10 @@ class PollingUpdateHelper(
 
                 checkToRequestNextOrCompleted()
             } else {
-                requestWeatherFailed(requestLocation, false, false)
+                requestWeatherFailed(requestLocation,
+                    apiLimitReached = false,
+                    apiUnauthorized = false
+                )
             }
         }
 

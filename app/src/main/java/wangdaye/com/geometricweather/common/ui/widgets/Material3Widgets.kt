@@ -75,7 +75,6 @@ fun getCardListItemMarginDp(context: Context) = context
     .resources
     .getDimension(R.dimen.little_margin)
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Material3CardListItem(
     elevation: Dp = defaultCardListItemElevation,

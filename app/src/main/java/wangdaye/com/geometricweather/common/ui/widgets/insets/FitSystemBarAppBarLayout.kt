@@ -38,7 +38,6 @@ class FitSystemBarAppBarLayout @JvmOverloads constructor(
         )
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
     override fun onApplyWindowInsets(insets: WindowInsets): WindowInsets {
         return mHelper.onApplyWindowInsets(insets) { fitSystemBar() }
     }

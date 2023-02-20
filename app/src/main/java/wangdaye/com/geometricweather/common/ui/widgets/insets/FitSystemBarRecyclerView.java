@@ -3,13 +3,11 @@ package wangdaye.com.geometricweather.common.ui.widgets.insets;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Rect;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.WindowInsets;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import wangdaye.com.geometricweather.R;
@@ -40,7 +38,6 @@ public class FitSystemBarRecyclerView extends RecyclerView
         mHelper = new FitBothSideBarHelper(this, fitSide);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
     @Override
     public WindowInsets onApplyWindowInsets(WindowInsets insets) {
         return mHelper.onApplyWindowInsets(insets);

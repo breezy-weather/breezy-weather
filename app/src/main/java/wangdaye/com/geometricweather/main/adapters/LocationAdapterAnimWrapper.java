@@ -6,7 +6,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.os.Build;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -76,15 +75,11 @@ public class LocationAdapterAnimWrapper
         }
 
         AnimatorSet set = new AnimatorSet();
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            set.playTogether(alpha, animators[0], animators[1], animators[2]);
-        } else {
-            Animator z = ObjectAnimator
-                    .ofFloat(view, "translationZ", mDZ, 0f).setDuration(duration);
-            z.setInterpolator(DisplayUtils.FLOATING_DECELERATE_INTERPOLATOR);
+        Animator z = ObjectAnimator
+                .ofFloat(view, "translationZ", mDZ, 0f).setDuration(duration);
+        z.setInterpolator(DisplayUtils.FLOATING_DECELERATE_INTERPOLATOR);
 
-            set.playTogether(alpha, animators[0], animators[1], animators[2], z);
-        }
+        set.playTogether(alpha, animators[0], animators[1], animators[2], z);
         set.setStartDelay(delay);
         set.addListener(new AnimatorListenerAdapter() {
             @Override
@@ -110,9 +105,6 @@ public class LocationAdapterAnimWrapper
     }
 
     private void setItemStateListAnimator(View view, boolean enabled) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            return;
-        }
         view.setStateListAnimator(enabled
                 ? AnimatorInflater.loadStateListAnimator(view.getContext(), R.animator.touch_raise)
                 : null);

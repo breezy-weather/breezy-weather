@@ -198,7 +198,6 @@
     <string name="feedback_check_location_permission">periksa izin lokasi</string>
     <string name="feedback_enable_location_information">Mengaktifkan Informasi Lokasi</string>
     <string name="feedback_select_location_provider">Pilih Penyedia Lokasi</string>
-    <string name="feedback_add_location_manual">Tambahkan Lokasi Secara Manual Dan Hapus \'$\'</string>
     <string name="feedback_api_limit_reached">Batas permintaan API telah dicapai</string>
     <string name="feedback_api_limit_reached_help">Untuk mengatasinya, tambahkan kunci API Anda sendiri.</string>
     <string name="feedback_api_unauthorized">Akses API tidak memiliki izin</string>
