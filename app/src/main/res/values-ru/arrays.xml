@@ -34,18 +34,15 @@
 
     <!-- automatic refresh rate. -->
     <string-array name="automatic_refresh_rates">
+        <item>Never</item>
         <item>Полчаса</item>
         <item>1 час</item>
         <item>1.5 часа</item>
         <item>2 часа</item>
-        <item>2.5 часа</item>
         <item>3 часа</item>
-        <item>3.5 часа</item>
-        <item>4 часа</item>
-        <item>4.5 часа</item>
-        <item>5 часов</item>
-        <item>5.5 часов</item>
         <item>6 часов</item>
+        <item>12 часов</item>
+        <item>24 часов</item>
     </string-array>
 
     <!-- widget week icon mode. -->

@@ -131,32 +131,26 @@
 
     <!-- automatic refresh rate. -->
     <string-array name="automatic_refresh_rates">
+        <item>Never</item>
         <item>Half an hour</item>
         <item>1 hour</item>
         <item>1.5 hours</item>
         <item>2 hours</item>
-        <item>2.5 hours</item>
         <item>3 hours</item>
-        <item>3.5 hours</item>
-        <item>4 hours</item>
-        <item>4.5 hours</item>
-        <item>5 hours</item>
-        <item>5.5 hours</item>
         <item>6 hours</item>
+        <item>12 hours</item>
+        <item>24 hours</item>
     </string-array>
     <string-array name="automatic_refresh_rate_values">
+        <item>never</item>
         <item>0:30</item>
         <item>1:00</item>
         <item>1:30</item>
         <item>2:00</item>
-        <item>2:30</item>
         <item>3:00</item>
-        <item>3:30</item>
-        <item>4:00</item>
-        <item>4:30</item>
-        <item>5:00</item>
-        <item>5:30</item>
         <item>6:00</item>
+        <item>12:00</item>
+        <item>24:00</item>
     </string-array>
 
     <!-- widget week icon mode. -->

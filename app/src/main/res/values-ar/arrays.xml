@@ -25,18 +25,15 @@
 
     <!-- automatic refresh rate. -->
     <string-array name="automatic_refresh_rates">
+        <item>Never</item>
         <item>كل ٣٠ دقيقة</item>
         <item>كل ساعة</item>
         <item>كل ساعة ونصف</item>
         <item>كل ساعتان</item>
-        <item>كل ساعتان ونصف</item>
         <item>كل ٣ ساعات</item>
-        <item>كل ٣ ساعات ونصف</item>
-        <item>كل ٤ ساعات</item>
-        <item>كل أربع ساعات ونصف</item>
-        <item>كل خمس ساعات</item>
-        <item>كل خمس ساعات ونصف</item>
         <item>كل ست ساعات</item>
+        <item>كل 12 ساعات</item>
+        <item>كل 24 ساعات</item>
     </string-array>
 
     <!-- notification style. -->

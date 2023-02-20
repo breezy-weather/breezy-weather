@@ -34,18 +34,15 @@
 
     <!-- automatic refresh rate. -->
     <string-array name="automatic_refresh_rates">
+        <item>Never</item>
         <item>30 min</item>
         <item>1 hora</item>
         <item>1 h 30</item>
         <item>2 horas</item>
-        <item>2 h 30</item>
         <item>3 horas</item>
-        <item>3 h 30</item>
-        <item>4 horas</item>
-        <item>4 h 30</item>
-        <item>5 horas</item>
-        <item>5 h 30</item>
         <item>6 horas</item>
+        <item>12 horas</item>
+        <item>24 horas</item>
     </string-array>
 
     <!-- widget week icon mode. -->

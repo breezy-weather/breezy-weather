@@ -42,18 +42,15 @@
 
     <!-- automatic refresh rate. -->
     <string-array name="automatic_refresh_rates">
+        <item>Never</item>
         <item>Mitja hora</item>
         <item>1 hora</item>
         <item>1,5 hores</item>
         <item>2 hores</item>
-        <item>2,5 hores</item>
         <item>3 hores</item>
-        <item>3,5 hores</item>
-        <item>4 hores</item>
-        <item>4,5 hores</item>
-        <item>5 hores</item>
-        <item>5,5 hores</item>
         <item>6 hores</item>
+        <item>12 hores</item>
+        <item>24 hores</item>
     </string-array>
 
     <!-- widget week icon mode. -->

@@ -34,18 +34,15 @@
 
     <!-- automatic refresh rate. -->
     <string-array name="automatic_refresh_rates">
+        <item>Never</item>
         <item>Půl hodiny</item>
         <item>1 hodina</item>
         <item>1,5 hodiny</item>
         <item>2 hodiny</item>
-        <item>2,5 hodiny</item>
         <item>3 hodiny</item>
-        <item>3,5 hodiny</item>
-        <item>4 hodiny</item>
-        <item>4,5 hodiny</item>
-        <item>5 hodin</item>
-        <item>5,5 hodiny</item>
         <item>6 hodin</item>
+        <item>12 hodin</item>
+        <item>24 hodin</item>
     </string-array>
 
     <!-- widget week icon mode. -->

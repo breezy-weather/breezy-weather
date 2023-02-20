@@ -37,18 +37,15 @@
 
     <!-- automatic refresh rate. -->
     <string-array name="automatic_refresh_rates">
+        <item>Never</item>
         <item>30分</item>
         <item>1時間</item>
         <item>1.5時間</item>
         <item>2時間</item>
-        <item>2.5時間</item>
         <item>3時間</item>
-        <item>3.5時間</item>
-        <item>4時間</item>
-        <item>4.5時間</item>
-        <item>5時間</item>
-        <item>5.5時間</item>
         <item>6時間</item>
+        <item>12時間</item>
+        <item>24時間</item>
     </string-array>
 
     <!-- widget week icon mode. -->

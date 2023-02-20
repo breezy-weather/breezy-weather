@@ -15,7 +15,7 @@ public class MainModuleUtils {
     private static final long BASE_ENTER_DURATION = 500;
 
     public static boolean needUpdate(Context context, Location location) {
-        float pollingIntervalInHour = SettingsManager.getInstance(context)
+        Float pollingIntervalInHour = SettingsManager.getInstance(context)
                 .getUpdateInterval()
                 .getIntervalInHour();
         return !location.isUsable()

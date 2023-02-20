@@ -34,18 +34,15 @@
 
     <!-- 자동 갱신 간격. -->
     <string-array name="automatic_refresh_rates">
+        <item>Never</item>
         <item>30분</item>
         <item>1시간</item>
         <item>1시간 30분</item>
         <item>2시간</item>
-        <item>2시간 30분</item>
         <item>3시간</item>
-        <item>3시간 30분</item>
-        <item>4시간</item>
-        <item>4시간 30분</item>
-        <item>5시간</item>
-        <item>5시간 30분</item>
         <item>6시간</item>
+        <item>12시간</item>
+        <item>24시간</item>
     </string-array>
 
     <!-- 위젯 주간 아이콘 모드. -->

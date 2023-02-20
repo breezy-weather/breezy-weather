@@ -75,10 +75,11 @@ public class Weather
         return alertList;
     }
 
-    public boolean isValid(float pollingIntervalHours) {
+    public boolean isValid(Float pollingIntervalHours) {
         long updateTime = base.getUpdateTime();
         long currentTime = System.currentTimeMillis();
-        return currentTime >= updateTime
-                && currentTime - updateTime < pollingIntervalHours * 60 * 60 * 1000;
+        return pollingIntervalHours == null
+            || (currentTime >= updateTime
+            && currentTime - updateTime < pollingIntervalHours * 60 * 60 * 1000);
     }
 }

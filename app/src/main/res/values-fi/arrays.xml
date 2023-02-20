@@ -34,18 +34,15 @@
 
     <!-- automatic refresh rate. -->
     <string-array name="automatic_refresh_rates">
+        <item>Never</item>
         <item>30 min</item>
         <item>1 tunti</item>
         <item>1,5 tuntia</item>
         <item>2 tuntia</item>
-        <item>2,5 tuntia</item>
         <item>3 tuntia</item>
-        <item>3,5 tuntia</item>
-        <item>4 tuntia</item>
-        <item>4,5 tuntia</item>
-        <item>5 tuntia</item>
-        <item>5,5 tuntia</item>
         <item>6 tuntia</item>
+        <item>12 tuntia</item>
+        <item>24 tuntia</item>
     </string-array>
 
     <!-- widget week icon mode. -->

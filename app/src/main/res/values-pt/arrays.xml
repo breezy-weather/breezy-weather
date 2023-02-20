@@ -25,18 +25,15 @@
 
     <!-- automatic refresh rate. -->
     <string-array name="automatic_refresh_rates">
+        <item>Never</item>
         <item>00:30</item>
         <item>01:00</item>
         <item>01:30</item>
         <item>02:00</item>
-        <item>02:30</item>
         <item>03:00</item>
-        <item>03:30</item>
-        <item>04:00</item>
-        <item>04:30</item>
-        <item>05:00</item>
-        <item>05:30</item>
         <item>06:00</item>
+        <item>12:00</item>
+        <item>24:00</item>
     </string-array>
 
     <!-- notification text color. -->

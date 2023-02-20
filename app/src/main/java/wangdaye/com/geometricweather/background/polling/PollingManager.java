@@ -28,9 +28,13 @@ public class PollingManager {
         if (settings.isBackgroundFree()) {
             PermanentServiceHelper.stopPollingService(context);
 
-            WorkerHelper.setNormalPollingWork(
-                    context,
-                    SettingsManager.getInstance(context).getUpdateInterval().getIntervalInHour());
+            if (SettingsManager.getInstance(context).getUpdateInterval().getIntervalInHour() != null) {
+                WorkerHelper.setNormalPollingWork(
+                        context,
+                        SettingsManager.getInstance(context).getUpdateInterval().getIntervalInHour());
+            } else {
+                WorkerHelper.cancelNormalPollingWork(context);
+            }
 
             if (settings.isTodayForecastEnabled()) {
                 WorkerHelper.setTodayForecastUpdateWork(context, settings.getTodayForecastTime(), false);
@@ -48,7 +52,14 @@ public class PollingManager {
             WorkerHelper.cancelTodayForecastUpdateWork(context);
             WorkerHelper.cancelTomorrowForecastUpdateWork(context);
 
-            PermanentServiceHelper.startPollingService(context);
+            // Polling service is started only if there is a need for one of the background services
+            if (SettingsManager.getInstance(context).getUpdateInterval().getIntervalInHour() != null
+                || settings.isTodayForecastEnabled()
+                || settings.isTomorrowForecastEnabled()) {
+                PermanentServiceHelper.startPollingService(context);
+            } else {
+                PermanentServiceHelper.stopPollingService(context);
+            }
         }
     }
 
@@ -63,15 +74,26 @@ public class PollingManager {
         if (settings.isBackgroundFree()) {
             PermanentServiceHelper.stopPollingService(context);
 
-            WorkerHelper.setNormalPollingWork(
-                    context,
-                    SettingsManager.getInstance(context).getUpdateInterval().getIntervalInHour());
+            if (SettingsManager.getInstance(context).getUpdateInterval().getIntervalInHour() != null) {
+                WorkerHelper.setNormalPollingWork(
+                        context,
+                        SettingsManager.getInstance(context).getUpdateInterval().getIntervalInHour());
+            } else {
+                WorkerHelper.cancelNormalPollingWork(context);
+            }
         } else {
             WorkerHelper.cancelNormalPollingWork(context);
             WorkerHelper.cancelTodayForecastUpdateWork(context);
             WorkerHelper.cancelTomorrowForecastUpdateWork(context);
 
-            PermanentServiceHelper.startPollingService(context);
+            // Polling service is started only if there is a need for one of the background services
+            if (SettingsManager.getInstance(context).getUpdateInterval().getIntervalInHour() != null
+                    || settings.isTodayForecastEnabled()
+                    || settings.isTomorrowForecastEnabled()) {
+                PermanentServiceHelper.startPollingService(context);
+            } else {
+                PermanentServiceHelper.stopPollingService(context);
+            }
         }
     }
 
@@ -97,7 +119,14 @@ public class PollingManager {
             WorkerHelper.cancelTodayForecastUpdateWork(context);
             WorkerHelper.cancelTomorrowForecastUpdateWork(context);
 
-            PermanentServiceHelper.startPollingService(context);
+            // Polling service is started only if there is a need for one of the background services
+            if (SettingsManager.getInstance(context).getUpdateInterval().getIntervalInHour() != null
+                    || settings.isTodayForecastEnabled()
+                    || settings.isTomorrowForecastEnabled()) {
+                PermanentServiceHelper.startPollingService(context);
+            } else {
+                PermanentServiceHelper.stopPollingService(context);
+            }
         }
     }
 
@@ -123,7 +152,14 @@ public class PollingManager {
             WorkerHelper.cancelTodayForecastUpdateWork(context);
             WorkerHelper.cancelTomorrowForecastUpdateWork(context);
 
-            PermanentServiceHelper.startPollingService(context);
+            // Polling service is started only if there is a need for one of the background services
+            if (SettingsManager.getInstance(context).getUpdateInterval().getIntervalInHour() != null
+                    || settings.isTodayForecastEnabled()
+                    || settings.isTomorrowForecastEnabled()) {
+                PermanentServiceHelper.startPollingService(context);
+            } else {
+                PermanentServiceHelper.stopPollingService(context);
+            }
         }
     }
 

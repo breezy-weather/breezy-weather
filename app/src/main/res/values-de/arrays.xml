@@ -2,18 +2,15 @@
 <resources>
 
     <string-array name="automatic_refresh_rates">
+        <item>Never</item>
         <item>30 Minuten</item>
         <item>1 Stunde</item>
         <item>1,5 Stunden</item>
         <item>2 Stunden</item>
-        <item>2,5 Stunden</item>
         <item>3 Stunden</item>
-        <item>3,5 Stunden</item>
-        <item>4 Stunden</item>
-        <item>4,5 Stunden</item>
-        <item>5 Stunden</item>
-        <item>5,5 Stunden</item>
         <item>6 Stunden</item>
+        <item>12 Stunden</item>
+        <item>24 Stunden</item>
     </string-array>
 
     <string-array name="clock_font">

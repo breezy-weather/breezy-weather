@@ -33,7 +33,7 @@ public class TimeObserverService extends Service {
 
     private static TimeTickReceiver sReceiver;
 
-    private static float sPollingRate;
+    private static Float sPollingRate;
     private static long sLastUpdateNormalViewTime;
     private static long sLastTodayForecastTime;
     private static long sLastTomorrowForecastTime;
@@ -118,13 +118,17 @@ public class TimeObserverService extends Service {
                 sTomorrowForecastTime = intent.getStringExtra(KEY_TOMORROW_FORECAST_TIME);
             }
             if (intent.getBooleanExtra(KEY_POLLING_FAILED, false)) {
-                sLastUpdateNormalViewTime = System.currentTimeMillis() - getPollingInterval() + 15 * 60 * 1000;
+                if (getPollingInterval() != null) {
+                    sLastUpdateNormalViewTime = System.currentTimeMillis() - getPollingInterval() + 15 * 60 * 1000;
+                } else {
+                    sLastUpdateNormalViewTime = 0;
+                }
             }
         }
     }
 
     private void doRefreshWork() {
-        if (System.currentTimeMillis() - sLastUpdateNormalViewTime > getPollingInterval()) {
+        if (getPollingInterval() != null && System.currentTimeMillis() - sLastUpdateNormalViewTime > getPollingInterval()) {
 
             sLastUpdateNormalViewTime = System.currentTimeMillis();
 
@@ -210,8 +214,8 @@ public class TimeObserverService extends Service {
                 .build();
     }
 
-    private long getPollingInterval() {
-        return (long) (sPollingRate * 1000 * 60 * 60);
+    private Long getPollingInterval() {
+        return sPollingRate != null ? (long) (sPollingRate * 1000 * 60 * 60) : null;
     }
 
     private static boolean isForecastTime(String time, long lastForecastTime) {

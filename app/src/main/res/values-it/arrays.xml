@@ -25,18 +25,15 @@
 
     <!-- automatic refresh rate. -->
     <string-array name="automatic_refresh_rates">
+        <item>Never</item>
         <item>Mezz\'ora</item>
         <item>1 ora</item>
         <item>1,5 ore</item>
         <item>2 ore</item>
-        <item>2,5 ore</item>
         <item>3 ore</item>
-        <item>3,5 ore</item>
-        <item>4 ore</item>
-        <item>4,5 ore</item>
-        <item>5 ore</item>
-        <item>5,5 ore</item>
         <item>6 ore</item>
+        <item>12 ore</item>
+        <item>24 ore</item>
     </string-array>
 
     <string-array name="week_icon_modes">
