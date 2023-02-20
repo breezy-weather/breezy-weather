@@ -11,6 +11,7 @@ import wangdaye.com.geometricweather.common.basic.models.ChineseCity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.History;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.utils.FileUtils;
 import wangdaye.com.geometricweather.db.controllers.AlertEntityController;
 import wangdaye.com.geometricweather.db.controllers.ChineseCityEntityController;
 import wangdaye.com.geometricweather.db.controllers.DailyEntityController;
@@ -19,6 +20,12 @@ import wangdaye.com.geometricweather.db.controllers.HourlyEntityController;
 import wangdaye.com.geometricweather.db.controllers.LocationEntityController;
 import wangdaye.com.geometricweather.db.controllers.MinutelyEntityController;
 import wangdaye.com.geometricweather.db.controllers.WeatherEntityController;
+import wangdaye.com.geometricweather.db.entities.ChineseCityEntity;
+import wangdaye.com.geometricweather.db.entities.DaoMaster;
+import wangdaye.com.geometricweather.db.entities.DaoSession;
+import wangdaye.com.geometricweather.db.entities.HistoryEntity;
+import wangdaye.com.geometricweather.db.entities.LocationEntity;
+import wangdaye.com.geometricweather.db.entities.WeatherEntity;
 import wangdaye.com.geometricweather.db.generators.AlertEntityGenerator;
 import wangdaye.com.geometricweather.db.generators.ChineseCityEntityGenerator;
 import wangdaye.com.geometricweather.db.generators.DailyEntityGenerator;
@@ -27,13 +34,6 @@ import wangdaye.com.geometricweather.db.generators.HourlyEntityGenerator;
 import wangdaye.com.geometricweather.db.generators.LocationEntityGenerator;
 import wangdaye.com.geometricweather.db.generators.MinutelyEntityGenerator;
 import wangdaye.com.geometricweather.db.generators.WeatherEntityGenerator;
-import wangdaye.com.geometricweather.db.entities.ChineseCityEntity;
-import wangdaye.com.geometricweather.db.entities.DaoMaster;
-import wangdaye.com.geometricweather.db.entities.DaoSession;
-import wangdaye.com.geometricweather.db.entities.HistoryEntity;
-import wangdaye.com.geometricweather.db.entities.LocationEntity;
-import wangdaye.com.geometricweather.db.entities.WeatherEntity;
-import wangdaye.com.geometricweather.common.utils.FileUtils;
 
 /**
  * Database helper

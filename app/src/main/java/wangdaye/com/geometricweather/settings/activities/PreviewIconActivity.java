@@ -5,9 +5,10 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import com.google.android.material.appbar.MaterialToolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,18 +17,18 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout;
-import wangdaye.com.geometricweather.theme.ThemeManager;
-import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
-import wangdaye.com.geometricweather.theme.resource.providers.DefaultResourceProvider;
-import wangdaye.com.geometricweather.theme.resource.providers.PixelResourcesProvider;
-import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.theme.resource.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
+import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
 import wangdaye.com.geometricweather.settings.adapters.WeatherIconAdapter;
 import wangdaye.com.geometricweather.settings.dialogs.AdaptiveIconDialog;
 import wangdaye.com.geometricweather.settings.dialogs.AnimatableIconDialog;
 import wangdaye.com.geometricweather.settings.dialogs.MinimalIconDialog;
-import wangdaye.com.geometricweather.common.utils.DisplayUtils;
-import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
+import wangdaye.com.geometricweather.theme.ThemeManager;
+import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
+import wangdaye.com.geometricweather.theme.resource.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.theme.resource.providers.DefaultResourceProvider;
+import wangdaye.com.geometricweather.theme.resource.providers.PixelResourcesProvider;
+import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 
 public class PreviewIconActivity extends GeoActivity {
 

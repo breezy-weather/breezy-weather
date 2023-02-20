@@ -12,6 +12,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
+
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.chart.PolylineAndHistogramView;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;

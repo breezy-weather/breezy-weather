@@ -5,8 +5,8 @@ import androidx.annotation.Nullable;
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
 import wangdaye.com.geometricweather.common.basic.models.weather.History;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.db.entities.HistoryEntity;
 import wangdaye.com.geometricweather.db.converters.WeatherSourceConverter;
+import wangdaye.com.geometricweather.db.entities.HistoryEntity;
 
 public class HistoryEntityGenerator {
 

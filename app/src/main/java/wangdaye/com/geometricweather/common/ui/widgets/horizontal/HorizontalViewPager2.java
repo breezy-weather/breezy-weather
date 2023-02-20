@@ -1,5 +1,10 @@
 package wangdaye.com.geometricweather.common.ui.widgets.horizontal;
 
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP_PREFIX;
+import static androidx.recyclerview.widget.RecyclerView.NO_POSITION;
+import static java.lang.annotation.RetentionPolicy.SOURCE;
+
 import android.animation.LayoutTransition;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -45,11 +50,6 @@ import java.util.Comparator;
 import java.util.ConcurrentModificationException;
 import java.util.List;
 import java.util.Locale;
-
-import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
-import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP_PREFIX;
-import static androidx.recyclerview.widget.RecyclerView.NO_POSITION;
-import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 public class HorizontalViewPager2 extends ViewGroup {
     /** @hide */

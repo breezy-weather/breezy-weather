@@ -21,15 +21,15 @@ import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.common.basic.models.weather.Base;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.remoteviews.presenters.AbstractRemoteViewsPresenter;
-import wangdaye.com.geometricweather.theme.ThemeManager;
-import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
-import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.theme.resource.ResourcesProviderFactory;
-import wangdaye.com.geometricweather.settings.SettingsManager;
-import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
 import wangdaye.com.geometricweather.common.utils.LanguageUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.LunarHelper;
+import wangdaye.com.geometricweather.remoteviews.presenters.AbstractRemoteViewsPresenter;
+import wangdaye.com.geometricweather.settings.SettingsManager;
+import wangdaye.com.geometricweather.theme.ThemeManager;
+import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
+import wangdaye.com.geometricweather.theme.resource.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
+import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
 
 class NativeNormalNotificationIMP extends AbstractRemoteViewsPresenter {
 

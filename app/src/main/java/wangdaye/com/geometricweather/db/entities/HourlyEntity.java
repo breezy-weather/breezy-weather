@@ -2,6 +2,7 @@ package wangdaye.com.geometricweather.db.entities;
 
 import org.greenrobot.greendao.annotation.Convert;
 import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 
 import java.util.Date;
@@ -11,7 +12,6 @@ import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.common.basic.models.weather.WindDegree;
 import wangdaye.com.geometricweather.db.converters.WeatherCodeConverter;
 import wangdaye.com.geometricweather.db.converters.WindDegreeConverter;
-import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * Hourly entity.

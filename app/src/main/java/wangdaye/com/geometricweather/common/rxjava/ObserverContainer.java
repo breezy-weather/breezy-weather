@@ -2,6 +2,7 @@ package wangdaye.com.geometricweather.common.rxjava;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import io.reactivex.Observer;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableObserver;

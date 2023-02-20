@@ -15,7 +15,6 @@ import androidx.core.widget.NestedScrollView;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.insets.FitBothSideBarHelper;
 import wangdaye.com.geometricweather.common.basic.insets.FitBothSideBarView;
-import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 
 public class FitSystemBarNestedScrollView extends NestedScrollView
         implements FitBothSideBarView {

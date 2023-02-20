@@ -9,9 +9,9 @@ import androidx.core.graphics.ColorUtils;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.weather.AirQuality;
+import wangdaye.com.geometricweather.common.ui.widgets.RoundProgress;
 import wangdaye.com.geometricweather.daily.adapter.DailyWeatherAdapter;
 import wangdaye.com.geometricweather.daily.adapter.model.DailyAirQuality;
-import wangdaye.com.geometricweather.common.ui.widgets.RoundProgress;
 
 public class AirQualityHolder extends DailyWeatherAdapter.ViewHolder {
 

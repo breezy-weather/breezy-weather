@@ -9,7 +9,13 @@ import wangdaye.com.geometricweather.common.utils.DisplayUtils
 import wangdaye.com.geometricweather.theme.weatherView.WeatherThemeDelegate
 import wangdaye.com.geometricweather.theme.weatherView.WeatherView
 import wangdaye.com.geometricweather.theme.weatherView.WeatherView.WeatherKindRule
-import wangdaye.com.geometricweather.theme.weatherView.materialWeatherView.implementor.*
+import wangdaye.com.geometricweather.theme.weatherView.materialWeatherView.implementor.CloudImplementor
+import wangdaye.com.geometricweather.theme.weatherView.materialWeatherView.implementor.HailImplementor
+import wangdaye.com.geometricweather.theme.weatherView.materialWeatherView.implementor.MeteorShowerImplementor
+import wangdaye.com.geometricweather.theme.weatherView.materialWeatherView.implementor.RainImplementor
+import wangdaye.com.geometricweather.theme.weatherView.materialWeatherView.implementor.SnowImplementor
+import wangdaye.com.geometricweather.theme.weatherView.materialWeatherView.implementor.SunImplementor
+import wangdaye.com.geometricweather.theme.weatherView.materialWeatherView.implementor.WindImplementor
 
 class MaterialWeatherThemeDelegate: WeatherThemeDelegate {
 

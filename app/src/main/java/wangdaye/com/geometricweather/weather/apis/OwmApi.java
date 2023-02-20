@@ -8,8 +8,8 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 import wangdaye.com.geometricweather.weather.json.owm.OwmAirPollutionResult;
 import wangdaye.com.geometricweather.weather.json.owm.OwmLocationResult;
-import wangdaye.com.geometricweather.weather.json.owm.OwmOneCallResult;
 import wangdaye.com.geometricweather.weather.json.owm.OwmOneCallHistoryResult;
+import wangdaye.com.geometricweather.weather.json.owm.OwmOneCallResult;
 
 /**
  * OpenWeather API.

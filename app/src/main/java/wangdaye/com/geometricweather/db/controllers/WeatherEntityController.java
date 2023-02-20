@@ -6,10 +6,10 @@ import androidx.annotation.Nullable;
 import java.util.List;
 
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
+import wangdaye.com.geometricweather.db.converters.WeatherSourceConverter;
 import wangdaye.com.geometricweather.db.entities.DaoSession;
 import wangdaye.com.geometricweather.db.entities.WeatherEntity;
 import wangdaye.com.geometricweather.db.entities.WeatherEntityDao;
-import wangdaye.com.geometricweather.db.converters.WeatherSourceConverter;
 
 public class WeatherEntityController extends AbsEntityController {
 

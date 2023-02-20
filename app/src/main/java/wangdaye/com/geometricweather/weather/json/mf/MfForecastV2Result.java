@@ -2,7 +2,6 @@ package wangdaye.com.geometricweather.weather.json.mf;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Date;
 import java.util.List;
 
 /**

@@ -16,8 +16,8 @@ import wangdaye.com.geometricweather.common.basic.models.weather.PrecipitationPr
 import wangdaye.com.geometricweather.common.basic.models.weather.Temperature;
 import wangdaye.com.geometricweather.common.basic.models.weather.UV;
 import wangdaye.com.geometricweather.common.basic.models.weather.Wind;
-import wangdaye.com.geometricweather.db.entities.DailyEntity;
 import wangdaye.com.geometricweather.db.converters.WeatherSourceConverter;
+import wangdaye.com.geometricweather.db.entities.DailyEntity;
 
 public class DailyEntityGenerator {
 

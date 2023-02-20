@@ -12,12 +12,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RemoteViews;
 
-import java.util.Date;
-
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
+
+import java.util.Date;
+
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.receiver.widget.WidgetTrendDailyProvider;
@@ -25,16 +26,16 @@ import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.common.basic.models.weather.Daily;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.theme.ThemeManager;
-import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
-import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.theme.resource.ResourcesProviderFactory;
-import wangdaye.com.geometricweather.settings.SettingsManager;
-import wangdaye.com.geometricweather.remoteviews.trend.TrendLinearLayout;
-import wangdaye.com.geometricweather.remoteviews.trend.WidgetItemView;
-import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper;
+import wangdaye.com.geometricweather.remoteviews.trend.TrendLinearLayout;
+import wangdaye.com.geometricweather.remoteviews.trend.WidgetItemView;
+import wangdaye.com.geometricweather.settings.SettingsManager;
+import wangdaye.com.geometricweather.theme.ThemeManager;
+import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
+import wangdaye.com.geometricweather.theme.resource.ResourcesProviderFactory;
+import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
+import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
 
 public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
 

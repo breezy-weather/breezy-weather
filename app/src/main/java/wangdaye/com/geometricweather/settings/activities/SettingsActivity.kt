@@ -31,7 +31,12 @@ import wangdaye.com.geometricweather.common.ui.widgets.insets.FitStatusBarTopApp
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper
 import wangdaye.com.geometricweather.settings.SettingsChangedMessage
 import wangdaye.com.geometricweather.settings.SettingsManager
-import wangdaye.com.geometricweather.settings.compose.*
+import wangdaye.com.geometricweather.settings.compose.AppearanceSettingsScreen
+import wangdaye.com.geometricweather.settings.compose.RootSettingsView
+import wangdaye.com.geometricweather.settings.compose.ServiceProviderSettingsScreen
+import wangdaye.com.geometricweather.settings.compose.SettingsProviderAdvancedSettingsScreen
+import wangdaye.com.geometricweather.settings.compose.SettingsScreenRouter
+import wangdaye.com.geometricweather.settings.compose.UnitSettingsScreen
 import wangdaye.com.geometricweather.theme.compose.GeometricWeatherTheme
 
 private const val PERMISSION_CODE_POST_NOTIFICATION = 0

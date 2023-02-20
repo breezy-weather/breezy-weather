@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.GeometricWeather;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.theme.resource.providers.ChronusResourceProvider;
 import wangdaye.com.geometricweather.theme.resource.providers.DefaultResourceProvider;
 import wangdaye.com.geometricweather.theme.resource.providers.IconPackResourcesProvider;
 import wangdaye.com.geometricweather.theme.resource.providers.PixelResourcesProvider;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
-import wangdaye.com.geometricweather.settings.SettingsManager;
 
 public class ResourcesProviderFactory {
 

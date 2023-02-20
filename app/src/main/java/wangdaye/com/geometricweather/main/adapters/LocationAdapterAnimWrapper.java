@@ -13,9 +13,9 @@ import androidx.annotation.Nullable;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.ui.adapters.AnimationAdapterWrapper;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.main.adapters.location.LocationAdapter;
 import wangdaye.com.geometricweather.main.adapters.location.LocationHolder;
-import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 
 public class LocationAdapterAnimWrapper
         extends AnimationAdapterWrapper<LocationAdapter, LocationHolder> {

@@ -7,10 +7,10 @@ import androidx.annotation.NonNull;
 import javax.inject.Inject;
 
 import io.reactivex.disposables.CompositeDisposable;
-import wangdaye.com.geometricweather.location.services.LocationService;
-import wangdaye.com.geometricweather.common.rxjava.SchedulerTransformer;
 import wangdaye.com.geometricweather.common.rxjava.BaseObserver;
 import wangdaye.com.geometricweather.common.rxjava.ObserverContainer;
+import wangdaye.com.geometricweather.common.rxjava.SchedulerTransformer;
+import wangdaye.com.geometricweather.location.services.LocationService;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 
 public class BaiduIPLocationService extends LocationService {

@@ -3,20 +3,19 @@ package wangdaye.com.geometricweather.remoteviews.presenters;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
-
-import androidx.core.content.ContextCompat;
-
 import android.util.TypedValue;
 import android.widget.RemoteViews;
 
+import androidx.core.content.ContextCompat;
+
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.background.receiver.widget.WidgetTextProvider;
+import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
-import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 
 public class TextWidgetIMP extends AbstractRemoteViewsPresenter {
 

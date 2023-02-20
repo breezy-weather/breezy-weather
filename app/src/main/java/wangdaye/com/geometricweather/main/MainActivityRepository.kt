@@ -1,7 +1,6 @@
 package wangdaye.com.geometricweather.main
 
 import android.content.Context
-import androidx.annotation.NonNull
 import wangdaye.com.geometricweather.common.basic.models.Location
 import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper
 import wangdaye.com.geometricweather.db.DatabaseHelper

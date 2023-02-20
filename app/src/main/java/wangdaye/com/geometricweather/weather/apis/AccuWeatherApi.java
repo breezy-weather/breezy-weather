@@ -9,11 +9,11 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 import wangdaye.com.geometricweather.weather.json.accu.AccuAlertResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuAqiResult;
+import wangdaye.com.geometricweather.weather.json.accu.AccuCurrentResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuDailyResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuHourlyResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuLocationResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuMinuteResult;
-import wangdaye.com.geometricweather.weather.json.accu.AccuCurrentResult;
 
 /**
  * Accu api.

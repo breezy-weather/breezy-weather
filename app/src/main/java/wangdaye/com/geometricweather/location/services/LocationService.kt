@@ -2,17 +2,17 @@ package wangdaye.com.geometricweather.location.services
 
 import android.Manifest
 import android.app.Notification
-import wangdaye.com.geometricweather.GeometricWeather.Companion.getNotificationChannelName
-import androidx.core.app.ActivityCompat
-import android.content.pm.PackageManager
-import androidx.annotation.RequiresApi
 import android.app.NotificationChannel
-import wangdaye.com.geometricweather.GeometricWeather
 import android.app.NotificationManager
 import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Build
-import androidx.core.content.ContextCompat
+import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
+import wangdaye.com.geometricweather.GeometricWeather
+import wangdaye.com.geometricweather.GeometricWeather.Companion.getNotificationChannelName
 import wangdaye.com.geometricweather.R
 
 abstract class LocationService {

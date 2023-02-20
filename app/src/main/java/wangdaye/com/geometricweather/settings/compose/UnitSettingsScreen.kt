@@ -4,9 +4,12 @@ import android.content.Context
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import wangdaye.com.geometricweather.R
-import wangdaye.com.geometricweather.common.basic.models.options.unit.*
+import wangdaye.com.geometricweather.common.basic.models.options.unit.DistanceUnit
+import wangdaye.com.geometricweather.common.basic.models.options.unit.PrecipitationUnit
+import wangdaye.com.geometricweather.common.basic.models.options.unit.PressureUnit
+import wangdaye.com.geometricweather.common.basic.models.options.unit.SpeedUnit
+import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit
 import wangdaye.com.geometricweather.settings.SettingsManager
-import wangdaye.com.geometricweather.settings.preference.bottomInsetItem
 import wangdaye.com.geometricweather.settings.preference.composables.ListPreferenceView
 import wangdaye.com.geometricweather.settings.preference.composables.PreferenceScreen
 import wangdaye.com.geometricweather.settings.preference.listPreferenceItem

@@ -5,8 +5,8 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
 import wangdaye.com.geometricweather.common.basic.models.weather.Alert;
-import wangdaye.com.geometricweather.db.entities.AlertEntity;
 import wangdaye.com.geometricweather.db.converters.WeatherSourceConverter;
+import wangdaye.com.geometricweather.db.entities.AlertEntity;
 
 public class AlertEntityGenerator {
 

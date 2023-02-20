@@ -1,7 +1,5 @@
 package wangdaye.com.geometricweather.weather.json.nominatim;
 
-import java.util.List;
-
 /**
  * Nominatim location result.
  * */

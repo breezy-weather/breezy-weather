@@ -11,8 +11,8 @@ import org.greenrobot.greendao.query.WhereCondition;
 import java.util.ArrayList;
 import java.util.List;
 
-import wangdaye.com.geometricweather.db.entities.ChineseCityEntityDao;
 import wangdaye.com.geometricweather.db.entities.ChineseCityEntity;
+import wangdaye.com.geometricweather.db.entities.ChineseCityEntityDao;
 import wangdaye.com.geometricweather.db.entities.DaoSession;
 
 public class ChineseCityEntityController extends AbsEntityController {

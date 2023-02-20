@@ -25,11 +25,11 @@ import java.util.Objects;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
+import wangdaye.com.geometricweather.common.ui.images.MoonDrawable;
+import wangdaye.com.geometricweather.common.ui.images.SunDrawable;
 import wangdaye.com.geometricweather.theme.resource.utils.Constants;
 import wangdaye.com.geometricweather.theme.resource.utils.ResourceUtils;
 import wangdaye.com.geometricweather.theme.resource.utils.XmlHelper;
-import wangdaye.com.geometricweather.common.ui.images.MoonDrawable;
-import wangdaye.com.geometricweather.common.ui.images.SunDrawable;
 
 public class DefaultResourceProvider extends ResourceProvider {
 

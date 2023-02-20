@@ -13,7 +13,12 @@ import wangdaye.com.geometricweather.common.basic.models.options.appearance.Hour
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.Language
 import wangdaye.com.geometricweather.common.basic.models.options.provider.LocationProvider
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource
-import wangdaye.com.geometricweather.common.basic.models.options.unit.*
+import wangdaye.com.geometricweather.common.basic.models.options.unit.DistanceUnit
+import wangdaye.com.geometricweather.common.basic.models.options.unit.PrecipitationIntensityUnit
+import wangdaye.com.geometricweather.common.basic.models.options.unit.PrecipitationUnit
+import wangdaye.com.geometricweather.common.basic.models.options.unit.PressureUnit
+import wangdaye.com.geometricweather.common.basic.models.options.unit.SpeedUnit
+import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit
 import wangdaye.com.geometricweather.common.bus.EventBus
 
 class SettingsChangedMessage

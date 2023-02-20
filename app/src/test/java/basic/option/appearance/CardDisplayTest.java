@@ -1,5 +1,10 @@
 package basic.option.appearance;
 
+import static org.hamcrest.core.Is.is;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.doReturn;
+
 import android.content.Context;
 import android.text.TextUtils;
 
@@ -15,11 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.CardDisplay;
-
-import static org.hamcrest.core.Is.is;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.doReturn;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(TextUtils.class)

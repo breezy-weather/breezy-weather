@@ -12,9 +12,9 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Temperature;
 import wangdaye.com.geometricweather.common.basic.models.weather.UV;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.basic.models.weather.Wind;
+import wangdaye.com.geometricweather.db.converters.WeatherSourceConverter;
 import wangdaye.com.geometricweather.db.entities.HistoryEntity;
 import wangdaye.com.geometricweather.db.entities.WeatherEntity;
-import wangdaye.com.geometricweather.db.converters.WeatherSourceConverter;
 
 public class WeatherEntityGenerator {
 

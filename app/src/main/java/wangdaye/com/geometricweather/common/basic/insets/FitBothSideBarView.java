@@ -1,10 +1,10 @@
 package wangdaye.com.geometricweather.common.basic.insets;
 
+import static java.lang.annotation.RetentionPolicy.SOURCE;
+
 import androidx.annotation.IntDef;
 
 import java.lang.annotation.Retention;
-
-import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 public interface FitBothSideBarView {
 
