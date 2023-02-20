@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="wangdaye.com.geometricweather">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <!-- location. -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />

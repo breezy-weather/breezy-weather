@@ -61,16 +61,11 @@ android {
         it.buildConfigField "String", "METNO_BASE_URL", METNO_BASE_URL
         it.buildConfigField "String", "NOMINATIM_BASE_URL", NOMINATIM_BASE_URL
     }
-    lintOptions {
-        checkReleaseBuilds false
-        abortOnError false
-    }
     sourceSets{
         pub {
             java.srcDirs = ["src/src_bugly", "src/src_baidu", "src/src_amap", "src/src_gplay"]
             manifest.srcFile "manifest_pub/AndroidManifest.xml"
             jniLibs.srcDir "libs"
-            jni.srcDirs = []
         }
         gplay {
             java.srcDirs = ["src/src_nobugly", "src/src_nobaidu", "src/src_noamap", "src/src_nogplay"]
@@ -97,7 +92,7 @@ android {
         ]
     }
     composeOptions {
-        kotlinCompilerExtensionVersion "1.3.2"
+        kotlinCompilerExtensionVersion "1.4.2"
     }
     testOptions {
         unitTests {
@@ -125,6 +120,11 @@ android {
             versionNameSuffix "_fdroid"
         }
     }
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+    namespace 'wangdaye.com.geometricweather'
 }
 
 allprojects {
@@ -173,7 +173,7 @@ dependencies {
 
     // material design.
     implementation "com.google.android.material:material:1.9.0-alpha01"
-    implementation "androidx.appcompat:appcompat:1.6.0"
+    implementation "androidx.appcompat:appcompat:1.6.1"
     implementation "androidx.cardview:cardview:1.0.0"
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
@@ -182,12 +182,12 @@ dependencies {
     implementation "androidx.compose.material:material:1.3.1"
     implementation "androidx.compose.animation:animation:1.3.3"
     implementation "androidx.compose.ui:ui-tooling:1.3.3"
-    implementation "androidx.compose.foundation:foundation:1.4.0-alpha04"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.0-alpha04"
+    implementation "androidx.compose.foundation:foundation:1.4.0-beta01"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.0-beta01"
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:1.3.3"
     implementation "com.google.accompanist:accompanist-appcompat-theme:0.16.0"
-    implementation "androidx.compose.material3:material3:1.1.0-alpha04"
-    implementation "androidx.compose.material:material-icons-extended:1.4.0-alpha04"
+    implementation "androidx.compose.material3:material3:1.1.0-alpha06"
+    implementation "androidx.compose.material:material-icons-extended:1.4.0-beta01"
     implementation "androidx.navigation:navigation-compose:2.5.3"
 
     // preference.
@@ -195,7 +195,7 @@ dependencies {
 
     // work.
     implementation "androidx.core:core-ktx:1.9.0"
-    implementation "androidx.work:work-runtime:2.8.0-rc01"
+    implementation "androidx.work:work-runtime:2.8.0"
 
     // lifecycle.
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
@@ -278,7 +278,7 @@ dependencies {
     implementation "me.jfenn:AdaptiveIconView:0.0.1"
     implementation "com.github.turing-tech:MaterialScrollBar:13.3.2"
     implementation "com.gordonwong:material-sheet-fab:1.2.1"
-    implementation "androidx.activity:activity-ktx:1.7.0-alpha03"
+    implementation "androidx.activity:activity-ktx:1.7.0-beta01"
 
     // utils.
     implementation "com.github.XhinLiang:LunarCalendar:3.0.0"

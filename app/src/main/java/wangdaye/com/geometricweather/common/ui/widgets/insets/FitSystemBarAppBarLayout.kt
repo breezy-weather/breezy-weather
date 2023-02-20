@@ -1,10 +1,8 @@
 package wangdaye.com.geometricweather.common.ui.widgets.insets
 
 import android.content.Context
-import android.os.Build
 import android.util.AttributeSet
 import android.view.WindowInsets
-import androidx.annotation.RequiresApi
 import androidx.core.view.ViewCompat
 import com.google.android.material.appbar.AppBarLayout
 import wangdaye.com.geometricweather.R
