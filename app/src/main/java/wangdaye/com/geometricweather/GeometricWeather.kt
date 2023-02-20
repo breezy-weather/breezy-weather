@@ -12,6 +12,7 @@ import dagger.hilt.android.HiltAndroidApp
 import wangdaye.com.geometricweather.common.basic.GeoActivity
 import wangdaye.com.geometricweather.common.retrofit.TLSCompactHelper
 import wangdaye.com.geometricweather.common.utils.LanguageUtils
+import wangdaye.com.geometricweather.common.utils.NetworkUtils
 import wangdaye.com.geometricweather.common.utils.helpers.BuglyHelper
 import wangdaye.com.geometricweather.settings.SettingsManager
 import wangdaye.com.geometricweather.theme.ThemeManager
@@ -189,6 +190,8 @@ class GeometricWeather : MultiDexApplication(),
 
     override fun onCreate() {
         super.onCreate()
+
+        NetworkUtils.registerNetworkCallback(applicationContext);
 
         val cacheCreated = TLSCompactHelper.createClientCache(baseContext.cacheDir)
         if (!cacheCreated)
