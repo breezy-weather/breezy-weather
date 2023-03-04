@@ -260,43 +260,45 @@ public class MfResultConverter {
             SimpleDateFormat dateFormatUtc = new SimpleDateFormat(pattern);
             dateFormatUtc.setTimeZone(TimeZone.getTimeZone("UTC")); // FIXME: Dirty workaround as the API gives UTC and request date is in local, we should move to ThreeTen to support natively
             for (AtmoAuraQAResult.Polluant polluant : aqiAtmoAuraResult.polluants) {
-                for (AtmoAuraQAResult.Polluant.Horaire horaire : polluant.horaires) {
-                    if (dateFormatUtc.format(requestedDate).equals(dateFormatLocal.format(horaire.datetimeEcheance))) {
-                        if (horaire.concentration != null) {
-                            // For PM 2.5 and PM 10, it's the daily mean of the day
-                            // For the others (O3, No2, SO2), it's the maximum value
-                            switch (polluant.polluant) {
-                                case "o3":
-                                    if (highestO3 == null || highestO3 < horaire.concentration) {
-                                        highestO3 = horaire.concentration;
-                                    }
-                                    break;
-                                case "no2":
-                                    if (highestNO2 == null || highestNO2 < horaire.concentration) {
-                                        highestNO2 = horaire.concentration;
-                                    }
-                                    break;
-                                case "pm2.5":
-                                    if (totalPM25 == null) {
-                                        totalPM25 = horaire.concentration;
-                                    } else {
-                                        totalPM25 += horaire.concentration;
-                                    }
-                                    ++countPM25;
-                                    break;
-                                case "pm10":
-                                    if (totalPM10 == null) {
-                                        totalPM10 = horaire.concentration;
-                                    } else {
-                                        totalPM10 += horaire.concentration;
-                                    }
-                                    ++countPM10;
-                                    break;
-                                case "so2":
-                                    if (highestSO2 == null || highestSO2 < horaire.concentration) {
-                                        highestSO2 = horaire.concentration;
-                                    }
-                                    break;
+                if (polluant.horaires != null) {
+                    for (AtmoAuraQAResult.Polluant.Horaire horaire : polluant.horaires) {
+                        if (dateFormatUtc.format(requestedDate).equals(dateFormatLocal.format(horaire.datetimeEcheance))) {
+                            if (horaire.concentration != null) {
+                                // For PM 2.5 and PM 10, it's the daily mean of the day
+                                // For the others (O3, No2, SO2), it's the maximum value
+                                switch (polluant.polluant) {
+                                    case "o3":
+                                        if (highestO3 == null || highestO3 < horaire.concentration) {
+                                            highestO3 = horaire.concentration;
+                                        }
+                                        break;
+                                    case "no2":
+                                        if (highestNO2 == null || highestNO2 < horaire.concentration) {
+                                            highestNO2 = horaire.concentration;
+                                        }
+                                        break;
+                                    case "pm2.5":
+                                        if (totalPM25 == null) {
+                                            totalPM25 = horaire.concentration;
+                                        } else {
+                                            totalPM25 += horaire.concentration;
+                                        }
+                                        ++countPM25;
+                                        break;
+                                    case "pm10":
+                                        if (totalPM10 == null) {
+                                            totalPM10 = horaire.concentration;
+                                        } else {
+                                            totalPM10 += horaire.concentration;
+                                        }
+                                        ++countPM10;
+                                        break;
+                                    case "so2":
+                                        if (highestSO2 == null || highestSO2 < horaire.concentration) {
+                                            highestSO2 = horaire.concentration;
+                                        }
+                                        break;
+                                }
                             }
                         }
                     }
