@@ -34,7 +34,9 @@ public abstract class BaseObserver<T> extends DisposableObserver<T> {
 
     @Override
     public void onError(Throwable e) {
-        this.code = ((HttpException) e).code();
+        if (e instanceof HttpException) {
+            this.code = ((HttpException) e).code();
+        }
         onFailed();
     }
 
