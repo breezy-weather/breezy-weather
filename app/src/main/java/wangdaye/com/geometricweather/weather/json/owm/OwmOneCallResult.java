@@ -79,6 +79,8 @@ public class OwmOneCallResult {
         public long dt;
         public long sunrise;
         public long sunset;
+        public long moonrise;
+        public long moonset;
         public Temp temp;
         @SerializedName("feels_like")
         public FeelsLike feelsLike;

@@ -285,7 +285,7 @@ public class OwmResultConverter {
                                     forecasts.clouds
                             ),
                             new Astro(new Date(forecasts.sunrise * 1000), new Date(forecasts.sunset * 1000)),
-                            new Astro(null, null),
+                            new Astro(new Date(forecasts.moonrise * 1000), new Date(forecasts.moonset * 1000)),
                             new MoonPhase(null, null),
                             getAirQuality(context, new Date(forecasts.dt * 1000), airPollutionForecastResult),
                             new Pollen(null, null, null, null, null, null, null, null, null, null, null, null),
