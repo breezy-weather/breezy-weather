@@ -203,7 +203,7 @@ class SettingsManager private constructor(context: Context) {
             )
             .toList()
 
-    var dailyTrendDisplayList: List<DailyTrendDisplay>
+    var dailyTrendDisplayList: MutableList<DailyTrendDisplay>
         set(value) {
             config
                 .edit()
@@ -215,9 +215,9 @@ class SettingsManager private constructor(context: Context) {
             .toDailyTrendDisplayList(
                 config.getString("daily_trend_display", DEFAULT_DAILY_TREND_DISPLAY) ?: ""
             )
-            .toList()
+            .toMutableList()
 
-    var hourlyTrendDisplayList: List<HourlyTrendDisplay>
+    var hourlyTrendDisplayList: MutableList<HourlyTrendDisplay>
         set(value) {
             config
                 .edit()
@@ -229,7 +229,7 @@ class SettingsManager private constructor(context: Context) {
             .toHourlyTrendDisplayList(
                 config.getString("hourly_trend_display", DEFAULT_HOURLY_TREND_DISPLAY) ?: ""
             )
-            .toList()
+            .toMutableList()
 
     var isTrendHorizontalLinesEnabled: Boolean
         set(value) {
