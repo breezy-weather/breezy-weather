@@ -42,7 +42,7 @@ sealed class PreferenceToken {
             get() = "pref_$titleId"
     }
 
-    class CheckboxPreference(
+    class SwitchPreference(
         @StringRes val titleId: Int
     ): PreferenceToken() {
         override val preferenceKey: String

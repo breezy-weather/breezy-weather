@@ -71,7 +71,7 @@ fun LazyListScope.checkboxPreferenceItem(
     @StringRes titleId: Int,
     content: @Composable (Int) -> Unit,
 ) {
-    val token = PreferenceToken.CheckboxPreference(titleId = titleId)
+    val token = PreferenceToken.SwitchPreference(titleId = titleId)
     item(
         key = token.preferenceKey,
         contentType = token::class.java,

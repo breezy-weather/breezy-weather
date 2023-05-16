@@ -11,8 +11,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.Checkbox
-import androidx.compose.material.CheckboxDefaults
+import androidx.compose.material.Switch
+import androidx.compose.material.SwitchDefaults
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.Text
 import androidx.compose.material3.MaterialTheme
@@ -33,14 +33,14 @@ import wangdaye.com.geometricweather.theme.compose.DayNightTheme
 import wangdaye.com.geometricweather.theme.compose.rememberThemeRipple
 
 @Composable
-fun CheckboxPreferenceView(
+fun SwitchPreferenceView(
     @StringRes titleId: Int,
     @StringRes summaryOnId: Int,
     @StringRes summaryOffId: Int,
     checked: Boolean,
     enabled: Boolean = true,
     onValueChanged: (Boolean) -> Unit,
-) = CheckboxPreferenceView(
+) = SwitchPreferenceView(
     title = stringResource(titleId),
     summary = { context, it ->
         context.getString(if (it) summaryOnId else summaryOffId)
@@ -51,7 +51,7 @@ fun CheckboxPreferenceView(
 )
 
 @Composable
-fun CheckboxPreferenceView(
+fun SwitchPreferenceView(
     title: String,
     summary: (Context, Boolean) -> String?,
     checked: Boolean,
@@ -99,22 +99,23 @@ fun CheckboxPreferenceView(
             }
 
             Spacer(modifier = Modifier.width(dimensionResource(R.dimen.little_margin)))
-            Checkbox(
+            Switch(
                 checked = state.value,
                 onCheckedChange = {
                     state.value = it
                     onValueChanged(it)
                 },
-                colors = CheckboxDefaults.colors(
-                    checkedColor = MaterialTheme.colorScheme.primary,
-                    uncheckedColor = MaterialTheme.colorScheme.onSurface.copy(
+                colors = SwitchDefaults.colors(
+                    checkedThumbColor = MaterialTheme.colorScheme.primary,
+                    uncheckedThumbColor = MaterialTheme.colorScheme.onSurface.copy(
                         alpha = 0.6f
                     ),
-                    checkmarkColor = MaterialTheme.colorScheme.surface,
-                    disabledColor = MaterialTheme.colorScheme.onSurface.copy(
+                    checkedTrackColor = MaterialTheme.colorScheme.surface,
+                    uncheckedTrackColor = MaterialTheme.colorScheme.surface,
+                    disabledCheckedThumbColor = MaterialTheme.colorScheme.onSurface.copy(
                         alpha = ContentAlpha.disabled
                     ),
-                    disabledIndeterminateColor = MaterialTheme.colorScheme.primary.copy(
+                    disabledUncheckedThumbColor = MaterialTheme.colorScheme.onSurface.copy(
                         alpha = ContentAlpha.disabled
                     )
                 )
