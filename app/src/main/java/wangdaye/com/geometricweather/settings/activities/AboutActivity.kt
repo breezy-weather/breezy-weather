@@ -151,6 +151,16 @@ class AboutActivity : GeoActivity() {
             url = "https://github.com/giwrgosmant",
             flag = "🇬🇷",
         ),
+        ContributorItem(
+            name = "Romain Théry",
+            url = "https://github.com/rthery",
+            flag = "🇫🇷",
+        ),
+        ContributorItem(
+            name = "Kyler",
+            url = "https://github.com/HiFiiDev",
+            flag = "🇺🇸",
+        ),
     )
     private val translators = arrayOf(
         ContributorItem(
@@ -277,6 +287,36 @@ class AboutActivity : GeoActivity() {
             name = "alexandru l",
             url = "mailto:sandu.lulu@gmail.com",
             flag = "🇷🇴",
+        ),
+        ContributorItem(
+            name = "Pascal Dietrich",
+            url = "https://github.com/Cameo007",
+            flag = "🇩🇪",
+        ),
+        ContributorItem(
+            name = "Kostas Giapis",
+            url = "https://github.com/tsiflimagas",
+            flag = "🇬🇷",
+        ),
+        ContributorItem(
+            name = "Giovanni Donisi",
+            url = "https://github.com/gdonisi",
+            flag = "🇮🇹",
+        ),
+        ContributorItem(
+            name = "nid",
+            url = "https://github.com/nidmb",
+            flag = "🇵🇱",
+        ),
+        ContributorItem(
+            name = "Álvaro Martínez Majado",
+            url = "https://github.com/alvaromartinezmajado",
+            flag = "\uD83C\uDFF4\uDB40\uDC65\uDB40\uDC73\uDB40\uDC63\uDB40\uDC74\uDB40\uDC7F",
+        ),
+        ContributorItem(
+            name = "MDP43140",
+            url = "https://github.com/MDP43140",
+            flag = "\uD83C\uDDEE\uD83C\uDDE9",
         ),
     )
 
