@@ -40,6 +40,6 @@ public class AirQualityHolder extends DailyWeatherAdapter.ViewHolder {
                 ColorUtils.setAlphaComponent(color, (int) (255 * 0.1))
         );
 
-        mContent.setText(aqi + " / " + airQuality.getAqiText());
+        mContent.setText(aqi + " / " + airQuality.getAqiText(itemView.getContext()));
     }
 }

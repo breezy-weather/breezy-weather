@@ -199,7 +199,7 @@ public class MultiCityNotificationIMP extends AbstractRemoteViewsPresenter {
                     R.id.notification_base_aqiAndWind,
                     context.getString(R.string.air_quality)
                             + " - "
-                            + weather.getCurrent().getAirQuality().getAqiText()
+                            + weather.getCurrent().getAirQuality().getAqiText(context)
             );
         } else {
             views.setTextViewText(

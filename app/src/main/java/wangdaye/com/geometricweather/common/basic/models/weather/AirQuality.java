@@ -11,7 +11,9 @@ import java.io.Serializable;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.AirQualityCOUnit;
+import wangdaye.com.geometricweather.common.basic.models.options.unit.AirQualityLevelUnit;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.AirQualityUnit;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 
 /**
  * DailyAirQuality quality.
@@ -54,6 +56,36 @@ public class AirQuality implements Serializable {
         this.co = co;
     }
 
+    public String getLevelName(Context context, int level) {
+        if (level > 0 && level < context.getResources().getIntArray(SettingsManager.getInstance(context).getAirQualityLevelUnit().getColorsArrayId()).length) {
+            return context.getResources().getStringArray(SettingsManager.getInstance(context).getAirQualityLevelUnit().getLevelsArrayId())[level - 1];
+        } else {
+            return context.getResources().getStringArray(SettingsManager.getInstance(context).getAirQualityLevelUnit().getLevelsArrayId())[0];
+        }
+    }
+
+    @Nullable
+    public String getAqiText(Context context) {
+        if (aqiIndex == null) {
+            return null;
+        } else if (aqiIndex <= AQI_INDEX_1) {
+            return this.getLevelName(context, 1);
+        } else if (aqiIndex <= AQI_INDEX_2) {
+            return this.getLevelName(context, 2);
+        } else if (aqiIndex <= AQI_INDEX_3) {
+            return this.getLevelName(context, 3);
+        } else if (aqiIndex <= AQI_INDEX_4) {
+            return this.getLevelName(context, 4);
+        } else if (aqiIndex <= AQI_INDEX_5) {
+            return this.getLevelName(context, 5);
+        } else {
+            return this.getLevelName(context, 6);
+        }
+    }
+
+    /**
+     * @deprecated Use getAqiText(Context context) instead
+     */
     @Nullable
     public String getAqiText() {
         return aqiText;
@@ -94,118 +126,71 @@ public class AirQuality implements Serializable {
         return co;
     }
 
+    @ColorInt public int getLevelColor(Context context, int level) {
+        if (level > 0 && level < context.getResources().getIntArray(SettingsManager.getInstance(context).getAirQualityLevelUnit().getColorsArrayId()).length) {
+            return context.getResources().getIntArray(SettingsManager.getInstance(context).getAirQualityLevelUnit().getColorsArrayId())[level - 1];
+        } else {
+            return Color.TRANSPARENT;
+        }
+    }
+
+    @ColorInt public int getLevelColorForPolluant(Context context, Float polluantValue, int polluantArrayId) {
+        if (polluantValue == null) {
+            return Color.TRANSPARENT;
+        }
+
+        int level = 0;
+        for (int i = 0; i < context.getResources().getIntArray(polluantArrayId).length; ++i) {
+            if (polluantValue > context.getResources().getIntArray(polluantArrayId)[i]) {
+                level = i;
+            }
+        }
+
+        return context.getResources().getIntArray(SettingsManager.getInstance(context).getAirQualityLevelUnit().getColorsArrayId())[level];
+    }
+
     @ColorInt
     public int getAqiColor(Context context) {
         if (aqiIndex == null) {
-            return ContextCompat.getColor(context, R.color.colorLevel_1);
+            return this.getLevelColor(context, 1);
         } else if (aqiIndex <= AQI_INDEX_1) {
-            return ContextCompat.getColor(context, R.color.colorLevel_1);
+            return this.getLevelColor(context, 1);
         } else if (aqiIndex <= AQI_INDEX_2) {
-            return ContextCompat.getColor(context, R.color.colorLevel_2);
+            return this.getLevelColor(context, 2);
         } else if (aqiIndex <= AQI_INDEX_3) {
-            return ContextCompat.getColor(context, R.color.colorLevel_3);
+            return this.getLevelColor(context, 3);
         } else if (aqiIndex <= AQI_INDEX_4) {
-            return ContextCompat.getColor(context, R.color.colorLevel_4);
+            return this.getLevelColor(context, 4);
         } else if (aqiIndex <= AQI_INDEX_5) {
-            return ContextCompat.getColor(context, R.color.colorLevel_5);
+            return this.getLevelColor(context, 5);
         } else {
-            return ContextCompat.getColor(context, R.color.colorLevel_6);
+            return this.getLevelColor(context, 6);
         }
     }
 
     @ColorInt
     public int getPm25Color(Context context) {
-        if (pm25 == null) {
-            return Color.TRANSPARENT;
-        } else if (pm25 <= 35) {
-            return ContextCompat.getColor(context, R.color.colorLevel_1);
-        } else if (pm25 <= 75) {
-            return ContextCompat.getColor(context, R.color.colorLevel_2);
-        } else if (pm25 <= 115) {
-            return ContextCompat.getColor(context, R.color.colorLevel_3);
-        } else if (pm25 <= 150) {
-            return ContextCompat.getColor(context, R.color.colorLevel_4);
-        } else if (pm25 <= 250) {
-            return ContextCompat.getColor(context, R.color.colorLevel_5);
-        } else {
-            return ContextCompat.getColor(context, R.color.colorLevel_6);
-        }
+        return getLevelColorForPolluant(context, pm25, SettingsManager.getInstance(context).getAirQualityLevelUnit().getPm25valuesArrayId());
     }
 
     @ColorInt
     public int getPm10Color(Context context) {
-        if (pm10 == null) {
-            return Color.TRANSPARENT;
-        } else if (pm10 <= 50) {
-            return ContextCompat.getColor(context, R.color.colorLevel_1);
-        } else if (pm10 <= 150) {
-            return ContextCompat.getColor(context, R.color.colorLevel_2);
-        } else if (pm10 <= 250) {
-            return ContextCompat.getColor(context, R.color.colorLevel_3);
-        } else if (pm10 <= 350) {
-            return ContextCompat.getColor(context, R.color.colorLevel_4);
-        } else if (pm10 <= 420) {
-            return ContextCompat.getColor(context, R.color.colorLevel_5);
-        } else {
-            return ContextCompat.getColor(context, R.color.colorLevel_6);
-        }
+        return getLevelColorForPolluant(context, pm10, SettingsManager.getInstance(context).getAirQualityLevelUnit().getPm10valuesArrayId());
     }
 
     @ColorInt
     public int getSo2Color(Context context) {
-        if (so2 == null) {
-            return Color.TRANSPARENT;
-        } else if (so2 <= 50) {
-            return ContextCompat.getColor(context, R.color.colorLevel_1);
-        } else if (so2 <= 150) {
-            return ContextCompat.getColor(context, R.color.colorLevel_2);
-        } else if (so2 <= 475) {
-            return ContextCompat.getColor(context, R.color.colorLevel_3);
-        } else if (so2 <= 800) {
-            return ContextCompat.getColor(context, R.color.colorLevel_4);
-        } else if (so2 <= 1600) {
-            return ContextCompat.getColor(context, R.color.colorLevel_5);
-        } else {
-            return ContextCompat.getColor(context, R.color.colorLevel_6);
-        }
+        return getLevelColorForPolluant(context, so2, SettingsManager.getInstance(context).getAirQualityLevelUnit().getSo2valuesArrayId());
     }
 
     @ColorInt
     public int getNo2Color(Context context) {
-        if (no2 == null) {
-            return Color.TRANSPARENT;
-        } else if (no2 <= 40) {
-            return ContextCompat.getColor(context, R.color.colorLevel_1);
-        } else if (no2 <= 80) {
-            return ContextCompat.getColor(context, R.color.colorLevel_2);
-        } else if (no2 <= 180) {
-            return ContextCompat.getColor(context, R.color.colorLevel_3);
-        } else if (no2 <= 280) {
-            return ContextCompat.getColor(context, R.color.colorLevel_4);
-        } else if (no2 <= 565) {
-            return ContextCompat.getColor(context, R.color.colorLevel_5);
-        } else {
-            return ContextCompat.getColor(context, R.color.colorLevel_6);
-        }
+        return getLevelColorForPolluant(context, no2, SettingsManager.getInstance(context).getAirQualityLevelUnit().getNo2valuesArrayId());
     }
 
     @ColorInt
     public int getO3Color(Context context) {
-        if (o3 == null) {
-            return Color.TRANSPARENT;
-        } else if (o3 <= 160) {
-            return ContextCompat.getColor(context, R.color.colorLevel_1);
-        } else if (o3 <= 200) {
-            return ContextCompat.getColor(context, R.color.colorLevel_2);
-        } else if (o3 <= 300) {
-            return ContextCompat.getColor(context, R.color.colorLevel_3);
-        } else if (o3 <= 400) {
-            return ContextCompat.getColor(context, R.color.colorLevel_4);
-        } else if (o3 <= 800) {
-            return ContextCompat.getColor(context, R.color.colorLevel_5);
-        } else {
-            return ContextCompat.getColor(context, R.color.colorLevel_6);
-        }
+        return getLevelColorForPolluant(context, o3, SettingsManager.getInstance(context).getAirQualityLevelUnit().getO3valuesArrayId());
     }
 
     @ColorInt
@@ -225,6 +210,31 @@ public class AirQuality implements Serializable {
         } else {
             return ContextCompat.getColor(context, R.color.colorLevel_6);
         }
+    }
+
+    public int getPM25Max(Context context) {
+        int arrayId = SettingsManager.getInstance(context).getAirQualityLevelUnit().getPm25valuesArrayId();
+        return context.getResources().getIntArray(arrayId)[context.getResources().getIntArray(arrayId).length - 1];
+    }
+
+    public int getPM10Max(Context context) {
+        int arrayId = SettingsManager.getInstance(context).getAirQualityLevelUnit().getPm10valuesArrayId();
+        return context.getResources().getIntArray(arrayId)[context.getResources().getIntArray(arrayId).length - 1];
+    }
+
+    public int getSO2Max(Context context) {
+        int arrayId = SettingsManager.getInstance(context).getAirQualityLevelUnit().getNo2valuesArrayId();
+        return context.getResources().getIntArray(arrayId)[context.getResources().getIntArray(arrayId).length - 1];
+    }
+
+    public int getNO2Max(Context context) {
+        int arrayId = SettingsManager.getInstance(context).getAirQualityLevelUnit().getNo2valuesArrayId();
+        return context.getResources().getIntArray(arrayId)[context.getResources().getIntArray(arrayId).length - 1];
+    }
+
+    public int getO3Max(Context context) {
+        int arrayId = SettingsManager.getInstance(context).getAirQualityLevelUnit().getO3valuesArrayId();
+        return context.getResources().getIntArray(arrayId)[context.getResources().getIntArray(arrayId).length - 1];
     }
 
     public boolean isValid() {

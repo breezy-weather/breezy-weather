@@ -140,14 +140,6 @@ public class CaiyunResultConverter {
     }
 
     private static AirQuality getAirQuality(Context context, CaiYunMainlyResult result) {
-        String quality;
-        try {
-            quality = CommonConverter.getAqiQuality(
-                    context, Integer.parseInt(result.aqi.aqi));
-        } catch (Exception e) {
-            quality = null;
-        }
-
         Integer index;
         try {
             index = (int) Double.parseDouble(result.aqi.aqi);
@@ -197,7 +189,7 @@ public class CaiyunResultConverter {
             co = null;
         }
 
-        return new AirQuality(quality, index, pm25, pm10, so2, no2, o3, co);
+        return new AirQuality(null, index, pm25, pm10, so2, no2, o3, co);
     }
 
     @Nullable
@@ -333,9 +325,7 @@ public class CaiyunResultConverter {
                             new Astro(null, null),
                             new MoonPhase(null, null),
                             new AirQuality(
-                                    forecast.aqi != null && forecast.aqi.value != null && forecast.aqi.value.size() > i
-                                            ? CommonConverter.getAqiQuality(context, forecast.aqi.value.get(i))
-                                            : null,
+                                    null,
                                     forecast.aqi != null && forecast.aqi.value != null && forecast.aqi.value.size() > i
                                             ? forecast.aqi.value.get(i)
                                             : null,

@@ -104,9 +104,9 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
         }
 
         mProgress.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorTitleText));
-        mProgress.setBottomText(weather.getCurrent().getAirQuality().getAqiText());
+        mProgress.setBottomText(weather.getCurrent().getAirQuality().getAqiText(context));
         mProgress.setBottomTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText));
-        mProgress.setContentDescription(mAqiIndex + ", " + weather.getCurrent().getAirQuality().getAqiText());
+        mProgress.setContentDescription(mAqiIndex + ", " + weather.getCurrent().getAirQuality().getAqiText(context));
 
         mAdapter = new AqiAdapter(context, location, itemAnimationEnabled);
         mRecyclerView.setAdapter(mAdapter);

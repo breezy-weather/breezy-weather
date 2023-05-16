@@ -52,7 +52,7 @@ public class DailyAirQualityAdapter extends AbsDailyTrendAdapter {
             assert location.getWeather() != null;
             Daily daily = location.getWeather().getDailyForecast().get(position);
             Integer index = daily.getAirQuality().getAqiIndex();
-            talkBackBuilder.append(", ").append(index).append(", ").append(daily.getAirQuality().getAqiText());
+            talkBackBuilder.append(", ").append(index).append(", ").append(daily.getAirQuality().getAqiText(itemView.getContext()));
             mPolylineAndHistogramView.setData(
                     null, null,
                     null, null,

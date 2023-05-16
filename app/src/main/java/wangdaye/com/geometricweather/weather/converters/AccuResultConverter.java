@@ -159,7 +159,7 @@ public class AccuResultConverter {
                                     null, null, null, null,
                                     null, null, null, null
                             ) : new AirQuality(
-                                    CommonConverter.getAqiQuality(context, aqiResult.Index),
+                                    null,
                                     aqiResult.Index,
                                     aqiResult.ParticulateMatter2_5,
                                     aqiResult.ParticulateMatter10,
@@ -319,16 +319,7 @@ public class AccuResultConverter {
         if (index != null && index == 0) {
             index = null;
         }
-        return new AirQuality(
-                CommonConverter.getAqiQuality(context, index),
-                index,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null
-        );
+        return new AirQuality(null, index, null, null, null, null, null, null);
     }
 
     private static Pollen getDailyPollen(List<AccuDailyResult.DailyForecasts.AirAndPollen> list) {

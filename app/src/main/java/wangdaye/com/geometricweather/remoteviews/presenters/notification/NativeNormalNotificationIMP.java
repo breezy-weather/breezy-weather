@@ -134,7 +134,7 @@ class NativeNormalNotificationIMP extends AbstractRemoteViewsPresenter {
         if (weather.getCurrent().getAirQuality().isValid()) {
             contentText.append(context.getString(R.string.air_quality))
                     .append(" - ")
-                    .append(weather.getCurrent().getAirQuality().getAqiText());
+                    .append(weather.getCurrent().getAirQuality().getAqiText(context));
         } else {
             contentText.append(context.getString(R.string.wind))
                     .append(" - ")

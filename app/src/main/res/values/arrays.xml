@@ -499,6 +499,145 @@
         <item>mgpcum</item>
     </string-array>
 
+    <!-- air quality levels -->
+    <string-array name="air_quality_levels">
+        <item>AQI (United States)</item>
+        <item>EAQI (Europe)</item>
+    </string-array>
+    <!-- Do not translate this array. -->
+    <string-array name="air_quality_levels_values">
+        <item>aqi</item>
+        <item>eaqi</item>
+    </string-array>
+
+    <!-- AQI -->
+    <string-array name="air_quality_levels_aqi">
+        <item>Good</item>
+        <item>Moderate</item>
+        <item>Unhealthy for Sensitive Groups</item>
+        <item>Unhealthy</item>
+        <item>Very Unhealthy</item>
+        <item>Hazardous</item>
+    </string-array>
+    <!-- Do not translate this array. -->
+    <integer-array name="air_quality_levels_aqi_pm25_values">
+        <item>0</item>
+        <item>35</item>
+        <item>75</item>
+        <item>115</item>
+        <item>150</item>
+        <item>250</item>
+    </integer-array>
+    <!-- Do not translate this array. -->
+    <integer-array name="air_quality_levels_aqi_pm10_values">
+        <item>0</item>
+        <item>50</item>
+        <item>150</item>
+        <item>250</item>
+        <item>350</item>
+        <item>420</item>
+    </integer-array>
+    <!-- Do not translate this array. -->
+    <integer-array name="air_quality_levels_aqi_so2_values">
+        <item>0</item>
+        <item>50</item>
+        <item>150</item>
+        <item>475</item>
+        <item>800</item>
+        <item>1600</item>
+    </integer-array>
+    <!-- Do not translate this array. -->
+    <integer-array name="air_quality_levels_aqi_no2_values">
+        <item>0</item>
+        <item>40</item>
+        <item>80</item>
+        <item>180</item>
+        <item>280</item>
+        <item>565</item>
+    </integer-array>
+    <!-- Do not translate this array. -->
+    <integer-array name="air_quality_levels_aqi_o3_values">
+        <item>0</item>
+        <item>160</item>
+        <item>200</item>
+        <item>300</item>
+        <item>400</item>
+        <item>800</item>
+    </integer-array>
+    <!-- Do not translate this array. -->
+    <integer-array name="air_quality_levels_aqi_colors">
+        <item>@color/colorLevel_1</item>
+        <item>@color/colorLevel_2</item>
+        <item>@color/colorLevel_3</item>
+        <item>@color/colorLevel_4</item>
+        <item>@color/colorLevel_5</item>
+        <item>@color/colorLevel_6</item>
+    </integer-array>
+
+    <!-- EAQI -->
+    <string-array name="air_quality_levels_eaqi">
+        <item>Good</item>
+        <item>Fair</item>
+        <item>Moderate</item>
+        <item>Poor</item>
+        <item>Very poor</item>
+        <item>Extremely poor</item>
+    </string-array>
+    <!-- Do not translate this array. -->
+    <integer-array name="air_quality_levels_eaqi_pm25_values">
+        <item>0</item>
+        <item>10</item>
+        <item>20</item>
+        <item>25</item>
+        <item>50</item>
+        <item>75</item>
+    </integer-array>
+    <!-- Do not translate this array. -->
+    <integer-array name="air_quality_levels_eaqi_pm10_values">
+        <item>0</item>
+        <item>20</item>
+        <item>40</item>
+        <item>50</item>
+        <item>100</item>
+        <item>150</item>
+    </integer-array>
+    <!-- Do not translate this array. -->
+    <integer-array name="air_quality_levels_eaqi_so2_values">
+        <item>0</item>
+        <item>100</item>
+        <item>200</item>
+        <item>350</item>
+        <item>500</item>
+        <item>750</item>
+    </integer-array>
+    <!-- Do not translate this array. -->
+    <integer-array name="air_quality_levels_eaqi_no2_values">
+        <item>0</item>
+        <item>40</item>
+        <item>90</item>
+        <item>120</item>
+        <item>230</item>
+        <item>340</item>
+    </integer-array>
+    <!-- Do not translate this array. -->
+    <integer-array name="air_quality_levels_eaqi_o3_values">
+        <item>0</item>
+        <item>50</item>
+        <item>100</item>
+        <item>130</item>
+        <item>240</item>
+        <item>380</item>
+    </integer-array>
+    <!-- Do not translate this array. -->
+    <integer-array name="air_quality_levels_eaqi_colors">
+        <item>@color/eaqiLevel_1</item>
+        <item>@color/eaqiLevel_2</item>
+        <item>@color/eaqiLevel_3</item>
+        <item>@color/eaqiLevel_4</item>
+        <item>@color/eaqiLevel_5</item>
+        <item>@color/eaqiLevel_6</item>
+    </integer-array>
+
     <!-- duration unit. -->
     <string-array name="duration_units">
         <item>h</item> <!-- hour -->

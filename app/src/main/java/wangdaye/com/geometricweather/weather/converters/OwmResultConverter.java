@@ -148,7 +148,7 @@ public class OwmResultConverter {
                                     null, null, null, null,
                                     null, null, null, null
                             ) : new AirQuality(
-                                    CommonConverter.getAqiQuality(context, getAqiFromIndex(airPollutionCurrentResult.list.get(0).main.aqi)),
+                                    null,
                                     getAqiFromIndex(airPollutionCurrentResult.list.get(0).main.aqi),
                                     (float) airPollutionCurrentResult.list.get(0).components.pm2_5,
                                     (float) airPollutionCurrentResult.list.get(0).components.pm10,
@@ -407,7 +407,7 @@ public class OwmResultConverter {
             for (OwmAirPollutionResult.AirPollution airPollutionForecast : owmAirPollutionForecastResult.list) {
                 if (fmt.format(requestedDate).equals(fmt.format(airPollutionForecast.dt * 1000))) {
                     return new AirQuality(
-                            CommonConverter.getAqiQuality(context, getAqiFromIndex(airPollutionForecast.main.aqi)),
+                            null,
                             getAqiFromIndex(airPollutionForecast.main.aqi),
                             (float) airPollutionForecast.components.pm2_5,
                             (float) airPollutionForecast.components.pm10,

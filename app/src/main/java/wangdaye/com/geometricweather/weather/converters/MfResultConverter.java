@@ -317,7 +317,7 @@ public class MfResultConverter {
             Integer aqiIndex = getAqiIndex(aqiPM25, aqiPM10, highestNO2, highestO3, highestSO2);
 
             return new AirQuality(
-                CommonConverter.getAqiQuality(context, aqiIndex), aqiIndex,
+                null, aqiIndex,
                 aqiPM25, aqiPM10,
                 highestSO2 != null ? highestSO2.floatValue() : null, highestNO2 != null ? highestNO2.floatValue() : null,
                 highestO3 != null ? highestO3.floatValue() : null, null

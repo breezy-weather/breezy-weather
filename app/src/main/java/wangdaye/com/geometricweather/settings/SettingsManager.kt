@@ -13,6 +13,7 @@ import wangdaye.com.geometricweather.common.basic.models.options.appearance.Hour
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.Language
 import wangdaye.com.geometricweather.common.basic.models.options.provider.LocationProvider
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource
+import wangdaye.com.geometricweather.common.basic.models.options.unit.AirQualityLevelUnit
 import wangdaye.com.geometricweather.common.basic.models.options.unit.DistanceUnit
 import wangdaye.com.geometricweather.common.basic.models.options.unit.PrecipitationIntensityUnit
 import wangdaye.com.geometricweather.common.basic.models.options.unit.PrecipitationUnit
@@ -175,6 +176,15 @@ class SettingsManager private constructor(context: Context) {
         }
         get() = SpeedUnit.getInstance(
             config.getString("speed_unit", "mps") ?: ""
+        )
+
+    var airQualityLevelUnit: AirQualityLevelUnit
+        set(value) {
+            config.edit().putString("air_quality_level_unit", value.id).apply()
+            notifySettingsChanged()
+        }
+        get() = AirQualityLevelUnit.getInstance(
+            config.getString("air_quality_level_unit", "aqi") ?: ""
         )
 
     // appearance.

@@ -103,7 +103,7 @@ public class HeaderViewHolder extends AbstractMainViewHolder {
             }
             mWeather.setText(title.toString());
 
-            if (location.getWeather().getCurrent().getAirQuality().getAqiText() == null) {
+            if (location.getWeather().getCurrent().getAirQuality().getAqiText(context) == null) {
                 mAqiOrWind.setText(
                         context.getString(R.string.wind)
                                 + " - "
@@ -113,7 +113,7 @@ public class HeaderViewHolder extends AbstractMainViewHolder {
                 mAqiOrWind.setText(
                         context.getString(R.string.air_quality)
                                 + " - "
-                                + location.getWeather().getCurrent().getAirQuality().getAqiText()
+                                + location.getWeather().getCurrent().getAirQuality().getAqiText(context)
                 );
             }
 

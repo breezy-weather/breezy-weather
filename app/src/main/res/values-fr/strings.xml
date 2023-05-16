@@ -372,6 +372,7 @@
     <string name="settings_title_precipitation_unit">Unité des précipitations</string>
     <string name="settings_title_pressure_unit">Unité de pression</string>
     <string name="settings_title_speed_unit">Unité de vitesse</string>
+    <string name="settings_title_air_quality_level">Échelle de qualité de l’air</string>
     <string name="settings_title_refresh_rate">Intervalle de mise à jour</string>
     <string name="settings_title_alert_notification_switch">Notifier des vigilances</string>
     <string name="settings_title_precipitation_notification_switch">Notifier des précipitations</string>

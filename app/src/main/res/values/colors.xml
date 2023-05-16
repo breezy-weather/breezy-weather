@@ -25,6 +25,13 @@
     <color name="colorLevel_5">#99004c</color>
     <color name="colorLevel_6">#7e0023</color>
 
+    <color name="eaqiLevel_1">#50F0E6</color>
+    <color name="eaqiLevel_2">#50CCAA</color>
+    <color name="eaqiLevel_3">#F0E641</color>
+    <color name="eaqiLevel_4">#FF5050</color>
+    <color name="eaqiLevel_5">#960032</color>
+    <color name="eaqiLevel_6">#7D2181</color>
+
     <color name="striking_red">@color/colorLevel_4</color>
 
     <color name="notification_background_l">#263238</color>

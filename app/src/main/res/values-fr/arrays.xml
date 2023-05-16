@@ -144,4 +144,29 @@
         <item>Toujours de jour</item>
         <item>Toujours de nuit</item>
     </string-array>
+
+    <!-- air quality levels -->
+    <string-array name="air_quality_levels">
+        <item>AQI (États-Unis)</item>
+        <item>EAQI (Europe)</item>
+    </string-array>
+
+    <!-- AQI -->
+    <string-array name="air_quality_levels_aqi">
+        <item>Bon</item>
+        <item>Moyen</item>
+        <item>Mauvais pour les personnes sensibles</item>
+        <item>Mauvais pour la santé</item>
+        <item>Très mauvais pour la santé</item>
+        <item>Dangereux</item>
+    </string-array>
+    <!-- EAQI -->
+    <string-array name="air_quality_levels_eaqi">
+        <item>Bon</item>
+        <item>Moyen</item>
+        <item>Dégradé</item>
+        <item>Mauvais</item>
+        <item>Très mauvais</item>
+        <item>Extrêmement mauvais</item>
+    </string-array>
 </resources>

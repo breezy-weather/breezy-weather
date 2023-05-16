@@ -46,25 +46,6 @@ public class CommonConverter {
     }
 
     @Nullable
-    public static String getAqiQuality(Context c, @Nullable Integer index) {
-        if (index == null || index < 0) {
-            return null;
-        } if (index <= AirQuality.AQI_INDEX_1) {
-            return c.getString(R.string.aqi_1);
-        } else if (index <= AirQuality.AQI_INDEX_2) {
-            return c.getString(R.string.aqi_2);
-        } else if (index <= AirQuality.AQI_INDEX_3) {
-            return c.getString(R.string.aqi_3);
-        } else if (index <= AirQuality.AQI_INDEX_4) {
-            return c.getString(R.string.aqi_4);
-        } else if (index <= AirQuality.AQI_INDEX_5) {
-            return c.getString(R.string.aqi_5);
-        } else {
-            return c.getString(R.string.aqi_6);
-        }
-    }
-
-    @Nullable
     public static Integer getMoonPhaseAngle(@Nullable String phase) {
         if (TextUtils.isEmpty(phase)) {
             return null;
