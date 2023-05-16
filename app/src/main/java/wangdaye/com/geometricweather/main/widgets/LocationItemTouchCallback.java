@@ -64,7 +64,7 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
             case ItemTouchHelper.ACTION_STATE_DRAG:
                 if (!mDragged && viewHolder != null) {
                     mDragged = true;
-                    mDragFrom = viewHolder.getAdapterPosition();
+                    mDragFrom = viewHolder.getBindingAdapterPosition();
                     mDragTo = mDragFrom;
                 }
                 break;
@@ -75,14 +75,14 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
     public boolean onMove(@NonNull RecyclerView recyclerView,
                           @NonNull RecyclerView.ViewHolder viewHolder,
                           @NonNull RecyclerView.ViewHolder target) {
-        mDragTo = target.getAdapterPosition();
-        mReactor.reorderByDrag(viewHolder.getAdapterPosition(), mDragTo);
+        mDragTo = target.getBindingAdapterPosition();
+        mReactor.reorderByDrag(viewHolder.getBindingAdapterPosition(), mDragTo);
         return true;
     }
 
     @Override
     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-        int position = viewHolder.getAdapterPosition();
+        int position = viewHolder.getBindingAdapterPosition();
         Location location = mViewModel.getTotalLocationList().getValue().getLocationList().get(position);
 
         switch (direction) {

@@ -55,7 +55,7 @@ public abstract class AbsHourlyTrendAdapter extends TrendRecyclerViewAdapter<Abs
             );
 
             hourlyItem.setOnClickListener(v -> onItemClicked(
-                    activity, location, getAdapterPosition()
+                    activity, location, getBindingAdapterPosition()
             ));
         }
     }

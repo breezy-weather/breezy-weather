@@ -10,7 +10,7 @@ import androidx.multidex.MultiDexApplication
 import androidx.work.Configuration
 import dagger.hilt.android.HiltAndroidApp
 import wangdaye.com.geometricweather.common.basic.GeoActivity
-import wangdaye.com.geometricweather.common.retrofit.TLSCompactHelper
+import wangdaye.com.geometricweather.common.retrofit.ClientCacheHelper
 import wangdaye.com.geometricweather.common.utils.LanguageUtils
 import wangdaye.com.geometricweather.common.utils.NetworkUtils
 import wangdaye.com.geometricweather.common.utils.helpers.BuglyHelper
@@ -193,7 +193,7 @@ class GeometricWeather : MultiDexApplication(),
 
         NetworkUtils.registerNetworkCallback(applicationContext)
 
-        val cacheCreated = TLSCompactHelper.createClientCache(baseContext.cacheDir)
+        val cacheCreated = ClientCacheHelper.createClientCache(baseContext.cacheDir)
         if (!cacheCreated)
             Log.e("GeometricWeather", "Failed to create Http client cache")
 

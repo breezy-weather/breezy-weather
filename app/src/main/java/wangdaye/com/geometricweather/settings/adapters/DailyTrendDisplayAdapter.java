@@ -54,7 +54,7 @@ public class DailyTrendDisplayAdapter extends RecyclerView.Adapter<DailyTrendDis
                 return false;
             });
             deleteButton = itemView.findViewById(R.id.item_card_display_deleteBtn);
-            deleteButton.setOnClickListener(v -> removeItem(getAdapterPosition()));
+            deleteButton.setOnClickListener(v -> removeItem(getBindingAdapterPosition()));
         }
 
         void onBindView(DailyTrendDisplay dailyTrendDisplay) {

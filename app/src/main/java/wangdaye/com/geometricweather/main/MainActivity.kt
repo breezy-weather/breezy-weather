@@ -66,7 +66,7 @@ class MainActivity : GeoActivity(),
     }
 
     private val backgroundUpdateObserver: Observer<Location> = Observer { location ->
-        location?.let {
+        location.let {
             viewModel.updateLocationFromBackground(it)
 
             if (isActivityStarted

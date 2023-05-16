@@ -70,8 +70,8 @@ public class CardDisplayManageActivity extends GeoActivity {
         public boolean onMove(@NonNull RecyclerView recyclerView,
                               @NonNull RecyclerView.ViewHolder viewHolder,
                               @NonNull RecyclerView.ViewHolder target) {
-            int fromPosition = viewHolder.getAdapterPosition();
-            int toPosition = target.getAdapterPosition();
+            int fromPosition = viewHolder.getBindingAdapterPosition();
+            int toPosition = target.getBindingAdapterPosition();
 
             mCardDisplayAdapter.moveItem(fromPosition, toPosition);
             return true;
@@ -79,7 +79,7 @@ public class CardDisplayManageActivity extends GeoActivity {
 
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-            mCardDisplayAdapter.removeItem(viewHolder.getAdapterPosition());
+            mCardDisplayAdapter.removeItem(viewHolder.getBindingAdapterPosition());
         }
 
         @Override

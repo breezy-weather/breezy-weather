@@ -55,7 +55,7 @@ public class HourlyTrendDisplayAdapter
                 return false;
             });
             deleteButton = itemView.findViewById(R.id.item_card_display_deleteBtn);
-            deleteButton.setOnClickListener(v -> removeItem(getAdapterPosition()));
+            deleteButton.setOnClickListener(v -> removeItem(getBindingAdapterPosition()));
         }
 
         void onBindView(HourlyTrendDisplay hourlyTrendDisplay) {

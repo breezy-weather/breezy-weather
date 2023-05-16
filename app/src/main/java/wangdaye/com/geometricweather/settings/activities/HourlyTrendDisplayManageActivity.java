@@ -69,8 +69,8 @@ public class HourlyTrendDisplayManageActivity extends GeoActivity {
                               @NonNull RecyclerView.ViewHolder target) {
             setResult(RESULT_OK);
 
-            int fromPosition = viewHolder.getAdapterPosition();
-            int toPosition = target.getAdapterPosition();
+            int fromPosition = viewHolder.getBindingAdapterPosition();
+            int toPosition = target.getBindingAdapterPosition();
 
             mHourlyTrendDisplayAdapter.moveItem(fromPosition, toPosition);
             return true;
@@ -79,7 +79,7 @@ public class HourlyTrendDisplayManageActivity extends GeoActivity {
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
             setResult(RESULT_OK);
-            mHourlyTrendDisplayAdapter.removeItem(viewHolder.getAdapterPosition());
+            mHourlyTrendDisplayAdapter.removeItem(viewHolder.getBindingAdapterPosition());
         }
 
         @Override

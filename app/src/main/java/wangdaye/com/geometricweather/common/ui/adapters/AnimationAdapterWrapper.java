@@ -134,7 +134,7 @@ public abstract class AnimationAdapterWrapper<A extends RecyclerView.Adapter<VH>
     public void onViewRecycled(@NonNull VH holder) {
         super.onViewRecycled(holder);
         mInner.onViewRecycled(holder);
-        clear(holder.itemView, holder.getAdapterPosition());
+        clear(holder.itemView, holder.getBindingAdapterPosition());
     }
 
     @Override

@@ -22,8 +22,8 @@ import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
-import io.reactivex.Observable;
-import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import wangdaye.com.geometricweather.BuildConfig;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.rxjava.BaseObserver;
@@ -85,7 +85,7 @@ public class MfWeatherService extends WeatherService {
 
         Observable<MfWarningsResult> warnings = mMfApi.getWarnings(
             getUserAgent(), location.getProvince(), "timestamp", token
-        ).onExceptionResumeNext(
+        ).onErrorResumeNext(error ->
             // FIXME: Will not report warnings if current location was searched through AccuWeather search because "province" is not the department
             Observable.create(emitter -> emitter.onNext(new EmptyWarningsResult()))
         );
@@ -111,7 +111,7 @@ public class MfWeatherService extends WeatherService {
                     String.valueOf(location.getLongitude()),
                     fmt.format(tomorrow), // Tomorrow because it gives access to D-1 and D+1
                     true
-            ).onExceptionResumeNext(
+            ).onErrorResumeNext(error ->
                     Observable.create(emitter -> emitter.onNext(new EmptyAtmoAuraQAResult()))
             );
         } else {

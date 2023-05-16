@@ -54,7 +54,7 @@ public class CardDisplayAdapter extends RecyclerView.Adapter<CardDisplayAdapter.
                 return false;
             });
             deleteButton = itemView.findViewById(R.id.item_card_display_deleteBtn);
-            deleteButton.setOnClickListener(v -> removeItem(getAdapterPosition()));
+            deleteButton.setOnClickListener(v -> removeItem(getBindingAdapterPosition()));
         }
 
         void onBindView(CardDisplay cardDisplay) {

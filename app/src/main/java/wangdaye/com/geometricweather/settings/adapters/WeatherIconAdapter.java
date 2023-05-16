@@ -56,7 +56,7 @@ public class WeatherIconAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
 
         void onBindView() {
-            Title t = (Title) mItemList.get(getAdapterPosition());
+            Title t = (Title) mItemList.get(getBindingAdapterPosition());
             mTitle.setText(t.content);
         }
     }
@@ -71,10 +71,10 @@ public class WeatherIconAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
 
         void onBindView() {
-            if (getAdapterPosition() == RecyclerView.NO_POSITION) {
+            if (getBindingAdapterPosition() == RecyclerView.NO_POSITION) {
                 return;
             }
-            WeatherIcon icon = (WeatherIcon) mItemList.get(getAdapterPosition());
+            WeatherIcon icon = (WeatherIcon) mItemList.get(getBindingAdapterPosition());
             mImageView.setImageDrawable(icon.getDrawable());
 
             itemView.setContentDescription(icon.getContentDescription());

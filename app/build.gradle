@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    compileSdkVersion 33
+    compileSdk 33
     defaultConfig {
         applicationId "wangdaye.com.geometricweather"
         minSdkVersion 21
@@ -61,7 +61,7 @@ android {
         it.buildConfigField "String", "METNO_BASE_URL", METNO_BASE_URL
         it.buildConfigField "String", "NOMINATIM_BASE_URL", NOMINATIM_BASE_URL
     }
-    sourceSets{
+    sourceSets {
         pub {
             java.srcDirs = ["src/src_bugly", "src/src_baidu", "src/src_amap", "src/src_gplay"]
             manifest.srcFile "manifest_pub/AndroidManifest.xml"
@@ -160,16 +160,11 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     // test.
-    testImplementation "junit:junit:4.13.2"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.9.3"
     testImplementation "androidx.test:core:1.5.0"
     testImplementation "androidx.test:runner:1.5.2"
     testImplementation "androidx.test:rules:1.5.0"
-    testImplementation "org.mockito:mockito-core:3.3.3"
-    testImplementation "org.powermock:powermock-api-mockito2:2.0.9"
-    testImplementation "org.powermock:powermock-module-junit4:2.0.9"
-    testImplementation "org.powermock:powermock-module-junit4-rule:2.0.9"
-    testImplementation "org.powermock:powermock-classloading-xstream:2.0.9"
-    testImplementation "org.robolectric:robolectric:4.3"
+    testImplementation "org.mockito:mockito-core:4.11.0" // 5+ requires JDK 11
 
     // material design.
     implementation "com.google.android.material:material:1.9.0"
@@ -184,8 +179,8 @@ dependencies {
     implementation "androidx.compose.ui:ui-tooling:1.4.3"
     implementation "androidx.compose.foundation:foundation:1.4.3"
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1"
-    androidTestImplementation "androidx.compose.ui:ui-test-junit4:1.4.3"
-    implementation "com.google.accompanist:accompanist-appcompat-theme:0.16.0"
+    //androidTestImplementation "androidx.compose.ui:ui-test-junit4:1.4.3"
+    implementation "com.google.accompanist:accompanist-appcompat-theme:0.30.1"
     implementation "androidx.compose.material3:material3:1.1.0"
     implementation "androidx.compose.material:material-icons-extended:1.4.3"
     implementation "androidx.navigation:navigation-compose:2.5.3"
@@ -211,15 +206,16 @@ dependencies {
     implementation "androidx.multidex:multidex:2.0.1"
 
     // hilt.
-    implementation "com.google.dagger:hilt-android:2.44"
-    kapt "com.google.dagger:hilt-android-compiler:2.44"
-    annotationProcessor "com.google.dagger:hilt-compiler:2.44"
+    implementation "com.google.dagger:hilt-android:2.46.1"
+    kapt "com.google.dagger:hilt-android-compiler:2.46.1"
+    annotationProcessor "com.google.dagger:hilt-compiler:2.46.1"
 
     implementation "androidx.hilt:hilt-work:1.0.0"
     kapt "androidx.hilt:hilt-compiler:1.0.0"
     annotationProcessor "androidx.hilt:hilt-compiler:1.0.0"
 
     // a map.
+    // TODO: Can be updated
     pubImplementation "com.amap.api:location:5.3.1"
 
     // gms.
@@ -227,18 +223,16 @@ dependencies {
     gplayImplementation "com.google.android.gms:play-services-location:21.0.1"
 
     // glide.
-    implementation "com.github.bumptech.glide:glide:4.11.0"
-    annotationProcessor "com.github.bumptech.glide:compiler:4.11.0"
-    implementation "com.github.bumptech.glide:okhttp3-integration:4.11.0"
+    implementation "com.github.bumptech.glide:glide:4.15.1"
+    annotationProcessor "com.github.bumptech.glide:compiler:4.15.1"
+    implementation "com.github.bumptech.glide:okhttp3-integration:4.15.1"
 
     // retrofit.
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:2.6.2"
-    implementation("com.squareup.okhttp3:okhttp") {
-        version {strictly "3.12.12"}
-    }
-    implementation "com.squareup.okhttp3:logging-interceptor:3.12.12"
+    implementation "com.squareup.retrofit2:adapter-rxjava3:2.9.0"
+    implementation "com.squareup.okhttp3:okhttp:4.11.0"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.11.0"
 
     // db.
     implementation "org.greenrobot:greendao:3.3.0"
@@ -262,25 +256,24 @@ dependencies {
     implementation "org.cyanogenmod:platform.sdk:5.0"
 
     // bugly.
+    // TODO: Can be updated
     pubImplementation "com.tencent.bugly:crashreport:2.8.6.0"
     pubImplementation "com.tencent.bugly:nativecrashreport:3.6.0.1"
 
     // rx java.
-    implementation "io.reactivex.rxjava2:rxjava:2.2.9"
-    implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
-    implementation "com.github.nekocode.rxlifecycle:rxlifecycle:2.0"
-    implementation "com.github.nekocode.rxlifecycle:rxlifecycle-compact:2.0"
+    implementation 'io.reactivex.rxjava3:rxjava:3.1.6'
+    implementation "io.reactivex.rxjava3:rxandroid:3.0.2"
 
     // ui.
     implementation "com.github.rahatarmanahmed:circularprogressview:2.5.0"
     implementation "com.jaredrummler:colorpicker:1.1.0"
     implementation "com.xw.repo:bubbleseekbar:3.20-lite"
     implementation "me.jfenn:AdaptiveIconView:0.0.1"
-    implementation "com.github.turing-tech:MaterialScrollBar:13.3.2"
+    implementation "com.github.turing-tech:MaterialScrollBar:13.4.3a"
     implementation "com.gordonwong:material-sheet-fab:1.2.1"
     implementation "androidx.activity:activity-ktx:1.7.1"
 
     // utils.
-    implementation "com.github.XhinLiang:LunarCalendar:3.0.0"
+    implementation "com.xhinliang:LunarCalendar:4.0.7"
     implementation "com.github.didikee:AndroidDonate:0.1.0"
 }

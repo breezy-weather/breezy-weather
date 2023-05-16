@@ -10,11 +10,10 @@ import dagger.hilt.InstallIn;
 import dagger.hilt.components.SingletonComponent;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import wangdaye.com.geometricweather.GeometricWeather;
-import wangdaye.com.geometricweather.common.retrofit.TLSCompactHelper;
-import wangdaye.com.geometricweather.common.retrofit.interceptors.GzipInterceptor;
+import wangdaye.com.geometricweather.common.retrofit.ClientCacheHelper;
 
 @InstallIn(SingletonComponent.class)
 @Module
@@ -22,10 +21,8 @@ public class RetrofitModule {
 
     @Provides
     @Singleton
-    public OkHttpClient provideOkHttpClient(GzipInterceptor gzipInterceptor,
-                                            HttpLoggingInterceptor loggingInterceptor) {
-        return TLSCompactHelper.getClientBuilder()
-                .addInterceptor(gzipInterceptor)
+    public OkHttpClient provideOkHttpClient(HttpLoggingInterceptor loggingInterceptor) {
+        return ClientCacheHelper.getClientBuilder()
                 .addInterceptor(loggingInterceptor)
                 .build();
     }
@@ -40,17 +37,19 @@ public class RetrofitModule {
 
     @Provides
     @Singleton
-    public RxJava2CallAdapterFactory provideRxJava2CallAdapterFactory() {
-        return RxJava2CallAdapterFactory.create();
+    public RxJava3CallAdapterFactory provideRxJava3CallAdapterFactory() {
+        return RxJava3CallAdapterFactory.create();
     }
 
     @Provides
     @Singleton
     public HttpLoggingInterceptor provideHttpLoggingInterceptor() {
-        return new HttpLoggingInterceptor().setLevel(
-                GeometricWeather.getInstance().getDebugMode()
-                        ? HttpLoggingInterceptor.Level.BODY
-                        : HttpLoggingInterceptor.Level.NONE
+        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
+        httpLoggingInterceptor.level(
+            GeometricWeather.getInstance().getDebugMode()
+                    ? HttpLoggingInterceptor.Level.BODY
+                    : HttpLoggingInterceptor.Level.NONE
         );
+        return httpLoggingInterceptor;
     }
 }

@@ -67,8 +67,8 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
         public boolean onMove(@NonNull RecyclerView recyclerView,
                               @NonNull RecyclerView.ViewHolder viewHolder,
                               @NonNull RecyclerView.ViewHolder target) {
-            int fromPosition = viewHolder.getAdapterPosition();
-            int toPosition = target.getAdapterPosition();
+            int fromPosition = viewHolder.getBindingAdapterPosition();
+            int toPosition = target.getBindingAdapterPosition();
 
             mDailyTrendDisplayAdapter.moveItem(fromPosition, toPosition);
             return true;
@@ -76,7 +76,7 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
 
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-            mDailyTrendDisplayAdapter.removeItem(viewHolder.getAdapterPosition());
+            mDailyTrendDisplayAdapter.removeItem(viewHolder.getBindingAdapterPosition());
         }
 
         @Override

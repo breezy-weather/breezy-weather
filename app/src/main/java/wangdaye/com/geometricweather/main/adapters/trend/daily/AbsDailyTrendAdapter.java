@@ -58,7 +58,7 @@ public abstract class AbsDailyTrendAdapter extends TrendRecyclerViewAdapter<AbsD
                     MainThemeColorProvider.getColor(location, R.attr.colorBodyText)
             );
 
-            dailyItem.setOnClickListener(v -> onItemClicked(activity, location, getAdapterPosition()));
+            dailyItem.setOnClickListener(v -> onItemClicked(activity, location, getBindingAdapterPosition()));
         }
     }
 

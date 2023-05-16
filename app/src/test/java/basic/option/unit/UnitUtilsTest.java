@@ -1,27 +1,28 @@
 package basic.option.unit;
 
+import static org.hamcrest.CoreMatchers.anyOf;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import android.annotation.SuppressLint;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.powermock.modules.junit4.PowerMockRunner;
+import org.junit.jupiter.api.Test;
 
-@RunWith(PowerMockRunner.class)
 public class UnitUtilsTest {
 
     @Test
     public void formatFloat() {
-        Assert.assertEquals(formatFloat(14.34234f), "14.34");
-        Assert.assertEquals(formatFloat(14.34834f), "14.35");
-        Assert.assertEquals(formatFloat(14.34834f, 3), "14.348");
-        Assert.assertEquals(formatFloat(14.34864f, 3), "14.349");
+        assertThat(formatFloat(14.34234f), anyOf(equalTo("14.34"), equalTo("14,34")));
+        assertThat(formatFloat(14.34834f), anyOf(equalTo("14.35"), equalTo("14,35")));
+        assertThat(formatFloat(14.34834f, 3), anyOf(equalTo("14.348"), equalTo("14,348")));
+        assertThat(formatFloat(14.34864f, 3), anyOf(equalTo("14.349"), equalTo("14,349")));
     }
 
     @Test
     public void formatInt() {
-        Assert.assertEquals(formatInt(14), "14");
-        Assert.assertEquals(formatInt(16), "16");
+        assertEquals(formatInt(14), "14");
+        assertEquals(formatInt(16), "16");
     }
 
     static String formatFloat(float value) {

@@ -1,6 +1,6 @@
 package wangdaye.com.geometricweather.common.rxjava;
 
-import io.reactivex.observers.DisposableObserver;
+import io.reactivex.rxjava3.observers.DisposableObserver;
 import retrofit2.HttpException;
 
 public abstract class BaseObserver<T> extends DisposableObserver<T> {

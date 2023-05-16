@@ -1,34 +1,37 @@
 package basic.option.appearance;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.mockStatic;
 
 import android.content.Context;
 import android.text.TextUtils;
 
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.DailyTrendDisplay;
 
-@RunWith(PowerMockRunner.class)
-@PrepareForTest(TextUtils.class)
+//@PrepareForTest(TextUtils.class)
 public class DailyTrendDisplayTest {
 
-    @BeforeClass
+    @BeforeAll
     public static void setup() throws Exception {
-        PowerMockito.mockStatic(TextUtils.class);
-        PowerMockito.when(TextUtils.class, "isEmpty", anyString()).thenReturn(false);
+        try (MockedStatic<TextUtils> utilities = mockStatic(TextUtils.class)) {
+            utilities.when(() -> TextUtils.isEmpty(anyString()))
+                .thenReturn(false);
+
+            assertEquals(TextUtils.isEmpty(anyString()), false);
+        }
     }
 
     @Test
@@ -37,11 +40,11 @@ public class DailyTrendDisplayTest {
 
         List<DailyTrendDisplay> list = DailyTrendDisplay.toDailyTrendDisplayList(value);
 
-        Assert.assertEquals(list.get(0), DailyTrendDisplay.TAG_TEMPERATURE);
-        Assert.assertEquals(list.get(1), DailyTrendDisplay.TAG_AIR_QUALITY);
-        Assert.assertEquals(list.get(2), DailyTrendDisplay.TAG_WIND);
-        Assert.assertEquals(list.get(3), DailyTrendDisplay.TAG_UV_INDEX);
-        Assert.assertEquals(list.get(4), DailyTrendDisplay.TAG_PRECIPITATION);
+        assertEquals(list.get(0), DailyTrendDisplay.TAG_TEMPERATURE);
+        assertEquals(list.get(1), DailyTrendDisplay.TAG_AIR_QUALITY);
+        assertEquals(list.get(2), DailyTrendDisplay.TAG_WIND);
+        assertEquals(list.get(3), DailyTrendDisplay.TAG_UV_INDEX);
+        assertEquals(list.get(4), DailyTrendDisplay.TAG_PRECIPITATION);
     }
 
     @Test
@@ -55,12 +58,12 @@ public class DailyTrendDisplayTest {
 
         String value = "temperature&air_quality&wind&uv_index&precipitation";
 
-        Assert.assertEquals(DailyTrendDisplay.toValue(list), value);
+        assertEquals(DailyTrendDisplay.toValue(list), value);
     }
 
     @Test
     public void getSummary() {
-        Context context = PowerMockito.mock(Context.class);
+        Context context = mock(Context.class);
         doReturn("Name").when(context).getString(anyInt());
 
         List<DailyTrendDisplay> list = new ArrayList<>();
@@ -72,6 +75,6 @@ public class DailyTrendDisplayTest {
 
         String value = "Name, Name, Name, Name, Name";
 
-        Assert.assertThat(DailyTrendDisplay.getSummary(context, list), is(value));
+        assertThat(DailyTrendDisplay.getSummary(context, list), is(value));
     }
 }

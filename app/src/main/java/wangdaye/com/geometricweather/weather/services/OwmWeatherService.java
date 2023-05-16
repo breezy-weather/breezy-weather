@@ -10,8 +10,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import io.reactivex.Observable;
-import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.rxjava.BaseObserver;
 import wangdaye.com.geometricweather.common.rxjava.ObserverContainer;
@@ -50,13 +50,13 @@ public class OwmWeatherService extends WeatherService {
 
         Observable<OwmAirPollutionResult> airPollutionCurrent = mApi.getAirPollutionCurrent(
                 SettingsManager.getInstance(context).getProviderOwmKey(), location.getLatitude(), location.getLongitude()
-        ).onExceptionResumeNext(
+        ).onErrorResumeNext(error ->
                 Observable.create(emitter -> emitter.onNext(new EmptyAqiResult()))
         );
 
         Observable<OwmAirPollutionResult> airPollutionForecast = mApi.getAirPollutionForecast(
                 SettingsManager.getInstance(context).getProviderOwmKey(), location.getLatitude(), location.getLongitude()
-        ).onExceptionResumeNext(
+        ).onErrorResumeNext(error ->
                 Observable.create(emitter -> emitter.onNext(new EmptyAqiResult()))
         );
 

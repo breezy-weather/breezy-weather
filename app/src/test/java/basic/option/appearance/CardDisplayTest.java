@@ -1,34 +1,38 @@
 package basic.option.appearance;
 
 import static org.hamcrest.core.Is.is;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.mockStatic;
+import static org.mockito.Mockito.when;
 
 import android.content.Context;
 import android.text.TextUtils;
 
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
+import org.hamcrest.MatcherAssert;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.CardDisplay;
 
-@RunWith(PowerMockRunner.class)
-@PrepareForTest(TextUtils.class)
+//@PrepareForTest(TextUtils.class)
 public class CardDisplayTest {
 
-    @BeforeClass
+    @BeforeAll
     public static void setup() throws Exception {
-        PowerMockito.mockStatic(TextUtils.class);
-        PowerMockito.when(TextUtils.class, "isEmpty", anyString()).thenReturn(false);
+        try (MockedStatic<TextUtils> utilities = mockStatic(TextUtils.class)) {
+            utilities.when(() -> TextUtils.isEmpty(anyString()))
+                    .thenReturn(false);
+
+            assertEquals(TextUtils.isEmpty(anyString()), false);
+        }
     }
 
     @Test
@@ -37,12 +41,12 @@ public class CardDisplayTest {
 
         List<CardDisplay> list = CardDisplay.toCardDisplayList(value);
 
-        Assert.assertEquals(list.get(0), CardDisplay.CARD_DAILY_OVERVIEW);
-        Assert.assertEquals(list.get(1), CardDisplay.CARD_HOURLY_OVERVIEW);
-        Assert.assertEquals(list.get(2), CardDisplay.CARD_AIR_QUALITY);
-        Assert.assertEquals(list.get(3), CardDisplay.CARD_ALLERGEN);
-        Assert.assertEquals(list.get(4), CardDisplay.CARD_LIFE_DETAILS);
-        Assert.assertEquals(list.get(5), CardDisplay.CARD_SUNRISE_SUNSET);
+        assertEquals(list.get(0), CardDisplay.CARD_DAILY_OVERVIEW);
+        assertEquals(list.get(1), CardDisplay.CARD_HOURLY_OVERVIEW);
+        assertEquals(list.get(2), CardDisplay.CARD_AIR_QUALITY);
+        assertEquals(list.get(3), CardDisplay.CARD_ALLERGEN);
+        assertEquals(list.get(4), CardDisplay.CARD_LIFE_DETAILS);
+        assertEquals(list.get(5), CardDisplay.CARD_SUNRISE_SUNSET);
     }
 
     @Test
@@ -57,12 +61,12 @@ public class CardDisplayTest {
 
         String value = "daily_overview&hourly_overview&air_quality&allergen&life_details&sunrise_sunset";
 
-        Assert.assertEquals(CardDisplay.toValue(list), value);
+        assertEquals(CardDisplay.toValue(list), value);
     }
 
     @Test
     public void getSummary() {
-        Context context = PowerMockito.mock(Context.class);
+        Context context = mock(Context.class);
         doReturn("Name").when(context).getString(anyInt());
 
         List<CardDisplay> list = new ArrayList<>();
@@ -75,6 +79,6 @@ public class CardDisplayTest {
 
         String value = "Name, Name, Name, Name, Name, Name";
 
-        Assert.assertThat(CardDisplay.getSummary(context, list), is(value));
+        MatcherAssert.assertThat(CardDisplay.getSummary(context, list), is(value));
     }
 }

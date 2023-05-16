@@ -51,9 +51,9 @@ public class IconProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
 
         void onBindView() {
-            ResourceProvider provider = mProviderList.get(getAdapterPosition());
+            ResourceProvider provider = mProviderList.get(getBindingAdapterPosition());
 
-            mContainer.setOnClickListener(v -> mListener.onItemClicked(provider, getAdapterPosition()));
+            mContainer.setOnClickListener(v -> mListener.onItemClicked(provider, getBindingAdapterPosition()));
 
             Drawable drawable = provider.getProviderIcon();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
