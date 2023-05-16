@@ -149,7 +149,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
     }
 
     public AqiAdapter(Context context, Location location, boolean executeAnimation) {
-        mLightTheme = location.isDaylight();
+        mLightTheme = MainThemeColorProvider.isLightTheme(context, location);
 
         mItemList = new ArrayList<>();
         if (location.getWeather() != null
