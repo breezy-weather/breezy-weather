@@ -111,11 +111,9 @@ enum class TemperatureUnit(
             .unicodeWrap(
                 Utils.formatInt(getValueWithoutUnit(valueInDefaultUnit))
             )
-                + "\u202f"
                 + getShortName(context))
     } else {
         (Utils.formatInt(getValueWithoutUnit(valueInDefaultUnit))
-                + "\u202f"
                 + getShortName(context))
     }
 

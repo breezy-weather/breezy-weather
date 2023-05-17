@@ -177,23 +177,6 @@
         <item>Litros por metro cuadrado</item>
     </string-array>
 
-    <!-- temperature unit. -->
-    <string-array name="temperature_units">
-        <item>℃</item>
-        <item>℉</item>
-        <item>K</item>
-    </string-array>
-    <string-array name="temperature_units_short">
-        <item>°</item>
-        <item>°</item>
-        <item>K</item>
-    </string-array>
-    <string-array name="temperature_units_long">
-        <item>°C</item>
-        <item>°F</item>
-        <item>K</item>
-    </string-array>
-
     <!-- distance unit. -->
     <string-array name="distance_units">
         <item>km</item>
