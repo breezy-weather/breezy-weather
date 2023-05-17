@@ -354,7 +354,7 @@
     <string name="settings_title_notification_custom_color">Προσαρμοσμένο χρώμα</string>
     <string name="settings_title_notification_text_color">Χρώμα κειμένου</string>
     <string name="settings_title_notification_background">Χρώμα φόντου</string>
-    <string name="settings_notification_background_off">Βάση συστήματος</string>
+    <string name="settings_notification_background_off">Βάσει συστήματος</string>
     <string name="settings_title_notification_can_be_cleared">Μόνιμη ειδοποίηση στη γραμμή κατάστασης</string>
     <string name="settings_notification_can_be_cleared_on">Να επιτρέπεται εκκαθάριση</string>
     <string name="settings_notification_can_be_cleared_off">Να μην επιτρέπεται εκκαθάριση</string>
