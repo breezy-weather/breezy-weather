@@ -131,7 +131,6 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        jcenter()
         maven {
             url "https://jitpack.io"
         }
@@ -237,6 +236,8 @@ dependencies {
     // db.
     implementation "org.greenrobot:greendao:3.3.0"
     implementation "io.github.yuweiguocn:GreenDaoUpgradeHelper:v2.2.1"
+    // TODO: Consider migrating to ObjectBox which is faster and maintained
+    // https://greenrobot.org/greendao/documentation/objectbox-compat/
 
     // data store
     // implementation "androidx.datastore:datastore-preferences:1.0.0"
@@ -267,7 +268,7 @@ dependencies {
     // ui.
     implementation "com.github.rahatarmanahmed:circularprogressview:2.5.0"
     implementation "com.jaredrummler:colorpicker:1.1.0"
-    implementation "com.xw.repo:bubbleseekbar:3.20-lite"
+    implementation "com.github.woxingxiao:BubbleSeekBar:3.20-lite"
     implementation "me.jfenn:AdaptiveIconView:0.0.1"
     implementation "com.github.turing-tech:MaterialScrollBar:13.4.3a"
     implementation "com.gordonwong:material-sheet-fab:1.2.1"

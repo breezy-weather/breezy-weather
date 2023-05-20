@@ -9,7 +9,6 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
     repositories {
-        jcenter()
         mavenCentral()
         google()
     }
@@ -19,13 +18,12 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        jcenter()
         maven {
             url "https://jitpack.io"
         }
     }
 }
 
-task clean(type: Delete) {
+tasks.register('clean', Delete) {
     delete rootProject.buildDir
 }
