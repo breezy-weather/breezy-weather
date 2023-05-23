@@ -14,6 +14,8 @@
     <string name="precipitation">降水量</string>
     <string name="precipitation_probability">降水概率</string>
     <string name="precipitation_duration">降水时长</string>
+    <string name="maxi_temp">最高气温</string>
+    <string name="mini_temp">最低气温</string>
     <string name="time">时间</string>
     <string name="day">白天</string>
     <string name="night">夜间</string>
@@ -174,6 +176,10 @@
     <string name="feedback_select_location_provider">选择位置信息提供商</string>
     <string name="feedback_add_location_manually">手动添加城市并删除“$”</string>
 
+    <string name="feedback_api_limit_reached">达到 API 请求次数上限</string>
+    <string name="feedback_api_limit_reached_help">要绕过此限制，请添加你自己的 API 密钥。</string>
+    <string name="feedback_api_unauthorized">API 访问认证未通过</string>
+    <string name="feedback_api_unauthorized_help">对于某些天气提供商，您需要提供自己的 API 密钥。如果您已经提供了，请仔细检查您提供的 API 密钥。</string>
     <string name="feedback_view_style">界面风格</string>
     <string name="feedback_show_widget_card">卡片背景</string>
     <string name="feedback_show_widget_card_alpha">卡片透明度</string>
@@ -276,6 +282,7 @@
     <string name="feedback_click_to_get_more">点击可获取更多…</string>
 
     <!-- content description -->
+    <string name="feedback_click_again_to_exit">再次点击以退出</string>
     <string name="content_desc_back">返回</string>
     <string name="content_desc_check_details">查看详情</string>
     <string name="content_desc_weather_alert_button">$条天气预警</string>
@@ -285,6 +292,7 @@
     <string name="content_des_no2">二氧化氮</string>
     <string name="content_des_o3">臭氧</string>
     <string name="content_des_co">一氧化碳</string>
+    <string name="content_des_m3">一氧化碳</string>
     <string name="content_des_sunrise">$日出</string>
     <string name="content_des_sunset">$日落</string>
     <string name="content_des_moonrise">$月出</string>
@@ -367,6 +375,7 @@
     <string name="settings_title_precipitation_unit">降水单位</string>
     <string name="settings_title_pressure_unit">压力单位</string>
     <string name="settings_title_speed_unit">速度单位</string>
+    <string name="settings_title_air_quality_level">空气质量等级</string>
     <string name="settings_title_refresh_rate">自动刷新频率</string>
     <string name="settings_title_alert_notification_switch">推送预警通知</string>
     <string name="settings_title_precipitation_notification_switch">推送降水预报</string>

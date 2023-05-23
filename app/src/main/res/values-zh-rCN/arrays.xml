@@ -41,7 +41,7 @@
 
     <!-- automatic refresh rate. -->
     <string-array name="automatic_refresh_rates">
-        <item>Never</item>
+        <item>从不</item>
         <item>半小时</item>
         <item>1小时</item>
         <item>1.5小时</item>
@@ -211,7 +211,7 @@
         <item>标准大气压</item>
         <item>毫米汞柱</item>
         <item>英寸汞柱</item>
-        <item>千克力/米²</item>
+        <item>千克力/厘米²</item>
     </string-array>
     <string-array name="pressure_unit_voices">
         <item>毫巴</item>
@@ -220,7 +220,7 @@
         <item>大气压</item>
         <item>毫米汞柱</item>
         <item>英寸汞柱</item>
-        <item>千克力每平方米</item>
+        <item>千克力每平方厘米</item>
     </string-array>
 
     <!-- air quality unit. -->
@@ -237,6 +237,32 @@
     </string-array>
     <string-array name="air_quality_co_unit_voices">
         <item>毫克每立方米</item>
+    </string-array>
+
+    <!-- air quality levels -->
+    <string-array name="air_quality_levels">
+        <item>AQI (美国)</item>
+        <item>EAQI (欧洲)</item>
+    </string-array>
+
+    <!-- AQI -->
+    <string-array name="air_quality_levels_aqi">
+        <item>优</item>
+        <item>良</item>
+        <item>轻度污染</item>
+        <item>中度污染</item>
+        <item>重度污染</item>
+        <item>严重污染</item>
+    </string-array>
+
+    <!-- EAQI -->
+    <string-array name="air_quality_levels_eaqi">
+        <item>优</item>
+        <item>良</item>
+        <item>轻度污染</item>
+        <item>中度污染</item>
+        <item>重度污染</item>
+        <item>严重污染</item>
     </string-array>
 
     <!-- duration unit. -->
