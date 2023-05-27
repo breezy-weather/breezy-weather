@@ -318,6 +318,11 @@ class AboutActivity : GeoActivity() {
             url = "https://github.com/MDP43140",
             flag = "\uD83C\uDDEE\uD83C\uDDE9",
         ),
+        ContributorItem(
+            name = "Coelacanthus",
+            url = "https://github.com/CoelacanthusHex",
+            flag = "🇨🇳",
+        ),
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
