@@ -631,6 +631,6 @@ public class CloudImplementor extends MaterialWeatherView.WeatherAnimationImplem
             case TYPE_HAZE:
                 return daylight ? 0xFFE1C899 : 0xFF6c5c49;
         }
-        return ContextCompat.getColor(context, R.color.colorPrimary);
+        return ContextCompat.getColor(context, R.color.md_theme_primary);
     }
 }

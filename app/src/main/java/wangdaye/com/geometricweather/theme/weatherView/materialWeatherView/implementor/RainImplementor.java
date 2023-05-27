@@ -310,6 +310,6 @@ public class RainImplementor extends MaterialWeatherView.WeatherAnimationImpleme
             case TYPE_THUNDERSTORM:
                 return daylight ? 0xFFB296BD : 0xFF231739;
         }
-        return ContextCompat.getColor(context, R.color.colorPrimary);
+        return ContextCompat.getColor(context, R.color.md_theme_primary);
     }
 }

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:background="@color/colorAccent">
+    tools:background="?attr/colorSecondary">
 
     <Button
         android:id="@+id/container_main_footer_editButton"

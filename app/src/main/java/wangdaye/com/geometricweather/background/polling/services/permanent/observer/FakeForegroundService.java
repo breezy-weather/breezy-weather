@@ -27,7 +27,7 @@ public class FakeForegroundService extends Service {
                             this, GeometricWeather.NOTIFICATION_CHANNEL_ID_BACKGROUND),
                     NotificationManager.IMPORTANCE_LOW);
             channel.setShowBadge(false);
-            channel.setLightColor(ContextCompat.getColor(this, R.color.colorPrimary));
+            channel.setLightColor(ContextCompat.getColor(this, R.color.md_theme_primary));
 
             NotificationManagerCompat.from(this).createNotificationChannel(channel);
         }

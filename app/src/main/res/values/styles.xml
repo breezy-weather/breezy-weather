@@ -219,7 +219,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_alignParentRight">true</item>
         <item name="android:layout_alignParentTop">true</item>
-        <item name="android:backgroundTint" >@color/colorAccent</item>
+        <item name="android:backgroundTint">?attr/colorPrimary</item>
     </style>
 
     <!-- button -->
@@ -227,13 +227,12 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/content_text_size</item>
-        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
     </style>
 
     <style name="activity_create_widget_done_button" parent="material_button">
         <item name="android:layout_alignParentRight">true</item>
         <item name="android:text">@string/done</item>
-        <item name="android:textColor">@color/colorAccent</item>
     </style>
 
     <style name="material_image_button">

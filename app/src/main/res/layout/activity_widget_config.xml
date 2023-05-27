@@ -129,6 +129,7 @@
                         app:bsb_max="100"
                         app:bsb_progress="100"
                         app:bsb_section_count="5"
+                        app:bsb_second_track_color="?attr/colorPrimary"
                         app:bsb_bubble_text_color="?android:attr/colorBackground"
                         app:bsb_show_section_text="true"
                         app:bsb_section_text_position="below_section_mark"
@@ -244,6 +245,7 @@
                         app:bsb_max="300"
                         app:bsb_progress="100"
                         app:bsb_section_count="3"
+                        app:bsb_second_track_color="?attr/colorPrimary"
                         app:bsb_bubble_text_color="?android:attr/colorBackground"
                         app:bsb_show_section_text="true"
                         app:bsb_section_text_position="below_section_mark"
@@ -337,7 +339,7 @@
                         android:layout_margin="@dimen/normal_margin"
                         android:layout_alignParentEnd="true"
                         android:text="@string/done"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="?attr/colorPrimary"
                         style="@style/material_button"
                         tools:ignore="RtlHardcoded" />
 

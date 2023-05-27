@@ -179,7 +179,7 @@ public class TimeObserverService extends Service {
                     NotificationManager.IMPORTANCE_MIN
             );
             channel.setShowBadge(false);
-            channel.setLightColor(ContextCompat.getColor(this, R.color.colorPrimary));
+            channel.setLightColor(ContextCompat.getColor(this, R.color.md_theme_primary));
 
             NotificationManagerCompat.from(this).createNotificationChannel(channel);
         }
@@ -210,7 +210,6 @@ public class TimeObserverService extends Service {
                 .setContentText(context.getString(R.string.feedback_running_in_background))
                 .setBadgeIconType(NotificationCompat.BADGE_ICON_NONE)
                 .setPriority(NotificationCompat.PRIORITY_MIN)
-                .setColor(ContextCompat.getColor(context, R.color.colorPrimary))
                 .setAutoCancel(true)
                 .build();
     }

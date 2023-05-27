@@ -142,12 +142,6 @@ class NativeNormalNotificationIMP extends AbstractRemoteViewsPresenter {
         }
         builder.setContentText(contentText.toString());
 
-        builder.setColor(
-                ThemeManager.getInstance(context).getWeatherThemeDelegate().getThemeColors(
-                        context, WeatherViewController.getWeatherKind(weather), daytime
-                )[0]
-        );
-
         // set clear flag
         builder.setOngoing(!canBeCleared);
 

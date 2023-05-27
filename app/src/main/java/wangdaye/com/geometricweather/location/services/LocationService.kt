@@ -69,7 +69,7 @@ abstract class LocationService {
             NotificationManager.IMPORTANCE_MIN
         )
         channel.setShowBadge(false)
-        channel.lightColor = ContextCompat.getColor(context, R.color.colorPrimary)
+        channel.lightColor = ContextCompat.getColor(context, R.color.md_theme_primary)
         return channel
     }
 
@@ -81,7 +81,6 @@ abstract class LocationService {
             .setContentText(context.getString(R.string.feedback_request_location_in_background))
             .setBadgeIconType(NotificationCompat.BADGE_ICON_NONE)
             .setPriority(NotificationCompat.PRIORITY_MIN)
-            .setColor(ContextCompat.getColor(context, R.color.colorPrimary))
             .setAutoCancel(true)
             .setProgress(0, 0, true)
             .build()

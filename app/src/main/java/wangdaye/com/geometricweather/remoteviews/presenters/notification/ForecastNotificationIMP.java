@@ -123,12 +123,6 @@ public class ForecastNotificationIMP extends AbstractRemoteViewsPresenter {
             );
         }
 
-        builder.setColor(
-                ThemeManager.getInstance(context).getWeatherThemeDelegate().getThemeColors(
-                        context, WeatherViewController.getWeatherKind(weather), daytime
-                )[0]
-        );
-
         // set intent.
         builder.setContentIntent(
                 getWeatherPendingIntent(

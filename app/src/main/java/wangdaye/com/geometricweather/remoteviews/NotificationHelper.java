@@ -69,14 +69,13 @@ public class NotificationHelper {
 
     private static NotificationCompat.Builder getNotificationBuilder(Context context, @DrawableRes int iconId,
                                                                      String title, String subtitle, String content,
-                                                                     @ColorInt int color, PendingIntent intent) {
+                                                                     PendingIntent intent) {
         return new NotificationCompat.Builder(context, GeometricWeather.NOTIFICATION_CHANNEL_ID_ALERT)
                 .setSmallIcon(iconId)
                 .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher))
                 .setContentTitle(title)
                 .setSubText(subtitle)
                 .setContentText(content)
-                .setColor(color)
                 .setAutoCancel(true)
                 .setOnlyAlertOnce(true)
                 .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
@@ -161,7 +160,6 @@ public class NotificationHelper {
                 alert.getDescription(),
                 time,
                 alert.getContent(),
-                getColor(context, location),
                 PendingIntent.getActivity(
                         context,
                         notificationId,
@@ -264,7 +262,6 @@ public class NotificationHelper {
                                                 ? R.string.feedback_short_term_precipitation_alert
                                                 : R.string.feedback_today_precipitation_alert
                                 ),
-                                getColor(context, location),
                                 PendingIntent.getActivity(
                                         context,
                                         GeometricWeather.NOTIFICATION_ID_PRECIPITATION,

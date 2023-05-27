@@ -37,7 +37,7 @@ public abstract class ForegroundUpdateService extends UpdateService {
                     NotificationManager.IMPORTANCE_MIN
             );
             channel.setShowBadge(false);
-            channel.setLightColor(ContextCompat.getColor(this, R.color.colorPrimary));
+            channel.setLightColor(ContextCompat.getColor(this, R.color.md_theme_primary));
             NotificationManagerCompat.from(this).createNotificationChannel(channel);
         }
 
@@ -60,7 +60,7 @@ public abstract class ForegroundUpdateService extends UpdateService {
                     NotificationManager.IMPORTANCE_MIN
             );
             channel.setShowBadge(false);
-            channel.setLightColor(ContextCompat.getColor(this, R.color.colorPrimary));
+            channel.setLightColor(ContextCompat.getColor(this, R.color.md_theme_primary));
             NotificationManagerCompat.from(this).createNotificationChannel(channel);
         }
 
@@ -99,7 +99,6 @@ public abstract class ForegroundUpdateService extends UpdateService {
                 ).setBadgeIconType(NotificationCompat.BADGE_ICON_NONE)
                 .setPriority(NotificationCompat.PRIORITY_MIN)
                 .setProgress(0, 0, true)
-                .setColor(ContextCompat.getColor(this, R.color.colorPrimary))
                 .setAutoCancel(false)
                 .setOngoing(false);
     }
