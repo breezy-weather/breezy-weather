@@ -47,10 +47,10 @@ import wangdaye.com.geometricweather.settings.SettingsManager
 import wangdaye.com.geometricweather.settings.preference.bottomInsetItem
 import wangdaye.com.geometricweather.settings.preference.checkboxPreferenceItem
 import wangdaye.com.geometricweather.settings.preference.clickablePreferenceItem
-import wangdaye.com.geometricweather.settings.preference.composables.SwitchPreferenceView
 import wangdaye.com.geometricweather.settings.preference.composables.ListPreferenceView
 import wangdaye.com.geometricweather.settings.preference.composables.PreferenceScreen
 import wangdaye.com.geometricweather.settings.preference.composables.PreferenceView
+import wangdaye.com.geometricweather.settings.preference.composables.SwitchPreferenceView
 import wangdaye.com.geometricweather.settings.preference.composables.TimePickerPreferenceView
 import wangdaye.com.geometricweather.settings.preference.listPreferenceItem
 import wangdaye.com.geometricweather.settings.preference.sectionFooterItem

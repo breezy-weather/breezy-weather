@@ -1,11 +1,10 @@
 package wangdaye.com.geometricweather.db.entities;
 
+import java.util.TimeZone;
+
 import io.objectbox.annotation.Convert;
 import io.objectbox.annotation.Entity;
 import io.objectbox.annotation.Id;
-
-import java.util.TimeZone;
-
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
 import wangdaye.com.geometricweather.db.converters.TimeZoneConverter;

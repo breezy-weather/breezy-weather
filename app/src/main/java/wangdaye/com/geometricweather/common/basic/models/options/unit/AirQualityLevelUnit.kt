@@ -1,12 +1,9 @@
 package wangdaye.com.geometricweather.common.basic.models.options.unit
 
 import android.content.Context
-import androidx.annotation.ColorRes
 import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.models.options._basic.BaseEnum
-import wangdaye.com.geometricweather.common.basic.models.options._basic.UnitEnum
 import wangdaye.com.geometricweather.common.basic.models.options._basic.Utils
-import wangdaye.com.geometricweather.common.utils.DisplayUtils
 
 enum class AirQualityLevelUnit(
     override val id: String,

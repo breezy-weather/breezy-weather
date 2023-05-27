@@ -1,10 +1,9 @@
 package wangdaye.com.geometricweather.db.entities;
 
-import io.objectbox.annotation.Entity;
-import io.objectbox.annotation.Id;
-
 import java.util.Date;
 
+import io.objectbox.annotation.Entity;
+import io.objectbox.annotation.Id;
 import wangdaye.com.geometricweather.common.basic.models.weather.History;
 
 /**

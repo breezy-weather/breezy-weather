@@ -11,7 +11,6 @@ import java.io.Serializable;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.AirQualityCOUnit;
-import wangdaye.com.geometricweather.common.basic.models.options.unit.AirQualityLevelUnit;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.AirQualityUnit;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 

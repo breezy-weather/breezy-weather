@@ -1297,25 +1297,17 @@ public class HorizontalViewPager2 extends ViewGroup {
 
     class PageAwareAccessibilityProvider extends AccessibilityProvider {
         private final AccessibilityViewCommand mActionPageForward =
-                new AccessibilityViewCommand() {
-                    @Override
-                    public boolean perform(@NonNull View view,
-                                           @Nullable CommandArguments arguments) {
-                        HorizontalViewPager2 viewPager = (HorizontalViewPager2) view;
-                        setCurrentItemFromAccessibilityCommand(viewPager.getCurrentItem() + 1);
-                        return true;
-                    }
+                (view, arguments) -> {
+                    HorizontalViewPager2 viewPager = (HorizontalViewPager2) view;
+                    setCurrentItemFromAccessibilityCommand(viewPager.getCurrentItem() + 1);
+                    return true;
                 };
 
         private final AccessibilityViewCommand mActionPageBackward =
-                new AccessibilityViewCommand() {
-                    @Override
-                    public boolean perform(@NonNull View view,
-                                           @Nullable CommandArguments arguments) {
-                        HorizontalViewPager2 viewPager = (HorizontalViewPager2) view;
-                        setCurrentItemFromAccessibilityCommand(viewPager.getCurrentItem() - 1);
-                        return true;
-                    }
+                (view, arguments) -> {
+                    HorizontalViewPager2 viewPager = (HorizontalViewPager2) view;
+                    setCurrentItemFromAccessibilityCommand(viewPager.getCurrentItem() - 1);
+                    return true;
                 };
 
         private RecyclerView.AdapterDataObserver mAdapterDataObserver;
@@ -2292,12 +2284,7 @@ final class AnimateLayoutChangeDetector {
         }
 
         // Sort them
-        Arrays.sort(bounds, new Comparator<int[]>() {
-            @Override
-            public int compare(int[] lhs, int[] rhs) {
-                return lhs[0] - rhs[0];
-            }
-        });
+        Arrays.sort(bounds, (lhs, rhs) -> lhs[0] - rhs[0]);
 
         // Check for inconsistencies
         for (int i = 1; i < childCount; i++) {

@@ -183,10 +183,6 @@ public class OwmResultConverter {
             );
             return new WeatherService.WeatherResultWrapper(weather);
         } catch (Exception ignored) {
-            /*Log.d("GEOM", ignored.getMessage());
-            for (StackTraceElement stackTraceElement : ignored.getStackTrace()) {
-                Log.d("GEOM", stackTraceElement.toString());
-            }*/
             return new WeatherService.WeatherResultWrapper(null);
         }
     }

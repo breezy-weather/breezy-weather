@@ -9,7 +9,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.common.basic.models.weather.AirQuality;
 import wangdaye.com.geometricweather.common.basic.models.weather.UV;
 import wangdaye.com.geometricweather.common.basic.models.weather.Wind;
 

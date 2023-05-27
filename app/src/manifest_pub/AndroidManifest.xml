@@ -21,9 +21,7 @@
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="d0c7b8cb40629a2061fa2fce08659d24" />
-        <service
-            android:name="com.amap.api.location.APSService"
-            android:networkSecurityConfig="@xml/network_security_config" />
+        <service android:name="com.amap.api.location.APSService" />
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
@@ -31,8 +29,7 @@
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote"
-            android:networkSecurityConfig="@xml/network_security_config" />
+            android:process=":remote" />
 
     </application>
 

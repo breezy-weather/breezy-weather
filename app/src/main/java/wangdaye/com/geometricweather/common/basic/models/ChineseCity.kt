@@ -1,7 +1,7 @@
 package wangdaye.com.geometricweather.common.basic.models
 
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource
-import java.util.*
+import java.util.TimeZone
 
 data class ChineseCity(
     val cityId: String,

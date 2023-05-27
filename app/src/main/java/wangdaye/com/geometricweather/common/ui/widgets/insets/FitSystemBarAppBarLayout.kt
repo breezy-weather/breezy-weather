@@ -5,7 +5,6 @@ import android.util.AttributeSet
 import android.view.WindowInsets
 import androidx.core.view.ViewCompat
 import com.google.android.material.appbar.AppBarLayout
-import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.insets.FitBothSideBarHelper
 import wangdaye.com.geometricweather.common.basic.insets.FitBothSideBarView
 import wangdaye.com.geometricweather.common.basic.insets.FitBothSideBarView.FitSide

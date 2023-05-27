@@ -3,6 +3,7 @@ package basic.option.appearance;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doReturn;
@@ -30,7 +31,7 @@ public class DailyTrendDisplayTest {
             utilities.when(() -> TextUtils.isEmpty(anyString()))
                 .thenReturn(false);
 
-            assertEquals(TextUtils.isEmpty(anyString()), false);
+            assertFalse(TextUtils.isEmpty(anyString()));
         }
     }
 

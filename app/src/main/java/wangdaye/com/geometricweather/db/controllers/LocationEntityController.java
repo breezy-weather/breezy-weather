@@ -7,9 +7,6 @@ import java.util.List;
 
 import io.objectbox.BoxStore;
 import io.objectbox.query.Query;
-import wangdaye.com.geometricweather.db.converters.WeatherSourceConverter;
-import wangdaye.com.geometricweather.db.entities.HourlyEntity;
-import wangdaye.com.geometricweather.db.entities.HourlyEntity_;
 import wangdaye.com.geometricweather.db.entities.LocationEntity;
 import wangdaye.com.geometricweather.db.entities.LocationEntity_;
 

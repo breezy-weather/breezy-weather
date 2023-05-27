@@ -7,7 +7,7 @@ import android.text.TextUtils
 import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.models.options._basic.BaseEnum
 import wangdaye.com.geometricweather.common.basic.models.options._basic.Utils
-import java.util.*
+import java.util.Locale
 
 enum class Language(
     override val id: String,

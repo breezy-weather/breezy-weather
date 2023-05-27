@@ -8,7 +8,7 @@ import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource
 import wangdaye.com.geometricweather.common.basic.models.weather.Astro
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather
-import java.util.*
+import java.util.TimeZone
 import kotlin.math.abs
 
 class Location(

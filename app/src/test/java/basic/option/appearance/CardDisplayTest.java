@@ -2,12 +2,12 @@ package basic.option.appearance;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.mockStatic;
-import static org.mockito.Mockito.when;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -31,7 +31,7 @@ public class CardDisplayTest {
             utilities.when(() -> TextUtils.isEmpty(anyString()))
                     .thenReturn(false);
 
-            assertEquals(TextUtils.isEmpty(anyString()), false);
+            assertFalse(TextUtils.isEmpty(anyString()));
         }
     }
 

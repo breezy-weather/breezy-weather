@@ -1,7 +1,6 @@
 package wangdaye.com.geometricweather.db.converters;
 
 import io.objectbox.converter.PropertyConverter;
-
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 
 public class WeatherCodeConverter implements PropertyConverter<WeatherCode, String> {

@@ -1,8 +1,8 @@
 package wangdaye.com.geometricweather.db.converters;
 
-import io.objectbox.converter.PropertyConverter;
-
 import java.util.TimeZone;
+
+import io.objectbox.converter.PropertyConverter;
 
 public class TimeZoneConverter implements PropertyConverter<TimeZone, String> {
 

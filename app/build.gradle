@@ -211,8 +211,7 @@ dependencies {
     annotationProcessor "androidx.hilt:hilt-compiler:1.0.0"
 
     // a map.
-    // TODO: Can be updated
-    pubImplementation "com.amap.api:location:5.3.1"
+    pubImplementation "com.amap.api:location:6.3.0"
 
     // gms.
     pubImplementation "com.google.android.gms:play-services-location:21.0.1"
@@ -248,9 +247,8 @@ dependencies {
     implementation "org.cyanogenmod:platform.sdk:5.0"
 
     // bugly.
-    // TODO: Can be updated
-    pubImplementation "com.tencent.bugly:crashreport:2.8.6.0"
-    pubImplementation "com.tencent.bugly:nativecrashreport:3.6.0.1"
+    pubImplementation "com.tencent.bugly:crashreport:4.1.9.2"
+    pubImplementation "com.tencent.bugly:nativecrashreport:3.9.2"
 
     // rx java.
     implementation "io.reactivex.rxjava3:rxjava:3.1.6"

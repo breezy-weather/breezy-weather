@@ -25,9 +25,9 @@ import wangdaye.com.geometricweather.settings.dialogs.ProvidersPreviewerDialog
 import wangdaye.com.geometricweather.settings.preference.bottomInsetItem
 import wangdaye.com.geometricweather.settings.preference.checkboxPreferenceItem
 import wangdaye.com.geometricweather.settings.preference.clickablePreferenceItem
-import wangdaye.com.geometricweather.settings.preference.composables.SwitchPreferenceView
 import wangdaye.com.geometricweather.settings.preference.composables.ListPreferenceView
 import wangdaye.com.geometricweather.settings.preference.composables.PreferenceView
+import wangdaye.com.geometricweather.settings.preference.composables.SwitchPreferenceView
 import wangdaye.com.geometricweather.settings.preference.listPreferenceItem
 import wangdaye.com.geometricweather.theme.resource.ResourcesProviderFactory
 

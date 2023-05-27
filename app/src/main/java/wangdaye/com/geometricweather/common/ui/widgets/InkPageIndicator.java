@@ -657,14 +657,11 @@ public class InkPageIndicator extends View
                 mPageChanging = false;
             }
         });
-        moveSelected.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                // todo avoid autoboxing
-                mSelectedDotX = (Float) valueAnimator.getAnimatedValue();
-                mRetreatAnimation.startIfNecessary(mSelectedDotX);
-                ViewCompat.postInvalidateOnAnimation(InkPageIndicator.this);
-            }
+        moveSelected.addUpdateListener(valueAnimator -> {
+            // todo avoid autoboxing
+            mSelectedDotX = (Float) valueAnimator.getAnimatedValue();
+            mRetreatAnimation.startIfNecessary(mSelectedDotX);
+            ViewCompat.postInvalidateOnAnimation(InkPageIndicator.this);
         });
         moveSelected.addListener(new AnimatorListenerAdapter() {
             @Override
@@ -778,16 +775,13 @@ public class InkPageIndicator extends View
                             new RightwardStartPredicate(mDotCenterX[was + i]));
                     dotsToHide[i] = was + i;
                 }
-                addUpdateListener(new AnimatorUpdateListener() {
-                    @Override
-                    public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        // todo avoid autoboxing
-                        mRetreatingJoinX1 = (Float) valueAnimator.getAnimatedValue();
-                        ViewCompat.postInvalidateOnAnimation(InkPageIndicator.this);
-                        // start any reveal animations if we've passed them
-                        for (PendingRevealAnimator pendingReveal : mRevealAnimations) {
-                            pendingReveal.startIfNecessary(mRetreatingJoinX1);
-                        }
+                addUpdateListener(valueAnimator -> {
+                    // todo avoid autoboxing
+                    mRetreatingJoinX1 = (Float) valueAnimator.getAnimatedValue();
+                    ViewCompat.postInvalidateOnAnimation(InkPageIndicator.this);
+                    // start any reveal animations if we've passed them
+                    for (PendingRevealAnimator pendingReveal : mRevealAnimations) {
+                        pendingReveal.startIfNecessary(mRetreatingJoinX1);
                     }
                 });
             } else { // (initialX2 != finalX2) leftward retreat
@@ -798,16 +792,13 @@ public class InkPageIndicator extends View
                             new LeftwardStartPredicate(mDotCenterX[was - i]));
                     dotsToHide[i] = was - i;
                 }
-                addUpdateListener(new AnimatorUpdateListener() {
-                    @Override
-                    public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        // todo avoid autoboxing
-                        mRetreatingJoinX2 = (Float) valueAnimator.getAnimatedValue();
-                        ViewCompat.postInvalidateOnAnimation(InkPageIndicator.this);
-                        // start any reveal animations if we've passed them
-                        for (PendingRevealAnimator pendingReveal : mRevealAnimations) {
-                            pendingReveal.startIfNecessary(mRetreatingJoinX2);
-                        }
+                addUpdateListener(valueAnimator -> {
+                    // todo avoid autoboxing
+                    mRetreatingJoinX2 = (Float) valueAnimator.getAnimatedValue();
+                    ViewCompat.postInvalidateOnAnimation(InkPageIndicator.this);
+                    // start any reveal animations if we've passed them
+                    for (PendingRevealAnimator pendingReveal : mRevealAnimations) {
+                        pendingReveal.startIfNecessary(mRetreatingJoinX2);
                     }
                 });
             }
@@ -849,13 +840,10 @@ public class InkPageIndicator extends View
             mDot = dot;
             setDuration(mAnimHalfDuration);
             setInterpolator(mInterpolator);
-            addUpdateListener(new AnimatorUpdateListener() {
-                @Override
-                public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    // todo avoid autoboxing
-                    setDotRevealFraction(mDot,
-                            (Float) valueAnimator.getAnimatedValue());
-                }
+            addUpdateListener(valueAnimator -> {
+                // todo avoid autoboxing
+                setDotRevealFraction(mDot,
+                        (Float) valueAnimator.getAnimatedValue());
             });
             addListener(new AnimatorListenerAdapter() {
                 @Override
