@@ -1,0 +1,1246 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:8179913507572507832",
+      "lastPropertyId": "11:917187155496536172",
+      "name": "AlertEntity",
+      "properties": [
+        {
+          "id": "1:4439570251708568804",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:8961138048245942690",
+          "name": "cityId",
+          "type": 9
+        },
+        {
+          "id": "3:1907944686110006785",
+          "name": "weatherSource",
+          "type": 9
+        },
+        {
+          "id": "4:803081036538270502",
+          "name": "alertId",
+          "type": 6
+        },
+        {
+          "id": "5:40686406428734069",
+          "name": "date",
+          "type": 10
+        },
+        {
+          "id": "6:2868869513549598251",
+          "name": "time",
+          "type": 6
+        },
+        {
+          "id": "7:1769622765719504690",
+          "name": "description",
+          "type": 9
+        },
+        {
+          "id": "8:4486058025387976388",
+          "name": "content",
+          "type": 9
+        },
+        {
+          "id": "9:5315683471795618504",
+          "name": "type",
+          "type": 9
+        },
+        {
+          "id": "10:3075870139522868506",
+          "name": "priority",
+          "type": 5
+        },
+        {
+          "id": "11:917187155496536172",
+          "name": "color",
+          "type": 5
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:3878745403561433466",
+      "lastPropertyId": "7:2062563800485331044",
+      "name": "ChineseCityEntity",
+      "properties": [
+        {
+          "id": "1:3941586492802567972",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:556479842161832398",
+          "name": "cityId",
+          "type": 9
+        },
+        {
+          "id": "3:8414290935412694294",
+          "name": "province",
+          "type": 9
+        },
+        {
+          "id": "4:7520998777551913067",
+          "name": "city",
+          "type": 9
+        },
+        {
+          "id": "5:3243037742664596178",
+          "name": "district",
+          "type": 9
+        },
+        {
+          "id": "6:8134879270245170064",
+          "name": "latitude",
+          "type": 9
+        },
+        {
+          "id": "7:2062563800485331044",
+          "name": "longitude",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "3:3069352246608661834",
+      "lastPropertyId": "95:7296019590583940196",
+      "name": "DailyEntity",
+      "properties": [
+        {
+          "id": "1:3830081313766450661",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:2395664279944021319",
+          "name": "cityId",
+          "type": 9
+        },
+        {
+          "id": "3:1219494164088631638",
+          "name": "weatherSource",
+          "type": 9
+        },
+        {
+          "id": "4:5637730606767641848",
+          "name": "date",
+          "type": 10
+        },
+        {
+          "id": "5:4834093079199386949",
+          "name": "time",
+          "type": 6
+        },
+        {
+          "id": "6:7348086264831619600",
+          "name": "daytimeWeatherText",
+          "type": 9
+        },
+        {
+          "id": "7:1926033377399210466",
+          "name": "daytimeWeatherPhase",
+          "type": 9
+        },
+        {
+          "id": "8:578725365266610403",
+          "name": "daytimeWeatherCode",
+          "type": 9
+        },
+        {
+          "id": "9:5844957297761320724",
+          "name": "daytimeTemperature",
+          "type": 5
+        },
+        {
+          "id": "10:5355416580038688531",
+          "name": "daytimeRealFeelTemperature",
+          "type": 5
+        },
+        {
+          "id": "11:4202116735485588525",
+          "name": "daytimeRealFeelShaderTemperature",
+          "type": 5
+        },
+        {
+          "id": "12:4449847178647216707",
+          "name": "daytimeApparentTemperature",
+          "type": 5
+        },
+        {
+          "id": "13:6528530829791007977",
+          "name": "daytimeWindChillTemperature",
+          "type": 5
+        },
+        {
+          "id": "14:6160921102265362894",
+          "name": "daytimeWetBulbTemperature",
+          "type": 5
+        },
+        {
+          "id": "15:1173487001450900123",
+          "name": "daytimeDegreeDayTemperature",
+          "type": 5
+        },
+        {
+          "id": "16:4823500467303269675",
+          "name": "daytimeTotalPrecipitation",
+          "type": 7
+        },
+        {
+          "id": "17:1159242024388285397",
+          "name": "daytimeThunderstormPrecipitation",
+          "type": 7
+        },
+        {
+          "id": "18:4853689469863857042",
+          "name": "daytimeRainPrecipitation",
+          "type": 7
+        },
+        {
+          "id": "19:3164178358143134318",
+          "name": "daytimeSnowPrecipitation",
+          "type": 7
+        },
+        {
+          "id": "20:4448257164554959304",
+          "name": "daytimeIcePrecipitation",
+          "type": 7
+        },
+        {
+          "id": "21:7579995235041372966",
+          "name": "daytimeTotalPrecipitationProbability",
+          "type": 7
+        },
+        {
+          "id": "22:7675273963966111370",
+          "name": "daytimeThunderstormPrecipitationProbability",
+          "type": 7
+        },
+        {
+          "id": "23:8351441980395780573",
+          "name": "daytimeRainPrecipitationProbability",
+          "type": 7
+        },
+        {
+          "id": "24:1880247242081519010",
+          "name": "daytimeSnowPrecipitationProbability",
+          "type": 7
+        },
+        {
+          "id": "25:3164160813905082624",
+          "name": "daytimeIcePrecipitationProbability",
+          "type": 7
+        },
+        {
+          "id": "26:4980969660460135359",
+          "name": "daytimeTotalPrecipitationDuration",
+          "type": 7
+        },
+        {
+          "id": "27:2726511646474649647",
+          "name": "daytimeThunderstormPrecipitationDuration",
+          "type": 7
+        },
+        {
+          "id": "28:1641125598353202172",
+          "name": "daytimeRainPrecipitationDuration",
+          "type": 7
+        },
+        {
+          "id": "29:9037199028612860887",
+          "name": "daytimeSnowPrecipitationDuration",
+          "type": 7
+        },
+        {
+          "id": "30:2279206558197214739",
+          "name": "daytimeIcePrecipitationDuration",
+          "type": 7
+        },
+        {
+          "id": "31:4358485616020130278",
+          "name": "daytimeWindDirection",
+          "type": 9
+        },
+        {
+          "id": "32:7653821763318250653",
+          "name": "daytimeWindDegree",
+          "type": 7
+        },
+        {
+          "id": "33:6355900237122490228",
+          "name": "daytimeWindSpeed",
+          "type": 7
+        },
+        {
+          "id": "34:1744807896951453316",
+          "name": "daytimeWindLevel",
+          "type": 9
+        },
+        {
+          "id": "35:6761881073540423109",
+          "name": "daytimeCloudCover",
+          "type": 5
+        },
+        {
+          "id": "36:6760774093647401075",
+          "name": "nighttimeWeatherText",
+          "type": 9
+        },
+        {
+          "id": "37:8631063446320319012",
+          "name": "nighttimeWeatherPhase",
+          "type": 9
+        },
+        {
+          "id": "38:4531852780302631870",
+          "name": "nighttimeWeatherCode",
+          "type": 9
+        },
+        {
+          "id": "39:1305538643772743423",
+          "name": "nighttimeTemperature",
+          "type": 5
+        },
+        {
+          "id": "40:4072827459909489183",
+          "name": "nighttimeRealFeelTemperature",
+          "type": 5
+        },
+        {
+          "id": "41:8967545602238652911",
+          "name": "nighttimeRealFeelShaderTemperature",
+          "type": 5
+        },
+        {
+          "id": "42:3694903254859342426",
+          "name": "nighttimeApparentTemperature",
+          "type": 5
+        },
+        {
+          "id": "43:3407664858758987339",
+          "name": "nighttimeWindChillTemperature",
+          "type": 5
+        },
+        {
+          "id": "44:4271781782419374023",
+          "name": "nighttimeWetBulbTemperature",
+          "type": 5
+        },
+        {
+          "id": "45:7729928297405311286",
+          "name": "nighttimeDegreeDayTemperature",
+          "type": 5
+        },
+        {
+          "id": "46:9209891702002110377",
+          "name": "nighttimeTotalPrecipitation",
+          "type": 7
+        },
+        {
+          "id": "47:9043805995095077553",
+          "name": "nighttimeThunderstormPrecipitation",
+          "type": 7
+        },
+        {
+          "id": "48:7268439529225012698",
+          "name": "nighttimeRainPrecipitation",
+          "type": 7
+        },
+        {
+          "id": "49:6543330019765342228",
+          "name": "nighttimeSnowPrecipitation",
+          "type": 7
+        },
+        {
+          "id": "50:2996381888383346432",
+          "name": "nighttimeIcePrecipitation",
+          "type": 7
+        },
+        {
+          "id": "51:4477948816629265154",
+          "name": "nighttimeTotalPrecipitationProbability",
+          "type": 7
+        },
+        {
+          "id": "52:7165217878968334075",
+          "name": "nighttimeThunderstormPrecipitationProbability",
+          "type": 7
+        },
+        {
+          "id": "53:2461742069721042122",
+          "name": "nighttimeRainPrecipitationProbability",
+          "type": 7
+        },
+        {
+          "id": "54:5253075035037584957",
+          "name": "nighttimeSnowPrecipitationProbability",
+          "type": 7
+        },
+        {
+          "id": "55:3837841305790126038",
+          "name": "nighttimeIcePrecipitationProbability",
+          "type": 7
+        },
+        {
+          "id": "56:5487401550636997848",
+          "name": "nighttimeTotalPrecipitationDuration",
+          "type": 7
+        },
+        {
+          "id": "57:6811137244997930288",
+          "name": "nighttimeThunderstormPrecipitationDuration",
+          "type": 7
+        },
+        {
+          "id": "58:1581621071207332151",
+          "name": "nighttimeRainPrecipitationDuration",
+          "type": 7
+        },
+        {
+          "id": "59:8403565920466722208",
+          "name": "nighttimeSnowPrecipitationDuration",
+          "type": 7
+        },
+        {
+          "id": "60:8937361639554172924",
+          "name": "nighttimeIcePrecipitationDuration",
+          "type": 7
+        },
+        {
+          "id": "61:7472803941390846193",
+          "name": "nighttimeWindDirection",
+          "type": 9
+        },
+        {
+          "id": "62:3868405653779051864",
+          "name": "nighttimeWindDegree",
+          "type": 7
+        },
+        {
+          "id": "63:4404993437102164834",
+          "name": "nighttimeWindSpeed",
+          "type": 7
+        },
+        {
+          "id": "64:3969956503021121632",
+          "name": "nighttimeWindLevel",
+          "type": 9
+        },
+        {
+          "id": "65:938852591452129995",
+          "name": "nighttimeCloudCover",
+          "type": 5
+        },
+        {
+          "id": "66:473376847823257125",
+          "name": "sunRiseDate",
+          "type": 10
+        },
+        {
+          "id": "67:6308851693702021344",
+          "name": "sunSetDate",
+          "type": 10
+        },
+        {
+          "id": "68:2573385111274293495",
+          "name": "moonRiseDate",
+          "type": 10
+        },
+        {
+          "id": "69:8658760060259384233",
+          "name": "moonSetDate",
+          "type": 10
+        },
+        {
+          "id": "70:1779275542133358186",
+          "name": "moonPhaseAngle",
+          "type": 5
+        },
+        {
+          "id": "71:3909414844404888596",
+          "name": "moonPhaseDescription",
+          "type": 9
+        },
+        {
+          "id": "72:7510981866901104404",
+          "name": "aqiText",
+          "type": 9
+        },
+        {
+          "id": "73:735471105577295398",
+          "name": "aqiIndex",
+          "type": 5
+        },
+        {
+          "id": "74:5556457257597198631",
+          "name": "pm25",
+          "type": 7
+        },
+        {
+          "id": "75:3077289071311999540",
+          "name": "pm10",
+          "type": 7
+        },
+        {
+          "id": "76:4385663819386939964",
+          "name": "so2",
+          "type": 7
+        },
+        {
+          "id": "77:6250460900070463886",
+          "name": "no2",
+          "type": 7
+        },
+        {
+          "id": "78:5976510856552244664",
+          "name": "o3",
+          "type": 7
+        },
+        {
+          "id": "79:9191838059621662742",
+          "name": "co",
+          "type": 7
+        },
+        {
+          "id": "80:3598640614640915545",
+          "name": "grassIndex",
+          "type": 5
+        },
+        {
+          "id": "81:5996710094278773981",
+          "name": "grassLevel",
+          "type": 5
+        },
+        {
+          "id": "82:8937237573239894655",
+          "name": "grassDescription",
+          "type": 9
+        },
+        {
+          "id": "83:3025438080797351626",
+          "name": "moldIndex",
+          "type": 5
+        },
+        {
+          "id": "84:839578864340075432",
+          "name": "moldLevel",
+          "type": 5
+        },
+        {
+          "id": "85:5033513793318858413",
+          "name": "moldDescription",
+          "type": 9
+        },
+        {
+          "id": "86:5424907590168293383",
+          "name": "ragweedIndex",
+          "type": 5
+        },
+        {
+          "id": "87:3710489872282659378",
+          "name": "ragweedLevel",
+          "type": 5
+        },
+        {
+          "id": "88:5615333727183430994",
+          "name": "ragweedDescription",
+          "type": 9
+        },
+        {
+          "id": "89:5575126420732785894",
+          "name": "treeIndex",
+          "type": 5
+        },
+        {
+          "id": "90:1130225288173735474",
+          "name": "treeLevel",
+          "type": 5
+        },
+        {
+          "id": "91:4626546539375741217",
+          "name": "treeDescription",
+          "type": 9
+        },
+        {
+          "id": "92:2984057128723683490",
+          "name": "uvIndex",
+          "type": 5
+        },
+        {
+          "id": "93:3715469674213329927",
+          "name": "uvLevel",
+          "type": 9
+        },
+        {
+          "id": "94:827510548415233344",
+          "name": "uvDescription",
+          "type": 9
+        },
+        {
+          "id": "95:7296019590583940196",
+          "name": "hoursOfSun",
+          "type": 7
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "4:2112677284509205705",
+      "lastPropertyId": "7:4727031481916274479",
+      "name": "HistoryEntity",
+      "properties": [
+        {
+          "id": "1:6952064201246410895",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:6113842071177086181",
+          "name": "cityId",
+          "type": 9
+        },
+        {
+          "id": "3:5403388581497429215",
+          "name": "weatherSource",
+          "type": 9
+        },
+        {
+          "id": "4:438075861830257780",
+          "name": "date",
+          "type": 10
+        },
+        {
+          "id": "5:9209047750977211861",
+          "name": "time",
+          "type": 6
+        },
+        {
+          "id": "6:3343758767346473827",
+          "name": "daytimeTemperature",
+          "type": 5
+        },
+        {
+          "id": "7:4727031481916274479",
+          "name": "nighttimeTemperature",
+          "type": 5
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "5:6283853262950530248",
+      "lastPropertyId": "32:914878016584681685",
+      "name": "HourlyEntity",
+      "properties": [
+        {
+          "id": "1:3403561018075624675",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:5076903463039490148",
+          "name": "cityId",
+          "type": 9
+        },
+        {
+          "id": "3:6947040317340201786",
+          "name": "weatherSource",
+          "type": 9
+        },
+        {
+          "id": "4:1383660182624777425",
+          "name": "date",
+          "type": 10
+        },
+        {
+          "id": "5:3266964286080040525",
+          "name": "time",
+          "type": 6
+        },
+        {
+          "id": "6:805257583949330829",
+          "name": "daylight",
+          "type": 1
+        },
+        {
+          "id": "7:4178823684131450264",
+          "name": "weatherText",
+          "type": 9
+        },
+        {
+          "id": "8:8346564838369719999",
+          "name": "weatherCode",
+          "type": 9
+        },
+        {
+          "id": "9:3555072952341381594",
+          "name": "temperature",
+          "type": 5
+        },
+        {
+          "id": "10:2361937186431660650",
+          "name": "realFeelTemperature",
+          "type": 5
+        },
+        {
+          "id": "11:2670280369666315015",
+          "name": "realFeelShaderTemperature",
+          "type": 5
+        },
+        {
+          "id": "12:3753095132598096439",
+          "name": "apparentTemperature",
+          "type": 5
+        },
+        {
+          "id": "13:478874845698578463",
+          "name": "windChillTemperature",
+          "type": 5
+        },
+        {
+          "id": "14:5556560720831676654",
+          "name": "wetBulbTemperature",
+          "type": 5
+        },
+        {
+          "id": "15:3239484638880162858",
+          "name": "degreeDayTemperature",
+          "type": 5
+        },
+        {
+          "id": "16:1950634215075148994",
+          "name": "totalPrecipitation",
+          "type": 7
+        },
+        {
+          "id": "17:8470435279596530264",
+          "name": "thunderstormPrecipitation",
+          "type": 7
+        },
+        {
+          "id": "18:8583103703098418108",
+          "name": "rainPrecipitation",
+          "type": 7
+        },
+        {
+          "id": "19:1677535031490712235",
+          "name": "snowPrecipitation",
+          "type": 7
+        },
+        {
+          "id": "20:4132632531586872629",
+          "name": "icePrecipitation",
+          "type": 7
+        },
+        {
+          "id": "21:373397349493536716",
+          "name": "totalPrecipitationProbability",
+          "type": 7
+        },
+        {
+          "id": "22:5109263190720547644",
+          "name": "thunderstormPrecipitationProbability",
+          "type": 7
+        },
+        {
+          "id": "23:3369880419058862482",
+          "name": "rainPrecipitationProbability",
+          "type": 7
+        },
+        {
+          "id": "24:9081864013834540983",
+          "name": "snowPrecipitationProbability",
+          "type": 7
+        },
+        {
+          "id": "25:2389728873565332933",
+          "name": "icePrecipitationProbability",
+          "type": 7
+        },
+        {
+          "id": "26:8110623421536489870",
+          "name": "windDirection",
+          "type": 9
+        },
+        {
+          "id": "27:6467571925087951495",
+          "name": "windDegree",
+          "type": 7
+        },
+        {
+          "id": "28:2417846765028222175",
+          "name": "windSpeed",
+          "type": 7
+        },
+        {
+          "id": "29:2713157222492122471",
+          "name": "windLevel",
+          "type": 9
+        },
+        {
+          "id": "30:2287533801010791779",
+          "name": "uvIndex",
+          "type": 5
+        },
+        {
+          "id": "31:5712351752665089850",
+          "name": "uvLevel",
+          "type": 9
+        },
+        {
+          "id": "32:914878016584681685",
+          "name": "uvDescription",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "6:8569288065886861561",
+      "lastPropertyId": "14:1431170599634169521",
+      "name": "LocationEntity",
+      "properties": [
+        {
+          "id": "1:1821273246357248296",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:7429367316684140453",
+          "name": "formattedId",
+          "type": 9
+        },
+        {
+          "id": "3:3761580805016959666",
+          "name": "cityId",
+          "type": 9
+        },
+        {
+          "id": "4:8147732805749648402",
+          "name": "latitude",
+          "type": 7
+        },
+        {
+          "id": "5:8169490105259042124",
+          "name": "longitude",
+          "type": 7
+        },
+        {
+          "id": "6:6488723977489714012",
+          "name": "timeZone",
+          "type": 9
+        },
+        {
+          "id": "7:1339785124405022263",
+          "name": "country",
+          "type": 9
+        },
+        {
+          "id": "8:3659008997065552571",
+          "name": "province",
+          "type": 9
+        },
+        {
+          "id": "9:6652346691839461503",
+          "name": "city",
+          "type": 9
+        },
+        {
+          "id": "10:4133717309571225424",
+          "name": "district",
+          "type": 9
+        },
+        {
+          "id": "11:2770690045342075977",
+          "name": "weatherSource",
+          "type": 9
+        },
+        {
+          "id": "12:3884707684619592540",
+          "name": "currentPosition",
+          "type": 1
+        },
+        {
+          "id": "13:4471336993334266202",
+          "name": "residentPosition",
+          "type": 1
+        },
+        {
+          "id": "14:1431170599634169521",
+          "name": "china",
+          "type": 1
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "7:3846329701351810886",
+      "lastPropertyId": "11:7109873798294087638",
+      "name": "MinutelyEntity",
+      "properties": [
+        {
+          "id": "1:3083791093650539911",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:8665946154839875051",
+          "name": "cityId",
+          "type": 9
+        },
+        {
+          "id": "3:7083824979154601406",
+          "name": "weatherSource",
+          "type": 9
+        },
+        {
+          "id": "4:7355621084061755897",
+          "name": "date",
+          "type": 10
+        },
+        {
+          "id": "5:5575427704046435434",
+          "name": "time",
+          "type": 6
+        },
+        {
+          "id": "6:4911579707898388525",
+          "name": "daylight",
+          "type": 1
+        },
+        {
+          "id": "7:3154867979562392082",
+          "name": "weatherText",
+          "type": 9
+        },
+        {
+          "id": "8:800379101570078571",
+          "name": "weatherCode",
+          "type": 9
+        },
+        {
+          "id": "9:7460206674365584981",
+          "name": "minuteInterval",
+          "type": 5
+        },
+        {
+          "id": "10:4366835581807355297",
+          "name": "dbz",
+          "type": 5
+        },
+        {
+          "id": "11:7109873798294087638",
+          "name": "cloudCover",
+          "type": 5
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "8:2816074648530312771",
+      "lastPropertyId": "50:99783734371044982",
+      "name": "WeatherEntity",
+      "properties": [
+        {
+          "id": "1:1851182443632691456",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:3287438320797849229",
+          "name": "cityId",
+          "type": 9
+        },
+        {
+          "id": "3:2556997040238875977",
+          "name": "weatherSource",
+          "type": 9
+        },
+        {
+          "id": "4:3066885335278504637",
+          "name": "timeStamp",
+          "type": 6
+        },
+        {
+          "id": "5:5393532765684567187",
+          "name": "publishDate",
+          "type": 10
+        },
+        {
+          "id": "6:3600233796396837935",
+          "name": "publishTime",
+          "type": 6
+        },
+        {
+          "id": "7:5089050366736761351",
+          "name": "updateDate",
+          "type": 10
+        },
+        {
+          "id": "8:7768993014196992258",
+          "name": "updateTime",
+          "type": 6
+        },
+        {
+          "id": "9:2645212547469135314",
+          "name": "weatherText",
+          "type": 9
+        },
+        {
+          "id": "10:4308715169157110644",
+          "name": "weatherCode",
+          "type": 9
+        },
+        {
+          "id": "11:7902551273200976498",
+          "name": "temperature",
+          "type": 5
+        },
+        {
+          "id": "12:4553406077793331472",
+          "name": "realFeelTemperature",
+          "type": 5
+        },
+        {
+          "id": "13:6261813310233268587",
+          "name": "realFeelShaderTemperature",
+          "type": 5
+        },
+        {
+          "id": "14:7294245009351035311",
+          "name": "apparentTemperature",
+          "type": 5
+        },
+        {
+          "id": "15:8516814957052154267",
+          "name": "windChillTemperature",
+          "type": 5
+        },
+        {
+          "id": "16:3764376109075916358",
+          "name": "wetBulbTemperature",
+          "type": 5
+        },
+        {
+          "id": "17:1192085633842742381",
+          "name": "degreeDayTemperature",
+          "type": 5
+        },
+        {
+          "id": "18:8370049770940534398",
+          "name": "totalPrecipitation",
+          "type": 7
+        },
+        {
+          "id": "19:5087980672175228679",
+          "name": "thunderstormPrecipitation",
+          "type": 7
+        },
+        {
+          "id": "20:3631624494977357105",
+          "name": "rainPrecipitation",
+          "type": 7
+        },
+        {
+          "id": "21:210437652597028996",
+          "name": "snowPrecipitation",
+          "type": 7
+        },
+        {
+          "id": "22:3617035619653711864",
+          "name": "icePrecipitation",
+          "type": 7
+        },
+        {
+          "id": "23:5706349278271084690",
+          "name": "totalPrecipitationProbability",
+          "type": 7
+        },
+        {
+          "id": "24:149224711797109934",
+          "name": "thunderstormPrecipitationProbability",
+          "type": 7
+        },
+        {
+          "id": "25:7599811830059545542",
+          "name": "rainPrecipitationProbability",
+          "type": 7
+        },
+        {
+          "id": "26:2648777124345146806",
+          "name": "snowPrecipitationProbability",
+          "type": 7
+        },
+        {
+          "id": "27:2921547695963561317",
+          "name": "icePrecipitationProbability",
+          "type": 7
+        },
+        {
+          "id": "28:2694155474706993563",
+          "name": "windDirection",
+          "type": 9
+        },
+        {
+          "id": "29:1006670111309977273",
+          "name": "windDegree",
+          "type": 7
+        },
+        {
+          "id": "30:6593101617515321738",
+          "name": "windSpeed",
+          "type": 7
+        },
+        {
+          "id": "31:6527498951353802050",
+          "name": "windLevel",
+          "type": 9
+        },
+        {
+          "id": "32:5227995710536321025",
+          "name": "uvIndex",
+          "type": 5
+        },
+        {
+          "id": "33:6439530395613235481",
+          "name": "uvLevel",
+          "type": 9
+        },
+        {
+          "id": "34:1274218675013137088",
+          "name": "uvDescription",
+          "type": 9
+        },
+        {
+          "id": "35:7260833867636972038",
+          "name": "aqiText",
+          "type": 9
+        },
+        {
+          "id": "36:7931527856071811678",
+          "name": "aqiIndex",
+          "type": 5
+        },
+        {
+          "id": "37:5683182958051423513",
+          "name": "pm25",
+          "type": 7
+        },
+        {
+          "id": "38:4373876832081694225",
+          "name": "pm10",
+          "type": 7
+        },
+        {
+          "id": "39:4774138598596330374",
+          "name": "so2",
+          "type": 7
+        },
+        {
+          "id": "40:137599545223280996",
+          "name": "no2",
+          "type": 7
+        },
+        {
+          "id": "41:2394350023821177033",
+          "name": "o3",
+          "type": 7
+        },
+        {
+          "id": "42:7658495282126279584",
+          "name": "co",
+          "type": 7
+        },
+        {
+          "id": "43:7259403537257235238",
+          "name": "relativeHumidity",
+          "type": 7
+        },
+        {
+          "id": "44:6863023266698447113",
+          "name": "pressure",
+          "type": 7
+        },
+        {
+          "id": "45:1540177893445123406",
+          "name": "visibility",
+          "type": 7
+        },
+        {
+          "id": "46:8875099272213247628",
+          "name": "dewPoint",
+          "type": 5
+        },
+        {
+          "id": "47:7240236653435123545",
+          "name": "cloudCover",
+          "type": 5
+        },
+        {
+          "id": "48:1194056380239012903",
+          "name": "ceiling",
+          "type": 7
+        },
+        {
+          "id": "49:250621036192085863",
+          "name": "dailyForecast",
+          "type": 9
+        },
+        {
+          "id": "50:99783734371044982",
+          "name": "hourlyForecast",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "1:8172461040712041",
+          "name": "dailyEntityList",
+          "targetId": "3:3069352246608661834"
+        },
+        {
+          "id": "2:1410060937164198822",
+          "name": "hourlyEntityList",
+          "targetId": "5:6283853262950530248"
+        },
+        {
+          "id": "3:6301666190076549876",
+          "name": "minutelyEntityList",
+          "targetId": "7:3846329701351810886"
+        },
+        {
+          "id": "4:4326705863040004023",
+          "name": "alertEntityList",
+          "targetId": "1:8179913507572507832"
+        }
+      ]
+    }
+  ],
+  "lastEntityId": "8:2816074648530312771",
+  "lastIndexId": "0:0",
+  "lastRelationId": "4:4326705863040004023",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}

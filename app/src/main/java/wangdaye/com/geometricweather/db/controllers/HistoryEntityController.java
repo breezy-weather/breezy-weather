@@ -11,32 +11,33 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import io.objectbox.BoxStore;
+import io.objectbox.query.Query;
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
 import wangdaye.com.geometricweather.db.converters.WeatherSourceConverter;
-import wangdaye.com.geometricweather.db.entities.DaoSession;
 import wangdaye.com.geometricweather.db.entities.HistoryEntity;
-import wangdaye.com.geometricweather.db.entities.HistoryEntityDao;
+import wangdaye.com.geometricweather.db.entities.HistoryEntity_;
 
-public class HistoryEntityController extends AbsEntityController {
+public class HistoryEntityController {
 
     // insert.
 
-    public static void insertHistoryEntity(@NonNull DaoSession session, @NonNull HistoryEntity entity) {
-        session.getHistoryEntityDao().insert(entity);
+    public static void insertHistoryEntity(@NonNull BoxStore boxStore, @NonNull HistoryEntity entity) {
+        boxStore.boxFor(HistoryEntity.class).put(entity);
     }
 
     // delete.
 
-    public static void deleteLocationHistoryEntity(@NonNull DaoSession session,
+    public static void deleteLocationHistoryEntity(@NonNull BoxStore boxStore,
                                                    @NonNull List<HistoryEntity> entityList) {
-        session.getHistoryEntityDao().deleteInTx(entityList);
+        boxStore.boxFor(HistoryEntity.class).remove(entityList);
     }
 
     // select.
 
     @SuppressLint("SimpleDateFormat")
     @Nullable
-    public static HistoryEntity selectYesterdayHistoryEntity(@NonNull DaoSession session,
+    public static HistoryEntity selectYesterdayHistoryEntity(@NonNull BoxStore boxStore,
                                                              @NonNull String cityId,
                                                              @NonNull WeatherSource source,
                                                              @NonNull Date currentDate) {
@@ -52,16 +53,16 @@ public class HistoryEntityController extends AbsEntityController {
             calendar.add(Calendar.DATE, -1);
             Date yesterday = calendar.getTime();
 
-            List<HistoryEntity> entityList = session.getHistoryEntityDao()
-                    .queryBuilder()
-                    .where(
-                            HistoryEntityDao.Properties.Date.ge(yesterday),
-                            HistoryEntityDao.Properties.Date.lt(today),
-                            HistoryEntityDao.Properties.CityId.eq(cityId),
-                            HistoryEntityDao.Properties.WeatherSource.eq(
+            Query<HistoryEntity> query = boxStore.boxFor(HistoryEntity.class)
+                    .query(HistoryEntity_.date.greaterOrEqual(yesterday)
+                            .and(HistoryEntity_.date.less(today))
+                            .and(HistoryEntity_.cityId.equal(cityId))
+                            .and(HistoryEntity_.weatherSource.equal(
                                     new WeatherSourceConverter().convertToDatabaseValue(source)
-                            )
-                    ).list();
+                            ))
+                    ).build();
+            List<HistoryEntity> entityList = query.find();
+            query.close();
 
             if (entityList == null || entityList.size() == 0) {
                 return null;
@@ -76,7 +77,7 @@ public class HistoryEntityController extends AbsEntityController {
 
     @SuppressLint("SimpleDateFormat")
     @Nullable
-    private static HistoryEntity selectTodayHistoryEntity(@NonNull DaoSession session,
+    private static HistoryEntity selectTodayHistoryEntity(@NonNull BoxStore boxStore,
                                                           @NonNull String cityId,
                                                           @NonNull WeatherSource source,
                                                           @NonNull Date currentDate) {
@@ -92,16 +93,16 @@ public class HistoryEntityController extends AbsEntityController {
             calendar.add(Calendar.DATE, +1);
             Date tomorrow = calendar.getTime();
 
-            List<HistoryEntity> entityList = session.getHistoryEntityDao()
-                    .queryBuilder()
-                    .where(
-                            HistoryEntityDao.Properties.Date.ge(today),
-                            HistoryEntityDao.Properties.Date.lt(tomorrow),
-                            HistoryEntityDao.Properties.CityId.eq(cityId),
-                            HistoryEntityDao.Properties.WeatherSource.eq(
+            Query<HistoryEntity> query = boxStore.boxFor(HistoryEntity.class)
+                    .query(HistoryEntity_.date.greaterOrEqual(today)
+                            .and(HistoryEntity_.date.less(tomorrow))
+                            .and(HistoryEntity_.cityId.equal(cityId))
+                            .and(HistoryEntity_.weatherSource.equal(
                                     new WeatherSourceConverter().convertToDatabaseValue(source)
-                            )
-                    ).list();
+                            ))
+                    ).build();
+            List<HistoryEntity> entityList = query.find();
+            query.close();
             if (entityList == null || entityList.size() == 0) {
                 return null;
             } else {
@@ -114,18 +115,17 @@ public class HistoryEntityController extends AbsEntityController {
     }
 
     @NonNull
-    public static List<HistoryEntity> selectHistoryEntityList(@NonNull DaoSession session,
+    public static List<HistoryEntity> selectHistoryEntityList(@NonNull BoxStore boxStore,
                                                               @NonNull String cityId,
                                                               @NonNull WeatherSource source) {
-        return getNonNullList(
-                session.getHistoryEntityDao()
-                        .queryBuilder()
-                        .where(
-                                HistoryEntityDao.Properties.CityId.eq(cityId),
-                                HistoryEntityDao.Properties.WeatherSource.eq(
-                                        new WeatherSourceConverter().convertToDatabaseValue(source)
-                                )
-                        ).list()
-        );
+        Query<HistoryEntity> query = boxStore.boxFor(HistoryEntity.class)
+                .query(HistoryEntity_.cityId.equal(cityId)
+                        .and(HistoryEntity_.weatherSource.equal(
+                                new WeatherSourceConverter().convertToDatabaseValue(source)
+                        ))
+                ).build();
+        List<HistoryEntity> results = query.find();
+        query.close();
+        return results;
     }
 }

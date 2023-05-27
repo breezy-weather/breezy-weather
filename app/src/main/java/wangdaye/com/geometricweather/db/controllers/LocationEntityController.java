@@ -5,53 +5,63 @@ import androidx.annotation.Nullable;
 
 import java.util.List;
 
-import wangdaye.com.geometricweather.db.entities.DaoSession;
+import io.objectbox.BoxStore;
+import io.objectbox.query.Query;
+import wangdaye.com.geometricweather.db.converters.WeatherSourceConverter;
+import wangdaye.com.geometricweather.db.entities.HourlyEntity;
+import wangdaye.com.geometricweather.db.entities.HourlyEntity_;
 import wangdaye.com.geometricweather.db.entities.LocationEntity;
-import wangdaye.com.geometricweather.db.entities.LocationEntityDao;
+import wangdaye.com.geometricweather.db.entities.LocationEntity_;
 
-public class LocationEntityController extends AbsEntityController {
+public class LocationEntityController {
 
     // insert.
 
-    public static void insertLocationEntity(@NonNull DaoSession session,
+    public static void insertLocationEntity(@NonNull BoxStore boxStore,
                                             @NonNull LocationEntity entity) {
-        session.getLocationEntityDao().insert(entity);
+        boxStore.boxFor(LocationEntity.class).put(entity);
     }
 
-    public static void insertLocationEntityList(@NonNull DaoSession session,
+    public static void insertLocationEntityList(@NonNull BoxStore boxStore,
                                                 @NonNull List<LocationEntity> entityList) {
         if (entityList.size() != 0) {
-            session.getLocationEntityDao().insertInTx(entityList);
+            boxStore.boxFor(LocationEntity.class).put(entityList);
         }
     }
 
     // delete.
 
-    public static void deleteLocationEntity(@NonNull DaoSession session,
+    public static void deleteLocationEntity(@NonNull BoxStore boxStore,
                                             @NonNull LocationEntity entity) {
-        session.getLocationEntityDao().deleteByKey(entity.formattedId);
+        Query<LocationEntity> query = boxStore.boxFor(LocationEntity.class)
+                .query(LocationEntity_.formattedId.equal(entity.formattedId))
+                .build();
+        List<LocationEntity> results = query.find();
+        query.close();
+        boxStore.boxFor(LocationEntity.class).remove(results);
     }
 
-    public static void deleteLocationEntityList(@NonNull DaoSession session) {
-        session.getLocationEntityDao().deleteAll();
+    public static void deleteLocationEntityList(@NonNull BoxStore boxStore) {
+        boxStore.boxFor(LocationEntity.class).removeAll();
     }
 
     // update.
 
-    public static void updateLocationEntity(@NonNull DaoSession session,
+    public static void updateLocationEntity(@NonNull BoxStore boxStore,
                                             @NonNull LocationEntity entity) {
-        session.getLocationEntityDao().update(entity);
+        boxStore.boxFor(LocationEntity.class).put(entity);
     }
 
     // select.
 
     @Nullable
-    public static LocationEntity selectLocationEntity(@NonNull DaoSession session,
+    public static LocationEntity selectLocationEntity(@NonNull BoxStore boxStore,
                                                       @NonNull String formattedId) {
-        List<LocationEntity> entityList = session.getLocationEntityDao()
-                .queryBuilder()
-                .where(LocationEntityDao.Properties.FormattedId.eq(formattedId))
-                .list();
+        Query<LocationEntity> query = boxStore.boxFor(LocationEntity.class)
+                .query(LocationEntity_.formattedId.equal(formattedId))
+                .build();
+        List<LocationEntity> entityList = query.find();
+        query.close();
         if (entityList == null || entityList.size() <= 0) {
             return null;
         } else {
@@ -60,17 +70,17 @@ public class LocationEntityController extends AbsEntityController {
     }
 
     @NonNull
-    public static List<LocationEntity> selectLocationEntityList(@NonNull DaoSession session) {
-        return getNonNullList(
-                session.getLocationEntityDao()
-                        .queryBuilder()
-                        .list()
-        );
+    public static List<LocationEntity> selectLocationEntityList(@NonNull BoxStore boxStore) {
+        Query<LocationEntity> query = boxStore.boxFor(LocationEntity.class).query().build();
+        List<LocationEntity> results = query.find();
+        query.close();
+        return results;
     }
 
-    public static int countLocationEntity(@NonNull DaoSession session) {
-        return (int) session.getLocationEntityDao()
-                .queryBuilder()
-                .count();
+    public static int countLocationEntity(@NonNull BoxStore boxStore) {
+        Query<LocationEntity> query = boxStore.boxFor(LocationEntity.class).query().build();
+        long count = query.count();
+        query.close();
+        return (int) count;
     }
 }

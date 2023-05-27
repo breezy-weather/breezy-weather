@@ -173,8 +173,8 @@
     <string name="about_glide">Perpustakaan pemuatan dan caching gambar untuk Android berfokus pada pengguliran halus.</string>
     <string name="gson">Gson</string>
     <string name="about_gson">Perpustakaan serialisasi/deserialisasi Java yang dapat mengubah objek Java menjadi JSON dan kembali.</string>
-    <string name="greenDAO">GreenDAO</string>
-    <string name="about_greenDAO">greenDAO adalah solusi ORM yang ringan dan cepat untuk Android yang memetakan objek ke database SQLite.</string>
+    <string name="objectbox">ObjectBox</string>
+    <string name="about_objectbox">Java Database for Mobile &amp; IoT - fast and lightweight.</string>
     <string name="page_indicator">InkPageIndicator</string>
     <string name="about_page_indicator">InkPageIndicator Dibuat oleh @nickbutcher untuk Plaid https://github.com/nickbutcher/plaid dan di backport oleh David Pacioianu untuk API 14+ (4.0+).</string>
     <string name="circular_progress_view">CircularProgressView</string>

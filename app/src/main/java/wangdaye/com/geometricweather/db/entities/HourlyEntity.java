@@ -1,9 +1,8 @@
 package wangdaye.com.geometricweather.db.entities;
 
-import org.greenrobot.greendao.annotation.Convert;
-import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Generated;
-import org.greenrobot.greendao.annotation.Id;
+import io.objectbox.annotation.Convert;
+import io.objectbox.annotation.Entity;
+import io.objectbox.annotation.Id;
 
 import java.util.Date;
 
@@ -30,7 +29,7 @@ public class HourlyEntity {
     public boolean daylight;
 
     public String weatherText;
-    @Convert(converter = WeatherCodeConverter.class, columnType = String.class)
+    @Convert(converter = WeatherCodeConverter.class, dbType = String.class)
     public WeatherCode weatherCode;
 
     public int temperature;
@@ -54,7 +53,7 @@ public class HourlyEntity {
     public Float icePrecipitationProbability;
 
     public String windDirection;
-    @Convert(converter = WindDegreeConverter.class, columnType = Float.class)
+    @Convert(converter = WindDegreeConverter.class, dbType = Float.class)
     public WindDegree windDegree;
     public Float windSpeed;
     public String windLevel;
@@ -63,7 +62,7 @@ public class HourlyEntity {
     public Integer uvIndex;
     public String uvLevel;
     public String uvDescription;
-    @Generated(hash = 764945270)
+    
     public HourlyEntity(Long id, String cityId, String weatherSource, Date date,
             long time, boolean daylight, String weatherText,
             WeatherCode weatherCode, int temperature, Integer realFeelTemperature,
@@ -111,7 +110,7 @@ public class HourlyEntity {
         this.uvLevel = uvLevel;
         this.uvDescription = uvDescription;
     }
-    @Generated(hash = 617074574)
+    
     public HourlyEntity() {
     }
     public Long getId() {

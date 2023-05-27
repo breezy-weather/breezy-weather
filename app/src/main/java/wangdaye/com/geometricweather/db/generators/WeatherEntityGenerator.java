@@ -2,6 +2,7 @@ package wangdaye.com.geometricweather.db.generators;
 
 import androidx.annotation.Nullable;
 
+import io.objectbox.BoxStore;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.AirQuality;
 import wangdaye.com.geometricweather.common.basic.models.weather.Base;
@@ -86,7 +87,8 @@ public class WeatherEntityGenerator {
     }
 
     public static Weather generate(@Nullable WeatherEntity weatherEntity,
-                                   @Nullable HistoryEntity historyEntity) {
+                                   @Nullable HistoryEntity historyEntity,
+                                   BoxStore boxStore) {
         if (weatherEntity == null) {
             return null;
         }
@@ -152,10 +154,10 @@ public class WeatherEntityGenerator {
                         weatherEntity.hourlyForecast
                 ),
                 HistoryEntityGenerator.generate(historyEntity),
-                DailyEntityGenerator.generate(weatherEntity.getDailyEntityList()),
-                HourlyEntityGenerator.generateModuleList(weatherEntity.getHourlyEntityList()),
-                MinutelyEntityGenerator.generate(weatherEntity.getMinutelyEntityList()),
-                AlertEntityGenerator.generate(weatherEntity.getAlertEntityList())
+                DailyEntityGenerator.generate(weatherEntity.getDailyEntityList(boxStore)),
+                HourlyEntityGenerator.generateModuleList(weatherEntity.getHourlyEntityList(boxStore)),
+                MinutelyEntityGenerator.generate(weatherEntity.getMinutelyEntityList(boxStore)),
+                AlertEntityGenerator.generate(weatherEntity.getAlertEntityList(boxStore))
         );
     }
 }

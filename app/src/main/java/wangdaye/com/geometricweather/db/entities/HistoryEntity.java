@@ -1,8 +1,7 @@
 package wangdaye.com.geometricweather.db.entities;
 
-import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Generated;
-import org.greenrobot.greendao.annotation.Id;
+import io.objectbox.annotation.Entity;
+import io.objectbox.annotation.Id;
 
 import java.util.Date;
 
@@ -26,7 +25,7 @@ public class HistoryEntity {
 
     public int daytimeTemperature;
     public int nighttimeTemperature;
-    @Generated(hash = 1203457063)
+    
     public HistoryEntity(Long id, String cityId, String weatherSource, Date date,
             long time, int daytimeTemperature, int nighttimeTemperature) {
         this.id = id;
@@ -37,7 +36,7 @@ public class HistoryEntity {
         this.daytimeTemperature = daytimeTemperature;
         this.nighttimeTemperature = nighttimeTemperature;
     }
-    @Generated(hash = 1235354573)
+    
     public HistoryEntity() {
     }
     public Long getId() {

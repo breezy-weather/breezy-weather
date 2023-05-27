@@ -141,8 +141,8 @@
     <string name="about_glide">An image loading and caching library for Android focused on smooth scrolling.</string>
     <string name="gson">Gson</string>
     <string name="about_gson">A Java serialization/deserialization library that can convert Java Objects into JSON and back.</string>
-    <string name="greenDAO">GreenDAO</string>
-    <string name="about_greenDAO">greenDAO is a light and fast ORM solution for Android that maps objects to SQLite databases.</string>
+    <string name="objectbox">ObjectBox</string>
+    <string name="about_objectbox">Java Database for Mobile &amp; IoT - fast and lightweight.</string>
 
     <!-- feedback. -->
     <string name="feedback_request_permission">Разрешения</string>

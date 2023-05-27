@@ -4,41 +4,41 @@ import androidx.annotation.NonNull;
 
 import java.util.List;
 
+import io.objectbox.BoxStore;
+import io.objectbox.query.Query;
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
 import wangdaye.com.geometricweather.db.converters.WeatherSourceConverter;
-import wangdaye.com.geometricweather.db.entities.DaoSession;
 import wangdaye.com.geometricweather.db.entities.MinutelyEntity;
-import wangdaye.com.geometricweather.db.entities.MinutelyEntityDao;
+import wangdaye.com.geometricweather.db.entities.MinutelyEntity_;
 
-public class MinutelyEntityController extends AbsEntityController {
+public class MinutelyEntityController {
 
     // insert.
 
-    public static void insertMinutelyList(@NonNull DaoSession session,
+    public static void insertMinutelyList(@NonNull BoxStore boxStore,
                                           @NonNull List<MinutelyEntity> entityList) {
-        session.getMinutelyEntityDao().insertInTx(entityList);
+        boxStore.boxFor(MinutelyEntity.class).put(entityList);
     }
 
     // delete.
 
-    public static void deleteMinutelyEntityList(@NonNull DaoSession session,
+    public static void deleteMinutelyEntityList(@NonNull BoxStore boxStore,
                                                 @NonNull List<MinutelyEntity> entityList) {
-        session.getMinutelyEntityDao().deleteInTx(entityList);
+        boxStore.boxFor(MinutelyEntity.class).remove(entityList);
     }
 
     // select.
 
-    public static List<MinutelyEntity> selectMinutelyEntityList(@NonNull DaoSession session,
+    public static List<MinutelyEntity> selectMinutelyEntityList(@NonNull BoxStore boxStore,
                                                                 @NonNull String cityId, @NonNull WeatherSource source) {
-        return getNonNullList(
-                session.getMinutelyEntityDao()
-                        .queryBuilder()
-                        .where(
-                                MinutelyEntityDao.Properties.CityId.eq(cityId),
-                                MinutelyEntityDao.Properties.WeatherSource.eq(
-                                        new WeatherSourceConverter().convertToDatabaseValue(source)
-                                )
-                        ).list()
-        );
+        Query<MinutelyEntity> query = boxStore.boxFor(MinutelyEntity.class)
+                .query(MinutelyEntity_.cityId.equal(cityId)
+                        .and(MinutelyEntity_.weatherSource.equal(
+                                new WeatherSourceConverter().convertToDatabaseValue(source)
+                        ))
+                ).build();
+        List<MinutelyEntity> results = query.find();
+        query.close();
+        return results;
     }
 }

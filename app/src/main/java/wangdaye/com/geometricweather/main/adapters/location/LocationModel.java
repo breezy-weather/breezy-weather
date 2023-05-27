@@ -42,7 +42,12 @@ public class LocationModel {
 
         if (location.getWeather() != null) {
             this.weatherCode = location.isDaylight()
-                    ? location.getWeather().getDailyForecast().get(0).day().getWeatherCode()
+                    ? location
+                    .getWeather()
+                    .getDailyForecast()
+                    .get(0)
+                    .day()
+                    .getWeatherCode()
                     : location.getWeather().getDailyForecast().get(0).night().getWeatherCode();
         } else {
             this.weatherCode = null;
@@ -80,7 +85,7 @@ public class LocationModel {
             List<Alert> alertList = location.getWeather().getAlertList();
             if (alertList.size() > 0) {
                 StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < alertList.size(); i ++) {
+                for (int i = 0; i < alertList.size(); i++) {
                     if (alertList.get(i).getDate() != null) {
                         builder.append(alertList.get(i).getDescription())
                                 .append(", ")

@@ -162,8 +162,8 @@
     <string name="about_glide">Φόρτωση εικόνας και βιβλιοθήκης για Android που επικεντρώνεται στην ομαλή κύλιση</string>
     <string name="gson">Gson</string>
     <string name="about_gson">Βιβλιοθήκη Java σειριοποίησης/αποεριοποίησης που μπορεί να μετατρέψει τα Java αντικείμενα σε JSON.</string>
-    <string name="greenDAO">GreenDAO</string>
-    <string name="about_greenDAO">Το greenDAO είναι μια ελαφριά και γρήγορη λύση ORM για Android που χαρτογραφεί αντικείμενα σε βάσεις δεδομένων SQLite.</string>
+    <string name="objectbox">ObjectBox</string>
+    <string name="about_objectbox">Java Database for Mobile &amp; IoT - fast and lightweight.</string>
     <string name="page_indicator">InkPageIndicator</string>
     <string name="about_page_indicator">Το InkPageIndicator δημιουργήθηκε από @nickbutcher https://github.com/nickbutcher/plaid και υποστηρίχθηκε από τον David Pacioianu για API 14+ (4.0+).</string>
     <string name="circular_progress_view">CircularProgressView</string>

@@ -4,43 +4,43 @@ import androidx.annotation.NonNull;
 
 import java.util.List;
 
+import io.objectbox.BoxStore;
+import io.objectbox.query.Query;
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
 import wangdaye.com.geometricweather.db.converters.WeatherSourceConverter;
 import wangdaye.com.geometricweather.db.entities.DailyEntity;
-import wangdaye.com.geometricweather.db.entities.DailyEntityDao;
-import wangdaye.com.geometricweather.db.entities.DaoSession;
+import wangdaye.com.geometricweather.db.entities.DailyEntity_;
 
-public class DailyEntityController extends AbsEntityController {
+public class DailyEntityController {
 
     // insert.
 
-    public static void insertDailyList(@NonNull DaoSession session,
+    public static void insertDailyList(@NonNull BoxStore boxStore,
                                        @NonNull List<DailyEntity> entityList) {
-        session.getDailyEntityDao().insertInTx(entityList);
+        boxStore.boxFor(DailyEntity.class).put(entityList);
     }
 
     // delete.
 
-    public static void deleteDailyEntityList(@NonNull DaoSession session,
+    public static void deleteDailyEntityList(@NonNull BoxStore boxStore,
                                              @NonNull List<DailyEntity> entityList) {
-        session.getDailyEntityDao().deleteInTx(entityList);
+        boxStore.boxFor(DailyEntity.class).remove(entityList);
     }
 
     // select.
 
     @NonNull
-    public static List<DailyEntity> selectDailyEntityList(@NonNull DaoSession session,
+    public static List<DailyEntity> selectDailyEntityList(@NonNull BoxStore boxStore,
                                                           @NonNull String cityId,
                                                           @NonNull WeatherSource source) {
-        return getNonNullList(
-                session.getDailyEntityDao()
-                        .queryBuilder()
-                        .where(
-                                DailyEntityDao.Properties.CityId.eq(cityId),
-                                DailyEntityDao.Properties.WeatherSource.eq(
-                                        new WeatherSourceConverter().convertToDatabaseValue(source)
-                                )
-                        ).list()
-        );
+        Query<DailyEntity> query = boxStore.boxFor(DailyEntity.class)
+                .query(DailyEntity_.cityId.equal(cityId)
+                        .and(DailyEntity_.weatherSource.equal(
+                                new WeatherSourceConverter().convertToDatabaseValue(source)
+                        ))
+                ).build();
+        List<DailyEntity> results = query.find();
+        query.close();
+        return results;
     }
 }

@@ -1,6 +1,6 @@
 package wangdaye.com.geometricweather.db.converters;
 
-import org.greenrobot.greendao.converter.PropertyConverter;
+import io.objectbox.converter.PropertyConverter;
 
 import wangdaye.com.geometricweather.common.basic.models.weather.WindDegree;
 

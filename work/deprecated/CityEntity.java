@@ -3,9 +3,8 @@ package wangdaye.com.geometricweather.basic.deprecated;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
-import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Generated;
-import org.greenrobot.greendao.annotation.Id;
+import io.objectbox.annotation.Entity;
+import io.objectbox.annotation.Id;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +37,7 @@ public class CityEntity {
     public String lon;
     public String prov;
 
-    @Generated(hash = 287673386)
+    
     public CityEntity(Long id, String cityId, String city, String cnty, String lat, String lon, String prov) {
         this.id = id;
         this.cityId = cityId;
@@ -49,7 +48,7 @@ public class CityEntity {
         this.prov = prov;
     }
 
-    @Generated(hash = 2001321047)
+    
     public CityEntity() {
     }
 */
@@ -66,7 +65,7 @@ public class CityEntity {
         new DaoMaster(database)
                 .newSession()
                 .getCityEntityDao()
-                .insertInTx(result.city_info);
+                .put(result.city_info);
     }
 
     public static boolean isNeedWriteData(SQLiteDatabase database) {
@@ -83,7 +82,7 @@ public class CityEntity {
         new DaoMaster(database)
                 .newSession()
                 .getCityEntityDao()
-                .deleteAll();
+                .removeAll();
     }
 
     // search.

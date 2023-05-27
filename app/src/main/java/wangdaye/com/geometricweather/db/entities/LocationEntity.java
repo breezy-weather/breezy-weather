@@ -1,9 +1,8 @@
 package wangdaye.com.geometricweather.db.entities;
 
-import org.greenrobot.greendao.annotation.Convert;
-import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Generated;
-import org.greenrobot.greendao.annotation.Id;
+import io.objectbox.annotation.Convert;
+import io.objectbox.annotation.Entity;
+import io.objectbox.annotation.Id;
 
 import java.util.TimeZone;
 
@@ -21,14 +20,15 @@ import wangdaye.com.geometricweather.db.converters.WeatherSourceConverter;
 @Entity
 public class LocationEntity {
 
-    @Id public String formattedId;
+    @Id public Long id;
+    public String formattedId;
 
     public String cityId;
 
     public float latitude;
     public float longitude;
 
-    @Convert(converter = TimeZoneConverter.class, columnType = String.class)
+    @Convert(converter = TimeZoneConverter.class, dbType = String.class)
     public TimeZone timeZone;
 
     public String country;
@@ -36,14 +36,14 @@ public class LocationEntity {
     public String city;
     public String district;
 
-    @Convert(converter = WeatherSourceConverter.class, columnType = String.class)
+    @Convert(converter = WeatherSourceConverter.class, dbType = String.class)
     public WeatherSource weatherSource;
 
     public boolean currentPosition;
     public boolean residentPosition;
     public boolean china;
 
-    @Generated(hash = 1125075138)
+    
     public LocationEntity(String formattedId, String cityId, float latitude,
             float longitude, TimeZone timeZone, String country, String province,
             String city, String district, WeatherSource weatherSource,
@@ -62,7 +62,7 @@ public class LocationEntity {
         this.residentPosition = residentPosition;
         this.china = china;
     }
-    @Generated(hash = 1723987110)
+    
     public LocationEntity() {
     }
     public String getFormattedId() {

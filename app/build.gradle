@@ -1,9 +1,9 @@
 plugins {
-    id "com.android.application"
-    id "org.greenrobot.greendao"
-    id "kotlin-android"
-    id "kotlin-kapt"
-    id "dagger.hilt.android.plugin"
+    id("com.android.application")
+    id("kotlin-android")
+    id("kotlin-kapt")
+    id("io.objectbox")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -139,12 +139,7 @@ allprojects {
 
 configurations {
     cleanedAnnotations
-    compile.exclude group: "org.jetbrains" , module:"annotations"
-}
-
-greendao {
-    schemaVersion 62
-    generateTests false
+    compile.exclude group: "org.jetbrains", module: "annotations"
 }
 
 kapt {
@@ -172,7 +167,7 @@ dependencies {
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
     // compose.
-    implementation "androidx.activity:activity-compose:1.7.1"
+    implementation "androidx.activity:activity-compose:1.7.2"
     implementation "androidx.compose.material:material:1.4.3"
     implementation "androidx.compose.animation:animation:1.4.3"
     implementation "androidx.compose.ui:ui-tooling:1.4.3"
@@ -233,12 +228,6 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:4.11.0"
     implementation "com.squareup.okhttp3:logging-interceptor:4.11.0"
 
-    // db.
-    implementation "org.greenrobot:greendao:3.3.0"
-    implementation "io.github.yuweiguocn:GreenDaoUpgradeHelper:v2.2.1"
-    // TODO: Consider migrating to ObjectBox which is faster and maintained
-    // https://greenrobot.org/greendao/documentation/objectbox-compat/
-
     // data store
     // implementation "androidx.datastore:datastore-preferences:1.0.0"
     // implementation "androidx.datastore:datastore-preferences-rxjava2:1.0.0"
@@ -272,7 +261,7 @@ dependencies {
     implementation "me.jfenn:AdaptiveIconView:0.0.1"
     implementation "com.github.turing-tech:MaterialScrollBar:13.4.3a"
     implementation "com.gordonwong:material-sheet-fab:1.2.1"
-    implementation "androidx.activity:activity-ktx:1.7.1"
+    implementation "androidx.activity:activity-ktx:1.7.2"
 
     // utils.
     implementation "com.xhinliang:LunarCalendar:4.0.7"

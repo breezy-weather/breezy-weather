@@ -5,51 +5,51 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.greenrobot.greendao.query.QueryBuilder;
-import org.greenrobot.greendao.query.WhereCondition;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import io.objectbox.Box;
+import io.objectbox.BoxStore;
+import io.objectbox.query.Query;
+import io.objectbox.query.QueryCondition;
 import wangdaye.com.geometricweather.db.entities.ChineseCityEntity;
-import wangdaye.com.geometricweather.db.entities.ChineseCityEntityDao;
-import wangdaye.com.geometricweather.db.entities.DaoSession;
+import wangdaye.com.geometricweather.db.entities.ChineseCityEntity_;
 
-public class ChineseCityEntityController extends AbsEntityController {
+public class ChineseCityEntityController {
 
     // insert.
 
-    public static void insertChineseCityEntityList(@NonNull DaoSession session,
+    public static void insertChineseCityEntityList(@NonNull BoxStore boxStore,
                                                    @NonNull List<ChineseCityEntity> entityList) {
         if (entityList.size() != 0) {
-            session.getChineseCityEntityDao().insertInTx(entityList);
+            boxStore.boxFor(ChineseCityEntity.class).put(entityList);
         }
     }
 
     // delete.
 
-    public static void deleteChineseCityEntityList(@NonNull DaoSession session) {
-        session.getChineseCityEntityDao().deleteAll();
+    public static void deleteChineseCityEntityList(@NonNull BoxStore boxStore) {
+        boxStore.boxFor(ChineseCityEntity.class).removeAll();
     }
 
     // select.
 
     @Nullable
-    public static ChineseCityEntity selectChineseCityEntity(@NonNull DaoSession session,
+    public static ChineseCityEntity selectChineseCityEntity(@NonNull BoxStore boxStore,
                                                             @NonNull String name) {
         if (TextUtils.isEmpty(name)) {
             return null;
         }
 
-        ChineseCityEntityDao dao = session.getChineseCityEntityDao();
+        Box<ChineseCityEntity> chineseCityEntityBox = boxStore.boxFor(ChineseCityEntity.class);
 
-        QueryBuilder<ChineseCityEntity> builder = dao.queryBuilder();
-        builder.whereOr(
-                ChineseCityEntityDao.Properties.District.eq(name),
-                ChineseCityEntityDao.Properties.City.eq(name)
-        );
+        Query<ChineseCityEntity> query = chineseCityEntityBox.query(
+                ChineseCityEntity_.district.equal(name)
+                        .or(ChineseCityEntity_.city.equal(name))
+        ).build();
 
-        List<ChineseCityEntity> entityList = builder.list();
+        List<ChineseCityEntity> entityList = query.find();
+        query.close();
         if (entityList == null || entityList.size() <= 0) {
             return null;
         } else {
@@ -58,51 +58,43 @@ public class ChineseCityEntityController extends AbsEntityController {
     }
 
     @Nullable
-    public static ChineseCityEntity selectChineseCityEntity(@NonNull DaoSession session,
+    public static ChineseCityEntity selectChineseCityEntity(@NonNull BoxStore boxStore,
                                                             @NonNull String province,
                                                             @NonNull String city,
                                                             @NonNull String district) {
-        ChineseCityEntityDao dao = session.getChineseCityEntityDao();
+        Box<ChineseCityEntity> chineseCityEntityBox = boxStore.boxFor(ChineseCityEntity.class);
+        List<QueryCondition<ChineseCityEntity>> conditionList = new ArrayList<>();
+        conditionList.add(
+                ChineseCityEntity_.district.equal(district)
+                        .and(ChineseCityEntity_.city.equal(city))
+        );
+        conditionList.add(
+                ChineseCityEntity_.district.equal(district)
+                        .and(ChineseCityEntity_.province.equal(city))
+        );
+        conditionList.add(
+                ChineseCityEntity_.city.equal(district)
+                        .and(ChineseCityEntity_.province.equal(city))
+        );
+        conditionList.add(ChineseCityEntity_.city.equal(city));
+        conditionList.add(
+                ChineseCityEntity_.district.equal(district)
+                        .and(ChineseCityEntity_.province.equal(city))
+        );
+        conditionList.add(
+                ChineseCityEntity_.district.equal(district)
+                        .and(ChineseCityEntity_.city.equal(city))
+        );
+        conditionList.add(ChineseCityEntity_.district.equal(city));
+        conditionList.add(ChineseCityEntity_.city.equal(district));
 
-        List<WhereCondition> conditionList = new ArrayList<>();
-        conditionList.add(
-                dao.queryBuilder().and(
-                        ChineseCityEntityDao.Properties.District.eq(district),
-                        ChineseCityEntityDao.Properties.City.eq(city)
-                )
-        );
-        conditionList.add(
-                dao.queryBuilder().and(
-                        ChineseCityEntityDao.Properties.District.eq(district),
-                        ChineseCityEntityDao.Properties.Province.eq(province)
-                )
-        );
-        conditionList.add(
-                dao.queryBuilder().and(
-                        ChineseCityEntityDao.Properties.City.eq(city),
-                        ChineseCityEntityDao.Properties.Province.eq(province)
-                )
-        );
-        conditionList.add(ChineseCityEntityDao.Properties.City.eq(city));
-        conditionList.add(
-                dao.queryBuilder().and(
-                        ChineseCityEntityDao.Properties.District.eq(city),
-                        ChineseCityEntityDao.Properties.Province.eq(province)
-                )
-        );
-        conditionList.add(
-                dao.queryBuilder().and(
-                        ChineseCityEntityDao.Properties.District.eq(city),
-                        ChineseCityEntityDao.Properties.City.eq(province)
-                )
-        );
-        conditionList.add(ChineseCityEntityDao.Properties.District.eq(city));
-        conditionList.add(ChineseCityEntityDao.Properties.City.eq(district));
-
+        Query<ChineseCityEntity> query;
         List<ChineseCityEntity> entityList;
-        for (WhereCondition c : conditionList) {
+        for (QueryCondition<ChineseCityEntity> c : conditionList) {
             try {
-                entityList = dao.queryBuilder().where(c).list();
+                query = chineseCityEntityBox.query(c).build();
+                entityList = query.find();
+                query.close();
             } catch (Exception e) {
                 entityList = null;
             }
@@ -115,18 +107,16 @@ public class ChineseCityEntityController extends AbsEntityController {
     }
 
     @Nullable
-    public static ChineseCityEntity selectChineseCityEntity(@NonNull DaoSession session,
+    public static ChineseCityEntity selectChineseCityEntity(@NonNull BoxStore boxStore,
                                                             float latitude,
                                                             float longitude) {
-        List<ChineseCityEntity> entityList = getNonNullList(
-                session.getChineseCityEntityDao()
-                        .queryBuilder()
-                        .list()
-        );
+        Query<ChineseCityEntity> query = boxStore.boxFor(ChineseCityEntity.class).query().build();
+        List<ChineseCityEntity> entityList = query.find();
+        query.close();
 
         int minIndex = -1;
         double minDistance = Double.MAX_VALUE;
-        for (int i = 0; i < entityList.size(); i ++) {
+        for (int i = 0; i < entityList.size(); i++) {
             double distance = Math.pow(latitude - Double.parseDouble(entityList.get(i).latitude), 2)
                     + Math.pow(longitude - Double.parseDouble(entityList.get(i).longitude), 2);
             if (distance < minDistance) {
@@ -142,25 +132,25 @@ public class ChineseCityEntityController extends AbsEntityController {
     }
 
     @NonNull
-    public static List<ChineseCityEntity> selectChineseCityEntityList(@NonNull DaoSession session,
+    public static List<ChineseCityEntity> selectChineseCityEntityList(@NonNull BoxStore boxStore,
                                                                       @NonNull String name) {
         if (TextUtils.isEmpty(name)) {
             return new ArrayList<>();
         }
 
-        ChineseCityEntityDao dao = session.getChineseCityEntityDao();
+        Box<ChineseCityEntity> chineseCityEntityBox = boxStore.boxFor(ChineseCityEntity.class);
 
-        QueryBuilder<ChineseCityEntity> builder = dao.queryBuilder();
-        builder.whereOr(
-                ChineseCityEntityDao.Properties.District.like("%" + name + "%"),
-                ChineseCityEntityDao.Properties.City.like("%" + name + "%"),
-                ChineseCityEntityDao.Properties.Province.like("%" + name + "%")
-        );
-
-        return getNonNullList(builder.list());
+        Query<ChineseCityEntity> query = chineseCityEntityBox.query(
+                ChineseCityEntity_.district.contains(name)
+                        .and(ChineseCityEntity_.city.contains(name))
+                        .and(ChineseCityEntity_.province.contains(name))
+        ).build();
+        List<ChineseCityEntity> results = query.find();
+        query.close();
+        return results;
     }
 
-    public static int countChineseCityEntity(@NonNull DaoSession session) {
-        return (int) session.getChineseCityEntityDao().count();
+    public static int countChineseCityEntity(@NonNull BoxStore boxStore) {
+        return (int) boxStore.boxFor(ChineseCityEntity.class).count();
     }
 }

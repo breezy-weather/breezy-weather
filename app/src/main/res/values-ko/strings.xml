@@ -156,8 +156,8 @@
     <string name="about_glide">부드러운 스크롤을 중점으로 하는 안드로이드용 이미지 로딩과 캐쉬 라이브러리</string>
     <string name="gson">Gson</string>
     <string name="about_gson">자바 오브젝트를 JSON으로 바꾸고 되돌릴 수 있는 자바 직렬화/역직렬화 라이브러리</string>
-    <string name="greenDAO">GreenDAO</string>
-    <string name="about_greenDAO">SQLite 테이터베이스에서 지도 오브젝트를 빼올 수 있는 가볍고 빠른 안드로이드용 ORM 솔루션</string>
+    <string name="objectbox">ObjectBox</string>
+    <string name="about_objectbox">Java Database for Mobile &amp; IoT - fast and lightweight.</string>
     <string name="page_indicator">InkPageIndicator</string>
     <string name="about_page_indicator">nickbutcher for Plaid https://github.com/nickbutcher/plaid에 의해 만들어 지고 David Pacioianu for API 14+ (4.0+).에 의하여 백포팅 됨</string>
     <string name="circular_progress_view">CircularProgressView</string>

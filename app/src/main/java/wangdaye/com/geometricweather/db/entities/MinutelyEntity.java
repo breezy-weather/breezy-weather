@@ -1,9 +1,8 @@
 package wangdaye.com.geometricweather.db.entities;
 
-import org.greenrobot.greendao.annotation.Convert;
-import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Generated;
-import org.greenrobot.greendao.annotation.Id;
+import io.objectbox.annotation.Convert;
+import io.objectbox.annotation.Entity;
+import io.objectbox.annotation.Id;
 
 import java.util.Date;
 
@@ -28,13 +27,13 @@ public class MinutelyEntity {
     public boolean daylight;
 
     public String weatherText;
-    @Convert(converter = WeatherCodeConverter.class, columnType = String.class)
+    @Convert(converter = WeatherCodeConverter.class, dbType = String.class)
     public WeatherCode weatherCode;
 
     public int minuteInterval;
     public Integer dbz;
     public Integer cloudCover;
-    @Generated(hash = 1731751090)
+    
     public MinutelyEntity(Long id, String cityId, String weatherSource, Date date,
             long time, boolean daylight, String weatherText,
             WeatherCode weatherCode, int minuteInterval, Integer dbz,
@@ -51,7 +50,7 @@ public class MinutelyEntity {
         this.dbz = dbz;
         this.cloudCover = cloudCover;
     }
-    @Generated(hash = 1145714267)
+    
     public MinutelyEntity() {
     }
     public Long getId() {

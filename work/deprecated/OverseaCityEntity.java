@@ -3,8 +3,8 @@ package wangdaye.com.geometricweather.basic.deprecated;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
-import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Id;
+import io.objectbox.annotation.Entity;
+import io.objectbox.annotation.Id;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,6 @@ import java.util.List;
 import wangdaye.com.geometricweather.basic.model.Location;
 import wangdaye.com.geometricweather.network.result.cityList.OverseaCityListResult;
 
-import org.greenrobot.greendao.annotation.Generated;
 */
 /**
  * Oversea city entity.
@@ -33,7 +32,7 @@ public class OverseaCityEntity {
     public String lat;
     public String lon;
 
-    @Generated(hash = 610934963)
+    
     public OverseaCityEntity(Long id, String cityId, String cityEn, String cityZh, String continent,
             String countryCode, String countryEn, String lat, String lon) {
         this.id = id;
@@ -47,7 +46,7 @@ public class OverseaCityEntity {
         this.lon = lon;
     }
 
-    @Generated(hash = 2094011740)
+    
     public OverseaCityEntity() {
     }
 */
@@ -64,7 +63,7 @@ public class OverseaCityEntity {
         new DaoMaster(database)
                 .newSession()
                 .getOverseaCityEntityDao()
-                .insertInTx(result.city_info);
+                .put(result.city_info);
     }
 
     public static boolean isNeedWriteData(SQLiteDatabase database) {
@@ -81,7 +80,7 @@ public class OverseaCityEntity {
         new DaoMaster(database)
                 .newSession()
                 .getOverseaCityEntityDao()
-                .deleteAll();
+                .removeAll();
     }
 
     // search.

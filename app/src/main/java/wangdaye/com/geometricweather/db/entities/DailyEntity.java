@@ -1,9 +1,8 @@
 package wangdaye.com.geometricweather.db.entities;
 
-import org.greenrobot.greendao.annotation.Convert;
-import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Generated;
-import org.greenrobot.greendao.annotation.Id;
+import io.objectbox.annotation.Convert;
+import io.objectbox.annotation.Entity;
+import io.objectbox.annotation.Id;
 
 import java.util.Date;
 
@@ -31,7 +30,7 @@ public class DailyEntity {
     // daytime.
     public String daytimeWeatherText;
     public String daytimeWeatherPhase;
-    @Convert(converter = WeatherCodeConverter.class, columnType = String.class)
+    @Convert(converter = WeatherCodeConverter.class, dbType = String.class)
     public WeatherCode daytimeWeatherCode;
 
     public int daytimeTemperature;
@@ -61,7 +60,7 @@ public class DailyEntity {
     public Float daytimeIcePrecipitationDuration;
 
     public String daytimeWindDirection;
-    @Convert(converter = WindDegreeConverter.class, columnType = Float.class)
+    @Convert(converter = WindDegreeConverter.class, dbType = Float.class)
     public WindDegree daytimeWindDegree;
     public Float daytimeWindSpeed;
     public String daytimeWindLevel;
@@ -71,7 +70,7 @@ public class DailyEntity {
     // nighttime.
     public String nighttimeWeatherText;
     public String nighttimeWeatherPhase;
-    @Convert(converter = WeatherCodeConverter.class, columnType = String.class)
+    @Convert(converter = WeatherCodeConverter.class, dbType = String.class)
     public WeatherCode nighttimeWeatherCode;
 
     public int nighttimeTemperature;
@@ -101,7 +100,7 @@ public class DailyEntity {
     public Float nighttimeIcePrecipitationDuration;
 
     public String nighttimeWindDirection;
-    @Convert(converter = WindDegreeConverter.class, columnType = Float.class)
+    @Convert(converter = WindDegreeConverter.class, dbType = Float.class)
     public WindDegree nighttimeWindDegree;
     public Float nighttimeWindSpeed;
     public String nighttimeWindLevel;
@@ -151,7 +150,7 @@ public class DailyEntity {
 
     public float hoursOfSun;
 
-    @Generated(hash = 1727023126)
+    
     public DailyEntity(Long id, String cityId, String weatherSource, Date date,
             long time, String daytimeWeatherText, String daytimeWeatherPhase,
             WeatherCode daytimeWeatherCode, int daytimeTemperature,
@@ -304,7 +303,7 @@ public class DailyEntity {
         this.hoursOfSun = hoursOfSun;
     }
 
-    @Generated(hash = 1809948821)
+    
     public DailyEntity() {
     }
 

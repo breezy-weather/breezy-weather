@@ -4,42 +4,42 @@ import androidx.annotation.NonNull;
 
 import java.util.List;
 
+import io.objectbox.BoxStore;
+import io.objectbox.query.Query;
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
 import wangdaye.com.geometricweather.db.converters.WeatherSourceConverter;
-import wangdaye.com.geometricweather.db.entities.DaoSession;
 import wangdaye.com.geometricweather.db.entities.HourlyEntity;
-import wangdaye.com.geometricweather.db.entities.HourlyEntityDao;
+import wangdaye.com.geometricweather.db.entities.HourlyEntity_;
 
-public class HourlyEntityController extends AbsEntityController {
+public class HourlyEntityController {
 
     // insert.
 
-    public static void insertHourlyList(@NonNull DaoSession session,
+    public static void insertHourlyList(@NonNull BoxStore boxStore,
                                         @NonNull List<HourlyEntity> entityList) {
-        session.getHourlyEntityDao().insertInTx(entityList);
+        boxStore.boxFor(HourlyEntity.class).put(entityList);
     }
 
     // delete.
 
-    public static void deleteHourlyEntityList(@NonNull DaoSession session,
+    public static void deleteHourlyEntityList(@NonNull BoxStore boxStore,
                                               @NonNull List<HourlyEntity> entityList) {
-        session.getHourlyEntityDao().deleteInTx(entityList);
+        boxStore.boxFor(HourlyEntity.class).remove(entityList);
     }
 
     // select.
 
-    public static List<HourlyEntity> selectHourlyEntityList(@NonNull DaoSession session,
+    public static List<HourlyEntity> selectHourlyEntityList(@NonNull BoxStore boxStore,
                                                             @NonNull String cityId,
                                                             @NonNull WeatherSource source) {
-        return getNonNullList(
-                session.getHourlyEntityDao()
-                        .queryBuilder()
-                        .where(
-                                HourlyEntityDao.Properties.CityId.eq(cityId),
-                                HourlyEntityDao.Properties.WeatherSource.eq(
-                                        new WeatherSourceConverter().convertToDatabaseValue(source)
-                                )
-                        ).list()
-        );
+        Query<HourlyEntity> query = boxStore.boxFor(HourlyEntity.class)
+                .query(HourlyEntity_.cityId.equal(cityId)
+                        .and(HourlyEntity_.weatherSource.equal(
+                                new WeatherSourceConverter().convertToDatabaseValue(source)
+                        ))
+                ).build();
+        List<HourlyEntity> results = query.find();
+        query.close();
+        return results;
     }
 }

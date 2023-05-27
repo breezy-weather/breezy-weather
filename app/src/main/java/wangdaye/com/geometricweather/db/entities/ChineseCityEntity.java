@@ -1,8 +1,7 @@
 package wangdaye.com.geometricweather.db.entities;
 
-import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Generated;
-import org.greenrobot.greendao.annotation.Id;
+import io.objectbox.annotation.Entity;
+import io.objectbox.annotation.Id;
 
 import wangdaye.com.geometricweather.common.basic.models.ChineseCity;
 
@@ -24,7 +23,7 @@ public class ChineseCityEntity {
     public String latitude;
     public String longitude;
 
-    @Generated(hash = 787683596)
+    
     public ChineseCityEntity(Long id, String cityId, String province, String city,
             String district, String latitude, String longitude) {
         this.id = id;
@@ -35,7 +34,7 @@ public class ChineseCityEntity {
         this.latitude = latitude;
         this.longitude = longitude;
     }
-    @Generated(hash = 1803922116)
+    
     public ChineseCityEntity() {
     }
     public Long getId() {
