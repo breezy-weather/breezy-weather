@@ -19,6 +19,9 @@ import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.util.Pair;
 
+import java.net.URISyntaxException;
+
+import wangdaye.com.geometricweather.BuildConfig;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.polling.services.basic.AwakeForegroundUpdateService;
 import wangdaye.com.geometricweather.common.basic.models.Location;
@@ -239,6 +242,15 @@ public class IntentHelper {
             context.startActivity(intent);
         } else {
             SnackbarHelper.showSnackbar("Unavailable e-mail.");
+        }
+    }
+
+    public static void startAlipayActivity(Activity activity, String payCode) {
+        try {
+            Intent intent = Intent.parseUri(BuildConfig.ALIPAY_URL.replace("{payCode}", payCode), Intent.URI_INTENT_SCHEME);
+            activity.startActivity(intent);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
         }
     }
 

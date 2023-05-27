@@ -40,26 +40,27 @@ android {
         }
     }
     buildTypes.each {
-        it.buildConfigField "String", "CN_WEATHER_BASE_URL", CN_WEATHER_BASE_URL
-        it.buildConfigField "String", "CAIYUN_WEATHER_BASE_URL", CAIYUN_WEATHER_BASE_URL
+        it.buildConfigField "String", "ACCU_AQI_KEY", ACCU_AQI_KEY
+        it.buildConfigField "String", "ACCU_CURRENT_KEY", ACCU_CURRENT_KEY
         it.buildConfigField "String", "ACCU_WEATHER_BASE_URL", ACCU_WEATHER_BASE_URL
         it.buildConfigField "String", "ACCU_WEATHER_KEY", ACCU_WEATHER_KEY
-        it.buildConfigField "String", "ACCU_CURRENT_KEY", ACCU_CURRENT_KEY
-        it.buildConfigField "String", "ACCU_AQI_KEY", ACCU_AQI_KEY
-        it.buildConfigField "String", "OWM_KEY", OWM_KEY
-        it.buildConfigField "String", "OWM_BASE_URL", OWM_BASE_URL
-        it.buildConfigField "String", "BAIDU_IP_LOCATION_BASE_URL", BAIDU_IP_LOCATION_BASE_URL
+        it.buildConfigField "String", "ALIPAY_URL", ALIPAY_URL
         it.buildConfigField "String", "BAIDU_IP_LOCATION_AK", BAIDU_IP_LOCATION_AK
-        it.buildConfigField "String", "MF_WSFT_KEY", MF_WSFT_KEY
-        it.buildConfigField "String", "MF_WSFT_JWT_KEY", MF_WSFT_JWT_KEY
-        it.buildConfigField "String", "MF_WSFT_BASE_URL", MF_WSFT_BASE_URL
+        it.buildConfigField "String", "BAIDU_IP_LOCATION_BASE_URL", BAIDU_IP_LOCATION_BASE_URL
+        it.buildConfigField "String", "CAIYUN_WEATHER_BASE_URL", CAIYUN_WEATHER_BASE_URL
+        it.buildConfigField "String", "CN_WEATHER_BASE_URL", CN_WEATHER_BASE_URL
         it.buildConfigField "String", "IQA_AIR_PARIF_KEY", IQA_AIR_PARIF_KEY
         it.buildConfigField "String", "IQA_AIR_PARIF_URL", IQA_AIR_PARIF_URL
         it.buildConfigField "String", "IQA_ATMO_AURA_KEY", IQA_ATMO_AURA_KEY
         it.buildConfigField "String", "IQA_ATMO_AURA_URL", IQA_ATMO_AURA_URL
         it.buildConfigField "String", "IQA_ATMO_SUD_URL", IQA_ATMO_SUD_URL
         it.buildConfigField "String", "METNO_BASE_URL", METNO_BASE_URL
+        it.buildConfigField "String", "MF_WSFT_BASE_URL", MF_WSFT_BASE_URL
+        it.buildConfigField "String", "MF_WSFT_JWT_KEY", MF_WSFT_JWT_KEY
+        it.buildConfigField "String", "MF_WSFT_KEY", MF_WSFT_KEY
         it.buildConfigField "String", "NOMINATIM_BASE_URL", NOMINATIM_BASE_URL
+        it.buildConfigField "String", "OWM_BASE_URL", OWM_BASE_URL
+        it.buildConfigField "String", "OWM_KEY", OWM_KEY
     }
     sourceSets {
         pub {
@@ -256,14 +257,12 @@ dependencies {
 
     // ui.
     implementation "com.github.rahatarmanahmed:circularprogressview:2.5.0"
-    implementation "com.jaredrummler:colorpicker:1.1.0"
-    implementation "com.github.woxingxiao:BubbleSeekBar:3.20-lite"
-    implementation "me.jfenn:AdaptiveIconView:0.0.1"
+    implementation "com.github.papjul:BubbleSeekBar:v3.52"
+    implementation "com.github.papjul:AdaptiveIconView:v0.0.3"
     implementation "com.github.turing-tech:MaterialScrollBar:13.4.3a"
     implementation "com.gordonwong:material-sheet-fab:1.2.1"
     implementation "androidx.activity:activity-ktx:1.7.2"
 
     // utils.
     implementation "com.xhinliang:LunarCalendar:4.0.7"
-    implementation "com.github.didikee:AndroidDonate:0.1.0"
 }

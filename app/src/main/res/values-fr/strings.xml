@@ -185,7 +185,7 @@
     <string name="feedback_text_size">Taille du texte</string>
     <string name="feedback_clock_font">Police de l’horloge</string>
     <string name="feedback_hide_lunar">Masquer le calendrier lunaire</string>
-    <string name="feedback_align_end">Aligner à la fin</string>
+    <string name="feedback_align_end">Aligner à droite</string>
     <string name="feedback_custom_subtitle_explanation">Vous pouvez saisir n’importe quoi, mais faites attention à la longueur du texte. Si vous voulez citer des données météo, veuillez utiliser $ pour référencer le mot-clé correspond.\n\nPar example, \"current weather = $cw$\" sera affiché \"current weather = Ensoleillé\".</string>
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
