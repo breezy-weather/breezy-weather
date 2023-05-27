@@ -21,7 +21,7 @@
     <!-- Dark mode. -->
     <string-array name="dark_modes">
         <item>Αυτόματο</item>
-        <item>Βάση συστήματος</item>
+        <item>Βάσει συστήματος</item>
         <item>Πάντα φωτεινό</item>
         <item>Πάντα σκοτεινό</item>
     </string-array>
