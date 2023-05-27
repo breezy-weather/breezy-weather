@@ -99,7 +99,7 @@ public class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter {
             mPolylineAndHistogramView.setLineColors(
                     themeColors[lightTheme ? 1 : 2],
                     themeColors[2],
-                    MainThemeColorProvider.getColor(location, R.attr.colorOutline)
+                    MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
             );
             mPolylineAndHistogramView.setShadowColors(
                     themeColors[lightTheme ? 1 : 2],

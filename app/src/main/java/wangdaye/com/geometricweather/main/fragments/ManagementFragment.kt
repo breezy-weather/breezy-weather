@@ -180,13 +180,13 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
         binding.recyclerView.setBackgroundColor(
             MainThemeColorProvider.getColor(
                 lightTheme = lightTheme,
-                id = R.attr.colorSurfaceVariant
+                id = com.google.android.material.R.attr.colorSurfaceVariant
             )
         )
         binding.searchBar.setCardBackgroundColor(
             MainThemeColorProvider.getColor(
                 lightTheme = lightTheme,
-                id = R.attr.colorSurface
+                id = com.google.android.material.R.attr.colorSurface
             )
         )
 
@@ -204,7 +204,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
             ColorStateList.valueOf(
                 MainThemeColorProvider.getColor(
                     lightTheme = lightTheme,
-                    id = R.attr.colorPrimary
+                    id = androidx.appcompat.R.attr.colorPrimary
                 )
             )
         )
@@ -230,13 +230,13 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                 ColorUtils.setAlphaComponent(
                     MainThemeColorProvider.getColor(
                         lightTheme = lightTheme,
-                        id = R.attr.colorPrimary
+                        id = androidx.appcompat.R.attr.colorPrimary
                     ),
                     (255 * 0.2 * ratio).toInt()
                 ),
                 MainThemeColorProvider.getColor(
                     lightTheme = lightTheme,
-                    id = R.attr.colorSurfaceVariant
+                    id = com.google.android.material.R.attr.colorSurfaceVariant
                 )
             )
         )

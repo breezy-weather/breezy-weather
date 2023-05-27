@@ -104,13 +104,13 @@ class DailyViewHolder(
             tagView.layoutManager = TrendHorizontalLinearLayoutManager(context)
             tagView.adapter = TagAdapter(
                 tagList,
-                getColor(location, R.attr.colorOnPrimary),
-                getColor(location, R.attr.colorOnSurface),
-                getColor(location, R.attr.colorPrimary),
+                getColor(location, com.google.android.material.R.attr.colorOnPrimary),
+                getColor(location, com.google.android.material.R.attr.colorOnSurface),
+                getColor(location, androidx.appcompat.R.attr.colorPrimary),
                 DisplayUtils.getWidgetSurfaceColor(
                     DisplayUtils.DEFAULT_CARD_LIST_ITEM_ELEVATION_DP,
-                    getColor(location, R.attr.colorPrimary),
-                    getColor(location, R.attr.colorSurface)
+                    getColor(location, androidx.appcompat.R.attr.colorPrimary),
+                    getColor(location, com.google.android.material.R.attr.colorSurface)
                 ),
                 { _, _, newPosition ->
                     trendAdapter.selectedIndex = newPosition
@@ -123,7 +123,7 @@ class DailyViewHolder(
             context,
             if (DisplayUtils.isLandscape(context)) 7 else 5
         )
-        trendRecyclerView.setLineColor(getColor(location, R.attr.colorOutline))
+        trendRecyclerView.setLineColor(getColor(location, com.google.android.material.R.attr.colorOutline))
         trendRecyclerView.adapter = trendAdapter
         trendRecyclerView.setKeyLineVisibility(
             SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled

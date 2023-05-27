@@ -88,7 +88,7 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
                     ContextCompat.getColor(context, R.color.colorLevel_1),
                     MainThemeColorProvider.isLightTheme(context, location)
             );
-            mProgress.setArcBackgroundColor(MainThemeColorProvider.getColor(location, R.attr.colorOutline));
+            mProgress.setArcBackgroundColor(MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline));
         } else {
             int aqiColor = weather.getCurrent().getAirQuality().getAqiColor(mProgress.getContext());
             mProgress.setProgress(mAqiIndex);
@@ -135,7 +135,7 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
                     new ArgbEvaluator(),
                     MainThemeColorProvider.getColor(
                             mLocation.isDaylight(),
-                            R.attr.colorOutline
+                            com.google.android.material.R.attr.colorOutline
                     ),
                     ColorUtils.setAlphaComponent(aqiColor, (int) (255 * 0.1))
             );

@@ -80,7 +80,7 @@ public class HourlyWindAdapter extends AbsHourlyTrendAdapter {
             mPolylineAndHistogramView.setLineColors(
                     daytimeWindColor,
                     daytimeWindColor,
-                    MainThemeColorProvider.getColor(location, R.attr.colorOutline)
+                    MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
             );
             mPolylineAndHistogramView.setTextColors(
                     MainThemeColorProvider.getColor(location, R.attr.colorTitleText),

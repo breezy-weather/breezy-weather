@@ -65,7 +65,7 @@ public class HourlyUVAdapter extends AbsHourlyTrendAdapter {
             mPolylineAndHistogramView.setLineColors(
                     hourly.getUV().getUVColor(activity),
                     hourly.getUV().getUVColor(activity),
-                    MainThemeColorProvider.getColor(location, R.attr.colorOutline)
+                    MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
             );
             int[] themeColors = ThemeManager
                     .getInstance(itemView.getContext())

@@ -110,7 +110,7 @@ fun TimePickerPreferenceView(
                         val timePicker = TimePicker(
                             context,
                             null,
-                            R.style.Widget_Material3_MaterialTimePicker
+                            com.google.android.material.R.style.Widget_Material3_MaterialTimePicker
                         )
                         timePicker.setIs24HourView(true)
                         timePicker.setOnTimeChangedListener { _, hour, minute ->

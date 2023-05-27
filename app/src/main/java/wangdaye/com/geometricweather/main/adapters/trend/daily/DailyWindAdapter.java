@@ -84,7 +84,7 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter {
             mDoubleHistogramView.setLineColors(
                     daytimeWindColor,
                     nighttimeWindColor,
-                    MainThemeColorProvider.getColor(location, R.attr.colorOutline)
+                    MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
             );
             mDoubleHistogramView.setTextColors(
                     MainThemeColorProvider.getColor(location, R.attr.colorBodyText)

@@ -120,13 +120,13 @@ class HourlyViewHolder(
             tagView.layoutManager = TrendHorizontalLinearLayoutManager(context)
             tagView.adapter = TagAdapter(
                 tagList,
-                getColor(location, R.attr.colorOnPrimary),
-                getColor(location, R.attr.colorOnSurface),
-                getColor(location, R.attr.colorPrimary),
+                getColor(location, com.google.android.material.R.attr.colorOnPrimary),
+                getColor(location, com.google.android.material.R.attr.colorOnSurface),
+                getColor(location, androidx.appcompat.R.attr.colorPrimary),
                 DisplayUtils.getWidgetSurfaceColor(
                     DisplayUtils.DEFAULT_CARD_LIST_ITEM_ELEVATION_DP,
-                    getColor(location, R.attr.colorPrimary),
-                    getColor(location, R.attr.colorSurface)
+                    getColor(location, androidx.appcompat.R.attr.colorPrimary),
+                    getColor(location, com.google.android.material.R.attr.colorSurface)
                 ),
                 { _, _, newPosition: Int ->
                     trendAdapter.selectedIndex = newPosition
@@ -140,7 +140,7 @@ class HourlyViewHolder(
             context,
             if (DisplayUtils.isLandscape(context)) 7 else 5
         )
-        trendRecyclerView.setLineColor(getColor(location, R.attr.colorOutline))
+        trendRecyclerView.setLineColor(getColor(location, com.google.android.material.R.attr.colorOutline))
         trendRecyclerView.adapter = trendAdapter
         trendRecyclerView.setKeyLineVisibility(
             SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled
@@ -184,15 +184,15 @@ class HourlyViewHolder(
                 WeatherViewController.getWeatherKind(weather),
                 location.isDaylight
             )[0]
-        precipitationBar.subLineColor = getColor(location, R.attr.colorOutline)
-        precipitationBar.highlightColor = getColor(location, R.attr.colorPrimary)
+        precipitationBar.subLineColor = getColor(location, com.google.android.material.R.attr.colorOutline)
+        precipitationBar.highlightColor = getColor(location, androidx.appcompat.R.attr.colorPrimary)
         precipitationBar.setShadowColors(colors[0], colors[1], isLightTheme(itemView.context, location))
 
         minutelyStartText.setTextColor(getColor(location, R.attr.colorBodyText))
         minutelyCenterText.setTextColor(getColor(location, R.attr.colorBodyText))
         minutelyEndText.setTextColor(getColor(location, R.attr.colorBodyText))
 
-        minutelyStartLine.setBackgroundColor(getColor(location, R.attr.colorOutline))
-        minutelyEndLine.setBackgroundColor(getColor(location, R.attr.colorOutline))
+        minutelyStartLine.setBackgroundColor(getColor(location, com.google.android.material.R.attr.colorOutline))
+        minutelyEndLine.setBackgroundColor(getColor(location, com.google.android.material.R.attr.colorOutline))
     }
 }

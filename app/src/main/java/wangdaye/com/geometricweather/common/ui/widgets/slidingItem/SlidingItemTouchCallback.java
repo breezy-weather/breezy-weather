@@ -9,8 +9,6 @@ import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import wangdaye.com.geometricweather.R;
-
 public abstract class SlidingItemTouchCallback extends ItemTouchHelper.Callback {
 
     @Override
@@ -39,12 +37,12 @@ public abstract class SlidingItemTouchCallback extends ItemTouchHelper.Callback 
         SlidingItemContainerLayout slidingContainer = findSlidingContainer(viewHolder);
 
         if (isCurrentlyActive) {
-            Object originalElevation = slidingContainer.getTag(R.id.item_touch_helper_previous_elevation);
+            Object originalElevation = slidingContainer.getTag(androidx.viewpager2.R.id.item_touch_helper_previous_elevation);
             if (originalElevation == null) {
                 originalElevation = ViewCompat.getElevation(slidingContainer);
                 float newElevation = 1.0F + findMaxElevation(recyclerView, slidingContainer);
                 ViewCompat.setElevation(slidingContainer, newElevation);
-                slidingContainer.setTag(R.id.item_touch_helper_previous_elevation, originalElevation);
+                slidingContainer.setTag(androidx.viewpager2.R.id.item_touch_helper_previous_elevation, originalElevation);
             }
         }
 

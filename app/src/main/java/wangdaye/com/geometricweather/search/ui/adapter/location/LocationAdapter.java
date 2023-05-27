@@ -15,7 +15,6 @@ import com.turingtechnologies.materialscrollbar.ICustomAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.ui.adapters.SyncListAdapter;
 import wangdaye.com.geometricweather.databinding.ItemLocationCardBinding;
@@ -56,8 +55,8 @@ public class LocationAdapter extends SyncListAdapter<LocationModel, LocationHold
         });
         mContext = context;
         mClickListener = clickListener;
-        primaryColor = ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorPrimary);
-        surfaceColor = ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorSurface);
+        primaryColor = ThemeManager.getInstance(context).getThemeColor(context, androidx.appcompat.R.attr.colorPrimary);
+        surfaceColor = ThemeManager.getInstance(context).getThemeColor(context, com.google.android.material.R.attr.colorSurface);
 
         update(locationList);
     }

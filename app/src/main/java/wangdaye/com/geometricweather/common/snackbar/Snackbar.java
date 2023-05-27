@@ -433,8 +433,8 @@ public final class Snackbar {
 
             mWindowInsets = new Rect();
 
-            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SnackbarLayout);
-            mMaxWidth = a.getDimensionPixelSize(R.styleable.SnackbarLayout_android_maxWidth, -1);
+            TypedArray a = context.obtainStyledAttributes(attrs, com.google.android.material.R.styleable.SnackbarLayout);
+            mMaxWidth = a.getDimensionPixelSize(com.google.android.material.R.styleable.SnackbarLayout_android_maxWidth, -1);
             a.recycle();
 
             setClickable(true);

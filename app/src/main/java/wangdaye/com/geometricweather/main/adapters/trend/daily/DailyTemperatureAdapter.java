@@ -109,7 +109,7 @@ public class DailyTemperatureAdapter extends AbsDailyTrendAdapter {
             mPolylineAndHistogramView.setLineColors(
                     themeColors[1],
                     themeColors[2],
-                    MainThemeColorProvider.getColor(location, R.attr.colorOutline)
+                    MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
             );
             mPolylineAndHistogramView.setShadowColors(
                     themeColors[1],

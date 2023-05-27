@@ -157,9 +157,9 @@ public class SearchActivity extends GeoActivity
     private void initView() {
         int[] colors = ThemeManager.getInstance(this).getThemeColors(
                 this, new int[]{
-                        R.attr.colorOutline,
-                        R.attr.colorSurfaceVariant,
-                        R.attr.colorPrimary,
+                        com.google.android.material.R.attr.colorOutline,
+                        com.google.android.material.R.attr.colorSurfaceVariant,
+                        androidx.appcompat.R.attr.colorPrimary,
                 }
         );
 

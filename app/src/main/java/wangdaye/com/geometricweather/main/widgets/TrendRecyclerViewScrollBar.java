@@ -39,7 +39,7 @@ public class TrendRecyclerViewScrollBar extends RecyclerView.ItemDecoration {
 //                        ? Color.argb((int) (0.02 * 255), 0, 0, 0)
 //                        : Color.argb((int) (0.08 * 255), 0, 0, 0),
                 ColorUtils.setAlphaComponent(
-                        MainThemeColorProvider.getColor(location, R.attr.colorPrimary),
+                        MainThemeColorProvider.getColor(location, androidx.appcompat.R.attr.colorPrimary),
                         (int) (0.05 * 255)
                 ),
                 MainThemeColorProvider.getColor(location, R.attr.colorMainCardBackground)

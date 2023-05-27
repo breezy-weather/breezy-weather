@@ -40,8 +40,8 @@ public class LocationHolder extends RecyclerView.ViewHolder {
 
         int elevatedSurfaceColor = DisplayUtils.getWidgetSurfaceColor(
                 DisplayUtils.DEFAULT_CARD_LIST_ITEM_ELEVATION_DP,
-                MainThemeColorProvider.getColor(lightTheme, R.attr.colorPrimary),
-                MainThemeColorProvider.getColor(lightTheme, R.attr.colorSurface)
+                MainThemeColorProvider.getColor(lightTheme, androidx.appcompat.R.attr.colorPrimary),
+                MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorSurface)
         );
 
         if (model.selected) {
@@ -73,33 +73,33 @@ public class LocationHolder extends RecyclerView.ViewHolder {
         }
 
         mBinding.container.setBackgroundColorStart(
-                MainThemeColorProvider.getColor(lightTheme, R.attr.colorErrorContainer)
+                MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorErrorContainer)
         );
         mBinding.container.setBackgroundColorEnd(
                 model.location.isCurrentPosition()
-                        ? MainThemeColorProvider.getColor(lightTheme, R.attr.colorTertiaryContainer)
-                        : MainThemeColorProvider.getColor(lightTheme, R.attr.colorSecondaryContainer)
+                        ? MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorTertiaryContainer)
+                        : MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorSecondaryContainer)
         );
 
         mBinding.container.setTintColorStart(
-                MainThemeColorProvider.getColor(lightTheme, R.attr.colorOnErrorContainer)
+                MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorOnErrorContainer)
         );
         mBinding.container.setTintColorEnd(
                 model.location.isCurrentPosition()
-                        ? MainThemeColorProvider.getColor(lightTheme, R.attr.colorOnTertiaryContainer)
-                        : MainThemeColorProvider.getColor(lightTheme, R.attr.colorOnSecondaryContainer)
+                        ? MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorOnTertiaryContainer)
+                        : MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorOnSecondaryContainer)
         );
 
         mBinding.item.setBackgroundColor(
                 model.selected ? DisplayUtils.blendColor(
                         ColorUtils.setAlphaComponent(elevatedSurfaceColor, (int) (255 * 0.5)),
-                        MainThemeColorProvider.getColor(lightTheme, R.attr.colorSurfaceVariant)
+                        MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorSurfaceVariant)
                 ) : elevatedSurfaceColor
         );
         ImageViewCompat.setImageTintList(
                 mBinding.sortButton,
                 ColorStateList.valueOf(
-                        MainThemeColorProvider.getColor(lightTheme, R.attr.colorPrimary)
+                        MainThemeColorProvider.getColor(lightTheme, androidx.appcompat.R.attr.colorPrimary)
                 )
         );
         if (mDragListener == null) {
@@ -127,7 +127,7 @@ public class LocationHolder extends RecyclerView.ViewHolder {
 
         mBinding.title1.setTextColor(
                 model.selected
-                        ? MainThemeColorProvider.getColor(lightTheme, R.attr.colorOnPrimaryContainer)
+                        ? MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorOnPrimaryContainer)
                         : MainThemeColorProvider.getColor(lightTheme, R.attr.colorTitleText)
         );
         mBinding.title1.setText(model.title1);

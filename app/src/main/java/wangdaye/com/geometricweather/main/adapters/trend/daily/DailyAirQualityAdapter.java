@@ -65,7 +65,7 @@ public class DailyAirQualityAdapter extends AbsDailyTrendAdapter {
             mPolylineAndHistogramView.setLineColors(
                     daily.getAirQuality().getAqiColor(activity),
                     daily.getAirQuality().getAqiColor(activity),
-                    MainThemeColorProvider.getColor(location, R.attr.colorOutline)
+                    MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
             );
             int[] themeColors = ThemeManager
                     .getInstance(itemView.getContext())

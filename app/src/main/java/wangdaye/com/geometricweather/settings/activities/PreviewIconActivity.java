@@ -189,8 +189,8 @@ public class PreviewIconActivity extends GeoActivity {
         toolbar.setBackgroundColor(
                 DisplayUtils.getWidgetSurfaceColor(
                         6f,
-                        ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorPrimary),
-                        ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorSurface)
+                        ThemeManager.getInstance(this).getThemeColor(this, androidx.appcompat.R.attr.colorPrimary),
+                        ThemeManager.getInstance(this).getThemeColor(this, com.google.android.material.R.attr.colorSurface)
                 )
         );
 

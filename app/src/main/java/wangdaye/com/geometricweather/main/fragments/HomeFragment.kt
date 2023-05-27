@@ -221,7 +221,7 @@ class HomeFragment : MainModuleFragment() {
         binding.refreshLayout.setProgressBackgroundColorSchemeColor(
             MainThemeColorProvider.getColor(
                 location = viewModel.currentLocation.value!!.location,
-                id = R.attr.colorSurface
+                id = com.google.android.material.R.attr.colorSurface
             )
         )
     }

@@ -102,8 +102,8 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
         mBinding.toolbar.setBackgroundColor(
                 DisplayUtils.getWidgetSurfaceColor(
                         6f,
-                        ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorPrimary),
-                        ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorSurface)
+                        ThemeManager.getInstance(this).getThemeColor(this, androidx.appcompat.R.attr.colorPrimary),
+                        ThemeManager.getInstance(this).getThemeColor(this, com.google.android.material.R.attr.colorSurface)
                 )
         );
         mBinding.toolbar.setNavigationOnClickListener(view -> finish());
@@ -124,7 +124,7 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
         mBinding.recyclerView.addItemDecoration(
                 new ListDecoration(
                 this,
-                        ThemeManager.getInstance(this).getThemeColor(this, R.attr.colorOutline)
+                        ThemeManager.getInstance(this).getThemeColor(this, com.google.android.material.R.attr.colorOutline)
                 )
         );
         mBinding.recyclerView.setAdapter(mDailyTrendDisplayAdapter);
@@ -152,10 +152,10 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
         }
         int[] colors = ThemeManager.getInstance(this).getThemeColors(
                 this, new int[] {
-                        R.attr.colorOnPrimaryContainer,
-                        R.attr.colorOnSecondaryContainer,
-                        R.attr.colorPrimaryContainer,
-                        R.attr.colorSecondaryContainer
+                        com.google.android.material.R.attr.colorOnPrimaryContainer,
+                        com.google.android.material.R.attr.colorOnSecondaryContainer,
+                        com.google.android.material.R.attr.colorPrimaryContainer,
+                        com.google.android.material.R.attr.colorSecondaryContainer
                 }
         );
         mTagAdapter = new TagAdapter(

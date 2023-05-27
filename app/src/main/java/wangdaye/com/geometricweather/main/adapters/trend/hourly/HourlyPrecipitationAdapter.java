@@ -82,7 +82,7 @@ public class HourlyPrecipitationAdapter extends AbsHourlyTrendAdapter {
             mPolylineAndHistogramView.setLineColors(
                     hourly.getPrecipitation().getPrecipitationColor(activity),
                     hourly.getPrecipitation().getPrecipitationColor(activity),
-                    MainThemeColorProvider.getColor(location, R.attr.colorOutline)
+                    MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
             );
             int[] themeColors = ThemeManager
                     .getInstance(itemView.getContext())

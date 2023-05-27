@@ -118,7 +118,7 @@ public class FirstCardHeaderController
                 alert.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText));
 
                 line.setVisibility(View.VISIBLE);
-                line.setBackgroundColor(MainThemeColorProvider.getColor(location, R.attr.colorSurface));
+                line.setBackgroundColor(MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorSurface));
             }
             alert.setOnClickListener(this);
         }

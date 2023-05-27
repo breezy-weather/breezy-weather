@@ -16,35 +16,35 @@ import wangdaye.com.geometricweather.settings.SettingsManager
 import wangdaye.com.geometricweather.theme.ThemeManager
 
 private val preloadAttrIds = intArrayOf(
-    R.attr.colorPrimary,
-    R.attr.colorOnPrimary,
-    R.attr.colorPrimaryContainer,
-    R.attr.colorOnPrimaryContainer,
+    androidx.appcompat.R.attr.colorPrimary,
+    com.google.android.material.R.attr.colorOnPrimary,
+    com.google.android.material.R.attr.colorPrimaryContainer,
+    com.google.android.material.R.attr.colorOnPrimaryContainer,
 
-    R.attr.colorSecondary,
-    R.attr.colorOnSecondary,
-    R.attr.colorSecondaryContainer,
-    R.attr.colorOnSecondaryContainer,
+    com.google.android.material.R.attr.colorSecondary,
+    com.google.android.material.R.attr.colorOnSecondary,
+    com.google.android.material.R.attr.colorSecondaryContainer,
+    com.google.android.material.R.attr.colorOnSecondaryContainer,
 
-    R.attr.colorTertiary,
-    R.attr.colorOnTertiary,
-    R.attr.colorTertiaryContainer,
-    R.attr.colorOnTertiaryContainer,
+    com.google.android.material.R.attr.colorTertiary,
+    com.google.android.material.R.attr.colorOnTertiary,
+    com.google.android.material.R.attr.colorTertiaryContainer,
+    com.google.android.material.R.attr.colorOnTertiaryContainer,
 
-    R.attr.colorTertiary,
-    R.attr.colorErrorContainer,
-    R.attr.colorOnError,
-    R.attr.colorOnErrorContainer,
+    com.google.android.material.R.attr.colorTertiary,
+    com.google.android.material.R.attr.colorErrorContainer,
+    com.google.android.material.R.attr.colorOnError,
+    com.google.android.material.R.attr.colorOnErrorContainer,
 
     android.R.attr.colorBackground,
-    R.attr.colorOnBackground,
+    com.google.android.material.R.attr.colorOnBackground,
 
-    R.attr.colorSurface,
-    R.attr.colorOnSurface,
-    R.attr.colorSurfaceVariant,
-    R.attr.colorOnSurfaceVariant,
+    com.google.android.material.R.attr.colorSurface,
+    com.google.android.material.R.attr.colorOnSurface,
+    com.google.android.material.R.attr.colorSurfaceVariant,
+    com.google.android.material.R.attr.colorOnSurfaceVariant,
 
-    R.attr.colorOutline,
+    com.google.android.material.R.attr.colorOutline,
 
     R.attr.colorTitleText,
     R.attr.colorBodyText,

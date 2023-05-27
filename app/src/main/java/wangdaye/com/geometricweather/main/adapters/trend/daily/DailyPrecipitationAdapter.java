@@ -87,7 +87,7 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter {
             mDoubleHistogramView.setLineColors(
                     daily.day().getPrecipitation().getPrecipitationColor(activity),
                     daily.night().getPrecipitation().getPrecipitationColor(activity),
-                    MainThemeColorProvider.getColor(location, R.attr.colorOutline)
+                    MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
             );
             mDoubleHistogramView.setTextColors(
                     MainThemeColorProvider.getColor(location, R.attr.colorBodyText)

@@ -93,7 +93,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
             if (mExecuteAnimation) {
                 mProgress.setProgress(0);
                 mProgress.setProgressColor(ContextCompat.getColor(context, R.color.colorLevel_1));
-                mProgress.setProgressBackgroundColor(MainThemeColorProvider.getColor(lightTheme, R.attr.colorOutline));
+                mProgress.setProgressBackgroundColor(MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorOutline));
             } else {
                 mProgress.setProgress((int) (100.0 * item.progress / item.max));
                 mProgress.setProgressColor(item.color);
@@ -118,7 +118,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
 
                 ValueAnimator backgroundColor = ValueAnimator.ofObject(
                         new ArgbEvaluator(),
-                        MainThemeColorProvider.getColor(mLightTheme, R.attr.colorOutline),
+                        MainThemeColorProvider.getColor(mLightTheme, com.google.android.material.R.attr.colorOutline),
                         ColorUtils.setAlphaComponent(mItem.color, (int) (255 * 0.1))
                 );
                 backgroundColor.addUpdateListener(animation ->
