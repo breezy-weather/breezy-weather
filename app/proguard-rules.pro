@@ -64,10 +64,10 @@
 }
 
 # AMap
--keep class com.amap.api.location.**{*;}
--keep class com.amap.api.fence.**{*;}
--keep class com.loc.**{*;}
--keep class com.autonavi.aps.amapapi.model.**{*;}
+-keep class com.amap.api.location.** { *; }
+-keep class com.amap.api.fence.** { *; }
+-keep class com.loc.** { *; }
+-keep class com.autonavi.aps.amapapi.model.** { *; }
 
 # Cyanogenmod
 -keep class cyanogenmod.** { *; }
@@ -75,10 +75,15 @@
 
 # Bugly
 -dontwarn com.tencent.bugly.**
--keep public class com.tencent.bugly.**{*;}
+-keep public class com.tencent.bugly.** { *; }
 
-## Material Sheet FAB
+# Material Sheet FAB
 -keep class io.codetail.animation.arcanimator.** { *; }
+
+# Retrofit (TODO: Fixed in v2.10.0, remove when released)
+# R8 full mode strips generic signatures from return types if not kept.
+-if interface * { @retrofit2.http.* public *** *(...); }
+-keep,allowoptimization,allowshrinking,allowobfuscation class <3>
 
 ##---------------Begin: proguard configuration for Gson  ----------
 # Gson uses generic type information stored in a class file when working with fields. Proguard
