@@ -30,7 +30,8 @@ android {
             shrinkResources true
             zipAlignEnabled true
             debuggable false
-            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            crunchPngs false // No need to do that, we already optimized them
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
 
             android.applicationVariants.all { variant ->
                 variant.outputs.all {
@@ -89,7 +90,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
         freeCompilerArgs += [
-                '-opt-in=androidx.compose.material3.ExperimentalMaterial3Api'
+                "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api"
         ]
     }
     composeOptions {
@@ -125,7 +126,7 @@ android {
         abortOnError false
         checkReleaseBuilds false
     }
-    namespace 'wangdaye.com.geometricweather'
+    namespace "wangdaye.com.geometricweather"
 }
 
 allprojects {
@@ -237,10 +238,10 @@ dependencies {
     implementation "com.google.code.gson:gson:2.10.1"
 
     // jwt
-    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
-    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
-    runtimeOnly('io.jsonwebtoken:jjwt-orgjson:0.11.5') {
-        exclude group: 'org.json', module: 'json' //provided by Android natively
+    implementation "io.jsonwebtoken:jjwt-api:0.11.5"
+    runtimeOnly "io.jsonwebtoken:jjwt-impl:0.11.5"
+    runtimeOnly("io.jsonwebtoken:jjwt-orgjson:0.11.5") {
+        exclude group: "org.json", module: "json" //provided by Android natively
     }
 
     // cm.
@@ -252,7 +253,7 @@ dependencies {
     pubImplementation "com.tencent.bugly:nativecrashreport:3.6.0.1"
 
     // rx java.
-    implementation 'io.reactivex.rxjava3:rxjava:3.1.6'
+    implementation "io.reactivex.rxjava3:rxjava:3.1.6"
     implementation "io.reactivex.rxjava3:rxandroid:3.0.2"
 
     // ui.
