@@ -66,7 +66,11 @@ public class AMapLocationService extends LocationService {
         option.setNeedAddress(true);
         option.setMockEnable(false);
         option.setLocationCacheEnable(false);
-        mAMAPClient = new AMapLocationClient(context.getApplicationContext());
+        try {
+            mAMAPClient = new AMapLocationClient(context.getApplicationContext());
+        } catch (Exception e) {
+            mLocationCallback.onCompleted(null);
+        }
         mAMAPClient.setLocationOption(option);
         mAMAPClient.setLocationListener(mAMAPListener);
 
