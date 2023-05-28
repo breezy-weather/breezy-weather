@@ -394,6 +394,7 @@
     <string name="settings_title_trend_horizontal_line_switch">Horizontal lines in trend</string>
     <string name="settings_title_exchange_day_night_temp_switch">Exchange day night temperature</string>
     <string name="settings_title_card_order">Card order</string>
+    <string name="settings_title_background_animation">Background animation</string>
     <string name="settings_title_gravity_sensor_switch">Gravity sensor</string>
     <string name="settings_title_list_animation_switch">List animation</string>
     <string name="settings_title_item_animation_switch">Item animation</string>

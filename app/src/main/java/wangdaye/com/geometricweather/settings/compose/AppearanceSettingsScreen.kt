@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import wangdaye.com.geometricweather.GeometricWeather.Companion.instance
 import wangdaye.com.geometricweather.R
+import wangdaye.com.geometricweather.common.basic.models.options.appearance.BackgroundAnimationMode
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.CardDisplay
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.DailyTrendDisplay
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.HourlyTrendDisplay
@@ -130,6 +131,19 @@ fun AppearanceSettingsScreen(
                 checked = SettingsManager.getInstance(context).isExchangeDayNightTempEnabled,
                 onValueChanged = {
                     SettingsManager.getInstance(context).isExchangeDayNightTempEnabled = it
+                },
+            )
+        }
+        listPreferenceItem(R.string.settings_title_background_animation) { id ->
+            ListPreferenceView(
+                titleId = id,
+                selectedKey = SettingsManager.getInstance(context).backgroundAnimationMode.id,
+                valueArrayId = R.array.background_animation_values,
+                nameArrayId = R.array.background_animation,
+                onValueChanged = {
+                    SettingsManager
+                        .getInstance(context)
+                        .backgroundAnimationMode = BackgroundAnimationMode.getInstance(it)
                 },
             )
         }

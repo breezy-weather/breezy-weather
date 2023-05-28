@@ -2,6 +2,7 @@ package wangdaye.com.geometricweather.main.fragments
 
 import android.animation.Animator
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
@@ -18,8 +19,11 @@ import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.GeoActivity
 import wangdaye.com.geometricweather.common.basic.livedata.EqualtableLiveData
 import wangdaye.com.geometricweather.common.basic.models.Location
+import wangdaye.com.geometricweather.common.basic.models.options.DarkMode
+import wangdaye.com.geometricweather.common.basic.models.options.appearance.BackgroundAnimationMode
 import wangdaye.com.geometricweather.common.ui.widgets.SwipeSwitchLayout
 import wangdaye.com.geometricweather.common.ui.widgets.SwipeSwitchLayout.OnSwitchListener
+import wangdaye.com.geometricweather.common.utils.DisplayUtils
 import wangdaye.com.geometricweather.databinding.FragmentHomeBinding
 import wangdaye.com.geometricweather.main.MainActivityViewModel
 import wangdaye.com.geometricweather.main.adapters.main.MainAdapter
@@ -81,9 +85,15 @@ class HomeFragment : MainModuleFragment() {
         return binding.root
     }
 
+    private fun isBackgroundAnimationEnabled() = when (SettingsManager.getInstance(requireContext()).backgroundAnimationMode) {
+        BackgroundAnimationMode.SYSTEM -> !DisplayUtils.isMotionReduced(requireContext())
+        BackgroundAnimationMode.ENABLED -> true
+        BackgroundAnimationMode.DISABLED -> false
+    }
+
     override fun onResume() {
         super.onResume()
-        weatherView.setDrawable(!isHidden)
+        weatherView.setDrawable(isBackgroundAnimationEnabled() && !isHidden)
     }
 
     override fun onPause() {
@@ -100,7 +110,7 @@ class HomeFragment : MainModuleFragment() {
 
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
-        weatherView.setDrawable(!hidden)
+        weatherView.setDrawable(isBackgroundAnimationEnabled() && !hidden)
     }
 
     override fun setSystemBarStyle() {

@@ -13,6 +13,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.media.ThumbnailUtils;
 import android.os.Build;
+import android.provider.Settings;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.view.Window;
@@ -28,6 +29,8 @@ import androidx.annotation.StyleRes;
 import androidx.core.graphics.ColorUtils;
 
 import com.google.android.material.resources.TextAppearance;
+
+import org.jetbrains.annotations.NotNull;
 
 public class DisplayUtils {
 
@@ -142,6 +145,16 @@ public class DisplayUtils {
     public static boolean isDarkMode(Context context) {
         return (context.getResources().getConfiguration().uiMode
                 & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
+    }
+
+    public static boolean isMotionReduced(@NotNull Context context) {
+        try {
+            return Settings.Global.getFloat(context.getContentResolver(), Settings.Global.ANIMATOR_DURATION_SCALE) == 0f
+                    && Settings.Global.getFloat(context.getContentResolver(), Settings.Global.TRANSITION_ANIMATION_SCALE) == 0f
+                    && Settings.Global.getFloat(context.getContentResolver(), Settings.Global.WINDOW_ANIMATION_SCALE) == 0f;
+        } catch (Settings.SettingNotFoundException e) {
+            return false;
+        }
     }
 
     @NonNull

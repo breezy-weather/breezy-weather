@@ -7,6 +7,7 @@ import wangdaye.com.geometricweather.common.basic.models.options.DarkMode
 import wangdaye.com.geometricweather.common.basic.models.options.NotificationStyle
 import wangdaye.com.geometricweather.common.basic.models.options.UpdateInterval
 import wangdaye.com.geometricweather.common.basic.models.options.WidgetWeekIconMode
+import wangdaye.com.geometricweather.common.basic.models.options.appearance.BackgroundAnimationMode
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.CardDisplay
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.DailyTrendDisplay
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.HourlyTrendDisplay
@@ -254,6 +255,15 @@ class SettingsManager private constructor(context: Context) {
             notifySettingsChanged()
         }
         get() = config.getBoolean("exchange_day_night_temp_switch", false)
+
+    var backgroundAnimationMode: BackgroundAnimationMode
+        set(value) {
+            config.edit().putString("background_animation_mode", value.id).apply()
+            notifySettingsChanged()
+        }
+        get() = BackgroundAnimationMode.getInstance(
+            config.getString("background_animation_mode", "system") ?: ""
+        )
 
     var isGravitySensorEnabled: Boolean
         set(value) {

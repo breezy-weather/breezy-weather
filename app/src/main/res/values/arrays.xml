@@ -296,6 +296,18 @@
         <item>auto</item>
     </string-array>
 
+    <!-- Background animation. -->
+    <string-array name="background_animation">
+        <item>Follow system</item>
+        <item>Enabled</item>
+        <item>Disabled</item>
+    </string-array>
+    <string-array name="background_animation_values">
+        <item>system</item>
+        <item>enabled</item>
+        <item>disabled</item>
+    </string-array>
+
     <!-- live wallpaper weather kind. -->
     <string-array name="live_wallpaper_weather_kinds">
         <item>Automatic</item>

@@ -121,6 +121,13 @@
         <item>Automatique</item>
     </string-array>
 
+    <!-- Background animation. -->
+    <string-array name="background_animation">
+        <item>Préférence système</item>
+        <item>Activée</item>
+        <item>Désactivée</item>
+    </string-array>
+
     <!-- live wallpaper weather kind. -->
     <string-array name="live_wallpaper_weather_kinds">
         <item>Automatique</item>

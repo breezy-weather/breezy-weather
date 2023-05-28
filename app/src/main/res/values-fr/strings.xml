@@ -361,6 +361,7 @@
     <string name="settings_title_trend_horizontal_line_switch">Lignes horizontales dans les tendances</string>
     <string name="settings_title_exchange_day_night_temp_switch">Inverser les températures jour et nuit</string>
     <string name="settings_title_card_order">Ordre des cartes</string>
+    <string name="settings_title_background_animation">Animation de l’arrière-plan</string>
     <string name="settings_title_gravity_sensor_switch">Accéléromètre</string>
     <string name="settings_title_list_animation_switch">Animation de liste</string>
     <string name="settings_title_item_animation_switch">Animation d’élément</string>
