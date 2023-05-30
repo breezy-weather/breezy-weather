@@ -6,6 +6,7 @@ import android.text.TextPaint;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.Location;
@@ -134,7 +135,7 @@ public class WidgetHelper {
         };
     }
 
-    public static String getWeek(Context context) {
+    public static String getWeek(Context context, TimeZone timeZone) {
         Calendar c = Calendar.getInstance();
         int week = c.get(Calendar.DAY_OF_WEEK);
         switch (week) {
@@ -164,31 +165,32 @@ public class WidgetHelper {
         }
     }
 
-    public static String getDailyWeek(Context context, Weather weather, int index) {
+    // FIXME: TimeZone
+    public static String getDailyWeek(Context context, Weather weather, int index, TimeZone timeZone) {
         if (index > 1) {
-            return weather.getDailyForecast().get(index).getWeek(context);
+            return weather.getDailyForecast().get(index).getWeek(context, timeZone);
         }
 
         String firstDay;
         String secondDay;
 
-        Calendar today = Calendar.getInstance();
+        Calendar today = Calendar.getInstance(timeZone);
         today.setTime(new Date());
 
-        Calendar publish = Calendar.getInstance();
+        Calendar publish = Calendar.getInstance(timeZone);
         publish.setTime(weather.getDailyForecast().get(0).getDate());
 
         if (today.get(Calendar.YEAR) == publish.get(Calendar.YEAR)
                 && today.get(Calendar.DAY_OF_YEAR) == publish.get(Calendar.DAY_OF_YEAR)) {
             firstDay = context.getString(R.string.today);
-            secondDay = weather.getDailyForecast().get(1).getWeek(context);
+            secondDay = weather.getDailyForecast().get(1).getWeek(context, timeZone);
         } else if (today.get(Calendar.YEAR) == publish.get(Calendar.YEAR)
                 && today.get(Calendar.DAY_OF_YEAR) == publish.get(Calendar.DAY_OF_YEAR) + 1) {
             firstDay = context.getString(R.string.yesterday);
             secondDay = context.getString(R.string.today);
         } else {
-            firstDay = weather.getDailyForecast().get(0).getWeek(context);
-            secondDay = weather.getDailyForecast().get(1).getWeek(context);
+            firstDay = weather.getDailyForecast().get(0).getWeek(context, timeZone);
+            secondDay = weather.getDailyForecast().get(1).getWeek(context, timeZone);
         }
 
         if (index == 0) {

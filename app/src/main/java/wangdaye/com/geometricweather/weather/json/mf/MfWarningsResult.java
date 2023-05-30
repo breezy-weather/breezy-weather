@@ -2,6 +2,7 @@ package wangdaye.com.geometricweather.weather.json.mf;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -11,9 +12,9 @@ import java.util.List;
 public class MfWarningsResult {
 
     @SerializedName("update_time")
-    public long updateTime;
+    public Date updateTime;
     @SerializedName("end_validity_time")
-    public long endValidityTime;
+    public Date endValidityTime;
     @SerializedName("domain_id")
     public String domain;
     @SerializedName("color_max")
@@ -41,9 +42,9 @@ public class MfWarningsResult {
 
     public static class WarningComments {
         @SerializedName("begin_time")
-        public long beginTime;
+        public Date beginTime;
         @SerializedName("end_time")
-        public long endTime;
+        public Date endTime;
         @SerializedName("text_bloc_item")
         public List<WarningTextBlocItem> textBlocItems;
 
@@ -89,7 +90,7 @@ public class MfWarningsResult {
 
         public static class WarningTimelapsItem {
             @SerializedName("begin_time")
-            public long beginTime;
+            public Date beginTime;
             @SerializedName("color_id")
             public int colorId;
         }

@@ -179,27 +179,27 @@ private fun buildRemoteViews(
 
     views.setTextViewText(
         R.id.widget_material_you_forecast_hour_1,
-        weather.hourlyForecast[0].getHour(context)
+        weather.hourlyForecast[0].getHour(context, location.timeZone)
     )
     views.setTextViewText(
         R.id.widget_material_you_forecast_hour_2,
-        weather.hourlyForecast[1].getHour(context)
+        weather.hourlyForecast[1].getHour(context, location.timeZone)
     )
     views.setTextViewText(
         R.id.widget_material_you_forecast_hour_3,
-        weather.hourlyForecast[2].getHour(context)
+        weather.hourlyForecast[2].getHour(context, location.timeZone)
     )
     views.setTextViewText(
         R.id.widget_material_you_forecast_hour_4,
-        weather.hourlyForecast[3].getHour(context)
+        weather.hourlyForecast[3].getHour(context, location.timeZone)
     )
     views.setTextViewText(
         R.id.widget_material_you_forecast_hour_5,
-        weather.hourlyForecast[4].getHour(context)
+        weather.hourlyForecast[4].getHour(context, location.timeZone)
     )
     views.setTextViewText(
         R.id.widget_material_you_forecast_hour_6,
-        weather.hourlyForecast[5].getHour(context)
+        weather.hourlyForecast[5].getHour(context, location.timeZone)
     )
 
     views.setImageViewUri(
@@ -295,7 +295,7 @@ private fun buildRemoteViews(
         if (weather.dailyForecast[0].isToday(location.timeZone)) {
             context.getString(R.string.today)
         } else {
-            weather.dailyForecast[0].getWeek(context)
+            weather.dailyForecast[0].getWeek(context, location.timeZone)
         }
     )
     views.setTextViewText(
@@ -303,24 +303,24 @@ private fun buildRemoteViews(
         if (weather.dailyForecast[1].isToday(location.timeZone)) {
             context.getString(R.string.today)
         } else {
-            weather.dailyForecast[1].getWeek(context)
+            weather.dailyForecast[1].getWeek(context, location.timeZone)
         }
     )
     views.setTextViewText(
         R.id.widget_material_you_forecast_week_3,
-        weather.dailyForecast[2].getWeek(context)
+        weather.dailyForecast[2].getWeek(context, location.timeZone)
     )
     views.setTextViewText(
         R.id.widget_material_you_forecast_week_4,
-        weather.dailyForecast[3].getWeek(context)
+        weather.dailyForecast[3].getWeek(context, location.timeZone)
     )
     views.setTextViewText(
         R.id.widget_material_you_forecast_week_5,
-        weather.dailyForecast[4].getWeek(context)
+        weather.dailyForecast[4].getWeek(context, location.timeZone)
     )
     views.setTextViewText(
         R.id.widget_material_you_forecast_week_6,
-        weather.dailyForecast[5].getWeek(context)
+        weather.dailyForecast[5].getWeek(context, location.timeZone)
     )
 
     views.setImageViewUri(

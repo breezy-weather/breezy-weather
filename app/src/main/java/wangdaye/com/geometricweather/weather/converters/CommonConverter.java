@@ -7,12 +7,21 @@ import androidx.annotation.Nullable;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
+import us.dustinj.timezonemap.TimeZoneMap;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.weather.UV;
 import wangdaye.com.geometricweather.common.basic.models.weather.Wind;
 
 public class CommonConverter {
+    public static TimeZone getTimeZoneForPosition(TimeZoneMap map, double lat, double lon) {
+        try {
+            return TimeZone.getTimeZone(map.getOverlappingTimeZone(lat, lon).getZoneId());
+        } catch (Exception ignored) {
+            return TimeZone.getDefault();
+        }
+    }
 
     public static String getWindLevel(Context c, double speed) {
         if (speed <= Wind.WIND_SPEED_0) {
@@ -89,8 +98,8 @@ public class CommonConverter {
         }
     }
 
-    public static boolean isDaylight(Date sunrise, Date sunset, Date current) {
-        Calendar calendar = Calendar.getInstance();
+    public static boolean isDaylight(Date sunrise, Date sunset, Date current, TimeZone timeZone) {
+        Calendar calendar = Calendar.getInstance(timeZone);
 
         calendar.setTime(sunrise);
         int sunriseTime = calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE);
@@ -104,12 +113,12 @@ public class CommonConverter {
         return sunriseTime < currentTime && currentTime < sunsetTime;
     }
 
-    public static UV getCurrentUV(int dayMaxUV, Date currentDate, Date sunriseDate, Date sunsetDate) {
+    public static UV getCurrentUV(int dayMaxUV, Date currentDate, Date sunriseDate, Date sunsetDate, TimeZone timeZone) {
         if (currentDate == null || sunriseDate == null || sunsetDate == null || sunriseDate.after(sunsetDate))
             return new UV(null, null, null);
 
         // You can visualize formula here: https://www.desmos.com/calculator/lna7dco4zi
-        Calendar calendar = Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance(timeZone);
         calendar.setTime(currentDate);
         float currentTime = calendar.get(Calendar.HOUR_OF_DAY) + calendar.get(Calendar.MINUTE) / 60f; // Approximating to the minute is enough
 

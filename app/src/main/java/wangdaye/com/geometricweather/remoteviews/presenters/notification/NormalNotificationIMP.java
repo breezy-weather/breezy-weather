@@ -309,7 +309,7 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
             // 2
             views.setTextViewText( // set week 2.
                     R.id.notification_big_week_2,
-                    weather.getDailyForecast().get(1).getWeek(context)
+                    weather.getDailyForecast().get(1).getWeek(context, location.getTimeZone())
             );
             views.setTextViewText( // set temps 2.
                     R.id.notification_big_temp_2,
@@ -335,7 +335,7 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
             // 3
             views.setTextViewText( // set week 3.
                     R.id.notification_big_week_3,
-                    weather.getDailyForecast().get(2).getWeek(context)
+                    weather.getDailyForecast().get(2).getWeek(context, location.getTimeZone())
             );
             views.setTextViewText( // set temps 3.
                     R.id.notification_big_temp_3,
@@ -361,7 +361,7 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
             // 4
             views.setTextViewText( // set week 4.
                     R.id.notification_big_week_4,
-                    weather.getDailyForecast().get(3).getWeek(context)
+                    weather.getDailyForecast().get(3).getWeek(context, location.getTimeZone())
             );
             views.setTextViewText( // set temps 4.
                     R.id.notification_big_temp_4,
@@ -387,7 +387,7 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
             // 5
             views.setTextViewText( // set week 5.
                     R.id.notification_big_week_5,
-                    weather.getDailyForecast().get(4).getWeek(context)
+                    weather.getDailyForecast().get(4).getWeek(context, location.getTimeZone())
             );
             views.setTextViewText( // set temps 5.
                     R.id.notification_big_temp_5,
@@ -415,7 +415,7 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
             Hourly hourly = weather.getHourlyForecast().get(0);
             views.setTextViewText( // set hour 1.
                     R.id.notification_big_week_1,
-                    hourly.getHour(context)
+                    hourly.getHour(context, location.getTimeZone())
             );
             views.setTextViewText( // set temps 1.
                     R.id.notification_big_temp_1,
@@ -435,7 +435,7 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
             hourly = weather.getHourlyForecast().get(1);
             views.setTextViewText( // set hour 2.
                     R.id.notification_big_week_2,
-                    hourly.getHour(context)
+                    hourly.getHour(context, location.getTimeZone())
             );
             views.setTextViewText( // set temps 2.
                     R.id.notification_big_temp_2,
@@ -455,7 +455,7 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
             hourly = weather.getHourlyForecast().get(2);
             views.setTextViewText( // set hour 3.
                     R.id.notification_big_week_3,
-                    hourly.getHour(context)
+                    hourly.getHour(context, location.getTimeZone())
             );
             views.setTextViewText( // set temps 3.
                     R.id.notification_big_temp_3,
@@ -475,7 +475,7 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
             hourly = weather.getHourlyForecast().get(3);
             views.setTextViewText( // set hour 4.
                     R.id.notification_big_week_4,
-                    hourly.getHour(context)
+                    hourly.getHour(context, location.getTimeZone())
             );
             views.setTextViewText( // set temps 4.
                     R.id.notification_big_temp_4,
@@ -495,7 +495,7 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
             hourly = weather.getHourlyForecast().get(4);
             views.setTextViewText( // set hour 5.
                     R.id.notification_big_week_5,
-                    hourly.getHour(context)
+                    hourly.getHour(context, location.getTimeZone())
             );
             views.setTextViewText( // set temps 5.
                     R.id.notification_big_temp_5,

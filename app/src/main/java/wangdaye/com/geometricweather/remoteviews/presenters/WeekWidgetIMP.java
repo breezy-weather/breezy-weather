@@ -80,19 +80,19 @@ public class WeekWidgetIMP extends AbstractRemoteViewsPresenter {
         // weather view.
         views.setTextViewText(
                 R.id.widget_week_week_1,
-                WidgetHelper.getDailyWeek(context, weather, 0));
+                WidgetHelper.getDailyWeek(context, weather, 0, location.getTimeZone()));
         views.setTextViewText(
                 R.id.widget_week_week_2,
-                WidgetHelper.getDailyWeek(context, weather, 1));
+                WidgetHelper.getDailyWeek(context, weather, 1, location.getTimeZone()));
         views.setTextViewText(
                 R.id.widget_week_week_3,
-                WidgetHelper.getDailyWeek(context, weather, 2));
+                WidgetHelper.getDailyWeek(context, weather, 2, location.getTimeZone()));
         views.setTextViewText(
                 R.id.widget_week_week_4,
-                WidgetHelper.getDailyWeek(context, weather, 3));
+                WidgetHelper.getDailyWeek(context, weather, 3, location.getTimeZone()));
         views.setTextViewText(
                 R.id.widget_week_week_5,
-                WidgetHelper.getDailyWeek(context, weather, 4));
+                WidgetHelper.getDailyWeek(context, weather, 4, location.getTimeZone()));
 
         views.setTextViewText(
                 R.id.widget_week_temp,

@@ -82,23 +82,23 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
 
         views.setTextViewText(
                 R.id.widget_day_week_week_1,
-                WidgetHelper.getDailyWeek(context, weather, 0)
+                WidgetHelper.getDailyWeek(context, weather, 0, location.getTimeZone())
         );
         views.setTextViewText(
                 R.id.widget_day_week_week_2,
-                WidgetHelper.getDailyWeek(context, weather, 1)
+                WidgetHelper.getDailyWeek(context, weather, 1, location.getTimeZone())
         );
         views.setTextViewText(
                 R.id.widget_day_week_week_3,
-                WidgetHelper.getDailyWeek(context, weather, 2)
+                WidgetHelper.getDailyWeek(context, weather, 2, location.getTimeZone())
         );
         views.setTextViewText(
                 R.id.widget_day_week_week_4,
-                WidgetHelper.getDailyWeek(context, weather, 3)
+                WidgetHelper.getDailyWeek(context, weather, 3, location.getTimeZone())
         );
         views.setTextViewText(
                 R.id.widget_day_week_week_5,
-                WidgetHelper.getDailyWeek(context, weather, 4)
+                WidgetHelper.getDailyWeek(context, weather, 4, location.getTimeZone())
         );
 
         views.setTextViewText(
@@ -373,19 +373,19 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                     case "rectangle":
                         return location.getCityName(context)
                                 + " "
-                                + Base.getTime(context, weather.getBase().getUpdateDate());
+                                + Base.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone());
 
                     case "symmetry":
-                        return WidgetHelper.getWeek(context)
+                        return WidgetHelper.getWeek(context, location.getTimeZone())
                                 + " "
-                                + Base.getTime(context, weather.getBase().getUpdateDate());
+                                + Base.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone());
 
                     case "tile":
                         return location.getCityName(context)
                                 + " "
-                                + WidgetHelper.getWeek(context)
+                                + WidgetHelper.getWeek(context, location.getTimeZone())
                                 + " "
-                                + Base.getTime(context, weather.getBase().getUpdateDate());
+                                + Base.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone());
                 }
                 break;
 
@@ -412,14 +412,14 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                                 + LunarHelper.getLunarDate(new Date());
 
                     case "symmetry":
-                        return WidgetHelper.getWeek(context)
+                        return WidgetHelper.getWeek(context, location.getTimeZone())
                                 + " "
                                 + LunarHelper.getLunarDate(new Date());
 
                     case "tile":
                         return location.getCityName(context)
                                 + " "
-                                + WidgetHelper.getWeek(context)
+                                + WidgetHelper.getWeek(context, location.getTimeZone())
                                 + " "
                                 + LunarHelper.getLunarDate(new Date());
                 }

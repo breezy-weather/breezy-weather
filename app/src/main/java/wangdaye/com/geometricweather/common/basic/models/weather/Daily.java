@@ -6,12 +6,12 @@ import android.content.Context;
 import androidx.annotation.Size;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.LunarHelper;
 
 /**
@@ -91,21 +91,20 @@ public class Daily implements Serializable {
         return hoursOfSun;
     }
 
-    public String getLongDate(Context context) {
-        return getDate(context.getString(R.string.date_format_long));
+    public String getLongDate(Context context, TimeZone timeZone) {
+        return getDate(context.getString(R.string.date_format_long), timeZone);
     }
 
-    public String getShortDate(Context context) {
-        return getDate(context.getString(R.string.date_format_short));
+    public String getShortDate(Context context, TimeZone timeZone) {
+        return getDate(context.getString(R.string.date_format_short), timeZone);
     }
 
-    @SuppressLint("SimpleDateFormat")
-    public String getDate(String format) {
-        return new SimpleDateFormat(format).format(date);
+    public String getDate(String format, TimeZone timeZone) {
+        return DisplayUtils.getFormattedDate(date, timeZone, format);
     }
 
-    public String getWeek(Context context) {
-        Calendar calendar = Calendar.getInstance();
+    public String getWeek(Context context, TimeZone timeZone) {
+        Calendar calendar = Calendar.getInstance(timeZone);
         calendar.setTime(date);
 
         int day = calendar.get(Calendar.DAY_OF_WEEK);
@@ -131,15 +130,8 @@ public class Daily implements Serializable {
     }
 
     public boolean isToday(TimeZone timeZone) {
-        long millis = System.currentTimeMillis();
-
-        Calendar current = Calendar.getInstance();
-        current.add(
-                Calendar.MILLISECOND,
-                timeZone.getOffset(millis) - TimeZone.getDefault().getOffset(millis)
-        );
-
-        Calendar thisDay = Calendar.getInstance();
+        Calendar current = Calendar.getInstance(timeZone);
+        Calendar thisDay = Calendar.getInstance(timeZone);
         thisDay.setTime(date);
 
         return current.get(Calendar.YEAR) == thisDay.get(Calendar.YEAR)

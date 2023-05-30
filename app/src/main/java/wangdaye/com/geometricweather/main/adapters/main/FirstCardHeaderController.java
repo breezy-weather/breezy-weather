@@ -73,7 +73,7 @@ public class FirstCardHeaderController
             refreshTime.setText(
                     activity.getString(R.string.refresh_at)
                             + " "
-                            + Base.getTime(activity, weather.getBase().getUpdateDate())
+                            + Base.getTime(activity, weather.getBase().getUpdateDate(), location.getTimeZone())
             );
             refreshTime.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorTitleText));
 

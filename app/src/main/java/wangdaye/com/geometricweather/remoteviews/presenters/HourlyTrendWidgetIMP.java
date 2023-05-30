@@ -70,7 +70,7 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
     }
 
     @WorkerThread @Nullable
-    @SuppressLint({"InflateParams, SimpleDateFormat", "WrongThread"})
+    @SuppressLint({"InflateParams", "WrongThread"})
     private static View getDrawableView(Context context, Location location, boolean lightTheme) {
         Weather weather = location.getWeather();
         if (weather == null) {
@@ -139,7 +139,7 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
         for (int i = 0; i < items.length; i ++) {
             Hourly hourly = weather.getHourlyForecast().get(i);
 
-            items[i].setTitleText(hourly.getHour(context));
+            items[i].setTitleText(hourly.getHour(context, location.getTimeZone()));
             items[i].setSubtitleText(null);
 
             items[i].setTopIconDrawable(

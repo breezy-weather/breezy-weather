@@ -42,11 +42,12 @@ public interface MfWeatherApi {
                                                  @Query(encoded = true, value = "instants") String instants,
                                                  @Query("token") String token);
 
-    @GET("observation")
+    @GET("v2/observation")
     Observable<MfCurrentResult> getCurrent(@Header("User-Agent") String userAgent,
                                            @Query("lat") double lat,
                                            @Query("lon") double lon,
                                            @Query("lang") String lang,
+                                           @Query("formatDate") String formatDate,
                                            @Query("token") String token);
 
     @GET("v3/nowcast/rain")

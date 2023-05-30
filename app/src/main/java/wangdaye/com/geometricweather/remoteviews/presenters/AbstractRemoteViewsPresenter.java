@@ -25,7 +25,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -268,7 +267,6 @@ public abstract class AbstractRemoteViewsPresenter {
         return DisplayUtils.drawableToBitmap(drawable);
     }
 
-    @SuppressLint("SimpleDateFormat")
     public static String getCustomSubtitle(Context context, @Nullable String subtitle,
                                            @NonNull Location location, @NonNull Weather weather) {
         if (TextUtils.isEmpty(subtitle)) {
@@ -370,19 +368,19 @@ public abstract class AbstractRemoteViewsPresenter {
                 ).replace("$l$", location.getCityName(context))
                 .replace("$lat$", String.valueOf(location.getLatitude()))
                 .replace("$lon$", String.valueOf(location.getLongitude()))
-                .replace("$ut$", Base.getTime(context, weather.getBase().getUpdateDate()))
+                .replace("$ut$", Base.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone()))
                 .replace(
                         "$d$",
-                        new SimpleDateFormat(context.getString(R.string.date_format_long)).format(new Date())
+                        DisplayUtils.getFormattedDate(new Date(), location.getTimeZone(), context.getString(R.string.date_format_long))
                 ).replace(
                         "$lc$",
                         LunarHelper.getLunarDate(new Date())
                 ).replace(
                         "$w$",
-                        new SimpleDateFormat("EEEE").format(new Date())
+                        DisplayUtils.getFormattedDate(new Date(), location.getTimeZone(), "EEEE")
                 ).replace(
                         "$ws$",
-                        new SimpleDateFormat("EEE").format(new Date())
+                        DisplayUtils.getFormattedDate(new Date(), location.getTimeZone(), "EEE")
                 ).replace("$dd$", weather.getCurrent().getDailyForecast() + "")
                 .replace("$hd$", weather.getCurrent().getHourlyForecast() + "")
                 .replace("$enter$", "\n");

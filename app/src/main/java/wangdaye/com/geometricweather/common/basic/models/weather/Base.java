@@ -1,11 +1,10 @@
 package wangdaye.com.geometricweather.common.basic.models.weather;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 
@@ -60,17 +59,15 @@ public class Base implements Serializable {
         return updateTime;
     }
 
-    @SuppressLint("SimpleDateFormat")
-    public static String getTime(Context context, Date date) {
-        return getTime(date, DisplayUtils.is12Hour(context));
+    public static String getTime(Context context, Date date, TimeZone timeZone) {
+        return getTime(date, timeZone, DisplayUtils.is12Hour(context));
     }
 
-    @SuppressLint("SimpleDateFormat")
-    private static String getTime(Date date, boolean twelveHour) {
+    private static String getTime(Date date, TimeZone timeZone, boolean twelveHour) {
         if (twelveHour) {
-            return new SimpleDateFormat("h:mm aa").format(date);
+            return DisplayUtils.getFormattedDate(date, timeZone, "h:mm aa");
         } else {
-            return new SimpleDateFormat("HH:mm").format(date);
+            return DisplayUtils.getFormattedDate(date, timeZone, "HH:mm");
         }
     }
 }

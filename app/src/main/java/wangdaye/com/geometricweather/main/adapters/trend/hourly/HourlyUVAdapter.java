@@ -92,7 +92,6 @@ public class HourlyUVAdapter extends AbsHourlyTrendAdapter {
         }
     }
 
-    @SuppressLint("SimpleDateFormat")
     public HourlyUVAdapter(GeoActivity activity, Location location) {
         super(activity, location);
 

@@ -2,6 +2,8 @@ package wangdaye.com.geometricweather.weather.json.mf;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
 public class MfEphemerisResult {
     public String type;
     public Geometry geometry;
@@ -17,13 +19,13 @@ public class MfEphemerisResult {
 
         public static class Ephemeris {
             @SerializedName("sunrise_time")
-            public long sunriseTime;
+            public Date sunriseTime;
             @SerializedName("sunset_time")
-            public long sunsetTime;
+            public Date sunsetTime;
             @SerializedName("moonrise_time")
-            public long moonriseTime;
+            public Date moonriseTime;
             @SerializedName("moonset_time")
-            public long moonsetTime;
+            public Date moonsetTime;
             @SerializedName("moon_phase")
             public String moonPhase;
             @SerializedName("moon_phase_description")

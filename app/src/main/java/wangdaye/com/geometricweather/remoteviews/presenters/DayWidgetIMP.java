@@ -365,19 +365,19 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
                     case "rectangle":
                         return location.getCityName(context) 
                                 + " " 
-                                + Base.getTime(context, weather.getBase().getUpdateDate());
+                                + Base.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone());
 
                     case "symmetry":
-                        return WidgetHelper.getWeek(context)
+                        return WidgetHelper.getWeek(context, location.getTimeZone())
                                 + " " 
-                                + Base.getTime(context, weather.getBase().getUpdateDate());
+                                + Base.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone());
 
                     case "tile":
                     case "mini":
                     case "vertical":
                         return location.getCityName(context)
-                                + " " + WidgetHelper.getWeek(context)
-                                + " " + Base.getTime(context, weather.getBase().getUpdateDate());
+                                + " " + WidgetHelper.getWeek(context, location.getTimeZone())
+                                + " " + Base.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone());
                 }
                 break;
 
@@ -404,7 +404,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
                                 + LunarHelper.getLunarDate(new Date());
 
                     case "symmetry":
-                        return WidgetHelper.getWeek(context)
+                        return WidgetHelper.getWeek(context, location.getTimeZone())
                                 + " "
                                 + LunarHelper.getLunarDate(new Date());
 
@@ -412,7 +412,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
                     case "mini":
                     case "vertical":
                         return location.getCityName(context)
-                                + " " + WidgetHelper.getWeek(context)
+                                + " " + WidgetHelper.getWeek(context, location.getTimeZone())
                                 + " " + LunarHelper.getLunarDate(new Date());
                 }
                 break;

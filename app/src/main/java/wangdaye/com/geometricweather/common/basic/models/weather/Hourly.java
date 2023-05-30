@@ -5,7 +5,6 @@ import android.content.Context;
 import android.text.BidiFormatter;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
@@ -90,20 +89,18 @@ public class Hourly implements Serializable {
         return uv;
     }
 
-    public int getHourIn24Format() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
+    public int getHourIn24Format(TimeZone timeZone) {
+        Calendar calendar = DisplayUtils.toCalendarWithTimeZone(date, timeZone);
         return calendar.get(Calendar.HOUR_OF_DAY);
     }
 
-    public String getHour(Context context) {
-        return getHour(context, DisplayUtils.is12Hour(context), DisplayUtils.isRtl(context));
+    public String getHour(Context context, TimeZone timeZone) {
+        return getHour(context, timeZone, DisplayUtils.is12Hour(context), DisplayUtils.isRtl(context));
     }
 
     @SuppressLint("DefaultLocale")
-    private String getHour(Context context, boolean twelveHour, boolean rtl) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
+    private String getHour(Context context, TimeZone timeZone, boolean twelveHour, boolean rtl) {
+        Calendar calendar = DisplayUtils.toCalendarWithTimeZone(date, timeZone);
 
         int hour;
         if (twelveHour) {
@@ -123,54 +120,15 @@ public class Hourly implements Serializable {
         }
     }
 
-    public String getLongDate(Context context) {
-        return getDate(context.getString(R.string.date_format_long));
+    public String getLongDate(Context context, TimeZone timeZone) {
+        return getDate(timeZone, context.getString(R.string.date_format_long));
     }
 
-    public String getShortDate(Context context) {
-        return getDate(context.getString(R.string.date_format_short));
+    public String getShortDate(Context context, TimeZone timeZone) {
+        return getDate(timeZone, context.getString(R.string.date_format_short));
     }
 
-    @SuppressLint("SimpleDateFormat")
-    public String getDate(String format) {
-        return new SimpleDateFormat(format).format(date);
-    }
-
-    public String getWeek(Context context) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-
-        int day = calendar.get(Calendar.DAY_OF_WEEK);
-        if (day == 1){
-            return context.getString(R.string.week_7);
-        } else if (day == 2) {
-            return context.getString(R.string.week_1);
-        } else if (day == 3) {
-            return context.getString(R.string.week_2);
-        } else if (day == 4) {
-            return context.getString(R.string.week_3);
-        } else if (day == 5) {
-            return context.getString(R.string.week_4);
-        } else if (day == 6) {
-            return context.getString(R.string.week_5);
-        } else {
-            return context.getString(R.string.week_6);
-        }
-    }
-
-    public boolean isToday(TimeZone timeZone) {
-        long millis = System.currentTimeMillis();
-
-        Calendar current = Calendar.getInstance();
-        current.add(
-                Calendar.MILLISECOND,
-                timeZone.getOffset(millis) - TimeZone.getDefault().getOffset(millis)
-        );
-
-        Calendar thisDay = Calendar.getInstance();
-        thisDay.setTime(date);
-
-        return current.get(Calendar.YEAR) == thisDay.get(Calendar.YEAR)
-                && current.get(Calendar.DAY_OF_YEAR) == thisDay.get(Calendar.DAY_OF_YEAR);
+    public String getDate(TimeZone timeZone, String format) {
+        return DisplayUtils.getFormattedDate(date, timeZone, format);
     }
 }

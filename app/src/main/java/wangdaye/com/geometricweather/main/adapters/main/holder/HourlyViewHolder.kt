@@ -163,13 +163,13 @@ class HourlyViewHolder(
             }
 
             val size = minutelyList.size
-            minutelyStartText.text = Base.getTime(context, minutelyList[0].date)
-            minutelyCenterText.text = Base.getTime(context, minutelyList[(size - 1) / 2].date)
-            minutelyEndText.text = Base.getTime(context, minutelyList[size - 1].date)
+            minutelyStartText.text = Base.getTime(context, minutelyList[0].date, location.timeZone)
+            minutelyCenterText.text = Base.getTime(context, minutelyList[(size - 1) / 2].date, location.timeZone)
+            minutelyEndText.text = Base.getTime(context, minutelyList[size - 1].date, location.timeZone)
             minutelyContainer.contentDescription =
                 activity.getString(R.string.content_des_minutely_precipitation)
-                    .replace("$1", Base.getTime(context, minutelyList[0].date))
-                    .replace("$2", Base.getTime(context, minutelyList[size - 1].date))
+                    .replace("$1", Base.getTime(context, minutelyList[0].date, location.timeZone))
+                    .replace("$2", Base.getTime(context, minutelyList[size - 1].date, location.timeZone))
         } else {
             minutelyContainer.visibility = View.GONE
         }

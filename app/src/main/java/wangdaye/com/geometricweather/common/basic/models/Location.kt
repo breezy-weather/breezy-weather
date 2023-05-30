@@ -62,7 +62,7 @@ class Location(
         @JvmStatic
         fun buildLocal(): Location {
             return Location(
-                cityId =  NULL_ID,
+                cityId = NULL_ID,
                 latitude = 0f,
                 longitude = 0f,
                 timeZone = TimeZone.getDefault(),
@@ -166,7 +166,7 @@ class Location(
         )
 
         @JvmField
-        val CREATOR = object: Parcelable.Creator<Location> {
+        val CREATOR = object : Parcelable.Creator<Location> {
 
             override fun createFromParcel(parcel: Parcel): Location {
                 return Location(parcel)
@@ -325,11 +325,13 @@ class Location(
             return true
         }
         if (isEquals(province, location.province)
-            && isEquals(city, location.city)) {
+            && isEquals(city, location.city)
+        ) {
             return true
         }
         return if (isEquals(province, location.province)
-            && getCityName(c) == location.getCityName(c)) {
+            && getCityName(c) == location.getCityName(c)
+        ) {
             true
         } else {
             abs(latitude - location.latitude) < 0.8

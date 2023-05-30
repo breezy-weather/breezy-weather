@@ -6,8 +6,6 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -15,6 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.TimeZone;
 
+import us.dustinj.timezonemap.TimeZoneMap;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
 import wangdaye.com.geometricweather.common.basic.models.weather.AirQuality;
@@ -35,15 +34,57 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.common.basic.models.weather.Wind;
 import wangdaye.com.geometricweather.common.basic.models.weather.WindDegree;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.weather.json.metno.MetNoLocationForecastResult;
 import wangdaye.com.geometricweather.weather.json.metno.MetNoSunsetResult;
 import wangdaye.com.geometricweather.weather.json.nominatim.NominatimLocationResult;
 import wangdaye.com.geometricweather.weather.services.WeatherService;
 
 public class MetNoResultConverter {
+    @NonNull
+    public static List<Location> convert(List<NominatimLocationResult> resultList) {
+        List<Location> locationList = new ArrayList<>();
+        if (resultList != null && resultList.size() != 0) {
+            // Since we don't have timezones in the result, we need to initialize a TimeZoneMap
+            // Since it takes a lot of time, we make boundaries
+            // However, even then, it can take a lot of time, even on good performing smartphones.
+            // TODO: To improve performances, create a Location() with a null TimeZone.
+            // When clicking in the location search result on a specific location, if TimeZone is
+            // null, then make a TimeZoneMap of the lat/lon and find its TimeZone
+            double minLat = resultList.get(0).lat;
+            double maxLat = resultList.get(0).lat + 0.00001;
+            double minLon = resultList.get(0).lon;
+            double maxLon = resultList.get(0).lon + 0.00001;
+            for (NominatimLocationResult r : resultList) {
+                if (r.lat < minLat) {
+                    minLat = r.lat;
+                }
+                if (r.lat > maxLat) {
+                    maxLat = r.lat;
+                }
+                if (r.lon < minLon) {
+                    minLon = r.lon;
+                }
+                if (r.lon > maxLon) {
+                    maxLon = r.lon;
+                }
+            }
+            TimeZoneMap map = TimeZoneMap.forRegion(minLat, minLon, maxLat, maxLon);
+            for (NominatimLocationResult r : resultList) {
+                locationList.add(convert(null, r, map));
+            }
+        }
+        return locationList;
+    }
 
     @NonNull
     public static Location convert(@Nullable Location location, NominatimLocationResult result) {
+        TimeZoneMap map = TimeZoneMap.forRegion(result.lat, result.lon, result.lat + 0.00001, result.lon + 0.00001);
+        return convert(location, result, map);
+    }
+
+    @NonNull
+    public static Location convert(@Nullable Location location, NominatimLocationResult result, TimeZoneMap map) {
         if (location != null
                 && !TextUtils.isEmpty(location.getProvince())
                 && !TextUtils.isEmpty(location.getCity())
@@ -52,7 +93,7 @@ public class MetNoResultConverter {
                     result.place_id.toString(),
                     result.lat,
                     result.lon,
-                    TimeZone.getDefault(),
+                    CommonConverter.getTimeZoneForPosition(map, result.lat, result.lon),
                     result.address.country,
                     location.getProvince(),
                     location.getCity(),
@@ -74,7 +115,7 @@ public class MetNoResultConverter {
                     result.place_id.toString(),
                     result.lat,
                     result.lon,
-                    TimeZone.getDefault(),
+                    CommonConverter.getTimeZoneForPosition(map, result.lat, result.lon),
                     result.address.country,
                     result.address.state == null ? "" : result.address.state,
                     result.display_name,
@@ -101,7 +142,7 @@ public class MetNoResultConverter {
                                                               MetNoSunsetResult sunsetResult) {
         try {
             HashMap<String, MetNoSunsetResult.Location.Time> sunsetList = getSunsetResultAsHashMap(sunsetResult.location.time);
-            List<Hourly> hourly = getHourlyList(context, locationForecastResult, sunsetList);
+            List<Hourly> hourly = getHourlyList(context, location.getTimeZone(), locationForecastResult, sunsetList);
 
             Weather weather = new Weather(
                     new Base(
@@ -153,7 +194,7 @@ public class MetNoResultConverter {
                             null
                     ),
                     null,
-                    getDailyList(context, hourly, sunsetList),
+                    getDailyList(context, location.getTimeZone(), hourly, sunsetList),
                     hourly,
                     new ArrayList<>(),
                     new ArrayList<>()
@@ -289,21 +330,14 @@ public class MetNoResultConverter {
         );
     }
 
-    private static List<Daily> getDailyList(Context context, List<Hourly> hourlyConverted, HashMap<String, MetNoSunsetResult.Location.Time> sunsetList) {
+    private static List<Daily> getDailyList(Context context, TimeZone timeZone, List<Hourly> hourlyConverted, HashMap<String, MetNoSunsetResult.Location.Time> sunsetList) {
         List<String> dateList = new ArrayList<>();
         List<Daily> dailyList = new ArrayList<>();
         for (Hourly hourly : hourlyConverted) {
-            SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
-            String dateString = fmt.format(hourly.getDate());
-            Date date;
-            try {
-                date = fmt.parse(dateString); // Setup Date at 00:00
-            } catch (ParseException ignored) {
-                // Should never happen
-                date = hourly.getDate();
-            }
-            if (!dateList.contains(dateString)) {
-                dateList.add(dateString);
+            Date date = DisplayUtils.toTimezoneNoHour(hourly.getDate(), timeZone);
+            String formattedDate = DisplayUtils.getFormattedDate(hourly.getDate(), timeZone, "yyyy-MM-dd");
+            if (!dateList.contains(formattedDate)) {
+                dateList.add(formattedDate);
 
                 HalfDay halfDayDaytime = getHalfDay(context, true, hourly.getDate(), hourlyConverted, sunsetList);
                 HalfDay halfDayNighttime = getHalfDay(context, false, hourly.getDate(), hourlyConverted, sunsetList);
@@ -317,16 +351,16 @@ public class MetNoResultConverter {
                             halfDayDaytime,
                             halfDayNighttime,
                             new Astro(
-                                sunsetList.containsKey(dateString) && sunsetList.get(dateString).sunrise != null ? sunsetList.get(dateString).sunrise.time : null,
-                                sunsetList.containsKey(dateString) && sunsetList.get(dateString).sunset != null ? sunsetList.get(dateString).sunset.time : null
+                                sunsetList.containsKey(formattedDate) && sunsetList.get(formattedDate).sunrise != null ? sunsetList.get(formattedDate).sunrise.time : null,
+                                sunsetList.containsKey(formattedDate) && sunsetList.get(formattedDate).sunset != null ? sunsetList.get(formattedDate).sunset.time : null
                             ),
                             new Astro(
-                                sunsetList.containsKey(dateString) && sunsetList.get(dateString).moonrise != null ? sunsetList.get(dateString).moonrise.time : null,
-                                sunsetList.containsKey(dateString) && sunsetList.get(dateString).moonset != null ? sunsetList.get(dateString).moonset.time : null
+                                sunsetList.containsKey(formattedDate) && sunsetList.get(formattedDate).moonrise != null ? sunsetList.get(formattedDate).moonrise.time : null,
+                                sunsetList.containsKey(formattedDate) && sunsetList.get(formattedDate).moonset != null ? sunsetList.get(formattedDate).moonset.time : null
                             ),
                             new MoonPhase(
-                                sunsetList.containsKey(dateString) && sunsetList.get(dateString).moonposition != null ? toInt(Double.valueOf(sunsetList.get(dateString).moonposition.phase)) : null,
-                                sunsetList.containsKey(dateString) && sunsetList.get(dateString).moonposition != null ? sunsetList.get(dateString).moonposition.desc : null
+                                sunsetList.containsKey(formattedDate) && sunsetList.get(formattedDate).moonposition != null ? toInt(Double.valueOf(sunsetList.get(formattedDate).moonposition.phase)) : null,
+                                sunsetList.containsKey(formattedDate) && sunsetList.get(formattedDate).moonposition != null ? sunsetList.get(formattedDate).moonposition.desc : null
                             ),
                             new AirQuality(
                                 null, null, null, null,
@@ -334,9 +368,9 @@ public class MetNoResultConverter {
                             ),
                             new Pollen(null, null, null, null, null, null, null, null, null, null, null, null),
                             new UV(null, null, null),
-                            sunsetList.containsKey(dateString) && sunsetList.get(dateString).sunrise != null && sunsetList.get(dateString).sunset != null ? CommonConverter.getHoursOfDay(
-                                sunsetList.get(dateString).sunrise.time,
-                                sunsetList.get(dateString).sunset.time
+                            sunsetList.containsKey(formattedDate) && sunsetList.get(formattedDate).sunrise != null && sunsetList.get(formattedDate).sunset != null ? CommonConverter.getHoursOfDay(
+                                sunsetList.get(formattedDate).sunrise.time,
+                                sunsetList.get(formattedDate).sunset.time
                             ) : 0
                         )
                     );
@@ -346,27 +380,26 @@ public class MetNoResultConverter {
         return dailyList;
     }
 
-    private static boolean isDaytime(Date time, HashMap<String, MetNoSunsetResult.Location.Time> sunsetList) {
-        SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
-        if (!sunsetList.containsKey(fmt.format(time))
-                || sunsetList.get(fmt.format(time)).sunrise == null
-                || sunsetList.get(fmt.format(time)).sunset == null
-                || sunsetList.get(fmt.format(time)).sunrise.time == null
-                || sunsetList.get(fmt.format(time)).sunset.time == null) {
+    private static boolean isDaylight(Date time, TimeZone timeZone, HashMap<String, MetNoSunsetResult.Location.Time> sunsetList) {
+        String formattedDate = DisplayUtils.getFormattedDate(time, timeZone, "yyyy-MM-dd");
+        if (!sunsetList.containsKey(formattedDate)
+                || sunsetList.get(formattedDate).sunrise == null
+                || sunsetList.get(formattedDate).sunset == null
+                || sunsetList.get(formattedDate).sunrise.time == null
+                || sunsetList.get(formattedDate).sunset.time == null) {
             return true;
         }
-        return (time.getTime() > sunsetList.get(fmt.format(time)).sunrise.time.getTime())
-                && (time.getTime() < sunsetList.get(fmt.format(time)).sunset.time.getTime());
+        return CommonConverter.isDaylight(sunsetList.get(formattedDate).sunrise.time, sunsetList.get(formattedDate).sunset.time, time, timeZone);
     }
 
-    private static List<Hourly> getHourlyList(Context context, MetNoLocationForecastResult resultList, HashMap<String, MetNoSunsetResult.Location.Time> sunsetList) {
+    private static List<Hourly> getHourlyList(Context context, TimeZone timeZone, MetNoLocationForecastResult resultList, HashMap<String, MetNoSunsetResult.Location.Time> sunsetList) {
         List<Hourly> hourlyList = new ArrayList<>(resultList.properties.timeseries.size());
         for (MetNoLocationForecastResult.Properties.Timeseries result : resultList.properties.timeseries) {
             hourlyList.add(
                     new Hourly(
                             result.time,
                             result.time.getTime(),
-                            isDaytime(result.time, sunsetList),
+                            isDaylight(result.time, timeZone, sunsetList),
                             null,
                             getWeatherCode(getSymbolCode(result.data)),
                             result.data.instant == null || result.data.instant.details == null || result.data.instant.details.airTemperature == null ? null : new Temperature(

@@ -101,7 +101,6 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter {
         }
     }
 
-    @SuppressLint("SimpleDateFormat")
     public DailyPrecipitationAdapter(GeoActivity activity,
                                      Location location,
                                      ResourceProvider provider,

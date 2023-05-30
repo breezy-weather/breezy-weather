@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
+import us.dustinj.timezonemap.TimeZoneMap;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
 import wangdaye.com.geometricweather.common.basic.models.weather.AirQuality;
@@ -35,16 +36,57 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.common.basic.models.weather.Wind;
 import wangdaye.com.geometricweather.common.basic.models.weather.WindDegree;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.weather.json.owm.OwmAirPollutionResult;
 import wangdaye.com.geometricweather.weather.json.owm.OwmLocationResult;
 import wangdaye.com.geometricweather.weather.json.owm.OwmOneCallResult;
 import wangdaye.com.geometricweather.weather.services.WeatherService;
 
 public class OwmResultConverter {
+    @NonNull
+    public static List<Location> convert(List<OwmLocationResult> resultList) {
+        List<Location> locationList = new ArrayList<>();
+        if (resultList != null && resultList.size() != 0) {
+            // Since we don't have timezones in the result, we need to initialize a TimeZoneMap
+            // Since it takes a lot of time, we make boundaries
+            // However, even then, it can take a lot of time, even on good performing smartphones.
+            // TODO: To improve performances, create a Location() with a null TimeZone.
+            // When clicking in the location search result on a specific location, if TimeZone is
+            // null, then make a TimeZoneMap of the lat/lon and find its TimeZone
+            double minLat = resultList.get(0).lat;
+            double maxLat = resultList.get(0).lat + 0.00001;
+            double minLon = resultList.get(0).lon;
+            double maxLon = resultList.get(0).lon + 0.00001;
+            for (OwmLocationResult r : resultList) {
+                if (r.lat < minLat) {
+                    minLat = r.lat;
+                }
+                if (r.lat > maxLat) {
+                    maxLat = r.lat;
+                }
+                if (r.lon < minLon) {
+                    minLon = r.lon;
+                }
+                if (r.lon > maxLon) {
+                    maxLon = r.lon;
+                }
+            }
+            TimeZoneMap map = TimeZoneMap.forRegion(minLat, minLon, maxLat, maxLon);
+            for (OwmLocationResult r : resultList) {
+                locationList.add(convert(null, r, map));
+            }
+        }
+        return locationList;
+    }
 
     @NonNull
-    public static Location convert(@Nullable Location location, OwmLocationResult result,
-                                   @Nullable String zipCode) {
+    public static Location convert(@Nullable Location location, OwmLocationResult result) {
+        TimeZoneMap map = TimeZoneMap.forRegion(result.lat, result.lon, result.lat + 0.00001, result.lon + 0.00001);
+        return convert(location, result, map);
+    }
+
+    @NonNull
+    public static Location convert(@Nullable Location location, OwmLocationResult result, TimeZoneMap map) {
         if (location != null
                 && !TextUtils.isEmpty(location.getProvince())
                 && !TextUtils.isEmpty(location.getCity())
@@ -53,10 +95,10 @@ public class OwmResultConverter {
                     Double.toString(result.lat) + ',' + Double.toString(result.lon),
                     (float) result.lat,
                     (float) result.lon,
-                    TimeZone.getTimeZone("UTC"),
+                    CommonConverter.getTimeZoneForPosition(map, result.lat, result.lon),
                     result.country,
                     "",
-                    result.name,
+                    location.getCity(),
                     "",
                     null,
                     WeatherSource.OWM,
@@ -75,7 +117,7 @@ public class OwmResultConverter {
                     Double.toString(result.lat) + ',' + Double.toString(result.lon),
                     (float) result.lat,
                     (float) result.lon,
-                    TimeZone.getTimeZone("UTC"),
+                    CommonConverter.getTimeZoneForPosition(map, result.lat, result.lon),
                     result.country,
                     "",
                     result.name,
@@ -167,11 +209,12 @@ public class OwmResultConverter {
                             null
                     ),
                     null,
-                    getDailyList(context, oneCallResult.daily, airPollutionForecastResult),
+                    getDailyList(context, location.getTimeZone(), oneCallResult.daily, airPollutionForecastResult),
                     getHourlyList(
                             context,
                             oneCallResult.current.sunrise,
                             oneCallResult.current.sunset,
+                            location.getTimeZone(),
                             oneCallResult.hourly
                     ),
                     getMinutelyList(
@@ -187,7 +230,7 @@ public class OwmResultConverter {
         }
     }
 
-    private static List<Daily> getDailyList(Context context, List<OwmOneCallResult.Daily> dailyResult,
+    private static List<Daily> getDailyList(Context context, TimeZone timeZone, List<OwmOneCallResult.Daily> dailyResult,
                                             @Nullable OwmAirPollutionResult airPollutionForecastResult) {
         List<Daily> dailyList = new ArrayList<>(dailyResult.size());
 
@@ -283,7 +326,7 @@ public class OwmResultConverter {
                             new Astro(new Date(forecasts.sunrise * 1000), new Date(forecasts.sunset * 1000)),
                             new Astro(new Date(forecasts.moonrise * 1000), new Date(forecasts.moonset * 1000)),
                             new MoonPhase(null, null),
-                            getAirQuality(context, new Date(forecasts.dt * 1000), airPollutionForecastResult),
+                            getAirQuality(context, new Date(forecasts.dt * 1000), timeZone, airPollutionForecastResult),
                             new Pollen(null, null, null, null, null, null, null, null, null, null, null, null),
                             new UV(toInt(forecasts.uvi), null, null),
                             0.0f
@@ -310,14 +353,14 @@ public class OwmResultConverter {
         return rain + snow;
     }
 
-    private static List<Hourly> getHourlyList(Context context, long sunrise, long sunset, List<OwmOneCallResult.Hourly> resultList) {
+    private static List<Hourly> getHourlyList(Context context, long sunrise, long sunset, TimeZone timeZone, List<OwmOneCallResult.Hourly> resultList) {
         List<Hourly> hourlyList = new ArrayList<>(resultList.size());
         for (OwmOneCallResult.Hourly result : resultList) {
             hourlyList.add(
                     new Hourly(
                             new Date(result.dt * 1000),
                             result.dt * 1000,
-                            CommonConverter.isDaylight(new Date(sunrise * 1000), new Date(sunset * 1000), new Date(result.dt * 1000)),
+                            CommonConverter.isDaylight(new Date(sunrise * 1000), new Date(sunset * 1000), new Date(result.dt * 1000), timeZone),
                             result.weather.get(0).main,
                             getWeatherCode(result.weather.get(0).id),
                             new Temperature(
@@ -397,11 +440,12 @@ public class OwmResultConverter {
         }
     }
 
-    private static AirQuality getAirQuality(Context context, Date requestedDate, @Nullable OwmAirPollutionResult owmAirPollutionForecastResult) {
+    private static AirQuality getAirQuality(Context context, Date requestedDate, TimeZone timeZone, @Nullable OwmAirPollutionResult owmAirPollutionForecastResult) {
         if (owmAirPollutionForecastResult != null) {
-            SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
+            SimpleDateFormat fmt = new SimpleDateFormat();
             for (OwmAirPollutionResult.AirPollution airPollutionForecast : owmAirPollutionForecastResult.list) {
-                if (fmt.format(requestedDate).equals(fmt.format(airPollutionForecast.dt * 1000))) {
+                if (DisplayUtils.getFormattedDate(requestedDate, timeZone, "yyyyMMdd")
+                        .equals(DisplayUtils.getFormattedDate(new Date(airPollutionForecast.dt * 1000), timeZone, "yyyyMMdd"))) {
                     return new AirQuality(
                             null,
                             getAqiFromIndex(airPollutionForecast.main.aqi),

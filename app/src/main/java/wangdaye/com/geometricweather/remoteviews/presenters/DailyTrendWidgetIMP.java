@@ -159,10 +159,10 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
             if (daily.getDate().equals(new Date())) {
                 items[i].setTitleText(context.getString(R.string.today));
             } else {
-                items[i].setTitleText(daily.getWeek(context));
+                items[i].setTitleText(daily.getWeek(context, location.getTimeZone()));
             }
 
-            items[i].setSubtitleText(daily.getShortDate(context));
+            items[i].setSubtitleText(daily.getShortDate(context, location.getTimeZone()));
 
             items[i].setTopIconDrawable(
                     ResourceHelper.getWidgetNotificationIcon(

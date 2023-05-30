@@ -264,4 +264,10 @@ dependencies {
 
     // utils.
     implementation "com.xhinliang:LunarCalendar:4.0.7"
+    implementation("us.dustinj.timezonemap:timezonemap:4.5") {
+        // Exclude standard compression library
+        exclude group: 'com.github.luben', module: 'zstd-jni'
+    }
+    // Import aar for native component compilation
+    implementation 'com.github.luben:zstd-jni:1.4.9-5@aar'
 }

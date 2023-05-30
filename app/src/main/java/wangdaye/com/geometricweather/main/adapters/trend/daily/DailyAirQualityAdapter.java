@@ -88,7 +88,6 @@ public class DailyAirQualityAdapter extends AbsDailyTrendAdapter {
         }
     }
 
-    @SuppressLint("SimpleDateFormat")
     public DailyAirQualityAdapter(GeoActivity activity, Location location) {
         super(activity, location);
 

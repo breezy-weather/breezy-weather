@@ -272,8 +272,7 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
     private void ensureTime(@NonNull Weather weather) {
         Daily today = weather.getDailyForecast().get(0);
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeZone(mTimeZone);
+        Calendar calendar = Calendar.getInstance(mTimeZone);
         long currentTime = calendar.getTime().getTime();
 
         mStartTimes = new long[2];

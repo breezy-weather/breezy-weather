@@ -5,7 +5,6 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -22,6 +21,7 @@ import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.rxjava.BaseObserver;
 import wangdaye.com.geometricweather.common.rxjava.ObserverContainer;
 import wangdaye.com.geometricweather.common.rxjava.SchedulerTransformer;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.weather.apis.MetNoApi;
 import wangdaye.com.geometricweather.weather.apis.NominatimApi;
@@ -68,10 +68,10 @@ public class MetNoWeatherService extends WeatherService {
                 location.getLongitude()
         );
 
-        SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = DisplayUtils.getFormattedDate(new Date(), location.getTimeZone(), "yyyy-MM-dd");
         Observable<MetNoSunsetResult> sunset = mApi.getSunset(
                 getUserAgent(),
-                fmt.format(new Date()),
+                formattedDate,
                 15,
                 location.getLatitude(),
                 location.getLongitude(),
@@ -116,13 +116,7 @@ public class MetNoWeatherService extends WeatherService {
             e.printStackTrace();
         }
 
-        List<Location> locationList = new ArrayList<>();
-        if (resultList != null && resultList.size() != 0) {
-            for (NominatimLocationResult r : resultList) {
-                locationList.add(MetNoResultConverter.convert(null, r));
-            }
-        }
-        return locationList;
+        return MetNoResultConverter.convert(resultList);
     }
 
     @Override
@@ -174,10 +168,7 @@ public class MetNoWeatherService extends WeatherService {
                     @Override
                     public void onSucceed(List<NominatimLocationResult> metnoLocationResults) {
                         if (metnoLocationResults != null && metnoLocationResults.size() != 0) {
-                            List<Location> locationList = new ArrayList<>();
-                            for (NominatimLocationResult r : metnoLocationResults) {
-                                locationList.add(MetNoResultConverter.convert(null, r));
-                            }
+                            List<Location> locationList = MetNoResultConverter.convert(metnoLocationResults);
                             callback.requestLocationSuccess(query, locationList);
                         } else {
                             callback.requestLocationFailed(query);

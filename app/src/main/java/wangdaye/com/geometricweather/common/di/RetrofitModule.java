@@ -31,7 +31,7 @@ public class RetrofitModule {
     @Singleton
     public GsonConverterFactory provideGsonConverterFactory() {
         return GsonConverterFactory.create(
-                new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create()
+                new GsonBuilder().create()
         );
     }
 

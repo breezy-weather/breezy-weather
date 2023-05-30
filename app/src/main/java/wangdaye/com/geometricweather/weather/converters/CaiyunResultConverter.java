@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.AirQuality;
@@ -35,6 +36,7 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.common.basic.models.weather.Wind;
 import wangdaye.com.geometricweather.common.basic.models.weather.WindDegree;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.weather.json.caiyun.CaiYunForecastResult;
 import wangdaye.com.geometricweather.weather.json.caiyun.CaiYunMainlyResult;
 import wangdaye.com.geometricweather.weather.services.WeatherService;
@@ -115,10 +117,11 @@ public class CaiyunResultConverter {
                             forecastResult.precipitation.description
                     ),
                     getYesterday(mainlyResult),
-                    getDailyList(context, mainlyResult.current.pubTime, mainlyResult.forecastDaily),
+                    getDailyList(context, mainlyResult.current.pubTime, location.getTimeZone(), mainlyResult.forecastDaily),
                     getHourlyList(
                             context,
                             mainlyResult.current.pubTime,
+                            location.getTimeZone(),
                             mainlyResult.forecastDaily.sunRiseSet.value.get(0).from,
                             mainlyResult.forecastDaily.sunRiseSet.value.get(0).to,
                             mainlyResult.forecastHourly
@@ -126,6 +129,7 @@ public class CaiyunResultConverter {
                     getMinutelyList(
                             mainlyResult.forecastDaily.sunRiseSet.value.get(0).from,
                             mainlyResult.forecastDaily.sunRiseSet.value.get(0).to,
+                            location.getTimeZone(),
                             getWeatherText(mainlyResult.current.weather),
                             getWeatherCode(mainlyResult.current.weather),
                             forecastResult
@@ -207,11 +211,10 @@ public class CaiyunResultConverter {
     }
 
     private static List<Daily> getDailyList(Context context,
-                                            Date publishDate, CaiYunMainlyResult.ForecastDailyBean forecast) {
+                                            Date publishDate, TimeZone timeZone, CaiYunMainlyResult.ForecastDailyBean forecast) {
         List<Daily> dailyList = new ArrayList<>(forecast.weather.value.size());
         for (int i = 0; i < forecast.weather.value.size(); i ++) {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(publishDate);
+            Calendar calendar = DisplayUtils.toCalendarWithTimeZone(publishDate, timeZone);
             calendar.add(Calendar.DATE, i);
             calendar.set(Calendar.HOUR_OF_DAY, 0);
             calendar.set(Calendar.MINUTE, 0);
@@ -381,12 +384,12 @@ public class CaiyunResultConverter {
     }
 
     private static List<Hourly> getHourlyList(Context context, Date publishDate,
+                                              TimeZone timeZone,
                                               Date sunrise, Date sunset,
                                               CaiYunMainlyResult.ForecastHourlyBean forecast) {
         List<Hourly> hourlyList = new ArrayList<>(forecast.weather.value.size());
         for (int i = 0; i < forecast.weather.value.size(); i ++) {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(publishDate);
+            Calendar calendar = DisplayUtils.toCalendarWithTimeZone(publishDate, timeZone);
             calendar.add(Calendar.HOUR_OF_DAY, i);
             calendar.set(Calendar.MINUTE, 0);
             calendar.set(Calendar.SECOND, 0);
@@ -397,7 +400,7 @@ public class CaiyunResultConverter {
                     new Hourly(
                             date,
                             date.getTime(),
-                            CommonConverter.isDaylight(sunrise, sunset, date),
+                            CommonConverter.isDaylight(sunrise, sunset, date, timeZone),
                             getWeatherText(String.valueOf(forecast.weather.value.get(i))),
                             getWeatherCode(String.valueOf(forecast.weather.value.get(i))),
                             new Temperature(
@@ -443,6 +446,7 @@ public class CaiyunResultConverter {
     }
 
     private static List<Minutely> getMinutelyList(Date sunrise, Date sunset,
+                                                  TimeZone timeZone,
                                                   String currentWeatherText,
                                                   WeatherCode currentWeatherCode,
                                                   CaiYunForecastResult result) {
@@ -450,8 +454,7 @@ public class CaiyunResultConverter {
 
         List<Minutely> minutelyList = new ArrayList<>(result.precipitation.value.size());
         for (int i = 0; i < result.precipitation.value.size(); i ++) {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(current);
+            Calendar calendar = DisplayUtils.toCalendarWithTimeZone(current, timeZone);
             calendar.set(Calendar.SECOND, 0);
             calendar.set(Calendar.MILLISECOND, 0);
 
@@ -459,7 +462,6 @@ public class CaiyunResultConverter {
                     new Minutely(
                             calendar.getTime(),
                             calendar.getTimeInMillis(),
-                            CommonConverter.isDaylight(sunrise, sunset, calendar.getTime()),
                             getMinuteWeatherText(
                                     result.precipitation.value.get(i),
                                     currentWeatherText,

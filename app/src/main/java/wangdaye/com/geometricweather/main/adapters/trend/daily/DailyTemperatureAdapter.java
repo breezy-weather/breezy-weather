@@ -147,7 +147,6 @@ public class DailyTemperatureAdapter extends AbsDailyTrendAdapter {
         }
     }
 
-    @SuppressLint("SimpleDateFormat")
     public DailyTemperatureAdapter(GeoActivity activity,
                                    Location location,
                                    ResourceProvider provider,
@@ -155,7 +154,6 @@ public class DailyTemperatureAdapter extends AbsDailyTrendAdapter {
         this(activity, location, true, provider, unit);
     }
 
-    @SuppressLint("SimpleDateFormat")
     public DailyTemperatureAdapter(GeoActivity activity,
                                    Location location,
                                    boolean showPrecipitationProbability,

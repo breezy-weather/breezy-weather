@@ -18,7 +18,6 @@ public class MinutelyEntityGenerator {
         
         entity.date = minutely.getDate();
         entity.time = minutely.getTime();
-        entity.daylight = minutely.isDaylight();
 
         entity.weatherCode = minutely.getWeatherCode();
         entity.weatherText = minutely.getWeatherText();
@@ -41,7 +40,7 @@ public class MinutelyEntityGenerator {
 
     public static Minutely generate(MinutelyEntity entity) {
         return new Minutely(
-                entity.date, entity.time, entity.daylight,
+                entity.date, entity.time,
                 entity.weatherText, entity.weatherCode,
                 entity.minuteInterval, entity.dbz, entity.cloudCover
         );

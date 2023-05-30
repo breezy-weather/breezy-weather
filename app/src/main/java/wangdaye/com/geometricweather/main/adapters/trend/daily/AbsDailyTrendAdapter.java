@@ -46,12 +46,12 @@ public abstract class AbsDailyTrendAdapter extends TrendRecyclerViewAdapter<AbsD
                 talkBackBuilder.append(", ").append(context.getString(R.string.today));
                 dailyItem.setWeekText(context.getString(R.string.today));
             } else {
-                talkBackBuilder.append(", ").append(daily.getWeek(context));
-                dailyItem.setWeekText(daily.getWeek(context));
+                talkBackBuilder.append(", ").append(daily.getWeek(context, location.getTimeZone()));
+                dailyItem.setWeekText(daily.getWeek(context, location.getTimeZone()));
             }
 
-            talkBackBuilder.append(", ").append(daily.getLongDate(context));
-            dailyItem.setDateText(daily.getShortDate(context));
+            talkBackBuilder.append(", ").append(daily.getLongDate(context, location.getTimeZone()));
+            dailyItem.setDateText(daily.getShortDate(context, location.getTimeZone()));
 
             dailyItem.setTextColor(
                     MainThemeColorProvider.getColor(location, R.attr.colorTitleText),

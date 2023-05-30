@@ -203,7 +203,7 @@ public class DatabaseHelper {
         }
 
         HistoryEntity historyEntity = HistoryEntityController.selectYesterdayHistoryEntity(
-                boxStore,location.getCityId(), location.getWeatherSource(),weatherEntity.publishDate);
+                boxStore,location.getCityId(), location.getWeatherSource(), weatherEntity.publishDate, location.getTimeZone());
 
         return WeatherEntityGenerator.generate(weatherEntity, historyEntity, this.boxStore);
     }
@@ -270,7 +270,8 @@ public class DatabaseHelper {
                         boxStore,
                         location.getCityId(),
                         location.getWeatherSource(),
-                        weather.getBase().getPublishDate()
+                        weather.getBase().getPublishDate(),
+                        location.getTimeZone()
                 )
         );
     }

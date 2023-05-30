@@ -98,15 +98,7 @@ public class OwmWeatherService extends WeatherService {
             e.printStackTrace();
         }
 
-        String zipCode = query.matches("[a-zA-Z0-9]*") ? query : null;
-
-        List<Location> locationList = new ArrayList<>();
-        if (resultList != null && resultList.size() != 0) {
-            for (OwmLocationResult r : resultList) {
-                locationList.add(OwmResultConverter.convert(null, r, zipCode));
-            }
-        }
-        return locationList;
+        return OwmResultConverter.convert(resultList);
     }
 
     @Override
@@ -121,7 +113,7 @@ public class OwmWeatherService extends WeatherService {
                     public void onSucceed(List<OwmLocationResult> owmLocationResultList) {
                         if (owmLocationResultList != null && !owmLocationResultList.isEmpty()) {
                             List<Location> locationList = new ArrayList<>();
-                            locationList.add(OwmResultConverter.convert(location, owmLocationResultList.get(0), null));
+                            locationList.add(OwmResultConverter.convert(location, owmLocationResultList.get(0)));
                             callback.requestLocationSuccess(
                                     location.getLatitude() + "," + location.getLongitude(), locationList);
                         } else {
@@ -139,18 +131,13 @@ public class OwmWeatherService extends WeatherService {
 
     public void requestLocation(Context context, String query,
                                 @NonNull RequestLocationCallback callback) {
-        String zipCode = query.matches("[a-zA-Z0-9]") ? query : null;
-
         mApi.getWeatherLocation(SettingsManager.getInstance(context).getProviderOwmKey(), query)
                 .compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<List<OwmLocationResult>>() {
                     @Override
                     public void onSucceed(List<OwmLocationResult> owmLocationResults) {
                         if (owmLocationResults != null && owmLocationResults.size() != 0) {
-                            List<Location> locationList = new ArrayList<>();
-                            for (OwmLocationResult r : owmLocationResults) {
-                                locationList.add(OwmResultConverter.convert(null, r, zipCode));
-                            }
+                            List<Location> locationList = OwmResultConverter.convert(owmLocationResults);
                             callback.requestLocationSuccess(query, locationList);
                         } else {
                             callback.requestLocationFailed(query);

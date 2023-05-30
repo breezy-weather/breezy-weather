@@ -37,15 +37,15 @@ public abstract class AbsHourlyTrendAdapter extends TrendRecyclerViewAdapter<Abs
             assert weather != null;
             Hourly hourly = weather.getHourlyForecast().get(position);
 
-            talkBackBuilder.append(", ").append(hourly.getLongDate(context));
-            hourlyItem.setDayText(hourly.getShortDate(context));
+            talkBackBuilder.append(", ").append(hourly.getLongDate(context, location.getTimeZone()));
+            hourlyItem.setDayText(hourly.getShortDate(context, location.getTimeZone()));
 
             talkBackBuilder
-                    .append(", ").append(hourly.getLongDate(activity))
-                    .append(", ").append(hourly.getHour(activity));
-            hourlyItem.setHourText(hourly.getHour(context));
+                    .append(", ").append(hourly.getLongDate(activity, location.getTimeZone()))
+                    .append(", ").append(hourly.getHour(activity, location.getTimeZone()));
+            hourlyItem.setHourText(hourly.getHour(context, location.getTimeZone()));
 
-            boolean useAccentColorForDate = position == 0 || hourly.getHourIn24Format() == 0;
+            boolean useAccentColorForDate = position == 0 || hourly.getHourIn24Format(location.getTimeZone()) == 0;
             hourlyItem.setTextColor(
                     MainThemeColorProvider.getColor(location, R.attr.colorTitleText),
                     MainThemeColorProvider.getColor(
@@ -71,6 +71,7 @@ public abstract class AbsHourlyTrendAdapter extends TrendRecyclerViewAdapter<Abs
         if (activity.isActivityResumed()) {
             HourlyWeatherDialog.show(
                     activity,
+                    location,
                     location.getWeather().getHourlyForecast().get(adapterPosition)
             );
         }

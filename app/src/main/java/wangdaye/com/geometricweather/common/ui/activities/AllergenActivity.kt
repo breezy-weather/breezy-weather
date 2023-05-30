@@ -96,7 +96,7 @@ class AllergenActivity : GeoActivity() {
                         Column {
                             Text(
                                 modifier = Modifier.padding(dimensionResource(R.dimen.normal_margin)),
-                                text = daily.getDate(stringResource(R.string.date_format_widget_long)),
+                                text = daily.getDate(stringResource(R.string.date_format_widget_long), location.timeZone),
                                 color = DayNightTheme.colors.titleColor,
                                 fontWeight = FontWeight.Bold,
                                 style = MaterialTheme.typography.titleMedium,

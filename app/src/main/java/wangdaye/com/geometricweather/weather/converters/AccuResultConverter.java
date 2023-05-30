@@ -420,7 +420,6 @@ public class AccuResultConverter {
                     new Minutely(
                             interval.StartDateTime,
                             interval.StartEpochDateTime,
-                            CommonConverter.isDaylight(sunrise, sunset, interval.StartDateTime),
                             interval.ShortPhrase,
                             getWeatherCode(interval.IconCode),
                             interval.Minute,

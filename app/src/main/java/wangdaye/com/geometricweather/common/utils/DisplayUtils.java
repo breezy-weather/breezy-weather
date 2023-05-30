@@ -32,6 +32,12 @@ import com.google.android.material.resources.TextAppearance;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
+
 public class DisplayUtils {
 
     public static final Interpolator FLOATING_DECELERATE_INTERPOLATOR
@@ -223,6 +229,58 @@ public class DisplayUtils {
 
     public static boolean is12Hour(Context context) {
         return !DateFormat.is24HourFormat(context);
+    }
+
+    public static Calendar toCalendarWithTimeZone(Date date, TimeZone zone) {
+        if (date == null) {
+            return null;
+        }
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.setTimeZone(zone);
+        return calendar;
+    }
+
+    public static Date toTimezone(Date date, TimeZone timeZone) {
+        if (timeZone == null) {
+            return date;
+        }
+        Calendar calendarWithTimeZone = toCalendarWithTimeZone(date, timeZone);
+        if (calendarWithTimeZone == null) {
+            return null;
+        } else {
+            return new Date(calendarWithTimeZone.get(Calendar.YEAR) - 1900,
+                    calendarWithTimeZone.get(Calendar.MONTH),
+                    calendarWithTimeZone.get(Calendar.DAY_OF_MONTH),
+                    calendarWithTimeZone.get(Calendar.HOUR_OF_DAY),
+                    calendarWithTimeZone.get(Calendar.MINUTE),
+                    calendarWithTimeZone.get(Calendar.SECOND));
+        }
+    }
+
+    public static Date toTimezoneNoHour(Date date, TimeZone timeZone) {
+        if (timeZone == null) {
+            return date;
+        }
+        Calendar calendarWithTimeZone = toCalendarWithTimeZone(date, timeZone);
+        if (calendarWithTimeZone == null) {
+            return null;
+        } else {
+            calendarWithTimeZone.set(Calendar.HOUR_OF_DAY, 0);
+            calendarWithTimeZone.set(Calendar.MINUTE, 0);
+            calendarWithTimeZone.set(Calendar.SECOND, 0);
+            return calendarWithTimeZone.getTime();
+        }
+    }
+
+    public static String getFormattedDate(Date date, TimeZone timeZone, String pattern) {
+        if (date == null) {
+            return "";
+        }
+        if (timeZone == null) {
+            timeZone = TimeZone.getDefault();
+        }
+        return new SimpleDateFormat(pattern, Locale.getDefault()).format(toTimezone(date, timeZone));
     }
 
     // translationY, scaleX, scaleY

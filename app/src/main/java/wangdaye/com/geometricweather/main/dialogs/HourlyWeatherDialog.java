@@ -1,6 +1,5 @@
 package wangdaye.com.geometricweather.main.dialogs;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,9 +7,8 @@ import android.widget.TextView;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-import java.text.SimpleDateFormat;
-
 import wangdaye.com.geometricweather.R;
+import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.PrecipitationUnit;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.ProbabilityUnit;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
@@ -24,8 +22,7 @@ import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 
 public class HourlyWeatherDialog {
 
-    @SuppressLint("SimpleDateFormat")
-    public static void show(Activity activity, Hourly hourly) {
+    public static void show(Activity activity, Location location, Hourly hourly) {
         View view = LayoutInflater
                 .from(activity)
                 .inflate(R.layout.dialog_weather_hourly, null, false);
@@ -33,16 +30,14 @@ public class HourlyWeatherDialog {
 
         new MaterialAlertDialogBuilder(activity)
                 .setTitle(
-                        hourly.getHour(activity)
+                        hourly.getHour(activity, location.getTimeZone())
                                 + " - "
-                                + new SimpleDateFormat(activity.getString(R.string.date_format_long))
-                                .format(hourly.getDate())
+                                + hourly.getLongDate(activity, location.getTimeZone())
                 )
                 .setView(view)
                 .show();
     }
 
-    @SuppressLint({"SetTextI18n", "SimpleDateFormat"})
     private static void initWidget(View view, Hourly hourly) {
         ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
 

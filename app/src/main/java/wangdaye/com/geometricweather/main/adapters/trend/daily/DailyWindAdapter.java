@@ -102,7 +102,6 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter {
         }
     }
 
-    @SuppressLint("SimpleDateFormat")
     public DailyWindAdapter(GeoActivity activity, Location location, SpeedUnit unit) {
         super(activity, location);
 

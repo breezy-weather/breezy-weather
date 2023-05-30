@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,7 +26,7 @@ public class MfHistoryResult {
     }
 
     public static class History {
-        public long dt;
+        public Date dt;
         @SerializedName("T")
         public Temperature temperature;
         public int humidity;

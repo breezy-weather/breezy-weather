@@ -2,6 +2,7 @@ package wangdaye.com.geometricweather.weather.json.mf;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -13,7 +14,7 @@ public class MfForecastV2Result {
     public ForecastProperties properties;
     public String type;
     @SerializedName("update_time")
-    public Long updateTime;
+    public Date updateTime;
 
     public static class Geometry {
         public List<Float> coordinates;
@@ -48,16 +49,16 @@ public class MfForecastV2Result {
             @SerializedName("relative_humidity_min")
             public Integer relativeHumidityMin;
             @SerializedName("sunrise_time")
-            public Long sunriseTime;
+            public Date sunriseTime;
             @SerializedName("sunset_time")
-            public Long sunsetTime;
+            public Date sunsetTime;
             @SerializedName("T_max")
             public Float tMax;
             @SerializedName("T_min")
             public Float tMin;
             @SerializedName("T_sea")
             public Float tSea;
-            public Long time;
+            public Date time;
             @SerializedName("total_precipitation_24h")
             public Float totalPrecipitation24h;
             @SerializedName("uv_index")
@@ -98,7 +99,7 @@ public class MfForecastV2Result {
             public Float t;
             @SerializedName("T_windchill")
             public Float tWindchill;
-            public Long time;
+            public Date time;
             @SerializedName("total_cloud_cover")
             public Integer totalCloudCover;
             @SerializedName("weather_description")
@@ -128,7 +129,7 @@ public class MfForecastV2Result {
             public Integer snowHazard6h;
             @SerializedName("storm_hazard")
             public Integer stormHazard;
-            public Long time;
+            public Date time;
         }
     }
 }

@@ -256,7 +256,7 @@ public class NotificationHelper {
                                 context.getString(R.string.precipitation_overview),
                                 weather.getDailyForecast()
                                         .get(0)
-                                        .getDate(context.getString(R.string.date_format_widget_long)),
+                                        .getDate(context.getString(R.string.date_format_widget_long), location.getTimeZone()),
                                 context.getString(
                                         isShortTermLiquid(weather)
                                                 ? R.string.feedback_short_term_precipitation_alert

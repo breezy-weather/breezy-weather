@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -29,6 +28,7 @@ import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.rxjava.BaseObserver;
 import wangdaye.com.geometricweather.common.rxjava.ObserverContainer;
 import wangdaye.com.geometricweather.common.rxjava.SchedulerTransformer;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.weather.apis.AtmoAuraIqaApi;
 import wangdaye.com.geometricweather.weather.apis.MfWeatherApi;
@@ -71,24 +71,28 @@ public class MfWeatherService extends WeatherService {
         String token = this.getToken(context);
 
         Observable<MfCurrentResult> current = mMfApi.getCurrent(
-            getUserAgent(), location.getLatitude(), location.getLongitude(), languageCode, token);
+            getUserAgent(), location.getLatitude(), location.getLongitude(), languageCode, "iso", token);
 
         Observable<MfForecastV2Result> forecastV2 = mMfApi.getForecastV2(
-            getUserAgent(), location.getLatitude(), location.getLongitude(),"timestamp","", token);
+            getUserAgent(), location.getLatitude(), location.getLongitude(),"iso","", token);
 
         Observable<MfEphemerisResult> ephemeris = mMfApi.getEphemeris(
-            getUserAgent(), location.getLatitude(), location.getLongitude(), "en", "timestamp", token);
+            getUserAgent(), location.getLatitude(), location.getLongitude(), "en", "iso", token);
         // English required to convert moon phase
 
         Observable<MfRainResult> rain = mMfApi.getRain(
-            getUserAgent(), location.getLatitude(), location.getLongitude(), languageCode, "timestamp", token);
+            getUserAgent(), location.getLatitude(), location.getLongitude(), languageCode, "iso", token);
 
-        Observable<MfWarningsResult> warnings = mMfApi.getWarnings(
-            getUserAgent(), location.getProvince(), "timestamp", token
-        ).onErrorResumeNext(error ->
-            // FIXME: Will not report warnings if current location was searched through AccuWeather search because "province" is not the department
-            Observable.create(emitter -> emitter.onNext(new EmptyWarningsResult()))
-        );
+        Observable<MfWarningsResult> warnings;
+        if (!location.getProvince().isEmpty()) {
+            warnings = mMfApi.getWarnings(
+                    getUserAgent(), location.getProvince(), "iso", token
+            ).onErrorResumeNext(error ->
+                    Observable.create(emitter -> emitter.onNext(new EmptyWarningsResult()))
+            );
+        } else {
+            warnings = Observable.create(emitter -> emitter.onNext(new EmptyWarningsResult()));
+        }
 
         Observable<AtmoAuraQAResult> aqiAtmoAura;
         if (location.getProvince().equals("Auvergne-Rhône-Alpes") || location.getProvince().equals("01")
@@ -98,18 +102,18 @@ public class MfWeatherService extends WeatherService {
                 || location.getProvince().equals("43") || location.getProvince().equals("63")
                 || location.getProvince().equals("69") || location.getProvince().equals("73")
                 || location.getProvince().equals("74")) {
-
-            SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
-            Date tomorrow = new Date();
-            Calendar c = Calendar.getInstance();
-            c.setTime(tomorrow);
+            Calendar c = DisplayUtils.toCalendarWithTimeZone(new Date(), location.getTimeZone());
             c.add(Calendar.DATE, 1);
-            tomorrow = c.getTime();
+            c.set(Calendar.HOUR_OF_DAY, 0);
+            c.set(Calendar.MINUTE, 0);
+            c.set(Calendar.SECOND, 0);
+            c.set(Calendar.MILLISECOND, 0);
             aqiAtmoAura = mAtmoAuraApi.getPointDetails(
                     SettingsManager.getInstance(context).getProviderIqaAtmoAuraKey(),
                     String.valueOf(location.getLatitude()),
                     String.valueOf(location.getLongitude()),
-                    fmt.format(tomorrow), // Tomorrow because it gives access to D-1 and D+1
+                    // Tomorrow because it gives access to D-1 and D+1
+                    DisplayUtils.getFormattedDate(c.getTime(), location.getTimeZone(), "yyyy-MM-dd'T'HH:mm:ss.SSSXXX"),
                     true
             ).onErrorResumeNext(error ->
                     Observable.create(emitter -> emitter.onNext(new EmptyAtmoAuraQAResult()))
@@ -159,15 +163,7 @@ public class MfWeatherService extends WeatherService {
             e.printStackTrace();
         }
 
-        List<Location> locationList = new ArrayList<>();
-        if (resultList != null && resultList.size() != 0) {
-            for (MfLocationResult r : resultList) {
-                if (r.postCode != null) {
-                    locationList.add(MfResultConverter.convert(null, r));
-                }
-            }
-        }
-        return locationList;
+        return MfResultConverter.convert(resultList);
     }
 
     @Override
@@ -177,7 +173,7 @@ public class MfWeatherService extends WeatherService {
             getUserAgent(),
             location.getLatitude(),
             location.getLongitude(),
-            "timestamp",
+            "iso",
             "",
             this.getToken(context)
         ).compose(SchedulerTransformer.create())
@@ -189,7 +185,6 @@ public class MfWeatherService extends WeatherService {
                         if (mfForecastV2Result.properties.insee != null) {
                             locationList.add(MfResultConverter.convert(null, mfForecastV2Result));
                         }
-                        // FIXME: Caching geo position
                         callback.requestLocationSuccess(
                                 location.getLatitude() + "," + location.getLongitude(),
                                 locationList
@@ -201,7 +196,6 @@ public class MfWeatherService extends WeatherService {
 
                 @Override
                 public void onFailed() {
-                    // FIXME: Caching geo position
                     callback.requestLocationFailed(
                             location.getLatitude() + "," + location.getLongitude()
                     );
@@ -217,12 +211,7 @@ public class MfWeatherService extends WeatherService {
                     @Override
                     public void onSucceed(List<MfLocationResult> mfLocationResults) {
                         if (mfLocationResults != null && mfLocationResults.size() != 0) {
-                            List<Location> locationList = new ArrayList<>();
-                            for (MfLocationResult r : mfLocationResults) {
-                                if (r.postCode != null) {
-                                    locationList.add(MfResultConverter.convert(null, r));
-                                }
-                            }
+                            List<Location> locationList = MfResultConverter.convert(mfLocationResults);
                             callback.requestLocationSuccess(query, locationList);
                         } else {
                             callback.requestLocationFailed(query);

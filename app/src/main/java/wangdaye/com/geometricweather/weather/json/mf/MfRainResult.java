@@ -2,11 +2,12 @@ package wangdaye.com.geometricweather.weather.json.mf;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
 import java.util.List;
 
 public class MfRainResult {
     @SerializedName("update_time")
-    public long updateTime;
+    public Date updateTime;
     public Geometry geometry;
     public ForecastProperties properties;
 
@@ -29,7 +30,7 @@ public class MfRainResult {
         public List<RainForecast> rainForecasts;
 
         public static class RainForecast {
-            public long time;
+            public Date time;
             @SerializedName("rain_intensity")
             public int rainIntensity;
             @SerializedName("rain_intensity_description")

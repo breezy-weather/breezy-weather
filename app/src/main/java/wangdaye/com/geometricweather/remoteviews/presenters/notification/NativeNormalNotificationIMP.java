@@ -113,7 +113,7 @@ class NativeNormalNotificationIMP extends AbstractRemoteViewsPresenter {
             subtitle.append(", ")
                     .append(context.getString(R.string.refresh_at))
                     .append(" ")
-                    .append(Base.getTime(context, weather.getBase().getUpdateDate()));
+                    .append(Base.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone()));
         }
         builder.setSubText(subtitle.toString());
 

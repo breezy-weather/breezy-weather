@@ -88,7 +88,6 @@ public class DailyUVAdapter extends AbsDailyTrendAdapter {
         }
     }
 
-    @SuppressLint("SimpleDateFormat")
     public DailyUVAdapter(GeoActivity activity, Location location) {
         super(activity, location);
 

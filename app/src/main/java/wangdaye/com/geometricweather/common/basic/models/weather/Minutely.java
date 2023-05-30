@@ -12,7 +12,6 @@ public class Minutely implements Serializable {
 
     private final Date date;
     private final long time;
-    private final boolean daylight;
 
     private final String weatherText;
     private final WeatherCode weatherCode;
@@ -21,12 +20,11 @@ public class Minutely implements Serializable {
     @Nullable private final Integer dbz;
     @Nullable private final Integer cloudCover;
 
-    public Minutely(Date date, long time, boolean daylight,
+    public Minutely(Date date, long time,
                     String weatherText, WeatherCode weatherCode,
                     int minuteInterval, @Nullable Integer dbz, @Nullable Integer cloudCover) {
         this.date = date;
         this.time = time;
-        this.daylight = daylight;
         this.weatherText = weatherText;
         this.weatherCode = weatherCode;
         this.minuteInterval = minuteInterval;
@@ -34,12 +32,11 @@ public class Minutely implements Serializable {
         this.cloudCover = cloudCover;
     }
 
-    public Minutely(Date date, long time, boolean daylight,
+    public Minutely(Date date, long time,
                     String weatherText, WeatherCode weatherCode,
                     int minuteInterval, @Nullable Double precipitationIntensity, @Nullable Integer cloudCover) {
         this.date = date;
         this.time = time;
-        this.daylight = daylight;
         this.weatherText = weatherText;
         this.weatherCode = weatherCode;
         this.minuteInterval = minuteInterval;
@@ -53,10 +50,6 @@ public class Minutely implements Serializable {
 
     public long getTime() {
         return time;
-    }
-
-    public boolean isDaylight() {
-        return daylight;
     }
 
     public String getWeatherText() {

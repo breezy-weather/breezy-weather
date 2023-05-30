@@ -172,7 +172,7 @@ public class DailyWeatherActivity extends GeoActivity {
 
     @SuppressLint("SetTextI18n")
     private void selectPage(Daily daily, TimeZone timeZone, int position, int size) {
-        mTitle.setText(daily.getDate(getString(R.string.date_format_widget_long)));
+        mTitle.setText(daily.getDate(getString(R.string.date_format_widget_long), timeZone));
         mSubtitle.setText(daily.getLunar());
 
         mToolbar.setContentDescription(mTitle.getText() + ", " + mSubtitle.getText());

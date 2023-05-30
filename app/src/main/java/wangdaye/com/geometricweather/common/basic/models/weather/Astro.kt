@@ -1,10 +1,8 @@
 package wangdaye.com.geometricweather.common.basic.models.weather
 
-import android.annotation.SuppressLint
 import android.content.Context
 import wangdaye.com.geometricweather.common.utils.DisplayUtils
 import java.io.Serializable
-import java.text.SimpleDateFormat
 import java.util.*
 
 class Astro(
@@ -35,8 +33,8 @@ class Astro(
             val currentTime = (timezoneCalendar[Calendar.HOUR_OF_DAY]
                     * 60 + timezoneCalendar[Calendar.MINUTE]) * 60 * 1000
 
-            val riseTime = astro?.riseDate?.time
-            val setTime = astro?.setDate?.time
+            val riseTime = DisplayUtils.toTimezone(astro?.riseDate, timeZone)?.time
+            val setTime = DisplayUtils.toTimezone(astro?.setDate, timeZone)?.time
             if (riseTime == null || setTime == null) {
                 val riseHourMinuteTime = defaultRiseHour * milliSecondPerHour
                 val setHourMinuteTime = riseHourMinuteTime + defaultDurationHour * milliSecondPerHour
@@ -64,34 +62,26 @@ class Astro(
     }
 
     // rise time.
-
     fun getRiseTime(context: Context, timeZone: TimeZone): String? {
         return getRiseTime(DisplayUtils.is12Hour(context), timeZone)
     }
 
-    @SuppressLint("SimpleDateFormat")
     private fun getRiseTime(twelveHour: Boolean, timeZone: TimeZone): String? {
         if (riseDate == null) {
             return null
         }
-        val df = SimpleDateFormat(if (twelveHour) "h:mm aa" else "HH:mm")
-        df.timeZone = timeZone
-        return df.format(riseDate)
+        return DisplayUtils.getFormattedDate(riseDate, timeZone, if (twelveHour) "h:mm aa" else "HH:mm")
     }
 
     // set time.
-
     fun getSetTime(context: Context, timeZone: TimeZone): String? {
         return getSetTime(DisplayUtils.is12Hour(context), timeZone)
     }
 
-    @SuppressLint("SimpleDateFormat")
     private fun getSetTime(twelveHour: Boolean, timeZone: TimeZone): String? {
         if (setDate == null) {
             return null
         }
-        val df = SimpleDateFormat(if (twelveHour) "h:mm aa" else "HH:mm")
-        df.timeZone = timeZone
-        return df.format(setDate)
+        return DisplayUtils.getFormattedDate(setDate, timeZone, if (twelveHour) "h:mm aa" else "HH:mm")
     }
 }

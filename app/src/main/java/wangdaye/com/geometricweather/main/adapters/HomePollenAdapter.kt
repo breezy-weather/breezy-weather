@@ -45,7 +45,7 @@ class HomePollenViewHolder internal constructor(
         val context = itemView.context
         val pollen = daily.pollen
 
-        binding.title.text = daily.getDate(context.getString(R.string.date_format_widget_long))
+        binding.title.text = daily.getDate(context.getString(R.string.date_format_widget_long), location.timeZone)
         binding.title.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorTitleText))
 
         binding.grassIcon.supportImageTintList = ColorStateList.valueOf(

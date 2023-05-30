@@ -93,7 +93,6 @@ public class HourlyWindAdapter extends AbsHourlyTrendAdapter {
         }
     }
 
-    @SuppressLint("SimpleDateFormat")
     public HourlyWindAdapter(GeoActivity activity, Location location, SpeedUnit unit) {
         super(activity, location);
 
