@@ -4,6 +4,7 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.graphics.Color;
+import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -163,16 +164,18 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
 
         ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
 
-        views.setImageViewUri(
-                R.id.widget_clock_day_icon,
-                ResourceHelper.getWidgetNotificationIconUri(
-                        provider,
-                        weather.getCurrent().getWeatherCode(),
-                        dayTime,
-                        minimalIcon,
-                        color.getMinimalIconColor()
-                )
-        );
+        if (weather.getCurrent() != null && weather.getCurrent().getWeatherCode() != null) {
+            views.setImageViewUri(
+                    R.id.widget_clock_day_icon,
+                    ResourceHelper.getWidgetNotificationIconUri(
+                            provider,
+                            weather.getCurrent().getWeatherCode(),
+                            dayTime,
+                            minimalIcon,
+                            color.getMinimalIconColor()
+                    )
+            );
+        }
         views.setTextViewText(
                 R.id.widget_clock_day_title,
                 getTitleText(context, location, viewStyle, temperatureUnit)
@@ -316,21 +319,44 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
                 return WidgetHelper.buildWidgetDayStyleText(context, weather, unit)[0];
 
             case "symmetry":
-                return location.getCityName(context)
-                        + "\n"
-                        + weather.getCurrent().getTemperature().getTemperature(context, unit);
+                if (weather.getCurrent() != null
+                        && weather.getCurrent().getTemperature() != null
+                        && weather.getCurrent().getTemperature().getTemperature() != null) {
+                    return location.getCityName(context)
+                            + "\n"
+                            + weather.getCurrent().getTemperature().getTemperature(context, unit);
+                } else {
+                    return location.getCityName(context);
+                }
 
             case "vertical":
             case "tile":
-                return weather.getCurrent().getWeatherText()
-                        + " "
-                        + weather.getCurrent().getTemperature().getTemperature(context, unit);
+                if (weather.getCurrent() != null) {
+                    StringBuilder stringBuilder = new StringBuilder();
+                    if (!TextUtils.isEmpty(weather.getCurrent().getWeatherText())) {
+                        stringBuilder.append(weather.getCurrent().getWeatherText());
+                    }
+                    if (weather.getCurrent().getTemperature() != null
+                        && weather.getCurrent().getTemperature().getTemperature() != null) {
+                        if (!TextUtils.isEmpty(weather.getCurrent().getWeatherText())) {
+                            stringBuilder.append(" ");
+                        }
+                        stringBuilder.append(weather.getCurrent().getTemperature().getTemperature(context, unit));
+                    }
+                    return stringBuilder.toString();
+                }
 
             case "mini":
-                return weather.getCurrent().getWeatherText();
+                if (weather.getCurrent() != null && !TextUtils.isEmpty(weather.getCurrent().getWeatherText())) {
+                    return weather.getCurrent().getWeatherText();
+                }
 
             case "temp":
-                return weather.getCurrent().getTemperature().getShortTemperature(context, unit);
+                if (weather.getCurrent() != null
+                        && weather.getCurrent().getTemperature() != null
+                        && weather.getCurrent().getTemperature().getTemperature() != null) {
+                    return weather.getCurrent().getTemperature().getShortTemperature(context, unit);
+                }
         }
         return "";
     }
@@ -342,24 +368,57 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
                 return WidgetHelper.buildWidgetDayStyleText(context, weather, unit)[1];
 
             case "symmetry":
-                return weather.getCurrent().getWeatherText() + "\n" + Temperature.getTrendTemperature(
-                        context,
-                        weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
-                        weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
-                        unit
-                );
+                if (weather.getCurrent() != null) {
+                    StringBuilder stringBuilder = new StringBuilder();
+                    if (!TextUtils.isEmpty(weather.getCurrent().getWeatherText())) {
+                        stringBuilder.append(weather.getCurrent().getWeatherText());
+                    }
+                    if (weather.getDailyForecast().size() > 0
+                            && weather.getDailyForecast().get(0).day() != null
+                            && weather.getDailyForecast().get(0).day().getTemperature() != null
+                            && weather.getDailyForecast().get(0).day().getTemperature().getTemperature() != null
+                            && weather.getDailyForecast().get(0).night() != null
+                            && weather.getDailyForecast().get(0).night().getTemperature() != null
+                            && weather.getDailyForecast().get(0).night().getTemperature().getTemperature() != null
+                    ) {
+                        if (!TextUtils.isEmpty(weather.getCurrent().getWeatherText())) {
+                            stringBuilder.append(" ");
+                        }
+                        stringBuilder.append(Temperature.getTrendTemperature(
+                                        context,
+                                        weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
+                                        weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
+                                        unit
+                                )
+                        );
+                    }
+                    return stringBuilder.toString();
+                }
 
             case "tile":
             case "temp":
-                return Temperature.getTrendTemperature(
-                        context,
-                        weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
-                        weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
-                        unit
-                );
+                if (weather.getDailyForecast().size() > 0
+                        && weather.getDailyForecast().get(0).day() != null
+                        && weather.getDailyForecast().get(0).day().getTemperature() != null
+                        && weather.getDailyForecast().get(0).day().getTemperature().getTemperature() != null
+                        && weather.getDailyForecast().get(0).night() != null
+                        && weather.getDailyForecast().get(0).night().getTemperature() != null
+                        && weather.getDailyForecast().get(0).night().getTemperature().getTemperature() != null
+                ) {
+                    return Temperature.getTrendTemperature(
+                            context,
+                            weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
+                            weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
+                            unit
+                    );
+                }
 
             case "mini":
-                return weather.getCurrent().getTemperature().getTemperature(context, unit);
+                if (weather.getCurrent() != null
+                        && weather.getCurrent().getTemperature() != null
+                        && weather.getCurrent().getTemperature().getTemperature() != null) {
+                    return weather.getCurrent().getTemperature().getTemperature(context, unit);
+                }
         }
         return "";
     }
@@ -390,22 +449,30 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
                                 + " " + WidgetHelper.getWeek(context, location.getTimeZone())
                                 + " " + Base.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone());
                 }
-                break;
+                return null;
 
             case "aqi":
-                if (weather.getCurrent().getAirQuality().getAqiIndex() != null
+                if (weather.getCurrent() != null
+                        && weather.getCurrent().getAirQuality() != null
+                        && weather.getCurrent().getAirQuality().getAqiIndex() != null
                         && weather.getCurrent().getAirQuality().getAqiText(context) != null) {
                     return weather.getCurrent().getAirQuality().getAqiText(context)
                             + " ("
                             + weather.getCurrent().getAirQuality().getAqiIndex()
                             + ")";
                 }
-                break;
+                return null;
 
             case "wind":
-                return weather.getCurrent().getWind().getDirection()
-                        + " "
-                        + weather.getCurrent().getWind().getLevel();
+                if (weather.getCurrent() != null
+                        && weather.getCurrent().getWind() != null
+                        && weather.getCurrent().getWind().getDirection() != null
+                        && weather.getCurrent().getWind().getLevel() != null) {
+                    return weather.getCurrent().getWind().getDirection()
+                            + " "
+                            + weather.getCurrent().getWind().getLevel();
+                }
+                return null;
 
             case "lunar":
                 switch (viewStyle) {
@@ -425,12 +492,17 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
                                 + " " + WidgetHelper.getWeek(context, location.getTimeZone())
                                 + " " + LunarHelper.getLunarDate(new Date());
                 }
-                break;
+                return null;
 
             case "sensible_time":
-                return context.getString(R.string.feels_like)
-                        + " "
-                        + weather.getCurrent().getTemperature().getRealFeelTemperature(context, unit);
+                if (weather.getCurrent() != null
+                        && weather.getCurrent().getTemperature() != null
+                        && weather.getCurrent().getTemperature().getFeelsLikeTemperature() != null) {
+                    return context.getString(R.string.feels_like)
+                            + " "
+                            + weather.getCurrent().getTemperature().getFeelsLikeTemperature(context, unit);
+                }
+                return null;
         }
         return getCustomSubtitle(context, subtitleData, location, weather);
     }

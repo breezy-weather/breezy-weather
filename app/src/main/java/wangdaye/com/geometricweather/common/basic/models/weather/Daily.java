@@ -1,6 +1,5 @@
 package wangdaye.com.geometricweather.common.basic.models.weather;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 
 import androidx.annotation.Size;
@@ -30,12 +29,12 @@ public class Daily implements Serializable {
     private final AirQuality airQuality;
     private final Pollen pollen;
     private final UV uv;
-    private final float hoursOfSun;
+    private final Float hoursOfSun;
 
     public Daily(Date date, long time,
                  HalfDay day, HalfDay night, Astro sun, Astro moon,
                  MoonPhase moonPhase, AirQuality airQuality, Pollen pollen, UV uv,
-                 float hoursOfSun) {
+                 Float hoursOfSun) {
         this.date = date;
         this.time = time;
         this.halfDays = new HalfDay[] {day, night};
@@ -53,6 +52,14 @@ public class Daily implements Serializable {
 
     public HalfDay night() {
         return halfDays[1];
+    }
+
+    public void setDay(HalfDay day) {
+        halfDays[0] = day;
+    }
+
+    public void setNight(HalfDay night) {
+        halfDays[1] = night;
     }
 
     public Astro sun() {
@@ -87,7 +94,7 @@ public class Daily implements Serializable {
         return uv;
     }
 
-    public float getHoursOfSun() {
+    public Float getHoursOfSun() {
         return hoursOfSun;
     }
 

@@ -60,6 +60,9 @@ android {
         it.buildConfigField "String", "MF_WSFT_JWT_KEY", MF_WSFT_JWT_KEY
         it.buildConfigField "String", "MF_WSFT_KEY", MF_WSFT_KEY
         it.buildConfigField "String", "NOMINATIM_BASE_URL", NOMINATIM_BASE_URL
+        it.buildConfigField "String", "OPEN_METEO_AIR_QUALITY_BASE_URL", OPEN_METEO_AIR_QUALITY_BASE_URL
+        it.buildConfigField "String", "OPEN_METEO_GEOCODING_BASE_URL", OPEN_METEO_GEOCODING_BASE_URL
+        it.buildConfigField "String", "OPEN_METEO_WEATHER_BASE_URL", OPEN_METEO_WEATHER_BASE_URL
         it.buildConfigField "String", "OWM_BASE_URL", OWM_BASE_URL
         it.buildConfigField "String", "OWM_KEY", OWM_KEY
     }

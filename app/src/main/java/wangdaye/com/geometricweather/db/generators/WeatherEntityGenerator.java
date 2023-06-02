@@ -23,65 +23,73 @@ public class WeatherEntityGenerator {
         WeatherEntity entity = new WeatherEntity();
 
         // base.
-        entity.cityId = weather.getBase().getCityId();
-        entity.weatherSource = new WeatherSourceConverter().convertToDatabaseValue(location.getWeatherSource());
-        entity.timeStamp = weather.getBase().getTimeStamp();
-        entity.publishDate = weather.getBase().getPublishDate();
-        entity.publishTime = weather.getBase().getPublishTime();
-        entity.updateDate = weather.getBase().getUpdateDate();
-        entity.updateTime = weather.getBase().getUpdateTime();
+        if (weather.getBase() != null) {
+            entity.cityId = weather.getBase().getCityId();
+            entity.weatherSource = new WeatherSourceConverter().convertToDatabaseValue(location.getWeatherSource());
+            entity.timeStamp = weather.getBase().getTimeStamp();
+            entity.publishDate = weather.getBase().getPublishDate();
+            entity.publishTime = weather.getBase().getPublishTime();
+            entity.updateDate = weather.getBase().getUpdateDate();
+            entity.updateTime = weather.getBase().getUpdateTime();
+        }
 
         // current.
-        entity.weatherText = weather.getCurrent().getWeatherText();
-        entity.weatherCode = weather.getCurrent().getWeatherCode();
+        if (weather.getCurrent() != null) {
+            entity.weatherText = weather.getCurrent().getWeatherText();
+            entity.weatherCode = weather.getCurrent().getWeatherCode();
 
-        entity.temperature = weather.getCurrent().getTemperature().getTemperature();
-        entity.realFeelTemperature = weather.getCurrent().getTemperature().getRealFeelTemperature();
-        entity.realFeelShaderTemperature = weather.getCurrent().getTemperature().getRealFeelShaderTemperature();
-        entity.apparentTemperature = weather.getCurrent().getTemperature().getApparentTemperature();
-        entity.windChillTemperature = weather.getCurrent().getTemperature().getWindChillTemperature();
-        entity.wetBulbTemperature = weather.getCurrent().getTemperature().getWetBulbTemperature();
-        entity.degreeDayTemperature = weather.getCurrent().getTemperature().getDegreeDayTemperature();
+            if (weather.getCurrent().getTemperature() != null) {
+                entity.temperature = weather.getCurrent().getTemperature().getTemperature();
+                entity.realFeelTemperature = weather.getCurrent().getTemperature().getRealFeelTemperature();
+                entity.realFeelShaderTemperature = weather.getCurrent().getTemperature().getRealFeelShaderTemperature();
+                entity.apparentTemperature = weather.getCurrent().getTemperature().getApparentTemperature();
+                entity.windChillTemperature = weather.getCurrent().getTemperature().getWindChillTemperature();
+                entity.wetBulbTemperature = weather.getCurrent().getTemperature().getWetBulbTemperature();
+                entity.degreeDayTemperature = weather.getCurrent().getTemperature().getDegreeDayTemperature();
+            }
 
-        entity.totalPrecipitation = weather.getCurrent().getPrecipitation().getTotal();
-        entity.thunderstormPrecipitation = weather.getCurrent().getPrecipitation().getThunderstorm();
-        entity.rainPrecipitation = weather.getCurrent().getPrecipitation().getRain();
-        entity.snowPrecipitation = weather.getCurrent().getPrecipitation().getSnow();
-        entity.icePrecipitation = weather.getCurrent().getPrecipitation().getIce();
+            if (weather.getCurrent().getPrecipitation() != null) {
+                entity.totalPrecipitation = weather.getCurrent().getPrecipitation().getTotal();
+                entity.thunderstormPrecipitation = weather.getCurrent().getPrecipitation().getThunderstorm();
+                entity.rainPrecipitation = weather.getCurrent().getPrecipitation().getRain();
+                entity.snowPrecipitation = weather.getCurrent().getPrecipitation().getSnow();
+                entity.icePrecipitation = weather.getCurrent().getPrecipitation().getIce();
+            }
 
-        entity.totalPrecipitationProbability = weather.getCurrent().getPrecipitationProbability().getTotal();
-        entity.thunderstormPrecipitationProbability = weather.getCurrent().getPrecipitationProbability().getThunderstorm();
-        entity.rainPrecipitationProbability = weather.getCurrent().getPrecipitationProbability().getRain();
-        entity.snowPrecipitationProbability = weather.getCurrent().getPrecipitationProbability().getSnow();
-        entity.icePrecipitationProbability = weather.getCurrent().getPrecipitationProbability().getIce();
+            if (weather.getCurrent().getWind() != null) {
+                entity.windDirection = weather.getCurrent().getWind().getDirection();
+                entity.windDegree = weather.getCurrent().getWind().getDegree();
+                entity.windSpeed = weather.getCurrent().getWind().getSpeed();
+                entity.windLevel = weather.getCurrent().getWind().getLevel();
+            }
 
-        entity.windDirection = weather.getCurrent().getWind().getDirection();
-        entity.windDegree = weather.getCurrent().getWind().getDegree();
-        entity.windSpeed = weather.getCurrent().getWind().getSpeed();
-        entity.windLevel = weather.getCurrent().getWind().getLevel();
+            if (weather.getCurrent().getUV() != null) {
+                entity.uvIndex = weather.getCurrent().getUV().getIndex();
+                entity.uvLevel = weather.getCurrent().getUV().getLevel();
+                entity.uvDescription = weather.getCurrent().getUV().getDescription();
+            }
 
-        entity.uvIndex = weather.getCurrent().getUV().getIndex();
-        entity.uvLevel = weather.getCurrent().getUV().getLevel();
-        entity.uvDescription = weather.getCurrent().getUV().getDescription();
+            if (weather.getCurrent().getAirQuality() != null) {
+                entity.aqiText = weather.getCurrent().getAirQuality().getAqiText();
+                entity.aqiIndex = weather.getCurrent().getAirQuality().getAqiIndex();
+                entity.pm25 = weather.getCurrent().getAirQuality().getPM25();
+                entity.pm10 = weather.getCurrent().getAirQuality().getPM10();
+                entity.so2 = weather.getCurrent().getAirQuality().getSO2();
+                entity.no2 = weather.getCurrent().getAirQuality().getNO2();
+                entity.o3 = weather.getCurrent().getAirQuality().getO3();
+                entity.co = weather.getCurrent().getAirQuality().getCO();
+            }
 
-        entity.aqiText = weather.getCurrent().getAirQuality().getAqiText();
-        entity.aqiIndex = weather.getCurrent().getAirQuality().getAqiIndex();
-        entity.pm25 = weather.getCurrent().getAirQuality().getPM25();
-        entity.pm10 = weather.getCurrent().getAirQuality().getPM10();
-        entity.so2 = weather.getCurrent().getAirQuality().getSO2();
-        entity.no2 = weather.getCurrent().getAirQuality().getNO2();
-        entity.o3 = weather.getCurrent().getAirQuality().getO3();
-        entity.co = weather.getCurrent().getAirQuality().getCO();
+            entity.relativeHumidity = weather.getCurrent().getRelativeHumidity();
+            entity.pressure = weather.getCurrent().getPressure();
+            entity.visibility = weather.getCurrent().getVisibility();
+            entity.dewPoint = weather.getCurrent().getDewPoint();
+            entity.cloudCover = weather.getCurrent().getCloudCover();
+            entity.ceiling = weather.getCurrent().getCeiling();
 
-        entity.relativeHumidity = weather.getCurrent().getRelativeHumidity();
-        entity.pressure = weather.getCurrent().getPressure();
-        entity.visibility = weather.getCurrent().getVisibility();
-        entity.dewPoint = weather.getCurrent().getDewPoint();
-        entity.cloudCover = weather.getCurrent().getCloudCover();
-        entity.ceiling = weather.getCurrent().getCeiling();
-
-        entity.dailyForecast = weather.getCurrent().getDailyForecast();
-        entity.hourlyForecast = weather.getCurrent().getHourlyForecast();
+            entity.dailyForecast = weather.getCurrent().getDailyForecast();
+            entity.hourlyForecast = weather.getCurrent().getHourlyForecast();
+        }
 
         return entity;
     }
@@ -115,13 +123,6 @@ public class WeatherEntityGenerator {
                                 weatherEntity.rainPrecipitation,
                                 weatherEntity.snowPrecipitation,
                                 weatherEntity.icePrecipitation
-                        ),
-                        new PrecipitationProbability(
-                                weatherEntity.totalPrecipitationProbability,
-                                weatherEntity.thunderstormPrecipitationProbability,
-                                weatherEntity.rainPrecipitationProbability,
-                                weatherEntity.snowPrecipitationProbability,
-                                weatherEntity.icePrecipitationProbability
                         ),
                         new Wind(
                                 weatherEntity.windDirection,

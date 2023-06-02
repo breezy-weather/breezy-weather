@@ -194,7 +194,6 @@
     <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : Temperatura atual (°)\n</string>
     <string name="feedback_custom_subtitle_keyword_at">$at$ : Temperatura aparente (℃/℉)\n</string>
     <string name="feedback_custom_subtitle_keyword_atd">$atd$ : Temperatura aparente (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_cpb">$cpb$ : Probabilidade de precipitação atual (%)\n</string>
     <string name="feedback_custom_subtitle_keyword_cp">$cp$ : Precipitação atual (mm/L/m²)\n</string>
     <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : Vento atual\n</string>
     <string name="feedback_custom_subtitle_keyword_cuv">$cuv$ : UV atual\n</string>
@@ -306,7 +305,7 @@
     <string name="content_des_swipe_right_to_delete">Você pode deslizar para a direita para remover este item</string>
     <string name="content_desc_search_filter_on">Mostrar apenas locais da fonte meteorológica padrão</string>
     <string name="content_desc_search_filter_off">Mostrar locais de todas as fontes meteorológicas</string>
-    <string name="content_desc_powered_by">Powered by $</string> <!-- $ = weather source. -->
+    <string name="content_desc_powered_by">Weather data $</string> <!-- $ = weather source. -->
     <string name="content_desc_app_store">@string/action_appStore</string>
     <string name="content_desc_wechat_payment_code">Pagamento via código QR do WeChat</string>
     <string name="content_desc_weather_icon">Ícone de clima</string>

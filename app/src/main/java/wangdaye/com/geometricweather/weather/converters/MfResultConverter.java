@@ -233,19 +233,12 @@ public class MfResultConverter {
                                     null,
                                     null
                             ),
-                            new PrecipitationProbability(
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null
-                            ),
                             currentResult.properties != null && currentResult.properties.gridded != null ? new Wind(
                                     currentResult.properties.gridded.windIcon,
-                                    new WindDegree(currentResult.properties.gridded.windDirection, currentResult.properties.gridded.windDirection == -1),
+                                    new WindDegree((float) currentResult.properties.gridded.windDirection, currentResult.properties.gridded.windDirection == -1),
                                     currentResult.properties.gridded.windSpeed * 3.6f,
                                     CommonConverter.getWindLevel(context, currentResult.properties.gridded.windSpeed * 3.6f)
-                            ) : new Wind("Pas d’info", new WindDegree(0, false), null, "Pas d’info"),
+                            ) : null,
                             getCurrentUV(new Date(), location.getTimeZone(), forecastV2Result.properties.dailyForecast),
                             getAirQuality(context, new Date(), location.getTimeZone(), normalizedAqiAtmoAuraPolluants, true),
                             null,
@@ -265,6 +258,7 @@ public class MfResultConverter {
             );
             return new WeatherService.WeatherResultWrapper(weather);
         } catch (Exception e) {
+            e.printStackTrace();
             return new WeatherService.WeatherResultWrapper(null);
         }
     }
@@ -485,7 +479,7 @@ public class MfResultConverter {
         Float probPrecipitationSnow = 0.0f;
         Float probPrecipitationIce = 0.0f;
 
-        Wind wind = new Wind("Pas d’info", new WindDegree(0, false), null, "Pas d’info");
+        Wind wind = null;
 
         // In AccuWeather provider, a day is considered from 6:00 to 17:59 and night from 18:00 to 5:59 the next day
         // So we implement it this way (same as MET Norway provider)
@@ -532,7 +526,7 @@ public class MfResultConverter {
                 }
 
                 // Wind
-                if ((hour.getWind() != null && hour.getWind().getSpeed() != null) && (wind.getSpeed() == null || hour.getWind().getSpeed() > wind.getSpeed())) {
+                if ((hour.getWind() != null && hour.getWind().getSpeed() != null) && (wind == null || wind.getSpeed() == null || hour.getWind().getSpeed() > wind.getSpeed())) {
                     wind = hour.getWind();
                 }
             }
@@ -788,6 +782,8 @@ public class MfResultConverter {
                                         hourlyForecast.windSpeed * 3.6f,
                                         CommonConverter.getWindLevel(context, hourlyForecast.windSpeed * 3.6f)
                                 ),
+                                new AirQuality(null, null, null, null, null, null, null, null),
+                                new Pollen(null, null, null, null, null, null, null, null, null, null, null, null),
                                 new UV(null, null, null)
                         )
                 );

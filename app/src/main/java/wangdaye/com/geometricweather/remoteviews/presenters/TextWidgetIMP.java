@@ -58,14 +58,21 @@ public class TextWidgetIMP extends AbstractRemoteViewsPresenter {
             textColorInt = ContextCompat.getColor(context, R.color.colorTextLight);
         }
 
-        views.setTextViewText(
-                R.id.widget_text_weather,
-                weather.getCurrent().getWeatherText()
-        );
-        views.setTextViewText(
-                R.id.widget_text_temperature,
-                weather.getCurrent().getTemperature().getShortTemperature(context, temperatureUnit)
-        );
+        if (weather.getCurrent() != null) {
+            if (weather.getCurrent().getWeatherText() != null) {
+                views.setTextViewText(
+                        R.id.widget_text_weather,
+                        weather.getCurrent().getWeatherText()
+                );
+            }
+            if (weather.getCurrent().getTemperature() != null
+                && weather.getCurrent().getTemperature().getTemperature() != null) {
+                views.setTextViewText(
+                        R.id.widget_text_temperature,
+                        weather.getCurrent().getTemperature().getShortTemperature(context, temperatureUnit)
+                );
+            }
+        }
 
         views.setTextColor(R.id.widget_text_date, textColorInt);
         views.setTextColor(R.id.widget_text_weather, textColorInt);

@@ -76,15 +76,8 @@ public class CaiyunResultConverter {
                                     null,
                                     null
                             ),
-                            new PrecipitationProbability(
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null
-                            ),
                             new Wind(
-                                    getWindDirection(Float.parseFloat(mainlyResult.current.wind.direction.value)),
+                                    CommonConverter.getWindDirection(Float.parseFloat(mainlyResult.current.wind.direction.value), location.isChina()),
                                     new WindDegree(
                                             Float.parseFloat(mainlyResult.current.wind.direction.value),
                                             false
@@ -260,7 +253,7 @@ public class CaiyunResultConverter {
                                             null
                                     ),
                                     new Wind(
-                                            getWindDirection(Float.parseFloat(forecast.wind.direction.value.get(i).from)),
+                                            CommonConverter.getWindDirection(Float.parseFloat(forecast.wind.direction.value.get(i).from), true),
                                             new WindDegree(
                                                     Float.parseFloat(forecast.wind.direction.value.get(i).from),
                                                     false
@@ -308,7 +301,7 @@ public class CaiyunResultConverter {
                                             null
                                     ),
                                     new Wind(
-                                            getWindDirection(Float.parseFloat(forecast.wind.direction.value.get(i).to)),
+                                            CommonConverter.getWindDirection(Float.parseFloat(forecast.wind.direction.value.get(i).to), true),
                                             new WindDegree(
                                                     Float.parseFloat(forecast.wind.direction.value.get(i).to),
                                                     false
@@ -427,7 +420,7 @@ public class CaiyunResultConverter {
                                     null
                             ),
                             new Wind(
-                                    getWindDirection(Float.parseFloat(forecast.wind.value.get(i).direction)),
+                                    CommonConverter.getWindDirection(Float.parseFloat(forecast.wind.value.get(i).direction), true),
                                     new WindDegree(
                                             Float.parseFloat(forecast.wind.value.get(i).direction),
                                             false
@@ -438,6 +431,8 @@ public class CaiyunResultConverter {
                                             Float.parseFloat(forecast.wind.value.get(i).speed)
                                     )
                             ),
+                            new AirQuality(null, null, null, null, null, null, null, null),
+                            new Pollen(null, null, null, null, null, null, null, null, null, null, null, null),
                             new UV(null, null, null)
                     )
             );
@@ -741,28 +736,6 @@ public class CaiyunResultConverter {
 
             default:
                 return WeatherCode.CLOUDY;
-        }
-    }
-
-    private static String getWindDirection(float degree) {
-        if (degree < 0) {
-            return "无风向";
-        }if (22.5 < degree && degree <= 67.5) {
-            return "东北风";
-        } else if (67.5 < degree && degree <= 112.5) {
-            return "东风";
-        } else if (112.5 < degree && degree <= 157.5) {
-            return "东南风";
-        } else if (157.5 < degree && degree <= 202.5) {
-            return "南风";
-        } else if (202.5 < degree && degree <= 247.5) {
-            return "西南风";
-        } else if (247.5 < degree && degree <= 292.5) {
-            return "西风";
-        } else if (292. < degree && degree <= 337.5) {
-            return "西北风";
-        } else {
-            return "北风";
         }
     }
 

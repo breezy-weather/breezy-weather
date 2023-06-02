@@ -203,7 +203,6 @@
     <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : Temperatura actual (°)\n</string>
     <string name="feedback_custom_subtitle_keyword_at">$at$ : Sensació tèrmica (℃/℉)\n</string>
     <string name="feedback_custom_subtitle_keyword_atd">$atd$ : Sensació tèrmica (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_cpb">$cpb$ : Probabilitat de precipitació actual (%)\n</string>
     <string name="feedback_custom_subtitle_keyword_cp">$cp$ : Precipitació actual (mm/L/m²)\n</string>
     <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : Vent actual\n</string>
     <string name="feedback_custom_subtitle_keyword_cuv">$cuv$ : UV actual\n</string>

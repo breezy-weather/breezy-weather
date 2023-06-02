@@ -7,25 +7,28 @@
 
     <!-- Chinese source. -->
     <string-array name="weather_sources">
-        <item>caiyunapp.com (Only For China)</item>
+        <item>Open-Meteo</item>
         <item>accuweather.com</item>
-        <item>OpenWeather</item>
-        <item>Météo France</item>
         <item>MET Norway / Nominatim</item>
+        <item>OpenWeather v2.5</item>
+        <item>Météo France</item>
+        <item>caiyunapp.com (Only For China)</item>
     </string-array>
     <string-array name="weather_source_voices">
-        <item>CaiYun App.com</item>
+        <item>Open Meteo</item>
         <item>ACCU weather.com</item>
-        <item>Open Weather</item>
-        <item>Météo France</item>
         <item>The Norwegian Meteorological Institute + Nominatim</item>
+        <item>Open Weather version 2.5</item>
+        <item>Météo France</item>
+        <item>CaiYun App.com</item>
     </string-array>
     <string-array name="weather_source_values">
-        <item>caiyun</item>
+        <item>openmeteo</item>
         <item>accu</item>
+        <item>metno</item>
         <item>owm</item>
         <item>mf</item>
-        <item>metno</item>
+        <item>caiyun</item>
     </string-array>
 
     <!-- Location service. -->
@@ -241,7 +244,7 @@
     <!-- Widget subtitle data. -->
     <string-array name="subtitle_data">
         <item>Refresh time</item>
-        <item>AQI (Invalid in some area.)</item>
+        <item>AQI (not available everywhere)</item>
         <item>Wind</item>
         <item>Sensible temp</item>
         <item>Lunar Calendar</item>

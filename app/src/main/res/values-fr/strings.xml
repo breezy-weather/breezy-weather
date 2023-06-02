@@ -114,6 +114,13 @@
     <string name="ragweed">Ambroisie</string>
     <string name="tree">Arbres</string>
 
+    <!-- UV levels -->
+    <string name="uv_level_0_2">Faible</string>
+    <string name="uv_level_3_5">Modéré</string>
+    <string name="uv_level_6_7">Élevé</string>
+    <string name="uv_level_8_10">Très élevé</string>
+    <string name="uv_level_11">Extrême</string>
+
     <string name="daily_overview">Prévisions quotidiennes</string>
     <string name="hourly_overview">Prévisions heure par heure</string>
     <string name="minutely_overview">Prévisions minute par minute</string>
@@ -122,6 +129,36 @@
     <string name="allergen">Allergènes</string>
     <string name="life_details">Détails</string>
     <string name="sunrise_sunset">Soleil &amp; lune</string>
+
+    <!-- Weather texts -->
+    <string name="weather_text_clear_sky">Ciel dégagé</string>
+    <string name="weather_text_mainly_clear">Principalement dégagé</string>
+    <string name="weather_text_partly_cloudy">Partiellement couvert</string>
+    <string name="weather_text_overcast">Couvert</string>
+    <string name="weather_text_fog">Brouillard</string>
+    <string name="weather_text_depositing_rime_fog">Depositing rime fog</string>
+    <string name="weather_text_drizzle_light_intensity">Bruine de faible intensité</string>
+    <string name="weather_text_drizzle_moderate_intensity">Bruine d’intensité modérée</string>
+    <string name="weather_text_drizzle_dense_intensity">Bruine d’intensité élevée</string>
+    <string name="weather_text_freezing_drizzle_light_intensity">Bruine verglaçante de faible intensité</string>
+    <string name="weather_text_freezing_drizzle_dense_intensity">Bruine verglaçante d’intensité élevée</string>
+    <string name="weather_text_rain_slight_intensity">Pluie de faible intensité</string>
+    <string name="weather_text_rain_moderate_intensity">Pluie d’intensité modérée</string>
+    <string name="weather_text_rain_heavy_intensity">Pluie d’intensité élevée</string>
+    <string name="weather_text_freezing_rain_light_intensity">Pluie verglaçante de faible intensité</string>
+    <string name="weather_text_freezing_rain_heavy_intensity">Pluie verglaçante d’intensité élevée</string>
+    <string name="weather_text_snow_slight_intensity">Neige de faible intensité</string>
+    <string name="weather_text_snow_moderate_intensity">Neige d’intensité modérée</string>
+    <string name="weather_text_snow_heavy_intensity">Neige d’intensité élevée</string>
+    <string name="weather_text_snow_grains">Neige en grains</string>
+    <string name="weather_text_rain_showers_slight">Faibles averses de pluie</string>
+    <string name="weather_text_rain_showers_moderate">Averses de pluie modérées</string>
+    <string name="weather_text_rain_showers_violent">Averses de pluie violentes</string>
+    <string name="weather_text_snow_showers_slight">Faibles averses de neige</string>
+    <string name="weather_text_snow_showers_heavy">Importantes averses de neige</string>
+    <string name="weather_text_thunderstorm_slight_or_moderate">Orage léger ou modéré</string>
+    <string name="weather_text_thunderstorm_with_slight_hail">Orage avec légère grêle</string>
+    <string name="weather_text_thunderstorm_with_heavy_hail">Orage avec forte grêle</string>
 
     <string name="next">SUIVANT</string>
     <string name="done">OK</string>
@@ -194,7 +231,6 @@
     <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : Température actuelle (°)\n</string>
     <string name="feedback_custom_subtitle_keyword_at">$at$ : Température ressentie (℃/℉)\n</string>
     <string name="feedback_custom_subtitle_keyword_atd">$atd$ : Température ressentie (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_cpb">$cpb$ : Probabilité de précipitation actuelle (%)\n</string>
     <string name="feedback_custom_subtitle_keyword_cp">$cp$ : Précipitations actuelles (mm/L/m²)\n</string>
     <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : Vent actuel\n</string>
     <string name="feedback_custom_subtitle_keyword_cuv">$cuv$ : UV actuel\n</string>

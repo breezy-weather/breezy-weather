@@ -123,7 +123,7 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                         context,
                         temperatureUnit.getValueWithoutUnit(
                                 settings.isNotificationFeelsLike()
-                                        ? ObjectUtils.safeValueOf(weather.getCurrent().getTemperature().getRealFeelTemperature())
+                                        ? ObjectUtils.safeValueOf(weather.getCurrent().getTemperature().getFeelsLikeTemperature())
                                         : weather.getCurrent().getTemperature().getTemperature()
                         )
                 ) : ResourceHelper.getDefaultMinimalXmlIconId(
@@ -221,7 +221,7 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                 Temperature.getShortTemperature(
                         context,
                         settings.isNotificationFeelsLike()
-                                ? ObjectUtils.safeValueOf(weather.getCurrent().getTemperature().getRealFeelTemperature())
+                                ? ObjectUtils.safeValueOf(weather.getCurrent().getTemperature().getFeelsLikeTemperature())
                                 : weather.getCurrent().getTemperature().getTemperature(),
                         temperatureUnit
                 )

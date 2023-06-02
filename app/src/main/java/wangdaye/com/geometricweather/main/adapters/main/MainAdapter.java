@@ -73,15 +73,22 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
             mViewTypeList.add(ViewType.HEADER);
             for (CardDisplay c : cardDisplayList) {
                 if (c == CardDisplay.CARD_AIR_QUALITY
-                        && !weather.getCurrent().getAirQuality().isValid()) {
+                        && (weather.getCurrent() == null
+                        || weather.getCurrent().getAirQuality() == null
+                        || !weather.getCurrent().getAirQuality().isValid())
+                ) {
                     continue;
                 }
                 if (c == CardDisplay.CARD_ALLERGEN
-                        && !weather.getDailyForecast().get(0).getPollen().isValid()) {
+                        && (weather.getDailyForecast().size() == 0
+                        || weather.getDailyForecast().get(0).getPollen() == null
+                        || !weather.getDailyForecast().get(0).getPollen().isValid())
+                ) {
                     continue;
                 }
                 if (c == CardDisplay.CARD_SUNRISE_SUNSET
                         && (weather.getDailyForecast().size() == 0
+                        || weather.getDailyForecast().get(0).sun() == null
                         || !weather.getDailyForecast().get(0).sun().isValid())) {
                     continue;
                 }

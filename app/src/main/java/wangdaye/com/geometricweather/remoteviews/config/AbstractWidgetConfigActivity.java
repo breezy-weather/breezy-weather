@@ -521,7 +521,6 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
                 getString(R.string.feedback_custom_subtitle_keyword_ctd) +
                 getString(R.string.feedback_custom_subtitle_keyword_at) +
                 getString(R.string.feedback_custom_subtitle_keyword_atd) +
-                getString(R.string.feedback_custom_subtitle_keyword_cpb) +
                 getString(R.string.feedback_custom_subtitle_keyword_cp) +
                 getString(R.string.feedback_custom_subtitle_keyword_cwd) +
                 getString(R.string.feedback_custom_subtitle_keyword_cuv) +

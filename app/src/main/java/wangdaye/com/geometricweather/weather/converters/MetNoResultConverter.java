@@ -142,7 +142,7 @@ public class MetNoResultConverter {
                                                               MetNoSunsetResult sunsetResult) {
         try {
             HashMap<String, MetNoSunsetResult.Location.Time> sunsetList = getSunsetResultAsHashMap(sunsetResult.location.time);
-            List<Hourly> hourly = getHourlyList(context, location.getTimeZone(), locationForecastResult, sunsetList);
+            List<Hourly> hourly = getHourlyList(context, location.getTimeZone(), location.isChina(), locationForecastResult, sunsetList);
 
             Weather weather = new Weather(
                     new Base(
@@ -172,9 +172,8 @@ public class MetNoResultConverter {
                                     null,
                                     null
                             ),
-                            getPrecipitationProbability(locationForecastResult.properties.timeseries.get(0).data),
                             new Wind(
-                                    getWindDirection(locationForecastResult.properties.timeseries.get(0).data.instant.details.windFromDirection),
+                                    CommonConverter.getWindDirection(locationForecastResult.properties.timeseries.get(0).data.instant.details.windFromDirection, location.isChina()),
                                     new WindDegree(locationForecastResult.properties.timeseries.get(0).data.instant.details.windFromDirection, false),
                                     locationForecastResult.properties.timeseries.get(0).data.instant.details.windSpeed * 3.6f,
                                     CommonConverter.getWindLevel(context, locationForecastResult.properties.timeseries.get(0).data.instant.details.windSpeed * 3.6f)
@@ -239,7 +238,7 @@ public class MetNoResultConverter {
 
         WeatherCode weatherCode = WeatherCode.CLOUDY;
 
-        Wind wind = new Wind("Pas d’info", new WindDegree(0, false), null, "Pas d’info");
+        Wind wind = null;
 
         // In AccuWeather provider, a day is considered from 6:00 to 17:59 and night from 18:00 to 5:59 the next day
         // So we implement it this way (same as Météo France provider)
@@ -392,7 +391,7 @@ public class MetNoResultConverter {
         return CommonConverter.isDaylight(sunsetList.get(formattedDate).sunrise.time, sunsetList.get(formattedDate).sunset.time, time, timeZone);
     }
 
-    private static List<Hourly> getHourlyList(Context context, TimeZone timeZone, MetNoLocationForecastResult resultList, HashMap<String, MetNoSunsetResult.Location.Time> sunsetList) {
+    private static List<Hourly> getHourlyList(Context context, TimeZone timeZone, boolean isChina, MetNoLocationForecastResult resultList, HashMap<String, MetNoSunsetResult.Location.Time> sunsetList) {
         List<Hourly> hourlyList = new ArrayList<>(resultList.properties.timeseries.size());
         for (MetNoLocationForecastResult.Properties.Timeseries result : resultList.properties.timeseries) {
             hourlyList.add(
@@ -420,11 +419,13 @@ public class MetNoResultConverter {
                             ),
                             getPrecipitationProbability(result.data),
                             result.data.instant == null || result.data.instant.details == null ? null : new Wind(
-                                    getWindDirection(result.data.instant.details.windFromDirection),
+                                    CommonConverter.getWindDirection(result.data.instant.details.windFromDirection, isChina),
                                     new WindDegree(result.data.instant.details.windFromDirection, false),
                                     result.data.instant.details.windSpeed * 3.6f,
                                     CommonConverter.getWindLevel(context, result.data.instant.details.windSpeed * 3.6f)
                             ),
+                            new AirQuality(null, null, null, null, null, null, null, null),
+                            new Pollen(null, null, null, null, null, null, null, null, null, null, null, null),
                             new UV(null, null, null) // FIXME: Use ultravioletIndexClearSky
                     )
             );
@@ -586,29 +587,6 @@ public class MetNoResultConverter {
 
             default:
                 return WeatherCode.CLOUDY;
-        }
-    }
-
-    private static String getWindDirection(float degree) {
-        if (degree < 0) {
-            return "Variable";
-        }
-        if (22.5 < degree && degree <= 67.5) {
-            return "NE";
-        } else if (67.5 < degree && degree <= 112.5) {
-            return "E";
-        } else if (112.5 < degree && degree <= 157.5) {
-            return "SE";
-        } else if (157.5 < degree && degree <= 202.5) {
-            return "S";
-        } else if (202.5 < degree && degree <= 247.5) {
-            return "SO";
-        } else if (247.5 < degree && degree <= 292.5) {
-            return "O";
-        } else if (292. < degree && degree <= 337.5) {
-            return "NO";
-        } else {
-            return "N";
         }
     }
 

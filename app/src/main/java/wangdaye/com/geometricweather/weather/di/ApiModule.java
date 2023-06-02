@@ -15,11 +15,51 @@ import wangdaye.com.geometricweather.weather.apis.CaiYunApi;
 import wangdaye.com.geometricweather.weather.apis.MetNoApi;
 import wangdaye.com.geometricweather.weather.apis.MfWeatherApi;
 import wangdaye.com.geometricweather.weather.apis.NominatimApi;
+import wangdaye.com.geometricweather.weather.apis.OpenMeteoAirQualityApi;
+import wangdaye.com.geometricweather.weather.apis.OpenMeteoGeocodingApi;
+import wangdaye.com.geometricweather.weather.apis.OpenMeteoWeatherApi;
 import wangdaye.com.geometricweather.weather.apis.OwmApi;
 
 @InstallIn(SingletonComponent.class)
 @Module
 public class ApiModule {
+
+    @Provides
+    public OpenMeteoWeatherApi provideOpenMeteoWeatherApi(OkHttpClient client,
+                                                          GsonConverterFactory converterFactory,
+                                                          RxJava3CallAdapterFactory callAdapterFactory) {
+        return new Retrofit.Builder()
+                .baseUrl(BuildConfig.OPEN_METEO_WEATHER_BASE_URL)
+                .client(client)
+                .addConverterFactory(converterFactory)
+                .addCallAdapterFactory(callAdapterFactory)
+                .build()
+                .create(OpenMeteoWeatherApi.class);
+    }
+    @Provides
+    public OpenMeteoGeocodingApi provideOpenMeteoGeocodingApi(OkHttpClient client,
+                                                              GsonConverterFactory converterFactory,
+                                                              RxJava3CallAdapterFactory callAdapterFactory) {
+        return new Retrofit.Builder()
+                .baseUrl(BuildConfig.OPEN_METEO_GEOCODING_BASE_URL)
+                .client(client)
+                .addConverterFactory(converterFactory)
+                .addCallAdapterFactory(callAdapterFactory)
+                .build()
+                .create(OpenMeteoGeocodingApi.class);
+    }
+    @Provides
+    public OpenMeteoAirQualityApi provideOpenMeteoAirQualityApi(OkHttpClient client,
+                                                                GsonConverterFactory converterFactory,
+                                                                RxJava3CallAdapterFactory callAdapterFactory) {
+        return new Retrofit.Builder()
+                .baseUrl(BuildConfig.OPEN_METEO_AIR_QUALITY_BASE_URL)
+                .client(client)
+                .addConverterFactory(converterFactory)
+                .addCallAdapterFactory(callAdapterFactory)
+                .build()
+                .create(OpenMeteoAirQualityApi.class);
+    }
 
     @Provides
     public AccuWeatherApi provideAccuWeatherApi(OkHttpClient client,
@@ -31,7 +71,7 @@ public class ApiModule {
                 .addConverterFactory(converterFactory)
                 .addCallAdapterFactory(callAdapterFactory)
                 .build()
-                .create((AccuWeatherApi.class));
+                .create(AccuWeatherApi.class);
     }
 
     @Provides
@@ -44,59 +84,7 @@ public class ApiModule {
                 .addConverterFactory(converterFactory)
                 .addCallAdapterFactory(callAdapterFactory)
                 .build()
-                .create((MetNoApi.class));
-    }
-
-    @Provides
-    public OwmApi provideOpenWeatherMapApi(OkHttpClient client,
-                                           GsonConverterFactory converterFactory,
-                                           RxJava3CallAdapterFactory callAdapterFactory) {
-        return new Retrofit.Builder()
-                .baseUrl(BuildConfig.OWM_BASE_URL)
-                .client(client)
-                .addConverterFactory(converterFactory)
-                .addCallAdapterFactory(callAdapterFactory)
-                .build()
-                .create((OwmApi.class));
-    }
-
-    @Provides
-    public CaiYunApi provideCaiYunApi(OkHttpClient client,
-                                      GsonConverterFactory converterFactory,
-                                      RxJava3CallAdapterFactory callAdapterFactory) {
-        return new Retrofit.Builder()
-                .baseUrl(BuildConfig.CAIYUN_WEATHER_BASE_URL)
-                .client(client)
-                .addConverterFactory(converterFactory)
-                .addCallAdapterFactory(callAdapterFactory)
-                .build()
-                .create((CaiYunApi.class));
-    }
-
-    @Provides
-    public MfWeatherApi provideMfWeatherApi(OkHttpClient client,
-                                            GsonConverterFactory converterFactory,
-                                            RxJava3CallAdapterFactory callAdapterFactory) {
-        return new Retrofit.Builder()
-                .baseUrl(BuildConfig.MF_WSFT_BASE_URL)
-                .client(client)
-                .addConverterFactory(converterFactory)
-                .addCallAdapterFactory(callAdapterFactory)
-                .build()
-                .create((MfWeatherApi.class));
-    }
-
-    @Provides
-    public AtmoAuraIqaApi provideAtmoAuraIqaApi(OkHttpClient client,
-                                                GsonConverterFactory converterFactory,
-                                                RxJava3CallAdapterFactory callAdapterFactory) {
-        return new Retrofit.Builder()
-                .baseUrl(BuildConfig.IQA_ATMO_AURA_URL)
-                .client(client)
-                .addConverterFactory(converterFactory)
-                .addCallAdapterFactory(callAdapterFactory)
-                .build()
-                .create((AtmoAuraIqaApi.class));
+                .create(MetNoApi.class);
     }
 
     @Provides
@@ -109,6 +97,58 @@ public class ApiModule {
                 .addConverterFactory(converterFactory)
                 .addCallAdapterFactory(callAdapterFactory)
                 .build()
-                .create((NominatimApi.class));
+                .create(NominatimApi.class);
+    }
+
+    @Provides
+    public OwmApi provideOpenWeatherMapApi(OkHttpClient client,
+                                           GsonConverterFactory converterFactory,
+                                           RxJava3CallAdapterFactory callAdapterFactory) {
+        return new Retrofit.Builder()
+                .baseUrl(BuildConfig.OWM_BASE_URL)
+                .client(client)
+                .addConverterFactory(converterFactory)
+                .addCallAdapterFactory(callAdapterFactory)
+                .build()
+                .create(OwmApi.class);
+    }
+
+    @Provides
+    public MfWeatherApi provideMfWeatherApi(OkHttpClient client,
+                                            GsonConverterFactory converterFactory,
+                                            RxJava3CallAdapterFactory callAdapterFactory) {
+        return new Retrofit.Builder()
+                .baseUrl(BuildConfig.MF_WSFT_BASE_URL)
+                .client(client)
+                .addConverterFactory(converterFactory)
+                .addCallAdapterFactory(callAdapterFactory)
+                .build()
+                .create(MfWeatherApi.class);
+    }
+
+    @Provides
+    public AtmoAuraIqaApi provideAtmoAuraIqaApi(OkHttpClient client,
+                                                GsonConverterFactory converterFactory,
+                                                RxJava3CallAdapterFactory callAdapterFactory) {
+        return new Retrofit.Builder()
+                .baseUrl(BuildConfig.IQA_ATMO_AURA_URL)
+                .client(client)
+                .addConverterFactory(converterFactory)
+                .addCallAdapterFactory(callAdapterFactory)
+                .build()
+                .create(AtmoAuraIqaApi.class);
+    }
+
+    @Provides
+    public CaiYunApi provideCaiYunApi(OkHttpClient client,
+                                      GsonConverterFactory converterFactory,
+                                      RxJava3CallAdapterFactory callAdapterFactory) {
+        return new Retrofit.Builder()
+                .baseUrl(BuildConfig.CAIYUN_WEATHER_BASE_URL)
+                .client(client)
+                .addConverterFactory(converterFactory)
+                .addCallAdapterFactory(callAdapterFactory)
+                .build()
+                .create(CaiYunApi.class);
     }
 }

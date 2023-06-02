@@ -5,18 +5,20 @@
 
     <!-- Weather sources -->
     <string-array name="weather_sources">
-        <item>caiyunapp.com (Chine uniquement)</item>
+        <item>Open-Meteo</item>
         <item>AccuWeather</item>
-        <item>OpenWeather</item>
-        <item>Météo France</item>
         <item>MET Norway / Nominatim</item>
+        <item>OpenWeather v2.5</item>
+        <item>Météo France</item>
+        <item>caiyunapp.com (Chine uniquement)</item>
     </string-array>
     <string-array name="weather_source_voices">
-        <item>CaiYun App.com</item>
+        <item>Open Meteo</item>
         <item>ACCU weather.com</item>
-        <item>Open Weather</item>
-        <item>Météo France</item>
         <item>Institut météorologique norvégien + Nominatim</item>
+        <item>Open Weather version 2.5</item>
+        <item>Météo France</item>
+        <item>CaiYun App.com</item>
     </string-array>
 
     <!-- Location service. -->
@@ -99,7 +101,7 @@
     <!-- Widget subtitle data. -->
     <string-array name="subtitle_data">
         <item>Heure rafraichissement</item>
-        <item>AQI (indispo en France)</item>
+        <item>Qualité de l’air</item>
         <item>Vent</item>
         <item>Temp. ressentie</item>
         <item>Calendrier lunaire</item>

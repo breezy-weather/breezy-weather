@@ -47,33 +47,39 @@ public class WindHolder extends DailyWeatherAdapter.ViewHolder {
     @Override
     public void onBindView(DailyWeatherAdapter.ViewModel model, int position) {
         Wind wind = ((DailyWind) model).getWind();
-        StringBuilder talkBackBuilder = new StringBuilder(
-                itemView.getContext().getString(R.string.wind));
+        if (wind != null && (wind.getDirection() != null || wind.getSpeed() != null)) {
+            StringBuilder talkBackBuilder = new StringBuilder(
+                    itemView.getContext().getString(R.string.wind));
 
-        mIcon.setSupportImageTintList(ColorStateList.valueOf(wind.getWindColor(itemView.getContext())));
-        mIcon.setRotation(wind.getDegree().getDegree() + 180);
+            mIcon.setSupportImageTintList(ColorStateList.valueOf(wind.getWindColor(itemView.getContext())));
+            if (wind.getDegree() != null && wind.getDegree().getDegree() != null) {
+                mIcon.setRotation(wind.getDegree().getDegree() + 180);
+            }
 
-        talkBackBuilder.append(", ").append(wind.getDirection());
-        if (wind.getDegree().isNoDirection() || wind.getDegree().getDegree() % 45 == 0) {
-            mDirectionText.setText(wind.getDirection());
+            talkBackBuilder.append(", ").append(wind.getDirection());
+            if (wind.getDegree().isNoDirection() || wind.getDegree().getDegree() % 45 == 0) {
+                mDirectionText.setText(wind.getDirection());
+            } else {
+                mDirectionText.setText(wind.getDirection()
+                        + " (" + (int) (wind.getDegree().getDegree() % 360) + "°)");
+            }
+
+            if (wind.getSpeed() != null && wind.getSpeed() > 0) {
+                talkBackBuilder.append(", ")
+                        .append(mSpeedUnit.getValueText(mSpeedText.getContext(), wind.getSpeed()));
+
+                mSpeed.setVisibility(View.VISIBLE);
+                mSpeedText.setText(mSpeedUnit.getValueText(mSpeedText.getContext(), wind.getSpeed()));
+            } else {
+                mSpeed.setVisibility(View.GONE);
+            }
+
+            talkBackBuilder.append(", ").append(wind.getLevel());
+            mGaugeText.setText(wind.getLevel());
+
+            itemView.setContentDescription(talkBackBuilder.toString());
         } else {
-            mDirectionText.setText(wind.getDirection()
-                    + " (" + (int) (wind.getDegree().getDegree() % 360) + "°)");
+            // TODO: Hide
         }
-
-        if (wind.getSpeed() != null && wind.getSpeed() > 0) {
-            talkBackBuilder.append(", ")
-                    .append(mSpeedUnit.getValueText(mSpeedText.getContext(), wind.getSpeed()));
-
-            mSpeed.setVisibility(View.VISIBLE);
-            mSpeedText.setText(mSpeedUnit.getValueText(mSpeedText.getContext(), wind.getSpeed()));
-        } else {
-            mSpeed.setVisibility(View.GONE);
-        }
-
-        talkBackBuilder.append(", ").append(wind.getLevel());
-        mGaugeText.setText(wind.getLevel());
-
-        itemView.setContentDescription(talkBackBuilder.toString());
     }
 }

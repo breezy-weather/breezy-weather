@@ -74,7 +74,7 @@ public class ShortcutsHelper {
             );
             for (int i = 0; i < count; i ++) {
                 Weather weather = DatabaseHelper.getInstance(c).readWeather(list.get(i));
-                if (weather != null) {
+                if (weather != null && weather.getCurrent() != null && weather.getCurrent().getWeatherCode() != null) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         icon = getAdaptiveIcon(
                                 provider,

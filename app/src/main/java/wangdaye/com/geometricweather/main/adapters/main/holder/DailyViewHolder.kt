@@ -70,11 +70,11 @@ class DailyViewHolder(
 
         title.setTextColor(colors[0])
 
-        if (TextUtils.isEmpty(weather.current.dailyForecast)) {
+        if (TextUtils.isEmpty(weather.current?.dailyForecast)) {
             subtitle.visibility = View.GONE
         } else {
             subtitle.visibility = View.VISIBLE
-            subtitle.text = weather.current.dailyForecast
+            subtitle.text = weather.current?.dailyForecast
         }
 
         val trendAdapter = DailyTrendAdapter(activity, trendRecyclerView).apply {

@@ -71,7 +71,8 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
         );
     }
 
-    @WorkerThread @Nullable
+    @WorkerThread
+    @Nullable
     @SuppressLint({"InflateParams", "WrongThread"})
     private static View getDrawableView(Context context, Location location,
                                         boolean lightTheme) {
@@ -82,43 +83,65 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
 
         ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
 
-        int itemCount = 5;
-        float[] daytimeTemperatures;
-        float[] nighttimeTemperatures;
-        int highestTemperature;
-        int lowestTemperature;
+        int itemCount = Math.min(5, weather.getDailyForecast().size());
+        Float[] daytimeTemperatures;
+        Float[] nighttimeTemperatures;
+        Integer highestTemperature = null;
+        Integer lowestTemperature = null;
 
         boolean minimalIcon = SettingsManager.getInstance(context).isWidgetMinimalIconEnabled();
         TemperatureUnit temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit();
 
-        daytimeTemperatures = new float[itemCount * 2 - 1];
+        daytimeTemperatures = new Float[Math.max(0, itemCount * 2 - 1)];
         for (int i = 0; i < daytimeTemperatures.length; i += 2) {
-            daytimeTemperatures[i] = weather.getDailyForecast().get(i / 2).day().getTemperature().getTemperature();
+            daytimeTemperatures[i] = weather.getDailyForecast().get(i / 2).day() != null
+                    && weather.getDailyForecast().get(i / 2).day().getTemperature() != null
+                    && weather.getDailyForecast().get(i / 2).day().getTemperature().getTemperature() != null ?
+                    Float.valueOf(weather.getDailyForecast().get(i / 2).day().getTemperature().getTemperature())
+                    : null;
         }
         for (int i = 1; i < daytimeTemperatures.length; i += 2) {
-            daytimeTemperatures[i] = (daytimeTemperatures[i - 1] + daytimeTemperatures[i + 1]) * 0.5F;
+            if (daytimeTemperatures[i - 1] != null && daytimeTemperatures[i + 1] != null) {
+                daytimeTemperatures[i] = (daytimeTemperatures[i - 1] + daytimeTemperatures[i + 1]) * 0.5F;
+            } else {
+                daytimeTemperatures[i] = null;
+            }
         }
 
-        nighttimeTemperatures = new float[itemCount * 2 - 1];
+        nighttimeTemperatures = new Float[Math.max(0, itemCount * 2 - 1)];
         for (int i = 0; i < nighttimeTemperatures.length; i += 2) {
-            nighttimeTemperatures[i] = weather.getDailyForecast().get(i / 2).night().getTemperature().getTemperature();
+            nighttimeTemperatures[i] = weather.getDailyForecast().get(i / 2).night() != null
+                    && weather.getDailyForecast().get(i / 2).night().getTemperature() != null
+                    && weather.getDailyForecast().get(i / 2).night().getTemperature().getTemperature() != null ?
+                    Float.valueOf(weather.getDailyForecast().get(i / 2).night().getTemperature().getTemperature())
+                    : null;
         }
         for (int i = 1; i < nighttimeTemperatures.length; i += 2) {
-            nighttimeTemperatures[i] = (nighttimeTemperatures[i - 1] + nighttimeTemperatures[i + 1]) * 0.5F;
+            if (nighttimeTemperatures[i - 1] != null && nighttimeTemperatures[i + 1] != null) {
+                nighttimeTemperatures[i] = (nighttimeTemperatures[i - 1] + nighttimeTemperatures[i + 1]) * 0.5F;
+            } else {
+                nighttimeTemperatures[i] = null;
+            }
         }
 
-        highestTemperature = weather.getYesterday() == null
-                ? Integer.MIN_VALUE
-                : weather.getYesterday().getDaytimeTemperature();
-        lowestTemperature = weather.getYesterday() == null
-                ? Integer.MAX_VALUE
-                : weather.getYesterday().getNighttimeTemperature();
-        for (int i = 0; i < itemCount; i ++) {
-            if (weather.getDailyForecast().get(i).day().getTemperature().getTemperature() > highestTemperature) {
-                highestTemperature = weather.getDailyForecast().get(i).day().getTemperature().getTemperature();
+        if (weather.getYesterday() != null) {
+            if (weather.getYesterday().getDaytimeTemperature() != null) {
+                highestTemperature = weather.getYesterday().getDaytimeTemperature();
             }
-            if (weather.getDailyForecast().get(i).night().getTemperature().getTemperature() < lowestTemperature) {
-                lowestTemperature = weather.getDailyForecast().get(i).night().getTemperature().getTemperature();
+            if (weather.getYesterday().getNighttimeTemperature() != null) {
+                lowestTemperature = weather.getYesterday().getNighttimeTemperature();
+            }
+        }
+        for (int i = 0; i < itemCount; i++) {
+            if (weather.getDailyForecast().get(i).day().getTemperature() != null && weather.getDailyForecast().get(i).day().getTemperature().getTemperature() != null) {
+                if (highestTemperature == null || weather.getDailyForecast().get(i).day().getTemperature().getTemperature() > highestTemperature) {
+                    highestTemperature = weather.getDailyForecast().get(i).day().getTemperature().getTemperature();
+                }
+            }
+            if (weather.getDailyForecast().get(i).night().getTemperature() != null && weather.getDailyForecast().get(i).night().getTemperature().getTemperature() != null) {
+                if (lowestTemperature == null || weather.getDailyForecast().get(i).night().getTemperature().getTemperature() < lowestTemperature) {
+                    lowestTemperature = weather.getDailyForecast().get(i).night().getTemperature().getTemperature();
+                }
             }
         }
 
@@ -127,7 +150,7 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
         if (weather.getYesterday() != null) {
             TrendLinearLayout trendParent = drawableView.findViewById(R.id.widget_trend_daily);
             trendParent.setData(
-                    new int[] {
+                    new Integer[]{
                             weather.getYesterday().getDaytimeTemperature(),
                             weather.getYesterday().getNighttimeTemperature()
                     },
@@ -138,13 +161,40 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
             );
             trendParent.setColor(lightTheme);
         }
-        WidgetItemView[] items = new WidgetItemView[] {
-                drawableView.findViewById(R.id.widget_trend_daily_item_1),
-                drawableView.findViewById(R.id.widget_trend_daily_item_2),
-                drawableView.findViewById(R.id.widget_trend_daily_item_3),
-                drawableView.findViewById(R.id.widget_trend_daily_item_4),
-                drawableView.findViewById(R.id.widget_trend_daily_item_5)
-        };
+        WidgetItemView[] items;
+        if (itemCount == 5) {
+            items = new WidgetItemView[] {
+                    drawableView.findViewById(R.id.widget_trend_daily_item_1),
+                    drawableView.findViewById(R.id.widget_trend_daily_item_2),
+                    drawableView.findViewById(R.id.widget_trend_daily_item_3),
+                    drawableView.findViewById(R.id.widget_trend_daily_item_4),
+                    drawableView.findViewById(R.id.widget_trend_daily_item_5)
+            };
+        } else if (itemCount == 4) {
+            items = new WidgetItemView[] {
+                    drawableView.findViewById(R.id.widget_trend_daily_item_1),
+                    drawableView.findViewById(R.id.widget_trend_daily_item_2),
+                    drawableView.findViewById(R.id.widget_trend_daily_item_3),
+                    drawableView.findViewById(R.id.widget_trend_daily_item_4)
+            };
+        } else if (itemCount == 3) {
+            items = new WidgetItemView[] {
+                    drawableView.findViewById(R.id.widget_trend_daily_item_1),
+                    drawableView.findViewById(R.id.widget_trend_daily_item_2),
+                    drawableView.findViewById(R.id.widget_trend_daily_item_3)
+            };
+        } else if (itemCount == 2) {
+            items = new WidgetItemView[] {
+                    drawableView.findViewById(R.id.widget_trend_daily_item_1),
+                    drawableView.findViewById(R.id.widget_trend_daily_item_2)
+            };
+        } else if (itemCount == 1) {
+            items = new WidgetItemView[] {
+                    drawableView.findViewById(R.id.widget_trend_daily_item_1)
+            };
+        } else {
+            items = new WidgetItemView[] {};
+        }
         int[] colors = ThemeManager
                 .getInstance(context)
                 .getWeatherThemeDelegate()
@@ -153,7 +203,7 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
                         WeatherViewController.getWeatherKind(weather),
                         location.isDaylight()
                 );
-        for (int i = 0; i < items.length; i ++) {
+        for (int i = 0; i < items.length; i++) {
             Daily daily = weather.getDailyForecast().get(i);
 
             if (daily.getDate().equals(new Date())) {
@@ -180,8 +230,8 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
                     buildTemperatureArrayForItem(nighttimeTemperatures, i),
                     daily.day().getTemperature().getShortTemperature(context, temperatureUnit),
                     daily.night().getTemperature().getShortTemperature(context, temperatureUnit),
-                    (float) highestTemperature,
-                    (float) lowestTemperature,
+                    highestTemperature != null ? Float.valueOf(highestTemperature) : null,
+                    lowestTemperature != null ? Float.valueOf(lowestTemperature) : null,
                     p < 5 ? null : p,
                     p < 5 ? null : ((int) p + "%"),
                     100f,
@@ -229,7 +279,7 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
             return views;
         }
 
-        WidgetItemView[] items = new WidgetItemView[] {
+        WidgetItemView[] items = new WidgetItemView[]{
                 drawableView.findViewById(R.id.widget_trend_daily_item_1),
                 drawableView.findViewById(R.id.widget_trend_daily_item_2),
                 drawableView.findViewById(R.id.widget_trend_daily_item_3),
@@ -323,7 +373,7 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
         return widgetIds != null && widgetIds.length > 0;
     }
 
-    private static Float[] buildTemperatureArrayForItem(float[] temps, int index) {
+    private static Float[] buildTemperatureArrayForItem(Float[] temps, int index) {
         Float[] a = new Float[3];
         a[1] = temps[2 * index];
         if (2 * index - 1 < 0) {

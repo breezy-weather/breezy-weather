@@ -197,7 +197,6 @@
     <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : 當前溫度 (°)\n</string>
     <string name="feedback_custom_subtitle_keyword_at">$at$ : 體感溫度（℃/℉）\n</string>
     <string name="feedback_custom_subtitle_keyword_atd">$atd$ : 體感溫度（°）\n</string>
-    <string name="feedback_custom_subtitle_keyword_cpb">$cpb$ : 當前降水概率 (%)\n</string>
     <string name="feedback_custom_subtitle_keyword_cp">$cp$ : 當前降水量 (mm/L/m²)\n</string>
     <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : 當前風況\n</string>
     <string name="feedback_custom_subtitle_keyword_cuv">$cuv$ : 當前紫外綫\n</string>

@@ -68,16 +68,18 @@ public class ClockDayHorizontalWidgetIMP extends AbstractRemoteViewsPresenter {
             return views;
         }
 
-        views.setImageViewUri(
-                R.id.widget_clock_day_icon,
-                ResourceHelper.getWidgetNotificationIconUri(
-                        provider,
-                        weather.getCurrent().getWeatherCode(),
-                        dayTime,
-                        minimalIcon,
-                        color.getMinimalIconColor()
-                )
-        );
+        if (weather.getCurrent() != null && weather.getCurrent().getWeatherCode() != null) {
+            views.setImageViewUri(
+                    R.id.widget_clock_day_icon,
+                    ResourceHelper.getWidgetNotificationIconUri(
+                            provider,
+                            weather.getCurrent().getWeatherCode(),
+                            dayTime,
+                            minimalIcon,
+                            color.getMinimalIconColor()
+                    )
+            );
+        }
 
         views.setTextViewText(
                 R.id.widget_clock_day_lunar,
@@ -86,11 +88,17 @@ public class ClockDayHorizontalWidgetIMP extends AbstractRemoteViewsPresenter {
                         : ""
         );
 
+        StringBuilder builder = new StringBuilder();
+        builder.append(location.getCityName(context));
+        if (weather.getCurrent() != null
+                && weather.getCurrent().getTemperature() != null
+                && weather.getCurrent().getTemperature().getTemperature() != null) {
+            builder.append(" ").append(weather.getCurrent().getTemperature().getTemperature(context, temperatureUnit));
+        }
+
         views.setTextViewText(
                 R.id.widget_clock_day_subtitle,
-                location.getCityName(context)
-                        + " "
-                        + weather.getCurrent().getTemperature().getTemperature(context, temperatureUnit)
+                builder.toString()
         );
 
         if (color.textColor != Color.TRANSPARENT) {

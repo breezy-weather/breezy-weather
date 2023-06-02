@@ -12,9 +12,10 @@ enum class WeatherSource(
     val sourceUrl: String
 ): VoiceEnum {
 
+    OPEN_METEO("openmeteo", -0x0077ff, "Open-Meteo.com CC BY 4.0"),
     ACCU("accu", -0x10a7dd, "accuweather.com"),
-    OWM("owm", -0x1491b5, "openweathermap.org"),
     METNO("metno", -0xdba791, "met.no / nominatim.org"),
+    OWM("owm", -0x1491b5, "openweathermap.org"),
     MF("mf", -0xffa76e, "meteofrance.com"),
     CAIYUN("caiyun", -0xa14472, " caiyunapp.com");
 
@@ -24,6 +25,12 @@ enum class WeatherSource(
         fun getInstance(
             value: String
         ): WeatherSource {
+            if (value.lowercase().contains("openmeteo")) {
+                return OPEN_METEO
+            }
+            if (value.lowercase().contains("accu")) {
+                return ACCU
+            }
             if (value.lowercase().contains("metno")) {
                 return METNO
             }

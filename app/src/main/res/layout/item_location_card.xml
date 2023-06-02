@@ -120,7 +120,7 @@
                     android:ellipsize="end"
                     android:textAlignment="viewStart"
                     style="@style/subtitle_text"
-                    tools:text="Powered by 彩云天气"
+                    tools:text="Weather data by 彩云天气"
                     tools:ignore="RtlHardcoded,SmallSp" />
 
             </LinearLayout>

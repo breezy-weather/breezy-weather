@@ -94,9 +94,13 @@ public class WeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 R.id.widget_week_week_5,
                 WidgetHelper.getDailyWeek(context, weather, 4, location.getTimeZone()));
 
-        views.setTextViewText(
-                R.id.widget_week_temp,
-                weather.getCurrent().getTemperature().getShortTemperature(context, temperatureUnit));
+        if (weather.getCurrent() != null
+                && weather.getCurrent().getTemperature() != null
+                && weather.getCurrent().getTemperature().getTemperature() != null) {
+            views.setTextViewText(
+                    R.id.widget_week_temp,
+                    weather.getCurrent().getTemperature().getShortTemperature(context, temperatureUnit));
+        }
         views.setTextViewText(
                 R.id.widget_week_temp_1,
                 getTemp(context, weather, 0, temperatureUnit));
@@ -113,18 +117,20 @@ public class WeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 R.id.widget_week_temp_5,
                 getTemp(context, weather, 4, temperatureUnit));
 
-        views.setImageViewUri(
-                R.id.widget_week_icon,
-                ResourceHelper.getWidgetNotificationIconUri(
-                        provider,
-                        weather.getCurrent().getWeatherCode(),
-                        dayTime,
-                        minimalIcon,
-                        color.getMinimalIconColor()
-                )
-        );
+        if (weather.getCurrent() != null && weather.getCurrent().getWeatherCode() != null) {
+            views.setImageViewUri(
+                    R.id.widget_week_icon,
+                    ResourceHelper.getWidgetNotificationIconUri(
+                            provider,
+                            weather.getCurrent().getWeatherCode(),
+                            dayTime,
+                            minimalIcon,
+                            color.getMinimalIconColor()
+                    )
+            );
+        }
         boolean weekIconDaytime = isWeekIconDaytime(weekIconMode, dayTime);
-        views.setImageViewUri(
+        /*views.setImageViewUri(
                 R.id.widget_week_icon_1,
                 getIconDrawableUri(
                         provider, weather, weekIconDaytime, minimalIcon, color.getMinimalIconColor(),
@@ -153,7 +159,7 @@ public class WeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 getIconDrawableUri(
                         provider, weather, weekIconDaytime, minimalIcon, color.getMinimalIconColor(),
                         4)
-        );
+        );*/
 
         if (color.textColor != Color.TRANSPARENT) {
             views.setTextColor(R.id.widget_week_week_1, color.textColor);
@@ -212,12 +218,21 @@ public class WeekWidgetIMP extends AbstractRemoteViewsPresenter {
     }
 
     private static String getTemp(Context context, Weather weather, int index, TemperatureUnit unit) {
-        return Temperature.getTrendTemperature(
-                context,
-                weather.getDailyForecast().get(index).night().getTemperature().getTemperature(),
-                weather.getDailyForecast().get(index).day().getTemperature().getTemperature(),
-                unit
-        );
+        if (weather.getDailyForecast().get(index).day() != null
+                && weather.getDailyForecast().get(index).night() != null
+                && weather.getDailyForecast().get(index).day().getTemperature() != null
+                && weather.getDailyForecast().get(index).night().getTemperature() != null
+                && weather.getDailyForecast().get(index).day().getTemperature().getTemperature() != null
+                && weather.getDailyForecast().get(index).night().getTemperature().getTemperature() != null) {
+            return Temperature.getTrendTemperature(
+                    context,
+                    weather.getDailyForecast().get(index).night().getTemperature().getTemperature(),
+                    weather.getDailyForecast().get(index).day().getTemperature().getTemperature(),
+                    unit
+            );
+        } else {
+            return "";
+        }
     }
 
     private static Uri getIconDrawableUri(ResourceProvider helper, Weather weather,

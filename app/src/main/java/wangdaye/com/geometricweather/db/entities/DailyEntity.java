@@ -32,7 +32,7 @@ public class DailyEntity {
     @Convert(converter = WeatherCodeConverter.class, dbType = String.class)
     public WeatherCode daytimeWeatherCode;
 
-    public int daytimeTemperature;
+    public Integer daytimeTemperature;
     public Integer daytimeRealFeelTemperature;
     public Integer daytimeRealFeelShaderTemperature;
     public Integer daytimeApparentTemperature;
@@ -72,7 +72,7 @@ public class DailyEntity {
     @Convert(converter = WeatherCodeConverter.class, dbType = String.class)
     public WeatherCode nighttimeWeatherCode;
 
-    public int nighttimeTemperature;
+    public Integer nighttimeTemperature;
     public Integer nighttimeRealFeelTemperature;
     public Integer nighttimeRealFeelShaderTemperature;
     public Integer nighttimeApparentTemperature;
@@ -147,12 +147,12 @@ public class DailyEntity {
     public String uvLevel;
     public String uvDescription;
 
-    public float hoursOfSun;
+    public Float hoursOfSun;
 
     
     public DailyEntity(Long id, String cityId, String weatherSource, Date date,
             long time, String daytimeWeatherText, String daytimeWeatherPhase,
-            WeatherCode daytimeWeatherCode, int daytimeTemperature,
+            WeatherCode daytimeWeatherCode, Integer daytimeTemperature,
             Integer daytimeRealFeelTemperature,
             Integer daytimeRealFeelShaderTemperature,
             Integer daytimeApparentTemperature, Integer daytimeWindChillTemperature,
@@ -173,7 +173,7 @@ public class DailyEntity {
             WindDegree daytimeWindDegree, Float daytimeWindSpeed,
             String daytimeWindLevel, Integer daytimeCloudCover,
             String nighttimeWeatherText, String nighttimeWeatherPhase,
-            WeatherCode nighttimeWeatherCode, int nighttimeTemperature,
+            WeatherCode nighttimeWeatherCode, Integer nighttimeTemperature,
             Integer nighttimeRealFeelTemperature,
             Integer nighttimeRealFeelShaderTemperature,
             Integer nighttimeApparentTemperature,
@@ -204,7 +204,7 @@ public class DailyEntity {
             String moldDescription, Integer ragweedIndex, Integer ragweedLevel,
             String ragweedDescription, Integer treeIndex, Integer treeLevel,
             String treeDescription, Integer uvIndex, String uvLevel,
-            String uvDescription, float hoursOfSun) {
+            String uvDescription, Float hoursOfSun) {
         this.id = id;
         this.cityId = cityId;
         this.weatherSource = weatherSource;
@@ -370,11 +370,11 @@ public class DailyEntity {
         this.daytimeWeatherCode = daytimeWeatherCode;
     }
 
-    public int getDaytimeTemperature() {
+    public Integer getDaytimeTemperature() {
         return this.daytimeTemperature;
     }
 
-    public void setDaytimeTemperature(int daytimeTemperature) {
+    public void setDaytimeTemperature(Integer daytimeTemperature) {
         this.daytimeTemperature = daytimeTemperature;
     }
 
@@ -624,11 +624,11 @@ public class DailyEntity {
         this.nighttimeWeatherCode = nighttimeWeatherCode;
     }
 
-    public int getNighttimeTemperature() {
+    public Integer getNighttimeTemperature() {
         return this.nighttimeTemperature;
     }
 
-    public void setNighttimeTemperature(int nighttimeTemperature) {
+    public void setNighttimeTemperature(Integer nighttimeTemperature) {
         this.nighttimeTemperature = nighttimeTemperature;
     }
 
@@ -1089,11 +1089,11 @@ public class DailyEntity {
         this.uvDescription = uvDescription;
     }
 
-    public float getHoursOfSun() {
+    public Float getHoursOfSun() {
         return this.hoursOfSun;
     }
 
-    public void setHoursOfSun(float hoursOfSun) {
+    public void setHoursOfSun(Float hoursOfSun) {
         this.hoursOfSun = hoursOfSun;
     }
 

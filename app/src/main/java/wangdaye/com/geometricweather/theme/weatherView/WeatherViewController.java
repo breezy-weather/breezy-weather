@@ -65,7 +65,7 @@ public class WeatherViewController {
 
     @WeatherView.WeatherKindRule
     public static int getWeatherKind(@Nullable Weather weather) {
-        if (weather == null) {
+        if (weather == null || weather.getCurrent() == null || weather.getCurrent().getWeatherCode() == null) {
             return WeatherView.WEATHER_KIND_CLEAR;
         }
         return getWeatherKind(weather.getCurrent().getWeatherCode());

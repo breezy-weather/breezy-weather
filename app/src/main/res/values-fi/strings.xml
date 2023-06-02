@@ -217,7 +217,6 @@
     <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : Tämänhetkinen lämpötila (°)\n</string>
     <string name="feedback_custom_subtitle_keyword_at">$at$ : Näenäinen lämpötila (℃/℉)\n</string>
     <string name="feedback_custom_subtitle_keyword_atd">$atd$ : Näennäinen lämpötila (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_cpb">$cpb$ : Tämänhetkinen sateen todennäköisyys (%)\n</string>
     <string name="feedback_custom_subtitle_keyword_cp">$cp$ : Tämänhetkinen sademäärä (mm/L/m²)\n</string>
     <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : Tämänhetkinen tuuli\n</string>
     <string name="feedback_custom_subtitle_keyword_cuv">$cuv$ : Tämänhetkinen UV\n</string>
@@ -329,7 +328,7 @@
     <string name="content_des_swipe_right_to_delete">Voit poistaa tämän kohteen pyyhkäisemällä oikealle.</string>
     <string name="content_desc_search_filter_on">Näytä vain oletussäälähteen sijainnit</string>
     <string name="content_desc_search_filter_off">Näytä kaikkien säälähteiden sijainnit</string>
-    <string name="content_desc_powered_by">Powered by $</string> <!-- $ = weather source. -->
+    <string name="content_desc_powered_by">Weather data by $</string> <!-- $ = weather source. -->
     <string name="content_desc_app_store">@string/action_appStore</string>
     <string name="content_desc_wechat_payment_code">Tukimaksun QR-koodi wechatille</string>
     <string name="content_desc_weather_icon">Sää kuvake</string>

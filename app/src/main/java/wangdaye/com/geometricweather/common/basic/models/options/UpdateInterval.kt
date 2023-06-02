@@ -26,7 +26,7 @@ enum class UpdateInterval(
         fun getInstance(
             value: String
         ) = when (value) {
-            "manual" -> INTERVAL_NEVER
+            "never" -> INTERVAL_NEVER
             "0:30" -> INTERVAL_0_30
             "1:00" -> INTERVAL_1_00
             "2:00" -> INTERVAL_2_00

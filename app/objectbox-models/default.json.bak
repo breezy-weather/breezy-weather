@@ -641,7 +641,7 @@
     },
     {
       "id": "5:6283853262950530248",
-      "lastPropertyId": "32:914878016584681685",
+      "lastPropertyId": "52:1085800781320175828",
       "name": "HourlyEntity",
       "properties": [
         {
@@ -803,6 +803,106 @@
         {
           "id": "32:914878016584681685",
           "name": "uvDescription",
+          "type": 9
+        },
+        {
+          "id": "33:2765558804563688754",
+          "name": "aqiText",
+          "type": 9
+        },
+        {
+          "id": "34:9058669101532859",
+          "name": "aqiIndex",
+          "type": 5
+        },
+        {
+          "id": "35:4794596744427889324",
+          "name": "pm25",
+          "type": 7
+        },
+        {
+          "id": "36:1035515207622409668",
+          "name": "pm10",
+          "type": 7
+        },
+        {
+          "id": "37:6631080838637730140",
+          "name": "so2",
+          "type": 7
+        },
+        {
+          "id": "38:7809039280094269860",
+          "name": "no2",
+          "type": 7
+        },
+        {
+          "id": "39:3380277333608064183",
+          "name": "o3",
+          "type": 7
+        },
+        {
+          "id": "40:8803845827187953674",
+          "name": "co",
+          "type": 7
+        },
+        {
+          "id": "41:7064626405472408552",
+          "name": "grassIndex",
+          "type": 5
+        },
+        {
+          "id": "42:1815385637759337544",
+          "name": "grassLevel",
+          "type": 5
+        },
+        {
+          "id": "43:9049404614031072815",
+          "name": "grassDescription",
+          "type": 9
+        },
+        {
+          "id": "44:7428451908455118335",
+          "name": "moldIndex",
+          "type": 5
+        },
+        {
+          "id": "45:94227831512033601",
+          "name": "moldLevel",
+          "type": 5
+        },
+        {
+          "id": "46:2113519653701415384",
+          "name": "moldDescription",
+          "type": 9
+        },
+        {
+          "id": "47:534913887978411646",
+          "name": "ragweedIndex",
+          "type": 5
+        },
+        {
+          "id": "48:6759349965957425490",
+          "name": "ragweedLevel",
+          "type": 5
+        },
+        {
+          "id": "49:6073343006083893255",
+          "name": "ragweedDescription",
+          "type": 9
+        },
+        {
+          "id": "50:8978742698543751099",
+          "name": "treeIndex",
+          "type": 5
+        },
+        {
+          "id": "51:6601984736028828921",
+          "name": "treeLevel",
+          "type": 5
+        },
+        {
+          "id": "52:1085800781320175828",
+          "name": "treeDescription",
           "type": 9
         }
       ],
@@ -1208,28 +1308,7 @@
           "type": 9
         }
       ],
-      "relations": [
-        {
-          "id": "1:8172461040712041",
-          "name": "dailyEntityList",
-          "targetId": "3:3069352246608661834"
-        },
-        {
-          "id": "2:1410060937164198822",
-          "name": "hourlyEntityList",
-          "targetId": "5:6283853262950530248"
-        },
-        {
-          "id": "3:6301666190076549876",
-          "name": "minutelyEntityList",
-          "targetId": "7:3846329701351810886"
-        },
-        {
-          "id": "4:4326705863040004023",
-          "name": "alertEntityList",
-          "targetId": "1:8179913507572507832"
-        }
-      ]
+      "relations": []
     }
   ],
   "lastEntityId": "8:2816074648530312771",
@@ -1241,6 +1320,11 @@
   "retiredEntityUids": [],
   "retiredIndexUids": [],
   "retiredPropertyUids": [],
-  "retiredRelationUids": [],
+  "retiredRelationUids": [
+    8172461040712041,
+    1410060937164198822,
+    6301666190076549876,
+    4326705863040004023
+  ],
   "version": 1
 }

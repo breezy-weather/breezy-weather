@@ -10,14 +10,14 @@ public class Weather
         implements Serializable {
 
     @NonNull private final Base base;
-    @NonNull private final Current current;
+    @Nullable private final Current current;
     @Nullable private History yesterday;
     @NonNull private final List<Daily> dailyForecast;
     @NonNull private final List<Hourly> hourlyForecast;
     @NonNull private final List<Minutely> minutelyForecast;
     @NonNull private final List<Alert> alertList;
 
-    public Weather(@NonNull Base base, @NonNull Current current, @Nullable History yesterday,
+    public Weather(@NonNull Base base, @Nullable Current current, @Nullable History yesterday,
                    @NonNull List<Daily> dailyForecast,
                    @NonNull List<Hourly> hourlyForecast,
                    @NonNull List<Minutely> minutelyForecast,
@@ -36,7 +36,7 @@ public class Weather
         return base;
     }
 
-    @NonNull
+    @Nullable
     public Current getCurrent() {
         return current;
     }

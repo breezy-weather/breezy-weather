@@ -172,16 +172,9 @@ public class OwmResultConverter {
                                     (oneCallResult.current.snow != null) ? oneCallResult.current.snow.cumul1h : null,
                                     null
                             ),
-                            new PrecipitationProbability(
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null
-                            ),
                             new Wind(
-                                    getWindDirection(oneCallResult.current.windDeg),
-                                    new WindDegree(oneCallResult.current.windDeg, false),
+                                    CommonConverter.getWindDirection((float) oneCallResult.current.windDeg, location.isChina()),
+                                    new WindDegree((float) oneCallResult.current.windDeg, false),
                                     oneCallResult.current.windSpeed * 3.6f,
                                     CommonConverter.getWindLevel(context, oneCallResult.current.windSpeed * 3.6f)
                             ),
@@ -209,12 +202,19 @@ public class OwmResultConverter {
                             null
                     ),
                     null,
-                    getDailyList(context, location.getTimeZone(), oneCallResult.daily, airPollutionForecastResult),
+                    getDailyList(
+                            context,
+                            location.getTimeZone(),
+                            location.isChina(),
+                            oneCallResult.daily,
+                            airPollutionForecastResult
+                    ),
                     getHourlyList(
                             context,
                             oneCallResult.current.sunrise,
                             oneCallResult.current.sunset,
                             location.getTimeZone(),
+                            location.isChina(),
                             oneCallResult.hourly
                     ),
                     getMinutelyList(
@@ -230,7 +230,8 @@ public class OwmResultConverter {
         }
     }
 
-    private static List<Daily> getDailyList(Context context, TimeZone timeZone, List<OwmOneCallResult.Daily> dailyResult,
+    private static List<Daily> getDailyList(Context context, TimeZone timeZone, boolean isChina,
+                                            List<OwmOneCallResult.Daily> dailyResult,
                                             @Nullable OwmAirPollutionResult airPollutionForecastResult) {
         List<Daily> dailyList = new ArrayList<>(dailyResult.size());
 
@@ -274,8 +275,8 @@ public class OwmResultConverter {
                                             null
                                     ),
                                     new Wind(
-                                            getWindDirection(forecasts.windDeg),
-                                            new WindDegree(forecasts.windDeg, false),
+                                            CommonConverter.getWindDirection((float) forecasts.windDeg, isChina),
+                                            new WindDegree((float) forecasts.windDeg, false),
                                             forecasts.windSpeed * 3.6f,
                                             CommonConverter.getWindLevel(context, forecasts.windSpeed * 3.6f)
                                     ),
@@ -316,8 +317,8 @@ public class OwmResultConverter {
                                             null
                                     ),
                                     new Wind(
-                                            getWindDirection(forecasts.windDeg),
-                                            new WindDegree(forecasts.windDeg, false),
+                                            CommonConverter.getWindDirection((float) forecasts.windDeg, isChina),
+                                            new WindDegree((float) forecasts.windDeg, false),
                                             forecasts.windSpeed * 3.6f,
                                             CommonConverter.getWindLevel(context, forecasts.windSpeed * 3.6f)
                                     ),
@@ -353,7 +354,7 @@ public class OwmResultConverter {
         return rain + snow;
     }
 
-    private static List<Hourly> getHourlyList(Context context, long sunrise, long sunset, TimeZone timeZone, List<OwmOneCallResult.Hourly> resultList) {
+    private static List<Hourly> getHourlyList(Context context, long sunrise, long sunset, TimeZone timeZone, boolean isChina, List<OwmOneCallResult.Hourly> resultList) {
         List<Hourly> hourlyList = new ArrayList<>(resultList.size());
         for (OwmOneCallResult.Hourly result : resultList) {
             hourlyList.add(
@@ -387,11 +388,13 @@ public class OwmResultConverter {
                                     null
                             ),
                             new Wind(
-                                    getWindDirection(result.windDeg),
-                                    new WindDegree(result.windDeg, false),
+                                    CommonConverter.getWindDirection((float) result.windDeg, isChina),
+                                    new WindDegree((float) result.windDeg, false),
                                     result.windSpeed * 3.6f,
                                     CommonConverter.getWindLevel(context, result.windSpeed * 3.6f)
                             ),
+                            new AirQuality(null, null, null, null, null, null, null, null),
+                            new Pollen(null, null, null, null, null, null, null, null, null, null, null, null),
                             new UV(toInt(result.uvi), null, null)
                     )
             );
@@ -495,7 +498,7 @@ public class OwmResultConverter {
     }
 
     private static int toInt(double value) {
-        return (int) (value + 0.5);
+        return (int) Math.round(value);
     }
 
     private static WeatherCode getWeatherCode(int icon) {
@@ -537,29 +540,6 @@ public class OwmResultConverter {
             return WeatherCode.CLOUDY;
         } else {
             return WeatherCode.CLOUDY;
-        }
-    }
-
-    private static String getWindDirection(float degree) {
-        if (degree < 0) {
-            return "Variable";
-        }
-        if (22.5 < degree && degree <= 67.5) {
-            return "NE";
-        } else if (67.5 < degree && degree <= 112.5) {
-            return "E";
-        } else if (112.5 < degree && degree <= 157.5) {
-            return "SE";
-        } else if (157.5 < degree && degree <= 202.5) {
-            return "S";
-        } else if (202.5 < degree && degree <= 247.5) {
-            return "SO";
-        } else if (247.5 < degree && degree <= 292.5) {
-            return "O";
-        } else if (292. < degree && degree <= 337.5) {
-            return "NO";
-        } else {
-            return "N";
         }
     }
 }

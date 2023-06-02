@@ -14,9 +14,7 @@ import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 
 /**
  * Hourly.
- *
- * All properties are {@link androidx.annotation.NonNull}.
- * */
+ **/
 public class Hourly implements Serializable {
 
     private final Date date;
@@ -30,13 +28,15 @@ public class Hourly implements Serializable {
     private final Precipitation precipitation;
     private final PrecipitationProbability precipitationProbability;
     private final Wind wind;
+    private final AirQuality airQuality;
+    private final Pollen pollen;
     private final UV uv;
 
     public Hourly(Date date, long time, boolean daylight,
                   String weatherText, WeatherCode weatherCode,
                   Temperature temperature,
                   Precipitation precipitation, PrecipitationProbability precipitationProbability,
-                  Wind wind, UV uv) {
+                  Wind wind, AirQuality airQuality, Pollen pollen, UV uv) {
         this.date = date;
         this.time = time;
         this.daylight = daylight;
@@ -46,6 +46,8 @@ public class Hourly implements Serializable {
         this.precipitation = precipitation;
         this.precipitationProbability = precipitationProbability;
         this.wind = wind;
+        this.airQuality = airQuality;
+        this.pollen = pollen;
         this.uv = uv;
     }
 
@@ -83,6 +85,14 @@ public class Hourly implements Serializable {
 
     public Wind getWind() {
         return wind;
+    }
+
+    public Pollen getPollen() {
+        return pollen;
+    }
+
+    public AirQuality getAirQuality() {
+        return airQuality;
     }
 
     public UV getUV() {

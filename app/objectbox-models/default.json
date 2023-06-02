@@ -641,7 +641,7 @@
     },
     {
       "id": "5:6283853262950530248",
-      "lastPropertyId": "32:914878016584681685",
+      "lastPropertyId": "52:1085800781320175828",
       "name": "HourlyEntity",
       "properties": [
         {
@@ -803,6 +803,106 @@
         {
           "id": "32:914878016584681685",
           "name": "uvDescription",
+          "type": 9
+        },
+        {
+          "id": "33:2765558804563688754",
+          "name": "aqiText",
+          "type": 9
+        },
+        {
+          "id": "34:9058669101532859",
+          "name": "aqiIndex",
+          "type": 5
+        },
+        {
+          "id": "35:4794596744427889324",
+          "name": "pm25",
+          "type": 7
+        },
+        {
+          "id": "36:1035515207622409668",
+          "name": "pm10",
+          "type": 7
+        },
+        {
+          "id": "37:6631080838637730140",
+          "name": "so2",
+          "type": 7
+        },
+        {
+          "id": "38:7809039280094269860",
+          "name": "no2",
+          "type": 7
+        },
+        {
+          "id": "39:3380277333608064183",
+          "name": "o3",
+          "type": 7
+        },
+        {
+          "id": "40:8803845827187953674",
+          "name": "co",
+          "type": 7
+        },
+        {
+          "id": "41:7064626405472408552",
+          "name": "grassIndex",
+          "type": 5
+        },
+        {
+          "id": "42:1815385637759337544",
+          "name": "grassLevel",
+          "type": 5
+        },
+        {
+          "id": "43:9049404614031072815",
+          "name": "grassDescription",
+          "type": 9
+        },
+        {
+          "id": "44:7428451908455118335",
+          "name": "moldIndex",
+          "type": 5
+        },
+        {
+          "id": "45:94227831512033601",
+          "name": "moldLevel",
+          "type": 5
+        },
+        {
+          "id": "46:2113519653701415384",
+          "name": "moldDescription",
+          "type": 9
+        },
+        {
+          "id": "47:534913887978411646",
+          "name": "ragweedIndex",
+          "type": 5
+        },
+        {
+          "id": "48:6759349965957425490",
+          "name": "ragweedLevel",
+          "type": 5
+        },
+        {
+          "id": "49:6073343006083893255",
+          "name": "ragweedDescription",
+          "type": 9
+        },
+        {
+          "id": "50:8978742698543751099",
+          "name": "treeIndex",
+          "type": 5
+        },
+        {
+          "id": "51:6601984736028828921",
+          "name": "treeLevel",
+          "type": 5
+        },
+        {
+          "id": "52:1085800781320175828",
+          "name": "treeDescription",
           "type": 9
         }
       ],
@@ -1068,31 +1168,6 @@
           "type": 7
         },
         {
-          "id": "23:5706349278271084690",
-          "name": "totalPrecipitationProbability",
-          "type": 7
-        },
-        {
-          "id": "24:149224711797109934",
-          "name": "thunderstormPrecipitationProbability",
-          "type": 7
-        },
-        {
-          "id": "25:7599811830059545542",
-          "name": "rainPrecipitationProbability",
-          "type": 7
-        },
-        {
-          "id": "26:2648777124345146806",
-          "name": "snowPrecipitationProbability",
-          "type": 7
-        },
-        {
-          "id": "27:2921547695963561317",
-          "name": "icePrecipitationProbability",
-          "type": 7
-        },
-        {
           "id": "28:2694155474706993563",
           "name": "windDirection",
           "type": 9
@@ -1219,7 +1294,13 @@
   "modelVersionParserMinimum": 5,
   "retiredEntityUids": [],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [],
+  "retiredPropertyUids": [
+    5706349278271084690,
+    149224711797109934,
+    7599811830059545542,
+    2648777124345146806,
+    2921547695963561317
+  ],
   "retiredRelationUids": [
     8172461040712041,
     1410060937164198822,

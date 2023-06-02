@@ -11,15 +11,15 @@ import java.io.Serializable;
  * */
 public class WindDegree implements Serializable {
 
-    private final float degree;
-    private final boolean noDirection;
+    private final Float degree;
+    private final Boolean noDirection;
 
-    public WindDegree(float degree, boolean noDirection) {
+    public WindDegree(Float degree, Boolean noDirection) {
         this.degree = degree;
         this.noDirection = noDirection;
     }
 
-    public float getDegree() {
+    public Float getDegree() {
         return degree;
     }
 

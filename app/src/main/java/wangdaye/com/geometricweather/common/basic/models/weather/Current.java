@@ -20,15 +20,14 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.Temperatur
  * */
 public class Current implements Serializable {
 
-    @NonNull private final String weatherText;
-    @NonNull private final WeatherCode weatherCode;
+    @Nullable private final String weatherText;
+    @Nullable private final WeatherCode weatherCode;
 
-    @NonNull private final Temperature temperature;
-    @NonNull private final Precipitation precipitation;
-    @NonNull private final PrecipitationProbability precipitationProbability;
-    @NonNull private final Wind wind;
-    @NonNull private final UV uv;
-    @NonNull private final AirQuality airQuality;
+    @Nullable private final Temperature temperature;
+    @Nullable private final Precipitation precipitation;
+    @Nullable private final Wind wind;
+    @Nullable private final UV uv;
+    @Nullable private final AirQuality airQuality;
 
     @Nullable private final Float relativeHumidity;
     @Nullable private final Float pressure;
@@ -40,10 +39,9 @@ public class Current implements Serializable {
     @Nullable private final String dailyForecast;
     @Nullable private final String hourlyForecast;
 
-    public Current(@NonNull String weatherText, @NonNull WeatherCode weatherCode,
-                   @NonNull Temperature temperature,
-                   @NonNull Precipitation precipitation, @NonNull PrecipitationProbability precipitationProbability,
-                   @NonNull Wind wind, @NonNull UV uv, @NonNull AirQuality airQuality,
+    public Current(@Nullable String weatherText, @Nullable WeatherCode weatherCode,
+                   @Nullable Temperature temperature, @Nullable Precipitation precipitation,
+                   @Nullable Wind wind, @Nullable UV uv, @Nullable AirQuality airQuality,
                    @Nullable Float relativeHumidity, @Nullable Float pressure, @Nullable Float visibility,
                    @Nullable Integer dewPoint, @Nullable Integer cloudCover, @Nullable Float ceiling,
                    @Nullable String dailyForecast, @Nullable String hourlyForecast) {
@@ -51,7 +49,6 @@ public class Current implements Serializable {
         this.weatherCode = weatherCode;
         this.temperature = temperature;
         this.precipitation = precipitation;
-        this.precipitationProbability = precipitationProbability;
         this.wind = wind;
         this.uv = uv;
         this.airQuality = airQuality;
@@ -65,42 +62,37 @@ public class Current implements Serializable {
         this.hourlyForecast = hourlyForecast;
     }
 
-    @NonNull
+    @Nullable
     public String getWeatherText() {
         return weatherText;
     }
 
-    @NonNull
+    @Nullable
     public WeatherCode getWeatherCode() {
         return weatherCode;
     }
 
-    @NonNull
+    @Nullable
     public Temperature getTemperature() {
         return temperature;
     }
 
-    @NonNull
+    @Nullable
     public Precipitation getPrecipitation() {
         return precipitation;
     }
 
-    @NonNull
-    public PrecipitationProbability getPrecipitationProbability() {
-        return precipitationProbability;
-    }
-
-    @NonNull
+    @Nullable
     public Wind getWind() {
         return wind;
     }
 
-    @NonNull
+    @Nullable
     public UV getUV() {
         return uv;
     }
 
-    @NonNull
+    @Nullable
     public AirQuality getAirQuality() {
         return airQuality;
     }

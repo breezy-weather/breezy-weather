@@ -79,34 +79,45 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
 
         ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
 
-        int itemCount = 5;
-        float[] temperatures;
-        int highestTemperature;
-        int lowestTemperature;
+        int itemCount = Math.min(5, weather.getHourlyForecast().size());
+        Float[] temperatures;
+        Integer highestTemperature = null;
+        Integer lowestTemperature = null;
 
         boolean minimalIcon = SettingsManager.getInstance(context).isWidgetMinimalIconEnabled();
         TemperatureUnit temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit();
 
-        temperatures = new float[itemCount * 2 - 1];
+        temperatures = new Float[Math.max(0, itemCount * 2 - 1)];
         for (int i = 0; i < temperatures.length; i += 2) {
-            temperatures[i] = weather.getHourlyForecast().get(i / 2).getTemperature().getTemperature();
+            temperatures[i] = weather.getHourlyForecast().get(i / 2).getTemperature() != null &&
+                    weather.getHourlyForecast().get(i / 2).getTemperature().getTemperature() != null ?
+                    Float.valueOf(weather.getHourlyForecast().get(i / 2).getTemperature().getTemperature())
+            : null;
         }
         for (int i = 1; i < temperatures.length; i += 2) {
-            temperatures[i] = (temperatures[i - 1] + temperatures[i + 1]) * 0.5F;
+            if (temperatures[i - 1] != null && temperatures[i + 1] != null) {
+                temperatures[i] = (temperatures[i - 1] + temperatures[i + 1]) * 0.5F;
+            } else {
+                temperatures[i] = null;
+            }
         }
 
-        highestTemperature = weather.getYesterday() == null
-                ? Integer.MIN_VALUE
-                : weather.getYesterday().getDaytimeTemperature();
-        lowestTemperature = weather.getYesterday() == null
-                ? Integer.MAX_VALUE
-                : weather.getYesterday().getNighttimeTemperature();
-        for (int i = 0; i < itemCount; i ++) {
-            if (weather.getHourlyForecast().get(i).getTemperature().getTemperature() > highestTemperature) {
-                highestTemperature = weather.getHourlyForecast().get(i).getTemperature().getTemperature();
+        if (weather.getYesterday() != null) {
+            if (weather.getYesterday().getDaytimeTemperature() != null) {
+                highestTemperature = weather.getYesterday().getDaytimeTemperature();
             }
-            if (weather.getHourlyForecast().get(i).getTemperature().getTemperature() < lowestTemperature) {
-                lowestTemperature = weather.getHourlyForecast().get(i).getTemperature().getTemperature();
+            if (weather.getYesterday().getNighttimeTemperature() != null) {
+                lowestTemperature = weather.getYesterday().getNighttimeTemperature();
+            }
+        }
+        for (int i = 0; i < itemCount; i++) {
+            if (weather.getHourlyForecast().get(i).getTemperature() != null && weather.getHourlyForecast().get(i).getTemperature().getTemperature() != null) {
+                if (highestTemperature == null || weather.getHourlyForecast().get(i).getTemperature().getTemperature() > highestTemperature) {
+                    highestTemperature = weather.getHourlyForecast().get(i).getTemperature().getTemperature();
+                }
+                if (lowestTemperature == null || weather.getHourlyForecast().get(i).getTemperature().getTemperature() < lowestTemperature) {
+                    lowestTemperature = weather.getHourlyForecast().get(i).getTemperature().getTemperature();
+                }
             }
         }
 
@@ -115,7 +126,7 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
         if (weather.getYesterday() != null) {
             TrendLinearLayout trendParent = drawableView.findViewById(R.id.widget_trend_hourly);
             trendParent.setData(
-                    new int[] {
+                    new Integer[] {
                             weather.getYesterday().getDaytimeTemperature(),
                             weather.getYesterday().getNighttimeTemperature()
                     },
@@ -126,17 +137,44 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
             );
             trendParent.setColor(lightTheme);
         }
-        WidgetItemView[] items = new WidgetItemView[] {
-                drawableView.findViewById(R.id.widget_trend_hourly_item_1),
-                drawableView.findViewById(R.id.widget_trend_hourly_item_2),
-                drawableView.findViewById(R.id.widget_trend_hourly_item_3),
-                drawableView.findViewById(R.id.widget_trend_hourly_item_4),
-                drawableView.findViewById(R.id.widget_trend_hourly_item_5),
-        };
+        WidgetItemView[] items;
+        if (itemCount == 5) {
+            items = new WidgetItemView[] {
+                    drawableView.findViewById(R.id.widget_trend_hourly_item_1),
+                    drawableView.findViewById(R.id.widget_trend_hourly_item_2),
+                    drawableView.findViewById(R.id.widget_trend_hourly_item_3),
+                    drawableView.findViewById(R.id.widget_trend_hourly_item_4),
+                    drawableView.findViewById(R.id.widget_trend_hourly_item_5)
+            };
+        } else if (itemCount == 4) {
+            items = new WidgetItemView[] {
+                    drawableView.findViewById(R.id.widget_trend_hourly_item_1),
+                    drawableView.findViewById(R.id.widget_trend_hourly_item_2),
+                    drawableView.findViewById(R.id.widget_trend_hourly_item_3),
+                    drawableView.findViewById(R.id.widget_trend_hourly_item_4)
+            };
+        } else if (itemCount == 3) {
+            items = new WidgetItemView[] {
+                    drawableView.findViewById(R.id.widget_trend_hourly_item_1),
+                    drawableView.findViewById(R.id.widget_trend_hourly_item_2),
+                    drawableView.findViewById(R.id.widget_trend_hourly_item_3)
+            };
+        } else if (itemCount == 2) {
+            items = new WidgetItemView[] {
+                    drawableView.findViewById(R.id.widget_trend_hourly_item_1),
+                    drawableView.findViewById(R.id.widget_trend_hourly_item_2)
+            };
+        } else if (itemCount == 1) {
+            items = new WidgetItemView[] {
+                    drawableView.findViewById(R.id.widget_trend_hourly_item_1)
+            };
+        } else {
+            items = new WidgetItemView[] {};
+        }
         int[] colors = ThemeManager.getInstance(context).getWeatherThemeDelegate().getThemeColors(
                 context, WeatherViewController.getWeatherKind(weather), location.isDaylight()
         );
-        for (int i = 0; i < items.length; i ++) {
+        for (int i = 0; i < items.length; i++) {
             Hourly hourly = weather.getHourlyForecast().get(i);
 
             items[i].setTitleText(hourly.getHour(context, location.getTimeZone()));
@@ -153,8 +191,8 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
                     null,
                     hourly.getTemperature().getShortTemperature(context, temperatureUnit),
                     null,
-                    (float) highestTemperature,
-                    (float) lowestTemperature,
+                    highestTemperature != null ? Float.valueOf(highestTemperature) : null,
+                    lowestTemperature != null ? Float.valueOf(lowestTemperature) : null,
                     null, null, null, null
             );
             items[i].getTrendItemView().setLineColors(
@@ -289,7 +327,7 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
         return widgetIds != null && widgetIds.length > 0;
     }
 
-    private static Float[] buildTemperatureArrayForItem(float[] temps, int index) {
+    private static Float[] buildTemperatureArrayForItem(Float[] temps, int index) {
         Float[] a = new Float[3];
         a[1] = temps[2 * index];
         if (2 * index - 1 < 0) {

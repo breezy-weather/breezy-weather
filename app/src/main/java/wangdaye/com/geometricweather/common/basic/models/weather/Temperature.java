@@ -15,7 +15,7 @@ import wangdaye.com.geometricweather.settings.SettingsManager;
  * */
 public class Temperature implements Serializable {
 
-    private final int temperature;
+    @Nullable private final Integer temperature;
     @Nullable private final Integer realFeelTemperature;
     @Nullable private final Integer realFeelShaderTemperature;
     @Nullable private final Integer apparentTemperature;
@@ -23,7 +23,7 @@ public class Temperature implements Serializable {
     @Nullable private final Integer wetBulbTemperature;
     @Nullable private final Integer degreeDayTemperature;
 
-    public Temperature(int temperature,
+    public Temperature(@Nullable Integer temperature,
                        @Nullable Integer realFeelTemperature,
                        @Nullable Integer realFeelShaderTemperature,
                        @Nullable Integer apparentTemperature,
@@ -39,8 +39,29 @@ public class Temperature implements Serializable {
         this.degreeDayTemperature = degreeDayTemperature;
     }
 
-    public int getTemperature() {
+    @Nullable
+    public Integer getTemperature() {
         return temperature;
+    }
+
+    @Nullable
+    public Integer getFeelsLikeTemperature() {
+        if (realFeelTemperature == null) {
+            if (realFeelShaderTemperature == null) {
+                if (apparentTemperature == null) {
+                    if (windChillTemperature == null) {
+                        if (wetBulbTemperature == null) {
+                            return degreeDayTemperature;
+                        }
+                        return wetBulbTemperature;
+                    }
+                    return windChillTemperature;
+                }
+                return apparentTemperature;
+            }
+            return realFeelShaderTemperature;
+        }
+        return realFeelTemperature;
     }
 
     @Nullable
@@ -84,13 +105,13 @@ public class Temperature implements Serializable {
     }
 
     @Nullable
-    public String getRealFeelTemperature(Context context, TemperatureUnit unit) {
-        return getTemperature(context, realFeelTemperature, unit);
+    public String getFeelsLikeTemperature(Context context, TemperatureUnit unit) {
+        return getTemperature(context, getFeelsLikeTemperature(), unit);
     }
 
     @Nullable
-    public String getShortRealFeeTemperature(Context context, TemperatureUnit unit) {
-        return getShortTemperature(context, realFeelTemperature, unit);
+    public String getShortFeelsLikeTemperature(Context context, TemperatureUnit unit) {
+        return getShortTemperature(context, getFeelsLikeTemperature(), unit);
     }
 
     @Nullable

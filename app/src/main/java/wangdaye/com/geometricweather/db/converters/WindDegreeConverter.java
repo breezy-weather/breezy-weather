@@ -8,7 +8,7 @@ public class WindDegreeConverter implements PropertyConverter<WindDegree, Float>
     @Override
     public WindDegree convertToEntityProperty(Float databaseValue) {
         if (databaseValue == null) {
-            return new WindDegree(-1, true);
+            return null;
         } else {
             return new WindDegree(databaseValue, false);
         }

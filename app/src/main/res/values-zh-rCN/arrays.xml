@@ -3,18 +3,20 @@
 
     <!-- Chinese source. -->
     <string-array name="weather_sources">
-        <item>彩云天气（仅中国地区）</item>
+        <item>Open-Meteo</item>
         <item>Accu Weather</item>
-        <item>OpenWeather</item>
-        <item>Météo France</item>
         <item>MET Norway / Nominatim</item>
+        <item>OpenWeather v2.5</item>
+        <item>Météo France</item>
+        <item>彩云天气（仅中国地区）</item>
     </string-array>
     <string-array name="weather_source_voices">
-        <item>彩云天气</item>
+        <item>Open Meteo</item>
         <item>ACCU天气</item>
-        <item>OPEN天气</item>
-        <item>Météo France</item>
         <item>The Norwegian Meteorological Institute + Nominatim</item>
+        <item>OPEN天气 v2.5</item>
+        <item>Météo France</item>
+        <item>彩云天气</item>
     </string-array>
 
     <!-- Location service. -->

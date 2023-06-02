@@ -74,28 +74,33 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
             return views;
         }
 
-        views.setImageViewUri(
-                R.id.widget_clock_day_week_icon,
-                ResourceHelper.getWidgetNotificationIconUri(
-                        provider,
-                        weather.getCurrent().getWeatherCode(),
-                        dayTime,
-                        minimalIcon,
-                        color.getMinimalIconColor()
-                )
-        );
+        if (weather.getCurrent() != null && weather.getCurrent().getWeatherCode() != null) {
+            views.setImageViewUri(
+                    R.id.widget_clock_day_week_icon,
+                    ResourceHelper.getWidgetNotificationIconUri(
+                            provider,
+                            weather.getCurrent().getWeatherCode(),
+                            dayTime,
+                            minimalIcon,
+                            color.getMinimalIconColor()
+                    )
+            );
+        }
         views.setTextViewText(
                 R.id.widget_clock_day_week_lunar,
                 settings.getLanguage().isChinese() && !hideLunar
                         ? (" - " + LunarHelper.getLunarDate(new Date()))
                         : ""
         );
-        views.setTextViewText(
-                R.id.widget_clock_day_week_subtitle,
-                location.getCityName(context)
-                        + " "
-                        + weather.getCurrent().getTemperature().getTemperature(context, temperatureUnit)
-        );
+        if (weather.getCurrent() != null && weather.getCurrent().getTemperature() != null
+                && weather.getCurrent().getTemperature().getTemperature() != null) {
+            views.setTextViewText(
+                    R.id.widget_clock_day_week_subtitle,
+                    location.getCityName(context)
+                            + " "
+                            + weather.getCurrent().getTemperature().getTemperature(context, temperatureUnit)
+            );
+        }
 
         views.setTextViewText(
                 R.id.widget_clock_day_week_week_1,
@@ -281,12 +286,21 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
     }
 
     private static String getTemp(Context context, Weather weather, int index, TemperatureUnit unit) {
-        return Temperature.getTrendTemperature(
-                context,
-                weather.getDailyForecast().get(index).night().getTemperature().getTemperature(),
-                weather.getDailyForecast().get(index).day().getTemperature().getTemperature(),
-                unit
-        );
+        if (weather.getDailyForecast().get(index).day() != null
+                && weather.getDailyForecast().get(index).night() != null
+                && weather.getDailyForecast().get(index).day().getTemperature() != null
+                && weather.getDailyForecast().get(index).night().getTemperature() != null
+                && weather.getDailyForecast().get(index).day().getTemperature().getTemperature() != null
+                && weather.getDailyForecast().get(index).night().getTemperature().getTemperature() != null) {
+            return Temperature.getTrendTemperature(
+                    context,
+                    weather.getDailyForecast().get(index).night().getTemperature().getTemperature(),
+                    weather.getDailyForecast().get(index).day().getTemperature().getTemperature(),
+                    unit
+            );
+        } else {
+            return "";
+        }
     }
 
     private static Uri getIconDrawableUri(ResourceProvider helper, Weather weather,

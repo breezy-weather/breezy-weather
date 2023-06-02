@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.main.adapters.trend.hourly;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,9 +38,9 @@ public class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter {
     private final ResourceProvider mResourceProvider;
     private final TemperatureUnit mTemperatureUnit;
 
-    private final float[] mTemperatures;
-    private int mHighestTemperature;
-    private int mLowestTemperature;
+    private final Float[] mTemperatures;
+    private Integer mHighestTemperature;
+    private Integer mLowestTemperature;
 
     private final boolean mShowPrecipitationProbability;
 
@@ -62,9 +63,12 @@ public class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter {
             assert weather != null;
             Hourly hourly = weather.getHourlyForecast().get(position);
 
-            talkBackBuilder
-                    .append(", ").append(hourly.getWeatherText())
-                    .append(", ").append(getTemperatureString(weather, position, mTemperatureUnit));
+            if (!TextUtils.isEmpty(hourly.getWeatherText())) {
+                talkBackBuilder.append(", ").append(hourly.getWeatherText());
+            }
+            if (weather.getHourlyForecast().get(position).getTemperature() != null) {
+                talkBackBuilder.append(", ").append(getTemperatureString(weather, position, mTemperatureUnit));
+            }
 
             hourlyItem.setIconDrawable(
                     ResourceHelper.getWeatherIcon(mResourceProvider, hourly.getWeatherCode(), hourly.isDaylight())
@@ -117,7 +121,7 @@ public class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter {
         }
 
         @Size(3)
-        private Float[] buildTemperatureArrayForItem(float[] temps, int adapterPosition) {
+        private Float[] buildTemperatureArrayForItem(Float[] temps, int adapterPosition) {
             Float[] a = new Float[3];
             a[1] = temps[2 * adapterPosition];
             if (2 * adapterPosition - 1 < 0) {
@@ -151,25 +155,32 @@ public class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter {
         mResourceProvider = provider;
         mTemperatureUnit = unit;
 
-        mTemperatures = new float[Math.max(0, weather.getHourlyForecast().size() * 2 - 1)];
+        mTemperatures = new Float[Math.max(0, weather.getHourlyForecast().size() * 2 - 1)];
         for (int i = 0; i < mTemperatures.length; i += 2) {
-            mTemperatures[i] = getTemperatureC(weather, i / 2);
+            mTemperatures[i] = getTemperatureC(weather, i / 2) != null ?
+                    Float.valueOf(getTemperatureC(weather, i / 2)) : null;
         }
         for (int i = 1; i < mTemperatures.length; i += 2) {
-            mTemperatures[i] = (mTemperatures[i - 1] + mTemperatures[i + 1]) * 0.5F;
+            if (mTemperatures[i - 1] != null && mTemperatures[i + 1] != null) {
+                mTemperatures[i] = (mTemperatures[i - 1] + mTemperatures[i + 1]) * 0.5F;
+            } else {
+                mTemperatures[i] = null;
+            }
         }
 
-        mHighestTemperature = weather.getYesterday() == null
-                ? Integer.MIN_VALUE
-                : weather.getYesterday().getDaytimeTemperature();
-        mLowestTemperature = weather.getYesterday() == null
-                ? Integer.MAX_VALUE
-                : weather.getYesterday().getNighttimeTemperature();
+        if (weather.getYesterday() != null) {
+            if (weather.getYesterday().getDaytimeTemperature() != null) {
+                mHighestTemperature = weather.getYesterday().getDaytimeTemperature();
+            }
+            if (weather.getYesterday().getNighttimeTemperature() != null) {
+                mLowestTemperature = weather.getYesterday().getNighttimeTemperature();
+            }
+        }
         for (int i = 0; i < weather.getHourlyForecast().size(); i ++) {
-            if (getTemperatureC(weather, i) > mHighestTemperature) {
+            if (getTemperatureC(weather, i) != null && (mHighestTemperature == null || getTemperatureC(weather, i) > mHighestTemperature)) {
                 mHighestTemperature = getTemperatureC(weather, i);
             }
-            if (getTemperatureC(weather, i) < mLowestTemperature) {
+            if (getTemperatureC(weather, i) != null && (mLowestTemperature == null || getTemperatureC(weather, i) < mLowestTemperature)) {
                 mLowestTemperature = getTemperatureC(weather, i);
             }
         }
@@ -213,7 +224,9 @@ public class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter {
             return;
         }
 
-        if (weather.getYesterday() == null) {
+        if (weather.getYesterday() == null
+                || weather.getYesterday().getDaytimeTemperature() == null
+                || weather.getYesterday().getNighttimeTemperature() == null) {
             host.setData(null,0, 0);
         } else {
             List<TrendRecyclerView.KeyLine> keyLineList = new ArrayList<>();
@@ -245,11 +258,15 @@ public class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter {
         }
     }
 
-    protected int getTemperatureC(Weather weather, int index) {
-        return weather.getHourlyForecast().get(index).getTemperature().getTemperature();
+    protected Integer getTemperatureC(Weather weather, int index) {
+        if (weather.getHourlyForecast().get(index).getTemperature() != null) {
+            return weather.getHourlyForecast().get(index).getTemperature().getTemperature();
+        } else {
+            return null;
+        }
     }
 
-    protected int getTemperature(Weather weather, int index, TemperatureUnit unit) {
+    protected Integer getTemperature(Weather weather, int index, TemperatureUnit unit) {
         return unit.getValueWithoutUnit(getTemperatureC(weather, index));
     }
 

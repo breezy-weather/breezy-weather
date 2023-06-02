@@ -64,11 +64,11 @@ public class HourlyWeatherDialog {
                         + ",  "
                         + hourly.getTemperature().getTemperature(view.getContext(), temperatureUnit)
         );
-        if (hourly.getTemperature().getRealFeelTemperature() != null) {
+        if (hourly.getTemperature().getFeelsLikeTemperature() != null) {
             builder.append("\n")
                     .append(view.getContext().getString(R.string.feels_like))
                     .append(" ")
-                    .append(hourly.getTemperature().getRealFeelTemperature(view.getContext(), temperatureUnit));
+                    .append(hourly.getTemperature().getFeelsLikeTemperature(view.getContext(), temperatureUnit));
         }
         if (hourly.getPrecipitation().getTotal() != null) {
             Float p = hourly.getPrecipitation().getTotal();

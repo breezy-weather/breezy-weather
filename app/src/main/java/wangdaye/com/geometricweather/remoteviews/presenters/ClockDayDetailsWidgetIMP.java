@@ -4,6 +4,7 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.graphics.Color;
+import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -72,16 +73,18 @@ public class ClockDayDetailsWidgetIMP extends AbstractRemoteViewsPresenter {
             return views;
         }
 
-        views.setImageViewUri(
-                R.id.widget_clock_day_icon,
-                ResourceHelper.getWidgetNotificationIconUri(
-                        provider,
-                        weather.getCurrent().getWeatherCode(),
-                        dayTime,
-                        minimalIcon,
-                        color.getMinimalIconColor()
-                )
-        );
+        if (weather.getCurrent() != null && weather.getCurrent().getWeatherCode() != null) {
+            views.setImageViewUri(
+                    R.id.widget_clock_day_icon,
+                    ResourceHelper.getWidgetNotificationIconUri(
+                            provider,
+                            weather.getCurrent().getWeatherCode(),
+                            dayTime,
+                            minimalIcon,
+                            color.getMinimalIconColor()
+                    )
+            );
+        }
 
         views.setTextViewText(
                 R.id.widget_clock_day_lunar,
@@ -90,39 +93,60 @@ public class ClockDayDetailsWidgetIMP extends AbstractRemoteViewsPresenter {
                         : ""
         );
 
+
+        StringBuilder builder = new StringBuilder();
+        builder.append(location.getCityName(context));
+        if (weather.getCurrent() != null
+                && weather.getCurrent().getTemperature() != null
+                && weather.getCurrent().getTemperature().getTemperature() != null) {
+            builder.append(" ").append(weather.getCurrent().getTemperature().getTemperature(context, temperatureUnit));
+        }
+
         views.setTextViewText(
                 R.id.widget_clock_day_subtitle,
-                location.getCityName(context)
-                        + " "
-                        + weather.getCurrent().getTemperature().getTemperature(context, temperatureUnit)
+                builder.toString()
         );
 
-        views.setTextViewText(
-                R.id.widget_clock_day_todayTemp,
-                context.getString(R.string.today) + " " + Temperature.getTrendTemperature(
-                        context,
-                        weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
-                        weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
-                        temperatureUnit
-                )
-        );
+        if (weather.getDailyForecast().size() > 0
+                && weather.getDailyForecast().get(0).day() != null
+                && weather.getDailyForecast().get(0).night() != null
+                && weather.getDailyForecast().get(0).day().getTemperature() != null
+                && weather.getDailyForecast().get(0).night().getTemperature() != null
+                && weather.getDailyForecast().get(0).day().getTemperature().getTemperature() != null
+                && weather.getDailyForecast().get(0).night().getTemperature().getTemperature() != null) {
+            views.setTextViewText(
+                    R.id.widget_clock_day_todayTemp,
+                    context.getString(R.string.today) + " " + Temperature.getTrendTemperature(
+                            context,
+                            weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
+                            weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
+                            temperatureUnit
+                    )
+            );
+        }
 
-        views.setTextViewText(
-                R.id.widget_clock_day_sensibleTemp,
-                context.getString(R.string.feels_like)
-                        + " "
-                        + weather.getCurrent().getTemperature().getRealFeelTemperature(context, temperatureUnit)
-        );
+        if (weather.getCurrent() != null && weather.getCurrent().getTemperature() != null
+                && weather.getCurrent().getTemperature().getFeelsLikeTemperature() != null) {
+            views.setTextViewText(
+                    R.id.widget_clock_day_sensibleTemp,
+                    context.getString(R.string.feels_like)
+                            + " "
+                            + weather.getCurrent().getTemperature().getFeelsLikeTemperature(context, temperatureUnit)
+            );
+        }
 
         views.setTextViewText(
                 R.id.widget_clock_day_aqiHumidity,
                 getAQIHumidityTempText(context, weather)
         );
 
-        views.setTextViewText(
-                R.id.widget_clock_day_wind,
-                weather.getCurrent().getWind().getShortWindDescription()
-        );
+        if (weather.getCurrent() != null && weather.getCurrent().getWind() != null
+            && !TextUtils.isEmpty(weather.getCurrent().getWind().getShortWindDescription())) {
+            views.setTextViewText(
+                    R.id.widget_clock_day_wind,
+                    weather.getCurrent().getWind().getShortWindDescription()
+            );
+        }
 
         if (color.textColor != Color.TRANSPARENT) {
             views.setTextColor(R.id.widget_clock_day_clock_light, color.textColor);
@@ -212,14 +236,16 @@ public class ClockDayDetailsWidgetIMP extends AbstractRemoteViewsPresenter {
     }
 
     private static String getAQIHumidityTempText(Context context, Weather weather) {
-        if (weather.getCurrent().getAirQuality().getAqiIndex() != null
+        if (weather.getCurrent() != null
+                && weather.getCurrent().getAirQuality() != null
+                && weather.getCurrent().getAirQuality().getAqiIndex() != null
                 && weather.getCurrent().getAirQuality().getAqiText(context) != null) {
             return "AQI "
                     + weather.getCurrent().getAirQuality().getAqiIndex()
                     + " ("
                     + weather.getCurrent().getAirQuality().getAqiText(context)
                     + ")";
-        } else {
+        } else if (weather.getCurrent() != null && weather.getCurrent().getRelativeHumidity() != null) {
             return context.getString(R.string.humidity)
                     + " "
                     + RelativeHumidityUnit.PERCENT.getValueText(
@@ -228,6 +254,8 @@ public class ClockDayDetailsWidgetIMP extends AbstractRemoteViewsPresenter {
                                     weather.getCurrent().getRelativeHumidity(), 0
                             )
                     );
+        } else {
+            return "";
         }
     }
 

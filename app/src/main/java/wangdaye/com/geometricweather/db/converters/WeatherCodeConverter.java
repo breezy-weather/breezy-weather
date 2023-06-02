@@ -1,5 +1,7 @@
 package wangdaye.com.geometricweather.db.converters;
 
+import android.text.TextUtils;
+
 import io.objectbox.converter.PropertyConverter;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 
@@ -7,8 +9,11 @@ public class WeatherCodeConverter implements PropertyConverter<WeatherCode, Stri
 
     @Override
     public WeatherCode convertToEntityProperty(String databaseValue) {
-        // use get instance method but not getValue method.
-        return WeatherCode.getInstance(databaseValue);
+        if (TextUtils.isEmpty(databaseValue)) {
+            return null;
+        } else {
+            return WeatherCode.getInstance(databaseValue);
+        }
     }
 
     @Override

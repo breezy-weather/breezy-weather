@@ -87,11 +87,11 @@ class HourlyViewHolder(
 
         title.setTextColor(colors[0])
 
-        if (TextUtils.isEmpty(weather.current.hourlyForecast)) {
+        if (TextUtils.isEmpty(weather.current?.hourlyForecast)) {
             subtitle.visibility = View.GONE
         } else {
             subtitle.visibility = View.VISIBLE
-            subtitle.text = weather.current.hourlyForecast
+            subtitle.text = weather.current?.hourlyForecast
         }
 
         val trendAdapter = HourlyTrendAdapter(activity, trendRecyclerView).apply {

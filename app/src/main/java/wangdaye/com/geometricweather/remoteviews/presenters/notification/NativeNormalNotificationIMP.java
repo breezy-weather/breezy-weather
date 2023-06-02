@@ -86,7 +86,7 @@ class NativeNormalNotificationIMP extends AbstractRemoteViewsPresenter {
                         context,
                         temperatureUnit.getValueWithoutUnit(
                                 SettingsManager.getInstance(context).isNotificationFeelsLike() ?
-                                weather.getCurrent().getTemperature().getRealFeelTemperature() :
+                                weather.getCurrent().getTemperature().getFeelsLikeTemperature() :
                                 weather.getCurrent().getTemperature().getTemperature()
                         )
                 ) : ResourceHelper.getDefaultMinimalXmlIconId(
@@ -121,7 +121,7 @@ class NativeNormalNotificationIMP extends AbstractRemoteViewsPresenter {
         if (!tempIcon) {
             content.append(
                     SettingsManager.getInstance(context).isNotificationFeelsLike() ?
-                    weather.getCurrent().getTemperature().getRealFeelTemperature(context, temperatureUnit) :
+                    weather.getCurrent().getTemperature().getFeelsLikeTemperature(context, temperatureUnit) :
                     weather.getCurrent().getTemperature().getTemperature(context, temperatureUnit))
                     .append(" ");
         }

@@ -110,11 +110,10 @@ public class MfWeatherService extends WeatherService {
             c.set(Calendar.MILLISECOND, 0);
             aqiAtmoAura = mAtmoAuraApi.getPointDetails(
                     SettingsManager.getInstance(context).getProviderIqaAtmoAuraKey(),
-                    String.valueOf(location.getLatitude()),
                     String.valueOf(location.getLongitude()),
+                    String.valueOf(location.getLatitude()),
                     // Tomorrow because it gives access to D-1 and D+1
-                    DisplayUtils.getFormattedDate(c.getTime(), location.getTimeZone(), "yyyy-MM-dd'T'HH:mm:ss.SSSXXX"),
-                    true
+                    DisplayUtils.getFormattedDate(c.getTime(), location.getTimeZone(), "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
             ).onErrorResumeNext(error ->
                     Observable.create(emitter -> emitter.onNext(new EmptyAtmoAuraQAResult()))
             );

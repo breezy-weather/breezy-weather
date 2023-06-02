@@ -25,11 +25,11 @@ public class TrendLinearLayout extends LinearLayout {
 
     private Paint mPaint;
 
-    private int[] mHistoryTemps;
-    private int[] mHistoryTempYs;
+    private Integer[] mHistoryTemps;
+    private Integer[] mHistoryTempYs;
 
-    private int mHighestTemp;
-    private int mLowestTemp;
+    private Integer mHighestTemp;
+    private Integer mLowestTemp;
     private TemperatureUnit mTemperatureUnit;
 
     @ColorInt private int mLineColor;
@@ -148,8 +148,8 @@ public class TrendLinearLayout extends LinearLayout {
         }
     }
 
-    public void setData(@Nullable int[] historyTemps,
-                        int highestTemp, int lowestTemp, TemperatureUnit unit,
+    public void setData(Integer[] historyTemps,
+                        Integer highestTemp, Integer lowestTemp, TemperatureUnit unit,
                         boolean daily) {
         mHistoryTemps = historyTemps;
         mHighestTemp = highestTemp;
@@ -174,7 +174,7 @@ public class TrendLinearLayout extends LinearLayout {
     }
 
     private void computeCoordinates() {
-        mHistoryTempYs = new int[] {
+        mHistoryTempYs = new Integer[] {
                 computeSingleCoordinate(mHistoryTemps[0], mHighestTemp, mLowestTemp),
                 computeSingleCoordinate(mHistoryTemps[1], mHighestTemp, mLowestTemp)
         };

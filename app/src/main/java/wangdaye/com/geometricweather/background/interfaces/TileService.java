@@ -64,19 +64,23 @@ public class TileService extends android.service.quicksettings.TileService {
         }
         Location location = DatabaseHelper.getInstance(context).readLocationList().get(0);
         location = Location.copy(location, DatabaseHelper.getInstance(context).readWeather(location));
-        if (location.getWeather() != null) {
-            tile.setIcon(
-                    ResourceHelper.getMinimalIcon(
-                            ResourcesProviderFactory.getNewInstance(),
-                            location.getWeather().getCurrent().getWeatherCode(),
-                            location.isDaylight()
-                    )
-            );
-            tile.setLabel(
-                    location.getWeather().getCurrent().getTemperature().getTemperature(
-                            context,
-                            SettingsManager.getInstance(context).getTemperatureUnit())
-            );
+        if (location.getWeather() != null && location.getWeather().getCurrent() != null) {
+            if (location.getWeather().getCurrent().getWeatherCode() != null) {
+                tile.setIcon(
+                        ResourceHelper.getMinimalIcon(
+                                ResourcesProviderFactory.getNewInstance(),
+                                location.getWeather().getCurrent().getWeatherCode(),
+                                location.isDaylight()
+                        )
+                );
+            }
+            if (location.getWeather().getCurrent().getTemperature() != null) {
+                tile.setLabel(
+                        location.getWeather().getCurrent().getTemperature().getTemperature(
+                                context,
+                                SettingsManager.getInstance(context).getTemperatureUnit())
+                );
+            }
             tile.setState(Tile.STATE_INACTIVE);
             tile.updateTile();
         }

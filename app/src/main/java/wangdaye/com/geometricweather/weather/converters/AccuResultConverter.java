@@ -141,16 +141,9 @@ public class AccuResultConverter {
                                     null,
                                     null
                             ),
-                            new PrecipitationProbability(
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null
-                            ),
                             new Wind(
                                     currentResult.Wind.Direction.Localized,
-                                    new WindDegree(currentResult.Wind.Direction.Degrees, false),
+                                    new WindDegree((float) currentResult.Wind.Direction.Degrees, false),
                                     (float) currentResult.WindGust.Speed.Metric.Value,
                                     CommonConverter.getWindLevel(context, currentResult.WindGust.Speed.Metric.Value)
                             ),
@@ -242,7 +235,7 @@ public class AccuResultConverter {
                                     ),
                                     new Wind(
                                             forecasts.Day.Wind.Direction.Localized,
-                                            new WindDegree(forecasts.Day.Wind.Direction.Degrees, false),
+                                            new WindDegree((float) forecasts.Day.Wind.Direction.Degrees, false),
                                             (float) forecasts.Day.WindGust.Speed.Value,
                                             CommonConverter.getWindLevel(context, forecasts.Day.WindGust.Speed.Value)
                                     ),
@@ -284,7 +277,7 @@ public class AccuResultConverter {
                                     ),
                                     new Wind(
                                             forecasts.Night.Wind.Direction.Localized,
-                                            new WindDegree(forecasts.Night.Wind.Direction.Degrees, false),
+                                            new WindDegree((float) forecasts.Night.Wind.Direction.Degrees, false),
                                             (float) forecasts.Night.WindGust.Speed.Value,
                                             CommonConverter.getWindLevel(context, forecasts.Night.WindGust.Speed.Value)
                                     ),
@@ -398,10 +391,12 @@ public class AccuResultConverter {
                             ),
                             new Wind(
                                     result.Wind.Direction.Localized,
-                                    new WindDegree(result.Wind.Direction.Degrees, false),
+                                    new WindDegree((float) result.Wind.Direction.Degrees, false),
                                     (float) result.WindGust.Speed.Value,
                                     CommonConverter.getWindLevel(context, result.WindGust.Speed.Value)
                             ),
+                            new AirQuality(null, null, null, null, null, null, null, null),
+                            new Pollen(null, null, null, null, null, null, null, null, null, null, null, null),
                             new UV(result.UVIndex, null, result.UVIndexText)
                     )
             );

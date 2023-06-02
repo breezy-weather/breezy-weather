@@ -78,10 +78,27 @@ public class WidgetHelper {
 
     public static String[] buildWidgetDayStyleText(Context context, Weather weather, TemperatureUnit unit) {
         String[] texts = new String[] {
-                weather.getCurrent().getWeatherText(),
-                weather.getCurrent().getTemperature().getTemperature(context, unit),
-                weather.getDailyForecast().get(0).day().getTemperature().getShortTemperature(context, unit),
-                weather.getDailyForecast().get(0).night().getTemperature().getShortTemperature(context, unit)
+                weather.getCurrent() != null
+                        && weather.getCurrent().getWeatherText() != null
+                        ? weather.getCurrent().getWeatherText()
+                        : "",
+                weather.getCurrent() != null
+                        && weather.getCurrent().getTemperature() != null
+                        && weather.getCurrent().getTemperature().getTemperature() != null
+                        ? weather.getCurrent().getTemperature().getTemperature(context, unit)
+                        : "",
+                weather.getDailyForecast().size() > 0
+                        && weather.getDailyForecast().get(0).day() != null
+                        && weather.getDailyForecast().get(0).day().getTemperature() != null
+                        && weather.getDailyForecast().get(0).day().getTemperature().getTemperature() != null
+                        ? weather.getDailyForecast().get(0).day().getTemperature().getShortTemperature(context, unit)
+                        : "",
+                weather.getDailyForecast().size() > 0
+                        && weather.getDailyForecast().get(0).night() != null
+                        && weather.getDailyForecast().get(0).night().getTemperature() != null
+                        && weather.getDailyForecast().get(0).night().getTemperature().getTemperature() != null
+                        ? weather.getDailyForecast().get(0).night().getTemperature().getShortTemperature(context, unit)
+                        : ""
         };
 
         TextPaint paint = new TextPaint();
@@ -165,7 +182,6 @@ public class WidgetHelper {
         }
     }
 
-    // FIXME: TimeZone
     public static String getDailyWeek(Context context, Weather weather, int index, TimeZone timeZone) {
         if (index > 1) {
             return weather.getDailyForecast().get(index).getWeek(context, timeZone);

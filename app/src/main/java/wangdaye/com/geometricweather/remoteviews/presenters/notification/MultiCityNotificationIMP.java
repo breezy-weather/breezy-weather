@@ -92,7 +92,7 @@ public class MultiCityNotificationIMP extends AbstractRemoteViewsPresenter {
                         context,
                         temperatureUnit.getValueWithoutUnit(
                                 SettingsManager.getInstance(context).isNotificationFeelsLike()
-                                        ? ObjectUtils.safeValueOf(weather.getCurrent().getTemperature().getRealFeelTemperature())
+                                        ? ObjectUtils.safeValueOf(weather.getCurrent().getTemperature().getFeelsLikeTemperature())
                                         : weather.getCurrent().getTemperature().getTemperature()
                         )
                 ) : ResourceHelper.getDefaultMinimalXmlIconId(
@@ -188,7 +188,7 @@ public class MultiCityNotificationIMP extends AbstractRemoteViewsPresenter {
                 Temperature.getShortTemperature(
                         context,
                         SettingsManager.getInstance(context).isNotificationFeelsLike()
-                                ? ObjectUtils.safeValueOf(weather.getCurrent().getTemperature().getRealFeelTemperature())
+                                ? ObjectUtils.safeValueOf(weather.getCurrent().getTemperature().getFeelsLikeTemperature())
                                 : weather.getCurrent().getTemperature().getTemperature(),
                         temperatureUnit
                 )

@@ -48,7 +48,7 @@ public class LocationHolder extends RecyclerView.ViewHolder {
         mBinding.subtitle.setText(model.subtitle);
 
         // source.
-        mBinding.source.setText("Powered by " + model.weatherSource.getSourceUrl());
+        mBinding.source.setText("Weather data by " + model.weatherSource.getSourceUrl());
         mBinding.source.setTextColor(model.weatherSource.getSourceColor());
 
         mBinding.container.setOnClickListener(v ->

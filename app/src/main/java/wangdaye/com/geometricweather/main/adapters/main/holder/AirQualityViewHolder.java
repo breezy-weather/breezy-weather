@@ -116,7 +116,10 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
     @SuppressLint("DefaultLocale")
     @Override
     public void onEnterScreen() {
-        if (itemAnimationEnabled && mEnable && mLocation != null && mLocation.getWeather() != null) {
+        if (itemAnimationEnabled && mEnable && mLocation != null
+                && mLocation.getWeather() != null
+                && mLocation.getWeather().getCurrent() != null
+                && mLocation.getWeather().getCurrent().getAirQuality() != null) {
             Weather weather = mLocation.getWeather();
 
             int aqiColor = weather.getCurrent().getAirQuality().getAqiColor(mProgress.getContext());

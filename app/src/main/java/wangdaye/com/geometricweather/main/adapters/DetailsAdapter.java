@@ -2,6 +2,7 @@ package wangdaye.com.geometricweather.main.adapters;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,8 +31,170 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
     private final boolean mLightTheme;
     private final List<Index> mIndexList;
 
+    public DetailsAdapter(Context context, Location location) {
+        mLightTheme = MainThemeColorProvider.isLightTheme(context, location);
+
+        mIndexList = new ArrayList<>();
+        SettingsManager settings = SettingsManager.getInstance(context);
+        SpeedUnit speedUnit = settings.getSpeedUnit();
+        Weather weather = location.getWeather();
+        assert weather != null;
+
+        if (weather.getCurrent() != null) {
+            if (weather.getDailyForecast().size() > 0
+                    && weather.getCurrent().getWind() != null
+                    && !TextUtils.isEmpty(weather.getCurrent().getWind().getWindDescription(context, speedUnit))
+            ) {
+                String windTitle = context.getString(R.string.live)
+                        + " : "
+                        + weather.getCurrent().getWind().getWindDescription(context, speedUnit);
+                String windContent = "";
+                if (weather.getDailyForecast().get(0).day() != null
+                        && weather.getDailyForecast().get(0).day().getWind() != null
+                        && !TextUtils.isEmpty(weather.getDailyForecast().get(0).day().getWind().getWindDescription(context, speedUnit))
+                ) {
+                    windContent += context.getString(R.string.daytime)
+                            + " : "
+                            + weather.getDailyForecast().get(0).day().getWind().getWindDescription(context, speedUnit);
+                    if (weather.getDailyForecast().get(0).night() != null
+                            && weather.getDailyForecast().get(0).night().getWind() != null
+                            && !TextUtils.isEmpty(weather.getDailyForecast().get(0).night().getWind().getWindDescription(context, speedUnit))
+                    ) {
+                        windContent += "\n";
+                    }
+                }
+                if (weather.getDailyForecast().get(0).night() != null
+                        && weather.getDailyForecast().get(0).night().getWind() != null
+                        && !TextUtils.isEmpty(weather.getDailyForecast().get(0).night().getWind().getWindDescription(context, speedUnit))
+                ) {
+                    windContent += context.getString(R.string.nighttime)
+                            + " : "
+                            + weather.getDailyForecast().get(0).night().getWind().getWindDescription(context, speedUnit);
+                }
+
+                mIndexList.add(
+                        new Index(
+                                R.drawable.ic_wind,
+                                windTitle,
+                                windContent,
+                                context.getString(R.string.wind)
+                                        + ", " + windTitle
+                                        + ", " + windContent.replace("\n", ", ")
+                        )
+                );
+            }
+
+            if (weather.getCurrent().getRelativeHumidity() != null) {
+                mIndexList.add(
+                        new Index(
+                                R.drawable.ic_water_percent,
+                                context.getString(R.string.humidity),
+                                RelativeHumidityUnit.PERCENT.getValueText(
+                                        context,
+                                        (int) (float) weather.getCurrent().getRelativeHumidity()
+                                )
+                        )
+                );
+            }
+
+            if (weather.getCurrent().getUV() != null && weather.getCurrent().getUV().isValid()) {
+                mIndexList.add(
+                        new Index(
+                                R.drawable.ic_uv,
+                                context.getString(R.string.uv_index),
+                                weather.getCurrent().getUV().getUVDescription()
+                        )
+                );
+            }
+
+            if (weather.getCurrent().getPressure() != null) {
+                mIndexList.add(
+                        new Index(
+                                R.drawable.ic_gauge,
+                                context.getString(R.string.pressure),
+                                settings.getPressureUnit().getValueText(context, weather.getCurrent().getPressure()),
+                                context.getString(R.string.pressure)
+                                        + ", " + settings.getPressureUnit().getValueVoice(context, weather.getCurrent().getPressure())
+                        )
+                );
+            }
+
+            if (weather.getCurrent().getVisibility() != null) {
+                mIndexList.add(
+                        new Index(
+                                R.drawable.ic_eye,
+                                context.getString(R.string.visibility),
+                                settings.getDistanceUnit().getValueText(context, weather.getCurrent().getVisibility()),
+                                context.getString(R.string.visibility)
+                                        + ", " + settings.getDistanceUnit().getValueVoice(context, weather.getCurrent().getVisibility())
+                        )
+                );
+            }
+
+            if (weather.getCurrent().getDewPoint() != null) {
+                mIndexList.add(
+                        new Index(
+                                R.drawable.ic_water,
+                                context.getString(R.string.dew_point),
+                                settings.getTemperatureUnit().getValueText(
+                                        context,
+                                        weather.getCurrent().getDewPoint()
+                                )
+                        )
+                );
+            }
+
+            if (weather.getCurrent().getCloudCover() != null) {
+                mIndexList.add(
+                        new Index(
+                                R.drawable.ic_cloud,
+                                context.getString(R.string.cloud_cover),
+                                CloudCoverUnit.PERCENT.getValueText(
+                                        context,
+                                        weather.getCurrent().getCloudCover()
+                                )
+                        )
+                );
+            }
+
+            if (weather.getCurrent().getCeiling() != null) {
+                mIndexList.add(
+                        new Index(
+                                R.drawable.ic_top,
+                                context.getString(R.string.ceiling),
+                                settings.getDistanceUnit().getValueText(
+                                        context,
+                                        weather.getCurrent().getCeiling()
+                                ),
+                                context.getString(R.string.ceiling) + ", " + settings.getDistanceUnit().getValueVoice(
+                                        context, weather.getCurrent().getCeiling())
+                        )
+                );
+            }
+        }
+    }
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_details, parent, false);
+        return new ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.onBindView(mLightTheme, mIndexList.get(position));
+    }
+
+    @Override
+    public int getItemCount() {
+        return mIndexList.size();
+    }
+
     private static class Index {
-        @DrawableRes int iconId;
+        @DrawableRes
+        int iconId;
         String title;
         String content;
         String talkBack;
@@ -84,142 +247,5 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
                     MainThemeColorProvider.getColor(lightTheme, R.attr.colorBodyText)
             );
         }
-    }
-
-    public DetailsAdapter(Context context, Location location) {
-        mLightTheme = MainThemeColorProvider.isLightTheme(context, location);
-
-        mIndexList = new ArrayList<>();
-        SettingsManager settings = SettingsManager.getInstance(context);
-        SpeedUnit speedUnit = settings.getSpeedUnit();
-        Weather weather = location.getWeather();
-        assert weather != null;
-
-        String windTitle = context.getString(R.string.live)
-                + " : "
-                + weather.getCurrent().getWind().getWindDescription(context, speedUnit);
-        String windContent = context.getString(R.string.daytime)
-                + " : "
-                + weather.getDailyForecast().get(0).day().getWind().getWindDescription(context, speedUnit)
-                + "\n"
-                + context.getString(R.string.nighttime)
-                + " : "
-                + weather.getDailyForecast().get(0).night().getWind().getWindDescription(context, speedUnit);
-        mIndexList.add(
-                new Index(
-                        R.drawable.ic_wind,
-                        windTitle,
-                        windContent,
-                        context.getString(R.string.wind)
-                                + ", " + windTitle
-                                + ", " + windContent.replace("\n", ", ")
-                )
-        );
-
-        if (weather.getCurrent().getRelativeHumidity() != null) {
-            mIndexList.add(
-                    new Index(
-                            R.drawable.ic_water_percent,
-                            context.getString(R.string.humidity),
-                            RelativeHumidityUnit.PERCENT.getValueText(
-                                    context,
-                                    (int) (float) weather.getCurrent().getRelativeHumidity()
-                            )
-                    )
-            );
-        }
-
-        if (weather.getCurrent().getUV().isValid()) {
-            mIndexList.add(
-                    new Index(
-                            R.drawable.ic_uv,
-                            context.getString(R.string.uv_index),
-                            weather.getCurrent().getUV().getUVDescription()
-                    )
-            );
-        }
-
-        if (weather.getCurrent().getPressure() != null) {
-            mIndexList.add(
-                    new Index(
-                            R.drawable.ic_gauge,
-                            context.getString(R.string.pressure),
-                            settings.getPressureUnit().getValueText(context, weather.getCurrent().getPressure()),
-                            context.getString(R.string.pressure)
-                                    + ", " + settings.getPressureUnit().getValueVoice(context, weather.getCurrent().getPressure())
-                    )
-            );
-        }
-
-        if (weather.getCurrent().getVisibility() != null) {
-            mIndexList.add(
-                    new Index(
-                            R.drawable.ic_eye,
-                            context.getString(R.string.visibility),
-                            settings.getDistanceUnit().getValueText(context, weather.getCurrent().getVisibility()),
-                            context.getString(R.string.visibility)
-                                    + ", " + settings.getDistanceUnit().getValueVoice(context, weather.getCurrent().getVisibility())
-                    )
-            );
-        }
-
-        if (weather.getCurrent().getDewPoint() != null) {
-            mIndexList.add(
-                    new Index(
-                            R.drawable.ic_water,
-                            context.getString(R.string.dew_point),
-                            settings.getTemperatureUnit().getValueText(
-                                    context,
-                                    weather.getCurrent().getDewPoint()
-                            )
-                    )
-            );
-        }
-
-        if (weather.getCurrent().getCloudCover() != null) {
-            mIndexList.add(
-                    new Index(
-                            R.drawable.ic_cloud,
-                            context.getString(R.string.cloud_cover),
-                            CloudCoverUnit.PERCENT.getValueText(
-                                    context,
-                                    weather.getCurrent().getCloudCover()
-                            )
-                    )
-            );
-        }
-
-        if (weather.getCurrent().getCeiling() != null) {
-            mIndexList.add(
-                    new Index(
-                            R.drawable.ic_top,
-                            context.getString(R.string.ceiling),
-                            settings.getDistanceUnit().getValueText(
-                                    context,
-                                    weather.getCurrent().getCeiling()
-                            ),
-                            context.getString(R.string.ceiling) + ", " + settings.getDistanceUnit().getValueVoice(
-                                    context, weather.getCurrent().getCeiling())
-                    )
-            );
-        }
-    }
-
-    @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_details, parent, false);
-        return new ViewHolder(view);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.onBindView(mLightTheme, mIndexList.get(position));
-    }
-
-    @Override
-    public int getItemCount() {
-        return mIndexList.size();
     }
 }

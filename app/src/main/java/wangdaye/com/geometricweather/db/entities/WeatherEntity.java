@@ -40,7 +40,7 @@ public class WeatherEntity {
     @Convert(converter = WeatherCodeConverter.class, dbType = String.class)
     public WeatherCode weatherCode;
 
-    public int temperature;
+    public Integer temperature;
     public Integer realFeelTemperature;
     public Integer realFeelShaderTemperature;
     public Integer apparentTemperature;
@@ -53,12 +53,6 @@ public class WeatherEntity {
     public Float rainPrecipitation;
     public Float snowPrecipitation;
     public Float icePrecipitation;
-
-    public Float totalPrecipitationProbability;
-    public Float thunderstormPrecipitationProbability;
-    public Float rainPrecipitationProbability;
-    public Float snowPrecipitationProbability;
-    public Float icePrecipitationProbability;
 
     public String windDirection;
     @Convert(converter = WindDegreeConverter.class, dbType = Float.class)
@@ -101,16 +95,12 @@ public class WeatherEntity {
     public WeatherEntity(Long id, String cityId, String weatherSource,
                          long timeStamp, Date publishDate, long publishTime, Date updateDate,
                          long updateTime, String weatherText, WeatherCode weatherCode,
-                         int temperature, Integer realFeelTemperature,
+                         Integer temperature, Integer realFeelTemperature,
                          Integer realFeelShaderTemperature, Integer apparentTemperature,
                          Integer windChillTemperature, Integer wetBulbTemperature,
                          Integer degreeDayTemperature, Float totalPrecipitation,
                          Float thunderstormPrecipitation, Float rainPrecipitation,
-                         Float snowPrecipitation, Float icePrecipitation,
-                         Float totalPrecipitationProbability,
-                         Float thunderstormPrecipitationProbability,
-                         Float rainPrecipitationProbability, Float snowPrecipitationProbability,
-                         Float icePrecipitationProbability, String windDirection,
+                         Float snowPrecipitation, Float icePrecipitation, String windDirection,
                          WindDegree windDegree, Float windSpeed, String windLevel,
                          Integer uvIndex, String uvLevel, String uvDescription, String aqiText,
                          Integer aqiIndex, Float pm25, Float pm10, Float so2, Float no2,
@@ -139,11 +129,6 @@ public class WeatherEntity {
         this.rainPrecipitation = rainPrecipitation;
         this.snowPrecipitation = snowPrecipitation;
         this.icePrecipitation = icePrecipitation;
-        this.totalPrecipitationProbability = totalPrecipitationProbability;
-        this.thunderstormPrecipitationProbability = thunderstormPrecipitationProbability;
-        this.rainPrecipitationProbability = rainPrecipitationProbability;
-        this.snowPrecipitationProbability = snowPrecipitationProbability;
-        this.icePrecipitationProbability = icePrecipitationProbability;
         this.windDirection = windDirection;
         this.windDegree = windDegree;
         this.windSpeed = windSpeed;
@@ -253,11 +238,11 @@ public class WeatherEntity {
         this.weatherCode = weatherCode;
     }
 
-    public int getTemperature() {
+    public Integer getTemperature() {
         return this.temperature;
     }
 
-    public void setTemperature(int temperature) {
+    public void setTemperature(Integer temperature) {
         this.temperature = temperature;
     }
 
@@ -347,50 +332,6 @@ public class WeatherEntity {
 
     public void setIcePrecipitation(Float icePrecipitation) {
         this.icePrecipitation = icePrecipitation;
-    }
-
-    public Float getTotalPrecipitationProbability() {
-        return this.totalPrecipitationProbability;
-    }
-
-    public void setTotalPrecipitationProbability(
-            Float totalPrecipitationProbability) {
-        this.totalPrecipitationProbability = totalPrecipitationProbability;
-    }
-
-    public Float getThunderstormPrecipitationProbability() {
-        return this.thunderstormPrecipitationProbability;
-    }
-
-    public void setThunderstormPrecipitationProbability(
-            Float thunderstormPrecipitationProbability) {
-        this.thunderstormPrecipitationProbability = thunderstormPrecipitationProbability;
-    }
-
-    public Float getRainPrecipitationProbability() {
-        return this.rainPrecipitationProbability;
-    }
-
-    public void setRainPrecipitationProbability(
-            Float rainPrecipitationProbability) {
-        this.rainPrecipitationProbability = rainPrecipitationProbability;
-    }
-
-    public Float getSnowPrecipitationProbability() {
-        return this.snowPrecipitationProbability;
-    }
-
-    public void setSnowPrecipitationProbability(
-            Float snowPrecipitationProbability) {
-        this.snowPrecipitationProbability = snowPrecipitationProbability;
-    }
-
-    public Float getIcePrecipitationProbability() {
-        return this.icePrecipitationProbability;
-    }
-
-    public void setIcePrecipitationProbability(Float icePrecipitationProbability) {
-        this.icePrecipitationProbability = icePrecipitationProbability;
     }
 
     public String getWindDirection() {

@@ -75,28 +75,44 @@ public class MultiCityWidgetIMP extends AbstractRemoteViewsPresenter {
                     location.getCityName(context)
             );
 
-            views.setImageViewUri(
-                    R.id.widget_multi_city_horizontal_icon_1,
-                    ResourceHelper.getWidgetNotificationIconUri(
-                            provider,
-                            dayTime
-                                    ? weather.getDailyForecast().get(0).day().getWeatherCode()
-                                    : weather.getDailyForecast().get(0).night().getWeatherCode(),
-                            dayTime,
-                            minimalIcon,
-                            color.getMinimalIconColor()
-                    )
-            );
+            if (weather.getDailyForecast().size() > 0
+                    && ((dayTime && weather.getDailyForecast().get(0).day() != null
+                    && weather.getDailyForecast().get(0).day().getWeatherCode() != null)
+                    || (!dayTime && weather.getDailyForecast().get(0).night() != null
+                    && weather.getDailyForecast().get(0).night().getWeatherCode() != null))
+            ) {
+                views.setImageViewUri(
+                        R.id.widget_multi_city_horizontal_icon_1,
+                        ResourceHelper.getWidgetNotificationIconUri(
+                                provider,
+                                dayTime
+                                        ? weather.getDailyForecast().get(0).day().getWeatherCode()
+                                        : weather.getDailyForecast().get(0).night().getWeatherCode(),
+                                dayTime,
+                                minimalIcon,
+                                color.getMinimalIconColor()
+                        )
+                );
+            }
 
-            views.setTextViewText(
-                    R.id.widget_multi_city_horizontal_content_1,
-                    Temperature.getTrendTemperature(
-                            context,
-                            weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
-                            weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
-                            temperatureUnit
-                    )
-            );
+            if (weather.getDailyForecast().size() > 0
+                    && weather.getDailyForecast().get(0).day() != null
+                    && weather.getDailyForecast().get(0).day().getTemperature() != null
+                    && weather.getDailyForecast().get(0).day().getTemperature().getTemperature() != null
+                    && weather.getDailyForecast().get(0).night() != null
+                    && weather.getDailyForecast().get(0).night().getTemperature() != null
+                    && weather.getDailyForecast().get(0).night().getTemperature().getTemperature() != null
+            ) {
+                views.setTextViewText(
+                        R.id.widget_multi_city_horizontal_content_1,
+                        Temperature.getTrendTemperature(
+                                context,
+                                weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
+                                weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
+                                temperatureUnit
+                        )
+                );
+            }
         }
         setOnClickPendingIntent(context, views, location,
                 R.id.widget_multi_city_horizontal_weather_1, 0);
@@ -114,28 +130,44 @@ public class MultiCityWidgetIMP extends AbstractRemoteViewsPresenter {
                         location.getCityName(context)
                 );
 
-                views.setImageViewUri(
-                        R.id.widget_multi_city_horizontal_icon_2,
-                        ResourceHelper.getWidgetNotificationIconUri(
-                                provider,
-                                dayTime
-                                        ? weather.getDailyForecast().get(0).day().getWeatherCode()
-                                        : weather.getDailyForecast().get(0).night().getWeatherCode(),
-                                dayTime,
-                                minimalIcon,
-                                color.getMinimalIconColor()
-                        )
-                );
+                if (weather.getDailyForecast().size() > 0
+                        && ((dayTime && weather.getDailyForecast().get(0).day() != null
+                        && weather.getDailyForecast().get(0).day().getWeatherCode() != null)
+                        || (!dayTime && weather.getDailyForecast().get(0).night() != null
+                        && weather.getDailyForecast().get(0).night().getWeatherCode() != null))
+                ) {
+                    views.setImageViewUri(
+                            R.id.widget_multi_city_horizontal_icon_2,
+                            ResourceHelper.getWidgetNotificationIconUri(
+                                    provider,
+                                    dayTime
+                                            ? weather.getDailyForecast().get(0).day().getWeatherCode()
+                                            : weather.getDailyForecast().get(0).night().getWeatherCode(),
+                                    dayTime,
+                                    minimalIcon,
+                                    color.getMinimalIconColor()
+                            )
+                    );
+                }
 
-                views.setTextViewText(
-                        R.id.widget_multi_city_horizontal_content_2,
-                        Temperature.getTrendTemperature(
-                                context,
-                                weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
-                                weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
-                                temperatureUnit
-                        )
-                );
+                if (weather.getDailyForecast().size() > 0
+                        && weather.getDailyForecast().get(0).day() != null
+                        && weather.getDailyForecast().get(0).day().getTemperature() != null
+                        && weather.getDailyForecast().get(0).day().getTemperature().getTemperature() != null
+                        && weather.getDailyForecast().get(0).night() != null
+                        && weather.getDailyForecast().get(0).night().getTemperature() != null
+                        && weather.getDailyForecast().get(0).night().getTemperature().getTemperature() != null
+                ) {
+                    views.setTextViewText(
+                            R.id.widget_multi_city_horizontal_content_2,
+                            Temperature.getTrendTemperature(
+                                    context,
+                                    weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
+                                    weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
+                                    temperatureUnit
+                            )
+                    );
+                }
             }
             setOnClickPendingIntent(context, views, location,
                     R.id.widget_multi_city_horizontal_weather_2, 1);
@@ -156,28 +188,44 @@ public class MultiCityWidgetIMP extends AbstractRemoteViewsPresenter {
                         location.getCityName(context)
                 );
 
-                views.setImageViewUri(
-                        R.id.widget_multi_city_horizontal_icon_3,
-                        ResourceHelper.getWidgetNotificationIconUri(
-                                provider,
-                                dayTime
-                                        ? weather.getDailyForecast().get(0).day().getWeatherCode()
-                                        : weather.getDailyForecast().get(0).night().getWeatherCode(),
-                                dayTime,
-                                minimalIcon,
-                                color.getMinimalIconColor()
-                        )
-                );
+                if (weather.getDailyForecast().size() > 0
+                        && ((dayTime && weather.getDailyForecast().get(0).day() != null
+                        && weather.getDailyForecast().get(0).day().getWeatherCode() != null)
+                        || (!dayTime && weather.getDailyForecast().get(0).night() != null
+                        && weather.getDailyForecast().get(0).night().getWeatherCode() != null))
+                ) {
+                    views.setImageViewUri(
+                            R.id.widget_multi_city_horizontal_icon_3,
+                            ResourceHelper.getWidgetNotificationIconUri(
+                                    provider,
+                                    dayTime
+                                            ? weather.getDailyForecast().get(0).day().getWeatherCode()
+                                            : weather.getDailyForecast().get(0).night().getWeatherCode(),
+                                    dayTime,
+                                    minimalIcon,
+                                    color.getMinimalIconColor()
+                            )
+                    );
+                }
 
-                views.setTextViewText(
-                        R.id.widget_multi_city_horizontal_content_3,
-                        Temperature.getTrendTemperature(
-                                context,
-                                weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
-                                weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
-                                temperatureUnit
-                        )
-                );
+                if (weather.getDailyForecast().size() > 0
+                        && weather.getDailyForecast().get(0).day() != null
+                        && weather.getDailyForecast().get(0).day().getTemperature() != null
+                        && weather.getDailyForecast().get(0).day().getTemperature().getTemperature() != null
+                        && weather.getDailyForecast().get(0).night() != null
+                        && weather.getDailyForecast().get(0).night().getTemperature() != null
+                        && weather.getDailyForecast().get(0).night().getTemperature().getTemperature() != null
+                ) {
+                    views.setTextViewText(
+                            R.id.widget_multi_city_horizontal_content_3,
+                            Temperature.getTrendTemperature(
+                                    context,
+                                    weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
+                                    weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
+                                    temperatureUnit
+                            )
+                    );
+                }
             }
             setOnClickPendingIntent(context, views, location,
                     R.id.widget_multi_city_horizontal_weather_3, 2);

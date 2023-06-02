@@ -119,7 +119,8 @@ class PollingUpdateHelper(
             if (locationList[index].isUsable) {
                 requestData(index, true)
             } else {
-                RequestWeatherCallback(index, total).requestWeatherFailed(locationList[index],
+                RequestWeatherCallback(index, total).requestWeatherFailed(
+                    requestLocation = locationList[index],
                     apiLimitReached = false,
                     apiUnauthorized = false
                 )
@@ -149,7 +150,8 @@ class PollingUpdateHelper(
 
                 checkToRequestNextOrCompleted()
             } else {
-                requestWeatherFailed(requestLocation,
+                requestWeatherFailed(
+                    requestLocation,
                     apiLimitReached = false,
                     apiUnauthorized = false
                 )

@@ -176,12 +176,18 @@ public class DatabaseHelper {
                             weather.getAlertList()
                     )
             );
-            HistoryEntityController.insertHistoryEntity(
-                    boxStore,
-                    HistoryEntityGenerator.generate(
-                            location.getCityId(), location.getWeatherSource(), weather
-                    )
-            );
+            if (weather.getDailyForecast().size() > 0
+                    && weather.getDailyForecast().get(0).day() != null
+                    && weather.getDailyForecast().get(0).night() != null
+                    && weather.getDailyForecast().get(0).day().getTemperature() != null
+                    && weather.getDailyForecast().get(0).night().getTemperature() != null) {
+                HistoryEntityController.insertHistoryEntity(
+                        boxStore,
+                        HistoryEntityGenerator.generate(
+                                location.getCityId(), location.getWeatherSource(), weather
+                        )
+                );
+            }
             if (weather.getYesterday() != null) {
                 HistoryEntityController.insertHistoryEntity(
                         boxStore,

@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.main.adapters.location;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -40,17 +41,20 @@ public class LocationModel {
     ) {
         this.location = location;
 
-        if (location.getWeather() != null) {
-            this.weatherCode = location.isDaylight()
-                    ? location
-                    .getWeather()
-                    .getDailyForecast()
-                    .get(0)
-                    .day()
-                    .getWeatherCode()
-                    : location.getWeather().getDailyForecast().get(0).night().getWeatherCode();
-        } else {
-            this.weatherCode = null;
+        this.weatherCode = null;
+        if (location.getWeather() != null && location.getWeather().getDailyForecast().size() > 0) {
+            if (location.isDaylight()
+                    && location.getWeather().getDailyForecast().get(0).day() != null
+                    && location.getWeather().getDailyForecast().get(0).day().getWeatherCode() != null
+            ) {
+                this.weatherCode = location.getWeather().getDailyForecast().get(0).day().getWeatherCode();
+            }
+            if (!location.isDaylight()
+                    && location.getWeather().getDailyForecast().get(0).night() != null
+                    && location.getWeather().getDailyForecast().get(0).night().getWeatherCode() != null
+            ) {
+                this.weatherCode = location.getWeather().getDailyForecast().get(0).night().getWeatherCode();
+            }
         }
 
         this.weatherSource = location.getWeatherSource();
@@ -61,19 +65,27 @@ public class LocationModel {
         this.title1 = location.isCurrentPosition()
                 ? context.getString(R.string.current_location)
                 : location.getCityName(context);
-        this.title2 = location.getWeather() == null
-                ? ""
-                : location.getWeather().getCurrent().getWeatherText()
-                + ", "
-                + unit
-                .getShortValueText(
-                        context,
-                        location
-                                .getWeather()
-                                .getCurrent()
-                                .getTemperature()
-                                .getTemperature()
+        this.title2 = "";
+        if (location.getWeather() != null && location.getWeather().getCurrent() != null) {
+            StringBuilder builder = new StringBuilder();
+            if (!TextUtils.isEmpty(location.getWeather().getCurrent().getWeatherText())) {
+                builder.append(location.getWeather().getCurrent().getWeatherText());
+                if (location.getWeather().getCurrent().getTemperature() != null
+                    && location.getWeather().getCurrent().getTemperature().getTemperature() != null) {
+                    builder.append(", ");
+                }
+            }
+            if (location.getWeather().getCurrent().getTemperature() != null
+                    && location.getWeather().getCurrent().getTemperature().getTemperature() != null) {
+                builder.append(unit
+                        .getShortValueText(
+                                context,
+                                location.getWeather().getCurrent().getTemperature().getTemperature()
+                        )
                 );
+            }
+            this.title2 = builder.toString();
+        }
 
         if (!location.isCurrentPosition() || location.isUsable()) {
             subtitle = location.toString();

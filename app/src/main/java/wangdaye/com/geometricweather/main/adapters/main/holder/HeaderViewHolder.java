@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -81,39 +82,55 @@ public class HeaderViewHolder extends AbstractMainViewHolder {
         mAqiOrWind.setTextColor(textColor);
 
         mTemperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit();
-        if (location.getWeather() != null) {
-            mTemperatureCFrom = mTemperatureCTo;
-            mTemperatureCTo = location.getWeather().getCurrent().getTemperature().getTemperature();
+        if (location.getWeather() != null && location.getWeather().getCurrent() != null) {
+            if (location.getWeather().getCurrent().getTemperature() != null && location.getWeather().getCurrent().getTemperature().getTemperature() != null) {
+                mTemperatureCFrom = mTemperatureCTo;
+                mTemperatureCTo = location.getWeather().getCurrent().getTemperature().getTemperature();
 
-            mTemperature.setEnableAnim(itemAnimationEnabled);
-            mTemperature.setDuration(
-                    (long) Math.min(
-                            2000, // no longer than 2 seconds.
-                            Math.abs(mTemperatureCTo - mTemperatureCFrom) / 10f * 1000
-                    )
-            );
-            mTemperature.setPostfixString(mTemperatureUnit.getShortName(context));
+                mTemperature.setEnableAnim(itemAnimationEnabled);
+                mTemperature.setDuration(
+                        (long) Math.min(
+                                2000, // no longer than 2 seconds.
+                                Math.abs(mTemperatureCTo - mTemperatureCFrom) / 10f * 1000
+                        )
+                );
+                mTemperature.setPostfixString(mTemperatureUnit.getShortName(context));
+            }
 
-            StringBuilder title = new StringBuilder(location.getWeather().getCurrent().getWeatherText());
-            if (location.getWeather().getCurrent().getTemperature().getRealFeelTemperature() != null) {
-                title.append(", ")
-                        .append(context.getString(R.string.feels_like))
+            StringBuilder title = new StringBuilder();
+            if (!TextUtils.isEmpty(location.getWeather().getCurrent().getWeatherText())) {
+                title.append(location.getWeather().getCurrent().getWeatherText());
+            }
+            if (location.getWeather().getCurrent().getTemperature().getFeelsLikeTemperature() != null) {
+                if (!TextUtils.isEmpty(location.getWeather().getCurrent().getWeatherText())) {
+                    title.append(", ");
+                }
+
+                title.append(context.getString(R.string.feels_like))
                         .append(" ")
-                        .append(location.getWeather().getCurrent().getTemperature().getShortRealFeeTemperature(context, mTemperatureUnit));
+                        .append(location.getWeather().getCurrent().getTemperature().getShortFeelsLikeTemperature(context, mTemperatureUnit));
+            } else if (location.getWeather().getCurrent().getTemperature().getFeelsLikeTemperature() != null) {
+                if (!TextUtils.isEmpty(location.getWeather().getCurrent().getWeatherText())) {
+                    title.append(", ");
+                }
+
+                title.append(context.getString(R.string.feels_like))
+                        .append(" ")
+                        .append(location.getWeather().getCurrent().getTemperature().getShortFeelsLikeTemperature(context, mTemperatureUnit));
             }
             mWeather.setText(title.toString());
 
-            if (location.getWeather().getCurrent().getAirQuality().getAqiText(context) == null) {
-                mAqiOrWind.setText(
-                        context.getString(R.string.wind)
-                                + " - "
-                                + location.getWeather().getCurrent().getWind().getShortWindDescription()
-                );
-            } else {
+            if (location.getWeather().getCurrent().getAirQuality() != null && !TextUtils.isEmpty(location.getWeather().getCurrent().getAirQuality().getAqiText(context))) {
                 mAqiOrWind.setText(
                         context.getString(R.string.air_quality)
                                 + " - "
                                 + location.getWeather().getCurrent().getAirQuality().getAqiText(context)
+                );
+            } else if (location.getWeather().getCurrent().getWind() != null && !TextUtils.isEmpty(location.getWeather().getCurrent().getWind().getShortWindDescription())) {
+                mAqiOrWind.setText(
+                        context.getString(R.string.wind)
+                                + " - "
+                                + location.getWeather().getCurrent().getWind().getShortWindDescription()
                 );
             }
 

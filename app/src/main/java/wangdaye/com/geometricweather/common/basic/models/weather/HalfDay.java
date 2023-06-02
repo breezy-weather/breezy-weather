@@ -10,24 +10,37 @@ import java.io.Serializable;
  * */
 public class HalfDay implements Serializable {
 
-    @NonNull private final String weatherText;
-    @NonNull private final String weatherPhase;
-    @NonNull private final WeatherCode weatherCode;
+    @Nullable private String weatherText;
+    @Nullable private String weatherPhase;
+    @Nullable private WeatherCode weatherCode;
 
-    @NonNull private final Temperature temperature;
-    @NonNull private final Precipitation precipitation;
-    @NonNull private final PrecipitationProbability precipitationProbability;
-    @NonNull private final PrecipitationDuration precipitationDuration;
-    @NonNull private final Wind wind;
+    @Nullable private Temperature temperature;
+    @Nullable private Precipitation precipitation;
+    @Nullable private PrecipitationProbability precipitationProbability;
+    @Nullable private PrecipitationDuration precipitationDuration;
+    @Nullable private Wind wind;
 
-    @Nullable private final Integer cloudCover;
+    @Nullable private Integer cloudCover;
 
-    public HalfDay(@NonNull String weatherText, @NonNull String weatherPhase, @NonNull WeatherCode weatherCode,
-                   @NonNull Temperature temperature,
-                   @NonNull Precipitation precipitation,
-                   @NonNull PrecipitationProbability precipitationProbability,
-                   @NonNull PrecipitationDuration precipitationDuration,
-                   @NonNull Wind wind, @Nullable Integer cloudCover) {
+    // Initialize a null object
+    public HalfDay() {
+        this.weatherText = null;
+        this.weatherPhase = null;
+        this.weatherCode = null;
+        this.temperature = null;
+        this.precipitation = null;
+        this.precipitationProbability = null;
+        this.precipitationDuration = null;
+        this.wind = null;
+        this.cloudCover = null;
+    }
+
+    public HalfDay(@Nullable String weatherText, @Nullable String weatherPhase, @Nullable WeatherCode weatherCode,
+                   @Nullable Temperature temperature,
+                   @Nullable Precipitation precipitation,
+                   @Nullable PrecipitationProbability precipitationProbability,
+                   @Nullable PrecipitationDuration precipitationDuration,
+                   @Nullable Wind wind, @Nullable Integer cloudCover) {
         this.weatherText = weatherText;
         this.weatherPhase = weatherPhase;
         this.weatherCode = weatherCode;
@@ -39,42 +52,54 @@ public class HalfDay implements Serializable {
         this.cloudCover = cloudCover;
     }
 
-    @NonNull
+    @Nullable
     public String getWeatherText() {
         return weatherText;
     }
 
-    @NonNull
+    public void setWeatherText(@Nullable String weatherText) {
+        this.weatherText = weatherText;
+    }
+
+    @Nullable
     public String getWeatherPhase() {
         return weatherPhase;
     }
 
-    @NonNull
+    public void setWeatherPhase(@Nullable String weatherPhase) {
+        this.weatherPhase = weatherPhase;
+    }
+
+    @Nullable
     public WeatherCode getWeatherCode() {
         return weatherCode;
     }
 
-    @NonNull
+    public void setWeatherCode(@Nullable WeatherCode weatherCode) {
+        this.weatherCode = weatherCode;
+    }
+
+    @Nullable
     public Temperature getTemperature() {
         return temperature;
     }
 
-    @NonNull
+    @Nullable
     public Precipitation getPrecipitation() {
         return precipitation;
     }
 
-    @NonNull
+    @Nullable
     public PrecipitationProbability getPrecipitationProbability() {
         return precipitationProbability;
     }
 
-    @NonNull
+    @Nullable
     public PrecipitationDuration getPrecipitationDuration() {
         return precipitationDuration;
     }
 
-    @NonNull
+    @Nullable
     public Wind getWind() {
         return wind;
     }

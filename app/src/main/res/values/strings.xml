@@ -117,6 +117,13 @@
     <string name="ragweed">Ragweed</string>
     <string name="tree">Tree</string>
 
+    <!-- UV levels -->
+    <string name="uv_level_0_2">Low</string>
+    <string name="uv_level_3_5">Moderate</string>
+    <string name="uv_level_6_7">High</string>
+    <string name="uv_level_8_10">Very high</string>
+    <string name="uv_level_11">Extreme</string>
+
     <string name="daily_overview">Daily forecast</string>
     <string name="hourly_overview">Hourly forecast</string>
     <string name="minutely_overview">Minutely forecast</string>
@@ -125,6 +132,36 @@
     <string name="allergen">Allergen</string>
     <string name="life_details">Details</string>
     <string name="sunrise_sunset">Sun &amp; moon</string>
+
+    <!-- Weather texts -->
+    <string name="weather_text_clear_sky">Clear sky</string>
+    <string name="weather_text_mainly_clear">Mainly clear</string>
+    <string name="weather_text_partly_cloudy">Partly cloudy</string>
+    <string name="weather_text_overcast">Overcast</string>
+    <string name="weather_text_fog">Fog</string>
+    <string name="weather_text_depositing_rime_fog">Depositing rime fog</string>
+    <string name="weather_text_drizzle_light_intensity">Drizzle light intensity</string>
+    <string name="weather_text_drizzle_moderate_intensity">Drizzle moderate intensity</string>
+    <string name="weather_text_drizzle_dense_intensity">Drizzle dense intensity</string>
+    <string name="weather_text_freezing_drizzle_light_intensity">Freezing drizzle light intensity</string>
+    <string name="weather_text_freezing_drizzle_dense_intensity">Freezing drizzle dense intensity</string>
+    <string name="weather_text_rain_slight_intensity">Rain slight intensity</string>
+    <string name="weather_text_rain_moderate_intensity">Rain moderate intensity</string>
+    <string name="weather_text_rain_heavy_intensity">Rain heavy intensity</string>
+    <string name="weather_text_freezing_rain_light_intensity">Freezing rain light intensity</string>
+    <string name="weather_text_freezing_rain_heavy_intensity">Freezing rain heavy intensity</string>
+    <string name="weather_text_snow_slight_intensity">Snow slight intensity</string>
+    <string name="weather_text_snow_moderate_intensity">Snow moderate intensity</string>
+    <string name="weather_text_snow_heavy_intensity">Snow heavy intensity</string>
+    <string name="weather_text_snow_grains">Snow grains</string>
+    <string name="weather_text_rain_showers_slight">Rain showers slight</string>
+    <string name="weather_text_rain_showers_moderate">Rain showers moderate</string>
+    <string name="weather_text_rain_showers_violent">Rain showers violent</string>
+    <string name="weather_text_snow_showers_slight">Snow showers slight</string>
+    <string name="weather_text_snow_showers_heavy">Snow showers heavy</string>
+    <string name="weather_text_thunderstorm_slight_or_moderate">Thunderstorm slight or moderate</string>
+    <string name="weather_text_thunderstorm_with_slight_hail">Thunderstorm with slight hail</string>
+    <string name="weather_text_thunderstorm_with_heavy_hail">Thunderstorm with heavy hail</string>
 
     <string name="next">NEXT</string>
     <string name="done">DONE</string>
@@ -223,7 +260,6 @@
     <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : Current Temperature (°)\n</string>
     <string name="feedback_custom_subtitle_keyword_at">$at$ : Apparent Temperature (℃/℉)\n</string>
     <string name="feedback_custom_subtitle_keyword_atd">$atd$ : Apparent Temperature (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_cpb">$cpb$ : Current Precipitation Probability (%)\n</string>
     <string name="feedback_custom_subtitle_keyword_cp">$cp$ : Current Precipitation (mm/L/m²)\n</string>
     <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : Current Wind\n</string>
     <string name="feedback_custom_subtitle_keyword_cuv">$cuv$ : Current UV\n</string>
@@ -335,7 +371,7 @@
     <string name="content_des_swipe_right_to_delete">You can swipe right to delete this item</string>
     <string name="content_desc_search_filter_on">Only show locations from default weather source</string>
     <string name="content_desc_search_filter_off">Show locations from all weather sources</string>
-    <string name="content_desc_powered_by">Powered by $</string> <!-- $ = weather source. -->
+    <string name="content_desc_powered_by">Weather data $</string> <!-- $ = weather source. -->
     <string name="content_desc_app_store">@string/action_appStore</string>
     <string name="content_desc_wechat_payment_code">Payment QR code of wechat</string>
     <string name="content_desc_weather_icon">Weather icon</string>

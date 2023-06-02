@@ -104,7 +104,8 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
         ensureTime(mWeather);
         ensurePhaseAngle(mWeather);
 
-        if (!mWeather.getDailyForecast().get(0).getMoonPhase().isValid()) {
+        if (mWeather.getDailyForecast().get(0).getMoonPhase() == null
+            || !mWeather.getDailyForecast().get(0).getMoonPhase().isValid()) {
             mPhaseText.setVisibility(View.GONE);
             mPhaseView.setVisibility(View.GONE);
         } else {
@@ -155,7 +156,7 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
             mPhaseView.setSurfaceAngle(mPhaseAngle);
         }
 
-        if (mWeather.getDailyForecast().get(0).sun().isValid()) {
+        if (mWeather.getDailyForecast().get(0).sun() != null && mWeather.getDailyForecast().get(0).sun().isValid()) {
             String sunriseTime = mWeather.getDailyForecast().get(0).sun().getRiseTime(context, mTimeZone);
             String sunsetTime = mWeather.getDailyForecast().get(0).sun().getSetTime(context, mTimeZone);
 
@@ -171,7 +172,7 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
         } else {
             mSunContainer.setVisibility(View.GONE);
         }
-        if (mWeather.getDailyForecast().get(0).moon().isValid()) {
+        if (mWeather.getDailyForecast().get(0).moon() != null && mWeather.getDailyForecast().get(0).moon().isValid()) {
             String moonriseTime = mWeather.getDailyForecast().get(0).moon().getRiseTime(context, mTimeZone);
             String moonsetTime = mWeather.getDailyForecast().get(0).moon().getSetTime(context, mTimeZone);
 
@@ -280,29 +281,33 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
         mCurrentTimes = new long[] {currentTime, currentTime};
 
         // sun.
-        if (today.sun().getRiseDate() == null || today.sun().getSetDate() == null) {
-            mStartTimes[0] = currentTime + 1;
-            mEndTimes[0] = currentTime + 1;
-        } else {
+        if (today.sun() != null && today.sun().getRiseDate() != null && today.sun().getSetDate() != null) {
             mStartTimes[0] = today.sun().getRiseDate().getTime();
             mEndTimes[0] = today.sun().getSetDate().getTime();
+        } else {
+            mStartTimes[0] = currentTime + 1;
+            mEndTimes[0] = currentTime + 1;
         }
 
         // moon.
-        if (today.moon().getRiseDate() == null || today.moon().getSetDate() == null) {
-            mStartTimes[1] = currentTime + 1;
-            mEndTimes[1] = currentTime + 1;
-        } else {
+        if (today.moon() != null && today.moon().getRiseDate() != null && today.moon().getSetDate() != null) {
             mStartTimes[1] = today.moon().getRiseDate().getTime();
             mEndTimes[1] = today.moon().getSetDate().getTime();
+        } else {
+            mStartTimes[1] = currentTime + 1;
+            mEndTimes[1] = currentTime + 1;
         }
 
         mAnimCurrentTimes = new long[] {mCurrentTimes[0], mCurrentTimes[1]};
     }
 
     private void ensurePhaseAngle(@NonNull Weather weather) {
-        Integer angle = weather.getDailyForecast().get(0).getMoonPhase().getAngle();
-        mPhaseAngle = angle == null ? 0 : angle;
+        if (weather.getDailyForecast().get(0).getMoonPhase() == null) {
+            mPhaseAngle = 0;
+        } else {
+            Integer angle = weather.getDailyForecast().get(0).getMoonPhase().getAngle();
+            mPhaseAngle = angle == null ? 0 : angle;
+        }
     }
 
     private long getPathAnimatorDuration(int index) {

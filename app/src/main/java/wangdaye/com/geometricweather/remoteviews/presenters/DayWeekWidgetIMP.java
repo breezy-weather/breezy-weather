@@ -5,6 +5,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.graphics.Color;
 import android.net.Uri;
+import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -79,7 +80,6 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
         }
 
         // set week part.
-
         views.setTextViewText(
                 R.id.widget_day_week_week_1,
                 WidgetHelper.getDailyWeek(context, weather, 0, location.getTimeZone())
@@ -259,16 +259,18 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
             return views;
         }
 
-        views.setImageViewUri(
-                R.id.widget_day_week_icon,
-                ResourceHelper.getWidgetNotificationIconUri(
-                        helper,
-                        weather.getCurrent().getWeatherCode(),
-                        dayTime,
-                        minimalIcon,
-                        color.getMinimalIconColor()
-                )
-        );
+        if (weather.getCurrent() != null && weather.getCurrent().getWeatherCode() != null) {
+            views.setImageViewUri(
+                    R.id.widget_day_week_icon,
+                    ResourceHelper.getWidgetNotificationIconUri(
+                            helper,
+                            weather.getCurrent().getWeatherCode(),
+                            dayTime,
+                            minimalIcon,
+                            color.getMinimalIconColor()
+                    )
+            );
+        }
         views.setTextViewText(
                 R.id.widget_day_week_title,
                 getTitleText(context, location, viewStyle, temperatureUnit)
@@ -323,14 +325,31 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 return WidgetHelper.buildWidgetDayStyleText(context, weather, unit)[0];
 
             case "symmetry":
-                return location.getCityName(context)
-                        + "\n"
-                        + weather.getCurrent().getTemperature().getTemperature(context, unit);
+                if (weather.getCurrent() != null
+                        && weather.getCurrent().getTemperature() != null
+                        && weather.getCurrent().getTemperature().getTemperature() != null) {
+                    return location.getCityName(context)
+                            + "\n"
+                            + weather.getCurrent().getTemperature().getTemperature(context, unit);
+                } else {
+                    return location.getCityName(context);
+                }
 
             case "tile":
-                return weather.getCurrent().getWeatherText()
-                        + " "
-                        + weather.getCurrent().getTemperature().getTemperature(context, unit);
+                if (weather.getCurrent() != null) {
+                    StringBuilder stringBuilder = new StringBuilder();
+                    if (!TextUtils.isEmpty(weather.getCurrent().getWeatherText())) {
+                        stringBuilder.append(weather.getCurrent().getWeatherText());
+                    }
+                    if (weather.getCurrent().getTemperature() != null
+                            && weather.getCurrent().getTemperature().getTemperature() != null) {
+                        if (!TextUtils.isEmpty(weather.getCurrent().getWeatherText())) {
+                            stringBuilder.append(" ");
+                        }
+                        stringBuilder.append(weather.getCurrent().getTemperature().getTemperature(context, unit));
+                    }
+                    return stringBuilder.toString();
+                }
         }
         return "";
     }
@@ -342,20 +361,49 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 return WidgetHelper.buildWidgetDayStyleText(context, weather, unit)[1];
 
             case "tile":
-                return Temperature.getTrendTemperature(
-                        context,
-                        weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
-                        weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
-                        unit
-                );
+                if (weather.getDailyForecast().size() > 0
+                        && weather.getDailyForecast().get(0).day() != null
+                        && weather.getDailyForecast().get(0).day().getTemperature() != null
+                        && weather.getDailyForecast().get(0).day().getTemperature().getTemperature() != null
+                        && weather.getDailyForecast().get(0).night() != null
+                        && weather.getDailyForecast().get(0).night().getTemperature() != null
+                        && weather.getDailyForecast().get(0).night().getTemperature().getTemperature() != null
+                ) {
+                    return Temperature.getTrendTemperature(
+                            context,
+                            weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
+                            weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
+                            unit
+                    );
+                }
 
             case "symmetry":
-                return weather.getCurrent().getWeatherText() + "\n" + Temperature.getTrendTemperature(
-                        context,
-                        weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
-                        weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
-                        unit
-                );
+                if (weather.getCurrent() != null) {
+                    StringBuilder stringBuilder = new StringBuilder();
+                    if (!TextUtils.isEmpty(weather.getCurrent().getWeatherText())) {
+                        stringBuilder.append(weather.getCurrent().getWeatherText());
+                    }
+                    if (weather.getDailyForecast().size() > 0
+                            && weather.getDailyForecast().get(0).day() != null
+                            && weather.getDailyForecast().get(0).day().getTemperature() != null
+                            && weather.getDailyForecast().get(0).day().getTemperature().getTemperature() != null
+                            && weather.getDailyForecast().get(0).night() != null
+                            && weather.getDailyForecast().get(0).night().getTemperature() != null
+                            && weather.getDailyForecast().get(0).night().getTemperature().getTemperature() != null
+                    ) {
+                        if (!TextUtils.isEmpty(weather.getCurrent().getWeatherText())) {
+                            stringBuilder.append(" ");
+                        }
+                        stringBuilder.append(Temperature.getTrendTemperature(
+                                        context,
+                                        weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
+                                        weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
+                                        unit
+                                )
+                        );
+                    }
+                    return stringBuilder.toString();
+                }
         }
         return "";
     }
@@ -387,22 +435,30 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                                 + " "
                                 + Base.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone());
                 }
-                break;
+                return null;
 
             case "aqi":
-                if (weather.getCurrent().getAirQuality().getAqiIndex() != null
+                if (weather.getCurrent() != null
+                        && weather.getCurrent().getAirQuality() != null
+                        && weather.getCurrent().getAirQuality().getAqiIndex() != null
                         && weather.getCurrent().getAirQuality().getAqiText(context) != null) {
                     return weather.getCurrent().getAirQuality().getAqiText(context)
                             + " ("
                             + weather.getCurrent().getAirQuality().getAqiIndex()
                             + ")";
                 }
-                break;
+                return null;
 
             case "wind":
-                return weather.getCurrent().getWind().getDirection()
-                        + " "
-                        + weather.getCurrent().getWind().getLevel();
+                if (weather.getCurrent() != null
+                        && weather.getCurrent().getWind() != null
+                        && weather.getCurrent().getWind().getDirection() != null
+                        && weather.getCurrent().getWind().getLevel() != null) {
+                    return weather.getCurrent().getWind().getDirection()
+                            + " "
+                            + weather.getCurrent().getWind().getLevel();
+                }
+                return null;
 
             case "lunar":
                 switch (viewStyle) {
@@ -423,22 +479,37 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                                 + " "
                                 + LunarHelper.getLunarDate(new Date());
                 }
-                break;
+                return null;
 
             case "sensible_time":
-                return context.getString(R.string.feels_like) + " "
-                        + weather.getCurrent().getTemperature().getShortRealFeeTemperature(context, unit);
+                if (weather.getCurrent() != null
+                        && weather.getCurrent().getTemperature() != null
+                        && weather.getCurrent().getTemperature().getFeelsLikeTemperature() != null) {
+                    return context.getString(R.string.feels_like)
+                            + " "
+                            + weather.getCurrent().getTemperature().getFeelsLikeTemperature(context, unit);
+                }
+                return null;
         }
         return getCustomSubtitle(context, subtitleData, location, weather);
     }
 
     private static String getTemp(Context context, Weather weather, int index, TemperatureUnit unit) {
-        return Temperature.getTrendTemperature(
-                context,
-                weather.getDailyForecast().get(index).night().getTemperature().getTemperature(),
-                weather.getDailyForecast().get(index).day().getTemperature().getTemperature(),
-                unit
-        );
+        if (weather.getDailyForecast().get(index).day() != null
+                && weather.getDailyForecast().get(index).night() != null
+                && weather.getDailyForecast().get(index).day().getTemperature() != null
+                && weather.getDailyForecast().get(index).night().getTemperature() != null
+                && weather.getDailyForecast().get(index).day().getTemperature().getTemperature() != null
+                && weather.getDailyForecast().get(index).night().getTemperature().getTemperature() != null) {
+            return Temperature.getTrendTemperature(
+                    context,
+                    weather.getDailyForecast().get(index).night().getTemperature().getTemperature(),
+                    weather.getDailyForecast().get(index).day().getTemperature().getTemperature(),
+                    unit
+            );
+        } else {
+            return "";
+        }
     }
 
     private static Uri getIconDrawableUri(ResourceProvider helper, Weather weather,

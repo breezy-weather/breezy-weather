@@ -132,76 +132,55 @@ private fun buildRemoteViews(
     }
 
     // current.
-
-    views.setImageViewUri(
-        R.id.widget_material_you_forecast_currentIcon,
-        ResourceHelper.getWidgetNotificationIconUri(
-            provider,
-            weather.current.weatherCode,
-            dayTime,
-            false,
-            NotificationTextColor.LIGHT
+    if (weather.current != null && weather.current?.weatherCode != null) {
+        views.setImageViewUri(
+            R.id.widget_material_you_forecast_currentIcon,
+            ResourceHelper.getWidgetNotificationIconUri(
+                provider,
+                weather.current?.weatherCode,
+                dayTime,
+                false,
+                NotificationTextColor.LIGHT
+            )
         )
-    )
+    }
 
     views.setTextViewText(
         R.id.widget_material_you_forecast_currentTemperature,
-        weather.current.temperature.getShortTemperature(context, temperatureUnit)
+        weather.current?.temperature?.getShortTemperature(context, temperatureUnit)
     )
     views.setTextViewText(
         R.id.widget_material_you_forecast_daytimeTemperature,
-        weather.dailyForecast[0].day().temperature.getShortTemperature(context, temperatureUnit)
+        weather.dailyForecast[0].day().temperature?.getShortTemperature(context, temperatureUnit)
     )
     views.setTextViewText(
         R.id.widget_material_you_forecast_nighttimeTemperature,
-        weather.dailyForecast[0].night().temperature.getShortTemperature(context, temperatureUnit)
+        weather.dailyForecast[0].night().temperature?.getShortTemperature(context, temperatureUnit)
     )
 
     views.setTextViewText(
         R.id.widget_material_you_forecast_weatherText,
-        location.weather.current.weatherText
+        location.weather.current?.weatherText
     )
 
-    if (weather.current.airQuality.isValid) {
+    if (weather.current?.airQuality?.isValid!!) {
         views.setTextViewText(
             R.id.widget_material_you_forecast_aqiOrWind,
-             "AQI - " + weather.current.airQuality.getAqiText(context)
+             "AQI - " + weather.current?.airQuality?.getAqiText(context)
         )
     } else {
         views.setTextViewText(
             R.id.widget_material_you_forecast_aqiOrWind,
             context.getString(R.string.wind) + " - "
-                    + location.weather.current.wind.shortWindDescription
+                    + location.weather.current?.wind?.shortWindDescription
         )
     }
 
     // hourly.
-
     views.setTextViewText(
         R.id.widget_material_you_forecast_hour_1,
         weather.hourlyForecast[0].getHour(context, location.timeZone)
     )
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_hour_2,
-        weather.hourlyForecast[1].getHour(context, location.timeZone)
-    )
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_hour_3,
-        weather.hourlyForecast[2].getHour(context, location.timeZone)
-    )
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_hour_4,
-        weather.hourlyForecast[3].getHour(context, location.timeZone)
-    )
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_hour_5,
-        weather.hourlyForecast[4].getHour(context, location.timeZone)
-    )
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_hour_6,
-        weather.hourlyForecast[5].getHour(context, location.timeZone)
-    )
-
     views.setImageViewUri(
         R.id.widget_material_you_forecast_hourlyIcon_1,
         ResourceHelper.getWidgetNotificationIconUri(
@@ -211,6 +190,15 @@ private fun buildRemoteViews(
             false,
             NotificationTextColor.LIGHT
         )
+    )
+    views.setTextViewText(
+        R.id.widget_material_you_forecast_hourlyTemperature_1,
+        weather.hourlyForecast[0].temperature.getShortTemperature(context, temperatureUnit)
+    )
+
+    views.setTextViewText(
+        R.id.widget_material_you_forecast_hour_2,
+        weather.hourlyForecast[1].getHour(context, location.timeZone)
     )
     views.setImageViewUri(
         R.id.widget_material_you_forecast_hourlyIcon_2,
@@ -222,6 +210,15 @@ private fun buildRemoteViews(
             NotificationTextColor.LIGHT
         )
     )
+    views.setTextViewText(
+        R.id.widget_material_you_forecast_hourlyTemperature_2,
+        weather.hourlyForecast[1].temperature.getShortTemperature(context, temperatureUnit)
+    )
+
+    views.setTextViewText(
+        R.id.widget_material_you_forecast_hour_3,
+        weather.hourlyForecast[2].getHour(context, location.timeZone)
+    )
     views.setImageViewUri(
         R.id.widget_material_you_forecast_hourlyIcon_3,
         ResourceHelper.getWidgetNotificationIconUri(
@@ -231,6 +228,15 @@ private fun buildRemoteViews(
             false,
             NotificationTextColor.LIGHT
         )
+    )
+    views.setTextViewText(
+        R.id.widget_material_you_forecast_hourlyTemperature_3,
+        weather.hourlyForecast[2].temperature.getShortTemperature(context, temperatureUnit)
+    )
+
+    views.setTextViewText(
+        R.id.widget_material_you_forecast_hour_4,
+        weather.hourlyForecast[3].getHour(context, location.timeZone)
     )
     views.setImageViewUri(
         R.id.widget_material_you_forecast_hourlyIcon_4,
@@ -242,6 +248,15 @@ private fun buildRemoteViews(
             NotificationTextColor.LIGHT
         )
     )
+    views.setTextViewText(
+        R.id.widget_material_you_forecast_hourlyTemperature_4,
+        weather.hourlyForecast[3].temperature.getShortTemperature(context, temperatureUnit)
+    )
+
+    views.setTextViewText(
+        R.id.widget_material_you_forecast_hour_5,
+        weather.hourlyForecast[4].getHour(context, location.timeZone)
+    )
     views.setImageViewUri(
         R.id.widget_material_you_forecast_hourlyIcon_5,
         ResourceHelper.getWidgetNotificationIconUri(
@@ -251,6 +266,15 @@ private fun buildRemoteViews(
             false,
             NotificationTextColor.LIGHT
         )
+    )
+    views.setTextViewText(
+        R.id.widget_material_you_forecast_hourlyTemperature_5,
+        weather.hourlyForecast[4].temperature.getShortTemperature(context, temperatureUnit)
+    )
+
+    views.setTextViewText(
+        R.id.widget_material_you_forecast_hour_6,
+        weather.hourlyForecast[5].getHour(context, location.timeZone)
     )
     views.setImageViewUri(
         R.id.widget_material_you_forecast_hourlyIcon_6,
@@ -262,34 +286,12 @@ private fun buildRemoteViews(
             NotificationTextColor.LIGHT
         )
     )
-
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_hourlyTemperature_1,
-        weather.hourlyForecast[0].temperature.getShortTemperature(context, temperatureUnit)
-    )
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_hourlyTemperature_2,
-        weather.hourlyForecast[1].temperature.getShortTemperature(context, temperatureUnit)
-    )
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_hourlyTemperature_3,
-        weather.hourlyForecast[2].temperature.getShortTemperature(context, temperatureUnit)
-    )
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_hourlyTemperature_4,
-        weather.hourlyForecast[3].temperature.getShortTemperature(context, temperatureUnit)
-    )
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_hourlyTemperature_5,
-        weather.hourlyForecast[4].temperature.getShortTemperature(context, temperatureUnit)
-    )
     views.setTextViewText(
         R.id.widget_material_you_forecast_hourlyTemperature_6,
         weather.hourlyForecast[5].temperature.getShortTemperature(context, temperatureUnit)
     )
 
     // daily.
-
     views.setTextViewText(
         R.id.widget_material_you_forecast_week_1,
         if (weather.dailyForecast[0].isToday(location.timeZone)) {
@@ -386,52 +388,52 @@ private fun buildRemoteViews(
 
     views.setTextViewText(
         R.id.widget_material_you_forecast_dayTemperature_1,
-        weather.dailyForecast[0].day().temperature.getShortTemperature(context, temperatureUnit)
+        weather.dailyForecast[0].day().temperature?.getShortTemperature(context, temperatureUnit)
     )
     views.setTextViewText(
         R.id.widget_material_you_forecast_dayTemperature_2,
-        weather.dailyForecast[1].day().temperature.getShortTemperature(context, temperatureUnit)
+        weather.dailyForecast[1].day().temperature?.getShortTemperature(context, temperatureUnit)
     )
     views.setTextViewText(
         R.id.widget_material_you_forecast_dayTemperature_3,
-        weather.dailyForecast[2].day().temperature.getShortTemperature(context, temperatureUnit)
+        weather.dailyForecast[2].day().temperature?.getShortTemperature(context, temperatureUnit)
     )
     views.setTextViewText(
         R.id.widget_material_you_forecast_dayTemperature_4,
-        weather.dailyForecast[3].day().temperature.getShortTemperature(context, temperatureUnit)
+        weather.dailyForecast[3].day().temperature?.getShortTemperature(context, temperatureUnit)
     )
     views.setTextViewText(
         R.id.widget_material_you_forecast_dayTemperature_5,
-        weather.dailyForecast[4].day().temperature.getShortTemperature(context, temperatureUnit)
+        weather.dailyForecast[4].day().temperature?.getShortTemperature(context, temperatureUnit)
     )
     views.setTextViewText(
         R.id.widget_material_you_forecast_dayTemperature_6,
-        weather.dailyForecast[5].day().temperature.getShortTemperature(context, temperatureUnit)
+        weather.dailyForecast[5].day().temperature?.getShortTemperature(context, temperatureUnit)
     )
 
     views.setTextViewText(
         R.id.widget_material_you_forecast_nightTemperature_1,
-        weather.dailyForecast[0].night().temperature.getShortTemperature(context, temperatureUnit)
+        weather.dailyForecast[0].night().temperature?.getShortTemperature(context, temperatureUnit)
     )
     views.setTextViewText(
         R.id.widget_material_you_forecast_nightTemperature_2,
-        weather.dailyForecast[1].night().temperature.getShortTemperature(context, temperatureUnit)
+        weather.dailyForecast[1].night().temperature?.getShortTemperature(context, temperatureUnit)
     )
     views.setTextViewText(
         R.id.widget_material_you_forecast_nightTemperature_3,
-        weather.dailyForecast[2].night().temperature.getShortTemperature(context, temperatureUnit)
+        weather.dailyForecast[2].night().temperature?.getShortTemperature(context, temperatureUnit)
     )
     views.setTextViewText(
         R.id.widget_material_you_forecast_nightTemperature_4,
-        weather.dailyForecast[3].night().temperature.getShortTemperature(context, temperatureUnit)
+        weather.dailyForecast[3].night().temperature?.getShortTemperature(context, temperatureUnit)
     )
     views.setTextViewText(
         R.id.widget_material_you_forecast_nightTemperature_5,
-        weather.dailyForecast[4].night().temperature.getShortTemperature(context, temperatureUnit)
+        weather.dailyForecast[4].night().temperature?.getShortTemperature(context, temperatureUnit)
     )
     views.setTextViewText(
         R.id.widget_material_you_forecast_nightTemperature_6,
-        weather.dailyForecast[5].night().temperature.getShortTemperature(context, temperatureUnit)
+        weather.dailyForecast[5].night().temperature?.getShortTemperature(context, temperatureUnit)
     )
 
     views.setImageViewUri(

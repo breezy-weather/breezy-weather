@@ -96,9 +96,11 @@ public class DailyUVAdapter extends AbsDailyTrendAdapter {
 
         mHighestIndex = 0;
         for (int i = weather.getDailyForecast().size() - 1; i >= 0; i --) {
-            Integer index = weather.getDailyForecast().get(i).getUV().getIndex();
-            if (index != null && index > mHighestIndex) {
-                mHighestIndex = index;
+            if (weather.getDailyForecast().get(i).getUV() != null) {
+                Integer index = weather.getDailyForecast().get(i).getUV().getIndex();
+                if (index != null && index > mHighestIndex) {
+                    mHighestIndex = index;
+                }
             }
         }
     }

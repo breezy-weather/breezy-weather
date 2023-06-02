@@ -13,10 +13,10 @@ public class History implements Serializable {
     private final Date date;
     private final long time;
 
-    private final int daytimeTemperature;
-    private final int nighttimeTemperature;
+    private final Integer daytimeTemperature;
+    private final Integer nighttimeTemperature;
 
-    public History(Date date, long time, int daytimeTemperature, int nighttimeTemperature) {
+    public History(Date date, long time, Integer daytimeTemperature, Integer nighttimeTemperature) {
         this.date = date;
         this.time = time;
         this.daytimeTemperature = daytimeTemperature;
@@ -31,11 +31,11 @@ public class History implements Serializable {
         return time;
     }
 
-    public int getDaytimeTemperature() {
+    public Integer getDaytimeTemperature() {
         return daytimeTemperature;
     }
 
-    public int getNighttimeTemperature() {
+    public Integer getNighttimeTemperature() {
         return nighttimeTemperature;
     }
 }

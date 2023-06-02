@@ -47,78 +47,10 @@ import wangdaye.com.geometricweather.remoteviews.WidgetHelper;
 import wangdaye.com.geometricweather.settings.ConfigStore;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 
+// FIXME: all nullable values
 public abstract class AbstractRemoteViewsPresenter {
 
     private static final int SUBTITLE_DAILY_ITEM_LENGTH = 5;
-
-    public static class WidgetConfig {
-        public String viewStyle;
-        public String cardStyle;
-        public int cardAlpha;
-        public String textColor;
-        public int textSize;
-        public boolean hideSubtitle;
-        public String subtitleData;
-        public String clockFont;
-        public boolean hideLunar;
-        public boolean alignEnd;
-    }
-
-    public static class WidgetColor {
-
-        public final boolean showCard;
-        public final ColorType cardColor;
-        @ColorInt
-        public final int textColor;
-        public final boolean darkText;
-
-        enum ColorType {
-            LIGHT, DARK, AUTO
-        }
-
-        public WidgetColor(Context context, String cardStyle, String textColor) {
-            this.showCard = !cardStyle.equals("none");
-            this.cardColor = cardStyle.equals("auto")
-                    ? ColorType.AUTO
-                    : (cardStyle.equals("light") ? ColorType.LIGHT : ColorType.DARK);
-
-            if (showCard) {
-                if (cardColor == ColorType.AUTO) {
-                    this.textColor = Color.TRANSPARENT;
-                    this.darkText = false;
-                } else if (cardColor == ColorType.LIGHT) {
-                    this.textColor = ContextCompat.getColor(context, R.color.colorTextDark);
-                    this.darkText = true;
-                } else {
-                    this.textColor = ContextCompat.getColor(context, R.color.colorTextLight);
-                    this.darkText = false;
-                }
-            } else if (textColor.equals("dark")
-                    || (textColor.equals("auto") && isLightWallpaper(context))) {
-                this.textColor = ContextCompat.getColor(context, R.color.colorTextDark);
-                this.darkText = true;
-            } else {
-                this.textColor = ContextCompat.getColor(context, R.color.colorTextLight);
-                this.darkText = false;
-            }
-        }
-
-        public NotificationTextColor getMinimalIconColor() {
-            if (showCard) {
-                if (cardColor == ColorType.AUTO) {
-                    return NotificationTextColor.GREY;
-                } else if (cardColor == ColorType.LIGHT) {
-                    return NotificationTextColor.DARK;
-                } else {
-                    return NotificationTextColor.LIGHT;
-                }
-            } else if (darkText) {
-                return NotificationTextColor.DARK;
-            } else {
-                return NotificationTextColor.LIGHT;
-            }
-        }
-    }
 
     public static WidgetConfig getWidgetConfig(Context context, String configStoreName) {
         WidgetConfig widgetConfig = new WidgetConfig();
@@ -227,7 +159,7 @@ public abstract class AbstractRemoteViewsPresenter {
                 context,
                 requestCode,
                 IntentHelper.buildMainActivityIntent(location),
-               PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
     @SuppressLint("InlinedApi")
@@ -277,59 +209,70 @@ public abstract class AbstractRemoteViewsPresenter {
         PressureUnit pressureUnit = SettingsManager.getInstance(context).getPressureUnit();
         DistanceUnit distanceUnit = SettingsManager.getInstance(context).getDistanceUnit();
 
-        assert subtitle != null;
         subtitle = subtitle
-                .replace("$cw$", weather.getCurrent().getWeatherText())
+                .replace("$cw$", (weather.getCurrent() != null
+                        && weather.getCurrent().getWeatherText() != null)
+                        ? weather.getCurrent().getWeatherText()
+                        : "")
                 .replace(
-                        "$ct$",
-                        weather.getCurrent()
+                        "$ct$", (weather.getCurrent() != null
+                                && weather.getCurrent().getTemperature() != null
+                                && weather.getCurrent().getTemperature().getTemperature() != null)
+                                ? weather.getCurrent()
                                 .getTemperature()
                                 .getTemperature(context, temperatureUnit) + ""
+                                : ""
                 ).replace(
-                        "$ctd$",
-                        weather.getCurrent()
+                        "$ctd$", (weather.getCurrent() != null
+                                && weather.getCurrent().getTemperature() != null
+                                && weather.getCurrent().getTemperature().getTemperature() != null)
+                                ? weather.getCurrent()
                                 .getTemperature()
                                 .getShortTemperature(context, temperatureUnit) + ""
+                                : ""
                 ).replace(
-                        "$at$",
-                        weather.getCurrent()
+                        "$at$", (weather.getCurrent() != null
+                                && weather.getCurrent().getTemperature() != null
+                                && weather.getCurrent().getTemperature().getFeelsLikeTemperature() != null)
+                                ? weather.getCurrent()
                                 .getTemperature()
-                                .getRealFeelTemperature(context, temperatureUnit) + ""
+                                .getFeelsLikeTemperature(context, temperatureUnit) + ""
+                                : ""
                 ).replace(
-                        "$atd$",
-                        weather.getCurrent()
+                        "$atd$", (weather.getCurrent() != null
+                                && weather.getCurrent().getTemperature() != null
+                                && weather.getCurrent().getTemperature().getFeelsLikeTemperature() != null)
+                                ? weather.getCurrent()
                                 .getTemperature()
-                                .getShortRealFeeTemperature(context, temperatureUnit) + ""
-                ).replace(
-                        "$cpb$",
-                        ProbabilityUnit.PERCENT.getValueText(
-                                context,
-                                (int) WidgetHelper.getNonNullValue(
-                                        weather.getCurrent()
-                                                .getPrecipitationProbability()
-                                                .getTotal(),
-                                        0
-                                )
-                        )
+                                .getShortFeelsLikeTemperature(context, temperatureUnit) + ""
+                                : ""
                 ).replace(
                         "$cp$",
                         precipitationUnit.getValueText(
-                                context,
-                                WidgetHelper.getNonNullValue(
+                                context, (weather.getCurrent() != null
+                                        && weather.getCurrent().getPrecipitation() != null)
+                                        ? WidgetHelper.getNonNullValue(
                                         weather.getCurrent()
                                                 .getPrecipitation()
                                                 .getTotal(),
-                                        0
-                                )
+                                        0)
+                                        : 0
                         )
                 ).replace(
-                        "$cwd$",
-                        weather.getCurrent().getWind().getLevel()
+                        "$cwd$", (weather.getCurrent() != null
+                                && weather.getCurrent().getWind() != null
+                                && !TextUtils.isEmpty(weather.getCurrent().getWind().getLevel())
+                                && !TextUtils.isEmpty(weather.getCurrent().getWind().getDirection()))
+                                ? weather.getCurrent().getWind().getLevel()
                                 + " ("
                                 + weather.getCurrent().getWind().getDirection()
-                                + ")"
-                ).replace("$cuv$", weather.getCurrent().getUV().getShortUVDescription())
-                .replace(
+                                + ")" : ""
+                ).replace("$cuv$", (weather.getCurrent() != null
+                                && weather.getCurrent().getUV() != null
+                                && !TextUtils.isEmpty(weather.getCurrent().getUV().getShortUVDescription()))
+                                ? weather.getCurrent().getUV().getShortUVDescription()
+                                : ""
+                ).replace(
                         "$ch$",
                         RelativeHumidityUnit.PERCENT.getValueText(
                                 context,
@@ -406,7 +349,7 @@ public abstract class AbstractRemoteViewsPresenter {
     private static String replaceAlerts(@NonNull String subtitle, @NonNull Weather weather) {
         StringBuilder defaultBuilder = new StringBuilder();
         StringBuilder shortBuilder = new StringBuilder();
-        for (int i = 0; i < weather.getAlertList().size(); i ++) {
+        for (int i = 0; i < weather.getAlertList().size(); i++) {
             defaultBuilder.append(weather.getAlertList().get(i).getDescription());
             if (weather.getAlertList().get(i).getDate() != null) {
                 defaultBuilder.append(", ")
@@ -429,7 +372,7 @@ public abstract class AbstractRemoteViewsPresenter {
     }
 
     private static String replaceDaytimeWeatherSubtitle(@NonNull String subtitle, @NonNull Weather weather) {
-        for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
+        for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i++) {
             subtitle = subtitle.replace(
                     "$" + i + "dw$",
                     weather.getDailyForecast().get(i).day().getWeatherText()
@@ -439,7 +382,7 @@ public abstract class AbstractRemoteViewsPresenter {
     }
 
     private static String replaceNighttimeWeatherSubtitle(@NonNull String subtitle, @NonNull Weather weather) {
-        for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
+        for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i++) {
             subtitle = subtitle.replace(
                     "$" + i + "nw$",
                     weather.getDailyForecast().get(i).night().getWeatherText()
@@ -451,7 +394,7 @@ public abstract class AbstractRemoteViewsPresenter {
     private static String replaceDaytimeTemperatureSubtitle(Context context, @NonNull String subtitle,
                                                             @NonNull Weather weather, TemperatureUnit unit) {
 
-        for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
+        for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i++) {
             subtitle = subtitle.replace(
                     "$" + i + "dt$",
                     weather.getDailyForecast()
@@ -466,7 +409,7 @@ public abstract class AbstractRemoteViewsPresenter {
 
     private static String replaceNighttimeTemperatureSubtitle(Context context, @NonNull String subtitle,
                                                               @NonNull Weather weather, TemperatureUnit unit) {
-        for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
+        for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i++) {
             subtitle = subtitle.replace(
                     "$" + i + "nt$",
                     weather.getDailyForecast()
@@ -483,7 +426,7 @@ public abstract class AbstractRemoteViewsPresenter {
                                                                   @NonNull String subtitle,
                                                                   @NonNull Weather weather,
                                                                   TemperatureUnit unit) {
-        for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
+        for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i++) {
             subtitle = subtitle.replace(
                     "$" + i + "dtd$",
                     weather.getDailyForecast()
@@ -500,7 +443,7 @@ public abstract class AbstractRemoteViewsPresenter {
                                                                     @NonNull String subtitle,
                                                                     @NonNull Weather weather,
                                                                     TemperatureUnit unit) {
-        for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
+        for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i++) {
             subtitle = subtitle.replace(
                     "$" + i + "ntd$",
                     weather.getDailyForecast()
@@ -516,7 +459,7 @@ public abstract class AbstractRemoteViewsPresenter {
     private static String replaceDaytimePrecipitationSubtitle(Context context,
                                                               @NonNull String subtitle,
                                                               @NonNull Weather weather) {
-        for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
+        for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i++) {
             subtitle = subtitle.replace(
                     "$" + i + "dp$",
                     ProbabilityUnit.PERCENT.getValueText(
@@ -538,7 +481,7 @@ public abstract class AbstractRemoteViewsPresenter {
     private static String replaceNighttimePrecipitationSubtitle(Context context,
                                                                 @NonNull String subtitle,
                                                                 @NonNull Weather weather) {
-        for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
+        for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i++) {
             subtitle = subtitle.replace(
                     "$" + i + "np$",
                     ProbabilityUnit.PERCENT.getValueText(
@@ -558,7 +501,7 @@ public abstract class AbstractRemoteViewsPresenter {
     }
 
     private static String replaceDaytimeWindSubtitle(@NonNull String subtitle, @NonNull Weather weather) {
-        for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
+        for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i++) {
             subtitle = subtitle.replace(
                     "$" + i + "dwd$",
                     weather.getDailyForecast().get(i).day().getWind().getLevel()
@@ -571,7 +514,7 @@ public abstract class AbstractRemoteViewsPresenter {
     }
 
     private static String replaceNighttimeWindSubtitle(@NonNull String subtitle, @NonNull Weather weather) {
-        for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
+        for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i++) {
             subtitle = subtitle.replace(
                     "$" + i + "nwd$",
                     weather.getDailyForecast().get(i).night().getWind().getLevel()
@@ -589,7 +532,7 @@ public abstract class AbstractRemoteViewsPresenter {
             @NonNull Weather weather,
             @NonNull TimeZone timeZone
     ) {
-        for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
+        for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i++) {
             subtitle = subtitle.replace(
                     "$" + i + "sr$",
                     weather.getDailyForecast().get(i).sun().getRiseTime(context, timeZone) + ""
@@ -604,7 +547,7 @@ public abstract class AbstractRemoteViewsPresenter {
             @NonNull Weather weather,
             @NonNull TimeZone timeZone
     ) {
-        for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
+        for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i++) {
             subtitle = subtitle.replace(
                     "$" + i + "ss$",
                     weather.getDailyForecast().get(i).sun().getSetTime(context, timeZone) + ""
@@ -619,7 +562,7 @@ public abstract class AbstractRemoteViewsPresenter {
             @NonNull Weather weather,
             @NonNull TimeZone timeZone
     ) {
-        for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
+        for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i++) {
             subtitle = subtitle.replace(
                     "$" + i + "mr$",
                     weather.getDailyForecast().get(i).moon().getRiseTime(context, timeZone) + ""
@@ -634,7 +577,7 @@ public abstract class AbstractRemoteViewsPresenter {
             @NonNull Weather weather,
             @NonNull TimeZone timeZone
     ) {
-        for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
+        for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i++) {
             subtitle = subtitle.replace(
                     "$" + i + "ms$",
                     weather.getDailyForecast().get(i).moon().getSetTime(context, timeZone) + ""
@@ -644,12 +587,81 @@ public abstract class AbstractRemoteViewsPresenter {
     }
 
     private static String replaceMoonPhaseSubtitle(Context context, @NonNull String subtitle, @NonNull Weather weather) {
-        for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i ++) {
+        for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i++) {
             subtitle = subtitle.replace(
                     "$" + i + "mp$",
                     weather.getDailyForecast().get(i).getMoonPhase().getMoonPhase(context) + ""
             );
         }
         return subtitle;
+    }
+
+    public static class WidgetConfig {
+        public String viewStyle;
+        public String cardStyle;
+        public int cardAlpha;
+        public String textColor;
+        public int textSize;
+        public boolean hideSubtitle;
+        public String subtitleData;
+        public String clockFont;
+        public boolean hideLunar;
+        public boolean alignEnd;
+    }
+
+    public static class WidgetColor {
+
+        public final boolean showCard;
+        public final ColorType cardColor;
+        @ColorInt
+        public final int textColor;
+        public final boolean darkText;
+
+        public WidgetColor(Context context, String cardStyle, String textColor) {
+            this.showCard = !cardStyle.equals("none");
+            this.cardColor = cardStyle.equals("auto")
+                    ? ColorType.AUTO
+                    : (cardStyle.equals("light") ? ColorType.LIGHT : ColorType.DARK);
+
+            if (showCard) {
+                if (cardColor == ColorType.AUTO) {
+                    this.textColor = Color.TRANSPARENT;
+                    this.darkText = false;
+                } else if (cardColor == ColorType.LIGHT) {
+                    this.textColor = ContextCompat.getColor(context, R.color.colorTextDark);
+                    this.darkText = true;
+                } else {
+                    this.textColor = ContextCompat.getColor(context, R.color.colorTextLight);
+                    this.darkText = false;
+                }
+            } else if (textColor.equals("dark")
+                    || (textColor.equals("auto") && isLightWallpaper(context))) {
+                this.textColor = ContextCompat.getColor(context, R.color.colorTextDark);
+                this.darkText = true;
+            } else {
+                this.textColor = ContextCompat.getColor(context, R.color.colorTextLight);
+                this.darkText = false;
+            }
+        }
+
+        public NotificationTextColor getMinimalIconColor() {
+            if (showCard) {
+                if (cardColor == ColorType.AUTO) {
+                    return NotificationTextColor.GREY;
+                } else if (cardColor == ColorType.LIGHT) {
+                    return NotificationTextColor.DARK;
+                } else {
+                    return NotificationTextColor.LIGHT;
+                }
+            } else if (darkText) {
+                return NotificationTextColor.DARK;
+            } else {
+                return NotificationTextColor.LIGHT;
+            }
+        }
+
+        enum ColorType {
+            LIGHT, DARK, AUTO
+        }
     }
 }

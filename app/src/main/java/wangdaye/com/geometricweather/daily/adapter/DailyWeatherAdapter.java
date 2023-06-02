@@ -109,11 +109,13 @@ public class DailyWeatherAdapter extends RecyclerView.Adapter<DailyWeatherAdapte
             mModelList.add(new Title(R.drawable.ic_uv, context.getString(R.string.uv_index)));
             mModelList.add(new DailyUV(daily.getUV()));
         }
-        mModelList.add(new Line());
-        mModelList.add(new Value(
-                context.getString(R.string.hours_of_sun),
-                DurationUnit.H.getValueText(context, daily.getHoursOfSun())
-        ));
+        if (daily.getHoursOfSun() != null) {
+            mModelList.add(new Line());
+            mModelList.add(new Value(
+                    context.getString(R.string.hours_of_sun),
+                    DurationUnit.H.getValueText(context, daily.getHoursOfSun())
+            ));
+        }
         mModelList.add(new Margin());
 
         // span count.

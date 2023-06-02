@@ -205,7 +205,6 @@
     <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : Temperatura curentă (°)\n</string>
     <string name="feedback_custom_subtitle_keyword_at">$at$ : Temp. resimțită (℃/℉)\n</string>
     <string name="feedback_custom_subtitle_keyword_atd">$atd$ : Temp. resimțită (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_cpb">$cpb$ : Probabilitate precipitații  (%)\n</string>
     <string name="feedback_custom_subtitle_keyword_cp">$cp$ : Pprecipitații (mm/L/m²)\n</string>
     <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : Vânt\n</string>
     <string name="feedback_custom_subtitle_keyword_cuv">$cuv$ : Index UV\n</string>

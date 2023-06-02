@@ -6,11 +6,12 @@
 
     <!-- Chinese source. -->
     <string-array name="weather_sources">
-        <item>caiyunapp.com (Exclusiv pentru China)</item>
+        <item>Open-Meteo</item>
         <item>accuweather.com</item>
-        <item>OpenWeather</item>
-        <item>Météo France</item>
         <item>MET Norway / Nominatim</item>
+        <item>OpenWeather v2.5</item>
+        <item>Météo France</item>
+        <item>caiyunapp.com (Exclusiv pentru China)</item>
     </string-array>
 
     <!-- Location service. -->
