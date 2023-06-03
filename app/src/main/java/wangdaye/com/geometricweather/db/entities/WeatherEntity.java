@@ -29,11 +29,8 @@ public class WeatherEntity {
     // base.
     public String cityId;
     public String weatherSource;
-    public long timeStamp;
     public Date publishDate;
-    public long publishTime;
     public Date updateDate;
-    public long updateTime;
 
     // current.
     public String weatherText;
@@ -64,7 +61,6 @@ public class WeatherEntity {
     public String uvLevel;
     public String uvDescription;
 
-    public String aqiText;
     public Integer aqiIndex;
     public Float pm25;
     public Float pm10;
@@ -93,8 +89,8 @@ public class WeatherEntity {
     protected List<AlertEntity> alertEntityList = null;
 
     public WeatherEntity(Long id, String cityId, String weatherSource,
-                         long timeStamp, Date publishDate, long publishTime, Date updateDate,
-                         long updateTime, String weatherText, WeatherCode weatherCode,
+                         Date publishDate, Date updateDate,
+                         String weatherText, WeatherCode weatherCode,
                          Integer temperature, Integer realFeelTemperature,
                          Integer realFeelShaderTemperature, Integer apparentTemperature,
                          Integer windChillTemperature, Integer wetBulbTemperature,
@@ -102,7 +98,7 @@ public class WeatherEntity {
                          Float thunderstormPrecipitation, Float rainPrecipitation,
                          Float snowPrecipitation, Float icePrecipitation, String windDirection,
                          WindDegree windDegree, Float windSpeed, String windLevel,
-                         Integer uvIndex, String uvLevel, String uvDescription, String aqiText,
+                         Integer uvIndex, String uvLevel, String uvDescription,
                          Integer aqiIndex, Float pm25, Float pm10, Float so2, Float no2,
                          Float o3, Float co, Float relativeHumidity, Float pressure,
                          Float visibility, Integer dewPoint, Integer cloudCover, Float ceiling,
@@ -110,11 +106,8 @@ public class WeatherEntity {
         this.id = id;
         this.cityId = cityId;
         this.weatherSource = weatherSource;
-        this.timeStamp = timeStamp;
         this.publishDate = publishDate;
-        this.publishTime = publishTime;
         this.updateDate = updateDate;
-        this.updateTime = updateTime;
         this.weatherText = weatherText;
         this.weatherCode = weatherCode;
         this.temperature = temperature;
@@ -136,7 +129,6 @@ public class WeatherEntity {
         this.uvIndex = uvIndex;
         this.uvLevel = uvLevel;
         this.uvDescription = uvDescription;
-        this.aqiText = aqiText;
         this.aqiIndex = aqiIndex;
         this.pm25 = pm25;
         this.pm10 = pm10;
@@ -182,14 +174,6 @@ public class WeatherEntity {
         this.weatherSource = weatherSource;
     }
 
-    public long getTimeStamp() {
-        return this.timeStamp;
-    }
-
-    public void setTimeStamp(long timeStamp) {
-        this.timeStamp = timeStamp;
-    }
-
     public Date getPublishDate() {
         return this.publishDate;
     }
@@ -198,28 +182,12 @@ public class WeatherEntity {
         this.publishDate = publishDate;
     }
 
-    public long getPublishTime() {
-        return this.publishTime;
-    }
-
-    public void setPublishTime(long publishTime) {
-        this.publishTime = publishTime;
-    }
-
     public Date getUpdateDate() {
         return this.updateDate;
     }
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
-    }
-
-    public long getUpdateTime() {
-        return this.updateTime;
-    }
-
-    public void setUpdateTime(long updateTime) {
-        this.updateTime = updateTime;
     }
 
     public String getWeatherText() {
@@ -388,14 +356,6 @@ public class WeatherEntity {
 
     public void setUvDescription(String uvDescription) {
         this.uvDescription = uvDescription;
-    }
-
-    public String getAqiText() {
-        return this.aqiText;
-    }
-
-    public void setAqiText(String aqiText) {
-        this.aqiText = aqiText;
     }
 
     public Integer getAqiIndex() {

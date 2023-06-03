@@ -311,7 +311,7 @@ public abstract class AbstractRemoteViewsPresenter {
                 ).replace("$l$", location.getCityName(context))
                 .replace("$lat$", String.valueOf(location.getLatitude()))
                 .replace("$lon$", String.valueOf(location.getLongitude()))
-                .replace("$ut$", Base.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone()))
+                .replace("$ut$", DisplayUtils.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone()))
                 .replace(
                         "$d$",
                         DisplayUtils.getFormattedDate(new Date(), location.getTimeZone(), context.getString(R.string.date_format_long))

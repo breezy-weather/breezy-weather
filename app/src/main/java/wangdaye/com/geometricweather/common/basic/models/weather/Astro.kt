@@ -6,8 +6,8 @@ import java.io.Serializable
 import java.util.*
 
 class Astro(
-    val riseDate: Date?,
-    val setDate: Date?
+    val riseDate: Date? = null,
+    val setDate: Date? = null
 ) : Serializable {
 
     val isValid: Boolean

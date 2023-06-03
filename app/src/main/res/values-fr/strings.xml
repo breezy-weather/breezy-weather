@@ -88,6 +88,16 @@
     <string name="wind_11">Violente tempête</string>
     <string name="wind_12">Ouragan</string>
 
+    <string name="wind_direction_short_variable">Variable</string>
+    <string name="wind_direction_short_N">N</string>
+    <string name="wind_direction_short_NE">NE</string>
+    <string name="wind_direction_short_E">E</string>
+    <string name="wind_direction_short_SE">SE</string>
+    <string name="wind_direction_short_S">S</string>
+    <string name="wind_direction_short_SW">SO</string>
+    <string name="wind_direction_short_W">O</string>
+    <string name="wind_direction_short_NW">NO</string>
+
     <string name="precipitation_light">Faible</string>
     <string name="precipitation_middle">Modérée</string>
     <string name="precipitation_heavy">Forte</string>

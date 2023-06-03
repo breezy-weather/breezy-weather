@@ -436,18 +436,18 @@ public class ClockDayVerticalWidgetIMP extends AbstractRemoteViewsPresenter {
                     case "rectangle":
                         return location.getCityName(context)
                                 + " "
-                                + Base.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone());
+                                + DisplayUtils.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone());
 
                     case "symmetry":
                         return WidgetHelper.getWeek(context, location.getTimeZone())
                                 + " "
-                                + Base.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone());
+                                + DisplayUtils.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone());
 
                     case "tile":
                     case "vertical":
                         return location.getCityName(context)
                                 + " " + WidgetHelper.getWeek(context, location.getTimeZone())
-                                + " " + Base.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone());
+                                + " " + DisplayUtils.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone());
                 }
                 return null;
 

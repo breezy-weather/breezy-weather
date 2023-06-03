@@ -90,84 +90,72 @@ class AllergenActivity : GeoActivity() {
                 contentPadding = it,
             ) {
                 items(weather.dailyForecast) { daily ->
-                    val pollen = daily.pollen
-
-                    Material3CardListItem {
-                        Column {
-                            Text(
-                                modifier = Modifier.padding(dimensionResource(R.dimen.normal_margin)),
-                                text = daily.getDate(stringResource(R.string.date_format_widget_long), location.timeZone),
-                                color = DayNightTheme.colors.titleColor,
-                                fontWeight = FontWeight.Bold,
-                                style = MaterialTheme.typography.titleMedium,
-                            )
-                            Row {
-                                PollenItem(
-                                    modifier = Modifier
-                                        .width(0.dp)
-                                        .weight(1f),
-                                    title = stringResource(R.string.grass),
-                                    subtitle = unit.getValueText(
-                                        this@AllergenActivity,
-                                        pollen.grassIndex ?: 0
-                                    ) + " - " + pollen.grassDescription,
-                                    tintColor = Color(
-                                        Pollen.getPollenColor(
+                    daily.pollen?.let {
+                        Material3CardListItem {
+                            Column {
+                                Text(
+                                    modifier = Modifier.padding(dimensionResource(R.dimen.normal_margin)),
+                                    text = daily.getDate(stringResource(R.string.date_format_widget_long), location.timeZone),
+                                    color = DayNightTheme.colors.titleColor,
+                                    fontWeight = FontWeight.Bold,
+                                    style = MaterialTheme.typography.titleMedium,
+                                )
+                                Row {
+                                    PollenItem(
+                                        modifier = Modifier
+                                            .width(0.dp)
+                                            .weight(1f),
+                                        title = stringResource(R.string.grass),
+                                        subtitle = unit.getValueText(
                                             this@AllergenActivity,
-                                            pollen.grassLevel
+                                            it.grassIndex ?: 0
+                                        ) + " - " + it.grassDescription,
+                                        tintColor = Color(
+                                            it.getGrassColor(this@AllergenActivity)
                                         )
                                     )
-                                )
-                                PollenItem(
-                                    modifier = Modifier
-                                        .width(0.dp)
-                                        .weight(1f),
-                                    title = stringResource(R.string.ragweed),
-                                    subtitle = unit.getValueText(
-                                        this@AllergenActivity,
-                                        pollen.ragweedIndex ?: 0
-                                    ) + " - " + pollen.ragweedDescription,
-                                    tintColor = Color(
-                                        Pollen.getPollenColor(
+                                    PollenItem(
+                                        modifier = Modifier
+                                            .width(0.dp)
+                                            .weight(1f),
+                                        title = stringResource(R.string.ragweed),
+                                        subtitle = unit.getValueText(
                                             this@AllergenActivity,
-                                            pollen.ragweedLevel
+                                            it.ragweedIndex ?: 0
+                                        ) + " - " + it.ragweedDescription,
+                                        tintColor = Color(
+                                            it.getRagweedColor(this@AllergenActivity)
                                         )
                                     )
-                                )
-                            }
-                            Row {
-                                PollenItem(
-                                    modifier = Modifier
-                                        .width(0.dp)
-                                        .weight(1f),
-                                    title = stringResource(R.string.tree),
-                                    subtitle = unit.getValueText(
-                                        this@AllergenActivity,
-                                        pollen.treeIndex ?: 0
-                                    ) + " - " + pollen.treeDescription,
-                                    tintColor = Color(
-                                        Pollen.getPollenColor(
+                                }
+                                Row {
+                                    PollenItem(
+                                        modifier = Modifier
+                                            .width(0.dp)
+                                            .weight(1f),
+                                        title = stringResource(R.string.tree),
+                                        subtitle = unit.getValueText(
                                             this@AllergenActivity,
-                                            pollen.treeLevel
+                                            it.treeIndex ?: 0
+                                        ) + " - " + it.treeDescription,
+                                        tintColor = Color(
+                                            it.getTreeColor(this@AllergenActivity)
                                         )
                                     )
-                                )
-                                PollenItem(
-                                    modifier = Modifier
-                                        .width(0.dp)
-                                        .weight(1f),
-                                    title = stringResource(R.string.mold),
-                                    subtitle = unit.getValueText(
-                                        this@AllergenActivity,
-                                        pollen.moldIndex ?: 0
-                                    ) + " - " + pollen.moldDescription,
-                                    tintColor = Color(
-                                        Pollen.getPollenColor(
+                                    PollenItem(
+                                        modifier = Modifier
+                                            .width(0.dp)
+                                            .weight(1f),
+                                        title = stringResource(R.string.mold),
+                                        subtitle = unit.getValueText(
                                             this@AllergenActivity,
-                                            pollen.moldLevel
+                                            it.moldIndex ?: 0
+                                        ) + " - " + it.moldDescription,
+                                        tintColor = Color(
+                                            it.getMoldColor(this@AllergenActivity)
                                         )
                                     )
-                                )
+                                }
                             }
                         }
                     }

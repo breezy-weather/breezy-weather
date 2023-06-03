@@ -18,9 +18,9 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.background.receiver.widget.WidgetDayProvider;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
-import wangdaye.com.geometricweather.common.basic.models.weather.Base;
 import wangdaye.com.geometricweather.common.basic.models.weather.Temperature;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.LunarHelper;
 import wangdaye.com.geometricweather.remoteviews.WidgetHelper;
 import wangdaye.com.geometricweather.settings.SettingsManager;
@@ -449,19 +449,19 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
                     case "rectangle":
                         return location.getCityName(context) 
                                 + " " 
-                                + Base.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone());
+                                + DisplayUtils.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone());
 
                     case "symmetry":
                         return WidgetHelper.getWeek(context, location.getTimeZone())
                                 + " " 
-                                + Base.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone());
+                                + DisplayUtils.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone());
 
                     case "tile":
                     case "mini":
                     case "vertical":
                         return location.getCityName(context)
                                 + " " + WidgetHelper.getWeek(context, location.getTimeZone())
-                                + " " + Base.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone());
+                                + " " + DisplayUtils.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone());
                 }
                 return null;
 
@@ -472,7 +472,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
                         && weather.getCurrent().getAirQuality().getAqiText(context) != null) {
                     return weather.getCurrent().getAirQuality().getAqiText(context)
                             + " (" 
-                            + weather.getCurrent().getAirQuality().getAqiIndex() 
+                            + weather.getCurrent().getAirQuality().getAqiIndex()
                             + ")";
                 }
                 return null;

@@ -70,11 +70,13 @@ public class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter {
                 talkBackBuilder.append(", ").append(getTemperatureString(weather, position, mTemperatureUnit));
             }
 
-            hourlyItem.setIconDrawable(
-                    ResourceHelper.getWeatherIcon(mResourceProvider, hourly.getWeatherCode(), hourly.isDaylight())
-            );
+            if (hourly.getWeatherCode() != null) {
+                hourlyItem.setIconDrawable(
+                        ResourceHelper.getWeatherIcon(mResourceProvider, hourly.getWeatherCode(), hourly.isDaylight())
+                );
+            }
 
-            Float precipitationProbability = hourly.getPrecipitationProbability().getTotal();
+            Float precipitationProbability = hourly.getPrecipitationProbability() != null ? hourly.getPrecipitationProbability().getTotal() : null;
             float p = precipitationProbability == null ? 0 : precipitationProbability;
             if (!mShowPrecipitationProbability) {
                 p = 0;
@@ -84,8 +86,8 @@ public class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter {
                     null,
                     getShortTemperatureString(weather, position, mTemperatureUnit),
                     null,
-                    (float) mHighestTemperature,
-                    (float) mLowestTemperature,
+                    mHighestTemperature != null ? Float.valueOf(mHighestTemperature) : null,
+                    mLowestTemperature != null ? Float.valueOf(mLowestTemperature) : null,
                     p < 5 ? null : p,
                     p < 5 ? null : ProbabilityUnit.PERCENT.getValueText(activity, (int) p),
                     100f,
@@ -271,10 +273,18 @@ public class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter {
     }
 
     protected String getTemperatureString(Weather weather, int index, TemperatureUnit unit) {
-        return weather.getHourlyForecast().get(index).getTemperature().getTemperature(getActivity(), unit);
+        if (weather.getHourlyForecast().get(index).getTemperature() != null) {
+            return weather.getHourlyForecast().get(index).getTemperature().getTemperature(getActivity(), unit);
+        } else {
+            return null;
+        }
     }
 
     protected String getShortTemperatureString(Weather weather, int index, TemperatureUnit unit) {
-        return weather.getHourlyForecast().get(index).getTemperature().getShortTemperature(getActivity(), unit);
+        if (weather.getHourlyForecast().get(index).getTemperature() != null) {
+            return weather.getHourlyForecast().get(index).getTemperature().getShortTemperature(getActivity(), unit);
+        } else {
+            return null;
+        }
     }
 }

@@ -90,6 +90,16 @@
     <string name="wind_11">Violent storm</string>
     <string name="wind_12">Hurricane</string>
 
+    <string name="wind_direction_short_variable">Variable</string>
+    <string name="wind_direction_short_N">N</string>
+    <string name="wind_direction_short_NE">NE</string>
+    <string name="wind_direction_short_E">E</string>
+    <string name="wind_direction_short_SE">SE</string>
+    <string name="wind_direction_short_S">S</string>
+    <string name="wind_direction_short_SW">SW</string>
+    <string name="wind_direction_short_W">W</string>
+    <string name="wind_direction_short_NW">NW</string>
+
     <string name="precipitation_light">Drizzle</string>
     <string name="precipitation_middle">Rain</string>
     <string name="precipitation_heavy">Heavy rain</string>

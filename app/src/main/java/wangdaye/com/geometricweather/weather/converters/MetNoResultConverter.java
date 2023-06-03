@@ -93,7 +93,7 @@ public class MetNoResultConverter {
                     result.place_id.toString(),
                     result.lat,
                     result.lon,
-                    CommonConverter.getTimeZoneForPosition(map, result.lat, result.lon),
+                    CommonConverterKt.getTimeZoneForPosition(map, result.lat, result.lon),
                     result.address.country,
                     location.getProvince(),
                     location.getCity(),
@@ -115,7 +115,7 @@ public class MetNoResultConverter {
                     result.place_id.toString(),
                     result.lat,
                     result.lon,
-                    CommonConverter.getTimeZoneForPosition(map, result.lat, result.lon),
+                    CommonConverterKt.getTimeZoneForPosition(map, result.lat, result.lon),
                     result.address.country,
                     result.address.state == null ? "" : result.address.state,
                     result.display_name,
@@ -142,16 +142,13 @@ public class MetNoResultConverter {
                                                               MetNoSunsetResult sunsetResult) {
         try {
             HashMap<String, MetNoSunsetResult.Location.Time> sunsetList = getSunsetResultAsHashMap(sunsetResult.location.time);
-            List<Hourly> hourly = getHourlyList(context, location.getTimeZone(), location.isChina(), locationForecastResult, sunsetList);
+            List<Hourly> hourly = getHourlyList(context, location.getTimeZone(), locationForecastResult, sunsetList);
 
             Weather weather = new Weather(
                     new Base(
                             location.getCityId(),
-                            System.currentTimeMillis(),
                             locationForecastResult.properties.meta.updatedAt,
-                            locationForecastResult.properties.meta.updatedAt.getTime(),
-                            new Date(),
-                            System.currentTimeMillis()
+                            new Date()
                     ),
                     new Current(
                             "",
@@ -173,16 +170,13 @@ public class MetNoResultConverter {
                                     null
                             ),
                             new Wind(
-                                    CommonConverter.getWindDirection(locationForecastResult.properties.timeseries.get(0).data.instant.details.windFromDirection, location.isChina()),
+                                    CommonConverterKt.getWindDirection(context, locationForecastResult.properties.timeseries.get(0).data.instant.details.windFromDirection),
                                     new WindDegree(locationForecastResult.properties.timeseries.get(0).data.instant.details.windFromDirection, false),
                                     locationForecastResult.properties.timeseries.get(0).data.instant.details.windSpeed * 3.6f,
-                                    CommonConverter.getWindLevel(context, locationForecastResult.properties.timeseries.get(0).data.instant.details.windSpeed * 3.6f)
+                                    CommonConverterKt.getWindLevel(context, locationForecastResult.properties.timeseries.get(0).data.instant.details.windSpeed * 3.6f)
                             ),
-                            new UV(null,null,null), // FIXME: Use ultravioletIndexClearSky
-                            new AirQuality(
-                                    null, null, null, null,
-                                    null, null, null, null
-                            ),
+                            null, // FIXME: Use ultravioletIndexClearSky
+                            null,
                             locationForecastResult.properties.timeseries.get(0).data.instant.details.relativeHumidity,
                             locationForecastResult.properties.timeseries.get(0).data.instant.details.airPressureAtSeaLevel,
                             null,
@@ -244,7 +238,7 @@ public class MetNoResultConverter {
         // So we implement it this way (same as Météo France provider)
         for (Hourly hour : hourly) {
             // For temperatures, we loop through all hours from 6:00 to 5:59 (next day) to avoid having no max temperature after 18:00
-            if ((hour.getTime() / 1000) >= (date.getTime() / 1000) + 6 * 3600 && (hour.getTime() / 1000) < (date.getTime() / 1000) + 30 * 3600) {
+            if ((hour.getDate().getTime() / 1000) >= (date.getTime() / 1000) + 6 * 3600 && (hour.getDate().getTime() / 1000) < (date.getTime() / 1000) + 30 * 3600) {
                 if (isDaytime) {
                     if (temp == null || hour.getTemperature().getTemperature() > temp) {
                         temp = hour.getTemperature().getTemperature();
@@ -258,15 +252,15 @@ public class MetNoResultConverter {
             }
 
             // For weather code, we look at 12:00 and 00:00
-            if (isDaytime && (hour.getTime() / 1000) == (date.getTime() / 1000) + 12 * 3600) {
+            if (isDaytime && (hour.getDate().getTime() / 1000) == (date.getTime() / 1000) + 12 * 3600) {
                 weatherCode = hour.getWeatherCode();
             }
-            if (!isDaytime && (hour.getTime() / 1000) == (date.getTime() / 1000) + 24 * 3600) {
+            if (!isDaytime && (hour.getDate().getTime() / 1000) == (date.getTime() / 1000) + 24 * 3600) {
                 weatherCode = hour.getWeatherCode();
             }
 
-            if ((isDaytime && (hour.getTime() / 1000) >= (date.getTime() / 1000) + 6 * 3600 && (hour.getTime() / 1000) < (date.getTime() / 1000) + 18 * 3600)
-                    || (!isDaytime && (hour.getTime() / 1000) >= (date.getTime() / 1000) + 18 * 3600 && (hour.getTime() / 1000) < (date.getTime() / 1000) + 30 * 3600)) {
+            if ((isDaytime && (hour.getDate().getTime() / 1000) >= (date.getTime() / 1000) + 6 * 3600 && (hour.getDate().getTime() / 1000) < (date.getTime() / 1000) + 18 * 3600)
+                    || (!isDaytime && (hour.getDate().getTime() / 1000) >= (date.getTime() / 1000) + 18 * 3600 && (hour.getDate().getTime() / 1000) < (date.getTime() / 1000) + 30 * 3600)) {
                 // Precipitation
                 precipitationTotal += (hour.getPrecipitation().getTotal() == null) ? 0 : hour.getPrecipitation().getTotal();
                 precipitationRain += (hour.getPrecipitation().getRain() == null) ? 0 : hour.getPrecipitation().getRain();
@@ -346,7 +340,6 @@ public class MetNoResultConverter {
                     dailyList.add(
                         new Daily(
                             date,
-                            date.getTime(),
                             halfDayDaytime,
                             halfDayNighttime,
                             new Astro(
@@ -361,13 +354,10 @@ public class MetNoResultConverter {
                                 sunsetList.containsKey(formattedDate) && sunsetList.get(formattedDate).moonposition != null ? toInt(Double.valueOf(sunsetList.get(formattedDate).moonposition.phase)) : null,
                                 sunsetList.containsKey(formattedDate) && sunsetList.get(formattedDate).moonposition != null ? sunsetList.get(formattedDate).moonposition.desc : null
                             ),
-                            new AirQuality(
-                                null, null, null, null,
-                                null, null, null, null
-                            ),
-                            new Pollen(null, null, null, null, null, null, null, null, null, null, null, null),
-                            new UV(null, null, null),
-                            sunsetList.containsKey(formattedDate) && sunsetList.get(formattedDate).sunrise != null && sunsetList.get(formattedDate).sunset != null ? CommonConverter.getHoursOfDay(
+                            null,
+                            null,
+                            null,
+                            sunsetList.containsKey(formattedDate) && sunsetList.get(formattedDate).sunrise != null && sunsetList.get(formattedDate).sunset != null ? CommonConverterKt.getHoursOfDay(
                                 sunsetList.get(formattedDate).sunrise.time,
                                 sunsetList.get(formattedDate).sunset.time
                             ) : 0
@@ -388,16 +378,15 @@ public class MetNoResultConverter {
                 || sunsetList.get(formattedDate).sunset.time == null) {
             return true;
         }
-        return CommonConverter.isDaylight(sunsetList.get(formattedDate).sunrise.time, sunsetList.get(formattedDate).sunset.time, time, timeZone);
+        return CommonConverterKt.isDaylight(sunsetList.get(formattedDate).sunrise.time, sunsetList.get(formattedDate).sunset.time, time, timeZone);
     }
 
-    private static List<Hourly> getHourlyList(Context context, TimeZone timeZone, boolean isChina, MetNoLocationForecastResult resultList, HashMap<String, MetNoSunsetResult.Location.Time> sunsetList) {
+    private static List<Hourly> getHourlyList(Context context, TimeZone timeZone, MetNoLocationForecastResult resultList, HashMap<String, MetNoSunsetResult.Location.Time> sunsetList) {
         List<Hourly> hourlyList = new ArrayList<>(resultList.properties.timeseries.size());
         for (MetNoLocationForecastResult.Properties.Timeseries result : resultList.properties.timeseries) {
             hourlyList.add(
                     new Hourly(
                             result.time,
-                            result.time.getTime(),
                             isDaylight(result.time, timeZone, sunsetList),
                             null,
                             getWeatherCode(getSymbolCode(result.data)),
@@ -419,14 +408,14 @@ public class MetNoResultConverter {
                             ),
                             getPrecipitationProbability(result.data),
                             result.data.instant == null || result.data.instant.details == null ? null : new Wind(
-                                    CommonConverter.getWindDirection(result.data.instant.details.windFromDirection, isChina),
+                                    CommonConverterKt.getWindDirection(context, result.data.instant.details.windFromDirection),
                                     new WindDegree(result.data.instant.details.windFromDirection, false),
                                     result.data.instant.details.windSpeed * 3.6f,
-                                    CommonConverter.getWindLevel(context, result.data.instant.details.windSpeed * 3.6f)
+                                    CommonConverterKt.getWindLevel(context, result.data.instant.details.windSpeed * 3.6f)
                             ),
-                            new AirQuality(null, null, null, null, null, null, null, null),
-                            new Pollen(null, null, null, null, null, null, null, null, null, null, null, null),
-                            new UV(null, null, null) // FIXME: Use ultravioletIndexClearSky
+                            null,
+                            null,
+                            null // FIXME: Use ultravioletIndexClearSky
                     )
             );
         }

@@ -10,8 +10,7 @@ import wangdaye.com.geometricweather.weather.json.openmeteo.OpenMeteoWeatherResu
  */
 public interface OpenMeteoWeatherApi {
 
-    // TODO: Check that I remembered correctly that we need this windspeed_unit
-    @GET("v1/forecast?windspeed_unit=ms&timezone=auto&timeformat=unixtime")
+    @GET("v1/forecast?timezone=auto&timeformat=unixtime")
     Observable<OpenMeteoWeatherResult> getWeather(@Query("latitude") double latitude,
                                                   @Query("longitude") double longitude,
                                                   @Query("daily") String daily,

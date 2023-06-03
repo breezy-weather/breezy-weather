@@ -21,34 +21,34 @@ enum class WeatherCode(val id: String) {
         fun getInstance(
             value: String
         ): WeatherCode {
-            if (value.lowercase().contains("partly_cloudy")) {
+            if (value.equals("partly_cloudy", ignoreCase = true)) {
                 return PARTLY_CLOUDY
             }
-            if (value.lowercase().contains("cloudy")) {
+            if (value.equals("cloudy", ignoreCase = true)) {
                 return CLOUDY
             }
-            if (value.lowercase().contains("rain")) {
+            if (value.equals("rain", ignoreCase = true)) {
                 return RAIN
             }
-            if (value.lowercase().contains("snow")) {
+            if (value.equals("snow", ignoreCase = true)) {
                 return SNOW
             }
-            if (value.lowercase().contains("wind")) {
+            if (value.equals("wind", ignoreCase = true)) {
                 return WIND
             }
-            if (value.lowercase().contains("haze")) {
+            if (value.equals("haze", ignoreCase = true)) {
                 return HAZE
             }
-            if (value.lowercase().contains("sleet")) {
+            if (value.equals("sleet", ignoreCase = true)) {
                 return SLEET
             }
-            if (value.lowercase().contains("hail")) {
+            if (value.equals("hail", ignoreCase = true)) {
                 return HAIL
             }
-            if (value.lowercase().contains("thunderstorm")) {
+            if (value.equals("thunderstorm", ignoreCase = true)) {
                 return THUNDERSTORM
             }
-            if (value.lowercase().contains("thunder")) {
+            if (value.equals("thunder", ignoreCase = true)) {
                 return THUNDER
             }
             return CLEAR

@@ -151,7 +151,7 @@ public class MfResultConverter {
                     result.lat + "," + result.lon, // Use coordinates as cityId
                     (float) result.lat,
                     (float) result.lon,
-                    CommonConverter.getTimeZoneForPosition(map, result.lat, result.lon),
+                    CommonConverterKt.getTimeZoneForPosition(map, result.lat, result.lon),
                     result.country,
                     location.getProvince(), // Domain (département)
                     location.getCity(),
@@ -173,7 +173,7 @@ public class MfResultConverter {
                     result.lat + "," + result.lon, // Use coordinates as cityId
                     (float) result.lat,
                     (float) result.lon,
-                    CommonConverter.getTimeZoneForPosition(map, result.lat, result.lon),
+                    CommonConverterKt.getTimeZoneForPosition(map, result.lat, result.lon),
                     result.country,
                     result.admin2 != null ? result.admin2 : "", // Domain (département)
                     result.name + (result.postCode == null ? "" : (" (" + result.postCode + ")")),
@@ -208,11 +208,8 @@ public class MfResultConverter {
             Weather weather = new Weather(
                     new Base(
                             location.getCityId(),
-                            System.currentTimeMillis(),
                             forecastV2Result.updateTime,
-                            forecastV2Result.updateTime.getTime(),
-                            new Date(),
-                            System.currentTimeMillis()
+                            new Date()
                     ),
                     new Current(
                             currentResult.properties != null && currentResult.properties.gridded != null ? currentResult.properties.gridded.weatherDescription : "",
@@ -237,9 +234,9 @@ public class MfResultConverter {
                                     currentResult.properties.gridded.windIcon,
                                     new WindDegree((float) currentResult.properties.gridded.windDirection, currentResult.properties.gridded.windDirection == -1),
                                     currentResult.properties.gridded.windSpeed * 3.6f,
-                                    CommonConverter.getWindLevel(context, currentResult.properties.gridded.windSpeed * 3.6f)
+                                    CommonConverterKt.getWindLevel(context, currentResult.properties.gridded.windSpeed * 3.6f)
                             ) : null,
-                            getCurrentUV(new Date(), location.getTimeZone(), forecastV2Result.properties.dailyForecast),
+                            getCurrentUV(context, new Date(), location.getTimeZone(), forecastV2Result.properties.dailyForecast),
                             getAirQuality(context, new Date(), location.getTimeZone(), normalizedAqiAtmoAuraPolluants, true),
                             null,
                             null,
@@ -253,7 +250,7 @@ public class MfResultConverter {
                     null, // TODO: Fill in with observation data instead
                     getDailyList(context, location.getTimeZone(), forecastV2Result.properties, hourly, ephemerisResult, normalizedAqiAtmoAuraPolluants),
                     hourly,
-                    getMinutelyList(forecastV2Result.properties.dailyForecast.get(0).sunriseTime, forecastV2Result.properties.dailyForecast.get(0).sunsetTime, rainResult),
+                    getMinutelyList(rainResult),
                     getWarningsList(warningsResult)
             );
             return new WeatherService.WeatherResultWrapper(weather);
@@ -308,13 +305,8 @@ public class MfResultConverter {
     }
 
     // This can be improved by adding Aqi results from other regions
-    private static AirQuality getAirQuality(Context context, Date requestedDate, TimeZone timeZone, @Nullable Map<String, Map<String, Map<String, Integer>>> normalizedAqiAtmoAuraPolluants, Boolean hourlyAqi) {
-        AirQuality emptyAirQuality = new AirQuality(
-                null, null,
-                null, null,
-                null, null,
-                null, null
-        );
+    private static @Nullable AirQuality getAirQuality(Context context, Date requestedDate, TimeZone timeZone, @Nullable Map<String, Map<String, Map<String, Integer>>> normalizedAqiAtmoAuraPolluants, Boolean hourlyAqi) {
+        AirQuality emptyAirQuality = null;
         if (normalizedAqiAtmoAuraPolluants == null) {
             return emptyAirQuality;
         } else {
@@ -416,7 +408,7 @@ public class MfResultConverter {
             Integer aqiIndex = getAqiIndex(aqiPM25, aqiPM10, highestNO2, highestO3, highestSO2);
 
             return new AirQuality(
-                    null, aqiIndex,
+                    aqiIndex,
                     aqiPM25, aqiPM10,
                     highestSO2 != null ? highestSO2.floatValue() : null, highestNO2 != null ? highestNO2.floatValue() : null,
                     highestO3 != null ? highestO3.floatValue() : null, null
@@ -485,7 +477,7 @@ public class MfResultConverter {
         // So we implement it this way (same as MET Norway provider)
         for (Hourly hour : hourly) {
             // For temperatures, we loop through all hours from 6:00 to 5:59 (next day) to avoid having no max temperature after 18:00
-            if (hour.getTime() >= theDayInLocal.getTime() + 6 * 3600 * 1000 && hour.getTime() < theDayInLocal.getTime() + 30 * 3600 * 1000) {
+            if (hour.getDate().getTime() >= theDayInLocal.getTime() + 6 * 3600 * 1000 && hour.getDate().getTime() < theDayInLocal.getTime() + 30 * 3600 * 1000) {
                 if (isDaytime) {
                     if (temp == null || hour.getTemperature().getTemperature() > temp) {
                         temp = hour.getTemperature().getTemperature();
@@ -504,8 +496,8 @@ public class MfResultConverter {
                 }
             }
 
-            if ((isDaytime && hour.getTime() >= theDayInLocal.getTime() + 6 * 3600 * 1000 && hour.getTime() < theDayInLocal.getTime() + 18 * 3600 * 1000)
-                    || (!isDaytime && hour.getTime() >= theDayInLocal.getTime() + 18 * 3600 * 1000 && hour.getTime() < theDayInLocal.getTime() + 30 * 3600 * 1000)) {
+            if ((isDaytime && hour.getDate().getTime() >= theDayInLocal.getTime() + 6 * 3600 * 1000 && hour.getDate().getTime() < theDayInLocal.getTime() + 18 * 3600 * 1000)
+                    || (!isDaytime && hour.getDate().getTime() >= theDayInLocal.getTime() + 18 * 3600 * 1000 && hour.getDate().getTime() < theDayInLocal.getTime() + 30 * 3600 * 1000)) {
                 // Precipitation
                 precipitationTotal += (hour.getPrecipitation().getTotal() == null) ? 0 : hour.getPrecipitation().getTotal();
                 precipitationRain += (hour.getPrecipitation().getRain() == null) ? 0 : hour.getPrecipitation().getRain();
@@ -614,16 +606,15 @@ public class MfResultConverter {
                 dailyList.add(
                         new Daily(
                                 theDayInLocal,
-                                theDayInLocal.getTime(),
                                 halfDayDaytime,
                                 halfDayNighttime,
                                 new Astro(dailyForecast.sunriseTime, dailyForecast.sunsetTime),
                                 new Astro(ephemerisResult.properties.ephemeris.moonriseTime, ephemerisResult.properties.ephemeris.moonsetTime),
-                                new MoonPhase(CommonConverter.getMoonPhaseAngle(ephemerisResult.properties.ephemeris.moonPhaseDescription), ephemerisResult.properties.ephemeris.moonPhaseDescription),
+                                new MoonPhase(CommonConverterKt.getMoonPhaseAngle(ephemerisResult.properties.ephemeris.moonPhaseDescription), ephemerisResult.properties.ephemeris.moonPhaseDescription),
                                 getAirQuality(context, theDayInLocal, timeZone, normalizedAqiAtmoAuraPolluants, false),
                                 new Pollen(null, null, null, null, null, null, null, null, null, null, null, null),
                                 new UV(dailyForecast.uvIndex, null, null),
-                                CommonConverter.getHoursOfDay(dailyForecast.sunriseTime, dailyForecast.sunsetTime)
+                                CommonConverterKt.getHoursOfDay(dailyForecast.sunriseTime, dailyForecast.sunsetTime)
                         )
                 );
             }
@@ -661,7 +652,7 @@ public class MfResultConverter {
         return null;
     }
 
-    private static UV getCurrentUV(Date currentDate, TimeZone timeZone, List<MfForecastV2Result.ForecastProperties.ForecastV2> dailyForecasts) {
+    private static UV getCurrentUV(Context context, Date currentDate, TimeZone timeZone, List<MfForecastV2Result.ForecastProperties.ForecastV2> dailyForecasts) {
         if (dailyForecasts == null || dailyForecasts.isEmpty())
             return new UV(null, null, null);
 
@@ -670,7 +661,7 @@ public class MfResultConverter {
             return new UV(null, null, null);
         }
 
-        return CommonConverter.getCurrentUV(todayForecast.uvIndex, currentDate, todayForecast.sunriseTime, todayForecast.sunsetTime, timeZone);
+        return CommonConverterKt.getCurrentUV(context, todayForecast.uvIndex, currentDate, todayForecast.sunriseTime, todayForecast.sunsetTime, timeZone);
     }
 
     private static Precipitation getHourlyPrecipitation(MfForecastV2Result.ForecastProperties.HourForecast hourlyForecast) {
@@ -759,7 +750,6 @@ public class MfResultConverter {
                 hourlyList.add(
                         new Hourly(
                                 hourlyForecast.time,
-                                hourlyForecast.time.getTime(),
                                 // TODO: Probably not the best way to check if it is daytime or nighttime
                                 // Use CommonConverter.isDaylight(sunrise, sunset, new Date(hourlyForecast.time * 1000)) instead
                                 !hourlyForecast.weatherIcon.endsWith("n"),
@@ -780,11 +770,11 @@ public class MfResultConverter {
                                         hourlyForecast.windIcon,
                                         new WindDegree(hourlyForecast.windDirection.equals("Variable") ? 0.0f : Float.parseFloat(hourlyForecast.windDirection), hourlyForecast.windDirection.equals("Variable")),
                                         hourlyForecast.windSpeed * 3.6f,
-                                        CommonConverter.getWindLevel(context, hourlyForecast.windSpeed * 3.6f)
+                                        CommonConverterKt.getWindLevel(context, hourlyForecast.windSpeed * 3.6f)
                                 ),
-                                new AirQuality(null, null, null, null, null, null, null, null),
-                                new Pollen(null, null, null, null, null, null, null, null, null, null, null, null),
-                                new UV(null, null, null)
+                                null,
+                                null,
+                                null
                         )
                 );
             }
@@ -792,7 +782,7 @@ public class MfResultConverter {
         return hourlyList;
     }
 
-    private static List<Minutely> getMinutelyList(Date sunrise, Date sunset, @Nullable MfRainResult rainResult) {
+    private static List<Minutely> getMinutelyList(@Nullable MfRainResult rainResult) {
         if (rainResult == null || rainResult.properties == null || rainResult.properties.rainForecasts == null) {
             return new ArrayList<>();
         }

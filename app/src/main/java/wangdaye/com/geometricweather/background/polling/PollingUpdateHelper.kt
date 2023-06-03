@@ -139,7 +139,7 @@ class PollingUpdateHelper(
             val oldWeather = locationList[index].weather
 
             if (requestLocation.weather != null
-                && (oldWeather == null || requestLocation.weather.base.timeStamp != oldWeather.base.timeStamp)) {
+                && (oldWeather == null || requestLocation.weather.base.updateDate.time != oldWeather.base.updateDate.time)) {
                 locationList[index] = requestLocation
 
                 EventBus.instance

@@ -3,7 +3,6 @@ package wangdaye.com.geometricweather.common.basic.models.options.appearance
 import android.content.Context
 import android.content.res.Resources
 import android.os.Build
-import android.text.TextUtils
 import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.models.options._basic.BaseEnum
 import wangdaye.com.geometricweather.common.basic.models.options._basic.Utils
@@ -55,8 +54,8 @@ enum class Language(
             val locale = locale
             val language = locale.language
             val country = locale.country
-            return if (!TextUtils.isEmpty(country)
-                && (country.lowercase() == "tw" || country.lowercase() == "hk")
+            return if (!country.isNullOrEmpty()
+                && (country.equals("tw", ignoreCase = true) || country.equals("hk", ignoreCase = true))
             ) {
                 language.lowercase() + "-" + country.lowercase()
             } else {

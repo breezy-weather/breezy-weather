@@ -189,7 +189,7 @@ public class CMWeatherProviderService extends WeatherProviderService
                 ).setTodaysLow(
                         weather.getDailyForecast().get(0).night().getTemperature().getTemperature()
                 ).setTimestamp(
-                        weather.getBase().getTimeStamp()
+                        weather.getBase().getUpdateDate().getTime()
                 );
                 if (weather.getCurrent().getRelativeHumidity() != null) {
                     builder.setHumidity(weather.getCurrent().getRelativeHumidity());

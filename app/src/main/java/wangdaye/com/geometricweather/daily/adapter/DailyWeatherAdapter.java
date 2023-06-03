@@ -175,7 +175,7 @@ public class DailyWeatherAdapter extends RecyclerView.Adapter<DailyWeatherAdapte
         // temperature.
         Temperature temperature = halfDay.getTemperature();
         TemperatureUnit temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit();
-        if (temperature.isValid()) {
+        if (temperature.getFeelsLikeTemperature() != null) {
             TemperatureUnit unit = SettingsManager.getInstance(context).getTemperatureUnit();
             int resId;
             if (unit == TemperatureUnit.C) {

@@ -7,7 +7,6 @@ import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
@@ -399,7 +398,7 @@ class MainActivity : GeoActivity(),
 
     private fun consumeIntentAction(intent: Intent) {
         val action = intent.action
-        if (TextUtils.isEmpty(action)) {
+        if (action.isNullOrEmpty()) {
             return
         }
         val formattedId = intent.getStringExtra(KEY_MAIN_ACTIVITY_LOCATION_FORMATTED_ID)

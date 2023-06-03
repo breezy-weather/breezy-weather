@@ -283,6 +283,18 @@ public class DisplayUtils {
         return new SimpleDateFormat(pattern, Locale.getDefault()).format(toTimezone(date, timeZone));
     }
 
+    public static String getTime(Context context, Date date, TimeZone timeZone) {
+        return getTime(date, timeZone, DisplayUtils.is12Hour(context));
+    }
+
+    private static String getTime(Date date, TimeZone timeZone, Boolean twelveHour) {
+        if (twelveHour) {
+            return DisplayUtils.getFormattedDate(date, timeZone, "h:mm aa");
+        } else {
+            return DisplayUtils.getFormattedDate(date, timeZone, "HH:mm");
+        }
+    }
+
     // translationY, scaleX, scaleY
     @Size(3)
     public static Animator[] getFloatingOvershotEnterAnimators(View view) {

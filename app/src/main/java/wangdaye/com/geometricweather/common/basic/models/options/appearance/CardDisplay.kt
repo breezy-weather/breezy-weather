@@ -1,7 +1,6 @@
 package wangdaye.com.geometricweather.common.basic.models.options.appearance
 
 import android.content.Context
-import android.text.TextUtils
 import androidx.annotation.StringRes
 import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.models.options._basic.BaseEnum
@@ -22,8 +21,8 @@ enum class CardDisplay(
 
         @JvmStatic
         fun toCardDisplayList(
-            value: String
-        ) = if (TextUtils.isEmpty(value)) {
+            value: String?
+        ) = if (value.isNullOrEmpty()) {
             ArrayList()
         } else try {
             val cards = value.split("&").toTypedArray()

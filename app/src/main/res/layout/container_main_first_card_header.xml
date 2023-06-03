@@ -36,7 +36,7 @@
                 tools:text="09:00"
                 tools:ignore="RelativeOverlap,RtlHardcoded,RtlSymmetry" />
 
-            <TextClock
+            <TextView
                 android:id="@+id/container_main_first_card_header_localTimeText"
                 style="@style/subtitle_text"
                 tools:text="当地时间 : 4月33日 06:00 星期日"

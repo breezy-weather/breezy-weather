@@ -28,12 +28,12 @@ import wangdaye.com.geometricweather.db.entities.MyObjectBox;
 import wangdaye.com.geometricweather.db.entities.WeatherEntity;
 import wangdaye.com.geometricweather.db.generators.AlertEntityGenerator;
 import wangdaye.com.geometricweather.db.generators.ChineseCityEntityGenerator;
-import wangdaye.com.geometricweather.db.generators.DailyEntityGenerator;
-import wangdaye.com.geometricweather.db.generators.HistoryEntityGenerator;
-import wangdaye.com.geometricweather.db.generators.HourlyEntityGenerator;
+import wangdaye.com.geometricweather.db.generators.DailyEntityGeneratorKt;
+import wangdaye.com.geometricweather.db.generators.HistoryEntityGeneratorKt;
+import wangdaye.com.geometricweather.db.generators.HourlyEntityGeneratorKt;
 import wangdaye.com.geometricweather.db.generators.LocationEntityGenerator;
 import wangdaye.com.geometricweather.db.generators.MinutelyEntityGenerator;
-import wangdaye.com.geometricweather.db.generators.WeatherEntityGenerator;
+import wangdaye.com.geometricweather.db.generators.WeatherEntityGeneratorKt;
 
 /**
  * Database helper
@@ -142,11 +142,11 @@ public class DatabaseHelper {
 
             WeatherEntityController.insertWeatherEntity(
                     boxStore,
-                    WeatherEntityGenerator.generate(location, weather)
+                    WeatherEntityGeneratorKt.generate(location, weather)
             );
             DailyEntityController.insertDailyList(
                     boxStore,
-                    DailyEntityGenerator.generate(
+                    DailyEntityGeneratorKt.generate(
                             location.getCityId(),
                             location.getWeatherSource(),
                             weather.getDailyForecast()
@@ -154,7 +154,7 @@ public class DatabaseHelper {
             );
             HourlyEntityController.insertHourlyList(
                     boxStore,
-                    HourlyEntityGenerator.generateEntityList(
+                    HourlyEntityGeneratorKt.generateEntityList(
                             location.getCityId(),
                             location.getWeatherSource(),
                             weather.getHourlyForecast()
@@ -183,7 +183,7 @@ public class DatabaseHelper {
                     && weather.getDailyForecast().get(0).night().getTemperature() != null) {
                 HistoryEntityController.insertHistoryEntity(
                         boxStore,
-                        HistoryEntityGenerator.generate(
+                        HistoryEntityGeneratorKt.generate(
                                 location.getCityId(), location.getWeatherSource(), weather
                         )
                 );
@@ -191,7 +191,7 @@ public class DatabaseHelper {
             if (weather.getYesterday() != null) {
                 HistoryEntityController.insertHistoryEntity(
                         boxStore,
-                        HistoryEntityGenerator.generate(
+                        HistoryEntityGeneratorKt.generate(
                                 location.getCityId(), location.getWeatherSource(), weather.getYesterday()
                         )
                 );
@@ -211,7 +211,7 @@ public class DatabaseHelper {
         HistoryEntity historyEntity = HistoryEntityController.selectYesterdayHistoryEntity(
                 boxStore,location.getCityId(), location.getWeatherSource(), weatherEntity.publishDate, location.getTimeZone());
 
-        return WeatherEntityGenerator.generate(weatherEntity, historyEntity, this.boxStore);
+        return WeatherEntityGeneratorKt.generate(weatherEntity, historyEntity, this.boxStore);
     }
 
     public void deleteWeather(@NonNull Location location) {
@@ -271,7 +271,7 @@ public class DatabaseHelper {
     // history.
 
     public History readHistory(@NonNull Location location, @NonNull Weather weather) {
-        return HistoryEntityGenerator.generate(
+        return HistoryEntityGeneratorKt.generate(
                 HistoryEntityController.selectYesterdayHistoryEntity(
                         boxStore,
                         location.getCityId(),

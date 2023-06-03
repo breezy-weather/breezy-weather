@@ -138,11 +138,6 @@
           "type": 10
         },
         {
-          "id": "5:4834093079199386949",
-          "name": "time",
-          "type": 6
-        },
-        {
           "id": "6:7348086264831619600",
           "name": "daytimeWeatherText",
           "type": 9
@@ -473,11 +468,6 @@
           "type": 9
         },
         {
-          "id": "72:7510981866901104404",
-          "name": "aqiText",
-          "type": 9
-        },
-        {
           "id": "73:735471105577295398",
           "name": "aqiIndex",
           "type": 5
@@ -622,11 +612,6 @@
           "type": 10
         },
         {
-          "id": "5:9209047750977211861",
-          "name": "time",
-          "type": 6
-        },
-        {
           "id": "6:3343758767346473827",
           "name": "daytimeTemperature",
           "type": 5
@@ -664,11 +649,6 @@
           "id": "4:1383660182624777425",
           "name": "date",
           "type": 10
-        },
-        {
-          "id": "5:3266964286080040525",
-          "name": "time",
-          "type": 6
         },
         {
           "id": "6:805257583949330829",
@@ -803,11 +783,6 @@
         {
           "id": "32:914878016584681685",
           "name": "uvDescription",
-          "type": 9
-        },
-        {
-          "id": "33:2765558804563688754",
-          "name": "aqiText",
           "type": 9
         },
         {
@@ -1168,31 +1143,6 @@
           "type": 7
         },
         {
-          "id": "23:5706349278271084690",
-          "name": "totalPrecipitationProbability",
-          "type": 7
-        },
-        {
-          "id": "24:149224711797109934",
-          "name": "thunderstormPrecipitationProbability",
-          "type": 7
-        },
-        {
-          "id": "25:7599811830059545542",
-          "name": "rainPrecipitationProbability",
-          "type": 7
-        },
-        {
-          "id": "26:2648777124345146806",
-          "name": "snowPrecipitationProbability",
-          "type": 7
-        },
-        {
-          "id": "27:2921547695963561317",
-          "name": "icePrecipitationProbability",
-          "type": 7
-        },
-        {
           "id": "28:2694155474706993563",
           "name": "windDirection",
           "type": 9
@@ -1225,11 +1175,6 @@
         {
           "id": "34:1274218675013137088",
           "name": "uvDescription",
-          "type": 9
-        },
-        {
-          "id": "35:7260833867636972038",
-          "name": "aqiText",
           "type": 9
         },
         {
@@ -1319,7 +1264,19 @@
   "modelVersionParserMinimum": 5,
   "retiredEntityUids": [],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [],
+  "retiredPropertyUids": [
+    5706349278271084690,
+    149224711797109934,
+    7599811830059545542,
+    2648777124345146806,
+    2921547695963561317,
+    7510981866901104404,
+    7260833867636972038,
+    9209047750977211861,
+    4834093079199386949,
+    3266964286080040525,
+    2765558804563688754
+  ],
   "retiredRelationUids": [
     8172461040712041,
     1410060937164198822,

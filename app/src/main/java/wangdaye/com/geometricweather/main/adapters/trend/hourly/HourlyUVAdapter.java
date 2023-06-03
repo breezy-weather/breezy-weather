@@ -100,9 +100,11 @@ public class HourlyUVAdapter extends AbsHourlyTrendAdapter {
 
         mHighestIndex = 0;
         for (int i = weather.getHourlyForecast().size() - 1; i >= 0; i --) {
-            Integer index = weather.getHourlyForecast().get(i).getUV().getIndex();
-            if (index != null && index > mHighestIndex) {
-                mHighestIndex = index;
+            if (weather.getHourlyForecast().get(i).getUV() != null) {
+                Integer index = weather.getHourlyForecast().get(i).getUV().getIndex();
+                if (index != null && index > mHighestIndex) {
+                    mHighestIndex = index;
+                }
             }
         }
     }

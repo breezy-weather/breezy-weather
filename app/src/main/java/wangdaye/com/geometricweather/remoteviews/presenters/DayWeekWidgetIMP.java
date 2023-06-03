@@ -21,9 +21,9 @@ import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.NotificationTextColor;
 import wangdaye.com.geometricweather.common.basic.models.options.WidgetWeekIconMode;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
-import wangdaye.com.geometricweather.common.basic.models.weather.Base;
 import wangdaye.com.geometricweather.common.basic.models.weather.Temperature;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.LunarHelper;
 import wangdaye.com.geometricweather.remoteviews.WidgetHelper;
 import wangdaye.com.geometricweather.settings.SettingsManager;
@@ -421,19 +421,19 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                     case "rectangle":
                         return location.getCityName(context)
                                 + " "
-                                + Base.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone());
+                                + DisplayUtils.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone());
 
                     case "symmetry":
                         return WidgetHelper.getWeek(context, location.getTimeZone())
                                 + " "
-                                + Base.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone());
+                                + DisplayUtils.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone());
 
                     case "tile":
                         return location.getCityName(context)
                                 + " "
                                 + WidgetHelper.getWeek(context, location.getTimeZone())
                                 + " "
-                                + Base.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone());
+                                + DisplayUtils.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone());
                 }
                 return null;
 

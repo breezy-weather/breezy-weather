@@ -1,7 +1,6 @@
 package wangdaye.com.geometricweather.common.ui.activities
 
 import android.os.Bundle
-import android.text.TextUtils
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
@@ -70,8 +69,8 @@ class AlertActivity : GeoActivity() {
         val formattedId = intent.getStringExtra(KEY_FORMATTED_ID)
         AsyncHelper.runOnIO({ emitter ->
             var location: Location? = null
-            if (!TextUtils.isEmpty(formattedId)) {
-                location = DatabaseHelper.getInstance(this).readLocation(formattedId!!)
+            if (!formattedId.isNullOrEmpty()) {
+                location = DatabaseHelper.getInstance(this).readLocation(formattedId)
             }
             if (location == null) {
                 location = DatabaseHelper.getInstance(this).readLocationList()[0]

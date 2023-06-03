@@ -87,6 +87,16 @@
     <string name="wind_11">十一级</string>
     <string name="wind_12">灾害级</string>
 
+    <string name="wind_direction_short_variable">无风向</string>
+    <string name="wind_direction_short_N">北风</string>
+    <string name="wind_direction_short_NE">东北风</string>
+    <string name="wind_direction_short_E">东风</string>
+    <string name="wind_direction_short_SE">东南风</string>
+    <string name="wind_direction_short_S">南风</string>
+    <string name="wind_direction_short_SW">西南风</string>
+    <string name="wind_direction_short_W">西风</string>
+    <string name="wind_direction_short_NW">西北风</string>
+
     <string name="precipitation_light">小雨</string>
     <string name="precipitation_middle">中雨</string>
     <string name="precipitation_heavy">大雨</string>

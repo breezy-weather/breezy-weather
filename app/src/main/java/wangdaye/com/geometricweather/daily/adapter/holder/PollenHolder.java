@@ -29,7 +29,7 @@ public class PollenHolder extends DailyWeatherAdapter.ViewHolder {
         Pollen pollen = ((DailyPollen) model).getPollen();
 
         mBinding.grassIcon.setSupportImageTintList(ColorStateList.valueOf(
-                Pollen.getPollenColor(itemView.getContext(), pollen.getGrassLevel())
+                pollen.getGrassColor(itemView.getContext())
         ));
         mBinding.grassTitle.setText(context.getString(R.string.grass));
         mBinding.grassValue.setText(
@@ -39,7 +39,7 @@ public class PollenHolder extends DailyWeatherAdapter.ViewHolder {
         );
 
         mBinding.ragweedIcon.setSupportImageTintList(ColorStateList.valueOf(
-                Pollen.getPollenColor(itemView.getContext(), pollen.getRagweedLevel())
+                pollen.getRagweedColor(itemView.getContext())
         ));
         mBinding.ragweedTitle.setText(context.getString(R.string.ragweed));
         mBinding.ragweedValue.setText(
@@ -49,7 +49,7 @@ public class PollenHolder extends DailyWeatherAdapter.ViewHolder {
         );
 
         mBinding.treeIcon.setSupportImageTintList(ColorStateList.valueOf(
-                Pollen.getPollenColor(itemView.getContext(), pollen.getTreeLevel())
+                pollen.getTreeColor(itemView.getContext())
         ));
         mBinding.treeTitle.setText(context.getString(R.string.tree));
         mBinding.treeValue.setText(
@@ -59,7 +59,7 @@ public class PollenHolder extends DailyWeatherAdapter.ViewHolder {
         );
 
         mBinding.moldIcon.setSupportImageTintList(ColorStateList.valueOf(
-                Pollen.getPollenColor(itemView.getContext(), pollen.getMoldLevel())
+                pollen.getMoldColor(itemView.getContext())
         ));
         mBinding.moldTitle.setText(context.getString(R.string.mold));
         mBinding.moldValue.setText(

@@ -21,7 +21,7 @@ import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.weather.apis.OpenMeteoAirQualityApi;
 import wangdaye.com.geometricweather.weather.apis.OpenMeteoGeocodingApi;
 import wangdaye.com.geometricweather.weather.apis.OpenMeteoWeatherApi;
-import wangdaye.com.geometricweather.weather.converters.OpenMeteoResultConverter;
+import wangdaye.com.geometricweather.weather.converters.OpenMeteoResultConverterKt;
 import wangdaye.com.geometricweather.weather.json.openmeteo.OpenMeteoAirQualityResult;
 import wangdaye.com.geometricweather.weather.json.openmeteo.OpenMeteoLocationResults;
 import wangdaye.com.geometricweather.weather.json.openmeteo.OpenMeteoWeatherResult;
@@ -67,7 +67,14 @@ public class OpenMeteoWeatherService extends WeatherService {
                 "windspeed_10m",
                 "winddirection_10m",
                 "uv_index",
-                "is_day"
+                "is_day",
+
+                // Used by current only
+                "relativehumidity_2m",
+                "dewpoint_2m",
+                "surface_pressure",
+                "cloudcover",
+                "visibility"
         };
 
         Observable<OpenMeteoWeatherResult> weather = mWeatherApi.getWeather(
@@ -87,7 +94,7 @@ public class OpenMeteoWeatherService extends WeatherService {
                 .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<OpenMeteoWeatherResult>() {
                     @Override
                     public void onSucceed(OpenMeteoWeatherResult openMeteoWeatherResult) {
-                        WeatherResultWrapper wrapper = OpenMeteoResultConverter.convert(
+                        WeatherResultWrapper wrapper = OpenMeteoResultConverterKt.convert(
                                 context,
                                 location,
                                 openMeteoWeatherResult
@@ -123,7 +130,7 @@ public class OpenMeteoWeatherService extends WeatherService {
         List<Location> locationList = new ArrayList<>();
         if (results != null && results.results != null && results.results.size() != 0) {
             for (OpenMeteoLocationResults.Result r : results.results) {
-                locationList.add(OpenMeteoResultConverter.convert(null, r, WeatherSource.OPEN_METEO));
+                locationList.add(OpenMeteoResultConverterKt.convert(null, r, WeatherSource.OPEN_METEO));
             }
         }
         return locationList;
@@ -154,7 +161,7 @@ public class OpenMeteoWeatherService extends WeatherService {
                         if (openMeteoLocationResults.results != null && openMeteoLocationResults.results.size() != 0) {
                             List<Location> locationList = new ArrayList<>();
                             for (OpenMeteoLocationResults.Result r : openMeteoLocationResults.results) {
-                                locationList.add(OpenMeteoResultConverter.convert(null, r, WeatherSource.OPEN_METEO));
+                                locationList.add(OpenMeteoResultConverterKt.convert(null, r, WeatherSource.OPEN_METEO));
                             }
                             callback.requestLocationSuccess(query, locationList);
                         } else {

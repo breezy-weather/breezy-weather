@@ -103,9 +103,11 @@ public class HourlyWindAdapter extends AbsHourlyTrendAdapter {
         mHighestWindSpeed = 0;
         Float daytimeWindSpeed;
         for (int i = weather.getHourlyForecast().size() - 1; i >= 0; i --) {
-            daytimeWindSpeed = weather.getHourlyForecast().get(i).getWind().getSpeed();
-            if (daytimeWindSpeed != null && daytimeWindSpeed > mHighestWindSpeed) {
-                mHighestWindSpeed = daytimeWindSpeed;
+            if (weather.getHourlyForecast().get(i).getWind() != null) {
+                daytimeWindSpeed = weather.getHourlyForecast().get(i).getWind().getSpeed();
+                if (daytimeWindSpeed != null && daytimeWindSpeed > mHighestWindSpeed) {
+                    mHighestWindSpeed = daytimeWindSpeed;
+                }
             }
         }
     }

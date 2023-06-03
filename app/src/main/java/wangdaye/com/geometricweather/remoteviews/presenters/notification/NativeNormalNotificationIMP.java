@@ -19,8 +19,8 @@ import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
-import wangdaye.com.geometricweather.common.basic.models.weather.Base;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.LanguageUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.LunarHelper;
 import wangdaye.com.geometricweather.remoteviews.presenters.AbstractRemoteViewsPresenter;
@@ -113,7 +113,7 @@ class NativeNormalNotificationIMP extends AbstractRemoteViewsPresenter {
             subtitle.append(", ")
                     .append(context.getString(R.string.refresh_at))
                     .append(" ")
-                    .append(Base.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone()));
+                    .append(DisplayUtils.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone()));
         }
         builder.setSubText(subtitle.toString());
 

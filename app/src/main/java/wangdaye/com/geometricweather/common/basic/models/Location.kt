@@ -3,7 +3,6 @@ package wangdaye.com.geometricweather.common.basic.models
 import android.content.Context
 import android.os.Parcel
 import android.os.Parcelable
-import android.text.TextUtils
 import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource
 import wangdaye.com.geometricweather.common.basic.models.weather.Astro
@@ -19,15 +18,15 @@ class Location(
     val timeZone: TimeZone,
 
     val country: String,
-    val province: String,
+    val province: String? = null,
     val city: String,
-    val district: String,
+    val district: String? = null,
 
     val weather: Weather? = null,
     val weatherSource: WeatherSource,
 
-    val isCurrentPosition: Boolean,
-    val isResidentPosition: Boolean,
+    val isCurrentPosition: Boolean = false,
+    val isResidentPosition: Boolean = false,
     val isChina: Boolean,
 ) : Parcelable {
 
@@ -96,9 +95,9 @@ class Location(
         }
 
         private fun isEquals(a: String?, b: String?): Boolean {
-            return if (TextUtils.isEmpty(a) && TextUtils.isEmpty(b)) {
+            return if (a.isNullOrEmpty() && b.isNullOrEmpty()) {
                 true
-            } else if (!TextUtils.isEmpty(a) && !TextUtils.isEmpty(b)) {
+            } else if (!a.isNullOrEmpty() && !b.isNullOrEmpty()) {
                 a == b
             } else {
                 false
@@ -203,9 +202,9 @@ class Location(
         longitude = parcel.readFloat(),
         timeZone = parcel.readSerializable()!! as TimeZone,
         country = parcel.readString()!!,
-        province = parcel.readString()!!,
+        province = parcel.readString(),
         city = parcel.readString()!!,
-        district = parcel.readString()!!,
+        district = parcel.readString(),
         weatherSource = WeatherSource.values()[parcel.readInt()],
         isCurrentPosition = parcel.readByte() != 0.toByte(),
         isResidentPosition = parcel.readByte() != 0.toByte(),
@@ -269,7 +268,7 @@ class Location(
             return true
         }
         return if (thisWeather != null && otherWeather != null) {
-            thisWeather.base.timeStamp == otherWeather.base.timeStamp
+            thisWeather.base.updateDate.time == otherWeather.base.updateDate.time
         } else {
             false
         }
@@ -280,11 +279,11 @@ class Location(
     }
 
     fun getCityName(context: Context): String {
-        val text = if (!TextUtils.isEmpty(district) && district != "市辖区" && district != "无") {
+        val text = if (!district.isNullOrEmpty() && district != "市辖区" && district != "无") {
             district
-        } else if (!TextUtils.isEmpty(city) && city != "市辖区") {
+        } else if (city.isNotEmpty() && city != "市辖区") {
             city
-        } else if (!TextUtils.isEmpty(province)) {
+        } else if (!province.isNullOrEmpty()) {
             province
         } else if (isCurrentPosition) {
             context.getString(R.string.current_location)
@@ -301,12 +300,12 @@ class Location(
     override fun toString(): String {
         val builder = StringBuilder("$country $province")
         if (province != city
-            && !TextUtils.isEmpty(city)
+            && city.isNotEmpty()
         ) {
             builder.append(" ").append(city)
         }
         if (city != district
-            && !TextUtils.isEmpty(district)
+            && !district.isNullOrEmpty()
         ) {
             builder.append(" ").append(district)
         }
@@ -314,10 +313,8 @@ class Location(
     }
 
     fun hasGeocodeInformation(): Boolean {
-        return (!TextUtils.isEmpty(country)
-                || !TextUtils.isEmpty(province)
-                || !TextUtils.isEmpty(city)
-                || !TextUtils.isEmpty(district))
+        return (country.isNotEmpty() || !province.isNullOrEmpty()
+                || city.isNotEmpty() || !district.isNullOrEmpty())
     }
 
     private fun isCloseTo(c: Context, location: Location): Boolean {

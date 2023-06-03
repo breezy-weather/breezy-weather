@@ -19,8 +19,8 @@ import java.util.TimeZone;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
-import wangdaye.com.geometricweather.common.basic.models.weather.Base;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
 import wangdaye.com.geometricweather.main.MainActivity;
 import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider;
@@ -42,7 +42,7 @@ public class FirstCardHeaderController
 
         AppCompatImageView timeIcon = mView.findViewById(R.id.container_main_first_card_header_timeIcon);
         TextView refreshTime = mView.findViewById(R.id.container_main_first_card_header_timeText);
-        TextClock localTime = mView.findViewById(R.id.container_main_first_card_header_localTimeText);
+        TextView localTime = mView.findViewById(R.id.container_main_first_card_header_localTimeText);
         TextView alert = mView.findViewById(R.id.container_main_first_card_header_alert);
         View line = mView.findViewById(R.id.container_main_first_card_header_line);
 
@@ -73,22 +73,21 @@ public class FirstCardHeaderController
             refreshTime.setText(
                     activity.getString(R.string.refresh_at)
                             + " "
-                            + Base.getTime(activity, weather.getBase().getUpdateDate(), location.getTimeZone())
+                            + DisplayUtils.getTime(activity, weather.getBase().getUpdateDate(), location.getTimeZone())
             );
             refreshTime.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorTitleText));
 
-            long time = System.currentTimeMillis();
-            if (TimeZone.getDefault().getOffset(time) == location.getTimeZone().getOffset(time)) {
+            if (TimeZone.getDefault().getRawOffset() == location.getTimeZone().getRawOffset()) {
                 // same time zone.
                 localTime.setVisibility(View.GONE);
             } else {
                 localTime.setVisibility(View.VISIBLE);
-                localTime.setTimeZone(location.getTimeZone().getID());
-                localTime.setFormat12Hour(
-                        activity.getString(R.string.date_format_widget_long) + ", h:mm aa"
-                );
-                localTime.setFormat24Hour(
-                        activity.getString(R.string.date_format_widget_long) + ", HH:mm"
+                localTime.setText(
+                        DisplayUtils.getFormattedDate(
+                                weather.getBase().getUpdateDate(),
+                                TimeZone.getDefault(),
+                                activity.getString(R.string.date_format_widget_long) + (DisplayUtils.is12Hour(activity) ? ", h:mm aa" : ", HH:mm")
+                        )
                 );
                 localTime.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorCaptionText));
             }

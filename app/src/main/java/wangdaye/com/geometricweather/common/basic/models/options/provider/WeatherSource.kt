@@ -25,23 +25,23 @@ enum class WeatherSource(
         fun getInstance(
             value: String
         ): WeatherSource {
-            if (value.lowercase().contains("openmeteo")) {
+            if (value.equals("openmeteo", ignoreCase = true)) {
                 return OPEN_METEO
             }
-            if (value.lowercase().contains("accu")) {
+            if (value.equals("accu", ignoreCase = true)) {
                 return ACCU
             }
-            if (value.lowercase().contains("metno")) {
+            if (value.equals("metno", ignoreCase = true)) {
                 return METNO
             }
-            if (value.lowercase().contains("owm")) {
+            if (value.equals("owm", ignoreCase = true)) {
                 return OWM
             }
-            if (value.lowercase().contains("mf")) {
+            if (value.equals("mf", ignoreCase = true)) {
                 return MF
             }
-            if (value.lowercase().contains("caiyun")
-                || value.lowercase().contains("cn")) {
+            if (value.equals("caiyun", ignoreCase = true)
+                || value.equals("cn", ignoreCase = true)) {
                 return CAIYUN
             }
             return ACCU

@@ -116,11 +116,8 @@ public class AccuResultConverter {
             Weather weather = new Weather(
                     new Base(
                             location.getCityId(),
-                            System.currentTimeMillis(),
                             new Date(currentResult.EpochTime * 1000),
-                            currentResult.EpochTime * 1000,
-                            new Date(),
-                            System.currentTimeMillis()
+                            new Date()
                     ),
                     new Current(
                             currentResult.WeatherText,
@@ -145,14 +142,10 @@ public class AccuResultConverter {
                                     currentResult.Wind.Direction.Localized,
                                     new WindDegree((float) currentResult.Wind.Direction.Degrees, false),
                                     (float) currentResult.WindGust.Speed.Metric.Value,
-                                    CommonConverter.getWindLevel(context, currentResult.WindGust.Speed.Metric.Value)
+                                    CommonConverterKt.getWindLevel(context, (float) currentResult.WindGust.Speed.Metric.Value)
                             ),
                             new UV(currentResult.UVIndex, currentResult.UVIndexText, null),
-                            aqiResult == null ? new AirQuality(
-                                    null, null, null, null,
-                                    null, null, null, null
-                            ) : new AirQuality(
-                                    null,
+                            aqiResult == null ? null : new AirQuality(
                                     aqiResult.Index,
                                     aqiResult.ParticulateMatter2_5,
                                     aqiResult.ParticulateMatter10,
@@ -172,17 +165,12 @@ public class AccuResultConverter {
                     ),
                     new History(
                             new Date((currentResult.EpochTime - 24 * 60 * 60) * 1000),
-                            (currentResult.EpochTime - 24 * 60 * 60) * 1000,
                             toInt(currentResult.TemperatureSummary.Past24HourRange.Maximum.Metric.Value),
                             toInt(currentResult.TemperatureSummary.Past24HourRange.Minimum.Metric.Value)
                     ),
                     getDailyList(context, dailyResult),
                     getHourlyList(context, hourlyResultList),
-                    getMinutelyList(
-                            new Date(dailyResult.DailyForecasts.get(0).Sun.EpochRise * 1000),
-                            new Date(dailyResult.DailyForecasts.get(0).Sun.EpochSet * 1000),
-                            minuteResult
-                    ),
+                    getMinutelyList(minuteResult),
                     getAlertList(alertResultList)
             );
             return new WeatherService.WeatherResultWrapper(weather);
@@ -198,7 +186,6 @@ public class AccuResultConverter {
             dailyList.add(
                     new Daily(
                             forecasts.Date,
-                            forecasts.EpochDate * 1000,
                             new HalfDay(
                                     convertUnit(context, forecasts.Day.LongPhrase),
                                     forecasts.Day.ShortPhrase,
@@ -237,7 +224,7 @@ public class AccuResultConverter {
                                             forecasts.Day.Wind.Direction.Localized,
                                             new WindDegree((float) forecasts.Day.Wind.Direction.Degrees, false),
                                             (float) forecasts.Day.WindGust.Speed.Value,
-                                            CommonConverter.getWindLevel(context, forecasts.Day.WindGust.Speed.Value)
+                                            CommonConverterKt.getWindLevel(context, (float) forecasts.Day.WindGust.Speed.Value)
                                     ),
                                     forecasts.Day.CloudCover
                             ),
@@ -279,7 +266,7 @@ public class AccuResultConverter {
                                             forecasts.Night.Wind.Direction.Localized,
                                             new WindDegree((float) forecasts.Night.Wind.Direction.Degrees, false),
                                             (float) forecasts.Night.WindGust.Speed.Value,
-                                            CommonConverter.getWindLevel(context, forecasts.Night.WindGust.Speed.Value)
+                                            CommonConverterKt.getWindLevel(context, (float) forecasts.Night.WindGust.Speed.Value)
                                     ),
                                     forecasts.Night.CloudCover
                             ),
@@ -292,10 +279,10 @@ public class AccuResultConverter {
                                     new Date(forecasts.Moon.EpochSet * 1000)
                             ),
                             new MoonPhase(
-                                    CommonConverter.getMoonPhaseAngle(forecasts.Moon.Phase),
+                                    CommonConverterKt.getMoonPhaseAngle(forecasts.Moon.Phase),
                                     forecasts.Moon.Phase
                             ),
-                            getDailyAirQuality(context, forecasts.AirAndPollen),
+                            getDailyAirQuality(forecasts.AirAndPollen),
                             getDailyPollen(forecasts.AirAndPollen),
                             getDailyUV(forecasts.AirAndPollen),
                             (float) forecasts.HoursOfSun
@@ -305,14 +292,13 @@ public class AccuResultConverter {
         return dailyList;
     }
 
-    private static AirQuality getDailyAirQuality(Context context,
-                                                 List<AccuDailyResult.DailyForecasts.AirAndPollen> list) {
+    private static AirQuality getDailyAirQuality(List<AccuDailyResult.DailyForecasts.AirAndPollen> list) {
         AccuDailyResult.DailyForecasts.AirAndPollen aqi = getAirAndPollen(list, "AirQuality");
         Integer index = aqi == null ? null : aqi.Value;
         if (index != null && index == 0) {
             index = null;
         }
-        return new AirQuality(null, index, null, null, null, null, null, null);
+        return new AirQuality(index, null, null, null, null, null, null);
     }
 
     private static Pollen getDailyPollen(List<AccuDailyResult.DailyForecasts.AirAndPollen> list) {
@@ -362,7 +348,6 @@ public class AccuResultConverter {
             hourlyList.add(
                     new Hourly(
                             result.DateTime,
-                            result.EpochDateTime * 1000,
                             result.IsDaylight,
                             result.IconPhrase,
                             getWeatherCode(result.WeatherIcon),
@@ -393,10 +378,10 @@ public class AccuResultConverter {
                                     result.Wind.Direction.Localized,
                                     new WindDegree((float) result.Wind.Direction.Degrees, false),
                                     (float) result.WindGust.Speed.Value,
-                                    CommonConverter.getWindLevel(context, result.WindGust.Speed.Value)
+                                    CommonConverterKt.getWindLevel(context, (float) result.WindGust.Speed.Value)
                             ),
-                            new AirQuality(null, null, null, null, null, null, null, null),
-                            new Pollen(null, null, null, null, null, null, null, null, null, null, null, null),
+                            null,
+                            null,
                             new UV(result.UVIndex, null, result.UVIndexText)
                     )
             );
@@ -404,8 +389,7 @@ public class AccuResultConverter {
         return hourlyList;
     }
 
-    private static List<Minutely> getMinutelyList(Date sunrise, Date sunset,
-                                                  @Nullable AccuMinuteResult minuteResult) {
+    private static List<Minutely> getMinutelyList(@Nullable AccuMinuteResult minuteResult) {
         if (minuteResult == null) {
             return new ArrayList<>();
         }

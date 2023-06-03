@@ -53,39 +53,21 @@ Replace `WeatherSource.OPEN_METEO` with your `WeatherSource` in the location fun
 Then focus on the `requestWeather()` function. You will need to create a converter class.
 The goal of a converter class is to normalize the data we received into Geometric Weather data objects.
 
-Create it this way in `app/src/main/java/wangdaye/com/geometricweather/weather/converters/`:
-```java
-public class MyProviderResultConverter {
-    @NonNull
-    public static WeatherService.WeatherResultWrapper convert(Context context,
-                                                              Location location,
-                                                              MyProviderWeatherResult weatherResult) {
-        try {
-            Weather weather = new Weather(
-                    new Base(
-                            location.getCityId(),
-                            System.currentTimeMillis(),
-                            new Date(),
-                            System.currentTimeMillis(),
-                            new Date(),
-                            System.currentTimeMillis()
-                    ),
-                    null, // Current
-                    null, // History
-                    new ArrayList<>(), // List<Daily>
-                    new ArrayList<>(), // List<Hourly>
-                    new ArrayList<>(), // List<Minutely>
-                    new ArrayList<>() // List<Alert>
-            );
-            return new WeatherService.WeatherResultWrapper(weather);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new WeatherService.WeatherResultWrapper(null);
-        }
-    }
-
-    private static WeatherCode getWeatherCode(int icon) {
-        return WeatherCode.CLEAR;
+Here is the minimum code you need to put in `app/src/main/java/wangdaye/com/geometricweather/weather/converters/`:
+```kotlin
+fun convert(
+    context: Context,
+    location: Location,
+    weatherResult: MyProviderWeatherResult
+): WeatherResultWrapper {
+    return try {
+        val weather = Weather(
+            base = Base(cityId = location.cityId)
+            /* Complete other parameters one bit at a time */
+        )
+        WeatherResultWrapper(weather)
+    } catch (ignored: Exception) {
+        WeatherResultWrapper(null)
     }
 }
 ```
@@ -97,9 +79,10 @@ Try build the app, fix errors and complete weather data one bit at a time.
 ### Debugging
 
 During debugging time, you can replace the catch in `MyProviderResultConverter.convert()` to expose errors:
-```java
-catch (Exception ignored) {
-    return new WeatherService.WeatherResultWrapper(null);
+```kotlin
+catch (e: Exception) {
+    e.printStackTrace()
+    WeatherResultWrapper(null)
 }
 ```
 

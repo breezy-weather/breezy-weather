@@ -1,6 +1,5 @@
 package wangdaye.com.geometricweather.main.adapters.main.holder
 
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.GeoActivity
 import wangdaye.com.geometricweather.common.basic.models.Location
-import wangdaye.com.geometricweather.common.basic.models.weather.Base
 import wangdaye.com.geometricweather.common.basic.models.weather.Minutely
 import wangdaye.com.geometricweather.common.ui.adapters.TagAdapter
 import wangdaye.com.geometricweather.common.ui.decotarions.GridMarginsDecoration
@@ -87,7 +85,7 @@ class HourlyViewHolder(
 
         title.setTextColor(colors[0])
 
-        if (TextUtils.isEmpty(weather.current?.hourlyForecast)) {
+        if (weather.current?.hourlyForecast.isNullOrEmpty()) {
             subtitle.visibility = View.GONE
         } else {
             subtitle.visibility = View.VISIBLE
@@ -163,13 +161,13 @@ class HourlyViewHolder(
             }
 
             val size = minutelyList.size
-            minutelyStartText.text = Base.getTime(context, minutelyList[0].date, location.timeZone)
-            minutelyCenterText.text = Base.getTime(context, minutelyList[(size - 1) / 2].date, location.timeZone)
-            minutelyEndText.text = Base.getTime(context, minutelyList[size - 1].date, location.timeZone)
+            minutelyStartText.text = DisplayUtils.getTime(context, minutelyList[0].date, location.timeZone)
+            minutelyCenterText.text = DisplayUtils.getTime(context, minutelyList[(size - 1) / 2].date, location.timeZone)
+            minutelyEndText.text = DisplayUtils.getTime(context, minutelyList[size - 1].date, location.timeZone)
             minutelyContainer.contentDescription =
                 activity.getString(R.string.content_des_minutely_precipitation)
-                    .replace("$1", Base.getTime(context, minutelyList[0].date, location.timeZone))
-                    .replace("$2", Base.getTime(context, minutelyList[size - 1].date, location.timeZone))
+                    .replace("$1", DisplayUtils.getTime(context, minutelyList[0].date, location.timeZone))
+                    .replace("$2", DisplayUtils.getTime(context, minutelyList[size - 1].date, location.timeZone))
         } else {
             minutelyContainer.visibility = View.GONE
         }

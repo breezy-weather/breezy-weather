@@ -1,7 +1,6 @@
 package wangdaye.com.geometricweather.main.adapters.main.holder
 
 import android.annotation.SuppressLint
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -70,7 +69,7 @@ class DailyViewHolder(
 
         title.setTextColor(colors[0])
 
-        if (TextUtils.isEmpty(weather.current?.dailyForecast)) {
+        if (weather.current?.dailyForecast.isNullOrEmpty()) {
             subtitle.visibility = View.GONE
         } else {
             subtitle.visibility = View.VISIBLE

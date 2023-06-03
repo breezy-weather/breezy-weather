@@ -2,6 +2,7 @@ package wangdaye.com.geometricweather.main.adapters.trend.daily;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,11 +55,17 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter {
             assert weather != null;
             Daily daily = weather.getDailyForecast().get(position);
 
-            Float daytimePrecipitation = weather.getDailyForecast().get(position).day().getPrecipitation().getTotal();
-            Float nighttimePrecipitation = weather.getDailyForecast().get(position).night().getPrecipitation().getTotal();
+            Float daytimePrecipitation = null;
+            Float nighttimePrecipitation = null;
+            if (daily.day() != null && daily.day().getPrecipitation() != null) {
+                daytimePrecipitation = daily.day().getPrecipitation().getTotal();
+            }
+            if (daily.night() != null && daily.night().getPrecipitation() != null) {
+                nighttimePrecipitation = daily.night().getPrecipitation().getTotal();
+            }
 
-            daytimePrecipitation = daytimePrecipitation == null ? 0 : daytimePrecipitation;
-            nighttimePrecipitation = nighttimePrecipitation == null ? 0 : nighttimePrecipitation;
+            daytimePrecipitation = daytimePrecipitation != null ? daytimePrecipitation : 0;
+            nighttimePrecipitation = nighttimePrecipitation != null ? nighttimePrecipitation : 0;
 
             if (daytimePrecipitation != 0 || nighttimePrecipitation != 0) {
                 talkBackBuilder.append(", ")
@@ -74,19 +81,21 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter {
                         .append(activity.getString(R.string.content_des_no_precipitation));
             }
 
-            dailyItem.setDayIconDrawable(
-                    ResourceHelper.getWeatherIcon(mResourceProvider, daily.day().getWeatherCode(), true));
+            if (daily.day() != null && daily.day().getWeatherCode() != null) {
+                dailyItem.setDayIconDrawable(
+                        ResourceHelper.getWeatherIcon(mResourceProvider, daily.day().getWeatherCode(), true));
+            }
 
             mDoubleHistogramView.setData(
-                    weather.getDailyForecast().get(position).day().getPrecipitation().getTotal(),
-                    weather.getDailyForecast().get(position).night().getPrecipitation().getTotal(),
+                    daily.day() != null && daily.day().getPrecipitation() != null ? daily.day().getPrecipitation().getTotal() : null,
+                    daily.night() != null && daily.night().getPrecipitation() != null ? daily.night().getPrecipitation().getTotal() : null,
                     mPrecipitationUnit.getValueTextWithoutUnit(daytimePrecipitation),
                     mPrecipitationUnit.getValueTextWithoutUnit(nighttimePrecipitation),
                     mHighestPrecipitation
             );
             mDoubleHistogramView.setLineColors(
-                    daily.day().getPrecipitation().getPrecipitationColor(activity),
-                    daily.night().getPrecipitation().getPrecipitationColor(activity),
+                    daily.day() != null && daily.day().getPrecipitation() != null ? daily.day().getPrecipitation().getPrecipitationColor(activity) : Color.TRANSPARENT,
+                    daily.night() != null && daily.night().getPrecipitation() != null ? daily.night().getPrecipitation().getPrecipitationColor(activity) : Color.TRANSPARENT,
                     MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
             );
             mDoubleHistogramView.setTextColors(
@@ -94,8 +103,15 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter {
             );
             mDoubleHistogramView.setHistogramAlphas(1f, 0.5f);
 
-            dailyItem.setNightIconDrawable(
-                    ResourceHelper.getWeatherIcon(mResourceProvider, daily.night().getWeatherCode(), false));
+            if (daily.night() != null && daily.night().getWeatherCode() != null) {
+                dailyItem.setNightIconDrawable(
+                        ResourceHelper.getWeatherIcon(
+                                mResourceProvider,
+                                daily.night().getWeatherCode(),
+                                false
+                        )
+                );
+            }
 
             dailyItem.setContentDescription(talkBackBuilder.toString());
         }

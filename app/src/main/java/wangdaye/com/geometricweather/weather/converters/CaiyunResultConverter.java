@@ -51,11 +51,8 @@ public class CaiyunResultConverter {
             Weather weather = new Weather(
                     new Base(
                             location.getCityId(),
-                            System.currentTimeMillis(),
                             mainlyResult.current.pubTime,
-                            mainlyResult.current.pubTime.getTime(),
-                            new Date(System.currentTimeMillis()),
-                            System.currentTimeMillis()
+                            new Date(System.currentTimeMillis())
                     ),
                     new Current(
                             getWeatherText(mainlyResult.current.weather),
@@ -69,21 +66,15 @@ public class CaiyunResultConverter {
                                     null,
                                     null
                             ),
-                            new Precipitation(
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null
-                            ),
+                            null,
                             new Wind(
-                                    CommonConverter.getWindDirection(Float.parseFloat(mainlyResult.current.wind.direction.value), location.isChina()),
+                                    CommonConverterKt.getWindDirection(context, Float.valueOf(mainlyResult.current.wind.direction.value)),
                                     new WindDegree(
                                             Float.parseFloat(mainlyResult.current.wind.direction.value),
                                             false
                                     ),
                                     Float.parseFloat(mainlyResult.current.wind.speed.value),
-                                    CommonConverter.getWindLevel(
+                                    CommonConverterKt.getWindLevel(
                                             context,
                                             Float.parseFloat(mainlyResult.current.wind.speed.value)
                                     )
@@ -186,7 +177,7 @@ public class CaiyunResultConverter {
             co = null;
         }
 
-        return new AirQuality(null, index, pm25, pm10, so2, no2, o3, co);
+        return new AirQuality(index, pm25, pm10, so2, no2, o3, co);
     }
 
     @Nullable
@@ -194,7 +185,6 @@ public class CaiyunResultConverter {
         try {
             return new History(
                     new Date(result.updateTime - 24 * 60 * 60 * 1000),
-                    result.updateTime - 24 * 60 * 60 * 1000,
                     Integer.parseInt(result.yesterday.tempMax),
                     Integer.parseInt(result.yesterday.tempMin)
             );
@@ -217,7 +207,6 @@ public class CaiyunResultConverter {
             dailyList.add(
                     new Daily(
                             calendar.getTime(),
-                            calendar.getTimeInMillis(),
                             new HalfDay(
                                     getWeatherText(forecast.weather.value.get(i).from),
                                     getWeatherText(forecast.weather.value.get(i).from),
@@ -231,13 +220,7 @@ public class CaiyunResultConverter {
                                             null,
                                             null
                                     ),
-                                    new Precipitation(
-                                            null,
-                                            null,
-                                            null,
-                                            null,
-                                            null
-                                    ),
+                                    null,
                                     new PrecipitationProbability(
                                             getPrecipitationProbability(forecast, i),
                                             null,
@@ -245,21 +228,15 @@ public class CaiyunResultConverter {
                                             null,
                                             null
                                     ),
-                                    new PrecipitationDuration(
-                                            null,
-                                            null,
-                                            null,
-                                            null,
-                                            null
-                                    ),
+                                    null,
                                     new Wind(
-                                            CommonConverter.getWindDirection(Float.parseFloat(forecast.wind.direction.value.get(i).from), true),
+                                            CommonConverterKt.getWindDirection(context, Float.parseFloat(forecast.wind.direction.value.get(i).from)),
                                             new WindDegree(
                                                     Float.parseFloat(forecast.wind.direction.value.get(i).from),
                                                     false
                                             ),
                                             Float.parseFloat(forecast.wind.speed.value.get(i).from),
-                                            CommonConverter.getWindLevel(
+                                            CommonConverterKt.getWindLevel(
                                                     context,
                                                     Float.parseFloat(forecast.wind.speed.value.get(i).from)
                                             )
@@ -279,13 +256,7 @@ public class CaiyunResultConverter {
                                             null,
                                             null
                                     ),
-                                    new Precipitation(
-                                            null,
-                                            null,
-                                            null,
-                                            null,
-                                            null
-                                    ),
+                                    null,
                                     new PrecipitationProbability(
                                             getPrecipitationProbability(forecast, i),
                                             null,
@@ -293,21 +264,15 @@ public class CaiyunResultConverter {
                                             null,
                                             null
                                     ),
-                                    new PrecipitationDuration(
-                                            null,
-                                            null,
-                                            null,
-                                            null,
-                                            null
-                                    ),
+                                    null,
                                     new Wind(
-                                            CommonConverter.getWindDirection(Float.parseFloat(forecast.wind.direction.value.get(i).to), true),
+                                            CommonConverterKt.getWindDirection(context, Float.parseFloat(forecast.wind.direction.value.get(i).to)),
                                             new WindDegree(
                                                     Float.parseFloat(forecast.wind.direction.value.get(i).to),
                                                     false
                                             ),
                                             Float.parseFloat(forecast.wind.speed.value.get(i).to),
-                                            CommonConverter.getWindLevel(
+                                            CommonConverterKt.getWindLevel(
                                                     context,
                                                     Float.parseFloat(forecast.wind.speed.value.get(i).to)
                                             )
@@ -318,10 +283,9 @@ public class CaiyunResultConverter {
                                     forecast.sunRiseSet.value.get(i).from,
                                     forecast.sunRiseSet.value.get(i).to
                             ),
-                            new Astro(null, null),
-                            new MoonPhase(null, null),
+                            null,
+                            null,
                             new AirQuality(
-                                    null,
                                     forecast.aqi != null && forecast.aqi.value != null && forecast.aqi.value.size() > i
                                             ? forecast.aqi.value.get(i)
                                             : null,
@@ -332,25 +296,8 @@ public class CaiyunResultConverter {
                                     null,
                                     null
                             ),
-                            new Pollen(
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null
-                            ),
-                            new UV(
-                                    null,
-                                    null,
-                                    null
-                            ),
+                            null,
+                            null,
                             (float) (
                                     (forecast.sunRiseSet.value.get(i).to.getTime()
                                             - forecast.sunRiseSet.value.get(i).from.getTime()) // millisecond.
@@ -392,8 +339,7 @@ public class CaiyunResultConverter {
             hourlyList.add(
                     new Hourly(
                             date,
-                            date.getTime(),
-                            CommonConverter.isDaylight(sunrise, sunset, date, timeZone),
+                            CommonConverterKt.isDaylight(sunrise, sunset, date, timeZone),
                             getWeatherText(String.valueOf(forecast.weather.value.get(i))),
                             getWeatherCode(String.valueOf(forecast.weather.value.get(i))),
                             new Temperature(
@@ -405,35 +351,23 @@ public class CaiyunResultConverter {
                                     null,
                                     null
                             ),
-                            new Precipitation(
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null
-                            ),
-                            new PrecipitationProbability(
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null
-                            ),
+                            null,
+                            null,
                             new Wind(
-                                    CommonConverter.getWindDirection(Float.parseFloat(forecast.wind.value.get(i).direction), true),
+                                    CommonConverterKt.getWindDirection(context, Float.parseFloat(forecast.wind.value.get(i).direction)),
                                     new WindDegree(
                                             Float.parseFloat(forecast.wind.value.get(i).direction),
                                             false
                                     ),
                                     Float.parseFloat(forecast.wind.value.get(i).speed),
-                                    CommonConverter.getWindLevel(
+                                    CommonConverterKt.getWindLevel(
                                             context,
                                             Float.parseFloat(forecast.wind.value.get(i).speed)
                                     )
                             ),
-                            new AirQuality(null, null, null, null, null, null, null, null),
-                            new Pollen(null, null, null, null, null, null, null, null, null, null, null, null),
-                            new UV(null, null, null)
+                            null,
+                            null,
+                            null
                     )
             );
         }

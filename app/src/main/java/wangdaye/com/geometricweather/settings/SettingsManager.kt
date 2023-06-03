@@ -210,7 +210,7 @@ class SettingsManager private constructor(context: Context) {
         }
         get() = CardDisplay
             .toCardDisplayList(
-                config.getString("card_display_2", DEFAULT_CARD_DISPLAY) ?: ""
+                config.getString("card_display_2", DEFAULT_CARD_DISPLAY)
             )
             .toList()
 
@@ -224,7 +224,7 @@ class SettingsManager private constructor(context: Context) {
         }
         get() = DailyTrendDisplay
             .toDailyTrendDisplayList(
-                config.getString("daily_trend_display", DEFAULT_DAILY_TREND_DISPLAY) ?: ""
+                config.getString("daily_trend_display", DEFAULT_DAILY_TREND_DISPLAY)
             )
             .toMutableList()
 
@@ -238,7 +238,7 @@ class SettingsManager private constructor(context: Context) {
         }
         get() = HourlyTrendDisplay
             .toHourlyTrendDisplayList(
-                config.getString("hourly_trend_display", DEFAULT_HOURLY_TREND_DISPLAY) ?: ""
+                config.getString("hourly_trend_display", DEFAULT_HOURLY_TREND_DISPLAY)
             )
             .toMutableList()
 

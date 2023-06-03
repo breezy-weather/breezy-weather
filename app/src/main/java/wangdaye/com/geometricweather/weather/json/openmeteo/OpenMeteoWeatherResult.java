@@ -65,5 +65,16 @@ public class OpenMeteoWeatherResult {
         public Float[] uvIndex;
         @SerializedName("is_day")
         public int[] isDay; /* Should be a boolean (true or false) but API returns an integer */
+
+        // Used in current only
+        @SerializedName("relativehumidity_2m")
+        public Integer[] relativeHumidity;
+        @SerializedName("dewpoint_2m")
+        public Float[] dewPoint;
+        @SerializedName("surface_pressure")
+        public Float[] surfacePressure;
+        @SerializedName("cloudcover")
+        public Integer[] cloudCover;
+        public Integer[] visibility;
     }
 }

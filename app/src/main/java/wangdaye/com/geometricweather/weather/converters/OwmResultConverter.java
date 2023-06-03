@@ -7,7 +7,6 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -95,7 +94,7 @@ public class OwmResultConverter {
                     Double.toString(result.lat) + ',' + Double.toString(result.lon),
                     (float) result.lat,
                     (float) result.lon,
-                    CommonConverter.getTimeZoneForPosition(map, result.lat, result.lon),
+                    CommonConverterKt.getTimeZoneForPosition(map, result.lat, result.lon),
                     result.country,
                     "",
                     location.getCity(),
@@ -117,7 +116,7 @@ public class OwmResultConverter {
                     Double.toString(result.lat) + ',' + Double.toString(result.lon),
                     (float) result.lat,
                     (float) result.lon,
-                    CommonConverter.getTimeZoneForPosition(map, result.lat, result.lon),
+                    CommonConverterKt.getTimeZoneForPosition(map, result.lat, result.lon),
                     result.country,
                     "",
                     result.name,
@@ -147,11 +146,8 @@ public class OwmResultConverter {
             Weather weather = new Weather(
                     new Base(
                             location.getCityId(),
-                            System.currentTimeMillis(),
                             new Date(),
-                            System.currentTimeMillis(),
-                            new Date(),
-                            System.currentTimeMillis()
+                            new Date()
                     ),
                     new Current(
                             oneCallResult.current.weather.get(0).description,
@@ -173,17 +169,13 @@ public class OwmResultConverter {
                                     null
                             ),
                             new Wind(
-                                    CommonConverter.getWindDirection((float) oneCallResult.current.windDeg, location.isChina()),
+                                    CommonConverterKt.getWindDirection(context, (float) oneCallResult.current.windDeg),
                                     new WindDegree((float) oneCallResult.current.windDeg, false),
                                     oneCallResult.current.windSpeed * 3.6f,
-                                    CommonConverter.getWindLevel(context, oneCallResult.current.windSpeed * 3.6f)
+                                    CommonConverterKt.getWindLevel(context, oneCallResult.current.windSpeed * 3.6f)
                             ),
                             new UV(toInt(oneCallResult.current.uvi), null, null),
-                            airPollutionCurrentResult == null ? new AirQuality(
-                                    null, null, null, null,
-                                    null, null, null, null
-                            ) : new AirQuality(
-                                    null,
+                            airPollutionCurrentResult == null ? null : new AirQuality(
                                     getAqiFromIndex(airPollutionCurrentResult.list.get(0).main.aqi),
                                     (float) airPollutionCurrentResult.list.get(0).components.pm2_5,
                                     (float) airPollutionCurrentResult.list.get(0).components.pm10,
@@ -205,7 +197,6 @@ public class OwmResultConverter {
                     getDailyList(
                             context,
                             location.getTimeZone(),
-                            location.isChina(),
                             oneCallResult.daily,
                             airPollutionForecastResult
                     ),
@@ -214,7 +205,6 @@ public class OwmResultConverter {
                             oneCallResult.current.sunrise,
                             oneCallResult.current.sunset,
                             location.getTimeZone(),
-                            location.isChina(),
                             oneCallResult.hourly
                     ),
                     getMinutelyList(
@@ -230,7 +220,7 @@ public class OwmResultConverter {
         }
     }
 
-    private static List<Daily> getDailyList(Context context, TimeZone timeZone, boolean isChina,
+    private static List<Daily> getDailyList(Context context, TimeZone timeZone,
                                             List<OwmOneCallResult.Daily> dailyResult,
                                             @Nullable OwmAirPollutionResult airPollutionForecastResult) {
         List<Daily> dailyList = new ArrayList<>(dailyResult.size());
@@ -239,7 +229,6 @@ public class OwmResultConverter {
             dailyList.add(
                     new Daily(
                             new Date(forecasts.dt * 1000),
-                            forecasts.dt * 1000,
                             new HalfDay(
                                     forecasts.weather.get(0).description,
                                     forecasts.weather.get(0).description,
@@ -275,10 +264,10 @@ public class OwmResultConverter {
                                             null
                                     ),
                                     new Wind(
-                                            CommonConverter.getWindDirection((float) forecasts.windDeg, isChina),
+                                            CommonConverterKt.getWindDirection(context, (float) forecasts.windDeg),
                                             new WindDegree((float) forecasts.windDeg, false),
                                             forecasts.windSpeed * 3.6f,
-                                            CommonConverter.getWindLevel(context, forecasts.windSpeed * 3.6f)
+                                            CommonConverterKt.getWindLevel(context, forecasts.windSpeed * 3.6f)
                                     ),
                                     forecasts.clouds
                             ),
@@ -317,17 +306,17 @@ public class OwmResultConverter {
                                             null
                                     ),
                                     new Wind(
-                                            CommonConverter.getWindDirection((float) forecasts.windDeg, isChina),
+                                            CommonConverterKt.getWindDirection(context, (float) forecasts.windDeg),
                                             new WindDegree((float) forecasts.windDeg, false),
                                             forecasts.windSpeed * 3.6f,
-                                            CommonConverter.getWindLevel(context, forecasts.windSpeed * 3.6f)
+                                            CommonConverterKt.getWindLevel(context, forecasts.windSpeed * 3.6f)
                                     ),
                                     forecasts.clouds
                             ),
                             new Astro(new Date(forecasts.sunrise * 1000), new Date(forecasts.sunset * 1000)),
                             new Astro(new Date(forecasts.moonrise * 1000), new Date(forecasts.moonset * 1000)),
                             new MoonPhase(null, null),
-                            getAirQuality(context, new Date(forecasts.dt * 1000), timeZone, airPollutionForecastResult),
+                            getAirQuality(new Date(forecasts.dt * 1000), timeZone, airPollutionForecastResult),
                             new Pollen(null, null, null, null, null, null, null, null, null, null, null, null),
                             new UV(toInt(forecasts.uvi), null, null),
                             0.0f
@@ -354,14 +343,13 @@ public class OwmResultConverter {
         return rain + snow;
     }
 
-    private static List<Hourly> getHourlyList(Context context, long sunrise, long sunset, TimeZone timeZone, boolean isChina, List<OwmOneCallResult.Hourly> resultList) {
+    private static List<Hourly> getHourlyList(Context context, long sunrise, long sunset, TimeZone timeZone, List<OwmOneCallResult.Hourly> resultList) {
         List<Hourly> hourlyList = new ArrayList<>(resultList.size());
         for (OwmOneCallResult.Hourly result : resultList) {
             hourlyList.add(
                     new Hourly(
                             new Date(result.dt * 1000),
-                            result.dt * 1000,
-                            CommonConverter.isDaylight(new Date(sunrise * 1000), new Date(sunset * 1000), new Date(result.dt * 1000), timeZone),
+                            CommonConverterKt.isDaylight(new Date(sunrise * 1000), new Date(sunset * 1000), new Date(result.dt * 1000), timeZone),
                             result.weather.get(0).main,
                             getWeatherCode(result.weather.get(0).id),
                             new Temperature(
@@ -388,13 +376,13 @@ public class OwmResultConverter {
                                     null
                             ),
                             new Wind(
-                                    CommonConverter.getWindDirection((float) result.windDeg, isChina),
+                                    CommonConverterKt.getWindDirection(context, (float) result.windDeg),
                                     new WindDegree((float) result.windDeg, false),
                                     result.windSpeed * 3.6f,
-                                    CommonConverter.getWindLevel(context, result.windSpeed * 3.6f)
+                                    CommonConverterKt.getWindLevel(context, result.windSpeed * 3.6f)
                             ),
-                            new AirQuality(null, null, null, null, null, null, null, null),
-                            new Pollen(null, null, null, null, null, null, null, null, null, null, null, null),
+                            null,
+                            null,
                             new UV(toInt(result.uvi), null, null)
                     )
             );
@@ -443,14 +431,12 @@ public class OwmResultConverter {
         }
     }
 
-    private static AirQuality getAirQuality(Context context, Date requestedDate, TimeZone timeZone, @Nullable OwmAirPollutionResult owmAirPollutionForecastResult) {
+    private static @Nullable AirQuality getAirQuality(Date requestedDate, TimeZone timeZone, @Nullable OwmAirPollutionResult owmAirPollutionForecastResult) {
         if (owmAirPollutionForecastResult != null) {
-            SimpleDateFormat fmt = new SimpleDateFormat();
             for (OwmAirPollutionResult.AirPollution airPollutionForecast : owmAirPollutionForecastResult.list) {
                 if (DisplayUtils.getFormattedDate(requestedDate, timeZone, "yyyyMMdd")
                         .equals(DisplayUtils.getFormattedDate(new Date(airPollutionForecast.dt * 1000), timeZone, "yyyyMMdd"))) {
                     return new AirQuality(
-                            null,
                             getAqiFromIndex(airPollutionForecast.main.aqi),
                             (float) airPollutionForecast.components.pm2_5,
                             (float) airPollutionForecast.components.pm10,
@@ -462,12 +448,7 @@ public class OwmResultConverter {
                 }
             }
         }
-        return new AirQuality(
-                null, null,
-                null, null,
-                null, null,
-                null, null
-        );
+        return null;
     }
 
     private static List<Alert> getAlertList(@Nullable List<OwmOneCallResult.Alert> resultList) {
