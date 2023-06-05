@@ -277,7 +277,7 @@ public class MetNoResultConverter {
                 }
 
                 // Wind
-                if ((hour.getWind() != null && hour.getWind().getSpeed() != null) && (wind.getSpeed() == null || hour.getWind().getSpeed() > wind.getSpeed())) {
+                if ((hour.getWind() != null && hour.getWind().getSpeed() != null) && (wind == null || wind.getSpeed() == null || hour.getWind().getSpeed() > wind.getSpeed())) {
                     wind = hour.getWind();
                 }
             }
