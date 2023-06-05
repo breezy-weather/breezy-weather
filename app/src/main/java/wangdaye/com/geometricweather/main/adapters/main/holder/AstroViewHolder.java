@@ -156,9 +156,9 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
             mPhaseView.setSurfaceAngle(mPhaseAngle);
         }
 
-        if (mWeather.getDailyForecast().get(0).sun() != null && mWeather.getDailyForecast().get(0).sun().isValid()) {
-            String sunriseTime = mWeather.getDailyForecast().get(0).sun().getRiseTime(context, mTimeZone);
-            String sunsetTime = mWeather.getDailyForecast().get(0).sun().getSetTime(context, mTimeZone);
+        if (mWeather.getDailyForecast().get(0).getSun() != null && mWeather.getDailyForecast().get(0).getSun().isValid()) {
+            String sunriseTime = mWeather.getDailyForecast().get(0).getSun().getRiseTime(context, mTimeZone);
+            String sunsetTime = mWeather.getDailyForecast().get(0).getSun().getSetTime(context, mTimeZone);
 
             mSunContainer.setVisibility(View.VISIBLE);
             mSunTxt.setText(sunriseTime + "↑" + "\n" + sunsetTime + "↓");
@@ -172,9 +172,9 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
         } else {
             mSunContainer.setVisibility(View.GONE);
         }
-        if (mWeather.getDailyForecast().get(0).moon() != null && mWeather.getDailyForecast().get(0).moon().isValid()) {
-            String moonriseTime = mWeather.getDailyForecast().get(0).moon().getRiseTime(context, mTimeZone);
-            String moonsetTime = mWeather.getDailyForecast().get(0).moon().getSetTime(context, mTimeZone);
+        if (mWeather.getDailyForecast().get(0).getMoon() != null && mWeather.getDailyForecast().get(0).getMoon().isValid()) {
+            String moonriseTime = mWeather.getDailyForecast().get(0).getMoon().getRiseTime(context, mTimeZone);
+            String moonsetTime = mWeather.getDailyForecast().get(0).getMoon().getSetTime(context, mTimeZone);
 
             mMoonContainer.setVisibility(View.VISIBLE);
             mMoonTxt.setText(moonriseTime + "↑" + "\n" + moonsetTime + "↓");
@@ -281,18 +281,18 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
         mCurrentTimes = new long[] {currentTime, currentTime};
 
         // sun.
-        if (today.sun() != null && today.sun().getRiseDate() != null && today.sun().getSetDate() != null) {
-            mStartTimes[0] = today.sun().getRiseDate().getTime();
-            mEndTimes[0] = today.sun().getSetDate().getTime();
+        if (today.getSun() != null && today.getSun().getRiseDate() != null && today.getSun().getSetDate() != null) {
+            mStartTimes[0] = today.getSun().getRiseDate().getTime();
+            mEndTimes[0] = today.getSun().getSetDate().getTime();
         } else {
             mStartTimes[0] = currentTime + 1;
             mEndTimes[0] = currentTime + 1;
         }
 
         // moon.
-        if (today.moon() != null && today.moon().getRiseDate() != null && today.moon().getSetDate() != null) {
-            mStartTimes[1] = today.moon().getRiseDate().getTime();
-            mEndTimes[1] = today.moon().getSetDate().getTime();
+        if (today.getMoon() != null && today.getMoon().getRiseDate() != null && today.getMoon().getSetDate() != null) {
+            mStartTimes[1] = today.getMoon().getRiseDate().getTime();
+            mEndTimes[1] = today.getMoon().getSetDate().getTime();
         } else {
             mStartTimes[1] = currentTime + 1;
             mEndTimes[1] = currentTime + 1;

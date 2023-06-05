@@ -58,13 +58,6 @@
     <string name="wind_11">Tempestade Violenta</string>
     <string name="wind_12">Furacão/Tufão</string>
 
-    <string name="aqi_1">Ar Fresco</string>
-    <string name="aqi_2">Ar Limpo</string>
-    <string name="aqi_3">Poluição Baixa</string>
-    <string name="aqi_4">Poluição Média</string>
-    <string name="aqi_5">Poluição Alta</string>
-    <string name="aqi_6">Perigoso</string>
-
     <string name="phase_new">Nova</string>
     <string name="phase_waxing_crescent">Crescente</string>
     <string name="phase_first">Quarto Crescente</string>

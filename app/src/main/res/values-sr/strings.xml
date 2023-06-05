@@ -53,13 +53,6 @@
     <string name="wind_11">Опасно невреме</string>
     <string name="wind_12">Ураган/Тајфун</string>
 
-    <string name="aqi_1">Свеж ваздух</string>
-    <string name="aqi_2">Чист ваздух</string>
-    <string name="aqi_3">S-загађен</string>
-    <string name="aqi_4">M-загађен</string>
-    <string name="aqi_5">H-загађен</string>
-    <string name="aqi_6">Опасан</string>
-
     <string name="daily_overview">дневни</string>
     <string name="hourly_overview">часовни</string>
     <string name="air_quality">Квалитет ваздуха</string>

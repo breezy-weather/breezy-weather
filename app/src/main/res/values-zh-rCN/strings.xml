@@ -102,13 +102,6 @@
     <string name="precipitation_heavy">大雨</string>
     <string name="precipitation_rainstorm">暴雨</string>
 
-    <string name="aqi_1">优</string>
-    <string name="aqi_2">良</string>
-    <string name="aqi_3">轻度污染</string>
-    <string name="aqi_4">中度污染</string>
-    <string name="aqi_5">重度污染</string>
-    <string name="aqi_6">严重污染</string>
-
     <string name="phase_new">新月</string>
     <string name="phase_waxing_crescent">蛾眉月</string>
     <string name="phase_first">上弦月</string>
@@ -384,7 +377,7 @@
     <string name="settings_title_precipitation_unit">降水单位</string>
     <string name="settings_title_pressure_unit">压力单位</string>
     <string name="settings_title_speed_unit">速度单位</string>
-    <string name="settings_title_air_quality_level">空气质量等级</string>
+    <string name="settings_title_air_quality_algorithm">Air Quality algorithm</string>
     <string name="settings_title_refresh_rate">自动刷新频率</string>
     <string name="settings_title_alert_notification_switch">推送预警通知</string>
     <string name="settings_title_precipitation_notification_switch">推送降水预报</string>

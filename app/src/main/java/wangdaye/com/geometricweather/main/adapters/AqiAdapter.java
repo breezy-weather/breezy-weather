@@ -161,7 +161,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
                         new AqiItem(
                                 airQuality.getPm25Color(context),
                                 airQuality.getPM25(),
-                                airQuality.getPM25Max(context),
+                                airQuality.getPM25ExcessivePollution(context),
                                 "PM2.5",
                                 AirQualityUnit.MUGPCUM.getValueText(context, airQuality.getPM25()),
                                 context.getString(R.string.content_des_pm25)
@@ -176,7 +176,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
                         new AqiItem(
                                 airQuality.getPm10Color(context),
                                 airQuality.getPM10(),
-                                airQuality.getPM10Max(context),
+                                airQuality.getPM10ExcessivePollution(context),
                                 "PM10",
                                 AirQualityUnit.MUGPCUM.getValueText(context, airQuality.getPM10()),
                                 context.getString(R.string.content_des_pm10)
@@ -190,7 +190,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
                         new AqiItem(
                                 airQuality.getSo2Color(context),
                                 airQuality.getSO2(),
-                                airQuality.getSO2Max(context),
+                                airQuality.getSO2ExcessivePollution(context),
                                 "SO₂",
                                 AirQualityUnit.MUGPCUM.getValueText(context, airQuality.getSO2()),
                                 context.getString(R.string.content_des_so2)
@@ -204,7 +204,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
                         new AqiItem(
                                 airQuality.getNo2Color(context),
                                 airQuality.getNO2(),
-                                airQuality.getNO2Max(context),
+                                airQuality.getNO2ExcessivePollution(context),
                                 "NO₂",
                                 AirQualityUnit.MUGPCUM.getValueText(context, airQuality.getNO2()),
                                 context.getString(R.string.content_des_no2)
@@ -218,7 +218,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
                         new AqiItem(
                                 airQuality.getO3Color(context),
                                 airQuality.getO3(),
-                                airQuality.getO3Max(context),
+                                airQuality.getO3ExcessivePollution(context),
                                 "O₃",
                                 AirQualityUnit.MUGPCUM.getValueText(context, airQuality.getO3()),
                                 context.getString(R.string.content_des_o3)
@@ -232,7 +232,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
                         new AqiItem(
                                 airQuality.getCOColor(context),
                                 airQuality.getCO(),
-                                90,
+                                airQuality.getCOExcessivePollution(context),
                                 "CO",
                                 AirQualityCOUnit.MGPCUM.getValueText(context, airQuality.getCO()),
                                 context.getString(R.string.content_des_co)

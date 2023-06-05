@@ -29,7 +29,7 @@ import wangdaye.com.geometricweather.settings.SettingsManager;
 
 /**
  * Daily wind adapter.
- * */
+ **/
 public class DailyWindAdapter extends AbsDailyTrendAdapter {
 
     private final SpeedUnit mSpeedUnit;
@@ -56,47 +56,63 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter {
             assert weather != null;
             Daily daily = weather.getDailyForecast().get(position);
 
-            talkBackBuilder
-                    .append(", ").append(activity.getString(R.string.daytime))
-                    .append(" : ").append(daily.day().getWind().getWindDescription(activity, mSpeedUnit))
-                    .append(", ").append(activity.getString(R.string.nighttime))
-                    .append(" : ").append(daily.night().getWind().getWindDescription(activity, mSpeedUnit));
+            if (daily.getDay().getWind() != null) {
+                talkBackBuilder
+                        .append(", ").append(activity.getString(R.string.daytime))
+                        .append(" : ").append(daily.getDay().getWind().getWindDescription(activity, mSpeedUnit));
 
-            int daytimeWindColor = daily.day().getWind().getWindColor(activity);
-            int nighttimeWindColor = daily.night().getWind().getWindColor(activity);
+                int daytimeWindColor = daily.getDay().getWind().getWindColor(activity);
 
-            RotateDrawable dayIcon = daily.day().getWind().isValidSpeed()
-                    ? new RotateDrawable(ContextCompat.getDrawable(activity, R.drawable.ic_navigation))
-                    : new RotateDrawable(ContextCompat.getDrawable(activity, R.drawable.ic_circle_medium));
-            dayIcon.rotate(daily.day().getWind().getDegree().getDegree() + 180);
-            dayIcon.setColorFilter(new PorterDuffColorFilter(daytimeWindColor, PorterDuff.Mode.SRC_ATOP));
-            dailyItem.setDayIconDrawable(dayIcon);
+                RotateDrawable dayIcon = daily.getDay().getWind().isValidSpeed()
+                        ? new RotateDrawable(ContextCompat.getDrawable(activity, R.drawable.ic_navigation))
+                        : new RotateDrawable(ContextCompat.getDrawable(activity, R.drawable.ic_circle_medium));
+                if (daily.getDay().getWind().getDegree() != null && daily.getDay().getWind().getDegree().getDegree() != null) {
+                    dayIcon.rotate(daily.getDay().getWind().getDegree().getDegree() + 180);
+                }
+                dayIcon.setColorFilter(new PorterDuffColorFilter(daytimeWindColor, PorterDuff.Mode.SRC_ATOP));
+                dailyItem.setDayIconDrawable(dayIcon);
+            }
 
-            Float daytimeWindSpeed = weather.getDailyForecast().get(position).day().getWind().getSpeed();
-            Float nighttimeWindSpeed = weather.getDailyForecast().get(position).night().getWind().getSpeed();
-            mDoubleHistogramView.setData(
-                    weather.getDailyForecast().get(position).day().getWind().getSpeed(),
-                    weather.getDailyForecast().get(position).night().getWind().getSpeed(),
-                    mSpeedUnit.getValueTextWithoutUnit(daytimeWindSpeed == null ? 0 : daytimeWindSpeed),
-                    mSpeedUnit.getValueTextWithoutUnit(nighttimeWindSpeed == null ? 0 : nighttimeWindSpeed),
-                    mHighestWindSpeed
-            );
-            mDoubleHistogramView.setLineColors(
-                    daytimeWindColor,
-                    nighttimeWindColor,
-                    MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
-            );
-            mDoubleHistogramView.setTextColors(
-                    MainThemeColorProvider.getColor(location, R.attr.colorBodyText)
-            );
-            mDoubleHistogramView.setHistogramAlphas(1f, 0.5f);
+            if (daily.getNight().getWind() != null) {
+                talkBackBuilder
+                        .append(", ").append(activity.getString(R.string.nighttime))
+                        .append(" : ").append(daily.getNight().getWind().getWindDescription(activity, mSpeedUnit));
+            }
 
-            RotateDrawable nightIcon = daily.night().getWind().isValidSpeed()
-                    ? new RotateDrawable(ContextCompat.getDrawable(activity, R.drawable.ic_navigation))
-                    : new RotateDrawable(ContextCompat.getDrawable(activity, R.drawable.ic_circle_medium));
-            nightIcon.rotate(daily.night().getWind().getDegree().getDegree() + 180);
-            nightIcon.setColorFilter(new PorterDuffColorFilter(nighttimeWindColor, PorterDuff.Mode.SRC_ATOP));
-            dailyItem.setNightIconDrawable(nightIcon);
+            if (daily.getDay().getWind() != null && daily.getNight().getWind() != null) {
+                int daytimeWindColor = daily.getDay().getWind().getWindColor(activity);
+                int nighttimeWindColor = daily.getNight().getWind().getWindColor(activity);
+                Float daytimeWindSpeed = weather.getDailyForecast().get(position).getDay().getWind().getSpeed();
+                Float nighttimeWindSpeed = weather.getDailyForecast().get(position).getNight().getWind().getSpeed();
+                mDoubleHistogramView.setData(
+                        weather.getDailyForecast().get(position).getDay().getWind().getSpeed(),
+                        weather.getDailyForecast().get(position).getNight().getWind().getSpeed(),
+                        mSpeedUnit.getValueTextWithoutUnit(daytimeWindSpeed == null ? 0 : daytimeWindSpeed),
+                        mSpeedUnit.getValueTextWithoutUnit(nighttimeWindSpeed == null ? 0 : nighttimeWindSpeed),
+                        mHighestWindSpeed
+                );
+                mDoubleHistogramView.setLineColors(
+                        daytimeWindColor,
+                        nighttimeWindColor,
+                        MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+                );
+                mDoubleHistogramView.setTextColors(
+                        MainThemeColorProvider.getColor(location, R.attr.colorBodyText)
+                );
+                mDoubleHistogramView.setHistogramAlphas(1f, 0.5f);
+            }
+
+            if (daily.getNight().getWind() != null) {
+                int nighttimeWindColor = daily.getNight().getWind().getWindColor(activity);
+                RotateDrawable nightIcon = daily.getNight().getWind().isValidSpeed()
+                        ? new RotateDrawable(ContextCompat.getDrawable(activity, R.drawable.ic_navigation))
+                        : new RotateDrawable(ContextCompat.getDrawable(activity, R.drawable.ic_circle_medium));
+                if (daily.getNight().getWind().getDegree() != null && daily.getNight().getWind().getDegree().getDegree() != null) {
+                    nightIcon.rotate(daily.getNight().getWind().getDegree().getDegree() + 180);
+                }
+                nightIcon.setColorFilter(new PorterDuffColorFilter(nighttimeWindColor, PorterDuff.Mode.SRC_ATOP));
+                dailyItem.setNightIconDrawable(nightIcon);
+            }
 
             dailyItem.setContentDescription(talkBackBuilder.toString());
         }
@@ -113,14 +129,14 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter {
         Float daytimeWindSpeed;
         Float nighttimeWindSpeed;
         for (int i = weather.getDailyForecast().size() - 1; i >= 0; i --) {
-            if (weather.getDailyForecast().get(i).day() != null && weather.getDailyForecast().get(i).day().getWind() != null) {
-                daytimeWindSpeed = weather.getDailyForecast().get(i).day().getWind().getSpeed();
+            if (weather.getDailyForecast().get(i).getDay() != null && weather.getDailyForecast().get(i).getDay().getWind() != null) {
+                daytimeWindSpeed = weather.getDailyForecast().get(i).getDay().getWind().getSpeed();
                 if (daytimeWindSpeed != null && daytimeWindSpeed > mHighestWindSpeed){
                     mHighestWindSpeed = daytimeWindSpeed;
                 }
             }
-            if (weather.getDailyForecast().get(i).night() != null && weather.getDailyForecast().get(i).night().getWind() != null) {
-                nighttimeWindSpeed = weather.getDailyForecast().get(i).night().getWind().getSpeed();
+            if (weather.getDailyForecast().get(i).getNight() != null && weather.getDailyForecast().get(i).getNight().getWind() != null) {
+                nighttimeWindSpeed = weather.getDailyForecast().get(i).getNight().getWind().getSpeed();
                 if (nighttimeWindSpeed != null && nighttimeWindSpeed > mHighestWindSpeed) {
                     mHighestWindSpeed = nighttimeWindSpeed;
                 }

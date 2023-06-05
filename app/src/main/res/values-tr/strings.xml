@@ -53,13 +53,6 @@
     <string name="wind_11">Şiddetli Fırtına</string>
     <string name="wind_12">Kasırga/Tayfun</string>
 
-    <string name="aqi_1">Taze hava</string>
-    <string name="aqi_2">Temiz hava</string>
-    <string name="aqi_3">Az kirli</string>
-    <string name="aqi_4">Orta kirli</string>
-    <string name="aqi_5">Çok kirli</string>
-    <string name="aqi_6">Tehlikeli</string>
-
     <string name="daily_overview">günlük</string>
     <string name="hourly_overview">saatlik</string>
     <string name="air_quality">hava kalitesi</string>

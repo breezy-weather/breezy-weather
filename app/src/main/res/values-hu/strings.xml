@@ -89,13 +89,6 @@
     <string name="precipitation_heavy">Zápor</string>
     <string name="precipitation_rainstorm">Felhőszakadás</string>
 
-    <string name="aqi_1">Friss levegő</string>
-    <string name="aqi_2">Tiszta levegő</string>
-    <string name="aqi_3">S-Szennyezés</string>
-    <string name="aqi_4">M-Szennyezés</string>
-    <string name="aqi_5">H-Szennyezés</string>
-    <string name="aqi_6">Veszélyes</string>
-
     <string name="phase_new">Újhold</string>
     <string name="phase_waxing_crescent">Növekvő Holdsarló</string>
     <string name="phase_first">Első Negyed</string>

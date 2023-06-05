@@ -61,7 +61,9 @@ public class WeatherEntity {
     public String uvLevel;
     public String uvDescription;
 
-    public Integer aqiIndex;
+    public Integer epaIndex;
+    public Integer meeIndex;
+    public Integer eeaIndex;
     public Float pm25;
     public Float pm10;
     public Float so2;
@@ -99,7 +101,7 @@ public class WeatherEntity {
                          Float snowPrecipitation, Float icePrecipitation, String windDirection,
                          WindDegree windDegree, Float windSpeed, String windLevel,
                          Integer uvIndex, String uvLevel, String uvDescription,
-                         Integer aqiIndex, Float pm25, Float pm10, Float so2, Float no2,
+                         Integer epaIndex, Float pm25, Float pm10, Float so2, Float no2,
                          Float o3, Float co, Float relativeHumidity, Float pressure,
                          Float visibility, Integer dewPoint, Integer cloudCover, Float ceiling,
                          String dailyForecast, String hourlyForecast) {
@@ -129,7 +131,7 @@ public class WeatherEntity {
         this.uvIndex = uvIndex;
         this.uvLevel = uvLevel;
         this.uvDescription = uvDescription;
-        this.aqiIndex = aqiIndex;
+        this.epaIndex = epaIndex;
         this.pm25 = pm25;
         this.pm10 = pm10;
         this.so2 = so2;
@@ -358,12 +360,12 @@ public class WeatherEntity {
         this.uvDescription = uvDescription;
     }
 
-    public Integer getAqiIndex() {
-        return this.aqiIndex;
+    public Integer getEpaIndex() {
+        return this.epaIndex;
     }
 
-    public void setAqiIndex(Integer aqiIndex) {
-        this.aqiIndex = aqiIndex;
+    public void setEpaIndex(Integer epaIndex) {
+        this.epaIndex = epaIndex;
     }
 
     public Float getPm25() {

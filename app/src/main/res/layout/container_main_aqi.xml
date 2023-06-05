@@ -38,9 +38,9 @@
                 app:arc_angle="270"
                 app:progress_width="14dp"
                 tools:progress="126"
-                tools:progress_color="@color/colorLevel_2"
+                tools:progress_color="@color/colorLevel_3"
                 tools:text="126"
-                tools:bottom_text="@string/aqi_2" />
+                tools:bottom_text="@string/high_pollution" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/container_main_aqi_recyclerView"

@@ -167,11 +167,11 @@ public class CMWeatherProviderService extends WeatherProviderService
                     forecastList.add(
                             new WeatherInfo.DayForecast.Builder(
                                     WeatherConditionConvertHelper.getConditionCode(
-                                            weather.getDailyForecast().get(i).day().getWeatherCode(),
+                                            weather.getDailyForecast().get(i).getDay().getWeatherCode(),
                                             true
                                     ))
-                                    .setHigh(weather.getDailyForecast().get(i).day().getTemperature().getTemperature())
-                                    .setHigh(weather.getDailyForecast().get(i).night().getTemperature().getTemperature())
+                                    .setHigh(weather.getDailyForecast().get(i).getDay().getTemperature().getTemperature())
+                                    .setHigh(weather.getDailyForecast().get(i).getNight().getTemperature().getTemperature())
                                     .build()
                     );
                 }
@@ -185,9 +185,9 @@ public class CMWeatherProviderService extends WeatherProviderService
                                         requestLocation.isDaylight()
                                 )
                 ).setTodaysHigh(
-                        weather.getDailyForecast().get(0).day().getTemperature().getTemperature()
+                        weather.getDailyForecast().get(0).getDay().getTemperature().getTemperature()
                 ).setTodaysLow(
-                        weather.getDailyForecast().get(0).night().getTemperature().getTemperature()
+                        weather.getDailyForecast().get(0).getNight().getTemperature().getTemperature()
                 ).setTimestamp(
                         weather.getBase().getUpdateDate().getTime()
                 );

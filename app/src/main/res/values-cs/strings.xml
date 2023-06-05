@@ -95,13 +95,6 @@
     <string name="precipitation_heavy">Silný déšť</string>
     <string name="precipitation_rainstorm">Bouřka</string>
 
-    <string name="aqi_1">Velmi čistý</string>
-    <string name="aqi_2">Převážně čistý</string>
-    <string name="aqi_3">Jemně znečištěný</string>
-    <string name="aqi_4">Středně znečištěný</string>
-    <string name="aqi_5">Velmi znečištěný</string>
-    <string name="aqi_6">Vážně znečištěný</string>
-
     <string name="phase_new">Nový měsíc</string>
     <string name="phase_waxing_crescent">Dorustající čtvrtina</string>
     <string name="phase_first">Dorůstající polovina</string>

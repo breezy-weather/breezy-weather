@@ -14,14 +14,14 @@ public class Minutely implements Serializable {
     private final long time;
 
     private final String weatherText;
-    private final WeatherCode weatherCode;
+    @Nullable private final WeatherCode weatherCode;
 
     private final int minuteInterval;
     @Nullable private final Integer dbz;
     @Nullable private final Integer cloudCover;
 
     public Minutely(Date date, long time,
-                    String weatherText, WeatherCode weatherCode,
+                    String weatherText, @Nullable WeatherCode weatherCode,
                     int minuteInterval, @Nullable Integer dbz, @Nullable Integer cloudCover) {
         this.date = date;
         this.time = time;
@@ -33,7 +33,7 @@ public class Minutely implements Serializable {
     }
 
     public Minutely(Date date, long time,
-                    String weatherText, WeatherCode weatherCode,
+                    String weatherText, @Nullable WeatherCode weatherCode,
                     int minuteInterval, @Nullable Double precipitationIntensity, @Nullable Integer cloudCover) {
         this.date = date;
         this.time = time;
@@ -56,6 +56,7 @@ public class Minutely implements Serializable {
         return weatherText;
     }
 
+    @Nullable
     public WeatherCode getWeatherCode() {
         return weatherCode;
     }

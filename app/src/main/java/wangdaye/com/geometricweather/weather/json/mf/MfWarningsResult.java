@@ -91,6 +91,8 @@ public class MfWarningsResult {
         public static class WarningTimelapsItem {
             @SerializedName("begin_time")
             public Date beginTime;
+            @SerializedName("end_time")
+            public Date endTime;
             @SerializedName("color_id")
             public int colorId;
         }

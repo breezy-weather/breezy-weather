@@ -42,12 +42,16 @@ fun generate(cityId: String, source: WeatherSource, hourly: Hourly): HourlyEntit
         icePrecipitationProbability = hourly.precipitationProbability?.ice,
 
         windDirection = hourly.wind?.direction,
-        windDegree = hourly.wind?.degree,
+        windDegree = if (hourly.wind?.degree != null
+            && (hourly.wind.degree.degree == null || hourly.wind.degree.degree !in 0F..360F)
+            && !hourly.wind.degree.isNoDirection) null else hourly.wind?.degree,
         windSpeed = hourly.wind?.speed,
         windLevel = hourly.wind?.level,
 
         // aqi.
-        aqiIndex = hourly.airQuality?.aqiIndex,
+        epaIndex = hourly.airQuality?.epaIndex,
+        meeIndex = hourly.airQuality?.meeIndex,
+        eeaIndex = hourly.airQuality?.eeaIndex,
         pm25 = hourly.airQuality?.pM25,
         pm10 = hourly.airQuality?.pM10,
         so2 = hourly.airQuality?.sO2,
@@ -118,7 +122,9 @@ fun generate(entity: HourlyEntity): Hourly {
             entity.windLevel
         ),
         AirQuality(
-            entity.aqiIndex,
+            entity.epaIndex,
+            entity.meeIndex,
+            entity.eeaIndex,
             entity.pm25,
             entity.pm10,
             entity.so2,

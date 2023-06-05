@@ -104,12 +104,9 @@ public class OwmResultConverter {
                     false,
                     false,
                     !TextUtils.isEmpty(result.country)
-                            && (result.country.equals("CN")
-                            || result.country.equals("cn")
-                            || result.country.equals("HK")
-                            || result.country.equals("hk")
-                            || result.country.equals("TW")
-                            || result.country.equals("tw"))
+                            && (result.country.equalsIgnoreCase("cn")
+                            || result.country.equalsIgnoreCase("hk")
+                            || result.country.equalsIgnoreCase("tw"))
             );
         } else {
             return new Location(
@@ -126,12 +123,9 @@ public class OwmResultConverter {
                     false,
                     false,
                     !TextUtils.isEmpty(result.country)
-                            && (result.country.equals("CN")
-                            || result.country.equals("cn")
-                            || result.country.equals("HK")
-                            || result.country.equals("hk")
-                            || result.country.equals("TW")
-                            || result.country.equals("tw"))
+                            && (result.country.equalsIgnoreCase("cn")
+                            || result.country.equalsIgnoreCase("hk")
+                            || result.country.equalsIgnoreCase("tw"))
             );
         }
     }
@@ -176,13 +170,54 @@ public class OwmResultConverter {
                             ),
                             new UV(toInt(oneCallResult.current.uvi), null, null),
                             airPollutionCurrentResult == null ? null : new AirQuality(
-                                    getAqiFromIndex(airPollutionCurrentResult.list.get(0).main.aqi),
+                                    CommonConverterKt.getAirQualityIndex(
+                                            "epa",
+                                            (float) airPollutionCurrentResult.list.get(0).components.pm2_5,
+                                            (float) airPollutionCurrentResult.list.get(0).components.pm10,
+                                            (float) airPollutionCurrentResult.list.get(0).components.so2,
+                                            null,
+                                            (float) airPollutionCurrentResult.list.get(0).components.no2,
+                                            null,
+                                            (float) airPollutionCurrentResult.list.get(0).components.o3,
+                                            null,
+                                            airPollutionCurrentResult.list.get(0).components.co != 0 ? (float) airPollutionCurrentResult.list.get(0).components.co / 1000 : 0,
+                                            null,
+                                            null
+                                    ),
+                                    CommonConverterKt.getAirQualityIndex(
+                                            "mee",
+                                            (float) airPollutionCurrentResult.list.get(0).components.pm2_5,
+                                            (float) airPollutionCurrentResult.list.get(0).components.pm10,
+                                            (float) airPollutionCurrentResult.list.get(0).components.so2,
+                                            null,
+                                            (float) airPollutionCurrentResult.list.get(0).components.no2,
+                                            null,
+                                            (float) airPollutionCurrentResult.list.get(0).components.o3,
+                                            null,
+                                            airPollutionCurrentResult.list.get(0).components.co != 0 ? (float) airPollutionCurrentResult.list.get(0).components.co / 1000 : 0,
+                                            null,
+                                            null
+                                    ),
+                                    CommonConverterKt.getAirQualityIndex(
+                                            "eea",
+                                            (float) airPollutionCurrentResult.list.get(0).components.pm2_5,
+                                            (float) airPollutionCurrentResult.list.get(0).components.pm10,
+                                            (float) airPollutionCurrentResult.list.get(0).components.so2,
+                                            null,
+                                            (float) airPollutionCurrentResult.list.get(0).components.no2,
+                                            null,
+                                            (float) airPollutionCurrentResult.list.get(0).components.o3,
+                                            null,
+                                            null,
+                                            null,
+                                            null
+                                    ),
                                     (float) airPollutionCurrentResult.list.get(0).components.pm2_5,
                                     (float) airPollutionCurrentResult.list.get(0).components.pm10,
                                     (float) airPollutionCurrentResult.list.get(0).components.so2,
                                     (float) airPollutionCurrentResult.list.get(0).components.no2,
                                     (float) airPollutionCurrentResult.list.get(0).components.o3,
-                                    (float) airPollutionCurrentResult.list.get(0).components.co
+                                    airPollutionCurrentResult.list.get(0).components.co != 0 ? (float) airPollutionCurrentResult.list.get(0).components.co / 1000 : 0
                             ),
                             (float) oneCallResult.current.humidity,
                             (float) oneCallResult.current.pressure,
@@ -381,7 +416,7 @@ public class OwmResultConverter {
                                     result.windSpeed * 3.6f,
                                     CommonConverterKt.getWindLevel(context, result.windSpeed * 3.6f)
                             ),
-                            null,
+                            null, // TODO: use forecast API
                             null,
                             new UV(toInt(result.uvi), null, null)
                     )
@@ -390,6 +425,7 @@ public class OwmResultConverter {
         return hourlyList;
     }
 
+    // TODO
     private static List<Minutely> getMinutelyList(long sunrise, long sunset,
                                                   @Nullable List<OwmOneCallResult.Minutely> minuteResult) {
         //if (minuteResult == null) {
@@ -413,19 +449,20 @@ public class OwmResultConverter {
         return minutelyList;*/
     }
 
+    // TODO: Use AQI calculator instead
     private static Integer getAqiFromIndex (Integer aqi) {
         if (aqi == null || aqi <= 0) {
             return null;
-        } if (aqi <= AirQuality.AQI_INDEX_1) {
-            return AirQuality.AQI_INDEX_1;
-        } else if (aqi <= AirQuality.AQI_INDEX_2) {
-            return AirQuality.AQI_INDEX_2;
-        } else if (aqi <= AirQuality.AQI_INDEX_3) {
-            return AirQuality.AQI_INDEX_3;
-        } else if (aqi <= AirQuality.AQI_INDEX_4) {
-            return AirQuality.AQI_INDEX_4;
-        } else if (aqi <= AirQuality.AQI_INDEX_5) {
-            return AirQuality.AQI_INDEX_5;
+        } if (aqi == 1) {
+            return 50;
+        } else if (aqi == 2) {
+            return 100;
+        } else if (aqi == 3) {
+            return 150;
+        } else if (aqi == 4) {
+            return 200;
+        } else if (aqi == 5) {
+            return 300;
         } else {
             return 400;
         }
@@ -437,13 +474,54 @@ public class OwmResultConverter {
                 if (DisplayUtils.getFormattedDate(requestedDate, timeZone, "yyyyMMdd")
                         .equals(DisplayUtils.getFormattedDate(new Date(airPollutionForecast.dt * 1000), timeZone, "yyyyMMdd"))) {
                     return new AirQuality(
-                            getAqiFromIndex(airPollutionForecast.main.aqi),
+                            CommonConverterKt.getAirQualityIndex(
+                                    "epa",
+                                    (float) airPollutionForecast.components.pm2_5,
+                                    (float) airPollutionForecast.components.pm10,
+                                    (float) airPollutionForecast.components.so2,
+                                    null,
+                                    (float) airPollutionForecast.components.no2,
+                                    null,
+                                    (float) airPollutionForecast.components.o3,
+                                    null,
+                                    airPollutionForecast.components.co != 0 ? (float) airPollutionForecast.components.co / 1000 : 0,
+                                    null,
+                                    null
+                            ),
+                            CommonConverterKt.getAirQualityIndex(
+                                    "mee",
+                                    (float) airPollutionForecast.components.pm2_5,
+                                    (float) airPollutionForecast.components.pm10,
+                                    (float) airPollutionForecast.components.so2,
+                                    null,
+                                    (float) airPollutionForecast.components.no2,
+                                    null,
+                                    (float) airPollutionForecast.components.o3,
+                                    null,
+                                    airPollutionForecast.components.co != 0 ? (float) airPollutionForecast.components.co / 1000 : 0,
+                                    null,
+                                    null
+                            ),
+                            CommonConverterKt.getAirQualityIndex(
+                                    "eea",
+                                    (float) airPollutionForecast.components.pm2_5,
+                                    (float) airPollutionForecast.components.pm10,
+                                    (float) airPollutionForecast.components.so2,
+                                    null,
+                                    (float) airPollutionForecast.components.no2,
+                                    null,
+                                    (float) airPollutionForecast.components.o3,
+                                    null,
+                                    null,
+                                    null,
+                                    null
+                            ),
                             (float) airPollutionForecast.components.pm2_5,
                             (float) airPollutionForecast.components.pm10,
                             (float) airPollutionForecast.components.so2,
                             (float) airPollutionForecast.components.no2,
                             (float) airPollutionForecast.components.o3,
-                            (float) airPollutionForecast.components.co
+                            airPollutionForecast.components.co != 0 ? (float) airPollutionForecast.components.co / 1000 : 0
                     );
                 }
             }

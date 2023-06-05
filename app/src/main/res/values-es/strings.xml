@@ -94,13 +94,6 @@
     <string name="precipitation_heavy">Lluvia intensa</string>
     <string name="precipitation_rainstorm">Aguacero</string>
 
-    <string name="aqi_1">Aire fresco</string>
-    <string name="aqi_2">Aire limpio</string>
-    <string name="aqi_3">Polución ligera</string>
-    <string name="aqi_4">Polución moderada</string>
-    <string name="aqi_5">Polución intensa</string>
-    <string name="aqi_6">Polución muy intensa</string>
-
     <string name="phase_new">Luna nueva</string>
     <string name="phase_waxing_crescent">Creciente cóncava</string>
     <string name="phase_first">Cuarto creciente</string>

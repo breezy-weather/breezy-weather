@@ -20,7 +20,6 @@ import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.weather.apis.AccuWeatherApi;
 import wangdaye.com.geometricweather.weather.converters.AccuResultConverter;
 import wangdaye.com.geometricweather.weather.json.accu.AccuAlertResult;
-import wangdaye.com.geometricweather.weather.json.accu.AccuAqiResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuCurrentResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuDailyResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuHourlyResult;
@@ -37,9 +36,6 @@ public class AccuWeatherService extends WeatherService {
     private final CompositeDisposable mCompositeDisposable;
 
     private static class EmptyMinuteResult extends AccuMinuteResult {
-    }
-
-    private static class EmptyAqiResult extends AccuAqiResult {
     }
 
     @Inject
@@ -73,25 +69,16 @@ public class AccuWeatherService extends WeatherService {
         Observable<List<AccuAlertResult>> alert = mApi.getAlert(
                 location.getCityId(), SettingsManager.getInstance(context).getProviderAccuWeatherKey(), languageCode, true);
 
-        Observable<AccuAqiResult> aqi = mApi.getAirQuality(
-                location.getCityId(),
-                SettingsManager.getInstance(context).getProviderAccuAqiKey()
-        ).onErrorResumeNext(error ->
-                Observable.create(emitter -> emitter.onNext(new EmptyAqiResult()))
-        );
-
-        Observable.zip(realtime, daily, hourly, minute, alert, aqi,
+        Observable.zip(realtime, daily, hourly, minute, alert,
                 (accuRealtimeResults,
                  accuDailyResult, accuHourlyResults, accuMinuteResult,
-                 accuAlertResults,
-                 accuAqiResult) -> AccuResultConverter.convert(
+                 accuAlertResults) -> AccuResultConverter.convert(
                          context,
                          location,
                          accuRealtimeResults.get(0),
                          accuDailyResult,
                          accuHourlyResults,
                          accuMinuteResult instanceof EmptyMinuteResult ? null : accuMinuteResult,
-                         accuAqiResult instanceof EmptyAqiResult ? null : accuAqiResult,
                          accuAlertResults
                  )
         ).compose(SchedulerTransformer.create())

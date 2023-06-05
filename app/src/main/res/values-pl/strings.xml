@@ -98,13 +98,6 @@
     <string name="precipitation_heavy">Mocny deszcz</string>
     <string name="precipitation_rainstorm">Ulewa</string>
 
-    <string name="aqi_1">Nieskazitelne powietrze</string>
-    <string name="aqi_2">Czyste powietrze</string>
-    <string name="aqi_3">Lekkie zanieczyszczenie</string>
-    <string name="aqi_4">Umiarkowane zanieczyszczenie</string>
-    <string name="aqi_5">Mocne zanieczyszczenie</string>
-    <string name="aqi_6">Poważne zanieczyszczenie</string>
-
     <string name="phase_new">Nów</string>
     <string name="phase_waxing_crescent">Sierp</string>
     <string name="phase_first">Pierwsza kwadra</string>

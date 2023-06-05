@@ -57,11 +57,11 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter {
 
             Float daytimePrecipitation = null;
             Float nighttimePrecipitation = null;
-            if (daily.day() != null && daily.day().getPrecipitation() != null) {
-                daytimePrecipitation = daily.day().getPrecipitation().getTotal();
+            if (daily.getDay() != null && daily.getDay().getPrecipitation() != null) {
+                daytimePrecipitation = daily.getDay().getPrecipitation().getTotal();
             }
-            if (daily.night() != null && daily.night().getPrecipitation() != null) {
-                nighttimePrecipitation = daily.night().getPrecipitation().getTotal();
+            if (daily.getNight() != null && daily.getNight().getPrecipitation() != null) {
+                nighttimePrecipitation = daily.getNight().getPrecipitation().getTotal();
             }
 
             daytimePrecipitation = daytimePrecipitation != null ? daytimePrecipitation : 0;
@@ -81,21 +81,21 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter {
                         .append(activity.getString(R.string.content_des_no_precipitation));
             }
 
-            if (daily.day() != null && daily.day().getWeatherCode() != null) {
+            if (daily.getDay() != null && daily.getDay().getWeatherCode() != null) {
                 dailyItem.setDayIconDrawable(
-                        ResourceHelper.getWeatherIcon(mResourceProvider, daily.day().getWeatherCode(), true));
+                        ResourceHelper.getWeatherIcon(mResourceProvider, daily.getDay().getWeatherCode(), true));
             }
 
             mDoubleHistogramView.setData(
-                    daily.day() != null && daily.day().getPrecipitation() != null ? daily.day().getPrecipitation().getTotal() : null,
-                    daily.night() != null && daily.night().getPrecipitation() != null ? daily.night().getPrecipitation().getTotal() : null,
+                    daily.getDay() != null && daily.getDay().getPrecipitation() != null ? daily.getDay().getPrecipitation().getTotal() : null,
+                    daily.getNight() != null && daily.getNight().getPrecipitation() != null ? daily.getNight().getPrecipitation().getTotal() : null,
                     mPrecipitationUnit.getValueTextWithoutUnit(daytimePrecipitation),
                     mPrecipitationUnit.getValueTextWithoutUnit(nighttimePrecipitation),
                     mHighestPrecipitation
             );
             mDoubleHistogramView.setLineColors(
-                    daily.day() != null && daily.day().getPrecipitation() != null ? daily.day().getPrecipitation().getPrecipitationColor(activity) : Color.TRANSPARENT,
-                    daily.night() != null && daily.night().getPrecipitation() != null ? daily.night().getPrecipitation().getPrecipitationColor(activity) : Color.TRANSPARENT,
+                    daily.getDay() != null && daily.getDay().getPrecipitation() != null ? daily.getDay().getPrecipitation().getPrecipitationColor(activity) : Color.TRANSPARENT,
+                    daily.getNight() != null && daily.getNight().getPrecipitation() != null ? daily.getNight().getPrecipitation().getPrecipitationColor(activity) : Color.TRANSPARENT,
                     MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
             );
             mDoubleHistogramView.setTextColors(
@@ -103,11 +103,11 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter {
             );
             mDoubleHistogramView.setHistogramAlphas(1f, 0.5f);
 
-            if (daily.night() != null && daily.night().getWeatherCode() != null) {
+            if (daily.getNight() != null && daily.getNight().getWeatherCode() != null) {
                 dailyItem.setNightIconDrawable(
                         ResourceHelper.getWeatherIcon(
                                 mResourceProvider,
-                                daily.night().getWeatherCode(),
+                                daily.getNight().getWeatherCode(),
                                 false
                         )
                 );
@@ -132,14 +132,14 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter {
         Float daytimePrecipitation;
         Float nighttimePrecipitation;
         for (int i = weather.getDailyForecast().size() - 1; i >= 0; i --) {
-            if (weather.getDailyForecast().get(i).day() != null && weather.getDailyForecast().get(i).day().getPrecipitation() != null) {
-                daytimePrecipitation = weather.getDailyForecast().get(i).day().getPrecipitation().getTotal();
+            if (weather.getDailyForecast().get(i).getDay() != null && weather.getDailyForecast().get(i).getDay().getPrecipitation() != null) {
+                daytimePrecipitation = weather.getDailyForecast().get(i).getDay().getPrecipitation().getTotal();
                 if (daytimePrecipitation != null && daytimePrecipitation > mHighestPrecipitation) {
                     mHighestPrecipitation = daytimePrecipitation;
                 }
             }
-            if (weather.getDailyForecast().get(i).night() != null && weather.getDailyForecast().get(i).night().getPrecipitation() != null) {
-                nighttimePrecipitation = weather.getDailyForecast().get(i).night().getPrecipitation().getTotal();
+            if (weather.getDailyForecast().get(i).getNight() != null && weather.getDailyForecast().get(i).getNight().getPrecipitation() != null) {
+                nighttimePrecipitation = weather.getDailyForecast().get(i).getNight().getPrecipitation().getTotal();
                 if (nighttimePrecipitation != null && nighttimePrecipitation > mHighestPrecipitation) {
                     mHighestPrecipitation = nighttimePrecipitation;
                 }

@@ -151,11 +151,11 @@ private fun buildRemoteViews(
     )
     views.setTextViewText(
         R.id.widget_material_you_forecast_daytimeTemperature,
-        weather.dailyForecast[0].day()?.temperature?.getShortTemperature(context, temperatureUnit)
+        weather.dailyForecast.getOrNull(0)?.day?.temperature?.getShortTemperature(context, temperatureUnit)
     )
     views.setTextViewText(
         R.id.widget_material_you_forecast_nighttimeTemperature,
-        weather.dailyForecast[0].night()?.temperature?.getShortTemperature(context, temperatureUnit)
+        weather.dailyForecast.getOrNull(0)?.night?.temperature?.getShortTemperature(context, temperatureUnit)
     )
 
     views.setTextViewText(
@@ -168,334 +168,389 @@ private fun buildRemoteViews(
             R.id.widget_material_you_forecast_aqiOrWind,
              "AQI - " + weather.current.airQuality.getAqiText(context)
         )
-    } else {
+    } else if (weather.current?.wind != null && weather.current.wind.shortWindDescription.isNotEmpty()) {
         views.setTextViewText(
             R.id.widget_material_you_forecast_aqiOrWind,
-            context.getString(R.string.wind) + " - "
-                    + location.weather.current?.wind?.shortWindDescription
+            context.getString(R.string.wind) + " - " + weather.current.wind.shortWindDescription
         )
     }
 
     // hourly.
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_hour_1,
-        weather.hourlyForecast[0].getHour(context, location.timeZone)
-    )
-    views.setImageViewUri(
-        R.id.widget_material_you_forecast_hourlyIcon_1,
-        ResourceHelper.getWidgetNotificationIconUri(
-            provider,
-            weather.hourlyForecast[0].weatherCode,
-            weather.hourlyForecast[0].isDaylight,
-            false,
-            NotificationTextColor.LIGHT
+    weather.hourlyForecast.getOrNull(0)?.let {
+        views.setTextViewText(
+            R.id.widget_material_you_forecast_hour_1,
+            weather.hourlyForecast[0].getHour(context, location.timeZone)
         )
-    )
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_hourlyTemperature_1,
-        weather.hourlyForecast[0].temperature?.getShortTemperature(context, temperatureUnit)
-    )
+        weather.hourlyForecast[0].weatherCode?.let {
+            views.setImageViewUri(
+                R.id.widget_material_you_forecast_hourlyIcon_1,
+                ResourceHelper.getWidgetNotificationIconUri(
+                    provider,
+                    weather.hourlyForecast[0].weatherCode,
+                    weather.hourlyForecast[0].isDaylight,
+                    false,
+                    NotificationTextColor.LIGHT
+                )
+            )
+        }
+        views.setTextViewText(
+            R.id.widget_material_you_forecast_hourlyTemperature_1,
+            weather.hourlyForecast[0].temperature?.getShortTemperature(context, temperatureUnit)
+        )
+    }
 
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_hour_2,
-        weather.hourlyForecast[1].getHour(context, location.timeZone)
-    )
-    views.setImageViewUri(
-        R.id.widget_material_you_forecast_hourlyIcon_2,
-        ResourceHelper.getWidgetNotificationIconUri(
-            provider,
-            weather.hourlyForecast[1].weatherCode,
-            weather.hourlyForecast[1].isDaylight,
-            false,
-            NotificationTextColor.LIGHT
+    weather.hourlyForecast.getOrNull(1)?.let {
+        views.setTextViewText(
+            R.id.widget_material_you_forecast_hour_2,
+            weather.hourlyForecast[1].getHour(context, location.timeZone)
         )
-    )
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_hourlyTemperature_2,
-        weather.hourlyForecast[1].temperature?.getShortTemperature(context, temperatureUnit)
-    )
+        weather.hourlyForecast[1].weatherCode?.let {
+            views.setImageViewUri(
+                R.id.widget_material_you_forecast_hourlyIcon_2,
+                ResourceHelper.getWidgetNotificationIconUri(
+                    provider,
+                    weather.hourlyForecast[1].weatherCode,
+                    weather.hourlyForecast[1].isDaylight,
+                    false,
+                    NotificationTextColor.LIGHT
+                )
+            )
+        }
+        views.setTextViewText(
+            R.id.widget_material_you_forecast_hourlyTemperature_2,
+            weather.hourlyForecast[1].temperature?.getShortTemperature(context, temperatureUnit)
+        )
+    }
 
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_hour_3,
-        weather.hourlyForecast[2].getHour(context, location.timeZone)
-    )
-    views.setImageViewUri(
-        R.id.widget_material_you_forecast_hourlyIcon_3,
-        ResourceHelper.getWidgetNotificationIconUri(
-            provider,
-            weather.hourlyForecast[2].weatherCode,
-            weather.hourlyForecast[2].isDaylight,
-            false,
-            NotificationTextColor.LIGHT
+    weather.hourlyForecast.getOrNull(2)?.let {
+        views.setTextViewText(
+            R.id.widget_material_you_forecast_hour_3,
+            weather.hourlyForecast[2].getHour(context, location.timeZone)
         )
-    )
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_hourlyTemperature_3,
-        weather.hourlyForecast[2].temperature?.getShortTemperature(context, temperatureUnit)
-    )
+        weather.hourlyForecast[2].weatherCode?.let {
+            views.setImageViewUri(
+                R.id.widget_material_you_forecast_hourlyIcon_3,
+                ResourceHelper.getWidgetNotificationIconUri(
+                    provider,
+                    weather.hourlyForecast[2].weatherCode,
+                    weather.hourlyForecast[2].isDaylight,
+                    false,
+                    NotificationTextColor.LIGHT
+                )
+            )
+        }
+        views.setTextViewText(
+            R.id.widget_material_you_forecast_hourlyTemperature_3,
+            weather.hourlyForecast[2].temperature?.getShortTemperature(context, temperatureUnit)
+        )
+    }
 
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_hour_4,
-        weather.hourlyForecast[3].getHour(context, location.timeZone)
-    )
-    views.setImageViewUri(
-        R.id.widget_material_you_forecast_hourlyIcon_4,
-        ResourceHelper.getWidgetNotificationIconUri(
-            provider,
-            weather.hourlyForecast[3].weatherCode,
-            weather.hourlyForecast[3].isDaylight,
-            false,
-            NotificationTextColor.LIGHT
+    weather.hourlyForecast.getOrNull(3)?.let {
+        views.setTextViewText(
+            R.id.widget_material_you_forecast_hour_4,
+            weather.hourlyForecast[3].getHour(context, location.timeZone)
         )
-    )
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_hourlyTemperature_4,
-        weather.hourlyForecast[3].temperature?.getShortTemperature(context, temperatureUnit)
-    )
+        weather.hourlyForecast[3].weatherCode?.let {
+            views.setImageViewUri(
+                R.id.widget_material_you_forecast_hourlyIcon_4,
+                ResourceHelper.getWidgetNotificationIconUri(
+                    provider,
+                    weather.hourlyForecast[3].weatherCode,
+                    weather.hourlyForecast[3].isDaylight,
+                    false,
+                    NotificationTextColor.LIGHT
+                )
+            )
+        }
+        views.setTextViewText(
+            R.id.widget_material_you_forecast_hourlyTemperature_4,
+            weather.hourlyForecast[3].temperature?.getShortTemperature(context, temperatureUnit)
+        )
+    }
 
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_hour_5,
-        weather.hourlyForecast[4].getHour(context, location.timeZone)
-    )
-    views.setImageViewUri(
-        R.id.widget_material_you_forecast_hourlyIcon_5,
-        ResourceHelper.getWidgetNotificationIconUri(
-            provider,
-            weather.hourlyForecast[4].weatherCode,
-            weather.hourlyForecast[4].isDaylight,
-            false,
-            NotificationTextColor.LIGHT
+    weather.hourlyForecast.getOrNull(4)?.let {
+        views.setTextViewText(
+            R.id.widget_material_you_forecast_hour_5,
+            weather.hourlyForecast[4].getHour(context, location.timeZone)
         )
-    )
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_hourlyTemperature_5,
-        weather.hourlyForecast[4].temperature?.getShortTemperature(context, temperatureUnit)
-    )
+        weather.hourlyForecast[4].weatherCode?.let {
+            views.setImageViewUri(
+                R.id.widget_material_you_forecast_hourlyIcon_5,
+                ResourceHelper.getWidgetNotificationIconUri(
+                    provider,
+                    weather.hourlyForecast[4].weatherCode,
+                    weather.hourlyForecast[4].isDaylight,
+                    false,
+                    NotificationTextColor.LIGHT
+                )
+            )
+        }
+        views.setTextViewText(
+            R.id.widget_material_you_forecast_hourlyTemperature_5,
+            weather.hourlyForecast[4].temperature?.getShortTemperature(context, temperatureUnit)
+        )
+    }
 
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_hour_6,
-        weather.hourlyForecast[5].getHour(context, location.timeZone)
-    )
-    views.setImageViewUri(
-        R.id.widget_material_you_forecast_hourlyIcon_6,
-        ResourceHelper.getWidgetNotificationIconUri(
-            provider,
-            weather.hourlyForecast[5].weatherCode,
-            weather.hourlyForecast[5].isDaylight,
-            false,
-            NotificationTextColor.LIGHT
+    weather.hourlyForecast.getOrNull(5)?.let {
+        views.setTextViewText(
+            R.id.widget_material_you_forecast_hour_6,
+            weather.hourlyForecast[5].getHour(context, location.timeZone)
         )
-    )
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_hourlyTemperature_6,
-        weather.hourlyForecast[5].temperature?.getShortTemperature(context, temperatureUnit)
-    )
+        weather.hourlyForecast[5].weatherCode?.let {
+            views.setImageViewUri(
+                R.id.widget_material_you_forecast_hourlyIcon_6,
+                ResourceHelper.getWidgetNotificationIconUri(
+                    provider,
+                    weather.hourlyForecast[5].weatherCode,
+                    weather.hourlyForecast[5].isDaylight,
+                    false,
+                    NotificationTextColor.LIGHT
+                )
+            )
+        }
+        views.setTextViewText(
+            R.id.widget_material_you_forecast_hourlyTemperature_6,
+            weather.hourlyForecast[5].temperature?.getShortTemperature(context, temperatureUnit)
+        )
+    }
 
     // daily.
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_week_1,
-        if (weather.dailyForecast[0].isToday(location.timeZone)) {
-            context.getString(R.string.today)
-        } else {
-            weather.dailyForecast[0].getWeek(context, location.timeZone)
+    weather.dailyForecast.getOrNull(0)?.let {
+        views.setTextViewText(
+            R.id.widget_material_you_forecast_week_1,
+            if (weather.dailyForecast[0].isToday(location.timeZone)) {
+                context.getString(R.string.today)
+            } else {
+                weather.dailyForecast[0].getWeek(context, location.timeZone)
+            }
+        )
+        weather.dailyForecast[0].day?.weatherCode?.let {
+            views.setImageViewUri(
+                R.id.widget_material_you_forecast_dayIcon_1,
+                ResourceHelper.getWidgetNotificationIconUri(
+                    provider,
+                    weather.dailyForecast[0].day?.weatherCode,
+                    true,
+                    false,
+                    NotificationTextColor.LIGHT
+                )
+            )
         }
-    )
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_week_2,
-        if (weather.dailyForecast[1].isToday(location.timeZone)) {
-            context.getString(R.string.today)
-        } else {
-            weather.dailyForecast[1].getWeek(context, location.timeZone)
+        views.setTextViewText(
+            R.id.widget_material_you_forecast_dayTemperature_1,
+            weather.dailyForecast[0].day?.temperature?.getShortTemperature(context, temperatureUnit)
+        )
+        views.setTextViewText(
+            R.id.widget_material_you_forecast_nightTemperature_1,
+            weather.dailyForecast[0].night?.temperature?.getShortTemperature(context, temperatureUnit)
+        )
+        weather.dailyForecast[0].night?.weatherCode?.let {
+            views.setImageViewUri(
+                R.id.widget_material_you_forecast_nightIcon_1,
+                ResourceHelper.getWidgetNotificationIconUri(
+                    provider,
+                    weather.dailyForecast[0].night?.weatherCode,
+                    false,
+                    false,
+                    NotificationTextColor.LIGHT
+                )
+            )
         }
-    )
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_week_3,
-        weather.dailyForecast[2].getWeek(context, location.timeZone)
-    )
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_week_4,
-        weather.dailyForecast[3].getWeek(context, location.timeZone)
-    )
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_week_5,
-        weather.dailyForecast[4].getWeek(context, location.timeZone)
-    )
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_week_6,
-        weather.dailyForecast[5].getWeek(context, location.timeZone)
-    )
-
-    views.setImageViewUri(
-        R.id.widget_material_you_forecast_dayIcon_1,
-        ResourceHelper.getWidgetNotificationIconUri(
-            provider,
-            weather.dailyForecast[0].day()?.weatherCode,
-            true,
-            false,
-            NotificationTextColor.LIGHT
+    }
+    weather.dailyForecast.getOrNull(1)?.let {
+        views.setTextViewText(
+            R.id.widget_material_you_forecast_week_2,
+            if (weather.dailyForecast[1].isToday(location.timeZone)) {
+                context.getString(R.string.today)
+            } else {
+                weather.dailyForecast[1].getWeek(context, location.timeZone)
+            }
         )
-    )
-    views.setImageViewUri(
-        R.id.widget_material_you_forecast_dayIcon_2,
-        ResourceHelper.getWidgetNotificationIconUri(
-            provider,
-            weather.dailyForecast[1].day()?.weatherCode,
-            true,
-            false,
-            NotificationTextColor.LIGHT
+        weather.dailyForecast[1].day?.weatherCode?.let {
+            views.setImageViewUri(
+                R.id.widget_material_you_forecast_dayIcon_2,
+                ResourceHelper.getWidgetNotificationIconUri(
+                    provider,
+                    weather.dailyForecast[1].day?.weatherCode,
+                    true,
+                    false,
+                    NotificationTextColor.LIGHT
+                )
+            )
+        }
+        views.setTextViewText(
+            R.id.widget_material_you_forecast_dayTemperature_2,
+            weather.dailyForecast[1].day?.temperature?.getShortTemperature(context, temperatureUnit)
         )
-    )
-    views.setImageViewUri(
-        R.id.widget_material_you_forecast_dayIcon_3,
-        ResourceHelper.getWidgetNotificationIconUri(
-            provider,
-            weather.dailyForecast[2].day()?.weatherCode,
-            true,
-            false,
-            NotificationTextColor.LIGHT
+        views.setTextViewText(
+            R.id.widget_material_you_forecast_nightTemperature_2,
+            weather.dailyForecast[1].night?.temperature?.getShortTemperature(context, temperatureUnit)
         )
-    )
-    views.setImageViewUri(
-        R.id.widget_material_you_forecast_dayIcon_4,
-        ResourceHelper.getWidgetNotificationIconUri(
-            provider,
-            weather.dailyForecast[3].day()?.weatherCode,
-            true,
-            false,
-            NotificationTextColor.LIGHT
+        weather.dailyForecast[1].night?.weatherCode?.let {
+            views.setImageViewUri(
+                R.id.widget_material_you_forecast_nightIcon_2,
+                ResourceHelper.getWidgetNotificationIconUri(
+                    provider,
+                    weather.dailyForecast[1].night?.weatherCode,
+                    false,
+                    false,
+                    NotificationTextColor.LIGHT
+                )
+            )
+        }
+    }
+    weather.dailyForecast.getOrNull(2)?.let {
+        views.setTextViewText(
+            R.id.widget_material_you_forecast_week_3,
+            weather.dailyForecast[2].getWeek(context, location.timeZone)
         )
-    )
-    views.setImageViewUri(
-        R.id.widget_material_you_forecast_dayIcon_5,
-        ResourceHelper.getWidgetNotificationIconUri(
-            provider,
-            weather.dailyForecast[4].day()?.weatherCode,
-            true,
-            false,
-            NotificationTextColor.LIGHT
+        weather.dailyForecast[2].day?.weatherCode?.let {
+            views.setImageViewUri(
+                R.id.widget_material_you_forecast_dayIcon_3,
+                ResourceHelper.getWidgetNotificationIconUri(
+                    provider,
+                    weather.dailyForecast[2].day?.weatherCode,
+                    true,
+                    false,
+                    NotificationTextColor.LIGHT
+                )
+            )
+        }
+        views.setTextViewText(
+            R.id.widget_material_you_forecast_dayTemperature_3,
+            weather.dailyForecast[2].day?.temperature?.getShortTemperature(context, temperatureUnit)
         )
-    )
-    views.setImageViewUri(
-        R.id.widget_material_you_forecast_dayIcon_6,
-        ResourceHelper.getWidgetNotificationIconUri(
-            provider,
-            weather.dailyForecast[5].day()?.weatherCode,
-            true,
-            false,
-            NotificationTextColor.LIGHT
+        views.setTextViewText(
+            R.id.widget_material_you_forecast_nightTemperature_3,
+            weather.dailyForecast[2].night?.temperature?.getShortTemperature(context, temperatureUnit)
         )
-    )
-
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_dayTemperature_1,
-        weather.dailyForecast[0].day()?.temperature?.getShortTemperature(context, temperatureUnit)
-    )
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_dayTemperature_2,
-        weather.dailyForecast[1].day()?.temperature?.getShortTemperature(context, temperatureUnit)
-    )
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_dayTemperature_3,
-        weather.dailyForecast[2].day()?.temperature?.getShortTemperature(context, temperatureUnit)
-    )
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_dayTemperature_4,
-        weather.dailyForecast[3].day()?.temperature?.getShortTemperature(context, temperatureUnit)
-    )
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_dayTemperature_5,
-        weather.dailyForecast[4].day()?.temperature?.getShortTemperature(context, temperatureUnit)
-    )
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_dayTemperature_6,
-        weather.dailyForecast[5].day()?.temperature?.getShortTemperature(context, temperatureUnit)
-    )
-
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_nightTemperature_1,
-        weather.dailyForecast[0].night()?.temperature?.getShortTemperature(context, temperatureUnit)
-    )
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_nightTemperature_2,
-        weather.dailyForecast[1].night()?.temperature?.getShortTemperature(context, temperatureUnit)
-    )
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_nightTemperature_3,
-        weather.dailyForecast[2].night()?.temperature?.getShortTemperature(context, temperatureUnit)
-    )
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_nightTemperature_4,
-        weather.dailyForecast[3].night()?.temperature?.getShortTemperature(context, temperatureUnit)
-    )
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_nightTemperature_5,
-        weather.dailyForecast[4].night()?.temperature?.getShortTemperature(context, temperatureUnit)
-    )
-    views.setTextViewText(
-        R.id.widget_material_you_forecast_nightTemperature_6,
-        weather.dailyForecast[5].night()?.temperature?.getShortTemperature(context, temperatureUnit)
-    )
-
-    views.setImageViewUri(
-        R.id.widget_material_you_forecast_nightIcon_1,
-        ResourceHelper.getWidgetNotificationIconUri(
-            provider,
-            weather.dailyForecast[0].night()?.weatherCode,
-            false,
-            false,
-            NotificationTextColor.LIGHT
+        weather.dailyForecast[2].night?.weatherCode?.let {
+            views.setImageViewUri(
+                R.id.widget_material_you_forecast_nightIcon_3,
+                ResourceHelper.getWidgetNotificationIconUri(
+                    provider,
+                    weather.dailyForecast[2].night?.weatherCode,
+                    false,
+                    false,
+                    NotificationTextColor.LIGHT
+                )
+            )
+        }
+    }
+    weather.dailyForecast.getOrNull(3)?.let {
+        views.setTextViewText(
+            R.id.widget_material_you_forecast_week_4,
+            weather.dailyForecast[3].getWeek(context, location.timeZone)
         )
-    )
-    views.setImageViewUri(
-        R.id.widget_material_you_forecast_nightIcon_2,
-        ResourceHelper.getWidgetNotificationIconUri(
-            provider,
-            weather.dailyForecast[1].night()?.weatherCode,
-            false,
-            false,
-            NotificationTextColor.LIGHT
+        weather.dailyForecast[3].day?.weatherCode?.let {
+            views.setImageViewUri(
+                R.id.widget_material_you_forecast_dayIcon_4,
+                ResourceHelper.getWidgetNotificationIconUri(
+                    provider,
+                    weather.dailyForecast[3].day?.weatherCode,
+                    true,
+                    false,
+                    NotificationTextColor.LIGHT
+                )
+            )
+        }
+        views.setTextViewText(
+            R.id.widget_material_you_forecast_dayTemperature_4,
+            weather.dailyForecast[3].day?.temperature?.getShortTemperature(context, temperatureUnit)
         )
-    )
-    views.setImageViewUri(
-        R.id.widget_material_you_forecast_nightIcon_3,
-        ResourceHelper.getWidgetNotificationIconUri(
-            provider,
-            weather.dailyForecast[2].night()?.weatherCode,
-            false,
-            false,
-            NotificationTextColor.LIGHT
+        views.setTextViewText(
+            R.id.widget_material_you_forecast_nightTemperature_4,
+            weather.dailyForecast[3].night?.temperature?.getShortTemperature(context, temperatureUnit)
         )
-    )
-    views.setImageViewUri(
-        R.id.widget_material_you_forecast_nightIcon_4,
-        ResourceHelper.getWidgetNotificationIconUri(
-            provider,
-            weather.dailyForecast[3].night()?.weatherCode,
-            false,
-            false,
-            NotificationTextColor.LIGHT
+        weather.dailyForecast[3].night?.weatherCode?.let {
+            views.setImageViewUri(
+                R.id.widget_material_you_forecast_nightIcon_4,
+                ResourceHelper.getWidgetNotificationIconUri(
+                    provider,
+                    weather.dailyForecast[3].night?.weatherCode,
+                    false,
+                    false,
+                    NotificationTextColor.LIGHT
+                )
+            )
+        }
+    }
+    weather.dailyForecast.getOrNull(4)?.let {
+        views.setTextViewText(
+            R.id.widget_material_you_forecast_week_5,
+            weather.dailyForecast[4].getWeek(context, location.timeZone)
         )
-    )
-    views.setImageViewUri(
-        R.id.widget_material_you_forecast_nightIcon_5,
-        ResourceHelper.getWidgetNotificationIconUri(
-            provider,
-            weather.dailyForecast[4].night()?.weatherCode,
-            false,
-            false,
-            NotificationTextColor.LIGHT
+        weather.dailyForecast[4].day?.weatherCode?.let {
+            views.setImageViewUri(
+                R.id.widget_material_you_forecast_dayIcon_5,
+                ResourceHelper.getWidgetNotificationIconUri(
+                    provider,
+                    weather.dailyForecast[4].day?.weatherCode,
+                    true,
+                    false,
+                    NotificationTextColor.LIGHT
+                )
+            )
+        }
+        views.setTextViewText(
+            R.id.widget_material_you_forecast_dayTemperature_5,
+            weather.dailyForecast[4].day?.temperature?.getShortTemperature(context, temperatureUnit)
         )
-    )
-    views.setImageViewUri(
-        R.id.widget_material_you_forecast_nightIcon_6,
-        ResourceHelper.getWidgetNotificationIconUri(
-            provider,
-            weather.dailyForecast[5].night()?.weatherCode,
-            false,
-            false,
-            NotificationTextColor.LIGHT
+        views.setTextViewText(
+            R.id.widget_material_you_forecast_nightTemperature_5,
+            weather.dailyForecast[4].night?.temperature?.getShortTemperature(context, temperatureUnit)
         )
-    )
+        weather.dailyForecast[4].night?.weatherCode?.let {
+            views.setImageViewUri(
+                R.id.widget_material_you_forecast_nightIcon_5,
+                ResourceHelper.getWidgetNotificationIconUri(
+                    provider,
+                    weather.dailyForecast[4].night?.weatherCode,
+                    false,
+                    false,
+                    NotificationTextColor.LIGHT
+                )
+            )
+        }
+    }
+    weather.dailyForecast.getOrNull(5)?.let {
+        views.setTextViewText(
+            R.id.widget_material_you_forecast_week_6,
+            weather.dailyForecast[5].getWeek(context, location.timeZone)
+        )
+        weather.dailyForecast[5].day?.weatherCode?.let {
+            views.setImageViewUri(
+                R.id.widget_material_you_forecast_dayIcon_6,
+                ResourceHelper.getWidgetNotificationIconUri(
+                    provider,
+                    weather.dailyForecast[5].day?.weatherCode,
+                    true,
+                    false,
+                    NotificationTextColor.LIGHT
+                )
+            )
+        }
+        views.setTextViewText(
+            R.id.widget_material_you_forecast_dayTemperature_6,
+            weather.dailyForecast[5].day?.temperature?.getShortTemperature(context, temperatureUnit)
+        )
+        views.setTextViewText(
+            R.id.widget_material_you_forecast_nightTemperature_6,
+            weather.dailyForecast[5].night?.temperature?.getShortTemperature(context, temperatureUnit)
+        )
+        weather.dailyForecast[5].night?.weatherCode?.let {
+            views.setImageViewUri(
+                R.id.widget_material_you_forecast_nightIcon_6,
+                ResourceHelper.getWidgetNotificationIconUri(
+                    provider,
+                    weather.dailyForecast[5].night?.weatherCode,
+                    false,
+                    false,
+                    NotificationTextColor.LIGHT
+                )
+            )
+        }
+    }
 
     // pending intent.
     views.setOnClickPendingIntent(

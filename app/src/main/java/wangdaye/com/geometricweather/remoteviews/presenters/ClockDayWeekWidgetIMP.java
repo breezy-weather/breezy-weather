@@ -286,16 +286,16 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
     }
 
     private static String getTemp(Context context, Weather weather, int index, TemperatureUnit unit) {
-        if (weather.getDailyForecast().get(index).day() != null
-                && weather.getDailyForecast().get(index).night() != null
-                && weather.getDailyForecast().get(index).day().getTemperature() != null
-                && weather.getDailyForecast().get(index).night().getTemperature() != null
-                && weather.getDailyForecast().get(index).day().getTemperature().getTemperature() != null
-                && weather.getDailyForecast().get(index).night().getTemperature().getTemperature() != null) {
+        if (weather.getDailyForecast().get(index).getDay() != null
+                && weather.getDailyForecast().get(index).getNight() != null
+                && weather.getDailyForecast().get(index).getDay().getTemperature() != null
+                && weather.getDailyForecast().get(index).getNight().getTemperature() != null
+                && weather.getDailyForecast().get(index).getDay().getTemperature().getTemperature() != null
+                && weather.getDailyForecast().get(index).getNight().getTemperature().getTemperature() != null) {
             return Temperature.getTrendTemperature(
                     context,
-                    weather.getDailyForecast().get(index).night().getTemperature().getTemperature(),
-                    weather.getDailyForecast().get(index).day().getTemperature().getTemperature(),
+                    weather.getDailyForecast().get(index).getNight().getTemperature().getTemperature(),
+                    weather.getDailyForecast().get(index).getDay().getTemperature().getTemperature(),
                     unit
             );
         } else {
@@ -309,8 +309,8 @@ public class ClockDayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
         return ResourceHelper.getWidgetNotificationIconUri(
                 helper,
                 dayTime
-                        ? weather.getDailyForecast().get(index).day().getWeatherCode()
-                        : weather.getDailyForecast().get(index).night().getWeatherCode(),
+                        ? weather.getDailyForecast().get(index).getDay().getWeatherCode()
+                        : weather.getDailyForecast().get(index).getNight().getWeatherCode(),
                 dayTime,
                 minimalIcon,
                 color

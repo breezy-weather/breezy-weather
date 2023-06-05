@@ -17,34 +17,25 @@ enum class WeatherSource(
     METNO("metno", -0xdba791, "met.no / nominatim.org"),
     OWM("owm", -0x1491b5, "openweathermap.org"),
     MF("mf", -0xffa76e, "meteofrance.com"),
-    CAIYUN("caiyun", -0xa14472, " caiyunapp.com");
+    CAIYUN("caiyun", -0xa14472, "caiyunapp.com");
 
     companion object {
 
         @JvmStatic
         fun getInstance(
-            value: String
+            value: String?
         ): WeatherSource {
-            if (value.equals("openmeteo", ignoreCase = true)) {
-                return OPEN_METEO
+            return with (value) {
+                when {
+                    equals("openmeteo", ignoreCase = true) -> OPEN_METEO
+                    equals("accu", ignoreCase = true) -> ACCU
+                    equals("metno", ignoreCase = true) -> METNO
+                    equals("owm", ignoreCase = true) -> OWM
+                    equals("mf", ignoreCase = true) -> MF
+                    equals("caiyun", ignoreCase = true) || equals("cn", ignoreCase = true) -> CAIYUN
+                    else -> ACCU
+                }
             }
-            if (value.equals("accu", ignoreCase = true)) {
-                return ACCU
-            }
-            if (value.equals("metno", ignoreCase = true)) {
-                return METNO
-            }
-            if (value.equals("owm", ignoreCase = true)) {
-                return OWM
-            }
-            if (value.equals("mf", ignoreCase = true)) {
-                return MF
-            }
-            if (value.equals("caiyun", ignoreCase = true)
-                || value.equals("cn", ignoreCase = true)) {
-                return CAIYUN
-            }
-            return ACCU
         }
     }
 

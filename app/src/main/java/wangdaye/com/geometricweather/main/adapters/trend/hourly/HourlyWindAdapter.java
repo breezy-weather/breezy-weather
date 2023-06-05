@@ -28,7 +28,7 @@ import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider;
 
 /**
  * Hourly wind adapter.
- * */
+ **/
 public class HourlyWindAdapter extends AbsHourlyTrendAdapter {
 
     private final SpeedUnit mSpeedUnit;
@@ -55,33 +55,37 @@ public class HourlyWindAdapter extends AbsHourlyTrendAdapter {
             assert weather != null;
             Hourly hourly = weather.getHourlyForecast().get(position);
 
-            talkBackBuilder
-                    .append(", ").append(activity.getString(R.string.tag_wind))
-                    .append(" : ").append(hourly.getWind().getWindDescription(activity, mSpeedUnit));
+            if (hourly.getWind() != null) {
+                talkBackBuilder
+                        .append(", ").append(activity.getString(R.string.tag_wind))
+                        .append(" : ").append(hourly.getWind().getWindDescription(activity, mSpeedUnit));
 
-            int daytimeWindColor = hourly.getWind().getWindColor(activity);
+                int daytimeWindColor = hourly.getWind().getWindColor(activity);
 
-            RotateDrawable dayIcon = hourly.getWind().isValidSpeed()
-                    ? new RotateDrawable(ContextCompat.getDrawable(activity, R.drawable.ic_navigation))
-                    : new RotateDrawable(ContextCompat.getDrawable(activity, R.drawable.ic_circle_medium));
-            dayIcon.rotate(hourly.getWind().getDegree().getDegree() + 180);
-            dayIcon.setColorFilter(new PorterDuffColorFilter(daytimeWindColor, PorterDuff.Mode.SRC_ATOP));
-            hourlyItem.setIconDrawable(dayIcon);
+                RotateDrawable dayIcon = hourly.getWind().isValidSpeed()
+                        ? new RotateDrawable(ContextCompat.getDrawable(activity, R.drawable.ic_navigation))
+                        : new RotateDrawable(ContextCompat.getDrawable(activity, R.drawable.ic_circle_medium));
+                if (hourly.getWind().getDegree() != null) {
+                    dayIcon.rotate(hourly.getWind().getDegree().getDegree() + 180);
+                }
+                dayIcon.setColorFilter(new PorterDuffColorFilter(daytimeWindColor, PorterDuff.Mode.SRC_ATOP));
+                hourlyItem.setIconDrawable(dayIcon);
+                Float daytimeWindSpeed = weather.getHourlyForecast().get(position).getWind().getSpeed();
+                mPolylineAndHistogramView.setData(
+                        null, null,
+                        null, null,
+                        null, null,
+                        weather.getHourlyForecast().get(position).getWind().getSpeed(),
+                        mSpeedUnit.getValueTextWithoutUnit(daytimeWindSpeed == null ? 0 : daytimeWindSpeed),
+                        mHighestWindSpeed, 0f
+                );
+                mPolylineAndHistogramView.setLineColors(
+                        daytimeWindColor,
+                        daytimeWindColor,
+                        MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+                );
+            }
 
-            Float daytimeWindSpeed = weather.getHourlyForecast().get(position).getWind().getSpeed();
-            mPolylineAndHistogramView.setData(
-                    null, null,
-                    null, null,
-                    null, null,
-                    weather.getHourlyForecast().get(position).getWind().getSpeed(),
-                    mSpeedUnit.getValueTextWithoutUnit(daytimeWindSpeed == null ? 0 : daytimeWindSpeed),
-                    mHighestWindSpeed, 0f
-            );
-            mPolylineAndHistogramView.setLineColors(
-                    daytimeWindColor,
-                    daytimeWindColor,
-                    MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
-            );
             mPolylineAndHistogramView.setTextColors(
                     MainThemeColorProvider.getColor(location, R.attr.colorTitleText),
                     MainThemeColorProvider.getColor(location, R.attr.colorBodyText),

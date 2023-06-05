@@ -93,13 +93,6 @@
     <string name="precipitation_heavy">Ploi intense</string>
     <string name="precipitation_rainstorm">Ploi violente (Furtună)</string>
 
-    <string name="aqi_1">Aer proaspăt</string>
-    <string name="aqi_2">Aer curat</string>
-    <string name="aqi_3">Poluare slabă</string>
-    <string name="aqi_4">Poluare moderată</string>
-    <string name="aqi_5">Poluare puternică</string>
-    <string name="aqi_6">Poluare severă</string>
-
     <string name="phase_new">Lună nouă</string>
     <string name="phase_waxing_crescent">Semilună în creștere</string>
     <string name="phase_first">Primul pătrar</string>

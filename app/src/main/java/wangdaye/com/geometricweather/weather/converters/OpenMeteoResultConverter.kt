@@ -1,7 +1,6 @@
 package wangdaye.com.geometricweather.weather.converters
 
 import android.content.Context
-import android.text.TextUtils
 import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.models.Location
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource
@@ -33,9 +32,9 @@ fun convert(
     result: OpenMeteoLocationResults.Result,
     weatherSource: WeatherSource
 ): Location {
-    return if (location != null && !TextUtils.isEmpty(location.province)
-        && !TextUtils.isEmpty(location.city)
-        && !TextUtils.isEmpty(location.district)
+    return if (location != null && !location.province.isNullOrEmpty()
+        && location.city.isNotEmpty()
+        && !location.district.isNullOrEmpty()
     ) {
         Location(
             cityId = result.id.toString(),
@@ -46,7 +45,7 @@ fun convert(
             province = location.province,
             city = location.city,
             weatherSource = weatherSource,
-            isChina = !TextUtils.isEmpty(result.countryCode)
+            isChina = !result.countryCode.isNullOrEmpty()
                     && (result.countryCode.equals("cn", ignoreCase = true)
                     || result.countryCode.equals("hk", ignoreCase = true)
                     || result.countryCode.equals("tw", ignoreCase = true))
@@ -82,7 +81,6 @@ fun convert(
     airQualityResult: OpenMeteoAirQualityResult*/
 ): WeatherResultWrapper {
     return try {
-        val initialDailyList = getInitialDailyList(context, weatherResult.daily)
         val hourlyByDate: MutableMap<String?, Map<String, MutableList<Hourly>>> = HashMap()
         val hourlyList: MutableList<Hourly> = ArrayList()
         var currentI: Int? = null
@@ -111,11 +109,8 @@ fun convert(
                     speed = weatherResult.hourly.windSpeed.getOrNull(i),
                     level = getWindLevel(context, weatherResult.hourly.windSpeed.getOrNull(i))
                 ),
-                /**
-                 * TODO: Complete with air quality API:
-                 *     val airQuality: AirQuality? = null,
-                 *     val pollen: Pollen? = null,
-                 */
+                // airQuality = TODO
+                // pollen = TODO
                 uV = UV(
                     index = weatherResult.hourly.uvIndex.getOrNull(i)?.roundToInt(),
                     level = getUVLevel(context, weatherResult.hourly.uvIndex.getOrNull(i)?.roundToInt())
@@ -151,7 +146,7 @@ fun convert(
             }
         }
 
-        val dailyList = completeDailyListWithHourlyList(initialDailyList, hourlyByDate, location.timeZone)
+        val dailyList = getInitialDailyList(context, location.timeZone, weatherResult.daily, hourlyByDate)
         val weather = Weather(
             base = Base(cityId = location.cityId),
             current = Current(
@@ -172,10 +167,10 @@ fun convert(
                     index = if (currentI != null) weatherResult.hourly.uvIndex.getOrNull(currentI)?.roundToInt() else null,
                     level = if (currentI != null) getUVLevel(context, weatherResult.hourly.uvIndex.getOrNull(currentI)?.roundToInt()) else null
                 ),
-                // TODO airQuality
+                // airQuality = TODO
                 relativeHumidity = if (currentI != null) weatherResult.hourly.relativeHumidity.getOrNull(currentI)?.toFloat() else null,
                 pressure = if (currentI != null) weatherResult.hourly.surfacePressure.getOrNull(currentI) else null,
-                visibility = if (currentI != null) weatherResult.hourly.visibility.getOrNull(currentI)?.toFloat() else null,
+                visibility = if (currentI != null) weatherResult.hourly.visibility.getOrNull(currentI)?.toFloat()?.div(1000) else null,
                 dewPoint = if (currentI != null) weatherResult.hourly.dewPoint.getOrNull(currentI)?.roundToInt() else null,
                 cloudCover = if (currentI != null) weatherResult.hourly.cloudCover.getOrNull(currentI) else null
             ),
@@ -195,34 +190,45 @@ fun convert(
 
 private fun getInitialDailyList(
     context: Context,
-    dailyResult: OpenMeteoWeatherResult.Daily
+    timeZone: TimeZone,
+    dailyResult: OpenMeteoWeatherResult.Daily,
+    hourlyByDate: Map<String?, Map<String, MutableList<Hourly>>>
 ): List<Daily> {
     val initialDailyList: MutableList<Daily> = ArrayList(dailyResult.time.size - 1)
     for (i in 1 until dailyResult.time.size) {
+        val theDay = Date(dailyResult.time[i] * 1000);
+        val dailyDateFormatted = DisplayUtils.getFormattedDate(theDay, timeZone, "yyyyMMdd")
         val daily = Daily(
-            date = Date(dailyResult.time[i] * 1000),
-            day = HalfDay(
-                temperature = Temperature(
-                    temperature = dailyResult.temperatureMax.getOrNull(i)?.roundToInt(),
-                    apparentTemperature = dailyResult.apparentTemperatureMax.getOrNull(i)?.roundToInt()
+            date = theDay,
+            day = completeHalfDayFromHourlyList(
+                dailyDate = theDay,
+                initialHalfDay = HalfDay(
+                    temperature = Temperature(
+                        temperature = dailyResult.temperatureMax.getOrNull(i)?.roundToInt(),
+                        apparentTemperature = dailyResult.apparentTemperatureMax.getOrNull(i)?.roundToInt()
+                    ),
                 ),
+                halfDayHourlyList = hourlyByDate.getOrDefault(dailyDateFormatted, null)?.get("day"),
+                isDay = true
             ),
-            night = HalfDay(
-                temperature = Temperature(
-                    // For night temperature, we take the minTemperature from the following day
-                    temperature = dailyResult.temperatureMin.getOrNull(i + 1)?.roundToInt(),
-                    apparentTemperature = dailyResult.apparentTemperatureMin.getOrNull(i + 1)?.roundToInt()
+            night = completeHalfDayFromHourlyList(
+                dailyDate = theDay,
+                initialHalfDay = HalfDay(
+                    temperature = Temperature(
+                        // For night temperature, we take the minTemperature from the following day
+                        temperature = dailyResult.temperatureMin.getOrNull(i + 1)?.roundToInt(),
+                        apparentTemperature = dailyResult.apparentTemperatureMin.getOrNull(i + 1)?.roundToInt()
+                    ),
                 ),
+                halfDayHourlyList = hourlyByDate.getOrDefault(dailyDateFormatted, null)?.get("night"),
+                isDay = false
             ),
             sun = Astro(
                 riseDate = if (dailyResult.sunrise.getOrNull(i) != null) Date(dailyResult.sunrise[i] * 1000) else null,
                 setDate = if (dailyResult.sunset.getOrNull(i) != null) Date(dailyResult.sunset[i] * 1000) else null
             ),
-            /**
-             * TODO: Complete with hourly data + air quality API:
-             *     val airQuality: AirQuality? = null,
-             *     val pollen: Pollen? = null,
-             */
+            // airQuality = TODO
+            // pollen = TODO
             uV = UV(
                 index = dailyResult.uvIndexMax.getOrNull(i)?.roundToInt(),
                 level = getUVLevel(context, dailyResult.uvIndexMax.getOrNull(i)?.roundToInt())
@@ -301,9 +307,9 @@ fun debugConvert(
     result: OpenMeteoLocationResults.Result,
     weatherSource: WeatherSource
 ): Location {
-    return if (location != null && !TextUtils.isEmpty(location.province)
-        && !TextUtils.isEmpty(location.city)
-        && !TextUtils.isEmpty(location.district)
+    return if (location != null && !location.province.isNullOrEmpty()
+        && location.city.isNotEmpty()
+        && !location.district.isNullOrEmpty()
     ) {
         Location(
             cityId = result.id.toString(),
@@ -313,7 +319,7 @@ fun debugConvert(
             country = if (!result.country.isNullOrEmpty()) result.country else result.countryCode,
             city = location.city,
             weatherSource = weatherSource,
-            isChina = !TextUtils.isEmpty(result.countryCode)
+            isChina = !result.countryCode.isNullOrEmpty()
                     && (result.countryCode.equals("cn", ignoreCase = true)
                     || result.countryCode.equals("hk", ignoreCase = true)
                     || result.countryCode.equals("tw", ignoreCase = true))

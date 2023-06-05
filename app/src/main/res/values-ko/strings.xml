@@ -93,13 +93,6 @@
     <string name="precipitation_heavy">호우</string>
     <string name="precipitation_rainstorm">폭풍우</string>
 
-    <string name="aqi_1">청청함</string>
-    <string name="aqi_2">깨끗함</string>
-    <string name="aqi_3">약간 오염됨</string>
-    <string name="aqi_4">조금 오염됨</string>
-    <string name="aqi_5">많이 오염됨</string>
-    <string name="aqi_6">심각하게 오염됨</string>
-
     <string name="phase_new">삭</string>
     <string name="phase_waxing_crescent">초승달</string>
     <string name="phase_first">상현달</string>

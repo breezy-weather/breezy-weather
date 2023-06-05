@@ -21,37 +21,21 @@ enum class WeatherCode(val id: String) {
         fun getInstance(
             value: String
         ): WeatherCode {
-            if (value.equals("partly_cloudy", ignoreCase = true)) {
-                return PARTLY_CLOUDY
+            return with (value) {
+                when {
+                    equals("partly_cloudy", ignoreCase = true) -> PARTLY_CLOUDY
+                    equals("cloudy", ignoreCase = true) -> CLOUDY
+                    equals("rain", ignoreCase = true) -> RAIN
+                    equals("snow", ignoreCase = true) -> SNOW
+                    equals("wind", ignoreCase = true) -> WIND
+                    equals("haze", ignoreCase = true) -> HAZE
+                    equals("sleet", ignoreCase = true) -> SLEET
+                    equals("hail", ignoreCase = true) -> HAIL
+                    equals("thunderstorm", ignoreCase = true) -> THUNDERSTORM
+                    equals("thunder", ignoreCase = true) -> THUNDER
+                    else -> CLEAR
+                }
             }
-            if (value.equals("cloudy", ignoreCase = true)) {
-                return CLOUDY
-            }
-            if (value.equals("rain", ignoreCase = true)) {
-                return RAIN
-            }
-            if (value.equals("snow", ignoreCase = true)) {
-                return SNOW
-            }
-            if (value.equals("wind", ignoreCase = true)) {
-                return WIND
-            }
-            if (value.equals("haze", ignoreCase = true)) {
-                return HAZE
-            }
-            if (value.equals("sleet", ignoreCase = true)) {
-                return SLEET
-            }
-            if (value.equals("hail", ignoreCase = true)) {
-                return HAIL
-            }
-            if (value.equals("thunderstorm", ignoreCase = true)) {
-                return THUNDERSTORM
-            }
-            if (value.equals("thunder", ignoreCase = true)) {
-                return THUNDER
-            }
-            return CLEAR
         }
     }
 

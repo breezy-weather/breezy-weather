@@ -97,7 +97,7 @@ android {
         ]
     }
     composeOptions {
-        kotlinCompilerExtensionVersion "1.4.2"
+        kotlinCompilerExtensionVersion "1.4.7"
     }
     testOptions {
         unitTests {
@@ -267,6 +267,7 @@ dependencies {
 
     // utils.
     implementation "com.xhinliang:LunarCalendar:4.0.7"
+    implementation "com.github.papjul:Aqi-Kotlin:96087bd9b098427a9e3ac2a733085679dc234ab6"
     implementation("us.dustinj.timezonemap:timezonemap:4.5") {
         // Exclude standard compression library
         exclude group: 'com.github.luben', module: 'zstd-jni'

@@ -93,13 +93,6 @@
     <string name="precipitation_heavy">مطر غزير</string>
     <string name="precipitation_rainstorm">عاصفة مطرية</string>
 
-    <string name="aqi_1">هواء منعش</string>
-    <string name="aqi_2">هواء نظيف</string>
-    <string name="aqi_3">ملوث قليلاً</string>
-    <string name="aqi_4">تلوث متوسط</string>
-    <string name="aqi_5">تلوث شديد</string>
-    <string name="aqi_6">تلوث حاد</string>
-
     <string name="phase_new">مُحاق</string>
     <string name="phase_waxing_crescent">هلال أول الشهر</string>
     <string name="phase_first">تربيع أول</string>

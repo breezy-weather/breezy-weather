@@ -88,8 +88,8 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
                 }
                 if (c == CardDisplay.CARD_SUNRISE_SUNSET
                         && (weather.getDailyForecast().size() == 0
-                        || weather.getDailyForecast().get(0).sun() == null
-                        || !weather.getDailyForecast().get(0).sun().isValid())) {
+                        || weather.getDailyForecast().get(0).getSun() == null
+                        || !weather.getDailyForecast().get(0).getSun().isValid())) {
                     continue;
                 }
                 mViewTypeList.add(getViewType(c));

@@ -12,6 +12,7 @@ import wangdaye.com.geometricweather.common.basic.models.weather.AirQuality;
 import wangdaye.com.geometricweather.common.ui.widgets.RoundProgress;
 import wangdaye.com.geometricweather.daily.adapter.DailyWeatherAdapter;
 import wangdaye.com.geometricweather.daily.adapter.model.DailyAirQuality;
+import wangdaye.com.geometricweather.settings.SettingsManager;
 
 public class AirQualityHolder extends DailyWeatherAdapter.ViewHolder {
 
@@ -30,7 +31,7 @@ public class AirQualityHolder extends DailyWeatherAdapter.ViewHolder {
     public void onBindView(DailyWeatherAdapter.ViewModel model, int position) {
         AirQuality airQuality = ((DailyAirQuality) model).getAirQuality();
 
-        int aqi = airQuality.getAqiIndex();
+        int aqi = airQuality.getIndex(itemView.getContext());
         int color = airQuality.getAqiColor(itemView.getContext());
 
         mProgress.setMax(400);

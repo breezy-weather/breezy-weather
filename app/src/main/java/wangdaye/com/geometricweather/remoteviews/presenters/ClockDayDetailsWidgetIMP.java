@@ -108,18 +108,18 @@ public class ClockDayDetailsWidgetIMP extends AbstractRemoteViewsPresenter {
         );
 
         if (weather.getDailyForecast().size() > 0
-                && weather.getDailyForecast().get(0).day() != null
-                && weather.getDailyForecast().get(0).night() != null
-                && weather.getDailyForecast().get(0).day().getTemperature() != null
-                && weather.getDailyForecast().get(0).night().getTemperature() != null
-                && weather.getDailyForecast().get(0).day().getTemperature().getTemperature() != null
-                && weather.getDailyForecast().get(0).night().getTemperature().getTemperature() != null) {
+                && weather.getDailyForecast().get(0).getDay() != null
+                && weather.getDailyForecast().get(0).getNight() != null
+                && weather.getDailyForecast().get(0).getDay().getTemperature() != null
+                && weather.getDailyForecast().get(0).getNight().getTemperature() != null
+                && weather.getDailyForecast().get(0).getDay().getTemperature().getTemperature() != null
+                && weather.getDailyForecast().get(0).getNight().getTemperature().getTemperature() != null) {
             views.setTextViewText(
                     R.id.widget_clock_day_todayTemp,
                     context.getString(R.string.today) + " " + Temperature.getTrendTemperature(
                             context,
-                            weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
-                            weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
+                            weather.getDailyForecast().get(0).getNight().getTemperature().getTemperature(),
+                            weather.getDailyForecast().get(0).getDay().getTemperature().getTemperature(),
                             temperatureUnit
                     )
             );
@@ -238,10 +238,10 @@ public class ClockDayDetailsWidgetIMP extends AbstractRemoteViewsPresenter {
     private static String getAQIHumidityTempText(Context context, Weather weather) {
         if (weather.getCurrent() != null
                 && weather.getCurrent().getAirQuality() != null
-                && weather.getCurrent().getAirQuality().getAqiIndex() != null
+                && weather.getCurrent().getAirQuality().getIndex(context) != null
                 && weather.getCurrent().getAirQuality().getAqiText(context) != null) {
             return "AQI "
-                    + weather.getCurrent().getAirQuality().getAqiIndex()
+                    + weather.getCurrent().getAirQuality().getIndex(context)
                     + " ("
                     + weather.getCurrent().getAirQuality().getAqiText(context)
                     + ")";

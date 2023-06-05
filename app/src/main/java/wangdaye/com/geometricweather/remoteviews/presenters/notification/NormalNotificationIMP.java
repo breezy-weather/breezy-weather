@@ -289,8 +289,8 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                     R.id.notification_big_temp_1,
                     Temperature.getTrendTemperature(
                             context,
-                            weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
-                            weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
+                            weather.getDailyForecast().get(0).getNight().getTemperature().getTemperature(),
+                            weather.getDailyForecast().get(0).getDay().getTemperature().getTemperature(),
                             temperatureUnit
                     )
             );
@@ -299,8 +299,8 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                     ResourceHelper.getWidgetNotificationIconUri(
                             provider,
                             weekIconDaytime
-                                    ? weather.getDailyForecast().get(0).day().getWeatherCode()
-                                    : weather.getDailyForecast().get(0).night().getWeatherCode(),
+                                    ? weather.getDailyForecast().get(0).getDay().getWeatherCode()
+                                    : weather.getDailyForecast().get(0).getNight().getWeatherCode(),
                             weekIconDaytime,
                             false,
                             NotificationTextColor.GREY
@@ -315,8 +315,8 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                     R.id.notification_big_temp_2,
                     Temperature.getTrendTemperature(
                             context,
-                            weather.getDailyForecast().get(1).night().getTemperature().getTemperature(),
-                            weather.getDailyForecast().get(1).day().getTemperature().getTemperature(),
+                            weather.getDailyForecast().get(1).getNight().getTemperature().getTemperature(),
+                            weather.getDailyForecast().get(1).getDay().getTemperature().getTemperature(),
                             temperatureUnit
                     )
             );
@@ -325,8 +325,8 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                     ResourceHelper.getWidgetNotificationIconUri( // get icon 2 resource id.
                             provider,
                             weekIconDaytime
-                                    ? weather.getDailyForecast().get(1).day().getWeatherCode()
-                                    : weather.getDailyForecast().get(1).night().getWeatherCode(),
+                                    ? weather.getDailyForecast().get(1).getDay().getWeatherCode()
+                                    : weather.getDailyForecast().get(1).getNight().getWeatherCode(),
                             weekIconDaytime,
                             false,
                             NotificationTextColor.GREY
@@ -341,8 +341,8 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                     R.id.notification_big_temp_3,
                     Temperature.getTrendTemperature(
                             context,
-                            weather.getDailyForecast().get(2).night().getTemperature().getTemperature(),
-                            weather.getDailyForecast().get(2).day().getTemperature().getTemperature(),
+                            weather.getDailyForecast().get(2).getNight().getTemperature().getTemperature(),
+                            weather.getDailyForecast().get(2).getDay().getTemperature().getTemperature(),
                             temperatureUnit
                     )
             );
@@ -351,8 +351,8 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                     ResourceHelper.getWidgetNotificationIconUri( // get icon 3 resource id.
                             provider,
                             weekIconDaytime
-                                    ? weather.getDailyForecast().get(2).day().getWeatherCode()
-                                    : weather.getDailyForecast().get(2).night().getWeatherCode(),
+                                    ? weather.getDailyForecast().get(2).getDay().getWeatherCode()
+                                    : weather.getDailyForecast().get(2).getNight().getWeatherCode(),
                             weekIconDaytime,
                             false,
                             NotificationTextColor.GREY
@@ -367,8 +367,8 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                     R.id.notification_big_temp_4,
                     Temperature.getTrendTemperature(
                             context,
-                            weather.getDailyForecast().get(3).night().getTemperature().getTemperature(),
-                            weather.getDailyForecast().get(3).day().getTemperature().getTemperature(),
+                            weather.getDailyForecast().get(3).getNight().getTemperature().getTemperature(),
+                            weather.getDailyForecast().get(3).getDay().getTemperature().getTemperature(),
                             temperatureUnit
                     )
             );
@@ -377,8 +377,8 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                     ResourceHelper.getWidgetNotificationIconUri( // get icon 4 resource id.
                             provider,
                             weekIconDaytime
-                                    ? weather.getDailyForecast().get(3).day().getWeatherCode()
-                                    : weather.getDailyForecast().get(3).night().getWeatherCode(),
+                                    ? weather.getDailyForecast().get(3).getDay().getWeatherCode()
+                                    : weather.getDailyForecast().get(3).getNight().getWeatherCode(),
                             weekIconDaytime,
                             false,
                             NotificationTextColor.GREY
@@ -393,8 +393,8 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                     R.id.notification_big_temp_5,
                     Temperature.getTrendTemperature(
                             context,
-                            weather.getDailyForecast().get(4).night().getTemperature().getTemperature(),
-                            weather.getDailyForecast().get(4).day().getTemperature().getTemperature(),
+                            weather.getDailyForecast().get(4).getNight().getTemperature().getTemperature(),
+                            weather.getDailyForecast().get(4).getDay().getTemperature().getTemperature(),
                             temperatureUnit
                     )
             );
@@ -403,8 +403,8 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                     ResourceHelper.getWidgetNotificationIconUri( // get icon 5 resource id.
                             provider,
                             weekIconDaytime
-                                    ? weather.getDailyForecast().get(4).day().getWeatherCode()
-                                    : weather.getDailyForecast().get(4).night().getWeatherCode(),
+                                    ? weather.getDailyForecast().get(4).getDay().getWeatherCode()
+                                    : weather.getDailyForecast().get(4).getNight().getWeatherCode(),
                             weekIconDaytime,
                             false,
                             NotificationTextColor.GREY

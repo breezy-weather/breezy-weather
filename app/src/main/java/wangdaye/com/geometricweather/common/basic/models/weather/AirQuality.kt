@@ -3,10 +3,25 @@ package wangdaye.com.geometricweather.common.basic.models.weather
 import android.content.Context
 import android.graphics.Color
 import androidx.annotation.ColorInt
-import androidx.core.content.ContextCompat
-import wangdaye.com.geometricweather.R
+import aqikotlin.library.algorithms.Eea
+import aqikotlin.library.algorithms.Epa
+import aqikotlin.library.algorithms.Mee
+import aqikotlin.library.constants.AQI
+import aqikotlin.library.constants.EEA
+import aqikotlin.library.constants.EPA
+import aqikotlin.library.constants.MEE
+import aqikotlin.library.constants.POLLUTANT_CO_1H
+import aqikotlin.library.constants.POLLUTANT_CO_8H
+import aqikotlin.library.constants.POLLUTANT_NO2_1H
+import aqikotlin.library.constants.POLLUTANT_O3_1H
+import aqikotlin.library.constants.POLLUTANT_PM10
+import aqikotlin.library.constants.POLLUTANT_PM25
+import aqikotlin.library.constants.POLLUTANT_SO2_1H
+import aqikotlin.library.utils.ConcentrationRounded
+import wangdaye.com.geometricweather.common.utils.helpers.LogHelper
 import wangdaye.com.geometricweather.settings.SettingsManager.Companion.getInstance
 import java.io.Serializable
+import kotlin.math.round
 
 /**
  * DailyAirQuality quality.
@@ -15,7 +30,9 @@ import java.io.Serializable
  * [AirQualityCOUnit.MGPCUM]
  */
 class AirQuality(
-    val aqiIndex: Int? = null,
+    val epaIndex: Int? = null,
+    val meeIndex: Int? = null,
+    val eeaIndex: Int? = null,
     val pM25: Float? = null,
     val pM10: Float? = null,
     val sO2: Float? = null,
@@ -24,190 +41,187 @@ class AirQuality(
     val cO: Float? = null
 ) : Serializable {
     companion object {
-        const val AQI_INDEX_1 = 50
-        const val AQI_INDEX_2 = 100
-        const val AQI_INDEX_3 = 150
-        const val AQI_INDEX_4 = 200
-        const val AQI_INDEX_5 = 300
+        const val EPA_INDEX_3 = 150
+
+        private fun getAlgorithm(context: Context) = getInstance(context).airQualityAlgorithmUnit.id
+
+        private fun getConcentrationLevel(context: Context, type: String, level: Int): Int? {
+            val algorithm = getAlgorithm(context)
+            val algorithmClass = when (algorithm) {
+                EPA -> Epa()
+                MEE -> Mee()
+                EEA -> Eea()
+                else -> null
+            } ?: return null
+            val aqiValues: List<Number> = when (type) {
+                AQI, POLLUTANT_PM25, POLLUTANT_PM10, POLLUTANT_O3_1H, POLLUTANT_SO2_1H, POLLUTANT_NO2_1H -> algorithmClass.lists[type]
+                POLLUTANT_CO_1H -> when (algorithm) {
+                    EPA -> algorithmClass.lists[POLLUTANT_CO_8H]
+                    MEE -> algorithmClass.lists[type]
+                    EEA -> null
+                    else -> null
+                }
+
+                else -> null
+            } ?: return null
+
+            return aqiValues.getOrNull(Integer.min((level * 2) - 1, aqiValues.size - 1))?.toInt();
+        }
+
+        @JvmStatic
+        fun getIndexFreshAir(context: Context): Int = getConcentrationLevel(context, AQI, 1) ?: 50
+
+        @JvmStatic
+        fun getIndexHighPollution(context: Context): Int = getConcentrationLevel(context, AQI, 3) ?: 150
+
+        @JvmStatic
+        fun getIndexExcessivePollution(context: Context): Int = getConcentrationLevel(context, AQI, 5) ?: 300
+
+        @JvmStatic
+        fun getPM25ExcessivePollution(context: Context): Int = getConcentrationLevel(context, POLLUTANT_PM25, 5) ?: 250
+
+        @JvmStatic
+        fun getPM10ExcessivePollution(context: Context): Int = getConcentrationLevel(context, POLLUTANT_PM10, 5) ?: 420
+
+        @JvmStatic
+        fun getSO2ExcessivePollution(context: Context): Int = getConcentrationLevel(context, POLLUTANT_SO2_1H, 5) ?: 1600
+
+        @JvmStatic
+        fun getNO2ExcessivePollution(context: Context): Int = getConcentrationLevel(context, POLLUTANT_NO2_1H, 5) ?: 565
+
+        @JvmStatic
+        fun getO3ExcessivePollution(context: Context): Int = getConcentrationLevel(context, POLLUTANT_O3_1H, 5) ?: 800
+
+        @JvmStatic
+        fun getCOExcessivePollution(context: Context): Int = getConcentrationLevel(context, POLLUTANT_CO_1H, 5) ?: 90
     }
 
-    fun getLevelName(context: Context, level: Int): String {
-        return if (level > 0 && level < context.resources.getIntArray(
-                getInstance(
-                    context
-                ).airQualityLevelUnit.colorsArrayId
-            ).size
-        ) {
-            context.resources.getStringArray(
-                getInstance(
-                    context
-                ).airQualityLevelUnit.levelsArrayId
-            )[level - 1]
-        } else {
-            context.resources.getStringArray(
-                getInstance(
-                    context
-                ).airQualityLevelUnit.levelsArrayId
-            )[0]
-        }
+    fun getIndex(context: Context): Int? = when (getAlgorithm(context)) {
+        EPA -> epaIndex
+        MEE -> meeIndex
+        EEA -> eeaIndex
+        else -> null
     }
 
     fun getAqiText(context: Context): String? {
-        return when (aqiIndex) {
-            in 0..AQI_INDEX_1 -> getLevelName(context, 1)
-            in AQI_INDEX_1..AQI_INDEX_2 -> getLevelName(context, 2)
-            in AQI_INDEX_2..AQI_INDEX_3 -> getLevelName(context, 3)
-            in AQI_INDEX_3..AQI_INDEX_4 -> getLevelName(context, 4)
-            in AQI_INDEX_4..AQI_INDEX_5 -> getLevelName(context, 5)
-            in AQI_INDEX_5..Int.MAX_VALUE -> getLevelName(context, 6)
+        val algorithm = getAlgorithm(context)
+        val value = when (algorithm) {
+            EPA -> epaIndex
+            MEE -> meeIndex
+            EEA -> eeaIndex
             else -> null
-        }
-    }
+        } ?: return null
+        val algorithmClass = when (algorithm) {
+            EPA -> Epa()
+            MEE -> Mee()
+            EEA -> Eea()
+            else -> null
+        } ?: return null
 
-    @ColorInt
-    fun getLevelColor(context: Context, level: Int): Int {
-        return if (level > 0 && level < context.resources.getIntArray(
-                getInstance(
-                    context
-                ).airQualityLevelUnit.colorsArrayId
-            ).size
-        ) {
-            context.resources.getIntArray(
-                getInstance(
-                    context
-                ).airQualityLevelUnit.colorsArrayId
-            )[level - 1]
-        } else {
-            Color.TRANSPARENT
-        }
-    }
-
-    @ColorInt
-    fun getLevelColorForPolluant(
-        context: Context,
-        polluantValue: Float?,
-        polluantArrayId: Int
-    ): Int {
-        if (polluantValue == null) {
-            return Color.TRANSPARENT
-        }
-        var level = 0
-        for (i in context.resources.getIntArray(polluantArrayId).indices) {
-            if (polluantValue > context.resources.getIntArray(polluantArrayId)[i]) {
-                level = i
+        val aqiValues = algorithmClass.lists[AQI]!!
+        for ((i) in aqiValues.withIndex()) {
+            if (value in aqiValues[i].toInt()..aqiValues[i + 1].toInt()) {
+                return context.resources.getStringArray(
+                    getInstance(context).airQualityAlgorithmUnit.levelsArrayId
+                ).getOrNull(if (i == 0) 0 else (i / 2))
             }
         }
-        return context.resources.getIntArray(
-            getInstance(
-                context
-            ).airQualityLevelUnit.colorsArrayId
-        )[level]
+        return null
     }
 
     @ColorInt
-    fun getAqiColor(context: Context): Int {
-        return when (aqiIndex) {
-            in 0..AQI_INDEX_1 -> getLevelColor(context, 1)
-            in AQI_INDEX_1..AQI_INDEX_2 -> getLevelColor(context, 2)
-            in AQI_INDEX_2..AQI_INDEX_3 -> getLevelColor(context, 3)
-            in AQI_INDEX_3..AQI_INDEX_4 -> getLevelColor(context, 4)
-            in AQI_INDEX_4..AQI_INDEX_5 -> getLevelColor(context, 5)
-            in AQI_INDEX_5..Int.MAX_VALUE -> getLevelColor(context, 6)
-            else -> Color.TRANSPARENT
-        }
-    }
+    private fun getLevelColor(context: Context, type: String): Int {
+        val algorithm = getAlgorithm(context)
+        val concentration = when (type) {
+            AQI -> when (algorithm) {
+                EPA -> epaIndex
+                MEE -> meeIndex
+                EEA -> eeaIndex
+                else -> null
+            }
 
-    @ColorInt
-    fun getPm25Color(context: Context): Int {
-        return getLevelColorForPolluant(
-            context,
-            pM25,
-            getInstance(context).airQualityLevelUnit.pm25valuesArrayId
-        )
-    }
+            POLLUTANT_PM25 -> pM25
+            POLLUTANT_PM10 -> pM10
+            POLLUTANT_O3_1H -> o3
+            POLLUTANT_SO2_1H -> sO2
+            POLLUTANT_NO2_1H -> nO2
+            POLLUTANT_CO_1H -> cO
+            else -> null
+        } ?: return Color.TRANSPARENT
+        val algorithmClass = when (algorithm) {
+            EPA -> Epa()
+            MEE -> Mee()
+            EEA -> Eea()
+            else -> null
+        } ?: return Color.TRANSPARENT
+        val aqiValues = when (type) {
+            AQI, POLLUTANT_PM25, POLLUTANT_PM10, POLLUTANT_O3_1H, POLLUTANT_SO2_1H, POLLUTANT_NO2_1H -> algorithmClass.lists[type]
+            POLLUTANT_CO_1H -> when (algorithm) {
+                EPA -> algorithmClass.lists[POLLUTANT_CO_8H]
+                MEE -> algorithmClass.lists[type]
+                EEA -> null
+                else -> null
+            }
 
-    @ColorInt
-    fun getPm10Color(context: Context): Int {
-        return getLevelColorForPolluant(
-            context,
-            pM10,
-            getInstance(context).airQualityLevelUnit.pm10valuesArrayId
-        )
-    }
-
-    @ColorInt
-    fun getSo2Color(context: Context): Int {
-        return getLevelColorForPolluant(
-            context,
-            sO2,
-            getInstance(context).airQualityLevelUnit.so2valuesArrayId
-        )
-    }
-
-    @ColorInt
-    fun getNo2Color(context: Context): Int {
-        return getLevelColorForPolluant(
-            context,
-            nO2,
-            getInstance(context).airQualityLevelUnit.no2valuesArrayId
-        )
-    }
-
-    @ColorInt
-    fun getO3Color(context: Context): Int {
-        return getLevelColorForPolluant(
-            context,
-            o3,
-            getInstance(context).airQualityLevelUnit.o3valuesArrayId
-        )
-    }
-
-    @ColorInt
-    fun getCOColor(context: Context): Int {
-        return if (cO == null) {
-            Color.TRANSPARENT
-        } else if (cO <= 5) {
-            ContextCompat.getColor(context, R.color.colorLevel_1)
-        } else if (cO <= 10) {
-            ContextCompat.getColor(context, R.color.colorLevel_2)
-        } else if (cO <= 35) {
-            ContextCompat.getColor(context, R.color.colorLevel_3)
-        } else if (cO <= 60) {
-            ContextCompat.getColor(context, R.color.colorLevel_4)
-        } else if (cO <= 90) {
-            ContextCompat.getColor(context, R.color.colorLevel_5)
+            else -> null
+        } ?: return Color.TRANSPARENT
+        val valueConverted = if (algorithm == EPA && type != AQI) {
+            ConcentrationRounded(
+                pollutantCode = when (type) {
+                    POLLUTANT_PM25, POLLUTANT_PM10, POLLUTANT_O3_1H, POLLUTANT_SO2_1H, POLLUTANT_NO2_1H -> type
+                    POLLUTANT_CO_1H -> POLLUTANT_CO_8H
+                    else -> "" // Never happens
+                },
+                pollutantConcentration = concentration.toDouble(),
+                algorithm = algorithm,
+                convertIfRequired = true
+            ).getRoundedConcentrationOnPollutantCode()
         } else {
-            ContextCompat.getColor(context, R.color.colorLevel_6)
+            round(concentration.toDouble()).toInt()
         }
+
+        for ((i) in aqiValues.withIndex()) {
+            try {
+                if (valueConverted.toDouble() in aqiValues[i].toDouble()..aqiValues[i + 1].toDouble()) {
+                    return context.resources.getIntArray(
+                        getInstance(context).airQualityAlgorithmUnit.colorsArrayId
+                    ).getOrNull(if (i == 0) 0 else (i / 2)) ?: Color.TRANSPARENT
+                }
+            } catch (ignored: IndexOutOfBoundsException) {
+                LogHelper.log("Air quality pollutant out of bounds")
+                return context.resources.getIntArray(
+                    getInstance(context).airQualityAlgorithmUnit.colorsArrayId
+                )[context.resources.getIntArray(
+                    getInstance(context).airQualityAlgorithmUnit.colorsArrayId
+                ).size - 1]
+            }
+        }
+        return Color.TRANSPARENT
     }
 
-    fun getPM25Max(context: Context): Int {
-        val arrayId = getInstance(context).airQualityLevelUnit.pm25valuesArrayId
-        return context.resources.getIntArray(arrayId)[context.resources.getIntArray(arrayId).size - 1]
-    }
+    @ColorInt
+    fun getAqiColor(context: Context): Int = getLevelColor(context, AQI)
 
-    fun getPM10Max(context: Context): Int {
-        val arrayId = getInstance(context).airQualityLevelUnit.pm10valuesArrayId
-        return context.resources.getIntArray(arrayId)[context.resources.getIntArray(arrayId).size - 1]
-    }
+    @ColorInt
+    fun getPm25Color(context: Context): Int = getLevelColor(context, POLLUTANT_PM25)
 
-    fun getSO2Max(context: Context): Int {
-        val arrayId = getInstance(context).airQualityLevelUnit.no2valuesArrayId
-        return context.resources.getIntArray(arrayId)[context.resources.getIntArray(arrayId).size - 1]
-    }
+    @ColorInt
+    fun getPm10Color(context: Context): Int = getLevelColor(context, POLLUTANT_PM10)
 
-    fun getNO2Max(context: Context): Int {
-        val arrayId = getInstance(context).airQualityLevelUnit.no2valuesArrayId
-        return context.resources.getIntArray(arrayId)[context.resources.getIntArray(arrayId).size - 1]
-    }
+    @ColorInt
+    fun getSo2Color(context: Context): Int = getLevelColor(context, POLLUTANT_SO2_1H)
 
-    fun getO3Max(context: Context): Int {
-        val arrayId = getInstance(context).airQualityLevelUnit.o3valuesArrayId
-        return context.resources.getIntArray(arrayId)[context.resources.getIntArray(arrayId).size - 1]
-    }
+    @ColorInt
+    fun getNo2Color(context: Context): Int = getLevelColor(context, POLLUTANT_NO2_1H)
+
+    @ColorInt
+    fun getO3Color(context: Context): Int = getLevelColor(context, POLLUTANT_O3_1H)
+
+    @ColorInt
+    fun getCOColor(context: Context): Int = getLevelColor(context, POLLUTANT_CO_1H)
 
     val isValid: Boolean
-        get() = aqiIndex != null || pM25 != null || pM10 != null || sO2 != null || nO2 != null || o3 != null || cO != null
+        get() = epaIndex != null || pM25 != null || pM10 != null || sO2 != null || nO2 != null || o3 != null || cO != null
     val isValidIndex: Boolean
-        get() = aqiIndex != null && aqiIndex > 0
+        get() = epaIndex != null && epaIndex > 0
 }

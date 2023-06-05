@@ -177,10 +177,10 @@ public class DatabaseHelper {
                     )
             );
             if (weather.getDailyForecast().size() > 0
-                    && weather.getDailyForecast().get(0).day() != null
-                    && weather.getDailyForecast().get(0).night() != null
-                    && weather.getDailyForecast().get(0).day().getTemperature() != null
-                    && weather.getDailyForecast().get(0).night().getTemperature() != null) {
+                    && weather.getDailyForecast().get(0).getDay() != null
+                    && weather.getDailyForecast().get(0).getNight() != null
+                    && weather.getDailyForecast().get(0).getDay().getTemperature() != null
+                    && weather.getDailyForecast().get(0).getNight().getTemperature() != null) {
                 HistoryEntityController.insertHistoryEntity(
                         boxStore,
                         HistoryEntityGeneratorKt.generate(

@@ -44,16 +44,16 @@ public class LocationModel {
         this.weatherCode = null;
         if (location.getWeather() != null && location.getWeather().getDailyForecast().size() > 0) {
             if (location.isDaylight()
-                    && location.getWeather().getDailyForecast().get(0).day() != null
-                    && location.getWeather().getDailyForecast().get(0).day().getWeatherCode() != null
+                    && location.getWeather().getDailyForecast().get(0).getDay() != null
+                    && location.getWeather().getDailyForecast().get(0).getDay().getWeatherCode() != null
             ) {
-                this.weatherCode = location.getWeather().getDailyForecast().get(0).day().getWeatherCode();
+                this.weatherCode = location.getWeather().getDailyForecast().get(0).getDay().getWeatherCode();
             }
             if (!location.isDaylight()
-                    && location.getWeather().getDailyForecast().get(0).night() != null
-                    && location.getWeather().getDailyForecast().get(0).night().getWeatherCode() != null
+                    && location.getWeather().getDailyForecast().get(0).getNight() != null
+                    && location.getWeather().getDailyForecast().get(0).getNight().getWeatherCode() != null
             ) {
-                this.weatherCode = location.getWeather().getDailyForecast().get(0).night().getWeatherCode();
+                this.weatherCode = location.getWeather().getDailyForecast().get(0).getNight().getWeatherCode();
             }
         }
 

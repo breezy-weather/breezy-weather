@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.daily.adapter.holder;
 
 import android.annotation.SuppressLint;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -38,11 +39,24 @@ public class OverviewHolder extends DailyWeatherAdapter.ViewHolder {
     @Override
     public void onBindView(DailyWeatherAdapter.ViewModel model, int position) {
         Overview overview = (Overview) model;
-        mIcon.setAnimatableIcon(
-                mProvider.getWeatherIcons(overview.getHalfDay().getWeatherCode(), overview.isDaytime()),
-                mProvider.getWeatherAnimators(overview.getHalfDay().getWeatherCode(), overview.isDaytime())
-        );
-        mTitle.setText(overview.getHalfDay().getWeatherText()
-                + ", " + overview.getHalfDay().getTemperature().getTemperature(mTitle.getContext(), mTemperatureUnit));
+        if (overview.getHalfDay().getWeatherCode() != null) {
+            mIcon.setAnimatableIcon(
+                    mProvider.getWeatherIcons(overview.getHalfDay().getWeatherCode(), overview.isDaytime()),
+                    mProvider.getWeatherAnimators(overview.getHalfDay().getWeatherCode(), overview.isDaytime())
+            );
+        }
+        StringBuilder builder = new StringBuilder();
+        if (overview.getHalfDay().getWeatherText() != null) {
+            builder.append(overview.getHalfDay().getWeatherText());
+        }
+        if (overview.getHalfDay().getTemperature() != null && !TextUtils.isEmpty(overview.getHalfDay().getTemperature().getTemperature(mTitle.getContext(), mTemperatureUnit))) {
+            if (!TextUtils.isEmpty(builder.toString())) {
+                builder.append(", ");
+            }
+            builder.append(overview.getHalfDay().getTemperature().getTemperature(mTitle.getContext(), mTemperatureUnit));
+        }
+        if (!TextUtils.isEmpty(builder.toString())) {
+            mTitle.setText(builder.toString());
+        }
     }
 }

@@ -362,17 +362,17 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
 
             case "tile":
                 if (weather.getDailyForecast().size() > 0
-                        && weather.getDailyForecast().get(0).day() != null
-                        && weather.getDailyForecast().get(0).day().getTemperature() != null
-                        && weather.getDailyForecast().get(0).day().getTemperature().getTemperature() != null
-                        && weather.getDailyForecast().get(0).night() != null
-                        && weather.getDailyForecast().get(0).night().getTemperature() != null
-                        && weather.getDailyForecast().get(0).night().getTemperature().getTemperature() != null
+                        && weather.getDailyForecast().get(0).getDay() != null
+                        && weather.getDailyForecast().get(0).getDay().getTemperature() != null
+                        && weather.getDailyForecast().get(0).getDay().getTemperature().getTemperature() != null
+                        && weather.getDailyForecast().get(0).getNight() != null
+                        && weather.getDailyForecast().get(0).getNight().getTemperature() != null
+                        && weather.getDailyForecast().get(0).getNight().getTemperature().getTemperature() != null
                 ) {
                     return Temperature.getTrendTemperature(
                             context,
-                            weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
-                            weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
+                            weather.getDailyForecast().get(0).getNight().getTemperature().getTemperature(),
+                            weather.getDailyForecast().get(0).getDay().getTemperature().getTemperature(),
                             unit
                     );
                 }
@@ -384,20 +384,20 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                         stringBuilder.append(weather.getCurrent().getWeatherText());
                     }
                     if (weather.getDailyForecast().size() > 0
-                            && weather.getDailyForecast().get(0).day() != null
-                            && weather.getDailyForecast().get(0).day().getTemperature() != null
-                            && weather.getDailyForecast().get(0).day().getTemperature().getTemperature() != null
-                            && weather.getDailyForecast().get(0).night() != null
-                            && weather.getDailyForecast().get(0).night().getTemperature() != null
-                            && weather.getDailyForecast().get(0).night().getTemperature().getTemperature() != null
+                            && weather.getDailyForecast().get(0).getDay() != null
+                            && weather.getDailyForecast().get(0).getDay().getTemperature() != null
+                            && weather.getDailyForecast().get(0).getDay().getTemperature().getTemperature() != null
+                            && weather.getDailyForecast().get(0).getNight() != null
+                            && weather.getDailyForecast().get(0).getNight().getTemperature() != null
+                            && weather.getDailyForecast().get(0).getNight().getTemperature().getTemperature() != null
                     ) {
                         if (!TextUtils.isEmpty(weather.getCurrent().getWeatherText())) {
                             stringBuilder.append(" ");
                         }
                         stringBuilder.append(Temperature.getTrendTemperature(
                                         context,
-                                        weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
-                                        weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
+                                        weather.getDailyForecast().get(0).getNight().getTemperature().getTemperature(),
+                                        weather.getDailyForecast().get(0).getDay().getTemperature().getTemperature(),
                                         unit
                                 )
                         );
@@ -440,11 +440,11 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
             case "aqi":
                 if (weather.getCurrent() != null
                         && weather.getCurrent().getAirQuality() != null
-                        && weather.getCurrent().getAirQuality().getAqiIndex() != null
+                        && weather.getCurrent().getAirQuality().getIndex(context) != null
                         && weather.getCurrent().getAirQuality().getAqiText(context) != null) {
                     return weather.getCurrent().getAirQuality().getAqiText(context)
                             + " ("
-                            + weather.getCurrent().getAirQuality().getAqiIndex()
+                            + weather.getCurrent().getAirQuality().getIndex(context)
                             + ")";
                 }
                 return null;
@@ -495,16 +495,16 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
     }
 
     private static String getTemp(Context context, Weather weather, int index, TemperatureUnit unit) {
-        if (weather.getDailyForecast().get(index).day() != null
-                && weather.getDailyForecast().get(index).night() != null
-                && weather.getDailyForecast().get(index).day().getTemperature() != null
-                && weather.getDailyForecast().get(index).night().getTemperature() != null
-                && weather.getDailyForecast().get(index).day().getTemperature().getTemperature() != null
-                && weather.getDailyForecast().get(index).night().getTemperature().getTemperature() != null) {
+        if (weather.getDailyForecast().get(index).getDay() != null
+                && weather.getDailyForecast().get(index).getNight() != null
+                && weather.getDailyForecast().get(index).getDay().getTemperature() != null
+                && weather.getDailyForecast().get(index).getNight().getTemperature() != null
+                && weather.getDailyForecast().get(index).getDay().getTemperature().getTemperature() != null
+                && weather.getDailyForecast().get(index).getNight().getTemperature().getTemperature() != null) {
             return Temperature.getTrendTemperature(
                     context,
-                    weather.getDailyForecast().get(index).night().getTemperature().getTemperature(),
-                    weather.getDailyForecast().get(index).day().getTemperature().getTemperature(),
+                    weather.getDailyForecast().get(index).getNight().getTemperature().getTemperature(),
+                    weather.getDailyForecast().get(index).getDay().getTemperature().getTemperature(),
                     unit
             );
         } else {
@@ -518,8 +518,8 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
         return ResourceHelper.getWidgetNotificationIconUri(
                 helper,
                 dayTime
-                        ? weather.getDailyForecast().get(index).day().getWeatherCode()
-                        : weather.getDailyForecast().get(index).night().getWeatherCode() ,
+                        ? weather.getDailyForecast().get(index).getDay().getWeatherCode()
+                        : weather.getDailyForecast().get(index).getNight().getWeatherCode() ,
                 dayTime, minimalIcon, color
         );
     }

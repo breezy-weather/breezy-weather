@@ -95,13 +95,6 @@
     <string name="precipitation_heavy">Rankkasade</string>
     <string name="precipitation_rainstorm">Sademyrsky</string>
 
-    <string name="aqi_1">Erinomainen</string>
-    <string name="aqi_2">Kohtalainen</string>
-    <string name="aqi_3">Heikko</string>
-    <string name="aqi_4">Epäterveellinen</string>
-    <string name="aqi_5">Erittäin epäterveellinen</string>
-    <string name="aqi_6">Vaarallinen</string>
-
     <string name="phase_new">Uusikuu</string>
     <string name="phase_waxing_crescent">Kasvava kuunsirppi</string>
     <string name="phase_first">Ensimmäinen neljännes</string>

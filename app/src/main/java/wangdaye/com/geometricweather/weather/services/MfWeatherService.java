@@ -32,7 +32,7 @@ import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.weather.apis.AtmoAuraIqaApi;
 import wangdaye.com.geometricweather.weather.apis.MfWeatherApi;
-import wangdaye.com.geometricweather.weather.converters.MfResultConverter;
+import wangdaye.com.geometricweather.weather.converters.MfResultConverterKt;
 import wangdaye.com.geometricweather.weather.json.atmoaura.AtmoAuraQAResult;
 import wangdaye.com.geometricweather.weather.json.mf.MfCurrentResult;
 import wangdaye.com.geometricweather.weather.json.mf.MfEphemerisResult;
@@ -122,7 +122,7 @@ public class MfWeatherService extends WeatherService {
         }
 
         Observable.zip(current, forecastV2, ephemeris, rain, warnings, aqiAtmoAura,
-                (mfCurrentResult, mfForecastV2Result, mfEphemerisResult, mfRainResult, mfWarningResults, aqiAtmoAuraResult) -> MfResultConverter.convert(
+                (mfCurrentResult, mfForecastV2Result, mfEphemerisResult, mfRainResult, mfWarningResults, aqiAtmoAuraResult) -> MfResultConverterKt.convert(
                         context,
                         location,
                         mfCurrentResult,
@@ -162,7 +162,7 @@ public class MfWeatherService extends WeatherService {
             e.printStackTrace();
         }
 
-        return MfResultConverter.convert(resultList);
+        return MfResultConverterKt.convert(resultList);
     }
 
     @Override
@@ -182,7 +182,7 @@ public class MfWeatherService extends WeatherService {
                     if (mfForecastV2Result != null) {
                         List<Location> locationList = new ArrayList<>();
                         if (mfForecastV2Result.properties.insee != null) {
-                            locationList.add(MfResultConverter.convert(null, mfForecastV2Result));
+                            locationList.add(MfResultConverterKt.convert(null, mfForecastV2Result));
                         }
                         callback.requestLocationSuccess(
                                 location.getLatitude() + "," + location.getLongitude(),
@@ -210,7 +210,7 @@ public class MfWeatherService extends WeatherService {
                     @Override
                     public void onSucceed(List<MfLocationResult> mfLocationResults) {
                         if (mfLocationResults != null && mfLocationResults.size() != 0) {
-                            List<Location> locationList = MfResultConverter.convert(mfLocationResults);
+                            List<Location> locationList = MfResultConverterKt.convert(mfLocationResults);
                             callback.requestLocationSuccess(query, locationList);
                         } else {
                             callback.requestLocationFailed(query);

@@ -156,12 +156,13 @@
 
     <!-- air quality levels -->
     <string-array name="air_quality_levels">
-        <item>AQI (États-Unis)</item>
-        <item>EAQI (Europe)</item>
+        <item>EPA (États-Unis)</item>
+        <item>MEE (Chine)</item>
+        <item>EEA (Europe)</item>
     </string-array>
 
-    <!-- AQI -->
-    <string-array name="air_quality_levels_aqi">
+    <!-- EPA -->
+    <string-array name="air_quality_levels_epa">
         <item>Bon</item>
         <item>Moyen</item>
         <item>Mauvais pour les personnes sensibles</item>
@@ -169,8 +170,8 @@
         <item>Très mauvais pour la santé</item>
         <item>Dangereux</item>
     </string-array>
-    <!-- EAQI -->
-    <string-array name="air_quality_levels_eaqi">
+    <!-- EEA -->
+    <string-array name="air_quality_levels_eea">
         <item>Bon</item>
         <item>Moyen</item>
         <item>Dégradé</item>

@@ -105,13 +105,9 @@
     <string name="precipitation_heavy">Heavy rain</string>
     <string name="precipitation_rainstorm">Rainstorm</string>
 
-    <!-- TODO: To be deprecated -->
-    <string name="aqi_1">Fresh air</string>
-    <string name="aqi_2">Clear air</string>
-    <string name="aqi_3">Slight polluted</string>
-    <string name="aqi_4">Moderate pollution</string>
-    <string name="aqi_5">Heavy pollution</string>
-    <string name="aqi_6">Severe pollution</string>
+    <string name="fresh_air">Fresh air</string>
+    <string name="high_pollution">High pollution</string>
+    <string name="excessive_pollution">Excessive pollution</string>
 
     <string name="phase_new">New moon</string>
     <string name="phase_waxing_crescent">Waxing crescent</string>
@@ -452,7 +448,7 @@
     <string name="settings_title_precipitation_unit">Precipitation unit</string>
     <string name="settings_title_pressure_unit">Pressure unit</string>
     <string name="settings_title_speed_unit">Speed unit</string>
-    <string name="settings_title_air_quality_level">Air Quality Level</string>
+    <string name="settings_title_air_quality_algorithm">Air Quality algorithm</string>
     <string name="settings_title_refresh_rate">Automatic refresh rate</string>
     <string name="settings_title_alert_notification_switch">Send Alert Notification</string>
     <string name="settings_title_precipitation_notification_switch">Send Precipitation Forecast</string>

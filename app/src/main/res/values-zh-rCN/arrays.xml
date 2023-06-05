@@ -243,12 +243,13 @@
 
     <!-- air quality levels -->
     <string-array name="air_quality_levels">
-        <item>AQI (美国)</item>
-        <item>EAQI (欧洲)</item>
+        <item>EPA (美国)</item>
+        <item>MEE (China)</item>
+        <item>EEA (欧洲)</item>
     </string-array>
 
-    <!-- AQI -->
-    <string-array name="air_quality_levels_aqi">
+    <!-- EPA -->
+    <string-array name="air_quality_levels_epa">
         <item>优</item>
         <item>良</item>
         <item>轻度污染</item>
@@ -257,8 +258,18 @@
         <item>严重污染</item>
     </string-array>
 
-    <!-- EAQI -->
-    <string-array name="air_quality_levels_eaqi">
+    <!-- EEA -->
+    <string-array name="air_quality_levels_eea">
+        <item>优</item>
+        <item>良</item>
+        <item>轻度污染</item>
+        <item>中度污染</item>
+        <item>重度污染</item>
+        <item>严重污染</item>
+    </string-array>
+
+    <!-- MEE -->
+    <string-array name="air_quality_levels_mee">
         <item>优</item>
         <item>良</item>
         <item>轻度污染</item>

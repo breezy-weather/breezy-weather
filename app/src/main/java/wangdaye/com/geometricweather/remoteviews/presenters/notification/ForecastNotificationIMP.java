@@ -75,11 +75,11 @@ public class ForecastNotificationIMP extends AbstractRemoteViewsPresenter {
         if (today) {
             daytime = location.isDaylight();
             weatherCode = daytime 
-                    ? weather.getDailyForecast().get(0).day().getWeatherCode() 
-                    : weather.getDailyForecast().get(0).night().getWeatherCode();
+                    ? weather.getDailyForecast().get(0).getDay().getWeatherCode() 
+                    : weather.getDailyForecast().get(0).getNight().getWeatherCode();
         } else {
             daytime = true;
-            weatherCode = weather.getDailyForecast().get(1).day().getWeatherCode() ;
+            weatherCode = weather.getDailyForecast().get(1).getDay().getWeatherCode() ;
         }
 
         // set small icon.
@@ -105,19 +105,19 @@ public class ForecastNotificationIMP extends AbstractRemoteViewsPresenter {
         // title and content.
         if (today) {
             builder.setContentTitle(context.getString(R.string.daytime)
-                    + " " + weather.getDailyForecast().get(0).day().getWeatherText()
-                    + " " + weather.getDailyForecast().get(0).day().getTemperature().getTemperature(context, temperatureUnit)
+                    + " " + weather.getDailyForecast().get(0).getDay().getWeatherText()
+                    + " " + weather.getDailyForecast().get(0).getDay().getTemperature().getTemperature(context, temperatureUnit)
             ).setContentText(context.getString(R.string.nighttime)
-                    + " " + weather.getDailyForecast().get(0).night().getWeatherText()
-                    + " " + weather.getDailyForecast().get(0).night().getTemperature().getTemperature(context, temperatureUnit)
+                    + " " + weather.getDailyForecast().get(0).getNight().getWeatherText()
+                    + " " + weather.getDailyForecast().get(0).getNight().getTemperature().getTemperature(context, temperatureUnit)
             );
         } else {
             builder.setContentTitle(context.getString(R.string.daytime)
-                    + " " + weather.getDailyForecast().get(1).day().getWeatherText()
-                    + " " + weather.getDailyForecast().get(1).day().getTemperature().getTemperature(context, temperatureUnit)
+                    + " " + weather.getDailyForecast().get(1).getDay().getWeatherText()
+                    + " " + weather.getDailyForecast().get(1).getDay().getTemperature().getTemperature(context, temperatureUnit)
             ).setContentText(context.getString(R.string.nighttime)
-                    + " " + weather.getDailyForecast().get(1).night().getWeatherText()
-                    + " " + weather.getDailyForecast().get(1).night().getTemperature().getTemperature(context, temperatureUnit)
+                    + " " + weather.getDailyForecast().get(1).getNight().getWeatherText()
+                    + " " + weather.getDailyForecast().get(1).getNight().getTemperature().getTemperature(context, temperatureUnit)
             );
         }
 

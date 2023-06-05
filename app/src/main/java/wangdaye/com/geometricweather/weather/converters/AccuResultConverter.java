@@ -40,7 +40,6 @@ import wangdaye.com.geometricweather.common.basic.models.weather.Wind;
 import wangdaye.com.geometricweather.common.basic.models.weather.WindDegree;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.weather.json.accu.AccuAlertResult;
-import wangdaye.com.geometricweather.weather.json.accu.AccuAqiResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuCurrentResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuDailyResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuHourlyResult;
@@ -71,12 +70,9 @@ public class AccuResultConverter {
                     false,
                     false,
                     !TextUtils.isEmpty(result.Country.ID)
-                            && (result.Country.ID.equals("CN")
-                            || result.Country.ID.equals("cn")
-                            || result.Country.ID.equals("HK")
-                            || result.Country.ID.equals("hk")
-                            || result.Country.ID.equals("TW")
-                            || result.Country.ID.equals("tw"))
+                            && (result.Country.ID.equalsIgnoreCase("cn")
+                            || result.Country.ID.equalsIgnoreCase("hk")
+                            || result.Country.ID.equalsIgnoreCase("tw"))
             );
         } else {
             return new Location(
@@ -93,12 +89,9 @@ public class AccuResultConverter {
                     false,
                     false,
                     !TextUtils.isEmpty(result.Country.ID)
-                            && (result.Country.ID.equals("CN")
-                            || result.Country.ID.equals("cn")
-                            || result.Country.ID.equals("HK")
-                            || result.Country.ID.equals("hk")
-                            || result.Country.ID.equals("TW")
-                            || result.Country.ID.equals("tw"))
+                            && (result.Country.ID.equalsIgnoreCase("cn")
+                            || result.Country.ID.equalsIgnoreCase("hk")
+                            || result.Country.ID.equalsIgnoreCase("tw"))
             );
         }
     }
@@ -110,7 +103,6 @@ public class AccuResultConverter {
                                                               AccuDailyResult dailyResult,
                                                               List<AccuHourlyResult> hourlyResultList,
                                                               @Nullable AccuMinuteResult minuteResult,
-                                                              @Nullable AccuAqiResult aqiResult,
                                                               List<AccuAlertResult> alertResultList) {
         try {
             Weather weather = new Weather(
@@ -145,15 +137,7 @@ public class AccuResultConverter {
                                     CommonConverterKt.getWindLevel(context, (float) currentResult.WindGust.Speed.Metric.Value)
                             ),
                             new UV(currentResult.UVIndex, currentResult.UVIndexText, null),
-                            aqiResult == null ? null : new AirQuality(
-                                    aqiResult.Index,
-                                    aqiResult.ParticulateMatter2_5,
-                                    aqiResult.ParticulateMatter10,
-                                    aqiResult.SulfurDioxide,
-                                    aqiResult.NitrogenDioxide,
-                                    aqiResult.Ozone,
-                                    aqiResult.CarbonMonoxide
-                            ),
+                            null,
                             (float) currentResult.RelativeHumidity,
                             (float) currentResult.Pressure.Metric.Value,
                             (float) currentResult.Visibility.Metric.Value,
@@ -298,7 +282,7 @@ public class AccuResultConverter {
         if (index != null && index == 0) {
             index = null;
         }
-        return new AirQuality(index, null, null, null, null, null, null);
+        return new AirQuality(index, null, null, null, null, null, null, null, null);
     }
 
     private static Pollen getDailyPollen(List<AccuDailyResult.DailyForecasts.AirAndPollen> list) {

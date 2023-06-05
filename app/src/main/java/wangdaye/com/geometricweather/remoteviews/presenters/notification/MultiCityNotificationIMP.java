@@ -264,8 +264,8 @@ public class MultiCityNotificationIMP extends AbstractRemoteViewsPresenter {
                     ResourceHelper.getWidgetNotificationIconUri(
                             provider,
                             cityDayTime
-                                    ? weather.getDailyForecast().get(0).day().getWeatherCode()
-                                    : weather.getDailyForecast().get(0).night().getWeatherCode(),
+                                    ? weather.getDailyForecast().get(0).getDay().getWeatherCode()
+                                    : weather.getDailyForecast().get(0).getNight().getWeatherCode(),
                             cityDayTime,
                             false,
                             NotificationTextColor.GREY
@@ -292,8 +292,8 @@ public class MultiCityNotificationIMP extends AbstractRemoteViewsPresenter {
                     ResourceHelper.getWidgetNotificationIconUri(
                             provider,
                             cityDayTime
-                                    ? weather.getDailyForecast().get(0).day().getWeatherCode()
-                                    : weather.getDailyForecast().get(0).night().getWeatherCode(),
+                                    ? weather.getDailyForecast().get(0).getDay().getWeatherCode()
+                                    : weather.getDailyForecast().get(0).getNight().getWeatherCode(),
                             cityDayTime,
                             false,
                             NotificationTextColor.GREY
@@ -320,8 +320,8 @@ public class MultiCityNotificationIMP extends AbstractRemoteViewsPresenter {
                     ResourceHelper.getWidgetNotificationIconUri(
                             provider,
                             cityDayTime
-                                    ? weather.getDailyForecast().get(0).day().getWeatherCode()
-                                    : weather.getDailyForecast().get(0).night().getWeatherCode(),
+                                    ? weather.getDailyForecast().get(0).getDay().getWeatherCode()
+                                    : weather.getDailyForecast().get(0).getNight().getWeatherCode(),
                             cityDayTime,
                             false,
                             NotificationTextColor.GREY
@@ -344,8 +344,8 @@ public class MultiCityNotificationIMP extends AbstractRemoteViewsPresenter {
             builder.append(", ").append(
                     Temperature.getTrendTemperature(
                             context,
-                            location.getWeather().getDailyForecast().get(0).night().getTemperature().getTemperature(),
-                            location.getWeather().getDailyForecast().get(0).day().getTemperature().getTemperature(),
+                            location.getWeather().getDailyForecast().get(0).getNight().getTemperature().getTemperature(),
+                            location.getWeather().getDailyForecast().get(0).getDay().getTemperature().getTemperature(),
                             unit
                     )
             );

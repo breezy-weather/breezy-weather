@@ -92,13 +92,6 @@
     <string name="precipitation_heavy">Сильный дождь</string>
     <string name="precipitation_rainstorm">Ливень</string>
 
-    <string name="aqi_1">Свежий воздух</string>
-    <string name="aqi_2">Чистый воздух</string>
-    <string name="aqi_3">Лёгкое загрязнение</string>
-    <string name="aqi_4">Среднее загрязнение</string>
-    <string name="aqi_5">Сильное загрязнение</string>
-    <string name="aqi_6">Опасное загрязнение</string>
-
     <string name="phase_new">Новолуние</string>
     <string name="phase_waxing_crescent">Растущий месяц</string>
     <string name="phase_first">Первая четверть</string>

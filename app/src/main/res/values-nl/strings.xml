@@ -51,12 +51,6 @@
     <string name="wind_10">Zware storm</string>
     <string name="wind_11">Zeer zware storm</string>
     <string name="wind_12">Orkaan</string>
-    <string name="aqi_1">Schone lucht</string>
-    <string name="aqi_2">Frisse lucht</string>
-    <string name="aqi_3">Licht vervuild</string>
-    <string name="aqi_4">Gemiddeld vervuild</string>
-    <string name="aqi_5">Ernstig vervuild</string>
-    <string name="aqi_6">Gevaarlijk</string>
     <string name="daily_overview">Dagelijks</string>
     <string name="hourly_overview">Per uur</string>
     <string name="air_quality">Luchtkwaliteit</string>

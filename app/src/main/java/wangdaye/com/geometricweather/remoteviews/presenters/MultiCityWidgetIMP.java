@@ -76,18 +76,18 @@ public class MultiCityWidgetIMP extends AbstractRemoteViewsPresenter {
             );
 
             if (weather.getDailyForecast().size() > 0
-                    && ((dayTime && weather.getDailyForecast().get(0).day() != null
-                    && weather.getDailyForecast().get(0).day().getWeatherCode() != null)
-                    || (!dayTime && weather.getDailyForecast().get(0).night() != null
-                    && weather.getDailyForecast().get(0).night().getWeatherCode() != null))
+                    && ((dayTime && weather.getDailyForecast().get(0).getDay() != null
+                    && weather.getDailyForecast().get(0).getDay().getWeatherCode() != null)
+                    || (!dayTime && weather.getDailyForecast().get(0).getNight() != null
+                    && weather.getDailyForecast().get(0).getNight().getWeatherCode() != null))
             ) {
                 views.setImageViewUri(
                         R.id.widget_multi_city_horizontal_icon_1,
                         ResourceHelper.getWidgetNotificationIconUri(
                                 provider,
                                 dayTime
-                                        ? weather.getDailyForecast().get(0).day().getWeatherCode()
-                                        : weather.getDailyForecast().get(0).night().getWeatherCode(),
+                                        ? weather.getDailyForecast().get(0).getDay().getWeatherCode()
+                                        : weather.getDailyForecast().get(0).getNight().getWeatherCode(),
                                 dayTime,
                                 minimalIcon,
                                 color.getMinimalIconColor()
@@ -96,19 +96,19 @@ public class MultiCityWidgetIMP extends AbstractRemoteViewsPresenter {
             }
 
             if (weather.getDailyForecast().size() > 0
-                    && weather.getDailyForecast().get(0).day() != null
-                    && weather.getDailyForecast().get(0).day().getTemperature() != null
-                    && weather.getDailyForecast().get(0).day().getTemperature().getTemperature() != null
-                    && weather.getDailyForecast().get(0).night() != null
-                    && weather.getDailyForecast().get(0).night().getTemperature() != null
-                    && weather.getDailyForecast().get(0).night().getTemperature().getTemperature() != null
+                    && weather.getDailyForecast().get(0).getDay() != null
+                    && weather.getDailyForecast().get(0).getDay().getTemperature() != null
+                    && weather.getDailyForecast().get(0).getDay().getTemperature().getTemperature() != null
+                    && weather.getDailyForecast().get(0).getNight() != null
+                    && weather.getDailyForecast().get(0).getNight().getTemperature() != null
+                    && weather.getDailyForecast().get(0).getNight().getTemperature().getTemperature() != null
             ) {
                 views.setTextViewText(
                         R.id.widget_multi_city_horizontal_content_1,
                         Temperature.getTrendTemperature(
                                 context,
-                                weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
-                                weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
+                                weather.getDailyForecast().get(0).getNight().getTemperature().getTemperature(),
+                                weather.getDailyForecast().get(0).getDay().getTemperature().getTemperature(),
                                 temperatureUnit
                         )
                 );
@@ -131,18 +131,18 @@ public class MultiCityWidgetIMP extends AbstractRemoteViewsPresenter {
                 );
 
                 if (weather.getDailyForecast().size() > 0
-                        && ((dayTime && weather.getDailyForecast().get(0).day() != null
-                        && weather.getDailyForecast().get(0).day().getWeatherCode() != null)
-                        || (!dayTime && weather.getDailyForecast().get(0).night() != null
-                        && weather.getDailyForecast().get(0).night().getWeatherCode() != null))
+                        && ((dayTime && weather.getDailyForecast().get(0).getDay() != null
+                        && weather.getDailyForecast().get(0).getDay().getWeatherCode() != null)
+                        || (!dayTime && weather.getDailyForecast().get(0).getNight() != null
+                        && weather.getDailyForecast().get(0).getNight().getWeatherCode() != null))
                 ) {
                     views.setImageViewUri(
                             R.id.widget_multi_city_horizontal_icon_2,
                             ResourceHelper.getWidgetNotificationIconUri(
                                     provider,
                                     dayTime
-                                            ? weather.getDailyForecast().get(0).day().getWeatherCode()
-                                            : weather.getDailyForecast().get(0).night().getWeatherCode(),
+                                            ? weather.getDailyForecast().get(0).getDay().getWeatherCode()
+                                            : weather.getDailyForecast().get(0).getNight().getWeatherCode(),
                                     dayTime,
                                     minimalIcon,
                                     color.getMinimalIconColor()
@@ -151,19 +151,19 @@ public class MultiCityWidgetIMP extends AbstractRemoteViewsPresenter {
                 }
 
                 if (weather.getDailyForecast().size() > 0
-                        && weather.getDailyForecast().get(0).day() != null
-                        && weather.getDailyForecast().get(0).day().getTemperature() != null
-                        && weather.getDailyForecast().get(0).day().getTemperature().getTemperature() != null
-                        && weather.getDailyForecast().get(0).night() != null
-                        && weather.getDailyForecast().get(0).night().getTemperature() != null
-                        && weather.getDailyForecast().get(0).night().getTemperature().getTemperature() != null
+                        && weather.getDailyForecast().get(0).getDay() != null
+                        && weather.getDailyForecast().get(0).getDay().getTemperature() != null
+                        && weather.getDailyForecast().get(0).getDay().getTemperature().getTemperature() != null
+                        && weather.getDailyForecast().get(0).getNight() != null
+                        && weather.getDailyForecast().get(0).getNight().getTemperature() != null
+                        && weather.getDailyForecast().get(0).getNight().getTemperature().getTemperature() != null
                 ) {
                     views.setTextViewText(
                             R.id.widget_multi_city_horizontal_content_2,
                             Temperature.getTrendTemperature(
                                     context,
-                                    weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
-                                    weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
+                                    weather.getDailyForecast().get(0).getNight().getTemperature().getTemperature(),
+                                    weather.getDailyForecast().get(0).getDay().getTemperature().getTemperature(),
                                     temperatureUnit
                             )
                     );
@@ -189,18 +189,18 @@ public class MultiCityWidgetIMP extends AbstractRemoteViewsPresenter {
                 );
 
                 if (weather.getDailyForecast().size() > 0
-                        && ((dayTime && weather.getDailyForecast().get(0).day() != null
-                        && weather.getDailyForecast().get(0).day().getWeatherCode() != null)
-                        || (!dayTime && weather.getDailyForecast().get(0).night() != null
-                        && weather.getDailyForecast().get(0).night().getWeatherCode() != null))
+                        && ((dayTime && weather.getDailyForecast().get(0).getDay() != null
+                        && weather.getDailyForecast().get(0).getDay().getWeatherCode() != null)
+                        || (!dayTime && weather.getDailyForecast().get(0).getNight() != null
+                        && weather.getDailyForecast().get(0).getNight().getWeatherCode() != null))
                 ) {
                     views.setImageViewUri(
                             R.id.widget_multi_city_horizontal_icon_3,
                             ResourceHelper.getWidgetNotificationIconUri(
                                     provider,
                                     dayTime
-                                            ? weather.getDailyForecast().get(0).day().getWeatherCode()
-                                            : weather.getDailyForecast().get(0).night().getWeatherCode(),
+                                            ? weather.getDailyForecast().get(0).getDay().getWeatherCode()
+                                            : weather.getDailyForecast().get(0).getNight().getWeatherCode(),
                                     dayTime,
                                     minimalIcon,
                                     color.getMinimalIconColor()
@@ -209,19 +209,19 @@ public class MultiCityWidgetIMP extends AbstractRemoteViewsPresenter {
                 }
 
                 if (weather.getDailyForecast().size() > 0
-                        && weather.getDailyForecast().get(0).day() != null
-                        && weather.getDailyForecast().get(0).day().getTemperature() != null
-                        && weather.getDailyForecast().get(0).day().getTemperature().getTemperature() != null
-                        && weather.getDailyForecast().get(0).night() != null
-                        && weather.getDailyForecast().get(0).night().getTemperature() != null
-                        && weather.getDailyForecast().get(0).night().getTemperature().getTemperature() != null
+                        && weather.getDailyForecast().get(0).getDay() != null
+                        && weather.getDailyForecast().get(0).getDay().getTemperature() != null
+                        && weather.getDailyForecast().get(0).getDay().getTemperature().getTemperature() != null
+                        && weather.getDailyForecast().get(0).getNight() != null
+                        && weather.getDailyForecast().get(0).getNight().getTemperature() != null
+                        && weather.getDailyForecast().get(0).getNight().getTemperature().getTemperature() != null
                 ) {
                     views.setTextViewText(
                             R.id.widget_multi_city_horizontal_content_3,
                             Temperature.getTrendTemperature(
                                     context,
-                                    weather.getDailyForecast().get(0).night().getTemperature().getTemperature(),
-                                    weather.getDailyForecast().get(0).day().getTemperature().getTemperature(),
+                                    weather.getDailyForecast().get(0).getNight().getTemperature().getTemperature(),
+                                    weather.getDailyForecast().get(0).getDay().getTemperature().getTemperature(),
                                     temperatureUnit
                             )
                     );

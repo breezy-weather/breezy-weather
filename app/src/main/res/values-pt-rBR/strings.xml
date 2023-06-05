@@ -93,13 +93,6 @@
     <string name="precipitation_heavy">Chuva intensa</string>
     <string name="precipitation_rainstorm">Tempestade</string>
 
-    <string name="aqi_1">Excelente</string>
-    <string name="aqi_2">Boa</string>
-    <string name="aqi_3">Leve</string>
-    <string name="aqi_4">Moderada</string>
-    <string name="aqi_5">Forte</string>
-    <string name="aqi_6">Severa</string>
-
     <string name="phase_new">Lua nova</string>
     <string name="phase_waxing_crescent">Lua crescente</string>
     <string name="phase_first">Quarto crescente</string>

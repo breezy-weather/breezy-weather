@@ -66,37 +66,37 @@ public class DailyTemperatureAdapter extends AbsDailyTrendAdapter {
             assert weather != null;
             Daily daily = weather.getDailyForecast().get(position);
 
-            if (daily.day() != null) {
+            if (daily.getDay() != null) {
                 talkBackBuilder
                         .append(", ").append(activity.getString(R.string.daytime))
-                        .append(" : ").append(daily.day().getWeatherText())
+                        .append(" : ").append(daily.getDay().getWeatherText())
                         .append(", ").append(getDaytimeTemperatureString(weather, position, mTemperatureUnit));
             }
 
-            if (daily.night() != null) {
+            if (daily.getNight() != null) {
                 talkBackBuilder
                         .append(", ").append(activity.getString(R.string.nighttime))
-                        .append(" : ").append(daily.night().getWeatherText())
+                        .append(" : ").append(daily.getNight().getWeatherText())
                         .append(", ").append(getNighttimeTemperatureString(weather, position, mTemperatureUnit));
             }
 
-            if (daily.day() != null && daily.day().getWeatherCode() != null) {
+            if (daily.getDay() != null && daily.getDay().getWeatherCode() != null) {
                 dailyItem.setDayIconDrawable(
                         ResourceHelper.getWeatherIcon(
                                 mResourceProvider,
-                                daily.day().getWeatherCode(),
+                                daily.getDay().getWeatherCode(),
                                 true
                         )
                 );
             }
 
             Float daytimePrecipitationProbability = null;
-            if (daily.day() != null && daily.day().getPrecipitationProbability() != null) {
-                daytimePrecipitationProbability = daily.day().getPrecipitationProbability().getTotal();
+            if (daily.getDay() != null && daily.getDay().getPrecipitationProbability() != null) {
+                daytimePrecipitationProbability = daily.getDay().getPrecipitationProbability().getTotal();
             }
             Float nighttimePrecipitationProbability = null;
-            if (daily.night() != null && daily.night().getPrecipitationProbability() != null) {
-                nighttimePrecipitationProbability = daily.night().getPrecipitationProbability().getTotal();
+            if (daily.getNight() != null && daily.getNight().getPrecipitationProbability() != null) {
+                nighttimePrecipitationProbability = daily.getNight().getPrecipitationProbability().getTotal();
             }
             float p = Math.max(
                     daytimePrecipitationProbability == null ? 0 : daytimePrecipitationProbability,
@@ -143,11 +143,11 @@ public class DailyTemperatureAdapter extends AbsDailyTrendAdapter {
             );
             mPolylineAndHistogramView.setHistogramAlpha(lightTheme ? 0.2f : 0.5f);
 
-            if (daily.night() != null && daily.night().getWeatherCode() != null) {
+            if (daily.getNight() != null && daily.getNight().getWeatherCode() != null) {
                 dailyItem.setNightIconDrawable(
                         ResourceHelper.getWeatherIcon(
                                 mResourceProvider,
-                                daily.night().getWeatherCode(),
+                                daily.getNight().getWeatherCode(),
                                 false
                         )
                 );
@@ -310,18 +310,18 @@ public class DailyTemperatureAdapter extends AbsDailyTrendAdapter {
     }
 
     protected Integer getDaytimeTemperatureC(Weather weather, int index) {
-        if (weather.getDailyForecast().get(index).day() != null
-            && weather.getDailyForecast().get(index).day().getTemperature() != null) {
-            return weather.getDailyForecast().get(index).day().getTemperature().getTemperature();
+        if (weather.getDailyForecast().get(index).getDay() != null
+            && weather.getDailyForecast().get(index).getDay().getTemperature() != null) {
+            return weather.getDailyForecast().get(index).getDay().getTemperature().getTemperature();
         } else {
             return null;
         }
     }
 
     protected Integer getNighttimeTemperatureC(Weather weather, int index) {
-        if (weather.getDailyForecast().get(index).night() != null
-                && weather.getDailyForecast().get(index).night().getTemperature() != null) {
-            return weather.getDailyForecast().get(index).night().getTemperature().getTemperature();
+        if (weather.getDailyForecast().get(index).getNight() != null
+                && weather.getDailyForecast().get(index).getNight().getTemperature() != null) {
+            return weather.getDailyForecast().get(index).getNight().getTemperature().getTemperature();
         } else {
             return null;
         }
@@ -336,36 +336,36 @@ public class DailyTemperatureAdapter extends AbsDailyTrendAdapter {
     }
 
     protected String getDaytimeTemperatureString(Weather weather, int index, TemperatureUnit unit) {
-        if (weather.getDailyForecast().get(index).day() != null
-                && weather.getDailyForecast().get(index).day().getTemperature() != null) {
-            return weather.getDailyForecast().get(index).day().getTemperature().getTemperature(getActivity(), unit);
+        if (weather.getDailyForecast().get(index).getDay() != null
+                && weather.getDailyForecast().get(index).getDay().getTemperature() != null) {
+            return weather.getDailyForecast().get(index).getDay().getTemperature().getTemperature(getActivity(), unit);
         } else {
             return null;
         }
     }
 
     protected String getNighttimeTemperatureString(Weather weather, int index, TemperatureUnit unit) {
-        if (weather.getDailyForecast().get(index).night() != null
-                && weather.getDailyForecast().get(index).night().getTemperature() != null) {
-            return weather.getDailyForecast().get(index).night().getTemperature().getTemperature(getActivity(), unit);
+        if (weather.getDailyForecast().get(index).getNight() != null
+                && weather.getDailyForecast().get(index).getNight().getTemperature() != null) {
+            return weather.getDailyForecast().get(index).getNight().getTemperature().getTemperature(getActivity(), unit);
         } else {
             return null;
         }
     }
 
     protected String getShortDaytimeTemperatureString(Weather weather, int index, TemperatureUnit unit) {
-        if (weather.getDailyForecast().get(index).day() != null
-                && weather.getDailyForecast().get(index).day().getTemperature() != null) {
-            return weather.getDailyForecast().get(index).day().getTemperature().getShortTemperature(getActivity(), unit);
+        if (weather.getDailyForecast().get(index).getDay() != null
+                && weather.getDailyForecast().get(index).getDay().getTemperature() != null) {
+            return weather.getDailyForecast().get(index).getDay().getTemperature().getShortTemperature(getActivity(), unit);
         } else {
             return null;
         }
     }
 
     protected String getShortNighttimeTemperatureString(Weather weather, int index, TemperatureUnit unit) {
-        if (weather.getDailyForecast().get(index).night() != null
-                && weather.getDailyForecast().get(index).night().getTemperature() != null) {
-            return weather.getDailyForecast().get(index).night().getTemperature().getShortTemperature(getActivity(), unit);
+        if (weather.getDailyForecast().get(index).getNight() != null
+                && weather.getDailyForecast().get(index).getNight().getTemperature() != null) {
+            return weather.getDailyForecast().get(index).getNight().getTemperature().getShortTemperature(getActivity(), unit);
         } else {
             return null;
         }

@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = "1.8.10"
+    ext.kotlin_version = "1.8.21"
     ext.objectboxVersion = "3.6.0"
     dependencies {
         classpath("com.android.tools.build:gradle:7.4.2")

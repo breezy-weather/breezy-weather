@@ -8,7 +8,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import wangdaye.com.geometricweather.weather.json.accu.AccuAlertResult;
-import wangdaye.com.geometricweather.weather.json.accu.AccuAqiResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuCurrentResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuDailyResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuHourlyResult;
@@ -64,10 +63,6 @@ public interface AccuWeatherApi {
                                              @Query("language") String language,
                                              @Query("details") boolean details,
                                              @Query("q") String q);
-
-    @GET("airquality/v1/observations/{city_key}.json")
-    Observable<AccuAqiResult> getAirQuality(@Path("city_key") String city_key,
-                                            @Query("apikey") String apikey);
 
     @GET("alerts/v1/{city_key}.json")
     Observable<List<AccuAlertResult>> getAlert(@Path("city_key") String city_key,

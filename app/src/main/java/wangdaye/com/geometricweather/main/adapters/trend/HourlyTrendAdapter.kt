@@ -36,6 +36,7 @@ class HourlyTrendAdapter(
                 provider,
                 SettingsManager.getInstance(activity).temperatureUnit
             ),
+            HourlyAirQualityAdapter(activity, location),
             HourlyWindAdapter(
                 activity,
                 location,

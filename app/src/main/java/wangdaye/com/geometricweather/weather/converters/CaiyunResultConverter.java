@@ -98,7 +98,7 @@ public class CaiyunResultConverter {
                             null,
                             null,
                             null,
-                            forecastResult.precipitation.description
+                            forecastResult.precipitation != null ? forecastResult.precipitation.description : null
                     ),
                     getYesterday(mainlyResult),
                     getDailyList(context, mainlyResult.current.pubTime, location.getTimeZone(), mainlyResult.forecastDaily),
@@ -177,7 +177,12 @@ public class CaiyunResultConverter {
             co = null;
         }
 
-        return new AirQuality(index, pm25, pm10, so2, no2, o3, co);
+        return new AirQuality(
+            CommonConverterKt.getAirQualityIndex("epa", pm25, pm10, so2,null, no2,null, o3,null, co, null, null),
+            index,
+            CommonConverterKt.getAirQualityIndex("eea", pm25, pm10, so2,null, no2,null, o3,null, null, null, null),
+            pm25, pm10, so2, no2, o3, co
+        );
     }
 
     @Nullable
@@ -286,9 +291,11 @@ public class CaiyunResultConverter {
                             null,
                             null,
                             new AirQuality(
+                                    null,
                                     forecast.aqi != null && forecast.aqi.value != null && forecast.aqi.value.size() > i
                                             ? forecast.aqi.value.get(i)
                                             : null,
+                                    null,
                                     null,
                                     null,
                                     null,
@@ -379,6 +386,7 @@ public class CaiyunResultConverter {
                                                   String currentWeatherText,
                                                   WeatherCode currentWeatherCode,
                                                   CaiYunForecastResult result) {
+        if (result.precipitation == null) return new ArrayList<>();
         Date current = result.precipitation.pubTime;
 
         List<Minutely> minutelyList = new ArrayList<>(result.precipitation.value.size());

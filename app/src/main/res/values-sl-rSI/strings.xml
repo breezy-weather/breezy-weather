@@ -61,13 +61,6 @@
     <string name="wind_11">Silovita nevihta</string>
     <string name="wind_12">Hurikan/Tajfun</string>
 
-    <string name="aqi_1">Svež zrak</string>
-    <string name="aqi_2">Čist zrak</string>
-    <string name="aqi_3">Rahlo onesnažen</string>
-    <string name="aqi_4">Zmerno onesnažen</string>
-    <string name="aqi_5">Hudo onesnaženje</string>
-    <string name="aqi_6">Zelo hudo onesnaženje</string>
-
     <string name="phase_new">Mlada luna</string>
     <string name="phase_waxing_crescent">Nastajajoči polmesec</string>
     <string name="phase_first">Prva četrina</string>

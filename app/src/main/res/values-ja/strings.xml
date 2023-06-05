@@ -93,13 +93,6 @@
     <string name="precipitation_heavy">大雨</string>
     <string name="precipitation_rainstorm">暴風雨</string>
 
-    <string name="aqi_1">良い</string>
-    <string name="aqi_2">並</string>
-    <string name="aqi_3">軽度の汚染</string>
-    <string name="aqi_4">中程度の汚染</string>
-    <string name="aqi_5">重度の汚染</string>
-    <string name="aqi_6">深刻な汚染</string>
-
     <string name="phase_new">新月</string>
     <string name="phase_waxing_crescent">三日月</string>
     <string name="phase_first">上弦</string>

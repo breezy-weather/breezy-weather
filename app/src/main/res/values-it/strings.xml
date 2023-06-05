@@ -94,13 +94,6 @@
     <string name="precipitation_heavy">Pioggia torrenziale</string>
     <string name="precipitation_rainstorm">Temporale</string>
 
-    <string name="aqi_1">Aria pulita</string>
-    <string name="aqi_2">Aria pulita</string>
-    <string name="aqi_3">Inquinamento basso</string>
-    <string name="aqi_4">Inquinamento moderato</string>
-    <string name="aqi_5">Inquinamento alto</string>
-    <string name="aqi_6">Aria pericolosa</string>
-
     <string name="phase_new">Nuova luna</string>
     <string name="phase_waxing_crescent">Luna crescente</string>
     <string name="phase_first">Primo quarto</string>

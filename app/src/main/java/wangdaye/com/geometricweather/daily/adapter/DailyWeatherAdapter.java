@@ -84,19 +84,19 @@ public class DailyWeatherAdapter extends RecyclerView.Adapter<DailyWeatherAdapte
         mModelList = new ArrayList<>();
 
         mModelList.add(new LargeTitle(context.getString(R.string.daytime)));
-        mModelList.add(new Overview(daily.day(), true));
-        mModelList.add(new DailyWind(daily.day().getWind()));
-        mModelList.addAll(getHalfDayOptionalModelList(context, daily.day()));
+        mModelList.add(new Overview(daily.getDay(), true));
+        mModelList.add(new DailyWind(daily.getDay().getWind()));
+        mModelList.addAll(getHalfDayOptionalModelList(context, daily.getDay()));
 
         mModelList.add(new Line());
         mModelList.add(new LargeTitle(context.getString(R.string.nighttime)));
-        mModelList.add(new Overview(daily.night(), false));
-        mModelList.add(new DailyWind(daily.night().getWind()));
-        mModelList.addAll(getHalfDayOptionalModelList(context, daily.night()));
+        mModelList.add(new Overview(daily.getNight(), false));
+        mModelList.add(new DailyWind(daily.getNight().getWind()));
+        mModelList.addAll(getHalfDayOptionalModelList(context, daily.getNight()));
 
         mModelList.add(new Line());
         mModelList.add(new LargeTitle(context.getString(R.string.life_details)));
-        mModelList.add(new DailyAstro(timeZone, daily.sun(), daily.moon(), daily.getMoonPhase()));
+        mModelList.add(new DailyAstro(timeZone, daily.getSun(), daily.getMoon(), daily.getMoonPhase()));
         if (daily.getAirQuality().isValid()) {
             mModelList.add(new Title(R.drawable.weather_haze_mini_xml, context.getString(R.string.air_quality)));
             mModelList.add(new DailyAirQuality(daily.getAirQuality()));

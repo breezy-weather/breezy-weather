@@ -103,12 +103,9 @@
     <string name="precipitation_heavy">Forte</string>
     <string name="precipitation_rainstorm">Torentielle</string>
 
-    <string name="aqi_1">Bon</string>
-    <string name="aqi_2">Moyen</string>
-    <string name="aqi_3">Dégradé</string>
-    <string name="aqi_4">Mauvais</string>
-    <string name="aqi_5">Très mauvais</string>
-    <string name="aqi_6">Extrêmement mauvais</string>
+    <string name="fresh_air">Air pur</string>
+    <string name="high_pollution">Pollution élevée</string>
+    <string name="excessive_pollution">Pollution excessive</string>
 
     <string name="phase_new">Nouvelle lune</string>
     <string name="phase_waxing_crescent">Premier croissant</string>
@@ -419,7 +416,7 @@
     <string name="settings_title_precipitation_unit">Unité des précipitations</string>
     <string name="settings_title_pressure_unit">Unité de pression</string>
     <string name="settings_title_speed_unit">Unité de vitesse</string>
-    <string name="settings_title_air_quality_level">Échelle de qualité de l’air</string>
+    <string name="settings_title_air_quality_algorithm">Algorithme de qualité de l’air</string>
     <string name="settings_title_refresh_rate">Intervalle de mise à jour</string>
     <string name="settings_title_alert_notification_switch">Notifier des vigilances</string>
     <string name="settings_title_precipitation_notification_switch">Notifier des précipitations</string>

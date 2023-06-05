@@ -280,8 +280,8 @@ public class NotificationHelper {
     }
 
     private static boolean isLiquidDay(Weather weather) {
-        return weather.getDailyForecast().get(0).day().getWeatherCode().isPrecipitation()
-                || weather.getDailyForecast().get(0).night().getWeatherCode().isPrecipitation();
+        return weather.getDailyForecast().get(0).getDay().getWeatherCode().isPrecipitation()
+                || weather.getDailyForecast().get(0).getNight().getWeatherCode().isPrecipitation();
     }
 
     private static boolean isShortTermLiquid(Weather weather) {

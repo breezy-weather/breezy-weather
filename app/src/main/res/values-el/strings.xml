@@ -93,13 +93,6 @@
     <string name="precipitation_heavy">Δυνατή βροχή</string>
     <string name="precipitation_rainstorm">Νεροποντή</string>
 
-    <string name="aqi_1">Φρέσκος αέρας</string>
-    <string name="aqi_2">Καθαρός αέρας</string>
-    <string name="aqi_3">Ελαφριά ρύπανση</string>
-    <string name="aqi_4">Μέτρια ρύπανση</string>
-    <string name="aqi_5">Βαριά ρύπανση</string>
-    <string name="aqi_6">Επικίνδυνη ρύπανση</string>
-
     <string name="phase_new">Νέα Σελήνη</string>
     <string name="phase_waxing_crescent">Αύξων μηνίσκος</string>
     <string name="phase_first">Πρώτο τέταρτο</string>

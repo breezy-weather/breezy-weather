@@ -95,13 +95,6 @@
     <string name="precipitation_heavy">Hujan deras</string>
     <string name="precipitation_rainstorm">Hujan badai</string>
 
-    <string name="aqi_1">Udara segar</string>
-    <string name="aqi_2">Udara bersih</string>
-    <string name="aqi_3">Agak tercemar</string>
-    <string name="aqi_4">Cukup tercemar</string>
-    <string name="aqi_5">Polusi berat</string>
-    <string name="aqi_6">Polusi parah</string>
-
     <string name="phase_new">Bulan Baru</string>
     <string name="phase_waxing_crescent">Waxing crescent</string>
     <string name="phase_first">Kuarter pertama</string>

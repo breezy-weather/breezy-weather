@@ -49,27 +49,27 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
                         + " : "
                         + weather.getCurrent().getWind().getWindDescription(context, speedUnit);
                 String windContent = "";
-                if (weather.getDailyForecast().get(0).day() != null
-                        && weather.getDailyForecast().get(0).day().getWind() != null
-                        && !TextUtils.isEmpty(weather.getDailyForecast().get(0).day().getWind().getWindDescription(context, speedUnit))
+                if (weather.getDailyForecast().get(0).getDay() != null
+                        && weather.getDailyForecast().get(0).getDay().getWind() != null
+                        && !TextUtils.isEmpty(weather.getDailyForecast().get(0).getDay().getWind().getWindDescription(context, speedUnit))
                 ) {
                     windContent += context.getString(R.string.daytime)
                             + " : "
-                            + weather.getDailyForecast().get(0).day().getWind().getWindDescription(context, speedUnit);
-                    if (weather.getDailyForecast().get(0).night() != null
-                            && weather.getDailyForecast().get(0).night().getWind() != null
-                            && !TextUtils.isEmpty(weather.getDailyForecast().get(0).night().getWind().getWindDescription(context, speedUnit))
+                            + weather.getDailyForecast().get(0).getDay().getWind().getWindDescription(context, speedUnit);
+                    if (weather.getDailyForecast().get(0).getNight() != null
+                            && weather.getDailyForecast().get(0).getNight().getWind() != null
+                            && !TextUtils.isEmpty(weather.getDailyForecast().get(0).getNight().getWind().getWindDescription(context, speedUnit))
                     ) {
                         windContent += "\n";
                     }
                 }
-                if (weather.getDailyForecast().get(0).night() != null
-                        && weather.getDailyForecast().get(0).night().getWind() != null
-                        && !TextUtils.isEmpty(weather.getDailyForecast().get(0).night().getWind().getWindDescription(context, speedUnit))
+                if (weather.getDailyForecast().get(0).getNight() != null
+                        && weather.getDailyForecast().get(0).getNight().getWind() != null
+                        && !TextUtils.isEmpty(weather.getDailyForecast().get(0).getNight().getWind().getWindDescription(context, speedUnit))
                 ) {
                     windContent += context.getString(R.string.nighttime)
                             + " : "
-                            + weather.getDailyForecast().get(0).night().getWind().getWindDescription(context, speedUnit);
+                            + weather.getDailyForecast().get(0).getNight().getWind().getWindDescription(context, speedUnit);
                 }
 
                 mIndexList.add(

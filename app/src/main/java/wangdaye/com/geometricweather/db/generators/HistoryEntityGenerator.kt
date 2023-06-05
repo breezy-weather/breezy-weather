@@ -21,8 +21,8 @@ fun generate(cityId: String, source: WeatherSource, weather: Weather): HistoryEn
         cityId = cityId,
         weatherSource = WeatherSourceConverter().convertToDatabaseValue(source),
         date = weather.base.publishDate,
-        daytimeTemperature = weather.dailyForecast[0].day()?.temperature?.temperature,
-        nighttimeTemperature = weather.dailyForecast[0].night()?.temperature?.temperature
+        daytimeTemperature = weather.dailyForecast.getOrNull(0)?.day?.temperature?.temperature,
+        nighttimeTemperature = weather.dailyForecast.getOrNull(0)?.night?.temperature?.temperature
     )
 }
 

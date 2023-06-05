@@ -19,12 +19,6 @@
     <string name="allergen">Allergien</string>
     <string name="app_name">Wetter</string>
     <string name="apparent_temperature">Gefühlt</string>
-    <string name="aqi_1">Frische Luft</string>
-    <string name="aqi_2">Klare Luft</string>
-    <string name="aqi_3">Leichte Verschmutzung</string>
-    <string name="aqi_4">Mäßige Verschmutzung</string>
-    <string name="aqi_5">Hohe Verschmutzung</string>
-    <string name="aqi_6">Gefährliche Verschmutzung</string>
     <string name="background_information">Background information</string>
     <string name="briefings">Bericht</string>
     <string name="cancel">Abbruch</string>

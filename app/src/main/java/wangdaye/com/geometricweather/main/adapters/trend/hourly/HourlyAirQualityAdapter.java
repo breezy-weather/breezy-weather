@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.main.adapters.trend.daily;
+package wangdaye.com.geometricweather.main.adapters.trend.hourly;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -15,7 +15,7 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.AirQuality;
-import wangdaye.com.geometricweather.common.basic.models.weather.Daily;
+import wangdaye.com.geometricweather.common.basic.models.weather.Hourly;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.chart.PolylineAndHistogramView;
@@ -24,21 +24,21 @@ import wangdaye.com.geometricweather.theme.ThemeManager;
 import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
 
 /**
- * Daily air quality adapter.
+ * Hourly air quality adapter.
  * */
 
-public class DailyAirQualityAdapter extends AbsDailyTrendAdapter {
+public class HourlyAirQualityAdapter extends AbsHourlyTrendAdapter {
 
     private int mHighestIndex;
 
-    class ViewHolder extends AbsDailyTrendAdapter.ViewHolder {
+    class ViewHolder extends AbsHourlyTrendAdapter.ViewHolder {
 
         private final PolylineAndHistogramView mPolylineAndHistogramView;
 
         ViewHolder(View itemView) {
             super(itemView);
             mPolylineAndHistogramView = new PolylineAndHistogramView(itemView.getContext());
-            dailyItem.setChartItemView(mPolylineAndHistogramView);
+            hourlyItem.setChartItemView(mPolylineAndHistogramView);
         }
 
         @SuppressLint("DefaultLocale")
@@ -50,25 +50,23 @@ public class DailyAirQualityAdapter extends AbsDailyTrendAdapter {
             super.onBindView(activity, location, talkBackBuilder, position);
 
             assert location.getWeather() != null;
-            Daily daily = location.getWeather().getDailyForecast().get(position);
-            if (daily.getAirQuality() != null) {
-                Integer index = daily.getAirQuality().getIndex(itemView.getContext());
-                talkBackBuilder.append(", ").append(index).append(", ").append(daily.getAirQuality().getAqiText(itemView.getContext()));
-                mPolylineAndHistogramView.setData(
-                        null, null,
-                        null, null,
-                        null, null,
-                        (float) (index == null ? 0 : index),
-                        String.format("%d", index == null ? 0 : index),
-                        (float) mHighestIndex,
-                        0f
-                );
-                mPolylineAndHistogramView.setLineColors(
-                        daily.getAirQuality().getAqiColor(activity),
-                        daily.getAirQuality().getAqiColor(activity),
-                        MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
-                );
-            }
+            Hourly hourly = location.getWeather().getHourlyForecast().get(position);
+            Integer index = hourly.getAirQuality() != null ? hourly.getAirQuality().getIndex(itemView.getContext()) : null;
+            talkBackBuilder.append(", ").append(index).append(", ").append(hourly.getAirQuality().getAqiText(itemView.getContext()));
+            mPolylineAndHistogramView.setData(
+                    null, null,
+                    null, null,
+                    null, null,
+                    (float) (index == null ? 0 : index),
+                    String.format("%d", index == null ? 0 : index),
+                    (float) mHighestIndex,
+                    0f
+            );
+            mPolylineAndHistogramView.setLineColors(
+                    hourly.getAirQuality().getAqiColor(activity),
+                    hourly.getAirQuality().getAqiColor(activity),
+                    MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+            );
             int[] themeColors = ThemeManager
                     .getInstance(itemView.getContext())
                     .getWeatherThemeDelegate()
@@ -86,20 +84,20 @@ public class DailyAirQualityAdapter extends AbsDailyTrendAdapter {
             );
             mPolylineAndHistogramView.setHistogramAlpha(lightTheme ? 1f : 0.5f);
 
-            dailyItem.setContentDescription(talkBackBuilder.toString());
+            hourlyItem.setContentDescription(talkBackBuilder.toString());
         }
     }
 
-    public DailyAirQualityAdapter(GeoActivity activity, Location location) {
+    public HourlyAirQualityAdapter(GeoActivity activity, Location location) {
         super(activity, location);
 
         Weather weather = location.getWeather();
         assert weather != null;
 
         mHighestIndex = 0;
-        for (int i = weather.getDailyForecast().size() - 1; i >= 0; i --) {
-            if (weather.getDailyForecast().get(i).getAirQuality() != null) {
-                Integer index = weather.getDailyForecast().get(i).getAirQuality().getIndex(activity);
+        for (int i = weather.getHourlyForecast().size() - 1; i >= 0; i--) {
+            if (weather.getHourlyForecast().get(i).getAirQuality() != null) {
+                Integer index = weather.getHourlyForecast().get(i).getAirQuality() != null ? weather.getHourlyForecast().get(i).getAirQuality().getIndex(activity) : null;
                 if (index != null && index > mHighestIndex) {
                     mHighestIndex = index;
                 }
@@ -111,18 +109,18 @@ public class DailyAirQualityAdapter extends AbsDailyTrendAdapter {
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_trend_daily, parent, false);
+                .inflate(R.layout.item_trend_hourly, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AbsDailyTrendAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AbsHourlyTrendAdapter.ViewHolder holder, int position) {
         ((ViewHolder)  holder).onBindView(getActivity(), getLocation(), position);
     }
 
     @Override
     public int getItemCount() {
-        return getLocation().getWeather().getDailyForecast().size();
+        return getLocation().getWeather().getHourlyForecast().size();
     }
 
     @Override

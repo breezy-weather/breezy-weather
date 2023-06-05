@@ -375,7 +375,7 @@ public abstract class AbstractRemoteViewsPresenter {
         for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i++) {
             subtitle = subtitle.replace(
                     "$" + i + "dw$",
-                    weather.getDailyForecast().get(i).day().getWeatherText()
+                    weather.getDailyForecast().get(i).getDay().getWeatherText()
             );
         }
         return subtitle;
@@ -385,7 +385,7 @@ public abstract class AbstractRemoteViewsPresenter {
         for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i++) {
             subtitle = subtitle.replace(
                     "$" + i + "nw$",
-                    weather.getDailyForecast().get(i).night().getWeatherText()
+                    weather.getDailyForecast().get(i).getNight().getWeatherText()
             );
         }
         return subtitle;
@@ -399,7 +399,7 @@ public abstract class AbstractRemoteViewsPresenter {
                     "$" + i + "dt$",
                     weather.getDailyForecast()
                             .get(i)
-                            .day()
+                            .getDay()
                             .getTemperature()
                             .getTemperature(context, unit) + ""
             );
@@ -414,7 +414,7 @@ public abstract class AbstractRemoteViewsPresenter {
                     "$" + i + "nt$",
                     weather.getDailyForecast()
                             .get(i)
-                            .night()
+                            .getNight()
                             .getTemperature()
                             .getTemperature(context, unit) + ""
             );
@@ -431,7 +431,7 @@ public abstract class AbstractRemoteViewsPresenter {
                     "$" + i + "dtd$",
                     weather.getDailyForecast()
                             .get(i)
-                            .day()
+                            .getDay()
                             .getTemperature()
                             .getShortTemperature(context, unit) + ""
             );
@@ -448,7 +448,7 @@ public abstract class AbstractRemoteViewsPresenter {
                     "$" + i + "ntd$",
                     weather.getDailyForecast()
                             .get(i)
-                            .night()
+                            .getNight()
                             .getTemperature()
                             .getShortTemperature(context, unit) + ""
             );
@@ -467,7 +467,7 @@ public abstract class AbstractRemoteViewsPresenter {
                             (int) WidgetHelper.getNonNullValue(
                                     weather.getDailyForecast()
                                             .get(i)
-                                            .day()
+                                            .getDay()
                                             .getPrecipitationProbability()
                                             .getTotal(),
                                     0
@@ -489,7 +489,7 @@ public abstract class AbstractRemoteViewsPresenter {
                             (int) WidgetHelper.getNonNullValue(
                                     weather.getDailyForecast()
                                             .get(i)
-                                            .night()
+                                            .getNight()
                                             .getPrecipitationProbability()
                                             .getTotal(),
                                     0
@@ -504,9 +504,9 @@ public abstract class AbstractRemoteViewsPresenter {
         for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i++) {
             subtitle = subtitle.replace(
                     "$" + i + "dwd$",
-                    weather.getDailyForecast().get(i).day().getWind().getLevel()
+                    weather.getDailyForecast().get(i).getDay().getWind().getLevel()
                             + " ("
-                            + weather.getDailyForecast().get(i).day().getWind().getDirection()
+                            + weather.getDailyForecast().get(i).getDay().getWind().getDirection()
                             + ")"
             );
         }
@@ -517,9 +517,9 @@ public abstract class AbstractRemoteViewsPresenter {
         for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i++) {
             subtitle = subtitle.replace(
                     "$" + i + "nwd$",
-                    weather.getDailyForecast().get(i).night().getWind().getLevel()
+                    weather.getDailyForecast().get(i).getNight().getWind().getLevel()
                             + " ("
-                            + weather.getDailyForecast().get(i).night().getWind().getDirection()
+                            + weather.getDailyForecast().get(i).getNight().getWind().getDirection()
                             + ")"
             );
         }
@@ -535,7 +535,7 @@ public abstract class AbstractRemoteViewsPresenter {
         for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i++) {
             subtitle = subtitle.replace(
                     "$" + i + "sr$",
-                    weather.getDailyForecast().get(i).sun().getRiseTime(context, timeZone) + ""
+                    weather.getDailyForecast().get(i).getSun().getRiseTime(context, timeZone) + ""
             );
         }
         return subtitle;
@@ -550,7 +550,7 @@ public abstract class AbstractRemoteViewsPresenter {
         for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i++) {
             subtitle = subtitle.replace(
                     "$" + i + "ss$",
-                    weather.getDailyForecast().get(i).sun().getSetTime(context, timeZone) + ""
+                    weather.getDailyForecast().get(i).getSun().getSetTime(context, timeZone) + ""
             );
         }
         return subtitle;
@@ -565,7 +565,7 @@ public abstract class AbstractRemoteViewsPresenter {
         for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i++) {
             subtitle = subtitle.replace(
                     "$" + i + "mr$",
-                    weather.getDailyForecast().get(i).moon().getRiseTime(context, timeZone) + ""
+                    weather.getDailyForecast().get(i).getMoon().getRiseTime(context, timeZone) + ""
             );
         }
         return subtitle;
@@ -580,7 +580,7 @@ public abstract class AbstractRemoteViewsPresenter {
         for (int i = 0; i < SUBTITLE_DAILY_ITEM_LENGTH; i++) {
             subtitle = subtitle.replace(
                     "$" + i + "ms$",
-                    weather.getDailyForecast().get(i).moon().getSetTime(context, timeZone) + ""
+                    weather.getDailyForecast().get(i).getMoon().getSetTime(context, timeZone) + ""
             );
         }
         return subtitle;

@@ -88,16 +88,16 @@ public class WidgetHelper {
                         ? weather.getCurrent().getTemperature().getTemperature(context, unit)
                         : "",
                 weather.getDailyForecast().size() > 0
-                        && weather.getDailyForecast().get(0).day() != null
-                        && weather.getDailyForecast().get(0).day().getTemperature() != null
-                        && weather.getDailyForecast().get(0).day().getTemperature().getTemperature() != null
-                        ? weather.getDailyForecast().get(0).day().getTemperature().getShortTemperature(context, unit)
+                        && weather.getDailyForecast().get(0).getDay() != null
+                        && weather.getDailyForecast().get(0).getDay().getTemperature() != null
+                        && weather.getDailyForecast().get(0).getDay().getTemperature().getTemperature() != null
+                        ? weather.getDailyForecast().get(0).getDay().getTemperature().getShortTemperature(context, unit)
                         : "",
                 weather.getDailyForecast().size() > 0
-                        && weather.getDailyForecast().get(0).night() != null
-                        && weather.getDailyForecast().get(0).night().getTemperature() != null
-                        && weather.getDailyForecast().get(0).night().getTemperature().getTemperature() != null
-                        ? weather.getDailyForecast().get(0).night().getTemperature().getShortTemperature(context, unit)
+                        && weather.getDailyForecast().get(0).getNight() != null
+                        && weather.getDailyForecast().get(0).getNight().getTemperature() != null
+                        && weather.getDailyForecast().get(0).getNight().getTemperature().getTemperature() != null
+                        ? weather.getDailyForecast().get(0).getNight().getTemperature().getShortTemperature(context, unit)
                         : ""
         };
 

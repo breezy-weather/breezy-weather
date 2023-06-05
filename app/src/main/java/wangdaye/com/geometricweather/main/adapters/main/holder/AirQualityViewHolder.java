@@ -64,9 +64,9 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
         Weather weather = location.getWeather();
         assert weather != null;
 
-        mAqiIndex = weather.getCurrent().getAirQuality().getAqiIndex() == null
+        mAqiIndex = weather.getCurrent().getAirQuality().getIndex(context) == null
                 ? 0
-                : weather.getCurrent().getAirQuality().getAqiIndex();
+                : weather.getCurrent().getAirQuality().getIndex(context);
 
         mEnable = true;
 
@@ -107,6 +107,8 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
         mProgress.setBottomText(weather.getCurrent().getAirQuality().getAqiText(context));
         mProgress.setBottomTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText));
         mProgress.setContentDescription(mAqiIndex + ", " + weather.getCurrent().getAirQuality().getAqiText(context));
+        
+        mProgress.setMax(weather.getCurrent().getAirQuality().getIndexExcessivePollution(context));
 
         mAdapter = new AqiAdapter(context, location, itemAnimationEnabled);
         mRecyclerView.setAdapter(mAdapter);
