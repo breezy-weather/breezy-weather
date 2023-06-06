@@ -8,6 +8,7 @@ buildscript {
         classpath("io.objectbox:objectbox-gradle-plugin:$objectboxVersion")
         classpath("com.google.dagger:hilt-android-gradle-plugin:2.46.1")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
+        classpath("org.jetbrains.kotlin:kotlin-serialization:$kotlin_version")
     }
     repositories {
         mavenCentral()

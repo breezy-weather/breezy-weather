@@ -66,7 +66,6 @@ public class CaiyunResultConverter {
                                     null,
                                     null
                             ),
-                            null,
                             new Wind(
                                     CommonConverterKt.getWindDirection(context, Float.valueOf(mainlyResult.current.wind.direction.value)),
                                     new WindDegree(

@@ -171,7 +171,6 @@
     <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : Jelenlegi Hőmérséklet (°)\n</string>
     <string name="feedback_custom_subtitle_keyword_at">$at$ : Érezhető Hőmérséklet (℃/℉)\n</string>
     <string name="feedback_custom_subtitle_keyword_atd">$atd$ : Érezhető Hőmérséklet (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_cp">$cp$ : Jelenlegi csapadék (mm/L/m²)\n</string>
     <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : Jelenlegi Szél\n</string>
     <string name="feedback_custom_subtitle_keyword_cuv">$cuv$ : Jelenlegi UV\n</string>
     <string name="feedback_custom_subtitle_keyword_l">$l$ : Elhelyezkedés\n</string>

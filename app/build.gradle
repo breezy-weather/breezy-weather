@@ -4,6 +4,7 @@ plugins {
     id("kotlin-kapt")
     id("io.objectbox")
     id("dagger.hilt.android.plugin")
+    id("org.jetbrains.kotlin.plugin.serialization")
 }
 
 android {
@@ -236,8 +237,10 @@ dependencies {
     // implementation "androidx.datastore:datastore-preferences:1.0.0"
     // implementation "androidx.datastore:datastore-preferences-rxjava3:1.0.0"
 
-    // gson.
-    implementation "com.google.code.gson:gson:2.10.1"
+    // serialization
+    implementation "com.google.code.gson:gson:2.10.1" // Java
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1" // Kotlin
+    implementation "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0"
 
     // jwt
     implementation "io.jsonwebtoken:jjwt-api:0.11.5"

@@ -1,11 +1,13 @@
 ## Create a new Weather provider
 
-At each step, have a look at what already exists for other providers if you don’t know what to do.
+At each step, have a look at what already exists for other providers (the ones in Kotlin, as null values are a pain to handle in Java) if you don’t know what to do.
 
 ### Add parameters
 
 Declare `BASE_URL` and if required, an `API_KEY` in `gradle.properties`.
 Add new variables in `app/build.gradle`.
+
+*TODO: describe how to add a new parameter in settings for API key*
 
 
 ### Add WeatherSource
@@ -28,14 +30,15 @@ Create your API class in `app/src/main/java/wangdaye/com/geometricweather/weathe
 
 Copy an existing class, and only implement the forecast API as a starting point.
 
-In `app/src/main/java/wangdaye/com/geometricweather/weather/json/<technicalname>`, add the class that will be constructed from the json returned by the API.
+In `app/src/main/java/wangdaye/com/geometricweather/weather/json/<technicalname>`, add the data class that will be constructed from the json returned by the API.
 
-Use @SerializedName when the name of the field is not the same as what is in the json returned by the API.
+Use @SerialName when the name of the field is not the same as what is in the json returned by the API.
 Example:
-```java
-@SerializedName("is_day")
-public boolean isDay;
+```kotlin
+@SerialName("is_day") val isDay: Boolean?
 ```
+
+As in the example, make as many fields as possible nullable so that in case the API doesn’t return some fields for some locations, it doesn’t fail. The serializer is configured to make nullable fields null in case the field is not in the JSON response, so you don’t need to declare `= null` as default value.
 
 Add the API class as a provider in `app/src/main/java/wangdaye/com/geometricweather/weather/di/ApiModule.java` (copy an existing function).
 
@@ -66,7 +69,10 @@ fun convert(
             /* Complete other parameters one bit at a time */
         )
         WeatherResultWrapper(weather)
-    } catch (ignored: Exception) {
+    } catch (e: Exception) {
+        if (GeometricWeather.instance.debugMode) {
+            e.printStackTrace()
+        }
         WeatherResultWrapper(null)
     }
 }
@@ -75,23 +81,3 @@ fun convert(
 You’re done!
 
 Try build the app, fix errors and complete weather data one bit at a time.
-
-### Debugging
-
-During debugging time, you can replace the catch in `MyProviderResultConverter.convert()` to expose errors:
-```kotlin
-catch (e: Exception) {
-    e.printStackTrace()
-    WeatherResultWrapper(null)
-}
-```
-
-You can also do the same in `requestWeather()` from your service class, by adding in your `BaseObserver`:
-```java
-@Override
-public void onError(Throwable e) {
-    e.printStackTrace();
-}
-```
-
-Remember to remove them once you’re done.

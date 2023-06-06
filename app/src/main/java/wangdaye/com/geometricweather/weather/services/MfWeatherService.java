@@ -1,10 +1,10 @@
 package wangdaye.com.geometricweather.weather.services;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -24,6 +24,7 @@ import io.jsonwebtoken.security.Keys;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import wangdaye.com.geometricweather.BuildConfig;
+import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.rxjava.BaseObserver;
 import wangdaye.com.geometricweather.common.rxjava.ObserverContainer;
@@ -33,10 +34,10 @@ import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.weather.apis.AtmoAuraIqaApi;
 import wangdaye.com.geometricweather.weather.apis.MfWeatherApi;
 import wangdaye.com.geometricweather.weather.converters.MfResultConverterKt;
-import wangdaye.com.geometricweather.weather.json.atmoaura.AtmoAuraQAResult;
+import wangdaye.com.geometricweather.weather.json.atmoaura.AtmoAuraPointResult;
 import wangdaye.com.geometricweather.weather.json.mf.MfCurrentResult;
 import wangdaye.com.geometricweather.weather.json.mf.MfEphemerisResult;
-import wangdaye.com.geometricweather.weather.json.mf.MfForecastV2Result;
+import wangdaye.com.geometricweather.weather.json.mf.MfForecastResult;
 import wangdaye.com.geometricweather.weather.json.mf.MfLocationResult;
 import wangdaye.com.geometricweather.weather.json.mf.MfRainResult;
 import wangdaye.com.geometricweather.weather.json.mf.MfWarningsResult;
@@ -50,12 +51,6 @@ public class MfWeatherService extends WeatherService {
     private final MfWeatherApi mMfApi;
     private final AtmoAuraIqaApi mAtmoAuraApi;
     private final CompositeDisposable mCompositeDisposable;
-
-    private static class EmptyAtmoAuraQAResult extends AtmoAuraQAResult {
-    }
-
-    private static class EmptyWarningsResult extends MfWarningsResult {
-    }
 
     @Inject
     public MfWeatherService(MfWeatherApi mfApi, AtmoAuraIqaApi atmoApi,
@@ -73,7 +68,7 @@ public class MfWeatherService extends WeatherService {
         Observable<MfCurrentResult> current = mMfApi.getCurrent(
             getUserAgent(), location.getLatitude(), location.getLongitude(), languageCode, "iso", token);
 
-        Observable<MfForecastV2Result> forecastV2 = mMfApi.getForecastV2(
+        Observable<MfForecastResult> forecast = mMfApi.getForecast(
             getUserAgent(), location.getLatitude(), location.getLongitude(),"iso","", token);
 
         Observable<MfEphemerisResult> ephemeris = mMfApi.getEphemeris(
@@ -84,17 +79,17 @@ public class MfWeatherService extends WeatherService {
             getUserAgent(), location.getLatitude(), location.getLongitude(), languageCode, "iso", token);
 
         Observable<MfWarningsResult> warnings;
-        if (!location.getProvince().isEmpty()) {
+        if (!TextUtils.isEmpty(location.getProvince())) {
             warnings = mMfApi.getWarnings(
                     getUserAgent(), location.getProvince(), "iso", token
             ).onErrorResumeNext(error ->
-                    Observable.create(emitter -> emitter.onNext(new EmptyWarningsResult()))
+                    Observable.create(emitter -> emitter.onNext(new MfWarningsResult(null, null, null, null, null, null, null, null)))
             );
         } else {
-            warnings = Observable.create(emitter -> emitter.onNext(new EmptyWarningsResult()));
+            warnings = Observable.create(emitter -> emitter.onNext(new MfWarningsResult(null, null, null, null, null, null, null, null)));
         }
 
-        Observable<AtmoAuraQAResult> aqiAtmoAura;
+        Observable<AtmoAuraPointResult> aqiAtmoAura;
         if (location.getProvince().equals("Auvergne-Rhône-Alpes") || location.getProvince().equals("01")
                 || location.getProvince().equals("03") || location.getProvince().equals("07")
                 || location.getProvince().equals("15") || location.getProvince().equals("26")
@@ -115,22 +110,22 @@ public class MfWeatherService extends WeatherService {
                     // Tomorrow because it gives access to D-1 and D+1
                     DisplayUtils.getFormattedDate(c.getTime(), location.getTimeZone(), "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
             ).onErrorResumeNext(error ->
-                    Observable.create(emitter -> emitter.onNext(new EmptyAtmoAuraQAResult()))
+                    Observable.create(emitter -> emitter.onNext(new AtmoAuraPointResult(null)))
             );
         } else {
-            aqiAtmoAura = Observable.create(emitter -> emitter.onNext(new EmptyAtmoAuraQAResult()));
+            aqiAtmoAura = Observable.create(emitter -> emitter.onNext(new AtmoAuraPointResult(null)));
         }
 
-        Observable.zip(current, forecastV2, ephemeris, rain, warnings, aqiAtmoAura,
-                (mfCurrentResult, mfForecastV2Result, mfEphemerisResult, mfRainResult, mfWarningResults, aqiAtmoAuraResult) -> MfResultConverterKt.convert(
+        Observable.zip(current, forecast, ephemeris, rain, warnings, aqiAtmoAura,
+                (mfCurrentResult, mfForecastResult, mfEphemerisResult, mfRainResult, mfWarningResults, aqiAtmoAuraResult) -> MfResultConverterKt.convert(
                         context,
                         location,
                         mfCurrentResult,
-                        mfForecastV2Result,
+                        mfForecastResult,
                         mfEphemerisResult,
                         mfRainResult,
                         mfWarningResults,
-                        aqiAtmoAuraResult instanceof EmptyAtmoAuraQAResult ? null : aqiAtmoAuraResult
+                        aqiAtmoAuraResult
                 )
         ).compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<WeatherResultWrapper>() {
@@ -142,6 +137,12 @@ public class MfWeatherService extends WeatherService {
                             );
                         } else {
                             onFailed();
+                        }
+                    }
+
+                    public void onError(Throwable e) {
+                        if (GeometricWeather.getInstance().getDebugMode()) {
+                            e.printStackTrace();
                         }
                     }
 
@@ -158,7 +159,7 @@ public class MfWeatherService extends WeatherService {
         List<MfLocationResult> resultList = null;
         try {
             resultList = mMfApi.callWeatherLocation(getUserAgent(), query, 48.86d, 2.34d, this.getToken(context)).execute().body();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -168,7 +169,7 @@ public class MfWeatherService extends WeatherService {
     @Override
     public void requestLocation(Context context, Location location,
                                 @NonNull RequestLocationCallback callback) {
-        mMfApi.getForecastV2(
+        mMfApi.getForecast(
             getUserAgent(),
             location.getLatitude(),
             location.getLongitude(),
@@ -176,13 +177,14 @@ public class MfWeatherService extends WeatherService {
             "",
             this.getToken(context)
         ).compose(SchedulerTransformer.create())
-            .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<MfForecastV2Result>() {
+            .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<MfForecastResult>() {
                 @Override
-                public void onSucceed(MfForecastV2Result mfForecastV2Result) {
-                    if (mfForecastV2Result != null) {
+                public void onSucceed(MfForecastResult mfForecastResult) {
+                    if (mfForecastResult != null) {
                         List<Location> locationList = new ArrayList<>();
-                        if (mfForecastV2Result.properties.insee != null) {
-                            locationList.add(MfResultConverterKt.convert(null, mfForecastV2Result));
+                        Location location = MfResultConverterKt.convert(null, mfForecastResult);
+                        if (location != null) {
+                            locationList.add(location);
                         }
                         callback.requestLocationSuccess(
                                 location.getLatitude() + "," + location.getLongitude(),

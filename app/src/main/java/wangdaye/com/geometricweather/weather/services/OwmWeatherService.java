@@ -94,7 +94,7 @@ public class OwmWeatherService extends WeatherService {
         List<OwmLocationResult> resultList = null;
         try {
             resultList = mApi.callWeatherLocation(SettingsManager.getInstance(context).getProviderOwmKey(), query).execute().body();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

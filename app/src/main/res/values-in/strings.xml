@@ -214,7 +214,6 @@
     <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : Suhu saat ini (°)\n</string>
     <string name="feedback_custom_subtitle_keyword_at">$at$ : Suhu terasa saat ini (℃/℉)\n</string>
     <string name="feedback_custom_subtitle_keyword_atd">$atd$ : Suhu terasa saat ini (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_cp">$cp$ : Curah hujan saat ini (mm/L/m²)\n</string>
     <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : Angin saat ini\n</string>
     <string name="feedback_custom_subtitle_keyword_cuv">$cuv$ : UV saat ini\n</string>
     <string name="feedback_custom_subtitle_keyword_ch">$ch$ : Kelembaban saat ini\n</string>

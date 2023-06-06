@@ -113,7 +113,7 @@
     },
     {
       "id": "3:6071481804946854566",
-      "lastPropertyId": "93:7142568425998552932",
+      "lastPropertyId": "96:5162414888732934510",
       "name": "DailyEntity",
       "properties": [
         {
@@ -468,11 +468,6 @@
           "type": 9
         },
         {
-          "id": "71:294200585796891931",
-          "name": "aqiIndex",
-          "type": 5
-        },
-        {
           "id": "72:7684546804691609817",
           "name": "pm25",
           "type": 7
@@ -581,6 +576,21 @@
           "id": "93:7142568425998552932",
           "name": "hoursOfSun",
           "type": 7
+        },
+        {
+          "id": "94:680263588120317497",
+          "name": "epaIndex",
+          "type": 5
+        },
+        {
+          "id": "95:2695162133411662634",
+          "name": "meeIndex",
+          "type": 5
+        },
+        {
+          "id": "96:5162414888732934510",
+          "name": "eeaIndex",
+          "type": 5
         }
       ],
       "relations": []
@@ -626,7 +636,7 @@
     },
     {
       "id": "5:3341053428256525637",
-      "lastPropertyId": "50:1399475740783508258",
+      "lastPropertyId": "53:103798602806946009",
       "name": "HourlyEntity",
       "properties": [
         {
@@ -771,11 +781,6 @@
           "type": 9
         },
         {
-          "id": "29:5621144843209586124",
-          "name": "aqiIndex",
-          "type": 5
-        },
-        {
           "id": "30:7826166673408805750",
           "name": "pm25",
           "type": 7
@@ -879,6 +884,21 @@
           "id": "50:1399475740783508258",
           "name": "uvDescription",
           "type": 9
+        },
+        {
+          "id": "51:4959913370196027932",
+          "name": "epaIndex",
+          "type": 5
+        },
+        {
+          "id": "52:3097596329455126709",
+          "name": "meeIndex",
+          "type": 5
+        },
+        {
+          "id": "53:103798602806946009",
+          "name": "eeaIndex",
+          "type": 5
         }
       ],
       "relations": []
@@ -1028,7 +1048,7 @@
     },
     {
       "id": "8:2083452952355791661",
-      "lastPropertyId": "41:2750349133307174638",
+      "lastPropertyId": "44:3555012121353141739",
       "name": "WeatherEntity",
       "properties": [
         {
@@ -1163,11 +1183,6 @@
           "type": 9
         },
         {
-          "id": "27:592907272150114836",
-          "name": "aqiIndex",
-          "type": 5
-        },
-        {
           "id": "28:4876164192829894135",
           "name": "pm25",
           "type": 7
@@ -1236,6 +1251,21 @@
           "id": "41:2750349133307174638",
           "name": "hourlyForecast",
           "type": 9
+        },
+        {
+          "id": "42:4702094919717523237",
+          "name": "epaIndex",
+          "type": 5
+        },
+        {
+          "id": "43:7298251564821844470",
+          "name": "meeIndex",
+          "type": 5
+        },
+        {
+          "id": "44:3555012121353141739",
+          "name": "eeaIndex",
+          "type": 5
         }
       ],
       "relations": []
@@ -1249,7 +1279,11 @@
   "modelVersionParserMinimum": 5,
   "retiredEntityUids": [],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [],
+  "retiredPropertyUids": [
+    294200585796891931,
+    5621144843209586124,
+    592907272150114836
+  ],
   "retiredRelationUids": [],
   "version": 1
 }

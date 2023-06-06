@@ -210,7 +210,6 @@
     <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : Tämänhetkinen lämpötila (°)\n</string>
     <string name="feedback_custom_subtitle_keyword_at">$at$ : Näenäinen lämpötila (℃/℉)\n</string>
     <string name="feedback_custom_subtitle_keyword_atd">$atd$ : Näennäinen lämpötila (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_cp">$cp$ : Tämänhetkinen sademäärä (mm/L/m²)\n</string>
     <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : Tämänhetkinen tuuli\n</string>
     <string name="feedback_custom_subtitle_keyword_cuv">$cuv$ : Tämänhetkinen UV\n</string>
     <string name="feedback_custom_subtitle_keyword_ch">$ch$ : Tämänhetkinen ilmankosteus\n</string>

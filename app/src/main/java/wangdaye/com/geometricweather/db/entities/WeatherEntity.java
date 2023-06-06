@@ -45,12 +45,6 @@ public class WeatherEntity {
     public Integer wetBulbTemperature;
     public Integer degreeDayTemperature;
 
-    public Float totalPrecipitation;
-    public Float thunderstormPrecipitation;
-    public Float rainPrecipitation;
-    public Float snowPrecipitation;
-    public Float icePrecipitation;
-
     public String windDirection;
     @Convert(converter = WindDegreeConverter.class, dbType = Float.class)
     public WindDegree windDegree;
@@ -96,9 +90,7 @@ public class WeatherEntity {
                          Integer temperature, Integer realFeelTemperature,
                          Integer realFeelShaderTemperature, Integer apparentTemperature,
                          Integer windChillTemperature, Integer wetBulbTemperature,
-                         Integer degreeDayTemperature, Float totalPrecipitation,
-                         Float thunderstormPrecipitation, Float rainPrecipitation,
-                         Float snowPrecipitation, Float icePrecipitation, String windDirection,
+                         Integer degreeDayTemperature, String windDirection,
                          WindDegree windDegree, Float windSpeed, String windLevel,
                          Integer uvIndex, String uvLevel, String uvDescription,
                          Integer epaIndex, Float pm25, Float pm10, Float so2, Float no2,
@@ -119,11 +111,6 @@ public class WeatherEntity {
         this.windChillTemperature = windChillTemperature;
         this.wetBulbTemperature = wetBulbTemperature;
         this.degreeDayTemperature = degreeDayTemperature;
-        this.totalPrecipitation = totalPrecipitation;
-        this.thunderstormPrecipitation = thunderstormPrecipitation;
-        this.rainPrecipitation = rainPrecipitation;
-        this.snowPrecipitation = snowPrecipitation;
-        this.icePrecipitation = icePrecipitation;
         this.windDirection = windDirection;
         this.windDegree = windDegree;
         this.windSpeed = windSpeed;
@@ -262,46 +249,6 @@ public class WeatherEntity {
 
     public void setDegreeDayTemperature(Integer degreeDayTemperature) {
         this.degreeDayTemperature = degreeDayTemperature;
-    }
-
-    public Float getTotalPrecipitation() {
-        return this.totalPrecipitation;
-    }
-
-    public void setTotalPrecipitation(Float totalPrecipitation) {
-        this.totalPrecipitation = totalPrecipitation;
-    }
-
-    public Float getThunderstormPrecipitation() {
-        return this.thunderstormPrecipitation;
-    }
-
-    public void setThunderstormPrecipitation(Float thunderstormPrecipitation) {
-        this.thunderstormPrecipitation = thunderstormPrecipitation;
-    }
-
-    public Float getRainPrecipitation() {
-        return this.rainPrecipitation;
-    }
-
-    public void setRainPrecipitation(Float rainPrecipitation) {
-        this.rainPrecipitation = rainPrecipitation;
-    }
-
-    public Float getSnowPrecipitation() {
-        return this.snowPrecipitation;
-    }
-
-    public void setSnowPrecipitation(Float snowPrecipitation) {
-        this.snowPrecipitation = snowPrecipitation;
-    }
-
-    public Float getIcePrecipitation() {
-        return this.icePrecipitation;
-    }
-
-    public void setIcePrecipitation(Float icePrecipitation) {
-        this.icePrecipitation = icePrecipitation;
     }
 
     public String getWindDirection() {

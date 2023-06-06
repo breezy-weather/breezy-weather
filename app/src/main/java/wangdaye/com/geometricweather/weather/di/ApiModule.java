@@ -5,6 +5,7 @@ import dagger.Provides;
 import dagger.hilt.InstallIn;
 import dagger.hilt.components.SingletonComponent;
 import okhttp3.OkHttpClient;
+import retrofit2.Converter;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -26,7 +27,7 @@ public class ApiModule {
 
     @Provides
     public OpenMeteoWeatherApi provideOpenMeteoWeatherApi(OkHttpClient client,
-                                                          GsonConverterFactory converterFactory,
+                                                          Converter.Factory converterFactory,
                                                           RxJava3CallAdapterFactory callAdapterFactory) {
         return new Retrofit.Builder()
                 .baseUrl(BuildConfig.OPEN_METEO_WEATHER_BASE_URL)
@@ -38,7 +39,7 @@ public class ApiModule {
     }
     @Provides
     public OpenMeteoGeocodingApi provideOpenMeteoGeocodingApi(OkHttpClient client,
-                                                              GsonConverterFactory converterFactory,
+                                                              Converter.Factory converterFactory,
                                                               RxJava3CallAdapterFactory callAdapterFactory) {
         return new Retrofit.Builder()
                 .baseUrl(BuildConfig.OPEN_METEO_GEOCODING_BASE_URL)
@@ -50,7 +51,7 @@ public class ApiModule {
     }
     @Provides
     public OpenMeteoAirQualityApi provideOpenMeteoAirQualityApi(OkHttpClient client,
-                                                                GsonConverterFactory converterFactory,
+                                                                Converter.Factory converterFactory,
                                                                 RxJava3CallAdapterFactory callAdapterFactory) {
         return new Retrofit.Builder()
                 .baseUrl(BuildConfig.OPEN_METEO_AIR_QUALITY_BASE_URL)
@@ -115,7 +116,7 @@ public class ApiModule {
 
     @Provides
     public MfWeatherApi provideMfWeatherApi(OkHttpClient client,
-                                            GsonConverterFactory converterFactory,
+                                            Converter.Factory converterFactory,
                                             RxJava3CallAdapterFactory callAdapterFactory) {
         return new Retrofit.Builder()
                 .baseUrl(BuildConfig.MF_WSFT_BASE_URL)
@@ -128,7 +129,7 @@ public class ApiModule {
 
     @Provides
     public AtmoAuraIqaApi provideAtmoAuraIqaApi(OkHttpClient client,
-                                                GsonConverterFactory converterFactory,
+                                                Converter.Factory converterFactory,
                                                 RxJava3CallAdapterFactory callAdapterFactory) {
         return new Retrofit.Builder()
                 .baseUrl(BuildConfig.IQA_ATMO_AURA_URL)

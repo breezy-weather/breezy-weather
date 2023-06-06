@@ -112,7 +112,7 @@ public class MetNoWeatherService extends WeatherService {
         List<NominatimLocationResult> resultList = null;
         try {
             resultList = mNominatimApi.callWeatherLocation(getUserAgent(), query, "city", true, languageCode, "jsonv2").execute().body();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

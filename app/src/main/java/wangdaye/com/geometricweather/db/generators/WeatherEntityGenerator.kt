@@ -35,14 +35,10 @@ fun generate(location: Location, weather: Weather): WeatherEntity {
     entity.wetBulbTemperature = weather.current?.temperature?.wetBulbTemperature
     entity.degreeDayTemperature = weather.current?.temperature?.degreeDayTemperature
 
-    entity.totalPrecipitation = weather.current?.precipitation?.total
-    entity.thunderstormPrecipitation = weather.current?.precipitation?.thunderstorm
-    entity.rainPrecipitation = weather.current?.precipitation?.rain
-    entity.snowPrecipitation = weather.current?.precipitation?.snow
-    entity.icePrecipitation = weather.current?.precipitation?.ice
-
     entity.windDirection = weather.current?.wind?.direction
-    entity.windDegree = weather.current?.wind?.degree
+    entity.windDegree = if (weather.current?.wind?.degree != null
+        && (weather.current.wind.degree.degree == null || weather.current.wind.degree.degree !in 0F..360F)
+        && !weather.current.wind.degree.isNoDirection) null else weather.current?.wind?.degree
     entity.windSpeed = weather.current?.wind?.speed
     entity.windLevel = weather.current?.wind?.level
 
@@ -68,7 +64,7 @@ fun generate(location: Location, weather: Weather): WeatherEntity {
     entity.ceiling = weather.current?.ceiling
     entity.dailyForecast = weather.current?.dailyForecast
     entity.hourlyForecast = weather.current?.hourlyForecast
-    
+
     return entity
 }
 
@@ -94,13 +90,6 @@ fun generate(
                 weatherEntity.windChillTemperature,
                 weatherEntity.wetBulbTemperature,
                 weatherEntity.degreeDayTemperature
-            ),
-            Precipitation(
-                weatherEntity.totalPrecipitation,
-                weatherEntity.thunderstormPrecipitation,
-                weatherEntity.rainPrecipitation,
-                weatherEntity.snowPrecipitation,
-                weatherEntity.icePrecipitation
             ),
             Wind(
                 weatherEntity.windDirection,

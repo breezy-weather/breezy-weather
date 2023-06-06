@@ -196,7 +196,6 @@
     <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : Temperatura Actual (°)\n</string>
     <string name="feedback_custom_subtitle_keyword_at">$at$ : Temperatura Aparente (℃/℉)\n</string>
     <string name="feedback_custom_subtitle_keyword_atd">$atd$ : Temperatura Aparente (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_cp">$cp$ : Precipitación Actual (mm/L/m²)\n</string>
     <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : Viento Actual\n</string>
     <string name="feedback_custom_subtitle_keyword_cuv">$cuv$ : UV Actual\n</string>
     <string name="feedback_custom_subtitle_keyword_ch">$ch$ : Humedad Actual\n</string>

@@ -192,7 +192,6 @@
     <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : Τρέχουσα θερμοκρασία (°)\n</string>
     <string name="feedback_custom_subtitle_keyword_at">$at$ : Αίσθηση  (℃/℉)\n</string>
     <string name="feedback_custom_subtitle_keyword_atd">$atd$ : Αίσθηση  (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_cp">$cp$ : Πιθανότητα βροχόπτωσης (mm/L/m²)\n</string>
     <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : Άνεμος\n</string>
     <string name="feedback_custom_subtitle_keyword_cuv">$cuv$ : Δείκτης UV\n</string>
     <string name="feedback_custom_subtitle_keyword_ch">$ch$ : Υγρασία\n</string>

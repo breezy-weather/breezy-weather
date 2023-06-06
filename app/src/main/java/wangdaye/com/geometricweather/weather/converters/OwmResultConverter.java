@@ -148,18 +148,11 @@ public class OwmResultConverter {
                             getWeatherCode(oneCallResult.current.weather.get(0).id),
                             new Temperature(
                                     toInt(oneCallResult.current.temp),
+                                    null,
+                                    null,
                                     toInt(oneCallResult.current.feelsLike),
                                     null,
                                     null,
-                                    null,
-                                    null,
-                                    null
-                            ),
-                            new Precipitation(
-                                    getTotalPrecipitation((oneCallResult.current.rain != null) ? oneCallResult.current.rain.cumul1h : null, (oneCallResult.current.snow != null) ? oneCallResult.current.snow.cumul1h : null),
-                                    null,
-                                    (oneCallResult.current.rain != null) ? oneCallResult.current.rain.cumul1h : null,
-                                    (oneCallResult.current.snow != null) ? oneCallResult.current.snow.cumul1h : null,
                                     null
                             ),
                             new Wind(
@@ -168,7 +161,7 @@ public class OwmResultConverter {
                                     oneCallResult.current.windSpeed * 3.6f,
                                     CommonConverterKt.getWindLevel(context, oneCallResult.current.windSpeed * 3.6f)
                             ),
-                            new UV(toInt(oneCallResult.current.uvi), null, null),
+                            new UV(toInt(oneCallResult.current.uvi), CommonConverterKt.getUVLevel(context, toInt(oneCallResult.current.uvi)), null),
                             airPollutionCurrentResult == null ? null : new AirQuality(
                                     CommonConverterKt.getAirQualityIndex(
                                             "epa",
@@ -260,32 +253,32 @@ public class OwmResultConverter {
                                             @Nullable OwmAirPollutionResult airPollutionForecastResult) {
         List<Daily> dailyList = new ArrayList<>(dailyResult.size());
 
-        for (OwmOneCallResult.Daily forecasts : dailyResult) {
+        for (OwmOneCallResult.Daily dailyForecast : dailyResult) {
             dailyList.add(
                     new Daily(
-                            new Date(forecasts.dt * 1000),
+                            new Date(dailyForecast.dt * 1000),
                             new HalfDay(
-                                    forecasts.weather.get(0).description,
-                                    forecasts.weather.get(0).description,
-                                    getWeatherCode(forecasts.weather.get(0).id),
+                                    dailyForecast.weather.get(0).description,
+                                    dailyForecast.weather.get(0).description,
+                                    getWeatherCode(dailyForecast.weather.get(0).id),
                                     new Temperature(
-                                            toInt(forecasts.temp.day),
-                                            toInt(forecasts.feelsLike.day),
+                                            toInt(dailyForecast.temp.day),
                                             null,
                                             null,
+                                            toInt(dailyForecast.feelsLike.day),
                                             null,
                                             null,
                                             null
                                     ),
                                     new Precipitation(
-                                            getTotalPrecipitation(getPrecipitationForDaily(forecasts.rain), getPrecipitationForDaily(forecasts.snow)),
+                                            getTotalPrecipitation(getPrecipitationForDaily(dailyForecast.rain), getPrecipitationForDaily(dailyForecast.snow)),
                                             null,
-                                            getPrecipitationForDaily(forecasts.rain),
-                                            getPrecipitationForDaily(forecasts.snow),
+                                            getPrecipitationForDaily(dailyForecast.rain),
+                                            getPrecipitationForDaily(dailyForecast.snow),
                                             null
                                     ),
                                     new PrecipitationProbability(
-                                            forecasts.pop,
+                                            dailyForecast.pop,
                                             null,
                                             null,
                                             null,
@@ -299,35 +292,35 @@ public class OwmResultConverter {
                                             null
                                     ),
                                     new Wind(
-                                            CommonConverterKt.getWindDirection(context, (float) forecasts.windDeg),
-                                            new WindDegree((float) forecasts.windDeg, false),
-                                            forecasts.windSpeed * 3.6f,
-                                            CommonConverterKt.getWindLevel(context, forecasts.windSpeed * 3.6f)
+                                            CommonConverterKt.getWindDirection(context, (float) dailyForecast.windDeg),
+                                            new WindDegree((float) dailyForecast.windDeg, false),
+                                            dailyForecast.windSpeed * 3.6f,
+                                            CommonConverterKt.getWindLevel(context, dailyForecast.windSpeed * 3.6f)
                                     ),
-                                    forecasts.clouds
+                                    dailyForecast.clouds
                             ),
                             new HalfDay(
-                                    forecasts.weather.get(0).description,
-                                    forecasts.weather.get(0).description,
-                                    getWeatherCode(forecasts.weather.get(0).id),
+                                    dailyForecast.weather.get(0).description,
+                                    dailyForecast.weather.get(0).description,
+                                    getWeatherCode(dailyForecast.weather.get(0).id),
                                     new Temperature(
-                                            toInt(forecasts.temp.night),
-                                            toInt(forecasts.feelsLike.night),
+                                            toInt(dailyForecast.temp.night),
                                             null,
                                             null,
+                                            toInt(dailyForecast.feelsLike.night),
                                             null,
                                             null,
                                             null
                                     ),
                                     new Precipitation(
-                                            getTotalPrecipitation(getPrecipitationForDaily(forecasts.rain), getPrecipitationForDaily(forecasts.snow)),
+                                            getTotalPrecipitation(getPrecipitationForDaily(dailyForecast.rain), getPrecipitationForDaily(dailyForecast.snow)),
                                             null,
-                                            getPrecipitationForDaily(forecasts.rain),
-                                            getPrecipitationForDaily(forecasts.snow),
+                                            getPrecipitationForDaily(dailyForecast.rain),
+                                            getPrecipitationForDaily(dailyForecast.snow),
                                             null
                                     ),
                                     new PrecipitationProbability(
-                                            forecasts.pop,
+                                            dailyForecast.pop,
                                             null,
                                             null,
                                             null,
@@ -341,20 +334,20 @@ public class OwmResultConverter {
                                             null
                                     ),
                                     new Wind(
-                                            CommonConverterKt.getWindDirection(context, (float) forecasts.windDeg),
-                                            new WindDegree((float) forecasts.windDeg, false),
-                                            forecasts.windSpeed * 3.6f,
-                                            CommonConverterKt.getWindLevel(context, forecasts.windSpeed * 3.6f)
+                                            CommonConverterKt.getWindDirection(context, (float) dailyForecast.windDeg),
+                                            new WindDegree((float) dailyForecast.windDeg, false),
+                                            dailyForecast.windSpeed * 3.6f,
+                                            CommonConverterKt.getWindLevel(context, dailyForecast.windSpeed * 3.6f)
                                     ),
-                                    forecasts.clouds
+                                    dailyForecast.clouds
                             ),
-                            new Astro(new Date(forecasts.sunrise * 1000), new Date(forecasts.sunset * 1000)),
-                            new Astro(new Date(forecasts.moonrise * 1000), new Date(forecasts.moonset * 1000)),
-                            new MoonPhase(null, null),
-                            getAirQuality(new Date(forecasts.dt * 1000), timeZone, airPollutionForecastResult),
-                            new Pollen(null, null, null, null, null, null, null, null, null, null, null, null),
-                            new UV(toInt(forecasts.uvi), null, null),
-                            0.0f
+                            new Astro(new Date(dailyForecast.sunrise * 1000), new Date(dailyForecast.sunset * 1000)),
+                            new Astro(new Date(dailyForecast.moonrise * 1000), new Date(dailyForecast.moonset * 1000)),
+                            null,
+                            getAirQuality(new Date(dailyForecast.dt * 1000), timeZone, airPollutionForecastResult),
+                            null,
+                            new UV(toInt(dailyForecast.uvi), CommonConverterKt.getUVLevel(context, toInt(dailyForecast.uvi)), null),
+                            null
                     )
             );
         }
@@ -418,7 +411,7 @@ public class OwmResultConverter {
                             ),
                             null, // TODO: use forecast API
                             null,
-                            new UV(toInt(result.uvi), null, null)
+                            new UV(toInt(result.uvi), CommonConverterKt.getUVLevel(context, toInt(result.uvi)), null)
                     )
             );
         }
@@ -447,25 +440,6 @@ public class OwmResultConverter {
             );
         }
         return minutelyList;*/
-    }
-
-    // TODO: Use AQI calculator instead
-    private static Integer getAqiFromIndex (Integer aqi) {
-        if (aqi == null || aqi <= 0) {
-            return null;
-        } if (aqi == 1) {
-            return 50;
-        } else if (aqi == 2) {
-            return 100;
-        } else if (aqi == 3) {
-            return 150;
-        } else if (aqi == 4) {
-            return 200;
-        } else if (aqi == 5) {
-            return 300;
-        } else {
-            return 400;
-        }
     }
 
     private static @Nullable AirQuality getAirQuality(Date requestedDate, TimeZone timeZone, @Nullable OwmAirPollutionResult owmAirPollutionForecastResult) {

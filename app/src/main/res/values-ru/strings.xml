@@ -170,7 +170,6 @@
     <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : Текущая температура (°)\n</string>
     <string name="feedback_custom_subtitle_keyword_at">$at$ : Ощущается как (℃/℉)\n</string>
     <string name="feedback_custom_subtitle_keyword_atd">$atd$ : Ощущается как (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_cp">$cp$ : Вероятность осадков (mm/L/m²)\n</string>
     <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : Ветер\n</string>
     <string name="feedback_custom_subtitle_keyword_cuv">$cuv$ : УФ-индекс\n</string>
     <string name="feedback_custom_subtitle_keyword_ch">$ch$ : Влажность\n</string>

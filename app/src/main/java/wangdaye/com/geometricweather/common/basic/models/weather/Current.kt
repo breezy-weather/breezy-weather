@@ -15,7 +15,6 @@ class Current(
     val weatherText: String? = null,
     val weatherCode: WeatherCode? = null,
     val temperature: Temperature? = null,
-    val precipitation: Precipitation? = null,
     val wind: Wind? = null,
     val uV: UV? = null,
     val airQuality: AirQuality? = null,

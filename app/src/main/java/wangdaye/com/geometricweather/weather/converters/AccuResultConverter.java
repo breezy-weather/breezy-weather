@@ -123,20 +123,13 @@ public class AccuResultConverter {
                                     toInt(currentResult.WetBulbTemperature.Metric.Value),
                                     null
                             ),
-                            new Precipitation(
-                                    (float) currentResult.Precip1hr.Metric.Value,
-                                    null,
-                                    null,
-                                    null,
-                                    null
-                            ),
                             new Wind(
                                     currentResult.Wind.Direction.Localized,
                                     new WindDegree((float) currentResult.Wind.Direction.Degrees, false),
                                     (float) currentResult.WindGust.Speed.Metric.Value,
                                     CommonConverterKt.getWindLevel(context, (float) currentResult.WindGust.Speed.Metric.Value)
                             ),
-                            new UV(currentResult.UVIndex, currentResult.UVIndexText, null),
+                            new UV(currentResult.UVIndex, CommonConverterKt.getUVLevel(context, currentResult.UVIndex), null),
                             null,
                             (float) currentResult.RelativeHumidity,
                             (float) currentResult.Pressure.Metric.Value,
@@ -366,7 +359,7 @@ public class AccuResultConverter {
                             ),
                             null,
                             null,
-                            new UV(result.UVIndex, null, result.UVIndexText)
+                            new UV(result.UVIndex, CommonConverterKt.getUVLevel(context, result.UVIndex), result.UVIndexText)
                     )
             );
         }

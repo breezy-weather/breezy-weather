@@ -113,7 +113,7 @@ public class AccuWeatherService extends WeatherService {
                     query,
                     languageCode
             ).execute().body();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

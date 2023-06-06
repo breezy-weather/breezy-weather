@@ -12,6 +12,7 @@ import javax.inject.Inject;
 
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
 import wangdaye.com.geometricweather.common.rxjava.BaseObserver;
@@ -22,7 +23,7 @@ import wangdaye.com.geometricweather.weather.apis.OpenMeteoAirQualityApi;
 import wangdaye.com.geometricweather.weather.apis.OpenMeteoGeocodingApi;
 import wangdaye.com.geometricweather.weather.apis.OpenMeteoWeatherApi;
 import wangdaye.com.geometricweather.weather.converters.OpenMeteoResultConverterKt;
-import wangdaye.com.geometricweather.weather.json.openmeteo.OpenMeteoAirQualityResult;
+import wangdaye.com.geometricweather.weather.json.openmeteo.OpenMeteoLocationResult;
 import wangdaye.com.geometricweather.weather.json.openmeteo.OpenMeteoLocationResults;
 import wangdaye.com.geometricweather.weather.json.openmeteo.OpenMeteoWeatherResult;
 
@@ -80,6 +81,7 @@ public class OpenMeteoWeatherService extends WeatherService {
         Observable<OpenMeteoWeatherResult> weather = mWeatherApi.getWeather(
                 location.getLatitude(), location.getLongitude(), String.join(",", daily), String.join(",", hourly), 16, 1, true);
 
+        // TODO: air quality and pollen
         /*Observable<OpenMeteoAirQualityResult> aqi = mAirQualityApi.getAirQuality(
                 location.getLatitude(), location.getLongitude());
 
@@ -108,6 +110,12 @@ public class OpenMeteoWeatherService extends WeatherService {
                         }
                     }
 
+                    public void onError(Throwable e) {
+                        if (GeometricWeather.getInstance().getDebugMode()) {
+                            e.printStackTrace();
+                        }
+                    }
+
                     @Override
                     public void onFailed() {
                         callback.requestWeatherFailed(location, this.isApiLimitReached(), this.isApiUnauthorized());
@@ -123,13 +131,13 @@ public class OpenMeteoWeatherService extends WeatherService {
         try {
             results = mGeocodingApi.callWeatherLocation(
                     query, 20, languageCode).execute().body();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         List<Location> locationList = new ArrayList<>();
-        if (results != null && results.results != null && results.results.size() != 0) {
-            for (OpenMeteoLocationResults.Result r : results.results) {
+        if (results != null && results.getResults() != null && results.getResults().size() != 0) {
+            for (OpenMeteoLocationResult r : results.getResults()) {
                 locationList.add(OpenMeteoResultConverterKt.convert(null, r, WeatherSource.OPEN_METEO));
             }
         }
@@ -152,21 +160,25 @@ public class OpenMeteoWeatherService extends WeatherService {
     public void requestLocation(Context context, String query,
                                 @NonNull RequestLocationCallback callback) {
         String languageCode = SettingsManager.getInstance(context).getLanguage().getCode();
-
         mGeocodingApi.getWeatherLocation(query, 20, languageCode)
                 .compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<OpenMeteoLocationResults>() {
                     @Override
                     public void onSucceed(OpenMeteoLocationResults openMeteoLocationResults) {
-                        if (openMeteoLocationResults.results != null && openMeteoLocationResults.results.size() != 0) {
+                        if (openMeteoLocationResults.getResults() != null && openMeteoLocationResults.getResults().size() != 0) {
                             List<Location> locationList = new ArrayList<>();
-                            for (OpenMeteoLocationResults.Result r : openMeteoLocationResults.results) {
+                            for (OpenMeteoLocationResult r : openMeteoLocationResults.getResults()) {
                                 locationList.add(OpenMeteoResultConverterKt.convert(null, r, WeatherSource.OPEN_METEO));
                             }
                             callback.requestLocationSuccess(query, locationList);
                         } else {
                             callback.requestLocationFailed(query);
                         }
+
+                    }
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
                     }
 
                     @Override

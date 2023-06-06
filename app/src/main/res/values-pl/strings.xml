@@ -197,7 +197,6 @@
     <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : Obecna temperatura (°)\n</string>
     <string name="feedback_custom_subtitle_keyword_at">$at$ : Temperatura pozorna (℃/℉)\n</string>
     <string name="feedback_custom_subtitle_keyword_atd">$atd$ : Temperatura pozorna (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_cp">$cp$ : Obecne opady (mm/L/m²)\n</string>
     <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : Obecny wiatr\n</string>
     <string name="feedback_custom_subtitle_keyword_cuv">$cuv$ : Obecny indeks UV\n</string>
     <string name="feedback_custom_subtitle_keyword_ch">$ch$ : Obecna wilgotność\n</string>

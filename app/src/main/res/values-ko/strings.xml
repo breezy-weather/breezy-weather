@@ -186,7 +186,6 @@
     <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : 현재 온도 (°)\n</string>
     <string name="feedback_custom_subtitle_keyword_at">$at$ : 피상 온도 (℃/℉)\n</string>
     <string name="feedback_custom_subtitle_keyword_atd">$atd$ : 피상 온도 (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_cp">$cp$ : 현재 강수 (mm/L/m²)\n</string>
     <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : 현재 바람\n</string>
     <string name="feedback_custom_subtitle_keyword_cuv">$cuv$ : 현재 자외선\n</string>
     <string name="feedback_custom_subtitle_keyword_ch">$ch$ : 현재 습도\n</string>

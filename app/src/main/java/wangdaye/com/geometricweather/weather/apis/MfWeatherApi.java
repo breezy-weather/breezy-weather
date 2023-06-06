@@ -9,7 +9,7 @@ import retrofit2.http.Header;
 import retrofit2.http.Query;
 import wangdaye.com.geometricweather.weather.json.mf.MfCurrentResult;
 import wangdaye.com.geometricweather.weather.json.mf.MfEphemerisResult;
-import wangdaye.com.geometricweather.weather.json.mf.MfForecastV2Result;
+import wangdaye.com.geometricweather.weather.json.mf.MfForecastResult;
 import wangdaye.com.geometricweather.weather.json.mf.MfLocationResult;
 import wangdaye.com.geometricweather.weather.json.mf.MfRainResult;
 import wangdaye.com.geometricweather.weather.json.mf.MfWarningsResult;
@@ -17,7 +17,6 @@ import wangdaye.com.geometricweather.weather.json.mf.MfWarningsResult;
 /**
  * API Météo France
  */
-
 public interface MfWeatherApi {
 
     @GET("places")
@@ -35,12 +34,12 @@ public interface MfWeatherApi {
                                                           @Query("token") String token);
 
     @GET("v2/forecast")
-    Observable<MfForecastV2Result> getForecastV2(@Header("User-Agent") String userAgent,
-                                                 @Query("lat") double lat,
-                                                 @Query("lon") double lon,
-                                                 @Query("formatDate") String formatDate,
-                                                 @Query(encoded = true, value = "instants") String instants,
-                                                 @Query("token") String token);
+    Observable<MfForecastResult> getForecast(@Header("User-Agent") String userAgent,
+                                             @Query("lat") double lat,
+                                             @Query("lon") double lon,
+                                             @Query("formatDate") String formatDate,
+                                             @Query(encoded = true, value = "instants") String instants,
+                                             @Query("token") String token);
 
     @GET("v2/observation")
     Observable<MfCurrentResult> getCurrent(@Header("User-Agent") String userAgent,
@@ -66,7 +65,7 @@ public interface MfWeatherApi {
                                                @Query("formatDate") String formatDate,
                                                @Query("token") String token);
 
-    @GET("v2/warning/full")
+    @GET("v3/warning/full")
     Observable<MfWarningsResult> getWarnings(@Header("User-Agent") String userAgent,
                                              @Query(encoded = true, value = "domain") String domain,
                                              @Query("formatDate") String formatDate,

@@ -238,7 +238,6 @@
     <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : Température actuelle (°)\n</string>
     <string name="feedback_custom_subtitle_keyword_at">$at$ : Température ressentie (℃/℉)\n</string>
     <string name="feedback_custom_subtitle_keyword_atd">$atd$ : Température ressentie (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_cp">$cp$ : Précipitations actuelles (mm/L/m²)\n</string>
     <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : Vent actuel\n</string>
     <string name="feedback_custom_subtitle_keyword_cuv">$cuv$ : UV actuel\n</string>
     <string name="feedback_custom_subtitle_keyword_ch">$ch$ : Humidité actuelle\n</string>

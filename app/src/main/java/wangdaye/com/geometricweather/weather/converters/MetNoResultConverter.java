@@ -162,13 +162,6 @@ public class MetNoResultConverter {
                                     null,
                                     null
                             ),
-                            new Precipitation(
-                                    getPrecipitationAmount(locationForecastResult.properties.timeseries.get(0).data),
-                                    null,
-                                    null,
-                                    null,
-                                    null
-                            ),
                             new Wind(
                                     CommonConverterKt.getWindDirection(context, locationForecastResult.properties.timeseries.get(0).data.instant.details.windFromDirection),
                                     new WindDegree(locationForecastResult.properties.timeseries.get(0).data.instant.details.windFromDirection, false),
@@ -356,7 +349,7 @@ public class MetNoResultConverter {
                             ),
                             null,
                             null,
-                            null,
+                            null, // TODO: Max ultraviolet of the day
                             sunsetList.containsKey(formattedDate) && sunsetList.get(formattedDate).sunrise != null && sunsetList.get(formattedDate).sunset != null ? CommonConverterKt.getHoursOfDay(
                                 sunsetList.get(formattedDate).sunrise.time,
                                 sunsetList.get(formattedDate).sunset.time

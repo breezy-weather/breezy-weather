@@ -247,18 +247,6 @@ public abstract class AbstractRemoteViewsPresenter {
                                 .getShortFeelsLikeTemperature(context, temperatureUnit) + ""
                                 : ""
                 ).replace(
-                        "$cp$",
-                        precipitationUnit.getValueText(
-                                context, (weather.getCurrent() != null
-                                        && weather.getCurrent().getPrecipitation() != null)
-                                        ? WidgetHelper.getNonNullValue(
-                                        weather.getCurrent()
-                                                .getPrecipitation()
-                                                .getTotal(),
-                                        0)
-                                        : 0
-                        )
-                ).replace(
                         "$cwd$", (weather.getCurrent() != null
                                 && weather.getCurrent().getWind() != null
                                 && !TextUtils.isEmpty(weather.getCurrent().getWind().getLevel())

@@ -51,7 +51,7 @@ public interface AccuWeatherApi {
                                          @Query("metric") boolean metric,
                                          @Query("details") boolean details);
 
-    @GET("forecasts/v1/hourly/24hour/{city_key}.json")
+    @GET("forecasts/v1/hourly/120hour/{city_key}.json")
     Observable<List<AccuHourlyResult>> getHourly(@Path("city_key") String city_key,
                                                  @Query("apikey") String apikey,
                                                  @Query("language") String language,

@@ -211,7 +211,6 @@
     <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : Současná teplota (°)\n</string>
     <string name="feedback_custom_subtitle_keyword_at">$at$ : Zdánlivá teplota (℃/℉)\n</string>
     <string name="feedback_custom_subtitle_keyword_atd">$atd$ : Zdánlivá teplota (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_cp">$cp$ : Současná pravděpodobnost (mm/L/m²)\n</string>
     <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : Současná vítr\n</string>
     <string name="feedback_custom_subtitle_keyword_cuv">$cuv$ : Současné UV\n</string>
     <string name="feedback_custom_subtitle_keyword_ch">$ch$ : Současná vlhkost\n</string>
