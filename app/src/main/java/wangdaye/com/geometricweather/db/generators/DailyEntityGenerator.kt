@@ -113,9 +113,6 @@ fun generate(cityId: String, source: WeatherSource, daily: Daily): DailyEntity {
         moonPhaseDescription = daily.moonPhase?.description,
 
         // aqi.
-        epaIndex = daily.airQuality?.epaIndex,
-        meeIndex = daily.airQuality?.meeIndex,
-        eeaIndex = daily.airQuality?.eeaIndex,
         pm25 = daily.airQuality?.pM25,
         pm10 = daily.airQuality?.pM10,
         so2 = daily.airQuality?.sO2,
@@ -243,9 +240,6 @@ fun generate(entity: DailyEntity): Daily {
         Astro(entity.moonRiseDate, entity.moonSetDate),
         MoonPhase(entity.moonPhaseAngle, entity.moonPhaseDescription),
         AirQuality(
-            entity.epaIndex,
-            entity.meeIndex,
-            entity.eeaIndex,
             entity.pm25,
             entity.pm10,
             entity.so2,

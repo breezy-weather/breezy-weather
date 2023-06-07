@@ -468,11 +468,11 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
             case "aqi":
                 if (weather.getCurrent() != null
                         && weather.getCurrent().getAirQuality() != null
-                        && weather.getCurrent().getAirQuality().getIndex(context) != null
-                        && weather.getCurrent().getAirQuality().getAqiText(context) != null) {
-                    return weather.getCurrent().getAirQuality().getAqiText(context)
+                        && weather.getCurrent().getAirQuality().getIndex(null) != null
+                        && weather.getCurrent().getAirQuality().getName(context, null) != null) {
+                    return weather.getCurrent().getAirQuality().getName(context, null)
                             + " (" 
-                            + weather.getCurrent().getAirQuality().getIndex(context)
+                            + weather.getCurrent().getAirQuality().getIndex(null)
                             + ")";
                 }
                 return null;

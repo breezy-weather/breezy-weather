@@ -150,6 +150,7 @@ fun convert(
             }
         }
 
+        val dailyList = if (weatherResult.daily != null) getInitialDailyList(context, location.timeZone, weatherResult.daily, hourlyByDate) else arrayListOf()
         val weather = Weather(
             base = Base(cityId = location.cityId),
             current = Current(
@@ -166,9 +167,13 @@ fun convert(
                     speed = weatherResult.currentWeather?.windSpeed,
                     level = getWindLevel(context, weatherResult.currentWeather?.windSpeed)
                 ),
-                uV = UV( // TODO Use CommonConverter to be more precise
-                    index = if (currentI != null) weatherResult.hourly?.uvIndex?.getOrNull(currentI)?.roundToInt() else null,
-                    level = if (currentI != null) getUVLevel(context, weatherResult.hourly?.uvIndex?.getOrNull(currentI)?.roundToInt()) else null
+                uV = getCurrentUV(
+                    context,
+                    dailyList.getOrNull(0)?.uV?.index,
+                    Date(),
+                    dailyList.getOrNull(0)?.sun?.riseDate,
+                    dailyList.getOrNull(0)?.sun?.setDate,
+                    location.timeZone
                 ),
                 // airQuality = TODO
                 relativeHumidity = if (currentI != null) weatherResult.hourly?.relativeHumidity?.getOrNull(currentI)?.toFloat() else null,
@@ -182,7 +187,7 @@ fun convert(
                 daytimeTemperature = weatherResult.daily.temperatureMax?.getOrNull(0)?.roundToInt(),
                 nighttimeTemperature = weatherResult.daily.temperatureMin?.getOrNull(0)?.roundToInt(),
             ) else null,
-            dailyForecast = if (weatherResult.daily != null) getInitialDailyList(context, location.timeZone, weatherResult.daily, hourlyByDate) else arrayListOf(),
+            dailyForecast = dailyList,
             hourlyForecast = hourlyList
         )
         WeatherResultWrapper(weather)

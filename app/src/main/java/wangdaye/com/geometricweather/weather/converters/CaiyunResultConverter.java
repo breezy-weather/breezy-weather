@@ -25,10 +25,6 @@ import wangdaye.com.geometricweather.common.basic.models.weather.HalfDay;
 import wangdaye.com.geometricweather.common.basic.models.weather.History;
 import wangdaye.com.geometricweather.common.basic.models.weather.Hourly;
 import wangdaye.com.geometricweather.common.basic.models.weather.Minutely;
-import wangdaye.com.geometricweather.common.basic.models.weather.MoonPhase;
-import wangdaye.com.geometricweather.common.basic.models.weather.Pollen;
-import wangdaye.com.geometricweather.common.basic.models.weather.Precipitation;
-import wangdaye.com.geometricweather.common.basic.models.weather.PrecipitationDuration;
 import wangdaye.com.geometricweather.common.basic.models.weather.PrecipitationProbability;
 import wangdaye.com.geometricweather.common.basic.models.weather.Temperature;
 import wangdaye.com.geometricweather.common.basic.models.weather.UV;
@@ -83,7 +79,7 @@ public class CaiyunResultConverter {
                                     getUVDescription(mainlyResult.current.uvIndex),
                                     null
                             ),
-                            getAirQuality(context, mainlyResult),
+                            getAirQuality(mainlyResult),
                             !TextUtils.isEmpty(mainlyResult.current.humidity.value)
                                     ? Float.parseFloat(mainlyResult.current.humidity.value)
                                     : null,
@@ -110,8 +106,6 @@ public class CaiyunResultConverter {
                             mainlyResult.forecastHourly
                     ),
                     getMinutelyList(
-                            mainlyResult.forecastDaily.sunRiseSet.value.get(0).from,
-                            mainlyResult.forecastDaily.sunRiseSet.value.get(0).to,
                             location.getTimeZone(),
                             getWeatherText(mainlyResult.current.weather),
                             getWeatherCode(mainlyResult.current.weather),
@@ -126,14 +120,7 @@ public class CaiyunResultConverter {
         }
     }
 
-    private static AirQuality getAirQuality(Context context, CaiYunMainlyResult result) {
-        Integer index;
-        try {
-            index = (int) Double.parseDouble(result.aqi.aqi);
-        } catch (Exception e) {
-            index = null;
-        }
-
+    private static AirQuality getAirQuality(CaiYunMainlyResult result) {
         Float pm25;
         try {
             pm25 = Float.parseFloat(result.aqi.pm25);
@@ -176,12 +163,7 @@ public class CaiyunResultConverter {
             co = null;
         }
 
-        return new AirQuality(
-            CommonConverterKt.getAirQualityIndex("epa", pm25, pm10, so2,null, no2,null, o3,null, co, null, null),
-            index,
-            CommonConverterKt.getAirQualityIndex("eea", pm25, pm10, so2,null, no2,null, o3,null, null, null, null),
-            pm25, pm10, so2, no2, o3, co
-        );
+        return new AirQuality(pm25, pm10, so2, no2, o3, co);
     }
 
     @Nullable
@@ -289,19 +271,7 @@ public class CaiyunResultConverter {
                             ),
                             null,
                             null,
-                            new AirQuality(
-                                    null,
-                                    forecast.aqi != null && forecast.aqi.value != null && forecast.aqi.value.size() > i
-                                            ? forecast.aqi.value.get(i)
-                                            : null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null
-                            ),
+                            null,
                             null,
                             null,
                             (float) (
@@ -380,8 +350,7 @@ public class CaiyunResultConverter {
         return hourlyList;
     }
 
-    private static List<Minutely> getMinutelyList(Date sunrise, Date sunset,
-                                                  TimeZone timeZone,
+    private static List<Minutely> getMinutelyList(TimeZone timeZone,
                                                   String currentWeatherText,
                                                   WeatherCode currentWeatherCode,
                                                   CaiYunForecastResult result) {

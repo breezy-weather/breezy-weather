@@ -238,12 +238,12 @@ public class ClockDayDetailsWidgetIMP extends AbstractRemoteViewsPresenter {
     private static String getAQIHumidityTempText(Context context, Weather weather) {
         if (weather.getCurrent() != null
                 && weather.getCurrent().getAirQuality() != null
-                && weather.getCurrent().getAirQuality().getIndex(context) != null
-                && weather.getCurrent().getAirQuality().getAqiText(context) != null) {
+                && weather.getCurrent().getAirQuality().getIndex(null) != null
+                && weather.getCurrent().getAirQuality().getName(context, null) != null) {
             return "AQI "
-                    + weather.getCurrent().getAirQuality().getIndex(context)
+                    + weather.getCurrent().getAirQuality().getIndex(null)
                     + " ("
-                    + weather.getCurrent().getAirQuality().getAqiText(context)
+                    + weather.getCurrent().getAirQuality().getName(context, null)
                     + ")";
         } else if (weather.getCurrent() != null && weather.getCurrent().getRelativeHumidity() != null) {
             return context.getString(R.string.humidity)

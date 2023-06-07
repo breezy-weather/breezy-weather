@@ -166,7 +166,7 @@ private fun buildRemoteViews(
     if (weather.current?.airQuality != null && weather.current.airQuality.isValid) {
         views.setTextViewText(
             R.id.widget_material_you_forecast_aqiOrWind,
-             "AQI - " + weather.current.airQuality.getAqiText(context)
+             "AQI - " + weather.current.airQuality.getName(context)
         )
     } else if (weather.current?.wind != null && weather.current.wind.shortWindDescription.isNotEmpty()) {
         views.setTextViewText(

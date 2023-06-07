@@ -156,27 +156,19 @@
 
     <!-- air quality levels -->
     <string-array name="air_quality_levels">
-        <item>EPA (États-Unis)</item>
-        <item>MEE (Chine)</item>
-        <item>EEA (Europe)</item>
-    </string-array>
-
-    <!-- EPA -->
-    <string-array name="air_quality_levels_epa">
-        <item>Bon</item>
-        <item>Moyen</item>
-        <item>Mauvais pour les personnes sensibles</item>
-        <item>Mauvais pour la santé</item>
-        <item>Très mauvais pour la santé</item>
+        <item>Excellent</item>
+        <item>Correct</item>
+        <item>Mauvais</item>
+        <item>Risque de santé</item>
+        <item>Risque marqué de santé</item>
         <item>Dangereux</item>
     </string-array>
-    <!-- EEA -->
-    <string-array name="air_quality_levels_eea">
-        <item>Bon</item>
-        <item>Moyen</item>
-        <item>Dégradé</item>
-        <item>Mauvais</item>
-        <item>Très mauvais</item>
-        <item>Extrêmement mauvais</item>
+    <string-array name="air_quality_levels_descriptions">
+        <item>La qualité d’air est idéale pour la plupart des individus ; profitez de vos activités en extérieur habituelles.</item>
+        <item>La qualité d’air est généralement acceptable pour la plupart des individus. Cependant, les personnes sensibles risquent de faire l’expérience de symptômes légers à modérés en cas d’exposition à long terme.</item>
+        <item>L’air a atteint un degré élevé de pollution et n’est pas sain pour les personnes sensibles. Réduisez le temps passé en extérieur si vous ressentez des symptômes, tels que des difficultés respiratoires ou des irritations de la gorge.</item>
+        <item>Les effets sur la santé peuvent être ressentis immédiatement par les personnes sensibles. Les individus en bonne santé peuvent éprouver des gênes respiratoires et des irritations de la gorge en cas d’exposition prolongée. Limitez les activités en extérieur.</item>
+        <item>Les effets sur la santé risquent d’être ressentis immédiatement par les personnes sensibles et ces dernières doivent éviter les activités en extérieur. Les individus en bonne santé risquent d’éprouver des difficultés respiratoires et des irritations de la gorge ; envisagez de rester à l’intérieur et de repousser les activités en extérieur.</item>
+        <item>Toute exposition à l’air, y compris pendant quelques minutes, risque de déboucher sur des problèmes de santé graves pour tous. Évitez les activités en extérieur.</item>
     </string-array>
 </resources>

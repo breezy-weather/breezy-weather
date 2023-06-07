@@ -14,7 +14,7 @@ import java.util.List;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
-import wangdaye.com.geometricweather.common.basic.models.weather.AirQuality;
+import wangdaye.com.geometricweather.common.basic.models.options.index.PollutantIndex;
 import wangdaye.com.geometricweather.common.basic.models.weather.Hourly;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView;
@@ -51,22 +51,24 @@ public class HourlyAirQualityAdapter extends AbsHourlyTrendAdapter {
 
             assert location.getWeather() != null;
             Hourly hourly = location.getWeather().getHourlyForecast().get(position);
-            Integer index = hourly.getAirQuality() != null ? hourly.getAirQuality().getIndex(itemView.getContext()) : null;
-            talkBackBuilder.append(", ").append(index).append(", ").append(hourly.getAirQuality().getAqiText(itemView.getContext()));
-            mPolylineAndHistogramView.setData(
-                    null, null,
-                    null, null,
-                    null, null,
-                    (float) (index == null ? 0 : index),
-                    String.format("%d", index == null ? 0 : index),
-                    (float) mHighestIndex,
-                    0f
-            );
-            mPolylineAndHistogramView.setLineColors(
-                    hourly.getAirQuality().getAqiColor(activity),
-                    hourly.getAirQuality().getAqiColor(activity),
-                    MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
-            );
+            if (hourly.getAirQuality() != null) {
+                Integer index = hourly.getAirQuality().getIndex(null);
+                talkBackBuilder.append(", ").append(index).append(", ").append(hourly.getAirQuality().getName(itemView.getContext(), null));
+                mPolylineAndHistogramView.setData(
+                        null, null,
+                        null, null,
+                        null, null,
+                        (float) (index == null ? 0 : index),
+                        String.format("%d", index == null ? 0 : index),
+                        (float) mHighestIndex,
+                        0f
+                );
+                mPolylineAndHistogramView.setLineColors(
+                        hourly.getAirQuality().getColor(activity, null),
+                        hourly.getAirQuality().getColor(activity, null),
+                        MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+                );
+            }
             int[] themeColors = ThemeManager
                     .getInstance(itemView.getContext())
                     .getWeatherThemeDelegate()
@@ -97,7 +99,7 @@ public class HourlyAirQualityAdapter extends AbsHourlyTrendAdapter {
         mHighestIndex = 0;
         for (int i = weather.getHourlyForecast().size() - 1; i >= 0; i--) {
             if (weather.getHourlyForecast().get(i).getAirQuality() != null) {
-                Integer index = weather.getHourlyForecast().get(i).getAirQuality() != null ? weather.getHourlyForecast().get(i).getAirQuality().getIndex(activity) : null;
+                Integer index = weather.getHourlyForecast().get(i).getAirQuality() != null ? weather.getHourlyForecast().get(i).getAirQuality().getIndex(null) : null;
                 if (index != null && index > mHighestIndex) {
                     mHighestIndex = index;
                 }
@@ -136,30 +138,30 @@ public class HourlyAirQualityAdapter extends AbsHourlyTrendAdapter {
     @Override
     public void bindBackgroundForHost(TrendRecyclerView host) {
         List<TrendRecyclerView.KeyLine> keyLineList = new ArrayList<>();
-        Integer goodPollutionLevel = AirQuality.getIndexFreshAir(getActivity());
+        Integer goodPollutionLevel = PollutantIndex.getIndexFreshAir();
         keyLineList.add(
                 new TrendRecyclerView.KeyLine(
                         goodPollutionLevel,
                         String.valueOf(goodPollutionLevel),
-                        getActivity().getString(R.string.fresh_air),
+                        getActivity().getResources().getStringArray(R.array.air_quality_levels)[1],
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
         );
-        Integer moderatePollutionLevel = AirQuality.getIndexHighPollution(getActivity());
+        Integer moderatePollutionLevel = PollutantIndex.getIndexHighPollution();
         keyLineList.add(
                 new TrendRecyclerView.KeyLine(
                         moderatePollutionLevel,
                         String.valueOf(moderatePollutionLevel),
-                        getActivity().getString(R.string.high_pollution),
+                        getActivity().getResources().getStringArray(R.array.air_quality_levels)[3],
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
         );
-        Integer heavyPollutionLevel = AirQuality.getIndexExcessivePollution(getActivity());
+        Integer heavyPollutionLevel = PollutantIndex.getIndexExcessivePollution();
         keyLineList.add(
                 new TrendRecyclerView.KeyLine(
                         heavyPollutionLevel,
                         String.valueOf(heavyPollutionLevel),
-                        getActivity().getString(R.string.excessive_pollution),
+                        getActivity().getResources().getStringArray(R.array.air_quality_levels)[5],
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
         );

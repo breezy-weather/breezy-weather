@@ -516,72 +516,29 @@
 
     <!-- air quality levels -->
     <string-array name="air_quality_levels">
-        <item>EPA (United States)</item>
-        <item>MEE (China)</item>
-        <item>EEA (Europe)</item>
-    </string-array>
-    <!-- Do not translate this array. -->
-    <string-array name="air_quality_levels_values">
-        <item>epa</item>
-        <item>mee</item>
-        <item>eea</item>
-    </string-array>
-
-    <!-- EPA -->
-    <string-array name="air_quality_levels_epa">
-        <item>Good</item>
-        <item>Moderate</item>
-        <item>Unhealthy for Sensitive Groups</item>
-        <item>Unhealthy</item>
-        <item>Very Unhealthy</item>
-        <item>Hazardous</item>
-    </string-array>
-    <!-- Do not translate this array. -->
-    <integer-array name="air_quality_levels_epa_colors">
-        <item>@color/colorLevel_1</item>
-        <item>@color/colorLevel_2</item>
-        <item>@color/colorLevel_3</item>
-        <item>@color/colorLevel_4</item>
-        <item>@color/colorLevel_5</item>
-        <item>@color/colorLevel_6</item>
-    </integer-array>
-
-    <!-- MEE -->
-    <string-array name="air_quality_levels_mee">
         <item>Excellent</item>
-        <item>Good</item>
-        <item>Lightly polluted</item>
-        <item>Moderately Polluted</item>
-        <item>Heavily Polluted</item>
-        <item>Severely Polluted</item>
-    </string-array>
-    <!-- Do not translate this array. -->
-    <integer-array name="air_quality_levels_mee_colors">
-        <item>@color/colorLevel_1</item>
-        <item>@color/colorLevel_2</item>
-        <item>@color/colorLevel_3</item>
-        <item>@color/colorLevel_4</item>
-        <item>@color/colorLevel_5</item>
-        <item>@color/colorLevel_6</item>
-    </integer-array>
-
-    <!-- EEA -->
-    <string-array name="air_quality_levels_eea">
-        <item>Good</item>
         <item>Fair</item>
-        <item>Moderate</item>
         <item>Poor</item>
-        <item>Very poor</item>
-        <item>Extremely poor</item>
+        <item>Unhealthy</item>
+        <item>Very unhealthy</item>
+        <item>Dangerous</item>
+    </string-array>
+    <string-array name="air_quality_levels_descriptions">
+        <item>The air quality is ideal for most individuals; enjoy your normal outdoor activities.</item>
+        <item>The air quality is generally acceptable for most individuals. However, sensitive groups may experience minor to moderate symptoms from long-term exposure.</item>
+        <item>The air has reached a high level of pollution and is unhealthy for sensitive groups. Reduce time spent outside if you are feeling symptoms such as difficulty breathing or throat irritation.</item>
+        <item>Health effects can be immediately felt by sensitive groups. Healthy individuals may experience difficulty breathing and throat irritation with prolonged exposure. Limit outdoor activity.</item>
+        <item>Health effects will be immediately felt by sensitive groups and should avoid outdoor activity. Healthy individuals are likely to experience difficulty breathing and throat irritation; consider staying indoors and rescheduling outdoor activities.</item>
+        <item>Any exposure to the air, even for a few minutes, can lead to serious health effects on everybody. Avoid outdoor activities.</item>
     </string-array>
     <!-- Do not translate this array. -->
-    <integer-array name="air_quality_levels_eea_colors">
-        <item>@color/eeaAqiLevel_1</item>
-        <item>@color/eeaAqiLevel_2</item>
-        <item>@color/eeaAqiLevel_3</item>
-        <item>@color/eeaAqiLevel_4</item>
-        <item>@color/eeaAqiLevel_5</item>
-        <item>@color/eeaAqiLevel_6</item>
+    <integer-array name="air_quality_levels_colors">
+        <item>@color/aqiLevel_1</item>
+        <item>@color/aqiLevel_2</item>
+        <item>@color/aqiLevel_3</item>
+        <item>@color/aqiLevel_4</item>
+        <item>@color/aqiLevel_5</item>
+        <item>@color/aqiLevel_6</item>
     </integer-array>
 
     <!-- duration unit. -->

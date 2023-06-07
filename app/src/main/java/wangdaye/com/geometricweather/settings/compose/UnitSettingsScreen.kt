@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import wangdaye.com.geometricweather.R
-import wangdaye.com.geometricweather.common.basic.models.options.unit.AirQualityAlgorithmUnit
 import wangdaye.com.geometricweather.common.basic.models.options.unit.DistanceUnit
 import wangdaye.com.geometricweather.common.basic.models.options.unit.PrecipitationUnit
 import wangdaye.com.geometricweather.common.basic.models.options.unit.PressureUnit
@@ -82,19 +81,6 @@ fun UnitSettingsScreen(
                 SettingsManager
                     .getInstance(context)
                     .speedUnit = SpeedUnit.getInstance(it)
-            },
-        )
-    }
-    listPreferenceItem(R.string.settings_title_air_quality_algorithm) { id ->
-        ListPreferenceView(
-            titleId = id,
-            selectedKey = SettingsManager.getInstance(context).airQualityAlgorithmUnit.id,
-            valueArrayId = R.array.air_quality_levels_values,
-            nameArrayId = R.array.air_quality_levels,
-            onValueChanged = {
-                SettingsManager
-                    .getInstance(context)
-                    .airQualityAlgorithmUnit = AirQualityAlgorithmUnit.getInstance(it)
             },
         )
     }

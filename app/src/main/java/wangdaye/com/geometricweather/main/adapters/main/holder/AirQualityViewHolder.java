@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.options.index.PollutantIndex;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.ui.widgets.ArcProgress;
 import wangdaye.com.geometricweather.main.adapters.AqiAdapter;
@@ -64,9 +65,9 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
         Weather weather = location.getWeather();
         assert weather != null;
 
-        mAqiIndex = weather.getCurrent().getAirQuality().getIndex(context) == null
+        mAqiIndex = weather.getCurrent().getAirQuality().getIndex(null) == null
                 ? 0
-                : weather.getCurrent().getAirQuality().getIndex(context);
+                : weather.getCurrent().getAirQuality().getIndex(null);
 
         mEnable = true;
 
@@ -90,7 +91,7 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
             );
             mProgress.setArcBackgroundColor(MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline));
         } else {
-            int aqiColor = weather.getCurrent().getAirQuality().getAqiColor(mProgress.getContext());
+            int aqiColor = weather.getCurrent().getAirQuality().getColor(mProgress.getContext(), null);
             mProgress.setProgress(mAqiIndex);
             mProgress.setText(String.format("%d", mAqiIndex));
 
@@ -104,11 +105,11 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
         }
 
         mProgress.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorTitleText));
-        mProgress.setBottomText(weather.getCurrent().getAirQuality().getAqiText(context));
+        mProgress.setBottomText(weather.getCurrent().getAirQuality().getName(context, null));
         mProgress.setBottomTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText));
-        mProgress.setContentDescription(mAqiIndex + ", " + weather.getCurrent().getAirQuality().getAqiText(context));
+        mProgress.setContentDescription(mAqiIndex + ", " + weather.getCurrent().getAirQuality().getName(context, null));
         
-        mProgress.setMax(weather.getCurrent().getAirQuality().getIndexExcessivePollution(context));
+        mProgress.setMax(PollutantIndex.getIndexExcessivePollution());
 
         mAdapter = new AqiAdapter(context, location, itemAnimationEnabled);
         mRecyclerView.setAdapter(mAdapter);
@@ -124,7 +125,7 @@ public class AirQualityViewHolder extends AbstractMainCardViewHolder {
                 && mLocation.getWeather().getCurrent().getAirQuality() != null) {
             Weather weather = mLocation.getWeather();
 
-            int aqiColor = weather.getCurrent().getAirQuality().getAqiColor(mProgress.getContext());
+            int aqiColor = weather.getCurrent().getAirQuality().getColor(mProgress.getContext(), null);
 
             ValueAnimator progressColor = ValueAnimator.ofObject(
                     new ArgbEvaluator(),

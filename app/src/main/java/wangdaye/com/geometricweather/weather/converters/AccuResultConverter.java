@@ -259,7 +259,7 @@ public class AccuResultConverter {
                                     CommonConverterKt.getMoonPhaseAngle(forecasts.Moon.Phase),
                                     forecasts.Moon.Phase
                             ),
-                            getDailyAirQuality(forecasts.AirAndPollen),
+                            null,
                             getDailyPollen(forecasts.AirAndPollen),
                             getDailyUV(forecasts.AirAndPollen),
                             (float) forecasts.HoursOfSun
@@ -267,15 +267,6 @@ public class AccuResultConverter {
             );
         }
         return dailyList;
-    }
-
-    private static AirQuality getDailyAirQuality(List<AccuDailyResult.DailyForecasts.AirAndPollen> list) {
-        AccuDailyResult.DailyForecasts.AirAndPollen aqi = getAirAndPollen(list, "AirQuality");
-        Integer index = aqi == null ? null : aqi.Value;
-        if (index != null && index == 0) {
-            index = null;
-        }
-        return new AirQuality(index, null, null, null, null, null, null, null, null);
     }
 
     private static Pollen getDailyPollen(List<AccuDailyResult.DailyForecasts.AirAndPollen> list) {

@@ -46,9 +46,6 @@ fun generate(location: Location, weather: Weather): WeatherEntity {
     entity.uvLevel = weather.current?.uV?.level
     entity.uvDescription = weather.current?.uV?.description
 
-    entity.epaIndex = weather.current?.airQuality?.epaIndex
-    entity.meeIndex = weather.current?.airQuality?.meeIndex
-    entity.eeaIndex = weather.current?.airQuality?.eeaIndex
     entity.pm25 = weather.current?.airQuality?.pM25
     entity.pm10 = weather.current?.airQuality?.pM10
     entity.so2 = weather.current?.airQuality?.sO2
@@ -103,9 +100,6 @@ fun generate(
                 weatherEntity.uvDescription
             ),
             AirQuality(
-                weatherEntity.epaIndex,
-                weatherEntity.meeIndex,
-                weatherEntity.eeaIndex,
                 weatherEntity.pm25,
                 weatherEntity.pm10,
                 weatherEntity.so2,

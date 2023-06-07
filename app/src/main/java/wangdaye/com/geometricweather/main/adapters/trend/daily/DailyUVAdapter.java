@@ -51,22 +51,24 @@ public class DailyUVAdapter extends AbsDailyTrendAdapter {
             assert weather != null;
             Daily daily = weather.getDailyForecast().get(position);
 
-            Integer index = daily.getUV().getIndex();
-            talkBackBuilder.append(", ").append(index).append(", ").append(daily.getUV().getLevel());
-            mPolylineAndHistogramView.setData(
-                    null, null,
-                    null, null,
-                    null, null,
-                    (float) (index == null ? 0 : index),
-                    String.format("%d", index == null ? 0 : index),
-                    (float) mHighestIndex,
-                    0f
-            );
-            mPolylineAndHistogramView.setLineColors(
-                    daily.getUV().getUVColor(activity),
-                    daily.getUV().getUVColor(activity),
-                    MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
-            );
+            if (daily.getUV() != null) {
+                Integer index = daily.getUV().getIndex();
+                talkBackBuilder.append(", ").append(index).append(", ").append(daily.getUV().getLevel());
+                mPolylineAndHistogramView.setData(
+                        null, null,
+                        null, null,
+                        null, null,
+                        (float) (index == null ? 0 : index),
+                        String.format("%d", index == null ? 0 : index),
+                        (float) mHighestIndex,
+                        0f
+                );
+                mPolylineAndHistogramView.setLineColors(
+                        daily.getUV().getUVColor(activity),
+                        daily.getUV().getUVColor(activity),
+                        MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+                );
+            }
             int[] themeColors = ThemeManager
                     .getInstance(itemView.getContext())
                     .getWeatherThemeDelegate()

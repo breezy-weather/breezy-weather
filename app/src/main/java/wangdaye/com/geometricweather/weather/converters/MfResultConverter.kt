@@ -2,9 +2,6 @@ package wangdaye.com.geometricweather.weather.converters
 
 import android.content.Context
 import android.graphics.Color
-import aqikotlin.library.constants.EEA
-import aqikotlin.library.constants.EPA
-import aqikotlin.library.constants.MEE
 import us.dustinj.timezonemap.TimeZoneMap
 import wangdaye.com.geometricweather.GeometricWeather
 import wangdaye.com.geometricweather.common.basic.models.Location
@@ -41,7 +38,6 @@ import wangdaye.com.geometricweather.weather.json.mf.MfRainResult
 import wangdaye.com.geometricweather.weather.json.mf.MfWarningsResult
 import wangdaye.com.geometricweather.weather.services.WeatherService.WeatherResultWrapper
 import java.util.Calendar
-import java.util.Collections
 import java.util.Date
 import java.util.TimeZone
 import kotlin.math.roundToInt
@@ -163,8 +159,8 @@ fun convert(
     aqiAtmoAuraResult: AtmoAuraPointResult?
 ): WeatherResultWrapper {
     return try {
-        val hourlyByDate: MutableMap<String?, Map<String, MutableList<Hourly>>> = HashMap()
-        val hourlyList: MutableList<Hourly> = ArrayList()
+        val hourlyByHalfDay: MutableMap<String, Map<String, MutableList<Hourly>>> = HashMap()
+        val hourlyList: MutableList<Hourly> = mutableListOf()
 
         if (forecastResult.properties?.forecast != null) {
             for (i in forecastResult.properties.forecast.indices) {
@@ -199,25 +195,25 @@ fun convert(
                     // uV = TODO: Use Hourly.copy(hourly, uV)
                 )
 
-                // We shift by 6 hours the hourly date, otherwise night times (00:00 to 05:59) would be on the wrong day
+                // We shift by 6 hours the hourly date, otherwise nighttime (00:00 to 05:59) would be on the wrong day
                 val theDayAtMidnight = DisplayUtils.toTimezoneNoHour(
                     Date(hourlyForecast.time.time - (6 * 3600 * 1000)),
                     location.timeZone
                 )
                 val theDayFormatted =
                     DisplayUtils.getFormattedDate(theDayAtMidnight, location.timeZone, "yyyyMMdd")
-                if (!hourlyByDate.containsKey(theDayFormatted)) {
-                    hourlyByDate[theDayFormatted] = hashMapOf(
+                if (!hourlyByHalfDay.containsKey(theDayFormatted)) {
+                    hourlyByHalfDay[theDayFormatted] = hashMapOf(
                         "day" to ArrayList(),
                         "night" to ArrayList()
                     )
                 }
                 if (hourlyForecast.time.time < theDayAtMidnight.time + 18 * 3600 * 1000) {
                     // 06:00 to 17:59 is the day
-                    hourlyByDate[theDayFormatted]!!["day"]!!.add(hourly)
+                    hourlyByHalfDay[theDayFormatted]!!["day"]!!.add(hourly)
                 } else {
                     // 18:00 to 05:59 is the night
-                    hourlyByDate[theDayFormatted]!!["night"]!!.add(hourly)
+                    hourlyByHalfDay[theDayFormatted]!!["night"]!!.add(hourly)
                 }
 
                 // Add to the app only if starts in the current hour
@@ -226,7 +222,7 @@ fun convert(
                 }
             }
         }
-        val dailyList = if (forecastResult.properties?.dailyForecast != null) getInitialDailyList(context, location.timeZone, forecastResult.properties.dailyForecast, ephemerisResult.properties?.ephemeris, hourlyByDate) else arrayListOf()
+        val dailyList = if (forecastResult.properties?.dailyForecast != null) getInitialDailyList(context, location.timeZone, forecastResult.properties.dailyForecast, ephemerisResult.properties?.ephemeris, hourlyList, hourlyByHalfDay) else arrayListOf()
         val weather = Weather(
             base = Base(
                 cityId = location.cityId,
@@ -258,7 +254,7 @@ fun convert(
                 airQuality = hourlyList.getOrNull(1)?.airQuality,
             ),
             dailyForecast = dailyList,
-            hourlyForecast = hourlyList,
+            hourlyForecast = completeHourlyListFromDailyList(context, hourlyList, dailyList, location.timeZone),
             minutelyForecast = getMinutelyList(rainResult),
             alertList = getWarningsList(warningsResult)
         )
@@ -276,13 +272,14 @@ private fun getInitialDailyList(
     timeZone: TimeZone,
     dailyForecasts: List<MfForecastDaily>,
     ephemerisResult: MfEphemeris?,
-    hourlyByDate: Map<String?, Map<String, MutableList<Hourly>>>
+    hourlyList: List<Hourly>,
+    hourlyListByHalfDay: Map<String, Map<String, MutableList<Hourly>>>
 ): List<Daily> {
     val initialDailyList: MutableList<Daily> = ArrayList(dailyForecasts.size)
+    val hourlyListByDay = hourlyList.groupBy { DisplayUtils.getFormattedDate(it.date, timeZone, "yyyyMMdd") }
     for (dailyForecast in dailyForecasts) {
         // Given as UTC, we need to convert in the correct timezone at 00:00
-        val dayInUTCCalendar =
-            DisplayUtils.toCalendarWithTimeZone(dailyForecast.time, TimeZone.getTimeZone("UTC"))
+        val dayInUTCCalendar = DisplayUtils.toCalendarWithTimeZone(dailyForecast.time, TimeZone.getTimeZone("UTC"))
         val dayInLocalCalendar = Calendar.getInstance(timeZone)
         dayInLocalCalendar[Calendar.YEAR] = dayInUTCCalendar[Calendar.YEAR]
         dayInLocalCalendar[Calendar.MONTH] = dayInUTCCalendar[Calendar.MONTH]
@@ -306,7 +303,7 @@ private fun getInitialDailyList(
                         // TODO temperatureWindChill with hourly data
                         // TODO cloudCover with hourly data
                     ),
-                    halfDayHourlyList = hourlyByDate.getOrDefault(dailyDateFormatted, null)?.get("day"),
+                    halfDayHourlyList = hourlyListByHalfDay.getOrDefault(dailyDateFormatted, null)?.get("day"),
                     isDay = true
                 ),
                 night = completeHalfDayFromHourlyList(
@@ -319,7 +316,7 @@ private fun getInitialDailyList(
                         // TODO temperatureWindChill with hourly data
                         // TODO cloudCover with hourly data
                     ),
-                    halfDayHourlyList = hourlyByDate.getOrDefault(dailyDateFormatted, null)?.get("night"),
+                    halfDayHourlyList = hourlyListByHalfDay.getOrDefault(dailyDateFormatted, null)?.get("night"),
                     isDay = false
                 ),
                 sun = Astro(
@@ -334,7 +331,7 @@ private fun getInitialDailyList(
                     angle = getMoonPhaseAngle(ephemerisResult?.moonPhaseDescription),
                     description = ephemerisResult?.moonPhaseDescription
                 ),
-                // TODO airQuality with hourly data
+                airQuality = getAirQualityFromHourlyList(hourlyListByDay.getOrDefault(dailyDateFormatted, null)),
                 uV = UV(
                     index = dailyForecast.uvIndex,
                     level = getUVLevel(context, dailyForecast.uvIndex)
@@ -347,40 +344,33 @@ private fun getInitialDailyList(
 }
 
 // This can be improved by adding results from other regions
-private fun getAirQuality(
-    requestedDate: Date,
-    aqiAtmoAuraResult: AtmoAuraPointResult?
-): AirQuality? {
-    return if (aqiAtmoAuraResult == null) {
-        null
-    } else {
-        var pm25: Float? = null
-        var pm10: Float? = null
-        var so2: Float? = null
-        var no2: Float? = null
-        var o3: Float? = null
-        aqiAtmoAuraResult.polluants
-            ?.filter { p -> p.horaires?.firstOrNull { it.datetimeEcheance == requestedDate } != null }
-            ?.forEach { p -> when (p.polluant) {
-                    "o3" -> o3 = p.horaires?.firstOrNull { it.datetimeEcheance == requestedDate }?.concentration?.toFloat()
-                    "no2" -> no2 = p.horaires?.firstOrNull { it.datetimeEcheance == requestedDate }?.concentration?.toFloat()
-                    "pm2.5" -> pm25 = p.horaires?.firstOrNull { it.datetimeEcheance == requestedDate }?.concentration?.toFloat()
-                    "pm10" -> pm10 = p.horaires?.firstOrNull { it.datetimeEcheance == requestedDate }?.concentration?.toFloat()
-                    "so2" -> so2 = p.horaires?.firstOrNull { it.datetimeEcheance == requestedDate }?.concentration?.toFloat()
-                }
-            }
+private fun getAirQuality(requestedDate: Date, aqiAtmoAuraResult: AtmoAuraPointResult?): AirQuality? {
+    if (aqiAtmoAuraResult == null) return null
 
-        AirQuality(
-            epaIndex = getAirQualityIndex(algorithm = EPA, pm25 = pm25, pm10 = pm10, no2_1h = no2, o3_1h = o3, so2_1h = so2),
-            meeIndex = getAirQualityIndex(algorithm = MEE, pm25 = pm25, pm10 = pm10, no2_1h = no2, o3_1h = o3, so2_1h = so2),
-            eeaIndex = getAirQualityIndex(algorithm = EEA, pm25 = pm25, pm10 = pm10, no2_1h = no2, o3_1h = o3, so2_1h = so2),
-            pM25 = pm25,
-            pM10 = pm10,
-            sO2 = so2,
-            nO2 = no2,
-            o3 = o3
-        )
-    }
+    var pm25: Float? = null
+    var pm10: Float? = null
+    var so2: Float? = null
+    var no2: Float? = null
+    var o3: Float? = null
+    aqiAtmoAuraResult.polluants
+        ?.filter { p -> p.horaires?.firstOrNull { it.datetimeEcheance == requestedDate } != null }
+        ?.forEach { p -> when (p.polluant) {
+                "o3" -> o3 = p.horaires?.firstOrNull { it.datetimeEcheance == requestedDate }?.concentration?.toFloat()
+                "no2" -> no2 = p.horaires?.firstOrNull { it.datetimeEcheance == requestedDate }?.concentration?.toFloat()
+                "pm2.5" -> pm25 = p.horaires?.firstOrNull { it.datetimeEcheance == requestedDate }?.concentration?.toFloat()
+                "pm10" -> pm10 = p.horaires?.firstOrNull { it.datetimeEcheance == requestedDate }?.concentration?.toFloat()
+                "so2" -> so2 = p.horaires?.firstOrNull { it.datetimeEcheance == requestedDate }?.concentration?.toFloat()
+            }
+        }
+
+    // Return null instead of an object initialized with null values to ease the filtering later when aggregating for daily
+    return if (pm25 != null || pm10 != null || so2 != null || no2 != null || o3 != null) AirQuality(
+        pM25 = pm25,
+        pM10 = pm10,
+        sO2 = so2,
+        nO2 = no2,
+        o3 = o3
+    ) else null
 }
 
 private fun getHourlyPrecipitation(hourlyForecast: MfForecastHourly): Precipitation {
@@ -390,18 +380,17 @@ private fun getHourlyPrecipitation(hourlyForecast: MfForecastHourly): Precipitat
     val snowCumul = with (hourlyForecast) {
         snow1h ?: snow3h ?: snow6h ?: snow12h ?: snow24h
     }
-    val totalCumul = when {
-        rainCumul == null -> snowCumul
-        snowCumul == null -> rainCumul
-        else -> snowCumul + rainCumul
-    }
+    val cumul: List<Float> = listOfNotNull(rainCumul, snowCumul)
     return Precipitation(
-        total = totalCumul,
+        total = if (cumul.isNotEmpty()) cumul.sum() else null,
         rain = rainCumul,
         snow = snowCumul
     )
 }
 
+/**
+ * TODO: Needs to be reviewed
+ */
 private fun getHourlyPrecipitationProbability(
     probabilityForecastResult: List<MfForecastProbability>,
     dt: Date
@@ -427,7 +416,9 @@ private fun getHourlyPrecipitationProbability(
             } else if (probabilityForecast.snowHazard6h != null) {
                 snowProbability = probabilityForecast.snowHazard6h.toFloat()
             }
-            iceProbability = probabilityForecast.freezingHazard?.toFloat()
+            if (probabilityForecast.freezingHazard != null) {
+                iceProbability = probabilityForecast.freezingHazard.toFloat()
+            }
         }
 
         /*
@@ -441,7 +432,9 @@ private fun getHourlyPrecipitationProbability(
             if (probabilityForecast.snowHazard6h != null) {
                 snowProbability = probabilityForecast.snowHazard6h.toFloat()
             }
-            iceProbability = probabilityForecast.freezingHazard?.toFloat()
+            if (probabilityForecast.freezingHazard != null) {
+                iceProbability = probabilityForecast.freezingHazard.toFloat()
+            }
         }
     }
     return PrecipitationProbability(

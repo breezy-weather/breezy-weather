@@ -1,30 +1,9 @@
 package wangdaye.com.geometricweather.weather.converters
 
 import android.content.Context
-import aqikotlin.library.Calculator
-import aqikotlin.library.constants.EEA
-import aqikotlin.library.constants.EPA
-import aqikotlin.library.constants.MEE
-import aqikotlin.library.constants.POLLUTANT_CO_1H
-import aqikotlin.library.constants.POLLUTANT_CO_24H
-import aqikotlin.library.constants.POLLUTANT_CO_8H
-import aqikotlin.library.constants.POLLUTANT_NO2_1H
-import aqikotlin.library.constants.POLLUTANT_NO2_24H
-import aqikotlin.library.constants.POLLUTANT_O3_1H
-import aqikotlin.library.constants.POLLUTANT_O3_8H
-import aqikotlin.library.constants.POLLUTANT_PM10
-import aqikotlin.library.constants.POLLUTANT_PM25
-import aqikotlin.library.constants.POLLUTANT_SO2_1H
-import aqikotlin.library.constants.POLLUTANT_SO2_24H
 import us.dustinj.timezonemap.TimeZoneMap
 import wangdaye.com.geometricweather.R
-import wangdaye.com.geometricweather.common.basic.models.weather.Daily
-import wangdaye.com.geometricweather.common.basic.models.weather.HalfDay
-import wangdaye.com.geometricweather.common.basic.models.weather.Hourly
-import wangdaye.com.geometricweather.common.basic.models.weather.Precipitation
-import wangdaye.com.geometricweather.common.basic.models.weather.PrecipitationProbability
-import wangdaye.com.geometricweather.common.basic.models.weather.UV
-import wangdaye.com.geometricweather.common.basic.models.weather.Wind
+import wangdaye.com.geometricweather.common.basic.models.weather.*
 import wangdaye.com.geometricweather.common.utils.DisplayUtils
 import java.util.Calendar
 import java.util.Date
@@ -43,6 +22,7 @@ import kotlin.math.sin
  * - PrecipitationProbability (if PrecipitationProbability or PrecipitationProbability.total is null)
  * - Wind (if Wind or Wind.speed is null)
  * You can expand it to other fields if you need it.
+ * TODO: Temperature
  *
  * @param dailyDate a Date initialized at 00:00 the day of interest
  * @param initialHalfDay the half day to be completed or null
@@ -217,6 +197,61 @@ fun completeHalfDayFromHourlyList(
     )
 }
 
+/**
+ * Returns an AirQuality object calculated from a List of Hourly for the day
+ * (at least 18 non-null Hourly.AirQuality required)
+ */
+fun getAirQualityFromHourlyList(hourlyList: List<Hourly>? = null): AirQuality? {
+    // We need at least 18 hours for a signification estimation
+    if (hourlyList.isNullOrEmpty() || hourlyList.size < 18) return null
+    val hourlyListWithAirQuality = hourlyList.filter { it.airQuality != null }
+    if (hourlyListWithAirQuality.size < 18) return null
+
+    return AirQuality(
+        pM25 = hourlyListWithAirQuality.filter { it.airQuality!!.pM25 != null }.map { it.airQuality!!.pM25!! }.average().toFloat(),
+        pM10 = hourlyListWithAirQuality.filter { it.airQuality!!.pM10 != null }.map { it.airQuality!!.pM10!! }.average().toFloat(),
+        sO2 = hourlyListWithAirQuality.filter { it.airQuality!!.sO2 != null }.map { it.airQuality!!.sO2!! }.average().toFloat(),
+        nO2 = hourlyListWithAirQuality.filter { it.airQuality!!.nO2 != null }.map { it.airQuality!!.nO2!! }.average().toFloat(),
+        o3 = hourlyListWithAirQuality.filter { it.airQuality!!.o3 != null }.map { it.airQuality!!.o3!! }.average().toFloat(),
+        cO = hourlyListWithAirQuality.filter { it.airQuality!!.cO != null }.map { it.airQuality!!.cO!! }.average().toFloat()
+    )
+}
+
+/**
+ * Completes the UV field from a List<Hourly> with the List<Daily>
+ * Possible improvement: handle cloud covers as well but doesn't exist in Hourly at the moment
+ */
+fun completeHourlyListFromDailyList(
+    context: Context,
+    hourlyList: List<Hourly>,
+    dailyList: List<Daily>,
+    timeZone: TimeZone
+): List<Hourly> {
+    if (hourlyList.isEmpty() || dailyList.isEmpty()) return hourlyList
+
+    val dailyListByDate = dailyList.groupBy { DisplayUtils.getFormattedDate(it.date, timeZone, "yyyyMMdd") }
+    val newHourlyList: MutableList<Hourly> = ArrayList(hourlyList.size);
+    hourlyList.forEach { hourly ->
+        if (hourly.uV?.index == null && hourly.isDaylight) {
+            val dateForHourFormatted = DisplayUtils.getFormattedDate(hourly.date, timeZone, "yyyyMMdd")
+            dailyListByDate.getOrDefault(dateForHourFormatted, null)
+                ?.first()?.let { daily ->
+                    if (daily.uV?.index != null && daily.sun?.riseDate != null && daily.sun.setDate != null) {
+                        newHourlyList.add(
+                            hourly.copy(
+                                uV = getCurrentUV(context, daily.uV.index, hourly.date, daily.sun.riseDate, daily.sun.setDate, timeZone)
+                            )
+                        )
+                        return@forEach // continue to next item
+                    }
+                }
+        }
+        newHourlyList.add(hourly)
+    }
+
+    return newHourlyList
+}
+
 fun getTimeZoneForPosition(map: TimeZoneMap, lat: Double, lon: Double): TimeZone {
     return try {
         TimeZone.getTimeZone(map.getOverlappingTimeZone(lat, lon)!!.zoneId)
@@ -275,64 +310,6 @@ fun getMoonPhaseAngle(phase: String?): Int? {
         "third", "thirdquarter", "third quarter", "last", "lastquarter", "last quarter" -> 270
         "waningcrescent", "waning crescent" -> 315
         else -> 360
-    }
-}
-
-/**
- * Air quality index (AQI) calculation
- * To be completed with EEA algorithm
- */
-fun getAirQualityIndex(
-    algorithm: String,
-    pm25: Float? = null,
-    pm10: Float? = null,
-    so2_1h: Float? = null,
-    so2_24h: Float? = null,
-    no2_1h: Float? = null,
-    no2_24h: Float? = null,
-    o3_1h: Float? = null,
-    o3_8h: Float? = null,
-    co_1h: Float? = null,
-    co_8h: Float? = null,
-    co_24h: Float? = null
-): Int? {
-    return if ((algorithm != EPA && algorithm != MEE && algorithm != EEA)
-        || (pm25 == null && pm10 == null
-                && no2_1h == null && no2_24h == null
-                && o3_1h == null && o3_8h == null
-                && so2_1h == null && so2_24h == null
-                && co_1h == null && co_8h == null && co_24h == null)) {
-        null
-    } else {
-        val listAqi = mutableListOf<Int>();
-
-        pm25?.let { listAqi.add(Calculator().getAqi(POLLUTANT_PM25, it, algorithm)) }
-        pm10?.let { listAqi.add(Calculator().getAqi(POLLUTANT_PM10, it, algorithm)) }
-        no2_1h?.let { listAqi.add(Calculator().getAqi(POLLUTANT_NO2_1H, it, algorithm)) }
-        if (algorithm == MEE) {
-            no2_24h?.let { listAqi.add(Calculator().getAqi(POLLUTANT_NO2_24H, it, algorithm)) }
-        }
-        o3_1h?.let { listAqi.add(Calculator().getAqi(POLLUTANT_O3_1H, it, algorithm)) }
-        if (algorithm != EEA) {
-            o3_8h?.let { listAqi.add(Calculator().getAqi(POLLUTANT_O3_8H, it, algorithm)) }
-        }
-        so2_1h?.let { listAqi.add(Calculator().getAqi(POLLUTANT_SO2_1H, it, algorithm)) }
-        if (algorithm != EEA) {
-            so2_24h?.let { listAqi.add(Calculator().getAqi(POLLUTANT_SO2_24H, it, algorithm)) }
-        }
-        if (algorithm == EPA) {
-            if (co_8h != null) {
-                listAqi.add(Calculator().getAqi(POLLUTANT_CO_1H, co_8h, algorithm))
-            } else {
-                co_1h?.let { listAqi.add(Calculator().getAqi(POLLUTANT_CO_8H, it, algorithm)) }
-            }
-        }
-        if (algorithm == MEE) {
-            co_1h?.let { listAqi.add(Calculator().getAqi(POLLUTANT_CO_1H, it, algorithm)) }
-            co_24h?.let { listAqi.add(Calculator().getAqi(POLLUTANT_CO_24H, it, algorithm)) }
-        }
-
-        return listAqi.maxOf { it }
     }
 }
 

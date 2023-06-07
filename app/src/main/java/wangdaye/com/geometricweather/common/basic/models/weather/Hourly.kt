@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.text.BidiFormatter
 import wangdaye.com.geometricweather.R
+import wangdaye.com.geometricweather.common.basic.models.Location
+import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource
 import wangdaye.com.geometricweather.common.utils.DisplayUtils
 import java.io.Serializable
 import java.util.Calendar
@@ -72,4 +74,21 @@ class Hourly(
     fun getDate(timeZone: TimeZone?, format: String?): String {
         return DisplayUtils.getFormattedDate(date, timeZone, format)
     }
+
+    /**
+     * Only contains UV at the moment but feel free to add other parameters if required
+     */
+    fun copy(uV: UV? = null) = Hourly(
+        date = this.date,
+        isDaylight = this.isDaylight,
+        weatherText = this.weatherText,
+        weatherCode = this.weatherCode,
+        temperature = this.temperature,
+        precipitation = this.precipitation,
+        precipitationProbability = this.precipitationProbability,
+        wind = this.wind,
+        airQuality = this.airQuality,
+        pollen = this.pollen,
+        uV = uV ?: this.uV
+    )
 }

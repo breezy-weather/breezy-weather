@@ -23,6 +23,7 @@ import java.util.List;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.options.index.PollutantIndex;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.AirQualityCOUnit;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.AirQualityUnit;
 import wangdaye.com.geometricweather.common.basic.models.weather.AirQuality;
@@ -156,12 +157,13 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
                 && location.getWeather().getCurrent().getAirQuality().isValid()) {
 
             AirQuality airQuality = location.getWeather().getCurrent().getAirQuality();
+            // We use air quality index for the progress bar instead of concentration for more realistic bar
             if (airQuality.getPM25() != null) {
                 mItemList.add(
                         new AqiItem(
-                                airQuality.getPm25Color(context),
-                                airQuality.getPM25(),
-                                airQuality.getPM25ExcessivePollution(context),
+                                airQuality.getColor(context, PollutantIndex.PM25),
+                                airQuality.getIndex(PollutantIndex.PM25),
+                                PollutantIndex.getIndexExcessivePollution(),
                                 "PM2.5",
                                 AirQualityUnit.MUGPCUM.getValueText(context, airQuality.getPM25()),
                                 context.getString(R.string.content_des_pm25)
@@ -174,9 +176,9 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
             if (airQuality.getPM10() != null) {
                 mItemList.add(
                         new AqiItem(
-                                airQuality.getPm10Color(context),
-                                airQuality.getPM10(),
-                                airQuality.getPM10ExcessivePollution(context),
+                                airQuality.getColor(context, PollutantIndex.PM10),
+                                airQuality.getIndex(PollutantIndex.PM10),
+                                PollutantIndex.getIndexExcessivePollution(),
                                 "PM10",
                                 AirQualityUnit.MUGPCUM.getValueText(context, airQuality.getPM10()),
                                 context.getString(R.string.content_des_pm10)
@@ -185,40 +187,12 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
                         )
                 );
             }
-            if (airQuality.getSO2() != null) {
-                mItemList.add(
-                        new AqiItem(
-                                airQuality.getSo2Color(context),
-                                airQuality.getSO2(),
-                                airQuality.getSO2ExcessivePollution(context),
-                                "SO₂",
-                                AirQualityUnit.MUGPCUM.getValueText(context, airQuality.getSO2()),
-                                context.getString(R.string.content_des_so2)
-                                        + ", " + AirQualityUnit.MUGPCUM.getValueVoice(context, airQuality.getSO2()),
-                                executeAnimation
-                        )
-                );
-            }
-            if (airQuality.getNO2() != null) {
-                mItemList.add(
-                        new AqiItem(
-                                airQuality.getNo2Color(context),
-                                airQuality.getNO2(),
-                                airQuality.getNO2ExcessivePollution(context),
-                                "NO₂",
-                                AirQualityUnit.MUGPCUM.getValueText(context, airQuality.getNO2()),
-                                context.getString(R.string.content_des_no2)
-                                        + ", " + AirQualityUnit.MUGPCUM.getValueVoice(context, airQuality.getNO2()),
-                                executeAnimation
-                        )
-                );
-            }
             if (airQuality.getO3() != null) {
                 mItemList.add(
                         new AqiItem(
-                                airQuality.getO3Color(context),
-                                airQuality.getO3(),
-                                airQuality.getO3ExcessivePollution(context),
+                                airQuality.getColor(context, PollutantIndex.O3),
+                                airQuality.getIndex(PollutantIndex.O3),
+                                PollutantIndex.getIndexExcessivePollution(),
                                 "O₃",
                                 AirQualityUnit.MUGPCUM.getValueText(context, airQuality.getO3()),
                                 context.getString(R.string.content_des_o3)
@@ -227,12 +201,40 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
                         )
                 );
             }
-            if (airQuality.getCO() != null) {
+            if (airQuality.getNO2() != null) {
                 mItemList.add(
                         new AqiItem(
-                                airQuality.getCOColor(context),
-                                airQuality.getCO(),
-                                airQuality.getCOExcessivePollution(context),
+                                airQuality.getColor(context, PollutantIndex.NO2),
+                                airQuality.getIndex(PollutantIndex.NO2),
+                                PollutantIndex.getIndexExcessivePollution(),
+                                "NO₂",
+                                AirQualityUnit.MUGPCUM.getValueText(context, airQuality.getNO2()),
+                                context.getString(R.string.content_des_no2)
+                                        + ", " + AirQualityUnit.MUGPCUM.getValueVoice(context, airQuality.getNO2()),
+                                executeAnimation
+                        )
+                );
+            }
+            if (airQuality.getSO2() != null && airQuality.getSO2() > 0) {
+                mItemList.add(
+                        new AqiItem(
+                                airQuality.getColor(context, PollutantIndex.SO2),
+                                airQuality.getIndex(PollutantIndex.SO2),
+                                PollutantIndex.getIndexExcessivePollution(),
+                                "SO₂",
+                                AirQualityUnit.MUGPCUM.getValueText(context, airQuality.getSO2()),
+                                context.getString(R.string.content_des_so2)
+                                        + ", " + AirQualityUnit.MUGPCUM.getValueVoice(context, airQuality.getSO2()),
+                                executeAnimation
+                        )
+                );
+            }
+            if (airQuality.getCO() != null && airQuality.getCO() > 0) {
+                mItemList.add(
+                        new AqiItem(
+                                airQuality.getColor(context, PollutantIndex.CO),
+                                airQuality.getIndex(PollutantIndex.CO),
+                                PollutantIndex.getIndexExcessivePollution(),
                                 "CO",
                                 AirQualityCOUnit.MGPCUM.getValueText(context, airQuality.getCO()),
                                 context.getString(R.string.content_des_co)

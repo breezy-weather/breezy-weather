@@ -120,11 +120,11 @@ public class HeaderViewHolder extends AbstractMainViewHolder {
             }
             mWeather.setText(title.toString());
 
-            if (location.getWeather().getCurrent().getAirQuality() != null && !TextUtils.isEmpty(location.getWeather().getCurrent().getAirQuality().getAqiText(context))) {
+            if (location.getWeather().getCurrent().getAirQuality() != null && !TextUtils.isEmpty(location.getWeather().getCurrent().getAirQuality().getName(context, null))) {
                 mAqiOrWind.setText(
                         context.getString(R.string.air_quality)
                                 + " - "
-                                + location.getWeather().getCurrent().getAirQuality().getAqiText(context)
+                                + location.getWeather().getCurrent().getAirQuality().getName(context, null)
                 );
             } else if (location.getWeather().getCurrent().getWind() != null && !TextUtils.isEmpty(location.getWeather().getCurrent().getWind().getShortWindDescription())) {
                 mAqiOrWind.setText(

@@ -55,9 +55,6 @@ data class HourlyEntity(
     var windSpeed: Float? = null,
     var windLevel: String? = null,
 
-    var epaIndex: Int? = null,
-    var meeIndex: Int? = null,
-    var eeaIndex: Int? = null,
     var pm25: Float? = null,
     var pm10: Float? = null,
     var so2: Float? = null,
