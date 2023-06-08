@@ -78,9 +78,12 @@ class Hourly(
     /**
      * Only contains UV at the moment but feel free to add other parameters if required
      */
-    fun copy(uV: UV? = null) = Hourly(
+    fun copy(
+        isDaylight: Boolean? = null,
+        uV: UV? = null
+    ) = Hourly(
         date = this.date,
-        isDaylight = this.isDaylight,
+        isDaylight = isDaylight ?: this.isDaylight,
         weatherText = this.weatherText,
         weatherCode = this.weatherCode,
         temperature = this.temperature,

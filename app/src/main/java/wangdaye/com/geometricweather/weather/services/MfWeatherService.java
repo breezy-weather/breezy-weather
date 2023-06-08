@@ -185,11 +185,13 @@ public class MfWeatherService extends WeatherService {
                         Location location = MfResultConverterKt.convert(null, mfForecastResult);
                         if (location != null) {
                             locationList.add(location);
+                            callback.requestLocationSuccess(
+                                    location.getLatitude() + "," + location.getLongitude(),
+                                    locationList
+                            );
+                        } else {
+                            onFailed();
                         }
-                        callback.requestLocationSuccess(
-                                location.getLatitude() + "," + location.getLongitude(),
-                                locationList
-                        );
                     } else {
                         onFailed();
                     }

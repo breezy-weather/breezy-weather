@@ -126,9 +126,9 @@ internal fun convert(
             district = location.district,
             weatherSource = WeatherSource.MF,
             isChina = result.country.isNotEmpty()
-                    && (result.country.equals("cn", ignoreCase = true)
-                    || result.country.equals("hk", ignoreCase = true)
-                    || result.country.equals("tw", ignoreCase = true))
+                    && (result.country.startsWith("cn", ignoreCase = true)
+                    || result.country.startsWith("hk", ignoreCase = true)
+                    || result.country.startsWith("tw", ignoreCase = true))
         )
     } else {
         Location(
@@ -141,9 +141,9 @@ internal fun convert(
             city = result.name + if (result.postCode == null) "" else " (" + result.postCode + ")",
             weatherSource = WeatherSource.MF,
             isChina = result.country.isNotEmpty()
-                    && (result.country.equals("cn", ignoreCase = true)
-                    || result.country.equals("hk", ignoreCase = true)
-                    || result.country.equals("tw", ignoreCase = true))
+                    && (result.country.startsWith("cn", ignoreCase = true)
+                    || result.country.startsWith("hk", ignoreCase = true)
+                    || result.country.startsWith("tw", ignoreCase = true))
         )
     }
 }
@@ -167,10 +167,6 @@ fun convert(
                 val hourlyForecast = forecastResult.properties.forecast[i]
                 val hourly = Hourly(
                     date = hourlyForecast.time,
-                    // TODO: Use CommonConverter.isDaylight(sunrise, sunset, new Date(hourlyForecast.time * 1000)) instead:
-                    isDaylight = if (hourlyForecast.weatherIcon == null) true else !hourlyForecast.weatherIcon.endsWith(
-                        "n"
-                    ),
                     weatherText = hourlyForecast.weatherDescription,
                     weatherCode = getWeatherCode(hourlyForecast.weatherIcon),
                     temperature = Temperature(
@@ -192,7 +188,6 @@ fun convert(
                         level = getWindLevel(context, hourlyForecast.windSpeed?.times(3.6f))
                     ),
                     airQuality = getAirQuality(hourlyForecast.time, aqiAtmoAuraResult)
-                    // uV = TODO: Use Hourly.copy(hourly, uV)
                 )
 
                 // We shift by 6 hours the hourly date, otherwise nighttime (00:00 to 05:59) would be on the wrong day
@@ -222,7 +217,7 @@ fun convert(
                 }
             }
         }
-        val dailyList = if (forecastResult.properties?.dailyForecast != null) getInitialDailyList(context, location.timeZone, forecastResult.properties.dailyForecast, ephemerisResult.properties?.ephemeris, hourlyList, hourlyByHalfDay) else arrayListOf()
+        val dailyList = if (forecastResult.properties?.dailyForecast != null) getDailyList(context, location.timeZone, forecastResult.properties.dailyForecast, ephemerisResult.properties?.ephemeris, hourlyList, hourlyByHalfDay) else arrayListOf()
         val weather = Weather(
             base = Base(
                 cityId = location.cityId,
@@ -254,7 +249,7 @@ fun convert(
                 airQuality = hourlyList.getOrNull(1)?.airQuality,
             ),
             dailyForecast = dailyList,
-            hourlyForecast = completeHourlyListFromDailyList(context, hourlyList, dailyList, location.timeZone),
+            hourlyForecast = completeHourlyListFromDailyList(context, hourlyList, dailyList, location.timeZone, completeDaylight = true),
             minutelyForecast = getMinutelyList(rainResult),
             alertList = getWarningsList(warningsResult)
         )
@@ -267,7 +262,7 @@ fun convert(
     }
 }
 
-private fun getInitialDailyList(
+private fun getDailyList(
     context: Context,
     timeZone: TimeZone,
     dailyForecasts: List<MfForecastDaily>,
@@ -275,7 +270,7 @@ private fun getInitialDailyList(
     hourlyList: List<Hourly>,
     hourlyListByHalfDay: Map<String, Map<String, MutableList<Hourly>>>
 ): List<Daily> {
-    val initialDailyList: MutableList<Daily> = ArrayList(dailyForecasts.size)
+    val dailyList: MutableList<Daily> = ArrayList(dailyForecasts.size)
     val hourlyListByDay = hourlyList.groupBy { DisplayUtils.getFormattedDate(it.date, timeZone, "yyyyMMdd") }
     for (dailyForecast in dailyForecasts) {
         // Given as UTC, we need to convert in the correct timezone at 00:00
@@ -289,7 +284,7 @@ private fun getInitialDailyList(
         dayInLocalCalendar[Calendar.SECOND] = 0
         val theDayInLocal = dayInLocalCalendar.time
         val dailyDateFormatted = DisplayUtils.getFormattedDate(theDayInLocal, timeZone, "yyyyMMdd")
-        initialDailyList.add(
+        dailyList.add(
             Daily(
                 date = theDayInLocal,
                 day = completeHalfDayFromHourlyList(
@@ -340,7 +335,7 @@ private fun getInitialDailyList(
             )
         )
     }
-    return initialDailyList
+    return dailyList
 }
 
 // This can be improved by adding results from other regions

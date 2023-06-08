@@ -4,7 +4,6 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +17,7 @@ import wangdaye.com.geometricweather.common.rxjava.ObserverContainer;
 import wangdaye.com.geometricweather.common.rxjava.SchedulerTransformer;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.weather.apis.OwmApi;
-import wangdaye.com.geometricweather.weather.converters.OwmResultConverter;
+import wangdaye.com.geometricweather.weather.converters.OwmResultConverterKt;
 import wangdaye.com.geometricweather.weather.json.owm.OwmAirPollutionResult;
 import wangdaye.com.geometricweather.weather.json.owm.OwmLocationResult;
 import wangdaye.com.geometricweather.weather.json.owm.OwmOneCallResult;
@@ -54,25 +53,18 @@ public class OwmWeatherService extends WeatherService {
                 languageCode
         );
 
-        Observable<OwmAirPollutionResult> airPollutionCurrent = mApi.getAirPollutionCurrent(
+        Observable<OwmAirPollutionResult> airPollution = mApi.getAirPollution(
                 SettingsManager.getInstance(context).getProviderOwmKey(), location.getLatitude(), location.getLongitude()
         ).onErrorResumeNext(error ->
                 Observable.create(emitter -> emitter.onNext(new EmptyAqiResult()))
         );
 
-        Observable<OwmAirPollutionResult> airPollutionForecast = mApi.getAirPollutionForecast(
-                SettingsManager.getInstance(context).getProviderOwmKey(), location.getLatitude(), location.getLongitude()
-        ).onErrorResumeNext(error ->
-                Observable.create(emitter -> emitter.onNext(new EmptyAqiResult()))
-        );
-
-        Observable.zip(oneCall, airPollutionCurrent, airPollutionForecast,
-                (owmOneCallResult, owmAirPollutionCurrentResult, owmAirPollutionForecastResult) -> OwmResultConverter.convert(
+        Observable.zip(oneCall, airPollution,
+                (owmOneCallResult, owmAirPollutionResult) -> OwmResultConverterKt.convert(
                         context,
                         location,
                         owmOneCallResult,
-                        owmAirPollutionCurrentResult instanceof EmptyAqiResult ? null : owmAirPollutionCurrentResult,
-                        owmAirPollutionForecastResult instanceof EmptyAqiResult ? null : owmAirPollutionForecastResult
+                        owmAirPollutionResult instanceof EmptyAqiResult ? null : owmAirPollutionResult
                 )
         ).compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<WeatherResultWrapper>() {
@@ -104,7 +96,7 @@ public class OwmWeatherService extends WeatherService {
             e.printStackTrace();
         }
 
-        return OwmResultConverter.convert(resultList);
+        return OwmResultConverterKt.convert(resultList);
     }
 
     @Override
@@ -119,7 +111,7 @@ public class OwmWeatherService extends WeatherService {
                     public void onSucceed(List<OwmLocationResult> owmLocationResultList) {
                         if (owmLocationResultList != null && !owmLocationResultList.isEmpty()) {
                             List<Location> locationList = new ArrayList<>();
-                            locationList.add(OwmResultConverter.convert(location, owmLocationResultList.get(0)));
+                            locationList.add(OwmResultConverterKt.convert(location, owmLocationResultList.get(0)));
                             callback.requestLocationSuccess(
                                     location.getLatitude() + "," + location.getLongitude(), locationList);
                         } else {
@@ -143,7 +135,7 @@ public class OwmWeatherService extends WeatherService {
                     @Override
                     public void onSucceed(List<OwmLocationResult> owmLocationResults) {
                         if (owmLocationResults != null && owmLocationResults.size() != 0) {
-                            List<Location> locationList = OwmResultConverter.convert(owmLocationResults);
+                            List<Location> locationList = OwmResultConverterKt.convert(owmLocationResults);
                             callback.requestLocationSuccess(query, locationList);
                         } else {
                             callback.requestLocationFailed(query);

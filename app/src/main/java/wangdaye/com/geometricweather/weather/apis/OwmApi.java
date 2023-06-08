@@ -9,7 +9,6 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 import wangdaye.com.geometricweather.weather.json.owm.OwmAirPollutionResult;
 import wangdaye.com.geometricweather.weather.json.owm.OwmLocationResult;
-import wangdaye.com.geometricweather.weather.json.owm.OwmOneCallHistoryResult;
 import wangdaye.com.geometricweather.weather.json.owm.OwmOneCallResult;
 
 /**
@@ -40,13 +39,8 @@ public interface OwmApi {
                                             @Query("units") String units,
                                             @Query("lang") String lang);
 
-    @GET("data/2.5/air_pollution")
-    Observable<OwmAirPollutionResult> getAirPollutionCurrent(@Query("appid") String apikey,
-                                                             @Query("lat") double lat,
-                                                             @Query("lon") double lon);
-
     @GET("data/2.5/air_pollution/forecast")
-    Observable<OwmAirPollutionResult> getAirPollutionForecast(@Query("appid") String apikey,
-                                                              @Query("lat") double lat,
-                                                              @Query("lon") double lon);
+    Observable<OwmAirPollutionResult> getAirPollution(@Query("appid") String apikey,
+                                                      @Query("lat") double lat,
+                                                      @Query("lon") double lon);
 }

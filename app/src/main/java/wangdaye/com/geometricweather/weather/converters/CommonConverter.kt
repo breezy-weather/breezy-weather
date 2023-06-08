@@ -225,24 +225,36 @@ fun completeHourlyListFromDailyList(
     context: Context,
     hourlyList: List<Hourly>,
     dailyList: List<Daily>,
-    timeZone: TimeZone
+    timeZone: TimeZone,
+    completeDaylight: Boolean = false
 ): List<Hourly> {
     if (hourlyList.isEmpty() || dailyList.isEmpty()) return hourlyList
 
     val dailyListByDate = dailyList.groupBy { DisplayUtils.getFormattedDate(it.date, timeZone, "yyyyMMdd") }
     val newHourlyList: MutableList<Hourly> = ArrayList(hourlyList.size);
     hourlyList.forEach { hourly ->
-        if (hourly.uV?.index == null && hourly.isDaylight) {
+        if (hourly.uV?.index == null && (completeDaylight || (!completeDaylight && hourly.isDaylight))) {
             val dateForHourFormatted = DisplayUtils.getFormattedDate(hourly.date, timeZone, "yyyyMMdd")
             dailyListByDate.getOrDefault(dateForHourFormatted, null)
                 ?.first()?.let { daily ->
-                    if (daily.uV?.index != null && daily.sun?.riseDate != null && daily.sun.setDate != null) {
-                        newHourlyList.add(
-                            hourly.copy(
+                    if (daily.sun?.riseDate != null && daily.sun.setDate != null) {
+                        if (daily.uV?.index != null) {
+                            newHourlyList.add(if (completeDaylight) hourly.copy(
+                                isDaylight = isDaylight(daily.sun.riseDate, daily.sun.setDate, hourly.date, timeZone),
                                 uV = getCurrentUV(context, daily.uV.index, hourly.date, daily.sun.riseDate, daily.sun.setDate, timeZone)
-                            )
-                        )
-                        return@forEach // continue to next item
+                            ) else hourly.copy(
+                                uV = getCurrentUV(context, daily.uV.index, hourly.date, daily.sun.riseDate, daily.sun.setDate, timeZone)
+                            ))
+                            return@forEach // continue to next item
+                        } else if (completeDaylight) {
+                            val isDaylight = isDaylight(daily.sun.riseDate, daily.sun.setDate, hourly.date, timeZone)
+                            if (hourly.isDaylight != isDaylight) {
+                                newHourlyList.add(hourly.copy(
+                                    isDaylight = isDaylight
+                                ))
+                                return@forEach // continue to next item
+                            }
+                        }
                     }
                 }
         }

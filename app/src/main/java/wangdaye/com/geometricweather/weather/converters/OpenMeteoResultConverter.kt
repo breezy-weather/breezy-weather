@@ -83,7 +83,7 @@ fun convert(
     airQualityResult: OpenMeteoAirQualityResult*/
 ): WeatherResultWrapper {
     return try {
-        val hourlyByDate: MutableMap<String?, Map<String, MutableList<Hourly>>> = HashMap()
+        val hourlyByHalfDay: MutableMap<String?, Map<String, MutableList<Hourly>>> = HashMap()
         val hourlyList: MutableList<Hourly> = ArrayList()
         var currentI: Int? = null
         if (weatherResult.hourly != null) {
@@ -120,24 +120,24 @@ fun convert(
                     )
                 )
 
-                // We shift by 6 hours the hourly date, otherwise night times (00:00 to 05:59) would be on the wrong day
+                // We shift by 6 hours the hourly date, otherwise nighttime (00:00 to 05:59) would be on the wrong day
                 val theDayAtMidnight = DisplayUtils.toTimezoneNoHour(
                     Date((weatherResult.hourly.time[i] - 6 * 3600) * 1000),
                     location.timeZone
                 )
                 val theDayFormatted = DisplayUtils.getFormattedDate(theDayAtMidnight, location.timeZone, "yyyyMMdd")
-                if (!hourlyByDate.containsKey(theDayFormatted)) {
-                    hourlyByDate[theDayFormatted] = hashMapOf(
+                if (!hourlyByHalfDay.containsKey(theDayFormatted)) {
+                    hourlyByHalfDay[theDayFormatted] = hashMapOf(
                         "day" to ArrayList(),
                         "night" to ArrayList()
                     )
                 }
                 if (weatherResult.hourly.time[i] < theDayAtMidnight.time / 1000 + 18 * 3600) {
                     // 06:00 to 17:59 is the day
-                    hourlyByDate[theDayFormatted]!!["day"]!!.add(hourly)
+                    hourlyByHalfDay[theDayFormatted]!!["day"]!!.add(hourly)
                 } else {
                     // 18:00 to 05:59 is the night
-                    hourlyByDate[theDayFormatted]!!["night"]!!.add(hourly)
+                    hourlyByHalfDay[theDayFormatted]!!["night"]!!.add(hourly)
                 }
 
                 // Add to the app only if starts in the current hour
@@ -150,7 +150,7 @@ fun convert(
             }
         }
 
-        val dailyList = if (weatherResult.daily != null) getInitialDailyList(context, location.timeZone, weatherResult.daily, hourlyByDate) else arrayListOf()
+        val dailyList = if (weatherResult.daily != null) getDailyList(context, location.timeZone, weatherResult.daily, hourlyByHalfDay) else arrayListOf()
         val weather = Weather(
             base = Base(cityId = location.cityId),
             current = Current(
@@ -199,13 +199,13 @@ fun convert(
     }
 }
 
-private fun getInitialDailyList(
+private fun getDailyList(
     context: Context,
     timeZone: TimeZone,
     dailyResult: OpenMeteoWeatherDaily,
     hourlyByDate: Map<String?, Map<String, List<Hourly>>>
 ): List<Daily> {
-    val initialDailyList: MutableList<Daily> = ArrayList(dailyResult.time.size - 1)
+    val dailyList: MutableList<Daily> = ArrayList(dailyResult.time.size - 1)
     for (i in 1 until dailyResult.time.size) {
         val theDay = Date(dailyResult.time[i].times(1000))
         val dailyDateFormatted = DisplayUtils.getFormattedDate(theDay, timeZone, "yyyyMMdd")
@@ -248,9 +248,9 @@ private fun getInitialDailyList(
                 Date(dailyResult.sunrise[i]!!.times(1000)), Date(dailyResult.sunset[i]!!.times(1000))
             ) else null
         )
-        initialDailyList.add(daily)
+        dailyList.add(daily)
     }
-    return initialDailyList
+    return dailyList
 }
 
 private fun getWeatherText(context: Context, icon: Int?): String? {
