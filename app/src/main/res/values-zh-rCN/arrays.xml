@@ -241,6 +241,24 @@
         <item>毫克每立方米</item>
     </string-array>
 
+    <!-- air quality levels -->
+    <string-array name="air_quality_levels">
+        <item>优</item>
+        <item>良</item>
+        <item>轻度污染</item>
+        <item>中度污染</item>
+        <item>重度污染</item>
+        <item>严重污染</item>
+    </string-array>
+    <string-array name="air_quality_levels_descriptions">
+        <item>空气质量对大多数人来说是理想的；享受正常的户外活动。</item>
+        <item>对于大多数人来说，空气质量通常是可以接受的。但是，敏感群体可能会因长期接触而出现轻度至中度不适。</item>
+        <item>对敏感人群的健康不利。如果您遇到呼吸困难或喉咙发炎等症状，请减少在户外的时间。</item>
+        <item>敏感群体可以立即感受到对健康的影响。健康人长时间接触可能会感到呼吸困难和喉咙发炎。应限制户外活动。</item>
+        <item>敏感人群会立即受到健康影响，应避免户外活动。健康的人可能会感到呼吸困难和喉咙发炎；考虑呆在室内并重新安排户外活动。</item>
+        <item>暴露在空气中，即使是几分钟，都会对每个人的健康造成严重影响。应避免户外活动。</item>
+    </string-array>
+
     <!-- duration unit. -->
     <string-array name="duration_units">
         <item>小时</item> <!-- hour -->
