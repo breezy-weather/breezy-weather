@@ -410,7 +410,6 @@
     <string name="settings_title_precipitation_unit">降水单位</string>
     <string name="settings_title_pressure_unit">压力单位</string>
     <string name="settings_title_speed_unit">速度单位</string>
-    <string name="settings_title_air_quality_algorithm">空气质量算法</string>
     <string name="settings_title_refresh_rate">自动刷新频率</string>
     <string name="settings_title_alert_notification_switch">推送预警通知</string>
     <string name="settings_title_precipitation_notification_switch">推送降水预报</string>

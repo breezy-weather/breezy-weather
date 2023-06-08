@@ -46,7 +46,13 @@ public class OwmWeatherService extends WeatherService {
         String languageCode = SettingsManager.getInstance(context).getLanguage().getCode();
 
         Observable<OwmOneCallResult> oneCall = mApi.getOneCall(
-                SettingsManager.getInstance(context).getProviderOwmKey(), location.getLatitude(), location.getLongitude(), "metric", languageCode);
+                SettingsManager.getInstance(context).getProviderOwmOneCallVersion(),
+                SettingsManager.getInstance(context).getProviderOwmKey(),
+                location.getLatitude(),
+                location.getLongitude(),
+                "metric",
+                languageCode
+        );
 
         Observable<OwmAirPollutionResult> airPollutionCurrent = mApi.getAirPollutionCurrent(
                 SettingsManager.getInstance(context).getProviderOwmKey(), location.getLatitude(), location.getLongitude()

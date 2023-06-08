@@ -355,6 +355,16 @@
         <item>night</item>
     </string-array>
 
+    <!-- Open Weather Map One Call version -->
+    <string-array name="owm_one_call_version">
+        <item>Version 2.5</item>
+        <item>Version 3.0</item>
+    </string-array>
+    <string-array name="owm_one_call_version_values">
+        <item>2.5</item>
+        <item>3.0</item>
+    </string-array>
+
     <!-- speed unit. -->
     <string-array name="speed_units">
         <item>km/h</item>

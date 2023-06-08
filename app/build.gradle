@@ -51,11 +51,8 @@ android {
         it.buildConfigField "String", "BAIDU_IP_LOCATION_BASE_URL", BAIDU_IP_LOCATION_BASE_URL
         it.buildConfigField "String", "CAIYUN_WEATHER_BASE_URL", CAIYUN_WEATHER_BASE_URL
         it.buildConfigField "String", "CN_WEATHER_BASE_URL", CN_WEATHER_BASE_URL
-        it.buildConfigField "String", "IQA_AIR_PARIF_KEY", IQA_AIR_PARIF_KEY
-        it.buildConfigField "String", "IQA_AIR_PARIF_URL", IQA_AIR_PARIF_URL
         it.buildConfigField "String", "IQA_ATMO_AURA_KEY", IQA_ATMO_AURA_KEY
         it.buildConfigField "String", "IQA_ATMO_AURA_URL", IQA_ATMO_AURA_URL
-        it.buildConfigField "String", "IQA_ATMO_SUD_URL", IQA_ATMO_SUD_URL
         it.buildConfigField "String", "METNO_BASE_URL", METNO_BASE_URL
         it.buildConfigField "String", "MF_WSFT_BASE_URL", MF_WSFT_BASE_URL
         it.buildConfigField "String", "MF_WSFT_JWT_KEY", MF_WSFT_JWT_KEY
@@ -66,6 +63,7 @@ android {
         it.buildConfigField "String", "OPEN_METEO_WEATHER_BASE_URL", OPEN_METEO_WEATHER_BASE_URL
         it.buildConfigField "String", "OWM_BASE_URL", OWM_BASE_URL
         it.buildConfigField "String", "OWM_KEY", OWM_KEY
+        it.buildConfigField "String", "OWM_ONE_CALL_VERSION", OWM_ONE_CALL_VERSION
     }
     sourceSets {
         pub {

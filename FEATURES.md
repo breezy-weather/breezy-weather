@@ -1,6 +1,6 @@
 # Features
 
-This page intends to give some explanation to how some features of Geometric Weather work.
+This page intends to give some explanations to how some features of Geometric Weather work.
 
 ## Air quality
 

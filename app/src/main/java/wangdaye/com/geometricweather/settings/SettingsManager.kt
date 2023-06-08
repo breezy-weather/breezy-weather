@@ -13,6 +13,7 @@ import wangdaye.com.geometricweather.common.basic.models.options.appearance.Dail
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.HourlyTrendDisplay
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.Language
 import wangdaye.com.geometricweather.common.basic.models.options.provider.LocationProvider
+import wangdaye.com.geometricweather.common.basic.models.options.provider.OwmOneCallVersion
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource
 import wangdaye.com.geometricweather.common.basic.models.options.unit.DistanceUnit
 import wangdaye.com.geometricweather.common.basic.models.options.unit.PrecipitationIntensityUnit
@@ -407,6 +408,15 @@ class SettingsManager private constructor(context: Context) {
         }
         get() = config.getString("provider_owm_key", "") ?: ""
 
+    var customOwmOneCallVersion: OwmOneCallVersion
+        set(value) {
+            config.edit().putString("provider_owm_one_call_version", value.id).apply()
+            notifySettingsChanged()
+        }
+        get() = OwmOneCallVersion.getInstance(
+            config.getString("provider_owm_one_call_version", "2.5") ?: ""
+        )
+
     var customBaiduIpLocationAk: String
         set(value) {
             config.edit().putString("provider_baidu_ip_location_ak", value).apply()
@@ -420,13 +430,6 @@ class SettingsManager private constructor(context: Context) {
             notifySettingsChanged()
         }
         get() = config.getString("provider_mf_wsft_key", "") ?: ""
-
-    var customIqaAirParifKey: String
-        set(value) {
-            config.edit().putString("provider_iqa_air_parif_key", value).apply()
-            notifySettingsChanged()
-        }
-        get() = config.getString("provider_iqa_air_parif_key", "") ?: ""
 
     var customIqaAtmoAuraKey: String
         set(value) {
@@ -459,6 +462,12 @@ class SettingsManager private constructor(context: Context) {
             defaultValue = BuildConfig.OWM_KEY,
         )
 
+    val providerOwmOneCallVersion: String
+        get() = getProviderSettingValue(
+            customValue = customOwmOneCallVersion.id,
+            defaultValue = BuildConfig.OWM_ONE_CALL_VERSION,
+        )
+
     val providerBaiduIpLocationAk: String
         get() = getProviderSettingValue(
             customValue = customBaiduIpLocationAk,
@@ -469,12 +478,6 @@ class SettingsManager private constructor(context: Context) {
         get() = getProviderSettingValue(
             customValue = customMfWsftKey,
             defaultValue = BuildConfig.MF_WSFT_KEY,
-        )
-
-    val providerIqaAirParifKey: String
-        get() = getProviderSettingValue(
-            customValue = customIqaAirParifKey,
-            defaultValue = BuildConfig.IQA_AIR_PARIF_KEY,
         )
 
     val providerIqaAtmoAuraKey: String

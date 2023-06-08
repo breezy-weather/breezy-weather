@@ -4,13 +4,15 @@ import android.content.Context
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import wangdaye.com.geometricweather.R
+import wangdaye.com.geometricweather.common.basic.models.options.DarkMode
+import wangdaye.com.geometricweather.common.basic.models.options.provider.OwmOneCallVersion
+import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper
 import wangdaye.com.geometricweather.settings.SettingsManager
-import wangdaye.com.geometricweather.settings.preference.bottomInsetItem
+import wangdaye.com.geometricweather.settings.preference.*
 import wangdaye.com.geometricweather.settings.preference.composables.EditTextPreferenceView
+import wangdaye.com.geometricweather.settings.preference.composables.ListPreferenceView
 import wangdaye.com.geometricweather.settings.preference.composables.PreferenceScreen
-import wangdaye.com.geometricweather.settings.preference.editTextPreferenceItem
-import wangdaye.com.geometricweather.settings.preference.sectionFooterItem
-import wangdaye.com.geometricweather.settings.preference.sectionHeaderItem
+import wangdaye.com.geometricweather.theme.ThemeManager
 
 @Composable
 fun SettingsProviderAdvancedSettingsScreen(
@@ -77,6 +79,19 @@ fun SettingsProviderAdvancedSettingsScreen(
             }
         )
     }
+    listPreferenceItem(R.string.settings_provider_owm_one_call_version) { id ->
+        ListPreferenceView(
+            titleId = id,
+            selectedKey = SettingsManager.getInstance(context).customOwmOneCallVersion.id,
+            valueArrayId = R.array.owm_one_call_version_values,
+            nameArrayId = R.array.owm_one_call_version,
+            onValueChanged = {
+                SettingsManager
+                    .getInstance(context)
+                    .customOwmOneCallVersion = OwmOneCallVersion.getInstance(it)
+            },
+        )
+    }
     sectionFooterItem(R.string.settings_provider_owm)
 
     sectionHeaderItem(R.string.settings_provider_baidu_ip_location)
@@ -108,20 +123,6 @@ fun SettingsProviderAdvancedSettingsScreen(
             content = SettingsManager.getInstance(context).customMfWsftKey,
             onValueChanged = {
                 SettingsManager.getInstance(context).customMfWsftKey = it
-            }
-        )
-    }
-    editTextPreferenceItem(R.string.settings_provider_iqa_air_parif_key) { id ->
-        EditTextPreferenceView(
-            titleId = id,
-            summary = { context, content ->
-                content.ifEmpty {
-                    context.getString(R.string.settings_provider_default_value)
-                }
-            },
-            content = SettingsManager.getInstance(context).customIqaAirParifKey,
-            onValueChanged = {
-                SettingsManager.getInstance(context).customIqaAirParifKey = it
             }
         )
     }

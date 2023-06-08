@@ -5,6 +5,7 @@ import java.util.List;
 import io.reactivex.rxjava3.core.Observable;
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import wangdaye.com.geometricweather.weather.json.owm.OwmAirPollutionResult;
 import wangdaye.com.geometricweather.weather.json.owm.OwmLocationResult;
@@ -30,22 +31,14 @@ public interface OwmApi {
                                                                   @Query("lat") double lat,
                                                                   @Query("lon") double lon);
 
-    // Contains current weather, minute forecast for 1 hour, hourly forecast for 48 hours, daily forecast for 7 days and government weather alerts
-    @GET("data/2.5/onecall")
-    Observable<OwmOneCallResult> getOneCall(@Query("appid") String apikey,
+    // Contains current weather, minute forecast for 1 hour, hourly forecast for 48 hours, daily forecast for 7 days (8 for 3.0) and government weather alerts
+    @GET("data/{version}/onecall")
+    Observable<OwmOneCallResult> getOneCall(@Path("version") String version,
+                                            @Query("appid") String apikey,
                                             @Query("lat") double lat,
                                             @Query("lon") double lon,
                                             @Query("units") String units,
                                             @Query("lang") String lang);
-
-
-    @GET("data/2.5/onecall/timemachine")
-    Observable<OwmOneCallHistoryResult> getOneCallHistory(@Query("appid") String apikey,
-                                                          @Query("lat") double lat,
-                                                          @Query("lon") double lon,
-                                                          @Query("dt") long dt,
-                                                          @Query("units") String units,
-                                                          @Query("lang") String lang);
 
     @GET("data/2.5/air_pollution")
     Observable<OwmAirPollutionResult> getAirPollutionCurrent(@Query("appid") String apikey,
