@@ -116,6 +116,11 @@
     <string name="ragweed">豚草花粉</string>
     <string name="tree">树木花粉</string>
 
+    <string name="uv_level_0_2">一级(最弱)</string>
+    <string name="uv_level_3_5">二级(弱)</string>
+    <string name="uv_level_6_7">三级(中等)</string>
+    <string name="uv_level_8_10">四级(强)</string>
+    <string name="uv_level_11">五级(很强)</string>
     <string name="daily_overview">每日概览</string>
     <string name="hourly_overview">小时概览</string>
     <string name="minutely_overview">分钟概览</string>
@@ -365,6 +370,7 @@
     <string name="settings_title_hourly_trend_display">小时趋势顺序</string>
     <string name="settings_title_trend_horizontal_line_switch">趋势图横线</string>
     <string name="settings_title_exchange_day_night_temp_switch">交换日间夜间温度</string>
+    <string name="settings_title_background_animation">背景动画</string>
     <string name="settings_title_gravity_sensor_switch">重力感应</string>
     <string name="settings_title_list_animation_switch">列表动画</string>
     <string name="settings_title_item_animation_switch">组件动画</string>
@@ -376,7 +382,7 @@
     <string name="settings_title_precipitation_unit">降水单位</string>
     <string name="settings_title_pressure_unit">压力单位</string>
     <string name="settings_title_speed_unit">速度单位</string>
-    <string name="settings_title_air_quality_algorithm">Air Quality algorithm</string>
+    <string name="settings_title_air_quality_algorithm">空气质量算法</string>
     <string name="settings_title_refresh_rate">自动刷新频率</string>
     <string name="settings_title_alert_notification_switch">推送预警通知</string>
     <string name="settings_title_precipitation_notification_switch">推送降水预报</string>
@@ -388,7 +394,7 @@
     <string name="settings_title_forecast_tomorrow_time">设定预报时间(明日天气)</string>
     <string name="settings_category_widget">小部件</string>
     <string name="settings_title_week_icon_mode">一周天气图标样式</string>
-    <string name="settings_title_minimal_icon">Minimal图标</string>
+    <string name="settings_title_minimal_icon">Minimal 图标</string>
     <string name="settings_title_click_widget_to_refresh">点击小部件时进行刷新</string>
     <string name="settings_title_widget_config">配置小部件</string>
     <string name="settings_category_notification">通知</string>
@@ -413,5 +419,6 @@
     <string name="settings_title_notification_hide_big_view">隐藏大视图</string>
     <string name="settings_notification_hide_big_view_on">隐藏</string>
     <string name="settings_notification_hide_big_view_off">显示</string>
+    <string name="settings_provider_default_value">默认(未更改)</string>
 
 </resources>
