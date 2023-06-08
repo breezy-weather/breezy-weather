@@ -10,7 +10,7 @@
         <item>Open-Meteo</item>
         <item>accuweather.com</item>
         <item>MET Norway / Nominatim</item>
-        <item>OpenWeather v2.5</item>
+        <item>OpenWeather</item>
         <item>Météo France</item>
         <item>caiyunapp.com (Only For China)</item>
     </string-array>
@@ -18,7 +18,7 @@
         <item>Open Meteo</item>
         <item>ACCU weather.com</item>
         <item>The Norwegian Meteorological Institute + Nominatim</item>
-        <item>Open Weather version 2.5</item>
+        <item>Open Weather</item>
         <item>Météo France</item>
         <item>CaiYun App.com</item>
     </string-array>
