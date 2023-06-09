@@ -199,6 +199,7 @@ public abstract class AbstractRemoteViewsPresenter {
         return DisplayUtils.drawableToBitmap(drawable);
     }
 
+    // FIXME: Null safety
     public static String getCustomSubtitle(Context context, @Nullable String subtitle,
                                            @NonNull Location location, @NonNull Weather weather) {
         if (TextUtils.isEmpty(subtitle)) {

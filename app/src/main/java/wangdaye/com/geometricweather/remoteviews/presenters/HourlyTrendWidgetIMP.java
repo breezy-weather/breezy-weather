@@ -180,21 +180,25 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
             items[i].setTitleText(hourly.getHour(context, location.getTimeZone()));
             items[i].setSubtitleText(null);
 
-            items[i].setTopIconDrawable(
-                    ResourceHelper.getWidgetNotificationIcon(
-                            provider, hourly.getWeatherCode(), hourly.isDaylight(), minimalIcon, lightTheme
-                    )
-            );
+            if (hourly.getWeatherCode() != null) {
+                items[i].setTopIconDrawable(
+                        ResourceHelper.getWidgetNotificationIcon(
+                                provider, hourly.getWeatherCode(), hourly.isDaylight(), minimalIcon, lightTheme
+                        )
+                );
+            }
 
-            items[i].getTrendItemView().setData(
-                    buildTemperatureArrayForItem(temperatures, i),
-                    null,
-                    hourly.getTemperature().getShortTemperature(context, temperatureUnit),
-                    null,
-                    highestTemperature != null ? Float.valueOf(highestTemperature) : null,
-                    lowestTemperature != null ? Float.valueOf(lowestTemperature) : null,
-                    null, null, null, null
-            );
+            if (hourly.getTemperature() != null) {
+                items[i].getTrendItemView().setData(
+                        buildTemperatureArrayForItem(temperatures, i),
+                        null,
+                        hourly.getTemperature().getShortTemperature(context, temperatureUnit),
+                        null,
+                        highestTemperature != null ? Float.valueOf(highestTemperature) : null,
+                        lowestTemperature != null ? Float.valueOf(lowestTemperature) : null,
+                        null, null, null, null
+                );
+            }
             items[i].getTrendItemView().setLineColors(
                     colors[1], colors[2],
                     lightTheme

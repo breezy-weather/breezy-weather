@@ -133,12 +133,12 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
             }
         }
         for (int i = 0; i < itemCount; i++) {
-            if (weather.getDailyForecast().get(i).getDay().getTemperature() != null && weather.getDailyForecast().get(i).getDay().getTemperature().getTemperature() != null) {
+            if (weather.getDailyForecast().get(i).getDay() != null && weather.getDailyForecast().get(i).getDay().getTemperature() != null && weather.getDailyForecast().get(i).getDay().getTemperature().getTemperature() != null) {
                 if (highestTemperature == null || weather.getDailyForecast().get(i).getDay().getTemperature().getTemperature() > highestTemperature) {
                     highestTemperature = weather.getDailyForecast().get(i).getDay().getTemperature().getTemperature();
                 }
             }
-            if (weather.getDailyForecast().get(i).getNight().getTemperature() != null && weather.getDailyForecast().get(i).getNight().getTemperature().getTemperature() != null) {
+            if (weather.getDailyForecast().get(i).getNight() != null && weather.getDailyForecast().get(i).getNight().getTemperature() != null && weather.getDailyForecast().get(i).getNight().getTemperature().getTemperature() != null) {
                 if (lowestTemperature == null || weather.getDailyForecast().get(i).getNight().getTemperature().getTemperature() < lowestTemperature) {
                     lowestTemperature = weather.getDailyForecast().get(i).getNight().getTemperature().getTemperature();
                 }
@@ -214,13 +214,22 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
 
             items[i].setSubtitleText(daily.getShortDate(context, location.getTimeZone()));
 
-            items[i].setTopIconDrawable(
-                    ResourceHelper.getWidgetNotificationIcon(
-                            provider, daily.getDay().getWeatherCode(), true, minimalIcon, lightTheme)
-            );
+            if (daily.getDay() != null && daily.getDay().getWeatherCode() != null) {
+                items[i].setTopIconDrawable(
+                        ResourceHelper.getWidgetNotificationIcon(
+                                provider, daily.getDay().getWeatherCode(), true, minimalIcon, lightTheme)
+                );
+            }
 
-            Float daytimePrecipitationProbability = daily.getDay().getPrecipitationProbability().getTotal();
-            Float nighttimePrecipitationProbability = daily.getNight().getPrecipitationProbability().getTotal();
+            Float daytimePrecipitationProbability = null;
+            Float nighttimePrecipitationProbability = null;
+            if (daily.getDay() != null && daily.getDay().getPrecipitationProbability() != null) {
+                daytimePrecipitationProbability = daily.getDay().getPrecipitationProbability().getTotal();
+            }
+            if (daily.getNight() != null && daily.getNight().getPrecipitationProbability() != null) {
+                nighttimePrecipitationProbability = daily.getNight().getPrecipitationProbability().getTotal();
+            }
+
             float p = Math.max(
                     daytimePrecipitationProbability == null ? 0 : daytimePrecipitationProbability,
                     nighttimePrecipitationProbability == null ? 0 : nighttimePrecipitationProbability
@@ -228,8 +237,8 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
             items[i].getTrendItemView().setData(
                     buildTemperatureArrayForItem(daytimeTemperatures, i),
                     buildTemperatureArrayForItem(nighttimeTemperatures, i),
-                    daily.getDay().getTemperature().getShortTemperature(context, temperatureUnit),
-                    daily.getNight().getTemperature().getShortTemperature(context, temperatureUnit),
+                    daily.getDay() != null && daily.getDay().getTemperature() != null ? daily.getDay().getTemperature().getShortTemperature(context, temperatureUnit) : null,
+                    daily.getNight() != null && daily.getNight().getTemperature() != null ? daily.getNight().getTemperature().getShortTemperature(context, temperatureUnit) : null,
                     highestTemperature != null ? Float.valueOf(highestTemperature) : null,
                     lowestTemperature != null ? Float.valueOf(lowestTemperature) : null,
                     p < 5 ? null : p,
@@ -257,11 +266,13 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
             );
             items[i].getTrendItemView().setHistogramAlpha(lightTheme ? 0.2f : 0.5f);
 
-            items[i].setBottomIconDrawable(
-                    ResourceHelper.getWidgetNotificationIcon(
-                            provider, daily.getNight().getWeatherCode(), false, minimalIcon, lightTheme
-                    )
-            );
+            if (daily.getNight() != null && daily.getNight().getWeatherCode() != null) {
+                items[i].setBottomIconDrawable(
+                        ResourceHelper.getWidgetNotificationIcon(
+                                provider, daily.getNight().getWeatherCode(), false, minimalIcon, lightTheme
+                        )
+                );
+            }
 
             items[i].setColor(lightTheme);
         }

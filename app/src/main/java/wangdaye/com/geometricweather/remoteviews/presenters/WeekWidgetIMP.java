@@ -78,88 +78,98 @@ public class WeekWidgetIMP extends AbstractRemoteViewsPresenter {
         }
 
         // weather view.
-        views.setTextViewText(
-                R.id.widget_week_week_1,
-                WidgetHelper.getDailyWeek(context, weather, 0, location.getTimeZone()));
-        views.setTextViewText(
-                R.id.widget_week_week_2,
-                WidgetHelper.getDailyWeek(context, weather, 1, location.getTimeZone()));
-        views.setTextViewText(
-                R.id.widget_week_week_3,
-                WidgetHelper.getDailyWeek(context, weather, 2, location.getTimeZone()));
-        views.setTextViewText(
-                R.id.widget_week_week_4,
-                WidgetHelper.getDailyWeek(context, weather, 3, location.getTimeZone()));
-        views.setTextViewText(
-                R.id.widget_week_week_5,
-                WidgetHelper.getDailyWeek(context, weather, 4, location.getTimeZone()));
-
-        if (weather.getCurrent() != null
-                && weather.getCurrent().getTemperature() != null
-                && weather.getCurrent().getTemperature().getTemperature() != null) {
-            views.setTextViewText(
-                    R.id.widget_week_temp,
-                    weather.getCurrent().getTemperature().getShortTemperature(context, temperatureUnit));
+        if (weather.getCurrent() != null) {
+            if(weather.getCurrent().getTemperature() != null
+                    && weather.getCurrent().getTemperature().getTemperature() != null) {
+                views.setTextViewText(
+                        R.id.widget_week_temp,
+                        weather.getCurrent().getTemperature().getShortTemperature(context, temperatureUnit));
+            }
+            if (weather.getCurrent().getWeatherCode() != null) {
+                views.setImageViewUri(
+                        R.id.widget_week_icon,
+                        ResourceHelper.getWidgetNotificationIconUri(
+                                provider,
+                                weather.getCurrent().getWeatherCode(),
+                                dayTime,
+                                minimalIcon,
+                                color.getMinimalIconColor()
+                        )
+                );
+            }
         }
-        views.setTextViewText(
-                R.id.widget_week_temp_1,
-                getTemp(context, weather, 0, temperatureUnit));
-        views.setTextViewText(
-                R.id.widget_week_temp_2,
-                getTemp(context, weather, 1, temperatureUnit));
-        views.setTextViewText(
-                R.id.widget_week_temp_3,
-                getTemp(context, weather, 2, temperatureUnit));
-        views.setTextViewText(
-                R.id.widget_week_temp_4,
-                getTemp(context, weather, 3, temperatureUnit));
-        views.setTextViewText(
-                R.id.widget_week_temp_5,
-                getTemp(context, weather, 4, temperatureUnit));
 
-        if (weather.getCurrent() != null && weather.getCurrent().getWeatherCode() != null) {
+        boolean weekIconDaytime = isWeekIconDaytime(weekIconMode, dayTime);
+        if (weather.getDailyForecast().size() > 0) {
+            views.setTextViewText(
+                    R.id.widget_week_week_1,
+                    WidgetHelper.getDailyWeek(context, weather, 0, location.getTimeZone()));
+            views.setTextViewText(
+                    R.id.widget_week_temp_1,
+                    getTemp(context, weather, 0, temperatureUnit));
             views.setImageViewUri(
-                    R.id.widget_week_icon,
-                    ResourceHelper.getWidgetNotificationIconUri(
-                            provider,
-                            weather.getCurrent().getWeatherCode(),
-                            dayTime,
-                            minimalIcon,
-                            color.getMinimalIconColor()
-                    )
+                    R.id.widget_week_icon_1,
+                    getIconDrawableUri(
+                            provider, weather, weekIconDaytime, minimalIcon, color.getMinimalIconColor(),
+                            0)
             );
         }
-        boolean weekIconDaytime = isWeekIconDaytime(weekIconMode, dayTime);
-        /*views.setImageViewUri(
-                R.id.widget_week_icon_1,
-                getIconDrawableUri(
-                        provider, weather, weekIconDaytime, minimalIcon, color.getMinimalIconColor(),
-                        0)
-        );
-        views.setImageViewUri(
-                R.id.widget_week_icon_2,
-                getIconDrawableUri(
-                        provider, weather, weekIconDaytime, minimalIcon, color.getMinimalIconColor(),
-                        1)
-        );
-        views.setImageViewUri(
-                R.id.widget_week_icon_3,
-                getIconDrawableUri(
-                        provider, weather, weekIconDaytime, minimalIcon, color.getMinimalIconColor(),
-                        2)
-        );
-        views.setImageViewUri(
-                R.id.widget_week_icon_4,
-                getIconDrawableUri(
-                        provider, weather, weekIconDaytime, minimalIcon, color.getMinimalIconColor(),
-                        3)
-        );
-        views.setImageViewUri(
-                R.id.widget_week_icon_5,
-                getIconDrawableUri(
-                        provider, weather, weekIconDaytime, minimalIcon, color.getMinimalIconColor(),
-                        4)
-        );*/
+        if (weather.getDailyForecast().size() > 1) {
+            views.setTextViewText(
+                    R.id.widget_week_week_2,
+                    WidgetHelper.getDailyWeek(context, weather, 1, location.getTimeZone()));
+            views.setTextViewText(
+                    R.id.widget_week_temp_2,
+                    getTemp(context, weather, 1, temperatureUnit));
+            views.setImageViewUri(
+                    R.id.widget_week_icon_2,
+                    getIconDrawableUri(
+                            provider, weather, weekIconDaytime, minimalIcon, color.getMinimalIconColor(),
+                            1)
+            );
+        }
+        if (weather.getDailyForecast().size() > 2) {
+            views.setTextViewText(
+                    R.id.widget_week_week_3,
+                    WidgetHelper.getDailyWeek(context, weather, 2, location.getTimeZone()));
+            views.setTextViewText(
+                    R.id.widget_week_temp_3,
+                    getTemp(context, weather, 2, temperatureUnit));
+            views.setImageViewUri(
+                    R.id.widget_week_icon_3,
+                    getIconDrawableUri(
+                            provider, weather, weekIconDaytime, minimalIcon, color.getMinimalIconColor(),
+                            2)
+            );
+        }
+        if (weather.getDailyForecast().size() > 3) {
+            views.setTextViewText(
+                    R.id.widget_week_week_4,
+                    WidgetHelper.getDailyWeek(context, weather, 3, location.getTimeZone()));
+            views.setTextViewText(
+                    R.id.widget_week_temp_4,
+                    getTemp(context, weather, 3, temperatureUnit));
+            views.setImageViewUri(
+                    R.id.widget_week_icon_4,
+                    getIconDrawableUri(
+                            provider, weather, weekIconDaytime, minimalIcon, color.getMinimalIconColor(),
+                            3)
+            );
+        }
+        if (weather.getDailyForecast().size() > 4) {
+            views.setTextViewText(
+                    R.id.widget_week_week_5,
+                    WidgetHelper.getDailyWeek(context, weather, 4, location.getTimeZone()));
+            views.setTextViewText(
+                    R.id.widget_week_temp_5,
+                    getTemp(context, weather, 4, temperatureUnit));
+            views.setImageViewUri(
+                    R.id.widget_week_icon_5,
+                    getIconDrawableUri(
+                            provider, weather, weekIconDaytime, minimalIcon, color.getMinimalIconColor(),
+                            4)
+            );
+        }
 
         if (color.textColor != Color.TRANSPARENT) {
             views.setTextColor(R.id.widget_week_week_1, color.textColor);

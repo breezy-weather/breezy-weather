@@ -85,70 +85,71 @@ fun convert(
     oneCallResult: OwmOneCallResult,
     airPollutionResult: OwmAirPollutionResult?
 ): WeatherResultWrapper {
+    // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
+    if (oneCallResult.hourly == null || oneCallResult.daily == null) {
+        return WeatherResultWrapper(null);
+    }
+
     return try {
         val hourlyByHalfDay: MutableMap<String, Map<String, MutableList<Hourly>>> = HashMap()
         val hourlyList: MutableList<Hourly> = mutableListOf()
 
-        if (oneCallResult?.hourly != null) {
-            for (result in oneCallResult.hourly) {
-                val hourly = Hourly(
-                    date = Date(result.dt * 1000),
-                    isDaylight = true,
-                    weatherText = result.weather[0].main,
-                    weatherCode = getWeatherCode(result.weather[0].id),
-                    temperature = Temperature(
-                        temperature = toInt(result.temp),
-                        apparentTemperature = toInt(result.feelsLike)
-                    ),
-                    precipitation = Precipitation(
-                        total = getTotalPrecipitation(result.rain?.cumul1h, result.snow?.cumul1h),
-                        rain = result.rain?.cumul1h,
-                        snow = result.snow?.cumul1h
-                    ),
-                    precipitationProbability = PrecipitationProbability(total = result.pop),
-                    wind = Wind(
-                        direction = getWindDirection(context, result.windDeg.toFloat()),
-                        degree = WindDegree(result.windDeg.toFloat(), false),
-                        speed = result.windSpeed * 3.6f,
-                        level = getWindLevel(context, result.windSpeed * 3.6f)
-                    ),
-                    airQuality = getAirQuality(result.dt, airPollutionResult),
-                    uV = UV(
-                        index = toInt(result.uvi),
-                        level = getUVLevel(context, toInt(result.uvi))
-                    )
+        for (result in oneCallResult.hourly) {
+            val hourly = Hourly(
+                date = Date(result.dt * 1000),
+                isDaylight = true,
+                weatherText = result.weather[0].main,
+                weatherCode = getWeatherCode(result.weather[0].id),
+                temperature = Temperature(
+                    temperature = toInt(result.temp),
+                    apparentTemperature = toInt(result.feelsLike)
+                ),
+                precipitation = Precipitation(
+                    total = getTotalPrecipitation(result.rain?.cumul1h, result.snow?.cumul1h),
+                    rain = result.rain?.cumul1h,
+                    snow = result.snow?.cumul1h
+                ),
+                precipitationProbability = PrecipitationProbability(total = result.pop),
+                wind = Wind(
+                    direction = getWindDirection(context, result.windDeg.toFloat()),
+                    degree = WindDegree(result.windDeg.toFloat(), false),
+                    speed = result.windSpeed * 3.6f,
+                    level = getWindLevel(context, result.windSpeed * 3.6f)
+                ),
+                airQuality = getAirQuality(result.dt, airPollutionResult),
+                uV = UV(
+                    index = toInt(result.uvi),
+                    level = getUVLevel(context, toInt(result.uvi))
                 )
+            )
 
-                // We shift by 6 hours the hourly date, otherwise nighttime (00:00 to 05:59) would be on the wrong day
-                val theDayAtMidnight = DisplayUtils.toTimezoneNoHour(
-                    Date((result.dt - 6 * 3600) * 1000),
-                    location.timeZone
+            // We shift by 6 hours the hourly date, otherwise nighttime (00:00 to 05:59) would be on the wrong day
+            val theDayAtMidnight = DisplayUtils.toTimezoneNoHour(
+                Date((result.dt - 6 * 3600) * 1000),
+                location.timeZone
+            )
+            val theDayFormatted = DisplayUtils.getFormattedDate(theDayAtMidnight, location.timeZone, "yyyyMMdd")
+            if (!hourlyByHalfDay.containsKey(theDayFormatted)) {
+                hourlyByHalfDay[theDayFormatted] = hashMapOf(
+                    "day" to ArrayList(),
+                    "night" to ArrayList()
                 )
-                val theDayFormatted = DisplayUtils.getFormattedDate(theDayAtMidnight, location.timeZone, "yyyyMMdd")
-                if (!hourlyByHalfDay.containsKey(theDayFormatted)) {
-                    hourlyByHalfDay[theDayFormatted] = hashMapOf(
-                        "day" to ArrayList(),
-                        "night" to ArrayList()
-                    )
-                }
-                if (result.dt < theDayAtMidnight.time / 1000 + 18 * 3600) {
-                    // 06:00 to 17:59 is the day
-                    hourlyByHalfDay[theDayFormatted]!!["day"]!!.add(hourly)
-                } else {
-                    // 18:00 to 05:59 is the night
-                    hourlyByHalfDay[theDayFormatted]!!["night"]!!.add(hourly)
-                }
+            }
+            if (result.dt < theDayAtMidnight.time / 1000 + 18 * 3600) {
+                // 06:00 to 17:59 is the day
+                hourlyByHalfDay[theDayFormatted]!!["day"]!!.add(hourly)
+            } else {
+                // 18:00 to 05:59 is the night
+                hourlyByHalfDay[theDayFormatted]!!["night"]!!.add(hourly)
+            }
 
-                // Add to the app only if starts in the current hour
-                if (result.dt >= System.currentTimeMillis() / 1000 - 3600) {
-                    hourlyList.add(hourly)
-                }
+            // Add to the app only if starts in the current hour
+            if (result.dt >= System.currentTimeMillis() / 1000 - 3600) {
+                hourlyList.add(hourly)
             }
         }
 
-        val dailyList = if (oneCallResult.daily != null) getDailyList(
-            context, location.timeZone, oneCallResult.daily, hourlyList, hourlyByHalfDay
-        ) else arrayListOf()
+        val dailyList = getDailyList(context, location.timeZone, oneCallResult.daily, hourlyList, hourlyByHalfDay)
         val weather = Weather(
             base = Base(cityId = location.cityId),
             current = Current(

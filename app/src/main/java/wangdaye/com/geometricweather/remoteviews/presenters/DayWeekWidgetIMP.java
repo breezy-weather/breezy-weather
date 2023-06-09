@@ -80,89 +80,101 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
         }
 
         // set week part.
-        views.setTextViewText(
-                R.id.widget_day_week_week_1,
-                WidgetHelper.getDailyWeek(context, weather, 0, location.getTimeZone())
-        );
-        views.setTextViewText(
-                R.id.widget_day_week_week_2,
-                WidgetHelper.getDailyWeek(context, weather, 1, location.getTimeZone())
-        );
-        views.setTextViewText(
-                R.id.widget_day_week_week_3,
-                WidgetHelper.getDailyWeek(context, weather, 2, location.getTimeZone())
-        );
-        views.setTextViewText(
-                R.id.widget_day_week_week_4,
-                WidgetHelper.getDailyWeek(context, weather, 3, location.getTimeZone())
-        );
-        views.setTextViewText(
-                R.id.widget_day_week_week_5,
-                WidgetHelper.getDailyWeek(context, weather, 4, location.getTimeZone())
-        );
-
-        views.setTextViewText(
-                R.id.widget_day_week_temp_1,
-                getTemp(context, weather, 0, temperatureUnit)
-        );
-        views.setTextViewText(
-                R.id.widget_day_week_temp_2,
-                getTemp(context, weather, 1, temperatureUnit)
-        );
-        views.setTextViewText(
-                R.id.widget_day_week_temp_3,
-                getTemp(context, weather, 2, temperatureUnit)
-        );
-        views.setTextViewText(
-                R.id.widget_day_week_temp_4,
-                getTemp(context, weather, 3, temperatureUnit)
-        );
-        views.setTextViewText(
-                R.id.widget_day_week_temp_5,
-                getTemp(context, weather, 4, temperatureUnit)
-        );
-
         boolean weekIconDaytime = isWeekIconDaytime(weekIconMode, dayTime);
-        views.setImageViewUri(
-                R.id.widget_day_week_icon_1,
-                getIconDrawableUri(
-                        provider, weather, weekIconDaytime,
-                        minimalIcon, color.getMinimalIconColor(),
-                        0
-                )
-        );
-        views.setImageViewUri(
-                R.id.widget_day_week_icon_2,
-                getIconDrawableUri(
-                        provider, weather, weekIconDaytime,
-                        minimalIcon, color.getMinimalIconColor(),
-                        1
-                )
-        );
-        views.setImageViewUri(
-                R.id.widget_day_week_icon_3,
-                getIconDrawableUri(
-                        provider, weather, weekIconDaytime,
-                        minimalIcon, color.getMinimalIconColor(),
-                        2
-                )
-        );
-        views.setImageViewUri(
-                R.id.widget_day_week_icon_4,
-                getIconDrawableUri(
-                        provider, weather, weekIconDaytime,
-                        minimalIcon, color.getMinimalIconColor(),
-                        3
-                )
-        );
-        views.setImageViewUri(
-                R.id.widget_day_week_icon_5,
-                getIconDrawableUri(
-                        provider, weather, weekIconDaytime,
-                        minimalIcon, color.getMinimalIconColor(),
-                        4
-                )
-        );
+        if (weather.getDailyForecast().size() > 0) {
+            views.setTextViewText(
+                    R.id.widget_day_week_week_1,
+                    WidgetHelper.getDailyWeek(context, weather, 0, location.getTimeZone())
+            );
+            views.setTextViewText(
+                    R.id.widget_day_week_temp_1,
+                    getTemp(context, weather, 0, temperatureUnit)
+            );
+            views.setImageViewUri(
+                    R.id.widget_day_week_icon_1,
+                    getIconDrawableUri(
+                            provider, weather, weekIconDaytime,
+                            minimalIcon, color.getMinimalIconColor(),
+                            0
+                    )
+            );
+        }
+
+        if (weather.getDailyForecast().size() > 1) {
+            views.setTextViewText(
+                    R.id.widget_day_week_week_2,
+                    WidgetHelper.getDailyWeek(context, weather, 1, location.getTimeZone())
+            );
+            views.setTextViewText(
+                    R.id.widget_day_week_temp_2,
+                    getTemp(context, weather, 1, temperatureUnit)
+            );
+            views.setImageViewUri(
+                    R.id.widget_day_week_icon_2,
+                    getIconDrawableUri(
+                            provider, weather, weekIconDaytime,
+                            minimalIcon, color.getMinimalIconColor(),
+                            1
+                    )
+            );
+        }
+
+        if (weather.getDailyForecast().size() > 2) {
+            views.setTextViewText(
+                    R.id.widget_day_week_week_3,
+                    WidgetHelper.getDailyWeek(context, weather, 2, location.getTimeZone())
+            );
+            views.setTextViewText(
+                    R.id.widget_day_week_temp_3,
+                    getTemp(context, weather, 2, temperatureUnit)
+            );
+            views.setImageViewUri(
+                    R.id.widget_day_week_icon_3,
+                    getIconDrawableUri(
+                            provider, weather, weekIconDaytime,
+                            minimalIcon, color.getMinimalIconColor(),
+                            2
+                    )
+            );
+        }
+
+        if (weather.getDailyForecast().size() > 3) {
+            views.setTextViewText(
+                    R.id.widget_day_week_week_4,
+                    WidgetHelper.getDailyWeek(context, weather, 3, location.getTimeZone())
+            );
+            views.setTextViewText(
+                    R.id.widget_day_week_temp_4,
+                    getTemp(context, weather, 3, temperatureUnit)
+            );
+            views.setImageViewUri(
+                    R.id.widget_day_week_icon_4,
+                    getIconDrawableUri(
+                            provider, weather, weekIconDaytime,
+                            minimalIcon, color.getMinimalIconColor(),
+                            3
+                    )
+            );
+        }
+
+        if (weather.getDailyForecast().size() > 4) {
+            views.setTextViewText(
+                    R.id.widget_day_week_week_5,
+                    WidgetHelper.getDailyWeek(context, weather, 4, location.getTimeZone())
+            );
+            views.setTextViewText(
+                    R.id.widget_day_week_temp_5,
+                    getTemp(context, weather, 4, temperatureUnit)
+            );
+            views.setImageViewUri(
+                    R.id.widget_day_week_icon_5,
+                    getIconDrawableUri(
+                            provider, weather, weekIconDaytime,
+                            minimalIcon, color.getMinimalIconColor(),
+                            4
+                    )
+            );
+        }
 
         // set text color.
         if (color.textColor != Color.TRANSPARENT) {
@@ -515,13 +527,22 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
     private static Uri getIconDrawableUri(ResourceProvider helper, Weather weather,
                                           boolean dayTime, boolean minimalIcon, NotificationTextColor color,
                                           int index) {
-        return ResourceHelper.getWidgetNotificationIconUri(
-                helper,
-                dayTime
-                        ? weather.getDailyForecast().get(index).getDay().getWeatherCode()
-                        : weather.getDailyForecast().get(index).getNight().getWeatherCode() ,
-                dayTime, minimalIcon, color
-        );
+        if (weather.getDailyForecast().get(index).getDay() != null
+                && weather.getDailyForecast().get(index).getNight() != null
+                && weather.getDailyForecast().get(index).getDay().getTemperature() != null
+                && weather.getDailyForecast().get(index).getNight().getTemperature() != null
+                && weather.getDailyForecast().get(index).getDay().getTemperature().getTemperature() != null
+                && weather.getDailyForecast().get(index).getNight().getTemperature().getTemperature() != null) {
+            return ResourceHelper.getWidgetNotificationIconUri(
+                    helper,
+                    dayTime
+                            ? weather.getDailyForecast().get(index).getDay().getWeatherCode()
+                            : weather.getDailyForecast().get(index).getNight().getWeatherCode(),
+                    dayTime, minimalIcon, color
+            );
+        } else {
+            return null;
+        }
     }
 
     private static void setOnClickPendingIntent(Context context, RemoteViews views, Location location,
