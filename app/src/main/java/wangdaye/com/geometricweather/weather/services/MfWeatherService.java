@@ -24,7 +24,6 @@ import io.jsonwebtoken.security.Keys;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import wangdaye.com.geometricweather.BuildConfig;
-import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.rxjava.BaseObserver;
 import wangdaye.com.geometricweather.common.rxjava.ObserverContainer;
@@ -140,12 +139,6 @@ public class MfWeatherService extends WeatherService {
                         }
                     }
 
-                    public void onError(Throwable e) {
-                        if (GeometricWeather.getInstance().getDebugMode()) {
-                            e.printStackTrace();
-                        }
-                    }
-
                     @Override
                     public void onFailed() {
                         callback.requestWeatherFailed(location, this.isApiLimitReached(), this.isApiUnauthorized());
@@ -250,7 +243,7 @@ public class MfWeatherService extends WeatherService {
                 byte[] keyBytes = BuildConfig.MF_WSFT_JWT_KEY.getBytes(StandardCharsets.UTF_8);
                 jwtsBuilder.signWith(Keys.hmacShaKeyFor(keyBytes), SignatureAlgorithm.HS256);
                 return jwtsBuilder.compact();
-            } catch(Exception ignored) {
+            } catch (Exception ignored) {
                 return BuildConfig.MF_WSFT_KEY;
             }
         }

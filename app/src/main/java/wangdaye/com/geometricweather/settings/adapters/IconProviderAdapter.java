@@ -22,7 +22,7 @@ import james.adaptiveicon.AdaptiveIcon;
 import james.adaptiveicon.AdaptiveIconView;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
-import wangdaye.com.geometricweather.common.utils.helpers.ImageHelper;
+import wangdaye.com.geometricweather.common.utils.helpers.ImageHelperKt;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
 
@@ -91,12 +91,11 @@ public class IconProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
 
         void onBindView() {
-            ImageHelper.load(itemView.getContext(), appStore, R.drawable.ic_play_store);
+            ImageHelperKt.load(appStore, R.drawable.ic_play_store);
             appStore.setOnClickListener(v ->
                     mListener.onAppStoreItemClicked("Geometric Weather Icon"));
 
-            ImageHelper.load(
-                    itemView.getContext(),
+            ImageHelperKt.load(
                     gitHub,
                     DisplayUtils.isDarkMode(itemView.getContext())
                             ? R.drawable.ic_github_light
@@ -105,7 +104,7 @@ public class IconProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             gitHub.setOnClickListener(v ->
                     mListener.onGitHubItemClicked("https://github.com/WangDaYeeeeee/IconProvider-For-GeometricWeather"));
 
-            ImageHelper.load(itemView.getContext(), chronus, R.drawable.ic_chronus);
+            ImageHelperKt.load(chronus, R.drawable.ic_chronus);
             chronus.setOnClickListener(v ->
                     mListener.onAppStoreItemClicked("Chronus Icon"));
         }

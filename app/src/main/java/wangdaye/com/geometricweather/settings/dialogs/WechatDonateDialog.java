@@ -9,7 +9,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.common.utils.helpers.ImageHelper;
+import wangdaye.com.geometricweather.common.utils.helpers.ImageHelperKt;
 
 public class WechatDonateDialog {
 
@@ -19,7 +19,7 @@ public class WechatDonateDialog {
                 .inflate(R.layout.dialog_donate_wechat, null, false);
 
         AppCompatImageView image = view.findViewById(R.id.dialog_donate_wechat_img);
-        ImageHelper.load(context, image, R.drawable.donate_wechat);
+        ImageHelperKt.load(image, R.drawable.donate_wechat);
 
         new MaterialAlertDialogBuilder(context)
                 .setView(view)

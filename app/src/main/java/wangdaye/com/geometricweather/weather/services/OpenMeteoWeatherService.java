@@ -4,7 +4,6 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +11,6 @@ import javax.inject.Inject;
 
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
-import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
 import wangdaye.com.geometricweather.common.rxjava.BaseObserver;
@@ -110,12 +108,6 @@ public class OpenMeteoWeatherService extends WeatherService {
                         }
                     }
 
-                    public void onError(Throwable e) {
-                        if (GeometricWeather.getInstance().getDebugMode()) {
-                            e.printStackTrace();
-                        }
-                    }
-
                     @Override
                     public void onFailed() {
                         callback.requestWeatherFailed(location, this.isApiLimitReached(), this.isApiUnauthorized());
@@ -175,10 +167,6 @@ public class OpenMeteoWeatherService extends WeatherService {
                             callback.requestLocationFailed(query);
                         }
 
-                    }
-                    @Override
-                    public void onError(Throwable e) {
-                        e.printStackTrace();
                     }
 
                     @Override

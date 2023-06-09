@@ -2,6 +2,7 @@ package wangdaye.com.geometricweather.common.rxjava;
 
 import io.reactivex.rxjava3.observers.DisposableObserver;
 import retrofit2.HttpException;
+import wangdaye.com.geometricweather.GeometricWeather;
 
 public abstract class BaseObserver<T> extends DisposableObserver<T> {
 
@@ -36,6 +37,9 @@ public abstract class BaseObserver<T> extends DisposableObserver<T> {
     public void onError(Throwable e) {
         if (e instanceof HttpException) {
             this.code = ((HttpException) e).code();
+        }
+        if (GeometricWeather.getInstance().getDebugMode()) {
+            e.printStackTrace();
         }
         onFailed();
     }
