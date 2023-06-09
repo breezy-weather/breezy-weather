@@ -24,10 +24,13 @@ import androidx.annotation.RequiresApi;
 import androidx.annotation.Size;
 import androidx.core.content.res.ResourcesCompat;
 
+import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.options.appearance.BackgroundAnimationMode;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper;
+import wangdaye.com.geometricweather.common.utils.helpers.LogHelper;
 import wangdaye.com.geometricweather.db.DatabaseHelper;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.theme.weatherView.WeatherView;
@@ -80,18 +83,24 @@ public class MaterialLiveWallpaperService extends WallpaperService {
 
             @Override
             public void run() {
-                if (mIntervalComputer == null
+
+
+                /*if (mIntervalComputer == null
                         || mImplementor == null
                         || mBackground == null
                         || mRotators == null
                         || mHandler == null) {
                     return;
+                }*/
+
+                if (mIntervalComputer != null) {
+                    mIntervalComputer.invalidate();
                 }
 
-                mIntervalComputer.invalidate();
-
-                mRotators[0].updateRotation(mRotation2D, mIntervalComputer.getInterval());
-                mRotators[1].updateRotation(mRotation3D, mIntervalComputer.getInterval());
+                if (mRotators != null && mIntervalComputer != null) {
+                    mRotators[0].updateRotation(mRotation2D, mIntervalComputer.getInterval());
+                    mRotators[1].updateRotation(mRotation3D, mIntervalComputer.getInterval());
+                }
 
                 try {
                     Canvas canvas = mHolder.lockCanvas();
@@ -107,32 +116,43 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                             );
                             mAdaptiveSize[1] = mSizes[1];
 
-                            mBackground.setBounds(0, 0, mSizes[0], mSizes[1]);
+                            if (mBackground != null) {
+                                mBackground.setBounds(0, 0, mSizes[0], mSizes[1]);
+                            }
                         }
 
-                        mBackground.draw(canvas);
+                        if (mBackground != null) {
+                            mBackground.draw(canvas);
+                        }
 
-                        canvas.save();
-                        canvas.translate(
-                                (mSizes[0] - mAdaptiveSize[0]) / 2f,
-                                (mSizes[1] - mAdaptiveSize[1]) / 2f
-                        );
-                        mImplementor.updateData(
-                                mAdaptiveSize, (long) mIntervalComputer.getInterval(),
-                                (float) mRotators[0].getRotation(), (float) mRotators[1].getRotation()
-                        );
-                        mImplementor.draw(
-                                mAdaptiveSize,
-                                canvas,
-                                0,
-                                (float) mRotators[0].getRotation(),
-                                (float) mRotators[1].getRotation()
-                        );
-                        canvas.restore();
+                        if (mImplementor != null && mIntervalComputer != null) {
+                            mImplementor.updateData(
+                                    mAdaptiveSize, (long) mIntervalComputer.getInterval(),
+                                    (float) mRotators[0].getRotation(), (float) mRotators[1].getRotation()
+                            );
+                        }
+
+                        if (mImplementor != null && mRotators != null) {
+                            canvas.save();
+                            canvas.translate(
+                                    (mSizes[0] - mAdaptiveSize[0]) / 2f,
+                                    (mSizes[1] - mAdaptiveSize[1]) / 2f
+                            );
+                            mImplementor.draw(
+                                    mAdaptiveSize,
+                                    canvas,
+                                    0,
+                                    (float) mRotators[0].getRotation(),
+                                    (float) mRotators[1].getRotation()
+                            );
+                            canvas.restore();
+                        }
                         mHolder.unlockCanvasAndPost(canvas);
                     }
-                } catch (Throwable ignore) {
-                    // do nothing.
+                } catch (Throwable e) {
+                    if (GeometricWeather.getInstance().getDebugMode()) {
+                        e.printStackTrace();
+                    }
                 }
             }
         };
@@ -225,7 +245,9 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                     new DelayRotateController(mRotation2D),
                     new DelayRotateController(mRotation3D)
             };
+        }
 
+        private void setWeatherBackgroundDrawable() {
             mBackground = ResourcesCompat.getDrawable(
                     getResources(),
                     WeatherImplementorFactory.getBackgroundId(mWeatherKind, mDaytime),
@@ -282,9 +304,29 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                             getApplicationContext(),
                             mSizes[0]
                     );
-                    mAdaptiveSize[1] = height;
+                    mAdaptiveSize[1] = mSizes[1];
 
-                    setWeatherImplementor();
+                    if (mBackground != null) {
+                        mBackground.setBounds(0, 0, mSizes[0], mSizes[1]);
+                    }
+
+                    boolean drawable = true;
+                    switch (SettingsManager.getInstance(getApplicationContext()).getBackgroundAnimationMode()) {
+                        case SYSTEM:
+                            drawable = !DisplayUtils.isMotionReduced(getApplicationContext());
+                            break;
+
+                        case ENABLED:
+                            drawable = true;
+                            break;
+
+                        case DISABLED:
+                            drawable = false;
+                            break;
+                    }
+                    if (drawable) {
+                        setWeatherImplementor();
+                    }
                 }
 
                 @Override
@@ -309,6 +351,21 @@ public class MaterialLiveWallpaperService extends WallpaperService {
             if (mVisible != visible) {
                 mVisible = visible;
                 if (visible) {
+                    boolean drawable = true;
+                    switch (SettingsManager.getInstance(getApplicationContext()).getBackgroundAnimationMode()) {
+                        case SYSTEM:
+                            drawable = !DisplayUtils.isMotionReduced(getApplicationContext());
+                            break;
+
+                        case ENABLED:
+                            drawable = true;
+                            break;
+
+                        case DISABLED:
+                            drawable = false;
+                            break;
+                    }
+
                     mRotation2D = 0;
                     mRotation3D = 0;
                     if (mSensorManager != null) {
@@ -362,10 +419,14 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                                 daytime
                         );
                     }
-                    setWeatherImplementor();
-                    setIntervalComputer();
-                    setOpenGravitySensor(
-                            SettingsManager.getInstance(getApplicationContext()).isGravitySensorEnabled());
+
+                    if (drawable) {
+                        setWeatherImplementor();
+                        setIntervalComputer();
+                        setOpenGravitySensor(
+                                SettingsManager.getInstance(getApplicationContext()).isGravitySensorEnabled());
+                    }
+                    setWeatherBackgroundDrawable();
 
                     float screenRefreshRate;
                     WindowManager windowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
