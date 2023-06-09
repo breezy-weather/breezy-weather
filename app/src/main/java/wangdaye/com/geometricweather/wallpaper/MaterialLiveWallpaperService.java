@@ -326,6 +326,8 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                     }
                     if (drawable) {
                         setWeatherImplementor();
+                    } else {
+                        mImplementor = null;
                     }
                 }
 
@@ -425,6 +427,8 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                         setIntervalComputer();
                         setOpenGravitySensor(
                                 SettingsManager.getInstance(getApplicationContext()).isGravitySensorEnabled());
+                    } else {
+                        mImplementor = null;
                     }
                     setWeatherBackgroundDrawable();
 
