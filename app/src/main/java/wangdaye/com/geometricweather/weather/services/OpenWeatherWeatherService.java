@@ -16,23 +16,22 @@ import wangdaye.com.geometricweather.common.rxjava.BaseObserver;
 import wangdaye.com.geometricweather.common.rxjava.ObserverContainer;
 import wangdaye.com.geometricweather.common.rxjava.SchedulerTransformer;
 import wangdaye.com.geometricweather.settings.SettingsManager;
-import wangdaye.com.geometricweather.weather.apis.OwmApi;
-import wangdaye.com.geometricweather.weather.converters.OwmResultConverterKt;
-import wangdaye.com.geometricweather.weather.json.owm.OwmAirPollutionResult;
-import wangdaye.com.geometricweather.weather.json.owm.OwmLocationResult;
-import wangdaye.com.geometricweather.weather.json.owm.OwmOneCallResult;
+import wangdaye.com.geometricweather.weather.apis.OpenWeatherApi;
+import wangdaye.com.geometricweather.weather.converters.OpenWeatherResultConverterKt;
+import wangdaye.com.geometricweather.weather.json.openweather.OpenWeatherAirPollutionResult;
+import wangdaye.com.geometricweather.weather.json.openweather.OpenWeatherLocationResult;
+import wangdaye.com.geometricweather.weather.json.openweather.OpenWeatherOneCallResult;
 
 /**
- * Owm weather service.
+ * OpenWeather weather service.
  */
+public class OpenWeatherWeatherService extends WeatherService {
 
-public class OwmWeatherService extends WeatherService {
-
-    private final OwmApi mApi;
+    private final OpenWeatherApi mApi;
     private final CompositeDisposable mCompositeDisposable;
 
     @Inject
-    public OwmWeatherService(OwmApi api, CompositeDisposable disposable) {
+    public OpenWeatherWeatherService(OpenWeatherApi api, CompositeDisposable disposable) {
         mApi = api;
         mCompositeDisposable = disposable;
     }
@@ -41,27 +40,27 @@ public class OwmWeatherService extends WeatherService {
     public void requestWeather(Context context, Location location, @NonNull RequestWeatherCallback callback) {
         String languageCode = SettingsManager.getInstance(context).getLanguage().getCode();
 
-        Observable<OwmOneCallResult> oneCall = mApi.getOneCall(
-                SettingsManager.getInstance(context).getProviderOwmOneCallVersion(),
-                SettingsManager.getInstance(context).getProviderOwmKey(),
+        Observable<OpenWeatherOneCallResult> oneCall = mApi.getOneCall(
+                SettingsManager.getInstance(context).getProviderOpenWeatherOneCallVersion(),
+                SettingsManager.getInstance(context).getProviderOpenWeatherKey(),
                 location.getLatitude(),
                 location.getLongitude(),
                 "metric",
                 languageCode
         );
 
-        Observable<OwmAirPollutionResult> airPollution = mApi.getAirPollution(
-                SettingsManager.getInstance(context).getProviderOwmKey(), location.getLatitude(), location.getLongitude()
+        Observable<OpenWeatherAirPollutionResult> airPollution = mApi.getAirPollution(
+                SettingsManager.getInstance(context).getProviderOpenWeatherKey(), location.getLatitude(), location.getLongitude()
         ).onErrorResumeNext(error ->
-                Observable.create(emitter -> emitter.onNext(new OwmAirPollutionResult(null)))
+                Observable.create(emitter -> emitter.onNext(new OpenWeatherAirPollutionResult(null)))
         );
 
         Observable.zip(oneCall, airPollution,
-                (owmOneCallResult, owmAirPollutionResult) -> OwmResultConverterKt.convert(
+                (openWeatherOneCallResult, openWeatherAirPollutionResult) -> OpenWeatherResultConverterKt.convert(
                         context,
                         location,
-                        owmOneCallResult,
-                        owmAirPollutionResult
+                        openWeatherOneCallResult,
+                        openWeatherAirPollutionResult
                 )
         ).compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<WeatherResultWrapper>() {
@@ -86,14 +85,14 @@ public class OwmWeatherService extends WeatherService {
     @Override
     @NonNull
     public List<Location> requestLocation(Context context, String query) {
-        List<OwmLocationResult> resultList = null;
+        List<OpenWeatherLocationResult> resultList = null;
         try {
-            resultList = mApi.callWeatherLocation(SettingsManager.getInstance(context).getProviderOwmKey(), query).execute().body();
+            resultList = mApi.callWeatherLocation(SettingsManager.getInstance(context).getProviderOpenWeatherKey(), query).execute().body();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return OwmResultConverterKt.convert(resultList);
+        return OpenWeatherResultConverterKt.convert(resultList);
     }
 
     @Override
@@ -101,14 +100,14 @@ public class OwmWeatherService extends WeatherService {
                                 @NonNull RequestLocationCallback callback) {
 
         mApi.getWeatherLocationByGeoPosition(
-                SettingsManager.getInstance(context).getProviderOwmKey(), location.getLatitude(), location.getLongitude()
+                SettingsManager.getInstance(context).getProviderOpenWeatherKey(), location.getLatitude(), location.getLongitude()
         ).compose(SchedulerTransformer.create())
-                .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<List<OwmLocationResult>>() {
+                .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<List<OpenWeatherLocationResult>>() {
                     @Override
-                    public void onSucceed(List<OwmLocationResult> owmLocationResultList) {
-                        if (owmLocationResultList != null && !owmLocationResultList.isEmpty()) {
+                    public void onSucceed(List<OpenWeatherLocationResult> openWeatherLocationResultList) {
+                        if (openWeatherLocationResultList != null && !openWeatherLocationResultList.isEmpty()) {
                             List<Location> locationList = new ArrayList<>();
-                            locationList.add(OwmResultConverterKt.convert(location, owmLocationResultList.get(0)));
+                            locationList.add(OpenWeatherResultConverterKt.convert(location, openWeatherLocationResultList.get(0)));
                             callback.requestLocationSuccess(
                                     location.getLatitude() + "," + location.getLongitude(), locationList);
                         } else {
@@ -126,13 +125,13 @@ public class OwmWeatherService extends WeatherService {
 
     public void requestLocation(Context context, String query,
                                 @NonNull RequestLocationCallback callback) {
-        mApi.getWeatherLocation(SettingsManager.getInstance(context).getProviderOwmKey(), query)
+        mApi.getWeatherLocation(SettingsManager.getInstance(context).getProviderOpenWeatherKey(), query)
                 .compose(SchedulerTransformer.create())
-                .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<List<OwmLocationResult>>() {
+                .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<List<OpenWeatherLocationResult>>() {
                     @Override
-                    public void onSucceed(List<OwmLocationResult> owmLocationResults) {
-                        if (owmLocationResults != null && owmLocationResults.size() != 0) {
-                            List<Location> locationList = OwmResultConverterKt.convert(owmLocationResults);
+                    public void onSucceed(List<OpenWeatherLocationResult> openWeatherLocationResults) {
+                        if (openWeatherLocationResults != null && openWeatherLocationResults.size() != 0) {
+                            List<Location> locationList = OpenWeatherResultConverterKt.convert(openWeatherLocationResults);
                             callback.requestLocationSuccess(query, locationList);
                         } else {
                             callback.requestLocationFailed(query);

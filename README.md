@@ -16,11 +16,15 @@ Clone this project and build it by AndroidStudio.
 
 ### Build variants
 You can select a specific build variants in AndroidStudio.
-There are 3 build variants now. Specifically, the `fdroid` variant dose not contain any closed source 3rd-party SDK, such as Baidu Location Service and Bugly. The `gplay` variant integrated the Google Play Service to improve accuracy of location. And finally, the `public` variant contains all closed source 3rd-party SDK which is not exist in `fdroid` version except the Google Play Service.
+There are 3 build variants now. Specifically, the `fdroid` variant does not contain any closed source 3rd-party SDK, such as Baidu Location Service and Bugly. The `gplay` variant integrated the Google Play Service to improve accuracy of location. And finally, the `public` variant contains all closed source 3rd-party SDK which is not exist in `fdroid` version except the Google Play Service.
 
 ### Weather providers
 
-See [weather providers](PROVIDERS.md).
+**AccuWeather** is the most complete provider.
+
+**Open-Meteo** is the only free and open source provider on this list, and probably also the most privacy-friendly. It is nearly as complete as **AccuWeather**, however lacks major features (reverse geocoding, alerts and realtime precipitations). Air Quality and Pollen are available and remains to be implemented with appropriate credits and acknowledgement.
+
+For more details, see [weather providers](PROVIDERS.md).
 
 ### Weather icon extensions
 If you want to build your own weather icon-pack, please read this document:

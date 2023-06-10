@@ -5,7 +5,7 @@ import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.models.options._basic.BaseEnum
 import wangdaye.com.geometricweather.common.basic.models.options._basic.Utils
 
-enum class OwmOneCallVersion(
+enum class OpenWeatherOneCallVersion(
     override val id: String
 ): BaseEnum {
 
@@ -24,8 +24,8 @@ enum class OwmOneCallVersion(
         }
     }
 
-    override val valueArrayId = R.array.owm_one_call_version_values
-    override val nameArrayId = R.array.owm_one_call_version
+    override val valueArrayId = R.array.open_weather_one_call_version_values
+    override val nameArrayId = R.array.open_weather_one_call_version
 
     override fun getName(context: Context) = Utils.getName(context, this)
 }

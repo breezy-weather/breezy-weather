@@ -1,9 +1,9 @@
-package wangdaye.com.geometricweather.weather.json.owm
+package wangdaye.com.geometricweather.weather.json.openweather
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class OwmOneCallWeather(
+data class OpenWeatherOneCallWeather(
     val id: Int?,
     val main: String?,
     val description: String?,

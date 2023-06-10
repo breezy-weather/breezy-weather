@@ -5,13 +5,8 @@ import androidx.annotation.NonNull;
 import javax.inject.Inject;
 
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
-import wangdaye.com.geometricweather.weather.services.AccuWeatherService;
-import wangdaye.com.geometricweather.weather.services.CaiYunWeatherService;
-import wangdaye.com.geometricweather.weather.services.MetNoWeatherService;
-import wangdaye.com.geometricweather.weather.services.MfWeatherService;
-import wangdaye.com.geometricweather.weather.services.OpenMeteoWeatherService;
-import wangdaye.com.geometricweather.weather.services.OwmWeatherService;
-import wangdaye.com.geometricweather.weather.services.WeatherService;
+import wangdaye.com.geometricweather.weather.services.*;
+import wangdaye.com.geometricweather.weather.services.OpenWeatherWeatherService;
 
 public class WeatherServiceSet {
 
@@ -21,14 +16,14 @@ public class WeatherServiceSet {
     public WeatherServiceSet(OpenMeteoWeatherService openMeteoWeatherService,
                              AccuWeatherService accuWeatherService,
                              MetNoWeatherService metNoWeatherService,
-                             OwmWeatherService owmWeatherService,
+                             OpenWeatherWeatherService openWeatherWeatherService,
                              MfWeatherService mfWeatherService,
                              CaiYunWeatherService caiYunWeatherService) {
         mWeatherServices = new WeatherService[] {
                 openMeteoWeatherService,
                 accuWeatherService,
                 metNoWeatherService,
-                owmWeatherService,
+                openWeatherWeatherService,
                 mfWeatherService,
                 caiYunWeatherService
         };

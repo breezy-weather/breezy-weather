@@ -1,9 +1,9 @@
-package wangdaye.com.geometricweather.weather.json.owm
+package wangdaye.com.geometricweather.weather.json.openweather
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class OwmOneCallDailyTemp(
+data class OpenWeatherOneCallDailyTemp(
     val day: Float?,
     val min: Float?,
     val max: Float?,

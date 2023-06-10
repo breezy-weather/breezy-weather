@@ -450,12 +450,11 @@ private fun getMinutelyList(rainResult: MfRainResult?): List<Minutely> {
         minutelyList.add(
             Minutely(
                 rainForecast.time,
-                rainForecast.time.time,
                 rainForecast.rainIntensityDescription,
                 if (rainForecast.rainIntensity != null && rainForecast.rainIntensity > 1) WeatherCode.RAIN else null,
                 if (i < rainResult.properties.rainForecasts.size - 1) {
                     ((rainResult.properties.rainForecasts[i + 1].time.time - rainForecast.time.time) / (60 * 1000)).toDouble().roundToInt()
-                } else 10, // Last one is 10 minutes
+                } else ((rainForecast.time.time - rainResult.properties.rainForecasts[i - 1].time.time) / (60 * 1000)).toDouble().roundToInt(),
                 if (rainForecast.rainIntensity != null) getPrecipitationIntensity(rainForecast.rainIntensity) else null,
                 null
             )

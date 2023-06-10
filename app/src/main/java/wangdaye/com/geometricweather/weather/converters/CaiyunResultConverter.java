@@ -366,7 +366,6 @@ public class CaiyunResultConverter {
             minutelyList.add(
                     new Minutely(
                             calendar.getTime(),
-                            calendar.getTimeInMillis(),
                             getMinuteWeatherText(
                                     result.precipitation.value.get(i),
                                     currentWeatherText,

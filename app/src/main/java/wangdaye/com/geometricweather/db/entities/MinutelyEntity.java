@@ -22,7 +22,6 @@ public class MinutelyEntity {
     public String weatherSource;
 
     public Date date;
-    public long time;
     public boolean daylight;
 
     public String weatherText;
@@ -33,15 +32,13 @@ public class MinutelyEntity {
     public Integer dbz;
     public Integer cloudCover;
     
-    public MinutelyEntity(Long id, String cityId, String weatherSource, Date date,
-            long time, boolean daylight, String weatherText,
-            WeatherCode weatherCode, int minuteInterval, Integer dbz,
-            Integer cloudCover) {
+    public MinutelyEntity(Long id, String cityId, String weatherSource, Date date, boolean daylight,
+                          String weatherText, WeatherCode weatherCode, int minuteInterval, Integer dbz,
+                          Integer cloudCover) {
         this.id = id;
         this.cityId = cityId;
         this.weatherSource = weatherSource;
         this.date = date;
-        this.time = time;
         this.daylight = daylight;
         this.weatherText = weatherText;
         this.weatherCode = weatherCode;
@@ -75,12 +72,6 @@ public class MinutelyEntity {
     }
     public void setDate(Date date) {
         this.date = date;
-    }
-    public long getTime() {
-        return this.time;
-    }
-    public void setTime(long time) {
-        this.time = time;
     }
     public boolean getDaylight() {
         return this.daylight;

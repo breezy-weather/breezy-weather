@@ -1,10 +1,10 @@
-package wangdaye.com.geometricweather.weather.json.owm
+package wangdaye.com.geometricweather.weather.json.openweather
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class OwmOneCallAlert(
+data class OpenWeatherOneCallAlert(
     @SerialName("sender_name") val senderName: String?,
     val event: String?,
     val start: Long,

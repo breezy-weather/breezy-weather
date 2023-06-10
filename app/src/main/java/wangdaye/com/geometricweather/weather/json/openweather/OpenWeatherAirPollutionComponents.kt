@@ -1,9 +1,9 @@
-package wangdaye.com.geometricweather.weather.json.owm
+package wangdaye.com.geometricweather.weather.json.openweather
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class OwmAirPollutionComponents(
+data class OpenWeatherAirPollutionComponents(
     val co: Float?,
     val no: Float?,
     val no2: Float?,

@@ -61,9 +61,9 @@ android {
         it.buildConfigField "String", "OPEN_METEO_AIR_QUALITY_BASE_URL", OPEN_METEO_AIR_QUALITY_BASE_URL
         it.buildConfigField "String", "OPEN_METEO_GEOCODING_BASE_URL", OPEN_METEO_GEOCODING_BASE_URL
         it.buildConfigField "String", "OPEN_METEO_WEATHER_BASE_URL", OPEN_METEO_WEATHER_BASE_URL
-        it.buildConfigField "String", "OWM_BASE_URL", OWM_BASE_URL
-        it.buildConfigField "String", "OWM_KEY", OWM_KEY
-        it.buildConfigField "String", "OWM_ONE_CALL_VERSION", OWM_ONE_CALL_VERSION
+        it.buildConfigField "String", "OPEN_WEATHER_BASE_URL", OPEN_WEATHER_BASE_URL
+        it.buildConfigField "String", "OPEN_WEATHER_KEY", OPEN_WEATHER_KEY
+        it.buildConfigField "String", "OPEN_WEATHER_ONE_CALL_VERSION", OPEN_WEATHER_ONE_CALL_VERSION
     }
     sourceSets {
         pub {

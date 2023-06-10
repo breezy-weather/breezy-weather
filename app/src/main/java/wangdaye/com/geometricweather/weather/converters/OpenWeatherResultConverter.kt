@@ -8,17 +8,18 @@ import wangdaye.com.geometricweather.common.basic.models.Location
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource
 import wangdaye.com.geometricweather.common.basic.models.weather.*
 import wangdaye.com.geometricweather.common.utils.DisplayUtils
-import wangdaye.com.geometricweather.weather.json.owm.*
+import wangdaye.com.geometricweather.weather.json.openweather.*
 import wangdaye.com.geometricweather.weather.services.WeatherService.WeatherResultWrapper
 import java.util.*
 import kotlin.math.roundToInt
 
-fun convert(location: Location?, result: OwmLocationResult): Location {
+
+fun convert(location: Location?, result: OpenWeatherLocationResult): Location {
     val map = TimeZoneMap.forRegion(result.lat, result.lon, result.lat + 0.00001, result.lon + 0.00001)
     return convert(location, result, map)
 }
 
-fun convert(resultList: List<OwmLocationResult>?): List<Location> {
+fun convert(resultList: List<OpenWeatherLocationResult>?): List<Location> {
     val locationList: MutableList<Location> = ArrayList()
     if (resultList != null && resultList.size != 0) {
         // Since we don't have timezones in the result, we need to initialize a TimeZoneMap
@@ -41,7 +42,7 @@ fun convert(resultList: List<OwmLocationResult>?): List<Location> {
 
 fun convert(
     location: Location?,
-    result: OwmLocationResult,
+    result: OpenWeatherLocationResult,
     map: TimeZoneMap
 ): Location {
     return if (location != null && !location.province.isNullOrEmpty()
@@ -81,8 +82,8 @@ fun convert(
 fun convert(
     context: Context,
     location: Location,
-    oneCallResult: OwmOneCallResult,
-    airPollutionResult: OwmAirPollutionResult?
+    oneCallResult: OpenWeatherOneCallResult,
+    airPollutionResult: OpenWeatherAirPollutionResult?
 ): WeatherResultWrapper {
     // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
     if (oneCallResult.hourly == null || oneCallResult.daily == null) {
@@ -194,7 +195,7 @@ fun convert(
 
 private fun getDailyList(
     context: Context, timeZone: TimeZone,
-    dailyResult: List<OwmOneCallDaily>,
+    dailyResult: List<OpenWeatherOneCallDaily>,
     hourlyList: List<Hourly>,
     hourlyListByHalfDay: Map<String, Map<String, MutableList<Hourly>>>
 ): List<Daily> {
@@ -263,29 +264,26 @@ private fun getTotalPrecipitation(rain: Float?, snow: Float?): Float? {
     } else rain + snow
 }
 
-// TODO
-private fun getMinutelyList(minutelyResult: List<OwmOneCallMinutely>?): List<Minutely> {
-    //if (minutelyResult == null) {
-    return ArrayList()
-    /*}
-    List<Minutely> minutelyList = new ArrayList<>(minutelyResult.size());
-    for (OwmOneCallResult.Minutely interval : minuteResult) {
+private fun getMinutelyList(minutelyResult: List<OpenWeatherOneCallMinutely>?): List<Minutely> {
+    val minutelyList: MutableList<Minutely> = arrayListOf()
+    minutelyResult?.forEachIndexed { i, minutelyForecast ->
         minutelyList.add(
-                new Minutely(
-                        interval.StartDateTime,
-                        interval.StartEpochDateTime,
-                        interval.ShortPhrase,
-                        getWeatherCode(interval.IconCode),
-                        interval.Minute,
-                        toInt(interval.Dbz),
-                        interval.CloudCover
-                )
-        );
+            Minutely(
+                Date(minutelyForecast.dt * 1000),
+                "",
+                if (minutelyForecast.precipitation != null && minutelyForecast.precipitation > 0) WeatherCode.RAIN else null,
+                if (i < minutelyResult.size - 1) {
+                    ((minutelyResult[i + 1].dt - minutelyForecast.dt) / 60).toDouble().roundToInt()
+                } else ((minutelyForecast.dt - minutelyResult[i - 1].dt) / 60).toDouble().roundToInt(),
+                minutelyForecast.precipitation?.toDouble(),
+                null
+            )
+        )
     }
-    return minutelyList;*/
+    return minutelyList
 }
 
-private fun getAirQuality(requestedTime: Long, ownAirPollutionResult: OwmAirPollutionResult?): AirQuality? {
+private fun getAirQuality(requestedTime: Long, ownAirPollutionResult: OpenWeatherAirPollutionResult?): AirQuality? {
     if (ownAirPollutionResult == null) return null
 
     val matchingAirQualityForecast = ownAirPollutionResult.list?.firstOrNull { it.dt == requestedTime } ?: return null
@@ -308,7 +306,7 @@ private fun getAirQuality(requestedTime: Long, ownAirPollutionResult: OwmAirPoll
     ) else null
 }
 
-private fun getAlertList(resultList: List<OwmOneCallAlert>?): List<Alert> {
+private fun getAlertList(resultList: List<OpenWeatherOneCallAlert>?): List<Alert> {
     var i = 0
     return if (resultList != null) {
         val alertList: MutableList<Alert> = ArrayList(resultList.size)

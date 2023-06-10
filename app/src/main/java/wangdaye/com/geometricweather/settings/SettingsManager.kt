@@ -13,7 +13,7 @@ import wangdaye.com.geometricweather.common.basic.models.options.appearance.Dail
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.HourlyTrendDisplay
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.Language
 import wangdaye.com.geometricweather.common.basic.models.options.provider.LocationProvider
-import wangdaye.com.geometricweather.common.basic.models.options.provider.OwmOneCallVersion
+import wangdaye.com.geometricweather.common.basic.models.options.provider.OpenWeatherOneCallVersion
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource
 import wangdaye.com.geometricweather.common.basic.models.options.unit.DistanceUnit
 import wangdaye.com.geometricweather.common.basic.models.options.unit.PrecipitationIntensityUnit
@@ -401,20 +401,20 @@ class SettingsManager private constructor(context: Context) {
         }
         get() = config.getString("provider_accu_aqi_key", "") ?: ""
 
-    var customOwmKey: String
+    var customOpenWeatherKey: String
         set(value) {
-            config.edit().putString("provider_owm_key", value).apply()
+            config.edit().putString("provider_open_weather_key", value).apply()
             notifySettingsChanged()
         }
-        get() = config.getString("provider_owm_key", "") ?: ""
+        get() = config.getString("provider_open_weather_key", "") ?: ""
 
-    var customOwmOneCallVersion: OwmOneCallVersion
+    var customOpenWeatherOneCallVersion: OpenWeatherOneCallVersion
         set(value) {
-            config.edit().putString("provider_owm_one_call_version", value.id).apply()
+            config.edit().putString("provider_open_weather_one_call_version", value.id).apply()
             notifySettingsChanged()
         }
-        get() = OwmOneCallVersion.getInstance(
-            config.getString("provider_owm_one_call_version", "2.5") ?: ""
+        get() = OpenWeatherOneCallVersion.getInstance(
+            config.getString("provider_open_weather_one_call_version", "2.5") ?: ""
         )
 
     var customBaiduIpLocationAk: String
@@ -456,16 +456,16 @@ class SettingsManager private constructor(context: Context) {
             defaultValue = BuildConfig.ACCU_AQI_KEY,
         )
 
-    val providerOwmKey: String
+    val providerOpenWeatherKey: String
         get() = getProviderSettingValue(
-            customValue = customOwmKey,
-            defaultValue = BuildConfig.OWM_KEY,
+            customValue = customOpenWeatherKey,
+            defaultValue = BuildConfig.OPEN_WEATHER_KEY,
         )
 
-    val providerOwmOneCallVersion: String
+    val providerOpenWeatherOneCallVersion: String
         get() = getProviderSettingValue(
-            customValue = customOwmOneCallVersion.id,
-            defaultValue = BuildConfig.OWM_ONE_CALL_VERSION,
+            customValue = customOpenWeatherOneCallVersion.id,
+            defaultValue = BuildConfig.OPEN_WEATHER_ONE_CALL_VERSION,
         )
 
     val providerBaiduIpLocationAk: String

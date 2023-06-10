@@ -366,7 +366,6 @@ public class AccuResultConverter {
             minutelyList.add(
                     new Minutely(
                             interval.StartDateTime,
-                            interval.StartEpochDateTime,
                             interval.ShortPhrase,
                             getWeatherCode(interval.IconCode),
                             interval.Minute,

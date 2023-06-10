@@ -430,8 +430,8 @@
     <string name="settings_provider_accu_weather_key">Klíč počasí AccuWeather</string>
     <string name="settings_provider_accu_current_key">Klíč teploty AccuWeather</string>
     <string name="settings_provider_accu_aqi_key">Klíč AccuWeather AQI</string>
-    <string name="settings_provider_owm">OpenWeather</string>
-    <string name="settings_provider_owm_key">Klíč OpenWeather</string>
+    <string name="settings_provider_open_weather">OpenWeather</string>
+    <string name="settings_provider_open_weather_key">Klíč OpenWeather</string>
     <string name="settings_provider_baidu_ip_location">Poloha Baidu IP</string>
     <string name="settings_provider_baidu_ip_location_ak">Poloha AK Baidu IP</string>
     <string name="settings_provider_mf">Météo France</string>

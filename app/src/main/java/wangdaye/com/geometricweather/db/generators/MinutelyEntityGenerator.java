@@ -17,7 +17,6 @@ public class MinutelyEntityGenerator {
         entity.weatherSource = new WeatherSourceConverter().convertToDatabaseValue(source);
         
         entity.date = minutely.getDate();
-        entity.time = minutely.getTime();
 
         entity.weatherCode = minutely.getWeatherCode();
         entity.weatherText = minutely.getWeatherText();
@@ -40,8 +39,7 @@ public class MinutelyEntityGenerator {
 
     public static Minutely generate(MinutelyEntity entity) {
         return new Minutely(
-                entity.date, entity.time,
-                entity.weatherText, entity.weatherCode,
+                entity.date, entity.weatherText, entity.weatherCode,
                 entity.minuteInterval, entity.dbz, entity.cloudCover
         );
     }

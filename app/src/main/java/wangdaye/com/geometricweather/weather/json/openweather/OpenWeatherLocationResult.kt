@@ -1,4 +1,4 @@
-package wangdaye.com.geometricweather.weather.json.owm
+package wangdaye.com.geometricweather.weather.json.openweather
 
 import kotlinx.serialization.Serializable
 
@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
  * OpenWeather location result.
  */
 @Serializable
-data class OwmLocationResult(
+data class OpenWeatherLocationResult(
     val name: String,
     val lat: Double,
     val lon: Double,

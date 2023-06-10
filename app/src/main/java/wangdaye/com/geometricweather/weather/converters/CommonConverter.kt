@@ -5,10 +5,8 @@ import us.dustinj.timezonemap.TimeZoneMap
 import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.models.weather.*
 import wangdaye.com.geometricweather.common.utils.DisplayUtils
-import java.util.Calendar
-import java.util.Date
-import java.util.Locale
-import java.util.TimeZone
+import java.util.*
+import kotlin.math.pow
 import kotlin.math.roundToInt
 import kotlin.math.sin
 

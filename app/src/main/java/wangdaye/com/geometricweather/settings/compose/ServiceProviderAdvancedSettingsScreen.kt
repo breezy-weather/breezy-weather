@@ -4,15 +4,12 @@ import android.content.Context
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import wangdaye.com.geometricweather.R
-import wangdaye.com.geometricweather.common.basic.models.options.DarkMode
-import wangdaye.com.geometricweather.common.basic.models.options.provider.OwmOneCallVersion
-import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper
+import wangdaye.com.geometricweather.common.basic.models.options.provider.OpenWeatherOneCallVersion
 import wangdaye.com.geometricweather.settings.SettingsManager
 import wangdaye.com.geometricweather.settings.preference.*
 import wangdaye.com.geometricweather.settings.preference.composables.EditTextPreferenceView
 import wangdaye.com.geometricweather.settings.preference.composables.ListPreferenceView
 import wangdaye.com.geometricweather.settings.preference.composables.PreferenceScreen
-import wangdaye.com.geometricweather.theme.ThemeManager
 
 @Composable
 fun SettingsProviderAdvancedSettingsScreen(
@@ -64,8 +61,8 @@ fun SettingsProviderAdvancedSettingsScreen(
     }
     sectionFooterItem(R.string.settings_provider_accu_weather)
 
-    sectionHeaderItem(R.string.settings_provider_owm)
-    editTextPreferenceItem(R.string.settings_provider_owm_key) { id ->
+    sectionHeaderItem(R.string.settings_provider_open_weather)
+    editTextPreferenceItem(R.string.settings_provider_open_weather_key) { id ->
         EditTextPreferenceView(
             titleId = id,
             summary = { context, content ->
@@ -73,26 +70,26 @@ fun SettingsProviderAdvancedSettingsScreen(
                     context.getString(R.string.settings_provider_default_value)
                 }
             },
-            content = SettingsManager.getInstance(context).customOwmKey,
+            content = SettingsManager.getInstance(context).customOpenWeatherKey,
             onValueChanged = {
-                SettingsManager.getInstance(context).customOwmKey = it
+                SettingsManager.getInstance(context).customOpenWeatherKey = it
             }
         )
     }
-    listPreferenceItem(R.string.settings_provider_owm_one_call_version) { id ->
+    listPreferenceItem(R.string.settings_provider_open_weather_one_call_version) { id ->
         ListPreferenceView(
             titleId = id,
-            selectedKey = SettingsManager.getInstance(context).customOwmOneCallVersion.id,
-            valueArrayId = R.array.owm_one_call_version_values,
-            nameArrayId = R.array.owm_one_call_version,
+            selectedKey = SettingsManager.getInstance(context).customOpenWeatherOneCallVersion.id,
+            valueArrayId = R.array.open_weather_one_call_version_values,
+            nameArrayId = R.array.open_weather_one_call_version,
             onValueChanged = {
                 SettingsManager
                     .getInstance(context)
-                    .customOwmOneCallVersion = OwmOneCallVersion.getInstance(it)
+                    .customOpenWeatherOneCallVersion = OpenWeatherOneCallVersion.getInstance(it)
             },
         )
     }
-    sectionFooterItem(R.string.settings_provider_owm)
+    sectionFooterItem(R.string.settings_provider_open_weather)
 
     sectionHeaderItem(R.string.settings_provider_baidu_ip_location)
     editTextPreferenceItem(R.string.settings_provider_baidu_ip_location) { id ->

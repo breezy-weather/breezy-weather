@@ -1,10 +1,10 @@
-package wangdaye.com.geometricweather.weather.json.owm
+package wangdaye.com.geometricweather.weather.json.openweather
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class OwmOneCallCurrent(
+data class OpenWeatherOneCallCurrent(
     val dt: Long,
     val sunrise: Long?,
     val sunset: Long?,
@@ -18,7 +18,7 @@ data class OwmOneCallCurrent(
     val visibility: Int?,
     @SerialName("wind_speed") val windSpeed: Float?,
     @SerialName("wind_deg") val windDeg: Int?,
-    val weather: List<OwmOneCallWeather>?,
-    val rain: OwmOneCallPrecipitation?,
-    val snow: OwmOneCallPrecipitation?
+    val weather: List<OpenWeatherOneCallWeather>?,
+    val rain: OpenWeatherOneCallPrecipitation?,
+    val snow: OpenWeatherOneCallPrecipitation?
 )
