@@ -25,7 +25,7 @@ import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.weather.apis.MetNoApi;
 import wangdaye.com.geometricweather.weather.apis.NominatimApi;
-import wangdaye.com.geometricweather.weather.converters.MetNoResultConverter;
+import wangdaye.com.geometricweather.weather.converters.MetNoResultConverterKt;
 import wangdaye.com.geometricweather.weather.json.metno.MetNoLocationForecastResult;
 import wangdaye.com.geometricweather.weather.json.metno.MetNoSunsetResult;
 import wangdaye.com.geometricweather.weather.json.nominatim.NominatimLocationResult;
@@ -49,8 +49,7 @@ public class MetNoWeatherService extends WeatherService {
         return "GeometricWeather/"+ BuildConfig.VERSION_NAME + " github.com/WangDaYeeeeee/GeometricWeather/issues";
     }
 
-    protected static String getCurrentTimezoneOffset() {
-        TimeZone tz = TimeZone.getDefault();
+    protected static String getTimezoneOffset(TimeZone tz) {
         Calendar cal = GregorianCalendar.getInstance(tz);
         int offsetInMillis = tz.getOffset(cal.getTimeInMillis());
 
@@ -75,11 +74,11 @@ public class MetNoWeatherService extends WeatherService {
                 15,
                 location.getLatitude(),
                 location.getLongitude(),
-                getCurrentTimezoneOffset()
+                getTimezoneOffset(location.getTimeZone())
         );
 
         Observable.zip(locationForecast, sunset,
-                (metNoLocationForecast, metNoSunset) -> MetNoResultConverter.convert(
+                (metNoLocationForecast, metNoSunset) -> MetNoResultConverterKt.convert(
                          context,
                          location,
                          metNoLocationForecast,
@@ -116,7 +115,7 @@ public class MetNoWeatherService extends WeatherService {
             e.printStackTrace();
         }
 
-        return MetNoResultConverter.convert(resultList);
+        return MetNoResultConverterKt.convert(resultList);
     }
 
     @Override
@@ -139,7 +138,7 @@ public class MetNoWeatherService extends WeatherService {
                     public void onSucceed(NominatimLocationResult metnoLocationResult) {
                         if (metnoLocationResult != null) {
                             List<Location> locationList = new ArrayList<>();
-                            locationList.add(MetNoResultConverter.convert(location, metnoLocationResult));
+                            locationList.add(MetNoResultConverterKt.convert(location, metnoLocationResult));
                             callback.requestLocationSuccess(
                                     location.getLatitude() + "," + location.getLongitude(),
                                     locationList
@@ -168,7 +167,7 @@ public class MetNoWeatherService extends WeatherService {
                     @Override
                     public void onSucceed(List<NominatimLocationResult> metnoLocationResults) {
                         if (metnoLocationResults != null && metnoLocationResults.size() != 0) {
-                            List<Location> locationList = MetNoResultConverter.convert(metnoLocationResults);
+                            List<Location> locationList = MetNoResultConverterKt.convert(metnoLocationResults);
                             callback.requestLocationSuccess(query, locationList);
                         } else {
                             callback.requestLocationFailed(query);

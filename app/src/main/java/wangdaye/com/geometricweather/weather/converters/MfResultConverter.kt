@@ -42,7 +42,6 @@ import java.util.Date
 import java.util.TimeZone
 import kotlin.math.roundToInt
 
-// OpenMeteoLocationResult of a coordinates search
 fun convert(location: Location?, result: MfForecastResult): Location? {
     return if (result.properties == null || result.geometry == null
         || result.geometry.coordinates?.getOrNull(0) == null || result.geometry.coordinates.getOrNull(1) == null) {
@@ -159,7 +158,8 @@ fun convert(
     aqiAtmoAuraResult: AtmoAuraPointResult?
 ): WeatherResultWrapper {
     // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
-    if (forecastResult.properties?.forecast == null || forecastResult.properties.dailyForecast == null) {
+    if (forecastResult.properties == null || forecastResult.properties.forecast.isNullOrEmpty()
+        || forecastResult.properties.dailyForecast.isNullOrEmpty()) {
         return WeatherResultWrapper(null);
     }
 
@@ -298,7 +298,6 @@ private fun getDailyList(
                         weatherPhase = dailyForecast.dailyWeatherDescription,
                         weatherCode = getWeatherCode(dailyForecast.dailyWeatherIcon),
                         temperature = Temperature(temperature = dailyForecast.tMax?.roundToInt())
-                        // TODO temperatureWindChill with hourly data
                         // TODO cloudCover with hourly data
                     ),
                     halfDayHourlyList = hourlyListByHalfDay.getOrDefault(dailyDateFormatted, null)?.get("day"),
@@ -311,7 +310,6 @@ private fun getDailyList(
                         weatherPhase = dailyForecast.dailyWeatherDescription,
                         weatherCode = getWeatherCode(dailyForecast.dailyWeatherIcon),
                         temperature = Temperature(temperature = dailyForecast.tMin?.roundToInt())
-                        // TODO temperatureWindChill with hourly data
                         // TODO cloudCover with hourly data
                     ),
                     halfDayHourlyList = hourlyListByHalfDay.getOrDefault(dailyDateFormatted, null)?.get("night"),
@@ -329,7 +327,7 @@ private fun getDailyList(
                     angle = getMoonPhaseAngle(ephemerisResult?.moonPhaseDescription),
                     description = ephemerisResult?.moonPhaseDescription
                 ),
-                airQuality = getAirQualityFromHourlyList(hourlyListByDay.getOrDefault(dailyDateFormatted, null)),
+                airQuality = getDailyAirQualityFromHourlyList(hourlyListByDay.getOrDefault(dailyDateFormatted, null)),
                 uV = UV(
                     index = dailyForecast.uvIndex,
                     level = getUVLevel(context, dailyForecast.uvIndex)

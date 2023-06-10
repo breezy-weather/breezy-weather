@@ -6,7 +6,6 @@ import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.models.weather.*
 import wangdaye.com.geometricweather.common.utils.DisplayUtils
 import java.util.*
-import kotlin.math.pow
 import kotlin.math.roundToInt
 import kotlin.math.sin
 
@@ -16,11 +15,11 @@ import kotlin.math.sin
  * Currently helps completing:
  * - Weather code (at 12:00 for day, at 00:00 for night)
  * - Weather text/phase (at 12:00 for day, at 00:00 for night)
+ * - Temperature (temperature and windChill, can be expanded if required)
  * - Precipitation (if Precipitation or Precipitation.total is null)
  * - PrecipitationProbability (if PrecipitationProbability or PrecipitationProbability.total is null)
  * - Wind (if Wind or Wind.speed is null)
  * You can expand it to other fields if you need it.
- * TODO: Temperature
  *
  * @param dailyDate a Date initialized at 00:00 the day of interest
  * @param initialHalfDay the half day to be completed or null
@@ -39,7 +38,7 @@ fun completeHalfDayFromHourlyList(
     var halfDayWeatherText = initialHalfDay?.weatherText
     var halfDayWeatherPhase = initialHalfDay?.weatherPhase
     var halfDayWeatherCode = initialHalfDay?.weatherCode
-    val halfDayTemperature = initialHalfDay?.temperature
+    var halfDayTemperature = initialHalfDay?.temperature
     var halfDayPrecipitation = initialHalfDay?.precipitation
     var halfDayPrecipitationProbability = initialHalfDay?.precipitationProbability
     val halfDayPrecipitationDuration = initialHalfDay?.precipitationDuration
@@ -49,19 +48,64 @@ fun completeHalfDayFromHourlyList(
     // Weather code + Weather text
     if (halfDayWeatherCode == null || halfDayWeatherText == null) {
         // Update at 12:00 on daytime and 00:00 on nighttime
-        halfDayHourlyList
+        val halfDayHourlyListWeather = halfDayHourlyList
             .firstOrNull { it.date.time == dailyDate.time + (if (isDay) 12 else 24) * 3600 * 1000 }
-            ?.let {
-                if (halfDayWeatherCode == null) {
-                    halfDayWeatherCode = it.weatherCode
+            ?: halfDayHourlyList.first() // Use first element in the list to avoid null
+
+        if (halfDayWeatherCode == null) {
+            halfDayWeatherCode = halfDayHourlyListWeather.weatherCode
+        }
+        if (halfDayWeatherPhase == null) {
+            halfDayWeatherPhase = halfDayHourlyListWeather.weatherText
+        }
+        if (halfDayWeatherText == null) {
+            halfDayWeatherText = halfDayHourlyListWeather.weatherText
+        }
+    }
+
+    // Temperature
+    if (halfDayTemperature?.temperature == null || halfDayTemperature.windChillTemperature == null) {
+        var temperatureTemperature = halfDayTemperature?.temperature
+        val temperatureRealFeelTemperature = halfDayTemperature?.realFeelTemperature
+        val temperatureRealFeelShaderTemperature = halfDayTemperature?.realFeelShaderTemperature
+        val temperatureApparentTemperature = halfDayTemperature?.apparentTemperature
+        var temperatureWindChillTemperature = halfDayTemperature?.windChillTemperature
+        val temperatureWetBulbTemperature = halfDayTemperature?.wetBulbTemperature
+        val temperatureDegreeDayTemperature = halfDayTemperature?.degreeDayTemperature
+
+        if (temperatureTemperature == null) {
+            val halfDayHourlyListTemperature = halfDayHourlyList.filter { it.temperature?.temperature != null }
+            temperatureTemperature = if (halfDayHourlyListTemperature.isNotEmpty()) {
+                if (isDay) {
+                    halfDayHourlyList.filter { it.temperature?.temperature != null }
+                        .maxOf { it.temperature!!.temperature!! }
+                } else {
+                    halfDayHourlyList.filter { it.temperature?.temperature != null }
+                        .minOf { it.temperature!!.temperature!! }
                 }
-                if (halfDayWeatherPhase == null) {
-                    halfDayWeatherPhase = it.weatherText
+            } else null
+        }
+        if (temperatureWindChillTemperature == null) {
+            val halfDayHourlyListWindChillTemperature = halfDayHourlyList.filter { it.temperature?.windChillTemperature != null }
+            temperatureWindChillTemperature = if (halfDayHourlyListWindChillTemperature.isNotEmpty()) {
+                if (isDay) {
+                    halfDayHourlyList.filter { it.temperature?.windChillTemperature != null }
+                        .maxOf { it.temperature!!.windChillTemperature!! }
+                } else {
+                    halfDayHourlyList.filter { it.temperature?.windChillTemperature != null }
+                        .minOf { it.temperature!!.windChillTemperature!! }
                 }
-                if (halfDayWeatherText == null) {
-                    halfDayWeatherText = it.weatherText
-                }
-            }
+            } else null
+        }
+        halfDayTemperature = Temperature(
+            temperature = temperatureTemperature,
+            realFeelTemperature = temperatureRealFeelTemperature,
+            realFeelShaderTemperature = temperatureRealFeelShaderTemperature,
+            apparentTemperature = temperatureApparentTemperature,
+            windChillTemperature = temperatureWindChillTemperature,
+            wetBulbTemperature = temperatureWetBulbTemperature,
+            degreeDayTemperature = temperatureDegreeDayTemperature
+        )
     }
 
     // Precipitation
@@ -199,7 +243,7 @@ fun completeHalfDayFromHourlyList(
  * Returns an AirQuality object calculated from a List of Hourly for the day
  * (at least 18 non-null Hourly.AirQuality required)
  */
-fun getAirQualityFromHourlyList(hourlyList: List<Hourly>? = null): AirQuality? {
+fun getDailyAirQualityFromHourlyList(hourlyList: List<Hourly>? = null): AirQuality? {
     // We need at least 18 hours for a signification estimation
     if (hourlyList.isNullOrEmpty() || hourlyList.size < 18) return null
     val hourlyListWithAirQuality = hourlyList.filter { it.airQuality != null }
@@ -216,7 +260,23 @@ fun getAirQualityFromHourlyList(hourlyList: List<Hourly>? = null): AirQuality? {
 }
 
 /**
- * Completes the UV field from a List<Hourly> with the List<Daily>
+ * Returns an AirQuality object calculated from a List of Hourly for the day
+ * (at least 18 non-null Hourly.AirQuality required)
+ */
+fun getDailyUVFromHourlyList(context: Context, hourlyList: List<Hourly>? = null): UV? {
+    if (hourlyList.isNullOrEmpty()) return null
+    val hourlyListWithUV = hourlyList.filter { it.uV?.index != null }
+    if (hourlyListWithUV.isEmpty()) return null
+
+    val maxUV = hourlyListWithUV.maxOf { it.uV!!.index!! }
+    return UV(
+        index = maxUV,
+        level = getUVLevel(context, maxUV)
+    )
+}
+
+/**
+ * Completes the isDaylight and/or UV field from a List<Hourly> with the List<Daily>
  * Possible improvement: handle cloud covers as well but doesn't exist in Hourly at the moment
  */
 fun completeHourlyListFromDailyList(
@@ -231,12 +291,12 @@ fun completeHourlyListFromDailyList(
     val dailyListByDate = dailyList.groupBy { DisplayUtils.getFormattedDate(it.date, timeZone, "yyyyMMdd") }
     val newHourlyList: MutableList<Hourly> = ArrayList(hourlyList.size);
     hourlyList.forEach { hourly ->
-        if (hourly.uV?.index == null && (completeDaylight || (!completeDaylight && hourly.isDaylight))) {
+        if (completeDaylight || (!completeDaylight && hourly.isDaylight)) {
             val dateForHourFormatted = DisplayUtils.getFormattedDate(hourly.date, timeZone, "yyyyMMdd")
             dailyListByDate.getOrDefault(dateForHourFormatted, null)
                 ?.first()?.let { daily ->
                     if (daily.sun?.riseDate != null && daily.sun.setDate != null) {
-                        if (daily.uV?.index != null) {
+                        if (hourly.uV?.index == null && daily.uV?.index != null) {
                             newHourlyList.add(if (completeDaylight) hourly.copy(
                                 isDaylight = isDaylight(daily.sun.riseDate, daily.sun.setDate, hourly.date, timeZone),
                                 uV = getCurrentUV(context, daily.uV.index, hourly.date, daily.sun.riseDate, daily.sun.setDate, timeZone)

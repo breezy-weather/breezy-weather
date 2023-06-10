@@ -1,12 +1,9 @@
 package wangdaye.com.geometricweather.db
 
 import android.content.Context
-import android.util.Log
 import io.objectbox.BoxStore
 import io.objectbox.android.Admin
-import io.objectbox.android.AndroidObjectBrowser
 import wangdaye.com.geometricweather.BuildConfig
-import wangdaye.com.geometricweather.GeometricWeather
 import wangdaye.com.geometricweather.common.utils.helpers.LogHelper
 import wangdaye.com.geometricweather.db.entities.MyObjectBox
 

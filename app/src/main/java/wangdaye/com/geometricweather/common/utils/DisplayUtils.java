@@ -14,6 +14,7 @@ import android.graphics.drawable.Drawable;
 import android.media.ThumbnailUtils;
 import android.os.Build;
 import android.provider.Settings;
+import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.view.Window;
@@ -239,6 +240,27 @@ public class DisplayUtils {
         calendar.setTime(date);
         calendar.setTimeZone(zone);
         return calendar;
+    }
+
+    /**
+     * Get a date at midnight on a specific timezone from a formatted date
+     * @param timeZone
+     * @param formattedDate in yyyy-MM-dd format
+     * @return Date
+     */
+    public static Date toDateNoHour(TimeZone timeZone, String formattedDate) {
+        if (timeZone == null || TextUtils.isEmpty(formattedDate) || formattedDate.length() != 10) {
+            return null;
+        }
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeZone(timeZone);
+        calendar.set(Calendar.YEAR, Integer.parseInt(formattedDate.substring(0, 4)));
+        calendar.set(Calendar.MONTH, Integer.parseInt(formattedDate.substring(5, 7)) - 1);
+        calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(formattedDate.substring(8, 10)));
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        return calendar.getTime();
     }
 
     public static Date toTimezone(Date date, TimeZone timeZone) {

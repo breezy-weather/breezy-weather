@@ -53,12 +53,8 @@ class Temperature(
         }
     }
 
-    val feelsLikeTemperature: Int?
-        get() = realFeelTemperature
-            ?: (realFeelShaderTemperature
-                ?: (apparentTemperature
-                    ?: (windChillTemperature
-                        ?: (wetBulbTemperature ?: degreeDayTemperature))))
+    val feelsLikeTemperature: Int? = realFeelTemperature ?: realFeelShaderTemperature ?: apparentTemperature
+        ?: windChillTemperature ?: wetBulbTemperature ?: degreeDayTemperature
 
     fun getTemperature(context: Context, unit: TemperatureUnit): String? {
         return getTemperature(context, temperature, unit)

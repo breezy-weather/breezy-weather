@@ -7,8 +7,8 @@ package wangdaye.com.geometricweather.weather.json.nominatim;
 public class NominatimLocationResult {
 
     public Integer place_id;
-    public Float lat;
-    public Float lon;
+    public Double lat;
+    public Double lon;
     public String display_name;
     public Address address;
 

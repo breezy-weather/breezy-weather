@@ -56,7 +56,7 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter {
             assert weather != null;
             Daily daily = weather.getDailyForecast().get(position);
 
-            if (daily.getDay().getWind() != null) {
+            if (daily.getDay() != null && daily.getDay().getWind() != null) {
                 talkBackBuilder
                         .append(", ").append(activity.getString(R.string.daytime))
                         .append(" : ").append(daily.getDay().getWind().getWindDescription(activity, mSpeedUnit));
@@ -73,13 +73,14 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter {
                 dailyItem.setDayIconDrawable(dayIcon);
             }
 
-            if (daily.getNight().getWind() != null) {
+            if (daily.getNight() != null && daily.getNight().getWind() != null) {
                 talkBackBuilder
                         .append(", ").append(activity.getString(R.string.nighttime))
                         .append(" : ").append(daily.getNight().getWind().getWindDescription(activity, mSpeedUnit));
             }
 
-            if (daily.getDay().getWind() != null && daily.getNight().getWind() != null) {
+            if (daily.getDay() != null && daily.getDay().getWind() != null
+                    && daily.getNight() != null && daily.getNight().getWind() != null) {
                 int daytimeWindColor = daily.getDay().getWind().getWindColor(activity);
                 int nighttimeWindColor = daily.getNight().getWind().getWindColor(activity);
                 Float daytimeWindSpeed = weather.getDailyForecast().get(position).getDay().getWind().getSpeed();
@@ -102,7 +103,7 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter {
                 mDoubleHistogramView.setHistogramAlphas(1f, 0.5f);
             }
 
-            if (daily.getNight().getWind() != null) {
+            if (daily.getNight() != null && daily.getNight().getWind() != null) {
                 int nighttimeWindColor = daily.getNight().getWind().getWindColor(activity);
                 RotateDrawable nightIcon = daily.getNight().getWind().isValidSpeed()
                         ? new RotateDrawable(ContextCompat.getDrawable(activity, R.drawable.ic_navigation))

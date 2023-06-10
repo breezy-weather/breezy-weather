@@ -11,7 +11,7 @@ import wangdaye.com.geometricweather.weather.json.metno.MetNoSunsetResult
  * MET Norway Weather API.
  */
 interface MetNoApi {
-    @GET("locationforecast/2.0/compact.json")
+    @GET("locationforecast/2.0/complete.json")
     fun getLocationForecast(
         @Header("User-Agent") userAgent: String,
         @Query("lat") lat: Double,

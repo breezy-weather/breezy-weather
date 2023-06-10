@@ -86,7 +86,7 @@ fun convert(
     airPollutionResult: OpenWeatherAirPollutionResult?
 ): WeatherResultWrapper {
     // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
-    if (oneCallResult.hourly == null || oneCallResult.daily == null) {
+    if (oneCallResult.hourly.isNullOrEmpty() || oneCallResult.daily.isNullOrEmpty()) {
         return WeatherResultWrapper(null);
     }
 
@@ -194,7 +194,8 @@ fun convert(
 }
 
 private fun getDailyList(
-    context: Context, timeZone: TimeZone,
+    context: Context,
+    timeZone: TimeZone,
     dailyResult: List<OpenWeatherOneCallDaily>,
     hourlyList: List<Hourly>,
     hourlyListByHalfDay: Map<String, Map<String, MutableList<Hourly>>>
@@ -245,7 +246,7 @@ private fun getDailyList(
                     riseDate = if (dailyForecast.moonrise != null) Date(dailyForecast.moonrise.times(1000)) else null,
                     setDate = if (dailyForecast.moonset != null) Date(dailyForecast.moonset.times(1000)) else null
                 ),
-                airQuality = getAirQualityFromHourlyList(hourlyListByDay.getOrDefault(dailyDateFormatted, null)),
+                airQuality = getDailyAirQualityFromHourlyList(hourlyListByDay.getOrDefault(dailyDateFormatted, null)),
                 uV = UV(dailyForecast.uvi?.roundToInt(), getUVLevel(context, dailyForecast.uvi?.roundToInt()), null),
                 hoursOfSun = if (dailyForecast.sunrise != null && dailyForecast.sunset != null) getHoursOfDay(Date(dailyForecast.sunrise.times(1000)), Date(dailyForecast.sunset.times(1000))) else null
             )

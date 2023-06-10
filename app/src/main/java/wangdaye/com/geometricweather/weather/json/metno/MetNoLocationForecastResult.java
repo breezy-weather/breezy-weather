@@ -42,6 +42,8 @@ public class MetNoLocationForecastResult {
                     public Float airPressureAtSeaLevel;
                     @SerializedName("air_temperature")
                     public Float airTemperature;
+                    @SerializedName("dew_point_temperature")
+                    public Float dewPointTemperature;
                     @SerializedName("precipitation_amount")
                     public Float precipitationAmount;
                     @SerializedName("probability_of_precipitation")
@@ -51,7 +53,7 @@ public class MetNoLocationForecastResult {
                     @SerializedName("relative_humidity")
                     public Float relativeHumidity;
                     @SerializedName("ultraviolet_index_clear_sky")
-                    public Float ultravioletIndexClearSky; // Nullable
+                    public Float ultravioletIndexClearSky;
                     @SerializedName("wind_from_direction")
                     public Float windFromDirection;
                     @SerializedName("wind_speed")

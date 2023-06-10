@@ -25,12 +25,12 @@ This is a user-end guide to weather providers available in Geometric Weather. If
 | Daily precipitation         | *In progress* | ✅           | ✅             | ✅           | ✅            | 
 | Daily wind                  | ✅             | ✅           | ✅             | ✅           | ✅            |
 | Daily air quality           | *In progress* | ❌           | *In progress* | ✅           | ✅            |
-| Daily UV                    | ✅             | ✅           | *In progress* | ✅           | ✅            |
+| Daily UV                    | ✅             | ✅           | ✅             | ✅           | ✅            |
 | Hourly weather/temperature  | ✅             | ✅           | ✅             | ✅           | ✅            |
 | Hourly precipitation        | *In progress* | ✅           | ✅             | ✅           | ✅            |
 | Hourly wind                 | ✅             | ✅           | ✅             | ✅           | ✅            |
 | Hourly air quality          | *In progress* | ❌           | *In progress* | ✅           | ✅            |
-| Hourly UV                   | ✅             | ✅           | *In progress* | ✅           | ✅            |
+| Hourly UV                   | ✅             | ✅           | ✅             | ✅           | ✅            |
 | Precipitations in next hour | ❌             | ✅           | *In progress* | ✅           | ✅            |
 | Current air quality         | *In progress* | ❌           | *In progress* | ✅           | ✅            |
 | Daily pollen                | *In progress* | ✅           | ❌             | ❌           | ❌            |
@@ -70,7 +70,7 @@ Ultimate goal of the app would be to modularize as to have a main weather provid
 | Moon phase                | ❌             | ✅           | ✅             | ❌             | ✅⁶            |
 | Air quality               | *In progress* | ❌           | *In progress* | ✅¹            | ✅¹            |
 | Pollen                    | *In progress* | ✅           | ❌             | ❌             | ❌             |
-| UV                        | ✅             | ✅           | *In progress* | ✅             | ✅             |
+| UV                        | ✅             | ✅           | ✅¹            | ✅             | ✅             |
 | Hours of sun              | ✅²            | ✅           | ✅²            | ✅²            | ✅²            |
 
 * ¹ Extrapolated from hourly forecast
@@ -102,7 +102,7 @@ Legend:
 | Wind                      | ✅             | ✅           | ✅             | ✅            | ✅            |
 | Air quality               | *In progress* | ❌           | *In progress* | ✅            | ✅            |
 | Pollen                    | *In progress* | ❌           | ❌             | ❌            | ❌            |
-| UV                        | *In progress* | ✅           | *In progress* | ✅            | ✅⁴           |
+| UV                        | *In progress* | ✅           | ✅             | ✅            | ✅⁴           |
 
 * ¹ Every 6 hours after 3~4 days
 * ² Every 3 hours after 2 days, every 6 hours after 4 days
@@ -121,19 +121,19 @@ Legend:
 
 ### Current weather
 
-| Providers     | Open-Meteo    | AccuWeather | MET Norway    | OpenWeather  | Météo-France |
-|---------------|---------------|-------------|---------------|--------------|--------------|
-| Weather       | ✅             | ✅           | Partial²³     | ✅            | ✅¹           |
-| Temperature   | ✅¹            | ✅           | ✅²            | ✅            | ✅¹           |
-| Wind          | ✅             | ✅           | ✅²            | ✅            | ✅¹           |
-| UV            | ✅⁵            | ✅           | *In progress* | ✅            | ✅⁵           |
-| Air quality   | *In progress* | ❌           | *In progress* | ✅            | ✅⁴           |
-| Humidity      | ✅¹            | ✅           | ✅²            | ✅            | ❌            |
-| Pressure      | ✅¹            | ✅           | ✅¹            | ✅            | ❌            |
-| Visibility    | ✅¹            | ✅           | ❌             | ✅            | ❌            |
-| Dew point     | ✅¹            | ✅           | ❌             | ✅            | ❌            |
-| Cloud cover   | ✅¹            | ✅           | ❌             | ✅            | ❌            |
-| Ceiling       | ❌             | ✅           | ❌             | ❌            | ❌            |
+| Providers   | Open-Meteo    | AccuWeather | MET Norway    | OpenWeather | Météo-France |
+|-------------|---------------|-------------|---------------|-------------|--------------|
+| Weather     | ✅             | ✅           | Partial²³     | ✅           | ✅¹           |
+| Temperature | ✅¹            | ✅           | ✅²            | ✅           | ✅¹           |
+| Wind        | ✅             | ✅           | ✅²            | ✅           | ✅¹           |
+| UV          | ✅⁵            | ✅           | ✅²            | ✅           | ✅⁵           |
+| Air quality | *In progress* | ❌           | *In progress* | ✅           | ✅⁴           |
+| Humidity    | ✅¹            | ✅           | ✅²            | ✅           | ❌            |
+| Pressure    | ✅¹            | ✅           | ✅¹            | ✅           | ❌            |
+| Visibility  | ✅¹            | ✅           | ❌             | ✅           | ❌            |
+| Dew point   | ✅¹            | ✅           | ✅²            | ✅           | ❌            |
+| Cloud cover | ✅¹            | ✅           | ❌             | ✅           | ❌            |
+| Ceiling     | ❌             | ✅           | ❌             | ❌           | ❌            |
 
 *In progress* means data is available in the API (or can be extrapolated) and can be implemented.
 
@@ -155,4 +155,3 @@ Legend:
 
 * ¹ List of available countries: https://openweathermap.org/api/push-weather-alerts#listsource
 * ² Only for France, and only for some cities. Rain intensity is estimated.
-
