@@ -31,9 +31,6 @@ public class OwmWeatherService extends WeatherService {
     private final OwmApi mApi;
     private final CompositeDisposable mCompositeDisposable;
 
-    private static class EmptyAqiResult extends OwmAirPollutionResult {
-    }
-
     @Inject
     public OwmWeatherService(OwmApi api, CompositeDisposable disposable) {
         mApi = api;
@@ -56,7 +53,7 @@ public class OwmWeatherService extends WeatherService {
         Observable<OwmAirPollutionResult> airPollution = mApi.getAirPollution(
                 SettingsManager.getInstance(context).getProviderOwmKey(), location.getLatitude(), location.getLongitude()
         ).onErrorResumeNext(error ->
-                Observable.create(emitter -> emitter.onNext(new EmptyAqiResult()))
+                Observable.create(emitter -> emitter.onNext(new OwmAirPollutionResult(null)))
         );
 
         Observable.zip(oneCall, airPollution,
@@ -64,7 +61,7 @@ public class OwmWeatherService extends WeatherService {
                         context,
                         location,
                         owmOneCallResult,
-                        owmAirPollutionResult instanceof EmptyAqiResult ? null : owmAirPollutionResult
+                        owmAirPollutionResult
                 )
         ).compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<WeatherResultWrapper>() {

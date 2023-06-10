@@ -180,11 +180,11 @@ fun convert(
                     location.timeZone
                 ),
                 // airQuality = TODO
-                relativeHumidity = if (currentI != null) weatherResult.hourly?.relativeHumidity?.getOrNull(currentI)?.toFloat() else null,
-                pressure = if (currentI != null) weatherResult.hourly?.surfacePressure?.getOrNull(currentI) else null,
-                visibility = if (currentI != null) weatherResult.hourly?.visibility?.getOrNull(currentI)?.div(1000) else null,
-                dewPoint = if (currentI != null) weatherResult.hourly?.dewPoint?.getOrNull(currentI)?.roundToInt() else null,
-                cloudCover = if (currentI != null) weatherResult.hourly?.cloudCover?.getOrNull(currentI) else null
+                relativeHumidity = if (currentI != null) weatherResult.hourly.relativeHumidity?.getOrNull(currentI)?.toFloat() else null,
+                pressure = if (currentI != null) weatherResult.hourly.surfacePressure?.getOrNull(currentI) else null,
+                visibility = if (currentI != null) weatherResult.hourly.visibility?.getOrNull(currentI)?.div(1000) else null,
+                dewPoint = if (currentI != null) weatherResult.hourly.dewPoint?.getOrNull(currentI)?.roundToInt() else null,
+                cloudCover = if (currentI != null) weatherResult.hourly.cloudCover?.getOrNull(currentI) else null
             ),
             yesterday = History(
                 date = Date(weatherResult.daily.time[0].times(1000)),

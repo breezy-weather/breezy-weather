@@ -59,27 +59,27 @@ private fun buildRemoteViews(
     val settings = SettingsManager.getInstance(context)
     val temperatureUnit = settings.temperatureUnit
 
-    if (weather == null || weather.current == null) {
+    if (weather?.current == null) {
         return views
     }
 
     // current.
-    if (weather.current?.weatherCode != null) {
+    if (weather.current.weatherCode != null) {
         views.setImageViewUri(
             R.id.widget_material_you_current_currentIcon,
             ResourceHelper.getWidgetNotificationIconUri(
                 provider,
-                weather.current?.weatherCode,
+                weather.current.weatherCode,
                 dayTime,
                 false,
                 NotificationTextColor.LIGHT
             )
         )
     }
-    if (weather.current?.temperature != null && weather.current?.temperature?.temperature != null) {
+    if (weather.current.temperature?.temperature != null) {
         views.setTextViewText(
             R.id.widget_material_you_current_currentTemperature,
-            weather.current?.temperature?.getShortTemperature(context, temperatureUnit)
+            weather.current.temperature.getShortTemperature(context, temperatureUnit)
         )
     }
 

@@ -103,7 +103,7 @@ public class ApiModule {
 
     @Provides
     public OwmApi provideOpenWeatherMapApi(OkHttpClient client,
-                                           GsonConverterFactory converterFactory,
+                                           Converter.Factory converterFactory,
                                            RxJava3CallAdapterFactory callAdapterFactory) {
         return new Retrofit.Builder()
                 .baseUrl(BuildConfig.OWM_BASE_URL)
