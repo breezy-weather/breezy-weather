@@ -37,6 +37,7 @@ public class ApiModule {
                 .build()
                 .create(OpenMeteoWeatherApi.class);
     }
+
     @Provides
     public OpenMeteoGeocodingApi provideOpenMeteoGeocodingApi(OkHttpClient client,
                                                               Converter.Factory converterFactory,
@@ -49,6 +50,7 @@ public class ApiModule {
                 .build()
                 .create(OpenMeteoGeocodingApi.class);
     }
+
     @Provides
     public OpenMeteoAirQualityApi provideOpenMeteoAirQualityApi(OkHttpClient client,
                                                                 Converter.Factory converterFactory,
@@ -77,8 +79,8 @@ public class ApiModule {
 
     @Provides
     public MetNoApi provideMetNoApi(OkHttpClient client,
-                                  GsonConverterFactory converterFactory,
-                                  RxJava3CallAdapterFactory callAdapterFactory) {
+                                    Converter.Factory converterFactory,
+                                    RxJava3CallAdapterFactory callAdapterFactory) {
         return new Retrofit.Builder()
                 .baseUrl(BuildConfig.METNO_BASE_URL)
                 .client(client)
@@ -90,7 +92,7 @@ public class ApiModule {
 
     @Provides
     public NominatimApi provideNominatimApi(OkHttpClient client,
-                                            GsonConverterFactory converterFactory,
+                                            Converter.Factory converterFactory,
                                             RxJava3CallAdapterFactory callAdapterFactory) {
         return new Retrofit.Builder()
                 .baseUrl(BuildConfig.NOMINATIM_BASE_URL)

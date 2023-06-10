@@ -7,9 +7,9 @@ import wangdaye.com.geometricweather.common.basic.models.Location
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource
 import wangdaye.com.geometricweather.common.basic.models.weather.*
 import wangdaye.com.geometricweather.common.utils.DisplayUtils
-import wangdaye.com.geometricweather.weather.json.metno.MetNoLocationForecastResult
-import wangdaye.com.geometricweather.weather.json.metno.MetNoLocationForecastResult.Properties.Timeseries
-import wangdaye.com.geometricweather.weather.json.metno.MetNoSunsetResult
+import wangdaye.com.geometricweather.weather.json.metno.MetNoForecastResult
+import wangdaye.com.geometricweather.weather.json.metno.MetNoEphemerisTime
+import wangdaye.com.geometricweather.weather.json.metno.MetNoEphemerisResult
 import wangdaye.com.geometricweather.weather.json.nominatim.NominatimLocationResult
 import wangdaye.com.geometricweather.weather.services.WeatherService.WeatherResultWrapper
 import java.util.*
@@ -47,33 +47,33 @@ fun convert(location: Location?, result: NominatimLocationResult, map: TimeZoneM
         && !location.district.isNullOrEmpty()
     ) {
         Location(
-            cityId = result.place_id.toString(),
+            cityId = result.placeId.toString(),
             latitude = result.lat.toFloat(),
             longitude = result.lon.toFloat(),
-            timeZone = getTimeZoneForPosition(map, result.lat.toDouble(), result.lon.toDouble()),
+            timeZone = getTimeZoneForPosition(map, result.lat, result.lon),
             country = result.address.country,
             province = location.province,
             city = location.city,
             weatherSource = WeatherSource.METNO,
-            isChina = result.address.country_code.isNotEmpty()
-                    && (result.address.country_code.equals("cn", ignoreCase = true)
-                    || result.address.country_code.equals("hk", ignoreCase = true)
-                    || result.address.country_code.equals("tw", ignoreCase = true))
+            isChina = result.address.countryCode.isNotEmpty()
+                    && (result.address.countryCode.equals("cn", ignoreCase = true)
+                    || result.address.countryCode.equals("hk", ignoreCase = true)
+                    || result.address.countryCode.equals("tw", ignoreCase = true))
         )
     } else {
         Location(
-            cityId = result.place_id.toString(),
+            cityId = result.placeId.toString(),
             latitude = result.lat.toFloat(),
             longitude = result.lon.toFloat(),
-            timeZone = getTimeZoneForPosition(map, result.lat.toDouble(), result.lon.toDouble()),
+            timeZone = getTimeZoneForPosition(map, result.lat, result.lon),
             country = result.address.country,
-            province = if (result.address.state == null) "" else result.address.state,
-            city = result.display_name,
+            province = result.address.state,
+            city = result.displayName,
             weatherSource = WeatherSource.METNO,
-            isChina = result.address.country_code.isNotEmpty()
-                    && (result.address.country_code.equals("cn", ignoreCase = true)
-                    || result.address.country_code.equals("hk", ignoreCase = true)
-                    || result.address.country_code.equals("tw", ignoreCase = true))
+            isChina = result.address.countryCode.isNotEmpty()
+                    && (result.address.countryCode.equals("cn", ignoreCase = true)
+                    || result.address.countryCode.equals("hk", ignoreCase = true)
+                    || result.address.countryCode.equals("tw", ignoreCase = true))
         )
     }
 }
@@ -81,8 +81,8 @@ fun convert(location: Location?, result: NominatimLocationResult, map: TimeZoneM
 fun convert(
     context: Context,
     location: Location,
-    forecastResult: MetNoLocationForecastResult,
-    sunsetResult: MetNoSunsetResult
+    forecastResult: MetNoForecastResult,
+    ephemerisResult: MetNoEphemerisResult
 ): WeatherResultWrapper {
     // If the API doesn’t return hourly, consider data as garbage and keep cached data
     if (forecastResult.properties == null
@@ -97,39 +97,40 @@ fun convert(
 
         for (i in forecastResult.properties.timeseries.indices) {
             val hourlyForecast = forecastResult.properties.timeseries[i]
+            val symbolCode = hourlyForecast.data?.next1Hours?.summary?.symbolCode
+                ?: hourlyForecast.data?.next6Hours?.summary?.symbolCode
+                ?: hourlyForecast.data?.next12Hours?.summary?.symbolCode
             val hourly = Hourly(
                 date = hourlyForecast.time,
                 isDaylight = true, // Will be completed later with daily sunrise/set
                 weatherText = null, // TODO
-                weatherCode = getWeatherCode(hourlyForecast.data.next1Hours?.summary?.symbolCode
-                        ?: hourlyForecast.data.next6Hours?.summary?.symbolCode
-                        ?: hourlyForecast.data.next12Hours?.summary?.symbolCode),
+                weatherCode = getWeatherCode(symbolCode),
                 temperature = Temperature(
-                    temperature = hourlyForecast.data.instant?.details?.airTemperature?.roundToInt(),
+                    temperature = hourlyForecast.data?.instant?.details?.airTemperature?.roundToInt(),
                 ),
                 precipitation = Precipitation(
-                    total = hourlyForecast.data.next1Hours?.details?.precipitationAmount
-                        ?: hourlyForecast.data.next6Hours?.details?.precipitationAmount
-                        ?: hourlyForecast.data.next12Hours?.details?.precipitationAmount
+                    total = hourlyForecast.data?.next1Hours?.details?.precipitationAmount
+                        ?: hourlyForecast.data?.next6Hours?.details?.precipitationAmount
+                        ?: hourlyForecast.data?.next12Hours?.details?.precipitationAmount
                 ),
                 precipitationProbability = PrecipitationProbability(
-                    total = hourlyForecast.data.next1Hours?.details?.probabilityOfPrecipitation
-                        ?: hourlyForecast.data.next6Hours?.details?.probabilityOfPrecipitation
-                        ?: hourlyForecast.data.next12Hours?.details?.probabilityOfPrecipitation,
-                    thunderstorm = hourlyForecast.data.next1Hours?.details?.probabilityOfThunder
-                        ?: hourlyForecast.data.next6Hours?.details?.probabilityOfThunder
-                        ?: hourlyForecast.data.next12Hours?.details?.probabilityOfThunder
+                    total = hourlyForecast.data?.next1Hours?.details?.probabilityOfPrecipitation
+                        ?: hourlyForecast.data?.next6Hours?.details?.probabilityOfPrecipitation
+                        ?: hourlyForecast.data?.next12Hours?.details?.probabilityOfPrecipitation,
+                    thunderstorm = hourlyForecast.data?.next1Hours?.details?.probabilityOfThunder
+                        ?: hourlyForecast.data?.next6Hours?.details?.probabilityOfThunder
+                        ?: hourlyForecast.data?.next12Hours?.details?.probabilityOfThunder
                 ),
-                wind = if (hourlyForecast.data.instant?.details == null) null else Wind(
+                wind = if (hourlyForecast.data?.instant?.details == null) null else Wind(
                     direction = getWindDirection(context, hourlyForecast.data.instant.details.windFromDirection),
                     degree = WindDegree(hourlyForecast.data.instant.details.windFromDirection, false),
-                    speed = hourlyForecast.data.instant.details.windSpeed * 3.6f,
-                    level = getWindLevel(context, hourlyForecast.data.instant.details.windSpeed * 3.6f)
+                    speed = hourlyForecast.data.instant.details.windSpeed?.times(3.6f),
+                    level = getWindLevel(context, hourlyForecast.data.instant.details.windSpeed?.times(3.6f))
                 ),
                 // airQuality = TODO
                 uV = UV(
-                    index = hourlyForecast.data.instant?.details?.ultravioletIndexClearSky?.roundToInt(),
-                    level = getUVLevel(context, hourlyForecast.data.instant?.details?.ultravioletIndexClearSky?.roundToInt())
+                    index = hourlyForecast.data?.instant?.details?.ultravioletIndexClearSky?.roundToInt(),
+                    level = getUVLevel(context, hourlyForecast.data?.instant?.details?.ultravioletIndexClearSky?.roundToInt())
                 )
             )
 
@@ -163,11 +164,11 @@ fun convert(
             }
         }
 
-        val dailyList = getDailyList(context, location.timeZone, sunsetResult.location.time, hourlyList, hourlyByHalfDay)
+        val dailyList = getDailyList(context, location.timeZone, ephemerisResult.location?.time, hourlyList, hourlyByHalfDay)
         val weather = Weather(
             base = Base(
                 cityId = location.cityId,
-                publishDate = forecastResult.properties.meta.updatedAt
+                publishDate = forecastResult.properties.meta?.updatedAt ?: Date()
             ),
             current = Current(
                 weatherText = hourlyList.getOrNull(1)?.weatherText,
@@ -208,7 +209,7 @@ fun convert(
 private fun getDailyList(
     context: Context,
     timeZone: TimeZone,
-    sunsetTimeResults: List<MetNoSunsetResult.Location.Time>,
+    ephemerisTimeResults: List<MetNoEphemerisTime>?,
     hourlyList: List<Hourly>,
     hourlyListByHalfDay: Map<String, Map<String, MutableList<Hourly>>>
 ): List<Daily> {
@@ -216,7 +217,7 @@ private fun getDailyList(
     val hourlyListByDay = hourlyList.groupBy { DisplayUtils.getFormattedDate(it.date, timeZone, "yyyy-MM-dd") }
     for (day in hourlyListByDay.entries) {
         val dayDate = DisplayUtils.toDateNoHour(timeZone, day.key)
-        val ephemerisInfo = sunsetTimeResults.firstOrNull { it.date == day.key }
+        val ephemerisInfo = ephemerisTimeResults?.firstOrNull { it.date == day.key }
 
         dailyList.add(
             Daily(

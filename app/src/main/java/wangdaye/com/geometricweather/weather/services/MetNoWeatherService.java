@@ -4,7 +4,6 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -26,8 +25,8 @@ import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.weather.apis.MetNoApi;
 import wangdaye.com.geometricweather.weather.apis.NominatimApi;
 import wangdaye.com.geometricweather.weather.converters.MetNoResultConverterKt;
-import wangdaye.com.geometricweather.weather.json.metno.MetNoLocationForecastResult;
-import wangdaye.com.geometricweather.weather.json.metno.MetNoSunsetResult;
+import wangdaye.com.geometricweather.weather.json.metno.MetNoForecastResult;
+import wangdaye.com.geometricweather.weather.json.metno.MetNoEphemerisResult;
 import wangdaye.com.geometricweather.weather.json.nominatim.NominatimLocationResult;
 
 /**
@@ -61,14 +60,14 @@ public class MetNoWeatherService extends WeatherService {
 
     @Override
     public void requestWeather(Context context, Location location, @NonNull RequestWeatherCallback callback) {
-        Observable<MetNoLocationForecastResult> locationForecast = mApi.getLocationForecast(
+        Observable<MetNoForecastResult> forecast = mApi.getForecast(
                 getUserAgent(),
                 location.getLatitude(),
                 location.getLongitude()
         );
 
         String formattedDate = DisplayUtils.getFormattedDate(new Date(), location.getTimeZone(), "yyyy-MM-dd");
-        Observable<MetNoSunsetResult> sunset = mApi.getSunset(
+        Observable<MetNoEphemerisResult> ephemeris = mApi.getEphemeris(
                 getUserAgent(),
                 formattedDate,
                 15,
@@ -77,12 +76,12 @@ public class MetNoWeatherService extends WeatherService {
                 getTimezoneOffset(location.getTimeZone())
         );
 
-        Observable.zip(locationForecast, sunset,
-                (metNoLocationForecast, metNoSunset) -> MetNoResultConverterKt.convert(
+        Observable.zip(forecast, ephemeris,
+                (metNoForecast, metNoEphemeris) -> MetNoResultConverterKt.convert(
                          context,
                          location,
-                         metNoLocationForecast,
-                         metNoSunset
+                         metNoForecast,
+                         metNoEphemeris
                 )
         ).compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<WeatherResultWrapper>() {
