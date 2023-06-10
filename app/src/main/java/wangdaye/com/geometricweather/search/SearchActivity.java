@@ -41,7 +41,7 @@ import wangdaye.com.geometricweather.common.ui.decotarions.Material3ListItemDeco
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
 import wangdaye.com.geometricweather.databinding.ActivitySearchBinding;
-import wangdaye.com.geometricweather.db.DatabaseHelper;
+import wangdaye.com.geometricweather.db.repositories.LocationEntityRepository;
 import wangdaye.com.geometricweather.search.ui.FabView;
 import wangdaye.com.geometricweather.search.ui.adapter.location.LocationAdapter;
 import wangdaye.com.geometricweather.search.ui.adapter.source.WeatherSourceAdapter;
@@ -133,7 +133,7 @@ public class SearchActivity extends GeoActivity
                 lightTheme
         );
 
-        mCurrentList = DatabaseHelper.getInstance(this).readLocationList();
+        mCurrentList = LocationEntityRepository.INSTANCE.readLocationList();
 
         initModel();
         initView();

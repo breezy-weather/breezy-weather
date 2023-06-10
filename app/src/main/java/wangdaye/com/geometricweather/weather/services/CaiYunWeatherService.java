@@ -18,7 +18,7 @@ import wangdaye.com.geometricweather.common.rxjava.BaseObserver;
 import wangdaye.com.geometricweather.common.rxjava.ObserverContainer;
 import wangdaye.com.geometricweather.common.rxjava.SchedulerTransformer;
 import wangdaye.com.geometricweather.common.utils.LanguageUtils;
-import wangdaye.com.geometricweather.db.DatabaseHelper;
+import wangdaye.com.geometricweather.db.repositories.ChineseCityEntityRepository;
 import wangdaye.com.geometricweather.weather.apis.CaiYunApi;
 import wangdaye.com.geometricweather.weather.converters.CaiyunResultConverter;
 import wangdaye.com.geometricweather.weather.json.caiyun.CaiYunForecastResult;
@@ -93,10 +93,10 @@ public class CaiYunWeatherService extends WeatherService {
             return new ArrayList<>();
         }
 
-        DatabaseHelper.getInstance(context).ensureChineseCityList(context);
+        ChineseCityEntityRepository.INSTANCE.ensureChineseCityList(context);
 
         List<Location> locationList = new ArrayList<>();
-        List<ChineseCity> cityList = DatabaseHelper.getInstance(context).readChineseCityList(query);
+        List<ChineseCity> cityList = ChineseCityEntityRepository.INSTANCE.readChineseCityList(query);
         for (ChineseCity c : cityList) {
             locationList.add(c.toLocation());
         }
@@ -110,11 +110,11 @@ public class CaiYunWeatherService extends WeatherService {
         final boolean hasGeocodeInformation = location.hasGeocodeInformation();
 
         Observable.create((ObservableOnSubscribe<List<Location>>) emitter -> {
-            DatabaseHelper.getInstance(context).ensureChineseCityList(context);
+            ChineseCityEntityRepository.INSTANCE.ensureChineseCityList(context);
             List<Location> locationList = new ArrayList<>();
 
             if (hasGeocodeInformation) {
-                ChineseCity chineseCity = DatabaseHelper.getInstance(context).readChineseCity(
+                ChineseCity chineseCity = ChineseCityEntityRepository.INSTANCE.readChineseCity(
                         formatLocationString(convertChinese(location.getProvince())),
                         formatLocationString(convertChinese(location.getCity())),
                         formatLocationString(convertChinese(location.getDistrict()))
@@ -128,7 +128,7 @@ public class CaiYunWeatherService extends WeatherService {
                 return;
             }
 
-            ChineseCity chineseCity = DatabaseHelper.getInstance(context).readChineseCity(
+            ChineseCity chineseCity = ChineseCityEntityRepository.INSTANCE.readChineseCity(
                     location.getLatitude(), location.getLongitude());
             if (chineseCity != null) {
                 locationList.add(chineseCity.toLocation());

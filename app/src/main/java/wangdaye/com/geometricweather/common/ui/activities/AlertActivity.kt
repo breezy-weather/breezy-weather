@@ -31,7 +31,8 @@ import wangdaye.com.geometricweather.common.ui.widgets.insets.FitStatusBarTopApp
 import wangdaye.com.geometricweather.common.ui.widgets.insets.bottomInsetItem
 import wangdaye.com.geometricweather.common.utils.DisplayUtils
 import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper
-import wangdaye.com.geometricweather.db.DatabaseHelper
+import wangdaye.com.geometricweather.db.repositories.LocationEntityRepository
+import wangdaye.com.geometricweather.db.repositories.WeatherEntityRepository
 import wangdaye.com.geometricweather.theme.compose.DayNightTheme
 import wangdaye.com.geometricweather.theme.compose.GeometricWeatherTheme
 import java.util.*
@@ -101,12 +102,12 @@ class AlertActivity : GeoActivity() {
         AsyncHelper.runOnIO({ emitter ->
             var location: Location? = null
             if (!formattedId.isNullOrEmpty()) {
-                location = DatabaseHelper.getInstance(this).readLocation(formattedId)
+                location = LocationEntityRepository.readLocation(formattedId)
             }
             if (location == null) {
-                location = DatabaseHelper.getInstance(this).readLocationList()[0]
+                location = LocationEntityRepository.readLocationList()[0]
             }
-            val weather = DatabaseHelper.getInstance(this).readWeather(location!!)
+            val weather = WeatherEntityRepository.readWeather(location)
 
             emitter.send(Pair(location.timeZone, weather?.alertList ?: emptyList()), true)
         }) { result: Pair<TimeZone, List<Alert>>?, _ ->

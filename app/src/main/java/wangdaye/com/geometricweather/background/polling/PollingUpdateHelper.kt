@@ -7,7 +7,8 @@ import wangdaye.com.geometricweather.common.basic.models.Location
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather
 import wangdaye.com.geometricweather.common.bus.EventBus
 import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper
-import wangdaye.com.geometricweather.db.DatabaseHelper
+import wangdaye.com.geometricweather.db.repositories.LocationEntityRepository
+import wangdaye.com.geometricweather.db.repositories.WeatherEntityRepository
 import wangdaye.com.geometricweather.location.LocationHelper
 import wangdaye.com.geometricweather.weather.WeatherHelper
 import wangdaye.com.geometricweather.weather.WeatherHelper.OnRequestWeatherListener
@@ -44,8 +45,8 @@ class PollingUpdateHelper(
         isUpdating = true
 
         ioController = AsyncHelper.runOnIO({ emitter ->
-            val list = DatabaseHelper.getInstance(context).readLocationList().map {
-                it.copy(weather = DatabaseHelper.getInstance(context).readWeather(it))
+            val list = LocationEntityRepository.readLocationList().map {
+                it.copy(weather = WeatherEntityRepository.readWeather(it))
             }
             emitter.send(list, true)
         }, { locations: List<Location>?, _: Boolean ->

@@ -19,7 +19,8 @@ import wangdaye.com.geometricweather.common.rxjava.ObserverContainer;
 import wangdaye.com.geometricweather.common.rxjava.SchedulerTransformer;
 import wangdaye.com.geometricweather.common.utils.NetworkUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper;
-import wangdaye.com.geometricweather.db.DatabaseHelper;
+import wangdaye.com.geometricweather.db.repositories.HistoryEntityRepository;
+import wangdaye.com.geometricweather.db.repositories.WeatherEntityRepository;
 import wangdaye.com.geometricweather.weather.services.WeatherService;
 
 public class WeatherHelper {
@@ -57,10 +58,10 @@ public class WeatherHelper {
             public void requestWeatherSuccess(@NonNull Location requestLocation) {
                 Weather weather = requestLocation.getWeather();
                 if (weather != null) {
-                    DatabaseHelper.getInstance(c).writeWeather(requestLocation, weather);
+                    WeatherEntityRepository.INSTANCE.writeWeather(requestLocation, weather);
                     if (weather.getYesterday() == null) {
                         weather.setYesterday(
-                                DatabaseHelper.getInstance(c).readHistory(requestLocation, weather)
+                                HistoryEntityRepository.INSTANCE.readHistory(requestLocation, weather)
                         );
                     }
                     l.requestWeatherSuccess(requestLocation);
@@ -74,7 +75,7 @@ public class WeatherHelper {
                 l.requestWeatherFailed(
                         Location.copy(
                                 requestLocation,
-                                DatabaseHelper.getInstance(c).readWeather(requestLocation)
+                                WeatherEntityRepository.INSTANCE.readWeather(requestLocation)
                         ),
                         apiLimitReached,
                         apiUnauthorized

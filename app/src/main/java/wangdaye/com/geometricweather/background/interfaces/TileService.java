@@ -9,7 +9,8 @@ import androidx.annotation.RequiresApi;
 
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
-import wangdaye.com.geometricweather.db.DatabaseHelper;
+import wangdaye.com.geometricweather.db.repositories.LocationEntityRepository;
+import wangdaye.com.geometricweather.db.repositories.WeatherEntityRepository;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
 import wangdaye.com.geometricweather.theme.resource.ResourcesProviderFactory;
@@ -62,8 +63,8 @@ public class TileService extends android.service.quicksettings.TileService {
         if (tile == null) {
             return;
         }
-        Location location = DatabaseHelper.getInstance(context).readLocationList().get(0);
-        location = Location.copy(location, DatabaseHelper.getInstance(context).readWeather(location));
+        Location location = LocationEntityRepository.INSTANCE.readLocationList().get(0);
+        location = Location.copy(location, WeatherEntityRepository.INSTANCE.readWeather(location));
         if (location.getWeather() != null && location.getWeather().getCurrent() != null) {
             if (location.getWeather().getCurrent().getWeatherCode() != null) {
                 tile.setIcon(

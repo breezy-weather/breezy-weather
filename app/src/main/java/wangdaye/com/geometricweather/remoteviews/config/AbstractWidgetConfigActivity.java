@@ -50,7 +50,8 @@ import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarNestedScrollView;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper;
-import wangdaye.com.geometricweather.db.DatabaseHelper;
+import wangdaye.com.geometricweather.db.repositories.LocationEntityRepository;
+import wangdaye.com.geometricweather.db.repositories.WeatherEntityRepository;
 import wangdaye.com.geometricweather.settings.ConfigStore;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.weather.WeatherHelper;
@@ -199,10 +200,10 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
 
     @CallSuper
     public void initData() {
-        locationNow = DatabaseHelper.getInstance(this).readLocationList().get(0);
+        locationNow = LocationEntityRepository.INSTANCE.readLocationList().get(0);
         locationNow = Location.copy(
                 locationNow,
-                DatabaseHelper.getInstance(this).readWeather(locationNow)
+                WeatherEntityRepository.INSTANCE.readWeather(locationNow)
         );
 
         destroyed = false;

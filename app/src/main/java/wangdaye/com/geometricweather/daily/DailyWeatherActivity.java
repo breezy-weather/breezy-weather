@@ -27,7 +27,8 @@ import wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarViewPa
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper;
 import wangdaye.com.geometricweather.daily.adapter.DailyWeatherAdapter;
-import wangdaye.com.geometricweather.db.DatabaseHelper;
+import wangdaye.com.geometricweather.db.repositories.LocationEntityRepository;
+import wangdaye.com.geometricweather.db.repositories.WeatherEntityRepository;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.theme.ThemeManager;
 
@@ -87,14 +88,14 @@ public class DailyWeatherActivity extends GeoActivity {
             Location location = null;
 
             if (!TextUtils.isEmpty(formattedId)) {
-                location = DatabaseHelper.getInstance(this).readLocation(formattedId);
+                location = LocationEntityRepository.INSTANCE.readLocation(formattedId);
             }
             if (location == null) {
-                location = DatabaseHelper.getInstance(this).readLocationList().get(0);
+                location = LocationEntityRepository.INSTANCE.readLocationList().get(0);
             }
 
             emitter.send(
-                    Location.copy(location, DatabaseHelper.getInstance(this).readWeather(location)),
+                    Location.copy(location, WeatherEntityRepository.INSTANCE.readWeather(location)),
                     true
             );
         }, (AsyncHelper.Callback<Location>) (location, done) -> {

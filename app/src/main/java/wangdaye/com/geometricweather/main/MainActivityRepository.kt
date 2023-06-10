@@ -3,7 +3,8 @@ package wangdaye.com.geometricweather.main
 import android.content.Context
 import wangdaye.com.geometricweather.common.basic.models.Location
 import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper
-import wangdaye.com.geometricweather.db.DatabaseHelper
+import wangdaye.com.geometricweather.db.repositories.LocationEntityRepository
+import wangdaye.com.geometricweather.db.repositories.WeatherEntityRepository
 import wangdaye.com.geometricweather.location.LocationHelper
 import wangdaye.com.geometricweather.weather.WeatherHelper
 import wangdaye.com.geometricweather.weather.WeatherHelper.OnRequestWeatherListener
@@ -31,7 +32,7 @@ class MainActivityRepository @Inject constructor(
     }
 
     fun initLocations(context: Context, formattedId: String): List<Location> {
-        val list = DatabaseHelper.getInstance(context).readLocationList()
+        val list = LocationEntityRepository.readLocationList()
 
         var index = 0
         for (i in list.indices) {
@@ -43,7 +44,7 @@ class MainActivityRepository @Inject constructor(
 
         list[index] = Location.copy(
             src = list[index],
-            weather = DatabaseHelper.getInstance(context).readWeather(list[index])
+            weather = WeatherEntityRepository.readWeather(list[index])
         )
         return list
     }
@@ -62,7 +63,7 @@ class MainActivityRepository @Inject constructor(
                     } else {
                         Location.copy(
                             src = it,
-                            weather = DatabaseHelper.getInstance(context).readWeather(it)
+                            weather = WeatherEntityRepository.readWeather(it)
                         )
                     }
                 },
@@ -73,14 +74,14 @@ class MainActivityRepository @Inject constructor(
 
     fun writeLocationList(context: Context, locationList: List<Location>) {
         AsyncHelper.runOnExecutor({ 
-            DatabaseHelper.getInstance(context).writeLocationList(locationList)
+            LocationEntityRepository.writeLocationList(locationList)
         }, singleThreadExecutor)
     }
 
     fun deleteLocation(context: Context, location: Location) {
         AsyncHelper.runOnExecutor({
-            DatabaseHelper.getInstance(context).deleteLocation(location)
-            DatabaseHelper.getInstance(context).deleteWeather(location)
+            LocationEntityRepository.deleteLocation(location)
+            WeatherEntityRepository.deleteWeather(location)
         }, singleThreadExecutor)
     }
 

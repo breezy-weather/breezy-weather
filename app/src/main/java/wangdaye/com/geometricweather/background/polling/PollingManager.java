@@ -10,7 +10,8 @@ import wangdaye.com.geometricweather.background.polling.work.WorkerHelper;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
-import wangdaye.com.geometricweather.db.DatabaseHelper;
+import wangdaye.com.geometricweather.db.repositories.LocationEntityRepository;
+import wangdaye.com.geometricweather.db.repositories.WeatherEntityRepository;
 import wangdaye.com.geometricweather.remoteviews.NotificationHelper;
 import wangdaye.com.geometricweather.remoteviews.WidgetHelper;
 import wangdaye.com.geometricweather.settings.SettingsManager;
@@ -166,12 +167,12 @@ public class PollingManager {
     private static void forceRefresh(Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             AsyncHelper.runOnIO(() -> {
-                List<Location> locationList = DatabaseHelper.getInstance(context).readLocationList();
+                List<Location> locationList = LocationEntityRepository.INSTANCE.readLocationList();
                 for (int i = 0; i < locationList.size(); i ++) {
                     locationList.set(
                             i, Location.copy(
                                     locationList.get(i),
-                                    DatabaseHelper.getInstance(context).readWeather(locationList.get(i))
+                                    WeatherEntityRepository.INSTANCE.readWeather(locationList.get(i))
                             )
                     );
                 }

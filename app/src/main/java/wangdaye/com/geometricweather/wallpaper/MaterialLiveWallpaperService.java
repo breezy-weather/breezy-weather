@@ -26,12 +26,11 @@ import androidx.core.content.res.ResourcesCompat;
 
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.common.basic.models.Location;
-import wangdaye.com.geometricweather.common.basic.models.options.appearance.BackgroundAnimationMode;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper;
-import wangdaye.com.geometricweather.common.utils.helpers.LogHelper;
-import wangdaye.com.geometricweather.db.DatabaseHelper;
+import wangdaye.com.geometricweather.db.repositories.LocationEntityRepository;
+import wangdaye.com.geometricweather.db.repositories.WeatherEntityRepository;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.theme.weatherView.WeatherView;
 import wangdaye.com.geometricweather.theme.weatherView.WeatherViewController;
@@ -381,15 +380,10 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                         mOrientationListener.enable();
                     }
 
-                    Location location = DatabaseHelper
-                            .getInstance(MaterialLiveWallpaperService.this)
-                            .readLocationList()
-                            .get(0);
+                    Location location = LocationEntityRepository.INSTANCE.readLocationList().get(0);
                     location = Location.copy(
                             location,
-                            DatabaseHelper
-                                    .getInstance(MaterialLiveWallpaperService.this)
-                                    .readWeather(location)
+                            WeatherEntityRepository.INSTANCE.readWeather(location)
                     );
 
                     LiveWallpaperConfigManager configManager = LiveWallpaperConfigManager.getInstance(
@@ -397,7 +391,7 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                     );
                     String weatherKind = configManager.getWeatherKind();
                     if (weatherKind.equals("auto")) {
-                        weatherKind = location.getWeather() != null
+                        weatherKind = location.getWeather() != null && location.getWeather().getCurrent() != null && location.getWeather().getCurrent().getWeatherCode() != null
                                 ? location.getWeather().getCurrent().getWeatherCode().getId()
                                 : "";
                     }

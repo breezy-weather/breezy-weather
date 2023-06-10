@@ -18,7 +18,7 @@ import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.provider.LocationProvider;
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
 import wangdaye.com.geometricweather.common.utils.NetworkUtils;
-import wangdaye.com.geometricweather.db.DatabaseHelper;
+import wangdaye.com.geometricweather.db.repositories.LocationEntityRepository;
 import wangdaye.com.geometricweather.location.services.AMapLocationService;
 import wangdaye.com.geometricweather.location.services.AndroidLocationService;
 import wangdaye.com.geometricweather.location.services.BaiduLocationService;
@@ -92,7 +92,7 @@ public class LocationHelper {
                             true,
                             false
                     );
-                    DatabaseHelper.getInstance(context).writeLocation(finalLocation);
+                    LocationEntityRepository.INSTANCE.writeLocation(finalLocation);
                     l.requestLocationFailed(finalLocation);
                 }
             }
@@ -160,7 +160,7 @@ public class LocationHelper {
                 if (locationList.size() > 0) {
                     Location src = locationList.get(0);
                     Location result = Location.copy(src, true, src.isResidentPosition());
-                    DatabaseHelper.getInstance(context).writeLocation(result);
+                    LocationEntityRepository.INSTANCE.writeLocation(result);
                     l.requestLocationSuccess(result);
                 } else {
                     requestLocationFailed(query);

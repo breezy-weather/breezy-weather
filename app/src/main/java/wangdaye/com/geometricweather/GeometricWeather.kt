@@ -14,6 +14,7 @@ import wangdaye.com.geometricweather.common.retrofit.ClientCacheHelper
 import wangdaye.com.geometricweather.common.utils.LanguageUtils
 import wangdaye.com.geometricweather.common.utils.NetworkUtils
 import wangdaye.com.geometricweather.common.utils.helpers.BuglyHelper
+import wangdaye.com.geometricweather.db.ObjectBox
 import wangdaye.com.geometricweather.settings.SettingsManager
 import wangdaye.com.geometricweather.theme.ThemeManager
 import java.io.BufferedReader
@@ -190,6 +191,8 @@ class GeometricWeather : MultiDexApplication(),
 
     override fun onCreate() {
         super.onCreate()
+
+        ObjectBox.init(this)
 
         NetworkUtils.registerNetworkCallback(applicationContext)
 

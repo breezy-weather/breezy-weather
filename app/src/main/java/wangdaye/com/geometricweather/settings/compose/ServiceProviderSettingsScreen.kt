@@ -12,7 +12,8 @@ import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.models.options.provider.LocationProvider
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource
 import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper
-import wangdaye.com.geometricweather.db.DatabaseHelper
+import wangdaye.com.geometricweather.db.repositories.LocationEntityRepository
+import wangdaye.com.geometricweather.db.repositories.WeatherEntityRepository
 import wangdaye.com.geometricweather.settings.SettingsManager
 import wangdaye.com.geometricweather.settings.preference.bottomInsetItem
 import wangdaye.com.geometricweather.settings.preference.clickablePreferenceItem
@@ -38,15 +39,15 @@ fun ServiceProviderSettingsScreen(
                     .getInstance(context)
                     .weatherSource = WeatherSource.getInstance(sourceId)
 
-                val locationList = DatabaseHelper.getInstance(context).readLocationList()
+                val locationList = LocationEntityRepository.readLocationList()
                 val index = locationList.indexOfFirst { it.isCurrentPosition }
                 if (index >= 0) {
                     locationList[index] = locationList[index].copy(
                         weather = null,
                         weatherSource = SettingsManager.getInstance(context).weatherSource
                     ).copy()
-                    DatabaseHelper.getInstance(context).deleteWeather(locationList[index])
-                    DatabaseHelper.getInstance(context).writeLocationList(locationList)
+                    WeatherEntityRepository.deleteWeather(locationList[index])
+                    LocationEntityRepository.writeLocationList(locationList)
                 }
             }
         )

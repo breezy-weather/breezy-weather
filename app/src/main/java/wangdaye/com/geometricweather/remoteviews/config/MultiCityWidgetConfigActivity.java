@@ -8,7 +8,8 @@ import java.util.List;
 import dagger.hilt.android.AndroidEntryPoint;
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.Location;
-import wangdaye.com.geometricweather.db.DatabaseHelper;
+import wangdaye.com.geometricweather.db.repositories.LocationEntityRepository;
+import wangdaye.com.geometricweather.db.repositories.WeatherEntityRepository;
 import wangdaye.com.geometricweather.remoteviews.presenters.MultiCityWidgetIMP;
 
 /**
@@ -24,12 +25,12 @@ public class MultiCityWidgetConfigActivity extends AbstractWidgetConfigActivity 
     public void initData() {
         super.initData();
 
-        locationList = DatabaseHelper.getInstance(this).readLocationList();
+        locationList = LocationEntityRepository.INSTANCE.readLocationList();
         for (int i = 0; i < locationList.size(); i ++) {
             locationList.set(
                     i, Location.copy(
                             locationList.get(i),
-                            DatabaseHelper.getInstance(this).readWeather(locationList.get(i))
+                            WeatherEntityRepository.INSTANCE.readWeather(locationList.get(i))
                     )
             );
         }

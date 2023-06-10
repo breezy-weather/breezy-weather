@@ -21,7 +21,7 @@ import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
-import wangdaye.com.geometricweather.db.DatabaseHelper;
+import wangdaye.com.geometricweather.db.repositories.WeatherEntityRepository;
 import wangdaye.com.geometricweather.theme.resource.ResourceHelper;
 import wangdaye.com.geometricweather.theme.resource.ResourcesProviderFactory;
 import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
@@ -73,7 +73,7 @@ public class ShortcutsHelper {
                     list.size()
             );
             for (int i = 0; i < count; i ++) {
-                Weather weather = DatabaseHelper.getInstance(c).readWeather(list.get(i));
+                Weather weather = WeatherEntityRepository.INSTANCE.readWeather(list.get(i));
                 if (weather != null && weather.getCurrent() != null && weather.getCurrent().getWeatherCode() != null) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         icon = getAdaptiveIcon(

@@ -28,14 +28,14 @@ import androidx.compose.ui.unit.dp
 import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.GeoActivity
 import wangdaye.com.geometricweather.common.basic.models.options.unit.PollenUnit
-import wangdaye.com.geometricweather.common.basic.models.weather.Pollen
 import wangdaye.com.geometricweather.common.ui.widgets.Material3CardListItem
 import wangdaye.com.geometricweather.common.ui.widgets.Material3Scaffold
 import wangdaye.com.geometricweather.common.ui.widgets.generateCollapsedScrollBehavior
 import wangdaye.com.geometricweather.common.ui.widgets.getCardListItemMarginDp
 import wangdaye.com.geometricweather.common.ui.widgets.insets.FitStatusBarTopAppBar
 import wangdaye.com.geometricweather.common.ui.widgets.insets.bottomInsetItem
-import wangdaye.com.geometricweather.db.DatabaseHelper
+import wangdaye.com.geometricweather.db.repositories.LocationEntityRepository
+import wangdaye.com.geometricweather.db.repositories.WeatherEntityRepository
 import wangdaye.com.geometricweather.theme.compose.DayNightTheme
 import wangdaye.com.geometricweather.theme.compose.GeometricWeatherTheme
 
@@ -59,11 +59,11 @@ class AllergenActivity : GeoActivity() {
     @Composable
     private fun ContentView() {
         val formattedId = intent.getStringExtra(KEY_ALLERGEN_ACTIVITY_LOCATION_FORMATTED_ID) ?: ""
-        var location = DatabaseHelper.getInstance(this).readLocation(formattedId)
-            ?: DatabaseHelper.getInstance(this).readLocationList()[0]
+        var location = LocationEntityRepository.readLocation(formattedId)
+            ?: LocationEntityRepository.readLocationList()[0]
 
         location = location.copy(
-            weather = DatabaseHelper.getInstance(this).readWeather(location)
+            weather = WeatherEntityRepository.readWeather(location)
         )
         val weather = location.weather
         if (weather == null) {
