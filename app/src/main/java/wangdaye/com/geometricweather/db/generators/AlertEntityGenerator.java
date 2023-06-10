@@ -17,8 +17,8 @@ public class AlertEntityGenerator {
         entity.weatherSource = new WeatherSourceConverter().convertToDatabaseValue(source);
 
         entity.alertId = alert.getAlertId();
-        entity.date = alert.getDate();
-        entity.time = alert.getTime();
+        entity.startDate = alert.getStartDate();
+        entity.endDate = alert.getEndDate();
 
         entity.description = alert.getDescription();
         entity.content = alert.getContent();
@@ -42,8 +42,8 @@ public class AlertEntityGenerator {
     public static Alert generate(AlertEntity entity) {
         return new Alert(
                 entity.alertId,
-                entity.date,
-                entity.time,
+                entity.startDate,
+                entity.endDate,
                 entity.description,
                 entity.content,
                 entity.type,

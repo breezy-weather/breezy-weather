@@ -1,13 +1,10 @@
 package wangdaye.com.geometricweather.common.ui.activities
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
@@ -17,6 +14,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -31,11 +29,12 @@ import wangdaye.com.geometricweather.common.ui.widgets.generateCollapsedScrollBe
 import wangdaye.com.geometricweather.common.ui.widgets.getCardListItemMarginDp
 import wangdaye.com.geometricweather.common.ui.widgets.insets.FitStatusBarTopAppBar
 import wangdaye.com.geometricweather.common.ui.widgets.insets.bottomInsetItem
+import wangdaye.com.geometricweather.common.utils.DisplayUtils
 import wangdaye.com.geometricweather.common.utils.helpers.AsyncHelper
 import wangdaye.com.geometricweather.db.DatabaseHelper
 import wangdaye.com.geometricweather.theme.compose.DayNightTheme
 import wangdaye.com.geometricweather.theme.compose.GeometricWeatherTheme
-import java.text.DateFormat
+import java.util.*
 
 class AlertActivity : GeoActivity() {
 
@@ -53,18 +52,50 @@ class AlertActivity : GeoActivity() {
         }
     }
 
-    private fun getAlertDate(alert: Alert): String {
-        if (alert.date != null) {
-            return DateFormat
-                .getDateTimeInstance(DateFormat.LONG, DateFormat.DEFAULT)
-                .format(alert.date)
+    private fun getAlertDate(context: Context, alert: Alert, timeZone: TimeZone): String {
+        val builder = StringBuilder()
+        if (alert.startDate != null) {
+            val startDateDay = DisplayUtils.getFormattedDate(
+                alert.startDate,
+                timeZone,
+                context.getString(R.string.date_format_long)
+            )
+            builder.append(startDateDay)
+                .append(", ")
+                .append(
+                    DisplayUtils.getFormattedDate(
+                        alert.startDate,
+                        timeZone,
+                        if (DisplayUtils.is12Hour(context)) "h:mm aa" else "HH:mm"
+                    )
+                )
+            if (alert.endDate != null) {
+                builder.append(" — ")
+                val endDateDay = DisplayUtils.getFormattedDate(
+                    alert.endDate,
+                    timeZone,
+                    context.getString(R.string.date_format_long)
+                )
+                if (startDateDay != endDateDay) {
+                    builder.append(endDateDay)
+                        .append(", ")
+                }
+                builder.append(
+                    DisplayUtils.getFormattedDate(
+                        alert.endDate,
+                        timeZone,
+                        if (DisplayUtils.is12Hour(context)) "h:mm aa" else "HH:mm"
+                    )
+                )
+            }
         }
-        return ""
+        return builder.toString()
     }
 
     @Composable
     private fun ContentView() {
         val alertList = remember { mutableStateOf(emptyList<Alert>()) }
+        val timeZone = remember { mutableStateOf(TimeZone.getDefault()) }
 
         val formattedId = intent.getStringExtra(KEY_FORMATTED_ID)
         AsyncHelper.runOnIO({ emitter ->
@@ -75,13 +106,14 @@ class AlertActivity : GeoActivity() {
             if (location == null) {
                 location = DatabaseHelper.getInstance(this).readLocationList()[0]
             }
-            val weather = DatabaseHelper.getInstance(this).readWeather(
-                location!!
-            )
+            val weather = DatabaseHelper.getInstance(this).readWeather(location!!)
 
-            emitter.send(weather?.alertList ?: emptyList(), true)
-        }) { alerts: List<Alert>?, _ ->
-            alerts?.let { alertList.value = it }
+            emitter.send(Pair(location.timeZone, weather?.alertList ?: emptyList()), true)
+        }) { result: Pair<TimeZone, List<Alert>>?, _ ->
+            result?.let {
+                timeZone.value = it.first
+                alertList.value = it.second
+            }
         }
 
         val scrollBehavior = generateCollapsedScrollBehavior()
@@ -112,12 +144,12 @@ class AlertActivity : GeoActivity() {
                                 style = MaterialTheme.typography.titleMedium,
                             )
                             Text(
-                                text = getAlertDate(alert),
+                                text = getAlertDate(LocalContext.current, alert, timeZone.value),
                                 color = DayNightTheme.colors.captionColor,
                                 style = MaterialTheme.typography.labelMedium,
                             )
                             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
-                            Text(
+                            if(alert.content != null) Text(
                                 text = alert.content,
                                 color = DayNightTheme.colors.bodyColor,
                                 style = MaterialTheme.typography.bodyMedium,

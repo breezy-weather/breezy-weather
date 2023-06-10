@@ -83,6 +83,7 @@ public class NotificationHelper {
     }
 
     // alert.
+    // FIXME: Multiple duplicate issue reports, see #261, #437, #467
     public static void checkAndSendAlert(Context context,
                                          Location location, @Nullable Weather oldResult) {
         Weather weather = location.getWeather();
@@ -151,15 +152,16 @@ public class NotificationHelper {
                                                              Alert alert,
                                                              boolean inGroup,
                                                              int notificationId) {
+        // FIXME: Timezone
         String time = DateFormat.getDateTimeInstance(
-                DateFormat.LONG, DateFormat.DEFAULT).format(alert.getDate());
+                DateFormat.LONG, DateFormat.DEFAULT).format(alert.getStartDate());
 
         NotificationCompat.Builder builder = getNotificationBuilder(
                 context,
                 R.drawable.ic_alert,
                 alert.getDescription(),
                 time,
-                alert.getContent(),
+                alert.getContent() != null ? alert.getContent() : "",
                 PendingIntent.getActivity(
                         context,
                         notificationId,
@@ -170,7 +172,7 @@ public class NotificationHelper {
                 new NotificationCompat.BigTextStyle()
                         .setBigContentTitle(alert.getDescription())
                         .setSummaryText(time)
-                        .bigText(alert.getContent())
+                        .bigText(alert.getContent() != null ? alert.getContent() : "")
         );
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && inGroup) {
             builder.setGroup(NOTIFICATION_GROUP_KEY);

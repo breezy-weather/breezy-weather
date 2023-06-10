@@ -468,23 +468,23 @@ private fun getWarningsList(warningsResult: MfWarningsResult): List<Alert> {
     warningsResult.timelaps?.forEach { timelaps ->
         timelaps.timelapsItems
             ?.filter { it.colorId > 1 }
-            ?.forEach {
+            ?.forEach { timelapsItem ->
                 alertList.add(
                     Alert(
-                        timelaps.phenomenonId.toLong(),
-                        it.beginTime,
-                        it.beginTime.time,
-                        getWarningType(timelaps.phenomenonId) + " — " + getWarningText(it.colorId),
-                        "",  // TODO: Longer description (I think there is a report in the web service when alert is orange or red)
+                        // Create unique ID from alert type ID concatenated with start time
+                        (timelaps.phenomenonId + timelapsItem.beginTime.time.toString()).toLong(),
+                        timelapsItem.beginTime,
+                        timelapsItem.endTime,
+                        getWarningType(timelaps.phenomenonId) + " — " + getWarningText(timelapsItem.colorId),
+                        if (timelapsItem.colorId >= 3) getWarningContent(timelaps.phenomenonId, warningsResult) else null,
                         getWarningType(timelaps.phenomenonId),
-                        it.colorId,
-                        getWarningColor(it.colorId)
+                        timelapsItem.colorId.times(-1), // Reverse, as lower is better
+                        getWarningColor(timelapsItem.colorId)
                     )
                 )
             }
     }
-    Alert.deduplication(alertList)
-    return alertList
+    return alertList.sortedWith(compareBy({ it.priority }, { it.startDate }))
 }
 
 private fun getPrecipitationIntensity(rain: Int): Double {
@@ -527,6 +527,30 @@ private fun getWarningColor(colorId: Int): Int {
         2 -> Color.rgb(255, 246, 0)
         else -> Color.rgb(49, 170, 53)
     }
+}
+
+private fun getWarningContent(phenomenonId: String, warningsResult: MfWarningsResult): String? {
+    val consequences = warningsResult.consequences?.firstOrNull { it.phenomenonId == phenomenonId }?.textConsequence?.replace("<br>", "\n")
+    val advices = warningsResult.advices?.firstOrNull { it.phenomenonId == phenomenonId }?.textAdvice?.replace("<br>", "\n")
+
+    val content = StringBuilder()
+    if (!consequences.isNullOrEmpty()) {
+        content
+            .append("CONSÉQUENCES POSSIBLES\n")
+            .append(consequences)
+    }
+    if (!advices.isNullOrEmpty()) {
+        if (content.toString().isNotEmpty()) {
+            content.append("\n\n")
+        }
+        content
+            .append("CONSEILS DE COMPORTEMENT\n")
+            .append(advices)
+    }
+
+    // There are also text blocks with hour by hour evaluation, but it’s way too detailed
+
+    return content.toString().ifEmpty { null }
 }
 
 private fun getWeatherCode(icon: String?): WeatherCode? {

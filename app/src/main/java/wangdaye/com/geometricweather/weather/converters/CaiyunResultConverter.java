@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
+import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.weather.AirQuality;
 import wangdaye.com.geometricweather.common.basic.models.weather.Alert;
@@ -115,7 +116,9 @@ public class CaiyunResultConverter {
             );
             return new WeatherService.WeatherResultWrapper(weather);
         } catch (Exception e) {
-            e.printStackTrace();
+            if (GeometricWeather.getInstance().getDebugMode()) {
+                e.printStackTrace();
+            }
             return new WeatherService.WeatherResultWrapper(null);
         }
     }
@@ -432,9 +435,9 @@ public class CaiyunResultConverter {
         for (CaiYunMainlyResult.AlertsBean a : result.alerts) {
             alertList.add(
                     new Alert(
-                            a.pubTime.getTime(),
+                            a.pubTime.getTime(), // TODO: Avoid having the same ID for two different alerts happening at the same time
                             a.pubTime,
-                            a.pubTime.getTime(),
+                            null,
                             a.title,
                             a.detail,
                             a.type,
@@ -443,8 +446,8 @@ public class CaiyunResultConverter {
                     )
             );
         }
+        // TODO: Avoid doing that, if there are multiple alerts for the same type, they usually are for different times
         Alert.deduplication(alertList);
-        Alert.descByTime(alertList);
         return alertList;
     }
 

@@ -19,8 +19,8 @@ public class AlertEntity {
     public String weatherSource;
     
     public long alertId;
-    public Date date;
-    public long time;
+    public Date startDate;
+    public Date endDate;
 
     public String description;
     public String content;
@@ -30,14 +30,14 @@ public class AlertEntity {
     public int color;
     
     public AlertEntity(Long id, String cityId, String weatherSource, long alertId,
-            Date date, long time, String description, String content, String type,
-            int priority, int color) {
+                       Date startDate, Date endDate, String description, String content, String type,
+                       int priority, int color) {
         this.id = id;
         this.cityId = cityId;
         this.weatherSource = weatherSource;
         this.alertId = alertId;
-        this.date = date;
-        this.time = time;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.description = description;
         this.content = content;
         this.type = type;
@@ -71,17 +71,17 @@ public class AlertEntity {
     public void setAlertId(long alertId) {
         this.alertId = alertId;
     }
-    public Date getDate() {
-        return this.date;
+    public Date getStartDate() {
+        return this.startDate;
     }
-    public void setDate(Date date) {
-        this.date = date;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
-    public long getTime() {
-        return this.time;
+    public Date getEndDate() {
+        return this.endDate;
     }
-    public void setTime(long time) {
-        this.time = time;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
     public String getDescription() {
         return this.description;

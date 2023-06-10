@@ -20,8 +20,8 @@ import java.util.Set;
 public class Alert implements Parcelable, Serializable {
 
     private final long alertId;
-    private final Date date;
-    private final long time;
+    private final Date startDate;
+    private final Date endDate;
 
     private final String description;
     private final String content;
@@ -30,29 +30,29 @@ public class Alert implements Parcelable, Serializable {
     private final int priority;
     @ColorInt private final int color;
 
-    public Alert(long alertId, Date date, long time,
+    public Alert(long alertId, Date startDate, Date endDate,
                  String description, String content,
                  String type, int priority, int color) {
         this.alertId = alertId;
-        this.date = date;
-        this.time = time;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.description = description;
         this.content = content;
         this.type = type;
         this.priority = priority;
-        this.color = color;
+        this.color = color; // TODO: Not used?
     }
 
     public long getAlertId() {
         return alertId;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public long getTime() {
-        return time;
+    public Date getEndDate() {
+        return endDate;
     }
 
     public String getDescription() {
@@ -89,13 +89,6 @@ public class Alert implements Parcelable, Serializable {
         }
     }
 
-    public static void descByTime(List<Alert> alertList) {
-        Collections.sort(
-                alertList,
-                (o1, o2) -> (int) (o2.getTime() - o1.getTime())
-        );
-    }
-
     // parcelable.
 
     @Override
@@ -106,8 +99,8 @@ public class Alert implements Parcelable, Serializable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeLong(this.alertId);
-        dest.writeLong(this.date != null ? this.date.getTime() : -1);
-        dest.writeLong(this.time);
+        dest.writeLong(this.startDate != null ? this.startDate.getTime() : -1);
+        dest.writeLong(this.endDate != null ? this.endDate.getTime() : -1);
         dest.writeString(this.description);
         dest.writeString(this.content);
         dest.writeString(this.type);
@@ -117,9 +110,10 @@ public class Alert implements Parcelable, Serializable {
 
     protected Alert(Parcel in) {
         this.alertId = in.readLong();
-        long tmpDate = in.readLong();
-        this.date = tmpDate == -1 ? null : new Date(tmpDate);
-        this.time = in.readLong();
+        long tmpStartDate = in.readLong();
+        this.startDate = tmpStartDate == -1 ? null : new Date(tmpStartDate);
+        long tmpEndDate = in.readLong();
+        this.endDate = tmpEndDate == -1 ? null : new Date(tmpEndDate);
         this.description = in.readString();
         this.content = in.readString();
         this.type = in.readString();

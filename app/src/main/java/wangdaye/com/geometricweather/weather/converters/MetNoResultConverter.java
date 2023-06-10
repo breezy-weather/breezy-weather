@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.TimeZone;
 
 import us.dustinj.timezonemap.TimeZoneMap;
+import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
 import wangdaye.com.geometricweather.common.basic.models.weather.AirQuality;
@@ -186,7 +187,10 @@ public class MetNoResultConverter {
                     new ArrayList<>()
             );
             return new WeatherService.WeatherResultWrapper(weather);
-        } catch (Exception ignored) {
+        } catch (Exception e) {
+            if (GeometricWeather.getInstance().getDebugMode()) {
+                e.printStackTrace();
+            }
             return new WeatherService.WeatherResultWrapper(null);
         }
     }

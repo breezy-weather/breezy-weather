@@ -5,7 +5,6 @@ import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.TextClock;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,12 +12,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.core.widget.ImageViewCompat;
 
-import java.text.DateFormat;
+import java.util.List;
 import java.util.TimeZone;
 
 import wangdaye.com.geometricweather.R;
 import wangdaye.com.geometricweather.common.basic.GeoActivity;
 import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.weather.Alert;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
@@ -48,10 +48,11 @@ public class FirstCardHeaderController
 
         if (location.getWeather() != null) {
             Weather weather = location.getWeather();
+            List<Alert> currentAlertList = weather.getCurrentAlertList();
 
             mView.setOnClickListener(v -> ((MainActivity) activity).setManagementFragmentVisibility(true));
 
-            if (weather.getAlertList().size() == 0) {
+            if (currentAlertList.size() == 0) {
                 timeIcon.setEnabled(false);
                 timeIcon.setImageResource(R.drawable.ic_time);
             } else {
@@ -60,7 +61,7 @@ public class FirstCardHeaderController
             }
             timeIcon.setContentDescription(
                     activity.getString(R.string.content_desc_weather_alert_button)
-                            .replace("$", "" + weather.getAlertList().size())
+                            .replace("$", "" + currentAlertList.size())
             );
             ImageViewCompat.setImageTintList(
                     timeIcon,
@@ -92,24 +93,39 @@ public class FirstCardHeaderController
                 localTime.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorCaptionText));
             }
 
-            if (weather.getAlertList().size() == 0) {
+            if (currentAlertList.size() == 0) {
                 alert.setVisibility(View.GONE);
                 line.setVisibility(View.GONE);
             } else {
                 alert.setVisibility(View.VISIBLE);
                 StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < weather.getAlertList().size(); i ++) {
-                    builder.append(weather.getAlertList().get(i).getDescription());
-                    if (weather.getAlertList().get(i).getDate() != null) {
+                for (int i = 0; i < currentAlertList.size(); i ++) {
+                    builder.append(currentAlertList.get(i).getDescription());
+                    if (currentAlertList.get(i).getStartDate() != null) {
+                        String startDateDay = DisplayUtils.getFormattedDate(currentAlertList.get(i).getStartDate(),
+                                location.getTimeZone(),
+                                activity.getString(R.string.date_format_long));
                         builder.append(", ")
-                                .append(
-                                        DateFormat.getDateTimeInstance(
-                                                DateFormat.LONG,
-                                                DateFormat.DEFAULT
-                                        ).format(weather.getAlertList().get(i).getDate())
-                                );
+                                .append(startDateDay)
+                                .append(", ")
+                                .append(DisplayUtils.getFormattedDate(currentAlertList.get(i).getStartDate(),
+                                        location.getTimeZone(),
+                                        (DisplayUtils.is12Hour(activity)) ? "h:mm aa" : "HH:mm"));
+                        if (currentAlertList.get(i).getEndDate() != null) {
+                            builder.append("-");
+                            String endDateDay = DisplayUtils.getFormattedDate(currentAlertList.get(i).getEndDate(),
+                                    location.getTimeZone(),
+                                    activity.getString(R.string.date_format_long));
+                            if (!startDateDay.equals(endDateDay)) {
+                                builder.append(endDateDay)
+                                        .append(", ");
+                            }
+                            builder.append(DisplayUtils.getFormattedDate(currentAlertList.get(i).getEndDate(),
+                                    location.getTimeZone(),
+                                    (DisplayUtils.is12Hour(activity)) ? "h:mm aa" : "HH:mm"));
+                        }
                     }
-                    if (i != weather.getAlertList().size() - 1) {
+                    if (i != currentAlertList.size() - 1) {
                         builder.append("\n");
                     }
                 }

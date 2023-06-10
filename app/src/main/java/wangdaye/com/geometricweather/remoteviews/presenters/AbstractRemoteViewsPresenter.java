@@ -24,8 +24,8 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 
 import wangdaye.com.geometricweather.R;
@@ -38,7 +38,7 @@ import wangdaye.com.geometricweather.common.basic.models.options.unit.PressureUn
 import wangdaye.com.geometricweather.common.basic.models.options.unit.ProbabilityUnit;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.RelativeHumidityUnit;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
-import wangdaye.com.geometricweather.common.basic.models.weather.Base;
+import wangdaye.com.geometricweather.common.basic.models.weather.Alert;
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper;
@@ -316,7 +316,7 @@ public abstract class AbstractRemoteViewsPresenter {
                 ).replace("$dd$", weather.getCurrent().getDailyForecast() + "")
                 .replace("$hd$", weather.getCurrent().getHourlyForecast() + "")
                 .replace("$enter$", "\n");
-        subtitle = replaceAlerts(subtitle, weather);
+        subtitle = replaceAlerts(context, subtitle, weather, location.getTimeZone());
         subtitle = replaceDaytimeWeatherSubtitle(subtitle, weather);
         subtitle = replaceNighttimeWeatherSubtitle(subtitle, weather);
         subtitle = replaceDaytimeTemperatureSubtitle(context, subtitle, weather, temperatureUnit);
@@ -335,23 +335,39 @@ public abstract class AbstractRemoteViewsPresenter {
         return subtitle;
     }
 
-    private static String replaceAlerts(@NonNull String subtitle, @NonNull Weather weather) {
+    private static String replaceAlerts(Context context, @NonNull String subtitle, @NonNull Weather weather, TimeZone timeZone) {
         StringBuilder defaultBuilder = new StringBuilder();
         StringBuilder shortBuilder = new StringBuilder();
-        for (int i = 0; i < weather.getAlertList().size(); i++) {
-            defaultBuilder.append(weather.getAlertList().get(i).getDescription());
-            if (weather.getAlertList().get(i).getDate() != null) {
+        List<Alert> currentAlertList = weather.getCurrentAlertList();
+        for (int i = 0; i < currentAlertList.size(); i++) {
+            defaultBuilder.append(currentAlertList.get(i).getDescription());
+            if (currentAlertList.get(i).getStartDate() != null) {
+                String startDateDay = DisplayUtils.getFormattedDate(currentAlertList.get(i).getStartDate(),
+                        timeZone,
+                        context.getString(R.string.date_format_long));
                 defaultBuilder.append(", ")
-                        .append(
-                                DateFormat.getDateTimeInstance(
-                                        DateFormat.DEFAULT,
-                                        DateFormat.SHORT
-                                ).format(weather.getAlertList().get(i).getDate())
-                        );
+                        .append(startDateDay)
+                        .append(", ")
+                        .append(DisplayUtils.getFormattedDate(currentAlertList.get(i).getStartDate(),
+                                timeZone,
+                                (DisplayUtils.is12Hour(context)) ? "h:mm aa" : "HH:mm"));
+                if (currentAlertList.get(i).getEndDate() != null) {
+                    defaultBuilder.append("-");
+                    String endDateDay = DisplayUtils.getFormattedDate(currentAlertList.get(i).getEndDate(),
+                            timeZone,
+                            context.getString(R.string.date_format_long));
+                    if (!startDateDay.equals(endDateDay)) {
+                        defaultBuilder.append(endDateDay)
+                                .append(", ");
+                    }
+                    defaultBuilder.append(DisplayUtils.getFormattedDate(currentAlertList.get(i).getEndDate(),
+                            timeZone,
+                            (DisplayUtils.is12Hour(context)) ? "h:mm aa" : "HH:mm"));
+                }
             }
-            shortBuilder.append(weather.getAlertList().get(i).getDescription());
+            shortBuilder.append(currentAlertList.get(i).getDescription());
 
-            if (i != weather.getAlertList().size() - 1) {
+            if (i != currentAlertList.size() - 1) {
                 defaultBuilder.append("\n");
                 shortBuilder.append("\n");
             }

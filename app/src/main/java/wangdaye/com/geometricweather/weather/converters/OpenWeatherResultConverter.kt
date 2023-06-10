@@ -307,15 +307,14 @@ private fun getAirQuality(requestedTime: Long, ownAirPollutionResult: OpenWeathe
 }
 
 private fun getAlertList(resultList: List<OpenWeatherOneCallAlert>?): List<Alert> {
-    var i = 0
     return if (resultList != null) {
         val alertList: MutableList<Alert> = ArrayList(resultList.size)
         for (result in resultList) {
             alertList.add(
                 Alert(
-                    i.toLong(),  // Does not exist
+                    result.start, // TODO: Avoid having the same ID for two different alerts starting at the same time
                     Date(result.start.times(1000)),
-                    result.start.times(1000),
+                    Date(result.end.times(1000)),
                     result.event,
                     result.description,
                     result.event,
@@ -323,13 +322,12 @@ private fun getAlertList(resultList: List<OpenWeatherOneCallAlert>?): List<Alert
                     Color.rgb(255, 184, 43) // Defaulting to orange as we don't know
                 )
             )
-            ++i
         }
-        Alert.deduplication(alertList)
-        Alert.descByTime(alertList)
+        // TODO: Avoid doing that, if there are multiple alerts for the same type, they usually are for different times
+        //Alert.deduplication(alertList)
         alertList
     } else {
-        ArrayList<Alert>()
+        emptyList()
     }
 }
 

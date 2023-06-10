@@ -146,15 +146,13 @@ Legend:
 
 ### Other data
 
-| Providers                       | Open-Meteo | AccuWeather | MET Norway    | OpenWeather | Météo-France  |
-|---------------------------------|------------|-------------|---------------|-------------|---------------|
-| Precipitations in next hour     | ❌          | ✅           | *In progress* | ✅           | ✅²            |
-| Alerts                          | ❌          | ✅           | *In progress* | ✅¹          | Partial³      |
-| Yesterday daytime temperature   | ✅          | ✅           | ❌             | ❌⁴          | *In progress* |
-| Yesterday nighttime temperature | ✅          | ✅           | ❌             | ❌⁴          | *In progress* |
+| Providers                       | Open-Meteo | AccuWeather | MET Norway    | OpenWeather | Météo-France |
+|---------------------------------|------------|-------------|---------------|-------------|--------------|
+| Precipitations in next hour     | ❌          | ✅           | *In progress* | ✅           | ✅²           |
+| Alerts                          | ❌          | ✅           | *In progress* | ✅¹          | ✅            |
+| Yesterday daytime temperature   | ✅          | ✅           | ❌             | ❌           | ❌            |
+| Yesterday nighttime temperature | ✅          | ✅           | ❌             | ❌           | ❌            |
 
 * ¹ List of available countries: https://openweathermap.org/api/push-weather-alerts#listsource
 * ² Only for France, and only for some cities. Rain intensity is estimated.
-* ³ *Bulletin* (alert description) remains to be implemented
-* ⁴ Not implemented because not available in the free tier
 

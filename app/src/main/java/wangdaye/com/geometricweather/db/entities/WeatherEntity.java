@@ -525,7 +525,8 @@ public class WeatherEntity {
                             AlertEntity_.cityId.equal(cityId)
                                     .and(AlertEntity_.weatherSource.equal(weatherSource)
                                     ))
-                    .order(AlertEntity_.date)
+                    .order(AlertEntity_.priority)
+                    .order(AlertEntity_.startDate)
                     .build();
             List<AlertEntity> alertEntityListNew = query.find();
             query.close();

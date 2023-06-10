@@ -14,6 +14,7 @@ import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.common.basic.models.Location;
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
 import wangdaye.com.geometricweather.common.basic.models.options.unit.PrecipitationUnit;
@@ -151,7 +152,10 @@ public class AccuResultConverter {
                     getAlertList(alertResultList)
             );
             return new WeatherService.WeatherResultWrapper(weather);
-        } catch (Exception ignored) {
+        } catch (Exception e) {
+            if (GeometricWeather.getInstance().getDebugMode()) {
+                e.printStackTrace();
+            }
             return new WeatherService.WeatherResultWrapper(null);
         }
     }
@@ -383,18 +387,18 @@ public class AccuResultConverter {
             alertList.add(
                     new Alert(
                             result.AlertID,
-                            result.Area.size() > 1 ? result.Area.get(0).StartTime : null,
-                            result.Area.size() > 1 ? result.Area.get(0).EpochStartTime * 1000 : 0,
+                            result.Area.size() > 0 ? result.Area.get(0).StartTime : null,
+                            result.Area.size() > 0 ? result.Area.get(0).EndTime : null,
                             result.Description.Localized,
-                            result.Area.size() > 1 ? result.Area.get(0).Text : "",
+                            result.Area.size() > 0 ? result.Area.get(0).Text : "",
                             result.TypeID,
                             result.Priority,
                             Color.rgb(result.Color.Red, result.Color.Green, result.Color.Blue)
                     )
             );
         }
+        // TODO: Avoid doing that, if there are multiple alerts for the same type, they usually are for different times
         Alert.deduplication(alertList);
-        Alert.descByTime(alertList);
         return alertList;
     }
 

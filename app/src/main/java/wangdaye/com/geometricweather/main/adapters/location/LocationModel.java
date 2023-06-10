@@ -6,7 +6,6 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import java.text.DateFormat;
 import java.util.List;
 
 import wangdaye.com.geometricweather.R;
@@ -15,6 +14,7 @@ import wangdaye.com.geometricweather.common.basic.models.options.provider.Weathe
 import wangdaye.com.geometricweather.common.basic.models.options.unit.TemperatureUnit;
 import wangdaye.com.geometricweather.common.basic.models.weather.Alert;
 import wangdaye.com.geometricweather.common.basic.models.weather.WeatherCode;
+import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 
 public class LocationModel {
 
@@ -94,19 +94,34 @@ public class LocationModel {
         }
 
         if (location.getWeather() != null) {
-            List<Alert> alertList = location.getWeather().getAlertList();
+            List<Alert> alertList = location.getWeather().getCurrentAlertList();
             if (alertList.size() > 0) {
                 StringBuilder builder = new StringBuilder();
                 for (int i = 0; i < alertList.size(); i++) {
-                    if (alertList.get(i).getDate() != null) {
-                        builder.append(alertList.get(i).getDescription())
-                                .append(", ")
-                                .append(
-                                        DateFormat.getDateTimeInstance(
-                                                DateFormat.SHORT,
-                                                DateFormat.SHORT
-                                        ).format(alertList.get(i).getDate())
-                                );
+                    builder.append(alertList.get(i).getDescription());
+                    if (alertList.get(i).getStartDate() != null) {
+                        String startDateDay = DisplayUtils.getFormattedDate(alertList.get(i).getStartDate(),
+                                location.getTimeZone(),
+                                context.getString(R.string.date_format_short));
+                        builder.append(", ")
+                            .append(startDateDay)
+                            .append(", ")
+                            .append(DisplayUtils.getFormattedDate(alertList.get(i).getStartDate(),
+                                    location.getTimeZone(),
+                                    (DisplayUtils.is12Hour(context)) ? "h:mm aa" : "HH:mm"));
+                        if (alertList.get(i).getEndDate() != null) {
+                            builder.append("-");
+                            String endDateDay = DisplayUtils.getFormattedDate(alertList.get(i).getEndDate(),
+                                    location.getTimeZone(),
+                                    context.getString(R.string.date_format_short));
+                            if (!startDateDay.equals(endDateDay)) {
+                                builder.append(endDateDay)
+                                        .append(", ");
+                            }
+                            builder.append(DisplayUtils.getFormattedDate(alertList.get(i).getEndDate(),
+                                    location.getTimeZone(),
+                                    (DisplayUtils.is12Hour(context)) ? "h:mm aa" : "HH:mm"));
+                        }
                     }
                     if (i != alertList.size() - 1) {
                         builder.append("\n");
