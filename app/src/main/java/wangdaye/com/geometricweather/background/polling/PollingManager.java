@@ -167,8 +167,8 @@ public class PollingManager {
     private static void forceRefresh(Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             AsyncHelper.runOnIO(() -> {
-                List<Location> locationList = LocationEntityRepository.INSTANCE.readLocationList();
-                for (int i = 0; i < locationList.size(); i ++) {
+                List<Location> locationList = LocationEntityRepository.INSTANCE.readLocationList(context);
+                for (int i = 0; i < locationList.size(); i++) {
                     locationList.set(
                             i, Location.copy(
                                     locationList.get(i),

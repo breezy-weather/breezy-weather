@@ -433,8 +433,6 @@
     <string name="settings_provider_default_value">Bawaan (tidak diubah)</string>
     <string name="settings_provider_accu_weather">AccuWeather</string>
     <string name="settings_provider_accu_weather_key">Kunci cuaca AccuWeather</string>
-    <string name="settings_provider_accu_current_key">Kincu AccuWeather saat ini</string>
-    <string name="settings_provider_accu_aqi_key">Kunci AQI AccuWeather</string>
     <string name="settings_provider_open_weather">OpenWeather</string>
     <string name="settings_provider_open_weather_key">Kunci OpenWeather</string>
     <string name="settings_provider_baidu_ip_location">Lokasi IP Baidu</string>

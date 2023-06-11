@@ -486,8 +486,6 @@
     <string name="settings_provider_default_value">Default (unchanged)</string>
     <string name="settings_provider_accu_weather">AccuWeather</string>
     <string name="settings_provider_accu_weather_key">AccuWeather weather key</string>
-    <string name="settings_provider_accu_current_key">AccuWeather current key</string>
-    <string name="settings_provider_accu_aqi_key">AccuWeather AQI key</string>
     <string name="settings_provider_open_weather">OpenWeather</string>
     <string name="settings_provider_open_weather_key">OpenWeather key</string>
     <string name="settings_provider_open_weather_one_call_version">OpenWeather OneCall version</string>

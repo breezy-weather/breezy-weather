@@ -85,13 +85,7 @@ public class LocationHelper {
                 if (requestLocation.isUsable()) {
                     l.requestLocationFailed(requestLocation);
                 } else {
-                    Location finalLocation = Location.copy(
-                            Location.buildDefaultLocation(
-                                    SettingsManager.getInstance(context).getWeatherSource()
-                            ),
-                            true,
-                            false
-                    );
+                    Location finalLocation = Location.buildLocal(context);
                     LocationEntityRepository.INSTANCE.writeLocation(finalLocation);
                     l.requestLocationFailed(finalLocation);
                 }

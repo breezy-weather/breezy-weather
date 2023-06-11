@@ -171,7 +171,7 @@ public class MeteorShowerImplementor extends MaterialWeatherView.WeatherAnimatio
                 Color.rgb(255, 255, 255)};
         */
         mMeteors = new Meteor[15];
-        for (int i = 0; i < mMeteors.length; i ++) {
+        for (int i = 0; i < mMeteors.length; i++) {
             mMeteors[i] = new Meteor(
                     viewWidth, viewHeight,
                     colors[random.nextInt(colors.length)], random.nextFloat());
@@ -183,7 +183,7 @@ public class MeteorShowerImplementor extends MaterialWeatherView.WeatherAnimatio
         int width = (int) (1.0 * canvasSize);
         int height = (int) ((canvasSize - viewHeight) * 0.5 + viewWidth * 1.1111);
         float radius = (float) (0.00125 * canvasSize * (0.5 + random.nextFloat()));
-        for (int i = 0; i < mStars.length; i ++) {
+        for (int i = 0; i < mStars.length; i++) {
             int x = (int) (random.nextInt(width) - 0.5 * (canvasSize - viewWidth));
             int y = (int) (random.nextInt(height) - 0.5 * (canvasSize - viewHeight));
 

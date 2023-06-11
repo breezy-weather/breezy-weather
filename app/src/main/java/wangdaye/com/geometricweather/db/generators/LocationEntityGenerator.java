@@ -28,7 +28,7 @@ public class LocationEntityGenerator {
 
     public static List<LocationEntity> generateEntityList(List<Location> locationList) {
         List<LocationEntity> entityList = new ArrayList<>(locationList.size());
-        for (int i = 0; i < locationList.size(); i ++) {
+        for (int i = 0; i < locationList.size(); i++) {
             entityList.add(generate(locationList.get(i)));
         }
         return entityList;

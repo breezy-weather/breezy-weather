@@ -104,7 +104,7 @@ public class WidgetHelper {
         TextPaint paint = new TextPaint();
 
         float[] widths = new float[4];
-        for (int i = 0; i < widths.length; i ++) {
+        for (int i = 0; i < widths.length; i++) {
             widths[i] = paint.measureText(texts[i]);
         }
 
@@ -118,7 +118,7 @@ public class WidgetHelper {
         while (true) {
             boolean[] flags = new boolean[] {false, false, false, false};
 
-            for (int i = 0; i < 2; i ++) {
+            for (int i = 0; i < 2; i++) {
                 if (widths[i] < maxiWidth) {
                     texts[i] = texts[i] + " ";
                     widths[i] = paint.measureText(texts[i]);
@@ -126,7 +126,7 @@ public class WidgetHelper {
                     flags[i] = true;
                 }
             }
-            for (int i = 2; i < 4; i ++) {
+            for (int i = 2; i < 4; i++) {
                 if (widths[i] < maxiWidth) {
                     texts[i] = " " + texts[i];
                     widths[i] = paint.measureText(texts[i]);

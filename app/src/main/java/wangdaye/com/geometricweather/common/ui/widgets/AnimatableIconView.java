@@ -60,7 +60,7 @@ public class AnimatableIconView extends FrameLayout {
     public void setAnimatableIcon(@NonNull @Size(3) Drawable[] drawables,
                                   @NonNull @Size(3) Animator[] animators) {
         endAnimators();
-        for (int i = 0; i < drawables.length; i ++) {
+        for (int i = 0; i < drawables.length; i++) {
             mIconImageViews[i].setImageDrawable(drawables[i]);
             mIconImageViews[i].setVisibility(drawables[i] == null ? GONE : VISIBLE);
 
@@ -78,7 +78,7 @@ public class AnimatableIconView extends FrameLayout {
                 return;
             }
         }
-        for (int i = 0; i < mIconAnimators.length; i ++) {
+        for (int i = 0; i < mIconAnimators.length; i++) {
             if (mIconAnimators[i] != null && mIconImageViews[i].getVisibility() == VISIBLE) {
                 mIconAnimators[i].start();
             }
@@ -86,7 +86,7 @@ public class AnimatableIconView extends FrameLayout {
     }
 
     private void endAnimators() {
-        for (int i = 0; i < mIconImageViews.length; i ++) {
+        for (int i = 0; i < mIconImageViews.length; i++) {
             if (mIconAnimators[i] != null && mIconAnimators[i].isStarted()) {
                 mIconAnimators[i].cancel();
             }

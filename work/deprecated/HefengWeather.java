@@ -102,7 +102,7 @@ public class HefengWeather {
         }
         int position = 0;
         String updateTime = result.heWeather.get(0).basic.update.loc;
-        for (int i = 1; i < result.heWeather.size(); i ++) {
+        for (int i = 1; i < result.heWeather.size(); i++) {
             if (result.heWeather.get(i).basic.update.loc.compareTo(updateTime) > 0) {
                 position = i;
                 updateTime = result.heWeather.get(i).basic.update.loc;

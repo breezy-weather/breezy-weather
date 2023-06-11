@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -60,7 +61,7 @@ class AllergenActivity : GeoActivity() {
     private fun ContentView() {
         val formattedId = intent.getStringExtra(KEY_ALLERGEN_ACTIVITY_LOCATION_FORMATTED_ID) ?: ""
         var location = LocationEntityRepository.readLocation(formattedId)
-            ?: LocationEntityRepository.readLocationList()[0]
+            ?: LocationEntityRepository.readLocationList(LocalContext.current)[0]
 
         location = location.copy(
             weather = WeatherEntityRepository.readWeather(location)

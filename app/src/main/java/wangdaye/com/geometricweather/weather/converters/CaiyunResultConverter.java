@@ -185,7 +185,7 @@ public class CaiyunResultConverter {
     private static List<Daily> getDailyList(Context context,
                                             Date publishDate, TimeZone timeZone, CaiYunMainlyResult.ForecastDailyBean forecast) {
         List<Daily> dailyList = new ArrayList<>(forecast.weather.value.size());
-        for (int i = 0; i < forecast.weather.value.size(); i ++) {
+        for (int i = 0; i < forecast.weather.value.size(); i++) {
             Calendar calendar = DisplayUtils.toCalendarWithTimeZone(publishDate, timeZone);
             calendar.add(Calendar.DATE, i);
             calendar.set(Calendar.HOUR_OF_DAY, 0);
@@ -307,7 +307,7 @@ public class CaiyunResultConverter {
                                               Date sunrise, Date sunset,
                                               CaiYunMainlyResult.ForecastHourlyBean forecast) {
         List<Hourly> hourlyList = new ArrayList<>(forecast.weather.value.size());
-        for (int i = 0; i < forecast.weather.value.size(); i ++) {
+        for (int i = 0; i < forecast.weather.value.size(); i++) {
             Calendar calendar = DisplayUtils.toCalendarWithTimeZone(publishDate, timeZone);
             calendar.add(Calendar.HOUR_OF_DAY, i);
             calendar.set(Calendar.MINUTE, 0);
@@ -361,7 +361,7 @@ public class CaiyunResultConverter {
         Date current = result.precipitation.pubTime;
 
         List<Minutely> minutelyList = new ArrayList<>(result.precipitation.value.size());
-        for (int i = 0; i < result.precipitation.value.size(); i ++) {
+        for (int i = 0; i < result.precipitation.value.size(); i++) {
             Calendar calendar = DisplayUtils.toCalendarWithTimeZone(current, timeZone);
             calendar.set(Calendar.SECOND, 0);
             calendar.set(Calendar.MILLISECOND, 0);
@@ -441,8 +441,7 @@ public class CaiyunResultConverter {
                             a.title,
                             a.detail,
                             a.type,
-                            getAlertPriority(a.level),
-                            getAlertColor(a.level)
+                            getAlertPriority(a.level)
                     )
             );
         }

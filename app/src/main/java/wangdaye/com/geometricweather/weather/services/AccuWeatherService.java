@@ -4,7 +4,6 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,13 +17,13 @@ import wangdaye.com.geometricweather.common.rxjava.ObserverContainer;
 import wangdaye.com.geometricweather.common.rxjava.SchedulerTransformer;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.weather.apis.AccuWeatherApi;
-import wangdaye.com.geometricweather.weather.converters.AccuResultConverter;
+import wangdaye.com.geometricweather.weather.converters.AccuResultConverterKt;
 import wangdaye.com.geometricweather.weather.json.accu.AccuAlertResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuCurrentResult;
-import wangdaye.com.geometricweather.weather.json.accu.AccuDailyResult;
-import wangdaye.com.geometricweather.weather.json.accu.AccuHourlyResult;
+import wangdaye.com.geometricweather.weather.json.accu.AccuForecastDailyResult;
+import wangdaye.com.geometricweather.weather.json.accu.AccuForecastHourlyResult;
 import wangdaye.com.geometricweather.weather.json.accu.AccuLocationResult;
-import wangdaye.com.geometricweather.weather.json.accu.AccuMinuteResult;
+import wangdaye.com.geometricweather.weather.json.accu.AccuMinutelyResult;
 
 /**
  * Accu weather service.
@@ -34,9 +33,6 @@ public class AccuWeatherService extends WeatherService {
 
     private final AccuWeatherApi mApi;
     private final CompositeDisposable mCompositeDisposable;
-
-    private static class EmptyMinuteResult extends AccuMinuteResult {
-    }
 
     @Inject
     public AccuWeatherService(AccuWeatherApi api, CompositeDisposable disposable) {
@@ -49,36 +45,40 @@ public class AccuWeatherService extends WeatherService {
         String languageCode = SettingsManager.getInstance(context).getLanguage().getCode();
 
         Observable<List<AccuCurrentResult>> realtime = mApi.getCurrent(
-                location.getCityId(), SettingsManager.getInstance(context).getProviderAccuCurrentKey(), languageCode, true);
+                location.getCityId(), SettingsManager.getInstance(context).getProviderAccuWeatherKey(), languageCode, true);
 
-        Observable<AccuDailyResult> daily = mApi.getDaily(
+        Observable<AccuForecastDailyResult> daily = mApi.getDaily(
                 location.getCityId(), SettingsManager.getInstance(context).getProviderAccuWeatherKey(), languageCode, true, true);
 
-        Observable<List<AccuHourlyResult>> hourly = mApi.getHourly(
+        Observable<List<AccuForecastHourlyResult>> hourly = mApi.getHourly(
                 location.getCityId(), SettingsManager.getInstance(context).getProviderAccuWeatherKey(), languageCode, true, true);
 
-        Observable<AccuMinuteResult> minute = mApi.getMinutely(
+        Observable<AccuMinutelyResult> minute = mApi.getMinutely(
                 SettingsManager.getInstance(context).getProviderAccuWeatherKey(),
+                location.getLatitude() + "," + location.getLongitude(),
                 languageCode,
-                true,
-                location.getLatitude() + "," + location.getLongitude()
+                true
         ).onErrorResumeNext(error ->
-                Observable.create(emitter -> emitter.onNext(new EmptyMinuteResult()))
+                Observable.create(emitter -> emitter.onNext(new AccuMinutelyResult(null, null)))
         );
 
         Observable<List<AccuAlertResult>> alert = mApi.getAlert(
-                location.getCityId(), SettingsManager.getInstance(context).getProviderAccuWeatherKey(), languageCode, true);
+                SettingsManager.getInstance(context).getProviderAccuWeatherKey(),
+                location.getLatitude() + "," + location.getLongitude(),
+                languageCode,
+                true
+        );
 
         Observable.zip(realtime, daily, hourly, minute, alert,
                 (accuRealtimeResults,
-                 accuDailyResult, accuHourlyResults, accuMinuteResult,
-                 accuAlertResults) -> AccuResultConverter.convert(
+                 accuDailyResult, accuHourlyResults, accuMinutelyResult,
+                 accuAlertResults) -> AccuResultConverterKt.convert(
                          context,
                          location,
                          accuRealtimeResults.get(0),
                          accuDailyResult,
                          accuHourlyResults,
-                         accuMinuteResult instanceof EmptyMinuteResult ? null : accuMinuteResult,
+                         accuMinutelyResult,
                          accuAlertResults
                  )
         ).compose(SchedulerTransformer.create())
@@ -108,10 +108,11 @@ public class AccuWeatherService extends WeatherService {
         List<AccuLocationResult> resultList = null;
         try {
             resultList = mApi.callWeatherLocation(
-                    "Always",
                     SettingsManager.getInstance(context).getProviderAccuWeatherKey(),
                     query,
-                    languageCode
+                    languageCode,
+                    false,
+                    "Always"
             ).execute().body();
         } catch (Exception e) {
             e.printStackTrace();
@@ -122,7 +123,7 @@ public class AccuWeatherService extends WeatherService {
         List<Location> locationList = new ArrayList<>();
         if (resultList != null && resultList.size() != 0) {
             for (AccuLocationResult r : resultList) {
-                locationList.add(AccuResultConverter.convert(null, r, zipCode));
+                locationList.add(AccuResultConverterKt.convert(null, r, zipCode));
             }
         }
         return locationList;
@@ -135,17 +136,17 @@ public class AccuWeatherService extends WeatherService {
         String languageCode = SettingsManager.getInstance(context).getLanguage().getCode();
 
         mApi.getWeatherLocationByGeoPosition(
-                "Always",
-                SettingsManager.getInstance(context).getProviderAccuWeatherKey(),
-                location.getLatitude() + "," + location.getLongitude(),
-                languageCode
+                        SettingsManager.getInstance(context).getProviderAccuWeatherKey(),
+                        languageCode,
+                        false,
+                        location.getLatitude() + "," + location.getLongitude()
         ).compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<AccuLocationResult>() {
                     @Override
                     public void onSucceed(AccuLocationResult accuLocationResult) {
                         if (accuLocationResult != null) {
                             List<Location> locationList = new ArrayList<>();
-                            locationList.add(AccuResultConverter.convert(location, accuLocationResult, null));
+                            locationList.add(AccuResultConverterKt.convert(location, accuLocationResult, null));
                             callback.requestLocationSuccess(
                                     location.getLatitude() + "," + location.getLongitude(),
                                     locationList
@@ -169,7 +170,7 @@ public class AccuWeatherService extends WeatherService {
         String languageCode = SettingsManager.getInstance(context).getLanguage().getCode();
         String zipCode = query.matches("[a-zA-Z0-9]") ? query : null;
 
-        mApi.getWeatherLocation("Always", SettingsManager.getInstance(context).getProviderAccuWeatherKey(), query, languageCode)
+        mApi.getWeatherLocation(SettingsManager.getInstance(context).getProviderAccuWeatherKey(), query, languageCode, false, "Always")
                 .compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<List<AccuLocationResult>>() {
                     @Override
@@ -177,7 +178,7 @@ public class AccuWeatherService extends WeatherService {
                         if (accuLocationResults != null && accuLocationResults.size() != 0) {
                             List<Location> locationList = new ArrayList<>();
                             for (AccuLocationResult r : accuLocationResults) {
-                                locationList.add(AccuResultConverter.convert(null, r, zipCode));
+                                locationList.add(AccuResultConverterKt.convert(null, r, zipCode));
                             }
                             callback.requestLocationSuccess(query, locationList);
                         } else {

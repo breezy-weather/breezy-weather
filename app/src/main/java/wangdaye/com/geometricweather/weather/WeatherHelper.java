@@ -93,13 +93,13 @@ public class WeatherHelper {
 
         // generate weather services.
         final WeatherService[] services = new WeatherService[enabledSources.size()];
-        for (int i = 0; i < services.length; i ++) {
+        for (int i = 0; i < services.length; i++) {
             services[i] = mServiceSet.get(enabledSources.get(i));
         }
 
         // generate observable list.
         List<Observable<List<Location>>> observableList = new ArrayList<>();
-        for (int i = 0; i < services.length; i ++) {
+        for (int i = 0; i < services.length; i++) {
             int finalI = i;
             observableList.add(
                     Observable.create(emitter ->

@@ -66,7 +66,7 @@ public class ApiModule {
 
     @Provides
     public AccuWeatherApi provideAccuWeatherApi(OkHttpClient client,
-                                                GsonConverterFactory converterFactory,
+                                                Converter.Factory converterFactory,
                                                 RxJava3CallAdapterFactory callAdapterFactory) {
         return new Retrofit.Builder()
                 .baseUrl(BuildConfig.ACCU_WEATHER_BASE_URL)

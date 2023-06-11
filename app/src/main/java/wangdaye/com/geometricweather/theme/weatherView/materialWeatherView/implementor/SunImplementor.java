@@ -36,7 +36,7 @@ public class SunImplementor extends MaterialWeatherView.WeatherAnimationImplemen
     @Override
     public void updateData(@Size(2) int[] canvasSizes, long interval,
                            float rotation2D, float rotation3D) {
-        for (int i = 0; i < mAngles.length; i ++) {
+        for (int i = 0; i < mAngles.length; i++) {
             mAngles[i] = (float) ((mAngles[i] + (90.0 / (3000 + 1000 * i) * interval)) % 90);
         }
     }
@@ -54,7 +54,7 @@ public class SunImplementor extends MaterialWeatherView.WeatherAnimationImplemen
 
             mPaint.setAlpha((int) ((1 - scrollRate) * 255 * 0.40));
             canvas.rotate(mAngles[0]);
-            for (int i = 0; i < 4; i ++) {
+            for (int i = 0; i < 4; i++) {
                 canvas.drawRect(-mUnitSizes[0], -mUnitSizes[0], mUnitSizes[0], mUnitSizes[0], mPaint);
                 canvas.rotate(22.5F);
             }
@@ -62,7 +62,7 @@ public class SunImplementor extends MaterialWeatherView.WeatherAnimationImplemen
 
             mPaint.setAlpha((int) ((1 - scrollRate) * 255 * 0.16));
             canvas.rotate(mAngles[1]);
-            for (int i = 0; i < 4; i ++) {
+            for (int i = 0; i < 4; i++) {
                 canvas.drawRect(-mUnitSizes[1], -mUnitSizes[1], mUnitSizes[1], mUnitSizes[1], mPaint);
                 canvas.rotate(22.5F);
             }
@@ -70,7 +70,7 @@ public class SunImplementor extends MaterialWeatherView.WeatherAnimationImplemen
 
             mPaint.setAlpha((int) ((1 - scrollRate) * 255 * 0.08));
             canvas.rotate(mAngles[2]);
-            for (int i = 0; i < 4; i ++) {
+            for (int i = 0; i < 4; i++) {
                 canvas.drawRect(-mUnitSizes[2], -mUnitSizes[2], mUnitSizes[2], mUnitSizes[2], mPaint);
                 canvas.rotate(22.5F);
             }

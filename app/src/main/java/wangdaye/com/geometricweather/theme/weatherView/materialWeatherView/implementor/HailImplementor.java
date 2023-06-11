@@ -128,7 +128,7 @@ public class HailImplementor extends MaterialWeatherView.WeatherAnimationImpleme
         float[] scales = new float[] {0.6F, 0.8F, 1};
 
         mHails = new Hail[51];
-        for (int i = 0; i < mHails.length; i ++) {
+        for (int i = 0; i < mHails.length; i++) {
             mHails[i] = new Hail(
                     canvasSizes[0], canvasSizes[1],
                     colors[i * 3 / mHails.length], scales[i * 3 / mHails.length]);

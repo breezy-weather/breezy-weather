@@ -63,7 +63,7 @@ public class TileService extends android.service.quicksettings.TileService {
         if (tile == null) {
             return;
         }
-        Location location = LocationEntityRepository.INSTANCE.readLocationList().get(0);
+        Location location = LocationEntityRepository.INSTANCE.readLocationList(context).get(0);
         location = Location.copy(location, WeatherEntityRepository.INSTANCE.readWeather(location));
         if (location.getWeather() != null && location.getWeather().getCurrent() != null) {
             if (location.getWeather().getCurrent().getWeatherCode() != null) {

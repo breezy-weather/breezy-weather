@@ -127,7 +127,7 @@ public class WindImplementor extends MaterialWeatherView.WeatherAnimationImpleme
         float[] scales = new float[] {0.6F, 0.8F, 1};
 
         mWinds = new Wind[WIND_COUNT];
-        for (int i = 0; i < mWinds.length; i ++) {
+        for (int i = 0; i < mWinds.length; i++) {
             mWinds[i] = new Wind(
                     canvasSizes[0],
                     canvasSizes[1],

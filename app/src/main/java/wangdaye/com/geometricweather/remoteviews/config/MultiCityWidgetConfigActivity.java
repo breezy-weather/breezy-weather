@@ -25,8 +25,8 @@ public class MultiCityWidgetConfigActivity extends AbstractWidgetConfigActivity 
     public void initData() {
         super.initData();
 
-        locationList = LocationEntityRepository.INSTANCE.readLocationList();
-        for (int i = 0; i < locationList.size(); i ++) {
+        locationList = LocationEntityRepository.INSTANCE.readLocationList(this);
+        for (int i = 0; i < locationList.size(); i++) {
             locationList.set(
                     i, Location.copy(
                             locationList.get(i),

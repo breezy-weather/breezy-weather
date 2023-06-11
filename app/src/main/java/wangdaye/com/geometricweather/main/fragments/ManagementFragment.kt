@@ -118,7 +118,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
         binding.searchBar.transitionName = getString(R.string.transition_activity_search_bar)
 
         binding.currentLocationButton.setOnClickListener {
-            viewModel.addLocation(buildLocal(), null)
+            viewModel.addLocation(buildLocal(requireContext()), null)
             SnackbarHelper.showSnackbar(getString(R.string.feedback_collect_succeed))
         }
 

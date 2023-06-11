@@ -1,5 +1,6 @@
 package wangdaye.com.geometricweather.db.repositories
 
+import android.content.Context
 import wangdaye.com.geometricweather.common.basic.models.Location
 import wangdaye.com.geometricweather.db.ObjectBox.boxStore
 import wangdaye.com.geometricweather.db.entities.LocationEntity
@@ -73,13 +74,13 @@ object LocationEntityRepository {
         }
     }
 
-    fun readLocationList(): MutableList<Location> {
+    fun readLocationList(context: Context): MutableList<Location> {
         val entityList = selectLocationEntityList()
         if (entityList.size == 0) {
             synchronized(mWritingLock) {
                 if (countLocation() == 0) {
                     val entity = LocationEntityGenerator.generate(
-                        Location.buildLocal()
+                        Location.buildLocal(context)
                     )
                     entityList.add(entity)
                     insertLocationEntityList(entityList)

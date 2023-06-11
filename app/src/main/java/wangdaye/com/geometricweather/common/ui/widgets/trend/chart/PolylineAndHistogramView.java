@@ -430,7 +430,7 @@ public class PolylineAndHistogramView extends AbsChartItemView {
         float canvasHeight = getMeasuredHeight() - mMarginTop - mMarginBottom;
         if (mHighestPolylineValue != null && mLowestPolylineValue != null) {
             if (mHighPolylineValues != null) {
-                for (int i = 0; i < mHighPolylineValues.length; i ++) {
+                for (int i = 0; i < mHighPolylineValues.length; i++) {
                     if (mHighPolylineValues[i] == null) {
                         mHighPolylineY[i] = 0;
                     } else {
@@ -440,7 +440,7 @@ public class PolylineAndHistogramView extends AbsChartItemView {
                 }
             }
             if (mLowPolylineValues != null) {
-                for (int i = 0; i < mLowPolylineValues.length; i ++) {
+                for (int i = 0; i < mLowPolylineValues.length; i++) {
                     if (mLowPolylineValues[i] == null) {
                         mLowPolylineY[i] = 0;
                     } else {

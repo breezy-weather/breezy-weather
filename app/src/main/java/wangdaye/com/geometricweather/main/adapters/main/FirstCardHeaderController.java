@@ -99,7 +99,7 @@ public class FirstCardHeaderController
             } else {
                 alert.setVisibility(View.VISIBLE);
                 StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < currentAlertList.size(); i ++) {
+                for (int i = 0; i < currentAlertList.size(); i++) {
                     builder.append(currentAlertList.get(i).getDescription());
                     if (currentAlertList.get(i).getStartDate() != null) {
                         String startDateDay = DisplayUtils.getFormattedDate(currentAlertList.get(i).getStartDate(),

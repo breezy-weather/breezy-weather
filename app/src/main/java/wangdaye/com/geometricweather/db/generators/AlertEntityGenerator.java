@@ -25,7 +25,6 @@ public class AlertEntityGenerator {
 
         entity.type = alert.getType();
         entity.priority = alert.getPriority();
-        entity.color = alert.getColor();
 
         return entity;
     }
@@ -47,8 +46,7 @@ public class AlertEntityGenerator {
                 entity.description,
                 entity.content,
                 entity.type,
-                entity.priority,
-                entity.color
+                entity.priority
         );
     }
 

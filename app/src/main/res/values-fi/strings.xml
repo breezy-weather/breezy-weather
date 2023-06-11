@@ -425,8 +425,6 @@
     <string name="settings_provider_default_value">Oletus (ei muutoksia)</string>
     <string name="settings_provider_accu_weather">AccuWeather</string>
     <string name="settings_provider_accu_weather_key">AccuWeather weather avain</string>
-    <string name="settings_provider_accu_current_key">AccuWeather current avain</string>
-    <string name="settings_provider_accu_aqi_key">AccuWeather AQI avain</string>
     <string name="settings_provider_open_weather">OpenWeather</string>
     <string name="settings_provider_open_weather_key">OpenWeather avain</string>
     <string name="settings_provider_baidu_ip_location">Baidu IP sijainti</string>

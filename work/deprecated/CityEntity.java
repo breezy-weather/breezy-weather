@@ -94,7 +94,7 @@ public class CityEntity {
                 .queryBuilder()
                 .list();
         List<Location> locationList = new ArrayList<>(entityList.size());
-        for (int i = 0; i < entityList.size(); i ++) {
+        for (int i = 0; i < entityList.size(); i++) {
             locationList.add(Location.buildLocation(entityList.get(i)));
         }
         return locationList;
@@ -115,7 +115,7 @@ public class CityEntity {
                 .list();
 
         List<Location> locationList = new ArrayList<>(entityList.size());
-        for (int i = 0; i < entityList.size(); i ++) {
+        for (int i = 0; i < entityList.size(); i++) {
             locationList.add(Location.buildLocation(entityList.get(i)));
         }
         return locationList;
@@ -124,7 +124,7 @@ public class CityEntity {
     public static List<Location> fuzzySearchCity(SQLiteDatabase database, String txt) {
         List<CityEntity> entityList = searchCityEntity(database, txt);
         List<Location> locationList = new ArrayList<>(entityList.size());
-        for (int i = 0; i < entityList.size(); i ++) {
+        for (int i = 0; i < entityList.size(); i++) {
             locationList.add(Location.buildLocation(entityList.get(i)));
         }
         return locationList;

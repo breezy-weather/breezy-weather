@@ -319,8 +319,7 @@ private fun getAlertList(resultList: List<OpenWeatherOneCallAlert>?): List<Alert
                     result.event,
                     result.description,
                     result.event,
-                    1,  // Does not exist
-                    Color.rgb(255, 184, 43) // Defaulting to orange as we don't know
+                    1 // Does not exist
                 )
             )
         }

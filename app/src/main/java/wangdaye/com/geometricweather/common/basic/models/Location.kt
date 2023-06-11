@@ -7,6 +7,7 @@ import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource
 import wangdaye.com.geometricweather.common.basic.models.weather.Astro
 import wangdaye.com.geometricweather.common.basic.models.weather.Weather
+import wangdaye.com.geometricweather.settings.SettingsManager
 import java.util.TimeZone
 import kotlin.math.abs
 
@@ -59,7 +60,7 @@ class Location(
         }
 
         @JvmStatic
-        fun buildLocal(): Location {
+        fun buildLocal(context: Context): Location {
             return Location(
                 cityId = NULL_ID,
                 latitude = 0f,
@@ -69,7 +70,7 @@ class Location(
                 province = "",
                 city = "",
                 district = "",
-                weatherSource = WeatherSource.ACCU,
+                weatherSource = SettingsManager.getInstance(context).weatherSource,
                 isCurrentPosition = true,
                 isResidentPosition = false,
                 isChina = false

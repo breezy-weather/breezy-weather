@@ -170,7 +170,7 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
 
     private void ensureFirstCard() {
         mFirstCardPosition = null;
-        for (int i = 0; i < getItemCount(); i ++) {
+        for (int i = 0; i < getItemCount(); i++) {
             int type = getItemViewType(i);
             if (type == ViewType.DAILY
                     || type == ViewType.HOURLY
@@ -197,7 +197,7 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
 
     public void onScroll() {
         AbstractMainViewHolder holder;
-        for (int i = 0; i < getItemCount(); i ++) {
+        for (int i = 0; i < getItemCount(); i++) {
             holder = (AbstractMainViewHolder) mHost.findViewHolderForAdapterPosition(i);
             if (holder != null) {
                 holder.checkEnterScreen(mHost, mPendingAnimatorList, mListAnimationEnabled);

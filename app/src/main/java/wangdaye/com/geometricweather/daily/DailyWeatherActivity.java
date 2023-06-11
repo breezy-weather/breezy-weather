@@ -1,6 +1,7 @@
 package wangdaye.com.geometricweather.daily;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -84,6 +85,7 @@ public class DailyWeatherActivity extends GeoActivity {
         }
 
         final String formattedId = mFormattedId;
+        Context context = this;
         AsyncHelper.runOnIO(emitter -> {
             Location location = null;
 
@@ -91,7 +93,7 @@ public class DailyWeatherActivity extends GeoActivity {
                 location = LocationEntityRepository.INSTANCE.readLocation(formattedId);
             }
             if (location == null) {
-                location = LocationEntityRepository.INSTANCE.readLocationList().get(0);
+                location = LocationEntityRepository.INSTANCE.readLocationList(context).get(0);
             }
 
             emitter.send(
@@ -120,7 +122,7 @@ public class DailyWeatherActivity extends GeoActivity {
             List<View> viewList = new ArrayList<>(weather.getDailyForecast().size());
             List<String> titleList = new ArrayList<>(weather.getDailyForecast().size());
 
-            for (int i = 0; i < weather.getDailyForecast().size(); i ++) {
+            for (int i = 0; i < weather.getDailyForecast().size(); i++) {
                 Daily d = weather.getDailyForecast().get(i);
 
                 FitSystemBarRecyclerView rv = new FitSystemBarRecyclerView(this);

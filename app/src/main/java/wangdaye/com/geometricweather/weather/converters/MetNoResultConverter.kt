@@ -13,6 +13,8 @@ import wangdaye.com.geometricweather.weather.json.metno.MetNoEphemerisResult
 import wangdaye.com.geometricweather.weather.json.nominatim.NominatimLocationResult
 import wangdaye.com.geometricweather.weather.services.WeatherService.WeatherResultWrapper
 import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 import kotlin.math.roundToInt
 
 fun convert(resultList: List<NominatimLocationResult>?): List<Location> {

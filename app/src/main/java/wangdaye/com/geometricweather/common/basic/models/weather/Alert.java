@@ -28,11 +28,10 @@ public class Alert implements Parcelable, Serializable {
 
     private final String type;
     private final int priority;
-    @ColorInt private final int color;
 
     public Alert(long alertId, Date startDate, Date endDate,
                  String description, String content,
-                 String type, int priority, int color) {
+                 String type, int priority) {
         this.alertId = alertId;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -40,7 +39,6 @@ public class Alert implements Parcelable, Serializable {
         this.content = content;
         this.type = type;
         this.priority = priority;
-        this.color = color; // TODO: Not used?
     }
 
     public long getAlertId() {
@@ -69,10 +67,6 @@ public class Alert implements Parcelable, Serializable {
 
     public int getPriority() {
         return priority;
-    }
-
-    public int getColor() {
-        return color;
     }
 
     public static void deduplication(List<Alert> alertList) {
@@ -105,7 +99,6 @@ public class Alert implements Parcelable, Serializable {
         dest.writeString(this.content);
         dest.writeString(this.type);
         dest.writeInt(this.priority);
-        dest.writeInt(this.color);
     }
 
     protected Alert(Parcel in) {
@@ -118,7 +111,6 @@ public class Alert implements Parcelable, Serializable {
         this.content = in.readString();
         this.type = in.readString();
         this.priority = in.readInt();
-        this.color = in.readInt();
     }
 
     public static final Creator<Alert> CREATOR = new Creator<Alert>() {

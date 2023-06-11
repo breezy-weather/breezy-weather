@@ -27,11 +27,10 @@ public class AlertEntity {
 
     public String type;
     public int priority;
-    public int color;
     
     public AlertEntity(Long id, String cityId, String weatherSource, long alertId,
                        Date startDate, Date endDate, String description, String content, String type,
-                       int priority, int color) {
+                       int priority) {
         this.id = id;
         this.cityId = cityId;
         this.weatherSource = weatherSource;
@@ -42,7 +41,6 @@ public class AlertEntity {
         this.content = content;
         this.type = type;
         this.priority = priority;
-        this.color = color;
     }
     
     public AlertEntity() {
@@ -106,12 +104,6 @@ public class AlertEntity {
     }
     public void setPriority(int priority) {
         this.priority = priority;
-    }
-    public int getColor() {
-        return this.color;
-    }
-    public void setColor(int color) {
-        this.color = color;
     }
 
 }

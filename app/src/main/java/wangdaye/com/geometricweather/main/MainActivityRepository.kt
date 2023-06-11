@@ -32,7 +32,7 @@ class MainActivityRepository @Inject constructor(
     }
 
     fun initLocations(context: Context, formattedId: String): List<Location> {
-        val list = LocationEntityRepository.readLocationList()
+        val list = LocationEntityRepository.readLocationList(context)
 
         var index = 0
         for (i in list.indices) {

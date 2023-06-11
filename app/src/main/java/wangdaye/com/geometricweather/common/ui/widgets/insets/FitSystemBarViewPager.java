@@ -67,7 +67,7 @@ public class FitSystemBarViewPager extends ViewPager
             setWindowInsets(view, insets);
             if (view instanceof ViewGroup) {
                 int count = ((ViewGroup) view).getChildCount();
-                for (int i = 0; i < count; i ++) {
+                for (int i = 0; i < count; i++) {
                     setWindowInsetsForViewTree(((ViewGroup) view).getChildAt(i), insets);
                 }
             }

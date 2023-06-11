@@ -387,20 +387,6 @@ class SettingsManager private constructor(context: Context) {
         }
         get() = config.getString("provider_accu_weather_key", "") ?: ""
 
-    var customAccuCurrentKey: String
-        set(value) {
-            config.edit().putString("provider_accu_current_key", value).apply()
-            notifySettingsChanged()
-        }
-        get() = config.getString("provider_accu_current_key", "") ?: ""
-
-    var customAccuAqiKey: String
-        set(value) {
-            config.edit().putString("provider_accu_aqi_key", value).apply()
-            notifySettingsChanged()
-        }
-        get() = config.getString("provider_accu_aqi_key", "") ?: ""
-
     var customOpenWeatherKey: String
         set(value) {
             config.edit().putString("provider_open_weather_key", value).apply()
@@ -442,18 +428,6 @@ class SettingsManager private constructor(context: Context) {
         get() = getProviderSettingValue(
             customValue = customAccuWeatherKey,
             defaultValue = BuildConfig.ACCU_WEATHER_KEY,
-        )
-
-    val providerAccuCurrentKey: String
-        get() = getProviderSettingValue(
-            customValue = customAccuCurrentKey,
-            defaultValue = BuildConfig.ACCU_CURRENT_KEY,
-        )
-
-    val providerAccuAqiKey: String
-        get() = getProviderSettingValue(
-            customValue = customAccuAqiKey,
-            defaultValue = BuildConfig.ACCU_AQI_KEY,
         )
 
     val providerOpenWeatherKey: String

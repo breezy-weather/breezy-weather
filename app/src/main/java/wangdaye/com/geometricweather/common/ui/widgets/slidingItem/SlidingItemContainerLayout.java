@@ -78,7 +78,7 @@ public class SlidingItemContainerLayout extends FrameLayout {
             return;
         }
         if (mChild == null) {
-            for (int i = 0; i < getChildCount(); i ++) {
+            for (int i = 0; i < getChildCount(); i++) {
                 View v = getChildAt(i);
                 if (v != mIcon) {
                     mChild = v;

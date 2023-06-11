@@ -86,7 +86,7 @@ public class MatchTest {
 
             String[] targetSplitResults = target.replaceAll(" ", "").split(targetUnit);
             String[] numberTexts = targetSplitResults[0].split("-");
-            for (int i = 0; i < numberTexts.length; i ++) {
+            for (int i = 0; i < numberTexts.length; i++) {
                 float number = Float.parseFloat(numberTexts[i]);
                 number = converter.toMilliMeters(number);
                 numberTexts[i] = floatToString(number);
@@ -95,7 +95,7 @@ public class MatchTest {
             resultList.add(arrayToString(numberTexts, '-')
                     + " " + "mm");
         }
-        for (int i = 0; i < targetList.size(); i ++) {
+        for (int i = 0; i < targetList.size(); i++) {
             str = str.replace(targetList.get(i), resultList.get(i));
         }
 

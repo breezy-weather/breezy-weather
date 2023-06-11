@@ -122,7 +122,7 @@ public class SnowImplementor extends MaterialWeatherView.WeatherAnimationImpleme
         float[] scales = new float[] {0.6F, 0.8F, 1};
 
         mSnows = new Snow[SNOW_COUNT];
-        for (int i = 0; i < mSnows.length; i ++) {
+        for (int i = 0; i < mSnows.length; i++) {
             mSnows[i] = new Snow(
                     canvasSizes[0],
                     canvasSizes[1],

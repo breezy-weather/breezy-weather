@@ -92,7 +92,7 @@ public class OverseaCityEntity {
                 .queryBuilder()
                 .list();
         List<Location> locationList = new ArrayList<>(entityList.size());
-        for (int i = 0; i < entityList.size(); i ++) {
+        for (int i = 0; i < entityList.size(); i++) {
             locationList.add(Location.buildLocation(entityList.get(i)));
         }
         return locationList;
@@ -116,7 +116,7 @@ public class OverseaCityEntity {
                 .where(OverseaCityEntityDao.Properties.CityZh.eq(city))
                 .list());
 
-        for (int i = 0; i < entityList.size(); i ++) {
+        for (int i = 0; i < entityList.size(); i++) {
             locationList.add(Location.buildLocation(entityList.get(i)));
         }
         return locationList;
@@ -125,7 +125,7 @@ public class OverseaCityEntity {
     public static List<Location> fuzzySearchOverseaCity(SQLiteDatabase database, String txt) {
         List<OverseaCityEntity> entityList = searchOverseaCityEntity(database, txt);
         List<Location> locationList = new ArrayList<>(entityList.size());
-        for (int i = 0; i < entityList.size(); i ++) {
+        for (int i = 0; i < entityList.size(); i++) {
             locationList.add(Location.buildLocation(entityList.get(i)));
         }
         return locationList;

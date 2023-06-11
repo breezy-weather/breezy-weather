@@ -97,6 +97,7 @@ class AlertActivity : GeoActivity() {
     private fun ContentView() {
         val alertList = remember { mutableStateOf(emptyList<Alert>()) }
         val timeZone = remember { mutableStateOf(TimeZone.getDefault()) }
+        val context = LocalContext.current
 
         val formattedId = intent.getStringExtra(KEY_FORMATTED_ID)
         AsyncHelper.runOnIO({ emitter ->
@@ -105,7 +106,7 @@ class AlertActivity : GeoActivity() {
                 location = LocationEntityRepository.readLocation(formattedId)
             }
             if (location == null) {
-                location = LocationEntityRepository.readLocationList()[0]
+                location = LocationEntityRepository.readLocationList(context)[0]
             }
             val weather = WeatherEntityRepository.readWeather(location)
 
@@ -145,7 +146,7 @@ class AlertActivity : GeoActivity() {
                                 style = MaterialTheme.typography.titleMedium,
                             )
                             Text(
-                                text = getAlertDate(LocalContext.current, alert, timeZone.value),
+                                text = getAlertDate(context, alert, timeZone.value),
                                 color = DayNightTheme.colors.captionColor,
                                 style = MaterialTheme.typography.labelMedium,
                             )

@@ -476,8 +476,7 @@ private fun getWarningsList(warningsResult: MfWarningsResult): List<Alert> {
                         getWarningType(timelaps.phenomenonId) + " — " + getWarningText(timelapsItem.colorId),
                         if (timelapsItem.colorId >= 3) getWarningContent(timelaps.phenomenonId, warningsResult) else null,
                         getWarningType(timelaps.phenomenonId),
-                        timelapsItem.colorId.times(-1), // Reverse, as lower is better
-                        getWarningColor(timelapsItem.colorId)
+                        timelapsItem.colorId.times(-1) // Reverse, as lower is better
                     )
                 )
             }
@@ -515,15 +514,6 @@ private fun getWarningText(colorId: Int): String {
         3 -> "Soyez très vigilant"
         2 -> "Soyez attentif"
         else -> "Pas de vigilance particulière"
-    }
-}
-
-private fun getWarningColor(colorId: Int): Int {
-    return when (colorId) {
-        4 -> Color.rgb(204, 0, 0)
-        3 -> Color.rgb(255, 184, 43)
-        2 -> Color.rgb(255, 246, 0)
-        else -> Color.rgb(49, 170, 53)
     }
 }
 

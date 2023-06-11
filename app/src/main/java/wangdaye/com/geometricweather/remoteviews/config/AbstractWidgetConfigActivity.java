@@ -200,7 +200,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
 
     @CallSuper
     public void initData() {
-        locationNow = LocationEntityRepository.INSTANCE.readLocationList().get(0);
+        locationNow = LocationEntityRepository.INSTANCE.readLocationList(this).get(0);
         locationNow = Location.copy(
                 locationNow,
                 WeatherEntityRepository.INSTANCE.readWeather(locationNow)
@@ -499,7 +499,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
     public abstract String getConfigStoreName();
 
     private int indexValue(String[] values, String current) {
-        for (int i = 0; i < values.length; i ++) {
+        for (int i = 0; i < values.length; i++) {
             if (values[i].equals(current)) {
                 return i;
             }

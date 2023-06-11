@@ -67,7 +67,7 @@ public class MainLayoutManager extends RecyclerView.LayoutManager {
 
         int childHeight;
         ViewGroup.MarginLayoutParams params;
-        for (int i = 0; i < getItemCount(); i ++) {
+        for (int i = 0; i < getItemCount(); i++) {
             View child = recycler.getViewForPosition(i);
             addView(child);
 

@@ -133,7 +133,7 @@ public class SearchActivity extends GeoActivity
                 lightTheme
         );
 
-        mCurrentList = LocationEntityRepository.INSTANCE.readLocationList();
+        mCurrentList = LocationEntityRepository.INSTANCE.readLocationList(this);
 
         initModel();
         initView();
@@ -179,7 +179,7 @@ public class SearchActivity extends GeoActivity
                 this,
                 new ArrayList<>(),
                 (view, formattedId) -> {
-                    for (int i = 0; i < mCurrentList.size(); i ++) {
+                    for (int i = 0; i < mCurrentList.size(); i++) {
                         if (mCurrentList.get(i).getFormattedId().equals(formattedId)) {
                             SnackbarHelper.showSnackbar(getString(R.string.feedback_collect_failed));
                             return;

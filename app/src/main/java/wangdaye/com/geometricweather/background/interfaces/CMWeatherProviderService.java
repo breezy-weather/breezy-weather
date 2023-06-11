@@ -131,7 +131,7 @@ public class CMWeatherProviderService extends WeatherProviderService
     private void requestLocation() {
         mLocationHelper.requestLocation(
                 this,
-                Location.buildLocal(),
+                Location.buildLocal(this),
                 true,
                 locationListener
         );
@@ -163,7 +163,7 @@ public class CMWeatherProviderService extends WeatherProviderService
             Weather weather = requestLocation.getWeather();
             if (mRequest != null && weather != null) {
                 List<WeatherInfo.DayForecast> forecastList = new ArrayList<>();
-                for (int i = 0; i < weather.getDailyForecast().size(); i ++) {
+                for (int i = 0; i < weather.getDailyForecast().size(); i++) {
                     forecastList.add(
                             new WeatherInfo.DayForecast.Builder(
                                     WeatherConditionConvertHelper.getConditionCode(

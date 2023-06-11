@@ -100,7 +100,7 @@ public class SearchActivityRepository {
 
         String[] ids = value.split(",");
         WeatherSource[] invalids = new WeatherSource[ids.length];
-        for (int i = 0; i < ids.length; i ++) {
+        for (int i = 0; i < ids.length; i++) {
             invalids[i] = WeatherSource.getInstance(ids[i]);
         }
 

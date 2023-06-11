@@ -11,6 +11,7 @@ enum class HourlyTrendDisplay(
 ): BaseEnum {
 
     TAG_TEMPERATURE("temperature", R.string.temperature),
+    TAG_AIR_QUALITY("air_quality", R.string.air_quality),
     TAG_WIND("wind", R.string.wind),
     TAG_UV_INDEX("uv_index", R.string.uv_index),
     TAG_PRECIPITATION("precipitation", R.string.precipitation);
@@ -28,6 +29,7 @@ enum class HourlyTrendDisplay(
             for (card in cards) {
                 when (card) {
                     "temperature" -> list.add(TAG_TEMPERATURE)
+                    "air_quality" -> list.add(TAG_AIR_QUALITY)
                     "wind" -> list.add(TAG_WIND)
                     "uv_index" -> list.add(TAG_UV_INDEX)
                     "precipitation" -> list.add(TAG_PRECIPITATION)

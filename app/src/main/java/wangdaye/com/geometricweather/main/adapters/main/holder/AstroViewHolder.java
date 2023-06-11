@@ -262,7 +262,7 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
     @Override
     public void onRecycleView() {
         super.onRecycleView();
-        for (int i = 0; i < mAttachAnimatorSets.length; i ++) {
+        for (int i = 0; i < mAttachAnimatorSets.length; i++) {
             if (mAttachAnimatorSets[i] != null && mAttachAnimatorSets[i].isRunning()) {
                 mAttachAnimatorSets[i].cancel();
             }

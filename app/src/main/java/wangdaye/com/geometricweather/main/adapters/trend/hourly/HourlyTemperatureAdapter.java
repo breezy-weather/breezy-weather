@@ -178,7 +178,7 @@ public class HourlyTemperatureAdapter extends AbsHourlyTrendAdapter {
                 mLowestTemperature = weather.getYesterday().getNighttimeTemperature();
             }
         }
-        for (int i = 0; i < weather.getHourlyForecast().size(); i ++) {
+        for (int i = 0; i < weather.getHourlyForecast().size(); i++) {
             if (getTemperatureC(weather, i) != null && (mHighestTemperature == null || getTemperatureC(weather, i) > mHighestTemperature)) {
                 mHighestTemperature = getTemperatureC(weather, i);
             }

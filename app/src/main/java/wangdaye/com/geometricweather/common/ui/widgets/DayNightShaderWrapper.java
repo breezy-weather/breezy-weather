@@ -36,7 +36,7 @@ public class DayNightShaderWrapper {
             return true;
         }
 
-        for (int i = 0; i < colors.length; i ++) {
+        for (int i = 0; i < colors.length; i++) {
             if (mColors[i] != colors[i]) {
                 return true;
             }

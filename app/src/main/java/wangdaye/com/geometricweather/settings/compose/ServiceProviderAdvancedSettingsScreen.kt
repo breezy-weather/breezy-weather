@@ -31,34 +31,6 @@ fun SettingsProviderAdvancedSettingsScreen(
             }
         )
     }
-    editTextPreferenceItem(R.string.settings_provider_accu_current_key) { id ->
-        EditTextPreferenceView(
-            titleId = id,
-            summary = { context, content ->
-                content.ifEmpty {
-                    context.getString(R.string.settings_provider_default_value)
-                }
-            },
-            content = SettingsManager.getInstance(context).customAccuCurrentKey,
-            onValueChanged = {
-                SettingsManager.getInstance(context).customAccuCurrentKey = it
-            }
-        )
-    }
-    editTextPreferenceItem(R.string.settings_provider_accu_aqi_key) { id ->
-        EditTextPreferenceView(
-            titleId = id,
-            summary = { context, content ->
-                content.ifEmpty {
-                    context.getString(R.string.settings_provider_default_value)
-                }
-            },
-            content = SettingsManager.getInstance(context).customAccuAqiKey,
-            onValueChanged = {
-                SettingsManager.getInstance(context).customAccuAqiKey = it
-            }
-        )
-    }
     sectionFooterItem(R.string.settings_provider_accu_weather)
 
     sectionHeaderItem(R.string.settings_provider_open_weather)

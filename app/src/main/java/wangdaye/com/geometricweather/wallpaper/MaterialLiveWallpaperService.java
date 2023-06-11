@@ -380,7 +380,7 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                         mOrientationListener.enable();
                     }
 
-                    Location location = LocationEntityRepository.INSTANCE.readLocationList().get(0);
+                    Location location = LocationEntityRepository.INSTANCE.readLocationList(getApplicationContext()).get(0);
                     location = Location.copy(
                             location,
                             WeatherEntityRepository.INSTANCE.readWeather(location)

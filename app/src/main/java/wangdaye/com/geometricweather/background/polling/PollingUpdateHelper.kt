@@ -45,7 +45,7 @@ class PollingUpdateHelper(
         isUpdating = true
 
         ioController = AsyncHelper.runOnIO({ emitter ->
-            val list = LocationEntityRepository.readLocationList().map {
+            val list = LocationEntityRepository.readLocationList(context).map {
                 it.copy(weather = WeatherEntityRepository.readWeather(it))
             }
             emitter.send(list, true)

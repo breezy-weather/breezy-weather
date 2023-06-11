@@ -111,7 +111,7 @@ public class NotificationHelper {
             }
         }
 
-        for (int i = 0; i < alertList.size(); i ++) {
+        for (int i = 0; i < alertList.size(); i++) {
             sendAlertNotification(
                     context, location, alertList.get(i), alertList.size() > 1);
         }
@@ -287,7 +287,7 @@ public class NotificationHelper {
     }
 
     private static boolean isShortTermLiquid(Weather weather) {
-        for (int i = 0; i < 4; i ++) {
+        for (int i = 0; i < 4; i++) {
             if (weather.getHourlyForecast().get(i).getWeatherCode().isPrecipitation()) {
                 return true;
             }

@@ -72,7 +72,7 @@ public class ShortcutsHelper {
                     shortcutManager.getMaxShortcutCountPerActivity() - 1,
                     list.size()
             );
-            for (int i = 0; i < count; i ++) {
+            for (int i = 0; i < count; i++) {
                 Weather weather = WeatherEntityRepository.INSTANCE.readWeather(list.get(i));
                 if (weather != null && weather.getCurrent() != null && weather.getCurrent().getWeatherCode() != null) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
