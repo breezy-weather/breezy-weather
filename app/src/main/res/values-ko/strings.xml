@@ -142,20 +142,6 @@
     <string name="date_format_widget_long">MMM d, EEEE</string>
     <string name="date_format_widget_oreo_style">MMM d, EEEE│</string>
 
-    <!-- about. -->
-    <string name="retrofit">Retrofit 2.0</string>
-    <string name="about_retrofit">안드로이드용 Type-safe HTTP 클라이언트와 Square, Inc.의 자바</string>
-    <string name="glide">Glide</string>
-    <string name="about_glide">부드러운 스크롤을 중점으로 하는 안드로이드용 이미지 로딩과 캐쉬 라이브러리</string>
-    <string name="gson">Gson</string>
-    <string name="about_gson">자바 오브젝트를 JSON으로 바꾸고 되돌릴 수 있는 자바 직렬화/역직렬화 라이브러리</string>
-    <string name="objectbox">ObjectBox</string>
-    <string name="about_objectbox">Java Database for Mobile &amp; IoT - fast and lightweight.</string>
-    <string name="page_indicator">InkPageIndicator</string>
-    <string name="about_page_indicator">nickbutcher for Plaid https://github.com/nickbutcher/plaid에 의해 만들어 지고 David Pacioianu for API 14+ (4.0+).에 의하여 백포팅 됨</string>
-    <string name="circular_progress_view">CircularProgressView</string>
-    <string name="about_circular_progress_view">안드로이드용 머티리얼 디자인의 진행 바.</string>
-
     <!-- feedback. -->
     <string name="feedback_request_permission">허가</string>
     <string name="feedback_request_location">위치</string>

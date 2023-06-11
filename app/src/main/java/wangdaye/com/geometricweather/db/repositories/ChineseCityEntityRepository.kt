@@ -136,8 +136,8 @@ object ChineseCityEntityRepository {
         )
         val query = chineseCityEntityBox.query(
             ChineseCityEntity_.district.contains(name)
-                .and(ChineseCityEntity_.city.contains(name))
-                .and(ChineseCityEntity_.province.contains(name))
+                .or(ChineseCityEntity_.city.contains(name))
+                .or(ChineseCityEntity_.province.contains(name))
         ).build()
         val results = query.find()
         query.close()

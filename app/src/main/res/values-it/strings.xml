@@ -143,20 +143,6 @@
     <string name="date_format_widget_long">EEEE, d MMM</string>
     <string name="date_format_widget_oreo_style">EEEE, d MMM │ </string>
 
-    <!-- about. -->
-    <string name="retrofit">Retrofit 2.0</string>
-    <string name="about_retrofit">Client HTTP Type-Safe per Android e Java creato da Square Inc.</string>
-    <string name="glide">Glide</string>
-    <string name="about_glide">Una libreria di caricamento e caching immagini per Android per lo scorrimento fluido</string>
-    <string name="gson">Gson</string>
-    <string name="about_gson">Una libreria Java di serializzazione/deserializzazione che può convertire file Objects di Java in JSON e viceversa</string>
-    <string name="objectbox">ObjectBox</string>
-    <string name="about_objectbox">Java Database for Mobile &amp; IoT - fast and lightweight.</string>
-    <string name="page_indicator">InkPageIndicator</string>
-    <string name="about_page_indicator">InkPageIndicator creato da @nickbutcher per Plaid https://github.com/nickbutcher/plaid e risviluppato per Android 4.0 e successive da David Pacioianu.</string>
-    <string name="circular_progress_view">CircularProgressView</string>
-    <string name="about_circular_progress_view">Una Barra di avanzamento circolare in stile Material per Android</string>
-
     <!-- feedback. -->
     <string name="feedback_request_permission">Permessi</string>
     <string name="feedback_request_location">localizzazione</string>

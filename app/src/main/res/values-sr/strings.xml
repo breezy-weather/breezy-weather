@@ -72,16 +72,6 @@
     <string name="translator">Преводиоци</string>
     <string name="thanks">Хвала</string>
 
-    <!-- about. -->
-    <string name="retrofit">Retrofit 2.0</string>
-    <string name="about_retrofit">HTTP клијент који ради на типу за Андроид и Jaву by Square, Inc.</string>
-    <string name="glide">Glide</string>
-    <string name="about_glide">Библиотека за учитавање слика и кеширање за Андроид, фокусира се на глатко померање.</string>
-    <string name="gson">Gson</string>
-    <string name="about_gson">Јава серијализација/десеријализација библиотеке која може претворити Јава објекте у JSON и назад.</string>
-    <string name="objectbox">ObjectBox</string>
-    <string name="about_objectbox">Java Database for Mobile &amp; IoT - fast and lightweight.</string>
-
     <!-- feedback. -->
     <string name="feedback_request_permission">Дозволе</string>
     <string name="feedback_request_location">локацију</string>

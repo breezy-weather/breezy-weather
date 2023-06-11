@@ -23,7 +23,7 @@ import wangdaye.com.geometricweather.location.services.AMapLocationService;
 import wangdaye.com.geometricweather.location.services.AndroidLocationService;
 import wangdaye.com.geometricweather.location.services.BaiduLocationService;
 import wangdaye.com.geometricweather.location.services.LocationService;
-import wangdaye.com.geometricweather.location.services.ip.BaiduIPLocationService;
+import wangdaye.com.geometricweather.location.services.BaiduIPLocationService;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.weather.WeatherServiceSet;
 import wangdaye.com.geometricweather.weather.services.WeatherService;

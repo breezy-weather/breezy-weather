@@ -1,12 +1,6 @@
 <resources>
 
     <string name="about_app">Über</string>
-    <string name="about_circular_progress_view">Material style circular progress bar for Android.</string>
-    <string name="about_glide">An image loading and caching library for Android focused on smooth scrolling.</string>
-    <string name="about_objectbox">Java Database for Mobile &amp; IoT - fast and lightweight.</string>
-    <string name="about_gson">A Java serialization/deserialization library that can convert Java Objects into JSON and back.</string>
-    <string name="about_page_indicator">InkPageIndicator created by @nickbutcher for Plaid https://github.com/nickbutcher/plaid and backported by David Pacioianu for API 14+ (4.0+).</string>
-    <string name="about_retrofit">Type-safe HTTP client for Android and Java by Square, Inc.</string>
     <string name="action_about">Über</string>
     <string name="action_alert">Alarm</string>
     <string name="action_appStore">App Store</string>
@@ -23,7 +17,6 @@
     <string name="briefings">Bericht</string>
     <string name="cancel">Abbruch</string>
     <string name="ceiling">Wolkendecke</string>
-    <string name="circular_progress_view">CircularProgressView</string>
     <string name="cloud_cover">Bewölkung</string>
     <string name="current_location">Aktueller Standort</string>
     <string name="daily_overview">Die nächsten Tage</string>
@@ -103,11 +96,8 @@
     <string name="get_more_github">Mehr von GitHub</string>
     <string name="get_more_store">Mehr von Google Play</string>
     <string name="gitHub">GitHub</string>
-    <string name="glide">Glide</string>
     <string name="go_to_set">SET</string>
     <string name="grass">Gras</string>
-    <string name="objectbox">ObjectBox</string>
-    <string name="gson">Gson</string>
     <string name="help">Hilfe</string>
     <string name="hourly_overview">Die nächsten Stunden</string>
     <string name="hours_of_sun">Sonnenstunden</string>
@@ -154,7 +144,6 @@
     <string name="refresh_at">Aktualisiert um</string>
     <string name="resident_location">Wohnort</string>
     <string name="restart">Neustart</string>
-    <string name="retrofit">Retrofit 2.0</string>
     <string name="sensible_temp">Gefühlt</string>
     <string name="settings_category_basic">Allgemein</string>
     <string name="settings_category_forecast">Vorhersage</string>

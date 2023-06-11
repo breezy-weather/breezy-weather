@@ -147,21 +147,6 @@
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
 
-    <!-- about. -->
-    <!-- Optional, the following set of strings are not necessarily translated. -->
-    <string name="retrofit">Retrofit 2.0</string>
-    <string name="about_retrofit">Cliente de Type-safe HTTP para Android y Java by Square, Inc.</string>
-    <string name="glide">Glide</string>
-    <string name="about_glide">An image loading and caching library for Android focused on smooth scrolling.</string>
-    <string name="gson">Gson</string>
-    <string name="about_gson">A Java serialization/deserialization library that can convert Java Objects into JSON and back.</string>
-    <string name="objectbox">ObjectBox</string>
-    <string name="about_objectbox">Java Database for Mobile &amp; IoT - fast and lightweight.</string>
-    <string name="page_indicator">InkPageIndicator</string>
-    <string name="about_page_indicator">InkPageIndicator creado por @nickbutcher para Plaid https://github.com/nickbutcher/plaid y backported por David Pacioianu para API 14+ (4.0+).</string>
-    <string name="circular_progress_view">CircularProgressView</string>
-    <string name="about_circular_progress_view">Barra de progreso circular estilo Material para Android.</string>
-
     <!-- feedback. -->
     <string name="feedback_request_permission">Permisos</string>
     <string name="feedback_request_location">Ubicación</string>

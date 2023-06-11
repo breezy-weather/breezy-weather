@@ -1,7 +1,5 @@
 package wangdaye.com.geometricweather.common.di;
 
-import com.google.gson.GsonBuilder;
-
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -11,7 +9,6 @@ import dagger.hilt.components.SingletonComponent;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 import wangdaye.com.geometricweather.GeometricWeather;
 import wangdaye.com.geometricweather.common.retrofit.ClientCacheHelper;
 
@@ -25,14 +22,6 @@ public class RetrofitModule {
         return ClientCacheHelper.getClientBuilder()
                 .addInterceptor(loggingInterceptor)
                 .build();
-    }
-
-    @Provides
-    @Singleton
-    public GsonConverterFactory provideGsonConverterFactory() {
-        return GsonConverterFactory.create(
-                new GsonBuilder().create()
-        );
     }
 
     @Provides

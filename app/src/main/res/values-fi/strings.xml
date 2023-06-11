@@ -157,21 +157,6 @@
     <string name="tag_aqi">@string/air_quality</string>
     <string name="tag_uv">@string/uv_index</string>
 
-    <!-- about. -->
-    <!-- Optional, the following set of strings are not necessarily translated. -->
-    <string name="retrofit">Retrofit 2.0</string>
-    <string name="about_retrofit">Type-safe HTTP client for Android and Java by Square, Inc.</string>
-    <string name="glide">Glide</string>
-    <string name="about_glide">An image loading and caching library for Android focused on smooth scrolling.</string>
-    <string name="gson">Gson</string>
-    <string name="about_gson">A Java serialization/deserialization library that can convert Java Objects into JSON and back.</string>
-    <string name="objectbox">ObjectBox</string>
-    <string name="about_objectbox">Java Database for Mobile &amp; IoT - fast and lightweight.</string>
-    <string name="page_indicator">InkPageIndicator</string>
-    <string name="about_page_indicator">InkPageIndicator created by @nickbutcher for Plaid https://github.com/nickbutcher/plaid and backported by David Pacioianu for API 14+ (4.0+).</string>
-    <string name="circular_progress_view">CircularProgressView</string>
-    <string name="about_circular_progress_view">Material style circular progress bar for Android.</string>
-
     <!-- feedback. -->
     <string name="feedback_request_permission">Käyttöoikeudet</string>
     <string name="feedback_request_location">Sijainti</string>

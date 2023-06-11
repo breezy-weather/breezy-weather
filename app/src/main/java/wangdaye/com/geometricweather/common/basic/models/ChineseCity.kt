@@ -1,8 +1,10 @@
 package wangdaye.com.geometricweather.common.basic.models
 
+import kotlinx.serialization.Serializable
 import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource
 import java.util.TimeZone
 
+@Serializable
 data class ChineseCity(
     val cityId: String,
     val province: String,
