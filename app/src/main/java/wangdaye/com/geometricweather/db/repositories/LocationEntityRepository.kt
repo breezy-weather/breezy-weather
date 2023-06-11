@@ -67,11 +67,7 @@ object LocationEntityRepository {
 
     fun readLocation(formattedId: String): Location? {
         val entity = selectLocationEntity(formattedId)
-        return if (entity != null) {
-            LocationEntityGenerator.generate(entity)
-        } else {
-            null
-        }
+        return if (entity != null) LocationEntityGenerator.generate(entity) else null
     }
 
     fun readLocationList(context: Context): MutableList<Location> {
@@ -97,11 +93,7 @@ object LocationEntityRepository {
             .build()
         val entityList = query.find()
         query.close()
-        return if (entityList.size <= 0) {
-            null
-        } else {
-            entityList[0]
-        }
+        return if (entityList.size <= 0) null else entityList[0]
     }
 
     fun selectLocationEntityList(): MutableList<LocationEntity> {

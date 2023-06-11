@@ -30,7 +30,7 @@ import wangdaye.com.geometricweather.weather.services.WeatherService;
 
 /**
  * Location helper.
- * */
+ */
 
 public class LocationHelper {
 
@@ -39,6 +39,7 @@ public class LocationHelper {
 
     public interface OnRequestLocationListener {
         void requestLocationSuccess(Location requestLocation);
+
         void requestLocationFailed(Location requestLocation);
     }
 
@@ -82,13 +83,7 @@ public class LocationHelper {
 
             @Override
             public void requestLocationFailed(Location requestLocation) {
-                if (requestLocation.isUsable()) {
-                    l.requestLocationFailed(requestLocation);
-                } else {
-                    Location finalLocation = Location.buildLocal(context);
-                    LocationEntityRepository.INSTANCE.writeLocation(finalLocation);
-                    l.requestLocationFailed(finalLocation);
-                }
+                l.requestLocationFailed(requestLocation);
             }
         };
 
