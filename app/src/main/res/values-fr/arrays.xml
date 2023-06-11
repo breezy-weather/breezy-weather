@@ -10,7 +10,7 @@
         <item>MET Norway / Nominatim</item>
         <item>OpenWeather</item>
         <item>Météo France</item>
-        <item>caiyunapp.com (Chine uniquement)</item>
+        <item>Chine</item>
     </string-array>
     <string-array name="weather_source_voices">
         <item>Open Meteo</item>
@@ -18,7 +18,7 @@
         <item>Institut météorologique norvégien + Nominatim</item>
         <item>Open Weather</item>
         <item>Météo France</item>
-        <item>CaiYun App.com</item>
+        <item>Chine</item>
     </string-array>
 
     <!-- Location service. -->

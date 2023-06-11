@@ -47,8 +47,7 @@ android {
         it.buildConfigField "String", "ALIPAY_URL", ALIPAY_URL
         it.buildConfigField "String", "BAIDU_IP_LOCATION_AK", BAIDU_IP_LOCATION_AK
         it.buildConfigField "String", "BAIDU_IP_LOCATION_BASE_URL", BAIDU_IP_LOCATION_BASE_URL
-        it.buildConfigField "String", "CAIYUN_WEATHER_BASE_URL", CAIYUN_WEATHER_BASE_URL
-        it.buildConfigField "String", "CN_WEATHER_BASE_URL", CN_WEATHER_BASE_URL
+        it.buildConfigField "String", "CHINA_WEATHER_BASE_URL", CHINA_WEATHER_BASE_URL
         it.buildConfigField "String", "IQA_ATMO_AURA_KEY", IQA_ATMO_AURA_KEY
         it.buildConfigField "String", "IQA_ATMO_AURA_URL", IQA_ATMO_AURA_URL
         it.buildConfigField "String", "METNO_BASE_URL", METNO_BASE_URL

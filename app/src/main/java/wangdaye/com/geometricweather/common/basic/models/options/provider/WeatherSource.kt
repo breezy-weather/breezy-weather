@@ -17,7 +17,7 @@ enum class WeatherSource(
     METNO("metno", -0xdba791, "met.no / nominatim.org"),
     OWM("owm", -0x1491b5, "openweathermap.org"),
     MF("mf", -0xffa76e, "meteofrance.com"),
-    CAIYUN("caiyun", -0xa14472, "caiyunapp.com");
+    CHINA("china", -0xa14472, "weatherbj, caiyun, CNEMC");
 
     companion object {
 
@@ -32,7 +32,7 @@ enum class WeatherSource(
                     equals("metno", ignoreCase = true) -> METNO
                     equals("owm", ignoreCase = true) -> OWM
                     equals("mf", ignoreCase = true) -> MF
-                    equals("caiyun", ignoreCase = true) || equals("cn", ignoreCase = true) -> CAIYUN
+                    equals("china", ignoreCase = true) -> CHINA
                     else -> ACCU
                 }
             }

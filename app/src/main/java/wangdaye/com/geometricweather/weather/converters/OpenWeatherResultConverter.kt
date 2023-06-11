@@ -1,7 +1,6 @@
 package wangdaye.com.geometricweather.weather.converters
 
 import android.content.Context
-import android.graphics.Color
 import us.dustinj.timezonemap.TimeZoneMap
 import wangdaye.com.geometricweather.GeometricWeather
 import wangdaye.com.geometricweather.common.basic.models.Location
@@ -13,7 +12,6 @@ import wangdaye.com.geometricweather.weather.services.WeatherService.WeatherResu
 import java.util.*
 import kotlin.math.roundToInt
 
-
 fun convert(location: Location?, result: OpenWeatherLocationResult): Location {
     val map = TimeZoneMap.forRegion(result.lat, result.lon, result.lat + 0.00001, result.lon + 0.00001)
     return convert(location, result, map)
@@ -21,7 +19,7 @@ fun convert(location: Location?, result: OpenWeatherLocationResult): Location {
 
 fun convert(resultList: List<OpenWeatherLocationResult>?): List<Location> {
     val locationList: MutableList<Location> = ArrayList()
-    if (resultList != null && resultList.size != 0) {
+    if (!resultList.isNullOrEmpty()) {
         // Since we don't have timezones in the result, we need to initialize a TimeZoneMap
         // Since it takes a lot of time, we make boundaries
         // However, even then, it can take a lot of time, even on good performing smartphones.

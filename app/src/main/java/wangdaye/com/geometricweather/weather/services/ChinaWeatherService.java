@@ -19,18 +19,19 @@ import wangdaye.com.geometricweather.common.rxjava.ObserverContainer;
 import wangdaye.com.geometricweather.common.rxjava.SchedulerTransformer;
 import wangdaye.com.geometricweather.common.utils.LanguageUtils;
 import wangdaye.com.geometricweather.db.repositories.ChineseCityEntityRepository;
-import wangdaye.com.geometricweather.weather.apis.CaiYunApi;
-import wangdaye.com.geometricweather.weather.converters.CaiyunResultConverter;
-import wangdaye.com.geometricweather.weather.json.caiyun.CaiYunForecastResult;
-import wangdaye.com.geometricweather.weather.json.caiyun.CaiYunMainlyResult;
+import wangdaye.com.geometricweather.settings.SettingsManager;
+import wangdaye.com.geometricweather.weather.apis.ChinaApi;
+import wangdaye.com.geometricweather.weather.converters.ChinaResultConverterKt;
+import wangdaye.com.geometricweather.weather.json.china.ChinaMinutelyResult;
+import wangdaye.com.geometricweather.weather.json.china.ChinaForecastResult;
 
-public class CaiYunWeatherService extends WeatherService {
+public class ChinaWeatherService extends WeatherService {
 
-    private final CaiYunApi mApi;
+    private final ChinaApi mApi;
     private final CompositeDisposable mCompositeDisposable;
 
     @Inject
-    public CaiYunWeatherService(CaiYunApi cyApi, CompositeDisposable disposable) {
+    public ChinaWeatherService(ChinaApi cyApi, CompositeDisposable disposable) {
         mApi = cyApi;
         mCompositeDisposable = disposable;
     }
@@ -38,26 +39,21 @@ public class CaiYunWeatherService extends WeatherService {
     @Override
     public void requestWeather(Context context,
                                Location location, @NonNull RequestWeatherCallback callback) {
-        Observable<CaiYunMainlyResult> mainly = mApi.getMainlyWeather(
-                String.valueOf(location.getLatitude()),
-                String.valueOf(location.getLongitude()),
+        Observable<ChinaForecastResult> mainly = mApi.getForecastWeather(
+                location.getLatitude(),
+                location.getLongitude(),
                 location.isCurrentPosition(),
                 "weathercn%3A" + location.getCityId(),
                 15,
                 "weather20151024",
                 "zUFJoAR2ZVrDy1vF3D07",
-                "V10.0.1.0.OAACNFH",
-                "10010002",
                 false,
-                false,
-                "gemini",
-                "",
-                "zh_cn"
+                SettingsManager.getInstance(context).getLanguage().getCode()
         );
-        Observable<CaiYunForecastResult> forecast = mApi.getForecastWeather(
-                String.valueOf(location.getLatitude()),
-                String.valueOf(location.getLongitude()),
-                "zh_cn",
+        Observable<ChinaMinutelyResult> forecast = mApi.getMinutelyWeather(
+                location.getLatitude(),
+                location.getLongitude(),
+                SettingsManager.getInstance(context).getLanguage().getCode(),
                 false,
                 "weather20151024",
                 "weathercn%3A" + location.getCityId(),
@@ -65,7 +61,7 @@ public class CaiYunWeatherService extends WeatherService {
         );
 
         Observable.zip(mainly, forecast, (mainlyResult, forecastResult) ->
-                CaiyunResultConverter.convert(context, location, mainlyResult, forecastResult)
+                ChinaResultConverterKt.convert(context, location, mainlyResult, forecastResult)
         ).compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<WeatherResultWrapper>() {
                     @Override

@@ -1,7 +1,6 @@
 package wangdaye.com.geometricweather.weather.converters
 
 import android.content.Context
-import android.graphics.Color
 import us.dustinj.timezonemap.TimeZoneMap
 import wangdaye.com.geometricweather.GeometricWeather
 import wangdaye.com.geometricweather.common.basic.models.Location

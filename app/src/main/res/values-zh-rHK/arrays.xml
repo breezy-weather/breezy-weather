@@ -8,7 +8,7 @@
         <item>MET Norway / Nominatim</item>
         <item>OpenWeather</item>
         <item>Météo France</item>
-        <item>彩雲天氣（僅中國地區）</item>
+        <item>中國</item>
     </string-array>
     <string-array name="weather_source_voices">
         <item>Open Meteo</item>
@@ -16,7 +16,7 @@
         <item>The Norwegian Meteorological Institute + Nominatim</item>
         <item>OPEN天氣</item>
         <item>Météo France</item>
-        <item>彩雲天氣</item>
+        <item>中國</item>
     </string-array>
 
     <!-- Location service. -->

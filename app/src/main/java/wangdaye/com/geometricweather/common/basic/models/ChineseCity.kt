@@ -21,7 +21,7 @@ data class ChineseCity(
         city = city,
         district = if (district == "无") "" else district,
         weather = null,
-        weatherSource = WeatherSource.CAIYUN,
+        weatherSource = WeatherSource.CHINA,
         isCurrentPosition = false,
         isResidentPosition = false,
         isChina = true

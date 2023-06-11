@@ -4,38 +4,37 @@ This is a user-end guide to weather providers available in Geometric Weather. If
 
 ## Status
 
-| Providers | Open-Meteo  | AccuWeather | MET Norway  | OpenWeather  | Météo-France | caiyunapp.com |
-|-----------|-------------|-------------|-------------|--------------|--------------|---------------|
-| Status    | In progress | As is       | In progress | As is        | In progress  | As is         |
-| API key   | None        | Optional    | None        | Optional¹    | Optional     | None          |
-| Countries | Worldwide²  | Worldwide²  | Worldwide³  | Worldwide²   | Worldwide⁴   | China         |
-
-**caiyunapp.com** uses a hardcoded city list for search, so it needs to use more modern APIs (please contact me if you want to work on this).
+| Providers | Open-Meteo  | AccuWeather | MET Norway  | OpenWeather | Météo-France | China⁵ |
+|-----------|-------------|-------------|-------------|-------------|--------------|--------|
+| Status    | In progress | As is       | In progress | As is       | In progress  | As is  |
+| API key   | None        | Optional    | None        | Optional¹   | Optional     | None   |
+| Countries | Worldwide²  | Worldwide²  | Worldwide³  | Worldwide²  | Worldwide⁴   | China  |
 
 * ¹ Bundled API key is often rate-limited. You can configure your own API key, however OpenWeather asks for credit card information even if you only want to use the free-tier.
 * ² Some features not available everywhere.
 * ³ Some features only available in Norway, or Nordic area.
 * ⁴ Some features only available for France, overseas (DROM-COM) included. Air quality restricted to Auvergne-Rhône-Alpes.
+* ⁵ Aggregated data from Beijing Meteorological Service, ColorfulClouds (Caiyun) and CNEMC
 
 ## Availability of main features
 
-| Providers                   | Open-Meteo    | AccuWeather   | MET Norway    | OpenWeather | Météo-France |
-|-----------------------------|---------------|---------------|---------------|-------------|--------------|
-| Daily weather/temperature   | ✅             | ✅             | ✅             | ✅           | ✅            |
-| Daily precipitation         | *In progress* | ✅             | ✅             | ✅           | ✅            | 
-| Daily wind                  | ✅             | ✅             | ✅             | ✅           | ✅            |
-| Daily air quality           | *In progress* | *In progress* | *In progress* | ✅           | ✅            |
-| Daily UV                    | ✅             | ✅             | ✅             | ✅           | ✅            |
-| Hourly weather/temperature  | ✅             | ✅             | ✅             | ✅           | ✅            |
-| Hourly precipitation        | *In progress* | ✅             | ✅             | ✅           | ✅            |
-| Hourly wind                 | ✅             | ✅             | ✅             | ✅           | ✅            |
-| Hourly air quality          | *In progress* | *In progress* | *In progress* | ✅           | ✅            |
-| Hourly UV                   | ✅             | ✅             | ✅             | ✅           | ✅            |
-| Precipitations in next hour | ❌             | ✅             | *In progress* | ✅           | ✅            |
-| Current air quality         | *In progress* | *In progress* | *In progress* | ✅           | ✅            |
-| Daily pollen                | *In progress* | ✅             | ❌             | ❌           | ❌            |
-| Sun, Moon & Moon phase      | Sun           | ✅             | ✅             | Sun, Moon   | ✅            |
-| Alerts                      | ❌             | ✅             | *In progress* | ✅           | ✅            |
+| Providers                   | Open-Meteo    | AccuWeather   | MET Norway    | OpenWeather | Météo-France | China   |
+|-----------------------------|---------------|---------------|---------------|-------------|--------------|---------|
+| Daily weather/temperature   | ✅             | ✅             | ✅             | ✅           | ✅            | ✅       |
+| Daily precipitation         | *In progress* | ✅             | ✅             | ✅           | ✅            | ❌       | 
+| Daily wind                  | ✅             | ✅             | ✅             | ✅           | ✅            | ✅       |
+| Daily air quality           | *In progress* | *In progress* | *In progress* | ✅           | ✅            | ❌       |
+| Daily UV                    | ✅             | ✅             | ✅             | ✅           | ✅            | ❌       |
+| Hourly weather/temperature  | ✅             | ✅             | ✅             | ✅           | ✅            | ✅       |
+| Hourly precipitation        | *In progress* | ✅             | ✅             | ✅           | ✅            | Partial |
+| Hourly wind                 | ✅             | ✅             | ✅             | ✅           | ✅            | ✅       |
+| Hourly air quality          | *In progress* | *In progress* | *In progress* | ✅           | ✅            | ❌       |
+| Hourly UV                   | ✅             | ✅             | ✅             | ✅           | ✅            | ❌       |
+| Precipitations in next hour | ❌             | ✅             | *In progress* | ✅           | ✅            | ❌       |
+| Current air quality         | *In progress* | *In progress* | *In progress* | ✅           | ✅            | ✅       |
+| Daily pollen                | *In progress* | ✅             | ❌             | ❌           | ❌            | ❌       |
+| Sun, Moon & Moon phase      | Sun           | ✅             | ✅             | Sun, Moon   | ✅            | Sun     |
+| Alerts                      | ❌             | ✅             | *In progress* | ✅           | ✅            | ✅       |
 
 Some features may not be available in some countries.
 
@@ -45,33 +44,35 @@ Ultimate goal of the app would be to modularize as to have a main weather provid
 
 ### Location
 
-| Providers         | Open-Meteo | AccuWeather | Nominatim | OpenWeather  | Météo-France | caiyunapp.com |
-|-------------------|------------|-------------|-----------|--------------|--------------|---------------|
-| Search            | ✅          | ✅           | Slow      | Slow         | Slow         | Partial       |
-| Reverse geocoding | ❌          | ✅           | Slow      | Slow         | ✅            | ❌             |
+| Providers         | Open-Meteo | AccuWeather | Nominatim | OpenWeather | Météo-France | China    |
+|-------------------|------------|-------------|-----------|-------------|--------------|----------|
+| Search            | ✅          | ✅           | Slow      | Slow        | Slow         | Partial¹ |
+| Reverse geocoding | ❌          | ✅           | Slow      | Slow        | ✅            | ❌        |
 
 “Slow” means that location search will be slow due to missing timezone information in the API. The app needs to calculate the timezone, which is a very slow operation, and will take more or less a minute per search.
+
+* ¹ Currently based on a hardcoded list of cities bundled with the app.
 
 
 ### Daily forecast
 
-| Providers                 | Open-Meteo    | AccuWeather   | MET Norway    | OpenWeather   | Météo-France  |
-|---------------------------|---------------|---------------|---------------|---------------|---------------|
-| Days                      | 16            | 15            | ~10           | 7 or 8        | 15            |
-| Weather                   | ✅³            | ✅             | Partial³⁵     | ✅⁴            | ✅⁴            |
-| Temperature               | ✅             | ✅             | ✅¹            | ✅             | ✅             |
-| Precipitation             | *In progress* | ✅ (RSI)       | ✅¹            | ✅¹ (RS)       | ✅¹ (RS)       |
-| Precipitation probability | ✅¹            | ✅ (TRSI)      | ✅¹ (T)        | ✅¹            | ✅¹ (RSI)      |
-| Precipitation duration    | ❌             | ✅ (RSI)       | ❌             | ❌             | ❌             |
-| Wind                      | ✅¹            | ✅             | ✅¹            | ✅¹            | ✅¹            |
-| Cloud cover               | *In progress* | ✅             | ❌             | *In progress* | *In progress* |
-| Sunset/sunrise            | ✅             | ✅             | ✅             | ✅             | ✅             |
-| Moonset/moonrise          | ❌             | ✅             | ✅             | ✅             | ✅⁶            |
-| Moon phase                | ❌             | ✅             | ✅             | ❌             | ✅⁶            |
-| Air quality               | *In progress* | *In progress* | *In progress* | ✅¹            | ✅¹            |
-| Pollen                    | *In progress* | ✅             | ❌             | ❌             | ❌             |
-| UV                        | ✅             | ✅             | ✅¹            | ✅             | ✅             |
-| Hours of sun              | ✅²            | ✅             | ✅²            | ✅²            | ✅²            |
+| Providers                 | Open-Meteo    | AccuWeather   | MET Norway    | OpenWeather   | Météo-France  | China |
+|---------------------------|---------------|---------------|---------------|---------------|---------------|-------|
+| Days                      | 16            | 15            | ~10           | 7 or 8        | 15            | 15    |
+| Weather                   | ✅³            | ✅             | Partial³⁵     | ✅⁴            | ✅⁴            | ✅     |
+| Temperature               | ✅             | ✅             | ✅¹            | ✅             | ✅             | ✅     |
+| Precipitation             | *In progress* | ✅ (RSI)       | ✅¹            | ✅¹ (RS)       | ✅¹ (RS)       | ❌     |
+| Precipitation probability | ✅¹            | ✅ (TRSI)      | ✅¹ (T)        | ✅¹            | ✅¹ (RSI)      | ✅     |
+| Precipitation duration    | ❌             | ✅ (RSI)       | ❌             | ❌             | ❌             | ❌     |
+| Wind                      | ✅¹            | ✅             | ✅¹            | ✅¹            | ✅¹            | ✅     |
+| Cloud cover               | *In progress* | ✅             | ❌             | *In progress* | *In progress* | ❌     |
+| Sunset/sunrise            | ✅             | ✅             | ✅             | ✅             | ✅             | ✅     |
+| Moonset/moonrise          | ❌             | ✅             | ✅             | ✅             | ✅⁶            | ❌     |
+| Moon phase                | ❌             | ✅             | ✅             | ❌             | ✅⁶            | ❌     |
+| Air quality               | *In progress* | *In progress* | *In progress* | ✅¹            | ✅¹            | ❌     |
+| Pollen                    | *In progress* | ✅             | ❌             | ❌             | ❌             | ❌     |
+| UV                        | ✅             | ✅             | ✅¹            | ✅             | ✅             | ❌     |
+| Hours of sun              | ✅²            | ✅             | ✅²            | ✅²            | ✅²            | ✅²    |
 
 * ¹ Extrapolated from hourly forecast
 * ² Extrapolated from sunrise/sunset
@@ -92,17 +93,17 @@ Legend:
 
 ### Hourly forecast
 
-| Providers                 | Open-Meteo    | AccuWeather   | MET Norway    | OpenWeather | Météo-France |
-|---------------------------|---------------|---------------|---------------|-------------|--------------|
-| Days                      | 16            | 5             | ~10¹          | 2           | 15²          |
-| Weather                   | ✅             | ✅             | Partial³      | ✅           | ✅            |
-| Temperature               | ✅             | ✅             | ✅             | ✅           | ✅            |
-| Precipitation             | *In progress* | ✅ (RSI)       | ✅             | ✅ (RS)      | ✅ (RS)       |
-| Precipitation probability | ✅             | ✅ (TRSI)      | ✅ (T)         | ✅           | ✅ (RSI)      |
-| Wind                      | ✅             | ✅             | ✅             | ✅           | ✅            |
-| Air quality               | *In progress* | *In progress* | *In progress* | ✅           | ✅            |
-| Pollen                    | *In progress* | ❌             | ❌             | ❌           | ❌            |
-| UV                        | *In progress* | ✅             | ✅             | ✅           | ✅⁴           |
+| Providers                 | Open-Meteo    | AccuWeather   | MET Norway    | OpenWeather | Météo-France | China |
+|---------------------------|---------------|---------------|---------------|-------------|--------------|-------|
+| Days                      | 16            | 5             | ~10¹          | 2           | 15²          | 1     |
+| Weather                   | ✅             | ✅             | Partial³      | ✅           | ✅            | ✅     |
+| Temperature               | ✅             | ✅             | ✅             | ✅           | ✅            | ✅     |
+| Precipitation             | *In progress* | ✅ (RSI)       | ✅             | ✅ (RS)      | ✅ (RS)       | ❌     |
+| Precipitation probability | ✅             | ✅ (TRSI)      | ✅ (T)         | ✅           | ✅ (RSI)      | ❌     |
+| Wind                      | ✅             | ✅             | ✅             | ✅           | ✅            | ✅     |
+| Air quality               | *In progress* | *In progress* | *In progress* | ✅           | ✅            | ❌     |
+| Pollen                    | *In progress* | ❌             | ❌             | ❌           | ❌            | ❌     |
+| UV                        | *In progress* | ✅             | ✅             | ✅           | ✅⁴           | ❌     |
 
 * ¹ Every 6 hours after 3~4 days
 * ² Every 3 hours after 2 days, every 6 hours after 4 days
@@ -121,19 +122,19 @@ Legend:
 
 ### Current weather
 
-| Providers   | Open-Meteo    | AccuWeather   | MET Norway    | OpenWeather | Météo-France |
-|-------------|---------------|---------------|---------------|-------------|--------------|
-| Weather     | ✅             | ✅             | Partial²³     | ✅           | ✅¹           |
-| Temperature | ✅¹            | ✅             | ✅²            | ✅           | ✅¹           |
-| Wind        | ✅             | ✅             | ✅²            | ✅           | ✅¹           |
-| UV          | ✅⁵            | ✅             | ✅²            | ✅           | ✅⁵           |
-| Air quality | *In progress* | *In progress* | *In progress* | ✅           | ✅⁴           |
-| Humidity    | ✅¹            | ✅             | ✅²            | ✅           | ❌            |
-| Pressure    | ✅¹            | ✅             | ✅¹            | ✅           | ❌            |
-| Visibility  | ✅¹            | ✅             | ❌             | ✅           | ❌            |
-| Dew point   | ✅¹            | ✅             | ✅²            | ✅           | ❌            |
-| Cloud cover | ✅¹            | ✅             | ❌             | ✅           | ❌            |
-| Ceiling     | ❌             | ✅             | ❌             | ❌           | ❌            |
+| Providers   | Open-Meteo    | AccuWeather   | MET Norway    | OpenWeather | Météo-France | China |
+|-------------|---------------|---------------|---------------|-------------|--------------|-------|
+| Weather     | ✅             | ✅             | Partial²³     | ✅           | ✅¹           | ✅     |
+| Temperature | ✅¹            | ✅             | ✅²            | ✅           | ✅¹           | ✅     |
+| Wind        | ✅             | ✅             | ✅²            | ✅           | ✅¹           | ✅     |
+| UV          | ✅⁵            | ✅             | ✅²            | ✅           | ✅⁵           | ✅     |
+| Air quality | *In progress* | *In progress* | *In progress* | ✅           | ✅⁴           | ✅     |
+| Humidity    | ✅¹            | ✅             | ✅²            | ✅           | ❌            | ✅     |
+| Pressure    | ✅¹            | ✅             | ✅¹            | ✅           | ❌            | ✅     |
+| Visibility  | ✅¹            | ✅             | ❌             | ✅           | ❌            | ✅     |
+| Dew point   | ✅¹            | ✅             | ✅²            | ✅           | ❌            | ❌     |
+| Cloud cover | ✅¹            | ✅             | ❌             | ✅           | ❌            | ❌     |
+| Ceiling     | ❌             | ✅             | ❌             | ❌           | ❌            | ❌     |
 
 *In progress* means data is available in the API (or can be extrapolated) and can be implemented.
 
@@ -146,12 +147,12 @@ Legend:
 
 ### Other data
 
-| Providers                       | Open-Meteo | AccuWeather | MET Norway    | OpenWeather | Météo-France |
-|---------------------------------|------------|-------------|---------------|-------------|--------------|
-| Precipitations in next hour     | ❌          | ✅           | *In progress* | ✅           | ✅²           |
-| Alerts                          | ❌          | ✅           | *In progress* | ✅¹          | ✅            |
-| Yesterday daytime temperature   | ✅          | ✅           | ❌             | ❌           | ❌            |
-| Yesterday nighttime temperature | ✅          | ✅           | ❌             | ❌           | ❌            |
+| Providers                       | Open-Meteo | AccuWeather | MET Norway    | OpenWeather | Météo-France | China |
+|---------------------------------|------------|-------------|---------------|-------------|--------------|-------|
+| Precipitations in next hour     | ❌          | ✅           | *In progress* | ✅           | ✅²           | ❌     |
+| Alerts                          | ❌          | ✅           | *In progress* | ✅¹          | ✅            | ✅     |
+| Yesterday daytime temperature   | ✅          | ✅           | ❌             | ❌           | ❌            | ✅     |
+| Yesterday nighttime temperature | ✅          | ✅           | ❌             | ❌           | ❌            | ✅     |
 
 * ¹ List of available countries: https://openweathermap.org/api/push-weather-alerts#listsource
 * ² Only for France, and only for some cities. Rain intensity is estimated.

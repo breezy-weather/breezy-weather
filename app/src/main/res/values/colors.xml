@@ -40,8 +40,7 @@
     <color name="notification_background_primary">#212121</color>
 
     <color name="weather_source_accu">#ef5823</color>
-    <color name="weather_source_cn">#033566</color>
-    <color name="weather_source_caiyun">#5ebb8e</color>
+    <color name="weather_source_china">#5ebb8e</color>
 
     <!-- theme. -->
 

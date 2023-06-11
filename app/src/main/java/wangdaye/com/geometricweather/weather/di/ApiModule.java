@@ -8,18 +8,8 @@ import okhttp3.OkHttpClient;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 import wangdaye.com.geometricweather.BuildConfig;
-import wangdaye.com.geometricweather.weather.apis.AccuWeatherApi;
-import wangdaye.com.geometricweather.weather.apis.AtmoAuraIqaApi;
-import wangdaye.com.geometricweather.weather.apis.CaiYunApi;
-import wangdaye.com.geometricweather.weather.apis.MetNoApi;
-import wangdaye.com.geometricweather.weather.apis.MfWeatherApi;
-import wangdaye.com.geometricweather.weather.apis.NominatimApi;
-import wangdaye.com.geometricweather.weather.apis.OpenMeteoAirQualityApi;
-import wangdaye.com.geometricweather.weather.apis.OpenMeteoGeocodingApi;
-import wangdaye.com.geometricweather.weather.apis.OpenMeteoWeatherApi;
-import wangdaye.com.geometricweather.weather.apis.OpenWeatherApi;
+import wangdaye.com.geometricweather.weather.apis.*;
 
 @InstallIn(SingletonComponent.class)
 @Module
@@ -143,15 +133,15 @@ public class ApiModule {
     }
 
     @Provides
-    public CaiYunApi provideCaiYunApi(OkHttpClient client,
-                                      GsonConverterFactory converterFactory,
-                                      RxJava3CallAdapterFactory callAdapterFactory) {
+    public ChinaApi provideChinaApi(OkHttpClient client,
+                                    Converter.Factory converterFactory,
+                                    RxJava3CallAdapterFactory callAdapterFactory) {
         return new Retrofit.Builder()
-                .baseUrl(BuildConfig.CAIYUN_WEATHER_BASE_URL)
+                .baseUrl(BuildConfig.CHINA_WEATHER_BASE_URL)
                 .client(client)
                 .addConverterFactory(converterFactory)
                 .addCallAdapterFactory(callAdapterFactory)
                 .build()
-                .create(CaiYunApi.class);
+                .create(ChinaApi.class);
     }
 }
