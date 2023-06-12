@@ -47,7 +47,7 @@ public class WeatherHelper {
 
     public void requestWeather(Context c, Location location, @NonNull final OnRequestWeatherListener l) {
         final WeatherService service = mServiceSet.get(location.getWeatherSource());
-        if (!NetworkUtils.isAvailable(c)) {
+        if (!NetworkUtils.isAvailable(c) || !location.isUsable()) {
             l.requestWeatherFailed(location, false, false);
             return;
         }

@@ -63,9 +63,7 @@ class AllergenActivity : GeoActivity() {
         var location = LocationEntityRepository.readLocation(formattedId)
             ?: LocationEntityRepository.readLocationList(LocalContext.current)[0]
 
-        location = location.copy(
-            weather = WeatherEntityRepository.readWeather(location)
-        )
+        location = location.copy(weather = WeatherEntityRepository.readWeather(location))
         val weather = location.weather
         if (weather == null) {
             finish()

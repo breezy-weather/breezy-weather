@@ -19,6 +19,10 @@ android {
         ndk {
             abiFilters "armeabi", "x86", "armeabi-v7a", "x86_64", "arm64-v8a"
         }
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
     }
     ndkVersion "22.0.6917172"
     buildFeatures {
@@ -169,15 +173,15 @@ dependencies {
 
     // compose.
     implementation "androidx.activity:activity-compose:1.7.2"
-    implementation "androidx.compose.material:material:1.4.3"
-    implementation "androidx.compose.animation:animation:1.4.3"
-    implementation "androidx.compose.ui:ui-tooling:1.4.3"
-    implementation "androidx.compose.foundation:foundation:1.4.3"
+    implementation "androidx.compose.material:material:$compose_version"
+    implementation "androidx.compose.animation:animation:$compose_version"
+    implementation "androidx.compose.ui:ui-tooling:$compose_version"
+    implementation "androidx.compose.foundation:foundation:$compose_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1"
-    //androidTestImplementation "androidx.compose.ui:ui-test-junit4:1.4.3"
+    //androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     implementation "com.google.accompanist:accompanist-appcompat-theme:0.30.1"
     implementation "androidx.compose.material3:material3:1.1.0"
-    implementation "androidx.compose.material:material-icons-extended:1.4.3"
+    implementation "androidx.compose.material:material-icons-extended:$compose_version"
     implementation "androidx.navigation:navigation-compose:2.6.0"
 
     // preference.

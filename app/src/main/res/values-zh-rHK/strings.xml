@@ -147,12 +147,6 @@
     <string name="tag_aqi">@string/air_quality</string>
     <string name="tag_uv">@string/uv_index</string>
 
-    <!-- about. -->
-    <string name="retrofit">Retrofit 2.0</string>
-    <string name="about_retrofit">Type-safe HTTP client for Android and Java by Square, Inc.</string>
-    <string name="glide">Glide</string>
-    <string name="about_glide">An image loading and caching library for Android focused on smooth scrolling.</string>
-
     <!-- feedback. -->
     <string name="feedback_request_permission">授權</string>
     <string name="feedback_request_location">位置信息</string>
