@@ -22,7 +22,9 @@
 
 -keep class wangdaye.com.geometricweather.common.basic.models.** { *; }
 -keep class wangdaye.com.geometricweather.db.entities.** { *; }
+-keep class wangdaye.com.geometricweather.location.apis.** { *; }
 -keep class wangdaye.com.geometricweather.location.json.** { *; }
+-keep class wangdaye.com.geometricweather.weather.apis.** { *; }
 -keep class wangdaye.com.geometricweather.weather.json.** { *; }
 
 -keep public class * extends android.app.Service
@@ -85,3 +87,5 @@
 -if interface * { @retrofit2.http.* public *** *(...); }
 -keep,allowoptimization,allowshrinking,allowobfuscation class <3>
 
+# TimeZoneMap
+-keep class com.github.luben.zstd.** { *; }

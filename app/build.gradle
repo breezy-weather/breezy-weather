@@ -268,5 +268,5 @@ dependencies {
         exclude group: 'com.github.luben', module: 'zstd-jni'
     }
     // Import aar for native component compilation
-    implementation 'com.github.luben:zstd-jni:1.4.9-5@aar'
+    implementation 'com.github.luben:zstd-jni:1.5.5-4@aar'
 }
