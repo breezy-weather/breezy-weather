@@ -72,7 +72,6 @@ Differences between build variants:
 | Google Play Services   | ❌      | ❌     | ✅      |
 | Baidu Location Service | ❌      | ❌     | ✅      |
 | AMAP                   | ❌      | ❌     | ✅      |
-| Bugly                  | ❌      | ❌     | ✅      |
 
 
 ### Weather providers

@@ -10,7 +10,6 @@ import androidx.multidex.MultiDexApplication
 import androidx.work.Configuration
 import dagger.hilt.android.HiltAndroidApp
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.utils.helpers.BuglyHelper
 import org.breezyweather.db.ObjectBox
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.ThemeManager
@@ -202,8 +201,6 @@ class BreezyWeather : MultiDexApplication(),
             this,
             SettingsManager.getInstance(this).language.locale
         )
-
-        BuglyHelper.init(this)
 
         if (getProcessName().equals(packageName)) {
             setDayNightMode()

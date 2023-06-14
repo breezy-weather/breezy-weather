@@ -33,7 +33,6 @@ public class LunarHelper {
                     .replace("卅十", "三十");
         } catch (Exception e) {
             e.printStackTrace();
-            BuglyHelper.report(e);
             return "";
         }
     }
