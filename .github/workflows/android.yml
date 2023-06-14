@@ -2,7 +2,7 @@ name: Breezy Weather CI
 
 on:
   push:
-    branches: [ master, dev, new ]
+    branches: [ main, dev ]
     paths-ignore:
       - ".editorconfig"
       - "fastlane/*"
@@ -11,7 +11,7 @@ on:
       - "LICENSE"
       - "README.md"
   pull_request:
-    branches: [ master, dev ]
+    branches: [ main, dev ]
 
 jobs:
   build:
