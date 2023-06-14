@@ -1,3 +1,5 @@
+![Breezy Weather icon](app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png)
+
 # Breezy Weather
 
 Breezy Weather is a fork of [GeometricWeather](https://github.com/WangDaYeeeeee/GeometricWeather) (LGPL-v3 license), currently no longer updated.
