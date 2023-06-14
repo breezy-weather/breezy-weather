@@ -24,7 +24,7 @@ import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper
 import wangdaye.com.geometricweather.settings.SettingsManager
 import wangdaye.com.geometricweather.settings.dialogs.ProvidersPreviewerDialog
 import wangdaye.com.geometricweather.settings.preference.bottomInsetItem
-import wangdaye.com.geometricweather.settings.preference.checkboxPreferenceItem
+import wangdaye.com.geometricweather.settings.preference.switchPreferenceItem
 import wangdaye.com.geometricweather.settings.preference.clickablePreferenceItem
 import wangdaye.com.geometricweather.settings.preference.composables.ListPreferenceView
 import wangdaye.com.geometricweather.settings.preference.composables.PreferenceView
@@ -105,7 +105,7 @@ fun AppearanceSettingsScreen(
                 }
             }
         }
-        checkboxPreferenceItem(R.string.settings_title_trend_horizontal_line_switch) { id ->
+        switchPreferenceItem(R.string.settings_title_trend_horizontal_line_switch) { id ->
             SwitchPreferenceView(
                 titleId = id,
                 summaryOnId = R.string.on,
@@ -116,7 +116,7 @@ fun AppearanceSettingsScreen(
                 },
             )
         }
-        checkboxPreferenceItem(R.string.settings_title_exchange_day_night_temp_switch) { id ->
+        switchPreferenceItem(R.string.settings_title_exchange_day_night_temp_switch) { id ->
             SwitchPreferenceView(
                 title = stringResource(id),
                 summary = { context, it ->
@@ -147,7 +147,7 @@ fun AppearanceSettingsScreen(
                 },
             )
         }
-        checkboxPreferenceItem(R.string.settings_title_gravity_sensor_switch) { id ->
+        switchPreferenceItem(R.string.settings_title_gravity_sensor_switch) { id ->
             SwitchPreferenceView(
                 titleId = id,
                 summaryOnId = R.string.on,
@@ -158,7 +158,7 @@ fun AppearanceSettingsScreen(
                 },
             )
         }
-        checkboxPreferenceItem(R.string.settings_title_list_animation_switch) { id ->
+        switchPreferenceItem(R.string.settings_title_list_animation_switch) { id ->
             SwitchPreferenceView(
                 titleId = id,
                 summaryOnId = R.string.on,
@@ -169,7 +169,7 @@ fun AppearanceSettingsScreen(
                 },
             )
         }
-        checkboxPreferenceItem(R.string.settings_title_item_animation_switch) { id ->
+        switchPreferenceItem(R.string.settings_title_item_animation_switch) { id ->
             SwitchPreferenceView(
                 titleId = id,
                 summaryOnId = R.string.on,

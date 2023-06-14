@@ -23,6 +23,6 @@
         android:layout_margin="@dimen/normal_margin"
         android:textAlignment="viewStart"
         style="@style/subtitle_text"
-        tools:text="Weather data by AccuWeather.com" />
+        tools:text="Data by AccuWeather.com" />
 
 </RelativeLayout>

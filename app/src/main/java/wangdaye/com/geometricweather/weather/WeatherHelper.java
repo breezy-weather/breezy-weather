@@ -4,7 +4,6 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -84,36 +83,23 @@ public class WeatherHelper {
         });
     }
 
-    public void requestLocation(Context context, String query, List<WeatherSource> enabledSources,
+    public void requestLocation(Context context, String query, WeatherSource enabledSource,
                                 @NonNull final OnRequestLocationListener l) {
-        if (enabledSources == null || enabledSources.isEmpty()) {
+        if (enabledSource == null) {
             AsyncHelper.delayRunOnUI(() -> l.requestLocationFailed(query), 0);
             return;
         }
 
         // generate weather services.
-        final WeatherService[] services = new WeatherService[enabledSources.size()];
-        for (int i = 0; i < services.length; i++) {
-            services[i] = mServiceSet.get(enabledSources.get(i));
-        }
+        final WeatherService service = mServiceSet.get(enabledSource);
 
         // generate observable list.
-        List<Observable<List<Location>>> observableList = new ArrayList<>();
-        for (int i = 0; i < services.length; i++) {
-            int finalI = i;
-            observableList.add(
+        Observable<List<Location>> observable =
                     Observable.create(emitter ->
-                            emitter.onNext(services[finalI].requestLocation(context, query)))
-            );
-        }
+                            emitter.onNext(service.requestLocation(context, query))
+                    );
 
-        Observable.zip(observableList, objects -> {
-            List<Location> locationList = new ArrayList<>();
-            for (Object o : objects) {
-                locationList.addAll((List<Location>) o);
-            }
-            return locationList;
-        }).compose(SchedulerTransformer.create())
+        observable.compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<List<Location>>() {
                     @Override
                     public void onSucceed(List<Location> locationList) {

@@ -152,26 +152,26 @@ class GeometricWeather : MultiDexApplication(),
         fun getNotificationChannelName(context: Context, channelId: String): String {
             return when (channelId) {
                 NOTIFICATION_CHANNEL_ID_ALERT -> (
-                        context.getString(R.string.geometric_weather)
+                        context.getString(R.string.breezy_weather)
                                 + " "
                                 + context.getString(R.string.action_alert)
                 )
                 NOTIFICATION_CHANNEL_ID_FORECAST -> (
-                        context.getString(R.string.geometric_weather)
+                        context.getString(R.string.breezy_weather)
                                 + " "
                                 + context.getString(R.string.forecast)
                 )
                 NOTIFICATION_CHANNEL_ID_LOCATION -> (
-                        context.getString(R.string.geometric_weather)
+                        context.getString(R.string.breezy_weather)
                                 + " "
                                 + context.getString(R.string.feedback_request_location)
                 )
                 NOTIFICATION_CHANNEL_ID_BACKGROUND -> (
-                        context.getString(R.string.geometric_weather)
+                        context.getString(R.string.breezy_weather)
                                 + " "
                                 + context.getString(R.string.background_information)
                 )
-                else -> context.getString(R.string.geometric_weather)
+                else -> context.getString(R.string.breezy_weather)
             }
         }
     }

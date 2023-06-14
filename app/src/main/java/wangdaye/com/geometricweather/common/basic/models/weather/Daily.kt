@@ -1,7 +1,6 @@
 package wangdaye.com.geometricweather.common.basic.models.weather
 
 import android.content.Context
-import androidx.annotation.Size
 import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.utils.DisplayUtils
 import wangdaye.com.geometricweather.common.utils.helpers.LunarHelper
@@ -40,8 +39,7 @@ class Daily(
     fun getWeek(context: Context, timeZone: TimeZone): String {
         val calendar = Calendar.getInstance(timeZone)
         calendar.time = date
-        val day = calendar[Calendar.DAY_OF_WEEK]
-        return when (day) {
+        return when (calendar[Calendar.DAY_OF_WEEK]) {
             1 -> context.getString(R.string.week_7)
             2 -> context.getString(R.string.week_1)
             3 -> context.getString(R.string.week_2)

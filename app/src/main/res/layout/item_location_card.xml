@@ -92,22 +92,12 @@
                             android:textAlignment="viewStart"
                             android:textColor="?attr/colorBodyText"
                             style="@style/content_text"
-                            tools:text="5°/13°"
+                            tools:text="France, Ain"
                             tools:ignore="RtlHardcoded" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
                 </RelativeLayout>
-
-                <TextView
-                    android:id="@+id/subtitle"
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="@dimen/little_margin"
-                    android:layout_marginEnd="@dimen/normal_margin"
-                    android:textAlignment="viewStart"
-                    style="@style/subtitle_text"
-                    tools:text="中国 山东省 青岛市 李沧区"
-                    tools:ignore="RtlHardcoded" />
 
                 <TextView
                     android:id="@+id/source"
@@ -120,7 +110,7 @@
                     android:ellipsize="end"
                     android:textAlignment="viewStart"
                     style="@style/subtitle_text"
-                    tools:text="Weather data by 彩云天气"
+                    tools:text="Data by 彩云天气"
                     tools:ignore="RtlHardcoded,SmallSp" />
 
             </LinearLayout>

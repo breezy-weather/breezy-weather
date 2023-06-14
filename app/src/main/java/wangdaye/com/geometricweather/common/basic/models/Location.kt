@@ -19,7 +19,9 @@ class Location(
     val timeZone: TimeZone,
 
     val country: String,
+    val countryCode: String? = null,
     val province: String? = null,
+    val provinceCode: String? = null,
     val city: String,
     val district: String? = null,
 
@@ -184,7 +186,9 @@ class Location(
         parcel.writeFloat(longitude)
         parcel.writeSerializable(timeZone)
         parcel.writeString(country)
+        parcel.writeString(countryCode)
         parcel.writeString(province)
+        parcel.writeString(provinceCode)
         parcel.writeString(city)
         parcel.writeString(district)
         parcel.writeInt(weatherSource.ordinal)
@@ -203,7 +207,9 @@ class Location(
         longitude = parcel.readFloat(),
         timeZone = parcel.readSerializable()!! as TimeZone,
         country = parcel.readString()!!,
+        countryCode = parcel.readString(),
         province = parcel.readString(),
+        provinceCode = parcel.readString(),
         city = parcel.readString()!!,
         district = parcel.readString(),
         weatherSource = WeatherSource.values()[parcel.readInt()],
@@ -233,7 +239,9 @@ class Location(
         longitude = longitude ?: this.longitude,
         timeZone = timeZone ?: this.timeZone,
         country = country ?: this.country,
+        countryCode = countryCode ?: this.countryCode,
         province = province ?: this.province,
+        provinceCode = provinceCode ?: this.provinceCode,
         city = city ?: this.city,
         district = district ?: this.district,
         weather = weather ?: this.weather,
@@ -309,6 +317,34 @@ class Location(
             && !district.isNullOrEmpty()
         ) {
             builder.append(" ").append(district)
+        }
+        return builder.toString()
+    }
+
+    fun place(): String {
+        val builder = StringBuilder();
+        if (city.isNotEmpty()) {
+            builder.append(city)
+        }
+        if (!district.isNullOrEmpty()) {
+            if (builder.toString().isNotEmpty()) {
+                builder.append(", ")
+            }
+            builder.append(district)
+        }
+        return builder.toString()
+    }
+
+    fun administrationLevels(): String {
+        val builder = StringBuilder();
+        if (country.isNotEmpty()) {
+            builder.append(country)
+        }
+        if (!province.isNullOrEmpty()) {
+            if (builder.toString().isNotEmpty()) {
+                builder.append(", ")
+            }
+            builder.append(province)
         }
         return builder.toString()
     }

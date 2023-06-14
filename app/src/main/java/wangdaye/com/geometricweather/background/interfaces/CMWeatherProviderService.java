@@ -139,9 +139,8 @@ public class CMWeatherProviderService extends WeatherProviderService
 
     private void requestWeather(String cityName) {
         if (!TextUtils.isEmpty(cityName)) {
-            List<WeatherSource> list = new ArrayList<>();
-            list.add(SettingsManager.getInstance(this).getWeatherSource());
-            mWeatherHelper.requestLocation(this, cityName, list, weatherLocationListener);
+            WeatherSource weatherSource = SettingsManager.getInstance(this).getWeatherSource();
+            mWeatherHelper.requestLocation(this, cityName, weatherSource, weatherLocationListener);
         } else if (mRequest != null) {
             mRequest.fail();
         }

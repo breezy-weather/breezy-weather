@@ -2,7 +2,6 @@
 
     <!-- app. -->
     <string name="app_name">Καιρός</string>
-    <string name="geometric_weather">Geometric Weather</string>
 
     <!-- keyword. -->
     <string name="current_location">Τρέχουσα τοποθεσία</string>
@@ -243,7 +242,7 @@
     <string name="feedback_interpret_notification_group_content">Αφού τερματίσετε τη λειτουργία "Απαγόρευση εργασιών στο παρασκήνιο", στον πίνακα ειδοποιήσεων θα εμφανιστεί μια ειδοποίηση ότι η υπηρεσία εκτελείται στο παρασκήνιο. Μπορείτε να απενεργοποιήσετε την ειδοποίηση εργασίας στο παρασκήνιο στις ρυθμίσεις ειδοποίησης της εφαρμογής για να αποκρύψετε αυτήν την ειδοποίηση.</string>
 
     <string name="feedback_ignore_battery_optimizations_title">Βελτιστοποίηση μπαταρίας</string>
-    <string name="feedback_ignore_battery_optimizations_content">Για να λειτουργήσει η υπηρεσία λειτουργίας στο παρασκήνιο, απενεργοποιήστε τη βελτιστοποίηση μπαταρίας για το GeometricWeather.</string>
+    <string name="feedback_ignore_battery_optimizations_content">Για να λειτουργήσει η υπηρεσία λειτουργίας στο παρασκήνιο, απενεργοποιήστε τη βελτιστοποίηση μπαταρίας για το Breezy Weather.</string>
 
     <string name="feedback_cannot_start_live_wallpaper_activity">Αδυναμία εκκίνησης προεπισκόπησης ζωντανής ταπετσαρίας</string>
 
@@ -254,7 +253,7 @@
     <string name="feedback_short_term_precipitation_alert">Μπορεί να υπάρξει βροχόπτωση τις επόμενες ώρες.</string>
 
     <string name="feedback_resident_location">Ορισμός ως τόπος μόνιμης διαμονής</string>
-    <string name="feedback_resident_location_description">Το GeometricWeather θα εμφανίσει ή θα αποκρύψει αυτόματα τον τόπο μόνιμης διαμονής σας με βάση την τοποθεσία σας.\nΓια παράδειγμα, μπορείτε να ορίσετε τη γενέτειρά σας ως πόλη διαμονής. Μπορείτε να ελέγξετε τον καιρό στη γενέτειρά σας ενώ ταξιδεύετε. Όταν φτάσετε στο σπίτι, θα γίνει απόκρυψη του καιρού της πατρίδα σας και θα αντικατασταθεί από τον καιρό της τρέχουσας τοποθεσία σας.</string>
+    <string name="feedback_resident_location_description">Το Breezy Weather θα εμφανίσει ή θα αποκρύψει αυτόματα τον τόπο μόνιμης διαμονής σας με βάση την τοποθεσία σας.\nΓια παράδειγμα, μπορείτε να ορίσετε τη γενέτειρά σας ως πόλη διαμονής. Μπορείτε να ελέγξετε τον καιρό στη γενέτειρά σας ενώ ταξιδεύετε. Όταν φτάσετε στο σπίτι, θα γίνει απόκρυψη του καιρού της πατρίδα σας και θα αντικατασταθεί από τον καιρό της τρέχουσας τοποθεσία σας.</string>
 
     <string name="feedback_click_to_get_more">Περισσότερα…</string>
 

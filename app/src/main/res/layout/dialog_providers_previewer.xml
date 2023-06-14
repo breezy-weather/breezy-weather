@@ -6,15 +6,18 @@
     android:layout_height="match_parent"
     android:paddingTop="@dimen/normal_margin">
 
-    <com.github.rahatarmanahmed.cpv.CircularProgressView
-        android:id="@+id/dialog_providers_previewer_progress"
-        android:layout_width="@dimen/little_weather_icon_size"
-        android:layout_height="@dimen/little_weather_icon_size"
-        android:layout_margin="@dimen/large_margin"
-        android:layout_gravity="center"
-        app:cpv_color="?attr/colorPrimary"
-        app:cpv_indeterminate="true"
-        app:cpv_animAutostart="true" />
+    <FrameLayout android:id="@+id/dialog_providers_previewer_progress_container"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:padding="8dp">
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/dialog_providers_previewer_progress"
+            android:layout_width="@dimen/little_weather_icon_size"
+            android:layout_height="@dimen/little_weather_icon_size"
+            android:layout_margin="@dimen/large_margin"
+            android:layout_gravity="center"
+            android:indeterminate="true" />
+    </FrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/dialog_providers_previewer_list"

@@ -3,7 +3,6 @@
 
     <!-- app. -->
     <string name="app_name">Sää</string>
-    <string name="geometric_weather">Geometric Weather</string>
 
     <!-- keyword. -->
     <string name="current_location">Nykyinen sijainti</string>
@@ -265,7 +264,7 @@
     <string name="feedback_interpret_notification_group_content">Kun olet kytkenyt \"Free background\" pois päältä, ilmoituspalkkiin ilmestyy ilmoitus joka osoittaa, että taustapalvelu on käynnissä. Voit poistaa Taustatietokanavan käytöstä sovelluksen tietosivulla estääksesi nämä ilmoitukset.</string>
 
     <string name="feedback_ignore_battery_optimizations_title">Jätä akun optimointi huomiotta</string>
-    <string name="feedback_ignore_battery_optimizations_content">Varmistaaksesi, että taustapalvelut voivat jatkaa toimintaansa, jätä GeometricWeatherin akkuoptimointi huomiotta.</string>
+    <string name="feedback_ignore_battery_optimizations_content">Varmistaaksesi, että taustapalvelut voivat jatkaa toimintaansa, jätä Breezy Weatherin akkuoptimointi huomiotta.</string>
     
     <string name="feedback_cannot_start_live_wallpaper_activity">Livetaustakuvan esikatselua ei voi käynnistää</string>
 
@@ -276,7 +275,7 @@
     <string name="feedback_short_term_precipitation_alert">Seuraavien tuntien  aikana saattaa sataa.</string>
 
     <string name="feedback_resident_location">Aseta kotikaupungiksi</string>
-    <string name="feedback_resident_location_description">GeometricWeather näyttää ja piilottaa automaattisesti asuinkaupungit nykyisen sijaintisi perusteella.\nVoit esimerkiksi asettaa kotikaupunkisi asuinkaupungiksi. Voit tarkistaa kotikaupunkisi sään matkalla ollessasi. Kun pääset kotiin, kotikaupunkisi sää piilotetaan ja korvataan nykyisen sijaintisi säällä.</string>
+    <string name="feedback_resident_location_description">Breezy Weather näyttää ja piilottaa automaattisesti asuinkaupungit nykyisen sijaintisi perusteella.\nVoit esimerkiksi asettaa kotikaupunkisi asuinkaupungiksi. Voit tarkistaa kotikaupunkisi sään matkalla ollessasi. Kun pääset kotiin, kotikaupunkisi sää piilotetaan ja korvataan nykyisen sijaintisi säällä.</string>
 
     <string name="feedback_click_to_get_more">Klikkaa saadaksesi lisää…</string>
     <string name="feedback_click_again_to_exit">Klikkaa uudelleen poistuaksesi</string>
@@ -305,7 +304,6 @@
     <string name="content_des_swipe_right_to_delete">Voit poistaa tämän kohteen pyyhkäisemällä oikealle.</string>
     <string name="content_desc_search_filter_on">Näytä vain oletussäälähteen sijainnit</string>
     <string name="content_desc_search_filter_off">Näytä kaikkien säälähteiden sijainnit</string>
-    <string name="content_desc_powered_by">Weather data by $</string> <!-- $ = weather source. -->
     <string name="content_desc_app_store">@string/action_appStore</string>
     <string name="content_desc_wechat_payment_code">Tukimaksun QR-koodi wechatille</string>
     <string name="content_desc_weather_icon">Sää kuvake</string>

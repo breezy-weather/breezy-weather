@@ -870,7 +870,7 @@
     },
     {
       "id": "6:4252433662761383759",
-      "lastPropertyId": "14:7459625564567197212",
+      "lastPropertyId": "16:4752489573090247623",
       "name": "LocationEntity",
       "properties": [
         {
@@ -943,6 +943,16 @@
           "id": "14:7459625564567197212",
           "name": "china",
           "type": 1
+        },
+        {
+          "id": "15:5514693194998937410",
+          "name": "countryCode",
+          "type": 9
+        },
+        {
+          "id": "16:4752489573090247623",
+          "name": "provinceCode",
+          "type": 9
         }
       ],
       "relations": []

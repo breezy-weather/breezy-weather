@@ -9,7 +9,6 @@ import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.models.Location
 import wangdaye.com.geometricweather.common.basic.models.options.unit.PollenUnit
 import wangdaye.com.geometricweather.common.basic.models.weather.Daily
-import wangdaye.com.geometricweather.common.basic.models.weather.Pollen
 import wangdaye.com.geometricweather.databinding.ItemPollenDailyBinding
 import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider
 

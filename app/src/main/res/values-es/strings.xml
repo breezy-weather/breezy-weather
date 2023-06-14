@@ -2,7 +2,7 @@
 
     <!-- app. -->
     <string name="app_name">Clima</string>
-    <string name="geometric_weather">Clima Geométrico</string>
+    <string name="breezy_weather">Clima Geométrico</string>
 
     <!-- keyword. -->
     <string name="current_location">Ubicación actual</string>
@@ -251,7 +251,7 @@
     <string name="feedback_interpret_notification_group_content">Después de desactivar \"Segundo plano libre\", aparecerá una notificación en la barra de notificaciones indicando que está funcionando el servicio en segundo plano. Puedes desactivar el Canal de Información en segundo plano bloqueando estas notificaciones en la página de información de la app.</string>
 
     <string name="feedback_ignore_battery_optimizations_title">Ignorar optimización de la batería</string>
-    <string name="feedback_ignore_battery_optimizations_content">Para asegurar que los servicios en segundo plano continúen funcionando, por favor ignora la optimización de batería para GeometricWeather.</string>
+    <string name="feedback_ignore_battery_optimizations_content">Para asegurar que los servicios en segundo plano continúen funcionando, por favor ignora la optimización de batería para Breezy Weather.</string>
     
     <string name="feedback_cannot_start_live_wallpaper_activity">No se logró iniciar el contexto de previsulización del fondo de pantalla animado</string>
 
@@ -262,7 +262,7 @@
     <string name="feedback_short_term_precipitation_alert">Puede que la precipitación ocurra en las próximas horas.</string>
 
     <string name="feedback_resident_location">Establecer como la ciudad residente</string>
-    <string name="feedback_resident_location_description">GeometricWeather mostrará y ocultará automáticamente las ciudades residentes en base a tu ubicación actual.\nPor ejemplo, puedes establecer tu ciudad natal como una ciudad residente. Puedes revisar el clima de tu ciudad natal mientras estás viajando. Cuando llegues a casa, el clima de tu ciudad natal estará oculto y reemplazado por el clima de tu ubicación actual.</string>
+    <string name="feedback_resident_location_description">Breezy Weather mostrará y ocultará automáticamente las ciudades residentes en base a tu ubicación actual.\nPor ejemplo, puedes establecer tu ciudad natal como una ciudad residente. Puedes revisar el clima de tu ciudad natal mientras estás viajando. Cuando llegues a casa, el clima de tu ciudad natal estará oculto y reemplazado por el clima de tu ubicación actual.</string>
 
     <string name="feedback_click_to_get_more">Toca para obtener más…</string>
     <string name="feedback_click_again_to_exit">Toca de nuevo para salir</string>

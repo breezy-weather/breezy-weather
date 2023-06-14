@@ -245,7 +245,7 @@
     <string name="feedback_interpret_notification_group_content">「バックグラウンドで更新しない」をオフにすると、通知バーにバックグラウンドサービスが起動していることを示す通知が表示されます。アプリの情報ページの「バックグラウンド情報」をオフにすることで、この通知をブロックすることができます。</string>
 
     <string name="feedback_ignore_battery_optimizations_title">バッテリーの最適化を無視する</string>
-    <string name="feedback_ignore_battery_optimizations_content">バックグラウンドサービスを継続して動作させるために、GeometricWeatherのバッテリー最適化は無視してください。</string>
+    <string name="feedback_ignore_battery_optimizations_content">バックグラウンドサービスを継続して動作させるために、Breezy Weatherのバッテリー最適化は無視してください。</string>
 
     <string name="feedback_cannot_start_live_wallpaper_activity">ライブ壁紙のプレビューを開始できません</string>
 
@@ -256,7 +256,7 @@
     <string name="feedback_short_term_precipitation_alert">数時間後に雨が降る可能性があります。</string>
 
     <string name="feedback_resident_location">居住地として設定</string>
-    <string name="feedback_resident_location_description">GeometricWeatherは、現在地を基準にして自動的に居住地を表示・非表示にします。例えば、自分の出身地を居住地に設定することで、旅行中に居住地の天気を確認することができます。帰宅すると、居住地の天気が現在地の天気に切り替わります。</string>
+    <string name="feedback_resident_location_description">Breezy Weatherは、現在地を基準にして自動的に居住地を表示・非表示にします。例えば、自分の出身地を居住地に設定することで、旅行中に居住地の天気を確認することができます。帰宅すると、居住地の天気が現在地の天気に切り替わります。</string>
 
     <string name="feedback_click_to_get_more">Click to get more…</string>
 
@@ -266,7 +266,7 @@
     <string name="action_search">検索</string>
     <string name="action_settings">設定</string>
     <string name="action_preview">プレビュー</string>
-    <string name="action_about">Geometric Weather について</string>
+    <string name="action_about">Breezy Weather について</string>
     <string name="action_appStore">アプリストア</string>
 
     <!-- widget -->

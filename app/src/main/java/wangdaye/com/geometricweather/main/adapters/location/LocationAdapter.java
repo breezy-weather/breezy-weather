@@ -3,15 +3,12 @@ package wangdaye.com.geometricweather.main.adapters.location;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DiffUtil;
-
-import com.turingtechnologies.materialscrollbar.ICustomAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +25,7 @@ import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider;
  * Location adapter.
  * */
 
-public class LocationAdapter extends SyncListAdapter<LocationModel, LocationHolder>
-        implements ICustomAdapter {
+public class LocationAdapter extends SyncListAdapter<LocationModel, LocationHolder> {
 
     private final Context mContext;
     private final OnLocationItemClickListener mClickListener;
@@ -39,7 +35,7 @@ public class LocationAdapter extends SyncListAdapter<LocationModel, LocationHold
     private @NonNull final TemperatureUnit mTemperatureUnit;
 
     public interface OnLocationItemClickListener {
-        void onClick(View view, String formattedId);
+        void onClick(String formattedId);
     }
 
     public interface OnLocationItemDragListener {
@@ -144,7 +140,7 @@ public class LocationAdapter extends SyncListAdapter<LocationModel, LocationHold
 
     // I custom adapter.
 
-    @Override
+    //@Override
     public String getCustomStringForElement(int element) {
         if (getItemCount() == 0) {
             return "";

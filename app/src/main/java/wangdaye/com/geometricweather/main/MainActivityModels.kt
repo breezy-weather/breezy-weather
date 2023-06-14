@@ -41,7 +41,6 @@ class SelectableLocationList(
     val locationList: List<Location>,
     val selectedId: String,
 ) {
-
     override fun equals(other: Any?): Boolean {
         if (other is SelectableLocationList) {
             return locationList == other.locationList

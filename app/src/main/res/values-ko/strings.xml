@@ -2,7 +2,7 @@
 
     <!-- app. -->
     <string name="app_name">날씨</string>
-    <string name="geometric_weather">Geometric Weather</string>
+    <string name="breezy_weather">Breezy Weather</string>
 
     <!-- keyword. -->
     <string name="current_location">현위치</string>
@@ -237,7 +237,7 @@
     <string name="feedback_interpret_notification_group_content">\"백그라운드에서 실행 시키지 않기\"을 끄고 난 후에, 알림 바에 \'백그라운드 서비스가 실행되고 있음\'이라는 알림이 나타날 수도 있습니다. 이 앱의 백그라운드 정보에서 알림을 끔으로써, \이 알림을 막을 수 있습니다.</string>
 
     <string name="feedback_ignore_battery_optimizations_title">배터리 최적화 무시하기</string>
-    <string name="feedback_ignore_battery_optimizations_content">GeometricWeather가 계속 날씨 데이터를 받아 오려면, 배터리 최적화에서 이 앱를 제외해야 합니다.</string>
+    <string name="feedback_ignore_battery_optimizations_content">Breezy Weather가 계속 날씨 데이터를 받아 오려면, 배터리 최적화에서 이 앱를 제외해야 합니다.</string>
 
     <string name="feedback_cannot_start_live_wallpaper_activity">라이브 배경화면 미리보기를 시작할 수 없습니다.</string>
 
@@ -248,7 +248,7 @@
     <string name="feedback_short_term_precipitation_alert">강수는 대략 몇 시간 뒤에 일어날 수도 있습니다.</string>
 
     <string name="feedback_resident_location">Set as a resident city</string>
-    <string name="feedback_resident_location_description">Geometric Weather는 자동적으로 당신의 위치에 따라 거주 도시를 보이고 숨겨줄 것입니다.\n예를 들자면, 당신은 고향을 거주 도시로 설정 할 수도 있습니다. 당신은 여행 하는 동안에도 고향의 날씨를 알 수 있습니다. 집에 도착하면, 고향의 날씨는 자동으로 숨겨지고 현재 위치의 날씨로 대체 될 것입니다.</string>
+    <string name="feedback_resident_location_description">Breezy Weather는 자동적으로 당신의 위치에 따라 거주 도시를 보이고 숨겨줄 것입니다.\n예를 들자면, 당신은 고향을 거주 도시로 설정 할 수도 있습니다. 당신은 여행 하는 동안에도 고향의 날씨를 알 수 있습니다. 집에 도착하면, 고향의 날씨는 자동으로 숨겨지고 현재 위치의 날씨로 대체 될 것입니다.</string>
 
     <string name="feedback_click_to_get_more">눌러서 더 알아보기…</string>
 

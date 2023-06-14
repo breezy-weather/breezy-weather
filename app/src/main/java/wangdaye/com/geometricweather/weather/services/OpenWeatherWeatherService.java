@@ -12,14 +12,18 @@ import javax.inject.Inject;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
 import wangdaye.com.geometricweather.common.rxjava.BaseObserver;
 import wangdaye.com.geometricweather.common.rxjava.ObserverContainer;
 import wangdaye.com.geometricweather.common.rxjava.SchedulerTransformer;
 import wangdaye.com.geometricweather.settings.SettingsManager;
+import wangdaye.com.geometricweather.weather.apis.OpenMeteoGeocodingApi;
 import wangdaye.com.geometricweather.weather.apis.OpenWeatherApi;
+import wangdaye.com.geometricweather.weather.converters.OpenMeteoResultConverterKt;
 import wangdaye.com.geometricweather.weather.converters.OpenWeatherResultConverterKt;
+import wangdaye.com.geometricweather.weather.json.openmeteo.OpenMeteoLocationResult;
+import wangdaye.com.geometricweather.weather.json.openmeteo.OpenMeteoLocationResults;
 import wangdaye.com.geometricweather.weather.json.openweather.OpenWeatherAirPollutionResult;
-import wangdaye.com.geometricweather.weather.json.openweather.OpenWeatherLocationResult;
 import wangdaye.com.geometricweather.weather.json.openweather.OpenWeatherOneCallResult;
 
 /**
@@ -28,11 +32,13 @@ import wangdaye.com.geometricweather.weather.json.openweather.OpenWeatherOneCall
 public class OpenWeatherWeatherService extends WeatherService {
 
     private final OpenWeatherApi mApi;
+    private final OpenMeteoGeocodingApi mGeocodingApi;
     private final CompositeDisposable mCompositeDisposable;
 
     @Inject
-    public OpenWeatherWeatherService(OpenWeatherApi api, CompositeDisposable disposable) {
+    public OpenWeatherWeatherService(OpenWeatherApi api, OpenMeteoGeocodingApi geocodingApi, CompositeDisposable disposable) {
         mApi = api;
+        mGeocodingApi = geocodingApi;
         mCompositeDisposable = disposable;
     }
 
@@ -85,57 +91,57 @@ public class OpenWeatherWeatherService extends WeatherService {
     @Override
     @NonNull
     public List<Location> requestLocation(Context context, String query) {
-        List<OpenWeatherLocationResult> resultList = null;
+        String languageCode = SettingsManager.getInstance(context).getLanguage().getCode();
+        OpenMeteoLocationResults results = null;
         try {
-            resultList = mApi.callWeatherLocation(SettingsManager.getInstance(context).getProviderOpenWeatherKey(), query).execute().body();
+            results = mGeocodingApi.callWeatherLocation(
+                    query, 20, languageCode).execute().body();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return OpenWeatherResultConverterKt.convert(resultList);
+        List<Location> locationList = new ArrayList<>();
+        if (results != null && results.getResults() != null && results.getResults().size() != 0) {
+            for (OpenMeteoLocationResult r : results.getResults()) {
+                locationList.add(OpenMeteoResultConverterKt.convert(null, r, WeatherSource.OPEN_WEATHER));
+            }
+        }
+        return locationList;
     }
 
+    // Reverse geocoding
     @Override
     public void requestLocation(Context context, Location location,
                                 @NonNull RequestLocationCallback callback) {
-
-        mApi.getWeatherLocationByGeoPosition(
-                SettingsManager.getInstance(context).getProviderOpenWeatherKey(), location.getLatitude(), location.getLongitude()
-        ).compose(SchedulerTransformer.create())
-                .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<List<OpenWeatherLocationResult>>() {
-                    @Override
-                    public void onSucceed(List<OpenWeatherLocationResult> openWeatherLocationResultList) {
-                        if (openWeatherLocationResultList != null && !openWeatherLocationResultList.isEmpty()) {
-                            List<Location> locationList = new ArrayList<>();
-                            locationList.add(OpenWeatherResultConverterKt.convert(location, openWeatherLocationResultList.get(0)));
-                            callback.requestLocationSuccess(
-                                    location.getLatitude() + "," + location.getLongitude(), locationList);
-                        } else {
-                            onFailed();
-                        }
-                    }
-
-                    @Override
-                    public void onFailed() {
-                        callback.requestLocationFailed(
-                                location.getLatitude() + "," + location.getLongitude());
-                    }
-                }));
+        // Currently there is no reverse geocoding, so we just return the same location
+        // TimeZone is initialized with the TimeZone from the phone (which is probably the same as the current position)
+        // Hopefully, one day we will have a reverse geocoding API
+        List<Location> locationList = new ArrayList<>();
+        locationList.add(location);
+        callback.requestLocationSuccess(
+                location.getLatitude() + "," + location.getLongitude(),
+                locationList
+        );
     }
 
     public void requestLocation(Context context, String query,
                                 @NonNull RequestLocationCallback callback) {
-        mApi.getWeatherLocation(SettingsManager.getInstance(context).getProviderOpenWeatherKey(), query)
+        String languageCode = SettingsManager.getInstance(context).getLanguage().getCode();
+        mGeocodingApi.getWeatherLocation(query, 20, languageCode)
                 .compose(SchedulerTransformer.create())
-                .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<List<OpenWeatherLocationResult>>() {
+                .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<OpenMeteoLocationResults>() {
                     @Override
-                    public void onSucceed(List<OpenWeatherLocationResult> openWeatherLocationResults) {
-                        if (openWeatherLocationResults != null && openWeatherLocationResults.size() != 0) {
-                            List<Location> locationList = OpenWeatherResultConverterKt.convert(openWeatherLocationResults);
+                    public void onSucceed(OpenMeteoLocationResults openMeteoLocationResults) {
+                        if (openMeteoLocationResults.getResults() != null && openMeteoLocationResults.getResults().size() != 0) {
+                            List<Location> locationList = new ArrayList<>();
+                            for (OpenMeteoLocationResult r : openMeteoLocationResults.getResults()) {
+                                locationList.add(OpenMeteoResultConverterKt.convert(null, r, WeatherSource.OPEN_WEATHER));
+                            }
                             callback.requestLocationSuccess(query, locationList);
                         } else {
                             callback.requestLocationFailed(query);
                         }
+
                     }
 
                     @Override

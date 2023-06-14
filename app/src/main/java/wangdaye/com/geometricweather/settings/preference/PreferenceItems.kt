@@ -67,7 +67,7 @@ fun LazyListScope.clickablePreferenceItem(
     }
 }
 
-fun LazyListScope.checkboxPreferenceItem(
+fun LazyListScope.switchPreferenceItem(
     @StringRes titleId: Int,
     content: @Composable (Int) -> Unit,
 ) {

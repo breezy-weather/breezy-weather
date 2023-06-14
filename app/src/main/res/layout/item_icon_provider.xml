@@ -34,6 +34,6 @@
         android:layout_toEndOf="@id/item_icon_provider_clearIcon"
         android:layout_toStartOf="@id/item_icon_provider_previewButton"
         style="@style/title_text"
-        tools:text="@string/geometric_weather" />
+        tools:text="@string/breezy_weather" />
 
 </RelativeLayout>

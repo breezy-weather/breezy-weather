@@ -7,7 +7,7 @@
     <string-array name="weather_sources">
         <item>Open-Meteo</item>
         <item>AccuWeather</item>
-        <item>MET Norway / Nominatim</item>
+        <item>MET Norway</item>
         <item>OpenWeather</item>
         <item>Météo France</item>
         <item>Chine</item>
@@ -15,7 +15,7 @@
     <string-array name="weather_source_voices">
         <item>Open Meteo</item>
         <item>ACCU weather.com</item>
-        <item>Institut météorologique norvégien + Nominatim</item>
+        <item>Institut météorologique norvégien</item>
         <item>Open Weather</item>
         <item>Météo France</item>
         <item>Chine</item>

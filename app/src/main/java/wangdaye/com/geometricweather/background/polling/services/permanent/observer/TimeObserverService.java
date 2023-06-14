@@ -206,7 +206,7 @@ public class TimeObserverService extends Service {
     public static Notification getForegroundNotification(Context context, boolean setIcon) {
         return new NotificationCompat.Builder(context, GeometricWeather.NOTIFICATION_CHANNEL_ID_BACKGROUND)
                 .setSmallIcon(setIcon ? R.drawable.ic_running_in_background : 0)
-                .setContentTitle(context.getString(R.string.geometric_weather))
+                .setContentTitle(context.getString(R.string.breezy_weather))
                 .setContentText(context.getString(R.string.feedback_running_in_background))
                 .setBadgeIconType(NotificationCompat.BADGE_ICON_NONE)
                 .setPriority(NotificationCompat.PRIORITY_MIN)

@@ -46,7 +46,6 @@ import androidx.viewpager2.widget.MarginPageTransformer;
 import java.lang.annotation.Retention;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.ConcurrentModificationException;
 import java.util.List;
 import java.util.Locale;

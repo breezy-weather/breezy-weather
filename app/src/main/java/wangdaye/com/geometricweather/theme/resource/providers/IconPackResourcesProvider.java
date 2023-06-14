@@ -103,7 +103,7 @@ public class IconPackResourcesProvider extends ResourceProvider {
 
     private void buildDefaultInstance(@NonNull Context c) {
         mContext = c.getApplicationContext();
-        mProviderName = c.getString(R.string.geometric_weather);
+        mProviderName = c.getString(R.string.breezy_weather);
         mIconDrawable = mDefaultProvider.getProviderIcon();
 
         Resources res = mContext.getResources();

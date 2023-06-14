@@ -4,8 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.text.BidiFormatter
 import wangdaye.com.geometricweather.R
-import wangdaye.com.geometricweather.common.basic.models.Location
-import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource
 import wangdaye.com.geometricweather.common.utils.DisplayUtils
 import java.io.Serializable
 import java.util.Calendar

@@ -11,10 +11,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.ContentAlpha
-import androidx.compose.material.Switch
-import androidx.compose.material.SwitchDefaults
-import androidx.compose.material.Text
+import androidx.compose.material3.Switch
+import androidx.compose.material3.Text
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -104,21 +102,7 @@ fun SwitchPreferenceView(
                 onCheckedChange = {
                     state.value = it
                     onValueChanged(it)
-                },
-                colors = SwitchDefaults.colors(
-                    checkedThumbColor = MaterialTheme.colorScheme.primary,
-                    uncheckedThumbColor = MaterialTheme.colorScheme.onSurface.copy(
-                        alpha = 0.6f
-                    ),
-                    checkedTrackColor = MaterialTheme.colorScheme.surface,
-                    uncheckedTrackColor = MaterialTheme.colorScheme.surface,
-                    disabledCheckedThumbColor = MaterialTheme.colorScheme.onSurface.copy(
-                        alpha = ContentAlpha.disabled
-                    ),
-                    disabledUncheckedThumbColor = MaterialTheme.colorScheme.onSurface.copy(
-                        alpha = ContentAlpha.disabled
-                    )
-                )
+                }
             )
         }
     }

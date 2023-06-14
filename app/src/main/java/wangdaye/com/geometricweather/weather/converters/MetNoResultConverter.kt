@@ -1,84 +1,18 @@
 package wangdaye.com.geometricweather.weather.converters
 
 import android.content.Context
-import us.dustinj.timezonemap.TimeZoneMap
 import wangdaye.com.geometricweather.GeometricWeather.Companion.instance
 import wangdaye.com.geometricweather.common.basic.models.Location
-import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource
 import wangdaye.com.geometricweather.common.basic.models.weather.*
 import wangdaye.com.geometricweather.common.utils.DisplayUtils
 import wangdaye.com.geometricweather.weather.json.metno.MetNoForecastResult
 import wangdaye.com.geometricweather.weather.json.metno.MetNoEphemerisTime
 import wangdaye.com.geometricweather.weather.json.metno.MetNoEphemerisResult
-import wangdaye.com.geometricweather.weather.json.nominatim.NominatimLocationResult
 import wangdaye.com.geometricweather.weather.services.WeatherService.WeatherResultWrapper
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 import kotlin.math.roundToInt
-
-fun convert(resultList: List<NominatimLocationResult>?): List<Location> {
-    val locationList: MutableList<Location> = ArrayList()
-    if (!resultList.isNullOrEmpty()) {
-        // Since we don't have timezones in the result, we need to initialize a TimeZoneMap
-        // Since it takes a lot of time, we make boundaries
-        // However, even then, it can take a lot of time, even on good performing smartphones.
-        // TODO: To improve performances, create a Location() with a null TimeZone.
-        // When clicking in the location search result on a specific location, if TimeZone is
-        // null, then make a TimeZoneMap of the lat/lon and find its TimeZone
-        val minLat = resultList.minOf { it.lat }
-        val maxLat = resultList.maxOf { it.lat } + 0.00001
-        val minLon = resultList.minOf { it.lon }
-        val maxLon = resultList.maxOf { it.lon } + 0.00001
-        val map = TimeZoneMap.forRegion(minLat, minLon, maxLat, maxLon)
-        for (r in resultList) {
-            locationList.add(convert(null, r, map))
-        }
-    }
-    return locationList
-}
-
-fun convert(location: Location?, result: NominatimLocationResult): Location {
-    val map = TimeZoneMap.forRegion(result.lat, result.lon,result.lat + 0.00001,result.lon + 0.00001)
-    return convert(location, result, map)
-}
-
-fun convert(location: Location?, result: NominatimLocationResult, map: TimeZoneMap): Location {
-    return if (location != null && !location.province.isNullOrEmpty()
-        && location.city.isNotEmpty()
-        && !location.district.isNullOrEmpty()
-    ) {
-        Location(
-            cityId = result.placeId.toString(),
-            latitude = result.lat.toFloat(),
-            longitude = result.lon.toFloat(),
-            timeZone = getTimeZoneForPosition(map, result.lat, result.lon),
-            country = result.address.country,
-            province = location.province,
-            city = location.city,
-            weatherSource = WeatherSource.METNO,
-            isChina = result.address.countryCode.isNotEmpty()
-                    && (result.address.countryCode.equals("cn", ignoreCase = true)
-                    || result.address.countryCode.equals("hk", ignoreCase = true)
-                    || result.address.countryCode.equals("tw", ignoreCase = true))
-        )
-    } else {
-        Location(
-            cityId = result.placeId.toString(),
-            latitude = result.lat.toFloat(),
-            longitude = result.lon.toFloat(),
-            timeZone = getTimeZoneForPosition(map, result.lat, result.lon),
-            country = result.address.country,
-            province = result.address.state,
-            city = result.displayName,
-            weatherSource = WeatherSource.METNO,
-            isChina = result.address.countryCode.isNotEmpty()
-                    && (result.address.countryCode.equals("cn", ignoreCase = true)
-                    || result.address.countryCode.equals("hk", ignoreCase = true)
-                    || result.address.countryCode.equals("tw", ignoreCase = true))
-        )
-    }
-}
 
 fun convert(
     context: Context,

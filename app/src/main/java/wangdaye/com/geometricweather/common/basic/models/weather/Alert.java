@@ -3,14 +3,8 @@ package wangdaye.com.geometricweather.common.basic.models.weather;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import androidx.annotation.ColorInt;
-
 import java.io.Serializable;
-import java.util.Collections;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 /**
  * Alert.
@@ -69,22 +63,7 @@ public class Alert implements Parcelable, Serializable {
         return priority;
     }
 
-    public static void deduplication(List<Alert> alertList) {
-        Set<String> typeSet = new HashSet<>();
-
-        for (int i = alertList.size() - 1; i >= 0; i --) {
-            Alert alert = alertList.get(i);
-
-            if (typeSet.contains(alert.getType())) {
-                alertList.remove(i);
-            } else {
-                typeSet.add(alert.type);
-            }
-        }
-    }
-
     // parcelable.
-
     @Override
     public int describeContents() {
         return 0;

@@ -54,7 +54,7 @@ You can still implement it your own geocoding later, but to get a running exampl
 Replace `WeatherSource.OPEN_METEO` with your `WeatherSource` in the location functions.
 
 Then focus on the `requestWeather()` function. You will need to create a converter class.
-The goal of a converter class is to normalize the data we received into Geometric Weather data objects.
+The goal of a converter class is to normalize the data we received into Breezy Weather data objects.
 
 Here is the minimum code you need to put in `app/src/main/java/wangdaye/com/geometricweather/weather/converters/`:
 ```kotlin

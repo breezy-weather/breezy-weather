@@ -3,7 +3,7 @@
 
     <!-- app. -->
     <string name="app_name">Cuaca</string>
-    <string name="geometric_weather">Cuaca Geometris</string>
+    <string name="breezy_weather">Cuaca Geometris</string>
 
     <!-- keyword. -->
     <string name="current_location">Lokasi saat ini</string>
@@ -309,7 +309,6 @@
     <string name="content_des_swipe_right_to_delete">Anda dapat menggesek ke kanan untuk menghapus item ini</string>
     <string name="content_desc_search_filter_on">Hanya menunjukkan lokasi dari sumber cuaca default</string>
     <string name="content_desc_search_filter_off">Tunjukkan lokasi dari semua sumber cuaca</string>
-    <string name="content_desc_powered_by">Ditenagai oleh $</string> <!-- $ = weather source. -->
     <string name="content_desc_app_store">@string/action_appStore</string>
     <string name="content_desc_wechat_payment_code">Pembayaran kode QR wechat</string>
     <string name="content_desc_weather_icon">Ikon cuaca</string>

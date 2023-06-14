@@ -17,30 +17,33 @@ import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import wangdaye.com.geometricweather.BuildConfig;
 import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
 import wangdaye.com.geometricweather.common.rxjava.BaseObserver;
 import wangdaye.com.geometricweather.common.rxjava.ObserverContainer;
 import wangdaye.com.geometricweather.common.rxjava.SchedulerTransformer;
 import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.weather.apis.MetNoApi;
-import wangdaye.com.geometricweather.weather.apis.NominatimApi;
+import wangdaye.com.geometricweather.weather.apis.OpenMeteoGeocodingApi;
 import wangdaye.com.geometricweather.weather.converters.MetNoResultConverterKt;
+import wangdaye.com.geometricweather.weather.converters.OpenMeteoResultConverterKt;
 import wangdaye.com.geometricweather.weather.json.metno.MetNoForecastResult;
 import wangdaye.com.geometricweather.weather.json.metno.MetNoEphemerisResult;
-import wangdaye.com.geometricweather.weather.json.nominatim.NominatimLocationResult;
+import wangdaye.com.geometricweather.weather.json.openmeteo.OpenMeteoLocationResult;
+import wangdaye.com.geometricweather.weather.json.openmeteo.OpenMeteoLocationResults;
 
 /**
  * MET Norway weather service.
  **/
 public class MetNoWeatherService extends WeatherService {
     private final MetNoApi mApi;
-    private final NominatimApi mNominatimApi;
+    private final OpenMeteoGeocodingApi mGeocodingApi;
     private final CompositeDisposable mCompositeDisposable;
 
     @Inject
-    public MetNoWeatherService(MetNoApi api, NominatimApi nominatimApi, CompositeDisposable disposable) {
+    public MetNoWeatherService(MetNoApi api, OpenMeteoGeocodingApi geocodingApi, CompositeDisposable disposable) {
         mApi = api;
-        mNominatimApi = nominatimApi;
+        mGeocodingApi = geocodingApi;
         mCompositeDisposable = disposable;
     }
 
@@ -107,70 +110,56 @@ public class MetNoWeatherService extends WeatherService {
     @NonNull
     public List<Location> requestLocation(Context context, String query) {
         String languageCode = SettingsManager.getInstance(context).getLanguage().getCode();
-        List<NominatimLocationResult> resultList = null;
+        OpenMeteoLocationResults results = null;
         try {
-            resultList = mNominatimApi.callWeatherLocation(getUserAgent(), query, "city", true, languageCode, "jsonv2").execute().body();
+            results = mGeocodingApi.callWeatherLocation(
+                    query, 20, languageCode).execute().body();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return MetNoResultConverterKt.convert(resultList);
+        List<Location> locationList = new ArrayList<>();
+        if (results != null && results.getResults() != null && results.getResults().size() != 0) {
+            for (OpenMeteoLocationResult r : results.getResults()) {
+                locationList.add(OpenMeteoResultConverterKt.convert(null, r, WeatherSource.METNO));
+            }
+        }
+        return locationList;
     }
 
+    // Reverse geocoding
     @Override
     public void requestLocation(Context context, Location location,
                                 @NonNull RequestLocationCallback callback) {
-
-        String languageCode = SettingsManager.getInstance(context).getLanguage().getCode();
-
-        mNominatimApi.getWeatherLocationByGeoPosition(
-                getUserAgent(),
-                location.getLatitude(),
-                location.getLongitude(),
-                "city",
-                true,
-                languageCode,
-         "jsonv2"
-            ).compose(SchedulerTransformer.create())
-                .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<NominatimLocationResult>() {
-                    @Override
-                    public void onSucceed(NominatimLocationResult metnoLocationResult) {
-                        if (metnoLocationResult != null) {
-                            List<Location> locationList = new ArrayList<>();
-                            locationList.add(MetNoResultConverterKt.convert(location, metnoLocationResult));
-                            callback.requestLocationSuccess(
-                                    location.getLatitude() + "," + location.getLongitude(),
-                                    locationList
-                            );
-                        } else {
-                            onFailed();
-                        }
-                    }
-
-                    @Override
-                    public void onFailed() {
-                        callback.requestLocationFailed(
-                                location.getLatitude() + "," + location.getLongitude()
-                        );
-                    }
-                }));
+        // Currently there is no reverse geocoding, so we just return the same location
+        // TimeZone is initialized with the TimeZone from the phone (which is probably the same as the current position)
+        // Hopefully, one day we will have a reverse geocoding API
+        List<Location> locationList = new ArrayList<>();
+        locationList.add(location);
+        callback.requestLocationSuccess(
+                location.getLatitude() + "," + location.getLongitude(),
+                locationList
+        );
     }
 
     public void requestLocation(Context context, String query,
                                 @NonNull RequestLocationCallback callback) {
         String languageCode = SettingsManager.getInstance(context).getLanguage().getCode();
-
-        mNominatimApi.getWeatherLocation(getUserAgent(), query, "city", true, languageCode, "jsonv2")
+        mGeocodingApi.getWeatherLocation(query, 20, languageCode)
                 .compose(SchedulerTransformer.create())
-                .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<List<NominatimLocationResult>>() {
+                .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<OpenMeteoLocationResults>() {
                     @Override
-                    public void onSucceed(List<NominatimLocationResult> metnoLocationResults) {
-                        if (metnoLocationResults != null && metnoLocationResults.size() != 0) {
-                            List<Location> locationList = MetNoResultConverterKt.convert(metnoLocationResults);
+                    public void onSucceed(OpenMeteoLocationResults openMeteoLocationResults) {
+                        if (openMeteoLocationResults.getResults() != null && openMeteoLocationResults.getResults().size() != 0) {
+                            List<Location> locationList = new ArrayList<>();
+                            for (OpenMeteoLocationResult r : openMeteoLocationResults.getResults()) {
+                                locationList.add(OpenMeteoResultConverterKt.convert(null, r, WeatherSource.METNO));
+                            }
                             callback.requestLocationSuccess(query, locationList);
                         } else {
                             callback.requestLocationFailed(query);
                         }
+
                     }
 
                     @Override

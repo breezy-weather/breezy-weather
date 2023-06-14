@@ -1,7 +1,7 @@
 <resources>
     <!-- app. -->
     <string name="app_name">幾何天氣</string>
-    <string name="geometric_weather">幾何天氣</string>
+    <string name="breezy_weather">幾何天氣</string>
 
     <!-- keyword. -->
     <string name="current_location">當前位置</string>
@@ -289,7 +289,6 @@
     <string name="content_des_swipe_right_to_delete">你可以向右滑動以刪除該項</string>
     <string name="content_desc_search_filter_on">僅顯示默認天氣源的地址</string>
     <string name="content_desc_search_filter_off">顯示所有天氣源的地址</string>
-    <string name="content_desc_powered_by">由$提供</string>
     <string name="content_desc_wechat_payment_code">微信付款二維碼</string>
     <string name="content_desc_weather_icon">天氣圖標</string>
     <string name="content_desc_weather_icon_light">亮色圖標</string>

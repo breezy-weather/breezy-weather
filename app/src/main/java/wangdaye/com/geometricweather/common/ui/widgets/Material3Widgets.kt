@@ -1,25 +1,31 @@
 package wangdaye.com.geometricweather.common.ui.widgets
 
 import android.content.Context
-import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FabPosition
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.material3.TopAppBarScrollBehavior
+import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.semantics.onClick
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import wangdaye.com.geometricweather.R
 import kotlin.math.ln
 
@@ -47,8 +53,6 @@ fun generateCollapsedScrollBehavior(): TopAppBarScrollBehavior {
 }
 
 // scaffold.
-
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Material3Scaffold(
     modifier: Modifier = Modifier,
@@ -59,6 +63,7 @@ fun Material3Scaffold(
     floatingActionButtonPosition: FabPosition = FabPosition.End,
     containerColor: Color = MaterialTheme.colorScheme.surface,
     contentColor: Color = MaterialTheme.colorScheme.onSurface,
+    contentWindowInsets: WindowInsets = ScaffoldDefaults.contentWindowInsets,
     content: @Composable (PaddingValues) -> Unit
 ) {
     Scaffold(
@@ -70,12 +75,79 @@ fun Material3Scaffold(
         floatingActionButtonPosition = floatingActionButtonPosition,
         containerColor = containerColor,
         contentColor = contentColor,
-        content = content,
+        contentWindowInsets = contentWindowInsets,
+        content = content
+    )
+}
+
+// Search bar (derived from androix.compose.material3:material3:1.1.0)
+@Composable
+fun Material3SearchBarInputField(
+    query: String,
+    onQueryChange: (String) -> Unit,
+    onSearch: (String) -> Unit,
+    active: Boolean,
+    onActiveChange: (Boolean) -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    placeholder: @Composable (() -> Unit)? = null,
+    leadingIcon: @Composable (() -> Unit)? = null,
+    trailingIcon: @Composable (() -> Unit)? = null,
+    colors: TextFieldColors = SearchBarDefaults.inputFieldColors(),
+    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
+) {
+    val focusRequester = remember { FocusRequester() }
+
+    BasicTextField(
+        value = query,
+        onValueChange = onQueryChange,
+        modifier = modifier
+            .height(SearchBarDefaults.InputFieldHeight)
+            .fillMaxWidth()
+            .focusRequester(focusRequester)
+            .onFocusChanged { if (it.isFocused) onActiveChange(true) }
+            .semantics {
+                onClick {
+                    focusRequester.requestFocus()
+                    true
+                }
+            },
+        enabled = enabled,
+        singleLine = true,
+        textStyle = MaterialTheme.typography.titleMedium.copy(
+            color = MaterialTheme.colorScheme.onBackground,
+            fontWeight = FontWeight.Normal,
+            fontSize = 18.sp,
+        ),
+        cursorBrush = SolidColor(MaterialTheme.colorScheme.onBackground),
+        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
+        keyboardActions = KeyboardActions(onSearch = { onSearch(query) }),
+        interactionSource = interactionSource,
+        decorationBox = @Composable { innerTextField ->
+            TextFieldDefaults.DecorationBox(
+                value = query,
+                innerTextField = innerTextField,
+                enabled = enabled,
+                singleLine = true,
+                visualTransformation = VisualTransformation.None,
+                interactionSource = interactionSource,
+                placeholder = placeholder,
+                leadingIcon = leadingIcon?.let { leading -> {
+                    Box(Modifier.offset(x = 4.dp)) { leading() }
+                } },
+                trailingIcon = trailingIcon?.let { trailing -> {
+                    Box(Modifier.offset(x = (-4).dp)) { trailing() }
+                } },
+                shape = SearchBarDefaults.inputFieldShape,
+                colors = colors,
+                contentPadding = TextFieldDefaults.contentPaddingWithoutLabel(),
+                container = {},
+            )
+        }
     )
 }
 
 // list items.
-
 val defaultCardListItemElevation = 2.dp
 
 fun getCardListItemMarginDp(context: Context) = context

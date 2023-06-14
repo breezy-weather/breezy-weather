@@ -1,7 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- app. -->
     <string name="app_name">Meteo</string>
-    <string name="geometric_weather">Geometric Weather</string>
 
     <!-- keyword. -->
     <string name="current_location">Locația curentă</string>
@@ -154,7 +153,7 @@
     <string name="feedback_request_location_permission_failed">Cerere acces localizare - Eșuat</string>
 
     <string name="feedback_location_permissions_title">Accesare informații despre locație.</string>
-    <string name="feedback_location_permissions_statement">Geometric Weather are nevoie de informațiile despre locația dumenavoastră când rulează sau în fundal pentru a furniza datele meteo din locația in care vă aflați. Pentru aceasta sunt necesare câteva permisiuni. Informațiile despre locația dumenavoastră vor fi utilizate doar pentru a obține datele meteo pentru locația curentă. Dacă nu doriți permiterea accesului la informațiile despre locație, puteți respinge aceste cerințe și seta manual locația dorită în pagina de gestionare.</string>
+    <string name="feedback_location_permissions_statement">Breezy Weather are nevoie de informațiile despre locația dumenavoastră când rulează sau în fundal pentru a furniza datele meteo din locația in care vă aflați. Pentru aceasta sunt necesare câteva permisiuni. Informațiile despre locația dumenavoastră vor fi utilizate doar pentru a obține datele meteo pentru locația curentă. Dacă nu doriți permiterea accesului la informațiile despre locație, puteți respinge aceste cerințe și seta manual locația dorită în pagina de gestionare.</string>
     <string name="feedback_background_location_title">Accesare locație în fundal.</string>
     <string name="feedback_background_location_summary">Pentru a permite aplicației să acceseze informații despre locație în fundal, astfel încât să putem percepe modificări ale locației și să vă oferim date meteorologice in timp real, setați accesul la locație ca \ "Permiteți tot timpul \". </string>
 
@@ -253,7 +252,7 @@
     <string name="feedback_interpret_notification_group_content">După deselectarea opțiunii \"Activitate fundal gestionată de sistem\", o notificare ce indică faptul că serviciul rulează in fundal va apărea în bara de notificări. Puteți dezactiva Informațiile despre activitatea din fundal în pagina de informații a aplicației pentru a bloca aceste notificări. </string>
 
     <string name="feedback_ignore_battery_optimizations_title">Ignorați optimizarea bateriei</string>
-    <string name="feedback_ignore_battery_optimizations_content">Pentru a vă asigura că serviciile de fundal funcționează corect, vă rugăm să deselectați optimizarea bateriei pentru GeometricWeather. </string>
+    <string name="feedback_ignore_battery_optimizations_content">Pentru a vă asigura că serviciile de fundal funcționează corect, vă rugăm să deselectați optimizarea bateriei pentru Breezy Weather. </string>
 
     <string name="feedback_cannot_start_live_wallpaper_activity">Pornirea previzualizării Tapetului dinamic (live wallpaper) a eșuat.</string>
 
@@ -264,7 +263,7 @@
     <string name="feedback_short_term_precipitation_alert">Posibile precipitații în următoarele ore.</string>
 
     <string name="feedback_resident_location">Selectat ca oraș de rezidență (Acasă)</string>
-    <string name="feedback_resident_location_description">GeometricWeather va afișa și ascunde automat orașele de rezidență (Acasă) pe baza locației dvs. actuale. \ nDe exemplu, vă puteți seta orașul natal ca oraș rezident. Puteți verifica vremea în orașul dvs. natal în timp ce călătoriți. Când ajungeți acasă, vremea din orașul dvs. natal va fi ascunsă și înlocuită de vremea pentru locația dvs. actuală.</string>
+    <string name="feedback_resident_location_description">Breezy Weather va afișa și ascunde automat orașele de rezidență (Acasă) pe baza locației dvs. actuale. \ nDe exemplu, vă puteți seta orașul natal ca oraș rezident. Puteți verifica vremea în orașul dvs. natal în timp ce călătoriți. Când ajungeți acasă, vremea din orașul dvs. natal va fi ascunsă și înlocuită de vremea pentru locația dvs. actuală.</string>
 
     <string name="feedback_click_to_get_more">Atingeți pentru mai multe informatii…</string>
     <string name="feedback_click_again_to_exit">Repetați actiunea pentru a ieși</string>

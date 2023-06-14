@@ -3,7 +3,6 @@
 
     <!-- app. -->
     <string name="app_name">Počasí</string>
-    <string name="geometric_weather">Geometric Weather</string>
 
     <!-- keyword. -->
     <string name="current_location">Současná lokace</string>
@@ -166,7 +165,7 @@
     <string name="feedback_request_location_permission_failed">Pokus o získání povolení k poloze selhal</string>
 
     <string name="feedback_location_permissions_title">Přístup k informacím o poloze</string>
-    <string name="feedback_location_permissions_statement">Aplikace Geometric Weather potřebuje sbírat na popředí nebo v pozadí informace o vaší poloze, aby mohla poskytnout údaje o počasí ve vaší současné lokaci. Z tohoto důvodu zažádáme o nějaká oprávnění. Informace o vaší poloze budou použity pouze k získání údajů o počasí ve vaší současné lokaci. Pokud nechcete, abychom sbírali informace o poloze, můžete tyto žádosti zamítnout a ručně nastavit vaší polohu na stránce nastavení.</string>
+    <string name="feedback_location_permissions_statement">Aplikace Breezy Weather potřebuje sbírat na popředí nebo v pozadí informace o vaší poloze, aby mohla poskytnout údaje o počasí ve vaší současné lokaci. Z tohoto důvodu zažádáme o nějaká oprávnění. Informace o vaší poloze budou použity pouze k získání údajů o počasí ve vaší současné lokaci. Pokud nechcete, abychom sbírali informace o poloze, můžete tyto žádosti zamítnout a ručně nastavit vaší polohu na stránce nastavení.</string>
     <string name="feedback_background_location_title">Přístup k poloze na pozadí</string>
     <string name="feedback_background_location_summary">Abychom umožnili aplikaci přístup k informaci o poloze na pozadí a mohli díky tomu zjišťovat změny v poloze a poskytovat vám aktuální údaje o počasí, je potřeba abyste nastavili přístup k poloze na \"Povolit vždy\".</string>
 
@@ -266,7 +265,7 @@
     <string name="feedback_interpret_notification_group_content">Po vypnutí funkce \"Neběžet na pozadí\" se zobrazí oznámení značící, že služba na pozadí je aktivní. Oznámení lze vypnout na informační stránce aplikace.</string>
 
     <string name="feedback_ignore_battery_optimizations_title">Ignorovat optimalizace baterie</string>
-    <string name="feedback_ignore_battery_optimizations_content">Pro ujištění, že mohou služby na pozadí pokračovat v práci, je potřeba zapnout ignorování optimalizací baterie pro GeometricWeather.</string>
+    <string name="feedback_ignore_battery_optimizations_content">Pro ujištění, že mohou služby na pozadí pokračovat v práci, je potřeba zapnout ignorování optimalizací baterie pro Breezy Weather.</string>
 
     <string name="feedback_cannot_start_live_wallpaper_activity">Nepodařilo se spustit náhled živého pozadí</string>
 
@@ -277,7 +276,7 @@
     <string name="feedback_short_term_precipitation_alert">V následujících hodinách mohou přijít srážky.</string>
 
     <string name="feedback_resident_location">Nastavit jako bydliště</string>
-    <string name="feedback_resident_location_description">GeometricWeather automaticky zobrazí a skryje bydliště podle vaší současné lokace.\nJako bydliště můžete například nastavit vaše domovské město. Při cestování se můžete poté podívat na počasí ve vašem domovském městě. Když se vrátíte domů, počasí ve vašem domovském městě bude skryto a nahrazeno počasím ve vaší současné lokaci.</string>
+    <string name="feedback_resident_location_description">Breezy Weather automaticky zobrazí a skryje bydliště podle vaší současné lokace.\nJako bydliště můžete například nastavit vaše domovské město. Při cestování se můžete poté podívat na počasí ve vašem domovském městě. Když se vrátíte domů, počasí ve vašem domovském městě bude skryto a nahrazeno počasím ve vaší současné lokaci.</string>
 
     <string name="feedback_click_to_get_more">Klepněte pro více informací…</string>
     <string name="feedback_click_again_to_exit">Klepněte znovu pro opuštění</string>
@@ -306,7 +305,6 @@
     <string name="content_des_swipe_right_to_delete">Pro odstranění této položky přejeďte prstem doprava</string>
     <string name="content_desc_search_filter_on">Zobrazit pouze lokace z výchozího zdroje počasí</string>
     <string name="content_desc_search_filter_off">Zobrazit lokace ze všech zdrojů počasí</string>
-    <string name="content_desc_powered_by">Používá $</string> <!-- $ = weather source. -->
     <string name="content_desc_app_store">@string/action_appStore</string>
     <string name="content_desc_wechat_payment_code">Platební QR kód WeChat</string>
     <string name="content_desc_weather_icon">Ikona počasí</string>

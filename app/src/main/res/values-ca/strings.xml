@@ -2,7 +2,7 @@
 
     <!-- app. -->
     <string name="app_name">Oratge</string>
-    <string name="geometric_weather">Oratge geomètric</string>
+    <string name="breezy_weather">Oratge geomètric</string>
 
     <!-- keyword. -->
     <string name="current_location">Ubicació actual</string>

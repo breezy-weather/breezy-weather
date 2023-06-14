@@ -1,4 +1,4 @@
-Geometric Weather est une application météo Android libre et gratuite.
+Breezy Weather est une application météo Android libre et gratuite.
 Cette version ne comporte aucune dépendance propriétaire, en respectant les critères d’inclusion de F-Droid.
 
 Vous trouverez dans cette application, de façon non exhaustive :<ul>

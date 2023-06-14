@@ -1,4 +1,4 @@
-Geometric Weather is a free and open-source Android weather app.
+Breezy Weather is a free and open-source Android weather app.
 This build flavor has all proprietary dependencies and related code stripped out to make it eligible for inclusion on F-Droid.
 
 In the app, you'll find:<ul>

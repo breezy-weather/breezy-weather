@@ -81,19 +81,6 @@ public class ApiModule {
     }
 
     @Provides
-    public NominatimApi provideNominatimApi(OkHttpClient client,
-                                            Converter.Factory converterFactory,
-                                            RxJava3CallAdapterFactory callAdapterFactory) {
-        return new Retrofit.Builder()
-                .baseUrl(BuildConfig.NOMINATIM_BASE_URL)
-                .client(client)
-                .addConverterFactory(converterFactory)
-                .addCallAdapterFactory(callAdapterFactory)
-                .build()
-                .create(NominatimApi.class);
-    }
-
-    @Provides
     public OpenWeatherApi provideOpenWeatherApi(OkHttpClient client,
                                                 Converter.Factory converterFactory,
                                                 RxJava3CallAdapterFactory callAdapterFactory) {

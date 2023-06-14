@@ -40,7 +40,7 @@ public class WeatherServiceSet {
             case METNO:
                 return mWeatherServices[2];
 
-            case OWM:
+            case OPEN_WEATHER:
                 return mWeatherServices[3];
 
             case MF:

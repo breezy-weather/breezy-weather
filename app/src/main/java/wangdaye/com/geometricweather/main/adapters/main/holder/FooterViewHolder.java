@@ -61,7 +61,10 @@ public class FooterViewHolder extends AbstractMainViewHolder {
                         .getWeatherThemeDelegate()
                         .getHeaderTextColor(mTitle.getContext())
         );
-        mTitle.setText("* Weather data by " + location.getWeatherSource().getSourceUrl());
+        mTitle.setText(
+                context.getString(R.string.content_desc_data_by)
+                        .replace("$", location.getWeatherSource().getSourceUrl())
+        );
 
         mEditButton.setTextColor(
                 ThemeManager

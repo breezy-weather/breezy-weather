@@ -1,7 +1,6 @@
 package wangdaye.com.geometricweather.weather.converters
 
 import android.content.Context
-import us.dustinj.timezonemap.TimeZoneMap
 import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.models.weather.*
 import wangdaye.com.geometricweather.common.utils.DisplayUtils
@@ -320,14 +319,6 @@ fun completeHourlyListFromDailyList(
     }
 
     return newHourlyList
-}
-
-fun getTimeZoneForPosition(map: TimeZoneMap, lat: Double, lon: Double): TimeZone {
-    return try {
-        TimeZone.getTimeZone(map.getOverlappingTimeZone(lat, lon)!!.zoneId)
-    } catch (ignored: Exception) {
-        TimeZone.getDefault()
-    }
 }
 
 fun getWindLevel(context: Context, speed: Float?): String? {

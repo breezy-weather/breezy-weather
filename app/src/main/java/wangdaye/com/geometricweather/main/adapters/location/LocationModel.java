@@ -1,7 +1,6 @@
 package wangdaye.com.geometricweather.main.adapters.location;
 
 import android.content.Context;
-import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,13 +20,13 @@ public class LocationModel {
     public @NonNull Location location;
 
     public @Nullable WeatherCode weatherCode;
+    public @Nullable String weatherText;
     public @NonNull WeatherSource weatherSource;
     public boolean currentPosition;
     public boolean residentPosition;
 
-    public @NonNull String title1;
-    public @NonNull String title2;
-    public @NonNull String subtitle;
+    public @NonNull String title;
+    public @NonNull String body;
 
     public @Nullable String alerts;
 
@@ -42,18 +41,21 @@ public class LocationModel {
         this.location = location;
 
         this.weatherCode = null;
+        // TODO: Use current instead
         if (location.getWeather() != null && location.getWeather().getDailyForecast().size() > 0) {
             if (location.isDaylight()
                     && location.getWeather().getDailyForecast().get(0).getDay() != null
                     && location.getWeather().getDailyForecast().get(0).getDay().getWeatherCode() != null
             ) {
                 this.weatherCode = location.getWeather().getDailyForecast().get(0).getDay().getWeatherCode();
+                this.weatherText = location.getWeather().getDailyForecast().get(0).getDay().getWeatherText();
             }
             if (!location.isDaylight()
                     && location.getWeather().getDailyForecast().get(0).getNight() != null
                     && location.getWeather().getDailyForecast().get(0).getNight().getWeatherCode() != null
             ) {
                 this.weatherCode = location.getWeather().getDailyForecast().get(0).getNight().getWeatherCode();
+                this.weatherText = location.getWeather().getDailyForecast().get(0).getNight().getWeatherText();
             }
         }
 
@@ -62,36 +64,10 @@ public class LocationModel {
         this.currentPosition = location.isCurrentPosition();
         this.residentPosition = location.isResidentPosition();
 
-        this.title1 = location.isCurrentPosition()
+        this.title = location.isCurrentPosition()
                 ? context.getString(R.string.current_location)
-                : location.getCityName(context);
-        this.title2 = "";
-        if (location.getWeather() != null && location.getWeather().getCurrent() != null) {
-            StringBuilder builder = new StringBuilder();
-            if (!TextUtils.isEmpty(location.getWeather().getCurrent().getWeatherText())) {
-                builder.append(location.getWeather().getCurrent().getWeatherText());
-                if (location.getWeather().getCurrent().getTemperature() != null
-                    && location.getWeather().getCurrent().getTemperature().getTemperature() != null) {
-                    builder.append(", ");
-                }
-            }
-            if (location.getWeather().getCurrent().getTemperature() != null
-                    && location.getWeather().getCurrent().getTemperature().getTemperature() != null) {
-                builder.append(unit
-                        .getShortValueText(
-                                context,
-                                location.getWeather().getCurrent().getTemperature().getTemperature()
-                        )
-                );
-            }
-            this.title2 = builder.toString();
-        }
-
-        if (!location.isCurrentPosition() || location.isUsable()) {
-            subtitle = location.toString();
-        } else {
-            subtitle = context.getString(R.string.feedback_not_yet_location);
-        }
+                : location.place();
+        this.body = (location.isUsable()) ? location.administrationLevels() : context.getString(R.string.feedback_not_yet_location);
 
         if (location.getWeather() != null) {
             List<Alert> alertList = location.getWeather().getCurrentAlertList();

@@ -176,6 +176,9 @@
     <string name="help">AIDE</string>
     <string name="learn_more">EN SAVOIR PLUS</string>
 
+    <string name="locations">Emplacements</string>
+    <string name="filter_weather_sources">Filtrer</string>
+
     <string name="about_app">À propos</string>
     <string name="introduce">présentation</string>
     <string name="email">Courriel</string>
@@ -205,7 +208,7 @@
     <string name="feedback_request_location_permission_failed">Permission de localisation échouée</string>
 
     <string name="feedback_location_permissions_title">Accéder aux informations de localisation</string>
-    <string name="feedback_location_permissions_statement">Geometric Weather a besoin de récupérer vos informations de localisation quand l’application est utilisée ou en arrière-plan pour fournir les données météo de votre position actuelle. Pour cela, nous avons besoin de certaines permissions. Ces informations ne seront utilisées que pour obtenir les données météo de votre position actuelle. Si vous ne souhaitez pas partager vos informations de localisation, vous pouvez toujours refuser et définir manuellement un emplacement depuis la recherche.</string>
+    <string name="feedback_location_permissions_statement">Breezy Weather a besoin de récupérer vos informations de localisation quand l’application est utilisée ou en arrière-plan pour fournir les données météo de votre position actuelle. Pour cela, nous avons besoin de certaines permissions. Ces informations ne seront utilisées que pour obtenir les données météo de votre position actuelle. Si vous ne souhaitez pas partager vos informations de localisation, vous pouvez toujours refuser et définir manuellement un emplacement depuis la recherche.</string>
     <string name="feedback_background_location_title">Accéder à la localisation en arrière-plan</string>
     <string name="feedback_background_location_summary">Afin d’autoriser l’application à accéder à la localisation en arrière-plan, veuillez définir la permission de localisation à « Toujours autoriser ».</string>
 
@@ -280,8 +283,8 @@
     <string name="feedback_no_data">AUCUNE DONNÉE</string>
 
     <string name="feedback_collect_failed">Cette localisation existe déjà</string>
-    <string name="feedback_collect_succeed">Localisation ajoutée avec succès</string>
-    <string name="feedback_delete_succeed">Localisation supprimée avec succès</string>
+    <string name="feedback_collect_succeed">Emplacement ajouté</string>
+    <string name="feedback_delete_succeed">Emplacement supprimé</string>
     <string name="feedback_location_list_cannot_be_null">La liste de localisation ne peut être vide</string>
 
     <string name="feedback_search_location">Rechercher une localisation…</string>
@@ -308,7 +311,7 @@
     <string name="feedback_interpret_notification_group_content">Après avoir désactivé « Pas de service en arrière-plan », une notification indiquant qu’un service fonctionne en arrière-plan apparaîtra dans la barre de notifications. Vous pouvez désactiver le canal Informations d’arrière-plan dans la page d’informations de l’application pour bloquer cette notification.</string>
 
     <string name="feedback_ignore_battery_optimizations_title">Ignorer l’optimisation de batterie</string>
-    <string name="feedback_ignore_battery_optimizations_content">Afin de s’assurer que les services en arrière-plan continuent de fonctionner, merci d’ignorer l’optimisation de batterie pour GeometricWeather.</string>
+    <string name="feedback_ignore_battery_optimizations_content">Afin de s’assurer que les services en arrière-plan continuent de fonctionner, merci d’ignorer l’optimisation de batterie pour Breezy Weather.</string>
 
     <string name="feedback_cannot_start_live_wallpaper_activity">Impossible de démarrer la prévisualisation du fond d’écran animé</string>
 
@@ -319,7 +322,7 @@
     <string name="feedback_short_term_precipitation_alert">Précipitations possibles dans les heures à venir.</string>
 
     <string name="feedback_resident_location">Définir en tant que ville de résidence</string>
-    <string name="feedback_resident_location_description">GeometricWeather affichera ou masquera automatiquement votre ville de résidence selon votre position.\nPar exemple, vous pouvez définir votre domicile comme ville de résidence. En déplacement, vous pourrez vérifier la météo pour ce lieu. De retour chez vous, la météo « ville de résidence » sera masquée et remplacée par celle de votre position.</string>
+    <string name="feedback_resident_location_description">Breezy Weather affichera ou masquera automatiquement votre ville de résidence selon votre position.\nPar exemple, vous pouvez définir votre domicile comme ville de résidence. En déplacement, vous pourrez vérifier la météo pour ce lieu. De retour chez vous, la météo « ville de résidence » sera masquée et remplacée par celle de votre position.</string>
 
     <string name="feedback_click_to_get_more">Appuyez pour en voir plus…</string>
     <string name="feedback_click_again_to_exit">Appuyez à nouveau pour quitter</string>
@@ -348,7 +351,8 @@
     <string name="content_des_swipe_right_to_delete">Vous pouvez glisser vers la droite pour supprimer cet élément</string>
     <string name="content_desc_search_filter_on">N’afficher que les emplacements de la source météo par défaut</string>
     <string name="content_desc_search_filter_off">Afficher les emplacements de toutes les sources météo</string>
-    <string name="content_desc_powered_by">Fourni par $</string> <!-- $ = weather source. -->
+    <string name="content_desc_data_by">Données par $</string> <!-- $ = weather source. -->
+    <string name="content_desc_location_results_by">Résultats d’emplacement par $</string> <!-- $ = location provider -->
     <string name="content_desc_wechat_payment_code">QR code de paiement par WeChat</string>
     <string name="content_desc_weather_icon">Icône météo</string>
     <string name="content_desc_weather_icon_light">Icône claire</string>

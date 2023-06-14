@@ -3,7 +3,7 @@
 
     <!-- app. -->
     <string name="app_name">Weather</string>
-    <string name="geometric_weather">Geometric Weather</string>
+    <string name="breezy_weather">Breezy Weather</string>
 
     <!-- keyword. -->
     <string name="current_location">Current location</string>
@@ -178,10 +178,12 @@
     <string name="help">HELP</string>
     <string name="learn_more">LEARN MORE</string>
 
+    <string name="locations">Locations</string>
     <string name="filter_weather_sources">Filter</string>
 
     <string name="about_app">About app</string>
     <string name="introduce">introduce</string>
+    <string name="matrix">Matrix server</string>
     <string name="email">E-mail</string>
     <string name="donate">Donate</string>
     <string name="gitHub">GitHub</string>
@@ -217,7 +219,7 @@
     <string name="feedback_request_location_permission_failed">Location permissions request failed</string>
 
     <string name="feedback_location_permissions_title">Access location information</string>
-    <string name="feedback_location_permissions_statement">Geometric Weather needs to collect your location information in foreground or background to provide the weather data of your current location. For this, we will request some permissions. Your location information will only be used to obtain weather data at your current location. If you don\'t want us to obtain your location information, you can deny those requirements and manually set your location in the management page.</string>
+    <string name="feedback_location_permissions_statement">Breezy Weather needs to collect your location information in foreground or background to provide the weather data of your current location. For this, we will request some permissions. Your location information will only be used to obtain weather data at your current location. If you don\'t want us to obtain your location information, you can deny those requirements and manually set your location in the management page.</string>
     <string name="feedback_background_location_title">Access location in background</string>
     <string name="feedback_background_location_summary">In order to allow the app to access location information in background, so that we can perceive changes in location and provide you with valid weather data, please set location access as \"Allow all the time\".</string>
 
@@ -293,11 +295,11 @@
     <string name="feedback_no_data">NO DATA</string>
 
     <string name="feedback_collect_failed">This location already exists</string>
-    <string name="feedback_collect_succeed">Add location success</string>
-    <string name="feedback_delete_succeed">Delete location success</string>
+    <string name="feedback_collect_succeed">Location added</string>
+    <string name="feedback_delete_succeed">Location deleted</string>
     <string name="feedback_location_list_cannot_be_null">Location list cannot be empty</string>
 
-    <string name="feedback_search_location">Search a location…</string>
+    <string name="feedback_search_location">Add a new location…</string>
     <string name="feedback_not_yet_location">No location yet…</string>
     <string name="feedback_search_nothing">No locations found</string>
     <string name="feedback_initializing">Initializing…</string>
@@ -321,7 +323,7 @@
     <string name="feedback_interpret_notification_group_content">After turning off \"Free background\", a notification indicating that background service is running will appear in the notification bar. You can turn off the Background Information Channel in the app\'s information page to block this notifications.</string>
 
     <string name="feedback_ignore_battery_optimizations_title">Ignore battery optimization</string>
-    <string name="feedback_ignore_battery_optimizations_content">In order to ensure that the background services can continue to work, please ignore the battery optimization for GeometricWeather.</string>
+    <string name="feedback_ignore_battery_optimizations_content">In order to ensure that the background services can continue to work, please ignore the battery optimization for Breezy Weather.</string>
 
     <string name="feedback_cannot_start_live_wallpaper_activity">Unable to start live wallpaper preview context</string>
 
@@ -332,7 +334,7 @@
     <string name="feedback_short_term_precipitation_alert">Precipitation may occur in the next few hours.</string>
 
     <string name="feedback_resident_location">Set as a resident city</string>
-    <string name="feedback_resident_location_description">GeometricWeather will automatically show and hide resident cities based on your current location.\nFor example, you can set your hometown as a resident city. You can check the weather in your hometown while you are traveling. When you get home, the weather in your hometown will be hidden and replaced by the weather for your current location.</string>
+    <string name="feedback_resident_location_description">Breezy Weather will automatically show and hide resident cities based on your current location.\nFor example, you can set your hometown as a resident city. You can check the weather in your hometown while you are traveling. When you get home, the weather in your hometown will be hidden and replaced by the weather for your current location.</string>
 
     <string name="feedback_click_to_get_more">Click to get more…</string>
     <string name="feedback_click_again_to_exit">Click again to exit</string>
@@ -361,7 +363,8 @@
     <string name="content_des_swipe_right_to_delete">You can swipe right to delete this item</string>
     <string name="content_desc_search_filter_on">Only show locations from default weather source</string>
     <string name="content_desc_search_filter_off">Show locations from all weather sources</string>
-    <string name="content_desc_powered_by">Weather data $</string> <!-- $ = weather source. -->
+    <string name="content_desc_data_by">Data by $</string> <!-- $ = weather data provider -->
+    <string name="content_desc_location_results_by">Location results by $</string> <!-- $ = location provider -->
     <string name="content_desc_app_store">@string/action_appStore</string>
     <string name="content_desc_wechat_payment_code">Payment QR code of wechat</string>
     <string name="content_desc_weather_icon">Weather icon</string>

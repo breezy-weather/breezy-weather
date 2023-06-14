@@ -43,7 +43,7 @@ public class DefaultResourceProvider extends ResourceProvider {
 
     public DefaultResourceProvider() {
         mContext = GeometricWeather.getInstance();
-        mProviderName = mContext.getString(R.string.geometric_weather);
+        mProviderName = mContext.getString(R.string.breezy_weather);
         mIconDrawable = mContext.getApplicationInfo().loadIcon(mContext.getPackageManager());
 
         Resources res = mContext.getResources();

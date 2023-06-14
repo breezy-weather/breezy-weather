@@ -9,14 +9,15 @@ import wangdaye.com.geometricweather.common.basic.models.options._basic.VoiceEnu
 enum class WeatherSource(
     override val id: String,
     @ColorInt val sourceColor: Int,
-    val sourceUrl: String
+    val sourceUrl: String,
+    val locationProvider: String? = null
 ): VoiceEnum {
 
-    OPEN_METEO("openmeteo", -0x0077ff, "Open-Meteo.com CC BY 4.0"),
+    OPEN_METEO("openmeteo", -0x0077ff, "Open-Meteo.com CC BY 4.0", "Open-Meteo / GeoNames"),
     ACCU("accu", -0x10a7dd, "accuweather.com"),
-    METNO("metno", -0xdba791, "met.no / nominatim.org"),
-    OWM("owm", -0x1491b5, "openweathermap.org"),
-    MF("mf", -0xffa76e, "meteofrance.com"),
+    METNO("metno", -0xdba791, "met.no", "Open-Meteo / GeoNames"),
+    OPEN_WEATHER("openweather", -0x1491b5, "openweathermap.org", "Open-Meteo / GeoNames"),
+    MF("mf", -0xffa76e, "meteofrance.com", "Open-Meteo / GeoNames"),
     CHINA("china", -0xa14472, "weatherbj, caiyun, CNEMC");
 
     companion object {
@@ -30,7 +31,7 @@ enum class WeatherSource(
                     equals("openmeteo", ignoreCase = true) -> OPEN_METEO
                     equals("accu", ignoreCase = true) -> ACCU
                     equals("metno", ignoreCase = true) -> METNO
-                    equals("owm", ignoreCase = true) -> OWM
+                    equals("openweather", ignoreCase = true) -> OPEN_WEATHER
                     equals("mf", ignoreCase = true) -> MF
                     equals("china", ignoreCase = true) -> CHINA
                     else -> ACCU

@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- app. -->
     <string name="app_name">Време</string>
-    <string name="geometric_weather">Геометријско време</string>
+    <string name="breezy_weather">Геометријско време</string>
 
     <!-- keyword. -->
     <string name="current_location">Тренутну локацију</string>

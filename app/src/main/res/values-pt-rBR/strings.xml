@@ -157,7 +157,7 @@
     <string name="feedback_request_location_permission_failed">Permissões de localização negada</string>
 
     <string name="feedback_location_permissions_title">Acessar informações de localização</string>
-    <string name="feedback_location_permissions_statement">Geometric Weather precisa coletar suas informações de localização em primeiro plano ou em segundo plano para fornecer os dados meteorológicos da sua localização atual. Para isso, solicitaremos algumas permissões. Suas informações de localização serão usadas apenas para obter dados meteorológicos na sua localização atual. Se você não quiser que obtenhamos suas informações de localização, você pode negar esses requisitos e definir manualmente seu local na página de gerenciamento.</string>
+    <string name="feedback_location_permissions_statement">Breezy Weather precisa coletar suas informações de localização em primeiro plano ou em segundo plano para fornecer os dados meteorológicos da sua localização atual. Para isso, solicitaremos algumas permissões. Suas informações de localização serão usadas apenas para obter dados meteorológicos na sua localização atual. Se você não quiser que obtenhamos suas informações de localização, você pode negar esses requisitos e definir manualmente seu local na página de gerenciamento.</string>
     <string name="feedback_background_location_title">Acessar localização em segundo plano</string>
     <string name="feedback_background_location_summary">Permitir que o app acesse informações de localização em segundo plano, para que possamos perceber mudanças na localização e fornecer dados meteorológicos válidos, por favor, defina o acesso à localização como \"Permita o tempo todo\".</string>
 
@@ -257,7 +257,7 @@
     <string name="feedback_interpret_notification_group_content">Após desativar \'Sem segundo plano\', uma notificação indicando que o serviço em segundo plano está em execução aparecerá na barra de notificação. Você pode desativar o canal \'Informação em segundo plano\' na página de informações do app para bloquear estas notificações.</string>
 
     <string name="feedback_ignore_battery_optimizations_title">Ignorar otimização de bateria</string>
-    <string name="feedback_ignore_battery_optimizations_content">Para garantir que os serviços em segundo plano continuem funcionando, por favor, ignore a otimização de bateria para GeometricWeather.</string>
+    <string name="feedback_ignore_battery_optimizations_content">Para garantir que os serviços em segundo plano continuem funcionando, por favor, ignore a otimização de bateria para Breezy Weather.</string>
 
     <string name="feedback_cannot_start_live_wallpaper_activity">Incapaz de iniciar o contexto de visualização do papel de parede animado</string>
 
@@ -268,7 +268,7 @@
     <string name="feedback_short_term_precipitation_alert">A precipitação pode ocorrer nas próximas horas.</string>
 
     <string name="feedback_resident_location">Definido como uma cidade residente</string>
-    <string name="feedback_resident_location_description">GeometricWeather mostrará e ocultará automaticamente as cidades residentes com base na sua localização atual.\nPor exemplo, você pode definir sua cidade natal como uma cidade residente. Você pode verificar o clima em sua cidade natal enquanto estiver viajando. Quando você chegar em casa, o clima da sua cidade natal será ocultado e substituído pelo clima da sua localização atual.</string>
+    <string name="feedback_resident_location_description">Breezy Weather mostrará e ocultará automaticamente as cidades residentes com base na sua localização atual.\nPor exemplo, você pode definir sua cidade natal como uma cidade residente. Você pode verificar o clima em sua cidade natal enquanto estiver viajando. Quando você chegar em casa, o clima da sua cidade natal será ocultado e substituído pelo clima da sua localização atual.</string>
 
     <string name="feedback_click_to_get_more">Clique para ver mais…</string>
     <string name="feedback_click_again_to_exit">Clique novamente para sair</string>
@@ -297,7 +297,6 @@
     <string name="content_des_swipe_right_to_delete">Você pode deslizar para a direita para remover este item</string>
     <string name="content_desc_search_filter_on">Mostrar apenas locais da fonte meteorológica padrão</string>
     <string name="content_desc_search_filter_off">Mostrar locais de todas as fontes meteorológicas</string>
-    <string name="content_desc_powered_by">Weather data $</string> <!-- $ = weather source. -->
     <string name="content_desc_app_store">@string/action_appStore</string>
     <string name="content_desc_wechat_payment_code">Pagamento via código QR do WeChat</string>
     <string name="content_desc_weather_icon">Ícone de clima</string>

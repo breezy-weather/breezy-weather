@@ -11,10 +11,10 @@ import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.background.polling.PollingManager
 import wangdaye.com.geometricweather.common.basic.GeoActivity
@@ -54,10 +54,10 @@ class MainActivity : GeoActivity(),
         const val ACTION_MAIN = "com.wangdaye.geometricweather.Main"
         const val KEY_MAIN_ACTIVITY_LOCATION_FORMATTED_ID = "MAIN_ACTIVITY_LOCATION_FORMATTED_ID"
 
-        const val ACTION_MANAGEMENT = "com.wangdaye.geomtricweather.ACTION_MANAGEMENT"
-        const val ACTION_SHOW_ALERTS = "com.wangdaye.geomtricweather.ACTION_SHOW_ALERTS"
+        const val ACTION_MANAGEMENT = "com.wangdaye.geometricweather.ACTION_MANAGEMENT"
+        const val ACTION_SHOW_ALERTS = "com.wangdaye.geometricweather.ACTION_SHOW_ALERTS"
 
-        const val ACTION_SHOW_DAILY_FORECAST = "com.wangdaye.geomtricweather.ACTION_SHOW_DAILY_FORECAST"
+        const val ACTION_SHOW_DAILY_FORECAST = "com.wangdaye.geometricweather.ACTION_SHOW_DAILY_FORECAST"
         const val KEY_DAILY_INDEX = "DAILY_INDEX"
 
         private const val TAG_FRAGMENT_HOME = "fragment_main"
@@ -115,14 +115,12 @@ class MainActivity : GeoActivity(),
             findHomeFragment()?.updateViews()
 
             // update notification immediately.
-            viewModel.validLocationList.value?.locationList?.let {
-                AsyncHelper.runOnIO {
-                    NotificationHelper.updateNotificationIfNecessary(this, it)
-                }
+            AsyncHelper.runOnIO {
+                NotificationHelper.updateNotificationIfNecessary(this, viewModel.validLocationList.value.first)
             }
             refreshBackgroundViews(
                 resetBackground = true,
-                locationList = viewModel.validLocationList.value?.locationList,
+                locationList = viewModel.validLocationList.value.first,
             )
         }
         EventBus.instance.with(ModifyMainSystemBarMessage::class.java).observe(this) {
@@ -217,18 +215,29 @@ class MainActivity : GeoActivity(),
             }
         }
 
-        viewModel.validLocationList.observe(this) {
-            // update notification immediately.
-            AsyncHelper.runOnIO {
-                NotificationHelper.updateNotificationIfNecessary(
-                    this,
-                    it.locationList
-                )
+        val context = this
+        // Start a coroutine in the lifecycle scope
+        lifecycleScope.launch {
+            // repeatOnLifecycle launches the block in a new coroutine every time the
+            // lifecycle is in the STARTED state (or above) and cancels it when it's STOPPED.
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                // Trigger the flow and start listening for values.
+                // Note that this happens when lifecycle is STARTED and stops
+                // collecting when the lifecycle is STOPPED
+                viewModel.validLocationList.collect {
+                    // update notification immediately.
+                    AsyncHelper.runOnIO {
+                        NotificationHelper.updateNotificationIfNecessary(
+                            context,
+                            it.first
+                        )
+                    }
+                    refreshBackgroundViews(
+                        resetBackground = false,
+                        locationList = it.first,
+                    )
+                }
             }
-            refreshBackgroundViews(
-                resetBackground = false,
-                locationList = it.locationList,
-            )
         }
         viewModel.permissionsRequest.observe(this) {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M
@@ -465,10 +474,10 @@ class MainActivity : GeoActivity(),
         val transaction = supportFragmentManager
             .beginTransaction()
             .setCustomAnimations(
-                R.anim.fragment_manange_enter,
+                R.anim.fragment_manage_enter,
                 R.anim.fragment_main_exit,
                 R.anim.fragment_main_pop_enter,
-                R.anim.fragment_manange_pop_exit,
+                R.anim.fragment_manage_pop_exit,
             )
             .add(
                 R.id.fragment,
@@ -537,8 +546,8 @@ class MainActivity : GeoActivity(),
 
     // management fragment callback.
 
-    override fun onSearchBarClicked(searchBar: View) {
-        IntentHelper.startSearchActivityForResult(this, searchBar, SEARCH_ACTIVITY)
+    override fun onSearchBarClicked() {
+        IntentHelper.startSearchActivityForResult(this, SEARCH_ACTIVITY)
     }
 
     override fun onSelectProviderActivityStarted() {

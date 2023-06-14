@@ -16,7 +16,9 @@ public class LocationEntityGenerator {
         entity.longitude = location.getLongitude();
         entity.timeZone = location.getTimeZone();
         entity.country = location.getCountry();
+        entity.countryCode = location.getCountryCode();
         entity.province = location.getProvince();
+        entity.provinceCode = location.getProvinceCode();
         entity.city = location.getCity();
         entity.district = location.getDistrict();
         entity.weatherSource = location.getWeatherSource();
@@ -41,7 +43,9 @@ public class LocationEntityGenerator {
                 entity.longitude,
                 entity.timeZone,
                 GeneratorUtils.nonNull(entity.country),
+                entity.countryCode,
                 GeneratorUtils.nonNull(entity.province),
+                entity.provinceCode,
                 GeneratorUtils.nonNull(entity.city),
                 GeneratorUtils.nonNull(entity.district),
                 null,

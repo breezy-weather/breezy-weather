@@ -10,14 +10,11 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
-import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
-import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.content.ContextCompat;
-import androidx.core.util.Pair;
 
 import java.net.URISyntaxException;
 
@@ -127,15 +124,12 @@ public class IntentHelper {
         activity.startActivity(intent);
     }
 
-    public static void startSearchActivityForResult(Activity activity, View bar, int requestCode) {
+    public static void startSearchActivityForResult(Activity activity, int requestCode) {
         ActivityCompat.startActivityForResult(
                 activity,
                 new Intent(activity, SearchActivity.class),
                 requestCode,
-                ActivityOptionsCompat.makeSceneTransitionAnimation(
-                        activity,
-                        Pair.create(bar, activity.getString(R.string.transition_activity_search_bar))
-                ).toBundle()
+                null
         );
     }
 

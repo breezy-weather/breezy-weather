@@ -7,7 +7,6 @@
 
     <!-- app. -->
     <string name="app_name">Pogoda</string>
-    <string name="geometric_weather">Geometric Weather</string>
 
     <!-- keyword. -->
     <string name="current_location">Obecna lokalizacja</string>
@@ -248,7 +247,7 @@
     <string name="feedback_interpret_notification_group_content">Po wyłączeniu \"Bez aktualizacji w tle\", na pasku powiadomień pojawi się powiadomienie wskazujące, że usługa w tle jest uruchomiona. Możesz wyłączyć ten kanał informacyjny w tle na stronie informacyjnej aplikacji, aby zablokować te powiadomienia.</string>
 
     <string name="feedback_ignore_battery_optimizations_title">Zignoruj optymalizację baterii</string>
-    <string name="feedback_ignore_battery_optimizations_content">Aby mieć pewność, że usługi działające w tle mogą nadal działać, zignoruj optymalizację baterii dla Geometric Weather.</string>
+    <string name="feedback_ignore_battery_optimizations_content">Aby mieć pewność, że usługi działające w tle mogą nadal działać, zignoruj optymalizację baterii dla Breezy Weather.</string>
 
     <string name="feedback_cannot_start_live_wallpaper_activity">Nie można rozpocząć podglądu tapety na żywo</string>
 
@@ -259,7 +258,7 @@
     <string name="feedback_short_term_precipitation_alert">Opady mogą wystąpić w ciągu najbliższych kilku godzin.</string>
 
     <string name="feedback_resident_location">Ustaw jako miasto zamieszkania</string>
-    <string name="feedback_resident_location_description">Geometric Weather automatycznie pokaże i ukryje miasta zamieszkania na podstawie bieżącej lokalizacji.\nNa przykład możesz ustawić miasto rodzinne jako miasto zamieszkania. Możesz sprawdzić pogodę w swoim mieście rodzinnym podczas podróży. Po powrocie do domu pogoda w Twoim mieście rodzinnym zostanie ukryta i zastąpiona pogodą dla Twojej bieżącej lokalizacji.</string>
+    <string name="feedback_resident_location_description">Breezy Weather automatycznie pokaże i ukryje miasta zamieszkania na podstawie bieżącej lokalizacji.\nNa przykład możesz ustawić miasto rodzinne jako miasto zamieszkania. Możesz sprawdzić pogodę w swoim mieście rodzinnym podczas podróży. Po powrocie do domu pogoda w Twoim mieście rodzinnym zostanie ukryta i zastąpiona pogodą dla Twojej bieżącej lokalizacji.</string>
 
     <string name="feedback_click_to_get_more">Kliknij, aby uzyskać więcej…</string>
 

@@ -31,7 +31,9 @@ public class LocationEntity {
     public TimeZone timeZone;
 
     public String country;
+    public String countryCode;
     public String province;
+    public String provinceCode;
     public String city;
     public String district;
 
@@ -44,8 +46,8 @@ public class LocationEntity {
 
     
     public LocationEntity(String formattedId, String cityId, float latitude,
-            float longitude, TimeZone timeZone, String country, String province,
-            String city, String district, WeatherSource weatherSource,
+            float longitude, TimeZone timeZone, String country, String countryCode,
+            String province, String provinceCode, String city, String district, WeatherSource weatherSource,
             boolean currentPosition, boolean residentPosition, boolean china) {
         this.formattedId = formattedId;
         this.cityId = cityId;
@@ -53,7 +55,9 @@ public class LocationEntity {
         this.longitude = longitude;
         this.timeZone = timeZone;
         this.country = country;
+        this.countryCode = countryCode;
         this.province = province;
+        this.provinceCode = provinceCode;
         this.city = city;
         this.district = district;
         this.weatherSource = weatherSource;
@@ -100,11 +104,23 @@ public class LocationEntity {
     public void setCountry(String country) {
         this.country = country;
     }
+    public String getCountryCode() {
+        return this.countryCode;
+    }
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
+    }
     public String getProvince() {
         return this.province;
     }
     public void setProvince(String province) {
         this.province = province;
+    }
+    public String getProvinceCode() {
+        return this.provinceCode;
+    }
+    public void setProvinceCode(String provinceCode) {
+        this.provinceCode = provinceCode;
     }
     public String getCity() {
         return this.city;

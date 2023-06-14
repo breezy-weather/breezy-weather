@@ -57,7 +57,7 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
             case ItemTouchHelper.ACTION_STATE_IDLE:
                 if (mDragged) {
                     mDragged = false;
-                    mViewModel.moveLocation(mDragFrom, mDragTo);
+                    mViewModel.swapLocations(mDragFrom, mDragTo);
                 }
                 break;
 
@@ -83,7 +83,7 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
     @Override
     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
         int position = viewHolder.getBindingAdapterPosition();
-        Location location = mViewModel.getTotalLocationList().getValue().getLocationList().get(position);
+        Location location = mViewModel.getTotalLocationList().getValue().getFirst().get(position);
 
         switch (direction) {
             case ItemTouchHelper.START: {
@@ -112,7 +112,7 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
                 break;
             }
             case ItemTouchHelper.END:
-                if (mViewModel.getTotalLocationList().getValue().getLocationList().size() <= 1) {
+                if (mViewModel.getTotalLocationList().getValue().getFirst().size() <= 1) {
                     // TODO: force update.
                     mViewModel.updateLocation(location);
                     SnackbarHelper.showSnackbar(

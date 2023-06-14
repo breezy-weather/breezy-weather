@@ -2,7 +2,6 @@
     
     <!-- app. -->
     <string name="app_name">Meteo</string>
-    <string name="geometric_weather">Geometric Weather</string>
 
     <!-- keyword. -->
     <string name="current_location">Posizione automatica</string>
@@ -151,7 +150,7 @@
     <string name="feedback_request_location_permission_failed">Richiesta di autorizzazione alla localizzazione fallita</string>
 
     <string name="feedback_location_permissions_title">Accesso alle informazioni sulla posizione</string>
-    <string name="feedback_location_permissions_statement">Geometric Weather deve raccogliere le informazioni sulla posizione dell\'utente in primo piano o in background per fornire i dati meteo della posizione corrente. A tal fine, verranno richieste alcune autorizzazioni. Le informazioni sulla posizione dell\'utente saranno utilizzate solo per ottenere i dati meteo della sua posizione attuale. Se non si desidera che le informazioni sulla posizione vengano acquisite, è possibile negare questi requisiti e impostare manualmente la propria posizione nella pagina di gestione.</string>
+    <string name="feedback_location_permissions_statement">Breezy Weather deve raccogliere le informazioni sulla posizione dell\'utente in primo piano o in background per fornire i dati meteo della posizione corrente. A tal fine, verranno richieste alcune autorizzazioni. Le informazioni sulla posizione dell\'utente saranno utilizzate solo per ottenere i dati meteo della sua posizione attuale. Se non si desidera che le informazioni sulla posizione vengano acquisite, è possibile negare questi requisiti e impostare manualmente la propria posizione nella pagina di gestione.</string>
     <string name="feedback_background_location_title">Accedi alla posizione in background</string>
     <string name="feedback_background_location_summary">Per consentire all\'applicazione di accedere alle informazioni sulla posizione in background, in modo da poter percepire le variazioni di posizione e fornire dati meteo validi, impostare l\'accesso alla posizione su "Consenti sempre".</string>
 
@@ -331,12 +330,12 @@
     <string name="settings_title_notification_feels_like">Usa temperatura percepita</string>
     <string name="feedback_updated_in_background">Aggiornato in background</string>
     <string name="feedback_ignore_battery_optimizations_title">Ignora ottimizzazione batteria</string>
-    <string name="feedback_ignore_battery_optimizations_content">Per garantire che i servizi in background possano continuare a funzionare, ignora l\'ottimizzazione della batteria per GeometricWeather.</string>
+    <string name="feedback_ignore_battery_optimizations_content">Per garantire che i servizi in background possano continuare a funzionare, ignora l\'ottimizzazione della batteria per Breezy Weather.</string>
     <string name="settings_title_notification_style">Stile notifiche</string>
     <string name="feedback_today_precipitation_alert">Oggi potrebbero verificarsi delle precipitazioni.</string>
     <string name="feedback_short_term_precipitation_alert">Nelle prossime ore potrebbero verificarsi precipitazioni.</string>
     <string name="feedback_resident_location">Imposta come città residente</string>
-    <string name="feedback_resident_location_description">GeometricWeather mostra e nasconde automaticamente le città residenti in base alla posizione attuale.\nAd esempio, è possibile impostare la propria città natale come città residente. È possibile controllare il meteo della propria città mentre si è in viaggio. Quando si torna a casa, il meteo della città natale viene nascosto e sostituito da quello della località in cui ci si trova.</string>
+    <string name="feedback_resident_location_description">Breezy Weather mostra e nasconde automaticamente le città residenti in base alla posizione attuale.\nAd esempio, è possibile impostare la propria città natale come città residente. È possibile controllare il meteo della propria città mentre si è in viaggio. Quando si torna a casa, il meteo della città natale viene nascosto e sostituito da quello della località in cui ci si trova.</string>
     <string name="feedback_click_to_get_more">Clicca per saperne di più…</string>
     <string name="feedback_click_again_to_exit">Clicca nuovamente per uscire</string>
     <string name="content_desc_back">Indietro</string>
@@ -363,7 +362,6 @@
     <string name="content_des_swipe_right_to_delete">Puoi scorrere il dito verso destra per eliminare questa voce</string>
     <string name="content_desc_search_filter_on">Mostra solo le località della fonte meteo predefinita</string>
     <string name="content_desc_search_filter_off">Mostra le posizioni da tutte le fonti meteo</string>
-    <string name="content_desc_powered_by">Offerto da $</string>
     <string name="content_desc_wechat_payment_code">Codice QR di pagamento di wechat</string>
     <string name="settings_title_week_icon_mode">Modalità icone settimanali</string>
     <string name="settings_title_precipitation_notification_switch">Invia le previsioni di precipitazione</string>

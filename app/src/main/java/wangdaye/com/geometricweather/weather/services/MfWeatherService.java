@@ -25,6 +25,7 @@ import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import wangdaye.com.geometricweather.BuildConfig;
 import wangdaye.com.geometricweather.common.basic.models.Location;
+import wangdaye.com.geometricweather.common.basic.models.options.provider.WeatherSource;
 import wangdaye.com.geometricweather.common.rxjava.BaseObserver;
 import wangdaye.com.geometricweather.common.rxjava.ObserverContainer;
 import wangdaye.com.geometricweather.common.rxjava.SchedulerTransformer;
@@ -32,7 +33,9 @@ import wangdaye.com.geometricweather.common.utils.DisplayUtils;
 import wangdaye.com.geometricweather.settings.SettingsManager;
 import wangdaye.com.geometricweather.weather.apis.AtmoAuraIqaApi;
 import wangdaye.com.geometricweather.weather.apis.MfWeatherApi;
+import wangdaye.com.geometricweather.weather.apis.OpenMeteoGeocodingApi;
 import wangdaye.com.geometricweather.weather.converters.MfResultConverterKt;
+import wangdaye.com.geometricweather.weather.converters.OpenMeteoResultConverterKt;
 import wangdaye.com.geometricweather.weather.json.atmoaura.AtmoAuraPointResult;
 import wangdaye.com.geometricweather.weather.json.mf.MfCurrentResult;
 import wangdaye.com.geometricweather.weather.json.mf.MfEphemerisResult;
@@ -40,6 +43,8 @@ import wangdaye.com.geometricweather.weather.json.mf.MfForecastResult;
 import wangdaye.com.geometricweather.weather.json.mf.MfLocationResult;
 import wangdaye.com.geometricweather.weather.json.mf.MfRainResult;
 import wangdaye.com.geometricweather.weather.json.mf.MfWarningsResult;
+import wangdaye.com.geometricweather.weather.json.openmeteo.OpenMeteoLocationResult;
+import wangdaye.com.geometricweather.weather.json.openmeteo.OpenMeteoLocationResults;
 
 /**
  * Mf weather service.
@@ -48,13 +53,15 @@ import wangdaye.com.geometricweather.weather.json.mf.MfWarningsResult;
 public class MfWeatherService extends WeatherService {
 
     private final MfWeatherApi mMfApi;
+    private final OpenMeteoGeocodingApi mGeocodingApi;
     private final AtmoAuraIqaApi mAtmoAuraApi;
     private final CompositeDisposable mCompositeDisposable;
 
     @Inject
-    public MfWeatherService(MfWeatherApi mfApi, AtmoAuraIqaApi atmoApi,
+    public MfWeatherService(MfWeatherApi mfApi, OpenMeteoGeocodingApi geocodingApi, AtmoAuraIqaApi atmoApi,
                             CompositeDisposable disposable) {
         mMfApi = mfApi;
+        mGeocodingApi = geocodingApi;
         mAtmoAuraApi = atmoApi;
         mCompositeDisposable = disposable;
     }
@@ -78,9 +85,10 @@ public class MfWeatherService extends WeatherService {
             getUserAgent(), location.getLatitude(), location.getLongitude(), languageCode, "iso", token);
 
         Observable<MfWarningsResult> warnings;
-        if (!TextUtils.isEmpty(location.getProvince())) {
+        if (!TextUtils.isEmpty(location.getCountryCode()) && location.getCountryCode().equals("FR")
+                && !TextUtils.isEmpty(location.getProvinceCode())) {
             warnings = mMfApi.getWarnings(
-                    getUserAgent(), location.getProvince(), "iso", token
+                    getUserAgent(), location.getProvinceCode(), "iso", token
             ).onErrorResumeNext(error ->
                     Observable.create(emitter -> emitter.onNext(new MfWarningsResult(null, null, null, null, null, null, null, null)))
             );
@@ -89,13 +97,15 @@ public class MfWeatherService extends WeatherService {
         }
 
         Observable<AtmoAuraPointResult> aqiAtmoAura;
-        if (location.getProvince().equals("Auvergne-Rhône-Alpes") || location.getProvince().equals("01")
-                || location.getProvince().equals("03") || location.getProvince().equals("07")
-                || location.getProvince().equals("15") || location.getProvince().equals("26")
-                || location.getProvince().equals("38") || location.getProvince().equals("42")
-                || location.getProvince().equals("43") || location.getProvince().equals("63")
-                || location.getProvince().equals("69") || location.getProvince().equals("73")
-                || location.getProvince().equals("74")) {
+        if (!TextUtils.isEmpty(location.getCountryCode()) && location.getCountryCode().equals("FR")
+                && !TextUtils.isEmpty(location.getProvinceCode()) &&
+                (location.getProvinceCode().equals("01") || location.getProvinceCode().equals("03")
+                || location.getProvinceCode().equals("07") || location.getProvinceCode().equals("15")
+                || location.getProvinceCode().equals("26") || location.getProvinceCode().equals("38")
+                || location.getProvinceCode().equals("42") || location.getProvinceCode().equals("43")
+                || location.getProvinceCode().equals("63") || location.getProvinceCode().equals("69")
+                || location.getProvinceCode().equals("73") || location.getProvinceCode().equals("74"))
+        ) {
             Calendar c = DisplayUtils.toCalendarWithTimeZone(new Date(), location.getTimeZone());
             c.add(Calendar.DATE, 1);
             c.set(Calendar.HOUR_OF_DAY, 0);
@@ -149,16 +159,24 @@ public class MfWeatherService extends WeatherService {
     @Override
     @NonNull
     public List<Location> requestLocation(Context context, String query) {
-        List<MfLocationResult> resultList = null;
+        OpenMeteoLocationResults results = null;
         try {
-            resultList = mMfApi.callWeatherLocation(getUserAgent(), query, 48.86d, 2.34d, this.getToken(context)).execute().body();
+            results = mGeocodingApi.callWeatherLocation(
+                    query, 20, "fr").execute().body(); // French mandatory for French department conversion
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return MfResultConverterKt.convert(resultList);
+        List<Location> locationList = new ArrayList<>();
+        if (results != null && results.getResults() != null && results.getResults().size() != 0) {
+            for (OpenMeteoLocationResult r : results.getResults()) {
+                locationList.add(OpenMeteoResultConverterKt.convert(null, r, WeatherSource.MF));
+            }
+        }
+        return locationList;
     }
 
+    // Reverse geocoding
     @Override
     public void requestLocation(Context context, Location location,
                                 @NonNull RequestLocationCallback callback) {
@@ -200,17 +218,21 @@ public class MfWeatherService extends WeatherService {
 
     public void requestLocation(Context context, String query,
                                 @NonNull RequestLocationCallback callback) {
-        mMfApi.getWeatherLocation(getUserAgent(), query, 48.86d, 2.34d, this.getToken(context))
+        mGeocodingApi.getWeatherLocation(query, 20, "fr") // French mandatory for French department conversion
                 .compose(SchedulerTransformer.create())
-                .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<List<MfLocationResult>>() {
+                .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<OpenMeteoLocationResults>() {
                     @Override
-                    public void onSucceed(List<MfLocationResult> mfLocationResults) {
-                        if (mfLocationResults != null && mfLocationResults.size() != 0) {
-                            List<Location> locationList = MfResultConverterKt.convert(mfLocationResults);
+                    public void onSucceed(OpenMeteoLocationResults openMeteoLocationResults) {
+                        if (openMeteoLocationResults.getResults() != null && openMeteoLocationResults.getResults().size() != 0) {
+                            List<Location> locationList = new ArrayList<>();
+                            for (OpenMeteoLocationResult r : openMeteoLocationResults.getResults()) {
+                                locationList.add(OpenMeteoResultConverterKt.convert(null, r, WeatherSource.MF));
+                            }
                             callback.requestLocationSuccess(query, locationList);
                         } else {
                             callback.requestLocationFailed(query);
                         }
+
                     }
 
                     @Override

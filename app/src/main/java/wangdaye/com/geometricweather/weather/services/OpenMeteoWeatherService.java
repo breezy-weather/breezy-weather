@@ -141,6 +141,8 @@ public class OpenMeteoWeatherService extends WeatherService {
     public void requestLocation(Context context, Location location,
                                 @NonNull RequestLocationCallback callback) {
         // Currently there is no reverse geocoding, so we just return the same location
+        // TimeZone is initialized with the TimeZone from the phone (which is probably the same as the current position)
+        // Hopefully, one day we will have a reverse geocoding API
         List<Location> locationList = new ArrayList<>();
         locationList.add(location);
         callback.requestLocationSuccess(

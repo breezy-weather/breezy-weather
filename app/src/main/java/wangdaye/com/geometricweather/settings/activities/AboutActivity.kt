@@ -19,9 +19,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Text
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -42,7 +42,6 @@ import wangdaye.com.geometricweather.common.ui.widgets.getCardListItemMarginDp
 import wangdaye.com.geometricweather.common.ui.widgets.insets.FitStatusBarTopAppBar
 import wangdaye.com.geometricweather.common.ui.widgets.insets.bottomInsetItem
 import wangdaye.com.geometricweather.common.utils.helpers.IntentHelper
-import wangdaye.com.geometricweather.settings.utils.DonateHelper
 import wangdaye.com.geometricweather.theme.compose.DayNightTheme
 import wangdaye.com.geometricweather.theme.compose.GeometricWeatherTheme
 import wangdaye.com.geometricweather.theme.compose.rememberThemeRipple
@@ -55,6 +54,7 @@ private class AboutAppLinkItem(
 
 private class ContributorItem(
     val name: String,
+    val contribution: String? = null,
     val url: String,
     val flag: String,
 )
@@ -68,43 +68,30 @@ class AboutActivity : GeoActivity() {
         ) {
             IntentHelper.startWebViewActivity(
                 this@AboutActivity,
-                "https://github.com/WangDaYeeeeee/GeometricWeather"
+                "https://github.com/papjul/breezy-weather"
             )
         },
         AboutAppLinkItem(
             iconId = R.drawable.ic_email,
-            titleId = R.string.email,
+            titleId = R.string.matrix,
         ) {
             IntentHelper.startWebViewActivity(
                 this@AboutActivity,
-                "mailto:wangdayeeeeee@gmail.com"
+                "https://matrix.to/#/#geometric-weather:matrix.org"
             )
-        },
-    )
-    private val donateLinks = arrayOf(
-        AboutAppLinkItem(
-            iconId = R.drawable.ic_alipay,
-            titleId = R.string.alipay,
-        ) {
-            DonateHelper.donateByAlipay(this)
-        },
-        AboutAppLinkItem(
-            iconId = R.drawable.ic_wechat_pay,
-            titleId = R.string.wechat,
-        ) {
-            DonateHelper.donateByWechat(this)
         },
     )
     private val contributors = arrayOf(
         ContributorItem(
-            name = "WangDaYeeeeee",
-            url = "https://github.com/WangDaYeeeeee",
-            flag = "🇨🇳",
-        ),
-        ContributorItem(
             name = "Julien Papasian",
             url = "https://github.com/papjul",
             flag = "🇫🇷",
+        ),
+        ContributorItem(
+            name = "WangDaYeeeeee",
+            contribution = "Developer of the original project Geometric Weather",
+            url = "https://github.com/WangDaYeeeeee",
+            flag = "🇨🇳",
         ),
         ContributorItem(
             name = "dylan",
@@ -365,18 +352,9 @@ class AboutActivity : GeoActivity() {
                     )
                 }
 
-                item { SectionTitle(stringResource(R.string.donate)) }
-                items(donateLinks) { item ->
-                    AboutAppLink(
-                        iconId = item.iconId,
-                        title = stringResource(item.titleId),
-                        onClick = item.onClick,
-                    )
-                }
-
                 item { SectionTitle(stringResource(R.string.contributor)) }
                 items(contributors) { item ->
-                    Translator(name = item.name, url = item.url, flag = item.flag)
+                    Translator(name = item.name, contribution = item.contribution, url = item.url, flag = item.flag)
                 }
 
                 item { SectionTitle(stringResource(R.string.translator)) }
@@ -408,7 +386,7 @@ class AboutActivity : GeoActivity() {
                     .fillMaxWidth()
             )
             Text(
-                text = stringResource(R.string.geometric_weather),
+                text = stringResource(R.string.breezy_weather),
                 color = DayNightTheme.colors.titleColor,
                 style = MaterialTheme.typography.headlineSmall,
             )
@@ -464,7 +442,7 @@ class AboutActivity : GeoActivity() {
     }
 
     @Composable
-    private fun Translator(name: String, url: String, flag: String) {
+    private fun Translator(name: String, contribution: String? = null, url: String, flag: String) {
         Material3CardListItem {
             Column(
                 modifier = Modifier
@@ -488,6 +466,12 @@ class AboutActivity : GeoActivity() {
                     Text(
                         text = flag,
                         style = MaterialTheme.typography.titleMedium,
+                    )
+                }
+                if (contribution != null) {
+                    Text(
+                        text = contribution,
+                        style = MaterialTheme.typography.bodyMedium,
                     )
                 }
             }

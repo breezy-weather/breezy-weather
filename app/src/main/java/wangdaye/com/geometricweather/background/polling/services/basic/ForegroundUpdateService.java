@@ -91,7 +91,7 @@ public abstract class ForegroundUpdateService extends UpdateService {
                 this,
                 GeometricWeather.NOTIFICATION_CHANNEL_ID_BACKGROUND
         ).setSmallIcon(R.drawable.ic_running_in_background)
-                .setContentTitle(getString(R.string.geometric_weather))
+                .setContentTitle(getString(R.string.breezy_weather))
                 .setContentText(
                         getString(R.string.feedback_updating_weather_data) + (total == 0 ? "" : (
                                 " (" + (mFinishedCount + 1) + "/" + total + ")"

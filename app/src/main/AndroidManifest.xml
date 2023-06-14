@@ -47,7 +47,7 @@
 
     <application
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/geometric_weather"
+        android:label="@string/breezy_weather"
         android:name=".GeometricWeather"
         android:supportsRtl="true"
         android:largeHeap="true"
@@ -87,9 +87,9 @@
             <intent-filter>
                 <!--<action android:name="com.wangdaye.geometricweather.ICON_PROVIDER" />-->
                 <action android:name="com.wangdaye.geometricweather.Main" />
-                <action android:name="com.wangdaye.geomtricweather.ACTION_SHOW_ALERTS" />
-                <action android:name="com.wangdaye.geomtricweather.ACTION_SHOW_DAILY_FORECAST" />
-                <action android:name="com.wangdaye.geomtricweather.ACTION_MANAGEMENT" />
+                <action android:name="com.wangdaye.geometricweather.ACTION_SHOW_ALERTS" />
+                <action android:name="com.wangdaye.geometricweather.ACTION_SHOW_DAILY_FORECAST" />
+                <action android:name="com.wangdaye.geometricweather.ACTION_MANAGEMENT" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -306,7 +306,7 @@
 
         <service
             android:name=".background.interfaces.TileService"
-            android:label="@string/geometric_weather"
+            android:label="@string/breezy_weather"
             android:icon="@drawable/weather_clear_day_mini_light"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
             android:exported="true">

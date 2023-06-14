@@ -10,6 +10,8 @@ import androidx.core.app.ActivityCompat
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import wangdaye.com.geometricweather.common.basic.GeoViewModel
 import wangdaye.com.geometricweather.common.basic.livedata.BusLiveData
 import wangdaye.com.geometricweather.common.basic.livedata.EqualtableLiveData
@@ -28,10 +30,11 @@ class MainActivityViewModel @Inject constructor(
     MainActivityRepository.WeatherRequestCallback {
 
     // live data.
-
     val currentLocation = EqualtableLiveData<DayNightLocation>()
-    val validLocationList = MutableLiveData<SelectableLocationList>()
-    val totalLocationList = MutableLiveData<SelectableLocationList>()
+    private val _validLocationList = MutableStateFlow<Pair<List<Location>, String>>(Pair(emptyList(), ""))
+    val validLocationList = _validLocationList.asStateFlow()
+    private val _totalLocationList = MutableStateFlow<Pair<List<Location>, String>>(Pair(emptyList(), ""))
+    val totalLocationList = _totalLocationList.asStateFlow()
 
     val loading = EqualtableLiveData<Boolean>()
     val indicator = EqualtableLiveData<Indicator>()
@@ -74,8 +77,8 @@ class MainActivityViewModel @Inject constructor(
         initCompleted = false
 
         currentLocation.setValue(DayNightLocation(location = current))
-        validLocationList.value = SelectableLocationList(locationList = validList, selectedId = id)
-        totalLocationList.value = SelectableLocationList(locationList = totalList, selectedId = id)
+        _validLocationList.value = Pair(validList, id)
+        _totalLocationList.value = Pair(totalList, id)
 
         loading.setValue(false)
         indicator.setValue(
@@ -100,11 +103,8 @@ class MainActivityViewModel @Inject constructor(
     }
 
     // update inner data.
-
     private fun updateInnerData(location: Location) {
-        val total = ArrayList(
-            totalLocationList.value?.locationList ?: emptyList()
-        )
+        val total = ArrayList(totalLocationList.value.first)
         for (i in total.indices) {
             if (total[i].formattedId == location.formattedId) {
                 total[i] = location
@@ -136,22 +136,16 @@ class MainActivityViewModel @Inject constructor(
         setCurrentLocation(valid[index])
 
         // check difference in valid locations.
-        val diffInValidLocations = validLocationList.value?.locationList != valid
+        val diffInValidLocations = validLocationList.value.first != valid
         if (
             diffInValidLocations
-            || validLocationList.value?.selectedId != valid[index].formattedId
+            || validLocationList.value.second != valid[index].formattedId
         ) {
-            validLocationList.value = SelectableLocationList(
-                locationList = valid,
-                selectedId = valid[index].formattedId,
-            )
+            _validLocationList.value = Pair(valid, valid[index].formattedId)
         }
 
         // update total locations.
-        totalLocationList.value = SelectableLocationList(
-            locationList = total,
-            selectedId = valid[index].formattedId,
-        )
+        _totalLocationList.value = Pair(total, valid[index].formattedId)
     }
 
     private fun setCurrentLocation(location: Location) {
@@ -303,7 +297,7 @@ class MainActivityViewModel @Inject constructor(
     // set location.
 
     fun setLocation(index: Int) {
-        validLocationList.value?.locationList?.let {
+        validLocationList.value.first.let {
             setLocation(it[index].formattedId)
         }
     }
@@ -311,7 +305,7 @@ class MainActivityViewModel @Inject constructor(
     fun setLocation(formattedId: String) {
         cancelRequest()
 
-        validLocationList.value?.locationList?.let {
+        validLocationList.value.first.let {
             for (i in it.indices) {
                 if (it[i].formattedId != formattedId) {
                     continue
@@ -321,14 +315,8 @@ class MainActivityViewModel @Inject constructor(
 
                 indicator.setValue(Indicator(total = it.size, index = i))
 
-                totalLocationList.value = SelectableLocationList(
-                    locationList = totalLocationList.value?.locationList ?: emptyList(),
-                    selectedId = formattedId,
-                )
-                validLocationList.value = SelectableLocationList(
-                    locationList = validLocationList.value?.locationList ?: emptyList(),
-                    selectedId = formattedId,
-                )
+                _totalLocationList.value = Pair(totalLocationList.value.first, formattedId)
+                _validLocationList.value = Pair(validLocationList.value.first, formattedId)
                 break
             }
         }
@@ -342,7 +330,7 @@ class MainActivityViewModel @Inject constructor(
 
         // ensure current index.
         var index = 0
-        validLocationList.value?.locationList?.let {
+        validLocationList.value.first.let {
             for (i in it.indices) {
                 if (it[i].formattedId == currentLocation.value?.location?.formattedId) {
                     index = i
@@ -352,27 +340,17 @@ class MainActivityViewModel @Inject constructor(
         }
 
         // update index.
-        index = (
-                index + offset + (validLocationList.value?.locationList?.size ?: 0)
-        ) % (
-                validLocationList.value?.locationList?.size ?: 1
-        )
+        index = (index + offset + (validLocationList.value.first.size)) % (validLocationList.value.first.size)
 
         // update location.
-        setCurrentLocation(validLocationList.value!!.locationList[index])
+        setCurrentLocation(validLocationList.value.first[index])
 
         indicator.setValue(
-            Indicator(total = validLocationList.value!!.locationList.size, index = index)
+            Indicator(total = validLocationList.value.first.size, index = index)
         )
 
-        totalLocationList.value = SelectableLocationList(
-            locationList = totalLocationList.value?.locationList ?: emptyList(),
-            selectedId = currentLocation.value?.location?.formattedId ?: "",
-        )
-        validLocationList.value = SelectableLocationList(
-            locationList = validLocationList.value?.locationList ?: emptyList(),
-            selectedId = currentLocation.value?.location?.formattedId ?: "",
-        )
+        _totalLocationList.value = Pair(totalLocationList.value.first, currentLocation.value?.location?.formattedId ?: "")
+        _validLocationList.value = Pair(validLocationList.value.first, currentLocation.value?.location?.formattedId ?: "")
 
         return currentLocation.value?.location?.formattedId != oldFormattedId
     }
@@ -385,13 +363,13 @@ class MainActivityViewModel @Inject constructor(
         index: Int? = null,
     ): Boolean {
         // do not add an existed location.
-        if (totalLocationList.value!!.locationList.firstOrNull {
+        if (totalLocationList.value.first.firstOrNull {
                 it.formattedId == location.formattedId
         } != null) {
             return false
         }
 
-        val total = ArrayList(totalLocationList.value?.locationList ?: emptyList())
+        val total = ArrayList(totalLocationList.value.first)
         total.add(index ?: total.size, location)
 
         updateInnerData(total)
@@ -400,19 +378,26 @@ class MainActivityViewModel @Inject constructor(
         return true
     }
 
-    fun moveLocation(from: Int, to: Int) {
+    fun swapLocations(from: Int, to: Int) {
+        /*val fromItem = _totalLocationList.value.first[from]
+        val toItem = _totalLocationList.value.first[to]
+        val newList = _totalLocationList.value.first.toMutableList()
+        newList[from] = toItem
+        newList[to] = fromItem
+
+        _totalLocationList.value = Pair(newList, _totalLocationList.value.second)*/
         if (from == to) {
             return
         }
 
-        val total = ArrayList(totalLocationList.value?.locationList ?: emptyList())
+        val total = ArrayList(totalLocationList.value.first)
         total.add(to, total.removeAt(from))
 
         updateInnerData(total)
 
         repository.writeLocationList(
             context = application,
-            locationList = totalLocationList.value?.locationList ?: emptyList()
+            locationList = totalLocationList.value.first
         )
     }
 
@@ -420,12 +405,12 @@ class MainActivityViewModel @Inject constructor(
         updateInnerData(location)
         repository.writeLocationList(
             context = application,
-            locationList = totalLocationList.value?.locationList ?: emptyList(),
+            locationList = totalLocationList.value.first,
         )
     }
 
     fun deleteLocation(position: Int): Location {
-        val total = ArrayList(totalLocationList.value?.locationList ?: emptyList())
+        val total = ArrayList(totalLocationList.value.first)
         val location = total.removeAt(position)
 
         updateInnerData(total)
@@ -435,11 +420,10 @@ class MainActivityViewModel @Inject constructor(
     }
 
     // MARK: - getter.
-
     fun getValidLocation(offset: Int): Location {
         // ensure current index.
         var index = 0
-        validLocationList.value?.locationList?.let {
+        validLocationList.value.first.let {
             for (i in it.indices) {
                 if (it[i].formattedId == currentLocation.value?.location?.formattedId) {
                     index = i
@@ -449,13 +433,9 @@ class MainActivityViewModel @Inject constructor(
         }
 
         // update index.
-        index = (
-                index + offset + (validLocationList.value?.locationList?.size ?: 0)
-        ) % (
-                validLocationList.value?.locationList?.size ?: 1
-        )
+        index = (index + offset + validLocationList.value.first.size) % (validLocationList.value.first.size)
 
-        return validLocationList.value!!.locationList[index]
+        return validLocationList.value.first[index]
     }
 
     // impl.

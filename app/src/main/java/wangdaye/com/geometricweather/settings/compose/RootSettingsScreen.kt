@@ -45,7 +45,7 @@ import wangdaye.com.geometricweather.remoteviews.presenters.WeekWidgetIMP
 import wangdaye.com.geometricweather.remoteviews.presenters.notification.NormalNotificationIMP
 import wangdaye.com.geometricweather.settings.SettingsManager
 import wangdaye.com.geometricweather.settings.preference.bottomInsetItem
-import wangdaye.com.geometricweather.settings.preference.checkboxPreferenceItem
+import wangdaye.com.geometricweather.settings.preference.switchPreferenceItem
 import wangdaye.com.geometricweather.settings.preference.clickablePreferenceItem
 import wangdaye.com.geometricweather.settings.preference.composables.ListPreferenceView
 import wangdaye.com.geometricweather.settings.preference.composables.PreferenceScreen
@@ -97,7 +97,7 @@ fun RootSettingsView(
     PreferenceScreen(paddingValues = paddingValues) {
         // basic.
         sectionHeaderItem(R.string.settings_category_basic)
-        checkboxPreferenceItem(R.string.settings_title_background_free) { id ->
+        switchPreferenceItem(R.string.settings_title_background_free) { id ->
             SwitchPreferenceView(
                 titleId = id,
                 summaryOnId = R.string.settings_summary_background_free_on,
@@ -119,7 +119,7 @@ fun RootSettingsView(
                 },
             )
         }
-        checkboxPreferenceItem(R.string.settings_title_alert_notification_switch) { id ->
+        switchPreferenceItem(R.string.settings_title_alert_notification_switch) { id ->
             SwitchPreferenceView(
                 titleId = id,
                 summaryOnId = R.string.on,
@@ -135,7 +135,7 @@ fun RootSettingsView(
                 },
             )
         }
-        checkboxPreferenceItem(R.string.settings_title_precipitation_notification_switch) { id ->
+        switchPreferenceItem(R.string.settings_title_precipitation_notification_switch) { id ->
             SwitchPreferenceView(
                 titleId = id,
                 summaryOnId = R.string.on,
@@ -219,7 +219,7 @@ fun RootSettingsView(
 
         // forecast.
         sectionHeaderItem(R.string.settings_category_forecast)
-        checkboxPreferenceItem(R.string.settings_title_forecast_today) { id ->
+        switchPreferenceItem(R.string.settings_title_forecast_today) { id ->
             SwitchPreferenceView(
                 titleId = id,
                 summaryOnId = R.string.on,
@@ -247,7 +247,7 @@ fun RootSettingsView(
                 },
             )
         }
-        checkboxPreferenceItem(R.string.settings_title_forecast_tomorrow) { id ->
+        switchPreferenceItem(R.string.settings_title_forecast_tomorrow) { id ->
             SwitchPreferenceView(
                 titleId = id,
                 summaryOnId = R.string.on,
@@ -293,7 +293,7 @@ fun RootSettingsView(
                 },
             )
         }
-        checkboxPreferenceItem(R.string.settings_title_minimal_icon) { id ->
+        switchPreferenceItem(R.string.settings_title_minimal_icon) { id ->
             SwitchPreferenceView(
                 titleId = id,
                 summaryOnId = R.string.on,
@@ -386,7 +386,7 @@ fun RootSettingsView(
 
         // notification.
         sectionHeaderItem(R.string.settings_category_notification)
-        checkboxPreferenceItem(R.string.settings_title_notification) { id ->
+        switchPreferenceItem(R.string.settings_title_notification) { id ->
             SwitchPreferenceView(
                 titleId = id,
                 summaryOnId = R.string.on,
@@ -422,7 +422,7 @@ fun RootSettingsView(
                 },
             )
         }
-        checkboxPreferenceItem(R.string.settings_title_notification_temp_icon) { id ->
+        switchPreferenceItem(R.string.settings_title_notification_temp_icon) { id ->
             SwitchPreferenceView(
                 titleId = id,
                 summaryOnId = R.string.on,
@@ -441,7 +441,7 @@ fun RootSettingsView(
                 }
             )
         }
-        checkboxPreferenceItem(R.string.settings_title_notification_feels_like) { id ->
+        switchPreferenceItem(R.string.settings_title_notification_feels_like) { id ->
             SwitchPreferenceView(
                 titleId = id,
                 summaryOnId = R.string.on,
@@ -459,7 +459,7 @@ fun RootSettingsView(
                 }
             )
         }
-        checkboxPreferenceItem(R.string.settings_title_notification_can_be_cleared) { id ->
+        switchPreferenceItem(R.string.settings_title_notification_can_be_cleared) { id ->
             SwitchPreferenceView(
                 titleId = id,
                 summaryOnId = R.string.on,

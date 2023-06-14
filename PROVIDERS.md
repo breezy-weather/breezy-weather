@@ -1,6 +1,6 @@
 # Weather providers
 
-This is a user-end guide to weather providers available in Geometric Weather. If you are a developer looking to add a new provider in Geometric Weather, have a look at [contribute](CONTRIBUTE.md).
+This is a user-end guide to weather providers available in Breezy Weather. If you are a developer looking to add a new provider in Breezy Weather, have a look at [contribute](CONTRIBUTE.md).
 
 ## Status
 
@@ -42,16 +42,15 @@ Ultimate goal of the app would be to modularize as to have a main weather provid
 
 ## Detailed available data
 
-### Location
+### Location providers
 
-| Providers         | Open-Meteo | AccuWeather | Nominatim | OpenWeather | Météo-France | China    |
-|-------------------|------------|-------------|-----------|-------------|--------------|----------|
-| Search            | ✅          | ✅           | Slow      | Slow        | Slow         | Partial¹ |
-| Reverse geocoding | ❌          | ✅           | Slow      | Slow        | ✅            | ❌        |
-
-“Slow” means that location search will be slow due to missing timezone information in the API. The app needs to calculate the timezone, which is a very slow operation, and will take more or less a minute per search.
+| Providers         | Open-Meteo | AccuWeather | MET Norway     | OpenWeather    | Météo-France   | China    |
+|-------------------|------------|-------------|----------------|----------------|----------------|----------|
+| Search            | ✅          | ✅           | ✅ (Open-Meteo) | ✅ (Open-Meteo) | ✅ (Open-Meteo) | Partial¹ |
+| Reverse geocoding | ❌          | ✅           | ❌              | ❌              | ✅²             | ❌        |
 
 * ¹ Currently based on a hardcoded list of cities bundled with the app.
+* ² TimeZone is assumed to be the same as device
 
 
 ### Daily forecast

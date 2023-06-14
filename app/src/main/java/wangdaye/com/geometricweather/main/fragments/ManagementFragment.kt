@@ -1,35 +1,52 @@
 package wangdaye.com.geometricweather.main.fragments
 
-import android.content.res.ColorStateList
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewTreeObserver
 import android.view.animation.Animation
-import androidx.core.graphics.ColorUtils
-import androidx.core.widget.ImageViewCompat
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.MyLocation
+import androidx.compose.material.icons.outlined.Search
+import androidx.compose.material3.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.ViewCompositionStrategy
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.viewinterop.AndroidView
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.launch
 import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.GeoActivity
-import wangdaye.com.geometricweather.common.basic.models.Location
 import wangdaye.com.geometricweather.common.basic.models.Location.Companion.buildLocal
 import wangdaye.com.geometricweather.common.ui.decotarions.Material3ListItemDecoration
+import wangdaye.com.geometricweather.common.ui.widgets.Material3Scaffold
+import wangdaye.com.geometricweather.common.ui.widgets.generateCollapsedScrollBehavior
+import wangdaye.com.geometricweather.common.ui.widgets.insets.FitStatusBarTopAppBar
 import wangdaye.com.geometricweather.common.utils.DisplayUtils
 import wangdaye.com.geometricweather.common.utils.helpers.SnackbarHelper
-import wangdaye.com.geometricweather.databinding.FragmentManagementBinding
 import wangdaye.com.geometricweather.main.MainActivityViewModel
 import wangdaye.com.geometricweather.main.adapters.LocationAdapterAnimWrapper
 import wangdaye.com.geometricweather.main.adapters.location.LocationAdapter
 import wangdaye.com.geometricweather.main.utils.MainThemeColorProvider
 import wangdaye.com.geometricweather.main.widgets.LocationItemTouchCallback
 import wangdaye.com.geometricweather.main.widgets.LocationItemTouchCallback.TouchReactor
-import kotlin.math.max
-import kotlin.math.min
+import wangdaye.com.geometricweather.settings.SettingsManager
+import wangdaye.com.geometricweather.theme.compose.GeometricWeatherTheme
+import wangdaye.com.geometricweather.theme.resource.ResourcesProviderFactory
+import wangdaye.com.geometricweather.theme.resource.providers.ResourceProvider
 
 class PushedManagementFragment: ManagementFragment() {
 
@@ -52,19 +69,20 @@ class PushedManagementFragment: ManagementFragment() {
 
 open class ManagementFragment : MainModuleFragment(), TouchReactor {
 
-    private lateinit var binding: FragmentManagementBinding
     protected lateinit var viewModel: MainActivityViewModel
 
     private lateinit var layout: LinearLayoutManager
     private lateinit var adapter: LocationAdapter
+    private lateinit var recyclerView: RecyclerView
     private var adapterAnimWrapper: LocationAdapterAnimWrapper? = null
     private lateinit var itemTouchHelper: ItemTouchHelper
+    private var resourceProvider: ResourceProvider? = null
 
     private var scrollOffset = 0f
     private var callback: Callback? = null
 
     interface Callback {
-        fun onSearchBarClicked(searchBar: View)
+        fun onSearchBarClicked()
         fun onSelectProviderActivityStarted()
     }
 
@@ -72,13 +90,79 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
         inflater: LayoutInflater,
         container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        binding = FragmentManagementBinding.inflate(layoutInflater, container, false)
-
         initModel()
         initView()
         setCallback(requireActivity() as Callback)
 
-        return binding.root
+        return ComposeView(requireContext()).apply {
+            setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
+            setContent {
+                GeometricWeatherTheme(lightTheme = !isSystemInDarkTheme()) {
+                    ContentView()
+                }
+            }
+        }
+    }
+
+    @Composable
+    private fun ContentView() {
+        ensureResourceProvider()
+        val scrollBehavior = generateCollapsedScrollBehavior()
+
+        val totalLocationListState = viewModel.totalLocationList.collectAsState()
+        Material3Scaffold(
+            modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+            topBar = {
+                FitStatusBarTopAppBar(
+                    title = stringResource(R.string.locations),
+                    onBackPressed = { /* FIXME */ },
+                    actions = {
+                        IconButton(
+                            onClick = {
+                                if (callback != null) {
+                                    callback!!.onSearchBarClicked()
+                                }
+                            }
+                        ) {
+                            Icon(
+                                imageVector = Icons.Outlined.Search,
+                                contentDescription = stringResource(R.string.feedback_search_location),
+                                tint = MaterialTheme.colorScheme.onPrimaryContainer
+                            )
+                        }
+                    },
+                    scrollBehavior = scrollBehavior,
+                )
+            },
+            floatingActionButton = {
+                Column {
+                    if (totalLocationListState.value.first.firstOrNull { it.isCurrentPosition } == null) {
+                        FloatingActionButton(
+                            onClick = {
+                                viewModel.addLocation(buildLocal(requireContext()), null)
+                                SnackbarHelper.showSnackbar(getString(R.string.feedback_collect_succeed))
+                            },
+                        ) {
+                            Icon(Icons.Outlined.MyLocation, "My current position")
+                        }
+                        //Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
+                    }
+                    // TODO: Uncomment spacer and FAB when map selection is implemented
+                    /*FloatingActionButton(
+                        onClick = { /* TODO */ },
+                    ) {
+                        Icon(Icons.Outlined.Map, "Choose from map")
+                    }*/
+                }
+            }
+        ) { paddings ->
+            AndroidView(
+                modifier = Modifier.padding(paddings),
+                factory = {
+                    recyclerView
+                }
+            )
+        }
     }
 
     override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {
@@ -94,8 +178,6 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        updateDayNightColors()
-
         val firstHolderPosition = layout.findFirstVisibleItemPosition()
         adapter.notifyItemRangeChanged(
             firstHolderPosition,
@@ -108,26 +190,12 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
     }
 
     private fun initView() {
-        updateDayNightColors()
-
-        binding.searchBar.setOnClickListener {
-            if (callback != null) {
-                callback!!.onSearchBarClicked(binding.searchBar)
-            }
-        }
-        binding.searchBar.transitionName = getString(R.string.transition_activity_search_bar)
-
-        binding.currentLocationButton.setOnClickListener {
-            viewModel.addLocation(buildLocal(requireContext()), null)
-            SnackbarHelper.showSnackbar(getString(R.string.feedback_collect_succeed))
-        }
-
         adapter =
             LocationAdapter(
                 requireActivity(),
                 ArrayList(),
                 null,
-                { _, formattedId ->  // on click.
+                { formattedId ->  // on click.
                     viewModel.setLocation(formattedId)
                     parentFragmentManager.popBackStack()
                 }
@@ -136,17 +204,18 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
             }
         adapterAnimWrapper = LocationAdapterAnimWrapper(requireContext(), adapter)
         adapterAnimWrapper!!.setLastPosition(Int.MAX_VALUE)
-        binding.recyclerView.adapter = adapterAnimWrapper
-        binding.recyclerView.layoutManager = LinearLayoutManager(
+        recyclerView = RecyclerView(requireContext())
+        recyclerView.adapter = adapterAnimWrapper
+        recyclerView.layoutManager = LinearLayoutManager(
             requireActivity(),
             RecyclerView.VERTICAL,
             false
         ).also { layout = it }
-        while (binding.recyclerView.itemDecorationCount > 0) {
-            binding.recyclerView.removeItemDecorationAt(0)
+        while (recyclerView.itemDecorationCount > 0) {
+            recyclerView.removeItemDecorationAt(0)
         }
-        binding.recyclerView.addItemDecoration(Material3ListItemDecoration(requireContext()))
-        binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        recyclerView.addItemDecoration(Material3ListItemDecoration(requireContext()))
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 scrollOffset = recyclerView.computeVerticalScrollOffset().toFloat()
                 updateAppBarColor()
@@ -164,11 +233,21 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                 this
             )
         )
-        itemTouchHelper.attachToRecyclerView(binding.recyclerView)
+        itemTouchHelper.attachToRecyclerView(recyclerView)
 
-        viewModel.totalLocationList.observe(viewLifecycleOwner) {
-            adapter.update(it.locationList, it.selectedId)
-            setCurrentLocationButtonEnabled(it.locationList)
+        // Start a coroutine in the lifecycle scope
+        lifecycleScope.launch {
+            // repeatOnLifecycle launches the block in a new coroutine every time the
+            // lifecycle is in the STARTED state (or above) and cancels it when it's STOPPED.
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                // Trigger the flow and start listening for values.
+                // Note that this happens when lifecycle is STARTED and stops
+                // collecting when the lifecycle is STOPPED
+                viewModel.totalLocationList.collect {
+                    // New value received
+                    adapter.update(it.first, it.second)
+                }
+            }
         }
     }
 
@@ -177,95 +256,22 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
 
         updateAppBarColor()
 
-        binding.recyclerView.setBackgroundColor(
+        recyclerView.setBackgroundColor(
             MainThemeColorProvider.getColor(
                 lightTheme = lightTheme,
                 id = com.google.android.material.R.attr.colorSurfaceVariant
             )
         )
-        binding.searchBar.setCardBackgroundColor(
-            MainThemeColorProvider.getColor(
-                lightTheme = lightTheme,
-                id = com.google.android.material.R.attr.colorSurface
-            )
-        )
-
-        ImageViewCompat.setImageTintList(
-            binding.searchIcon,
-            ColorStateList.valueOf(
-                MainThemeColorProvider.getColor(
-                    lightTheme = lightTheme,
-                    id = R.attr.colorBodyText
-                )
-            )
-        )
-        ImageViewCompat.setImageTintList(
-            binding.currentLocationButton,
-            ColorStateList.valueOf(
-                MainThemeColorProvider.getColor(
-                    lightTheme = lightTheme,
-                    id = androidx.appcompat.R.attr.colorPrimary
-                )
-            )
-        )
-        binding.title.setTextColor(
-            MainThemeColorProvider.getColor(
-                lightTheme = lightTheme,
-                id = R.attr.colorBodyText
-            )
-        )
     }
 
     private fun updateAppBarColor() {
-        val lightTheme = !DisplayUtils.isDarkMode(requireContext())
-        val ratio = max(
-            0f,
-            min(
-                scrollOffset / binding.appBar.height,
-                1f
-            )
-        )
-        binding.appBar.setBackgroundColor(
-            DisplayUtils.blendColor(
-                ColorUtils.setAlphaComponent(
-                    MainThemeColorProvider.getColor(
-                        lightTheme = lightTheme,
-                        id = androidx.appcompat.R.attr.colorPrimary
-                    ),
-                    (255 * 0.2 * ratio).toInt()
-                ),
-                MainThemeColorProvider.getColor(
-                    lightTheme = lightTheme,
-                    id = com.google.android.material.R.attr.colorSurfaceVariant
-                )
-            )
-        )
-    }
 
-    private fun setCurrentLocationButtonEnabled(list: List<Location>) {
-        var enabled = list.isNotEmpty()
-        for (i in list.indices) {
-            if (list[i].isCurrentPosition) {
-                enabled = false
-                break
-            }
-        }
-
-        binding.currentLocationButton.visibility = if (enabled) View.VISIBLE else View.GONE
     }
 
     fun prepareReenterTransition() {
+        // TODO
         postponeEnterTransition()
-
-        binding.searchBar.viewTreeObserver.addOnPreDrawListener(
-            object : ViewTreeObserver.OnPreDrawListener {
-                override fun onPreDraw(): Boolean {
-                    binding.searchBar.viewTreeObserver.removeOnPreDrawListener(this)
-                    startPostponedEnterTransition()
-                    return true
-                }
-            }
-        )
+        startPostponedEnterTransition()
     }
 
     // interface.
@@ -285,6 +291,16 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
     override fun startSelectProviderActivityBySwipe() {
         if (callback != null) {
             callback!!.onSelectProviderActivityStarted()
+        }
+    }
+
+    private fun ensureResourceProvider() {
+        val iconProvider = SettingsManager
+            .getInstance(requireContext())
+            .iconProvider
+        if (resourceProvider == null
+            || resourceProvider!!.packageName != iconProvider) {
+            resourceProvider = ResourcesProviderFactory.getNewInstance()
         }
     }
 }

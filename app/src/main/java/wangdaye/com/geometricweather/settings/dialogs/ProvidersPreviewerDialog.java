@@ -12,7 +12,6 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.github.rahatarmanahmed.cpv.CircularProgressView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.List;
@@ -60,7 +59,7 @@ public class ProvidersPreviewerDialog {
             AlertDialog dialog,
             OnProviderSelectedCallback callback
     ) {
-        CircularProgressView progressView = view.findViewById(R.id.dialog_providers_previewer_progress);
+        View progressView = view.findViewById(R.id.dialog_providers_previewer_progress_container);
         progressView.setVisibility(View.VISIBLE);
 
         RecyclerView listView = view.findViewById(R.id.dialog_providers_previewer_list);
@@ -95,7 +94,7 @@ public class ProvidersPreviewerDialog {
 
     private static void bindAdapter(Activity activity,
                                     RecyclerView listView,
-                                    CircularProgressView progressView,
+                                    View progressView,
                                     List<ResourceProvider> providerList,
                                     AlertDialog dialog,
                                     OnProviderSelectedCallback callback) {

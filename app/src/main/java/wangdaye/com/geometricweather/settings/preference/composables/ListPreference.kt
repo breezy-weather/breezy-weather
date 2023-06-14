@@ -15,11 +15,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.ContentAlpha
-import androidx.compose.material.RadioButtonDefaults
-import androidx.compose.material.Text
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -151,7 +149,7 @@ fun ListPreferenceView(
 }
 
 @Composable
-private fun RadioButton(
+internal fun RadioButton(
     selected: Boolean,
     onClick: () -> Unit,
     text: String,
@@ -169,14 +167,9 @@ private fun RadioButton(
             ),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        androidx.compose.material.RadioButton(
+        androidx.compose.material3.RadioButton(
             selected = selected,
-            onClick = onClick,
-            colors = RadioButtonDefaults.colors(
-                selectedColor = MaterialTheme.colorScheme.secondary,
-                unselectedColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
-                disabledColor = MaterialTheme.colorScheme.onSurface.copy(alpha = ContentAlpha.disabled)
-            )
+            onClick = onClick
         )
         Spacer(modifier = Modifier.width(dimensionResource(R.dimen.little_margin)))
         Text(

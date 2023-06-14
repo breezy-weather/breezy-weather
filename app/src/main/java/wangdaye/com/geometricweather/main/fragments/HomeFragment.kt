@@ -2,7 +2,6 @@ package wangdaye.com.geometricweather.main.fragments
 
 import android.animation.Animator
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
@@ -19,7 +18,6 @@ import wangdaye.com.geometricweather.R
 import wangdaye.com.geometricweather.common.basic.GeoActivity
 import wangdaye.com.geometricweather.common.basic.livedata.EqualtableLiveData
 import wangdaye.com.geometricweather.common.basic.models.Location
-import wangdaye.com.geometricweather.common.basic.models.options.DarkMode
 import wangdaye.com.geometricweather.common.basic.models.options.appearance.BackgroundAnimationMode
 import wangdaye.com.geometricweather.common.ui.widgets.SwipeSwitchLayout
 import wangdaye.com.geometricweather.common.ui.widgets.SwipeSwitchLayout.OnSwitchListener
