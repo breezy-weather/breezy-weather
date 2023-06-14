@@ -7,10 +7,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
+    <org.breezyweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/GeometricWeatherTheme.AppBarTheme">
+        style="@style/BreezyWeatherTheme.AppBarTheme">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
@@ -23,7 +23,7 @@
                 android:id="@+id/activity_allergen_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                style="@style/GeometricWeatherTheme.ToolbarTheme"
+                style="@style/BreezyWeatherTheme.ToolbarTheme"
                 app:layout_collapseMode="pin"
                 app:title="@string/allergen"
                 app:navigationIcon="@drawable/ic_toolbar_back"
@@ -31,9 +31,9 @@
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
-    </wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout>
+    </org.breezyweather.common.ui.widgets.insets.FitSystemBarAppBarLayout>
 
-    <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarRecyclerView
+    <org.breezyweather.common.ui.widgets.insets.FitSystemBarRecyclerView
         android:id="@+id/activity_allergen_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

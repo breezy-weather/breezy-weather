@@ -29,13 +29,13 @@
             tools:text="星期日天气宜人"
             tools:ignore="RtlHardcoded" />
 
-        <wangdaye.com.geometricweather.common.ui.widgets.horizontal.HorizontalRecyclerView
+        <org.breezyweather.common.ui.widgets.horizontal.HorizontalRecyclerView
             android:id="@+id/container_main_hourly_trend_card_tagView"
             android:layout_marginTop="@dimen/normal_margin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <wangdaye.com.geometricweather.common.ui.widgets.trend.TrendRecyclerView
+        <org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
             android:id="@+id/container_main_hourly_trend_card_trendRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="@dimen/hourly_trend_item_height"
@@ -57,7 +57,7 @@
                 style="@style/title_text"
                 tools:ignore="RtlHardcoded" />
 
-            <wangdaye.com.geometricweather.common.ui.widgets.precipitationBar.PrecipitationBar
+            <org.breezyweather.common.ui.widgets.precipitationBar.PrecipitationBar
                 android:id="@+id/container_main_hourly_trend_card_minutelyBar"
                 android:layout_width="match_parent"
                 android:layout_height="72dp"

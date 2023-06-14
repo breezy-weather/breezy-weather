@@ -12,24 +12,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
+        <org.breezyweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
             android:id="@+id/activity_preview_icon_appBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/GeometricWeatherTheme.AppBarTheme"
+            style="@style/BreezyWeatherTheme.AppBarTheme"
             app:elevation="0dp">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/activity_preview_icon_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                style="@style/GeometricWeatherTheme.ToolbarTheme"
+                style="@style/BreezyWeatherTheme.ToolbarTheme"
                 app:navigationIcon="@drawable/ic_toolbar_back"
                 app:navigationContentDescription="@string/content_desc_back" />
 
-        </wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout>
+        </org.breezyweather.common.ui.widgets.insets.FitSystemBarAppBarLayout>
 
-        <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarRecyclerView
+        <org.breezyweather.common.ui.widgets.insets.FitSystemBarRecyclerView
             android:id="@+id/activity_preview_icon_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

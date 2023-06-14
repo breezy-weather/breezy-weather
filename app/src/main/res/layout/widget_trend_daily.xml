@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wangdaye.com.geometricweather.remoteviews.trend.TrendLinearLayout
+<org.breezyweather.remoteviews.trend.TrendLinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/widget_trend_daily"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:theme="@style/GeometricWeatherTheme">
+    android:theme="@style/BreezyWeatherTheme">
 
-    <wangdaye.com.geometricweather.remoteviews.trend.WidgetItemView
+    <org.breezyweather.remoteviews.trend.WidgetItemView
         android:id="@+id/widget_trend_daily_item_1"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1" />
 
-    <wangdaye.com.geometricweather.remoteviews.trend.WidgetItemView
+    <org.breezyweather.remoteviews.trend.WidgetItemView
         android:id="@+id/widget_trend_daily_item_2"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1" />
 
-    <wangdaye.com.geometricweather.remoteviews.trend.WidgetItemView
+    <org.breezyweather.remoteviews.trend.WidgetItemView
         android:id="@+id/widget_trend_daily_item_3"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1" />
 
-    <wangdaye.com.geometricweather.remoteviews.trend.WidgetItemView
+    <org.breezyweather.remoteviews.trend.WidgetItemView
         android:id="@+id/widget_trend_daily_item_4"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1" />
 
-    <wangdaye.com.geometricweather.remoteviews.trend.WidgetItemView
+    <org.breezyweather.remoteviews.trend.WidgetItemView
         android:id="@+id/widget_trend_daily_item_5"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1" />
 
-</wangdaye.com.geometricweather.remoteviews.trend.TrendLinearLayout>
+</org.breezyweather.remoteviews.trend.TrendLinearLayout>

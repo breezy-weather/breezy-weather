@@ -10,7 +10,7 @@ plugins {
 android {
     compileSdk 33
     defaultConfig {
-        applicationId "wangdaye.com.geometricweather"
+        applicationId "org.breezyweather"
         minSdkVersion 21
         targetSdkVersion 33
         versionCode 40000
@@ -128,7 +128,7 @@ android {
         abortOnError false
         checkReleaseBuilds false
     }
-    namespace "wangdaye.com.geometricweather"
+    namespace "org.breezyweather"
 }
 
 allprojects {

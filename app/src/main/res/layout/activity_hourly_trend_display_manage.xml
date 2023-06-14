@@ -12,23 +12,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
+        <org.breezyweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
             android:id="@+id/appBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            style="@style/GeometricWeatherTheme.AppBarTheme">
+            style="@style/BreezyWeatherTheme.AppBarTheme">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                style="@style/GeometricWeatherTheme.ToolbarTheme"
+                style="@style/BreezyWeatherTheme.ToolbarTheme"
                 app:title="@string/settings_title_card_display"
                 app:navigationIcon="@drawable/ic_toolbar_back"
                 app:navigationContentDescription="@string/content_desc_back" />
 
-        </wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout>
+        </org.breezyweather.common.ui.widgets.insets.FitSystemBarAppBarLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -45,7 +45,7 @@
             android:background="?android:attr/colorBackground"
             android:layout_alignParentBottom="true">
 
-            <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarRecyclerView
+            <org.breezyweather.common.ui.widgets.insets.FitSystemBarRecyclerView
                 android:id="@+id/bottomRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

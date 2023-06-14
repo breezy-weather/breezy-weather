@@ -2,7 +2,7 @@
 
     <!-- app. -->
     <string name="app_name">Oratge</string>
-    <string name="breezy_weather">Oratge geomètric</string>
+    <string name="breezy_weather">Oratge Breezy</string>
 
     <!-- keyword. -->
     <string name="current_location">Ubicació actual</string>
@@ -251,7 +251,7 @@
     <string name="feedback_interpret_notification_group_content">Després de desactivar \"No usis segon pla\", apareixerà una notificació a la barra de notificacions indicant que el servei està funcionant en segon pla. Podeu desactivar el canal d\'informació en segon pla impedint aquestes notificacions en la pàgina d\'informació de l\'aplicació.</string>
 
     <string name="feedback_ignore_battery_optimizations_title">Ignora l\'optimització de la bateria</string>
-    <string name="feedback_ignore_battery_optimizations_content">Per a assegurar que els serveis en segon pla continuïn funcionant, si us plau ignoreu l\'optimització de bateria per a Oratge Geomètric.</string>
+    <string name="feedback_ignore_battery_optimizations_content">Per a assegurar que els serveis en segon pla continuïn funcionant, si us plau ignoreu l\'optimització de bateria per a Oratge Breezy.</string>
 
     <string name="feedback_cannot_start_live_wallpaper_activity">No s\'ha aconseguit iniciar el context de vista preliminar del fons de pantalla animat</string>
 
@@ -262,7 +262,7 @@
     <string name="feedback_short_term_precipitation_alert">Pot ser que la precipitació ocorri en les properes hores.</string>
 
     <string name="feedback_resident_location">Estableix com a ciutat on residiu</string>
-    <string name="feedback_resident_location_description">Oratge Geomètric mostrarà i ocultarà automàticament les ciutats on residiu sobre la base de la teva ubicació actual.\nPer exemple, podeu establir la ciutat natal com una ciutat on residiu. Podeu consultar l\'oratge de ciutat natal mentre esteu viatjant. Quan arribeu a casa, l\'oratge de ciutat natal estarà ocult i reemplaçat pel de la teva ubicació actual.</string>
+    <string name="feedback_resident_location_description">Oratge Breezy mostrarà i ocultarà automàticament les ciutats on residiu sobre la base de la teva ubicació actual.\nPer exemple, podeu establir la ciutat natal com una ciutat on residiu. Podeu consultar l\'oratge de ciutat natal mentre esteu viatjant. Quan arribeu a casa, l\'oratge de ciutat natal estarà ocult i reemplaçat pel de la teva ubicació actual.</string>
 
     <string name="feedback_click_to_get_more">Premeu per saber-ne més…</string>
     <string name="feedback_click_again_to_exit">Premeu de nou per a sortir</string>

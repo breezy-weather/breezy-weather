@@ -1,0 +1,49 @@
+package org.breezyweather.remoteviews.config;
+
+import android.view.View;
+import android.widget.RemoteViews;
+
+import dagger.hilt.android.AndroidEntryPoint;
+import org.breezyweather.remoteviews.presenters.DailyTrendWidgetIMP;
+import org.breezyweather.R;
+
+/**
+ * Daily trend widget config activity.
+ * */
+
+@AndroidEntryPoint
+public class DailyTrendWidgetConfigActivity extends AbstractWidgetConfigActivity {
+
+    @Override
+    public void initData() {
+        super.initData();
+
+        String[] cardStyles = getResources().getStringArray(R.array.widget_card_styles);
+        String[] cardStyleValues = getResources().getStringArray(R.array.widget_card_style_values);
+
+        this.cardStyleValueNow = "light";
+        this.cardStyles = new String[] {cardStyles[2], cardStyles[3], cardStyles[1]};
+        this.cardStyleValues = new String[] {cardStyleValues[2], cardStyleValues[3], cardStyleValues[1]};
+    }
+
+    @Override
+    public void initView() {
+        super.initView();
+        mCardStyleContainer.setVisibility(View.VISIBLE);
+        mCardAlphaContainer.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public RemoteViews getRemoteViews() {
+        return DailyTrendWidgetIMP.getRemoteViews(
+                this, locationNow,
+                getResources().getDisplayMetrics().widthPixels,
+                cardStyleValueNow, cardAlpha
+        );
+    }
+
+    @Override
+    public String getConfigStoreName() {
+        return getString(R.string.sp_widget_daily_trend_setting);
+    }
+}

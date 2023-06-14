@@ -8,8 +8,8 @@ import android.content.res.Resources;
 
 import org.junit.jupiter.api.Test;
 
-import wangdaye.com.geometricweather.R;
-import wangdaye.com.geometricweather.common.basic.models.options._basic.Utils;
+import org.breezyweather.R;
+import org.breezyweather.common.basic.models.options._basic.Utils;
 
 public class UtilsTest {
 

@@ -1,0 +1,3 @@
+package org.breezyweather.background.receiver.widget
+
+class WidgetMaterialYouForecastProvider: AbstractWidgetProvider()

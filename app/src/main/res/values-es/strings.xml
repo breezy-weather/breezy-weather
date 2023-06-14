@@ -2,7 +2,7 @@
 
     <!-- app. -->
     <string name="app_name">Clima</string>
-    <string name="breezy_weather">Clima Geométrico</string>
+    <string name="breezy_weather">Clima Breezy</string>
 
     <!-- keyword. -->
     <string name="current_location">Ubicación actual</string>

@@ -7,7 +7,7 @@
     android:foreground="@drawable/selectable_item_background"
     tools:ignore="DisableBaselineAlignment,UnusedAttribute">
 
-    <wangdaye.com.geometricweather.common.ui.widgets.SquareFrameLayout
+    <org.breezyweather.common.ui.widgets.SquareFrameLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1">
@@ -20,9 +20,9 @@
             android:contentDescription="@string/content_desc_weather_icon_light"
             tools:background="@drawable/weather_clear_day_mini_light"/>
 
-    </wangdaye.com.geometricweather.common.ui.widgets.SquareFrameLayout>
+    </org.breezyweather.common.ui.widgets.SquareFrameLayout>
 
-    <wangdaye.com.geometricweather.common.ui.widgets.SquareFrameLayout
+    <org.breezyweather.common.ui.widgets.SquareFrameLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1">
@@ -35,9 +35,9 @@
             android:contentDescription="@string/content_desc_weather_icon_grey"
             tools:background="@drawable/weather_clear_day_mini_grey"/>
 
-    </wangdaye.com.geometricweather.common.ui.widgets.SquareFrameLayout>
+    </org.breezyweather.common.ui.widgets.SquareFrameLayout>
 
-    <wangdaye.com.geometricweather.common.ui.widgets.SquareFrameLayout
+    <org.breezyweather.common.ui.widgets.SquareFrameLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1">
@@ -50,6 +50,6 @@
             android:contentDescription="@string/content_desc_weather_icon_dark"
             tools:background="@drawable/weather_clear_day_mini_dark"/>
 
-    </wangdaye.com.geometricweather.common.ui.widgets.SquareFrameLayout>
+    </org.breezyweather.common.ui.widgets.SquareFrameLayout>
 
 </LinearLayout>

@@ -36,8 +36,12 @@
 
     <queries>
         <intent>
+            <!-- Breezy Weather Icon Packs. -->
+            <action android:name="org.breezyweather.ICON_PROVIDER" />
+        </intent>
+        <intent>
             <!-- Geometric Weather Icon Packs. -->
-            <action android:name="com.wangdaye.geometricweather.ICON_PROVIDER" />
+            <action android:name="wangdaye.com.geometricweather.ICON_PROVIDER" />
         </intent>
         <intent>
             <!-- Chronus Icon Packs. -->
@@ -48,35 +52,35 @@
     <application
         android:icon="@mipmap/ic_launcher"
         android:label="@string/breezy_weather"
-        android:name=".GeometricWeather"
+        android:name=".BreezyWeather"
         android:supportsRtl="true"
         android:largeHeap="true"
-        android:theme="@style/GeometricWeatherTheme"
+        android:theme="@style/BreezyWeatherTheme"
         android:enableOnBackInvokedCallback="true"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning,ManifestResource,RtlEnabled,UnusedAttribute"
         tools:replace="android:label"
         tools:targetApi="n">
 
         <meta-data
-            android:name="com.wangdaye.geometricweather.PROVIDER_CONFIG"
+            android:name="org.breezyweather.PROVIDER_CONFIG"
             android:resource="@xml/icon_provider_config" />
         <meta-data
-            android:name="com.wangdaye.geometricweather.DRAWABLE_FILTER"
+            android:name="org.breezyweather.DRAWABLE_FILTER"
             android:resource="@xml/icon_provider_drawable_filter" />
         <meta-data
-            android:name="com.wangdaye.geometricweather.ANIMATOR_FILTER"
+            android:name="org.breezyweather.ANIMATOR_FILTER"
             android:resource="@xml/icon_provider_animator_filter" />
         <meta-data
-            android:name="com.wangdaye.geometricweather.SHORTCUT_FILTER"
+            android:name="org.breezyweather.SHORTCUT_FILTER"
             android:resource="@xml/icon_provider_shortcut_filter" />
         <meta-data
-            android:name="com.wangdaye.geometricweather.SUN_MOON_FILTER"
+            android:name="org.breezyweather.SUN_MOON_FILTER"
             android:resource="@xml/icon_provider_sun_moon_filter" />
 
         <activity
             android:name=".main.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/GeometricWeatherTheme.Main"
+            android:theme="@style/BreezyWeatherTheme.Main"
             android:screenOrientation="user"
             android:configChanges="uiMode"
             android:exported="true">
@@ -85,74 +89,74 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
-                <!--<action android:name="com.wangdaye.geometricweather.ICON_PROVIDER" />-->
-                <action android:name="com.wangdaye.geometricweather.Main" />
-                <action android:name="com.wangdaye.geometricweather.ACTION_SHOW_ALERTS" />
-                <action android:name="com.wangdaye.geometricweather.ACTION_SHOW_DAILY_FORECAST" />
-                <action android:name="com.wangdaye.geometricweather.ACTION_MANAGEMENT" />
+                <!--<action android:name="org.breezyweather.ICON_PROVIDER" />-->
+                <action android:name="org.breezyweather.Main" />
+                <action android:name="org.breezyweather.ACTION_SHOW_ALERTS" />
+                <action android:name="org.breezyweather.ACTION_SHOW_DAILY_FORECAST" />
+                <action android:name="org.breezyweather.ACTION_MANAGEMENT" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
         <activity android:name=".search.SearchActivity"
             android:label="@string/action_search"
-            android:theme="@style/GeometricWeatherTheme.Search"
+            android:theme="@style/BreezyWeatherTheme.Search"
             android:windowSoftInputMode="adjustResize" />
 
         <activity
             android:name=".daily.DailyWeatherActivity"
             android:label="@string/daily_overview"
-            android:theme="@style/GeometricWeatherTheme" />
+            android:theme="@style/BreezyWeatherTheme" />
 
         <activity
             android:name=".common.ui.activities.AlertActivity"
             android:label="@string/action_alert"
-            android:theme="@style/GeometricWeatherTheme" />
+            android:theme="@style/BreezyWeatherTheme" />
 
         <activity
             android:name=".common.ui.activities.AllergenActivity"
             android:label="@string/allergen"
-            android:theme="@style/GeometricWeatherTheme" />
+            android:theme="@style/BreezyWeatherTheme" />
 
         <activity
             android:name=".settings.activities.SettingsActivity"
             android:label="@string/action_settings"
-            android:theme="@style/GeometricWeatherTheme"
+            android:theme="@style/BreezyWeatherTheme"
             android:screenOrientation="user" />
 
         <activity
             android:name=".settings.activities.CardDisplayManageActivity"
             android:label="@string/settings_title_card_display"
-            android:theme="@style/GeometricWeatherTheme"
+            android:theme="@style/BreezyWeatherTheme"
             android:screenOrientation="user" />
 
         <activity
             android:name=".settings.activities.DailyTrendDisplayManageActivity"
             android:label="@string/settings_title_daily_trend_display"
-            android:theme="@style/GeometricWeatherTheme"
+            android:theme="@style/BreezyWeatherTheme"
             android:screenOrientation="user" />
 
         <activity
             android:name=".settings.activities.HourlyTrendDisplayManageActivity"
             android:label="@string/settings_title_hourly_trend_display"
-            android:theme="@style/GeometricWeatherTheme"
+            android:theme="@style/BreezyWeatherTheme"
             android:screenOrientation="user" />
 
         <activity
             android:name=".settings.activities.SelectProviderActivity"
             android:label="@string/settings_title_service_provider"
-            android:theme="@style/GeometricWeatherTheme"
+            android:theme="@style/BreezyWeatherTheme"
             android:screenOrientation="user" />
 
         <activity
             android:name=".settings.activities.PreviewIconActivity"
             android:label="@string/action_preview"
-            android:theme="@style/GeometricWeatherTheme" />
+            android:theme="@style/BreezyWeatherTheme" />
 
         <activity
             android:name=".settings.activities.AboutActivity"
             android:label="@string/action_about"
-            android:theme="@style/GeometricWeatherTheme"
+            android:theme="@style/BreezyWeatherTheme"
             android:screenOrientation="user" />
 
         <activity
@@ -160,7 +164,7 @@
             android:launchMode="singleInstance"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.wangdaye.geometricweather.UPDATE" />
+                <action android:name="org.breezyweather.UPDATE" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -168,7 +172,7 @@
         <activity
             android:name=".wallpaper.LiveWallpaperConfigActivity"
             android:label="@string/settings_title_live_wallpaper"
-            android:theme="@style/GeometricWeatherTheme"
+            android:theme="@style/BreezyWeatherTheme"
             android:screenOrientation="user"
             android:exported="true" />
 
@@ -176,7 +180,7 @@
 
         <activity
             android:name=".remoteviews.config.DayWidgetConfigActivity"
-            android:theme="@style/GeometricWeatherTheme"
+            android:theme="@style/BreezyWeatherTheme"
             android:screenOrientation="user"
             android:exported="true">
             <intent-filter>
@@ -186,7 +190,7 @@
 
         <activity
             android:name=".remoteviews.config.WeekWidgetConfigActivity"
-            android:theme="@style/GeometricWeatherTheme"
+            android:theme="@style/BreezyWeatherTheme"
             android:screenOrientation="user"
             android:exported="true">
             <intent-filter>
@@ -196,7 +200,7 @@
 
         <activity
             android:name=".remoteviews.config.DayWeekWidgetConfigActivity"
-            android:theme="@style/GeometricWeatherTheme"
+            android:theme="@style/BreezyWeatherTheme"
             android:screenOrientation="user"
             android:exported="true">
             <intent-filter>
@@ -206,7 +210,7 @@
 
         <activity
             android:name=".remoteviews.config.ClockDayHorizontalWidgetConfigActivity"
-            android:theme="@style/GeometricWeatherTheme"
+            android:theme="@style/BreezyWeatherTheme"
             android:screenOrientation="user"
             android:exported="true">
             <intent-filter>
@@ -216,7 +220,7 @@
 
         <activity
             android:name=".remoteviews.config.ClockDayDetailsWidgetConfigActivity"
-            android:theme="@style/GeometricWeatherTheme"
+            android:theme="@style/BreezyWeatherTheme"
             android:screenOrientation="user"
             android:exported="true">
             <intent-filter>
@@ -226,7 +230,7 @@
 
         <activity
             android:name=".remoteviews.config.ClockDayVerticalWidgetConfigActivity"
-            android:theme="@style/GeometricWeatherTheme"
+            android:theme="@style/BreezyWeatherTheme"
             android:screenOrientation="user"
             android:exported="true">
             <intent-filter>
@@ -236,7 +240,7 @@
 
         <activity
             android:name=".remoteviews.config.ClockDayWeekWidgetConfigActivity"
-            android:theme="@style/GeometricWeatherTheme"
+            android:theme="@style/BreezyWeatherTheme"
             android:screenOrientation="user"
             android:exported="true">
             <intent-filter>
@@ -246,7 +250,7 @@
 
         <activity
             android:name=".remoteviews.config.TextWidgetConfigActivity"
-            android:theme="@style/GeometricWeatherTheme"
+            android:theme="@style/BreezyWeatherTheme"
             android:screenOrientation="user"
             android:exported="true">
             <intent-filter>
@@ -256,7 +260,7 @@
 
         <activity
             android:name=".remoteviews.config.DailyTrendWidgetConfigActivity"
-            android:theme="@style/GeometricWeatherTheme"
+            android:theme="@style/BreezyWeatherTheme"
             android:screenOrientation="user"
             android:exported="true">
             <intent-filter>
@@ -266,7 +270,7 @@
 
         <activity
             android:name=".remoteviews.config.HourlyTrendWidgetConfigActivity"
-            android:theme="@style/GeometricWeatherTheme"
+            android:theme="@style/BreezyWeatherTheme"
             android:screenOrientation="user"
             android:exported="true">
             <intent-filter>
@@ -276,7 +280,7 @@
 
         <activity
             android:name=".remoteviews.config.MultiCityWidgetConfigActivity"
-            android:theme="@style/GeometricWeatherTheme"
+            android:theme="@style/BreezyWeatherTheme"
             android:screenOrientation="user"
             android:exported="true">
             <intent-filter>

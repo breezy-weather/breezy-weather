@@ -20,7 +20,7 @@ import org.mockito.MockedStatic;
 import java.util.ArrayList;
 import java.util.List;
 
-import wangdaye.com.geometricweather.common.basic.models.options.appearance.CardDisplay;
+import org.breezyweather.common.basic.models.options.appearance.CardDisplay;
 
 //@PrepareForTest(TextUtils.class)
 public class CardDisplayTest {

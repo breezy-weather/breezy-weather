@@ -2,7 +2,6 @@
 
     <!-- app. -->
     <string name="app_name">날씨</string>
-    <string name="breezy_weather">Breezy Weather</string>
 
     <!-- keyword. -->
     <string name="current_location">현위치</string>

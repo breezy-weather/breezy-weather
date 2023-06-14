@@ -3,7 +3,6 @@
 
     <!-- app. -->
     <string name="app_name">Cuaca</string>
-    <string name="breezy_weather">Cuaca Geometris</string>
 
     <!-- keyword. -->
     <string name="current_location">Lokasi saat ini</string>
@@ -166,7 +165,7 @@
     <string name="feedback_request_location_permission_failed">Permintaan izin lokasi gagal</string>
 
     <string name="feedback_location_permissions_title">Akses informasi lokasi</string>
-    <string name="feedback_location_permissions_statement">Cuaca Geometris perlu mengumpulkan informasi lokasi Anda di latar depan atau latar belakang untuk menyediakan data cuaca di lokasi Anda saat ini. Untuk ini, kami akan meminta beberapa izin. Informasi lokasi Anda hanya akan digunakan untuk mendapatkan data cuaca di lokasi Anda saat ini. Jika Anda tidak ingin kami mendapatkan informasi lokasi Anda, Anda bisa menolak persyaratan itu dan mengatur lokasi Anda secara manual di halaman manajemen.</string>
+    <string name="feedback_location_permissions_statement">Breezy Weather perlu mengumpulkan informasi lokasi Anda di latar depan atau latar belakang untuk menyediakan data cuaca di lokasi Anda saat ini. Untuk ini, kami akan meminta beberapa izin. Informasi lokasi Anda hanya akan digunakan untuk mendapatkan data cuaca di lokasi Anda saat ini. Jika Anda tidak ingin kami mendapatkan informasi lokasi Anda, Anda bisa menolak persyaratan itu dan mengatur lokasi Anda secara manual di halaman manajemen.</string>
     <string name="feedback_background_location_title">Akses lokasi di latar-belakang</string>
     <string name="feedback_background_location_summary">Untuk memungkinkan aplikasi mengakses informasi lokasi di latar belakang, sehingga kami dapat memahami perubahan lokasi dan memberi Anda data cuaca yang valid, silakan atur akses lokasi sebagai \"Izinkan sepanjang waktu\".</string>
 
@@ -269,7 +268,7 @@
     <string name="feedback_interpret_notification_group_content">Setelah mematikan \"bebas latar-belakang\", pemberitahuan yang menunjukkan bahwa layanan latar belakang berjalan akan muncul di bilah pemberitahuan. Anda dapat mematikan saluran informasi latar belakang di halaman informasi aplikasi untuk memblokir pemberitahuan ini.</string>
 
     <string name="feedback_ignore_battery_optimizations_title">Abaikan pengoptimalan baterai</string>
-    <string name="feedback_ignore_battery_optimizations_content">Untuk memastikan bahwa layanan latar belakang dapat terus bekerja, harap abaikan pengoptimalan baterai untuk Cuaca Geometris.</string>
+    <string name="feedback_ignore_battery_optimizations_content">Untuk memastikan bahwa layanan latar belakang dapat terus bekerja, harap abaikan pengoptimalan baterai untuk Breezy Weather.</string>
 
     <string name="feedback_cannot_start_live_wallpaper_activity">Tidak dapat memulai konteks pratinjau wallpaper live</string>
 
@@ -280,7 +279,7 @@
     <string name="feedback_short_term_precipitation_alert">Curah hujan dapat terjadi dalam beberapa jam ke depan.</string>
 
     <string name="feedback_resident_location">Tetapkan sebagai kota penduduk</string>
-    <string name="feedback_resident_location_description">Cuaca Geometris akan secara otomatis menampilkan dan menyembunyikan kota-kota residen berdasarkan lokasi Anda saat ini.\nUntuk contoh, Anda dapat mengatur kota asal Anda sebagai kota residen. Anda dapat memeriksa cuaca di kota asal Anda saat bepergian. Saat Anda sampai di rumah, cuaca di kota asal Anda akan disembunyikan dan digantikan oleh cuaca untuk lokasi Anda saat ini.</string>
+    <string name="feedback_resident_location_description">Breezy Weather akan secara otomatis menampilkan dan menyembunyikan kota-kota residen berdasarkan lokasi Anda saat ini.\nUntuk contoh, Anda dapat mengatur kota asal Anda sebagai kota residen. Anda dapat memeriksa cuaca di kota asal Anda saat bepergian. Saat Anda sampai di rumah, cuaca di kota asal Anda akan disembunyikan dan digantikan oleh cuaca untuk lokasi Anda saat ini.</string>
 
     <string name="feedback_click_to_get_more">Klik untuk mendapatkan lebih banyak…</string>
     <string name="feedback_click_again_to_exit">Klik lagi untuk keluar</string>

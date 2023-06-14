@@ -20,12 +20,12 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
--keep class wangdaye.com.geometricweather.common.basic.models.** { *; }
--keep class wangdaye.com.geometricweather.db.entities.** { *; }
--keep class wangdaye.com.geometricweather.location.apis.** { *; }
--keep class wangdaye.com.geometricweather.location.json.** { *; }
--keep class wangdaye.com.geometricweather.weather.apis.** { *; }
--keep class wangdaye.com.geometricweather.weather.json.** { *; }
+-keep class org.breezyweather.common.basic.models.** { *; }
+-keep class org.breezyweather.db.entities.** { *; }
+-keep class org.breezyweather.location.apis.** { *; }
+-keep class org.breezyweather.location.json.** { *; }
+-keep class org.breezyweather.weather.apis.** { *; }
+-keep class org.breezyweather.weather.json.** { *; }
 
 -keep public class * extends android.app.Service
 -keep public class * extends android.content.BroadcastReceiver

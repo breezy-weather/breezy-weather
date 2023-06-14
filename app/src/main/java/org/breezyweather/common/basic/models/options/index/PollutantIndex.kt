@@ -1,0 +1,93 @@
+package org.breezyweather.common.basic.models.options.index
+
+import android.content.Context
+import android.graphics.Color
+import androidx.annotation.ColorInt
+import org.breezyweather.R
+import kotlin.math.roundToInt
+
+enum class PollutantIndex(
+    val id: String,
+    val thresholds: List<Int>
+) {
+    O3("o3", listOf(0, 50, 100, 160, 240, 480)), // Plume 2023
+    NO2("no2", listOf(0, 10, 25, 200, 400, 1000)), // Plume 2023
+    PM10("pm10", listOf(0, 15, 45, 80, 160, 400)), // Plume 2023
+    PM25("pm25", listOf(0, 5, 15, 30, 60, 150)), // Plume 2023
+    SO2("so2", listOf(0, 20, 40 /* daily */, 270, 500 /* 10 min */, 960 /* linear prolongation */)), // WHO 2021
+    CO("co", listOf(0, 2, 4 /* daily */, 35 /* hourly */, 100 /* 15 min */, 230 /* linear prolongation */)); // WHO 2021
+
+    companion object {
+        // Plume 2023
+        val aqiThresholds = listOf(0, 20, 50, 100, 150, 250)
+        val namesArrayId = R.array.air_quality_levels
+        val colorsArrayId = R.array.air_quality_levels_colors
+
+        @JvmStatic val indexFreshAir = aqiThresholds[1]
+        @JvmStatic val indexHighPollution = aqiThresholds[3]
+        @JvmStatic val indexExcessivePollution = aqiThresholds.last()
+
+        @JvmStatic
+        fun getAqiToLevel(aqi: Int?): Int? {
+            if (aqi == null) return null
+            val level = aqiThresholds.indexOfLast { aqi >= it }
+            return if (level >= 0) level else null
+        }
+
+        @JvmStatic
+        @ColorInt
+        fun getAqiToColor(context: Context, aqi: Int?): Int {
+            if (aqi == null) return Color.TRANSPARENT
+            val level = getAqiToLevel(aqi)
+            return if (level != null) context.resources.getIntArray(colorsArrayId)
+                .getOrNull(level) ?: Color.TRANSPARENT
+            else Color.TRANSPARENT
+        }
+
+        @JvmStatic
+        fun getAqiToName(context: Context, aqi: Int?): String? {
+            if (aqi == null) return null
+            val level = getAqiToLevel(aqi)
+            return if (level != null) context.resources.getStringArray(namesArrayId).getOrNull(level) else null
+        }
+    }
+
+    private fun getIndex(cp: Double, bpLo: Int, bpHi: Int, inLo: Int, inHi: Int): Int {
+        // Result will be incorrect if we don’t cast to double
+        return ((inHi.toDouble() - inLo.toDouble()) / (bpHi.toDouble() - bpLo.toDouble()) * (cp - bpLo.toDouble()) + inLo.toDouble()).roundToInt()
+    }
+
+    private fun getIndex(cp: Double, level: Int): Int {
+        return if (level < thresholds.lastIndex) {
+            getIndex(
+                cp,
+                thresholds[level],
+                thresholds[level + 1],
+                aqiThresholds[level],
+                aqiThresholds[level + 1]
+            )
+        } else {
+            // Continue producing a linear index above lastIndex
+            ((cp * aqiThresholds.last()) / thresholds.last()).roundToInt()
+        }
+    }
+
+    fun getIndex(cp: Double?): Int? {
+        if (cp == null) return null
+        val level = thresholds.indexOfLast { cp >= it }
+        return if (level >= 0) getIndex(cp, level) else null
+    }
+
+    fun getLevel(cp: Double?): Int? {
+        if (cp == null) return null
+        val level = thresholds.indexOfLast { cp >= it }
+        return if (level >= 0) level else null
+    }
+
+    val excessivePollution = thresholds.last()
+
+    fun getName(context: Context, cp: Double?): String? = getAqiToName(context, getIndex(cp))
+
+    @ColorInt
+    fun getColor(context: Context, cp: Double?): Int = getAqiToColor(context, getIndex(cp))
+}

@@ -11,7 +11,7 @@ Add new variables in `app/build.gradle`.
 
 
 ### Add WeatherSource
-In `app/src/main/java/wangdaye/com/geometricweather/common/basic/models/options/provider/WeatherSource.kt`, add a new entry:
+In `app/src/main/java/org/breezyweather/common/basic/models/options/provider/WeatherSource.kt`, add a new entry:
 - First parameter is a technical name, keep it alphabetical lowercase only.
 - Color is reversed, basically 00 becomes FF and FF becomes 00. You can use this tool to help you: https://www.calculator.net/hex-calculator.html?number1=FF&c2op=-&number2=50&calctype=op&x=0&y=0
 - Source URL will be displayed at the bottom of each location. It’s the mandatory attribution for data.
@@ -26,11 +26,11 @@ Add an entry in the same position as `R.array.weather_sources` for `R.array.weat
 
 
 ### API
-Create your API class in `app/src/main/java/wangdaye/com/geometricweather/weather/apis/`.
+Create your API class in `app/src/main/java/org/breezyweather/weather/apis/`.
 
 Copy an existing class, and only implement the forecast API as a starting point.
 
-In `app/src/main/java/wangdaye/com/geometricweather/weather/json/<technicalname>`, add the data class that will be constructed from the json returned by the API.
+In `app/src/main/java/org/breezyweather/weather/json/<technicalname>`, add the data class that will be constructed from the json returned by the API.
 
 Use @SerialName when the name of the field is not the same as what is in the json returned by the API.
 Example:
@@ -40,11 +40,11 @@ Example:
 
 As in the example, make as many fields as possible nullable so that in case the API doesn’t return some fields for some locations, it doesn’t fail. The serializer is configured to make nullable fields null in case the field is not in the JSON response, so you don’t need to declare `= null` as default value.
 
-Add the API class as a provider in `app/src/main/java/wangdaye/com/geometricweather/weather/di/ApiModule.java` (copy an existing function).
+Add the API class as a provider in `app/src/main/java/org/breezyweather/weather/di/ApiModule.java` (copy an existing function).
 
 
 ### Service and converter
-Copy `OpenMeteoWeatherService` from `app/src/main/java/wangdaye/com/geometricweather/weather/services/` and create your own service class.
+Copy `OpenMeteoWeatherService` from `app/src/main/java/org/breezyweather/weather/services/` and create your own service class.
 
 In the constructor, you can inject as many providers as you need.
 As a starting point, inject your weather API for the weather data, and `OpenMeteoGeocodingApi` for the geocoding part.
@@ -56,7 +56,7 @@ Replace `WeatherSource.OPEN_METEO` with your `WeatherSource` in the location fun
 Then focus on the `requestWeather()` function. You will need to create a converter class.
 The goal of a converter class is to normalize the data we received into Breezy Weather data objects.
 
-Here is the minimum code you need to put in `app/src/main/java/wangdaye/com/geometricweather/weather/converters/`:
+Here is the minimum code you need to put in `app/src/main/java/org/breezyweather/weather/converters/`:
 ```kotlin
 fun convert(
     context: Context,
@@ -70,7 +70,7 @@ fun convert(
         )
         WeatherResultWrapper(weather)
     } catch (e: Exception) {
-        if (GeometricWeather.instance.debugMode) {
+        if (BreezyWeather.instance.debugMode) {
             e.printStackTrace()
         }
         WeatherResultWrapper(null)

@@ -12,4 +12,4 @@
      limitations under the License.
 -->
 <weather-provider-service xmlns:android="http://schemas.android.com/apk/res/android"
-    android:settingsActivity="wangdaye.com.geometricweather.ui.context.SettingsActivity" />
+    android:settingsActivity="org.breezyweather.ui.context.SettingsActivity" />

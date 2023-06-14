@@ -8,5 +8,5 @@
     android:initialLayout="@layout/widget_remote"
     android:previewImage="@drawable/widget_trend_hourly"
     android:resizeMode="horizontal|vertical"
-    android:configure="wangdaye.com.geometricweather.remoteviews.config.HourlyTrendWidgetConfigActivity"
+    android:configure="org.breezyweather.remoteviews.config.HourlyTrendWidgetConfigActivity"
     android:widgetCategory="home_screen|keyguard" />

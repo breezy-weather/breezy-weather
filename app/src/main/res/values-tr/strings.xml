@@ -1,7 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- app. -->
     <string name="app_name">Hava Durumu</string>
-    <string name="breezy_weather">Geometrik Hava Durumu</string>
 
     <!-- keyword. -->
     <string name="current_location">Bulunduğunuz konumu</string>

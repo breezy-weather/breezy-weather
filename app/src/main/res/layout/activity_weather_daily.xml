@@ -12,18 +12,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
+        <org.breezyweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
             android:id="@+id/activity_weather_daily_appBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/GeometricWeatherTheme.AppBarTheme"
+            style="@style/BreezyWeatherTheme.AppBarTheme"
             app:elevation="0dp">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/activity_weather_daily_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/GeometricWeatherTheme.ToolbarTheme"
+                style="@style/BreezyWeatherTheme.ToolbarTheme"
                 app:navigationIcon="@drawable/ic_toolbar_back"
                 app:navigationContentDescription="@string/content_desc_back">
 
@@ -76,9 +76,9 @@
 
             </com.google.android.material.appbar.MaterialToolbar>
 
-        </wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout>
+        </org.breezyweather.common.ui.widgets.insets.FitSystemBarAppBarLayout>
 
-        <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarViewPager
+        <org.breezyweather.common.ui.widgets.insets.FitSystemBarViewPager
             android:id="@+id/activity_weather_daily_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

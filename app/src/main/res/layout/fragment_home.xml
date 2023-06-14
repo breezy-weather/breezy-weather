@@ -6,17 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <wangdaye.com.geometricweather.common.ui.widgets.SwipeSwitchLayout
+    <org.breezyweather.common.ui.widgets.SwipeSwitchLayout
         android:id="@+id/switch_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarSwipeRefreshLayout
+        <org.breezyweather.common.ui.widgets.insets.FitSystemBarSwipeRefreshLayout
             android:id="@+id/refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <wangdaye.com.geometricweather.main.widgets.FitTabletRecyclerView
+            <org.breezyweather.main.widgets.FitTabletRecyclerView
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -24,11 +24,11 @@
                 android:clipToPadding="false"
                 android:descendantFocusability="blocksDescendants" />
 
-        </wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarSwipeRefreshLayout>
+        </org.breezyweather.common.ui.widgets.insets.FitSystemBarSwipeRefreshLayout>
 
-    </wangdaye.com.geometricweather.common.ui.widgets.SwipeSwitchLayout>
+    </org.breezyweather.common.ui.widgets.SwipeSwitchLayout>
 
-    <wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
+    <org.breezyweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
         android:id="@+id/app_bar"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -45,9 +45,9 @@
             app:titleTextColor="@android:color/white"
             app:titleTextAppearance="?attr/textAppearanceHeadline6" />
 
-    </wangdaye.com.geometricweather.common.ui.widgets.insets.FitSystemBarAppBarLayout>
+    </org.breezyweather.common.ui.widgets.insets.FitSystemBarAppBarLayout>
 
-    <wangdaye.com.geometricweather.common.ui.widgets.InkPageIndicator
+    <org.breezyweather.common.ui.widgets.InkPageIndicator
         android:id="@+id/indicator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

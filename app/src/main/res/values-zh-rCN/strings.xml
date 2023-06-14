@@ -1,7 +1,7 @@
 <resources>
     <!-- app. -->
-    <string name="app_name">几何天气</string>
-    <string name="breezy_weather">几何天气</string>
+    <string name="app_name">天气</string>
+    <string name="breezy_weather">Breezy 天气</string>
 
     <!-- keyword. -->
     <string name="current_location">当前位置</string>
@@ -200,7 +200,7 @@
     <string name="feedback_request_location_permission_failed">获取位置权限失败</string>
 
     <string name="feedback_location_permissions_title">获取位置信息</string>
-    <string name="feedback_location_permissions_statement">几何天气需要在前台和后台获取您的位置信息以提供您所在位置的天气数据。为此，我们需要请求一些权限。您的位置信息将仅被用于获取天气数据。如果您不希望我们获取您的位置信息，可以拒绝这些权限请求并手动在管理页面中设置您的位置。</string>
+    <string name="feedback_location_permissions_statement">Breezy 天气需要在前台和后台获取您的位置信息以提供您所在位置的天气数据。为此，我们需要请求一些权限。您的位置信息将仅被用于获取天气数据。如果您不希望我们获取您的位置信息，可以拒绝这些权限请求并手动在管理页面中设置您的位置。</string>
     <string name="feedback_background_location_title">在后台访问位置</string>
     <string name="feedback_background_location_summary">为了让app可以在后台访问您的位置信息,以便我们能够即使感知您的位置变化并为您提供有效的天气数据，请将位置权限设置为“始终允许”。</string>
 
@@ -300,7 +300,7 @@
     <string name="feedback_interpret_notification_group_content">关闭后台纯净后，会出现一个标示后台服务正在运行的通知，你可以在app相关信息页面中找到通知设置，在其中关闭“后台信息”这个频道来隐藏这个通知</string>
 
     <string name="feedback_ignore_battery_optimizations_title">忽略电池优化</string>
-    <string name="feedback_ignore_battery_optimizations_content">为了保证后台服务能够持续工作，请为几何天气选择忽略电池优化</string>
+    <string name="feedback_ignore_battery_optimizations_content">为了保证后台服务能够持续工作，请为 Breezy 天气选择忽略电池优化</string>
 
     <string name="feedback_cannot_start_live_wallpaper_activity">无法启动动态壁纸预览程序</string>
 
