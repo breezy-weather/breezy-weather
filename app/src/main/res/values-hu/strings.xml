@@ -4,7 +4,6 @@
 
     <!-- keyword. -->
     <string name="current_location">Jelenlegi hely</string>
-    <string name="default_location">Alapértelmezett Hely</string>
     <string name="live">Élő</string>
     <string name="today">Ma</string>
     <string name="refresh_at">Frissítése ekkor</string>
@@ -48,7 +47,6 @@
     <string name="of_clock">:00</string>
     <string name="yesterday">Tegnap</string>
     <string name="tomorrow">Holnap</string>
-    <string name="week">Hét</string>
     <string name="week_1">HÉT</string>
     <string name="week_2">KED</string>
     <string name="week_3">SZE</string>
@@ -109,7 +107,7 @@
     <string name="precipitation_overview">Csapadékelőrejelzés</string>
     <string name="air_quality">Levegő Minősége</string>
     <string name="allergen">Allergén</string>
-    <string name="life_details">Részletek</string>
+    <string name="details">Részletek</string>
     <string name="sunrise_sunset">Nap &amp; Hold</string>
 
     <string name="next">KÖVETKEZŐ</string>
@@ -122,15 +120,9 @@
     <string name="learn_more">TUDJON MEG TÖBBET</string>
 
     <string name="about_app">App Névjegye</string>
-    <string name="introduce">Bemutatkozás</string>
     <string name="email">E-mail</string>
-    <string name="donate">Adományozás</string>
-    <string name="gitHub">GitHub</string>
     <string name="translator">Fordítók</string>
     <string name="thanks">Köszönet</string>
-
-    <string name="alipay">Alipay</string>
-    <string name="wechat">Wechat</string>
 
     <string name="date_format_short">M-d</string>
     <string name="date_format_long">MMM d</string>

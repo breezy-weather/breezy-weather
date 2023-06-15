@@ -5,7 +5,6 @@
 
     <!-- keyword. -->
     <string name="current_location">Sedanja lokacija</string>
-    <string name="default_location">Privzeta lokacija</string>
     <string name="live">Trenutno</string>
     <string name="today">Danes</string>
     <string name="refresh_at">Osveži ob</string>
@@ -38,7 +37,6 @@
     <string name="of_clock">:00</string>
     <string name="yesterday">včr</string>
     <string name="tomorrow">jtr</string>
-    <string name="week">teden</string>
     <string name="week_1">Pon</string>
     <string name="week_2">Tor</string>
     <string name="week_3">Sre</string>
@@ -73,7 +71,7 @@
     <string name="daily_overview">Dnevna napoved</string>
     <string name="hourly_overview">Urna napoved</string>
     <string name="air_quality">Kvaliteta zraka</string>
-    <string name="life_details">Podrobnosti</string>
+    <string name="details">Podrobnosti</string>
     <string name="sunrise_sunset">Sonce &amp; luna</string>
 
     <string name="next">NASLEDNJI</string>
@@ -86,15 +84,9 @@
     <string name="learn_more">NAUČI SE VEČ</string>
 
     <string name="about_app">O applikaciji</string>
-    <string name="introduce">predstavi</string>
     <string name="email">E-mail</string>
-    <string name="donate">Doniraj</string>
-    <string name="gitHub">GitHub</string>
     <string name="translator">Prevajalci</string>
     <string name="thanks">Hvala</string>
-
-    <string name="alipay">Alipay</string>
-    <string name="wechat">Wechat</string>
 
     <string name="date_format_short">M-d</string>
     <string name="date_format_long">MMM d</string>

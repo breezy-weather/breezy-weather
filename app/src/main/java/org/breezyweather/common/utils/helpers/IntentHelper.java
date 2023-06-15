@@ -238,16 +238,6 @@ public class IntentHelper {
             SnackbarHelper.showSnackbar("Unavailable e-mail.");
         }
     }
-
-    public static void startAlipayActivity(Activity activity, String payCode) {
-        try {
-            Intent intent = Intent.parseUri(BuildConfig.ALIPAY_URL.replace("{payCode}", payCode), Intent.URI_INTENT_SCHEME);
-            activity.startActivity(intent);
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-    }
-
     @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint("BatteryLife")
     public static void startBatteryOptimizationActivity(Context context) {

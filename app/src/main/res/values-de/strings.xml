@@ -9,7 +9,6 @@
     <string name="action_search">Suche</string>
     <string name="action_settings">Einstellungen</string>
     <string name="air_quality">Luftqualität</string>
-    <string name="alipay">Alipay</string>
     <string name="allergen">Allergien</string>
     <string name="app_name">Wetter</string>
     <string name="apparent_temperature">Gefühlt</string>
@@ -27,10 +26,8 @@
     <string name="date_format_widget_short">EEEE, d. MMM</string>
     <string name="day">Tag</string>
     <string name="daytime">Tag</string>
-    <string name="default_location">Standard Standort</string>
     <string name="degree_day_temperature">Gradtagzahl</string>
     <string name="dew_point">Taupunkt</string>
-    <string name="donate">Spenden</string>
     <string name="done">Erledigt</string>
     <string name="edit">Bearbeiten</string>
     <string name="ellipsis">…</string>
@@ -94,7 +91,6 @@
     <string name="get_more">Mehr…</string>
     <string name="get_more_github">Mehr von GitHub</string>
     <string name="get_more_store">Mehr von Google Play</string>
-    <string name="gitHub">GitHub</string>
     <string name="go_to_set">SET</string>
     <string name="grass">Gras</string>
     <string name="help">Hilfe</string>
@@ -102,9 +98,8 @@
     <string name="hours_of_sun">Sonnenstunden</string>
     <string name="humidity">Luftfeuchte</string>
     <string name="ice">Eis</string>
-    <string name="introduce">Vorstellung</string>
     <string name="learn_more">mehr erfahren</string>
-    <string name="life_details">Details</string>
+    <string name="details">Details</string>
     <string name="live">Jetzt</string>
     <string name="local_time">Ortszeit</string>
     <string name="maxi_temp">Max</string>
@@ -220,8 +215,6 @@
     <string name="uv_index">UV Index</string>
     <string name="visibility">Sicht</string>
     <string name="wait_refresh">Aktualisiere</string>
-    <string name="wechat">Wechat</string>
-    <string name="week">Woche</string>
     <string name="week_1">Mo</string>
     <string name="week_2">Di</string>
     <string name="week_3">Mi</string>

@@ -6,7 +6,6 @@
     <!-- keyword. -->
     <string name="current_location">الموقع الحالي</string>
     <string name="resident_location">موقع الإقامة</string>
-    <string name="default_location">الموقع الافتراضي</string>
     <string name="live">الآن</string>
     <string name="today">اليوم</string>
     <string name="refresh_at">تم التحديث في</string>
@@ -51,7 +50,6 @@
     <string name="of_clock">:٠٠</string>
     <string name="yesterday">أمس</string>
     <string name="tomorrow">غداً</string>
-    <string name="week">أسبوع</string>
     <string name="week_1">الإثنين</string>
     <string name="week_2">الثلاثاء</string>
     <string name="week_3">الأربعاء</string>
@@ -112,7 +110,7 @@
     <string name="precipitation_overview">توقعات الهطول</string>
     <string name="air_quality">جودة الهواء</string>
     <string name="allergen">أنواع الحساسية</string>
-    <string name="life_details">المزيد</string>
+    <string name="details">المزيد</string>
     <string name="sunrise_sunset">الشمس والقمر</string>
 
     <string name="next">التالي</string>
@@ -125,15 +123,9 @@
     <string name="learn_more">تعرف على المزيد</string>
 
     <string name="about_app">حول التطبيق</string>
-    <string name="introduce">تقديم</string>
     <string name="email">البريد الإلكتروني</string>
-    <string name="donate">تبرع</string>
-    <string name="gitHub">GitHub</string>
     <string name="translator">المترجمون</string>
     <string name="thanks">شُكر</string>
-
-    <string name="alipay">Alipay</string>
-    <string name="wechat">Wechat</string>
 
     <string name="date_format_short">M-d</string>
     <string name="date_format_long">MMM d</string>

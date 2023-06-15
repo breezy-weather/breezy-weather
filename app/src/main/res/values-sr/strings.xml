@@ -5,7 +5,6 @@
 
     <!-- keyword. -->
     <string name="current_location">Тренутну локацију</string>
-    <string name="default_location">подразумевана локација</string>
     <string name="live">Уживо</string>
     <string name="today">Данас</string>
     <string name="refresh_at">Oсвежи за</string>
@@ -30,7 +29,6 @@
     <string name="of_clock">:00</string>
     <string name="yesterday">јуче</string>
     <string name="tomorrow">сутра</string>
-    <string name="week">недеља</string>
     <string name="week_1">ПОН</string>
     <string name="week_2">УТО</string>
     <string name="week_3">СРЕ</string>
@@ -56,7 +54,7 @@
     <string name="daily_overview">дневни</string>
     <string name="hourly_overview">часовни</string>
     <string name="air_quality">Квалитет ваздуха</string>
-    <string name="life_details">детаљни</string>
+    <string name="details">детаљни</string>
     <string name="sunrise_sunset">Сунце &amp; месец</string>
 
     <string name="next">СЛЕДЕЋЕ</string>
@@ -66,9 +64,7 @@
     <string name="off">УГАШЕНО</string>
 
     <string name="about_app">О AПЛИКАЦИЈИ</string>
-    <string name="introduce">представљање</string>
     <string name="email">E-mail</string>
-    <string name="gitHub">GitHub</string>
     <string name="translator">Преводиоци</string>
     <string name="thanks">Хвала</string>
 

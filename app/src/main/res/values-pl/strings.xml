@@ -11,7 +11,6 @@
     <!-- keyword. -->
     <string name="current_location">Obecna lokalizacja</string>
     <string name="resident_location">Miejsce zamieszkania</string>
-    <string name="default_location">domyślna lokalizacja</string>
     <string name="live">Obecnie</string>
     <string name="today">Dziś</string>
     <string name="refresh_at">Odświeżono</string>
@@ -56,7 +55,6 @@
     <string name="of_clock">:00</string>
     <string name="yesterday">wczoraj</string>
     <string name="tomorrow">dziś</string>
-    <string name="week">tydzień</string>
     <string name="week_1">Pon</string>
     <string name="week_2">Wt</string>
     <string name="week_3">Śr</string>
@@ -117,7 +115,7 @@
     <string name="precipitation_overview">Prognoza opadów</string>
     <string name="air_quality">Jakość powietrza</string>
     <string name="allergen">Alergeny</string>
-    <string name="life_details">Szczegóły</string>
+    <string name="details">Szczegóły</string>
     <string name="sunrise_sunset">Słońce i księżyc</string>
 
     <string name="next">Następny</string>
@@ -130,27 +128,15 @@
     <string name="learn_more">Dowiedz się więcej</string>
 
     <string name="about_app">O aplikacji</string>
-    <string name="introduce">przedstawienie</string>
     <string name="email">E-mail</string>
-    <string name="donate">Donacja</string>
-    <string name="gitHub">GitHub</string>
     <string name="translator">Tłumacze</string>
     <string name="thanks">Podziękowania</string>
-
-    <string name="alipay">Alipay</string>
-    <string name="wechat">Wechat</string>
 
     <string name="date_format_short">d M</string>
     <string name="date_format_long">d MMM</string>
     <string name="date_format_widget_short">EEE, d MMM</string>
     <string name="date_format_widget_long">EEEE, d MMM</string>
     <string name="date_format_widget_oreo_style">EEEE, d MMM│</string>
-
-    <string name="tag_temperature">@string/temperature</string>
-    <string name="tag_wind">@string/wind</string>
-    <string name="tag_precipitation">@string/precipitation</string>
-    <string name="tag_aqi">@string/air_quality</string>
-    <string name="tag_uv">@string/uv_index</string>
 
     <!-- feedback. -->
     <string name="feedback_request_permission">Uprawnienia</string>

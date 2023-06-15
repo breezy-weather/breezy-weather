@@ -48,7 +48,6 @@ android {
     buildTypes.each {
         it.buildConfigField "String", "ACCU_WEATHER_BASE_URL", ACCU_WEATHER_BASE_URL
         it.buildConfigField "String", "ACCU_WEATHER_KEY", ACCU_WEATHER_KEY
-        it.buildConfigField "String", "ALIPAY_URL", ALIPAY_URL
         it.buildConfigField "String", "BAIDU_IP_LOCATION_AK", BAIDU_IP_LOCATION_AK
         it.buildConfigField "String", "BAIDU_IP_LOCATION_BASE_URL", BAIDU_IP_LOCATION_BASE_URL
         it.buildConfigField "String", "CHINA_WEATHER_BASE_URL", CHINA_WEATHER_BASE_URL
@@ -245,10 +244,6 @@ dependencies {
     // cm.
     implementation "org.cyanogenmod:platform.sdk:5.0"
 
-    // bugly.
-    pubImplementation "com.tencent.bugly:crashreport:4.1.9.2"
-    pubImplementation "com.tencent.bugly:nativecrashreport:3.9.2"
-
     // rx java.
     implementation "io.reactivex.rxjava3:rxjava:3.1.6"
     implementation "io.reactivex.rxjava3:rxandroid:3.0.2"
@@ -260,4 +255,7 @@ dependencies {
 
     // utils.
     implementation "com.xhinliang:LunarCalendar:4.0.7"
+
+    // debugImplementation because LeakCanary should only run in debug builds.
+    //debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.11'
 }

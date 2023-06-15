@@ -13,7 +13,7 @@
 
         <TextView
             android:id="@+id/container_main_details_title"
-            android:text="@string/life_details"
+            android:text="@string/live"
             android:layout_margin="@dimen/normal_margin"
             android:textSize="@dimen/title_text_size"
             android:textStyle="bold"

@@ -6,7 +6,6 @@
 
     <!-- keyword. -->
     <string name="current_location">Huidige locatie</string>
-    <string name="default_location">Standaard locatie</string>
     <string name="live">Live</string>
     <string name="today">Vandaag</string>
     <string name="refresh_at">Vernieuwd om</string>
@@ -30,7 +29,6 @@
     <string name="of_clock">:00</string>
     <string name="yesterday">Gisteren</string>
     <string name="tomorrow">Morgen</string>
-    <string name="week">Week</string>
     <string name="week_1">Ma</string>
     <string name="week_2">Di</string>
     <string name="week_3">Wo</string>
@@ -54,7 +52,7 @@
     <string name="daily_overview">Dagelijks</string>
     <string name="hourly_overview">Per uur</string>
     <string name="air_quality">Luchtkwaliteit</string>
-    <string name="life_details">Details</string>
+    <string name="details">Details</string>
     <string name="sunrise_sunset">Zon &amp; maan</string>
     <string name="next">Volgende</string>
     <string name="done">Klaar</string>
@@ -62,10 +60,7 @@
     <string name="on">Aan</string>
     <string name="off">Uit</string>
     <string name="about_app">Over de app</string>
-    <string name="introduce">Introduceer</string>
     <string name="email">E-mail</string>
-    <string name="donate">Doneer</string>
-    <string name="gitHub">GitHub</string>
     <string name="translator">Vertalers</string>
     <string name="thanks">Dank aan</string>
     <string name="date_format_short">d-M</string>

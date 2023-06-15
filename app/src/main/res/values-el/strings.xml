@@ -6,7 +6,6 @@
     <!-- keyword. -->
     <string name="current_location">Τρέχουσα τοποθεσία</string>
     <string name="resident_location">Τοποθεσία διαμονής</string>
-    <string name="default_location">προεπιλεγμένη τοποθεσία</string>
     <string name="live">Ο καιρός τώρα</string>
     <string name="today">Σήμερα</string>
     <string name="refresh_at">Ενημερώθηκε:</string>
@@ -51,7 +50,6 @@
     <string name="of_clock">:00</string>
     <string name="yesterday">χθες</string>
     <string name="tomorrow">αύριο</string>
-    <string name="week">εβδομάδα</string>
     <string name="week_1">Δευτ</string>
     <string name="week_2">Τρί</string>
     <string name="week_3">Τετ</string>
@@ -112,7 +110,7 @@
     <string name="precipitation_overview">Πρόγνωση βροχοπτώσεων</string>
     <string name="air_quality">Ποιότητα αέρα</string>
     <string name="allergen">Αλλεργίες</string>
-    <string name="life_details">Λεπτομέρειες</string>
+    <string name="details">Λεπτομέρειες</string>
     <string name="sunrise_sunset">Ανατολή και δύση ηλίου</string>
 
     <string name="next">Επόμενο</string>
@@ -125,27 +123,15 @@
     <string name="learn_more">Μάθετε περισσότερα</string>
 
     <string name="about_app">Σχετικά</string>
-    <string name="introduce">Εισαγωγή</string>
     <string name="email">E-mail</string>
-    <string name="donate">Δωρεά</string>
-    <string name="gitHub">GitHub</string>
     <string name="translator">Μεταφραστές</string>
     <string name="thanks">Ευχαριστίες</string>
-
-    <string name="alipay">Alipay</string>
-    <string name="wechat">Wechat</string>
 
     <string name="date_format_short">M-d</string>
     <string name="date_format_long">MMM d</string>
     <string name="date_format_widget_short">EEE, MMM d</string>
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
-
-    <string name="tag_temperature">@string/temperature</string>
-    <string name="tag_wind">@string/wind</string>
-    <string name="tag_precipitation">@string/precipitation</string>
-    <string name="tag_aqi">@string/air_quality</string>
-    <string name="tag_uv">@string/uv_index</string>
 
     <!-- feedback. -->
     <string name="feedback_request_permission">Δικαιώματα</string>

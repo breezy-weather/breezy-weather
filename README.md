@@ -42,7 +42,7 @@ Future updates (in no particular order):
 * Add radar map
 * Show the publish time in "Details" card (current) so that we know if details are fresh
 * Add a search setting
-* Use LeakPlumber to identify memory leaks
+* Fix memory leaks
 * New icon set?
 * Maintain and improve accessibility (if you are concerned, please get in touch!)
 * In About, add dependencies used by Breezy Weather and their licences

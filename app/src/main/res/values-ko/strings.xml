@@ -6,7 +6,6 @@
     <!-- keyword. -->
     <string name="current_location">현위치</string>
     <string name="resident_location">거주지 </string>
-    <string name="default_location">기본 위치 </string>
     <string name="live">현재</string>
     <string name="today">오늘</string>
     <string name="refresh_at">갱신됨</string>
@@ -51,7 +50,6 @@
     <string name="of_clock">:00</string>
     <string name="yesterday">어제</string>
     <string name="tomorrow">내일</string>
-    <string name="week">주</string>
     <string name="week_1">월</string>
     <string name="week_2">화</string>
     <string name="week_3">수</string>
@@ -112,7 +110,7 @@
     <string name="precipitation_overview">강수 예보</string>
     <string name="air_quality">대기질</string>
     <string name="allergen">알레르기</string>
-    <string name="life_details">세부 사항</string>
+    <string name="details">세부 사항</string>
     <string name="sunrise_sunset">해와 달</string>
 
     <string name="next">다음</string>
@@ -125,15 +123,9 @@
     <string name="learn_more">더 알아보기</string>
 
     <string name="about_app">앱에 관하여</string>
-    <string name="introduce">소개</string>
     <string name="email">이메일</string>
-    <string name="donate">기부하기</string>
-    <string name="gitHub">GitHub</string>
     <string name="translator">번역해 주신 분들</string>
     <string name="thanks">고마운 분들</string>
-
-    <string name="alipay">알리페이</string>
-    <string name="wechat">위챗</string>
 
     <string name="date_format_short">M-d</string>
     <string name="date_format_long">MMMM d</string>

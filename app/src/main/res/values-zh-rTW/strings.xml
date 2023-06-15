@@ -6,7 +6,6 @@
     <!-- keyword. -->
     <string name="current_location">當前位置</string>
     <string name="resident_location">常駐位置</string>
-    <string name="default_location">默認位置</string>
     <string name="live">實時</string>
     <string name="today">今日</string>
     <string name="refresh_at">更新於</string>
@@ -49,7 +48,6 @@
     <string name="of_clock">時</string>
     <string name="yesterday">昨日</string>
     <string name="tomorrow">明日</string>
-    <string name="week">週</string>
     <string name="week_1">週一</string>
     <string name="week_2">週二</string>
     <string name="week_3">週三</string>
@@ -110,7 +108,7 @@
     <string name="precipitation_overview">降水概覽</string>
     <string name="air_quality">空氣質量</string>
     <string name="allergen">過敏原</string>
-    <string name="life_details">詳情數據</string>
+    <string name="details">詳情數據</string>
     <string name="sunrise_sunset">日月升落</string>
 
     <string name="next">下一步</string>
@@ -122,30 +120,17 @@
     <string name="help">幫助</string>
     <string name="learn_more">瞭解更多</string>
 
-    <string name="filter_weather_sources">篩選</string>
-
     <string name="about_app">概覽</string>
-    <string name="introduce">介紹</string>
     <string name="email">E-mail</string>
-    <string name="donate">捐贈</string>
-    <string name="gitHub">GitHub</string>
     <string name="contributor">貢獻者</string>
     <string name="translator">譯者</string>
     <string name="thanks">鳴謝</string>
-
-    <string name="alipay">支付寶</string>
-    <string name="wechat">微信</string>
 
     <string name="date_format_short">M-d</string>
     <string name="date_format_long">M月d日</string>
     <string name="date_format_widget_short">MM-dd EEE</string>
     <string name="date_format_widget_long">M月d日 EEEE</string>
     <string name="date_format_widget_oreo_style">M月d日EEEE │ </string>
-
-    <string name="tag_temperature">@string/temperature</string>
-    <string name="tag_wind">@string/wind</string>
-    <string name="tag_aqi">@string/air_quality</string>
-    <string name="tag_uv">@string/uv_index</string>
 
     <!-- feedback. -->
     <string name="feedback_request_permission">授權</string>
@@ -289,7 +274,6 @@
     <string name="content_des_swipe_right_to_delete">你可以向右滑動以刪除該項</string>
     <string name="content_desc_search_filter_on">僅顯示默認天氣源的地址</string>
     <string name="content_desc_search_filter_off">顯示所有天氣源的地址</string>
-    <string name="content_desc_wechat_payment_code">微信付款二維碼</string>
     <string name="content_desc_weather_icon">天氣圖標</string>
     <string name="content_desc_weather_icon_light">亮色圖標</string>
     <string name="content_desc_weather_icon_grey">灰色圖標</string>

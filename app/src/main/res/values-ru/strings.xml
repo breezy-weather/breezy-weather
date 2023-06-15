@@ -6,7 +6,6 @@
     <!-- keyword. -->
     <string name="current_location">Текущее местоположение</string>
     <string name="resident_location">Домашнее местоположение</string>
-    <string name="default_location">Местоположение по умолчанию</string>
     <string name="live">Сейчас</string>
     <string name="today">Сегодня</string>
     <string name="refresh_at">Обновлено в</string>
@@ -51,7 +50,6 @@
     <string name="of_clock">:00</string>
     <string name="yesterday">Вчера</string>
     <string name="tomorrow">Завтра</string>
-    <string name="week">Неделя</string>
     <string name="week_1">Пн</string>
     <string name="week_2">Вт</string>
     <string name="week_3">Ср</string>
@@ -107,7 +105,7 @@
     <string name="precipitation_overview">Прогноз осадков</string>
     <string name="air_quality">Качество воздуха</string>
     <string name="allergen">Аллерген</string>
-    <string name="life_details">Подробно</string>
+    <string name="details">Подробно</string>
     <string name="sunrise_sunset">Восход и закат</string>
 
     <string name="next">ДАЛЕЕ</string>
@@ -120,10 +118,7 @@
     <string name="learn_more">ЕЩЁ</string>
 
     <string name="about_app">О программе</string>
-    <string name="introduce">Введение</string>
     <string name="email">E-mail</string>
-    <string name="donate">Donate</string>
-    <string name="gitHub">GitHub</string>
     <string name="translator">Переводчики</string>
     <string name="thanks">Благодарности</string>
 

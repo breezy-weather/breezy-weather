@@ -1,60 +1,30 @@
 <resources xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="MissingTranslation">
 
-    <!-- app. -->
+    <!-- App -->
     <string name="app_name">Weather</string>
     <string name="breezy_weather">Breezy Weather</string>
 
-    <!-- keyword. -->
+    <!-- Location -->
+    <string name="locations">Locations</string>
     <string name="current_location">Current location</string>
     <string name="resident_location">Resident location</string>
-    <string name="default_location">default location</string>
-    <string name="live">Live</string>
-    <string name="today">Today</string>
-    <string name="refresh_at">Refreshed at</string>
-    <string name="local_time">Local time</string>
-    <string name="precipitation">Precipitation</string>
-    <string name="precipitation_probability">Precipitation probability</string>
-    <string name="precipitation_duration">Precipitation duration</string>
-    <string name="maxi_temp">daytime</string>
-    <string name="mini_temp">nighttime</string>
-    <string name="time">time</string>
-    <string name="day">daytime</string>
-    <string name="night">nighttime</string>
-    <string name="temperature">Temperature</string>
-    <string name="wind">Wind</string>
-    <string name="wind_direction">Wind direction</string>
-    <string name="wind_speed">Wind speed</string>
-    <string name="wind_level">Wind gauge</string>
-    <string name="sensible_temp">Sensible temp</string>
-    <string name="humidity">Humidity</string>
-    <string name="uv_index">UV index</string>
-    <string name="hours_of_sun">Hours of sun</string>
-    <string name="forecast">Forecast</string>
-    <string name="briefings">Briefings</string>
-    <string name="daytime">Daytime</string>
-    <string name="nighttime">Nighttime</string>
-    <string name="publish_at">Publish at</string>
-    <string name="feels_like">Feels like</string>
-    <string name="follow_system">Follow system</string>
-    <string name="background_information">Background information</string>
-    <string name="pressure">Atmospheric pressure</string>
-    <string name="visibility">Visibility</string>
-    <string name="dew_point">Dew point</string>
-    <string name="cloud_cover">Cloud cover</string>
-    <string name="ceiling">Ceiling</string>
-    <string name="get_more">Get more</string>
-    <string name="get_more_store">Get more from app store</string>
-    <string name="get_more_github">Get more from GitHub</string>
-    <string name="refresh">Refresh</string>
-    <string name="restart">Restart</string>
-    <string name="edit">Edit</string>
+    <string name="change_weather_source">Change weather source</string>
 
-    <!-- The following set of strings should be as short as possible. -->
+    <!-- Card names -->
+    <string name="daily_overview">Daily forecast</string>
+    <string name="hourly_overview">Hourly forecast</string>
+    <string name="minutely_overview">Minutely forecast</string>
+    <string name="precipitation_overview">Precipitation forecast</string>
+    <string name="air_quality">Air quality</string>
+    <string name="allergen">Allergen</string>
+    <string name="sunrise_sunset">Sun &amp; moon</string>
+    <string name="live">Live</string>
+
+    <!-- Daily/hourly forecast columns, must be as short as possible. -->
     <string name="of_clock">:00</string>
     <string name="yesterday">yday</string>
     <string name="tomorrow">tmw</string>
-    <string name="week">week</string>
     <string name="week_1">Mon</string>
     <string name="week_2">Tue</string>
     <string name="week_3">Wed</string>
@@ -63,6 +33,8 @@
     <string name="week_6">Sat</string>
     <string name="week_7">Sun</string>
 
+    <!-- Temperature vocabulary, mainly used in day details -->
+    <string name="temperature">Temperature</string>
     <string name="real_feel_temperature">Real feel</string>
     <string name="real_feel_shade_temperature">Real feel shade</string>
     <string name="apparent_temperature">Apparent</string>
@@ -70,12 +42,40 @@
     <string name="wet_bulb_temperature">Wet bulb</string>
     <string name="degree_day_temperature">Degree day</string>
 
+    <!-- Precipitation vocabulary, mainly used in day details -->
+    <string name="precipitation">Precipitation</string>
+    <string name="precipitation_probability">Precipitation probability</string>
+    <string name="precipitation_duration">Precipitation duration</string>
     <string name="total">Total</string>
     <string name="thunderstorm">Thunderstorm</string>
     <string name="rain">Rain</string>
     <string name="snow">Snow</string>
     <string name="ice">Ice</string>
 
+    <!-- Precipitation intensity -->
+    <string name="precipitation_light">Drizzle</string>
+    <string name="precipitation_middle">Rain</string>
+    <string name="precipitation_heavy">Heavy rain</string>
+    <string name="precipitation_rainstorm">Rainstorm</string>
+
+    <!-- Wind vocabulary, mainly used in day details -->
+    <string name="wind">Wind</string>
+    <string name="wind_speed">Wind speed</string>
+
+    <!-- Wind directions -->
+    <string name="wind_direction">Wind direction</string>
+    <string name="wind_direction_short_variable">Variable</string>
+    <string name="wind_direction_short_N">N</string>
+    <string name="wind_direction_short_NE">NE</string>
+    <string name="wind_direction_short_E">E</string>
+    <string name="wind_direction_short_SE">SE</string>
+    <string name="wind_direction_short_S">S</string>
+    <string name="wind_direction_short_SW">SW</string>
+    <string name="wind_direction_short_W">W</string>
+    <string name="wind_direction_short_NW">NW</string>
+
+    <!-- Wind levels -->
+    <string name="wind_level">Wind gauge</string>
     <string name="wind_0">Calm</string>
     <string name="wind_1">Light air</string>
     <string name="wind_2">Light breeze</string>
@@ -90,25 +90,26 @@
     <string name="wind_11">Violent storm</string>
     <string name="wind_12">Hurricane</string>
 
-    <string name="wind_direction_short_variable">Variable</string>
-    <string name="wind_direction_short_N">N</string>
-    <string name="wind_direction_short_NE">NE</string>
-    <string name="wind_direction_short_E">E</string>
-    <string name="wind_direction_short_SE">SE</string>
-    <string name="wind_direction_short_S">S</string>
-    <string name="wind_direction_short_SW">SW</string>
-    <string name="wind_direction_short_W">W</string>
-    <string name="wind_direction_short_NW">NW</string>
+    <!-- UV -->
+    <string name="uv_index">UV index</string>
 
-    <string name="precipitation_light">Drizzle</string>
-    <string name="precipitation_middle">Rain</string>
-    <string name="precipitation_heavy">Heavy rain</string>
-    <string name="precipitation_rainstorm">Rainstorm</string>
+    <!-- UV levels -->
+    <string name="uv_level_0_2">Low</string>
+    <string name="uv_level_3_5">Moderate</string>
+    <string name="uv_level_6_7">High</string>
+    <string name="uv_level_8_10">Very high</string>
+    <string name="uv_level_11">Extreme</string>
 
-    <string name="fresh_air">Fresh air</string>
-    <string name="high_pollution">High pollution</string>
-    <string name="excessive_pollution">Excessive pollution</string>
+    <!-- Air quality -->
+    <!-- TODO -->
 
+    <!-- Allergens -->
+    <string name="grass">Grass</string>
+    <string name="mold">Mold</string>
+    <string name="ragweed">Ragweed</string>
+    <string name="tree">Tree</string>
+
+    <!-- Moon phases -->
     <string name="phase_new">New moon</string>
     <string name="phase_waxing_crescent">Waxing crescent</string>
     <string name="phase_first">First quarter</string>
@@ -118,56 +119,73 @@
     <string name="phase_third">Third quarter</string>
     <string name="phase_waning_crescent">Waning crescent</string>
 
-    <string name="grass">Grass</string>
-    <string name="mold">Mold</string>
-    <string name="ragweed">Ragweed</string>
-    <string name="tree">Tree</string>
+    <!-- Other weather details vocabulary -->
+    <string name="details">Details</string>
+    <string name="hours_of_sun">Hours of sun</string>
+    <string name="humidity">Humidity</string>
+    <string name="pressure">Atmospheric pressure</string>
+    <string name="visibility">Visibility</string>
+    <string name="dew_point">Dew point</string>
+    <string name="cloud_cover">Cloud cover</string>
+    <string name="ceiling">Ceiling</string>
 
-    <!-- UV levels -->
-    <string name="uv_level_0_2">Low</string>
-    <string name="uv_level_3_5">Moderate</string>
-    <string name="uv_level_6_7">High</string>
-    <string name="uv_level_8_10">Very high</string>
-    <string name="uv_level_11">Extreme</string>
+    <!-- Providers specific terms -->
+    <!-- Weather texts for Open-Meteo, based on WMO terms -->
+    <!-- Check https://unterm.un.org/unterm2/en/ -->
+    <string name="openmeteo_weather_text_clear_sky">Clear sky</string>
+    <string name="openmeteo_weather_text_mainly_clear">Mainly clear</string>
+    <string name="openmeteo_weather_text_partly_cloudy">Partly cloudy</string>
+    <string name="openmeteo_weather_text_overcast">Overcast</string>
+    <string name="openmeteo_weather_text_fog">Fog</string>
+    <string name="openmeteo_weather_text_depositing_rime_fog">Depositing rime fog</string>
+    <string name="openmeteo_weather_text_drizzle_light_intensity">Drizzle light intensity</string>
+    <string name="openmeteo_weather_text_drizzle_moderate_intensity">Drizzle moderate intensity</string>
+    <string name="openmeteo_weather_text_drizzle_dense_intensity">Drizzle dense intensity</string>
+    <string name="openmeteo_weather_text_freezing_drizzle_light_intensity">Freezing drizzle light intensity</string>
+    <string name="openmeteo_weather_text_freezing_drizzle_dense_intensity">Freezing drizzle dense intensity</string>
+    <string name="openmeteo_weather_text_rain_slight_intensity">Rain slight intensity</string>
+    <string name="openmeteo_weather_text_rain_moderate_intensity">Rain moderate intensity</string>
+    <string name="openmeteo_weather_text_rain_heavy_intensity">Rain heavy intensity</string>
+    <string name="openmeteo_weather_text_freezing_rain_light_intensity">Freezing rain light intensity</string>
+    <string name="openmeteo_weather_text_freezing_rain_heavy_intensity">Freezing rain heavy intensity</string>
+    <string name="openmeteo_weather_text_snow_slight_intensity">Snow slight intensity</string>
+    <string name="openmeteo_weather_text_snow_moderate_intensity">Snow moderate intensity</string>
+    <string name="openmeteo_weather_text_snow_heavy_intensity">Snow heavy intensity</string>
+    <string name="openmeteo_weather_text_snow_grains">Snow grains</string>
+    <string name="openmeteo_weather_text_rain_showers_slight">Rain showers slight</string>
+    <string name="openmeteo_weather_text_rain_showers_moderate">Rain showers moderate</string>
+    <string name="openmeteo_weather_text_rain_showers_violent">Rain showers violent</string>
+    <string name="openmeteo_weather_text_snow_showers_slight">Snow showers slight</string>
+    <string name="openmeteo_weather_text_snow_showers_heavy">Snow showers heavy</string>
+    <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Thunderstorm slight or moderate</string>
+    <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Thunderstorm with slight hail</string>
+    <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Thunderstorm with heavy hail</string>
 
-    <string name="daily_overview">Daily forecast</string>
-    <string name="hourly_overview">Hourly forecast</string>
-    <string name="minutely_overview">Minutely forecast</string>
-    <string name="precipitation_overview">Precipitation forecast</string>
-    <string name="air_quality">Air quality</string>
-    <string name="allergen">Allergen</string>
-    <string name="life_details">Details</string>
-    <string name="sunrise_sunset">Sun &amp; moon</string>
-
-    <!-- Weather texts -->
-    <string name="weather_text_clear_sky">Clear sky</string>
-    <string name="weather_text_mainly_clear">Mainly clear</string>
-    <string name="weather_text_partly_cloudy">Partly cloudy</string>
-    <string name="weather_text_overcast">Overcast</string>
-    <string name="weather_text_fog">Fog</string>
-    <string name="weather_text_depositing_rime_fog">Depositing rime fog</string>
-    <string name="weather_text_drizzle_light_intensity">Drizzle light intensity</string>
-    <string name="weather_text_drizzle_moderate_intensity">Drizzle moderate intensity</string>
-    <string name="weather_text_drizzle_dense_intensity">Drizzle dense intensity</string>
-    <string name="weather_text_freezing_drizzle_light_intensity">Freezing drizzle light intensity</string>
-    <string name="weather_text_freezing_drizzle_dense_intensity">Freezing drizzle dense intensity</string>
-    <string name="weather_text_rain_slight_intensity">Rain slight intensity</string>
-    <string name="weather_text_rain_moderate_intensity">Rain moderate intensity</string>
-    <string name="weather_text_rain_heavy_intensity">Rain heavy intensity</string>
-    <string name="weather_text_freezing_rain_light_intensity">Freezing rain light intensity</string>
-    <string name="weather_text_freezing_rain_heavy_intensity">Freezing rain heavy intensity</string>
-    <string name="weather_text_snow_slight_intensity">Snow slight intensity</string>
-    <string name="weather_text_snow_moderate_intensity">Snow moderate intensity</string>
-    <string name="weather_text_snow_heavy_intensity">Snow heavy intensity</string>
-    <string name="weather_text_snow_grains">Snow grains</string>
-    <string name="weather_text_rain_showers_slight">Rain showers slight</string>
-    <string name="weather_text_rain_showers_moderate">Rain showers moderate</string>
-    <string name="weather_text_rain_showers_violent">Rain showers violent</string>
-    <string name="weather_text_snow_showers_slight">Snow showers slight</string>
-    <string name="weather_text_snow_showers_heavy">Snow showers heavy</string>
-    <string name="weather_text_thunderstorm_slight_or_moderate">Thunderstorm slight or moderate</string>
-    <string name="weather_text_thunderstorm_with_slight_hail">Thunderstorm with slight hail</string>
-    <string name="weather_text_thunderstorm_with_heavy_hail">Thunderstorm with heavy hail</string>
+    <!-- TODO: Sort everything below -->
+    <!-- keyword. -->
+    <string name="today">Today</string>
+    <string name="refresh_at">Refreshed at</string>
+    <string name="local_time">Local time</string>
+    <string name="maxi_temp">daytime</string>
+    <string name="mini_temp">nighttime</string>
+    <string name="time">time</string>
+    <string name="day">daytime</string>
+    <string name="night">nighttime</string>
+    <string name="sensible_temp">Sensible temp</string>
+    <string name="forecast">Forecast</string>
+    <string name="briefings">Briefings</string>
+    <string name="daytime">Daytime</string>
+    <string name="nighttime">Nighttime</string>
+    <string name="publish_at">Publish at</string>
+    <string name="feels_like">Feels like</string>
+    <string name="follow_system">Follow system</string>
+    <string name="background_information">Background information</string>
+    <string name="get_more">Get more</string>
+    <string name="get_more_store">Get more from app store</string>
+    <string name="get_more_github">Get more from GitHub</string>
+    <string name="refresh">Refresh</string>
+    <string name="restart">Restart</string>
+    <string name="edit">Edit</string>
 
     <string name="next">NEXT</string>
     <string name="done">DONE</string>
@@ -178,21 +196,13 @@
     <string name="help">HELP</string>
     <string name="learn_more">LEARN MORE</string>
 
-    <string name="locations">Locations</string>
-    <string name="filter_weather_sources">Filter</string>
-
     <string name="about_app">About app</string>
-    <string name="introduce">introduce</string>
     <string name="matrix">Matrix server</string>
     <string name="email">E-mail</string>
-    <string name="donate">Donate</string>
-    <string name="gitHub">GitHub</string>
+    <string name="source_code">Source code</string>
     <string name="contributor">Contributors</string>
     <string name="translator">Translators</string>
     <string name="thanks">Thanks</string>
-
-    <string name="alipay">Alipay</string>
-    <string name="wechat">Wechat</string>
 
     <!-- Date format strings. -->
     <!-- Month : MMM(long) / M(short). -->
@@ -203,13 +213,6 @@
     <string name="date_format_widget_short">EEE, MMM d</string>
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
-
-    <!-- Do not translate the following set of strings. -->
-    <string name="tag_temperature">@string/temperature</string>
-    <string name="tag_wind">@string/wind</string>
-    <string name="tag_precipitation">@string/precipitation</string>
-    <string name="tag_aqi">@string/air_quality</string>
-    <string name="tag_uv">@string/uv_index</string>
 
     <!-- feedback. -->
     <string name="feedback_request_permission">Permissions</string>
@@ -318,9 +321,9 @@
     <!-- there should be a "\" before single or double quotes. -->
     <!-- Correct : ... after turning off \'Background free\', ... After turning off \"Free background\" ... -->
     <!-- Wrong   : ... after turning off 'Background free', ... After turning off "Free background" ... -->
-    <string name="feedback_interpret_background_notification_content">In some devices, after turning off \'Background free\', there might be a notification that cannot be cleared in the notification bar.</string>
+    <string name="feedback_interpret_background_notification_content">In some devices, after turning off “Background free”, there might be a notification that cannot be cleared in the notification bar.</string>
     <string name="feedback_interpret_notification_group_title">Block notification group</string>
-    <string name="feedback_interpret_notification_group_content">After turning off \"Free background\", a notification indicating that background service is running will appear in the notification bar. You can turn off the Background Information Channel in the app\'s information page to block this notifications.</string>
+    <string name="feedback_interpret_notification_group_content">After turning off “Background free”, a notification indicating that background service is running will appear in the notification bar. You can turn off the Background Information Channel in the app’s information page to block this notifications.</string>
 
     <string name="feedback_ignore_battery_optimizations_title">Ignore battery optimization</string>
     <string name="feedback_ignore_battery_optimizations_content">In order to ensure that the background services can continue to work, please ignore the battery optimization for Breezy Weather.</string>
@@ -366,7 +369,6 @@
     <string name="content_desc_data_by">Data by $</string> <!-- $ = weather data provider -->
     <string name="content_desc_location_results_by">Location results by $</string> <!-- $ = location provider -->
     <string name="content_desc_app_store">@string/action_appStore</string>
-    <string name="content_desc_wechat_payment_code">Payment QR code of wechat</string>
     <string name="content_desc_weather_icon">Weather icon</string>
     <string name="content_desc_weather_icon_light">Light icon</string>
     <string name="content_desc_weather_icon_grey">Grey icon</string>
@@ -483,59 +485,63 @@
     <string name="settings_provider_mf_wsft_key">Météo France WSFT key</string>
     <string name="settings_provider_iqa_atmo_aura_key">ATMO AURA key</string>
 
-    <!--share preference-->
-    <!-- Do not translate the following set of strings. -->
-    <string name="sp_widget_day_setting">widget_day_setting</string>
-    <string name="sp_widget_week_setting">widget_week_setting</string>
-    <string name="sp_widget_day_week_setting">widget_day_week_setting</string>
-    <string name="sp_widget_clock_day_horizontal_setting">widget_clock_day_horizontal_setting</string>
-    <string name="sp_widget_clock_day_details_setting">widget_clock_day_details_setting</string>
-    <string name="sp_widget_clock_day_vertical_setting">widget_clock_day_vertical_setting</string>
-    <string name="sp_widget_clock_day_week_setting">widget_clock_day_week_setting</string>
-    <string name="sp_widget_text_setting">widget_text_setting</string>
-    <string name="sp_widget_daily_trend_setting">widget_daily_trend_setting</string>
-    <string name="sp_widget_hourly_trend_setting">widget_hourly_trend_setting</string>
-    <string name="sp_widget_multi_city">widget_multi_city</string>
-    <string name="sp_widget_android_s_weather_mini">widget_android_s_weather_mini</string>
-    <string name="sp_widget_android_s_weather_medium">widget_android_s_weather_medium</string>
-    <string name="sp_widget_android_s_weather_large">widget_android_s_weather_large</string>
-    <string name="sp_widget_android_s_weather_xlarge">widget_android_s_weather_large</string>
-    <string name="key_view_type">view_type</string>
-    <string name="key_card_style">card_style</string>
-    <string name="key_card_alpha" tools:ignore="Typos">card_alpha_1</string>
-    <string name="key_hide_subtitle">hide_refresh_time</string>
-    <string name="key_subtitle_data">subtitle_data</string>
-    <string name="key_text_color">text_color</string>
-    <string name="key_text_size">text_size</string>
-    <string name="key_clock_font">clock_font</string>
-    <string name="key_hide_lunar">hide_lunar</string>
-    <string name="key_align_end">align_end</string>
-    <string name="key_colorful">colorful</string>
+    <!-- Do not translate everything below -->
+    <!-- Preferences -->
+    <string name="sp_widget_day_setting" translatable="false">widget_day_setting</string>
+    <string name="sp_widget_week_setting" translatable="false">widget_week_setting</string>
+    <string name="sp_widget_day_week_setting" translatable="false">widget_day_week_setting</string>
+    <string name="sp_widget_clock_day_horizontal_setting" translatable="false">widget_clock_day_horizontal_setting</string>
+    <string name="sp_widget_clock_day_details_setting" translatable="false">widget_clock_day_details_setting</string>
+    <string name="sp_widget_clock_day_vertical_setting" translatable="false">widget_clock_day_vertical_setting</string>
+    <string name="sp_widget_clock_day_week_setting" translatable="false">widget_clock_day_week_setting</string>
+    <string name="sp_widget_text_setting" translatable="false">widget_text_setting</string>
+    <string name="sp_widget_daily_trend_setting" translatable="false">widget_daily_trend_setting</string>
+    <string name="sp_widget_hourly_trend_setting" translatable="false">widget_hourly_trend_setting</string>
+    <string name="sp_widget_multi_city" translatable="false">widget_multi_city</string>
+    <string name="sp_widget_android_s_weather_mini" translatable="false">widget_android_s_weather_mini</string>
+    <string name="sp_widget_android_s_weather_medium" translatable="false">widget_android_s_weather_medium</string>
+    <string name="sp_widget_android_s_weather_large" translatable="false">widget_android_s_weather_large</string>
+    <string name="sp_widget_android_s_weather_xlarge" translatable="false">widget_android_s_weather_large</string>
+    <string name="key_view_type" translatable="false">view_type</string>
+    <string name="key_card_style" translatable="false">card_style</string>
+    <string name="key_card_alpha" translatable="false">card_alpha_1</string>
+    <string name="key_hide_subtitle" translatable="false">hide_refresh_time</string>
+    <string name="key_subtitle_data" translatable="false">subtitle_data</string>
+    <string name="key_text_color" translatable="false">text_color</string>
+    <string name="key_text_size" translatable="false">text_size</string>
+    <string name="key_clock_font" translatable="false">clock_font</string>
+    <string name="key_hide_lunar" translatable="false">hide_lunar</string>
+    <string name="key_align_end" translatable="false">align_end</string>
+    <string name="key_colorful" translatable="false">colorful</string>
 
-    <!-- Do not translate the following set of strings. -->
-    <string name="key_live_wallpaper">live_wallpaper</string>
-    <string name="key_service_provider">service_provider</string>
-    <string name="key_service_provider_advanced">service_provider_advanced</string>
-    <string name="key_appearance">appearance</string>
-    <string name="key_unit">unit</string>
-    <string name="key_click_widget_to_refresh">click_widget_to_refresh</string>
-    <string name="key_widget_config">widget_config</string>
-    <string name="key_widget_day">widget_day</string>
-    <string name="key_widget_week">widget_week</string>
-    <string name="key_widget_day_week">widget_day_week</string>
-    <string name="key_widget_clock_day_horizontal">widget_clock_day_horizontal</string>
-    <string name="key_widget_clock_day_details">widget_clock_day_details</string>
-    <string name="key_widget_clock_day_vertical">widget_clock_day_vertical</string>
-    <string name="key_widget_clock_day_week">widget_clock_day_week</string>
-    <string name="key_widget_text">widget_text</string>
-    <string name="key_widget_trend_daily">widget_trend_daily</string>
-    <string name="key_widget_trend_hourly">widget_trend_hourly</string>
-    <string name="key_widget_multi_city">widget_multi_city</string>
-    <string name="key_notification_minimal_icon">notification_minimal_icon</string>
+    <string name="key_live_wallpaper" translatable="false">live_wallpaper</string>
+    <string name="key_service_provider" translatable="false">service_provider</string>
+    <string name="key_service_provider_advanced" translatable="false">service_provider_advanced</string>
+    <string name="key_appearance" translatable="false">appearance</string>
+    <string name="key_unit" translatable="false">unit</string>
+    <string name="key_click_widget_to_refresh" translatable="false">click_widget_to_refresh</string>
+    <string name="key_widget_config" translatable="false">widget_config</string>
+    <string name="key_widget_day" translatable="false">widget_day</string>
+    <string name="key_widget_week" translatable="false">widget_week</string>
+    <string name="key_widget_day_week" translatable="false">widget_day_week</string>
+    <string name="key_widget_clock_day_horizontal" translatable="false">widget_clock_day_horizontal</string>
+    <string name="key_widget_clock_day_details" translatable="false">widget_clock_day_details</string>
+    <string name="key_widget_clock_day_vertical" translatable="false">widget_clock_day_vertical</string>
+    <string name="key_widget_clock_day_week" translatable="false">widget_clock_day_week</string>
+    <string name="key_widget_text" translatable="false">widget_text</string>
+    <string name="key_widget_trend_daily" translatable="false">widget_trend_daily</string>
+    <string name="key_widget_trend_hourly" translatable="false">widget_trend_hourly</string>
+    <string name="key_widget_multi_city" translatable="false">widget_multi_city</string>
+    <string name="key_notification_minimal_icon" translatable="false">notification_minimal_icon</string>
 
-    <!-- transition. -->
-    <!-- Do not translate the following set of strings. -->
-    <string name="transition_activity_search_bar">activity_search_bar</string>
-    <string name="transition_activity_search_txt">activity_search_txt</string>
+    <!-- Tags -->
+    <string name="tag_temperature" translatable="false">@string/temperature</string>
+    <string name="tag_wind" translatable="false">@string/wind</string>
+    <string name="tag_precipitation" translatable="false">@string/precipitation</string>
+    <string name="tag_aqi" translatable="false">@string/air_quality</string>
+    <string name="tag_uv" translatable="false">@string/uv_index</string>
 
+    <!-- Transitions -->
+    <string name="transition_activity_search_bar" translatable="false">activity_search_bar</string>
+    <string name="transition_activity_search_txt" translatable="false">activity_search_txt</string>
 </resources>

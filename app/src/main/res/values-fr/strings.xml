@@ -6,8 +6,7 @@
     <!-- mots-clés -->
     <string name="current_location">Ma position</string>
     <string name="resident_location">Mon domicile</string>
-    <string name="default_location">Emplacement par défaut</string>
-    <string name="live">Maintenant</string>
+    <string name="live">En ce moment</string>
     <string name="today">Auj.</string>
     <string name="refresh_at">Consulté à</string>
     <string name="local_time">Heure locale</string>
@@ -52,7 +51,6 @@
     <string name="of_clock">:00</string>
     <string name="yesterday">hier</string>
     <string name="tomorrow">dem.</string>
-    <string name="week">sem.</string>
     <string name="week_1">Lun.</string>
     <string name="week_2">Mar.</string>
     <string name="week_3">Mer.</string>
@@ -103,10 +101,6 @@
     <string name="precipitation_heavy">Forte</string>
     <string name="precipitation_rainstorm">Torentielle</string>
 
-    <string name="fresh_air">Air pur</string>
-    <string name="high_pollution">Pollution élevée</string>
-    <string name="excessive_pollution">Pollution excessive</string>
-
     <string name="phase_new">Nouvelle lune</string>
     <string name="phase_waxing_crescent">Premier croissant</string>
     <string name="phase_first">Premier quartier</string>
@@ -134,38 +128,38 @@
     <string name="precipitation_overview">Prévisions de précipitations</string>
     <string name="air_quality">"Qualité de l’air"</string>
     <string name="allergen">Allergènes</string>
-    <string name="life_details">Détails</string>
+    <string name="details">Détails</string>
     <string name="sunrise_sunset">Soleil &amp; lune</string>
 
     <!-- Weather texts -->
-    <string name="weather_text_clear_sky">Ciel dégagé</string>
-    <string name="weather_text_mainly_clear">Principalement dégagé</string>
-    <string name="weather_text_partly_cloudy">Partiellement couvert</string>
-    <string name="weather_text_overcast">Couvert</string>
-    <string name="weather_text_fog">Brouillard</string>
-    <string name="weather_text_depositing_rime_fog">Depositing rime fog</string>
-    <string name="weather_text_drizzle_light_intensity">Bruine de faible intensité</string>
-    <string name="weather_text_drizzle_moderate_intensity">Bruine d’intensité modérée</string>
-    <string name="weather_text_drizzle_dense_intensity">Bruine d’intensité élevée</string>
-    <string name="weather_text_freezing_drizzle_light_intensity">Bruine verglaçante de faible intensité</string>
-    <string name="weather_text_freezing_drizzle_dense_intensity">Bruine verglaçante d’intensité élevée</string>
-    <string name="weather_text_rain_slight_intensity">Pluie de faible intensité</string>
-    <string name="weather_text_rain_moderate_intensity">Pluie d’intensité modérée</string>
-    <string name="weather_text_rain_heavy_intensity">Pluie d’intensité élevée</string>
-    <string name="weather_text_freezing_rain_light_intensity">Pluie verglaçante de faible intensité</string>
-    <string name="weather_text_freezing_rain_heavy_intensity">Pluie verglaçante d’intensité élevée</string>
-    <string name="weather_text_snow_slight_intensity">Neige de faible intensité</string>
-    <string name="weather_text_snow_moderate_intensity">Neige d’intensité modérée</string>
-    <string name="weather_text_snow_heavy_intensity">Neige d’intensité élevée</string>
-    <string name="weather_text_snow_grains">Neige en grains</string>
-    <string name="weather_text_rain_showers_slight">Faibles averses de pluie</string>
-    <string name="weather_text_rain_showers_moderate">Averses de pluie modérées</string>
-    <string name="weather_text_rain_showers_violent">Averses de pluie violentes</string>
-    <string name="weather_text_snow_showers_slight">Faibles averses de neige</string>
-    <string name="weather_text_snow_showers_heavy">Importantes averses de neige</string>
-    <string name="weather_text_thunderstorm_slight_or_moderate">Orage léger ou modéré</string>
-    <string name="weather_text_thunderstorm_with_slight_hail">Orage avec légère grêle</string>
-    <string name="weather_text_thunderstorm_with_heavy_hail">Orage avec forte grêle</string>
+    <string name="openmeteo_weather_text_clear_sky">Ciel dégagé</string>
+    <string name="openmeteo_weather_text_mainly_clear">Principalement dégagé</string>
+    <string name="openmeteo_weather_text_partly_cloudy">Partiellement couvert</string>
+    <string name="openmeteo_weather_text_overcast">Couvert</string>
+    <string name="openmeteo_weather_text_fog">Brouillard</string>
+    <string name="openmeteo_weather_text_depositing_rime_fog">Depositing rime fog</string>
+    <string name="openmeteo_weather_text_drizzle_light_intensity">Bruine de faible intensité</string>
+    <string name="openmeteo_weather_text_drizzle_moderate_intensity">Bruine d’intensité modérée</string>
+    <string name="openmeteo_weather_text_drizzle_dense_intensity">Bruine d’intensité élevée</string>
+    <string name="openmeteo_weather_text_freezing_drizzle_light_intensity">Bruine verglaçante de faible intensité</string>
+    <string name="openmeteo_weather_text_freezing_drizzle_dense_intensity">Bruine verglaçante d’intensité élevée</string>
+    <string name="openmeteo_weather_text_rain_slight_intensity">Pluie de faible intensité</string>
+    <string name="openmeteo_weather_text_rain_moderate_intensity">Pluie d’intensité modérée</string>
+    <string name="openmeteo_weather_text_rain_heavy_intensity">Pluie d’intensité élevée</string>
+    <string name="openmeteo_weather_text_freezing_rain_light_intensity">Pluie verglaçante de faible intensité</string>
+    <string name="openmeteo_weather_text_freezing_rain_heavy_intensity">Pluie verglaçante d’intensité élevée</string>
+    <string name="openmeteo_weather_text_snow_slight_intensity">Neige de faible intensité</string>
+    <string name="openmeteo_weather_text_snow_moderate_intensity">Neige d’intensité modérée</string>
+    <string name="openmeteo_weather_text_snow_heavy_intensity">Neige d’intensité élevée</string>
+    <string name="openmeteo_weather_text_snow_grains">Neige en grains</string>
+    <string name="openmeteo_weather_text_rain_showers_slight">Faibles averses de pluie</string>
+    <string name="openmeteo_weather_text_rain_showers_moderate">Averses de pluie modérées</string>
+    <string name="openmeteo_weather_text_rain_showers_violent">Averses de pluie violentes</string>
+    <string name="openmeteo_weather_text_snow_showers_slight">Faibles averses de neige</string>
+    <string name="openmeteo_weather_text_snow_showers_heavy">Importantes averses de neige</string>
+    <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Orage léger ou modéré</string>
+    <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Orage avec légère grêle</string>
+    <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Orage avec forte grêle</string>
 
     <string name="next">SUIVANT</string>
     <string name="done">OK</string>
@@ -177,18 +171,12 @@
     <string name="learn_more">EN SAVOIR PLUS</string>
 
     <string name="locations">Emplacements</string>
-    <string name="filter_weather_sources">Filtrer</string>
+    <string name="change_weather_source">Changer la source météo</string>
 
     <string name="about_app">À propos</string>
-    <string name="introduce">présentation</string>
     <string name="email">Courriel</string>
-    <string name="donate">Don</string>
-    <string name="gitHub">GitHub</string>
     <string name="translator">Traducteurs</string>
     <string name="thanks">Remerciements</string>
-
-    <string name="alipay">Alipay</string>
-    <string name="wechat">Wechat</string>
 
     <!-- Date format strings. -->
     <!-- Month : MMM(long) / M(short). -->
@@ -353,7 +341,6 @@
     <string name="content_desc_search_filter_off">Afficher les emplacements de toutes les sources météo</string>
     <string name="content_desc_data_by">Données par $</string> <!-- $ = weather source. -->
     <string name="content_desc_location_results_by">Résultats d’emplacement par $</string> <!-- $ = location provider -->
-    <string name="content_desc_wechat_payment_code">QR code de paiement par WeChat</string>
     <string name="content_desc_weather_icon">Icône météo</string>
     <string name="content_desc_weather_icon_light">Icône claire</string>
     <string name="content_desc_weather_icon_grey">Icône grise</string>
@@ -455,4 +442,6 @@
     <string name="settings_notification_hide_big_view_on">Masquer</string>
     <string name="settings_notification_hide_big_view_off">Afficher</string>
     <string name="settings_provider_default_value">Par défaut (inchangé)</string>
+    <string name="source_code">Code source</string>
+    <string name="contributor">Contributeurs</string>
 </resources>

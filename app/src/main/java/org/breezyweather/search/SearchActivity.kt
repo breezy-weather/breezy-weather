@@ -85,7 +85,7 @@ class SearchActivity : GeoActivity() {
                             containerColor = BottomAppBarDefaults.bottomAppBarFabColor,
                             elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation()
                         ) {
-                            Icon(Icons.Filled.Tune, stringResource(R.string.filter_weather_sources))
+                            Icon(Icons.Filled.Tune, stringResource(R.string.change_weather_source))
                         }
                     }
                 )

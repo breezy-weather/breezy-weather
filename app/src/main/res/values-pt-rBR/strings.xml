@@ -6,7 +6,6 @@
     <!-- keyword. -->
     <string name="current_location">Local atual</string>
     <string name="resident_location">Local de residência</string>
-    <string name="default_location">Local padrão</string>
     <string name="live">Agora</string>
     <string name="today">Hoje</string>
     <string name="refresh_at">Atualizado às</string>
@@ -52,7 +51,6 @@
     <string name="of_clock">:00</string>
     <string name="yesterday">Ontem</string>
     <string name="tomorrow">Amanhã</string>
-    <string name="week">Semana</string>
     <string name="week_1">Seg</string>
     <string name="week_2">Ter</string>
     <string name="week_3">Qua</string>
@@ -113,7 +111,7 @@
     <string name="precipitation_overview">Previsão de precipitação</string>
     <string name="air_quality">Qualidade do ar</string>
     <string name="allergen">Alergias</string>
-    <string name="life_details">Detalhes</string>
+    <string name="details">Detalhes</string>
     <string name="sunrise_sunset">Sol e lua</string>
 
     <string name="next">PRÓXIMO</string>
@@ -125,19 +123,11 @@
     <string name="help">AJUDA</string>
     <string name="learn_more">SAIBA MAIS</string>
 
-    <string name="filter_weather_sources">Filtro</string>
-
     <string name="about_app">Sobre o aplicativo</string>
-    <string name="introduce">introduzir</string>
     <string name="email">E-mail</string>
-    <string name="donate">Doação</string>
-    <string name="gitHub">GitHub</string>
     <string name="contributor">Contribuidores</string>
     <string name="translator">Tradutores</string>
     <string name="thanks">Agradecimentos</string>
-
-    <string name="alipay">Alipay</string>
-    <string name="wechat">WeChat</string>
 
     <!-- Date format strings. -->
     <!-- Month : MMM(long) / M(short). -->
@@ -298,7 +288,6 @@
     <string name="content_desc_search_filter_on">Mostrar apenas locais da fonte meteorológica padrão</string>
     <string name="content_desc_search_filter_off">Mostrar locais de todas as fontes meteorológicas</string>
     <string name="content_desc_app_store">@string/action_appStore</string>
-    <string name="content_desc_wechat_payment_code">Pagamento via código QR do WeChat</string>
     <string name="content_desc_weather_icon">Ícone de clima</string>
     <string name="content_desc_weather_icon_light">Ícone claro</string>
     <string name="content_desc_weather_icon_grey">Ícone cinza</string>

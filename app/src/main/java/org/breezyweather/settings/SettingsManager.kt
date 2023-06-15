@@ -49,7 +49,7 @@ class SettingsManager private constructor(context: Context) {
                 + "&air_quality"
                 + "&allergen"
                 + "&sunrise_sunset"
-                + "&life_details")
+                + "&live")
         private const val DEFAULT_DAILY_TREND_DISPLAY = ("temperature"
                 + "&air_quality"
                 + "&wind"

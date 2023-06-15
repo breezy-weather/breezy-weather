@@ -127,7 +127,7 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
             case ViewType.ASTRO:
                 return new AstroViewHolder(parent);
 
-            case ViewType.DETAILS:
+            case ViewType.LIVE:
                 return new DetailsViewHolder(parent);
 
             default: // FOOTER.
@@ -177,7 +177,7 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
                     || type == ViewType.AIR_QUALITY
                     || type == ViewType.ALLERGEN
                     || type == ViewType.ASTRO
-                    || type == ViewType.DETAILS) {
+                    || type == ViewType.LIVE) {
                 mFirstCardPosition = i;
                 return;
             }
@@ -222,8 +222,8 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
             case CARD_SUNRISE_SUNSET:
                 return ViewType.ASTRO;
 
-            default: // CARD_LIFE_DETAILS.
-                return ViewType.DETAILS;
+            default:
+                return ViewType.LIVE;
         }
     }
 }

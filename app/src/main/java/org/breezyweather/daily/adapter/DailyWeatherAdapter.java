@@ -95,7 +95,7 @@ public class DailyWeatherAdapter extends RecyclerView.Adapter<DailyWeatherAdapte
         mModelList.addAll(getHalfDayOptionalModelList(context, daily.getNight()));
 
         mModelList.add(new Line());
-        mModelList.add(new LargeTitle(context.getString(R.string.life_details)));
+        mModelList.add(new LargeTitle(context.getString(R.string.details)));
         mModelList.add(new DailyAstro(timeZone, daily.getSun(), daily.getMoon(), daily.getMoonPhase()));
         if (daily.getAirQuality().isValid()) {
             mModelList.add(new Title(R.drawable.weather_haze_mini_xml, context.getString(R.string.air_quality)));

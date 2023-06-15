@@ -7,7 +7,6 @@
     <!-- keyword. -->
     <string name="current_location">Současná lokace</string>
     <string name="resident_location">Bydliště</string>
-    <string name="default_location">výchozí lokace</string>
     <string name="live">Živě</string>
     <string name="today">Dnes</string>
     <string name="refresh_at">Aktualizováno</string>
@@ -53,7 +52,6 @@
     <string name="of_clock">:00</string>
     <string name="yesterday">rok/den</string>
     <string name="tomorrow">zítra</string>
-    <string name="week">týden</string>
     <string name="week_1">Po</string>
     <string name="week_2">Út</string>
     <string name="week_3">St</string>
@@ -114,7 +112,7 @@
     <string name="precipitation_overview">Předpověď srážek</string>
     <string name="air_quality">Kvalita vzduchu</string>
     <string name="allergen">Alergeny</string>
-    <string name="life_details">Podrobnosti</string>
+    <string name="details">Podrobnosti</string>
     <string name="sunrise_sunset">Slunce a měsíc</string>
 
     <string name="next">DALŠÍ</string>
@@ -126,19 +124,11 @@
     <string name="help">NÁPOVĚDA</string>
     <string name="learn_more">ZJISTIT VÍCE</string>
 
-    <string name="filter_weather_sources">Filtr</string>
-
     <string name="about_app">O aplikaci</string>
-    <string name="introduce">představení</string>
     <string name="email">E-mail</string>
-    <string name="donate">Přispění</string>
-    <string name="gitHub">GitHub</string>
     <string name="contributor">Přispěvatelé</string>
     <string name="translator">Překladatelé</string>
     <string name="thanks">Poděkování</string>
-
-    <string name="alipay">Alipay</string>
-    <string name="wechat">Wechat</string>
 
     <!-- Date format strings. -->
     <!-- Month : MMM(long) / M(short). -->
@@ -149,13 +139,6 @@
     <string name="date_format_widget_short">EEE d MMM</string>
     <string name="date_format_widget_long">EEEE d MMM</string>
     <string name="date_format_widget_oreo_style">EEEE d MMM│</string>
-
-    <!-- Do not translate the following set of strings. -->
-    <string name="tag_temperature">@string/temperature</string>
-    <string name="tag_wind">@string/wind</string>
-    <string name="tag_precipitation">@string/precipitation</string>
-    <string name="tag_aqi">@string/air_quality</string>
-    <string name="tag_uv">@string/uv_index</string>
 
     <!-- feedback. -->
     <string name="feedback_request_permission">Oprávnění</string>
@@ -306,7 +289,6 @@
     <string name="content_desc_search_filter_on">Zobrazit pouze lokace z výchozího zdroje počasí</string>
     <string name="content_desc_search_filter_off">Zobrazit lokace ze všech zdrojů počasí</string>
     <string name="content_desc_app_store">@string/action_appStore</string>
-    <string name="content_desc_wechat_payment_code">Platební QR kód WeChat</string>
     <string name="content_desc_weather_icon">Ikona počasí</string>
     <string name="content_desc_weather_icon_light">Světlá ikona</string>
     <string name="content_desc_weather_icon_grey">Šedá ikona</string>
@@ -418,34 +400,5 @@
     <string name="settings_provider_mf">Météo France</string>
     <string name="settings_provider_mf_wsft_key">Klíč WSFT Météo France</string>
     <string name="settings_provider_iqa_atmo_aura_key">Klíč ATMO AURA</string>
-
-    <!--share preference-->
-    <!-- Do not translate the following set of strings. -->
-    <string name="sp_widget_day_setting">widget_day_setting</string>
-    <string name="sp_widget_week_setting">widget_week_setting</string>
-    <string name="sp_widget_day_week_setting">widget_day_week_setting</string>
-    <string name="sp_widget_clock_day_horizontal_setting">widget_clock_day_horizontal_setting</string>
-    <string name="sp_widget_clock_day_details_setting">widget_clock_day_details_setting</string>
-    <string name="sp_widget_clock_day_vertical_setting">widget_clock_day_vertical_setting</string>
-    <string name="sp_widget_clock_day_week_setting">widget_clock_day_week_setting</string>
-    <string name="sp_widget_text_setting">widget_text_setting</string>
-    <string name="sp_widget_daily_trend_setting">widget_daily_trend_setting</string>
-    <string name="sp_widget_hourly_trend_setting">widget_hourly_trend_setting</string>
-    <string name="sp_widget_multi_city">widget_multi_city</string>
-    <string name="sp_widget_android_s_weather_mini">widget_android_s_weather_mini</string>
-    <string name="sp_widget_android_s_weather_medium">widget_android_s_weather_medium</string>
-    <string name="sp_widget_android_s_weather_large">widget_android_s_weather_large</string>
-    <string name="sp_widget_android_s_weather_xlarge">widget_android_s_weather_large</string>
-    <string name="key_view_type">view_type</string>
-    <string name="key_card_style">card_style</string>
-    <string name="key_card_alpha" tools:ignore="Typos">card_alpha_1</string>
-    <string name="key_hide_subtitle">hide_refresh_time</string>
-    <string name="key_subtitle_data">subtitle_data</string>
-    <string name="key_text_color">text_color</string>
-    <string name="key_text_size">text_size</string>
-    <string name="key_clock_font">clock_font</string>
-    <string name="key_hide_lunar">hide_lunar</string>
-    <string name="key_align_end">align_end</string>
-    <string name="key_colorful">colorful</string>
 
 </resources>

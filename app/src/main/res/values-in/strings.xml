@@ -7,7 +7,6 @@
     <!-- keyword. -->
     <string name="current_location">Lokasi saat ini</string>
     <string name="resident_location">Lokasi penduduk</string>
-    <string name="default_location">Lokasi bawaan</string>
     <string name="live">Langsung</string>
     <string name="today">Hari ini</string>
     <string name="refresh_at">Dimuat ulang pada</string>
@@ -53,7 +52,6 @@
     <string name="of_clock">:00</string>
     <string name="yesterday">kmrn</string>
     <string name="tomorrow">bsk</string>
-    <string name="week">minggu</string>
     <string name="week_1">Sen</string>
     <string name="week_2">Sel</string>
     <string name="week_3">Rab</string>
@@ -114,7 +112,7 @@
     <string name="precipitation_overview">Prakiraan presipitasi</string>
     <string name="air_quality">Kualitas udata</string>
     <string name="allergen">Allergen</string>
-    <string name="life_details">Detail</string>
+    <string name="details">Detail</string>
     <string name="sunrise_sunset">Matahari &amp; bulan</string>
 
     <string name="next">BERIKUTNYA</string>
@@ -126,19 +124,11 @@
     <string name="help">BANTUAN</string>
     <string name="learn_more">PELAJARI LEBIH LANJUT</string>
 
-    <string name="filter_weather_sources">Filter</string>
-
     <string name="about_app">Tentang aplikasi</string>
-    <string name="introduce">perkenalkan</string>
     <string name="email">E-mail</string>
-    <string name="donate">Donasi</string>
-    <string name="gitHub">GitHub</string>
     <string name="contributor">Kontributor</string>
     <string name="translator">Translator</string>
     <string name="thanks">Terima kasih</string>
-
-    <string name="alipay">Alipay</string>
-    <string name="wechat">Wechat</string>
 
     <!-- Date format strings. -->
     <!-- Month : MMM(long) / M(short). -->
@@ -149,13 +139,6 @@
     <string name="date_format_widget_short">EEE, MMM d</string>
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
-
-    <!-- Do not translate the following set of strings. -->
-    <string name="tag_temperature">@string/temperature</string>
-    <string name="tag_wind">@string/wind</string>
-    <string name="tag_precipitation">@string/precipitation</string>
-    <string name="tag_aqi">@string/air_quality</string>
-    <string name="tag_uv">@string/uv_index</string>
 
     <!-- feedback. -->
     <string name="feedback_request_permission">Izin</string>
@@ -309,7 +292,6 @@
     <string name="content_desc_search_filter_on">Hanya menunjukkan lokasi dari sumber cuaca default</string>
     <string name="content_desc_search_filter_off">Tunjukkan lokasi dari semua sumber cuaca</string>
     <string name="content_desc_app_store">@string/action_appStore</string>
-    <string name="content_desc_wechat_payment_code">Pembayaran kode QR wechat</string>
     <string name="content_desc_weather_icon">Ikon cuaca</string>
     <string name="content_desc_weather_icon_light">Ikon terang</string>
     <string name="content_desc_weather_icon_grey">Ikon abu-abu</string>
@@ -423,60 +405,4 @@
     <string name="settings_provider_mf">Météo France</string>
     <string name="settings_provider_mf_wsft_key">Kunci WSFT Météo France</string>
     <string name="settings_provider_iqa_atmo_aura_key">Kunci ATMO AURA</string>
-
-    <!--share preference-->
-    <!-- Do not translate the following set of strings. -->
-    <string name="sp_widget_day_setting">widget_day_setting</string>
-    <string name="sp_widget_week_setting">widget_week_setting</string>
-    <string name="sp_widget_day_week_setting">widget_day_week_setting</string>
-    <string name="sp_widget_clock_day_horizontal_setting">widget_clock_day_horizontal_setting</string>
-    <string name="sp_widget_clock_day_details_setting">widget_clock_day_details_setting</string>
-    <string name="sp_widget_clock_day_vertical_setting">widget_clock_day_vertical_setting</string>
-    <string name="sp_widget_clock_day_week_setting">widget_clock_day_week_setting</string>
-    <string name="sp_widget_text_setting">widget_text_setting</string>
-    <string name="sp_widget_daily_trend_setting">widget_daily_trend_setting</string>
-    <string name="sp_widget_hourly_trend_setting">widget_hourly_trend_setting</string>
-    <string name="sp_widget_multi_city">widget_multi_city</string>
-    <string name="sp_widget_android_s_weather_mini">widget_android_s_weather_mini</string>
-    <string name="sp_widget_android_s_weather_medium">widget_android_s_weather_medium</string>
-    <string name="sp_widget_android_s_weather_large">widget_android_s_weather_large</string>
-    <string name="sp_widget_android_s_weather_xlarge">widget_android_s_weather_large</string>
-    <string name="key_view_type">view_type</string>
-    <string name="key_card_style">card_style</string>
-    <string name="key_card_alpha" tools:ignore="Typos">card_alpha_1</string>
-    <string name="key_hide_subtitle">hide_refresh_time</string>
-    <string name="key_subtitle_data">subtitle_data</string>
-    <string name="key_text_color">text_color</string>
-    <string name="key_text_size">text_size</string>
-    <string name="key_clock_font">clock_font</string>
-    <string name="key_hide_lunar">hide_lunar</string>
-    <string name="key_align_end">align_end</string>
-    <string name="key_colorful">colorful</string>
-
-    <!-- Do not translate the following set of strings. -->
-    <string name="key_live_wallpaper">live_wallpaper</string>
-    <string name="key_service_provider">service_provider</string>
-    <string name="key_service_provider_advanced">service_provider_advanced</string>
-    <string name="key_appearance">appearance</string>
-    <string name="key_unit">unit</string>
-    <string name="key_click_widget_to_refresh">click_widget_to_refresh</string>
-    <string name="key_widget_config">widget_config</string>
-    <string name="key_widget_day">widget_day</string>
-    <string name="key_widget_week">widget_week</string>
-    <string name="key_widget_day_week">widget_day_week</string>
-    <string name="key_widget_clock_day_horizontal">widget_clock_day_horizontal</string>
-    <string name="key_widget_clock_day_details">widget_clock_day_details</string>
-    <string name="key_widget_clock_day_vertical">widget_clock_day_vertical</string>
-    <string name="key_widget_clock_day_week">widget_clock_day_week</string>
-    <string name="key_widget_text">widget_text</string>
-    <string name="key_widget_trend_daily">widget_trend_daily</string>
-    <string name="key_widget_trend_hourly">widget_trend_hourly</string>
-    <string name="key_widget_multi_city">widget_multi_city</string>
-    <string name="key_notification_minimal_icon">notification_minimal_icon</string>
-
-    <!-- transition. -->
-    <!-- Do not translate the following set of strings. -->
-    <string name="transition_activity_search_bar">activity_search_bar</string>
-    <string name="transition_activity_search_txt">activity_search_txt</string>
-
 </resources>

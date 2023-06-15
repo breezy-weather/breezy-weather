@@ -5,7 +5,6 @@
 
     <!-- keyword. -->
     <string name="current_location">localização atual</string>
-    <string name="default_location">localização padrão</string>
     <string name="live">Ao vivo</string>
     <string name="today">Hoje</string>
     <string name="refresh_at">Atualizado em</string>
@@ -35,7 +34,6 @@
     <string name="of_clock">:00</string>
     <string name="yesterday">ontem</string>
     <string name="tomorrow">amanhã</string>
-    <string name="week">semana</string>
     <string name="week_1">Seg</string>
     <string name="week_2">Ter</string>
     <string name="week_3">Qua</string>
@@ -70,7 +68,7 @@
     <string name="daily_overview">Diário</string>
     <string name="hourly_overview">Por Hora</string>
     <string name="air_quality">Qualidade do Ar</string>
-    <string name="life_details">Detalhes</string>
+    <string name="details">Detalhes</string>
     <string name="sunrise_sunset">Sol &amp; Lua</string>
 
     <string name="next">Próximo</string>
@@ -82,10 +80,7 @@
     <string name="help">Ajuda</string>
 
     <string name="about_app">Sobre o aplicativo</string>
-    <string name="introduce">introdução</string>
     <string name="email">E-mail</string>
-    <string name="donate">Doação</string>
-    <string name="gitHub">GitHub</string>
     <string name="translator">Tradutores</string>
     <string name="thanks">Agradecimentos</string>
 

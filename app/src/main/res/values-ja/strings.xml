@@ -5,7 +5,6 @@
 
     <!-- keyword. -->
     <string name="current_location">現在地</string>
-    <string name="default_location">デフォルト位置</string>
     <string name="live">現在</string>
     <string name="today">今日</string>
     <string name="refresh_at">更新時刻</string>
@@ -52,7 +51,6 @@
     <string name="of_clock">:00</string>
     <string name="yesterday">昨日</string>
     <string name="tomorrow">明日</string>
-    <string name="week">週</string>
     <string name="week_1">月</string>
     <string name="week_2">火</string>
     <string name="week_3">水</string>
@@ -113,7 +111,7 @@
     <string name="precipitation_overview">降水量予報</string>
     <string name="air_quality">空気質指数</string>
     <string name="allergen">アレルギー</string>
-    <string name="life_details">詳細</string>
+    <string name="details">詳細</string>
     <string name="sunrise_sunset">太陽と月</string>
 
     <string name="next">次</string>
@@ -126,15 +124,9 @@
     <string name="learn_more">もっと詳しく</string>
 
     <string name="about_app">アプリについて</string>
-    <string name="introduce">introduce</string>
     <string name="email">メール</string>
-    <string name="donate">寄付</string>
-    <string name="gitHub">GitHub</string>
     <string name="translator">翻訳者</string>
     <string name="thanks">Thanks</string>
-
-    <string name="alipay">Alipay</string>
-    <string name="wechat">Wechat</string>
 
     <!-- Date format strings. -->
     <!-- Month : MMM(long) / M(short). -->

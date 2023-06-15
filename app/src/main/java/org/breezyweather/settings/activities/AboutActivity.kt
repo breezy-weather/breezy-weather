@@ -63,7 +63,7 @@ class AboutActivity : GeoActivity() {
     private val aboutAppLinks = arrayOf(
         AboutAppLinkItem(
             iconId = R.drawable.ic_github,
-            titleId = R.string.gitHub,
+            titleId = R.string.source_code,
         ) {
             org.breezyweather.common.utils.helpers.IntentHelper.startWebViewActivity(
                 this@AboutActivity,

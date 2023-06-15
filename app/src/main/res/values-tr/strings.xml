@@ -4,7 +4,6 @@
 
     <!-- keyword. -->
     <string name="current_location">Bulunduğunuz konumu</string>
-    <string name="default_location">varsayılan konum</string>
     <string name="live">Rüzgar</string>
     <string name="today">Bugün</string>
     <string name="refresh_at">Son güncelleme</string>
@@ -29,7 +28,6 @@
     <string name="of_clock">:00</string>
     <string name="yesterday">Dün</string>
     <string name="tomorrow">Yarın</string>
-    <string name="week">Hafta</string>
     <string name="week_1">PZT</string>
     <string name="week_2">SAL</string>
     <string name="week_3">ÇRŞ</string>
@@ -55,7 +53,7 @@
     <string name="daily_overview">günlük</string>
     <string name="hourly_overview">saatlik</string>
     <string name="air_quality">hava kalitesi</string>
-    <string name="life_details">Detaylar</string>
+    <string name="details">Detaylar</string>
     <string name="sunrise_sunset">Güneş &amp; ay</string>
 
     <string name="next">SONRAKİ</string>
@@ -65,9 +63,7 @@
     <string name="off">KAPAT</string>
 
     <string name="about_app">HAKKINDA</string>
-    <string name="introduce">Giriş</string>
     <string name="email">E-posta</string>
-    <string name="gitHub">GitHub</string>
     <string name="thanks">TŞK</string>
     <string name="translator">Çevirmenler</string>
 

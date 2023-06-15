@@ -37,7 +37,7 @@ public class CardDisplayTest {
 
     @Test
     public void toCardDisplayList() {
-        String value = "daily_overview&hourly_overview&air_quality&allergen&life_details&sunrise_sunset";
+        String value = "daily_overview&hourly_overview&air_quality&allergen&sunrise_sunset&live";
 
         List<CardDisplay> list = CardDisplay.toCardDisplayList(value);
 
@@ -45,8 +45,8 @@ public class CardDisplayTest {
         assertEquals(list.get(1), CardDisplay.CARD_HOURLY_OVERVIEW);
         assertEquals(list.get(2), CardDisplay.CARD_AIR_QUALITY);
         assertEquals(list.get(3), CardDisplay.CARD_ALLERGEN);
-        assertEquals(list.get(4), CardDisplay.CARD_LIFE_DETAILS);
-        assertEquals(list.get(5), CardDisplay.CARD_SUNRISE_SUNSET);
+        assertEquals(list.get(4), CardDisplay.CARD_SUNRISE_SUNSET);
+        assertEquals(list.get(5), CardDisplay.CARD_LIVE);
     }
 
     @Test
@@ -56,10 +56,10 @@ public class CardDisplayTest {
         list.add(CardDisplay.CARD_HOURLY_OVERVIEW);
         list.add(CardDisplay.CARD_AIR_QUALITY);
         list.add(CardDisplay.CARD_ALLERGEN);
-        list.add(CardDisplay.CARD_LIFE_DETAILS);
         list.add(CardDisplay.CARD_SUNRISE_SUNSET);
+        list.add(CardDisplay.CARD_LIVE);
 
-        String value = "daily_overview&hourly_overview&air_quality&allergen&life_details&sunrise_sunset";
+        String value = "daily_overview&hourly_overview&air_quality&allergen&sunrise_sunset&live";
 
         assertEquals(CardDisplay.toValue(list), value);
     }
@@ -74,8 +74,8 @@ public class CardDisplayTest {
         list.add(CardDisplay.CARD_HOURLY_OVERVIEW);
         list.add(CardDisplay.CARD_AIR_QUALITY);
         list.add(CardDisplay.CARD_ALLERGEN);
-        list.add(CardDisplay.CARD_LIFE_DETAILS);
         list.add(CardDisplay.CARD_SUNRISE_SUNSET);
+        list.add(CardDisplay.CARD_LIVE);
 
         String value = "Name, Name, Name, Name, Name, Name";
 

@@ -6,7 +6,6 @@
     <!-- keyword. -->
     <string name="current_location">Posizione automatica</string>
     <string name="resident_location">Posizione residente</string>
-    <string name="default_location">Posizione predefinita</string>
     <string name="live">Attualmente</string>
     <string name="today">Oggi</string>
     <string name="refresh_at">Aggiornato il</string>
@@ -52,7 +51,6 @@
     <string name="of_clock">:00</string>
     <string name="yesterday">ieri</string>
     <string name="tomorrow">domani</string>
-    <string name="week">settimana</string>
     <string name="week_1">Lun</string>
     <string name="week_2">Mar</string>
     <string name="week_3">Mer</string>
@@ -113,7 +111,7 @@
     <string name="precipitation_overview">Previsioni di precipitazioni</string>
     <string name="air_quality">Qualità dell\'aria</string>
     <string name="allergen">Allergene</string>
-    <string name="life_details">Dettagli</string>
+    <string name="details">Dettagli</string>
     <string name="sunrise_sunset">Sole e Luna</string>
 
     <string name="next">AVANTI</string>
@@ -125,13 +123,8 @@
     <string name="help">AIUTO</string>
     <string name="learn_more">ALTRE INFORMAZIONI</string>
 
-    <string name="filter_weather_sources">Filtro</string>
-
     <string name="about_app">Info sull\'app</string>
-    <string name="introduce">introduce</string>
     <string name="email">E-mail</string>
-    <string name="donate">Donazioni</string>
-    <string name="gitHub">GitHub</string>
     <string name="contributor">Contributori</string>
     <string name="translator">Traduttori</string>
     <string name="thanks">Ringraziamenti</string>
@@ -362,7 +355,6 @@
     <string name="content_des_swipe_right_to_delete">Puoi scorrere il dito verso destra per eliminare questa voce</string>
     <string name="content_desc_search_filter_on">Mostra solo le località della fonte meteo predefinita</string>
     <string name="content_desc_search_filter_off">Mostra le posizioni da tutte le fonti meteo</string>
-    <string name="content_desc_wechat_payment_code">Codice QR di pagamento di wechat</string>
     <string name="settings_title_week_icon_mode">Modalità icone settimanali</string>
     <string name="settings_title_precipitation_notification_switch">Invia le previsioni di precipitazione</string>
     <string name="settings_title_speed_unit">Unità di velocità</string>

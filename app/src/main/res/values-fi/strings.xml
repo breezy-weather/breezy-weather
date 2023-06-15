@@ -7,7 +7,6 @@
     <!-- keyword. -->
     <string name="current_location">Nykyinen sijainti</string>
     <string name="resident_location">Asuinpaikka</string>
-    <string name="default_location">Oletussijainti</string>
     <string name="live">Nyt</string>
     <string name="today">Tänään</string>
     <string name="refresh_at">Päivitetty</string>
@@ -53,7 +52,6 @@
     <string name="of_clock">:00</string>
     <string name="yesterday">eilen</string>
     <string name="tomorrow">huomenna</string>
-    <string name="week">viikko</string>
     <string name="week_1">Ma</string>
     <string name="week_2">Ti</string>
     <string name="week_3">Ke</string>
@@ -114,7 +112,7 @@
     <string name="precipitation_overview">Sade-ennuste</string>
     <string name="air_quality">Ilmanlaatu</string>
     <string name="allergen">Allergeenit</string>
-    <string name="life_details">Lisätietoja</string>
+    <string name="details">Lisätietoja</string>
     <string name="sunrise_sunset">Aurinko &amp; kuu</string>
 
     <string name="next">SEURAAVA</string>
@@ -126,18 +124,10 @@
     <string name="help">OHJE</string>
     <string name="learn_more">LUE LISÄÄ</string>
 
-    <string name="filter_weather_sources">Suodata</string>
-
     <string name="about_app">TIETOJA SOVELLUKSESTA</string>
-    <string name="introduce">esittely</string>
     <string name="email">Sähköposti</string>
-    <string name="donate">Lahjoita</string>
-    <string name="gitHub">GitHub</string>
     <string name="translator">Kääntäjät</string>
     <string name="thanks">Kiitos</string>
-
-    <string name="alipay">Alipay</string>
-    <string name="wechat">Wechat</string>
 
     <!-- Date format strings. -->
     <!-- Month : MMM(long) / M(short). -->
@@ -148,13 +138,6 @@
     <string name="date_format_widget_short">EEEE, MMM d</string>
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
-
-    <!-- Do not translate the following set of strings. -->
-    <string name="tag_temperature">@string/temperature</string>
-    <string name="tag_wind">@string/wind</string>
-    <string name="tag_precipitation">@string/precipitation</string>
-    <string name="tag_aqi">@string/air_quality</string>
-    <string name="tag_uv">@string/uv_index</string>
 
     <!-- feedback. -->
     <string name="feedback_request_permission">Käyttöoikeudet</string>
@@ -305,7 +288,6 @@
     <string name="content_desc_search_filter_on">Näytä vain oletussäälähteen sijainnit</string>
     <string name="content_desc_search_filter_off">Näytä kaikkien säälähteiden sijainnit</string>
     <string name="content_desc_app_store">@string/action_appStore</string>
-    <string name="content_desc_wechat_payment_code">Tukimaksun QR-koodi wechatille</string>
     <string name="content_desc_weather_icon">Sää kuvake</string>
     <string name="content_desc_weather_icon_light">Vaalea kuvake</string>
     <string name="content_desc_weather_icon_grey">Harmaa kuvake</string>

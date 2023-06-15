@@ -6,7 +6,6 @@
     <!-- keyword. -->
     <string name="current_location">当前位置</string>
     <string name="resident_location">常驻位置</string>
-    <string name="default_location">默认位置</string>
     <string name="live">实时</string>
     <string name="today">今日</string>
     <string name="refresh_at">更新于</string>
@@ -51,7 +50,6 @@
     <string name="of_clock">时</string>
     <string name="yesterday">昨日</string>
     <string name="tomorrow">明日</string>
-    <string name="week">周</string>
     <string name="week_1">周一</string>
     <string name="week_2">周二</string>
     <string name="week_3">周三</string>
@@ -127,37 +125,37 @@
     <string name="precipitation_overview">降水概览</string>
     <string name="air_quality">空气质量</string>
     <string name="allergen">过敏原</string>
-    <string name="life_details">详情数据</string>
+    <string name="details">详情数据</string>
     <string name="sunrise_sunset">日月升落</string>
 
-    <string name="weather_text_clear_sky">无云</string>
-    <string name="weather_text_mainly_clear">基本无云</string>
-    <string name="weather_text_partly_cloudy">有云</string>
-    <string name="weather_text_overcast">阴天</string>
-    <string name="weather_text_fog">雾</string>
-    <string name="weather_text_depositing_rime_fog">沉积雾凇</string>
-    <string name="weather_text_drizzle_light_intensity">轻微的毛毛雨</string>
-    <string name="weather_text_drizzle_moderate_intensity">中等强度的毛毛雨</string>
-    <string name="weather_text_drizzle_dense_intensity">密集的毛雨</string>
-    <string name="weather_text_freezing_drizzle_light_intensity">轻微的冻毛雨</string>
-    <string name="weather_text_freezing_drizzle_dense_intensity">密集的冻毛雨</string>
-    <string name="weather_text_rain_slight_intensity">小雨</string>
-    <string name="weather_text_rain_moderate_intensity">中雨</string>
-    <string name="weather_text_rain_heavy_intensity">大雨</string>
-    <string name="weather_text_freezing_rain_light_intensity">小雨(冻雨)</string>
-    <string name="weather_text_freezing_rain_heavy_intensity">大雨(冻雨)</string>
-    <string name="weather_text_snow_slight_intensity">小雪</string>
-    <string name="weather_text_snow_moderate_intensity">中雪</string>
-    <string name="weather_text_snow_heavy_intensity">大雪</string>
-    <string name="weather_text_snow_grains">雪籽</string>
-    <string name="weather_text_rain_showers_slight">小雨(阵雨)</string>
-    <string name="weather_text_rain_showers_moderate">中雨(阵雨)</string>
-    <string name="weather_text_rain_showers_violent">大雨(阵雨)</string>
-    <string name="weather_text_snow_showers_slight">小雪(阵雪)</string>
-    <string name="weather_text_snow_showers_heavy">大雪(阵雪)</string>
-    <string name="weather_text_thunderstorm_slight_or_moderate">小到中型雷暴</string>
-    <string name="weather_text_thunderstorm_with_slight_hail">雷雨伴有小冰雹</string>
-    <string name="weather_text_thunderstorm_with_heavy_hail">雷雨伴有大冰雹</string>
+    <string name="openmeteo_weather_text_clear_sky">无云</string>
+    <string name="openmeteo_weather_text_mainly_clear">基本无云</string>
+    <string name="openmeteo_weather_text_partly_cloudy">有云</string>
+    <string name="openmeteo_weather_text_overcast">阴天</string>
+    <string name="openmeteo_weather_text_fog">雾</string>
+    <string name="openmeteo_weather_text_depositing_rime_fog">沉积雾凇</string>
+    <string name="openmeteo_weather_text_drizzle_light_intensity">轻微的毛毛雨</string>
+    <string name="openmeteo_weather_text_drizzle_moderate_intensity">中等强度的毛毛雨</string>
+    <string name="openmeteo_weather_text_drizzle_dense_intensity">密集的毛雨</string>
+    <string name="openmeteo_weather_text_freezing_drizzle_light_intensity">轻微的冻毛雨</string>
+    <string name="openmeteo_weather_text_freezing_drizzle_dense_intensity">密集的冻毛雨</string>
+    <string name="openmeteo_weather_text_rain_slight_intensity">小雨</string>
+    <string name="openmeteo_weather_text_rain_moderate_intensity">中雨</string>
+    <string name="openmeteo_weather_text_rain_heavy_intensity">大雨</string>
+    <string name="openmeteo_weather_text_freezing_rain_light_intensity">小雨(冻雨)</string>
+    <string name="openmeteo_weather_text_freezing_rain_heavy_intensity">大雨(冻雨)</string>
+    <string name="openmeteo_weather_text_snow_slight_intensity">小雪</string>
+    <string name="openmeteo_weather_text_snow_moderate_intensity">中雪</string>
+    <string name="openmeteo_weather_text_snow_heavy_intensity">大雪</string>
+    <string name="openmeteo_weather_text_snow_grains">雪籽</string>
+    <string name="openmeteo_weather_text_rain_showers_slight">小雨(阵雨)</string>
+    <string name="openmeteo_weather_text_rain_showers_moderate">中雨(阵雨)</string>
+    <string name="openmeteo_weather_text_rain_showers_violent">大雨(阵雨)</string>
+    <string name="openmeteo_weather_text_snow_showers_slight">小雪(阵雪)</string>
+    <string name="openmeteo_weather_text_snow_showers_heavy">大雪(阵雪)</string>
+    <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">小到中型雷暴</string>
+    <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">雷雨伴有小冰雹</string>
+    <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">雷雨伴有大冰雹</string>
     <string name="next">下一步</string>
     <string name="done">完成</string>
     <string name="cancel">取消</string>
@@ -167,30 +165,17 @@
     <string name="help">帮助</string>
     <string name="learn_more">了解更多</string>
 
-    <string name="filter_weather_sources">筛选</string>
-
     <string name="about_app">概览</string>
-    <string name="introduce">介绍</string>
     <string name="email">E-mail</string>
-    <string name="donate">捐赠</string>
-    <string name="gitHub">GitHub</string>
     <string name="contributor">贡献者</string>
     <string name="translator">译者</string>
     <string name="thanks">鸣谢</string>
-
-    <string name="alipay">支付宝</string>
-    <string name="wechat">微信</string>
 
     <string name="date_format_short">M-d</string>
     <string name="date_format_long">M月d日</string>
     <string name="date_format_widget_short">MM-dd EEE</string>
     <string name="date_format_widget_long">M月d日 EEEE</string>
     <string name="date_format_widget_oreo_style">M月d日EEEE │ </string>
-
-    <string name="tag_temperature">@string/temperature</string>
-    <string name="tag_wind">@string/wind</string>
-    <string name="tag_aqi">@string/air_quality</string>
-    <string name="tag_uv">@string/uv_index</string>
 
     <!-- feedback. -->
     <string name="feedback_request_permission">授权</string>
@@ -340,7 +325,6 @@
     <string name="content_des_swipe_right_to_delete">你可以向右滑动以删除该项</string>
     <string name="content_desc_search_filter_on">仅显示默认天气源的地址</string>
     <string name="content_desc_search_filter_off">显示所有天气源的地址</string>
-    <string name="content_desc_wechat_payment_code">微信付款二维码</string>
     <string name="content_desc_weather_icon">天气图标</string>
     <string name="content_desc_weather_icon_light">亮色图标</string>
     <string name="content_desc_weather_icon_grey">灰色图标</string>

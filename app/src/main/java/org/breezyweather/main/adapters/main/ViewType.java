@@ -8,6 +8,6 @@ public interface ViewType {
     int AIR_QUALITY = 3;
     int ALLERGEN = 4;
     int ASTRO = 5;
-    int DETAILS = 6;
+    int LIVE = 6;
     int FOOTER = -1;
 }

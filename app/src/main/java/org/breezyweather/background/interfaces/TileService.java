@@ -17,8 +17,8 @@ import org.breezyweather.settings.SettingsManager;
 
 /**
  * Tile service.
- * */
-
+ * TODO: Memory leak
+ **/
 @RequiresApi(api = Build.VERSION_CODES.N)
 public class TileService extends android.service.quicksettings.TileService {
 
