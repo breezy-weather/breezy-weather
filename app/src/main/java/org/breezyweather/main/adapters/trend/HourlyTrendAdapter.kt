@@ -5,13 +5,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
+import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.main.adapters.trend.hourly.*
 import org.breezyweather.settings.SettingsManager
+import org.breezyweather.theme.resource.ResourcesProviderFactory
 
 @SuppressLint("NotifyDataSetChanged")
 class HourlyTrendAdapter(
     private val activity: GeoActivity,
-    private val host: org.breezyweather.common.ui.widgets.trend.TrendRecyclerView,
+    private val host: TrendRecyclerView,
 ) : RecyclerView.Adapter<AbsHourlyTrendAdapter.ViewHolder>() {
 
     var adapters: Array<AbsHourlyTrendAdapter> = emptyArray()
@@ -25,7 +27,7 @@ class HourlyTrendAdapter(
     private var selectedIndexCache = -1
 
     fun bindData(location: Location) {
-        val provider = org.breezyweather.theme.resource.ResourcesProviderFactory.getNewInstance()
+        val provider = ResourcesProviderFactory.getNewInstance()
 
         adapters = arrayOf(
             HourlyTemperatureAdapter(

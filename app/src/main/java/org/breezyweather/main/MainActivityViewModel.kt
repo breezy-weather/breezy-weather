@@ -12,9 +12,11 @@ import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import org.breezyweather.common.basic.GeoViewModel
 import org.breezyweather.common.basic.livedata.BusLiveData
 import org.breezyweather.common.basic.livedata.EqualtableLiveData
 import org.breezyweather.common.basic.models.Location
+import org.breezyweather.main.utils.StatementManager
 import org.breezyweather.settings.SettingsManager
 import javax.inject.Inject
 
@@ -23,8 +25,8 @@ class MainActivityViewModel @Inject constructor(
     application: Application,
     private val savedStateHandle: SavedStateHandle,
     private val repository: MainActivityRepository,
-    val statementManager: org.breezyweather.main.utils.StatementManager,
-) : org.breezyweather.common.basic.GeoViewModel(application),
+    val statementManager: StatementManager,
+) : GeoViewModel(application),
     MainActivityRepository.WeatherRequestCallback {
 
     // live data.

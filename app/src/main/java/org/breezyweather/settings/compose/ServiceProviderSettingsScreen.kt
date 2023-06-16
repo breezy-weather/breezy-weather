@@ -11,6 +11,7 @@ import org.breezyweather.BreezyWeather.Companion.instance
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.provider.LocationProvider
 import org.breezyweather.common.basic.models.options.provider.WeatherSource
+import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.db.repositories.LocationEntityRepository
 import org.breezyweather.db.repositories.WeatherEntityRepository
 import org.breezyweather.settings.SettingsManager
@@ -79,7 +80,7 @@ fun ServiceProviderSettingsScreen(
                     .getInstance(context)
                     .locationProvider = LocationProvider.getInstance(sourceId)
 
-                org.breezyweather.common.utils.helpers.SnackbarHelper.showSnackbar(
+                SnackbarHelper.showSnackbar(
                     context.getString(R.string.feedback_restart),
                     context.getString(R.string.restart)
                 ) {

@@ -1,4 +1,4 @@
-package org.breezyweather.common.ui.decotarions;
+package org.breezyweather.common.ui.decorations;
 
 import android.content.Context;
 import android.graphics.Rect;

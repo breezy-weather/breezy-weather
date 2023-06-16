@@ -5,7 +5,10 @@ import org.breezyweather.common.basic.models.options.provider.WeatherSource
 import org.breezyweather.common.basic.models.weather.Weather
 import org.breezyweather.db.ObjectBox.boxStore
 import org.breezyweather.db.converters.WeatherSourceConverter
+import org.breezyweather.db.entities.WeatherEntity
 import org.breezyweather.db.entities.WeatherEntity_
+import org.breezyweather.db.generators.AlertEntityGenerator
+import org.breezyweather.db.generators.MinutelyEntityGenerator
 import org.breezyweather.db.generators.generate
 import org.breezyweather.db.generators.generateEntityList
 
@@ -30,14 +33,14 @@ object WeatherEntityRepository {
                 )
             )
             MinutelyEntityRepository.insertMinutelyList(
-                org.breezyweather.db.generators.MinutelyEntityGenerator.generate(
+                MinutelyEntityGenerator.generate(
                     location.cityId,
                     location.weatherSource,
                     weather.minutelyForecast
                 )
             )
             AlertEntityRepository.insertAlertList(
-                org.breezyweather.db.generators.AlertEntityGenerator.generate(
+                AlertEntityGenerator.generate(
                     location.cityId,
                     location.weatherSource,
                     weather.alertList
@@ -61,8 +64,8 @@ object WeatherEntityRepository {
         }
     }
 
-    fun insertWeatherEntity(entity: org.breezyweather.db.entities.WeatherEntity) {
-        boxStore.boxFor(org.breezyweather.db.entities.WeatherEntity::class.java).put(entity)
+    fun insertWeatherEntity(entity: WeatherEntity) {
+        boxStore.boxFor(WeatherEntity::class.java).put(entity)
     }
 
     // delete.
@@ -108,8 +111,8 @@ object WeatherEntityRepository {
         }
     }
 
-    fun deleteWeather(entityList: List<org.breezyweather.db.entities.WeatherEntity>) {
-        boxStore.boxFor(org.breezyweather.db.entities.WeatherEntity::class.java).remove(entityList)
+    fun deleteWeather(entityList: List<WeatherEntity>) {
+        boxStore.boxFor(WeatherEntity::class.java).remove(entityList)
     }
 
     // select.
@@ -121,13 +124,13 @@ object WeatherEntityRepository {
         return generate(weatherEntity, historyEntity, boxStore)
     }
 
-    fun selectWeatherEntity(cityId: String, source: WeatherSource): org.breezyweather.db.entities.WeatherEntity? {
+    fun selectWeatherEntity(cityId: String, source: WeatherSource): WeatherEntity? {
         val entityList = selectWeatherEntityList(cityId, source)
         return if (entityList.isEmpty()) null else entityList[0]
     }
 
-    fun selectWeatherEntityList(cityId: String, source: WeatherSource): List<org.breezyweather.db.entities.WeatherEntity> {
-        val query = boxStore.boxFor(org.breezyweather.db.entities.WeatherEntity::class.java)
+    fun selectWeatherEntityList(cityId: String, source: WeatherSource): List<WeatherEntity> {
+        val query = boxStore.boxFor(WeatherEntity::class.java)
             .query(
                 WeatherEntity_.cityId.equal(cityId)
                     .and(

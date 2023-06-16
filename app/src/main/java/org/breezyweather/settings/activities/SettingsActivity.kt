@@ -28,6 +28,7 @@ import org.breezyweather.common.bus.EventBus
 import org.breezyweather.common.ui.widgets.Material3Scaffold
 import org.breezyweather.common.ui.widgets.generateCollapsedScrollBehavior
 import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
+import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.settings.SettingsChangedMessage
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.compose.AppearanceSettingsScreen
@@ -111,7 +112,7 @@ class SettingsActivity : GeoActivity() {
                     actions = {
                         IconButton(
                             onClick = {
-                                org.breezyweather.common.utils.helpers.IntentHelper.startAboutActivity(this@SettingsActivity)
+                                IntentHelper.startAboutActivity(this@SettingsActivity)
                             }
                         ) {
                             Icon(

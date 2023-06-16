@@ -4,6 +4,7 @@ import android.content.Context
 import org.breezyweather.BreezyWeather.Companion.instance
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.*
+import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.weather.json.metno.MetNoForecastResult
 import org.breezyweather.weather.json.metno.MetNoEphemerisTime
 import org.breezyweather.weather.json.metno.MetNoEphemerisResult
@@ -70,12 +71,12 @@ fun convert(
             )
 
             // We shift by 6 hours the hourly date, otherwise nighttime (00:00 to 05:59) would be on the wrong day
-            val theDayAtMidnight = org.breezyweather.common.utils.DisplayUtils.toTimezoneNoHour(
+            val theDayAtMidnight = DisplayUtils.toTimezoneNoHour(
                 Date(hourlyForecast.time.time - (6 * 3600 * 1000)),
                 location.timeZone
             )
             val theDayFormatted =
-                org.breezyweather.common.utils.DisplayUtils.getFormattedDate(theDayAtMidnight, location.timeZone, "yyyy-MM-dd")
+                DisplayUtils.getFormattedDate(theDayAtMidnight, location.timeZone, "yyyy-MM-dd")
             if (!hourlyByHalfDay.containsKey(theDayFormatted)) {
                 hourlyByHalfDay[theDayFormatted] = hashMapOf(
                     "day" to ArrayList(),
@@ -149,9 +150,9 @@ private fun getDailyList(
     hourlyListByHalfDay: Map<String, Map<String, MutableList<Hourly>>>
 ): List<Daily> {
     val dailyList: MutableList<Daily> = ArrayList()
-    val hourlyListByDay = hourlyList.groupBy { org.breezyweather.common.utils.DisplayUtils.getFormattedDate(it.date, timeZone, "yyyy-MM-dd") }
+    val hourlyListByDay = hourlyList.groupBy { DisplayUtils.getFormattedDate(it.date, timeZone, "yyyy-MM-dd") }
     for (day in hourlyListByDay.entries) {
-        val dayDate = org.breezyweather.common.utils.DisplayUtils.toDateNoHour(timeZone, day.key)
+        val dayDate = DisplayUtils.toDateNoHour(timeZone, day.key)
         val ephemerisInfo = ephemerisTimeResults?.firstOrNull { it.date == day.key }
 
         dailyList.add(

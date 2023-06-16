@@ -32,6 +32,9 @@ import org.breezyweather.db.repositories.WeatherEntityRepository
 import org.breezyweather.theme.compose.DayNightTheme
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 import org.breezyweather.R
+import org.breezyweather.common.basic.models.weather.Alert
+import org.breezyweather.common.utils.DisplayUtils
+import org.breezyweather.common.utils.helpers.AsyncHelper
 import java.util.*
 
 class AlertActivity : GeoActivity() {
@@ -50,10 +53,10 @@ class AlertActivity : GeoActivity() {
         }
     }
 
-    private fun getAlertDate(context: Context, alert: org.breezyweather.common.basic.models.weather.Alert, timeZone: TimeZone): String {
+    private fun getAlertDate(context: Context, alert: Alert, timeZone: TimeZone): String {
         val builder = StringBuilder()
         if (alert.startDate != null) {
-            val startDateDay = org.breezyweather.common.utils.DisplayUtils.getFormattedDate(
+            val startDateDay = DisplayUtils.getFormattedDate(
                 alert.startDate,
                 timeZone,
                 context.getString(R.string.date_format_long)
@@ -61,15 +64,15 @@ class AlertActivity : GeoActivity() {
             builder.append(startDateDay)
                 .append(", ")
                 .append(
-                    org.breezyweather.common.utils.DisplayUtils.getFormattedDate(
+                    DisplayUtils.getFormattedDate(
                         alert.startDate,
                         timeZone,
-                        if (org.breezyweather.common.utils.DisplayUtils.is12Hour(context)) "h:mm aa" else "HH:mm"
+                        if (DisplayUtils.is12Hour(context)) "h:mm aa" else "HH:mm"
                     )
                 )
             if (alert.endDate != null) {
                 builder.append(" — ")
-                val endDateDay = org.breezyweather.common.utils.DisplayUtils.getFormattedDate(
+                val endDateDay = DisplayUtils.getFormattedDate(
                     alert.endDate,
                     timeZone,
                     context.getString(R.string.date_format_long)
@@ -79,10 +82,10 @@ class AlertActivity : GeoActivity() {
                         .append(", ")
                 }
                 builder.append(
-                    org.breezyweather.common.utils.DisplayUtils.getFormattedDate(
+                    DisplayUtils.getFormattedDate(
                         alert.endDate,
                         timeZone,
-                        if (org.breezyweather.common.utils.DisplayUtils.is12Hour(context)) "h:mm aa" else "HH:mm"
+                        if (DisplayUtils.is12Hour(context)) "h:mm aa" else "HH:mm"
                     )
                 )
             }
@@ -92,12 +95,12 @@ class AlertActivity : GeoActivity() {
 
     @Composable
     private fun ContentView() {
-        val alertList = remember { mutableStateOf(emptyList<org.breezyweather.common.basic.models.weather.Alert>()) }
+        val alertList = remember { mutableStateOf(emptyList<Alert>()) }
         val timeZone = remember { mutableStateOf(TimeZone.getDefault()) }
         val context = LocalContext.current
 
         val formattedId = intent.getStringExtra(KEY_FORMATTED_ID)
-        org.breezyweather.common.utils.helpers.AsyncHelper.runOnIO({ emitter ->
+        AsyncHelper.runOnIO({ emitter ->
             var location: Location? = null
             if (!formattedId.isNullOrEmpty()) {
                 location = LocationEntityRepository.readLocation(formattedId)
@@ -108,7 +111,7 @@ class AlertActivity : GeoActivity() {
             val weather = WeatherEntityRepository.readWeather(location)
 
             emitter.send(Pair(location.timeZone, weather?.alertList ?: emptyList()), true)
-        }) { result: Pair<TimeZone, List<org.breezyweather.common.basic.models.weather.Alert>>?, _ ->
+        }) { result: Pair<TimeZone, List<Alert>>?, _ ->
             result?.let {
                 timeZone.value = it.first
                 alertList.value = it.second

@@ -19,23 +19,31 @@ import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.livedata.EqualtableLiveData
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimationMode
+import org.breezyweather.common.ui.widgets.SwipeSwitchLayout
 import org.breezyweather.common.ui.widgets.SwipeSwitchLayout.OnSwitchListener
 import org.breezyweather.databinding.FragmentHomeBinding
 import org.breezyweather.main.MainActivityViewModel
+import org.breezyweather.main.adapters.main.MainAdapter
+import org.breezyweather.main.layouts.MainLayoutManager
+import org.breezyweather.main.utils.MainModuleUtils
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.ThemeManager
+import org.breezyweather.theme.resource.ResourcesProviderFactory
+import org.breezyweather.theme.resource.providers.ResourceProvider
+import org.breezyweather.theme.weatherView.WeatherView
+import org.breezyweather.theme.weatherView.WeatherViewController
 
 class HomeFragment : MainModuleFragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var viewModel: MainActivityViewModel
-    private lateinit var weatherView: org.breezyweather.theme.weatherView.WeatherView
+    private lateinit var weatherView: WeatherView
 
-    private var adapter: org.breezyweather.main.adapters.main.MainAdapter? = null
+    private var adapter: MainAdapter? = null
     private var scrollListener: OnScrollListener? = null
     private var recyclerViewAnimator: Animator? = null
-    private var resourceProvider: org.breezyweather.theme.resource.providers.ResourceProvider? = null
+    private var resourceProvider: ResourceProvider? = null
 
     private val previewOffset = EqualtableLiveData(0)
     private var callback: Callback? = null
@@ -175,7 +183,7 @@ class HomeFragment : MainModuleFragment() {
         val itemAnimationEnabled = SettingsManager
             .getInstance(requireContext())
             .isItemAnimationEnabled
-        adapter = org.breezyweather.main.adapters.main.MainAdapter(
+        adapter = MainAdapter(
             (requireActivity() as GeoActivity),
             binding.recyclerView,
             weatherView,
@@ -185,7 +193,7 @@ class HomeFragment : MainModuleFragment() {
             itemAnimationEnabled
         )
         binding.recyclerView.adapter = adapter
-        binding.recyclerView.layoutManager = org.breezyweather.main.layouts.MainLayoutManager()
+        binding.recyclerView.layoutManager = MainLayoutManager()
         binding.recyclerView.addOnScrollListener(OnScrollListener().also { scrollListener = it })
         binding.recyclerView.setOnTouchListener(indicatorStateListener)
 
@@ -289,7 +297,7 @@ class HomeFragment : MainModuleFragment() {
 
         if (!listAnimationEnabled) {
             binding.recyclerView.alpha = 0f
-            recyclerViewAnimator = org.breezyweather.main.utils.MainModuleUtils.getEnterAnimator(
+            recyclerViewAnimator = MainModuleUtils.getEnterAnimator(
                 binding.recyclerView,
                 0
             )
@@ -304,7 +312,7 @@ class HomeFragment : MainModuleFragment() {
             .iconProvider
         if (resourceProvider == null
             || resourceProvider!!.packageName != iconProvider) {
-            resourceProvider = org.breezyweather.theme.resource.ResourcesProviderFactory.getNewInstance()
+            resourceProvider = ResourcesProviderFactory.getNewInstance()
         }
     }
 
@@ -315,7 +323,7 @@ class HomeFragment : MainModuleFragment() {
         val daylight = location.isDaylight
 
         binding.toolbar.title = location.getCityName(requireContext())
-        org.breezyweather.theme.weatherView.WeatherViewController.setWeatherCode(
+        WeatherViewController.setWeatherCode(
             weatherView,
             location.weather,
             daylight,
@@ -327,7 +335,7 @@ class HomeFragment : MainModuleFragment() {
                 .weatherThemeDelegate
                 .getThemeColors(
                     requireContext(),
-                    org.breezyweather.theme.weatherView.WeatherViewController.getWeatherKind(location.weather),
+                    WeatherViewController.getWeatherKind(location.weather),
                     daylight
                 )[0]
         )
@@ -369,7 +377,7 @@ class HomeFragment : MainModuleFragment() {
 
             if (progress >= 1) {
                 previewOffset.setValue(
-                    if (swipeDirection == org.breezyweather.common.ui.widgets.SwipeSwitchLayout.SWIPE_DIRECTION_LEFT) 1 else -1
+                    if (swipeDirection == SwipeSwitchLayout.SWIPE_DIRECTION_LEFT) 1 else -1
                 )
             } else {
                 previewOffset.setValue(0)
@@ -380,7 +388,7 @@ class HomeFragment : MainModuleFragment() {
             binding.indicator.setDisplayState(false)
 
             viewModel.offsetLocation(
-                if (swipeDirection == org.breezyweather.common.ui.widgets.SwipeSwitchLayout.SWIPE_DIRECTION_LEFT) 1 else -1
+                if (swipeDirection == SwipeSwitchLayout.SWIPE_DIRECTION_LEFT) 1 else -1
             )
             previewOffset.setValue(0)
         }

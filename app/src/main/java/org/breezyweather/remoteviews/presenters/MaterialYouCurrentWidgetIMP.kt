@@ -11,6 +11,8 @@ import org.breezyweather.background.receiver.widget.WidgetMaterialYouCurrentProv
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.NotificationTextColor
 import org.breezyweather.settings.SettingsManager
+import org.breezyweather.theme.resource.ResourceHelper
+import org.breezyweather.theme.resource.ResourcesProviderFactory
 
 class MaterialYouCurrentWidgetIMP: AbstractRemoteViewsPresenter() {
 
@@ -52,7 +54,7 @@ private fun buildRemoteViews(
     val weather = location.weather
     val dayTime = location.isDaylight
 
-    val provider = org.breezyweather.theme.resource.ResourcesProviderFactory.getNewInstance()
+    val provider = ResourcesProviderFactory.getNewInstance()
 
     val settings = SettingsManager.getInstance(context)
     val temperatureUnit = settings.temperatureUnit
@@ -65,7 +67,7 @@ private fun buildRemoteViews(
     if (weather.current.weatherCode != null) {
         views.setImageViewUri(
             R.id.widget_material_you_current_currentIcon,
-            org.breezyweather.theme.resource.ResourceHelper.getWidgetNotificationIconUri(
+            ResourceHelper.getWidgetNotificationIconUri(
                 provider,
                 weather.current.weatherCode,
                 dayTime,

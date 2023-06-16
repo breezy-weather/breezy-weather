@@ -11,9 +11,10 @@ import org.breezyweather.common.basic.models.weather.Weather
 import org.breezyweather.common.basic.models.weather.Wind
 import org.breezyweather.db.converters.WeatherSourceConverter
 import org.breezyweather.db.entities.HistoryEntity
+import org.breezyweather.db.entities.WeatherEntity
 
-fun generate(location: Location, weather: Weather): org.breezyweather.db.entities.WeatherEntity {
-    val entity = org.breezyweather.db.entities.WeatherEntity()
+fun generate(location: Location, weather: Weather): WeatherEntity {
+    val entity = WeatherEntity()
 
     // base.
     entity.cityId = weather.base.cityId
@@ -64,7 +65,7 @@ fun generate(location: Location, weather: Weather): org.breezyweather.db.entitie
 }
 
 fun generate(
-    weatherEntity: org.breezyweather.db.entities.WeatherEntity?,
+    weatherEntity: WeatherEntity?,
     historyEntity: HistoryEntity?,
     boxStore: BoxStore?
 ): Weather? {

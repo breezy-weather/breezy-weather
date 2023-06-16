@@ -16,15 +16,26 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import org.breezyweather.R
+import org.breezyweather.background.polling.PollingManager
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.bus.EventBus
+import org.breezyweather.common.snackbar.SnackbarContainer
+import org.breezyweather.common.utils.helpers.AsyncHelper
+import org.breezyweather.common.utils.helpers.IntentHelper
+import org.breezyweather.common.utils.helpers.ShortcutsHelper
+import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.databinding.ActivityMainBinding
+import org.breezyweather.main.dialogs.ApiLimitReachedHelp
+import org.breezyweather.main.dialogs.ApiUnauthorizedHelp
+import org.breezyweather.main.dialogs.LocationHelpDialog
 import org.breezyweather.main.fragments.HomeFragment
 import org.breezyweather.main.fragments.ManagementFragment
 import org.breezyweather.main.fragments.ModifyMainSystemBarMessage
 import org.breezyweather.main.fragments.PushedManagementFragment
 import org.breezyweather.main.utils.MainThemeColorProvider
+import org.breezyweather.remoteviews.NotificationHelper
+import org.breezyweather.remoteviews.WidgetHelper
 import org.breezyweather.search.SearchActivity
 import org.breezyweather.settings.SettingsChangedMessage
 
@@ -58,7 +69,7 @@ class MainActivity : GeoActivity(),
 
             if (isActivityStarted
                 && it.formattedId == viewModel.currentLocation.value?.location?.formattedId) {
-                org.breezyweather.common.utils.helpers.SnackbarHelper.showSnackbar(getString(R.string.feedback_updated_in_background))
+                SnackbarHelper.showSnackbar(getString(R.string.feedback_updated_in_background))
             }
         }
     }
@@ -103,8 +114,8 @@ class MainActivity : GeoActivity(),
             findHomeFragment()?.updateViews()
 
             // update notification immediately.
-            org.breezyweather.common.utils.helpers.AsyncHelper.runOnIO {
-                org.breezyweather.remoteviews.NotificationHelper.updateNotificationIfNecessary(this, viewModel.validLocationList.value.first)
+            AsyncHelper.runOnIO {
+                NotificationHelper.updateNotificationIfNecessary(this, viewModel.validLocationList.value.first)
             }
             refreshBackgroundViews(
                 resetBackground = true,
@@ -137,7 +148,7 @@ class MainActivity : GeoActivity(),
                 val location: Location? = data.getParcelableExtra(SearchActivity.KEY_LOCATION)
                 if (location != null) {
                     viewModel.addLocation(location, null)
-                    org.breezyweather.common.utils.helpers.SnackbarHelper.showSnackbar(getString(R.string.feedback_collect_succeed))
+                    SnackbarHelper.showSnackbar(getString(R.string.feedback_collect_succeed))
                 }
             }
         }
@@ -162,7 +173,7 @@ class MainActivity : GeoActivity(),
             .removeObserver(backgroundUpdateObserver)
     }
 
-    override val snackbarContainer: org.breezyweather.common.snackbar.SnackbarContainer?
+    override val snackbarContainer: SnackbarContainer?
         get() {
             if (binding.drawerLayout != null) {
                 return super.snackbarContainer
@@ -214,8 +225,8 @@ class MainActivity : GeoActivity(),
                 // collecting when the lifecycle is STOPPED
                 viewModel.validLocationList.collect {
                     // update notification immediately.
-                    org.breezyweather.common.utils.helpers.AsyncHelper.runOnIO {
-                        org.breezyweather.remoteviews.NotificationHelper.updateNotificationIfNecessary(
+                    AsyncHelper.runOnIO {
+                        NotificationHelper.updateNotificationIfNecessary(
                             context,
                             it.first
                         )
@@ -272,32 +283,32 @@ class MainActivity : GeoActivity(),
             it?. let { msg ->
                 when (msg) {
                     MainMessage.LOCATION_FAILED -> {
-                        org.breezyweather.common.utils.helpers.SnackbarHelper.showSnackbar(
+                        SnackbarHelper.showSnackbar(
                             getString(R.string.feedback_location_failed),
                             getString(R.string.help)
                         ) {
-                            org.breezyweather.main.dialogs.LocationHelpDialog.show(this)
+                            LocationHelpDialog.show(this)
                         }
                     }
                     MainMessage.WEATHER_REQ_FAILED -> {
-                        org.breezyweather.common.utils.helpers.SnackbarHelper.showSnackbar(
+                        SnackbarHelper.showSnackbar(
                             getString(R.string.feedback_get_weather_failed)
                         )
                     }
                     MainMessage.API_LIMIT_REACHED -> {
-                        org.breezyweather.common.utils.helpers.SnackbarHelper.showSnackbar(
+                        SnackbarHelper.showSnackbar(
                             getString(R.string.feedback_api_limit_reached),
                             getString(R.string.help)
                         ) {
-                            org.breezyweather.main.dialogs.ApiLimitReachedHelp.show(this)
+                            ApiLimitReachedHelp.show(this)
                         }
                     }
                     MainMessage.API_UNAUTHORIZED -> {
-                        org.breezyweather.common.utils.helpers.SnackbarHelper.showSnackbar(
+                        SnackbarHelper.showSnackbar(
                             getString(R.string.feedback_api_unauthorized),
                             getString(R.string.help)
                         ) {
-                            org.breezyweather.main.dialogs.ApiUnauthorizedHelp.show(this)
+                            ApiUnauthorizedHelp.show(this)
                         }
                     }
                 }
@@ -400,12 +411,12 @@ class MainActivity : GeoActivity(),
         }
         val formattedId = intent.getStringExtra(KEY_MAIN_ACTIVITY_LOCATION_FORMATTED_ID)
         if (ACTION_SHOW_ALERTS == action) {
-            org.breezyweather.common.utils.helpers.IntentHelper.startAlertActivity(this, formattedId)
+            IntentHelper.startAlertActivity(this, formattedId)
             return
         }
         if (ACTION_SHOW_DAILY_FORECAST == action) {
             val index = intent.getIntExtra(KEY_DAILY_INDEX, 0)
-            org.breezyweather.common.utils.helpers.IntentHelper.startDailyWeatherActivity(this, formattedId, index)
+            IntentHelper.startDailyWeatherActivity(this, formattedId, index)
             return
         }
         if (ACTION_MANAGEMENT == action) {
@@ -499,22 +510,22 @@ class MainActivity : GeoActivity(),
 
     private fun refreshBackgroundViews(resetBackground: Boolean, locationList: List<Location>?) {
         if (resetBackground) {
-            org.breezyweather.common.utils.helpers.AsyncHelper.delayRunOnIO({
-                org.breezyweather.background.polling.PollingManager.resetAllBackgroundTask(
+            AsyncHelper.delayRunOnIO({
+                PollingManager.resetAllBackgroundTask(
                     this, false
                 )
             }, 1000)
         }
         locationList?.let {
             if (it.isNotEmpty()) {
-                org.breezyweather.common.utils.helpers.AsyncHelper.delayRunOnIO({
-                    org.breezyweather.remoteviews.WidgetHelper.updateWidgetIfNecessary(this, it[0])
-                    org.breezyweather.remoteviews.NotificationHelper.updateNotificationIfNecessary(this, it)
-                    org.breezyweather.remoteviews.WidgetHelper.updateWidgetIfNecessary(this, it)
+                AsyncHelper.delayRunOnIO({
+                    WidgetHelper.updateWidgetIfNecessary(this, it[0])
+                    NotificationHelper.updateNotificationIfNecessary(this, it)
+                    WidgetHelper.updateWidgetIfNecessary(this, it)
                 }, 1000)
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-                    org.breezyweather.common.utils.helpers.ShortcutsHelper.refreshShortcutsInNewThread(this, it)
+                    ShortcutsHelper.refreshShortcutsInNewThread(this, it)
                 }
             }
         }
@@ -529,16 +540,16 @@ class MainActivity : GeoActivity(),
     }
 
     override fun onSettingsIconClicked() {
-        org.breezyweather.common.utils.helpers.IntentHelper.startSettingsActivity(this)
+        IntentHelper.startSettingsActivity(this)
     }
 
     // management fragment callback.
 
     override fun onSearchBarClicked() {
-        org.breezyweather.common.utils.helpers.IntentHelper.startSearchActivityForResult(this, SEARCH_ACTIVITY)
+        IntentHelper.startSearchActivityForResult(this, SEARCH_ACTIVITY)
     }
 
     override fun onSelectProviderActivityStarted() {
-        org.breezyweather.common.utils.helpers.IntentHelper.startSelectProviderActivity(this)
+        IntentHelper.startSelectProviderActivity(this)
     }
 }

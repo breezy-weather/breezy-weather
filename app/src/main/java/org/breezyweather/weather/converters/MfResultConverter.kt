@@ -4,22 +4,8 @@ import android.content.Context
 import org.breezyweather.BreezyWeather
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.provider.WeatherSource
-import org.breezyweather.common.basic.models.weather.AirQuality
-import org.breezyweather.common.basic.models.weather.Astro
-import org.breezyweather.common.basic.models.weather.Base
-import org.breezyweather.common.basic.models.weather.Current
-import org.breezyweather.common.basic.models.weather.Daily
-import org.breezyweather.common.basic.models.weather.HalfDay
-import org.breezyweather.common.basic.models.weather.Hourly
-import org.breezyweather.common.basic.models.weather.MoonPhase
-import org.breezyweather.common.basic.models.weather.Precipitation
-import org.breezyweather.common.basic.models.weather.PrecipitationProbability
-import org.breezyweather.common.basic.models.weather.Temperature
-import org.breezyweather.common.basic.models.weather.UV
-import org.breezyweather.common.basic.models.weather.Weather
-import org.breezyweather.common.basic.models.weather.WeatherCode
-import org.breezyweather.common.basic.models.weather.Wind
-import org.breezyweather.common.basic.models.weather.WindDegree
+import org.breezyweather.common.basic.models.weather.*
+import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.weather.json.atmoaura.AtmoAuraPointResult
 import org.breezyweather.weather.json.mf.MfCurrentResult
 import org.breezyweather.weather.json.mf.MfEphemeris
@@ -130,12 +116,12 @@ fun convert(
             )
 
             // We shift by 6 hours the hourly date, otherwise nighttime (00:00 to 05:59) would be on the wrong day
-            val theDayAtMidnight = org.breezyweather.common.utils.DisplayUtils.toTimezoneNoHour(
+            val theDayAtMidnight = DisplayUtils.toTimezoneNoHour(
                 Date(hourlyForecast.time.time - (6 * 3600 * 1000)),
                 location.timeZone
             )
             val theDayFormatted =
-                org.breezyweather.common.utils.DisplayUtils.getFormattedDate(theDayAtMidnight, location.timeZone, "yyyyMMdd")
+                DisplayUtils.getFormattedDate(theDayAtMidnight, location.timeZone, "yyyyMMdd")
             if (!hourlyByHalfDay.containsKey(theDayFormatted)) {
                 hourlyByHalfDay[theDayFormatted] = hashMapOf(
                     "day" to ArrayList(),
@@ -209,10 +195,10 @@ private fun getDailyList(
     hourlyListByHalfDay: Map<String, Map<String, MutableList<Hourly>>>
 ): List<Daily> {
     val dailyList: MutableList<Daily> = ArrayList(dailyForecasts.size)
-    val hourlyListByDay = hourlyList.groupBy { org.breezyweather.common.utils.DisplayUtils.getFormattedDate(it.date, timeZone, "yyyyMMdd") }
+    val hourlyListByDay = hourlyList.groupBy { DisplayUtils.getFormattedDate(it.date, timeZone, "yyyyMMdd") }
     for (dailyForecast in dailyForecasts) {
         // Given as UTC, we need to convert in the correct timezone at 00:00
-        val dayInUTCCalendar = org.breezyweather.common.utils.DisplayUtils.toCalendarWithTimeZone(dailyForecast.time, TimeZone.getTimeZone("UTC"))
+        val dayInUTCCalendar = DisplayUtils.toCalendarWithTimeZone(dailyForecast.time, TimeZone.getTimeZone("UTC"))
         val dayInLocalCalendar = Calendar.getInstance(timeZone)
         dayInLocalCalendar[Calendar.YEAR] = dayInUTCCalendar[Calendar.YEAR]
         dayInLocalCalendar[Calendar.MONTH] = dayInUTCCalendar[Calendar.MONTH]
@@ -221,7 +207,7 @@ private fun getDailyList(
         dayInLocalCalendar[Calendar.MINUTE] = 0
         dayInLocalCalendar[Calendar.SECOND] = 0
         val theDayInLocal = dayInLocalCalendar.time
-        val dailyDateFormatted = org.breezyweather.common.utils.DisplayUtils.getFormattedDate(theDayInLocal, timeZone, "yyyyMMdd")
+        val dailyDateFormatted = DisplayUtils.getFormattedDate(theDayInLocal, timeZone, "yyyyMMdd")
         dailyList.add(
             Daily(
                 date = theDayInLocal,
@@ -377,11 +363,11 @@ private fun getHourlyPrecipitationProbability(
     )
 }
 
-private fun getMinutelyList(rainResult: MfRainResult?): List<org.breezyweather.common.basic.models.weather.Minutely> {
-    val minutelyList: MutableList<org.breezyweather.common.basic.models.weather.Minutely> = arrayListOf()
+private fun getMinutelyList(rainResult: MfRainResult?): List<Minutely> {
+    val minutelyList: MutableList<Minutely> = arrayListOf()
     rainResult?.properties?.rainForecasts?.forEachIndexed { i, rainForecast ->
         minutelyList.add(
-            org.breezyweather.common.basic.models.weather.Minutely(
+            Minutely(
                 rainForecast.time,
                 rainForecast.rainIntensityDescription,
                 if (rainForecast.rainIntensity != null && rainForecast.rainIntensity > 1) WeatherCode.RAIN else null,
@@ -398,14 +384,14 @@ private fun getMinutelyList(rainResult: MfRainResult?): List<org.breezyweather.c
     return minutelyList
 }
 
-private fun getWarningsList(warningsResult: MfWarningsResult): List<org.breezyweather.common.basic.models.weather.Alert> {
-    val alertList: MutableList<org.breezyweather.common.basic.models.weather.Alert> = arrayListOf()
+private fun getWarningsList(warningsResult: MfWarningsResult): List<Alert> {
+    val alertList: MutableList<Alert> = arrayListOf()
     warningsResult.timelaps?.forEach { timelaps ->
         timelaps.timelapsItems
             ?.filter { it.colorId > 1 }
             ?.forEach { timelapsItem ->
                 alertList.add(
-                    org.breezyweather.common.basic.models.weather.Alert(
+                    Alert(
                         // Create unique ID from alert type ID concatenated with start time
                         (timelaps.phenomenonId + timelapsItem.beginTime.time.toString()).toLong(),
                         timelapsItem.beginTime,

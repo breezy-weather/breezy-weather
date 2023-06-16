@@ -7,6 +7,8 @@ import android.view.View
 import androidx.annotation.ColorInt
 import androidx.annotation.Size
 import androidx.core.graphics.ColorUtils
+import org.breezyweather.common.ui.widgets.DayNightShaderWrapper
+import org.breezyweather.common.utils.DisplayUtils
 
 private const val POLYLINE_SIZE_DIP = 3.5f
 private const val SHADOW_ALPHA_FACTOR_LIGHT = 0.2f
@@ -50,7 +52,7 @@ class PrecipitationBarBackgroundView(context: Context) : View(context) {
 
     var polylineKeyPoints = emptyArray<PolylineKeyPoint>()
 
-    val polylineWidth = org.breezyweather.common.utils.DisplayUtils.dpToPx(context, POLYLINE_SIZE_DIP)
+    val polylineWidth = DisplayUtils.dpToPx(context, POLYLINE_SIZE_DIP)
 
     private val polylinePaint = Paint().apply {
         strokeCap = Paint.Cap.ROUND
@@ -67,12 +69,11 @@ class PrecipitationBarBackgroundView(context: Context) : View(context) {
     }
     private val polylinePath = Path()
     private val shadowPath = Path()
-    private val shaderWrapper =
-        org.breezyweather.common.ui.widgets.DayNightShaderWrapper(width, height)
+    private val shaderWrapper = DayNightShaderWrapper(width, height)
 
     // measure.
 
-    private fun getLayoutX(xPercent: Float) = if (org.breezyweather.common.utils.DisplayUtils.isRtl(context)) {
+    private fun getLayoutX(xPercent: Float) = if (DisplayUtils.isRtl(context)) {
         (measuredHeight - paddingRight) - (measuredWidth - (paddingLeft + paddingRight)) * xPercent
     } else {
         paddingLeft + (measuredWidth - (paddingLeft + paddingRight)) * xPercent

@@ -5,8 +5,11 @@ import android.graphics.Color
 import android.view.Window
 import androidx.core.graphics.ColorUtils
 import org.breezyweather.R
+import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.theme.weatherView.WeatherThemeDelegate
+import org.breezyweather.theme.weatherView.WeatherView
 import org.breezyweather.theme.weatherView.WeatherView.WeatherKindRule
+import org.breezyweather.theme.weatherView.materialWeatherView.implementor.*
 
 class MaterialWeatherThemeDelegate: WeatherThemeDelegate {
 
@@ -25,51 +28,50 @@ class MaterialWeatherThemeDelegate: WeatherThemeDelegate {
             @WeatherKindRule weatherKind: Int,
             daytime: Boolean
         ): Int = when (weatherKind) {
-            org.breezyweather.theme.weatherView.WeatherView.WEATHER_KIND_CLEAR -> if (daytime) {
-                org.breezyweather.theme.weatherView.materialWeatherView.implementor.SunImplementor.getThemeColor()
+            WeatherView.WEATHER_KIND_CLEAR -> if (daytime) {
+                SunImplementor.getThemeColor()
             } else {
-                org.breezyweather.theme.weatherView.materialWeatherView.implementor.MeteorShowerImplementor.getThemeColor()
+                MeteorShowerImplementor.getThemeColor()
             }
 
-            org.breezyweather.theme.weatherView.WeatherView.WEATHER_KIND_CLOUDY ->
-                org.breezyweather.theme.weatherView.materialWeatherView.implementor.CloudImplementor.getThemeColor(context, org.breezyweather.theme.weatherView.materialWeatherView.implementor.CloudImplementor.TYPE_CLOUDY, daytime)
+            WeatherView.WEATHER_KIND_CLOUDY ->
+                CloudImplementor.getThemeColor(context, CloudImplementor.TYPE_CLOUDY, daytime)
 
-            org.breezyweather.theme.weatherView.WeatherView.WEATHER_KIND_CLOUD ->
-                org.breezyweather.theme.weatherView.materialWeatherView.implementor.CloudImplementor.getThemeColor(context, org.breezyweather.theme.weatherView.materialWeatherView.implementor.CloudImplementor.TYPE_CLOUD, daytime)
+            WeatherView.WEATHER_KIND_CLOUD ->
+                CloudImplementor.getThemeColor(context, CloudImplementor.TYPE_CLOUD, daytime)
 
-            org.breezyweather.theme.weatherView.WeatherView.WEATHER_KIND_FOG ->
-                org.breezyweather.theme.weatherView.materialWeatherView.implementor.CloudImplementor.getThemeColor(context, org.breezyweather.theme.weatherView.materialWeatherView.implementor.CloudImplementor.TYPE_FOG, daytime)
+            WeatherView.WEATHER_KIND_FOG ->
+                CloudImplementor.getThemeColor(context, CloudImplementor.TYPE_FOG, daytime)
 
-            org.breezyweather.theme.weatherView.WeatherView.WEATHER_KIND_HAIL ->
-                org.breezyweather.theme.weatherView.materialWeatherView.implementor.HailImplementor.getThemeColor(daytime)
+            WeatherView.WEATHER_KIND_HAIL ->
+                HailImplementor.getThemeColor(daytime)
 
-            org.breezyweather.theme.weatherView.WeatherView.WEATHER_KIND_HAZE ->
-                org.breezyweather.theme.weatherView.materialWeatherView.implementor.CloudImplementor.getThemeColor(context, org.breezyweather.theme.weatherView.materialWeatherView.implementor.CloudImplementor.TYPE_HAZE, daytime)
+            WeatherView.WEATHER_KIND_HAZE ->
+                CloudImplementor.getThemeColor(context, CloudImplementor.TYPE_HAZE, daytime)
 
-            org.breezyweather.theme.weatherView.WeatherView.WEATHER_KIND_RAINY ->
-                org.breezyweather.theme.weatherView.materialWeatherView.implementor.RainImplementor.getThemeColor(context, org.breezyweather.theme.weatherView.materialWeatherView.implementor.RainImplementor.TYPE_RAIN, daytime)
+            WeatherView.WEATHER_KIND_RAINY ->
+                RainImplementor.getThemeColor(context, RainImplementor.TYPE_RAIN, daytime)
 
-            org.breezyweather.theme.weatherView.WeatherView.WEATHER_KIND_SLEET ->
-                org.breezyweather.theme.weatherView.materialWeatherView.implementor.RainImplementor.getThemeColor(context, org.breezyweather.theme.weatherView.materialWeatherView.implementor.RainImplementor.TYPE_SLEET, daytime)
+            WeatherView.WEATHER_KIND_SLEET ->
+                RainImplementor.getThemeColor(context, RainImplementor.TYPE_SLEET, daytime)
 
-            org.breezyweather.theme.weatherView.WeatherView.WEATHER_KIND_SNOW ->
-                org.breezyweather.theme.weatherView.materialWeatherView.implementor.SnowImplementor.getThemeColor(daytime)
+            WeatherView.WEATHER_KIND_SNOW ->
+                SnowImplementor.getThemeColor(daytime)
 
-            org.breezyweather.theme.weatherView.WeatherView.WEATHER_KIND_THUNDERSTORM ->
-                org.breezyweather.theme.weatherView.materialWeatherView.implementor.RainImplementor.getThemeColor(context, org.breezyweather.theme.weatherView.materialWeatherView.implementor.RainImplementor.TYPE_THUNDERSTORM, daytime)
+            WeatherView.WEATHER_KIND_THUNDERSTORM ->
+                RainImplementor.getThemeColor(context, RainImplementor.TYPE_THUNDERSTORM, daytime)
 
-            org.breezyweather.theme.weatherView.WeatherView.WEATHER_KIND_THUNDER ->
-                org.breezyweather.theme.weatherView.materialWeatherView.implementor.CloudImplementor.getThemeColor(context, org.breezyweather.theme.weatherView.materialWeatherView.implementor.CloudImplementor.TYPE_THUNDER, daytime)
+            WeatherView.WEATHER_KIND_THUNDER ->
+                CloudImplementor.getThemeColor(context, CloudImplementor.TYPE_THUNDER, daytime)
 
-            org.breezyweather.theme.weatherView.WeatherView.WEATHER_KIND_WIND ->
-                org.breezyweather.theme.weatherView.materialWeatherView.implementor.WindImplementor.getThemeColor(daytime)
+            WeatherView.WEATHER_KIND_WIND ->
+                WindImplementor.getThemeColor(daytime)
 
             else -> Color.TRANSPARENT
         }
     }
 
-    override fun getWeatherView(context: Context): org.breezyweather.theme.weatherView.WeatherView =
-        MaterialWeatherView(context)
+    override fun getWeatherView(context: Context): WeatherView = MaterialWeatherView(context)
 
     override fun getThemeColors(
         context: Context,
@@ -111,7 +113,7 @@ class MaterialWeatherThemeDelegate: WeatherThemeDelegate {
         navigationShader: Boolean,
         lightNavigation: Boolean
     ) {
-        org.breezyweather.common.utils.DisplayUtils.setSystemBarStyle(
+        DisplayUtils.setSystemBarStyle(
             context,
             window,
             statusShader,
@@ -126,7 +128,7 @@ class MaterialWeatherThemeDelegate: WeatherThemeDelegate {
         .getDimension(R.dimen.material3_card_list_item_corner_radius)
 
     override fun getHomeCardElevation(context: Context): Float =
-        org.breezyweather.common.utils.DisplayUtils.dpToPx(context, 2f)
+        DisplayUtils.dpToPx(context, 2f)
 
     override fun getHomeCardMargins(context: Context): Int = context
         .resources

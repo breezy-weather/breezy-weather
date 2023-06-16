@@ -3,6 +3,7 @@ package org.breezyweather.common.basic.models.options.unit
 import android.content.Context
 import org.breezyweather.common.basic.models.options._basic.UnitEnum
 import org.breezyweather.common.basic.models.options._basic.Utils
+import org.breezyweather.common.utils.DisplayUtils
 
 enum class CloudCoverUnit(
     override val id: String,
@@ -34,7 +35,7 @@ enum class CloudCoverUnit(
     override fun getValueText(
         context: Context,
         valueInDefaultUnit: Int
-    ) = getValueText(context, valueInDefaultUnit, org.breezyweather.common.utils.DisplayUtils.isRtl(context))
+    ) = getValueText(context, valueInDefaultUnit, DisplayUtils.isRtl(context))
 
     override fun getValueText(
         context: Context,
@@ -45,7 +46,7 @@ enum class CloudCoverUnit(
     override fun getValueVoice(
         context: Context,
         valueInDefaultUnit: Int
-    ) = getValueVoice(context, valueInDefaultUnit, org.breezyweather.common.utils.DisplayUtils.isRtl(context))
+    ) = getValueVoice(context, valueInDefaultUnit, DisplayUtils.isRtl(context))
 
     override fun getValueVoice(
         context: Context,

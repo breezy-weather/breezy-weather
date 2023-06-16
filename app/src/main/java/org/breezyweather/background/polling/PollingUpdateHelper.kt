@@ -6,18 +6,21 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.Weather
 import org.breezyweather.common.bus.EventBus
+import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.db.repositories.LocationEntityRepository
 import org.breezyweather.db.repositories.WeatherEntityRepository
+import org.breezyweather.location.LocationHelper
+import org.breezyweather.weather.WeatherHelper
 import org.breezyweather.weather.WeatherHelper.OnRequestWeatherListener
 
 class PollingUpdateHelper(
     private val context: Context,
-    private val locationHelper: org.breezyweather.location.LocationHelper,
-    private val weatherHelper: org.breezyweather.weather.WeatherHelper
+    private val locationHelper: LocationHelper,
+    private val weatherHelper: WeatherHelper
 ) {
     private var isUpdating = false
 
-    private var ioController: org.breezyweather.common.utils.helpers.AsyncHelper.Controller? = null
+    private var ioController: AsyncHelper.Controller? = null
     private var locationList = emptyList<Location>().toMutableList()
     private var listener: OnPollingUpdateListener? = null
 
@@ -41,7 +44,7 @@ class PollingUpdateHelper(
         }
         isUpdating = true
 
-        ioController = org.breezyweather.common.utils.helpers.AsyncHelper.runOnIO({ emitter ->
+        ioController = AsyncHelper.runOnIO({ emitter ->
             val list = LocationEntityRepository.readLocationList(context).map {
                 it.copy(weather = WeatherEntityRepository.readWeather(it))
             }
@@ -96,7 +99,7 @@ class PollingUpdateHelper(
     private inner class RequestLocationCallback(
         private val index: Int,
         private val total: Int
-    ) : org.breezyweather.location.LocationHelper.OnRequestLocationListener {
+    ) : LocationHelper.OnRequestLocationListener {
 
         override fun requestLocationSuccess(requestLocation: Location) {
             locationList[index] = requestLocation

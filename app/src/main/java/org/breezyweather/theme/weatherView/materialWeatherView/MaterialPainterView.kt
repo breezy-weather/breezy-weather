@@ -12,6 +12,7 @@ import android.view.View
 import androidx.annotation.FloatRange
 import androidx.annotation.Size
 import androidx.core.content.res.ResourcesCompat
+import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.theme.weatherView.WeatherView.WeatherKindRule
 import kotlin.math.abs
 import kotlin.math.acos
@@ -149,7 +150,7 @@ class MaterialPainterView(
         }
 
         private fun getDeviceOrientation(orientation: Int): DeviceOrientation {
-            return if (org.breezyweather.common.utils.DisplayUtils.isLandscape(getContext())) {
+            return if (DisplayUtils.isLandscape(getContext())) {
                 if (orientation in 1..179) {
                     DeviceOrientation.RIGHT
                 } else {
@@ -171,7 +172,7 @@ class MaterialPainterView(
 
         val metrics = resources.displayMetrics
         canvasSize = intArrayOf(
-            org.breezyweather.common.utils.DisplayUtils.getTabletListAdaptiveWidth(context, metrics.widthPixels),
+            DisplayUtils.getTabletListAdaptiveWidth(context, metrics.widthPixels),
             metrics.heightPixels
         )
 
@@ -205,7 +206,7 @@ class MaterialPainterView(
         super.onSizeChanged(w, h, oldw, oldh)
 
         if (measuredWidth != 0 && measuredHeight != 0) {
-            val width = org.breezyweather.common.utils.DisplayUtils.getTabletListAdaptiveWidth(context, measuredWidth)
+            val width = DisplayUtils.getTabletListAdaptiveWidth(context, measuredWidth)
             val height = measuredHeight
 
             if (canvasSize[0] != width || canvasSize[1] != height) {

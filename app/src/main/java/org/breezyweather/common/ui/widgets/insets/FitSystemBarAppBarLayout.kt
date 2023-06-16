@@ -5,7 +5,10 @@ import android.util.AttributeSet
 import android.view.WindowInsets
 import androidx.core.view.ViewCompat
 import com.google.android.material.appbar.AppBarLayout
+import org.breezyweather.common.basic.insets.FitBothSideBarHelper
+import org.breezyweather.common.basic.insets.FitBothSideBarView
 import org.breezyweather.common.basic.insets.FitBothSideBarView.FitSide
+import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.theme.ThemeManager
 
 class FitSystemBarAppBarLayout @JvmOverloads constructor(
@@ -13,21 +16,21 @@ class FitSystemBarAppBarLayout @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : AppBarLayout(context, attrs, defStyleAttr),
-    org.breezyweather.common.basic.insets.FitBothSideBarView {
+    FitBothSideBarView {
 
-    private val mHelper: org.breezyweather.common.basic.insets.FitBothSideBarHelper
+    private val mHelper: FitBothSideBarHelper
 
     init {
         ViewCompat.setOnApplyWindowInsetsListener(this, null)
-        mHelper = org.breezyweather.common.basic.insets.FitBothSideBarHelper(
+        mHelper = FitBothSideBarHelper(
             this,
-            org.breezyweather.common.basic.insets.FitBothSideBarView.SIDE_TOP
+            FitBothSideBarView.SIDE_TOP
         )
     }
 
     fun injectDefaultSurfaceTintColor() {
         setBackgroundColor(
-            org.breezyweather.common.utils.DisplayUtils.getWidgetSurfaceColor(
+            DisplayUtils.getWidgetSurfaceColor(
                 6f,
                 ThemeManager.getInstance(context).getThemeColor(context, androidx.appcompat.R.attr.colorPrimary),
                 ThemeManager.getInstance(context).getThemeColor(context, com.google.android.material.R.attr.colorSurface)

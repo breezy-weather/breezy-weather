@@ -4,6 +4,7 @@ import android.content.Context
 import io.objectbox.BoxStore
 import io.objectbox.android.Admin
 import org.breezyweather.BuildConfig
+import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.db.entities.MyObjectBox
 
 /**
@@ -18,7 +19,7 @@ object ObjectBox {
         boxStore = MyObjectBox.builder().androidContext(context.applicationContext).build()
 
         if (BuildConfig.DEBUG) {
-            org.breezyweather.common.utils.helpers.LogHelper.log("Using ObjectBox ${BoxStore.getVersion()} (${BoxStore.getVersionNative()})")
+            LogHelper.log("Using ObjectBox ${BoxStore.getVersion()} (${BoxStore.getVersionNative()})")
             Admin(boxStore).start(context.applicationContext)
         }
     }

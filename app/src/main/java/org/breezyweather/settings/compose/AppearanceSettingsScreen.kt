@@ -19,7 +19,10 @@ import org.breezyweather.common.basic.models.options.appearance.DailyTrendDispla
 import org.breezyweather.common.basic.models.options.appearance.HourlyTrendDisplay
 import org.breezyweather.common.basic.models.options.appearance.Language
 import org.breezyweather.common.basic.models.weather.Temperature
+import org.breezyweather.common.utils.helpers.IntentHelper
+import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.settings.SettingsManager
+import org.breezyweather.settings.dialogs.ProvidersPreviewerDialog
 import org.breezyweather.settings.preference.bottomInsetItem
 import org.breezyweather.settings.preference.switchPreferenceItem
 import org.breezyweather.settings.preference.clickablePreferenceItem
@@ -27,6 +30,7 @@ import org.breezyweather.settings.preference.composables.ListPreferenceView
 import org.breezyweather.settings.preference.composables.PreferenceView
 import org.breezyweather.settings.preference.composables.SwitchPreferenceView
 import org.breezyweather.settings.preference.listPreferenceItem
+import org.breezyweather.theme.resource.ResourcesProviderFactory
 
 @Composable
 fun AppearanceSettingsScreen(
@@ -53,12 +57,12 @@ fun AppearanceSettingsScreen(
 
             PreferenceView(
                 title = stringResource(it),
-                summary = org.breezyweather.theme.resource.ResourcesProviderFactory
+                summary = ResourcesProviderFactory
                     .getNewInstance(iconProviderState.value)
                     .providerName
             ) {
                 (context as? Activity)?.let { activity ->
-                    org.breezyweather.settings.dialogs.ProvidersPreviewerDialog.show(activity) { packageName ->
+                    ProvidersPreviewerDialog.show(activity) { packageName ->
                         SettingsManager.getInstance(context).iconProvider = packageName
                         iconProviderState.value = packageName
                     }
@@ -73,7 +77,7 @@ fun AppearanceSettingsScreen(
                 summary = CardDisplay.getSummary(context, cardDisplayList),
             ) {
                 (context as? Activity)?.let { a ->
-                    org.breezyweather.common.utils.helpers.IntentHelper.startCardDisplayManageActivity(a)
+                    IntentHelper.startCardDisplayManageActivity(a)
                 }
             }
         }
@@ -85,7 +89,7 @@ fun AppearanceSettingsScreen(
                 summary = DailyTrendDisplay.getSummary(context, dailyTrendDisplayList),
             ) {
                 (context as? Activity)?.let { a ->
-                    org.breezyweather.common.utils.helpers.IntentHelper.startDailyTrendDisplayManageActivity(a)
+                    IntentHelper.startDailyTrendDisplayManageActivity(a)
                 }
             }
         }
@@ -97,7 +101,7 @@ fun AppearanceSettingsScreen(
                 summary = HourlyTrendDisplay.getSummary(context, hourlyTrendDisplayList),
             ) {
                 (context as? Activity)?.let { a ->
-                    org.breezyweather.common.utils.helpers.IntentHelper.startHourlyTrendDisplayManageActivityForResult(a)
+                    IntentHelper.startHourlyTrendDisplayManageActivityForResult(a)
                 }
             }
         }
@@ -185,7 +189,7 @@ fun AppearanceSettingsScreen(
                 onValueChanged = {
                     SettingsManager.getInstance(context).language = Language.getInstance(it)
 
-                    org.breezyweather.common.utils.helpers.SnackbarHelper.showSnackbar(
+                    SnackbarHelper.showSnackbar(
                         context.getString(R.string.feedback_restart),
                         context.getString(R.string.restart)
                     ) {

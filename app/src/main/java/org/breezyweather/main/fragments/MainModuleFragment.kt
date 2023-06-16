@@ -1,10 +1,11 @@
 package org.breezyweather.main.fragments
 
+import org.breezyweather.common.basic.GeoFragment
 import org.breezyweather.common.bus.EventBus
 
 class ModifyMainSystemBarMessage
 
-abstract class MainModuleFragment: org.breezyweather.common.basic.GeoFragment() {
+abstract class MainModuleFragment: GeoFragment() {
 
     protected fun checkToSetSystemBarStyle() {
         EventBus

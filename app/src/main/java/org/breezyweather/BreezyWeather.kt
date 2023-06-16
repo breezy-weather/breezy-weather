@@ -10,6 +10,9 @@ import androidx.multidex.MultiDexApplication
 import androidx.work.Configuration
 import dagger.hilt.android.HiltAndroidApp
 import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.retrofit.ClientCacheHelper
+import org.breezyweather.common.utils.LanguageUtils
+import org.breezyweather.common.utils.NetworkUtils
 import org.breezyweather.db.ObjectBox
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.ThemeManager
@@ -190,14 +193,14 @@ class BreezyWeather : MultiDexApplication(),
 
         ObjectBox.init(this)
 
-        org.breezyweather.common.utils.NetworkUtils.registerNetworkCallback(applicationContext)
+        NetworkUtils.registerNetworkCallback(applicationContext)
 
-        val cacheCreated = org.breezyweather.common.retrofit.ClientCacheHelper.createClientCache(baseContext.cacheDir)
+        val cacheCreated = ClientCacheHelper.createClientCache(baseContext.cacheDir)
         if (!cacheCreated)
             Log.e("BreezyWeather", "Failed to create Http client cache")
 
         instance = this
-        org.breezyweather.common.utils.LanguageUtils.setLanguage(
+        LanguageUtils.setLanguage(
             this,
             SettingsManager.getInstance(this).language.locale
         )

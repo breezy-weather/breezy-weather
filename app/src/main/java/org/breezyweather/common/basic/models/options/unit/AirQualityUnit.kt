@@ -4,6 +4,7 @@ import android.content.Context
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options._basic.UnitEnum
 import org.breezyweather.common.basic.models.options._basic.Utils
+import org.breezyweather.common.utils.DisplayUtils
 
 // actual air quality = quality(μg/m³) * factor.
 enum class AirQualityUnit(
@@ -32,7 +33,7 @@ enum class AirQualityUnit(
     override fun getValueText(
         context: Context,
         valueInDefaultUnit: Float
-    ) = getValueText(context, valueInDefaultUnit, org.breezyweather.common.utils.DisplayUtils.isRtl(context))
+    ) = getValueText(context, valueInDefaultUnit, DisplayUtils.isRtl(context))
 
     override fun getValueText(
         context: Context,
@@ -49,7 +50,7 @@ enum class AirQualityUnit(
     override fun getValueVoice(
         context: Context,
         valueInDefaultUnit: Float
-    ) = getValueVoice(context, valueInDefaultUnit, org.breezyweather.common.utils.DisplayUtils.isRtl(context))
+    ) = getValueVoice(context, valueInDefaultUnit, DisplayUtils.isRtl(context))
 
     override fun getValueVoice(
         context: Context,

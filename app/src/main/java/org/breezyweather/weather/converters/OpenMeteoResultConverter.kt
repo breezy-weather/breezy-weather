@@ -20,6 +20,7 @@ import org.breezyweather.common.basic.models.weather.Weather
 import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.common.basic.models.weather.Wind
 import org.breezyweather.common.basic.models.weather.WindDegree
+import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.weather.json.openmeteo.OpenMeteoWeatherDaily
 import org.breezyweather.weather.json.openmeteo.OpenMeteoLocationResult
 import org.breezyweather.weather.json.openmeteo.OpenMeteoWeatherResult
@@ -130,11 +131,11 @@ fun convert(
             )
 
             // We shift by 6 hours the hourly date, otherwise nighttime (00:00 to 05:59) would be on the wrong day
-            val theDayAtMidnight = org.breezyweather.common.utils.DisplayUtils.toTimezoneNoHour(
+            val theDayAtMidnight = DisplayUtils.toTimezoneNoHour(
                 Date((weatherResult.hourly.time[i] - 6 * 3600) * 1000),
                 location.timeZone
             )
-            val theDayFormatted = org.breezyweather.common.utils.DisplayUtils.getFormattedDate(theDayAtMidnight, location.timeZone, "yyyyMMdd")
+            val theDayFormatted = DisplayUtils.getFormattedDate(theDayAtMidnight, location.timeZone, "yyyyMMdd")
             if (!hourlyByHalfDay.containsKey(theDayFormatted)) {
                 hourlyByHalfDay[theDayFormatted] = hashMapOf(
                     "day" to ArrayList(),
@@ -216,7 +217,7 @@ private fun getDailyList(
     val dailyList: MutableList<Daily> = ArrayList(dailyResult.time.size - 1)
     for (i in 1 until dailyResult.time.size) {
         val theDay = Date(dailyResult.time[i].times(1000))
-        val dailyDateFormatted = org.breezyweather.common.utils.DisplayUtils.getFormattedDate(theDay, timeZone, "yyyyMMdd")
+        val dailyDateFormatted = DisplayUtils.getFormattedDate(theDay, timeZone, "yyyyMMdd")
         val daily = Daily(
             date = theDay,
             day = completeHalfDayFromHourlyList(

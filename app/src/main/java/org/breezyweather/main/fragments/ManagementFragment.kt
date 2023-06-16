@@ -31,14 +31,22 @@ import kotlinx.coroutines.launch
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location.Companion.buildLocal
+import org.breezyweather.common.ui.decorations.Material3ListItemDecoration
 import org.breezyweather.common.ui.widgets.Material3Scaffold
 import org.breezyweather.common.ui.widgets.generateCollapsedScrollBehavior
 import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
+import org.breezyweather.common.utils.DisplayUtils
+import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.main.MainActivityViewModel
+import org.breezyweather.main.adapters.LocationAdapterAnimWrapper
+import org.breezyweather.main.adapters.location.LocationAdapter
 import org.breezyweather.main.utils.MainThemeColorProvider
+import org.breezyweather.main.widgets.LocationItemTouchCallback
 import org.breezyweather.main.widgets.LocationItemTouchCallback.TouchReactor
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.compose.BreezyWeatherTheme
+import org.breezyweather.theme.resource.ResourcesProviderFactory
+import org.breezyweather.theme.resource.providers.ResourceProvider
 
 class PushedManagementFragment: ManagementFragment() {
 
@@ -48,13 +56,13 @@ class PushedManagementFragment: ManagementFragment() {
     }
 
     override fun setSystemBarStyle() {
-        org.breezyweather.common.utils.DisplayUtils.setSystemBarStyle(
+        DisplayUtils.setSystemBarStyle(
             requireContext(),
             requireActivity().window,
             false,
-            !org.breezyweather.common.utils.DisplayUtils.isDarkMode(requireContext()),
+            !DisplayUtils.isDarkMode(requireContext()),
             true,
-            !org.breezyweather.common.utils.DisplayUtils.isDarkMode(requireContext())
+            !DisplayUtils.isDarkMode(requireContext())
         )
     }
 }
@@ -64,11 +72,11 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
     protected lateinit var viewModel: MainActivityViewModel
 
     private lateinit var layout: LinearLayoutManager
-    private lateinit var adapter: org.breezyweather.main.adapters.location.LocationAdapter
+    private lateinit var adapter: LocationAdapter
     private lateinit var recyclerView: RecyclerView
-    private var adapterAnimWrapper: org.breezyweather.main.adapters.LocationAdapterAnimWrapper? = null
+    private var adapterAnimWrapper: LocationAdapterAnimWrapper? = null
     private lateinit var itemTouchHelper: ItemTouchHelper
-    private var resourceProvider: org.breezyweather.theme.resource.providers.ResourceProvider? = null
+    private var resourceProvider: ResourceProvider? = null
 
     private var scrollOffset = 0f
     private var callback: Callback? = null
@@ -132,7 +140,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                         FloatingActionButton(
                             onClick = {
                                 viewModel.addLocation(buildLocal(requireContext()), null)
-                                org.breezyweather.common.utils.helpers.SnackbarHelper.showSnackbar(getString(R.string.feedback_collect_succeed))
+                                SnackbarHelper.showSnackbar(getString(R.string.feedback_collect_succeed))
                             },
                         ) {
                             Icon(Icons.Outlined.MyLocation, "My current position")
@@ -183,7 +191,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
 
     private fun initView() {
         adapter =
-            org.breezyweather.main.adapters.location.LocationAdapter(
+            LocationAdapter(
                 requireActivity(),
                 ArrayList(),
                 null,
@@ -194,7 +202,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
             ) { holder ->
                 itemTouchHelper.startDrag(holder)
             }
-        adapterAnimWrapper = org.breezyweather.main.adapters.LocationAdapterAnimWrapper(
+        adapterAnimWrapper = LocationAdapterAnimWrapper(
             requireContext(),
             adapter
         )
@@ -210,7 +218,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
             recyclerView.removeItemDecorationAt(0)
         }
         recyclerView.addItemDecoration(
-            org.breezyweather.common.ui.decotarions.Material3ListItemDecoration(
+            Material3ListItemDecoration(
                 requireContext()
             )
         )
@@ -226,7 +234,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
         })
 
         itemTouchHelper = ItemTouchHelper(
-            org.breezyweather.main.widgets.LocationItemTouchCallback(
+            LocationItemTouchCallback(
                 requireActivity() as GeoActivity,
                 viewModel,
                 this
@@ -251,7 +259,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
     }
 
     private fun updateDayNightColors() {
-        val lightTheme = !org.breezyweather.common.utils.DisplayUtils.isDarkMode(requireContext())
+        val lightTheme = !DisplayUtils.isDarkMode(requireContext())
 
         updateAppBarColor()
 
@@ -299,7 +307,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
             .iconProvider
         if (resourceProvider == null
             || resourceProvider!!.packageName != iconProvider) {
-            resourceProvider = org.breezyweather.theme.resource.ResourcesProviderFactory.getNewInstance()
+            resourceProvider = ResourcesProviderFactory.getNewInstance()
         }
     }
 }

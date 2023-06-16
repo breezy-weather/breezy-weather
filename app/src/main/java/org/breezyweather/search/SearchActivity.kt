@@ -31,6 +31,7 @@ import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.provider.WeatherSource
 import org.breezyweather.common.ui.widgets.Material3Scaffold
 import org.breezyweather.common.ui.widgets.Material3SearchBarInputField
+import org.breezyweather.settings.preference.composables.RadioButton
 import org.breezyweather.theme.compose.DayNightTheme
 
 @AndroidEntryPoint
@@ -156,7 +157,7 @@ class SearchActivity : GeoActivity() {
                         modifier = Modifier.fillMaxWidth(),
                     ) {
                         items(WeatherSource.values()) {
-                            org.breezyweather.settings.preference.composables.RadioButton(
+                            RadioButton(
                                 selected = enabledSourceState.value.id == it.id,
                                 onClick = {
                                     dialogOpenState.value = false

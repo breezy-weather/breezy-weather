@@ -4,6 +4,7 @@ import android.content.Context
 import org.breezyweather.BreezyWeather
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.*
+import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.weather.json.openweather.*
 import org.breezyweather.weather.services.WeatherService.WeatherResultWrapper
 import java.util.*
@@ -54,11 +55,11 @@ fun convert(
             )
 
             // We shift by 6 hours the hourly date, otherwise nighttime (00:00 to 05:59) would be on the wrong day
-            val theDayAtMidnight = org.breezyweather.common.utils.DisplayUtils.toTimezoneNoHour(
+            val theDayAtMidnight = DisplayUtils.toTimezoneNoHour(
                 Date((result.dt - 6 * 3600) * 1000),
                 location.timeZone
             )
-            val theDayFormatted = org.breezyweather.common.utils.DisplayUtils.getFormattedDate(theDayAtMidnight, location.timeZone, "yyyyMMdd")
+            val theDayFormatted = DisplayUtils.getFormattedDate(theDayAtMidnight, location.timeZone, "yyyyMMdd")
             if (!hourlyByHalfDay.containsKey(theDayFormatted)) {
                 hourlyByHalfDay[theDayFormatted] = hashMapOf(
                     "day" to ArrayList(),
@@ -131,10 +132,10 @@ private fun getDailyList(
     hourlyListByHalfDay: Map<String, Map<String, MutableList<Hourly>>>
 ): List<Daily> {
     val dailyList: MutableList<Daily> = ArrayList(dailyResult.size)
-    val hourlyListByDay = hourlyList.groupBy { org.breezyweather.common.utils.DisplayUtils.getFormattedDate(it.date, timeZone, "yyyyMMdd") }
+    val hourlyListByDay = hourlyList.groupBy { DisplayUtils.getFormattedDate(it.date, timeZone, "yyyyMMdd") }
     for (dailyForecast in dailyResult) {
         val theDay = Date(dailyForecast.dt.times(1000))
-        val dailyDateFormatted = org.breezyweather.common.utils.DisplayUtils.getFormattedDate(theDay, timeZone, "yyyyMMdd")
+        val dailyDateFormatted = DisplayUtils.getFormattedDate(theDay, timeZone, "yyyyMMdd")
         dailyList.add(
             Daily(
                 date = theDay,

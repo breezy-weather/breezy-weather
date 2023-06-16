@@ -4,6 +4,7 @@ import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.provider.WeatherSource
 import org.breezyweather.common.basic.models.weather.History
 import org.breezyweather.common.basic.models.weather.Weather
+import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.db.ObjectBox.boxStore
 import org.breezyweather.db.converters.WeatherSourceConverter
 import org.breezyweather.db.entities.HistoryEntity
@@ -41,7 +42,7 @@ object HistoryEntityRepository {
         timeZone: TimeZone
     ): HistoryEntity? {
         return try {
-            val calendar = org.breezyweather.common.utils.DisplayUtils.toCalendarWithTimeZone(currentDate, timeZone)
+            val calendar = DisplayUtils.toCalendarWithTimeZone(currentDate, timeZone)
             val today = calendar.time
             calendar.add(Calendar.DATE, -1)
             val yesterday = calendar.time
@@ -72,7 +73,7 @@ object HistoryEntityRepository {
         timeZone: TimeZone
     ): HistoryEntity? {
         return try {
-            val calendar = org.breezyweather.common.utils.DisplayUtils.toCalendarWithTimeZone(currentDate, timeZone)
+            val calendar = DisplayUtils.toCalendarWithTimeZone(currentDate, timeZone)
             val today = calendar.time
             calendar.add(Calendar.DATE, 1)
             val tomorrow = calendar.time

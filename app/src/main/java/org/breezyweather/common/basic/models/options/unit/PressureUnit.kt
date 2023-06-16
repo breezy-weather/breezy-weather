@@ -4,6 +4,7 @@ import android.content.Context
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options._basic.UnitEnum
 import org.breezyweather.common.basic.models.options._basic.Utils
+import org.breezyweather.common.utils.DisplayUtils
 
 // actual pressure = pressure(mb) * factor.
 enum class PressureUnit(
@@ -54,7 +55,7 @@ enum class PressureUnit(
     override fun getValueText(
         context: Context,
         valueInDefaultUnit: Float
-    ) = getValueText(context, valueInDefaultUnit, org.breezyweather.common.utils.DisplayUtils.isRtl(context))
+    ) = getValueText(context, valueInDefaultUnit, DisplayUtils.isRtl(context))
 
     override fun getValueText(
         context: Context,
@@ -71,7 +72,7 @@ enum class PressureUnit(
     override fun getValueVoice(
         context: Context,
         valueInDefaultUnit: Float
-    ) = getValueVoice(context, valueInDefaultUnit, org.breezyweather.common.utils.DisplayUtils.isRtl(context))
+    ) = getValueVoice(context, valueInDefaultUnit, DisplayUtils.isRtl(context))
 
     override fun getValueVoice(
         context: Context,

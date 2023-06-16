@@ -4,6 +4,7 @@ import android.content.Context
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options._basic.UnitEnum
 import org.breezyweather.common.basic.models.options._basic.Utils
+import org.breezyweather.common.utils.DisplayUtils
 
 enum class PollenUnit(
     override val id: String,
@@ -35,7 +36,7 @@ enum class PollenUnit(
     override fun getValueText(
         context: Context,
         valueInDefaultUnit: Int
-    ) = getValueText(context, valueInDefaultUnit, org.breezyweather.common.utils.DisplayUtils.isRtl(context))
+    ) = getValueText(context, valueInDefaultUnit, DisplayUtils.isRtl(context))
 
     override fun getValueText(
         context: Context,
@@ -51,7 +52,7 @@ enum class PollenUnit(
     override fun getValueVoice(
         context: Context,
         valueInDefaultUnit: Int
-    ) = getValueVoice(context, valueInDefaultUnit, org.breezyweather.common.utils.DisplayUtils.isRtl(context))
+    ) = getValueVoice(context, valueInDefaultUnit, DisplayUtils.isRtl(context))
 
     override fun getValueVoice(
         context: Context,

@@ -6,16 +6,18 @@ import io.objectbox.query.QueryCondition
 import org.breezyweather.common.basic.models.ChineseCity
 import org.breezyweather.common.utils.FileUtils
 import org.breezyweather.db.ObjectBox.boxStore
+import org.breezyweather.db.entities.ChineseCityEntity
 import org.breezyweather.db.entities.ChineseCityEntity_
+import org.breezyweather.db.generators.ChineseCityEntityGenerator
 import kotlin.math.pow
 
 object ChineseCityEntityRepository {
     private val mWritingLock: Any = Any()
 
     // insert.
-    fun insertChineseCityEntityList(entityList: List<org.breezyweather.db.entities.ChineseCityEntity>) {
+    fun insertChineseCityEntityList(entityList: List<ChineseCityEntity>) {
         if (entityList.isNotEmpty()) {
-            boxStore.boxFor(org.breezyweather.db.entities.ChineseCityEntity::class.java).put(entityList)
+            boxStore.boxFor(ChineseCityEntity::class.java).put(entityList)
         }
     }
     fun ensureChineseCityList(context: Context) {
@@ -24,7 +26,7 @@ object ChineseCityEntityRepository {
                 if (countChineseCity() < 3216) {
                     val list = FileUtils.readCityList(context)
                     deleteChineseCityEntityList()
-                    insertChineseCityEntityList(org.breezyweather.db.generators.ChineseCityEntityGenerator.generateEntityList(list))
+                    insertChineseCityEntityList(ChineseCityEntityGenerator.generateEntityList(list))
                 }
             }
         }
@@ -32,32 +34,32 @@ object ChineseCityEntityRepository {
 
     // delete.
     fun deleteChineseCityEntityList() {
-        boxStore.boxFor(org.breezyweather.db.entities.ChineseCityEntity::class.java).removeAll()
+        boxStore.boxFor(ChineseCityEntity::class.java).removeAll()
     }
 
     // select.
     fun readChineseCity(name: String): ChineseCity? {
         val entity = selectChineseCityEntity(name)
-        return if (entity != null) org.breezyweather.db.generators.ChineseCityEntityGenerator.generate(entity) else null
+        return if (entity != null) ChineseCityEntityGenerator.generate(entity) else null
     }
 
     fun readChineseCity(province: String, city: String, district: String): ChineseCity? {
         val entity = selectChineseCityEntity(province, city, district)
-        return if (entity != null) org.breezyweather.db.generators.ChineseCityEntityGenerator.generate(entity) else null
+        return if (entity != null) ChineseCityEntityGenerator.generate(entity) else null
     }
 
     fun readChineseCity(latitude: Float, longitude: Float): ChineseCity? {
         val entity = selectChineseCityEntity(latitude, longitude)
-        return if (entity != null) org.breezyweather.db.generators.ChineseCityEntityGenerator.generate(entity) else null
+        return if (entity != null) ChineseCityEntityGenerator.generate(entity) else null
     }
 
     fun readChineseCityList(name: String): List<ChineseCity> {
-        return org.breezyweather.db.generators.ChineseCityEntityGenerator.generateModuleList(selectChineseCityEntityList(name))
+        return ChineseCityEntityGenerator.generateModuleList(selectChineseCityEntityList(name))
     }
 
-    fun selectChineseCityEntity(name: String?): org.breezyweather.db.entities.ChineseCityEntity? {
+    fun selectChineseCityEntity(name: String?): ChineseCityEntity? {
         if (name.isNullOrEmpty()) return null
-        val chineseCityEntityBox = boxStore.boxFor(org.breezyweather.db.entities.ChineseCityEntity::class.java)
+        val chineseCityEntityBox = boxStore.boxFor(ChineseCityEntity::class.java)
         val query = chineseCityEntityBox.query(
             ChineseCityEntity_.district.equal(name)
                 .or(ChineseCityEntity_.city.equal(name))
@@ -67,9 +69,9 @@ object ChineseCityEntityRepository {
         return if (entityList.size <= 0) null else entityList[0]
     }
 
-    fun selectChineseCityEntity(province: String, city: String, district: String): org.breezyweather.db.entities.ChineseCityEntity? {
-        val chineseCityEntityBox = boxStore.boxFor(org.breezyweather.db.entities.ChineseCityEntity::class.java)
-        val conditionList: MutableList<QueryCondition<org.breezyweather.db.entities.ChineseCityEntity>> = ArrayList()
+    fun selectChineseCityEntity(province: String, city: String, district: String): ChineseCityEntity? {
+        val chineseCityEntityBox = boxStore.boxFor(ChineseCityEntity::class.java)
+        val conditionList: MutableList<QueryCondition<ChineseCityEntity>> = ArrayList()
         conditionList.add(
             ChineseCityEntity_.district.equal(district)
                 .and(ChineseCityEntity_.city.equal(city))
@@ -93,8 +95,8 @@ object ChineseCityEntityRepository {
         )
         conditionList.add(ChineseCityEntity_.district.equal(city))
         conditionList.add(ChineseCityEntity_.city.equal(district))
-        var query: Query<org.breezyweather.db.entities.ChineseCityEntity>
-        var entityList: List<org.breezyweather.db.entities.ChineseCityEntity>?
+        var query: Query<ChineseCityEntity>
+        var entityList: List<ChineseCityEntity>?
         for (c in conditionList) {
             try {
                 query = chineseCityEntityBox.query(c).build()
@@ -110,8 +112,8 @@ object ChineseCityEntityRepository {
         return null
     }
 
-    fun selectChineseCityEntity(latitude: Float, longitude: Float): org.breezyweather.db.entities.ChineseCityEntity? {
-        val query = boxStore.boxFor(org.breezyweather.db.entities.ChineseCityEntity::class.java).query().build()
+    fun selectChineseCityEntity(latitude: Float, longitude: Float): ChineseCityEntity? {
+        val query = boxStore.boxFor(ChineseCityEntity::class.java).query().build()
         val entityList = query.find()
         query.close()
         var minIndex = -1
@@ -127,10 +129,10 @@ object ChineseCityEntityRepository {
         return if (0 <= minIndex && minIndex < entityList.size) entityList[minIndex] else null
     }
 
-    fun selectChineseCityEntityList(name: String?): List<org.breezyweather.db.entities.ChineseCityEntity> {
+    fun selectChineseCityEntityList(name: String?): List<ChineseCityEntity> {
         if (name.isNullOrEmpty()) return emptyList()
         val chineseCityEntityBox = boxStore.boxFor(
-            org.breezyweather.db.entities.ChineseCityEntity::class.java
+            ChineseCityEntity::class.java
         )
         val query = chineseCityEntityBox.query(
             ChineseCityEntity_.district.contains(name)
@@ -143,6 +145,6 @@ object ChineseCityEntityRepository {
     }
 
     fun countChineseCity(): Int {
-        return boxStore.boxFor(org.breezyweather.db.entities.ChineseCityEntity::class.java).count().toInt()
+        return boxStore.boxFor(ChineseCityEntity::class.java).count().toInt()
     }
 }

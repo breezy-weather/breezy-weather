@@ -5,6 +5,7 @@ import androidx.annotation.ColorInt
 import org.breezyweather.BreezyWeather.Companion.instance
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.*
+import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.weather.json.china.ChinaForecastResult
 import org.breezyweather.weather.json.china.ChinaForecastDaily
 import org.breezyweather.weather.json.china.ChinaForecastHourly
@@ -119,7 +120,7 @@ private fun getDailyList(
 
     val dailyList: MutableList<Daily> = ArrayList(dailyForecast.weather.value.size)
     dailyForecast.weather.value.forEachIndexed { index, weather ->
-        val calendar = org.breezyweather.common.utils.DisplayUtils.toCalendarWithTimeZone(publishDate, timeZone)
+        val calendar = DisplayUtils.toCalendarWithTimeZone(publishDate, timeZone)
         calendar.add(Calendar.DATE, index) // FIXME: Wrong TimeZone for the first item
         calendar[Calendar.HOUR_OF_DAY] = 0
         calendar[Calendar.MINUTE] = 0
@@ -200,7 +201,7 @@ private fun getHourlyList(
 
     val hourlyList: MutableList<Hourly> = ArrayList(hourlyForecast.weather.value.size)
     hourlyForecast.weather.value.forEachIndexed { index, weather ->
-        val calendar = org.breezyweather.common.utils.DisplayUtils.toCalendarWithTimeZone(publishDate, timeZone)
+        val calendar = DisplayUtils.toCalendarWithTimeZone(publishDate, timeZone)
         calendar.add(Calendar.HOUR_OF_DAY, index) // FIXME: Wrong TimeZone for the first item
         calendar[Calendar.MINUTE] = 0
         calendar[Calendar.SECOND] = 0
@@ -242,7 +243,7 @@ private fun getMinutelyList(
     val minutelyList: MutableList<Minutely> = ArrayList(minutelyResult.precipitation.value.size)
 
     minutelyResult.precipitation.value.forEach { precipitation ->
-        val calendar = org.breezyweather.common.utils.DisplayUtils.toCalendarWithTimeZone(current, timeZone)
+        val calendar = DisplayUtils.toCalendarWithTimeZone(current, timeZone)
         calendar[Calendar.SECOND] = 0
         calendar[Calendar.MILLISECOND] = 0
         minutelyList.add(

@@ -1,5 +1,6 @@
 package org.breezyweather.common.basic
 
+import android.R
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
@@ -8,11 +9,15 @@ import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import org.breezyweather.BreezyWeather
+import org.breezyweather.common.basic.insets.FitHorizontalSystemBarRootLayout
+import org.breezyweather.common.snackbar.SnackbarContainer
+import org.breezyweather.common.utils.DisplayUtils
+import org.breezyweather.common.utils.LanguageUtils
 import org.breezyweather.settings.SettingsManager
 
 abstract class GeoActivity : AppCompatActivity() {
 
-    lateinit var fitHorizontalSystemBarRootLayout: org.breezyweather.common.basic.insets.FitHorizontalSystemBarRootLayout
+    lateinit var fitHorizontalSystemBarRootLayout: FitHorizontalSystemBarRootLayout
 
     private class KeyboardResizeBugWorkaround private constructor(
         activity: GeoActivity
@@ -45,7 +50,7 @@ abstract class GeoActivity : AppCompatActivity() {
 
         private fun computeUsableHeight(): Int {
             val r = Rect()
-            org.breezyweather.common.utils.DisplayUtils.getVisibleDisplayFrame(root, r)
+            DisplayUtils.getVisibleDisplayFrame(root, r)
             return r.bottom // - r.top; --> Do not reduce the height of status bar.
         }
 
@@ -67,22 +72,22 @@ abstract class GeoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         fitHorizontalSystemBarRootLayout =
-            org.breezyweather.common.basic.insets.FitHorizontalSystemBarRootLayout(this)
+            FitHorizontalSystemBarRootLayout(this)
 
         BreezyWeather.instance.addActivity(this)
 
-        org.breezyweather.common.utils.LanguageUtils.setLanguage(
+        LanguageUtils.setLanguage(
             this,
             SettingsManager.getInstance(this).language.locale
         )
 
-        org.breezyweather.common.utils.DisplayUtils.setSystemBarStyle(
+        DisplayUtils.setSystemBarStyle(
             this,
             window,
             false,
-            !org.breezyweather.common.utils.DisplayUtils.isDarkMode(this),
+            !DisplayUtils.isDarkMode(this),
             true,
-            !org.breezyweather.common.utils.DisplayUtils.isDarkMode(this)
+            !DisplayUtils.isDarkMode(this)
         )
     }
 
@@ -131,14 +136,14 @@ abstract class GeoActivity : AppCompatActivity() {
         BreezyWeather.instance.removeActivity(this)
     }
 
-    open val snackbarContainer: org.breezyweather.common.snackbar.SnackbarContainer?
-        get() = org.breezyweather.common.snackbar.SnackbarContainer(
+    open val snackbarContainer: SnackbarContainer?
+        get() = SnackbarContainer(
             this,
-            findViewById<ViewGroup>(android.R.id.content).getChildAt(0) as ViewGroup,
+            findViewById<ViewGroup>(R.id.content).getChildAt(0) as ViewGroup,
             true
         )
 
-    fun provideSnackbarContainer(): org.breezyweather.common.snackbar.SnackbarContainer? = snackbarContainer
+    fun provideSnackbarContainer(): SnackbarContainer? = snackbarContainer
 
     val isActivityCreated: Boolean
         get() = lifecycle.currentState.isAtLeast(Lifecycle.State.CREATED)

@@ -4,6 +4,7 @@ import android.app.Application
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import org.breezyweather.common.basic.GeoViewModel
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.provider.WeatherSource
 import javax.inject.Inject
@@ -12,7 +13,7 @@ import javax.inject.Inject
 class SearchViewModel @Inject constructor(
     application: Application?,
     repository: SearchActivityRepository
-) : org.breezyweather.common.basic.GeoViewModel(application!!) {
+) : GeoViewModel(application!!) {
     private val _listResource = MutableStateFlow<Pair<List<Location>, LoadableLocationStatus>>(Pair(emptyList(), LoadableLocationStatus.SUCCESS))
     val listResource = _listResource.asStateFlow()
     private val _enabledSource: MutableStateFlow<WeatherSource> = MutableStateFlow(repository.getValidWeatherSource(application))

@@ -41,6 +41,7 @@ import org.breezyweather.common.ui.widgets.generateCollapsedScrollBehavior
 import org.breezyweather.common.ui.widgets.getCardListItemMarginDp
 import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.common.ui.widgets.insets.bottomInsetItem
+import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.theme.compose.DayNightTheme
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 import org.breezyweather.theme.compose.rememberThemeRipple
@@ -65,7 +66,7 @@ class AboutActivity : GeoActivity() {
             iconId = R.drawable.ic_github,
             titleId = R.string.source_code,
         ) {
-            org.breezyweather.common.utils.helpers.IntentHelper.startWebViewActivity(
+            IntentHelper.startWebViewActivity(
                 this@AboutActivity,
                 "https://github.com/papjul/breezy-weather"
             )
@@ -74,7 +75,7 @@ class AboutActivity : GeoActivity() {
             iconId = R.drawable.ic_email,
             titleId = R.string.matrix,
         ) {
-            org.breezyweather.common.utils.helpers.IntentHelper.startWebViewActivity(
+            IntentHelper.startWebViewActivity(
                 this@AboutActivity,
                 "https://matrix.to/#/#geometric-weather:matrix.org"
             )
@@ -450,7 +451,7 @@ class AboutActivity : GeoActivity() {
                         interactionSource = remember { MutableInteractionSource() },
                         indication = rememberThemeRipple(),
                         onClick = {
-                            org.breezyweather.common.utils.helpers.IntentHelper.startWebViewActivity(this@AboutActivity, url)
+                            IntentHelper.startWebViewActivity(this@AboutActivity, url)
                         },
                     )
                     .padding(dimensionResource(R.dimen.normal_margin)),

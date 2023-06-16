@@ -5,6 +5,7 @@ import android.text.BidiFormatter
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options._basic.UnitEnum
 import org.breezyweather.common.basic.models.options._basic.Utils
+import org.breezyweather.common.utils.DisplayUtils
 
 enum class TemperatureUnit(
     override val id: String,
@@ -82,7 +83,7 @@ enum class TemperatureUnit(
     override fun getValueText(
         context: Context,
         valueInDefaultUnit: Int
-    ) = getValueText(context, valueInDefaultUnit, org.breezyweather.common.utils.DisplayUtils.isRtl(context))
+    ) = getValueText(context, valueInDefaultUnit, DisplayUtils.isRtl(context))
 
     override fun getValueText(
         context: Context,
@@ -98,7 +99,7 @@ enum class TemperatureUnit(
     fun getShortValueText(
         context: Context,
         valueInDefaultUnit: Int
-    ) = getShortValueText(context, valueInDefaultUnit, org.breezyweather.common.utils.DisplayUtils.isRtl(context))
+    ) = getShortValueText(context, valueInDefaultUnit, DisplayUtils.isRtl(context))
 
     fun getShortValueText(
         context: Context,
@@ -119,7 +120,7 @@ enum class TemperatureUnit(
     fun getLongValueText(
         context: Context,
         valueInDefaultUnit: Int
-    ) = getLongValueText(context, valueInDefaultUnit, org.breezyweather.common.utils.DisplayUtils.isRtl(context))
+    ) = getLongValueText(context, valueInDefaultUnit, DisplayUtils.isRtl(context))
 
     fun getLongValueText(
         context: Context,
@@ -142,7 +143,7 @@ enum class TemperatureUnit(
     override fun getValueVoice(
         context: Context,
         valueInDefaultUnit: Int
-    ) = getValueVoice(context, valueInDefaultUnit, org.breezyweather.common.utils.DisplayUtils.isRtl(context))
+    ) = getValueVoice(context, valueInDefaultUnit, DisplayUtils.isRtl(context))
 
     override fun getValueVoice(
         context: Context,

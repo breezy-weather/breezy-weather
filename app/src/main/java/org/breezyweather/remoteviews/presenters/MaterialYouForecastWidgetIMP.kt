@@ -13,6 +13,8 @@ import org.breezyweather.background.receiver.widget.WidgetMaterialYouForecastPro
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.NotificationTextColor
 import org.breezyweather.settings.SettingsManager
+import org.breezyweather.theme.resource.ResourceHelper
+import org.breezyweather.theme.resource.ResourcesProviderFactory
 
 class MaterialYouForecastWidgetIMP: AbstractRemoteViewsPresenter() {
 
@@ -116,7 +118,7 @@ private fun buildRemoteViews(
     val weather = location.weather
     val dayTime = location.isDaylight
 
-    val provider = org.breezyweather.theme.resource.ResourcesProviderFactory.getNewInstance()
+    val provider = ResourcesProviderFactory.getNewInstance()
 
     val settings = SettingsManager.getInstance(context)
     val temperatureUnit = settings.temperatureUnit
@@ -133,7 +135,7 @@ private fun buildRemoteViews(
     weather.current?.weatherCode?.let {
         views.setImageViewUri(
             R.id.widget_material_you_forecast_currentIcon,
-            org.breezyweather.theme.resource.ResourceHelper.getWidgetNotificationIconUri(
+            ResourceHelper.getWidgetNotificationIconUri(
                 provider,
                 it,
                 dayTime,
@@ -182,7 +184,7 @@ private fun buildRemoteViews(
         weather.hourlyForecast[0].weatherCode?.let {
             views.setImageViewUri(
                 R.id.widget_material_you_forecast_hourlyIcon_1,
-                org.breezyweather.theme.resource.ResourceHelper.getWidgetNotificationIconUri(
+                ResourceHelper.getWidgetNotificationIconUri(
                     provider,
                     weather.hourlyForecast[0].weatherCode,
                     weather.hourlyForecast[0].isDaylight,
@@ -205,7 +207,7 @@ private fun buildRemoteViews(
         weather.hourlyForecast[1].weatherCode?.let {
             views.setImageViewUri(
                 R.id.widget_material_you_forecast_hourlyIcon_2,
-                org.breezyweather.theme.resource.ResourceHelper.getWidgetNotificationIconUri(
+                ResourceHelper.getWidgetNotificationIconUri(
                     provider,
                     weather.hourlyForecast[1].weatherCode,
                     weather.hourlyForecast[1].isDaylight,
@@ -228,7 +230,7 @@ private fun buildRemoteViews(
         weather.hourlyForecast[2].weatherCode?.let {
             views.setImageViewUri(
                 R.id.widget_material_you_forecast_hourlyIcon_3,
-                org.breezyweather.theme.resource.ResourceHelper.getWidgetNotificationIconUri(
+                ResourceHelper.getWidgetNotificationIconUri(
                     provider,
                     weather.hourlyForecast[2].weatherCode,
                     weather.hourlyForecast[2].isDaylight,
@@ -251,7 +253,7 @@ private fun buildRemoteViews(
         weather.hourlyForecast[3].weatherCode?.let {
             views.setImageViewUri(
                 R.id.widget_material_you_forecast_hourlyIcon_4,
-                org.breezyweather.theme.resource.ResourceHelper.getWidgetNotificationIconUri(
+                ResourceHelper.getWidgetNotificationIconUri(
                     provider,
                     weather.hourlyForecast[3].weatherCode,
                     weather.hourlyForecast[3].isDaylight,
@@ -274,7 +276,7 @@ private fun buildRemoteViews(
         weather.hourlyForecast[4].weatherCode?.let {
             views.setImageViewUri(
                 R.id.widget_material_you_forecast_hourlyIcon_5,
-                org.breezyweather.theme.resource.ResourceHelper.getWidgetNotificationIconUri(
+                ResourceHelper.getWidgetNotificationIconUri(
                     provider,
                     weather.hourlyForecast[4].weatherCode,
                     weather.hourlyForecast[4].isDaylight,
@@ -297,7 +299,7 @@ private fun buildRemoteViews(
         weather.hourlyForecast[5].weatherCode?.let {
             views.setImageViewUri(
                 R.id.widget_material_you_forecast_hourlyIcon_6,
-                org.breezyweather.theme.resource.ResourceHelper.getWidgetNotificationIconUri(
+                ResourceHelper.getWidgetNotificationIconUri(
                     provider,
                     weather.hourlyForecast[5].weatherCode,
                     weather.hourlyForecast[5].isDaylight,
@@ -325,7 +327,7 @@ private fun buildRemoteViews(
         weather.dailyForecast[0].day?.weatherCode?.let {
             views.setImageViewUri(
                 R.id.widget_material_you_forecast_dayIcon_1,
-                org.breezyweather.theme.resource.ResourceHelper.getWidgetNotificationIconUri(
+                ResourceHelper.getWidgetNotificationIconUri(
                     provider,
                     weather.dailyForecast[0].day?.weatherCode,
                     true,
@@ -345,7 +347,7 @@ private fun buildRemoteViews(
         weather.dailyForecast[0].night?.weatherCode?.let {
             views.setImageViewUri(
                 R.id.widget_material_you_forecast_nightIcon_1,
-                org.breezyweather.theme.resource.ResourceHelper.getWidgetNotificationIconUri(
+                ResourceHelper.getWidgetNotificationIconUri(
                     provider,
                     weather.dailyForecast[0].night?.weatherCode,
                     false,
@@ -367,7 +369,7 @@ private fun buildRemoteViews(
         weather.dailyForecast[1].day?.weatherCode?.let {
             views.setImageViewUri(
                 R.id.widget_material_you_forecast_dayIcon_2,
-                org.breezyweather.theme.resource.ResourceHelper.getWidgetNotificationIconUri(
+                ResourceHelper.getWidgetNotificationIconUri(
                     provider,
                     weather.dailyForecast[1].day?.weatherCode,
                     true,
@@ -387,7 +389,7 @@ private fun buildRemoteViews(
         weather.dailyForecast[1].night?.weatherCode?.let {
             views.setImageViewUri(
                 R.id.widget_material_you_forecast_nightIcon_2,
-                org.breezyweather.theme.resource.ResourceHelper.getWidgetNotificationIconUri(
+                ResourceHelper.getWidgetNotificationIconUri(
                     provider,
                     weather.dailyForecast[1].night?.weatherCode,
                     false,
@@ -405,7 +407,7 @@ private fun buildRemoteViews(
         weather.dailyForecast[2].day?.weatherCode?.let {
             views.setImageViewUri(
                 R.id.widget_material_you_forecast_dayIcon_3,
-                org.breezyweather.theme.resource.ResourceHelper.getWidgetNotificationIconUri(
+                ResourceHelper.getWidgetNotificationIconUri(
                     provider,
                     weather.dailyForecast[2].day?.weatherCode,
                     true,
@@ -425,7 +427,7 @@ private fun buildRemoteViews(
         weather.dailyForecast[2].night?.weatherCode?.let {
             views.setImageViewUri(
                 R.id.widget_material_you_forecast_nightIcon_3,
-                org.breezyweather.theme.resource.ResourceHelper.getWidgetNotificationIconUri(
+                ResourceHelper.getWidgetNotificationIconUri(
                     provider,
                     weather.dailyForecast[2].night?.weatherCode,
                     false,
@@ -443,7 +445,7 @@ private fun buildRemoteViews(
         weather.dailyForecast[3].day?.weatherCode?.let {
             views.setImageViewUri(
                 R.id.widget_material_you_forecast_dayIcon_4,
-                org.breezyweather.theme.resource.ResourceHelper.getWidgetNotificationIconUri(
+                ResourceHelper.getWidgetNotificationIconUri(
                     provider,
                     weather.dailyForecast[3].day?.weatherCode,
                     true,
@@ -463,7 +465,7 @@ private fun buildRemoteViews(
         weather.dailyForecast[3].night?.weatherCode?.let {
             views.setImageViewUri(
                 R.id.widget_material_you_forecast_nightIcon_4,
-                org.breezyweather.theme.resource.ResourceHelper.getWidgetNotificationIconUri(
+                ResourceHelper.getWidgetNotificationIconUri(
                     provider,
                     weather.dailyForecast[3].night?.weatherCode,
                     false,
@@ -481,7 +483,7 @@ private fun buildRemoteViews(
         weather.dailyForecast[4].day?.weatherCode?.let {
             views.setImageViewUri(
                 R.id.widget_material_you_forecast_dayIcon_5,
-                org.breezyweather.theme.resource.ResourceHelper.getWidgetNotificationIconUri(
+                ResourceHelper.getWidgetNotificationIconUri(
                     provider,
                     weather.dailyForecast[4].day?.weatherCode,
                     true,
@@ -501,7 +503,7 @@ private fun buildRemoteViews(
         weather.dailyForecast[4].night?.weatherCode?.let {
             views.setImageViewUri(
                 R.id.widget_material_you_forecast_nightIcon_5,
-                org.breezyweather.theme.resource.ResourceHelper.getWidgetNotificationIconUri(
+                ResourceHelper.getWidgetNotificationIconUri(
                     provider,
                     weather.dailyForecast[4].night?.weatherCode,
                     false,
@@ -519,7 +521,7 @@ private fun buildRemoteViews(
         weather.dailyForecast[5].day?.weatherCode?.let {
             views.setImageViewUri(
                 R.id.widget_material_you_forecast_dayIcon_6,
-                org.breezyweather.theme.resource.ResourceHelper.getWidgetNotificationIconUri(
+                ResourceHelper.getWidgetNotificationIconUri(
                     provider,
                     weather.dailyForecast[5].day?.weatherCode,
                     true,
@@ -539,7 +541,7 @@ private fun buildRemoteViews(
         weather.dailyForecast[5].night?.weatherCode?.let {
             views.setImageViewUri(
                 R.id.widget_material_you_forecast_nightIcon_6,
-                org.breezyweather.theme.resource.ResourceHelper.getWidgetNotificationIconUri(
+                ResourceHelper.getWidgetNotificationIconUri(
                     provider,
                     weather.dailyForecast[5].night?.weatherCode,
                     false,

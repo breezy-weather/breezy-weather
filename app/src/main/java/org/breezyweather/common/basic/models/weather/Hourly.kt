@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.text.BidiFormatter
 import org.breezyweather.R
+import org.breezyweather.common.utils.DisplayUtils
 import java.io.Serializable
 import java.util.Calendar
 import java.util.Date
@@ -27,7 +28,7 @@ class Hourly(
 ) : Serializable {
 
     fun getHourIn24Format(timeZone: TimeZone?): Int {
-        val calendar = org.breezyweather.common.utils.DisplayUtils.toCalendarWithTimeZone(date, timeZone)
+        val calendar = DisplayUtils.toCalendarWithTimeZone(date, timeZone)
         return calendar[Calendar.HOUR_OF_DAY]
     }
 
@@ -35,14 +36,14 @@ class Hourly(
         return getHour(
             context,
             timeZone,
-            org.breezyweather.common.utils.DisplayUtils.is12Hour(context),
-            org.breezyweather.common.utils.DisplayUtils.isRtl(context)
+            DisplayUtils.is12Hour(context),
+            DisplayUtils.isRtl(context)
         )
     }
 
     @SuppressLint("DefaultLocale")
     private fun getHour(context: Context, timeZone: TimeZone, twelveHour: Boolean, rtl: Boolean): String {
-        val calendar = org.breezyweather.common.utils.DisplayUtils.toCalendarWithTimeZone(date, timeZone)
+        val calendar = DisplayUtils.toCalendarWithTimeZone(date, timeZone)
         var hour: Int
         if (twelveHour) {
             hour = calendar[Calendar.HOUR]
@@ -69,7 +70,7 @@ class Hourly(
     }
 
     fun getDate(timeZone: TimeZone?, format: String?): String {
-        return org.breezyweather.common.utils.DisplayUtils.getFormattedDate(date, timeZone, format)
+        return DisplayUtils.getFormattedDate(date, timeZone, format)
     }
 
     /**

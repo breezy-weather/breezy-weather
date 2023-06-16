@@ -38,6 +38,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import org.breezyweather.R
+import org.breezyweather.common.utils.DisplayUtils
 import kotlin.math.ln
 
 private val topAppBarElevation = 6.dp
@@ -93,7 +94,7 @@ fun FitStatusBarTopAppBar(
     navigationIcon = {
         IconButton(onClick = onBackPressed) {
             Icon(
-                imageVector = if (org.breezyweather.common.utils.DisplayUtils.isRtl(LocalContext.current)) Icons.Filled.ArrowForward else Icons.Filled.ArrowBack,
+                imageVector = if (DisplayUtils.isRtl(LocalContext.current)) Icons.Filled.ArrowForward else Icons.Filled.ArrowBack,
                 contentDescription = stringResource(R.string.content_desc_back),
                 tint = MaterialTheme.colorScheme.onPrimaryContainer,
             )

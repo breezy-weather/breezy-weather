@@ -13,10 +13,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.breezyweather.R
+import org.breezyweather.background.polling.PollingManager
 import org.breezyweather.common.basic.models.options.DarkMode
 import org.breezyweather.common.basic.models.options.NotificationStyle
 import org.breezyweather.common.basic.models.options.UpdateInterval
 import org.breezyweather.common.basic.models.options.WidgetWeekIconMode
+import org.breezyweather.common.utils.helpers.AsyncHelper
+import org.breezyweather.common.utils.helpers.IntentHelper
+import org.breezyweather.remoteviews.config.*
+import org.breezyweather.remoteviews.presenters.*
+import org.breezyweather.remoteviews.presenters.notification.NormalNotificationIMP
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.preference.bottomInsetItem
 import org.breezyweather.settings.preference.switchPreferenceItem
@@ -81,7 +87,7 @@ fun RootSettingsView(
                     SettingsManager.getInstance(context).isBackgroundFree = it
                     if (!it) {
                         postNotificationPermissionEnsurer {
-                            org.breezyweather.background.polling.PollingManager.resetNormalBackgroundTask(context, false)
+                            PollingManager.resetNormalBackgroundTask(context, false)
 
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                                 showBlockNotificationGroupDialog(context)
@@ -103,7 +109,7 @@ fun RootSettingsView(
                     SettingsManager.getInstance(context).isAlertPushEnabled = it
                     if (it) {
                         postNotificationPermissionEnsurer {
-                            org.breezyweather.background.polling.PollingManager.resetNormalBackgroundTask(context, false)
+                            PollingManager.resetNormalBackgroundTask(context, false)
                         }
                     }
                 },
@@ -119,7 +125,7 @@ fun RootSettingsView(
                     SettingsManager.getInstance(context).isPrecipitationPushEnabled = it
                     if (it) {
                         postNotificationPermissionEnsurer {
-                            org.breezyweather.background.polling.PollingManager.resetNormalBackgroundTask(context, false)
+                            PollingManager.resetNormalBackgroundTask(context, false)
                         }
                     }
                 },
@@ -149,7 +155,7 @@ fun RootSettingsView(
                         .getInstance(context)
                         .darkMode = DarkMode.getInstance(it)
 
-                    org.breezyweather.common.utils.helpers.AsyncHelper.delayRunOnUI({
+                    AsyncHelper.delayRunOnUI({
                         ThemeManager
                             .getInstance(context)
                             .update(darkMode = SettingsManager.getInstance(context).darkMode)
@@ -162,7 +168,7 @@ fun RootSettingsView(
                 titleId = id,
                 summaryId = R.string.settings_summary_live_wallpaper
             ) {
-                org.breezyweather.common.utils.helpers.IntentHelper.startLiveWallpaperActivity(context)
+                IntentHelper.startLiveWallpaperActivity(context)
             }
         }
         clickablePreferenceItem(R.string.settings_title_service_provider) { id ->
@@ -202,7 +208,7 @@ fun RootSettingsView(
                 onValueChanged = {
                     todayForecastEnabledState.value = it
                     SettingsManager.getInstance(context).isTodayForecastEnabled = it
-                    org.breezyweather.background.polling.PollingManager.resetNormalBackgroundTask(context, false)
+                    PollingManager.resetNormalBackgroundTask(context, false)
                 },
             )
         }
@@ -213,7 +219,7 @@ fun RootSettingsView(
                 enabled = todayForecastEnabledState.value,
                 onValueChanged = {
                     SettingsManager.getInstance(context).todayForecastTime = it
-                    org.breezyweather.background.polling.PollingManager.resetTodayForecastBackgroundTask(
+                    PollingManager.resetTodayForecastBackgroundTask(
                         context,
                         false,
                         false
@@ -230,7 +236,7 @@ fun RootSettingsView(
                 onValueChanged = {
                     tomorrowForecastEnabledState.value = it
                     SettingsManager.getInstance(context).isTomorrowForecastEnabled = it
-                    org.breezyweather.background.polling.PollingManager.resetNormalBackgroundTask(context, false)
+                    PollingManager.resetNormalBackgroundTask(context, false)
                 },
             )
         }
@@ -241,7 +247,7 @@ fun RootSettingsView(
                 enabled = tomorrowForecastEnabledState.value,
                 onValueChanged = {
                     SettingsManager.getInstance(context).tomorrowForecastTime = it
-                    org.breezyweather.background.polling.PollingManager.resetTomorrowForecastBackgroundTask(
+                    PollingManager.resetTomorrowForecastBackgroundTask(
                         context,
                         false,
                         false
@@ -263,7 +269,7 @@ fun RootSettingsView(
                     SettingsManager
                         .getInstance(context)
                         .widgetWeekIconMode = WidgetWeekIconMode.getInstance(it)
-                    org.breezyweather.background.polling.PollingManager.resetNormalBackgroundTask(context, true)
+                    PollingManager.resetNormalBackgroundTask(context, true)
                 },
             )
         }
@@ -275,84 +281,84 @@ fun RootSettingsView(
                 checked = SettingsManager.getInstance(context).isWidgetMinimalIconEnabled,
                 onValueChanged = {
                     SettingsManager.getInstance(context).isWidgetMinimalIconEnabled = it
-                    org.breezyweather.background.polling.PollingManager.resetNormalBackgroundTask(context, true)
+                    PollingManager.resetNormalBackgroundTask(context, true)
                 },
             )
         }
-        if (org.breezyweather.remoteviews.presenters.DayWidgetIMP.isEnable(context)) {
+        if (DayWidgetIMP.isEnable(context)) {
             clickablePreferenceItem(R.string.widget_day) {
                 PreferenceView(title = stringResource(it)) {
-                    context.startActivity(Intent(context, org.breezyweather.remoteviews.config.DayWidgetConfigActivity::class.java))
+                    context.startActivity(Intent(context, DayWidgetConfigActivity::class.java))
                 }
             }
         }
-        if (org.breezyweather.remoteviews.presenters.WeekWidgetIMP.isEnable(context)) {
+        if (WeekWidgetIMP.isEnable(context)) {
             clickablePreferenceItem(R.string.widget_week) {
                 PreferenceView(title = stringResource(it)) {
-                    context.startActivity(Intent(context, org.breezyweather.remoteviews.config.WeekWidgetConfigActivity::class.java))
+                    context.startActivity(Intent(context, WeekWidgetConfigActivity::class.java))
                 }
             }
         }
-        if (org.breezyweather.remoteviews.presenters.DayWeekWidgetIMP.isEnable(context)) {
+        if (DayWeekWidgetIMP.isEnable(context)) {
             clickablePreferenceItem(R.string.widget_day_week) {
                 PreferenceView(title = stringResource(it)) {
-                    context.startActivity(Intent(context, org.breezyweather.remoteviews.config.DayWeekWidgetConfigActivity::class.java))
+                    context.startActivity(Intent(context, DayWeekWidgetConfigActivity::class.java))
                 }
             }
         }
-        if (org.breezyweather.remoteviews.presenters.ClockDayHorizontalWidgetIMP.isEnable(context)) {
+        if (ClockDayHorizontalWidgetIMP.isEnable(context)) {
             clickablePreferenceItem(R.string.widget_clock_day_horizontal) {
                 PreferenceView(title = stringResource(it)) {
-                    context.startActivity(Intent(context, org.breezyweather.remoteviews.config.ClockDayHorizontalWidgetConfigActivity::class.java))
+                    context.startActivity(Intent(context, ClockDayHorizontalWidgetConfigActivity::class.java))
                 }
             }
         }
-        if (org.breezyweather.remoteviews.presenters.ClockDayDetailsWidgetIMP.isEnable(context)) {
+        if (ClockDayDetailsWidgetIMP.isEnable(context)) {
             clickablePreferenceItem(R.string.widget_clock_day_details) {
                 PreferenceView(title = stringResource(it)) {
-                    context.startActivity(Intent(context, org.breezyweather.remoteviews.config.ClockDayDetailsWidgetConfigActivity::class.java))
+                    context.startActivity(Intent(context, ClockDayDetailsWidgetConfigActivity::class.java))
                 }
             }
         }
-        if (org.breezyweather.remoteviews.presenters.ClockDayVerticalWidgetIMP.isEnable(context)) {
+        if (ClockDayVerticalWidgetIMP.isEnable(context)) {
             clickablePreferenceItem(R.string.widget_clock_day_vertical) {
                 PreferenceView(title = stringResource(it)) {
-                    context.startActivity(Intent(context, org.breezyweather.remoteviews.config.ClockDayVerticalWidgetConfigActivity::class.java))
+                    context.startActivity(Intent(context, ClockDayVerticalWidgetConfigActivity::class.java))
                 }
             }
         }
-        if (org.breezyweather.remoteviews.presenters.ClockDayWeekWidgetIMP.isEnable(context)) {
+        if (ClockDayWeekWidgetIMP.isEnable(context)) {
             clickablePreferenceItem(R.string.widget_clock_day_week) {
                 PreferenceView(title = stringResource(it)) {
-                    context.startActivity(Intent(context, org.breezyweather.remoteviews.config.ClockDayWeekWidgetConfigActivity::class.java))
+                    context.startActivity(Intent(context, ClockDayWeekWidgetConfigActivity::class.java))
                 }
             }
         }
-        if (org.breezyweather.remoteviews.presenters.TextWidgetIMP.isEnable(context)) {
+        if (TextWidgetIMP.isEnable(context)) {
             clickablePreferenceItem(R.string.widget_text) {
                 PreferenceView(title = stringResource(it)) {
-                    context.startActivity(Intent(context, org.breezyweather.remoteviews.config.TextWidgetConfigActivity::class.java))
+                    context.startActivity(Intent(context, TextWidgetConfigActivity::class.java))
                 }
             }
         }
-        if (org.breezyweather.remoteviews.presenters.DailyTrendWidgetIMP.isEnable(context)) {
+        if (DailyTrendWidgetIMP.isEnable(context)) {
             clickablePreferenceItem(R.string.widget_trend_daily) {
                 PreferenceView(title = stringResource(it)) {
-                    context.startActivity(Intent(context, org.breezyweather.remoteviews.config.DailyTrendWidgetConfigActivity::class.java))
+                    context.startActivity(Intent(context, DailyTrendWidgetConfigActivity::class.java))
                 }
             }
         }
-        if (org.breezyweather.remoteviews.presenters.HourlyTrendWidgetIMP.isEnable(context)) {
+        if (HourlyTrendWidgetIMP.isEnable(context)) {
             clickablePreferenceItem(R.string.widget_trend_hourly) {
                 PreferenceView(title = stringResource(it)) {
-                    context.startActivity(Intent(context, org.breezyweather.remoteviews.config.HourlyTrendWidgetConfigActivity::class.java))
+                    context.startActivity(Intent(context, HourlyTrendWidgetConfigActivity::class.java))
                 }
             }
         }
-        if (org.breezyweather.remoteviews.presenters.MultiCityWidgetIMP.isEnable(context)) {
+        if (MultiCityWidgetIMP.isEnable(context)) {
             clickablePreferenceItem(R.string.widget_multi_city) {
                 PreferenceView(title = stringResource(it)) {
-                    context.startActivity(Intent(context, org.breezyweather.remoteviews.config.MultiCityWidgetConfigActivity::class.java))
+                    context.startActivity(Intent(context, MultiCityWidgetConfigActivity::class.java))
                 }
             }
         }
@@ -372,11 +378,11 @@ fun RootSettingsView(
 
                     if (it) { // open notification.
                         postNotificationPermissionEnsurer {
-                            org.breezyweather.background.polling.PollingManager.resetNormalBackgroundTask(context, true)
+                            PollingManager.resetNormalBackgroundTask(context, true)
                         }
                     } else { // close notification.
-                        org.breezyweather.remoteviews.presenters.notification.NormalNotificationIMP.cancelNotification(context)
-                        org.breezyweather.background.polling.PollingManager.resetNormalBackgroundTask(context, false)
+                        NormalNotificationIMP.cancelNotification(context)
+                        PollingManager.resetNormalBackgroundTask(context, false)
                     }
                 }
             )
@@ -392,7 +398,7 @@ fun RootSettingsView(
                     SettingsManager
                         .getInstance(context)
                         .notificationStyle = NotificationStyle.getInstance(it)
-                    org.breezyweather.background.polling.PollingManager.resetNormalBackgroundTask(context, true)
+                    PollingManager.resetNormalBackgroundTask(context, true)
                 },
             )
         }
@@ -411,7 +417,7 @@ fun RootSettingsView(
                         .isNotificationTemperatureIconEnabled = it
                     notificationTemperatureIconEnabledState.value = it
 
-                    org.breezyweather.background.polling.PollingManager.resetNormalBackgroundTask(context, true)
+                    PollingManager.resetNormalBackgroundTask(context, true)
                 }
             )
         }
@@ -429,7 +435,7 @@ fun RootSettingsView(
                     SettingsManager
                         .getInstance(context)
                         .isNotificationFeelsLike = it
-                    org.breezyweather.background.polling.PollingManager.resetNormalBackgroundTask(context, true)
+                    PollingManager.resetNormalBackgroundTask(context, true)
                 }
             )
         }
@@ -446,7 +452,7 @@ fun RootSettingsView(
                     SettingsManager
                         .getInstance(context)
                         .isNotificationCanBeClearedEnabled = it
-                    org.breezyweather.background.polling.PollingManager.resetNormalBackgroundTask(context, true)
+                    PollingManager.resetNormalBackgroundTask(context, true)
                 }
             )
         }
@@ -488,7 +494,7 @@ private fun showIgnoreBatteryOptimizationDialog(context: Context) {
         .setPositiveButton(
             R.string.go_to_set
         ) { _, _ ->
-            org.breezyweather.common.utils.helpers.IntentHelper.startBatteryOptimizationActivity(context)
+            IntentHelper.startBatteryOptimizationActivity(context)
         }
         .setNeutralButton(R.string.done) { _, _ -> }
         .setCancelable(false)

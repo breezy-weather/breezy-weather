@@ -2,15 +2,18 @@ package org.breezyweather.main
 
 import android.content.Context
 import org.breezyweather.common.basic.models.Location
+import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.db.repositories.LocationEntityRepository
 import org.breezyweather.db.repositories.WeatherEntityRepository
+import org.breezyweather.location.LocationHelper
+import org.breezyweather.weather.WeatherHelper
 import org.breezyweather.weather.WeatherHelper.OnRequestWeatherListener
 import java.util.concurrent.Executors
 import javax.inject.Inject
 
 class MainActivityRepository @Inject constructor(
-    private val locationHelper: org.breezyweather.location.LocationHelper,
-    private val weatherHelper: org.breezyweather.weather.WeatherHelper
+    private val locationHelper: LocationHelper,
+    private val weatherHelper: WeatherHelper
 ) {
     private val singleThreadExecutor = Executors.newSingleThreadExecutor()
 
@@ -50,9 +53,9 @@ class MainActivityRepository @Inject constructor(
         context: Context,
         oldList: List<Location>,
         ignoredFormattedId: String,
-        callback: org.breezyweather.common.utils.helpers.AsyncHelper.Callback<List<Location>>
+        callback: AsyncHelper.Callback<List<Location>>
     ) {
-        org.breezyweather.common.utils.helpers.AsyncHelper.runOnExecutor({ emitter ->
+        AsyncHelper.runOnExecutor({ emitter ->
             emitter.send(
                 oldList.map {
                     if (it.formattedId == ignoredFormattedId) {
@@ -70,13 +73,13 @@ class MainActivityRepository @Inject constructor(
     }
 
     fun writeLocationList(context: Context, locationList: List<Location>) {
-        org.breezyweather.common.utils.helpers.AsyncHelper.runOnExecutor({
+        AsyncHelper.runOnExecutor({
             LocationEntityRepository.writeLocationList(locationList)
         }, singleThreadExecutor)
     }
 
     fun deleteLocation(context: Context, location: Location) {
-        org.breezyweather.common.utils.helpers.AsyncHelper.runOnExecutor({
+        AsyncHelper.runOnExecutor({
             LocationEntityRepository.deleteLocation(location)
             WeatherEntityRepository.deleteWeather(location)
         }, singleThreadExecutor)
@@ -103,7 +106,7 @@ class MainActivityRepository @Inject constructor(
         context,
         location,
         false,
-        object : org.breezyweather.location.LocationHelper.OnRequestLocationListener {
+        object : LocationHelper.OnRequestLocationListener {
 
             override fun requestLocationSuccess(requestLocation: Location) {
                 if (requestLocation.formattedId != location.formattedId) {

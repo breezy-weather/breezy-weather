@@ -14,6 +14,8 @@ import org.breezyweather.main.adapters.location.LocationAdapter.OnLocationItemCl
 import org.breezyweather.main.adapters.location.LocationAdapter.OnLocationItemDragListener
 import org.breezyweather.main.utils.MainThemeColorProvider.Companion.getColor
 import org.breezyweather.R
+import org.breezyweather.common.utils.DisplayUtils
+import org.breezyweather.theme.resource.providers.ResourceProvider
 
 class LocationHolder(
     private val mBinding: ItemLocationCardBinding,
@@ -21,15 +23,15 @@ class LocationHolder(
     private val mDragListener: OnLocationItemDragListener?
 ) : RecyclerView.ViewHolder(mBinding.root) {
     @SuppressLint("SetTextI18n", "ClickableViewAccessibility")
-    fun onBindView(context: Context, model: LocationModel, resourceProvider: org.breezyweather.theme.resource.providers.ResourceProvider) {
-        val lightTheme = !org.breezyweather.common.utils.DisplayUtils.isDarkMode(context)
-        val elevatedSurfaceColor = org.breezyweather.common.utils.DisplayUtils.getWidgetSurfaceColor(
-            org.breezyweather.common.utils.DisplayUtils.DEFAULT_CARD_LIST_ITEM_ELEVATION_DP,
+    fun onBindView(context: Context, model: LocationModel, resourceProvider: ResourceProvider) {
+        val lightTheme = !DisplayUtils.isDarkMode(context)
+        val elevatedSurfaceColor = DisplayUtils.getWidgetSurfaceColor(
+            DisplayUtils.DEFAULT_CARD_LIST_ITEM_ELEVATION_DP,
             getColor(lightTheme, androidx.appcompat.R.attr.colorPrimary),
             getColor(lightTheme, com.google.android.material.R.attr.colorSurface)
         )
         if (model.selected) {
-            mBinding.root.strokeWidth = org.breezyweather.common.utils.DisplayUtils.dpToPx(context, 4f).toInt()
+            mBinding.root.strokeWidth = DisplayUtils.dpToPx(context, 4f).toInt()
             mBinding.root.strokeColor = elevatedSurfaceColor
         } else {
             mBinding.root.strokeWidth = 0
@@ -66,7 +68,7 @@ class LocationHolder(
             com.google.android.material.R.attr.colorOnTertiaryContainer
         ) else getColor(lightTheme, com.google.android.material.R.attr.colorOnSecondaryContainer)
         mBinding.item.setBackgroundColor(
-            if (model.selected) org.breezyweather.common.utils.DisplayUtils.blendColor(
+            if (model.selected) DisplayUtils.blendColor(
                 ColorUtils.setAlphaComponent(elevatedSurfaceColor, (255 * 0.5).toInt()),
                 getColor(lightTheme, com.google.android.material.R.attr.colorSurfaceVariant)
             ) else elevatedSurfaceColor
@@ -129,7 +131,7 @@ class LocationHolder(
         if (mDragListener != null) {
             talkBackBuilder.append(", ").append(
                 context.getString(
-                    if (org.breezyweather.common.utils.DisplayUtils.isRtl(context)) R.string.content_des_swipe_left_to_delete else R.string.content_des_swipe_right_to_delete
+                    if (DisplayUtils.isRtl(context)) R.string.content_des_swipe_left_to_delete else R.string.content_des_swipe_right_to_delete
                 )
             )
         }

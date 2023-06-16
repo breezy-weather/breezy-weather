@@ -2,6 +2,7 @@ package org.breezyweather.common.basic.models.weather
 
 import android.content.Context
 import org.breezyweather.R
+import org.breezyweather.common.utils.helpers.LunarHelper
 import java.io.Serializable
 import java.util.Calendar
 import java.util.Date
@@ -49,7 +50,7 @@ class Daily(
     }
 
     val lunar: String
-        get() = org.breezyweather.common.utils.helpers.LunarHelper.getLunarDate(date)
+        get() = LunarHelper.getLunarDate(date)
 
     fun isToday(timeZone: TimeZone): Boolean {
         val current = Calendar.getInstance(timeZone)
