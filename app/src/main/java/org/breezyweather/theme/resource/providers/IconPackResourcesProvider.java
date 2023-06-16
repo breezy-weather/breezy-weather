@@ -66,35 +66,60 @@ public class IconPackResourcesProvider extends ResourceProvider {
             if (resId != 0) {
                 mConfig = XmlHelper.getConfig(res.getXml(resId));
             } else {
-                mConfig = new Config();
+                int geometricResId = getMetaDataResource(Constants.GEOMETRIC_META_DATA_PROVIDER_CONFIG);
+                if (geometricResId != 0) {
+                    mConfig = XmlHelper.getConfig(res.getXml(geometricResId));
+                } else {
+                    mConfig = new Config();
+                }
             }
 
             resId = getMetaDataResource(Constants.META_DATA_DRAWABLE_FILTER);
             if (resId != 0) {
                 mDrawableFilter = XmlHelper.getFilterMap(res.getXml(resId));
             } else {
-                mDrawableFilter = new HashMap<>();
+                int geometricResId = getMetaDataResource(Constants.GEOMETRIC_META_DATA_DRAWABLE_FILTER);
+                if (geometricResId != 0) {
+                    mDrawableFilter = XmlHelper.getFilterMap(res.getXml(geometricResId));
+                } else {
+                    mDrawableFilter = new HashMap<>();
+                }
             }
 
             resId = getMetaDataResource(Constants.META_DATA_ANIMATOR_FILTER);
             if (resId != 0) {
                 mAnimatorFilter = XmlHelper.getFilterMap(res.getXml(resId));
             } else {
-                mAnimatorFilter = new HashMap<>();
+                int geometricResId = getMetaDataResource(Constants.GEOMETRIC_META_DATA_ANIMATOR_FILTER);
+                if (geometricResId != 0) {
+                    mAnimatorFilter = XmlHelper.getFilterMap(res.getXml(geometricResId));
+                } else {
+                    mAnimatorFilter = new HashMap<>();
+                }
             }
 
             resId = getMetaDataResource(Constants.META_DATA_SHORTCUT_FILTER);
             if (resId != 0) {
                 mShortcutFilter = XmlHelper.getFilterMap(res.getXml(resId));
             } else {
-                mShortcutFilter = new HashMap<>();
+                int geometricResId = getMetaDataResource(Constants.GEOMETRIC_META_DATA_SHORTCUT_FILTER);
+                if (geometricResId != 0) {
+                    mShortcutFilter = XmlHelper.getFilterMap(res.getXml(geometricResId));
+                } else {
+                    mShortcutFilter = new HashMap<>();
+                }
             }
 
             resId = getMetaDataResource(Constants.META_DATA_SUN_MOON_FILTER);
             if (resId != 0) {
                 mSunMoonFilter = XmlHelper.getFilterMap(res.getXml(resId));
             } else {
-                mSunMoonFilter = new HashMap<>();
+                int geometricResId = getMetaDataResource(Constants.GEOMETRIC_META_DATA_SUN_MOON_FILTER);
+                if (geometricResId != 0) {
+                    mSunMoonFilter = XmlHelper.getFilterMap(res.getXml(geometricResId));
+                } else {
+                    mSunMoonFilter = new HashMap<>();
+                }
             }
         } catch (Exception e) {
             buildDefaultInstance(c);
@@ -141,6 +166,20 @@ public class IconPackResourcesProvider extends ResourceProvider {
             );
         }
 
+        List<ResolveInfo> geometricInfoList = context.getPackageManager().queryIntentActivities(
+                new Intent(Constants.GEOMETRIC_ACTION_ICON_PROVIDER),
+                PackageManager.GET_RESOLVED_FILTER
+        );
+        for (ResolveInfo info : geometricInfoList) {
+            providerList.add(
+                    new IconPackResourcesProvider(
+                            context,
+                            info.activityInfo.applicationInfo.packageName,
+                            defaultProvider
+                    )
+            );
+        }
+
         return providerList;
     }
 
@@ -150,6 +189,15 @@ public class IconPackResourcesProvider extends ResourceProvider {
                 PackageManager.GET_RESOLVED_FILTER
         );
         for (ResolveInfo info : infoList) {
+            if (packageName.equals(info.activityInfo.applicationInfo.packageName)) {
+                return true;
+            }
+        }
+        List<ResolveInfo> geometricInfoList = context.getPackageManager().queryIntentActivities(
+                new Intent(Constants.GEOMETRIC_ACTION_ICON_PROVIDER),
+                PackageManager.GET_RESOLVED_FILTER
+        );
+        for (ResolveInfo info : geometricInfoList) {
             if (packageName.equals(info.activityInfo.applicationInfo.packageName)) {
                 return true;
             }
