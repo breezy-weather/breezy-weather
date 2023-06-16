@@ -181,7 +181,7 @@
                 android:id="@+id/widget_clock_day_title"
                 android:layout_centerVertical="true"
                 android:layout_toStartOf="@id/widget_clock_day_icon"
-                android:text="@string/ellipsis"
+                android:text="@string/widget_ellipsis"
                 android:textSize="@dimen/widget_content_text_size"
                 android:textAlignment="viewEnd"
                 android:maxLines="2"
@@ -197,7 +197,7 @@
                 android:id="@+id/widget_clock_day_subtitle"
                 android:layout_centerVertical="true"
                 android:layout_toEndOf="@id/widget_clock_day_icon"
-                android:text="@string/ellipsis"
+                android:text="@string/widget_ellipsis"
                 android:textSize="@dimen/widget_content_text_size"
                 android:maxLines="2"
                 android:shadowColor="@color/colorWidgetTextShadow"
@@ -228,7 +228,7 @@
 
                 <TextView
                     android:id="@+id/widget_clock_day_time"
-                    android:text="@string/wait_refresh"
+                    android:text="@string/widget_refreshing"
                     android:textSize="@dimen/widget_time_text_size"
                     android:shadowColor="@color/colorWidgetTextShadow"
                     android:shadowDx="1"

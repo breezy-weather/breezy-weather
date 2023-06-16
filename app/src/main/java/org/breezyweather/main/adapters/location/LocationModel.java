@@ -65,7 +65,7 @@ public class LocationModel {
         this.residentPosition = location.isResidentPosition();
 
         this.title = location.isCurrentPosition()
-                ? context.getString(R.string.current_location)
+                ? context.getString(R.string.location_current)
                 : location.place();
         this.body = (location.isUsable()) ? location.administrationLevels() : context.getString(R.string.feedback_not_yet_location);
 

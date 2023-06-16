@@ -161,7 +161,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/large_margin"
                 android:layout_width="match_parent"
-                android:text="@string/ellipsis"
+                android:text="@string/widget_ellipsis"
                 android:textSize="@dimen/widget_content_text_size"
                 android:textAlignment="textEnd"
                 android:ellipsize="start"

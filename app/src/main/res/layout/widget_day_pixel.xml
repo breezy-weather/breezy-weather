@@ -33,7 +33,7 @@
 
             <TextView
                 android:id="@+id/widget_day_title"
-                android:text="@string/ellipsis"
+                android:text="@string/widget_ellipsis"
                 android:textSize="@dimen/widget_design_title_text_size"
                 android:shadowColor="@color/colorWidgetTextShadow"
                 android:shadowDx="1"
@@ -48,7 +48,7 @@
 
         <TextClock
             android:id="@+id/widget_day_time"
-            android:text="@string/ellipsis"
+            android:text="@string/widget_ellipsis"
             android:textSize="@dimen/widget_subtitle_text_size"
             android:textAlignment="viewEnd"
             android:shadowColor="@color/colorWidgetTextShadow"

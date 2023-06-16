@@ -77,7 +77,7 @@ abstract class LocationService {
         return NotificationCompat
             .Builder(context, BreezyWeather.NOTIFICATION_CHANNEL_ID_LOCATION)
             .setSmallIcon(R.drawable.ic_location)
-            .setContentTitle(context.getString(R.string.feedback_request_location))
+            .setContentTitle(context.getString(R.string.notification_channel_request_location))
             .setContentText(context.getString(R.string.feedback_request_location_in_background))
             .setBadgeIconType(NotificationCompat.BADGE_ICON_NONE)
             .setPriority(NotificationCompat.PRIORITY_MIN)

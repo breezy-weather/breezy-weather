@@ -36,7 +36,7 @@
                 android:id="@+id/widget_day_title"
                 android:layout_centerVertical="true"
                 android:layout_toStartOf="@id/widget_day_icon"
-                android:text="@string/ellipsis"
+                android:text="@string/widget_ellipsis"
                 android:textSize="@dimen/widget_content_text_size"
                 android:textAlignment="viewEnd"
                 android:maxLines="2"
@@ -48,7 +48,7 @@
                 android:id="@+id/widget_day_subtitle"
                 android:layout_centerVertical="true"
                 android:layout_toEndOf="@+id/widget_day_icon"
-                android:text="@string/ellipsis"
+                android:text="@string/widget_ellipsis"
                 android:textSize="@dimen/widget_content_text_size"
                 android:maxLines="2"
                 style="@style/widget_content_text"
@@ -75,7 +75,7 @@
 
                 <TextView
                     android:id="@+id/widget_day_time"
-                    android:text="@string/wait_refresh"
+                    android:text="@string/widget_refreshing"
                     android:textSize="@dimen/widget_time_text_size"
                     android:layout_centerInParent="true"
                     style="@style/widget_content_text"

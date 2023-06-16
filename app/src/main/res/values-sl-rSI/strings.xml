@@ -4,75 +4,68 @@
     <string name="breezy_weather">Breezy Vreme</string>
 
     <!-- keyword. -->
-    <string name="current_location">Sedanja lokacija</string>
+    <string name="location_current">Sedanja lokacija</string>
     <string name="live">Trenutno</string>
-    <string name="today">Danes</string>
+    <string name="short_today">Danes</string>
     <string name="refresh_at">Osveži ob</string>
     <string name="precipitation">Padavine</string>
-    <string name="maxi_temp">podnevi</string>
-    <string name="mini_temp">ponoči</string>
-    <string name="time">čas</string>
-    <string name="day">dnevni čas</string>
-    <string name="night">nočni čas</string>
     <string name="wind">Veter</string>
-    <string name="sensible_temp">Senzibilna temp</string>
     <string name="humidity">Vlažnost</string>
     <string name="uv_index">UV indeks</string>
-    <string name="forecast">Napoved</string>
-    <string name="briefings">Povzetek</string>
+    <string name="notification_channel_forecast">Napoved</string>
     <string name="daytime">Podnevi</string>
     <string name="nighttime">Ponoči</string>
-    <string name="publish_at">Objavi ob</string>
-    <string name="feels_like">Občuti se</string>
-    <string name="follow_system">Sledi sistemu</string>
-    <string name="background_information">Informacije iz ozadja</string>
+    <string name="published_at">Objavi ob</string>
+    <string name="temperature_feels_like">Občuti se</string>
+    <string name="settings_follow_system">Sledi sistemu</string>
+    <string name="notification_channel_background_information">Informacije iz ozadja</string>
     <string name="pressure">Atmosferski tlak</string>
     <string name="visibility">Vidnost</string>
     <string name="dew_point">Točka rose</string>
-    <string name="get_more">Več</string>
-    <string name="get_more_store">Več iz trgovine</string>
-    <string name="get_more_github">Več iz GitHuba</string>
+    <string name="settings_icon_providers_get_more">Več</string>
+    <string name="settings_icon_providers_get_more_store">Več iz trgovine</string>
+    <string name="settings_icon_providers_get_more_github">Več iz GitHuba</string>
     <string name="refresh">Osveži</string>
 
     <string name="of_clock">:00</string>
-    <string name="yesterday">včr</string>
-    <string name="tomorrow">jtr</string>
-    <string name="week_1">Pon</string>
-    <string name="week_2">Tor</string>
-    <string name="week_3">Sre</string>
-    <string name="week_4">Čet</string>
-    <string name="week_5">Pet</string>
-    <string name="week_6">Sob</string>
-    <string name="week_7">Ned</string>
+    <string name="short_yesterday">Včr</string>
+    <string name="short_tomorrow">Jtr</string>
+    <string name="short_monday">Pon</string>
+    <string name="short_tuesday">Tor</string>
+    <string name="short_wednesday">Sre</string>
+    <string name="short_thursday">Čet</string>
+    <string name="short_friday">Pet</string>
+    <string name="short_saturday">Sob</string>
+    <string name="short_sunday">Ned</string>
 
-    <string name="wind_0">Mirno</string>
-    <string name="wind_1">Lahen zrak</string>
-    <string name="wind_2">Lahen vetrič</string>
-    <string name="wind_3">Nežen vetrič</string>
-    <string name="wind_4">Zmeren Vetrič</string>
-    <string name="wind_5">Svež vetrič</string>
-    <string name="wind_6">Močen vetrič</string>
-    <string name="wind_7">Konkreten vetrič</string>
-    <string name="wind_8">Veter</string>
-    <string name="wind_9">Močen veter</string>
-    <string name="wind_10">Nevihta</string>
-    <string name="wind_11">Silovita nevihta</string>
-    <string name="wind_12">Hurikan/Tajfun</string>
+    <string name="wind_level_0">Mirno</string>
+    <string name="wind_level_1">Lahen zrak</string>
+    <string name="wind_level_2">Lahen vetrič</string>
+    <string name="wind_level_3">Nežen vetrič</string>
+    <string name="wind_level_4">Zmeren Vetrič</string>
+    <string name="wind_level_5">Svež vetrič</string>
+    <string name="wind_level_6">Močen vetrič</string>
+    <string name="wind_level_7">Konkreten vetrič</string>
+    <string name="wind_level_8">Veter</string>
+    <string name="wind_level_9">Močen veter</string>
+    <string name="wind_level_10">Nevihta</string>
+    <string name="wind_level_11">Silovita nevihta</string>
+    <string name="wind_level_12">Hurikan/Tajfun</string>
 
-    <string name="phase_new">Mlada luna</string>
-    <string name="phase_waxing_crescent">Nastajajoči polmesec</string>
-    <string name="phase_first">Prva četrina</string>
-    <string name="phase_waxing_gibbous">Nastajajoča polna luna</string>
-    <string name="phase_full">Polna luna</string>
-    <string name="phase_waning_gibbous">Izginjajoča polna luna</string>
-    <string name="phase_third">Tretja četrtina</string>
-    <string name="phase_waning_crescent">Izginjajoči polmesec</string>
+    <string name="ephemeris_moon_phase_new">Mlada luna</string>
+    <string name="ephemeris_moon_phase_waxing_crescent">Nastajajoči polmesec</string>
+    <string name="ephemeris_moon_phase_first">Prva četrina</string>
+    <string name="ephemeris_moon_phase_waxing_gibbous">Nastajajoča polna luna</string>
+    <string name="ephemeris_moon_phase_full">Polna luna</string>
+    <string name="ephemeris_moon_phase_waning_gibbous">Izginjajoča polna luna</string>
+    <string name="ephemeris_moon_phase_third">Tretja četrtina</string>
+    <string name="ephemeris_moon_phase_waning_crescent">Izginjajoči polmesec</string>
 
-    <string name="daily_overview">Dnevna napoved</string>
-    <string name="hourly_overview">Urna napoved</string>
+    <string name="daily_forecast">Dnevna napoved</string>
+    <string name="hourly_forecast">Urna napoved</string>
     <string name="air_quality">Kvaliteta zraka</string>
     <string name="details">Podrobnosti</string>
-    <string name="sunrise_sunset">Sonce &amp; luna</string>
+    <string name="ephemeris">Sonce &amp; luna</string>
 
     <string name="next">NASLEDNJI</string>
     <string name="done">KONČNANO</string>
@@ -84,9 +77,7 @@
     <string name="learn_more">NAUČI SE VEČ</string>
 
     <string name="about_app">O applikaciji</string>
-    <string name="email">E-mail</string>
-    <string name="translator">Prevajalci</string>
-    <string name="thanks">Hvala</string>
+    <string name="about_translators">Prevajalci</string>
 
     <string name="date_format_short">M-d</string>
     <string name="date_format_long">MMM d</string>
@@ -96,7 +87,7 @@
 
     <!-- feedback. -->
     <string name="feedback_request_permission">Dovoljenja</string>
-    <string name="feedback_request_location">Lokacija</string>
+    <string name="notification_channel_request_location">Lokacija</string>
     <string name="feedback_request_location_in_background">Lokacija v ozadju</string>
     <string name="feedback_request_location_permission_success">Pridobitev dovoljenja za lokacijo je uspela</string>
     <string name="feedback_request_location_permission_failed">Pridobitev dovoljenja za lokacijo ni uspela</string>
@@ -108,18 +99,18 @@
     <string name="feedback_enable_location_information">Omogočite dovoljenja lokacije</string>
     <string name="feedback_select_location_provider">Izberite način pridobivanja lokacije</string>
 
-    <string name="feedback_view_style">Način pogleda</string>
-    <string name="feedback_show_widget_card">Barva ozadja</string>
-    <string name="feedback_show_widget_card_alpha">Transparentnost</string>
-    <string name="feedback_hide_subtitle">Skrij podnapis</string>
-    <string name="feedback_subtitle_data">Vsedina podnapisov</string>
-    <string name="feedback_black_text">Barva besedila</string>
-    <string name="feedback_text_size">Velikost besedila</string>
-    <string name="feedback_clock_font">Stil ure</string>
-    <string name="feedback_custom_subtitle_explanation">Tukaj lahko vstavite kar hočete. Prosim bodite pozorni na dolžino besedila. Če želite navesti podatke o vremenu, prosim uporabite simbol $, se bo nanašal na ustrezen vremenski podatek. \n\n, \"trenutno vreme = $cw$\" bo prikazano kot \"trenutno vreme = Čist dan\".</string>
+    <string name="widget_label_view_style">Način pogleda</string>
+    <string name="widget_label_show_widget_card">Barva ozadja</string>
+    <string name="widget_label_show_widget_card_alpha">Transparentnost</string>
+    <string name="widget_label_hide_subtitle">Skrij podnapis</string>
+    <string name="widget_label_subtitle_data">Vsedina podnapisov</string>
+    <string name="widget_label_black_text">Barva besedila</string>
+    <string name="widget_label_text_size">Velikost besedila</string>
+    <string name="widget_label_clock_font">Stil ure</string>
+    <string name="widget_custom_subtitle_explanation">Tukaj lahko vstavite kar hočete. Prosim bodite pozorni na dolžino besedila. Če želite navesti podatke o vremenu, prosim uporabite simbol $, se bo nanašal na ustrezen vremenski podatek. \n\n, \"trenutno vreme = $cw$\" bo prikazano kot \"trenutno vreme = Čist dan\".</string>
 
-    <string name="feedback_live_wallpaper_weather_kind">Vreme</string>
-    <string name="feedback_live_wallpaper_day_night_type">Čas</string>
+    <string name="widget_live_wallpaper_weather_kind">Vreme</string>
+    <string name="widget_live_wallpaper_day_night_type">Čas</string>
 
     <string name="feedback_click_toggle">Kliknite za graf, če želite spremeniti pogled podatkov</string>
     <string name="feedback_no_data">NI PODATKOV</string>
@@ -138,8 +129,6 @@
     <string name="feedback_refresh_notification_now">Osveži zdaj</string>
     <string name="feedback_refresh_ui_after_refresh">Spremembe bodo veljanje ob posodobitvi podatkov</string>
     <string name="feedback_restart">Spremembe bodo veljavne po ponovnem zaognu</string>
-    <string name="feedback_readd_location">Prosim ponovno dodajte lokacije</string>
-    <string name="feedback_readd_location_after_changing_source">Prosim ponovno dadajte lokacije po spremembi vira podatkov</string>
 
     <string name="feedback_running_in_background">Teče v ozadju za redne posodobitve</string>
     <string name="feedback_updating_weather_data">Posodabljanje podatkov o vremenu</string>
@@ -147,11 +136,8 @@
 
     <string name="feedback_cannot_start_live_wallpaper_activity">Predogleda živega ozadja ni bilo mogoče začeti.</string>
 
-    <string name="feedback_unusable_geocoder">Ta naprava ne vsebuje veljavnega geokoderja. Določanje lokacije je bilo nastavljeno na Baidu Location.</string>
-    <string name="feedback_about_geocoder">Geokoder je komponenta, ki pretvori rezultate o lokaciji iz geografskih koordinat v sledeči foramt, npr. \'XX mesto, YY provinca \'. V odsotnosti te komponente je mogoče vremenske podatke s pomočjo AccuWeather pridobiti z uporabo nativnega API kot primarnega oskrbnika z lokacijo.</string>
-
     <!-- action -->
-    <string name="action_alert">Opozorilo</string>
+    <string name="alerts">Opozorilo</string>
     <string name="action_manage">Urejaj</string>
     <string name="action_search">Išči</string>
     <string name="action_settings">Nastavitve</string>
@@ -170,8 +156,8 @@
     <string name="widget_text">Besedilo</string>
     <string name="widget_trend_daily">Dnevni trend</string>
     <string name="widget_trend_hourly">Urni trendi</string>
-    <string name="wait_refresh">v čakanju</string>
-    <string name="ellipsis">…</string>
+    <string name="widget_refreshing">v čakanju</string>
+    <string name="widget_ellipsis">…</string>
 
     <!-- settings -->
     <string name="settings_category_basic">Osnove</string>

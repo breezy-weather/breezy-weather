@@ -106,6 +106,7 @@ class AlertActivity : GeoActivity() {
                 location = LocationEntityRepository.readLocation(formattedId)
             }
             if (location == null) {
+                // FIXME: doesn’t display alerts for current position for China provider if not in first position
                 location = LocationEntityRepository.readLocationList(context)[0]
             }
             val weather = WeatherEntityRepository.readWeather(location)
@@ -124,7 +125,7 @@ class AlertActivity : GeoActivity() {
             modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
             topBar = {
                 FitStatusBarTopAppBar(
-                    title = stringResource(R.string.action_alert),
+                    title = stringResource(R.string.alerts),
                     onBackPressed = { finish() },
                     scrollBehavior = scrollBehavior,
                 )

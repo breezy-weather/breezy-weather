@@ -493,11 +493,11 @@ public class DayWeekWidgetIMP extends AbstractRemoteViewsPresenter {
                 }
                 return null;
 
-            case "sensible_time":
+            case "feels_like":
                 if (weather.getCurrent() != null
                         && weather.getCurrent().getTemperature() != null
                         && weather.getCurrent().getTemperature().getFeelsLikeTemperature() != null) {
-                    return context.getString(R.string.feels_like)
+                    return context.getString(R.string.temperature_feels_like)
                             + " "
                             + weather.getCurrent().getTemperature().getFeelsLikeTemperature(context, unit);
                 }

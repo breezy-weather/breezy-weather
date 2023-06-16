@@ -166,7 +166,7 @@ class HourlyViewHolder(
             minutelyCenterText.text = DisplayUtils.getTime(context, minutelyList[(size - 1) / 2].date, location.timeZone)
             minutelyEndText.text = DisplayUtils.getTime(context, minutelyList[size - 1].date, location.timeZone)
             minutelyContainer.contentDescription =
-                activity.getString(R.string.content_des_minutely_precipitation)
+                activity.getString(R.string.content_desc_minutely_precipitation)
                     .replace("$1", DisplayUtils.getTime(context, minutelyList[0].date, location.timeZone))
                     .replace("$2", DisplayUtils.getTime(context, minutelyList[size - 1].date, location.timeZone))
         } else {

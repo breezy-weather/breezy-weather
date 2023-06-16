@@ -4,58 +4,51 @@
     <string name="breezy_weather">Breezy време</string>
 
     <!-- keyword. -->
-    <string name="current_location">Тренутну локацију</string>
+    <string name="location_current">Тренутну локацију</string>
     <string name="live">Уживо</string>
-    <string name="today">Данас</string>
+    <string name="short_today">Данас</string>
     <string name="refresh_at">Oсвежи за</string>
     <string name="precipitation">Падавине</string>
-    <string name="maxi_temp">дневно</string>
-    <string name="mini_temp">ноћу</string>
-    <string name="time">време</string>
-    <string name="day">дневно</string>
-    <string name="night">ноћу</string>
     <string name="wind">Ветар</string>
-    <string name="sensible_temp">Осетна температура</string>
     <string name="humidity">Влажност</string>
     <string name="uv_index">Uv индекс</string>
-    <string name="forecast">Прогноза</string>
-    <string name="briefings">Информације</string>
+    <string name="notification_channel_forecast">Прогноза</string>
     <string name="daytime">Дневно</string>
     <string name="nighttime">Ноћу</string>
-    <string name="publish_at">Објави у</string>
-    <string name="feels_like">Као</string>
-    <string name="follow_system">Подразумевани</string>
+    <string name="published_at">Објави у</string>
+    <string name="temperature_feels_like">Као</string>
+    <string name="settings_follow_system">Подразумевани</string>
 
     <string name="of_clock">:00</string>
-    <string name="yesterday">јуче</string>
-    <string name="tomorrow">сутра</string>
-    <string name="week_1">ПОН</string>
-    <string name="week_2">УТО</string>
-    <string name="week_3">СРЕ</string>
-    <string name="week_4">ЧЕТ</string>
-    <string name="week_5">ПЕТ</string>
-    <string name="week_6">СУБ</string>
-    <string name="week_7">НЕД</string>
+    <string name="short_yesterday">јуче</string>
+    <string name="short_tomorrow">сутра</string>
+    <string name="short_monday">ПОН</string>
+    <string name="short_tuesday">УТО</string>
+    <string name="short_wednesday">СРЕ</string>
+    <string name="short_thursday">ЧЕТ</string>
+    <string name="short_friday">ПЕТ</string>
+    <string name="short_saturday">СУБ</string>
+    <string name="short_sunday">НЕД</string>
 
-    <string name="wind_0">Мирно</string>
-    <string name="wind_1">Слаб ветар</string>
-    <string name="wind_2">Поветарац</string>
-    <string name="wind_3">Благ ветар</string>
-    <string name="wind_4">Умерен ветар</string>
-    <string name="wind_5">Јачи ветар</string>
-    <string name="wind_6">Јак ветар</string>
-    <string name="wind_7">Баш јак ветар</string>
-    <string name="wind_8">Олуја</string>
-    <string name="wind_9">Јака олуја</string>
-    <string name="wind_10">Невреме</string>
-    <string name="wind_11">Опасно невреме</string>
-    <string name="wind_12">Ураган/Тајфун</string>
+    <string name="wind_level_0">Мирно</string>
+    <string name="wind_level_1">Слаб ветар</string>
+    <string name="wind_level_2">Поветарац</string>
+    <string name="wind_level_3">Благ ветар</string>
+    <string name="wind_level_4">Умерен ветар</string>
+    <string name="wind_level_5">Јачи ветар</string>
+    <string name="wind_level_6">Јак ветар</string>
+    <string name="wind_level_7">Баш јак ветар</string>
+    <string name="wind_level_8">Олуја</string>
+    <string name="wind_level_9">Јака олуја</string>
+    <string name="wind_level_10">Невреме</string>
+    <string name="wind_level_11">Опасно невреме</string>
+    <string name="wind_level_12">Ураган/Тајфун</string>
 
-    <string name="daily_overview">дневни</string>
-    <string name="hourly_overview">часовни</string>
+    <string name="daily_forecast">дневни</string>
+    <string name="hourly_forecast">часовни</string>
     <string name="air_quality">Квалитет ваздуха</string>
     <string name="details">детаљни</string>
-    <string name="sunrise_sunset">Сунце &amp; месец</string>
+    <string name="ephemeris">Сунце &amp; месец</string>
 
     <string name="next">СЛЕДЕЋЕ</string>
     <string name="done">ГОТОВО</string>
@@ -64,22 +57,20 @@
     <string name="off">УГАШЕНО</string>
 
     <string name="about_app">О AПЛИКАЦИЈИ</string>
-    <string name="email">E-mail</string>
-    <string name="translator">Преводиоци</string>
-    <string name="thanks">Хвала</string>
+    <string name="about_translators">Преводиоци</string>
 
     <!-- feedback. -->
     <string name="feedback_request_permission">Дозволе</string>
-    <string name="feedback_request_location">локацију</string>
+    <string name="notification_channel_request_location">локацију</string>
     <string name="feedback_request_location_permission_success">Захтевај дозволу за локацију.</string>
     <string name="feedback_request_location_permission_failed">Захтев за одобрење локације није успео.</string>
 
     <string name="feedback_location_failed">Локација неуспешна.</string>
     <string name="feedback_get_weather_failed">Подаци о временским условима неуспешни.</string>
 
-    <string name="feedback_view_style">Стил изгледа.</string>
-    <string name="feedback_show_widget_card">Позадина картице.</string>
-    <string name="feedback_black_text">Тамни текст.</string>
+    <string name="widget_label_view_style">Стил изгледа.</string>
+    <string name="widget_label_show_widget_card">Позадина картице.</string>
+    <string name="widget_label_black_text">Тамни текст.</string>
 
     <string name="feedback_click_toggle">Кликни на карту за добијање података.</string>
     <string name="feedback_no_data">НЕМА ПОДАТАКА</string>
@@ -100,7 +91,7 @@
     <string name="feedback_restart">Промена ће бити након рестарта.</string>
 
     <!-- action -->
-    <string name="action_alert">Упозорење</string>
+    <string name="alerts">Упозорење</string>
     <string name="action_manage">Управљати</string>
     <string name="action_search">Претрага</string>
     <string name="action_settings">Подешавања</string>
@@ -113,8 +104,8 @@
     <string name="widget_clock_day_horizontal">Сат + Дневно (Хоризонтални стил)</string>
     <string name="widget_clock_day_vertical">Сат + Дневно (Вертикални стил)</string>
     <string name="widget_clock_day_week">Време + Дневно + Недељно</string>
-    <string name="wait_refresh">чекање</string>
-    <string name="ellipsis">…</string>
+    <string name="widget_refreshing">чекање</string>
+    <string name="widget_ellipsis">…</string>
 
     <!-- settings -->
     <string name="settings_category_basic">Основно</string>

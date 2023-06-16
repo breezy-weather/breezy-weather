@@ -5,115 +5,107 @@
     <string name="app_name">Sää</string>
 
     <!-- keyword. -->
-    <string name="current_location">Nykyinen sijainti</string>
-    <string name="resident_location">Asuinpaikka</string>
+    <string name="location_current">Nykyinen sijainti</string>
+    <string name="location_resident">Asuinpaikka</string>
     <string name="live">Nyt</string>
-    <string name="today">Tänään</string>
+    <string name="short_today">Tänään</string>
     <string name="refresh_at">Päivitetty</string>
-    <string name="local_time">Paikallinen aika</string>
     <string name="precipitation">Sademäärä</string>
     <string name="precipitation_probability">Sateen todennäköisyys</string>
     <string name="precipitation_duration">Sateen kesto</string>
-    <string name="maxi_temp">päivällä</string>
-    <string name="mini_temp">yöllä</string>
-    <string name="time">aika</string>
-    <string name="day">päivällä</string>
-    <string name="night">yöllä</string>
     <string name="temperature">Lämpötila</string>
     <string name="wind">Tuuli</string>
     <string name="wind_direction">Tuulensuunta</string>
     <string name="wind_speed">Tuulennopeus</string>
     <string name="wind_level">Tuulimittari</string>
-    <string name="sensible_temp">Aistittu lämpötila</string>
     <string name="humidity">Ilmankosteus</string>
     <string name="uv_index">UV-indeksi</string>
     <string name="hours_of_sun">Auringonpaisteen kesto</string>
-    <string name="forecast">Ennuste</string>
-    <string name="briefings">Tiedotteet</string>
+    <string name="notification_channel_forecast">Ennuste</string>
     <string name="daytime">Päivällä</string>
     <string name="nighttime">Yöllä</string>
-    <string name="publish_at">Jukaistu</string>
-    <string name="feels_like">Tuntuu kuin</string>
-    <string name="follow_system">Järjestelmän oletus</string>
-    <string name="background_information">Taustatiedot</string>
+    <string name="published_at">Jukaistu</string>
+    <string name="temperature_feels_like">Tuntuu kuin</string>
+    <string name="settings_follow_system">Järjestelmän oletus</string>
+    <string name="notification_channel_background_information">Taustatiedot</string>
     <string name="pressure">Ilmanpaine</string>
     <string name="visibility">Näkyvyys</string>
     <string name="dew_point">Kastespiste</string>
     <string name="cloud_cover">Pilvisyys</string>
     <string name="ceiling">Pilvipeite</string>
-    <string name="get_more">Lisää…</string>
-    <string name="get_more_store">Lisää sovelluskaupasta</string>
-    <string name="get_more_github">Lisää GitHubista</string>
+    <string name="settings_icon_providers_get_more">Lisää…</string>
+    <string name="settings_icon_providers_get_more_store">Lisää sovelluskaupasta</string>
+    <string name="settings_icon_providers_get_more_github">Lisää GitHubista</string>
     <string name="refresh">Päivitä</string>
     <string name="restart">Uudelleenkäynnistä</string>
     <string name="edit">Muokkaa</string>
 
     <!-- The following set of strings should be as short as possible. -->
     <string name="of_clock">:00</string>
-    <string name="yesterday">eilen</string>
-    <string name="tomorrow">huomenna</string>
-    <string name="week_1">Ma</string>
-    <string name="week_2">Ti</string>
-    <string name="week_3">Ke</string>
-    <string name="week_4">To</string>
-    <string name="week_5">Pe</string>
-    <string name="week_6">La</string>
-    <string name="week_7">Su</string>
+    <string name="short_yesterday">Eilen</string>
+    <string name="short_tomorrow">Huomenna</string>
+    <string name="short_monday">Ma</string>
+    <string name="short_tuesday">Ti</string>
+    <string name="short_wednesday">Ke</string>
+    <string name="short_thursday">To</string>
+    <string name="short_friday">Pe</string>
+    <string name="short_saturday">La</string>
+    <string name="short_sunday">Su</string>
 
-    <string name="real_feel_temperature">RealFeel®</string>
-    <string name="real_feel_shade_temperature">RealFeel® varjossa</string>
-    <string name="apparent_temperature">Näennäinen</string>
-    <string name="wind_chill_temperature">Tuulen hyytävyys</string>
-    <string name="wet_bulb_temperature">Märkälämpötila</string>
-    <string name="degree_day_temperature">Astepäivä</string>
+    <string name="temperature_real_feel">RealFeel®</string>
+    <string name="temperature_real_feel_shade">RealFeel® varjossa</string>
+    <string name="temperature_apparent">Näennäinen</string>
+    <string name="temperature_wind_chill">Tuulen hyytävyys</string>
+    <string name="temperature_wet_bulb">Märkälämpötila</string>
+    <string name="temperature_degree_day">Astepäivä</string>
 
-    <string name="total">Kokonaismäärä</string>
-    <string name="thunderstorm">Ukkonen</string>
-    <string name="rain">Sade</string>
-    <string name="snow">Lumi</string>
-    <string name="ice">Rakeet</string>
+    <string name="precipitation_total">Kokonaismäärä</string>
+    <string name="precipitation_thunderstorm">Ukkonen</string>
+    <string name="precipitation_rain">Sade</string>
+    <string name="precipitation_snow">Lumi</string>
+    <string name="precipitation_ice">Rakeet</string>
 
-    <string name="wind_0">Tyyni</string>
-    <string name="wind_1">Heikko (Hiljainen tuuli)</string>
-    <string name="wind_2">Heikko (Heikko tuuli)</string>
-    <string name="wind_3">Kohtalainen (Heikonlainen tuuli)</string>
-    <string name="wind_4">Kohtalainen (Kohtalainen tuuli)</string>
-    <string name="wind_5">Navakka (Navakka tuuli)</string>
-    <string name="wind_6">Navakka (Kova tuuli)</string>
-    <string name="wind_7">Kova (Voimakas tuuli)</string>
-    <string name="wind_8">Kova (Myrskyinen tuuli)</string>
-    <string name="wind_9">Myrsky</string>
-    <string name="wind_10">Myrsky (Kova myrsky)</string>
-    <string name="wind_11">Myrsky (Ankara myrsky)</string>
-    <string name="wind_12">Hirmumyrsky</string>
+    <string name="wind_level_0">Tyyni</string>
+    <string name="wind_level_1">Heikko (Hiljainen tuuli)</string>
+    <string name="wind_level_2">Heikko (Heikko tuuli)</string>
+    <string name="wind_level_3">Kohtalainen (Heikonlainen tuuli)</string>
+    <string name="wind_level_4">Kohtalainen (Kohtalainen tuuli)</string>
+    <string name="wind_level_5">Navakka (Navakka tuuli)</string>
+    <string name="wind_level_6">Navakka (Kova tuuli)</string>
+    <string name="wind_level_7">Kova (Voimakas tuuli)</string>
+    <string name="wind_level_8">Kova (Myrskyinen tuuli)</string>
+    <string name="wind_level_9">Myrsky</string>
+    <string name="wind_level_10">Myrsky (Kova myrsky)</string>
+    <string name="wind_level_11">Myrsky (Ankara myrsky)</string>
+    <string name="wind_level_12">Hirmumyrsky</string>
 
-    <string name="precipitation_light">Tihkusade</string>
-    <string name="precipitation_middle">Sade</string>
-    <string name="precipitation_heavy">Rankkasade</string>
-    <string name="precipitation_rainstorm">Sademyrsky</string>
+    <string name="precipitation_intensity_light">Tihkusade</string>
+    <string name="precipitation_intensity_middle">Sade</string>
+    <string name="precipitation_intensity_heavy">Rankkasade</string>
+    <string name="precipitation_intensity_rainstorm">Sademyrsky</string>
 
-    <string name="phase_new">Uusikuu</string>
-    <string name="phase_waxing_crescent">Kasvava kuunsirppi</string>
-    <string name="phase_first">Ensimmäinen neljännes</string>
-    <string name="phase_waxing_gibbous">Kasvava puolikuu</string>
-    <string name="phase_full">Täysikuu</string>
-    <string name="phase_waning_gibbous">Vähenevä puolikuu</string>
-    <string name="phase_third">Kolmas neljännes</string>
-    <string name="phase_waning_crescent">Vähenevä kuunsirppi</string>
+    <string name="ephemeris_moon_phase_new">Uusikuu</string>
+    <string name="ephemeris_moon_phase_waxing_crescent">Kasvava kuunsirppi</string>
+    <string name="ephemeris_moon_phase_first">Ensimmäinen neljännes</string>
+    <string name="ephemeris_moon_phase_waxing_gibbous">Kasvava puolikuu</string>
+    <string name="ephemeris_moon_phase_full">Täysikuu</string>
+    <string name="ephemeris_moon_phase_waning_gibbous">Vähenevä puolikuu</string>
+    <string name="ephemeris_moon_phase_third">Kolmas neljännes</string>
+    <string name="ephemeris_moon_phase_waning_crescent">Vähenevä kuunsirppi</string>
 
-    <string name="grass">Heinä</string>
-    <string name="mold">Home</string>
-    <string name="ragweed">Pujo / Marunatuoksukki</string>
-    <string name="tree">Puu</string>
+    <string name="allergen_grass">Heinä</string>
+    <string name="allergen_mold">Home</string>
+    <string name="allergen_ragweed">Pujo / Marunatuoksukki</string>
+    <string name="allergen_tree">Puu</string>
 
-    <string name="daily_overview">Päivittäinen ennuste</string>
-    <string name="hourly_overview">Tuntikohtainen ennuste</string>
-    <string name="minutely_overview">Minuuttikohtainen ennuste</string>
-    <string name="precipitation_overview">Sade-ennuste</string>
+    <string name="daily_forecast">Päivittäinen ennuste</string>
+    <string name="hourly_forecast">Tuntikohtainen ennuste</string>
+    <string name="minutely_forecast">Minuuttikohtainen ennuste</string>
+    <string name="precipitation_forecast">Sade-ennuste</string>
     <string name="air_quality">Ilmanlaatu</string>
     <string name="allergen">Allergeenit</string>
     <string name="details">Lisätietoja</string>
-    <string name="sunrise_sunset">Aurinko &amp; kuu</string>
+    <string name="ephemeris">Aurinko &amp; kuu</string>
 
     <string name="next">SEURAAVA</string>
     <string name="done">VALMIS</string>
@@ -125,9 +117,7 @@
     <string name="learn_more">LUE LISÄÄ</string>
 
     <string name="about_app">TIETOJA SOVELLUKSESTA</string>
-    <string name="email">Sähköposti</string>
-    <string name="translator">Kääntäjät</string>
-    <string name="thanks">Kiitos</string>
+    <string name="about_translators">Kääntäjät</string>
 
     <!-- Date format strings. -->
     <!-- Month : MMM(long) / M(short). -->
@@ -141,7 +131,7 @@
 
     <!-- feedback. -->
     <string name="feedback_request_permission">Käyttöoikeudet</string>
-    <string name="feedback_request_location">Sijainti</string>
+    <string name="notification_channel_request_location">Sijainti</string>
     <string name="feedback_request_location_in_background">Sijaintitiedot taustalla</string>
     <string name="feedback_request_location_permission_success">Sijaintioikeuspyyntö onnistui</string>
     <string name="feedback_request_location_permission_failed">Sijaintioikeuspyyntö epäonnistui</string>
@@ -158,62 +148,61 @@
     <string name="feedback_enable_location_information">Ota sijaintitiedot käyttöön</string>
     <string name="feedback_select_location_provider">Valitse sijainnin tarjoaja</string>
     <string name="feedback_add_location_manually">Lisää sijainti manuaalisesti ja poista \'$\'</string>
-    <string name="feedback_view_style">Näytä tyyli</string>
-    <string name="feedback_show_widget_card">Taustaväri</string>
-    <string name="feedback_show_widget_card_alpha">Läpinäkyvyys</string>
-    <string name="feedback_hide_subtitle">Piilota alaotsikko</string>
-    <string name="feedback_subtitle_data">Alaotsikon tiedot</string>
-    <string name="feedback_black_text">Tekstin väri</string>
-    <string name="feedback_text_size">Tekstin koko</string>
-    <string name="feedback_clock_font">Kellon fontti</string>
-    <string name="feedback_hide_lunar">Piilota kuukalenteri</string>
-    <string name="feedback_align_end">Kohdista loppuun</string>
-    <string name="feedback_colorful">Widgetin väri sään mukaan</string>
-    <string name="feedback_custom_subtitle_explanation">Voit syöttää mitä tahansa, mutta kiinnitä huomiota tekstin pituuteen. Jos haluat viitata säädataan, käytä $ viitataksesi vastaavaan avainsanaan.\n\nEsimerkiksi, \"Tämänhetkinen sää = $cw$\" näytetään seuraavasti \"tämänhetkinen sää = Selkeä päivä\".</string>
+    <string name="widget_label_view_style">Näytä tyyli</string>
+    <string name="widget_label_show_widget_card">Taustaväri</string>
+    <string name="widget_label_show_widget_card_alpha">Läpinäkyvyys</string>
+    <string name="widget_label_hide_subtitle">Piilota alaotsikko</string>
+    <string name="widget_label_subtitle_data">Alaotsikon tiedot</string>
+    <string name="widget_label_black_text">Tekstin väri</string>
+    <string name="widget_label_text_size">Tekstin koko</string>
+    <string name="widget_label_clock_font">Kellon fontti</string>
+    <string name="widget_label_hide_lunar">Piilota kuukalenteri</string>
+    <string name="widget_label_align_end">Kohdista loppuun</string>
+    <string name="widget_custom_subtitle_explanation">Voit syöttää mitä tahansa, mutta kiinnitä huomiota tekstin pituuteen. Jos haluat viitata säädataan, käytä $ viitataksesi vastaavaan avainsanaan.\n\nEsimerkiksi, \"Tämänhetkinen sää = $cw$\" näytetään seuraavasti \"tämänhetkinen sää = Selkeä päivä\".</string>
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
-    <string name="feedback_custom_subtitle_keyword_cw">$cw$ : Tämänhetkinen sää\n</string>
-    <string name="feedback_custom_subtitle_keyword_ct">$ct$ : Tämänhetkinen lämpötila (℃/℉)\n</string>
-    <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : Tämänhetkinen lämpötila (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_at">$at$ : Näenäinen lämpötila (℃/℉)\n</string>
-    <string name="feedback_custom_subtitle_keyword_atd">$atd$ : Näennäinen lämpötila (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : Tämänhetkinen tuuli\n</string>
-    <string name="feedback_custom_subtitle_keyword_cuv">$cuv$ : Tämänhetkinen UV\n</string>
-    <string name="feedback_custom_subtitle_keyword_ch">$ch$ : Tämänhetkinen ilmankosteus\n</string>
-    <string name="feedback_custom_subtitle_keyword_cps">$cps$ : Tämänhetkinen ilmanpaine\n</string>
-    <string name="feedback_custom_subtitle_keyword_cv">$cv$ : Tämänhetkinen näkyvyys\n</string>
-    <string name="feedback_custom_subtitle_keyword_cdp">$cdp$ : Tämänhetkinen kastepiste\n</string>
-    <string name="feedback_custom_subtitle_keyword_al">$al$ : Hälytykset\n</string>
-    <string name="feedback_custom_subtitle_keyword_als">$als$ : Hälytykset (Lyhyt)\n</string>
-    <string name="feedback_custom_subtitle_keyword_l">$l$ : Sijainti\n</string>
-    <string name="feedback_custom_subtitle_keyword_lat">$lat$ : Leveysaste\n</string>
-    <string name="feedback_custom_subtitle_keyword_lon">$lon$ : Pituusaste\n</string>
-    <string name="feedback_custom_subtitle_keyword_ut">$ut$ : Päivitysaika\n</string>
-    <string name="feedback_custom_subtitle_keyword_d">$d$ : Päiväys/n</string>
-    <string name="feedback_custom_subtitle_keyword_lc">$lc$ : Kuukalenteri\n</string>
-    <string name="feedback_custom_subtitle_keyword_w">$w$ : Viikko\n</string>
-    <string name="feedback_custom_subtitle_keyword_ws">$ws$ : Viikko (Lyhyt)\n</string>
-    <string name="feedback_custom_subtitle_keyword_dd">$dd$ : Päivittäinen kuvaus\n</string>
-    <string name="feedback_custom_subtitle_keyword_hd">$hd$ : Tuntikohtainen kuvaus\n</string>
-    <string name="feedback_custom_subtitle_keyword_enter">$enter$ : Kirjoita\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdw">$0dw$, $1dw$, …, $4dw$ : \nSää tänään päivällä, huomenna, …, 4:n päivän päästä\n</string>
-    <string name="feedback_custom_subtitle_keyword_xnw">$0nw$, $1nw$, …, $4nw$ : \nSää tänään yöllä, huomenna, Tmw, …, 4:n päivän päästä\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdt">$0dt$, $1dt$, …, $4dt$ : \nPäivälämpötila tänään, huomenna, …, 4:n päivän päästä (℃/℉)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xnt">$0nt$, $1nt$, …, $4nt$ : \nYölämpötila tänään, huomenna, …, 4:n päivän päästä (℃/℉)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdtd">$0dtd$, $1dtd$, …, $4dtd$ : \nPäivälämpötila tänään, huomenna, …, 4:n päivän päästä (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xntd">$0ntd$, $1ntd$, …, $4ntd$ : \nYölämpötila tänään, huomenna, …, 4:n päivän päästä (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdp">$0dp$, $1dp$, …, $4dp$ : \nSateen todennäköisyys tänään päivällä, huomenna, …, 4:n päivän päästä (%)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xnp">$0np$, $1np$, …, $4np$ : \nSateen todennäköisyys tänään yöllä, huomenna, …, 4:n päivän päästä (%)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdwd">$0dwd$, $1dwd$, …, $4dwd$ : \nTuuli tänään päivällä, huomenna, …, 4:n päivän päästä\n</string>
-    <string name="feedback_custom_subtitle_keyword_xnwd">$0nwd$, $1nwd$, …, $4nwd$ : \nTuuli tänään yöllä, huomenna, …, 4:n päivän päästä\n</string>
-    <string name="feedback_custom_subtitle_keyword_xsr">$0sr$, $1sr$, …, $4sr$ : \n Aurinko nousee tänään, huomenna, …, 4:n päivän päästä\n</string>
-    <string name="feedback_custom_subtitle_keyword_xss">$0ss$, $1ss$, …, $4ss$ : \nAurinko laskee tänään, huomenna, …, 4:n päivän päästä\n</string>
-    <string name="feedback_custom_subtitle_keyword_xmr">$0mr$, $1mr$, …, $4mr$ : \nKuu nousee tänään, huomenna, …, 4:n päivän päästä\n</string>
-    <string name="feedback_custom_subtitle_keyword_xms">$0ms$, $1ms$, …, $4ms$ : \nKuu laskee tänään, huomenna, …, 4:n päivän päästä\n</string>
-    <string name="feedback_custom_subtitle_keyword_xmp">$0mp$, $1mp$, …, $4mp$ : \nKuunvaihe tänään, huomenna, …, 4:n päivän päästä\n</string>
+    <string name="widget_custom_subtitle_keyword_cw_description">Tämänhetkinen sää</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">Tämänhetkinen lämpötila (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_ctd_description">Tämänhetkinen lämpötila (°)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Näenäinen lämpötila (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_atd_description">Näennäinen lämpötila (°)</string>
+    <string name="widget_custom_subtitle_keyword_cwd_description">Tämänhetkinen tuuli</string>
+    <string name="widget_custom_subtitle_keyword_cuv_description">Tämänhetkinen UV</string>
+    <string name="widget_custom_subtitle_keyword_ch_description">Tämänhetkinen ilmankosteus</string>
+    <string name="widget_custom_subtitle_keyword_cps_description">Tämänhetkinen ilmanpaine</string>
+    <string name="widget_custom_subtitle_keyword_cv_description">Tämänhetkinen näkyvyys</string>
+    <string name="widget_custom_subtitle_keyword_cdp_description">Tämänhetkinen kastepiste</string>
+    <string name="widget_custom_subtitle_keyword_al_description">Hälytykset</string>
+    <string name="widget_custom_subtitle_keyword_als_description">Hälytykset (Lyhyt)</string>
+    <string name="widget_custom_subtitle_keyword_l_description">Sijainti</string>
+    <string name="widget_custom_subtitle_keyword_lat_description">Leveysaste</string>
+    <string name="widget_custom_subtitle_keyword_lon_description">Pituusaste</string>
+    <string name="widget_custom_subtitle_keyword_ut_description">Päivitysaika</string>
+    <string name="widget_custom_subtitle_keyword_d_description">Päiväys</string>
+    <string name="widget_custom_subtitle_keyword_lc_description">Kuukalenteri</string>
+    <string name="widget_custom_subtitle_keyword_w_description">Viikko</string>
+    <string name="widget_custom_subtitle_keyword_ws_description">Viikko (Lyhyt)</string>
+    <string name="widget_custom_subtitle_keyword_dd_description">Päivittäinen kuvaus</string>
+    <string name="widget_custom_subtitle_keyword_hd_description">Tuntikohtainen kuvaus</string>
+    <string name="widget_custom_subtitle_keyword_enter_description">Kirjoita</string>
+    <string name="widget_custom_subtitle_keyword_xdw_description">Sää tänään päivällä, huomenna, …, 4:n päivän päästä</string>
+    <string name="widget_custom_subtitle_keyword_xnw_description">Sää tänään yöllä, huomenna, Tmw, …, 4:n päivän päästä</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Päivälämpötila tänään, huomenna, …, 4:n päivän päästä (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Yölämpötila tänään, huomenna, …, 4:n päivän päästä (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdtd_description">Päivälämpötila tänään, huomenna, …, 4:n päivän päästä (°)</string>
+    <string name="widget_custom_subtitle_keyword_xntd_description">Yölämpötila tänään, huomenna, …, 4:n päivän päästä (°)</string>
+    <string name="widget_custom_subtitle_keyword_xdp_description">Sateen todennäköisyys tänään päivällä, huomenna, …, 4:n päivän päästä (%)</string>
+    <string name="widget_custom_subtitle_keyword_xnp_description">Sateen todennäköisyys tänään yöllä, huomenna, …, 4:n päivän päästä (%)</string>
+    <string name="widget_custom_subtitle_keyword_xdwd_description">Tuuli tänään päivällä, huomenna, …, 4:n päivän päästä</string>
+    <string name="widget_custom_subtitle_keyword_xnwd_description">Tuuli tänään yöllä, huomenna, …, 4:n päivän päästä</string>
+    <string name="widget_custom_subtitle_keyword_xsr_description"> Aurinko nousee tänään, huomenna, …, 4:n päivän päästä</string>
+    <string name="widget_custom_subtitle_keyword_xss_description">Aurinko laskee tänään, huomenna, …, 4:n päivän päästä</string>
+    <string name="widget_custom_subtitle_keyword_xmr_description">Kuu nousee tänään, huomenna, …, 4:n päivän päästä</string>
+    <string name="widget_custom_subtitle_keyword_xms_description">Kuu laskee tänään, huomenna, …, 4:n päivän päästä</string>
+    <string name="widget_custom_subtitle_keyword_xmp_description">Kuunvaihe tänään, huomenna, …, 4:n päivän päästä</string>
 
-    <string name="feedback_live_wallpaper_weather_kind">Sää</string>
-    <string name="feedback_live_wallpaper_day_night_type">Aika</string>
+    <string name="widget_live_wallpaper_weather_kind">Sää</string>
+    <string name="widget_live_wallpaper_day_night_type">Aika</string>
 
     <string name="feedback_click_toggle">Paina kaaviota vaihtaaksesi tietoja</string>
     <string name="feedback_no_data">EI TIETOJA</string>
@@ -232,8 +221,6 @@
     <string name="feedback_refresh_notification_now">Päivitä nyt</string>
     <string name="feedback_refresh_ui_after_refresh">Muutokset tulevat voimaan kun tiedot on päivitetty</string>
     <string name="feedback_restart">Muutoksettulevat voimaan uudelleenkäynnistyksen jälkeen</string>
-    <string name="feedback_readd_location">Lisää sijainnit uudelleen</string>
-    <string name="feedback_readd_location_after_changing_source">Lisää sijainnit uudelleen kun olet vaihtanut tietolähteet</string>
 
     <string name="feedback_running_in_background">Suoritetaan taustalla jotta saat päivitykset</string>
     <string name="feedback_updating_weather_data">Päivitetään säätietoja</string>
@@ -251,9 +238,6 @@
     
     <string name="feedback_cannot_start_live_wallpaper_activity">Livetaustakuvan esikatselua ei voi käynnistää</string>
 
-    <string name="feedback_unusable_geocoder">Tämä laite ei sisällä kelvollista geokooderia. Sijainnin tarjoaja on vaihdettu Baidu Locationiksi.</string>
-    <string name="feedback_about_geocoder">Geokooderi on komponentti, joka muuntaa sijaintituloksen lat-lon-muodosta muotoon \'XX kaupunki, YY maakunta \'. Jos tätä komponenttia ei ole, voit saada säätietoja AccuWeatherin kautta vain, kun käytät natiivia APIa sijainnin tarjoajana.</string>
-
     <string name="feedback_today_precipitation_alert">Tänään saattaa sataa.</string>
     <string name="feedback_short_term_precipitation_alert">Seuraavien tuntien  aikana saattaa sataa.</string>
 
@@ -267,24 +251,23 @@
     <string name="content_desc_back">takaisin</string>
     <string name="content_desc_check_details">Tarkista tiedot</string>
     <string name="content_desc_weather_alert_button">$ sää hälytykset</string> <!-- $ = alert count. -->
-    <string name="content_des_pm25">Pienhiukkaset (PM2,5)</string>
-    <string name="content_des_pm10">Hengitettävät hiukkaset (PM10)</string>
-    <string name="content_des_so2">Rikkidioksidi (S02)</string>
-    <string name="content_des_no2">Typpidioksidi (NO2)</string>
-    <string name="content_des_o3">Otsoni</string>
-    <string name="content_des_co">Hiilimonoksidi (C0)</string>
-    <string name="content_des_m3">Hiilimonoksidi (m3)</string>
-    <string name="content_des_sunrise">Aurinko nousee $</string> <!-- $ = time. -->
-    <string name="content_des_sunset">Aurinko laskee $</string> <!-- $ = time. -->
-    <string name="content_des_moonrise">Kuu nousee at $</string> <!-- $ = time. -->
-    <string name="content_des_moonset">Kuu laskee $</string> <!-- $ = time. -->
-    <string name="content_des_no_precipitation">Ei sadetta</string>
-    <string name="content_des_minutely_precipitation">Sadetta $1 ja $2 välillä</string> <!-- $1 = start time, $2 = end time. -->
-    <string name="content_des_add_current_location">Lisää nykyinen sijainti</string>
-    <string name="content_des_drag_flag">Lajittele luettelon kohteet napauttamalla ja vetämällä niitä</string>
-    <string name="content_des_delete_flag">Poista tämä kohde</string>
-    <string name="content_des_swipe_left_to_delete">Voit poistaa tämän kohteen pyyhkäisemällä vasemmalle.</string>
-    <string name="content_des_swipe_right_to_delete">Voit poistaa tämän kohteen pyyhkäisemällä oikealle.</string>
+    <string name="air_quality_content_desc_pm25">Pienhiukkaset (PM2,5)</string>
+    <string name="air_quality_content_desc_pm10">Hengitettävät hiukkaset (PM10)</string>
+    <string name="air_quality_content_desc_so2">Rikkidioksidi (S02)</string>
+    <string name="air_quality_content_desc_no2">Typpidioksidi (NO2)</string>
+    <string name="air_quality_content_desc_o3">Otsoni</string>
+    <string name="air_quality_content_desc_co">Hiilimonoksidi (C0)</string>
+    <string name="ephemeris_content_desc_sunrise">Aurinko nousee $</string> <!-- $ = time. -->
+    <string name="ephemeris_content_desc_sunset">Aurinko laskee $</string> <!-- $ = time. -->
+    <string name="ephemeris_content_desc_moonrise">Kuu nousee at $</string> <!-- $ = time. -->
+    <string name="ephemeris_content_desc_moonset">Kuu laskee $</string> <!-- $ = time. -->
+    <string name="content_desc_no_precipitation">Ei sadetta</string>
+    <string name="content_desc_minutely_precipitation">Sadetta $1 ja $2 välillä</string> <!-- $1 = start time, $2 = end time. -->
+    <string name="content_desc_add_current_location">Lisää nykyinen sijainti</string>
+    <string name="content_desc_drag_flag">Lajittele luettelon kohteet napauttamalla ja vetämällä niitä</string>
+    <string name="content_desc_delete_flag">Poista tämä kohde</string>
+    <string name="content_desc_swipe_left_to_delete">Voit poistaa tämän kohteen pyyhkäisemällä vasemmalle.</string>
+    <string name="content_desc_swipe_right_to_delete">Voit poistaa tämän kohteen pyyhkäisemällä oikealle.</string>
     <string name="content_desc_search_filter_on">Näytä vain oletussäälähteen sijainnit</string>
     <string name="content_desc_search_filter_off">Näytä kaikkien säälähteiden sijainnit</string>
     <string name="content_desc_app_store">@string/action_appStore</string>
@@ -295,7 +278,7 @@
     <string name="content_desc_filter_weather_sources">Suodata säälähteet</string>
 
     <!-- action -->
-    <string name="action_alert">Hälytys</string>
+    <string name="alerts">Hälytys</string>
     <string name="action_manage">Hallitse</string>
     <string name="action_search">Etsi</string>
     <string name="action_settings">Asetukset</string>
@@ -315,8 +298,8 @@
     <string name="widget_trend_daily">Päivittäinen trendi</string>
     <string name="widget_trend_hourly">Tuntikohtainen trendi</string>
     <string name="widget_multi_city">Monen kaupungin</string>
-    <string name="wait_refresh">odotetaan</string>
-    <string name="ellipsis">…</string>
+    <string name="widget_refreshing">odotetaan</string>
+    <string name="widget_ellipsis">…</string>
 
     <!-- settings -->
     <string name="settings_category_basic">Yleiset</string>

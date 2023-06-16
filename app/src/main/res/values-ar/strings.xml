@@ -4,114 +4,106 @@
     <string name="app_name">الطقس</string>
 
     <!-- keyword. -->
-    <string name="current_location">الموقع الحالي</string>
-    <string name="resident_location">موقع الإقامة</string>
+    <string name="location_current">الموقع الحالي</string>
+    <string name="location_resident">موقع الإقامة</string>
     <string name="live">الآن</string>
-    <string name="today">اليوم</string>
+    <string name="short_today">اليوم</string>
     <string name="refresh_at">تم التحديث في</string>
-    <string name="local_time">التوقيت المحلي</string>
     <string name="precipitation">الهطول</string>
     <string name="precipitation_probability">إحتمالية الهطول</string>
     <string name="precipitation_duration">مدة الهطول</string>
-    <string name="maxi_temp">النهار</string>
-    <string name="mini_temp">الليل</string>
-    <string name="time">الوقت</string>
-    <string name="day">النهار</string>
-    <string name="night">الليل</string>
     <string name="temperature">درجة الحرارة</string>
     <string name="wind">الرياح</string>
     <string name="wind_direction">إتجاه الرياح</string>
     <string name="wind_speed">سرعة الرياح</string>
     <string name="wind_level">نوعية الرياح</string>
-    <string name="sensible_temp">درجة الحرارة في الظل</string>
     <string name="humidity">الرطوبة</string>
     <string name="uv_index">مؤشر الأشعة فوق البنفسجية</string>
     <string name="hours_of_sun">ساعات من الشمس</string>
-    <string name="forecast">توقعات</string>
-    <string name="briefings">موجز</string>
+    <string name="notification_channel_forecast">توقعات</string>
     <string name="daytime">النهار</string>
     <string name="nighttime">الليل</string>
-    <string name="publish_at">نُشِر في</string>
-    <string name="feels_like">تبدو وكأنها</string>
-    <string name="follow_system">حسب النظام</string>
-    <string name="background_information">بيانات الخلفية</string>
+    <string name="published_at">نُشِر في</string>
+    <string name="temperature_feels_like">تبدو وكأنها</string>
+    <string name="settings_follow_system">حسب النظام</string>
+    <string name="notification_channel_background_information">بيانات الخلفية</string>
     <string name="pressure">الضغط الجوي</string>
     <string name="visibility">الرؤية</string>
     <string name="dew_point">درجة التكثف</string>
     <string name="cloud_cover">الغطاء السحابي</string>
     <string name="ceiling">الحد الأعلى</string>
-    <string name="get_more">تعرف على المزيد</string>
-    <string name="get_more_store">تعرف على المزيد في متجر التطبيقات</string>
-    <string name="get_more_github">تعرف على المزيد من خلال GitHub</string>
+    <string name="settings_icon_providers_get_more">تعرف على المزيد</string>
+    <string name="settings_icon_providers_get_more_store">تعرف على المزيد في متجر التطبيقات</string>
+    <string name="settings_icon_providers_get_more_github">تعرف على المزيد من خلال GitHub</string>
     <string name="refresh">تحديث</string>
     <string name="restart">إعادة التشغيل</string>
     <string name="edit">تحرير</string>
 
     <string name="of_clock">:٠٠</string>
-    <string name="yesterday">أمس</string>
-    <string name="tomorrow">غداً</string>
-    <string name="week_1">الإثنين</string>
-    <string name="week_2">الثلاثاء</string>
-    <string name="week_3">الأربعاء</string>
-    <string name="week_4">الخميس</string>
-    <string name="week_5">الجمعة</string>
-    <string name="week_6">السبت</string>
-    <string name="week_7">الأحد</string>
+    <string name="short_yesterday">أمس</string>
+    <string name="short_tomorrow">غداً</string>
+    <string name="short_monday">الإثنين</string>
+    <string name="short_tuesday">الثلاثاء</string>
+    <string name="short_wednesday">الأربعاء</string>
+    <string name="short_thursday">الخميس</string>
+    <string name="short_friday">الجمعة</string>
+    <string name="short_saturday">السبت</string>
+    <string name="short_sunday">الأحد</string>
 
-    <string name="real_feel_temperature">الشعور الحقيقي</string>
-    <string name="real_feel_shade_temperature">االشعور الحقيقي في الظل</string>
-    <string name="apparent_temperature">الظاهرة</string>
-    <string name="wind_chill_temperature">هواء بارد</string>
-    <string name="wet_bulb_temperature">هواء رطب</string>
-    <string name="degree_day_temperature">Degree day</string>
+    <string name="temperature_real_feel">الشعور الحقيقي</string>
+    <string name="temperature_real_feel_shade">االشعور الحقيقي في الظل</string>
+    <string name="temperature_apparent">الظاهرة</string>
+    <string name="temperature_wind_chill">هواء بارد</string>
+    <string name="temperature_wet_bulb">هواء رطب</string>
+    <string name="temperature_degree_day">Degree day</string>
 
-    <string name="total">المجموع</string>
-    <string name="thunderstorm">عواصف رعدية</string>
-    <string name="rain">مطر</string>
-    <string name="snow">ثلج</string>
-    <string name="ice">جليد</string>
+    <string name="precipitation_total">المجموع</string>
+    <string name="precipitation_thunderstorm">عواصف رعدية</string>
+    <string name="precipitation_rain">مطر</string>
+    <string name="precipitation_snow">ثلج</string>
+    <string name="precipitation_ice">جليد</string>
 
-    <string name="wind_0">ساكن</string>
-    <string name="wind_1">هواء خفيف</string>
-    <string name="wind_2">نسيم خفيف</string>
-    <string name="wind_3">نسيم لطيف</string>
-    <string name="wind_4">نسيم معتدل</string>
-    <string name="wind_5">نسيم عليل</string>
-    <string name="wind_6">نسيم قوي</string>
-    <string name="wind_7">قريب من الرياح العاتية</string>
-    <string name="wind_8">عاصفة</string>
-    <string name="wind_9">رياح عاتية</string>
-    <string name="wind_10">عاصفة</string>
-    <string name="wind_11">عاصفة عنيفة</string>
-    <string name="wind_12">إعصار</string>
+    <string name="wind_level_0">ساكن</string>
+    <string name="wind_level_1">هواء خفيف</string>
+    <string name="wind_level_2">نسيم خفيف</string>
+    <string name="wind_level_3">نسيم لطيف</string>
+    <string name="wind_level_4">نسيم معتدل</string>
+    <string name="wind_level_5">نسيم عليل</string>
+    <string name="wind_level_6">نسيم قوي</string>
+    <string name="wind_level_7">قريب من الرياح العاتية</string>
+    <string name="wind_level_8">عاصفة</string>
+    <string name="wind_level_9">رياح عاتية</string>
+    <string name="wind_level_10">عاصفة</string>
+    <string name="wind_level_11">عاصفة عنيفة</string>
+    <string name="wind_level_12">إعصار</string>
 
-    <string name="precipitation_light">رذاذ</string>
-    <string name="precipitation_middle">مطر</string>
-    <string name="precipitation_heavy">مطر غزير</string>
-    <string name="precipitation_rainstorm">عاصفة مطرية</string>
+    <string name="precipitation_intensity_light">رذاذ</string>
+    <string name="precipitation_intensity_middle">مطر</string>
+    <string name="precipitation_intensity_heavy">مطر غزير</string>
+    <string name="precipitation_intensity_rainstorm">عاصفة مطرية</string>
 
-    <string name="phase_new">مُحاق</string>
-    <string name="phase_waxing_crescent">هلال أول الشهر</string>
-    <string name="phase_first">تربيع أول</string>
-    <string name="phase_waxing_gibbous">أحدب متزايد</string>
-    <string name="phase_full">بدر</string>
-    <string name="phase_waning_gibbous">أحدب متناقص</string>
-    <string name="phase_third">تربيع ثاني</string>
-    <string name="phase_waning_crescent">هلال آخر الشهر</string>
+    <string name="ephemeris_moon_phase_new">مُحاق</string>
+    <string name="ephemeris_moon_phase_waxing_crescent">هلال أول الشهر</string>
+    <string name="ephemeris_moon_phase_first">تربيع أول</string>
+    <string name="ephemeris_moon_phase_waxing_gibbous">أحدب متزايد</string>
+    <string name="ephemeris_moon_phase_full">بدر</string>
+    <string name="ephemeris_moon_phase_waning_gibbous">أحدب متناقص</string>
+    <string name="ephemeris_moon_phase_third">تربيع ثاني</string>
+    <string name="ephemeris_moon_phase_waning_crescent">هلال آخر الشهر</string>
 
-    <string name="grass">حبوب لقاح العشب</string>
-    <string name="mold">العفن</string>
-    <string name="ragweed">حبوب لقاح الأعشاب الضارة</string>
-    <string name="tree">حبوب لقاح الشجر</string>
+    <string name="allergen_grass">حبوب لقاح العشب</string>
+    <string name="allergen_mold">العفن</string>
+    <string name="allergen_ragweed">حبوب لقاح الأعشاب الضارة</string>
+    <string name="allergen_tree">حبوب لقاح الشجر</string>
 
-    <string name="daily_overview">توقعات يومية</string>
-    <string name="hourly_overview">توقعات كل ساعة</string>
-    <string name="minutely_overview">توقعات كل دقيقة</string>
-    <string name="precipitation_overview">توقعات الهطول</string>
+    <string name="daily_forecast">توقعات يومية</string>
+    <string name="hourly_forecast">توقعات كل ساعة</string>
+    <string name="minutely_forecast">توقعات كل دقيقة</string>
+    <string name="precipitation_forecast">توقعات الهطول</string>
     <string name="air_quality">جودة الهواء</string>
     <string name="allergen">أنواع الحساسية</string>
     <string name="details">المزيد</string>
-    <string name="sunrise_sunset">الشمس والقمر</string>
+    <string name="ephemeris">الشمس والقمر</string>
 
     <string name="next">التالي</string>
     <string name="done">تم</string>
@@ -123,9 +115,7 @@
     <string name="learn_more">تعرف على المزيد</string>
 
     <string name="about_app">حول التطبيق</string>
-    <string name="email">البريد الإلكتروني</string>
-    <string name="translator">المترجمون</string>
-    <string name="thanks">شُكر</string>
+    <string name="about_translators">المترجمون</string>
 
     <string name="date_format_short">M-d</string>
     <string name="date_format_long">MMM d</string>
@@ -135,7 +125,7 @@
 
     <!-- feedback. -->
     <string name="feedback_request_permission">الأذونات</string>
-    <string name="feedback_request_location">الموقع</string>
+    <string name="notification_channel_request_location">الموقع</string>
     <string name="feedback_request_location_in_background">تحديد الموقع في الخلفية</string>
     <string name="feedback_request_location_permission_success">تم الحصول على أذونات الموقع بنجاح</string>
     <string name="feedback_request_location_permission_failed">فشل في الحصول على أذونات الموقع</string>
@@ -148,17 +138,17 @@
     <string name="feedback_select_location_provider">إختيار مزود خدمة الموقع</string>
     <string name="feedback_add_location_manually">إضافة وإزالة المواقع يدوياً \'$\'</string>
 
-    <string name="feedback_view_style">أسلوب العرض</string>
-    <string name="feedback_show_widget_card">لون الخلفية</string>
-    <string name="feedback_show_widget_card_alpha">الشفافية</string>
-    <string name="feedback_hide_subtitle">إخفاء العنوان</string>
-    <string name="feedback_subtitle_data">بيانات العنوان</string>
-    <string name="feedback_black_text">لون الخط</string>
-    <string name="feedback_text_size">حجم الخط</string>
-    <string name="feedback_clock_font">خط الساعة</string>
+    <string name="widget_label_view_style">أسلوب العرض</string>
+    <string name="widget_label_show_widget_card">لون الخلفية</string>
+    <string name="widget_label_show_widget_card_alpha">الشفافية</string>
+    <string name="widget_label_hide_subtitle">إخفاء العنوان</string>
+    <string name="widget_label_subtitle_data">بيانات العنوان</string>
+    <string name="widget_label_black_text">لون الخط</string>
+    <string name="widget_label_text_size">حجم الخط</string>
+    <string name="widget_label_clock_font">خط الساعة</string>
 
-    <string name="feedback_live_wallpaper_weather_kind">الطقس</string>
-    <string name="feedback_live_wallpaper_day_night_type">الوقت</string>
+    <string name="widget_live_wallpaper_weather_kind">الطقس</string>
+    <string name="widget_live_wallpaper_day_night_type">الوقت</string>
 
     <string name="feedback_click_toggle">أنقر على الرسم البياني لتبديل البيانات</string>
     <string name="feedback_no_data">لا يوجد بيانات</string>
@@ -177,8 +167,6 @@
     <string name="feedback_refresh_notification_now">تحديث الآن</string>
     <string name="feedback_refresh_ui_after_refresh">سيتم تطبيق التغييرات عند تحديث البيانات</string>
     <string name="feedback_restart">سيتم تطبيق التغييرات عند إعادة تشغيل الطبيق</string>
-    <string name="feedback_readd_location">رجاءً قم بإضافة الموقع مرة أخرى</string>
-    <string name="feedback_readd_location_after_changing_source">رجاءً قم بإضافة الموقع مرة أخرى عند تغيير مصدر البيانات</string>
 
     <string name="feedback_running_in_background">التشغيل في الخلفية لإبقاء التطبيق محدثاً</string>
     <string name="feedback_updating_weather_data">جارٍ تحديث بيانات الطقس</string>
@@ -193,9 +181,6 @@
 
     <string name="feedback_cannot_start_live_wallpaper_activity">غير قادر على معاينة الخلفية الحية.</string>
 
-    <string name="feedback_unusable_geocoder">لا يحتوي هذا الجهاز على رمز جغرافي صالح. تم تغيير مزود الموقع إلى مزود خدمة المواقع Baidu.</string>
-    <string name="feedback_about_geocoder">الترميز الجغرافي هو مكون يقوم بتحويل نتيجة الموقع من تنسيق خطوط الطول-العرض الى تنسيق مثل \'إسم المدينة، إسم المقاطعة\'. في حالة عدم وجود هذا المكون، يمكنك الحصول على بيانات الطقس من خلال AccuWeather باستخدام Native API كمزود للمواقع.</string>
-
     <string name="feedback_today_precipitation_alert">هناك إحتمالية لهطول الأمطار اليوم</string>
     <string name="feedback_short_term_precipitation_alert">هناك إمكانية لهطول الأمطار في الساعات القليلة القادمة.</string>
 
@@ -205,7 +190,7 @@
     <string name="feedback_click_to_get_more">أنقر للمزيد…</string>
 
     <!-- action -->
-    <string name="action_alert">منبه</string>
+    <string name="alerts">منبه</string>
     <string name="action_manage">إدارة</string>
     <string name="action_search">بحث</string>
     <string name="action_settings">الإعدادات</string>
@@ -224,8 +209,8 @@
     <string name="widget_text">نص</string>
     <string name="widget_trend_daily">مجرى يومي</string>
     <string name="widget_trend_hourly">مجرى كل ساعة</string>
-    <string name="wait_refresh">الرجاء الإنتظار</string>
-    <string name="ellipsis">…</string>
+    <string name="widget_refreshing">الرجاء الإنتظار</string>
+    <string name="widget_ellipsis">…</string>
 
     <!-- settings -->
     <string name="settings_category_basic">الأساسية</string>

@@ -3,112 +3,105 @@
     <string name="app_name">Időjárás</string>
 
     <!-- keyword. -->
-    <string name="current_location">Jelenlegi hely</string>
+    <string name="location_current">Jelenlegi hely</string>
     <string name="live">Élő</string>
-    <string name="today">Ma</string>
+    <string name="short_today">Ma</string>
     <string name="refresh_at">Frissítése ekkor</string>
     <string name="precipitation">Csapadék</string>
     <string name="precipitation_probability">Csapadék esélye</string>
     <string name="precipitation_duration">Csapadék időtartama</string>
-    <string name="maxi_temp">Nappal</string>
-    <string name="mini_temp">Este</string>
-    <string name="time">Idő</string>
-    <string name="day">Nap</string>
-    <string name="night">Este</string>
     <string name="temperature">Hőmérséklet</string>
     <string name="wind">Szél</string>
     <string name="wind_direction">Szélirány</string>
     <string name="wind_speed">Szélsebesség</string>
     <string name="wind_level">Szélerősség</string>
-    <string name="sensible_temp">Érezhető Hőmérséklet</string>
     <string name="humidity">Páratartalom</string>
     <string name="uv_index">UV Szint</string>
     <string name="hours_of_sun">Óra napsütés</string>
-    <string name="forecast">Előrejelzés</string>
-    <string name="briefings">Tájékoztatások</string>
+    <string name="notification_channel_forecast">Előrejelzés</string>
     <string name="daytime">Nappal</string>
     <string name="nighttime">Este</string>
-    <string name="publish_at">Közzététel ekkor:</string>
-    <string name="feels_like">Érezhető</string>
-    <string name="follow_system">Rendszerbeállítás Használata</string>
-    <string name="background_information">Háttérinformáció</string>
+    <string name="published_at">Közzététel ekkor:</string>
+    <string name="temperature_feels_like">Érezhető</string>
+    <string name="settings_follow_system">Rendszerbeállítás Használata</string>
+    <string name="notification_channel_background_information">Háttérinformáció</string>
     <string name="pressure">Légköri Nyomás</string>
     <string name="visibility">Látásviszony</string>
     <string name="dew_point">Harmatpont</string>
     <string name="cloud_cover">Felhőtakaró</string>
     <string name="ceiling">Felhőalap</string>
-    <string name="get_more">Szerezzen többet</string>
-    <string name="get_more_store">Szerezzen többet az app áruházból</string>
-    <string name="get_more_github">Szerezzen többet a GitHub-ról</string>
+    <string name="settings_icon_providers_get_more">Szerezzen többet</string>
+    <string name="settings_icon_providers_get_more_store">Szerezzen többet az app áruházból</string>
+    <string name="settings_icon_providers_get_more_github">Szerezzen többet a GitHub-ról</string>
     <string name="refresh">Frissítés</string>
     <string name="restart">Újraindítás</string>
     <string name="edit">Szerkesztés</string>
 
     <string name="of_clock">:00</string>
-    <string name="yesterday">Tegnap</string>
-    <string name="tomorrow">Holnap</string>
-    <string name="week_1">HÉT</string>
-    <string name="week_2">KED</string>
-    <string name="week_3">SZE</string>
-    <string name="week_4">CSÜ</string>
-    <string name="week_5">PÉN</string>
-    <string name="week_6">SZO</string>
-    <string name="week_7">VAS</string>
+    <string name="short_yesterday">Tegnap</string>
+    <string name="short_tomorrow">Holnap</string>
+    <string name="short_monday">HÉT</string>
+    <string name="short_tuesday">KED</string>
+    <string name="short_wednesday">SZE</string>
+    <string name="short_thursday">CSÜ</string>
+    <string name="short_friday">PÉN</string>
+    <string name="short_saturday">SZO</string>
+    <string name="short_sunday">VAS</string>
 
-    <string name="real_feel_temperature">Valódi érzet</string>
-    <string name="real_feel_shade_temperature">Valódi érzet árnyékban</string>
-    <string name="apparent_temperature">Látszólagos hőmérséklet</string>
-    <string name="wind_chill_temperature">Szélhűlés</string>
-    <string name="wet_bulb_temperature">Nedves hőmérséklet</string>
-    <string name="degree_day_temperature">Fok nappal</string>
+    <string name="temperature_real_feel">Valódi érzet</string>
+    <string name="temperature_real_feel_shade">Valódi érzet árnyékban</string>
+    <string name="temperature_apparent">Látszólagos hőmérséklet</string>
+    <string name="temperature_wind_chill">Szélhűlés</string>
+    <string name="temperature_wet_bulb">Nedves hőmérséklet</string>
+    <string name="temperature_degree_day">Fok nappal</string>
 
-    <string name="total">Totál</string>
-    <string name="thunderstorm">Vihar</string>
-    <string name="rain">Eső</string>
-    <string name="snow">Hó</string>
-    <string name="ice">Jég</string>
+    <string name="precipitation_total">Totál</string>
+    <string name="precipitation_thunderstorm">Vihar</string>
+    <string name="precipitation_rain">Eső</string>
+    <string name="precipitation_snow">Hó</string>
+    <string name="precipitation_ice">Jég</string>
 
-    <string name="wind_0">Nyugodt</string>
-    <string name="wind_1">Könnyű Levegő</string>
-    <string name="wind_2">Könnyű Szellő</string>
-    <string name="wind_3">Lágy Szellő</string>
-    <string name="wind_4">Mérsékelt Szellő</string>
-    <string name="wind_5">Friss Szellő</string>
-    <string name="wind_6">Erős Szellő</string>
-    <string name="wind_7">Közeli Szellő</string>
-    <string name="wind_8">Szélvihar</string>
-    <string name="wind_9">Erős Szélvihar</string>
-    <string name="wind_10">Vihar</string>
-    <string name="wind_11">Durva Vihar</string>
-    <string name="wind_12">Forgószél</string>
+    <string name="wind_level_0">Nyugodt</string>
+    <string name="wind_level_1">Könnyű Levegő</string>
+    <string name="wind_level_2">Könnyű Szellő</string>
+    <string name="wind_level_3">Lágy Szellő</string>
+    <string name="wind_level_4">Mérsékelt Szellő</string>
+    <string name="wind_level_5">Friss Szellő</string>
+    <string name="wind_level_6">Erős Szellő</string>
+    <string name="wind_level_7">Közeli Szellő</string>
+    <string name="wind_level_8">Szélvihar</string>
+    <string name="wind_level_9">Erős Szélvihar</string>
+    <string name="wind_level_10">Vihar</string>
+    <string name="wind_level_11">Durva Vihar</string>
+    <string name="wind_level_12">Forgószél</string>
 
-    <string name="precipitation_light">Szitálás</string>
-    <string name="precipitation_middle">Eső</string>
-    <string name="precipitation_heavy">Zápor</string>
-    <string name="precipitation_rainstorm">Felhőszakadás</string>
+    <string name="precipitation_intensity_light">Szitálás</string>
+    <string name="precipitation_intensity_middle">Eső</string>
+    <string name="precipitation_intensity_heavy">Zápor</string>
+    <string name="precipitation_intensity_rainstorm">Felhőszakadás</string>
 
-    <string name="phase_new">Újhold</string>
-    <string name="phase_waxing_crescent">Növekvő Holdsarló</string>
-    <string name="phase_first">Első Negyed</string>
-    <string name="phase_waxing_gibbous">Növő Telihold</string>
-    <string name="phase_full">Telihold</string>
-    <string name="phase_waning_gibbous">Apadó Hold</string>
-    <string name="phase_third">Utolsó Negyed</string>
-    <string name="phase_waning_crescent">Csökkenő Sarló</string>
+    <string name="ephemeris_moon_phase_new">Újhold</string>
+    <string name="ephemeris_moon_phase_waxing_crescent">Növekvő Holdsarló</string>
+    <string name="ephemeris_moon_phase_first">Első Negyed</string>
+    <string name="ephemeris_moon_phase_waxing_gibbous">Növő Telihold</string>
+    <string name="ephemeris_moon_phase_full">Telihold</string>
+    <string name="ephemeris_moon_phase_waning_gibbous">Apadó Hold</string>
+    <string name="ephemeris_moon_phase_third">Utolsó Negyed</string>
+    <string name="ephemeris_moon_phase_waning_crescent">Csökkenő Sarló</string>
 
-    <string name="grass">Fű</string>
-    <string name="mold">Penész</string>
-    <string name="ragweed">Parlagfű</string>
-    <string name="tree">Fa</string>
+    <string name="allergen_grass">Fű</string>
+    <string name="allergen_mold">Penész</string>
+    <string name="allergen_ragweed">Parlagfű</string>
+    <string name="allergen_tree">Fa</string>
 
-    <string name="daily_overview">Napi előrejelzés</string>
-    <string name="hourly_overview">Óránkénti előrejelzés</string>
-    <string name="minutely_overview">Percenkénti előrejelzés</string>
-    <string name="precipitation_overview">Csapadékelőrejelzés</string>
+    <string name="daily_forecast">Napi előrejelzés</string>
+    <string name="hourly_forecast">Óránkénti előrejelzés</string>
+    <string name="minutely_forecast">Percenkénti előrejelzés</string>
+    <string name="precipitation_forecast">Csapadékelőrejelzés</string>
     <string name="air_quality">Levegő Minősége</string>
     <string name="allergen">Allergén</string>
     <string name="details">Részletek</string>
-    <string name="sunrise_sunset">Nap &amp; Hold</string>
+    <string name="ephemeris">Nap &amp; Hold</string>
 
     <string name="next">KÖVETKEZŐ</string>
     <string name="done">KÉSZ</string>
@@ -120,9 +113,7 @@
     <string name="learn_more">TUDJON MEG TÖBBET</string>
 
     <string name="about_app">App Névjegye</string>
-    <string name="email">E-mail</string>
-    <string name="translator">Fordítók</string>
-    <string name="thanks">Köszönet</string>
+    <string name="about_translators">Fordítók</string>
 
     <string name="date_format_short">M-d</string>
     <string name="date_format_long">MMM d</string>
@@ -132,7 +123,7 @@
 
     <!-- feedback. -->
     <string name="feedback_request_permission">Engedélyek</string>
-    <string name="feedback_request_location">Helymeghatározás</string>
+    <string name="notification_channel_request_location">Helymeghatározás</string>
     <string name="feedback_request_location_in_background">Háttérben futó helymeghatározás.</string>
     <string name="feedback_request_location_permission_success">Helymeghátározás jog kérése sikeres.</string>
     <string name="feedback_request_location_permission_failed">Helymeghátározás jog kérése sikertelen.</string>
@@ -147,53 +138,53 @@
     <string name="feedback_background_location_title">Helymeghatározás a háttérben</string>
     <string name="feedback_background_location_summary">Ahhoz, hogy az alkalmazásnak a háttérben is legyen helymeghatározási hozzáférése, kérjük állítsa be a helyelérési jogosultságokat \"Mindig engedélyezettre\".</string>
 
-    <string name="feedback_view_style">Megtekintés Stílusa</string>
-    <string name="feedback_show_widget_card">Kártyaháttér</string>
-    <string name="feedback_show_widget_card_alpha">Átlátszóság</string>
-    <string name="feedback_hide_subtitle">Felirat Elrejtése</string>
-    <string name="feedback_subtitle_data">Felirat Adatai</string>
-    <string name="feedback_black_text">Sötét Szöveg</string>
-    <string name="feedback_text_size">Szövegméret</string>
-    <string name="feedback_clock_font">Óra Betűtípusa</string>
-    <string name="feedback_hide_lunar">Holdnaptár elrejtése</string>
-    <string name="feedback_custom_subtitle_explanation">Akármit beírhat, de kérjük figyeljen oda a szöveg hosszúságára. Ha szeretne időjárásadatokat megjeleníteni, kérjük használja a $ jelet a kulcsszóra való hivatkozáshoz.\n\nPéldául, \"Jelenlegi Időjárás = $cw$\" így fog megjelenni: \"Jelenlegi Időjárás = Napos\".</string>
+    <string name="widget_label_view_style">Megtekintés Stílusa</string>
+    <string name="widget_label_show_widget_card">Kártyaháttér</string>
+    <string name="widget_label_show_widget_card_alpha">Átlátszóság</string>
+    <string name="widget_label_hide_subtitle">Felirat Elrejtése</string>
+    <string name="widget_label_subtitle_data">Felirat Adatai</string>
+    <string name="widget_label_black_text">Sötét Szöveg</string>
+    <string name="widget_label_text_size">Szövegméret</string>
+    <string name="widget_label_clock_font">Óra Betűtípusa</string>
+    <string name="widget_label_hide_lunar">Holdnaptár elrejtése</string>
+    <string name="widget_custom_subtitle_explanation">Akármit beírhat, de kérjük figyeljen oda a szöveg hosszúságára. Ha szeretne időjárásadatokat megjeleníteni, kérjük használja a $ jelet a kulcsszóra való hivatkozáshoz.\n\nPéldául, \"Jelenlegi Időjárás = $cw$\" így fog megjelenni: \"Jelenlegi Időjárás = Napos\".</string>
 
-    <string name="feedback_custom_subtitle_keyword_cw">$cw$ : Jelenlegi Időjárás\n</string>
-    <string name="feedback_custom_subtitle_keyword_ct">$ct$ : Jelenlegi Hőmérséklet (℃/℉)\n</string>
-    <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : Jelenlegi Hőmérséklet (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_at">$at$ : Érezhető Hőmérséklet (℃/℉)\n</string>
-    <string name="feedback_custom_subtitle_keyword_atd">$atd$ : Érezhető Hőmérséklet (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : Jelenlegi Szél\n</string>
-    <string name="feedback_custom_subtitle_keyword_cuv">$cuv$ : Jelenlegi UV\n</string>
-    <string name="feedback_custom_subtitle_keyword_l">$l$ : Elhelyezkedés\n</string>
-    <string name="feedback_custom_subtitle_keyword_lat">$lat$ : Szélesség\n</string>
-    <string name="feedback_custom_subtitle_keyword_lon">$lon$ : Magasság\n</string>
-    <string name="feedback_custom_subtitle_keyword_ut">$ut$ : Frissítési Idő\n</string>
-    <string name="feedback_custom_subtitle_keyword_d">$d$ : Dátum\n</string>
-    <string name="feedback_custom_subtitle_keyword_lc">$lc$ : Hold Naptár\n</string>
-    <string name="feedback_custom_subtitle_keyword_w">$w$ : Hét\n</string>
-    <string name="feedback_custom_subtitle_keyword_ws">$ws$ : Hét (Rövid)\n</string>
-    <string name="feedback_custom_subtitle_keyword_dd">$dd$ : Napi Leírás\n</string>
-    <string name="feedback_custom_subtitle_keyword_hd">$hd$ : Óránkénti Leírás\n</string>
-    <string name="feedback_custom_subtitle_keyword_enter">$enter$ : Enter\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdw">$0dw$, $1dw$, …, $4dw$ : \nNappali Időjárás a Mai Napra, Tmw, …, 4 nappal később\n</string>
-    <string name="feedback_custom_subtitle_keyword_xnw">$0nw$, $1nw$, …, $4nw$ : \nEsti Időjárás a Mai Napra, Tmw, …, 4 nappal később\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdt">$0dt$, $1dt$, …, $4dt$ : \nNappali Hőmérséklet a Mai Napra, Tmw, …, 4 nappal később (℃/℉)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xnt">$0nt$, $1nt$, …, $4nt$ : \nEsti Hőmérséklet a Mai Napra, Tmw, …, 4 nappal később (℃/℉)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdtd">$0dtd$, $1dtd$, …, $4dtd$ : \nNappali Hőmérséklet a Mai Napra, Tmw, …, 4 nappal később (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xntd">$0ntd$, $1ntd$, …, $4ntd$ : \nEsti Hőmérséklet a Mai Napra, Tmw, …, 4 nappal később (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdp">$0dp$, $1dp$, …, $4dp$ : \nNappali Csapadék a Mai Napra, Tmw, …, 4 nappal később (%)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xnp">$0np$, $1np$, …, $4np$ : \nEsti Csapadék a Mai Napra, Tmw, …, 4 nappal később (%)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdwd">$0dwd$, $1dwd$, …, $4dwd$ : \nNappali Szél a Mai Napra, Tmw, …, 4 nappal később\n</string>
-    <string name="feedback_custom_subtitle_keyword_xnwd">$0nwd$, $1nwd$, …, $4nwd$ : \nEsti Szél a Mai Napra, Tmw, …, 4 nappal később\n</string>
-    <string name="feedback_custom_subtitle_keyword_xsr">$0sr$, $1sr$, …, $4sr$ : \nNapkelte a Mai Napra, Tmw, …, 4 nappal később\n</string>
-    <string name="feedback_custom_subtitle_keyword_xss">$0ss$, $1ss$, …, $4ss$ : \nNapnyugta a Mai Napra, Tmw, …, 4 nappal később\n</string>
-    <string name="feedback_custom_subtitle_keyword_xmr">$0mr$, $1mr$, …, $4mr$ : \nHoldkelte a Mai Napra, Tmw, …, 4 nappal később\n</string>
-    <string name="feedback_custom_subtitle_keyword_xms">$0ms$, $1ms$, …, $4ms$ : \nHoldnyugta a Mai Napra, Tmw, …, 4 nappal később\n</string>
-    <string name="feedback_custom_subtitle_keyword_xmp">$0mp$, $1mp$, …, $4mp$ : \nHoldfázis a Mai Napra, Tmw, …, 4 nappal később\n</string>
+    <string name="widget_custom_subtitle_keyword_cw_description">Jelenlegi Időjárás</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">Jelenlegi Hőmérséklet (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_ctd_description">Jelenlegi Hőmérséklet (°)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Érezhető Hőmérséklet (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_atd_description">Érezhető Hőmérséklet (°)</string>
+    <string name="widget_custom_subtitle_keyword_cwd_description">Jelenlegi Szél</string>
+    <string name="widget_custom_subtitle_keyword_cuv_description">Jelenlegi UV</string>
+    <string name="widget_custom_subtitle_keyword_l_description">Elhelyezkedés</string>
+    <string name="widget_custom_subtitle_keyword_lat_description">Szélesség</string>
+    <string name="widget_custom_subtitle_keyword_lon_description">Magasság</string>
+    <string name="widget_custom_subtitle_keyword_ut_description">Frissítési Idő</string>
+    <string name="widget_custom_subtitle_keyword_d_description">Dátum</string>
+    <string name="widget_custom_subtitle_keyword_lc_description">Hold Naptár</string>
+    <string name="widget_custom_subtitle_keyword_w_description">Hét</string>
+    <string name="widget_custom_subtitle_keyword_ws_description">Hét (Rövid)</string>
+    <string name="widget_custom_subtitle_keyword_dd_description">Napi Leírás</string>
+    <string name="widget_custom_subtitle_keyword_hd_description">Óránkénti Leírás</string>
+    <string name="widget_custom_subtitle_keyword_enter_description">Enter</string>
+    <string name="widget_custom_subtitle_keyword_xdw_description">Nappali Időjárás a Mai Napra, Tmw, …, 4 nappal később</string>
+    <string name="widget_custom_subtitle_keyword_xnw_description">Esti Időjárás a Mai Napra, Tmw, …, 4 nappal később</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Nappali Hőmérséklet a Mai Napra, Tmw, …, 4 nappal később (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Esti Hőmérséklet a Mai Napra, Tmw, …, 4 nappal később (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdtd_description">Nappali Hőmérséklet a Mai Napra, Tmw, …, 4 nappal később (°)</string>
+    <string name="widget_custom_subtitle_keyword_xntd_description">Esti Hőmérséklet a Mai Napra, Tmw, …, 4 nappal később (°)</string>
+    <string name="widget_custom_subtitle_keyword_xdp_description">Nappali Csapadék a Mai Napra, Tmw, …, 4 nappal később (%)</string>
+    <string name="widget_custom_subtitle_keyword_xnp_description">Esti Csapadék a Mai Napra, Tmw, …, 4 nappal később (%)</string>
+    <string name="widget_custom_subtitle_keyword_xdwd_description">Nappali Szél a Mai Napra, Tmw, …, 4 nappal később</string>
+    <string name="widget_custom_subtitle_keyword_xnwd_description">Esti Szél a Mai Napra, Tmw, …, 4 nappal később</string>
+    <string name="widget_custom_subtitle_keyword_xsr_description">Napkelte a Mai Napra, Tmw, …, 4 nappal később</string>
+    <string name="widget_custom_subtitle_keyword_xss_description">Napnyugta a Mai Napra, Tmw, …, 4 nappal később</string>
+    <string name="widget_custom_subtitle_keyword_xmr_description">Holdkelte a Mai Napra, Tmw, …, 4 nappal később</string>
+    <string name="widget_custom_subtitle_keyword_xms_description">Holdnyugta a Mai Napra, Tmw, …, 4 nappal később</string>
+    <string name="widget_custom_subtitle_keyword_xmp_description">Holdfázis a Mai Napra, Tmw, …, 4 nappal később</string>
 
-    <string name="feedback_live_wallpaper_weather_kind">Időjárás</string>
-    <string name="feedback_live_wallpaper_day_night_type">Idő</string>
+    <string name="widget_live_wallpaper_weather_kind">Időjárás</string>
+    <string name="widget_live_wallpaper_day_night_type">Idő</string>
 
     <string name="feedback_click_toggle">Kattintson a diagramra az adatok váltásához.</string>
     <string name="feedback_no_data">NINCS ADAT</string>
@@ -212,8 +203,6 @@
     <string name="feedback_refresh_notification_now">Frissítés most.</string>
     <string name="feedback_refresh_ui_after_refresh">Akkor lép életbe, amikor frissíti az adatokat.</string>
     <string name="feedback_restart">Akkor lép életbe, amikor újraindítja az appot.</string>
-    <string name="feedback_readd_location">Kérjük adja hozzá újra a területeket.</string>
-    <string name="feedback_readd_location_after_changing_source">Kérjük adja hozzá az adatokat miután megváltoztatja a forrást.</string>
 
     <string name="feedback_running_in_background">A háttérben fut az adatok frissítésének folytatásához.</string>
     <string name="feedback_updating_weather_data">Adatok frissítése.</string>
@@ -225,9 +214,6 @@
 
     <string name="feedback_cannot_start_live_wallpaper_activity">Sikertelen volt az élő háttérkép előnézet aktivitás indítása</string>
 
-    <string name="feedback_unusable_geocoder">Ez az eszköz nem tartalmaz egy érvényes geokódolót. A helyszolgáltató át lett állítva Baidu Location-ra.</string>
-    <string name="feedback_about_geocoder">A geokódoló egy olyan komponens, amely átalakítja a helymeghatározás eredményét a szélesség-magasság formátumból, \'XX város, YY megye\' formátummá. A komponens hiányában egyedül AccuWeather-en keresztül lehet időjárásadatokat lekérni a natív API-val helyszolgáltatóként.</string>
-
     <string name="feedback_today_precipitation_alert">Lehetséges csapadék a mai napon.</string>
     <string name="feedback_short_term_precipitation_alert">Lehetséges csapadék a következő néhány órában.</string>
 
@@ -238,7 +224,7 @@
     <string name="feedback_click_again_to_exit">Kattintson megint a kilépéshez</string>
 
     <!-- action -->
-    <string name="action_alert">Riadó</string>
+    <string name="alerts">Riadó</string>
     <string name="action_manage">Kezelés</string>
     <string name="action_search">Keresés</string>
     <string name="action_settings">Beállítások</string>
@@ -257,8 +243,8 @@
     <string name="widget_text">Szöveg</string>
     <string name="widget_trend_daily">Napi Trend</string>
     <string name="widget_trend_hourly">Óránkénti Trend</string>
-    <string name="wait_refresh">Várakozás</string>
-    <string name="ellipsis">…</string>
+    <string name="widget_refreshing">Várakozás</string>
+    <string name="widget_ellipsis">…</string>
 
     <!-- settings -->
     <string name="settings_category_basic">Alapvető</string>

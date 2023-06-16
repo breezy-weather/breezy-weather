@@ -104,7 +104,7 @@ class AllergenActivity : GeoActivity() {
                                         modifier = Modifier
                                             .width(0.dp)
                                             .weight(1f),
-                                        title = stringResource(R.string.grass),
+                                        title = stringResource(R.string.allergen_grass),
                                         subtitle = unit.getValueText(
                                             this@AllergenActivity,
                                             it.grassIndex ?: 0
@@ -117,7 +117,7 @@ class AllergenActivity : GeoActivity() {
                                         modifier = Modifier
                                             .width(0.dp)
                                             .weight(1f),
-                                        title = stringResource(R.string.ragweed),
+                                        title = stringResource(R.string.allergen_ragweed),
                                         subtitle = unit.getValueText(
                                             this@AllergenActivity,
                                             it.ragweedIndex ?: 0
@@ -132,7 +132,7 @@ class AllergenActivity : GeoActivity() {
                                         modifier = Modifier
                                             .width(0.dp)
                                             .weight(1f),
-                                        title = stringResource(R.string.tree),
+                                        title = stringResource(R.string.allergen_tree),
                                         subtitle = unit.getValueText(
                                             this@AllergenActivity,
                                             it.treeIndex ?: 0
@@ -145,7 +145,7 @@ class AllergenActivity : GeoActivity() {
                                         modifier = Modifier
                                             .width(0.dp)
                                             .weight(1f),
-                                        title = stringResource(R.string.mold),
+                                        title = stringResource(R.string.allergen_mold),
                                         subtitle = unit.getValueText(
                                             this@AllergenActivity,
                                             it.moldIndex ?: 0

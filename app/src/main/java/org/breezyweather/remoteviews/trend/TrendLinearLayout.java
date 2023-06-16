@@ -123,13 +123,13 @@ public class TrendLinearLayout extends LinearLayout {
 
         mPaint.setTextAlign(Paint.Align.RIGHT);
         canvas.drawText(
-                getContext().getString(R.string.yesterday),
+                getContext().getString(R.string.short_yesterday),
                 getMeasuredWidth() - 2 * MARGIN_TEXT,
                 mHistoryTempYs[0] - mPaint.getFontMetrics().bottom - MARGIN_TEXT,
                 mPaint
         );
         canvas.drawText(
-                getContext().getString(R.string.yesterday),
+                getContext().getString(R.string.short_yesterday),
                 getMeasuredWidth() - 2 * MARGIN_TEXT,
                 mHistoryTempYs[1] - mPaint.getFontMetrics().top + MARGIN_TEXT,
                 mPaint

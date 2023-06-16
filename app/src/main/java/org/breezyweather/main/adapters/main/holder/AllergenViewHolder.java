@@ -72,7 +72,7 @@ public class AllergenViewHolder extends AbstractMainCardViewHolder {
             Daily daily = mLocation.getWeather().getDailyForecast().get(position);
 
             if (daily.isToday(timeZone)) {
-                mIndicator.setText(mContext.getString(R.string.today));
+                mIndicator.setText(mContext.getString(R.string.short_today));
             } else {
                 mIndicator.setText((position + 1) + "/" + mLocation.getWeather().getDailyForecast().size());
             }

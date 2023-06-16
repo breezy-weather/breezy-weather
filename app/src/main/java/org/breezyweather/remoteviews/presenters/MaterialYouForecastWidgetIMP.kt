@@ -319,7 +319,7 @@ private fun buildRemoteViews(
         views.setTextViewText(
             R.id.widget_material_you_forecast_week_1,
             if (weather.dailyForecast[0].isToday(location.timeZone)) {
-                context.getString(R.string.today)
+                context.getString(R.string.short_today)
             } else {
                 weather.dailyForecast[0].getWeek(context, location.timeZone)
             }
@@ -361,7 +361,7 @@ private fun buildRemoteViews(
         views.setTextViewText(
             R.id.widget_material_you_forecast_week_2,
             if (weather.dailyForecast[1].isToday(location.timeZone)) {
-                context.getString(R.string.today)
+                context.getString(R.string.short_today)
             } else {
                 weather.dailyForecast[1].getWeek(context, location.timeZone)
             }

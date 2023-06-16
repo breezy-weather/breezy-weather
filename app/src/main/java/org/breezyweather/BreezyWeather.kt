@@ -153,22 +153,22 @@ class BreezyWeather : MultiDexApplication(),
                 NOTIFICATION_CHANNEL_ID_ALERT -> (
                         context.getString(R.string.breezy_weather)
                                 + " "
-                                + context.getString(R.string.action_alert)
+                                + context.getString(R.string.notification_channel_alerts)
                 )
                 NOTIFICATION_CHANNEL_ID_FORECAST -> (
                         context.getString(R.string.breezy_weather)
                                 + " "
-                                + context.getString(R.string.forecast)
+                                + context.getString(R.string.notification_channel_forecast)
                 )
                 NOTIFICATION_CHANNEL_ID_LOCATION -> (
                         context.getString(R.string.breezy_weather)
                                 + " "
-                                + context.getString(R.string.feedback_request_location)
+                                + context.getString(R.string.notification_channel_request_location)
                 )
                 NOTIFICATION_CHANNEL_ID_BACKGROUND -> (
                         context.getString(R.string.breezy_weather)
                                 + " "
-                                + context.getString(R.string.background_information)
+                                + context.getString(R.string.notification_channel_background_information)
                 )
                 else -> context.getString(R.string.breezy_weather)
             }

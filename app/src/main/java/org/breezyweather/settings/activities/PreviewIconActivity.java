@@ -150,7 +150,7 @@ public class PreviewIconActivity extends GeoActivity {
         mItemList.add(new ShortcutIcon(mProvider, WeatherCode.HAZE, false));
         mItemList.add(new WeatherIconAdapter.Line());
 
-        mItemList.add(new WeatherIconAdapter.Title(getString(R.string.sunrise_sunset)));
+        mItemList.add(new WeatherIconAdapter.Title(getString(R.string.ephemeris)));
         mItemList.add(new SunIcon(mProvider));
         mItemList.add(new MoonIcon(mProvider));
     }

@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/widget_day_title"
-        android:text="@string/ellipsis"
+        android:text="@string/widget_ellipsis"
         android:textSize="@dimen/widget_large_title_text_size"
         android:textStyle="bold"
         android:shadowColor="@color/colorWidgetTextShadow"

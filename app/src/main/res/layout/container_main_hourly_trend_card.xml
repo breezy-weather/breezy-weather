@@ -13,7 +13,7 @@
 
         <TextView
             android:id="@+id/container_main_hourly_trend_card_title"
-            android:text="@string/hourly_overview"
+            android:text="@string/hourly_forecast"
             android:textStyle="bold"
             android:layout_marginTop="@dimen/normal_margin"
             android:layout_marginStart="@dimen/normal_margin"
@@ -50,7 +50,7 @@
 
             <TextView
                 android:id="@+id/container_main_hourly_trend_card_minutelyTitle"
-                android:text="@string/precipitation_overview"
+                android:text="@string/precipitation_forecast"
                 android:textStyle="bold"
                 android:layout_marginStart="@dimen/normal_margin"
                 android:layout_marginTop="2dp"

@@ -255,7 +255,7 @@ public class NotificationHelper {
                         getNotificationBuilder(
                                 context,
                                 R.drawable.ic_precipitation,
-                                context.getString(R.string.precipitation_overview),
+                                context.getString(R.string.precipitation_forecast),
                                 weather.getDailyForecast()
                                         .get(0)
                                         .getDate(context.getString(R.string.date_format_widget_long), location.getTimeZone()),

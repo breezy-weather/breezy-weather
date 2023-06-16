@@ -4,14 +4,6 @@
     <!-- Do not translate those items with a value of "@string/xxx". -->
 
     <!-- Weather sources -->
-    <string-array name="weather_sources">
-        <item>Open-Meteo</item>
-        <item>AccuWeather</item>
-        <item>MET Norway</item>
-        <item>OpenWeather</item>
-        <item>Météo France</item>
-        <item>Chine</item>
-    </string-array>
     <string-array name="weather_source_voices">
         <item>Open Meteo</item>
         <item>ACCU weather.com</item>
@@ -67,8 +59,8 @@
     <string-array name="notification_styles">
         <item>Native</item>
         <item>Villes</item>
-        <item>@string/daily_overview</item><!-- do not translate. -->
-        <item>@string/hourly_overview</item><!-- do not translate. -->
+        <item>@string/daily_forecast</item><!-- do not translate. -->
+        <item>@string/hourly_forecast</item><!-- do not translate. -->
     </string-array>
 
     <!-- notification text color. -->

@@ -56,7 +56,7 @@
                         android:id="@+id/activity_widget_config_viewStyleTitle"
                         android:layout_centerVertical="true"
                         android:layout_margin="@dimen/normal_margin"
-                        android:text="@string/feedback_view_style"
+                        android:text="@string/widget_label_view_style"
                         android:layout_alignParentStart="true"
                         style="@style/content_text" />
 
@@ -84,7 +84,7 @@
                         android:id="@+id/activity_widget_config_showCardTitle"
                         android:layout_centerVertical="true"
                         android:layout_margin="@dimen/normal_margin"
-                        android:text="@string/feedback_show_widget_card"
+                        android:text="@string/widget_label_show_widget_card"
                         android:layout_alignParentStart="true"
                         style="@style/content_text" />
 
@@ -112,7 +112,7 @@
                         android:id="@+id/activity_widget_config_cardAlphaTitle"
                         android:layout_centerVertical="true"
                         android:layout_margin="@dimen/normal_margin"
-                        android:text="@string/feedback_show_widget_card_alpha"
+                        android:text="@string/widget_label_show_widget_card_alpha"
                         android:layout_alignParentStart="true"
                         style="@style/content_text" />
 
@@ -149,7 +149,7 @@
                         android:id="@+id/activity_widget_config_hideSubtitleTitle"
                         android:layout_centerVertical="true"
                         android:layout_margin="@dimen/normal_margin"
-                        android:text="@string/feedback_hide_subtitle"
+                        android:text="@string/widget_label_hide_subtitle"
                         android:layout_alignParentStart="true"
                         style="@style/content_text" />
 
@@ -172,7 +172,7 @@
                         android:id="@+id/activity_widget_config_subtitleDataTitle"
                         android:layout_centerVertical="true"
                         android:layout_margin="@dimen/normal_margin"
-                        android:text="@string/feedback_subtitle_data"
+                        android:text="@string/widget_label_subtitle_data"
                         android:layout_alignParentStart="true"
                         style="@style/content_text" />
 
@@ -200,7 +200,7 @@
                         android:id="@+id/activity_widget_config_blackTextTitle"
                         android:layout_centerVertical="true"
                         android:layout_margin="@dimen/normal_margin"
-                        android:text="@string/feedback_black_text"
+                        android:text="@string/widget_label_black_text"
                         android:layout_alignParentStart="true"
                         style="@style/content_text" />
 
@@ -228,7 +228,7 @@
                         android:id="@+id/activity_widget_config_textSizeTitle"
                         android:layout_centerVertical="true"
                         android:layout_margin="@dimen/normal_margin"
-                        android:text="@string/feedback_text_size"
+                        android:text="@string/widget_label_text_size"
                         android:layout_alignParentStart="true"
                         style="@style/content_text" />
 
@@ -265,7 +265,7 @@
                         android:id="@+id/activity_widget_config_clockFontTitle"
                         android:layout_centerVertical="true"
                         android:layout_margin="@dimen/normal_margin"
-                        android:text="@string/feedback_clock_font"
+                        android:text="@string/widget_label_clock_font"
                         android:layout_alignParentStart="true"
                         style="@style/content_text" />
 
@@ -293,7 +293,7 @@
                         android:id="@+id/activity_widget_config_hideLunarTitle"
                         android:layout_centerVertical="true"
                         android:layout_margin="@dimen/normal_margin"
-                        android:text="@string/feedback_hide_lunar"
+                        android:text="@string/widget_label_hide_lunar"
                         android:layout_alignParentStart="true"
                         style="@style/content_text" />
 
@@ -316,7 +316,7 @@
                         android:id="@+id/activity_widget_config_alignEndTitle"
                         android:layout_centerVertical="true"
                         android:layout_margin="@dimen/normal_margin"
-                        android:text="@string/feedback_align_end"
+                        android:text="@string/widget_label_align_end"
                         android:layout_alignParentStart="true"
                         style="@style/content_text" />
 
@@ -380,7 +380,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="textFilter"
-                            android:hint="@string/feedback_subtitle_data"
+                            android:hint="@string/widget_label_subtitle_data"
                             android:textColorHint="@color/colorTextSubtitle"
                             android:textColorHighlight="@color/colorTextSubtitle"
                             android:textSize="@dimen/content_text_size"
@@ -392,7 +392,7 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <TextView
-                        android:text="@string/feedback_custom_subtitle_explanation"
+                        android:text="@string/widget_custom_subtitle_explanation"
                         android:layout_marginStart="@dimen/normal_margin"
                         android:layout_marginEnd="@dimen/normal_margin"
                         android:layout_marginBottom="@dimen/normal_margin"

@@ -4,109 +4,101 @@
     <string name="app_name">Weather</string>
 
     <!-- keyword. -->
-    <string name="current_location">Текущее местоположение</string>
-    <string name="resident_location">Домашнее местоположение</string>
+    <string name="location_current">Текущее местоположение</string>
+    <string name="location_resident">Домашнее местоположение</string>
     <string name="live">Сейчас</string>
-    <string name="today">Сегодня</string>
+    <string name="short_today">Сегодня</string>
     <string name="refresh_at">Обновлено в</string>
-    <string name="local_time">Местное время</string>
     <string name="precipitation">Осадки</string>
     <string name="precipitation_probability">Вероятность осадков</string>
     <string name="precipitation_duration">Продолжительность осадков</string>
-    <string name="maxi_temp">Днём</string>
-    <string name="mini_temp">Ночью</string>
-    <string name="time">Время</string>
-    <string name="day">Днём</string>
-    <string name="night">Ночью</string>
     <string name="temperature">Температура</string>
     <string name="wind">Ветер</string>
     <string name="wind_direction">Направление ветра</string>
     <string name="wind_speed">Скорость ветра</string>
     <string name="wind_level">Сила ветра</string>
-    <string name="sensible_temp">Ощущается как</string>
     <string name="humidity">Влажность</string>
     <string name="uv_index">УФ-индекс</string>
     <string name="hours_of_sun">Солнечных часов</string>
-    <string name="forecast">Прогноз</string>
-    <string name="briefings">Обзор</string>
+    <string name="notification_channel_forecast">Прогноз</string>
     <string name="daytime">Днём</string>
     <string name="nighttime">Ночью</string>
-    <string name="publish_at">Опубликовано в</string>
-    <string name="feels_like">Ощущается как</string>
-    <string name="follow_system">Как в системе</string>
-    <string name="background_information">Фоновая информация</string>
+    <string name="published_at">Опубликовано в</string>
+    <string name="temperature_feels_like">Ощущается как</string>
+    <string name="settings_follow_system">Как в системе</string>
+    <string name="notification_channel_background_information">Фоновая информация</string>
     <string name="pressure">Атмосферное давление</string>
     <string name="visibility">Видимость</string>
     <string name="dew_point">Точка росы</string>
     <string name="cloud_cover">Облачность</string>
     <string name="ceiling">Высота облачного покрова</string>
-    <string name="get_more">Ещё</string>
-    <string name="get_more_store">Дополнительно в App Store</string>
-    <string name="get_more_github">Дополнительно на GitHub</string>
+    <string name="settings_icon_providers_get_more">Ещё</string>
+    <string name="settings_icon_providers_get_more_store">Дополнительно в App Store</string>
+    <string name="settings_icon_providers_get_more_github">Дополнительно на GitHub</string>
     <string name="refresh">Обновить</string>
     <string name="restart">Перезапуск</string>
     <string name="edit">Редактировать</string>
 
     <string name="of_clock">:00</string>
-    <string name="yesterday">Вчера</string>
-    <string name="tomorrow">Завтра</string>
-    <string name="week_1">Пн</string>
-    <string name="week_2">Вт</string>
-    <string name="week_3">Ср</string>
-    <string name="week_4">Чт</string>
-    <string name="week_5">Пт</string>
-    <string name="week_6">Сб</string>
-    <string name="week_7">Вс</string>
+    <string name="short_yesterday">Вчера</string>
+    <string name="short_tomorrow">Завтра</string>
+    <string name="short_monday">Пн</string>
+    <string name="short_tuesday">Вт</string>
+    <string name="short_wednesday">Ср</string>
+    <string name="short_thursday">Чт</string>
+    <string name="short_friday">Пт</string>
+    <string name="short_saturday">Сб</string>
+    <string name="short_sunday">Вс</string>
 
-    <string name="real_feel_temperature">Ощущается как</string>
-    <string name="real_feel_shade_temperature">Real feel shader</string>
-    <string name="apparent_temperature">Ощущается как</string>
-    <string name="wind_chill_temperature">Ощущается при ветре</string>
-    <string name="wet_bulb_temperature">Wet bulb</string>
-    <string name="degree_day_temperature">Degree day</string>
+    <string name="temperature_real_feel">Ощущается как</string>
+    <string name="temperature_real_feel_shade">Real feel shader</string>
+    <string name="temperature_apparent">Ощущается как</string>
+    <string name="temperature_wind_chill">Ощущается при ветре</string>
+    <string name="temperature_wet_bulb">Wet bulb</string>
+    <string name="temperature_degree_day">Degree day</string>
 
-    <string name="total">Общий</string>
-    <string name="thunderstorm">Шторм</string>
-    <string name="rain">Дождь</string>
-    <string name="snow">Снег</string>
-    <string name="ice">Лёд</string>
+    <string name="precipitation_total">Общий</string>
+    <string name="precipitation_thunderstorm">Шторм</string>
+    <string name="precipitation_rain">Дождь</string>
+    <string name="precipitation_snow">Снег</string>
+    <string name="precipitation_ice">Лёд</string>
 
-    <string name="wind_0">Штиль</string>
-    <string name="wind_1">Тихий ветер</string>
-    <string name="wind_2">Лёгкий ветер</string>
-    <string name="wind_3">Слабый ветер</string>
-    <string name="wind_4">Умеренный ветер</string>
-    <string name="wind_5">Свежий ветер</string>
-    <string name="wind_6">Сильный ветер</string>
-    <string name="wind_7">Крепкий ветер</string>
-    <string name="wind_8">Очень сильный ветер</string>
-    <string name="wind_9">Штормовой ветер</string>
-    <string name="wind_10">Шторм</string>
-    <string name="wind_11">Сильный шторм</string>
-    <string name="wind_12">Ураган</string>
+    <string name="wind_level_0">Штиль</string>
+    <string name="wind_level_1">Тихий ветер</string>
+    <string name="wind_level_2">Лёгкий ветер</string>
+    <string name="wind_level_3">Слабый ветер</string>
+    <string name="wind_level_4">Умеренный ветер</string>
+    <string name="wind_level_5">Свежий ветер</string>
+    <string name="wind_level_6">Сильный ветер</string>
+    <string name="wind_level_7">Крепкий ветер</string>
+    <string name="wind_level_8">Очень сильный ветер</string>
+    <string name="wind_level_9">Штормовой ветер</string>
+    <string name="wind_level_10">Шторм</string>
+    <string name="wind_level_11">Сильный шторм</string>
+    <string name="wind_level_12">Ураган</string>
 
-    <string name="precipitation_light">Изморось</string>
-    <string name="precipitation_middle">Дождь</string>
-    <string name="precipitation_heavy">Сильный дождь</string>
-    <string name="precipitation_rainstorm">Ливень</string>
+    <string name="precipitation_intensity_light">Изморось</string>
+    <string name="precipitation_intensity_middle">Дождь</string>
+    <string name="precipitation_intensity_heavy">Сильный дождь</string>
+    <string name="precipitation_intensity_rainstorm">Ливень</string>
 
-    <string name="phase_new">Новолуние</string>
-    <string name="phase_waxing_crescent">Растущий месяц</string>
-    <string name="phase_first">Первая четверть</string>
-    <string name="phase_waxing_gibbous">Растущая Луна</string>
-    <string name="phase_full">Полнолуние</string>
-    <string name="phase_waning_gibbous">Убывающая Луна</string>
-    <string name="phase_third">Третья четверть</string>
-    <string name="phase_waning_crescent">Убывающий месяц</string>
+    <string name="ephemeris_moon_phase_new">Новолуние</string>
+    <string name="ephemeris_moon_phase_waxing_crescent">Растущий месяц</string>
+    <string name="ephemeris_moon_phase_first">Первая четверть</string>
+    <string name="ephemeris_moon_phase_waxing_gibbous">Растущая Луна</string>
+    <string name="ephemeris_moon_phase_full">Полнолуние</string>
+    <string name="ephemeris_moon_phase_waning_gibbous">Убывающая Луна</string>
+    <string name="ephemeris_moon_phase_third">Третья четверть</string>
+    <string name="ephemeris_moon_phase_waning_crescent">Убывающий месяц</string>
 
-    <string name="daily_overview">Ежедневный</string>
-    <string name="hourly_overview">Почасовой</string>
-    <string name="minutely_overview">Поминутный</string>
-    <string name="precipitation_overview">Прогноз осадков</string>
+    <string name="daily_forecast">Ежедневный</string>
+    <string name="hourly_forecast">Почасовой</string>
+    <string name="minutely_forecast">Поминутный</string>
+    <string name="precipitation_forecast">Прогноз осадков</string>
     <string name="air_quality">Качество воздуха</string>
     <string name="allergen">Аллерген</string>
     <string name="details">Подробно</string>
-    <string name="sunrise_sunset">Восход и закат</string>
+    <string name="ephemeris">Восход и закат</string>
 
     <string name="next">ДАЛЕЕ</string>
     <string name="done">ОК</string>
@@ -118,13 +110,11 @@
     <string name="learn_more">ЕЩЁ</string>
 
     <string name="about_app">О программе</string>
-    <string name="email">E-mail</string>
-    <string name="translator">Переводчики</string>
-    <string name="thanks">Благодарности</string>
+    <string name="about_translators">Переводчики</string>
 
     <!-- feedback. -->
     <string name="feedback_request_permission">Разрешения</string>
-    <string name="feedback_request_location">Местоположение</string>
+    <string name="notification_channel_request_location">Местоположение</string>
     <string name="feedback_request_location_in_background">Запрос местоположения в фоне</string>
     <string name="feedback_request_location_permission_success">Запрос местоположения успешно выполнен</string>
     <string name="feedback_request_location_permission_failed">Ошибка запроса местоположения</string>
@@ -139,58 +129,58 @@
     <string name="feedback_background_location_title">Доступ к местоположению в фоне</string>
     <string name="feedback_background_location_summary">Чтобы разрешить программе доступ к местоположению в фоне, включите доступ к местоположению \"Разрешить всегда\".</string>
 
-    <string name="feedback_view_style">Стиль внешнего вида</string>
-    <string name="feedback_show_widget_card">Цвет фона</string>
-    <string name="feedback_show_widget_card_alpha">Прозрачность</string>
-    <string name="feedback_hide_subtitle">Скрыть подписи</string>
-    <string name="feedback_subtitle_data">Содержание подписи</string>
-    <string name="feedback_black_text">Цвет текста</string>
-    <string name="feedback_text_size">Размер текста</string>
-    <string name="feedback_clock_font">Шрифт чаcов</string>
-    <string name="feedback_hide_lunar">Скрыть лунный календарь</string>
-    <string name="feedback_custom_subtitle_explanation">Вы можете ввести что угодно, но, пожалуйста, обратите внимание на длину текста. Если Вы хотите чтобы отображались погодные данные, пожалуйста используйте $ для ссылки на соответствующее ключевое слово.\n\nНапример, \"погода сейчас = $cw$\" будет показана как \"Погода сейчас = Ясный День\".</string>
+    <string name="widget_label_view_style">Стиль внешнего вида</string>
+    <string name="widget_label_show_widget_card">Цвет фона</string>
+    <string name="widget_label_show_widget_card_alpha">Прозрачность</string>
+    <string name="widget_label_hide_subtitle">Скрыть подписи</string>
+    <string name="widget_label_subtitle_data">Содержание подписи</string>
+    <string name="widget_label_black_text">Цвет текста</string>
+    <string name="widget_label_text_size">Размер текста</string>
+    <string name="widget_label_clock_font">Шрифт чаcов</string>
+    <string name="widget_label_hide_lunar">Скрыть лунный календарь</string>
+    <string name="widget_custom_subtitle_explanation">Вы можете ввести что угодно, но, пожалуйста, обратите внимание на длину текста. Если Вы хотите чтобы отображались погодные данные, пожалуйста используйте $ для ссылки на соответствующее ключевое слово.\n\nНапример, \"погода сейчас = $cw$\" будет показана как \"Погода сейчас = Ясный День\".</string>
 
-    <string name="feedback_custom_subtitle_keyword_cw">$cw$ : Погода сейчас\n</string>
-    <string name="feedback_custom_subtitle_keyword_ct">$ct$ : Текущая температура (℃/℉)\n</string>
-    <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : Текущая температура (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_at">$at$ : Ощущается как (℃/℉)\n</string>
-    <string name="feedback_custom_subtitle_keyword_atd">$atd$ : Ощущается как (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : Ветер\n</string>
-    <string name="feedback_custom_subtitle_keyword_cuv">$cuv$ : УФ-индекс\n</string>
-    <string name="feedback_custom_subtitle_keyword_ch">$ch$ : Влажность\n</string>
-    <string name="feedback_custom_subtitle_keyword_cps">$cps$ : Давление\n</string>
-    <string name="feedback_custom_subtitle_keyword_cv">$cv$ : Видимость\n</string>
-    <string name="feedback_custom_subtitle_keyword_cdp">$cdp$ : Точка росы\n</string>
-    <string name="feedback_custom_subtitle_keyword_al">$al$ : Оповещение\n</string>
-    <string name="feedback_custom_subtitle_keyword_als">$als$ : Оповещение (Кратко)\n</string>
-    <string name="feedback_custom_subtitle_keyword_l">$l$ : Местоположение\n</string>
-    <string name="feedback_custom_subtitle_keyword_lat">$lat$ : Широта\n</string>
-    <string name="feedback_custom_subtitle_keyword_lon">$lon$ : Долгота\n</string>
-    <string name="feedback_custom_subtitle_keyword_ut">$ut$ : Время обновления\n</string>
-    <string name="feedback_custom_subtitle_keyword_d">$d$ : Дата\n</string>
-    <string name="feedback_custom_subtitle_keyword_lc">$lc$ : Лунный календарь\n</string>
-    <string name="feedback_custom_subtitle_keyword_w">$w$ : Неделя\n</string>
-    <string name="feedback_custom_subtitle_keyword_ws">$ws$ : Неделя (Кратко)\n</string>
-    <string name="feedback_custom_subtitle_keyword_dd">$dd$ : Дневной подробный\n</string>
-    <string name="feedback_custom_subtitle_keyword_hd">$hd$ : Почасовой подробный\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdw">$0dw$, $1dw$, …, $4dw$ : \nПогода сегодня днём, завтра, …, на 4 дня\n</string>
-    <string name="feedback_custom_subtitle_keyword_xnw">$0nw$, $1nw$, …, $4nw$ : \nПогода сегодня ночью, завтра, …, на 4 дня\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdt">$0dt$, $1dt$, …, $4dt$ : \nДневная температура сегодня, завтра, …, на 4 дня (℃/℉)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xnt">$0nt$, $1nt$, …, $4nt$ : \nНочная температура сегодня, завтра, …, на 4 дня (℃/℉)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdtd">$0dtd$, $1dtd$, …, $4dtd$ : \nДневная температура сегодня, завтра, …, на 4 дня (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xntd">$0ntd$, $1ntd$, …, $4ntd$ : \nНочная температура сегодня, завтра, …, на 4 дня (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdp">$0dp$, $1dp$, …, $4dp$ : \nОсадки днём, завтра, …, на 4 дня (%)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xnp">$0np$, $1np$, …, $4np$ : \nОсадки ночью, завтра, …, на 4 дня (%)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdwd">$0dwd$, $1dwd$, …, $4dwd$ : \nВетер днём, завтра, …, на 4 дня\n</string>
-    <string name="feedback_custom_subtitle_keyword_xnwd">$0nwd$, $1nwd$, …, $4nwd$ : \nВетер ночью, завтра, …, 4 на 4 дня\n</string>
-    <string name="feedback_custom_subtitle_keyword_xsr">$0sr$, $1sr$, …, $4sr$ : \nВосход, завтра, …, на 4 дня\n</string>
-    <string name="feedback_custom_subtitle_keyword_xss">$0ss$, $1ss$, …, $4ss$ : \nЗакат, завтра, …, на 4 дня\n</string>
-    <string name="feedback_custom_subtitle_keyword_xmr">$0mr$, $1mr$, …, $4mr$ : \nВосход Луны, …, на 4 дня\n</string>
-    <string name="feedback_custom_subtitle_keyword_xms">$0ms$, $1ms$, …, $4ms$ : \nЗакат Луны, завтра, …, на 4 дня\n</string>
-    <string name="feedback_custom_subtitle_keyword_xmp">$0mp$, $1mp$, …, $4mp$ : \nФаза Луны, завтра, …, на 4 дня\n</string>
+    <string name="widget_custom_subtitle_keyword_cw_description">Погода сейчас</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">Текущая температура (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_ctd_description">Текущая температура (°)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Ощущается как (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_atd_description">Ощущается как (°)</string>
+    <string name="widget_custom_subtitle_keyword_cwd_description">Ветер</string>
+    <string name="widget_custom_subtitle_keyword_cuv_description">УФ-индекс</string>
+    <string name="widget_custom_subtitle_keyword_ch_description">Влажность</string>
+    <string name="widget_custom_subtitle_keyword_cps_description">Давление</string>
+    <string name="widget_custom_subtitle_keyword_cv_description">Видимость</string>
+    <string name="widget_custom_subtitle_keyword_cdp_description">Точка росы</string>
+    <string name="widget_custom_subtitle_keyword_al_description">Оповещение</string>
+    <string name="widget_custom_subtitle_keyword_als_description">Оповещение (Кратко)</string>
+    <string name="widget_custom_subtitle_keyword_l_description">Местоположение</string>
+    <string name="widget_custom_subtitle_keyword_lat_description">Широта</string>
+    <string name="widget_custom_subtitle_keyword_lon_description">Долгота</string>
+    <string name="widget_custom_subtitle_keyword_ut_description">Время обновления</string>
+    <string name="widget_custom_subtitle_keyword_d_description">Дата</string>
+    <string name="widget_custom_subtitle_keyword_lc_description">Лунный календарь</string>
+    <string name="widget_custom_subtitle_keyword_w_description">Неделя</string>
+    <string name="widget_custom_subtitle_keyword_ws_description">Неделя (Кратко)</string>
+    <string name="widget_custom_subtitle_keyword_dd_description">Дневной подробный</string>
+    <string name="widget_custom_subtitle_keyword_hd_description">Почасовой подробный</string>
+    <string name="widget_custom_subtitle_keyword_xdw_description">Погода сегодня днём, завтра, …, на 4 дня</string>
+    <string name="widget_custom_subtitle_keyword_xnw_description">Погода сегодня ночью, завтра, …, на 4 дня</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Дневная температура сегодня, завтра, …, на 4 дня (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Ночная температура сегодня, завтра, …, на 4 дня (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdtd_description">Дневная температура сегодня, завтра, …, на 4 дня (°)</string>
+    <string name="widget_custom_subtitle_keyword_xntd_description">Ночная температура сегодня, завтра, …, на 4 дня (°)</string>
+    <string name="widget_custom_subtitle_keyword_xdp_description">Осадки днём, завтра, …, на 4 дня (%)</string>
+    <string name="widget_custom_subtitle_keyword_xnp_description">Осадки ночью, завтра, …, на 4 дня (%)</string>
+    <string name="widget_custom_subtitle_keyword_xdwd_description">Ветер днём, завтра, …, на 4 дня</string>
+    <string name="widget_custom_subtitle_keyword_xnwd_description">Ветер ночью, завтра, …, 4 на 4 дня</string>
+    <string name="widget_custom_subtitle_keyword_xsr_description">Восход, завтра, …, на 4 дня</string>
+    <string name="widget_custom_subtitle_keyword_xss_description">Закат, завтра, …, на 4 дня</string>
+    <string name="widget_custom_subtitle_keyword_xmr_description">Восход Луны, …, на 4 дня</string>
+    <string name="widget_custom_subtitle_keyword_xms_description">Закат Луны, завтра, …, на 4 дня</string>
+    <string name="widget_custom_subtitle_keyword_xmp_description">Фаза Луны, завтра, …, на 4 дня</string>
 
-    <string name="feedback_live_wallpaper_weather_kind">Погода</string>
-    <string name="feedback_live_wallpaper_day_night_type">Время</string>
+    <string name="widget_live_wallpaper_weather_kind">Погода</string>
+    <string name="widget_live_wallpaper_day_night_type">Время</string>
 
     <string name="feedback_click_toggle">Нажмите на диаграмму для смены типа данных</string>
     <string name="feedback_no_data">НЕТ ДАННЫХ</string>
@@ -209,8 +199,6 @@
     <string name="feedback_refresh_notification_now">Обновить сейчас</string>
     <string name="feedback_refresh_ui_after_refresh">Изменения вступят в силу после обновления данных</string>
     <string name="feedback_restart">Изменения вступят в силу после перезапуска</string>
-    <string name="feedback_readd_location">Пожалуйста добавьте место повторно</string>
-    <string name="feedback_readd_location_after_changing_source">Пожалуйста добавьте место повторно после изменения источника данных</string>
 
     <string name="feedback_running_in_background">Запущено в фоне для постоянного обновления</string>
     <string name="feedback_updating_weather_data">Обновление погодных данных</string>
@@ -225,9 +213,6 @@
 
     <string name="feedback_cannot_start_live_wallpaper_activity">Невозможно начать предпросмотр живых обоев</string>
 
-    <string name="feedback_unusable_geocoder">Это устройство не имеет необходимого геокодера - сервиса определения местоположения. Провайдер местоположения будет изменён на Baidu Location.</string>
-    <string name="feedback_about_geocoder">Геокодер это компонент, который преобразует результаты местоположения из формата "широта-долгота" в формат \'XX город, YY область \'. В отсутствие этого компонента вы можете получать данные о погоде только через AccuWeather при использовании собственного API в качестве провайдера местоположения..</string>
-
     <string name="feedback_today_precipitation_alert">Сегодня возможны осадки.</string>
     <string name="feedback_short_term_precipitation_alert">В ближайшее время возможны осадки.</string>
 
@@ -238,7 +223,7 @@
     <string name="feedback_click_again_to_exit">Нажмите ещё раз для выхода</string>
 
     <!-- action -->
-    <string name="action_alert">Оповещение</string>
+    <string name="alerts">Оповещение</string>
     <string name="action_manage">Управление</string>
     <string name="action_search">Поиск</string>
     <string name="action_settings">Настройки</string>
@@ -260,8 +245,8 @@
     <string name="widget_multi_city">Multi City</string>
     <string name="widget_material_you_forecast">Material You - Прогноз</string>
     <string name="widget_material_you_current">Material You - Текущая</string>
-    <string name="wait_refresh">Ждите</string>
-    <string name="ellipsis">…</string>
+    <string name="widget_refreshing">Ждите</string>
+    <string name="widget_ellipsis">…</string>
 
     <!-- settings -->
     <string name="settings_category_basic">Основные</string>

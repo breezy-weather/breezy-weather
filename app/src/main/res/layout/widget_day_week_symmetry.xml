@@ -31,7 +31,7 @@
                 android:id="@+id/widget_day_week_title"
                 android:layout_centerVertical="true"
                 android:layout_toStartOf="@id/widget_day_week_icon"
-                android:text="@string/ellipsis"
+                android:text="@string/widget_ellipsis"
                 android:textSize="@dimen/widget_content_text_size"
                 android:textAlignment="viewEnd"
                 android:maxLines="2"
@@ -47,7 +47,7 @@
                 android:id="@+id/widget_day_week_subtitle"
                 android:layout_centerVertical="true"
                 android:layout_toEndOf="@+id/widget_day_week_icon"
-                android:text="@string/ellipsis"
+                android:text="@string/widget_ellipsis"
                 android:textSize="@dimen/widget_content_text_size"
                 android:maxLines="2"
                 android:shadowColor="@color/colorWidgetTextShadow"
@@ -78,7 +78,7 @@
 
                 <TextView
                     android:id="@+id/widget_day_week_time"
-                    android:text="@string/wait_refresh"
+                    android:text="@string/widget_refreshing"
                     android:textSize="@dimen/widget_time_text_size"
                     android:shadowColor="@color/colorWidgetTextShadow"
                     android:shadowDx="1"
@@ -107,7 +107,7 @@
 
                 <TextView
                     android:id="@+id/widget_day_week_week_1"
-                    android:text="@string/wait_refresh"
+                    android:text="@string/widget_refreshing"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
                     android:shadowColor="@color/colorWidgetTextShadow"
@@ -133,7 +133,7 @@
 
                 <TextView
                     android:id="@+id/widget_day_week_temp_1"
-                    android:text="@string/ellipsis"
+                    android:text="@string/widget_ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
                     android:shadowColor="@color/colorWidgetTextShadow"
@@ -154,7 +154,7 @@
 
                 <TextView
                     android:id="@+id/widget_day_week_week_2"
-                    android:text="@string/ellipsis"
+                    android:text="@string/widget_ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
                     android:shadowColor="@color/colorWidgetTextShadow"
@@ -180,7 +180,7 @@
 
                 <TextView
                     android:id="@+id/widget_day_week_temp_2"
-                    android:text="@string/ellipsis"
+                    android:text="@string/widget_ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
                     android:shadowColor="@color/colorWidgetTextShadow"
@@ -201,7 +201,7 @@
 
                 <TextView
                     android:id="@+id/widget_day_week_week_3"
-                    android:text="@string/ellipsis"
+                    android:text="@string/widget_ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
                     android:shadowColor="@color/colorWidgetTextShadow"
@@ -227,7 +227,7 @@
 
                 <TextView
                     android:id="@+id/widget_day_week_temp_3"
-                    android:text="@string/ellipsis"
+                    android:text="@string/widget_ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
                     android:shadowColor="@color/colorWidgetTextShadow"
@@ -248,7 +248,7 @@
 
                 <TextView
                     android:id="@+id/widget_day_week_week_4"
-                    android:text="@string/ellipsis"
+                    android:text="@string/widget_ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
                     android:shadowColor="@color/colorWidgetTextShadow"
@@ -274,7 +274,7 @@
 
                 <TextView
                     android:id="@+id/widget_day_week_temp_4"
-                    android:text="@string/ellipsis"
+                    android:text="@string/widget_ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
                     android:shadowColor="@color/colorWidgetTextShadow"
@@ -295,7 +295,7 @@
 
                 <TextView
                     android:id="@+id/widget_day_week_week_5"
-                    android:text="@string/ellipsis"
+                    android:text="@string/widget_ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
                     android:shadowColor="@color/colorWidgetTextShadow"
@@ -322,7 +322,7 @@
 
                 <TextView
                     android:id="@+id/widget_day_week_temp_5"
-                    android:text="@string/ellipsis"
+                    android:text="@string/widget_ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
                     android:shadowColor="@color/colorWidgetTextShadow"

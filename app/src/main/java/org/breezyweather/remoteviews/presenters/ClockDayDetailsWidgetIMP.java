@@ -116,7 +116,7 @@ public class ClockDayDetailsWidgetIMP extends AbstractRemoteViewsPresenter {
                 && weather.getDailyForecast().get(0).getNight().getTemperature().getTemperature() != null) {
             views.setTextViewText(
                     R.id.widget_clock_day_todayTemp,
-                    context.getString(R.string.today) + " " + Temperature.getTrendTemperature(
+                    context.getString(R.string.short_today) + " " + Temperature.getTrendTemperature(
                             context,
                             weather.getDailyForecast().get(0).getNight().getTemperature().getTemperature(),
                             weather.getDailyForecast().get(0).getDay().getTemperature().getTemperature(),
@@ -129,7 +129,7 @@ public class ClockDayDetailsWidgetIMP extends AbstractRemoteViewsPresenter {
                 && weather.getCurrent().getTemperature().getFeelsLikeTemperature() != null) {
             views.setTextViewText(
                     R.id.widget_clock_day_sensibleTemp,
-                    context.getString(R.string.feels_like)
+                    context.getString(R.string.temperature_feels_like)
                             + " "
                             + weather.getCurrent().getTemperature().getFeelsLikeTemperature(context, temperatureUnit)
             );

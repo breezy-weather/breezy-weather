@@ -75,7 +75,7 @@
             android:layout_marginEnd="@dimen/normal_margin"
             android:importantForAccessibility="no"
             style="@style/title_text"
-            tools:text="@string/phase_waxing_crescent" />
+            tools:text="@string/ephemeris_moon_phase_waxing_crescent" />
 
     </LinearLayout>
 

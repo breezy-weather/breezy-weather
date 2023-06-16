@@ -103,7 +103,7 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
                                 mActivity.getString(R.string.feedback_resident_location),
                                 mActivity.getString(R.string.learn_more),
                                 v -> new MaterialAlertDialogBuilder(mActivity)
-                                        .setTitle(R.string.resident_location)
+                                        .setTitle(R.string.location_resident)
                                         .setMessage(R.string.feedback_resident_location_description)
                                         .show()
                         );

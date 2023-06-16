@@ -10,11 +10,11 @@ enum class CardDisplay(
     @StringRes private val nameId: Int
 ): BaseEnum {
 
-    CARD_DAILY_OVERVIEW("daily_overview", R.string.daily_overview),
-    CARD_HOURLY_OVERVIEW("hourly_overview", R.string.hourly_overview),
+    CARD_DAILY_OVERVIEW("daily_overview", R.string.daily_forecast),
+    CARD_HOURLY_OVERVIEW("hourly_overview", R.string.hourly_forecast),
     CARD_AIR_QUALITY("air_quality", R.string.air_quality),
     CARD_ALLERGEN("allergen", R.string.allergen),
-    CARD_SUNRISE_SUNSET("sunrise_sunset", R.string.sunrise_sunset),
+    CARD_SUNRISE_SUNSET("sunrise_sunset", R.string.ephemeris),
     CARD_LIVE("live", R.string.live);
 
     companion object {

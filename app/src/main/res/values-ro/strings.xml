@@ -3,115 +3,107 @@
     <string name="app_name">Meteo</string>
 
     <!-- keyword. -->
-    <string name="current_location">Locația curentă</string>
-    <string name="resident_location">Acasă</string>
+    <string name="location_current">Locația curentă</string>
+    <string name="location_resident">Acasă</string>
     <string name="live">În prezent</string>
-    <string name="today">Azi</string>
+    <string name="short_today">Azi</string>
     <string name="refresh_at">Actualizat la</string>
-    <string name="local_time">Ora locală</string>
     <string name="precipitation">Precipitaţii</string>
     <string name="precipitation_probability">Probabilitate precipitaţii</string>
     <string name="precipitation_duration">Durată Precipitaţii</string>
-    <string name="maxi_temp">zi</string>
-    <string name="mini_temp">noapte</string>
-    <string name="time">ora</string>
-    <string name="day">zi</string>
-    <string name="night">noapte</string>
     <string name="temperature">Temperatură</string>
     <string name="wind">Vânt</string>
     <string name="wind_direction">Direcția vântului</string>
     <string name="wind_speed">Viteza vântului</string>
     <string name="wind_level">Vânt</string>
-    <string name="sensible_temp">Temp. resimțită</string>
     <string name="humidity">Umiditate</string>
     <string name="uv_index">Indice UV</string>
     <string name="hours_of_sun">Ore cu soare</string>
-    <string name="forecast">Prognoză</string>
-    <string name="briefings">Pe scurt</string>
+    <string name="notification_channel_forecast">Prognoză</string>
     <string name="daytime">Zi</string>
     <string name="nighttime">Noapte</string>
-    <string name="publish_at">Publicat la</string>
-    <string name="feels_like">Se simt</string>
-    <string name="follow_system">La fel ca sistemul</string>
-    <string name="background_information">Informații generale</string>
+    <string name="published_at">Publicat la</string>
+    <string name="temperature_feels_like">Se simt</string>
+    <string name="settings_follow_system">La fel ca sistemul</string>
+    <string name="notification_channel_background_information">Informații generale</string>
     <string name="pressure">Presiune atmosferică</string>
     <string name="visibility">Vizibilitate</string>
     <string name="dew_point">Punct de rouă</string>
     <string name="cloud_cover">Acoperire nori</string>
     <string name="ceiling">Plafon</string>
-    <string name="get_more">Mai mult…</string>
-    <string name="get_more_store">Mai multe din magazinul de aplicații</string>
-    <string name="get_more_github">Mai multe de pe GitHub</string>
+    <string name="settings_icon_providers_get_more">Mai mult…</string>
+    <string name="settings_icon_providers_get_more_store">Mai multe din magazinul de aplicații</string>
+    <string name="settings_icon_providers_get_more_github">Mai multe de pe GitHub</string>
     <string name="refresh">Reactualizează</string>
     <string name="restart">Repornește</string>
     <string name="edit">Editează</string>
 
     <!-- The following set of strings should be as short as possible. -->
     <string name="of_clock">:00</string>
-    <string name="yesterday">ieri</string>
-    <string name="tomorrow">mâine</string>
-    <string name="week_1">Lu</string>
-    <string name="week_2">Ma</string>
-    <string name="week_3">Mi</string>
-    <string name="week_4">Jo</string>
-    <string name="week_5">Vi</string>
-    <string name="week_6">Sâ</string>
-    <string name="week_7">Du</string>
+    <string name="short_yesterday">Ieri</string>
+    <string name="short_tomorrow">Mâine</string>
+    <string name="short_monday">Lu</string>
+    <string name="short_tuesday">Ma</string>
+    <string name="short_wednesday">Mi</string>
+    <string name="short_thursday">Jo</string>
+    <string name="short_friday">Vi</string>
+    <string name="short_saturday">Sâ</string>
+    <string name="short_sunday">Du</string>
 
-    <string name="real_feel_temperature">Temp. resimțită</string>
-    <string name="real_feel_shade_temperature">Temp. resimțită la umbră</string>
-    <string name="apparent_temperature">Temp. aparentă</string>
-    <string name="wind_chill_temperature">Punct de răcire</string>
-    <string name="wet_bulb_temperature">Temp. la umed</string>
-    <string name="degree_day_temperature">Zi-grad</string>
+    <string name="temperature_real_feel">Temp. resimțită</string>
+    <string name="temperature_real_feel_shade">Temp. resimțită la umbră</string>
+    <string name="temperature_apparent">Temp. aparentă</string>
+    <string name="temperature_wind_chill">Punct de răcire</string>
+    <string name="temperature_wet_bulb">Temp. la umed</string>
+    <string name="temperature_degree_day">Zi-grad</string>
 
-    <string name="total">Total</string>
-    <string name="thunderstorm">Furtună</string>
-    <string name="rain">Ploaie</string>
-    <string name="snow">Ninsoare</string>
-    <string name="ice">Gheață</string>
+    <string name="precipitation_total">Total</string>
+    <string name="precipitation_thunderstorm">Furtună</string>
+    <string name="precipitation_rain">Ploaie</string>
+    <string name="precipitation_snow">Ninsoare</string>
+    <string name="precipitation_ice">Gheață</string>
 
-    <string name="wind_0">Calm</string>
-    <string name="wind_1">Adiere ușoară</string>
-    <string name="wind_2">Briză ușoară</string>
-    <string name="wind_3">Vânt slab</string>
-    <string name="wind_4">Vânt moderat</string>
-    <string name="wind_5">Vânt tare</string>
-    <string name="wind_6">Vânt foarte tare</string>
-    <string name="wind_7">Vânt puternic</string>
-    <string name="wind_8">Vânt foarte puternic</string>
-    <string name="wind_9">Furtună</string>
-    <string name="wind_10">Furtună puternică</string>
-    <string name="wind_11">Furtună violentă</string>
-    <string name="wind_12">Uragan</string>
+    <string name="wind_level_0">Calm</string>
+    <string name="wind_level_1">Adiere ușoară</string>
+    <string name="wind_level_2">Briză ușoară</string>
+    <string name="wind_level_3">Vânt slab</string>
+    <string name="wind_level_4">Vânt moderat</string>
+    <string name="wind_level_5">Vânt tare</string>
+    <string name="wind_level_6">Vânt foarte tare</string>
+    <string name="wind_level_7">Vânt puternic</string>
+    <string name="wind_level_8">Vânt foarte puternic</string>
+    <string name="wind_level_9">Furtună</string>
+    <string name="wind_level_10">Furtună puternică</string>
+    <string name="wind_level_11">Furtună violentă</string>
+    <string name="wind_level_12">Uragan</string>
 
-    <string name="precipitation_light">Ploi uşoare</string>
-    <string name="precipitation_middle">Ploi moderate</string>
-    <string name="precipitation_heavy">Ploi intense</string>
-    <string name="precipitation_rainstorm">Ploi violente (Furtună)</string>
+    <string name="precipitation_intensity_light">Ploi uşoare</string>
+    <string name="precipitation_intensity_middle">Ploi moderate</string>
+    <string name="precipitation_intensity_heavy">Ploi intense</string>
+    <string name="precipitation_intensity_rainstorm">Ploi violente (Furtună)</string>
 
-    <string name="phase_new">Lună nouă</string>
-    <string name="phase_waxing_crescent">Semilună în creștere</string>
-    <string name="phase_first">Primul pătrar</string>
-    <string name="phase_waxing_gibbous">Lună în creștere</string>
-    <string name="phase_full">Lună plină</string>
-    <string name="phase_waning_gibbous">Lună în descreștere</string>
-    <string name="phase_third">Ultimul pătrar</string>
-    <string name="phase_waning_crescent">Semilună în descreștere</string>
+    <string name="ephemeris_moon_phase_new">Lună nouă</string>
+    <string name="ephemeris_moon_phase_waxing_crescent">Semilună în creștere</string>
+    <string name="ephemeris_moon_phase_first">Primul pătrar</string>
+    <string name="ephemeris_moon_phase_waxing_gibbous">Lună în creștere</string>
+    <string name="ephemeris_moon_phase_full">Lună plină</string>
+    <string name="ephemeris_moon_phase_waning_gibbous">Lună în descreștere</string>
+    <string name="ephemeris_moon_phase_third">Ultimul pătrar</string>
+    <string name="ephemeris_moon_phase_waning_crescent">Semilună în descreștere</string>
 
-    <string name="grass">Iarbă</string>
-    <string name="mold">Mucegai</string>
-    <string name="ragweed">Ambrozie</string>
-    <string name="tree">Copac</string>
+    <string name="allergen_grass">Iarbă</string>
+    <string name="allergen_mold">Mucegai</string>
+    <string name="allergen_ragweed">Ambrozie</string>
+    <string name="allergen_tree">Copac</string>
 
-    <string name="daily_overview">Prognoza zilnică</string>
-    <string name="hourly_overview">Prognoza pe ore</string>
-    <string name="minutely_overview">Prognoza pe minut</string>
-    <string name="precipitation_overview">Prognoza precipitații</string>
+    <string name="daily_forecast">Prognoza zilnică</string>
+    <string name="hourly_forecast">Prognoza pe ore</string>
+    <string name="minutely_forecast">Prognoza pe minut</string>
+    <string name="precipitation_forecast">Prognoza precipitații</string>
     <string name="air_quality">Calitatea aerului</string>
     <string name="allergen">Alergeni</string>
     <string name="details">Detalii</string>
-    <string name="sunrise_sunset">Soare și Lună</string>
+    <string name="ephemeris">Soare și Lună</string>
 
     <string name="next">MAI DEPARTE</string>
     <string name="done">TERMINAT</string>
@@ -123,9 +115,7 @@
     <string name="learn_more">AFLĂ MAI MULTE</string>
 
     <string name="about_app">Despre aplicație</string>
-    <string name="email">E-mail</string>
-    <string name="translator">Traducători</string>
-    <string name="thanks">Mulțumiri</string>
+    <string name="about_translators">Traducători</string>
 
     <!-- Date format strings. -->
     <!-- Month : MMM(long) / M(short). -->
@@ -139,7 +129,7 @@
 
     <!-- feedback. -->
     <string name="feedback_request_permission">Permisiuni</string>
-    <string name="feedback_request_location">Locație</string>
+    <string name="notification_channel_request_location">Locație</string>
     <string name="feedback_request_location_in_background">Localizare în fundal</string>
     <string name="feedback_request_location_permission_success">Cerere acces localizare - Succes</string>
     <string name="feedback_request_location_permission_failed">Cerere acces localizare - Eșuat</string>
@@ -156,61 +146,61 @@
     <string name="feedback_enable_location_information">Activați informațiile despre locație</string>
     <string name="feedback_select_location_provider">Selectați furnizorul de servicii de localizare</string>
     <string name="feedback_add_location_manually">Adăugați locația manual și ștergeți \'$ \'</string>
-    <string name="feedback_view_style">Tip vizualizare</string>
-    <string name="feedback_show_widget_card">Culoare fundal</string>
-    <string name="feedback_show_widget_card_alpha">Transparență</string>
-    <string name="feedback_hide_subtitle">Ascunde subtitlul</string>
-    <string name="feedback_subtitle_data">Date subtitlu</string>
-    <string name="feedback_black_text">Culoare text</string>
-    <string name="feedback_text_size">Mărime text</string>
-    <string name="feedback_clock_font">Font ceas</string>
-    <string name="feedback_hide_lunar">Ascunde calendarul lunar</string>
-    <string name="feedback_align_end">Aliniați la sfârșit</string>
-    <string name="feedback_custom_subtitle_explanation">Puteți introduce orice, dar vă rugăm să acordați atenție lungimii textului. Dacă doriți să citați datele meteo, vă rugăm să folosiți $ pentru a face referire la cuvântul cheie corespunzător. \n\De exemplu, \"Starea vremii = $cw$\" va fi afișat ca \"Starea vremii = cer senin\".</string>
+    <string name="widget_label_view_style">Tip vizualizare</string>
+    <string name="widget_label_show_widget_card">Culoare fundal</string>
+    <string name="widget_label_show_widget_card_alpha">Transparență</string>
+    <string name="widget_label_hide_subtitle">Ascunde subtitlul</string>
+    <string name="widget_label_subtitle_data">Date subtitlu</string>
+    <string name="widget_label_black_text">Culoare text</string>
+    <string name="widget_label_text_size">Mărime text</string>
+    <string name="widget_label_clock_font">Font ceas</string>
+    <string name="widget_label_hide_lunar">Ascunde calendarul lunar</string>
+    <string name="widget_label_align_end">Aliniați la sfârșit</string>
+    <string name="widget_custom_subtitle_explanation">Puteți introduce orice, dar vă rugăm să acordați atenție lungimii textului. Dacă doriți să citați datele meteo, vă rugăm să folosiți $ pentru a face referire la cuvântul cheie corespunzător. \n\De exemplu, \"Starea vremii = $cw$\" va fi afișat ca \"Starea vremii = cer senin\".</string>
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
-    <string name="feedback_custom_subtitle_keyword_cw">$cw$ : Starea vremii\n</string>
-    <string name="feedback_custom_subtitle_keyword_ct">$ct$ : Temperatura curentă (℃/℉)\n</string>
-    <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : Temperatura curentă (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_at">$at$ : Temp. resimțită (℃/℉)\n</string>
-    <string name="feedback_custom_subtitle_keyword_atd">$atd$ : Temp. resimțită (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : Vânt\n</string>
-    <string name="feedback_custom_subtitle_keyword_cuv">$cuv$ : Index UV\n</string>
-    <string name="feedback_custom_subtitle_keyword_ch">$ch$ : Umiditate\n</string>
-    <string name="feedback_custom_subtitle_keyword_cps">$cps$ : Presiune atmosferică\n</string>
-    <string name="feedback_custom_subtitle_keyword_cv">$cv$ : Vizibilitate\n</string>
-    <string name="feedback_custom_subtitle_keyword_cdp">$cdp$ : Punct de rouă\n</string>
-    <string name="feedback_custom_subtitle_keyword_al">$al$ : Alerte\n</string>
-    <string name="feedback_custom_subtitle_keyword_als">$als$ : Alerte (Pe scurt)\n</string>
-    <string name="feedback_custom_subtitle_keyword_l">$l$ : Locație\n</string>
-    <string name="feedback_custom_subtitle_keyword_lat">$lat$ : Latitudine\n</string>
-    <string name="feedback_custom_subtitle_keyword_lon">$lon$ : Longitudine\n</string>
-    <string name="feedback_custom_subtitle_keyword_ut">$ut$ : Oră actualizare\n</string>
-    <string name="feedback_custom_subtitle_keyword_d">$d$ : Data\n</string>
-    <string name="feedback_custom_subtitle_keyword_lc">$lc$ : Calendar lunar\n</string>
-    <string name="feedback_custom_subtitle_keyword_w">$w$ : Săptămână\n</string>
-    <string name="feedback_custom_subtitle_keyword_ws">$ws$ : Săptămână (Pe scurt)\n</string>
-    <string name="feedback_custom_subtitle_keyword_dd">$dd$ : Date pe zile\n</string>
-    <string name="feedback_custom_subtitle_keyword_hd">$hd$ : Date pe ore\n</string>
-    <string name="feedback_custom_subtitle_keyword_enter">$enter$ : Selectează\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdw">$0dw$, $1dw$, …, $4dw$ : \nVremea azi, Mâine, …, 4 zile mai târziu\n</string>
-    <string name="feedback_custom_subtitle_keyword_xnw">$0nw$, $1nw$, …, $4nw$ : \nVremea la noapte, Mâine, …, 4 zile mai târziu\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdt">$0dt$, $1dt$, …, $4dt$ : \nTemperatura azi, Mâine, …, 4 zile mai târziu (℃/℉)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xnt">$0nt$, $1nt$, …, $4nt$ : \nTemperatura la noapte, Mâine, …, 4 zile mai târziu (℃/℉)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdtd">$0dtd$, $1dtd$, …, $4dtd$ : \nTemperatura azi, Mâine, …, 4 zile mai târziu (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xntd">$0ntd$, $1ntd$, …, $4ntd$ : \nTemperatura la noapte, Mâine, …, 4 zile mai târziu (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdp">$0dp$, $1dp$, …, $4dp$ : \nPrecipitații azi, Mâine, …, 4 zile mai târziu (%)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xnp">$0np$, $1np$, …, $4np$ : \nPrecipitații la noapte, Mâine, …, 4 zile mai târziu (%)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdwd">$0dwd$, $1dwd$, …, $4dwd$ : \nVânt azi, Mâine, …, 4 zile mai târziu\n</string>
-    <string name="feedback_custom_subtitle_keyword_xnwd">$0nwd$, $1nwd$, …, $4nwd$ : \nVânt la noapte, Mâine, …, 4 zile mai târziu\n</string>
-    <string name="feedback_custom_subtitle_keyword_xsr">$0sr$, $1sr$, …, $4sr$ : \nRăsărit azi, Mâine, …, 4 zile mai târziu\n</string>
-    <string name="feedback_custom_subtitle_keyword_xss">$0ss$, $1ss$, …, $4ss$ : \nApus azi, Mâine, …, 4 zile mai târziu\n</string>
-    <string name="feedback_custom_subtitle_keyword_xmr">$0mr$, $1mr$, …, $4mr$ : \nRăsărit Lună azi, Mâine, …, 4 zile mai târziu\n</string>
-    <string name="feedback_custom_subtitle_keyword_xms">$0ms$, $1ms$, …, $4ms$ : \nApus lună azi, Mâine, …, 4 zile mai târziu\n</string>
-    <string name="feedback_custom_subtitle_keyword_xmp">$0mp$, $1mp$, …, $4mp$ : \nFaza lunară azi, Mâine, …, 4 zile mai târziu\n</string>
+    <string name="widget_custom_subtitle_keyword_cw_description">Starea vremii</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">Temperatura curentă (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_ctd_description">Temperatura curentă (°)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Temp. resimțită (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_atd_description">Temp. resimțită (°)</string>
+    <string name="widget_custom_subtitle_keyword_cwd_description">Vânt</string>
+    <string name="widget_custom_subtitle_keyword_cuv_description">Index UV</string>
+    <string name="widget_custom_subtitle_keyword_ch_description">Umiditate</string>
+    <string name="widget_custom_subtitle_keyword_cps_description">Presiune atmosferică</string>
+    <string name="widget_custom_subtitle_keyword_cv_description">Vizibilitate</string>
+    <string name="widget_custom_subtitle_keyword_cdp_description">Punct de rouă</string>
+    <string name="widget_custom_subtitle_keyword_al_description">Alerte</string>
+    <string name="widget_custom_subtitle_keyword_als_description">Alerte (Pe scurt)</string>
+    <string name="widget_custom_subtitle_keyword_l_description">Locație</string>
+    <string name="widget_custom_subtitle_keyword_lat_description">Latitudine</string>
+    <string name="widget_custom_subtitle_keyword_lon_description">Longitudine</string>
+    <string name="widget_custom_subtitle_keyword_ut_description">Oră actualizare</string>
+    <string name="widget_custom_subtitle_keyword_d_description">Data</string>
+    <string name="widget_custom_subtitle_keyword_lc_description">Calendar lunar</string>
+    <string name="widget_custom_subtitle_keyword_w_description">Săptămână</string>
+    <string name="widget_custom_subtitle_keyword_ws_description">Săptămână (Pe scurt)</string>
+    <string name="widget_custom_subtitle_keyword_dd_description">Date pe zile</string>
+    <string name="widget_custom_subtitle_keyword_hd_description">Date pe ore</string>
+    <string name="widget_custom_subtitle_keyword_enter_description">Selectează</string>
+    <string name="widget_custom_subtitle_keyword_xdw_description">Vremea azi, Mâine, …, 4 zile mai târziu</string>
+    <string name="widget_custom_subtitle_keyword_xnw_description">Vremea la noapte, Mâine, …, 4 zile mai târziu</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Temperatura azi, Mâine, …, 4 zile mai târziu (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Temperatura la noapte, Mâine, …, 4 zile mai târziu (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdtd_description">Temperatura azi, Mâine, …, 4 zile mai târziu (°)</string>
+    <string name="widget_custom_subtitle_keyword_xntd_description">Temperatura la noapte, Mâine, …, 4 zile mai târziu (°)</string>
+    <string name="widget_custom_subtitle_keyword_xdp_description">Precipitații azi, Mâine, …, 4 zile mai târziu (%)</string>
+    <string name="widget_custom_subtitle_keyword_xnp_description">Precipitații la noapte, Mâine, …, 4 zile mai târziu (%)</string>
+    <string name="widget_custom_subtitle_keyword_xdwd_description">Vânt azi, Mâine, …, 4 zile mai târziu</string>
+    <string name="widget_custom_subtitle_keyword_xnwd_description">Vânt la noapte, Mâine, …, 4 zile mai târziu</string>
+    <string name="widget_custom_subtitle_keyword_xsr_description">Răsărit azi, Mâine, …, 4 zile mai târziu</string>
+    <string name="widget_custom_subtitle_keyword_xss_description">Apus azi, Mâine, …, 4 zile mai târziu</string>
+    <string name="widget_custom_subtitle_keyword_xmr_description">Răsărit Lună azi, Mâine, …, 4 zile mai târziu</string>
+    <string name="widget_custom_subtitle_keyword_xms_description">Apus lună azi, Mâine, …, 4 zile mai târziu</string>
+    <string name="widget_custom_subtitle_keyword_xmp_description">Faza lunară azi, Mâine, …, 4 zile mai târziu</string>
 
-    <string name="feedback_live_wallpaper_weather_kind">Vremea</string>
-    <string name="feedback_live_wallpaper_day_night_type">Ora</string>
+    <string name="widget_live_wallpaper_weather_kind">Vremea</string>
+    <string name="widget_live_wallpaper_day_night_type">Ora</string>
 
     <string name="feedback_click_toggle">Atingeți tabelul pentru a selecta datele</string>
     <string name="feedback_no_data">DATE LIPSĂ</string>
@@ -229,8 +219,6 @@
     <string name="feedback_refresh_notification_now">Reactualizează acum</string>
     <string name="feedback_refresh_ui_after_refresh">Modificările vor fi vizibile odata cu actualizarea datelor</string>
     <string name="feedback_restart">Modificările vor fi vizibile după repornirea aplicației</string>
-    <string name="feedback_readd_location">Vă rugăm să adăugați din nou locațiile </string>
-    <string name="feedback_readd_location_after_changing_source">Vă rugăm să re-adăugați locațiile după modificarea sursei de date</string>
 
     <string name="feedback_running_in_background">Datele se actualizează în fundal</string>
     <string name="feedback_updating_weather_data">Se actualizează datele meteo</string>
@@ -248,9 +236,6 @@
 
     <string name="feedback_cannot_start_live_wallpaper_activity">Pornirea previzualizării Tapetului dinamic (live wallpaper) a eșuat.</string>
 
-    <string name="feedback_unusable_geocoder">Acest dispozitiv nu are un geocoder valid. Furnizorul de locație a fost înlocuit cu  Baidu.</string>
-    <string name="feedback_about_geocoder">Geocoderul este o componentă care convertește rezultatul locației din formatul lat-lon într-un format precum \'XX oraș, YY județ \'. În absența acestei componente, puteți obține date despre vreme doar prin AccuWeather atunci când utilizați API-ul nativ ca furnizor de locație.</string>
-
     <string name="feedback_today_precipitation_alert">Posibile precipitații in decursul zilei</string>
     <string name="feedback_short_term_precipitation_alert">Posibile precipitații în următoarele ore.</string>
 
@@ -261,7 +246,7 @@
     <string name="feedback_click_again_to_exit">Repetați actiunea pentru a ieși</string>
 
     <!-- action -->
-    <string name="action_alert">Alertă</string>
+    <string name="alerts">Alertă</string>
     <string name="action_manage">Gestionnează</string>
     <string name="action_search">Căutare</string>
     <string name="action_settings">Setări</string>
@@ -281,8 +266,8 @@
     <string name="widget_trend_daily">Trend zilnic</string>
     <string name="widget_trend_hourly">Trend pe ore</string>
     <string name="widget_multi_city">Locații multiple</string>
-    <string name="wait_refresh">în așteptare</string>
-    <string name="ellipsis">…</string>
+    <string name="widget_refreshing">în așteptare</string>
+    <string name="widget_ellipsis">…</string>
 
     <!-- settings -->
     <string name="settings_category_basic">Setări de bază</string>

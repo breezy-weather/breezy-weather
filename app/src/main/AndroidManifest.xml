@@ -105,12 +105,12 @@
 
         <activity
             android:name=".daily.DailyWeatherActivity"
-            android:label="@string/daily_overview"
+            android:label="@string/daily_forecast"
             android:theme="@style/BreezyWeatherTheme" />
 
         <activity
             android:name=".common.ui.activities.AlertActivity"
-            android:label="@string/action_alert"
+            android:label="@string/alerts"
             android:theme="@style/BreezyWeatherTheme" />
 
         <activity

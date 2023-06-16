@@ -38,7 +38,7 @@
 
             <TextView
                 android:id="@+id/widget_week_temp"
-                android:text="@string/ellipsis"
+                android:text="@string/widget_ellipsis"
                 android:textSize="@dimen/widget_standard_weather_icon_size"
                 android:maxLines="1"
                 android:layout_marginEnd="@dimen/normal_margin"
@@ -61,7 +61,7 @@
 
                 <TextView
                     android:id="@+id/widget_week_week_1"
-                    android:text="@string/ellipsis"
+                    android:text="@string/widget_ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
                     android:layout_alignParentTop="true"
@@ -83,7 +83,7 @@
 
                 <TextView
                     android:id="@+id/widget_week_temp_1"
-                    android:text="@string/ellipsis"
+                    android:text="@string/widget_ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
                     android:layout_below="@id/widget_week_icon_1"
@@ -100,7 +100,7 @@
 
                 <TextView
                     android:id="@+id/widget_week_week_2"
-                    android:text="@string/ellipsis"
+                    android:text="@string/widget_ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
                     android:layout_alignParentTop="true"
@@ -122,7 +122,7 @@
 
                 <TextView
                     android:id="@+id/widget_week_temp_2"
-                    android:text="@string/ellipsis"
+                    android:text="@string/widget_ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
                     android:layout_below="@id/widget_week_icon_2"
@@ -139,7 +139,7 @@
 
                 <TextView
                     android:id="@+id/widget_week_week_3"
-                    android:text="@string/ellipsis"
+                    android:text="@string/widget_ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
                     android:layout_alignParentTop="true"
@@ -161,7 +161,7 @@
 
                 <TextView
                     android:id="@+id/widget_week_temp_3"
-                    android:text="@string/ellipsis"
+                    android:text="@string/widget_ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
                     android:layout_below="@id/widget_week_icon_3"

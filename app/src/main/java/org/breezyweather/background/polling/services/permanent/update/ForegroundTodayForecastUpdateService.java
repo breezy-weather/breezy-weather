@@ -39,7 +39,7 @@ public class ForegroundTodayForecastUpdateService extends ForegroundUpdateServic
     @Override
     public NotificationCompat.Builder getForegroundNotification(int total) {
         return super.getForegroundNotification(total).setContentTitle(
-                getString(R.string.breezy_weather) + " " + getString(R.string.forecast)
+                getString(R.string.breezy_weather) + " " + getString(R.string.notification_channel_forecast)
         );
     }
 

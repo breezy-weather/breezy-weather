@@ -95,9 +95,9 @@ public class ForecastNotificationIMP extends AbstractRemoteViewsPresenter {
 
         // sub text.
         if (today) {
-            builder.setSubText(context.getString(R.string.today));
+            builder.setSubText(context.getString(R.string.short_today));
         } else {
-            builder.setSubText(context.getString(R.string.tomorrow));
+            builder.setSubText(context.getString(R.string.short_tomorrow));
         }
 
         TemperatureUnit temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit();

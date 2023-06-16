@@ -40,8 +40,8 @@
     <string-array name="notification_styles">
         <item>Privzet</item>
         <item>Cities</item>
-        <item>@string/daily_overview</item><!-- do not translate. -->
-        <item>@string/hourly_overview</item><!-- do not translate. -->
+        <item>@string/daily_forecast</item><!-- do not translate. -->
+        <item>@string/hourly_forecast</item><!-- do not translate. -->
     </string-array>
 
     <!-- notification text color. -->

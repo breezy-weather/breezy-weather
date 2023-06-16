@@ -185,7 +185,7 @@
 
                 <TextView
                     android:id="@+id/widget_clock_day_title"
-                    android:text="@string/ellipsis"
+                    android:text="@string/widget_ellipsis"
                     android:maxLines="1"
                     android:textSize="@dimen/widget_content_text_size"
                     android:shadowColor="@color/colorWidgetTextShadow"
@@ -201,7 +201,7 @@
 
                 <TextView
                     android:id="@+id/widget_clock_day_subtitle"
-                    android:text="@string/ellipsis"
+                    android:text="@string/widget_ellipsis"
                     android:maxLines="1"
                     android:textSize="@dimen/widget_content_text_size"
                     android:shadowColor="@color/colorWidgetTextShadow"

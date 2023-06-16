@@ -92,7 +92,7 @@ public class ShortcutsHelper {
                     icon = getIcon(provider, WeatherCode.CLEAR, true);
                 }
 
-                title = list.get(i).isCurrentPosition() ? c.getString(R.string.current_location) : list.get(i).getCityName(c);
+                title = list.get(i).isCurrentPosition() ? c.getString(R.string.location_current) : list.get(i).getCityName(c);
 
                 shortcutList.add(
                         new ShortcutInfo.Builder(c, list.get(i).getFormattedId())

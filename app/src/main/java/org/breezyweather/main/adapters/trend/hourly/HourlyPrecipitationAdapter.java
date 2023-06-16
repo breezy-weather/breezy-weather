@@ -67,7 +67,7 @@ public class HourlyPrecipitationAdapter extends AbsHourlyTrendAdapter {
                         .append(mPrecipitationUnit.getValueVoice(activity, precipitation));
             } else {
                 talkBackBuilder.append(", ")
-                        .append(activity.getString(R.string.content_des_no_precipitation));
+                        .append(activity.getString(R.string.content_desc_no_precipitation));
             }
 
             mPolylineAndHistogramView.setData(
@@ -169,7 +169,7 @@ public class HourlyPrecipitationAdapter extends AbsHourlyTrendAdapter {
         keyLineList.add(
                 new TrendRecyclerView.KeyLine(
                         Precipitation.PRECIPITATION_LIGHT,
-                        getActivity().getString(R.string.precipitation_light),
+                        getActivity().getString(R.string.precipitation_intensity_light),
                         unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_LIGHT),
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
@@ -177,7 +177,7 @@ public class HourlyPrecipitationAdapter extends AbsHourlyTrendAdapter {
         keyLineList.add(
                 new TrendRecyclerView.KeyLine(
                         Precipitation.PRECIPITATION_HEAVY,
-                        getActivity().getString(R.string.precipitation_heavy),
+                        getActivity().getString(R.string.precipitation_intensity_heavy),
                         unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_HEAVY),
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )

@@ -288,7 +288,7 @@ public class DailyTemperatureAdapter extends AbsDailyTrendAdapter {
                                     weather.getYesterday().getDaytimeTemperature(),
                                     SettingsManager.getInstance(getActivity()).getTemperatureUnit()
                             ),
-                            getActivity().getString(R.string.yesterday),
+                            getActivity().getString(R.string.short_yesterday),
                             TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                     )
             );
@@ -300,7 +300,7 @@ public class DailyTemperatureAdapter extends AbsDailyTrendAdapter {
                                     weather.getYesterday().getNighttimeTemperature(),
                                     SettingsManager.getInstance(getActivity()).getTemperatureUnit()
                             ),
-                            getActivity().getString(R.string.yesterday),
+                            getActivity().getString(R.string.short_yesterday),
                             TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
                     )
             );

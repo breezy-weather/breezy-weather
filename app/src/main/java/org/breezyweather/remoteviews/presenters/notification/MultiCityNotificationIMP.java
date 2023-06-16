@@ -338,7 +338,7 @@ public class MultiCityNotificationIMP extends AbstractRemoteViewsPresenter {
 
     private static String getCityTitle(Context context, Location location, TemperatureUnit unit) {
         StringBuilder builder = new StringBuilder(location.isCurrentPosition()
-                ? context.getString(R.string.current_location)
+                ? context.getString(R.string.location_current)
                 : location.getCityName(context));
         if (location.getWeather() != null) {
             builder.append(", ").append(

@@ -78,7 +78,7 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter {
                         .append(mPrecipitationUnit.getValueVoice(activity, nighttimePrecipitation));
             } else {
                 talkBackBuilder.append(", ")
-                        .append(activity.getString(R.string.content_des_no_precipitation));
+                        .append(activity.getString(R.string.content_desc_no_precipitation));
             }
 
             if (daily.getDay() != null && daily.getDay().getWeatherCode() != null) {
@@ -185,7 +185,7 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter {
                 new TrendRecyclerView.KeyLine(
                         Precipitation.PRECIPITATION_LIGHT,
                         unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_LIGHT),
-                        getActivity().getString(R.string.precipitation_light),
+                        getActivity().getString(R.string.precipitation_intensity_light),
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
         );
@@ -193,7 +193,7 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter {
                 new TrendRecyclerView.KeyLine(
                         Precipitation.PRECIPITATION_HEAVY,
                         unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_HEAVY),
-                        getActivity().getString(R.string.precipitation_heavy),
+                        getActivity().getString(R.string.precipitation_intensity_heavy),
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
         );
@@ -201,7 +201,7 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter {
                 new TrendRecyclerView.KeyLine(
                         -Precipitation.PRECIPITATION_LIGHT,
                         unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_LIGHT),
-                        getActivity().getString(R.string.precipitation_light),
+                        getActivity().getString(R.string.precipitation_intensity_light),
                         TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
                 )
         );
@@ -209,7 +209,7 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter {
                 new TrendRecyclerView.KeyLine(
                         -Precipitation.PRECIPITATION_HEAVY,
                         unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_HEAVY),
-                        getActivity().getString(R.string.precipitation_heavy),
+                        getActivity().getString(R.string.precipitation_intensity_heavy),
                         TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
                 )
         );

@@ -43,8 +43,8 @@ public abstract class AbsDailyTrendAdapter extends TrendRecyclerViewAdapter<AbsD
             Daily daily = weather.getDailyForecast().get(position);
 
             if (daily.isToday(timeZone)) {
-                talkBackBuilder.append(", ").append(context.getString(R.string.today));
-                dailyItem.setWeekText(context.getString(R.string.today));
+                talkBackBuilder.append(", ").append(context.getString(R.string.short_today));
+                dailyItem.setWeekText(context.getString(R.string.short_today));
             } else {
                 talkBackBuilder.append(", ").append(daily.getWeek(context, location.getTimeZone()));
                 dailyItem.setWeekText(daily.getWeek(context, location.getTimeZone()));

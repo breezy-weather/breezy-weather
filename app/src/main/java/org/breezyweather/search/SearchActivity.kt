@@ -65,14 +65,14 @@ class SearchActivity : GeoActivity() {
                         ) {
                             Column {
                                 Text(
-                                    text = stringResource(R.string.content_desc_data_by).replace("$", enabledSourceState.value.getName(LocalContext.current)),
+                                    text = stringResource(R.string.weather_data_by).replace("$", enabledSourceState.value.getName(LocalContext.current)),
                                     style = MaterialTheme.typography.titleSmall,
                                     color = Color(enabledSourceState.value.sourceColor)
                                 )
                                 if (!enabledSourceState.value.locationProvider.isNullOrEmpty()) {
                                     Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
                                     Text(
-                                        text = stringResource(R.string.content_desc_location_results_by).replace("$", enabledSourceState.value.locationProvider!!),
+                                        text = stringResource(R.string.location_results_by).replace("$", enabledSourceState.value.locationProvider!!),
                                         style = MaterialTheme.typography.bodySmall,
                                         color = DayNightTheme.colors.bodyColor
                                     )
@@ -86,7 +86,7 @@ class SearchActivity : GeoActivity() {
                             containerColor = BottomAppBarDefaults.bottomAppBarFabColor,
                             elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation()
                         ) {
-                            Icon(Icons.Filled.Tune, stringResource(R.string.change_weather_source))
+                            Icon(Icons.Filled.Tune, stringResource(R.string.location_search_change_weather_source))
                         }
                     }
                 )

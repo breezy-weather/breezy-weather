@@ -7,20 +7,20 @@
 
     <!-- Chinese source. -->
     <string-array name="weather_sources">
-        <item>Open-Meteo</item>
-        <item>accuweather.com</item>
-        <item>MET Norway</item>
-        <item>OpenWeather</item>
-        <item>Météo France</item>
-        <item>China</item>
+        <item>@string/weather_source_openmeteo</item>
+        <item>@string/weather_source_accuweather</item>
+        <item>@string/weather_source_metno</item>
+        <item>@string/weather_source_openweather</item>
+        <item>@string/weather_source_mf</item>
+        <item>@string/weather_source_china</item>
     </string-array>
     <string-array name="weather_source_voices">
-        <item>Open Meteo</item>
-        <item>ACCU weather.com</item>
-        <item>The Norwegian Meteorological Institute</item>
-        <item>Open Weather</item>
-        <item>Météo France</item>
-        <item>China</item>
+        <item>@string/weather_source_openmeteo_voice</item>
+        <item>@string/weather_source_accuweather_voice</item>
+        <item>@string/weather_source_metno_voice</item>
+        <item>@string/weather_source_openweather_voice</item>
+        <item>@string/weather_source_mf_voice</item>
+        <item>@string/weather_source_china_voice</item>
     </string-array>
     <string-array name="weather_source_values">
         <item>openmeteo</item>
@@ -33,10 +33,10 @@
 
     <!-- Location service. -->
     <string-array name="location_services">
-        <item>Baidu Location</item>
-        <item>Baidu IP Location (Only For China)</item>
-        <item>AMap Location</item>
-        <item>Native API</item>
+        <item>@string/location_service_baidu</item>
+        <item>@string/location_service_baidu_ip</item>
+        <item>@string/location_service_amap</item>
+        <item>@string/location_service_native</item>
     </string-array>
     <string-array name="location_service_values">
         <item>baidu</item>
@@ -47,10 +47,10 @@
 
     <!-- Dark mode. -->
     <string-array name="dark_modes">
-        <item>Automatic</item>
-        <item>Follow system</item>
-        <item>Always light</item>
-        <item>Always dark</item>
+        <item>@string/settings_dark_mode_day_night</item>
+        <item>@string/settings_follow_system</item>
+        <item>@string/settings_dark_mode_always_light</item>
+        <item>@string/settings_dark_mode_always_dark</item>
     </string-array>
     <string-array name="dark_mode_values">
         <item>auto</item>
@@ -61,8 +61,8 @@
 
     <!-- UI style. -->
     <string-array name="ui_styles">
-        <item>Circular sky</item>
-        <item>Material animation</item>
+        <item>@string/settings_ui_style_circular_sky</item>
+        <item>@string/settings_ui_style_material_animation</item>
     </string-array>
     <string-array name="ui_style_values">
         <item>circular</item>
@@ -72,7 +72,7 @@
     <!-- language. -->
     <!-- Do not translate this array. -->
     <string-array name="languages">
-        <item>@string/follow_system</item>
+        <item>@string/settings_follow_system</item>
         <item>Català</item>
         <item>Čeština</item>
         <item>Deutsch</item>
@@ -134,15 +134,15 @@
 
     <!-- automatic refresh rate. -->
     <string-array name="automatic_refresh_rates">
-        <item>Never</item>
-        <item>Half an hour</item>
-        <item>1 hour</item>
-        <item>1.5 hours</item>
-        <item>2 hours</item>
-        <item>3 hours</item>
-        <item>6 hours</item>
-        <item>12 hours</item>
-        <item>24 hours</item>
+        <item>@string/settings_refresh_never</item>
+        <item>@string/settings_refresh_30min</item>
+        <item>@string/settings_refresh_1h</item>
+        <item>@string/settings_refresh_1h_30min</item>
+        <item>@string/settings_refresh_2h</item>
+        <item>@string/settings_refresh_3h</item>
+        <item>@string/settings_refresh_6h</item>
+        <item>@string/settings_refresh_12h</item>
+        <item>@string/settings_refresh_24h</item>
     </string-array>
     <string-array name="automatic_refresh_rate_values">
         <item>never</item>
@@ -158,9 +158,9 @@
 
     <!-- widget week icon mode. -->
     <string-array name="week_icon_modes">
-        <item>Automatic</item>
-        <item>@string/daytime</item><!-- do not translate. -->
-        <item>@string/nighttime</item><!-- do not translate. -->
+        <item>@string/settings_automatic</item>
+        <item>@string/daytime</item>
+        <item>@string/nighttime</item>
     </string-array>
     <string-array name="week_icon_mode_values">
         <item>auto</item>
@@ -170,10 +170,10 @@
 
     <!-- notification style. -->
     <string-array name="notification_styles">
-        <item>Native</item>
-        <item>Cities</item>
-        <item>@string/daily_overview</item><!-- do not translate. -->
-        <item>@string/hourly_overview</item><!-- do not translate. -->
+        <item>@string/notification_style_native</item>
+        <item>@string/notification_style_cities</item>
+        <item>@string/daily_forecast</item>
+        <item>@string/hourly_forecast</item>
     </string-array>
     <string-array name="notification_style_values">
         <item>native</item>
@@ -184,9 +184,9 @@
 
     <!-- notification text color. -->
     <string-array name="notification_text_colors">
-        <item>Dark</item>
-        <item>Grey</item>
-        <item>Light</item>
+        <item>@string/notification_text_color_dark</item>
+        <item>@string/notification_text_color_grey</item>
+        <item>@string/notification_text_color_light</item>
     </string-array>
     <string-array name="notification_text_color_values">
         <item>dark</item>
@@ -246,15 +246,15 @@
         <item>Refresh time</item>
         <item>AQI (not available everywhere)</item>
         <item>Wind</item>
-        <item>Sensible temp</item>
-        <item>Lunar Calendar</item>
+        <item>Feels like temperature</item>
+        <item>Lunar calendar</item>
         <item>Custom</item>
     </string-array>
     <string-array name="subtitle_data_values">
         <item>time</item>
         <item>aqi</item>
         <item>wind</item>
-        <item>sensible_time</item>
+        <item>feels_like</item>
         <item>lunar</item>
         <item>custom</item>
     </string-array>

@@ -53,14 +53,14 @@ public class AstroHolder extends DailyWeatherAdapter.ViewHolder {
         Astro m = ((DailyAstro) model).getMoon();
         MoonPhase p = ((DailyAstro) model).getMoonPhase();
 
-        StringBuilder talkBackBuilder = new StringBuilder(context.getString(R.string.sunrise_sunset));
+        StringBuilder talkBackBuilder = new StringBuilder(context.getString(R.string.ephemeris));
 
         if (s.isValid()) {
             talkBackBuilder
                     .append(", ")
-                    .append(context.getString(R.string.content_des_sunrise).replace("$", s.getRiseTime(context, timeZone)))
+                    .append(context.getString(R.string.ephemeris_content_desc_sunrise).replace("$", s.getRiseTime(context, timeZone)))
                     .append(", ")
-                    .append(context.getString(R.string.content_des_sunset).replace("$", s.getSetTime(context, timeZone)));
+                    .append(context.getString(R.string.ephemeris_content_desc_sunset).replace("$", s.getSetTime(context, timeZone)));
 
             mSun.setVisibility(View.VISIBLE);
             mSunText.setText(s.getRiseTime(context, timeZone) + "↑ / " + s.getSetTime(context, timeZone) + "↓");
@@ -71,9 +71,9 @@ public class AstroHolder extends DailyWeatherAdapter.ViewHolder {
         if (m.isValid()) {
             talkBackBuilder
                     .append(", ")
-                    .append(context.getString(R.string.content_des_moonrise).replace("$", m.getRiseTime(context, timeZone)))
+                    .append(context.getString(R.string.ephemeris_content_desc_moonrise).replace("$", m.getRiseTime(context, timeZone)))
                     .append(", ")
-                    .append(context.getString(R.string.content_des_moonset).replace("$", m.getSetTime(context, timeZone)));
+                    .append(context.getString(R.string.ephemeris_content_desc_moonset).replace("$", m.getSetTime(context, timeZone)));
 
             mMoon.setVisibility(View.VISIBLE);
             mMoonText.setText(m.getRiseTime(context, timeZone) + "↑ / " + m.getSetTime(context, timeZone) + "↓");

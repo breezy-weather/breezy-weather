@@ -188,7 +188,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/little_margin"
                 android:layout_marginEnd="@dimen/large_margin"
-                android:text="@string/ellipsis"
+                android:text="@string/widget_ellipsis"
                 android:textSize="@dimen/widget_content_text_size"
                 android:maxLines="1"
                 android:shadowColor="@color/colorWidgetTextShadow"
@@ -215,7 +215,7 @@
 
                 <TextView
                     android:id="@+id/widget_clock_day_week_week_1"
-                    android:text="@string/wait_refresh"
+                    android:text="@string/widget_refreshing"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
                     android:shadowColor="@color/colorWidgetTextShadow"
@@ -241,7 +241,7 @@
 
                 <TextView
                     android:id="@+id/widget_clock_day_week_temp_1"
-                    android:text="@string/ellipsis"
+                    android:text="@string/widget_ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
                     android:shadowColor="@color/colorWidgetTextShadow"
@@ -262,7 +262,7 @@
 
                 <TextView
                     android:id="@+id/widget_clock_day_week_week_2"
-                    android:text="@string/ellipsis"
+                    android:text="@string/widget_ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
                     android:shadowColor="@color/colorWidgetTextShadow"
@@ -288,7 +288,7 @@
 
                 <TextView
                     android:id="@+id/widget_clock_day_week_temp_2"
-                    android:text="@string/ellipsis"
+                    android:text="@string/widget_ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
                     android:shadowColor="@color/colorWidgetTextShadow"
@@ -309,7 +309,7 @@
 
                 <TextView
                     android:id="@+id/widget_clock_day_week_week_3"
-                    android:text="@string/ellipsis"
+                    android:text="@string/widget_ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
                     android:shadowColor="@color/colorWidgetTextShadow"
@@ -335,7 +335,7 @@
 
                 <TextView
                     android:id="@+id/widget_clock_day_week_temp_3"
-                    android:text="@string/ellipsis"
+                    android:text="@string/widget_ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
                     android:shadowColor="@color/colorWidgetTextShadow"
@@ -356,7 +356,7 @@
 
                 <TextView
                     android:id="@+id/widget_clock_day_week_week_4"
-                    android:text="@string/ellipsis"
+                    android:text="@string/widget_ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
                     android:shadowColor="@color/colorWidgetTextShadow"
@@ -382,7 +382,7 @@
 
                 <TextView
                     android:id="@+id/widget_clock_day_week_temp_4"
-                    android:text="@string/ellipsis"
+                    android:text="@string/widget_ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
                     android:shadowColor="@color/colorWidgetTextShadow"
@@ -403,7 +403,7 @@
 
                 <TextView
                     android:id="@+id/widget_clock_day_week_week_5"
-                    android:text="@string/ellipsis"
+                    android:text="@string/widget_ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
                     android:shadowColor="@color/colorWidgetTextShadow"
@@ -430,7 +430,7 @@
 
                 <TextView
                     android:id="@+id/widget_clock_day_week_temp_5"
-                    android:text="@string/ellipsis"
+                    android:text="@string/widget_ellipsis"
                     android:textSize="@dimen/widget_content_text_size"
                     android:maxLines="1"
                     android:shadowColor="@color/colorWidgetTextShadow"

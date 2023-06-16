@@ -45,8 +45,8 @@
     <string-array name="notification_styles">
         <item>Nativo</item>
         <item>Città</item>
-        <item>@string/daily_overview</item>
-        <item>@string/hourly_overview</item>
+        <item>@string/daily_forecast</item>
+        <item>@string/hourly_forecast</item>
     </string-array>
 
     <!-- notification text color. -->

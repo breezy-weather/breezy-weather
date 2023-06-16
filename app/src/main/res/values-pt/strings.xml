@@ -4,72 +4,65 @@
     <string name="app_name">Clima</string>
 
     <!-- keyword. -->
-    <string name="current_location">localização atual</string>
+    <string name="location_current">localização atual</string>
     <string name="live">Ao vivo</string>
-    <string name="today">Hoje</string>
+    <string name="short_today">Hoje</string>
     <string name="refresh_at">Atualizado em</string>
     <string name="precipitation">Precipitação</string>
-    <string name="maxi_temp">Min</string>
-    <string name="mini_temp">Max</string>
-    <string name="time">hora</string>
-    <string name="day">dia</string>
-    <string name="night">noite</string>
     <string name="wind">vento</string>
-    <string name="sensible_temp">Sensação térmica</string>
     <string name="humidity">Humidade</string>
     <string name="uv_index">Índice UV</string>
-    <string name="forecast">Previsão</string>
-    <string name="briefings">Instruções</string>
+    <string name="notification_channel_forecast">Previsão</string>
     <string name="daytime">Dia</string>
     <string name="nighttime">Noite</string>
-    <string name="publish_at">Publicado em</string>
-    <string name="feels_like">Parece</string>
-    <string name="follow_system">Igual ao sistema</string>
-    <string name="background_information">Informação em segundo plano</string>
+    <string name="published_at">Publicado em</string>
+    <string name="temperature_feels_like">Parece</string>
+    <string name="settings_follow_system">Igual ao sistema</string>
+    <string name="notification_channel_background_information">Informação em segundo plano</string>
     <string name="pressure">Pressão Atmosférica</string>
     <string name="visibility">Visibilidade</string>
     <string name="dew_point">Ponto de Orvalho</string>
     <string name="cloud_cover">Nebulosidade</string>
 
     <string name="of_clock">:00</string>
-    <string name="yesterday">ontem</string>
-    <string name="tomorrow">amanhã</string>
-    <string name="week_1">Seg</string>
-    <string name="week_2">Ter</string>
-    <string name="week_3">Qua</string>
-    <string name="week_4">Qui</string>
-    <string name="week_5">Sex</string>
-    <string name="week_6">Sab</string>
-    <string name="week_7">Dom</string>
+    <string name="short_yesterday">Ontem</string>
+    <string name="short_tomorrow">Amanhã</string>
+    <string name="short_monday">Seg</string>
+    <string name="short_tuesday">Ter</string>
+    <string name="short_wednesday">Qua</string>
+    <string name="short_thursday">Qui</string>
+    <string name="short_friday">Sex</string>
+    <string name="short_saturday">Sab</string>
+    <string name="short_sunday">Dom</string>
 
-    <string name="wind_0">Calmo</string>
-    <string name="wind_1">Fresco</string>
-    <string name="wind_2">Brisa Leve</string>
-    <string name="wind_3">Brisa Suave</string>
-    <string name="wind_4">Vento Moderada</string>
-    <string name="wind_5">Vento Fresco</string>
-    <string name="wind_6">Vento Forte</string>
-    <string name="wind_7">Muito Vento</string>
-    <string name="wind_8">Vendaval</string>
-    <string name="wind_9">Vendaval Forte</string>
-    <string name="wind_10">Tempestade</string>
-    <string name="wind_11">Tempestade Violenta</string>
-    <string name="wind_12">Furacão/Tufão</string>
+    <string name="wind_level_0">Calmo</string>
+    <string name="wind_level_1">Fresco</string>
+    <string name="wind_level_2">Brisa Leve</string>
+    <string name="wind_level_3">Brisa Suave</string>
+    <string name="wind_level_4">Vento Moderada</string>
+    <string name="wind_level_5">Vento Fresco</string>
+    <string name="wind_level_6">Vento Forte</string>
+    <string name="wind_level_7">Muito Vento</string>
+    <string name="wind_level_8">Vendaval</string>
+    <string name="wind_level_9">Vendaval Forte</string>
+    <string name="wind_level_10">Tempestade</string>
+    <string name="wind_level_11">Tempestade Violenta</string>
+    <string name="wind_level_12">Furacão/Tufão</string>
 
-    <string name="phase_new">Nova</string>
-    <string name="phase_waxing_crescent">Crescente</string>
-    <string name="phase_first">Quarto Crescente</string>
-    <string name="phase_waxing_gibbous">Gibosa</string>
-    <string name="phase_full">Cheia</string>
-    <string name="phase_waning_gibbous">Balsâmica</string>
-    <string name="phase_third">Quarto Minguante</string>
-    <string name="phase_waning_crescent">Minguante</string>
+    <string name="ephemeris_moon_phase_new">Nova</string>
+    <string name="ephemeris_moon_phase_waxing_crescent">Crescente</string>
+    <string name="ephemeris_moon_phase_first">Quarto Crescente</string>
+    <string name="ephemeris_moon_phase_waxing_gibbous">Gibosa</string>
+    <string name="ephemeris_moon_phase_full">Cheia</string>
+    <string name="ephemeris_moon_phase_waning_gibbous">Balsâmica</string>
+    <string name="ephemeris_moon_phase_third">Quarto Minguante</string>
+    <string name="ephemeris_moon_phase_waning_crescent">Minguante</string>
 
-    <string name="daily_overview">Diário</string>
-    <string name="hourly_overview">Por Hora</string>
+    <string name="daily_forecast">Diário</string>
+    <string name="hourly_forecast">Por Hora</string>
     <string name="air_quality">Qualidade do Ar</string>
     <string name="details">Detalhes</string>
-    <string name="sunrise_sunset">Sol &amp; Lua</string>
+    <string name="ephemeris">Sol &amp; Lua</string>
 
     <string name="next">Próximo</string>
     <string name="done">Concluído</string>
@@ -80,9 +73,7 @@
     <string name="help">Ajuda</string>
 
     <string name="about_app">Sobre o aplicativo</string>
-    <string name="email">E-mail</string>
-    <string name="translator">Tradutores</string>
-    <string name="thanks">Agradecimentos</string>
+    <string name="about_translators">Tradutores</string>
 
     <string name="date_format_short">dd/MM</string>
     <string name="date_format_long">dd\' de \'MMM</string>
@@ -92,7 +83,7 @@
 
     <!-- feedback. -->
     <string name="feedback_request_permission">Permissões</string>
-    <string name="feedback_request_location">Localização</string>
+    <string name="notification_channel_request_location">Localização</string>
     <string name="feedback_request_location_in_background">Localização em segundo plano.</string>
     <string name="feedback_request_location_permission_success">Pedido de localização realizado com sucesso.</string>
     <string name="feedback_request_location_permission_failed">Pedido de localização falhou.</string>
@@ -104,12 +95,12 @@
     <string name="feedback_enable_location_information">Ative dados de localização</string>
     <string name="feedback_select_location_provider">Selecione Provedor de Localização</string>
 
-    <string name="feedback_view_style">Estilo de visão.</string>
-    <string name="feedback_show_widget_card">Plano de fundo de cartão</string>
-    <string name="feedback_hide_subtitle">Ocultar Subtítulo</string>
-    <string name="feedback_subtitle_data">Dados do subtítulo</string>
-    <string name="feedback_black_text">Texto escuro</string>
-    <string name="feedback_clock_font">Fonte do relógio</string>
+    <string name="widget_label_view_style">Estilo de visão.</string>
+    <string name="widget_label_show_widget_card">Plano de fundo de cartão</string>
+    <string name="widget_label_hide_subtitle">Ocultar Subtítulo</string>
+    <string name="widget_label_subtitle_data">Dados do subtítulo</string>
+    <string name="widget_label_black_text">Texto escuro</string>
+    <string name="widget_label_clock_font">Fonte do relógio</string>
 
     <string name="feedback_click_toggle">Toque no gráfico para alternar dados</string>
     <string name="feedback_no_data">Sem dados</string>
@@ -128,8 +119,6 @@
     <string name="feedback_refresh_notification_now">Atualize agora</string>
     <string name="feedback_refresh_ui_after_refresh">Terá efeito quando atualizar dados.</string>
     <string name="feedback_restart">Terá efeito quando reiniciar.</string>
-    <string name="feedback_readd_location">Por favor, re-adicione locais.</string>
-    <string name="feedback_readd_location_after_changing_source">Por favor, re-adicione locais após alterar fonte de dados.</string>
 
     <string name="feedback_running_in_background">Rodando em segundo plano para manter atualizado.</string>
     <string name="feedback_updating_weather_data">Atualizando dados de clima.</string>
@@ -139,7 +128,7 @@
     <string name="feedback_interpret_notification_group_content">Após desativar  \"livre de segundo plano\", uma notificação que serviço de segundo plano esta rodando irá aparecer na central de notificações, você pode desativar o canal de notificação do aplicativo nas configurações do dispositivo.</string>
 
     <!-- action -->
-    <string name="action_alert">Alerta</string>
+    <string name="alerts">Alerta</string>
     <string name="action_manage">Gerenciar</string>
     <string name="action_search">Pesquisa</string>
     <string name="action_settings">Configurações</string>
@@ -154,8 +143,8 @@
     <string name="widget_clock_day_vertical">Relógio + Diário (Vertical)</string>
     <string name="widget_clock_day_week">Relógio + Diário + Semanal</string>
     <string name="widget_text">Texto</string>
-    <string name="wait_refresh">aguardando</string>
-    <string name="ellipsis">…</string>
+    <string name="widget_refreshing">aguardando</string>
+    <string name="widget_ellipsis">…</string>
 
     <!-- settings -->
     <string name="settings_category_basic">Básico</string>

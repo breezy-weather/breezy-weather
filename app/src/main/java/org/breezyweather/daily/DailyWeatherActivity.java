@@ -181,7 +181,7 @@ public class DailyWeatherActivity extends GeoActivity {
         mToolbar.setContentDescription(mTitle.getText() + ", " + mSubtitle.getText());
 
         if (timeZone != null && daily.isToday(timeZone)) {
-            mIndicator.setText(getString(R.string.today));
+            mIndicator.setText(getString(R.string.short_today));
         } else {
             mIndicator.setText((position + 1) + "/" + size);
         }

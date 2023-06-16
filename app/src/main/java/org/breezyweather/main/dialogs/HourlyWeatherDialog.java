@@ -66,7 +66,7 @@ public class HourlyWeatherDialog {
         );
         if (hourly.getTemperature().getFeelsLikeTemperature() != null) {
             builder.append("\n")
-                    .append(view.getContext().getString(R.string.feels_like))
+                    .append(view.getContext().getString(R.string.temperature_feels_like))
                     .append(" ")
                     .append(hourly.getTemperature().getFeelsLikeTemperature(view.getContext(), temperatureUnit));
         }

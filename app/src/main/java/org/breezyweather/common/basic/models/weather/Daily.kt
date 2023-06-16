@@ -39,13 +39,13 @@ class Daily(
         val calendar = Calendar.getInstance(timeZone)
         calendar.time = date
         return when (calendar[Calendar.DAY_OF_WEEK]) {
-            1 -> context.getString(R.string.week_7)
-            2 -> context.getString(R.string.week_1)
-            3 -> context.getString(R.string.week_2)
-            4 -> context.getString(R.string.week_3)
-            5 -> context.getString(R.string.week_4)
-            6 -> context.getString(R.string.week_5)
-            else -> context.getString(R.string.week_6)
+            1 -> context.getString(R.string.short_sunday)
+            2 -> context.getString(R.string.short_monday)
+            3 -> context.getString(R.string.short_tuesday)
+            4 -> context.getString(R.string.short_wednesday)
+            5 -> context.getString(R.string.short_thursday)
+            6 -> context.getString(R.string.short_friday)
+            else -> context.getString(R.string.short_saturday)
         }
     }
 

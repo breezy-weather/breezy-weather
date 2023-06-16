@@ -37,7 +37,7 @@
 
             <TextView
                 android:id="@+id/widget_day_title"
-                android:text="@string/ellipsis"
+                android:text="@string/widget_ellipsis"
                 android:textSize="@dimen/widget_content_text_size"
                 android:maxLines="1"
                 style="@style/widget_content_text"
@@ -46,7 +46,7 @@
 
             <TextView
                 android:id="@+id/widget_day_subtitle"
-                android:text="@string/ellipsis"
+                android:text="@string/widget_ellipsis"
                 android:textSize="@dimen/widget_content_text_size"
                 android:maxLines="1"
                 android:textAlignment="viewEnd"
@@ -56,7 +56,7 @@
 
             <TextView
                 android:id="@+id/widget_day_time"
-                android:text="@string/wait_refresh"
+                android:text="@string/widget_refreshing"
                 android:textSize="@dimen/widget_time_text_size"
                 style="@style/widget_content_text"
                 tools:text="San Francisco WEN 17:00"

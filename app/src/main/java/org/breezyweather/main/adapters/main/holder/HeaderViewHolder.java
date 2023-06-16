@@ -106,7 +106,7 @@ public class HeaderViewHolder extends AbstractMainViewHolder {
                     title.append(", ");
                 }
 
-                title.append(context.getString(R.string.feels_like))
+                title.append(context.getString(R.string.temperature_feels_like))
                         .append(" ")
                         .append(location.getWeather().getCurrent().getTemperature().getShortFeelsLikeTemperature(context, mTemperatureUnit));
             } else if (location.getWeather().getCurrent().getTemperature().getFeelsLikeTemperature() != null) {
@@ -114,7 +114,7 @@ public class HeaderViewHolder extends AbstractMainViewHolder {
                     title.append(", ");
                 }
 
-                title.append(context.getString(R.string.feels_like))
+                title.append(context.getString(R.string.temperature_feels_like))
                         .append(" ")
                         .append(location.getWeather().getCurrent().getTemperature().getShortFeelsLikeTemperature(context, mTemperatureUnit));
             }

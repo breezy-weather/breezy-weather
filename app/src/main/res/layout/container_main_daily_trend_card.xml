@@ -14,7 +14,7 @@
 
         <TextView
             android:id="@+id/container_main_daily_trend_card_title"
-            android:text="@string/daily_overview"
+            android:text="@string/daily_forecast"
             android:layout_marginTop="@dimen/normal_margin"
             android:layout_marginStart="@dimen/normal_margin"
             android:textStyle="bold"

@@ -3,58 +3,51 @@
     <string name="app_name">Hava Durumu</string>
 
     <!-- keyword. -->
-    <string name="current_location">Bulunduğunuz konumu</string>
+    <string name="location_current">Bulunduğunuz konumu</string>
     <string name="live">Rüzgar</string>
-    <string name="today">Bugün</string>
+    <string name="short_today">Bugün</string>
     <string name="refresh_at">Son güncelleme</string>
     <string name="precipitation">Yağış ihtimali</string>
-    <string name="maxi_temp">Gündüz</string>
-    <string name="mini_temp">Gece</string>
-    <string name="time">Zaman</string>
-    <string name="day">Tüm gün</string>
-    <string name="night">Gece</string>
     <string name="wind">Rüzgar</string>
-    <string name="sensible_temp">Hissedilen sıcaklık</string>
     <string name="humidity">Nem</string>
     <string name="uv_index">UV indeksi</string>
-    <string name="forecast">Tahmin</string>
-    <string name="briefings">Durum</string>
+    <string name="notification_channel_forecast">Tahmin</string>
     <string name="daytime">Gündüz</string>
     <string name="nighttime">Gece</string>
-    <string name="publish_at">Yayın</string>
-    <string name="feels_like">Hissedilen</string>
-    <string name="follow_system">Sistem Dili</string>
+    <string name="published_at">Yayın</string>
+    <string name="temperature_feels_like">Hissedilen</string>
+    <string name="settings_follow_system">Sistem Dili</string>
 
     <string name="of_clock">:00</string>
-    <string name="yesterday">Dün</string>
-    <string name="tomorrow">Yarın</string>
-    <string name="week_1">PZT</string>
-    <string name="week_2">SAL</string>
-    <string name="week_3">ÇRŞ</string>
-    <string name="week_4">PER</string>
-    <string name="week_5">CUM</string>
-    <string name="week_6">CMT</string>
-    <string name="week_7">PAZ</string>
+    <string name="short_yesterday">Dün</string>
+    <string name="short_tomorrow">Yarın</string>
+    <string name="short_monday">PZT</string>
+    <string name="short_tuesday">SAL</string>
+    <string name="short_wednesday">ÇRŞ</string>
+    <string name="short_thursday">PER</string>
+    <string name="short_friday">CUM</string>
+    <string name="short_saturday">CMT</string>
+    <string name="short_sunday">PAZ</string>
 
-    <string name="wind_0">Sakin</string>
-    <string name="wind_1">Hafif</string>
-    <string name="wind_2">Hafif bir esinti</string>
-    <string name="wind_3">Hafif esinti</string>
-    <string name="wind_4">Orta dereceli esinti</string>
-    <string name="wind_5">Taze esinti</string>
-    <string name="wind_6">Kuvvetli esinti</string>
-    <string name="wind_7">Yakın esinti</string>
-    <string name="wind_8">Rüzgar</string>
-    <string name="wind_9">Kuvvetli rüzgar</string>
-    <string name="wind_10">Fırtına</string>
-    <string name="wind_11">Şiddetli Fırtına</string>
-    <string name="wind_12">Kasırga/Tayfun</string>
+    <string name="wind_level_0">Sakin</string>
+    <string name="wind_level_1">Hafif</string>
+    <string name="wind_level_2">Hafif bir esinti</string>
+    <string name="wind_level_3">Hafif esinti</string>
+    <string name="wind_level_4">Orta dereceli esinti</string>
+    <string name="wind_level_5">Taze esinti</string>
+    <string name="wind_level_6">Kuvvetli esinti</string>
+    <string name="wind_level_7">Yakın esinti</string>
+    <string name="wind_level_8">Rüzgar</string>
+    <string name="wind_level_9">Kuvvetli rüzgar</string>
+    <string name="wind_level_10">Fırtına</string>
+    <string name="wind_level_11">Şiddetli Fırtına</string>
+    <string name="wind_level_12">Kasırga/Tayfun</string>
 
-    <string name="daily_overview">günlük</string>
-    <string name="hourly_overview">saatlik</string>
+    <string name="daily_forecast">günlük</string>
+    <string name="hourly_forecast">saatlik</string>
     <string name="air_quality">hava kalitesi</string>
     <string name="details">Detaylar</string>
-    <string name="sunrise_sunset">Güneş &amp; ay</string>
+    <string name="ephemeris">Güneş &amp; ay</string>
 
     <string name="next">SONRAKİ</string>
     <string name="done">BİTTİ</string>
@@ -63,22 +56,20 @@
     <string name="off">KAPAT</string>
 
     <string name="about_app">HAKKINDA</string>
-    <string name="email">E-posta</string>
-    <string name="thanks">TŞK</string>
-    <string name="translator">Çevirmenler</string>
+    <string name="about_translators">Çevirmenler</string>
 
     <!-- feedback. -->
     <string name="feedback_request_permission">İzinler</string>
-    <string name="feedback_request_location">Konum</string>
+    <string name="notification_channel_request_location">Konum</string>
     <string name="feedback_request_location_permission_success">Konum izin isteği başarılı.</string>
     <string name="feedback_request_location_permission_failed">Konum izin isteği başarısız.</string>
 
     <string name="feedback_location_failed">Konum başarısız.</string>
     <string name="feedback_get_weather_failed">Hava Durumu isteği başarısız.</string>
 
-    <string name="feedback_view_style">Görüntüleme şekli.</string>
-    <string name="feedback_show_widget_card">Kart görünümü.</string>
-    <string name="feedback_black_text">Koyu yazı.</string>
+    <string name="widget_label_view_style">Görüntüleme şekli.</string>
+    <string name="widget_label_show_widget_card">Kart görünümü.</string>
+    <string name="widget_label_black_text">Koyu yazı.</string>
 
     <string name="feedback_click_toggle">Verileri değiştirmek için grafiği tıklayın.</string>
     <string name="feedback_no_data">VERİ YOK</string>
@@ -99,7 +90,7 @@
     <string name="feedback_restart">Yeniden başlatınca etkili olacak.</string>
 
     <!-- action -->
-    <string name="action_alert">Uyarı</string>
+    <string name="alerts">Uyarı</string>
     <string name="action_manage">Yönet</string>
     <string name="action_search">Ara</string>
     <string name="action_settings">Ayarlar</string>
@@ -112,8 +103,8 @@
     <string name="widget_clock_day_horizontal">Saat + Günlük (Yatay görünüm)</string>
     <string name="widget_clock_day_vertical">Saat + Günlük (Dikey görünüm)</string>
     <string name="widget_clock_day_week">Saat + Günlük + Haftalık</string>
-    <string name="wait_refresh">bekliyor</string>
-    <string name="ellipsis">…</string>
+    <string name="widget_refreshing">bekliyor</string>
+    <string name="widget_ellipsis">…</string>
 
     <!-- settings -->
     <string name="settings_category_basic">Temel</string>

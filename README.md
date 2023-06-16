@@ -21,7 +21,7 @@ Additions already available:
 Future updates (in no particular order):
 * Reorganize translations so that we can have them on Weblate (move string-array to list of @string, tag notranslate strings)
 * Organize settings better (with years, it has become kind of a mess)
-* Add onboarding instead of asking for permissions straight away
+* Add onboarding instead of asking for permissions straight away + don’t add current position by default
 * Add location from a map
 * Complete air quality and pollen for Open-Meteo
 * Add air quality for AccuWeather

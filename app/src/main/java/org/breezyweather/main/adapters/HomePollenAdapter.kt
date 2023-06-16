@@ -50,7 +50,7 @@ class HomePollenViewHolder internal constructor(
             binding.grassIcon.supportImageTintList = ColorStateList.valueOf(
                 it.getGrassColor(itemView.context)
             )
-            binding.grassTitle.text = context.getString(R.string.grass)
+            binding.grassTitle.text = context.getString(R.string.allergen_grass)
             binding.grassTitle.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorTitleText))
             binding.grassValue.text = (
                     unit.getValueText(context, it.grassIndex ?: 0)
@@ -62,7 +62,7 @@ class HomePollenViewHolder internal constructor(
             binding.ragweedIcon.supportImageTintList = ColorStateList.valueOf(
                 it.getRagweedColor(itemView.context)
             )
-            binding.ragweedTitle.text = context.getString(R.string.ragweed)
+            binding.ragweedTitle.text = context.getString(R.string.allergen_ragweed)
             binding.ragweedTitle.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorTitleText))
             binding.ragweedValue.text = (
                     unit.getValueText(context, it.ragweedIndex ?: 0)
@@ -74,7 +74,7 @@ class HomePollenViewHolder internal constructor(
             binding.treeIcon.supportImageTintList = ColorStateList.valueOf(
                 it.getTreeColor(itemView.context)
             )
-            binding.treeTitle.text = context.getString(R.string.tree)
+            binding.treeTitle.text = context.getString(R.string.allergen_tree)
             binding.treeTitle.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorTitleText))
             binding.treeValue.text = (
                     unit.getValueText(context, it.treeIndex ?: 0)
@@ -86,7 +86,7 @@ class HomePollenViewHolder internal constructor(
             binding.moldIcon.supportImageTintList = ColorStateList.valueOf(
                 it.getMoldColor(itemView.context)
             )
-            binding.moldTitle.text = context.getString(R.string.mold)
+            binding.moldTitle.text = context.getString(R.string.allergen_mold)
             binding.moldTitle.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorTitleText))
             binding.moldValue.text = (
                     unit.getValueText(context, it.moldIndex ?: 0)
@@ -97,16 +97,16 @@ class HomePollenViewHolder internal constructor(
 
             itemView.contentDescription = (
                     binding.title.text.toString()
-                            + ", " + context.getString(R.string.grass)
+                            + ", " + context.getString(R.string.allergen_grass)
                             + " : " + unit.getValueVoice(context, it.grassIndex ?: 0)
                             + " - " + it.grassDescription //
-                            + ", " + context.getString(R.string.ragweed)
+                            + ", " + context.getString(R.string.allergen_ragweed)
                             + " : " + unit.getValueVoice(context, it.ragweedIndex ?: 0)
                             + " - " + it.ragweedDescription //
-                            + ", " + context.getString(R.string.tree)
+                            + ", " + context.getString(R.string.allergen_tree)
                             + " : " + unit.getValueVoice(context, it.treeIndex ?: 0)
                             + " - " + it.treeDescription //
-                            + ", " + context.getString(R.string.mold)
+                            + ", " + context.getString(R.string.allergen_mold)
                             + " : " + unit.getValueVoice(context, it.moldIndex ?: 0)
                             + " - " + it.moldDescription
                     )

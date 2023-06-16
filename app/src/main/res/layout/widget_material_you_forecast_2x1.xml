@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_margin="12dp"
         android:includeFontPadding="false"
-        android:text="@string/ellipsis"
+        android:text="@string/widget_ellipsis"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="38dp"
         android:textStyle="bold"

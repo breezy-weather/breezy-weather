@@ -5,115 +5,107 @@
     <string name="breezy_weather">Clima Breezy</string>
 
     <!-- keyword. -->
-    <string name="current_location">Ubicación actual</string>
-    <string name="resident_location">Ubicación de los residentes</string>
+    <string name="location_current">Ubicación actual</string>
+    <string name="location_resident">Ubicación de los residentes</string>
     <string name="live">En vivo</string>
-    <string name="today">Hoy</string>
+    <string name="short_today">Hoy</string>
     <string name="refresh_at">Actualizado a las</string>
-    <string name="local_time">Hora local</string>
     <string name="precipitation">Precipitación</string>
     <string name="precipitation_probability">Probabilidad de precipitación</string>
     <string name="precipitation_duration">Duración de precipitación</string>
-    <string name="maxi_temp">día</string>
-    <string name="mini_temp">noche</string>
-    <string name="time">hora</string>
-    <string name="day">día</string>
-    <string name="night">noche</string>
     <string name="temperature">Temperatura</string>
     <string name="wind">Viento</string>
     <string name="wind_direction">Dirección del viento</string>
     <string name="wind_speed">Velocidad del viento</string>
     <string name="wind_level">Medición del viento</string>
-    <string name="sensible_temp">Sensación térmica</string>
     <string name="humidity">Humedad</string>
     <string name="uv_index">Índice UV</string>
     <string name="hours_of_sun">Horas de sol</string>
-    <string name="forecast">Pronóstico</string>
-    <string name="briefings">Sesiones informativas</string>
+    <string name="notification_channel_forecast">Pronóstico</string>
     <string name="daytime">Día</string>
     <string name="nighttime">Noche</string>
-    <string name="publish_at">Publicar en</string>
-    <string name="feels_like">Se siente como</string>
-    <string name="follow_system">Seguir al sistema</string>
-    <string name="background_information">Información en segundo plano</string>
+    <string name="published_at">Publicar en</string>
+    <string name="temperature_feels_like">Se siente como</string>
+    <string name="settings_follow_system">Seguir al sistema</string>
+    <string name="notification_channel_background_information">Información en segundo plano</string>
     <string name="pressure">Presión atmosférica</string>
     <string name="visibility">Visibilidad</string>
     <string name="dew_point">Punto de rocío</string>
     <string name="cloud_cover">Cubierta de nubes</string>
     <string name="ceiling">Techo</string>
-    <string name="get_more">Obtener más</string>
-    <string name="get_more_store">Obtener más en la tienda</string>
-    <string name="get_more_github">Obtener más en GitHub</string>
+    <string name="settings_icon_providers_get_more">Obtener más</string>
+    <string name="settings_icon_providers_get_more_store">Obtener más en la tienda</string>
+    <string name="settings_icon_providers_get_more_github">Obtener más en GitHub</string>
     <string name="refresh">Refrescar</string>
     <string name="restart">Reiniciar</string>
     <string name="edit">Editar</string>
 
     <!-- The following set of strings should be as short as possible. -->
     <string name="of_clock">:00</string>
-    <string name="yesterday">ayer</string>
-    <string name="tomorrow">mña</string>
-    <string name="week_1">Lun</string>
-    <string name="week_2">Mar</string>
-    <string name="week_3">Mie</string>
-    <string name="week_4">Jue</string>
-    <string name="week_5">Vie</string>
-    <string name="week_6">Sáb</string>
-    <string name="week_7">Dom</string>
+    <string name="short_yesterday">Ayer</string>
+    <string name="short_tomorrow">Mña</string>
+    <string name="short_monday">Lun</string>
+    <string name="short_tuesday">Mar</string>
+    <string name="short_wednesday">Mie</string>
+    <string name="short_thursday">Jue</string>
+    <string name="short_friday">Vie</string>
+    <string name="short_saturday">Sáb</string>
+    <string name="short_sunday">Dom</string>
 
-    <string name="real_feel_temperature">Sensación Térmica</string>
-    <string name="real_feel_shade_temperature">Sensación Térmica Real</string>
-    <string name="apparent_temperature">Aparente</string>
-    <string name="wind_chill_temperature">Viento frío</string>
-    <string name="wet_bulb_temperature">Bombilla húmeda</string>
-    <string name="degree_day_temperature">Día de grado</string>
+    <string name="temperature_real_feel">Sensación Térmica</string>
+    <string name="temperature_real_feel_shade">Sensación Térmica Real</string>
+    <string name="temperature_apparent">Aparente</string>
+    <string name="temperature_wind_chill">Viento frío</string>
+    <string name="temperature_wet_bulb">Bombilla húmeda</string>
+    <string name="temperature_degree_day">Día de grado</string>
 
-    <string name="total">Total</string>
-    <string name="thunderstorm">Tormenta</string>
-    <string name="rain">Lluvia</string>
-    <string name="snow">Nieve</string>
-    <string name="ice">Hielo</string>
+    <string name="precipitation_total">Total</string>
+    <string name="precipitation_thunderstorm">Tormenta</string>
+    <string name="precipitation_rain">Lluvia</string>
+    <string name="precipitation_snow">Nieve</string>
+    <string name="precipitation_ice">Hielo</string>
 
-    <string name="wind_0">Calma</string>
-    <string name="wind_1">Aire ligero</string>
-    <string name="wind_2">Brisa ligera</string>
-    <string name="wind_3">Brisa suave</string>
-    <string name="wind_4">Brisa moderada</string>
-    <string name="wind_5">Brisa fresca</string>
-    <string name="wind_6">Brisa intensa</string>
-    <string name="wind_7">Vendaval moderado</string>
-    <string name="wind_8">Vendaval</string>
-    <string name="wind_9">Vendaval intenso</string>
-    <string name="wind_10">Tormenta</string>
-    <string name="wind_11">Tormenta violenta</string>
-    <string name="wind_12">Huracán/Tifón</string>
+    <string name="wind_level_0">Calma</string>
+    <string name="wind_level_1">Aire ligero</string>
+    <string name="wind_level_2">Brisa ligera</string>
+    <string name="wind_level_3">Brisa suave</string>
+    <string name="wind_level_4">Brisa moderada</string>
+    <string name="wind_level_5">Brisa fresca</string>
+    <string name="wind_level_6">Brisa intensa</string>
+    <string name="wind_level_7">Vendaval moderado</string>
+    <string name="wind_level_8">Vendaval</string>
+    <string name="wind_level_9">Vendaval intenso</string>
+    <string name="wind_level_10">Tormenta</string>
+    <string name="wind_level_11">Tormenta violenta</string>
+    <string name="wind_level_12">Huracán/Tifón</string>
 
-    <string name="precipitation_light">Llovizna</string>
-    <string name="precipitation_middle">Lluvia</string>
-    <string name="precipitation_heavy">Lluvia intensa</string>
-    <string name="precipitation_rainstorm">Aguacero</string>
+    <string name="precipitation_intensity_light">Llovizna</string>
+    <string name="precipitation_intensity_middle">Lluvia</string>
+    <string name="precipitation_intensity_heavy">Lluvia intensa</string>
+    <string name="precipitation_intensity_rainstorm">Aguacero</string>
 
-    <string name="phase_new">Luna nueva</string>
-    <string name="phase_waxing_crescent">Creciente cóncava</string>
-    <string name="phase_first">Cuarto creciente</string>
-    <string name="phase_waxing_gibbous">Creciente convexa</string>
-    <string name="phase_full">Luna llena</string>
-    <string name="phase_waning_gibbous">Menguante convexa</string>
-    <string name="phase_third">Cuarto menguante</string>
-    <string name="phase_waning_crescent">Menguante cóncava</string>
+    <string name="ephemeris_moon_phase_new">Luna nueva</string>
+    <string name="ephemeris_moon_phase_waxing_crescent">Creciente cóncava</string>
+    <string name="ephemeris_moon_phase_first">Cuarto creciente</string>
+    <string name="ephemeris_moon_phase_waxing_gibbous">Creciente convexa</string>
+    <string name="ephemeris_moon_phase_full">Luna llena</string>
+    <string name="ephemeris_moon_phase_waning_gibbous">Menguante convexa</string>
+    <string name="ephemeris_moon_phase_third">Cuarto menguante</string>
+    <string name="ephemeris_moon_phase_waning_crescent">Menguante cóncava</string>
 
-    <string name="grass">Pasto</string>
-    <string name="mold">Moho</string>
-    <string name="ragweed">Ambrosía</string>
-    <string name="tree">Árbol</string>
+    <string name="allergen_grass">Pasto</string>
+    <string name="allergen_mold">Moho</string>
+    <string name="allergen_ragweed">Ambrosía</string>
+    <string name="allergen_tree">Árbol</string>
 
-    <string name="daily_overview">Pronóstico por día</string>
-    <string name="hourly_overview">Pronóstico por hora</string>
-    <string name="minutely_overview">Pronóstico por minuto</string>
-    <string name="precipitation_overview">Pronóstico por precipitación</string>
+    <string name="daily_forecast">Pronóstico por día</string>
+    <string name="hourly_forecast">Pronóstico por hora</string>
+    <string name="minutely_forecast">Pronóstico por minuto</string>
+    <string name="precipitation_forecast">Pronóstico por precipitación</string>
     <string name="air_quality">Calidad del aire</string>
     <string name="allergen">Alérgeno</string>
     <string name="details">Detalles</string>
-    <string name="sunrise_sunset">Sol &amp; luna</string>
+    <string name="ephemeris">Sol &amp; luna</string>
 
     <string name="next">SIGUIENTE</string>
     <string name="done">HECHO</string>
@@ -125,9 +117,7 @@
     <string name="learn_more">SABER MÁS</string>
 
     <string name="about_app">Acerca de la app</string>
-    <string name="email">E-mail</string>
-    <string name="translator">Traductores</string>
-    <string name="thanks">Gracias</string>
+    <string name="about_translators">Traductores</string>
 
     <!-- Date format strings. -->
     <!-- Month : MMM(long) / M(short). -->
@@ -141,7 +131,7 @@
 
     <!-- feedback. -->
     <string name="feedback_request_permission">Permisos</string>
-    <string name="feedback_request_location">Ubicación</string>
+    <string name="notification_channel_request_location">Ubicación</string>
     <string name="feedback_request_location_in_background">Ubicando en segundo plano</string>
     <string name="feedback_request_location_permission_success">Solicitud de acceso a la ubicación exitosa</string>
     <string name="feedback_request_location_permission_failed">La solicitud de acceso a la ubicación falló</string>
@@ -156,60 +146,60 @@
     <string name="feedback_background_location_title">Acceso a la ubicación en segundo plano</string>
     <string name="feedback_background_location_summary">Para permitirle a la app el acceso a la ubicación en segundo plano, por favor selecciona el acceso a la ubicación \"Todo el tiempo\".</string>
 
-    <string name="feedback_view_style">Estilo de vista</string>
-    <string name="feedback_show_widget_card">Fondo de color</string>
-    <string name="feedback_show_widget_card_alpha">Transparencia</string>
-    <string name="feedback_hide_subtitle">Ocultar subtítulo</string>
-    <string name="feedback_subtitle_data">Datos del subtítulo</string>
-    <string name="feedback_black_text">Color del texto</string>
-    <string name="feedback_text_size">Tamaño  del texto</string>
-    <string name="feedback_clock_font">Fuente del reloj</string>
-    <string name="feedback_hide_lunar">Ocultar calendario lunar</string>
-    <string name="feedback_custom_subtitle_explanation">Puedes ingresar lo que sea, pero por favor presta atención al lardo del texto. Si quieres citar datos del clima, por favor usa $ para referenciar la palabra clave correspondiente.\n\nPor ejemplo, \"clima actual = $cw$\" se mostrará como \"clima actual = Día despejado\".</string>
+    <string name="widget_label_view_style">Estilo de vista</string>
+    <string name="widget_label_show_widget_card">Fondo de color</string>
+    <string name="widget_label_show_widget_card_alpha">Transparencia</string>
+    <string name="widget_label_hide_subtitle">Ocultar subtítulo</string>
+    <string name="widget_label_subtitle_data">Datos del subtítulo</string>
+    <string name="widget_label_black_text">Color del texto</string>
+    <string name="widget_label_text_size">Tamaño  del texto</string>
+    <string name="widget_label_clock_font">Fuente del reloj</string>
+    <string name="widget_label_hide_lunar">Ocultar calendario lunar</string>
+    <string name="widget_custom_subtitle_explanation">Puedes ingresar lo que sea, pero por favor presta atención al lardo del texto. Si quieres citar datos del clima, por favor usa $ para referenciar la palabra clave correspondiente.\n\nPor ejemplo, \"clima actual = $cw$\" se mostrará como \"clima actual = Día despejado\".</string>
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
-    <string name="feedback_custom_subtitle_keyword_cw">$cw$ : Clima Actual\n</string>
-    <string name="feedback_custom_subtitle_keyword_ct">$ct$ : Temperatura Actual (℃/℉)\n</string>
-    <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : Temperatura Actual (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_at">$at$ : Temperatura Aparente (℃/℉)\n</string>
-    <string name="feedback_custom_subtitle_keyword_atd">$atd$ : Temperatura Aparente (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : Viento Actual\n</string>
-    <string name="feedback_custom_subtitle_keyword_cuv">$cuv$ : UV Actual\n</string>
-    <string name="feedback_custom_subtitle_keyword_ch">$ch$ : Humedad Actual\n</string>
-    <string name="feedback_custom_subtitle_keyword_cps">$cps$ : Presión Actual\n</string>
-    <string name="feedback_custom_subtitle_keyword_cv">$cv$ : Visibilidad Actual\n</string>
-    <string name="feedback_custom_subtitle_keyword_cdp">$cdp$ : Rocío Actual\n</string>
-    <string name="feedback_custom_subtitle_keyword_al">$al$ : Alertas\n</string>
-    <string name="feedback_custom_subtitle_keyword_als">$als$ : Alertas (Corto)\n</string>
-    <string name="feedback_custom_subtitle_keyword_l">$l$ : Ubicación\n</string>
-    <string name="feedback_custom_subtitle_keyword_lat">$lat$ : Latitud\n</string>
-    <string name="feedback_custom_subtitle_keyword_lon">$lon$ : Longitud\n</string>
-    <string name="feedback_custom_subtitle_keyword_ut">$ut$ : Tiempo de Actualización\n</string>
-    <string name="feedback_custom_subtitle_keyword_d">$d$ : Fecha\n</string>
-    <string name="feedback_custom_subtitle_keyword_lc">$lc$ : Calendario Lunar\n</string>
-    <string name="feedback_custom_subtitle_keyword_w">$w$ : Semana\n</string>
-    <string name="feedback_custom_subtitle_keyword_ws">$ws$ : Semanal (Corto)\n</string>
-    <string name="feedback_custom_subtitle_keyword_dd">$dd$ : Descripción Diaria\n</string>
-    <string name="feedback_custom_subtitle_keyword_hd">$hd$ : Descripción Horaria\n</string>
-    <string name="feedback_custom_subtitle_keyword_enter">$enter$ : Entrar\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdw">$0dw$, $1dw$, …, $4dw$ : \nClima del Día de Hoy, Tmw, …, 4 días después\n</string>
-    <string name="feedback_custom_subtitle_keyword_xnw">$0nw$, $1nw$, …, $4nw$ : \nClima de la Noche de Hoy, Tmw, …, 4 días después\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdt">$0dt$, $1dt$, …, $4dt$ : \nTemperatura del Día de Hoy, Tmw, …, 4 días después (℃/℉)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xnt">$0nt$, $1nt$, …, $4nt$ : \nTemperatura de la Noche de Hoy, Tmw, …, 4 días después (℃/℉)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdtd">$0dtd$, $1dtd$, …, $4dtd$ : \nTemperatura del Día de Hoy, Tmw, …, 4 días después (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xntd">$0ntd$, $1ntd$, …, $4ntd$ : \nTemperatura de la Noche de Hoy, Tmw, …, 4 días después (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdp">$0dp$, $1dp$, …, $4dp$ : \nPrecipitación del Día de Hoy, Tmw, …, 4 días después (%)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xnp">$0np$, $1np$, …, $4np$ : \nPrecipitación de la Noche de Hoy, Tmw, …, 4 días después (%)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdwd">$0dwd$, $1dwd$, …, $4dwd$ : \nViento del Día de Hoy, Tmw, …, 4 días después\n</string>
-    <string name="feedback_custom_subtitle_keyword_xnwd">$0nwd$, $1nwd$, …, $4nwd$ : \nViento de la Noche de Hoy, Tmw, …, 4 días después\n</string>
-    <string name="feedback_custom_subtitle_keyword_xsr">$0sr$, $1sr$, …, $4sr$ : \nAmanecer de Hoy, Tmw, …, 4 días después\n</string>
-    <string name="feedback_custom_subtitle_keyword_xss">$0ss$, $1ss$, …, $4ss$ : \nAtardecer de Hoy, Tmw, …, 4 días después\n</string>
-    <string name="feedback_custom_subtitle_keyword_xmr">$0mr$, $1mr$, …, $4mr$ : \nAnochecer de Hoy, Tmw, …, 4 días después\n</string>
-    <string name="feedback_custom_subtitle_keyword_xms">$0ms$, $1ms$, …, $4ms$ : \nPuesta de la Luna de Hoy, Tmw, …, 4 días después\n</string>
-    <string name="feedback_custom_subtitle_keyword_xmp">$0mp$, $1mp$, …, $4mp$ : \nFase lunar de Hoy, Tmw, …, 4 días después\n</string>
+    <string name="widget_custom_subtitle_keyword_cw_description">Clima Actual</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">Temperatura Actual (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_ctd_description">Temperatura Actual (°)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Temperatura Aparente (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_atd_description">Temperatura Aparente (°)</string>
+    <string name="widget_custom_subtitle_keyword_cwd_description">Viento Actual</string>
+    <string name="widget_custom_subtitle_keyword_cuv_description">UV Actual</string>
+    <string name="widget_custom_subtitle_keyword_ch_description">Humedad Actual</string>
+    <string name="widget_custom_subtitle_keyword_cps_description">Presión Actual</string>
+    <string name="widget_custom_subtitle_keyword_cv_description">Visibilidad Actual</string>
+    <string name="widget_custom_subtitle_keyword_cdp_description">Rocío Actual</string>
+    <string name="widget_custom_subtitle_keyword_al_description">Alertas</string>
+    <string name="widget_custom_subtitle_keyword_als_description">Alertas (Corto)</string>
+    <string name="widget_custom_subtitle_keyword_l_description">Ubicación</string>
+    <string name="widget_custom_subtitle_keyword_lat_description">Latitud</string>
+    <string name="widget_custom_subtitle_keyword_lon_description">Longitud</string>
+    <string name="widget_custom_subtitle_keyword_ut_description">Tiempo de Actualización</string>
+    <string name="widget_custom_subtitle_keyword_d_description">Fecha</string>
+    <string name="widget_custom_subtitle_keyword_lc_description">Calendario Lunar</string>
+    <string name="widget_custom_subtitle_keyword_w_description">Semana</string>
+    <string name="widget_custom_subtitle_keyword_ws_description">Semanal (Corto)</string>
+    <string name="widget_custom_subtitle_keyword_dd_description">Descripción Diaria</string>
+    <string name="widget_custom_subtitle_keyword_hd_description">Descripción Horaria</string>
+    <string name="widget_custom_subtitle_keyword_enter_description">Entrar</string>
+    <string name="widget_custom_subtitle_keyword_xdw_description">Clima del Día de Hoy, Tmw, …, 4 días después</string>
+    <string name="widget_custom_subtitle_keyword_xnw_description">Clima de la Noche de Hoy, Tmw, …, 4 días después</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Temperatura del Día de Hoy, Tmw, …, 4 días después (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Temperatura de la Noche de Hoy, Tmw, …, 4 días después (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdtd_description">Temperatura del Día de Hoy, Tmw, …, 4 días después (°)</string>
+    <string name="widget_custom_subtitle_keyword_xntd_description">Temperatura de la Noche de Hoy, Tmw, …, 4 días después (°)</string>
+    <string name="widget_custom_subtitle_keyword_xdp_description">Precipitación del Día de Hoy, Tmw, …, 4 días después (%)</string>
+    <string name="widget_custom_subtitle_keyword_xnp_description">Precipitación de la Noche de Hoy, Tmw, …, 4 días después (%)</string>
+    <string name="widget_custom_subtitle_keyword_xdwd_description">Viento del Día de Hoy, Tmw, …, 4 días después</string>
+    <string name="widget_custom_subtitle_keyword_xnwd_description">Viento de la Noche de Hoy, Tmw, …, 4 días después</string>
+    <string name="widget_custom_subtitle_keyword_xsr_description">Amanecer de Hoy, Tmw, …, 4 días después</string>
+    <string name="widget_custom_subtitle_keyword_xss_description">Atardecer de Hoy, Tmw, …, 4 días después</string>
+    <string name="widget_custom_subtitle_keyword_xmr_description">Anochecer de Hoy, Tmw, …, 4 días después</string>
+    <string name="widget_custom_subtitle_keyword_xms_description">Puesta de la Luna de Hoy, Tmw, …, 4 días después</string>
+    <string name="widget_custom_subtitle_keyword_xmp_description">Fase lunar de Hoy, Tmw, …, 4 días después</string>
 
-    <string name="feedback_live_wallpaper_weather_kind">Clima</string>
-    <string name="feedback_live_wallpaper_day_night_type">Hora</string>
+    <string name="widget_live_wallpaper_weather_kind">Clima</string>
+    <string name="widget_live_wallpaper_day_night_type">Hora</string>
 
     <string name="feedback_click_toggle">Toca el gráfico para alternar los datos</string>
     <string name="feedback_no_data">SIN DATOS</string>
@@ -228,8 +218,6 @@
     <string name="feedback_refresh_notification_now">Refresque ahora</string>
     <string name="feedback_refresh_ui_after_refresh">Los cambios tomarán efecto cuando se actualicen los datos</string>
     <string name="feedback_restart">Los cambios tomarán efecto después de reiniciar</string>
-    <string name="feedback_readd_location">Por favor agrega nuevamente las ubicaciones</string>
-    <string name="feedback_readd_location_after_changing_source">Por favor agrega nuevamente las ubicaciones después de cambiar la fuente de datos</string>
 
     <string name="feedback_running_in_background">Corriendo en segundo plano para seguir actualizándose</string>
     <string name="feedback_updating_weather_data">Actualizando datos del clima</string>
@@ -247,9 +235,6 @@
     
     <string name="feedback_cannot_start_live_wallpaper_activity">No se logró iniciar el contexto de previsulización del fondo de pantalla animado</string>
 
-    <string name="feedback_unusable_geocoder">Este dispositivo no contiene un geocodificador válido. El proveedor de ubicación fué cambiado a Baidu.</string>
-    <string name="feedback_about_geocoder">Geocodificador es un componente que convierte el resultado de ubicación de un formato latitud-longitud a un formato del estilo \'ciudad XX, provincia YY\'. En ausencia de este componente, solo se podrá obtener datos meteorológicos a través de AccuWeather cuando se utilice la API nativa como proveedor de ubicación.</string>
-
     <string name="feedback_today_precipitation_alert">Puede que hoy haya precipitationes.</string>
     <string name="feedback_short_term_precipitation_alert">Puede que la precipitación ocurra en las próximas horas.</string>
 
@@ -260,7 +245,7 @@
     <string name="feedback_click_again_to_exit">Toca de nuevo para salir</string>
 
     <!-- action -->
-    <string name="action_alert">Alerta</string>
+    <string name="alerts">Alerta</string>
     <string name="action_manage">Gestionar</string>
     <string name="action_search">Buscar</string>
     <string name="action_settings">Configuración</string>
@@ -280,8 +265,8 @@
     <string name="widget_trend_daily">Tendencia diaria</string>
     <string name="widget_trend_hourly">Tendencia por horas</string>
     <string name="widget_multi_city">Ciudad Múltiple</string>
-    <string name="wait_refresh">esperando</string>
-    <string name="ellipsis">…</string>
+    <string name="widget_refreshing">esperando</string>
+    <string name="widget_ellipsis">…</string>
 
     <!-- settings -->
     <string name="settings_category_basic">Básico</string>

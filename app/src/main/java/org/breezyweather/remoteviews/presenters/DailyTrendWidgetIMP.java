@@ -207,7 +207,7 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
             Daily daily = weather.getDailyForecast().get(i);
 
             if (daily.getDate().equals(new Date())) {
-                items[i].setTitleText(context.getString(R.string.today));
+                items[i].setTitleText(context.getString(R.string.short_today));
             } else {
                 items[i].setTitleText(daily.getWeek(context, location.getTimeZone()));
             }

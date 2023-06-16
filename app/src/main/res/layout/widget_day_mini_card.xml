@@ -28,7 +28,7 @@
 
         <TextView
             android:id="@+id/widget_day_title"
-            android:text="@string/ellipsis"
+            android:text="@string/widget_ellipsis"
             android:textSize="@dimen/widget_subtitle_text_size"
             android:layout_below="@id/widget_day_icon"
             android:layout_centerHorizontal="true"
@@ -38,7 +38,7 @@
 
         <TextView
             android:id="@+id/widget_day_time"
-            android:text="@string/wait_refresh"
+            android:text="@string/widget_refreshing"
             android:textSize="@dimen/widget_time_text_size"
             android:textAlignment="center"
             android:layout_below="@id/widget_day_title"

@@ -22,7 +22,7 @@
             tools:ignore="ContentDescription" />
 
         <TextView
-            android:text="@string/get_more"
+            android:text="@string/settings_icon_providers_get_more"
             android:layout_marginEnd="@dimen/normal_margin"
             android:layout_gravity="center"
             style="@style/content_text" />

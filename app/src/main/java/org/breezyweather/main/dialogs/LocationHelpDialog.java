@@ -52,7 +52,7 @@ public class LocationHelpDialog {
         });
         ((TextView) view.findViewById(R.id.dialog_location_help_manageTitle)).setText(
                 activity.getString(R.string.feedback_add_location_manually).replace(
-                        "$", activity.getString(R.string.current_location)
+                        "$", activity.getString(R.string.location_current)
                 )
         );
     }

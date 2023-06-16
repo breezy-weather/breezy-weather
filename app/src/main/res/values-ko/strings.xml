@@ -4,114 +4,106 @@
     <string name="app_name">날씨</string>
 
     <!-- keyword. -->
-    <string name="current_location">현위치</string>
-    <string name="resident_location">거주지 </string>
+    <string name="location_current">현위치</string>
+    <string name="location_resident">거주지 </string>
     <string name="live">현재</string>
-    <string name="today">오늘</string>
+    <string name="short_today">오늘</string>
     <string name="refresh_at">갱신됨</string>
-    <string name="local_time">현지 시간</string>
     <string name="precipitation">강수</string>
     <string name="precipitation_probability">강수 확률</string>
     <string name="precipitation_duration">강수 지속 시간</string>
-    <string name="maxi_temp">주간</string>
-    <string name="mini_temp">야간</string>
-    <string name="time">시간</string>
-    <string name="day">낮</string>
-    <string name="night">밤</string>
     <string name="temperature">온도</string>
     <string name="wind">바람</string>
     <string name="wind_direction">풍향</string>
     <string name="wind_speed">풍속</string>
     <string name="wind_level">보퍼트 풍력 계급</string>
-    <string name="sensible_temp">체감 온도</string>
     <string name="humidity">습도</string>
     <string name="uv_index">자외선 지수</string>
     <string name="hours_of_sun">일조 시간</string>
-    <string name="forecast">일기 예보</string>
-    <string name="briefings">요약</string>
+    <string name="notification_channel_forecast">일기 예보</string>
     <string name="daytime">주간</string>
     <string name="nighttime">야간</string>
-    <string name="publish_at">Pub</string>
-    <string name="feels_like">체감 온도</string>
-    <string name="follow_system">시스템 설정 따르기</string>
-    <string name="background_information">배경 정보</string>
+    <string name="published_at">Pub</string>
+    <string name="temperature_feels_like">체감 온도</string>
+    <string name="settings_follow_system">시스템 설정 따르기</string>
+    <string name="notification_channel_background_information">배경 정보</string>
     <string name="pressure">기압</string>
     <string name="visibility">시계</string>
     <string name="dew_point">이슬점</string>
     <string name="cloud_cover">구름량</string>
     <string name="ceiling">상승 한도</string>
-    <string name="get_more">더 보기</string>
-    <string name="get_more_store">앱 스토어에서 더보기</string>
-    <string name="get_more_github">GitHub에서 더보기</string>
+    <string name="settings_icon_providers_get_more">더 보기</string>
+    <string name="settings_icon_providers_get_more_store">앱 스토어에서 더보기</string>
+    <string name="settings_icon_providers_get_more_github">GitHub에서 더보기</string>
     <string name="refresh">갱신</string>
     <string name="restart">재시작</string>
     <string name="edit">수정</string>
 
     <string name="of_clock">:00</string>
-    <string name="yesterday">어제</string>
-    <string name="tomorrow">내일</string>
-    <string name="week_1">월</string>
-    <string name="week_2">화</string>
-    <string name="week_3">수</string>
-    <string name="week_4">목</string>
-    <string name="week_5">금</string>
-    <string name="week_6">토</string>
-    <string name="week_7">일</string>
+    <string name="short_yesterday">어제</string>
+    <string name="short_tomorrow">내일</string>
+    <string name="short_monday">월</string>
+    <string name="short_tuesday">화</string>
+    <string name="short_wednesday">수</string>
+    <string name="short_thursday">목</string>
+    <string name="short_friday">금</string>
+    <string name="short_saturday">토</string>
+    <string name="short_sunday">일</string>
 
-    <string name="real_feel_temperature">체감 온도</string>
-    <string name="real_feel_shade_temperature">체감 표면 온도</string>
-    <string name="apparent_temperature">겉보기 온도</string>
-    <string name="wind_chill_temperature">풍속 냉각</string>
-    <string name="wet_bulb_temperature">습구</string>
-    <string name="degree_day_temperature">도일</string>
+    <string name="temperature_real_feel">체감 온도</string>
+    <string name="temperature_real_feel_shade">체감 표면 온도</string>
+    <string name="temperature_apparent">겉보기 온도</string>
+    <string name="temperature_wind_chill">풍속 냉각</string>
+    <string name="temperature_wet_bulb">습구</string>
+    <string name="temperature_degree_day">도일</string>
 
-    <string name="total">총</string>
-    <string name="thunderstorm">뇌우</string>
-    <string name="rain">비</string>
-    <string name="snow">눈</string>
-    <string name="ice">우박</string>
+    <string name="precipitation_total">총</string>
+    <string name="precipitation_thunderstorm">뇌우</string>
+    <string name="precipitation_rain">비</string>
+    <string name="precipitation_snow">눈</string>
+    <string name="precipitation_ice">우박</string>
 
-    <string name="wind_0">고요</string>
-    <string name="wind_1">실바람</string>
-    <string name="wind_2">남실바람</string>
-    <string name="wind_3">산들바람</string>
-    <string name="wind_4">건들바람</string>
-    <string name="wind_5">흔들바람</string>
-    <string name="wind_6">된바람</string>
-    <string name="wind_7">센바람</string>
-    <string name="wind_8">큰바람</string>
-    <string name="wind_9">큰센바람</string>
-    <string name="wind_10">노대바람</string>
-    <string name="wind_11">왕바람</string>
-    <string name="wind_12">싹슬바람</string>
+    <string name="wind_level_0">고요</string>
+    <string name="wind_level_1">실바람</string>
+    <string name="wind_level_2">남실바람</string>
+    <string name="wind_level_3">산들바람</string>
+    <string name="wind_level_4">건들바람</string>
+    <string name="wind_level_5">흔들바람</string>
+    <string name="wind_level_6">된바람</string>
+    <string name="wind_level_7">센바람</string>
+    <string name="wind_level_8">큰바람</string>
+    <string name="wind_level_9">큰센바람</string>
+    <string name="wind_level_10">노대바람</string>
+    <string name="wind_level_11">왕바람</string>
+    <string name="wind_level_12">싹슬바람</string>
 
-    <string name="precipitation_light">이슬비</string>
-    <string name="precipitation_middle">비</string>
-    <string name="precipitation_heavy">호우</string>
-    <string name="precipitation_rainstorm">폭풍우</string>
+    <string name="precipitation_intensity_light">이슬비</string>
+    <string name="precipitation_intensity_middle">비</string>
+    <string name="precipitation_intensity_heavy">호우</string>
+    <string name="precipitation_intensity_rainstorm">폭풍우</string>
 
-    <string name="phase_new">삭</string>
-    <string name="phase_waxing_crescent">초승달</string>
-    <string name="phase_first">상현달</string>
-    <string name="phase_waxing_gibbous">철월</string>
-    <string name="phase_full">보름달</string>
-    <string name="phase_waning_gibbous">요월</string>
-    <string name="phase_third">하현달</string>
-    <string name="phase_waning_crescent">그믐달</string>
+    <string name="ephemeris_moon_phase_new">삭</string>
+    <string name="ephemeris_moon_phase_waxing_crescent">초승달</string>
+    <string name="ephemeris_moon_phase_first">상현달</string>
+    <string name="ephemeris_moon_phase_waxing_gibbous">철월</string>
+    <string name="ephemeris_moon_phase_full">보름달</string>
+    <string name="ephemeris_moon_phase_waning_gibbous">요월</string>
+    <string name="ephemeris_moon_phase_third">하현달</string>
+    <string name="ephemeris_moon_phase_waning_crescent">그믐달</string>
 
-    <string name="grass">풀</string>
-    <string name="mold">양토</string>
-    <string name="ragweed">돼지풀</string>
-    <string name="tree">나무</string>
+    <string name="allergen_grass">풀</string>
+    <string name="allergen_mold">양토</string>
+    <string name="allergen_ragweed">돼지풀</string>
+    <string name="allergen_tree">나무</string>
 
-    <string name="daily_overview">일간 예보</string>
-    <string name="hourly_overview">시간별 예보</string>
-    <string name="minutely_overview">분간 예보</string>
-    <string name="precipitation_overview">강수 예보</string>
+    <string name="daily_forecast">일간 예보</string>
+    <string name="hourly_forecast">시간별 예보</string>
+    <string name="minutely_forecast">분간 예보</string>
+    <string name="precipitation_forecast">강수 예보</string>
     <string name="air_quality">대기질</string>
     <string name="allergen">알레르기</string>
     <string name="details">세부 사항</string>
-    <string name="sunrise_sunset">해와 달</string>
+    <string name="ephemeris">해와 달</string>
 
     <string name="next">다음</string>
     <string name="done">끝내기</string>
@@ -123,9 +115,7 @@
     <string name="learn_more">더 알아보기</string>
 
     <string name="about_app">앱에 관하여</string>
-    <string name="email">이메일</string>
-    <string name="translator">번역해 주신 분들</string>
-    <string name="thanks">고마운 분들</string>
+    <string name="about_translators">번역해 주신 분들</string>
 
     <string name="date_format_short">M-d</string>
     <string name="date_format_long">MMMM d</string>
@@ -135,7 +125,7 @@
 
     <!-- feedback. -->
     <string name="feedback_request_permission">허가</string>
-    <string name="feedback_request_location">위치</string>
+    <string name="notification_channel_request_location">위치</string>
     <string name="feedback_request_location_in_background">백그라운드에 상주중</string>
     <string name="feedback_request_location_permission_success">위치 허가 요청에 성공하였습니다.</string>
     <string name="feedback_request_location_permission_failed">위치 허가 요청에 실패하였습니다.</string>
@@ -148,56 +138,56 @@
     <string name="feedback_select_location_provider">위치 공급자 선택하기</string>
     <string name="feedback_add_location_manually">위치를 수동으로 첨가하고 삭제하기 \'$\'</string>
 
-    <string name="feedback_view_style">보이는 스타일</string>
-    <string name="feedback_show_widget_card">배경색</string>
-    <string name="feedback_show_widget_card_alpha">투명도</string>
-    <string name="feedback_hide_subtitle">부제 숨기기</string>
-    <string name="feedback_subtitle_data">부제 데이터</string>
-    <string name="feedback_black_text">글씨 색</string>
-    <string name="feedback_text_size">글씨 사이즈</string>
-    <string name="feedback_clock_font">시계 폰트</string>
-    <string name="feedback_custom_subtitle_explanation">아무거나 입력 할 수는 있지만, 글씨의 길이에 신경 써 주십시오. 당신이 만약 날씨 데이터를 따오고 싶다면, 해당 키워드를 참조하여 $ 를 사용해 주십시오. \n\n예를 들자면 \"현재 날씨 = $cw$\" 는 \"현재 날씨 = 맑음\" 으로 표시됩니다.</string>
+    <string name="widget_label_view_style">보이는 스타일</string>
+    <string name="widget_label_show_widget_card">배경색</string>
+    <string name="widget_label_show_widget_card_alpha">투명도</string>
+    <string name="widget_label_hide_subtitle">부제 숨기기</string>
+    <string name="widget_label_subtitle_data">부제 데이터</string>
+    <string name="widget_label_black_text">글씨 색</string>
+    <string name="widget_label_text_size">글씨 사이즈</string>
+    <string name="widget_label_clock_font">시계 폰트</string>
+    <string name="widget_custom_subtitle_explanation">아무거나 입력 할 수는 있지만, 글씨의 길이에 신경 써 주십시오. 당신이 만약 날씨 데이터를 따오고 싶다면, 해당 키워드를 참조하여 $ 를 사용해 주십시오. \n\n예를 들자면 \"현재 날씨 = $cw$\" 는 \"현재 날씨 = 맑음\" 으로 표시됩니다.</string>
 
-    <string name="feedback_custom_subtitle_keyword_cw">$cw$ : 현재 날씨\n</string>
-    <string name="feedback_custom_subtitle_keyword_ct">$ct$ : 현재 온도 (℃/℉)\n</string>
-    <string name="feedback_custom_subtitle_keyword_ctd">$ctd$ : 현재 온도 (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_at">$at$ : 피상 온도 (℃/℉)\n</string>
-    <string name="feedback_custom_subtitle_keyword_atd">$atd$ : 피상 온도 (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_cwd">$cwd$ : 현재 바람\n</string>
-    <string name="feedback_custom_subtitle_keyword_cuv">$cuv$ : 현재 자외선\n</string>
-    <string name="feedback_custom_subtitle_keyword_ch">$ch$ : 현재 습도\n</string>
-    <string name="feedback_custom_subtitle_keyword_cps">$cps$ : 현재 기압\n</string>
-    <string name="feedback_custom_subtitle_keyword_cv">$cv$ : 현재 시계\n</string>
-    <string name="feedback_custom_subtitle_keyword_cdp">$cdp$ : 현재 이슬점\n</string>
-    <string name="feedback_custom_subtitle_keyword_l">$l$ : 위치\n</string>
-    <string name="feedback_custom_subtitle_keyword_lat">$lat$ : 위도\n</string>
-    <string name="feedback_custom_subtitle_keyword_lon">$lon$ : 경도\n</string>
-    <string name="feedback_custom_subtitle_keyword_ut">$ut$ : 갱신 시간\n</string>
-    <string name="feedback_custom_subtitle_keyword_d">$d$ : 날짜\n</string>
-    <string name="feedback_custom_subtitle_keyword_lc">$lc$ : 음력\n</string>
-    <string name="feedback_custom_subtitle_keyword_w">$w$ : 주\n</string>
-    <string name="feedback_custom_subtitle_keyword_ws">$ws$ : 주 (짧은)\n</string>
-    <string name="feedback_custom_subtitle_keyword_dd">$dd$ : 오늘의 서술\n</string>
-    <string name="feedback_custom_subtitle_keyword_hd">$hd$ : 시간별 서술\n</string>
-    <string name="feedback_custom_subtitle_keyword_enter">$enter$ : 들어가기\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdw">$0dw$, $1dw$, …, $4dw$ : \n오늘의 주간 날씨, 내일, …, 4일 후\n</string>
-    <string name="feedback_custom_subtitle_keyword_xnw">$0nw$, $1nw$, …, $4nw$ : \n오늘의 야간 날씨, 내일, …, 4일 후\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdt">$0dt$, $1dt$, …, $4dt$ : \n오늘의 주간 온도, 내일, …, 4일 후 (℃/℉)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xnt">$0nt$, $1nt$, …, $4nt$ : \n오늘의 야간 온도, 내일, …, 4일 후 (℃/℉)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdtd">$0dtd$, $1dtd$, …, $4dtd$ : \n오늘의 주간 온도, 내일, …, 4일 후 (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xntd">$0ntd$, $1ntd$, …, $4ntd$ : \n오늘의 야간 온도, 내일, …, 4일 후 (°)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdp">$0dp$, $1dp$, …, $4dp$ : \n오늘의 주간 강수 확률, 내일, …, 4일 후 (%)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xnp">$0np$, $1np$, …, $4np$ : \n오늘의 야간 강수 확률, 내일, …, 4일 후 (%)\n</string>
-    <string name="feedback_custom_subtitle_keyword_xdwd">$0dwd$, $1dwd$, …, $4dwd$ : \n오늘의 주간 바람, 내일, …, 4일 후\n</string>
-    <string name="feedback_custom_subtitle_keyword_xnwd">$0nwd$, $1nwd$, …, $4nwd$ : \n오늘의 야간 바람, 내일, …, 4일 후\n</string>
-    <string name="feedback_custom_subtitle_keyword_xsr">$0sr$, $1sr$, …, $4sr$ : \n오늘의 일출, 내일, …, 4일 후\n</string>
-    <string name="feedback_custom_subtitle_keyword_xss">$0ss$, $1ss$, …, $4ss$ : \n오늘의 일몰, 내일, …, 4일 후\n</string>
-    <string name="feedback_custom_subtitle_keyword_xmr">$0mr$, $1mr$, …, $4mr$ : \n오늘의 월출, 내일, …, 4일 후\n</string>
-    <string name="feedback_custom_subtitle_keyword_xms">$0ms$, $1ms$, …, $4ms$ : \n오늘의 월몰, 내일, …, 4일 후\n</string>
-    <string name="feedback_custom_subtitle_keyword_xmp">$0mp$, $1mp$, …, $4mp$ : \n오늘의 달의 위상, 내일, …, 4일 후\n</string>
+    <string name="widget_custom_subtitle_keyword_cw_description">현재 날씨</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">현재 온도 (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_ctd_description">현재 온도 (°)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">피상 온도 (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_atd_description">피상 온도 (°)</string>
+    <string name="widget_custom_subtitle_keyword_cwd_description">현재 바람</string>
+    <string name="widget_custom_subtitle_keyword_cuv_description">현재 자외선</string>
+    <string name="widget_custom_subtitle_keyword_ch_description">현재 습도</string>
+    <string name="widget_custom_subtitle_keyword_cps_description">현재 기압</string>
+    <string name="widget_custom_subtitle_keyword_cv_description">현재 시계</string>
+    <string name="widget_custom_subtitle_keyword_cdp_description">현재 이슬점</string>
+    <string name="widget_custom_subtitle_keyword_l_description">위치</string>
+    <string name="widget_custom_subtitle_keyword_lat_description">위도</string>
+    <string name="widget_custom_subtitle_keyword_lon_description">경도</string>
+    <string name="widget_custom_subtitle_keyword_ut_description">갱신 시간</string>
+    <string name="widget_custom_subtitle_keyword_d_description">날짜</string>
+    <string name="widget_custom_subtitle_keyword_lc_description">음력</string>
+    <string name="widget_custom_subtitle_keyword_w_description">주</string>
+    <string name="widget_custom_subtitle_keyword_ws_description">주 (짧은)</string>
+    <string name="widget_custom_subtitle_keyword_dd_description">오늘의 서술</string>
+    <string name="widget_custom_subtitle_keyword_hd_description">시간별 서술</string>
+    <string name="widget_custom_subtitle_keyword_enter_description">들어가기</string>
+    <string name="widget_custom_subtitle_keyword_xdw_description">오늘의 주간 날씨, 내일, …, 4일 후</string>
+    <string name="widget_custom_subtitle_keyword_xnw_description">오늘의 야간 날씨, 내일, …, 4일 후</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">오늘의 주간 온도, 내일, …, 4일 후 (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">오늘의 야간 온도, 내일, …, 4일 후 (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdtd_description">오늘의 주간 온도, 내일, …, 4일 후 (°)</string>
+    <string name="widget_custom_subtitle_keyword_xntd_description">오늘의 야간 온도, 내일, …, 4일 후 (°)</string>
+    <string name="widget_custom_subtitle_keyword_xdp_description">오늘의 주간 강수 확률, 내일, …, 4일 후 (%)</string>
+    <string name="widget_custom_subtitle_keyword_xnp_description">오늘의 야간 강수 확률, 내일, …, 4일 후 (%)</string>
+    <string name="widget_custom_subtitle_keyword_xdwd_description">오늘의 주간 바람, 내일, …, 4일 후</string>
+    <string name="widget_custom_subtitle_keyword_xnwd_description">오늘의 야간 바람, 내일, …, 4일 후</string>
+    <string name="widget_custom_subtitle_keyword_xsr_description">오늘의 일출, 내일, …, 4일 후</string>
+    <string name="widget_custom_subtitle_keyword_xss_description">오늘의 일몰, 내일, …, 4일 후</string>
+    <string name="widget_custom_subtitle_keyword_xmr_description">오늘의 월출, 내일, …, 4일 후</string>
+    <string name="widget_custom_subtitle_keyword_xms_description">오늘의 월몰, 내일, …, 4일 후</string>
+    <string name="widget_custom_subtitle_keyword_xmp_description">오늘의 달의 위상, 내일, …, 4일 후</string>
 
-    <string name="feedback_live_wallpaper_weather_kind">날씨</string>
-    <string name="feedback_live_wallpaper_day_night_type">시간</string>
+    <string name="widget_live_wallpaper_weather_kind">날씨</string>
+    <string name="widget_live_wallpaper_day_night_type">시간</string>
 
     <string name="feedback_click_toggle">차트를 눌러 데이터 보이기</string>
     <string name="feedback_no_data">데이터 없음</string>
@@ -216,8 +206,6 @@
     <string name="feedback_refresh_notification_now">지금 갱신하기</string>
     <string name="feedback_refresh_ui_after_refresh">변경 사항은 갱신 후에 적용됩니다</string>
     <string name="feedback_restart">변경 사항은 재시작 후에 적용됩니다</string>
-    <string name="feedback_readd_location">다시 위치를 추가해 주십시오</string>
-    <string name="feedback_readd_location_after_changing_source">데이터 제공자 변경 후, 위치를 다시 추가하여 주십시오</string>
 
     <string name="feedback_running_in_background">계속 날씨를 받아오기 위하여 백그라운드에서 작동중</string>
     <string name="feedback_updating_weather_data">위치 데이터 갱신중…</string>
@@ -232,9 +220,6 @@
 
     <string name="feedback_cannot_start_live_wallpaper_activity">라이브 배경화면 미리보기를 시작할 수 없습니다.</string>
 
-    <string name="feedback_unusable_geocoder">이 장치는 적절한 geocoder를 탑재하고 있지 않습니다. 그에 따라, 위치 제공자가 바이두 위치로 바뀝니다.</string>
-    <string name="feedback_about_geocoder">Geocoder는 위,경도 스타일의 위치 정보를 \'XX 시, YY 도 \'로 바꾸어 주는 기능을 탑재하고 있습니다. 이 기능 없이는, 현지 API를 위치 공급자로써 사용할 때에도 날씨 데이터를 오직 Accuweather로부터 가져 올 수밖에 없습니다.</string>
-
     <string name="feedback_today_precipitation_alert">오늘 강수가 있을 것입니다.</string>
     <string name="feedback_short_term_precipitation_alert">강수는 대략 몇 시간 뒤에 일어날 수도 있습니다.</string>
 
@@ -244,7 +229,7 @@
     <string name="feedback_click_to_get_more">눌러서 더 알아보기…</string>
 
     <!-- action -->
-    <string name="action_alert">알림</string>
+    <string name="alerts">알림</string>
     <string name="action_manage">관리</string>
     <string name="action_search">검색</string>
     <string name="action_settings">설정</string>
@@ -263,8 +248,8 @@
     <string name="widget_text">글자</string>
     <string name="widget_trend_daily">일간 추이</string>
     <string name="widget_trend_hourly">시간별 추이</string>
-    <string name="wait_refresh">기다려 주세요</string>
-    <string name="ellipsis">…</string>
+    <string name="widget_refreshing">기다려 주세요</string>
+    <string name="widget_ellipsis">…</string>
 
     <!-- settings -->
     <string name="settings_category_basic">기본</string>

@@ -31,7 +31,7 @@ public class PollenHolder extends DailyWeatherAdapter.ViewHolder {
         mBinding.grassIcon.setSupportImageTintList(ColorStateList.valueOf(
                 pollen.getGrassColor(itemView.getContext())
         ));
-        mBinding.grassTitle.setText(context.getString(R.string.grass));
+        mBinding.grassTitle.setText(context.getString(R.string.allergen_grass));
         mBinding.grassValue.setText(
                 mPollenUnit.getValueText(
                         context, pollen.getGrassIndex() != null ? pollen.getGrassIndex() : 0
@@ -41,7 +41,7 @@ public class PollenHolder extends DailyWeatherAdapter.ViewHolder {
         mBinding.ragweedIcon.setSupportImageTintList(ColorStateList.valueOf(
                 pollen.getRagweedColor(itemView.getContext())
         ));
-        mBinding.ragweedTitle.setText(context.getString(R.string.ragweed));
+        mBinding.ragweedTitle.setText(context.getString(R.string.allergen_ragweed));
         mBinding.ragweedValue.setText(
                 mPollenUnit.getValueText(
                         context, pollen.getRagweedIndex() != null ? pollen.getRagweedIndex() : 0
@@ -51,7 +51,7 @@ public class PollenHolder extends DailyWeatherAdapter.ViewHolder {
         mBinding.treeIcon.setSupportImageTintList(ColorStateList.valueOf(
                 pollen.getTreeColor(itemView.getContext())
         ));
-        mBinding.treeTitle.setText(context.getString(R.string.tree));
+        mBinding.treeTitle.setText(context.getString(R.string.allergen_tree));
         mBinding.treeValue.setText(
                 mPollenUnit.getValueText(
                         context, pollen.getTreeIndex() != null ? pollen.getTreeIndex() : 0
@@ -61,7 +61,7 @@ public class PollenHolder extends DailyWeatherAdapter.ViewHolder {
         mBinding.moldIcon.setSupportImageTintList(ColorStateList.valueOf(
                 pollen.getMoldColor(itemView.getContext())
         ));
-        mBinding.moldTitle.setText(context.getString(R.string.mold));
+        mBinding.moldTitle.setText(context.getString(R.string.allergen_mold));
         mBinding.moldValue.setText(
                 mPollenUnit.getValueText(
                         context, pollen.getMoldIndex() != null ? pollen.getMoldIndex() : 0

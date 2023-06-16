@@ -295,7 +295,7 @@ class Location(
         } else if (!province.isNullOrEmpty()) {
             province
         } else if (isCurrentPosition) {
-            context.getString(R.string.current_location)
+            context.getString(R.string.location_current)
         } else {
             ""
         }

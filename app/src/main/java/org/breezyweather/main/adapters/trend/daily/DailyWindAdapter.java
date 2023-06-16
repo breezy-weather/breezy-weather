@@ -182,7 +182,7 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter {
                 new TrendRecyclerView.KeyLine(
                         Wind.WIND_SPEED_3,
                         unit.getValueTextWithoutUnit(Wind.WIND_SPEED_3),
-                        getActivity().getString(R.string.wind_3),
+                        getActivity().getString(R.string.wind_level_3),
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
         );
@@ -190,7 +190,7 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter {
                 new TrendRecyclerView.KeyLine(
                         Wind.WIND_SPEED_7,
                         unit.getValueTextWithoutUnit(Wind.WIND_SPEED_7),
-                        getActivity().getString(R.string.wind_7),
+                        getActivity().getString(R.string.wind_level_7),
                         TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
         );
@@ -198,7 +198,7 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter {
                 new TrendRecyclerView.KeyLine(
                         -Wind.WIND_SPEED_3,
                         unit.getValueTextWithoutUnit(Wind.WIND_SPEED_3),
-                        getActivity().getString(R.string.wind_3),
+                        getActivity().getString(R.string.wind_level_3),
                         TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
                 )
         );
@@ -206,7 +206,7 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter {
                 new TrendRecyclerView.KeyLine(
                         -Wind.WIND_SPEED_7,
                         unit.getValueTextWithoutUnit(Wind.WIND_SPEED_7),
-                        getActivity().getString(R.string.wind_7),
+                        getActivity().getString(R.string.wind_level_7),
                         TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
                 )
         );

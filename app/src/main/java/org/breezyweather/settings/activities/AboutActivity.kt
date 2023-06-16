@@ -64,7 +64,7 @@ class AboutActivity : GeoActivity() {
     private val aboutAppLinks = arrayOf(
         AboutAppLinkItem(
             iconId = R.drawable.ic_github,
-            titleId = R.string.source_code,
+            titleId = R.string.about_source_code,
         ) {
             IntentHelper.startWebViewActivity(
                 this@AboutActivity,
@@ -73,7 +73,7 @@ class AboutActivity : GeoActivity() {
         },
         AboutAppLinkItem(
             iconId = R.drawable.ic_email,
-            titleId = R.string.matrix,
+            titleId = R.string.about_matrix,
         ) {
             IntentHelper.startWebViewActivity(
                 this@AboutActivity,
@@ -352,12 +352,12 @@ class AboutActivity : GeoActivity() {
                     )
                 }
 
-                item { SectionTitle(stringResource(R.string.contributor)) }
+                item { SectionTitle(stringResource(R.string.about_contributors)) }
                 items(contributors) { item ->
                     Translator(name = item.name, contribution = item.contribution, url = item.url, flag = item.flag)
                 }
 
-                item { SectionTitle(stringResource(R.string.translator)) }
+                item { SectionTitle(stringResource(R.string.about_translators)) }
                 items(translators) { item ->
                     Translator(name = item.name, url = item.url, flag = item.flag)
                 }

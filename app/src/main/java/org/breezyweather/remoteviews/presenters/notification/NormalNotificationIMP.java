@@ -283,7 +283,7 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
             // 1
             views.setTextViewText( // set week 1.
                     R.id.notification_big_week_1,
-                    context.getString(R.string.today)
+                    context.getString(R.string.short_today)
             );
             views.setTextViewText( // set temps 1.
                     R.id.notification_big_temp_1,

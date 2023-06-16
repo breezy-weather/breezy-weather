@@ -38,13 +38,13 @@ class LocationHolder(
         }
         val talkBackBuilder = StringBuilder()
         if (model.currentPosition) {
-            talkBackBuilder.append(context.getString(R.string.current_location))
+            talkBackBuilder.append(context.getString(R.string.location_current))
         }
         if (talkBackBuilder.toString().isNotEmpty()) {
             talkBackBuilder.append(", ")
         }
         talkBackBuilder.append(
-        context.getString(R.string.content_desc_data_by)
+        context.getString(R.string.weather_data_by)
             .replace("$", model.weatherSource.getVoice(context))
         )
         mBinding.container.swipe(0f)
@@ -118,7 +118,7 @@ class LocationHolder(
         }
 
         // source.
-        mBinding.source.text = context.getString(R.string.content_desc_data_by).replace("$", model.weatherSource.sourceUrl)
+        mBinding.source.text = context.getString(R.string.weather_data_by).replace("$", model.weatherSource.sourceUrl)
         mBinding.source.setTextColor(model.weatherSource.sourceColor)
         mBinding.container.setOnClickListener { mClickListener.onClick(model.location.formattedId) }
         // TODO
@@ -131,7 +131,7 @@ class LocationHolder(
         if (mDragListener != null) {
             talkBackBuilder.append(", ").append(
                 context.getString(
-                    if (DisplayUtils.isRtl(context)) R.string.content_des_swipe_left_to_delete else R.string.content_des_swipe_right_to_delete
+                    if (DisplayUtils.isRtl(context)) R.string.content_desc_swipe_left_to_delete else R.string.content_desc_swipe_right_to_delete
                 )
             )
         }

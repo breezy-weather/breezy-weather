@@ -57,8 +57,8 @@
     <string-array name="notification_styles">
         <item>지역</item>
         <item>Cities</item>
-        <item>@string/daily_overview</item><!-- do not translate. -->
-        <item>@string/hourly_overview</item><!-- do not translate. -->
+        <item>@string/daily_forecast</item><!-- do not translate. -->
+        <item>@string/hourly_forecast</item><!-- do not translate. -->
     </string-array>
 
     <!-- 알림 글자 색상. -->

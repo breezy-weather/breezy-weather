@@ -96,13 +96,13 @@ class LiveWallpaperConfigActivity : GeoActivity() {
                         currentVal = weatherKindValueNow,
                         names = weatherKinds,
                         values = weatherKindValues,
-                        titleId = R.string.feedback_live_wallpaper_weather_kind,
+                        titleId = R.string.widget_live_wallpaper_weather_kind,
                     )
                     Spinner(
                         currentVal = dayNightTypeValueNow,
                         names = dayNightTypeKinds,
                         values = dayNightTypeValues,
-                        titleId = R.string.feedback_live_wallpaper_day_night_type,
+                        titleId = R.string.widget_live_wallpaper_day_night_type,
                     )
                     Box(
                         modifier = Modifier

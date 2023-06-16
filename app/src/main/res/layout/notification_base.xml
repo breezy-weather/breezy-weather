@@ -41,7 +41,7 @@
 
         <TextView
             android:id="@+id/notification_base_weather"
-            android:text="@string/wait_refresh"
+            android:text="@string/widget_refreshing"
             android:textSize="@dimen/title_text_size"
             android:includeFontPadding="false"
             android:layout_marginEnd="@dimen/little_margin"
@@ -52,7 +52,7 @@
 
         <TextView
             android:id="@+id/notification_base_aqiAndWind"
-            android:text="@string/ellipsis"
+            android:text="@string/widget_ellipsis"
             android:textSize="@dimen/content_text_size"
             android:includeFontPadding="false"
             android:layout_marginEnd="@dimen/little_margin"
@@ -63,7 +63,7 @@
 
         <TextView
             android:id="@+id/notification_base_time"
-            android:text="@string/ellipsis"
+            android:text="@string/widget_ellipsis"
             android:textSize="@dimen/widget_time_text_size"
             android:includeFontPadding="false"
             android:layout_marginEnd="@dimen/little_margin"

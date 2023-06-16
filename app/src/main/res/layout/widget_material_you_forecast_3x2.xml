@@ -21,7 +21,7 @@
 
             <TextView
                 android:id="@+id/widget_material_you_forecast_city"
-                android:text="@string/ellipsis"
+                android:text="@string/widget_ellipsis"
                 android:paddingTop="@dimen/normal_margin"
                 android:paddingStart="@dimen/normal_margin"
                 android:paddingEnd="@dimen/normal_margin"
@@ -45,7 +45,7 @@
 
                 <TextView
                     android:id="@+id/widget_material_you_forecast_currentTemperature"
-                    android:text="@string/ellipsis"
+                    android:text="@string/widget_ellipsis"
                     android:layout_marginStart="@dimen/little_margin"
                     android:layout_marginEnd="-4dp"
                     android:textSize="42sp"
@@ -63,7 +63,7 @@
 
                     <TextView
                         android:id="@+id/widget_material_you_forecast_daytimeTemperature"
-                        android:text="@string/ellipsis"
+                        android:text="@string/widget_ellipsis"
                         android:layout_marginStart="@dimen/little_margin"
                         android:layout_marginEnd="@dimen/little_margin"
                         android:textSize="@dimen/content_text_size"
@@ -76,7 +76,7 @@
 
                     <TextView
                         android:id="@+id/widget_material_you_forecast_nighttimeTemperature"
-                        android:text="@string/ellipsis"
+                        android:text="@string/widget_ellipsis"
                         android:layout_marginStart="@dimen/little_margin"
                         android:layout_marginEnd="@dimen/little_margin"
                         android:textSize="@dimen/content_text_size"
@@ -112,7 +112,7 @@
 
             <TextView
                 android:id="@+id/widget_material_you_forecast_weatherText"
-                android:text="@string/ellipsis"
+                android:text="@string/widget_ellipsis"
                 android:layout_marginStart="@dimen/normal_margin"
                 android:layout_marginEnd="@dimen/normal_margin"
                 android:textSize="@dimen/content_text_size"
@@ -126,7 +126,7 @@
 
             <TextView
                 android:id="@+id/widget_material_you_forecast_aqiOrWind"
-                android:text="@string/ellipsis"
+                android:text="@string/widget_ellipsis"
                 android:layout_marginStart="@dimen/normal_margin"
                 android:layout_marginEnd="@dimen/normal_margin"
                 android:layout_marginBottom="@dimen/normal_margin"
