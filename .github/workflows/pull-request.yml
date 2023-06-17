@@ -1,4 +1,4 @@
-name: Breezy Weather CI
+name: Breezy Weather - Pull Request CI
 
 on:
   push:

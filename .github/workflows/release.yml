@@ -1,0 +1,45 @@
+name: Breezy Weather Release
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ v* ]
+    paths-ignore:
+      - ".editorconfig"
+      - "fastlane/*"
+      - "work/*"
+      - "CONTRIBUTE.md"
+      - "FEATURES.md"
+      - "LICENSE"
+      - "PROVIDERS.md"
+      - "README.md"
+
+jobs:
+  release-build:
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: 11
+          distribution: 'temurin'
+          cache: gradle
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      - name: Build with Gradle
+        run: ./gradlew build
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: BreezyWeather_fdroidDebug.apk
+          path: app/build/outputs/apk/fdroid/debug/BreezyWeather.apk
+      - name: Create Github Release
+         uses: softprops/action-gh-release@v1
+         with:
+           generate_release_notes: true
+           prerelease: true
+           files: |
+             app/build/outputs/apk/fdroid/debug/BreezyWeather.apk
