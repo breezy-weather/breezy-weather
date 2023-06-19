@@ -19,6 +19,7 @@ Additions already available:
 * Many non-visible improvements to the code
 
 Future updates (in no particular order):
+* Fix issue with current location being added many times (regression)
 * Reorganize translations so that we can have them on Weblate (move string-array to list of @string, tag notranslate strings)
 * Organize settings better (with years, it has become kind of a mess)
 * Add onboarding instead of asking for permissions straight away + don’t add current position by default
@@ -51,21 +52,30 @@ Future updates (in no particular order):
 
 
 ### Download app
+
 Currently on alpha, you can download debug builds (artifacts) from GitHub actions if you are logged in, or build it with Android Studio, or from command line with Gradle.
 
 Very soon as pre-releases on GitHub, and on IzzyDroid if possible.
 
 When moving to beta, it will be available on F-Droid if they agree.
 
-Google Play releases will be available once it is stable enough.
+Google Play releases will be available once it is stable enough and is compliant with Google Play policy.
 
 
-### Contact me
-* Matrix server: `#geometric-weather:matrix.org`
+### Help
+
+* [Homepage explanations](docs/HOMEPAGE.md)
+* [Weather providers comparison](docs/PROVIDERS.md)
+
+
+### Contact us
+
+* Matrix server: `#breezy-weather:matrix.org`
 * GitHub discussions or issues
 
 
 ### Build variants
+
 Differences between build variants:
 
 | Variant                | fdroid | gplay | public |
@@ -76,25 +86,22 @@ Differences between build variants:
 | AMAP                   | ❌      | ❌     | ✅      |
 
 
-### Weather providers
-
-**AccuWeather** is the most complete provider.
-
-**Open-Meteo** is the only free and open source provider on this list, and probably also the most privacy-friendly. It is nearly as complete as **AccuWeather**, however lacks major features (reverse geocoding, alerts and realtime precipitations). Air Quality and Pollen are available and remains to be implemented with appropriate credits and acknowledgement.
-
-For more details, see [weather providers](PROVIDERS.md).
-
 ### Weather icon extensions
-If you want to build your own weather icon-pack, please read this document:
-* [IconProvider-For-GeometricWeather](https://github.com/WangDaYeeeeee/IconProvider-For-GeometricWeather)
 
-Also, you will find some icon-packs made by WangDaYeeeeee here:
-* [IconPacks](https://github.com/WangDaYeeeeee/IconProvider-For-GeometricWeather/tree/master/apk)
+If you want to build your own weather icon pack, please read this document:
+* [Breezy Weather icon packs instructions](https://github.com/breezy-weather/breezy-weather-icon-packs)
 
-Breezy Weather is compatible with Chronus Weather IconPacks. You can download them from Google Play or any other app store you have.
+You can find existing compatible icon packs made by WangDaYeeeeee here:
+* [Geometric Weather icon packs](https://github.com/WangDaYeeeeee/IconProvider-For-GeometricWeather/tree/master/apk)
 
-### Help me to improve the translation
+Breezy Weather is also compatible with Chronus Weather icon packs. You can download them from Google Play or any other app store you have.
+
+
+### Translation improvements
+
 You can submit a pull request, or wait for the project to be available on Weblate (soon).
 
+
 ### License
-* [LICENSE](/LICENSE)
+
+* [LGPL](/LICENSE)

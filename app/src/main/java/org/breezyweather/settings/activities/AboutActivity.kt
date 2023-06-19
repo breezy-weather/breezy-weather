@@ -68,7 +68,7 @@ class AboutActivity : GeoActivity() {
         ) {
             IntentHelper.startWebViewActivity(
                 this@AboutActivity,
-                "https://github.com/papjul/breezy-weather"
+                "https://github.com/breezy-weather/breezy-weather"
             )
         },
         AboutAppLinkItem(
@@ -77,7 +77,7 @@ class AboutActivity : GeoActivity() {
         ) {
             IntentHelper.startWebViewActivity(
                 this@AboutActivity,
-                "https://matrix.to/#/#geometric-weather:matrix.org"
+                "https://matrix.to/#/#breezy-weather:matrix.org"
             )
         },
     )

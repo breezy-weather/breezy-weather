@@ -5,12 +5,11 @@ on:
     branches: [ main, dev ]
     paths-ignore:
       - ".editorconfig"
+      - "docs/*"
       - "fastlane/*"
       - "work/*"
       - "CONTRIBUTE.md"
-      - "FEATURES.md"
       - "LICENSE"
-      - "PROVIDERS.md"
       - "README.md"
   pull_request:
     branches: [ main, dev ]

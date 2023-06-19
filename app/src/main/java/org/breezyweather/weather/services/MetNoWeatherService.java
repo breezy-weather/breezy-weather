@@ -48,7 +48,7 @@ public class MetNoWeatherService extends WeatherService {
     }
 
     protected String getUserAgent() {
-        return "BreezyWeather/"+ BuildConfig.VERSION_NAME + " github.com/papjul/breezy-weather/issues";
+        return "BreezyWeather/"+ BuildConfig.VERSION_NAME + " github.com/breezy-weather/breezy-weather/issues";
     }
 
     protected static String getTimezoneOffset(TimeZone tz) {

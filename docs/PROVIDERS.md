@@ -1,6 +1,11 @@
 # Weather providers
 
-This is a user-end guide to weather providers available in Breezy Weather. If you are a developer looking to add a new provider in Breezy Weather, have a look at [contribute](CONTRIBUTE.md).
+This is a user-end guide to weather providers available in Breezy Weather. If you are a developer looking to add a new provider in Breezy Weather, have a look at [contribute](../CONTRIBUTE.md).
+
+
+**AccuWeather** is the most complete provider.
+
+**Open-Meteo** is the only free and open source provider on this list, and probably also the most privacy-friendly. It is nearly as complete as **AccuWeather**, however lacks major features (reverse geocoding, alerts and realtime precipitations). Air Quality and Pollen are available and remains to be implemented with appropriate credits and acknowledgement.
 
 ## Status
 
