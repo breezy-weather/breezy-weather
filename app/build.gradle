@@ -17,7 +17,7 @@ android {
         versionName "4.0.0-alpha"
         multiDexEnabled true
         ndk {
-            abiFilters "armeabi", "x86", "armeabi-v7a", "x86_64", "arm64-v8a"
+            abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
         }
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -29,6 +29,14 @@ android {
         viewBinding true
         compose true
     }
+    splits {
+        abi {
+            enable true
+            reset()
+            include "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
+            universalApk true
+        }
+    }
     buildTypes {
         release {
             minifyEnabled true
@@ -37,12 +45,6 @@ android {
             debuggable false
             crunchPngs false // No need to do that, we already optimized them
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
-
-            android.applicationVariants.all { variant ->
-                variant.outputs.all {
-                    outputFileName = "BreezyWeather.apk"
-                }
-            }
         }
     }
     buildTypes.each {

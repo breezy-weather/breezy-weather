@@ -1,0 +1,43 @@
+name: Breezy Weather Pull Request CI
+
+on:
+  pull_request:
+    branches:
+      - main
+      - dev
+    paths-ignore:
+      - ".editorconfig"
+      - "docs/*"
+      - "fastlane/*"
+      - "work/*"
+      - "**.md"
+      - "LICENSE"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Gradle Wrapper
+        uses: gradle/wrapper-validation-action@v1
+
+      - name: Dependency review
+        uses: actions/dependency-review-action@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: adopt
+
+      - uses: gradle/gradle-command-action@v2
+        with:
+          arguments: assembleFdroidDebug
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: BreezyWeather_fdroidDebug.apk
+          path: app/build/outputs/apk/fdroid/debug/app-fdroid-universal-debug.apk
