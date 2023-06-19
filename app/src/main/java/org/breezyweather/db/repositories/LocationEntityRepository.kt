@@ -2,6 +2,7 @@ package org.breezyweather.db.repositories
 
 import android.content.Context
 import org.breezyweather.common.basic.models.Location
+import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.db.ObjectBox.boxStore
 import org.breezyweather.db.entities.LocationEntity
 import org.breezyweather.db.entities.LocationEntity_
@@ -24,9 +25,11 @@ object LocationEntityRepository {
     fun writeLocation(location: Location) {
         val entity = LocationEntityGenerator.generate(location)
         boxStore.callInTxNoException {
-            if (selectLocationEntity(location.formattedId) == null) {
+            val dbEntity = selectLocationEntity(location.formattedId)
+            if (dbEntity == null) {
                 insertLocationEntity(entity)
             } else {
+                entity.id = dbEntity.id
                 updateLocationEntity(entity)
             }
             true
