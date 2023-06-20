@@ -51,18 +51,17 @@ class Wind(
         }
     }
 
-    val shortWindDescription: String
-        get() {
-            val builder = StringBuilder()
-            if (!direction.isNullOrEmpty()) {
-                builder.append(direction)
-            }
-            if (!level.isNullOrEmpty()) {
-                if (builder.toString().isNotEmpty()) builder.append(" ")
-                builder.append(level)
-            }
-            return builder.toString()
+    fun getShortWindDescription(context: Context, unit: SpeedUnit): String {
+        val builder = StringBuilder()
+        if (!direction.isNullOrEmpty()) {
+            builder.append(direction)
         }
+        speed?.let {
+            if (builder.toString().isNotEmpty()) builder.append(" ")
+            builder.append(unit.getValueText(context, it))
+        }
+        return builder.toString()
+    }
 
     fun getWindDescription(context: Context, unit: SpeedUnit): String {
         val builder = StringBuilder()

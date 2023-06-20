@@ -1,6 +1,6 @@
-![Breezy Weather icon](app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png)
-
 # Breezy Weather
+
+![Breezy Weather screenshot](fastlane/metadata/android/en-US/images/phoneScreenshots/Screenshot_1590799774.png?raw=true)
 
 Breezy Weather is a fork of [GeometricWeather](https://github.com/WangDaYeeeeee/GeometricWeather) (LGPL-v3 license), currently no longer updated.
 
@@ -19,7 +19,6 @@ Additions already available:
 * Many non-visible improvements to the code
 
 Future updates (in no particular order):
-* Fix issue with current location being added many times (regression)
 * Reorganize translations so that we can have them on Weblate (move string-array to list of @string, tag notranslate strings)
 * Organize settings better (with years, it has become kind of a mess)
 * Add onboarding instead of asking for permissions straight away + don’t add current position by default

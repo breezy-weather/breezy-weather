@@ -14,11 +14,11 @@
         android:gravity="center_vertical">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/container_main_first_card_header_timeIcon"
+            android:id="@+id/container_main_first_card_header_alertIcon"
             android:layout_width="@dimen/standard_weather_icon_size"
             android:layout_height="@dimen/standard_weather_icon_size"
             android:padding="@dimen/normal_margin"
-            android:src="@drawable/ic_time"
+            android:src="@drawable/ic_alert"
             android:tint="?attr/colorTitleText"
             android:background="@drawable/selectable_item_background"
             tools:ignore="ContentDescription,RtlHardcoded" />
@@ -31,34 +31,20 @@
             android:layout_marginBottom="@dimen/normal_margin">
 
             <TextView
-                android:id="@+id/container_main_first_card_header_timeText"
-                style="@style/title_text"
-                tools:text="09:00"
-                tools:ignore="RelativeOverlap,RtlHardcoded,RtlSymmetry" />
-
-            <TextView
-                android:id="@+id/container_main_first_card_header_localTimeText"
+                android:id="@+id/container_main_first_card_header_alert"
+                android:lineSpacingMultiplier="1.1"
                 style="@style/subtitle_text"
-                tools:text="当地时间 : 4月33日 06:00 星期日"
-                tools:ignore="RelativeOverlap,RtlHardcoded,RtlSymmetry" />
+                tools:text="大雾黄色预警, 发布于2018-07-10 02:32" />
 
         </LinearLayout>
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/container_main_first_card_header_alert"
-        android:layout_marginStart="@dimen/normal_margin"
-        android:layout_marginEnd="@dimen/normal_margin"
-        android:lineSpacingMultiplier="1.1"
-        style="@style/subtitle_text"
-        tools:text="大雾黄色预警, 发布于2018-07-10 02:32" />
 
     <View
         android:id="@+id/container_main_first_card_header_line"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="@dimen/little_margin"
-        android:background="?attr/colorSurface" />
+        android:background="?attr/colorOutline" />
 
 </LinearLayout>

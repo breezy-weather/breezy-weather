@@ -390,8 +390,10 @@
 
     <!-- TODO: To be sorted -->
     <!-- keyword. -->
+    <string name="refreshed">Refreshed</string>
     <string name="refresh_at">Refreshed at</string>
     <string name="published_at">Published at</string>
+    <string name="alerts_to_follow">Alerts to follow, tap here to see them.</string>
     <string name="daytime">Daytime</string>
     <string name="nighttime">Nighttime</string>
     <string name="refresh">Refresh</string>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container_main_header"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -9,42 +10,172 @@
     android:foreground="@drawable/selectable_item_background"
     android:gravity="bottom"
     android:padding="@dimen/normal_margin"
-    tools:layout_height="256dp"
+    tools:layout_height="350dp"
     tools:background="@android:color/black"
     tools:ignore="UnusedAttribute">
 
-    <org.breezyweather.common.ui.widgets.NumberAnimTextView
-        android:id="@+id/container_main_header_tempTxt"
+    <RelativeLayout
+        android:id="@+id/container_main_header_temperature"
         android:layout_width="match_parent"
-        android:textSize="@dimen/main_title_text_size"
-        android:includeFontPadding="false"
-        android:textAlignment="viewStart"
-        android:textFontWeight="200"
-        style="@style/large_title_text"
-        tools:text="30°"
-        tools:ignore="RelativeOverlap,RtlHardcoded" />
+        android:layout_height="wrap_content">
+        <org.breezyweather.common.ui.widgets.NumberAnimTextView
+                android:id="@+id/container_main_header_temperature_value"
+                android:layout_width="wrap_content"
+                android:textSize="@dimen/main_title_text_size"
+                android:includeFontPadding="false"
+                android:textFontWeight="200"
+                android:layout_centerHorizontal="true"
+                style="@style/large_title_text"
+                tools:text="30"
+                tools:ignore="RelativeOverlap,RtlSymmetry" />
+        <TextView
+                android:id="@+id/container_main_header_temperature_unit"
+                android:textSize="@dimen/main_title_text_size"
+                android:textFontWeight="200"
+                android:includeFontPadding="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/container_main_header_temperature_value"
+                style="@style/large_title_text"
+                tools:text="°" />
+    </RelativeLayout>
 
     <TextView
-        android:id="@+id/container_main_header_weatherTxt"
-        android:textSize="@dimen/title_text_size"
+        android:id="@+id/container_main_header_weather_text"
+        android:textSize="@dimen/current_weather_text_size"
         android:textStyle="bold"
+        android:layout_gravity="center"
         android:maxLines="1"
         android:ellipsize="end"
-        android:layout_marginTop="-4dp"
-        android:layout_marginBottom="4dp"
-        android:layout_marginStart="2dp"
+        android:textFontWeight="300"
+        android:layout_marginTop="-5dp"
+        android:layout_marginBottom="5dp"
         style="@style/large_title_text"
-        tools:text="晴, 体感37°"
+        tools:text="Sunny"
         tools:ignore="RelativeOverlap,RtlHardcoded" />
 
-    <TextView
-        android:id="@+id/container_main_header_aqiOrWindTxt"
-        android:textSize="@dimen/content_text_size"
-        android:maxLines="1"
-        android:ellipsize="end"
-        android:layout_marginStart="2dp"
-        style="@style/large_title_text"
-        tools:text="空气质量 轻度污染"
-        tools:ignore="RelativeOverlap,RtlHardcoded" />
+    <RelativeLayout
+        android:layout_gravity="center_horizontal"
+        android:layout_width="268dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="46dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="46dp">
+        <TextView
+            android:id="@+id/container_main_header_feelsLike_label"
+            android:textSize="@dimen/large_title_text_size"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:drawablePadding="6dp"
+            style="@style/large_title_text"
+            tools:text="@string/temperature_feels_like"
+            tools:ignore="RelativeOverlap,RtlHardcoded"
+            app:drawableTint="#fff"
+            app:drawableLeftCompat="@drawable/ic_gauge" />
+        <TextView
+            android:id="@+id/container_main_header_feelsLike_text"
+            android:textSize="@dimen/current_weather_details_text_size"
+            android:layout_alignParentEnd="true"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textFontWeight="300"
+            style="@style/large_title_text"
+            tools:text="30 °C"
+            tools:ignore="RelativeOverlap,RtlHardcoded" />
+        <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/container_main_header_feelsLike_divider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                app:dividerColor="@android:color/white"
+                android:layout_below="@+id/container_main_header_feelsLike_label" />
+        <TextView
+                android:id="@+id/container_main_header_wind_label"
+                android:textSize="@dimen/large_title_text_size"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:drawablePadding="6dp"
+                style="@style/large_title_text"
+                tools:text="@string/wind"
+                tools:ignore="RelativeOverlap,RtlHardcoded"
+                app:drawableTint="#fff"
+                app:drawableLeftCompat="@drawable/ic_wind"
+                android:layout_below="@+id/container_main_header_feelsLike_divider" />
+        <TextView
+                android:id="@+id/container_main_header_wind_text"
+                android:textSize="@dimen/current_weather_details_text_size"
+                android:layout_alignParentEnd="true"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textFontWeight="300"
+                style="@style/large_title_text"
+                tools:text="SW 2 km/h"
+                tools:ignore="RelativeOverlap,RtlHardcoded"
+                android:layout_below="@+id/container_main_header_feelsLike_divider" />
+        <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/container_main_header_wind_divider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                app:dividerColor="@android:color/white"
+                android:layout_below="@+id/container_main_header_wind_label" />
+        <TextView
+                android:id="@+id/container_main_header_uv_label"
+                android:textSize="@dimen/large_title_text_size"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:drawablePadding="6dp"
+                style="@style/large_title_text"
+                tools:text="@string/uv_index"
+                tools:ignore="RelativeOverlap,RtlHardcoded"
+                app:drawableTint="#fff"
+                app:drawableLeftCompat="@drawable/ic_uv"
+                android:layout_below="@+id/container_main_header_wind_divider" />
+        <TextView
+                android:id="@+id/container_main_header_uv_text"
+                android:textSize="@dimen/current_weather_details_text_size"
+                android:layout_alignParentEnd="true"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textFontWeight="300"
+                style="@style/large_title_text"
+                tools:text="1 Low"
+                tools:ignore="RelativeOverlap,RtlHardcoded"
+                android:layout_below="@+id/container_main_header_wind_divider" />
+        <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/container_main_header_uv_divider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                app:dividerColor="@android:color/white"
+                android:layout_below="@+id/container_main_header_uv_label" />
+        <TextView
+                android:id="@+id/container_main_header_humidity_label"
+                android:textSize="@dimen/large_title_text_size"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:drawablePadding="6dp"
+                style="@style/large_title_text"
+                tools:text="@string/humidity"
+                tools:ignore="RelativeOverlap,RtlHardcoded"
+                app:drawableTint="#fff"
+                app:drawableLeftCompat="@drawable/ic_water_percent"
+                android:layout_below="@+id/container_main_header_uv_divider" />
+        <TextView
+                android:id="@+id/container_main_header_humidity_text"
+                android:textSize="@dimen/current_weather_details_text_size"
+                android:layout_alignParentEnd="true"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textFontWeight="300"
+                style="@style/large_title_text"
+                tools:text="56 %"
+                tools:ignore="RelativeOverlap,RtlHardcoded"
+                android:layout_below="@+id/container_main_header_uv_divider" />
+    </RelativeLayout>
 
 </LinearLayout>

@@ -8,10 +8,15 @@ In the background, you can see an animation matching the current weather conditi
 
 On top, you have city name of the location on the left, and location list and settings buttons on the right.
 
-Above cards, you have:
-- Current temperature
-- A text about current weather condition
-- Current wind, or if not available, current air quality information
+Just below, you can see the last time of refresh.
+
+Above cards, you have details about current weather:
+- Temperature
+- A text about weather condition
+- Feels Like temperature
+- Wind
+- UV index (only during daylight)
+- Humidity
 
 In the footer, you have credits and acknowledgment for the weather provider used for this location. You also have an Edit button that allow you to change the order of cards or remove some of them. This will apply to all locations.
 
@@ -28,7 +33,7 @@ By default, cards are configured to display in this order and are all enabled:
 
 Some cards may not show with some providers if the data is not available. Check [providers](PROVIDERS.md) for more info.
 
-On top of the first card, you have the latest datetime of refresh. If the timezone of the location is different than your device timezone, it will subtitled with the same datetime but in your device timezone.
+On top of the first card, you have all current alerts listed with their starting time and ending time, if they are restricted to a period. If there are no alerts currently, but there are some scheduled for the future, it will be written, and you will be able to tap on the text to see the details of these future alerts.
 
 
 ### Daily forecast

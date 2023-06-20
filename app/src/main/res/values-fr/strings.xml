@@ -8,7 +8,9 @@
     <string name="location_resident">Mon domicile</string>
     <string name="live">En ce moment</string>
     <string name="short_today">Auj.</string>
+    <string name="refreshed">Rafraîchi</string>
     <string name="refresh_at">Consulté à</string>
+    <string name="alerts_to_follow">Vigilances à venir, appuyez pour voir.</string>
     <string name="precipitation">Précipitation</string>
     <string name="precipitation_probability">Probabilité de précipitation</string>
     <string name="precipitation_duration">Durée des précipitations</string>

@@ -16,6 +16,7 @@ import android.os.Build;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
+import android.text.format.DateUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.DecelerateInterpolator;
@@ -38,6 +39,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
+
+import static android.text.format.DateUtils.FORMAT_ABBREV_RELATIVE;
 
 public class DisplayUtils {
 
@@ -315,6 +318,13 @@ public class DisplayUtils {
         } else {
             return DisplayUtils.getFormattedDate(date, timeZone, "HH:mm");
         }
+    }
+
+    public static String getRelativeTime(Date date) {
+        // FIXME: Use phone locale instead of preference
+        // It doesn't seem possible to call with Locale and TimeZone parameters unfortunately
+        return (String) DateUtils.getRelativeTimeSpanString(
+                date.getTime(), (new Date()).getTime(), DateUtils.SECOND_IN_MILLIS, FORMAT_ABBREV_RELATIVE);
     }
 
     // translationY, scaleX, scaleY

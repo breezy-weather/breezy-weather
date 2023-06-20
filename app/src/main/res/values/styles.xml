@@ -310,5 +310,4 @@
         <item name="android:indeterminateTintMode" tools:ignore="NewApi">src_atop</item>
         <item name="android:indeterminateTint" tools:ignore="NewApi">@color/lightPrimary_5</item>
     </style>
-
 </resources>

@@ -36,49 +36,19 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
 
         mIndexList = new ArrayList<>();
         SettingsManager settings = SettingsManager.getInstance(context);
-        SpeedUnit speedUnit = settings.getSpeedUnit();
         Weather weather = location.getWeather();
         assert weather != null;
 
         if (weather.getCurrent() != null) {
-            if (weather.getDailyForecast().size() > 0
-                    && weather.getCurrent().getWind() != null
-                    && !TextUtils.isEmpty(weather.getCurrent().getWind().getWindDescription(context, speedUnit))
-            ) {
-                String windTitle = context.getString(R.string.wind);
-                String windContent = weather.getCurrent().getWind().getWindDescription(context, speedUnit);
-
+            if (weather.getCurrent().getDewPoint() != null) {
                 mIndexList.add(
                         new Index(
-                                R.drawable.ic_wind,
-                                windTitle,
-                                windContent,
-                                context.getString(R.string.wind)
-                                        + ", " + windTitle
-                                        + ", " + windContent.replace("\n", ", ")
-                        )
-                );
-            }
-
-            if (weather.getCurrent().getRelativeHumidity() != null) {
-                mIndexList.add(
-                        new Index(
-                                R.drawable.ic_water_percent,
-                                context.getString(R.string.humidity),
-                                RelativeHumidityUnit.PERCENT.getValueText(
+                                R.drawable.ic_water,
+                                context.getString(R.string.dew_point),
+                                settings.getTemperatureUnit().getValueText(
                                         context,
-                                        (int) (float) weather.getCurrent().getRelativeHumidity()
+                                        weather.getCurrent().getDewPoint()
                                 )
-                        )
-                );
-            }
-
-            if (weather.getCurrent().getUV() != null && weather.getCurrent().getUV().isValid()) {
-                mIndexList.add(
-                        new Index(
-                                R.drawable.ic_uv,
-                                context.getString(R.string.uv_index),
-                                weather.getCurrent().getUV().getUVDescription()
                         )
                 );
             }
@@ -103,19 +73,6 @@ public class DetailsAdapter extends RecyclerView.Adapter<DetailsAdapter.ViewHold
                                 settings.getDistanceUnit().getValueText(context, weather.getCurrent().getVisibility()),
                                 context.getString(R.string.visibility)
                                         + ", " + settings.getDistanceUnit().getValueVoice(context, weather.getCurrent().getVisibility())
-                        )
-                );
-            }
-
-            if (weather.getCurrent().getDewPoint() != null) {
-                mIndexList.add(
-                        new Index(
-                                R.drawable.ic_water,
-                                context.getString(R.string.dew_point),
-                                settings.getTemperatureUnit().getValueText(
-                                        context,
-                                        weather.getCurrent().getDewPoint()
-                                )
                         )
                 );
             }

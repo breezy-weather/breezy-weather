@@ -122,6 +122,7 @@ private fun buildRemoteViews(
 
     val settings = SettingsManager.getInstance(context)
     val temperatureUnit = settings.temperatureUnit
+    val speedUnit = settings.speedUnit
 
     views.setTextViewText(
         R.id.widget_material_you_forecast_city,
@@ -168,10 +169,10 @@ private fun buildRemoteViews(
             R.id.widget_material_you_forecast_aqiOrWind,
              "AQI - " + weather.current.airQuality.getName(context)
         )
-    } else if (weather.current?.wind != null && weather.current.wind.shortWindDescription.isNotEmpty()) {
+    } else if (weather.current?.wind != null && weather.current.wind.getShortWindDescription(context, speedUnit).isNotEmpty()) {
         views.setTextViewText(
             R.id.widget_material_you_forecast_aqiOrWind,
-            context.getString(R.string.wind) + " - " + weather.current.wind.shortWindDescription
+            context.getString(R.string.wind) + " - " + weather.current.wind.getShortWindDescription(context, speedUnit)
         )
     }
 

@@ -13,7 +13,6 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.core.widget.ImageViewCompat;
 
 import java.util.List;
-import java.util.TimeZone;
 
 import org.breezyweather.common.basic.GeoActivity;
 import org.breezyweather.common.basic.models.Location;
@@ -37,67 +36,35 @@ public class FirstCardHeaderController
     @SuppressLint({"SetTextI18n", "InflateParams"})
     public FirstCardHeaderController(@NonNull GeoActivity activity, @NonNull Location location) {
         mActivity = activity;
-        mView = LayoutInflater.from(activity).inflate(R.layout.container_main_first_card_header, null);
         mFormattedId = location.getFormattedId();
+        mView = LayoutInflater.from(activity).inflate(R.layout.container_main_first_card_header, null);
 
-        AppCompatImageView timeIcon = mView.findViewById(R.id.container_main_first_card_header_timeIcon);
-        TextView refreshTime = mView.findViewById(R.id.container_main_first_card_header_timeText);
-        TextView localTime = mView.findViewById(R.id.container_main_first_card_header_localTimeText);
-        TextView alert = mView.findViewById(R.id.container_main_first_card_header_alert);
-        View line = mView.findViewById(R.id.container_main_first_card_header_line);
+        if (location.getWeather() != null && location.getWeather().getAlertList().size() > 0) {
+            mView.setVisibility(View.VISIBLE);
 
-        if (location.getWeather() != null) {
+            AppCompatImageView alertIcon = mView.findViewById(R.id.container_main_first_card_header_alertIcon);
+            TextView alert = mView.findViewById(R.id.container_main_first_card_header_alert);
+
             Weather weather = location.getWeather();
             List<Alert> currentAlertList = weather.getCurrentAlertList();
 
             mView.setOnClickListener(v -> ((MainActivity) activity).setManagementFragmentVisibility(true));
 
-            if (currentAlertList.size() == 0) {
-                timeIcon.setEnabled(false);
-                timeIcon.setImageResource(R.drawable.ic_time);
-            } else {
-                timeIcon.setEnabled(true);
-                timeIcon.setImageResource(R.drawable.ic_alert);
-            }
-            timeIcon.setContentDescription(
+            alertIcon.setContentDescription(
                     activity.getString(R.string.content_desc_weather_alert_button)
                             .replace("$", "" + currentAlertList.size())
             );
             ImageViewCompat.setImageTintList(
-                    timeIcon,
+                    alertIcon,
                     ColorStateList.valueOf(
                             MainThemeColorProvider.getColor(location, R.attr.colorTitleText)
                     )
             );
-            timeIcon.setOnClickListener(this);
-
-            refreshTime.setText(
-                    activity.getString(R.string.refresh_at)
-                            + " "
-                            + DisplayUtils.getTime(activity, weather.getBase().getUpdateDate(), location.getTimeZone())
-            );
-            refreshTime.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorTitleText));
-
-            if (TimeZone.getDefault().getRawOffset() == location.getTimeZone().getRawOffset()) {
-                // same time zone.
-                localTime.setVisibility(View.GONE);
-            } else {
-                localTime.setVisibility(View.VISIBLE);
-                localTime.setText(
-                        DisplayUtils.getFormattedDate(
-                                weather.getBase().getUpdateDate(),
-                                TimeZone.getDefault(),
-                                activity.getString(R.string.date_format_widget_long) + (DisplayUtils.is12Hour(activity) ? ", h:mm aa" : ", HH:mm")
-                        )
-                );
-                localTime.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorCaptionText));
-            }
+            alertIcon.setOnClickListener(this);
 
             if (currentAlertList.size() == 0) {
-                alert.setVisibility(View.GONE);
-                line.setVisibility(View.GONE);
+                alert.setText(activity.getString(R.string.alerts_to_follow));
             } else {
-                alert.setVisibility(View.VISIBLE);
                 StringBuilder builder = new StringBuilder();
                 for (int i = 0; i < currentAlertList.size(); i++) {
                     builder.append(currentAlertList.get(i).getDescription());
@@ -130,12 +97,11 @@ public class FirstCardHeaderController
                     }
                 }
                 alert.setText(builder.toString());
-                alert.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText));
-
-                line.setVisibility(View.VISIBLE);
-                line.setBackgroundColor(MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorSurface));
             }
+            alert.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText));
             alert.setOnClickListener(this);
+        } else {
+            mView.setVisibility(View.GONE);
         }
     }
 
@@ -157,7 +123,7 @@ public class FirstCardHeaderController
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.container_main_first_card_header_timeIcon:
+            case R.id.container_main_first_card_header_alertIcon:
             case R.id.container_main_first_card_header_alert:
                 IntentHelper.startAlertActivity(mActivity, mFormattedId);
                 break;

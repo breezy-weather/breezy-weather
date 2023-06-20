@@ -15,7 +15,7 @@ enum class CardDisplay(
     CARD_AIR_QUALITY("air_quality", R.string.air_quality),
     CARD_ALLERGEN("allergen", R.string.allergen),
     CARD_SUNRISE_SUNSET("sunrise_sunset", R.string.ephemeris),
-    CARD_LIVE("live", R.string.live);
+    CARD_LIVE("live", R.string.details);
 
     companion object {
 

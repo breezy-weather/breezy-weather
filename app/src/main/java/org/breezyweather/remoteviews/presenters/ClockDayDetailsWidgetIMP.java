@@ -14,6 +14,7 @@ import java.util.Date;
 import org.breezyweather.BreezyWeather;
 import org.breezyweather.common.basic.models.Location;
 import org.breezyweather.common.basic.models.options.unit.RelativeHumidityUnit;
+import org.breezyweather.common.basic.models.options.unit.SpeedUnit;
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit;
 import org.breezyweather.common.basic.models.weather.Temperature;
 import org.breezyweather.common.basic.models.weather.Weather;
@@ -140,12 +141,14 @@ public class ClockDayDetailsWidgetIMP extends AbstractRemoteViewsPresenter {
                 getAQIHumidityTempText(context, weather)
         );
 
-        if (weather.getCurrent() != null && weather.getCurrent().getWind() != null
-            && !TextUtils.isEmpty(weather.getCurrent().getWind().getShortWindDescription())) {
-            views.setTextViewText(
-                    R.id.widget_clock_day_wind,
-                    weather.getCurrent().getWind().getShortWindDescription()
-            );
+        if (weather.getCurrent() != null && weather.getCurrent().getWind() != null) {
+            SpeedUnit speedUnit = settings.getSpeedUnit();
+            if (!TextUtils.isEmpty(weather.getCurrent().getWind().getShortWindDescription(context, speedUnit))) {
+                views.setTextViewText(
+                        R.id.widget_clock_day_wind,
+                        weather.getCurrent().getWind().getShortWindDescription(context, speedUnit)
+                );
+            }
         }
 
         if (color.textColor != Color.TRANSPARENT) {

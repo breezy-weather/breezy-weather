@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -14,6 +15,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
+import com.google.android.material.divider.MaterialDivider;
+import org.breezyweather.common.basic.models.options.unit.RelativeHumidityUnit;
+import org.breezyweather.common.basic.models.options.unit.SpeedUnit;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -32,8 +36,19 @@ public class HeaderViewHolder extends AbstractMainViewHolder {
 
     private final LinearLayout mContainer;
     private final NumberAnimTextView mTemperature;
-    private final TextView mWeather;
-    private final TextView mAqiOrWind;
+    private final TextView mTemperatureUnitView;
+    private final TextView mWeatherText;
+    private final TextView mFeelsLikeLabel;
+    private final TextView mFeelsLike;
+    private final MaterialDivider mFeelsLikeDivider;
+    private final TextView mWindLabel;
+    private final TextView mWind;
+    private final MaterialDivider mWindDivider;
+    private final TextView mUvLabel;
+    private final TextView mUv;
+    private final MaterialDivider mUvDivider;
+    private final TextView mHumidityLabel;
+    private final TextView mHumidity;
 
     private int mTemperatureCFrom;
     private int mTemperatureCTo;
@@ -48,9 +63,20 @@ public class HeaderViewHolder extends AbstractMainViewHolder {
         );
 
         mContainer = itemView.findViewById(R.id.container_main_header);
-        mTemperature = itemView.findViewById(R.id.container_main_header_tempTxt);
-        mWeather = itemView.findViewById(R.id.container_main_header_weatherTxt);
-        mAqiOrWind = itemView.findViewById(R.id.container_main_header_aqiOrWindTxt);
+        mTemperature = itemView.findViewById(R.id.container_main_header_temperature_value);
+        mTemperatureUnitView = itemView.findViewById(R.id.container_main_header_temperature_unit);
+        mWeatherText = itemView.findViewById(R.id.container_main_header_weather_text);
+        mFeelsLikeLabel = itemView.findViewById(R.id.container_main_header_feelsLike_label);
+        mFeelsLike = itemView.findViewById(R.id.container_main_header_feelsLike_text);
+        mFeelsLikeDivider = itemView.findViewById(R.id.container_main_header_feelsLike_divider);
+        mWindLabel = itemView.findViewById(R.id.container_main_header_wind_label);
+        mWind = itemView.findViewById(R.id.container_main_header_wind_text);
+        mWindDivider = itemView.findViewById(R.id.container_main_header_wind_divider);
+        mUvLabel = itemView.findViewById(R.id.container_main_header_uv_label);
+        mUv = itemView.findViewById(R.id.container_main_header_uv_text);
+        mUvDivider = itemView.findViewById(R.id.container_main_header_uv_divider);
+        mHumidityLabel = itemView.findViewById(R.id.container_main_header_humidity_label);
+        mHumidity = itemView.findViewById(R.id.container_main_header_humidity_text);
 
         mTemperatureCFrom = 0;
         mTemperatureCTo = 0;
@@ -66,20 +92,31 @@ public class HeaderViewHolder extends AbstractMainViewHolder {
                            boolean listAnimationEnabled, boolean itemAnimationEnabled) {
         super.onBindView(context, location, provider, listAnimationEnabled, itemAnimationEnabled);
 
-        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) mContainer.getLayoutParams();
+        /*ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) mContainer.getLayoutParams();
         params.height = ThemeManager
                 .getInstance(context)
                 .getWeatherThemeDelegate()
                 .getHeaderHeight(context);
-        mContainer.setLayoutParams(params);
+        mContainer.setLayoutParams(params);*/
 
         int textColor = ThemeManager
                 .getInstance(context)
                 .getWeatherThemeDelegate()
                 .getHeaderTextColor(context);
         mTemperature.setTextColor(textColor);
-        mWeather.setTextColor(textColor);
-        mAqiOrWind.setTextColor(textColor);
+        mTemperatureUnitView.setTextColor(textColor);
+        mWeatherText.setTextColor(textColor);
+        mFeelsLikeLabel.setTextColor(textColor);
+        mFeelsLike.setTextColor(textColor);
+        mFeelsLikeDivider.setDividerColor(textColor);
+        mWindLabel.setTextColor(textColor);
+        mWind.setTextColor(textColor);
+        mWindDivider.setDividerColor(textColor);
+        mUvLabel.setTextColor(textColor);
+        mUv.setTextColor(textColor);
+        mUvDivider.setDividerColor(textColor);
+        mHumidityLabel.setTextColor(textColor);
+        mHumidity.setTextColor(textColor);
 
         mTemperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit();
         if (location.getWeather() != null && location.getWeather().getCurrent() != null) {
@@ -94,50 +131,99 @@ public class HeaderViewHolder extends AbstractMainViewHolder {
                                 Math.abs(mTemperatureCTo - mTemperatureCFrom) / 10f * 1000
                         )
                 );
-                mTemperature.setPostfixString(mTemperatureUnit.getShortName(context));
+                mTemperatureUnitView.setText(mTemperatureUnit.getShortName(context));
             }
 
-            StringBuilder title = new StringBuilder();
             if (!TextUtils.isEmpty(location.getWeather().getCurrent().getWeatherText())) {
-                title.append(location.getWeather().getCurrent().getWeatherText());
-            }
-            if (location.getWeather().getCurrent().getTemperature().getFeelsLikeTemperature() != null) {
-                if (!TextUtils.isEmpty(location.getWeather().getCurrent().getWeatherText())) {
-                    title.append(", ");
-                }
-
-                title.append(context.getString(R.string.temperature_feels_like))
-                        .append(" ")
-                        .append(location.getWeather().getCurrent().getTemperature().getShortFeelsLikeTemperature(context, mTemperatureUnit));
-            } else if (location.getWeather().getCurrent().getTemperature().getFeelsLikeTemperature() != null) {
-                if (!TextUtils.isEmpty(location.getWeather().getCurrent().getWeatherText())) {
-                    title.append(", ");
-                }
-
-                title.append(context.getString(R.string.temperature_feels_like))
-                        .append(" ")
-                        .append(location.getWeather().getCurrent().getTemperature().getShortFeelsLikeTemperature(context, mTemperatureUnit));
-            }
-            mWeather.setText(title.toString());
-
-            if (location.getWeather().getCurrent().getAirQuality() != null && !TextUtils.isEmpty(location.getWeather().getCurrent().getAirQuality().getName(context, null))) {
-                mAqiOrWind.setText(
-                        context.getString(R.string.air_quality)
-                                + " - "
-                                + location.getWeather().getCurrent().getAirQuality().getName(context, null)
-                );
-            } else if (location.getWeather().getCurrent().getWind() != null && !TextUtils.isEmpty(location.getWeather().getCurrent().getWind().getShortWindDescription())) {
-                mAqiOrWind.setText(
-                        context.getString(R.string.wind)
-                                + " - "
-                                + location.getWeather().getCurrent().getWind().getShortWindDescription()
-                );
+                mWeatherText.setVisibility(View.VISIBLE);
+                mWeatherText.setText(location.getWeather().getCurrent().getWeatherText());
+            } else {
+                mWeatherText.setVisibility(View.GONE);
             }
 
+            // Feels Like
+            boolean validFeelsLike = location.getWeather().getCurrent().getTemperature().getFeelsLikeTemperature() != null;
+            if (validFeelsLike) {
+                mFeelsLikeLabel.setVisibility(View.VISIBLE);
+                mFeelsLike.setVisibility(View.VISIBLE);
+                mFeelsLikeLabel.setText(context.getString(R.string.temperature_feels_like));
+                mFeelsLike.setText(location.getWeather().getCurrent().getTemperature().getFeelsLikeTemperature(context, mTemperatureUnit));
+            } else {
+                mFeelsLikeLabel.setVisibility(View.GONE);
+                mFeelsLike.setVisibility(View.GONE);
+            }
+
+            // Feels Like divider
+            SpeedUnit speedUnit = SettingsManager.getInstance(context).getSpeedUnit();
+            boolean validWind = location.getWeather().getCurrent().getWind() != null
+                    && !TextUtils.isEmpty(location.getWeather().getCurrent().getWind().getShortWindDescription(context, speedUnit));
+            if (validWind && validFeelsLike) {
+                mFeelsLikeDivider.setVisibility(View.VISIBLE);
+            } else {
+                mFeelsLikeDivider.setVisibility(View.GONE);
+            }
+
+            // Wind
+            if (validWind) {
+                mWindLabel.setVisibility(View.VISIBLE);
+                mWind.setVisibility(View.VISIBLE);
+                mWindLabel.setText(context.getString(R.string.wind));
+                mWind.setText(location.getWeather().getCurrent().getWind().getShortWindDescription(context, speedUnit));
+            } else {
+                mWindLabel.setVisibility(View.GONE);
+                mWind.setVisibility(View.GONE);
+            }
+
+            // Wind divider
+            boolean validUv = location.getWeather().getCurrent().getUV() != null
+                    && location.isDaylight() // Don’t show UV at night
+                    && location.getWeather().getCurrent().getUV().getIndex() != null;
+            if (validUv && (validFeelsLike || validWind)) {
+                mWindDivider.setVisibility(View.VISIBLE);
+            } else {
+                mWindDivider.setVisibility(View.GONE);
+            }
+
+            // UV
+            if (validUv) {
+                mUvLabel.setVisibility(View.VISIBLE);
+                mUv.setVisibility(View.VISIBLE);
+                mUvLabel.setText(context.getString(R.string.uv_index));
+                mUv.setText(location.getWeather().getCurrent().getUV().getShortUVDescription());
+            } else {
+                mUvLabel.setVisibility(View.GONE);
+                mUv.setVisibility(View.GONE);
+            }
+
+            // UV / Humidity divider
+            boolean validHumidity = location.getWeather().getCurrent().getRelativeHumidity() != null;
+            if (validHumidity && (validFeelsLike || validWind || validUv)) {
+                mUvDivider.setVisibility(View.VISIBLE);
+            } else {
+                mUvDivider.setVisibility(View.GONE);
+            }
+
+            // Humidity
+            if (validHumidity) {
+                mHumidityLabel.setVisibility(View.VISIBLE);
+                mHumidity.setVisibility(View.VISIBLE);
+                mHumidityLabel.setText(context.getString(R.string.humidity));
+                mHumidity.setText(RelativeHumidityUnit.PERCENT.getValueText(
+                        context,
+                        (int) (float) location.getWeather().getCurrent().getRelativeHumidity()
+                ));
+            } else {
+                mHumidityLabel.setVisibility(View.GONE);
+                mHumidity.setVisibility(View.GONE);
+            }
+
+            // FIXME: contains values of previous location if visibility = GONE and label is missing
             itemView.setContentDescription(location.getCityName(context)
                     + ", " + location.getWeather().getCurrent().getTemperature().getTemperature(context, mTemperatureUnit)
-                    + ", " + mWeather.getText()
-                    + ", " + mAqiOrWind.getText());
+                    + ", " + mWeatherText.getText()
+                    + ", " + mWind.getText()
+                    + ", " + mUv.getText()
+                    + ", " + mHumidity.getText());
         }
     }
 

@@ -74,6 +74,7 @@ public class MaterialWeatherView extends ViewGroup
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
+        // FIXME: It's no longer 0.66, see HeaderViewHolder.onBindView
         mFirstCardMarginTop = (int) (getResources().getDisplayMetrics().heightPixels * 0.66);
 
         for (int index = 0; index < getChildCount(); index ++) {

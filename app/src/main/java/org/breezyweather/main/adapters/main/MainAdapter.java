@@ -14,18 +14,9 @@ import org.breezyweather.common.basic.GeoActivity;
 import org.breezyweather.common.basic.models.Location;
 import org.breezyweather.common.basic.models.options.appearance.CardDisplay;
 import org.breezyweather.common.basic.models.weather.Weather;
+import org.breezyweather.main.adapters.main.holder.*;
 import org.breezyweather.theme.resource.providers.ResourceProvider;
 import org.breezyweather.theme.weatherView.WeatherView;
-import org.breezyweather.main.adapters.main.holder.AbstractMainCardViewHolder;
-import org.breezyweather.main.adapters.main.holder.AbstractMainViewHolder;
-import org.breezyweather.main.adapters.main.holder.AirQualityViewHolder;
-import org.breezyweather.main.adapters.main.holder.AllergenViewHolder;
-import org.breezyweather.main.adapters.main.holder.AstroViewHolder;
-import org.breezyweather.main.adapters.main.holder.DailyViewHolder;
-import org.breezyweather.main.adapters.main.holder.DetailsViewHolder;
-import org.breezyweather.main.adapters.main.holder.FooterViewHolder;
-import org.breezyweather.main.adapters.main.holder.HeaderViewHolder;
-import org.breezyweather.main.adapters.main.holder.HourlyViewHolder;
 import org.breezyweather.settings.SettingsManager;
 
 public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
@@ -70,6 +61,7 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
         if (location != null && location.getWeather() != null) {
             Weather weather = location.getWeather();
             List<CardDisplay> cardDisplayList = SettingsManager.getInstance(activity).getCardDisplayList();
+            mViewTypeList.add(ViewType.REFRESH_TIME);
             mViewTypeList.add(ViewType.HEADER);
             for (CardDisplay c : cardDisplayList) {
                 if (c == CardDisplay.CARD_AIR_QUALITY
@@ -109,6 +101,9 @@ public class MainAdapter extends RecyclerView.Adapter<AbstractMainViewHolder> {
     @Override
     public AbstractMainViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         switch (viewType) {
+            case ViewType.REFRESH_TIME:
+                return new RefreshTimeViewHolder(parent, mWeatherView);
+
             case ViewType.HEADER:
                 return new HeaderViewHolder(parent, mWeatherView);
 
