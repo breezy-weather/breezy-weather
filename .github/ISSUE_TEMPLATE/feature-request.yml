@@ -1,0 +1,34 @@
+name: Feature request
+description: Suggest a feature to improve app
+labels: [Feature request]
+body:
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Describe your suggested feature
+      description: How can Breezy Weather be improved?
+      placeholder: |
+        Example:
+          "Here is how it should work: …"
+    validations:
+      required: true
+
+  - type: textarea
+    id: other-details
+    attributes:
+      label: Other details
+      placeholder: |
+        Additional details and attachments.
+
+  - type: checkboxes
+    id: acknowledgements
+    attributes:
+      label: Acknowledgements
+      description: Your issue will be closed if you don’t read this carefully.
+      options:
+        - label: I have searched the existing issues and this is a new ticket, **NOT** a duplicate or related to another open or closed issue.
+          required: true
+        - label: I have written a short but informative title.
+          required: true
+        - label: I have updated the app to **[latest version](https://github.com/breezy-weather/breezy-weather/releases/latest)**.
+          required: true

@@ -2,7 +2,6 @@ package org.breezyweather.db.repositories
 
 import android.content.Context
 import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.db.ObjectBox.boxStore
 import org.breezyweather.db.entities.LocationEntity
 import org.breezyweather.db.entities.LocationEntity_

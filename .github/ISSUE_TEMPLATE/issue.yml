@@ -1,0 +1,97 @@
+name: Issue
+description: Report a bug/issue with Breezy Weather
+labels: [Bug]
+body:
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        Example:
+          1. First step
+          2. Second step
+          3. Issue here
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+      description: Explain what should happen.
+      placeholder: |
+        Example:
+          "X should happen…"
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual behavior
+      description: Explain what actually happens.
+      placeholder: |
+        Example:
+          "X happened instead…"
+    validations:
+      required: true
+
+  - type: input
+    id: weather-provider
+    attributes:
+      label: Weather provider used
+      description: You can find it on bottom of homepage, or in location list.
+      placeholder: |
+        Example: "AccuWeather"
+    validations:
+      required: true
+
+  - type: input
+    id: app-version
+    attributes:
+      label: Breezy Weather version
+      description: You can find it on Info icon in app settings.
+      placeholder: |
+        Example: "4.0.0-alpha"
+    validations:
+      required: true
+
+  - type: input
+    id: android-version
+    attributes:
+      label: Android version
+      description: You can find it in your Android settings. If you use a custom ROM, please write it here.
+      placeholder: |
+        Example: "Android 13"
+    validations:
+      required: true
+
+  - type: input
+    id: device
+    attributes:
+      label: Device
+      description: Your device and model.
+      placeholder: |
+        Example: "Samsung Galaxy A54"
+    validations:
+      required: true
+
+  - type: textarea
+    id: other-details
+    attributes:
+      label: Other details
+      placeholder: |
+        Additional details and attachments.
+
+  - type: checkboxes
+    id: acknowledgements
+    attributes:
+      label: Acknowledgements
+      description: Your issue will be closed if you don’t read this carefully.
+      options:
+        - label: I have searched the existing issues and this is a new ticket, **NOT** a duplicate or related to another open or closed issue.
+          required: true
+        - label: I have written a short but informative title.
+          required: true
+        - label: I have updated the app to **[latest version](https://github.com/breezy-weather/breezy-weather/releases/latest)**.
+          required: true
