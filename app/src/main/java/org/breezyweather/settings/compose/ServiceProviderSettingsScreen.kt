@@ -81,8 +81,8 @@ fun ServiceProviderSettingsScreen(
                     .locationProvider = LocationProvider.getInstance(sourceId)
 
                 SnackbarHelper.showSnackbar(
-                    context.getString(R.string.feedback_restart),
-                    context.getString(R.string.restart)
+                    context.getString(R.string.settings_changes_apply_after_restart),
+                    context.getString(R.string.action_restart)
                 ) {
                     instance.recreateAllActivities()
                 }

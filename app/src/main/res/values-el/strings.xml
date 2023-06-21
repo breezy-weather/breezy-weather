@@ -1,5 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Do NOT translate values that are identical in English and in your language -->
+    <!-- Do NOT use " and ', use appropriate typographic quotes for your language (in English: “ and ”, ‘ and ’) -->
+
     <!-- app. -->
     <string name="app_name">Καιρός</string>
 
@@ -8,7 +11,7 @@
     <string name="location_resident">Τοποθεσία διαμονής</string>
     <string name="live">Ο καιρός τώρα</string>
     <string name="short_today">Σήμερα</string>
-    <string name="refresh_at">Ενημερώθηκε:</string>
+    <string name="notification_refreshed_at">Ενημερώθηκε:</string>
     <string name="precipitation">Βροχόπτωση</string>
     <string name="precipitation_probability">Πιθανότητα βροχόπτωσης</string>
     <string name="precipitation_duration">Διάρκεια βροχόπτωσης</string>
@@ -23,7 +26,6 @@
     <string name="notification_channel_forecast">Πρόγνωση</string>
     <string name="daytime">Ημέρα</string>
     <string name="nighttime">Νύχτα</string>
-    <string name="published_at">Καταχωρήθηκε:</string>
     <string name="temperature_feels_like">Αίσθηση </string>
     <string name="settings_follow_system">Βάσει συστήματος</string>
     <string name="notification_channel_background_information">Γενικές πληροφορίες</string>
@@ -35,9 +37,9 @@
     <string name="settings_icon_providers_get_more">Περισσότερα</string>
     <string name="settings_icon_providers_get_more_store">Περισσότερα στο App Store</string>
     <string name="settings_icon_providers_get_more_github">Περισσότερα στο GitHub</string>
-    <string name="refresh">Ανανέωση</string>
-    <string name="restart">Επανεκκίνηση</string>
-    <string name="edit">Επεξεργασία</string>
+    <string name="action_refresh">Ανανέωση</string>
+    <string name="action_restart">Επανεκκίνηση</string>
+    <string name="action_edit">Επεξεργασία</string>
 
     <string name="of_clock">:00</string>
     <string name="short_yesterday">χθες</string>
@@ -105,14 +107,14 @@
     <string name="details">Λεπτομέρειες</string>
     <string name="ephemeris">Ανατολή και δύση ηλίου</string>
 
-    <string name="next">Επόμενο</string>
-    <string name="done">Τέλος</string>
-    <string name="cancel" tools:ignore="ButtonCase">Ακύρωση</string>
-    <string name="on">Ενεργό</string>
-    <string name="off">Ανενεργό</string>
-    <string name="go_to_set">Ορισμός</string>
-    <string name="help">Βοήθεια</string>
-    <string name="learn_more">Μάθετε περισσότερα</string>
+    <string name="action_next">Επόμενο</string>
+    <string name="action_done">Τέλος</string>
+    <string name="action_cancel" tools:ignore="ButtonCase">Ακύρωση</string>
+    <string name="settings_enabled">Ενεργό</string>
+    <string name="settings_disabled">Ανενεργό</string>
+    <string name="action_set">Ορισμός</string>
+    <string name="action_help">Βοήθεια</string>
+    <string name="action_learn_more">Μάθετε περισσότερα</string>
 
     <string name="about_app">Σχετικά</string>
     <string name="about_translators">Μεταφραστές</string>
@@ -124,19 +126,16 @@
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
 
     <!-- feedback. -->
-    <string name="feedback_request_permission">Δικαιώματα</string>
     <string name="notification_channel_request_location">Τοποθεσία</string>
-    <string name="feedback_request_location_in_background">Εντοπισμός στο παρασκήνιο</string>
-    <string name="feedback_request_location_permission_success">Η αίτηση τοποθεσίας ολοκληρώθηκε με επιτυχία</string>
-    <string name="feedback_request_location_permission_failed">Η αίτηση τοποθεσίας απέτυχε</string>
+    <string name="notification_location_in_background">Εντοπισμός στο παρασκήνιο</string>
 
-    <string name="feedback_location_failed">Σφάλμα τοποθεσίας</string>
-    <string name="feedback_get_weather_failed">Αποτυχία αποστολής μετεωρολογικών δεδομένων</string>
-    <string name="feedback_location_help_title">Υπήρξε αδυναμία εντοπισμού τοποθεσίας;</string>
-    <string name="feedback_check_location_permission">Ελέγξτε τα δικαιώματα τοποθεσίας</string>
-    <string name="feedback_enable_location_information">Ενεργοποίηση πληροφοριών τοποθεσίας</string>
-    <string name="feedback_select_location_provider">Επιλέξτε παροχέα τοποθεσίας</string>
-    <string name="feedback_add_location_manually">Προσθήκη τοποθεσίας χειροκίνητα και διαγραφή \'$\'</string>
+    <string name="location_message_failed_to_locate">Σφάλμα τοποθεσίας</string>
+    <string name="weather_message_data_refresh_failed">Αποτυχία αποστολής μετεωρολογικών δεδομένων</string>
+    <string name="location_dialog_failed_to_locate_title">Υπήρξε αδυναμία εντοπισμού τοποθεσίας;</string>
+    <string name="location_dialog_failed_to_locate_action_check_permission">Ελέγξτε τα δικαιώματα τοποθεσίας</string>
+    <string name="location_dialog_failed_to_locate_action_enable_information">Ενεργοποίηση πληροφοριών τοποθεσίας</string>
+    <string name="location_dialog_failed_to_locate_action_select_provider">Επιλέξτε παροχέα τοποθεσίας</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Προσθήκη τοποθεσίας χειροκίνητα και διαγραφή \'$\'</string>
 
     <string name="widget_label_view_style">Στυλ εμφάνισης</string>
     <string name="widget_label_show_widget_card">Χρώμα φόντου</string>
@@ -189,53 +188,42 @@
     <string name="widget_live_wallpaper_weather_kind">Καιρός</string>
     <string name="widget_live_wallpaper_day_night_type">Ώρα</string>
 
-    <string name="feedback_click_toggle">Πατήστε στο γράφημα για εναλλαγή δεδομένων</string>
-    <string name="feedback_no_data">Δεν υπάρχουν δεδομένα</string>
+    <string name="location_message_added">Επιτυχής προσθήκη τοποθεσίας</string>
+    <string name="location_message_deleted">Επιτυχής διαγραφή τοποθεσίας</string>
+    <string name="location_message_list_cannot_be_empty">Η λίστα με την τοποθεσία δεν μπορεί να είναι κενή</string>
 
-    <string name="feedback_collect_failed">Αυτή η τοποθεσία υπάρχει ήδη</string>
-    <string name="feedback_collect_succeed">Επιτυχής προσθήκη τοποθεσίας</string>
-    <string name="feedback_delete_succeed">Επιτυχής διαγραφή τοποθεσίας</string>
-    <string name="feedback_location_list_cannot_be_null">Η λίστα με την τοποθεσία δεν μπορεί να είναι κενή</string>
+    <string name="location_search_placeholder">Αναζήτηση τοποθεσίας…</string>
+    <string name="location_current_not_found_yet">Δεν έχει οριστεί τοποθεσία…</string>
 
-    <string name="feedback_search_location">Αναζήτηση τοποθεσίας…</string>
-    <string name="feedback_not_yet_location">Δεν έχει οριστεί τοποθεσία…</string>
-    <string name="feedback_search_nothing">Η τοποθεσία δεν βρέθηκε</string>
-    <string name="feedback_initializing">Προετοιμασία…</string>
+    <string name="settings_changes_apply_after_restart">Οι αλλαγές θα τεθούν σε ισχύ μετά την επανεκκίνηση</string>
 
-    <string name="feedback_refresh_notification_after_back">Οι αλλαγές θα τεθούν σε ισχύ μετά την επιστροφή στην κύρια σελίδα</string>
-    <string name="feedback_refresh_notification_now">Ανανέωση τώρα</string>
-    <string name="feedback_refresh_ui_after_refresh">Οι αλλαγές θα ισχύσουν μετά την ενημέρωση των δεδομένων.</string>
-    <string name="feedback_restart">Οι αλλαγές θα τεθούν σε ισχύ μετά την επανεκκίνηση</string>
+    <string name="notification_running_in_background">Λειτουργία ενημέρωσης στο παρασκήνιο</string>
+    <string name="notification_updating_weather_data">Ενημέρωση δεδομένων καιρού</string>
+    <string name="message_updated_in_background">Ενημερώθηκε στο παρασκήνιο</string>
 
-    <string name="feedback_running_in_background">Λειτουργία ενημέρωσης στο παρασκήνιο</string>
-    <string name="feedback_updating_weather_data">Ενημέρωση δεδομένων καιρού</string>
-    <string name="feedback_updated_in_background">Ενημερώθηκε στο παρασκήνιο</string>
+    <string name="dialog_permissions_block_notification_channel_title">Αποκλεισμός ειδοποιήσεων</string>
+    <string name="dialog_permissions_block_notification_channel_content">Αφού τερματίσετε τη λειτουργία "Απαγόρευση εργασιών στο παρασκήνιο", στον πίνακα ειδοποιήσεων θα εμφανιστεί μια ειδοποίηση ότι η υπηρεσία εκτελείται στο παρασκήνιο. Μπορείτε να απενεργοποιήσετε την ειδοποίηση εργασίας στο παρασκήνιο στις ρυθμίσεις ειδοποίησης της εφαρμογής για να αποκρύψετε αυτήν την ειδοποίηση.</string>
 
-    <string name="feedback_interpret_background_notification_content">Σε ορισμένες συσκευές, μετά την απενεργοποίηση της λειτουργίας "Απαγόρευση εργασιών στο παρασκήνιο", μπορεί να υπάρξει ειδοποίηση στον πίνακα ειδοποιήσεων που δεν διαγράφεται.</string>
-    <string name="feedback_interpret_notification_group_title">Αποκλεισμός ειδοποιήσεων</string>
-    <string name="feedback_interpret_notification_group_content">Αφού τερματίσετε τη λειτουργία "Απαγόρευση εργασιών στο παρασκήνιο", στον πίνακα ειδοποιήσεων θα εμφανιστεί μια ειδοποίηση ότι η υπηρεσία εκτελείται στο παρασκήνιο. Μπορείτε να απενεργοποιήσετε την ειδοποίηση εργασίας στο παρασκήνιο στις ρυθμίσεις ειδοποίησης της εφαρμογής για να αποκρύψετε αυτήν την ειδοποίηση.</string>
+    <string name="dialog_permissions_ignore_battery_optimizations_title">Βελτιστοποίηση μπαταρίας</string>
+    <string name="dialog_permissions_ignore_battery_optimizations_content">Για να λειτουργήσει η υπηρεσία λειτουργίας στο παρασκήνιο, απενεργοποιήστε τη βελτιστοποίηση μπαταρίας για το Breezy Weather.</string>
 
-    <string name="feedback_ignore_battery_optimizations_title">Βελτιστοποίηση μπαταρίας</string>
-    <string name="feedback_ignore_battery_optimizations_content">Για να λειτουργήσει η υπηρεσία λειτουργίας στο παρασκήνιο, απενεργοποιήστε τη βελτιστοποίηση μπαταρίας για το Breezy Weather.</string>
+    <string name="widget_live_wallpaper_cannot_start_activity">Αδυναμία εκκίνησης προεπισκόπησης ζωντανής ταπετσαρίας</string>
 
-    <string name="feedback_cannot_start_live_wallpaper_activity">Αδυναμία εκκίνησης προεπισκόπησης ζωντανής ταπετσαρίας</string>
+    <string name="notification_precipitation_today">Μπορεί να υπάρχει βροχόπτωση σήμερα.</string>
+    <string name="notification_precipitation_short_term">Μπορεί να υπάρξει βροχόπτωση τις επόμενες ώρες.</string>
 
-    <string name="feedback_today_precipitation_alert">Μπορεί να υπάρχει βροχόπτωση σήμερα.</string>
-    <string name="feedback_short_term_precipitation_alert">Μπορεί να υπάρξει βροχόπτωση τις επόμενες ώρες.</string>
+    <string name="location_resident_message">Ορισμός ως τόπος μόνιμης διαμονής</string>
+    <string name="location_resident_dialog">Το Breezy Weather θα εμφανίσει ή θα αποκρύψει αυτόματα τον τόπο μόνιμης διαμονής σας με βάση την τοποθεσία σας.\nΓια παράδειγμα, μπορείτε να ορίσετε τη γενέτειρά σας ως πόλη διαμονής. Μπορείτε να ελέγξετε τον καιρό στη γενέτειρά σας ενώ ταξιδεύετε. Όταν φτάσετε στο σπίτι, θα γίνει απόκρυψη του καιρού της πατρίδα σας και θα αντικατασταθεί από τον καιρό της τρέχουσας τοποθεσία σας.</string>
 
-    <string name="feedback_resident_location">Ορισμός ως τόπος μόνιμης διαμονής</string>
-    <string name="feedback_resident_location_description">Το Breezy Weather θα εμφανίσει ή θα αποκρύψει αυτόματα τον τόπο μόνιμης διαμονής σας με βάση την τοποθεσία σας.\nΓια παράδειγμα, μπορείτε να ορίσετε τη γενέτειρά σας ως πόλη διαμονής. Μπορείτε να ελέγξετε τον καιρό στη γενέτειρά σας ενώ ταξιδεύετε. Όταν φτάσετε στο σπίτι, θα γίνει απόκρυψη του καιρού της πατρίδα σας και θα αντικατασταθεί από τον καιρό της τρέχουσας τοποθεσία σας.</string>
-
-    <string name="feedback_click_to_get_more">Περισσότερα…</string>
+    <string name="allergen_tap_to_see_more">Περισσότερα…</string>
 
     <!-- action -->
     <string name="alerts">Ειδοποίηση</string>
-    <string name="action_manage">Διαχείριση</string>
     <string name="action_search">Αναζήτηση</string>
     <string name="action_settings">Ρυθμίσεις</string>
     <string name="action_preview">Προεπισκόπηση</string>
     <string name="action_about">Σχετικά</string>
-    <string name="action_appStore">Κατάστημα</string>
+    <string name="action_app_store">Κατάστημα</string>
 
     <!-- widget -->
     <string name="widget_day">Ημέρα</string>
@@ -263,7 +251,6 @@
     <string name="settings_title_weather_source">Πηγή καιρού</string>
     <string name="settings_title_location_service">Υπηρεσία τοποθεσίας</string>
     <string name="settings_title_dark_mode">Σκοτεινή λειτουργία</string>
-    <string name="settings_title_ui_style">Στυλ διεπαφής</string>
     <string name="settings_title_icon_provider">Πακέτο εικονιδίων</string>
     <string name="settings_title_appearance">Εμφάνιση</string>
     <string name="settings_summary_appearance">Στυλ διεπαφής, ταξινόμηση καρτελών, γλώσσα…</string>
@@ -292,7 +279,7 @@
     <string name="settings_category_widget">Γραφικό στοιχείο</string>
     <string name="settings_title_week_icon_mode">Λειτουργία εβδομαδιαίων εικονιδίων</string>
     <string name="settings_title_minimal_icon">Μινιμαλιστικά εικονίδια</string>
-    <string name="settings_title_click_widget_to_refresh">Ανανέωση γραφικού στοιχείου όταν πατηθεί</string>
+    <string name="settings_title_tap_widget_to_refresh">Ανανέωση γραφικού στοιχείου όταν πατηθεί</string>
     <string name="settings_category_notification">Ειδοποιήσεις</string>
     <string name="settings_title_notification">Ειδοποίηση στη γραμμή κατάστασης</string>
     <string name="settings_title_notification_style">Στυλ ειδοποίησης</string>

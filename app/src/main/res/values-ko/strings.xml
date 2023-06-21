@@ -1,5 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Do NOT translate values that are identical in English and in your language -->
+    <!-- Do NOT use " and ', use appropriate typographic quotes for your language (in English: “ and ”, ‘ and ’) -->
+
     <!-- app. -->
     <string name="app_name">날씨</string>
 
@@ -8,7 +11,7 @@
     <string name="location_resident">거주지 </string>
     <string name="live">현재</string>
     <string name="short_today">오늘</string>
-    <string name="refresh_at">갱신됨</string>
+    <string name="notification_refreshed_at">갱신됨</string>
     <string name="precipitation">강수</string>
     <string name="precipitation_probability">강수 확률</string>
     <string name="precipitation_duration">강수 지속 시간</string>
@@ -23,7 +26,6 @@
     <string name="notification_channel_forecast">일기 예보</string>
     <string name="daytime">주간</string>
     <string name="nighttime">야간</string>
-    <string name="published_at">Pub</string>
     <string name="temperature_feels_like">체감 온도</string>
     <string name="settings_follow_system">시스템 설정 따르기</string>
     <string name="notification_channel_background_information">배경 정보</string>
@@ -35,9 +37,9 @@
     <string name="settings_icon_providers_get_more">더 보기</string>
     <string name="settings_icon_providers_get_more_store">앱 스토어에서 더보기</string>
     <string name="settings_icon_providers_get_more_github">GitHub에서 더보기</string>
-    <string name="refresh">갱신</string>
-    <string name="restart">재시작</string>
-    <string name="edit">수정</string>
+    <string name="action_refresh">갱신</string>
+    <string name="action_restart">재시작</string>
+    <string name="action_edit">수정</string>
 
     <string name="of_clock">:00</string>
     <string name="short_yesterday">어제</string>
@@ -105,14 +107,14 @@
     <string name="details">세부 사항</string>
     <string name="ephemeris">해와 달</string>
 
-    <string name="next">다음</string>
-    <string name="done">끝내기</string>
-    <string name="cancel" tools:ignore="ButtonCase">취소</string>
-    <string name="on">켜짐</string>
-    <string name="off">꺼짐</string>
-    <string name="go_to_set">설정</string>
-    <string name="help">도움말</string>
-    <string name="learn_more">더 알아보기</string>
+    <string name="action_next">다음</string>
+    <string name="action_done">끝내기</string>
+    <string name="action_cancel" tools:ignore="ButtonCase">취소</string>
+    <string name="settings_enabled">켜짐</string>
+    <string name="settings_disabled">꺼짐</string>
+    <string name="action_set">설정</string>
+    <string name="action_help">도움말</string>
+    <string name="action_learn_more">더 알아보기</string>
 
     <string name="about_app">앱에 관하여</string>
     <string name="about_translators">번역해 주신 분들</string>
@@ -124,19 +126,16 @@
     <string name="date_format_widget_oreo_style">MMM d, EEEE│</string>
 
     <!-- feedback. -->
-    <string name="feedback_request_permission">허가</string>
     <string name="notification_channel_request_location">위치</string>
-    <string name="feedback_request_location_in_background">백그라운드에 상주중</string>
-    <string name="feedback_request_location_permission_success">위치 허가 요청에 성공하였습니다.</string>
-    <string name="feedback_request_location_permission_failed">위치 허가 요청에 실패하였습니다.</string>
+    <string name="notification_location_in_background">백그라운드에 상주중</string>
 
-    <string name="feedback_location_failed">위치 실패</string>
-    <string name="feedback_get_weather_failed">날씨 데이터 요청 실패</string>
-    <string name="feedback_location_help_title">위치를 제대로 받아오지 못하였습니까?</string>
-    <string name="feedback_check_location_permission">위치 허가 확인하기</string>
-    <string name="feedback_enable_location_information">위치 정보 활성화</string>
-    <string name="feedback_select_location_provider">위치 공급자 선택하기</string>
-    <string name="feedback_add_location_manually">위치를 수동으로 첨가하고 삭제하기 \'$\'</string>
+    <string name="location_message_failed_to_locate">위치 실패</string>
+    <string name="weather_message_data_refresh_failed">날씨 데이터 요청 실패</string>
+    <string name="location_dialog_failed_to_locate_title">위치를 제대로 받아오지 못하였습니까?</string>
+    <string name="location_dialog_failed_to_locate_action_check_permission">위치 허가 확인하기</string>
+    <string name="location_dialog_failed_to_locate_action_enable_information">위치 정보 활성화</string>
+    <string name="location_dialog_failed_to_locate_action_select_provider">위치 공급자 선택하기</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">위치를 수동으로 첨가하고 삭제하기 \'$\'</string>
 
     <string name="widget_label_view_style">보이는 스타일</string>
     <string name="widget_label_show_widget_card">배경색</string>
@@ -189,53 +188,42 @@
     <string name="widget_live_wallpaper_weather_kind">날씨</string>
     <string name="widget_live_wallpaper_day_night_type">시간</string>
 
-    <string name="feedback_click_toggle">차트를 눌러 데이터 보이기</string>
-    <string name="feedback_no_data">데이터 없음</string>
+    <string name="location_message_added">위치 추가 성공</string>
+    <string name="location_message_deleted">위치 제거 성공</string>
+    <string name="location_message_list_cannot_be_empty">위치 리스트는 비워 둘 수 없습니다.</string>
 
-    <string name="feedback_collect_failed">이 위치는 이미 존재합니다</string>
-    <string name="feedback_collect_succeed">위치 추가 성공</string>
-    <string name="feedback_delete_succeed">위치 제거 성공</string>
-    <string name="feedback_location_list_cannot_be_null">위치 리스트는 비워 둘 수 없습니다.</string>
+    <string name="location_search_placeholder">위치 찾기…</string>
+    <string name="location_current_not_found_yet">아직 어떠한 위치도 없습니다…</string>
 
-    <string name="feedback_search_location">위치 찾기…</string>
-    <string name="feedback_not_yet_location">아직 어떠한 위치도 없습니다…</string>
-    <string name="feedback_search_nothing">어떠한 위치도 찾지 못하였습니다</string>
-    <string name="feedback_initializing">초기화 중…</string>
+    <string name="settings_changes_apply_after_restart">변경 사항은 재시작 후에 적용됩니다</string>
 
-    <string name="feedback_refresh_notification_after_back">홈 페이지로 돌아가면 변경 사항이 적용됩니다.</string>
-    <string name="feedback_refresh_notification_now">지금 갱신하기</string>
-    <string name="feedback_refresh_ui_after_refresh">변경 사항은 갱신 후에 적용됩니다</string>
-    <string name="feedback_restart">변경 사항은 재시작 후에 적용됩니다</string>
+    <string name="notification_running_in_background">계속 날씨를 받아오기 위하여 백그라운드에서 작동중</string>
+    <string name="notification_updating_weather_data">위치 데이터 갱신중…</string>
+    <string name="message_updated_in_background">백그라운드에서 업데이트 되었습니다</string>
 
-    <string name="feedback_running_in_background">계속 날씨를 받아오기 위하여 백그라운드에서 작동중</string>
-    <string name="feedback_updating_weather_data">위치 데이터 갱신중…</string>
-    <string name="feedback_updated_in_background">백그라운드에서 업데이트 되었습니다</string>
+    <string name="dialog_permissions_block_notification_channel_title">알림 막기</string>
+    <string name="dialog_permissions_block_notification_channel_content">\"백그라운드에서 실행 시키지 않기\"을 끄고 난 후에, 알림 바에 \'백그라운드 서비스가 실행되고 있음\'이라는 알림이 나타날 수도 있습니다. 이 앱의 백그라운드 정보에서 알림을 끔으로써, \이 알림을 막을 수 있습니다.</string>
 
-    <string name="feedback_interpret_background_notification_content">몇몇 장치에서, \'백그라운드에서 실행 시키지 않기\'를 끈 후에, 알림 바에서 지워지지 않는 알림이 생길 수도 있습니다.</string>
-    <string name="feedback_interpret_notification_group_title">알림 막기</string>
-    <string name="feedback_interpret_notification_group_content">\"백그라운드에서 실행 시키지 않기\"을 끄고 난 후에, 알림 바에 \'백그라운드 서비스가 실행되고 있음\'이라는 알림이 나타날 수도 있습니다. 이 앱의 백그라운드 정보에서 알림을 끔으로써, \이 알림을 막을 수 있습니다.</string>
+    <string name="dialog_permissions_ignore_battery_optimizations_title">배터리 최적화 무시하기</string>
+    <string name="dialog_permissions_ignore_battery_optimizations_content">Breezy Weather가 계속 날씨 데이터를 받아 오려면, 배터리 최적화에서 이 앱를 제외해야 합니다.</string>
 
-    <string name="feedback_ignore_battery_optimizations_title">배터리 최적화 무시하기</string>
-    <string name="feedback_ignore_battery_optimizations_content">Breezy Weather가 계속 날씨 데이터를 받아 오려면, 배터리 최적화에서 이 앱를 제외해야 합니다.</string>
+    <string name="widget_live_wallpaper_cannot_start_activity">라이브 배경화면 미리보기를 시작할 수 없습니다.</string>
 
-    <string name="feedback_cannot_start_live_wallpaper_activity">라이브 배경화면 미리보기를 시작할 수 없습니다.</string>
+    <string name="notification_precipitation_today">오늘 강수가 있을 것입니다.</string>
+    <string name="notification_precipitation_short_term">강수는 대략 몇 시간 뒤에 일어날 수도 있습니다.</string>
 
-    <string name="feedback_today_precipitation_alert">오늘 강수가 있을 것입니다.</string>
-    <string name="feedback_short_term_precipitation_alert">강수는 대략 몇 시간 뒤에 일어날 수도 있습니다.</string>
+    <string name="location_resident_message">Set as a resident city</string>
+    <string name="location_resident_dialog">Breezy Weather는 자동적으로 당신의 위치에 따라 거주 도시를 보이고 숨겨줄 것입니다.\n예를 들자면, 당신은 고향을 거주 도시로 설정 할 수도 있습니다. 당신은 여행 하는 동안에도 고향의 날씨를 알 수 있습니다. 집에 도착하면, 고향의 날씨는 자동으로 숨겨지고 현재 위치의 날씨로 대체 될 것입니다.</string>
 
-    <string name="feedback_resident_location">Set as a resident city</string>
-    <string name="feedback_resident_location_description">Breezy Weather는 자동적으로 당신의 위치에 따라 거주 도시를 보이고 숨겨줄 것입니다.\n예를 들자면, 당신은 고향을 거주 도시로 설정 할 수도 있습니다. 당신은 여행 하는 동안에도 고향의 날씨를 알 수 있습니다. 집에 도착하면, 고향의 날씨는 자동으로 숨겨지고 현재 위치의 날씨로 대체 될 것입니다.</string>
-
-    <string name="feedback_click_to_get_more">눌러서 더 알아보기…</string>
+    <string name="allergen_tap_to_see_more">눌러서 더 알아보기…</string>
 
     <!-- action -->
     <string name="alerts">알림</string>
-    <string name="action_manage">관리</string>
     <string name="action_search">검색</string>
     <string name="action_settings">설정</string>
     <string name="action_preview">미리 보기</string>
     <string name="action_about">더보기</string>
-    <string name="action_appStore">앱 스토어</string>
+    <string name="action_app_store">앱 스토어</string>
 
     <!-- widget -->
     <string name="widget_day">오늘의 날씨</string>
@@ -263,7 +251,6 @@
     <string name="settings_title_weather_source">날씨 제공처</string>
     <string name="settings_title_location_service">위치 서비스</string>
     <string name="settings_title_dark_mode">어두운 모드</string>
-    <string name="settings_title_ui_style">외관 스타일</string>
     <string name="settings_title_icon_provider">아이콘 팩</string>
     <string name="settings_title_appearance">외관</string>
     <string name="settings_summary_appearance">인터페이스 스타일, 카드 순서, 언어 등등…</string>
@@ -292,7 +279,7 @@
     <string name="settings_category_widget">위젯</string>
     <string name="settings_title_week_icon_mode">주간 아이콘 모드</string>
     <string name="settings_title_minimal_icon">미니멀리즘 디자인의 아이콘</string>
-    <string name="settings_title_click_widget_to_refresh">클릭 할 때마다 위젯 갱신하기</string>
+    <string name="settings_title_tap_widget_to_refresh">클릭 할 때마다 위젯 갱신하기</string>
     <string name="settings_category_notification">알림</string>
     <string name="settings_title_notification">알림 보내기</string>
     <string name="settings_title_notification_style">알림 스타일</string>

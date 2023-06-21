@@ -32,13 +32,6 @@
     <color name="aqiLevel_5">#c72eaa</color>
     <color name="aqiLevel_6">#9930ff</color>
 
-    <color name="notification_background_l">#263238</color>
-    <color name="notification_background_m">#273137</color>
-    <color name="notification_background_o">#e2e3e4</color>
-    <color name="notification_background_rootLight">#f1f1f1</color>
-    <color name="notification_background_rootDark">#292929</color>
-    <color name="notification_background_primary">#212121</color>
-
     <color name="weather_source_accu">#ef5823</color>
     <color name="weather_source_china">#5ebb8e</color>
 

@@ -1,5 +1,8 @@
 <resources>
 
+    <!-- Do NOT translate values that are identical in English and in your language -->
+    <!-- Do NOT use " and ', use appropriate typographic quotes for your language (in English: “ and ”, ‘ and ’) -->
+
     <!-- app. -->
     <string name="app_name">Oratge</string>
     <string name="breezy_weather">Oratge Breezy</string>
@@ -9,7 +12,7 @@
     <string name="location_resident">Ubicació dels residents</string>
     <string name="live">Ara mateix</string>
     <string name="short_today">Avui</string>
-    <string name="refresh_at">Actualitzat a les</string>
+    <string name="notification_refreshed_at">Actualitzat a les</string>
     <string name="precipitation">Precipitació</string>
     <string name="precipitation_probability">Probabilitat de precipitació</string>
     <string name="precipitation_duration">Durada de precipitació</string>
@@ -24,7 +27,6 @@
     <string name="notification_channel_forecast">Pronòstic</string>
     <string name="daytime">Dia</string>
     <string name="nighttime">Nit</string>
-    <string name="published_at">Publica a</string>
     <string name="temperature_feels_like">Sensació de</string>
     <string name="settings_follow_system">Igual que el sistema</string>
     <string name="notification_channel_background_information">Informació en segon pla</string>
@@ -36,9 +38,9 @@
     <string name="settings_icon_providers_get_more">Obtingues més</string>
     <string name="settings_icon_providers_get_more_store">Obtenir més a la botiga</string>
     <string name="settings_icon_providers_get_more_github">Obtenir més a GitHub</string>
-    <string name="refresh">Actualitza</string>
-    <string name="restart">Reinicia</string>
-    <string name="edit">Edita</string>
+    <string name="action_refresh">Actualitza</string>
+    <string name="action_restart">Reinicia</string>
+    <string name="action_edit">Edita</string>
 
     <!-- The following set of strings should be as short as possible. -->
     <string name="of_clock">:00</string>
@@ -107,14 +109,14 @@
     <string name="details">Detalls</string>
     <string name="ephemeris">Sol i lluna</string>
 
-    <string name="next">SEGÜENT</string>
-    <string name="done">FET</string>
-    <string name="cancel">CANCEL·LA</string>
-    <string name="on">Habilitat</string>
-    <string name="off">Deshabilitat</string>
-    <string name="go_to_set">ESTABLEIX</string>
-    <string name="help">AJUDA</string>
-    <string name="learn_more">SABER-NE MÉS</string>
+    <string name="action_next">SEGÜENT</string>
+    <string name="action_done">FET</string>
+    <string name="action_cancel">CANCEL·LA</string>
+    <string name="settings_enabled">Habilitat</string>
+    <string name="settings_disabled">Deshabilitat</string>
+    <string name="action_set">ESTABLEIX</string>
+    <string name="action_help">AJUDA</string>
+    <string name="action_learn_more">SABER-NE MÉS</string>
 
     <string name="about_app">Quant a l\'app</string>
     <string name="about_translators">Traductors</string>
@@ -130,21 +132,18 @@
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
 
     <!-- feedback. -->
-    <string name="feedback_request_permission">Permisos</string>
     <string name="notification_channel_request_location">Ubicació</string>
-    <string name="feedback_request_location_in_background">Ubicació en segon pla</string>
-    <string name="feedback_request_location_permission_success">Ha funcionat la sol·licitud d\'accés a la ubicació </string>
-    <string name="feedback_request_location_permission_failed">Ha fallat la sol·licitud d\'accés a la ubicació</string>
+    <string name="notification_location_in_background">Ubicació en segon pla</string>
 
-    <string name="feedback_location_failed">Ha fallat l\'accés a la ubicació</string>
-    <string name="feedback_get_weather_failed">Ha fallat l\'accés a les dades de l\'oratge</string>
-    <string name="feedback_location_help_title">No funciona la ubicació?</string>
-    <string name="feedback_check_location_permission">Verifica els permisos d\'accés a la ubicació</string>
-    <string name="feedback_enable_location_information">Habilita la infomació d\'ubicació</string>
-    <string name="feedback_select_location_provider">Selecciona un proveïdor d\'ubicació</string>
-    <string name="feedback_add_location_manually">Especifica la ubicació manualment i esborra \'$\'</string>
-    <string name="feedback_background_location_title">Accés a la ubicació en segon pla</string>
-    <string name="feedback_background_location_summary">Per autoritzar que l\'aplicació pugui funcionar en segon pla, seleccioneu l\'opció \"Permet sempre\" al diàleg d\'autorització d\'accés a la ubicació.</string>
+    <string name="location_message_failed_to_locate">Ha fallat l\'accés a la ubicació</string>
+    <string name="weather_message_data_refresh_failed">Ha fallat l\'accés a les dades de l\'oratge</string>
+    <string name="location_dialog_failed_to_locate_title">No funciona la ubicació?</string>
+    <string name="location_dialog_failed_to_locate_action_check_permission">Verifica els permisos d\'accés a la ubicació</string>
+    <string name="location_dialog_failed_to_locate_action_enable_information">Habilita la infomació d\'ubicació</string>
+    <string name="location_dialog_failed_to_locate_action_select_provider">Selecciona un proveïdor d\'ubicació</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Especifica la ubicació manualment i esborra \'$\'</string>
+    <string name="dialog_permissions_location_background_title">Accés a la ubicació en segon pla</string>
+    <string name="dialog_permissions_location_background_content">Per autoritzar que l\'aplicació pugui funcionar en segon pla, seleccioneu l\'opció \"Permet sempre\" al diàleg d\'autorització d\'accés a la ubicació.</string>
 
     <string name="widget_label_view_style">Estil de vista</string>
     <string name="widget_label_show_widget_card">Fons d\'un color</string>
@@ -201,57 +200,46 @@
     <string name="widget_live_wallpaper_weather_kind">Oratge</string>
     <string name="widget_live_wallpaper_day_night_type">Hora</string>
 
-    <string name="feedback_click_toggle">Toca la gràfica per a alternar les dades</string>
-    <string name="feedback_no_data">SENSE DADES</string>
+    <string name="location_message_added">S\'ha afegit la ubicació correctament</string>
+    <string name="location_message_deleted">S\'ha eliminat la ubicació correctament</string>
+    <string name="location_message_list_cannot_be_empty">La llista d\'ubicacions no pot estar buida</string>
 
-    <string name="feedback_collect_failed">Aquesta ubicació ja existeix</string>
-    <string name="feedback_collect_succeed">S\'ha afegit la ubicació correctament</string>
-    <string name="feedback_delete_succeed">S\'ha eliminat la ubicació correctament</string>
-    <string name="feedback_location_list_cannot_be_null">La llista d\'ubicacions no pot estar buida</string>
+    <string name="location_search_placeholder">Cerca una ubicació…</string>
+    <string name="location_current_not_found_yet">No hi ha ubicacions…</string>
 
-    <string name="feedback_search_location">Cerca una ubicació…</string>
-    <string name="feedback_not_yet_location">No hi ha ubicacions…</string>
-    <string name="feedback_search_nothing">No es van trobar ubicacions</string>
-    <string name="feedback_initializing">S\'està iniciant…</string>
+    <string name="settings_changes_apply_after_restart">Els canvis es faran efectius després de reiniciar</string>
 
-    <string name="feedback_refresh_notification_after_back">Els canvis es faran efectius quan torneu a la pàgina principal</string>
-    <string name="feedback_refresh_notification_now">Actualitza ara</string>
-    <string name="feedback_refresh_ui_after_refresh">Els canvis es faran efectius quan s\'actualitzin les dades</string>
-    <string name="feedback_restart">Els canvis es faran efectius després de reiniciar</string>
-
-    <string name="feedback_running_in_background">l\'actualització es continuarà produint en segon pla</string>
-    <string name="feedback_updating_weather_data">S\'estan actualitzant les dades de l\'oratge</string>
-    <string name="feedback_updated_in_background">Actualitzat en segon pla</string>
+    <string name="notification_running_in_background">l\'actualització es continuarà produint en segon pla</string>
+    <string name="notification_updating_weather_data">S\'estan actualitzant les dades de l\'oratge</string>
+    <string name="message_updated_in_background">Actualitzat en segon pla</string>
 
     <!-- there should be a "\" before single or double quotes. -->
     <!-- Correct : ... after turning off \'Background free\', ... After turning off \"Free background\" ... -->
     <!-- Wrong   : ... after turning off 'Background free', ... After turning off "Free background" ... -->
-    <string name="feedback_interpret_background_notification_content">En alguns dispositius, després de desactivar \'No usis segon pla\', pot aparèixer una notificació permanent a la barra de notificacions.</string>
-    <string name="feedback_interpret_notification_group_title">Bloquejar grup de notificacions</string>
-    <string name="feedback_interpret_notification_group_content">Després de desactivar \"No usis segon pla\", apareixerà una notificació a la barra de notificacions indicant que el servei està funcionant en segon pla. Podeu desactivar el canal d\'informació en segon pla impedint aquestes notificacions en la pàgina d\'informació de l\'aplicació.</string>
+    <string name="dialog_permissions_block_notification_channel_title">Bloquejar grup de notificacions</string>
+    <string name="dialog_permissions_block_notification_channel_content">Després de desactivar \"No usis segon pla\", apareixerà una notificació a la barra de notificacions indicant que el servei està funcionant en segon pla. Podeu desactivar el canal d\'informació en segon pla impedint aquestes notificacions en la pàgina d\'informació de l\'aplicació.</string>
 
-    <string name="feedback_ignore_battery_optimizations_title">Ignora l\'optimització de la bateria</string>
-    <string name="feedback_ignore_battery_optimizations_content">Per a assegurar que els serveis en segon pla continuïn funcionant, si us plau ignoreu l\'optimització de bateria per a Oratge Breezy.</string>
+    <string name="dialog_permissions_ignore_battery_optimizations_title">Ignora l\'optimització de la bateria</string>
+    <string name="dialog_permissions_ignore_battery_optimizations_content">Per a assegurar que els serveis en segon pla continuïn funcionant, si us plau ignoreu l\'optimització de bateria per a Oratge Breezy.</string>
 
-    <string name="feedback_cannot_start_live_wallpaper_activity">No s\'ha aconseguit iniciar el context de vista preliminar del fons de pantalla animat</string>
+    <string name="widget_live_wallpaper_cannot_start_activity">No s\'ha aconseguit iniciar el context de vista preliminar del fons de pantalla animat</string>
 
-    <string name="feedback_today_precipitation_alert">Pot ser que avui hi hagi precipitations.</string>
-    <string name="feedback_short_term_precipitation_alert">Pot ser que la precipitació ocorri en les properes hores.</string>
+    <string name="notification_precipitation_today">Pot ser que avui hi hagi precipitations.</string>
+    <string name="notification_precipitation_short_term">Pot ser que la precipitació ocorri en les properes hores.</string>
 
-    <string name="feedback_resident_location">Estableix com a ciutat on residiu</string>
-    <string name="feedback_resident_location_description">Oratge Breezy mostrarà i ocultarà automàticament les ciutats on residiu sobre la base de la teva ubicació actual.\nPer exemple, podeu establir la ciutat natal com una ciutat on residiu. Podeu consultar l\'oratge de ciutat natal mentre esteu viatjant. Quan arribeu a casa, l\'oratge de ciutat natal estarà ocult i reemplaçat pel de la teva ubicació actual.</string>
+    <string name="location_resident_message">Estableix com a ciutat on residiu</string>
+    <string name="location_resident_dialog">Oratge Breezy mostrarà i ocultarà automàticament les ciutats on residiu sobre la base de la teva ubicació actual.\nPer exemple, podeu establir la ciutat natal com una ciutat on residiu. Podeu consultar l\'oratge de ciutat natal mentre esteu viatjant. Quan arribeu a casa, l\'oratge de ciutat natal estarà ocult i reemplaçat pel de la teva ubicació actual.</string>
 
-    <string name="feedback_click_to_get_more">Premeu per saber-ne més…</string>
-    <string name="feedback_click_again_to_exit">Premeu de nou per a sortir</string>
+    <string name="allergen_tap_to_see_more">Premeu per saber-ne més…</string>
+    <string name="message_tap_again_to_exit">Premeu de nou per a sortir</string>
 
     <!-- action -->
     <string name="alerts">Alerta</string>
-    <string name="action_manage">Gestions</string>
     <string name="action_search">Cerca</string>
     <string name="action_settings">Configuració</string>
     <string name="action_preview">Vista preliminar</string>
     <string name="action_about">Quant a</string>
-    <string name="action_appStore">Botiga d\'aplicacions</string>
+    <string name="action_app_store">Botiga d\'aplicacions</string>
 
     <!-- widget -->
     <string name="widget_day">Diari</string>
@@ -280,7 +268,6 @@
     <string name="settings_title_weather_source">Font de l\'oratge</string>
     <string name="settings_title_location_service">Servei d\'ubicació</string>
     <string name="settings_title_dark_mode">Mode fosc</string>
-    <string name="settings_title_ui_style">Estil de la interfície</string>
     <string name="settings_title_icon_provider">Paquet d\'icones</string>
     <string name="settings_title_appearance">Aparença</string>
     <string name="settings_summary_appearance">Estil de la interfície, ordre de les targetes, idioma…</string>
@@ -312,7 +299,7 @@
     <string name="settings_category_widget">Giny</string>
     <string name="settings_title_week_icon_mode">Estil d\'icones setmanals</string>
     <string name="settings_title_minimal_icon">icones minimalistes</string>
-    <string name="settings_title_click_widget_to_refresh">Actualiza el giny en prémer-lo</string>
+    <string name="settings_title_tap_widget_to_refresh">Actualiza el giny en prémer-lo</string>
     <string name="settings_title_widget_config">Configuració del giny</string>
     <string name="settings_category_notification">Notificacions</string>
     <string name="settings_title_notification">Envia notificacions</string>

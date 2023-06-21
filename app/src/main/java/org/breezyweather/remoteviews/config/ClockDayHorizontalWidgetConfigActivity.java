@@ -18,8 +18,8 @@ public class ClockDayHorizontalWidgetConfigActivity extends AbstractWidgetConfig
     public void initData() {
         super.initData();
 
-        String[] clockFonts = getResources().getStringArray(R.array.clock_font);
-        String[] clockFontValues = getResources().getStringArray(R.array.clock_font_values);
+        String[] clockFonts = getResources().getStringArray(R.array.widget_clock_fonts);
+        String[] clockFontValues = getResources().getStringArray(R.array.widget_clock_font_values);
 
         this.clockFontValueNow = "light";
         this.clockFonts = new String[] {clockFonts[0], clockFonts[1], clockFonts[2]};

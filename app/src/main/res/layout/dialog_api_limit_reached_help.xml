@@ -26,7 +26,7 @@
 
         <TextView
             android:id="@+id/dialog_api_limit_reached_help_keyTitle"
-            android:text="@string/feedback_api_limit_reached_help"
+            android:text="@string/weather_api_limit_reached_dialog"
             android:layout_marginTop="@dimen/normal_margin"
             android:layout_marginBottom="@dimen/normal_margin"
             android:layout_marginEnd="@dimen/normal_margin"

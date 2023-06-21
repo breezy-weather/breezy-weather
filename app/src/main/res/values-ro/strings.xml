@@ -1,4 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Do NOT translate values that are identical in English and in your language -->
+    <!-- Do NOT use " and ', use appropriate typographic quotes for your language (in English: “ and ”, ‘ and ’) -->
+
     <!-- app. -->
     <string name="app_name">Meteo</string>
 
@@ -7,7 +11,7 @@
     <string name="location_resident">Acasă</string>
     <string name="live">În prezent</string>
     <string name="short_today">Azi</string>
-    <string name="refresh_at">Actualizat la</string>
+    <string name="notification_refreshed_at">Actualizat la</string>
     <string name="precipitation">Precipitaţii</string>
     <string name="precipitation_probability">Probabilitate precipitaţii</string>
     <string name="precipitation_duration">Durată Precipitaţii</string>
@@ -22,7 +26,6 @@
     <string name="notification_channel_forecast">Prognoză</string>
     <string name="daytime">Zi</string>
     <string name="nighttime">Noapte</string>
-    <string name="published_at">Publicat la</string>
     <string name="temperature_feels_like">Se simt</string>
     <string name="settings_follow_system">La fel ca sistemul</string>
     <string name="notification_channel_background_information">Informații generale</string>
@@ -34,9 +37,9 @@
     <string name="settings_icon_providers_get_more">Mai mult…</string>
     <string name="settings_icon_providers_get_more_store">Mai multe din magazinul de aplicații</string>
     <string name="settings_icon_providers_get_more_github">Mai multe de pe GitHub</string>
-    <string name="refresh">Reactualizează</string>
-    <string name="restart">Repornește</string>
-    <string name="edit">Editează</string>
+    <string name="action_refresh">Reactualizează</string>
+    <string name="action_restart">Repornește</string>
+    <string name="action_edit">Editează</string>
 
     <!-- The following set of strings should be as short as possible. -->
     <string name="of_clock">:00</string>
@@ -105,14 +108,14 @@
     <string name="details">Detalii</string>
     <string name="ephemeris">Soare și Lună</string>
 
-    <string name="next">MAI DEPARTE</string>
-    <string name="done">TERMINAT</string>
-    <string name="cancel" tools:ignore="ButtonCase">ANULARE</string>
-    <string name="on">Activat</string>
-    <string name="off">Dezactivat</string>
-    <string name="go_to_set">ACCEPTĂ</string>
-    <string name="help">AJUTOR</string>
-    <string name="learn_more">AFLĂ MAI MULTE</string>
+    <string name="action_next">MAI DEPARTE</string>
+    <string name="action_done">TERMINAT</string>
+    <string name="action_cancel" tools:ignore="ButtonCase">ANULARE</string>
+    <string name="settings_enabled">Activat</string>
+    <string name="settings_disabled">Dezactivat</string>
+    <string name="action_set">ACCEPTĂ</string>
+    <string name="action_help">AJUTOR</string>
+    <string name="action_learn_more">AFLĂ MAI MULTE</string>
 
     <string name="about_app">Despre aplicație</string>
     <string name="about_translators">Traducători</string>
@@ -128,24 +131,21 @@
     <string name="date_format_widget_oreo_style">EEEE, d MMM│</string>
 
     <!-- feedback. -->
-    <string name="feedback_request_permission">Permisiuni</string>
     <string name="notification_channel_request_location">Locație</string>
-    <string name="feedback_request_location_in_background">Localizare în fundal</string>
-    <string name="feedback_request_location_permission_success">Cerere acces localizare - Succes</string>
-    <string name="feedback_request_location_permission_failed">Cerere acces localizare - Eșuat</string>
+    <string name="notification_location_in_background">Localizare în fundal</string>
 
-    <string name="feedback_location_permissions_title">Accesare informații despre locație.</string>
-    <string name="feedback_location_permissions_statement">Breezy Weather are nevoie de informațiile despre locația dumenavoastră când rulează sau în fundal pentru a furniza datele meteo din locația in care vă aflați. Pentru aceasta sunt necesare câteva permisiuni. Informațiile despre locația dumenavoastră vor fi utilizate doar pentru a obține datele meteo pentru locația curentă. Dacă nu doriți permiterea accesului la informațiile despre locație, puteți respinge aceste cerințe și seta manual locația dorită în pagina de gestionare.</string>
-    <string name="feedback_background_location_title">Accesare locație în fundal.</string>
-    <string name="feedback_background_location_summary">Pentru a permite aplicației să acceseze informații despre locație în fundal, astfel încât să putem percepe modificări ale locației și să vă oferim date meteorologice in timp real, setați accesul la locație ca \ "Permiteți tot timpul \". </string>
+    <string name="dialog_permissions_location_title">Accesare informații despre locație.</string>
+    <string name="dialog_permissions_location_content">Breezy Weather are nevoie de informațiile despre locația dumenavoastră când rulează sau în fundal pentru a furniza datele meteo din locația in care vă aflați. Pentru aceasta sunt necesare câteva permisiuni. Informațiile despre locația dumenavoastră vor fi utilizate doar pentru a obține datele meteo pentru locația curentă. Dacă nu doriți permiterea accesului la informațiile despre locație, puteți respinge aceste cerințe și seta manual locația dorită în pagina de gestionare.</string>
+    <string name="dialog_permissions_location_background_title">Accesare locație în fundal.</string>
+    <string name="dialog_permissions_location_background_content">Pentru a permite aplicației să acceseze informații despre locație în fundal, astfel încât să putem percepe modificări ale locației și să vă oferim date meteorologice in timp real, setați accesul la locație ca \ "Permiteți tot timpul \". </string>
 
-    <string name="feedback_location_failed">Localizarea a eșuat.</string>
-    <string name="feedback_get_weather_failed">Solicitarea datelor meteo a eșuat.</string>
-    <string name="feedback_location_help_title">Datele de localizare nu sunt corecte?</string>
-    <string name="feedback_check_location_permission">Verifică permisiunile de Localizare.</string>
-    <string name="feedback_enable_location_information">Activați informațiile despre locație</string>
-    <string name="feedback_select_location_provider">Selectați furnizorul de servicii de localizare</string>
-    <string name="feedback_add_location_manually">Adăugați locația manual și ștergeți \'$ \'</string>
+    <string name="location_message_failed_to_locate">Localizarea a eșuat.</string>
+    <string name="weather_message_data_refresh_failed">Solicitarea datelor meteo a eșuat.</string>
+    <string name="location_dialog_failed_to_locate_title">Datele de localizare nu sunt corecte?</string>
+    <string name="location_dialog_failed_to_locate_action_check_permission">Verifică permisiunile de Localizare.</string>
+    <string name="location_dialog_failed_to_locate_action_enable_information">Activați informațiile despre locație</string>
+    <string name="location_dialog_failed_to_locate_action_select_provider">Selectați furnizorul de servicii de localizare</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Adăugați locația manual și ștergeți \'$ \'</string>
     <string name="widget_label_view_style">Tip vizualizare</string>
     <string name="widget_label_show_widget_card">Culoare fundal</string>
     <string name="widget_label_show_widget_card_alpha">Transparență</string>
@@ -202,57 +202,46 @@
     <string name="widget_live_wallpaper_weather_kind">Vremea</string>
     <string name="widget_live_wallpaper_day_night_type">Ora</string>
 
-    <string name="feedback_click_toggle">Atingeți tabelul pentru a selecta datele</string>
-    <string name="feedback_no_data">DATE LIPSĂ</string>
+    <string name="location_message_added">Locația a fost adăugată cu succes</string>
+    <string name="location_message_deleted">Locația a fost ștearsă</string>
+    <string name="location_message_list_cannot_be_empty">Lista locațiilor nu poate fi goală</string>
 
-    <string name="feedback_collect_failed">Această locație a fost deja adaugată</string>
-    <string name="feedback_collect_succeed">Locația a fost adăugată cu succes</string>
-    <string name="feedback_delete_succeed">Locația a fost ștearsă</string>
-    <string name="feedback_location_list_cannot_be_null">Lista locațiilor nu poate fi goală</string>
+    <string name="location_search_placeholder">Caută locația…</string>
+    <string name="location_current_not_found_yet">Fără locații momentan…</string>
 
-    <string name="feedback_search_location">Caută locația…</string>
-    <string name="feedback_not_yet_location">Fără locații momentan…</string>
-    <string name="feedback_search_nothing">Locația nu a fost gasită</string>
-    <string name="feedback_initializing">Inițializare…</string>
+    <string name="settings_changes_apply_after_restart">Modificările vor fi vizibile după repornirea aplicației</string>
 
-    <string name="feedback_refresh_notification_after_back">Modificările vor fi vizibile când reveniți la pagina principală</string>
-    <string name="feedback_refresh_notification_now">Reactualizează acum</string>
-    <string name="feedback_refresh_ui_after_refresh">Modificările vor fi vizibile odata cu actualizarea datelor</string>
-    <string name="feedback_restart">Modificările vor fi vizibile după repornirea aplicației</string>
-
-    <string name="feedback_running_in_background">Datele se actualizează în fundal</string>
-    <string name="feedback_updating_weather_data">Se actualizează datele meteo</string>
-    <string name="feedback_updated_in_background">Date actualizate în fundal</string>
+    <string name="notification_running_in_background">Datele se actualizează în fundal</string>
+    <string name="notification_updating_weather_data">Se actualizează datele meteo</string>
+    <string name="message_updated_in_background">Date actualizate în fundal</string>
 
     <!-- there should be a "\" before single or double quotes. -->
     <!-- Correct : ... after turning off \'Background free\', ... After turning off \"Free background\" ... -->
     <!-- Wrong   : ... after turning off 'Background free', ... After turning off "Free background" ... -->
-    <string name="feedback_interpret_background_notification_content">În unele dispozitive, după deselectarea opțiunii \'Activitate fundal gestionată de sistem\', ar putea apărea o notificare ce nu poate fi ștearsă din bara de notificări.</string>
-    <string name="feedback_interpret_notification_group_title">Blochează  notificarea de fundal</string>
-    <string name="feedback_interpret_notification_group_content">După deselectarea opțiunii \"Activitate fundal gestionată de sistem\", o notificare ce indică faptul că serviciul rulează in fundal va apărea în bara de notificări. Puteți dezactiva Informațiile despre activitatea din fundal în pagina de informații a aplicației pentru a bloca aceste notificări. </string>
+    <string name="dialog_permissions_block_notification_channel_title">Blochează  notificarea de fundal</string>
+    <string name="dialog_permissions_block_notification_channel_content">După deselectarea opțiunii \"Activitate fundal gestionată de sistem\", o notificare ce indică faptul că serviciul rulează in fundal va apărea în bara de notificări. Puteți dezactiva Informațiile despre activitatea din fundal în pagina de informații a aplicației pentru a bloca aceste notificări. </string>
 
-    <string name="feedback_ignore_battery_optimizations_title">Ignorați optimizarea bateriei</string>
-    <string name="feedback_ignore_battery_optimizations_content">Pentru a vă asigura că serviciile de fundal funcționează corect, vă rugăm să deselectați optimizarea bateriei pentru Breezy Weather. </string>
+    <string name="dialog_permissions_ignore_battery_optimizations_title">Ignorați optimizarea bateriei</string>
+    <string name="dialog_permissions_ignore_battery_optimizations_content">Pentru a vă asigura că serviciile de fundal funcționează corect, vă rugăm să deselectați optimizarea bateriei pentru Breezy Weather. </string>
 
-    <string name="feedback_cannot_start_live_wallpaper_activity">Pornirea previzualizării Tapetului dinamic (live wallpaper) a eșuat.</string>
+    <string name="widget_live_wallpaper_cannot_start_activity">Pornirea previzualizării Tapetului dinamic (live wallpaper) a eșuat.</string>
 
-    <string name="feedback_today_precipitation_alert">Posibile precipitații in decursul zilei</string>
-    <string name="feedback_short_term_precipitation_alert">Posibile precipitații în următoarele ore.</string>
+    <string name="notification_precipitation_today">Posibile precipitații in decursul zilei</string>
+    <string name="notification_precipitation_short_term">Posibile precipitații în următoarele ore.</string>
 
-    <string name="feedback_resident_location">Selectat ca oraș de rezidență (Acasă)</string>
-    <string name="feedback_resident_location_description">Breezy Weather va afișa și ascunde automat orașele de rezidență (Acasă) pe baza locației dvs. actuale. \ nDe exemplu, vă puteți seta orașul natal ca oraș rezident. Puteți verifica vremea în orașul dvs. natal în timp ce călătoriți. Când ajungeți acasă, vremea din orașul dvs. natal va fi ascunsă și înlocuită de vremea pentru locația dvs. actuală.</string>
+    <string name="location_resident_message">Selectat ca oraș de rezidență (Acasă)</string>
+    <string name="location_resident_dialog">Breezy Weather va afișa și ascunde automat orașele de rezidență (Acasă) pe baza locației dvs. actuale. \ nDe exemplu, vă puteți seta orașul natal ca oraș rezident. Puteți verifica vremea în orașul dvs. natal în timp ce călătoriți. Când ajungeți acasă, vremea din orașul dvs. natal va fi ascunsă și înlocuită de vremea pentru locația dvs. actuală.</string>
 
-    <string name="feedback_click_to_get_more">Atingeți pentru mai multe informatii…</string>
-    <string name="feedback_click_again_to_exit">Repetați actiunea pentru a ieși</string>
+    <string name="allergen_tap_to_see_more">Atingeți pentru mai multe informatii…</string>
+    <string name="message_tap_again_to_exit">Repetați actiunea pentru a ieși</string>
 
     <!-- action -->
     <string name="alerts">Alertă</string>
-    <string name="action_manage">Gestionnează</string>
     <string name="action_search">Căutare</string>
     <string name="action_settings">Setări</string>
     <string name="action_preview">Previzualizare</string>
     <string name="action_about">Despre</string>
-    <string name="action_appStore">Magazin aplicații</string>
+    <string name="action_app_store">Magazin aplicații</string>
 
     <!-- widget -->
     <string name="widget_day">Zilnic</string>
@@ -281,7 +270,6 @@
     <string name="settings_title_weather_source">Sursa Meteo</string>
     <string name="settings_title_location_service">Serviciu locație</string>
     <string name="settings_title_dark_mode">Mod întunecat (Temă)</string>
-    <string name="settings_title_ui_style">Tip interfață</string>
     <string name="settings_title_icon_provider">Pachet de pictograme (icoane)</string>
     <string name="settings_title_appearance">Aspect interfață</string>
     <string name="settings_summary_appearance">Tip interfeță, ordine file, limbă…</string>
@@ -313,7 +301,7 @@
     <string name="settings_category_widget">Widget</string>
     <string name="settings_title_week_icon_mode">Mod icoane sapt.</string>
     <string name="settings_title_minimal_icon">Pictograme tip minimal</string>
-    <string name="settings_title_click_widget_to_refresh">Atinge pt. actualizare</string>
+    <string name="settings_title_tap_widget_to_refresh">Atinge pt. actualizare</string>
     <string name="settings_title_widget_config">Configurare Widget</string>
     <string name="settings_category_notification">Notificări</string>
     <string name="settings_title_notification">Trimite notificări</string>

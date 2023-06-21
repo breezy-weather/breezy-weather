@@ -130,9 +130,7 @@ class LocationHolder(
         })
         if (mDragListener != null) {
             talkBackBuilder.append(", ").append(
-                context.getString(
-                    if (DisplayUtils.isRtl(context)) R.string.content_desc_swipe_left_to_delete else R.string.content_desc_swipe_right_to_delete
-                )
+                context.getString(R.string.location_swipe_to_delete)
             )
         }
         itemView.contentDescription = talkBackBuilder.toString()

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Please don’t translate in this file anymore and migrate to strings.xml, see values/arrays.xml -->
+
     <!-- Chinese source. -->
     <string-array name="weather_sources">
         <item>Open-Meteo</item>
@@ -33,12 +35,6 @@
         <item>跟隨系統</item>
         <item>亮色主題</item>
         <item>暗色主題</item>
-    </string-array>
-
-    <!-- UI style. -->
-    <string-array name="ui_styles">
-        <item>圓環狀天空</item>
-        <item>Material動畫</item>
     </string-array>
 
     <!-- automatic refresh rate. -->
@@ -91,13 +87,13 @@
     </string-array>
 
     <!-- week widget style. -->
-    <string-array name="week_widget_styles">
+    <string-array name="widget_week_styles">
         <item>五天</item>
         <item>三天</item>
     </string-array>
 
     <!-- Widget subtitle data. -->
-    <string-array name="subtitle_data">
+    <string-array name="widget_subtitle_data">
         <item>更新時間</item>
         <item>空氣質量 (部分地區無效)</item>
         <item>風況</item>

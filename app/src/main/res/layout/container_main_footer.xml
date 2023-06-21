@@ -7,7 +7,7 @@
 
     <Button
         android:id="@+id/container_main_footer_editButton"
-        android:text="@string/edit"
+        android:text="@string/action_edit"
         android:textColor="@color/colorTextLight2nd"
         android:layout_centerVertical="true"
         android:layout_alignParentEnd="true"

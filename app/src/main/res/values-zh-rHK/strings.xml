@@ -1,4 +1,8 @@
 <resources>
+
+    <!-- Do NOT translate values that are identical in English and in your language -->
+    <!-- Do NOT use " and ', use appropriate typographic quotes for your language (in English: “ and ”, ‘ and ’) -->
+
     <!-- app. -->
     <string name="app_name">天氣</string>
     <string name="breezy_weather">Breezy 天氣</string>
@@ -8,7 +12,7 @@
     <string name="location_resident">常駐位置</string>
     <string name="live">實時</string>
     <string name="short_today">今日</string>
-    <string name="refresh_at">更新於</string>
+    <string name="notification_refreshed_at">更新於</string>
     <string name="precipitation">降水量</string>
     <string name="precipitation_probability">降水概率</string>
     <string name="precipitation_duration">降水時長</string>
@@ -23,7 +27,6 @@
     <string name="notification_channel_forecast">預報</string>
     <string name="daytime">白天</string>
     <string name="nighttime">夜間</string>
-    <string name="published_at">發布於</string>
     <string name="temperature_feels_like">體感</string>
     <string name="settings_follow_system">跟隨系統</string>
     <string name="notification_channel_background_information">後台信息</string>
@@ -35,9 +38,9 @@
     <string name="settings_icon_providers_get_more">獲取更多</string>
     <string name="settings_icon_providers_get_more_store">從應用商店獲取更多</string>
     <string name="settings_icon_providers_get_more_github">從GitHub獲取更多</string>
-    <string name="refresh">刷新數據</string>
-    <string name="restart">重啟</string>
-    <string name="edit">編輯</string>
+    <string name="action_refresh">刷新數據</string>
+    <string name="action_restart">重啟</string>
+    <string name="action_edit">編輯</string>
 
     <string name="of_clock">時</string>
     <string name="short_yesterday">昨日</string>
@@ -105,14 +108,14 @@
     <string name="details">詳情數據</string>
     <string name="ephemeris">日月升落</string>
 
-    <string name="next">下一步</string>
-    <string name="done">完成</string>
-    <string name="cancel">取消</string>
-    <string name="on">開啟</string>
-    <string name="off">關閉</string>
-    <string name="go_to_set">設定</string>
-    <string name="help">幫助</string>
-    <string name="learn_more">瞭解更多</string>
+    <string name="action_next">下一步</string>
+    <string name="action_done">完成</string>
+    <string name="action_cancel">取消</string>
+    <string name="settings_enabled">開啟</string>
+    <string name="settings_disabled">關閉</string>
+    <string name="action_set">設定</string>
+    <string name="action_help">幫助</string>
+    <string name="action_learn_more">瞭解更多</string>
 
     <string name="about_app">概覽</string>
     <string name="about_contributors">貢獻者</string>
@@ -125,24 +128,21 @@
     <string name="date_format_widget_oreo_style">M月d日EEEE │ </string>
 
     <!-- feedback. -->
-    <string name="feedback_request_permission">授權</string>
     <string name="notification_channel_request_location">位置信息</string>
-    <string name="feedback_request_location_in_background">正在後台進行定位</string>
-    <string name="feedback_request_location_permission_success">獲取位置權限成功</string>
-    <string name="feedback_request_location_permission_failed">獲取位置權限失敗</string>
+    <string name="notification_location_in_background">正在後台進行定位</string>
 
-    <string name="feedback_location_permissions_title">獲取位置信息</string>
-    <string name="feedback_location_permissions_statement">Breezy 天氣需要在前臺和後臺訪問您的位置信息以提供您所在位置的天氣數據。爲此，我們需要請求一些權限。您的位置信息將僅被用於獲取天氣數據，若您不希望我們獲取您的位置信息，可以拒絕這些權限請求並手動在管理頁面中鍵入您的位置。</string>
-    <string name="feedback_background_location_title">在後臺訪問位置</string>
-    <string name="feedback_background_location_summary">爲了讓app可以在後臺訪問您的位置信息，以便我們能夠及時感知您的位置變化並爲您提供有效的天氣數據，請將定位權限設置爲“始终允许”。</string>
+    <string name="dialog_permissions_location_title">獲取位置信息</string>
+    <string name="dialog_permissions_location_content">Breezy 天氣需要在前臺和後臺訪問您的位置信息以提供您所在位置的天氣數據。爲此，我們需要請求一些權限。您的位置信息將僅被用於獲取天氣數據，若您不希望我們獲取您的位置信息，可以拒絕這些權限請求並手動在管理頁面中鍵入您的位置。</string>
+    <string name="dialog_permissions_location_background_title">在後臺訪問位置</string>
+    <string name="dialog_permissions_location_background_content">爲了讓app可以在後臺訪問您的位置信息，以便我們能夠及時感知您的位置變化並爲您提供有效的天氣數據，請將定位權限設置爲“始终允许”。</string>
 
-    <string name="feedback_location_failed">定位失敗</string>
-    <string name="feedback_get_weather_failed">獲取天氣數據失敗</string>
-    <string name="feedback_location_help_title">無法正常進行定位？</string>
-    <string name="feedback_check_location_permission">檢查位置權限</string>
-    <string name="feedback_enable_location_information">開啟位置信息</string>
-    <string name="feedback_select_location_provider">選擇位置信息提供商</string>
-    <string name="feedback_add_location_manually">手動添加城市並刪除“$”</string>
+    <string name="location_message_failed_to_locate">定位失敗</string>
+    <string name="weather_message_data_refresh_failed">獲取天氣數據失敗</string>
+    <string name="location_dialog_failed_to_locate_title">無法正常進行定位？</string>
+    <string name="location_dialog_failed_to_locate_action_check_permission">檢查位置權限</string>
+    <string name="location_dialog_failed_to_locate_action_enable_information">開啟位置信息</string>
+    <string name="location_dialog_failed_to_locate_action_select_provider">選擇位置信息提供商</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">手動添加城市並刪除“$”</string>
 
     <string name="widget_label_view_style">界面風格</string>
     <string name="widget_label_show_widget_card">卡片背景</string>
@@ -199,82 +199,67 @@
     <string name="widget_live_wallpaper_weather_kind">天氣</string>
     <string name="widget_live_wallpaper_day_night_type">時間</string>
 
-    <string name="feedback_click_toggle">點擊趨勢圖可切換數據</string>
-    <string name="feedback_no_data">暫無數據</string>
+    <string name="location_message_added">收藏成功</string>
+    <string name="location_message_deleted">刪除成功</string>
+    <string name="location_message_list_cannot_be_empty">收藏地質不能留空</string>
 
-    <string name="feedback_collect_failed">地址已存在</string>
-    <string name="feedback_collect_succeed">收藏成功</string>
-    <string name="feedback_delete_succeed">刪除成功</string>
-    <string name="feedback_location_list_cannot_be_null">收藏地質不能留空</string>
+    <string name="location_search_placeholder">鍵入一個地址…</string>
+    <string name="location_current_not_found_yet">尚未進行定位…</string>
 
-    <string name="feedback_search_location">鍵入一個地址…</string>
-    <string name="feedback_not_yet_location">尚未進行定位…</string>
-    <string name="feedback_search_nothing">搜索結果為空…</string>
-    <string name="feedback_initializing">初始化中…</string>
+    <string name="settings_changes_apply_after_restart">重啟後生效</string>
 
-    <string name="feedback_refresh_notification_after_back">返回主頁後刷新通知</string>
-    <string name="feedback_refresh_notification_now">立即刷新通知</string>
-    <string name="feedback_refresh_ui_after_refresh">下次刷新後生效</string>
-    <string name="feedback_restart">重啟後生效</string>
+    <string name="notification_running_in_background">正在後台運行以保持更新數據</string>
+    <string name="notification_updating_weather_data">正在更新天氣數據</string>
+    <string name="message_updated_in_background">已在後台完成更新</string>
 
-    <string name="feedback_running_in_background">正在後台運行以保持更新數據</string>
-    <string name="feedback_updating_weather_data">正在更新天氣數據</string>
-    <string name="feedback_updated_in_background">已在後台完成更新</string>
+    <string name="dialog_permissions_block_notification_channel_title">關閉相應通知頻道</string>
+    <string name="dialog_permissions_block_notification_channel_content">關閉後台純净後，會出現一個標示後台服務正在運行的通知，你可以在app相關頁面中找到通知設定，在其中關閉“後台信息”這個頻道來隱藏這個通知</string>
 
-    <string name="feedback_interpret_background_notification_content">關閉後台純净後，部分設備的通知欄中可能會出現一個無法清除的通知</string>
-    <string name="feedback_interpret_notification_group_title">關閉相應通知頻道</string>
-    <string name="feedback_interpret_notification_group_content">關閉後台純净後，會出現一個標示後台服務正在運行的通知，你可以在app相關頁面中找到通知設定，在其中關閉“後台信息”這個頻道來隱藏這個通知</string>
+    <string name="dialog_permissions_ignore_battery_optimizations_title">忽略電池優化</string>
+    <string name="dialog_permissions_ignore_battery_optimizations_content">為了保證後台服務能夠持續工作，請為集合天氣選擇忽略電池優化</string>
 
-    <string name="feedback_ignore_battery_optimizations_title">忽略電池優化</string>
-    <string name="feedback_ignore_battery_optimizations_content">為了保證後台服務能夠持續工作，請為集合天氣選擇忽略電池優化</string>
+    <string name="widget_live_wallpaper_cannot_start_activity">無法啟動動態壁紙預覽程序</string>
 
-    <string name="feedback_cannot_start_live_wallpaper_activity">無法啟動動態壁紙預覽程序</string>
+    <string name="notification_precipitation_today">今日可能出現降水</string>
+    <string name="notification_precipitation_short_term">未來幾小時内可能出現降水</string>
 
-    <string name="feedback_today_precipitation_alert">今日可能出現降水</string>
-    <string name="feedback_short_term_precipitation_alert">未來幾小時内可能出現降水</string>
+    <string name="location_resident_message">設定為常駐城市</string>
+    <string name="location_resident_dialog">常駐城市的天氣將會根據您當前的位置來進行顯示和隱藏。\n例如將家鄉設定為常駐城市後，可以在旅途中查看家鄉天氣，而在歸家後，家鄉的天氣數據將會被當前位置所替代並進行隱藏。</string>
 
-    <string name="feedback_resident_location">設定為常駐城市</string>
-    <string name="feedback_resident_location_description">常駐城市的天氣將會根據您當前的位置來進行顯示和隱藏。\n例如將家鄉設定為常駐城市後，可以在旅途中查看家鄉天氣，而在歸家後，家鄉的天氣數據將會被當前位置所替代並進行隱藏。</string>
-
-    <string name="feedback_click_to_get_more">點擊可獲取更多…</string>
+    <string name="allergen_tap_to_see_more">點擊可獲取更多…</string>
 
     <!-- content description -->
-    <string name="content_desc_back">回退</string>
-    <string name="content_desc_check_details">視檢詳情</string>
-    <string name="content_desc_weather_alert_button">$條天氣預警</string>
-    <string name="air_quality_content_desc_pm25">PM二點五</string>
-    <string name="air_quality_content_desc_pm10">PM十</string>
-    <string name="air_quality_content_desc_so2">二氧化硫</string>
-    <string name="air_quality_content_desc_no2">二氧化氮</string>
-    <string name="air_quality_content_desc_o3">臭氧</string>
-    <string name="air_quality_content_desc_co">一氧化碳</string>
-    <string name="ephemeris_content_desc_sunrise">$日出</string>
-    <string name="ephemeris_content_desc_sunset">$日落</string>
-    <string name="ephemeris_content_desc_moonrise">$月出</string>
-    <string name="ephemeris_content_desc_moonset">$月落</string>
-    <string name="content_desc_no_precipitation">無降水</string>
-    <string name="content_desc_minutely_precipitation">$1至$2間存在降水</string>
-    <string name="content_desc_add_current_location">添加當前位置</string>
-    <string name="content_desc_drag_flag">輕觸以對列表進行拖拽排序</string>
-    <string name="content_desc_delete_flag">刪除此項</string>
-    <string name="content_desc_swipe_left_to_delete">你可以向左滑動以刪除該項</string>
-    <string name="content_desc_swipe_right_to_delete">你可以向右滑動以刪除該項</string>
-    <string name="content_desc_search_filter_on">僅顯示默認天氣源的地址</string>
-    <string name="content_desc_search_filter_off">顯示所有天氣源的地址</string>
-    <string name="content_desc_weather_icon">天氣圖標</string>
-    <string name="content_desc_weather_icon_light">亮色圖標</string>
-    <string name="content_desc_weather_icon_grey">灰色圖標</string>
-    <string name="content_desc_weather_icon_dark">暗色圖標</string>
-    <string name="content_desc_filter_weather_sources">篩選天氣源</string>
+    <string name="action_back">回退</string>
+    <string name="settings_icon_providers_check_details">視檢詳情</string>
+    <string name="alerts_count">$條天氣預警</string>
+    <string name="air_quality_pm25_voice">PM二點五</string>
+    <string name="air_quality_pm10_voice">PM十</string>
+    <string name="air_quality_so2_voice">二氧化硫</string>
+    <string name="air_quality_no2_voice">二氧化氮</string>
+    <string name="air_quality_o3_voice">臭氧</string>
+    <string name="air_quality_co_voice">一氧化碳</string>
+    <string name="ephemeris_sunrise_at">$日出</string>
+    <string name="ephemeris_sunset_at">$日落</string>
+    <string name="ephemeris_moonrise_at">$月出</string>
+    <string name="ephemeris_moonset_at">$月落</string>
+    <string name="precipitation_none">無降水</string>
+    <string name="precipitation_between_time">$1至$2間存在降水</string>
+    <string name="action_add_current_location">添加當前位置</string>
+    <string name="settings_items_drag_to_sort">輕觸以對列表進行拖拽排序</string>
+    <string name="settings_item_delete">刪除此項</string>
+    <string name="location_swipe_to_delete">你可以向左滑動以刪除該項</string>
+    <string name="settings_icon_providers_weather_adaptive_icon">天氣圖標</string>
+    <string name="settings_icon_providers_weather_icon_light">亮色圖標</string>
+    <string name="settings_icon_providers_weather_icon_grey">灰色圖標</string>
+    <string name="settings_icon_providers_weather_icon_dark">暗色圖標</string>
 
     <!-- action -->
     <string name="alerts">預警</string>
-    <string name="action_manage">地址管理</string>
     <string name="action_search">搜索</string>
     <string name="action_settings">設定</string>
     <string name="action_preview">預覽</string>
     <string name="action_about">關於</string>
-    <string name="action_appStore">應用商店</string>
+    <string name="action_app_store">應用商店</string>
 
     <!-- widget -->
     <string name="widget_day">今日</string>
@@ -309,7 +294,6 @@
     <string name="settings_title_dark_mode">暗色模式</string>
     <string name="settings_title_appearance">外觀</string>
     <string name="settings_summary_appearance">UI風格，卡片順序，語言等…</string>
-    <string name="settings_title_ui_style">界面風格</string>
     <string name="settings_title_icon_provider">圖標風格</string>
     <string name="settings_title_card_display">卡片顯示</string>
     <string name="settings_title_card_order">卡片順序</string>
@@ -340,7 +324,7 @@
     <string name="settings_category_widget">小部件</string>
     <string name="settings_title_week_icon_mode">一週天氣圖標樣式</string>
     <string name="settings_title_minimal_icon">Minimal圖標</string>
-    <string name="settings_title_click_widget_to_refresh">點擊小部件時進行刷新</string>
+    <string name="settings_title_tap_widget_to_refresh">點擊小部件時進行刷新</string>
     <string name="settings_category_notification">通知</string>
     <string name="settings_title_notification">開啟天氣通知</string>
     <string name="settings_title_notification_style">通知風格</string>

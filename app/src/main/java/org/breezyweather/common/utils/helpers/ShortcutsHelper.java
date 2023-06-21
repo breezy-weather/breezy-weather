@@ -46,7 +46,7 @@ public class ShortcutsHelper {
 
             // refresh button.
             Icon icon;
-            String title = c.getString(R.string.refresh);
+            String title = c.getString(R.string.action_refresh);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 icon = Icon.createWithAdaptiveBitmap(
                         drawableToBitmap(

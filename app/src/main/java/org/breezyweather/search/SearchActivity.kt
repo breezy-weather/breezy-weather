@@ -116,7 +116,7 @@ class SearchActivity : GeoActivity() {
                         onActiveChange = {
                             if (!it) finishSelf(null)
                         },
-                        placeholder = { Text(stringResource(R.string.feedback_search_location)) },
+                        placeholder = { Text(stringResource(R.string.location_search_placeholder)) },
                         leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) }
                     )
                     Divider(color = SearchBarDefaults.colors().dividerColor)
@@ -176,7 +176,7 @@ class SearchActivity : GeoActivity() {
                         onClick = { dialogOpenState.value = false }
                     ) {
                         Text(
-                            text = stringResource(R.string.cancel),
+                            text = stringResource(R.string.action_cancel),
                             color = MaterialTheme.colorScheme.primary,
                             style = MaterialTheme.typography.labelLarge,
                         )

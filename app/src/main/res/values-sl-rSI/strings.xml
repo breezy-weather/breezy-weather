@@ -1,4 +1,8 @@
 ﻿<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Do NOT translate values that are identical in English and in your language -->
+    <!-- Do NOT use " and ', use appropriate typographic quotes for your language (in English: “ and ”, ‘ and ’) -->
+
     <!-- app. -->
     <string name="app_name">Vreme</string>
     <string name="breezy_weather">Breezy Vreme</string>
@@ -7,7 +11,7 @@
     <string name="location_current">Sedanja lokacija</string>
     <string name="live">Trenutno</string>
     <string name="short_today">Danes</string>
-    <string name="refresh_at">Osveži ob</string>
+    <string name="notification_refreshed_at">Osveži ob</string>
     <string name="precipitation">Padavine</string>
     <string name="wind">Veter</string>
     <string name="humidity">Vlažnost</string>
@@ -15,7 +19,6 @@
     <string name="notification_channel_forecast">Napoved</string>
     <string name="daytime">Podnevi</string>
     <string name="nighttime">Ponoči</string>
-    <string name="published_at">Objavi ob</string>
     <string name="temperature_feels_like">Občuti se</string>
     <string name="settings_follow_system">Sledi sistemu</string>
     <string name="notification_channel_background_information">Informacije iz ozadja</string>
@@ -25,7 +28,7 @@
     <string name="settings_icon_providers_get_more">Več</string>
     <string name="settings_icon_providers_get_more_store">Več iz trgovine</string>
     <string name="settings_icon_providers_get_more_github">Več iz GitHuba</string>
-    <string name="refresh">Osveži</string>
+    <string name="action_refresh">Osveži</string>
 
     <string name="of_clock">:00</string>
     <string name="short_yesterday">Včr</string>
@@ -67,14 +70,14 @@
     <string name="details">Podrobnosti</string>
     <string name="ephemeris">Sonce &amp; luna</string>
 
-    <string name="next">NASLEDNJI</string>
-    <string name="done">KONČNANO</string>
-    <string name="cancel" tools:ignore="ButtonCase">PREKLIČI</string>
-    <string name="on">Omogočeno</string>
-    <string name="off">Onemogočeno</string>
-    <string name="go_to_set">NASTAVI</string>
-    <string name="help">POMOČ</string>
-    <string name="learn_more">NAUČI SE VEČ</string>
+    <string name="action_next">NASLEDNJI</string>
+    <string name="action_done">KONČNANO</string>
+    <string name="action_cancel" tools:ignore="ButtonCase">PREKLIČI</string>
+    <string name="settings_enabled">Omogočeno</string>
+    <string name="settings_disabled">Onemogočeno</string>
+    <string name="action_set">NASTAVI</string>
+    <string name="action_help">POMOČ</string>
+    <string name="action_learn_more">NAUČI SE VEČ</string>
 
     <string name="about_app">O applikaciji</string>
     <string name="about_translators">Prevajalci</string>
@@ -86,18 +89,15 @@
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
 
     <!-- feedback. -->
-    <string name="feedback_request_permission">Dovoljenja</string>
     <string name="notification_channel_request_location">Lokacija</string>
-    <string name="feedback_request_location_in_background">Lokacija v ozadju</string>
-    <string name="feedback_request_location_permission_success">Pridobitev dovoljenja za lokacijo je uspela</string>
-    <string name="feedback_request_location_permission_failed">Pridobitev dovoljenja za lokacijo ni uspela</string>
+    <string name="notification_location_in_background">Lokacija v ozadju</string>
 
-    <string name="feedback_location_failed">Pridobivanje lokacije ni bilo uspešno</string>
-    <string name="feedback_get_weather_failed">Podatki o vremenu niso na voljo</string>
-    <string name="feedback_location_help_title">Ni moč najti natančne lokacije?</string>
-    <string name="feedback_check_location_permission">Preverite dovoljenja lokacije</string>
-    <string name="feedback_enable_location_information">Omogočite dovoljenja lokacije</string>
-    <string name="feedback_select_location_provider">Izberite način pridobivanja lokacije</string>
+    <string name="location_message_failed_to_locate">Pridobivanje lokacije ni bilo uspešno</string>
+    <string name="weather_message_data_refresh_failed">Podatki o vremenu niso na voljo</string>
+    <string name="location_dialog_failed_to_locate_title">Ni moč najti natančne lokacije?</string>
+    <string name="location_dialog_failed_to_locate_action_check_permission">Preverite dovoljenja lokacije</string>
+    <string name="location_dialog_failed_to_locate_action_enable_information">Omogočite dovoljenja lokacije</string>
+    <string name="location_dialog_failed_to_locate_action_select_provider">Izberite način pridobivanja lokacije</string>
 
     <string name="widget_label_view_style">Način pogleda</string>
     <string name="widget_label_show_widget_card">Barva ozadja</string>
@@ -112,38 +112,28 @@
     <string name="widget_live_wallpaper_weather_kind">Vreme</string>
     <string name="widget_live_wallpaper_day_night_type">Čas</string>
 
-    <string name="feedback_click_toggle">Kliknite za graf, če želite spremeniti pogled podatkov</string>
-    <string name="feedback_no_data">NI PODATKOV</string>
+    <string name="location_message_added">Lokacije je bila uspešno dodana</string>
+    <string name="location_message_deleted">Lokacija je bila uspešno odstranjena</string>
+    <string name="location_message_list_cannot_be_empty">Lokacija ne sme biti prazna</string>
 
-    <string name="feedback_collect_failed">Ta lokacija že obstaja</string>
-    <string name="feedback_collect_succeed">Lokacije je bila uspešno dodana</string>
-    <string name="feedback_delete_succeed">Lokacija je bila uspešno odstranjena</string>
-    <string name="feedback_location_list_cannot_be_null">Lokacija ne sme biti prazna</string>
+    <string name="location_search_placeholder">Išči lokacijo…</string>
+    <string name="location_current_not_found_yet">Nobena lokacije še ni bila najdena …</string>
 
-    <string name="feedback_search_location">Išči lokacijo…</string>
-    <string name="feedback_not_yet_location">Nobena lokacije še ni bila najdena …</string>
-    <string name="feedback_search_nothing">Nobena lokacija ni bila najdena</string>
-    <string name="feedback_initializing">Začenjam…</string>
+    <string name="settings_changes_apply_after_restart">Spremembe bodo veljavne po ponovnem zaognu</string>
 
-    <string name="feedback_refresh_notification_after_back">Spremembe bodo v veljavi, ko se vrnete na domači zaslon</string>
-    <string name="feedback_refresh_notification_now">Osveži zdaj</string>
-    <string name="feedback_refresh_ui_after_refresh">Spremembe bodo veljanje ob posodobitvi podatkov</string>
-    <string name="feedback_restart">Spremembe bodo veljavne po ponovnem zaognu</string>
+    <string name="notification_running_in_background">Teče v ozadju za redne posodobitve</string>
+    <string name="notification_updating_weather_data">Posodabljanje podatkov o vremenu</string>
+    <string name="message_updated_in_background">Posodobljeno v ozadju</string>
 
-    <string name="feedback_running_in_background">Teče v ozadju za redne posodobitve</string>
-    <string name="feedback_updating_weather_data">Posodabljanje podatkov o vremenu</string>
-    <string name="feedback_updated_in_background">Posodobljeno v ozadju</string>
-
-    <string name="feedback_cannot_start_live_wallpaper_activity">Predogleda živega ozadja ni bilo mogoče začeti.</string>
+    <string name="widget_live_wallpaper_cannot_start_activity">Predogleda živega ozadja ni bilo mogoče začeti.</string>
 
     <!-- action -->
     <string name="alerts">Opozorilo</string>
-    <string name="action_manage">Urejaj</string>
     <string name="action_search">Išči</string>
     <string name="action_settings">Nastavitve</string>
     <string name="action_preview">Predogled</string>
     <string name="action_about">O tem</string>
-    <string name="action_appStore">Trgovina aplikacij</string>
+    <string name="action_app_store">Trgovina aplikacij</string>
 
     <!-- widget -->
     <string name="widget_day">Dnevno</string>
@@ -170,7 +160,6 @@
     <string name="settings_summary_service_provider">Izberite ponudnika vremenskih in lokacijskih storitev</string>
     <string name="settings_title_location_service">Dejavnost lokacija</string>
     <string name="settings_title_dark_mode">Temen način</string>
-    <string name="settings_title_ui_style">Stil uporabniškega vmesnika</string>
     <string name="settings_title_icon_provider">Paket ikon</string>
     <string name="settings_title_appearance">Izgled</string>
     <string name="settings_summary_appearance">Stil uporabniškega vmesnika, vrstni red vremenski podatkov, jezik…</string>
@@ -190,7 +179,7 @@
     <string name="settings_title_forecast_tomorrow_time">Čas napovedi vremena za jutri</string>
     <string name="settings_category_widget">Pripomoče</string>
     <string name="settings_title_minimal_icon">Minimalistične ikone</string>
-    <string name="settings_title_click_widget_to_refresh">Osveži obvestilo s klikom</string>
+    <string name="settings_title_tap_widget_to_refresh">Osveži obvestilo s klikom</string>
     <string name="settings_category_notification">Obvestilo</string>
     <string name="settings_title_notification">Pošlji obvestilo</string>
     <string name="settings_title_notification_style">Stil obvesila</string>

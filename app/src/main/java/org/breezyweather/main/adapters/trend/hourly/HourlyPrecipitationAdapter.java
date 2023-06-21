@@ -67,7 +67,7 @@ public class HourlyPrecipitationAdapter extends AbsHourlyTrendAdapter {
                         .append(mPrecipitationUnit.getValueVoice(activity, precipitation));
             } else {
                 talkBackBuilder.append(", ")
-                        .append(activity.getString(R.string.content_desc_no_precipitation));
+                        .append(activity.getString(R.string.precipitation_none));
             }
 
             mPolylineAndHistogramView.setData(

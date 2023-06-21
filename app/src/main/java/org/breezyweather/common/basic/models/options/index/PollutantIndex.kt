@@ -21,7 +21,7 @@ enum class PollutantIndex(
         // Plume 2023
         val aqiThresholds = listOf(0, 20, 50, 100, 150, 250)
         val namesArrayId = R.array.air_quality_levels
-        val colorsArrayId = R.array.air_quality_levels_colors
+        val colorsArrayId = R.array.air_quality_level_colors
 
         @JvmStatic val indexFreshAir = aqiThresholds[1]
         @JvmStatic val indexHighPollution = aqiThresholds[3]

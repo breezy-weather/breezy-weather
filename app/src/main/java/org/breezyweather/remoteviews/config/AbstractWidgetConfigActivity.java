@@ -162,7 +162,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         }
 
         mLastBackPressedTime = time;
-        SnackbarHelper.showSnackbar(getString(R.string.feedback_click_again_to_exit));
+        SnackbarHelper.showSnackbar(getString(R.string.message_tap_again_to_exit));
     }
 
     @Override
@@ -223,8 +223,8 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         hideSubtitle = false;
 
         subtitleDataValueNow = "time";
-        String[] data = res.getStringArray(R.array.subtitle_data);
-        String[] dataValues = res.getStringArray(R.array.subtitle_data_values);
+        String[] data = res.getStringArray(R.array.widget_subtitle_data);
+        String[] dataValues = res.getStringArray(R.array.widget_subtitle_data_values);
         if (SettingsManager.getInstance(this).getLanguage().isChinese()) {
             subtitleData = new String[] {
                     data[0], data[1], data[2], data[3], data[4], data[5]
@@ -248,8 +248,8 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         textSize = 100;
 
         clockFontValueNow = "light";
-        clockFonts = res.getStringArray(R.array.clock_font);
-        clockFontValues = res.getStringArray(R.array.clock_font_values);
+        clockFonts = res.getStringArray(R.array.widget_clock_fonts);
+        clockFontValues = res.getStringArray(R.array.widget_clock_font_values);
 
         hideLunar = false;
 
@@ -721,7 +721,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
         }
         locationNow = requestLocation;
         updateHostView();
-        SnackbarHelper.showSnackbar(getString(R.string.feedback_get_weather_failed));
+        SnackbarHelper.showSnackbar(getString(R.string.weather_message_data_refresh_failed));
     }
 
     @SuppressLint("MissingPermission")

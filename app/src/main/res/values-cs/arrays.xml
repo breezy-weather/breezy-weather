@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Please don’t translate in this file anymore and migrate to strings.xml, see values/arrays.xml -->
+
     <!-- Chinese source. -->
     <string-array name="weather_sources">
         <item>Open-Meteo</item>
@@ -25,12 +27,6 @@
         <item>Podle systému</item>
         <item>Vždy světlé</item>
         <item>Vždy tmavé</item>
-    </string-array>
-
-    <!-- UI style. -->
-    <string-array name="ui_styles">
-        <item>Kulatá obloha</item>
-        <item>Material Design animace</item>
     </string-array>
 
     <!-- automatic refresh rate. -->
@@ -83,27 +79,19 @@
     </string-array>
 
     <!-- week widget style. -->
-    <string-array name="week_widget_styles">
+    <string-array name="widget_week_styles">
         <item>5 dní</item>
         <item>3 dny</item>
     </string-array>
 
     <!-- Widget subtitle data. -->
-    <string-array name="subtitle_data">
+    <string-array name="widget_subtitle_data">
         <item>Čas obnovení</item>
         <item>AQI (neplatné v některých oblastech)</item>
         <item>Vítr</item>
         <item>Znatelná teplota</item>
         <item>Lunární kalendář</item>
         <item>Vlastní</item>
-    </string-array>
-
-    <!-- widget clock font. -->
-    <string-array name="clock_font">
-        <item>sans-serif-light</item>
-        <item>sans-serif</item>
-        <item>sans-serif-black</item>
-        <item>analog</item>
     </string-array>
 
     <!-- widget card style. -->
@@ -146,13 +134,6 @@
     </string-array>
 
     <!-- speed unit. -->
-    <string-array name="speed_units">
-        <item>km/h</item>
-        <item>m/s</item>
-        <item>kn</item>
-        <item>mph</item>
-        <item>ft/s</item>
-    </string-array>
     <string-array name="speed_unit_voices">
         <item>Kilometry za hodinu</item>
         <item>Metry za sekundu</item>
@@ -162,12 +143,6 @@
     </string-array>
 
     <!-- precipitation unit. -->
-    <string-array name="precipitation_units">
-        <item>mm</item>
-        <item>cm</item>
-        <item>inch</item>
-        <item>L/m²</item>
-    </string-array>
     <string-array name="precipitation_unit_voices">
         <item>Millimetry</item>
         <item>Centimetry</item>
@@ -176,13 +151,6 @@
     </string-array>
 
     <!-- distance unit. -->
-    <string-array name="distance_units">
-        <item>km</item>
-        <item>m</item>
-        <item>mi</item>
-        <item>nmi</item>
-        <item>ft</item>
-    </string-array>
     <string-array name="distance_unit_voices">
         <item>Kilometry</item>
         <item>Metry</item>
@@ -192,15 +160,6 @@
     </string-array>
 
     <!-- pressure unit. -->
-    <string-array name="pressure_units">
-        <item>mb</item>
-        <item>kPa</item>
-        <item>hPa</item>
-        <item>atm</item>
-        <item>mmHg</item>
-        <item>inHg</item>
-        <item>kgf/cm²</item>
-    </string-array>
     <string-array name="pressure_unit_voices">
         <item>Milibary</item>
         <item>Kilo pascaly</item>
@@ -212,33 +171,21 @@
     </string-array>
 
     <!-- air quality unit. -->
-    <string-array name="air_quality_units">
-        <item>μg/m³</item>
-    </string-array>
     <string-array name="air_quality_unit_voices">
         <item>Mikrogramy na metr krychlový</item>
     </string-array>
 
     <!-- air quality co unit. -->
-    <string-array name="air_quality_co_units">
-        <item>mg/m³</item>
-    </string-array>
     <string-array name="air_quality_co_unit_voices">
         <item>Milligramy na metr krychlový</item>
     </string-array>
 
     <!-- duration unit. -->
-    <string-array name="duration_units">
-        <item>h</item> <!-- hour -->
-    </string-array>
     <string-array name="duration_unit_voices">
         <item>hodin</item>
     </string-array>
 
     <!-- pollen unit. -->
-    <string-array name="pollen_units">
-        <item>/m³</item>
-    </string-array>
     <string-array name="pollen_unit_voices">
         <item>Na metr krychlový</item>
     </string-array>

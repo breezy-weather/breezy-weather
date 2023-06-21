@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Please don’t translate in this file anymore and migrate to strings.xml, see values/arrays.xml -->
+
     <!-- Chinese source. -->
     <string-array name="weather_sources">
         <item>Open-Meteo</item>
@@ -25,12 +27,6 @@
         <item>Βάσει συστήματος</item>
         <item>Πάντα φωτεινό</item>
         <item>Πάντα σκοτεινό</item>
-    </string-array>
-
-    <!-- UI style. -->
-    <string-array name="ui_styles">
-        <item>Κυκλικό</item>
-        <item>Κίνηση</item>
     </string-array>
 
     <!-- automatic refresh rate. -->
@@ -83,7 +79,7 @@
     </string-array>
 
     <!-- Widget subtitle data. -->
-    <string-array name="subtitle_data">
+    <string-array name="widget_subtitle_data">
         <item>Χρόνος ενημέρωσης</item>
         <item>AQI (Δεν λειτουργεί παντού.)</item>
         <item>Άνεμος</item>
@@ -93,7 +89,7 @@
     </string-array>
 
     <!-- widget clock font. -->
-    <string-array name="clock_font">
+    <string-array name="widget_clock_fonts">
         <item>sans-serif-light</item>
         <item>sans-serif</item>
         <item>sans-serif-black</item>
@@ -165,35 +161,9 @@
         <item>Πόδ</item>
     </string-array>
 
-    <!-- pressure unit. -->
-    <string-array name="pressure_units">
-        <item>mb</item>
-        <item>kPa</item>
-        <item>hPa</item>
-        <item>atm</item>
-        <item>mmHg</item>
-        <item>inHg</item>
-        <item>kgf/cm²</item>
-    </string-array>
-
-    <!-- air quality unit. -->
-    <string-array name="air_quality_units">
-        <item>μg/m³</item>
-    </string-array>
-
-    <!-- air quality co unit. -->
-    <string-array name="air_quality_co_units">
-        <item>mg/m³</item>
-    </string-array>
-
     <!-- duration unit. -->
     <string-array name="duration_units">
         <item>ώ</item> <!-- hour -->
-    </string-array>
-
-    <!-- pollen unit. -->
-    <string-array name="pollen_units">
-        <item>/m³</item>
     </string-array>
 
 </resources>

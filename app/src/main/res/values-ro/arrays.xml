@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Do not translate those arrays which named "xxx_values". -->
-    <!-- Do not translate those items with a value of "@string/xxx". -->
-
-    <!-- Chinese source. -->
-    <string-array name="weather_sources">
-        <item>Open-Meteo</item>
-        <item>accuweather.com</item>
-        <item>MET Norway</item>
-        <item>OpenWeather</item>
-        <item>Météo France</item>
-        <item>China</item>
-    </string-array>
+    <!-- Please don’t translate in this file anymore and migrate to strings.xml, see values/arrays.xml -->
 
     <!-- Location service. -->
     <string-array name="location_services">
@@ -28,12 +17,6 @@
         <item>La fel ca tema sistemului</item>
         <item>Întunecat</item>
         <item>Luminos</item>
-    </string-array>
-
-    <!-- UI style. -->
-    <string-array name="ui_styles">
-        <item>Cer static</item>
-        <item>Cer animat</item>
     </string-array>
 
     <!-- automatic refresh rate. -->
@@ -86,27 +69,19 @@
     </string-array>
 
     <!-- week widget style. -->
-    <string-array name="week_widget_styles">
+    <string-array name="widget_week_styles">
         <item>5 zile</item>
         <item>3 zile</item>
     </string-array>
 
     <!-- Widget subtitle data. -->
-    <string-array name="subtitle_data">
+    <string-array name="widget_subtitle_data">
         <item>Oră actualizare</item>
         <item>Calitatea aerului (Invalid în unele zone.)</item>
         <item>Vânt</item>
         <item>Temp. resimțită</item>
         <item>Calendar Lunar</item>
         <item>Personalizat</item>
-    </string-array>
-
-    <!-- widget clock font. -->
-    <string-array name="clock_font">
-        <item>sans-serif-light</item>
-        <item>sans-serif</item>
-        <item>sans-serif-black</item>
-        <item>analog</item>
     </string-array>
 
     <!-- widget card style. -->
@@ -146,63 +121,6 @@
         <item>Automat</item>
         <item>Zi</item>
         <item>Noapte</item>
-    </string-array>
-
-    <!-- speed unit. -->
-    <string-array name="speed_units">
-        <item>km/h</item>
-        <item>m/s</item>
-        <item>kn</item>
-        <item>mph</item>
-        <item>ft/s</item>
-    </string-array>
-
-    <!-- precipitation unit. -->
-    <string-array name="precipitation_units">
-        <item>mm</item>
-        <item>cm</item>
-        <item>inch</item>
-        <item>L/m²</item>
-    </string-array>
-
-    <!-- distance unit. -->
-    <string-array name="distance_units">
-        <item>km</item>
-        <item>m</item>
-        <item>mi</item>
-        <item>nmi</item>
-        <item>ft</item>
-    </string-array>
-
-    <!-- pressure unit. -->
-    <string-array name="pressure_units">
-        <item>mb</item>
-        <item>kPa</item>
-        <item>hPa</item>
-        <item>atm</item>
-        <item>mmHg</item>
-        <item>inHg</item>
-        <item>kgf/cm²</item>
-    </string-array>
-
-    <!-- air quality unit. -->
-    <string-array name="air_quality_units">
-        <item>μg/m³</item>
-    </string-array>
-
-    <!-- air quality co unit. -->
-    <string-array name="air_quality_co_units">
-        <item>mg/m³</item>
-    </string-array>
-
-    <!-- duration unit. -->
-    <string-array name="duration_units">
-        <item>h</item> <!-- hour -->
-    </string-array>
-
-    <!-- pollen unit. -->
-    <string-array name="pollen_units">
-        <item>/m³</item>
     </string-array>
 
 </resources>

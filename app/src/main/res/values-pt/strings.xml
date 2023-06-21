@@ -1,5 +1,8 @@
 ﻿<resources xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Do NOT translate values that are identical in English and in your language -->
+    <!-- Do NOT use " and ', use appropriate typographic quotes for your language (in English: “ and ”, ‘ and ’) -->
+
     <!-- app. -->
     <string name="app_name">Clima</string>
 
@@ -7,7 +10,7 @@
     <string name="location_current">localização atual</string>
     <string name="live">Ao vivo</string>
     <string name="short_today">Hoje</string>
-    <string name="refresh_at">Atualizado em</string>
+    <string name="notification_refreshed_at">Atualizado em</string>
     <string name="precipitation">Precipitação</string>
     <string name="wind">vento</string>
     <string name="humidity">Humidade</string>
@@ -15,7 +18,6 @@
     <string name="notification_channel_forecast">Previsão</string>
     <string name="daytime">Dia</string>
     <string name="nighttime">Noite</string>
-    <string name="published_at">Publicado em</string>
     <string name="temperature_feels_like">Parece</string>
     <string name="settings_follow_system">Igual ao sistema</string>
     <string name="notification_channel_background_information">Informação em segundo plano</string>
@@ -64,13 +66,13 @@
     <string name="details">Detalhes</string>
     <string name="ephemeris">Sol &amp; Lua</string>
 
-    <string name="next">Próximo</string>
-    <string name="done">Concluído</string>
-    <string name="cancel" tools:ignore="ButtonCase">Cancelar</string>
-    <string name="on">Ligado</string>
-    <string name="off">Desligado</string>
-    <string name="go_to_set">Configurar</string>
-    <string name="help">Ajuda</string>
+    <string name="action_next">Próximo</string>
+    <string name="action_done">Concluído</string>
+    <string name="action_cancel" tools:ignore="ButtonCase">Cancelar</string>
+    <string name="settings_enabled">Ligado</string>
+    <string name="settings_disabled">Desligado</string>
+    <string name="action_set">Configurar</string>
+    <string name="action_help">Ajuda</string>
 
     <string name="about_app">Sobre o aplicativo</string>
     <string name="about_translators">Tradutores</string>
@@ -82,18 +84,15 @@
     <string name="date_format_widget_oreo_style">EEEE, dd\' de \'MMM │ </string>
 
     <!-- feedback. -->
-    <string name="feedback_request_permission">Permissões</string>
     <string name="notification_channel_request_location">Localização</string>
-    <string name="feedback_request_location_in_background">Localização em segundo plano.</string>
-    <string name="feedback_request_location_permission_success">Pedido de localização realizado com sucesso.</string>
-    <string name="feedback_request_location_permission_failed">Pedido de localização falhou.</string>
+    <string name="notification_location_in_background">Localização em segundo plano.</string>
 
-    <string name="feedback_location_failed">Localização falhou.</string>
-    <string name="feedback_get_weather_failed">Atualização de clima falhou.</string>
-    <string name="feedback_location_help_title">Não consegue localização corretamente?</string>
-    <string name="feedback_check_location_permission">Verifique permissões de localização</string>
-    <string name="feedback_enable_location_information">Ative dados de localização</string>
-    <string name="feedback_select_location_provider">Selecione Provedor de Localização</string>
+    <string name="location_message_failed_to_locate">Localização falhou.</string>
+    <string name="weather_message_data_refresh_failed">Atualização de clima falhou.</string>
+    <string name="location_dialog_failed_to_locate_title">Não consegue localização corretamente?</string>
+    <string name="location_dialog_failed_to_locate_action_check_permission">Verifique permissões de localização</string>
+    <string name="location_dialog_failed_to_locate_action_enable_information">Ative dados de localização</string>
+    <string name="location_dialog_failed_to_locate_action_select_provider">Selecione Provedor de Localização</string>
 
     <string name="widget_label_view_style">Estilo de visão.</string>
     <string name="widget_label_show_widget_card">Plano de fundo de cartão</string>
@@ -102,34 +101,23 @@
     <string name="widget_label_black_text">Texto escuro</string>
     <string name="widget_label_clock_font">Fonte do relógio</string>
 
-    <string name="feedback_click_toggle">Toque no gráfico para alternar dados</string>
-    <string name="feedback_no_data">Sem dados</string>
+    <string name="location_message_added">Local adicionado com sucesso</string>
+    <string name="location_message_deleted">Local deletado com sucesso</string>
+    <string name="location_message_list_cannot_be_empty">Lista de locais não pode estar vazia</string>
 
-    <string name="feedback_collect_failed">Este currentPosition já existe</string>
-    <string name="feedback_collect_succeed">Local adicionado com sucesso</string>
-    <string name="feedback_delete_succeed">Local deletado com sucesso</string>
-    <string name="feedback_location_list_cannot_be_null">Lista de locais não pode estar vazia</string>
+    <string name="location_search_placeholder">Pesquise um endereço…</string>
+    <string name="location_current_not_found_yet">Ainda não localizado…</string>
 
-    <string name="feedback_search_location">Pesquise um endereço…</string>
-    <string name="feedback_not_yet_location">Ainda não localizado…</string>
-    <string name="feedback_search_nothing">Nenhum resultado…</string>
-    <string name="feedback_initializing">Inicializando…</string>
+    <string name="settings_changes_apply_after_restart">Terá efeito quando reiniciar.</string>
 
-    <string name="feedback_refresh_notification_after_back">Terá efeito quando retornar à página inicial.</string>
-    <string name="feedback_refresh_notification_now">Atualize agora</string>
-    <string name="feedback_refresh_ui_after_refresh">Terá efeito quando atualizar dados.</string>
-    <string name="feedback_restart">Terá efeito quando reiniciar.</string>
+    <string name="notification_running_in_background">Rodando em segundo plano para manter atualizado.</string>
+    <string name="notification_updating_weather_data">Atualizando dados de clima.</string>
 
-    <string name="feedback_running_in_background">Rodando em segundo plano para manter atualizado.</string>
-    <string name="feedback_updating_weather_data">Atualizando dados de clima.</string>
-
-    <string name="feedback_interpret_background_notification_content">Em alguns dispositivos, após desativando \"livre de segundo plano\", uma notificação poderá permanexer fixa na central de notificações.</string>
-    <string name="feedback_interpret_notification_group_title">Bloquear grupo de notificações.</string>
-    <string name="feedback_interpret_notification_group_content">Após desativar  \"livre de segundo plano\", uma notificação que serviço de segundo plano esta rodando irá aparecer na central de notificações, você pode desativar o canal de notificação do aplicativo nas configurações do dispositivo.</string>
+    <string name="dialog_permissions_block_notification_channel_title">Bloquear grupo de notificações.</string>
+    <string name="dialog_permissions_block_notification_channel_content">Após desativar  \"livre de segundo plano\", uma notificação que serviço de segundo plano esta rodando irá aparecer na central de notificações, você pode desativar o canal de notificação do aplicativo nas configurações do dispositivo.</string>
 
     <!-- action -->
     <string name="alerts">Alerta</string>
-    <string name="action_manage">Gerenciar</string>
     <string name="action_search">Pesquisa</string>
     <string name="action_settings">Configurações</string>
     <string name="action_about">Sobre</string>
@@ -153,7 +141,6 @@
     <string name="settings_summary_service_provider">Selecione provedor de serviço de clima e dados de currentPosition.</string>
     <string name="settings_title_location_service">Serviço de Localização</string>
     <string name="settings_title_dark_mode">Modo Escuro</string>
-    <string name="settings_title_ui_style">Estilo de Interface</string>
     <string name="settings_title_appearance">Aparência</string>
     <string name="settings_summary_appearance">Estilo de Interface, Ordem de cartões, Idioma…</string>
     <string name="settings_title_card_order">Ordem de cartões</string>
@@ -171,7 +158,7 @@
     <string name="settings_title_forecast_tomorrow_time">Hora da previsão para amanhã</string>
     <string name="settings_category_widget">Widget</string>
     <string name="settings_title_icon_provider">Estilo do ícone</string>
-    <string name="settings_title_click_widget_to_refresh">Atualizar Widget quando clicado</string>
+    <string name="settings_title_tap_widget_to_refresh">Atualizar Widget quando clicado</string>
     <string name="settings_category_notification">Notificação</string>
     <string name="settings_title_notification">Enviar Notificação</string>
     <string name="settings_title_notification_temp_icon">Mini ícone de temperatura</string>

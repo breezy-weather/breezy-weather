@@ -126,7 +126,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                         ) {
                             Icon(
                                 imageVector = Icons.Outlined.Search,
-                                contentDescription = stringResource(R.string.feedback_search_location),
+                                contentDescription = stringResource(R.string.action_add_new_location),
                                 tint = MaterialTheme.colorScheme.onPrimaryContainer
                             )
                         }
@@ -140,10 +140,10 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                         FloatingActionButton(
                             onClick = {
                                 viewModel.addLocation(buildLocal(requireContext()), null)
-                                SnackbarHelper.showSnackbar(getString(R.string.feedback_collect_succeed))
+                                SnackbarHelper.showSnackbar(getString(R.string.location_message_added))
                             },
                         ) {
-                            Icon(Icons.Outlined.MyLocation, "My current position")
+                            Icon(Icons.Outlined.MyLocation, stringResource(R.string.action_add_current_location))
                         }
                         //Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
                     }
@@ -151,7 +151,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                     /*FloatingActionButton(
                         onClick = { /* TODO */ },
                     ) {
-                        Icon(Icons.Outlined.Map, "Choose from map")
+                        Icon(Icons.Outlined.Map, stringResource(R.string.action_add_from_map))
                     }*/
                 }
             }

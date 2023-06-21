@@ -22,7 +22,7 @@ public class ApiUnauthorizedHelp {
                 activity,
                 view,
                 new MaterialAlertDialogBuilder(activity)
-                        .setTitle(R.string.feedback_api_unauthorized)
+                        .setTitle(R.string.weather_api_unauthorized_message)
                         .setView(view)
                         .show()
         );

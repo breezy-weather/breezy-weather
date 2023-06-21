@@ -27,7 +27,7 @@
                 app:layout_collapseMode="pin"
                 app:title="@string/allergen"
                 app:navigationIcon="@drawable/ic_toolbar_back"
-                app:navigationContentDescription="@string/content_desc_back" />
+                app:navigationContentDescription="@string/action_back" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 

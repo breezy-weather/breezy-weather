@@ -166,7 +166,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
                                 PollutantIndex.getIndexExcessivePollution(),
                                 "PM2.5",
                                 AirQualityUnit.MUGPCUM.getValueText(context, airQuality.getPM25()),
-                                context.getString(R.string.air_quality_content_desc_pm25)
+                                context.getString(R.string.air_quality_pm25_voice)
                                         + ", "
                                         + AirQualityUnit.MUGPCUM.getValueVoice(context, airQuality.getPM25()),
                                 executeAnimation
@@ -181,7 +181,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
                                 PollutantIndex.getIndexExcessivePollution(),
                                 "PM10",
                                 AirQualityUnit.MUGPCUM.getValueText(context, airQuality.getPM10()),
-                                context.getString(R.string.air_quality_content_desc_pm10)
+                                context.getString(R.string.air_quality_pm10_voice)
                                         + ", " + AirQualityUnit.MUGPCUM.getValueVoice(context, airQuality.getPM10()),
                                 executeAnimation
                         )
@@ -195,7 +195,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
                                 PollutantIndex.getIndexExcessivePollution(),
                                 "O₃",
                                 AirQualityUnit.MUGPCUM.getValueText(context, airQuality.getO3()),
-                                context.getString(R.string.air_quality_content_desc_o3)
+                                context.getString(R.string.air_quality_o3_voice)
                                         + ", " + AirQualityUnit.MUGPCUM.getValueVoice(context, airQuality.getO3()),
                                 executeAnimation
                         )
@@ -209,7 +209,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
                                 PollutantIndex.getIndexExcessivePollution(),
                                 "NO₂",
                                 AirQualityUnit.MUGPCUM.getValueText(context, airQuality.getNO2()),
-                                context.getString(R.string.air_quality_content_desc_no2)
+                                context.getString(R.string.air_quality_no2_voice)
                                         + ", " + AirQualityUnit.MUGPCUM.getValueVoice(context, airQuality.getNO2()),
                                 executeAnimation
                         )
@@ -223,7 +223,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
                                 PollutantIndex.getIndexExcessivePollution(),
                                 "SO₂",
                                 AirQualityUnit.MUGPCUM.getValueText(context, airQuality.getSO2()),
-                                context.getString(R.string.air_quality_content_desc_so2)
+                                context.getString(R.string.air_quality_so2_voice)
                                         + ", " + AirQualityUnit.MUGPCUM.getValueVoice(context, airQuality.getSO2()),
                                 executeAnimation
                         )
@@ -237,7 +237,7 @@ public class AqiAdapter extends RecyclerView.Adapter<AqiAdapter.ViewHolder> {
                                 PollutantIndex.getIndexExcessivePollution(),
                                 "CO",
                                 AirQualityCOUnit.MGPCUM.getValueText(context, airQuality.getCO()),
-                                context.getString(R.string.air_quality_content_desc_co)
+                                context.getString(R.string.air_quality_co_voice)
                                         + ", " + AirQualityCOUnit.MGPCUM.getValueVoice(context, airQuality.getCO()),
                                 executeAnimation
                         )

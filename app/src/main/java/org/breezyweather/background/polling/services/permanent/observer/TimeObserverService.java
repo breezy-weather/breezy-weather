@@ -207,7 +207,7 @@ public class TimeObserverService extends Service {
         return new NotificationCompat.Builder(context, BreezyWeather.NOTIFICATION_CHANNEL_ID_BACKGROUND)
                 .setSmallIcon(setIcon ? R.drawable.ic_running_in_background : 0)
                 .setContentTitle(context.getString(R.string.breezy_weather))
-                .setContentText(context.getString(R.string.feedback_running_in_background))
+                .setContentText(context.getString(R.string.notification_running_in_background))
                 .setBadgeIconType(NotificationCompat.BADGE_ICON_NONE)
                 .setPriority(NotificationCompat.PRIORITY_MIN)
                 .setAutoCancel(true)

@@ -102,8 +102,8 @@ fun RootSettingsView(
         switchPreferenceItem(R.string.settings_title_alert_notification_switch) { id ->
             SwitchPreferenceView(
                 titleId = id,
-                summaryOnId = R.string.on,
-                summaryOffId = R.string.off,
+                summaryOnId = R.string.settings_enabled,
+                summaryOffId = R.string.settings_disabled,
                 checked = SettingsManager.getInstance(context).isAlertPushEnabled,
                 onValueChanged = {
                     SettingsManager.getInstance(context).isAlertPushEnabled = it
@@ -118,8 +118,8 @@ fun RootSettingsView(
         switchPreferenceItem(R.string.settings_title_precipitation_notification_switch) { id ->
             SwitchPreferenceView(
                 titleId = id,
-                summaryOnId = R.string.on,
-                summaryOffId = R.string.off,
+                summaryOnId = R.string.settings_enabled,
+                summaryOffId = R.string.settings_disabled,
                 checked = SettingsManager.getInstance(context).isPrecipitationPushEnabled,
                 onValueChanged = {
                     SettingsManager.getInstance(context).isPrecipitationPushEnabled = it
@@ -202,8 +202,8 @@ fun RootSettingsView(
         switchPreferenceItem(R.string.settings_title_forecast_today) { id ->
             SwitchPreferenceView(
                 titleId = id,
-                summaryOnId = R.string.on,
-                summaryOffId = R.string.off,
+                summaryOnId = R.string.settings_enabled,
+                summaryOffId = R.string.settings_disabled,
                 checked = todayForecastEnabledState.value,
                 onValueChanged = {
                     todayForecastEnabledState.value = it
@@ -230,8 +230,8 @@ fun RootSettingsView(
         switchPreferenceItem(R.string.settings_title_forecast_tomorrow) { id ->
             SwitchPreferenceView(
                 titleId = id,
-                summaryOnId = R.string.on,
-                summaryOffId = R.string.off,
+                summaryOnId = R.string.settings_enabled,
+                summaryOffId = R.string.settings_disabled,
                 checked = tomorrowForecastEnabledState.value,
                 onValueChanged = {
                     tomorrowForecastEnabledState.value = it
@@ -276,8 +276,8 @@ fun RootSettingsView(
         switchPreferenceItem(R.string.settings_title_minimal_icon) { id ->
             SwitchPreferenceView(
                 titleId = id,
-                summaryOnId = R.string.on,
-                summaryOffId = R.string.off,
+                summaryOnId = R.string.settings_enabled,
+                summaryOffId = R.string.settings_disabled,
                 checked = SettingsManager.getInstance(context).isWidgetMinimalIconEnabled,
                 onValueChanged = {
                     SettingsManager.getInstance(context).isWidgetMinimalIconEnabled = it
@@ -369,8 +369,8 @@ fun RootSettingsView(
         switchPreferenceItem(R.string.settings_title_notification) { id ->
             SwitchPreferenceView(
                 titleId = id,
-                summaryOnId = R.string.on,
-                summaryOffId = R.string.off,
+                summaryOnId = R.string.settings_enabled,
+                summaryOffId = R.string.settings_disabled,
                 checked = notificationEnabledState.value,
                 onValueChanged = {
                     SettingsManager.getInstance(context).isNotificationEnabled = it
@@ -405,8 +405,8 @@ fun RootSettingsView(
         switchPreferenceItem(R.string.settings_title_notification_temp_icon) { id ->
             SwitchPreferenceView(
                 titleId = id,
-                summaryOnId = R.string.on,
-                summaryOffId = R.string.off,
+                summaryOnId = R.string.settings_enabled,
+                summaryOffId = R.string.settings_disabled,
                 checked = SettingsManager
                     .getInstance(context)
                     .isNotificationTemperatureIconEnabled,
@@ -424,8 +424,8 @@ fun RootSettingsView(
         switchPreferenceItem(R.string.settings_title_notification_feels_like) { id ->
             SwitchPreferenceView(
                 titleId = id,
-                summaryOnId = R.string.on,
-                summaryOffId = R.string.off,
+                summaryOnId = R.string.settings_enabled,
+                summaryOffId = R.string.settings_disabled,
                 checked = SettingsManager
                     .getInstance(context)
                     .isNotificationFeelsLike,
@@ -442,8 +442,8 @@ fun RootSettingsView(
         switchPreferenceItem(R.string.settings_title_notification_can_be_cleared) { id ->
             SwitchPreferenceView(
                 titleId = id,
-                summaryOnId = R.string.on,
-                summaryOffId = R.string.off,
+                summaryOnId = R.string.settings_enabled,
+                summaryOffId = R.string.settings_disabled,
                 checked = SettingsManager
                     .getInstance(context)
                     .isNotificationCanBeClearedEnabled,
@@ -465,9 +465,9 @@ fun RootSettingsView(
 @RequiresApi(api = Build.VERSION_CODES.O)
 private fun showBlockNotificationGroupDialog(context: Context) {
     MaterialAlertDialogBuilder(context)
-        .setTitle(R.string.feedback_interpret_notification_group_title)
-        .setMessage(R.string.feedback_interpret_notification_group_content)
-        .setPositiveButton(R.string.go_to_set) { _, _ ->
+        .setTitle(R.string.dialog_permissions_block_notification_channel_title)
+        .setMessage(R.string.dialog_permissions_block_notification_channel_content)
+        .setPositiveButton(R.string.action_set) { _, _ ->
             val intent = Intent()
             intent.action = Settings.ACTION_APP_NOTIFICATION_SETTINGS
             intent.putExtra(
@@ -478,7 +478,7 @@ private fun showBlockNotificationGroupDialog(context: Context) {
             showIgnoreBatteryOptimizationDialog(context)
         }
         .setNeutralButton(
-            R.string.done
+            R.string.action_done
         ) { _, _ ->
             showIgnoreBatteryOptimizationDialog(context)
         }
@@ -489,14 +489,14 @@ private fun showBlockNotificationGroupDialog(context: Context) {
 @RequiresApi(api = Build.VERSION_CODES.M)
 private fun showIgnoreBatteryOptimizationDialog(context: Context) {
     MaterialAlertDialogBuilder(context)
-        .setTitle(R.string.feedback_ignore_battery_optimizations_title)
-        .setMessage(R.string.feedback_ignore_battery_optimizations_content)
+        .setTitle(R.string.dialog_permissions_ignore_battery_optimizations_title)
+        .setMessage(R.string.dialog_permissions_ignore_battery_optimizations_content)
         .setPositiveButton(
-            R.string.go_to_set
+            R.string.action_set
         ) { _, _ ->
             IntentHelper.startBatteryOptimizationActivity(context)
         }
-        .setNeutralButton(R.string.done) { _, _ -> }
+        .setNeutralButton(R.string.action_done) { _, _ -> }
         .setCancelable(false)
         .show()
 }

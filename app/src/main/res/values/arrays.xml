@@ -2,10 +2,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="MissingTranslation">
 
-    <!-- Do not translate those arrays which named "xxx_values". -->
-    <!-- Do not translate those items with a value of "@string/xxx". -->
+    <!-- Do not translate this file -->
+    <!-- If you need to translate something not available as a string, please open an issue -->
 
-    <!-- Chinese source. -->
+    <!-- Weather sources -->
     <string-array name="weather_sources">
         <item>@string/weather_source_openmeteo</item>
         <item>@string/weather_source_accuweather</item>
@@ -47,10 +47,10 @@
 
     <!-- Dark mode. -->
     <string-array name="dark_modes">
-        <item>@string/settings_dark_mode_day_night</item>
+        <item>@string/settings_color_day_night</item>
         <item>@string/settings_follow_system</item>
-        <item>@string/settings_dark_mode_always_light</item>
-        <item>@string/settings_dark_mode_always_dark</item>
+        <item>@string/settings_color_light_always</item>
+        <item>@string/settings_color_dark_always</item>
     </string-array>
     <string-array name="dark_mode_values">
         <item>auto</item>
@@ -59,18 +59,7 @@
         <item>dark</item>
     </string-array>
 
-    <!-- UI style. -->
-    <string-array name="ui_styles">
-        <item>@string/settings_ui_style_circular_sky</item>
-        <item>@string/settings_ui_style_material_animation</item>
-    </string-array>
-    <string-array name="ui_style_values">
-        <item>circular</item>
-        <item>material</item>
-    </string-array>
-
     <!-- language. -->
-    <!-- Do not translate this array. -->
     <string-array name="languages">
         <item>@string/settings_follow_system</item>
         <item>Català</item>
@@ -184,9 +173,9 @@
 
     <!-- notification text color. -->
     <string-array name="notification_text_colors">
-        <item>@string/notification_text_color_dark</item>
-        <item>@string/notification_text_color_grey</item>
-        <item>@string/notification_text_color_light</item>
+        <item>@string/settings_color_dark</item>
+        <item>@string/settings_color_grey</item>
+        <item>@string/settings_color_light</item>
     </string-array>
     <string-array name="notification_text_color_values">
         <item>dark</item>
@@ -194,29 +183,18 @@
         <item>light</item>
     </string-array>
 
-    <!-- notification background colors. -->
-    <!-- Do not translate this array. -->
-    <integer-array name="notification_background_colors">
-        <item>@color/notification_background_l</item>
-        <item>@color/notification_background_m</item>
-        <item>@color/notification_background_o</item>
-        <item>@color/notification_background_rootLight</item>
-        <item>@color/notification_background_rootDark</item>
-        <item>@color/notification_background_primary</item>
-    </integer-array>
-
     <!-- widget style. -->
     <string-array name="widget_styles">
-        <item>Rectangle</item>
-        <item>Symmetry</item>
-        <item>Tile</item>
-        <item>Mini</item>
-        <item>Nano</item>
-        <item>Pixel</item>
-        <item>Vertical</item>
-        <item>Oreo</item>
-        <item>Oreo (Google sans)</item>
-        <item>Temperature</item>
+        <item>@string/widget_style_rectangle</item>
+        <item>@string/widget_style_symmetry</item>
+        <item>@string/widget_style_tile</item>
+        <item>@string/widget_style_mini</item>
+        <item>@string/widget_style_nano</item>
+        <item>@string/widget_style_pixel</item>
+        <item>@string/widget_style_vertical</item>
+        <item>@string/widget_style_oreo</item>
+        <item>@string/widget_style_oreo_google_sans</item>
+        <item>@string/widget_style_temperature</item>
     </string-array>
     <string-array name="widget_style_values">
         <item>rectangle</item>
@@ -232,25 +210,25 @@
     </string-array>
 
     <!-- week widget style. -->
-    <string-array name="week_widget_styles">
-        <item>5 days</item>
-        <item>3 days</item>
+    <string-array name="widget_week_styles">
+        <item>@string/widget_week_style_5_days</item>
+        <item>@string/widget_week_style_3_days</item>
     </string-array>
-    <string-array name="week_widget_style_values">
+    <string-array name="widget_week_style_values">
         <item>5_days</item>
         <item>3_days</item>
     </string-array>
 
     <!-- Widget subtitle data. -->
-    <string-array name="subtitle_data">
-        <item>Refresh time</item>
-        <item>AQI (not available everywhere)</item>
-        <item>Wind</item>
-        <item>Feels like temperature</item>
-        <item>Lunar calendar</item>
-        <item>Custom</item>
+    <string-array name="widget_subtitle_data">
+        <item>@string/widget_subtitle_data_time</item>
+        <item>@string/widget_subtitle_data_aqi</item>
+        <item>@string/widget_subtitle_data_wind</item>
+        <item>@string/widget_subtitle_data_feels_like</item>
+        <item>@string/widget_subtitle_data_lunar</item>
+        <item>@string/widget_subtitle_data_custom</item>
     </string-array>
-    <string-array name="subtitle_data_values">
+    <string-array name="widget_subtitle_data_values">
         <item>time</item>
         <item>aqi</item>
         <item>wind</item>
@@ -260,13 +238,13 @@
     </string-array>
 
     <!-- widget clock font. -->
-    <string-array name="clock_font">
-        <item>sans-serif-light</item>
-        <item>sans-serif</item>
-        <item>sans-serif-black</item>
-        <item>analog</item>
+    <string-array name="widget_clock_fonts">
+        <item>@string/widget_clock_font_sans_serif_light</item>
+        <item>@string/widget_clock_font_sans_serif</item>
+        <item>@string/widget_clock_font_sans_serif_black</item>
+        <item>@string/widget_clock_font_analog</item>
     </string-array>
-    <string-array name="clock_font_values">
+    <string-array name="widget_clock_font_values">
         <item>light</item>
         <item>normal</item>
         <item>black</item>
@@ -275,10 +253,10 @@
 
     <!-- widget card style. -->
     <string-array name="widget_card_styles">
-        <item>None</item>
-        <item>Day Night Mode</item>
-        <item>Light</item>
-        <item>Dark</item>
+        <item>@string/settings_none</item>
+        <item>@string/settings_color_day_night</item>
+        <item>@string/settings_color_light</item>
+        <item>@string/settings_color_dark</item>
     </string-array>
     <string-array name="widget_card_style_values">
         <item>none</item>
@@ -289,9 +267,9 @@
 
     <!-- widget clock font. -->
     <string-array name="widget_text_colors">
-        <item>Light</item>
-        <item>Dark</item>
-        <item>Automatic</item>
+        <item>@string/settings_color_light</item>
+        <item>@string/settings_color_dark</item>
+        <item>@string/settings_automatic</item>
     </string-array>
     <string-array name="widget_text_color_values">
         <item>light</item>
@@ -301,9 +279,9 @@
 
     <!-- Background animation. -->
     <string-array name="background_animation">
-        <item>Follow system</item>
-        <item>Enabled</item>
-        <item>Disabled</item>
+        <item>@string/settings_follow_system</item>
+        <item>@string/settings_enabled</item>
+        <item>@string/settings_disabled</item>
     </string-array>
     <string-array name="background_animation_values">
         <item>system</item>
@@ -313,19 +291,19 @@
 
     <!-- live wallpaper weather kind. -->
     <string-array name="live_wallpaper_weather_kinds">
-        <item>Automatic</item>
-        <item>Clear</item>
-        <item>Partly Cloudy</item>
-        <item>Cloudy</item>
-        <item>Rain</item>
-        <item>Snow</item>
-        <item>Sleet</item>
-        <item>Hail</item>
-        <item>Fog</item>
-        <item>Haze</item>
-        <item>Thunder</item>
-        <item>Thunderstorm</item>
-        <item>Wind</item>
+        <item>@string/settings_automatic</item>
+        <item>@string/weather_kind_clear</item>
+        <item>@string/weather_kind_partly_cloudy</item>
+        <item>@string/weather_kind_cloudy</item>
+        <item>@string/weather_kind_rain</item>
+        <item>@string/weather_kind_snow</item>
+        <item>@string/weather_kind_sleet</item>
+        <item>@string/weather_kind_hail</item>
+        <item>@string/weather_kind_fog</item>
+        <item>@string/weather_kind_haze</item>
+        <item>@string/weather_kind_thunder</item>
+        <item>@string/weather_kind_thunderstorm</item>
+        <item>@string/weather_kind_wind</item>
     </string-array>
     <string-array name="live_wallpaper_weather_kind_values">
         <item>auto</item>
@@ -345,9 +323,9 @@
 
     <!-- live wallpaper weather kind. -->
     <string-array name="live_wallpaper_day_night_types">
-        <item>Automatic</item>
-        <item>Always daytime</item>
-        <item>Always nighttime</item>
+        <item>@string/settings_automatic</item>
+        <item>@string/settings_color_day_always</item>
+        <item>@string/settings_color_night_always</item>
     </string-array>
     <string-array name="live_wallpaper_day_night_type_values">
         <item>auto</item>
@@ -357,28 +335,54 @@
 
     <!-- Open Weather Map One Call version -->
     <string-array name="open_weather_one_call_version">
-        <item>Version 2.5</item>
-        <item>Version 3.0</item>
+        <item>@string/weather_source_openweather_version_2_5</item>
+        <item>@string/weather_source_openweather_version_3_0</item>
     </string-array>
     <string-array name="open_weather_one_call_version_values">
         <item>2.5</item>
         <item>3.0</item>
     </string-array>
 
+    <!-- air quality levels -->
+    <string-array name="air_quality_levels">
+        <item>@string/air_quality_level_1</item>
+        <item>@string/air_quality_level_2</item>
+        <item>@string/air_quality_level_3</item>
+        <item>@string/air_quality_level_4</item>
+        <item>@string/air_quality_level_5</item>
+        <item>@string/air_quality_level_6</item>
+    </string-array>
+    <string-array name="air_quality_level_descriptions">
+        <item>@string/air_quality_level_1_description</item>
+        <item>@string/air_quality_level_2_description</item>
+        <item>@string/air_quality_level_3_description</item>
+        <item>@string/air_quality_level_4_description</item>
+        <item>@string/air_quality_level_5_description</item>
+        <item>@string/air_quality_level_6_description</item>
+    </string-array>
+    <integer-array name="air_quality_level_colors">
+        <item>@color/aqiLevel_1</item>
+        <item>@color/aqiLevel_2</item>
+        <item>@color/aqiLevel_3</item>
+        <item>@color/aqiLevel_4</item>
+        <item>@color/aqiLevel_5</item>
+        <item>@color/aqiLevel_6</item>
+    </integer-array>
+
     <!-- speed unit. -->
     <string-array name="speed_units">
-        <item>km/h</item>
-        <item>m/s</item>
-        <item>kn</item>
-        <item>mph</item>
-        <item>ft/s</item>
+        <item>@string/unit_kph</item>
+        <item>@string/unit_mps</item>
+        <item>@string/unit_kn</item>
+        <item>@string/unit_mph</item>
+        <item>@string/unit_ftps</item>
     </string-array>
     <string-array name="speed_unit_voices">
-        <item>Kilometers per hour</item>
-        <item>Meters per second</item>
-        <item>Knots</item>
-        <item>Miles per hour</item>
-        <item>Feet per second</item>
+        <item>@string/unit_kph_voice</item>
+        <item>@string/unit_mps_voice</item>
+        <item>@string/unit_kn_voice</item>
+        <item>@string/unit_mph_voice</item>
+        <item>@string/unit_ftps_voice</item>
     </string-array>
     <string-array name="speed_unit_values">
         <item>kph</item>
@@ -390,16 +394,16 @@
 
     <!-- precipitation unit. -->
     <string-array name="precipitation_units">
-        <item>mm</item>
-        <item>cm</item>
-        <item>inch</item>
-        <item>L/m²</item>
+        <item>@string/unit_mm</item>
+        <item>@string/unit_cm</item>
+        <item>@string/unit_in</item>
+        <item>@string/unit_lpsqm</item>
     </string-array>
     <string-array name="precipitation_unit_voices">
-        <item>Millimeters</item>
-        <item>Centimeter</item>
-        <item>Inches</item>
-        <item>Liters per square meter</item>
+        <item>@string/unit_mm_voice</item>
+        <item>@string/unit_cm_voice</item>
+        <item>@string/unit_in_voice</item>
+        <item>@string/unit_lpsqm_voice</item>
     </string-array>
     <string-array name="precipitation_unit_values">
         <item>mm</item>
@@ -410,16 +414,16 @@
 
     <!-- precipitation intensity unit. -->
     <string-array name="precipitation_intensity_units">
-        <item>mm/h</item>
-        <item>cm/h</item>
-        <item>inch/h</item>
-        <item>L/m²/h</item>
+        <item>@string/unit_mmph</item>
+        <item>@string/unit_cmph</item>
+        <item>@string/unit_inph</item>
+        <item>@string/unit_lpsqmph</item>
     </string-array>
     <string-array name="precipitation_intensity_unit_voices">
-        <item>Millimeters per hour</item>
-        <item>Centimeter per hour</item>
-        <item>Inches per hour</item>
-        <item>Liters per square meter per hour</item>
+        <item>@string/unit_mmph_voice</item>
+        <item>@string/unit_cmph_voice</item>
+        <item>@string/unit_inph_voice</item>
+        <item>@string/unit_lpsqmph_voice</item>
     </string-array>
     <string-array name="precipitation_intensity_unit_values">
         <item>mmph</item>
@@ -430,19 +434,14 @@
 
     <!-- temperature unit. -->
     <string-array name="temperature_units">
-        <item>℃</item>
-        <item>℉</item>
-        <item>K</item>
+        <item>@string/unit_celsius</item>
+        <item>@string/unit_fahrenheit</item>
+        <item>@string/unit_kelvin</item>
     </string-array>
     <string-array name="temperature_units_short">
-        <item>°</item>
-        <item>°</item>
-        <item>K</item>
-    </string-array>
-    <string-array name="temperature_units_long">
-        <item>°C</item>
-        <item>°F</item>
-        <item>K</item>
+        <item>@string/unit_celsius_short</item>
+        <item>@string/unit_fahrenheit_short</item>
+        <item>@string/unit_kelvin_short</item>
     </string-array>
     <string-array name="temperature_unit_values">
         <item>c</item>
@@ -452,18 +451,18 @@
 
     <!-- distance unit. -->
     <string-array name="distance_units">
-        <item>km</item>
-        <item>m</item>
-        <item>mi</item>
-        <item>nmi</item>
-        <item>ft</item>
+        <item>@string/unit_km</item>
+        <item>@string/unit_m</item>
+        <item>@string/unit_mi</item>
+        <item>@string/unit_nmi</item>
+        <item>@string/unit_ft</item>
     </string-array>
     <string-array name="distance_unit_voices">
-        <item>Kilometers</item>
-        <item>Meters</item>
-        <item>Miles</item>
-        <item>Nautical miles</item>
-        <item>Feet</item>
+        <item>@string/unit_km_voice</item>
+        <item>@string/unit_m_voice</item>
+        <item>@string/unit_mi_voice</item>
+        <item>@string/unit_nmi_voice</item>
+        <item>@string/unit_ft_voice</item>
     </string-array>
     <string-array name="distance_unit_values">
         <item>km</item>
@@ -475,22 +474,22 @@
 
     <!-- pressure unit. -->
     <string-array name="pressure_units">
-        <item>mb</item>
-        <item>kPa</item>
-        <item>hPa</item>
-        <item>atm</item>
-        <item>mmHg</item>
-        <item>inHg</item>
-        <item>kgf/cm²</item>
+        <item>@string/unit_mb</item>
+        <item>@string/unit_kpa</item>
+        <item>@string/unit_hpa</item>
+        <item>@string/unit_atm</item>
+        <item>@string/unit_mmhg</item>
+        <item>@string/unit_inhg</item>
+        <item>@string/unit_kgfpsqcm</item>
     </string-array>
     <string-array name="pressure_unit_voices">
-        <item>Millibars</item>
-        <item>kilo pascals</item>
-        <item>Hecto pascals</item>
-        <item>Atmospheres</item>
-        <item>Millimeters of mercury</item>
-        <item>Inches of mercury</item>
-        <item>Kilogram force per square centimetre</item>
+        <item>@string/unit_mb_voice</item>
+        <item>@string/unit_kpa_voice</item>
+        <item>@string/unit_hpa_voice</item>
+        <item>@string/unit_atm_voice</item>
+        <item>@string/unit_mmhg_voice</item>
+        <item>@string/unit_inhg_voice</item>
+        <item>@string/unit_kgfpsqcm_voice</item>
     </string-array>
     <string-array name="pressure_unit_values">
         <item>mb</item>
@@ -504,10 +503,10 @@
 
     <!-- air quality unit. -->
     <string-array name="air_quality_units">
-        <item>μg/m³</item>
+        <item>@string/unit_mugpcum</item>
     </string-array>
     <string-array name="air_quality_unit_voices">
-        <item>Micrograms per cubic meter</item>
+        <item>@string/unit_mugpcum_voice</item>
     </string-array>
     <string-array name="air_quality_unit_values">
         <item>mugpcum</item>
@@ -515,48 +514,21 @@
 
     <!-- air quality co unit. -->
     <string-array name="air_quality_co_units">
-        <item>mg/m³</item>
+        <item>@string/unit_mgpcum</item>
     </string-array>
     <string-array name="air_quality_co_unit_voices">
-        <item>Milligrams per cubic meter</item>
+        <item>@string/unit_mgpcum_voice</item>
     </string-array>
     <string-array name="air_quality_co_unit_values">
         <item>mgpcum</item>
     </string-array>
 
-    <!-- air quality levels -->
-    <string-array name="air_quality_levels">
-        <item>Excellent</item>
-        <item>Fair</item>
-        <item>Poor</item>
-        <item>Unhealthy</item>
-        <item>Very unhealthy</item>
-        <item>Dangerous</item>
-    </string-array>
-    <string-array name="air_quality_levels_descriptions">
-        <item>The air quality is ideal for most individuals; enjoy your normal outdoor activities.</item>
-        <item>The air quality is generally acceptable for most individuals. However, sensitive groups may experience minor to moderate symptoms from long-term exposure.</item>
-        <item>The air has reached a high level of pollution and is unhealthy for sensitive groups. Reduce time spent outside if you are feeling symptoms such as difficulty breathing or throat irritation.</item>
-        <item>Health effects can be immediately felt by sensitive groups. Healthy individuals may experience difficulty breathing and throat irritation with prolonged exposure. Limit outdoor activity.</item>
-        <item>Health effects will be immediately felt by sensitive groups and should avoid outdoor activity. Healthy individuals are likely to experience difficulty breathing and throat irritation; consider staying indoors and rescheduling outdoor activities.</item>
-        <item>Any exposure to the air, even for a few minutes, can lead to serious health effects on everybody. Avoid outdoor activities.</item>
-    </string-array>
-    <!-- Do not translate this array. -->
-    <integer-array name="air_quality_levels_colors">
-        <item>@color/aqiLevel_1</item>
-        <item>@color/aqiLevel_2</item>
-        <item>@color/aqiLevel_3</item>
-        <item>@color/aqiLevel_4</item>
-        <item>@color/aqiLevel_5</item>
-        <item>@color/aqiLevel_6</item>
-    </integer-array>
-
     <!-- duration unit. -->
     <string-array name="duration_units">
-        <item>h</item> <!-- hour -->
+        <item>@string/unit_h</item> <!-- hour -->
     </string-array>
     <string-array name="duration_unit_voices">
-        <item>hours</item>
+        <item>@string/unit_h_voice</item>
     </string-array>
     <string-array name="duration_unit_values">
         <item>h</item>
@@ -564,13 +536,12 @@
 
     <!-- pollen unit. -->
     <string-array name="pollen_units">
-        <item>/m³</item>
+        <item>@string/unit_ppcm</item>
     </string-array>
     <string-array name="pollen_unit_voices">
-        <item>Per cubic meter</item>
+        <item>@string/unit_ppcm_voice</item>
     </string-array>
     <string-array name="pollen_unit_values">
         <item>ppcm</item>
     </string-array>
-
 </resources>

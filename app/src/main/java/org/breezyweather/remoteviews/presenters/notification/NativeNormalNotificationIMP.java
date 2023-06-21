@@ -111,7 +111,7 @@ class NativeNormalNotificationIMP extends AbstractRemoteViewsPresenter {
             subtitle.append(", ").append(LunarHelper.getLunarDate(new Date()));
         } else {
             subtitle.append(", ")
-                    .append(context.getString(R.string.refresh_at))
+                    .append(context.getString(R.string.notification_refreshed_at))
                     .append(" ")
                     .append(DisplayUtils.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone()));
         }

@@ -228,7 +228,7 @@
 
     <style name="activity_create_widget_done_button" parent="material_button">
         <item name="android:layout_alignParentRight">true</item>
-        <item name="android:text">@string/done</item>
+        <item name="android:text">@string/action_done</item>
     </style>
 
     <style name="material_image_button">

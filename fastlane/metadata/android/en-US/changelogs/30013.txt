@@ -1,1 +1,0 @@
-<ul><li>Bug fixed. - Duplicate alert notifications</li></ul>

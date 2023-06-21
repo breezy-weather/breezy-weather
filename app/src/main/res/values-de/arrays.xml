@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Please don’t translate in this file anymore and migrate to strings.xml, see values/arrays.xml -->
+
     <string-array name="automatic_refresh_rates">
         <item>Never</item>
         <item>30 Minuten</item>
@@ -11,13 +13,6 @@
         <item>6 Stunden</item>
         <item>12 Stunden</item>
         <item>24 Stunden</item>
-    </string-array>
-
-    <string-array name="clock_font">
-        <item>Sans-Serif light</item>
-        <item>Sans-Serif</item>
-        <item>Sans-Serif fett</item>
-        <item>Analog</item>
     </string-array>
 
     <string-array name="dark_modes">

@@ -69,7 +69,7 @@ class MainActivity : GeoActivity(),
 
             if (isActivityStarted
                 && it.formattedId == viewModel.currentLocation.value?.location?.formattedId) {
-                SnackbarHelper.showSnackbar(getString(R.string.feedback_updated_in_background))
+                SnackbarHelper.showSnackbar(getString(R.string.message_updated_in_background))
             }
         }
     }
@@ -148,7 +148,7 @@ class MainActivity : GeoActivity(),
                 val location: Location? = data.getParcelableExtra(SearchActivity.KEY_LOCATION)
                 if (location != null) {
                     viewModel.addLocation(location, null)
-                    SnackbarHelper.showSnackbar(getString(R.string.feedback_collect_succeed))
+                    SnackbarHelper.showSnackbar(getString(R.string.location_message_added))
                 }
             }
         }
@@ -257,9 +257,9 @@ class MainActivity : GeoActivity(),
             if (needShowDialog && !viewModel.statementManager.isLocationPermissionDeclared) {
                 // only show dialog once.
                 MaterialAlertDialogBuilder(this)
-                    .setTitle(R.string.feedback_location_permissions_title)
-                    .setMessage(R.string.feedback_location_permissions_statement)
-                    .setPositiveButton(R.string.next) { _, _ ->
+                    .setTitle(R.string.dialog_permissions_location_title)
+                    .setMessage(R.string.dialog_permissions_location_content)
+                    .setPositiveButton(R.string.action_next) { _, _ ->
                         // mark declared.
                         viewModel.statementManager.setLocationPermissionDeclared(this)
 
@@ -284,29 +284,29 @@ class MainActivity : GeoActivity(),
                 when (msg) {
                     MainMessage.LOCATION_FAILED -> {
                         SnackbarHelper.showSnackbar(
-                            getString(R.string.feedback_location_failed),
-                            getString(R.string.help)
+                            getString(R.string.location_message_failed_to_locate),
+                            getString(R.string.action_help)
                         ) {
                             LocationHelpDialog.show(this)
                         }
                     }
                     MainMessage.WEATHER_REQ_FAILED -> {
                         SnackbarHelper.showSnackbar(
-                            getString(R.string.feedback_get_weather_failed)
+                            getString(R.string.weather_message_data_refresh_failed)
                         )
                     }
                     MainMessage.API_LIMIT_REACHED -> {
                         SnackbarHelper.showSnackbar(
-                            getString(R.string.feedback_api_limit_reached),
-                            getString(R.string.help)
+                            getString(R.string.weather_api_limit_reached_message),
+                            getString(R.string.action_help)
                         ) {
                             ApiLimitReachedHelp.show(this)
                         }
                     }
                     MainMessage.API_UNAUTHORIZED -> {
                         SnackbarHelper.showSnackbar(
-                            getString(R.string.feedback_api_unauthorized),
-                            getString(R.string.help)
+                            getString(R.string.weather_api_unauthorized_message),
+                            getString(R.string.action_help)
                         ) {
                             ApiUnauthorizedHelp.show(this)
                         }
@@ -356,9 +356,9 @@ class MainActivity : GeoActivity(),
             ) != PackageManager.PERMISSION_GRANTED
         ) {
             MaterialAlertDialogBuilder(this)
-                .setTitle(R.string.feedback_background_location_title)
-                .setMessage(R.string.feedback_background_location_summary)
-                .setPositiveButton(R.string.go_to_set) { _, _ ->
+                .setTitle(R.string.dialog_permissions_location_background_title)
+                .setMessage(R.string.dialog_permissions_location_background_content)
+                .setPositiveButton(R.string.action_set) { _, _ ->
                     // mark background location permission declared.
                     viewModel.statementManager.setBackgroundLocationDeclared(this)
                     // request background location permission.

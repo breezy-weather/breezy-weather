@@ -110,7 +110,7 @@ class PollingUpdateHelper(
                 requestLocationFailed(requestLocation)
                 Toast.makeText(
                     context,
-                    context.getString(R.string.feedback_not_yet_location),
+                    context.getString(R.string.location_current_not_found_yet),
                     Toast.LENGTH_SHORT
                 ).show()
             }

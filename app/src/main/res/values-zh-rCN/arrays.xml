@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Please don’t translate in this file anymore and migrate to strings.xml, see values/arrays.xml -->
+
     <!-- Chinese source. -->
     <string-array name="weather_sources">
         <item>Open-Meteo</item>
@@ -33,12 +35,6 @@
         <item>跟随系统</item>
         <item>亮色主题</item>
         <item>暗色主题</item>
-    </string-array>
-
-    <!-- UI style. -->
-    <string-array name="ui_styles">
-        <item>圆环状天空</item>
-        <item>Material动画</item>
     </string-array>
 
     <!-- automatic refresh rate. -->
@@ -91,13 +87,13 @@
     </string-array>
 
     <!-- week widget style. -->
-    <string-array name="week_widget_styles">
+    <string-array name="widget_week_styles">
         <item>五天</item>
         <item>三天</item>
     </string-array>
 
     <!-- Widget subtitle data. -->
-    <string-array name="subtitle_data">
+    <string-array name="widget_subtitle_data">
         <item>更新时间</item>
         <item>空气质量 (部分地区无效)</item>
         <item>风况</item>
@@ -250,7 +246,7 @@
         <item>重度污染</item>
         <item>严重污染</item>
     </string-array>
-    <string-array name="air_quality_levels_descriptions">
+    <string-array name="air_quality_level_descriptions">
         <item>空气质量对大多数人来说是理想的；享受正常的户外活动。</item>
         <item>对于大多数人来说，空气质量通常是可以接受的。但是，敏感群体可能会因长期接触而出现轻度至中度不适。</item>
         <item>对敏感人群的健康不利。如果您遇到呼吸困难或喉咙发炎等症状，请减少在户外的时间。</item>

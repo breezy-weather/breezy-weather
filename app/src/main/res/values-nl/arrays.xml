@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- UI style. -->
-    <string-array name="ui_styles">
-        <item>Circular sky</item>
-        <item>Material animation</item>
-    </string-array>
+    <!-- Please don’t translate in this file anymore and migrate to strings.xml, see values/arrays.xml -->
 
     <!-- automatic refresh rate. -->
     <string-array name="automatic_refresh_rates">
@@ -42,7 +38,7 @@
     </string-array>
 
     <!-- Widget subtitle data. -->
-    <string-array name="subtitle_data">
+    <string-array name="widget_subtitle_data">
         <item>Refresh time</item>
         <item>AQI (Invalid in some area.)</item>
         <item>Wind</item>

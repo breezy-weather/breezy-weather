@@ -22,7 +22,7 @@ public class ApiLimitReachedHelp {
                 activity,
                 view,
                 new MaterialAlertDialogBuilder(activity)
-                        .setTitle(R.string.feedback_api_limit_reached)
+                        .setTitle(R.string.weather_api_limit_reached_message)
                         .setView(view)
                         .show()
         );

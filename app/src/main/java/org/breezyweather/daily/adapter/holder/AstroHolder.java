@@ -58,9 +58,9 @@ public class AstroHolder extends DailyWeatherAdapter.ViewHolder {
         if (s.isValid()) {
             talkBackBuilder
                     .append(", ")
-                    .append(context.getString(R.string.ephemeris_content_desc_sunrise).replace("$", s.getRiseTime(context, timeZone)))
+                    .append(context.getString(R.string.ephemeris_sunrise_at).replace("$", s.getRiseTime(context, timeZone)))
                     .append(", ")
-                    .append(context.getString(R.string.ephemeris_content_desc_sunset).replace("$", s.getSetTime(context, timeZone)));
+                    .append(context.getString(R.string.ephemeris_sunset_at).replace("$", s.getSetTime(context, timeZone)));
 
             mSun.setVisibility(View.VISIBLE);
             mSunText.setText(s.getRiseTime(context, timeZone) + "↑ / " + s.getSetTime(context, timeZone) + "↓");
@@ -71,9 +71,9 @@ public class AstroHolder extends DailyWeatherAdapter.ViewHolder {
         if (m.isValid()) {
             talkBackBuilder
                     .append(", ")
-                    .append(context.getString(R.string.ephemeris_content_desc_moonrise).replace("$", m.getRiseTime(context, timeZone)))
+                    .append(context.getString(R.string.ephemeris_moonrise_at).replace("$", m.getRiseTime(context, timeZone)))
                     .append(", ")
-                    .append(context.getString(R.string.ephemeris_content_desc_moonset).replace("$", m.getSetTime(context, timeZone)));
+                    .append(context.getString(R.string.ephemeris_moonset_at).replace("$", m.getSetTime(context, timeZone)));
 
             mMoon.setVisibility(View.VISIBLE);
             mMoonText.setText(m.getRiseTime(context, timeZone) + "↑ / " + m.getSetTime(context, timeZone) + "↓");

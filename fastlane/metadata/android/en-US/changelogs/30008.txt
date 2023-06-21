@@ -1,2 +1,0 @@
-<ul><li>Bug fixed.</li></ul>
-

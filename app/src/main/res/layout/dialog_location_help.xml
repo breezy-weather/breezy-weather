@@ -26,7 +26,7 @@
 
         <TextView
             android:id="@+id/dialog_location_help_permissionTitle"
-            android:text="@string/feedback_check_location_permission"
+            android:text="@string/location_dialog_failed_to_locate_action_check_permission"
             android:layout_marginTop="@dimen/normal_margin"
             android:layout_marginBottom="@dimen/normal_margin"
             android:layout_marginEnd="@dimen/normal_margin"
@@ -53,7 +53,7 @@
 
         <TextView
             android:id="@+id/dialog_location_help_locationTitle"
-            android:text="@string/feedback_enable_location_information"
+            android:text="@string/location_dialog_failed_to_locate_action_enable_information"
             android:layout_marginTop="@dimen/normal_margin"
             android:layout_marginBottom="@dimen/normal_margin"
             android:layout_marginEnd="@dimen/normal_margin"
@@ -80,7 +80,7 @@
 
         <TextView
             android:id="@+id/dialog_location_help_providerTitle"
-            android:text="@string/feedback_select_location_provider"
+            android:text="@string/location_dialog_failed_to_locate_action_select_provider"
             android:layout_marginTop="@dimen/normal_margin"
             android:layout_marginBottom="@dimen/normal_margin"
             android:layout_marginEnd="@dimen/normal_margin"
@@ -107,7 +107,7 @@
 
         <TextView
             android:id="@+id/dialog_location_help_manageTitle"
-            android:text="@string/feedback_add_location_manually"
+            android:text="@string/location_dialog_failed_to_locate_action_add_manually"
             android:layout_marginTop="@dimen/normal_margin"
             android:layout_marginBottom="@dimen/normal_margin"
             android:layout_marginEnd="@dimen/normal_margin"

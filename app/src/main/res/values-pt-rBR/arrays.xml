@@ -1,15 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Weather sources -->
-    <string-array name="weather_sources">
-        <item>Open-Meteo</item>
-        <item>AccuWeather</item>
-        <item>MET Norway</item>
-        <item>OpenWeather</item>
-        <item>Météo France</item>
-        <item>China</item>
-    </string-array>
+    <!-- Please don’t translate in this file anymore and migrate to strings.xml, see values/arrays.xml -->
 
     <!-- Location service. -->
     <string-array name="location_services">
@@ -25,12 +17,6 @@
         <item>Padrão do sistema</item>
         <item>Sempre claro</item>
         <item>Sempre escuro</item>
-    </string-array>
-
-    <!-- UI style. -->
-    <string-array name="ui_styles">
-        <item>Céu circular</item>
-        <item>Material</item>
     </string-array>
 
     <!-- automatic refresh rate. -->
@@ -83,27 +69,19 @@
     </string-array>
 
     <!-- week widget style. -->
-    <string-array name="week_widget_styles">
+    <string-array name="widget_week_styles">
         <item>5 dias</item>
         <item>3 dias</item>
     </string-array>
 
     <!-- Widget subtitle data. -->
-    <string-array name="subtitle_data">
+    <string-array name="widget_subtitle_data">
         <item>Tempo de atualização</item>
         <item>AQI (indisp. no Brasil)</item>
         <item>Vento</item>
         <item>Sensação térmica</item>
         <item>Calendário lunar</item>
         <item>Personalizado</item>
-    </string-array>
-
-    <!-- widget clock font. -->
-    <string-array name="clock_font">
-        <item>sans-serif-light</item>
-        <item>sans-serif</item>
-        <item>sans-serif-black</item>
-        <item>analog</item>
     </string-array>
 
     <!-- widget card style. -->
@@ -146,13 +124,6 @@
     </string-array>
 
     <!-- speed unit. -->
-    <string-array name="speed_units">
-        <item>km/h</item>
-        <item>m/s</item>
-        <item>kn</item>
-        <item>mph</item>
-        <item>ft/s</item>
-    </string-array>
     <string-array name="speed_unit_voices">
         <item>Quilómetros por hora</item>
         <item>Metros por segundo</item>
@@ -162,12 +133,6 @@
     </string-array>
 
     <!-- precipitation unit. -->
-    <string-array name="precipitation_units">
-        <item>mm</item>
-        <item>cm</item>
-        <item>inch</item>
-        <item>L/m²</item>
-    </string-array>
     <string-array name="precipitation_unit_voices">
         <item>Milímetros</item>
         <item>Centímetro</item>
@@ -176,13 +141,6 @@
     </string-array>
 
     <!-- distance unit. -->
-    <string-array name="distance_units">
-        <item>km</item>
-        <item>m</item>
-        <item>mi</item>
-        <item>nmi</item>
-        <item>ft</item>
-    </string-array>
     <string-array name="distance_unit_voices">
         <item>Quilômetros</item>
         <item>Metros</item>
@@ -192,15 +150,6 @@
     </string-array>
 
     <!-- pressure unit. -->
-    <string-array name="pressure_units">
-        <item>mb</item>
-        <item>kPa</item>
-        <item>hPa</item>
-        <item>atm</item>
-        <item>mmHg</item>
-        <item>inHg</item>
-        <item>kgf/cm²</item>
-    </string-array>
     <string-array name="pressure_unit_voices">
         <item>Millibars</item>
         <item>Quilopascais</item>
@@ -212,33 +161,21 @@
     </string-array>
 
     <!-- air quality unit. -->
-    <string-array name="air_quality_units">
-        <item>μg/m³</item>
-    </string-array>
     <string-array name="air_quality_unit_voices">
         <item>Microgramas por metro cúbico</item>
     </string-array>
 
     <!-- air quality co unit. -->
-    <string-array name="air_quality_co_units">
-        <item>mg/m³</item>
-    </string-array>
     <string-array name="air_quality_co_unit_voices">
         <item>Miligramas por metro cúbico</item>
     </string-array>
 
     <!-- duration unit. -->
-    <string-array name="duration_units">
-        <item>h</item> <!-- hour -->
-    </string-array>
     <string-array name="duration_unit_voices">
         <item>horas</item>
     </string-array>
 
     <!-- pollen unit. -->
-    <string-array name="pollen_units">
-        <item>/m³</item>
-    </string-array>
     <string-array name="pollen_unit_voices">
         <item>Por metro cúbico</item>
     </string-array>

@@ -100,11 +100,11 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
 
                     if (location.isResidentPosition()) {
                         SnackbarHelper.showSnackbar(
-                                mActivity.getString(R.string.feedback_resident_location),
-                                mActivity.getString(R.string.learn_more),
+                                mActivity.getString(R.string.location_resident_message),
+                                mActivity.getString(R.string.action_learn_more),
                                 v -> new MaterialAlertDialogBuilder(mActivity)
                                         .setTitle(R.string.location_resident)
-                                        .setMessage(R.string.feedback_resident_location_description)
+                                        .setMessage(R.string.location_resident_dialog)
                                         .show()
                         );
                     }
@@ -116,13 +116,13 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
                     // TODO: force update.
                     mViewModel.updateLocation(location);
                     SnackbarHelper.showSnackbar(
-                            mActivity.getString(R.string.feedback_location_list_cannot_be_null)
+                            mActivity.getString(R.string.location_message_list_cannot_be_empty)
                     );
                 } else {
                     location = mViewModel.deleteLocation(position);
                     SnackbarHelper.showSnackbar(
-                            mActivity.getString(R.string.feedback_delete_succeed),
-                            mActivity.getString(R.string.cancel),
+                            mActivity.getString(R.string.location_message_deleted),
+                            mActivity.getString(R.string.action_cancel),
                             new CancelDeleteListener(location, position)
                     );
                 }

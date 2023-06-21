@@ -26,7 +26,7 @@
                 style="@style/BreezyWeatherTheme.ToolbarTheme"
                 app:title="@string/settings_title_card_display"
                 app:navigationIcon="@drawable/ic_toolbar_back"
-                app:navigationContentDescription="@string/content_desc_back" />
+                app:navigationContentDescription="@string/action_back" />
 
         </org.breezyweather.common.ui.widgets.insets.FitSystemBarAppBarLayout>
 

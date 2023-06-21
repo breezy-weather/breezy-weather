@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Do not translate those arrays which named "xxx_values". -->
-    <!-- Do not translate those items with a value of "@string/xxx". -->
+    <!-- Please don’t translate in this file anymore and migrate to strings.xml, see values/arrays.xml -->
 
     <!-- Chinese source. -->
     <string-array name="weather_sources">
@@ -28,12 +27,6 @@
         <item>Follow system</item>
         <item>ライトモード</item>
         <item>ダークモード</item>
-    </string-array>
-
-    <!-- UI style. -->
-    <string-array name="ui_styles">
-        <item>丸い空</item>
-        <item>マテリアルアニメーション</item>
     </string-array>
 
     <!-- automatic refresh rate. -->
@@ -86,21 +79,13 @@
     </string-array>
 
     <!-- Widget subtitle data. -->
-    <string-array name="subtitle_data">
+    <string-array name="widget_subtitle_data">
         <item>更新時刻</item>
         <item>空気質指数 (一部エリアでは無効です)</item>
         <item>風</item>
         <item>体感温度</item>
         <item>旧暦</item>
         <item>カスタム</item>
-    </string-array>
-
-    <!-- widget clock font. -->
-    <string-array name="clock_font">
-        <item>sans-serif-light</item>
-        <item>sans-serif</item>
-        <item>sans-serif-black</item>
-        <item>analog</item>
     </string-array>
 
     <!-- widget card style. -->

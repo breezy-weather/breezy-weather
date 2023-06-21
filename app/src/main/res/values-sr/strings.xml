@@ -1,4 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Do NOT translate values that are identical in English and in your language -->
+    <!-- Do NOT use " and ', use appropriate typographic quotes for your language (in English: “ and ”, ‘ and ’) -->
+
     <!-- app. -->
     <string name="app_name">Време</string>
     <string name="breezy_weather">Breezy време</string>
@@ -7,7 +11,7 @@
     <string name="location_current">Тренутну локацију</string>
     <string name="live">Уживо</string>
     <string name="short_today">Данас</string>
-    <string name="refresh_at">Oсвежи за</string>
+    <string name="notification_refreshed_at">Oсвежи за</string>
     <string name="precipitation">Падавине</string>
     <string name="wind">Ветар</string>
     <string name="humidity">Влажност</string>
@@ -15,7 +19,6 @@
     <string name="notification_channel_forecast">Прогноза</string>
     <string name="daytime">Дневно</string>
     <string name="nighttime">Ноћу</string>
-    <string name="published_at">Објави у</string>
     <string name="temperature_feels_like">Као</string>
     <string name="settings_follow_system">Подразумевани</string>
 
@@ -50,49 +53,36 @@
     <string name="details">детаљни</string>
     <string name="ephemeris">Сунце &amp; месец</string>
 
-    <string name="next">СЛЕДЕЋЕ</string>
-    <string name="done">ГОТОВО</string>
-    <string name="cancel" tools:ignore="ButtonCase">ОДУСТАНИ</string>
-    <string name="on">УПАЉЕНО</string>
-    <string name="off">УГАШЕНО</string>
+    <string name="action_next">СЛЕДЕЋЕ</string>
+    <string name="action_done">ГОТОВО</string>
+    <string name="action_cancel" tools:ignore="ButtonCase">ОДУСТАНИ</string>
+    <string name="settings_enabled">УПАЉЕНО</string>
+    <string name="settings_disabled">УГАШЕНО</string>
 
     <string name="about_app">О AПЛИКАЦИЈИ</string>
     <string name="about_translators">Преводиоци</string>
 
     <!-- feedback. -->
-    <string name="feedback_request_permission">Дозволе</string>
     <string name="notification_channel_request_location">локацију</string>
-    <string name="feedback_request_location_permission_success">Захтевај дозволу за локацију.</string>
-    <string name="feedback_request_location_permission_failed">Захтев за одобрење локације није успео.</string>
 
-    <string name="feedback_location_failed">Локација неуспешна.</string>
-    <string name="feedback_get_weather_failed">Подаци о временским условима неуспешни.</string>
+    <string name="location_message_failed_to_locate">Локација неуспешна.</string>
+    <string name="weather_message_data_refresh_failed">Подаци о временским условима неуспешни.</string>
 
     <string name="widget_label_view_style">Стил изгледа.</string>
     <string name="widget_label_show_widget_card">Позадина картице.</string>
     <string name="widget_label_black_text">Тамни текст.</string>
 
-    <string name="feedback_click_toggle">Кликни на карту за добијање података.</string>
-    <string name="feedback_no_data">НЕМА ПОДАТАКА</string>
+    <string name="location_message_added">Успешно додата локација.</string>
+    <string name="location_message_deleted">Успешно обрисана локација.</string>
+    <string name="location_message_list_cannot_be_empty">Листа локација не може бити празна.</string>
 
-    <string name="feedback_collect_failed">Ова локација већ постоји.</string>
-    <string name="feedback_collect_succeed">Успешно додата локација.</string>
-    <string name="feedback_delete_succeed">Успешно обрисана локација.</string>
-    <string name="feedback_location_list_cannot_be_null">Листа локација не може бити празна.</string>
+    <string name="location_search_placeholder">Потражите локацију…</string>
+    <string name="location_current_not_found_yet">Још увек није успела локација…</string>
 
-    <string name="feedback_search_location">Потражите локацију…</string>
-    <string name="feedback_not_yet_location">Још увек није успела локација…</string>
-    <string name="feedback_search_nothing">Ништа није пронађено…</string>
-    <string name="feedback_initializing">Иницијализација…</string>
-
-    <string name="feedback_refresh_notification_after_back">Промена ће бити након повратка на почетну страну.</string>
-    <string name="feedback_refresh_notification_now">Освежи сада.</string>
-    <string name="feedback_refresh_ui_after_refresh">Промена ће бити након освежавања података.</string>
-    <string name="feedback_restart">Промена ће бити након рестарта.</string>
+    <string name="settings_changes_apply_after_restart">Промена ће бити након рестарта.</string>
 
     <!-- action -->
     <string name="alerts">Упозорење</string>
-    <string name="action_manage">Управљати</string>
     <string name="action_search">Претрага</string>
     <string name="action_settings">Подешавања</string>
     <string name="action_about">О нама</string>
@@ -139,4 +129,14 @@
     <string name="settings_notification_hide_big_view_on">Сакриј.</string>
     <string name="settings_notification_hide_big_view_off">Прикажи.</string>
 
+    <string name="settings_color_light">Светла</string>
+    <string name="settings_color_grey">Сива</string>
+    <string name="settings_color_dark">Тамна</string>
+
+    <string name="widget_style_rectangle">Правоугаоник</string>
+    <string name="widget_style_symmetry">Симетричан</string>
+    <string name="widget_style_tile">Плоча</string>
+    <string name="widget_style_mini">Mали</string>
+    <string name="widget_style_nano">Нaнo</string>
+    <string name="widget_style_pixel">Пиксел</string>
 </resources>

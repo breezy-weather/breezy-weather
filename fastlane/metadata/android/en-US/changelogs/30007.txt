@@ -1,9 +1,0 @@
-<ul><li>Initial version available on F-Droid.</li>
-<li>New weather provider: OpenWeatherMap.</li>
-<li>New animations for main interface.</li>
-<li>New animations for snackbars.</li>
-<li>New filter view for search page.</li>
-<li>Improve details available with Météo France provider.</li>
-<li>French and Spanish translation updates.</li>
-<li>Bug fixed.</li></ul>
-

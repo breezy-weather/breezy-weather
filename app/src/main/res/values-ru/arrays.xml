@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <resources>
 
+    <!-- Please don’t translate in this file anymore and migrate to strings.xml, see values/arrays.xml -->
+
     <!-- Chinese source. -->
     <string-array name="weather_sources">
         <item>Open-Meteo</item>
@@ -25,12 +27,6 @@
         <item>Как в системе</item>
         <item>Всегда светлая</item>
         <item>Всегда тёмная</item>
-    </string-array>
-
-    <!-- UI style. -->
-    <string-array name="ui_styles">
-        <item>Круглое небо</item>
-        <item>Material анимация</item>
     </string-array>
 
     <!-- automatic refresh rate. -->
@@ -83,13 +79,13 @@
     </string-array>
 
     <!-- week widget style. -->
-    <string-array name="week_widget_styles">
+    <string-array name="widget_week_styles">
         <item>5 дней</item>
         <item>3 дня</item>
     </string-array>
 
     <!-- Widget subtitle data. -->
-    <string-array name="subtitle_data">
+    <string-array name="widget_subtitle_data">
         <item>Время обновления</item>
         <item>AQI (Не везде работает)</item>
         <item>Ветер</item>

@@ -138,7 +138,7 @@ fun ListPreferenceView(
                     onClick = { dialogOpenState.value = false }
                 ) {
                     Text(
-                        text = stringResource(R.string.cancel),
+                        text = stringResource(R.string.action_cancel),
                         color = MaterialTheme.colorScheme.primary,
                         style = MaterialTheme.typography.labelLarge,
                     )

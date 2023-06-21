@@ -81,74 +81,7 @@ class AboutActivity : GeoActivity() {
             )
         },
     )
-    private val contributors = arrayOf(
-        ContributorItem(
-            name = "Julien Papasian",
-            url = "https://github.com/papjul",
-            flag = "🇫🇷",
-        ),
-        ContributorItem(
-            name = "WangDaYeeeeee",
-            contribution = "Developer of the original project Geometric Weather",
-            url = "https://github.com/WangDaYeeeeee",
-            flag = "🇨🇳",
-        ),
-        ContributorItem(
-            name = "dylan",
-            url = "https://github.com/d-l-n",
-            flag = "🇦🇷",
-        ),
-        ContributorItem(
-            name = "Nam",
-            url = "https://github.com/ldmpub",
-            flag = "",
-        ),
-        ContributorItem(
-            name = "Igor Sorocean",
-            url = "https://github.com/ygorigor",
-            flag = "🇲🇩",
-        ),
-        ContributorItem(
-            name = "EmberHeartshine",
-            url = "https://github.com/EmberHeartshine",
-            flag = "",
-        ),
-        ContributorItem(
-            name = "majjejjam",
-            url = "https://github.com/majjejjam",
-            flag = "",
-        ),
-        ContributorItem(
-            name = "Poussinou",
-            url = "https://github.com/Poussinou",
-            flag = "",
-        ),
-        ContributorItem(
-            name = "Dominik",
-            url = "https://github.com/Domi04151309",
-            flag = "🇩🇪",
-        ),
-        ContributorItem(
-            name = "Mark Bestavros",
-            url = "https://github.com/mbestavros",
-            flag = "🇺🇸",
-        ),
-        ContributorItem(
-            name = "giwrgosmant",
-            url = "https://github.com/giwrgosmant",
-            flag = "🇬🇷",
-        ),
-        ContributorItem(
-            name = "Romain Théry",
-            url = "https://github.com/rthery",
-            flag = "🇫🇷",
-        ),
-        ContributorItem(
-            name = "Kyler",
-            url = "https://github.com/HiFiiDev",
-            flag = "🇺🇸",
-        ),
-    )
+    private lateinit var contributors: Array<ContributorItem>
     private val translators = arrayOf(
         ContributorItem(
             name = "Mehmet Saygin Yilmaz",
@@ -314,6 +247,75 @@ class AboutActivity : GeoActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        contributors = arrayOf(
+            ContributorItem(
+                name = "Julien Papasian",
+                url = "https://github.com/papjul",
+                flag = "🇫🇷",
+            ),
+            ContributorItem(
+                name = "WangDaYeeeeee",
+                contribution = this.getString(R.string.about_contribution_WangDaYeeeeee),
+                url = "https://github.com/WangDaYeeeeee",
+                flag = "🇨🇳",
+            ),
+            ContributorItem(
+                name = "dylan",
+                url = "https://github.com/d-l-n",
+                flag = "🇦🇷",
+            ),
+            ContributorItem(
+                name = "Nam",
+                url = "https://github.com/ldmpub",
+                flag = "",
+            ),
+            ContributorItem(
+                name = "Igor Sorocean",
+                url = "https://github.com/ygorigor",
+                flag = "🇲🇩",
+            ),
+            ContributorItem(
+                name = "EmberHeartshine",
+                url = "https://github.com/EmberHeartshine",
+                flag = "",
+            ),
+            ContributorItem(
+                name = "majjejjam",
+                url = "https://github.com/majjejjam",
+                flag = "",
+            ),
+            ContributorItem(
+                name = "Poussinou",
+                url = "https://github.com/Poussinou",
+                flag = "",
+            ),
+            ContributorItem(
+                name = "Dominik",
+                url = "https://github.com/Domi04151309",
+                flag = "🇩🇪",
+            ),
+            ContributorItem(
+                name = "Mark Bestavros",
+                url = "https://github.com/mbestavros",
+                flag = "🇺🇸",
+            ),
+            ContributorItem(
+                name = "giwrgosmant",
+                url = "https://github.com/giwrgosmant",
+                flag = "🇬🇷",
+            ),
+            ContributorItem(
+                name = "Romain Théry",
+                url = "https://github.com/rthery",
+                flag = "🇫🇷",
+            ),
+            ContributorItem(
+                name = "Kyler",
+                url = "https://github.com/HiFiiDev",
+                flag = "🇺🇸",
+            )
+        )
 
         setContent {
             BreezyWeatherTheme(lightTheme = !isSystemInDarkTheme()) {

@@ -434,7 +434,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
                 if (weather.getCurrent() != null
                         && weather.getCurrent().getTemperature() != null
                         && weather.getCurrent().getTemperature().getTemperature() != null) {
-                    return unit.getLongValueText(context, weather.getCurrent().getTemperature().getTemperature());
+                    return unit.getValueText(context, weather.getCurrent().getTemperature().getTemperature());
                 }
         }
         return "";

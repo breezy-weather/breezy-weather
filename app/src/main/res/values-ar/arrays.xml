@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Please don’t translate in this file anymore and migrate to strings.xml, see values/arrays.xml -->
+
     <!-- Location service. -->
     <string-array name="location_services">
         <item>Baidu Location</item>
@@ -17,12 +19,6 @@
         <item>داكن دائماً</item>
     </string-array>
 
-    <!-- UI style. -->
-    <string-array name="ui_styles">
-        <item>Circular sky</item>
-        <item>Material animation</item>
-    </string-array>
-
     <!-- automatic refresh rate. -->
     <string-array name="automatic_refresh_rates">
         <item>Never</item>
@@ -36,14 +32,6 @@
         <item>كل 24 ساعات</item>
     </string-array>
 
-    <!-- notification style. -->
-    <string-array name="notification_styles">
-        <item>Native</item>
-        <item>Cities</item>
-        <item>@string/daily_forecast</item><!-- do not translate. -->
-        <item>@string/hourly_forecast</item><!-- do not translate. -->
-    </string-array>
-
     <!-- notification text color. -->
     <string-array name="notification_text_colors">
         <item>داكن</item>
@@ -51,36 +39,14 @@
         <item>فاتح</item>
     </string-array>
 
-    <!-- widget style. -->
-    <string-array name="widget_styles">
-        <item>Rectangle</item>
-        <item>Symmetry</item>
-        <item>Tile</item>
-        <item>Mini</item>
-        <item>Nano</item>
-        <item>Pixel</item>
-        <item>Vertical</item>
-        <item>Oreo</item>
-        <item>Oreo (Google sans)</item>
-        <item>Temperature</item>
-    </string-array>
-
     <!-- Widget subtitle data. -->
-    <string-array name="subtitle_data">
+    <string-array name="widget_subtitle_data">
         <item>وقت آخر تحديث للطقس</item>
         <item>مؤشر جودة الهواء (غير متاح في بعض المناطق)</item>
         <item>الرياح</item>
         <item>درجة الحرارة المحسوسة</item>
         <item>تقويم قمري</item>
         <item>مخصص</item>
-    </string-array>
-
-    <!-- widget clock font. -->
-    <string-array name="clock_font">
-        <item>sans-serif-light</item>
-        <item>sans-serif</item>
-        <item>sans-serif-black</item>
-        <item>analog</item>
     </string-array>
 
     <!-- widget card style. -->
@@ -150,11 +116,6 @@
         <item>°</item>
         <item>ك</item>
     </string-array>
-    <string-array name="temperature_units_long">
-        <item>°م</item>
-        <item>°ف</item>
-        <item>ك</item>
-    </string-array>
 
     <!-- distance unit. -->
     <string-array name="distance_units">
@@ -174,11 +135,6 @@
         <item>ملي متر زئبق</item>
         <item>بوصة من الزئبق</item>
         <item>كغم قوة/سم²</item>
-    </string-array>
-
-    <!-- pollen unit. -->
-    <string-array name="pollen_units">
-        <item>/m³</item>
     </string-array>
 
 </resources>

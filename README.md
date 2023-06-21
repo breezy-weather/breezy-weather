@@ -1,6 +1,6 @@
 # Breezy Weather
 
-<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/Screenshot_1590799774.png?raw=true" alt="" style="width: 300px" />
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/01.png?raw=true" alt="" style="width: 300px" />
 
 Breezy Weather is a fork of [GeometricWeather](https://github.com/WangDaYeeeeee/GeometricWeather) (LGPL-v3 license), currently no longer updated.
 

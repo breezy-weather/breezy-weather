@@ -1,5 +1,8 @@
 <resources>
 
+    <!-- Do NOT translate values that are identical in English and in your language -->
+    <!-- Do NOT use " and ', use appropriate typographic quotes for your language (in English: “ and ”, ‘ and ’) -->
+
     <!-- app. -->
     <string name="app_name">Clima</string>
     <string name="breezy_weather">Clima Breezy</string>
@@ -9,7 +12,7 @@
     <string name="location_resident">Ubicación de los residentes</string>
     <string name="live">En vivo</string>
     <string name="short_today">Hoy</string>
-    <string name="refresh_at">Actualizado a las</string>
+    <string name="notification_refreshed_at">Actualizado a las</string>
     <string name="precipitation">Precipitación</string>
     <string name="precipitation_probability">Probabilidad de precipitación</string>
     <string name="precipitation_duration">Duración de precipitación</string>
@@ -24,7 +27,6 @@
     <string name="notification_channel_forecast">Pronóstico</string>
     <string name="daytime">Día</string>
     <string name="nighttime">Noche</string>
-    <string name="published_at">Publicar en</string>
     <string name="temperature_feels_like">Se siente como</string>
     <string name="settings_follow_system">Seguir al sistema</string>
     <string name="notification_channel_background_information">Información en segundo plano</string>
@@ -36,9 +38,9 @@
     <string name="settings_icon_providers_get_more">Obtener más</string>
     <string name="settings_icon_providers_get_more_store">Obtener más en la tienda</string>
     <string name="settings_icon_providers_get_more_github">Obtener más en GitHub</string>
-    <string name="refresh">Refrescar</string>
-    <string name="restart">Reiniciar</string>
-    <string name="edit">Editar</string>
+    <string name="action_refresh">Refrescar</string>
+    <string name="action_restart">Reiniciar</string>
+    <string name="action_edit">Editar</string>
 
     <!-- The following set of strings should be as short as possible. -->
     <string name="of_clock">:00</string>
@@ -107,14 +109,14 @@
     <string name="details">Detalles</string>
     <string name="ephemeris">Sol &amp; luna</string>
 
-    <string name="next">SIGUIENTE</string>
-    <string name="done">HECHO</string>
-    <string name="cancel">CANCELAR</string>
-    <string name="on">Habilitado</string>
-    <string name="off">Deshabilitado</string>
-    <string name="go_to_set">ESTABLECER</string>
-    <string name="help">AYUDA</string>
-    <string name="learn_more">SABER MÁS</string>
+    <string name="action_next">SIGUIENTE</string>
+    <string name="action_done">HECHO</string>
+    <string name="action_cancel">CANCELAR</string>
+    <string name="settings_enabled">Habilitado</string>
+    <string name="settings_disabled">Deshabilitado</string>
+    <string name="action_set">ESTABLECER</string>
+    <string name="action_help">AYUDA</string>
+    <string name="action_learn_more">SABER MÁS</string>
 
     <string name="about_app">Acerca de la app</string>
     <string name="about_translators">Traductores</string>
@@ -130,21 +132,18 @@
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
 
     <!-- feedback. -->
-    <string name="feedback_request_permission">Permisos</string>
     <string name="notification_channel_request_location">Ubicación</string>
-    <string name="feedback_request_location_in_background">Ubicando en segundo plano</string>
-    <string name="feedback_request_location_permission_success">Solicitud de acceso a la ubicación exitosa</string>
-    <string name="feedback_request_location_permission_failed">La solicitud de acceso a la ubicación falló</string>
+    <string name="notification_location_in_background">Ubicando en segundo plano</string>
 
-    <string name="feedback_location_failed">La ubicación falló</string>
-    <string name="feedback_get_weather_failed">La solicitud de datos del clima falló</string>
-    <string name="feedback_location_help_title">No se pudo obtener la ubicación correctamente?</string>
-    <string name="feedback_check_location_permission">Verifica los permisos de acceso a la ubicación</string>
-    <string name="feedback_enable_location_information">Habilitar Información de la Ubicación</string>
-    <string name="feedback_select_location_provider">Seleccione un proveedor de ubicación</string>
-    <string name="feedback_add_location_manually">Agrega la ubicación manualmente y borra \'$\'</string>
-    <string name="feedback_background_location_title">Acceso a la ubicación en segundo plano</string>
-    <string name="feedback_background_location_summary">Para permitirle a la app el acceso a la ubicación en segundo plano, por favor selecciona el acceso a la ubicación \"Todo el tiempo\".</string>
+    <string name="location_message_failed_to_locate">La ubicación falló</string>
+    <string name="weather_message_data_refresh_failed">La solicitud de datos del clima falló</string>
+    <string name="location_dialog_failed_to_locate_title">No se pudo obtener la ubicación correctamente?</string>
+    <string name="location_dialog_failed_to_locate_action_check_permission">Verifica los permisos de acceso a la ubicación</string>
+    <string name="location_dialog_failed_to_locate_action_enable_information">Habilitar Información de la Ubicación</string>
+    <string name="location_dialog_failed_to_locate_action_select_provider">Seleccione un proveedor de ubicación</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Agrega la ubicación manualmente y borra \'$\'</string>
+    <string name="dialog_permissions_location_background_title">Acceso a la ubicación en segundo plano</string>
+    <string name="dialog_permissions_location_background_content">Para permitirle a la app el acceso a la ubicación en segundo plano, por favor selecciona el acceso a la ubicación \"Todo el tiempo\".</string>
 
     <string name="widget_label_view_style">Estilo de vista</string>
     <string name="widget_label_show_widget_card">Fondo de color</string>
@@ -201,57 +200,46 @@
     <string name="widget_live_wallpaper_weather_kind">Clima</string>
     <string name="widget_live_wallpaper_day_night_type">Hora</string>
 
-    <string name="feedback_click_toggle">Toca el gráfico para alternar los datos</string>
-    <string name="feedback_no_data">SIN DATOS</string>
+    <string name="location_message_added">Se agregó la ubicación exitosamente</string>
+    <string name="location_message_deleted">Se eliminó la ubicación exitosamente</string>
+    <string name="location_message_list_cannot_be_empty">La lista de ubicaciones no puede estar vacía</string>
 
-    <string name="feedback_collect_failed">Esta ubicación ya existe</string>
-    <string name="feedback_collect_succeed">Se agregó la ubicación exitosamente</string>
-    <string name="feedback_delete_succeed">Se eliminó la ubicación exitosamente</string>
-    <string name="feedback_location_list_cannot_be_null">La lista de ubicaciones no puede estar vacía</string>
+    <string name="location_search_placeholder">Busca una ubicación…</string>
+    <string name="location_current_not_found_yet">Aún sin ubicaciones…</string>
 
-    <string name="feedback_search_location">Busca una ubicación…</string>
-    <string name="feedback_not_yet_location">Aún sin ubicaciones…</string>
-    <string name="feedback_search_nothing">No se encontraron ubicaciones</string>
-    <string name="feedback_initializing">Inicializando…</string>
+    <string name="settings_changes_apply_after_restart">Los cambios tomarán efecto después de reiniciar</string>
 
-    <string name="feedback_refresh_notification_after_back">Los cambios tomarán efecto cuando vuelvas a las página principal</string>
-    <string name="feedback_refresh_notification_now">Refresque ahora</string>
-    <string name="feedback_refresh_ui_after_refresh">Los cambios tomarán efecto cuando se actualicen los datos</string>
-    <string name="feedback_restart">Los cambios tomarán efecto después de reiniciar</string>
-
-    <string name="feedback_running_in_background">Corriendo en segundo plano para seguir actualizándose</string>
-    <string name="feedback_updating_weather_data">Actualizando datos del clima</string>
-    <string name="feedback_updated_in_background">Actualizado en segundo plano</string>
+    <string name="notification_running_in_background">Corriendo en segundo plano para seguir actualizándose</string>
+    <string name="notification_updating_weather_data">Actualizando datos del clima</string>
+    <string name="message_updated_in_background">Actualizado en segundo plano</string>
 
     <!-- there should be a "\" before single or double quotes. -->
     <!-- Correct : ... after turning off \'Background free\', ... After turning off \"Free background\" ... -->
     <!-- Wrong   : ... after turning off 'Background free', ... After turning off "Free background" ... -->
-    <string name="feedback_interpret_background_notification_content">En algunos dispositivos, después de desactivar \'Segundo plano libre\', puede haber una notificación que no pueda ser eliminada de la barra de notificaciones.</string>
-    <string name="feedback_interpret_notification_group_title">Bloquear grupo de notificaciones</string>
-    <string name="feedback_interpret_notification_group_content">Después de desactivar \"Segundo plano libre\", aparecerá una notificación en la barra de notificaciones indicando que está funcionando el servicio en segundo plano. Puedes desactivar el Canal de Información en segundo plano bloqueando estas notificaciones en la página de información de la app.</string>
+    <string name="dialog_permissions_block_notification_channel_title">Bloquear grupo de notificaciones</string>
+    <string name="dialog_permissions_block_notification_channel_content">Después de desactivar \"Segundo plano libre\", aparecerá una notificación en la barra de notificaciones indicando que está funcionando el servicio en segundo plano. Puedes desactivar el Canal de Información en segundo plano bloqueando estas notificaciones en la página de información de la app.</string>
 
-    <string name="feedback_ignore_battery_optimizations_title">Ignorar optimización de la batería</string>
-    <string name="feedback_ignore_battery_optimizations_content">Para asegurar que los servicios en segundo plano continúen funcionando, por favor ignora la optimización de batería para Breezy Weather.</string>
+    <string name="dialog_permissions_ignore_battery_optimizations_title">Ignorar optimización de la batería</string>
+    <string name="dialog_permissions_ignore_battery_optimizations_content">Para asegurar que los servicios en segundo plano continúen funcionando, por favor ignora la optimización de batería para Breezy Weather.</string>
     
-    <string name="feedback_cannot_start_live_wallpaper_activity">No se logró iniciar el contexto de previsulización del fondo de pantalla animado</string>
+    <string name="widget_live_wallpaper_cannot_start_activity">No se logró iniciar el contexto de previsulización del fondo de pantalla animado</string>
 
-    <string name="feedback_today_precipitation_alert">Puede que hoy haya precipitationes.</string>
-    <string name="feedback_short_term_precipitation_alert">Puede que la precipitación ocurra en las próximas horas.</string>
+    <string name="notification_precipitation_today">Puede que hoy haya precipitationes.</string>
+    <string name="notification_precipitation_short_term">Puede que la precipitación ocurra en las próximas horas.</string>
 
-    <string name="feedback_resident_location">Establecer como la ciudad residente</string>
-    <string name="feedback_resident_location_description">Breezy Weather mostrará y ocultará automáticamente las ciudades residentes en base a tu ubicación actual.\nPor ejemplo, puedes establecer tu ciudad natal como una ciudad residente. Puedes revisar el clima de tu ciudad natal mientras estás viajando. Cuando llegues a casa, el clima de tu ciudad natal estará oculto y reemplazado por el clima de tu ubicación actual.</string>
+    <string name="location_resident_message">Establecer como la ciudad residente</string>
+    <string name="location_resident_dialog">Breezy Weather mostrará y ocultará automáticamente las ciudades residentes en base a tu ubicación actual.\nPor ejemplo, puedes establecer tu ciudad natal como una ciudad residente. Puedes revisar el clima de tu ciudad natal mientras estás viajando. Cuando llegues a casa, el clima de tu ciudad natal estará oculto y reemplazado por el clima de tu ubicación actual.</string>
 
-    <string name="feedback_click_to_get_more">Toca para obtener más…</string>
-    <string name="feedback_click_again_to_exit">Toca de nuevo para salir</string>
+    <string name="allergen_tap_to_see_more">Toca para obtener más…</string>
+    <string name="message_tap_again_to_exit">Toca de nuevo para salir</string>
 
     <!-- action -->
     <string name="alerts">Alerta</string>
-    <string name="action_manage">Gestionar</string>
     <string name="action_search">Buscar</string>
     <string name="action_settings">Configuración</string>
     <string name="action_preview">Vista previa</string>
     <string name="action_about">Acerca de</string>
-    <string name="action_appStore">Tienda de apps</string>
+    <string name="action_app_store">Tienda de apps</string>
 
     <!-- widget -->
     <string name="widget_day">Diario</string>
@@ -280,7 +268,6 @@
     <string name="settings_title_weather_source">Fuente del clima</string>
     <string name="settings_title_location_service">Servicio de ubicación</string>
     <string name="settings_title_dark_mode">Modo oscuro</string>
-    <string name="settings_title_ui_style">Estilo de la interfaz</string>
     <string name="settings_title_icon_provider">Paquete de iconos</string>
     <string name="settings_title_appearance">Apariencia</string>
     <string name="settings_summary_appearance">Estilo de la interfaz, orden de cartas, idioma…</string>
@@ -312,7 +299,7 @@
     <string name="settings_category_widget">Widget</string>
     <string name="settings_title_week_icon_mode">Modo de iconos semanales</string>
     <string name="settings_title_minimal_icon">iconos minimalistas</string>
-    <string name="settings_title_click_widget_to_refresh">Refrescar widget al tocarlo</string>
+    <string name="settings_title_tap_widget_to_refresh">Refrescar widget al tocarlo</string>
     <string name="settings_title_widget_config">Configuración del widget</string>
     <string name="settings_category_notification">Notificaciones</string>
     <string name="settings_title_notification">Enviar notificaciones</string>

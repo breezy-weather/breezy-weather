@@ -93,7 +93,7 @@ public abstract class ForegroundUpdateService extends UpdateService {
         ).setSmallIcon(R.drawable.ic_running_in_background)
                 .setContentTitle(getString(R.string.breezy_weather))
                 .setContentText(
-                        getString(R.string.feedback_updating_weather_data) + (total == 0 ? "" : (
+                        getString(R.string.notification_updating_weather_data) + (total == 0 ? "" : (
                                 " (" + (mFinishedCount + 1) + "/" + total + ")"
                         ))
                 ).setBadgeIconType(NotificationCompat.BADGE_ICON_NONE)

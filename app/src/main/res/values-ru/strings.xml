@@ -1,5 +1,8 @@
 ﻿<resources xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Do NOT translate values that are identical in English and in your language -->
+    <!-- Do NOT use " and ', use appropriate typographic quotes for your language (in English: “ and ”, ‘ and ’) -->
+
     <!-- app. -->
     <string name="app_name">Weather</string>
 
@@ -8,7 +11,7 @@
     <string name="location_resident">Домашнее местоположение</string>
     <string name="live">Сейчас</string>
     <string name="short_today">Сегодня</string>
-    <string name="refresh_at">Обновлено в</string>
+    <string name="notification_refreshed_at">Обновлено в</string>
     <string name="precipitation">Осадки</string>
     <string name="precipitation_probability">Вероятность осадков</string>
     <string name="precipitation_duration">Продолжительность осадков</string>
@@ -23,7 +26,6 @@
     <string name="notification_channel_forecast">Прогноз</string>
     <string name="daytime">Днём</string>
     <string name="nighttime">Ночью</string>
-    <string name="published_at">Опубликовано в</string>
     <string name="temperature_feels_like">Ощущается как</string>
     <string name="settings_follow_system">Как в системе</string>
     <string name="notification_channel_background_information">Фоновая информация</string>
@@ -35,9 +37,9 @@
     <string name="settings_icon_providers_get_more">Ещё</string>
     <string name="settings_icon_providers_get_more_store">Дополнительно в App Store</string>
     <string name="settings_icon_providers_get_more_github">Дополнительно на GitHub</string>
-    <string name="refresh">Обновить</string>
-    <string name="restart">Перезапуск</string>
-    <string name="edit">Редактировать</string>
+    <string name="action_refresh">Обновить</string>
+    <string name="action_restart">Перезапуск</string>
+    <string name="action_edit">Редактировать</string>
 
     <string name="of_clock">:00</string>
     <string name="short_yesterday">Вчера</string>
@@ -100,34 +102,31 @@
     <string name="details">Подробно</string>
     <string name="ephemeris">Восход и закат</string>
 
-    <string name="next">ДАЛЕЕ</string>
-    <string name="done">ОК</string>
-    <string name="cancel" tools:ignore="ButtonCase">ОТМЕНА</string>
-    <string name="on">Вкл</string>
-    <string name="off">Выкл</string>
-    <string name="go_to_set">Установить</string>
-    <string name="help">ПОМОЩЬ</string>
-    <string name="learn_more">ЕЩЁ</string>
+    <string name="action_next">ДАЛЕЕ</string>
+    <string name="action_done">ОК</string>
+    <string name="action_cancel" tools:ignore="ButtonCase">ОТМЕНА</string>
+    <string name="settings_enabled">Вкл</string>
+    <string name="settings_disabled">Выкл</string>
+    <string name="action_set">Установить</string>
+    <string name="action_help">ПОМОЩЬ</string>
+    <string name="action_learn_more">ЕЩЁ</string>
 
     <string name="about_app">О программе</string>
     <string name="about_translators">Переводчики</string>
 
     <!-- feedback. -->
-    <string name="feedback_request_permission">Разрешения</string>
     <string name="notification_channel_request_location">Местоположение</string>
-    <string name="feedback_request_location_in_background">Запрос местоположения в фоне</string>
-    <string name="feedback_request_location_permission_success">Запрос местоположения успешно выполнен</string>
-    <string name="feedback_request_location_permission_failed">Ошибка запроса местоположения</string>
+    <string name="notification_location_in_background">Запрос местоположения в фоне</string>
 
-    <string name="feedback_location_failed">Ошибка определения местоположения</string>
-    <string name="feedback_get_weather_failed">Ошибка получения прогноза</string>
-    <string name="feedback_location_help_title">Невозможно правильно определить местоположение?</string>
-    <string name="feedback_check_location_permission">Проверка разрешений местоположения</string>
-    <string name="feedback_enable_location_information">Включить информацию местоположения</string>
-    <string name="feedback_select_location_provider">Выбрать источник определения местоположения</string>
-    <string name="feedback_add_location_manually">Добавить местоположение и удалить \'$\'</string>
-    <string name="feedback_background_location_title">Доступ к местоположению в фоне</string>
-    <string name="feedback_background_location_summary">Чтобы разрешить программе доступ к местоположению в фоне, включите доступ к местоположению \"Разрешить всегда\".</string>
+    <string name="location_message_failed_to_locate">Ошибка определения местоположения</string>
+    <string name="weather_message_data_refresh_failed">Ошибка получения прогноза</string>
+    <string name="location_dialog_failed_to_locate_title">Невозможно правильно определить местоположение?</string>
+    <string name="location_dialog_failed_to_locate_action_check_permission">Проверка разрешений местоположения</string>
+    <string name="location_dialog_failed_to_locate_action_enable_information">Включить информацию местоположения</string>
+    <string name="location_dialog_failed_to_locate_action_select_provider">Выбрать источник определения местоположения</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Добавить местоположение и удалить \'$\'</string>
+    <string name="dialog_permissions_location_background_title">Доступ к местоположению в фоне</string>
+    <string name="dialog_permissions_location_background_content">Чтобы разрешить программе доступ к местоположению в фоне, включите доступ к местоположению \"Разрешить всегда\".</string>
 
     <string name="widget_label_view_style">Стиль внешнего вида</string>
     <string name="widget_label_show_widget_card">Цвет фона</string>
@@ -182,54 +181,43 @@
     <string name="widget_live_wallpaper_weather_kind">Погода</string>
     <string name="widget_live_wallpaper_day_night_type">Время</string>
 
-    <string name="feedback_click_toggle">Нажмите на диаграмму для смены типа данных</string>
-    <string name="feedback_no_data">НЕТ ДАННЫХ</string>
+    <string name="location_message_added">Место добавлено успешно</string>
+    <string name="location_message_deleted">Место удалено успешно</string>
+    <string name="location_message_list_cannot_be_empty">Список мест не может быть пустым</string>
 
-    <string name="feedback_collect_failed">Это место уже присутствует в списке</string>
-    <string name="feedback_collect_succeed">Место добавлено успешно</string>
-    <string name="feedback_delete_succeed">Место удалено успешно</string>
-    <string name="feedback_location_list_cannot_be_null">Список мест не может быть пустым</string>
+    <string name="location_search_placeholder">Поиск местоположения…</string>
+    <string name="location_current_not_found_yet">Местоположение не задано…</string>
 
-    <string name="feedback_search_location">Поиск местоположения…</string>
-    <string name="feedback_not_yet_location">Местоположение не задано…</string>
-    <string name="feedback_search_nothing">Место не найдено </string>
-    <string name="feedback_initializing">Инициализация…</string>
+    <string name="settings_changes_apply_after_restart">Изменения вступят в силу после перезапуска</string>
 
-    <string name="feedback_refresh_notification_after_back">Изменения вступят в силу после возврата на главную страницу</string>
-    <string name="feedback_refresh_notification_now">Обновить сейчас</string>
-    <string name="feedback_refresh_ui_after_refresh">Изменения вступят в силу после обновления данных</string>
-    <string name="feedback_restart">Изменения вступят в силу после перезапуска</string>
+    <string name="notification_running_in_background">Запущено в фоне для постоянного обновления</string>
+    <string name="notification_updating_weather_data">Обновление погодных данных</string>
+    <string name="message_updated_in_background">Обновлено в фоне</string>
 
-    <string name="feedback_running_in_background">Запущено в фоне для постоянного обновления</string>
-    <string name="feedback_updating_weather_data">Обновление погодных данных</string>
-    <string name="feedback_updated_in_background">Обновлено в фоне</string>
+    <string name="dialog_permissions_block_notification_channel_title">Настройка уведомлений</string>
+    <string name="dialog_permissions_block_notification_channel_content">После выключения \"Запрет работы в фоне\", на панели уведомлений появится уведомление о том, что служба запущена в фоне. Вы можете отключить уведомление о работе в фоне в настройках уведомлений приложения, чтобы скрыть это уведомление.</string>
 
-    <string name="feedback_interpret_background_notification_content">На некоторых устройствах, после выключения \'Запрет работы в фоне\', в панели уведомлений может быть уведомление, которое не удаляется.</string>
-    <string name="feedback_interpret_notification_group_title">Настройка уведомлений</string>
-    <string name="feedback_interpret_notification_group_content">После выключения \"Запрет работы в фоне\", на панели уведомлений появится уведомление о том, что служба запущена в фоне. Вы можете отключить уведомление о работе в фоне в настройках уведомлений приложения, чтобы скрыть это уведомление.</string>
+    <string name="dialog_permissions_ignore_battery_optimizations_title">Игнорировать Оптимизацию батареи</string>
+    <string name="dialog_permissions_ignore_battery_optimizations_content">Чтобы фоновая служба гарантированно работала, пожалуйста отключите Оптимизацию батареи для Breezy Weather.</string>
 
-    <string name="feedback_ignore_battery_optimizations_title">Игнорировать Оптимизацию батареи</string>
-    <string name="feedback_ignore_battery_optimizations_content">Чтобы фоновая служба гарантированно работала, пожалуйста отключите Оптимизацию батареи для Breezy Weather.</string>
+    <string name="widget_live_wallpaper_cannot_start_activity">Невозможно начать предпросмотр живых обоев</string>
 
-    <string name="feedback_cannot_start_live_wallpaper_activity">Невозможно начать предпросмотр живых обоев</string>
+    <string name="notification_precipitation_today">Сегодня возможны осадки.</string>
+    <string name="notification_precipitation_short_term">В ближайшее время возможны осадки.</string>
 
-    <string name="feedback_today_precipitation_alert">Сегодня возможны осадки.</string>
-    <string name="feedback_short_term_precipitation_alert">В ближайшее время возможны осадки.</string>
+    <string name="location_resident_message">Установить как моё место постоянного пребывания</string>
+    <string name="location_resident_dialog">Breezy Weather будет автоматически показывать или скрывать место Вашего постоянного пребывания, основываясь на данных Вашего местоположения.\nНапример, Вы можете установить Ваш родной город как место Вашего постоянного пребывания. Тогда, если Вы путешествуете, Вы сможете также получать информацию о погоде дома. Когда Вы вернётесь, эти данные будут скрыты, и заменены на данные о погоде в Вашем текущем местоположении.</string>
 
-    <string name="feedback_resident_location">Установить как моё место постоянного пребывания</string>
-    <string name="feedback_resident_location_description">Breezy Weather будет автоматически показывать или скрывать место Вашего постоянного пребывания, основываясь на данных Вашего местоположения.\nНапример, Вы можете установить Ваш родной город как место Вашего постоянного пребывания. Тогда, если Вы путешествуете, Вы сможете также получать информацию о погоде дома. Когда Вы вернётесь, эти данные будут скрыты, и заменены на данные о погоде в Вашем текущем местоположении.</string>
-
-    <string name="feedback_click_to_get_more">Дополнительно…</string>
-    <string name="feedback_click_again_to_exit">Нажмите ещё раз для выхода</string>
+    <string name="allergen_tap_to_see_more">Дополнительно…</string>
+    <string name="message_tap_again_to_exit">Нажмите ещё раз для выхода</string>
 
     <!-- action -->
     <string name="alerts">Оповещение</string>
-    <string name="action_manage">Управление</string>
     <string name="action_search">Поиск</string>
     <string name="action_settings">Настройки</string>
     <string name="action_preview">Предпросмотр</string>
     <string name="action_about">Информация</string>
-    <string name="action_appStore">Маркет</string>
+    <string name="action_app_store">Маркет</string>
 
     <!-- widget -->
     <string name="widget_day">День</string>
@@ -262,7 +250,6 @@
     <string name="settings_title_weather_source">Погодный провайдер</string>
     <string name="settings_title_location_service">Провайдер местоположения</string>
     <string name="settings_title_dark_mode">Тёмная тема</string>
-    <string name="settings_title_ui_style">Стиль интерфейса</string>
     <string name="settings_title_icon_provider">Иконки</string>
     <string name="settings_title_appearance">Вид</string>
     <string name="settings_summary_appearance">Стиль интерфейса, сортировка карточек, язык…</string>
@@ -295,7 +282,7 @@
     <string name="settings_category_widget">Виджет</string>
     <string name="settings_title_week_icon_mode">Иконки прогноза на неделю</string>
     <string name="settings_title_minimal_icon">Минималистичные иконки</string>
-    <string name="settings_title_click_widget_to_refresh">Обновлять виджет при нажатии</string>
+    <string name="settings_title_tap_widget_to_refresh">Обновлять виджет при нажатии</string>
     <string name="settings_title_widget_config">Настройки виджета</string>
     <string name="settings_category_notification">Уведомления</string>
     <string name="settings_title_notification">Уведомление в строке состояния</string>

@@ -1,6 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="MissingTranslation">
 
+    <!-- Do NOT translate values that are identical in English and in your language -->
+    <!-- Do NOT use " and ', use appropriate typographic quotes for your language (in English: “ and ”, ‘ and ’) -->
+
     <!-- App -->
     <string name="app_name">Weather</string>
     <string name="breezy_weather">Breezy Weather</string>
@@ -14,7 +17,11 @@
     <string name="allergen">Allergen</string>
     <string name="ephemeris">Sun &amp; moon</string>
     <string name="live">Live</string>
+
+    <!-- Alerts -->
     <string name="alerts">Alerts</string>
+    <string name="alerts_count">$ weather alerts</string> <!-- $ = alert count. -->
+    <string name="alerts_to_follow">Alerts to follow, tap here to see them.</string>
 
     <!-- Daily/hourly forecast columns, must be as short as possible. -->
     <string name="short_yesterday">Yda</string>
@@ -52,6 +59,8 @@
     <string name="precipitation_intensity_middle">Rain</string>
     <string name="precipitation_intensity_heavy">Heavy rain</string>
     <string name="precipitation_intensity_rainstorm">Rainstorm</string>
+    <string name="precipitation_none">No precipitation</string>
+    <string name="precipitation_between_time">Precipitation between $1 and $2</string> <!-- $1 = start time, $2 = end time. -->
 
     <!-- Wind -->
     <string name="wind">Wind</string>
@@ -91,18 +100,31 @@
     <string name="uv_alert_level">Alert level</string>
 
     <!-- Air quality -->
-    <string name="air_quality_content_desc_pm25">PM two point five</string>
-    <string name="air_quality_content_desc_pm10">PM ten</string>
-    <string name="air_quality_content_desc_so2">Sulfur dioxide</string>
-    <string name="air_quality_content_desc_no2">Nitrogen dioxide</string>
-    <string name="air_quality_content_desc_o3">Ozone</string>
-    <string name="air_quality_content_desc_co">Carbon monoxide</string>
+    <string name="air_quality_level_1">Excellent</string>
+    <string name="air_quality_level_1_description">The air quality is ideal for most individuals; enjoy your normal outdoor activities.</string>
+    <string name="air_quality_level_2">Fair</string>
+    <string name="air_quality_level_2_description">The air quality is generally acceptable for most individuals. However, sensitive groups may experience minor to moderate symptoms from long-term exposure.</string>
+    <string name="air_quality_level_3">Poor</string>
+    <string name="air_quality_level_3_description">The air has reached a high level of pollution and is unhealthy for sensitive groups. Reduce time spent outside if you are feeling symptoms such as difficulty breathing or throat irritation.</string>
+    <string name="air_quality_level_4">Unhealthy</string>
+    <string name="air_quality_level_4_description">Health effects can be immediately felt by sensitive groups. Healthy individuals may experience difficulty breathing and throat irritation with prolonged exposure. Limit outdoor activity.</string>
+    <string name="air_quality_level_5">Very unhealthy</string>
+    <string name="air_quality_level_5_description">Health effects will be immediately felt by sensitive groups and should avoid outdoor activity. Healthy individuals are likely to experience difficulty breathing and throat irritation; consider staying indoors and rescheduling outdoor activities.</string>
+    <string name="air_quality_level_6">Dangerous</string>
+    <string name="air_quality_level_6_description">Any exposure to the air, even for a few minutes, can lead to serious health effects on everybody. Avoid outdoor activities.</string>
+    <string name="air_quality_pm25_voice">PM two point five</string>
+    <string name="air_quality_pm10_voice">PM ten</string>
+    <string name="air_quality_so2_voice">Sulfur dioxide</string>
+    <string name="air_quality_no2_voice">Nitrogen dioxide</string>
+    <string name="air_quality_o3_voice">Ozone</string>
+    <string name="air_quality_co_voice">Carbon monoxide</string>
 
     <!-- Allergens -->
     <string name="allergen_grass">Grass</string>
     <string name="allergen_mold">Mold</string>
     <string name="allergen_ragweed">Ragweed</string>
     <string name="allergen_tree">Tree</string>
+    <string name="allergen_tap_to_see_more">Tap to see more…</string>
 
     <!-- Ephemeris -->
     <string name="ephemeris_moon_phase_new">New moon</string>
@@ -113,12 +135,14 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Waning gibbous</string>
     <string name="ephemeris_moon_phase_third">Third quarter</string>
     <string name="ephemeris_moon_phase_waning_crescent">Waning crescent</string>
-    <string name="ephemeris_content_desc_sunrise">Sunrise at $</string> <!-- $ = time. -->
-    <string name="ephemeris_content_desc_sunset">Sunset at $</string> <!-- $ = time. -->
-    <string name="ephemeris_content_desc_moonrise">Moonrise at $</string> <!-- $ = time. -->
-    <string name="ephemeris_content_desc_moonset">Moonset at $</string> <!-- $ = time. -->
+    <string name="ephemeris_sunrise_at">Sunrise at $</string> <!-- $ = time. -->
+    <string name="ephemeris_sunset_at">Sunset at $</string> <!-- $ = time. -->
+    <string name="ephemeris_moonrise_at">Moonrise at $</string> <!-- $ = time. -->
+    <string name="ephemeris_moonset_at">Moonset at $</string> <!-- $ = time. -->
 
     <!-- Other weather details vocabulary -->
+    <string name="daytime">Daytime</string>
+    <string name="nighttime">Nighttime</string>
     <string name="details">Details</string>
     <string name="hours_of_sun">Hours of sun</string>
     <string name="humidity">Humidity</string>
@@ -127,6 +151,20 @@
     <string name="dew_point">Dew point</string>
     <string name="cloud_cover">Cloud cover</string>
     <string name="ceiling">Ceiling</string>
+
+    <!-- Weather kind -->
+    <string name="weather_kind_clear">Clear</string>
+    <string name="weather_kind_partly_cloudy">Partly Cloudy</string>
+    <string name="weather_kind_cloudy">Cloudy</string>
+    <string name="weather_kind_rain">Rain</string>
+    <string name="weather_kind_snow">Snow</string>
+    <string name="weather_kind_sleet">Sleet</string>
+    <string name="weather_kind_hail">Hail</string>
+    <string name="weather_kind_fog">Fog</string>
+    <string name="weather_kind_haze">Haze</string>
+    <string name="weather_kind_thunder">Thunder</string>
+    <string name="weather_kind_thunderstorm">Thunderstorm</string>
+    <string name="weather_kind_wind">Wind</string>
 
     <!-- Date format strings -->
     <!-- Month : MMM(long) / M(short). -->
@@ -139,7 +177,13 @@
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
 
     <!-- Weather providers -->
+    <string name="weather_refreshed">Refreshed</string>
     <string name="weather_data_by">Data by $</string> <!-- $ = weather data provider -->
+    <string name="weather_message_data_refresh_failed">Weather data refresh failed</string>
+    <string name="weather_api_limit_reached_message">API requests limit reached</string>
+    <string name="weather_api_limit_reached_dialog">To workaround the limit, add your own API key.</string>
+    <string name="weather_api_unauthorized_message">API access unauthorized</string>
+    <string name="weather_api_unauthorized_dialog">On some weather providers, you need to provide your own API key. If you already provided one, please double-check the API key you provided.</string>
     <string name="weather_source_openmeteo">Open-Meteo</string>
     <string name="weather_source_openmeteo_voice">Open Meteo</string>
     <string name="weather_source_accuweather">AccuWeather</string>
@@ -148,6 +192,8 @@
     <string name="weather_source_metno_voice">The Norwegian Meteorological Institute</string>
     <string name="weather_source_openweather">OpenWeather</string>
     <string name="weather_source_openweather_voice">Open Weather</string>
+    <string name="weather_source_openweather_version_2_5">Version 2.5</string>
+    <string name="weather_source_openweather_version_3_0">Version 3.0</string>
     <string name="weather_source_mf">Météo France</string>
     <string name="weather_source_mf_voice">Météo France</string>
     <string name="weather_source_china">China</string>
@@ -159,10 +205,61 @@
     <string name="location_resident">Resident location</string>
     <string name="location_search_change_weather_source">Change weather source</string>
     <string name="location_results_by">Location results by $</string> <!-- $ = location provider -->
+    <string name="location_message_added">Location added</string>
+    <string name="location_message_deleted">Location deleted</string>
+    <string name="location_message_list_cannot_be_empty">Location list cannot be empty</string>
+    <!-- If using an RTL language, change “left” to “right” -->
+    <string name="location_swipe_to_delete">You can swipe left to delete this item</string>
+    <string name="location_message_failed_to_locate">Failed to find current location</string>
+    <string name="location_dialog_failed_to_locate_title">Cannot get location correctly?</string>
+    <string name="location_dialog_failed_to_locate_action_check_permission">Check location permissions</string>
+    <string name="location_dialog_failed_to_locate_action_enable_information">Enable location information</string>
+    <string name="location_dialog_failed_to_locate_action_select_provider">Select location provider</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Add location manually and delete “$”</string>
+    <string name="location_search_placeholder">Search for a location…</string>
+    <string name="location_current_not_found_yet">Current location not found yet…</string>
+    <string name="location_resident_message">Set as a resident city</string>
+    <string name="location_resident_dialog">Breezy Weather will automatically show and hide resident cities based on your current location.\nFor example, you can set your hometown as a resident city. You can check the weather in your hometown while you are traveling. When you get home, the weather in your hometown will be hidden and replaced by the weather for your current location.</string>
     <string name="location_service_baidu">Baidu Location</string>
     <string name="location_service_baidu_ip">Baidu IP Location (only for China)</string>
     <string name="location_service_amap">AMap Location</string>
     <string name="location_service_native">Native API</string>
+
+    <!-- Actions -->
+    <string name="action_location_list">Location list</string>
+    <string name="action_search">Search</string>
+    <string name="action_choose_weather_provider">Choose weather provider</string>
+    <string name="action_add_current_location">Add current location</string>
+    <string name="action_add_from_map">Add from map</string>
+    <string name="action_add_new_location">Add a new location</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_preview">Preview</string>
+    <string name="action_about">About</string>
+    <string name="action_app_store">App Store</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="action_restart">Restart</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_back">Back</string>
+    <string name="action_next">NEXT</string>
+    <string name="action_done">DONE</string>
+    <string name="action_cancel" tools:ignore="ButtonCase">CANCEL</string>
+    <string name="action_set">SET</string>
+    <string name="action_help">HELP</string>
+    <string name="action_learn_more">LEARN MORE</string>
+
+    <!-- Dialogs -->
+    <string name="dialog_permissions_location_title">Access location information</string>
+    <string name="dialog_permissions_location_content">Breezy Weather needs to collect your location information in foreground or background to provide the weather data of your current location. For this, we will request some permissions. Your location information will only be used to obtain weather data at your current location. If you don’t want to share your location information, you can deny those requirements and manually set your location in the management page.</string>
+    <string name="dialog_permissions_location_background_title">Access location in background</string>
+    <string name="dialog_permissions_location_background_content">In order to allow the app to access location information in background, so that we can perceive changes in location and provide you with valid weather data, please set location access as “Allow all the time”.</string>
+    <string name="dialog_permissions_block_notification_channel_title">Block notification group</string>
+    <string name="dialog_permissions_block_notification_channel_content">After turning off “Background free”, a notification indicating that background service is running will appear in the notification bar. You can turn off the Background Information Channel in the app’s information page to block this notifications.</string>
+    <string name="dialog_permissions_ignore_battery_optimizations_title">Ignore battery optimization</string>
+    <string name="dialog_permissions_ignore_battery_optimizations_content">In order to ensure that the background services can continue to work, please ignore the battery optimization for Breezy Weather.</string>
+
+    <!-- Miscellaneous messages -->
+    <string name="message_updated_in_background">Updated in background</string>
+    <string name="message_tap_again_to_exit">Tap again to exit</string>
 
     <!-- Widgets -->
     <string name="widget_day">Daily</string>
@@ -190,7 +287,13 @@
     <string name="widget_label_clock_font">Clock font</string>
     <string name="widget_label_hide_lunar">Hide lunar calendar</string>
     <string name="widget_label_align_end">Align End</string>
-    <!-- keep the "$cw$" part as is -->
+    <string name="widget_subtitle_data_time">Refresh time</string>
+    <string name="widget_subtitle_data_aqi">Air quality</string>
+    <string name="widget_subtitle_data_wind">Wind</string>
+    <string name="widget_subtitle_data_feels_like">Feels like temperature</string>
+    <string name="widget_subtitle_data_lunar">Lunar calendar</string>
+    <string name="widget_subtitle_data_custom">Custom</string>
+    <!-- keep the “$cw$” part as is -->
     <string name="widget_custom_subtitle_explanation">You can input anything, but please pay attention to the length of the text. If you want to quote weather data, please use $ to reference the corresponding keyword.\n\nFor example, “Current weather is: $cw$.” will be displayed as “Current weather is: Clear Day.”.</string>
     <string name="widget_custom_subtitle_keyword_separator">\u0020:\u0020</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Current Weather</string>
@@ -232,8 +335,25 @@
     <string name="widget_custom_subtitle_keyword_xmr_description">Moonrise of today, tomorrow, …, 4 days later</string>
     <string name="widget_custom_subtitle_keyword_xms_description">Moonset of today, tomorrow, …, 4 days later</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">Moon Phase of today, tomorrow, …, 4 days later</string>
+    <string name="widget_style_rectangle">Rectangle</string>
+    <string name="widget_style_symmetry">Symmetry</string>
+    <string name="widget_style_tile">Tile</string>
+    <string name="widget_style_mini">Mini</string>
+    <string name="widget_style_nano">Nano</string>
+    <string name="widget_style_pixel">Pixel</string>
+    <string name="widget_style_vertical">Vertical</string>
+    <string name="widget_style_oreo">Oreo</string>
+    <string name="widget_style_oreo_google_sans">Oreo (Google sans)</string>
+    <string name="widget_style_temperature">Temperature</string>
+    <string name="widget_week_style_5_days">5 days</string>
+    <string name="widget_week_style_3_days">3 days</string>
+    <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
+    <string name="widget_clock_font_sans_serif">Sans Serif</string>
+    <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
+    <string name="widget_clock_font_analog">Analog</string>
     <string name="widget_live_wallpaper_weather_kind">Weather</string>
     <string name="widget_live_wallpaper_day_night_type">Time</string>
+    <string name="widget_live_wallpaper_cannot_start_activity">Unable to start live wallpaper preview context</string>
 
     <!-- Settings (redesign in progress) -->
     <string name="settings_category_basic">Basic</string>
@@ -249,7 +369,6 @@
     <string name="settings_title_weather_source">Weather source</string>
     <string name="settings_title_location_service">Location service</string>
     <string name="settings_title_dark_mode">Dark mode</string>
-    <string name="settings_title_ui_style">Interface style</string>
     <string name="settings_title_icon_provider">Icon pack</string>
     <string name="settings_title_appearance">Appearance</string>
     <string name="settings_summary_appearance">Interface style, card order, language…</string>
@@ -283,7 +402,7 @@
     <string name="settings_category_widget">Widget</string>
     <string name="settings_title_week_icon_mode">Weekly icons mode</string>
     <string name="settings_title_minimal_icon">Minimalistic icons</string>
-    <string name="settings_title_click_widget_to_refresh">Refresh widget when clicked</string>
+    <string name="settings_title_tap_widget_to_refresh">Refresh widget when tapped</string>
     <string name="settings_title_widget_config">Widget config</string>
     <string name="settings_category_notification">Notification</string>
     <string name="settings_title_notification">Send Notification</string>
@@ -307,9 +426,12 @@
     <string name="settings_title_notification_hide_big_view">Extended style</string>
     <string name="settings_notification_hide_big_view_on">Hide</string>
     <string name="settings_notification_hide_big_view_off">Show</string>
+    <string name="settings_changes_apply_after_restart">Changes will take effect after restart</string>
+    <string name="settings_items_drag_to_sort">Tap to drag the list items to sort</string>
+    <string name="settings_item_delete">Delete this item</string>
     <string name="settings_provider_default_value">Default (unchanged)</string>
     <string name="settings_provider_accu_weather">AccuWeather</string>
-    <string name="settings_provider_accu_weather_key">AccuWeather weather key</string>
+    <string name="settings_provider_accu_weather_key">AccuWeather key</string>
     <string name="settings_provider_open_weather">OpenWeather</string>
     <string name="settings_provider_open_weather_key">OpenWeather key</string>
     <string name="settings_provider_open_weather_one_call_version">OpenWeather OneCall version</string>
@@ -318,16 +440,28 @@
     <string name="settings_provider_mf">Météo France</string>
     <string name="settings_provider_mf_wsft_key">Météo France WSFT key</string>
     <string name="settings_provider_iqa_atmo_aura_key">ATMO AURA key</string>
+    <string name="settings_icon_providers_check_details">Check details</string>
+    <string name="settings_icon_providers_weather_adaptive_icon">Weather icon</string>
+    <string name="settings_icon_providers_weather_icon_light">Light icon</string>
+    <string name="settings_icon_providers_weather_icon_grey">Grey icon</string>
+    <string name="settings_icon_providers_weather_icon_dark">Dark icon</string>
     <string name="settings_icon_providers_get_more">Get more</string>
+    <string name="settigns_icon_providers_app_store">@string/action_app_store</string>
     <string name="settings_icon_providers_get_more_store">Get more from app store</string>
     <string name="settings_icon_providers_get_more_github">Get more from GitHub</string>
+    <string name="settings_enabled">Enabled</string>
+    <string name="settings_disabled">Disabled</string>
     <string name="settings_automatic">Automatic</string>
     <string name="settings_follow_system">Follow system</string>
-    <string name="settings_dark_mode_day_night">Day / Night</string>
-    <string name="settings_dark_mode_always_light">Always light</string>
-    <string name="settings_dark_mode_always_dark">Always dark</string>
-    <string name="settings_ui_style_circular_sky">Circular sky</string>
-    <string name="settings_ui_style_material_animation">Material animation</string>
+    <string name="settings_none">None</string>
+    <string name="settings_color_day_night">Day / Night</string>
+    <string name="settings_color_day_always">Always day</string>
+    <string name="settings_color_night_always">Always night</string>
+    <string name="settings_color_light">Light</string>
+    <string name="settings_color_light_always">Always light</string>
+    <string name="settings_color_grey">Grey</string>
+    <string name="settings_color_dark">Dark</string>
+    <string name="settings_color_dark_always">Always dark</string>
     <string name="settings_refresh_never">Never</string>
     <string name="settings_refresh_30min">Half an hour</string>
     <string name="settings_refresh_1h">1 hour</string>
@@ -338,16 +472,85 @@
     <string name="settings_refresh_12h">12 hours</string>
     <string name="settings_refresh_24h">24 hours</string>
 
+    <!-- Units -->
+    <string name="unit_kph">km/h</string>
+    <string name="unit_kph_voice">Kilometers per hour</string>
+    <string name="unit_mps">m/s</string>
+    <string name="unit_mps_voice">Meters per second</string>
+    <string name="unit_kn">kn</string>
+    <string name="unit_kn_voice">Knots</string>
+    <string name="unit_mph">mph</string>
+    <string name="unit_mph_voice">Miles per hour</string>
+    <string name="unit_ftps">ft/s</string>
+    <string name="unit_ftps_voice">Feet per second</string>
+    <string name="unit_mm">mm</string>
+    <string name="unit_mm_voice">Millimeters</string>
+    <string name="unit_cm">cm</string>
+    <string name="unit_cm_voice">Centimeters</string>
+    <string name="unit_in">inch</string>
+    <string name="unit_in_voice">Inches</string>
+    <string name="unit_lpsqm">L/m²</string>
+    <string name="unit_lpsqm_voice">Liters per square meter</string>
+    <string name="unit_mmph">mm/h</string>
+    <string name="unit_mmph_voice">Millimeters per hour</string>
+    <string name="unit_cmph">cm/h</string>
+    <string name="unit_cmph_voice">Centimeters per hour</string>
+    <string name="unit_inph">inch/h</string>
+    <string name="unit_inph_voice">Inches per hour</string>
+    <string name="unit_lpsqmph">L/m²/h</string>
+    <string name="unit_lpsqmph_voice">Liters per square meter per hour</string>
+    <string name="unit_celsius">°C</string>
+    <string name="unit_celsius_short">°</string>
+    <string name="unit_fahrenheit">°F</string>
+    <string name="unit_fahrenheit_short">°</string>
+    <string name="unit_kelvin">K</string>
+    <string name="unit_kelvin_short">K</string>
+    <string name="unit_km">km</string>
+    <string name="unit_km_voice">Kilometers</string>
+    <string name="unit_m">m</string>
+    <string name="unit_m_voice">Meters</string>
+    <string name="unit_mi">mi</string>
+    <string name="unit_mi_voice">Miles</string>
+    <string name="unit_nmi">nmi</string>
+    <string name="unit_nmi_voice">Nautical miles</string>
+    <string name="unit_ft">ft</string>
+    <string name="unit_ft_voice">Feet</string>
+    <string name="unit_mb">mb</string>
+    <string name="unit_mb_voice">Millibars</string>
+    <string name="unit_kpa">kPa</string>
+    <string name="unit_kpa_voice">Kilo pascals</string>
+    <string name="unit_hpa">hPa</string>
+    <string name="unit_hpa_voice">Hecto pascals</string>
+    <string name="unit_atm">atm</string>
+    <string name="unit_atm_voice">Atmospheres</string>
+    <string name="unit_mmhg">mmHg</string>
+    <string name="unit_mmhg_voice">Millimeters of mercury</string>
+    <string name="unit_inhg">inHg</string>
+    <string name="unit_inhg_voice">Inches of mercury</string>
+    <string name="unit_kgfpsqcm">kgf/cm²</string>
+    <string name="unit_kgfpsqcm_voice">Kilogram force per square centimeter</string>
+    <string name="unit_mugpcum">μg/m³</string>
+    <string name="unit_mugpcum_voice">Micrograms per cubic meter</string>
+    <string name="unit_mgpcum">mg/m³</string>
+    <string name="unit_mgpcum_voice">Milligrams per cubic meter</string>
+    <string name="unit_h">h</string>
+    <string name="unit_h_voice">hours</string>
+    <string name="unit_ppcm">/m³</string>
+    <string name="unit_ppcm_voice">Per cubic meter</string>
+
     <!-- Notifications -->
+    <string name="notification_refreshed_at">Refreshed at</string>
     <string name="notification_channel_alerts">Alerts</string>
     <string name="notification_channel_forecast">Forecast</string>
     <string name="notification_channel_request_location">Location</string>
     <string name="notification_channel_background_information">Background information</string>
+    <string name="notification_location_in_background">Locating in background</string>
+    <string name="notification_running_in_background">Running in background to keep updating</string>
+    <string name="notification_updating_weather_data">Updating weather data</string>
+    <string name="notification_precipitation_today">There may be precipitation today.</string>
+    <string name="notification_precipitation_short_term">Precipitation may occur in the next few hours.</string>
     <string name="notification_style_native">Native</string>
     <string name="notification_style_cities">Cities</string>
-    <string name="notification_text_color_dark">Dark</string>
-    <string name="notification_text_color_grey">Grey</string>
-    <string name="notification_text_color_light">Light</string>
 
     <!-- About -->
     <string name="about_app">About app</string>
@@ -355,6 +558,7 @@
     <string name="about_source_code">Source code</string>
     <string name="about_contributors">Contributors</string>
     <string name="about_translators">Translators</string>
+    <string name="about_contribution_WangDaYeeeeee">Developer of the original project Geometric Weather</string>
 
     <!-- Providers specific terms -->
     <!-- Weather texts for Open-Meteo, based on WMO terms -->
@@ -387,119 +591,6 @@
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Thunderstorm slight or moderate</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Thunderstorm with slight hail</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Thunderstorm with heavy hail</string>
-
-    <!-- TODO: To be sorted -->
-    <!-- keyword. -->
-    <string name="refreshed">Refreshed</string>
-    <string name="refresh_at">Refreshed at</string>
-    <string name="published_at">Published at</string>
-    <string name="alerts_to_follow">Alerts to follow, tap here to see them.</string>
-    <string name="daytime">Daytime</string>
-    <string name="nighttime">Nighttime</string>
-    <string name="refresh">Refresh</string>
-    <string name="restart">Restart</string>
-    <string name="edit">Edit</string>
-
-    <string name="next">NEXT</string>
-    <string name="done">DONE</string>
-    <string name="cancel" tools:ignore="ButtonCase">CANCEL</string>
-    <string name="on">Enabled</string>
-    <string name="off">Disabled</string>
-    <string name="go_to_set">SET</string>
-    <string name="help">HELP</string>
-    <string name="learn_more">LEARN MORE</string>
-
-    <!-- feedback. -->
-    <string name="feedback_request_permission">Permissions</string>
-    <string name="feedback_request_location_in_background">Locating in background</string>
-    <string name="feedback_request_location_permission_success">Location permissions request success</string>
-    <string name="feedback_request_location_permission_failed">Location permissions request failed</string>
-
-    <string name="feedback_location_permissions_title">Access location information</string>
-    <string name="feedback_location_permissions_statement">Breezy Weather needs to collect your location information in foreground or background to provide the weather data of your current location. For this, we will request some permissions. Your location information will only be used to obtain weather data at your current location. If you don’t want to share your location information, you can deny those requirements and manually set your location in the management page.</string>
-    <string name="feedback_background_location_title">Access location in background</string>
-    <string name="feedback_background_location_summary">In order to allow the app to access location information in background, so that we can perceive changes in location and provide you with valid weather data, please set location access as “Allow all the time”.</string>
-
-    <string name="feedback_location_failed">Location failed</string>
-    <string name="feedback_get_weather_failed">Request weather data failed</string>
-    <string name="feedback_location_help_title">Cannot get location correctly?</string>
-    <string name="feedback_check_location_permission">Check location permissions</string>
-    <string name="feedback_enable_location_information">Enable Location Information</string>
-    <string name="feedback_select_location_provider">Select Location Provider</string>
-    <string name="feedback_add_location_manually">Add Location Manually And Delete “$”</string>
-    <string name="feedback_api_limit_reached">API requests limit reached</string>
-    <string name="feedback_api_limit_reached_help">To workaround the limit, add your own API key.</string>
-    <string name="feedback_api_unauthorized">API access unauthorized</string>
-    <string name="feedback_api_unauthorized_help">On some weather providers, you need to provide your own API key. If you already provided one, please double-check the API key you provided.</string>
-
-    <string name="feedback_click_toggle">Press chart to toggle data</string>
-    <string name="feedback_no_data">NO DATA</string>
-
-    <string name="feedback_collect_failed">This location already exists</string>
-    <string name="feedback_collect_succeed">Location added</string>
-    <string name="feedback_delete_succeed">Location deleted</string>
-    <string name="feedback_location_list_cannot_be_null">Location list cannot be empty</string>
-
-    <string name="feedback_search_location">Add a new location…</string>
-    <string name="feedback_not_yet_location">No location yet…</string>
-    <string name="feedback_search_nothing">No locations found</string>
-    <string name="feedback_initializing">Initializing…</string>
-
-    <string name="feedback_refresh_notification_after_back">Changes will take effect when you return to the home page</string>
-    <string name="feedback_refresh_notification_now">Refresh now</string>
-    <string name="feedback_refresh_ui_after_refresh">Changes will take effect when data is refreshed</string>
-    <string name="feedback_restart">Changes will take effect after restart</string>
-
-    <string name="feedback_running_in_background">Running in background to keep updating</string>
-    <string name="feedback_updating_weather_data">Updating weather data</string>
-    <string name="feedback_updated_in_background">Updated in background</string>
-
-    <string name="feedback_interpret_background_notification_content">In some devices, after turning off “Background free”, there might be a notification that cannot be cleared in the notification bar.</string>
-    <string name="feedback_interpret_notification_group_title">Block notification group</string>
-    <string name="feedback_interpret_notification_group_content">After turning off “Background free”, a notification indicating that background service is running will appear in the notification bar. You can turn off the Background Information Channel in the app’s information page to block this notifications.</string>
-
-    <string name="feedback_ignore_battery_optimizations_title">Ignore battery optimization</string>
-    <string name="feedback_ignore_battery_optimizations_content">In order to ensure that the background services can continue to work, please ignore the battery optimization for Breezy Weather.</string>
-
-    <string name="feedback_cannot_start_live_wallpaper_activity">Unable to start live wallpaper preview context</string>
-
-    <string name="feedback_today_precipitation_alert">There may be precipitation today.</string>
-    <string name="feedback_short_term_precipitation_alert">Precipitation may occur in the next few hours.</string>
-
-    <string name="feedback_resident_location">Set as a resident city</string>
-    <string name="feedback_resident_location_description">Breezy Weather will automatically show and hide resident cities based on your current location.\nFor example, you can set your hometown as a resident city. You can check the weather in your hometown while you are traveling. When you get home, the weather in your hometown will be hidden and replaced by the weather for your current location.</string>
-
-    <string name="feedback_click_to_get_more">Click to get more…</string>
-    <string name="feedback_click_again_to_exit">Click again to exit</string>
-
-    <!-- action -->
-    <string name="action_manage">Manage</string>
-    <string name="action_search">Search</string>
-    <string name="action_settings">Settings</string>
-    <string name="action_preview">Preview</string>
-    <string name="action_about">About</string>
-    <string name="action_appStore">App Store</string>
-
-    <!-- Content description for accessibility -->
-    <string name="content_desc_back">Back</string>
-    <string name="content_desc_check_details">Check details</string>
-    <string name="content_desc_weather_alert_button">$ weather alerts</string> <!-- $ = alert count. -->
-    <string name="content_desc_no_precipitation">No precipitation</string>
-    <string name="content_desc_minutely_precipitation">Precipitation between $1 and $2</string> <!-- $1 = start time, $2 = end time. -->
-    <string name="content_desc_add_current_location">Add current location</string>
-    <string name="content_desc_drag_flag">Tap to drag the list items to sort</string>
-    <string name="content_desc_delete_flag">Delete this item</string>
-    <string name="content_desc_swipe_left_to_delete">You can swipe left to delete this item</string>
-    <string name="content_desc_swipe_right_to_delete">You can swipe right to delete this item</string>
-    <string name="content_desc_search_filter_on">Only show locations from default weather source</string>
-    <string name="content_desc_search_filter_off">Show locations from all weather sources</string>
-    <string name="content_desc_app_store">@string/action_appStore</string>
-    <string name="content_desc_weather_icon">Weather icon</string>
-    <string name="content_desc_weather_icon_light">Light icon</string>
-    <string name="content_desc_weather_icon_grey">Grey icon</string>
-    <string name="content_desc_weather_icon_dark">Dark icon</string>
-    <string name="content_desc_filter_weather_sources">Filter weather sources</string>
-    <!-- TODO: End To be sorted -->
 
     <!-- Do NOT translate everything below -->
     <!-- Widgets -->

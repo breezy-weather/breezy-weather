@@ -16,13 +16,10 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import java.net.URISyntaxException;
-
 import org.breezyweather.common.basic.models.Location;
 import org.breezyweather.common.ui.activities.AlertActivity;
 import org.breezyweather.main.MainActivity;
 import org.breezyweather.search.SearchActivity;
-import org.breezyweather.BuildConfig;
 import org.breezyweather.R;
 import org.breezyweather.background.polling.services.basic.AwakeForegroundUpdateService;
 import org.breezyweather.common.ui.activities.AllergenActivity;
@@ -189,7 +186,7 @@ public class IntentHelper {
         if (isIntentAvailable(context, intent)) {
             context.startActivity(intent);
         } else {
-            SnackbarHelper.showSnackbar(context.getString(R.string.feedback_cannot_start_live_wallpaper_activity));
+            SnackbarHelper.showSnackbar(context.getString(R.string.widget_live_wallpaper_cannot_start_activity));
         }
     }
 

@@ -14,7 +14,7 @@ public class AwakeUpdateActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Toast.makeText(getApplicationContext(), R.string.refresh, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), R.string.action_refresh, Toast.LENGTH_SHORT).show();
         PollingManager.resetAllBackgroundTask(this, true);
         finish();
     }

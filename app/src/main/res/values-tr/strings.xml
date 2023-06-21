@@ -1,4 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Do NOT translate values that are identical in English and in your language -->
+    <!-- Do NOT use " and ', use appropriate typographic quotes for your language (in English: “ and ”, ‘ and ’) -->
+
     <!-- app. -->
     <string name="app_name">Hava Durumu</string>
 
@@ -6,7 +10,7 @@
     <string name="location_current">Bulunduğunuz konumu</string>
     <string name="live">Rüzgar</string>
     <string name="short_today">Bugün</string>
-    <string name="refresh_at">Son güncelleme</string>
+    <string name="notification_refreshed_at">Son güncelleme</string>
     <string name="precipitation">Yağış ihtimali</string>
     <string name="wind">Rüzgar</string>
     <string name="humidity">Nem</string>
@@ -14,7 +18,6 @@
     <string name="notification_channel_forecast">Tahmin</string>
     <string name="daytime">Gündüz</string>
     <string name="nighttime">Gece</string>
-    <string name="published_at">Yayın</string>
     <string name="temperature_feels_like">Hissedilen</string>
     <string name="settings_follow_system">Sistem Dili</string>
 
@@ -49,49 +52,36 @@
     <string name="details">Detaylar</string>
     <string name="ephemeris">Güneş &amp; ay</string>
 
-    <string name="next">SONRAKİ</string>
-    <string name="done">BİTTİ</string>
-    <string name="cancel" tools:ignore="ButtonCase">İPTAL</string>
-    <string name="on">AÇ</string>
-    <string name="off">KAPAT</string>
+    <string name="action_next">SONRAKİ</string>
+    <string name="action_done">BİTTİ</string>
+    <string name="action_cancel" tools:ignore="ButtonCase">İPTAL</string>
+    <string name="settings_enabled">AÇ</string>
+    <string name="settings_disabled">KAPAT</string>
 
     <string name="about_app">HAKKINDA</string>
     <string name="about_translators">Çevirmenler</string>
 
     <!-- feedback. -->
-    <string name="feedback_request_permission">İzinler</string>
     <string name="notification_channel_request_location">Konum</string>
-    <string name="feedback_request_location_permission_success">Konum izin isteği başarılı.</string>
-    <string name="feedback_request_location_permission_failed">Konum izin isteği başarısız.</string>
 
-    <string name="feedback_location_failed">Konum başarısız.</string>
-    <string name="feedback_get_weather_failed">Hava Durumu isteği başarısız.</string>
+    <string name="location_message_failed_to_locate">Konum başarısız.</string>
+    <string name="weather_message_data_refresh_failed">Hava Durumu isteği başarısız.</string>
 
     <string name="widget_label_view_style">Görüntüleme şekli.</string>
     <string name="widget_label_show_widget_card">Kart görünümü.</string>
     <string name="widget_label_black_text">Koyu yazı.</string>
 
-    <string name="feedback_click_toggle">Verileri değiştirmek için grafiği tıklayın.</string>
-    <string name="feedback_no_data">VERİ YOK</string>
+    <string name="location_message_added">Konum ekleme başarılı.</string>
+    <string name="location_message_deleted">Konum kaldırma başarılı.</string>
+    <string name="location_message_list_cannot_be_empty">Konum listesi boş olamaz.</string>
 
-    <string name="feedback_collect_failed">Bu konum mevcut.</string>
-    <string name="feedback_collect_succeed">Konum ekleme başarılı.</string>
-    <string name="feedback_delete_succeed">Konum kaldırma başarılı.</string>
-    <string name="feedback_location_list_cannot_be_null">Konum listesi boş olamaz.</string>
+    <string name="location_search_placeholder">Konum ara…</string>
+    <string name="location_current_not_found_yet">Henüz konum yok…</string>
 
-    <string name="feedback_search_location">Konum ara…</string>
-    <string name="feedback_not_yet_location">Henüz konum yok…</string>
-    <string name="feedback_search_nothing">Hiçbir şey aranmadı…</string>
-    <string name="feedback_initializing">Başlatılıyor…</string>
-
-    <string name="feedback_refresh_notification_after_back">Ana sayfaya geri döndüğünüzde etkili olacak.</string>
-    <string name="feedback_refresh_notification_now">Şimdi güncelle.</string>
-    <string name="feedback_refresh_ui_after_refresh">Veri güncellendiğinde etkili olacak.</string>
-    <string name="feedback_restart">Yeniden başlatınca etkili olacak.</string>
+    <string name="settings_changes_apply_after_restart">Yeniden başlatınca etkili olacak.</string>
 
     <!-- action -->
     <string name="alerts">Uyarı</string>
-    <string name="action_manage">Yönet</string>
     <string name="action_search">Ara</string>
     <string name="action_settings">Ayarlar</string>
     <string name="action_about">Hakkında</string>
@@ -131,4 +121,10 @@
     <string name="settings_notification_hide_in_lockScreen_on">Gizle (Sistem ayarlarında açmanız gerekir).</string>
     <string name="settings_notification_hide_in_lockScreen_off">Göster.</string>
 
+    <string name="widget_style_rectangle">Dikdörtgen</string>
+    <string name="widget_style_symmetry">Simetri</string>
+    <string name="widget_style_tile">Döşeme</string>
+    <string name="settings_color_light">Açık</string>
+    <string name="settings_color_grey">Gri</string>
+    <string name="settings_color_dark">Koyu</string>
 </resources>

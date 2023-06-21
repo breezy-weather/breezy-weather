@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="Nederlands">
 
+    <!-- Do NOT translate values that are identical in English and in your language -->
+    <!-- Do NOT use " and ', use appropriate typographic quotes for your language (in English: “ and ”, ‘ and ’) -->
+
     <!-- app. -->
     <string name="app_name">Weer</string>
 
@@ -8,7 +11,7 @@
     <string name="location_current">Huidige locatie</string>
     <string name="live">Live</string>
     <string name="short_today">Vandaag</string>
-    <string name="refresh_at">Vernieuwd om</string>
+    <string name="notification_refreshed_at">Vernieuwd om</string>
     <string name="precipitation">Neerslag</string>
     <string name="wind">Wind</string>
     <string name="humidity">Luchtvochtigheid</string>
@@ -16,7 +19,6 @@
     <string name="notification_channel_forecast">Voorspelling</string>
     <string name="daytime">Overdag</string>
     <string name="nighttime">\'s Nachts</string>
-    <string name="published_at">Gepubliceerd om</string>
     <string name="temperature_feels_like">Voelt als</string>
     <string name="settings_follow_system">Volg systeem</string>
     <string name="of_clock">:00</string>
@@ -47,11 +49,11 @@
     <string name="air_quality">Luchtkwaliteit</string>
     <string name="details">Details</string>
     <string name="ephemeris">Zon &amp; maan</string>
-    <string name="next">Volgende</string>
-    <string name="done">Klaar</string>
-    <string name="cancel" tools:ignore="ButtonCase">Annuleren</string>
-    <string name="on">Aan</string>
-    <string name="off">Uit</string>
+    <string name="action_next">Volgende</string>
+    <string name="action_done">Klaar</string>
+    <string name="action_cancel" tools:ignore="ButtonCase">Annuleren</string>
+    <string name="settings_enabled">Aan</string>
+    <string name="settings_disabled">Uit</string>
     <string name="about_app">Over de app</string>
     <string name="about_translators">Vertalers</string>
     <string name="date_format_short">d-M</string>
@@ -61,36 +63,24 @@
     <string name="date_format_widget_oreo_style">EEEE, d MMM │ </string>
 
     <!-- feedback. -->
-    <string name="feedback_request_permission">Machtigingen</string>
     <string name="notification_channel_request_location">Locatie</string>
-    <string name="feedback_request_location_in_background">Lokaliseren op de achtergrond.</string>
-    <string name="feedback_request_location_permission_success">Locatieverzoek geaccepteerd.</string>
-    <string name="feedback_request_location_permission_failed">Locatieverzoek niet geaccepteerd.</string>
-    <string name="feedback_location_failed">Locatie gefaald.</string>
-    <string name="feedback_get_weather_failed">Weerdata ophalen mislukt.</string>
+    <string name="notification_location_in_background">Lokaliseren op de achtergrond.</string>
+    <string name="location_message_failed_to_locate">Locatie gefaald.</string>
+    <string name="weather_message_data_refresh_failed">Weerdata ophalen mislukt.</string>
     <string name="widget_label_view_style">Stijl.</string>
     <string name="widget_label_show_widget_card">Kaartachtergrond.</string>
     <string name="widget_label_hide_subtitle">Verberg ondertitel.</string>
     <string name="widget_label_subtitle_data">Ondertiteldata.</string>
     <string name="widget_label_black_text">Donkere tekst.</string>
-    <string name="feedback_click_toggle">Klik op het diagram om gegevens te wisselen.</string>
-    <string name="feedback_no_data">Geen data.</string>
-    <string name="feedback_collect_failed">Deze locatie bestaat al.</string>
-    <string name="feedback_collect_succeed">Locatie toevoegen gelukt.</string>
-    <string name="feedback_delete_succeed">Verwijderen locatie gelukt.</string>
-    <string name="feedback_location_list_cannot_be_null">Er moet één locatie in de lijst staan.</string>
-    <string name="feedback_search_location">Zoek een locatie…</string>
-    <string name="feedback_not_yet_location">Nog geen locatie…</string>
-    <string name="feedback_search_nothing">Zoek niets…</string>
-    <string name="feedback_initializing">Initialiseren…</string>
-    <string name="feedback_refresh_notification_after_back">Wordt van kracht als je terug bent op de startpagina.</string>
-    <string name="feedback_refresh_notification_now">Vernieuw nu.</string>
-    <string name="feedback_refresh_ui_after_refresh">Wordt van kracht na het vernieuwen van de data.</string>
-    <string name="feedback_restart">Wordt van kracht na herstart.</string>
+    <string name="location_message_added">Locatie toevoegen gelukt.</string>
+    <string name="location_message_deleted">Verwijderen locatie gelukt.</string>
+    <string name="location_message_list_cannot_be_empty">Er moet één locatie in de lijst staan.</string>
+    <string name="location_search_placeholder">Zoek een locatie…</string>
+    <string name="location_current_not_found_yet">Nog geen locatie…</string>
+    <string name="settings_changes_apply_after_restart">Wordt van kracht na herstart.</string>
 
     <!-- action -->
     <string name="alerts">Alarm</string>
-    <string name="action_manage">Beheer</string>
     <string name="action_search">Zoek</string>
     <string name="action_settings">Instellingen</string>
     <string name="action_about">Over</string>
@@ -110,7 +100,6 @@
     <!-- settings -->
     <string name="settings_category_basic">Standaard</string>
     <string name="settings_title_background_free">Achtergrondvrij</string>
-    <string name="settings_title_ui_style">UI stijl.</string>
     <string name="settings_title_card_order">Kaartvolgorde.</string>
     <string name="settings_title_gravity_sensor_switch">Gebruik sensoren.</string>
     <string name="settings_language">Taal.</string>
@@ -124,7 +113,7 @@
     <string name="settings_title_forecast_tomorrow_time">Tijd voor voorspelling van morgen.</string>
     <string name="settings_category_widget">Widget</string>
     <string name="settings_title_icon_provider">Icoonstijl.</string>
-    <string name="settings_title_click_widget_to_refresh">Vernieuw widget als je erop klikt.</string>
+    <string name="settings_title_tap_widget_to_refresh">Vernieuw widget als je erop klikt.</string>
     <string name="settings_category_notification">Notificatie</string>
     <string name="settings_title_notification">Stuur notificatie.</string>
     <string name="settings_title_notification_temp_icon">Laat temperatuur zien als klein icoon.</string>

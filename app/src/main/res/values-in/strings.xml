@@ -1,6 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="MissingTranslation">
 
+    <!-- Do NOT translate values that are identical in English and in your language -->
+    <!-- Do NOT use " and ', use appropriate typographic quotes for your language (in English: “ and ”, ‘ and ’) -->
+
     <!-- app. -->
     <string name="app_name">Cuaca</string>
 
@@ -9,7 +12,7 @@
     <string name="location_resident">Lokasi penduduk</string>
     <string name="live">Langsung</string>
     <string name="short_today">Hari ini</string>
-    <string name="refresh_at">Dimuat ulang pada</string>
+    <string name="notification_refreshed_at">Dimuat ulang pada</string>
     <string name="precipitation">Precipitation</string>
     <string name="precipitation_probability">Precipitation probability</string>
     <string name="precipitation_duration">Precipitation duration</string>
@@ -24,7 +27,6 @@
     <string name="notification_channel_forecast">Ramalan</string>
     <string name="daytime">Siang hari</string>
     <string name="nighttime">Malam hari</string>
-    <string name="published_at">Terbitkan di</string>
     <string name="temperature_feels_like">Terasa seperti</string>
     <string name="settings_follow_system">Ikuti sistem</string>
     <string name="notification_channel_background_information">Informasi latar-belakang</string>
@@ -36,9 +38,9 @@
     <string name="settings_icon_providers_get_more">Dapatkan lebih banyak</string>
     <string name="settings_icon_providers_get_more_store">Dapatkan lebih banyak dari app store</string>
     <string name="settings_icon_providers_get_more_github">Dapatkan lebih banyak dari GitHub</string>
-    <string name="refresh">Muat ulang</string>
-    <string name="restart">Mulai ulang</string>
-    <string name="edit">Ubah</string>
+    <string name="action_refresh">Muat ulang</string>
+    <string name="action_restart">Mulai ulang</string>
+    <string name="action_edit">Ubah</string>
 
     <!-- The following set of strings should be as short as possible. -->
     <string name="of_clock">:00</string>
@@ -107,14 +109,14 @@
     <string name="details">Detail</string>
     <string name="ephemeris">Matahari &amp; bulan</string>
 
-    <string name="next">BERIKUTNYA</string>
-    <string name="done">SELESAI</string>
-    <string name="cancel" tools:ignore="ButtonCase">BATAL</string>
-    <string name="on">Diaktifkan</string>
-    <string name="off">Dimatikan</string>
-    <string name="go_to_set">SETEL</string>
-    <string name="help">BANTUAN</string>
-    <string name="learn_more">PELAJARI LEBIH LANJUT</string>
+    <string name="action_next">BERIKUTNYA</string>
+    <string name="action_done">SELESAI</string>
+    <string name="action_cancel" tools:ignore="ButtonCase">BATAL</string>
+    <string name="settings_enabled">Diaktifkan</string>
+    <string name="settings_disabled">Dimatikan</string>
+    <string name="action_set">SETEL</string>
+    <string name="action_help">BANTUAN</string>
+    <string name="action_learn_more">PELAJARI LEBIH LANJUT</string>
 
     <string name="about_app">Tentang aplikasi</string>
     <string name="about_contributors">Kontributor</string>
@@ -131,27 +133,24 @@
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
 
     <!-- feedback. -->
-    <string name="feedback_request_permission">Izin</string>
     <string name="notification_channel_request_location">Lokasi</string>
-    <string name="feedback_request_location_in_background">Menemukan di latar belakang</string>
-    <string name="feedback_request_location_permission_success">Permintaan izin lokasi sukses</string>
-    <string name="feedback_request_location_permission_failed">Permintaan izin lokasi gagal</string>
+    <string name="notification_location_in_background">Menemukan di latar belakang</string>
 
-    <string name="feedback_location_permissions_title">Akses informasi lokasi</string>
-    <string name="feedback_location_permissions_statement">Breezy Weather perlu mengumpulkan informasi lokasi Anda di latar depan atau latar belakang untuk menyediakan data cuaca di lokasi Anda saat ini. Untuk ini, kami akan meminta beberapa izin. Informasi lokasi Anda hanya akan digunakan untuk mendapatkan data cuaca di lokasi Anda saat ini. Jika Anda tidak ingin kami mendapatkan informasi lokasi Anda, Anda bisa menolak persyaratan itu dan mengatur lokasi Anda secara manual di halaman manajemen.</string>
-    <string name="feedback_background_location_title">Akses lokasi di latar-belakang</string>
-    <string name="feedback_background_location_summary">Untuk memungkinkan aplikasi mengakses informasi lokasi di latar belakang, sehingga kami dapat memahami perubahan lokasi dan memberi Anda data cuaca yang valid, silakan atur akses lokasi sebagai \"Izinkan sepanjang waktu\".</string>
+    <string name="dialog_permissions_location_title">Akses informasi lokasi</string>
+    <string name="dialog_permissions_location_content">Breezy Weather perlu mengumpulkan informasi lokasi Anda di latar depan atau latar belakang untuk menyediakan data cuaca di lokasi Anda saat ini. Untuk ini, kami akan meminta beberapa izin. Informasi lokasi Anda hanya akan digunakan untuk mendapatkan data cuaca di lokasi Anda saat ini. Jika Anda tidak ingin kami mendapatkan informasi lokasi Anda, Anda bisa menolak persyaratan itu dan mengatur lokasi Anda secara manual di halaman manajemen.</string>
+    <string name="dialog_permissions_location_background_title">Akses lokasi di latar-belakang</string>
+    <string name="dialog_permissions_location_background_content">Untuk memungkinkan aplikasi mengakses informasi lokasi di latar belakang, sehingga kami dapat memahami perubahan lokasi dan memberi Anda data cuaca yang valid, silakan atur akses lokasi sebagai \"Izinkan sepanjang waktu\".</string>
 
-    <string name="feedback_location_failed">Lokasi gagal</string>
-    <string name="feedback_get_weather_failed">permintaan data cuaca gagal</string>
-    <string name="feedback_location_help_title">tidak bisa mendapatkan lokasi dengan benar?</string>
-    <string name="feedback_check_location_permission">periksa izin lokasi</string>
-    <string name="feedback_enable_location_information">Mengaktifkan Informasi Lokasi</string>
-    <string name="feedback_select_location_provider">Pilih Penyedia Lokasi</string>
-    <string name="feedback_api_limit_reached">Batas permintaan API telah dicapai</string>
-    <string name="feedback_api_limit_reached_help">Untuk mengatasinya, tambahkan kunci API Anda sendiri.</string>
-    <string name="feedback_api_unauthorized">Akses API tidak memiliki izin</string>
-    <string name="feedback_api_unauthorized_help">Pada beberapa penyedia cuaca, Anda perlu menyediakan kunci API Anda sendiri. Jika Anda sudah memberikannya, silakan periksa kembali kunci API yang Anda berikan.</string>
+    <string name="location_message_failed_to_locate">Lokasi gagal</string>
+    <string name="weather_message_data_refresh_failed">permintaan data cuaca gagal</string>
+    <string name="location_dialog_failed_to_locate_title">tidak bisa mendapatkan lokasi dengan benar?</string>
+    <string name="location_dialog_failed_to_locate_action_check_permission">periksa izin lokasi</string>
+    <string name="location_dialog_failed_to_locate_action_enable_information">Mengaktifkan Informasi Lokasi</string>
+    <string name="location_dialog_failed_to_locate_action_select_provider">Pilih Penyedia Lokasi</string>
+    <string name="weather_api_limit_reached_message">Batas permintaan API telah dicapai</string>
+    <string name="weather_api_limit_reached_dialog">Untuk mengatasinya, tambahkan kunci API Anda sendiri.</string>
+    <string name="weather_api_unauthorized_message">Akses API tidak memiliki izin</string>
+    <string name="weather_api_unauthorized_dialog">Pada beberapa penyedia cuaca, Anda perlu menyediakan kunci API Anda sendiri. Jika Anda sudah memberikannya, silakan periksa kembali kunci API yang Anda berikan.</string>
     <string name="widget_label_view_style">Gaya lihat</string>
     <string name="widget_label_show_widget_card">Warna latar</string>
     <string name="widget_label_show_widget_card_alpha">Transparansi</string>
@@ -208,87 +207,72 @@
     <string name="widget_live_wallpaper_weather_kind">Cuaca</string>
     <string name="widget_live_wallpaper_day_night_type">Waktu</string>
 
-    <string name="feedback_click_toggle">Tekan grafik untuk toggle data</string>
-    <string name="feedback_no_data">TIDAK ADA DATA</string>
+    <string name="location_message_added">Berhasil menambahkan lokasi</string>
+    <string name="location_message_deleted">Berhasil menghapus lokasi</string>
+    <string name="location_message_list_cannot_be_empty">Daftar lokasi tidak bisa kosong</string>
 
-    <string name="feedback_collect_failed">Lokasi ini sudah ada</string>
-    <string name="feedback_collect_succeed">Berhasil menambahkan lokasi</string>
-    <string name="feedback_delete_succeed">Berhasil menghapus lokasi</string>
-    <string name="feedback_location_list_cannot_be_null">Daftar lokasi tidak bisa kosong</string>
+    <string name="location_search_placeholder">Cari lokasi…</string>
+    <string name="location_current_not_found_yet">Belum ada lokasi…</string>
 
-    <string name="feedback_search_location">Cari lokasi…</string>
-    <string name="feedback_not_yet_location">Belum ada lokasi…</string>
-    <string name="feedback_search_nothing">Tidak ada lokasi ditemukan</string>
-    <string name="feedback_initializing">Memulai…</string>
+    <string name="settings_changes_apply_after_restart">Perubahan akan berlaku setelah memulai-ulang</string>
 
-    <string name="feedback_refresh_notification_after_back">Perubahan akan berlaku saat Anda kembali ke beranda</string>
-    <string name="feedback_refresh_notification_now">Muat ulang sekarang</string>
-    <string name="feedback_refresh_ui_after_refresh">Perubahan akan berlaku saat data di muat ulang</string>
-    <string name="feedback_restart">Perubahan akan berlaku setelah memulai-ulang</string>
-
-    <string name="feedback_running_in_background">Berjalan di latar belakang untuk terus memperbarui</string>
-    <string name="feedback_updating_weather_data">Memperbarui data cuaca</string>
-    <string name="feedback_updated_in_background">Diperbarui dilatar-belakang</string>
+    <string name="notification_running_in_background">Berjalan di latar belakang untuk terus memperbarui</string>
+    <string name="notification_updating_weather_data">Memperbarui data cuaca</string>
+    <string name="message_updated_in_background">Diperbarui dilatar-belakang</string>
 
     <!-- there should be a "\" before single or double quotes. -->
     <!-- Correct : ... after turning off \'Background free\', ... After turning off \"Free background\" ... -->
     <!-- Wrong   : ... after turning off 'Background free', ... After turning off "Free background" ... -->
-    <string name="feedback_interpret_background_notification_content">Di beberapa perangkat, setelah mematikan \'bebas latar-belakang\', mungkin ada pemberitahuan yang tidak dapat dibersihkan di bilah pemberitahuan.</string>
-    <string name="feedback_interpret_notification_group_title">Blokir grup pemberitahuan</string>
-    <string name="feedback_interpret_notification_group_content">Setelah mematikan \"bebas latar-belakang\", pemberitahuan yang menunjukkan bahwa layanan latar belakang berjalan akan muncul di bilah pemberitahuan. Anda dapat mematikan saluran informasi latar belakang di halaman informasi aplikasi untuk memblokir pemberitahuan ini.</string>
+    <string name="dialog_permissions_block_notification_channel_title">Blokir grup pemberitahuan</string>
+    <string name="dialog_permissions_block_notification_channel_content">Setelah mematikan \"bebas latar-belakang\", pemberitahuan yang menunjukkan bahwa layanan latar belakang berjalan akan muncul di bilah pemberitahuan. Anda dapat mematikan saluran informasi latar belakang di halaman informasi aplikasi untuk memblokir pemberitahuan ini.</string>
 
-    <string name="feedback_ignore_battery_optimizations_title">Abaikan pengoptimalan baterai</string>
-    <string name="feedback_ignore_battery_optimizations_content">Untuk memastikan bahwa layanan latar belakang dapat terus bekerja, harap abaikan pengoptimalan baterai untuk Breezy Weather.</string>
+    <string name="dialog_permissions_ignore_battery_optimizations_title">Abaikan pengoptimalan baterai</string>
+    <string name="dialog_permissions_ignore_battery_optimizations_content">Untuk memastikan bahwa layanan latar belakang dapat terus bekerja, harap abaikan pengoptimalan baterai untuk Breezy Weather.</string>
 
-    <string name="feedback_cannot_start_live_wallpaper_activity">Tidak dapat memulai konteks pratinjau wallpaper live</string>
+    <string name="widget_live_wallpaper_cannot_start_activity">Tidak dapat memulai konteks pratinjau wallpaper live</string>
 
-    <string name="feedback_today_precipitation_alert">Mungkin ada presipitasi hari ini.</string>
-    <string name="feedback_short_term_precipitation_alert">Curah hujan dapat terjadi dalam beberapa jam ke depan.</string>
+    <string name="notification_precipitation_today">Mungkin ada presipitasi hari ini.</string>
+    <string name="notification_precipitation_short_term">Curah hujan dapat terjadi dalam beberapa jam ke depan.</string>
 
-    <string name="feedback_resident_location">Tetapkan sebagai kota penduduk</string>
-    <string name="feedback_resident_location_description">Breezy Weather akan secara otomatis menampilkan dan menyembunyikan kota-kota residen berdasarkan lokasi Anda saat ini.\nUntuk contoh, Anda dapat mengatur kota asal Anda sebagai kota residen. Anda dapat memeriksa cuaca di kota asal Anda saat bepergian. Saat Anda sampai di rumah, cuaca di kota asal Anda akan disembunyikan dan digantikan oleh cuaca untuk lokasi Anda saat ini.</string>
+    <string name="location_resident_message">Tetapkan sebagai kota penduduk</string>
+    <string name="location_resident_dialog">Breezy Weather akan secara otomatis menampilkan dan menyembunyikan kota-kota residen berdasarkan lokasi Anda saat ini.\nUntuk contoh, Anda dapat mengatur kota asal Anda sebagai kota residen. Anda dapat memeriksa cuaca di kota asal Anda saat bepergian. Saat Anda sampai di rumah, cuaca di kota asal Anda akan disembunyikan dan digantikan oleh cuaca untuk lokasi Anda saat ini.</string>
 
-    <string name="feedback_click_to_get_more">Klik untuk mendapatkan lebih banyak…</string>
-    <string name="feedback_click_again_to_exit">Klik lagi untuk keluar</string>
+    <string name="allergen_tap_to_see_more">Klik untuk mendapatkan lebih banyak…</string>
+    <string name="message_tap_again_to_exit">Klik lagi untuk keluar</string>
 
     <!-- content description -->
-    <string name="content_desc_back">Kembali</string>
-    <string name="content_desc_check_details">Cek detail</string>
-    <string name="content_desc_weather_alert_button">$ peringatan cuaca</string> <!-- $ = alert count. -->
-    <string name="air_quality_content_desc_pm25">PM dua koma lima</string>
-    <string name="air_quality_content_desc_pm10">PM sepuluh</string>
-    <string name="air_quality_content_desc_so2">Sulfur dioksida</string>
-    <string name="air_quality_content_desc_no2">Nitrogen dioksida</string>
-    <string name="air_quality_content_desc_o3">Ozon</string>
-    <string name="air_quality_content_desc_co">Karbon monoksida</string>
-    <string name="ephemeris_content_desc_sunrise">Matahari terbit di $</string> <!-- $ = time. -->
-    <string name="ephemeris_content_desc_sunset">Matahari tenggelam di $</string> <!-- $ = time. -->
-    <string name="ephemeris_content_desc_moonrise">Bulan terbit di $</string> <!-- $ = time. -->
-    <string name="ephemeris_content_desc_moonset">Bulan tenggelam di $</string> <!-- $ = time. -->
-    <string name="content_desc_no_precipitation">Tidak ada curah hujan</string>
-    <string name="content_desc_minutely_precipitation">Curah hujan antara $1 dan $2</string> <!-- $1 = start time, $2 = end time. -->
-    <string name="content_desc_add_current_location">Tambah lokasi saat ini</string>
-    <string name="content_desc_drag_flag">Ketuk untuk menyeret item daftar untuk mengurutkan</string>
-    <string name="content_desc_delete_flag">Hapus item ini</string>
-    <string name="content_desc_swipe_left_to_delete">Anda dapat menggesek ke kiri untuk menghapus item ini</string>
-    <string name="content_desc_swipe_right_to_delete">Anda dapat menggesek ke kanan untuk menghapus item ini</string>
-    <string name="content_desc_search_filter_on">Hanya menunjukkan lokasi dari sumber cuaca default</string>
-    <string name="content_desc_search_filter_off">Tunjukkan lokasi dari semua sumber cuaca</string>
-    <string name="content_desc_app_store">@string/action_appStore</string>
-    <string name="content_desc_weather_icon">Ikon cuaca</string>
-    <string name="content_desc_weather_icon_light">Ikon terang</string>
-    <string name="content_desc_weather_icon_grey">Ikon abu-abu</string>
-    <string name="content_desc_weather_icon_dark">Ikon gelap</string>
-    <string name="content_desc_filter_weather_sources">Filter sumber cuaca</string>
+    <string name="action_back">Kembali</string>
+    <string name="settings_icon_providers_check_details">Cek detail</string>
+    <string name="alerts_count">$ peringatan cuaca</string> <!-- $ = alert count. -->
+    <string name="air_quality_pm25_voice">PM dua koma lima</string>
+    <string name="air_quality_pm10_voice">PM sepuluh</string>
+    <string name="air_quality_so2_voice">Sulfur dioksida</string>
+    <string name="air_quality_no2_voice">Nitrogen dioksida</string>
+    <string name="air_quality_o3_voice">Ozon</string>
+    <string name="air_quality_co_voice">Karbon monoksida</string>
+    <string name="ephemeris_sunrise_at">Matahari terbit di $</string> <!-- $ = time. -->
+    <string name="ephemeris_sunset_at">Matahari tenggelam di $</string> <!-- $ = time. -->
+    <string name="ephemeris_moonrise_at">Bulan terbit di $</string> <!-- $ = time. -->
+    <string name="ephemeris_moonset_at">Bulan tenggelam di $</string> <!-- $ = time. -->
+    <string name="precipitation_none">Tidak ada curah hujan</string>
+    <string name="precipitation_between_time">Curah hujan antara $1 dan $2</string> <!-- $1 = start time, $2 = end time. -->
+    <string name="action_add_current_location">Tambah lokasi saat ini</string>
+    <string name="settings_items_drag_to_sort">Ketuk untuk menyeret item daftar untuk mengurutkan</string>
+    <string name="settings_item_delete">Hapus item ini</string>
+    <string name="location_swipe_to_delete">Anda dapat menggesek ke kiri untuk menghapus item ini</string>
+    <string name="settigns_icon_providers_app_store">@string/action_app_store</string>
+    <string name="settings_icon_providers_weather_adaptive_icon">Ikon cuaca</string>
+    <string name="settings_icon_providers_weather_icon_light">Ikon terang</string>
+    <string name="settings_icon_providers_weather_icon_grey">Ikon abu-abu</string>
+    <string name="settings_icon_providers_weather_icon_dark">Ikon gelap</string>
 
     <!-- action -->
     <string name="alerts">Peringatan</string>
-    <string name="action_manage">Kelola</string>
     <string name="action_search">Cari</string>
     <string name="action_settings">Setelan</string>
     <string name="action_preview">Pratinjau</string>
     <string name="action_about">Tentang</string>
-    <string name="action_appStore">Toko Aplikasi</string>
+    <string name="action_app_store">Toko Aplikasi</string>
 
     <!-- widget -->
     <string name="widget_day">Harian</string>
@@ -321,7 +305,6 @@
     <string name="settings_title_weather_source">Sumber cuaca</string>
     <string name="settings_title_location_service">Layanan lokasi</string>
     <string name="settings_title_dark_mode">Mode gelap</string>
-    <string name="settings_title_ui_style">Gaya antarmuka</string>
     <string name="settings_title_icon_provider">Paket ikon</string>
     <string name="settings_title_appearance">Penampilan</string>
     <string name="settings_summary_appearance">Gaya antarmuka, susunan kartu, bahasa…</string>
@@ -354,7 +337,7 @@
     <string name="settings_category_widget">Widget</string>
     <string name="settings_title_week_icon_mode">Mode ikon mingguan</string>
     <string name="settings_title_minimal_icon">Ikon minimalis</string>
-    <string name="settings_title_click_widget_to_refresh">Muat ulang widget saat diklik</string>
+    <string name="settings_title_tap_widget_to_refresh">Muat ulang widget saat diklik</string>
     <string name="settings_title_widget_config">Konfigurasi widget</string>
     <string name="settings_category_notification">Pemberitahuan</string>
     <string name="settings_title_notification">Kirim Pemberitahuan</string>

@@ -17,8 +17,8 @@ public class WeekWidgetConfigActivity extends AbstractWidgetConfigActivity {
     @Override
     public void initData() {
         super.initData();
-        String[] widgetStyles = getResources().getStringArray(R.array.week_widget_styles);
-        String[] widgetStyleValues = getResources().getStringArray(R.array.week_widget_style_values);
+        String[] widgetStyles = getResources().getStringArray(R.array.widget_week_styles);
+        String[] widgetStyleValues = getResources().getStringArray(R.array.widget_week_style_values);
 
         this.viewTypeValueNow = "5_days";
         this.viewTypes = new String[] {

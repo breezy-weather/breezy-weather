@@ -78,7 +78,7 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter {
                         .append(mPrecipitationUnit.getValueVoice(activity, nighttimePrecipitation));
             } else {
                 talkBackBuilder.append(", ")
-                        .append(activity.getString(R.string.content_desc_no_precipitation));
+                        .append(activity.getString(R.string.precipitation_none));
             }
 
             if (daily.getDay() != null && daily.getDay().getWeatherCode() != null) {

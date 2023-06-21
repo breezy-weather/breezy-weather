@@ -51,7 +51,7 @@ public class FirstCardHeaderController
             mView.setOnClickListener(v -> ((MainActivity) activity).setManagementFragmentVisibility(true));
 
             alertIcon.setContentDescription(
-                    activity.getString(R.string.content_desc_weather_alert_button)
+                    activity.getString(R.string.alerts_count)
                             .replace("$", "" + currentAlertList.size())
             );
             ImageViewCompat.setImageTintList(

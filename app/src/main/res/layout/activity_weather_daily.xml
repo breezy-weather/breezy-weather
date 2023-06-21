@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 style="@style/BreezyWeatherTheme.ToolbarTheme"
                 app:navigationIcon="@drawable/ic_toolbar_back"
-                app:navigationContentDescription="@string/content_desc_back">
+                app:navigationContentDescription="@string/action_back">
 
                 <RelativeLayout
                     android:layout_width="match_parent"

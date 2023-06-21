@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Please don’t translate in this file anymore and migrate to strings.xml, see values/arrays.xml -->
+
     <!-- 날씨 제공처. -->
     <string-array name="weather_sources">
         <item>Open-Meteo</item>
@@ -25,12 +27,6 @@
         <item>Follow system</item>
         <item>언제나 밝게</item>
         <item>언제나 어둡게</item>
-    </string-array>
-
-    <!-- UI 스타일. -->
-    <string-array name="ui_styles">
-        <item>동글동글 하늘</item>
-        <item>머티리얼 애니메이션</item>
     </string-array>
 
     <!-- 자동 갱신 간격. -->
@@ -83,7 +79,7 @@
     </string-array>
 
     <!-- 위젯 표시 데이터. -->
-    <string-array name="subtitle_data">
+    <string-array name="widget_subtitle_data">
         <item>갱신 시간</item>
         <item>AQI (일부 지역에서는 불가능합니다.)</item>
         <item>바람</item>
@@ -93,7 +89,7 @@
     </string-array>
 
     <!-- 위젯 시계 폰트. -->
-    <string-array name="clock_font">
+    <string-array name="widget_clock_fonts">
         <item>얇은 산 세리프</item>
         <item>산 세리프</item>
         <item>어두운 산 세리프</item>
@@ -137,63 +133,6 @@
         <item>자동</item>
         <item>언제나 낮</item>
         <item>언제나 밤</item>
-    </string-array>
-
-    <!-- 속도 단위. -->
-    <string-array name="speed_units">
-        <item>km/h</item>
-        <item>m/s</item>
-        <item>kn</item>
-        <item>mi/h</item>
-        <item>ft/s</item>
-    </string-array>
-
-    <!-- 강수 단위. -->
-    <string-array name="precipitation_units">
-        <item>mm</item>
-        <item>cm</item>
-        <item>inch</item>
-        <item>L/m²</item>
-    </string-array>
-
-    <!-- 거리 단위. -->
-    <string-array name="distance_units">
-        <item>km</item>
-        <item>m</item>
-        <item>mi</item>
-        <item>nmi</item>
-        <item>ft</item>
-    </string-array>
-
-    <!-- 기압 단위. -->
-    <string-array name="pressure_units">
-        <item>mb</item>
-        <item>kPa</item>
-        <item>hPa</item>
-        <item>atm</item>
-        <item>mmHg</item>
-        <item>inHg</item>
-        <item>kgf/cm²</item>
-    </string-array>
-
-    <!-- 대기질 단위. -->
-    <string-array name="air_quality_units">
-        <item>μg/m³</item>
-    </string-array>
-
-    <!-- air quality co unit. -->
-    <string-array name="air_quality_co_units">
-        <item>mg/m³</item>
-    </string-array>
-
-    <!-- 시간 단위. -->
-    <string-array name="duration_units">
-        <item>h</item> <!-- hour -->
-    </string-array>
-
-    <!-- 입자 단위. -->
-    <string-array name="pollen_units">
-        <item>/m³</item>
     </string-array>
 
 </resources>

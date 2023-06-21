@@ -1,9 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-<!--
-    EN # Some translations can be untranslated or skipped cause of not having certain terms in Polish language. If there were any mistakes in the translation, I apologize in advance.
-    PL # Niektóre zwroty mogą być nieprzetłumaczone lub pominięte z powodu braku niektórych określeń ("wet bulb temperature" lub "degree day temperature") w języku polskim. Jeśli wystąpiły pomyłki w tłumaczeniu, z góry przepraszam.
--->
+    <!-- Do NOT translate values that are identical in English and in your language -->
+    <!-- Do NOT use " and ', use appropriate typographic quotes for your language (in English: “ and ”, ‘ and ’) -->
+
+    <!--
+        EN # Some translations can be untranslated or skipped cause of not having certain terms in Polish language. If there were any mistakes in the translation, I apologize in advance.
+        PL # Niektóre zwroty mogą być nieprzetłumaczone lub pominięte z powodu braku niektórych określeń ("wet bulb temperature" lub "degree day temperature") w języku polskim. Jeśli wystąpiły pomyłki w tłumaczeniu, z góry przepraszam.
+    -->
 
     <!-- app. -->
     <string name="app_name">Pogoda</string>
@@ -13,7 +16,7 @@
     <string name="location_resident">Miejsce zamieszkania</string>
     <string name="live">Obecnie</string>
     <string name="short_today">Dziś</string>
-    <string name="refresh_at">Odświeżono</string>
+    <string name="notification_refreshed_at">Odświeżono</string>
     <string name="precipitation">Opad atmosferyczny</string>
     <string name="precipitation_probability">Prawdopodobieństwo opadów</string>
     <string name="precipitation_duration">Czas trwania opadów</string>
@@ -28,7 +31,6 @@
     <string name="notification_channel_forecast">Prognoza</string>
     <string name="daytime">Dzień</string>
     <string name="nighttime">Noc</string>
-    <string name="published_at">Opublikuj o</string>
     <string name="temperature_feels_like">Odczuwalnie</string>
     <string name="settings_follow_system">Jak w systemie</string>
     <string name="notification_channel_background_information">Background information</string>
@@ -40,9 +42,9 @@
     <string name="settings_icon_providers_get_more">Więcej</string>
     <string name="settings_icon_providers_get_more_store">Uzyskaj więcej ze sklepu z aplikacjami</string>
     <string name="settings_icon_providers_get_more_github">Uzyskaj więcej ze sklepu z GitHuba</string>
-    <string name="refresh">Odśwież</string>
-    <string name="restart">Restartuj</string>
-    <string name="edit">Edytuj</string>
+    <string name="action_refresh">Odśwież</string>
+    <string name="action_restart">Restartuj</string>
+    <string name="action_edit">Edytuj</string>
 
     <string name="of_clock">:00</string>
     <string name="short_yesterday">Wczoraj</string>
@@ -110,14 +112,14 @@
     <string name="details">Szczegóły</string>
     <string name="ephemeris">Słońce i księżyc</string>
 
-    <string name="next">Następny</string>
-    <string name="done">Gotowe</string>
-    <string name="cancel" tools:ignore="ButtonCase">Anuluj</string>
-    <string name="on">Włączony</string>
-    <string name="off">Wyłączony</string>
-    <string name="go_to_set">Ustaw</string>
-    <string name="help">Pomoc</string>
-    <string name="learn_more">Dowiedz się więcej</string>
+    <string name="action_next">Następny</string>
+    <string name="action_done">Gotowe</string>
+    <string name="action_cancel" tools:ignore="ButtonCase">Anuluj</string>
+    <string name="settings_enabled">Włączony</string>
+    <string name="settings_disabled">Wyłączony</string>
+    <string name="action_set">Ustaw</string>
+    <string name="action_help">Pomoc</string>
+    <string name="action_learn_more">Dowiedz się więcej</string>
 
     <string name="about_app">O aplikacji</string>
     <string name="about_translators">Tłumacze</string>
@@ -129,19 +131,16 @@
     <string name="date_format_widget_oreo_style">EEEE, d MMM│</string>
 
     <!-- feedback. -->
-    <string name="feedback_request_permission">Uprawnienia</string>
     <string name="notification_channel_request_location">Lokalizacja</string>
-    <string name="feedback_request_location_in_background">Lokalizacja w tle</string>
-    <string name="feedback_request_location_permission_success">Lokalizacja uzyskana</string>
-    <string name="feedback_request_location_permission_failed">Lokalizacja nieuzyskana</string>
+    <string name="notification_location_in_background">Lokalizacja w tle</string>
 
-    <string name="feedback_location_failed">Lokalizacja nieuzyskana</string>
-    <string name="feedback_get_weather_failed">Pobranie danych pogodowych nie powiodło się</string>
-    <string name="feedback_location_help_title">Nie można poprawnie ustalić lokalizacji?</string>
-    <string name="feedback_check_location_permission">Sprawdź uprawnienia lokalizacji</string>
-    <string name="feedback_enable_location_information">Włącz informacje o lokalizacji</string>
-    <string name="feedback_select_location_provider">Wybierz dostawcę lokalizacji</string>
-    <string name="feedback_add_location_manually">Dodaj lokalizację ręcznie i usuń \'$\'</string>
+    <string name="location_message_failed_to_locate">Lokalizacja nieuzyskana</string>
+    <string name="weather_message_data_refresh_failed">Pobranie danych pogodowych nie powiodło się</string>
+    <string name="location_dialog_failed_to_locate_title">Nie można poprawnie ustalić lokalizacji?</string>
+    <string name="location_dialog_failed_to_locate_action_check_permission">Sprawdź uprawnienia lokalizacji</string>
+    <string name="location_dialog_failed_to_locate_action_enable_information">Włącz informacje o lokalizacji</string>
+    <string name="location_dialog_failed_to_locate_action_select_provider">Wybierz dostawcę lokalizacji</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Dodaj lokalizację ręcznie i usuń \'$\'</string>
 
     <string name="widget_label_view_style">Wybierz styl</string>
     <string name="widget_label_show_widget_card">Kolor tła</string>
@@ -194,53 +193,42 @@
     <string name="widget_live_wallpaper_weather_kind">Pogoda</string>
     <string name="widget_live_wallpaper_day_night_type">Czas</string>
 
-    <string name="feedback_click_toggle">Naciśnij wykres, aby przełączyć dane</string>
-    <string name="feedback_no_data">Brak danych</string>
+    <string name="location_message_added">Pomyślnie dodano lokalizację</string>
+    <string name="location_message_deleted">Pomyślnie usunięto lokalizację</string>
+    <string name="location_message_list_cannot_be_empty">Lista lokalizacji nie może być pusta</string>
 
-    <string name="feedback_collect_failed">Ta lokalizacja już istnieje</string>
-    <string name="feedback_collect_succeed">Pomyślnie dodano lokalizację</string>
-    <string name="feedback_delete_succeed">Pomyślnie usunięto lokalizację</string>
-    <string name="feedback_location_list_cannot_be_null">Lista lokalizacji nie może być pusta</string>
+    <string name="location_search_placeholder">Wyszukaj lokalizację</string>
+    <string name="location_current_not_found_yet">Brak lokalzacji</string>
 
-    <string name="feedback_search_location">Wyszukaj lokalizację</string>
-    <string name="feedback_not_yet_location">Brak lokalzacji</string>
-    <string name="feedback_search_nothing">Nic nie znaleziono</string>
-    <string name="feedback_initializing">Ustalanie…</string>
+    <string name="settings_changes_apply_after_restart">Zmiany zaczną obowiązywać po ponownym uruchomieniu</string>
 
-    <string name="feedback_refresh_notification_after_back">Zmiany zaczną obowiązywać po powrocie na stronę główną</string>
-    <string name="feedback_refresh_notification_now">Odśwież teraz</string>
-    <string name="feedback_refresh_ui_after_refresh">Zmiany zaczną obowiązywać po odświeżeniu danych</string>
-    <string name="feedback_restart">Zmiany zaczną obowiązywać po ponownym uruchomieniu</string>
+    <string name="notification_running_in_background">Działnie w tle, aby kontynuować aktualizację</string>
+    <string name="notification_updating_weather_data">Aktualizacja danych pogodowych</string>
+    <string name="message_updated_in_background">Zaktualizowano w tle</string>
 
-    <string name="feedback_running_in_background">Działnie w tle, aby kontynuować aktualizację</string>
-    <string name="feedback_updating_weather_data">Aktualizacja danych pogodowych</string>
-    <string name="feedback_updated_in_background">Zaktualizowano w tle</string>
+    <string name="dialog_permissions_block_notification_channel_title">Blokuj grupę powiadomień</string>
+    <string name="dialog_permissions_block_notification_channel_content">Po wyłączeniu \"Bez aktualizacji w tle\", na pasku powiadomień pojawi się powiadomienie wskazujące, że usługa w tle jest uruchomiona. Możesz wyłączyć ten kanał informacyjny w tle na stronie informacyjnej aplikacji, aby zablokować te powiadomienia.</string>
 
-    <string name="feedback_interpret_background_notification_content"> W niektórych urządzeniach po wyłączeniu \'Bez aktualizacji w tle\', może pojawić się powiadomienie, którego nie można usunąć na pasku powiadomień.</string>
-    <string name="feedback_interpret_notification_group_title">Blokuj grupę powiadomień</string>
-    <string name="feedback_interpret_notification_group_content">Po wyłączeniu \"Bez aktualizacji w tle\", na pasku powiadomień pojawi się powiadomienie wskazujące, że usługa w tle jest uruchomiona. Możesz wyłączyć ten kanał informacyjny w tle na stronie informacyjnej aplikacji, aby zablokować te powiadomienia.</string>
+    <string name="dialog_permissions_ignore_battery_optimizations_title">Zignoruj optymalizację baterii</string>
+    <string name="dialog_permissions_ignore_battery_optimizations_content">Aby mieć pewność, że usługi działające w tle mogą nadal działać, zignoruj optymalizację baterii dla Breezy Weather.</string>
 
-    <string name="feedback_ignore_battery_optimizations_title">Zignoruj optymalizację baterii</string>
-    <string name="feedback_ignore_battery_optimizations_content">Aby mieć pewność, że usługi działające w tle mogą nadal działać, zignoruj optymalizację baterii dla Breezy Weather.</string>
+    <string name="widget_live_wallpaper_cannot_start_activity">Nie można rozpocząć podglądu tapety na żywo</string>
 
-    <string name="feedback_cannot_start_live_wallpaper_activity">Nie można rozpocząć podglądu tapety na żywo</string>
+    <string name="notification_precipitation_today">Dzisiaj mogą być opady.</string>
+    <string name="notification_precipitation_short_term">Opady mogą wystąpić w ciągu najbliższych kilku godzin.</string>
 
-    <string name="feedback_today_precipitation_alert">Dzisiaj mogą być opady.</string>
-    <string name="feedback_short_term_precipitation_alert">Opady mogą wystąpić w ciągu najbliższych kilku godzin.</string>
+    <string name="location_resident_message">Ustaw jako miasto zamieszkania</string>
+    <string name="location_resident_dialog">Breezy Weather automatycznie pokaże i ukryje miasta zamieszkania na podstawie bieżącej lokalizacji.\nNa przykład możesz ustawić miasto rodzinne jako miasto zamieszkania. Możesz sprawdzić pogodę w swoim mieście rodzinnym podczas podróży. Po powrocie do domu pogoda w Twoim mieście rodzinnym zostanie ukryta i zastąpiona pogodą dla Twojej bieżącej lokalizacji.</string>
 
-    <string name="feedback_resident_location">Ustaw jako miasto zamieszkania</string>
-    <string name="feedback_resident_location_description">Breezy Weather automatycznie pokaże i ukryje miasta zamieszkania na podstawie bieżącej lokalizacji.\nNa przykład możesz ustawić miasto rodzinne jako miasto zamieszkania. Możesz sprawdzić pogodę w swoim mieście rodzinnym podczas podróży. Po powrocie do domu pogoda w Twoim mieście rodzinnym zostanie ukryta i zastąpiona pogodą dla Twojej bieżącej lokalizacji.</string>
-
-    <string name="feedback_click_to_get_more">Kliknij, aby uzyskać więcej…</string>
+    <string name="allergen_tap_to_see_more">Kliknij, aby uzyskać więcej…</string>
 
     <!-- action -->
     <string name="alerts">Alert</string>
-    <string name="action_manage">Zarządzaj</string>
     <string name="action_search">Szukaj</string>
     <string name="action_settings">Ustawienia</string>
     <string name="action_preview">Podgląd</string>
     <string name="action_about">O</string>
-    <string name="action_appStore">Sklep z aplikacjami</string>
+    <string name="action_app_store">Sklep z aplikacjami</string>
 
     <!-- widget -->
     <string name="widget_day">Dziennie</string>
@@ -268,7 +256,6 @@
     <string name="settings_title_weather_source">Źródło pogody</string>
     <string name="settings_title_location_service">Usługa lokalizacji</string>
     <string name="settings_title_dark_mode">Tryb ciemny</string>
-    <string name="settings_title_ui_style">Styl interfejsu</string>
     <string name="settings_title_icon_provider">Paczka ikon</string>
     <string name="settings_title_appearance">Wygląd</string>
     <string name="settings_summary_appearance">Styl interfejsu, kolejność kart, język…</string>
@@ -297,7 +284,7 @@
     <string name="settings_category_widget">Widżet</string>
     <string name="settings_title_week_icon_mode">Tryb ikonek tygodniowych</string>
     <string name="settings_title_minimal_icon">Ikony minimalistyczne</string>
-    <string name="settings_title_click_widget_to_refresh">Odśwież widget po kliknięciu</string>
+    <string name="settings_title_tap_widget_to_refresh">Odśwież widget po kliknięciu</string>
     <string name="settings_category_notification">Powiadomienie</string>
     <string name="settings_title_notification">Pokaż na pasku powiadomień</string>
     <string name="settings_title_notification_style">Styl powiadomienia</string>

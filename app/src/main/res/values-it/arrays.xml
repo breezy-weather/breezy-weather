@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Please don’t translate in this file anymore and migrate to strings.xml, see values/arrays.xml -->
+
     <!-- Location service. -->
     <string-array name="location_services">
         <item>Localizzazione Baidu</item>
@@ -15,12 +17,6 @@
         <item>Segui il sistema</item>
         <item>Chiaro</item>
         <item>Scuro</item>
-    </string-array>
-
-    <!-- UI style. -->
-    <string-array name="ui_styles">
-        <item>Cielo circolare</item>
-        <item>Animazione material</item>
     </string-array>
 
     <!-- automatic refresh rate. -->
@@ -70,13 +66,13 @@
         <item>Temperatura</item>
     </string-array>
 
-    <string-array name="week_widget_styles">
+    <string-array name="widget_week_styles">
         <item>5 giorni</item>
         <item>3 giorni</item>
     </string-array>
 
     <!-- Widget subtitle data. -->
-    <string-array name="subtitle_data">
+    <string-array name="widget_subtitle_data">
         <item>Ultimo aggiornamento</item>
         <item>Qualità aria (non valido in alcune aree)</item>
         <item>Vento</item>

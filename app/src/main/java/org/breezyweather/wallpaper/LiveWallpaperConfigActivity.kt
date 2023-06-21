@@ -125,7 +125,7 @@ class LiveWallpaperConfigActivity : GeoActivity() {
                             ),
                         ) {
                             Text(
-                                text = stringResource(R.string.done),
+                                text = stringResource(R.string.action_done),
                                 color = MaterialTheme.colorScheme.onPrimary,
                                 fontWeight = FontWeight.Bold,
                                 style = MaterialTheme.typography.titleMedium,

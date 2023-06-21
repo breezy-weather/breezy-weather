@@ -28,14 +28,14 @@
             android:tint="?attr/colorPrimary"
             android:layout_centerVertical="true"
             android:layout_alignParentStart="true"
-            android:contentDescription="@string/content_desc_drag_flag"
+            android:contentDescription="@string/settings_items_drag_to_sort"
             style="@style/material_image_button" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/item_card_display_deleteBtn"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:contentDescription="@string/content_desc_delete_flag"
+            android:contentDescription="@string/settings_item_delete"
             android:src="@drawable/ic_close"
             android:tint="?attr/colorPrimary"
             style="@style/material_image_button" />

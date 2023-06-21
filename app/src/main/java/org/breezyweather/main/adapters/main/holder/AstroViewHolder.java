@@ -166,9 +166,9 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
             assert sunriseTime != null && sunsetTime != null;
             talkBackBuilder
                     .append(", ")
-                    .append(activity.getString(R.string.ephemeris_content_desc_sunrise).replace("$", sunriseTime))
+                    .append(activity.getString(R.string.ephemeris_sunrise_at).replace("$", sunriseTime))
                     .append(", ")
-                    .append(activity.getString(R.string.ephemeris_content_desc_sunset).replace("$", sunsetTime));
+                    .append(activity.getString(R.string.ephemeris_sunset_at).replace("$", sunsetTime));
         } else {
             mSunContainer.setVisibility(View.GONE);
         }
@@ -182,9 +182,9 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
             assert moonriseTime != null && moonsetTime != null;
             talkBackBuilder
                     .append(", ")
-                    .append(activity.getString(R.string.ephemeris_content_desc_moonrise).replace("$", moonriseTime))
+                    .append(activity.getString(R.string.ephemeris_moonrise_at).replace("$", moonriseTime))
                     .append(", ")
-                    .append(activity.getString(R.string.ephemeris_content_desc_moonset).replace("$", moonsetTime));
+                    .append(activity.getString(R.string.ephemeris_moonset_at).replace("$", moonsetTime));
         } else {
             mMoonContainer.setVisibility(View.GONE);
         }

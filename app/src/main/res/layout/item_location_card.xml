@@ -29,7 +29,7 @@
                 android:src="@drawable/ic_drag"
                 android:tint="?attr/colorPrimary"
                 android:layout_margin="0dp"
-                android:contentDescription="@string/content_desc_drag_flag"
+                android:contentDescription="@string/settings_items_drag_to_sort"
                 style="@style/material_image_button"
                 tools:ignore="ContentDescription" />
 

@@ -1,6 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="MissingTranslation">
 
+    <!-- Do NOT translate values that are identical in English and in your language -->
+    <!-- Do NOT use " and ', use appropriate typographic quotes for your language (in English: “ and ”, ‘ and ’) -->
+
     <!-- app. -->
     <string name="app_name">Sää</string>
 
@@ -9,7 +12,7 @@
     <string name="location_resident">Asuinpaikka</string>
     <string name="live">Nyt</string>
     <string name="short_today">Tänään</string>
-    <string name="refresh_at">Päivitetty</string>
+    <string name="notification_refreshed_at">Päivitetty</string>
     <string name="precipitation">Sademäärä</string>
     <string name="precipitation_probability">Sateen todennäköisyys</string>
     <string name="precipitation_duration">Sateen kesto</string>
@@ -24,7 +27,6 @@
     <string name="notification_channel_forecast">Ennuste</string>
     <string name="daytime">Päivällä</string>
     <string name="nighttime">Yöllä</string>
-    <string name="published_at">Jukaistu</string>
     <string name="temperature_feels_like">Tuntuu kuin</string>
     <string name="settings_follow_system">Järjestelmän oletus</string>
     <string name="notification_channel_background_information">Taustatiedot</string>
@@ -36,9 +38,9 @@
     <string name="settings_icon_providers_get_more">Lisää…</string>
     <string name="settings_icon_providers_get_more_store">Lisää sovelluskaupasta</string>
     <string name="settings_icon_providers_get_more_github">Lisää GitHubista</string>
-    <string name="refresh">Päivitä</string>
-    <string name="restart">Uudelleenkäynnistä</string>
-    <string name="edit">Muokkaa</string>
+    <string name="action_refresh">Päivitä</string>
+    <string name="action_restart">Uudelleenkäynnistä</string>
+    <string name="action_edit">Muokkaa</string>
 
     <!-- The following set of strings should be as short as possible. -->
     <string name="of_clock">:00</string>
@@ -107,14 +109,14 @@
     <string name="details">Lisätietoja</string>
     <string name="ephemeris">Aurinko &amp; kuu</string>
 
-    <string name="next">SEURAAVA</string>
-    <string name="done">VALMIS</string>
-    <string name="cancel" tools:ignore="ButtonCase">PERUUTA</string>
-    <string name="on">Käytössä</string>
-    <string name="off">Ei käytössä</string>
-    <string name="go_to_set">ASETA</string>
-    <string name="help">OHJE</string>
-    <string name="learn_more">LUE LISÄÄ</string>
+    <string name="action_next">SEURAAVA</string>
+    <string name="action_done">VALMIS</string>
+    <string name="action_cancel" tools:ignore="ButtonCase">PERUUTA</string>
+    <string name="settings_enabled">Käytössä</string>
+    <string name="settings_disabled">Ei käytössä</string>
+    <string name="action_set">ASETA</string>
+    <string name="action_help">OHJE</string>
+    <string name="action_learn_more">LUE LISÄÄ</string>
 
     <string name="about_app">TIETOJA SOVELLUKSESTA</string>
     <string name="about_translators">Kääntäjät</string>
@@ -130,24 +132,21 @@
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
 
     <!-- feedback. -->
-    <string name="feedback_request_permission">Käyttöoikeudet</string>
     <string name="notification_channel_request_location">Sijainti</string>
-    <string name="feedback_request_location_in_background">Sijaintitiedot taustalla</string>
-    <string name="feedback_request_location_permission_success">Sijaintioikeuspyyntö onnistui</string>
-    <string name="feedback_request_location_permission_failed">Sijaintioikeuspyyntö epäonnistui</string>
+    <string name="notification_location_in_background">Sijaintitiedot taustalla</string>
 
-    <string name="feedback_location_permissions_title">Pääsy sijaintitietoihin</string>
-    <string name="feedback_location_permissions_statement">eometric Weatherin on kerättävä sijaintitietosi käytössä ollessaan tai taustalla, jotta se voi antaa nykyisen sijaintisi säätiedot. Tätä varten pyydämme joitakin käyttöoikeuksia. Sijaintitietojasi käytetään vain nykyisen sijaintisi säätietojen saamiseksi. Jos et halua, että saamme sijaintitietojasi, voit estää nämä pyynnöt ja määrittää sijaintisi manuaalisesti hallintasivulla.</string>
-    <string name="feedback_background_location_title">Pääsy sijaintitietoihin taustalla</string>
-    <string name="feedback_background_location_summary">Voidaksemme tarjota päteviä säätietoja sijaintisi muuttuessakin, salli pääsy sijaintitietoihin taustalla. Aseta sijainnin käyttöoikeudeksi \"Salli aina\".</string>
+    <string name="dialog_permissions_location_title">Pääsy sijaintitietoihin</string>
+    <string name="dialog_permissions_location_content">eometric Weatherin on kerättävä sijaintitietosi käytössä ollessaan tai taustalla, jotta se voi antaa nykyisen sijaintisi säätiedot. Tätä varten pyydämme joitakin käyttöoikeuksia. Sijaintitietojasi käytetään vain nykyisen sijaintisi säätietojen saamiseksi. Jos et halua, että saamme sijaintitietojasi, voit estää nämä pyynnöt ja määrittää sijaintisi manuaalisesti hallintasivulla.</string>
+    <string name="dialog_permissions_location_background_title">Pääsy sijaintitietoihin taustalla</string>
+    <string name="dialog_permissions_location_background_content">Voidaksemme tarjota päteviä säätietoja sijaintisi muuttuessakin, salli pääsy sijaintitietoihin taustalla. Aseta sijainnin käyttöoikeudeksi \"Salli aina\".</string>
 
-    <string name="feedback_location_failed">Sijainin haku epäonnistui</string>
-    <string name="feedback_get_weather_failed">Säätietojen haku epäonnistui</string>
-    <string name="feedback_location_help_title">Etkö saa oikeaa sijaintia?</string>
-    <string name="feedback_check_location_permission">Tarkista sijaintitietojen käyttöoikeudet</string>
-    <string name="feedback_enable_location_information">Ota sijaintitiedot käyttöön</string>
-    <string name="feedback_select_location_provider">Valitse sijainnin tarjoaja</string>
-    <string name="feedback_add_location_manually">Lisää sijainti manuaalisesti ja poista \'$\'</string>
+    <string name="location_message_failed_to_locate">Sijainin haku epäonnistui</string>
+    <string name="weather_message_data_refresh_failed">Säätietojen haku epäonnistui</string>
+    <string name="location_dialog_failed_to_locate_title">Etkö saa oikeaa sijaintia?</string>
+    <string name="location_dialog_failed_to_locate_action_check_permission">Tarkista sijaintitietojen käyttöoikeudet</string>
+    <string name="location_dialog_failed_to_locate_action_enable_information">Ota sijaintitiedot käyttöön</string>
+    <string name="location_dialog_failed_to_locate_action_select_provider">Valitse sijainnin tarjoaja</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Lisää sijainti manuaalisesti ja poista \'$\'</string>
     <string name="widget_label_view_style">Näytä tyyli</string>
     <string name="widget_label_show_widget_card">Taustaväri</string>
     <string name="widget_label_show_widget_card_alpha">Läpinäkyvyys</string>
@@ -204,87 +203,72 @@
     <string name="widget_live_wallpaper_weather_kind">Sää</string>
     <string name="widget_live_wallpaper_day_night_type">Aika</string>
 
-    <string name="feedback_click_toggle">Paina kaaviota vaihtaaksesi tietoja</string>
-    <string name="feedback_no_data">EI TIETOJA</string>
+    <string name="location_message_added">Sijainnin lisääminen onnistui</string>
+    <string name="location_message_deleted">Sijainnin poisto onnistui</string>
+    <string name="location_message_list_cannot_be_empty">Sijaintiluettelo ei voi olla tyhjä</string>
 
-    <string name="feedback_collect_failed">Tämä sijainti on jo olemassa</string>
-    <string name="feedback_collect_succeed">Sijainnin lisääminen onnistui</string>
-    <string name="feedback_delete_succeed">Sijainnin poisto onnistui</string>
-    <string name="feedback_location_list_cannot_be_null">Sijaintiluettelo ei voi olla tyhjä</string>
+    <string name="location_search_placeholder">Etsi sijainti…</string>
+    <string name="location_current_not_found_yet">Ei vielä sijaintia…</string>
 
-    <string name="feedback_search_location">Etsi sijainti…</string>
-    <string name="feedback_not_yet_location">Ei vielä sijaintia…</string>
-    <string name="feedback_search_nothing">Sijaintia ei löytynyt</string>
-    <string name="feedback_initializing">Initialisoidaan…</string>
+    <string name="settings_changes_apply_after_restart">Muutoksettulevat voimaan uudelleenkäynnistyksen jälkeen</string>
 
-    <string name="feedback_refresh_notification_after_back">Muutokset tulevat voimaan kun palaat aloitusnäytölle.</string>
-    <string name="feedback_refresh_notification_now">Päivitä nyt</string>
-    <string name="feedback_refresh_ui_after_refresh">Muutokset tulevat voimaan kun tiedot on päivitetty</string>
-    <string name="feedback_restart">Muutoksettulevat voimaan uudelleenkäynnistyksen jälkeen</string>
-
-    <string name="feedback_running_in_background">Suoritetaan taustalla jotta saat päivitykset</string>
-    <string name="feedback_updating_weather_data">Päivitetään säätietoja</string>
-    <string name="feedback_updated_in_background">Päivitetty taustalla</string>
+    <string name="notification_running_in_background">Suoritetaan taustalla jotta saat päivitykset</string>
+    <string name="notification_updating_weather_data">Päivitetään säätietoja</string>
+    <string name="message_updated_in_background">Päivitetty taustalla</string>
 
     <!-- there should be a "\" before single or double quotes. -->
     <!-- Correct : ... after turning off \'Background free\', ... After turning off \"Free background\" ... -->
     <!-- Wrong   : ... after turning off 'Background free', ... After turning off "Free background" ... -->
-    <string name="feedback_interpret_background_notification_content">Joissain laitteissa saattaa ilmetä ilmoitus, jota ei voi poistaa ilmoituspalkista, kun olet kytkenyt \'Background free\', pois päältä.</string>
-    <string name="feedback_interpret_notification_group_title">Estä ilmoitusryhmä</string>
-    <string name="feedback_interpret_notification_group_content">Kun olet kytkenyt \"Free background\" pois päältä, ilmoituspalkkiin ilmestyy ilmoitus joka osoittaa, että taustapalvelu on käynnissä. Voit poistaa Taustatietokanavan käytöstä sovelluksen tietosivulla estääksesi nämä ilmoitukset.</string>
+    <string name="dialog_permissions_block_notification_channel_title">Estä ilmoitusryhmä</string>
+    <string name="dialog_permissions_block_notification_channel_content">Kun olet kytkenyt \"Free background\" pois päältä, ilmoituspalkkiin ilmestyy ilmoitus joka osoittaa, että taustapalvelu on käynnissä. Voit poistaa Taustatietokanavan käytöstä sovelluksen tietosivulla estääksesi nämä ilmoitukset.</string>
 
-    <string name="feedback_ignore_battery_optimizations_title">Jätä akun optimointi huomiotta</string>
-    <string name="feedback_ignore_battery_optimizations_content">Varmistaaksesi, että taustapalvelut voivat jatkaa toimintaansa, jätä Breezy Weatherin akkuoptimointi huomiotta.</string>
+    <string name="dialog_permissions_ignore_battery_optimizations_title">Jätä akun optimointi huomiotta</string>
+    <string name="dialog_permissions_ignore_battery_optimizations_content">Varmistaaksesi, että taustapalvelut voivat jatkaa toimintaansa, jätä Breezy Weatherin akkuoptimointi huomiotta.</string>
     
-    <string name="feedback_cannot_start_live_wallpaper_activity">Livetaustakuvan esikatselua ei voi käynnistää</string>
+    <string name="widget_live_wallpaper_cannot_start_activity">Livetaustakuvan esikatselua ei voi käynnistää</string>
 
-    <string name="feedback_today_precipitation_alert">Tänään saattaa sataa.</string>
-    <string name="feedback_short_term_precipitation_alert">Seuraavien tuntien  aikana saattaa sataa.</string>
+    <string name="notification_precipitation_today">Tänään saattaa sataa.</string>
+    <string name="notification_precipitation_short_term">Seuraavien tuntien  aikana saattaa sataa.</string>
 
-    <string name="feedback_resident_location">Aseta kotikaupungiksi</string>
-    <string name="feedback_resident_location_description">Breezy Weather näyttää ja piilottaa automaattisesti asuinkaupungit nykyisen sijaintisi perusteella.\nVoit esimerkiksi asettaa kotikaupunkisi asuinkaupungiksi. Voit tarkistaa kotikaupunkisi sään matkalla ollessasi. Kun pääset kotiin, kotikaupunkisi sää piilotetaan ja korvataan nykyisen sijaintisi säällä.</string>
+    <string name="location_resident_message">Aseta kotikaupungiksi</string>
+    <string name="location_resident_dialog">Breezy Weather näyttää ja piilottaa automaattisesti asuinkaupungit nykyisen sijaintisi perusteella.\nVoit esimerkiksi asettaa kotikaupunkisi asuinkaupungiksi. Voit tarkistaa kotikaupunkisi sään matkalla ollessasi. Kun pääset kotiin, kotikaupunkisi sää piilotetaan ja korvataan nykyisen sijaintisi säällä.</string>
 
-    <string name="feedback_click_to_get_more">Klikkaa saadaksesi lisää…</string>
-    <string name="feedback_click_again_to_exit">Klikkaa uudelleen poistuaksesi</string>
+    <string name="allergen_tap_to_see_more">Klikkaa saadaksesi lisää…</string>
+    <string name="message_tap_again_to_exit">Klikkaa uudelleen poistuaksesi</string>
 
     <!-- content description -->
-    <string name="content_desc_back">takaisin</string>
-    <string name="content_desc_check_details">Tarkista tiedot</string>
-    <string name="content_desc_weather_alert_button">$ sää hälytykset</string> <!-- $ = alert count. -->
-    <string name="air_quality_content_desc_pm25">Pienhiukkaset (PM2,5)</string>
-    <string name="air_quality_content_desc_pm10">Hengitettävät hiukkaset (PM10)</string>
-    <string name="air_quality_content_desc_so2">Rikkidioksidi (S02)</string>
-    <string name="air_quality_content_desc_no2">Typpidioksidi (NO2)</string>
-    <string name="air_quality_content_desc_o3">Otsoni</string>
-    <string name="air_quality_content_desc_co">Hiilimonoksidi (C0)</string>
-    <string name="ephemeris_content_desc_sunrise">Aurinko nousee $</string> <!-- $ = time. -->
-    <string name="ephemeris_content_desc_sunset">Aurinko laskee $</string> <!-- $ = time. -->
-    <string name="ephemeris_content_desc_moonrise">Kuu nousee at $</string> <!-- $ = time. -->
-    <string name="ephemeris_content_desc_moonset">Kuu laskee $</string> <!-- $ = time. -->
-    <string name="content_desc_no_precipitation">Ei sadetta</string>
-    <string name="content_desc_minutely_precipitation">Sadetta $1 ja $2 välillä</string> <!-- $1 = start time, $2 = end time. -->
-    <string name="content_desc_add_current_location">Lisää nykyinen sijainti</string>
-    <string name="content_desc_drag_flag">Lajittele luettelon kohteet napauttamalla ja vetämällä niitä</string>
-    <string name="content_desc_delete_flag">Poista tämä kohde</string>
-    <string name="content_desc_swipe_left_to_delete">Voit poistaa tämän kohteen pyyhkäisemällä vasemmalle.</string>
-    <string name="content_desc_swipe_right_to_delete">Voit poistaa tämän kohteen pyyhkäisemällä oikealle.</string>
-    <string name="content_desc_search_filter_on">Näytä vain oletussäälähteen sijainnit</string>
-    <string name="content_desc_search_filter_off">Näytä kaikkien säälähteiden sijainnit</string>
-    <string name="content_desc_app_store">@string/action_appStore</string>
-    <string name="content_desc_weather_icon">Sää kuvake</string>
-    <string name="content_desc_weather_icon_light">Vaalea kuvake</string>
-    <string name="content_desc_weather_icon_grey">Harmaa kuvake</string>
-    <string name="content_desc_weather_icon_dark">Tumma kuvake</string>
-    <string name="content_desc_filter_weather_sources">Suodata säälähteet</string>
+    <string name="action_back">takaisin</string>
+    <string name="settings_icon_providers_check_details">Tarkista tiedot</string>
+    <string name="alerts_count">$ sää hälytykset</string> <!-- $ = alert count. -->
+    <string name="air_quality_pm25_voice">Pienhiukkaset (PM2,5)</string>
+    <string name="air_quality_pm10_voice">Hengitettävät hiukkaset (PM10)</string>
+    <string name="air_quality_so2_voice">Rikkidioksidi (S02)</string>
+    <string name="air_quality_no2_voice">Typpidioksidi (NO2)</string>
+    <string name="air_quality_o3_voice">Otsoni</string>
+    <string name="air_quality_co_voice">Hiilimonoksidi (C0)</string>
+    <string name="ephemeris_sunrise_at">Aurinko nousee $</string> <!-- $ = time. -->
+    <string name="ephemeris_sunset_at">Aurinko laskee $</string> <!-- $ = time. -->
+    <string name="ephemeris_moonrise_at">Kuu nousee at $</string> <!-- $ = time. -->
+    <string name="ephemeris_moonset_at">Kuu laskee $</string> <!-- $ = time. -->
+    <string name="precipitation_none">Ei sadetta</string>
+    <string name="precipitation_between_time">Sadetta $1 ja $2 välillä</string> <!-- $1 = start time, $2 = end time. -->
+    <string name="action_add_current_location">Lisää nykyinen sijainti</string>
+    <string name="settings_items_drag_to_sort">Lajittele luettelon kohteet napauttamalla ja vetämällä niitä</string>
+    <string name="settings_item_delete">Poista tämä kohde</string>
+    <string name="location_swipe_to_delete">Voit poistaa tämän kohteen pyyhkäisemällä vasemmalle.</string>
+    <string name="settigns_icon_providers_app_store">@string/action_app_store</string>
+    <string name="settings_icon_providers_weather_adaptive_icon">Sää kuvake</string>
+    <string name="settings_icon_providers_weather_icon_light">Vaalea kuvake</string>
+    <string name="settings_icon_providers_weather_icon_grey">Harmaa kuvake</string>
+    <string name="settings_icon_providers_weather_icon_dark">Tumma kuvake</string>
 
     <!-- action -->
     <string name="alerts">Hälytys</string>
-    <string name="action_manage">Hallitse</string>
     <string name="action_search">Etsi</string>
     <string name="action_settings">Asetukset</string>
     <string name="action_preview">Esikatsele</string>
     <string name="action_about">Tietoja</string>
-    <string name="action_appStore">App Store</string>
+    <string name="action_app_store">App Store</string>
 
     <!-- widget -->
     <string name="widget_day">Päivittäinen</string>
@@ -315,7 +299,6 @@
     <string name="settings_title_weather_source">Säälähde</string>
     <string name="settings_title_location_service">Sijaintipalvelu</string>
     <string name="settings_title_dark_mode">Tumma tila</string>
-    <string name="settings_title_ui_style">Käyttöliittymän tyyli</string>
     <string name="settings_title_icon_provider">Kuvakepaketti</string>
     <string name="settings_title_appearance">Ulkoasu</string>
     <string name="settings_summary_appearance">Käyttöliittymän tyyli, korttien järjestys, kieli…</string>
@@ -347,7 +330,7 @@
     <string name="settings_category_widget">Widget</string>
     <string name="settings_title_week_icon_mode">Viikoittaiset kuvakkeet</string>
     <string name="settings_title_minimal_icon">Minimalistiset kuvakkeet</string>
-    <string name="settings_title_click_widget_to_refresh">Päivitä widget napsautettaessa</string>
+    <string name="settings_title_tap_widget_to_refresh">Päivitä widget napsautettaessa</string>
     <string name="settings_title_widget_config">Widgetin asetukset</string>
     <string name="settings_category_notification">Ilmoitukset</string>
     <string name="settings_title_notification">Lähetä Ilmoituksia</string>

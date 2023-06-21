@@ -26,7 +26,7 @@
 
         <TextView
             android:id="@+id/dialog_api_unauthorized_help_keyTitle"
-            android:text="@string/feedback_api_unauthorized_help"
+            android:text="@string/weather_api_unauthorized_dialog"
             android:layout_marginTop="@dimen/normal_margin"
             android:layout_marginBottom="@dimen/normal_margin"
             android:layout_marginEnd="@dimen/normal_margin"

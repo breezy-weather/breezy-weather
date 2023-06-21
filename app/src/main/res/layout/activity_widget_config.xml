@@ -338,7 +338,7 @@
                         android:id="@+id/activity_widget_config_doneButton"
                         android:layout_margin="@dimen/normal_margin"
                         android:layout_alignParentEnd="true"
-                        android:text="@string/done"
+                        android:text="@string/action_done"
                         android:textColor="?attr/colorPrimary"
                         style="@style/material_button"
                         tools:ignore="RtlHardcoded" />

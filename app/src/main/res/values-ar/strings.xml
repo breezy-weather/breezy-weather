@@ -1,5 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Do NOT translate values that are identical in English and in your language -->
+    <!-- Do NOT use " and ', use appropriate typographic quotes for your language (in English: “ and ”, ‘ and ’) -->
+
     <!-- app. -->
     <string name="app_name">الطقس</string>
 
@@ -8,7 +11,7 @@
     <string name="location_resident">موقع الإقامة</string>
     <string name="live">الآن</string>
     <string name="short_today">اليوم</string>
-    <string name="refresh_at">تم التحديث في</string>
+    <string name="notification_refreshed_at">تم التحديث في</string>
     <string name="precipitation">الهطول</string>
     <string name="precipitation_probability">إحتمالية الهطول</string>
     <string name="precipitation_duration">مدة الهطول</string>
@@ -23,7 +26,6 @@
     <string name="notification_channel_forecast">توقعات</string>
     <string name="daytime">النهار</string>
     <string name="nighttime">الليل</string>
-    <string name="published_at">نُشِر في</string>
     <string name="temperature_feels_like">تبدو وكأنها</string>
     <string name="settings_follow_system">حسب النظام</string>
     <string name="notification_channel_background_information">بيانات الخلفية</string>
@@ -35,9 +37,9 @@
     <string name="settings_icon_providers_get_more">تعرف على المزيد</string>
     <string name="settings_icon_providers_get_more_store">تعرف على المزيد في متجر التطبيقات</string>
     <string name="settings_icon_providers_get_more_github">تعرف على المزيد من خلال GitHub</string>
-    <string name="refresh">تحديث</string>
-    <string name="restart">إعادة التشغيل</string>
-    <string name="edit">تحرير</string>
+    <string name="action_refresh">تحديث</string>
+    <string name="action_restart">إعادة التشغيل</string>
+    <string name="action_edit">تحرير</string>
 
     <string name="of_clock">:٠٠</string>
     <string name="short_yesterday">أمس</string>
@@ -105,14 +107,14 @@
     <string name="details">المزيد</string>
     <string name="ephemeris">الشمس والقمر</string>
 
-    <string name="next">التالي</string>
-    <string name="done">تم</string>
-    <string name="cancel" tools:ignore="ButtonCase">إلغاء</string>
-    <string name="on">ممكّن</string>
-    <string name="off">مُعطل</string>
-    <string name="go_to_set">ضبط</string>
-    <string name="help">مساعدة</string>
-    <string name="learn_more">تعرف على المزيد</string>
+    <string name="action_next">التالي</string>
+    <string name="action_done">تم</string>
+    <string name="action_cancel" tools:ignore="ButtonCase">إلغاء</string>
+    <string name="settings_enabled">ممكّن</string>
+    <string name="settings_disabled">مُعطل</string>
+    <string name="action_set">ضبط</string>
+    <string name="action_help">مساعدة</string>
+    <string name="action_learn_more">تعرف على المزيد</string>
 
     <string name="about_app">حول التطبيق</string>
     <string name="about_translators">المترجمون</string>
@@ -124,19 +126,16 @@
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
 
     <!-- feedback. -->
-    <string name="feedback_request_permission">الأذونات</string>
     <string name="notification_channel_request_location">الموقع</string>
-    <string name="feedback_request_location_in_background">تحديد الموقع في الخلفية</string>
-    <string name="feedback_request_location_permission_success">تم الحصول على أذونات الموقع بنجاح</string>
-    <string name="feedback_request_location_permission_failed">فشل في الحصول على أذونات الموقع</string>
+    <string name="notification_location_in_background">تحديد الموقع في الخلفية</string>
 
-    <string name="feedback_location_failed">فشل في العثور على الموقع</string>
-    <string name="feedback_get_weather_failed">فشل في الحصول على بيانات الطقس</string>
-    <string name="feedback_location_help_title">غير قادر على تحديد الموقع بشكل صحيح؟</string>
-    <string name="feedback_check_location_permission">قم بفحص أذونات الموقع</string>
-    <string name="feedback_enable_location_information">تمكين نظام تحديد الموقع العالمي (GPS)</string>
-    <string name="feedback_select_location_provider">إختيار مزود خدمة الموقع</string>
-    <string name="feedback_add_location_manually">إضافة وإزالة المواقع يدوياً \'$\'</string>
+    <string name="location_message_failed_to_locate">فشل في العثور على الموقع</string>
+    <string name="weather_message_data_refresh_failed">فشل في الحصول على بيانات الطقس</string>
+    <string name="location_dialog_failed_to_locate_title">غير قادر على تحديد الموقع بشكل صحيح؟</string>
+    <string name="location_dialog_failed_to_locate_action_check_permission">قم بفحص أذونات الموقع</string>
+    <string name="location_dialog_failed_to_locate_action_enable_information">تمكين نظام تحديد الموقع العالمي (GPS)</string>
+    <string name="location_dialog_failed_to_locate_action_select_provider">إختيار مزود خدمة الموقع</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">إضافة وإزالة المواقع يدوياً \'$\'</string>
 
     <string name="widget_label_view_style">أسلوب العرض</string>
     <string name="widget_label_show_widget_card">لون الخلفية</string>
@@ -150,53 +149,42 @@
     <string name="widget_live_wallpaper_weather_kind">الطقس</string>
     <string name="widget_live_wallpaper_day_night_type">الوقت</string>
 
-    <string name="feedback_click_toggle">أنقر على الرسم البياني لتبديل البيانات</string>
-    <string name="feedback_no_data">لا يوجد بيانات</string>
+    <string name="location_message_added">تمت إضافة الموقع بنجاح</string>
+    <string name="location_message_deleted">تمت إزالة الموقع بنجاح</string>
+    <string name="location_message_list_cannot_be_empty">لا يمكن لقائمة المواقع أن تكون فارغة</string>
 
-    <string name="feedback_collect_failed">هذا الموقع موجود بالفعل</string>
-    <string name="feedback_collect_succeed">تمت إضافة الموقع بنجاح</string>
-    <string name="feedback_delete_succeed">تمت إزالة الموقع بنجاح</string>
-    <string name="feedback_location_list_cannot_be_null">لا يمكن لقائمة المواقع أن تكون فارغة</string>
+    <string name="location_search_placeholder">البحث عن موقع…</string>
+    <string name="location_current_not_found_yet">لم يتم تحديد الموقع بعد…</string>
 
-    <string name="feedback_search_location">البحث عن موقع…</string>
-    <string name="feedback_not_yet_location">لم يتم تحديد الموقع بعد…</string>
-    <string name="feedback_search_nothing">لم يتم العثور على أي مواقع</string>
-    <string name="feedback_initializing">جار التهيئة…</string>
+    <string name="settings_changes_apply_after_restart">سيتم تطبيق التغييرات عند إعادة تشغيل الطبيق</string>
 
-    <string name="feedback_refresh_notification_after_back">سيتم تطبيق التغييرات عند العودة إلى الصفحة الرئيسية</string>
-    <string name="feedback_refresh_notification_now">تحديث الآن</string>
-    <string name="feedback_refresh_ui_after_refresh">سيتم تطبيق التغييرات عند تحديث البيانات</string>
-    <string name="feedback_restart">سيتم تطبيق التغييرات عند إعادة تشغيل الطبيق</string>
+    <string name="notification_running_in_background">التشغيل في الخلفية لإبقاء التطبيق محدثاً</string>
+    <string name="notification_updating_weather_data">جارٍ تحديث بيانات الطقس</string>
+    <string name="message_updated_in_background">تم التحديث في الخلفية</string>
 
-    <string name="feedback_running_in_background">التشغيل في الخلفية لإبقاء التطبيق محدثاً</string>
-    <string name="feedback_updating_weather_data">جارٍ تحديث بيانات الطقس</string>
-    <string name="feedback_updated_in_background">تم التحديث في الخلفية</string>
+    <string name="dialog_permissions_block_notification_channel_title">حظر الإشعارات</string>
+    <string name="dialog_permissions_block_notification_channel_content">بعد إيقاف تشغيل \"عدم التشغيل في الخلفية\"، سيظهر لك إشعار في شريط الإشعارات يعلمك بأن التطبيق يعمل في الخلفية. يمكنك إخفاء هذا الإشعار عن طريق الذهاب إلى إعدادات الإشعارات في جهازك، وحظر هذا الإشعار.</string>
 
-    <string name="feedback_interpret_background_notification_content">في بعض الأجهزة، بعد إيقاف \'عدم التشغيل في الخلفية\'، قد يظهر إشعار لا يمكن مسحه في شريط الإشعارات.</string>
-    <string name="feedback_interpret_notification_group_title">حظر الإشعارات</string>
-    <string name="feedback_interpret_notification_group_content">بعد إيقاف تشغيل \"عدم التشغيل في الخلفية\"، سيظهر لك إشعار في شريط الإشعارات يعلمك بأن التطبيق يعمل في الخلفية. يمكنك إخفاء هذا الإشعار عن طريق الذهاب إلى إعدادات الإشعارات في جهازك، وحظر هذا الإشعار.</string>
+    <string name="dialog_permissions_ignore_battery_optimizations_title">تجاهل تحسين البطارية</string>
+    <string name="dialog_permissions_ignore_battery_optimizations_content">من أجل ضمان استمرار عمل خدمات الطقس في الخلفية، الرجاء تجاهل تحسين البطارية لهذا التطبيق.</string>
 
-    <string name="feedback_ignore_battery_optimizations_title">تجاهل تحسين البطارية</string>
-    <string name="feedback_ignore_battery_optimizations_content">من أجل ضمان استمرار عمل خدمات الطقس في الخلفية، الرجاء تجاهل تحسين البطارية لهذا التطبيق.</string>
+    <string name="widget_live_wallpaper_cannot_start_activity">غير قادر على معاينة الخلفية الحية.</string>
 
-    <string name="feedback_cannot_start_live_wallpaper_activity">غير قادر على معاينة الخلفية الحية.</string>
+    <string name="notification_precipitation_today">هناك إحتمالية لهطول الأمطار اليوم</string>
+    <string name="notification_precipitation_short_term">هناك إمكانية لهطول الأمطار في الساعات القليلة القادمة.</string>
 
-    <string name="feedback_today_precipitation_alert">هناك إحتمالية لهطول الأمطار اليوم</string>
-    <string name="feedback_short_term_precipitation_alert">هناك إمكانية لهطول الأمطار في الساعات القليلة القادمة.</string>
+    <string name="location_resident_message">تم التحديد كمدينة الإقامة</string>
+    <string name="location_resident_dialog">سيقوم التطبيق تلقائياً بعرض وإخفاء أماكن الإقامة بناءً على موقعك الحالي. \nعلى سبيل المثال، يمكنك إختيار مسقط رأسك كمدينة الإقامة. يمكنك تفقد أحوال الطقس في مسقط رأسك بينما أنت مسافر. عند عودتك إلى منزلك، سيتم إخفاء الطقس في مسقط رأسك وإستبداله بطقس موقعك الحالي.</string>
 
-    <string name="feedback_resident_location">تم التحديد كمدينة الإقامة</string>
-    <string name="feedback_resident_location_description">سيقوم التطبيق تلقائياً بعرض وإخفاء أماكن الإقامة بناءً على موقعك الحالي. \nعلى سبيل المثال، يمكنك إختيار مسقط رأسك كمدينة الإقامة. يمكنك تفقد أحوال الطقس في مسقط رأسك بينما أنت مسافر. عند عودتك إلى منزلك، سيتم إخفاء الطقس في مسقط رأسك وإستبداله بطقس موقعك الحالي.</string>
-
-    <string name="feedback_click_to_get_more">أنقر للمزيد…</string>
+    <string name="allergen_tap_to_see_more">أنقر للمزيد…</string>
 
     <!-- action -->
     <string name="alerts">منبه</string>
-    <string name="action_manage">إدارة</string>
     <string name="action_search">بحث</string>
     <string name="action_settings">الإعدادات</string>
     <string name="action_preview">عرض</string>
     <string name="action_about">حول</string>
-    <string name="action_appStore">متجر التطبيقات</string>
+    <string name="action_app_store">متجر التطبيقات</string>
 
     <!-- widget -->
     <string name="widget_day">يومي</string>
@@ -224,7 +212,6 @@
     <string name="settings_title_weather_source">مزود خدمة الطقس</string>
     <string name="settings_title_location_service">مزود خدمة الموقع</string>
     <string name="settings_title_dark_mode">الوضع الداكن</string>
-    <string name="settings_title_ui_style">نمط الواجهة الرئيسية</string>
     <string name="settings_title_icon_provider">شكل الأيقونات</string>
     <string name="settings_title_appearance">المظهر</string>
     <string name="settings_summary_appearance">نمط الواجهة الرئيسية، ترتيب البطاقات، اللغة…</string>
@@ -253,7 +240,7 @@
     <string name="settings_category_widget">التطبيقات المصغرة</string>
     <string name="settings_title_week_icon_mode">نمط رموز التطبيق المصغر (الأسبوعي)</string>
     <string name="settings_title_minimal_icon">نمط رموز أضيق الحدود</string>
-    <string name="settings_title_click_widget_to_refresh">تحديث التطبيق المصغر عند النقر عليه</string>
+    <string name="settings_title_tap_widget_to_refresh">تحديث التطبيق المصغر عند النقر عليه</string>
     <string name="settings_category_notification">الإشعارات</string>
     <string name="settings_title_notification">إرسال الإشعارات</string>
     <string name="settings_title_notification_style">نمط الإشعارات</string>

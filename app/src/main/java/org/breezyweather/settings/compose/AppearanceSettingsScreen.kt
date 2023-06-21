@@ -108,8 +108,8 @@ fun AppearanceSettingsScreen(
         switchPreferenceItem(R.string.settings_title_trend_horizontal_line_switch) { id ->
             SwitchPreferenceView(
                 titleId = id,
-                summaryOnId = R.string.on,
-                summaryOffId = R.string.off,
+                summaryOnId = R.string.settings_enabled,
+                summaryOffId = R.string.settings_disabled,
                 checked = SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled,
                 onValueChanged = {
                     SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled = it
@@ -150,8 +150,8 @@ fun AppearanceSettingsScreen(
         switchPreferenceItem(R.string.settings_title_gravity_sensor_switch) { id ->
             SwitchPreferenceView(
                 titleId = id,
-                summaryOnId = R.string.on,
-                summaryOffId = R.string.off,
+                summaryOnId = R.string.settings_enabled,
+                summaryOffId = R.string.settings_disabled,
                 checked = SettingsManager.getInstance(context).isGravitySensorEnabled,
                 onValueChanged = {
                     SettingsManager.getInstance(context).isGravitySensorEnabled = it
@@ -161,8 +161,8 @@ fun AppearanceSettingsScreen(
         switchPreferenceItem(R.string.settings_title_list_animation_switch) { id ->
             SwitchPreferenceView(
                 titleId = id,
-                summaryOnId = R.string.on,
-                summaryOffId = R.string.off,
+                summaryOnId = R.string.settings_enabled,
+                summaryOffId = R.string.settings_disabled,
                 checked = SettingsManager.getInstance(context).isListAnimationEnabled,
                 onValueChanged = {
                     SettingsManager.getInstance(context).isListAnimationEnabled = it
@@ -172,8 +172,8 @@ fun AppearanceSettingsScreen(
         switchPreferenceItem(R.string.settings_title_item_animation_switch) { id ->
             SwitchPreferenceView(
                 titleId = id,
-                summaryOnId = R.string.on,
-                summaryOffId = R.string.off,
+                summaryOnId = R.string.settings_enabled,
+                summaryOffId = R.string.settings_disabled,
                 checked = SettingsManager.getInstance(context).isItemAnimationEnabled,
                 onValueChanged = {
                     SettingsManager.getInstance(context).isItemAnimationEnabled = it
@@ -190,8 +190,8 @@ fun AppearanceSettingsScreen(
                     SettingsManager.getInstance(context).language = Language.getInstance(it)
 
                     SnackbarHelper.showSnackbar(
-                        context.getString(R.string.feedback_restart),
-                        context.getString(R.string.restart)
+                        context.getString(R.string.settings_changes_apply_after_restart),
+                        context.getString(R.string.action_restart)
                     ) {
                         instance.recreateAllActivities()
                     }

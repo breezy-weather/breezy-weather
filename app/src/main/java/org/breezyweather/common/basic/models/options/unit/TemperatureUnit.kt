@@ -51,7 +51,6 @@ enum class TemperatureUnit(
     override val valueArrayId = R.array.temperature_unit_values
     override val nameArrayId = R.array.temperature_units
     private val shortArrayId = R.array.temperature_units_short
-    private val longArrayId = R.array.temperature_units_long
     override val voiceArrayId = R.array.temperature_units
 
     override fun getName(context: Context) = Utils.getName(context, this)
@@ -62,15 +61,6 @@ enum class TemperatureUnit(
         res = context.resources,
         value = id,
         nameArrayId = shortArrayId,
-        valueArrayId = valueArrayId
-    )!!
-
-    fun getLongName(
-        context: Context
-    ) = Utils.getNameByValue(
-        res = context.resources,
-        value = id,
-        nameArrayId = longArrayId,
         valueArrayId = valueArrayId
     )!!
 
@@ -115,29 +105,6 @@ enum class TemperatureUnit(
     } else {
         (Utils.formatInt(getValueWithoutUnit(valueInDefaultUnit))
                 + getShortName(context))
-    }
-
-    fun getLongValueText(
-        context: Context,
-        valueInDefaultUnit: Int
-    ) = getLongValueText(context, valueInDefaultUnit, DisplayUtils.isRtl(context))
-
-    fun getLongValueText(
-        context: Context,
-        valueInDefaultUnit: Int,
-        rtl: Boolean
-    ) = if (rtl) {
-        (BidiFormatter
-            .getInstance()
-            .unicodeWrap(
-                Utils.formatInt(getValueWithoutUnit(valueInDefaultUnit))
-            )
-                + "\u202f"
-                + getLongName(context))
-    } else {
-        (Utils.formatInt(getValueWithoutUnit(valueInDefaultUnit))
-                + "\u202f"
-                + getLongName(context))
     }
 
     override fun getValueVoice(

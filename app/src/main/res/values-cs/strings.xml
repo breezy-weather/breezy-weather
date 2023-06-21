@@ -1,6 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="MissingTranslation">
 
+    <!-- Do NOT translate values that are identical in English and in your language -->
+    <!-- Do NOT use " and ', use appropriate typographic quotes for your language (in English: “ and ”, ‘ and ’) -->
+
     <!-- app. -->
     <string name="app_name">Počasí</string>
 
@@ -9,7 +12,7 @@
     <string name="location_resident">Bydliště</string>
     <string name="live">Živě</string>
     <string name="short_today">Dnes</string>
-    <string name="refresh_at">Aktualizováno</string>
+    <string name="notification_refreshed_at">Aktualizováno</string>
     <string name="precipitation">Srážky</string>
     <string name="precipitation_probability">Pravděpodobnost srážek</string>
     <string name="precipitation_duration">Trvání srážek</string>
@@ -24,7 +27,6 @@
     <string name="notification_channel_forecast">Předpověď</string>
     <string name="daytime">Den</string>
     <string name="nighttime">Noc</string>
-    <string name="published_at">Publikovat</string>
     <string name="temperature_feels_like">Pocitová teplota</string>
     <string name="settings_follow_system">Podle systému</string>
     <string name="notification_channel_background_information">Informace na pozadí</string>
@@ -36,9 +38,9 @@
     <string name="settings_icon_providers_get_more">Získat další</string>
     <string name="settings_icon_providers_get_more_store">Získat další z obchodu s aplikacemi</string>
     <string name="settings_icon_providers_get_more_github">Získat další z GitHubu</string>
-    <string name="refresh">Obnovit</string>
-    <string name="restart">Restartovat</string>
-    <string name="edit">Upravit</string>
+    <string name="action_refresh">Obnovit</string>
+    <string name="action_restart">Restartovat</string>
+    <string name="action_edit">Upravit</string>
 
     <!-- The following set of strings should be as short as possible. -->
     <string name="of_clock">:00</string>
@@ -107,14 +109,14 @@
     <string name="details">Podrobnosti</string>
     <string name="ephemeris">Slunce a měsíc</string>
 
-    <string name="next">DALŠÍ</string>
-    <string name="done">HOTOVO</string>
-    <string name="cancel" tools:ignore="ButtonCase">ZRUŠIT</string>
-    <string name="on">Povoleno</string>
-    <string name="off">Zakázáno</string>
-    <string name="go_to_set">NASTAVIT</string>
-    <string name="help">NÁPOVĚDA</string>
-    <string name="learn_more">ZJISTIT VÍCE</string>
+    <string name="action_next">DALŠÍ</string>
+    <string name="action_done">HOTOVO</string>
+    <string name="action_cancel" tools:ignore="ButtonCase">ZRUŠIT</string>
+    <string name="settings_enabled">Povoleno</string>
+    <string name="settings_disabled">Zakázáno</string>
+    <string name="action_set">NASTAVIT</string>
+    <string name="action_help">NÁPOVĚDA</string>
+    <string name="action_learn_more">ZJISTIT VÍCE</string>
 
     <string name="about_app">O aplikaci</string>
     <string name="about_contributors">Přispěvatelé</string>
@@ -131,24 +133,21 @@
     <string name="date_format_widget_oreo_style">EEEE d MMM│</string>
 
     <!-- feedback. -->
-    <string name="feedback_request_permission">Oprávnění</string>
     <string name="notification_channel_request_location">Poloha</string>
-    <string name="feedback_request_location_in_background">Zjišťování polohy na pozadí</string>
-    <string name="feedback_request_location_permission_success">Pokus o získání povolení k poloze uspěl</string>
-    <string name="feedback_request_location_permission_failed">Pokus o získání povolení k poloze selhal</string>
+    <string name="notification_location_in_background">Zjišťování polohy na pozadí</string>
 
-    <string name="feedback_location_permissions_title">Přístup k informacím o poloze</string>
-    <string name="feedback_location_permissions_statement">Aplikace Breezy Weather potřebuje sbírat na popředí nebo v pozadí informace o vaší poloze, aby mohla poskytnout údaje o počasí ve vaší současné lokaci. Z tohoto důvodu zažádáme o nějaká oprávnění. Informace o vaší poloze budou použity pouze k získání údajů o počasí ve vaší současné lokaci. Pokud nechcete, abychom sbírali informace o poloze, můžete tyto žádosti zamítnout a ručně nastavit vaší polohu na stránce nastavení.</string>
-    <string name="feedback_background_location_title">Přístup k poloze na pozadí</string>
-    <string name="feedback_background_location_summary">Abychom umožnili aplikaci přístup k informaci o poloze na pozadí a mohli díky tomu zjišťovat změny v poloze a poskytovat vám aktuální údaje o počasí, je potřeba abyste nastavili přístup k poloze na \"Povolit vždy\".</string>
+    <string name="dialog_permissions_location_title">Přístup k informacím o poloze</string>
+    <string name="dialog_permissions_location_content">Aplikace Breezy Weather potřebuje sbírat na popředí nebo v pozadí informace o vaší poloze, aby mohla poskytnout údaje o počasí ve vaší současné lokaci. Z tohoto důvodu zažádáme o nějaká oprávnění. Informace o vaší poloze budou použity pouze k získání údajů o počasí ve vaší současné lokaci. Pokud nechcete, abychom sbírali informace o poloze, můžete tyto žádosti zamítnout a ručně nastavit vaší polohu na stránce nastavení.</string>
+    <string name="dialog_permissions_location_background_title">Přístup k poloze na pozadí</string>
+    <string name="dialog_permissions_location_background_content">Abychom umožnili aplikaci přístup k informaci o poloze na pozadí a mohli díky tomu zjišťovat změny v poloze a poskytovat vám aktuální údaje o počasí, je potřeba abyste nastavili přístup k poloze na \"Povolit vždy\".</string>
 
-    <string name="feedback_location_failed">Poloha selhala</string>
-    <string name="feedback_get_weather_failed">Pokus o získání údajů o počasí selhal</string>
-    <string name="feedback_location_help_title">Ukazuje aplikace nesprávnou polohu?</string>
-    <string name="feedback_check_location_permission">Zkontrolujte oprávnění polohy</string>
-    <string name="feedback_enable_location_information">Povolte přístup k informacím o poloze</string>
-    <string name="feedback_select_location_provider">Vyberte poskytovatele polohy</string>
-    <string name="feedback_add_location_manually">Ručně přidat polohu a odstranit \'$\'</string>
+    <string name="location_message_failed_to_locate">Poloha selhala</string>
+    <string name="weather_message_data_refresh_failed">Pokus o získání údajů o počasí selhal</string>
+    <string name="location_dialog_failed_to_locate_title">Ukazuje aplikace nesprávnou polohu?</string>
+    <string name="location_dialog_failed_to_locate_action_check_permission">Zkontrolujte oprávnění polohy</string>
+    <string name="location_dialog_failed_to_locate_action_enable_information">Povolte přístup k informacím o poloze</string>
+    <string name="location_dialog_failed_to_locate_action_select_provider">Vyberte poskytovatele polohy</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Ručně přidat polohu a odstranit \'$\'</string>
     <string name="widget_label_view_style">Zobrazit styl</string>
     <string name="widget_label_show_widget_card">Barva pozadí</string>
     <string name="widget_label_show_widget_card_alpha">Průhlednost</string>
@@ -205,87 +204,72 @@
     <string name="widget_live_wallpaper_weather_kind">Počasí</string>
     <string name="widget_live_wallpaper_day_night_type">Čas</string>
 
-    <string name="feedback_click_toggle">Ťukněte na graf pro přepnutí dat</string>
-    <string name="feedback_no_data">ŽÁDNÁ DATA</string>
+    <string name="location_message_added">Poloha úspěšně přidána</string>
+    <string name="location_message_deleted">Poloha úspěšně odstraněna</string>
+    <string name="location_message_list_cannot_be_empty">Seznam poloh nemůže být prázdný</string>
 
-    <string name="feedback_collect_failed">Tato poloha již existuje</string>
-    <string name="feedback_collect_succeed">Poloha úspěšně přidána</string>
-    <string name="feedback_delete_succeed">Poloha úspěšně odstraněna</string>
-    <string name="feedback_location_list_cannot_be_null">Seznam poloh nemůže být prázdný</string>
+    <string name="location_search_placeholder">Vyhledat polohu…</string>
+    <string name="location_current_not_found_yet">Zatím žádná poloha…</string>
 
-    <string name="feedback_search_location">Vyhledat polohu…</string>
-    <string name="feedback_not_yet_location">Zatím žádná poloha…</string>
-    <string name="feedback_search_nothing">Nenalezeny žádné polohy</string>
-    <string name="feedback_initializing">Načítání…</string>
+    <string name="settings_changes_apply_after_restart">Změny se projeví po restartu</string>
 
-    <string name="feedback_refresh_notification_after_back">Změny se projeví poté, co se vrátíte na domovskou obrazovku</string>
-    <string name="feedback_refresh_notification_now">Obnovit nyní</string>
-    <string name="feedback_refresh_ui_after_refresh">Změny se projeví po obnovení dat</string>
-    <string name="feedback_restart">Změny se projeví po restartu</string>
-
-    <string name="feedback_running_in_background">Aplikace běží na pozadí pro zajištění aktualizace údajů</string>
-    <string name="feedback_updating_weather_data">Aktualizace údajů o počasí</string>
-    <string name="feedback_updated_in_background">Aktualizováno na pozadí</string>
+    <string name="notification_running_in_background">Aplikace běží na pozadí pro zajištění aktualizace údajů</string>
+    <string name="notification_updating_weather_data">Aktualizace údajů o počasí</string>
+    <string name="message_updated_in_background">Aktualizováno na pozadí</string>
 
     <!-- there should be a "\" before single or double quotes. -->
     <!-- Correct : ... after turning off \'Background free\', ... After turning off \"Free background\" ... -->
     <!-- Wrong   : ... after turning off 'Background free', ... After turning off "Free background" ... -->
-    <string name="feedback_interpret_background_notification_content">Na některých zařízeních se po vypnutí funkce \'Neběžet na pozadí\' se může objevit oznámení, které nemůže být vymazáno.</string>
-    <string name="feedback_interpret_notification_group_title">Blokovat skupinu oznámení</string>
-    <string name="feedback_interpret_notification_group_content">Po vypnutí funkce \"Neběžet na pozadí\" se zobrazí oznámení značící, že služba na pozadí je aktivní. Oznámení lze vypnout na informační stránce aplikace.</string>
+    <string name="dialog_permissions_block_notification_channel_title">Blokovat skupinu oznámení</string>
+    <string name="dialog_permissions_block_notification_channel_content">Po vypnutí funkce \"Neběžet na pozadí\" se zobrazí oznámení značící, že služba na pozadí je aktivní. Oznámení lze vypnout na informační stránce aplikace.</string>
 
-    <string name="feedback_ignore_battery_optimizations_title">Ignorovat optimalizace baterie</string>
-    <string name="feedback_ignore_battery_optimizations_content">Pro ujištění, že mohou služby na pozadí pokračovat v práci, je potřeba zapnout ignorování optimalizací baterie pro Breezy Weather.</string>
+    <string name="dialog_permissions_ignore_battery_optimizations_title">Ignorovat optimalizace baterie</string>
+    <string name="dialog_permissions_ignore_battery_optimizations_content">Pro ujištění, že mohou služby na pozadí pokračovat v práci, je potřeba zapnout ignorování optimalizací baterie pro Breezy Weather.</string>
 
-    <string name="feedback_cannot_start_live_wallpaper_activity">Nepodařilo se spustit náhled živého pozadí</string>
+    <string name="widget_live_wallpaper_cannot_start_activity">Nepodařilo se spustit náhled živého pozadí</string>
 
-    <string name="feedback_today_precipitation_alert">Dnes může pršet.</string>
-    <string name="feedback_short_term_precipitation_alert">V následujících hodinách mohou přijít srážky.</string>
+    <string name="notification_precipitation_today">Dnes může pršet.</string>
+    <string name="notification_precipitation_short_term">V následujících hodinách mohou přijít srážky.</string>
 
-    <string name="feedback_resident_location">Nastavit jako bydliště</string>
-    <string name="feedback_resident_location_description">Breezy Weather automaticky zobrazí a skryje bydliště podle vaší současné lokace.\nJako bydliště můžete například nastavit vaše domovské město. Při cestování se můžete poté podívat na počasí ve vašem domovském městě. Když se vrátíte domů, počasí ve vašem domovském městě bude skryto a nahrazeno počasím ve vaší současné lokaci.</string>
+    <string name="location_resident_message">Nastavit jako bydliště</string>
+    <string name="location_resident_dialog">Breezy Weather automaticky zobrazí a skryje bydliště podle vaší současné lokace.\nJako bydliště můžete například nastavit vaše domovské město. Při cestování se můžete poté podívat na počasí ve vašem domovském městě. Když se vrátíte domů, počasí ve vašem domovském městě bude skryto a nahrazeno počasím ve vaší současné lokaci.</string>
 
-    <string name="feedback_click_to_get_more">Klepněte pro více informací…</string>
-    <string name="feedback_click_again_to_exit">Klepněte znovu pro opuštění</string>
+    <string name="allergen_tap_to_see_more">Klepněte pro více informací…</string>
+    <string name="message_tap_again_to_exit">Klepněte znovu pro opuštění</string>
 
     <!-- content description -->
-    <string name="content_desc_back">Zpět</string>
-    <string name="content_desc_check_details">Zkontrolovat podrobnosti</string>
-    <string name="content_desc_weather_alert_button">$ varování o počasí</string> <!-- $ = alert count. -->
-    <string name="air_quality_content_desc_pm25">PM dvě celé pět</string>
-    <string name="air_quality_content_desc_pm10">PM deset</string>
-    <string name="air_quality_content_desc_so2">Oxid siřičitý</string>
-    <string name="air_quality_content_desc_no2">Oxid dusičitý</string>
-    <string name="air_quality_content_desc_o3">Ozón</string>
-    <string name="air_quality_content_desc_co">Oxid uhelnatý</string>
-    <string name="ephemeris_content_desc_sunrise">Východ slunce v $</string> <!-- $ = time. -->
-    <string name="ephemeris_content_desc_sunset">Západ slunce v $</string> <!-- $ = time. -->
-    <string name="ephemeris_content_desc_moonrise">Východ měsíce v $</string> <!-- $ = time. -->
-    <string name="ephemeris_content_desc_moonset">Západ měsíce v $</string> <!-- $ = time. -->
-    <string name="content_desc_no_precipitation">Žádné srážky</string>
-    <string name="content_desc_minutely_precipitation">Srážky mezi $1 a $2</string> <!-- $1 = start time, $2 = end time. -->
-    <string name="content_desc_add_current_location">Přidat současnou polohu</string>
-    <string name="content_desc_drag_flag">Klepněte pro tažení položkami v seznamu pro seřazení</string>
-    <string name="content_desc_delete_flag">Odstranit tuto položku</string>
-    <string name="content_desc_swipe_left_to_delete">Pro odstranění této položky přejeďte prstem doleva</string>
-    <string name="content_desc_swipe_right_to_delete">Pro odstranění této položky přejeďte prstem doprava</string>
-    <string name="content_desc_search_filter_on">Zobrazit pouze lokace z výchozího zdroje počasí</string>
-    <string name="content_desc_search_filter_off">Zobrazit lokace ze všech zdrojů počasí</string>
-    <string name="content_desc_app_store">@string/action_appStore</string>
-    <string name="content_desc_weather_icon">Ikona počasí</string>
-    <string name="content_desc_weather_icon_light">Světlá ikona</string>
-    <string name="content_desc_weather_icon_grey">Šedá ikona</string>
-    <string name="content_desc_weather_icon_dark">Tmavá ikona</string>
-    <string name="content_desc_filter_weather_sources">Filtrovat zdroje počasí</string>
+    <string name="action_back">Zpět</string>
+    <string name="settings_icon_providers_check_details">Zkontrolovat podrobnosti</string>
+    <string name="alerts_count">$ varování o počasí</string> <!-- $ = alert count. -->
+    <string name="air_quality_pm25_voice">PM dvě celé pět</string>
+    <string name="air_quality_pm10_voice">PM deset</string>
+    <string name="air_quality_so2_voice">Oxid siřičitý</string>
+    <string name="air_quality_no2_voice">Oxid dusičitý</string>
+    <string name="air_quality_o3_voice">Ozón</string>
+    <string name="air_quality_co_voice">Oxid uhelnatý</string>
+    <string name="ephemeris_sunrise_at">Východ slunce v $</string> <!-- $ = time. -->
+    <string name="ephemeris_sunset_at">Západ slunce v $</string> <!-- $ = time. -->
+    <string name="ephemeris_moonrise_at">Východ měsíce v $</string> <!-- $ = time. -->
+    <string name="ephemeris_moonset_at">Západ měsíce v $</string> <!-- $ = time. -->
+    <string name="precipitation_none">Žádné srážky</string>
+    <string name="precipitation_between_time">Srážky mezi $1 a $2</string> <!-- $1 = start time, $2 = end time. -->
+    <string name="action_add_current_location">Přidat současnou polohu</string>
+    <string name="settings_items_drag_to_sort">Klepněte pro tažení položkami v seznamu pro seřazení</string>
+    <string name="settings_item_delete">Odstranit tuto položku</string>
+    <string name="location_swipe_to_delete">Pro odstranění této položky přejeďte prstem doleva</string>
+    <string name="settigns_icon_providers_app_store">@string/action_app_store</string>
+    <string name="settings_icon_providers_weather_adaptive_icon">Ikona počasí</string>
+    <string name="settings_icon_providers_weather_icon_light">Světlá ikona</string>
+    <string name="settings_icon_providers_weather_icon_grey">Šedá ikona</string>
+    <string name="settings_icon_providers_weather_icon_dark">Tmavá ikona</string>
 
     <!-- action -->
     <string name="alerts">Upozornění</string>
-    <string name="action_manage">Spravovat</string>
     <string name="action_search">Hledat</string>
     <string name="action_settings">Nastavení</string>
     <string name="action_preview">Náhled</string>
     <string name="action_about">O aplikaci</string>
-    <string name="action_appStore">Obchod</string>
+    <string name="action_app_store">Obchod</string>
 
     <!-- widget -->
     <string name="widget_day">Denní</string>
@@ -317,7 +301,6 @@
     <string name="settings_title_weather_source">Zdroj počasí</string>
     <string name="settings_title_location_service">Služba lokace</string>
     <string name="settings_title_dark_mode">Tmavý režim</string>
-    <string name="settings_title_ui_style">Styl rozhraní</string>
     <string name="settings_title_icon_provider">Balíček ikon</string>
     <string name="settings_title_appearance">Vzhled</string>
     <string name="settings_summary_appearance">Styl rozhraní, pořadí karet, jazyk…</string>
@@ -350,7 +333,7 @@
     <string name="settings_category_widget">Widget</string>
     <string name="settings_title_week_icon_mode">Režim týdenních ikon</string>
     <string name="settings_title_minimal_icon">Minimalistické ikony</string>
-    <string name="settings_title_click_widget_to_refresh">Obnovit widget při klepnutí</string>
+    <string name="settings_title_tap_widget_to_refresh">Obnovit widget při klepnutí</string>
     <string name="settings_title_widget_config">Nastavení widgetu</string>
     <string name="settings_category_notification">Oznámení</string>
     <string name="settings_title_notification">Poslat oznámení</string>

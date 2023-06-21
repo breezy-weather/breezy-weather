@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Please don’t translate in this file anymore and migrate to strings.xml, see values/arrays.xml -->
+
     <!-- Location service. -->
     <string-array name="location_services">
         <item>Baidu Lokacija</item>
@@ -15,12 +17,6 @@
         <item>Follow system</item>
         <item>Vedno svetel</item>
         <item>Vedno temen</item>
-    </string-array>
-
-    <!-- UI style. -->
-    <string-array name="ui_styles">
-        <item>Krožno nebo</item>
-        <item>Materialna animacija</item>
     </string-array>
 
     <!-- automatic refresh rate. -->
@@ -51,16 +47,6 @@
         <item>Svetel</item>
     </string-array>
 
-    <!-- notification background colors. -->
-    <integer-array name="notification_background_colors">
-        <item>@color/notification_background_l</item>
-        <item>@color/notification_background_m</item>
-        <item>@color/notification_background_o</item>
-        <item>@color/notification_background_rootLight</item>
-        <item>@color/notification_background_rootDark</item>
-        <item>@color/notification_background_primary</item>
-    </integer-array>
-
     <!-- widget style. -->
     <string-array name="widget_styles">
         <item>Pravokotnik</item>
@@ -76,21 +62,13 @@
     </string-array>
 
     <!-- Widget subtitle data. -->
-    <string-array name="subtitle_data">
+    <string-array name="widget_subtitle_data">
         <item>Čas osvežitev</item>
         <item>AQI (Neveljaven na nekaterih področjih.)</item>
         <item>Veter</item>
         <item>Senzibilna temperatura</item>
         <item>Lunarni koledar</item>
         <item>Po meri</item>
-    </string-array>
-
-    <!-- widget clock font. -->
-    <string-array name="clock_font">
-        <item>sans-serif-light</item>
-        <item>sans-serif</item>
-        <item>sans-serif-black</item>
-        <item>analog</item>
     </string-array>
 
     <!-- widget card style. -->

@@ -1,5 +1,8 @@
 <resources>
 
+    <!-- Do NOT translate values that are identical in English and in your language -->
+    <!-- Do NOT use " and ', use appropriate typographic quotes for your language (in English: “ and ”, ‘ and ’) -->
+
     <!-- app -->
     <string name="app_name">Météo</string>
 
@@ -8,8 +11,8 @@
     <string name="location_resident">Mon domicile</string>
     <string name="live">En ce moment</string>
     <string name="short_today">Auj.</string>
-    <string name="refreshed">Rafraîchi</string>
-    <string name="refresh_at">Consulté à</string>
+    <string name="weather_refreshed">Rafraîchi</string>
+    <string name="notification_refreshed_at">Consulté à</string>
     <string name="alerts_to_follow">Vigilances à venir, appuyez pour voir.</string>
     <string name="precipitation">Précipitation</string>
     <string name="precipitation_probability">Probabilité de précipitation</string>
@@ -25,9 +28,8 @@
     <string name="notification_channel_forecast">Prévisions</string>
     <string name="daytime">Journée</string>
     <string name="nighttime">Nuit</string>
-    <string name="published_at">Publié à</string>
     <string name="temperature_feels_like">Ressenti</string>
-    <string name="settings_follow_system">Par défaut</string><!-- Littéralement "suivre les préférences système" -->
+    <string name="settings_follow_system">Préférence système</string><!-- Littéralement "suivre les préférences système" -->
     <string name="notification_channel_background_information">Informations d’arrière-plan</string>
     <string name="pressure">Pression atmosphérique</string>
     <string name="visibility">Visibilité</string>
@@ -37,9 +39,9 @@
     <string name="settings_icon_providers_get_more">Voir plus</string>
     <string name="settings_icon_providers_get_more_store">Voir plus dans le magasin d’applications</string>
     <string name="settings_icon_providers_get_more_github">Voir plus sur GitHub</string>
-    <string name="refresh">Actualiser</string>
-    <string name="restart">Redémarrer</string>
-    <string name="edit">Modifier</string>
+    <string name="action_refresh">Actualiser</string>
+    <string name="action_restart">Redémarrer</string>
+    <string name="action_edit">Modifier</string>
 
     <!-- The following set of strings should be as short as possible. -->
     <string name="of_clock">:00</string>
@@ -155,14 +157,14 @@
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Orage avec légère grêle</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Orage avec forte grêle</string>
 
-    <string name="next">SUIVANT</string>
-    <string name="done">OK</string>
-    <string name="cancel">ANNULER</string>
-    <string name="on">Actif</string>
-    <string name="off">Inactif</string>
-    <string name="go_to_set">DÉFINIR</string>
-    <string name="help">AIDE</string>
-    <string name="learn_more">EN SAVOIR PLUS</string>
+    <string name="action_next">SUIVANT</string>
+    <string name="action_done">OK</string>
+    <string name="action_cancel">ANNULER</string>
+    <string name="settings_enabled">Actif</string>
+    <string name="settings_disabled">Inactif</string>
+    <string name="action_set">DÉFINIR</string>
+    <string name="action_help">AIDE</string>
+    <string name="action_learn_more">EN SAVOIR PLUS</string>
 
     <string name="locations">Emplacements</string>
     <string name="location_search_change_weather_source">Changer la source météo</string>
@@ -181,28 +183,25 @@
     <string name="date_format_widget_oreo_style">EEEE d MMM│</string>
 
     <!-- feedback. -->
-    <string name="feedback_request_permission">Permissions</string>
     <string name="notification_channel_request_location">Localisation</string>
-    <string name="feedback_request_location_in_background">Localisation en arrière-plan</string>
-    <string name="feedback_request_location_permission_success">Permission de localisation accordée</string>
-    <string name="feedback_request_location_permission_failed">Permission de localisation échouée</string>
+    <string name="notification_location_in_background">Localisation en arrière-plan</string>
 
-    <string name="feedback_location_permissions_title">Accéder aux informations de localisation</string>
-    <string name="feedback_location_permissions_statement">Breezy Weather a besoin de récupérer vos informations de localisation quand l’application est utilisée ou en arrière-plan pour fournir les données météo de votre position actuelle. Pour cela, nous avons besoin de certaines permissions. Ces informations ne seront utilisées que pour obtenir les données météo de votre position actuelle. Si vous ne souhaitez pas partager vos informations de localisation, vous pouvez toujours refuser et définir manuellement un emplacement depuis la recherche.</string>
-    <string name="feedback_background_location_title">Accéder à la localisation en arrière-plan</string>
-    <string name="feedback_background_location_summary">Afin d’autoriser l’application à accéder à la localisation en arrière-plan, veuillez définir la permission de localisation à « Toujours autoriser ».</string>
+    <string name="dialog_permissions_location_title">Accéder aux informations de localisation</string>
+    <string name="dialog_permissions_location_content">Breezy Weather a besoin de récupérer vos informations de localisation quand l’application est utilisée ou en arrière-plan pour fournir les données météo de votre position actuelle. Pour cela, nous avons besoin de certaines permissions. Ces informations ne seront utilisées que pour obtenir les données météo de votre position actuelle. Si vous ne souhaitez pas partager vos informations de localisation, vous pouvez toujours refuser et définir manuellement un emplacement depuis la recherche.</string>
+    <string name="dialog_permissions_location_background_title">Accéder à la localisation en arrière-plan</string>
+    <string name="dialog_permissions_location_background_content">Afin d’autoriser l’application à accéder à la localisation en arrière-plan, veuillez définir la permission de localisation à « Toujours autoriser ».</string>
 
-    <string name="feedback_location_failed">Échec de localisation</string>
-    <string name="feedback_get_weather_failed">Échec de récupération des données météo</string>
-    <string name="feedback_location_help_title">Vous ne parvenez pas à être localisé ?</string>
-    <string name="feedback_check_location_permission">Vérifiez les permissions de localisation</string>
-    <string name="feedback_enable_location_information">Activez les informations de localisation</string>
-    <string name="feedback_select_location_provider">Sélectionnez un fournisseur de localisation</string>
-    <string name="feedback_add_location_manually">Ajoutez manuellement la localisation et supprimez « $ »</string>
-    <string name="feedback_api_limit_reached">Limite de requêtes API atteinte</string>
-    <string name="feedback_api_limit_reached_help">Pour contourner la limite, ajoutez votre propre clé API.</string>
-    <string name="feedback_api_unauthorized">Accès API non autorisé</string>
-    <string name="feedback_api_unauthorized_help">Pour certains fournisseurs météo, vous devez fournir votre propre clé API. Si vous l’avez déjà fait, vérifiez qu’il n’y a pas d’erreur dans la clé fournie.</string>
+    <string name="location_message_failed_to_locate">Échec de géolocalisation</string>
+    <string name="weather_message_data_refresh_failed">Échec d’actualisation des données météo</string>
+    <string name="location_dialog_failed_to_locate_title">Vous ne parvenez pas à être localisé ?</string>
+    <string name="location_dialog_failed_to_locate_action_check_permission">Vérifiez les permissions de localisation</string>
+    <string name="location_dialog_failed_to_locate_action_enable_information">Activez les informations de localisation</string>
+    <string name="location_dialog_failed_to_locate_action_select_provider">Sélectionnez un fournisseur de localisation</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Ajoutez manuellement la localisation et supprimez « $ »</string>
+    <string name="weather_api_limit_reached_message">Limite de requêtes API atteinte</string>
+    <string name="weather_api_limit_reached_dialog">Pour contourner la limite, ajoutez votre propre clé API.</string>
+    <string name="weather_api_unauthorized_message">Accès API non autorisé</string>
+    <string name="weather_api_unauthorized_dialog">Pour certains fournisseurs météo, vous devez fournir votre propre clé API. Si vous l’avez déjà fait, vérifiez qu’il n’y a pas d’erreur dans la clé fournie.</string>
     <string name="widget_label_view_style">Apparence</string>
     <string name="widget_label_show_widget_card">Couleur d’arrière-plan</string>
     <string name="widget_label_show_widget_card_alpha">Transparence</string>
@@ -258,85 +257,71 @@
     <string name="widget_live_wallpaper_weather_kind">Météo</string>
     <string name="widget_live_wallpaper_day_night_type">Heure</string>
 
-    <string name="feedback_click_toggle">Appuyer sur le graphique pour basculer les données</string>
-    <string name="feedback_no_data">AUCUNE DONNÉE</string>
+    <string name="location_message_added">Emplacement ajouté</string>
+    <string name="location_message_deleted">Emplacement supprimé</string>
+    <string name="location_message_list_cannot_be_empty">La liste de localisation ne peut être vide</string>
 
-    <string name="feedback_collect_failed">Cette localisation existe déjà</string>
-    <string name="feedback_collect_succeed">Emplacement ajouté</string>
-    <string name="feedback_delete_succeed">Emplacement supprimé</string>
-    <string name="feedback_location_list_cannot_be_null">La liste de localisation ne peut être vide</string>
+    <string name="location_search_placeholder">Rechercher une localisation…</string>
+    <string name="location_current_not_found_yet">Pas encore localisé…</string>
 
-    <string name="feedback_search_location">Rechercher une localisation…</string>
-    <string name="feedback_not_yet_location">Pas encore localisé…</string>
-    <string name="feedback_search_nothing">Aucune localisation trouvée</string>
-    <string name="feedback_initializing">Initialisation…</string>
+    <string name="settings_changes_apply_after_restart">Les modifications seront appliquées après un redémarrage</string>
 
-    <string name="feedback_refresh_notification_after_back">Les modifications s’appliqueront après retour à l’écran d’accueil</string>
-    <string name="feedback_refresh_notification_now">Actualisé à l’instant</string>
-    <string name="feedback_refresh_ui_after_refresh">Les modifications seront appliquées à la prochaine actualisation des données</string>
-    <string name="feedback_restart">Les modifications seront appliquées après un redémarrage</string>
+    <string name="notification_running_in_background">Fonctionnement en arrière-plan pour permettre l’actualisation</string>
+    <string name="notification_updating_weather_data">Actualisation des données météo</string>
+    <string name="message_updated_in_background">Actualisé en arrière-plan</string>
 
-    <string name="feedback_running_in_background">Fonctionnement en arrière-plan pour permettre l’actualisation</string>
-    <string name="feedback_updating_weather_data">Actualisation des données météo</string>
-    <string name="feedback_updated_in_background">Actualisé en arrière-plan</string>
+    <string name="dialog_permissions_block_notification_channel_title">Bloquer un groupe de notification</string>
+    <string name="dialog_permissions_block_notification_channel_content">Après avoir désactivé « Pas de service en arrière-plan », une notification indiquant qu’un service fonctionne en arrière-plan apparaîtra dans la barre de notifications. Vous pouvez désactiver le canal Informations d’arrière-plan dans la page d’informations de l’application pour bloquer cette notification.</string>
 
-    <string name="feedback_interpret_background_notification_content">Sur certains appareils, après avoir désactivé « Pas de service en arrière-plan », il peut subsister une notification persistante dans la barre de notifications.</string>
-    <string name="feedback_interpret_notification_group_title">Bloquer un groupe de notification</string>
-    <string name="feedback_interpret_notification_group_content">Après avoir désactivé « Pas de service en arrière-plan », une notification indiquant qu’un service fonctionne en arrière-plan apparaîtra dans la barre de notifications. Vous pouvez désactiver le canal Informations d’arrière-plan dans la page d’informations de l’application pour bloquer cette notification.</string>
+    <string name="dialog_permissions_ignore_battery_optimizations_title">Ignorer l’optimisation de batterie</string>
+    <string name="dialog_permissions_ignore_battery_optimizations_content">Afin de s’assurer que les services en arrière-plan continuent de fonctionner, merci d’ignorer l’optimisation de batterie pour Breezy Weather.</string>
 
-    <string name="feedback_ignore_battery_optimizations_title">Ignorer l’optimisation de batterie</string>
-    <string name="feedback_ignore_battery_optimizations_content">Afin de s’assurer que les services en arrière-plan continuent de fonctionner, merci d’ignorer l’optimisation de batterie pour Breezy Weather.</string>
+    <string name="widget_live_wallpaper_cannot_start_activity">Impossible de démarrer la prévisualisation du fond d’écran animé</string>
 
-    <string name="feedback_cannot_start_live_wallpaper_activity">Impossible de démarrer la prévisualisation du fond d’écran animé</string>
+    <string name="notification_precipitation_today">Des précipitations peuvent avoir lieu aujourd’hui.</string>
+    <string name="notification_precipitation_short_term">Précipitations possibles dans les heures à venir.</string>
 
-    <string name="feedback_today_precipitation_alert">Des précipitations peuvent avoir lieu aujourd’hui.</string>
-    <string name="feedback_short_term_precipitation_alert">Précipitations possibles dans les heures à venir.</string>
+    <string name="location_resident_message">Définir en tant que ville de résidence</string>
+    <string name="location_resident_dialog">Breezy Weather affichera ou masquera automatiquement votre ville de résidence selon votre position.\nPar exemple, vous pouvez définir votre domicile comme ville de résidence. En déplacement, vous pourrez vérifier la météo pour ce lieu. De retour chez vous, la météo « ville de résidence » sera masquée et remplacée par celle de votre position.</string>
 
-    <string name="feedback_resident_location">Définir en tant que ville de résidence</string>
-    <string name="feedback_resident_location_description">Breezy Weather affichera ou masquera automatiquement votre ville de résidence selon votre position.\nPar exemple, vous pouvez définir votre domicile comme ville de résidence. En déplacement, vous pourrez vérifier la météo pour ce lieu. De retour chez vous, la météo « ville de résidence » sera masquée et remplacée par celle de votre position.</string>
-
-    <string name="feedback_click_to_get_more">Appuyez pour en voir plus…</string>
-    <string name="feedback_click_again_to_exit">Appuyez à nouveau pour quitter</string>
+    <string name="allergen_tap_to_see_more">Appuyez pour en voir plus…</string>
+    <string name="message_tap_again_to_exit">Appuyez à nouveau pour quitter</string>
 
     <!-- content description -->
-    <string name="content_desc_back">Retour</string>
-    <string name="content_desc_check_details">Plus de détails</string>
-    <string name="content_desc_weather_alert_button">$ vigilances météo</string> <!-- $ = alert count. -->
-    <string name="air_quality_content_desc_pm25">PM deux point cinq</string>
-    <string name="air_quality_content_desc_pm10">PM dix</string>
-    <string name="air_quality_content_desc_so2">Dioxyde de soufre</string>
-    <string name="air_quality_content_desc_no2">Dioxyde d’azote</string>
-    <string name="air_quality_content_desc_o3">Ozone</string>
-    <string name="air_quality_content_desc_co">Monoxyde de carbone</string>
-    <string name="ephemeris_content_desc_sunrise">Lever de soleil à $</string> <!-- $ = time. -->
-    <string name="ephemeris_content_desc_sunset">Coucher de soleil à $</string> <!-- $ = time. -->
-    <string name="ephemeris_content_desc_moonrise">Lever de lune à $</string> <!-- $ = time. -->
-    <string name="ephemeris_content_desc_moonset">Coucher de lune à $</string> <!-- $ = time. -->
-    <string name="content_desc_no_precipitation">Pas de précipitations</string>
-    <string name="content_desc_minutely_precipitation">Précipitations entre $1 et $2</string> <!-- $1 = start time, $2 = end time. -->
-    <string name="content_desc_add_current_location">Ajouter ma position</string>
-    <string name="content_desc_drag_flag">Maintenez puis déplacez les éléments de la liste pour les ordonner</string>
-    <string name="content_desc_delete_flag">Supprimer cet élément</string>
-    <string name="content_desc_swipe_left_to_delete">Vous pouvez glisser vers la gauche pour supprimer cet élément</string>
-    <string name="content_desc_swipe_right_to_delete">Vous pouvez glisser vers la droite pour supprimer cet élément</string>
-    <string name="content_desc_search_filter_on">N’afficher que les emplacements de la source météo par défaut</string>
-    <string name="content_desc_search_filter_off">Afficher les emplacements de toutes les sources météo</string>
+    <string name="action_back">Retour</string>
+    <string name="settings_icon_providers_check_details">Plus de détails</string>
+    <string name="alerts_count">$ vigilances météo</string> <!-- $ = alert count. -->
+    <string name="air_quality_pm25_voice">PM deux point cinq</string>
+    <string name="air_quality_pm10_voice">PM dix</string>
+    <string name="air_quality_so2_voice">Dioxyde de soufre</string>
+    <string name="air_quality_no2_voice">Dioxyde d’azote</string>
+    <string name="air_quality_o3_voice">Ozone</string>
+    <string name="air_quality_co_voice">Monoxyde de carbone</string>
+    <string name="ephemeris_sunrise_at">Lever de soleil à $</string> <!-- $ = time. -->
+    <string name="ephemeris_sunset_at">Coucher de soleil à $</string> <!-- $ = time. -->
+    <string name="ephemeris_moonrise_at">Lever de lune à $</string> <!-- $ = time. -->
+    <string name="ephemeris_moonset_at">Coucher de lune à $</string> <!-- $ = time. -->
+    <string name="precipitation_none">Pas de précipitations</string>
+    <string name="precipitation_between_time">Précipitations entre $1 et $2</string> <!-- $1 = start time, $2 = end time. -->
+    <string name="action_add_current_location">Ajouter ma position actuelle</string>
+    <string name="settings_items_drag_to_sort">Maintenez puis déplacez les éléments de la liste pour les ordonner</string>
+    <string name="settings_item_delete">Supprimer cet élément</string>
+    <string name="location_swipe_to_delete">Vous pouvez glisser vers la gauche pour supprimer cet élément</string>
     <string name="weather_data_by">Données par $</string> <!-- $ = weather source. -->
     <string name="location_results_by">Résultats d’emplacement par $</string> <!-- $ = location provider -->
-    <string name="content_desc_weather_icon">Icône météo</string>
-    <string name="content_desc_weather_icon_light">Icône claire</string>
-    <string name="content_desc_weather_icon_grey">Icône grise</string>
-    <string name="content_desc_weather_icon_dark">Icône sombre</string>
+    <string name="settings_icon_providers_weather_adaptive_icon">Icône météo</string>
+    <string name="settings_icon_providers_weather_icon_light">Icône claire</string>
+    <string name="settings_icon_providers_weather_icon_grey">Icône grise</string>
+    <string name="settings_icon_providers_weather_icon_dark">Icône sombre</string>
 
     <!-- action -->
     <string name="alerts">Vigilances</string>
     <string name="uv_alert_level">Vigilance</string>
-    <string name="action_manage">Gérer</string>
     <string name="action_search">Recherche</string>
     <string name="action_settings">Paramètres</string>
     <string name="action_preview">Aperçu</string>
     <string name="action_about">À propos</string>
-    <string name="action_appStore">Magasin d’applications</string>
+    <string name="action_app_store">Magasin d’applications</string>
 
     <!-- widget -->
     <string name="widget_day">Jour</string>
@@ -367,7 +352,6 @@
     <string name="settings_title_weather_source">Source des données météo</string>
     <string name="settings_title_location_service">Service de localisation</string>
     <string name="settings_title_dark_mode">Mode sombre</string>
-    <string name="settings_title_ui_style">Apparence de l’interface</string>
     <string name="settings_title_icon_provider">Pack d’icônes</string>
     <string name="settings_title_appearance">Apparence</string>
     <string name="settings_summary_appearance">Thème de l’interface, ordre des cartes, langue…</string>
@@ -401,7 +385,7 @@
     <string name="settings_category_widget">Widget</string>
     <string name="settings_title_week_icon_mode">Mode des icônes hebdomadaires</string>
     <string name="settings_title_minimal_icon">Icônes minimales</string>
-    <string name="settings_title_click_widget_to_refresh">Appuyer pour actualiser</string>
+    <string name="settings_title_tap_widget_to_refresh">Appuyer pour actualiser</string>
     <string name="settings_title_widget_config">Configuration du widget</string>
     <string name="settings_category_notification">Notifications</string>
     <string name="settings_title_notification">Activer les notifications</string>
@@ -425,7 +409,111 @@
     <string name="settings_notification_hide_big_view_on">Masquer</string>
     <string name="settings_notification_hide_big_view_off">Afficher</string>
     <string name="settings_provider_default_value">Par défaut (inchangé)</string>
+
+    <!-- Air quality -->
+    <string name="air_quality_level_1">Excellent</string>
+    <string name="air_quality_level_1_description">La qualité d’air est idéale pour la plupart des individus ; profitez de vos activités en extérieur habituelles.</string>
+    <string name="air_quality_level_2">Correct</string>
+    <string name="air_quality_level_2_description">La qualité d’air est généralement acceptable pour la plupart des individus. Cependant, les personnes sensibles risquent de faire l’expérience de symptômes légers à modérés en cas d’exposition à long terme.</string>
+    <string name="air_quality_level_3">Mauvais</string>
+    <string name="air_quality_level_3_description">L’air a atteint un degré élevé de pollution et n’est pas sain pour les personnes sensibles. Réduisez le temps passé en extérieur si vous ressentez des symptômes, tels que des difficultés respiratoires ou des irritations de la gorge.</string>
+    <string name="air_quality_level_4">Risque de santé</string>
+    <string name="air_quality_level_4_description">Les effets sur la santé peuvent être ressentis immédiatement par les personnes sensibles. Les individus en bonne santé peuvent éprouver des gênes respiratoires et des irritations de la gorge en cas d’exposition prolongée. Limitez les activités en extérieur.</string>
+    <string name="air_quality_level_5">Risque marqué de santé</string>
+    <string name="air_quality_level_5_description">Les effets sur la santé risquent d’être ressentis immédiatement par les personnes sensibles et ces dernières doivent éviter les activités en extérieur. Les individus en bonne santé risquent d’éprouver des difficultés respiratoires et des irritations de la gorge ; envisagez de rester à l’intérieur et de repousser les activités en extérieur.</string>
+    <string name="air_quality_level_6">Dangereux</string>
+    <string name="air_quality_level_6_description">Toute exposition à l’air, y compris pendant quelques minutes, risque de déboucher sur des problèmes de santé graves pour tous. Évitez les activités en extérieur.</string>
+
+    <!-- Weather kind -->
+    <string name="weather_kind_clear">Dégagé</string>
+    <string name="weather_kind_partly_cloudy">Partiellement couvert</string>
+    <string name="weather_kind_cloudy">Nuageux</string>
+    <string name="weather_kind_rain">Pluie</string>
+    <string name="weather_kind_snow">Neige</string>
+    <string name="weather_kind_sleet">Neige fondue</string>
+    <string name="weather_kind_hail">Grêle</string>
+    <string name="weather_kind_fog">Brouillard</string>
+    <string name="weather_kind_haze">Brume</string>
+    <string name="weather_kind_thunder">Tonnerre</string>
+    <string name="weather_kind_thunderstorm">Orage</string>
+    <string name="weather_kind_wind">Vent</string>
+
+    <string name="settings_none">Aucun</string>
+    <string name="settings_color_day_night">Jour / Nuit</string>
+    <string name="settings_color_day_always">Toujours de jour</string>
+    <string name="settings_color_night_always">Toujours de nuit</string>
+    <string name="settings_color_light">Clair</string>
+    <string name="settings_color_light_always">Toujours clair</string>
+    <string name="settings_color_grey">Gris</string>
+    <string name="settings_color_dark">Sombre</string>
+    <string name="settings_color_dark_always">Toujours sombre</string>
+    <string name="settings_refresh_never">Jamais</string>
+    <string name="settings_refresh_30min">30 minutes</string>
+    <string name="settings_refresh_1h">1 heure</string>
+    <string name="settings_refresh_1h_30min">1 heure 30</string>
+    <string name="settings_refresh_2h">2 heures</string>
+    <string name="settings_refresh_3h">3 heures</string>
+    <string name="settings_refresh_6h">6 heures</string>
+    <string name="settings_refresh_12h">12 heures</string>
+    <string name="settings_refresh_24h">24 heures</string>
+
     <string name="about_source_code">Code source</string>
     <string name="about_contributors">Contributeurs</string>
+    <string name="about_contribution_WangDaYeeeeee">Développeur du projet d’origine Geometric Weather</string>
+    <string name="action_location_list">Liste des emplacements</string>
+    <string name="weather_source_metno_voice">Institut météorologique norvégien</string>
     <string name="weather_source_china">Chine</string>
+    <string name="weather_source_china_voice">Chine</string>
+    <string name="location_service_baidu_ip">Baidu IP Location (Chine uniquement)</string>
+    <string name="location_service_native">API native</string>
+    <string name="settings_automatic">Automatic</string>
+    <string name="notification_style_native">Native</string>
+    <string name="notification_style_cities">Villes</string>
+    <string name="widget_style_rectangle">Rectangle</string>
+    <string name="widget_style_symmetry">Symétrie</string>
+    <string name="widget_style_tile">Carreau</string>
+    <string name="widget_style_temperature">Témperature</string>
+    <string name="widget_week_style_5_days">5 jours</string>
+    <string name="widget_week_style_3_days">3 jours</string>
+    <string name="widget_clock_font_analog">Analogue</string>
+    <string name="widget_subtitle_data_time">Heure de rafraichissement</string>
+    <string name="widget_subtitle_data_aqi">Qualité de l’air</string>
+    <string name="widget_subtitle_data_wind">Vent</string>
+    <string name="widget_subtitle_data_feels_like">Température ressentie</string>
+    <string name="widget_subtitle_data_lunar">Calendrier lunaire</string>
+    <string name="widget_subtitle_data_custom">Personnalisé</string>
+    <string name="action_add_from_map">Ajouter depuis une carte</string>
+    <string name="action_add_new_location">Ajouter un nouvel emplacement</string>
+    <string name="widget_material_you_forecast">Material You - Prévisions</string>
+    <string name="widget_material_you_current">Material You - En ce moment</string>
+    <string name="settings_title_notification_feels_like">Utiliser la température ressentie</string>
+    <string name="unit_kph_voice">Kilomètres par heure</string>
+    <string name="unit_mps_voice">Mètres par seconde</string>
+    <string name="unit_kn_voice">Nœuds</string>
+    <string name="unit_mph_voice">Milles par heure</string>
+    <string name="unit_ftps_voice">Pieds par seconde</string>
+    <string name="unit_mm_voice">Millimètres</string>
+    <string name="unit_cm_voice">Centimètres</string>
+    <string name="unit_in_voice">Pouces</string>
+    <string name="unit_lpsqm_voice">Litres par mètre carré</string>
+    <string name="unit_mmph_voice">Millimètres par heure</string>
+    <string name="unit_cmph_voice">Centimètres par heure</string>
+    <string name="unit_inph_voice">Pouces par heure</string>
+    <string name="unit_lpsqmph_voice">Litres par mètre carré par heure</string>
+    <string name="unit_km_voice">Kilomètres</string>
+    <string name="unit_m_voice">Mètres</string>
+    <string name="unit_mi_voice">Milles</string>
+    <string name="unit_nmi_voice">Milles marins</string>
+    <string name="unit_ft_voice">Pieds</string>
+    <string name="unit_atm_voice">Atmosphères</string>
+    <string name="unit_mmhg_voice">Millimètres de mercure</string>
+    <string name="unit_inhg_voice">Pouces de mercure</string>
+    <string name="unit_kgfpsqcm_voice">Kilogramme de force par mètre carré</string>
+    <string name="unit_mugpcum_voice">Microgrammes par mètre cube</string>
+    <string name="unit_mgpcum_voice">Milligrammes par mètre cube</string>
+    <string name="unit_h_voice">heures</string>
+    <string name="unit_ppcm_voice">Par mètre cube</string>
+    <string name="notification_channel_alerts">Vigilances</string>
+    <string name="about_matrix">Serveur Matrix</string>
+    <string name="action_choose_weather_provider">Choisir le fournisseur météo</string>
 </resources>

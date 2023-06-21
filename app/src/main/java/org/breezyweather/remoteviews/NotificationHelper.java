@@ -261,8 +261,8 @@ public class NotificationHelper {
                                         .getDate(context.getString(R.string.date_format_widget_long), location.getTimeZone()),
                                 context.getString(
                                         isShortTermLiquid(weather)
-                                                ? R.string.feedback_short_term_precipitation_alert
-                                                : R.string.feedback_today_precipitation_alert
+                                                ? R.string.notification_precipitation_short_term
+                                                : R.string.notification_precipitation_today
                                 ),
                                 PendingIntent.getActivity(
                                         context,

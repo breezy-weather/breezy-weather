@@ -67,7 +67,7 @@ public class LocationModel {
         this.title = location.isCurrentPosition()
                 ? context.getString(R.string.location_current)
                 : location.place();
-        this.body = (location.isUsable()) ? location.administrationLevels() : context.getString(R.string.feedback_not_yet_location);
+        this.body = (location.isUsable()) ? location.administrationLevels() : context.getString(R.string.location_current_not_found_yet);
 
         if (location.getWeather() != null) {
             List<Alert> alertList = location.getWeather().getCurrentAlertList();

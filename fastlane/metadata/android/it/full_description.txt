@@ -1,5 +1,4 @@
 Breezy Weather è un'applicazione meteo per Android gratuita e open-source.
-Questa versione ha eliminato tutte le dipendenze proprietarie e il relativo codice per renderla idonea all'inclusione in F-Droid.
 
 Nell'app troverete:<ul>
 <li>Temperatura in tempo reale</li>
@@ -13,10 +12,13 @@ L'app è fortemente incentrata sul design, con una UX semplice e pulita, animazi
 <li>Ampia scelta di widget per la schermata iniziale, per avere informazioni immediate.</li>
 <li>Sfondo animato</li></ul>
 
-I fornitori di meteo attualmente supportati nella variante F-Droid:<ul>
+I fornitori di meteo attualmente supportati:<ul>
+<li>Open-Meteo</li>
 <li>AccuWeather</li>
+<li>MET Norway</li>
 <li>OpenWeatherMap</li>
-<li>Météo France</li></ul>
+<li>Météo France</li>
+<li>Mixed China providers</li></ul>
 
 Questa applicazione richiede una serie di autorizzazioni, alcune obbligatorie, altre facoltative.
 

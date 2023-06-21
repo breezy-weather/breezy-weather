@@ -95,7 +95,7 @@ fun FitStatusBarTopAppBar(
         IconButton(onClick = onBackPressed) {
             Icon(
                 imageVector = if (DisplayUtils.isRtl(LocalContext.current)) Icons.Filled.ArrowForward else Icons.Filled.ArrowBack,
-                contentDescription = stringResource(R.string.content_desc_back),
+                contentDescription = stringResource(R.string.action_back),
                 tint = MaterialTheme.colorScheme.onPrimaryContainer,
             )
         }
