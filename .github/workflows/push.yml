@@ -1,11 +1,11 @@
-name: Breezy Weather releases (in progress)
+name: Breezy Weather push CI
 
 on:
   push:
     branches:
       - main
-#    tags:
-#      - v*
+    tags:
+      - v*
 
 jobs:
   build:
@@ -26,9 +26,73 @@ jobs:
 
       - uses: gradle/gradle-command-action@v2
         with:
-          arguments: assembleFdroidDebug
+          arguments: assembleFdroidRelease
 
-      - uses: actions/upload-artifact@v3
+      - name: Save version tag in env
+        if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
+        run: |
+          set -x
+          echo "VERSION_TAG=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
+
+      - name: Sign APK
+        if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
+        uses: r0adkll/sign-android-release@v1
         with:
-          name: BreezyWeather_fdroidDebug.apk
-          path: app/build/outputs/apk/fdroid/debug/app-fdroid-universal-debug.apk
+          releaseDirectory: app/build/outputs/apk/fdroid/release
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          alias: ${{ secrets.ALIAS }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+
+      - name: Prepare APKs with checksums, archive mapping.txt file
+        if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
+        run: |
+          set -e
+          mv app/build/outputs/apk/fdroid/release/app-fdroid-universal-release-unsigned-signed.apk breezy-weather-${{ env.VERSION_TAG }}.apk
+          sha256=`sha256sum breezy-weather-${{ env.VERSION_TAG }}.apk | awk '{ print $1 }'`
+          echo "APK_UNIVERSAL_SHA256=$sha256" >> $GITHUB_ENV
+          mv app/build/outputs/apk/fdroid/release/app-fdroid-arm64-v8a-release-unsigned-signed.apk breezy-weather-arm64-v8a-${{ env.VERSION_TAG }}.apk
+          sha256=`sha256sum breezy-weather-arm64-v8a-${{ env.VERSION_TAG }}.apk | awk '{ print $1 }'`
+          echo "APK_ARM64_V8A_SHA256=$sha256" >> $GITHUB_ENV
+          mv app/build/outputs/apk/fdroid/release/app-fdroid-armeabi-v7a-release-unsigned-signed.apk breezy-weather-armeabi-v7a-${{ env.VERSION_TAG }}.apk
+          sha256=`sha256sum breezy-weather-armeabi-v7a-${{ env.VERSION_TAG }}.apk | awk '{ print $1 }'`
+          echo "APK_ARMEABI_V7A_SHA256=$sha256" >> $GITHUB_ENV
+          mv app/build/outputs/apk/fdroid/release/app-fdroid-x86-release-unsigned-signed.apk breezy-weather-x86-${{ env.VERSION_TAG }}.apk
+          sha256=`sha256sum breezy-weather-x86-${{ env.VERSION_TAG }}.apk | awk '{ print $1 }'`
+          echo "APK_X86_SHA256=$sha256" >> $GITHUB_ENV
+          mv app/build/outputs/apk/fdroid/release/app-fdroid-x86_64-release-unsigned-signed.apk breezy-weather-x86_64-${{ env.VERSION_TAG }}.apk
+          sha256=`sha256sum breezy-weather-x86_64-${{ env.VERSION_TAG }}.apk | awk '{ print $1 }'`
+          echo "APK_X86_64_SHA256=$sha256" >> $GITHUB_ENV
+          tar -czvf mapping-${{ env.VERSION_TAG }}.tar.gz --directory=app/build/outputs/mapping/fdroidRelease/ mapping.txt
+
+      - name: Create release
+        if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ env.VERSION_TAG }}
+          name: Breezy Weather ${{ env.VERSION_TAG }}
+          body: |
+            ---
+            **IMPORTANT NOTE: This is a pre-release version. Migration of data is not guaranteed between alpha versions. If you experience issues after updating to a new alpha versions, please clean your app data and retry.**
+
+            *This release is based on a variant that does not contain proprietary blobs*
+
+            ### Checksums
+            | Variant     | SHA-256                           |
+            |-------------|-----------------------------------|
+            | Universal   | ${{ env.APK_UNIVERSAL_SHA256 }}   |
+            | arm64-v8a   | ${{ env.APK_ARM64_V8A_SHA256 }}   |
+            | armeabi-v7a | ${{ env.APK_ARMEABI_V7A_SHA256 }} |
+            | x86         | ${{ env.APK_X86_SHA256 }}         |
+            | x86_64      | ${{ env.APK_X86_64_SHA256 }}      |
+          files: |
+            breezy-weather-${{ env.VERSION_TAG }}.apk
+            breezy-weather-arm64-v8a-${{ env.VERSION_TAG }}.apk
+            breezy-weather-armeabi-v7a-${{ env.VERSION_TAG }}.apk
+            breezy-weather-x86-${{ env.VERSION_TAG }}.apk
+            breezy-weather-x86_64-${{ env.VERSION_TAG }}.apk
+            mapping-${{ env.VERSION_TAG }}.tar.gz
+          draft: true
+          prerelease: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
