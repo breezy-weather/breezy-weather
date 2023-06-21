@@ -310,7 +310,7 @@ private fun getMinutelyList(minuteResult: AccuMinutelyResult?): List<Minutely> {
     minuteResult.Intervals.forEach { interval ->
         minutelyList.add(
             Minutely(
-                Date(interval.StartEpochDateTime.times(1000)),
+                Date(interval.StartEpochDateTime),
                 interval.ShortPhrase,
                 getWeatherCode(interval.IconCode),
                 interval.Minute,
