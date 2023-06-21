@@ -56,7 +56,7 @@
         android:layout_margin="@dimen/normal_margin"
         android:alpha="0"
         android:layout_gravity="bottom|center_horizontal"
-        app:layout_behavior=".common.ui.behaviors.FloatingAboveSnackbarBehavior"
+        app:layout_behavior="org.breezyweather.common.ui.behaviors.FloatingAboveSnackbarBehavior"
         app:dotDiameter="8dp"
         app:dotGap="8dp"
         app:animationDuration="300" />

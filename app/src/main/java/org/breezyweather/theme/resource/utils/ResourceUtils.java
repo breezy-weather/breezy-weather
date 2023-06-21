@@ -18,7 +18,15 @@ public class ResourceUtils {
                     .getField(resName)
                     .getInt(null);
         } catch (Exception e) {
-            return 0;
+            // TODO: Dirty way to avoid crashes on debug build (because of applicationIdSuffix ".debug")
+            try {
+                return context.getClassLoader()
+                        .loadClass("org.breezyweather.R$" + type)
+                        .getField(resName)
+                        .getInt(null);
+            } catch (Exception ignored) {
+                return 0;
+            }
         }
     }
 
