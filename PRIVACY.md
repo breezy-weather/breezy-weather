@@ -1,6 +1,6 @@
 Breezy Weather doesn't collect any personal data.
 
-Breezy Weathers uses optional third-party APIs, please read their privacy policies before using them:
+Breezy Weather uses optional third-party APIs, please read their privacy policies before using them:
 - Open-Meteo: https://open-meteo.com/en/terms#privacy
 - AccuWeather: https://www.accuweather.com/en/privacy
 - MET Norway: https://www.met.no/en/About-us/privacy
