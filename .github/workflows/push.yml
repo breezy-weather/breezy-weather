@@ -94,5 +94,3 @@ jobs:
             mapping-${{ env.VERSION_TAG }}.tar.gz
           draft: true
           prerelease: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
