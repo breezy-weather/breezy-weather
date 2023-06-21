@@ -184,7 +184,7 @@
             android:screenOrientation="user"
             android:exported="true">
             <intent-filter>
-                <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
 
@@ -194,7 +194,7 @@
             android:screenOrientation="user"
             android:exported="true">
             <intent-filter>
-                <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
 
@@ -204,7 +204,7 @@
             android:screenOrientation="user"
             android:exported="true">
             <intent-filter>
-                <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
 
@@ -214,7 +214,7 @@
             android:screenOrientation="user"
             android:exported="true">
             <intent-filter>
-                <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
 
@@ -224,7 +224,7 @@
             android:screenOrientation="user"
             android:exported="true">
             <intent-filter>
-                <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
 
@@ -234,7 +234,7 @@
             android:screenOrientation="user"
             android:exported="true">
             <intent-filter>
-                <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
 
@@ -244,7 +244,7 @@
             android:screenOrientation="user"
             android:exported="true">
             <intent-filter>
-                <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
 
@@ -254,7 +254,7 @@
             android:screenOrientation="user"
             android:exported="true">
             <intent-filter>
-                <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
 
@@ -264,7 +264,7 @@
             android:screenOrientation="user"
             android:exported="true">
             <intent-filter>
-                <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
 
@@ -274,7 +274,7 @@
             android:screenOrientation="user"
             android:exported="true">
             <intent-filter>
-                <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
 
@@ -284,7 +284,7 @@
             android:screenOrientation="user"
             android:exported="true">
             <intent-filter>
-                <action android:name="andorid.appwidget.action.APPWIDGET_CONFIGURE" />
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
 
