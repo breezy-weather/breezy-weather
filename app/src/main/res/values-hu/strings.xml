@@ -134,9 +134,9 @@
     <string name="location_dialog_failed_to_locate_action_check_permission">Ellenőrizze a helymeghatározási engedélyeket</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Engedélyezze a helymeghatározási információkat</string>
     <string name="location_dialog_failed_to_locate_action_select_provider">Válassza ki a helymeghatározás szolgáltatóját</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">Adja hozzá a helyet manuálisan vagy törölje ezt: \'$\'</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Adja hozzá a helyet manuálisan vagy törölje ezt: “$”</string>
     <string name="dialog_permissions_location_background_title">Helymeghatározás a háttérben</string>
-    <string name="dialog_permissions_location_background_content">Ahhoz, hogy az alkalmazásnak a háttérben is legyen helymeghatározási hozzáférése, kérjük állítsa be a helyelérési jogosultságokat \"Mindig engedélyezettre\".</string>
+    <string name="dialog_permissions_location_background_content">Ahhoz, hogy az alkalmazásnak a háttérben is legyen helymeghatározási hozzáférése, kérjük állítsa be a helyelérési jogosultságokat “Mindig engedélyezettre”.</string>
 
     <string name="widget_label_view_style">Megtekintés Stílusa</string>
     <string name="widget_label_show_widget_card">Kártyaháttér</string>
@@ -147,7 +147,7 @@
     <string name="widget_label_text_size">Szövegméret</string>
     <string name="widget_label_clock_font">Óra Betűtípusa</string>
     <string name="widget_label_hide_lunar">Holdnaptár elrejtése</string>
-    <string name="widget_custom_subtitle_explanation">Akármit beírhat, de kérjük figyeljen oda a szöveg hosszúságára. Ha szeretne időjárásadatokat megjeleníteni, kérjük használja a $ jelet a kulcsszóra való hivatkozáshoz.\n\nPéldául, \"Jelenlegi Időjárás = $cw$\" így fog megjelenni: \"Jelenlegi Időjárás = Napos\".</string>
+    <string name="widget_custom_subtitle_explanation">Akármit beírhat, de kérjük figyeljen oda a szöveg hosszúságára. Ha szeretne időjárásadatokat megjeleníteni, kérjük használja a $ jelet a kulcsszóra való hivatkozáshoz.\n\nPéldául, “Jelenlegi Időjárás = $cw$” így fog megjelenni: “Jelenlegi Időjárás = Napos”.</string>
 
     <string name="widget_custom_subtitle_keyword_cw_description">Jelenlegi Időjárás</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Jelenlegi Hőmérséklet (℃/℉)</string>

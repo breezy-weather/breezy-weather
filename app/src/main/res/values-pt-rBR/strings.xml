@@ -138,7 +138,7 @@
     <string name="dialog_permissions_location_title">Acessar informações de localização</string>
     <string name="dialog_permissions_location_content">Breezy Weather precisa coletar suas informações de localização em primeiro plano ou em segundo plano para fornecer os dados meteorológicos da sua localização atual. Para isso, solicitaremos algumas permissões. Suas informações de localização serão usadas apenas para obter dados meteorológicos na sua localização atual. Se você não quiser que obtenhamos suas informações de localização, você pode negar esses requisitos e definir manualmente seu local na página de gerenciamento.</string>
     <string name="dialog_permissions_location_background_title">Acessar localização em segundo plano</string>
-    <string name="dialog_permissions_location_background_content">Permitir que o app acesse informações de localização em segundo plano, para que possamos perceber mudanças na localização e fornecer dados meteorológicos válidos, por favor, defina o acesso à localização como \"Permita o tempo todo\".</string>
+    <string name="dialog_permissions_location_background_content">Permitir que o app acesse informações de localização em segundo plano, para que possamos perceber mudanças na localização e fornecer dados meteorológicos válidos, por favor, defina o acesso à localização como “Permita o tempo todo”.</string>
 
     <string name="location_message_failed_to_locate">Falha na localização</string>
     <string name="weather_message_data_refresh_failed">Falha ao solicitar dados meteorológicos</string>
@@ -146,7 +146,7 @@
     <string name="location_dialog_failed_to_locate_action_check_permission">Verifique as permissões de localização</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Ativar informações de localização</string>
     <string name="location_dialog_failed_to_locate_action_select_provider">Selecione o provedor de localização</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">Adicionar local manualmente e remover \'$\'</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Adicionar local manualmente e remover “$”</string>
     <string name="widget_label_view_style">Estilo de exibição</string>
     <string name="widget_label_show_widget_card">Cor de fundo</string>
     <string name="widget_label_show_widget_card_alpha">Transparência</string>
@@ -157,7 +157,7 @@
     <string name="widget_label_clock_font">Fonte do relógio</string>
     <string name="widget_label_hide_lunar">Ocultar calendário lunar</string>
     <string name="widget_label_align_end">Alinhar até o final</string>
-    <string name="widget_custom_subtitle_explanation">Você pode inserir qualquer coisa, mas por favor preste atenção ao comprimento do texto. Se você quiser citar dados meteorológicos, use $ para fazer referência à palavra-chave correspondente.\n\nPor exemplo, \"Clima atual = $cw$\" será exibido como \"Clima atual = Limpo\".</string>
+    <string name="widget_custom_subtitle_explanation">Você pode inserir qualquer coisa, mas por favor preste atenção ao comprimento do texto. Se você quiser citar dados meteorológicos, use $ para fazer referência à palavra-chave correspondente.\n\nPor exemplo, “Clima atual = $cw$” será exibido como “Clima atual = Limpo”.</string>
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
     <string name="widget_custom_subtitle_keyword_cw_description">Clima atual</string>
@@ -216,11 +216,8 @@
     <string name="notification_updating_weather_data">Atualizando dados meteorológicos</string>
     <string name="message_updated_in_background">Atualizado em segundo plano</string>
 
-    <!-- there should be a "\" before single or double quotes. -->
-    <!-- Correct : ... after turning off \'Background free\', ... After turning off \"Free background\" ... -->
-    <!-- Wrong   : ... after turning off 'Background free', ... After turning off "Free background" ... -->
     <string name="dialog_permissions_block_notification_channel_title">Bloquear grupo de notificações</string>
-    <string name="dialog_permissions_block_notification_channel_content">Após desativar \'Sem segundo plano\', uma notificação indicando que o serviço em segundo plano está em execução aparecerá na barra de notificação. Você pode desativar o canal \'Informação em segundo plano\' na página de informações do app para bloquear estas notificações.</string>
+    <string name="dialog_permissions_block_notification_channel_content">Após desativar “Sem segundo plano”, uma notificação indicando que o serviço em segundo plano está em execução aparecerá na barra de notificação. Você pode desativar o canal “Informação em segundo plano” na página de informações do app para bloquear estas notificações.</string>
 
     <string name="dialog_permissions_ignore_battery_optimizations_title">Ignorar otimização de bateria</string>
     <string name="dialog_permissions_ignore_battery_optimizations_content">Para garantir que os serviços em segundo plano continuem funcionando, por favor, ignore a otimização de bateria para Breezy Weather.</string>

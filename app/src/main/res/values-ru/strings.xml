@@ -124,9 +124,9 @@
     <string name="location_dialog_failed_to_locate_action_check_permission">Проверка разрешений местоположения</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Включить информацию местоположения</string>
     <string name="location_dialog_failed_to_locate_action_select_provider">Выбрать источник определения местоположения</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">Добавить местоположение и удалить \'$\'</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Добавить местоположение и удалить “$”</string>
     <string name="dialog_permissions_location_background_title">Доступ к местоположению в фоне</string>
-    <string name="dialog_permissions_location_background_content">Чтобы разрешить программе доступ к местоположению в фоне, включите доступ к местоположению \"Разрешить всегда\".</string>
+    <string name="dialog_permissions_location_background_content">Чтобы разрешить программе доступ к местоположению в фоне, включите доступ к местоположению “Разрешить всегда”.</string>
 
     <string name="widget_label_view_style">Стиль внешнего вида</string>
     <string name="widget_label_show_widget_card">Цвет фона</string>
@@ -137,7 +137,7 @@
     <string name="widget_label_text_size">Размер текста</string>
     <string name="widget_label_clock_font">Шрифт чаcов</string>
     <string name="widget_label_hide_lunar">Скрыть лунный календарь</string>
-    <string name="widget_custom_subtitle_explanation">Вы можете ввести что угодно, но, пожалуйста, обратите внимание на длину текста. Если Вы хотите чтобы отображались погодные данные, пожалуйста используйте $ для ссылки на соответствующее ключевое слово.\n\nНапример, \"погода сейчас = $cw$\" будет показана как \"Погода сейчас = Ясный День\".</string>
+    <string name="widget_custom_subtitle_explanation">Вы можете ввести что угодно, но, пожалуйста, обратите внимание на длину текста. Если Вы хотите чтобы отображались погодные данные, пожалуйста используйте $ для ссылки на соответствующее ключевое слово.\n\nНапример, “погода сейчас = $cw$” будет показана как “Погода сейчас = Ясный День”.</string>
 
     <string name="widget_custom_subtitle_keyword_cw_description">Погода сейчас</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Текущая температура (℃/℉)</string>
@@ -195,7 +195,7 @@
     <string name="message_updated_in_background">Обновлено в фоне</string>
 
     <string name="dialog_permissions_block_notification_channel_title">Настройка уведомлений</string>
-    <string name="dialog_permissions_block_notification_channel_content">После выключения \"Запрет работы в фоне\", на панели уведомлений появится уведомление о том, что служба запущена в фоне. Вы можете отключить уведомление о работе в фоне в настройках уведомлений приложения, чтобы скрыть это уведомление.</string>
+    <string name="dialog_permissions_block_notification_channel_content">После выключения “Запрет работы в фоне”, на панели уведомлений появится уведомление о том, что служба запущена в фоне. Вы можете отключить уведомление о работе в фоне в настройках уведомлений приложения, чтобы скрыть это уведомление.</string>
 
     <string name="dialog_permissions_ignore_battery_optimizations_title">Игнорировать Оптимизацию батареи</string>
     <string name="dialog_permissions_ignore_battery_optimizations_content">Чтобы фоновая служба гарантированно работала, пожалуйста отключите Оптимизацию батареи для Breezy Weather.</string>

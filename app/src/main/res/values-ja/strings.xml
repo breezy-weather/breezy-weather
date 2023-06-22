@@ -140,7 +140,7 @@
     <string name="location_dialog_failed_to_locate_action_check_permission">Check location permissions</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Enable Location Information</string>
     <string name="location_dialog_failed_to_locate_action_select_provider">位置情報サービスを選択</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">手動でロケーションを追加し、\'$\'を削除</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">手動でロケーションを追加し、“$”を削除</string>
 
     <string name="widget_label_view_style">View style</string>
     <string name="widget_label_show_widget_card">背景色</string>
@@ -207,9 +207,6 @@
     <string name="notification_updating_weather_data">気象データの更新</string>
     <string name="message_updated_in_background">バックグラウンドで更新</string>
 
-    <!-- there should be a "\" before single or double quotes. -->
-    <!-- Correct : ... after turning off \'Background free\', ... After turning off \"Free background\" ... -->
-    <!-- Wrong   : ... after turning off 'Background free', ... After turning off "Free background" ... -->
     <string name="dialog_permissions_block_notification_channel_title">グループ通知をブロックする</string>
     <string name="dialog_permissions_block_notification_channel_content">「バックグラウンドで更新しない」をオフにすると、通知バーにバックグラウンドサービスが起動していることを示す通知が表示されます。アプリの情報ページの「バックグラウンド情報」をオフにすることで、この通知をブロックすることができます。</string>
 

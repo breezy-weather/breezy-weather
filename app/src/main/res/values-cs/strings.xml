@@ -139,7 +139,7 @@
     <string name="dialog_permissions_location_title">Přístup k informacím o poloze</string>
     <string name="dialog_permissions_location_content">Aplikace Breezy Weather potřebuje sbírat na popředí nebo v pozadí informace o vaší poloze, aby mohla poskytnout údaje o počasí ve vaší současné lokaci. Z tohoto důvodu zažádáme o nějaká oprávnění. Informace o vaší poloze budou použity pouze k získání údajů o počasí ve vaší současné lokaci. Pokud nechcete, abychom sbírali informace o poloze, můžete tyto žádosti zamítnout a ručně nastavit vaší polohu na stránce nastavení.</string>
     <string name="dialog_permissions_location_background_title">Přístup k poloze na pozadí</string>
-    <string name="dialog_permissions_location_background_content">Abychom umožnili aplikaci přístup k informaci o poloze na pozadí a mohli díky tomu zjišťovat změny v poloze a poskytovat vám aktuální údaje o počasí, je potřeba abyste nastavili přístup k poloze na \"Povolit vždy\".</string>
+    <string name="dialog_permissions_location_background_content">Abychom umožnili aplikaci přístup k informaci o poloze na pozadí a mohli díky tomu zjišťovat změny v poloze a poskytovat vám aktuální údaje o počasí, je potřeba abyste nastavili přístup k poloze na “Povolit vždy”.</string>
 
     <string name="location_message_failed_to_locate">Poloha selhala</string>
     <string name="weather_message_data_refresh_failed">Pokus o získání údajů o počasí selhal</string>
@@ -147,7 +147,7 @@
     <string name="location_dialog_failed_to_locate_action_check_permission">Zkontrolujte oprávnění polohy</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Povolte přístup k informacím o poloze</string>
     <string name="location_dialog_failed_to_locate_action_select_provider">Vyberte poskytovatele polohy</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">Ručně přidat polohu a odstranit \'$\'</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Ručně přidat polohu a odstranit “$”</string>
     <string name="widget_label_view_style">Zobrazit styl</string>
     <string name="widget_label_show_widget_card">Barva pozadí</string>
     <string name="widget_label_show_widget_card_alpha">Průhlednost</string>
@@ -158,7 +158,7 @@
     <string name="widget_label_clock_font">Písmo hodin</string>
     <string name="widget_label_hide_lunar">Skrýt lunární kalendář</string>
     <string name="widget_label_align_end">Zarovnat konec</string>
-    <string name="widget_custom_subtitle_explanation">Můžete zadat cokoli, ale dávejte pozor na délku textu. Pokud chcete citovat data o počasí, použijte znak $ pro odkazování na odpovídající klíčové slovo.\n\nNapříklad \"current weather = $cw$\" bude zobrazeno jako \"current weather = Clear Day\".</string>
+    <string name="widget_custom_subtitle_explanation">Můžete zadat cokoli, ale dávejte pozor na délku textu. Pokud chcete citovat data o počasí, použijte znak $ pro odkazování na odpovídající klíčové slovo.\n\nNapříklad “current weather = $cw$” bude zobrazeno jako “current weather = Clear Day”.</string>
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
     <string name="widget_custom_subtitle_keyword_cw_description">Současné počasí</string>
@@ -217,11 +217,8 @@
     <string name="notification_updating_weather_data">Aktualizace údajů o počasí</string>
     <string name="message_updated_in_background">Aktualizováno na pozadí</string>
 
-    <!-- there should be a "\" before single or double quotes. -->
-    <!-- Correct : ... after turning off \'Background free\', ... After turning off \"Free background\" ... -->
-    <!-- Wrong   : ... after turning off 'Background free', ... After turning off "Free background" ... -->
     <string name="dialog_permissions_block_notification_channel_title">Blokovat skupinu oznámení</string>
-    <string name="dialog_permissions_block_notification_channel_content">Po vypnutí funkce \"Neběžet na pozadí\" se zobrazí oznámení značící, že služba na pozadí je aktivní. Oznámení lze vypnout na informační stránce aplikace.</string>
+    <string name="dialog_permissions_block_notification_channel_content">Po vypnutí funkce “Neběžet na pozadí” se zobrazí oznámení značící, že služba na pozadí je aktivní. Oznámení lze vypnout na informační stránce aplikace.</string>
 
     <string name="dialog_permissions_ignore_battery_optimizations_title">Ignorovat optimalizace baterie</string>
     <string name="dialog_permissions_ignore_battery_optimizations_content">Pro ujištění, že mohou služby na pozadí pokračovat v práci, je potřeba zapnout ignorování optimalizací baterie pro Breezy Weather.</string>

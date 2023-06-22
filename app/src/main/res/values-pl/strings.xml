@@ -5,7 +5,7 @@
 
     <!--
         EN # Some translations can be untranslated or skipped cause of not having certain terms in Polish language. If there were any mistakes in the translation, I apologize in advance.
-        PL # Niektóre zwroty mogą być nieprzetłumaczone lub pominięte z powodu braku niektórych określeń ("wet bulb temperature" lub "degree day temperature") w języku polskim. Jeśli wystąpiły pomyłki w tłumaczeniu, z góry przepraszam.
+        PL # Niektóre zwroty mogą być nieprzetłumaczone lub pominięte z powodu braku niektórych określeń (“wet bulb temperature” lub “degree day temperature”) w języku polskim. Jeśli wystąpiły pomyłki w tłumaczeniu, z góry przepraszam.
     -->
 
     <!-- app. -->
@@ -140,7 +140,7 @@
     <string name="location_dialog_failed_to_locate_action_check_permission">Sprawdź uprawnienia lokalizacji</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Włącz informacje o lokalizacji</string>
     <string name="location_dialog_failed_to_locate_action_select_provider">Wybierz dostawcę lokalizacji</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">Dodaj lokalizację ręcznie i usuń \'$\'</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Dodaj lokalizację ręcznie i usuń “$”</string>
 
     <string name="widget_label_view_style">Wybierz styl</string>
     <string name="widget_label_show_widget_card">Kolor tła</string>
@@ -150,7 +150,7 @@
     <string name="widget_label_black_text">Kolor czcionki</string>
     <string name="widget_label_text_size">Wielkość czcionki</string>
     <string name="widget_label_clock_font">Czcionka zegara</string>
-    <string name="widget_custom_subtitle_explanation">Możesz wpisać wszystko, ale zwróć uwagę na długość tekstu. Jeśli chcesz odwołać się do danych pogodowych, proszę użyj $ aby odwołać się do odpowiedniego słowa kluczowego.\n\nNa przykład, \"current weather = $cw$\" wyświetli się jako \"current weather = Clear Day\".</string>
+    <string name="widget_custom_subtitle_explanation">Możesz wpisać wszystko, ale zwróć uwagę na długość tekstu. Jeśli chcesz odwołać się do danych pogodowych, proszę użyj $ aby odwołać się do odpowiedniego słowa kluczowego.\n\nNa przykład, “current weather = $cw$” wyświetli się jako “current weather = Clear Day”.</string>
 
     <string name="widget_custom_subtitle_keyword_cw_description">Obecna pogodar</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Obecna temperatura (℃/℉)</string>
@@ -207,7 +207,7 @@
     <string name="message_updated_in_background">Zaktualizowano w tle</string>
 
     <string name="dialog_permissions_block_notification_channel_title">Blokuj grupę powiadomień</string>
-    <string name="dialog_permissions_block_notification_channel_content">Po wyłączeniu \"Bez aktualizacji w tle\", na pasku powiadomień pojawi się powiadomienie wskazujące, że usługa w tle jest uruchomiona. Możesz wyłączyć ten kanał informacyjny w tle na stronie informacyjnej aplikacji, aby zablokować te powiadomienia.</string>
+    <string name="dialog_permissions_block_notification_channel_content">Po wyłączeniu “Bez aktualizacji w tle”, na pasku powiadomień pojawi się powiadomienie wskazujące, że usługa w tle jest uruchomiona. Możesz wyłączyć ten kanał informacyjny w tle na stronie informacyjnej aplikacji, aby zablokować te powiadomienia.</string>
 
     <string name="dialog_permissions_ignore_battery_optimizations_title">Zignoruj optymalizację baterii</string>
     <string name="dialog_permissions_ignore_battery_optimizations_content">Aby mieć pewność, że usługi działające w tle mogą nadal działać, zignoruj optymalizację baterii dla Breezy Weather.</string>

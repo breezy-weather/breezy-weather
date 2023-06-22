@@ -114,7 +114,7 @@
     <string name="notification_updating_weather_data">Atualizando dados de clima.</string>
 
     <string name="dialog_permissions_block_notification_channel_title">Bloquear grupo de notificações.</string>
-    <string name="dialog_permissions_block_notification_channel_content">Após desativar  \"livre de segundo plano\", uma notificação que serviço de segundo plano esta rodando irá aparecer na central de notificações, você pode desativar o canal de notificação do aplicativo nas configurações do dispositivo.</string>
+    <string name="dialog_permissions_block_notification_channel_content">Após desativar “livre de segundo plano”, uma notificação que serviço de segundo plano esta rodando irá aparecer na central de notificações, você pode desativar o canal de notificação do aplicativo nas configurações do dispositivo.</string>
 
     <!-- action -->
     <string name="alerts">Alerta</string>

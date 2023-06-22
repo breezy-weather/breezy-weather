@@ -201,7 +201,7 @@
     <string name="widget_label_clock_font">时钟字体</string>
     <string name="widget_label_hide_lunar">隐藏阴历</string>
     <string name="widget_label_align_end">右对齐</string>
-    <string name="widget_custom_subtitle_explanation">可输入任何内容，但请注意内容长度。若需使用天气数据，可以通过使用$来引用相应的关键字来实现。\n\n例如：若输入\"天气为$cw$\"，副标题将显示为\"天气为晴\"。</string>
+    <string name="widget_custom_subtitle_explanation">可输入任何内容，但请注意内容长度。若需使用天气数据，可以通过使用$来引用相应的关键字来实现。\n\n例如：若输入“天气为$cw$”，副标题将显示为“天气为晴”。</string>
 
     <string name="widget_custom_subtitle_keyword_cw_description">当天天气</string>
     <string name="widget_custom_subtitle_keyword_ct_description">当前温度 (℃/℉)</string>

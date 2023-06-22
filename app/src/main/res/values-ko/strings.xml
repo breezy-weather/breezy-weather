@@ -135,7 +135,7 @@
     <string name="location_dialog_failed_to_locate_action_check_permission">위치 허가 확인하기</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">위치 정보 활성화</string>
     <string name="location_dialog_failed_to_locate_action_select_provider">위치 공급자 선택하기</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">위치를 수동으로 첨가하고 삭제하기 \'$\'</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">위치를 수동으로 첨가하고 삭제하기 “$”</string>
 
     <string name="widget_label_view_style">보이는 스타일</string>
     <string name="widget_label_show_widget_card">배경색</string>
@@ -145,7 +145,7 @@
     <string name="widget_label_black_text">글씨 색</string>
     <string name="widget_label_text_size">글씨 사이즈</string>
     <string name="widget_label_clock_font">시계 폰트</string>
-    <string name="widget_custom_subtitle_explanation">아무거나 입력 할 수는 있지만, 글씨의 길이에 신경 써 주십시오. 당신이 만약 날씨 데이터를 따오고 싶다면, 해당 키워드를 참조하여 $ 를 사용해 주십시오. \n\n예를 들자면 \"현재 날씨 = $cw$\" 는 \"현재 날씨 = 맑음\" 으로 표시됩니다.</string>
+    <string name="widget_custom_subtitle_explanation">아무거나 입력 할 수는 있지만, 글씨의 길이에 신경 써 주십시오. 당신이 만약 날씨 데이터를 따오고 싶다면, 해당 키워드를 참조하여 $ 를 사용해 주십시오. \n\n예를 들자면 “현재 날씨 = $cw$” 는 “현재 날씨 = 맑음” 으로 표시됩니다.</string>
 
     <string name="widget_custom_subtitle_keyword_cw_description">현재 날씨</string>
     <string name="widget_custom_subtitle_keyword_ct_description">현재 온도 (℃/℉)</string>
@@ -202,7 +202,7 @@
     <string name="message_updated_in_background">백그라운드에서 업데이트 되었습니다</string>
 
     <string name="dialog_permissions_block_notification_channel_title">알림 막기</string>
-    <string name="dialog_permissions_block_notification_channel_content">\"백그라운드에서 실행 시키지 않기\"을 끄고 난 후에, 알림 바에 \'백그라운드 서비스가 실행되고 있음\'이라는 알림이 나타날 수도 있습니다. 이 앱의 백그라운드 정보에서 알림을 끔으로써, \이 알림을 막을 수 있습니다.</string>
+    <string name="dialog_permissions_block_notification_channel_content">“백그라운드에서 실행 시키지 않기”을 끄고 난 후에, 알림 바에 “백그라운드 서비스가 실행되고 있음”이라는 알림이 나타날 수도 있습니다. 이 앱의 백그라운드 정보에서 알림을 끔으로써, \이 알림을 막을 수 있습니다.</string>
 
     <string name="dialog_permissions_ignore_battery_optimizations_title">배터리 최적화 무시하기</string>
     <string name="dialog_permissions_ignore_battery_optimizations_content">Breezy Weather가 계속 날씨 데이터를 받아 오려면, 배터리 최적화에서 이 앱를 제외해야 합니다.</string>

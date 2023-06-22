@@ -135,7 +135,7 @@
     <string name="location_dialog_failed_to_locate_action_check_permission">قم بفحص أذونات الموقع</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">تمكين نظام تحديد الموقع العالمي (GPS)</string>
     <string name="location_dialog_failed_to_locate_action_select_provider">إختيار مزود خدمة الموقع</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">إضافة وإزالة المواقع يدوياً \'$\'</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">إضافة وإزالة المواقع يدوياً ”$“</string>
 
     <string name="widget_label_view_style">أسلوب العرض</string>
     <string name="widget_label_show_widget_card">لون الخلفية</string>
@@ -163,7 +163,7 @@
     <string name="message_updated_in_background">تم التحديث في الخلفية</string>
 
     <string name="dialog_permissions_block_notification_channel_title">حظر الإشعارات</string>
-    <string name="dialog_permissions_block_notification_channel_content">بعد إيقاف تشغيل \"عدم التشغيل في الخلفية\"، سيظهر لك إشعار في شريط الإشعارات يعلمك بأن التطبيق يعمل في الخلفية. يمكنك إخفاء هذا الإشعار عن طريق الذهاب إلى إعدادات الإشعارات في جهازك، وحظر هذا الإشعار.</string>
+    <string name="dialog_permissions_block_notification_channel_content">بعد إيقاف تشغيل ”عدم التشغيل في الخلفية“، سيظهر لك إشعار في شريط الإشعارات يعلمك بأن التطبيق يعمل في الخلفية. يمكنك إخفاء هذا الإشعار عن طريق الذهاب إلى إعدادات الإشعارات في جهازك، وحظر هذا الإشعار.</string>
 
     <string name="dialog_permissions_ignore_battery_optimizations_title">تجاهل تحسين البطارية</string>
     <string name="dialog_permissions_ignore_battery_optimizations_content">من أجل ضمان استمرار عمل خدمات الطقس في الخلفية، الرجاء تجاهل تحسين البطارية لهذا التطبيق.</string>
@@ -263,4 +263,71 @@
     <string name="settings_notification_hide_big_view_on">مُعطل</string>
     <string name="settings_notification_hide_big_view_off">مُفعل</string>
 
+    <string name="location_service_baidu_ip">Baidu IP Location (متاح للصين فقط)</string>
+    <string name="settings_automatic">تلقائي</string>
+    <string name="settings_none">لا شيء</string>
+    <string name="settings_color_day_night">الوضع التلقائي</string>
+    <string name="settings_color_day_always">دائماً في النهار</string>
+    <string name="settings_color_night_always">دائماً في الليل</string>
+    <string name="settings_color_light">فاتح</string>
+    <string name="settings_color_light_always">ًفاتح دائما</string>
+    <string name="settings_color_grey">رمادي</string>
+    <string name="settings_color_dark">داكن</string>
+    <string name="settings_color_dark_always">ًداكن دائما</string>
+    <string name="settings_refresh_30min">كل ٣٠ دقيقة</string>
+    <string name="settings_refresh_1h">كل ساعة</string>
+    <string name="settings_refresh_1h_30min">كل ساعة ونصف</string>
+    <string name="settings_refresh_2h">كل ساعتان</string>
+    <string name="settings_refresh_3h">كل ٣ ساعات</string>
+    <string name="settings_refresh_6h">كل ست ساعات</string>
+    <string name="settings_refresh_12h">كل 12 ساعات</string>
+    <string name="settings_refresh_24h">كل 24 ساعات</string>
+
+    <string name="widget_subtitle_data_time">وقت آخر تحديث للطقس</string>
+    <string name="widget_subtitle_data_aqi">مؤشر جودة الهواء</string>
+    <string name="widget_subtitle_data_wind">الرياح</string>
+    <string name="widget_subtitle_data_feels_like">درجة الحرارة المحسوسة</string>
+    <string name="widget_subtitle_data_lunar">تقويم قمري</string>
+    <string name="widget_subtitle_data_custom">مخصص</string>
+
+    <!-- Weather kind -->
+    <string name="weather_kind_clear">صافي</string>
+    <string name="weather_kind_partly_cloudy">غائم جزئياً</string>
+    <string name="weather_kind_cloudy">غائم</string>
+    <string name="weather_kind_rain">مطر</string>
+    <string name="weather_kind_snow">ثلج</string>
+    <string name="weather_kind_sleet">مطر متجمد</string>
+    <string name="weather_kind_hail">بَرَد</string>
+    <string name="weather_kind_fog">ضباب</string>
+    <string name="weather_kind_haze">مُغبَر</string>
+    <string name="weather_kind_thunder">رعد</string>
+    <string name="weather_kind_thunderstorm">عاصفة رعدية</string>
+    <string name="weather_kind_wind">رياح</string>
+
+    <string name="unit_kph">كم/س</string>
+    <string name="unit_mps">م/س</string>
+    <string name="unit_kn">عقدة</string>
+    <string name="unit_mph">ميل/س</string>
+    <string name="unit_ftps">قدم/س</string>
+    <string name="unit_mm">ملم</string>
+    <string name="unit_in">إنش</string>
+    <string name="unit_lpsqm">لتر/م²</string>
+    <string name="unit_celsius">°م</string>
+    <string name="unit_celsius_short">°</string>
+    <string name="unit_fahrenheit">°ف</string>
+    <string name="unit_fahrenheit_short">°</string>
+    <string name="unit_kelvin">ك</string>
+    <string name="unit_kelvin_short">ك</string>
+    <string name="unit_km">كم</string>
+    <string name="unit_m">م</string>
+    <string name="unit_mi">ميل</string>
+    <string name="unit_nmi">ميل بحري</string>
+    <string name="unit_ft">قدم</string>
+    <string name="unit_mb">ملي بار</string>
+    <string name="unit_kpa">كيلو باسكال</string>
+    <string name="unit_hpa">هيكتوباسكال</string>
+    <string name="unit_atm">ضغط جوي</string>
+    <string name="unit_mmhg">ملي متر زئبق</string>
+    <string name="unit_inhg">بوصة من الزئبق</string>
+    <string name="unit_kgfpsqcm">كغم قوة/سم²</string>
 </resources>

@@ -154,7 +154,7 @@
     <string name="widget_label_clock_font">時鐘字體</string>
     <string name="widget_label_hide_lunar">隱藏陰曆</string>
     <string name="widget_label_align_end">右對齊</string>
-    <string name="widget_custom_subtitle_explanation">可以鍵入任何内容，但請注意内容長度。若需要使用天氣數據，可以通過使用$來引用相應關鍵字來實現。\n\n例如：若鍵入\"天氣為$cw$\"，副標題將顯示為\"天氣為晴\"。</string>
+    <string name="widget_custom_subtitle_explanation">可以鍵入任何内容，但請注意内容長度。若需要使用天氣數據，可以通過使用$來引用相應關鍵字來實現。\n\n例如：若鍵入“天氣為$cw$”，副標題將顯示為“天氣為晴”。</string>
 
     <string name="widget_custom_subtitle_keyword_cw_description">當天天氣</string>
     <string name="widget_custom_subtitle_keyword_ct_description">當前溫度 (℃/℉)</string>

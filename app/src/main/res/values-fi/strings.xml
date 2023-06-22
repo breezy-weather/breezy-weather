@@ -138,7 +138,7 @@
     <string name="dialog_permissions_location_title">Pääsy sijaintitietoihin</string>
     <string name="dialog_permissions_location_content">eometric Weatherin on kerättävä sijaintitietosi käytössä ollessaan tai taustalla, jotta se voi antaa nykyisen sijaintisi säätiedot. Tätä varten pyydämme joitakin käyttöoikeuksia. Sijaintitietojasi käytetään vain nykyisen sijaintisi säätietojen saamiseksi. Jos et halua, että saamme sijaintitietojasi, voit estää nämä pyynnöt ja määrittää sijaintisi manuaalisesti hallintasivulla.</string>
     <string name="dialog_permissions_location_background_title">Pääsy sijaintitietoihin taustalla</string>
-    <string name="dialog_permissions_location_background_content">Voidaksemme tarjota päteviä säätietoja sijaintisi muuttuessakin, salli pääsy sijaintitietoihin taustalla. Aseta sijainnin käyttöoikeudeksi \"Salli aina\".</string>
+    <string name="dialog_permissions_location_background_content">Voidaksemme tarjota päteviä säätietoja sijaintisi muuttuessakin, salli pääsy sijaintitietoihin taustalla. Aseta sijainnin käyttöoikeudeksi “Salli aina”.</string>
 
     <string name="location_message_failed_to_locate">Sijainin haku epäonnistui</string>
     <string name="weather_message_data_refresh_failed">Säätietojen haku epäonnistui</string>
@@ -146,7 +146,7 @@
     <string name="location_dialog_failed_to_locate_action_check_permission">Tarkista sijaintitietojen käyttöoikeudet</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Ota sijaintitiedot käyttöön</string>
     <string name="location_dialog_failed_to_locate_action_select_provider">Valitse sijainnin tarjoaja</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">Lisää sijainti manuaalisesti ja poista \'$\'</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Lisää sijainti manuaalisesti ja poista “$”</string>
     <string name="widget_label_view_style">Näytä tyyli</string>
     <string name="widget_label_show_widget_card">Taustaväri</string>
     <string name="widget_label_show_widget_card_alpha">Läpinäkyvyys</string>
@@ -157,7 +157,7 @@
     <string name="widget_label_clock_font">Kellon fontti</string>
     <string name="widget_label_hide_lunar">Piilota kuukalenteri</string>
     <string name="widget_label_align_end">Kohdista loppuun</string>
-    <string name="widget_custom_subtitle_explanation">Voit syöttää mitä tahansa, mutta kiinnitä huomiota tekstin pituuteen. Jos haluat viitata säädataan, käytä $ viitataksesi vastaavaan avainsanaan.\n\nEsimerkiksi, \"Tämänhetkinen sää = $cw$\" näytetään seuraavasti \"tämänhetkinen sää = Selkeä päivä\".</string>
+    <string name="widget_custom_subtitle_explanation">Voit syöttää mitä tahansa, mutta kiinnitä huomiota tekstin pituuteen. Jos haluat viitata säädataan, käytä $ viitataksesi vastaavaan avainsanaan.\n\nEsimerkiksi, “Tämänhetkinen sää = $cw$” näytetään seuraavasti “tämänhetkinen sää = Selkeä päivä”.</string>
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
     <string name="widget_custom_subtitle_keyword_cw_description">Tämänhetkinen sää</string>
@@ -216,11 +216,8 @@
     <string name="notification_updating_weather_data">Päivitetään säätietoja</string>
     <string name="message_updated_in_background">Päivitetty taustalla</string>
 
-    <!-- there should be a "\" before single or double quotes. -->
-    <!-- Correct : ... after turning off \'Background free\', ... After turning off \"Free background\" ... -->
-    <!-- Wrong   : ... after turning off 'Background free', ... After turning off "Free background" ... -->
     <string name="dialog_permissions_block_notification_channel_title">Estä ilmoitusryhmä</string>
-    <string name="dialog_permissions_block_notification_channel_content">Kun olet kytkenyt \"Free background\" pois päältä, ilmoituspalkkiin ilmestyy ilmoitus joka osoittaa, että taustapalvelu on käynnissä. Voit poistaa Taustatietokanavan käytöstä sovelluksen tietosivulla estääksesi nämä ilmoitukset.</string>
+    <string name="dialog_permissions_block_notification_channel_content">Kun olet kytkenyt “Free background” pois päältä, ilmoituspalkkiin ilmestyy ilmoitus joka osoittaa, että taustapalvelu on käynnissä. Voit poistaa Taustatietokanavan käytöstä sovelluksen tietosivulla estääksesi nämä ilmoitukset.</string>
 
     <string name="dialog_permissions_ignore_battery_optimizations_title">Jätä akun optimointi huomiotta</string>
     <string name="dialog_permissions_ignore_battery_optimizations_content">Varmistaaksesi, että taustapalvelut voivat jatkaa toimintaansa, jätä Breezy Weatherin akkuoptimointi huomiotta.</string>
@@ -364,4 +361,54 @@
     <string name="settings_provider_mf_wsft_key">Météo France WSFT avain</string>
     <string name="settings_provider_iqa_atmo_aura_key">ATMO AURA avain</string>
 
+    <string name="weather_source_china">Kiinassa</string>
+    <string name="location_service_baidu_ip">Baidu IP Location (vain Kiinassa)</string>
+
+    <string name="settings_automatic">Automaattinen</string>
+    <string name="settings_none">Ei mitään</string>
+    <string name="settings_color_day_night">Päivä-/yöti</string>
+    <string name="settings_color_day_always">Aina päivänäkymä</string>
+    <string name="settings_color_night_always">Aina yönäkymä</string>
+    <string name="settings_color_light">Vaalea</string>
+    <string name="settings_color_light_always">Aina vaalea</string>
+    <string name="settings_color_dark">Tumma</string>
+    <string name="settings_color_dark_always">Aina tumma</string>
+    <string name="settings_refresh_30min">Half an hour</string>
+    <string name="settings_refresh_1h">1 tunti</string>
+    <string name="settings_refresh_1h_30min">1,5 tuntia</string>
+    <string name="settings_refresh_2h">2 tuntia</string>
+    <string name="settings_refresh_3h">3 tuntia</string>
+    <string name="settings_refresh_6h">6 tuntia</string>
+    <string name="settings_refresh_12h">12 tuntia</string>
+    <string name="settings_refresh_24h">24 tuntia</string>
+
+    <string name="notification_style_native">Native</string>
+    <string name="notification_style_cities">Villes</string>
+
+    <string name="widget_style_rectangle">Suorakulmio</string>
+    <string name="widget_style_symmetry">Symmetrinen</string>
+    <string name="widget_style_tile">Laatta</string>
+    <string name="widget_style_vertical">Pystysuora</string>
+    <string name="widget_style_temperature">Lämpötila</string>
+    <string name="widget_week_style_5_days">5 päivää</string>
+    <string name="widget_week_style_3_days">3 päivää</string>
+    <string name="widget_subtitle_data_time">Päivitetty</string>
+    <string name="widget_subtitle_data_wind">Tuuli</string>
+    <string name="widget_subtitle_data_feels_like">Lämpötila tuntuu kuin</string>
+    <string name="widget_subtitle_data_lunar">Kuukalenteri</string>
+    <string name="widget_subtitle_data_custom">Mukautettu</string>
+
+    <!-- Weather kind -->
+    <string name="weather_kind_clear">Selkeää</string>
+    <string name="weather_kind_partly_cloudy">Osittain pilvistä</string>
+    <string name="weather_kind_cloudy">Pilvistä</string>
+    <string name="weather_kind_rain">Sadetta</string>
+    <string name="weather_kind_snow">Lumisadetta</string>
+    <string name="weather_kind_sleet">Räntäsadetta</string>
+    <string name="weather_kind_hail">Rakeita</string>
+    <string name="weather_kind_fog">Sumua</string>
+    <string name="weather_kind_haze">Usvaa</string>
+    <string name="weather_kind_thunder">Ukkosta</string>
+    <string name="weather_kind_thunderstorm">Ukkosmyrskyä</string>
+    <string name="weather_kind_wind">Tuulta</string>
 </resources>

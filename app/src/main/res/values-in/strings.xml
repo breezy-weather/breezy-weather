@@ -139,7 +139,7 @@
     <string name="dialog_permissions_location_title">Akses informasi lokasi</string>
     <string name="dialog_permissions_location_content">Breezy Weather perlu mengumpulkan informasi lokasi Anda di latar depan atau latar belakang untuk menyediakan data cuaca di lokasi Anda saat ini. Untuk ini, kami akan meminta beberapa izin. Informasi lokasi Anda hanya akan digunakan untuk mendapatkan data cuaca di lokasi Anda saat ini. Jika Anda tidak ingin kami mendapatkan informasi lokasi Anda, Anda bisa menolak persyaratan itu dan mengatur lokasi Anda secara manual di halaman manajemen.</string>
     <string name="dialog_permissions_location_background_title">Akses lokasi di latar-belakang</string>
-    <string name="dialog_permissions_location_background_content">Untuk memungkinkan aplikasi mengakses informasi lokasi di latar belakang, sehingga kami dapat memahami perubahan lokasi dan memberi Anda data cuaca yang valid, silakan atur akses lokasi sebagai \"Izinkan sepanjang waktu\".</string>
+    <string name="dialog_permissions_location_background_content">Untuk memungkinkan aplikasi mengakses informasi lokasi di latar belakang, sehingga kami dapat memahami perubahan lokasi dan memberi Anda data cuaca yang valid, silakan atur akses lokasi sebagai “Izinkan sepanjang waktu”.</string>
 
     <string name="location_message_failed_to_locate">Lokasi gagal</string>
     <string name="weather_message_data_refresh_failed">permintaan data cuaca gagal</string>
@@ -161,7 +161,7 @@
     <string name="widget_label_clock_font">Font jam</string>
     <string name="widget_label_hide_lunar">Sembunyikan kalender bulan</string>
     <string name="widget_label_align_end">Align end</string>
-    <string name="widget_custom_subtitle_explanation">Anda dapat memasukkan apa pun, tetapi harap perhatikan panjang teks. Jika Anda ingin mengutip data cuaca, silakan gunakan $ untuk merujuk kata kunci yang sesuai.\n\nuntuk contoh, \"cuaca saat ini = $cw$\" akan ditampilkan sebagai \"cuaca saat ini = Hari Jernih\".</string>
+    <string name="widget_custom_subtitle_explanation">Anda dapat memasukkan apa pun, tetapi harap perhatikan panjang teks. Jika Anda ingin mengutip data cuaca, silakan gunakan $ untuk merujuk kata kunci yang sesuai.\n\nuntuk contoh, “cuaca saat ini = $cw$” akan ditampilkan sebagai “cuaca saat ini = Hari Jernih”.</string>
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
     <string name="widget_custom_subtitle_keyword_cw_description">Cuaca saat ini</string>
@@ -220,11 +220,8 @@
     <string name="notification_updating_weather_data">Memperbarui data cuaca</string>
     <string name="message_updated_in_background">Diperbarui dilatar-belakang</string>
 
-    <!-- there should be a "\" before single or double quotes. -->
-    <!-- Correct : ... after turning off \'Background free\', ... After turning off \"Free background\" ... -->
-    <!-- Wrong   : ... after turning off 'Background free', ... After turning off "Free background" ... -->
     <string name="dialog_permissions_block_notification_channel_title">Blokir grup pemberitahuan</string>
-    <string name="dialog_permissions_block_notification_channel_content">Setelah mematikan \"bebas latar-belakang\", pemberitahuan yang menunjukkan bahwa layanan latar belakang berjalan akan muncul di bilah pemberitahuan. Anda dapat mematikan saluran informasi latar belakang di halaman informasi aplikasi untuk memblokir pemberitahuan ini.</string>
+    <string name="dialog_permissions_block_notification_channel_content">Setelah mematikan “bebas latar-belakang”, pemberitahuan yang menunjukkan bahwa layanan latar belakang berjalan akan muncul di bilah pemberitahuan. Anda dapat mematikan saluran informasi latar belakang di halaman informasi aplikasi untuk memblokir pemberitahuan ini.</string>
 
     <string name="dialog_permissions_ignore_battery_optimizations_title">Abaikan pengoptimalan baterai</string>
     <string name="dialog_permissions_ignore_battery_optimizations_content">Untuk memastikan bahwa layanan latar belakang dapat terus bekerja, harap abaikan pengoptimalan baterai untuk Breezy Weather.</string>

@@ -44,7 +44,6 @@
     <string name="widget_label_hide_subtitle">Hide subtitle</string>
     <string name="dialog_permissions_ignore_battery_optimizations_content">Um sicherzustellen, dass die Hintergrundieste arbeiten schalten Sie bitte die Energiespareinstellungen für Breezy Weather ab.</string>
     <string name="dialog_permissions_ignore_battery_optimizations_title">Energiespareinstellungen ignoieren</string>
-    <string name="dialog_permissions_block_notification_channel_content">"After turning off \"Free background\", a notification indicating that background service is running will appear in the notification bar. You can turn off the Background Information Channel in the app's information page to block this notifications."</string>
     <string name="dialog_permissions_block_notification_channel_title">Block notification group</string>
     <string name="widget_live_wallpaper_day_night_type">Zeit</string>
     <string name="widget_live_wallpaper_weather_kind">Wetter</string>

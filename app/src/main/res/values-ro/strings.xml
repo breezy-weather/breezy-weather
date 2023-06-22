@@ -137,7 +137,7 @@
     <string name="dialog_permissions_location_title">Accesare informații despre locație.</string>
     <string name="dialog_permissions_location_content">Breezy Weather are nevoie de informațiile despre locația dumenavoastră când rulează sau în fundal pentru a furniza datele meteo din locația in care vă aflați. Pentru aceasta sunt necesare câteva permisiuni. Informațiile despre locația dumenavoastră vor fi utilizate doar pentru a obține datele meteo pentru locația curentă. Dacă nu doriți permiterea accesului la informațiile despre locație, puteți respinge aceste cerințe și seta manual locația dorită în pagina de gestionare.</string>
     <string name="dialog_permissions_location_background_title">Accesare locație în fundal.</string>
-    <string name="dialog_permissions_location_background_content">Pentru a permite aplicației să acceseze informații despre locație în fundal, astfel încât să putem percepe modificări ale locației și să vă oferim date meteorologice in timp real, setați accesul la locație ca \ "Permiteți tot timpul \". </string>
+    <string name="dialog_permissions_location_background_content">Pentru a permite aplicației să acceseze informații despre locație în fundal, astfel încât să putem percepe modificări ale locației și să vă oferim date meteorologice in timp real, setați accesul la locație ca \“Permiteți tot timpul”. </string>
 
     <string name="location_message_failed_to_locate">Localizarea a eșuat.</string>
     <string name="weather_message_data_refresh_failed">Solicitarea datelor meteo a eșuat.</string>
@@ -145,7 +145,7 @@
     <string name="location_dialog_failed_to_locate_action_check_permission">Verifică permisiunile de Localizare.</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Activați informațiile despre locație</string>
     <string name="location_dialog_failed_to_locate_action_select_provider">Selectați furnizorul de servicii de localizare</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">Adăugați locația manual și ștergeți \'$ \'</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Adăugați locația manual și ștergeți “$”</string>
     <string name="widget_label_view_style">Tip vizualizare</string>
     <string name="widget_label_show_widget_card">Culoare fundal</string>
     <string name="widget_label_show_widget_card_alpha">Transparență</string>
@@ -156,7 +156,7 @@
     <string name="widget_label_clock_font">Font ceas</string>
     <string name="widget_label_hide_lunar">Ascunde calendarul lunar</string>
     <string name="widget_label_align_end">Aliniați la sfârșit</string>
-    <string name="widget_custom_subtitle_explanation">Puteți introduce orice, dar vă rugăm să acordați atenție lungimii textului. Dacă doriți să citați datele meteo, vă rugăm să folosiți $ pentru a face referire la cuvântul cheie corespunzător. \n\De exemplu, \"Starea vremii = $cw$\" va fi afișat ca \"Starea vremii = cer senin\".</string>
+    <string name="widget_custom_subtitle_explanation">Puteți introduce orice, dar vă rugăm să acordați atenție lungimii textului. Dacă doriți să citați datele meteo, vă rugăm să folosiți $ pentru a face referire la cuvântul cheie corespunzător.\n\De exemplu, “Starea vremii = $cw$” va fi afișat ca “Starea vremii = cer senin”.</string>
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
     <string name="widget_custom_subtitle_keyword_cw_description">Starea vremii</string>
@@ -215,11 +215,8 @@
     <string name="notification_updating_weather_data">Se actualizează datele meteo</string>
     <string name="message_updated_in_background">Date actualizate în fundal</string>
 
-    <!-- there should be a "\" before single or double quotes. -->
-    <!-- Correct : ... after turning off \'Background free\', ... After turning off \"Free background\" ... -->
-    <!-- Wrong   : ... after turning off 'Background free', ... After turning off "Free background" ... -->
     <string name="dialog_permissions_block_notification_channel_title">Blochează  notificarea de fundal</string>
-    <string name="dialog_permissions_block_notification_channel_content">După deselectarea opțiunii \"Activitate fundal gestionată de sistem\", o notificare ce indică faptul că serviciul rulează in fundal va apărea în bara de notificări. Puteți dezactiva Informațiile despre activitatea din fundal în pagina de informații a aplicației pentru a bloca aceste notificări. </string>
+    <string name="dialog_permissions_block_notification_channel_content">După deselectarea opțiunii “Activitate fundal gestionată de sistem”, o notificare ce indică faptul că serviciul rulează in fundal va apărea în bara de notificări. Puteți dezactiva Informațiile despre activitatea din fundal în pagina de informații a aplicației pentru a bloca aceste notificări. </string>
 
     <string name="dialog_permissions_ignore_battery_optimizations_title">Ignorați optimizarea bateriei</string>
     <string name="dialog_permissions_ignore_battery_optimizations_content">Pentru a vă asigura că serviciile de fundal funcționează corect, vă rugăm să deselectați optimizarea bateriei pentru Breezy Weather. </string>

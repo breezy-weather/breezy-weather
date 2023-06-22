@@ -103,7 +103,7 @@
     <string name="hourly_forecast">Previsioni ad ore</string>
     <string name="minutely_forecast">Previsioni al minuto</string>
     <string name="precipitation_forecast">Previsioni di precipitazioni</string>
-    <string name="air_quality">Qualità dell\'aria</string>
+    <string name="air_quality">Qualità dell’aria</string>
     <string name="allergen">Allergene</string>
     <string name="details">Dettagli</string>
     <string name="ephemeris">Sole e Luna</string>
@@ -117,7 +117,7 @@
     <string name="action_help">AIUTO</string>
     <string name="action_learn_more">ALTRE INFORMAZIONI</string>
 
-    <string name="about_app">Info sull\'app</string>
+    <string name="about_app">Info sull’app</string>
     <string name="about_contributors">Contributori</string>
     <string name="about_translators">Traduttori</string>
 
@@ -132,9 +132,9 @@
     <string name="notification_location_in_background">Localizzazione in corso… </string>
 
     <string name="dialog_permissions_location_title">Accesso alle informazioni sulla posizione</string>
-    <string name="dialog_permissions_location_content">Breezy Weather deve raccogliere le informazioni sulla posizione dell\'utente in primo piano o in background per fornire i dati meteo della posizione corrente. A tal fine, verranno richieste alcune autorizzazioni. Le informazioni sulla posizione dell\'utente saranno utilizzate solo per ottenere i dati meteo della sua posizione attuale. Se non si desidera che le informazioni sulla posizione vengano acquisite, è possibile negare questi requisiti e impostare manualmente la propria posizione nella pagina di gestione.</string>
+    <string name="dialog_permissions_location_content">Breezy Weather deve raccogliere le informazioni sulla posizione dell’utente in primo piano o in background per fornire i dati meteo della posizione corrente. A tal fine, verranno richieste alcune autorizzazioni. Le informazioni sulla posizione dell’utente saranno utilizzate solo per ottenere i dati meteo della sua posizione attuale. Se non si desidera che le informazioni sulla posizione vengano acquisite, è possibile negare questi requisiti e impostare manualmente la propria posizione nella pagina di gestione.</string>
     <string name="dialog_permissions_location_background_title">Accedi alla posizione in background</string>
-    <string name="dialog_permissions_location_background_content">Per consentire all\'applicazione di accedere alle informazioni sulla posizione in background, in modo da poter percepire le variazioni di posizione e fornire dati meteo validi, impostare l\'accesso alla posizione su "Consenti sempre".</string>
+    <string name="dialog_permissions_location_background_content">Per consentire all’applicazione di accedere alle informazioni sulla posizione in background, in modo da poter percepire le variazioni di posizione e fornire dati meteo validi, impostare l’accesso alla posizione su "Consenti sempre".</string>
 
     <string name="location_message_failed_to_locate">Localizzazione fallita.</string>
     <string name="weather_message_data_refresh_failed">Aggiornamento previsioni fallito.</string>
@@ -142,11 +142,11 @@
     <string name="location_dialog_failed_to_locate_action_check_permission">Controlla i permessi di Localizzazione</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Abilita la Localizzazione</string>
     <string name="location_dialog_failed_to_locate_action_select_provider">Fornitore servizio Localizzazione</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">Aggiungi manualmente la posizione e cancella \'$\'</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Aggiungi manualmente la posizione e cancella “$”</string>
     <string name="widget_label_text_size">Dimensione del testo</string>
     <string name="widget_label_hide_lunar">Nascondi il calendario lunare</string>
     <string name="widget_label_align_end">Allinea alla fine</string>
-    <string name="widget_custom_subtitle_explanation">È possibile inserire qualsiasi cosa, ma si prega di prestare attenzione alla lunghezza del testo. Se si desidera citare i dati meteo, utilizzare $ per fare riferimento alla parola chiave corrispondente.\n\nAd esempio, \"tempo attuale = $cw$\" verrà visualizzato come \"tempo attuale = giorno sereno\".</string>
+    <string name="widget_custom_subtitle_explanation">È possibile inserire qualsiasi cosa, ma si prega di prestare attenzione alla lunghezza del testo. Se si desidera citare i dati meteo, utilizzare $ per fare riferimento alla parola chiave corrispondente.\n\nAd esempio, “tempo attuale = $cw$” verrà visualizzato come “tempo attuale = giorno sereno”.</string>
     
     <string name="widget_custom_subtitle_keyword_cw_description">Meteo attuale</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Temperatura attuale (℃/℉)</string>
@@ -206,15 +206,15 @@
     <string name="location_search_placeholder">Cerca una località…</string>
     <string name="location_current_not_found_yet">Nessuna località…</string>
 
-    <string name="settings_changes_apply_after_restart">Le impostazioni avranno effetto riavviando l\'app.</string>
+    <string name="settings_changes_apply_after_restart">Le impostazioni avranno effetto riavviando l’app.</string>
 
     <string name="notification_running_in_background">Esecuzione in background degli aggiornamenti…</string>
     <string name="notification_updating_weather_data">Aggiornamento dati meteo…</string>
 
     <string name="dialog_permissions_block_notification_channel_title">Blocca notifiche</string>
-    <string name="dialog_permissions_block_notification_channel_content">Abilitando l\'app in background, una notifica apparirà indicando che l\'app è in esecuzione in background. Puoi nascondere questa notifica nella pagina d\'informazioni dell\'app, disabilitando il canale del Servizio Background.</string>
+    <string name="dialog_permissions_block_notification_channel_content">Abilitando l’app in background, una notifica apparirà indicando che l’app è in esecuzione in background. Puoi nascondere questa notifica nella pagina d’informazioni dell’app, disabilitando il canale del Servizio Background.</string>
 
-    <string name="widget_live_wallpaper_cannot_start_activity">Impossibile creare un\'anteprima per lo sfondo animato.</string>
+    <string name="widget_live_wallpaper_cannot_start_activity">Impossibile creare un’anteprima per lo sfondo animato.</string>
 
     <!-- action -->
     <string name="alerts">Allerte</string>
@@ -242,9 +242,9 @@
     <string name="settings_category_basic">Base</string>
     <string name="settings_title_background_free">Disabilita app in background</string>
     <string name="settings_summary_background_free_on">ON\nSe i widget non si aggiornano disabilitare questa funzione.</string>
-    <string name="settings_summary_background_free_off">OFF\nSe non si vuole che l\'app funzioni in background, abilitare questa funzione.</string>
+    <string name="settings_summary_background_free_off">OFF\nSe non si vuole che l’app funzioni in background, abilitare questa funzione.</string>
     <string name="settings_title_live_wallpaper">Sfondo animato</string>
-    <string name="settings_summary_live_wallpaper">Imposta l\'animazione meteo come sfondo</string>
+    <string name="settings_summary_live_wallpaper">Imposta l’animazione meteo come sfondo</string>
     <string name="settings_title_service_provider">Fonte meteo</string>
     <string name="settings_summary_service_provider">Seleziona fonte per il meteo e servizi di localizzazione.</string>
     <string name="settings_title_weather_source">Fonte meteo</string>
@@ -294,7 +294,7 @@
     <string name="settings_title_notification_feels_like">Usa temperatura percepita</string>
     <string name="message_updated_in_background">Aggiornato in background</string>
     <string name="dialog_permissions_ignore_battery_optimizations_title">Ignora ottimizzazione batteria</string>
-    <string name="dialog_permissions_ignore_battery_optimizations_content">Per garantire che i servizi in background possano continuare a funzionare, ignora l\'ottimizzazione della batteria per Breezy Weather.</string>
+    <string name="dialog_permissions_ignore_battery_optimizations_content">Per garantire che i servizi in background possano continuare a funzionare, ignora l’ottimizzazione della batteria per Breezy Weather.</string>
     <string name="settings_title_notification_style">Stile notifiche</string>
     <string name="notification_precipitation_today">Oggi potrebbero verificarsi delle precipitazioni.</string>
     <string name="notification_precipitation_short_term">Nelle prossime ore potrebbero verificarsi precipitazioni.</string>
@@ -319,7 +319,7 @@
     <string name="precipitation_none">Nessuna precipitazione</string>
     <string name="precipitation_between_time">Precipitazioni tra le $1 e le $2</string>
     <string name="action_add_current_location">Aggiungi posizione attuale</string>
-    <string name="settings_items_drag_to_sort">Tocca per trascinare gli elementi dell\'elenco da ordinare</string>
+    <string name="settings_items_drag_to_sort">Tocca per trascinare gli elementi dell’elenco da ordinare</string>
     <string name="settings_item_delete">Cancella questa voce</string>
     <string name="location_swipe_to_delete">Puoi scorrere il dito verso sinistra per eliminare questa voce</string>
     <string name="settings_title_week_icon_mode">Modalità icone settimanali</string>
@@ -345,4 +345,88 @@
     <string name="settings_icon_providers_weather_icon_light">Icona chiara</string>
     <string name="settings_icon_providers_weather_adaptive_icon">Icona del meteo</string>
 
+    <string name="location_service_baidu">Localizzazione Baidu</string>
+    <string name="location_service_baidu_ip">Localizzazione IP Baidu (Cina)</string>
+    <string name="location_service_amap">Localizzazione AMap</string>
+    <string name="location_service_native">API nativa</string>
+
+    <string name="settings_automatic">Automatico</string>
+    <string name="settings_none">Nessuno</string>
+    <string name="settings_color_day_night">Giorno / Notte</string>
+    <string name="settings_color_day_always">Sempre diurno</string>
+    <string name="settings_color_night_always">Sempre notturno</string>
+    <string name="settings_color_light">Chiaro</string>
+    <string name="settings_color_light_always">Sempre chiaro</string>
+    <string name="settings_color_grey">Grigio</string>
+    <string name="settings_color_dark">Scuro</string>
+    <string name="settings_color_dark_always">Sempre scuro</string>
+    <string name="settings_refresh_30min">Mezz’ora</string>
+    <string name="settings_refresh_1h">1 ora</string>
+    <string name="settings_refresh_1h_30min">1,5 ore</string>
+    <string name="settings_refresh_2h">2 ore</string>
+    <string name="settings_refresh_3h">3 ore</string>
+    <string name="settings_refresh_6h">6 ore</string>
+    <string name="settings_refresh_12h">12 ore</string>
+    <string name="settings_refresh_24h">24 ore</string>
+
+    <string name="notification_style_native">Nativo</string>
+    <string name="notification_style_cities">Città</string>
+
+    <string name="widget_style_rectangle">Rettangolo</string>
+    <string name="widget_style_symmetry">Simmetrico</string>
+    <string name="widget_style_tile">Ordinato</string>
+    <string name="widget_style_vertical">Verticale</string>
+    <string name="widget_style_temperature">Temperatura</string>
+    <string name="widget_week_style_5_days">5 giorni</string>
+    <string name="widget_week_style_3_days">3 giorni</string>
+    <string name="widget_subtitle_data_time">Ultimo aggiornamento</string>
+    <string name="widget_subtitle_data_aqi">Qualità aria</string>
+    <string name="widget_subtitle_data_wind">Vento</string>
+    <string name="widget_subtitle_data_feels_like">Temperatura percepita</string>
+    <string name="widget_subtitle_data_lunar">Calendario lunare</string>
+    <string name="widget_subtitle_data_custom">Personalizzato</string>
+
+    <!-- Weather kind -->
+    <string name="weather_kind_clear">Sereno</string>
+    <string name="weather_kind_partly_cloudy">Parzialmente nuvoloso</string>
+    <string name="weather_kind_cloudy">Nuvoloso</string>
+    <string name="weather_kind_rain">Pioggia</string>
+    <string name="weather_kind_snow">Neve</string>
+    <string name="weather_kind_sleet">Nevischio</string>
+    <string name="weather_kind_hail">Grandine</string>
+    <string name="weather_kind_fog">Nebbia</string>
+    <string name="weather_kind_haze">Foschia</string>
+    <string name="weather_kind_thunder">Tuono</string>
+    <string name="weather_kind_thunderstorm">Temporale</string>
+    <string name="weather_kind_wind">Vento</string>
+
+    <string name="unit_kph_voice">Chilometri all’ora</string>
+    <string name="unit_mps_voice">Metri al secondo</string>
+    <string name="unit_kn_voice">Nodi</string>
+    <string name="unit_mph_voice">Miglia all’ora</string>
+    <string name="unit_ftps_voice">Piedi all’ora</string>
+    <string name="unit_mm_voice">Millimetri</string>
+    <string name="unit_cm_voice">Centimetri</string>
+    <string name="unit_in_voice">Pollici</string>
+    <string name="unit_lpsqm_voice">Litri per metro quadrato</string>
+    <string name="unit_mmph_voice">Millimetri all’ora</string>
+    <string name="unit_cmph_voice">Centimetri all’ora</string>
+    <string name="unit_inph_voice">Pollici all’ora</string>
+    <string name="unit_lpsqmph_voice">Litri per metro quadrato all’ora</string>
+    <string name="unit_km_voice">Chilometri</string>
+    <string name="unit_m_voice">Metri</string>
+    <string name="unit_mi_voice">Miglia</string>
+    <string name="unit_nmi_voice">Miglia nautiche</string>
+    <string name="unit_ft_voice">Piedi</string>
+    <string name="unit_mb_voice">Millibar</string>
+    <string name="unit_kpa_voice">Chilo pascal</string>
+    <string name="unit_hpa_voice">Etto pascal</string>
+    <string name="unit_atm_voice">Atmosfere</string>
+    <string name="unit_mmhg_voice">Millimetri di mercurio</string>
+    <string name="unit_inhg_voice">Pollichi di mercurio</string>
+    <string name="unit_kgfpsqcm_voice">Chilogrammo forza per centimetro quadrato</string>
+    <string name="unit_mugpcum_voice">Microgrammi per metro cubo</string>
+    <string name="unit_mgpcum_voice">Milligrammi per metro cubo</string>
+    <string name="unit_h_voice">ore</string>
+    <string name="unit_ppcm_voice">Per metro cubo</string>
 </resources>

@@ -141,9 +141,9 @@
     <string name="location_dialog_failed_to_locate_action_check_permission">Verifica los permisos de acceso a la ubicación</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Habilitar Información de la Ubicación</string>
     <string name="location_dialog_failed_to_locate_action_select_provider">Seleccione un proveedor de ubicación</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">Agrega la ubicación manualmente y borra \'$\'</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Agrega la ubicación manualmente y borra “$”</string>
     <string name="dialog_permissions_location_background_title">Acceso a la ubicación en segundo plano</string>
-    <string name="dialog_permissions_location_background_content">Para permitirle a la app el acceso a la ubicación en segundo plano, por favor selecciona el acceso a la ubicación \"Todo el tiempo\".</string>
+    <string name="dialog_permissions_location_background_content">Para permitirle a la app el acceso a la ubicación en segundo plano, por favor selecciona el acceso a la ubicación “Todo el tiempo”.</string>
 
     <string name="widget_label_view_style">Estilo de vista</string>
     <string name="widget_label_show_widget_card">Fondo de color</string>
@@ -154,7 +154,7 @@
     <string name="widget_label_text_size">Tamaño  del texto</string>
     <string name="widget_label_clock_font">Fuente del reloj</string>
     <string name="widget_label_hide_lunar">Ocultar calendario lunar</string>
-    <string name="widget_custom_subtitle_explanation">Puedes ingresar lo que sea, pero por favor presta atención al lardo del texto. Si quieres citar datos del clima, por favor usa $ para referenciar la palabra clave correspondiente.\n\nPor ejemplo, \"clima actual = $cw$\" se mostrará como \"clima actual = Día despejado\".</string>
+    <string name="widget_custom_subtitle_explanation">Puedes ingresar lo que sea, pero por favor presta atención al lardo del texto. Si quieres citar datos del clima, por favor usa $ para referenciar la palabra clave correspondiente.\n\nPor ejemplo, “clima actual = $cw$” se mostrará como “clima actual = Día despejado”.</string>
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
     <string name="widget_custom_subtitle_keyword_cw_description">Clima Actual</string>
@@ -213,11 +213,8 @@
     <string name="notification_updating_weather_data">Actualizando datos del clima</string>
     <string name="message_updated_in_background">Actualizado en segundo plano</string>
 
-    <!-- there should be a "\" before single or double quotes. -->
-    <!-- Correct : ... after turning off \'Background free\', ... After turning off \"Free background\" ... -->
-    <!-- Wrong   : ... after turning off 'Background free', ... After turning off "Free background" ... -->
     <string name="dialog_permissions_block_notification_channel_title">Bloquear grupo de notificaciones</string>
-    <string name="dialog_permissions_block_notification_channel_content">Después de desactivar \"Segundo plano libre\", aparecerá una notificación en la barra de notificaciones indicando que está funcionando el servicio en segundo plano. Puedes desactivar el Canal de Información en segundo plano bloqueando estas notificaciones en la página de información de la app.</string>
+    <string name="dialog_permissions_block_notification_channel_content">Después de desactivar “Segundo plano libre”, aparecerá una notificación en la barra de notificaciones indicando que está funcionando el servicio en segundo plano. Puedes desactivar el Canal de Información en segundo plano bloqueando estas notificaciones en la página de información de la app.</string>
 
     <string name="dialog_permissions_ignore_battery_optimizations_title">Ignorar optimización de la batería</string>
     <string name="dialog_permissions_ignore_battery_optimizations_content">Para asegurar que los servicios en segundo plano continúen funcionando, por favor ignora la optimización de batería para Breezy Weather.</string>
@@ -322,5 +319,84 @@
     <string name="settings_title_notification_hide_big_view">Estilo extendido</string>
     <string name="settings_notification_hide_big_view_on">Oculto</string>
     <string name="settings_notification_hide_big_view_off">Visible</string>
+
+    <string name="settings_automatic">Automático</string>
+    <string name="settings_none">Ninguno</string>
+    <string name="settings_color_day_night">Diurno / Nocturno</string>
+    <string name="settings_color_day_always">Siempre diurno</string>
+    <string name="settings_color_night_always">Siempre nocturno</string>
+    <string name="settings_color_light">Claro</string>
+    <string name="settings_color_light_always">Siempre claro</string>
+    <string name="settings_color_grey">Gris</string>
+    <string name="settings_color_dark">Oscuro</string>
+    <string name="settings_color_dark_always">Siempre oscuro</string>
+    <string name="settings_refresh_30min">Media hora</string>
+    <string name="settings_refresh_1h">1 hora</string>
+    <string name="settings_refresh_1h_30min">1.5 horas</string>
+    <string name="settings_refresh_2h">2 horas</string>
+    <string name="settings_refresh_3h">3 horas</string>
+    <string name="settings_refresh_6h">6 horas</string>
+    <string name="settings_refresh_12h">12 horas</string>
+    <string name="settings_refresh_24h">24 horas</string>
+
+    <string name="notification_style_native">Nativo</string>
+    <string name="notification_style_cities">Ciudades</string>
+
+    <string name="widget_style_rectangle">Rectangular</string>
+    <string name="widget_style_symmetry">Simétrico</string>
+    <string name="widget_style_tile">Mosaico</string>
+    <string name="widget_style_temperature">Temperatura</string>
+    <string name="widget_week_style_5_days">5 días</string>
+    <string name="widget_week_style_3_days">3 días</string>
+
+    <string name="widget_subtitle_data_time">Tiempo de refresco</string>
+    <string name="widget_subtitle_data_wind">Viento</string>
+    <string name="widget_subtitle_data_feels_like">Sensación térmica</string>
+    <string name="widget_subtitle_data_lunar">Calendario lunar</string>
+    <string name="widget_subtitle_data_custom">Personalizado</string>
+
+    <!-- Weather kind -->
+    <string name="weather_kind_clear">Despejado</string>
+    <string name="weather_kind_partly_cloudy">Parcialmente nublado</string>
+    <string name="weather_kind_cloudy">Nublado</string>
+    <string name="weather_kind_rain">Lluvia</string>
+    <string name="weather_kind_snow">Nieve</string>
+    <string name="weather_kind_sleet">Aguanieve</string>
+    <string name="weather_kind_hail">Granizo</string>
+    <string name="weather_kind_fog">Niebla</string>
+    <string name="weather_kind_haze">Neblina</string>
+    <string name="weather_kind_thunder">Truenos</string>
+    <string name="weather_kind_thunderstorm">Tormenta eléctrica</string>
+    <string name="weather_kind_wind">Viento</string>
+
+    <string name="unit_kph_voice">Kilómetros por hora</string>
+    <string name="unit_mps_voice">Metros por segundo</string>
+    <string name="unit_kn_voice">Nudos</string>
+    <string name="unit_mph_voice">Millas por hora</string>
+    <string name="unit_ftps_voice">Pies por segundo</string>
+    <string name="unit_mm_voice">Milimetros</string>
+    <string name="unit_cm_voice">Centímetros</string>
+    <string name="unit_in_voice">Pulgadas</string>
+    <string name="unit_lpsqm_voice">Litros por metro cuadrado</string>
+    <string name="unit_mmph_voice">Milimetros por hora</string>
+    <string name="unit_cmph_voice">Centímetros por hora</string>
+    <string name="unit_inph_voice">Pulgadas por hora</string>
+    <string name="unit_lpsqmph_voice">Litros por metro cuadrado por hora</string>
+    <string name="unit_km_voice">Kilómetros</string>
+    <string name="unit_m_voice">Metros</string>
+    <string name="unit_mi_voice">Millas</string>
+    <string name="unit_nmi_voice">Millas náuticas</string>
+    <string name="unit_ft_voice">Pies</string>
+    <string name="unit_mb_voice">Milibares</string>
+    <string name="unit_kpa_voice">Kilo pascales</string>
+    <string name="unit_hpa_voice">Hecto pascales</string>
+    <string name="unit_atm_voice">Atmósferas</string>
+    <string name="unit_mmhg_voice">Milímetros de mercurio</string>
+    <string name="unit_inhg_voice">Pulgadas de mercurio</string>
+    <string name="unit_kgfpsqcm_voice">Kilogramo de fuerza por centímetro cuadrado</string>
+    <string name="unit_mugpcum_voice">Microgramos por metro cúbico</string>
+    <string name="unit_mgpcum_voice">Miligramos por metro cúbico</string>
+    <string name="unit_h_voice">horas</string>
+    <string name="unit_ppcm_voice">Por metro cúbico</string>
 
 </resources>
