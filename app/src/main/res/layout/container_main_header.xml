@@ -90,6 +90,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 app:dividerColor="@android:color/white"
+                app:dividerThickness="0.5dp"
                 android:layout_below="@+id/container_main_header_feelsLike_label" />
         <TextView
                 android:id="@+id/container_main_header_wind_label"
@@ -121,6 +122,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 app:dividerColor="@android:color/white"
+                app:dividerThickness="0.5dp"
                 android:layout_below="@+id/container_main_header_wind_label" />
         <TextView
                 android:id="@+id/container_main_header_uv_label"
@@ -152,6 +154,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 app:dividerColor="@android:color/white"
+                app:dividerThickness="0.5dp"
                 android:layout_below="@+id/container_main_header_uv_label" />
         <TextView
                 android:id="@+id/container_main_header_humidity_label"
