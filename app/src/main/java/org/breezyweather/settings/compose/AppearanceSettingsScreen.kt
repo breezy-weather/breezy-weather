@@ -144,6 +144,13 @@ fun AppearanceSettingsScreen(
                     SettingsManager
                         .getInstance(context)
                         .backgroundAnimationMode = BackgroundAnimationMode.getInstance(it)
+
+                    SnackbarHelper.showSnackbar(
+                        context.getString(R.string.settings_changes_apply_after_restart),
+                        context.getString(R.string.action_restart)
+                    ) {
+                        instance.recreateAllActivities()
+                    }
                 },
             )
         }
@@ -155,6 +162,13 @@ fun AppearanceSettingsScreen(
                 checked = SettingsManager.getInstance(context).isGravitySensorEnabled,
                 onValueChanged = {
                     SettingsManager.getInstance(context).isGravitySensorEnabled = it
+
+                    SnackbarHelper.showSnackbar(
+                        context.getString(R.string.settings_changes_apply_after_restart),
+                        context.getString(R.string.action_restart)
+                    ) {
+                        instance.recreateAllActivities()
+                    }
                 },
             )
         }
