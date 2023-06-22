@@ -367,4 +367,86 @@
     <string name="settings_provider_mf_wsft_key">Klíč WSFT Météo France</string>
     <string name="settings_provider_iqa_atmo_aura_key">Klíč ATMO AURA</string>
 
+    <string name="weather_source_china">Čínu</string>
+    <string name="location_service_baidu">Poloha Baidu</string>
+    <string name="location_service_baidu_ip">Poloha IP Baidu IP (pouze pro Čínu)</string>
+    <string name="location_service_amap">Poloha AMap</string>
+    <string name="location_service_native">Nativní API</string>
+
+    <string name="settings_automatic">Automaticky</string>
+    <string name="settings_none">Žádný</string>
+    <string name="settings_color_day_night">Denní / Noční</string>
+    <string name="settings_color_day_always">Vždy den</string>
+    <string name="settings_color_night_always">Vždy noc</string>
+    <string name="settings_color_light">Světlý</string>
+    <string name="settings_color_light_always">Vždy světlé</string>
+    <string name="settings_color_grey">Šedý</string>
+    <string name="settings_color_dark">Tmavý</string>
+    <string name="settings_color_dark_always">Vždy tmavé</string>
+
+    <string name="settings_refresh_30min">Půl hodiny</string>
+    <string name="settings_refresh_1h">1 hodina</string>
+    <string name="settings_refresh_1h_30min">1,5 hodiny</string>
+    <string name="settings_refresh_2h">2 hodiny</string>
+    <string name="settings_refresh_3h">3 hodiny</string>
+    <string name="settings_refresh_6h">6 hodin</string>
+    <string name="settings_refresh_12h">12 hodin</string>
+    <string name="settings_refresh_24h">24 hodin</string>
+
+    <string name="notification_style_native">Nativní</string>
+    <string name="notification_style_cities">Města</string>
+
+    <string name="widget_style_rectangle">Obdélník</string>
+    <string name="widget_style_symmetry">Symetrický</string>
+    <string name="widget_style_tile">Dlaždice</string>
+    <string name="widget_style_vertical">Vertikální</string>
+    <string name="widget_style_temperature">Teplota</string>
+    <string name="widget_week_style_5_days">5 dní</string>
+    <string name="widget_week_style_3_days">3 dny</string>
+
+    <string name="widget_subtitle_data_time">Čas obnovení</string>
+    <string name="widget_subtitle_data_wind">Vítr</string>
+    <string name="widget_subtitle_data_feels_like">Znatelná teplota</string>
+    <string name="widget_subtitle_data_lunar">Lunární kalendář</string>
+    <string name="widget_subtitle_data_custom">Vlastní</string>
+
+    <!-- Weather kind -->
+    <string name="weather_kind_clear">Jasno</string>
+    <string name="weather_kind_partly_cloudy">Polojasno</string>
+    <string name="weather_kind_cloudy">Oblačno</string>
+    <string name="weather_kind_rain">Déšť</string>
+    <string name="weather_kind_snow">Sníh</string>
+    <string name="weather_kind_sleet">Sníh s deštěm</string>
+    <string name="weather_kind_hail">Kroupy</string>
+    <string name="weather_kind_fog">Mhla</string>
+    <string name="weather_kind_haze">Opar</string>
+    <string name="weather_kind_thunder">Hřmění</string>
+    <string name="weather_kind_thunderstorm">Bouřka</string>
+    <string name="weather_kind_wind">Vítr</string>
+
+    <string name="unit_kph_voice">Kilometry za hodinu</string>
+    <string name="unit_mps_voice">Metry za sekundu</string>
+    <string name="unit_kn_voice">Uzly</string>
+    <string name="unit_mph_voice">Míle za hodinu</string>
+    <string name="unit_ftps_voice">Stopy za sekundu</string>
+    <string name="unit_mm_voice">Millimetry</string>
+    <string name="unit_cm_voice">Centimetry</string>
+    <string name="unit_in_voice">Palce</string>
+    <string name="unit_lpsqm_voice">Litry na metr čtvereční</string>
+    <string name="unit_km_voice">Kilometry</string>
+    <string name="unit_m_voice">Metry</string>
+    <string name="unit_mi_voice">Míle</string>
+    <string name="unit_nmi_voice">Námořní míle</string>
+    <string name="unit_ft_voice">Stopy</string>
+    <string name="unit_mb_voice">Milibary</string>
+    <string name="unit_kpa_voice">Kilo pascaly</string>
+    <string name="unit_hpa_voice">Hekto pascaly</string>
+    <string name="unit_atm_voice">Atmosféry</string>
+    <string name="unit_mmhg_voice">Milimetry rtuti</string>
+    <string name="unit_inhg_voice">Palce rtuti</string>
+    <string name="unit_kgfpsqcm_voice">Kilogram síly na centimetr čtvereční</string>
+    <string name="unit_mugpcum_voice">Mikrogramy na metr krychlový</string>
+    <string name="unit_mgpcum_voice">Milligramy na metr krychlový</string>
+    <string name="unit_h_voice">hodin</string>
+    <string name="unit_ppcm_voice">Na metr krychlový</string>
 </resources>

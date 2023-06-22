@@ -323,4 +323,82 @@
     <string name="settings_notification_hide_big_view_on">Oculta</string>
     <string name="settings_notification_hide_big_view_off">Visible</string>
 
+    <string name="weather_source_china">Xina</string>
+    <string name="location_service_baidu_ip">Baidu IP Location (només per la Xina)</string>
+    <string name="location_service_native">API nativa</string>
+    <string name="settings_automatic">Automàtic</string>
+    <string name="settings_color_light_always">Sempre clar</string>
+    <string name="settings_color_dark_always">Sempre fosc</string>
+
+    <string name="settings_refresh_never">Never</string>
+    <string name="settings_refresh_30min">Mitja hora</string>
+    <string name="settings_refresh_1h">1 hora</string>
+    <string name="settings_refresh_1h_30min">1,5 hores</string>
+    <string name="settings_refresh_2h">2 hores</string>
+    <string name="settings_refresh_3h">3 hores</string>
+    <string name="settings_refresh_6h">6 hores</string>
+    <string name="settings_refresh_12h">12 hores</string>
+    <string name="settings_refresh_24h">24 hores</string>
+
+    <string name="notification_style_native">Natiu</string>
+    <string name="notification_style_cities">Ciutats</string>
+    <string name="settings_color_light">Clar</string>
+    <string name="settings_color_grey">Gris</string>
+    <string name="settings_color_dark">Fosc</string>
+    <string name="widget_style_rectangle">Rectangular</string>
+    <string name="widget_style_symmetry">Simètric</string>
+    <string name="widget_style_tile">Mosaic</string>
+    <string name="widget_style_pixel">Píxel</string>
+    <string name="widget_style_temperature">Temperatura</string>
+    <string name="widget_week_style_5_days">5 dies</string>
+    <string name="widget_week_style_3_days">3 dies</string>
+    <string name="widget_subtitle_data_time">Cadència d\'actualització</string>
+    <string name="widget_subtitle_data_aqi">Índex de Qualitat de l\'Aire</string>
+    <string name="widget_subtitle_data_wind">Vent</string>
+    <string name="widget_subtitle_data_feels_like">Sensació tèrmica</string>
+    <string name="widget_subtitle_data_lunar">Calendari lunar</string>
+    <string name="widget_subtitle_data_custom">Personaliza</string>
+    <string name="settings_none">Cap</string>
+
+    <!-- Weather kind -->
+    <string name="weather_kind_clear">Clar</string>
+    <string name="weather_kind_partly_cloudy">Parcialment ennuvolat</string>
+    <string name="weather_kind_cloudy">Núvols</string>
+    <string name="weather_kind_rain">Pluja</string>
+    <string name="weather_kind_snow">Neu</string>
+    <string name="weather_kind_sleet">Aiguaneu</string>
+    <string name="weather_kind_hail">Calamarsa</string>
+    <string name="weather_kind_fog">Boira</string>
+    <string name="weather_kind_haze">Boirina</string>
+    <string name="weather_kind_thunder">Trons</string>
+    <string name="weather_kind_thunderstorm">Tempesta elèctrica</string>
+    <string name="weather_kind_wind">Vent</string>
+    <string name="settings_color_day_always">Sempre diürn</string>
+    <string name="settings_color_night_always">Sempre nocturn</string>
+
+    <string name="unit_kph_voice">Kilòmetres per hora</string>
+    <string name="unit_mps_voice">Metres per segon</string>
+    <string name="unit_kn_voice">Nusos</string>
+    <string name="unit_mph_voice">Milles per hora</string>
+    <string name="unit_ftps_voice">Peus per segon</string>
+    <string name="unit_mm_voice">Mil·límetre</string>
+    <string name="unit_cm_voice">Centímetre</string>
+    <string name="unit_in_voice">Polzada</string>
+    <string name="unit_lpsqm_voice">Litres per metre quadrat</string>
+    <string name="unit_km_voice">Kilòmetres</string>
+    <string name="unit_m_voice">Metres</string>
+    <string name="unit_mi_voice">Milles</string>
+    <string name="unit_nmi_voice">Milles nàutiques</string>
+    <string name="unit_ft_voice">Peus</string>
+    <string name="unit_mb_voice">Mil·libars</string>
+    <string name="unit_kpa_voice">Kilopascals</string>
+    <string name="unit_hpa_voice">Hectopascals</string>
+    <string name="unit_atm_voice">Atmosferes</string>
+    <string name="unit_mmhg_voice">Mil·límetres de mercuri</string>
+    <string name="unit_inhg_voice">Polzades de mercuri</string>
+    <string name="unit_kgfpsqcm_voice">Kilogram de força per centímetre quadrat</string>
+    <string name="unit_mugpcum_voice">Micrograms per metre cúbic</string>
+    <string name="unit_mgpcum_voice">Mil·ligrams per metre cúbic</string>
+    <string name="unit_h_voice">hores</string>
+    <string name="unit_ppcm_voice">Per metre cúbic</string>
 </resources>

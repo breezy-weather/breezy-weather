@@ -325,4 +325,59 @@
     <string name="settings_notification_hide_big_view_on">Ascuns</string>
     <string name="settings_notification_hide_big_view_off">Afișat</string>
 
+    <string name="location_service_baidu">Locație Baidu</string>
+    <string name="location_service_baidu_ip">Locație Baidu IP (Exclusiv pentru China)</string>
+    <string name="location_service_amap">Locație AMap</string>
+    <string name="location_service_native">API Nativ</string>
+
+    <string name="notification_style_native">Sistem</string>
+    <string name="notification_style_cities">Orașe</string>
+
+    <string name="settings_refresh_30min">30 minute</string>
+    <string name="settings_refresh_1h">1 oră</string>
+    <string name="settings_refresh_1h_30min">1.5 ore</string>
+    <string name="settings_refresh_2h">2 ore</string>
+    <string name="settings_refresh_3h">3 ore</string>
+    <string name="settings_refresh_6h">6 ore</string>
+    <string name="settings_refresh_12h">12 ore</string>
+    <string name="settings_refresh_24h">24 ore</string>
+
+    <string name="settings_automatic">Automat</string>
+    <string name="settings_color_light_always">Luminos</string>
+    <string name="settings_color_dark_always">Întunecat</string>
+    <string name="settings_color_light">Deschis la culoare</string>
+    <string name="settings_color_grey">Gri</string>
+    <string name="settings_color_dark">Închis la culoare</string>
+    <string name="settings_color_day_always">Zi</string>
+    <string name="settings_color_night_always">Noapte</string>
+    <string name="settings_none">Nici unul</string>
+    <string name="settings_color_day_night">Zi / Noapte</string>
+
+    <string name="widget_style_rectangle">Dreptunghi</string>
+    <string name="widget_style_symmetry">Simetric</string>
+    <string name="widget_style_tile">Compact</string>
+    <string name="widget_style_temperature">Temperatură</string>
+    <string name="widget_week_style_5_days">5 zile</string>
+    <string name="widget_week_style_3_days">3 zile</string>
+    <string name="widget_subtitle_data_time">Oră actualizare</string>
+    <string name="widget_subtitle_data_aqi">Calitatea aerului</string>
+    <string name="widget_subtitle_data_wind">Vânt</string>
+    <string name="widget_subtitle_data_feels_like">Temp. resimțită</string>
+    <string name="widget_subtitle_data_lunar">Calendar lunar</string>
+    <string name="widget_subtitle_data_custom">Personalizat</string>
+
+    <!-- Weather kind -->
+    <string name="weather_kind_clear">Senin</string>
+    <string name="weather_kind_partly_cloudy">Parțial noros</string>
+    <string name="weather_kind_cloudy">Noros</string>
+    <string name="weather_kind_rain">Ploaie</string>
+    <string name="weather_kind_snow">Ninsoare</string>
+    <string name="weather_kind_sleet">Lapoviță</string>
+    <string name="weather_kind_hail">Grindină</string>
+    <string name="weather_kind_fog">Ceață</string>
+    <string name="weather_kind_haze">Vizibilitate redusă</string>
+    <string name="weather_kind_thunder">Trăsnet</string>
+    <string name="weather_kind_thunderstorm">Furtună</string>
+    <string name="weather_kind_wind">Vânt</string>
+
 </resources>

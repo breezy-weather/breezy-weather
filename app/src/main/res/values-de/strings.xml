@@ -227,4 +227,26 @@
     <string name="wind_speed">Windgeschwindigkeit</string>
     <string name="short_yesterday">Gestern</string>
 
+    <string name="settings_refresh_30min">30 Minuten</string>
+    <string name="settings_refresh_1h">1 Stunde</string>
+    <string name="settings_refresh_1h_30min">1.5 Stunden</string>
+    <string name="settings_refresh_2h">2 Stunden</string>
+    <string name="settings_refresh_3h">3 Stunden</string>
+    <string name="settings_refresh_6h">6 Stunden</string>
+    <string name="settings_refresh_12h">12 Stunden</string>
+    <string name="settings_refresh_24h">24 Stunden</string>
+
+    <string name="settings_automatic">Automatisch</string>
+    <string name="settings_color_light_always">Immer hell</string>
+    <string name="settings_color_dark_always">Immer dunkel</string>
+    <string name="settings_color_light">Hell</string>
+    <string name="settings_color_grey">Grau</string>
+    <string name="settings_color_dark">Dunkel</string>
+    <string name="settings_color_day_night">Tag / Nacht</string>
+    <string name="settings_none">Ohne</string>
+
+    <string name="widget_style_rectangle">Rechteckig</string>
+    <string name="widget_style_symmetry">Symmetrisch</string>
+    <string name="widget_style_tile">Kachel</string>
+
 </resources>

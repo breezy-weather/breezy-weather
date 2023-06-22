@@ -466,7 +466,7 @@
     <string name="weather_source_china_voice">Chine</string>
     <string name="location_service_baidu_ip">Baidu IP Location (Chine uniquement)</string>
     <string name="location_service_native">API native</string>
-    <string name="settings_automatic">Automatic</string>
+    <string name="settings_automatic">Automatique</string>
     <string name="notification_style_native">Native</string>
     <string name="notification_style_cities">Villes</string>
     <string name="widget_style_rectangle">Rectangle</string>
