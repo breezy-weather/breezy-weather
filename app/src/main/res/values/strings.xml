@@ -39,8 +39,8 @@
     <!-- Temperature -->
     <string name="temperature">Temperature</string>
     <string name="temperature_feels_like">Feels like</string>
-    <string name="temperature_real_feel">Real feel</string>
-    <string name="temperature_real_feel_shade">Real feel shade</string>
+    <string name="temperature_real_feel">RealFeel®</string>
+    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Apparent</string>
     <string name="temperature_wind_chill">Wind chill</string>
     <string name="temperature_wet_bulb">Wet bulb</string>

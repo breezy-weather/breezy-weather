@@ -54,8 +54,6 @@
     <string name="short_saturday">Sab</string>
     <string name="short_sunday">Min</string>
 
-    <string name="temperature_real_feel">Real feel</string>
-    <string name="temperature_real_feel_shade">Real feel shade</string><!-- ? -->
     <string name="temperature_apparent">Tampak</string>
     <string name="temperature_wind_chill">Angin dingin</string>
     <string name="temperature_wet_bulb">Bohlam basah</string><!-- ? -->

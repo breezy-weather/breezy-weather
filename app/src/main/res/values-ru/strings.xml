@@ -52,8 +52,6 @@
     <string name="short_saturday">Сб</string>
     <string name="short_sunday">Вс</string>
 
-    <string name="temperature_real_feel">Ощущается как</string>
-    <string name="temperature_real_feel_shade">Real feel shader</string>
     <string name="temperature_apparent">Ощущается как</string>
     <string name="temperature_wind_chill">Ощущается при ветре</string>
     <string name="temperature_wet_bulb">Wet bulb</string>

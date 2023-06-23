@@ -53,8 +53,6 @@
     <string name="short_saturday">土</string>
     <string name="short_sunday">日</string>
 
-    <string name="temperature_real_feel">体感温度</string>
-    <string name="temperature_real_feel_shade">Real feel shader</string>
     <string name="temperature_apparent">Apparent</string>
     <string name="temperature_wind_chill">Wind chill</string>
     <string name="temperature_wet_bulb">湿球温度</string>

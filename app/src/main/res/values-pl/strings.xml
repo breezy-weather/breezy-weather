@@ -57,8 +57,6 @@
     <string name="short_saturday">Sob</string>
     <string name="short_sunday">Niedz</string>
 
-    <string name="temperature_real_feel">Odczuwalna temperatura</string>
-    <string name="temperature_real_feel_shade">Real feel shader</string>
     <string name="temperature_apparent">Pozorna temperatura</string>
     <string name="temperature_wind_chill">Chłód</string>
     <string name="temperature_wet_bulb">Temperatura termometru mokrego</string>
