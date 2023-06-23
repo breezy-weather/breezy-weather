@@ -253,7 +253,7 @@
     <string name="settings_items_drag_to_sort">Toque para arrastar os itens da lista para classificar</string>
     <string name="settings_item_delete">Remover este item</string>
     <string name="location_swipe_to_delete">Você pode deslizar para a esquerda para remover este item</string>
-    <string name="settigns_icon_providers_app_store">@string/action_app_store</string>
+    <string name="settings_icon_providers_app_store">@string/action_app_store</string>
     <string name="settings_icon_providers_weather_adaptive_icon">Ícone de clima</string>
     <string name="settings_icon_providers_weather_icon_light">Ícone claro</string>
     <string name="settings_icon_providers_weather_icon_grey">Ícone cinza</string>

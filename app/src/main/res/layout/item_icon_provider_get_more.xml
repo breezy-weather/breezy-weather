@@ -44,7 +44,7 @@
             android:layout_gravity="center"
             android:layout_margin="@dimen/normal_margin"
             android:background="@drawable/selectable_item_background_borderless"
-            android:contentDescription="@string/settigns_icon_providers_app_store"
+            android:contentDescription="@string/settings_icon_providers_app_store"
             tools:src="@drawable/ic_play_store"/>
 
         <androidx.appcompat.widget.AppCompatImageView

@@ -13,8 +13,8 @@ android {
         applicationId "org.breezyweather"
         minSdkVersion 21
         targetSdkVersion 33
-        versionCode 40000
-        versionName "4.0.0-alpha"
+        versionCode 40001
+        versionName "4.0.1-alpha"
         multiDexEnabled true
         ndk {
             abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
@@ -24,7 +24,6 @@ android {
             useSupportLibrary true
         }
     }
-    ndkVersion "22.0.6917172"
     buildFeatures {
         viewBinding true
         compose true
@@ -183,7 +182,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1"
     //androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     implementation "com.google.accompanist:accompanist-appcompat-theme:0.30.1"
-    implementation "androidx.compose.material3:material3:1.1.0"
+    implementation "androidx.compose.material3:material3:1.1.1"
     implementation "androidx.compose.material:material-icons-extended:$compose_version"
     implementation "androidx.navigation:navigation-compose:2.6.0"
 

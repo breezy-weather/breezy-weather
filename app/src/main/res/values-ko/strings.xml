@@ -302,4 +302,64 @@
     <string name="settings_notification_hide_big_view_on">숨겨짐</string>
     <string name="settings_notification_hide_big_view_off">보여짐</string>
 
+    <string name="weather_source_china">중국</string>
+    <string name="location_service_baidu">바이두 위치</string>
+    <string name="location_service_baidu_ip">바이두 IP 위치 (중국 내수용)</string>
+    <string name="location_service_amap">AMap 위치</string>
+    <string name="location_service_native">현지 API</string>
+
+    <string name="settings_automatic">자동</string>
+    <string name="settings_none">없음</string>
+    <string name="settings_color_day_night">낮 / 밤</string>
+    <string name="settings_color_day_always">언제나 낮</string>
+    <string name="settings_color_night_always">언제나 밤</string>
+    <string name="settings_color_light">밝음</string>
+    <string name="settings_color_light_always">언제나 밝게</string>
+    <string name="settings_color_grey">회색</string>
+    <string name="settings_color_dark">어두움</string>
+    <string name="settings_color_dark_always">언제나 어둡게</string>
+    <string name="settings_refresh_30min">30분</string>
+    <string name="settings_refresh_1h">1시간</string>
+    <string name="settings_refresh_1h_30min">1시간 30분</string>
+    <string name="settings_refresh_2h">2시간</string>
+    <string name="settings_refresh_3h">3시간</string>
+    <string name="settings_refresh_6h">6시간</string>
+    <string name="settings_refresh_12h">12시간</string>
+    <string name="settings_refresh_24h">24시간</string>
+
+    <string name="notification_style_native">지역</string>
+
+    <string name="widget_style_rectangle">직사각형</string>
+    <string name="widget_style_symmetry">대칭</string>
+    <string name="widget_style_tile">타일</string>
+    <string name="widget_style_mini">미니</string>
+    <string name="widget_style_nano">나노</string>
+    <string name="widget_style_pixel">픽셀</string>
+    <string name="widget_style_vertical">세로</string>
+    <string name="widget_style_oreo">오레오</string>
+    <string name="widget_style_oreo_google_sans">오레오 (구글 산스)</string>
+    <string name="widget_subtitle_data_time">갱신 시간</string>
+    <string name="widget_subtitle_data_wind">바람</string>
+    <string name="widget_subtitle_data_feels_like">체감 온도</string>
+    <string name="widget_subtitle_data_lunar">월력</string>
+    <string name="widget_subtitle_data_custom">커스텀</string>
+    <string name="widget_clock_font_sans_serif_light">얇은 산 세리프</string>
+    <string name="widget_clock_font_sans_serif">산 세리프</string>
+    <string name="widget_clock_font_sans_serif_black">어두운 산 세리프</string>
+    <string name="widget_clock_font_analog">아날로그</string>
+
+    <!-- Weather kind -->
+    <string name="weather_kind_clear">맑음</string>
+    <string name="weather_kind_partly_cloudy">약간 흐림</string>
+    <string name="weather_kind_cloudy">흐림</string>
+    <string name="weather_kind_rain">비</string>
+    <string name="weather_kind_snow">눈</string>
+    <string name="weather_kind_sleet">진눈깨비</string>
+    <string name="weather_kind_hail">우박</string>
+    <string name="weather_kind_fog">안개</string>
+    <string name="weather_kind_haze">실안개</string>
+    <string name="weather_kind_thunder">번개</string>
+    <string name="weather_kind_thunderstorm">뇌우</string>
+    <string name="weather_kind_wind">바람</string>
+
 </resources>

@@ -307,4 +307,54 @@
     <string name="settings_notification_hide_big_view_on">Ukryte</string>
     <string name="settings_notification_hide_big_view_off">Więcej informacji w powiadomieniu</string>
 
+    <string name="weather_source_china">Chin</string>
+    <string name="location_service_baidu">Lokalizacja Baidu</string>
+    <string name="location_service_baidu_ip">Lokalizacja Baidu IP (tylko dla Chin)</string>
+
+    <string name="settings_automatic">Automatyczny</string>
+    <string name="settings_none">Brak</string>
+    <string name="settings_color_day_night">Dzień / Noc</string>
+    <string name="settings_color_day_always">Tryb dzienny</string>
+    <string name="settings_color_night_always">Tryb nocny</string>
+    <string name="settings_color_light">Jasny</string>
+    <string name="settings_color_light_always">Zawsze jasny</string>
+    <string name="settings_color_grey">Szary</string>
+    <string name="settings_color_dark">Ciemny</string>
+    <string name="settings_color_dark_always">Zawsze ciemny</string>
+    <string name="settings_refresh_30min">00:30</string>
+    <string name="settings_refresh_1h">01:00</string>
+    <string name="settings_refresh_1h_30min">01:30</string>
+    <string name="settings_refresh_2h">02:00</string>
+    <string name="settings_refresh_3h">03:00</string>
+    <string name="settings_refresh_6h">06:00</string>
+    <string name="settings_refresh_12h">12:00</string>
+    <string name="settings_refresh_24h">24:00</string>
+
+    <string name="notification_style_native">Natywny</string>
+
+    <string name="widget_style_rectangle">Prostokątny</string>
+    <string name="widget_style_symmetry">Symetryczny</string>
+    <string name="widget_style_tile">Kafelek</string>
+    <string name="widget_style_vertical">Pionowy</string>
+    <string name="widget_style_temperature">Temperatura</string>
+    <string name="widget_subtitle_data_time">Czas odświeżenia</string>
+    <string name="widget_subtitle_data_wind">Wiatr</string>
+    <string name="widget_subtitle_data_feels_like">Temperatura odczuwalna</string>
+    <string name="widget_subtitle_data_lunar">Kalendarz księżycowy</string>
+    <string name="widget_subtitle_data_custom">Inny</string>
+
+    <!-- Weather kind -->
+    <string name="weather_kind_clear">Bezchmurnie</string>
+    <string name="weather_kind_partly_cloudy">Częściowe zachmurzonie</string>
+    <string name="weather_kind_cloudy">Zachmurzenie</string>
+    <string name="weather_kind_rain">Deszcz</string>
+    <string name="weather_kind_snow">Śnieg</string>
+    <string name="weather_kind_sleet">Śnieg z deszczem</string>
+    <string name="weather_kind_hail">Grad</string>
+    <string name="weather_kind_fog">Mgła</string>
+    <string name="weather_kind_haze">Mgiełka</string>
+    <string name="weather_kind_thunder">Burza</string>
+    <string name="weather_kind_thunderstorm">Burza z piorunami</string>
+    <string name="weather_kind_wind">Wiatr</string>
+
 </resources>

@@ -446,7 +446,7 @@
     <string name="settings_icon_providers_weather_icon_grey">Grey icon</string>
     <string name="settings_icon_providers_weather_icon_dark">Dark icon</string>
     <string name="settings_icon_providers_get_more">Get more</string>
-    <string name="settigns_icon_providers_app_store">@string/action_app_store</string>
+    <string name="settings_icon_providers_app_store">@string/action_app_store</string>
     <string name="settings_icon_providers_get_more_store">Get more from app store</string>
     <string name="settings_icon_providers_get_more_github">Get more from GitHub</string>
     <string name="settings_enabled">Enabled</string>

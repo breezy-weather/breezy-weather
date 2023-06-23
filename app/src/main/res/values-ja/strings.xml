@@ -310,4 +310,55 @@
     <string name="settings_notification_hide_big_view_off">表示</string>
     <string name="location_resident">居住地</string>
 
+    <string name="weather_source_china">中国</string>
+    <string name="location_service_baidu_ip">Baidu IP Location (中国のみ)</string>
+    <string name="location_service_native">ネイティブAPI</string>
+
+    <string name="settings_automatic">自動</string>
+    <string name="settings_none">無し</string>
+    <string name="settings_color_day_night">日中 / 夜間</string>
+    <string name="settings_color_day_always">Always 日中</string>
+    <string name="settings_color_night_always">Always 夜間</string>
+    <string name="settings_color_light">ライト</string>
+    <string name="settings_color_light_always">ライトモード</string>
+    <string name="settings_color_grey">グレー</string>
+    <string name="settings_color_dark">ダーク</string>
+    <string name="settings_color_dark_always">ダークモード</string>
+    <string name="settings_refresh_30min">30分</string>
+    <string name="settings_refresh_1h">1時間</string>
+    <string name="settings_refresh_1h_30min">1.5時間</string>
+    <string name="settings_refresh_2h">2時間</string>
+    <string name="settings_refresh_3h">3時間</string>
+    <string name="settings_refresh_6h">6時間</string>
+    <string name="settings_refresh_12h">12時間</string>
+    <string name="settings_refresh_24h">24時間</string>
+
+    <string name="widget_style_rectangle">長方形</string>
+    <string name="widget_style_symmetry">対称的</string>
+    <string name="widget_style_tile">タイル</string>
+    <string name="widget_style_mini">ミニ</string>
+    <string name="widget_style_nano">ナノ</string>
+    <string name="widget_style_pixel">ピクセル</string>
+    <string name="widget_style_vertical">垂直</string>
+    <string name="widget_subtitle_data_time">更新時刻</string>
+    <string name="widget_subtitle_data_aqi">空気質指数</string>
+    <string name="widget_subtitle_data_wind">風</string>
+    <string name="widget_subtitle_data_feels_like">体感温度</string>
+    <string name="widget_subtitle_data_lunar">旧暦</string>
+    <string name="widget_subtitle_data_custom">カスタム</string>
+
+    <!-- Weather kind -->
+    <string name="weather_kind_clear">晴れ</string>
+    <string name="weather_kind_partly_cloudy">一部曇り</string>
+    <string name="weather_kind_cloudy">曇り</string>
+    <string name="weather_kind_rain">雨</string>
+    <string name="weather_kind_snow">雪</string>
+    <string name="weather_kind_sleet">みぞれ</string>
+    <string name="weather_kind_hail">ひょう</string>
+    <string name="weather_kind_fog">霧</string>
+    <string name="weather_kind_haze">かすみ</string>
+    <string name="weather_kind_thunder">雷</string>
+    <string name="weather_kind_thunderstorm">雷雨</string>
+    <string name="weather_kind_wind">風</string>
+
 </resources>
