@@ -306,4 +306,84 @@
     <string name="settings_notification_hide_big_view_on">Скрывать</string>
     <string name="settings_notification_hide_big_view_off">Показывать</string>
 
+    <string name="weather_source_china">Китая</string>
+    <string name="location_service_baidu_ip">Baidu IP Location (Только для Китая)</string>
+    <string name="location_service_native">Системный API</string>
+
+    <string name="settings_automatic">Автоматически</string>
+    <string name="settings_none">Нет</string>
+    <string name="settings_color_day_night">день / ночь</string>
+    <string name="settings_color_day_always">Всегда день</string>
+    <string name="settings_color_night_always">Всегда ночь</string>
+    <string name="settings_color_light">Светлый</string>
+    <string name="settings_color_light_always">Всегда светлая</string>
+    <string name="settings_color_grey">Серый</string>
+    <string name="settings_color_dark">Тёмный</string>
+    <string name="settings_color_dark_always">Всегда тёмная</string>
+    <string name="settings_refresh_30min">Полчаса</string>
+    <string name="settings_refresh_1h">1 час</string>
+    <string name="settings_refresh_1h_30min">1.5 часа</string>
+    <string name="settings_refresh_2h">2 часа</string>
+    <string name="settings_refresh_3h">3 часа</string>
+    <string name="settings_refresh_6h">6 часов</string>
+    <string name="settings_refresh_12h">12 часов</string>
+    <string name="settings_refresh_24h">24 часов</string>
+
+    <string name="notification_style_native">Системное</string>
+    <string name="notification_style_cities">Города</string>
+
+    <string name="widget_style_rectangle">Прямоугольный</string>
+    <string name="widget_style_symmetry">Симметричный</string>
+    <string name="widget_style_tile">Плитка</string>
+    <string name="widget_style_mini">Мини</string>
+    <string name="widget_style_nano">Нано</string>
+    <string name="widget_style_vertical">Вертикальный</string>
+    <string name="widget_style_temperature">Температура</string>
+    <string name="widget_week_style_5_days">5 дней</string>
+    <string name="widget_week_style_3_days">3 дня</string>
+    <string name="widget_subtitle_data_time">Время обновления</string>
+    <string name="widget_subtitle_data_aqi">Air quality</string>
+    <string name="widget_subtitle_data_wind">Ветер</string>
+    <string name="widget_subtitle_data_feels_like">Ощущается как</string>
+    <string name="widget_subtitle_data_lunar">Лунный календарь</string>
+    <string name="widget_subtitle_data_custom">Пользовательский</string>
+
+    <!-- Weather kind -->
+    <string name="weather_kind_clear">Ясно</string>
+    <string name="weather_kind_partly_cloudy">Переменная облачность</string>
+    <string name="weather_kind_cloudy">Облачно</string>
+    <string name="weather_kind_rain">Дождь</string>
+    <string name="weather_kind_snow">Снег</string>
+    <string name="weather_kind_sleet">Мокрый снег</string>
+    <string name="weather_kind_hail">Град</string>
+    <string name="weather_kind_fog">Туман</string>
+    <string name="weather_kind_haze">Дымка</string>
+    <string name="weather_kind_thunder">Гроза</string>
+    <string name="weather_kind_thunderstorm">Ураган</string>
+    <string name="weather_kind_wind">Ветер</string>
+
+    <string name="unit_kph">км/ч</string>
+    <string name="unit_mps">м/с</string>
+    <string name="unit_kn">узлов</string>
+    <string name="unit_mph">миль/ч</string>
+    <string name="unit_ftps">футов/с</string>
+    <string name="unit_mm">мм</string>
+    <string name="unit_cm">см</string>
+    <string name="unit_in">дюйм</string>
+    <string name="unit_lpsqm">л/м²</string>
+    <string name="unit_km">км</string>
+    <string name="unit_m">метры</string>
+    <string name="unit_mi">мили</string>
+    <string name="unit_nmi">мор. мили</string>
+    <string name="unit_ft">футы</string>
+    <string name="unit_mb">миллибар</string>
+    <string name="unit_kpa">килопаскаль</string>
+    <string name="unit_hpa">гектопаскаль</string>
+    <string name="unit_atm">атмосфер</string>
+    <string name="unit_mmhg">мм рт. ст.</string>
+    <string name="unit_inhg">дюйм рт. ст.</string>
+    <string name="unit_kgfpsqcm">кгс/cм²</string>
+    <string name="unit_mugpcum">мкг/м³</string>
+    <string name="unit_h">ч</string>
+    <string name="unit_ppcm">/м³</string>
 </resources>
