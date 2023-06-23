@@ -1,6 +1,6 @@
 ## Create a new Weather provider
 
-At each step, have a look at what already exists for other providers (the ones in Kotlin, as null values are a pain to handle in Java) if you don’t know what to do.
+At each step, have a look at what already exists for other providers if you don’t know what to do.
 
 ### Add parameters
 
