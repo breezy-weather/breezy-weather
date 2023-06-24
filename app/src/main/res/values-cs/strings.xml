@@ -1,9 +1,7 @@
-<resources xmlns:tools="http://schemas.android.com/tools"
-    tools:ignore="MissingTranslation">
-
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <!-- app. -->
     <string name="app_name">Počasí</string>
-
     <!-- keyword. -->
     <string name="location_current">Současná lokace</string>
     <string name="location_resident">Bydliště</string>
@@ -38,7 +36,6 @@
     <string name="action_refresh">Obnovit</string>
     <string name="action_restart">Restartovat</string>
     <string name="action_edit">Upravit</string>
-
     <!-- The following set of strings should be as short as possible. -->
     <string name="of_clock">:00</string>
     <string name="short_yesterday">rok/den</string>
@@ -50,20 +47,17 @@
     <string name="short_friday">Pá</string>
     <string name="short_saturday">So</string>
     <string name="short_sunday">Ne</string>
-
     <string name="temperature_real_feel">Pocitová teplota</string>
     <string name="temperature_real_feel_shade">Pocitová teplota ve stínu</string>
     <string name="temperature_apparent">Zdánlivá teplota</string>
     <string name="temperature_wind_chill">Ochlazení větrem</string>
     <string name="temperature_wet_bulb">Ochlazení vlhkostí</string>
     <string name="temperature_degree_day">Stupeň vytápění</string>
-
     <string name="precipitation_total">Celkově</string>
     <string name="precipitation_thunderstorm">Bouřka</string>
     <string name="precipitation_rain">Déšť</string>
     <string name="precipitation_snow">Sníh</string>
     <string name="precipitation_ice">Led</string>
-
     <string name="wind_level_0">Bezvětří</string>
     <string name="wind_level_1">Vánek</string>
     <string name="wind_level_2">Větřík</string>
@@ -77,12 +71,10 @@
     <string name="wind_level_10">Silná vichřice</string>
     <string name="wind_level_11">Mohutná vichřice</string>
     <string name="wind_level_12">Orkán</string>
-
     <string name="precipitation_intensity_light">Mrholení</string>
     <string name="precipitation_intensity_middle">Déšť</string>
     <string name="precipitation_intensity_heavy">Silný déšť</string>
     <string name="precipitation_intensity_rainstorm">Bouřka</string>
-
     <string name="ephemeris_moon_phase_new">Nový měsíc</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Dorustající čtvrtina</string>
     <string name="ephemeris_moon_phase_first">Dorůstající polovina</string>
@@ -91,12 +83,10 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Ubývající tři čtvrtiny</string>
     <string name="ephemeris_moon_phase_third">Ubývající polovina</string>
     <string name="ephemeris_moon_phase_waning_crescent">Ubývající čtvrtina</string>
-
     <string name="allergen_grass">Tráva</string>
     <string name="allergen_mold">Plísňe</string>
     <string name="allergen_ragweed">Ambrózie</string>
     <string name="allergen_tree">Pyl</string>
-
     <string name="daily_forecast">Denní předpověď</string>
     <string name="hourly_forecast">Hodinová předpověď</string>
     <string name="minutely_forecast">Minutová předpověď</string>
@@ -105,7 +95,6 @@
     <string name="allergen">Alergeny</string>
     <string name="details">Podrobnosti</string>
     <string name="ephemeris">Slunce a měsíc</string>
-
     <string name="action_next">DALŠÍ</string>
     <string name="action_done">HOTOVO</string>
     <string name="action_cancel" tools:ignore="ButtonCase">ZRUŠIT</string>
@@ -114,11 +103,9 @@
     <string name="action_set">NASTAVIT</string>
     <string name="action_help">NÁPOVĚDA</string>
     <string name="action_learn_more">ZJISTIT VÍCE</string>
-
     <string name="about_app">O aplikaci</string>
     <string name="about_contributors">Přispěvatelé</string>
     <string name="about_translators">Překladatelé</string>
-
     <!-- Date format strings. -->
     <!-- Month : MMM(long) / M(short). -->
     <!-- Day   : dd(long) / d(short). -->
@@ -128,19 +115,16 @@
     <string name="date_format_widget_short">EEE d MMM</string>
     <string name="date_format_widget_long">EEEE d MMM</string>
     <string name="date_format_widget_oreo_style">EEEE d MMM│</string>
-
     <!-- feedback. -->
     <string name="notification_channel_request_location">Poloha</string>
     <string name="notification_location_in_background">Zjišťování polohy na pozadí</string>
-
     <string name="dialog_permissions_location_title">Přístup k informacím o poloze</string>
     <string name="dialog_permissions_location_content">Aplikace Breezy Weather potřebuje sbírat na popředí nebo v pozadí informace o vaší poloze, aby mohla poskytnout údaje o počasí ve vaší současné lokaci. Z tohoto důvodu zažádáme o nějaká oprávnění. Informace o vaší poloze budou použity pouze k získání údajů o počasí ve vaší současné lokaci. Pokud nechcete, abychom sbírali informace o poloze, můžete tyto žádosti zamítnout a ručně nastavit vaší polohu na stránce nastavení.</string>
     <string name="dialog_permissions_location_background_title">Přístup k poloze na pozadí</string>
     <string name="dialog_permissions_location_background_content">Abychom umožnili aplikaci přístup k informaci o poloze na pozadí a mohli díky tomu zjišťovat změny v poloze a poskytovat vám aktuální údaje o počasí, je potřeba abyste nastavili přístup k poloze na “Povolit vždy”.</string>
-
     <string name="location_message_failed_to_locate">Poloha selhala</string>
     <string name="weather_message_data_refresh_failed">Pokus o získání údajů o počasí selhal</string>
-    <string name="location_dialog_failed_to_locate_title">Ukazuje aplikace nesprávnou polohu?</string>
+    <string name="location_dialog_failed_to_locate_title">Ukazuje aplikace nesprávnou polohu\?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Zkontrolujte oprávnění polohy</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Povolte přístup k informacím o poloze</string>
     <string name="location_dialog_failed_to_locate_action_select_provider">Vyberte poskytovatele polohy</string>
@@ -155,7 +139,9 @@
     <string name="widget_label_clock_font">Písmo hodin</string>
     <string name="widget_label_hide_lunar">Skrýt lunární kalendář</string>
     <string name="widget_label_align_end">Zarovnat konec</string>
-    <string name="widget_custom_subtitle_explanation">Můžete zadat cokoli, ale dávejte pozor na délku textu. Pokud chcete citovat data o počasí, použijte znak $ pro odkazování na odpovídající klíčové slovo.\n\nNapříklad “current weather = $cw$” bude zobrazeno jako “current weather = Clear Day”.</string>
+    <string name="widget_custom_subtitle_explanation">Můžete zadat cokoli, ale dávejte pozor na délku textu. Pokud chcete citovat data o počasí, použijte znak $ pro odkazování na odpovídající klíčové slovo.
+\n
+\nNapříklad “current weather = $cw$” bude zobrazeno jako “current weather = Clear Day”.</string>
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
     <string name="widget_custom_subtitle_keyword_cw_description">Současné počasí</string>
@@ -197,66 +183,60 @@
     <string name="widget_custom_subtitle_keyword_xmr_description">Dnešní východ měsíce, zítra, …, o 4 dny později</string>
     <string name="widget_custom_subtitle_keyword_xms_description">Dnešní západ měsíce, zítra, …, o 4 dny později</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">Dnešní fáze měsíce, zítra, …, o 4 dny později</string>
-
     <string name="widget_live_wallpaper_weather_kind">Počasí</string>
     <string name="widget_live_wallpaper_day_night_type">Čas</string>
-
     <string name="location_message_added">Poloha úspěšně přidána</string>
     <string name="location_message_deleted">Poloha úspěšně odstraněna</string>
     <string name="location_message_list_cannot_be_empty">Seznam poloh nemůže být prázdný</string>
-
     <string name="location_search_placeholder">Vyhledat polohu…</string>
     <string name="location_current_not_found_yet">Zatím žádná poloha…</string>
-
     <string name="settings_changes_apply_after_restart">Změny se projeví po restartu</string>
-
     <string name="notification_running_in_background">Aplikace běží na pozadí pro zajištění aktualizace údajů</string>
     <string name="notification_updating_weather_data">Aktualizace údajů o počasí</string>
     <string name="message_updated_in_background">Aktualizováno na pozadí</string>
-
     <string name="dialog_permissions_block_notification_channel_title">Blokovat skupinu oznámení</string>
     <string name="dialog_permissions_block_notification_channel_content">Po vypnutí funkce “Neběžet na pozadí” se zobrazí oznámení značící, že služba na pozadí je aktivní. Oznámení lze vypnout na informační stránce aplikace.</string>
-
     <string name="dialog_permissions_ignore_battery_optimizations_title">Ignorovat optimalizace baterie</string>
     <string name="dialog_permissions_ignore_battery_optimizations_content">Pro ujištění, že mohou služby na pozadí pokračovat v práci, je potřeba zapnout ignorování optimalizací baterie pro Breezy Weather.</string>
-
     <string name="widget_live_wallpaper_cannot_start_activity">Nepodařilo se spustit náhled živého pozadí</string>
-
     <string name="notification_precipitation_today">Dnes může pršet.</string>
     <string name="notification_precipitation_short_term">V následujících hodinách mohou přijít srážky.</string>
-
     <string name="location_resident_message">Nastavit jako bydliště</string>
-    <string name="location_resident_dialog">Breezy Weather automaticky zobrazí a skryje bydliště podle vaší současné lokace.\nJako bydliště můžete například nastavit vaše domovské město. Při cestování se můžete poté podívat na počasí ve vašem domovském městě. Když se vrátíte domů, počasí ve vašem domovském městě bude skryto a nahrazeno počasím ve vaší současné lokaci.</string>
-
+    <string name="location_resident_dialog">Breezy Weather automaticky zobrazí a skryje bydliště podle vaší současné lokace.
+\nJako bydliště můžete například nastavit vaše domovské město. Při cestování se můžete poté podívat na počasí ve vašem domovském městě. Když se vrátíte domů, počasí ve vašem domovském městě bude skryto a nahrazeno počasím ve vaší současné lokaci.</string>
     <string name="allergen_tap_to_see_more">Klepněte pro více informací…</string>
     <string name="message_tap_again_to_exit">Klepněte znovu pro opuštění</string>
-
     <!-- content description -->
     <string name="action_back">Zpět</string>
     <string name="settings_icon_providers_check_details">Zkontrolovat podrobnosti</string>
-    <string name="alerts_count">$ varování o počasí</string> <!-- $ = alert count. -->
+    <string name="alerts_count">$ varování o počasí</string>
+    <!-- $ = alert count. -->
     <string name="air_quality_pm25_voice">PM dvě celé pět</string>
     <string name="air_quality_pm10_voice">PM deset</string>
     <string name="air_quality_so2_voice">Oxid siřičitý</string>
     <string name="air_quality_no2_voice">Oxid dusičitý</string>
     <string name="air_quality_o3_voice">Ozón</string>
     <string name="air_quality_co_voice">Oxid uhelnatý</string>
-    <string name="ephemeris_sunrise_at">Východ slunce v $</string> <!-- $ = time. -->
-    <string name="ephemeris_sunset_at">Západ slunce v $</string> <!-- $ = time. -->
-    <string name="ephemeris_moonrise_at">Východ měsíce v $</string> <!-- $ = time. -->
-    <string name="ephemeris_moonset_at">Západ měsíce v $</string> <!-- $ = time. -->
+    <string name="ephemeris_sunrise_at">Východ slunce v $</string>
+    <!-- $ = time. -->
+    <string name="ephemeris_sunset_at">Západ slunce v $</string>
+    <!-- $ = time. -->
+    <string name="ephemeris_moonrise_at">Východ měsíce v $</string>
+    <!-- $ = time. -->
+    <string name="ephemeris_moonset_at">Západ měsíce v $</string>
+    <!-- $ = time. -->
     <string name="precipitation_none">Žádné srážky</string>
-    <string name="precipitation_between_time">Srážky mezi $1 a $2</string> <!-- $1 = start time, $2 = end time. -->
+    <string name="precipitation_between_time">Srážky mezi $1 a $2</string>
+    <!-- $1 = start time, $2 = end time. -->
     <string name="action_add_current_location">Přidat současnou polohu</string>
     <string name="settings_items_drag_to_sort">Klepněte pro tažení položkami v seznamu pro seřazení</string>
     <string name="settings_item_delete">Odstranit tuto položku</string>
     <string name="location_swipe_to_delete">Pro odstranění této položky přejeďte prstem doleva</string>
-    <string name="settings_icon_providers_app_store">@string/action_app_store</string>
+    <string name="settings_icon_providers_app_store">\@string/action_app_store</string>
     <string name="settings_icon_providers_weather_adaptive_icon">Ikona počasí</string>
     <string name="settings_icon_providers_weather_icon_light">Světlá ikona</string>
     <string name="settings_icon_providers_weather_icon_grey">Šedá ikona</string>
     <string name="settings_icon_providers_weather_icon_dark">Tmavá ikona</string>
-
     <!-- action -->
     <string name="alerts">Upozornění</string>
     <string name="action_search">Hledat</string>
@@ -264,7 +244,6 @@
     <string name="action_preview">Náhled</string>
     <string name="action_about">O aplikaci</string>
     <string name="action_app_store">Obchod</string>
-
     <!-- widget -->
     <string name="widget_day">Denní</string>
     <string name="widget_week">Týdenní</string>
@@ -280,12 +259,13 @@
     <string name="widget_material_you_forecast">Material You - předpověď</string>
     <string name="widget_refreshing">čekám</string>
     <string name="widget_ellipsis">…</string>
-
     <!-- settings -->
     <string name="settings_category_basic">Základní</string>
     <string name="settings_title_background_free">Neběžet na pozadí</string>
-    <string name="settings_summary_background_free_on">Povoleno\nPokud se widgety a oznámení automaticky neaktualizují, vypněte prosím tuto možnost.</string>
-    <string name="settings_summary_background_free_off">Zakázáno\nPokud nechcete, aby žádné služby pracovaly na pozadí, zapněte tuto možnost.</string>
+    <string name="settings_summary_background_free_on">Povoleno
+\nPokud se widgety a oznámení automaticky neaktualizují, vypněte prosím tuto možnost.</string>
+    <string name="settings_summary_background_free_off">Zakázáno
+\nPokud nechcete, aby žádné služby pracovaly na pozadí, zapněte tuto možnost.</string>
     <string name="settings_title_live_wallpaper">Živé pozadí</string>
     <string name="settings_summary_live_wallpaper">Nastavit Material Design animaci počasí jako živé pozadí</string>
     <string name="settings_title_service_provider">Poskytovatel služeb</string>
@@ -360,13 +340,11 @@
     <string name="settings_provider_mf">Météo France</string>
     <string name="settings_provider_mf_wsft_key">Klíč WSFT Météo France</string>
     <string name="settings_provider_iqa_atmo_aura_key">Klíč ATMO AURA</string>
-
     <string name="weather_source_china">Čínu</string>
     <string name="location_service_baidu">Poloha Baidu</string>
     <string name="location_service_baidu_ip">Poloha IP Baidu IP (pouze pro Čínu)</string>
     <string name="location_service_amap">Poloha AMap</string>
     <string name="location_service_native">Nativní API</string>
-
     <string name="settings_automatic">Automaticky</string>
     <string name="settings_none">Žádný</string>
     <string name="settings_color_day_night">Denní / Noční</string>
@@ -377,7 +355,6 @@
     <string name="settings_color_grey">Šedý</string>
     <string name="settings_color_dark">Tmavý</string>
     <string name="settings_color_dark_always">Vždy tmavé</string>
-
     <string name="settings_refresh_30min">Půl hodiny</string>
     <string name="settings_refresh_1h">1 hodina</string>
     <string name="settings_refresh_1h_30min">1,5 hodiny</string>
@@ -386,10 +363,8 @@
     <string name="settings_refresh_6h">6 hodin</string>
     <string name="settings_refresh_12h">12 hodin</string>
     <string name="settings_refresh_24h">24 hodin</string>
-
     <string name="notification_style_native">Nativní</string>
     <string name="notification_style_cities">Města</string>
-
     <string name="widget_style_rectangle">Obdélník</string>
     <string name="widget_style_symmetry">Symetrický</string>
     <string name="widget_style_tile">Dlaždice</string>
@@ -397,13 +372,11 @@
     <string name="widget_style_temperature">Teplota</string>
     <string name="widget_week_style_5_days">5 dní</string>
     <string name="widget_week_style_3_days">3 dny</string>
-
     <string name="widget_subtitle_data_time">Čas obnovení</string>
     <string name="widget_subtitle_data_wind">Vítr</string>
     <string name="widget_subtitle_data_feels_like">Znatelná teplota</string>
     <string name="widget_subtitle_data_lunar">Lunární kalendář</string>
     <string name="widget_subtitle_data_custom">Vlastní</string>
-
     <!-- Weather kind -->
     <string name="weather_kind_clear">Jasno</string>
     <string name="weather_kind_partly_cloudy">Polojasno</string>
@@ -417,7 +390,6 @@
     <string name="weather_kind_thunder">Hřmění</string>
     <string name="weather_kind_thunderstorm">Bouřka</string>
     <string name="weather_kind_wind">Vítr</string>
-
     <string name="unit_kph_voice">Kilometry za hodinu</string>
     <string name="unit_mps_voice">Metry za sekundu</string>
     <string name="unit_kn_voice">Uzly</string>
@@ -443,4 +415,239 @@
     <string name="unit_mgpcum_voice">Milligramy na metr krychlový</string>
     <string name="unit_h_voice">hodin</string>
     <string name="unit_ppcm_voice">Na metr krychlový</string>
+    <string name="breezy_weather" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_separator" translatable="false"></string>
+    <string name="settings_background_animation_enabled"></string>
+    <string name="unit_m"></string>
+    <string name="openmeteo_weather_text_rain_showers_moderate"></string>
+    <string name="openmeteo_weather_text_rain_showers_violent"></string>
+    <string name="openmeteo_weather_text_snow_showers_slight"></string>
+    <string name="openmeteo_weather_text_snow_showers_heavy"></string>
+    <string name="key_card_alpha" translatable="false"></string>
+    <string name="key_hide_subtitle" translatable="false"></string>
+    <string name="key_subtitle_data" translatable="false"></string>
+    <string name="key_text_color" translatable="false"></string>
+    <string name="key_text_size" translatable="false"></string>
+    <string name="key_clock_font" translatable="false"></string>
+    <string name="key_align_end" translatable="false"></string>
+    <string name="key_widget_day" translatable="false"></string>
+    <string name="key_widget_clock_day_horizontal" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_xdt" translatable="false"></string>
+    <string name="weather_source_mf_voice"></string>
+    <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail"></string>
+    <string name="openmeteo_weather_text_mainly_clear"></string>
+    <string name="openmeteo_weather_text_partly_cloudy"></string>
+    <string name="unit_ftps"></string>
+    <string name="weather_source_openweather_version_3_0"></string>
+    <string name="openmeteo_weather_text_freezing_rain_light_intensity"></string>
+    <string name="weather_api_limit_reached_message"></string>
+    <string name="key_notification_minimal_icon" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_als" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_l" translatable="false"></string>
+    <string name="openmeteo_weather_text_overcast"></string>
+    <string name="unit_ft"></string>
+    <string name="weather_refreshed"></string>
+    <string name="widget_custom_subtitle_keyword_cw" translatable="false"></string>
+    <string name="openmeteo_weather_text_snow_heavy_intensity"></string>
+    <string name="wind_direction_short_variable"></string>
+    <string name="openmeteo_weather_text_snow_moderate_intensity"></string>
+    <string name="wind_direction_short_NE"></string>
+    <string name="weather_source_metno"></string>
+    <string name="sp_widget_android_s_weather_mini" translatable="false"></string>
+    <string name="weather_source_metno_voice"></string>
+    <string name="widget_custom_subtitle_keyword_xnt" translatable="false"></string>
+    <string name="openmeteo_weather_text_thunderstorm_with_slight_hail"></string>
+    <string name="openmeteo_weather_text_drizzle_light_intensity"></string>
+    <string name="openmeteo_weather_text_rain_heavy_intensity"></string>
+    <string name="weather_source_openmeteo"></string>
+    <string name="sp_widget_daily_trend_setting" translatable="false"></string>
+    <string name="widget_material_you_current"></string>
+    <string name="sp_widget_text_setting" translatable="false"></string>
+    <string name="unit_mmph_voice"></string>
+    <string name="openmeteo_weather_text_drizzle_moderate_intensity"></string>
+    <string name="openmeteo_weather_text_fog"></string>
+    <string name="air_quality_level_5_description"></string>
+    <string name="widget_custom_subtitle_keyword_dd" translatable="false"></string>
+    <string name="air_quality_level_3"></string>
+    <string name="sp_widget_android_s_weather_medium" translatable="false"></string>
+    <string name="unit_inph_voice"></string>
+    <string name="sp_widget_android_s_weather_xlarge" translatable="false"></string>
+    <string name="weather_source_mf"></string>
+    <string name="openmeteo_weather_text_rain_moderate_intensity"></string>
+    <string name="unit_lpsqmph_voice"></string>
+    <string name="unit_celsius"></string>
+    <string name="widget_style_nano"></string>
+    <string name="openmeteo_weather_text_snow_slight_intensity"></string>
+    <string name="wind_direction_short_NW"></string>
+    <string name="key_widget_week" translatable="false"></string>
+    <string name="weather_api_limit_reached_dialog"></string>
+    <string name="tag_wind" translatable="false"></string>
+    <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate"></string>
+    <string name="sp_widget_android_s_weather_large" translatable="false"></string>
+    <string name="unit_inhg"></string>
+    <string name="widget_custom_subtitle_keyword_cuv" translatable="false"></string>
+    <string name="openmeteo_weather_text_freezing_drizzle_light_intensity"></string>
+    <string name="alerts_to_follow"></string>
+    <string name="weather_source_accuweather"></string>
+    <string name="unit_lpsqm"></string>
+    <string name="widget_style_mini"></string>
+    <string name="wind_direction_short_N"></string>
+    <string name="action_add_from_map"></string>
+    <string name="sp_widget_clock_day_horizontal_setting" translatable="false"></string>
+    <string name="key_widget_trend_hourly" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_d" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_xdw" translatable="false"></string>
+    <string name="settings_refresh_never"></string>
+    <string name="locations"></string>
+    <string name="unit_h"></string>
+    <string name="air_quality_level_6"></string>
+    <string name="settings_provider_open_weather_one_call_version"></string>
+    <string name="uv_level_3_5"></string>
+    <string name="widget_custom_subtitle_keyword_lc" translatable="false"></string>
+    <string name="unit_fahrenheit_short"></string>
+    <string name="about_contribution_WangDaYeeeeee"></string>
+    <string name="widget_custom_subtitle_keyword_w" translatable="false"></string>
+    <string name="key_hide_lunar" translatable="false"></string>
+    <string name="sp_widget_clock_day_week_setting" translatable="false"></string>
+    <string name="key_service_provider_advanced" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_xnw" translatable="false"></string>
+    <string name="air_quality_level_2"></string>
+    <string name="openmeteo_weather_text_drizzle_dense_intensity"></string>
+    <string name="unit_in"></string>
+    <string name="unit_mm"></string>
+    <string name="widget_style_oreo"></string>
+    <string name="widget_custom_subtitle_keyword_ct" translatable="false"></string>
+    <string name="uv_level_0_2"></string>
+    <string name="unit_cmph_voice"></string>
+    <string name="unit_kph"></string>
+    <string name="unit_mph"></string>
+    <string name="unit_kn"></string>
+    <string name="action_add_new_location"></string>
+    <string name="unit_kelvin"></string>
+    <string name="widget_custom_subtitle_keyword_enter" translatable="false"></string>
+    <string name="unit_mi"></string>
+    <string name="unit_mgpcum"></string>
+    <string name="widget_custom_subtitle_keyword_ctd" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_atd" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_al" translatable="false"></string>
+    <string name="uv_level_8_10"></string>
+    <string name="key_widget_clock_day_week" translatable="false"></string>
+    <string name="unit_km"></string>
+    <string name="weather_source_openweather_voice"></string>
+    <string name="uv_level_6_7"></string>
+    <string name="sp_widget_clock_day_details_setting" translatable="false"></string>
+    <string name="settings_title_background_animation"></string>
+    <string name="openmeteo_weather_text_snow_grains"></string>
+    <string name="settings_background_animation_disabled"></string>
+    <string name="widget_custom_subtitle_keyword_cwd" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_ch" translatable="false"></string>
+    <string name="unit_mmph"></string>
+    <string name="widget_style_oreo_google_sans"></string>
+    <string name="widget_subtitle_data_aqi"></string>
+    <string name="uv_level_11"></string>
+    <string name="key_appearance" translatable="false"></string>
+    <string name="unit_cm"></string>
+    <string name="widget_custom_subtitle_keyword_cps" translatable="false"></string>
+    <string name="key_service_provider" translatable="false"></string>
+    <string name="location_results_by"></string>
+    <string name="unit_atm"></string>
+    <string name="weather_source_openweather"></string>
+    <string name="widget_clock_font_sans_serif_light"></string>
+    <string name="unit_mps"></string>
+    <string name="air_quality_level_3_description"></string>
+    <string name="air_quality_level_5"></string>
+    <string name="widget_custom_subtitle_keyword_xntd" translatable="false"></string>
+    <string name="uv_alert_level"></string>
+    <string name="unit_lpsqmph"></string>
+    <string name="tag_precipitation" translatable="false"></string>
+    <string name="tag_aqi" translatable="false"></string>
+    <string name="air_quality_level_6_description"></string>
+    <string name="wind_direction_short_S"></string>
+    <string name="air_quality_level_2_description"></string>
+    <string name="weather_source_accuweather_voice"></string>
+    <string name="openmeteo_weather_text_freezing_drizzle_dense_intensity"></string>
+    <string name="openmeteo_weather_text_depositing_rime_fog"></string>
+    <string name="key_view_type" translatable="false"></string>
+    <string name="location_search_change_weather_source"></string>
+    <string name="key_widget_clock_day_details" translatable="false"></string>
+    <string name="air_quality_level_1_description"></string>
+    <string name="key_widget_multi_city" translatable="false"></string>
+    <string name="openmeteo_weather_text_freezing_rain_heavy_intensity"></string>
+    <string name="wind_direction_short_W"></string>
+    <string name="wind_direction_short_E"></string>
+    <string name="weather_source_openweather_version_2_5"></string>
+    <string name="widget_custom_subtitle_keyword_xdp" translatable="false"></string>
+    <string name="weather_source_openmeteo_voice"></string>
+    <string name="sp_widget_hourly_trend_setting" translatable="false"></string>
+    <string name="unit_cmph"></string>
+    <string name="widget_custom_subtitle_keyword_lat" translatable="false"></string>
+    <string name="key_card_style" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_lon" translatable="false"></string>
+    <string name="sp_widget_clock_day_vertical_setting" translatable="false"></string>
+    <string name="action_choose_weather_provider"></string>
+    <string name="key_widget_clock_day_vertical" translatable="false"></string>
+    <string name="sp_widget_multi_city" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_xnp" translatable="false"></string>
+    <string name="sp_widget_day_week_setting" translatable="false"></string>
+    <string name="openmeteo_weather_text_rain_showers_slight"></string>
+    <string name="widget_custom_subtitle_keyword_hd" translatable="false"></string>
+    <string name="unit_nmi"></string>
+    <string name="unit_celsius_short"></string>
+    <string name="widget_custom_subtitle_keyword_xdtd" translatable="false"></string>
+    <string name="unit_inph"></string>
+    <string name="openmeteo_weather_text_clear_sky"></string>
+    <string name="air_quality_level_1"></string>
+    <string name="unit_mmhg"></string>
+    <string name="unit_fahrenheit"></string>
+    <string name="action_location_list"></string>
+    <string name="wind_direction_short_SE"></string>
+    <string name="widget_custom_subtitle_keyword_xdwd" translatable="false"></string>
+    <string name="weather_api_unauthorized_dialog"></string>
+    <string name="widget_custom_subtitle_keyword_cv" translatable="false"></string>
+    <string name="tag_temperature" translatable="false"></string>
+    <string name="wind_direction_short_SW"></string>
+    <string name="about_matrix"></string>
+    <string name="transition_activity_search_txt" translatable="false"></string>
+    <string name="key_widget_text" translatable="false"></string>
+    <string name="transition_activity_search_bar" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_at" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_cdp" translatable="false"></string>
+    <string name="unit_kelvin_short"></string>
+    <string name="tag_uv" translatable="false"></string>
+    <string name="key_widget_day_week" translatable="false"></string>
+    <string name="weather_source_china_voice"></string>
+    <string name="widget_custom_subtitle_keyword_ws" translatable="false"></string>
+    <string name="key_widget_trend_daily" translatable="false"></string>
+    <string name="weather_data_by"></string>
+    <string name="unit_kgfpsqcm"></string>
+    <string name="widget_custom_subtitle_keyword_ut" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_xnwd" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_xsr" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_xss" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_xmr" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_xms" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_xmp" translatable="false"></string>
+    <string name="sp_widget_day_setting" translatable="false"></string>
+    <string name="sp_widget_week_setting" translatable="false"></string>
+    <string name="key_colorful" translatable="false"></string>
+    <string name="key_live_wallpaper" translatable="false"></string>
+    <string name="key_unit" translatable="false"></string>
+    <string name="key_click_widget_to_refresh" translatable="false"></string>
+    <string name="key_widget_config" translatable="false"></string>
+    <string name="air_quality_level_4"></string>
+    <string name="air_quality_level_4_description"></string>
+    <string name="weather_api_unauthorized_message"></string>
+    <string name="widget_style_pixel"></string>
+    <string name="widget_clock_font_sans_serif"></string>
+    <string name="widget_clock_font_sans_serif_black"></string>
+    <string name="widget_clock_font_analog"></string>
+    <string name="settings_title_notification_feels_like"></string>
+    <string name="unit_mb"></string>
+    <string name="unit_kpa"></string>
+    <string name="unit_hpa"></string>
+    <string name="unit_mugpcum"></string>
+    <string name="unit_ppcm"></string>
+    <string name="notification_channel_alerts"></string>
+    <string name="about_source_code"></string>
+    <string name="openmeteo_weather_text_rain_slight_intensity"></string>
 </resources>
