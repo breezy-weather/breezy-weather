@@ -324,7 +324,7 @@ public class DisplayUtils {
         // FIXME: Use phone locale instead of preference
         // It doesn't seem possible to call with Locale and TimeZone parameters unfortunately
         return (String) DateUtils.getRelativeTimeSpanString(
-                date.getTime(), (new Date()).getTime(), DateUtils.SECOND_IN_MILLIS, FORMAT_ABBREV_RELATIVE);
+                date.getTime(), (new Date()).getTime(), DateUtils.MINUTE_IN_MILLIS, FORMAT_ABBREV_RELATIVE);
     }
 
     // translationY, scaleX, scaleY

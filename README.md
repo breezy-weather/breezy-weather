@@ -39,7 +39,7 @@ Google Play releases will be available once it is stable enough and is compliant
 
 * [Homepage explanations](docs/HOMEPAGE.md)
 * [Weather providers comparison](docs/PROVIDERS.md)
-* [Update translation on Weblate](https://hosted.weblate.org/projects/breezy-weather/breezy-weather-android/)
+* [Update translation on Weblate](https://hosted.weblate.org/projects/breezy-weather/breezy-weather-android/#information)
    * English regional variants must be updated on GitHub if they differ from the original English file
    * French translation is maintained by repo maintainers
 

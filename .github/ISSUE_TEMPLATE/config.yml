@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
   - name: Translations
-    url: https://github.com/breezy-weather/breezy-weather#translation-improvements
-    about: New translation, update to existing translations
+    url: https://hosted.weblate.org/projects/breezy-weather/breezy-weather-android/#information
+    about: New translation, update to existing translations on Weblate
   - name: Questions
     url: https://github.com/breezy-weather/breezy-weather/discussions/categories/q-a
     about: Ask the community for help

@@ -15,17 +15,17 @@
     tools:background="@android:color/black"
     tools:ignore="UnusedAttribute">
 
-    <TextView
+    <org.breezyweather.main.widgets.TextRelativeClock
         android:id="@+id/container_main_refresh_time_text"
         android:textSize="@dimen/content_text_size"
         android:maxLines="1"
         android:ellipsize="end"
         android:drawablePadding="6dp"
         android:gravity="center_vertical"
+        android:drawableTint="#fff"
+        android:drawableLeft="@drawable/ic_time"
         style="@style/large_title_text"
         tools:text="1 minute ago"
-        tools:ignore="RelativeOverlap,RtlHardcoded"
-        app:drawableTint="#fff"
-        app:drawableLeftCompat="@drawable/ic_time" />
+        tools:ignore="RelativeOverlap,RtlHardcoded" />
 
 </LinearLayout>

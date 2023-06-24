@@ -7,14 +7,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import io.reactivex.rxjava3.disposables.Disposable;
 import org.breezyweather.R;
 import org.breezyweather.common.basic.models.Location;
-import org.breezyweather.common.utils.DisplayUtils;
+import org.breezyweather.main.widgets.TextRelativeClock;
 import org.breezyweather.theme.ThemeManager;
 import org.breezyweather.theme.resource.providers.ResourceProvider;
 import org.breezyweather.theme.weatherView.WeatherView;
@@ -24,7 +23,7 @@ import java.util.List;
 
 public class RefreshTimeViewHolder extends AbstractMainViewHolder {
     private final LinearLayout mContainer;
-    private final TextView mRefreshTimeText;
+    private final TextRelativeClock mRefreshTimeText;
     private @Nullable Disposable mDisposable;
 
     public RefreshTimeViewHolder(ViewGroup parent, WeatherView weatherView) {
@@ -54,7 +53,7 @@ public class RefreshTimeViewHolder extends AbstractMainViewHolder {
         mRefreshTimeText.setTextColor(textColor);
 
         if (location.getWeather() != null) {
-            mRefreshTimeText.setText(DisplayUtils.getRelativeTime(location.getWeather().getBase().getUpdateDate()));
+            mRefreshTimeText.setDate(location.getWeather().getBase().getUpdateDate());
         }
     }
 
