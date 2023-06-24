@@ -431,29 +431,16 @@
     <string name="unit_h_voice">小時</string>
     <string name="unit_ppcm">/米³</string>
     <string name="unit_ppcm_voice">每立方米</string>
-    <string name="widget_style_pixel"/>
     <string name="about_matrix"/>
-    <string name="unit_kelvin"/>
     <string name="key_text_color" translatable="false"/>
-    <string name="transition_activity_search_txt" translatable="false"/>
     <string name="openmeteo_weather_text_drizzle_moderate_intensity"/>
-    <string name="settings_background_animation_disabled"/>
     <string name="uv_level_6_7"/>
-    <string name="key_widget_clock_day_details" translatable="false"/>
     <string name="sp_widget_clock_day_horizontal_setting" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_al" translatable="false"/>
     <string name="weather_api_limit_reached_message"/>
-    <string name="settings_provider_open_weather"/>
     <string name="openmeteo_weather_text_snow_showers_heavy"/>
-    <string name="air_quality_level_5"/>
     <string name="key_view_type" translatable="false"/>
-    <string name="unit_fahrenheit"/>
     <string name="openmeteo_weather_text_mainly_clear"/>
-    <string name="key_unit" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_xntd" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_ch" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_xdt" translatable="false"/>
-    <string name="air_quality_level_6"/>
     <string name="air_quality_level_2_description"/>
-    <string name="locations"/>
 </resources>

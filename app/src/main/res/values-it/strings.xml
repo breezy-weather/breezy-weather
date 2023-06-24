@@ -398,33 +398,18 @@
     <string name="unit_mgpcum_voice">Milligrammi per metro cubo</string>
     <string name="unit_h_voice">ore</string>
     <string name="unit_ppcm_voice">Per metro cubo</string>
-    <string name="weather_source_mf"/>
     <string name="wind_direction_short_NW"/>
-    <string name="unit_hpa"/>
     <string name="weather_source_china"/>
-    <string name="unit_mmhg"/>
     <string name="air_quality_level_2"/>
-    <string name="air_quality_level_3"/>
     <string name="uv_level_11"/>
-    <string name="openmeteo_weather_text_rain_heavy_intensity"/>
     <string name="air_quality_level_4"/>
-    <string name="weather_api_unauthorized_dialog"/>
     <string name="weather_source_openweather_voice"/>
-    <string name="settings_provider_mf_wsft_key"/>
     <string name="unit_ftps"/>
-    <string name="unit_celsius"/>
     <string name="unit_mi"/>
-    <string name="unit_h"/>
     <string name="openmeteo_weather_text_rain_showers_violent"/>
-    <string name="widget_custom_subtitle_keyword_at" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_cdp" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_lc" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_xdt" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_xsr" translatable="false"/>
     <string name="sp_widget_clock_day_details_setting" translatable="false"/>
-    <string name="sp_widget_android_s_weather_medium" translatable="false"/>
     <string name="key_text_color" translatable="false"/>
-    <string name="key_service_provider_advanced" translatable="false"/>
     <string name="key_widget_clock_day_horizontal" translatable="false"/>
-    <string name="key_notification_minimal_icon" translatable="false"/>
 </resources>

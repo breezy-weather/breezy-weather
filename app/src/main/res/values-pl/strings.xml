@@ -322,44 +322,24 @@
     <string name="weather_kind_thunder">Burza</string>
     <string name="weather_kind_thunderstorm">Burza z piorunami</string>
     <string name="weather_kind_wind">Wiatr</string>
-    <string name="unit_inhg"/>
     <string name="key_widget_text" translatable="false"/>
-    <string name="key_service_provider_advanced" translatable="false"/>
     <string name="openmeteo_weather_text_rain_moderate_intensity"/>
-    <string name="key_unit" translatable="false"/>
     <string name="unit_kpa_voice"/>
-    <string name="openmeteo_weather_text_snow_showers_heavy"/>
     <string name="weather_data_by"/>
-    <string name="unit_h"/>
     <string name="unit_kelvin"/>
-    <string name="key_service_provider" translatable="false"/>
     <string name="key_hide_subtitle" translatable="false"/>
-    <string name="unit_in_voice"/>
     <string name="settings_background_animation_enabled"/>
-    <string name="notification_style_cities"/>
     <string name="unit_mb"/>
-    <string name="settings_provider_baidu_ip_location"/>
     <string name="openmeteo_weather_text_mainly_clear"/>
-    <string name="unit_nmi_voice"/>
     <string name="wind_direction_short_variable"/>
-    <string name="wind_direction_short_NW"/>
     <string name="air_quality_level_1_description"/>
-    <string name="air_quality_level_5_description"/>
     <string name="air_quality_co_voice"/>
-    <string name="weather_api_unauthorized_dialog"/>
     <string name="weather_source_openweather_voice"/>
-    <string name="location_results_by"/>
     <string name="action_add_new_location"/>
-    <string name="widget_material_you_forecast"/>
     <string name="widget_style_pixel"/>
-    <string name="widget_clock_font_analog"/>
     <string name="settings_items_drag_to_sort"/>
-    <string name="settings_provider_mf_wsft_key"/>
     <string name="settings_refresh_never"/>
-    <string name="unit_cmph_voice"/>
     <string name="unit_fahrenheit_short"/>
-    <string name="widget_custom_subtitle_keyword_cw" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_ws" translatable="false"/>
-    <string name="sp_widget_week_setting" translatable="false"/>
     <string name="transition_activity_search_txt" translatable="false"/>
 </resources>

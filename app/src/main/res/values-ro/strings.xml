@@ -341,41 +341,22 @@
     <string name="weather_kind_thunder">Trăsnet</string>
     <string name="weather_kind_thunderstorm">Furtună</string>
     <string name="weather_kind_wind">Vânt</string>
-    <string name="widget_custom_subtitle_keyword_xsr" translatable="false"/>
     <string name="key_hide_subtitle" translatable="false"/>
-    <string name="key_click_widget_to_refresh" translatable="false"/>
     <string name="unit_lpsqm"/>
-    <string name="widget_custom_subtitle_keyword_at" translatable="false"/>
     <string name="unit_kelvin"/>
-    <string name="unit_hpa_voice"/>
     <string name="widget_style_vertical"/>
-    <string name="transition_activity_search_bar" translatable="false"/>
     <string name="unit_nmi"/>
-    <string name="unit_km_voice"/>
     <string name="unit_ft"/>
-    <string name="unit_kph_voice"/>
     <string name="unit_atm_voice"/>
-    <string name="unit_ppcm"/>
     <string name="settings_background_animation_enabled"/>
-    <string name="widget_custom_subtitle_keyword_xmp" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_separator" translatable="false"/>
-    <string name="weather_source_openweather"/>
     <string name="widget_custom_subtitle_keyword_atd" translatable="false"/>
-    <string name="key_widget_clock_day_details" translatable="false"/>
     <string name="settings_provider_open_weather"/>
-    <string name="tag_temperature" translatable="false"/>
     <string name="sp_widget_clock_day_details_setting" translatable="false"/>
-    <string name="weather_source_openmeteo_voice"/>
     <string name="unit_fahrenheit"/>
-    <string name="widget_custom_subtitle_keyword_ct" translatable="false"/>
     <string name="unit_cm"/>
-    <string name="unit_mph_voice"/>
     <string name="settings_title_hourly_trend_display"/>
-    <string name="unit_km"/>
     <string name="uv_level_6_7"/>
-    <string name="air_quality_level_3"/>
     <string name="air_quality_so2_voice"/>
-    <string name="weather_data_by"/>
     <string name="weather_source_mf_voice"/>
-    <string name="action_choose_weather_provider"/>
 </resources>

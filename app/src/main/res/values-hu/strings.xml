@@ -274,49 +274,26 @@
     <string name="settings_title_notification_hide_big_view">Bővített Méret</string>
     <string name="settings_notification_hide_big_view_on">Elrejtés</string>
     <string name="settings_notification_hide_big_view_off">Mutatás</string>
-    <string name="air_quality_level_1"/>
     <string name="key_widget_text" translatable="false"/>
-    <string name="settings_summary_service_provider_advanced"/>
     <string name="precipitation_none"/>
-    <string name="dialog_permissions_location_content"/>
     <string name="air_quality_pm25_voice"/>
-    <string name="action_location_list"/>
     <string name="widget_custom_subtitle_keyword_separator" translatable="false"/>
-    <string name="widget_style_symmetry"/>
     <string name="key_appearance" translatable="false"/>
-    <string name="unit_mph_voice"/>
     <string name="air_quality_level_5"/>
-    <string name="wind_direction_short_variable"/>
     <string name="weather_source_openweather_version_3_0"/>
-    <string name="widget_custom_subtitle_keyword_xdtd" translatable="false"/>
     <string name="ephemeris_sunrise_at"/>
-    <string name="air_quality_level_2"/>
     <string name="key_service_provider_advanced" translatable="false"/>
-    <string name="air_quality_level_4"/>
     <string name="air_quality_level_2_description"/>
-    <string name="weather_kind_hail"/>
     <string name="weather_kind_haze"/>
-    <string name="widget_subtitle_data_time"/>
     <string name="weather_kind_clear"/>
-    <string name="widget_subtitle_data_lunar"/>
     <string name="widget_style_oreo_google_sans"/>
-    <string name="settings_items_drag_to_sort"/>
     <string name="settings_provider_baidu_ip_location"/>
-    <string name="settings_icon_providers_weather_icon_grey"/>
     <string name="settings_color_dark"/>
-    <string name="settings_refresh_6h"/>
     <string name="unit_kn_voice"/>
-    <string name="unit_mmph_voice"/>
     <string name="unit_celsius_short"/>
-    <string name="unit_mi_voice"/>
     <string name="unit_inhg"/>
-    <string name="unit_kpa_voice"/>
     <string name="unit_h_voice"/>
-    <string name="openmeteo_weather_text_drizzle_dense_intensity"/>
     <string name="openmeteo_weather_text_snow_showers_slight"/>
-    <string name="widget_custom_subtitle_keyword_at" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_d" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_xnwd" translatable="false"/>
     <string name="key_widget_config" translatable="false"/>
-    <string name="transition_activity_search_bar" translatable="false"/>
 </resources>

@@ -228,54 +228,29 @@
     <string name="weather_kind_thunder">Grmenje</string>
     <string name="weather_kind_thunderstorm">Nevihta</string>
     <string name="weather_kind_wind">Veter</string>
-    <string name="ephemeris_moonrise_at"/>
     <string name="unit_mm"/>
-    <string name="unit_mugpcum_voice"/>
     <string name="widget_custom_subtitle_keyword_lon" translatable="false"/>
-    <string name="widget_week_style_5_days"/>
     <string name="settings_refresh_never"/>
-    <string name="key_clock_font" translatable="false"/>
     <string name="key_click_widget_to_refresh" translatable="false"/>
-    <string name="settings_icon_providers_app_store" translatable="false"/>
     <string name="unit_ft_voice"/>
-    <string name="unit_ppcm"/>
     <string name="widget_custom_subtitle_keyword_xdtd" translatable="false"/>
-    <string name="unit_lpsqmph"/>
     <string name="settings_title_background_animation"/>
-    <string name="widget_custom_subtitle_keyword_xnw" translatable="false"/>
     <string name="air_quality_level_2_description"/>
-    <string name="sp_widget_hourly_trend_setting" translatable="false"/>
     <string name="air_quality_level_1_description"/>
-    <string name="precipitation_snow"/>
     <string name="dialog_permissions_block_notification_channel_title"/>
-    <string name="weather_source_openweather_voice"/>
     <string name="weather_source_accuweather"/>
-    <string name="openmeteo_weather_text_snow_heavy_intensity"/>
     <string name="weather_source_mf_voice"/>
-    <string name="widget_custom_subtitle_keyword_xdwd" translatable="false"/>
     <string name="openmeteo_weather_text_rain_heavy_intensity"/>
-    <string name="action_add_from_map"/>
     <string name="precipitation_intensity_heavy"/>
-    <string name="ephemeris_sunrise_at"/>
     <string name="openmeteo_weather_text_overcast"/>
-    <string name="weather_api_unauthorized_message"/>
     <string name="widget_custom_subtitle_keyword_ct_description"/>
-    <string name="wind_direction_short_N"/>
     <string name="location_results_by"/>
-    <string name="transition_activity_search_bar" translatable="false"/>
     <string name="air_quality_level_4_description"/>
-    <string name="openmeteo_weather_text_rain_showers_violent"/>
     <string name="openmeteo_weather_text_drizzle_light_intensity"/>
-    <string name="unit_kgfpsqcm"/>
     <string name="sp_widget_multi_city" translatable="false"/>
-    <string name="openmeteo_weather_text_depositing_rime_fog"/>
     <string name="widget_custom_subtitle_keyword_ut" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_cv_description"/>
     <string name="settings_title_week_icon_mode"/>
-    <string name="settings_title_daily_trend_display"/>
     <string name="widget_week_style_3_days"/>
-    <string name="wind_direction_short_W"/>
     <string name="widget_clock_font_sans_serif"/>
-    <string name="location_dialog_failed_to_locate_action_add_manually"/>
     <string name="unit_mph"/>
 </resources>

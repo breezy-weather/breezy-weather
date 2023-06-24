@@ -495,22 +495,13 @@
     <string name="unit_h_voice">小时</string>
     <string name="unit_ppcm">/米³</string>
     <string name="unit_ppcm_voice">每立方米</string>
-    <string name="widget_custom_subtitle_keyword_separator" translatable="false"/>
     <string name="notification_channel_alerts"/>
-    <string name="key_click_widget_to_refresh" translatable="false"/>
     <string name="key_text_color" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_enter" translatable="false"/>
     <string name="key_unit" translatable="false"/>
-    <string name="action_add_from_map"/>
     <string name="key_card_alpha" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_lon" translatable="false"/>
     <string name="weather_source_mf_voice"/>
-    <string name="action_add_new_location"/>
     <string name="widget_custom_subtitle_keyword_ws" translatable="false"/>
-    <string name="sp_widget_daily_trend_setting" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_w" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_hd" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_d" translatable="false"/>
-    <string name="weather_data_by"/>
     <string name="sp_widget_week_setting" translatable="false"/>
 </resources>

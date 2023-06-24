@@ -328,42 +328,23 @@
     <string name="weather_kind_thunder">번개</string>
     <string name="weather_kind_thunderstorm">뇌우</string>
     <string name="weather_kind_wind">바람</string>
-    <string name="settings_icon_providers_check_details"/>
     <string name="uv_level_0_2"/>
-    <string name="unit_nmi_voice"/>
     <string name="air_quality_level_3_description"/>
-    <string name="unit_kpa"/>
     <string name="weather_source_metno"/>
-    <string name="wind_direction_short_E"/>
     <string name="air_quality_level_6"/>
-    <string name="ephemeris_sunrise_at"/>
     <string name="weather_api_unauthorized_message"/>
-    <string name="weather_source_openweather_voice"/>
     <string name="location_results_by"/>
-    <string name="dialog_permissions_location_content"/>
     <string name="widget_subtitle_data_aqi"/>
-    <string name="settings_summary_service_provider_advanced"/>
     <string name="settings_provider_open_weather"/>
-    <string name="settings_icon_providers_weather_icon_grey"/>
     <string name="unit_kn_voice"/>
-    <string name="unit_cm_voice"/>
     <string name="unit_cmph_voice"/>
-    <string name="unit_kelvin"/>
     <string name="unit_hpa"/>
-    <string name="unit_kgfpsqcm"/>
     <string name="unit_ppcm"/>
-    <string name="openmeteo_weather_text_clear_sky"/>
     <string name="openmeteo_weather_text_drizzle_dense_intensity"/>
-    <string name="openmeteo_weather_text_snow_slight_intensity"/>
     <string name="openmeteo_weather_text_snow_showers_heavy"/>
-    <string name="widget_custom_subtitle_keyword_atd" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_als" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_ws" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_xntd" translatable="false"/>
-    <string name="sp_widget_clock_day_horizontal_setting" translatable="false"/>
     <string name="sp_widget_android_s_weather_mini" translatable="false"/>
-    <string name="key_subtitle_data" translatable="false"/>
     <string name="key_align_end" translatable="false"/>
-    <string name="key_widget_clock_day_horizontal" translatable="false"/>
     <string name="key_notification_minimal_icon" translatable="false"/>
 </resources>

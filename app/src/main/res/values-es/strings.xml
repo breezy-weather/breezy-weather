@@ -364,38 +364,21 @@
     <string name="unit_mgpcum_voice">Miligramos por metro cúbico</string>
     <string name="unit_h_voice">horas</string>
     <string name="unit_ppcm_voice">Por metro cúbico</string>
-    <string name="widget_custom_subtitle_keyword_als" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_xdw" translatable="false"/>
-    <string name="weather_source_openweather_version_3_0"/>
     <string name="air_quality_level_4_description"/>
-    <string name="key_widget_trend_daily" translatable="false"/>
     <string name="air_quality_level_1"/>
-    <string name="widget_custom_subtitle_keyword_hd" translatable="false"/>
     <string name="ephemeris_sunset_at"/>
-    <string name="wind_direction_short_S"/>
     <string name="widget_material_you_current"/>
-    <string name="key_card_alpha" translatable="false"/>
     <string name="transition_activity_search_bar" translatable="false"/>
-    <string name="sp_widget_android_s_weather_large" translatable="false"/>
     <string name="precipitation_between_time"/>
-    <string name="weather_source_metno_voice"/>
     <string name="settings_provider_accu_weather_key"/>
-    <string name="openmeteo_weather_text_freezing_rain_light_intensity"/>
     <string name="ephemeris_sunrise_at"/>
-    <string name="unit_kelvin"/>
     <string name="key_widget_trend_hourly" translatable="false"/>
-    <string name="openmeteo_weather_text_snow_heavy_intensity"/>
     <string name="widget_custom_subtitle_keyword_xnt" translatable="false"/>
-    <string name="weather_source_openmeteo"/>
     <string name="notification_channel_alerts"/>
-    <string name="action_add_current_location"/>
     <string name="weather_refreshed"/>
-    <string name="ephemeris_moonset_at"/>
     <string name="key_widget_clock_day_horizontal" translatable="false"/>
-    <string name="uv_level_6_7"/>
     <string name="widget_custom_subtitle_keyword_cdp" translatable="false"/>
-    <string name="action_location_list"/>
     <string name="unit_mps"/>
-    <string name="unit_hpa"/>
     <string name="key_text_size" translatable="false"/>
 </resources>

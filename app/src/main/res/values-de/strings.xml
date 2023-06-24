@@ -243,51 +243,27 @@
     <string name="widget_style_rectangle">Rechteckig</string>
     <string name="widget_style_symmetry">Symmetrisch</string>
     <string name="widget_style_tile">Kachel</string>
-    <string name="openmeteo_weather_text_fog"/>
     <string name="widget_custom_subtitle_keyword_ws" translatable="false"/>
-    <string name="sp_widget_android_s_weather_medium" translatable="false"/>
     <string name="widget_material_you_forecast"/>
-    <string name="widget_custom_subtitle_keyword_xmr_description"/>
     <string name="widget_custom_subtitle_keyword_xnp" translatable="false"/>
-    <string name="unit_kelvin_short"/>
     <string name="unit_lpsqm_voice"/>
-    <string name="openmeteo_weather_text_snow_slight_intensity"/>
     <string name="unit_hpa"/>
-    <string name="widget_custom_subtitle_keyword_ut_description"/>
     <string name="settings_title_notification_feels_like"/>
-    <string name="unit_km"/>
     <string name="sp_widget_week_setting" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_atd_description"/>
     <string name="weather_kind_sleet"/>
-    <string name="key_service_provider" translatable="false"/>
     <string name="openmeteo_weather_text_overcast"/>
-    <string name="air_quality_level_1"/>
     <string name="widget_custom_subtitle_keyword_lat_description"/>
-    <string name="settings_icon_providers_weather_icon_dark"/>
     <string name="dialog_permissions_location_title"/>
-    <string name="unit_ppcm_voice"/>
     <string name="action_location_list"/>
-    <string name="uv_level_3_5"/>
     <string name="widget_custom_subtitle_keyword_xsr" translatable="false"/>
-    <string name="openmeteo_weather_text_freezing_drizzle_dense_intensity"/>
     <string name="widget_custom_subtitle_keyword_w" translatable="false"/>
-    <string name="widget_clock_font_sans_serif_black"/>
     <string name="weather_kind_wind"/>
-    <string name="widget_custom_subtitle_keyword_enter_description"/>
     <string name="unit_mugpcum_voice"/>
-    <string name="widget_custom_subtitle_keyword_xdtd_description"/>
     <string name="sp_widget_clock_day_vertical_setting" translatable="false"/>
-    <string name="unit_km_voice"/>
     <string name="unit_kph"/>
-    <string name="widget_custom_subtitle_keyword_als_description"/>
     <string name="openmeteo_weather_text_rain_heavy_intensity"/>
-    <string name="air_quality_level_4"/>
     <string name="widget_custom_subtitle_keyword_hd_description"/>
-    <string name="settings_title_background_animation"/>
     <string name="widget_custom_subtitle_keyword_xmp_description"/>
-    <string name="widget_subtitle_data_time"/>
     <string name="widget_custom_subtitle_keyword_xdwd_description"/>
-    <string name="weather_kind_haze"/>
     <string name="weather_source_mf_voice"/>
-    <string name="settings_provider_default_value"/>
 </resources>

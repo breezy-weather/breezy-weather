@@ -141,65 +141,34 @@
     <string name="widget_style_vertical">Verticaal</string>
     <string name="widget_subtitle_data_feels_like">Gevoelstemperatuur</string>
     <string name="widget_subtitle_data_lunar">Maankalender</string>
-    <string name="widget_custom_subtitle_keyword_lc" translatable="false"/>
     <string name="sp_widget_text_setting" translatable="false"/>
-    <string name="uv_alert_level"/>
     <string name="weather_data_by"/>
-    <string name="settings_title_location_service"/>
     <string name="uv_level_0_2"/>
-    <string name="settings_background_animation_disabled"/>
     <string name="air_quality_level_6_description"/>
-    <string name="key_card_alpha" translatable="false"/>
     <string name="hours_of_sun"/>
-    <string name="action_preview"/>
     <string name="temperature_real_feel"/>
-    <string name="precipitation_duration"/>
     <string name="precipitation_intensity_rainstorm"/>
-    <string name="wind_direction_short_E"/>
     <string name="air_quality_level_1_description"/>
-    <string name="air_quality_level_5_description"/>
     <string name="allergen_tap_to_see_more"/>
-    <string name="ephemeris_moon_phase_waning_crescent"/>
     <string name="weather_kind_cloudy"/>
-    <string name="weather_kind_wind"/>
     <string name="weather_source_openweather_voice"/>
-    <string name="location_resident"/>
     <string name="action_choose_weather_provider"/>
-    <string name="action_back"/>
     <string name="dialog_permissions_block_notification_channel_title"/>
-    <string name="widget_label_show_widget_card_alpha"/>
     <string name="widget_subtitle_data_custom"/>
-    <string name="widget_custom_subtitle_keyword_cwd_description"/>
     <string name="widget_custom_subtitle_keyword_l_description"/>
-    <string name="widget_custom_subtitle_keyword_dd_description"/>
     <string name="widget_custom_subtitle_keyword_xdwd_description"/>
-    <string name="widget_style_mini"/>
     <string name="widget_clock_font_sans_serif_light"/>
-    <string name="settings_title_service_provider"/>
     <string name="settings_title_trend_horizontal_line_switch"/>
-    <string name="settings_title_distance_unit"/>
     <string name="settings_title_notification_style"/>
-    <string name="settings_provider_accu_weather_key"/>
     <string name="settings_provider_iqa_atmo_aura_key"/>
-    <string name="settings_color_day_always"/>
     <string name="unit_kn_voice"/>
-    <string name="unit_cm_voice"/>
     <string name="unit_cmph_voice"/>
-    <string name="unit_fahrenheit_short"/>
     <string name="unit_mi_voice"/>
-    <string name="unit_hpa"/>
     <string name="unit_mugpcum"/>
-    <string name="notification_channel_background_information"/>
     <string name="about_source_code"/>
-    <string name="openmeteo_weather_text_depositing_rime_fog"/>
     <string name="openmeteo_weather_text_rain_heavy_intensity"/>
-    <string name="openmeteo_weather_text_rain_showers_moderate"/>
     <string name="widget_custom_subtitle_keyword_ct" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_cv" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_d" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_xntd" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_xms" translatable="false"/>
-    <string name="key_colorful" translatable="false"/>
     <string name="key_widget_day" translatable="false"/>
-    <string name="transition_activity_search_bar" translatable="false"/>
 </resources>

@@ -415,33 +415,18 @@
     <string name="unit_mgpcum_voice">Milligramy na metr krychlový</string>
     <string name="unit_h_voice">hodin</string>
     <string name="unit_ppcm_voice">Na metr krychlový</string>
-    <string name="openmeteo_weather_text_snow_showers_heavy"/>
     <string name="key_widget_day" translatable="false"/>
-    <string name="weather_source_openweather_version_3_0"/>
     <string name="weather_refreshed"/>
-    <string name="weather_source_metno_voice"/>
     <string name="sp_widget_text_setting" translatable="false"/>
-    <string name="unit_inph_voice"/>
     <string name="wind_direction_short_NW"/>
-    <string name="openmeteo_weather_text_freezing_drizzle_light_intensity"/>
     <string name="key_widget_trend_hourly" translatable="false"/>
-    <string name="uv_level_3_5"/>
     <string name="widget_custom_subtitle_keyword_xnw" translatable="false"/>
-    <string name="unit_cmph_voice"/>
     <string name="unit_mgpcum"/>
-    <string name="uv_level_6_7"/>
     <string name="widget_style_oreo_google_sans"/>
-    <string name="unit_atm"/>
     <string name="unit_lpsqmph"/>
-    <string name="openmeteo_weather_text_depositing_rime_fog"/>
     <string name="wind_direction_short_E"/>
-    <string name="widget_custom_subtitle_keyword_lon" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_hd" translatable="false"/>
-    <string name="unit_fahrenheit"/>
     <string name="about_matrix"/>
-    <string name="key_widget_day_week" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_xsr" translatable="false"/>
-    <string name="key_live_wallpaper" translatable="false"/>
     <string name="widget_clock_font_sans_serif"/>
-    <string name="unit_ppcm"/>
 </resources>

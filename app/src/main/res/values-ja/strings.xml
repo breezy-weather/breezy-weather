@@ -325,43 +325,23 @@
     <string name="weather_kind_thunder">雷</string>
     <string name="weather_kind_thunderstorm">雷雨</string>
     <string name="weather_kind_wind">風</string>
-    <string name="about_contribution_WangDaYeeeeee"/>
     <string name="unit_celsius"/>
-    <string name="settings_icon_providers_app_store" translatable="false"/>
     <string name="settings_title_daily_trend_display"/>
-    <string name="widget_custom_subtitle_keyword_atd" translatable="false"/>
     <string name="unit_mm"/>
-    <string name="openmeteo_weather_text_partly_cloudy"/>
     <string name="location_results_by"/>
-    <string name="settings_provider_mf_wsft_key"/>
     <string name="wind_direction_short_E"/>
-    <string name="widget_custom_subtitle_keyword_at" translatable="false"/>
     <string name="precipitation_between_time"/>
-    <string name="uv_alert_level"/>
     <string name="air_quality_level_5"/>
-    <string name="air_quality_o3_voice"/>
     <string name="weather_api_limit_reached_dialog"/>
-    <string name="weather_source_metno_voice"/>
     <string name="locations"/>
-    <string name="action_back"/>
     <string name="widget_label_hide_lunar"/>
-    <string name="widget_week_style_3_days"/>
     <string name="settings_provider_iqa_atmo_aura_key"/>
-    <string name="unit_fahrenheit_short"/>
     <string name="unit_mi_voice"/>
-    <string name="unit_hpa"/>
     <string name="unit_inhg_voice"/>
-    <string name="about_source_code"/>
     <string name="openmeteo_weather_text_freezing_drizzle_light_intensity"/>
-    <string name="openmeteo_weather_text_rain_showers_moderate"/>
     <string name="widget_custom_subtitle_keyword_ct" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_l" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_dd" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_xntd" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_xms" translatable="false"/>
-    <string name="sp_widget_android_s_weather_xlarge" translatable="false"/>
     <string name="key_clock_font" translatable="false"/>
-    <string name="key_unit" translatable="false"/>
     <string name="key_widget_clock_day_vertical" translatable="false"/>
-    <string name="tag_wind" translatable="false"/>
 </resources>

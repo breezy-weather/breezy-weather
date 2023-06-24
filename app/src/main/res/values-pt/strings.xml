@@ -179,60 +179,32 @@
     <string name="widget_subtitle_data_wind">Vento</string>
     <string name="widget_subtitle_data_feels_like">Sensação Térmica</string>
     <string name="widget_subtitle_data_lunar">Calendário Lunar</string>
-    <string name="key_clock_font" translatable="false"/>
     <string name="settings_title_daily_trend_display"/>
-    <string name="settings_title_card_display"/>
     <string name="weather_source_china_voice"/>
-    <string name="sp_widget_android_s_weather_mini" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_cw" translatable="false"/>
-    <string name="action_choose_weather_provider"/>
     <string name="air_quality_level_3_description"/>
-    <string name="unit_kpa_voice"/>
     <string name="widget_custom_subtitle_keyword_w_description"/>
-    <string name="sp_widget_daily_trend_setting" translatable="false"/>
     <string name="about_source_code"/>
-    <string name="widget_custom_subtitle_keyword_d_description"/>
     <string name="widget_custom_subtitle_keyword_hd" translatable="false"/>
-    <string name="about_contributors"/>
     <string name="widget_custom_subtitle_keyword_hd_description"/>
-    <string name="widget_custom_subtitle_keyword_ut_description"/>
     <string name="tag_aqi" translatable="false"/>
-    <string name="unit_mb_voice"/>
     <string name="settings_icon_providers_get_more_github"/>
-    <string name="openmeteo_weather_text_snow_moderate_intensity"/>
     <string name="widget_style_oreo"/>
-    <string name="transition_activity_search_txt" translatable="false"/>
     <string name="unit_h"/>
-    <string name="sp_widget_hourly_trend_setting" translatable="false"/>
     <string name="tag_uv" translatable="false"/>
-    <string name="action_add_new_location"/>
     <string name="widget_custom_subtitle_keyword_l_description"/>
-    <string name="unit_nmi"/>
     <string name="widget_custom_subtitle_keyword_atd_description"/>
-    <string name="notification_style_native"/>
     <string name="air_quality_level_6"/>
-    <string name="widget_custom_subtitle_keyword_xsr_description"/>
     <string name="widget_custom_subtitle_keyword_xnw_description"/>
-    <string name="precipitation_total"/>
     <string name="wind_direction_short_NE"/>
-    <string name="uv_level_3_5"/>
     <string name="air_quality_pm10_voice"/>
-    <string name="hours_of_sun"/>
     <string name="weather_kind_hail"/>
-    <string name="weather_source_accuweather"/>
     <string name="action_app_store"/>
-    <string name="widget_trend_hourly"/>
     <string name="widget_custom_subtitle_keyword_cwd_description"/>
-    <string name="settings_title_pressure_unit"/>
     <string name="settings_provider_accu_weather_key"/>
-    <string name="settings_icon_providers_get_more_store"/>
     <string name="unit_mph"/>
-    <string name="unit_in_voice"/>
     <string name="unit_inph_voice"/>
-    <string name="notification_precipitation_today"/>
     <string name="openmeteo_weather_text_drizzle_light_intensity"/>
-    <string name="openmeteo_weather_text_freezing_rain_heavy_intensity"/>
     <string name="widget_custom_subtitle_keyword_atd" translatable="false"/>
-    <string name="sp_widget_day_week_setting" translatable="false"/>
     <string name="key_click_widget_to_refresh" translatable="false"/>
 </resources>

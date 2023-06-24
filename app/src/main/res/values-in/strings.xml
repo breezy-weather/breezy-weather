@@ -346,42 +346,23 @@
     <string name="settings_provider_mf">Météo France</string>
     <string name="settings_provider_mf_wsft_key">Kunci WSFT Météo France</string>
     <string name="settings_provider_iqa_atmo_aura_key">Kunci ATMO AURA</string>
-    <string name="wind_direction_short_SE"/>
     <string name="widget_week_style_3_days"/>
-    <string name="widget_clock_font_sans_serif"/>
     <string name="settings_color_dark"/>
-    <string name="transition_activity_search_txt" translatable="false"/>
     <string name="air_quality_level_6"/>
-    <string name="settings_background_animation_disabled"/>
     <string name="weather_source_openweather_version_3_0"/>
-    <string name="unit_kn_voice"/>
     <string name="wind_direction_short_W"/>
-    <string name="weather_kind_partly_cloudy"/>
     <string name="weather_kind_wind"/>
-    <string name="weather_source_openweather"/>
     <string name="location_service_baidu_ip"/>
-    <string name="widget_subtitle_data_feels_like"/>
     <string name="settings_automatic"/>
-    <string name="settings_refresh_1h"/>
     <string name="unit_kph_voice"/>
-    <string name="unit_mm"/>
     <string name="unit_mmph"/>
-    <string name="unit_celsius"/>
     <string name="unit_m"/>
-    <string name="unit_mb_voice"/>
     <string name="unit_mmhg_voice"/>
-    <string name="unit_mgpcum_voice"/>
     <string name="about_matrix"/>
-    <string name="openmeteo_weather_text_depositing_rime_fog"/>
     <string name="openmeteo_weather_text_freezing_rain_light_intensity"/>
-    <string name="openmeteo_weather_text_rain_showers_violent"/>
     <string name="widget_custom_subtitle_keyword_cwd" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_l" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_dd" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_xntd" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_xms" translatable="false"/>
-    <string name="sp_widget_clock_day_week_setting" translatable="false"/>
     <string name="key_card_style" translatable="false"/>
-    <string name="key_widget_clock_day_horizontal" translatable="false"/>
     <string name="tag_aqi" translatable="false"/>
 </resources>

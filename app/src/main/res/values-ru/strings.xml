@@ -352,39 +352,21 @@
     <string name="unit_mugpcum">мкг/м³</string>
     <string name="unit_h">ч</string>
     <string name="unit_ppcm">/м³</string>
-    <string name="widget_style_oreo_google_sans"/>
     <string name="unit_kph_voice"/>
-    <string name="unit_m_voice"/>
     <string name="unit_hpa_voice"/>
-    <string name="settings_provider_mf"/>
     <string name="openmeteo_weather_text_rain_showers_moderate"/>
-    <string name="sp_widget_android_s_weather_xlarge" translatable="false"/>
     <string name="key_live_wallpaper" translatable="false"/>
-    <string name="air_quality_level_5"/>
     <string name="key_widget_text" translatable="false"/>
-    <string name="openmeteo_weather_text_depositing_rime_fog"/>
     <string name="about_contributors"/>
-    <string name="action_back"/>
     <string name="location_results_by"/>
-    <string name="widget_clock_font_analog"/>
     <string name="sp_widget_android_s_weather_mini" translatable="false"/>
-    <string name="weather_source_openmeteo_voice"/>
     <string name="sp_widget_clock_day_horizontal_setting" translatable="false"/>
-    <string name="weather_api_unauthorized_message"/>
     <string name="wind_direction_short_E"/>
-    <string name="widget_custom_subtitle_keyword_hd" translatable="false"/>
     <string name="openmeteo_weather_text_snow_heavy_intensity"/>
-    <string name="widget_custom_subtitle_keyword_ws" translatable="false"/>
     <string name="ephemeris_moonset_at"/>
-    <string name="openmeteo_weather_text_freezing_drizzle_light_intensity"/>
     <string name="widget_custom_subtitle_keyword_xdp" translatable="false"/>
-    <string name="allergen_tree"/>
     <string name="date_format_widget_long"/>
-    <string name="widget_custom_subtitle_keyword_xnw" translatable="false"/>
     <string name="openmeteo_weather_text_overcast"/>
-    <string name="dialog_permissions_location_content"/>
     <string name="key_widget_day" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_cv" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_xmr" translatable="false"/>
-    <string name="alerts_count"/>
 </resources>
