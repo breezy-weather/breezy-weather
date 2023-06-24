@@ -108,5 +108,4 @@
     <string name="settings_color_light">Açık</string>
     <string name="settings_color_grey">Gri</string>
     <string name="settings_color_dark">Koyu</string>
-    <string name="notification_channel_background_information"/>
 </resources>
