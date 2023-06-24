@@ -271,4 +271,5 @@
     <string name="weather_kind_rain">Regen</string>
     <string name="weather_kind_sleet">Schneeregen</string>
     <string name="weather_kind_haze">Dunst</string>
+    <string name="precipitation_between_time">Niederschlag zwischen $1 und $2</string>
 </resources>
