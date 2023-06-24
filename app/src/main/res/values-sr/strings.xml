@@ -118,8 +118,6 @@
     <string name="widget_style_mini">Mали</string>
     <string name="widget_style_nano">Нaнo</string>
     <string name="widget_style_pixel">Пиксел</string>
-    <string name="dialog_permissions_location_background_title"/>
     <string name="unit_atm_voice"/>
-    <string name="action_add_current_location"/>
     <string name="widget_custom_subtitle_keyword_cv" translatable="false"/>
 </resources>

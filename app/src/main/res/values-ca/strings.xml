@@ -365,6 +365,5 @@
     <string name="unit_mgpcum_voice">Mil·ligrams per metre cúbic</string>
     <string name="unit_h_voice">hores</string>
     <string name="unit_ppcm_voice">Per metre cúbic</string>
-    <string name="air_quality_no2_voice"/>
     <string name="settings_provider_default_value"/>
 </resources>

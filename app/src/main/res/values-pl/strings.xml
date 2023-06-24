@@ -322,6 +322,5 @@
     <string name="weather_kind_thunder">Burza</string>
     <string name="weather_kind_thunderstorm">Burza z piorunami</string>
     <string name="weather_kind_wind">Wiatr</string>
-    <string name="unit_mb"/>
     <string name="settings_items_drag_to_sort"/>
 </resources>

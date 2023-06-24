@@ -328,6 +328,5 @@
     <string name="weather_kind_thunder">번개</string>
     <string name="weather_kind_thunderstorm">뇌우</string>
     <string name="weather_kind_wind">바람</string>
-    <string name="settings_provider_open_weather"/>
     <string name="widget_custom_subtitle_keyword_xntd" translatable="false"/>
 </resources>

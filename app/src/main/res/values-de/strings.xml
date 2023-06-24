@@ -243,6 +243,5 @@
     <string name="widget_style_rectangle">Rechteckig</string>
     <string name="widget_style_symmetry">Symmetrisch</string>
     <string name="widget_style_tile">Kachel</string>
-    <string name="weather_kind_sleet"/>
     <string name="unit_mugpcum_voice"/>
 </resources>

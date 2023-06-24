@@ -325,6 +325,5 @@
     <string name="weather_kind_thunder">雷</string>
     <string name="weather_kind_thunderstorm">雷雨</string>
     <string name="weather_kind_wind">風</string>
-    <string name="weather_api_limit_reached_dialog"/>
     <string name="widget_custom_subtitle_keyword_dd" translatable="false"/>
 </resources>
