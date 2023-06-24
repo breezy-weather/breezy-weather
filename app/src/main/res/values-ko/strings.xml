@@ -328,13 +328,8 @@
     <string name="weather_kind_thunder">번개</string>
     <string name="weather_kind_thunderstorm">뇌우</string>
     <string name="weather_kind_wind">바람</string>
-    <string name="air_quality_level_3_description"/>
     <string name="air_quality_level_6"/>
-    <string name="location_results_by"/>
     <string name="settings_provider_open_weather"/>
-    <string name="unit_cmph_voice"/>
     <string name="unit_ppcm"/>
-    <string name="openmeteo_weather_text_snow_showers_heavy"/>
     <string name="widget_custom_subtitle_keyword_xntd" translatable="false"/>
-    <string name="key_align_end" translatable="false"/>
 </resources>

@@ -495,8 +495,6 @@
     <string name="unit_h_voice">小时</string>
     <string name="unit_ppcm">/米³</string>
     <string name="unit_ppcm_voice">每立方米</string>
-    <string name="key_text_color" translatable="false"/>
     <string name="key_card_alpha" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_ws" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_d" translatable="false"/>
 </resources>

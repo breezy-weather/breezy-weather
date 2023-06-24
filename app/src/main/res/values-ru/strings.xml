@@ -352,12 +352,8 @@
     <string name="unit_mugpcum">мкг/м³</string>
     <string name="unit_h">ч</string>
     <string name="unit_ppcm">/м³</string>
-    <string name="unit_hpa_voice"/>
     <string name="key_live_wallpaper" translatable="false"/>
-    <string name="about_contributors"/>
     <string name="sp_widget_android_s_weather_mini" translatable="false"/>
-    <string name="wind_direction_short_E"/>
     <string name="ephemeris_moonset_at"/>
-    <string name="date_format_widget_long"/>
     <string name="key_widget_day" translatable="false"/>
 </resources>

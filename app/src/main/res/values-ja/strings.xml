@@ -325,13 +325,8 @@
     <string name="weather_kind_thunder">雷</string>
     <string name="weather_kind_thunderstorm">雷雨</string>
     <string name="weather_kind_wind">風</string>
-    <string name="settings_title_daily_trend_display"/>
     <string name="location_results_by"/>
-    <string name="precipitation_between_time"/>
     <string name="weather_api_limit_reached_dialog"/>
-    <string name="widget_label_hide_lunar"/>
     <string name="unit_mi_voice"/>
-    <string name="openmeteo_weather_text_freezing_drizzle_light_intensity"/>
     <string name="widget_custom_subtitle_keyword_dd" translatable="false"/>
-    <string name="key_clock_font" translatable="false"/>
 </resources>

@@ -365,12 +365,8 @@
     <string name="unit_mgpcum_voice">Mil·ligrams per metre cúbic</string>
     <string name="unit_h_voice">hores</string>
     <string name="unit_ppcm_voice">Per metre cúbic</string>
-    <string name="unit_inph_voice"/>
     <string name="widget_custom_subtitle_keyword_at" translatable="false"/>
-    <string name="key_widget_clock_day_horizontal" translatable="false"/>
     <string name="air_quality_no2_voice"/>
-    <string name="unit_cmph_voice"/>
     <string name="key_widget_trend_hourly" translatable="false"/>
-    <string name="weather_api_limit_reached_dialog"/>
     <string name="settings_provider_default_value"/>
 </resources>

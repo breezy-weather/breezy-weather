@@ -179,18 +179,11 @@
     <string name="widget_subtitle_data_wind">Vento</string>
     <string name="widget_subtitle_data_feels_like">Sensação Térmica</string>
     <string name="widget_subtitle_data_lunar">Calendário Lunar</string>
-    <string name="weather_source_china_voice"/>
     <string name="air_quality_level_3_description"/>
-    <string name="about_source_code"/>
     <string name="widget_custom_subtitle_keyword_hd_description"/>
-    <string name="settings_icon_providers_get_more_github"/>
     <string name="unit_h"/>
-    <string name="widget_custom_subtitle_keyword_l_description"/>
     <string name="air_quality_level_6"/>
-    <string name="wind_direction_short_NE"/>
     <string name="weather_kind_hail"/>
-    <string name="widget_custom_subtitle_keyword_cwd_description"/>
     <string name="unit_mph"/>
-    <string name="openmeteo_weather_text_drizzle_light_intensity"/>
     <string name="key_click_widget_to_refresh" translatable="false"/>
 </resources>

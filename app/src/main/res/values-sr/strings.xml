@@ -118,20 +118,12 @@
     <string name="widget_style_mini">Mали</string>
     <string name="widget_style_nano">Нaнo</string>
     <string name="widget_style_pixel">Пиксел</string>
-    <string name="openmeteo_weather_text_freezing_drizzle_dense_intensity"/>
     <string name="unit_mph"/>
-    <string name="widget_custom_subtitle_explanation"/>
     <string name="dialog_permissions_location_background_title"/>
-    <string name="unit_mps_voice"/>
     <string name="settings_provider_mf_wsft_key"/>
-    <string name="dew_point"/>
     <string name="unit_atm_voice"/>
-    <string name="settings_title_notification_custom_color"/>
     <string name="wind_speed"/>
-    <string name="unit_lpsqm_voice"/>
     <string name="action_add_current_location"/>
-    <string name="sp_widget_multi_city" translatable="false"/>
     <string name="settings_color_day_always"/>
-    <string name="action_location_list"/>
     <string name="widget_custom_subtitle_keyword_cv" translatable="false"/>
 </resources>

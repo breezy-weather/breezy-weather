@@ -383,12 +383,8 @@
     <string name="weather_kind_thunder">Ukkosta</string>
     <string name="weather_kind_thunderstorm">Ukkosmyrskyä</string>
     <string name="weather_kind_wind">Tuulta</string>
-    <string name="unit_mb_voice"/>
     <string name="widget_custom_subtitle_keyword_xdw" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_l" translatable="false"/>
     <string name="uv_level_6_7"/>
-    <string name="unit_kpa_voice"/>
     <string name="unit_mmph"/>
-    <string name="openmeteo_weather_text_snow_heavy_intensity"/>
     <string name="key_widget_text" translatable="false"/>
 </resources>

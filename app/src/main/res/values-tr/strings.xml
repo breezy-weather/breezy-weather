@@ -108,20 +108,12 @@
     <string name="settings_color_light">Açık</string>
     <string name="settings_color_grey">Gri</string>
     <string name="settings_color_dark">Koyu</string>
-    <string name="unit_inhg"/>
     <string name="key_widget_day_week" translatable="false"/>
-    <string name="settings_color_day_always"/>
     <string name="allergen_tree"/>
-    <string name="weather_data_by"/>
     <string name="key_click_widget_to_refresh" translatable="false"/>
-    <string name="unit_m"/>
     <string name="unit_lpsqmph_voice"/>
-    <string name="precipitation_forecast"/>
     <string name="unit_mi"/>
-    <string name="widget_custom_subtitle_keyword_xnw_description"/>
     <string name="openmeteo_weather_text_drizzle_dense_intensity"/>
-    <string name="allergen_tap_to_see_more"/>
     <string name="settings_title_widget_config"/>
-    <string name="widget_style_temperature"/>
     <string name="notification_channel_background_information"/>
 </resources>

@@ -415,11 +415,7 @@
     <string name="unit_mgpcum_voice">Milligramy na metr krychlový</string>
     <string name="unit_h_voice">hodin</string>
     <string name="unit_ppcm_voice">Na metr krychlový</string>
-    <string name="weather_refreshed"/>
     <string name="wind_direction_short_NW"/>
-    <string name="widget_custom_subtitle_keyword_xnw" translatable="false"/>
     <string name="widget_style_oreo_google_sans"/>
-    <string name="wind_direction_short_E"/>
     <string name="about_matrix"/>
-    <string name="widget_clock_font_sans_serif"/>
 </resources>

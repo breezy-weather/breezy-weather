@@ -398,11 +398,7 @@
     <string name="unit_mgpcum_voice">Milligrammi per metro cubo</string>
     <string name="unit_h_voice">ore</string>
     <string name="unit_ppcm_voice">Per metro cubo</string>
-    <string name="weather_source_china"/>
     <string name="uv_level_11"/>
-    <string name="weather_source_openweather_voice"/>
     <string name="unit_mi"/>
-    <string name="widget_custom_subtitle_keyword_cdp" translatable="false"/>
     <string name="sp_widget_clock_day_details_setting" translatable="false"/>
-    <string name="key_widget_clock_day_horizontal" translatable="false"/>
 </resources>

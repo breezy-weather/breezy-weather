@@ -431,10 +431,7 @@
     <string name="unit_h_voice">小時</string>
     <string name="unit_ppcm">/米³</string>
     <string name="unit_ppcm_voice">每立方米</string>
-    <string name="openmeteo_weather_text_rain_heavy_intensity"/>
     <string name="openmeteo_weather_text_rain_showers_moderate"/>
-    <string name="air_quality_level_5_description"/>
     <string name="openmeteo_weather_text_depositing_rime_fog"/>
-    <string name="sp_widget_clock_day_horizontal_setting" translatable="false"/>
     <string name="action_choose_weather_provider"/>
 </resources>

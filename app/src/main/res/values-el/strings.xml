@@ -333,13 +333,8 @@
     <string name="unit_nmi">ΝΜίλ</string>
     <string name="unit_ft">Πόδ</string>
     <string name="unit_h">ώ</string>
-    <string name="key_service_provider" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_als" translatable="false"/>
-    <string name="notification_channel_alerts"/>
     <string name="about_source_code"/>
-    <string name="air_quality_level_4_description"/>
     <string name="widget_custom_subtitle_keyword_ut" translatable="false"/>
-    <string name="action_location_list"/>
     <string name="sp_widget_android_s_weather_xlarge" translatable="false"/>
-    <string name="air_quality_level_4"/>
 </resources>

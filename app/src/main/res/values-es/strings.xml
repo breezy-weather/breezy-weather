@@ -364,12 +364,8 @@
     <string name="unit_mgpcum_voice">Miligramos por metro cúbico</string>
     <string name="unit_h_voice">horas</string>
     <string name="unit_ppcm_voice">Por metro cúbico</string>
-    <string name="air_quality_level_4_description"/>
     <string name="ephemeris_sunset_at"/>
-    <string name="transition_activity_search_bar" translatable="false"/>
     <string name="settings_provider_accu_weather_key"/>
-    <string name="key_widget_trend_hourly" translatable="false"/>
     <string name="notification_channel_alerts"/>
-    <string name="key_widget_clock_day_horizontal" translatable="false"/>
     <string name="unit_mps"/>
 </resources>

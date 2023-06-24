@@ -431,10 +431,7 @@
     <string name="unit_h_voice">小時</string>
     <string name="unit_ppcm">/米³</string>
     <string name="unit_ppcm_voice">每立方米</string>
-    <string name="key_text_color" translatable="false"/>
     <string name="uv_level_6_7"/>
-    <string name="weather_api_limit_reached_message"/>
     <string name="key_view_type" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_xntd" translatable="false"/>
     <string name="air_quality_level_2_description"/>
 </resources>
