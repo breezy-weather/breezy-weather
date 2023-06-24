@@ -1,10 +1,8 @@
-<resources xmlns:tools="http://schemas.android.com/tools"
-    tools:ignore="MissingTranslation">
-
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <!-- App -->
     <string name="app_name">Weather</string>
     <string name="breezy_weather" translatable="false">Breezy Weather</string>
-
     <!-- Card names -->
     <string name="daily_forecast">Daily forecast</string>
     <string name="hourly_forecast">Hourly forecast</string>
@@ -14,12 +12,11 @@
     <string name="allergen">Allergen</string>
     <string name="ephemeris">Sun &amp; moon</string>
     <string name="live">Live</string>
-
     <!-- Alerts -->
     <string name="alerts">Alerts</string>
-    <string name="alerts_count">$ weather alerts</string> <!-- $ = alert count. -->
+    <string name="alerts_count">$ weather alerts</string>
+    <!-- $ = alert count. -->
     <string name="alerts_to_follow">Alerts to follow, tap here to see them.</string>
-
     <!-- Daily/hourly forecast columns, must be as short as possible. -->
     <string name="short_yesterday">Yda</string>
     <string name="short_today">Today</string>
@@ -32,7 +29,6 @@
     <string name="short_saturday">Sat</string>
     <string name="short_sunday">Sun</string>
     <string name="of_clock">:00</string>
-
     <!-- Temperature -->
     <string name="temperature">Temperature</string>
     <string name="temperature_feels_like">Feels like</string>
@@ -42,7 +38,6 @@
     <string name="temperature_wind_chill">Wind chill</string>
     <string name="temperature_wet_bulb">Wet bulb</string>
     <string name="temperature_degree_day">Degree day</string>
-
     <!-- Precipitation -->
     <string name="precipitation">Precipitation</string>
     <string name="precipitation_probability">Precipitation probability</string>
@@ -57,8 +52,8 @@
     <string name="precipitation_intensity_heavy">Heavy rain</string>
     <string name="precipitation_intensity_rainstorm">Rainstorm</string>
     <string name="precipitation_none">No precipitation</string>
-    <string name="precipitation_between_time">Precipitation between $1 and $2</string> <!-- $1 = start time, $2 = end time. -->
-
+    <string name="precipitation_between_time">Precipitation between $1 and $2</string>
+    <!-- $1 = start time, $2 = end time. -->
     <!-- Wind -->
     <string name="wind">Wind</string>
     <string name="wind_speed">Wind speed</string>
@@ -86,7 +81,6 @@
     <string name="wind_level_10">Storm</string>
     <string name="wind_level_11">Violent storm</string>
     <string name="wind_level_12">Hurricane</string>
-
     <!-- UV -->
     <string name="uv_index">UV index</string>
     <string name="uv_level_0_2">Low</string>
@@ -95,7 +89,6 @@
     <string name="uv_level_8_10">Very high</string>
     <string name="uv_level_11">Extreme</string>
     <string name="uv_alert_level">Alert level</string>
-
     <!-- Air quality -->
     <string name="air_quality_level_1">Excellent</string>
     <string name="air_quality_level_1_description">The air quality is ideal for most individuals; enjoy your normal outdoor activities.</string>
@@ -115,14 +108,12 @@
     <string name="air_quality_no2_voice">Nitrogen dioxide</string>
     <string name="air_quality_o3_voice">Ozone</string>
     <string name="air_quality_co_voice">Carbon monoxide</string>
-
     <!-- Allergens -->
     <string name="allergen_grass">Grass</string>
     <string name="allergen_mold">Mold</string>
     <string name="allergen_ragweed">Ragweed</string>
     <string name="allergen_tree">Tree</string>
     <string name="allergen_tap_to_see_more">Tap to see more…</string>
-
     <!-- Ephemeris -->
     <string name="ephemeris_moon_phase_new">New moon</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Waxing crescent</string>
@@ -132,11 +123,14 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Waning gibbous</string>
     <string name="ephemeris_moon_phase_third">Third quarter</string>
     <string name="ephemeris_moon_phase_waning_crescent">Waning crescent</string>
-    <string name="ephemeris_sunrise_at">Sunrise at $</string> <!-- $ = time. -->
-    <string name="ephemeris_sunset_at">Sunset at $</string> <!-- $ = time. -->
-    <string name="ephemeris_moonrise_at">Moonrise at $</string> <!-- $ = time. -->
-    <string name="ephemeris_moonset_at">Moonset at $</string> <!-- $ = time. -->
-
+    <string name="ephemeris_sunrise_at">Sunrise at $</string>
+    <!-- $ = time. -->
+    <string name="ephemeris_sunset_at">Sunset at $</string>
+    <!-- $ = time. -->
+    <string name="ephemeris_moonrise_at">Moonrise at $</string>
+    <!-- $ = time. -->
+    <string name="ephemeris_moonset_at">Moonset at $</string>
+    <!-- $ = time. -->
     <!-- Other weather details vocabulary -->
     <string name="daytime">Daytime</string>
     <string name="nighttime">Nighttime</string>
@@ -148,7 +142,6 @@
     <string name="dew_point">Dew point</string>
     <string name="cloud_cover">Cloud cover</string>
     <string name="ceiling">Ceiling</string>
-
     <!-- Weather kind -->
     <string name="weather_kind_clear">Clear</string>
     <string name="weather_kind_partly_cloudy">Partly Cloudy</string>
@@ -162,7 +155,6 @@
     <string name="weather_kind_thunder">Thunder</string>
     <string name="weather_kind_thunderstorm">Thunderstorm</string>
     <string name="weather_kind_wind">Wind</string>
-
     <!-- Date format strings -->
     <!-- Month : MMM(long) / M(short). -->
     <!-- Day   : dd(long) / d(short). -->
@@ -172,10 +164,10 @@
     <string name="date_format_widget_short">EEE, MMM d</string>
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
-
     <!-- Weather providers -->
     <string name="weather_refreshed">Refreshed</string>
-    <string name="weather_data_by">Data by $</string> <!-- $ = weather data provider -->
+    <string name="weather_data_by">Data by $</string>
+    <!-- $ = weather data provider -->
     <string name="weather_message_data_refresh_failed">Weather data refresh failed</string>
     <string name="weather_api_limit_reached_message">API requests limit reached</string>
     <string name="weather_api_limit_reached_dialog">To workaround the limit, add your own API key.</string>
@@ -195,13 +187,13 @@
     <string name="weather_source_mf_voice">Météo France</string>
     <string name="weather_source_china">China</string>
     <string name="weather_source_china_voice">China</string>
-
     <!-- Location -->
     <string name="locations">Locations</string>
     <string name="location_current">Current location</string>
     <string name="location_resident">Resident location</string>
     <string name="location_search_change_weather_source">Change weather source</string>
-    <string name="location_results_by">Location results by $</string> <!-- $ = location provider -->
+    <string name="location_results_by">Location results by $</string>
+    <!-- $ = location provider -->
     <string name="location_message_added">Location added</string>
     <string name="location_message_deleted">Location deleted</string>
     <string name="location_message_list_cannot_be_empty">Location list cannot be empty</string>
@@ -221,7 +213,6 @@
     <string name="location_service_baidu_ip">Baidu IP Location (only for China)</string>
     <string name="location_service_amap">AMap Location</string>
     <string name="location_service_native">Native API</string>
-
     <!-- Actions -->
     <string name="action_location_list">Location list</string>
     <string name="action_search">Search</string>
@@ -243,7 +234,6 @@
     <string name="action_set">SET</string>
     <string name="action_help">HELP</string>
     <string name="action_learn_more">LEARN MORE</string>
-
     <!-- Dialogs -->
     <string name="dialog_permissions_location_title">Access location information</string>
     <string name="dialog_permissions_location_content">Breezy Weather needs to collect your location information in foreground or background to provide the weather data of your current location. For this, we will request some permissions. Your location information will only be used to obtain weather data at your current location. If you don’t want to share your location information, you can deny those requirements and manually set your location in the management page.</string>
@@ -253,11 +243,9 @@
     <string name="dialog_permissions_block_notification_channel_content">After turning off “Background free”, a notification indicating that background service is running will appear in the notification bar. You can turn off the Background Information Channel in the app’s information page to block this notifications.</string>
     <string name="dialog_permissions_ignore_battery_optimizations_title">Ignore battery optimization</string>
     <string name="dialog_permissions_ignore_battery_optimizations_content">In order to ensure that the background services can continue to work, please ignore the battery optimization for Breezy Weather.</string>
-
     <!-- Miscellaneous messages -->
     <string name="message_updated_in_background">Updated in background</string>
     <string name="message_tap_again_to_exit">Tap again to exit</string>
-
     <!-- Widgets -->
     <string name="widget_day">Daily</string>
     <string name="widget_week">Weekly</string>
@@ -351,7 +339,6 @@
     <string name="widget_live_wallpaper_weather_kind">Weather</string>
     <string name="widget_live_wallpaper_day_night_type">Time</string>
     <string name="widget_live_wallpaper_cannot_start_activity">Unable to start live wallpaper preview context</string>
-
     <!-- Settings (redesign in progress) -->
     <string name="settings_category_basic">Basic</string>
     <string name="settings_title_background_free">Background Free</string>
@@ -426,7 +413,7 @@
     <string name="settings_changes_apply_after_restart">Changes will take effect after restart</string>
     <string name="settings_items_drag_to_sort">Tap to drag the list items to sort</string>
     <string name="settings_item_delete">Delete this item</string>
-    <string name="settings_background_animation_enabled">@string/settings_enabled</string>
+    <string name="settings_background_animation_enabled">\@string/settings_enabled</string>
     <string name="settings_background_animation_disabled">@string/settings_disabled</string>
     <string name="settings_provider_default_value">Default (unchanged)</string>
     <string name="settings_provider_accu_weather">AccuWeather</string>
@@ -470,7 +457,6 @@
     <string name="settings_refresh_6h">6 hours</string>
     <string name="settings_refresh_12h">12 hours</string>
     <string name="settings_refresh_24h">24 hours</string>
-
     <!-- Units -->
     <string name="unit_kph">km/h</string>
     <string name="unit_kph_voice">Kilometers per hour</string>
@@ -536,7 +522,6 @@
     <string name="unit_h_voice">hours</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_ppcm_voice">Per cubic meter</string>
-
     <!-- Notifications -->
     <string name="notification_refreshed_at">Refreshed at</string>
     <string name="notification_channel_alerts">Alerts</string>
@@ -550,7 +535,6 @@
     <string name="notification_precipitation_short_term">Precipitation may occur in the next few hours.</string>
     <string name="notification_style_native">Native</string>
     <string name="notification_style_cities">Cities</string>
-
     <!-- About -->
     <string name="about_app">About app</string>
     <string name="about_matrix">Matrix server</string>
@@ -558,7 +542,6 @@
     <string name="about_contributors">Contributors</string>
     <string name="about_translators">Translators</string>
     <string name="about_contribution_WangDaYeeeeee">Developer of the original project Geometric Weather</string>
-
     <!-- Providers specific terms -->
     <!-- Weather texts for Open-Meteo, based on WMO terms -->
     <!-- Check https://unterm.un.org/unterm2/en/ -->
@@ -590,7 +573,6 @@
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Thunderstorm slight or moderate</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Thunderstorm with slight hail</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Thunderstorm with heavy hail</string>
-
     <!-- Do NOT translate everything below -->
     <!-- Widgets -->
     <string name="widget_custom_subtitle_keyword_cw" translatable="false">$cw$</string>
@@ -632,7 +614,6 @@
     <string name="widget_custom_subtitle_keyword_xmr" translatable="false">$0mr$, $1mr$, …, $4mr$</string>
     <string name="widget_custom_subtitle_keyword_xms" translatable="false">$0ms$, $1ms$, …, $4ms$</string>
     <string name="widget_custom_subtitle_keyword_xmp" translatable="false">$0mp$, $1mp$, …, $4mp$</string>
-
     <!-- Preferences -->
     <string name="sp_widget_day_setting" translatable="false">widget_day_setting</string>
     <string name="sp_widget_week_setting" translatable="false">widget_week_setting</string>
@@ -660,7 +641,6 @@
     <string name="key_hide_lunar" translatable="false">hide_lunar</string>
     <string name="key_align_end" translatable="false">align_end</string>
     <string name="key_colorful" translatable="false">colorful</string>
-
     <string name="key_live_wallpaper" translatable="false">live_wallpaper</string>
     <string name="key_service_provider" translatable="false">service_provider</string>
     <string name="key_service_provider_advanced" translatable="false">service_provider_advanced</string>
@@ -680,14 +660,12 @@
     <string name="key_widget_trend_hourly" translatable="false">widget_trend_hourly</string>
     <string name="key_widget_multi_city" translatable="false">widget_multi_city</string>
     <string name="key_notification_minimal_icon" translatable="false">notification_minimal_icon</string>
-
     <!-- Tags -->
     <string name="tag_temperature" translatable="false">@string/temperature</string>
     <string name="tag_wind" translatable="false">@string/wind</string>
     <string name="tag_precipitation" translatable="false">@string/precipitation</string>
     <string name="tag_aqi" translatable="false">@string/air_quality</string>
     <string name="tag_uv" translatable="false">@string/uv_index</string>
-
     <!-- Transitions -->
     <string name="transition_activity_search_bar" translatable="false">activity_search_bar</string>
     <string name="transition_activity_search_txt" translatable="false">activity_search_txt</string>
