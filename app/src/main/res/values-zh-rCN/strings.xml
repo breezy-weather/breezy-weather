@@ -495,148 +495,76 @@
     <string name="unit_h_voice">小时</string>
     <string name="unit_ppcm">/米³</string>
     <string name="unit_ppcm_voice">每立方米</string>
-    <string name="uv_alert_level"></string>
-    <string name="weather_refreshed"></string>
-    <string name="weather_source_accuweather"></string>
-    <string name="weather_source_metno"></string>
-    <string name="weather_source_openweather_version_2_5"></string>
-    <string name="action_location_list"></string>
-    <string name="action_choose_weather_provider"></string>
-    <string name="widget_custom_subtitle_keyword_separator" translatable="false"></string>
-    <string name="widget_style_mini"></string>
-    <string name="widget_style_nano"></string>
-    <string name="widget_style_pixel"></string>
-    <string name="widget_clock_font_sans_serif"></string>
-    <string name="settings_provider_open_weather_one_call_version"></string>
-    <string name="unit_celsius"></string>
-    <string name="unit_celsius_short"></string>
-    <string name="notification_channel_alerts"></string>
-    <string name="about_matrix"></string>
-    <string name="about_contribution_WangDaYeeeeee"></string>
-    <string name="widget_custom_subtitle_keyword_cw" translatable="false"></string>
-    <string name="widget_custom_subtitle_keyword_ct" translatable="false"></string>
-    <string name="widget_custom_subtitle_keyword_ctd" translatable="false"></string>
-    <string name="widget_custom_subtitle_keyword_at" translatable="false"></string>
-    <string name="sp_widget_android_s_weather_mini" translatable="false"></string>
-    <string name="key_click_widget_to_refresh" translatable="false"></string>
-    <string name="widget_custom_subtitle_keyword_cuv" translatable="false"></string>
-    <string name="widget_custom_subtitle_keyword_ch" translatable="false"></string>
-    <string name="key_colorful" translatable="false"></string>
-    <string name="weather_source_openweather"></string>
-    <string name="widget_custom_subtitle_keyword_dd" translatable="false"></string>
-    <string name="key_appearance" translatable="false"></string>
-    <string name="settings_provider_mf"></string>
-    <string name="key_text_color" translatable="false"></string>
-    <string name="key_hide_subtitle" translatable="false"></string>
-    <string name="sp_widget_android_s_weather_xlarge" translatable="false"></string>
-    <string name="transition_activity_search_txt" translatable="false"></string>
-    <string name="widget_custom_subtitle_keyword_xdt" translatable="false"></string>
-    <string name="settings_background_animation_enabled"></string>
-    <string name="widget_custom_subtitle_keyword_xdwd" translatable="false"></string>
-    <string name="widget_custom_subtitle_keyword_lat" translatable="false"></string>
-    <string name="widget_custom_subtitle_keyword_enter" translatable="false"></string>
-    <string name="tag_precipitation" translatable="false"></string>
-    <string name="weather_source_openmeteo_voice"></string>
-    <string name="alerts_to_follow"></string>
-    <string name="key_service_provider_advanced" translatable="false"></string>
-    <string name="key_widget_text" translatable="false"></string>
-    <string name="settings_provider_open_weather_key"></string>
-    <string name="widget_custom_subtitle_keyword_xmr" translatable="false"></string>
-    <string name="key_unit" translatable="false"></string>
-    <string name="key_widget_multi_city" translatable="false"></string>
-    <string name="key_widget_day" translatable="false"></string>
-    <string name="key_widget_week" translatable="false"></string>
-    <string name="weather_source_metno_voice"></string>
-    <string name="widget_custom_subtitle_keyword_ut" translatable="false"></string>
-    <string name="sp_widget_day_week_setting" translatable="false"></string>
-    <string name="breezy_weather" translatable="false"></string>
-    <string name="action_add_from_map"></string>
-    <string name="widget_custom_subtitle_keyword_al" translatable="false"></string>
-    <string name="widget_custom_subtitle_keyword_xnwd" translatable="false"></string>
-    <string name="key_widget_clock_day_vertical" translatable="false"></string>
-    <string name="sp_widget_android_s_weather_large" translatable="false"></string>
-    <string name="key_text_size" translatable="false"></string>
-    <string name="settings_provider_baidu_ip_location_ak"></string>
-    <string name="settings_provider_iqa_atmo_aura_key"></string>
-    <string name="key_card_alpha" translatable="false"></string>
-    <string name="key_clock_font" translatable="false"></string>
-    <string name="settings_provider_accu_weather_key"></string>
-    <string name="weather_source_mf"></string>
-    <string name="widget_custom_subtitle_keyword_cdp" translatable="false"></string>
-    <string name="unit_fahrenheit"></string>
-    <string name="widget_custom_subtitle_keyword_xdtd" translatable="false"></string>
-    <string name="widget_custom_subtitle_keyword_xnw" translatable="false"></string>
-    <string name="widget_custom_subtitle_keyword_lon" translatable="false"></string>
-    <string name="key_align_end" translatable="false"></string>
-    <string name="key_hide_lunar" translatable="false"></string>
-    <string name="sp_widget_clock_day_horizontal_setting" translatable="false"></string>
-    <string name="sp_widget_day_setting" translatable="false"></string>
-    <string name="widget_custom_subtitle_keyword_cv" translatable="false"></string>
-    <string name="key_notification_minimal_icon" translatable="false"></string>
-    <string name="widget_custom_subtitle_keyword_cps" translatable="false"></string>
-    <string name="weather_source_mf_voice"></string>
-    <string name="key_subtitle_data" translatable="false"></string>
-    <string name="settings_provider_mf_wsft_key"></string>
-    <string name="widget_custom_subtitle_keyword_xntd" translatable="false"></string>
-    <string name="key_widget_clock_day_week" translatable="false"></string>
-    <string name="key_live_wallpaper" translatable="false"></string>
-    <string name="settings_provider_accu_weather"></string>
-    <string name="widget_custom_subtitle_keyword_xmp" translatable="false"></string>
-    <string name="action_add_new_location"></string>
-    <string name="weather_source_openweather_version_3_0"></string>
-    <string name="key_widget_day_week" translatable="false"></string>
-    <string name="settings_background_animation_disabled"></string>
-    <string name="weather_source_openmeteo"></string>
-    <string name="key_card_style" translatable="false"></string>
-    <string name="location_results_by"></string>
-    <string name="tag_uv" translatable="false"></string>
-    <string name="widget_custom_subtitle_keyword_ws" translatable="false"></string>
-    <string name="sp_widget_clock_day_week_setting" translatable="false"></string>
-    <string name="widget_custom_subtitle_keyword_lc" translatable="false"></string>
-    <string name="widget_custom_subtitle_keyword_atd" translatable="false"></string>
-    <string name="about_source_code"></string>
-    <string name="widget_custom_subtitle_keyword_l" translatable="false"></string>
-    <string name="unit_kelvin_short"></string>
-    <string name="widget_clock_font_analog"></string>
-    <string name="sp_widget_daily_trend_setting" translatable="false"></string>
-    <string name="widget_custom_subtitle_keyword_xnt" translatable="false"></string>
-    <string name="widget_custom_subtitle_keyword_als" translatable="false"></string>
-    <string name="widget_custom_subtitle_keyword_cwd" translatable="false"></string>
-    <string name="key_widget_trend_daily" translatable="false"></string>
-    <string name="unit_kelvin"></string>
-    <string name="settings_icon_providers_app_store" translatable="false"></string>
-    <string name="sp_widget_android_s_weather_medium" translatable="false"></string>
-    <string name="widget_custom_subtitle_keyword_w" translatable="false"></string>
-    <string name="locations"></string>
-    <string name="widget_custom_subtitle_keyword_xms" translatable="false"></string>
-    <string name="tag_temperature" translatable="false"></string>
-    <string name="widget_custom_subtitle_keyword_xss" translatable="false"></string>
-    <string name="tag_aqi" translatable="false"></string>
-    <string name="sp_widget_text_setting" translatable="false"></string>
-    <string name="widget_custom_subtitle_keyword_xdw" translatable="false"></string>
-    <string name="widget_custom_subtitle_keyword_hd" translatable="false"></string>
-    <string name="key_view_type" translatable="false"></string>
-    <string name="location_search_change_weather_source"></string>
-    <string name="settings_provider_baidu_ip_location"></string>
-    <string name="sp_widget_clock_day_vertical_setting" translatable="false"></string>
-    <string name="sp_widget_hourly_trend_setting" translatable="false"></string>
-    <string name="key_service_provider" translatable="false"></string>
-    <string name="widget_custom_subtitle_keyword_xsr" translatable="false"></string>
-    <string name="widget_custom_subtitle_keyword_d" translatable="false"></string>
-    <string name="widget_clock_font_sans_serif_light"></string>
-    <string name="key_widget_clock_day_details" translatable="false"></string>
-    <string name="widget_clock_font_sans_serif_black"></string>
-    <string name="key_widget_trend_hourly" translatable="false"></string>
-    <string name="sp_widget_clock_day_details_setting" translatable="false"></string>
-    <string name="transition_activity_search_bar" translatable="false"></string>
-    <string name="unit_fahrenheit_short"></string>
-    <string name="weather_data_by"></string>
-    <string name="settings_provider_open_weather"></string>
-    <string name="key_widget_clock_day_horizontal" translatable="false"></string>
-    <string name="widget_custom_subtitle_keyword_xdp" translatable="false"></string>
-    <string name="sp_widget_multi_city" translatable="false"></string>
-    <string name="widget_custom_subtitle_keyword_xnp" translatable="false"></string>
-    <string name="tag_wind" translatable="false"></string>
-    <string name="key_widget_config" translatable="false"></string>
-    <string name="sp_widget_week_setting" translatable="false"></string>
+    <string name="weather_refreshed"/>
+    <string name="weather_source_metno"/>
+    <string name="action_location_list"/>
+    <string name="widget_custom_subtitle_keyword_separator" translatable="false"/>
+    <string name="widget_style_nano"/>
+    <string name="widget_clock_font_sans_serif"/>
+    <string name="unit_celsius"/>
+    <string name="notification_channel_alerts"/>
+    <string name="about_contribution_WangDaYeeeeee"/>
+    <string name="widget_custom_subtitle_keyword_ct" translatable="false"/>
+    <string name="widget_custom_subtitle_keyword_at" translatable="false"/>
+    <string name="key_click_widget_to_refresh" translatable="false"/>
+    <string name="widget_custom_subtitle_keyword_ch" translatable="false"/>
+    <string name="weather_source_openweather"/>
+    <string name="key_appearance" translatable="false"/>
+    <string name="key_text_color" translatable="false"/>
+    <string name="sp_widget_android_s_weather_xlarge" translatable="false"/>
+    <string name="widget_custom_subtitle_keyword_xdt" translatable="false"/>
+    <string name="widget_custom_subtitle_keyword_xdwd" translatable="false"/>
+    <string name="widget_custom_subtitle_keyword_enter" translatable="false"/>
+    <string name="weather_source_openmeteo_voice"/>
+    <string name="key_service_provider_advanced" translatable="false"/>
+    <string name="settings_provider_open_weather_key"/>
+    <string name="key_unit" translatable="false"/>
+    <string name="key_widget_day" translatable="false"/>
+    <string name="weather_source_metno_voice"/>
+    <string name="sp_widget_day_week_setting" translatable="false"/>
+    <string name="action_add_from_map"/>
+    <string name="widget_custom_subtitle_keyword_xnwd" translatable="false"/>
+    <string name="sp_widget_android_s_weather_large" translatable="false"/>
+    <string name="settings_provider_baidu_ip_location_ak"/>
+    <string name="key_card_alpha" translatable="false"/>
+    <string name="settings_provider_accu_weather_key"/>
+    <string name="widget_custom_subtitle_keyword_cdp" translatable="false"/>
+    <string name="widget_custom_subtitle_keyword_xdtd" translatable="false"/>
+    <string name="widget_custom_subtitle_keyword_lon" translatable="false"/>
+    <string name="key_hide_lunar" translatable="false"/>
+    <string name="sp_widget_day_setting" translatable="false"/>
+    <string name="key_notification_minimal_icon" translatable="false"/>
+    <string name="weather_source_mf_voice"/>
+    <string name="settings_provider_mf_wsft_key"/>
+    <string name="key_widget_clock_day_week" translatable="false"/>
+    <string name="settings_provider_accu_weather"/>
+    <string name="action_add_new_location"/>
+    <string name="key_widget_day_week" translatable="false"/>
+    <string name="weather_source_openmeteo"/>
+    <string name="location_results_by"/>
+    <string name="widget_custom_subtitle_keyword_ws" translatable="false"/>
+    <string name="widget_custom_subtitle_keyword_lc" translatable="false"/>
+    <string name="about_source_code"/>
+    <string name="unit_kelvin_short"/>
+    <string name="sp_widget_daily_trend_setting" translatable="false"/>
+    <string name="widget_custom_subtitle_keyword_als" translatable="false"/>
+    <string name="key_widget_trend_daily" translatable="false"/>
+    <string name="settings_icon_providers_app_store" translatable="false"/>
+    <string name="widget_custom_subtitle_keyword_w" translatable="false"/>
+    <string name="widget_custom_subtitle_keyword_xms" translatable="false"/>
+    <string name="widget_custom_subtitle_keyword_xss" translatable="false"/>
+    <string name="sp_widget_text_setting" translatable="false"/>
+    <string name="widget_custom_subtitle_keyword_hd" translatable="false"/>
+    <string name="location_search_change_weather_source"/>
+    <string name="sp_widget_clock_day_vertical_setting" translatable="false"/>
+    <string name="key_service_provider" translatable="false"/>
+    <string name="widget_custom_subtitle_keyword_d" translatable="false"/>
+    <string name="key_widget_clock_day_details" translatable="false"/>
+    <string name="key_widget_trend_hourly" translatable="false"/>
+    <string name="transition_activity_search_bar" translatable="false"/>
+    <string name="weather_data_by"/>
+    <string name="key_widget_clock_day_horizontal" translatable="false"/>
+    <string name="sp_widget_multi_city" translatable="false"/>
+    <string name="tag_wind" translatable="false"/>
+    <string name="sp_widget_week_setting" translatable="false"/>
 </resources>
