@@ -415,62 +415,33 @@
     <string name="unit_mgpcum_voice">Milligramy na metr krychlový</string>
     <string name="unit_h_voice">hodin</string>
     <string name="unit_ppcm_voice">Na metr krychlový</string>
-    <string name="unit_m"/>
     <string name="openmeteo_weather_text_snow_showers_heavy"/>
-    <string name="key_text_color" translatable="false"/>
     <string name="key_widget_day" translatable="false"/>
-    <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail"/>
     <string name="weather_source_openweather_version_3_0"/>
-    <string name="widget_custom_subtitle_keyword_als" translatable="false"/>
     <string name="weather_refreshed"/>
-    <string name="openmeteo_weather_text_snow_moderate_intensity"/>
     <string name="weather_source_metno_voice"/>
-    <string name="openmeteo_weather_text_rain_heavy_intensity"/>
     <string name="sp_widget_text_setting" translatable="false"/>
-    <string name="air_quality_level_5_description"/>
     <string name="unit_inph_voice"/>
-    <string name="unit_lpsqmph_voice"/>
     <string name="wind_direction_short_NW"/>
-    <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate"/>
     <string name="openmeteo_weather_text_freezing_drizzle_light_intensity"/>
-    <string name="widget_style_mini"/>
     <string name="key_widget_trend_hourly" translatable="false"/>
-    <string name="locations"/>
     <string name="uv_level_3_5"/>
-    <string name="widget_custom_subtitle_keyword_w" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_xnw" translatable="false"/>
-    <string name="unit_mm"/>
     <string name="unit_cmph_voice"/>
-    <string name="action_add_new_location"/>
     <string name="unit_mgpcum"/>
-    <string name="uv_level_8_10"/>
     <string name="uv_level_6_7"/>
-    <string name="settings_background_animation_disabled"/>
     <string name="widget_style_oreo_google_sans"/>
-    <string name="unit_cm"/>
     <string name="unit_atm"/>
-    <string name="air_quality_level_3_description"/>
     <string name="unit_lpsqmph"/>
-    <string name="wind_direction_short_S"/>
     <string name="openmeteo_weather_text_depositing_rime_fog"/>
-    <string name="air_quality_level_1_description"/>
     <string name="wind_direction_short_E"/>
-    <string name="sp_widget_hourly_trend_setting" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_lon" translatable="false"/>
-    <string name="sp_widget_multi_city" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_hd" translatable="false"/>
-    <string name="unit_inph"/>
     <string name="unit_fahrenheit"/>
-    <string name="weather_api_unauthorized_dialog"/>
     <string name="about_matrix"/>
-    <string name="widget_custom_subtitle_keyword_at" translatable="false"/>
     <string name="key_widget_day_week" translatable="false"/>
-    <string name="weather_data_by"/>
     <string name="widget_custom_subtitle_keyword_xsr" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_xmp" translatable="false"/>
     <string name="key_live_wallpaper" translatable="false"/>
-    <string name="air_quality_level_4"/>
     <string name="widget_clock_font_sans_serif"/>
-    <string name="unit_mb"/>
     <string name="unit_ppcm"/>
 </resources>

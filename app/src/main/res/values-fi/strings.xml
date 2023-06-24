@@ -383,70 +383,37 @@
     <string name="weather_kind_thunder">Ukkosta</string>
     <string name="weather_kind_thunderstorm">Ukkosmyrskyä</string>
     <string name="weather_kind_wind">Tuulta</string>
-    <string name="unit_nmi_voice"/>
     <string name="about_contribution_WangDaYeeeeee"/>
-    <string name="openmeteo_weather_text_fog"/>
     <string name="openmeteo_weather_text_drizzle_dense_intensity"/>
-    <string name="sp_widget_clock_day_vertical_setting" translatable="false"/>
     <string name="air_quality_level_1"/>
-    <string name="settings_background_animation_disabled"/>
     <string name="unit_mb_voice"/>
-    <string name="widget_custom_subtitle_keyword_cdp" translatable="false"/>
     <string name="sp_widget_day_setting" translatable="false"/>
-    <string name="weather_refreshed"/>
     <string name="weather_source_mf_voice"/>
-    <string name="key_subtitle_data" translatable="false"/>
     <string name="unit_km"/>
-    <string name="wind_direction_short_variable"/>
     <string name="widget_custom_subtitle_keyword_xdw" translatable="false"/>
-    <string name="unit_mph"/>
     <string name="unit_km_voice"/>
-    <string name="key_text_size" translatable="false"/>
     <string name="unit_kn"/>
-    <string name="air_quality_level_2"/>
     <string name="weather_source_openweather"/>
-    <string name="widget_custom_subtitle_keyword_ctd" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_l" translatable="false"/>
-    <string name="unit_m_voice"/>
     <string name="settings_title_background_animation"/>
-    <string name="weather_api_unauthorized_message"/>
     <string name="unit_fahrenheit"/>
-    <string name="key_view_type" translatable="false"/>
     <string name="unit_mm_voice"/>
-    <string name="weather_source_openmeteo_voice"/>
     <string name="uv_level_6_7"/>
-    <string name="unit_kn_voice"/>
     <string name="settings_color_grey"/>
-    <string name="sp_widget_clock_day_details_setting" translatable="false"/>
     <string name="weather_source_china_voice"/>
-    <string name="wind_direction_short_W"/>
     <string name="widget_custom_subtitle_keyword_xss" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_cw" translatable="false"/>
     <string name="unit_kpa_voice"/>
-    <string name="unit_mph_voice"/>
     <string name="unit_mi"/>
-    <string name="action_location_list"/>
     <string name="widget_subtitle_data_aqi"/>
-    <string name="widget_style_pixel"/>
     <string name="widget_clock_font_sans_serif"/>
-    <string name="unit_in"/>
     <string name="unit_mmph"/>
-    <string name="unit_inph"/>
     <string name="unit_atm_voice"/>
-    <string name="unit_inhg_voice"/>
     <string name="unit_mugpcum_voice"/>
-    <string name="unit_h_voice"/>
     <string name="openmeteo_weather_text_freezing_drizzle_light_intensity"/>
-    <string name="openmeteo_weather_text_rain_heavy_intensity"/>
     <string name="openmeteo_weather_text_snow_heavy_intensity"/>
-    <string name="widget_custom_subtitle_keyword_cwd" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_cv" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_xntd" translatable="false"/>
     <string name="sp_widget_daily_trend_setting" translatable="false"/>
-    <string name="key_service_provider_advanced" translatable="false"/>
     <string name="key_widget_config" translatable="false"/>
-    <string name="key_widget_clock_day_horizontal" translatable="false"/>
     <string name="key_widget_text" translatable="false"/>
-    <string name="key_notification_minimal_icon" translatable="false"/>
     <string name="tag_aqi" translatable="false"/>
 </resources>
