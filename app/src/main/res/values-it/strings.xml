@@ -87,7 +87,7 @@
     <string name="allergen_mold">Muffa</string>
     <string name="allergen_ragweed">Ambrosia</string>
     <string name="allergen_tree">Albero</string>
-    <string name="daily_forecast">Meteo Giornaliero</string>
+    <string name="daily_forecast">Meteo giornaliero</string>
     <string name="hourly_forecast">Previsioni ad ore</string>
     <string name="minutely_forecast">Previsioni al minuto</string>
     <string name="precipitation_forecast">Previsioni di precipitazioni</string>
