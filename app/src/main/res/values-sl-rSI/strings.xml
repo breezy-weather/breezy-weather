@@ -228,5 +228,4 @@
     <string name="weather_kind_thunder">Grmenje</string>
     <string name="weather_kind_thunderstorm">Nevihta</string>
     <string name="weather_kind_wind">Veter</string>
-    <string name="widget_custom_subtitle_keyword_ct_description"/>
 </resources>

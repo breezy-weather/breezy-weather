@@ -333,5 +333,4 @@
     <string name="unit_nmi">ΝΜίλ</string>
     <string name="unit_ft">Πόδ</string>
     <string name="unit_h">ώ</string>
-    <string name="sp_widget_android_s_weather_xlarge" translatable="false"/>
 </resources>

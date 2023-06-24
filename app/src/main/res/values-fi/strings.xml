@@ -383,5 +383,4 @@
     <string name="weather_kind_thunder">Ukkosta</string>
     <string name="weather_kind_thunderstorm">Ukkosmyrskyä</string>
     <string name="weather_kind_wind">Tuulta</string>
-    <string name="key_widget_text" translatable="false"/>
 </resources>
