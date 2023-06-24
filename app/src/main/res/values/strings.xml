@@ -413,7 +413,7 @@
     <string name="settings_changes_apply_after_restart">Changes will take effect after restart</string>
     <string name="settings_items_drag_to_sort">Tap to drag the list items to sort</string>
     <string name="settings_item_delete">Delete this item</string>
-    <string name="settings_background_animation_enabled">\@string/settings_enabled</string>
+    <string name="settings_background_animation_enabled">@string/settings_enabled</string>
     <string name="settings_background_animation_disabled">@string/settings_disabled</string>
     <string name="settings_provider_default_value">Default (unchanged)</string>
     <string name="settings_provider_accu_weather">AccuWeather</string>
