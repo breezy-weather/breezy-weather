@@ -1,8 +1,7 @@
-﻿<resources xmlns:tools="http://schemas.android.com/tools">
-
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- app. -->
     <string name="app_name">Vreme</string>
-
     <!-- keyword. -->
     <string name="location_current">Sedanja lokacija</string>
     <string name="live">Trenutno</string>
@@ -25,7 +24,6 @@
     <string name="settings_icon_providers_get_more_store">Več iz trgovine</string>
     <string name="settings_icon_providers_get_more_github">Več iz GitHuba</string>
     <string name="action_refresh">Osveži</string>
-
     <string name="of_clock">:00</string>
     <string name="short_yesterday">Včr</string>
     <string name="short_tomorrow">Jtr</string>
@@ -36,7 +34,6 @@
     <string name="short_friday">Pet</string>
     <string name="short_saturday">Sob</string>
     <string name="short_sunday">Ned</string>
-
     <string name="wind_level_0">Mirno</string>
     <string name="wind_level_1">Lahen zrak</string>
     <string name="wind_level_2">Lahen vetrič</string>
@@ -50,7 +47,6 @@
     <string name="wind_level_10">Nevihta</string>
     <string name="wind_level_11">Silovita nevihta</string>
     <string name="wind_level_12">Hurikan/Tajfun</string>
-
     <string name="ephemeris_moon_phase_new">Mlada luna</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Nastajajoči polmesec</string>
     <string name="ephemeris_moon_phase_first">Prva četrina</string>
@@ -59,13 +55,11 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Izginjajoča polna luna</string>
     <string name="ephemeris_moon_phase_third">Tretja četrtina</string>
     <string name="ephemeris_moon_phase_waning_crescent">Izginjajoči polmesec</string>
-
     <string name="daily_forecast">Dnevna napoved</string>
     <string name="hourly_forecast">Urna napoved</string>
     <string name="air_quality">Kvaliteta zraka</string>
     <string name="details">Podrobnosti</string>
     <string name="ephemeris">Sonce &amp; luna</string>
-
     <string name="action_next">NASLEDNJI</string>
     <string name="action_done">KONČNANO</string>
     <string name="action_cancel" tools:ignore="ButtonCase">PREKLIČI</string>
@@ -74,27 +68,22 @@
     <string name="action_set">NASTAVI</string>
     <string name="action_help">POMOČ</string>
     <string name="action_learn_more">NAUČI SE VEČ</string>
-
     <string name="about_app">O applikaciji</string>
     <string name="about_translators">Prevajalci</string>
-
     <string name="date_format_short">M-d</string>
     <string name="date_format_long">MMM d</string>
     <string name="date_format_widget_short">EEE, MMM d</string>
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
-
     <!-- feedback. -->
     <string name="notification_channel_request_location">Lokacija</string>
     <string name="notification_location_in_background">Lokacija v ozadju</string>
-
     <string name="location_message_failed_to_locate">Pridobivanje lokacije ni bilo uspešno</string>
     <string name="weather_message_data_refresh_failed">Podatki o vremenu niso na voljo</string>
-    <string name="location_dialog_failed_to_locate_title">Ni moč najti natančne lokacije?</string>
+    <string name="location_dialog_failed_to_locate_title">Ni moč najti natančne lokacije\?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Preverite dovoljenja lokacije</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Omogočite dovoljenja lokacije</string>
     <string name="location_dialog_failed_to_locate_action_select_provider">Izberite način pridobivanja lokacije</string>
-
     <string name="widget_label_view_style">Način pogleda</string>
     <string name="widget_label_show_widget_card">Barva ozadja</string>
     <string name="widget_label_show_widget_card_alpha">Transparentnost</string>
@@ -103,26 +92,21 @@
     <string name="widget_label_black_text">Barva besedila</string>
     <string name="widget_label_text_size">Velikost besedila</string>
     <string name="widget_label_clock_font">Stil ure</string>
-    <string name="widget_custom_subtitle_explanation">Tukaj lahko vstavite kar hočete. Prosim bodite pozorni na dolžino besedila. Če želite navesti podatke o vremenu, prosim uporabite simbol $, se bo nanašal na ustrezen vremenski podatek. \n\n, “trenutno vreme = $cw$” bo prikazano kot “trenutno vreme = Čist dan”.</string>
-
+    <string name="widget_custom_subtitle_explanation">Tukaj lahko vstavite kar hočete. Prosim bodite pozorni na dolžino besedila. Če želite navesti podatke o vremenu, prosim uporabite simbol $, se bo nanašal na ustrezen vremenski podatek.
+\n
+\n, “trenutno vreme = $cw$” bo prikazano kot “trenutno vreme = Čist dan”.</string>
     <string name="widget_live_wallpaper_weather_kind">Vreme</string>
     <string name="widget_live_wallpaper_day_night_type">Čas</string>
-
     <string name="location_message_added">Lokacije je bila uspešno dodana</string>
     <string name="location_message_deleted">Lokacija je bila uspešno odstranjena</string>
     <string name="location_message_list_cannot_be_empty">Lokacija ne sme biti prazna</string>
-
     <string name="location_search_placeholder">Išči lokacijo…</string>
     <string name="location_current_not_found_yet">Nobena lokacije še ni bila najdena …</string>
-
     <string name="settings_changes_apply_after_restart">Spremembe bodo veljavne po ponovnem zaognu</string>
-
     <string name="notification_running_in_background">Teče v ozadju za redne posodobitve</string>
     <string name="notification_updating_weather_data">Posodabljanje podatkov o vremenu</string>
     <string name="message_updated_in_background">Posodobljeno v ozadju</string>
-
     <string name="widget_live_wallpaper_cannot_start_activity">Predogleda živega ozadja ni bilo mogoče začeti.</string>
-
     <!-- action -->
     <string name="alerts">Opozorilo</string>
     <string name="action_search">Išči</string>
@@ -130,7 +114,6 @@
     <string name="action_preview">Predogled</string>
     <string name="action_about">O tem</string>
     <string name="action_app_store">Trgovina aplikacij</string>
-
     <!-- widget -->
     <string name="widget_day">Dnevno</string>
     <string name="widget_week">Tedensko</string>
@@ -144,12 +127,13 @@
     <string name="widget_trend_hourly">Urni trendi</string>
     <string name="widget_refreshing">v čakanju</string>
     <string name="widget_ellipsis">…</string>
-
     <!-- settings -->
     <string name="settings_category_basic">Osnove</string>
     <string name="settings_title_background_free">Brez ozadja</string>
-    <string name="settings_summary_background_free_on">Omogočeno\nČe se pripomočki in obvestila ne posodobijo samodejno, prosim onemogočite to možnost.</string>
-    <string name="settings_summary_background_free_off">Onemogočeno\nČe ne želite želite,da procesi potekajo v ozadju, prosim omogočite to možnost.</string>
+    <string name="settings_summary_background_free_on">Omogočeno
+\nČe se pripomočki in obvestila ne posodobijo samodejno, prosim onemogočite to možnost.</string>
+    <string name="settings_summary_background_free_off">Onemogočeno
+\nČe ne želite želite,da procesi potekajo v ozadju, prosim omogočite to možnost.</string>
     <string name="settings_title_live_wallpaper">Živo ozadje</string>
     <string name="settings_summary_live_wallpaper">Nastavi materilano aniimacijo vremena kot živo ozadje</string>
     <string name="settings_title_service_provider">Ponudnik storitev</string>
@@ -197,12 +181,10 @@
     <string name="settings_title_notification_hide_big_view">Razširjen pogled</string>
     <string name="settings_notification_hide_big_view_on">Skrij</string>
     <string name="settings_notification_hide_big_view_off">Pokaži</string>
-
     <string name="location_service_baidu">Baidu Lokacija</string>
     <string name="location_service_baidu_ip">Baidu IP Lokacija (samo za Kitajsko)</string>
     <string name="location_service_amap">AMap Lokacija</string>
     <string name="location_service_native">Nativen API</string>
-
     <string name="settings_automatic">Avtomatsko</string>
     <string name="settings_none">Brez</string>
     <string name="settings_color_day_night">Dnevno / Nočni</string>
@@ -221,9 +203,7 @@
     <string name="settings_refresh_6h">06:00</string>
     <string name="settings_refresh_12h">12:00</string>
     <string name="settings_refresh_24h">24:00</string>
-
     <string name="notification_style_native">Privzet</string>
-
     <string name="widget_style_rectangle">Pravokotnik</string>
     <string name="widget_style_symmetry">Simetrija</string>
     <string name="widget_style_tile">Ploščice</string>
@@ -235,7 +215,6 @@
     <string name="widget_subtitle_data_feels_like">Senzibilna temperatura</string>
     <string name="widget_subtitle_data_lunar">Lunarni koledar</string>
     <string name="widget_subtitle_data_custom">Po meri</string>
-
     <!-- Weather kind -->
     <string name="weather_kind_clear">Čisto</string>
     <string name="weather_kind_partly_cloudy">Delno oblačno</string>
@@ -249,5 +228,4 @@
     <string name="weather_kind_thunder">Grmenje</string>
     <string name="weather_kind_thunderstorm">Nevihta</string>
     <string name="weather_kind_wind">Veter</string>
-
 </resources>

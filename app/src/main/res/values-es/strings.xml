@@ -1,8 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <!-- app. -->
     <string name="app_name">Clima</string>
-
     <!-- keyword. -->
     <string name="location_current">Ubicación actual</string>
     <string name="location_resident">Ubicación de los residentes</string>
@@ -37,7 +36,6 @@
     <string name="action_refresh">Refrescar</string>
     <string name="action_restart">Reiniciar</string>
     <string name="action_edit">Editar</string>
-
     <!-- The following set of strings should be as short as possible. -->
     <string name="of_clock">:00</string>
     <string name="short_yesterday">Ayer</string>
@@ -49,20 +47,17 @@
     <string name="short_friday">Vie</string>
     <string name="short_saturday">Sáb</string>
     <string name="short_sunday">Dom</string>
-
     <string name="temperature_real_feel">Sensación Térmica</string>
     <string name="temperature_real_feel_shade">Sensación Térmica Real</string>
     <string name="temperature_apparent">Aparente</string>
     <string name="temperature_wind_chill">Viento frío</string>
     <string name="temperature_wet_bulb">Bombilla húmeda</string>
     <string name="temperature_degree_day">Día de grado</string>
-
     <string name="precipitation_total">Total</string>
     <string name="precipitation_thunderstorm">Tormenta</string>
     <string name="precipitation_rain">Lluvia</string>
     <string name="precipitation_snow">Nieve</string>
     <string name="precipitation_ice">Hielo</string>
-
     <string name="wind_level_0">Calma</string>
     <string name="wind_level_1">Aire ligero</string>
     <string name="wind_level_2">Brisa ligera</string>
@@ -76,12 +71,10 @@
     <string name="wind_level_10">Tormenta</string>
     <string name="wind_level_11">Tormenta violenta</string>
     <string name="wind_level_12">Huracán/Tifón</string>
-
     <string name="precipitation_intensity_light">Llovizna</string>
     <string name="precipitation_intensity_middle">Lluvia</string>
     <string name="precipitation_intensity_heavy">Lluvia intensa</string>
     <string name="precipitation_intensity_rainstorm">Aguacero</string>
-
     <string name="ephemeris_moon_phase_new">Luna nueva</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Creciente cóncava</string>
     <string name="ephemeris_moon_phase_first">Cuarto creciente</string>
@@ -90,12 +83,10 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Menguante convexa</string>
     <string name="ephemeris_moon_phase_third">Cuarto menguante</string>
     <string name="ephemeris_moon_phase_waning_crescent">Menguante cóncava</string>
-
     <string name="allergen_grass">Pasto</string>
     <string name="allergen_mold">Moho</string>
     <string name="allergen_ragweed">Ambrosía</string>
     <string name="allergen_tree">Árbol</string>
-
     <string name="daily_forecast">Pronóstico por día</string>
     <string name="hourly_forecast">Pronóstico por hora</string>
     <string name="minutely_forecast">Pronóstico por minuto</string>
@@ -104,7 +95,6 @@
     <string name="allergen">Alérgeno</string>
     <string name="details">Detalles</string>
     <string name="ephemeris">Sol &amp; luna</string>
-
     <string name="action_next">SIGUIENTE</string>
     <string name="action_done">HECHO</string>
     <string name="action_cancel">CANCELAR</string>
@@ -113,10 +103,8 @@
     <string name="action_set">ESTABLECER</string>
     <string name="action_help">AYUDA</string>
     <string name="action_learn_more">SABER MÁS</string>
-
     <string name="about_app">Acerca de la app</string>
     <string name="about_translators">Traductores</string>
-
     <!-- Date format strings. -->
     <!-- Month : MMM(long) / M(short). -->
     <!-- Day   : dd(long) / d(short). -->
@@ -126,31 +114,30 @@
     <string name="date_format_widget_short">EEE, MMM d</string>
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
-
     <!-- feedback. -->
     <string name="notification_channel_request_location">Ubicación</string>
     <string name="notification_location_in_background">Ubicando en segundo plano</string>
-
     <string name="location_message_failed_to_locate">La ubicación falló</string>
     <string name="weather_message_data_refresh_failed">La solicitud de datos del clima falló</string>
-    <string name="location_dialog_failed_to_locate_title">No se pudo obtener la ubicación correctamente?</string>
+    <string name="location_dialog_failed_to_locate_title">No se pudo obtener la ubicación correctamente\?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Verifica los permisos de acceso a la ubicación</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Habilitar Información de la Ubicación</string>
     <string name="location_dialog_failed_to_locate_action_select_provider">Seleccione un proveedor de ubicación</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Agrega la ubicación manualmente y borra “$”</string>
     <string name="dialog_permissions_location_background_title">Acceso a la ubicación en segundo plano</string>
     <string name="dialog_permissions_location_background_content">Para permitirle a la app el acceso a la ubicación en segundo plano, por favor selecciona el acceso a la ubicación “Todo el tiempo”.</string>
-
     <string name="widget_label_view_style">Estilo de vista</string>
     <string name="widget_label_show_widget_card">Fondo de color</string>
     <string name="widget_label_show_widget_card_alpha">Transparencia</string>
     <string name="widget_label_hide_subtitle">Ocultar subtítulo</string>
     <string name="widget_label_subtitle_data">Datos del subtítulo</string>
     <string name="widget_label_black_text">Color del texto</string>
-    <string name="widget_label_text_size">Tamaño  del texto</string>
+    <string name="widget_label_text_size">Tamaño del texto</string>
     <string name="widget_label_clock_font">Fuente del reloj</string>
     <string name="widget_label_hide_lunar">Ocultar calendario lunar</string>
-    <string name="widget_custom_subtitle_explanation">Puedes ingresar lo que sea, pero por favor presta atención al lardo del texto. Si quieres citar datos del clima, por favor usa $ para referenciar la palabra clave correspondiente.\n\nPor ejemplo, “clima actual = $cw$” se mostrará como “clima actual = Día despejado”.</string>
+    <string name="widget_custom_subtitle_explanation">Puedes ingresar lo que sea, pero por favor presta atención al lardo del texto. Si quieres citar datos del clima, por favor usa $ para referenciar la palabra clave correspondiente.
+\n
+\nPor ejemplo, “clima actual = $cw$” se mostrará como “clima actual = Día despejado”.</string>
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
     <string name="widget_custom_subtitle_keyword_cw_description">Clima Actual</string>
@@ -192,40 +179,29 @@
     <string name="widget_custom_subtitle_keyword_xmr_description">Anochecer de Hoy, Tmw, …, 4 días después</string>
     <string name="widget_custom_subtitle_keyword_xms_description">Puesta de la Luna de Hoy, Tmw, …, 4 días después</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">Fase lunar de Hoy, Tmw, …, 4 días después</string>
-
     <string name="widget_live_wallpaper_weather_kind">Clima</string>
     <string name="widget_live_wallpaper_day_night_type">Hora</string>
-
     <string name="location_message_added">Se agregó la ubicación exitosamente</string>
     <string name="location_message_deleted">Se eliminó la ubicación exitosamente</string>
     <string name="location_message_list_cannot_be_empty">La lista de ubicaciones no puede estar vacía</string>
-
     <string name="location_search_placeholder">Busca una ubicación…</string>
     <string name="location_current_not_found_yet">Aún sin ubicaciones…</string>
-
     <string name="settings_changes_apply_after_restart">Los cambios tomarán efecto después de reiniciar</string>
-
     <string name="notification_running_in_background">Corriendo en segundo plano para seguir actualizándose</string>
     <string name="notification_updating_weather_data">Actualizando datos del clima</string>
     <string name="message_updated_in_background">Actualizado en segundo plano</string>
-
     <string name="dialog_permissions_block_notification_channel_title">Bloquear grupo de notificaciones</string>
     <string name="dialog_permissions_block_notification_channel_content">Después de desactivar “Segundo plano libre”, aparecerá una notificación en la barra de notificaciones indicando que está funcionando el servicio en segundo plano. Puedes desactivar el Canal de Información en segundo plano bloqueando estas notificaciones en la página de información de la app.</string>
-
     <string name="dialog_permissions_ignore_battery_optimizations_title">Ignorar optimización de la batería</string>
     <string name="dialog_permissions_ignore_battery_optimizations_content">Para asegurar que los servicios en segundo plano continúen funcionando, por favor ignora la optimización de batería para Breezy Weather.</string>
-    
     <string name="widget_live_wallpaper_cannot_start_activity">No se logró iniciar el contexto de previsulización del fondo de pantalla animado</string>
-
     <string name="notification_precipitation_today">Puede que hoy haya precipitationes.</string>
     <string name="notification_precipitation_short_term">Puede que la precipitación ocurra en las próximas horas.</string>
-
     <string name="location_resident_message">Establecer como la ciudad residente</string>
-    <string name="location_resident_dialog">Breezy Weather mostrará y ocultará automáticamente las ciudades residentes en base a tu ubicación actual.\nPor ejemplo, puedes establecer tu ciudad natal como una ciudad residente. Puedes revisar el clima de tu ciudad natal mientras estás viajando. Cuando llegues a casa, el clima de tu ciudad natal estará oculto y reemplazado por el clima de tu ubicación actual.</string>
-
+    <string name="location_resident_dialog">Breezy Weather mostrará y ocultará automáticamente las ciudades residentes en base a tu ubicación actual.
+\nPor ejemplo, puedes establecer tu ciudad natal como una ciudad residente. Puedes revisar el clima de tu ciudad natal mientras estás viajando. Cuando llegues a casa, el clima de tu ciudad natal estará oculto y reemplazado por el clima de tu ubicación actual.</string>
     <string name="allergen_tap_to_see_more">Toca para obtener más…</string>
     <string name="message_tap_again_to_exit">Toca de nuevo para salir</string>
-
     <!-- action -->
     <string name="alerts">Alerta</string>
     <string name="action_search">Buscar</string>
@@ -233,7 +209,6 @@
     <string name="action_preview">Vista previa</string>
     <string name="action_about">Acerca de</string>
     <string name="action_app_store">Tienda de apps</string>
-
     <!-- widget -->
     <string name="widget_day">Diario</string>
     <string name="widget_week">Semanal</string>
@@ -248,12 +223,13 @@
     <string name="widget_multi_city">Ciudad Múltiple</string>
     <string name="widget_refreshing">esperando</string>
     <string name="widget_ellipsis">…</string>
-
     <!-- settings -->
     <string name="settings_category_basic">Básico</string>
     <string name="settings_title_background_free">Segundo plano libre</string>
-    <string name="settings_summary_background_free_on">Activado\nSi los widgets y notificaciones no se actualizan automáticamente, por favor desactiva esta opción</string>
-    <string name="settings_summary_background_free_off">Desactivado\nSi no deseas que ningún servicio siga trabajando en segundo plano, por favor activa esta opción.</string>
+    <string name="settings_summary_background_free_on">Activado
+\nSi los widgets y notificaciones no se actualizan automáticamente, por favor desactiva esta opción</string>
+    <string name="settings_summary_background_free_off">Desactivado
+\nSi no deseas que ningún servicio siga trabajando en segundo plano, por favor activa esta opción.</string>
     <string name="settings_title_live_wallpaper">Fondo de pantalla animado</string>
     <string name="settings_summary_live_wallpaper">Establecer la animación del clima estilo Material como fondo de pantalla animado</string>
     <string name="settings_title_service_provider">Proveedor de servicio</string>
@@ -315,7 +291,6 @@
     <string name="settings_title_notification_hide_big_view">Estilo extendido</string>
     <string name="settings_notification_hide_big_view_on">Oculto</string>
     <string name="settings_notification_hide_big_view_off">Visible</string>
-
     <string name="settings_automatic">Automático</string>
     <string name="settings_none">Ninguno</string>
     <string name="settings_color_day_night">Diurno / Nocturno</string>
@@ -334,23 +309,19 @@
     <string name="settings_refresh_6h">6 horas</string>
     <string name="settings_refresh_12h">12 horas</string>
     <string name="settings_refresh_24h">24 horas</string>
-
     <string name="notification_style_native">Nativo</string>
     <string name="notification_style_cities">Ciudades</string>
-
     <string name="widget_style_rectangle">Rectangular</string>
     <string name="widget_style_symmetry">Simétrico</string>
     <string name="widget_style_tile">Mosaico</string>
     <string name="widget_style_temperature">Temperatura</string>
     <string name="widget_week_style_5_days">5 días</string>
     <string name="widget_week_style_3_days">3 días</string>
-
     <string name="widget_subtitle_data_time">Tiempo de refresco</string>
     <string name="widget_subtitle_data_wind">Viento</string>
     <string name="widget_subtitle_data_feels_like">Sensación térmica</string>
     <string name="widget_subtitle_data_lunar">Calendario lunar</string>
     <string name="widget_subtitle_data_custom">Personalizado</string>
-
     <!-- Weather kind -->
     <string name="weather_kind_clear">Despejado</string>
     <string name="weather_kind_partly_cloudy">Parcialmente nublado</string>
@@ -364,7 +335,6 @@
     <string name="weather_kind_thunder">Truenos</string>
     <string name="weather_kind_thunderstorm">Tormenta eléctrica</string>
     <string name="weather_kind_wind">Viento</string>
-
     <string name="unit_kph_voice">Kilómetros por hora</string>
     <string name="unit_mps_voice">Metros por segundo</string>
     <string name="unit_kn_voice">Nudos</string>
@@ -394,5 +364,4 @@
     <string name="unit_mgpcum_voice">Miligramos por metro cúbico</string>
     <string name="unit_h_voice">horas</string>
     <string name="unit_ppcm_voice">Por metro cúbico</string>
-
 </resources>

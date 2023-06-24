@@ -1,9 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="Nederlands">
-
     <!-- app. -->
     <string name="app_name">Weer</string>
-
     <!-- keyword. -->
     <string name="location_current">Huidige locatie</string>
     <string name="live">Live</string>
@@ -57,8 +55,7 @@
     <string name="date_format_long">d MMM</string>
     <string name="date_format_widget_short">EEEE, d MMM</string>
     <string name="date_format_widget_long">EEEE, d MMM</string>
-    <string name="date_format_widget_oreo_style">EEEE, d MMM │ </string>
-
+    <string name="date_format_widget_oreo_style">EEEE, d MMM │</string>
     <!-- feedback. -->
     <string name="notification_channel_request_location">Locatie</string>
     <string name="notification_location_in_background">Lokaliseren op de achtergrond.</string>
@@ -75,13 +72,11 @@
     <string name="location_search_placeholder">Zoek een locatie…</string>
     <string name="location_current_not_found_yet">Nog geen locatie…</string>
     <string name="settings_changes_apply_after_restart">Wordt van kracht na herstart.</string>
-
     <!-- action -->
     <string name="alerts">Alarm</string>
     <string name="action_search">Zoek</string>
     <string name="action_settings">Instellingen</string>
     <string name="action_about">Over</string>
-
     <!-- widget -->
     <string name="widget_day">Dagelijks</string>
     <string name="widget_week">Wekelijks</string>
@@ -93,7 +88,6 @@
     <string name="widget_text">Tekst</string>
     <string name="widget_refreshing">Wachten</string>
     <string name="widget_ellipsis">…</string>
-
     <!-- settings -->
     <string name="settings_category_basic">Standaard</string>
     <string name="settings_title_background_free">Achtergrondvrij</string>
@@ -129,7 +123,6 @@
     <string name="settings_title_notification_hide_big_view">Verberg weekvoorspelling.</string>
     <string name="settings_notification_hide_big_view_on">Verborgen.</string>
     <string name="settings_notification_hide_big_view_off">Zichtbaar.</string>
-
     <string name="settings_color_light">Licht</string>
     <string name="settings_color_light_always">Always licht</string>
     <string name="settings_color_grey">Grijs</string>
@@ -143,11 +136,9 @@
     <string name="settings_refresh_6h">06:00</string>
     <string name="settings_refresh_12h">12:00</string>
     <string name="settings_refresh_24h">24:00</string>
-
     <string name="widget_style_rectangle">Rechthoek</string>
     <string name="widget_style_symmetry">Symmetrisch</string>
     <string name="widget_style_vertical">Verticaal</string>
     <string name="widget_subtitle_data_feels_like">Gevoelstemperatuur</string>
     <string name="widget_subtitle_data_lunar">Maankalender</string>
-
 </resources>

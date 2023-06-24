@@ -1,8 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <!-- app. -->
     <string name="app_name">天气</string>
-
     <!-- keyword. -->
     <string name="location_current">当前位置</string>
     <string name="location_resident">常驻位置</string>
@@ -37,7 +36,6 @@
     <string name="action_refresh">刷新数据</string>
     <string name="action_restart">重启</string>
     <string name="action_edit">编辑</string>
-
     <string name="of_clock">时</string>
     <string name="short_yesterday">昨日</string>
     <string name="short_tomorrow">明日</string>
@@ -48,20 +46,17 @@
     <string name="short_friday">周五</string>
     <string name="short_saturday">周六</string>
     <string name="short_sunday">周日</string>
-
     <string name="temperature_real_feel">体感温度</string>
     <string name="temperature_real_feel_shade">阴面体感</string>
     <string name="temperature_apparent">地表温度</string>
     <string name="temperature_wind_chill">风寒温度</string>
     <string name="temperature_wet_bulb">湿球温度</string>
     <string name="temperature_degree_day">度日温度</string>
-
     <string name="precipitation_total">总量</string>
     <string name="precipitation_thunderstorm">暴风雨</string>
     <string name="precipitation_rain">雨</string>
     <string name="precipitation_snow">雪</string>
     <string name="precipitation_ice">冰</string>
-
     <string name="wind_level_0">无风</string>
     <string name="wind_level_1">一级</string>
     <string name="wind_level_2">二级</string>
@@ -75,7 +70,6 @@
     <string name="wind_level_10">十级</string>
     <string name="wind_level_11">十一级</string>
     <string name="wind_level_12">灾害级</string>
-
     <string name="wind_direction_short_variable">无风向</string>
     <string name="wind_direction_short_N">北风</string>
     <string name="wind_direction_short_NE">东北风</string>
@@ -85,12 +79,10 @@
     <string name="wind_direction_short_SW">西南风</string>
     <string name="wind_direction_short_W">西风</string>
     <string name="wind_direction_short_NW">西北风</string>
-
     <string name="precipitation_intensity_light">小雨</string>
     <string name="precipitation_intensity_middle">中雨</string>
     <string name="precipitation_intensity_heavy">大雨</string>
     <string name="precipitation_intensity_rainstorm">暴雨</string>
-
     <string name="ephemeris_moon_phase_new">新月</string>
     <string name="ephemeris_moon_phase_waxing_crescent">蛾眉月</string>
     <string name="ephemeris_moon_phase_first">上弦月</string>
@@ -99,12 +91,10 @@
     <string name="ephemeris_moon_phase_waning_gibbous">亏凸月</string>
     <string name="ephemeris_moon_phase_third">下弦月</string>
     <string name="ephemeris_moon_phase_waning_crescent">残月</string>
-
     <string name="allergen_grass">草地花粉</string>
     <string name="allergen_mold">霉菌</string>
     <string name="allergen_ragweed">豚草花粉</string>
     <string name="allergen_tree">树木花粉</string>
-
     <string name="uv_level_0_2">一级(最弱)</string>
     <string name="uv_level_3_5">二级(弱)</string>
     <string name="uv_level_6_7">三级(中等)</string>
@@ -118,7 +108,6 @@
     <string name="allergen">过敏原</string>
     <string name="details">详情数据</string>
     <string name="ephemeris">日月升落</string>
-
     <string name="openmeteo_weather_text_clear_sky">无云</string>
     <string name="openmeteo_weather_text_mainly_clear">基本无云</string>
     <string name="openmeteo_weather_text_partly_cloudy">有云</string>
@@ -155,26 +144,21 @@
     <string name="action_set">设置</string>
     <string name="action_help">帮助</string>
     <string name="action_learn_more">了解更多</string>
-
     <string name="about_app">概览</string>
     <string name="about_contributors">贡献者</string>
     <string name="about_translators">译者</string>
-
     <string name="date_format_short">M-d</string>
     <string name="date_format_long">M月d日</string>
     <string name="date_format_widget_short">MM-dd EEE</string>
     <string name="date_format_widget_long">M月d日 EEEE</string>
-    <string name="date_format_widget_oreo_style">M月d日EEEE │ </string>
-
+    <string name="date_format_widget_oreo_style">M月d日EEEE │</string>
     <!-- feedback. -->
     <string name="notification_channel_request_location">位置信息</string>
     <string name="notification_location_in_background">正在后台进行定位</string>
-
     <string name="dialog_permissions_location_title">获取位置信息</string>
     <string name="dialog_permissions_location_content">Breezy 天气需要在前台和后台获取您的位置信息以提供您所在位置的天气数据。为此，我们需要请求一些权限。您的位置信息将仅被用于获取天气数据。如果您不希望我们获取您的位置信息，可以拒绝这些权限请求并手动在管理页面中设置您的位置。</string>
     <string name="dialog_permissions_location_background_title">在后台访问位置</string>
     <string name="dialog_permissions_location_background_content">为了让app可以在后台访问您的位置信息,以便我们能够即使感知您的位置变化并为您提供有效的天气数据，请将位置权限设置为“始终允许”。</string>
-
     <string name="location_message_failed_to_locate">定位失败</string>
     <string name="weather_message_data_refresh_failed">获取天气数据失败</string>
     <string name="location_dialog_failed_to_locate_title">无法正常进行定位？</string>
@@ -182,7 +166,6 @@
     <string name="location_dialog_failed_to_locate_action_enable_information">开启位置信息</string>
     <string name="location_dialog_failed_to_locate_action_select_provider">选择位置信息提供商</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">手动添加城市并删除“$”</string>
-
     <string name="weather_api_limit_reached_message">达到 API 请求次数上限</string>
     <string name="weather_api_limit_reached_dialog">要绕过此限制，请添加你自己的 API 密钥。</string>
     <string name="weather_api_unauthorized_message">API 访问认证未通过</string>
@@ -197,8 +180,9 @@
     <string name="widget_label_clock_font">时钟字体</string>
     <string name="widget_label_hide_lunar">隐藏阴历</string>
     <string name="widget_label_align_end">右对齐</string>
-    <string name="widget_custom_subtitle_explanation">可输入任何内容，但请注意内容长度。若需使用天气数据，可以通过使用$来引用相应的关键字来实现。\n\n例如：若输入“天气为$cw$”，副标题将显示为“天气为晴”。</string>
-
+    <string name="widget_custom_subtitle_explanation">可输入任何内容，但请注意内容长度。若需使用天气数据，可以通过使用$来引用相应的关键字来实现。
+\n
+\n例如：若输入“天气为$cw$”，副标题将显示为“天气为晴”。</string>
     <string name="widget_custom_subtitle_keyword_cw_description">当天天气</string>
     <string name="widget_custom_subtitle_keyword_ct_description">当前温度 (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">当前温度 (°)</string>
@@ -238,39 +222,28 @@
     <string name="widget_custom_subtitle_keyword_xmr_description">今日月出时间，明日，……，4天后</string>
     <string name="widget_custom_subtitle_keyword_xms_description">今日月落时间，明日，……，4天后</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">今日月相，明日，……，4天后</string>
-
     <string name="widget_live_wallpaper_weather_kind">天气</string>
     <string name="widget_live_wallpaper_day_night_type">时间</string>
-
     <string name="location_message_added">收藏成功</string>
     <string name="location_message_deleted">删除成功</string>
     <string name="location_message_list_cannot_be_empty">收藏地址不能为空</string>
-
     <string name="location_search_placeholder">输入一个地址…</string>
     <string name="location_current_not_found_yet">尚未进行定位…</string>
-
     <string name="settings_changes_apply_after_restart">重启后生效</string>
-
     <string name="notification_running_in_background">正在后台运行以保持更新数据</string>
     <string name="notification_updating_weather_data">正在更新天气数据</string>
     <string name="message_updated_in_background">已在后台完成更新</string>
-
     <string name="dialog_permissions_block_notification_channel_title">关闭相应通知频道</string>
     <string name="dialog_permissions_block_notification_channel_content">关闭后台纯净后，会出现一个标示后台服务正在运行的通知，你可以在app相关信息页面中找到通知设置，在其中关闭“后台信息”这个频道来隐藏这个通知</string>
-
     <string name="dialog_permissions_ignore_battery_optimizations_title">忽略电池优化</string>
     <string name="dialog_permissions_ignore_battery_optimizations_content">为了保证后台服务能够持续工作，请为 Breezy 天气选择忽略电池优化</string>
-
     <string name="widget_live_wallpaper_cannot_start_activity">无法启动动态壁纸预览程序</string>
-
     <string name="notification_precipitation_today">今日可能出现降水</string>
     <string name="notification_precipitation_short_term">未来几小时内可能出现降水</string>
-
     <string name="location_resident_message">设置为常驻城市</string>
-    <string name="location_resident_dialog">常驻城市的天气将会根据您当前的位置来进行显示和隐藏。\n例如将家乡设置为常驻城市后，可以在旅途中查看家乡天气，而在回家后，家乡的天气数据将被当前位置替代并进行隐藏。</string>
-
+    <string name="location_resident_dialog">常驻城市的天气将会根据您当前的位置来进行显示和隐藏。
+\n例如将家乡设置为常驻城市后，可以在旅途中查看家乡天气，而在回家后，家乡的天气数据将被当前位置替代并进行隐藏。</string>
     <string name="allergen_tap_to_see_more">点击可获取更多…</string>
-
     <!-- content description -->
     <string name="message_tap_again_to_exit">再次点击以退出</string>
     <string name="action_back">返回</string>
@@ -296,7 +269,6 @@
     <string name="settings_icon_providers_weather_icon_light">亮色图标</string>
     <string name="settings_icon_providers_weather_icon_grey">灰色图标</string>
     <string name="settings_icon_providers_weather_icon_dark">暗色图标</string>
-
     <!-- action -->
     <string name="alerts">预警</string>
     <string name="action_search">搜索</string>
@@ -304,7 +276,6 @@
     <string name="action_preview">预览</string>
     <string name="action_about">关于</string>
     <string name="action_app_store">应用商店</string>
-
     <!-- widget -->
     <string name="widget_day">今日</string>
     <string name="widget_week">一周</string>
@@ -321,12 +292,13 @@
     <string name="widget_material_you_current">Material You - 实时</string>
     <string name="widget_refreshing">等待更新</string>
     <string name="widget_ellipsis">…</string>
-
     <!-- settings -->
     <string name="settings_category_basic">基础</string>
     <string name="settings_title_background_free">后台纯净</string>
-    <string name="settings_summary_background_free_on">开启\n若小部件和天气通知无法自动更新，请关闭该选项</string>
-    <string name="settings_summary_background_free_off">关闭\n若不希望任何服务在后台进行常驻，请开启该选项</string>
+    <string name="settings_summary_background_free_on">开启
+\n若小部件和天气通知无法自动更新，请关闭该选项</string>
+    <string name="settings_summary_background_free_off">关闭
+\n若不希望任何服务在后台进行常驻，请开启该选项</string>
     <string name="settings_title_live_wallpaper">动态壁纸</string>
     <string name="settings_summary_live_wallpaper">将Material天气动画设置为动态壁纸</string>
     <string name="settings_title_service_provider">数据提供商</string>
@@ -394,7 +366,6 @@
     <string name="settings_notification_hide_big_view_on">隐藏</string>
     <string name="settings_notification_hide_big_view_off">显示</string>
     <string name="settings_provider_default_value">默认(未更改)</string>
-
     <string name="weather_source_accuweather_voice">ACCU天气</string>
     <string name="weather_source_openweather_voice">OPEN天气</string>
     <string name="weather_source_china">中国</string>
@@ -403,7 +374,6 @@
     <string name="location_service_baidu_ip">百度IP定位（仅中国地区）</string>
     <string name="location_service_amap">高德定位</string>
     <string name="location_service_native">原生接口</string>
-
     <string name="settings_automatic">自动</string>
     <string name="settings_none">无卡片</string>
     <string name="settings_color_day_night">白昼 / 夜晚</string>
@@ -423,10 +393,8 @@
     <string name="settings_refresh_6h">6小时</string>
     <string name="settings_refresh_12h">12小时</string>
     <string name="settings_refresh_24h">24小时</string>
-
     <string name="notification_style_native">原生</string>
     <string name="notification_style_cities">多城市</string>
-
     <string name="widget_style_rectangle">矩形</string>
     <string name="widget_style_symmetry">对称</string>
     <string name="widget_style_tile">平铺</string>
@@ -442,7 +410,6 @@
     <string name="widget_subtitle_data_feels_like">体感温度</string>
     <string name="widget_subtitle_data_lunar">农历</string>
     <string name="widget_subtitle_data_custom">自定义</string>
-
     <!-- Weather kind -->
     <string name="weather_kind_clear">晴</string>
     <string name="weather_kind_partly_cloudy">多云</string>
@@ -456,7 +423,6 @@
     <string name="weather_kind_thunder">雷暴</string>
     <string name="weather_kind_thunderstorm">雷雨</string>
     <string name="weather_kind_wind">风</string>
-
     <!-- Air quality -->
     <string name="air_quality_level_1">优</string>
     <string name="air_quality_level_1_description">空气质量对大多数人来说是理想的；享受正常的户外活动。</string>
@@ -470,7 +436,6 @@
     <string name="air_quality_level_5_description">敏感人群会立即受到健康影响，应避免户外活动。健康的人可能会感到呼吸困难和喉咙发炎；考虑呆在室内并重新安排户外活动。</string>
     <string name="air_quality_level_6">严重污染</string>
     <string name="air_quality_level_6_description">暴露在空气中，即使是几分钟，都会对每个人的健康造成严重影响。应避免户外活动。</string>
-
     <!-- Units -->
     <string name="unit_kph">千米/时</string>
     <string name="unit_kph_voice">千米每小时</string>
@@ -530,5 +495,4 @@
     <string name="unit_h_voice">小时</string>
     <string name="unit_ppcm">/米³</string>
     <string name="unit_ppcm_voice">每立方米</string>
-
 </resources>

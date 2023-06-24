@@ -1,8 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-
     <!-- app. -->
     <string name="app_name">Meteo</string>
-
     <!-- keyword. -->
     <string name="location_current">Locația curentă</string>
     <string name="location_resident">Acasă</string>
@@ -37,7 +36,6 @@
     <string name="action_refresh">Reactualizează</string>
     <string name="action_restart">Repornește</string>
     <string name="action_edit">Editează</string>
-
     <!-- The following set of strings should be as short as possible. -->
     <string name="of_clock">:00</string>
     <string name="short_yesterday">Ieri</string>
@@ -49,20 +47,17 @@
     <string name="short_friday">Vi</string>
     <string name="short_saturday">Sâ</string>
     <string name="short_sunday">Du</string>
-
     <string name="temperature_real_feel">Temp. resimțită</string>
     <string name="temperature_real_feel_shade">Temp. resimțită la umbră</string>
     <string name="temperature_apparent">Temp. aparentă</string>
     <string name="temperature_wind_chill">Punct de răcire</string>
     <string name="temperature_wet_bulb">Temp. la umed</string>
     <string name="temperature_degree_day">Zi-grad</string>
-
     <string name="precipitation_total">Total</string>
     <string name="precipitation_thunderstorm">Furtună</string>
     <string name="precipitation_rain">Ploaie</string>
     <string name="precipitation_snow">Ninsoare</string>
     <string name="precipitation_ice">Gheață</string>
-
     <string name="wind_level_0">Calm</string>
     <string name="wind_level_1">Adiere ușoară</string>
     <string name="wind_level_2">Briză ușoară</string>
@@ -76,12 +71,10 @@
     <string name="wind_level_10">Furtună puternică</string>
     <string name="wind_level_11">Furtună violentă</string>
     <string name="wind_level_12">Uragan</string>
-
     <string name="precipitation_intensity_light">Ploi uşoare</string>
     <string name="precipitation_intensity_middle">Ploi moderate</string>
     <string name="precipitation_intensity_heavy">Ploi intense</string>
     <string name="precipitation_intensity_rainstorm">Ploi violente (Furtună)</string>
-
     <string name="ephemeris_moon_phase_new">Lună nouă</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Semilună în creștere</string>
     <string name="ephemeris_moon_phase_first">Primul pătrar</string>
@@ -90,12 +83,10 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Lună în descreștere</string>
     <string name="ephemeris_moon_phase_third">Ultimul pătrar</string>
     <string name="ephemeris_moon_phase_waning_crescent">Semilună în descreștere</string>
-
     <string name="allergen_grass">Iarbă</string>
     <string name="allergen_mold">Mucegai</string>
     <string name="allergen_ragweed">Ambrozie</string>
     <string name="allergen_tree">Copac</string>
-
     <string name="daily_forecast">Prognoza zilnică</string>
     <string name="hourly_forecast">Prognoza pe ore</string>
     <string name="minutely_forecast">Prognoza pe minut</string>
@@ -104,7 +95,6 @@
     <string name="allergen">Alergeni</string>
     <string name="details">Detalii</string>
     <string name="ephemeris">Soare și Lună</string>
-
     <string name="action_next">MAI DEPARTE</string>
     <string name="action_done">TERMINAT</string>
     <string name="action_cancel" tools:ignore="ButtonCase">ANULARE</string>
@@ -113,10 +103,8 @@
     <string name="action_set">ACCEPTĂ</string>
     <string name="action_help">AJUTOR</string>
     <string name="action_learn_more">AFLĂ MAI MULTE</string>
-
     <string name="about_app">Despre aplicație</string>
     <string name="about_translators">Traducători</string>
-
     <!-- Date format strings. -->
     <!-- Month : MMM(long) / M(short). -->
     <!-- Day   : dd(long) / d(short). -->
@@ -126,19 +114,16 @@
     <string name="date_format_widget_short">EEEE, d MMM</string>
     <string name="date_format_widget_long">EEEE, d MMM</string>
     <string name="date_format_widget_oreo_style">EEEE, d MMM│</string>
-
     <!-- feedback. -->
     <string name="notification_channel_request_location">Locație</string>
     <string name="notification_location_in_background">Localizare în fundal</string>
-
     <string name="dialog_permissions_location_title">Accesare informații despre locație.</string>
     <string name="dialog_permissions_location_content">Breezy Weather are nevoie de informațiile despre locația dumenavoastră când rulează sau în fundal pentru a furniza datele meteo din locația in care vă aflați. Pentru aceasta sunt necesare câteva permisiuni. Informațiile despre locația dumenavoastră vor fi utilizate doar pentru a obține datele meteo pentru locația curentă. Dacă nu doriți permiterea accesului la informațiile despre locație, puteți respinge aceste cerințe și seta manual locația dorită în pagina de gestionare.</string>
     <string name="dialog_permissions_location_background_title">Accesare locație în fundal.</string>
-    <string name="dialog_permissions_location_background_content">Pentru a permite aplicației să acceseze informații despre locație în fundal, astfel încât să putem percepe modificări ale locației și să vă oferim date meteorologice in timp real, setați accesul la locație ca \“Permiteți tot timpul”. </string>
-
+    <string name="dialog_permissions_location_background_content">Pentru a permite aplicației să acceseze informații despre locație în fundal, astfel încât să putem percepe modificări ale locației și să vă oferim date meteorologice in timp real, setați accesul la locație ca Permiteți tot timpul”.</string>
     <string name="location_message_failed_to_locate">Localizarea a eșuat.</string>
     <string name="weather_message_data_refresh_failed">Solicitarea datelor meteo a eșuat.</string>
-    <string name="location_dialog_failed_to_locate_title">Datele de localizare nu sunt corecte?</string>
+    <string name="location_dialog_failed_to_locate_title">Datele de localizare nu sunt corecte\?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Verifică permisiunile de Localizare.</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Activați informațiile despre locație</string>
     <string name="location_dialog_failed_to_locate_action_select_provider">Selectați furnizorul de servicii de localizare</string>
@@ -153,7 +138,8 @@
     <string name="widget_label_clock_font">Font ceas</string>
     <string name="widget_label_hide_lunar">Ascunde calendarul lunar</string>
     <string name="widget_label_align_end">Aliniați la sfârșit</string>
-    <string name="widget_custom_subtitle_explanation">Puteți introduce orice, dar vă rugăm să acordați atenție lungimii textului. Dacă doriți să citați datele meteo, vă rugăm să folosiți $ pentru a face referire la cuvântul cheie corespunzător.\n\De exemplu, “Starea vremii = $cw$” va fi afișat ca “Starea vremii = cer senin”.</string>
+    <string name="widget_custom_subtitle_explanation">Puteți introduce orice, dar vă rugăm să acordați atenție lungimii textului. Dacă doriți să citați datele meteo, vă rugăm să folosiți $ pentru a face referire la cuvântul cheie corespunzător.
+\ne exemplu, “Starea vremii = $cw$” va fi afișat ca “Starea vremii = cer senin”.</string>
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
     <string name="widget_custom_subtitle_keyword_cw_description">Starea vremii</string>
@@ -195,40 +181,28 @@
     <string name="widget_custom_subtitle_keyword_xmr_description">Răsărit Lună azi, Mâine, …, 4 zile mai târziu</string>
     <string name="widget_custom_subtitle_keyword_xms_description">Apus lună azi, Mâine, …, 4 zile mai târziu</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">Faza lunară azi, Mâine, …, 4 zile mai târziu</string>
-
     <string name="widget_live_wallpaper_weather_kind">Vremea</string>
     <string name="widget_live_wallpaper_day_night_type">Ora</string>
-
     <string name="location_message_added">Locația a fost adăugată cu succes</string>
     <string name="location_message_deleted">Locația a fost ștearsă</string>
     <string name="location_message_list_cannot_be_empty">Lista locațiilor nu poate fi goală</string>
-
     <string name="location_search_placeholder">Caută locația…</string>
     <string name="location_current_not_found_yet">Fără locații momentan…</string>
-
     <string name="settings_changes_apply_after_restart">Modificările vor fi vizibile după repornirea aplicației</string>
-
     <string name="notification_running_in_background">Datele se actualizează în fundal</string>
     <string name="notification_updating_weather_data">Se actualizează datele meteo</string>
     <string name="message_updated_in_background">Date actualizate în fundal</string>
-
-    <string name="dialog_permissions_block_notification_channel_title">Blochează  notificarea de fundal</string>
-    <string name="dialog_permissions_block_notification_channel_content">După deselectarea opțiunii “Activitate fundal gestionată de sistem”, o notificare ce indică faptul că serviciul rulează in fundal va apărea în bara de notificări. Puteți dezactiva Informațiile despre activitatea din fundal în pagina de informații a aplicației pentru a bloca aceste notificări. </string>
-
+    <string name="dialog_permissions_block_notification_channel_title">Blochează notificarea de fundal</string>
+    <string name="dialog_permissions_block_notification_channel_content">După deselectarea opțiunii “Activitate fundal gestionată de sistem”, o notificare ce indică faptul că serviciul rulează in fundal va apărea în bara de notificări. Puteți dezactiva Informațiile despre activitatea din fundal în pagina de informații a aplicației pentru a bloca aceste notificări.</string>
     <string name="dialog_permissions_ignore_battery_optimizations_title">Ignorați optimizarea bateriei</string>
-    <string name="dialog_permissions_ignore_battery_optimizations_content">Pentru a vă asigura că serviciile de fundal funcționează corect, vă rugăm să deselectați optimizarea bateriei pentru Breezy Weather. </string>
-
+    <string name="dialog_permissions_ignore_battery_optimizations_content">Pentru a vă asigura că serviciile de fundal funcționează corect, vă rugăm să deselectați optimizarea bateriei pentru Breezy Weather.</string>
     <string name="widget_live_wallpaper_cannot_start_activity">Pornirea previzualizării Tapetului dinamic (live wallpaper) a eșuat.</string>
-
     <string name="notification_precipitation_today">Posibile precipitații in decursul zilei</string>
     <string name="notification_precipitation_short_term">Posibile precipitații în următoarele ore.</string>
-
     <string name="location_resident_message">Selectat ca oraș de rezidență (Acasă)</string>
-    <string name="location_resident_dialog">Breezy Weather va afișa și ascunde automat orașele de rezidență (Acasă) pe baza locației dvs. actuale. \ nDe exemplu, vă puteți seta orașul natal ca oraș rezident. Puteți verifica vremea în orașul dvs. natal în timp ce călătoriți. Când ajungeți acasă, vremea din orașul dvs. natal va fi ascunsă și înlocuită de vremea pentru locația dvs. actuală.</string>
-
+    <string name="location_resident_dialog">"Breezy Weather va afișa și ascunde automat orașele de rezidență (Acasă) pe baza locației dvs. actuale.  nDe exemplu, vă puteți seta orașul natal ca oraș rezident. Puteți verifica vremea în orașul dvs. natal în timp ce călătoriți. Când ajungeți acasă, vremea din orașul dvs. natal va fi ascunsă și înlocuită de vremea pentru locația dvs. actuală."</string>
     <string name="allergen_tap_to_see_more">Atingeți pentru mai multe informatii…</string>
     <string name="message_tap_again_to_exit">Repetați actiunea pentru a ieși</string>
-
     <!-- action -->
     <string name="alerts">Alertă</string>
     <string name="action_search">Căutare</string>
@@ -236,7 +210,6 @@
     <string name="action_preview">Previzualizare</string>
     <string name="action_about">Despre</string>
     <string name="action_app_store">Magazin aplicații</string>
-
     <!-- widget -->
     <string name="widget_day">Zilnic</string>
     <string name="widget_week">Săptămânal</string>
@@ -251,12 +224,13 @@
     <string name="widget_multi_city">Locații multiple</string>
     <string name="widget_refreshing">în așteptare</string>
     <string name="widget_ellipsis">…</string>
-
     <!-- settings -->
     <string name="settings_category_basic">Setări de bază</string>
     <string name="settings_title_background_free">Activitate fundal gestionată de sistem</string>
-    <string name="settings_summary_background_free_on">Activat\nDacă widgeturile și notificările nu se actualizează automat, vă rugăm să dezactivați această opțiune. </string>
-    <string name="settings_summary_background_free_off">Dezactivat\nDacă nu doriți ca serviciile aplicației să continue să ruleze în fundal, activați această opțiune. </string>
+    <string name="settings_summary_background_free_on">Activat
+\nDacă widgeturile și notificările nu se actualizează automat, vă rugăm să dezactivați această opțiune.</string>
+    <string name="settings_summary_background_free_off">Dezactivat
+\nDacă nu doriți ca serviciile aplicației să continue să ruleze în fundal, activați această opțiune.</string>
     <string name="settings_title_live_wallpaper">Tapet dinamic (Live wallpaper)</string>
     <string name="settings_summary_live_wallpaper">Setați animația meteo ca Imagine de fundal dinamică</string>
     <string name="settings_title_service_provider">Furnizor de servicii</string>
@@ -272,7 +246,7 @@
     <string name="settings_title_trend_horizontal_line_switch">Linii orizontale în grafic</string>
     <string name="settings_title_exchange_day_night_temp_switch">Inversează temperaturile pentru zi și noapte</string>
     <string name="settings_title_card_order">Ordinea filelor</string>
-    <string name="settings_title_gravity_sensor_switch">Senzor de gravitație </string>
+    <string name="settings_title_gravity_sensor_switch">Senzor de gravitație</string>
     <string name="settings_title_list_animation_switch">Animare listă</string>
     <string name="settings_title_item_animation_switch">Animare elemente</string>
     <string name="settings_language">Limba</string>
@@ -313,20 +287,17 @@
     <string name="settings_notification_hide_icon_on">Ascuns</string>
     <string name="settings_notification_hide_icon_off">Afișat</string>
     <string name="settings_title_notification_hide_in_lockScreen">Ascunde pe ecranul de blocare</string>
-    <string name="settings_notification_hide_in_lockScreen_on">Ascus (trebuie modificat în setările de sistem) </string>
+    <string name="settings_notification_hide_in_lockScreen_on">Ascus (trebuie modificat în setările de sistem)</string>
     <string name="settings_notification_hide_in_lockScreen_off">Afișat</string>
     <string name="settings_title_notification_hide_big_view">Notif. extinsă</string>
     <string name="settings_notification_hide_big_view_on">Ascuns</string>
     <string name="settings_notification_hide_big_view_off">Afișat</string>
-
     <string name="location_service_baidu">Locație Baidu</string>
     <string name="location_service_baidu_ip">Locație Baidu IP (Exclusiv pentru China)</string>
     <string name="location_service_amap">Locație AMap</string>
     <string name="location_service_native">API Nativ</string>
-
     <string name="notification_style_native">Sistem</string>
     <string name="notification_style_cities">Orașe</string>
-
     <string name="settings_refresh_30min">30 minute</string>
     <string name="settings_refresh_1h">1 oră</string>
     <string name="settings_refresh_1h_30min">1.5 ore</string>
@@ -335,7 +306,6 @@
     <string name="settings_refresh_6h">6 ore</string>
     <string name="settings_refresh_12h">12 ore</string>
     <string name="settings_refresh_24h">24 ore</string>
-
     <string name="settings_automatic">Automat</string>
     <string name="settings_color_light_always">Luminos</string>
     <string name="settings_color_dark_always">Întunecat</string>
@@ -346,7 +316,6 @@
     <string name="settings_color_night_always">Noapte</string>
     <string name="settings_none">Nici unul</string>
     <string name="settings_color_day_night">Zi / Noapte</string>
-
     <string name="widget_style_rectangle">Dreptunghi</string>
     <string name="widget_style_symmetry">Simetric</string>
     <string name="widget_style_tile">Compact</string>
@@ -359,7 +328,6 @@
     <string name="widget_subtitle_data_feels_like">Temp. resimțită</string>
     <string name="widget_subtitle_data_lunar">Calendar lunar</string>
     <string name="widget_subtitle_data_custom">Personalizat</string>
-
     <!-- Weather kind -->
     <string name="weather_kind_clear">Senin</string>
     <string name="weather_kind_partly_cloudy">Parțial noros</string>
@@ -373,5 +341,4 @@
     <string name="weather_kind_thunder">Trăsnet</string>
     <string name="weather_kind_thunderstorm">Furtună</string>
     <string name="weather_kind_wind">Vânt</string>
-
 </resources>

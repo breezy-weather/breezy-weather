@@ -1,8 +1,7 @@
-﻿<resources xmlns:tools="http://schemas.android.com/tools">
-
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- app. -->
     <string name="app_name">Clima</string>
-
     <!-- keyword. -->
     <string name="location_current">localização atual</string>
     <string name="live">Ao vivo</string>
@@ -22,7 +21,6 @@
     <string name="visibility">Visibilidade</string>
     <string name="dew_point">Ponto de Orvalho</string>
     <string name="cloud_cover">Nebulosidade</string>
-
     <string name="of_clock">:00</string>
     <string name="short_yesterday">Ontem</string>
     <string name="short_tomorrow">Amanhã</string>
@@ -33,7 +31,6 @@
     <string name="short_friday">Sex</string>
     <string name="short_saturday">Sab</string>
     <string name="short_sunday">Dom</string>
-
     <string name="wind_level_0">Calmo</string>
     <string name="wind_level_1">Fresco</string>
     <string name="wind_level_2">Brisa Leve</string>
@@ -47,7 +44,6 @@
     <string name="wind_level_10">Tempestade</string>
     <string name="wind_level_11">Tempestade Violenta</string>
     <string name="wind_level_12">Furacão/Tufão</string>
-
     <string name="ephemeris_moon_phase_new">Nova</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Crescente</string>
     <string name="ephemeris_moon_phase_first">Quarto Crescente</string>
@@ -56,13 +52,11 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Balsâmica</string>
     <string name="ephemeris_moon_phase_third">Quarto Minguante</string>
     <string name="ephemeris_moon_phase_waning_crescent">Minguante</string>
-
     <string name="daily_forecast">Diário</string>
     <string name="hourly_forecast">Por Hora</string>
     <string name="air_quality">Qualidade do Ar</string>
     <string name="details">Detalhes</string>
     <string name="ephemeris">Sol &amp; Lua</string>
-
     <string name="action_next">Próximo</string>
     <string name="action_done">Concluído</string>
     <string name="action_cancel" tools:ignore="ButtonCase">Cancelar</string>
@@ -70,55 +64,43 @@
     <string name="settings_disabled">Desligado</string>
     <string name="action_set">Configurar</string>
     <string name="action_help">Ajuda</string>
-
     <string name="about_app">Sobre o aplicativo</string>
     <string name="about_translators">Tradutores</string>
-
     <string name="date_format_short">dd/MM</string>
     <string name="date_format_long">dd\' de \'MMM</string>
     <string name="date_format_widget_short">EEEE, dd/MM</string>
     <string name="date_format_widget_long">EEEE, dd\' de \'MMM</string>
-    <string name="date_format_widget_oreo_style">EEEE, dd\' de \'MMM │ </string>
-
+    <string name="date_format_widget_oreo_style">EEEE, dd\' de \'MMM │</string>
     <!-- feedback. -->
     <string name="notification_channel_request_location">Localização</string>
     <string name="notification_location_in_background">Localização em segundo plano.</string>
-
     <string name="location_message_failed_to_locate">Localização falhou.</string>
     <string name="weather_message_data_refresh_failed">Atualização de clima falhou.</string>
-    <string name="location_dialog_failed_to_locate_title">Não consegue localização corretamente?</string>
+    <string name="location_dialog_failed_to_locate_title">Não consegue localização corretamente\?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Verifique permissões de localização</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Ative dados de localização</string>
     <string name="location_dialog_failed_to_locate_action_select_provider">Selecione Provedor de Localização</string>
-
     <string name="widget_label_view_style">Estilo de visão.</string>
     <string name="widget_label_show_widget_card">Plano de fundo de cartão</string>
     <string name="widget_label_hide_subtitle">Ocultar Subtítulo</string>
     <string name="widget_label_subtitle_data">Dados do subtítulo</string>
     <string name="widget_label_black_text">Texto escuro</string>
     <string name="widget_label_clock_font">Fonte do relógio</string>
-
     <string name="location_message_added">Local adicionado com sucesso</string>
     <string name="location_message_deleted">Local deletado com sucesso</string>
     <string name="location_message_list_cannot_be_empty">Lista de locais não pode estar vazia</string>
-
     <string name="location_search_placeholder">Pesquise um endereço…</string>
     <string name="location_current_not_found_yet">Ainda não localizado…</string>
-
     <string name="settings_changes_apply_after_restart">Terá efeito quando reiniciar.</string>
-
     <string name="notification_running_in_background">Rodando em segundo plano para manter atualizado.</string>
     <string name="notification_updating_weather_data">Atualizando dados de clima.</string>
-
     <string name="dialog_permissions_block_notification_channel_title">Bloquear grupo de notificações.</string>
     <string name="dialog_permissions_block_notification_channel_content">Após desativar “livre de segundo plano”, uma notificação que serviço de segundo plano esta rodando irá aparecer na central de notificações, você pode desativar o canal de notificação do aplicativo nas configurações do dispositivo.</string>
-
     <!-- action -->
     <string name="alerts">Alerta</string>
     <string name="action_search">Pesquisa</string>
     <string name="action_settings">Configurações</string>
     <string name="action_about">Sobre</string>
-
     <!-- widget -->
     <string name="widget_day">Diário</string>
     <string name="widget_week">Semanal</string>
@@ -130,7 +112,6 @@
     <string name="widget_text">Texto</string>
     <string name="widget_refreshing">aguardando</string>
     <string name="widget_ellipsis">…</string>
-
     <!-- settings -->
     <string name="settings_category_basic">Básico</string>
     <string name="settings_title_background_free">Livre de Segundo Plano</string>
@@ -174,12 +155,10 @@
     <string name="settings_title_notification_hide_big_view">Ocultar visão estendida</string>
     <string name="settings_notification_hide_big_view_on">Oculto</string>
     <string name="settings_notification_hide_big_view_off">Mostrando</string>
-
     <string name="location_service_baidu">Localização Baidu</string>
     <string name="location_service_baidu_ip">Localização IP Baidu (China Somente)</string>
     <string name="location_service_amap">Localização AMap</string>
     <string name="location_service_native">API Nativa</string>
-
     <string name="settings_automatic">Automático</string>
     <string name="settings_color_light">Claro</string>
     <string name="settings_color_light_always">Sempre claro</string>
@@ -194,12 +173,10 @@
     <string name="settings_refresh_6h">06:00</string>
     <string name="settings_refresh_12h">12:00</string>
     <string name="settings_refresh_24h">24:00</string>
-
     <string name="widget_style_rectangle">Rectangular</string>
     <string name="widget_style_symmetry">Simétrico</string>
     <string name="widget_subtitle_data_time">Última atualização</string>
     <string name="widget_subtitle_data_wind">Vento</string>
     <string name="widget_subtitle_data_feels_like">Sensação Térmica</string>
     <string name="widget_subtitle_data_lunar">Calendário Lunar</string>
-
 </resources>

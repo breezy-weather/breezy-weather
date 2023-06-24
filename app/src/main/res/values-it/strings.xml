@@ -1,8 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-
     <!-- app. -->
     <string name="app_name">Meteo</string>
-
     <!-- keyword. -->
     <string name="location_current">Posizione automatica</string>
     <string name="location_resident">Posizione residente</string>
@@ -37,7 +36,6 @@
     <string name="action_refresh">Ricarica</string>
     <string name="action_restart">Riavvia</string>
     <string name="action_edit">Modifica</string>
-
     <!-- The following set of strings should be as short as possible. -->
     <string name="of_clock">:00</string>
     <string name="short_yesterday">Ieri</string>
@@ -49,39 +47,34 @@
     <string name="short_friday">Ven</string>
     <string name="short_saturday">Sab</string>
     <string name="short_sunday">Dom</string>
-
     <string name="temperature_real_feel">Sensazione vera</string>
     <string name="temperature_real_feel_shade">Sensazione vera ombra</string>
     <string name="temperature_apparent">Apparente</string>
     <string name="temperature_wind_chill">Vento freddo</string>
     <string name="temperature_wet_bulb">Bulbo umido</string>
     <string name="temperature_degree_day">Grado giorno</string>
-
     <string name="precipitation_total">Totale</string>
     <string name="precipitation_thunderstorm">Temporale</string>
     <string name="precipitation_rain">Pioggia</string>
     <string name="precipitation_snow">Neve</string>
     <string name="precipitation_ice">Ghiaccio</string>
-
     <string name="wind_level_0">Calmo</string>
     <string name="wind_level_1">Brezza leggera</string>
     <string name="wind_level_2">Brezza moderata</string>
     <string name="wind_level_3">Vento debole</string>
     <string name="wind_level_4">Vento</string>
     <string name="wind_level_5">Vento moderato</string>
-    <string name="wind_level_6">Vento forte </string>
+    <string name="wind_level_6">Vento forte</string>
     <string name="wind_level_7">Vento molto forte</string>
     <string name="wind_level_8">Burrasca</string>
     <string name="wind_level_9">Burrasca forte</string>
     <string name="wind_level_10">Tempesta</string>
     <string name="wind_level_11">Tempesta violenta</string>
     <string name="wind_level_12">Uragano</string>
-
     <string name="precipitation_intensity_light">Pioggerella</string>
     <string name="precipitation_intensity_middle">Pioggia</string>
     <string name="precipitation_intensity_heavy">Pioggia torrenziale</string>
     <string name="precipitation_intensity_rainstorm">Temporale</string>
-
     <string name="ephemeris_moon_phase_new">Nuova luna</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Luna crescente</string>
     <string name="ephemeris_moon_phase_first">Primo quarto</string>
@@ -90,12 +83,10 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Gibbosa calante</string>
     <string name="ephemeris_moon_phase_third">Ultimo quarto</string>
     <string name="ephemeris_moon_phase_waning_crescent">Luna calante</string>
-
     <string name="allergen_grass">Erba</string>
     <string name="allergen_mold">Muffa</string>
     <string name="allergen_ragweed">Ambrosia</string>
     <string name="allergen_tree">Albero</string>
-
     <string name="daily_forecast">Meteo Giornaliero</string>
     <string name="hourly_forecast">Previsioni ad ore</string>
     <string name="minutely_forecast">Previsioni al minuto</string>
@@ -104,7 +95,6 @@
     <string name="allergen">Allergene</string>
     <string name="details">Dettagli</string>
     <string name="ephemeris">Sole e Luna</string>
-
     <string name="action_next">AVANTI</string>
     <string name="action_done">FINE</string>
     <string name="action_cancel" tools:ignore="ButtonCase">ANNULLA</string>
@@ -113,29 +103,24 @@
     <string name="action_set">IMPOSTA</string>
     <string name="action_help">AIUTO</string>
     <string name="action_learn_more">ALTRE INFORMAZIONI</string>
-
     <string name="about_app">Info sull’app</string>
     <string name="about_contributors">Contributori</string>
     <string name="about_translators">Traduttori</string>
-
     <string name="date_format_short">d/M</string>
     <string name="date_format_long">d MMM</string>
     <string name="date_format_widget_short">EEEE, d MMM</string>
     <string name="date_format_widget_long">EEEE, d MMM</string>
-    <string name="date_format_widget_oreo_style">EEEE, d MMM │ </string>
-
+    <string name="date_format_widget_oreo_style">EEEE, d MMM │</string>
     <!-- feedback. -->
     <string name="notification_channel_request_location">localizzazione</string>
-    <string name="notification_location_in_background">Localizzazione in corso… </string>
-
+    <string name="notification_location_in_background">Localizzazione in corso…</string>
     <string name="dialog_permissions_location_title">Accesso alle informazioni sulla posizione</string>
     <string name="dialog_permissions_location_content">Breezy Weather deve raccogliere le informazioni sulla posizione dell’utente in primo piano o in background per fornire i dati meteo della posizione corrente. A tal fine, verranno richieste alcune autorizzazioni. Le informazioni sulla posizione dell’utente saranno utilizzate solo per ottenere i dati meteo della sua posizione attuale. Se non si desidera che le informazioni sulla posizione vengano acquisite, è possibile negare questi requisiti e impostare manualmente la propria posizione nella pagina di gestione.</string>
     <string name="dialog_permissions_location_background_title">Accedi alla posizione in background</string>
-    <string name="dialog_permissions_location_background_content">Per consentire all’applicazione di accedere alle informazioni sulla posizione in background, in modo da poter percepire le variazioni di posizione e fornire dati meteo validi, impostare l’accesso alla posizione su "Consenti sempre".</string>
-
+    <string name="dialog_permissions_location_background_content">Per consentire all’applicazione di accedere alle informazioni sulla posizione in background, in modo da poter percepire le variazioni di posizione e fornire dati meteo validi, impostare l’accesso alla posizione su Consenti sempre.</string>
     <string name="location_message_failed_to_locate">Localizzazione fallita.</string>
     <string name="weather_message_data_refresh_failed">Aggiornamento previsioni fallito.</string>
-    <string name="location_dialog_failed_to_locate_title">Errore inserimento luogo? </string>
+    <string name="location_dialog_failed_to_locate_title">Errore inserimento luogo\?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Controlla i permessi di Localizzazione</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Abilita la Localizzazione</string>
     <string name="location_dialog_failed_to_locate_action_select_provider">Fornitore servizio Localizzazione</string>
@@ -143,8 +128,9 @@
     <string name="widget_label_text_size">Dimensione del testo</string>
     <string name="widget_label_hide_lunar">Nascondi il calendario lunare</string>
     <string name="widget_label_align_end">Allinea alla fine</string>
-    <string name="widget_custom_subtitle_explanation">È possibile inserire qualsiasi cosa, ma si prega di prestare attenzione alla lunghezza del testo. Se si desidera citare i dati meteo, utilizzare $ per fare riferimento alla parola chiave corrispondente.\n\nAd esempio, “tempo attuale = $cw$” verrà visualizzato come “tempo attuale = giorno sereno”.</string>
-    
+    <string name="widget_custom_subtitle_explanation">È possibile inserire qualsiasi cosa, ma si prega di prestare attenzione alla lunghezza del testo. Se si desidera citare i dati meteo, utilizzare $ per fare riferimento alla parola chiave corrispondente.
+\n
+\nAd esempio, “tempo attuale = $cw$” verrà visualizzato come “tempo attuale = giorno sereno”.</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Meteo attuale</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Temperatura attuale (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Temperatura attuale (°)</string>
@@ -184,10 +170,8 @@
     <string name="widget_custom_subtitle_keyword_xmr_description">Alba lunare di oggi, domani, …, 4 giorni dopo</string>
     <string name="widget_custom_subtitle_keyword_xms_description">Tramonto lunare di oggi, domani, …, 4 giorni dopo</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">Fase lunare di oggi, domani, …, 4 giorni dopo</string>
-
     <string name="widget_live_wallpaper_weather_kind">Meteo</string>
     <string name="widget_live_wallpaper_day_night_type">Tempo</string>
-
     <string name="widget_label_view_style">Stile widget</string>
     <string name="widget_label_show_widget_card">Sfondo</string>
     <string name="widget_label_show_widget_card_alpha">Opacità sfondo</string>
@@ -195,24 +179,17 @@
     <string name="widget_label_subtitle_data">Sottotitolo</string>
     <string name="widget_label_black_text">Colore testo</string>
     <string name="widget_label_clock_font">Font orologio</string>
-
     <string name="location_message_added">Località registrata con successo.</string>
     <string name="location_message_deleted">Località rimossa con successo.</string>
     <string name="location_message_list_cannot_be_empty">La lista di località non può essere vuota.</string>
-
     <string name="location_search_placeholder">Cerca una località…</string>
     <string name="location_current_not_found_yet">Nessuna località…</string>
-
     <string name="settings_changes_apply_after_restart">Le impostazioni avranno effetto riavviando l’app.</string>
-
     <string name="notification_running_in_background">Esecuzione in background degli aggiornamenti…</string>
     <string name="notification_updating_weather_data">Aggiornamento dati meteo…</string>
-
     <string name="dialog_permissions_block_notification_channel_title">Blocca notifiche</string>
     <string name="dialog_permissions_block_notification_channel_content">Abilitando l’app in background, una notifica apparirà indicando che l’app è in esecuzione in background. Puoi nascondere questa notifica nella pagina d’informazioni dell’app, disabilitando il canale del Servizio Background.</string>
-
     <string name="widget_live_wallpaper_cannot_start_activity">Impossibile creare un’anteprima per lo sfondo animato.</string>
-
     <!-- action -->
     <string name="alerts">Allerte</string>
     <string name="action_search">Ricerca</string>
@@ -220,7 +197,6 @@
     <string name="action_preview">Anteprima</string>
     <string name="action_about">Informazioni</string>
     <string name="action_app_store">Play Store</string>
-
     <!-- widget -->
     <string name="widget_day">Giornaliero</string>
     <string name="widget_week">Settimanale</string>
@@ -234,12 +210,13 @@
     <string name="widget_trend_hourly">Trent orario</string>
     <string name="widget_refreshing">in attesa</string>
     <string name="widget_ellipsis">…</string>
-
     <!-- settings -->
     <string name="settings_category_basic">Base</string>
     <string name="settings_title_background_free">Disabilita app in background</string>
-    <string name="settings_summary_background_free_on">ON\nSe i widget non si aggiornano disabilitare questa funzione.</string>
-    <string name="settings_summary_background_free_off">OFF\nSe non si vuole che l’app funzioni in background, abilitare questa funzione.</string>
+    <string name="settings_summary_background_free_on">ON
+\nSe i widget non si aggiornano disabilitare questa funzione.</string>
+    <string name="settings_summary_background_free_off">OFF
+\nSe non si vuole che l’app funzioni in background, abilitare questa funzione.</string>
     <string name="settings_title_live_wallpaper">Sfondo animato</string>
     <string name="settings_summary_live_wallpaper">Imposta l’animazione meteo come sfondo</string>
     <string name="settings_title_service_provider">Fonte meteo</string>
@@ -296,7 +273,8 @@
     <string name="notification_precipitation_today">Oggi potrebbero verificarsi delle precipitazioni.</string>
     <string name="notification_precipitation_short_term">Nelle prossime ore potrebbero verificarsi precipitazioni.</string>
     <string name="location_resident_message">Imposta come città residente</string>
-    <string name="location_resident_dialog">Breezy Weather mostra e nasconde automaticamente le città residenti in base alla posizione attuale.\nAd esempio, è possibile impostare la propria città natale come città residente. È possibile controllare il meteo della propria città mentre si è in viaggio. Quando si torna a casa, il meteo della città natale viene nascosto e sostituito da quello della località in cui ci si trova.</string>
+    <string name="location_resident_dialog">Breezy Weather mostra e nasconde automaticamente le città residenti in base alla posizione attuale.
+\nAd esempio, è possibile impostare la propria città natale come città residente. È possibile controllare il meteo della propria città mentre si è in viaggio. Quando si torna a casa, il meteo della città natale viene nascosto e sostituito da quello della località in cui ci si trova.</string>
     <string name="allergen_tap_to_see_more">Clicca per saperne di più…</string>
     <string name="message_tap_again_to_exit">Clicca nuovamente per uscire</string>
     <string name="action_back">Indietro</string>
@@ -341,12 +319,10 @@
     <string name="settings_icon_providers_weather_icon_dark">Icona scura</string>
     <string name="settings_icon_providers_weather_icon_light">Icona chiara</string>
     <string name="settings_icon_providers_weather_adaptive_icon">Icona del meteo</string>
-
     <string name="location_service_baidu">Localizzazione Baidu</string>
     <string name="location_service_baidu_ip">Localizzazione IP Baidu (Cina)</string>
     <string name="location_service_amap">Localizzazione AMap</string>
     <string name="location_service_native">API nativa</string>
-
     <string name="settings_automatic">Automatico</string>
     <string name="settings_none">Nessuno</string>
     <string name="settings_color_day_night">Giorno / Notte</string>
@@ -365,10 +341,8 @@
     <string name="settings_refresh_6h">6 ore</string>
     <string name="settings_refresh_12h">12 ore</string>
     <string name="settings_refresh_24h">24 ore</string>
-
     <string name="notification_style_native">Nativo</string>
     <string name="notification_style_cities">Città</string>
-
     <string name="widget_style_rectangle">Rettangolo</string>
     <string name="widget_style_symmetry">Simmetrico</string>
     <string name="widget_style_tile">Ordinato</string>
@@ -382,7 +356,6 @@
     <string name="widget_subtitle_data_feels_like">Temperatura percepita</string>
     <string name="widget_subtitle_data_lunar">Calendario lunare</string>
     <string name="widget_subtitle_data_custom">Personalizzato</string>
-
     <!-- Weather kind -->
     <string name="weather_kind_clear">Sereno</string>
     <string name="weather_kind_partly_cloudy">Parzialmente nuvoloso</string>
@@ -396,7 +369,6 @@
     <string name="weather_kind_thunder">Tuono</string>
     <string name="weather_kind_thunderstorm">Temporale</string>
     <string name="weather_kind_wind">Vento</string>
-
     <string name="unit_kph_voice">Chilometri all’ora</string>
     <string name="unit_mps_voice">Metri al secondo</string>
     <string name="unit_kn_voice">Nodi</string>

@@ -1,8 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <!-- app. -->
     <string name="app_name">Oratge</string>
-
     <!-- keyword. -->
     <string name="location_current">Ubicació actual</string>
     <string name="location_resident">Ubicació dels residents</string>
@@ -37,7 +36,6 @@
     <string name="action_refresh">Actualitza</string>
     <string name="action_restart">Reinicia</string>
     <string name="action_edit">Edita</string>
-
     <!-- The following set of strings should be as short as possible. -->
     <string name="of_clock">:00</string>
     <string name="short_yesterday">Ahir</string>
@@ -49,20 +47,17 @@
     <string name="short_friday">Dv</string>
     <string name="short_saturday">Ds</string>
     <string name="short_sunday">Dg</string>
-
     <string name="temperature_real_feel">Sensació tèrmica</string>
     <string name="temperature_real_feel_shade">Sensació tèrmica real</string>
     <string name="temperature_apparent">Aparent</string>
     <string name="temperature_wind_chill">Vent fred</string>
     <string name="temperature_wet_bulb">Temperatura humida</string>
     <string name="temperature_degree_day">Grau dia</string>
-
     <string name="precipitation_total">Total</string>
     <string name="precipitation_thunderstorm">Tempesta</string>
     <string name="precipitation_rain">Pluja</string>
     <string name="precipitation_snow">Neu</string>
     <string name="precipitation_ice">Gel</string>
-
     <string name="wind_level_0">Calma</string>
     <string name="wind_level_1">Aire lleuger</string>
     <string name="wind_level_2">Brisa lleugera</string>
@@ -76,12 +71,10 @@
     <string name="wind_level_10">Tempesta</string>
     <string name="wind_level_11">Tempesta violenta</string>
     <string name="wind_level_12">Huracà/Tifó</string>
-
     <string name="precipitation_intensity_light">Plugim</string>
     <string name="precipitation_intensity_middle">Pluja</string>
     <string name="precipitation_intensity_heavy">Xàfec</string>
     <string name="precipitation_intensity_rainstorm">Aiguat</string>
-
     <string name="ephemeris_moon_phase_new">Lluna nova</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Gibosa creixent</string>
     <string name="ephemeris_moon_phase_first">Quart creixent</string>
@@ -90,12 +83,10 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Gibosa minvant</string>
     <string name="ephemeris_moon_phase_third">Quart minvant</string>
     <string name="ephemeris_moon_phase_waning_crescent">Minvant</string>
-
     <string name="allergen_grass">Gramínies</string>
     <string name="allergen_mold">Floridura</string>
     <string name="allergen_ragweed">Ambròsia</string>
     <string name="allergen_tree">Arbre</string>
-
     <string name="daily_forecast">Pronòstic diari</string>
     <string name="hourly_forecast">Pronòstic horari</string>
     <string name="minutely_forecast">Pronòstic del minut</string>
@@ -104,7 +95,6 @@
     <string name="allergen">Al·lergen</string>
     <string name="details">Detalls</string>
     <string name="ephemeris">Sol i lluna</string>
-
     <string name="action_next">SEGÜENT</string>
     <string name="action_done">FET</string>
     <string name="action_cancel">CANCEL·LA</string>
@@ -113,10 +103,8 @@
     <string name="action_set">ESTABLEIX</string>
     <string name="action_help">AJUDA</string>
     <string name="action_learn_more">SABER-NE MÉS</string>
-
     <string name="about_app">Quant a l’app</string>
     <string name="about_translators">Traductors</string>
-
     <!-- Date format strings. -->
     <!-- Month : MMM(long) / M(short). -->
     <!-- Day   : dd(long) / d(short). -->
@@ -126,21 +114,18 @@
     <string name="date_format_widget_short">EEE, MMM d</string>
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
-
     <!-- feedback. -->
     <string name="notification_channel_request_location">Ubicació</string>
     <string name="notification_location_in_background">Ubicació en segon pla</string>
-
     <string name="location_message_failed_to_locate">Ha fallat l’accés a la ubicació</string>
     <string name="weather_message_data_refresh_failed">Ha fallat l’accés a les dades de l’oratge</string>
-    <string name="location_dialog_failed_to_locate_title">No funciona la ubicació?</string>
+    <string name="location_dialog_failed_to_locate_title">No funciona la ubicació\?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Verifica els permisos d’accés a la ubicació</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Habilita la infomació d’ubicació</string>
     <string name="location_dialog_failed_to_locate_action_select_provider">Selecciona un proveïdor d’ubicació</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Especifica la ubicació manualment i esborra “$”</string>
     <string name="dialog_permissions_location_background_title">Accés a la ubicació en segon pla</string>
     <string name="dialog_permissions_location_background_content">Per autoritzar que l’aplicació pugui funcionar en segon pla, seleccioneu l’opció “Permet sempre” al diàleg d’autorització d’accés a la ubicació.</string>
-
     <string name="widget_label_view_style">Estil de vista</string>
     <string name="widget_label_show_widget_card">Fons d’un color</string>
     <string name="widget_label_show_widget_card_alpha">Transparència</string>
@@ -150,7 +135,9 @@
     <string name="widget_label_text_size">Mida del text</string>
     <string name="widget_label_clock_font">Font del rellotge</string>
     <string name="widget_label_hide_lunar">Oculta el calendari lunar</string>
-    <string name="widget_custom_subtitle_explanation">Pots escriure-hi el que vulguis, però si us plau para atenció a la longitud del text. Si vols incloure-hi dades de l’oratge, si us plau empra $ per a referenciar la paraula clau corresponent.\n\nPer exemple, “oratge actual = $cw$” es mostrarà com a “oratge actual = Cel clar”.</string>
+    <string name="widget_custom_subtitle_explanation">Pots escriure-hi el que vulguis, però si us plau para atenció a la longitud del text. Si vols incloure-hi dades de l’oratge, si us plau empra $ per a referenciar la paraula clau corresponent.
+\n
+\nPer exemple, “oratge actual = $cw$” es mostrarà com a “oratge actual = Cel clar”.</string>
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
     <string name="widget_custom_subtitle_keyword_cw_description">Oratge actual</string>
@@ -192,40 +179,29 @@
     <string name="widget_custom_subtitle_keyword_xmr_description">Sortida de la lluna d’avui, demà, …, 4 dies després</string>
     <string name="widget_custom_subtitle_keyword_xms_description">Posta de la lluna d’avui, demà, …, 4 dies després</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">Fase lunar d’avui, demà, …, 4 dies després</string>
-
     <string name="widget_live_wallpaper_weather_kind">Oratge</string>
     <string name="widget_live_wallpaper_day_night_type">Hora</string>
-
     <string name="location_message_added">S’ha afegit la ubicació correctament</string>
     <string name="location_message_deleted">S’ha eliminat la ubicació correctament</string>
     <string name="location_message_list_cannot_be_empty">La llista d’ubicacions no pot estar buida</string>
-
     <string name="location_search_placeholder">Cerca una ubicació…</string>
     <string name="location_current_not_found_yet">No hi ha ubicacions…</string>
-
     <string name="settings_changes_apply_after_restart">Els canvis es faran efectius després de reiniciar</string>
-
     <string name="notification_running_in_background">l’actualització es continuarà produint en segon pla</string>
     <string name="notification_updating_weather_data">S’estan actualitzant les dades de l’oratge</string>
     <string name="message_updated_in_background">Actualitzat en segon pla</string>
-
     <string name="dialog_permissions_block_notification_channel_title">Bloquejar grup de notificacions</string>
     <string name="dialog_permissions_block_notification_channel_content">Després de desactivar “No usis segon pla”, apareixerà una notificació a la barra de notificacions indicant que el servei està funcionant en segon pla. Podeu desactivar el canal d’informació en segon pla impedint aquestes notificacions en la pàgina d’informació de l’aplicació.</string>
-
     <string name="dialog_permissions_ignore_battery_optimizations_title">Ignora l’optimització de la bateria</string>
     <string name="dialog_permissions_ignore_battery_optimizations_content">Per a assegurar que els serveis en segon pla continuïn funcionant, si us plau ignoreu l’optimització de bateria per a Oratge Breezy.</string>
-
     <string name="widget_live_wallpaper_cannot_start_activity">No s’ha aconseguit iniciar el context de vista preliminar del fons de pantalla animat</string>
-
     <string name="notification_precipitation_today">Pot ser que avui hi hagi precipitations.</string>
     <string name="notification_precipitation_short_term">Pot ser que la precipitació ocorri en les properes hores.</string>
-
     <string name="location_resident_message">Estableix com a ciutat on residiu</string>
-    <string name="location_resident_dialog">Oratge Breezy mostrarà i ocultarà automàticament les ciutats on residiu sobre la base de la teva ubicació actual.\nPer exemple, podeu establir la ciutat natal com una ciutat on residiu. Podeu consultar l’oratge de ciutat natal mentre esteu viatjant. Quan arribeu a casa, l’oratge de ciutat natal estarà ocult i reemplaçat pel de la teva ubicació actual.</string>
-
+    <string name="location_resident_dialog">Oratge Breezy mostrarà i ocultarà automàticament les ciutats on residiu sobre la base de la teva ubicació actual.
+\nPer exemple, podeu establir la ciutat natal com una ciutat on residiu. Podeu consultar l’oratge de ciutat natal mentre esteu viatjant. Quan arribeu a casa, l’oratge de ciutat natal estarà ocult i reemplaçat pel de la teva ubicació actual.</string>
     <string name="allergen_tap_to_see_more">Premeu per saber-ne més…</string>
     <string name="message_tap_again_to_exit">Premeu de nou per a sortir</string>
-
     <!-- action -->
     <string name="alerts">Alerta</string>
     <string name="action_search">Cerca</string>
@@ -233,7 +209,6 @@
     <string name="action_preview">Vista preliminar</string>
     <string name="action_about">Quant a</string>
     <string name="action_app_store">Botiga d’aplicacions</string>
-
     <!-- widget -->
     <string name="widget_day">Diari</string>
     <string name="widget_week">Setmanal</string>
@@ -248,12 +223,13 @@
     <string name="widget_multi_city">Múltiples ciutats</string>
     <string name="widget_refreshing">carregant</string>
     <string name="widget_ellipsis">…</string>
-
     <!-- settings -->
     <string name="settings_category_basic">Bàsica</string>
     <string name="settings_title_background_free">No usis segon pla</string>
-    <string name="settings_summary_background_free_on">Activat\nSi els ginys i notificacions no s’actualitzen automàticament, si us plau desactiveu aquesta opció</string>
-    <string name="settings_summary_background_free_off">Desactivat\nSi no desitgeu que cap servei continuï treballant en segon pla, si us plau activeu aquesta opció.</string>
+    <string name="settings_summary_background_free_on">Activat
+\nSi els ginys i notificacions no s’actualitzen automàticament, si us plau desactiveu aquesta opció</string>
+    <string name="settings_summary_background_free_off">Desactivat
+\nSi no desitgeu que cap servei continuï treballant en segon pla, si us plau activeu aquesta opció.</string>
     <string name="settings_title_live_wallpaper">Fons de pantalla animat</string>
     <string name="settings_summary_live_wallpaper">Estableix l’animació de l’oratge estil Material Design com a fons de pantalla animat</string>
     <string name="settings_title_service_provider">Proveïdor de servei</string>
@@ -315,14 +291,12 @@
     <string name="settings_title_notification_hide_big_view">Estil gran</string>
     <string name="settings_notification_hide_big_view_on">Oculta</string>
     <string name="settings_notification_hide_big_view_off">Visible</string>
-
     <string name="weather_source_china">Xina</string>
     <string name="location_service_baidu_ip">Baidu IP Location (només per la Xina)</string>
     <string name="location_service_native">API nativa</string>
     <string name="settings_automatic">Automàtic</string>
     <string name="settings_color_light_always">Sempre clar</string>
     <string name="settings_color_dark_always">Sempre fosc</string>
-
     <string name="settings_refresh_never">Never</string>
     <string name="settings_refresh_30min">Mitja hora</string>
     <string name="settings_refresh_1h">1 hora</string>
@@ -332,7 +306,6 @@
     <string name="settings_refresh_6h">6 hores</string>
     <string name="settings_refresh_12h">12 hores</string>
     <string name="settings_refresh_24h">24 hores</string>
-
     <string name="notification_style_native">Natiu</string>
     <string name="notification_style_cities">Ciutats</string>
     <string name="settings_color_light">Clar</string>
@@ -352,7 +325,6 @@
     <string name="widget_subtitle_data_lunar">Calendari lunar</string>
     <string name="widget_subtitle_data_custom">Personaliza</string>
     <string name="settings_none">Cap</string>
-
     <!-- Weather kind -->
     <string name="weather_kind_clear">Clar</string>
     <string name="weather_kind_partly_cloudy">Parcialment ennuvolat</string>
@@ -368,7 +340,6 @@
     <string name="weather_kind_wind">Vent</string>
     <string name="settings_color_day_always">Sempre diürn</string>
     <string name="settings_color_night_always">Sempre nocturn</string>
-
     <string name="unit_kph_voice">Kilòmetres per hora</string>
     <string name="unit_mps_voice">Metres per segon</string>
     <string name="unit_kn_voice">Nusos</string>
