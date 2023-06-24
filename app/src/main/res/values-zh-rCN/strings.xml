@@ -1,11 +1,7 @@
 <resources>
 
-    <!-- Do NOT translate values that are identical in English and in your language -->
-    <!-- Do NOT use " and ', use appropriate typographic quotes for your language (in English: “ and ”, ‘ and ’) -->
-
     <!-- app. -->
     <string name="app_name">天气</string>
-    <string name="breezy_weather">Breezy 天气</string>
 
     <!-- keyword. -->
     <string name="location_current">当前位置</string>

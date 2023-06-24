@@ -1,11 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Do NOT translate values that are identical in English and in your language -->
-    <!-- Do NOT use " and ', use appropriate typographic quotes for your language (in English: “ and ”, ‘ and ’) -->
-
     <!-- app. -->
     <string name="app_name">Време</string>
-    <string name="breezy_weather">Breezy време</string>
 
     <!-- keyword. -->
     <string name="location_current">Тренутну локацију</string>

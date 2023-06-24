@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="Nederlands">
 
-    <!-- Do NOT translate values that are identical in English and in your language -->
-    <!-- Do NOT use " and ', use appropriate typographic quotes for your language (in English: “ and ”, ‘ and ’) -->
-
     <!-- app. -->
     <string name="app_name">Weer</string>
 

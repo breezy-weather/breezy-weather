@@ -1,11 +1,7 @@
 <resources>
 
-    <!-- Do NOT translate values that are identical in English and in your language -->
-    <!-- Do NOT use " and ', use appropriate typographic quotes for your language (in English: “ and ”, ‘ and ’) -->
-
     <!-- app. -->
     <string name="app_name">天氣</string>
-    <string name="breezy_weather">Breezy 天氣</string>
 
     <!-- keyword. -->
     <string name="location_current">當前位置</string>
@@ -347,5 +343,126 @@
     <string name="settings_title_notification_hide_big_view">隱藏大視圖</string>
     <string name="settings_notification_hide_big_view_on">隱藏</string>
     <string name="settings_notification_hide_big_view_off">顯示</string>
+
+    <string name="weather_source_accuweather_voice">ACCU天氣</string>
+    <string name="weather_source_openweather_voice">OPEN天氣</string>
+    <string name="weather_source_china">中國</string>
+    <string name="weather_source_china_voice">中國</string>
+    <string name="location_service_baidu">百度定位</string>
+    <string name="location_service_baidu_ip">百度IP定位（僅中國地區）</string>
+    <string name="location_service_amap">高德定位</string>
+    <string name="location_service_native">原生接口</string>
+
+    <string name="settings_automatic">自動</string>
+    <string name="settings_none">無卡片</string>
+    <string name="settings_color_day_night">白晝 / 夜晚</string>
+    <string name="settings_color_day_always">白晝主題</string>
+    <string name="settings_color_night_always">夜晚主題</string>
+    <string name="settings_color_light">亮色</string>
+    <string name="settings_color_light_always">亮色主題</string>
+    <string name="settings_color_grey">灰色</string>
+    <string name="settings_color_dark">暗色</string>
+    <string name="settings_color_dark_always">暗色主題</string>
+    <string name="settings_refresh_30min">半小時</string>
+    <string name="settings_refresh_1h">1小時</string>
+    <string name="settings_refresh_1h_30min">1.5小時</string>
+    <string name="settings_refresh_2h">2小時</string>
+    <string name="settings_refresh_3h">3小時</string>
+    <string name="settings_refresh_6h">6小時</string>
+    <string name="settings_refresh_12h">12小時</string>
+    <string name="settings_refresh_24h">24小時</string>
+
+    <string name="notification_style_native">原生</string>
+    <string name="notification_style_cities">多城市</string>
+
+    <string name="widget_style_rectangle">矩形</string>
+    <string name="widget_style_symmetry">對稱</string>
+    <string name="widget_style_tile">瓷磚</string>
+    <string name="widget_style_vertical">竪版</string>
+    <string name="widget_style_oreo">奧利奧</string>
+    <string name="widget_style_oreo_google_sans">奧利奧（Google字體）</string>
+    <string name="widget_style_temperature">僅溫度</string>
+    <string name="widget_week_style_5_days">五天</string>
+    <string name="widget_week_style_3_days">三天</string>
+    <string name="widget_subtitle_data_time">更新時間</string>
+    <string name="widget_subtitle_data_aqi">空氣質量</string>
+    <string name="widget_subtitle_data_wind">風況</string>
+    <string name="widget_subtitle_data_feels_like">體感溫度</string>
+    <string name="widget_subtitle_data_lunar">農曆</string>
+    <string name="widget_subtitle_data_custom">自定義</string>
+
+    <!-- Weather kind -->
+    <string name="weather_kind_clear">晴</string>
+    <string name="weather_kind_partly_cloudy">多雲</string>
+    <string name="weather_kind_cloudy">陰</string>
+    <string name="weather_kind_rain">雨</string>
+    <string name="weather_kind_snow">雪</string>
+    <string name="weather_kind_sleet">凍雨</string>
+    <string name="weather_kind_hail">冰雹</string>
+    <string name="weather_kind_fog">霧</string>
+    <string name="weather_kind_haze">霾</string>
+    <string name="weather_kind_thunder">雷暴</string>
+    <string name="weather_kind_thunderstorm">雷雨</string>
+    <string name="weather_kind_wind">風</string>
+
+    <!-- Units -->
+    <string name="unit_kph">千米/時</string>
+    <string name="unit_kph_voice">千米每小時</string>
+    <string name="unit_mps">米/秒</string>
+    <string name="unit_mps_voice">米每秒</string>
+    <string name="unit_kn">節</string>
+    <string name="unit_kn_voice">節</string>
+    <string name="unit_mph">英里/時</string>
+    <string name="unit_mph_voice">英里每小時</string>
+    <string name="unit_ftps">英尺/秒</string>
+    <string name="unit_ftps_voice">英尺每秒</string>
+    <string name="unit_mm">毫米</string>
+    <string name="unit_mm_voice">毫米</string>
+    <string name="unit_cm">厘米</string>
+    <string name="unit_cm_voice">厘米</string>
+    <string name="unit_in">英寸</string>
+    <string name="unit_in_voice">英寸</string>
+    <string name="unit_lpsqm">升/米²</string>
+    <string name="unit_lpsqm_voice">升每平方米</string>
+    <string name="unit_mmph">毫米/時</string>
+    <string name="unit_mmph_voice">毫米每小時</string>
+    <string name="unit_cmph">厘米/時</string>
+    <string name="unit_cmph_voice">厘米每小時</string>
+    <string name="unit_inph">英寸/時</string>
+    <string name="unit_inph_voice">英寸每小時</string>
+    <string name="unit_lpsqmph">升/米²/時</string>
+    <string name="unit_lpsqmph_voice">升每平方米每小時</string>
+    <string name="unit_km">千米</string>
+    <string name="unit_km_voice">千米</string>
+    <string name="unit_m">米</string>
+    <string name="unit_m_voice">米</string>
+    <string name="unit_mi">英里</string>
+    <string name="unit_mi_voice">英里</string>
+    <string name="unit_nmi">海里</string>
+    <string name="unit_nmi_voice">海里</string>
+    <string name="unit_ft">英尺</string>
+    <string name="unit_ft_voice">英尺</string>
+    <string name="unit_mb">毫巴</string>
+    <string name="unit_mb_voice">毫巴</string>
+    <string name="unit_kpa">千帕</string>
+    <string name="unit_kpa_voice">千帕</string>
+    <string name="unit_hpa">百帕</string>
+    <string name="unit_hpa_voice">百帕</string>
+    <string name="unit_atm">標準大氣壓</string>
+    <string name="unit_atm_voice">大氣壓</string>
+    <string name="unit_mmhg">毫米汞柱</string>
+    <string name="unit_mmhg_voice">毫米汞柱</string>
+    <string name="unit_inhg">英寸汞柱</string>
+    <string name="unit_inhg_voice">英寸汞柱</string>
+    <string name="unit_kgfpsqcm">千克力/米²</string>
+    <string name="unit_kgfpsqcm_voice">千克力每平方米</string>
+    <string name="unit_mugpcum">微克/米³</string>
+    <string name="unit_mugpcum_voice">微克每立方米</string>
+    <string name="unit_mgpcum">毫克/米³</string>
+    <string name="unit_mgpcum_voice">毫克每立方米</string>
+    <string name="unit_h">小時</string>
+    <string name="unit_h_voice">小時</string>
+    <string name="unit_ppcm">/米³</string>
+    <string name="unit_ppcm_voice">每立方米</string>
 
 </resources>

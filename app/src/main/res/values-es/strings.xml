@@ -1,11 +1,7 @@
 <resources>
 
-    <!-- Do NOT translate values that are identical in English and in your language -->
-    <!-- Do NOT use " and ', use appropriate typographic quotes for your language (in English: “ and ”, ‘ and ’) -->
-
     <!-- app. -->
     <string name="app_name">Clima</string>
-    <string name="breezy_weather">Clima Breezy</string>
 
     <!-- keyword. -->
     <string name="location_current">Ubicación actual</string>
@@ -388,8 +384,8 @@
     <string name="unit_nmi_voice">Millas náuticas</string>
     <string name="unit_ft_voice">Pies</string>
     <string name="unit_mb_voice">Milibares</string>
-    <string name="unit_kpa_voice">Kilo pascales</string>
-    <string name="unit_hpa_voice">Hecto pascales</string>
+    <string name="unit_kpa_voice">Kilopascales</string>
+    <string name="unit_hpa_voice">Hectopascales</string>
     <string name="unit_atm_voice">Atmósferas</string>
     <string name="unit_mmhg_voice">Milímetros de mercurio</string>
     <string name="unit_inhg_voice">Pulgadas de mercurio</string>

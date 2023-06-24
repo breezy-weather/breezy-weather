@@ -22,9 +22,11 @@ Additions already available:
 
 ### Download app
 
-Currently on alpha, you can download debug builds (artifacts) from GitHub actions if you are logged in, or build it with Android Studio, or from command line with Gradle.
+Alpha releases available from:
+* [GitHub](https://github.com/breezy-weather/breezy-weather/releases)
+* [Obtainium](https://github.com/ImranR98/Obtainium)
 
-Very soon as pre-releases on GitHub, and on IzzyDroid if possible.
+Will be added to IzzyDroid soon, if possible.
 
 When moving to beta, it will be available on F-Droid if they agree.
 

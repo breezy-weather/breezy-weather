@@ -1,8 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Do NOT translate values that are identical in English and in your language -->
-    <!-- Do NOT use " and ', use appropriate typographic quotes for your language (in English: “ and ”, ‘ and ’) -->
-
     <!-- app. -->
     <string name="app_name">Meteo</string>
 
@@ -419,8 +416,8 @@
     <string name="unit_nmi_voice">Miglia nautiche</string>
     <string name="unit_ft_voice">Piedi</string>
     <string name="unit_mb_voice">Millibar</string>
-    <string name="unit_kpa_voice">Chilo pascal</string>
-    <string name="unit_hpa_voice">Etto pascal</string>
+    <string name="unit_kpa_voice">Chilopascal</string>
+    <string name="unit_hpa_voice">Ettopascal</string>
     <string name="unit_atm_voice">Atmosfere</string>
     <string name="unit_mmhg_voice">Millimetri di mercurio</string>
     <string name="unit_inhg_voice">Pollichi di mercurio</string>

@@ -1,12 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="MissingTranslation">
 
-    <!-- Do NOT translate values that are identical in English and in your language -->
-    <!-- Do NOT use " and ', use appropriate typographic quotes for your language (in English: “ and ”, ‘ and ’) -->
-
     <!-- App -->
     <string name="app_name">Weather</string>
-    <string name="breezy_weather">Breezy Weather</string>
+    <string name="breezy_weather" translatable="false">Breezy Weather</string>
 
     <!-- Card names -->
     <string name="daily_forecast">Daily forecast</string>
@@ -295,7 +292,7 @@
     <string name="widget_subtitle_data_custom">Custom</string>
     <!-- keep the “$cw$” part as is -->
     <string name="widget_custom_subtitle_explanation">You can input anything, but please pay attention to the length of the text. If you want to quote weather data, please use $ to reference the corresponding keyword.\n\nFor example, “Current weather is: $cw$.” will be displayed as “Current weather is: Clear Day.”.</string>
-    <string name="widget_custom_subtitle_keyword_separator">\u0020:\u0020</string>
+    <string name="widget_custom_subtitle_keyword_separator" translatable="false">\u0020:\u0020</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Current Weather</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Current Temperature (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Current Temperature (°)</string>
@@ -429,14 +426,16 @@
     <string name="settings_changes_apply_after_restart">Changes will take effect after restart</string>
     <string name="settings_items_drag_to_sort">Tap to drag the list items to sort</string>
     <string name="settings_item_delete">Delete this item</string>
+    <string name="settings_background_animation_enabled">@string/settings_enabled</string>
+    <string name="settings_background_animation_disabled">@string/settings_disabled</string>
     <string name="settings_provider_default_value">Default (unchanged)</string>
     <string name="settings_provider_accu_weather">AccuWeather</string>
     <string name="settings_provider_accu_weather_key">AccuWeather key</string>
     <string name="settings_provider_open_weather">OpenWeather</string>
     <string name="settings_provider_open_weather_key">OpenWeather key</string>
     <string name="settings_provider_open_weather_one_call_version">OpenWeather OneCall version</string>
-    <string name="settings_provider_baidu_ip_location">Baidu IP location</string>
-    <string name="settings_provider_baidu_ip_location_ak">Baidu IP location AK</string>
+    <string name="settings_provider_baidu_ip_location">Baidu IP Location</string>
+    <string name="settings_provider_baidu_ip_location_ak">Baidu IP Location API Key</string>
     <string name="settings_provider_mf">Météo France</string>
     <string name="settings_provider_mf_wsft_key">Météo France WSFT key</string>
     <string name="settings_provider_iqa_atmo_aura_key">ATMO AURA key</string>
@@ -446,7 +445,7 @@
     <string name="settings_icon_providers_weather_icon_grey">Grey icon</string>
     <string name="settings_icon_providers_weather_icon_dark">Dark icon</string>
     <string name="settings_icon_providers_get_more">Get more</string>
-    <string name="settings_icon_providers_app_store">@string/action_app_store</string>
+    <string name="settings_icon_providers_app_store" translatable="false">@string/action_app_store</string>
     <string name="settings_icon_providers_get_more_store">Get more from app store</string>
     <string name="settings_icon_providers_get_more_github">Get more from GitHub</string>
     <string name="settings_enabled">Enabled</string>
@@ -518,9 +517,9 @@
     <string name="unit_mb">mb</string>
     <string name="unit_mb_voice">Millibars</string>
     <string name="unit_kpa">kPa</string>
-    <string name="unit_kpa_voice">Kilo pascals</string>
+    <string name="unit_kpa_voice">Kilopascals</string>
     <string name="unit_hpa">hPa</string>
-    <string name="unit_hpa_voice">Hecto pascals</string>
+    <string name="unit_hpa_voice">Hectopascals</string>
     <string name="unit_atm">atm</string>
     <string name="unit_atm_voice">Atmospheres</string>
     <string name="unit_mmhg">mmHg</string>

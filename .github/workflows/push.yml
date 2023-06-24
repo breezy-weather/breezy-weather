@@ -72,10 +72,11 @@ jobs:
           tag_name: ${{ env.VERSION_TAG }}
           name: Breezy Weather ${{ env.VERSION_TAG }}
           body: |
-            ---
             **IMPORTANT NOTE: This is a pre-release version. Migration of data is not guaranteed between alpha versions. If you experience issues after updating to a new alpha versions, please clean your app data and retry.**
 
             *This release is based on a variant that does not contain proprietary blobs*
+
+            ---
 
             ### Checksums
             | Variant     | SHA-256                           |

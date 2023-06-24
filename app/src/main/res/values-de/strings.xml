@@ -1,8 +1,5 @@
 <resources>
 
-    <!-- Do NOT translate values that are identical in English and in your language -->
-    <!-- Do NOT use " and ', use appropriate typographic quotes for your language (in English: “ and ”, ‘ and ’) -->
-
     <string name="about_app">Über</string>
     <string name="action_about">Über</string>
     <string name="alerts">Alarm</string>
