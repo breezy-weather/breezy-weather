@@ -341,22 +341,13 @@
     <string name="weather_kind_thunder">Trăsnet</string>
     <string name="weather_kind_thunderstorm">Furtună</string>
     <string name="weather_kind_wind">Vânt</string>
-    <string name="key_hide_subtitle" translatable="false"/>
     <string name="unit_lpsqm"/>
-    <string name="unit_kelvin"/>
     <string name="widget_style_vertical"/>
-    <string name="unit_nmi"/>
     <string name="unit_ft"/>
-    <string name="unit_atm_voice"/>
     <string name="settings_background_animation_enabled"/>
-    <string name="widget_custom_subtitle_keyword_separator" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_atd" translatable="false"/>
-    <string name="settings_provider_open_weather"/>
     <string name="sp_widget_clock_day_details_setting" translatable="false"/>
-    <string name="unit_fahrenheit"/>
     <string name="unit_cm"/>
-    <string name="settings_title_hourly_trend_display"/>
     <string name="uv_level_6_7"/>
-    <string name="air_quality_so2_voice"/>
     <string name="weather_source_mf_voice"/>
 </resources>

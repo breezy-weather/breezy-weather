@@ -346,23 +346,13 @@
     <string name="settings_provider_mf">Météo France</string>
     <string name="settings_provider_mf_wsft_key">Kunci WSFT Météo France</string>
     <string name="settings_provider_iqa_atmo_aura_key">Kunci ATMO AURA</string>
-    <string name="widget_week_style_3_days"/>
     <string name="settings_color_dark"/>
-    <string name="air_quality_level_6"/>
     <string name="weather_source_openweather_version_3_0"/>
-    <string name="wind_direction_short_W"/>
     <string name="weather_kind_wind"/>
-    <string name="location_service_baidu_ip"/>
     <string name="settings_automatic"/>
-    <string name="unit_kph_voice"/>
     <string name="unit_mmph"/>
-    <string name="unit_m"/>
     <string name="unit_mmhg_voice"/>
-    <string name="about_matrix"/>
     <string name="openmeteo_weather_text_freezing_rain_light_intensity"/>
-    <string name="widget_custom_subtitle_keyword_cwd" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_dd" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_xms" translatable="false"/>
     <string name="key_card_style" translatable="false"/>
-    <string name="tag_aqi" translatable="false"/>
 </resources>

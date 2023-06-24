@@ -228,29 +228,16 @@
     <string name="weather_kind_thunder">Grmenje</string>
     <string name="weather_kind_thunderstorm">Nevihta</string>
     <string name="weather_kind_wind">Veter</string>
-    <string name="unit_mm"/>
     <string name="widget_custom_subtitle_keyword_lon" translatable="false"/>
-    <string name="settings_refresh_never"/>
     <string name="key_click_widget_to_refresh" translatable="false"/>
-    <string name="unit_ft_voice"/>
     <string name="widget_custom_subtitle_keyword_xdtd" translatable="false"/>
-    <string name="settings_title_background_animation"/>
     <string name="air_quality_level_2_description"/>
-    <string name="air_quality_level_1_description"/>
     <string name="dialog_permissions_block_notification_channel_title"/>
-    <string name="weather_source_accuweather"/>
     <string name="weather_source_mf_voice"/>
-    <string name="openmeteo_weather_text_rain_heavy_intensity"/>
     <string name="precipitation_intensity_heavy"/>
-    <string name="openmeteo_weather_text_overcast"/>
     <string name="widget_custom_subtitle_keyword_ct_description"/>
-    <string name="location_results_by"/>
     <string name="air_quality_level_4_description"/>
-    <string name="openmeteo_weather_text_drizzle_light_intensity"/>
     <string name="sp_widget_multi_city" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_ut" translatable="false"/>
     <string name="settings_title_week_icon_mode"/>
-    <string name="widget_week_style_3_days"/>
     <string name="widget_clock_font_sans_serif"/>
-    <string name="unit_mph"/>
 </resources>

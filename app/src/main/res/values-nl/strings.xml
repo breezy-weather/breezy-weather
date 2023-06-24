@@ -141,34 +141,19 @@
     <string name="widget_style_vertical">Verticaal</string>
     <string name="widget_subtitle_data_feels_like">Gevoelstemperatuur</string>
     <string name="widget_subtitle_data_lunar">Maankalender</string>
-    <string name="sp_widget_text_setting" translatable="false"/>
     <string name="weather_data_by"/>
-    <string name="uv_level_0_2"/>
     <string name="air_quality_level_6_description"/>
-    <string name="hours_of_sun"/>
     <string name="temperature_real_feel"/>
-    <string name="precipitation_intensity_rainstorm"/>
     <string name="air_quality_level_1_description"/>
-    <string name="allergen_tap_to_see_more"/>
     <string name="weather_kind_cloudy"/>
-    <string name="weather_source_openweather_voice"/>
     <string name="action_choose_weather_provider"/>
-    <string name="dialog_permissions_block_notification_channel_title"/>
     <string name="widget_subtitle_data_custom"/>
-    <string name="widget_custom_subtitle_keyword_l_description"/>
     <string name="widget_custom_subtitle_keyword_xdwd_description"/>
-    <string name="widget_clock_font_sans_serif_light"/>
     <string name="settings_title_trend_horizontal_line_switch"/>
-    <string name="settings_title_notification_style"/>
     <string name="settings_provider_iqa_atmo_aura_key"/>
-    <string name="unit_kn_voice"/>
     <string name="unit_cmph_voice"/>
-    <string name="unit_mi_voice"/>
     <string name="unit_mugpcum"/>
-    <string name="about_source_code"/>
     <string name="openmeteo_weather_text_rain_heavy_intensity"/>
-    <string name="widget_custom_subtitle_keyword_ct" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_d" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_xms" translatable="false"/>
     <string name="key_widget_day" translatable="false"/>
 </resources>

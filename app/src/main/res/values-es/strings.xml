@@ -364,21 +364,12 @@
     <string name="unit_mgpcum_voice">Miligramos por metro cúbico</string>
     <string name="unit_h_voice">horas</string>
     <string name="unit_ppcm_voice">Por metro cúbico</string>
-    <string name="widget_custom_subtitle_keyword_xdw" translatable="false"/>
     <string name="air_quality_level_4_description"/>
-    <string name="air_quality_level_1"/>
     <string name="ephemeris_sunset_at"/>
-    <string name="widget_material_you_current"/>
     <string name="transition_activity_search_bar" translatable="false"/>
-    <string name="precipitation_between_time"/>
     <string name="settings_provider_accu_weather_key"/>
-    <string name="ephemeris_sunrise_at"/>
     <string name="key_widget_trend_hourly" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_xnt" translatable="false"/>
     <string name="notification_channel_alerts"/>
-    <string name="weather_refreshed"/>
     <string name="key_widget_clock_day_horizontal" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_cdp" translatable="false"/>
     <string name="unit_mps"/>
-    <string name="key_text_size" translatable="false"/>
 </resources>

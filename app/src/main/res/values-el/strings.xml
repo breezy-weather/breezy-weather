@@ -333,22 +333,13 @@
     <string name="unit_nmi">ΝΜίλ</string>
     <string name="unit_ft">Πόδ</string>
     <string name="unit_h">ώ</string>
-    <string name="unit_mugpcum_voice"/>
     <string name="key_service_provider" translatable="false"/>
-    <string name="widget_material_you_current"/>
     <string name="widget_custom_subtitle_keyword_als" translatable="false"/>
-    <string name="settings_title_background_animation"/>
     <string name="notification_channel_alerts"/>
-    <string name="key_widget_trend_hourly" translatable="false"/>
     <string name="about_source_code"/>
-    <string name="openmeteo_weather_text_drizzle_moderate_intensity"/>
     <string name="air_quality_level_4_description"/>
-    <string name="wind_direction_short_E"/>
     <string name="widget_custom_subtitle_keyword_ut" translatable="false"/>
-    <string name="widget_multi_city"/>
     <string name="action_location_list"/>
-    <string name="action_add_current_location"/>
     <string name="sp_widget_android_s_weather_xlarge" translatable="false"/>
-    <string name="widget_style_temperature"/>
     <string name="air_quality_level_4"/>
 </resources>

@@ -365,21 +365,12 @@
     <string name="unit_mgpcum_voice">Mil·ligrams per metre cúbic</string>
     <string name="unit_h_voice">hores</string>
     <string name="unit_ppcm_voice">Per metre cúbic</string>
-    <string name="settings_background_animation_disabled"/>
     <string name="unit_inph_voice"/>
-    <string name="about_contribution_WangDaYeeeeee"/>
     <string name="widget_custom_subtitle_keyword_at" translatable="false"/>
-    <string name="unit_mi"/>
     <string name="key_widget_clock_day_horizontal" translatable="false"/>
-    <string name="precipitation_none"/>
     <string name="air_quality_no2_voice"/>
-    <string name="unit_mmph_voice"/>
     <string name="unit_cmph_voice"/>
-    <string name="settings_icon_providers_check_details"/>
     <string name="key_widget_trend_hourly" translatable="false"/>
-    <string name="uv_level_11"/>
     <string name="weather_api_limit_reached_dialog"/>
-    <string name="locations"/>
     <string name="settings_provider_default_value"/>
-    <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail"/>
 </resources>

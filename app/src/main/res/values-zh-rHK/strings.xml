@@ -431,16 +431,10 @@
     <string name="unit_h_voice">小時</string>
     <string name="unit_ppcm">/米³</string>
     <string name="unit_ppcm_voice">每立方米</string>
-    <string name="unit_celsius"/>
     <string name="openmeteo_weather_text_rain_heavy_intensity"/>
-    <string name="widget_custom_subtitle_keyword_ut" translatable="false"/>
     <string name="openmeteo_weather_text_rain_showers_moderate"/>
-    <string name="widget_custom_subtitle_keyword_ch" translatable="false"/>
     <string name="air_quality_level_5_description"/>
-    <string name="widget_custom_subtitle_keyword_xdw" translatable="false"/>
     <string name="openmeteo_weather_text_depositing_rime_fog"/>
-    <string name="widget_custom_subtitle_keyword_als" translatable="false"/>
     <string name="sp_widget_clock_day_horizontal_setting" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_hd" translatable="false"/>
     <string name="action_choose_weather_provider"/>
 </resources>

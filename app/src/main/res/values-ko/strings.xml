@@ -328,23 +328,13 @@
     <string name="weather_kind_thunder">번개</string>
     <string name="weather_kind_thunderstorm">뇌우</string>
     <string name="weather_kind_wind">바람</string>
-    <string name="uv_level_0_2"/>
     <string name="air_quality_level_3_description"/>
-    <string name="weather_source_metno"/>
     <string name="air_quality_level_6"/>
-    <string name="weather_api_unauthorized_message"/>
     <string name="location_results_by"/>
-    <string name="widget_subtitle_data_aqi"/>
     <string name="settings_provider_open_weather"/>
-    <string name="unit_kn_voice"/>
     <string name="unit_cmph_voice"/>
-    <string name="unit_hpa"/>
     <string name="unit_ppcm"/>
-    <string name="openmeteo_weather_text_drizzle_dense_intensity"/>
     <string name="openmeteo_weather_text_snow_showers_heavy"/>
-    <string name="widget_custom_subtitle_keyword_als" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_xntd" translatable="false"/>
-    <string name="sp_widget_android_s_weather_mini" translatable="false"/>
     <string name="key_align_end" translatable="false"/>
-    <string name="key_notification_minimal_icon" translatable="false"/>
 </resources>

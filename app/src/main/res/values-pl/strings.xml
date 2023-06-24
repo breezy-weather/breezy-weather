@@ -322,24 +322,14 @@
     <string name="weather_kind_thunder">Burza</string>
     <string name="weather_kind_thunderstorm">Burza z piorunami</string>
     <string name="weather_kind_wind">Wiatr</string>
-    <string name="key_widget_text" translatable="false"/>
     <string name="openmeteo_weather_text_rain_moderate_intensity"/>
-    <string name="unit_kpa_voice"/>
     <string name="weather_data_by"/>
-    <string name="unit_kelvin"/>
     <string name="key_hide_subtitle" translatable="false"/>
-    <string name="settings_background_animation_enabled"/>
     <string name="unit_mb"/>
-    <string name="openmeteo_weather_text_mainly_clear"/>
     <string name="wind_direction_short_variable"/>
-    <string name="air_quality_level_1_description"/>
     <string name="air_quality_co_voice"/>
-    <string name="weather_source_openweather_voice"/>
     <string name="action_add_new_location"/>
-    <string name="widget_style_pixel"/>
     <string name="settings_items_drag_to_sort"/>
-    <string name="settings_refresh_never"/>
     <string name="unit_fahrenheit_short"/>
-    <string name="widget_custom_subtitle_keyword_ws" translatable="false"/>
     <string name="transition_activity_search_txt" translatable="false"/>
 </resources>

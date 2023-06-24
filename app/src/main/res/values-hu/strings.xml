@@ -274,26 +274,15 @@
     <string name="settings_title_notification_hide_big_view">Bővített Méret</string>
     <string name="settings_notification_hide_big_view_on">Elrejtés</string>
     <string name="settings_notification_hide_big_view_off">Mutatás</string>
-    <string name="key_widget_text" translatable="false"/>
     <string name="precipitation_none"/>
-    <string name="air_quality_pm25_voice"/>
     <string name="widget_custom_subtitle_keyword_separator" translatable="false"/>
-    <string name="key_appearance" translatable="false"/>
     <string name="air_quality_level_5"/>
-    <string name="weather_source_openweather_version_3_0"/>
     <string name="ephemeris_sunrise_at"/>
-    <string name="key_service_provider_advanced" translatable="false"/>
     <string name="air_quality_level_2_description"/>
-    <string name="weather_kind_haze"/>
     <string name="weather_kind_clear"/>
-    <string name="widget_style_oreo_google_sans"/>
     <string name="settings_provider_baidu_ip_location"/>
-    <string name="settings_color_dark"/>
     <string name="unit_kn_voice"/>
-    <string name="unit_celsius_short"/>
     <string name="unit_inhg"/>
-    <string name="unit_h_voice"/>
     <string name="openmeteo_weather_text_snow_showers_slight"/>
-    <string name="widget_custom_subtitle_keyword_d" translatable="false"/>
     <string name="key_widget_config" translatable="false"/>
 </resources>

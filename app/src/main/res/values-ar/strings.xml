@@ -297,25 +297,14 @@
     <string name="unit_mmhg">ملي متر زئبق</string>
     <string name="unit_inhg">بوصة من الزئبق</string>
     <string name="unit_kgfpsqcm">كغم قوة/سم²</string>
-    <string name="key_text_size" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_xnt" translatable="false"/>
-    <string name="air_quality_level_4"/>
     <string name="widget_custom_subtitle_keyword_xdwd" translatable="false"/>
-    <string name="unit_lpsqmph_voice"/>
     <string name="wind_direction_short_W"/>
-    <string name="widget_custom_subtitle_keyword_xms_description"/>
     <string name="unit_cm_voice"/>
-    <string name="air_quality_level_2"/>
     <string name="openmeteo_weather_text_rain_slight_intensity"/>
-    <string name="air_quality_level_2_description"/>
     <string name="wind_direction_short_SE"/>
-    <string name="openmeteo_weather_text_freezing_drizzle_light_intensity"/>
     <string name="air_quality_level_4_description"/>
-    <string name="air_quality_no2_voice"/>
     <string name="widget_custom_subtitle_keyword_at_description"/>
-    <string name="widget_custom_subtitle_keyword_w_description"/>
     <string name="settings_provider_accu_weather"/>
-    <string name="about_source_code"/>
     <string name="key_view_type" translatable="false"/>
-    <string name="transition_activity_search_bar" translatable="false"/>
 </resources>

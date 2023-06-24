@@ -408,19 +408,11 @@
     <string name="unit_mgpcum_voice">Miligramas por metro cúbico</string>
     <string name="unit_h_voice">horas</string>
     <string name="unit_ppcm_voice">Por metro cúbico</string>
-    <string name="openmeteo_weather_text_depositing_rime_fog"/>
     <string name="openmeteo_weather_text_rain_heavy_intensity"/>
-    <string name="wind_direction_short_SE"/>
     <string name="settings_background_animation_disabled"/>
-    <string name="widget_custom_subtitle_keyword_separator" translatable="false"/>
     <string name="widget_style_mini"/>
-    <string name="settings_provider_baidu_ip_location"/>
     <string name="unit_kelvin"/>
-    <string name="openmeteo_weather_text_snow_grains"/>
     <string name="widget_custom_subtitle_keyword_lat" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_xdp" translatable="false"/>
     <string name="sp_widget_daily_trend_setting" translatable="false"/>
-    <string name="key_click_widget_to_refresh" translatable="false"/>
     <string name="tag_aqi" translatable="false"/>
-    <string name="location_results_by"/>
 </resources>

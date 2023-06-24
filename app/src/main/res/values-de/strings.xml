@@ -243,27 +243,15 @@
     <string name="widget_style_rectangle">Rechteckig</string>
     <string name="widget_style_symmetry">Symmetrisch</string>
     <string name="widget_style_tile">Kachel</string>
-    <string name="widget_custom_subtitle_keyword_ws" translatable="false"/>
     <string name="widget_material_you_forecast"/>
-    <string name="widget_custom_subtitle_keyword_xnp" translatable="false"/>
     <string name="unit_lpsqm_voice"/>
-    <string name="unit_hpa"/>
     <string name="settings_title_notification_feels_like"/>
-    <string name="sp_widget_week_setting" translatable="false"/>
     <string name="weather_kind_sleet"/>
-    <string name="openmeteo_weather_text_overcast"/>
     <string name="widget_custom_subtitle_keyword_lat_description"/>
-    <string name="dialog_permissions_location_title"/>
     <string name="action_location_list"/>
-    <string name="widget_custom_subtitle_keyword_xsr" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_w" translatable="false"/>
-    <string name="weather_kind_wind"/>
     <string name="unit_mugpcum_voice"/>
-    <string name="sp_widget_clock_day_vertical_setting" translatable="false"/>
     <string name="unit_kph"/>
-    <string name="openmeteo_weather_text_rain_heavy_intensity"/>
     <string name="widget_custom_subtitle_keyword_hd_description"/>
-    <string name="widget_custom_subtitle_keyword_xmp_description"/>
     <string name="widget_custom_subtitle_keyword_xdwd_description"/>
-    <string name="weather_source_mf_voice"/>
 </resources>
