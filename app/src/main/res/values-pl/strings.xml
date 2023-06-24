@@ -322,164 +322,84 @@
     <string name="weather_kind_thunder">Burza</string>
     <string name="weather_kind_thunderstorm">Burza z piorunami</string>
     <string name="weather_kind_wind">Wiatr</string>
-    <string name="unit_mps_voice"/>
     <string name="unit_kn_voice"/>
-    <string name="unit_mmhg"/>
     <string name="unit_inhg"/>
-    <string name="unit_kgfpsqcm"/>
     <string name="key_click_widget_to_refresh" translatable="false"/>
-    <string name="key_widget_day" translatable="false"/>
     <string name="key_widget_text" translatable="false"/>
-    <string name="tag_wind" translatable="false"/>
     <string name="transition_activity_search_bar" translatable="false"/>
-    <string name="openmeteo_weather_text_rain_showers_moderate"/>
     <string name="key_service_provider_advanced" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_lon" translatable="false"/>
     <string name="sp_widget_multi_city" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_xnt" translatable="false"/>
     <string name="openmeteo_weather_text_rain_moderate_intensity"/>
-    <string name="sp_widget_clock_day_horizontal_setting" translatable="false"/>
     <string name="key_card_alpha" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_xdtd" translatable="false"/>
     <string name="key_unit" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_xdwd" translatable="false"/>
     <string name="unit_ftps_voice"/>
-    <string name="openmeteo_weather_text_rain_showers_violent"/>
     <string name="unit_kpa_voice"/>
-    <string name="widget_custom_subtitle_keyword_xnwd" translatable="false"/>
     <string name="unit_nmi"/>
-    <string name="widget_custom_subtitle_keyword_d" translatable="false"/>
     <string name="openmeteo_weather_text_snow_showers_heavy"/>
-    <string name="tag_aqi" translatable="false"/>
     <string name="sp_widget_clock_day_vertical_setting" translatable="false"/>
-    <string name="unit_kelvin_short"/>
     <string name="weather_data_by"/>
-    <string name="sp_widget_clock_day_week_setting" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_lat" translatable="false"/>
-    <string name="unit_ft"/>
     <string name="unit_h"/>
-    <string name="key_live_wallpaper" translatable="false"/>
     <string name="unit_atm"/>
-    <string name="unit_m"/>
     <string name="unit_kelvin"/>
-    <string name="unit_in"/>
     <string name="openmeteo_weather_text_depositing_rime_fog"/>
-    <string name="settings_icon_providers_app_store" translatable="false"/>
     <string name="key_service_provider" translatable="false"/>
-    <string name="unit_lpsqm"/>
     <string name="key_notification_minimal_icon" translatable="false"/>
-    <string name="openmeteo_weather_text_rain_showers_slight"/>
     <string name="key_hide_subtitle" translatable="false"/>
-    <string name="key_widget_clock_day_horizontal" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_xnw" translatable="false"/>
-    <string name="weather_refreshed"/>
     <string name="unit_in_voice"/>
-    <string name="openmeteo_weather_text_fog"/>
     <string name="sp_widget_text_setting" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_xdt" translatable="false"/>
     <string name="settings_background_animation_enabled"/>
-    <string name="openmeteo_weather_text_partly_cloudy"/>
     <string name="key_widget_trend_hourly" translatable="false"/>
-    <string name="unit_mugpcum_voice"/>
     <string name="notification_style_cities"/>
-    <string name="key_widget_clock_day_week" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_xntd" translatable="false"/>
-    <string name="openmeteo_weather_text_drizzle_dense_intensity"/>
     <string name="unit_mb"/>
-    <string name="unit_mm_voice"/>
     <string name="widget_custom_subtitle_keyword_al" translatable="false"/>
-    <string name="about_contributors"/>
     <string name="settings_provider_baidu_ip_location"/>
-    <string name="settings_title_service_provider_advanced"/>
     <string name="unit_mi_voice"/>
-    <string name="unit_km_voice"/>
     <string name="openmeteo_weather_text_mainly_clear"/>
-    <string name="key_widget_day_week" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_al_description"/>
-    <string name="openmeteo_weather_text_freezing_rain_light_intensity"/>
     <string name="unit_nmi_voice"/>
-    <string name="alerts_count"/>
     <string name="temperature_real_feel"/>
-    <string name="precipitation_none"/>
     <string name="wind_direction_short_variable"/>
-    <string name="wind_direction_short_NE"/>
     <string name="wind_direction_short_SE"/>
-    <string name="wind_direction_short_SW"/>
     <string name="wind_direction_short_NW"/>
-    <string name="uv_level_3_5"/>
     <string name="uv_level_8_10"/>
-    <string name="uv_alert_level"/>
     <string name="air_quality_level_1_description"/>
-    <string name="air_quality_level_2_description"/>
     <string name="air_quality_level_3_description"/>
-    <string name="air_quality_level_4_description"/>
     <string name="air_quality_level_5_description"/>
-    <string name="air_quality_level_6_description"/>
     <string name="air_quality_pm10_voice"/>
-    <string name="air_quality_no2_voice"/>
     <string name="air_quality_co_voice"/>
-    <string name="ephemeris_sunset_at"/>
     <string name="ephemeris_moonset_at"/>
-    <string name="weather_api_limit_reached_dialog"/>
     <string name="weather_api_unauthorized_dialog"/>
-    <string name="weather_source_openmeteo_voice"/>
     <string name="weather_source_accuweather_voice"/>
-    <string name="weather_source_metno_voice"/>
     <string name="weather_source_openweather_voice"/>
-    <string name="weather_source_openweather_version_3_0"/>
     <string name="weather_source_mf_voice"/>
-    <string name="locations"/>
     <string name="location_results_by"/>
-    <string name="location_service_native"/>
     <string name="location_service_amap"/>
-    <string name="action_add_current_location"/>
     <string name="action_add_new_location"/>
-    <string name="dialog_permissions_location_title"/>
     <string name="dialog_permissions_location_background_title"/>
-    <string name="message_tap_again_to_exit"/>
     <string name="widget_material_you_forecast"/>
-    <string name="widget_label_hide_lunar"/>
     <string name="widget_subtitle_data_aqi"/>
-    <string name="widget_style_mini"/>
     <string name="widget_style_pixel"/>
-    <string name="widget_style_oreo_google_sans"/>
     <string name="widget_clock_font_sans_serif_light"/>
-    <string name="widget_clock_font_sans_serif"/>
     <string name="widget_clock_font_analog"/>
-    <string name="settings_title_daily_trend_display"/>
     <string name="settings_title_trend_horizontal_line_switch"/>
-    <string name="settings_title_background_animation"/>
     <string name="settings_items_drag_to_sort"/>
-    <string name="settings_provider_accu_weather"/>
     <string name="settings_provider_open_weather"/>
-    <string name="settings_provider_open_weather_one_call_version"/>
     <string name="settings_provider_mf_wsft_key"/>
-    <string name="settings_icon_providers_check_details"/>
     <string name="settings_icon_providers_weather_icon_light"/>
-    <string name="settings_icon_providers_weather_icon_dark"/>
     <string name="settings_refresh_never"/>
-    <string name="unit_kph_voice"/>
     <string name="unit_mph"/>
-    <string name="unit_mmph_voice"/>
     <string name="unit_cmph_voice"/>
-    <string name="unit_inph_voice"/>
     <string name="unit_lpsqmph_voice"/>
-    <string name="unit_celsius_short"/>
     <string name="unit_fahrenheit_short"/>
-    <string name="openmeteo_weather_text_freezing_rain_heavy_intensity"/>
     <string name="openmeteo_weather_text_snow_moderate_intensity"/>
-    <string name="openmeteo_weather_text_thunderstorm_with_slight_hail"/>
     <string name="widget_custom_subtitle_keyword_cw" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_ctd" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_cps" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_lc" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_ws" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_hd" translatable="false"/>
     <string name="widget_custom_subtitle_keyword_xmr" translatable="false"/>
-    <string name="widget_custom_subtitle_keyword_xmp" translatable="false"/>
     <string name="sp_widget_week_setting" translatable="false"/>
-    <string name="sp_widget_clock_day_details_setting" translatable="false"/>
     <string name="sp_widget_android_s_weather_large" translatable="false"/>
-    <string name="key_text_color" translatable="false"/>
     <string name="transition_activity_search_txt" translatable="false"/>
 </resources>
