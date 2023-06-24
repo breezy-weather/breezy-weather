@@ -1,8 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-
     <!-- app. -->
     <string name="app_name">Време</string>
-
     <!-- keyword. -->
     <string name="location_current">Тренутну локацију</string>
     <string name="live">Уживо</string>
@@ -17,7 +16,6 @@
     <string name="nighttime">Ноћу</string>
     <string name="temperature_feels_like">Као</string>
     <string name="settings_follow_system">Подразумевани</string>
-
     <string name="of_clock">:00</string>
     <string name="short_yesterday">јуче</string>
     <string name="short_tomorrow">сутра</string>
@@ -28,7 +26,6 @@
     <string name="short_friday">ПЕТ</string>
     <string name="short_saturday">СУБ</string>
     <string name="short_sunday">НЕД</string>
-
     <string name="wind_level_0">Мирно</string>
     <string name="wind_level_1">Слаб ветар</string>
     <string name="wind_level_2">Поветарац</string>
@@ -42,47 +39,36 @@
     <string name="wind_level_10">Невреме</string>
     <string name="wind_level_11">Опасно невреме</string>
     <string name="wind_level_12">Ураган/Тајфун</string>
-
     <string name="daily_forecast">дневни</string>
     <string name="hourly_forecast">часовни</string>
     <string name="air_quality">Квалитет ваздуха</string>
     <string name="details">детаљни</string>
     <string name="ephemeris">Сунце &amp; месец</string>
-
     <string name="action_next">СЛЕДЕЋЕ</string>
     <string name="action_done">ГОТОВО</string>
     <string name="action_cancel" tools:ignore="ButtonCase">ОДУСТАНИ</string>
     <string name="settings_enabled">УПАЉЕНО</string>
     <string name="settings_disabled">УГАШЕНО</string>
-
     <string name="about_app">О AПЛИКАЦИЈИ</string>
     <string name="about_translators">Преводиоци</string>
-
     <!-- feedback. -->
     <string name="notification_channel_request_location">локацију</string>
-
     <string name="location_message_failed_to_locate">Локација неуспешна.</string>
     <string name="weather_message_data_refresh_failed">Подаци о временским условима неуспешни.</string>
-
     <string name="widget_label_view_style">Стил изгледа.</string>
     <string name="widget_label_show_widget_card">Позадина картице.</string>
     <string name="widget_label_black_text">Тамни текст.</string>
-
     <string name="location_message_added">Успешно додата локација.</string>
     <string name="location_message_deleted">Успешно обрисана локација.</string>
     <string name="location_message_list_cannot_be_empty">Листа локација не може бити празна.</string>
-
     <string name="location_search_placeholder">Потражите локацију…</string>
     <string name="location_current_not_found_yet">Још увек није успела локација…</string>
-
     <string name="settings_changes_apply_after_restart">Промена ће бити након рестарта.</string>
-
     <!-- action -->
     <string name="alerts">Упозорење</string>
     <string name="action_search">Претрага</string>
     <string name="action_settings">Подешавања</string>
     <string name="action_about">О нама</string>
-
     <!-- widget -->
     <string name="widget_day">Дневно</string>
     <string name="widget_week">Недељно</string>
@@ -92,7 +78,6 @@
     <string name="widget_clock_day_week">Време + Дневно + Недељно</string>
     <string name="widget_refreshing">чекање</string>
     <string name="widget_ellipsis">…</string>
-
     <!-- settings -->
     <string name="settings_category_basic">Основно</string>
     <string name="settings_title_background_free">Без позадине.</string>
@@ -124,11 +109,9 @@
     <string name="settings_title_notification_hide_big_view">Сакриј велики приказ.</string>
     <string name="settings_notification_hide_big_view_on">Сакриј.</string>
     <string name="settings_notification_hide_big_view_off">Прикажи.</string>
-
     <string name="settings_color_light">Светла</string>
     <string name="settings_color_grey">Сива</string>
     <string name="settings_color_dark">Тамна</string>
-
     <string name="widget_style_rectangle">Правоугаоник</string>
     <string name="widget_style_symmetry">Симетричан</string>
     <string name="widget_style_tile">Плоча</string>

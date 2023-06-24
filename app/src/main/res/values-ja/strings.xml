@@ -1,8 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-
     <!-- app. -->
     <string name="app_name">天気</string>
-
     <!-- keyword. -->
     <string name="location_current">現在地</string>
     <string name="live">現在</string>
@@ -10,7 +9,6 @@
     <string name="notification_refreshed_at">更新時刻</string>
     <string name="precipitation">降水量</string>
     <string name="precipitation_probability">降水確率</string>
-
     <string name="precipitation_duration">降水時間</string>
     <string name="temperature">気温</string>
     <string name="wind">風</string>
@@ -37,7 +35,6 @@
     <string name="action_refresh">更新</string>
     <string name="action_restart">再起動</string>
     <string name="action_edit">編集</string>
-
     <!-- The following set of strings should be as short as possible. -->
     <string name="of_clock">:00</string>
     <string name="short_yesterday">昨日</string>
@@ -49,18 +46,15 @@
     <string name="short_friday">金</string>
     <string name="short_saturday">土</string>
     <string name="short_sunday">日</string>
-
     <string name="temperature_apparent">Apparent</string>
     <string name="temperature_wind_chill">Wind chill</string>
     <string name="temperature_wet_bulb">湿球温度</string>
     <string name="temperature_degree_day">Degree day</string>
-
     <string name="precipitation_total">合計</string>
     <string name="precipitation_thunderstorm">雷雨</string>
     <string name="precipitation_rain">雨</string>
     <string name="precipitation_snow">雪</string>
     <string name="precipitation_ice">氷</string>
-
     <string name="wind_level_0">風力0</string>
     <string name="wind_level_1">風力1</string>
     <string name="wind_level_2">風力2</string>
@@ -74,12 +68,10 @@
     <string name="wind_level_10">風力10</string>
     <string name="wind_level_11">風力11</string>
     <string name="wind_level_12">風力12</string>
-
     <string name="precipitation_intensity_light">霧雨</string>
     <string name="precipitation_intensity_middle">雨</string>
     <string name="precipitation_intensity_heavy">大雨</string>
     <string name="precipitation_intensity_rainstorm">暴風雨</string>
-
     <string name="ephemeris_moon_phase_new">新月</string>
     <string name="ephemeris_moon_phase_waxing_crescent">三日月</string>
     <string name="ephemeris_moon_phase_first">上弦</string>
@@ -88,12 +80,10 @@
     <string name="ephemeris_moon_phase_waning_gibbous">十八夜</string>
     <string name="ephemeris_moon_phase_third">下弦</string>
     <string name="ephemeris_moon_phase_waning_crescent">二十六夜</string>
-
     <string name="allergen_grass">草</string>
     <string name="allergen_mold">カビ</string>
     <string name="allergen_ragweed">ブタクサ</string>
     <string name="allergen_tree">木</string>
-
     <string name="daily_forecast">日時予報</string>
     <string name="hourly_forecast">毎時予報</string>
     <string name="minutely_forecast">詳細予報</string>
@@ -102,7 +92,6 @@
     <string name="allergen">アレルギー</string>
     <string name="details">詳細</string>
     <string name="ephemeris">太陽と月</string>
-
     <string name="action_next">次</string>
     <string name="action_done">完了</string>
     <string name="action_cancel" tools:ignore="ButtonCase">キャンセル</string>
@@ -111,10 +100,8 @@
     <string name="action_set">設定</string>
     <string name="action_help">ヘルプ</string>
     <string name="action_learn_more">もっと詳しく</string>
-
     <string name="about_app">アプリについて</string>
     <string name="about_translators">翻訳者</string>
-
     <!-- Date format strings. -->
     <!-- Month : MMM(long) / M(short). -->
     <!-- Day   : dd(long) / d(short). -->
@@ -124,11 +111,9 @@
     <string name="date_format_widget_short">EEEE MMM dd日</string>
     <string name="date_format_widget_long">EEEE MMM dd日</string>
     <string name="date_format_widget_oreo_style">EEEE MMM dd日</string>
-
     <!-- feedback. -->
     <string name="notification_channel_request_location">現在地</string>
     <string name="notification_location_in_background">Locating in background</string>
-
     <string name="location_message_failed_to_locate">位置情報を取得できませんでした。</string>
     <string name="weather_message_data_refresh_failed">気象データを取得できませんでした</string>
     <string name="location_dialog_failed_to_locate_title">位置情報が正しくありませんか？</string>
@@ -136,7 +121,6 @@
     <string name="location_dialog_failed_to_locate_action_enable_information">Enable Location Information</string>
     <string name="location_dialog_failed_to_locate_action_select_provider">位置情報サービスを選択</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">手動でロケーションを追加し、“$”を削除</string>
-
     <string name="widget_label_view_style">View style</string>
     <string name="widget_label_show_widget_card">背景色</string>
     <string name="widget_label_show_widget_card_alpha">透明度</string>
@@ -145,7 +129,9 @@
     <string name="widget_label_black_text">文字の色</string>
     <string name="widget_label_text_size">文字サイズ</string>
     <string name="widget_label_clock_font">時間のフォント</string>
-    <string name="widget_custom_subtitle_explanation">何を入力しても構いませんが、文章の長さに注意してください。天気データを引用する場合は、対応するキーワードを$で参照してください。\n\n例えば、現在の天気＝$cw$の場合は、現在の天気＝晴れと表示されます。</string>
+    <string name="widget_custom_subtitle_explanation">何を入力しても構いませんが、文章の長さに注意してください。天気データを引用する場合は、対応するキーワードを$で参照してください。
+\n
+\n例えば、現在の天気＝$cw$の場合は、現在の天気＝晴れと表示されます。</string>
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
     <string name="widget_custom_subtitle_keyword_cw_description">現在の天気</string>
@@ -185,39 +171,27 @@
     <string name="widget_custom_subtitle_keyword_xmr_description">今日の月の出, 明日, …, 4日目</string>
     <string name="widget_custom_subtitle_keyword_xms_description">今日の月没, 明日, …, 4日目</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">今日の月の満ち欠け, 明日, …, 4日目</string>
-
     <string name="widget_live_wallpaper_weather_kind">天気</string>
     <string name="widget_live_wallpaper_day_night_type">時間</string>
-
     <string name="location_message_added">場所を追加しました</string>
     <string name="location_message_deleted">場所を削除しました</string>
     <string name="location_message_list_cannot_be_empty">すべての場所を削除することはできません</string>
-
     <string name="location_search_placeholder">検索する</string>
     <string name="location_current_not_found_yet">まだ場所はありません</string>
-
     <string name="settings_changes_apply_after_restart">変更は再起動後に有効になります</string>
-
     <string name="notification_running_in_background">バックグラウンドで更新</string>
     <string name="notification_updating_weather_data">気象データの更新</string>
     <string name="message_updated_in_background">バックグラウンドで更新</string>
-
     <string name="dialog_permissions_block_notification_channel_title">グループ通知をブロックする</string>
     <string name="dialog_permissions_block_notification_channel_content">「バックグラウンドで更新しない」をオフにすると、通知バーにバックグラウンドサービスが起動していることを示す通知が表示されます。アプリの情報ページの「バックグラウンド情報」をオフにすることで、この通知をブロックすることができます。</string>
-
     <string name="dialog_permissions_ignore_battery_optimizations_title">バッテリーの最適化を無視する</string>
     <string name="dialog_permissions_ignore_battery_optimizations_content">バックグラウンドサービスを継続して動作させるために、Breezy Weatherのバッテリー最適化は無視してください。</string>
-
     <string name="widget_live_wallpaper_cannot_start_activity">ライブ壁紙のプレビューを開始できません</string>
-
     <string name="notification_precipitation_today">今日は雨が降るかもしれません。</string>
     <string name="notification_precipitation_short_term">数時間後に雨が降る可能性があります。</string>
-
     <string name="location_resident_message">居住地として設定</string>
     <string name="location_resident_dialog">Breezy Weatherは、現在地を基準にして自動的に居住地を表示・非表示にします。例えば、自分の出身地を居住地に設定することで、旅行中に居住地の天気を確認することができます。帰宅すると、居住地の天気が現在地の天気に切り替わります。</string>
-
     <string name="allergen_tap_to_see_more">Click to get more…</string>
-
     <!-- action -->
     <string name="alerts">警告</string>
     <string name="action_search">検索</string>
@@ -225,7 +199,6 @@
     <string name="action_preview">プレビュー</string>
     <string name="action_about">Breezy Weather について</string>
     <string name="action_app_store">アプリストア</string>
-
     <!-- widget -->
     <string name="widget_day">毎日</string>
     <string name="widget_week">週間</string>
@@ -240,12 +213,13 @@
     <string name="widget_multi_city">複数の都市</string>
     <string name="widget_refreshing">更新を待っています</string>
     <string name="widget_ellipsis">…</string>
-
     <!-- settings -->
     <string name="settings_category_basic">基本</string>
     <string name="settings_title_background_free">バックグラウンドで更新しない</string>
-    <string name="settings_summary_background_free_on">有効\nウィジェットや通知が自動更新できない場合は、このオプションをオフにしてください。</string>
-    <string name="settings_summary_background_free_off">無効\nウィジットや通知が自動更新されない場合は、このオプションをオフにしてください。</string>
+    <string name="settings_summary_background_free_on">有効
+\nウィジェットや通知が自動更新できない場合は、このオプションをオフにしてください。</string>
+    <string name="settings_summary_background_free_off">無効
+\nウィジットや通知が自動更新されない場合は、このオプションをオフにしてください。</string>
     <string name="settings_title_live_wallpaper">ライブ壁紙</string>
     <string name="settings_summary_live_wallpaper">ライブ壁紙を設定</string>
     <string name="settings_title_service_provider">サービス提供者</string>
@@ -304,11 +278,9 @@
     <string name="settings_notification_hide_big_view_on">非表示</string>
     <string name="settings_notification_hide_big_view_off">表示</string>
     <string name="location_resident">居住地</string>
-
     <string name="weather_source_china">中国</string>
     <string name="location_service_baidu_ip">Baidu IP Location (中国のみ)</string>
     <string name="location_service_native">ネイティブAPI</string>
-
     <string name="settings_automatic">自動</string>
     <string name="settings_none">無し</string>
     <string name="settings_color_day_night">日中 / 夜間</string>
@@ -327,7 +299,6 @@
     <string name="settings_refresh_6h">6時間</string>
     <string name="settings_refresh_12h">12時間</string>
     <string name="settings_refresh_24h">24時間</string>
-
     <string name="widget_style_rectangle">長方形</string>
     <string name="widget_style_symmetry">対称的</string>
     <string name="widget_style_tile">タイル</string>
@@ -341,7 +312,6 @@
     <string name="widget_subtitle_data_feels_like">体感温度</string>
     <string name="widget_subtitle_data_lunar">旧暦</string>
     <string name="widget_subtitle_data_custom">カスタム</string>
-
     <!-- Weather kind -->
     <string name="weather_kind_clear">晴れ</string>
     <string name="weather_kind_partly_cloudy">一部曇り</string>
@@ -355,5 +325,4 @@
     <string name="weather_kind_thunder">雷</string>
     <string name="weather_kind_thunderstorm">雷雨</string>
     <string name="weather_kind_wind">風</string>
-
 </resources>

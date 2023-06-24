@@ -1,8 +1,7 @@
-﻿<resources xmlns:tools="http://schemas.android.com/tools">
-
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- app. -->
     <string name="app_name">Weather</string>
-
     <!-- keyword. -->
     <string name="location_current">Текущее местоположение</string>
     <string name="location_resident">Домашнее местоположение</string>
@@ -37,7 +36,6 @@
     <string name="action_refresh">Обновить</string>
     <string name="action_restart">Перезапуск</string>
     <string name="action_edit">Редактировать</string>
-
     <string name="of_clock">:00</string>
     <string name="short_yesterday">Вчера</string>
     <string name="short_tomorrow">Завтра</string>
@@ -48,18 +46,15 @@
     <string name="short_friday">Пт</string>
     <string name="short_saturday">Сб</string>
     <string name="short_sunday">Вс</string>
-
     <string name="temperature_apparent">Ощущается как</string>
     <string name="temperature_wind_chill">Ощущается при ветре</string>
     <string name="temperature_wet_bulb">Wet bulb</string>
     <string name="temperature_degree_day">Degree day</string>
-
     <string name="precipitation_total">Общий</string>
     <string name="precipitation_thunderstorm">Шторм</string>
     <string name="precipitation_rain">Дождь</string>
     <string name="precipitation_snow">Снег</string>
     <string name="precipitation_ice">Лёд</string>
-
     <string name="wind_level_0">Штиль</string>
     <string name="wind_level_1">Тихий ветер</string>
     <string name="wind_level_2">Лёгкий ветер</string>
@@ -73,12 +68,10 @@
     <string name="wind_level_10">Шторм</string>
     <string name="wind_level_11">Сильный шторм</string>
     <string name="wind_level_12">Ураган</string>
-
     <string name="precipitation_intensity_light">Изморось</string>
     <string name="precipitation_intensity_middle">Дождь</string>
     <string name="precipitation_intensity_heavy">Сильный дождь</string>
     <string name="precipitation_intensity_rainstorm">Ливень</string>
-
     <string name="ephemeris_moon_phase_new">Новолуние</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Растущий месяц</string>
     <string name="ephemeris_moon_phase_first">Первая четверть</string>
@@ -87,7 +80,6 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Убывающая Луна</string>
     <string name="ephemeris_moon_phase_third">Третья четверть</string>
     <string name="ephemeris_moon_phase_waning_crescent">Убывающий месяц</string>
-
     <string name="daily_forecast">Ежедневный</string>
     <string name="hourly_forecast">Почасовой</string>
     <string name="minutely_forecast">Поминутный</string>
@@ -96,7 +88,6 @@
     <string name="allergen">Аллерген</string>
     <string name="details">Подробно</string>
     <string name="ephemeris">Восход и закат</string>
-
     <string name="action_next">ДАЛЕЕ</string>
     <string name="action_done">ОК</string>
     <string name="action_cancel" tools:ignore="ButtonCase">ОТМЕНА</string>
@@ -105,24 +96,20 @@
     <string name="action_set">Установить</string>
     <string name="action_help">ПОМОЩЬ</string>
     <string name="action_learn_more">ЕЩЁ</string>
-
     <string name="about_app">О программе</string>
     <string name="about_translators">Переводчики</string>
-
     <!-- feedback. -->
     <string name="notification_channel_request_location">Местоположение</string>
     <string name="notification_location_in_background">Запрос местоположения в фоне</string>
-
     <string name="location_message_failed_to_locate">Ошибка определения местоположения</string>
     <string name="weather_message_data_refresh_failed">Ошибка получения прогноза</string>
-    <string name="location_dialog_failed_to_locate_title">Невозможно правильно определить местоположение?</string>
+    <string name="location_dialog_failed_to_locate_title">Невозможно правильно определить местоположение\?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Проверка разрешений местоположения</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Включить информацию местоположения</string>
     <string name="location_dialog_failed_to_locate_action_select_provider">Выбрать источник определения местоположения</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Добавить местоположение и удалить “$”</string>
     <string name="dialog_permissions_location_background_title">Доступ к местоположению в фоне</string>
     <string name="dialog_permissions_location_background_content">Чтобы разрешить программе доступ к местоположению в фоне, включите доступ к местоположению “Разрешить всегда”.</string>
-
     <string name="widget_label_view_style">Стиль внешнего вида</string>
     <string name="widget_label_show_widget_card">Цвет фона</string>
     <string name="widget_label_show_widget_card_alpha">Прозрачность</string>
@@ -132,8 +119,9 @@
     <string name="widget_label_text_size">Размер текста</string>
     <string name="widget_label_clock_font">Шрифт чаcов</string>
     <string name="widget_label_hide_lunar">Скрыть лунный календарь</string>
-    <string name="widget_custom_subtitle_explanation">Вы можете ввести что угодно, но, пожалуйста, обратите внимание на длину текста. Если Вы хотите чтобы отображались погодные данные, пожалуйста используйте $ для ссылки на соответствующее ключевое слово.\n\nНапример, “погода сейчас = $cw$” будет показана как “Погода сейчас = Ясный День”.</string>
-
+    <string name="widget_custom_subtitle_explanation">Вы можете ввести что угодно, но, пожалуйста, обратите внимание на длину текста. Если Вы хотите чтобы отображались погодные данные, пожалуйста используйте $ для ссылки на соответствующее ключевое слово.
+\n
+\nНапример, “погода сейчас = $cw$” будет показана как “Погода сейчас = Ясный День”.</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Погода сейчас</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Текущая температура (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Текущая температура (°)</string>
@@ -172,40 +160,29 @@
     <string name="widget_custom_subtitle_keyword_xmr_description">Восход Луны, …, на 4 дня</string>
     <string name="widget_custom_subtitle_keyword_xms_description">Закат Луны, завтра, …, на 4 дня</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">Фаза Луны, завтра, …, на 4 дня</string>
-
     <string name="widget_live_wallpaper_weather_kind">Погода</string>
     <string name="widget_live_wallpaper_day_night_type">Время</string>
-
     <string name="location_message_added">Место добавлено успешно</string>
     <string name="location_message_deleted">Место удалено успешно</string>
     <string name="location_message_list_cannot_be_empty">Список мест не может быть пустым</string>
-
     <string name="location_search_placeholder">Поиск местоположения…</string>
     <string name="location_current_not_found_yet">Местоположение не задано…</string>
-
     <string name="settings_changes_apply_after_restart">Изменения вступят в силу после перезапуска</string>
-
     <string name="notification_running_in_background">Запущено в фоне для постоянного обновления</string>
     <string name="notification_updating_weather_data">Обновление погодных данных</string>
     <string name="message_updated_in_background">Обновлено в фоне</string>
-
     <string name="dialog_permissions_block_notification_channel_title">Настройка уведомлений</string>
     <string name="dialog_permissions_block_notification_channel_content">После выключения “Запрет работы в фоне”, на панели уведомлений появится уведомление о том, что служба запущена в фоне. Вы можете отключить уведомление о работе в фоне в настройках уведомлений приложения, чтобы скрыть это уведомление.</string>
-
     <string name="dialog_permissions_ignore_battery_optimizations_title">Игнорировать Оптимизацию батареи</string>
     <string name="dialog_permissions_ignore_battery_optimizations_content">Чтобы фоновая служба гарантированно работала, пожалуйста отключите Оптимизацию батареи для Breezy Weather.</string>
-
     <string name="widget_live_wallpaper_cannot_start_activity">Невозможно начать предпросмотр живых обоев</string>
-
     <string name="notification_precipitation_today">Сегодня возможны осадки.</string>
     <string name="notification_precipitation_short_term">В ближайшее время возможны осадки.</string>
-
     <string name="location_resident_message">Установить как моё место постоянного пребывания</string>
-    <string name="location_resident_dialog">Breezy Weather будет автоматически показывать или скрывать место Вашего постоянного пребывания, основываясь на данных Вашего местоположения.\nНапример, Вы можете установить Ваш родной город как место Вашего постоянного пребывания. Тогда, если Вы путешествуете, Вы сможете также получать информацию о погоде дома. Когда Вы вернётесь, эти данные будут скрыты, и заменены на данные о погоде в Вашем текущем местоположении.</string>
-
+    <string name="location_resident_dialog">Breezy Weather будет автоматически показывать или скрывать место Вашего постоянного пребывания, основываясь на данных Вашего местоположения.
+\nНапример, Вы можете установить Ваш родной город как место Вашего постоянного пребывания. Тогда, если Вы путешествуете, Вы сможете также получать информацию о погоде дома. Когда Вы вернётесь, эти данные будут скрыты, и заменены на данные о погоде в Вашем текущем местоположении.</string>
     <string name="allergen_tap_to_see_more">Дополнительно…</string>
     <string name="message_tap_again_to_exit">Нажмите ещё раз для выхода</string>
-
     <!-- action -->
     <string name="alerts">Оповещение</string>
     <string name="action_search">Поиск</string>
@@ -213,7 +190,6 @@
     <string name="action_preview">Предпросмотр</string>
     <string name="action_about">Информация</string>
     <string name="action_app_store">Маркет</string>
-
     <!-- widget -->
     <string name="widget_day">День</string>
     <string name="widget_week">Неделя</string>
@@ -230,12 +206,13 @@
     <string name="widget_material_you_current">Material You - Текущая</string>
     <string name="widget_refreshing">Ждите</string>
     <string name="widget_ellipsis">…</string>
-
     <!-- settings -->
     <string name="settings_category_basic">Основные</string>
     <string name="settings_title_background_free">Запрет работы в фоне</string>
-    <string name="settings_summary_background_free_on">Включено\nЕсли виджеты и уведомления автоматически не обновляются, пожалуйста отключите эту настройку.</string>
-    <string name="settings_summary_background_free_off">Выключено\nЕсли Вы не хотите чтобы служба работала в фоне, пожалуйста включите эту настройку.</string>
+    <string name="settings_summary_background_free_on">Включено
+\nЕсли виджеты и уведомления автоматически не обновляются, пожалуйста отключите эту настройку.</string>
+    <string name="settings_summary_background_free_off">Выключено
+\nЕсли Вы не хотите чтобы служба работала в фоне, пожалуйста включите эту настройку.</string>
     <string name="settings_title_live_wallpaper">Живые обои</string>
     <string name="settings_summary_live_wallpaper">Установить погодную Material анимацию как живые обои</string>
     <string name="settings_title_service_provider">Провайдер данных</string>
@@ -300,11 +277,9 @@
     <string name="settings_title_notification_hide_big_view">Расширенный вид</string>
     <string name="settings_notification_hide_big_view_on">Скрывать</string>
     <string name="settings_notification_hide_big_view_off">Показывать</string>
-
     <string name="weather_source_china">Китая</string>
     <string name="location_service_baidu_ip">Baidu IP Location (Только для Китая)</string>
     <string name="location_service_native">Системный API</string>
-
     <string name="settings_automatic">Автоматически</string>
     <string name="settings_none">Нет</string>
     <string name="settings_color_day_night">день / ночь</string>
@@ -323,10 +298,8 @@
     <string name="settings_refresh_6h">6 часов</string>
     <string name="settings_refresh_12h">12 часов</string>
     <string name="settings_refresh_24h">24 часов</string>
-
     <string name="notification_style_native">Системное</string>
     <string name="notification_style_cities">Города</string>
-
     <string name="widget_style_rectangle">Прямоугольный</string>
     <string name="widget_style_symmetry">Симметричный</string>
     <string name="widget_style_tile">Плитка</string>
@@ -342,7 +315,6 @@
     <string name="widget_subtitle_data_feels_like">Ощущается как</string>
     <string name="widget_subtitle_data_lunar">Лунный календарь</string>
     <string name="widget_subtitle_data_custom">Пользовательский</string>
-
     <!-- Weather kind -->
     <string name="weather_kind_clear">Ясно</string>
     <string name="weather_kind_partly_cloudy">Переменная облачность</string>
@@ -356,7 +328,6 @@
     <string name="weather_kind_thunder">Гроза</string>
     <string name="weather_kind_thunderstorm">Ураган</string>
     <string name="weather_kind_wind">Ветер</string>
-
     <string name="unit_kph">км/ч</string>
     <string name="unit_mps">м/с</string>
     <string name="unit_kn">узлов</string>

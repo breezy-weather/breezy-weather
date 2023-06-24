@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="about_app">Über</string>
     <string name="action_about">Über</string>
     <string name="alerts">Alarm</string>
@@ -28,7 +28,7 @@
     <string name="action_done">Erledigt</string>
     <string name="action_edit">Bearbeiten</string>
     <string name="widget_ellipsis">…</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">"Standort manuell hinzufügen und löschen '$'"</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Standort manuell hinzufügen und löschen \'$\'</string>
     <string name="widget_label_black_text">Dunkler Text</string>
     <string name="widget_live_wallpaper_cannot_start_activity">Vorschau für Live Wallpaper kann nicht gestartet werden!</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Standortberechtigung prüfen!</string>
@@ -127,8 +127,10 @@
     <string name="settings_notification_hide_in_lockScreen_off">Sichtbar</string>
     <string name="settings_notification_hide_in_lockScreen_on">Verbergen (muss in Systemeinstellungen geöffnet werden)</string>
     <string name="settings_summary_appearance">Interface Style, Kartenreihenfolge, Sprache…</string>
-    <string name="settings_summary_background_free_off">"Deaktiviert\nFalls keinerlei Dienste im Hintergrund laufen sollten bitte diese Option einschalten."</string>
-    <string name="settings_summary_background_free_on">"Aktiv\nFalls Widgets und Benachrichtigungen nicht aktualisieren bitte diese Option ausschalten."</string>
+    <string name="settings_summary_background_free_off">Deaktiviert
+\nFalls keinerlei Dienste im Hintergrund laufen sollten bitte diese Option einschalten.</string>
+    <string name="settings_summary_background_free_on">Aktiv
+\nFalls Widgets und Benachrichtigungen nicht aktualisieren bitte diese Option ausschalten.</string>
     <string name="settings_summary_live_wallpaper">Material Wetter Animation als Live Hintergrund setzen</string>
     <string name="settings_summary_service_provider">Wetteranbieter und Standortdienst auswählen</string>
     <string name="settings_summary_unit">Einheiten für Wetterdaten einstellen</string>
@@ -222,7 +224,6 @@
     <string name="wind_level">Windstärke</string>
     <string name="wind_speed">Windgeschwindigkeit</string>
     <string name="short_yesterday">Gestern</string>
-
     <string name="settings_refresh_30min">30 Minuten</string>
     <string name="settings_refresh_1h">1 Stunde</string>
     <string name="settings_refresh_1h_30min">1.5 Stunden</string>
@@ -231,7 +232,6 @@
     <string name="settings_refresh_6h">6 Stunden</string>
     <string name="settings_refresh_12h">12 Stunden</string>
     <string name="settings_refresh_24h">24 Stunden</string>
-
     <string name="settings_automatic">Automatisch</string>
     <string name="settings_color_light_always">Immer hell</string>
     <string name="settings_color_dark_always">Immer dunkel</string>
@@ -240,9 +240,7 @@
     <string name="settings_color_dark">Dunkel</string>
     <string name="settings_color_day_night">Tag / Nacht</string>
     <string name="settings_none">Ohne</string>
-
     <string name="widget_style_rectangle">Rechteckig</string>
     <string name="widget_style_symmetry">Symmetrisch</string>
     <string name="widget_style_tile">Kachel</string>
-
 </resources>

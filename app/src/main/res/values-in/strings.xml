@@ -1,9 +1,7 @@
-<resources xmlns:tools="http://schemas.android.com/tools"
-    tools:ignore="MissingTranslation">
-
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <!-- app. -->
     <string name="app_name">Cuaca</string>
-
     <!-- keyword. -->
     <string name="location_current">Lokasi saat ini</string>
     <string name="location_resident">Lokasi penduduk</string>
@@ -30,15 +28,16 @@
     <string name="pressure">Tekanan atmosfer</string>
     <string name="visibility">Visibilitas</string>
     <string name="dew_point">Titik embun</string>
-    <string name="cloud_cover">Cover awan</string><!-- ? -->
-    <string name="ceiling">Atap</string><!-- ? -->
+    <string name="cloud_cover">Cover awan</string>
+    <!-- ? -->
+    <string name="ceiling">Atap</string>
+    <!-- ? -->
     <string name="settings_icon_providers_get_more">Dapatkan lebih banyak</string>
     <string name="settings_icon_providers_get_more_store">Dapatkan lebih banyak dari app store</string>
     <string name="settings_icon_providers_get_more_github">Dapatkan lebih banyak dari GitHub</string>
     <string name="action_refresh">Muat ulang</string>
     <string name="action_restart">Mulai ulang</string>
     <string name="action_edit">Ubah</string>
-
     <!-- The following set of strings should be as short as possible. -->
     <string name="of_clock">:00</string>
     <string name="short_yesterday">Kmrn</string>
@@ -50,18 +49,16 @@
     <string name="short_friday">Jum</string>
     <string name="short_saturday">Sab</string>
     <string name="short_sunday">Min</string>
-
     <string name="temperature_apparent">Tampak</string>
     <string name="temperature_wind_chill">Angin dingin</string>
-    <string name="temperature_wet_bulb">Bohlam basah</string><!-- ? -->
+    <string name="temperature_wet_bulb">Bohlam basah</string>
+    <!-- ? -->
     <string name="temperature_degree_day">Hari gelar</string>
-
     <string name="precipitation_total">Total</string>
     <string name="precipitation_thunderstorm">Petir</string>
     <string name="precipitation_rain">Hujan</string>
     <string name="precipitation_snow">Salju</string>
     <string name="precipitation_ice">Es</string>
-
     <string name="wind_level_0">Tenang</string>
     <string name="wind_level_1">Udara ringan</string>
     <string name="wind_level_2">Angin sepoi-sepoi ringan</string>
@@ -75,12 +72,10 @@
     <string name="wind_level_10">Petir</string>
     <string name="wind_level_11">Petir kencang</string>
     <string name="wind_level_12">Badai</string>
-
     <string name="precipitation_intensity_light">Gerimis</string>
-    <string name="precipitation_intensity_middle">Hujan </string>
+    <string name="precipitation_intensity_middle">Hujan</string>
     <string name="precipitation_intensity_heavy">Hujan deras</string>
     <string name="precipitation_intensity_rainstorm">Hujan badai</string>
-
     <string name="ephemeris_moon_phase_new">Bulan Baru</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Waxing crescent</string>
     <string name="ephemeris_moon_phase_first">Kuarter pertama</string>
@@ -89,12 +84,10 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Waning gibbous</string>
     <string name="ephemeris_moon_phase_third">Third quarter</string>
     <string name="ephemeris_moon_phase_waning_crescent">Waning crescent</string>
-
     <string name="allergen_grass">Rumput</string>
     <string name="allergen_mold">Lubang</string>
     <string name="allergen_ragweed">Ragweed</string>
     <string name="allergen_tree">Pohon</string>
-
     <string name="daily_forecast">Prakiraan harian</string>
     <string name="hourly_forecast">Prakiraan per jam</string>
     <string name="minutely_forecast">Prakiraan per menit</string>
@@ -103,7 +96,6 @@
     <string name="allergen">Allergen</string>
     <string name="details">Detail</string>
     <string name="ephemeris">Matahari &amp; bulan</string>
-
     <string name="action_next">BERIKUTNYA</string>
     <string name="action_done">SELESAI</string>
     <string name="action_cancel" tools:ignore="ButtonCase">BATAL</string>
@@ -112,11 +104,9 @@
     <string name="action_set">SETEL</string>
     <string name="action_help">BANTUAN</string>
     <string name="action_learn_more">PELAJARI LEBIH LANJUT</string>
-
     <string name="about_app">Tentang aplikasi</string>
     <string name="about_contributors">Kontributor</string>
     <string name="about_translators">Translator</string>
-
     <!-- Date format strings. -->
     <!-- Month : MMM(long) / M(short). -->
     <!-- Day   : dd(long) / d(short). -->
@@ -126,19 +116,16 @@
     <string name="date_format_widget_short">EEE, MMM d</string>
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
-
     <!-- feedback. -->
     <string name="notification_channel_request_location">Lokasi</string>
     <string name="notification_location_in_background">Menemukan di latar belakang</string>
-
     <string name="dialog_permissions_location_title">Akses informasi lokasi</string>
     <string name="dialog_permissions_location_content">Breezy Weather perlu mengumpulkan informasi lokasi Anda di latar depan atau latar belakang untuk menyediakan data cuaca di lokasi Anda saat ini. Untuk ini, kami akan meminta beberapa izin. Informasi lokasi Anda hanya akan digunakan untuk mendapatkan data cuaca di lokasi Anda saat ini. Jika Anda tidak ingin kami mendapatkan informasi lokasi Anda, Anda bisa menolak persyaratan itu dan mengatur lokasi Anda secara manual di halaman manajemen.</string>
     <string name="dialog_permissions_location_background_title">Akses lokasi di latar-belakang</string>
     <string name="dialog_permissions_location_background_content">Untuk memungkinkan aplikasi mengakses informasi lokasi di latar belakang, sehingga kami dapat memahami perubahan lokasi dan memberi Anda data cuaca yang valid, silakan atur akses lokasi sebagai “Izinkan sepanjang waktu”.</string>
-
     <string name="location_message_failed_to_locate">Lokasi gagal</string>
     <string name="weather_message_data_refresh_failed">permintaan data cuaca gagal</string>
-    <string name="location_dialog_failed_to_locate_title">tidak bisa mendapatkan lokasi dengan benar?</string>
+    <string name="location_dialog_failed_to_locate_title">tidak bisa mendapatkan lokasi dengan benar\?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">periksa izin lokasi</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Mengaktifkan Informasi Lokasi</string>
     <string name="location_dialog_failed_to_locate_action_select_provider">Pilih Penyedia Lokasi</string>
@@ -156,7 +143,9 @@
     <string name="widget_label_clock_font">Font jam</string>
     <string name="widget_label_hide_lunar">Sembunyikan kalender bulan</string>
     <string name="widget_label_align_end">Align end</string>
-    <string name="widget_custom_subtitle_explanation">Anda dapat memasukkan apa pun, tetapi harap perhatikan panjang teks. Jika Anda ingin mengutip data cuaca, silakan gunakan $ untuk merujuk kata kunci yang sesuai.\n\nuntuk contoh, “cuaca saat ini = $cw$” akan ditampilkan sebagai “cuaca saat ini = Hari Jernih”.</string>
+    <string name="widget_custom_subtitle_explanation">Anda dapat memasukkan apa pun, tetapi harap perhatikan panjang teks. Jika Anda ingin mengutip data cuaca, silakan gunakan $ untuk merujuk kata kunci yang sesuai.
+\n
+\nuntuk contoh, “cuaca saat ini = $cw$” akan ditampilkan sebagai “cuaca saat ini = Hari Jernih”.</string>
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
     <string name="widget_custom_subtitle_keyword_cw_description">Cuaca saat ini</string>
@@ -198,66 +187,60 @@
     <string name="widget_custom_subtitle_keyword_xmr_description">Bulan terbit Hari ini, Bsk, …, 4 hari kemudian</string>
     <string name="widget_custom_subtitle_keyword_xms_description">Bulan tenggelam Hari ini, Bsk, …, 4 hari kemudian</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">Fase bulan Hari ini, Bsk, …, 4 hari kemudian</string>
-
     <string name="widget_live_wallpaper_weather_kind">Cuaca</string>
     <string name="widget_live_wallpaper_day_night_type">Waktu</string>
-
     <string name="location_message_added">Berhasil menambahkan lokasi</string>
     <string name="location_message_deleted">Berhasil menghapus lokasi</string>
     <string name="location_message_list_cannot_be_empty">Daftar lokasi tidak bisa kosong</string>
-
     <string name="location_search_placeholder">Cari lokasi…</string>
     <string name="location_current_not_found_yet">Belum ada lokasi…</string>
-
     <string name="settings_changes_apply_after_restart">Perubahan akan berlaku setelah memulai-ulang</string>
-
     <string name="notification_running_in_background">Berjalan di latar belakang untuk terus memperbarui</string>
     <string name="notification_updating_weather_data">Memperbarui data cuaca</string>
     <string name="message_updated_in_background">Diperbarui dilatar-belakang</string>
-
     <string name="dialog_permissions_block_notification_channel_title">Blokir grup pemberitahuan</string>
     <string name="dialog_permissions_block_notification_channel_content">Setelah mematikan “bebas latar-belakang”, pemberitahuan yang menunjukkan bahwa layanan latar belakang berjalan akan muncul di bilah pemberitahuan. Anda dapat mematikan saluran informasi latar belakang di halaman informasi aplikasi untuk memblokir pemberitahuan ini.</string>
-
     <string name="dialog_permissions_ignore_battery_optimizations_title">Abaikan pengoptimalan baterai</string>
     <string name="dialog_permissions_ignore_battery_optimizations_content">Untuk memastikan bahwa layanan latar belakang dapat terus bekerja, harap abaikan pengoptimalan baterai untuk Breezy Weather.</string>
-
     <string name="widget_live_wallpaper_cannot_start_activity">Tidak dapat memulai konteks pratinjau wallpaper live</string>
-
     <string name="notification_precipitation_today">Mungkin ada presipitasi hari ini.</string>
     <string name="notification_precipitation_short_term">Curah hujan dapat terjadi dalam beberapa jam ke depan.</string>
-
     <string name="location_resident_message">Tetapkan sebagai kota penduduk</string>
-    <string name="location_resident_dialog">Breezy Weather akan secara otomatis menampilkan dan menyembunyikan kota-kota residen berdasarkan lokasi Anda saat ini.\nUntuk contoh, Anda dapat mengatur kota asal Anda sebagai kota residen. Anda dapat memeriksa cuaca di kota asal Anda saat bepergian. Saat Anda sampai di rumah, cuaca di kota asal Anda akan disembunyikan dan digantikan oleh cuaca untuk lokasi Anda saat ini.</string>
-
+    <string name="location_resident_dialog">Breezy Weather akan secara otomatis menampilkan dan menyembunyikan kota-kota residen berdasarkan lokasi Anda saat ini.
+\nUntuk contoh, Anda dapat mengatur kota asal Anda sebagai kota residen. Anda dapat memeriksa cuaca di kota asal Anda saat bepergian. Saat Anda sampai di rumah, cuaca di kota asal Anda akan disembunyikan dan digantikan oleh cuaca untuk lokasi Anda saat ini.</string>
     <string name="allergen_tap_to_see_more">Klik untuk mendapatkan lebih banyak…</string>
     <string name="message_tap_again_to_exit">Klik lagi untuk keluar</string>
-
     <!-- content description -->
     <string name="action_back">Kembali</string>
     <string name="settings_icon_providers_check_details">Cek detail</string>
-    <string name="alerts_count">$ peringatan cuaca</string> <!-- $ = alert count. -->
+    <string name="alerts_count">$ peringatan cuaca</string>
+    <!-- $ = alert count. -->
     <string name="air_quality_pm25_voice">PM dua koma lima</string>
     <string name="air_quality_pm10_voice">PM sepuluh</string>
     <string name="air_quality_so2_voice">Sulfur dioksida</string>
     <string name="air_quality_no2_voice">Nitrogen dioksida</string>
     <string name="air_quality_o3_voice">Ozon</string>
     <string name="air_quality_co_voice">Karbon monoksida</string>
-    <string name="ephemeris_sunrise_at">Matahari terbit di $</string> <!-- $ = time. -->
-    <string name="ephemeris_sunset_at">Matahari tenggelam di $</string> <!-- $ = time. -->
-    <string name="ephemeris_moonrise_at">Bulan terbit di $</string> <!-- $ = time. -->
-    <string name="ephemeris_moonset_at">Bulan tenggelam di $</string> <!-- $ = time. -->
+    <string name="ephemeris_sunrise_at">Matahari terbit di $</string>
+    <!-- $ = time. -->
+    <string name="ephemeris_sunset_at">Matahari tenggelam di $</string>
+    <!-- $ = time. -->
+    <string name="ephemeris_moonrise_at">Bulan terbit di $</string>
+    <!-- $ = time. -->
+    <string name="ephemeris_moonset_at">Bulan tenggelam di $</string>
+    <!-- $ = time. -->
     <string name="precipitation_none">Tidak ada curah hujan</string>
-    <string name="precipitation_between_time">Curah hujan antara $1 dan $2</string> <!-- $1 = start time, $2 = end time. -->
+    <string name="precipitation_between_time">Curah hujan antara $1 dan $2</string>
+    <!-- $1 = start time, $2 = end time. -->
     <string name="action_add_current_location">Tambah lokasi saat ini</string>
     <string name="settings_items_drag_to_sort">Ketuk untuk menyeret item daftar untuk mengurutkan</string>
     <string name="settings_item_delete">Hapus item ini</string>
     <string name="location_swipe_to_delete">Anda dapat menggesek ke kiri untuk menghapus item ini</string>
-    <string name="settings_icon_providers_app_store">@string/action_app_store</string>
+    <string name="settings_icon_providers_app_store">\@string/action_app_store</string>
     <string name="settings_icon_providers_weather_adaptive_icon">Ikon cuaca</string>
     <string name="settings_icon_providers_weather_icon_light">Ikon terang</string>
     <string name="settings_icon_providers_weather_icon_grey">Ikon abu-abu</string>
     <string name="settings_icon_providers_weather_icon_dark">Ikon gelap</string>
-
     <!-- action -->
     <string name="alerts">Peringatan</string>
     <string name="action_search">Cari</string>
@@ -265,7 +248,6 @@
     <string name="action_preview">Pratinjau</string>
     <string name="action_about">Tentang</string>
     <string name="action_app_store">Toko Aplikasi</string>
-
     <!-- widget -->
     <string name="widget_day">Harian</string>
     <string name="widget_week">Mingguan</string>
@@ -282,12 +264,13 @@
     <string name="widget_material_you_current">Material You - Saat ini</string>
     <string name="widget_refreshing">menunggu</string>
     <string name="widget_ellipsis">…</string>
-
     <!-- settings -->
     <string name="settings_category_basic">Basis</string>
     <string name="settings_title_background_free">Bebas Latar-belakang</string>
-    <string name="settings_summary_background_free_on">Diaktifkan\nJika widget dan pemberitahuan tidak dapat memuat secara otomatis, silahkan matikan opsi ini.</string>
-    <string name="settings_summary_background_free_off">Dinonaktifkan\nJika anda tidak ingin layanan apa pun untuk terus bekerja di latar belakang, silakan nyalakan opsi ini.</string>
+    <string name="settings_summary_background_free_on">Diaktifkan
+\nJika widget dan pemberitahuan tidak dapat memuat secara otomatis, silahkan matikan opsi ini.</string>
+    <string name="settings_summary_background_free_off">Dinonaktifkan
+\nJika anda tidak ingin layanan apa pun untuk terus bekerja di latar belakang, silakan nyalakan opsi ini.</string>
     <string name="settings_title_live_wallpaper">Wallpaper live</string>
     <string name="settings_summary_live_wallpaper">Setel animasi cuaca Material sebagai wallpaper live</string>
     <string name="settings_title_service_provider">Penyedia layanan</string>
