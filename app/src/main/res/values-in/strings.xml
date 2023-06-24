@@ -346,8 +346,6 @@
     <string name="settings_provider_mf">Météo France</string>
     <string name="settings_provider_mf_wsft_key">Kunci WSFT Météo France</string>
     <string name="settings_provider_iqa_atmo_aura_key">Kunci ATMO AURA</string>
-    <string name="weather_source_openweather_version_3_0"/>
     <string name="settings_automatic"/>
-    <string name="unit_mmhg_voice"/>
     <string name="widget_custom_subtitle_keyword_dd" translatable="false"/>
 </resources>

@@ -364,8 +364,6 @@
     <string name="unit_mgpcum_voice">Miligramos por metro cúbico</string>
     <string name="unit_h_voice">horas</string>
     <string name="unit_ppcm_voice">Por metro cúbico</string>
-    <string name="ephemeris_sunset_at"/>
     <string name="settings_provider_accu_weather_key"/>
-    <string name="notification_channel_alerts"/>
     <string name="unit_mps"/>
 </resources>

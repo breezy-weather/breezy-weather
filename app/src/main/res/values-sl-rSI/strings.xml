@@ -228,10 +228,7 @@
     <string name="weather_kind_thunder">Grmenje</string>
     <string name="weather_kind_thunderstorm">Nevihta</string>
     <string name="weather_kind_wind">Veter</string>
-    <string name="key_click_widget_to_refresh" translatable="false"/>
     <string name="air_quality_level_2_description"/>
-    <string name="weather_source_mf_voice"/>
     <string name="widget_custom_subtitle_keyword_ct_description"/>
-    <string name="sp_widget_multi_city" translatable="false"/>
     <string name="widget_clock_font_sans_serif"/>
 </resources>

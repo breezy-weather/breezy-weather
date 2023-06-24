@@ -118,12 +118,8 @@
     <string name="widget_style_mini">Mали</string>
     <string name="widget_style_nano">Нaнo</string>
     <string name="widget_style_pixel">Пиксел</string>
-    <string name="unit_mph"/>
     <string name="dialog_permissions_location_background_title"/>
-    <string name="settings_provider_mf_wsft_key"/>
     <string name="unit_atm_voice"/>
-    <string name="wind_speed"/>
     <string name="action_add_current_location"/>
-    <string name="settings_color_day_always"/>
     <string name="widget_custom_subtitle_keyword_cv" translatable="false"/>
 </resources>

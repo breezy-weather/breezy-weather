@@ -108,12 +108,8 @@
     <string name="settings_color_light">Açık</string>
     <string name="settings_color_grey">Gri</string>
     <string name="settings_color_dark">Koyu</string>
-    <string name="key_widget_day_week" translatable="false"/>
     <string name="allergen_tree"/>
-    <string name="key_click_widget_to_refresh" translatable="false"/>
     <string name="unit_lpsqmph_voice"/>
-    <string name="unit_mi"/>
     <string name="openmeteo_weather_text_drizzle_dense_intensity"/>
-    <string name="settings_title_widget_config"/>
     <string name="notification_channel_background_information"/>
 </resources>

@@ -408,7 +408,5 @@
     <string name="unit_mgpcum_voice">Miligramas por metro cúbico</string>
     <string name="unit_h_voice">horas</string>
     <string name="unit_ppcm_voice">Por metro cúbico</string>
-    <string name="settings_background_animation_disabled"/>
     <string name="unit_kelvin"/>
-    <string name="sp_widget_daily_trend_setting" translatable="false"/>
 </resources>

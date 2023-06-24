@@ -274,9 +274,6 @@
     <string name="settings_title_notification_hide_big_view">Bővített Méret</string>
     <string name="settings_notification_hide_big_view_on">Elrejtés</string>
     <string name="settings_notification_hide_big_view_off">Mutatás</string>
-    <string name="widget_custom_subtitle_keyword_separator" translatable="false"/>
     <string name="ephemeris_sunrise_at"/>
-    <string name="weather_kind_clear"/>
     <string name="unit_kn_voice"/>
-    <string name="openmeteo_weather_text_snow_showers_slight"/>
 </resources>
