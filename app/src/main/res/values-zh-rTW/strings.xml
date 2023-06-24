@@ -1,8 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <!-- app. -->
     <string name="app_name">天氣</string>
-
     <!-- keyword. -->
     <string name="location_current">當前位置</string>
     <string name="location_resident">常駐位置</string>
@@ -37,7 +36,6 @@
     <string name="action_refresh">刷新數據</string>
     <string name="action_restart">重啟</string>
     <string name="action_edit">編輯</string>
-
     <string name="of_clock">時</string>
     <string name="short_yesterday">昨日</string>
     <string name="short_tomorrow">明日</string>
@@ -48,20 +46,17 @@
     <string name="short_friday">週五</string>
     <string name="short_saturday">週六</string>
     <string name="short_sunday">週日</string>
-
     <string name="temperature_real_feel">體感溫度</string>
     <string name="temperature_real_feel_shade">陰面體感</string>
     <string name="temperature_apparent">地表溫度</string>
     <string name="temperature_wind_chill">風寒溫度</string>
     <string name="temperature_wet_bulb">濕球溫度</string>
     <string name="temperature_degree_day">度日溫度</string>
-
     <string name="precipitation_total">總量</string>
     <string name="precipitation_thunderstorm">暴風雨</string>
     <string name="precipitation_rain">雨</string>
     <string name="precipitation_snow">雪</string>
     <string name="precipitation_ice">冰</string>
-
     <string name="wind_level_0">無風</string>
     <string name="wind_level_1">一級</string>
     <string name="wind_level_2">二級</string>
@@ -75,12 +70,10 @@
     <string name="wind_level_10">十級</string>
     <string name="wind_level_11">十一级</string>
     <string name="wind_level_12">災害級</string>
-
     <string name="precipitation_intensity_light">小雨</string>
     <string name="precipitation_intensity_middle">中雨</string>
     <string name="precipitation_intensity_heavy">大雨</string>
     <string name="precipitation_intensity_rainstorm">暴雨</string>
-
     <string name="ephemeris_moon_phase_new">新月</string>
     <string name="ephemeris_moon_phase_waxing_crescent">蛾眉月</string>
     <string name="ephemeris_moon_phase_first">上弦月</string>
@@ -89,12 +82,10 @@
     <string name="ephemeris_moon_phase_waning_gibbous">虧凸月</string>
     <string name="ephemeris_moon_phase_third">下弦月</string>
     <string name="ephemeris_moon_phase_waning_crescent">殘月</string>
-
     <string name="allergen_grass">草地花粉</string>
     <string name="allergen_mold">黴菌</string>
     <string name="allergen_ragweed">豚草花粉</string>
     <string name="allergen_tree">樹木花粉</string>
-
     <string name="daily_forecast">每日概覽</string>
     <string name="hourly_forecast">小時概覽</string>
     <string name="minutely_forecast">分鐘概覽</string>
@@ -103,7 +94,6 @@
     <string name="allergen">過敏原</string>
     <string name="details">詳情數據</string>
     <string name="ephemeris">日月升落</string>
-
     <string name="action_next">下一步</string>
     <string name="action_done">完成</string>
     <string name="action_cancel">取消</string>
@@ -112,26 +102,21 @@
     <string name="action_set">設定</string>
     <string name="action_help">幫助</string>
     <string name="action_learn_more">瞭解更多</string>
-
     <string name="about_app">概覽</string>
     <string name="about_contributors">貢獻者</string>
     <string name="about_translators">譯者</string>
-
     <string name="date_format_short">M-d</string>
     <string name="date_format_long">M月d日</string>
     <string name="date_format_widget_short">MM-dd EEE</string>
     <string name="date_format_widget_long">M月d日 EEEE</string>
-    <string name="date_format_widget_oreo_style">M月d日EEEE │ </string>
-
+    <string name="date_format_widget_oreo_style">M月d日EEEE │</string>
     <!-- feedback. -->
     <string name="notification_channel_request_location">位置信息</string>
     <string name="notification_location_in_background">正在後台進行定位</string>
-
     <string name="dialog_permissions_location_title">獲取位置信息</string>
     <string name="dialog_permissions_location_content">Breezy 天氣需要在前臺和後臺訪問您的位置信息以提供您所在位置的天氣數據。爲此，我們需要請求一些權限。您的位置信息將僅被用於獲取天氣數據，若您不希望我們獲取您的位置信息，可以拒絕這些權限請求並手動在管理頁面中鍵入您的位置。</string>
     <string name="dialog_permissions_location_background_title">在後臺訪問位置</string>
     <string name="dialog_permissions_location_background_content">爲了讓app可以在後臺訪問您的位置信息，以便我們能夠及時感知您的位置變化並爲您提供有效的天氣數據，請將定位權限設置爲“始终允许”。</string>
-
     <string name="location_message_failed_to_locate">定位失敗</string>
     <string name="weather_message_data_refresh_failed">獲取天氣數據失敗</string>
     <string name="location_dialog_failed_to_locate_title">無法正常進行定位？</string>
@@ -139,7 +124,6 @@
     <string name="location_dialog_failed_to_locate_action_enable_information">開啟位置信息</string>
     <string name="location_dialog_failed_to_locate_action_select_provider">選擇位置信息提供商</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">手動添加城市並刪除“$”</string>
-
     <string name="widget_label_view_style">界面風格</string>
     <string name="widget_label_show_widget_card">卡片背景</string>
     <string name="widget_label_show_widget_card_alpha">卡片透明度</string>
@@ -150,8 +134,9 @@
     <string name="widget_label_clock_font">時鐘字體</string>
     <string name="widget_label_hide_lunar">隱藏陰曆</string>
     <string name="widget_label_align_end">右對齊</string>
-    <string name="widget_custom_subtitle_explanation">可以鍵入任何内容，但請注意内容長度。若需要使用天氣數據，可以通過使用$來引用相應關鍵字來實現。\n\n例如：若鍵入“天氣為$cw$”，副標題將顯示為“天氣為晴”。</string>
-
+    <string name="widget_custom_subtitle_explanation">可以鍵入任何内容，但請注意内容長度。若需要使用天氣數據，可以通過使用$來引用相應關鍵字來實現。
+\n
+\n例如：若鍵入“天氣為$cw$”，副標題將顯示為“天氣為晴”。</string>
     <string name="widget_custom_subtitle_keyword_cw_description">當天天氣</string>
     <string name="widget_custom_subtitle_keyword_ct_description">當前溫度 (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">當前溫度 (°)</string>
@@ -191,39 +176,28 @@
     <string name="widget_custom_subtitle_keyword_xmr_description">今日月出時間，明日，……，4天後</string>
     <string name="widget_custom_subtitle_keyword_xms_description">今日月落時間，明日，……，4天後</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">今日月相，明日，……，4天後</string>
-
     <string name="widget_live_wallpaper_weather_kind">天氣</string>
     <string name="widget_live_wallpaper_day_night_type">時間</string>
-
     <string name="location_message_added">收藏成功</string>
     <string name="location_message_deleted">刪除成功</string>
     <string name="location_message_list_cannot_be_empty">收藏地質不能留空</string>
-
     <string name="location_search_placeholder">鍵入一個地址…</string>
     <string name="location_current_not_found_yet">尚未進行定位…</string>
-
     <string name="settings_changes_apply_after_restart">重啟後生效</string>
-
     <string name="notification_running_in_background">正在後台運行以保持更新數據</string>
     <string name="notification_updating_weather_data">正在更新天氣數據</string>
     <string name="message_updated_in_background">已在後台完成更新</string>
-
     <string name="dialog_permissions_block_notification_channel_title">關閉相應通知頻道</string>
     <string name="dialog_permissions_block_notification_channel_content">關閉後台純净後，會出現一個標示後台服務正在運行的通知，你可以在app相關頁面中找到通知設定，在其中關閉“後台信息”這個頻道來隱藏這個通知</string>
-
     <string name="dialog_permissions_ignore_battery_optimizations_title">忽略電池優化</string>
     <string name="dialog_permissions_ignore_battery_optimizations_content">為了保證後台服務能夠持續工作，請為集合天氣選擇忽略電池優化</string>
-
     <string name="widget_live_wallpaper_cannot_start_activity">無法啟動動態壁紙預覽程序</string>
-
     <string name="notification_precipitation_today">今日可能出現降水</string>
     <string name="notification_precipitation_short_term">未來幾小時内可能出現降水</string>
-
     <string name="location_resident_message">設定為常駐城市</string>
-    <string name="location_resident_dialog">常駐城市的天氣將會根據您當前的位置來進行顯示和隱藏。\n例如將家鄉設定為常駐城市後，可以在旅途中查看家鄉天氣，而在歸家後，家鄉的天氣數據將會被當前位置所替代並進行隱藏。</string>
-
+    <string name="location_resident_dialog">常駐城市的天氣將會根據您當前的位置來進行顯示和隱藏。
+\n例如將家鄉設定為常駐城市後，可以在旅途中查看家鄉天氣，而在歸家後，家鄉的天氣數據將會被當前位置所替代並進行隱藏。</string>
     <string name="allergen_tap_to_see_more">點擊可獲取更多…</string>
-
     <!-- content description -->
     <string name="action_back">回退</string>
     <string name="settings_icon_providers_check_details">視檢詳情</string>
@@ -248,7 +222,6 @@
     <string name="settings_icon_providers_weather_icon_light">亮色圖標</string>
     <string name="settings_icon_providers_weather_icon_grey">灰色圖標</string>
     <string name="settings_icon_providers_weather_icon_dark">暗色圖標</string>
-
     <!-- action -->
     <string name="alerts">預警</string>
     <string name="action_search">搜索</string>
@@ -256,7 +229,6 @@
     <string name="action_preview">預覽</string>
     <string name="action_about">關於</string>
     <string name="action_app_store">應用商店</string>
-
     <!-- widget -->
     <string name="widget_day">今日</string>
     <string name="widget_week">一週</string>
@@ -273,12 +245,13 @@
     <string name="widget_material_you_current">Material You - 實時</string>
     <string name="widget_refreshing">等待更新</string>
     <string name="widget_ellipsis">…</string>
-
     <!-- settings -->
     <string name="settings_category_basic">基礎</string>
     <string name="settings_title_background_free">後台純净</string>
-    <string name="settings_summary_background_free_on">開啟\n若小部件和天氣通知無法自動更新，請關閉該選項</string>
-    <string name="settings_summary_background_free_off">關閉\n若不希望任何服務在後台常駐，請開啟該選項</string>
+    <string name="settings_summary_background_free_on">開啟
+\n若小部件和天氣通知無法自動更新，請關閉該選項</string>
+    <string name="settings_summary_background_free_off">關閉
+\n若不希望任何服務在後台常駐，請開啟該選項</string>
     <string name="settings_title_live_wallpaper">動態壁紙</string>
     <string name="settings_summary_live_wallpaper">將Material天氣動畫設定為動態壁紙</string>
     <string name="settings_title_service_provider">數據提供商</string>
@@ -343,7 +316,6 @@
     <string name="settings_title_notification_hide_big_view">隱藏大視圖</string>
     <string name="settings_notification_hide_big_view_on">隱藏</string>
     <string name="settings_notification_hide_big_view_off">顯示</string>
-
     <string name="weather_source_accuweather_voice">ACCU天氣</string>
     <string name="weather_source_openweather_voice">OPEN天氣</string>
     <string name="weather_source_china">中國</string>
@@ -352,7 +324,6 @@
     <string name="location_service_baidu_ip">百度IP定位（僅中國地區）</string>
     <string name="location_service_amap">高德定位</string>
     <string name="location_service_native">原生接口</string>
-
     <string name="settings_automatic">自動</string>
     <string name="settings_none">無卡片</string>
     <string name="settings_color_day_night">白晝 / 夜晚</string>
@@ -371,10 +342,8 @@
     <string name="settings_refresh_6h">6小時</string>
     <string name="settings_refresh_12h">12小時</string>
     <string name="settings_refresh_24h">24小時</string>
-
     <string name="notification_style_native">原生</string>
     <string name="notification_style_cities">多城市</string>
-
     <string name="widget_style_rectangle">矩形</string>
     <string name="widget_style_symmetry">對稱</string>
     <string name="widget_style_tile">瓷磚</string>
@@ -390,7 +359,6 @@
     <string name="widget_subtitle_data_feels_like">體感溫度</string>
     <string name="widget_subtitle_data_lunar">農曆</string>
     <string name="widget_subtitle_data_custom">自定義</string>
-
     <!-- Weather kind -->
     <string name="weather_kind_clear">晴</string>
     <string name="weather_kind_partly_cloudy">多雲</string>
@@ -404,7 +372,6 @@
     <string name="weather_kind_thunder">雷暴</string>
     <string name="weather_kind_thunderstorm">雷雨</string>
     <string name="weather_kind_wind">風</string>
-
     <!-- Units -->
     <string name="unit_kph">千米/時</string>
     <string name="unit_kph_voice">千米每小時</string>
@@ -464,5 +431,211 @@
     <string name="unit_h_voice">小時</string>
     <string name="unit_ppcm">/米³</string>
     <string name="unit_ppcm_voice">每立方米</string>
-
+    <string name="air_quality_level_1"></string>
+    <string name="air_quality_level_4"></string>
+    <string name="air_quality_level_3"></string>
+    <string name="weather_source_metno"></string>
+    <string name="weather_source_openweather_version_2_5"></string>
+    <string name="weather_source_openweather_version_3_0"></string>
+    <string name="weather_source_mf_voice"></string>
+    <string name="widget_style_pixel"></string>
+    <string name="widget_style_mini"></string>
+    <string name="widget_style_nano"></string>
+    <string name="widget_clock_font_sans_serif_light"></string>
+    <string name="widget_clock_font_sans_serif"></string>
+    <string name="widget_clock_font_analog"></string>
+    <string name="settings_provider_accu_weather"></string>
+    <string name="notification_channel_alerts"></string>
+    <string name="about_matrix"></string>
+    <string name="openmeteo_weather_text_rain_slight_intensity"></string>
+    <string name="sp_widget_clock_day_vertical_setting" translatable="false"></string>
+    <string name="key_widget_trend_daily" translatable="false"></string>
+    <string name="tag_precipitation" translatable="false"></string>
+    <string name="tag_aqi" translatable="false"></string>
+    <string name="tag_uv" translatable="false"></string>
+    <string name="settings_icon_providers_app_store" translatable="false"></string>
+    <string name="unit_kelvin"></string>
+    <string name="unit_kelvin_short"></string>
+    <string name="openmeteo_weather_text_snow_grains"></string>
+    <string name="widget_custom_subtitle_keyword_at" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_cv" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_cdp" translatable="false"></string>
+    <string name="sp_widget_day_week_setting" translatable="false"></string>
+    <string name="key_subtitle_data" translatable="false"></string>
+    <string name="key_text_color" translatable="false"></string>
+    <string name="key_text_size" translatable="false"></string>
+    <string name="key_clock_font" translatable="false"></string>
+    <string name="key_hide_lunar" translatable="false"></string>
+    <string name="key_widget_multi_city" translatable="false"></string>
+    <string name="key_notification_minimal_icon" translatable="false"></string>
+    <string name="tag_wind" translatable="false"></string>
+    <string name="transition_activity_search_bar" translatable="false"></string>
+    <string name="transition_activity_search_txt" translatable="false"></string>
+    <string name="weather_refreshed"></string>
+    <string name="widget_custom_subtitle_keyword_enter" translatable="false"></string>
+    <string name="openmeteo_weather_text_overcast"></string>
+    <string name="openmeteo_weather_text_snow_moderate_intensity"></string>
+    <string name="sp_widget_android_s_weather_medium" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_xdwd" translatable="false"></string>
+    <string name="openmeteo_weather_text_depositing_rime_fog"></string>
+    <string name="openmeteo_weather_text_drizzle_moderate_intensity"></string>
+    <string name="key_click_widget_to_refresh" translatable="false"></string>
+    <string name="openmeteo_weather_text_snow_showers_slight"></string>
+    <string name="widget_custom_subtitle_keyword_xnp" translatable="false"></string>
+    <string name="sp_widget_multi_city" translatable="false"></string>
+    <string name="key_hide_subtitle" translatable="false"></string>
+    <string name="uv_level_3_5"></string>
+    <string name="weather_source_openweather"></string>
+    <string name="settings_background_animation_disabled"></string>
+    <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail"></string>
+    <string name="wind_direction_short_SW"></string>
+    <string name="widget_custom_subtitle_keyword_xdtd" translatable="false"></string>
+    <string name="weather_api_limit_reached_dialog"></string>
+    <string name="widget_custom_subtitle_keyword_dd" translatable="false"></string>
+    <string name="openmeteo_weather_text_fog"></string>
+    <string name="unit_celsius"></string>
+    <string name="uv_level_6_7"></string>
+    <string name="sp_widget_hourly_trend_setting" translatable="false"></string>
+    <string name="sp_widget_android_s_weather_large" translatable="false"></string>
+    <string name="settings_provider_iqa_atmo_aura_key"></string>
+    <string name="sp_widget_daily_trend_setting" translatable="false"></string>
+    <string name="settings_provider_accu_weather_key"></string>
+    <string name="widget_custom_subtitle_keyword_ws" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_xnw" translatable="false"></string>
+    <string name="key_widget_clock_day_details" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_lc" translatable="false"></string>
+    <string name="settings_refresh_never"></string>
+    <string name="openmeteo_weather_text_clear_sky"></string>
+    <string name="settings_provider_open_weather_key"></string>
+    <string name="location_results_by"></string>
+    <string name="openmeteo_weather_text_snow_heavy_intensity"></string>
+    <string name="action_choose_weather_provider"></string>
+    <string name="sp_widget_clock_day_horizontal_setting" translatable="false"></string>
+    <string name="alerts_to_follow"></string>
+    <string name="key_service_provider_advanced" translatable="false"></string>
+    <string name="settings_background_animation_enabled"></string>
+    <string name="breezy_weather" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_xdw" translatable="false"></string>
+    <string name="settings_provider_open_weather_one_call_version"></string>
+    <string name="sp_widget_week_setting" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_al" translatable="false"></string>
+    <string name="settings_title_widget_config"></string>
+    <string name="uv_level_11"></string>
+    <string name="air_quality_level_3_description"></string>
+    <string name="settings_provider_mf"></string>
+    <string name="widget_custom_subtitle_keyword_xmr" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_xms" translatable="false"></string>
+    <string name="settings_provider_mf_wsft_key"></string>
+    <string name="weather_api_limit_reached_message"></string>
+    <string name="uv_level_0_2"></string>
+    <string name="openmeteo_weather_text_freezing_rain_light_intensity"></string>
+    <string name="widget_custom_subtitle_keyword_w" translatable="false"></string>
+    <string name="wind_direction_short_SE"></string>
+    <string name="widget_custom_subtitle_keyword_xmp" translatable="false"></string>
+    <string name="openmeteo_weather_text_freezing_drizzle_light_intensity"></string>
+    <string name="key_align_end" translatable="false"></string>
+    <string name="settings_provider_open_weather"></string>
+    <string name="openmeteo_weather_text_drizzle_dense_intensity"></string>
+    <string name="key_widget_clock_day_week" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_ct" translatable="false"></string>
+    <string name="wind_direction_short_N"></string>
+    <string name="wind_direction_short_NW"></string>
+    <string name="wind_direction_short_E"></string>
+    <string name="weather_data_by"></string>
+    <string name="openmeteo_weather_text_snow_showers_heavy"></string>
+    <string name="settings_provider_baidu_ip_location_ak"></string>
+    <string name="action_location_list"></string>
+    <string name="uv_alert_level"></string>
+    <string name="widget_custom_subtitle_keyword_xsr" translatable="false"></string>
+    <string name="openmeteo_weather_text_rain_showers_moderate"></string>
+    <string name="key_widget_trend_hourly" translatable="false"></string>
+    <string name="sp_widget_day_setting" translatable="false"></string>
+    <string name="air_quality_level_5"></string>
+    <string name="widget_custom_subtitle_keyword_xnwd" translatable="false"></string>
+    <string name="wind_direction_short_W"></string>
+    <string name="air_quality_level_5_description"></string>
+    <string name="widget_custom_subtitle_keyword_lat" translatable="false"></string>
+    <string name="key_appearance" translatable="false"></string>
+    <string name="air_quality_level_4_description"></string>
+    <string name="location_search_change_weather_source"></string>
+    <string name="key_view_type" translatable="false"></string>
+    <string name="widget_clock_font_sans_serif_black"></string>
+    <string name="widget_custom_subtitle_keyword_cwd" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_separator" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_cw" translatable="false"></string>
+    <string name="openmeteo_weather_text_rain_moderate_intensity"></string>
+    <string name="openmeteo_weather_text_rain_showers_slight"></string>
+    <string name="widget_custom_subtitle_keyword_xdp" translatable="false"></string>
+    <string name="unit_fahrenheit"></string>
+    <string name="key_widget_clock_day_horizontal" translatable="false"></string>
+    <string name="sp_widget_clock_day_details_setting" translatable="false"></string>
+    <string name="key_colorful" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_ut" translatable="false"></string>
+    <string name="sp_widget_text_setting" translatable="false"></string>
+    <string name="key_widget_day" translatable="false"></string>
+    <string name="key_service_provider" translatable="false"></string>
+    <string name="openmeteo_weather_text_mainly_clear"></string>
+    <string name="weather_api_unauthorized_message"></string>
+    <string name="uv_level_8_10"></string>
+    <string name="widget_custom_subtitle_keyword_atd" translatable="false"></string>
+    <string name="weather_source_metno_voice"></string>
+    <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate"></string>
+    <string name="about_contribution_WangDaYeeeeee"></string>
+    <string name="key_card_alpha" translatable="false"></string>
+    <string name="key_unit" translatable="false"></string>
+    <string name="air_quality_level_1_description"></string>
+    <string name="about_source_code"></string>
+    <string name="sp_widget_android_s_weather_mini" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_hd" translatable="false"></string>
+    <string name="key_widget_week" translatable="false"></string>
+    <string name="openmeteo_weather_text_snow_slight_intensity"></string>
+    <string name="air_quality_level_2"></string>
+    <string name="widget_custom_subtitle_keyword_xntd" translatable="false"></string>
+    <string name="openmeteo_weather_text_partly_cloudy"></string>
+    <string name="key_live_wallpaper" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_cuv" translatable="false"></string>
+    <string name="sp_widget_clock_day_week_setting" translatable="false"></string>
+    <string name="weather_source_accuweather"></string>
+    <string name="weather_source_openmeteo_voice"></string>
+    <string name="openmeteo_weather_text_rain_heavy_intensity"></string>
+    <string name="widget_custom_subtitle_keyword_ch" translatable="false"></string>
+    <string name="wind_direction_short_NE"></string>
+    <string name="openmeteo_weather_text_thunderstorm_with_slight_hail"></string>
+    <string name="unit_fahrenheit_short"></string>
+    <string name="sp_widget_android_s_weather_xlarge" translatable="false"></string>
+    <string name="openmeteo_weather_text_freezing_drizzle_dense_intensity"></string>
+    <string name="weather_source_mf"></string>
+    <string name="widget_custom_subtitle_keyword_ctd" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_xdt" translatable="false"></string>
+    <string name="weather_source_openmeteo"></string>
+    <string name="widget_custom_subtitle_keyword_d" translatable="false"></string>
+    <string name="air_quality_level_6_description"></string>
+    <string name="settings_provider_default_value"></string>
+    <string name="unit_celsius_short"></string>
+    <string name="openmeteo_weather_text_drizzle_light_intensity"></string>
+    <string name="openmeteo_weather_text_freezing_rain_heavy_intensity"></string>
+    <string name="air_quality_level_6"></string>
+    <string name="wind_direction_short_S"></string>
+    <string name="widget_custom_subtitle_keyword_lon" translatable="false"></string>
+    <string name="weather_api_unauthorized_dialog"></string>
+    <string name="key_card_style" translatable="false"></string>
+    <string name="widget_custom_subtitle_keyword_xss" translatable="false"></string>
+    <string name="wind_direction_short_variable"></string>
+    <string name="widget_custom_subtitle_keyword_l" translatable="false"></string>
+    <string name="air_quality_level_2_description"></string>
+    <string name="widget_custom_subtitle_keyword_xnt" translatable="false"></string>
+    <string name="settings_provider_baidu_ip_location"></string>
+    <string name="key_widget_text" translatable="false"></string>
+    <string name="tag_temperature" translatable="false"></string>
+    <string name="key_widget_clock_day_vertical" translatable="false"></string>
+    <string name="settings_title_background_animation"></string>
+    <string name="widget_custom_subtitle_keyword_cps" translatable="false"></string>
+    <string name="locations"></string>
+    <string name="widget_custom_subtitle_keyword_als" translatable="false"></string>
+    <string name="message_tap_again_to_exit"></string>
+    <string name="key_widget_day_week" translatable="false"></string>
+    <string name="openmeteo_weather_text_rain_showers_violent"></string>
+    <string name="key_widget_config" translatable="false"></string>
+    <string name="action_add_from_map"></string>
+    <string name="action_add_new_location"></string>
 </resources>
