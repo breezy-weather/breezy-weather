@@ -2,6 +2,7 @@ package org.breezyweather.background.polling
 
 import android.content.Context
 import android.widget.Toast
+import androidx.annotation.NonNull
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.Weather
@@ -10,6 +11,7 @@ import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.db.repositories.LocationEntityRepository
 import org.breezyweather.db.repositories.WeatherEntityRepository
 import org.breezyweather.location.LocationHelper
+import org.breezyweather.main.utils.RequestErrorType
 import org.breezyweather.weather.WeatherHelper
 import org.breezyweather.weather.WeatherHelper.OnRequestWeatherListener
 
@@ -107,7 +109,7 @@ class PollingUpdateHelper(
             if (requestLocation.isUsable) {
                 requestData(index, true)
             } else {
-                requestLocationFailed(requestLocation)
+                requestLocationFailed(requestLocation, RequestErrorType.LOCATION_FAILED)
                 Toast.makeText(
                     context,
                     context.getString(R.string.location_current_not_found_yet),
@@ -116,14 +118,13 @@ class PollingUpdateHelper(
             }
         }
 
-        override fun requestLocationFailed(requestLocation: Location) {
+        override fun requestLocationFailed(requestLocation: Location, requestErrorType: RequestErrorType) {
             if (locationList[index].isUsable) {
                 requestData(index, true)
             } else {
                 RequestWeatherCallback(index, total).requestWeatherFailed(
                     requestLocation = locationList[index],
-                    apiLimitReached = false,
-                    apiUnauthorized = false
+                    requestErrorType = requestErrorType
                 )
             }
         }
@@ -151,15 +152,11 @@ class PollingUpdateHelper(
 
                 checkToRequestNextOrCompleted()
             } else {
-                requestWeatherFailed(
-                    requestLocation,
-                    apiLimitReached = false,
-                    apiUnauthorized = false
-                )
+                requestWeatherFailed(requestLocation, RequestErrorType.WEATHER_REQ_FAILED)
             }
         }
 
-        override fun requestWeatherFailed(requestLocation: Location, apiLimitReached: Boolean, apiUnauthorized: Boolean) {
+        override fun requestWeatherFailed(requestLocation: Location, requestErrorType: RequestErrorType) {
             val old = locationList[index].weather
             locationList[index] = requestLocation
 

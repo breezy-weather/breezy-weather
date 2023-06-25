@@ -4,7 +4,7 @@ At each step, have a look at what already exists for other providers if you donâ
 
 ### Add parameters
 
-Declare `BASE_URL` and if required, an `API_KEY` in `gradle.properties`.
+Declare `BASE_URL` and if required, an `API_KEY` in `local.properties`.
 Add new variables in `app/build.gradle`.
 
 *TODO: describe how to add a new parameter in settings for API key*

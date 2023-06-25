@@ -52,6 +52,7 @@ import org.breezyweather.R;
 import org.breezyweather.background.polling.PollingManager;
 import org.breezyweather.common.utils.DisplayUtils;
 import org.breezyweather.common.utils.helpers.SnackbarHelper;
+import org.breezyweather.main.utils.RequestErrorType;
 import org.breezyweather.settings.ConfigStore;
 import org.breezyweather.settings.SettingsManager;
 import org.breezyweather.weather.WeatherHelper;
@@ -708,20 +709,20 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
 
         locationNow = requestLocation;
         if (requestLocation.getWeather() == null) {
-            requestWeatherFailed(requestLocation, false, false);
+            requestWeatherFailed(requestLocation, RequestErrorType.WEATHER_REQ_FAILED);
         } else {
             updateHostView();
         }
     }
 
     @Override
-    public void requestWeatherFailed(@NonNull Location requestLocation, @NonNull Boolean apiLimitReached, @NonNull Boolean apiUnauthorized) {
+    public void requestWeatherFailed(@NonNull Location requestLocation, @NonNull RequestErrorType requestErrorType) {
         if (destroyed) {
             return;
         }
         locationNow = requestLocation;
         updateHostView();
-        SnackbarHelper.showSnackbar(getString(R.string.weather_message_data_refresh_failed));
+        SnackbarHelper.showSnackbar(getString(requestErrorType.getShortMessage()));
     }
 
     @SuppressLint("MissingPermission")

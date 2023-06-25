@@ -20,6 +20,7 @@ import org.breezyweather.common.basic.models.options.provider.WeatherSource;
 import org.breezyweather.db.repositories.LocationEntityRepository;
 import org.breezyweather.location.services.BaiduIPLocationService;
 import org.breezyweather.location.services.LocationService;
+import org.breezyweather.main.utils.RequestErrorType;
 import org.breezyweather.settings.SettingsManager;
 import org.breezyweather.common.utils.NetworkUtils;
 import org.breezyweather.location.services.AMapLocationService;
@@ -40,7 +41,7 @@ public class LocationHelper {
     public interface OnRequestLocationListener {
         void requestLocationSuccess(Location requestLocation);
 
-        void requestLocationFailed(Location requestLocation);
+        void requestLocationFailed(Location requestLocation, RequestErrorType requestErrorType);
     }
 
     @Inject
@@ -82,23 +83,25 @@ public class LocationHelper {
             }
 
             @Override
-            public void requestLocationFailed(Location requestLocation) {
-                l.requestLocationFailed(requestLocation);
+            public void requestLocationFailed(Location requestLocation, RequestErrorType requestErrorType) {
+                l.requestLocationFailed(requestLocation, requestErrorType);
             }
         };
 
         final LocationProvider provider = SettingsManager.getInstance(context).getLocationProvider();
         final LocationService service = getLocationService(provider);
         if (service.getPermissions().length != 0) {
+            if (!NetworkUtils.isAvailable(context)) {
+                usableCheckListener.requestLocationFailed(location, RequestErrorType.NETWORK_UNAVAILABLE);
+                return;
+            }
             // if needs any location permission.
-            if (!NetworkUtils.isAvailable(context) || (ActivityCompat.checkSelfPermission(
-                    context,
-                    Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                    context,
-                    Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED)) {
-                usableCheckListener.requestLocationFailed(location);
+            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) !=
+                    PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) !=
+                    PackageManager.PERMISSION_GRANTED
+            ) {
+                usableCheckListener.requestLocationFailed(location, RequestErrorType.ACCESS_LOCATION_PERMISSION_MISSING);
                 return;
             }
             if (background) {
@@ -106,7 +109,7 @@ public class LocationHelper {
                         context,
                         Manifest.permission.ACCESS_BACKGROUND_LOCATION
                 ) != PackageManager.PERMISSION_GRANTED) {
-                    usableCheckListener.requestLocationFailed(location);
+                    usableCheckListener.requestLocationFailed(location, RequestErrorType.ACCESS_BACKGROUND_LOCATION_PERMISSION_MISSING);
                     return;
                 }
             }
@@ -114,12 +117,11 @@ public class LocationHelper {
 
         // 1. get location by location service.
         // 2. get available location by weather service.
-
         service.requestLocation(
                 context,
                 result -> {
                     if (result == null) {
-                        usableCheckListener.requestLocationFailed(location);
+                        usableCheckListener.requestLocationFailed(location, RequestErrorType.LOCATION_FAILED);
                         return;
                     }
 
@@ -152,13 +154,13 @@ public class LocationHelper {
                     LocationEntityRepository.INSTANCE.writeLocation(result);
                     l.requestLocationSuccess(result);
                 } else {
-                    requestLocationFailed(query);
+                    requestLocationFailed(query, RequestErrorType.LOCATION_FAILED);
                 }
             }
 
             @Override
-            public void requestLocationFailed(String query) {
-                l.requestLocationFailed(location);
+            public void requestLocationFailed(String query, RequestErrorType requestErrorType) {
+                l.requestLocationFailed(location, requestErrorType);
             }
         });
     }

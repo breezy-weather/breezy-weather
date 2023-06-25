@@ -25,6 +25,7 @@ import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import org.breezyweather.common.basic.models.Location;
 import org.breezyweather.common.basic.models.options.provider.WeatherSource;
+import org.breezyweather.main.utils.RequestErrorType;
 import org.breezyweather.settings.SettingsManager;
 import org.breezyweather.weather.apis.AtmoAuraIqaApi;
 import org.breezyweather.weather.apis.MfWeatherApi;
@@ -67,6 +68,11 @@ public class MfWeatherService extends WeatherService {
 
     @Override
     public void requestWeather(Context context, Location location, @NonNull RequestWeatherCallback callback) {
+        if (!isConfigured(context)) {
+            callback.requestWeatherFailed(location, RequestErrorType.API_KEY_REQUIRED_MISSING);
+            return;
+        }
+
         String languageCode = SettingsManager.getInstance(context).getLanguage().getCode();
         String token = this.getToken(context);
 
@@ -95,8 +101,10 @@ public class MfWeatherService extends WeatherService {
             warnings = Observable.create(emitter -> emitter.onNext(new MfWarningsResult(null, null, null, null, null, null, null, null)));
         }
 
+        String atmoAuraKey;
         Observable<AtmoAuraPointResult> aqiAtmoAura;
-        if (!TextUtils.isEmpty(location.getCountryCode()) && location.getCountryCode().equals("FR")
+        if (!TextUtils.isEmpty(atmoAuraKey = SettingsManager.getInstance(context).getProviderIqaAtmoAuraKey())
+                && !TextUtils.isEmpty(location.getCountryCode()) && location.getCountryCode().equals("FR")
                 && !TextUtils.isEmpty(location.getProvinceCode()) &&
                 (location.getProvinceCode().equals("01") || location.getProvinceCode().equals("03")
                 || location.getProvinceCode().equals("07") || location.getProvinceCode().equals("15")
@@ -112,7 +120,7 @@ public class MfWeatherService extends WeatherService {
             c.set(Calendar.SECOND, 0);
             c.set(Calendar.MILLISECOND, 0);
             aqiAtmoAura = mAtmoAuraApi.getPointDetails(
-                    SettingsManager.getInstance(context).getProviderIqaAtmoAuraKey(),
+                    atmoAuraKey,
                     location.getLongitude(),
                     location.getLatitude(),
                     // Tomorrow because it gives access to D-1 and D+1
@@ -150,7 +158,13 @@ public class MfWeatherService extends WeatherService {
 
                     @Override
                     public void onFailed() {
-                        callback.requestWeatherFailed(location, this.isApiLimitReached(), this.isApiUnauthorized());
+                        if (this.isApiLimitReached()) {
+                            callback.requestWeatherFailed(location, RequestErrorType.API_LIMIT_REACHED);
+                        } else if (this.isApiUnauthorized()) {
+                            callback.requestWeatherFailed(location, RequestErrorType.API_UNAUTHORIZED);
+                        } else {
+                            callback.requestWeatherFailed(location, RequestErrorType.WEATHER_REQ_FAILED);
+                        }
                     }
                 }));
     }
@@ -179,12 +193,20 @@ public class MfWeatherService extends WeatherService {
     @Override
     public void requestLocation(Context context, Location location,
                                 @NonNull RequestLocationCallback callback) {
+        if (!isConfigured(context)) {
+            callback.requestLocationFailed(
+                    location.getLatitude() + "," + location.getLongitude(),
+                    RequestErrorType.API_KEY_REQUIRED_MISSING
+            );
+            return;
+        }
+
         mMfApi.getForecast(
             getUserAgent(),
             location.getLatitude(),
             location.getLongitude(),
             "iso",
-            this.getToken(context)
+            getToken(context)
         ).compose(SchedulerTransformer.create())
             .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<MfForecastResult>() {
                 @Override
@@ -208,9 +230,13 @@ public class MfWeatherService extends WeatherService {
 
                 @Override
                 public void onFailed() {
-                    callback.requestLocationFailed(
-                            location.getLatitude() + "," + location.getLongitude()
-                    );
+                    if (this.isApiLimitReached()) {
+                        callback.requestLocationFailed(location.getLatitude() + "," + location.getLongitude(), RequestErrorType.API_LIMIT_REACHED);
+                    } else if (this.isApiUnauthorized()) {
+                        callback.requestLocationFailed(location.getLatitude() + "," + location.getLongitude(), RequestErrorType.API_UNAUTHORIZED);
+                    } else {
+                        callback.requestLocationFailed(location.getLatitude() + "," + location.getLongitude(), RequestErrorType.LOCATION_FAILED);
+                    }
                 }
             }));
     }
@@ -229,14 +255,13 @@ public class MfWeatherService extends WeatherService {
                             }
                             callback.requestLocationSuccess(query, locationList);
                         } else {
-                            callback.requestLocationFailed(query);
+                            callback.requestLocationFailed(query, RequestErrorType.LOCATION_FAILED);
                         }
-
                     }
 
                     @Override
                     public void onFailed() {
-                        callback.requestLocationFailed(query);
+                        callback.requestLocationFailed(query, RequestErrorType.LOCATION_FAILED);
                     }
                 }));
     }
@@ -267,6 +292,11 @@ public class MfWeatherService extends WeatherService {
                 return BuildConfig.MF_WSFT_KEY;
             }
         }
+    }
+
+    @Override
+    public Boolean isConfigured(Context context) {
+        return !TextUtils.isEmpty(getToken(context));
     }
 
     protected String getUserAgent() {

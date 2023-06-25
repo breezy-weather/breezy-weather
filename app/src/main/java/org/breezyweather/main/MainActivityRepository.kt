@@ -6,6 +6,7 @@ import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.db.repositories.LocationEntityRepository
 import org.breezyweather.db.repositories.WeatherEntityRepository
 import org.breezyweather.location.LocationHelper
+import org.breezyweather.main.utils.RequestErrorType
 import org.breezyweather.weather.WeatherHelper
 import org.breezyweather.weather.WeatherHelper.OnRequestWeatherListener
 import java.util.concurrent.Executors
@@ -20,10 +21,7 @@ class MainActivityRepository @Inject constructor(
     interface WeatherRequestCallback {
         fun onCompleted(
             location: Location,
-            locationFailed: Boolean?,
-            weatherRequestFailed: Boolean,
-            apiLimitReached: Boolean,
-            apiUnauthorized: Boolean
+            requestErrorType: RequestErrorType?
         )
     }
 
@@ -115,19 +113,19 @@ class MainActivityRepository @Inject constructor(
                 getWeatherWithValidLocationInformation(
                     context,
                     requestLocation,
-                    false,
+                    null,
                     callback
                 )
             }
 
-            override fun requestLocationFailed(requestLocation: Location) {
+            override fun requestLocationFailed(requestLocation: Location, requestErrorType: RequestErrorType) {
                 if (requestLocation.formattedId != location.formattedId) {
                     return
                 }
                 getWeatherWithValidLocationInformation(
                     context,
                     requestLocation,
-                    true,
+                    requestErrorType,
                     callback
                 )
             }
@@ -137,7 +135,7 @@ class MainActivityRepository @Inject constructor(
     private fun getWeatherWithValidLocationInformation(
         context: Context,
         location: Location,
-        locationFailed: Boolean?,
+        requestErrorType: RequestErrorType?,
         callback: WeatherRequestCallback,
     ) = weatherHelper.requestWeather(
         context,
@@ -147,26 +145,14 @@ class MainActivityRepository @Inject constructor(
                 if (requestLocation.formattedId != location.formattedId) {
                     return
                 }
-                callback.onCompleted(
-                    requestLocation,
-                    locationFailed = locationFailed,
-                    weatherRequestFailed = false,
-                    apiLimitReached = false,
-                    apiUnauthorized = false
-                )
+                callback.onCompleted(requestLocation, requestErrorType)
             }
 
-            override fun requestWeatherFailed(requestLocation: Location, apiLimitReached: Boolean, apiUnauthorized: Boolean) {
+            override fun requestWeatherFailed(requestLocation: Location, requestErrorType: RequestErrorType) {
                 if (requestLocation.formattedId != location.formattedId) {
                     return
                 }
-                callback.onCompleted(
-                    requestLocation,
-                    locationFailed = locationFailed,
-                    weatherRequestFailed = true,
-                    apiLimitReached = apiLimitReached,
-                    apiUnauthorized = apiUnauthorized
-                )
+                callback.onCompleted(requestLocation, requestErrorType)
             }
         }
     )

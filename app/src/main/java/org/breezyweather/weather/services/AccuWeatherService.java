@@ -2,6 +2,7 @@ package org.breezyweather.weather.services;
 
 import android.content.Context;
 
+import android.text.TextUtils;
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import javax.inject.Inject;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import org.breezyweather.common.basic.models.Location;
+import org.breezyweather.main.utils.RequestErrorType;
 import org.breezyweather.settings.SettingsManager;
 import org.breezyweather.weather.apis.AccuWeatherApi;
 import org.breezyweather.common.rxjava.BaseObserver;
@@ -40,21 +42,37 @@ public class AccuWeatherService extends WeatherService {
         mCompositeDisposable = disposable;
     }
 
+    protected String getApiKey(Context context) {
+        return SettingsManager.getInstance(context).getProviderAccuWeatherKey();
+    }
+
+    @Override
+    public Boolean isConfigured(Context context) {
+        return !TextUtils.isEmpty(getApiKey(context));
+    }
+
     @Override
     public void requestWeather(Context context, Location location, @NonNull RequestWeatherCallback callback) {
+        if (!this.isConfigured(context)) {
+            callback.requestWeatherFailed(location, RequestErrorType.API_KEY_REQUIRED_MISSING);
+            return;
+        }
+
+        String apiKey = getApiKey(context);
+
         String languageCode = SettingsManager.getInstance(context).getLanguage().getCode();
 
         Observable<List<AccuCurrentResult>> realtime = mApi.getCurrent(
-                location.getCityId(), SettingsManager.getInstance(context).getProviderAccuWeatherKey(), languageCode, true);
+                location.getCityId(), apiKey, languageCode, true);
 
         Observable<AccuForecastDailyResult> daily = mApi.getDaily(
-                location.getCityId(), SettingsManager.getInstance(context).getProviderAccuWeatherKey(), languageCode, true, true);
+                location.getCityId(), apiKey, languageCode, true, true);
 
         Observable<List<AccuForecastHourlyResult>> hourly = mApi.getHourly(
-                location.getCityId(), SettingsManager.getInstance(context).getProviderAccuWeatherKey(), languageCode, true, true);
+                location.getCityId(), apiKey, languageCode, true, true);
 
         Observable<AccuMinutelyResult> minute = mApi.getMinutely(
-                SettingsManager.getInstance(context).getProviderAccuWeatherKey(),
+                apiKey,
                 location.getLatitude() + "," + location.getLongitude(),
                 languageCode,
                 true
@@ -63,7 +81,7 @@ public class AccuWeatherService extends WeatherService {
         );
 
         Observable<List<AccuAlertResult>> alert = mApi.getAlert(
-                SettingsManager.getInstance(context).getProviderAccuWeatherKey(),
+                apiKey,
                 location.getLatitude() + "," + location.getLongitude(),
                 languageCode,
                 true
@@ -96,7 +114,13 @@ public class AccuWeatherService extends WeatherService {
 
                     @Override
                     public void onFailed() {
-                        callback.requestWeatherFailed(location, this.isApiLimitReached(), this.isApiUnauthorized());
+                        if (this.isApiLimitReached()) {
+                            callback.requestWeatherFailed(location, RequestErrorType.API_LIMIT_REACHED);
+                        } else if (this.isApiUnauthorized()) {
+                            callback.requestWeatherFailed(location, RequestErrorType.API_UNAUTHORIZED);
+                        } else {
+                            callback.requestWeatherFailed(location, RequestErrorType.WEATHER_REQ_FAILED);
+                        }
                     }
                 }));
     }
@@ -104,11 +128,16 @@ public class AccuWeatherService extends WeatherService {
     @Override
     @NonNull
     public List<Location> requestLocation(Context context, String query) {
+        if (!this.isConfigured(context)) {
+            return new ArrayList<>();
+        }
+
+        String apiKey = getApiKey(context);
         String languageCode = SettingsManager.getInstance(context).getLanguage().getCode();
         List<AccuLocationResult> resultList = null;
         try {
             resultList = mApi.callWeatherLocation(
-                    SettingsManager.getInstance(context).getProviderAccuWeatherKey(),
+                    apiKey,
                     query,
                     languageCode,
                     false,
@@ -132,11 +161,18 @@ public class AccuWeatherService extends WeatherService {
     @Override
     public void requestLocation(Context context, Location location,
                                 @NonNull RequestLocationCallback callback) {
+        if (!this.isConfigured(context)) {
+            callback.requestLocationFailed(
+                    location.getLatitude() + "," + location.getLongitude(), RequestErrorType.API_KEY_REQUIRED_MISSING
+            );
+            return;
+        }
 
+        String apiKey = getApiKey(context);
         String languageCode = SettingsManager.getInstance(context).getLanguage().getCode();
 
         mApi.getWeatherLocationByGeoPosition(
-                        SettingsManager.getInstance(context).getProviderAccuWeatherKey(),
+                        apiKey,
                         languageCode,
                         false,
                         location.getLatitude() + "," + location.getLongitude()
@@ -158,19 +194,28 @@ public class AccuWeatherService extends WeatherService {
 
                     @Override
                     public void onFailed() {
-                        callback.requestLocationFailed(
-                                location.getLatitude() + "," + location.getLongitude()
-                        );
+                        if (this.isApiLimitReached()) {
+                            callback.requestLocationFailed(location.getLatitude() + "," + location.getLongitude(), RequestErrorType.API_LIMIT_REACHED);
+                        } else if (this.isApiUnauthorized()) {
+                            callback.requestLocationFailed(location.getLatitude() + "," + location.getLongitude(), RequestErrorType.API_UNAUTHORIZED);
+                        } else {
+                            callback.requestLocationFailed(location.getLatitude() + "," + location.getLongitude(), RequestErrorType.LOCATION_FAILED);
+                        }
                     }
                 }));
     }
 
     public void requestLocation(Context context, String query,
                                 @NonNull RequestLocationCallback callback) {
+        if (!this.isConfigured(context)) {
+            callback.requestLocationFailed(query, RequestErrorType.API_KEY_REQUIRED_MISSING);
+            return;
+        }
+        String apiKey = getApiKey(context);
         String languageCode = SettingsManager.getInstance(context).getLanguage().getCode();
         String zipCode = query.matches("[a-zA-Z0-9]") ? query : null;
 
-        mApi.getWeatherLocation(SettingsManager.getInstance(context).getProviderAccuWeatherKey(), query, languageCode, false, "Always")
+        mApi.getWeatherLocation(apiKey, query, languageCode, false, "Always")
                 .compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<List<AccuLocationResult>>() {
                     @Override
@@ -182,13 +227,19 @@ public class AccuWeatherService extends WeatherService {
                             }
                             callback.requestLocationSuccess(query, locationList);
                         } else {
-                            callback.requestLocationFailed(query);
+                            callback.requestLocationFailed(query, RequestErrorType.LOCATION_FAILED);
                         }
                     }
 
                     @Override
                     public void onFailed() {
-                        callback.requestLocationFailed(query);
+                        if (this.isApiLimitReached()) {
+                            callback.requestLocationFailed(query, RequestErrorType.API_LIMIT_REACHED);
+                        } else if (this.isApiUnauthorized()) {
+                            callback.requestLocationFailed(query, RequestErrorType.API_UNAUTHORIZED);
+                        } else {
+                            callback.requestLocationFailed(query, RequestErrorType.LOCATION_FAILED);
+                        }
                     }
                 }));
     }

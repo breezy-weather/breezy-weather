@@ -2,6 +2,7 @@ package org.breezyweather.weather.services;
 
 import android.content.Context;
 
+import android.text.TextUtils;
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import javax.inject.Inject;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import org.breezyweather.common.basic.models.Location;
+import org.breezyweather.main.utils.RequestErrorType;
 import org.breezyweather.weather.apis.OpenMeteoGeocodingApi;
 import org.breezyweather.weather.apis.OpenWeatherApi;
 import org.breezyweather.common.basic.models.options.provider.WeatherSource;
@@ -42,13 +44,28 @@ public class OpenWeatherWeatherService extends WeatherService {
         mCompositeDisposable = disposable;
     }
 
+    protected String getApiKey(Context context) {
+        return SettingsManager.getInstance(context).getProviderOpenWeatherKey();
+    }
+
+    @Override
+    public Boolean isConfigured(Context context) {
+        return !TextUtils.isEmpty(getApiKey(context));
+    }
+
     @Override
     public void requestWeather(Context context, Location location, @NonNull RequestWeatherCallback callback) {
+        if (!isConfigured(context)) {
+            callback.requestWeatherFailed(location, RequestErrorType.API_KEY_REQUIRED_MISSING);
+            return;
+        }
+
+        String apiKey = getApiKey(context);
         String languageCode = SettingsManager.getInstance(context).getLanguage().getCode();
 
         Observable<OpenWeatherOneCallResult> oneCall = mApi.getOneCall(
                 SettingsManager.getInstance(context).getProviderOpenWeatherOneCallVersion(),
-                SettingsManager.getInstance(context).getProviderOpenWeatherKey(),
+                apiKey,
                 location.getLatitude(),
                 location.getLongitude(),
                 "metric",
@@ -56,7 +73,7 @@ public class OpenWeatherWeatherService extends WeatherService {
         );
 
         Observable<OpenWeatherAirPollutionResult> airPollution = mApi.getAirPollution(
-                SettingsManager.getInstance(context).getProviderOpenWeatherKey(), location.getLatitude(), location.getLongitude()
+                apiKey, location.getLatitude(), location.getLongitude()
         ).onErrorResumeNext(error ->
                 Observable.create(emitter -> emitter.onNext(new OpenWeatherAirPollutionResult(null)))
         );
@@ -83,7 +100,13 @@ public class OpenWeatherWeatherService extends WeatherService {
 
                     @Override
                     public void onFailed() {
-                        callback.requestWeatherFailed(location, this.isApiLimitReached(), this.isApiUnauthorized());
+                        if (this.isApiLimitReached()) {
+                            callback.requestWeatherFailed(location, RequestErrorType.API_LIMIT_REACHED);
+                        } else if (this.isApiUnauthorized()) {
+                            callback.requestWeatherFailed(location, RequestErrorType.API_UNAUTHORIZED);
+                        } else {
+                            callback.requestWeatherFailed(location, RequestErrorType.WEATHER_REQ_FAILED);
+                        }
                     }
                 }));
     }
@@ -139,14 +162,14 @@ public class OpenWeatherWeatherService extends WeatherService {
                             }
                             callback.requestLocationSuccess(query, locationList);
                         } else {
-                            callback.requestLocationFailed(query);
+                            callback.requestLocationFailed(query, RequestErrorType.LOCATION_FAILED);
                         }
 
                     }
 
                     @Override
                     public void onFailed() {
-                        callback.requestLocationFailed(query);
+                        callback.requestLocationFailed(query, RequestErrorType.LOCATION_FAILED);
                     }
                 }));
     }

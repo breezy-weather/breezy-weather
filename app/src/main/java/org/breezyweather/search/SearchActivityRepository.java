@@ -9,9 +9,11 @@ import java.util.List;
 import javax.inject.Inject;
 
 import dagger.hilt.android.qualifiers.ApplicationContext;
+import kotlin.Pair;
 import org.breezyweather.common.basic.models.Location;
 import org.breezyweather.common.basic.models.options.provider.WeatherSource;
 import org.breezyweather.common.utils.helpers.AsyncHelper;
+import org.breezyweather.main.utils.RequestErrorType;
 import org.breezyweather.settings.ConfigStore;
 import org.breezyweather.settings.SettingsManager;
 import org.breezyweather.weather.WeatherHelper;
@@ -38,16 +40,16 @@ public class SearchActivityRepository {
     }
     
     public void searchLocationList(Context context, String query, WeatherSource enabledSource,
-                                   AsyncHelper.Callback<List<Location>> callback) {
-        mWeatherHelper.requestLocation(context, query, enabledSource, new WeatherHelper.OnRequestLocationListener() {
+                                   AsyncHelper.Callback<Pair<List<Location>, RequestErrorType>> callback) {
+        mWeatherHelper.requestSearchLocations(context, query, enabledSource, new WeatherHelper.OnRequestLocationListener() {
             @Override
             public void requestLocationSuccess(String query, List<Location> locationList) {
-                callback.call(locationList, true);
+                callback.call(new Pair<>(locationList, null), true);
             }
 
             @Override
-            public void requestLocationFailed(String query) {
-                callback.call(null, true);
+            public void requestLocationFailed(String query, RequestErrorType requestErrorType) {
+                callback.call(new Pair<>(null, requestErrorType), true);
             }
         });
     }

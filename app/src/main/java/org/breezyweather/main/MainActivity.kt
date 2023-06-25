@@ -29,11 +29,13 @@ import org.breezyweather.databinding.ActivityMainBinding
 import org.breezyweather.main.dialogs.ApiLimitReachedHelp
 import org.breezyweather.main.dialogs.ApiUnauthorizedHelp
 import org.breezyweather.main.dialogs.LocationHelpDialog
+import org.breezyweather.main.dialogs.RequiredApiKeyMissingHelp
 import org.breezyweather.main.fragments.HomeFragment
 import org.breezyweather.main.fragments.ManagementFragment
 import org.breezyweather.main.fragments.ModifyMainSystemBarMessage
 import org.breezyweather.main.fragments.PushedManagementFragment
 import org.breezyweather.main.utils.MainThemeColorProvider
+import org.breezyweather.main.utils.RequestErrorType
 import org.breezyweather.remoteviews.NotificationHelper
 import org.breezyweather.remoteviews.WidgetHelper
 import org.breezyweather.search.SearchActivity
@@ -279,38 +281,17 @@ class MainActivity : GeoActivity(),
                 requestPermissions(it.permissionList.toTypedArray(), 0)
             }
         }
-        viewModel.mainMessage.observe(this) {
-            it?. let { msg ->
-                when (msg) {
-                    MainMessage.LOCATION_FAILED -> {
-                        SnackbarHelper.showSnackbar(
-                            getString(R.string.location_message_failed_to_locate),
-                            getString(R.string.action_help)
-                        ) {
-                            LocationHelpDialog.show(this)
-                        }
+        viewModel.requestErrorType.observe(this) {
+            it?.let { msg ->
+                if (msg.showDialogAction != null) {
+                    SnackbarHelper.showSnackbar(
+                        getString(msg.shortMessage),
+                        getString(msg.actionButtonMessage)
+                    ) {
+                        msg.showDialogAction?.let { showDialog -> showDialog(this) }
                     }
-                    MainMessage.WEATHER_REQ_FAILED -> {
-                        SnackbarHelper.showSnackbar(
-                            getString(R.string.weather_message_data_refresh_failed)
-                        )
-                    }
-                    MainMessage.API_LIMIT_REACHED -> {
-                        SnackbarHelper.showSnackbar(
-                            getString(R.string.weather_api_limit_reached_message),
-                            getString(R.string.action_help)
-                        ) {
-                            ApiLimitReachedHelp.show(this)
-                        }
-                    }
-                    MainMessage.API_UNAUTHORIZED -> {
-                        SnackbarHelper.showSnackbar(
-                            getString(R.string.weather_api_unauthorized_message),
-                            getString(R.string.action_help)
-                        ) {
-                            ApiUnauthorizedHelp.show(this)
-                        }
-                    }
+                } else {
+                    SnackbarHelper.showSnackbar(getString(msg.shortMessage))
                 }
             }
         }

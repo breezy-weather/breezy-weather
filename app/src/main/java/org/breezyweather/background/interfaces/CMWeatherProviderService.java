@@ -22,6 +22,7 @@ import org.breezyweather.common.basic.models.options.provider.WeatherSource;
 import org.breezyweather.common.basic.models.weather.Weather;
 import org.breezyweather.common.basic.models.weather.WeatherCode;
 import org.breezyweather.location.LocationHelper;
+import org.breezyweather.main.utils.RequestErrorType;
 import org.breezyweather.settings.SettingsManager;
 import org.breezyweather.weather.WeatherHelper;
 
@@ -53,7 +54,7 @@ public class CMWeatherProviderService extends WeatherProviderService
         }
 
         @Override
-        public void requestLocationFailed(Location requestLocation) {
+        public void requestLocationFailed(Location requestLocation, RequestErrorType requestErrorType) {
             if (mRequest != null) {
                 mRequest.fail();
             }
@@ -71,13 +72,13 @@ public class CMWeatherProviderService extends WeatherProviderService
                             locationList.get(0),
                             CMWeatherProviderService.this);
                 } else {
-                    requestLocationFailed(query);
+                    requestLocationFailed(query, RequestErrorType.WEATHER_REQ_FAILED);
                 }
             }
         }
 
         @Override
-        public void requestLocationFailed(String query) {
+        public void requestLocationFailed(String query, RequestErrorType requestErrorType) {
             if (mRequest != null) {
                 mRequest.fail();
             }
@@ -140,7 +141,7 @@ public class CMWeatherProviderService extends WeatherProviderService
     private void requestWeather(String cityName) {
         if (!TextUtils.isEmpty(cityName)) {
             WeatherSource weatherSource = SettingsManager.getInstance(this).getWeatherSource();
-            mWeatherHelper.requestLocation(this, cityName, weatherSource, weatherLocationListener);
+            mWeatherHelper.requestSearchLocations(this, cityName, weatherSource, weatherLocationListener);
         } else if (mRequest != null) {
             mRequest.fail();
         }
@@ -204,12 +205,12 @@ public class CMWeatherProviderService extends WeatherProviderService
                 mRequest.complete(new ServiceRequestResult.Builder(builder.build()).build());
             }
         } catch (Exception ignore) {
-            requestWeatherFailed(requestLocation, false, false);
+            requestWeatherFailed(requestLocation, RequestErrorType.WEATHER_REQ_FAILED);
         }
     }
 
     @Override
-    public void requestWeatherFailed(@NonNull Location requestLocation, @NonNull Boolean apiLimitReached, @NonNull Boolean apiUnauthorized) {
+    public void requestWeatherFailed(@NonNull Location requestLocation, @NonNull RequestErrorType requestErrorType) {
         if (mRequest != null) {
             mRequest.fail();
         }

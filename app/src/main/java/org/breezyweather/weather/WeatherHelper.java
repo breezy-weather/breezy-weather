@@ -15,6 +15,7 @@ import org.breezyweather.common.basic.models.options.provider.WeatherSource;
 import org.breezyweather.common.basic.models.weather.Weather;
 import org.breezyweather.db.repositories.HistoryEntityRepository;
 import org.breezyweather.db.repositories.WeatherEntityRepository;
+import org.breezyweather.main.utils.RequestErrorType;
 import org.breezyweather.weather.services.WeatherService;
 import org.breezyweather.common.rxjava.BaseObserver;
 import org.breezyweather.common.rxjava.ObserverContainer;
@@ -29,12 +30,12 @@ public class WeatherHelper {
 
     public interface OnRequestWeatherListener {
         void requestWeatherSuccess(@NonNull Location requestLocation);
-        void requestWeatherFailed(@NonNull Location requestLocation, @NonNull Boolean apiLimitReached, @NonNull Boolean apiUnauthorized);
+        void requestWeatherFailed(@NonNull Location requestLocation, RequestErrorType requestErrorType);
     }
 
     public interface OnRequestLocationListener {
         void requestLocationSuccess(String query, List<Location> locationList);
-        void requestLocationFailed(String query);
+        void requestLocationFailed(String query, RequestErrorType requestErrorType);
     }
 
     @Inject
@@ -46,8 +47,11 @@ public class WeatherHelper {
 
     public void requestWeather(Context c, Location location, @NonNull final OnRequestWeatherListener l) {
         final WeatherService service = mServiceSet.get(location.getWeatherSource());
-        if (!NetworkUtils.isAvailable(c) || !location.isUsable()) {
-            l.requestWeatherFailed(location, false, false);
+        if (!NetworkUtils.isAvailable(c)) {
+            l.requestWeatherFailed(location, RequestErrorType.NETWORK_UNAVAILABLE);
+            return;
+        } else if (!location.isUsable()) {
+            l.requestWeatherFailed(location, RequestErrorType.LOCATION_FAILED);
             return;
         }
 
@@ -65,33 +69,37 @@ public class WeatherHelper {
                     }
                     l.requestWeatherSuccess(requestLocation);
                 } else {
-                    requestWeatherFailed(requestLocation, false, false);
+                    requestWeatherFailed(requestLocation, RequestErrorType.WEATHER_REQ_FAILED);
                 }
             }
 
             @Override
-            public void requestWeatherFailed(@NonNull Location requestLocation, @NonNull Boolean apiLimitReached, @NonNull Boolean apiUnauthorized) {
+            public void requestWeatherFailed(@NonNull Location requestLocation, @NonNull RequestErrorType requestErrorType) {
                 l.requestWeatherFailed(
                         Location.copy(
                                 requestLocation,
                                 WeatherEntityRepository.INSTANCE.readWeather(requestLocation)
                         ),
-                        apiLimitReached,
-                        apiUnauthorized
+                        requestErrorType
                 );
             }
         });
     }
 
-    public void requestLocation(Context context, String query, WeatherSource enabledSource,
-                                @NonNull final OnRequestLocationListener l) {
+    public void requestSearchLocations(Context context, String query, WeatherSource enabledSource,
+                                       @NonNull final OnRequestLocationListener l) {
         if (enabledSource == null) {
-            AsyncHelper.delayRunOnUI(() -> l.requestLocationFailed(query), 0);
+            AsyncHelper.delayRunOnUI(() -> l.requestLocationFailed(query, RequestErrorType.LOCATION_SEARCH_FAILED), 0);
             return;
         }
 
         // generate weather services.
         final WeatherService service = mServiceSet.get(enabledSource);
+
+        if (!service.isConfigured(context)) {
+            AsyncHelper.delayRunOnUI(() -> l.requestLocationFailed(query, RequestErrorType.API_KEY_REQUIRED_MISSING), 0);
+            return;
+        }
 
         // generate observable list.
         Observable<List<Location>> observable =
@@ -112,7 +120,13 @@ public class WeatherHelper {
 
                     @Override
                     public void onFailed() {
-                        l.requestLocationFailed(query);
+                        if (this.isApiLimitReached()) {
+                            l.requestLocationFailed(query, RequestErrorType.API_LIMIT_REACHED);
+                        } else if (this.isApiUnauthorized()) {
+                            l.requestLocationFailed(query, RequestErrorType.API_UNAUTHORIZED);
+                        } else {
+                            l.requestLocationFailed(query, RequestErrorType.LOCATION_SEARCH_FAILED);
+                        }
                     }
                 }));
     }

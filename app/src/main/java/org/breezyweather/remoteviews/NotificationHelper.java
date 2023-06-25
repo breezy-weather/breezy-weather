@@ -83,7 +83,7 @@ public class NotificationHelper {
     }
 
     // alert.
-    // FIXME: Multiple duplicate issue reports, see #261, #437, #467
+    // FIXME: Duplicate issue, see #73
     public static void checkAndSendAlert(Context context,
                                          Location location, @Nullable Weather oldResult) {
         Weather weather = location.getWeather();

@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import org.breezyweather.common.basic.models.Location;
+import org.breezyweather.main.utils.RequestErrorType;
 import org.breezyweather.weather.apis.OpenMeteoAirQualityApi;
 import org.breezyweather.weather.apis.OpenMeteoGeocodingApi;
 import org.breezyweather.weather.apis.OpenMeteoWeatherApi;
@@ -41,6 +42,11 @@ public class OpenMeteoWeatherService extends WeatherService {
         mGeocodingApi = geocodingApi;
         mAirQualityApi = airQualityApi;
         mCompositeDisposable = disposable;
+    }
+
+    @Override
+    public Boolean isConfigured(Context context) {
+        return true;
     }
 
     @Override
@@ -110,7 +116,7 @@ public class OpenMeteoWeatherService extends WeatherService {
 
                     @Override
                     public void onFailed() {
-                        callback.requestWeatherFailed(location, this.isApiLimitReached(), this.isApiUnauthorized());
+                        callback.requestWeatherFailed(location, RequestErrorType.WEATHER_REQ_FAILED);
                     }
                 }));
     }
@@ -166,14 +172,14 @@ public class OpenMeteoWeatherService extends WeatherService {
                             }
                             callback.requestLocationSuccess(query, locationList);
                         } else {
-                            callback.requestLocationFailed(query);
+                            callback.requestLocationFailed(query, RequestErrorType.LOCATION_FAILED);
                         }
 
                     }
 
                     @Override
                     public void onFailed() {
-                        callback.requestLocationFailed(query);
+                        callback.requestLocationFailed(query, RequestErrorType.LOCATION_FAILED);
                     }
                 }));
     }

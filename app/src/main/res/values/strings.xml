@@ -173,6 +173,8 @@
     <string name="weather_api_limit_reached_dialog">To workaround the limit, add your own API key.</string>
     <string name="weather_api_unauthorized_message">API access unauthorized</string>
     <string name="weather_api_unauthorized_dialog">On some weather providers, you need to provide your own API key. If you already provided one, please double-check the API key you provided.</string>
+    <string name="weather_api_key_required_missing_message">Required API key missing</string>
+    <string name="weather_api_key_required_missing_dialog">To use this provider, you need to provide an API key.</string>
     <string name="weather_source_openmeteo">Open-Meteo</string>
     <string name="weather_source_openmeteo_voice">Open Meteo</string>
     <string name="weather_source_accuweather">AccuWeather</string>
@@ -199,7 +201,10 @@
     <string name="location_message_list_cannot_be_empty">Location list cannot be empty</string>
     <!-- If using an RTL language, change “left” to “right” -->
     <string name="location_swipe_to_delete">You can swipe left to delete this item</string>
+    <string name="location_message_search_failed">Location search failed</string>
     <string name="location_message_failed_to_locate">Failed to find current location</string>
+    <string name="location_message_permission_missing">Access location permission missing</string>
+    <string name="location_message_permission_background_missing">Access location in background permission missing</string>
     <string name="location_dialog_failed_to_locate_title">Cannot get location correctly?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Check location permissions</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Enable location information</string>
@@ -244,6 +249,7 @@
     <string name="dialog_permissions_ignore_battery_optimizations_title">Ignore battery optimization</string>
     <string name="dialog_permissions_ignore_battery_optimizations_content">In order to ensure that the background services can continue to work, please ignore the battery optimization for Breezy Weather.</string>
     <!-- Miscellaneous messages -->
+    <string name="message_network_unavailable">Network unavailable</string>
     <string name="message_updated_in_background">Updated in background</string>
     <string name="message_tap_again_to_exit">Tap again to exit</string>
     <!-- Widgets -->

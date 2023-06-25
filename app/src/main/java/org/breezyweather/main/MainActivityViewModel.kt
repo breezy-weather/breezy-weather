@@ -16,6 +16,7 @@ import org.breezyweather.common.basic.GeoViewModel
 import org.breezyweather.common.basic.livedata.BusLiveData
 import org.breezyweather.common.basic.livedata.EqualtableLiveData
 import org.breezyweather.common.basic.models.Location
+import org.breezyweather.main.utils.RequestErrorType
 import org.breezyweather.main.utils.StatementManager
 import org.breezyweather.settings.SettingsManager
 import javax.inject.Inject
@@ -40,7 +41,7 @@ class MainActivityViewModel @Inject constructor(
     val indicator = EqualtableLiveData<Indicator>()
 
     val permissionsRequest = MutableLiveData<PermissionsRequest?>()
-    val mainMessage = BusLiveData<MainMessage?>(Handler(Looper.getMainLooper()))
+    val requestErrorType = BusLiveData<RequestErrorType?>(Handler(Looper.getMainLooper()))
 
     // inner data.
 
@@ -89,7 +90,7 @@ class MainActivityViewModel @Inject constructor(
         )
 
         permissionsRequest.value = null
-        mainMessage.setValue(null)
+        requestErrorType.setValue(null)
 
         // read weather caches.
         repository.getWeatherCacheForLocations(
@@ -157,19 +158,10 @@ class MainActivityViewModel @Inject constructor(
 
     private fun onUpdateResult(
         location: Location,
-        locationResult: Boolean,
-        weatherUpdateResult: Boolean,
-        apiLimitReached: Boolean,
-        apiUnauthorized: Boolean
+        requestErrorTypeResult: RequestErrorType?
     ) {
-        if (apiLimitReached) {
-            mainMessage.setValue(MainMessage.API_LIMIT_REACHED)
-        } else if (apiUnauthorized) {
-            mainMessage.setValue(MainMessage.API_UNAUTHORIZED)
-        } else if (!weatherUpdateResult) {
-            mainMessage.setValue(MainMessage.WEATHER_REQ_FAILED)
-        } else if (!locationResult) {
-            mainMessage.setValue(MainMessage.LOCATION_FAILED)
+        if (requestErrorTypeResult != null) {
+            requestErrorType.setValue(requestErrorTypeResult)
         }
 
         updateInnerData(location)
@@ -440,19 +432,7 @@ class MainActivityViewModel @Inject constructor(
 
     // impl.
 
-    override fun onCompleted(
-        location: Location,
-        locationFailed: Boolean?,
-        weatherRequestFailed: Boolean,
-        apiLimitReached: Boolean,
-        apiUnauthorized: Boolean,
-    ) {
-        onUpdateResult(
-            location = location,
-            locationResult = locationFailed != true,
-            weatherUpdateResult = !weatherRequestFailed,
-            apiLimitReached = apiLimitReached,
-            apiUnauthorized = apiUnauthorized
-        )
+    override fun onCompleted(location: Location, requestErrorType: RequestErrorType?) {
+        onUpdateResult(location, requestErrorType)
     }
 }

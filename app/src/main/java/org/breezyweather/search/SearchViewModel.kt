@@ -4,9 +4,12 @@ import android.app.Application
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import org.breezyweather.R
 import org.breezyweather.common.basic.GeoViewModel
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.provider.WeatherSource
+import org.breezyweather.common.utils.helpers.SnackbarHelper
+import org.breezyweather.main.utils.RequestErrorType
 import javax.inject.Inject
 
 @HiltViewModel
@@ -27,11 +30,17 @@ class SearchViewModel @Inject constructor(
             application,
             str,
             enabledSource.value
-        ) { locationList: List<Location>?, done: Boolean ->
-            if (locationList != null) {
-                _listResource.value = Pair(locationList, LoadableLocationStatus.SUCCESS)
-            } else {
+        ) { result: Pair<List<Location>?, RequestErrorType?>?, _: Boolean ->
+            result?.second?.let {
+                // TODO: Also show actions
+                SnackbarHelper.showSnackbar(application.getString(it.shortMessage))
                 _listResource.value = Pair(emptyList(), LoadableLocationStatus.ERROR)
+            } ?: run {
+                result?.first?.let {
+                    _listResource.value = Pair(it, LoadableLocationStatus.SUCCESS)
+                } ?: {
+                    _listResource.value = Pair(emptyList(), LoadableLocationStatus.ERROR)
+                }
             }
         }
         _listResource.value = Pair(emptyList(), LoadableLocationStatus.LOADING)

@@ -49,24 +49,26 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
     buildTypes.each {
-        it.buildConfigField "String", "ACCU_WEATHER_BASE_URL", ACCU_WEATHER_BASE_URL
-        it.buildConfigField "String", "ACCU_WEATHER_KEY", ACCU_WEATHER_KEY
-        it.buildConfigField "String", "BAIDU_IP_LOCATION_AK", BAIDU_IP_LOCATION_AK
-        it.buildConfigField "String", "BAIDU_IP_LOCATION_BASE_URL", BAIDU_IP_LOCATION_BASE_URL
-        it.buildConfigField "String", "CHINA_WEATHER_BASE_URL", CHINA_WEATHER_BASE_URL
-        it.buildConfigField "String", "IQA_ATMO_AURA_KEY", IQA_ATMO_AURA_KEY
-        it.buildConfigField "String", "IQA_ATMO_AURA_URL", IQA_ATMO_AURA_URL
-        it.buildConfigField "String", "METNO_BASE_URL", METNO_BASE_URL
-        it.buildConfigField "String", "MF_WSFT_BASE_URL", MF_WSFT_BASE_URL
-        it.buildConfigField "String", "MF_WSFT_JWT_KEY", MF_WSFT_JWT_KEY
-        it.buildConfigField "String", "MF_WSFT_KEY", MF_WSFT_KEY
-        it.buildConfigField "String", "OPEN_METEO_AIR_QUALITY_BASE_URL", OPEN_METEO_AIR_QUALITY_BASE_URL
-        it.buildConfigField "String", "OPEN_METEO_GEOCODING_BASE_URL", OPEN_METEO_GEOCODING_BASE_URL
-        it.buildConfigField "String", "OPEN_METEO_WEATHER_BASE_URL", OPEN_METEO_WEATHER_BASE_URL
-        it.buildConfigField "String", "OPEN_WEATHER_BASE_URL", OPEN_WEATHER_BASE_URL
-        it.buildConfigField "String", "OPEN_WEATHER_KEY", OPEN_WEATHER_KEY
-        it.buildConfigField "String", "OPEN_WEATHER_ONE_CALL_VERSION", OPEN_WEATHER_ONE_CALL_VERSION
+        it.buildConfigField "String", "ACCU_WEATHER_BASE_URL", "\"${properties.getProperty("breezy.accu.baseUrl") ?: "https://api.accuweather.com/"}\""
+        it.buildConfigField "String", "ACCU_WEATHER_KEY", "\"${properties.getProperty("breezy.accu.key") ?: ""}\""
+        it.buildConfigField "String", "BAIDU_IP_LOCATION_AK", "\"${properties.getProperty("breezy.baiduip.key") ?: ""}\""
+        it.buildConfigField "String", "BAIDU_IP_LOCATION_BASE_URL", "\"${properties.getProperty("breezy.baiduip.baseUrl") ?: "https://api.map.baidu.com/"}\""
+        it.buildConfigField "String", "CHINA_WEATHER_BASE_URL", "\"${properties.getProperty("breezy.china.baseUrl") ?: "https://weatherapi.market.xiaomi.com/wtr-v3/"}\""
+        it.buildConfigField "String", "IQA_ATMO_AURA_KEY", "\"${properties.getProperty("breezy.atmoaura.key") ?: ""}\""
+        it.buildConfigField "String", "IQA_ATMO_AURA_URL", "\"${properties.getProperty("breezy.atmoaura.baseUrl") ?: "https://api.atmo-aura.fr/"}\""
+        it.buildConfigField "String", "METNO_BASE_URL", "\"${properties.getProperty("breezy.metno.baseUrl") ?: "https://api.met.no/weatherapi/"}\""
+        it.buildConfigField "String", "MF_WSFT_BASE_URL", "\"${properties.getProperty("breezy.mf.baseUrl") ?: "https://webservice.meteofrance.com/"}\""
+        it.buildConfigField "String", "MF_WSFT_JWT_KEY", "\"${properties.getProperty("breezy.mf.jwtKey") ?: ""}\""
+        it.buildConfigField "String", "MF_WSFT_KEY", "\"${properties.getProperty("breezy.mf.key") ?: ""}\""
+        it.buildConfigField "String", "OPEN_METEO_AIR_QUALITY_BASE_URL", "\"${properties.getProperty("breezy.openmeteo.airQualityBaseUrl") ?: "https://air-quality-api.open-meteo.com/"}\""
+        it.buildConfigField "String", "OPEN_METEO_GEOCODING_BASE_URL", "\"${properties.getProperty("breezy.openmeteo.geocodingBaseUrl") ?: "https://geocoding-api.open-meteo.com/"}\""
+        it.buildConfigField "String", "OPEN_METEO_WEATHER_BASE_URL", "\"${properties.getProperty("breezy.openmeteo.weatherBaseUrl") ?: "https://api.open-meteo.com/"}\""
+        it.buildConfigField "String", "OPEN_WEATHER_BASE_URL", "\"${properties.getProperty("breezy.openweather.baseUrl") ?: "https://api.openweathermap.org/"}\""
+        it.buildConfigField "String", "OPEN_WEATHER_KEY", "\"${properties.getProperty("breezy.openweather.key") ?: ""}\""
+        it.buildConfigField "String", "OPEN_WEATHER_ONE_CALL_VERSION", "\"${properties.getProperty("breezy.openweather.oneCallVersion") ?: "3.0"}\""
     }
     sourceSets {
         pub {
