@@ -16,11 +16,11 @@ enum class DetailDisplay(
     @DrawableRes val iconId: Int
 ): BaseEnum {
 
-    DETAIL_FEELS_LIKE("feels_like", R.string.temperature_feels_like, R.drawable.ic_gauge), // FIXME: Wrong icon
+    DETAIL_FEELS_LIKE("feels_like", R.string.temperature_feels_like, R.drawable.ic_device_thermostat),
     DETAIL_WIND("wind", R.string.wind, R.drawable.ic_wind),
     DETAIL_UV_INDEX("uv_index", R.string.uv_index, R.drawable.ic_uv),
-    DETAIL_HUMIDITY("humidity", R.string.humidity, R.drawable.ic_water_percent),
-    DETAIL_DEW_POINT("dew_point", R.string.dew_point, R.drawable.ic_water),
+    DETAIL_HUMIDITY("humidity", R.string.humidity, R.drawable.ic_humidity_percentage),
+    DETAIL_DEW_POINT("dew_point", R.string.dew_point, R.drawable.ic_dew_point),
     DETAIL_PRESSURE("pressure", R.string.pressure, R.drawable.ic_gauge),
     DETAIL_VISIBILITY("visibility", R.string.visibility, R.drawable.ic_eye),
     DETAIL_CLOUD_COVER("cloud_cover", R.string.cloud_cover, R.drawable.ic_cloud),

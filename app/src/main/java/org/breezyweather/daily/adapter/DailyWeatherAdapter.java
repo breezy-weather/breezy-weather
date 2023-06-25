@@ -102,7 +102,7 @@ public class DailyWeatherAdapter extends RecyclerView.Adapter<DailyWeatherAdapte
             mModelList.add(new DailyAirQuality(daily.getAirQuality()));
         }
         if (daily.getPollen().isValid()) {
-            mModelList.add(new Title(R.drawable.ic_flower, context.getString(R.string.allergen)));
+            mModelList.add(new Title(R.drawable.ic_allergy, context.getString(R.string.allergen)));
             mModelList.add(new DailyPollen(daily.getPollen()));
         }
         if (daily.getUV().isValid()) {
@@ -175,17 +175,8 @@ public class DailyWeatherAdapter extends RecyclerView.Adapter<DailyWeatherAdapte
         // temperature.
         Temperature temperature = halfDay.getTemperature();
         TemperatureUnit temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit();
-        if (temperature.getFeelsLikeTemperature() != null) {
-            TemperatureUnit unit = SettingsManager.getInstance(context).getTemperatureUnit();
-            int resId;
-            if (unit == TemperatureUnit.C) {
-                resId = R.drawable.ic_temperature_celsius;
-            } else if (unit == TemperatureUnit.F) {
-                resId = R.drawable.ic_temperature_fahrenheit;
-            } else {
-                resId = R.drawable.ic_temperature_kelvin;
-            }
-            list.add(new Title(resId, context.getString(R.string.temperature)));
+        if (temperature != null && temperature.getFeelsLikeTemperature() != null) {
+            list.add(new Title(R.drawable.ic_device_thermostat, context.getString(R.string.temperature)));
             if (temperature.getRealFeelTemperature() != null) {
                 list.add(new Value(
                         context.getString(R.string.temperature_real_feel),
@@ -228,7 +219,7 @@ public class DailyWeatherAdapter extends RecyclerView.Adapter<DailyWeatherAdapte
         // precipitation.
         Precipitation precipitation = halfDay.getPrecipitation();
         PrecipitationUnit precipitationUnit = SettingsManager.getInstance(context).getPrecipitationUnit();
-        if (precipitation.getTotal() != null && precipitation.getTotal() > 0) {
+        if (precipitation != null && precipitation.getTotal() != null && precipitation.getTotal() > 0) {
             list.add(new Title(R.drawable.ic_water, context.getString(R.string.precipitation)));
             list.add(new Value(
                     context.getString(R.string.precipitation_total),
@@ -263,7 +254,7 @@ public class DailyWeatherAdapter extends RecyclerView.Adapter<DailyWeatherAdapte
 
         // precipitation probability.
         PrecipitationProbability probability = halfDay.getPrecipitationProbability();
-        if (probability.getTotal() != null && probability.getTotal() > 0) {
+        if (probability != null && probability.getTotal() != null && probability.getTotal() > 0) {
             list.add(new Title(R.drawable.ic_water_percent, context.getString(R.string.precipitation_probability)));
             list.add(new Value(
                     context.getString(R.string.precipitation_total),
@@ -298,7 +289,7 @@ public class DailyWeatherAdapter extends RecyclerView.Adapter<DailyWeatherAdapte
 
         // precipitation duration.
         PrecipitationDuration duration = halfDay.getPrecipitationDuration();
-        if (duration.getTotal() != null && duration.getTotal() > 0) {
+        if (duration != null && duration.getTotal() != null && duration.getTotal() > 0) {
             list.add(new Title(R.drawable.ic_time, context.getString(R.string.precipitation_duration)));
             list.add(new Value(
                     context.getString(R.string.precipitation_total),

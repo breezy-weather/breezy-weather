@@ -72,7 +72,7 @@ class AboutActivity : GeoActivity() {
             )
         },
         AboutAppLinkItem(
-            iconId = R.drawable.ic_email,
+            iconId = R.drawable.ic_forum,
             titleId = R.string.about_matrix,
         ) {
             IntentHelper.startWebViewActivity(
@@ -94,7 +94,7 @@ class AboutActivity : GeoActivity() {
             flag = "🇹🇷",
         ),
         ContributorItem(
-            name = "benjamin Tourrel",
+            name = "Benjamin Tourrel",
             url = "mailto:polo_naref@hotmail.fr",
             flag = "🇫🇷",
         ),
@@ -124,7 +124,7 @@ class AboutActivity : GeoActivity() {
             flag = "🇪🇸",
         ),
         ContributorItem(
-            name = "juliomartinezrodenas",
+            name = "Julio Martínez Ródenas",
             url = "https://github.com/juliomartinezrodenas",
             flag = "🇪🇸",
         ),
