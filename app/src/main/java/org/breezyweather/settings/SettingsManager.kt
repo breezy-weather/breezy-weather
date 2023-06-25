@@ -7,11 +7,7 @@ import org.breezyweather.common.basic.models.options.DarkMode
 import org.breezyweather.common.basic.models.options.NotificationStyle
 import org.breezyweather.common.basic.models.options.UpdateInterval
 import org.breezyweather.common.basic.models.options.WidgetWeekIconMode
-import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimationMode
-import org.breezyweather.common.basic.models.options.appearance.CardDisplay
-import org.breezyweather.common.basic.models.options.appearance.DailyTrendDisplay
-import org.breezyweather.common.basic.models.options.appearance.HourlyTrendDisplay
-import org.breezyweather.common.basic.models.options.appearance.Language
+import org.breezyweather.common.basic.models.options.appearance.*
 import org.breezyweather.common.basic.models.options.provider.LocationProvider
 import org.breezyweather.common.basic.models.options.provider.OpenWeatherOneCallVersion
 import org.breezyweather.common.basic.models.options.provider.WeatherSource
@@ -60,6 +56,10 @@ class SettingsManager private constructor(context: Context) {
                 + "&wind"
                 + "&uv_index"
                 + "&precipitation")
+        private const val DEFAULT_DETAILS_DISPLAY = ("feels_like"
+                + "&wind"
+                + "&uv_index"
+                + "&humidity")
 
         const val DEFAULT_TODAY_FORECAST_TIME = "07:00"
         const val DEFAULT_TOMORROW_FORECAST_TIME = "21:00"
@@ -204,7 +204,7 @@ class SettingsManager private constructor(context: Context) {
             .toCardDisplayList(
                 config.getString("card_display_2", DEFAULT_CARD_DISPLAY)
             )
-            .toList()
+            .toMutableList()
 
     var dailyTrendDisplayList: MutableList<DailyTrendDisplay>
         set(value) {
@@ -231,6 +231,27 @@ class SettingsManager private constructor(context: Context) {
         get() = HourlyTrendDisplay
             .toHourlyTrendDisplayList(
                 config.getString("hourly_trend_display", DEFAULT_HOURLY_TREND_DISPLAY)
+            )
+            .toMutableList()
+
+    var detailDisplayList: List<DetailDisplay>
+        set(value) {
+            config
+                .edit()
+                .putString("details_display", DetailDisplay.toValue(value))
+                .apply()
+            notifySettingsChanged()
+        }
+        get() = DetailDisplay
+            .toDetailDisplayList(
+                config.getString("details_display", DEFAULT_DETAILS_DISPLAY)
+            )
+            .toMutableList()
+
+    val detailDisplayUnlisted: List<DetailDisplay>
+        get() = DetailDisplay
+            .toDetailDisplayUnlisted(
+                config.getString("details_display", DEFAULT_DETAILS_DISPLAY)
             )
             .toMutableList()
 

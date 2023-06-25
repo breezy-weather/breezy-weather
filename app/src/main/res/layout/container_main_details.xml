@@ -19,12 +19,10 @@
             android:textStyle="bold"
             style="@style/title_text" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/container_main_details_recyclerView"
+        <androidx.compose.ui.platform.ComposeView
+            android:id="@+id/container_main_details_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="false"
-            tools:ignore="UnusedAttribute" />
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 

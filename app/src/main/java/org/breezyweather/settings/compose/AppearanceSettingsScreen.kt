@@ -13,11 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import org.breezyweather.BreezyWeather.Companion.instance
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimationMode
-import org.breezyweather.common.basic.models.options.appearance.CardDisplay
-import org.breezyweather.common.basic.models.options.appearance.DailyTrendDisplay
-import org.breezyweather.common.basic.models.options.appearance.HourlyTrendDisplay
-import org.breezyweather.common.basic.models.options.appearance.Language
+import org.breezyweather.common.basic.models.options.appearance.*
 import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.common.utils.helpers.SnackbarHelper
@@ -38,6 +34,7 @@ fun AppearanceSettingsScreen(
     cardDisplayList: List<CardDisplay>,
     dailyTrendDisplayList: List<DailyTrendDisplay>,
     hourlyTrendDisplayList: List<HourlyTrendDisplay>,
+    detailDisplayList: List<DetailDisplay>,
     paddingValues: PaddingValues,
 ) {
     LazyColumn(
@@ -102,6 +99,18 @@ fun AppearanceSettingsScreen(
             ) {
                 (context as? Activity)?.let { a ->
                     IntentHelper.startHourlyTrendDisplayManageActivityForResult(a)
+                }
+            }
+        }
+        clickablePreferenceItem(
+            R.string.settings_title_detail_display
+        ) {
+            PreferenceView(
+                title = stringResource(it),
+                summary = DetailDisplay.getSummary(context, detailDisplayList),
+            ) {
+                (context as? Activity)?.let { a ->
+                    IntentHelper.startDetailDisplayManageActivity(a)
                 }
             }
         }

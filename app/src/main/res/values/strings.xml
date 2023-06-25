@@ -359,6 +359,7 @@
     <string name="settings_title_card_display">Displayed cards</string>
     <string name="settings_title_daily_trend_display">Display daily trend</string>
     <string name="settings_title_hourly_trend_display">Display hourly trend</string>
+    <string name="settings_title_detail_display">Details displayed in header</string>
     <string name="settings_title_trend_horizontal_line_switch">Horizontal lines in trend</string>
     <string name="settings_title_exchange_day_night_temp_switch">Exchange day night temperature</string>
     <string name="settings_title_card_order">Card order</string>

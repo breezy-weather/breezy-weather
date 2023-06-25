@@ -98,7 +98,7 @@ class MaterialWeatherThemeDelegate: WeatherThemeDelegate {
     }
 
     override fun getHeaderHeight(context: Context): Int = (
-            context.resources.displayMetrics.heightPixels * 0.66
+            context.resources.displayMetrics.heightPixels * 0.5 // 0.66
     ).toInt()
 
     override fun getHeaderTextColor(context: Context): Int {

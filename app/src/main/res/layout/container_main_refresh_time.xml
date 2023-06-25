@@ -23,7 +23,7 @@
         android:drawablePadding="6dp"
         android:gravity="center_vertical"
         android:drawableTint="#fff"
-        android:drawableLeft="@drawable/ic_time"
+        android:drawableStart="@drawable/ic_time"
         style="@style/large_title_text"
         tools:text="1 minute ago"
         tools:ignore="RelativeOverlap,RtlHardcoded" />

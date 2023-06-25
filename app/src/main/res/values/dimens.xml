@@ -38,7 +38,8 @@
     <dimen name="content_text_size">14sp</dimen>
     <dimen name="subtitle_text_size">12sp</dimen>
     <dimen name="current_weather_text_size">23sp</dimen>
-    <dimen name="current_weather_details_text_size">21sp</dimen>
+    <dimen name="current_weather_details_name_text_size">18sp</dimen>
+    <dimen name="current_weather_details_value_text_size">20sp</dimen>
 
     <!-- widget. -->
     <dimen name="widget_grid_1">40dp</dimen>

@@ -24,13 +24,7 @@ import org.breezyweather.R;
 import org.breezyweather.background.polling.services.basic.AwakeForegroundUpdateService;
 import org.breezyweather.common.ui.activities.AllergenActivity;
 import org.breezyweather.daily.DailyWeatherActivity;
-import org.breezyweather.settings.activities.AboutActivity;
-import org.breezyweather.settings.activities.CardDisplayManageActivity;
-import org.breezyweather.settings.activities.DailyTrendDisplayManageActivity;
-import org.breezyweather.settings.activities.HourlyTrendDisplayManageActivity;
-import org.breezyweather.settings.activities.PreviewIconActivity;
-import org.breezyweather.settings.activities.SelectProviderActivity;
-import org.breezyweather.settings.activities.SettingsActivity;
+import org.breezyweather.settings.activities.*;
 import org.breezyweather.wallpaper.MaterialLiveWallpaperService;
 
 /**
@@ -144,6 +138,10 @@ public class IntentHelper {
 
     public static void startHourlyTrendDisplayManageActivityForResult(Activity activity) {
         activity.startActivity(new Intent(activity, HourlyTrendDisplayManageActivity.class));
+    }
+
+    public static void startDetailDisplayManageActivity(Activity activity) {
+        activity.startActivity(new Intent(activity, DetailDisplayManageActivity.class));
     }
 
     public static void startSelectProviderActivity(Activity activity) {

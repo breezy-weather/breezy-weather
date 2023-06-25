@@ -52,6 +52,9 @@ class SettingsActivity : GeoActivity() {
     private val hourlyTrendDisplayState = mutableStateOf(
         SettingsManager.getInstance(this).hourlyTrendDisplayList
     )
+    private val detailsDisplayState = mutableStateOf(
+        SettingsManager.getInstance(this).detailDisplayList
+    )
 
     private var requestPostNotificationPermissionSucceedCallback: (() -> Unit)? = null
 
@@ -162,6 +165,7 @@ class SettingsActivity : GeoActivity() {
                         cardDisplayList = remember { cardDisplayState }.value,
                         dailyTrendDisplayList = remember { dailyTrendDisplayState }.value,
                         hourlyTrendDisplayList = remember { hourlyTrendDisplayState }.value,
+                        detailDisplayList = remember { detailsDisplayState }.value,
                         paddingValues = paddings,
                     )
                 }
