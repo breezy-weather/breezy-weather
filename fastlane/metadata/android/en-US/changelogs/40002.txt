@@ -1,0 +1,7 @@
+<ul>
+<li>Current details shown on header can now be configured in settings. Details not shown on header will display in the Details card.</li>
+<li>Fix refresh time not updating</li>
+<li>Update icons</li>
+<li>Make background immersive when app is loading</li>
+<li>Translation updates: Chinese (simplified), German</li>
+</ul>

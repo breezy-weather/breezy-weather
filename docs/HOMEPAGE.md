@@ -13,10 +13,14 @@ Just below, you can see the last time of refresh.
 Above cards, you have details about current weather:
 - Temperature
 - A text about weather condition
+
+Followed by default by the following current details:
 - Feels Like temperature
 - Wind
 - UV index (only during daylight)
 - Humidity
+
+Details shown in header can be configured in the settings (Appearance). Details not shown there will be shown in the Current details card.
 
 In the footer, you have credits and acknowledgment for the weather provider used for this location. You also have an Edit button that allow you to change the order of cards or remove some of them. This will apply to all locations.
 
@@ -241,11 +245,14 @@ Moon phase is shown on top right (text + icon).
 
 The following details for the current weather will be shown if they are available:
 
+- Feels like
 - Wind
-- Relative humidity
 - UV index
+- Relative humidity
 - [Atmospheric pressure](https://en.wikipedia.org/wiki/Atmospheric_pressure)
 - [Visibility](https://en.wikipedia.org/wiki/Visibility)
 - [Dew point](https://en.wikipedia.org/wiki/Dew_point)
 - [Cloud cover](https://en.wikipedia.org/wiki/Cloud_cover)
 - [Ceiling](https://en.wikipedia.org/wiki/Ceiling_(cloud))
+
+Details already shown in the header will not be shown again.
