@@ -4,6 +4,8 @@
     <!-- app widgets for android S. -->
 
     <style name="BreezyWeatherAndroidSWidget" parent="@android:style/Theme.DeviceDefault.DayNight">
+        <item name="android:windowSplashScreenBackground">@drawable/ic_launcher_background</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
         <item name="android:textColorPrimary">@color/colorWidgetM3TextPrimary</item>
         <item name="android:textColorSecondary">@color/colorWidgetM3TextSecondary</item>
     </style>
