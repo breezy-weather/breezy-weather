@@ -52,15 +52,11 @@ Google Play releases will be available once it is stable enough and is compliant
 
 <hr />
 
-### Weather icon extensions
+### Icon packs
 
-If you want to build your own weather icon pack, please read this document:
-* [Breezy Weather icon packs instructions](https://github.com/breezy-weather/breezy-weather-icon-packs)
+Breezy Weather is compatible with Chronus Weather icon packs and [Geometric Weather icon packs](https://github.com/breezy-weather/breezy-weather-icon-packs/blob/master/README.md).
 
-You can find existing compatible icon packs made by WangDaYeeeeee here:
-* [Geometric Weather icon packs](https://github.com/WangDaYeeeeee/IconProvider-For-GeometricWeather/tree/master/apk)
-
-Breezy Weather is also compatible with Chronus Weather icon packs. You can download them from Google Play or any other app store you have.
+Currently, there are no Breezy Weather icon packs, but you can create one by [following instructions here](https://github.com/breezy-weather/breezy-weather-icon-packs/blob/master/INSTRUCTIONS.md)
 
 <hr />
 
