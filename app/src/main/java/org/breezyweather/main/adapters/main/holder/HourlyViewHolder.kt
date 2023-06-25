@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
+import org.breezyweather.common.basic.models.weather.Minutely
 import org.breezyweather.common.ui.adapters.TagAdapter
 import org.breezyweather.common.ui.decorations.GridMarginsDecoration
 import org.breezyweather.common.ui.widgets.precipitationBar.PrecipitationBar
@@ -24,7 +25,7 @@ import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.resource.providers.ResourceProvider
 import org.breezyweather.theme.weatherView.WeatherViewController
 
-private fun needToShowMinutelyForecast(minutelyList: List<org.breezyweather.common.basic.models.weather.Minutely>) =
+private fun needToShowMinutelyForecast(minutelyList: List<Minutely>) =
     minutelyList.firstOrNull { (it.precipitationIntensity ?: 0.0) > 0.0 } != null
 
 class HourlyViewHolder(

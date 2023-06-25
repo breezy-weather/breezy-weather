@@ -4,8 +4,8 @@ At each step, have a look at what already exists for other providers if you don�
 
 ### Add parameters
 
-Declare `BASE_URL` and if required, an `API_KEY` in `local.properties`.
-Add new variables in `app/build.gradle`.
+Declare new variables in `app/build.gradle`. At minimum, you will need a base URL.
+If required, an API key can be added in `local.properties`. Name it that way: `breezy.<providershortid>.key`
 
 *TODO: describe how to add a new parameter in settings for API key*
 
@@ -26,11 +26,11 @@ Add an entry in the same position as `R.array.weather_sources` for `R.array.weat
 
 
 ### API
-Create your API class in `app/src/main/java/org/breezyweather/weather/apis/`.
+Copy the `app/src/main/java/org/breezyweather/weather/openweather/` folder as a base.
 
-Copy an existing class, and only implement the forecast API as a starting point.
+Let’s edit the API interface, and only implement the forecast API as a starting point.
 
-In `app/src/main/java/org/breezyweather/weather/json/<technicalname>`, add the data class that will be constructed from the json returned by the API.
+In `app/src/main/java/org/breezyweather/weather/<yourprovider>/json/<technicalname>`, add the data class that will be constructed from the json returned by the API.
 
 Use @SerialName when the name of the field is not the same as what is in the json returned by the API.
 Example:
@@ -40,11 +40,11 @@ Example:
 
 As in the example, make as many fields as possible nullable so that in case the API doesn’t return some fields for some locations, it doesn’t fail. The serializer is configured to make nullable fields null in case the field is not in the JSON response, so you don’t need to declare `= null` as default value.
 
-Add the API class as a provider in `app/src/main/java/org/breezyweather/weather/di/ApiModule.java` (copy an existing function).
+Add the API class as a provider in `app/src/main/java/org/breezyweather/weather/ApiModule.java` (copy an existing function).
 
 
 ### Service and converter
-Copy `OpenMeteoWeatherService` from `app/src/main/java/org/breezyweather/weather/services/` and create your own service class.
+Copy `OpenMeteoWeatherService` from `app/src/main/java/org/breezyweather/weather/openweather/` and replace the OpenWeatherWeatherService copied earlier.
 
 In the constructor, you can inject as many providers as you need.
 As a starting point, inject your weather API for the weather data, and `OpenMeteoGeocodingApi` for the geocoding part.
@@ -56,7 +56,7 @@ Replace `WeatherSource.OPEN_METEO` with your `WeatherSource` in the location fun
 Then focus on the `requestWeather()` function. You will need to create a converter class.
 The goal of a converter class is to normalize the data we received into Breezy Weather data objects.
 
-Here is the minimum code you need to put in `app/src/main/java/org/breezyweather/weather/converters/`:
+Here is the minimum code you need to put in your converter:
 ```kotlin
 fun convert(
     context: Context,
@@ -77,6 +77,8 @@ fun convert(
     }
 }
 ```
+
+Add your service in the `WeatherServiceSet` class.
 
 You’re done!
 

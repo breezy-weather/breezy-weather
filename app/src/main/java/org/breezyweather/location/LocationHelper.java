@@ -27,7 +27,7 @@ import org.breezyweather.location.services.AMapLocationService;
 import org.breezyweather.location.services.AndroidLocationService;
 import org.breezyweather.location.services.BaiduLocationService;
 import org.breezyweather.weather.WeatherServiceSet;
-import org.breezyweather.weather.services.WeatherService;
+import org.breezyweather.weather.WeatherService;
 
 /**
  * Location helper.

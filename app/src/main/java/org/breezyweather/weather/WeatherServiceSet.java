@@ -5,7 +5,12 @@ import androidx.annotation.NonNull;
 import javax.inject.Inject;
 
 import org.breezyweather.common.basic.models.options.provider.WeatherSource;
-import org.breezyweather.weather.services.*;
+import org.breezyweather.weather.accu.AccuWeatherService;
+import org.breezyweather.weather.china.ChinaWeatherService;
+import org.breezyweather.weather.metno.MetNoWeatherService;
+import org.breezyweather.weather.mf.MfWeatherService;
+import org.breezyweather.weather.openmeteo.OpenMeteoWeatherService;
+import org.breezyweather.weather.openweather.OpenWeatherWeatherService;
 
 public class WeatherServiceSet {
 

@@ -24,8 +24,8 @@
 -keep class org.breezyweather.db.entities.** { *; }
 -keep class org.breezyweather.location.apis.** { *; }
 -keep class org.breezyweather.location.json.** { *; }
--keep class org.breezyweather.weather.apis.** { *; }
--keep class org.breezyweather.weather.json.** { *; }
+-keep interface org.breezyweather.weather.**.* { *; }
+-keep class org.breezyweather.weather.**.json.** { *; }
 
 -keep public class * extends android.app.Service
 -keep public class * extends android.content.BroadcastReceiver
@@ -74,10 +74,6 @@
 # Cyanogenmod
 -keep class cyanogenmod.** { *; }
 -dontwarn cyanogenmod.**
-
-# Bugly
--dontwarn com.tencent.bugly.**
--keep public class com.tencent.bugly.** { *; }
 
 # Retrofit (TODO: Fixed in v2.10.0, remove when released)
 # R8 full mode strips generic signatures from return types if not kept.

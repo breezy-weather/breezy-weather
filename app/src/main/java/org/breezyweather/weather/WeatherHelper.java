@@ -16,7 +16,6 @@ import org.breezyweather.common.basic.models.weather.Weather;
 import org.breezyweather.db.repositories.HistoryEntityRepository;
 import org.breezyweather.db.repositories.WeatherEntityRepository;
 import org.breezyweather.main.utils.RequestErrorType;
-import org.breezyweather.weather.services.WeatherService;
 import org.breezyweather.common.rxjava.BaseObserver;
 import org.breezyweather.common.rxjava.ObserverContainer;
 import org.breezyweather.common.rxjava.SchedulerTransformer;
