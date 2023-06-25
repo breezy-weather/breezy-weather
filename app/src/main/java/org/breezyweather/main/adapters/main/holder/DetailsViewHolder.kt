@@ -69,8 +69,7 @@ class DetailsViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 detailDisplay.getCurrentValue(LocalContext.current, current, isDaylight)?.let {
                     ListItem(
                         colors = ListItemDefaults.colors(
-                            containerColor = Color.Transparent,
-                            leadingIconColor = Color.White
+                            containerColor = Color.Transparent
                         ),
                         headlineContent = {
                             Text(

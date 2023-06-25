@@ -59,7 +59,7 @@ enum class DetailDisplay(
         fun toDetailDisplayUnlisted(
             value: String?
         ) = if (value.isNullOrEmpty()) {
-            emptyList()
+            DetailDisplay.values().toMutableList()
         } else try {
             val list = DetailDisplay.values().toMutableList()
             val details = value.split("&").toTypedArray()
@@ -79,7 +79,7 @@ enum class DetailDisplay(
 
             list
         } catch (e: Exception) {
-            emptyList()
+            DetailDisplay.values().toMutableList()
         }
 
         @JvmStatic
