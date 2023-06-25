@@ -102,7 +102,7 @@ public class IconProviderAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                             : R.drawable.ic_github_dark
             );
             gitHub.setOnClickListener(v ->
-                    mListener.onGitHubItemClicked("https://github.com/breezy-weather/breezy-weather-icon-packs/blob/master/README.md"));
+                    mListener.onGitHubItemClicked("https://github.com/breezy-weather/breezy-weather-icon-packs/blob/main/README.md"));
 
             ImageHelperKt.load(chronus, R.drawable.ic_chronus);
             chronus.setOnClickListener(v ->

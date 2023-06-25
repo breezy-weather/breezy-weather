@@ -54,9 +54,9 @@ Google Play releases will be available once it is stable enough and is compliant
 
 ### Icon packs
 
-Breezy Weather is compatible with Chronus Weather icon packs and [Geometric Weather icon packs](https://github.com/breezy-weather/breezy-weather-icon-packs/blob/master/README.md).
+Breezy Weather is compatible with Chronus Weather icon packs and [Geometric Weather icon packs](https://github.com/breezy-weather/breezy-weather-icon-packs/blob/main/README.md).
 
-Currently, there are no Breezy Weather icon packs, but you can create one by [following instructions here](https://github.com/breezy-weather/breezy-weather-icon-packs/blob/master/INSTRUCTIONS.md)
+Currently, there are no Breezy Weather icon packs, but you can create one by [following instructions here](https://github.com/breezy-weather/breezy-weather-icon-packs/blob/main/INSTRUCTIONS.md)
 
 <hr />
 
