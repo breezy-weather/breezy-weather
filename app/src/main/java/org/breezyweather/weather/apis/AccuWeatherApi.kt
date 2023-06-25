@@ -79,6 +79,15 @@ interface AccuWeatherApi {
         @Query("details") details: Boolean
     ): Observable<List<AccuAlertResult>>
 
+    @GET("airquality/v2/forecasts/hourly/96hour/{city_key}")
+    fun getAirQuality(
+        @Path("city_key") city_key: String,
+        @Query("apikey") apikey: String,
+        @Query("pollutants") pollutants: Boolean,
+        @Query("language") language: String
+    ): Observable<AccuAirQualityResult>
+
+    // https://apidev.accuweather.com/developers/climoAPIguide
     /*@GET("climo/v1/summary/{year}/{month}/{city_key}")
     fun getClimo(
         @Path("year") year: Int,

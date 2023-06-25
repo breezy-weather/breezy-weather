@@ -20,12 +20,7 @@ import org.breezyweather.common.rxjava.BaseObserver;
 import org.breezyweather.common.rxjava.ObserverContainer;
 import org.breezyweather.common.rxjava.SchedulerTransformer;
 import org.breezyweather.weather.converters.AccuResultConverterKt;
-import org.breezyweather.weather.json.accu.AccuAlertResult;
-import org.breezyweather.weather.json.accu.AccuCurrentResult;
-import org.breezyweather.weather.json.accu.AccuForecastDailyResult;
-import org.breezyweather.weather.json.accu.AccuForecastHourlyResult;
-import org.breezyweather.weather.json.accu.AccuLocationResult;
-import org.breezyweather.weather.json.accu.AccuMinutelyResult;
+import org.breezyweather.weather.json.accu.*;
 
 /**
  * Accu weather service.
@@ -87,17 +82,24 @@ public class AccuWeatherService extends WeatherService {
                 true
         );
 
-        Observable.zip(realtime, daily, hourly, minute, alert,
+        Observable<AccuAirQualityResult> airQuality = mApi.getAirQuality(
+                location.getCityId(), apiKey, true, languageCode
+        ).onErrorResumeNext(error ->
+                Observable.create(emitter -> emitter.onNext(new AccuAirQualityResult(null)))
+        );
+
+        Observable.zip(realtime, daily, hourly, minute, alert, airQuality,
                 (accuRealtimeResults,
                  accuDailyResult, accuHourlyResults, accuMinutelyResult,
-                 accuAlertResults) -> AccuResultConverterKt.convert(
+                 accuAlertResults, accuAirQualityResult) -> AccuResultConverterKt.convert(
                          context,
                          location,
                          accuRealtimeResults.get(0),
                          accuDailyResult,
                          accuHourlyResults,
                          accuMinutelyResult,
-                         accuAlertResults
+                         accuAlertResults,
+                         accuAirQualityResult
                  )
         ).compose(SchedulerTransformer.create())
                 .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<WeatherResultWrapper>() {

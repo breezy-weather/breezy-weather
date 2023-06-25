@@ -98,14 +98,14 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
 
     @Composable
     private fun HeaderDetails(detailDisplayList: List<DetailDisplay>, current: Current, isDaylight: Boolean = true) {
-        var firstItem = true;
+        var firstItem = true
         Column {
             detailDisplayList.forEach { detailDisplay ->
                 detailDisplay.getCurrentValue(LocalContext.current, current, isDaylight)?.let {
                     if (!firstItem) {
                         Divider(color = Color.White, thickness = 0.5.dp)
                     } else {
-                        firstItem = false;
+                        firstItem = false
                     }
                     ListItem(
                         colors = ListItemDefaults.colors(

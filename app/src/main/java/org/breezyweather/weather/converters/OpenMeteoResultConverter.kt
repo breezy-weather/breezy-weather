@@ -89,7 +89,7 @@ fun convert(
 ): WeatherResultWrapper {
     // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
     if (weatherResult.hourly == null || weatherResult.daily == null) {
-        return WeatherResultWrapper(null);
+        return WeatherResultWrapper(null)
     }
 
     return try {

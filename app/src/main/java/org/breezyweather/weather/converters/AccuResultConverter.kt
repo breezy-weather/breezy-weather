@@ -6,6 +6,7 @@ import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.provider.WeatherSource
 import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
 import org.breezyweather.common.basic.models.weather.*
+import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.settings.SettingsManager.Companion.getInstance
 import org.breezyweather.weather.json.accu.*
 import org.breezyweather.weather.json.accu.AccuForecastAirAndPollen
@@ -63,14 +64,17 @@ fun convert(
     dailyResult: AccuForecastDailyResult,
     hourlyResultList: List<AccuForecastHourlyResult>,
     minuteResult: AccuMinutelyResult?,
-    alertResultList: List<AccuAlertResult>
+    alertResultList: List<AccuAlertResult>,
+    airQualityHourlyResult: AccuAirQualityResult
 ): WeatherResultWrapper {
     // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
     if (dailyResult.DailyForecasts == null || dailyResult.DailyForecasts.isEmpty() || hourlyResultList.isEmpty()) {
-        return WeatherResultWrapper(null);
+        return WeatherResultWrapper(null)
     }
 
     return try {
+        val hourlyList = getHourlyList(context, hourlyResultList, airQualityHourlyResult.data)
+
         val weather = Weather(
             base = Base(
                 cityId = location.cityId,
@@ -97,6 +101,7 @@ fun convert(
                     index = currentResult.UVIndex,
                     level = getUVLevel(context, currentResult.UVIndex)
                 ),
+                airQuality = if (airQualityHourlyResult.data?.getOrNull(0) != null) getAirQualityForHour(airQualityHourlyResult.data[0].epochDate, airQualityHourlyResult.data) else null,
                 relativeHumidity = currentResult.RelativeHumidity?.toFloat(),
                 pressure = currentResult.Pressure?.Metric?.Value?.toFloat(),
                 visibility = currentResult.Visibility?.Metric?.Value?.toFloat(),
@@ -111,8 +116,8 @@ fun convert(
                 daytimeTemperature = currentResult.TemperatureSummary?.Past24HourRange?.Maximum?.Metric?.Value?.roundToInt(),
                 nighttimeTemperature = currentResult.TemperatureSummary?.Past24HourRange?.Minimum?.Metric?.Value?.roundToInt()
             ),
-            dailyForecast = getDailyList(context, dailyResult.DailyForecasts),
-            hourlyForecast = getHourlyList(context, hourlyResultList),
+            dailyForecast = getDailyList(context, dailyResult.DailyForecasts, hourlyList, location.timeZone),
+            hourlyForecast = hourlyList,
             minutelyForecast = getMinutelyList(minuteResult),
             alertList = getAlertList(alertResultList)
         )
@@ -125,12 +130,20 @@ fun convert(
     }
 }
 
-private fun getDailyList(context: Context, dailyForecasts: List<AccuForecastDailyForecast>): List<Daily> {
+private fun getDailyList(
+    context: Context,
+    dailyForecasts: List<AccuForecastDailyForecast>,
+    hourlyList: List<Hourly>,
+    timeZone: TimeZone
+): List<Daily> {
     val dailyList: MutableList<Daily> = ArrayList(dailyForecasts.size)
+    val hourlyListByDay = hourlyList.groupBy { DisplayUtils.getFormattedDate(it.date, timeZone, "yyyyMMdd") }
     for (forecasts in dailyForecasts) {
+        val theDay = Date(forecasts.EpochDate.times(1000))
+        val dailyDateFormatted = DisplayUtils.getFormattedDate(theDay, timeZone, "yyyyMMdd")
         dailyList.add(
             Daily(
-                date = Date(forecasts.EpochDate.times(1000)),
+                date = theDay,
                 day = HalfDay(
                     weatherText = convertUnit(context, forecasts.Day?.LongPhrase),
                     weatherPhase = forecasts.Day?.ShortPhrase,
@@ -217,6 +230,7 @@ private fun getDailyList(context: Context, dailyForecasts: List<AccuForecastDail
                     angle = getMoonPhaseAngle(forecasts.Moon?.Phase),
                     description = forecasts.Moon?.Phase
                 ),
+                airQuality = getDailyAirQualityFromHourlyList(hourlyListByDay.getOrDefault(dailyDateFormatted, null)),
                 pollen = getDailyPollen(forecasts.AirAndPollen),
                 uV = getDailyUV(forecasts.AirAndPollen),
                 hoursOfSun = forecasts.HoursOfSun?.toFloat()
@@ -259,7 +273,11 @@ private fun getDailyUV(list: List<AccuForecastAirAndPollen>?): UV? {
     )
 }
 
-private fun getHourlyList(context: Context, resultList: List<AccuForecastHourlyResult>): List<Hourly> {
+private fun getHourlyList(
+    context: Context,
+    resultList: List<AccuForecastHourlyResult>,
+    airQualityData: List<AccuAirQualityData>?
+): List<Hourly> {
     val hourlyList: MutableList<Hourly> = ArrayList(resultList.size)
     for (result in resultList) {
         hourlyList.add(
@@ -293,6 +311,7 @@ private fun getHourlyList(context: Context, resultList: List<AccuForecastHourlyR
                     speed = result.Wind?.Speed?.Value?.toFloat(),
                     level = getWindLevel(context, result.Wind?.Speed?.Value?.toFloat())
                 ),
+                airQuality = getAirQualityForHour(result.EpochDateTime, airQualityData),
                 uV = UV(
                     index = result.UVIndex,
                     level = getUVLevel(context, result.UVIndex),
@@ -302,6 +321,39 @@ private fun getHourlyList(context: Context, resultList: List<AccuForecastHourlyR
         )
     }
     return hourlyList
+}
+
+fun getAirQualityForHour(requestedTime: Long, accuAirQualityDataList: List<AccuAirQualityData>?): AirQuality? {
+    if (accuAirQualityDataList == null) return null
+
+    var pm25: Float? = null
+    var pm10: Float? = null
+    var so2: Float? = null
+    var no2: Float? = null
+    var o3: Float? = null
+    var co: Float? = null
+    accuAirQualityDataList
+        .firstOrNull { it.epochDate == requestedTime }
+        ?.pollutants?.forEach {
+            p -> when (p.type) {
+                "O3" -> o3 = p.concentration.value?.toFloat()
+                "NO2" -> no2 = p.concentration.value?.toFloat()
+                "PM2_5" -> pm25 = p.concentration.value?.toFloat()
+                "PM10" -> pm10 = p.concentration.value?.toFloat()
+                "SO2" -> so2 = p.concentration.value?.toFloat()
+                "CO" -> co = p.concentration.value?.div(1000)?.toFloat()
+            }
+        }
+
+    // Return null instead of an object initialized with null values to ease the filtering later when aggregating for daily
+    return if (pm25 != null || pm10 != null || so2 != null || no2 != null || o3 != null || co != null) AirQuality(
+        pM25 = pm25,
+        pM10 = pm10,
+        sO2 = so2,
+        nO2 = no2,
+        o3 = o3,
+        cO = co
+    ) else null
 }
 
 private fun getMinutelyList(minuteResult: AccuMinutelyResult?): List<Minutely> {

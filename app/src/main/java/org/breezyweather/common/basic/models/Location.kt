@@ -322,7 +322,7 @@ class Location(
     }
 
     fun place(): String {
-        val builder = StringBuilder();
+        val builder = StringBuilder()
         if (city.isNotEmpty()) {
             builder.append(city)
         }
@@ -336,7 +336,7 @@ class Location(
     }
 
     fun administrationLevels(): String {
-        val builder = StringBuilder();
+        val builder = StringBuilder()
         if (country.isNotEmpty()) {
             builder.append(country)
         }

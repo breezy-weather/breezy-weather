@@ -51,7 +51,7 @@ abstract class GeoActivity : AppCompatActivity() {
         private fun computeUsableHeight(): Int {
             val r = Rect()
             DisplayUtils.getVisibleDisplayFrame(root, r)
-            return r.bottom // - r.top; --> Do not reduce the height of status bar.
+            return r.bottom // - r.top --> Do not reduce the height of status bar.
         }
 
         companion object {

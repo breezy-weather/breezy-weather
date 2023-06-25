@@ -81,7 +81,7 @@ fun convert(
     // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
     if (forecastResult.properties == null || forecastResult.properties.forecast.isNullOrEmpty()
         || forecastResult.properties.dailyForecast.isNullOrEmpty()) {
-        return WeatherResultWrapper(null);
+        return WeatherResultWrapper(null)
     }
 
     return try {

@@ -21,7 +21,7 @@ fun convert(
 ): WeatherResultWrapper {
     // If the API doesn’t return current, hourly or daily, consider data as garbage and keep cached data
     if (forecastResult.current == null || forecastResult.forecastDaily == null || forecastResult.forecastHourly == null) {
-        return WeatherResultWrapper(null);
+        return WeatherResultWrapper(null)
     }
 
     return try {

@@ -288,7 +288,7 @@ fun completeHourlyListFromDailyList(
     if (hourlyList.isEmpty() || dailyList.isEmpty()) return hourlyList
 
     val dailyListByDate = dailyList.groupBy { DisplayUtils.getFormattedDate(it.date, timeZone, "yyyyMMdd") }
-    val newHourlyList: MutableList<Hourly> = ArrayList(hourlyList.size);
+    val newHourlyList: MutableList<Hourly> = ArrayList(hourlyList.size)
     hourlyList.forEach { hourly ->
         if (completeDaylight || (!completeDaylight && hourly.isDaylight)) {
             val dateForHourFormatted = DisplayUtils.getFormattedDate(hourly.date, timeZone, "yyyyMMdd")

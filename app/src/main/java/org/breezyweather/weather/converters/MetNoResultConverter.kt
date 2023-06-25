@@ -23,13 +23,13 @@ fun convert(
     // If the API doesn’t return hourly, consider data as garbage and keep cached data
     if (forecastResult.properties == null
         || forecastResult.properties.timeseries.isNullOrEmpty()) {
-        return WeatherResultWrapper(null);
+        return WeatherResultWrapper(null)
     }
 
     return try {
         val hourlyByHalfDay: MutableMap<String, Map<String, MutableList<Hourly>>> = HashMap()
         val hourlyList: MutableList<Hourly> = mutableListOf()
-        var currentI: Int? = null;
+        var currentI: Int? = null
 
         for (i in forecastResult.properties.timeseries.indices) {
             val hourlyForecast = forecastResult.properties.timeseries[i]
