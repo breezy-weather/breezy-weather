@@ -13,16 +13,16 @@
         android:layout_alignParentEnd="true"
         style="@style/material_button" />
 
-    <TextView
-        android:id="@+id/container_main_footer_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toStartOf="@id/container_main_footer_editButton"
-        android:textColor="@color/colorTextLight2nd"
-        android:layout_margin="@dimen/normal_margin"
-        android:textAlignment="viewStart"
-        style="@style/subtitle_text"
-        tools:text="Data by AccuWeather.com" />
+    <androidx.compose.ui.platform.ComposeView
+            android:id="@+id/container_main_footer_credits"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@id/container_main_footer_editButton"
+            android:textColor="@color/colorTextLight2nd"
+            android:layout_margin="@dimen/normal_margin"
+            android:textAlignment="viewStart"
+            style="@style/subtitle_text"
+            tools:text="Data by AccuWeather.com" />
 
 </RelativeLayout>

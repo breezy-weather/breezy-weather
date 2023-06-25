@@ -22,6 +22,7 @@ import org.breezyweather.common.rxjava.ObserverContainer;
 import org.breezyweather.common.rxjava.SchedulerTransformer;
 import org.breezyweather.settings.SettingsManager;
 import org.breezyweather.weather.converters.OpenMeteoResultConverterKt;
+import org.breezyweather.weather.json.openmeteo.OpenMeteoAirQualityResult;
 import org.breezyweather.weather.json.openmeteo.OpenMeteoLocationResult;
 import org.breezyweather.weather.json.openmeteo.OpenMeteoLocationResults;
 import org.breezyweather.weather.json.openmeteo.OpenMeteoWeatherResult;
@@ -85,26 +86,29 @@ public class OpenMeteoWeatherService extends WeatherService {
         Observable<OpenMeteoWeatherResult> weather = mWeatherApi.getWeather(
                 location.getLatitude(), location.getLongitude(), String.join(",", daily), String.join(",", hourly), 16, 1, true);
 
-        // TODO: air quality and pollen
-        /*Observable<OpenMeteoAirQualityResult> aqi = mAirQualityApi.getAirQuality(
-                location.getLatitude(), location.getLongitude());
+        // TODO: pollen
+        String[] airQualityHourly = {
+                "pm10",
+                "pm2_5",
+                "carbon_monoxide",
+                "nitrogen_dioxide",
+                "sulphur_dioxide",
+                "ozone"
+        };
+        Observable<OpenMeteoAirQualityResult> aqi = mAirQualityApi.getAirQuality(
+                location.getLatitude(), location.getLongitude(), String.join(",", airQualityHourly));
 
-        Observable.zip(weather, Observable.from(new String[] {"test"}), aqi,
-                        (openMeteoWeatherResult, openMeteoAirQualityResult) -> OpenMeteoResultConverter.convert(
-                                context,
-                                location,
-                                openMeteoWeatherResult,
-                                openMeteoAirQualityResult
-                        )
-                )*/weather.compose(SchedulerTransformer.create())
-                .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<OpenMeteoWeatherResult>() {
+        Observable.zip(weather, aqi,
+                (openMeteoWeatherResult, openMeteoAirQualityResult) -> OpenMeteoResultConverterKt.convert(
+                        context,
+                        location,
+                        openMeteoWeatherResult,
+                        openMeteoAirQualityResult
+                )
+        ).compose(SchedulerTransformer.create())
+                .subscribe(new ObserverContainer<>(mCompositeDisposable, new BaseObserver<WeatherResultWrapper>() {
                     @Override
-                    public void onSucceed(OpenMeteoWeatherResult openMeteoWeatherResult) {
-                        WeatherResultWrapper wrapper = OpenMeteoResultConverterKt.convert(
-                                context,
-                                location,
-                                openMeteoWeatherResult
-                        );
+                    public void onSucceed(WeatherResultWrapper wrapper) {
                         if (wrapper.result != null) {
                             callback.requestWeatherSuccess(
                                     Location.copy(location, wrapper.result)

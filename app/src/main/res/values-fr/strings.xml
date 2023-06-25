@@ -38,6 +38,7 @@
     <string name="settings_icon_providers_get_more_github">Voir plus sur GitHub</string>
     <string name="action_refresh">Actualiser</string>
     <string name="action_restart">Redémarrer</string>
+    <string name="action_see_more">Voir plus</string>
     <string name="action_edit">Modifier</string>
 
     <!-- The following set of strings should be as short as possible. -->
@@ -324,6 +325,7 @@
     <string name="settings_background_animation_enabled">Activée</string>
     <string name="settings_background_animation_disabled">Désactivée</string>
     <string name="weather_data_by">Données par $</string> <!-- $ = weather source. -->
+    <string name="weather_air_quality_and_pollen_data_by">Données de qualité de l’air et de pollen par $</string>
     <string name="location_results_by">Résultats d’emplacement par $</string> <!-- $ = location provider -->
     <string name="settings_icon_providers_weather_adaptive_icon">Icône météo</string>
     <string name="settings_icon_providers_weather_icon_light">Icône claire</string>

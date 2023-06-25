@@ -5,22 +5,9 @@ import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.provider.WeatherSource
-import org.breezyweather.common.basic.models.weather.Astro
-import org.breezyweather.common.basic.models.weather.Base
-import org.breezyweather.common.basic.models.weather.Current
-import org.breezyweather.common.basic.models.weather.Daily
-import org.breezyweather.common.basic.models.weather.HalfDay
-import org.breezyweather.common.basic.models.weather.History
-import org.breezyweather.common.basic.models.weather.Hourly
-import org.breezyweather.common.basic.models.weather.Precipitation
-import org.breezyweather.common.basic.models.weather.PrecipitationProbability
-import org.breezyweather.common.basic.models.weather.Temperature
-import org.breezyweather.common.basic.models.weather.UV
-import org.breezyweather.common.basic.models.weather.Weather
-import org.breezyweather.common.basic.models.weather.WeatherCode
-import org.breezyweather.common.basic.models.weather.Wind
-import org.breezyweather.common.basic.models.weather.WindDegree
+import org.breezyweather.common.basic.models.weather.*
 import org.breezyweather.common.utils.DisplayUtils
+import org.breezyweather.weather.json.openmeteo.OpenMeteoAirQualityResult
 import org.breezyweather.weather.json.openmeteo.OpenMeteoWeatherDaily
 import org.breezyweather.weather.json.openmeteo.OpenMeteoLocationResult
 import org.breezyweather.weather.json.openmeteo.OpenMeteoWeatherResult
@@ -84,8 +71,8 @@ fun convert(
 fun convert(
     context: Context,
     location: Location,
-    weatherResult: OpenMeteoWeatherResult/*,
-    airQualityResult: OpenMeteoAirQualityResult*/
+    weatherResult: OpenMeteoWeatherResult,
+    airQualityResult: OpenMeteoAirQualityResult
 ): WeatherResultWrapper {
     // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
     if (weatherResult.hourly == null || weatherResult.daily == null) {
@@ -98,6 +85,8 @@ fun convert(
         var currentI: Int? = null
 
         for (i in weatherResult.hourly.time.indices) {
+            val airQualityIndex = airQualityResult.hourly?.time?.indexOfFirst { it == weatherResult.hourly.time[i] }
+
             val hourly = Hourly(
                 date = Date(weatherResult.hourly.time[i].times(1000)),
                 isDaylight = if (weatherResult.hourly.isDay?.getOrNull(i) != null) weatherResult.hourly.isDay[i] > 0 else true,
@@ -122,7 +111,14 @@ fun convert(
                     speed = weatherResult.hourly.windSpeed?.getOrNull(i),
                     level = getWindLevel(context, weatherResult.hourly.windSpeed?.getOrNull(i))
                 ),
-                // airQuality = TODO
+                airQuality = if (airQualityIndex != null) AirQuality(
+                    pM25 = airQualityResult.hourly.pm25?.getOrNull(airQualityIndex),
+                    pM10 = airQualityResult.hourly.pm10?.getOrNull(airQualityIndex),
+                    sO2 = airQualityResult.hourly.sulphurDioxide?.getOrNull(airQualityIndex),
+                    nO2 = airQualityResult.hourly.nitrogenDioxide?.getOrNull(airQualityIndex),
+                    o3 = airQualityResult.hourly.ozone?.getOrNull(airQualityIndex),
+                    cO = airQualityResult.hourly.carbonMonoxide?.getOrNull(airQualityIndex)?.div(1000),
+                ) else null,
                 // pollen = TODO
                 uV = UV(
                     index = weatherResult.hourly.uvIndex?.getOrNull(i)?.roundToInt(),
@@ -159,7 +155,7 @@ fun convert(
             }
         }
 
-        val dailyList = getDailyList(context, location.timeZone, weatherResult.daily, hourlyByHalfDay)
+        val dailyList = getDailyList(context, location.timeZone, weatherResult.daily, hourlyList, hourlyByHalfDay)
         val weather = Weather(
             base = Base(cityId = location.cityId),
             current = Current(
@@ -184,7 +180,7 @@ fun convert(
                     dailyList.getOrNull(0)?.sun?.setDate,
                     location.timeZone
                 ),
-                // airQuality = TODO
+                airQuality = hourlyList.getOrNull(1)?.airQuality,
                 relativeHumidity = if (currentI != null) weatherResult.hourly.relativeHumidity?.getOrNull(currentI)?.toFloat() else null,
                 pressure = if (currentI != null) weatherResult.hourly.surfacePressure?.getOrNull(currentI) else null,
                 visibility = if (currentI != null) weatherResult.hourly.visibility?.getOrNull(currentI)?.div(1000) else null,
@@ -212,9 +208,11 @@ private fun getDailyList(
     context: Context,
     timeZone: TimeZone,
     dailyResult: OpenMeteoWeatherDaily,
+    hourlyList: List<Hourly>,
     hourlyByDate: Map<String?, Map<String, List<Hourly>>>
 ): List<Daily> {
     val dailyList: MutableList<Daily> = ArrayList(dailyResult.time.size - 1)
+    val hourlyListByDay = hourlyList.groupBy { DisplayUtils.getFormattedDate(it.date, timeZone, "yyyyMMdd") }
     for (i in 1 until dailyResult.time.size) {
         val theDay = Date(dailyResult.time[i].times(1000))
         val dailyDateFormatted = DisplayUtils.getFormattedDate(theDay, timeZone, "yyyyMMdd")
@@ -247,7 +245,7 @@ private fun getDailyList(
                 riseDate = if (dailyResult.sunrise?.getOrNull(i) != null) Date(dailyResult.sunrise[i]!!.times(1000)) else null,
                 setDate = if (dailyResult.sunset?.getOrNull(i) != null) Date(dailyResult.sunset[i]!!.times(1000)) else null
             ),
-            // airQuality = TODO
+            airQuality = getDailyAirQualityFromHourlyList(hourlyListByDay.getOrDefault(dailyDateFormatted, null)),
             // pollen = TODO
             uV = UV(
                 index = dailyResult.uvIndexMax?.getOrNull(i)?.roundToInt(),

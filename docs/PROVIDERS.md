@@ -28,15 +28,15 @@ This is a user-end guide to weather providers available in Breezy Weather. If yo
 | Daily weather/temperature   | ✅             | ✅           | ✅             | ✅           | ✅            | ✅       |
 | Daily precipitation         | *In progress* | ✅           | ✅             | ✅           | ✅            | ❌       | 
 | Daily wind                  | ✅             | ✅           | ✅             | ✅           | ✅            | ✅       |
-| Daily air quality           | *In progress* | ✅           | *In progress* | ✅           | ✅            | ❌       |
+| Daily air quality           | ✅             | ✅           | *In progress* | ✅           | ✅            | ❌       |
 | Daily UV                    | ✅             | ✅           | ✅             | ✅           | ✅            | ❌       |
 | Hourly weather/temperature  | ✅             | ✅           | ✅             | ✅           | ✅            | ✅       |
 | Hourly precipitation        | *In progress* | ✅           | ✅             | ✅           | ✅            | Partial |
 | Hourly wind                 | ✅             | ✅           | ✅             | ✅           | ✅            | ✅       |
-| Hourly air quality          | *In progress* | ✅           | *In progress* | ✅           | ✅            | ❌       |
+| Hourly air quality          | ✅             | ✅           | *In progress* | ✅           | ✅            | ❌       |
 | Hourly UV                   | ✅             | ✅           | ✅             | ✅           | ✅            | ❌       |
 | Precipitations in next hour | ❌             | ✅           | *In progress* | ✅           | ✅            | ❌       |
-| Current air quality         | *In progress* | ✅           | *In progress* | ✅           | ✅            | ✅       |
+| Current air quality         | ✅             | ✅           | *In progress* | ✅           | ✅            | ✅       |
 | Daily pollen                | *In progress* | ✅           | ❌             | ❌           | ❌            | ❌       |
 | Sun, Moon & Moon phase      | Sun           | ✅           | ✅             | Sun, Moon   | ✅            | Sun     |
 | Alerts                      | ❌             | ✅           | *In progress* | ✅           | ✅            | ✅       |
@@ -73,7 +73,7 @@ Ultimate goal of the app would be to modularize as to have a main weather provid
 | Sunset/sunrise            | ✅             | ✅           | ✅             | ✅             | ✅             | ✅     |
 | Moonset/moonrise          | ❌             | ✅           | ✅             | ✅             | ✅⁶            | ❌     |
 | Moon phase                | ❌             | ✅           | ✅             | ❌             | ✅⁶            | ❌     |
-| Air quality               | *In progress* | ✅¹          | *In progress* | ✅¹            | ✅¹            | ❌     |
+| Air quality               | ✅¹            | ✅¹          | *In progress* | ✅¹            | ✅¹            | ❌     |
 | Pollen                    | *In progress* | ✅           | ❌             | ❌             | ❌             | ❌     |
 | UV                        | ✅             | ✅           | ✅¹            | ✅             | ✅             | ❌     |
 | Hours of sun              | ✅²            | ✅           | ✅²            | ✅²            | ✅²            | ✅²    |
@@ -105,9 +105,9 @@ Legend:
 | Precipitation             | *In progress* | ✅ (RSI)     | ✅             | ✅ (RS)      | ✅ (RS)       | ❌     |
 | Precipitation probability | ✅             | ✅ (TRSI)    | ✅ (T)         | ✅           | ✅ (RSI)      | ❌     |
 | Wind                      | ✅             | ✅           | ✅             | ✅           | ✅            | ✅     |
-| Air quality               | *In progress* | ✅           | *In progress* | ✅           | ✅            | ❌     |
+| Air quality               | ✅             | ✅           | *In progress* | ✅           | ✅            | ❌     |
 | Pollen                    | *In progress* | ❌           | ❌             | ❌           | ❌            | ❌     |
-| UV                        | *In progress* | ✅           | ✅             | ✅           | ✅⁴           | ❌     |
+| UV                        | ✅             | ✅           | ✅             | ✅           | ✅⁴           | ❌     |
 
 * ¹ Every 6 hours after 3~4 days
 * ² Every 3 hours after 2 days, every 6 hours after 4 days
@@ -126,19 +126,19 @@ Legend:
 
 ### Current weather
 
-| Providers   | Open-Meteo    | AccuWeather | MET Norway    | OpenWeather | Météo-France | China |
-|-------------|---------------|-------------|---------------|-------------|--------------|-------|
-| Weather     | ✅             | ✅           | Partial²³     | ✅           | ✅¹           | ✅     |
-| Temperature | ✅¹            | ✅           | ✅²            | ✅           | ✅¹           | ✅     |
-| Wind        | ✅             | ✅           | ✅²            | ✅           | ✅¹           | ✅     |
-| UV          | ✅⁵            | ✅           | ✅²            | ✅           | ✅⁵           | ✅     |
-| Air quality | *In progress* | ✅¹          | *In progress* | ✅           | ✅⁴           | ✅     |
-| Humidity    | ✅¹            | ✅           | ✅²            | ✅           | ❌            | ✅     |
-| Pressure    | ✅¹            | ✅           | ✅¹            | ✅           | ❌            | ✅     |
-| Visibility  | ✅¹            | ✅           | ❌             | ✅           | ❌            | ✅     |
-| Dew point   | ✅¹            | ✅           | ✅²            | ✅           | ❌            | ❌     |
-| Cloud cover | ✅¹            | ✅           | ❌             | ✅           | ❌            | ❌     |
-| Ceiling     | ❌             | ✅           | ❌             | ❌           | ❌            | ❌     |
+| Providers   | Open-Meteo | AccuWeather | MET Norway    | OpenWeather | Météo-France | China |
+|-------------|------------|-------------|---------------|-------------|--------------|-------|
+| Weather     | ✅          | ✅           | Partial²³     | ✅           | ✅¹           | ✅     |
+| Temperature | ✅¹         | ✅           | ✅²            | ✅           | ✅¹           | ✅     |
+| Wind        | ✅          | ✅           | ✅²            | ✅           | ✅¹           | ✅     |
+| UV          | ✅⁵         | ✅           | ✅²            | ✅           | ✅⁵           | ✅     |
+| Air quality | ✅¹         | ✅¹          | *In progress* | ✅           | ✅⁴           | ✅     |
+| Humidity    | ✅¹         | ✅           | ✅²            | ✅           | ❌            | ✅     |
+| Pressure    | ✅¹         | ✅           | ✅¹            | ✅           | ❌            | ✅     |
+| Visibility  | ✅¹         | ✅           | ❌             | ✅           | ❌            | ✅     |
+| Dew point   | ✅¹         | ✅           | ✅²            | ✅           | ❌            | ❌     |
+| Cloud cover | ✅¹         | ✅           | ❌             | ✅           | ❌            | ❌     |
+| Ceiling     | ❌          | ✅           | ❌             | ❌           | ❌            | ❌     |
 
 *In progress* means data is available in the API (or can be extrapolated) and can be implemented.
 

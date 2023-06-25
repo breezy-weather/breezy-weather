@@ -167,6 +167,7 @@
     <!-- Weather providers -->
     <string name="weather_refreshed">Refreshed</string>
     <string name="weather_data_by">Data by $</string>
+    <string name="weather_air_quality_and_pollen_data_by">Air quality and pollen data by $</string>
     <!-- $ = weather data provider -->
     <string name="weather_message_data_refresh_failed">Weather data refresh failed</string>
     <string name="weather_api_limit_reached_message">API requests limit reached</string>
@@ -231,6 +232,7 @@
     <string name="action_app_store">App Store</string>
     <string name="action_refresh">Refresh</string>
     <string name="action_restart">Restart</string>
+    <string name="action_see_more">See more</string>
     <string name="action_edit">Edit</string>
     <string name="action_back">Back</string>
     <string name="action_next">NEXT</string>

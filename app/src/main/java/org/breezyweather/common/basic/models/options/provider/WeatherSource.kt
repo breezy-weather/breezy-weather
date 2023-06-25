@@ -10,10 +10,11 @@ enum class WeatherSource(
     override val id: String,
     @ColorInt val sourceColor: Int,
     val sourceUrl: String,
-    val locationProvider: String? = null
+    val locationProvider: String? = null,
+    val airQualityPollenSource: String? = null
 ): VoiceEnum {
 
-    OPEN_METEO("openmeteo", -0x0077ff, "Open-Meteo.com CC BY 4.0", "Open-Meteo / GeoNames"),
+    OPEN_METEO("openmeteo", -0x0077ff, "Open-Meteo.com CC BY 4.0", "Open-Meteo / GeoNames", "Open-Meteo.com, METEO FRANCE, Institut national de l'environnement industriel et des risques (Ineris), Aarhus University, Norwegian Meteorological Institute (MET Norway), Jülich Institut für Energie- und Klimaforschung (IEK), Institute of Environmental Protection – National Research Institute (IEP-NRI), Koninklijk Nederlands Meteorologisch Instituut (KNMI), Nederlandse Organisatie voor toegepast-natuurwetenschappelijk onderzoek (TNO), Swedish Meteorological and Hydrological Institute (SMHI), Finnish Meteorological Institute (FMI), Italian National Agency for New Technologies, Energy and Sustainable Economic Development (ENEA) and Barcelona Supercomputing Center (BSC) (2022): CAMS European air quality forecasts, ENSEMBLE data. Copernicus Atmosphere Monitoring Service (CAMS) Atmosphere Data Store (ADS). (Updated twice daily)."),
     ACCU("accu", -0x10a7dd, "accuweather.com"),
     METNO("metno", -0xdba791, "met.no", "Open-Meteo / GeoNames"),
     OPEN_WEATHER("openweather", -0x1491b5, "openweathermap.org", "Open-Meteo / GeoNames"),

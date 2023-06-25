@@ -1,0 +1,4 @@
+<ul>
+<li>Add current, hourly and daily air quality for Open-Meteo with credits.</li>
+<li>Fix icon packs link.</li>
+</ul>
