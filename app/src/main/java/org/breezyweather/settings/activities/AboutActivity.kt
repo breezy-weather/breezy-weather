@@ -247,6 +247,11 @@ class AboutActivity : GeoActivity() {
             name = "min7-i",
             url = "https://github.com/min7-i",
             flag = "🇩🇪",
+        ),
+        ContributorItem(
+            name = "Washington Luiz Candido dos Santos Neto",
+            url = "https://hosted.weblate.org/user/Netocon/",
+            flag = "🇧🇷",
         )
     )
 
