@@ -58,15 +58,12 @@ class LiveWallpaperConfigActivity : GeoActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        weatherKindValueNow = mutableStateOf(
-            LiveWallpaperConfigManager.getInstance(this).weatherKind
-        )
+        val liveWallpaperConfigManager = LiveWallpaperConfigManager(this)
+        weatherKindValueNow = mutableStateOf(liveWallpaperConfigManager.weatherKind)
         weatherKinds = resources.getStringArray(R.array.live_wallpaper_weather_kinds)
         weatherKindValues = resources.getStringArray(R.array.live_wallpaper_weather_kind_values)
 
-        dayNightTypeValueNow = mutableStateOf(
-            LiveWallpaperConfigManager.getInstance(this).dayNightType
-        )
+        dayNightTypeValueNow = mutableStateOf(liveWallpaperConfigManager.dayNightType)
         dayNightTypeKinds = resources.getStringArray(R.array.live_wallpaper_day_night_types)
         dayNightTypeValues = resources.getStringArray(R.array.live_wallpaper_day_night_type_values)
 

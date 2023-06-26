@@ -16,7 +16,6 @@ import org.breezyweather.common.basic.models.Location;
 import org.breezyweather.main.utils.RequestErrorType;
 import org.breezyweather.weather.WeatherService;
 import org.breezyweather.weather.openmeteo.OpenMeteoGeocodingApi;
-import org.breezyweather.weather.openweather.OpenWeatherApi;
 import org.breezyweather.common.basic.models.options.provider.WeatherSource;
 import org.breezyweather.common.rxjava.BaseObserver;
 import org.breezyweather.common.rxjava.ObserverContainer;
@@ -27,7 +26,6 @@ import org.breezyweather.weather.openmeteo.json.OpenMeteoLocationResults;
 import org.breezyweather.weather.openweather.json.OpenWeatherAirPollutionResult;
 import org.breezyweather.weather.openweather.json.OpenWeatherOneCallResult;
 import org.breezyweather.weather.openmeteo.OpenMeteoResultConverterKt;
-import org.breezyweather.weather.openweather.OpenWeatherResultConverterKt;
 
 /**
  * OpenWeather weather service.

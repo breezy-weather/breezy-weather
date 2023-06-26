@@ -2,7 +2,6 @@ package org.breezyweather.background.polling
 
 import android.content.Context
 import android.widget.Toast
-import androidx.annotation.NonNull
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.Weather

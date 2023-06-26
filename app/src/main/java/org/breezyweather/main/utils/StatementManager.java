@@ -9,6 +9,7 @@ import org.breezyweather.settings.ConfigStore;
 
 public class StatementManager {
 
+    private ConfigStore config;
     private boolean locationPermissionDeclared;
     private boolean backgroundLocationDeclared;
     private boolean postNotificationRequired;
@@ -20,7 +21,7 @@ public class StatementManager {
 
     @Inject
     public StatementManager(@ApplicationContext Context context) {
-        ConfigStore config = ConfigStore.getInstance(context, SP_STATEMENT_RECORD);
+        config = new ConfigStore(context, SP_STATEMENT_RECORD);
 
         locationPermissionDeclared = config.getBoolean(
                 KEY_LOCATION_PERMISSION_DECLARED, false);
@@ -36,38 +37,35 @@ public class StatementManager {
         return locationPermissionDeclared;
     }
 
-    public void setLocationPermissionDeclared(Context context) {
+    public void setLocationPermissionDeclared() {
         locationPermissionDeclared = true;
 
-        ConfigStore.getInstance(context, SP_STATEMENT_RECORD)
-                .edit()
-                .putBoolean(KEY_LOCATION_PERMISSION_DECLARED, true)
-                .apply();
+        config.edit()
+            .putBoolean(KEY_LOCATION_PERMISSION_DECLARED, true)
+            .apply();
     }
 
     public boolean isBackgroundLocationDeclared() {
         return backgroundLocationDeclared;
     }
 
-    public void setBackgroundLocationDeclared(Context context) {
+    public void setBackgroundLocationDeclared() {
         backgroundLocationDeclared = true;
 
-        ConfigStore.getInstance(context, SP_STATEMENT_RECORD)
-                .edit()
-                .putBoolean(KEY_BACKGROUND_LOCATION_DECLARED, true)
-                .apply();
+        config.edit()
+            .putBoolean(KEY_BACKGROUND_LOCATION_DECLARED, true)
+            .apply();
     }
 
     public boolean isPostNotificationRequired() {
         return postNotificationRequired;
     }
 
-    public void setPostNotificationRequired(Context context) {
+    public void setPostNotificationRequired() {
         postNotificationRequired = true;
 
-        ConfigStore.getInstance(context, SP_STATEMENT_RECORD)
-                .edit()
-                .putBoolean(KEY_POST_NOTIFICATION_REQUIRED, true)
-                .apply();
+        config.edit()
+            .putBoolean(KEY_POST_NOTIFICATION_REQUIRED, true)
+            .apply();
     }
 }

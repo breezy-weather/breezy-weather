@@ -16,8 +16,6 @@ import org.breezyweather.common.basic.models.Location;
 import org.breezyweather.main.utils.RequestErrorType;
 import org.breezyweather.settings.SettingsManager;
 import org.breezyweather.weather.WeatherService;
-import org.breezyweather.weather.accu.AccuResultConverterKt;
-import org.breezyweather.weather.accu.AccuWeatherApi;
 import org.breezyweather.common.rxjava.BaseObserver;
 import org.breezyweather.common.rxjava.ObserverContainer;
 import org.breezyweather.common.rxjava.SchedulerTransformer;

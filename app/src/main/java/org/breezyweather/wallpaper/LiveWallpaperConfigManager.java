@@ -13,14 +13,10 @@ public class LiveWallpaperConfigManager {
     private static final String KEY_WEATHER_KIND = "weather_kind";
     private static final String KEY_DAY_NIGHT_TYPE = "day_night_type";
 
-    private LiveWallpaperConfigManager(Context context) {
-        ConfigStore config = ConfigStore.getInstance(context, SP_LIVE_WALLPAPER_CONFIG);
+    public LiveWallpaperConfigManager(Context context) {
+        ConfigStore config = new ConfigStore(context, SP_LIVE_WALLPAPER_CONFIG);
         mWeatherKind = config.getString(KEY_WEATHER_KIND, "auto");
         mDayNightType = config.getString(KEY_DAY_NIGHT_TYPE, "auto");
-    }
-
-    public static LiveWallpaperConfigManager getInstance(Context context) {
-        return new LiveWallpaperConfigManager(context);
     }
 
     public String getWeatherKind() {
@@ -32,7 +28,7 @@ public class LiveWallpaperConfigManager {
     }
 
     public static void update(Context context, String weatherKind, String dayNightType) {
-        ConfigStore.getInstance(context, SP_LIVE_WALLPAPER_CONFIG)
+        new ConfigStore(context, SP_LIVE_WALLPAPER_CONFIG)
                 .edit()
                 .putString(KEY_WEATHER_KIND, weatherKind)
                 .putString(KEY_DAY_NIGHT_TYPE, dayNightType)

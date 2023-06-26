@@ -203,7 +203,7 @@ public class NotificationHelper {
     }
 
     private static int getAlertNotificationId(Context context) {
-        ConfigStore config = ConfigStore.getInstance(context, PREFERENCE_NOTIFICATION);
+        ConfigStore config = new ConfigStore(context, PREFERENCE_NOTIFICATION);
 
         int id = config.getInt(
                 KEY_NOTIFICATION_ID, BreezyWeather.NOTIFICATION_ID_ALERT_MIN) + 1;
@@ -234,10 +234,7 @@ public class NotificationHelper {
 
         Weather weather = location.getWeather();
 
-        ConfigStore config = ConfigStore.getInstance(
-                context,
-                PREFERENCE_SHORT_TERM_PRECIPITATION_ALERT
-        );
+        ConfigStore config = new ConfigStore(context, PREFERENCE_SHORT_TERM_PRECIPITATION_ALERT);
         long timestamp = config.getLong(KEY_PRECIPITATION_DATE, 0);
 
         if (isSameDay(timestamp, System.currentTimeMillis())) {

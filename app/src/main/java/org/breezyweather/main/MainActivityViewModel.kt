@@ -241,7 +241,7 @@ class MainActivityViewModel @Inject constructor(
             .toMutableList()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
             && !statementManager.isPostNotificationRequired) {
-            statementManager.setPostNotificationRequired(application)
+            statementManager.setPostNotificationRequired()
             permissionList.add(Manifest.permission.POST_NOTIFICATIONS)
         }
         if (permissionList.isEmpty()) {

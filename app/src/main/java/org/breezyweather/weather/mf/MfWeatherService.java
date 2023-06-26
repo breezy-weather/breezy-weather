@@ -28,8 +28,6 @@ import org.breezyweather.common.basic.models.options.provider.WeatherSource;
 import org.breezyweather.main.utils.RequestErrorType;
 import org.breezyweather.settings.SettingsManager;
 import org.breezyweather.weather.WeatherService;
-import org.breezyweather.weather.mf.AtmoAuraIqaApi;
-import org.breezyweather.weather.mf.MfWeatherApi;
 import org.breezyweather.weather.openmeteo.OpenMeteoGeocodingApi;
 import org.breezyweather.BuildConfig;
 import org.breezyweather.common.rxjava.BaseObserver;
@@ -44,7 +42,6 @@ import org.breezyweather.weather.mf.json.MfRainResult;
 import org.breezyweather.weather.mf.json.MfWarningsResult;
 import org.breezyweather.weather.openmeteo.json.OpenMeteoLocationResult;
 import org.breezyweather.weather.openmeteo.json.OpenMeteoLocationResults;
-import org.breezyweather.weather.mf.MfResultConverterKt;
 import org.breezyweather.weather.openmeteo.OpenMeteoResultConverterKt;
 
 /**

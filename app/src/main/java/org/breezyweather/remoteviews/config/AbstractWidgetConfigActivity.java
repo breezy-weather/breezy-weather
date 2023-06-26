@@ -258,7 +258,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
     }
 
     private void readConfig() {
-        ConfigStore config = ConfigStore.getInstance(this, getConfigStoreName());
+        ConfigStore config = new ConfigStore(this, getConfigStoreName());
         viewTypeValueNow = config.getString(getString(R.string.key_view_type), viewTypeValueNow);
         cardStyleValueNow = config.getString(getString(R.string.key_card_style), cardStyleValueNow);
         cardAlpha = config.getInt(getString(R.string.key_card_alpha), cardAlpha);
@@ -387,7 +387,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
 
         Button doneButton = findViewById(R.id.activity_widget_config_doneButton);
         doneButton.setOnClickListener(v -> {
-            ConfigStore.getInstance(this, getConfigStoreName())
+            new ConfigStore(this, getConfigStoreName())
                     .edit()
                     .putString(getString(R.string.key_view_type), viewTypeValueNow)
                     .putString(getString(R.string.key_card_style), cardStyleValueNow)

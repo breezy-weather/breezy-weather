@@ -18,13 +18,11 @@ import org.breezyweather.common.basic.models.Location;
 import org.breezyweather.db.repositories.ChineseCityEntityRepository;
 import org.breezyweather.main.utils.RequestErrorType;
 import org.breezyweather.weather.WeatherService;
-import org.breezyweather.weather.china.ChinaApi;
 import org.breezyweather.common.rxjava.BaseObserver;
 import org.breezyweather.common.rxjava.ObserverContainer;
 import org.breezyweather.common.rxjava.SchedulerTransformer;
 import org.breezyweather.common.utils.LanguageUtils;
 import org.breezyweather.settings.SettingsManager;
-import org.breezyweather.weather.china.ChinaResultConverterKt;
 import org.breezyweather.weather.china.json.ChinaMinutelyResult;
 import org.breezyweather.weather.china.json.ChinaForecastResult;
 

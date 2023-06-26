@@ -387,7 +387,7 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                             WeatherEntityRepository.INSTANCE.readWeather(location)
                     );
 
-                    LiveWallpaperConfigManager configManager = LiveWallpaperConfigManager.getInstance(
+                    LiveWallpaperConfigManager configManager = new LiveWallpaperConfigManager(
                             MaterialLiveWallpaperService.this
                     );
                     String weatherKind = configManager.getWeatherKind();

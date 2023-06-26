@@ -1,33 +1,18 @@
 package org.breezyweather.settings
 
 import android.content.Context
-import android.content.SharedPreferences
-import androidx.preference.PreferenceManager
 
-class ConfigStore private constructor(sp: SharedPreferences) {
+/**
+ * TODO: When migrating to extensions, we should make this class read only
+ * and only give main app write access
+ * TODO: Should we migrate to Android DataStore?
+ */
+class ConfigStore(
+    context: Context,
+    name: String = context.packageName + "_preferences"
+) {
 
-    companion object {
-
-        @JvmStatic
-        fun getInstance(context: Context) = getInstance(context, null)
-
-        @JvmStatic
-        fun getInstance(context: Context, name: String? = null): ConfigStore {
-            return ConfigStore(
-                if (name == null) {
-                    PreferenceManager.getDefaultSharedPreferences(context)
-                } else {
-                    context.getSharedPreferences(name, Context.MODE_PRIVATE)
-                }
-            )
-        }
-    }
-
-    private val preferences = sp
-
-    fun preload() {
-        // do nothing.
-    }
+    private val preferences = context.getSharedPreferences(name, Context.MODE_PRIVATE)
 
     fun getString(key: String, defValue: String?): String? {
         return preferences.getString(key, defValue)

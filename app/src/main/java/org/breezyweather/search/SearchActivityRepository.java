@@ -34,7 +34,7 @@ public class SearchActivityRepository {
     @Inject
     SearchActivityRepository(@ApplicationContext Context context, WeatherHelper weatherHelper) {
         mWeatherHelper = weatherHelper;
-        mConfig = ConfigStore.getInstance(context, PREFERENCE_SEARCH_CONFIG);
+        mConfig = new ConfigStore(context, PREFERENCE_SEARCH_CONFIG);
 
         mLastDefaultSourceCache = null;
     }

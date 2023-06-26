@@ -8,12 +8,12 @@ import org.breezyweather.common.serializer.DateSerializer
 @Serializable
 data class ChinaCurrent(
     @Serializable(DateSerializer::class) val pubTime: Date,
-    val feelsLike: org.breezyweather.weather.china.json.ChinaUnitValue?,
-    val humidity: org.breezyweather.weather.china.json.ChinaUnitValue?,
-    val pressure: org.breezyweather.weather.china.json.ChinaUnitValue?,
-    val temperature: org.breezyweather.weather.china.json.ChinaUnitValue?,
+    val feelsLike: ChinaUnitValue?,
+    val humidity: ChinaUnitValue?,
+    val pressure: ChinaUnitValue?,
+    val temperature: ChinaUnitValue?,
     val uvIndex: String?,
-    val visibility: org.breezyweather.weather.china.json.ChinaUnitValue?,
+    val visibility: ChinaUnitValue?,
     val weather: String?,
-    val wind: org.breezyweather.weather.china.json.ChinaCurrentWind?
+    val wind: ChinaCurrentWind?
 )

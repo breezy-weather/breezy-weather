@@ -18,7 +18,6 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import org.breezyweather.common.basic.models.Location;
 import org.breezyweather.main.utils.RequestErrorType;
 import org.breezyweather.weather.WeatherService;
-import org.breezyweather.weather.metno.MetNoApi;
 import org.breezyweather.weather.openmeteo.OpenMeteoGeocodingApi;
 import org.breezyweather.weather.metno.json.MetNoEphemerisResult;
 import org.breezyweather.BuildConfig;
@@ -31,7 +30,6 @@ import org.breezyweather.settings.SettingsManager;
 import org.breezyweather.weather.metno.json.MetNoForecastResult;
 import org.breezyweather.weather.openmeteo.json.OpenMeteoLocationResult;
 import org.breezyweather.weather.openmeteo.json.OpenMeteoLocationResults;
-import org.breezyweather.weather.metno.MetNoResultConverterKt;
 import org.breezyweather.weather.openmeteo.OpenMeteoResultConverterKt;
 
 /**

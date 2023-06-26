@@ -65,7 +65,7 @@ class SettingsManager private constructor(context: Context) {
         const val DEFAULT_TOMORROW_FORECAST_TIME = "21:00"
     }
 
-    private val config = ConfigStore.getInstance(context)
+    private val config = ConfigStore(context)
 
     // basic.
 

@@ -26,16 +26,11 @@ import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.common.utils.helpers.ShortcutsHelper
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.databinding.ActivityMainBinding
-import org.breezyweather.main.dialogs.ApiLimitReachedHelp
-import org.breezyweather.main.dialogs.ApiUnauthorizedHelp
-import org.breezyweather.main.dialogs.LocationHelpDialog
-import org.breezyweather.main.dialogs.RequiredApiKeyMissingHelp
 import org.breezyweather.main.fragments.HomeFragment
 import org.breezyweather.main.fragments.ManagementFragment
 import org.breezyweather.main.fragments.ModifyMainSystemBarMessage
 import org.breezyweather.main.fragments.PushedManagementFragment
 import org.breezyweather.main.utils.MainThemeColorProvider
-import org.breezyweather.main.utils.RequestErrorType
 import org.breezyweather.remoteviews.NotificationHelper
 import org.breezyweather.remoteviews.WidgetHelper
 import org.breezyweather.search.SearchActivity
@@ -263,7 +258,7 @@ class MainActivity : GeoActivity(),
                     .setMessage(R.string.dialog_permissions_location_content)
                     .setPositiveButton(R.string.action_next) { _, _ ->
                         // mark declared.
-                        viewModel.statementManager.setLocationPermissionDeclared(this)
+                        viewModel.statementManager.setLocationPermissionDeclared()
 
                         val request = viewModel.permissionsRequest.value
                         if (request != null
@@ -341,7 +336,7 @@ class MainActivity : GeoActivity(),
                 .setMessage(R.string.dialog_permissions_location_background_content)
                 .setPositiveButton(R.string.action_set) { _, _ ->
                     // mark background location permission declared.
-                    viewModel.statementManager.setBackgroundLocationDeclared(this)
+                    viewModel.statementManager.setBackgroundLocationDeclared()
                     // request background location permission.
                     requestPermissions(
                         arrayOf(Manifest.permission.ACCESS_BACKGROUND_LOCATION),
