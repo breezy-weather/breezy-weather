@@ -11,7 +11,7 @@
     <string name="allergen">Allergien</string>
     <string name="app_name">Wetter</string>
     <string name="temperature_apparent">Gefühlt</string>
-    <string name="notification_channel_background_information">Background information</string>
+    <string name="notification_channel_background_information">Hintergrundinformation</string>
     <string name="action_cancel">Abbruch</string>
     <string name="ceiling">Wolkendecke</string>
     <string name="cloud_cover">Bewölkung</string>
@@ -28,7 +28,7 @@
     <string name="action_done">Erledigt</string>
     <string name="action_edit">Bearbeiten</string>
     <string name="widget_ellipsis">…</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">Standort manuell hinzufügen und löschen \'$\'</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Standort manuell hinzufügen und „$“ löschen</string>
     <string name="widget_label_black_text">Dunkler Text</string>
     <string name="widget_live_wallpaper_cannot_start_activity">Vorschau für Live Wallpaper kann nicht gestartet werden!</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Standortberechtigungen prüfen</string>
@@ -41,7 +41,7 @@
     <string name="widget_label_hide_subtitle">Untertitel ausblenden</string>
     <string name="dialog_permissions_ignore_battery_optimizations_content">Um sicherzustellen, dass die Hintergrunddienste weiterhin funktionieren, deaktivieren Sie bitte die Akkuoptimierung für Breezy Weather.</string>
     <string name="dialog_permissions_ignore_battery_optimizations_title">Energiespareinstellungen ignoieren</string>
-    <string name="dialog_permissions_block_notification_channel_title">Block notification group</string>
+    <string name="dialog_permissions_block_notification_channel_title">Benachrichtigung blockieren</string>
     <string name="widget_live_wallpaper_day_night_type">Zeit</string>
     <string name="widget_live_wallpaper_weather_kind">Wetter</string>
     <string name="location_message_failed_to_locate">Standortermittlung fehlgeschlagen!</string>
@@ -50,7 +50,8 @@
     <string name="location_current_not_found_yet">Noch kein Ort…</string>
     <string name="notification_channel_request_location">Standortermittlung</string>
     <string name="location_resident_message">Als Wohnort festlegen</string>
-    <string name="location_resident_dialog">Breezy Weather will automatically show and hide resident cities based on your current location. For example, you can set your hometown as a resident city. You can check the weather in your hometown while you are traveling. When you get home, the weather in your hometown will be hidden and replaced by the weather for your current location.</string>
+    <string name="location_resident_dialog">Abhängig von Ihrem aktuellen Standort zeigt und verbirgt Breezy Weather Ihre Wohnorte.
+\nSie können zum Beispiel Ihre Heimatstadt als Wohnort festlegen. Sie können das Wetter in Ihrer Heimatstadt überprüfen, während Sie auf Reisen sind. Wenn Sie nach Hause kommen, wird das Wetter in Ihrer Heimatstadt ausgeblendet und durch das Wetter für Ihren aktuellen Standort ersetzt.</string>
     <string name="settings_changes_apply_after_restart">Änderungen werden bei Neustart übernommen</string>
     <string name="notification_running_in_background">Hintergrundaktualisierung</string>
     <string name="location_search_placeholder">Ort suchen…</string>
@@ -58,7 +59,7 @@
     <string name="notification_precipitation_short_term">In den nächsten Stunden kann Niederschlag auftreten.</string>
     <string name="widget_label_show_widget_card">Widgethintergrund</string>
     <string name="widget_label_show_widget_card_alpha">Transparenz</string>
-    <string name="widget_label_subtitle_data">Subtitle data</string>
+    <string name="widget_label_subtitle_data">Untertiteldaten</string>
     <string name="widget_label_text_size">Schriftgröße</string>
     <string name="notification_precipitation_today">Es kann Niederschlag auftreten.</string>
     <string name="message_updated_in_background">Im Hintergrund aktualisiert</string>
@@ -70,14 +71,14 @@
     <string name="settings_icon_providers_get_more">Mehr…</string>
     <string name="settings_icon_providers_get_more_github">Mehr von GitHub</string>
     <string name="settings_icon_providers_get_more_store">Mehr von Google Play</string>
-    <string name="action_set">SET</string>
+    <string name="action_set">Einstellen</string>
     <string name="allergen_grass">Gras</string>
     <string name="action_help">Hilfe</string>
     <string name="hourly_forecast">Die nächsten Stunden</string>
     <string name="hours_of_sun">Sonnenstunden</string>
     <string name="humidity">Luftfeuchte</string>
     <string name="precipitation_ice">Eis</string>
-    <string name="action_learn_more">mehr erfahren</string>
+    <string name="action_learn_more">Mehr erfahren</string>
     <string name="details">Details</string>
     <string name="live">Jetzt</string>
     <string name="minutely_forecast">Die nächsten Minuten</string>
@@ -320,9 +321,9 @@
     <string name="air_quality_level_2_description">Für die meisten Menschen ist die Luftqualität im Allgemeinen akzeptabel. Bei empfindlichen Personengruppen können sich jedoch bei längeren Aufenthalten an der frischen Luft leichte bis mäßige Symptome bemerkbar machen.</string>
     <string name="air_quality_level_3_description">Die Luft ist stark verschmutzt und für empfindliche Personengruppen gesundheitsschädlich. Verbringen Sie weniger Zeit im Freien, falls bei Ihnen Symptome wie Atembeschwerden oder Hustenreiz auftreten.</string>
     <string name="air_quality_level_5">Sehr ungesund</string>
-    <string name="widget_custom_subtitle_keyword_xnw_description">Wetter nachts heute, morgen, ..., in 4 Tagen</string>
+    <string name="widget_custom_subtitle_keyword_xnw_description">Wetter nachts heute, morgen, …, in 4 Tagen</string>
     <string name="unit_mugpcum_voice">Mikrogramm pro Kubikmeter</string>
-    <string name="dialog_permissions_location_background_content">Um Standortveränderungen erkennen und Ihnen gültige Wetterdaten liefern zu können, muss die App im Hintergrund auf Standortinformationen zugreifen können. Bitte stellen Sie dafür den Standortzugriff auf \"Immer zulassen\".</string>
+    <string name="dialog_permissions_location_background_content">Um Standortveränderungen erkennen und Ihnen gültige Wetterdaten liefern zu können, muss die App im Hintergrund auf Standortinformationen zugreifen können. Bitte stellen Sie dafür den Standortzugriff auf „Immer zulassen“.</string>
     <string name="widget_label_hide_lunar">Mondkalender ausblenden</string>
     <string name="widget_subtitle_data_time">Aktualisierungszeit</string>
     <string name="widget_subtitle_data_aqi">Luftqualität</string>
@@ -330,7 +331,7 @@
     <string name="widget_custom_subtitle_keyword_ct_description">Aktuelle Temperatur (°C/℉)</string>
     <string name="widget_custom_subtitle_explanation">Sie können alles eingeben, aber achten Sie bitte auf die Länge des Textes. Wenn Sie Wetterdaten nutzen möchten, verwenden Sie bitte $, um auf das entsprechende Stichwort zu verweisen.
 \n
-\nZum Beispiel: \"Aktuell: $cw$.\" wird angezeigt als \"Aktuell: klar.\".</string>
+\nZum Beispiel: „Aktuell: $cw$.“ wird angezeigt als „Aktuell: Klar.“.</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Aktuelles Wetter</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Gefühlte Temperatur (°)</string>
     <string name="widget_custom_subtitle_keyword_cv_description">Aktuelle Sichtweite</string>
@@ -340,10 +341,10 @@
     <string name="widget_custom_subtitle_keyword_dd_description">Tägliche Beschreibung</string>
     <string name="widget_custom_subtitle_keyword_ws_description">Woche (kurz)</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Zeilenumbruch</string>
-    <string name="widget_custom_subtitle_keyword_xnwd_description">Wind nachts heute, morgen, ..., in 4 Tagen</string>
-    <string name="widget_custom_subtitle_keyword_xmr_description">Mondaufgang heute, morgen, ..., in 4 Tagen</string>
-    <string name="widget_custom_subtitle_keyword_xmp_description">Mondphase heute, morgen, ..., in 4 Tagen</string>
-    <string name="widget_custom_subtitle_keyword_xnp_description">Niederschlag nachts heute, morgen, ..., in 4 Tagen (%)</string>
+    <string name="widget_custom_subtitle_keyword_xnwd_description">Wind nachts heute, morgen, …, in 4 Tagen</string>
+    <string name="widget_custom_subtitle_keyword_xmr_description">Mondaufgang heute, morgen, …, in 4 Tagen</string>
+    <string name="widget_custom_subtitle_keyword_xmp_description">Mondphase heute, morgen, …, in 4 Tagen</string>
+    <string name="widget_custom_subtitle_keyword_xnp_description">Niederschlag nachts heute, morgen, …, in 4 Tagen (%)</string>
     <string name="dialog_permissions_location_content">Breezy Weather muss Ihre Standortinformationen im Vorder- oder Hintergrund sammeln, um die Wetterdaten Ihres aktuellen Standorts bereitzustellen. Hierfür werden wir einige Berechtigungen anfordern. Ihre Standortinformationen werden nur verwendet, um Wetterdaten für Ihren aktuellen Standort zu erhalten. Wenn Sie Ihre Standortinformationen nicht freigeben möchten, können Sie diese Berechtigungen ablehnen und Ihren Standort manuell auf der Seite zur Verwaltung der Orte festlegen.</string>
     <string name="weather_source_mf_voice">Météo France</string>
     <string name="weather_data_by">Daten von $</string>
@@ -376,7 +377,7 @@
     <string name="unit_inhg_voice">Zoll-Quecksilbersäule</string>
     <string name="air_quality_level_4_description">Empfindliche Personengruppen werden unmittelbare gesundheitliche Auswirkungen spüren. Bei gesunden Menschen kann es bei längerer Exposition zu Atembeschwerden und Hustenreiz kommen. Schränken Sie Aktivitäten im Freien ein.</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Leichtes bis mäßiges Gewitter</string>
-    <string name="dialog_permissions_block_notification_channel_content">Nach Deaktivierung der Einstellung \"Hintergrund\" wird in der Benachrichtigungsleiste eine Benachrichtigung angezeigt, dass der Hintergrunddienst ausgeführt wird. Sie können den Hintergrundinformationskanal auf der Informationsseite der App deaktivieren, um diese Benachrichtigung zu blockieren.</string>
+    <string name="dialog_permissions_block_notification_channel_content">Nach Deaktivierung der Einstellung „Hintergrund“ wird in der Benachrichtigungsleiste eine Benachrichtigung angezeigt, dass der Hintergrunddienst ausgeführt wird. Sie können den Hintergrundinformationskanal auf der Informationsseite der App deaktivieren, um diese Benachrichtigung zu blockieren.</string>
     <string name="widget_style_temperature">Temperatur</string>
     <string name="widget_week_style_3_days">3 Tage</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Gewitter mit starkem Hagel</string>
@@ -422,7 +423,7 @@
     <string name="widget_custom_subtitle_keyword_ch_description">Aktuelle Luftfeuchtigkeit</string>
     <string name="unit_mps_voice">Meter pro Sekunde</string>
     <string name="unit_in">Zoll</string>
-    <string name="widget_custom_subtitle_keyword_xntd_description">Temperatur nachts heute, morgen, ..., in 4 Tagen (°)</string>
+    <string name="widget_custom_subtitle_keyword_xntd_description">Temperatur nachts heute, morgen, …, in 4 Tagen (°)</string>
     <string name="unit_ftps_voice">Fuß pro Sekunde</string>
     <string name="wind_direction_short_variable">Wechselnd</string>
     <string name="air_quality_level_1">Sehr gut</string>
@@ -457,15 +458,15 @@
     <string name="widget_custom_subtitle_keyword_ut_description">Aktualisierungszeit</string>
     <string name="widget_custom_subtitle_keyword_lc_description">Mondkalender</string>
     <string name="widget_custom_subtitle_keyword_w_description">Woche</string>
-    <string name="widget_custom_subtitle_keyword_xdw_description">Wetter tagsüber heute, morgen, ..., in 4 Tagen</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Temperatur tagsüber heute, morgen, ..., in 4 Tagen (℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Temperatur nachts heute, morgen, ..., in 4 Tagen (℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_xdtd_description">Temperatur tagsüber heute, morgen, ..., in 4 Tagen (°)</string>
-    <string name="widget_custom_subtitle_keyword_xdp_description">Niederschlag tagsüber heute, morgen, ..., in 4 Tagen (%)</string>
-    <string name="widget_custom_subtitle_keyword_xsr_description">Sonnenaufgang heute, morgen, ..., in 4 Tagen</string>
-    <string name="widget_custom_subtitle_keyword_xss_description">Sonnenuntergang heute, morgen, ..., in 4 Tagen</string>
-    <string name="widget_custom_subtitle_keyword_xdwd_description">Wind tagsüber heute, morgen, ..., in 4 Tagen</string>
-    <string name="widget_custom_subtitle_keyword_xms_description">Monduntergang heute, morgen, ..., in 4 Tagen</string>
+    <string name="widget_custom_subtitle_keyword_xdw_description">Wetter tagsüber heute, morgen, …, in 4 Tagen</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Temperatur tagsüber heute, morgen, …, in 4 Tagen (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Temperatur nachts heute, morgen, …, in 4 Tagen (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdtd_description">Temperatur tagsüber heute, morgen, …, in 4 Tagen (°)</string>
+    <string name="widget_custom_subtitle_keyword_xdp_description">Niederschlag tagsüber heute, morgen, …, in 4 Tagen (%)</string>
+    <string name="widget_custom_subtitle_keyword_xsr_description">Sonnenaufgang heute, morgen, …, in 4 Tagen</string>
+    <string name="widget_custom_subtitle_keyword_xss_description">Sonnenuntergang heute, morgen, …, in 4 Tagen</string>
+    <string name="widget_custom_subtitle_keyword_xdwd_description">Wind tagsüber heute, morgen, …, in 4 Tagen</string>
+    <string name="widget_custom_subtitle_keyword_xms_description">Monduntergang heute, morgen, …, in 4 Tagen</string>
     <string name="widget_style_mini">Mini</string>
     <string name="widget_style_nano">Nano</string>
     <string name="widget_style_pixel">Pixel</string>
@@ -509,4 +510,6 @@
     <string name="about_contributors">Mitwirkende</string>
     <string name="notification_style_cities">Orte (max. 4)</string>
     <string name="weather_source_metno_voice">Das Norwegische Meteorologische Institut</string>
+    <string name="unit_inph_voice">Zoll pro Stunde</string>
+    <string name="message_network_unavailable">Netzwerk nicht verfügbar</string>
 </resources>
