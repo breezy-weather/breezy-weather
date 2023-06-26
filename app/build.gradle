@@ -50,7 +50,9 @@ android {
         }
     }
     Properties properties = new Properties()
-    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    if (project.rootProject.findProject('local.properties') != null) {
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    }
     buildTypes.each {
         it.buildConfigField "String", "ACCU_WEATHER_BASE_URL", "\"${properties.getProperty("breezy.accu.baseUrl") ?: "https://api.accuweather.com/"}\""
         it.buildConfigField "String", "ACCU_WEATHER_KEY", "\"${properties.getProperty("breezy.accu.key") ?: ""}\""
@@ -237,8 +239,7 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1"
 
     // data store
-    // implementation "androidx.datastore:datastore-preferences:1.0.0"
-    // implementation "androidx.datastore:datastore-preferences-rxjava3:1.0.0"
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
 
     // jwt
     implementation "io.jsonwebtoken:jjwt-api:0.11.5"
