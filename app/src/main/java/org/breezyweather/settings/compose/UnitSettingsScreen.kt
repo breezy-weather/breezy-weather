@@ -19,7 +19,7 @@ fun UnitSettingsScreen(
     context: Context,
     paddingValues: PaddingValues,
 ) = PreferenceScreen(paddingValues = paddingValues) {
-    listPreferenceItem(R.string.settings_title_temperature_unit) { id ->
+    listPreferenceItem(R.string.settings_units_temperature) { id ->
         ListPreferenceView(
             titleId = id,
             selectedKey = SettingsManager.getInstance(context).temperatureUnit.id,
@@ -32,20 +32,7 @@ fun UnitSettingsScreen(
             },
         )
     }
-    listPreferenceItem(R.string.settings_title_distance_unit) { id ->
-        ListPreferenceView(
-            titleId = id,
-            selectedKey = SettingsManager.getInstance(context).distanceUnit.id,
-            valueArrayId = R.array.distance_unit_values,
-            nameArrayId = R.array.distance_units,
-            onValueChanged = {
-                SettingsManager
-                    .getInstance(context)
-                    .distanceUnit = DistanceUnit.getInstance(it)
-            },
-        )
-    }
-    listPreferenceItem(R.string.settings_title_precipitation_unit) { id ->
+    listPreferenceItem(R.string.settings_units_precipitation) { id ->
         ListPreferenceView(
             titleId = id,
             selectedKey = SettingsManager.getInstance(context).precipitationUnit.id,
@@ -58,20 +45,20 @@ fun UnitSettingsScreen(
             },
         )
     }
-    listPreferenceItem(R.string.settings_title_pressure_unit) { id ->
+    listPreferenceItem(R.string.settings_units_distance) { id ->
         ListPreferenceView(
             titleId = id,
-            selectedKey = SettingsManager.getInstance(context).pressureUnit.id,
-            valueArrayId = R.array.pressure_unit_values,
-            nameArrayId = R.array.pressure_units,
+            selectedKey = SettingsManager.getInstance(context).distanceUnit.id,
+            valueArrayId = R.array.distance_unit_values,
+            nameArrayId = R.array.distance_units,
             onValueChanged = {
                 SettingsManager
                     .getInstance(context)
-                    .pressureUnit = PressureUnit.getInstance(it)
+                    .distanceUnit = DistanceUnit.getInstance(it)
             },
         )
     }
-    listPreferenceItem(R.string.settings_title_speed_unit) { id ->
+    listPreferenceItem(R.string.settings_units_speed) { id ->
         ListPreferenceView(
             titleId = id,
             selectedKey = SettingsManager.getInstance(context).speedUnit.id,
@@ -81,6 +68,19 @@ fun UnitSettingsScreen(
                 SettingsManager
                     .getInstance(context)
                     .speedUnit = SpeedUnit.getInstance(it)
+            },
+        )
+    }
+    listPreferenceItem(R.string.settings_units_pressure) { id ->
+        ListPreferenceView(
+            titleId = id,
+            selectedKey = SettingsManager.getInstance(context).pressureUnit.id,
+            valueArrayId = R.array.pressure_unit_values,
+            nameArrayId = R.array.pressure_units,
+            onValueChanged = {
+                SettingsManager
+                    .getInstance(context)
+                    .pressureUnit = PressureUnit.getInstance(it)
             },
         )
     }

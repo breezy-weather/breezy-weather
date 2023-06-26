@@ -31,12 +31,7 @@ import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.settings.SettingsChangedMessage
 import org.breezyweather.settings.SettingsManager
-import org.breezyweather.settings.compose.AppearanceSettingsScreen
-import org.breezyweather.settings.compose.RootSettingsView
-import org.breezyweather.settings.compose.ServiceProviderSettingsScreen
-import org.breezyweather.settings.compose.SettingsProviderAdvancedSettingsScreen
-import org.breezyweather.settings.compose.SettingsScreenRouter
-import org.breezyweather.settings.compose.UnitSettingsScreen
+import org.breezyweather.settings.compose.*
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 
 private const val PERMISSION_CODE_POST_NOTIFICATION = 0
@@ -54,6 +49,18 @@ class SettingsActivity : GeoActivity() {
     )
     private val detailsDisplayState = mutableStateOf(
         SettingsManager.getInstance(this).detailDisplayList
+    )
+    private val notificationEnabledState = mutableStateOf(
+        SettingsManager.getInstance(this).isWidgetNotificationEnabled
+    )
+    private val notificationTemperatureIconEnabledState = mutableStateOf(
+        SettingsManager.getInstance(this).isWidgetNotificationTemperatureIconEnabled
+    )
+    private val todayForecastEnabledState = mutableStateOf(
+        SettingsManager.getInstance(this).isTodayForecastEnabled
+    )
+    private val tomorrowForecastEnabledState = mutableStateOf(
+        SettingsManager.getInstance(this).isTomorrowForecastEnabled
     )
 
     private var requestPostNotificationPermissionSucceedCallback: (() -> Unit)? = null
@@ -81,6 +88,31 @@ class SettingsActivity : GeoActivity() {
             val hourlyTrendDisplayList = SettingsManager.getInstance(this).hourlyTrendDisplayList
             if (hourlyTrendDisplayState.value != hourlyTrendDisplayList) {
                 hourlyTrendDisplayState.value = hourlyTrendDisplayList
+            }
+
+            val detailsDisplayList = SettingsManager.getInstance(this).detailDisplayList
+            if (detailsDisplayState.value != detailsDisplayList) {
+                detailsDisplayState.value = detailsDisplayList
+            }
+
+            val notificationEnabled = SettingsManager.getInstance(this).isWidgetNotificationEnabled
+            if (notificationEnabledState.value != notificationEnabled) {
+                notificationEnabledState.value = notificationEnabled
+            }
+
+            val notificationTemperatureIconEnabled = SettingsManager.getInstance(this).isWidgetNotificationTemperatureIconEnabled
+            if (notificationTemperatureIconEnabledState.value != notificationTemperatureIconEnabled) {
+                notificationTemperatureIconEnabledState.value = notificationTemperatureIconEnabled
+            }
+
+            val todayForecastEnabled = SettingsManager.getInstance(this).isTodayForecastEnabled
+            if (todayForecastEnabledState.value != todayForecastEnabled) {
+                todayForecastEnabledState.value = todayForecastEnabled
+            }
+
+            val tomorrowForecastEnabled = SettingsManager.getInstance(this).isTomorrowForecastEnabled
+            if (tomorrowForecastEnabledState.value != tomorrowForecastEnabled) {
+                tomorrowForecastEnabledState.value = tomorrowForecastEnabled
             }
         }
     }
@@ -136,19 +168,24 @@ class SettingsActivity : GeoActivity() {
             ) {
                 composable(SettingsScreenRouter.Root.route) {
                     RootSettingsView(
-                        context = this@SettingsActivity,
                         navController = navController,
+                        paddingValues = paddings
+                    )
+                }
+                composable(SettingsScreenRouter.BackgroundUpdates.route) {
+                    BackgroundSettingsScreen(
+                        context = this@SettingsActivity,
                         paddingValues = paddings,
                         postNotificationPermissionEnsurer = { succeedCallback ->
                             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
                                 succeedCallback()
-                                return@RootSettingsView
+                                return@BackgroundSettingsScreen
                             }
                             if (ContextCompat.checkSelfPermission(
                                     this@SettingsActivity,
                                     Manifest.permission.POST_NOTIFICATIONS
                                 ) == PackageManager.PERMISSION_GRANTED) {
-                                return@RootSettingsView
+                                return@BackgroundSettingsScreen
                             }
 
                             requestPostNotificationPermissionSucceedCallback = succeedCallback
@@ -162,6 +199,13 @@ class SettingsActivity : GeoActivity() {
                 composable(SettingsScreenRouter.Appearance.route) {
                     AppearanceSettingsScreen(
                         context = this@SettingsActivity,
+                        navController = navController,
+                        paddingValues = paddings,
+                    )
+                }
+                composable(SettingsScreenRouter.MainScreen.route) {
+                    MainScreenSettingsScreen(
+                        context = this@SettingsActivity,
                         cardDisplayList = remember { cardDisplayState }.value,
                         dailyTrendDisplayList = remember { dailyTrendDisplayState }.value,
                         hourlyTrendDisplayList = remember { hourlyTrendDisplayState }.value,
@@ -169,15 +213,34 @@ class SettingsActivity : GeoActivity() {
                         paddingValues = paddings,
                     )
                 }
-                composable(SettingsScreenRouter.ServiceProvider.route) {
-                    ServiceProviderSettingsScreen(
+                composable(SettingsScreenRouter.Notifications.route) {
+                    NotificationsSettingsScreen(
                         context = this@SettingsActivity,
-                        navController = navController,
                         paddingValues = paddings,
+                        todayForecastEnabled = remember { todayForecastEnabledState }.value,
+                        tomorrowForecastEnabled = remember { tomorrowForecastEnabledState }.value,
+                        postNotificationPermissionEnsurer = { succeedCallback ->
+                            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+                                succeedCallback()
+                                return@NotificationsSettingsScreen
+                            }
+                            if (ContextCompat.checkSelfPermission(
+                                    this@SettingsActivity,
+                                    Manifest.permission.POST_NOTIFICATIONS
+                                ) == PackageManager.PERMISSION_GRANTED) {
+                                return@NotificationsSettingsScreen
+                            }
+
+                            requestPostNotificationPermissionSucceedCallback = succeedCallback
+                            requestPermissions(
+                                arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+                                PERMISSION_CODE_POST_NOTIFICATION
+                            )
+                        }
                     )
                 }
-                composable(SettingsScreenRouter.ServiceProviderAdvanced.route) {
-                    SettingsProviderAdvancedSettingsScreen(
+                composable(SettingsScreenRouter.DataProvider.route) {
+                    ServiceProviderSettingsScreen(
                         context = this@SettingsActivity,
                         paddingValues = paddings,
                     )
@@ -186,6 +249,32 @@ class SettingsActivity : GeoActivity() {
                     UnitSettingsScreen(
                         context = this@SettingsActivity,
                         paddingValues = paddings,
+                    )
+                }
+                composable(SettingsScreenRouter.Widgets.route) {
+                    WidgetsSettingsScreen(
+                        context = this@SettingsActivity,
+                        notificationEnabled = remember { notificationEnabledState }.value,
+                        notificationTemperatureIconEnabled = remember { notificationTemperatureIconEnabledState }.value,
+                        paddingValues = paddings,
+                        postNotificationPermissionEnsurer = { succeedCallback ->
+                            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+                                succeedCallback()
+                                return@WidgetsSettingsScreen
+                            }
+                            if (ContextCompat.checkSelfPermission(
+                                    this@SettingsActivity,
+                                    Manifest.permission.POST_NOTIFICATIONS
+                                ) == PackageManager.PERMISSION_GRANTED) {
+                                return@WidgetsSettingsScreen
+                            }
+
+                            requestPostNotificationPermissionSucceedCallback = succeedCallback
+                            requestPermissions(
+                                arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+                                PERMISSION_CODE_POST_NOTIFICATION
+                            )
+                        }
                     )
                 }
             }

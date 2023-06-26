@@ -108,8 +108,7 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
         );
         mBinding.toolbar.setNavigationOnClickListener(view -> finish());
 
-        List<DailyTrendDisplay> displayTags
-                = SettingsManager.getInstance(this).getDailyTrendDisplayList();
+        List<DailyTrendDisplay> displayTags = SettingsManager.getInstance(this).getDailyTrendDisplayList();
         mDailyTrendDisplayAdapter = new DailyTrendDisplayAdapter(
                 displayTags,
                 dailyTrendDisplay -> {
@@ -138,9 +137,9 @@ public class DailyTrendDisplayManageActivity extends GeoActivity {
         otherTags.add(DailyTrendDisplay.TAG_WIND);
         otherTags.add(DailyTrendDisplay.TAG_UV_INDEX);
         otherTags.add(DailyTrendDisplay.TAG_PRECIPITATION);
-        for (int i = otherTags.size() - 1; i >= 0; i --) {
-            for (int j = 0; j < displayTags.size(); j ++) {
-                if (otherTags.get(i) == displayTags.get(j)) {
+        for (int i = otherTags.size() - 1; i >= 0; i--) {
+            for (DailyTrendDisplay displayTag : displayTags) {
+                if (otherTags.get(i) == displayTag) {
                     otherTags.remove(i);
                     break;
                 }

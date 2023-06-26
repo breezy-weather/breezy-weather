@@ -84,7 +84,7 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
         Integer highestTemperature = null;
         Integer lowestTemperature = null;
 
-        boolean minimalIcon = SettingsManager.getInstance(context).isWidgetMinimalIconEnabled();
+        boolean minimalIcon = SettingsManager.getInstance(context).isWidgetUsingMonochromeIcons();
         TemperatureUnit temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit();
 
         temperatures = new Float[Math.max(0, itemCount * 2 - 1)];
@@ -325,7 +325,7 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
         );
     }
 
-    public static boolean isEnable(Context context) {
+    public static boolean isInUse(Context context) {
         int[] widgetIds = AppWidgetManager.getInstance(context)
                 .getAppWidgetIds(new ComponentName(context, WidgetTrendHourlyProvider.class));
         return widgetIds != null && widgetIds.length > 0;

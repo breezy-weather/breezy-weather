@@ -93,7 +93,7 @@ public class TextWidgetIMP extends AbstractRemoteViewsPresenter {
         return views;
     }
 
-    public static boolean isEnable(Context context) {
+    public static boolean isInUse(Context context) {
         int[] widgetIds = AppWidgetManager.getInstance(context)
                 .getAppWidgetIds(new ComponentName(context, WidgetTextProvider.class));
         return widgetIds != null && widgetIds.length > 0;

@@ -122,7 +122,7 @@ public class HourlyPrecipitationAdapter extends AbsHourlyTrendAdapter {
 
         mHighestPrecipitation = 0;
         Float precipitation;
-        for (int i = weather.getHourlyForecast().size() - 1; i >= 0; i --) {
+        for (int i = weather.getHourlyForecast().size() - 1; i >= 0; i--) {
             if (weather.getHourlyForecast().get(i).getPrecipitation() != null) {
                 precipitation = weather.getHourlyForecast().get(i).getPrecipitation().getTotal();
                 if (precipitation != null && precipitation > mHighestPrecipitation) {

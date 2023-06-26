@@ -58,7 +58,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
 
         SettingsManager settings = SettingsManager.getInstance(context);
         TemperatureUnit temperatureUnit = settings.getTemperatureUnit();
-        boolean minimalIcon = settings.isWidgetMinimalIconEnabled();
+        boolean minimalIcon = settings.isWidgetUsingMonochromeIcons();
 
         WidgetColor color;
         if (viewStyle.equals("pixel") || viewStyle.equals("nano")
@@ -288,7 +288,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
         return views;
     }
 
-    public static boolean isEnable(Context context) {
+    public static boolean isInUse(Context context) {
         int[] widgetIds = AppWidgetManager.getInstance(context)
                 .getAppWidgetIds(new ComponentName(context, WidgetDayProvider.class));
         return widgetIds != null && widgetIds.length > 0;

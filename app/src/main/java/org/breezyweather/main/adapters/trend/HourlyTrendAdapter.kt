@@ -5,7 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
+import org.breezyweather.common.basic.models.options.appearance.HourlyTrendDisplay
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
+import org.breezyweather.main.adapters.trend.daily.*
 import org.breezyweather.main.adapters.trend.hourly.*
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourcesProviderFactory
@@ -29,30 +31,32 @@ class HourlyTrendAdapter(
     fun bindData(location: Location) {
         val provider = ResourcesProviderFactory.getNewInstance()
 
-        adapters = arrayOf(
-            HourlyTemperatureAdapter(
-                activity,
-                location,
-                provider,
-                SettingsManager.getInstance(activity).temperatureUnit
-            ),
-            HourlyAirQualityAdapter(
-                activity,
-                location
-            ),
-            HourlyWindAdapter(
-                activity,
-                location,
-                SettingsManager.getInstance(activity).speedUnit
-            ),
-            HourlyUVAdapter(activity, location),
-            HourlyPrecipitationAdapter(
-                activity,
-                location,
-                provider,
-                SettingsManager.getInstance(activity).precipitationUnit
-            ),
-        ).filter {
+        adapters = SettingsManager.getInstance(activity).hourlyTrendDisplayList.map {
+            when (it) {
+                HourlyTrendDisplay.TAG_TEMPERATURE -> HourlyTemperatureAdapter(
+                    activity,
+                    location,
+                    provider,
+                    SettingsManager.getInstance(activity).temperatureUnit
+                )
+                HourlyTrendDisplay.TAG_AIR_QUALITY -> HourlyAirQualityAdapter(
+                    activity,
+                    location
+                )
+                HourlyTrendDisplay.TAG_WIND -> HourlyWindAdapter(
+                    activity,
+                    location,
+                    SettingsManager.getInstance(activity).speedUnit
+                )
+                HourlyTrendDisplay.TAG_UV_INDEX -> HourlyUVAdapter(activity, location)
+                HourlyTrendDisplay.TAG_PRECIPITATION -> HourlyPrecipitationAdapter(
+                    activity,
+                    location,
+                    provider,
+                    SettingsManager.getInstance(activity).precipitationUnit
+                )
+            }
+        }.filter {
             it.isValid(location)
         }.toTypedArray()
         notifyDataSetChanged()

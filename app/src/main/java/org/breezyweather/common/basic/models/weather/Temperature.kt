@@ -34,7 +34,7 @@ class Temperature(
         fun getTrendTemperature(context: Context, night: Int?, day: Int?, unit: TemperatureUnit): String? {
             return getTrendTemperature(
                 context, night, day, unit,
-                getInstance(context).isExchangeDayNightTempEnabled
+                getInstance(context).isDayNightTempOrderReversed
             )
         }
 

@@ -139,9 +139,9 @@ public class DetailDisplayManageActivity extends GeoActivity {
         otherDetails.add(DetailDisplay.DETAIL_VISIBILITY);
         otherDetails.add(DetailDisplay.DETAIL_CLOUD_COVER);
         otherDetails.add(DetailDisplay.DETAIL_CEILING);
-        for (int i = otherDetails.size() - 1; i >= 0; i --) {
-            for (int j = 0; j < displayDetails.size(); j ++) {
-                if (otherDetails.get(i) == displayDetails.get(j)) {
+        for (int i = otherDetails.size() - 1; i >= 0; i--) {
+            for (DetailDisplay displayDetail : displayDetails) {
+                if (otherDetails.get(i) == displayDetail) {
                     otherDetails.remove(i);
                     break;
                 }

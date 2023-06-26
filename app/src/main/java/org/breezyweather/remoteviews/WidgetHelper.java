@@ -29,34 +29,34 @@ import org.breezyweather.remoteviews.presenters.WeekWidgetIMP;
 public class WidgetHelper {
 
     public static void updateWidgetIfNecessary(Context context, Location location) {
-        if (DayWidgetIMP.isEnable(context)) {
+        if (DayWidgetIMP.isInUse(context)) {
             DayWidgetIMP.updateWidgetView(context, location);
         }
-        if (WeekWidgetIMP.isEnable(context)) {
+        if (WeekWidgetIMP.isInUse(context)) {
             WeekWidgetIMP.updateWidgetView(context, location);
         }
-        if (DayWeekWidgetIMP.isEnable(context)) {
+        if (DayWeekWidgetIMP.isInUse(context)) {
             DayWeekWidgetIMP.updateWidgetView(context, location);
         }
-        if (ClockDayHorizontalWidgetIMP.isEnable(context)) {
+        if (ClockDayHorizontalWidgetIMP.isInUse(context)) {
             ClockDayHorizontalWidgetIMP.updateWidgetView(context, location);
         }
-        if (ClockDayVerticalWidgetIMP.isEnable(context)) {
+        if (ClockDayVerticalWidgetIMP.isInUse(context)) {
             ClockDayVerticalWidgetIMP.updateWidgetView(context, location);
         }
-        if (ClockDayWeekWidgetIMP.isEnable(context)) {
+        if (ClockDayWeekWidgetIMP.isInUse(context)) {
             ClockDayWeekWidgetIMP.updateWidgetView(context, location);
         }
-        if (ClockDayDetailsWidgetIMP.isEnable(context)) {
+        if (ClockDayDetailsWidgetIMP.isInUse(context)) {
             ClockDayDetailsWidgetIMP.updateWidgetView(context, location);
         }
-        if (TextWidgetIMP.isEnable(context)) {
+        if (TextWidgetIMP.isInUse(context)) {
             TextWidgetIMP.updateWidgetView(context, location);
         }
-        if (DailyTrendWidgetIMP.isEnable(context)) {
+        if (DailyTrendWidgetIMP.isInUse(context)) {
             DailyTrendWidgetIMP.updateWidgetView(context, location);
         }
-        if (HourlyTrendWidgetIMP.isEnable(context)) {
+        if (HourlyTrendWidgetIMP.isInUse(context)) {
             HourlyTrendWidgetIMP.updateWidgetView(context, location);
         }
 
@@ -71,7 +71,7 @@ public class WidgetHelper {
 
     public static void updateWidgetIfNecessary(Context context, List<Location> locationList) {
         locationList = Location.excludeInvalidResidentLocation(context, locationList);
-        if (MultiCityWidgetIMP.isEnable(context)) {
+        if (MultiCityWidgetIMP.isInUse(context)) {
             MultiCityWidgetIMP.updateWidgetView(context, locationList);
         }
     }

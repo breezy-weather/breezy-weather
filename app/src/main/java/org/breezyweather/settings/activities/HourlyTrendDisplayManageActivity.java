@@ -67,8 +67,6 @@ public class HourlyTrendDisplayManageActivity extends GeoActivity {
         public boolean onMove(@NonNull RecyclerView recyclerView,
                               @NonNull RecyclerView.ViewHolder viewHolder,
                               @NonNull RecyclerView.ViewHolder target) {
-            setResult(RESULT_OK);
-
             int fromPosition = viewHolder.getBindingAdapterPosition();
             int toPosition = target.getBindingAdapterPosition();
 
@@ -111,8 +109,7 @@ public class HourlyTrendDisplayManageActivity extends GeoActivity {
         );
         mBinding.toolbar.setNavigationOnClickListener(view -> finish());
 
-        List<HourlyTrendDisplay> displayTags
-                = SettingsManager.getInstance(this).getHourlyTrendDisplayList();
+        List<HourlyTrendDisplay> displayTags = SettingsManager.getInstance(this).getHourlyTrendDisplayList();
         mHourlyTrendDisplayAdapter = new HourlyTrendDisplayAdapter(
                 displayTags,
                 hourlyTrendDisplay -> {
@@ -140,9 +137,9 @@ public class HourlyTrendDisplayManageActivity extends GeoActivity {
         otherTags.add(HourlyTrendDisplay.TAG_WIND);
         otherTags.add(HourlyTrendDisplay.TAG_UV_INDEX);
         otherTags.add(HourlyTrendDisplay.TAG_PRECIPITATION);
-        for (int i = otherTags.size() - 1; i >= 0; i --) {
-            for (int j = 0; j < displayTags.size(); j ++) {
-                if (otherTags.get(i) == displayTags.get(j)) {
+        for (int i = otherTags.size() - 1; i >= 0; i--) {
+            for (HourlyTrendDisplay displayTag : displayTags) {
+                if (otherTags.get(i) == displayTag) {
                     otherTags.remove(i);
                     break;
                 }

@@ -73,7 +73,8 @@ class DetailsViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                         headlineContent = {
                             Text(
                                 detailDisplay.getName(LocalContext.current),
-                                fontWeight = FontWeight.Bold
+                                fontWeight = FontWeight.Bold,
+                                color = DayNightTheme.colors.titleColor
                             )
                         },
                         supportingContent = {
@@ -86,6 +87,7 @@ class DetailsViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                             Icon(
                                 painterResource(detailDisplay.iconId),
                                 contentDescription = detailDisplay.getName(LocalContext.current),
+                                tint = DayNightTheme.colors.titleColor
                             )
                         }
                     )

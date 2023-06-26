@@ -126,31 +126,31 @@
 
         <activity
             android:name=".settings.activities.CardDisplayManageActivity"
-            android:label="@string/settings_title_card_display"
+            android:label="@string/settings_main_cards_title"
             android:theme="@style/BreezyWeatherTheme"
             android:screenOrientation="user" />
 
         <activity
             android:name=".settings.activities.DailyTrendDisplayManageActivity"
-            android:label="@string/settings_title_daily_trend_display"
+            android:label="@string/settings_main_daily_trends_title"
             android:theme="@style/BreezyWeatherTheme"
             android:screenOrientation="user" />
 
         <activity
             android:name=".settings.activities.HourlyTrendDisplayManageActivity"
-            android:label="@string/settings_title_hourly_trend_display"
+            android:label="@string/settings_main_hourly_trends_title"
             android:theme="@style/BreezyWeatherTheme"
             android:screenOrientation="user" />
 
         <activity
             android:name=".settings.activities.DetailDisplayManageActivity"
-            android:label="@string/settings_title_detail_display"
+            android:label="@string/settings_main_header_details_title"
             android:theme="@style/BreezyWeatherTheme"
             android:screenOrientation="user" />
 
         <activity
             android:name=".settings.activities.SelectProviderActivity"
-            android:label="@string/settings_title_service_provider"
+            android:label="@string/settings_providers_summary"
             android:theme="@style/BreezyWeatherTheme"
             android:screenOrientation="user" />
 
@@ -177,7 +177,7 @@
 
         <activity
             android:name=".wallpaper.LiveWallpaperConfigActivity"
-            android:label="@string/settings_title_live_wallpaper"
+            android:label="@string/settings_widgets_live_wallpaper_title"
             android:theme="@style/BreezyWeatherTheme"
             android:screenOrientation="user"
             android:exported="true" />

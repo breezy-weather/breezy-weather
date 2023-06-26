@@ -17,7 +17,6 @@ import org.breezyweather.common.ui.widgets.Material3Scaffold
 import org.breezyweather.common.ui.widgets.generateCollapsedScrollBehavior
 import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.settings.compose.ServiceProviderSettingsScreen
-import org.breezyweather.settings.compose.SettingsProviderAdvancedSettingsScreen
 import org.breezyweather.settings.compose.SettingsScreenRouter
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 
@@ -41,7 +40,7 @@ class SelectProviderActivity : GeoActivity() {
             modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
             topBar = {
                 FitStatusBarTopAppBar(
-                    title = stringResource(R.string.settings_title_service_provider),
+                    title = stringResource(R.string.settings_providers),
                     onBackPressed = { finish() },
                     scrollBehavior = scrollBehavior,
                 )
@@ -50,17 +49,10 @@ class SelectProviderActivity : GeoActivity() {
             val navController = rememberNavController()
             NavHost(
                 navController = navController,
-                startDestination = SettingsScreenRouter.ServiceProvider.route
+                startDestination = SettingsScreenRouter.DataProvider.route
             ) {
-                composable(SettingsScreenRouter.ServiceProvider.route) {
+                composable(SettingsScreenRouter.DataProvider.route) {
                     ServiceProviderSettingsScreen(
-                        context = this@SelectProviderActivity,
-                        navController = navController,
-                        paddingValues = paddings,
-                    )
-                }
-                composable(SettingsScreenRouter.ServiceProviderAdvanced.route) {
-                    SettingsProviderAdvancedSettingsScreen(
                         context = this@SelectProviderActivity,
                         paddingValues = paddings,
                     )

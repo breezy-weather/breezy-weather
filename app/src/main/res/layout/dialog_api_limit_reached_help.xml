@@ -18,7 +18,7 @@
 
         <ImageView
             android:id="@+id/dialog_api_limit_reached_help_keyIcon"
-            android:src="@drawable/ic_router"
+            android:src="@drawable/ic_factory"
             android:layout_centerVertical="true"
             style="@style/material_icon"
             tools:ignore="ContentDescription"

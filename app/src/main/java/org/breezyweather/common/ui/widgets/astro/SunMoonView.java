@@ -300,7 +300,7 @@ public class SunMoonView extends View {
         int restoreCount;
 
         // icon.
-        for (int i = 1; i >= 0; i --) {
+        for (int i = 1; i >= 0; i--) {
             if (mIconDrawables[i] == null || mProgresses[i] <= 0) {
                 continue;
             }

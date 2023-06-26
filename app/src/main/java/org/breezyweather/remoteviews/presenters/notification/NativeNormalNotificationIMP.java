@@ -37,7 +37,7 @@ class NativeNormalNotificationIMP extends AbstractRemoteViewsPresenter {
             TemperatureUnit temperatureUnit,
             boolean daytime,
             boolean tempIcon,
-            boolean canBeCleared
+            boolean persistent
     ) {
         Weather weather = location.getWeather();
         if (weather == null) {
@@ -85,7 +85,7 @@ class NativeNormalNotificationIMP extends AbstractRemoteViewsPresenter {
                 tempIcon ? ResourceHelper.getTempIconId(
                         context,
                         temperatureUnit.getValueWithoutUnit(
-                                SettingsManager.getInstance(context).isNotificationFeelsLike() ?
+                                SettingsManager.getInstance(context).isWidgetNotificationUsingFeelsLike() ?
                                 weather.getCurrent().getTemperature().getFeelsLikeTemperature() :
                                 weather.getCurrent().getTemperature().getTemperature()
                         )
@@ -120,7 +120,7 @@ class NativeNormalNotificationIMP extends AbstractRemoteViewsPresenter {
         StringBuilder content = new StringBuilder();
         if (!tempIcon) {
             content.append(
-                    SettingsManager.getInstance(context).isNotificationFeelsLike() ?
+                    SettingsManager.getInstance(context).isWidgetNotificationUsingFeelsLike() ?
                     weather.getCurrent().getTemperature().getFeelsLikeTemperature(context, temperatureUnit) :
                     weather.getCurrent().getTemperature().getTemperature(context, temperatureUnit))
                     .append(" ");
@@ -141,7 +141,7 @@ class NativeNormalNotificationIMP extends AbstractRemoteViewsPresenter {
         builder.setContentText(contentText.toString());
 
         // set clear flag
-        builder.setOngoing(!canBeCleared);
+        builder.setOngoing(persistent);
 
         // set only alert once.
         builder.setOnlyAlertOnce(true);

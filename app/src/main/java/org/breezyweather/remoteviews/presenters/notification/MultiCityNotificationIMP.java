@@ -91,7 +91,7 @@ public class MultiCityNotificationIMP extends AbstractRemoteViewsPresenter {
                 tempIcon ? ResourceHelper.getTempIconId(
                         context,
                         temperatureUnit.getValueWithoutUnit(
-                                SettingsManager.getInstance(context).isNotificationFeelsLike()
+                                SettingsManager.getInstance(context).isWidgetNotificationUsingFeelsLike()
                                         ? ObjectUtils.safeValueOf(weather.getCurrent().getTemperature().getFeelsLikeTemperature())
                                         : weather.getCurrent().getTemperature().getTemperature()
                         )
@@ -187,7 +187,7 @@ public class MultiCityNotificationIMP extends AbstractRemoteViewsPresenter {
                 R.id.notification_base_realtimeTemp,
                 Temperature.getShortTemperature(
                         context,
-                        SettingsManager.getInstance(context).isNotificationFeelsLike()
+                        SettingsManager.getInstance(context).isWidgetNotificationUsingFeelsLike()
                                 ? ObjectUtils.safeValueOf(weather.getCurrent().getTemperature().getFeelsLikeTemperature())
                                 : weather.getCurrent().getTemperature().getTemperature(),
                         temperatureUnit
@@ -354,6 +354,6 @@ public class MultiCityNotificationIMP extends AbstractRemoteViewsPresenter {
     }
 
     public static boolean isEnable(Context context) {
-        return SettingsManager.getInstance(context).isNotificationEnabled();
+        return SettingsManager.getInstance(context).isWidgetNotificationEnabled();
     }
 }

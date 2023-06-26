@@ -8,6 +8,7 @@ import java.util.List;
 import org.breezyweather.background.polling.services.permanent.PermanentServiceHelper;
 import org.breezyweather.background.polling.work.WorkerHelper;
 import org.breezyweather.common.basic.models.Location;
+import org.breezyweather.common.basic.models.options.BackgroundUpdateMethod;
 import org.breezyweather.common.utils.helpers.IntentHelper;
 import org.breezyweather.db.repositories.LocationEntityRepository;
 import org.breezyweather.db.repositories.WeatherEntityRepository;
@@ -26,7 +27,20 @@ public class PollingManager {
             return;
         }
 
-        if (settings.isBackgroundFree()) {
+        if (settings.getBackgroundUpdateMethod() == BackgroundUpdateMethod.NOTIFICATION) {
+            WorkerHelper.cancelNormalPollingWork(context);
+            WorkerHelper.cancelTodayForecastUpdateWork(context);
+            WorkerHelper.cancelTomorrowForecastUpdateWork(context);
+
+            // Polling service is started only if there is a need for one of the background services
+            if (SettingsManager.getInstance(context).getUpdateInterval().getIntervalInHour() != null
+                    || settings.isTodayForecastEnabled()
+                    || settings.isTomorrowForecastEnabled()) {
+                PermanentServiceHelper.startPollingService(context);
+            } else {
+                PermanentServiceHelper.stopPollingService(context);
+            }
+        } else {
             PermanentServiceHelper.stopPollingService(context);
 
             if (SettingsManager.getInstance(context).getUpdateInterval().getIntervalInHour() != null) {
@@ -48,19 +62,6 @@ public class PollingManager {
             } else {
                 WorkerHelper.cancelTomorrowForecastUpdateWork(context);
             }
-        } else {
-            WorkerHelper.cancelNormalPollingWork(context);
-            WorkerHelper.cancelTodayForecastUpdateWork(context);
-            WorkerHelper.cancelTomorrowForecastUpdateWork(context);
-
-            // Polling service is started only if there is a need for one of the background services
-            if (SettingsManager.getInstance(context).getUpdateInterval().getIntervalInHour() != null
-                || settings.isTodayForecastEnabled()
-                || settings.isTomorrowForecastEnabled()) {
-                PermanentServiceHelper.startPollingService(context);
-            } else {
-                PermanentServiceHelper.stopPollingService(context);
-            }
         }
     }
 
@@ -72,17 +73,7 @@ public class PollingManager {
             return;
         }
 
-        if (settings.isBackgroundFree()) {
-            PermanentServiceHelper.stopPollingService(context);
-
-            if (SettingsManager.getInstance(context).getUpdateInterval().getIntervalInHour() != null) {
-                WorkerHelper.setNormalPollingWork(
-                        context,
-                        SettingsManager.getInstance(context).getUpdateInterval().getIntervalInHour());
-            } else {
-                WorkerHelper.cancelNormalPollingWork(context);
-            }
-        } else {
+        if (settings.getBackgroundUpdateMethod() == BackgroundUpdateMethod.NOTIFICATION) {
             WorkerHelper.cancelNormalPollingWork(context);
             WorkerHelper.cancelTodayForecastUpdateWork(context);
             WorkerHelper.cancelTomorrowForecastUpdateWork(context);
@@ -94,6 +85,16 @@ public class PollingManager {
                 PermanentServiceHelper.startPollingService(context);
             } else {
                 PermanentServiceHelper.stopPollingService(context);
+            }
+        } else {
+            PermanentServiceHelper.stopPollingService(context);
+
+            if (SettingsManager.getInstance(context).getUpdateInterval().getIntervalInHour() != null) {
+                WorkerHelper.setNormalPollingWork(
+                        context,
+                        SettingsManager.getInstance(context).getUpdateInterval().getIntervalInHour());
+            } else {
+                WorkerHelper.cancelNormalPollingWork(context);
             }
         }
     }
@@ -107,15 +108,7 @@ public class PollingManager {
             return;
         }
 
-        if (settings.isBackgroundFree()) {
-            PermanentServiceHelper.stopPollingService(context);
-
-            if (settings.isTodayForecastEnabled()) {
-                WorkerHelper.setTodayForecastUpdateWork(context, settings.getTodayForecastTime(), nextDay);
-            } else {
-                WorkerHelper.cancelTodayForecastUpdateWork(context);
-            }
-        } else {
+        if (settings.getBackgroundUpdateMethod() == BackgroundUpdateMethod.NOTIFICATION) {
             WorkerHelper.cancelNormalPollingWork(context);
             WorkerHelper.cancelTodayForecastUpdateWork(context);
             WorkerHelper.cancelTomorrowForecastUpdateWork(context);
@@ -127,6 +120,14 @@ public class PollingManager {
                 PermanentServiceHelper.startPollingService(context);
             } else {
                 PermanentServiceHelper.stopPollingService(context);
+            }
+        } else {
+            PermanentServiceHelper.stopPollingService(context);
+
+            if (settings.isTodayForecastEnabled()) {
+                WorkerHelper.setTodayForecastUpdateWork(context, settings.getTodayForecastTime(), nextDay);
+            } else {
+                WorkerHelper.cancelTodayForecastUpdateWork(context);
             }
         }
     }
@@ -140,15 +141,7 @@ public class PollingManager {
             return;
         }
 
-        if (settings.isBackgroundFree()) {
-            PermanentServiceHelper.stopPollingService(context);
-
-            if (settings.isTomorrowForecastEnabled()) {
-                WorkerHelper.setTomorrowForecastUpdateWork(context, settings.getTomorrowForecastTime(), nextDay);
-            } else {
-                WorkerHelper.cancelTomorrowForecastUpdateWork(context);
-            }
-        } else {
+        if (settings.getBackgroundUpdateMethod() == BackgroundUpdateMethod.NOTIFICATION) {
             WorkerHelper.cancelNormalPollingWork(context);
             WorkerHelper.cancelTodayForecastUpdateWork(context);
             WorkerHelper.cancelTomorrowForecastUpdateWork(context);
@@ -160,6 +153,14 @@ public class PollingManager {
                 PermanentServiceHelper.startPollingService(context);
             } else {
                 PermanentServiceHelper.stopPollingService(context);
+            }
+        } else {
+            PermanentServiceHelper.stopPollingService(context);
+
+            if (settings.isTomorrowForecastEnabled()) {
+                WorkerHelper.setTomorrowForecastUpdateWork(context, settings.getTomorrowForecastTime(), nextDay);
+            } else {
+                WorkerHelper.cancelTomorrowForecastUpdateWork(context);
             }
         }
     }

@@ -144,9 +144,9 @@ public class CardDisplayManageActivity extends GeoActivity {
         otherCards.add(CardDisplay.CARD_ALLERGEN);
         otherCards.add(CardDisplay.CARD_SUNRISE_SUNSET);
         otherCards.add(CardDisplay.CARD_LIVE);
-        for (int i = otherCards.size() - 1; i >= 0; i --) {
-            for (int j = 0; j < displayCards.size(); j ++) {
-                if (otherCards.get(i) == displayCards.get(j)) {
+        for (int i = otherCards.size() - 1; i >= 0; i--) {
+            for (CardDisplay displayCard : displayCards) {
+                if (otherCards.get(i) == displayCard) {
                     otherCards.remove(i);
                     break;
                 }

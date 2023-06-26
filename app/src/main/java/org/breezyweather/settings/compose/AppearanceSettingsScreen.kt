@@ -11,30 +11,27 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavHostController
 import org.breezyweather.BreezyWeather.Companion.instance
 import org.breezyweather.R
+import org.breezyweather.common.basic.models.options.DarkMode
 import org.breezyweather.common.basic.models.options.appearance.*
-import org.breezyweather.common.basic.models.weather.Temperature
-import org.breezyweather.common.utils.helpers.IntentHelper
+import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.dialogs.ProvidersPreviewerDialog
 import org.breezyweather.settings.preference.bottomInsetItem
-import org.breezyweather.settings.preference.switchPreferenceItem
 import org.breezyweather.settings.preference.clickablePreferenceItem
 import org.breezyweather.settings.preference.composables.ListPreferenceView
 import org.breezyweather.settings.preference.composables.PreferenceView
-import org.breezyweather.settings.preference.composables.SwitchPreferenceView
 import org.breezyweather.settings.preference.listPreferenceItem
+import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.resource.ResourcesProviderFactory
 
 @Composable
 fun AppearanceSettingsScreen(
     context: Context,
-    cardDisplayList: List<CardDisplay>,
-    dailyTrendDisplayList: List<DailyTrendDisplay>,
-    hourlyTrendDisplayList: List<HourlyTrendDisplay>,
-    detailDisplayList: List<DetailDisplay>,
+    navController: NavHostController,
     paddingValues: PaddingValues,
 ) {
     LazyColumn(
@@ -43,8 +40,45 @@ fun AppearanceSettingsScreen(
             .fillMaxHeight(),
         contentPadding = paddingValues,
     ) {
+        listPreferenceItem(R.string.settings_appearance_language_title) { id ->
+            ListPreferenceView(
+                titleId = id,
+                valueArrayId = R.array.language_values,
+                nameArrayId = R.array.languages,
+                selectedKey = SettingsManager.getInstance(context).language.id,
+                onValueChanged = {
+                    SettingsManager.getInstance(context).language = Language.getInstance(it)
+
+                    SnackbarHelper.showSnackbar(
+                        context.getString(R.string.settings_changes_apply_after_restart),
+                        context.getString(R.string.action_restart)
+                    ) {
+                        instance.recreateAllActivities()
+                    }
+                },
+            )
+        }
+        listPreferenceItem(R.string.settings_appearance_dark_mode_title) { id ->
+            ListPreferenceView(
+                titleId = id,
+                selectedKey = SettingsManager.getInstance(context).darkMode.id,
+                valueArrayId = R.array.dark_mode_values,
+                nameArrayId = R.array.dark_modes,
+                onValueChanged = {
+                    SettingsManager
+                        .getInstance(context)
+                        .darkMode = DarkMode.getInstance(it)
+
+                    AsyncHelper.delayRunOnUI({
+                        ThemeManager
+                            .getInstance(context)
+                            .update(darkMode = SettingsManager.getInstance(context).darkMode)
+                    },300)
+                },
+            )
+        }
         clickablePreferenceItem(
-            R.string.settings_title_icon_provider
+            R.string.settings_appearance_icon_pack_title
         ) {
             val iconProviderState = remember {
                 mutableStateOf(
@@ -66,160 +100,13 @@ fun AppearanceSettingsScreen(
                 }
             }
         }
-        clickablePreferenceItem(
-            R.string.settings_title_card_display
-        ) {
+        clickablePreferenceItem(R.string.settings_units) { id ->
             PreferenceView(
-                title = stringResource(it),
-                summary = CardDisplay.getSummary(context, cardDisplayList),
+                titleId = id,
+                summaryId = R.string.settings_units_summary
             ) {
-                (context as? Activity)?.let { a ->
-                    IntentHelper.startCardDisplayManageActivity(a)
-                }
+                navController.navigate(SettingsScreenRouter.Unit.route)
             }
-        }
-        clickablePreferenceItem(
-            R.string.settings_title_daily_trend_display
-        ) {
-            PreferenceView(
-                title = stringResource(it),
-                summary = DailyTrendDisplay.getSummary(context, dailyTrendDisplayList),
-            ) {
-                (context as? Activity)?.let { a ->
-                    IntentHelper.startDailyTrendDisplayManageActivity(a)
-                }
-            }
-        }
-        clickablePreferenceItem(
-            R.string.settings_title_hourly_trend_display
-        ) {
-            PreferenceView(
-                title = stringResource(it),
-                summary = HourlyTrendDisplay.getSummary(context, hourlyTrendDisplayList),
-            ) {
-                (context as? Activity)?.let { a ->
-                    IntentHelper.startHourlyTrendDisplayManageActivityForResult(a)
-                }
-            }
-        }
-        clickablePreferenceItem(
-            R.string.settings_title_detail_display
-        ) {
-            PreferenceView(
-                title = stringResource(it),
-                summary = DetailDisplay.getSummary(context, detailDisplayList),
-            ) {
-                (context as? Activity)?.let { a ->
-                    IntentHelper.startDetailDisplayManageActivity(a)
-                }
-            }
-        }
-        switchPreferenceItem(R.string.settings_title_trend_horizontal_line_switch) { id ->
-            SwitchPreferenceView(
-                titleId = id,
-                summaryOnId = R.string.settings_enabled,
-                summaryOffId = R.string.settings_disabled,
-                checked = SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled,
-                onValueChanged = {
-                    SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled = it
-                },
-            )
-        }
-        switchPreferenceItem(R.string.settings_title_exchange_day_night_temp_switch) { id ->
-            SwitchPreferenceView(
-                title = stringResource(id),
-                summary = { context, it ->
-                    Temperature.getTrendTemperature(
-                        context,
-                        3,
-                        7,
-                        SettingsManager.getInstance(context).temperatureUnit,
-                        it
-                    )
-                },
-                checked = SettingsManager.getInstance(context).isExchangeDayNightTempEnabled,
-                onValueChanged = {
-                    SettingsManager.getInstance(context).isExchangeDayNightTempEnabled = it
-                },
-            )
-        }
-        listPreferenceItem(R.string.settings_title_background_animation) { id ->
-            ListPreferenceView(
-                titleId = id,
-                selectedKey = SettingsManager.getInstance(context).backgroundAnimationMode.id,
-                valueArrayId = R.array.background_animation_values,
-                nameArrayId = R.array.background_animation,
-                onValueChanged = {
-                    SettingsManager
-                        .getInstance(context)
-                        .backgroundAnimationMode = BackgroundAnimationMode.getInstance(it)
-
-                    SnackbarHelper.showSnackbar(
-                        context.getString(R.string.settings_changes_apply_after_restart),
-                        context.getString(R.string.action_restart)
-                    ) {
-                        instance.recreateAllActivities()
-                    }
-                },
-            )
-        }
-        switchPreferenceItem(R.string.settings_title_gravity_sensor_switch) { id ->
-            SwitchPreferenceView(
-                titleId = id,
-                summaryOnId = R.string.settings_enabled,
-                summaryOffId = R.string.settings_disabled,
-                checked = SettingsManager.getInstance(context).isGravitySensorEnabled,
-                onValueChanged = {
-                    SettingsManager.getInstance(context).isGravitySensorEnabled = it
-
-                    SnackbarHelper.showSnackbar(
-                        context.getString(R.string.settings_changes_apply_after_restart),
-                        context.getString(R.string.action_restart)
-                    ) {
-                        instance.recreateAllActivities()
-                    }
-                },
-            )
-        }
-        switchPreferenceItem(R.string.settings_title_list_animation_switch) { id ->
-            SwitchPreferenceView(
-                titleId = id,
-                summaryOnId = R.string.settings_enabled,
-                summaryOffId = R.string.settings_disabled,
-                checked = SettingsManager.getInstance(context).isListAnimationEnabled,
-                onValueChanged = {
-                    SettingsManager.getInstance(context).isListAnimationEnabled = it
-                },
-            )
-        }
-        switchPreferenceItem(R.string.settings_title_item_animation_switch) { id ->
-            SwitchPreferenceView(
-                titleId = id,
-                summaryOnId = R.string.settings_enabled,
-                summaryOffId = R.string.settings_disabled,
-                checked = SettingsManager.getInstance(context).isItemAnimationEnabled,
-                onValueChanged = {
-                    SettingsManager.getInstance(context).isItemAnimationEnabled = it
-                },
-            )
-        }
-        listPreferenceItem(R.string.settings_language) { id ->
-            ListPreferenceView(
-                titleId = id,
-                valueArrayId = R.array.language_values,
-                nameArrayId = R.array.languages,
-                selectedKey = SettingsManager.getInstance(context).language.id,
-                onValueChanged = {
-                    SettingsManager.getInstance(context).language = Language.getInstance(it)
-
-                    SnackbarHelper.showSnackbar(
-                        context.getString(R.string.settings_changes_apply_after_restart),
-                        context.getString(R.string.action_restart)
-                    ) {
-                        instance.recreateAllActivities()
-                    }
-                },
-            )
         }
 
         bottomInsetItem()

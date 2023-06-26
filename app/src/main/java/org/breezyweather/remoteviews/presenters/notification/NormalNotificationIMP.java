@@ -62,28 +62,28 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
 
         boolean dayTime = location.isDaylight();
 
-        boolean tempIcon = settings.isNotificationTemperatureIconEnabled();
+        boolean tempIcon = settings.isWidgetNotificationTemperatureIconEnabled();
 
-        boolean canBeCleared = settings.isNotificationCanBeClearedEnabled();
+        boolean persistent = settings.isWidgetNotificationPersistent();
 
-        if (settings.getNotificationStyle() == NotificationStyle.NATIVE) {
+        if (settings.getWidgetNotificationStyle() == NotificationStyle.NATIVE) {
             NativeNormalNotificationIMP.buildNotificationAndSendIt(
                     context,
                     location,
                     temperatureUnit,
                     dayTime,
                     tempIcon,
-                    canBeCleared
+                    persistent
             );
             return;
-        } else if (settings.getNotificationStyle() == NotificationStyle.CITIES) {
+        } else if (settings.getWidgetNotificationStyle() == NotificationStyle.CITIES) {
             MultiCityNotificationIMP.buildNotificationAndSendIt(
                     context,
                     locationList,
                     temperatureUnit,
                     dayTime,
                     tempIcon,
-                    canBeCleared
+                    persistent
             );
             return;
         }
@@ -122,7 +122,7 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                 tempIcon ? ResourceHelper.getTempIconId(
                         context,
                         temperatureUnit.getValueWithoutUnit(
-                                settings.isNotificationFeelsLike()
+                                settings.isWidgetNotificationUsingFeelsLike()
                                         ? ObjectUtils.safeValueOf(weather.getCurrent().getTemperature().getFeelsLikeTemperature())
                                         : weather.getCurrent().getTemperature().getTemperature()
                         )
@@ -153,7 +153,7 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                 buildBigView(
                         context,
                         new RemoteViews(context.getPackageName(), R.layout.notification_big),
-                        settings.getNotificationStyle() == NotificationStyle.DAILY,
+                        settings.getWidgetNotificationStyle() == NotificationStyle.DAILY,
                         provider,
                         location,
                         temperatureUnit,
@@ -162,7 +162,7 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
         );
 
         // set clear flag
-        builder.setOngoing(!canBeCleared);
+        builder.setOngoing(!persistent);
 
         // set only alert once.
         builder.setOnlyAlertOnce(true);
@@ -220,7 +220,7 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                 R.id.notification_base_realtimeTemp,
                 Temperature.getShortTemperature(
                         context,
-                        settings.isNotificationFeelsLike()
+                        settings.isWidgetNotificationUsingFeelsLike()
                                 ? ObjectUtils.safeValueOf(weather.getCurrent().getTemperature().getFeelsLikeTemperature())
                                 : weather.getCurrent().getTemperature().getTemperature(),
                         temperatureUnit
@@ -521,6 +521,6 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
     }
 
     public static boolean isEnable(Context context) {
-        return SettingsManager.getInstance(context).isNotificationEnabled();
+        return SettingsManager.getInstance(context).isWidgetNotificationEnabled();
     }
 }

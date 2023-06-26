@@ -52,7 +52,7 @@ public class AnimatableIconView extends FrameLayout {
         };
         mIconAnimators = new Animator[] {null, null, null};
 
-        for (int i = mIconImageViews.length - 1; i >= 0; i --) {
+        for (int i = mIconImageViews.length - 1; i >= 0; i--) {
             addView(mIconImageViews[i], params);
         }
     }

@@ -3,8 +3,17 @@ package org.breezyweather.settings.compose
 import android.content.Context
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringArrayResource
+import androidx.compose.ui.res.stringResource
+import org.breezyweather.BuildConfig
+import org.breezyweather.BreezyWeather.Companion.instance
 import org.breezyweather.R
+import org.breezyweather.common.basic.models.options.provider.LocationProvider
 import org.breezyweather.common.basic.models.options.provider.OpenWeatherOneCallVersion
+import org.breezyweather.common.basic.models.options.provider.WeatherSource
+import org.breezyweather.common.utils.helpers.SnackbarHelper
+import org.breezyweather.db.repositories.LocationEntityRepository
+import org.breezyweather.db.repositories.WeatherEntityRepository
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.preference.*
 import org.breezyweather.settings.preference.composables.EditTextPreferenceView
@@ -12,10 +21,73 @@ import org.breezyweather.settings.preference.composables.ListPreferenceView
 import org.breezyweather.settings.preference.composables.PreferenceScreen
 
 @Composable
-fun SettingsProviderAdvancedSettingsScreen(
+fun ServiceProviderSettingsScreen(
     context: Context,
     paddingValues: PaddingValues,
 ) = PreferenceScreen(paddingValues = paddingValues) {
+    sectionHeaderItem(R.string.settings_providers_section_general)
+    listPreferenceItem(R.string.settings_providers_weather_provider_current_location) { id ->
+        ListPreferenceView(
+            titleId = id,
+            valueArrayId = R.array.weather_source_values,
+            nameArrayId = R.array.weather_sources,
+            selectedKey = SettingsManager.getInstance(context).weatherSource.id,
+            onValueChanged = { sourceId ->
+                SettingsManager
+                    .getInstance(context)
+                    .weatherSource = WeatherSource.getInstance(sourceId)
+
+                val locationList = LocationEntityRepository.readLocationList(context)
+                val index = locationList.indexOfFirst { it.isCurrentPosition }
+                if (index >= 0) {
+                    locationList[index] = locationList[index].copy(
+                        weather = null,
+                        weatherSource = SettingsManager.getInstance(context).weatherSource
+                    ).copy()
+                    WeatherEntityRepository.deleteWeather(locationList[index])
+                    LocationEntityRepository.writeLocationList(locationList)
+                }
+            }
+        )
+    }
+    listPreferenceItem(R.string.settings_providers_location_service) { id ->
+        // read configuration from data store.
+        var currentSelectedKey = SettingsManager.getInstance(context).locationProvider.id
+        var valueList = stringArrayResource(R.array.location_service_values)
+        var nameList = stringArrayResource(R.array.location_services)
+
+        // clear invalid config by build flavor.
+        if (BuildConfig.FLAVOR.contains("fdroid")
+            || BuildConfig.FLAVOR.contains("gplay")) {
+            valueList = arrayOf(valueList[1], valueList[3])
+            nameList = arrayOf(nameList[1], nameList[3])
+        }
+        if (!valueList.contains(currentSelectedKey)) {
+            currentSelectedKey = LocationProvider.NATIVE.id
+        }
+
+        ListPreferenceView(
+            title = stringResource(id),
+            summary = { _, key -> nameList[valueList.indexOfFirst { it == key }] },
+            selectedKey = currentSelectedKey,
+            valueArray = valueList,
+            nameArray = nameList,
+            onValueChanged = { sourceId ->
+                SettingsManager
+                    .getInstance(context)
+                    .locationProvider = LocationProvider.getInstance(sourceId)
+
+                SnackbarHelper.showSnackbar(
+                    context.getString(R.string.settings_changes_apply_after_restart),
+                    context.getString(R.string.action_restart)
+                ) {
+                    instance.recreateAllActivities()
+                }
+            }
+        )
+    }
+    sectionFooterItem(R.string.settings_providers_section_general)
+
     sectionHeaderItem(R.string.settings_provider_accu_weather)
     editTextPreferenceItem(R.string.settings_provider_accu_weather_key) { id ->
         EditTextPreferenceView(

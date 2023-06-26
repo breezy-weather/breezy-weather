@@ -179,10 +179,10 @@ class HomeFragment : MainModuleFragment() {
 
         val listAnimationEnabled = SettingsManager
             .getInstance(requireContext())
-            .isListAnimationEnabled
+            .isCardsFadeInEnabled
         val itemAnimationEnabled = SettingsManager
             .getInstance(requireContext())
-            .isItemAnimationEnabled
+            .isElementsAnimationEnabled
         adapter = MainAdapter(
             (requireActivity() as GeoActivity),
             binding.recyclerView,
@@ -278,10 +278,10 @@ class HomeFragment : MainModuleFragment() {
 
         val listAnimationEnabled = SettingsManager
             .getInstance(requireContext())
-            .isListAnimationEnabled
+            .isCardsFadeInEnabled
         val itemAnimationEnabled = SettingsManager
             .getInstance(requireContext())
-            .isItemAnimationEnabled
+            .isElementsAnimationEnabled
         adapter!!.update(
             (requireActivity() as GeoActivity),
             binding.recyclerView,

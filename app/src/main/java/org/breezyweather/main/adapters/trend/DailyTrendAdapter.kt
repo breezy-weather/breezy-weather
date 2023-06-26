@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
+import org.breezyweather.common.basic.models.options.appearance.DailyTrendDisplay
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.main.adapters.trend.daily.*
 import org.breezyweather.settings.SettingsManager
@@ -29,30 +30,32 @@ class DailyTrendAdapter(
     fun bindData(location: Location) {
         val provider = ResourcesProviderFactory.getNewInstance()
 
-        adapters = arrayOf(
-            DailyTemperatureAdapter(
-                activity,
-                location,
-                provider,
-                SettingsManager.getInstance(activity).temperatureUnit
-            ),
-            DailyAirQualityAdapter(
-                activity,
-                location
-            ),
-            DailyWindAdapter(
-                activity,
-                location,
-                SettingsManager.getInstance(activity).speedUnit
-            ),
-            DailyUVAdapter(activity, location),
-            DailyPrecipitationAdapter(
-                activity,
-                location,
-                provider,
-                SettingsManager.getInstance(activity).precipitationUnit
-            ),
-        ).filter {
+        adapters = SettingsManager.getInstance(activity).dailyTrendDisplayList.map {
+            when (it) {
+                DailyTrendDisplay.TAG_TEMPERATURE -> DailyTemperatureAdapter(
+                    activity,
+                    location,
+                    provider,
+                    SettingsManager.getInstance(activity).temperatureUnit
+                )
+                DailyTrendDisplay.TAG_AIR_QUALITY -> DailyAirQualityAdapter(
+                    activity,
+                    location
+                )
+                DailyTrendDisplay.TAG_WIND -> DailyWindAdapter(
+                    activity,
+                    location,
+                    SettingsManager.getInstance(activity).speedUnit
+                )
+                DailyTrendDisplay.TAG_UV_INDEX -> DailyUVAdapter(activity, location)
+                DailyTrendDisplay.TAG_PRECIPITATION -> DailyPrecipitationAdapter(
+                    activity,
+                    location,
+                    provider,
+                    SettingsManager.getInstance(activity).precipitationUnit
+                )
+            }
+        }.filter {
             it.isValid(location)
         }.toTypedArray()
         notifyDataSetChanged()

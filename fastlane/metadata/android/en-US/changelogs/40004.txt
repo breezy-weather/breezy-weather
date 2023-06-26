@@ -1,4 +1,7 @@
 <ul>
 <li>Add current, hourly and daily air quality for Open-Meteo with credits.</li>
+<li>New settings organization and better wording. Some settings were reset to default.</li>
+<li>Fix daily trends and hourly trends configuration.</li>
 <li>Fix icon packs link.</li>
+<li>Fix some contrasts issues.</li>
 </ul>

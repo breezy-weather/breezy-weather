@@ -129,7 +129,7 @@ public class DailyWindAdapter extends AbsDailyTrendAdapter {
         mHighestWindSpeed = 0;
         Float daytimeWindSpeed;
         Float nighttimeWindSpeed;
-        for (int i = weather.getDailyForecast().size() - 1; i >= 0; i --) {
+        for (int i = weather.getDailyForecast().size() - 1; i >= 0; i--) {
             if (weather.getDailyForecast().get(i).getDay() != null && weather.getDailyForecast().get(i).getDay().getWind() != null) {
                 daytimeWindSpeed = weather.getDailyForecast().get(i).getDay().getWind().getSpeed();
                 if (daytimeWindSpeed != null && daytimeWindSpeed > mHighestWindSpeed){

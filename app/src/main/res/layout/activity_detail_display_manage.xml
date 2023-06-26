@@ -24,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 style="@style/BreezyWeatherTheme.ToolbarTheme"
-                app:title="@string/settings_title_detail_display"
+                app:title="@string/settings_main_header_details_title"
                 app:navigationIcon="@drawable/ic_toolbar_back"
                 app:navigationContentDescription="@string/action_back" />
 

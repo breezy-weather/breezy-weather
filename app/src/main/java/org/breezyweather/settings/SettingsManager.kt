@@ -3,10 +3,7 @@ package org.breezyweather.settings
 import android.content.Context
 import org.breezyweather.BuildConfig
 import org.breezyweather.BreezyWeather
-import org.breezyweather.common.basic.models.options.DarkMode
-import org.breezyweather.common.basic.models.options.NotificationStyle
-import org.breezyweather.common.basic.models.options.UpdateInterval
-import org.breezyweather.common.basic.models.options.WidgetWeekIconMode
+import org.breezyweather.common.basic.models.options.*
 import org.breezyweather.common.basic.models.options.appearance.*
 import org.breezyweather.common.basic.models.options.provider.LocationProvider
 import org.breezyweather.common.basic.models.options.provider.OpenWeatherOneCallVersion
@@ -68,13 +65,14 @@ class SettingsManager private constructor(context: Context) {
     private val config = ConfigStore(context)
 
     // basic.
-
-    var isBackgroundFree: Boolean
+    var backgroundUpdateMethod: BackgroundUpdateMethod
         set(value) {
-            config.edit().putBoolean("background_free_3", value).apply()
+            config.edit().putString("background_update_method", value.id).apply()
             notifySettingsChanged()
         }
-        get() = config.getBoolean("background_free_3", true)
+        get() = BackgroundUpdateMethod.getInstance(
+            config.getString("background_update_method", "worker") ?: ""
+        )
 
     var isAlertPushEnabled: Boolean
         set(value) {
@@ -206,7 +204,7 @@ class SettingsManager private constructor(context: Context) {
             )
             .toMutableList()
 
-    var dailyTrendDisplayList: MutableList<DailyTrendDisplay>
+    var dailyTrendDisplayList: List<DailyTrendDisplay>
         set(value) {
             config
                 .edit()
@@ -220,7 +218,7 @@ class SettingsManager private constructor(context: Context) {
             )
             .toMutableList()
 
-    var hourlyTrendDisplayList: MutableList<HourlyTrendDisplay>
+    var hourlyTrendDisplayList: List<HourlyTrendDisplay>
         set(value) {
             config
                 .edit()
@@ -262,7 +260,7 @@ class SettingsManager private constructor(context: Context) {
         }
         get() = config.getBoolean("trend_horizontal_line_switch", true)
 
-    var isExchangeDayNightTempEnabled: Boolean
+    var isDayNightTempOrderReversed: Boolean
         set(value) {
             config.edit().putBoolean("exchange_day_night_temp_switch", value).apply()
             notifySettingsChanged()
@@ -285,14 +283,14 @@ class SettingsManager private constructor(context: Context) {
         }
         get() = config.getBoolean("gravity_sensor_switch", true)
 
-    var isListAnimationEnabled: Boolean
+    var isCardsFadeInEnabled: Boolean
         set(value) {
             config.edit().putBoolean("list_animation_switch", value).apply()
             notifySettingsChanged()
         }
         get() = config.getBoolean("list_animation_switch", true)
 
-    var isItemAnimationEnabled: Boolean
+    var isElementsAnimationEnabled: Boolean
         set(value) {
             config.edit().putBoolean("item_animation_switch", value).apply()
             notifySettingsChanged()
@@ -346,61 +344,59 @@ class SettingsManager private constructor(context: Context) {
 
     var widgetWeekIconMode: WidgetWeekIconMode
         set(value) {
-            config.edit().putString("week_icon_mode", value.id).apply()
+            config.edit().putString("widget_week_icon_mode", value.id).apply()
             notifySettingsChanged()
         }
         get() = WidgetWeekIconMode.getInstance(
-            config.getString("week_icon_mode", "auto") ?: ""
+            config.getString("widget_week_icon_mode", "auto") ?: ""
         )
 
-    var isWidgetMinimalIconEnabled: Boolean
+    var isWidgetUsingMonochromeIcons: Boolean
         set(value) {
-            config.edit().putBoolean("widget_minimal_icon", value).apply()
+            config.edit().putBoolean("widget_monochrome_icons", value).apply()
             notifySettingsChanged()
         }
-        get() = config.getBoolean("widget_minimal_icon", false)
+        get() = config.getBoolean("widget_monochrome_icons", false)
 
-    // notification.
-
-    var isNotificationFeelsLike: Boolean
+    // notification widget
+    var isWidgetNotificationEnabled: Boolean
         set(value) {
-            config.edit().putBoolean("notification_feelslike", value).apply()
+            config.edit().putBoolean("notification_widget_switch", value).apply()
             notifySettingsChanged()
         }
-        get() = config.getBoolean("notification_feelslike", false)
+        get() = config.getBoolean("notification_widget_switch", false)
 
-    var isNotificationEnabled: Boolean
+    var isWidgetNotificationPersistent: Boolean
         set(value) {
-            config.edit().putBoolean("notification_switch", value).apply()
+            config.edit().putBoolean("notification_widget_persistent_switch", value).apply()
             notifySettingsChanged()
         }
-        get() = config.getBoolean("notification_switch", false)
+        get() = config.getBoolean("notification_widget_persistent_switch", true)
 
-    var notificationStyle: NotificationStyle
+    var widgetNotificationStyle: NotificationStyle
         set(value) {
-            config.edit().putString("notification_style", value.id).apply()
+            config.edit().putString("notification_widget_style", value.id).apply()
             notifySettingsChanged()
         }
         get() = NotificationStyle.getInstance(
-            config.getString("notification_style", "daily") ?: ""
+            config.getString("notification_widget_style", "daily") ?: ""
         )
 
-    var isNotificationTemperatureIconEnabled: Boolean
+    var isWidgetNotificationTemperatureIconEnabled: Boolean
         set(value) {
-            config.edit().putBoolean("notification_temp_icon_switch", value).apply()
+            config.edit().putBoolean("notification_widget_temp_icon_switch", value).apply()
             notifySettingsChanged()
         }
-        get() = config.getBoolean("notification_temp_icon_switch", false)
+        get() = config.getBoolean("notification_widget_temp_icon_switch", false)
 
-    var isNotificationCanBeClearedEnabled: Boolean
+    var isWidgetNotificationUsingFeelsLike: Boolean
         set(value) {
-            config.edit().putBoolean("notification_can_clear_switch", value).apply()
+            config.edit().putBoolean("notification_widget_feelslike", value).apply()
             notifySettingsChanged()
         }
-        get() = config.getBoolean("notification_can_clear_switch", false)
+        get() = config.getBoolean("notification_widget_feelslike", false)
 
-    // service provider advanced.
-
+    // service provider advanced
     var customAccuWeatherKey: String
         set(value) {
             config.edit().putString("provider_accu_weather_key", value).apply()

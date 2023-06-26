@@ -79,7 +79,7 @@ class LiveWallpaperConfigActivity : GeoActivity() {
         Material3Scaffold(
             topBar = {
                 FitStatusBarTopAppBar(
-                    title = stringResource(R.string.settings_title_live_wallpaper),
+                    title = stringResource(R.string.settings_widgets_live_wallpaper_title),
                     onBackPressed = { finish() },
                 )
             },

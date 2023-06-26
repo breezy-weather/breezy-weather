@@ -50,7 +50,7 @@ android {
         }
     }
     Properties properties = new Properties()
-    if (project.rootProject.findProject('local.properties') != null) {
+    if (project.rootProject.file('local.properties').canRead()) {
         properties.load(project.rootProject.file('local.properties').newDataInputStream())
     }
     buildTypes.each {

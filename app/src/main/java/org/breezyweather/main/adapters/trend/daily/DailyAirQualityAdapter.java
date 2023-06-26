@@ -97,7 +97,7 @@ public class DailyAirQualityAdapter extends AbsDailyTrendAdapter {
         assert weather != null;
 
         mHighestIndex = 0;
-        for (int i = weather.getDailyForecast().size() - 1; i >= 0; i --) {
+        for (int i = weather.getDailyForecast().size() - 1; i >= 0; i--) {
             if (weather.getDailyForecast().get(i).getAirQuality() != null) {
                 Integer index = weather.getDailyForecast().get(i).getAirQuality().getIndex(null);
                 if (index != null && index > mHighestIndex) {

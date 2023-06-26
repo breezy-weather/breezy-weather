@@ -30,13 +30,7 @@ enum class UpdateInterval(
             "0:30" -> INTERVAL_0_30
             "1:00" -> INTERVAL_1_00
             "2:00" -> INTERVAL_2_00
-            "2:30" -> INTERVAL_3_00 // No longer an option
             "3:00" -> INTERVAL_3_00
-            "3:30" -> INTERVAL_3_00 // No longer an option
-            "4:00" -> INTERVAL_3_00 // No longer an option
-            "4:30" -> INTERVAL_6_00 // No longer an option
-            "5:00" -> INTERVAL_6_00 // No longer an option
-            "5:30" -> INTERVAL_6_00 // No longer an option
             "6:00" -> INTERVAL_6_00
             "12:00" -> INTERVAL_12_00
             "24:00" -> INTERVAL_24_00

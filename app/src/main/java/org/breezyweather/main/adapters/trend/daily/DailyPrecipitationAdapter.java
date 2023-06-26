@@ -131,7 +131,7 @@ public class DailyPrecipitationAdapter extends AbsDailyTrendAdapter {
         mHighestPrecipitation = 0;
         Float daytimePrecipitation;
         Float nighttimePrecipitation;
-        for (int i = weather.getDailyForecast().size() - 1; i >= 0; i --) {
+        for (int i = weather.getDailyForecast().size() - 1; i >= 0; i--) {
             if (weather.getDailyForecast().get(i).getDay() != null && weather.getDailyForecast().get(i).getDay().getPrecipitation() != null) {
                 daytimePrecipitation = weather.getDailyForecast().get(i).getDay().getPrecipitation().getTotal();
                 if (daytimePrecipitation != null && daytimePrecipitation > mHighestPrecipitation) {

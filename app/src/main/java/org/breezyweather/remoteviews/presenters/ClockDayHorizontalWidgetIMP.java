@@ -53,7 +53,7 @@ public class ClockDayHorizontalWidgetIMP extends AbstractRemoteViewsPresenter {
 
         SettingsManager settings = SettingsManager.getInstance(context);
         TemperatureUnit temperatureUnit = settings.getTemperatureUnit();
-        boolean minimalIcon = settings.isWidgetMinimalIconEnabled();
+        boolean minimalIcon = settings.isWidgetUsingMonochromeIcons();
 
         WidgetColor color = new WidgetColor(context, cardStyle, textColor);
 
@@ -173,7 +173,7 @@ public class ClockDayHorizontalWidgetIMP extends AbstractRemoteViewsPresenter {
         return views;
     }
 
-    public static boolean isEnable(Context context) {
+    public static boolean isInUse(Context context) {
         int[] widgetIds = AppWidgetManager.getInstance(context)
                 .getAppWidgetIds(
                         new ComponentName(context, WidgetClockDayHorizontalProvider.class)

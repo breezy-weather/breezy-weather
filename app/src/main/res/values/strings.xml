@@ -194,7 +194,8 @@
     <string name="locations">Locations</string>
     <string name="location_current">Current location</string>
     <string name="location_resident">Resident location</string>
-    <string name="location_search_change_weather_source">Change weather source</string>
+    <string name="location_search_weather_provider">Weather provider</string>
+    <string name="location_search_change_weather_provider">Change weather provider</string>
     <string name="location_results_by">Location results by $</string>
     <!-- $ = location provider -->
     <string name="location_message_added">Location added</string>
@@ -347,83 +348,28 @@
     <string name="widget_live_wallpaper_weather_kind">Weather</string>
     <string name="widget_live_wallpaper_day_night_type">Time</string>
     <string name="widget_live_wallpaper_cannot_start_activity">Unable to start live wallpaper preview context</string>
-    <!-- Settings (redesign in progress) -->
-    <string name="settings_category_basic">Basic</string>
-    <string name="settings_title_background_free">Background Free</string>
-    <string name="settings_summary_background_free_on">Enabled\nIf widgets and notification cannot refresh automatically, please turn off this option.</string>
-    <string name="settings_summary_background_free_off">Disabled\nIf you do not want any services to continue working in background, please turn on this option.</string>
-    <string name="settings_title_live_wallpaper">Live wallpaper</string>
-    <string name="settings_summary_live_wallpaper">Set Material weather animation as live wallpaper</string>
-    <string name="settings_title_service_provider">Service provider</string>
-    <string name="settings_summary_service_provider">Select service provider of weather data and location information</string>
-    <string name="settings_title_service_provider_advanced">Advanced service provider settings</string>
-    <string name="settings_summary_service_provider_advanced">Proceed with caution</string>
-    <string name="settings_title_weather_source">Weather source</string>
-    <string name="settings_title_location_service">Location service</string>
-    <string name="settings_title_dark_mode">Dark mode</string>
-    <string name="settings_title_icon_provider">Icon pack</string>
-    <string name="settings_title_appearance">Appearance</string>
-    <string name="settings_summary_appearance">Interface style, card order, language…</string>
-    <string name="settings_title_card_display">Displayed cards</string>
-    <string name="settings_title_daily_trend_display">Display daily trend</string>
-    <string name="settings_title_hourly_trend_display">Display hourly trend</string>
-    <string name="settings_title_detail_display">Details displayed in header</string>
-    <string name="settings_title_trend_horizontal_line_switch">Horizontal lines in trend</string>
-    <string name="settings_title_exchange_day_night_temp_switch">Exchange day night temperature</string>
-    <string name="settings_title_card_order">Card order</string>
-    <string name="settings_title_background_animation">Background animation</string>
-    <string name="settings_title_gravity_sensor_switch">Gravity sensor</string>
-    <string name="settings_title_list_animation_switch">List animation</string>
-    <string name="settings_title_item_animation_switch">Item animation</string>
-    <string name="settings_language">Language</string>
-    <string name="settings_title_unit">Units</string>
-    <string name="settings_summary_unit">Set the unit of weather data</string>
-    <string name="settings_title_temperature_unit">Temperature unit</string>
-    <string name="settings_title_distance_unit">Distance unit</string>
-    <string name="settings_title_precipitation_unit">Precipitation unit</string>
-    <string name="settings_title_pressure_unit">Pressure unit</string>
-    <string name="settings_title_speed_unit">Speed unit</string>
-    <string name="settings_title_refresh_rate">Automatic refresh rate</string>
-    <string name="settings_title_alert_notification_switch">Send Alert Notification</string>
-    <string name="settings_title_precipitation_notification_switch">Send Precipitation Forecast</string>
-    <string name="settings_title_permanent_service">Permanent service</string>
-    <string name="settings_category_forecast">Forecast</string>
-    <string name="settings_title_forecast_today">Forecast for today</string>
-    <string name="settings_title_forecast_today_time">Forecast time for today</string>
-    <string name="settings_title_forecast_tomorrow">Forecast for tomorrow</string>
-    <string name="settings_title_forecast_tomorrow_time">Forecast time for tomorrow</string>
-    <string name="settings_category_widget">Widget</string>
-    <string name="settings_title_week_icon_mode">Weekly icons mode</string>
-    <string name="settings_title_minimal_icon">Minimalistic icons</string>
-    <string name="settings_title_tap_widget_to_refresh">Refresh widget when tapped</string>
-    <string name="settings_title_widget_config">Widget config</string>
-    <string name="settings_category_notification">Notification</string>
-    <string name="settings_title_notification">Send Notification</string>
-    <string name="settings_title_notification_style">Notification style</string>
-    <string name="settings_title_notification_temp_icon">Temperature as status bar icon</string>
-    <string name="settings_title_notification_feels_like">Use Feels Like temperature</string>
-    <string name="settings_title_notification_color">Notification color</string>
-    <string name="settings_title_notification_custom_color">Custom Notification Color</string>
-    <string name="settings_title_notification_text_color">Text color</string>
-    <string name="settings_title_notification_background">Background color</string>
-    <string name="settings_notification_background_off">Follow System</string>
-    <string name="settings_title_notification_can_be_cleared">Can be cleared</string>
-    <string name="settings_notification_can_be_cleared_on">Can be cleared by dragging</string>
-    <string name="settings_notification_can_be_cleared_off">Cannot be cleared</string>
-    <string name="settings_title_notification_hide_icon">Hide notification icon</string>
-    <string name="settings_notification_hide_icon_on">Hide</string>
-    <string name="settings_notification_hide_icon_off">Show</string>
-    <string name="settings_title_notification_hide_in_lockScreen">Hide in lock screen</string>
-    <string name="settings_notification_hide_in_lockScreen_on">Hide (need to open in the system settings)</string>
-    <string name="settings_notification_hide_in_lockScreen_off">Show</string>
-    <string name="settings_title_notification_hide_big_view">Extended style</string>
-    <string name="settings_notification_hide_big_view_on">Hide</string>
-    <string name="settings_notification_hide_big_view_off">Show</string>
-    <string name="settings_changes_apply_after_restart">Changes will take effect after restart</string>
-    <string name="settings_items_drag_to_sort">Tap to drag the list items to sort</string>
-    <string name="settings_item_delete">Delete this item</string>
-    <string name="settings_background_animation_enabled">@string/settings_enabled</string>
-    <string name="settings_background_animation_disabled">@string/settings_disabled</string>
+    <!-- Settings (new design) -->
+    <string name="settings_section_general">General</string>
+    <string name="settings_background_updates">Background updates</string>
+    <string name="settings_background_updates_summary">Update method, refresh rate, troubleshoot…</string>
+    <string name="settings_background_updates_methods_title">Update method</string>
+    <string name="settings_background_updates_method_worker">Android Worker\nRecommended method. Switch if you don’t receive notifications or widgets don’t refresh.</string>
+    <string name="settings_background_updates_method_notification">Persistent notification\nMore reliable method but requires app to stay active in the background.</string>
+    <string name="settings_background_updates_refresh_title">Refresh rate</string>
+    <string name="settings_background_updates_refresh_never">Never</string>
+    <string name="settings_background_updates_refresh_30min">Half an hour</string>
+    <string name="settings_background_updates_refresh_1h">1 hour</string>
+    <string name="settings_background_updates_refresh_1h_30min">1.5 hours</string>
+    <string name="settings_background_updates_refresh_2h">2 hours</string>
+    <string name="settings_background_updates_refresh_3h">3 hours</string>
+    <string name="settings_background_updates_refresh_6h">6 hours</string>
+    <string name="settings_background_updates_refresh_12h">12 hours</string>
+    <string name="settings_background_updates_refresh_24h">24 hours</string>
+    <string name="settings_providers">Data providers</string>
+    <string name="settings_providers_summary">Weather providers and location services settings</string>
+    <string name="settings_providers_section_general" translatable="false">@string/settings_section_general</string>
+    <string name="settings_providers_weather_provider_current_location">Weather provider for current location</string>
+    <string name="settings_providers_location_service">Location service</string>
     <string name="settings_provider_default_value">Default (unchanged)</string>
     <string name="settings_provider_accu_weather">AccuWeather</string>
     <string name="settings_provider_accu_weather_key">AccuWeather key</string>
@@ -435,6 +381,12 @@
     <string name="settings_provider_mf">Météo France</string>
     <string name="settings_provider_mf_wsft_key">Météo France WSFT key</string>
     <string name="settings_provider_iqa_atmo_aura_key">ATMO AURA key</string>
+    <string name="settings_appearance">Appearance</string>
+    <string name="settings_appearance_summary">Language, dark mode, icon pack, units…</string>
+    <string name="settings_appearance_language_title">Language</string>
+    <string name="settings_appearance_dark_mode_title">Dark mode</string>
+    <string name="settings_appearance_icon_pack_title">Icon pack</string>
+    <string name="settings_icon_providers_title">Icon packs</string>
     <string name="settings_icon_providers_check_details">Check details</string>
     <string name="settings_icon_providers_weather_adaptive_icon">Weather icon</string>
     <string name="settings_icon_providers_weather_icon_light">Light icon</string>
@@ -444,6 +396,60 @@
     <string name="settings_icon_providers_app_store" translatable="false">@string/action_app_store</string>
     <string name="settings_icon_providers_get_more_store">Get more from app store</string>
     <string name="settings_icon_providers_get_more_github">Get more from GitHub</string>
+    <string name="settings_units">Units</string>
+    <string name="settings_units_summary">Temperature, precipitation, distance, speed, pressure…</string>
+    <string name="settings_units_temperature">Temperature unit</string>
+    <string name="settings_units_precipitation">Precipitation unit</string>
+    <string name="settings_units_distance">Distance unit</string>
+    <string name="settings_units_speed">Speed unit</string>
+    <string name="settings_units_pressure">Pressure unit</string>
+    <string name="settings_main">Main screen</string>
+    <string name="settings_main_summary">Cards order, items displayed, animations…</string>
+    <!-- Data is plural here -->
+    <string name="settings_main_section_displayed_data">Displayed data</string>
+    <string name="settings_main_cards_title">Cards</string>
+    <string name="settings_main_daily_trends_title">Daily trends</string>
+    <string name="settings_main_hourly_trends_title">Hourly trends</string>
+    <string name="settings_main_header_details_title">Details in header</string>
+    <string name="settings_main_section_options">Options</string>
+    <string name="settings_main_yesterday_alert_lines_in_trends">Yesterday/Alert lines in trends</string>
+    <string name="settings_main_section_animations">Animations</string>
+    <string name="settings_main_background_animation_title">Background animation</string>
+    <string name="settings_main_background_animation_enabled">@string/settings_enabled</string>
+    <string name="settings_main_background_animation_disabled">@string/settings_disabled</string>
+    <string name="settings_main_gravity_sensor_switch">Gravity sensor</string>
+    <string name="settings_main_cards_fade_in_switch">Cards fade in</string>
+    <!-- Elements = temperature in header, AQI, sun &amp; moon arc, etc -->
+    <string name="settings_main_cards_other_element_animations_switch">Other element animations</string>
+    <string name="settings_notifications">Notifications</string>
+    <string name="settings_notifications_summary">Weather alerts, precipitations, forecast…</string>
+    <string name="settings_notifications_section_general" translatable="false">@string/settings_section_general</string>
+    <string name="settings_notifications_alerts_title">Notifications of weather alerts</string>
+    <string name="settings_notifications_precipitations_title">Notifications of precipitations</string>
+    <string name="settings_notifications_section_forecast">Forecast</string>
+    <string name="settings_notifications_forecast_today_title">Notification for the day’s forecast</string>
+    <string name="settings_notifications_forecast_time_today_title">Notification time for the day’s forecast</string>
+    <string name="settings_notifications_forecast_tomorrow_title">Notification for next-day forecast</string>
+    <string name="settings_notifications_forecast_time_tomorrow_title">Notification time for next-day forecast</string>
+    <string name="settings_widgets">Widgets &amp; Live wallpaper</string>
+    <string name="settings_widgets_summary">Set wallpaper, configure widgets used, notification widget…</string>
+    <string name="settings_widgets_section_general" translatable="false">@string/settings_section_general</string>
+    <string name="settings_widgets_live_wallpaper_title">Live wallpaper</string>
+    <string name="settings_widgets_live_wallpaper_summary">Set a weather animation as wallpaper</string>
+    <string name="settings_widgets_week_icon_mode_title">Icon to display in weekly</string>
+    <string name="settings_widgets_monochrome_icons_title">Monochrome icons</string>
+    <string name="settings_widgets_day_night_temp_reversed_title">Reverse day/night temperatures order</string>
+    <string name="settings_widgets_section_widgets_in_use">Widgets in use</string>
+    <string name="settings_widgets_configure_widget_summary">Configure this widget</string>
+    <string name="settings_widgets_section_notification_widget">Notification widget</string>
+    <string name="settings_widgets_notification_widget_title">Notification widget</string>
+    <string name="settings_widgets_notification_persistent_switch">Persistent</string>
+    <string name="settings_widgets_notification_style_title">Style</string>
+    <string name="settings_widgets_notification_temp_icon_switch">Temperature as status bar icon</string>
+    <string name="settings_widgets_notification_feels_like_switch">Use Feels like temperature</string>
+    <string name="settings_changes_apply_after_restart">Changes will take effect after restart</string>
+    <string name="settings_items_drag_to_sort">Tap to drag the list items to sort</string>
+    <string name="settings_item_delete">Delete this item</string>
     <string name="settings_enabled">Enabled</string>
     <string name="settings_disabled">Disabled</string>
     <string name="settings_automatic">Automatic</string>
@@ -457,15 +463,6 @@
     <string name="settings_color_grey">Grey</string>
     <string name="settings_color_dark">Dark</string>
     <string name="settings_color_dark_always">Always dark</string>
-    <string name="settings_refresh_never">Never</string>
-    <string name="settings_refresh_30min">Half an hour</string>
-    <string name="settings_refresh_1h">1 hour</string>
-    <string name="settings_refresh_1h_30min">1.5 hours</string>
-    <string name="settings_refresh_2h">2 hours</string>
-    <string name="settings_refresh_3h">3 hours</string>
-    <string name="settings_refresh_6h">6 hours</string>
-    <string name="settings_refresh_12h">12 hours</string>
-    <string name="settings_refresh_24h">24 hours</string>
     <!-- Units -->
     <string name="unit_kph">km/h</string>
     <string name="unit_kph_voice">Kilometers per hour</string>
@@ -635,10 +632,6 @@
     <string name="sp_widget_daily_trend_setting" translatable="false">widget_daily_trend_setting</string>
     <string name="sp_widget_hourly_trend_setting" translatable="false">widget_hourly_trend_setting</string>
     <string name="sp_widget_multi_city" translatable="false">widget_multi_city</string>
-    <string name="sp_widget_android_s_weather_mini" translatable="false">widget_android_s_weather_mini</string>
-    <string name="sp_widget_android_s_weather_medium" translatable="false">widget_android_s_weather_medium</string>
-    <string name="sp_widget_android_s_weather_large" translatable="false">widget_android_s_weather_large</string>
-    <string name="sp_widget_android_s_weather_xlarge" translatable="false">widget_android_s_weather_large</string>
     <string name="key_view_type" translatable="false">view_type</string>
     <string name="key_card_style" translatable="false">card_style</string>
     <string name="key_card_alpha" translatable="false">card_alpha_1</string>
@@ -649,33 +642,10 @@
     <string name="key_clock_font" translatable="false">clock_font</string>
     <string name="key_hide_lunar" translatable="false">hide_lunar</string>
     <string name="key_align_end" translatable="false">align_end</string>
-    <string name="key_colorful" translatable="false">colorful</string>
-    <string name="key_live_wallpaper" translatable="false">live_wallpaper</string>
-    <string name="key_service_provider" translatable="false">service_provider</string>
-    <string name="key_service_provider_advanced" translatable="false">service_provider_advanced</string>
-    <string name="key_appearance" translatable="false">appearance</string>
-    <string name="key_unit" translatable="false">unit</string>
-    <string name="key_click_widget_to_refresh" translatable="false">click_widget_to_refresh</string>
-    <string name="key_widget_config" translatable="false">widget_config</string>
-    <string name="key_widget_day" translatable="false">widget_day</string>
-    <string name="key_widget_week" translatable="false">widget_week</string>
-    <string name="key_widget_day_week" translatable="false">widget_day_week</string>
-    <string name="key_widget_clock_day_horizontal" translatable="false">widget_clock_day_horizontal</string>
-    <string name="key_widget_clock_day_details" translatable="false">widget_clock_day_details</string>
-    <string name="key_widget_clock_day_vertical" translatable="false">widget_clock_day_vertical</string>
-    <string name="key_widget_clock_day_week" translatable="false">widget_clock_day_week</string>
-    <string name="key_widget_text" translatable="false">widget_text</string>
-    <string name="key_widget_trend_daily" translatable="false">widget_trend_daily</string>
-    <string name="key_widget_trend_hourly" translatable="false">widget_trend_hourly</string>
-    <string name="key_widget_multi_city" translatable="false">widget_multi_city</string>
-    <string name="key_notification_minimal_icon" translatable="false">notification_minimal_icon</string>
     <!-- Tags -->
     <string name="tag_temperature" translatable="false">@string/temperature</string>
     <string name="tag_wind" translatable="false">@string/wind</string>
     <string name="tag_precipitation" translatable="false">@string/precipitation</string>
     <string name="tag_aqi" translatable="false">@string/air_quality</string>
     <string name="tag_uv" translatable="false">@string/uv_index</string>
-    <!-- Transitions -->
-    <string name="transition_activity_search_bar" translatable="false">activity_search_bar</string>
-    <string name="transition_activity_search_txt" translatable="false">activity_search_txt</string>
 </resources>
