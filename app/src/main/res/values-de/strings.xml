@@ -447,4 +447,17 @@
     <string name="weather_source_metno_voice">Das Norwegische Meteorologische Institut</string>
     <string name="unit_inph_voice">Zoll pro Stunde</string>
     <string name="message_network_unavailable">Netzwerk nicht verfügbar</string>
+    <string name="settings_background_updates_dont_kill_my_app_title">Herstellerspezifische Anweisungen</string>
+    <string name="settings_background_updates_method_notification">Permanente Benachrichtigung
+\nZuverlässigere Methode, aber die Anwendung muss im Hintergrund aktiv bleiben.</string>
+    <string name="settings_section_general">Allgemein</string>
+    <string name="settings_background_updates_summary">Aktualisierungsrate, Fehlerbehebung…</string>
+    <string name="settings_background_updates_methods_title">Aktualisierungsmethode</string>
+    <string name="settings_background_updates">Hintergrundaktualisierungen</string>
+    <string name="settings_background_updates_refresh_never">Nie</string>
+    <string name="settings_background_updates_section_troubleshoot">Fehlerbehebung</string>
+    <string name="settings_background_updates_battery_optimization">Akkuoptimierung deaktivieren</string>
+    <string name="settings_background_updates_refresh_title">Aktualisierungsrate</string>
+    <string name="settings_background_updates_method_worker">Android Worker
+\nEmpfohlene Methode. Ändern Sie die Einstellung, falls Sie keine Benachrichtigungen erhalten oder Widgets nicht aktualisiert werden.</string>
 </resources>
