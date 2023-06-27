@@ -58,7 +58,7 @@ public class WorkerHelper {
 
         WorkManager.getInstance(context).enqueueUniquePeriodicWork(
                 WORK_NAME_NORMAL_VIEW,
-                ExistingPeriodicWorkPolicy.KEEP,
+                ExistingPeriodicWorkPolicy.UPDATE,
                 request
         );
     }

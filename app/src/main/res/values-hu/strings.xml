@@ -23,7 +23,6 @@
     <string name="nighttime">Este</string>
     <string name="temperature_feels_like">Érezhető</string>
     <string name="settings_follow_system">Rendszerbeállítás Használata</string>
-    <string name="notification_channel_background_information">Háttérinformáció</string>
     <string name="pressure">Légköri Nyomás</string>
     <string name="visibility">Látásviszony</string>
     <string name="dew_point">Harmatpont</string>
@@ -176,8 +175,6 @@
     <string name="notification_running_in_background">A háttérben fut az adatok frissítésének folytatásához.</string>
     <string name="notification_updating_weather_data">Adatok frissítése.</string>
     <string name="message_updated_in_background">Frissítve a háttérben</string>
-    <string name="dialog_permissions_block_notification_channel_title">Értesítési Csoport Letiltása</string>
-    <string name="dialog_permissions_block_notification_channel_content">A háttérmentes mód kikapcsolása után egy értesítés meg fog jelenni, amely jelzi a háttérfolyamat futását az értesítési menüben. Ki kapcsolhatja a háttérinformációs csatornát az alkalmazás információ oldalán az értesítés letiltásához.</string>
     <string name="widget_live_wallpaper_cannot_start_activity">Sikertelen volt az élő háttérkép előnézet aktivitás indítása</string>
     <string name="notification_precipitation_today">Lehetséges csapadék a mai napon.</string>
     <string name="notification_precipitation_short_term">Lehetséges csapadék a következő néhány órában.</string>

@@ -24,7 +24,6 @@
     <string name="nighttime">夜間</string>
     <string name="temperature_feels_like">體感</string>
     <string name="settings_follow_system">跟隨系統</string>
-    <string name="notification_channel_background_information">後台信息</string>
     <string name="pressure">氣壓</string>
     <string name="visibility">能見度</string>
     <string name="dew_point">露點</string>
@@ -187,10 +186,6 @@
     <string name="notification_running_in_background">正在後台運行以保持更新數據</string>
     <string name="notification_updating_weather_data">正在更新天氣數據</string>
     <string name="message_updated_in_background">已在後台完成更新</string>
-    <string name="dialog_permissions_block_notification_channel_title">關閉相應通知頻道</string>
-    <string name="dialog_permissions_block_notification_channel_content">關閉後台純净後，會出現一個標示後台服務正在運行的通知，你可以在app相關頁面中找到通知設定，在其中關閉“後台信息”這個頻道來隱藏這個通知</string>
-    <string name="dialog_permissions_ignore_battery_optimizations_title">忽略電池優化</string>
-    <string name="dialog_permissions_ignore_battery_optimizations_content">為了保證後台服務能夠持續工作，請為集合天氣選擇忽略電池優化</string>
     <string name="widget_live_wallpaper_cannot_start_activity">無法啟動動態壁紙預覽程序</string>
     <string name="notification_precipitation_today">今日可能出現降水</string>
     <string name="notification_precipitation_short_term">未來幾小時内可能出現降水</string>

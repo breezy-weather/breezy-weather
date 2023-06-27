@@ -16,7 +16,6 @@
     <string name="nighttime">Noite</string>
     <string name="temperature_feels_like">Parece</string>
     <string name="settings_follow_system">Igual ao sistema</string>
-    <string name="notification_channel_background_information">Informação em segundo plano</string>
     <string name="pressure">Pressão Atmosférica</string>
     <string name="visibility">Visibilidade</string>
     <string name="dew_point">Ponto de Orvalho</string>
@@ -94,8 +93,6 @@
     <string name="settings_changes_apply_after_restart">Terá efeito quando reiniciar.</string>
     <string name="notification_running_in_background">Rodando em segundo plano para manter atualizado.</string>
     <string name="notification_updating_weather_data">Atualizando dados de clima.</string>
-    <string name="dialog_permissions_block_notification_channel_title">Bloquear grupo de notificações.</string>
-    <string name="dialog_permissions_block_notification_channel_content">Após desativar “livre de segundo plano”, uma notificação que serviço de segundo plano esta rodando irá aparecer na central de notificações, você pode desativar o canal de notificação do aplicativo nas configurações do dispositivo.</string>
     <!-- action -->
     <string name="alerts">Alerta</string>
     <string name="action_search">Pesquisa</string>

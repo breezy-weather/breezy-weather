@@ -11,7 +11,6 @@
     <string name="allergen">Allergien</string>
     <string name="app_name">Wetter</string>
     <string name="temperature_apparent">Gefühlt</string>
-    <string name="notification_channel_background_information">Hintergrundinformation</string>
     <string name="action_cancel">Abbruch</string>
     <string name="ceiling">Wolkendecke</string>
     <string name="cloud_cover">Bewölkung</string>
@@ -39,9 +38,6 @@
     <string name="location_dialog_failed_to_locate_action_enable_information">Standortbestimmung aktivieren</string>
     <string name="weather_message_data_refresh_failed">Abruf der Wetterdaten fehlgeschlagen</string>
     <string name="widget_label_hide_subtitle">Untertitel ausblenden</string>
-    <string name="dialog_permissions_ignore_battery_optimizations_content">Um sicherzustellen, dass die Hintergrunddienste weiterhin funktionieren, deaktivieren Sie bitte die Akkuoptimierung für Breezy Weather.</string>
-    <string name="dialog_permissions_ignore_battery_optimizations_title">Energiespareinstellungen ignoieren</string>
-    <string name="dialog_permissions_block_notification_channel_title">Benachrichtigung blockieren</string>
     <string name="widget_live_wallpaper_day_night_type">Zeit</string>
     <string name="widget_live_wallpaper_weather_kind">Wetter</string>
     <string name="location_message_failed_to_locate">Standortermittlung fehlgeschlagen!</string>
@@ -324,7 +320,6 @@
     <string name="unit_inhg_voice">Zoll-Quecksilbersäule</string>
     <string name="air_quality_level_4_description">Empfindliche Personengruppen werden unmittelbare gesundheitliche Auswirkungen spüren. Bei gesunden Menschen kann es bei längerer Exposition zu Atembeschwerden und Hustenreiz kommen. Schränken Sie Aktivitäten im Freien ein.</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Leichtes bis mäßiges Gewitter</string>
-    <string name="dialog_permissions_block_notification_channel_content">Nach Deaktivierung der Einstellung „Hintergrund“ wird in der Benachrichtigungsleiste eine Benachrichtigung angezeigt, dass der Hintergrunddienst ausgeführt wird. Sie können den Hintergrundinformationskanal auf der Informationsseite der App deaktivieren, um diese Benachrichtigung zu blockieren.</string>
     <string name="widget_style_temperature">Temperatur</string>
     <string name="widget_week_style_3_days">3 Tage</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Gewitter mit starkem Hagel</string>

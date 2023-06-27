@@ -24,7 +24,6 @@
     <string name="nighttime">الليل</string>
     <string name="temperature_feels_like">تبدو وكأنها</string>
     <string name="settings_follow_system">حسب النظام</string>
-    <string name="notification_channel_background_information">بيانات الخلفية</string>
     <string name="pressure">الضغط الجوي</string>
     <string name="visibility">الرؤية</string>
     <string name="dew_point">درجة التكثف</string>
@@ -138,10 +137,6 @@
     <string name="notification_running_in_background">التشغيل في الخلفية لإبقاء التطبيق محدثاً</string>
     <string name="notification_updating_weather_data">جارٍ تحديث بيانات الطقس</string>
     <string name="message_updated_in_background">تم التحديث في الخلفية</string>
-    <string name="dialog_permissions_block_notification_channel_title">حظر الإشعارات</string>
-    <string name="dialog_permissions_block_notification_channel_content">بعد إيقاف تشغيل ”عدم التشغيل في الخلفية“، سيظهر لك إشعار في شريط الإشعارات يعلمك بأن التطبيق يعمل في الخلفية. يمكنك إخفاء هذا الإشعار عن طريق الذهاب إلى إعدادات الإشعارات في جهازك، وحظر هذا الإشعار.</string>
-    <string name="dialog_permissions_ignore_battery_optimizations_title">تجاهل تحسين البطارية</string>
-    <string name="dialog_permissions_ignore_battery_optimizations_content">من أجل ضمان استمرار عمل خدمات الطقس في الخلفية، الرجاء تجاهل تحسين البطارية لهذا التطبيق.</string>
     <string name="widget_live_wallpaper_cannot_start_activity">غير قادر على معاينة الخلفية الحية.</string>
     <string name="notification_precipitation_today">هناك إحتمالية لهطول الأمطار اليوم</string>
     <string name="notification_precipitation_short_term">هناك إمكانية لهطول الأمطار في الساعات القليلة القادمة.</string>

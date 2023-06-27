@@ -24,7 +24,6 @@
     <string name="nighttime">Malam hari</string>
     <string name="temperature_feels_like">Terasa seperti</string>
     <string name="settings_follow_system">Ikuti sistem</string>
-    <string name="notification_channel_background_information">Informasi latar-belakang</string>
     <string name="pressure">Tekanan atmosfer</string>
     <string name="visibility">Visibilitas</string>
     <string name="dew_point">Titik embun</string>
@@ -198,10 +197,6 @@
     <string name="notification_running_in_background">Berjalan di latar belakang untuk terus memperbarui</string>
     <string name="notification_updating_weather_data">Memperbarui data cuaca</string>
     <string name="message_updated_in_background">Diperbarui dilatar-belakang</string>
-    <string name="dialog_permissions_block_notification_channel_title">Blokir grup pemberitahuan</string>
-    <string name="dialog_permissions_block_notification_channel_content">Setelah mematikan “bebas latar-belakang”, pemberitahuan yang menunjukkan bahwa layanan latar belakang berjalan akan muncul di bilah pemberitahuan. Anda dapat mematikan saluran informasi latar belakang di halaman informasi aplikasi untuk memblokir pemberitahuan ini.</string>
-    <string name="dialog_permissions_ignore_battery_optimizations_title">Abaikan pengoptimalan baterai</string>
-    <string name="dialog_permissions_ignore_battery_optimizations_content">Untuk memastikan bahwa layanan latar belakang dapat terus bekerja, harap abaikan pengoptimalan baterai untuk Breezy Weather.</string>
     <string name="widget_live_wallpaper_cannot_start_activity">Tidak dapat memulai konteks pratinjau wallpaper live</string>
     <string name="notification_precipitation_today">Mungkin ada presipitasi hari ini.</string>
     <string name="notification_precipitation_short_term">Curah hujan dapat terjadi dalam beberapa jam ke depan.</string>

@@ -242,15 +242,13 @@
     <string name="action_set">SET</string>
     <string name="action_help">HELP</string>
     <string name="action_learn_more">LEARN MORE</string>
+    <string name="action_continue">Continue</string>
+    <string name="action_share">Share</string>
     <!-- Dialogs -->
     <string name="dialog_permissions_location_title">Access location information</string>
     <string name="dialog_permissions_location_content">Breezy Weather needs to collect your location information in foreground or background to provide the weather data of your current location. For this, we will request some permissions. Your location information will only be used to obtain weather data at your current location. If you don’t want to share your location information, you can deny those requirements and manually set your location in the management page.</string>
     <string name="dialog_permissions_location_background_title">Access location in background</string>
     <string name="dialog_permissions_location_background_content">In order to allow the app to access location information in background, so that we can perceive changes in location and provide you with valid weather data, please set location access as “Allow all the time”.</string>
-    <string name="dialog_permissions_block_notification_channel_title">Block notification group</string>
-    <string name="dialog_permissions_block_notification_channel_content">After turning off “Background free”, a notification indicating that background service is running will appear in the notification bar. You can turn off the Background Information Channel in the app’s information page to block this notifications.</string>
-    <string name="dialog_permissions_ignore_battery_optimizations_title">Ignore battery optimization</string>
-    <string name="dialog_permissions_ignore_battery_optimizations_content">In order to ensure that the background services can continue to work, please ignore the battery optimization for Breezy Weather.</string>
     <!-- Miscellaneous messages -->
     <string name="message_network_unavailable">Network unavailable</string>
     <string name="message_updated_in_background">Updated in background</string>
@@ -351,10 +349,8 @@
     <!-- Settings (new design) -->
     <string name="settings_section_general">General</string>
     <string name="settings_background_updates">Background updates</string>
-    <string name="settings_background_updates_summary">Update method, refresh rate, troubleshoot…</string>
-    <string name="settings_background_updates_methods_title">Update method</string>
-    <string name="settings_background_updates_method_worker">Android Worker\nRecommended method. Switch if you don’t receive notifications or widgets don’t refresh.</string>
-    <string name="settings_background_updates_method_notification">Persistent notification\nMore reliable method but requires app to stay active in the background.</string>
+    <string name="settings_background_updates_summary">Refresh rate, troubleshoot…</string>
+    <string name="settings_background_updates_section_general" translatable="false">@string/settings_section_general</string>
     <string name="settings_background_updates_refresh_title">Refresh rate</string>
     <string name="settings_background_updates_refresh_never">Never</string>
     <string name="settings_background_updates_refresh_30min">Half an hour</string>
@@ -365,6 +361,26 @@
     <string name="settings_background_updates_refresh_6h">6 hours</string>
     <string name="settings_background_updates_refresh_12h">12 hours</string>
     <string name="settings_background_updates_refresh_24h">24 hours</string>
+    <string name="settings_background_updates_section_troubleshoot">Troubleshoot</string>
+    <string name="settings_background_updates_battery_optimization">Disable battery optimization</string>
+    <string name="settings_background_updates_battery_optimization_summary">This is the first thing to try when you don’t receive notifications or widgets are not refreshing.</string>
+    <string name="settings_background_updates_battery_optimization_activity_not_found">Couldn’t open device settings.</string>
+    <string name="settings_background_updates_battery_optimization_disabled">Battery optimization is already disabled.</string>
+    <string name="settings_background_updates_methods_title">Update method</string>
+    <!-- Do not translate Android Worker -->
+    <string name="settings_background_updates_method_worker">Android Worker\nRecommended method. Try switching if you don’t receive notifications or widgets are not refreshing.</string>
+    <string name="settings_background_updates_method_notification">Persistent notification\nMore reliable method but requires app to stay active in the background.</string>
+    <string name="settings_background_updates_method_notification_dialog_title">Disable notification channel</string>
+    <!-- $ = @string/notification_channel_background_services -->
+    <string name="settings_background_updates_method_notification_dialog_content">This method adds a persistent notification that can be hidden by disabling the $ notification channel in device app settings.</string>
+    <string name="settings_background_updates_dont_kill_my_app_title">Manufacturer specific instructions</string>
+    <!-- $ = Don’t kill my app! -->
+    <string name="settings_background_updates_dont_kill_my_app_summary">Some manufacturers have additional app restrictions that kill background services. The Don’t kill my app! website has info on how to fix it.</string>
+    <!-- Worker is a technical term, you can switch to “Process” if that makes more sense in your language -->
+    <string name="settings_background_updates_worker_info_title">Worker info</string>
+    <string name="settings_background_updates_worker_info_enqueued" translatable="false">Enqueued</string>
+    <string name="settings_background_updates_worker_info_finished" translatable="false">Finished</string>
+    <string name="settings_background_updates_worker_info_running" translatable="false">Running</string>
     <string name="settings_providers">Data providers</string>
     <string name="settings_providers_summary">Weather providers and location services settings</string>
     <string name="settings_providers_section_general" translatable="false">@string/settings_section_general</string>
@@ -447,6 +463,10 @@
     <string name="settings_widgets_notification_style_title">Style</string>
     <string name="settings_widgets_notification_temp_icon_switch">Temperature as status bar icon</string>
     <string name="settings_widgets_notification_feels_like_switch">Use Feels like temperature</string>
+    <string name="settings_debug">Debug</string>
+    <string name="settings_debug_summary">Crash logs</string>
+    <string name="settings_debug_dump_crash_logs_title">Share crash logs</string>
+    <string name="settings_debug_dump_crash_logs_summary">Saves error logs to a file for sharing with the developers</string>
     <string name="settings_changes_apply_after_restart">Changes will take effect after restart</string>
     <string name="settings_items_drag_to_sort">Tap to drag the list items to sort</string>
     <string name="settings_item_delete">Delete this item</string>
@@ -533,7 +553,7 @@
     <string name="notification_channel_alerts">Alerts</string>
     <string name="notification_channel_forecast">Forecast</string>
     <string name="notification_channel_request_location">Location</string>
-    <string name="notification_channel_background_information">Background information</string>
+    <string name="notification_channel_background_services">Background services</string>
     <string name="notification_location_in_background">Locating in background</string>
     <string name="notification_running_in_background">Running in background to keep updating</string>
     <string name="notification_updating_weather_data">Updating weather data</string>

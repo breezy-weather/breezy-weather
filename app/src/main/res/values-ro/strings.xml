@@ -24,7 +24,6 @@
     <string name="nighttime">Noapte</string>
     <string name="temperature_feels_like">Se simt</string>
     <string name="settings_follow_system">La fel ca sistemul</string>
-    <string name="notification_channel_background_information">Informații generale</string>
     <string name="pressure">Presiune atmosferică</string>
     <string name="visibility">Vizibilitate</string>
     <string name="dew_point">Punct de rouă</string>
@@ -192,10 +191,6 @@
     <string name="notification_running_in_background">Datele se actualizează în fundal</string>
     <string name="notification_updating_weather_data">Se actualizează datele meteo</string>
     <string name="message_updated_in_background">Date actualizate în fundal</string>
-    <string name="dialog_permissions_block_notification_channel_title">Blochează notificarea de fundal</string>
-    <string name="dialog_permissions_block_notification_channel_content">După deselectarea opțiunii “Activitate fundal gestionată de sistem”, o notificare ce indică faptul că serviciul rulează in fundal va apărea în bara de notificări. Puteți dezactiva Informațiile despre activitatea din fundal în pagina de informații a aplicației pentru a bloca aceste notificări.</string>
-    <string name="dialog_permissions_ignore_battery_optimizations_title">Ignorați optimizarea bateriei</string>
-    <string name="dialog_permissions_ignore_battery_optimizations_content">Pentru a vă asigura că serviciile de fundal funcționează corect, vă rugăm să deselectați optimizarea bateriei pentru Breezy Weather.</string>
     <string name="widget_live_wallpaper_cannot_start_activity">Pornirea previzualizării Tapetului dinamic (live wallpaper) a eșuat.</string>
     <string name="notification_precipitation_today">Posibile precipitații in decursul zilei</string>
     <string name="notification_precipitation_short_term">Posibile precipitații în următoarele ore.</string>

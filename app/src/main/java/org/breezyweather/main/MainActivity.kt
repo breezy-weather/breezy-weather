@@ -21,6 +21,7 @@ import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.bus.EventBus
 import org.breezyweather.common.snackbar.SnackbarContainer
+import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.common.utils.helpers.ShortcutsHelper
@@ -416,7 +417,7 @@ class MainActivity : GeoActivity(),
     private fun updateDayNightColors() {
         fitHorizontalSystemBarRootLayout.setBackgroundColor(
             MainThemeColorProvider.getColor(
-                lightTheme =  !org.breezyweather.common.utils.DisplayUtils.isDarkMode(this),
+                lightTheme = !DisplayUtils.isDarkMode(this),
                 id = android.R.attr.colorBackground
             )
         )

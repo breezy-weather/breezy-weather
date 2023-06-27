@@ -24,7 +24,6 @@
     <string name="nighttime">Ночью</string>
     <string name="temperature_feels_like">Ощущается как</string>
     <string name="settings_follow_system">Как в системе</string>
-    <string name="notification_channel_background_information">Фоновая информация</string>
     <string name="pressure">Атмосферное давление</string>
     <string name="visibility">Видимость</string>
     <string name="dew_point">Точка росы</string>
@@ -171,10 +170,6 @@
     <string name="notification_running_in_background">Запущено в фоне для постоянного обновления</string>
     <string name="notification_updating_weather_data">Обновление погодных данных</string>
     <string name="message_updated_in_background">Обновлено в фоне</string>
-    <string name="dialog_permissions_block_notification_channel_title">Настройка уведомлений</string>
-    <string name="dialog_permissions_block_notification_channel_content">После выключения “Запрет работы в фоне”, на панели уведомлений появится уведомление о том, что служба запущена в фоне. Вы можете отключить уведомление о работе в фоне в настройках уведомлений приложения, чтобы скрыть это уведомление.</string>
-    <string name="dialog_permissions_ignore_battery_optimizations_title">Игнорировать Оптимизацию батареи</string>
-    <string name="dialog_permissions_ignore_battery_optimizations_content">Чтобы фоновая служба гарантированно работала, пожалуйста отключите Оптимизацию батареи для Breezy Weather.</string>
     <string name="widget_live_wallpaper_cannot_start_activity">Невозможно начать предпросмотр живых обоев</string>
     <string name="notification_precipitation_today">Сегодня возможны осадки.</string>
     <string name="notification_precipitation_short_term">В ближайшее время возможны осадки.</string>

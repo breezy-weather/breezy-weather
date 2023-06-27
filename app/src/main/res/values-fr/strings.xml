@@ -27,7 +27,7 @@
     <string name="nighttime">Nuit</string>
     <string name="temperature_feels_like">Ressenti</string>
     <string name="settings_follow_system">Préférence système</string><!-- Littéralement "suivre les préférences système" -->
-    <string name="notification_channel_background_information">Informations d’arrière-plan</string>
+    <string name="notification_channel_background_services">Services en arrière-plan</string>
     <string name="pressure">Pression atmosphérique</string>
     <string name="visibility">Visibilité</string>
     <string name="dew_point">Point de rosée</string>
@@ -163,6 +163,8 @@
     <string name="action_set">DÉFINIR</string>
     <string name="action_help">AIDE</string>
     <string name="action_learn_more">EN SAVOIR PLUS</string>
+    <string name="action_continue">Continue</string>
+    <string name="action_share">Partager</string>
 
     <string name="locations">Emplacements</string>
     <string name="location_search_weather_provider">Fournisseur météo</string>
@@ -275,12 +277,6 @@
     <string name="message_network_unavailable">Réseau non-disponible</string>
     <string name="message_updated_in_background">Actualisé en arrière-plan</string>
 
-    <string name="dialog_permissions_block_notification_channel_title">Bloquer un groupe de notification</string>
-    <string name="dialog_permissions_block_notification_channel_content">Après avoir désactivé « Pas de service en arrière-plan », une notification indiquant qu’un service fonctionne en arrière-plan apparaîtra dans la barre de notifications. Vous pouvez désactiver le canal Informations d’arrière-plan dans la page d’informations de l’application pour bloquer cette notification.</string>
-
-    <string name="dialog_permissions_ignore_battery_optimizations_title">Ignorer l’optimisation de batterie</string>
-    <string name="dialog_permissions_ignore_battery_optimizations_content">Afin de s’assurer que les services en arrière-plan continuent de fonctionner, merci d’ignorer l’optimisation de batterie pour Breezy Weather.</string>
-
     <string name="widget_live_wallpaper_cannot_start_activity">Impossible de démarrer la prévisualisation du fond d’écran animé</string>
 
     <string name="notification_precipitation_today">Des précipitations peuvent avoir lieu aujourd’hui.</string>
@@ -358,10 +354,7 @@
     <!-- Settings (new design) -->
     <string name="settings_section_general">Général</string>
     <string name="settings_background_updates">Actualisations en arrière-plan</string>
-    <string name="settings_background_updates_summary">Méthode d’actualisation, fréquence de rafraîchissement, résolution de problèmes…</string>
-    <string name="settings_background_updates_methods_title">Méthode d’actualisation</string>
-    <string name="settings_background_updates_method_worker">Android Worker\nMéthode recommandée. Changez si vous ne recevez pas de notifications ou si les widgets ne se rafraîchissent pas.</string>
-    <string name="settings_background_updates_method_notification">Notification persistante\nMéthode plus fiable mais qui nécessite de garder l’application active en arrière-plan.</string>
+    <string name="settings_background_updates_summary">Fréquence de rafraîchissement, résolution de problèmes…</string>
     <string name="settings_background_updates_refresh_title">Fréquence de rafraîchissement</string>
     <string name="settings_background_updates_refresh_never">Jamais</string>
     <string name="settings_background_updates_refresh_30min">30 minutes</string>
@@ -372,6 +365,20 @@
     <string name="settings_background_updates_refresh_6h">6 heures</string>
     <string name="settings_background_updates_refresh_12h">12 heures</string>
     <string name="settings_background_updates_refresh_24h">24 heures</string>
+    <string name="settings_background_updates_section_troubleshoot">Résolution de problèmes</string>
+    <string name="settings_background_updates_battery_optimization">Désactiver l’optimisation de la batterie</string>
+    <string name="settings_background_updates_battery_optimization_summary">C’est la première chose à essayer si vous ne recevez pas les notifications ou que les widgets ne s’actualisent pas.</string>
+    <string name="settings_background_updates_battery_optimization_activity_not_found">Impossible d’ouvrir les paramètres de l’appareil.</string>
+    <string name="settings_background_updates_battery_optimization_disabled">L’optimisation de la batterie est déjà désactivée.</string>
+    <string name="settings_background_updates_methods_title">Méthode d’actualisation</string>
+    <string name="settings_background_updates_method_worker">Android Worker\nMéthode recommandée. Essayez de changer cette option si vous ne recevez pas de notifications ou si les widgets ne se rafraîchissent pas.</string>
+    <string name="settings_background_updates_method_notification">Notification persistante\nMéthode plus fiable mais qui nécessite de garder l’application active en arrière-plan.</string>
+    <string name="settings_background_updates_method_notification_dialog_title">Désactiver le canal de notifications</string>
+    <!-- $ = @string/notification_channel_background_services -->
+    <string name="settings_background_updates_method_notification_dialog_content">Cette méthode ajoute une notification persistante qui peut être masquée en désactivant le canal de notifications $ dans les paramètres de l’appareil pour l’application.</string>
+    <string name="settings_background_updates_dont_kill_my_app_title">Instructions spécifiques selon fabricant</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">Certains fabricants ont mis en place des restrictions supplémentaires sur les applications qui tuent les services en arrière-plan. Le site web Don’t kill my app! contient des informations pour résoudre ce problème.</string>
+    <string name="settings_background_updates_worker_info_title">Informations sur les processsus</string>
     <string name="settings_providers">Fournisseurs de données</string>
     <string name="settings_providers_summary">Paramètres des fournisseurs météo et services de localisation</string>
     <string name="settings_providers_weather_provider_current_location">Fournisseur météo pour ma position</string>
@@ -424,6 +431,10 @@
     <string name="settings_widgets_notification_style_title">Style</string>
     <string name="settings_widgets_notification_temp_icon_switch">Température dans la barre de statut</string>
     <string name="settings_widgets_notification_feels_like_switch">Utiliser la température ressentie</string>
+    <string name="settings_debug">Débogage</string>
+    <string name="settings_debug_summary">Rapports de plantage</string>
+    <string name="settings_debug_dump_crash_logs_title">Exporter les rapports de plantage</string>
+    <string name="settings_debug_dump_crash_logs_summary">Enregistre les rapports de plantage dans un fichier pour les partager avec les développeurs</string>
     <string name="settings_providers_location_service">Service de localisation</string>
     <string name="settings_units_temperature">Unité de température</string>
     <string name="settings_units_distance">Unité de distance</string>

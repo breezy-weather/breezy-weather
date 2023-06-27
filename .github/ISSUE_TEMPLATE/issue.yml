@@ -81,7 +81,7 @@ body:
     attributes:
       label: Other details
       placeholder: |
-        Additional details and attachments.
+        Additional details and attachments. If you experience crashes, please export crash log from Settings > Debug.
 
   - type: checkboxes
     id: acknowledgements

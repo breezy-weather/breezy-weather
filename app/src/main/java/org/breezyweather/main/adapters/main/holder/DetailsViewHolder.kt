@@ -20,6 +20,7 @@ import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.appearance.DetailDisplay
 import org.breezyweather.common.basic.models.weather.Current
+import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.ThemeManager.Companion.getInstance
 import org.breezyweather.theme.compose.BreezyWeatherTheme
@@ -55,17 +56,17 @@ class DetailsViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             )
             mDetailsList.setContent {
                 BreezyWeatherTheme(lightTheme = !isSystemInDarkTheme()) {
-                    ContentView(SettingsManager.getInstance(context).detailDisplayUnlisted, location.weather.current, location.isDaylight)
+                    ContentView(SettingsManager.getInstance(context).detailDisplayUnlisted, location.weather.current, location)
                 }
             }
         }
     }
 
     @Composable
-    private fun ContentView(detailDisplayList: List<DetailDisplay>, current: Current, isDaylight: Boolean = true) {
+    private fun ContentView(detailDisplayList: List<DetailDisplay>, current: Current, location: Location) {
         Column {
             detailDisplayList.forEach { detailDisplay ->
-                detailDisplay.getCurrentValue(LocalContext.current, current, isDaylight)?.let {
+                detailDisplay.getCurrentValue(LocalContext.current, current, location.isDaylight)?.let {
                     ListItem(
                         colors = ListItemDefaults.colors(
                             containerColor = Color.Transparent
@@ -74,12 +75,12 @@ class DetailsViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                             Text(
                                 detailDisplay.getName(LocalContext.current),
                                 fontWeight = FontWeight.Bold,
-                                color = DayNightTheme.colors.titleColor
+                                color = Color(MainThemeColorProvider.getColor(location, R.attr.colorTitleText))
                             )
                         },
                         supportingContent = {
                             Text(
-                                detailDisplay.getCurrentValue(LocalContext.current, current, isDaylight)!!,
+                                it,
                                 color = DayNightTheme.colors.bodyColor
                             )
                         },
@@ -87,7 +88,7 @@ class DetailsViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                             Icon(
                                 painterResource(detailDisplay.iconId),
                                 contentDescription = detailDisplay.getName(LocalContext.current),
-                                tint = DayNightTheme.colors.titleColor
+                                tint = Color(MainThemeColorProvider.getColor(location, R.attr.colorTitleText))
                             )
                         }
                     )

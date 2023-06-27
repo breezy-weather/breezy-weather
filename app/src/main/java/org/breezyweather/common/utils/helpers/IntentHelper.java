@@ -233,17 +233,6 @@ public class IntentHelper {
             SnackbarHelper.showSnackbar("Unavailable e-mail.");
         }
     }
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    @SuppressLint("BatteryLife")
-    public static void startBatteryOptimizationActivity(Context context) {
-        Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
-        intent.setData(Uri.parse("package:" + context.getPackageName()));
-        if (isIntentAvailable(context, intent)) {
-            context.startActivity(intent);
-        } else {
-            SnackbarHelper.showSnackbar("Unavailable battery optimization activity.");
-        }
-    }
 
     public static void startAwakeForegroundUpdateService(Context context) {
         ContextCompat.startForegroundService(context, getAwakeForegroundUpdateServiceIntent(context));

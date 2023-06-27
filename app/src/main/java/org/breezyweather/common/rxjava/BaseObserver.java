@@ -21,7 +21,7 @@ public abstract class BaseObserver<T> extends DisposableObserver<T> {
     }
 
     public Boolean isApiUnauthorized() {
-        return code != null && code == 401;
+        return code != null && (code == 401 || code == 403);
     }
 
     @Override

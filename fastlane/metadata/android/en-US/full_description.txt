@@ -1,9 +1,10 @@
-Breezy Weather is a free and open-source Android weather app.
+Breezy Weather is a free and open-source Android weather app, forked from Geometric Weather, adding new features, providers, modernizing code, fixing bugs, updating dependencies for security reasons, etc., while keep having a smooth user and developer experience in mind.
 
 In the app, you'll find:<ul>
-<li>Real-time temperature</li>
-<li>Daily forecasts up to 15 days, and hourly forecasts for the next 24 hours</li>
-<li>Air quality and allergen information</li>
+<li>Real-time weather conditions (Temperature, Feels like, Wind, UV index, Humidity, Dew point, Atmospheric pressure, Visibility, Cloud cover, Ceiling)</li>
+<li>Daily and hourly forecasts up to 16 days (Temperature, Air quality, Wind, UV index, Precipitation)</li>
+<li>Precipitations in the next hour</li>
+<li>Air quality, allergen and ephemeris information</li>
 <li>Severe weather and precipitation alerts</li></ul>
 
 The app has a strong focus on design, with a simple, clean UX, smooth animations, and Material Design all over, plus lots of customizability:<ul>

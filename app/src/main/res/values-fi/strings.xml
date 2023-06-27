@@ -24,7 +24,6 @@
     <string name="nighttime">Yöllä</string>
     <string name="temperature_feels_like">Tuntuu kuin</string>
     <string name="settings_follow_system">Järjestelmän oletus</string>
-    <string name="notification_channel_background_information">Taustatiedot</string>
     <string name="pressure">Ilmanpaine</string>
     <string name="visibility">Näkyvyys</string>
     <string name="dew_point">Kastespiste</string>
@@ -193,10 +192,6 @@
     <string name="notification_running_in_background">Suoritetaan taustalla jotta saat päivitykset</string>
     <string name="notification_updating_weather_data">Päivitetään säätietoja</string>
     <string name="message_updated_in_background">Päivitetty taustalla</string>
-    <string name="dialog_permissions_block_notification_channel_title">Estä ilmoitusryhmä</string>
-    <string name="dialog_permissions_block_notification_channel_content">Kun olet kytkenyt “Free background” pois päältä, ilmoituspalkkiin ilmestyy ilmoitus joka osoittaa, että taustapalvelu on käynnissä. Voit poistaa Taustatietokanavan käytöstä sovelluksen tietosivulla estääksesi nämä ilmoitukset.</string>
-    <string name="dialog_permissions_ignore_battery_optimizations_title">Jätä akun optimointi huomiotta</string>
-    <string name="dialog_permissions_ignore_battery_optimizations_content">Varmistaaksesi, että taustapalvelut voivat jatkaa toimintaansa, jätä Breezy Weatherin akkuoptimointi huomiotta.</string>
     <string name="widget_live_wallpaper_cannot_start_activity">Livetaustakuvan esikatselua ei voi käynnistää</string>
     <string name="notification_precipitation_today">Tänään saattaa sataa.</string>
     <string name="notification_precipitation_short_term">Seuraavien tuntien aikana saattaa sataa.</string>

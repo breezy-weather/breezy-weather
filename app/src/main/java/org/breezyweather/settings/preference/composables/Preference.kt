@@ -26,13 +26,13 @@ import org.breezyweather.theme.compose.rememberThemeRipple
 @Composable
 fun PreferenceView(
     @StringRes titleId: Int,
-    @StringRes summaryId: Int,
+    @StringRes summaryId: Int? = null,
     @DrawableRes iconId: Int? = null,
     enabled: Boolean = true,
     onClick: () -> Unit,
 ) = PreferenceView(
     title = stringResource(titleId),
-    summary = stringResource(summaryId),
+    summary = if (summaryId != null) stringResource(summaryId) else null,
     iconId = iconId,
     enabled = enabled,
     onClick = onClick

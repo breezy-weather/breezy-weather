@@ -3,14 +3,12 @@ package org.breezyweather
 import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.os.Process
-import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.multidex.MultiDexApplication
 import androidx.work.Configuration
 import dagger.hilt.android.HiltAndroidApp
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.retrofit.ClientCacheHelper
 import org.breezyweather.common.utils.LanguageUtils
 import org.breezyweather.common.utils.NetworkUtils
 import org.breezyweather.db.ObjectBox
@@ -168,7 +166,7 @@ class BreezyWeather : MultiDexApplication(),
                 NOTIFICATION_CHANNEL_ID_BACKGROUND -> (
                         context.getString(R.string.breezy_weather)
                                 + " "
-                                + context.getString(R.string.notification_channel_background_information)
+                                + context.getString(R.string.notification_channel_background_services)
                 )
                 else -> context.getString(R.string.breezy_weather)
             }
@@ -194,10 +192,6 @@ class BreezyWeather : MultiDexApplication(),
         ObjectBox.init(this)
 
         NetworkUtils.registerNetworkCallback(applicationContext)
-
-        val cacheCreated = ClientCacheHelper.createClientCache(baseContext.cacheDir)
-        if (!cacheCreated)
-            Log.e("BreezyWeather", "Failed to create Http client cache")
 
         instance = this
         LanguageUtils.setLanguage(

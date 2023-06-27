@@ -24,7 +24,6 @@
     <string name="nighttime">Nit</string>
     <string name="temperature_feels_like">Sensació de</string>
     <string name="settings_follow_system">Igual que el sistema</string>
-    <string name="notification_channel_background_information">Informació en segon pla</string>
     <string name="pressure">Pressió atmosfèrica</string>
     <string name="visibility">Visibilitat</string>
     <string name="dew_point">Punt de rosada</string>
@@ -190,10 +189,6 @@
     <string name="notification_running_in_background">l’actualització es continuarà produint en segon pla</string>
     <string name="notification_updating_weather_data">S’estan actualitzant les dades de l’oratge</string>
     <string name="message_updated_in_background">Actualitzat en segon pla</string>
-    <string name="dialog_permissions_block_notification_channel_title">Bloquejar grup de notificacions</string>
-    <string name="dialog_permissions_block_notification_channel_content">Després de desactivar “No usis segon pla”, apareixerà una notificació a la barra de notificacions indicant que el servei està funcionant en segon pla. Podeu desactivar el canal d’informació en segon pla impedint aquestes notificacions en la pàgina d’informació de l’aplicació.</string>
-    <string name="dialog_permissions_ignore_battery_optimizations_title">Ignora l’optimització de la bateria</string>
-    <string name="dialog_permissions_ignore_battery_optimizations_content">Per a assegurar que els serveis en segon pla continuïn funcionant, si us plau ignoreu l’optimització de bateria per a Oratge Breezy.</string>
     <string name="widget_live_wallpaper_cannot_start_activity">No s’ha aconseguit iniciar el context de vista preliminar del fons de pantalla animat</string>
     <string name="notification_precipitation_today">Pot ser que avui hi hagi precipitations.</string>
     <string name="notification_precipitation_short_term">Pot ser que la precipitació ocorri en les properes hores.</string>

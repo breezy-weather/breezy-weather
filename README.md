@@ -25,7 +25,7 @@ Additions already available:
 
 Alpha releases available from:
 * [GitHub](https://github.com/breezy-weather/breezy-weather/releases)
-* [Obtainium](https://github.com/ImranR98/Obtainium)
+* [Obtainium](https://github.com/ImranR98/Obtainium) (enable “Include preleases” when adding it)
 
 Will be added to IzzyDroid soon, if possible.
 

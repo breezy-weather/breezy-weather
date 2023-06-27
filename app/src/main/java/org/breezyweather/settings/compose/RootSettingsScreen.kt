@@ -69,6 +69,15 @@ fun RootSettingsView(
                 navController.navigate(SettingsScreenRouter.Widgets.route)
             }
         }
+        clickablePreferenceItem(R.string.settings_debug) { id ->
+            PreferenceView(
+                titleId = id,
+                iconId = R.drawable.ic_bug_report,
+                summaryId = R.string.settings_debug_summary
+            ) {
+                navController.navigate(SettingsScreenRouter.Debug.route)
+            }
+        }
 
         bottomInsetItem()
     }

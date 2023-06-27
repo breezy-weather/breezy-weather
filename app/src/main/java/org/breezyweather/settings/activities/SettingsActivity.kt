@@ -277,6 +277,12 @@ class SettingsActivity : GeoActivity() {
                         }
                     )
                 }
+                composable(SettingsScreenRouter.Debug.route) {
+                    DebugSettingsScreen(
+                        context = this@SettingsActivity,
+                        paddingValues = paddings,
+                    )
+                }
             }
         }
     }

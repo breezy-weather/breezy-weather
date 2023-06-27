@@ -24,7 +24,6 @@
     <string name="nighttime">夜间</string>
     <string name="temperature_feels_like">体感</string>
     <string name="settings_follow_system">跟随系统</string>
-    <string name="notification_channel_background_information">后台信息</string>
     <string name="pressure">气压</string>
     <string name="visibility">能见度</string>
     <string name="dew_point">露点</string>
@@ -233,10 +232,6 @@
     <string name="notification_running_in_background">正在后台运行以保持更新数据</string>
     <string name="notification_updating_weather_data">正在更新天气数据</string>
     <string name="message_updated_in_background">已在后台完成更新</string>
-    <string name="dialog_permissions_block_notification_channel_title">关闭相应通知频道</string>
-    <string name="dialog_permissions_block_notification_channel_content">关闭后台纯净后，会出现一个标示后台服务正在运行的通知，你可以在app相关信息页面中找到通知设置，在其中关闭“后台信息”这个频道来隐藏这个通知</string>
-    <string name="dialog_permissions_ignore_battery_optimizations_title">忽略电池优化</string>
-    <string name="dialog_permissions_ignore_battery_optimizations_content">为了保证后台服务能够持续工作，请为 Breezy 天气选择忽略电池优化</string>
     <string name="widget_live_wallpaper_cannot_start_activity">无法启动动态壁纸预览程序</string>
     <string name="notification_precipitation_today">今日可能出现降水</string>
     <string name="notification_precipitation_short_term">未来几小时内可能出现降水</string>

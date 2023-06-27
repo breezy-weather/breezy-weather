@@ -24,7 +24,6 @@
     <string name="nighttime">Noche</string>
     <string name="temperature_feels_like">Se siente como</string>
     <string name="settings_follow_system">Seguir al sistema</string>
-    <string name="notification_channel_background_information">Información en segundo plano</string>
     <string name="pressure">Presión atmosférica</string>
     <string name="visibility">Visibilidad</string>
     <string name="dew_point">Punto de rocío</string>
@@ -190,10 +189,6 @@
     <string name="notification_running_in_background">Corriendo en segundo plano para seguir actualizándose</string>
     <string name="notification_updating_weather_data">Actualizando datos del clima</string>
     <string name="message_updated_in_background">Actualizado en segundo plano</string>
-    <string name="dialog_permissions_block_notification_channel_title">Bloquear grupo de notificaciones</string>
-    <string name="dialog_permissions_block_notification_channel_content">Después de desactivar “Segundo plano libre”, aparecerá una notificación en la barra de notificaciones indicando que está funcionando el servicio en segundo plano. Puedes desactivar el Canal de Información en segundo plano bloqueando estas notificaciones en la página de información de la app.</string>
-    <string name="dialog_permissions_ignore_battery_optimizations_title">Ignorar optimización de la batería</string>
-    <string name="dialog_permissions_ignore_battery_optimizations_content">Para asegurar que los servicios en segundo plano continúen funcionando, por favor ignora la optimización de batería para Breezy Weather.</string>
     <string name="widget_live_wallpaper_cannot_start_activity">No se logró iniciar el contexto de previsulización del fondo de pantalla animado</string>
     <string name="notification_precipitation_today">Puede que hoy haya precipitationes.</string>
     <string name="notification_precipitation_short_term">Puede que la precipitación ocurra en las próximas horas.</string>

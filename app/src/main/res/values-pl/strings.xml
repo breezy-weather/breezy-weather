@@ -28,7 +28,6 @@
     <string name="nighttime">Noc</string>
     <string name="temperature_feels_like">Odczuwalnie</string>
     <string name="settings_follow_system">Jak w systemie</string>
-    <string name="notification_channel_background_information">Background information</string>
     <string name="pressure">Ciśnienie atmosferyczne</string>
     <string name="visibility">Widoczność</string>
     <string name="dew_point">Punkt rosy</string>
@@ -180,10 +179,6 @@
     <string name="notification_running_in_background">Działnie w tle, aby kontynuować aktualizację</string>
     <string name="notification_updating_weather_data">Aktualizacja danych pogodowych</string>
     <string name="message_updated_in_background">Zaktualizowano w tle</string>
-    <string name="dialog_permissions_block_notification_channel_title">Blokuj grupę powiadomień</string>
-    <string name="dialog_permissions_block_notification_channel_content">Po wyłączeniu “Bez aktualizacji w tle”, na pasku powiadomień pojawi się powiadomienie wskazujące, że usługa w tle jest uruchomiona. Możesz wyłączyć ten kanał informacyjny w tle na stronie informacyjnej aplikacji, aby zablokować te powiadomienia.</string>
-    <string name="dialog_permissions_ignore_battery_optimizations_title">Zignoruj optymalizację baterii</string>
-    <string name="dialog_permissions_ignore_battery_optimizations_content">Aby mieć pewność, że usługi działające w tle mogą nadal działać, zignoruj optymalizację baterii dla Breezy Weather.</string>
     <string name="widget_live_wallpaper_cannot_start_activity">Nie można rozpocząć podglądu tapety na żywo</string>
     <string name="notification_precipitation_today">Dzisiaj mogą być opady.</string>
     <string name="notification_precipitation_short_term">Opady mogą wystąpić w ciągu najbliższych kilku godzin.</string>

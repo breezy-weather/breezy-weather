@@ -23,7 +23,6 @@
     <string name="nighttime">夜間</string>
     <string name="temperature_feels_like">体感温度</string>
     <string name="settings_follow_system">本体設定</string>
-    <string name="notification_channel_background_information">バックグラウンド情報</string>
     <string name="pressure">気圧</string>
     <string name="visibility">視程</string>
     <string name="dew_point">露点</string>
@@ -182,10 +181,6 @@
     <string name="notification_running_in_background">バックグラウンドで更新</string>
     <string name="notification_updating_weather_data">気象データの更新</string>
     <string name="message_updated_in_background">バックグラウンドで更新</string>
-    <string name="dialog_permissions_block_notification_channel_title">グループ通知をブロックする</string>
-    <string name="dialog_permissions_block_notification_channel_content">「バックグラウンドで更新しない」をオフにすると、通知バーにバックグラウンドサービスが起動していることを示す通知が表示されます。アプリの情報ページの「バックグラウンド情報」をオフにすることで、この通知をブロックすることができます。</string>
-    <string name="dialog_permissions_ignore_battery_optimizations_title">バッテリーの最適化を無視する</string>
-    <string name="dialog_permissions_ignore_battery_optimizations_content">バックグラウンドサービスを継続して動作させるために、Breezy Weatherのバッテリー最適化は無視してください。</string>
     <string name="widget_live_wallpaper_cannot_start_activity">ライブ壁紙のプレビューを開始できません</string>
     <string name="notification_precipitation_today">今日は雨が降るかもしれません。</string>
     <string name="notification_precipitation_short_term">数時間後に雨が降る可能性があります。</string>

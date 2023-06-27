@@ -129,7 +129,8 @@ public class TimeObserverService extends Service {
     }
 
     private void doRefreshWork() {
-        if (getPollingInterval() != null && System.currentTimeMillis() - sLastUpdateNormalViewTime > getPollingInterval()) {
+        if (getPollingInterval() != null
+                && System.currentTimeMillis() - sLastUpdateNormalViewTime > getPollingInterval()) {
 
             sLastUpdateNormalViewTime = System.currentTimeMillis();
 

@@ -10,6 +10,7 @@ import androidx.lifecycle.LifecycleOwner
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.DarkMode
+import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.main.MainActivity
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.ThemeManager
@@ -109,7 +110,7 @@ class MainThemeColorProvider(
             daylight: Boolean,
         ) = when (SettingsManager.getInstance(context).darkMode) {
             DarkMode.AUTO -> instance?.host?.isDaylight ?: daylight
-            DarkMode.SYSTEM -> !org.breezyweather.common.utils.DisplayUtils.isDarkMode(context)
+            DarkMode.SYSTEM -> !DisplayUtils.isDarkMode(context)
             DarkMode.LIGHT -> true
             DarkMode.DARK -> false
         }

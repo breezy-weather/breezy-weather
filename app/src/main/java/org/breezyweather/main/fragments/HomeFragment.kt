@@ -21,6 +21,7 @@ import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimationMode
 import org.breezyweather.common.ui.widgets.SwipeSwitchLayout
 import org.breezyweather.common.ui.widgets.SwipeSwitchLayout.OnSwitchListener
+import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.databinding.FragmentHomeBinding
 import org.breezyweather.main.MainActivityViewModel
 import org.breezyweather.main.adapters.main.MainAdapter
@@ -83,7 +84,7 @@ class HomeFragment : MainModuleFragment() {
     }
 
     private fun isBackgroundAnimationEnabled() = when (SettingsManager.getInstance(requireContext()).backgroundAnimationMode) {
-        BackgroundAnimationMode.SYSTEM -> !org.breezyweather.common.utils.DisplayUtils.isMotionReduced(requireContext())
+        BackgroundAnimationMode.SYSTEM -> !DisplayUtils.isMotionReduced(requireContext())
         BackgroundAnimationMode.ENABLED -> true
         BackgroundAnimationMode.DISABLED -> false
     }

@@ -160,6 +160,12 @@
             android:theme="@style/BreezyWeatherTheme" />
 
         <activity
+            android:name=".settings.activities.WorkerInfoActivity"
+            android:label="@string/settings_background_updates_worker_info_title"
+            android:theme="@style/BreezyWeatherTheme"
+            android:screenOrientation="user" />
+
+        <activity
             android:name=".settings.activities.AboutActivity"
             android:label="@string/action_about"
             android:theme="@style/BreezyWeatherTheme"
@@ -527,6 +533,16 @@
                 <action android:name="android.appwidget.action.ACTION_APPWIDGET_DISABLED" />
             </intent-filter>
         </receiver>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
 
         <provider
             android:name="androidx.startup.InitializationProvider"

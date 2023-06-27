@@ -96,7 +96,6 @@ class PollingUpdateHelper(
     }
 
     // on request location listener.
-
     private inner class RequestLocationCallback(
         private val index: Int,
         private val total: Int
@@ -130,7 +129,6 @@ class PollingUpdateHelper(
     }
 
     // on request weather listener.
-
     private inner class RequestWeatherCallback(
         private val index: Int,
         private val total: Int
