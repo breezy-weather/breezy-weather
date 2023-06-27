@@ -45,8 +45,9 @@ interface AccuWeatherApi {
         @Query("details") details: Boolean
     ): Observable<List<AccuCurrentResult>>
 
-    @GET("forecasts/v1/daily/15day/{city_key}")
+    @GET("forecasts/v1/daily/{days}day/{city_key}")
     fun getDaily(
+        @Path("days") days: String,
         @Path("city_key") city_key: String,
         @Query("apikey") apikey: String,
         @Query("language") language: String,
@@ -54,8 +55,9 @@ interface AccuWeatherApi {
         @Query("metric") metric: Boolean
     ): Observable<AccuForecastDailyResult>
 
-    @GET("forecasts/v1/hourly/120hour/{city_key}")
+    @GET("forecasts/v1/hourly/{hours}hour/{city_key}")
     fun getHourly(
+        @Path("hours") hours: String,
         @Path("city_key") city_key: String,
         @Query("apikey") apikey: String,
         @Query("language") language: String,

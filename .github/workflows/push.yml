@@ -34,7 +34,6 @@ jobs:
           echo "breezy.mf.jwtKey=$MF_WSFT_JWT_KEY" >> local.properties
           echo "breezy.mf.key=$MF_WSFT_KEY" >> local.properties
           echo "breezy.openweather.key=$OPEN_WEATHER_KEY" >> local.properties
-          echo "breezy.openweather.oneCallVersion=$OPEN_WEATHER_ONE_CALL_VERSION" >> local.properties
         env:
           ACCU_WEATHER_KEY: ${{ secrets.ACCU_WEATHER_KEY }}
           BAIDU_IP_LOCATION_AK: ${{ secrets.BAIDU_IP_LOCATION_AK }}
@@ -42,7 +41,6 @@ jobs:
           MF_WSFT_JWT_KEY: ${{ secrets.MF_WSFT_JWT_KEY }}
           MF_WSFT_KEY: ${{ secrets.MF_WSFT_KEY }}
           OPEN_WEATHER_KEY: ${{ secrets.OPEN_WEATHER_KEY }}
-          OPEN_WEATHER_ONE_CALL_VERSION: ${{ secrets.OPEN_WEATHER_ONE_CALL_VERSION }}
 
       - uses: gradle/gradle-command-action@v2
         with:

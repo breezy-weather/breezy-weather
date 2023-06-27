@@ -15,6 +15,9 @@ import org.breezyweather.common.basic.models.options.unit.PressureUnit
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.bus.EventBus
+import org.breezyweather.weather.accu.preferences.AccuDaysPreference
+import org.breezyweather.weather.accu.preferences.AccuHoursPreference
+import org.breezyweather.weather.accu.preferences.AccuPortalPreference
 
 class SettingsChangedMessage
 
@@ -397,12 +400,39 @@ class SettingsManager private constructor(context: Context) {
         get() = config.getBoolean("notification_widget_feelslike", false)
 
     // service provider advanced
+    var customAccuPortal: AccuPortalPreference
+        set(value) {
+            config.edit().putString("provider_accu_portal", value.id).apply()
+            notifySettingsChanged()
+        }
+        get() = AccuPortalPreference.getInstance(
+            config.getString("provider_accu_portal", "entreprise") ?: ""
+        )
+
     var customAccuWeatherKey: String
         set(value) {
             config.edit().putString("provider_accu_weather_key", value).apply()
             notifySettingsChanged()
         }
         get() = config.getString("provider_accu_weather_key", "") ?: ""
+
+    var customAccuDays: AccuDaysPreference
+        set(value) {
+            config.edit().putString("provider_accu_days", value.id).apply()
+            notifySettingsChanged()
+        }
+        get() = AccuDaysPreference.getInstance(
+            config.getString("provider_accu_days", "15") ?: ""
+        )
+
+    var customAccuHours: AccuHoursPreference
+        set(value) {
+            config.edit().putString("provider_accu_hours", value.id).apply()
+            notifySettingsChanged()
+        }
+        get() = AccuHoursPreference.getInstance(
+            config.getString("provider_accu_hours", "120") ?: ""
+        )
 
     var customOpenWeatherKey: String
         set(value) {
@@ -451,12 +481,6 @@ class SettingsManager private constructor(context: Context) {
         get() = getProviderSettingValue(
             customValue = customOpenWeatherKey,
             defaultValue = BuildConfig.OPEN_WEATHER_KEY,
-        )
-
-    val providerOpenWeatherOneCallVersion: String
-        get() = getProviderSettingValue(
-            customValue = customOpenWeatherOneCallVersion.id,
-            defaultValue = BuildConfig.OPEN_WEATHER_ONE_CALL_VERSION,
         )
 
     val providerBaiduIpLocationAk: String

@@ -63,7 +63,7 @@ public class OpenWeatherWeatherService extends WeatherService {
         String languageCode = SettingsManager.getInstance(context).getLanguage().getCode();
 
         Observable<OpenWeatherOneCallResult> oneCall = mApi.getOneCall(
-                SettingsManager.getInstance(context).getProviderOpenWeatherOneCallVersion(),
+                SettingsManager.getInstance(context).getCustomOpenWeatherOneCallVersion().getId(),
                 apiKey,
                 location.getLatitude(),
                 location.getLongitude(),

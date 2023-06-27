@@ -490,6 +490,17 @@
     <string name="weather_source_openmeteo_voice">Open Meteo</string>
     <string name="weather_source_accuweather">AccuWeather</string>
     <string name="weather_source_accuweather_voice">ACCU weather.com</string>
+    <string name="weather_source_accu_preference_days">Jours</string>
+    <string name="weather_source_accu_preference_days_1">1 jour</string>
+    <string name="weather_source_accu_preference_days_5">5 jours</string>
+    <string name="weather_source_accu_preference_days_10">10 jours</string>
+    <string name="weather_source_accu_preference_days_15">15 jours</string>
+    <string name="weather_source_accu_preference_hours">Heures</string>
+    <string name="weather_source_accu_preference_hours_1">1 heure</string>
+    <string name="weather_source_accu_preference_hours_12">12 heures</string>
+    <string name="weather_source_accu_preference_hours_24">24 heures</string>
+    <string name="weather_source_accu_preference_hours_72">72 heures</string>
+    <string name="weather_source_accu_preference_hours_120">120 heures</string>
     <string name="weather_source_metno">MET Norway</string>
     <string name="weather_source_metno_voice">Institut météorologique norvégien</string>
     <string name="weather_source_openweather">OpenWeather</string>

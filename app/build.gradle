@@ -54,7 +54,6 @@ android {
         properties.load(project.rootProject.file('local.properties').newDataInputStream())
     }
     buildTypes.each {
-        it.buildConfigField "String", "ACCU_WEATHER_BASE_URL", "\"${properties.getProperty("breezy.accu.baseUrl") ?: "https://api.accuweather.com/"}\""
         it.buildConfigField "String", "ACCU_WEATHER_KEY", "\"${properties.getProperty("breezy.accu.key") ?: ""}\""
         it.buildConfigField "String", "BAIDU_IP_LOCATION_AK", "\"${properties.getProperty("breezy.baiduip.key") ?: ""}\""
         it.buildConfigField "String", "BAIDU_IP_LOCATION_BASE_URL", "\"${properties.getProperty("breezy.baiduip.baseUrl") ?: "https://api.map.baidu.com/"}\""
@@ -70,7 +69,6 @@ android {
         it.buildConfigField "String", "OPEN_METEO_WEATHER_BASE_URL", "\"${properties.getProperty("breezy.openmeteo.weatherBaseUrl") ?: "https://api.open-meteo.com/"}\""
         it.buildConfigField "String", "OPEN_WEATHER_BASE_URL", "\"${properties.getProperty("breezy.openweather.baseUrl") ?: "https://api.openweathermap.org/"}\""
         it.buildConfigField "String", "OPEN_WEATHER_KEY", "\"${properties.getProperty("breezy.openweather.key") ?: ""}\""
-        it.buildConfigField "String", "OPEN_WEATHER_ONE_CALL_VERSION", "\"${properties.getProperty("breezy.openweather.oneCallVersion") ?: "3.0"}\""
     }
     sourceSets {
         pub {

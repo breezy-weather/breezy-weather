@@ -19,6 +19,9 @@ import org.breezyweather.settings.preference.*
 import org.breezyweather.settings.preference.composables.EditTextPreferenceView
 import org.breezyweather.settings.preference.composables.ListPreferenceView
 import org.breezyweather.settings.preference.composables.PreferenceScreen
+import org.breezyweather.weather.accu.preferences.AccuDaysPreference
+import org.breezyweather.weather.accu.preferences.AccuHoursPreference
+import org.breezyweather.weather.accu.preferences.AccuPortalPreference
 
 @Composable
 fun ServiceProviderSettingsScreen(
@@ -89,6 +92,19 @@ fun ServiceProviderSettingsScreen(
     sectionFooterItem(R.string.settings_providers_section_general)
 
     sectionHeaderItem(R.string.settings_provider_accu_weather)
+    listPreferenceItem(R.string.weather_source_accu_preference_portal) { id ->
+        ListPreferenceView(
+            titleId = id,
+            selectedKey = SettingsManager.getInstance(context).customAccuPortal.id,
+            valueArrayId = R.array.accu_preference_portal_values,
+            nameArrayId = R.array.accu_preference_portal,
+            onValueChanged = {
+                SettingsManager
+                    .getInstance(context)
+                    .customAccuPortal = AccuPortalPreference.getInstance(it)
+            },
+        )
+    }
     editTextPreferenceItem(R.string.settings_provider_accu_weather_key) { id ->
         EditTextPreferenceView(
             titleId = id,
@@ -101,6 +117,32 @@ fun ServiceProviderSettingsScreen(
             onValueChanged = {
                 SettingsManager.getInstance(context).customAccuWeatherKey = it
             }
+        )
+    }
+    listPreferenceItem(R.string.weather_source_accu_preference_days) { id ->
+        ListPreferenceView(
+            titleId = id,
+            selectedKey = SettingsManager.getInstance(context).customAccuDays.id,
+            valueArrayId = R.array.accu_preference_day_values,
+            nameArrayId = R.array.accu_preference_days,
+            onValueChanged = {
+                SettingsManager
+                    .getInstance(context)
+                    .customAccuDays = AccuDaysPreference.getInstance(it)
+            },
+        )
+    }
+    listPreferenceItem(R.string.weather_source_accu_preference_hours) { id ->
+        ListPreferenceView(
+            titleId = id,
+            selectedKey = SettingsManager.getInstance(context).customAccuHours.id,
+            valueArrayId = R.array.accu_preference_hour_values,
+            nameArrayId = R.array.accu_preference_hours,
+            onValueChanged = {
+                SettingsManager
+                    .getInstance(context)
+                    .customAccuHours = AccuHoursPreference.getInstance(it)
+            },
         )
     }
     sectionFooterItem(R.string.settings_provider_accu_weather)

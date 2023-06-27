@@ -343,6 +343,44 @@
         <item>night</item>
     </string-array>
 
+    <!-- Accu Weather preferences -->
+    <string-array name="accu_preference_portal">
+        <item>@string/weather_source_accu_preference_portal_developer</item>
+        <item>@string/weather_source_accu_preference_portal_entreprise</item>
+    </string-array>
+    <string-array name="accu_preference_portal_values">
+        <item>developer</item>
+        <item>entreprise</item>
+    </string-array>
+
+    <string-array name="accu_preference_days">
+        <item>@string/weather_source_accu_preference_days_1</item>
+        <item>@string/weather_source_accu_preference_days_5</item>
+        <item>@string/weather_source_accu_preference_days_10</item>
+        <item>@string/weather_source_accu_preference_days_15</item>
+    </string-array>
+    <string-array name="accu_preference_day_values">
+        <item>1</item>
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+    </string-array>
+
+    <string-array name="accu_preference_hours">
+        <item>@string/weather_source_accu_preference_hours_1</item>
+        <item>@string/weather_source_accu_preference_hours_12</item>
+        <item>@string/weather_source_accu_preference_hours_24</item>
+        <item>@string/weather_source_accu_preference_hours_72</item>
+        <item>@string/weather_source_accu_preference_hours_120</item>
+    </string-array>
+    <string-array name="accu_preference_hour_values">
+        <item>1</item>
+        <item>12</item>
+        <item>24</item>
+        <item>72</item>
+        <item>120</item>
+    </string-array>
+
     <!-- Open Weather Map One Call version -->
     <string-array name="open_weather_one_call_version">
         <item>@string/weather_source_openweather_version_2_5</item>

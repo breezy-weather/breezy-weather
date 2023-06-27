@@ -54,16 +54,17 @@ public class AccuWeatherService extends WeatherService {
 
         String apiKey = getApiKey(context);
 
-        String languageCode = SettingsManager.getInstance(context).getLanguage().getCode();
+        SettingsManager settings = SettingsManager.getInstance(context);
+        String languageCode = settings.getLanguage().getCode();
 
         Observable<List<AccuCurrentResult>> realtime = mApi.getCurrent(
                 location.getCityId(), apiKey, languageCode, true);
 
         Observable<AccuForecastDailyResult> daily = mApi.getDaily(
-                location.getCityId(), apiKey, languageCode, true, true);
+                settings.getCustomAccuDays().getId(), location.getCityId(), apiKey, languageCode, true, true);
 
         Observable<List<AccuForecastHourlyResult>> hourly = mApi.getHourly(
-                location.getCityId(), apiKey, languageCode, true, true);
+                settings.getCustomAccuHours().getId(), location.getCityId(), apiKey, languageCode, true, true);
 
         Observable<AccuMinutelyResult> minute = mApi.getMinutely(
                 apiKey,
@@ -75,10 +76,9 @@ public class AccuWeatherService extends WeatherService {
         );
 
         Observable<List<AccuAlertResult>> alert = mApi.getAlert(
-                apiKey,
-                location.getLatitude() + "," + location.getLongitude(),
-                languageCode,
-                true
+                apiKey,location.getLatitude() + "," + location.getLongitude(), languageCode, true
+        ).onErrorResumeNext(error ->
+                Observable.create(emitter -> emitter.onNext(new ArrayList<>()))
         );
 
         Observable<AccuAirQualityResult> airQuality = mApi.getAirQuality(

@@ -1,10 +1,12 @@
 package org.breezyweather.weather;
 
+import android.app.Application;
 import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
 import dagger.hilt.components.SingletonComponent;
 import okhttp3.OkHttpClient;
+import org.breezyweather.settings.SettingsManager;
 import org.breezyweather.weather.accu.AccuWeatherApi;
 import org.breezyweather.weather.china.ChinaApi;
 import org.breezyweather.weather.metno.MetNoApi;
@@ -63,11 +65,12 @@ public class ApiModule {
     }
 
     @Provides
-    public AccuWeatherApi provideAccuWeatherApi(OkHttpClient client,
+    public AccuWeatherApi provideAccuWeatherApi(Application app,
+                                                OkHttpClient client,
                                                 Converter.Factory converterFactory,
                                                 RxJava3CallAdapterFactory callAdapterFactory) {
         return new Retrofit.Builder()
-                .baseUrl(BuildConfig.ACCU_WEATHER_BASE_URL)
+                .baseUrl(SettingsManager.getInstance(app).getCustomAccuPortal().getUrl())
                 .client(client)
                 .addConverterFactory(converterFactory)
                 .addCallAdapterFactory(callAdapterFactory)
