@@ -373,9 +373,9 @@
     <string name="settings_background_updates_methods_title">Méthode d’actualisation</string>
     <string name="settings_background_updates_method_worker">Android Worker\nMéthode recommandée. Essayez de changer cette option si vous ne recevez pas de notifications ou si les widgets ne se rafraîchissent pas.</string>
     <string name="settings_background_updates_method_notification">Notification persistante\nMéthode plus fiable mais qui nécessite de garder l’application active en arrière-plan.</string>
-    <string name="settings_background_updates_method_notification_dialog_title">Désactiver le canal de notifications</string>
+    <string name="settings_background_updates_method_notification_dialog_title">Désactiver la catégorie de notifications</string>
     <!-- $ = @string/notification_channel_background_services -->
-    <string name="settings_background_updates_method_notification_dialog_content">Cette méthode ajoute une notification persistante qui peut être masquée en désactivant le canal de notifications $ dans les paramètres de l’appareil pour l’application.</string>
+    <string name="settings_background_updates_method_notification_dialog_content">Cette méthode ajoute une notification persistante qui peut être masquée en désactivant la catégorie de notifications $ dans les paramètres de l’appareil pour l’application.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Instructions spécifiques selon fabricant</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Certains fabricants ont mis en place des restrictions supplémentaires sur les applications qui tuent les services en arrière-plan. Le site web Don’t kill my app! contient des informations pour résoudre ce problème.</string>
     <string name="settings_background_updates_worker_info_title">Informations sur les processsus</string>
