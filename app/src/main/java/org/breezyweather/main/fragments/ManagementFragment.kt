@@ -37,6 +37,7 @@ import org.breezyweather.common.ui.widgets.generateCollapsedScrollBehavior
 import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.common.utils.helpers.SnackbarHelper
+import org.breezyweather.main.MainActivity
 import org.breezyweather.main.MainActivityViewModel
 import org.breezyweather.main.adapters.LocationAdapterAnimWrapper
 import org.breezyweather.main.adapters.location.LocationAdapter
@@ -115,7 +116,9 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
             topBar = {
                 FitStatusBarTopAppBar(
                     title = stringResource(R.string.locations),
-                    onBackPressed = { /* FIXME */ },
+                    onBackPressed = {
+                        (requireActivity() as MainActivity).setManagementFragmentVisibility(false)
+                    },
                     actions = {
                         IconButton(
                             onClick = {

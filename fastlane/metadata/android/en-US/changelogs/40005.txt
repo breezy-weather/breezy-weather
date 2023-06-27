@@ -3,5 +3,6 @@
 <li>Add more AccuWeather settings.</li>
 <li>Make widgets reconfigurable on recent Android versions.</li>
 <li>Update German and Portuguese (Brazil) translations.</li>
+<li>Fix back button in location list.</li>
 <li>Various fixes.</li>
 </ul>
