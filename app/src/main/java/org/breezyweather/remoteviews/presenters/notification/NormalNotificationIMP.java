@@ -162,7 +162,7 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
         );
 
         // set clear flag
-        builder.setOngoing(!persistent);
+        builder.setOngoing(persistent);
 
         // set only alert once.
         builder.setOnlyAlertOnce(true);

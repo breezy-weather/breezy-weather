@@ -6,6 +6,7 @@
 <li>Fix location search results for AccuWeather (province was saved as city name, and city as district). Already existing locations must be re-added.</li>
 <li>Add small Celsius/Fahrenheit unit for temperature on main screen header.</li>
 <li>Fix back button in location list.</li>
+<li>Fix switch for Persistent notification widget</li>
 <li>Last weather provider used for location search is now remembered.</li>
 <li>Various fixes and code improvements.</li>
 </ul>

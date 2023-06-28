@@ -43,7 +43,7 @@ public class MultiCityNotificationIMP extends AbstractRemoteViewsPresenter {
             TemperatureUnit temperatureUnit,
             boolean dayTime,
             boolean tempIcon,
-            boolean canBeCleared
+            boolean persistent
     ) {
         Weather weather = locationList.get(0).getWeather();
         if (weather == null) {
@@ -130,7 +130,7 @@ public class MultiCityNotificationIMP extends AbstractRemoteViewsPresenter {
         );
 
         // set clear flag
-        builder.setOngoing(!canBeCleared);
+        builder.setOngoing(persistent);
 
         // set only alert once.
         builder.setOnlyAlertOnce(true);
