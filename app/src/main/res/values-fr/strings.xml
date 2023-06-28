@@ -420,7 +420,7 @@
     <string name="settings_widgets_summary">Définir le fond d’écran, configurer les widgets utilisés, notification widget…</string>
     <string name="settings_widgets_live_wallpaper_title">Fond d’écran animé</string>
     <string name="settings_widgets_live_wallpaper_summary">Définir une animation météo comme fond d’écran</string>
-    <string name="settings_widgets_week_icon_mode_title">Icône à afficher dans le semainier</string>
+    <string name="settings_widgets_week_icon_mode_title">Icône à afficher dans les vues hebdomadaires</string>
     <string name="settings_widgets_monochrome_icons_title">Icônes monochromes</string>
     <string name="settings_widgets_day_night_temp_reversed_title">Inverse l’ordre des températures jour/nuit</string>
     <string name="settings_widgets_section_widgets_in_use">Widgets utilisés</string>

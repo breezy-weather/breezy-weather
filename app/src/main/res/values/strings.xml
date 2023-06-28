@@ -466,7 +466,7 @@
     <string name="settings_widgets_section_general" translatable="false">@string/settings_section_general</string>
     <string name="settings_widgets_live_wallpaper_title">Live wallpaper</string>
     <string name="settings_widgets_live_wallpaper_summary">Set a weather animation as wallpaper</string>
-    <string name="settings_widgets_week_icon_mode_title">Icon to display in weekly</string>
+    <string name="settings_widgets_week_icon_mode_title">Icon to display in weekly views</string>
     <string name="settings_widgets_monochrome_icons_title">Monochrome icons</string>
     <string name="settings_widgets_day_night_temp_reversed_title">Reverse day/night temperatures order</string>
     <string name="settings_widgets_section_widgets_in_use">Widgets in use</string>
