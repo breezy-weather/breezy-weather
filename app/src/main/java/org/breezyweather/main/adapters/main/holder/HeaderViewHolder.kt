@@ -73,7 +73,7 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
                     // no longer than 2 seconds.
                     2000f.coerceAtMost(abs(mTemperatureCTo - mTemperatureCFrom) / 10f * 1000).toLong()
                 )
-                mTemperatureUnitView.text = mTemperatureUnit!!.getShortName(context)
+                mTemperatureUnitView.text = mTemperatureUnit!!.getName(context)
             }
             if (!current.weatherText.isNullOrEmpty()) {
                 mWeatherText.visibility = View.VISIBLE

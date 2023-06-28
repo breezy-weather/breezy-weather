@@ -6,10 +6,12 @@ Breezy Weather is a fork of [GeometricWeather](https://github.com/WangDaYeeeeee/
 
 It aims to add new features, providers, modernizing code, fixing bugs, updating dependencies for security reasons, etc., while keep having a smooth user and developer experience in mind.
 
-Additions already available:
+<details><summary>Additions already available</summary>
+
 * New providers (Open-Meteo, MET Norway)
 * Additional data for other providers
 * New header design for homepage
+* New organization for settings
 * More Material 3 components
 * Add hourly air quality
 * Add Plume AQI scale for air quality widget
@@ -18,20 +20,21 @@ Additions already available:
 * Translation updates via Weblate
 * Tons of fixes
 * Many non-visible improvements to the code
+</details>
 
 <hr />
 
 ### Download app
 
-Alpha releases available from:
+Versions 4.0.x-alpha available from:
 * [GitHub](https://github.com/breezy-weather/breezy-weather/releases)
 * [Obtainium](https://github.com/ImranR98/Obtainium) (enable “Include preleases” when adding it)
 
 Will be added to IzzyDroid soon, if possible.
 
-When moving to beta, it will be available on F-Droid if they agree.
+Upcoming versions 4.1.x-beta will be available on F-Droid if they agree.
 
-Google Play releases will be available once it is stable enough and is compliant with Google Play policy.
+Upcoming versions 4.2.x will be released on Google Play Store once it is stable enough and is compliant with Google Play policy.
 
 <hr />
 

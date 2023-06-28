@@ -26,18 +26,19 @@
                 android:textFontWeight="200"
                 android:layout_centerHorizontal="true"
                 style="@style/large_title_text"
-                tools:text="30"
+                tools:text="11"
                 tools:ignore="RelativeOverlap,RtlSymmetry" />
         <TextView
                 android:id="@+id/container_main_header_temperature_unit"
-                android:textSize="@dimen/main_title_text_size"
-                android:textFontWeight="200"
+                android:layout_marginTop="15dp"
+                android:textSize="25sp"
+                android:textFontWeight="400"
                 android:includeFontPadding="false"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@+id/container_main_header_temperature_value"
                 style="@style/large_title_text"
-                tools:text="°" />
+                tools:text="°C" />
     </RelativeLayout>
 
     <TextView
