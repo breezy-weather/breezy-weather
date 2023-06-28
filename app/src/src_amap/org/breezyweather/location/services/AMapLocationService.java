@@ -13,7 +13,8 @@ import com.amap.api.location.AMapLocationListener;
 import com.amap.api.location.CoordinateConverter;
 
 import org.breezyweather.BreezyWeather;
-import org.breezyweather.location.utils.LocationException;
+import org.breezyweather.location.LocationException;
+import org.breezyweather.location.LocationService;
 
 /**
  * A map location service.

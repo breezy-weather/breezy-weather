@@ -6,7 +6,7 @@ import org.breezyweather.BreezyWeather
 import org.breezyweather.common.basic.models.options.*
 import org.breezyweather.common.basic.models.options.appearance.*
 import org.breezyweather.common.basic.models.options.provider.LocationProvider
-import org.breezyweather.common.basic.models.options.provider.OpenWeatherOneCallVersion
+import org.breezyweather.weather.openweather.preferences.OpenWeatherOneCallVersion
 import org.breezyweather.common.basic.models.options.provider.WeatherSource
 import org.breezyweather.common.basic.models.options.unit.DistanceUnit
 import org.breezyweather.common.basic.models.options.unit.PrecipitationIntensityUnit

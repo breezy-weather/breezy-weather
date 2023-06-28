@@ -4,11 +4,11 @@ import android.content.Context
 import android.os.Build
 import org.breezyweather.BuildConfig
 import org.breezyweather.common.utils.helpers.SnackbarHelper
-import org.breezyweather.extensions.createFileInCacheDir
-import org.breezyweather.extensions.getUriCompat
-import org.breezyweather.extensions.toShareIntent
-import org.breezyweather.extensions.withNonCancellableContext
-import org.breezyweather.extensions.withUIContext
+import org.breezyweather.common.extensions.createFileInCacheDir
+import org.breezyweather.common.extensions.getUriCompat
+import org.breezyweather.common.extensions.toShareIntent
+import org.breezyweather.common.extensions.withNonCancellableContext
+import org.breezyweather.common.extensions.withUIContext
 
 /**
  * Taken from Tachiyomi

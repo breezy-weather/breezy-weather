@@ -38,7 +38,7 @@ import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.common.ui.widgets.insets.bottomInsetItem
 import org.breezyweather.settings.preference.sectionFooterItem
 import org.breezyweather.settings.preference.sectionHeaderItem
-import org.breezyweather.extensions.workManager
+import org.breezyweather.common.extensions.workManager
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 import javax.inject.Inject
 

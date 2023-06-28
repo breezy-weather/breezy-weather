@@ -8,11 +8,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build;
 import android.provider.Settings;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -29,8 +27,7 @@ import org.breezyweather.wallpaper.MaterialLiveWallpaperService;
 
 /**
  * Intent helper.
- * */
-
+ **/
 public class IntentHelper {
 
     public static void startMainActivity(Context context) {
@@ -222,15 +219,6 @@ public class IntentHelper {
             context.startActivity(intent);
         } else {
             SnackbarHelper.showSnackbar("Unavailable internet browser.");
-        }
-    }
-
-    public static void startEmailActivity(Context context, String url) {
-        Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
-        if (isIntentAvailable(context, intent)) {
-            context.startActivity(intent);
-        } else {
-            SnackbarHelper.showSnackbar("Unavailable e-mail.");
         }
     }
 

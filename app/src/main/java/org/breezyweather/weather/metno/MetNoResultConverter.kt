@@ -1,7 +1,7 @@
 package org.breezyweather.weather.metno
 
 import android.content.Context
-import org.breezyweather.BreezyWeather.Companion.instance
+import org.breezyweather.BreezyWeather
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.*
 import org.breezyweather.common.utils.DisplayUtils
@@ -136,7 +136,7 @@ fun convert(
         )
         WeatherResultWrapper(weather)
     } catch (e: Exception) {
-        if (instance.debugMode) {
+        if (BreezyWeather.instance.debugMode) {
             e.printStackTrace()
         }
         WeatherResultWrapper(null)

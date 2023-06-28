@@ -22,7 +22,7 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.provider.WeatherSource
 import org.breezyweather.common.utils.helpers.IntentHelper
-import org.breezyweather.theme.ThemeManager.Companion.getInstance
+import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.resource.providers.ResourceProvider
 
 class FooterViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
@@ -39,7 +39,7 @@ class FooterViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
         listAnimationEnabled: Boolean, itemAnimationEnabled: Boolean
     ) {
         super.onBindView(context, location, provider, listAnimationEnabled, itemAnimationEnabled)
-        val cardMarginsVertical = getInstance(context)
+        val cardMarginsVertical = ThemeManager.getInstance(context)
             .weatherThemeDelegate
             .getHomeCardMargins(context).toFloat()
         val params = itemView.layoutParams as MarginLayoutParams
@@ -53,7 +53,7 @@ class FooterViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
         }
 
         mEditButton.setTextColor(
-            getInstance(context)
+            ThemeManager.getInstance(context)
                 .weatherThemeDelegate
                 .getHeaderTextColor(mCredits.context)
         )

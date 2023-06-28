@@ -2,10 +2,8 @@ package org.breezyweather.main.utils
 
 import android.app.Activity
 import androidx.annotation.StringRes
-import org.breezyweather.main.dialogs.ApiLimitReachedHelp
-import org.breezyweather.main.dialogs.ApiUnauthorizedHelp
+import org.breezyweather.main.dialogs.ApiHelpDialog
 import org.breezyweather.main.dialogs.LocationHelpDialog
-import org.breezyweather.main.dialogs.RequiredApiKeyMissingHelp
 import org.breezyweather.R
 
 enum class RequestErrorType(
@@ -18,16 +16,34 @@ enum class RequestErrorType(
         shortMessage = R.string.message_network_unavailable
     ),
     API_KEY_REQUIRED_MISSING(
-        shortMessage = R.string.weather_api_key_required_missing_message,
-        showDialogAction = { RequiredApiKeyMissingHelp.show(it) }
+        shortMessage = R.string.weather_api_key_required_missing_title,
+        showDialogAction = {
+            ApiHelpDialog.show(
+                it,
+                R.string.weather_api_key_required_missing_title,
+                R.string.weather_api_key_required_missing_content
+            )
+        }
     ),
     API_LIMIT_REACHED(
-        shortMessage = R.string.weather_api_limit_reached_message,
-        showDialogAction = { ApiLimitReachedHelp.show(it) }
+        shortMessage = R.string.weather_api_limit_reached_title,
+        showDialogAction = {
+            ApiHelpDialog.show(
+                it,
+                R.string.weather_api_limit_reached_title,
+                R.string.weather_api_limit_reached_content
+            )
+        }
     ),
     API_UNAUTHORIZED(
-        shortMessage = R.string.weather_api_unauthorized_message,
-        showDialogAction = { ApiUnauthorizedHelp.show(it) }
+        shortMessage = R.string.weather_api_unauthorized_title,
+        showDialogAction = {
+            ApiHelpDialog.show(
+                it,
+                R.string.weather_api_unauthorized_title,
+                R.string.weather_api_unauthorized_content
+            )
+        }
     ),
 
     // Location-specific

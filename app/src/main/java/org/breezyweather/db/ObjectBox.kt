@@ -19,7 +19,7 @@ object ObjectBox {
         boxStore = MyObjectBox.builder().androidContext(context.applicationContext).build()
 
         if (BuildConfig.DEBUG) {
-            LogHelper.log("Using ObjectBox ${BoxStore.getVersion()} (${BoxStore.getVersionNative()})")
+            LogHelper.log(msg = "Using ObjectBox ${BoxStore.getVersion()} (${BoxStore.getVersionNative()})")
             Admin(boxStore).start(context.applicationContext)
         }
     }

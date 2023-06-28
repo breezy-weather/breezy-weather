@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.graphics.Rect;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
 
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
@@ -12,7 +13,7 @@ import org.breezyweather.common.basic.insets.FitBothSideBarHelper;
 import org.breezyweather.common.basic.insets.FitBothSideBarView;
 import org.breezyweather.common.utils.DisplayUtils;
 
-class Utils extends android.view.animation.AnimationUtils {
+class Utils extends AnimationUtils {
 
     public static final Interpolator FAST_OUT_SLOW_IN_INTERPOLATOR = new FastOutSlowInInterpolator();
 

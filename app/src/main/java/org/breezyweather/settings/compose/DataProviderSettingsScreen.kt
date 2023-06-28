@@ -6,10 +6,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import org.breezyweather.BuildConfig
-import org.breezyweather.BreezyWeather.Companion.instance
+import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.provider.LocationProvider
-import org.breezyweather.common.basic.models.options.provider.OpenWeatherOneCallVersion
+import org.breezyweather.weather.openweather.preferences.OpenWeatherOneCallVersion
 import org.breezyweather.common.basic.models.options.provider.WeatherSource
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.db.repositories.LocationEntityRepository
@@ -84,7 +84,7 @@ fun ServiceProviderSettingsScreen(
                     context.getString(R.string.settings_changes_apply_after_restart),
                     context.getString(R.string.action_restart)
                 ) {
-                    instance.recreateAllActivities()
+                    BreezyWeather.instance.recreateAllActivities()
                 }
             }
         )

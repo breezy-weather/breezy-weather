@@ -2,7 +2,7 @@ package org.breezyweather.common.basic.models.weather
 
 import android.content.Context
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
-import org.breezyweather.settings.SettingsManager.Companion.getInstance
+import org.breezyweather.settings.SettingsManager
 import java.io.Serializable
 
 /**
@@ -34,7 +34,7 @@ class Temperature(
         fun getTrendTemperature(context: Context, night: Int?, day: Int?, unit: TemperatureUnit): String? {
             return getTrendTemperature(
                 context, night, day, unit,
-                getInstance(context).isDayNightTempOrderReversed
+                SettingsManager.getInstance(context).isDayNightTempOrderReversed
             )
         }
 

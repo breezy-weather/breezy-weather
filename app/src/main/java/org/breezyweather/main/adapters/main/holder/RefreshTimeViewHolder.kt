@@ -11,7 +11,7 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.main.widgets.TextRelativeClock
-import org.breezyweather.theme.ThemeManager.Companion.getInstance
+import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.resource.providers.ResourceProvider
 import org.breezyweather.theme.weatherView.WeatherView
 
@@ -33,7 +33,7 @@ class RefreshTimeViewHolder(parent: ViewGroup, weatherView: WeatherView) : Abstr
         listAnimationEnabled: Boolean, itemAnimationEnabled: Boolean
     ) {
         super.onBindView(context, location, provider, listAnimationEnabled, itemAnimationEnabled)
-        val textColor = getInstance(context)
+        val textColor = ThemeManager.getInstance(context)
             .weatherThemeDelegate
             .getHeaderTextColor(context)
         mRefreshTimeText.setTextColor(textColor)

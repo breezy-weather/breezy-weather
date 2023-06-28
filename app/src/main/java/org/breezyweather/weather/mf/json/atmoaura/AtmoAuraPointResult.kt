@@ -7,5 +7,5 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class AtmoAuraPointResult(
-    val polluants: List<AtmoAuraPointPolluant>?
+    val polluants: List<AtmoAuraPointPolluant>? = null
 )

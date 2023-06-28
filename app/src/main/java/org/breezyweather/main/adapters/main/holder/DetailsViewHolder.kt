@@ -22,7 +22,7 @@ import org.breezyweather.common.basic.models.options.appearance.DetailDisplay
 import org.breezyweather.common.basic.models.weather.Current
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.settings.SettingsManager
-import org.breezyweather.theme.ThemeManager.Companion.getInstance
+import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 import org.breezyweather.theme.compose.DayNightTheme
 import org.breezyweather.theme.resource.providers.ResourceProvider
@@ -46,7 +46,7 @@ class DetailsViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         )
         if (location.weather?.current != null) {
             mTitle.setTextColor(
-                getInstance(context)
+                ThemeManager.getInstance(context)
                     .weatherThemeDelegate
                     .getThemeColors(
                         context,

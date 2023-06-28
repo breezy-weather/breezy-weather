@@ -303,8 +303,8 @@
     <string name="alerts_count">$ Wetterwarnungen</string>
     <string name="weather_source_openmeteo">Open-Meteo</string>
     <string name="weather_source_china">China</string>
-    <string name="weather_api_unauthorized_dialog">Bei einigen Wetterdiensten müssen Sie Ihren eigenen API-Schlüssel angeben. Wenn Sie bereits einen angegeben haben, überprüfen Sie bitte den API-Schlüssel, den Sie angegeben haben.</string>
-    <string name="weather_api_limit_reached_message">Limit für API-Anfragen erreicht</string>
+    <string name="weather_api_unauthorized_content">Bei einigen Wetterdiensten müssen Sie Ihren eigenen API-Schlüssel angeben. Wenn Sie bereits einen angegeben haben, überprüfen Sie bitte den API-Schlüssel, den Sie angegeben haben.</string>
+    <string name="weather_api_limit_reached_title">Limit für API-Anfragen erreicht</string>
     <string name="unit_kph_voice">Kilometer pro Stunde</string>
     <string name="unit_ftps">ft/s</string>
     <string name="unit_mmph_voice">Millimeter pro Stunde</string>
@@ -332,7 +332,7 @@
     <string name="widget_custom_subtitle_keyword_lat_description">Breitengrad</string>
     <string name="openmeteo_weather_text_partly_cloudy">Teils bewölkt</string>
     <string name="unit_h">h</string>
-    <string name="weather_api_limit_reached_dialog">Um das Limit zu umgehen, fügen Sie Ihren eigenen API-Schlüssel hinzu.</string>
+    <string name="weather_api_limit_reached_content">Um das Limit zu umgehen, fügen Sie Ihren eigenen API-Schlüssel hinzu.</string>
     <string name="openmeteo_weather_text_rain_slight_intensity">Leichter Regen</string>
     <string name="dialog_permissions_location_title">Zugriff auf Standortinformationen</string>
     <string name="weather_source_openmeteo_voice">Open Meteo</string>
@@ -376,7 +376,7 @@
     <string name="air_quality_no2_voice">Stickstoffdioxid</string>
     <string name="air_quality_o3_voice">Ozon</string>
     <string name="air_quality_co_voice">Kohlenmonoxid</string>
-    <string name="weather_api_unauthorized_message">API-Zugang nicht autorisiert</string>
+    <string name="weather_api_unauthorized_title">API-Zugang nicht autorisiert</string>
     <string name="weather_source_accuweather">AccuWeather</string>
     <string name="weather_source_metno">MET Norwegen</string>
     <string name="weather_source_openweather">OpenWeather</string>

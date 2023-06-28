@@ -12,7 +12,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
-import org.breezyweather.BreezyWeather.Companion.instance
+import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.DarkMode
 import org.breezyweather.common.basic.models.options.appearance.*
@@ -53,7 +53,7 @@ fun AppearanceSettingsScreen(
                         context.getString(R.string.settings_changes_apply_after_restart),
                         context.getString(R.string.action_restart)
                     ) {
-                        instance.recreateAllActivities()
+                        BreezyWeather.instance.recreateAllActivities()
                     }
                 },
             )

@@ -51,7 +51,7 @@ As a starting point, inject your weather API for the weather data, and `OpenMete
 You can still implement it your own geocoding later, but to get a running example, we will skip this part for now.
 **Exception**: if your weather provider doesn’t accept latitude and longitude for the forecast API, but only a city ID for example, you will need to implement the geocoding part.
 
-Replace `WeatherSource.OPEN_METEO` with your `WeatherSource` in the location functions.
+Replace `WeatherSource.OPEN_METEO` with your `WeatherSource` in the `requestLocationSearch` function.
 
 Then focus on the `requestWeather()` function. You will need to create a converter class.
 The goal of a converter class is to normalize the data we received into Breezy Weather data objects.

@@ -1,14 +1,12 @@
 package org.breezyweather.settings.compose
 
 import android.content.Context
-import android.content.Intent
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import kotlinx.coroutines.launch
 import org.breezyweather.R
 import org.breezyweather.common.utils.CrashLogUtils
-import org.breezyweather.settings.activities.WorkerInfoActivity
 import org.breezyweather.settings.preference.*
 import org.breezyweather.settings.preference.composables.PreferenceScreen
 import org.breezyweather.settings.preference.composables.PreferenceView

@@ -12,7 +12,8 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 
 import org.breezyweather.BreezyWeather;
-import org.breezyweather.location.utils.LocationException;
+import org.breezyweather.location.LocationException;
+import org.breezyweather.location.LocationService;
 
 /**
  * Baidu location service.

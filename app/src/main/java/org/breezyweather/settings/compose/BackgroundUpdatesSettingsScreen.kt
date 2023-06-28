@@ -23,7 +23,7 @@ import org.breezyweather.settings.preference.*
 import org.breezyweather.settings.preference.composables.ListPreferenceView
 import org.breezyweather.settings.preference.composables.PreferenceScreen
 import org.breezyweather.settings.preference.composables.PreferenceView
-import org.breezyweather.extensions.powerManager
+import org.breezyweather.common.extensions.powerManager
 
 @Composable
 fun BackgroundSettingsScreen(

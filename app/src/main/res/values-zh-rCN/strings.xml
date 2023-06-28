@@ -165,10 +165,10 @@
     <string name="location_dialog_failed_to_locate_action_enable_information">开启位置信息</string>
     <string name="location_dialog_failed_to_locate_action_select_provider">选择位置信息提供商</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">手动添加城市并删除“$”</string>
-    <string name="weather_api_limit_reached_message">达到 API 请求次数上限</string>
-    <string name="weather_api_limit_reached_dialog">要绕过此限制，请添加你自己的 API 密钥。</string>
-    <string name="weather_api_unauthorized_message">API 访问认证未通过</string>
-    <string name="weather_api_unauthorized_dialog">对于某些天气提供商，您需要提供自己的 API 密钥。如果您已经提供了，请仔细检查您提供的 API 密钥。</string>
+    <string name="weather_api_limit_reached_title">达到 API 请求次数上限</string>
+    <string name="weather_api_limit_reached_content">要绕过此限制，请添加你自己的 API 密钥。</string>
+    <string name="weather_api_unauthorized_title">API 访问认证未通过</string>
+    <string name="weather_api_unauthorized_content">对于某些天气提供商，您需要提供自己的 API 密钥。如果您已经提供了，请仔细检查您提供的 API 密钥。</string>
     <string name="widget_label_view_style">界面风格</string>
     <string name="widget_label_show_widget_card">卡片背景</string>
     <string name="widget_label_show_widget_card_alpha">卡片透明度</string>

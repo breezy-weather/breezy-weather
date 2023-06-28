@@ -8,12 +8,12 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class MfWarningsResult(
-    val timelaps: List<MfWarningTimelaps>?,
-    @SerialName("phenomenons_items") val phenomenonsItems: List<MfWarningPhenomenonMaxColor>?,
-    val advices: List<MfWarningAdvice>?,
-    val consequences: List<MfWarningConsequence>?,
-    @SerialName("max_count_items") val maxCountItems: List<MfWarningMaxCountItems>?,
-    val comments: MfWarningComments?,
-    val text: MfWarningComments?,
-    @SerialName("text_avalanche") val textAvalanche: MfWarningComments?
+    val timelaps: List<MfWarningTimelaps>? = null,
+    @SerialName("phenomenons_items") val phenomenonsItems: List<MfWarningPhenomenonMaxColor>? = null,
+    val advices: List<MfWarningAdvice>? = null,
+    val consequences: List<MfWarningConsequence>? = null,
+    @SerialName("max_count_items") val maxCountItems: List<MfWarningMaxCountItems>? = null,
+    val comments: MfWarningComments? = null,
+    val text: MfWarningComments? = null,
+    @SerialName("text_avalanche") val textAvalanche: MfWarningComments? = null
 )

@@ -4,6 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class AccuMinutelyResult(
-    val Summary: AccuMinutelySummary?,
-    val Intervals: List<AccuMinutelyInterval>?
+    val Summary: AccuMinutelySummary? = null,
+    val Intervals: List<AccuMinutelyInterval>? = null
 )

@@ -128,10 +128,10 @@
     <string name="location_dialog_failed_to_locate_action_check_permission">periksa izin lokasi</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Mengaktifkan Informasi Lokasi</string>
     <string name="location_dialog_failed_to_locate_action_select_provider">Pilih Penyedia Lokasi</string>
-    <string name="weather_api_limit_reached_message">Batas permintaan API telah dicapai</string>
-    <string name="weather_api_limit_reached_dialog">Untuk mengatasinya, tambahkan kunci API Anda sendiri.</string>
-    <string name="weather_api_unauthorized_message">Akses API tidak memiliki izin</string>
-    <string name="weather_api_unauthorized_dialog">Pada beberapa penyedia cuaca, Anda perlu menyediakan kunci API Anda sendiri. Jika Anda sudah memberikannya, silakan periksa kembali kunci API yang Anda berikan.</string>
+    <string name="weather_api_limit_reached_title">Batas permintaan API telah dicapai</string>
+    <string name="weather_api_limit_reached_content">Untuk mengatasinya, tambahkan kunci API Anda sendiri.</string>
+    <string name="weather_api_unauthorized_title">Akses API tidak memiliki izin</string>
+    <string name="weather_api_unauthorized_content">Pada beberapa penyedia cuaca, Anda perlu menyediakan kunci API Anda sendiri. Jika Anda sudah memberikannya, silakan periksa kembali kunci API yang Anda berikan.</string>
     <string name="widget_label_view_style">Gaya lihat</string>
     <string name="widget_label_show_widget_card">Warna latar</string>
     <string name="widget_label_show_widget_card_alpha">Transparansi</string>

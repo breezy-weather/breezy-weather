@@ -18,8 +18,7 @@ import org.breezyweather.common.basic.models.Location;
 import org.breezyweather.common.basic.models.options.provider.LocationProvider;
 import org.breezyweather.common.basic.models.options.provider.WeatherSource;
 import org.breezyweather.db.repositories.LocationEntityRepository;
-import org.breezyweather.location.services.BaiduIPLocationService;
-import org.breezyweather.location.services.LocationService;
+import org.breezyweather.location.baiduip.BaiduIPLocationService;
 import org.breezyweather.main.utils.RequestErrorType;
 import org.breezyweather.settings.SettingsManager;
 import org.breezyweather.common.utils.NetworkUtils;
@@ -145,7 +144,7 @@ public class LocationHelper {
         WeatherSource source = SettingsManager.getInstance(context).getWeatherSource();
 
         final WeatherService service = mWeatherServiceSet.get(source);
-        service.requestLocation(context, location, new WeatherService.RequestLocationCallback() {
+        service.requestReverseLocationSearch(context, location, new WeatherService.RequestLocationCallback() {
             @Override
             public void requestLocationSuccess(String query, List<Location> locationList) {
                 if (locationList.size() > 0) {

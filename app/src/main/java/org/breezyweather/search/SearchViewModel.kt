@@ -18,7 +18,7 @@ class SearchViewModel @Inject constructor(
 ) : GeoViewModel(application!!) {
     private val _listResource = MutableStateFlow<Pair<List<Location>, LoadableLocationStatus>>(Pair(emptyList(), LoadableLocationStatus.SUCCESS))
     val listResource = _listResource.asStateFlow()
-    private val _enabledSource: MutableStateFlow<WeatherSource> = MutableStateFlow(repository.getValidWeatherSource(application))
+    private val _enabledSource: MutableStateFlow<WeatherSource> = MutableStateFlow(repository.lastSelectedWeatherSource)
     val enabledSource = _enabledSource.asStateFlow()
     private val mRepository: SearchActivityRepository = repository
 
@@ -46,7 +46,7 @@ class SearchViewModel @Inject constructor(
     }
 
     fun setEnabledSource(weatherSource: WeatherSource) {
-        mRepository.setValidWeatherSource(weatherSource)
+        mRepository.lastSelectedWeatherSource = weatherSource
         _enabledSource.value = weatherSource
     }
 

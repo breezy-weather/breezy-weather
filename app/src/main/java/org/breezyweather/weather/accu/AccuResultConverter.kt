@@ -1,13 +1,13 @@
 package org.breezyweather.weather.accu
 
 import android.content.Context
-import org.breezyweather.BreezyWeather.Companion.instance
+import org.breezyweather.BreezyWeather
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.provider.WeatherSource
 import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
 import org.breezyweather.common.basic.models.weather.*
 import org.breezyweather.common.utils.DisplayUtils
-import org.breezyweather.settings.SettingsManager.Companion.getInstance
+import org.breezyweather.settings.SettingsManager
 import org.breezyweather.weather.accu.json.*
 import org.breezyweather.weather.getDailyAirQualityFromHourlyList
 import org.breezyweather.weather.getMoonPhaseAngle
@@ -49,8 +49,8 @@ fun convert(
             longitude = result.GeoPosition.Longitude.toFloat(),
             timeZone = TimeZone.getTimeZone(result.TimeZone.Name),
             country = result.Country.LocalizedName,
-            city = result.AdministrativeArea?.LocalizedName ?: "",
-            district = result.LocalizedName + if (zipCode != null) " ($zipCode)" else "",
+            province = result.AdministrativeArea?.LocalizedName ?: "",
+            city = result.LocalizedName + if (zipCode != null) " ($zipCode)" else "",
             weatherSource = WeatherSource.ACCU,
             isChina = !result.Country.ID.isNullOrEmpty()
                     && (result.Country.ID.equals("cn", ignoreCase = true)
@@ -126,7 +126,7 @@ fun convert(
         )
         WeatherResultWrapper(weather)
     } catch (e: Exception) {
-        if (instance.debugMode) {
+        if (BreezyWeather.instance.debugMode) {
             e.printStackTrace()
         }
         WeatherResultWrapper(null)
@@ -415,7 +415,7 @@ private fun getWeatherCode(icon: Int?): WeatherCode? {
 
 private fun convertUnit(context: Context, text: String?): String? {
     if (text.isNullOrEmpty()) return text
-    val precipitationUnit = getInstance(context).precipitationUnit
+    val precipitationUnit = SettingsManager.getInstance(context).precipitationUnit
     val newText = convertUnit(context, text, PrecipitationUnit.CM, precipitationUnit)
     return convertUnit(context, newText, PrecipitationUnit.MM, precipitationUnit)
 }

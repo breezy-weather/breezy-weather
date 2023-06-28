@@ -15,7 +15,7 @@ import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.main.adapters.trend.DailyTrendAdapter
 import org.breezyweather.main.layouts.TrendHorizontalLinearLayoutManager
-import org.breezyweather.main.utils.MainThemeColorProvider.Companion.getColor
+import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.main.widgets.TrendRecyclerViewScrollBar
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.ThemeManager
@@ -104,13 +104,13 @@ class DailyViewHolder(
                 TrendHorizontalLinearLayoutManager(context)
             tagView.adapter = TagAdapter(
                 tagList,
-                getColor(location, com.google.android.material.R.attr.colorOnPrimary),
-                getColor(location, com.google.android.material.R.attr.colorOnSurface),
-                getColor(location, androidx.appcompat.R.attr.colorPrimary),
+                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOnPrimary),
+                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOnSurface),
+                MainThemeColorProvider.getColor(location, androidx.appcompat.R.attr.colorPrimary),
                 DisplayUtils.getWidgetSurfaceColor(
                     DisplayUtils.DEFAULT_CARD_LIST_ITEM_ELEVATION_DP,
-                    getColor(location, androidx.appcompat.R.attr.colorPrimary),
-                    getColor(location, com.google.android.material.R.attr.colorSurface)
+                    MainThemeColorProvider.getColor(location, androidx.appcompat.R.attr.colorPrimary),
+                    MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorSurface)
                 ),
                 { _, _, newPosition ->
                     trendAdapter.selectedIndex = newPosition
@@ -124,7 +124,7 @@ class DailyViewHolder(
                 context,
                 if (DisplayUtils.isLandscape(context)) 7 else 5
             )
-        trendRecyclerView.setLineColor(getColor(location, com.google.android.material.R.attr.colorOutline))
+        trendRecyclerView.setLineColor(MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline))
         trendRecyclerView.adapter = trendAdapter
         trendRecyclerView.setKeyLineVisibility(
             SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled

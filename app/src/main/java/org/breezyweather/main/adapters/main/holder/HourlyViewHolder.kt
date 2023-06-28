@@ -17,8 +17,7 @@ import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.main.adapters.trend.HourlyTrendAdapter
 import org.breezyweather.main.layouts.TrendHorizontalLinearLayoutManager
-import org.breezyweather.main.utils.MainThemeColorProvider.Companion.getColor
-import org.breezyweather.main.utils.MainThemeColorProvider.Companion.isLightTheme
+import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.main.widgets.TrendRecyclerViewScrollBar
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.ThemeManager
@@ -119,13 +118,13 @@ class HourlyViewHolder(
                 TrendHorizontalLinearLayoutManager(context)
             tagView.adapter = TagAdapter(
                 tagList,
-                getColor(location, com.google.android.material.R.attr.colorOnPrimary),
-                getColor(location, com.google.android.material.R.attr.colorOnSurface),
-                getColor(location, androidx.appcompat.R.attr.colorPrimary),
+                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOnPrimary),
+                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOnSurface),
+                MainThemeColorProvider.getColor(location, androidx.appcompat.R.attr.colorPrimary),
                 DisplayUtils.getWidgetSurfaceColor(
                     DisplayUtils.DEFAULT_CARD_LIST_ITEM_ELEVATION_DP,
-                    getColor(location, androidx.appcompat.R.attr.colorPrimary),
-                    getColor(location, com.google.android.material.R.attr.colorSurface)
+                    MainThemeColorProvider.getColor(location, androidx.appcompat.R.attr.colorPrimary),
+                    MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorSurface)
                 ),
                 { _, _, newPosition: Int ->
                     trendAdapter.selectedIndex = newPosition
@@ -140,7 +139,7 @@ class HourlyViewHolder(
                 context,
                 if (DisplayUtils.isLandscape(context)) 7 else 5
             )
-        trendRecyclerView.setLineColor(getColor(location, com.google.android.material.R.attr.colorOutline))
+        trendRecyclerView.setLineColor(MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline))
         trendRecyclerView.adapter = trendAdapter
         trendRecyclerView.setKeyLineVisibility(
             SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled
@@ -184,15 +183,15 @@ class HourlyViewHolder(
                 WeatherViewController.getWeatherKind(weather),
                 location.isDaylight
             )[0]
-        precipitationBar.subLineColor = getColor(location, com.google.android.material.R.attr.colorOutline)
-        precipitationBar.highlightColor = getColor(location, androidx.appcompat.R.attr.colorPrimary)
-        precipitationBar.setShadowColors(colors[0], colors[1], isLightTheme(itemView.context, location))
+        precipitationBar.subLineColor = MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+        precipitationBar.highlightColor = MainThemeColorProvider.getColor(location, androidx.appcompat.R.attr.colorPrimary)
+        precipitationBar.setShadowColors(colors[0], colors[1], MainThemeColorProvider.isLightTheme(itemView.context, location))
 
-        minutelyStartText.setTextColor(getColor(location, R.attr.colorBodyText))
-        minutelyCenterText.setTextColor(getColor(location, R.attr.colorBodyText))
-        minutelyEndText.setTextColor(getColor(location, R.attr.colorBodyText))
+        minutelyStartText.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
+        minutelyCenterText.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
+        minutelyEndText.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
 
-        minutelyStartLine.setBackgroundColor(getColor(location, com.google.android.material.R.attr.colorOutline))
-        minutelyEndLine.setBackgroundColor(getColor(location, com.google.android.material.R.attr.colorOutline))
+        minutelyStartLine.setBackgroundColor(MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline))
+        minutelyEndLine.setBackgroundColor(MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline))
     }
 }

@@ -7,5 +7,5 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class OpenWeatherAirPollutionResult(
-    val list: List<OpenWeatherAirPollution>?,
+    val list: List<OpenWeatherAirPollution>? = null
 )

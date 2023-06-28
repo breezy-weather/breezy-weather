@@ -30,7 +30,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.Location.Companion.buildLocal
+import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.ui.decorations.Material3ListItemDecoration
 import org.breezyweather.common.ui.widgets.Material3Scaffold
 import org.breezyweather.common.ui.widgets.generateCollapsedScrollBehavior
@@ -142,7 +142,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                     if (totalLocationListState.value.first.firstOrNull { it.isCurrentPosition } == null) {
                         FloatingActionButton(
                             onClick = {
-                                viewModel.addLocation(buildLocal(requireContext()), null)
+                                viewModel.addLocation(Location.buildLocal(requireContext()), null)
                                 SnackbarHelper.showSnackbar(getString(R.string.location_message_added))
                             },
                         ) {

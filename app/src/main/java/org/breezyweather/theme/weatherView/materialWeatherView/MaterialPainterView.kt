@@ -20,7 +20,7 @@ import kotlin.math.sqrt
 
 @SuppressLint("ViewConstructor")
 class MaterialPainterView(
-    context: Context?,
+    context: Context,
 
     @WeatherKindRule private var weatherKind: Int,
     private var daylight: Boolean,
@@ -167,7 +167,7 @@ class MaterialPainterView(
     }
 
     init {
-        sensorManager = context?.getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        sensorManager = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
         gravitySensor = sensorManager?.getDefaultSensor(Sensor.TYPE_GRAVITY)
 
         val metrics = resources.displayMetrics

@@ -28,15 +28,15 @@ class Precipitation(
     }
 
     @ColorInt
-    fun getPrecipitationColor(context: Context?): Int {
+    fun getPrecipitationColor(context: Context): Int {
         return if (total == null) {
             Color.TRANSPARENT
         } else when (total) {
-            in 0f.. PRECIPITATION_LIGHT -> ContextCompat.getColor(context!!, R.color.colorLevel_1)
-            in PRECIPITATION_LIGHT.. PRECIPITATION_MIDDLE -> ContextCompat.getColor(context!!, R.color.colorLevel_2)
-            in PRECIPITATION_MIDDLE.. PRECIPITATION_HEAVY -> ContextCompat.getColor(context!!, R.color.colorLevel_3)
-            in PRECIPITATION_HEAVY.. PRECIPITATION_RAINSTORM -> ContextCompat.getColor(context!!, R.color.colorLevel_4)
-            in PRECIPITATION_RAINSTORM.. Float.MAX_VALUE -> ContextCompat.getColor(context!!, R.color.colorLevel_5)
+            in 0f.. PRECIPITATION_LIGHT -> ContextCompat.getColor(context, R.color.colorLevel_1)
+            in PRECIPITATION_LIGHT.. PRECIPITATION_MIDDLE -> ContextCompat.getColor(context, R.color.colorLevel_2)
+            in PRECIPITATION_MIDDLE.. PRECIPITATION_HEAVY -> ContextCompat.getColor(context, R.color.colorLevel_3)
+            in PRECIPITATION_HEAVY.. PRECIPITATION_RAINSTORM -> ContextCompat.getColor(context, R.color.colorLevel_4)
+            in PRECIPITATION_RAINSTORM.. Float.MAX_VALUE -> ContextCompat.getColor(context, R.color.colorLevel_5)
             else -> Color.TRANSPARENT
         }
     }
