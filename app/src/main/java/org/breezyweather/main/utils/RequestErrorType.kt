@@ -62,7 +62,7 @@ enum class RequestErrorType(
 
     // Location search-specific
     LOCATION_SEARCH_FAILED(
-        shortMessage = R.string.location_message_failed_to_locate
+        shortMessage = R.string.location_message_search_failed
     ),
 
     // Weather-specific
