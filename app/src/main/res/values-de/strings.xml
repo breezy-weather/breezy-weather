@@ -461,7 +461,6 @@
     <string name="settings_background_updates_method_worker">Android Worker
 \nEmpfohlene Methode. Ändern Sie die Einstellung, falls Sie keine Benachrichtigungen erhalten oder Widgets nicht aktualisiert werden.</string>
     <string name="settings_main_cards_fade_in_switch">Karten werden eingeblendet</string>
-    <string name="weather_api_key_required_missing_message">Erforderlicher API-Schlüssel fehlt</string>
     <string name="action_see_more">Mehr anzeigen</string>
     <string name="settings_providers">Datenanbieter</string>
     <string name="settings_providers_weather_provider_current_location">Wetterdienst für aktuellen Standort</string>
@@ -492,7 +491,6 @@
     <string name="settings_appearance_summary">Sprache, Dunkelmodus, Icon Pack, Einheiten…</string>
     <string name="settings_notifications_summary">Wetterwarnungen, Niederschlag, Vorhersage…</string>
     <string name="settings_widgets_notification_feels_like_switch">Gefühlte Temperatur verwenden</string>
-    <string name="weather_api_key_required_missing_dialog">Um diesen Dienst zu nutzen, müssen Sie einen API-Schlüssel angeben.</string>
     <string name="settings_main_section_displayed_data">Angezeigte Daten</string>
     <string name="settings_widgets_live_wallpaper_summary">Wetteranimation als Hintergrundbild festlegen</string>
 </resources>
