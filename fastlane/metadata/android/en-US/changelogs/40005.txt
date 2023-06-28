@@ -7,6 +7,7 @@
 <li>Add small Celsius/Fahrenheit unit for temperature on main screen header.</li>
 <li>Fix back button in location list.</li>
 <li>Fix switch for Persistent notification widget</li>
+<li>Fix disabled settings could be switched on/off</li>
 <li>Last weather provider used for location search is now remembered.</li>
 <li>Various fixes and code improvements.</li>
 </ul>

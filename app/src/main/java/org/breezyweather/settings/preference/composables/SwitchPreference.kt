@@ -98,6 +98,7 @@ fun SwitchPreferenceView(
 
             Spacer(modifier = Modifier.width(dimensionResource(R.dimen.little_margin)))
             Switch(
+                enabled = enabled,
                 checked = state.value,
                 onCheckedChange = {
                     state.value = it
