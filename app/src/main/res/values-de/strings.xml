@@ -2,13 +2,13 @@
 <resources>
     <string name="about_app">Über</string>
     <string name="action_about">Über</string>
-    <string name="alerts">Alarm</string>
+    <string name="alerts">Warnungen</string>
     <string name="action_app_store">App Store</string>
     <string name="action_preview">Vorschau</string>
     <string name="action_search">Suche</string>
     <string name="action_settings">Einstellungen</string>
     <string name="air_quality">Luftqualität</string>
-    <string name="allergen">Allergien</string>
+    <string name="allergen">Allergene</string>
     <string name="app_name">Wetter</string>
     <string name="temperature_apparent">Gefühlt</string>
     <string name="action_cancel">Abbruch</string>
@@ -29,7 +29,7 @@
     <string name="widget_ellipsis">…</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Standort manuell hinzufügen und „$“ löschen</string>
     <string name="widget_label_black_text">Dunkler Text</string>
-    <string name="widget_live_wallpaper_cannot_start_activity">Vorschau für Live Wallpaper kann nicht gestartet werden!</string>
+    <string name="widget_live_wallpaper_cannot_start_activity">Vorschau für Live-Hintergrund kann nicht gestartet werden</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Standortberechtigungen prüfen</string>
     <string name="allergen_tap_to_see_more">Mehr…</string>
     <string name="widget_label_clock_font">Schriftfarbe</string>
@@ -116,7 +116,7 @@
     <string name="settings_units_distance">Einheit Entfernung</string>
     <string name="settings_main_gravity_sensor_switch">Lagesensor</string>
     <string name="settings_appearance_icon_pack_title">Symbolstil</string>
-    <string name="settings_widgets_live_wallpaper_title">Live Hintergrund</string>
+    <string name="settings_widgets_live_wallpaper_title">Live-Hintergrund</string>
     <string name="settings_providers_location_service">Standortanbieter</string>
     <string name="settings_widgets_notification_temp_icon_switch">Temperatur in der Statusleiste anzeigen</string>
     <string name="settings_units_precipitation">Einheit Niederschlag</string>
@@ -168,7 +168,7 @@
     <string name="wind_level_7">Kräftiger Wind</string>
     <string name="wind_level_8">Sturm</string>
     <string name="wind_level_9">Starker Sturm</string>
-    <string name="temperature_wind_chill">Wind chill</string>
+    <string name="temperature_wind_chill">Windfrösteln</string>
     <string name="wind_direction">Windrichtung</string>
     <string name="wind_level">Windstärke</string>
     <string name="wind_speed">Windgeschwindigkeit</string>
@@ -460,4 +460,39 @@
     <string name="settings_background_updates_refresh_title">Aktualisierungsrate</string>
     <string name="settings_background_updates_method_worker">Android Worker
 \nEmpfohlene Methode. Ändern Sie die Einstellung, falls Sie keine Benachrichtigungen erhalten oder Widgets nicht aktualisiert werden.</string>
+    <string name="settings_main_cards_fade_in_switch">Karten werden eingeblendet</string>
+    <string name="weather_api_key_required_missing_message">Erforderlicher API-Schlüssel fehlt</string>
+    <string name="action_see_more">Mehr anzeigen</string>
+    <string name="settings_providers">Datenanbieter</string>
+    <string name="settings_providers_weather_provider_current_location">Wetterdienst für aktuellen Standort</string>
+    <string name="settings_units_summary">Temperatur, Niederschlag, Entfernung, Geschwindigkeit, Druck…</string>
+    <string name="settings_main">Hauptbildschirm</string>
+    <string name="settings_widgets">Widgets &amp; Live-Hintergrund</string>
+    <string name="settings_widgets_summary">Hintergrundbild festlegen, verwendete Widgets konfigurieren, Benachrichtigungs-Widget…</string>
+    <string name="action_share">Teilen</string>
+    <string name="settings_main_header_details_title">Details im Header</string>
+    <string name="settings_main_background_animation_enabled">\@string/settings_enabled</string>
+    <string name="settings_widgets_configure_widget_summary">Widget konfigurieren</string>
+    <string name="settings_widgets_section_widgets_in_use">Verwendete Widgets</string>
+    <string name="weather_air_quality_and_pollen_data_by">Luftqualitäts- und Pollenflugdaten von $</string>
+    <string name="settings_provider_baidu_ip_location_ak">Baidu IP Standort API-Schlüssel</string>
+    <string name="settings_provider_mf_wsft_key">Météo France WSFT Schlüssel</string>
+    <string name="settings_provider_iqa_atmo_aura_key">ATMO AURA Schlüssel</string>
+    <string name="action_continue">Weiter</string>
+    <string name="settings_provider_baidu_ip_location">Baidu IP Standort</string>
+    <string name="settings_icon_providers_title">Icon Packs</string>
+    <string name="settings_main_cards_title">Karten</string>
+    <string name="settings_main_section_options">Optionen</string>
+    <string name="settings_main_section_animations">Animationen</string>
+    <string name="settings_main_summary">Kartenreihenfolge, angezeigte Daten, Animationen…</string>
+    <string name="settings_main_background_animation_disabled">\@string/settings_disabled</string>
+    <string name="settings_notifications">Benachrichtigungen</string>
+    <string name="settings_main_cards_other_element_animations_switch">Animation weiterer Elemente</string>
+    <string name="settings_widgets_day_night_temp_reversed_title">Reihenfolge der Tag-/Nachttemperaturen umkehren</string>
+    <string name="settings_appearance_summary">Sprache, Dunkelmodus, Icon Pack, Einheiten…</string>
+    <string name="settings_notifications_summary">Wetterwarnungen, Niederschlag, Vorhersage…</string>
+    <string name="settings_widgets_notification_feels_like_switch">Gefühlte Temperatur verwenden</string>
+    <string name="weather_api_key_required_missing_dialog">Um diesen Dienst zu nutzen, müssen Sie einen API-Schlüssel angeben.</string>
+    <string name="settings_main_section_displayed_data">Angezeigte Daten</string>
+    <string name="settings_widgets_live_wallpaper_summary">Wetteranimation als Hintergrundbild festlegen</string>
 </resources>
