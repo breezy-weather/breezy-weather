@@ -445,8 +445,8 @@
     <string name="settings_main_yesterday_alert_lines_in_trends">Yesterday/Alert lines in trends</string>
     <string name="settings_main_section_animations">Animations</string>
     <string name="settings_main_background_animation_title">Background animation</string>
-    <string name="settings_main_background_animation_enabled">@string/settings_enabled</string>
-    <string name="settings_main_background_animation_disabled">@string/settings_disabled</string>
+    <string name="settings_main_background_animation_enabled">Enabled</string>
+    <string name="settings_main_background_animation_disabled">Disabled</string>
     <string name="settings_main_gravity_sensor_switch">Gravity sensor</string>
     <string name="settings_main_cards_fade_in_switch">Cards fade in</string>
     <!-- Elements = temperature in header, AQI, sun &amp; moon arc, etc -->
