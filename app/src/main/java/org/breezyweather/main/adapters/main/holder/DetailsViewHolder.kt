@@ -1,5 +1,6 @@
 package org.breezyweather.main.adapters.main.holder
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
@@ -65,35 +66,44 @@ class DetailsViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     @Composable
     private fun ContentView(detailDisplayList: List<DetailDisplay>, current: Current, location: Location) {
         Column {
-            detailDisplayList.forEach { detailDisplay ->
-                detailDisplay.getCurrentValue(LocalContext.current, current, location.isDaylight)?.let {
-                    ListItem(
-                        colors = ListItemDefaults.colors(
-                            containerColor = Color.Transparent
-                        ),
-                        headlineContent = {
-                            Text(
-                                detailDisplay.getName(LocalContext.current),
-                                fontWeight = FontWeight.Bold,
-                                color = Color(MainThemeColorProvider.getColor(location, R.attr.colorTitleText))
-                            )
-                        },
-                        supportingContent = {
-                            Text(
-                                it,
-                                color = DayNightTheme.colors.bodyColor
-                            )
-                        },
-                        leadingContent = {
-                            Icon(
-                                painterResource(detailDisplay.iconId),
-                                contentDescription = detailDisplay.getName(LocalContext.current),
-                                tint = Color(MainThemeColorProvider.getColor(location, R.attr.colorTitleText))
-                            )
-                        }
-                    )
-                }
+            availableDetails(LocalContext.current, detailDisplayList, current, location.isDaylight).forEach { detailDisplay ->
+                ListItem(
+                    colors = ListItemDefaults.colors(
+                        containerColor = Color.Transparent
+                    ),
+                    headlineContent = {
+                        Text(
+                            detailDisplay.getName(LocalContext.current),
+                            fontWeight = FontWeight.Bold,
+                            color = Color(MainThemeColorProvider.getColor(location, R.attr.colorTitleText))
+                        )
+                    },
+                    supportingContent = {
+                        Text(
+                            detailDisplay.getCurrentValue(LocalContext.current, current, location.isDaylight)!!,
+                            color = DayNightTheme.colors.bodyColor
+                        )
+                    },
+                    leadingContent = {
+                        Icon(
+                            painterResource(detailDisplay.iconId),
+                            contentDescription = detailDisplay.getName(LocalContext.current),
+                            tint = Color(MainThemeColorProvider.getColor(location, R.attr.colorTitleText))
+                        )
+                    }
+                )
             }
+        }
+    }
+
+    companion object {
+        fun availableDetails(
+            context: Context,
+            detailDisplayList: List<DetailDisplay>,
+            current: Current,
+            isDaylight: Boolean
+        ): List<DetailDisplay> = detailDisplayList.filter {
+            it.getCurrentValue(context, current, isDaylight) != null
         }
     }
 }

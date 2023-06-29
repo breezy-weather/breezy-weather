@@ -2,12 +2,14 @@
 <li>Add troubleshooting settings.</li>
 <li>Add more AccuWeather settings.</li>
 <li>Make widgets reconfigurable on recent Android versions.</li>
-<li>Update German and Portuguese (Brazil) translations.</li>
+<li>Update German, Italian and Portuguese (Brazil) translations.</li>
 <li>Fix location search results for AccuWeather (province was saved as city name, and city as district). Already existing locations must be re-added.</li>
 <li>Add small Celsius/Fahrenheit unit for temperature on main screen header.</li>
 <li>Fix back button in location list.</li>
 <li>Fix switch for Persistent notification widget</li>
 <li>Fix disabled settings could be switched on/off</li>
+<li>Fix could not re-add hourly air quality trend</li>
 <li>Last weather provider used for location search is now remembered.</li>
+<li>Don’t display Details/Live card if there is no data to display.</li>
 <li>Various fixes and code improvements.</li>
 </ul>
