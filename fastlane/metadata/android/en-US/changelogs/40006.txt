@@ -1,0 +1,3 @@
+<ul>
+<li>Fix crash in daily view when air quality is not available.</li>
+</ul>
