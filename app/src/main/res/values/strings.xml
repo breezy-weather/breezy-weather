@@ -88,7 +88,7 @@
     <string name="uv_level_6_7">High</string>
     <string name="uv_level_8_10">Very high</string>
     <string name="uv_level_11">Extreme</string>
-    <string name="uv_alert_level">Alert level</string>
+    <string name="uv_alert_level">Alert</string>
     <!-- Air quality -->
     <string name="air_quality_level_1">Excellent</string>
     <string name="air_quality_level_1_description">The air quality is ideal for most individuals; enjoy your normal outdoor activities.</string>
