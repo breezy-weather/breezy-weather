@@ -460,4 +460,8 @@
     <string name="settings_background_updates_battery_optimization_disabled">L\'ottimizzazione della batteria è già disabilitata.</string>
     <string name="settings_background_updates_methods_title">Modalità di aggiornamento</string>
     <string name="settings_provider_open_weather">OpenWeather</string>
+    <string name="settings_background_updates">Aggiornamenti in background</string>
+    <string name="action_location_list">Elenco località</string>
+    <string name="action_add_new_location">Aggiungi una nuova località</string>
+    <string name="action_see_more">Vedi altro</string>
 </resources>
