@@ -11,5 +11,6 @@
 <li>Fix could not re-add hourly air quality trend</li>
 <li>Last weather provider used for location search is now remembered.</li>
 <li>Don’t display Details/Live card if there is no data to display.</li>
+<li>Replace direction with arrow in wind short descriptions to help a bit in tight spaces.</li>
 <li>Various fixes and code improvements.</li>
 </ul>

@@ -53,8 +53,8 @@ class Wind(
 
     fun getShortWindDescription(context: Context, unit: SpeedUnit): String {
         val builder = StringBuilder()
-        if (!direction.isNullOrEmpty()) {
-            builder.append(direction)
+        degree?.windArrow?.let {
+            builder.append(it)
         }
         speed?.let {
             if (builder.toString().isNotEmpty()) builder.append(" ")

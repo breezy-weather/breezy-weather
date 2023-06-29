@@ -11,8 +11,10 @@ class WindDegree(
 ) : Serializable {
 
     val windArrow: String?
-        get() = if (isNoDirection || degree == null) {
+        get() = if (degree == null) {
             null
+        } else if (isNoDirection) {
+            "⟳"
         } else when(degree) {
             in 22.5..67.5 -> "↙"
             in 67.5..112.5 -> "←"
