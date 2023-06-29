@@ -165,7 +165,6 @@
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
     <!-- Weather providers -->
-    <string name="weather_refreshed">Refreshed</string>
     <string name="weather_data_by">Data by $</string>
     <string name="weather_air_quality_and_pollen_data_by">Air quality and pollen data by $</string>
     <!-- $ = weather data provider -->
@@ -385,8 +384,8 @@
     <string name="settings_background_updates_method_worker">Android Worker\nRecommended method. Try switching if you don’t receive notifications or widgets are not refreshing.</string>
     <string name="settings_background_updates_method_notification">Persistent notification\nMore reliable method but requires app to stay active in the background.</string>
     <string name="settings_background_updates_method_notification_dialog_title">Disable notification category</string>
-    <!-- $ = @string/notification_channel_background_services -->
-    <string name="settings_background_updates_method_notification_dialog_content">This method adds a persistent notification that can be hidden by disabling the $ notification category in device app settings.</string>
+    <!-- $ = @string/notification_channel_background_services, please change quotes according to your language -->
+    <string name="settings_background_updates_method_notification_dialog_content">This method adds a persistent notification that can be hidden by disabling the “$” notification category in device app settings.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Manufacturer specific instructions</string>
     <!-- $ = Don’t kill my app! -->
     <string name="settings_background_updates_dont_kill_my_app_summary">Some manufacturers have additional app restrictions that kill background services. The Don’t kill my app! website has info on how to fix it.</string>

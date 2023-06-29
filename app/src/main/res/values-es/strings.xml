@@ -46,8 +46,8 @@
     <string name="short_friday">Vie</string>
     <string name="short_saturday">Sáb</string>
     <string name="short_sunday">Dom</string>
-    <string name="temperature_real_feel">Sensación Térmica</string>
-    <string name="temperature_real_feel_shade">Sensación Térmica Real</string>
+    <string name="temperature_real_feel">RealFeel®</string>
+    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Aparente</string>
     <string name="temperature_wind_chill">Viento frío</string>
     <string name="temperature_wet_bulb">Bombilla húmeda</string>

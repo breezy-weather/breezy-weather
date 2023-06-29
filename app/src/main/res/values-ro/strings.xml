@@ -46,8 +46,8 @@
     <string name="short_friday">Vi</string>
     <string name="short_saturday">Sâ</string>
     <string name="short_sunday">Du</string>
-    <string name="temperature_real_feel">Temp. resimțită</string>
-    <string name="temperature_real_feel_shade">Temp. resimțită la umbră</string>
+    <string name="temperature_real_feel">RealFeel®</string>
+    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Temp. aparentă</string>
     <string name="temperature_wind_chill">Punct de răcire</string>
     <string name="temperature_wet_bulb">Temp. la umed</string>

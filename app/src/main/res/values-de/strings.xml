@@ -516,6 +516,5 @@
     <string name="settings_debug_dump_crash_logs_summary">Speichert Absturzprotokolle in einer Datei, um sie mit den Entwicklern zu teilen</string>
     <string name="notification_channel_background_services">Hintergrunddienste</string>
     <string name="settings_debug">Debugging</string>
-    <string name="weather_refreshed">Aktualisiert</string>
     <string name="uv_alert_level">Warnung</string>
 </resources>

@@ -46,8 +46,8 @@
     <string name="short_friday">Dv</string>
     <string name="short_saturday">Ds</string>
     <string name="short_sunday">Dg</string>
-    <string name="temperature_real_feel">Sensació tèrmica</string>
-    <string name="temperature_real_feel_shade">Sensació tèrmica real</string>
+    <string name="temperature_real_feel">RealFeel®</string>
+    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Aparent</string>
     <string name="temperature_wind_chill">Vent fred</string>
     <string name="temperature_wet_bulb">Temperatura humida</string>

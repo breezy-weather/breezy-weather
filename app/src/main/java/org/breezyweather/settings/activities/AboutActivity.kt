@@ -252,7 +252,12 @@ class AboutActivity : GeoActivity() {
             name = "Washington Luiz Candido dos Santos Neto",
             url = "https://hosted.weblate.org/user/Netocon/",
             flag = "🇧🇷",
-        )
+        ),
+        ContributorItem(
+            name = "Henry The Mole",
+            url = "https://hosted.weblate.org/user/htmole/",
+            flag = "🇮🇹",
+        ),
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {

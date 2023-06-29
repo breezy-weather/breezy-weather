@@ -351,7 +351,7 @@
     <string name="action_continue">Continua</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="widget_style_oreo_google_sans">Oreo (Google sans)</string>
-    <string name="weather_air_quality_and_pollen_data_by">Dati su qualità dell\'aria e polline da $</string>
+    <string name="weather_air_quality_and_pollen_data_by">Dati su qualità dell’aria e polline da $</string>
     <string name="weather_source_china">Cina</string>
     <string name="weather_source_mf">Météo France</string>
     <string name="location_results_by">Risultati localizzazione di $</string>
@@ -373,17 +373,16 @@
     <string name="uv_level_8_10">Molto alto</string>
     <string name="uv_level_11">Estremamente alto</string>
     <string name="uv_alert_level">Livello di allerta</string>
-    <string name="air_quality_level_1_description">La qualità dell\'aria è ideale per la maggior parte delle persone; goditi le tue normali attività all\'aperto.</string>
+    <string name="air_quality_level_1_description">La qualità dell’aria è ideale per la maggior parte delle persone; goditi le tue normali attività all’aperto.</string>
     <string name="air_quality_level_1">Eccellente</string>
     <string name="air_quality_level_2">Discreta</string>
-    <string name="air_quality_level_2_description">La qualità dell\'aria è generalmente accettabile per la maggior parte delle persone. Tuttavia, i gruppi sensibili possono manifestare sintomi da lievi a moderati a causa dell\'esposizione a lungo termine.</string>
+    <string name="air_quality_level_2_description">La qualità dell’aria è generalmente accettabile per la maggior parte delle persone. Tuttavia, i gruppi sensibili possono manifestare sintomi da lievi a moderati a causa dell’esposizione a lungo termine.</string>
     <string name="air_quality_level_3">Scadente</string>
-    <string name="air_quality_level_3_description">L\'aria ha raggiunto un alto livello di inquinamento ed è malsana per i gruppi sensibili. Riduci il tempo trascorso all\'aperto se avverti sintomi come difficoltà respiratorie o irritazione alla gola.</string>
+    <string name="air_quality_level_3_description">L’aria ha raggiunto un alto livello di inquinamento ed è malsana per i gruppi sensibili. Riduci il tempo trascorso all’aperto se avverti sintomi come difficoltà respiratorie o irritazione alla gola.</string>
     <string name="air_quality_level_4">Malsana</string>
-    <string name="air_quality_level_4_description">Gli effetti sulla salute possono essere immediatamente percepiti dai gruppi sensibili. Individui sani possono avere difficoltà respiratorie e irritazioni alla gola in caso di esposizione prolungata. Limita l\'attività all\'aperto.</string>
+    <string name="air_quality_level_4_description">Gli effetti sulla salute possono essere immediatamente percepiti dai gruppi sensibili. Individui sani possono avere difficoltà respiratorie e irritazioni alla gola in caso di esposizione prolungata. Limita l’attività all’aperto.</string>
     <string name="air_quality_level_6">Pericolosa</string>
-    <string name="air_quality_level_6_description">Qualsiasi esposizione all\'aria, anche per pochi minuti, può portare a gravi effetti sulla salute di tutti. Evita le attività all\'aperto.</string>
-    <string name="weather_refreshed">Aggiornato</string>
+    <string name="air_quality_level_6_description">Qualsiasi esposizione all’aria, anche per pochi minuti, può portare a gravi effetti sulla salute di tutti. Evita le attività all’aperto.</string>
     <string name="weather_source_metno">MET Norway</string>
     <string name="weather_source_metno_voice">Istituto Meteorologico Norvegese</string>
     <string name="action_add_from_map">Aggiungi dalla mappa</string>
@@ -447,17 +446,17 @@
     <string name="settings_background_updates_method_worker">Android Worker
 \nModalità raccomandata. Prova a cambiare se non ricevi notifiche o i widget non si aggiornano.</string>
     <string name="settings_background_updates_method_notification">Notifica persistente
-\nMetodo più affidabile ma richiede che l\'app rimanga attiva in background.</string>
+\nMetodo più affidabile ma richiede che l’app rimanga attiva in background.</string>
     <string name="wind_direction_short_E">E</string>
     <string name="wind_direction_short_SE">SE</string>
     <string name="wind_direction_short_W">O</string>
     <string name="wind_direction_short_NW">NO</string>
-    <string name="air_quality_level_5_description">Gli effetti sulla salute saranno immediatamente avvertiti dai gruppi sensibili e dovrebbero sconsigliare attività all\'aperto. È probabile che le persone sane abbiano difficoltà respiratorie e irritazione alla gola; considera di rimanere in casa e riprogrammare le attività all\'aperto.</string>
+    <string name="air_quality_level_5_description">Gli effetti sulla salute saranno immediatamente avvertiti dai gruppi sensibili e dovrebbero sconsigliare attività all’aperto. È probabile che le persone sane abbiano difficoltà respiratorie e irritazione alla gola; considera di rimanere in casa e riprogrammare le attività all’aperto.</string>
     <string name="weather_api_unauthorized_title">Accesso API non autorizzato</string>
     <string name="weather_api_key_required_missing_content">Per utilizzare questo provider, devi fornire una chiave API.</string>
     <string name="weather_api_limit_reached_title">Limite di richieste API raggiunto</string>
     <string name="weather_api_unauthorized_content">Per alcuni fornitori di servizi meteo, devi fornire la tua chiave API. Se ne hai già fornita una, ricontrolla la chiave API che hai fornito.</string>
-    <string name="settings_background_updates_battery_optimization_disabled">L\'ottimizzazione della batteria è già disabilitata.</string>
+    <string name="settings_background_updates_battery_optimization_disabled">L’ottimizzazione della batteria è già disabilitata.</string>
     <string name="settings_background_updates_methods_title">Modalità di aggiornamento</string>
     <string name="settings_provider_open_weather">OpenWeather</string>
     <string name="settings_background_updates">Aggiornamenti in background</string>
@@ -484,14 +483,14 @@
     <string name="settings_main_cards_title">Schede</string>
     <string name="settings_main_daily_trends_title">Tendenze giornaliere</string>
     <string name="settings_main_hourly_trends_title">Tendenze orarie</string>
-    <string name="settings_main_header_details_title">Dettagli nell\'intestazione</string>
+    <string name="settings_main_header_details_title">Dettagli nell’intestazione</string>
     <string name="settings_main_cards_fade_in_switch">Dissolvenza schede</string>
     <string name="settings_main_cards_other_element_animations_switch">Animazioni di altri elementi</string>
     <string name="settings_notifications_forecast_tomorrow_title">Notifica per le previsioni del giorno successivo</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Orario di notifica per le previsioni del giorno successivo</string>
     <string name="settings_widgets">Widgets &amp; sfondo animato</string>
-    <string name="settings_widgets_live_wallpaper_summary">Imposta un\'animazione meteo come sfondo</string>
-    <string name="settings_widgets_day_night_temp_reversed_title">Invertire l\'ordine delle temperature giorno/notte</string>
+    <string name="settings_widgets_live_wallpaper_summary">Imposta un’animazione meteo come sfondo</string>
+    <string name="settings_widgets_day_night_temp_reversed_title">Invertire l’ordine delle temperature giorno/notte</string>
     <string name="settings_widgets_section_widgets_in_use">Widgets in uso</string>
     <string name="settings_widgets_configure_widget_summary">Configura questo widget</string>
     <string name="settings_widgets_section_notification_widget">Widget di notifica</string>
@@ -544,7 +543,7 @@
     <string name="about_contribution_WangDaYeeeeee">Sviluppatore del progetto originario Geometric Weather</string>
     <string name="openmeteo_weather_text_clear_sky">Cielo sereno</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Istruzioni specifiche del produttore</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">Alcuni produttori hanno restrizioni aggiuntive per le app che interrompono i servizi in background. Il sito web Don\'t kill my app! ha informazioni su come risolvere il problema.</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">Alcuni produttori hanno restrizioni aggiuntive per le app che interrompono i servizi in background. Il sito web Don’t kill my app! ha informazioni su come risolvere il problema.</string>
     <string name="settings_providers">Fornitori di dati</string>
     <string name="settings_notifications_forecast_time_today_title">Orario di notifica per le previsioni odierne</string>
     <string name="settings_widgets_summary">Imposta lo sfondo, configura i widget utilizzati, widget di notifica…</string>

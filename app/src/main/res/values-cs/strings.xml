@@ -46,8 +46,8 @@
     <string name="short_friday">Pá</string>
     <string name="short_saturday">So</string>
     <string name="short_sunday">Ne</string>
-    <string name="temperature_real_feel">Pocitová teplota</string>
-    <string name="temperature_real_feel_shade">Pocitová teplota ve stínu</string>
+    <string name="temperature_real_feel">RealFeel®</string>
+    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Zdánlivá teplota</string>
     <string name="temperature_wind_chill">Ochlazení větrem</string>
     <string name="temperature_wet_bulb">Ochlazení vlhkostí</string>

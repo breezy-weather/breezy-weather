@@ -47,7 +47,7 @@
     <string name="short_saturday">La</string>
     <string name="short_sunday">Su</string>
     <string name="temperature_real_feel">RealFeel®</string>
-    <string name="temperature_real_feel_shade">RealFeel® varjossa</string>
+    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Näennäinen</string>
     <string name="temperature_wind_chill">Tuulen hyytävyys</string>
     <string name="temperature_wet_bulb">Märkälämpötila</string>

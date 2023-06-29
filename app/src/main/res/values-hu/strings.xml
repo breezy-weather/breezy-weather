@@ -44,8 +44,8 @@
     <string name="short_friday">PÉN</string>
     <string name="short_saturday">SZO</string>
     <string name="short_sunday">VAS</string>
-    <string name="temperature_real_feel">Valódi érzet</string>
-    <string name="temperature_real_feel_shade">Valódi érzet árnyékban</string>
+    <string name="temperature_real_feel">RealFeel®</string>
+    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Látszólagos hőmérséklet</string>
     <string name="temperature_wind_chill">Szélhűlés</string>
     <string name="temperature_wet_bulb">Nedves hőmérséklet</string>

@@ -469,7 +469,6 @@
     <string name="about_contribution_WangDaYeeeeee">原始项目几何天气的开发者</string>
     <string name="settings_main_background_animation_disabled">关闭</string>
     <string name="weather_source_openmeteo_voice">Open Meteo</string>
-    <string name="weather_refreshed">刷新完毕</string>
     <string name="alerts_to_follow">有需要关注的警报，点此查看。</string>
     <string name="weather_source_metno_voice">挪威气象研究所</string>
     <string name="weather_source_accuweather">AccuWeather</string>
