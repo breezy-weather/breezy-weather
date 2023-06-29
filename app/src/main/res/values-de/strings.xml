@@ -460,7 +460,7 @@
     <string name="settings_background_updates_refresh_title">Aktualisierungsrate</string>
     <string name="settings_background_updates_method_worker">Android Worker
 \nEmpfohlene Methode. Ändern Sie die Einstellung, falls Sie keine Benachrichtigungen erhalten oder Widgets nicht aktualisiert werden.</string>
-    <string name="settings_main_cards_fade_in_switch">Karten werden eingeblendet</string>
+    <string name="settings_main_cards_fade_in_switch">Karten werden animiert eingeblendet</string>
     <string name="action_see_more">Mehr anzeigen</string>
     <string name="settings_providers">Datenanbieter</string>
     <string name="settings_providers_weather_provider_current_location">Wetterdienst für aktuellen Standort</string>
@@ -493,4 +493,22 @@
     <string name="settings_widgets_notification_feels_like_switch">Gefühlte Temperatur verwenden</string>
     <string name="settings_main_section_displayed_data">Angezeigte Daten</string>
     <string name="settings_widgets_live_wallpaper_summary">Wetteranimation als Hintergrundbild festlegen</string>
+    <string name="settings_background_updates_battery_optimization_disabled">Akkuoptimierung ist bereits deaktiviert.</string>
+    <string name="weather_source_accu_preference_hours_120">120 Stunden</string>
+    <string name="weather_source_accu_preference_days_10">10 Tage</string>
+    <string name="weather_api_key_required_missing_title">Erforderlicher API-Schlüssel fehlt</string>
+    <string name="weather_source_accu_preference_days">Tage</string>
+    <string name="weather_source_accu_preference_portal">Portal</string>
+    <string name="weather_source_accu_preference_days_15">15 Tage</string>
+    <string name="weather_source_accu_preference_hours">Stunden</string>
+    <string name="weather_source_accu_preference_hours_1">1 Stunde</string>
+    <string name="weather_source_accu_preference_hours_12">12 Stunden</string>
+    <string name="weather_source_accu_preference_hours_24">24 Stunden</string>
+    <string name="weather_source_accu_preference_hours_72">72 Stunden</string>
+    <string name="settings_background_updates_battery_optimization_activity_not_found">Geräteeinstellungen konnten nicht geöffnet werden.</string>
+    <string name="settings_background_updates_battery_optimization_summary">Dies ist das Erste, was Sie versuchen sollten, wenn Sie keine Benachrichtigungen erhalten oder Widgets nicht aktualisiert werden.</string>
+    <string name="weather_api_key_required_missing_content">Um diesen Anbieter nutzen zu können, benötigen Sie einen API-Schlüssel.</string>
+    <string name="weather_source_accu_preference_days_5">5 Tage</string>
+    <string name="weather_source_accu_preference_days_1">1 Tag</string>
+    <string name="settings_background_updates_method_notification_dialog_title">Benachrichtigungskategorie deaktivieren</string>
 </resources>
