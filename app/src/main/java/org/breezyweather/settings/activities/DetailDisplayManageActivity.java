@@ -29,6 +29,7 @@ import org.breezyweather.theme.ThemeManager;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DetailDisplayManageActivity extends GeoActivity {
@@ -129,16 +130,7 @@ public class DetailDisplayManageActivity extends GeoActivity {
         mDetailDisplayItemTouchHelper = new ItemTouchHelper(new DetailDisplaySwipeCallback());
         mDetailDisplayItemTouchHelper.attachToRecyclerView(mBinding.recyclerView);
 
-        List<DetailDisplay> otherDetails = new ArrayList<>();
-        otherDetails.add(DetailDisplay.DETAIL_FEELS_LIKE);
-        otherDetails.add(DetailDisplay.DETAIL_WIND);
-        otherDetails.add(DetailDisplay.DETAIL_UV_INDEX);
-        otherDetails.add(DetailDisplay.DETAIL_HUMIDITY);
-        otherDetails.add(DetailDisplay.DETAIL_DEW_POINT);
-        otherDetails.add(DetailDisplay.DETAIL_PRESSURE);
-        otherDetails.add(DetailDisplay.DETAIL_VISIBILITY);
-        otherDetails.add(DetailDisplay.DETAIL_CLOUD_COVER);
-        otherDetails.add(DetailDisplay.DETAIL_CEILING);
+        List<DetailDisplay> otherDetails = new ArrayList<>(Arrays.asList(DetailDisplay.values()));
         for (int i = otherDetails.size() - 1; i >= 0; i--) {
             for (DetailDisplay displayDetail : displayDetails) {
                 if (otherDetails.get(i) == displayDetail) {

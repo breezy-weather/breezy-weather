@@ -22,6 +22,7 @@ import com.google.android.material.appbar.AppBarLayout;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.breezyweather.common.basic.GeoActivity;
@@ -137,13 +138,7 @@ public class CardDisplayManageActivity extends GeoActivity {
         this.mCardDisplayItemTouchHelper = new ItemTouchHelper(new CardDisplaySwipeCallback());
         mCardDisplayItemTouchHelper.attachToRecyclerView(recyclerView);
 
-        List<CardDisplay> otherCards = new ArrayList<>();
-        otherCards.add(CardDisplay.CARD_DAILY_OVERVIEW);
-        otherCards.add(CardDisplay.CARD_HOURLY_OVERVIEW);
-        otherCards.add(CardDisplay.CARD_AIR_QUALITY);
-        otherCards.add(CardDisplay.CARD_ALLERGEN);
-        otherCards.add(CardDisplay.CARD_SUNRISE_SUNSET);
-        otherCards.add(CardDisplay.CARD_LIVE);
+        List<CardDisplay> otherCards = new ArrayList<>(Arrays.asList(CardDisplay.values()));
         for (int i = otherCards.size() - 1; i >= 0; i--) {
             for (CardDisplay displayCard : displayCards) {
                 if (otherCards.get(i) == displayCard) {

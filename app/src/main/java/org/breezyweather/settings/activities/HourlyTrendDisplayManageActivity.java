@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.breezyweather.common.basic.GeoActivity;
@@ -132,11 +133,7 @@ public class HourlyTrendDisplayManageActivity extends GeoActivity {
         mHourlyTrendDisplayItemTouchHelper = new ItemTouchHelper(new CardDisplaySwipeCallback());
         mHourlyTrendDisplayItemTouchHelper.attachToRecyclerView(mBinding.recyclerView);
 
-        List<HourlyTrendDisplay> otherTags = new ArrayList<>();
-        otherTags.add(HourlyTrendDisplay.TAG_TEMPERATURE);
-        otherTags.add(HourlyTrendDisplay.TAG_WIND);
-        otherTags.add(HourlyTrendDisplay.TAG_UV_INDEX);
-        otherTags.add(HourlyTrendDisplay.TAG_PRECIPITATION);
+        List<HourlyTrendDisplay> otherTags = new ArrayList<>(Arrays.asList(HourlyTrendDisplay.values()));
         for (int i = otherTags.size() - 1; i >= 0; i--) {
             for (HourlyTrendDisplay displayTag : displayTags) {
                 if (otherTags.get(i) == displayTag) {
