@@ -511,4 +511,8 @@
     <string name="notification_channel_background_services">Hintergrunddienste</string>
     <string name="settings_debug">Debugging</string>
     <string name="uv_alert_level">Warnung</string>
+    <string name="location_search_change_weather_provider">Wetterdienst ändern</string>
+    <string name="location_search_weather_provider">Wetterdienst</string>
+    <string name="location_swipe_to_delete">Nach links wischen zum Löschen des Eintrags</string>
+    <string name="location_service_baidu_ip">Baidu IP Standort (nur für China)</string>
 </resources>
