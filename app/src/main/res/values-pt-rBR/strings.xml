@@ -184,7 +184,7 @@
     <string name="widget_custom_subtitle_keyword_xmp_description">Fase da lua de hoje, amanhã, …, 4 dias depois</string>
     <string name="widget_live_wallpaper_weather_kind">Clima</string>
     <string name="widget_live_wallpaper_day_night_type">Hora</string>
-    <string name="location_message_added">Local adicionada com sucesso</string>
+    <string name="location_message_added">Local adicionado com sucesso</string>
     <string name="location_message_deleted">Local removida com sucesso</string>
     <string name="location_message_list_cannot_be_empty">A lista de locais não pode estar vazia</string>
     <string name="location_search_placeholder">Encontrar local…</string>
@@ -400,4 +400,15 @@
     <string name="wind_direction_short_variable">Variável</string>
     <string name="action_location_list">Lista de locais</string>
     <string name="message_network_unavailable">Rede indisponível</string>
+    <string name="settings_main_cards_title">Cartões</string>
+    <string name="settings_main">Tela principal</string>
+    <string name="settings_main_section_options">Opções</string>
+    <string name="settings_notifications_precipitations_title">Notificações de precipitações</string>
+    <string name="settings_main_daily_trends_title">Tendências diárias</string>
+    <string name="settings_background_updates_refresh_never">Nunca</string>
+    <string name="settings_main_background_animation_disabled">Desativado</string>
+    <string name="settings_main_background_animation_enabled">Ativado</string>
+    <string name="settings_background_updates_summary">Taxa de atualização, solução de problemas…</string>
+    <string name="settings_notifications_alerts_title">Notificações de alertas meteorológicos</string>
+    <string name="settings_appearance_summary">Idioma, modo escuro, pacote de ícones, unidades…</string>
 </resources>
