@@ -527,6 +527,6 @@ class MainActivity : GeoActivity(),
     }
 
     override fun onSelectProviderActivityStarted() {
-        IntentHelper.startSelectProviderActivity(this)
+        IntentHelper.startSelectWeatherProviderActivity(this)
     }
 }

@@ -39,7 +39,7 @@ public class LocationHelpDialog {
                 .setOnClickListener(v -> IntentHelper.startLocationSettingsActivity(activity));
 
         view.findViewById(R.id.dialog_location_help_providerContainer)
-                .setOnClickListener(v -> IntentHelper.startSelectProviderActivity(activity));
+                .setOnClickListener(v -> IntentHelper.startSelectLocationProviderActivity(activity));
 
         view.findViewById(R.id.dialog_location_help_manageContainer).setOnClickListener(v -> {
             if (activity instanceof MainActivity) {

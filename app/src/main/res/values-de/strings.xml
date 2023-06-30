@@ -117,7 +117,7 @@
     <string name="settings_main_gravity_sensor_switch">Lagesensor</string>
     <string name="settings_appearance_icon_pack_title">Symbolstil</string>
     <string name="settings_widgets_live_wallpaper_title">Live-Hintergrund</string>
-    <string name="settings_providers_location_service">Standortanbieter</string>
+    <string name="settings_location_service">Standortanbieter</string>
     <string name="settings_widgets_notification_temp_icon_switch">Temperatur in der Statusleiste anzeigen</string>
     <string name="settings_units_precipitation">Einheit Niederschlag</string>
     <string name="settings_units_pressure">Einheit Luftdruck</string>
@@ -221,8 +221,8 @@
     <string name="weather_kind_sleet">Schneeregen</string>
     <string name="weather_kind_haze">Dunst</string>
     <string name="precipitation_between_time">Niederschlag zwischen $1 und $2</string>
-    <string name="settings_provider_accu_weather_key">AccuWeather API-Schlüssel</string>
-    <string name="settings_provider_open_weather_one_call_version">OpenWeather OneCall Version</string>
+    <string name="settings_weather_provider_accu_weather_key">AccuWeather API-Schlüssel</string>
+    <string name="settings_weather_provider_open_weather_one_call_version">OpenWeather OneCall Version</string>
     <string name="unit_mps">m/s</string>
     <string name="unit_kn">kn</string>
     <string name="unit_mm">mm</string>
@@ -311,9 +311,7 @@
     <string name="unit_kn_voice">Knoten</string>
     <string name="notification_location_in_background">Ortung im Hintergrund</string>
     <string name="about_contribution_WangDaYeeeeee">Entwickler des ursprünglichen Projekts Geometric Weather</string>
-    <string name="settings_provider_open_weather_key">OpenWeather API-Schlüssel</string>
-    <string name="settings_provider_accu_weather">AccuWeather</string>
-    <string name="settings_provider_open_weather">OpenWeather</string>
+    <string name="settings_weather_provider_open_weather_key">OpenWeather API-Schlüssel</string>
     <string name="air_quality_level_2">Mäßig</string>
     <string name="unit_inhg">inHg</string>
     <string name="unit_mmhg_voice">Millimeter-Quecksilbersäule</string>
@@ -417,7 +415,6 @@
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="widget_clock_font_analog">Analog</string>
-    <string name="settings_provider_mf">Météo France</string>
     <string name="settings_color_day_always">Immer Tag</string>
     <string name="unit_mm_voice">Millimeter</string>
     <string name="unit_cm_voice">Zentimeter</string>
@@ -438,7 +435,7 @@
     <string name="openmeteo_weather_text_drizzle_moderate_intensity">Mäßiger Sprühregen</string>
     <string name="unit_mgpcum_voice">Milligramm pro Kubikmeter</string>
     <string name="air_quality_level_5_description">Empfindliche Personengruppen werden unmittelbare gesundheitliche Auswirkungen spüren und sollten Aktivitäten im Freien vermeiden. Bei gesunden Menschen kommt es bei längerer Exposition wahrscheinlich zu Atembeschwerden und Hustenreiz. Wir empfehlen, nicht nach draußen zu gehen und Aktivitäten im Freien zu verschieben.</string>
-    <string name="settings_provider_default_value">Standard (unverändert)</string>
+    <string name="settings_weather_provider_default_value">Standard (unverändert)</string>
     <string name="unit_mb">mb</string>
     <string name="about_matrix">Matrix-Server</string>
     <string name="about_source_code">Quellcode</string>
@@ -462,8 +459,7 @@
 \nEmpfohlene Methode. Ändern Sie die Einstellung, falls Sie keine Benachrichtigungen erhalten oder Widgets nicht aktualisiert werden.</string>
     <string name="settings_main_cards_fade_in_switch">Karten werden animiert eingeblendet</string>
     <string name="action_see_more">Mehr anzeigen</string>
-    <string name="settings_providers">Datenanbieter</string>
-    <string name="settings_providers_weather_provider_current_location">Wetterdienst für aktuellen Standort</string>
+    <string name="settings_weather_providers_current_location">Wetterdienst für aktuellen Standort</string>
     <string name="settings_units_summary">Temperatur, Niederschlag, Entfernung, Geschwindigkeit, Druck…</string>
     <string name="settings_main">Hauptbildschirm</string>
     <string name="settings_widgets">Widgets &amp; Live-Hintergrund</string>
@@ -474,11 +470,10 @@
     <string name="settings_widgets_configure_widget_summary">Widget konfigurieren</string>
     <string name="settings_widgets_section_widgets_in_use">Verwendete Widgets</string>
     <string name="weather_air_quality_and_pollen_data_by">Luftqualitäts- und Pollenflugdaten von $</string>
-    <string name="settings_provider_baidu_ip_location_ak">Baidu IP Standort API-Schlüssel</string>
-    <string name="settings_provider_mf_wsft_key">Météo France WSFT Schlüssel</string>
-    <string name="settings_provider_iqa_atmo_aura_key">ATMO AURA Schlüssel</string>
+    <string name="settings_location_baidu_ip_location_ak">Baidu IP Standort API-Schlüssel</string>
+    <string name="settings_weather_provider_mf_wsft_key">Météo France WSFT Schlüssel</string>
+    <string name="settings_weather_provider_iqa_atmo_aura_key">ATMO AURA Schlüssel</string>
     <string name="action_continue">Weiter</string>
-    <string name="settings_provider_baidu_ip_location">Baidu IP Standort</string>
     <string name="settings_icon_providers_title">Icon Packs</string>
     <string name="settings_main_cards_title">Karten</string>
     <string name="settings_main_section_options">Optionen</string>

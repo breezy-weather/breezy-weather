@@ -141,8 +141,12 @@ public class IntentHelper {
         activity.startActivity(new Intent(activity, DetailDisplayManageActivity.class));
     }
 
-    public static void startSelectProviderActivity(Activity activity) {
-        activity.startActivity(new Intent(activity, SelectProviderActivity.class));
+    public static void startSelectLocationProviderActivity(Activity activity) {
+        activity.startActivity(new Intent(activity, SelectLocationProviderActivity.class));
+    }
+
+    public static void startSelectWeatherProviderActivity(Activity activity) {
+        activity.startActivity(new Intent(activity, SelectWeatherProviderActivity.class));
     }
 
     public static void startPreviewIconActivity(Activity activity, String packageName) {

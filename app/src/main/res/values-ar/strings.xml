@@ -166,7 +166,7 @@
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
     <string name="settings_widgets_live_wallpaper_title">الخلفية الحية</string>
-    <string name="settings_providers_location_service">مزود خدمة الموقع</string>
+    <string name="settings_location_service">مزود خدمة الموقع</string>
     <string name="settings_appearance_dark_mode_title">الوضع الداكن</string>
     <string name="settings_appearance_icon_pack_title">شكل الأيقونات</string>
     <string name="settings_appearance">المظهر</string>

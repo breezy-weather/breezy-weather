@@ -289,16 +289,15 @@
 
     <!-- content description -->
     <string name="action_back">Retour</string>
-    <string name="settings_provider_accu_weather">AccuWeather</string>
-    <string name="settings_provider_accu_weather_key">Clé AccuWeather</string>
-    <string name="settings_provider_open_weather">OpenWeather</string>
-    <string name="settings_provider_open_weather_key">Clé OpenWeather</string>
-    <string name="settings_provider_open_weather_one_call_version">Version d’OpenWeather OneCall</string>
-    <string name="settings_provider_baidu_ip_location">Baidu IP Location</string>
-    <string name="settings_provider_baidu_ip_location_ak">Clé API Baidu IP Location</string>
-    <string name="settings_provider_mf">Météo France</string>
-    <string name="settings_provider_mf_wsft_key">Clé Météo France WSFT</string>
-    <string name="settings_provider_iqa_atmo_aura_key">Clé ATMO AURA</string>
+    <string name="settings_location_baidu_ip_location_ak">Clé API Baidu IP Location</string>
+    <string name="settings_weather_provider_accu_weather_key">Clé AccuWeather</string>
+    <string name="settings_weather_provider_open_weather_key">Clé OpenWeather</string>
+    <string name="settings_location_summary">Paramètres des services de localisation</string>
+    <string name="settings_weather_providers">Fournisseurs météo</string>
+    <string name="settings_weather_providers_summary">Paramètres des fournisseurs météo</string>
+    <string name="settings_weather_provider_open_weather_one_call_version">Version d’OpenWeather OneCall</string>
+    <string name="settings_weather_provider_mf_wsft_key">Clé Météo France WSFT</string>
+    <string name="settings_weather_provider_iqa_atmo_aura_key">Clé ATMO AURA</string>
     <string name="settings_icon_providers_check_details">Plus de détails</string>
     <string name="alerts_count">$ vigilances météo</string> <!-- $ = alert count. -->
     <string name="air_quality_pm25_voice">PM deux point cinq</string>
@@ -378,9 +377,8 @@
     <string name="settings_background_updates_dont_kill_my_app_title">Instructions spécifiques selon fabricant</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Certains fabricants ont mis en place des restrictions supplémentaires sur les applications qui tuent les services en arrière-plan. Le site web Don’t kill my app! contient des informations pour résoudre ce problème.</string>
     <string name="settings_background_updates_worker_info_title">Informations sur les processsus</string>
-    <string name="settings_providers">Fournisseurs de données</string>
-    <string name="settings_providers_summary">Paramètres des fournisseurs météo et services de localisation</string>
-    <string name="settings_providers_weather_provider_current_location">Fournisseur météo pour ma position</string>
+    <string name="settings_location">Localisation</string>
+    <string name="settings_weather_providers_current_location">Fournisseur météo pour ma localisation</string>
     <string name="settings_appearance">Apparence</string>
     <string name="settings_appearance_summary">Langue, mode sombre, pack d’icône, unités…</string>
     <string name="settings_appearance_language_title">Langue</string>
@@ -434,14 +432,14 @@
     <string name="settings_debug_summary">Rapports de plantage</string>
     <string name="settings_debug_dump_crash_logs_title">Exporter les rapports de plantage</string>
     <string name="settings_debug_dump_crash_logs_summary">Enregistre les rapports de plantage dans un fichier pour les partager avec les développeurs</string>
-    <string name="settings_providers_location_service">Service de localisation</string>
+    <string name="settings_location_service">Service de localisation</string>
     <string name="settings_units_temperature">Unité de température</string>
     <string name="settings_units_distance">Unité de distance</string>
     <string name="settings_units_precipitation">Unité des précipitations</string>
     <string name="settings_units_pressure">Unité de pression</string>
     <string name="settings_units_speed">Unité de vitesse</string>
     <!-- Littéralement "suivre les préférences système" -->
-    <string name="settings_provider_default_value">Par défaut (inchangé)</string>
+    <string name="settings_weather_provider_default_value">Par défaut (inchangé)</string>
 
     <!-- Air quality -->
     <string name="air_quality_level_1">Excellent</string>
@@ -490,6 +488,7 @@
     <string name="weather_source_accuweather">AccuWeather</string>
     <string name="weather_source_accuweather_voice">ACCU weather.com</string>
     <string name="weather_source_accu_preference_days">Jours</string>
+    <string name="weather_source_accu_preference_portal">Portail</string>
     <string name="weather_source_accu_preference_days_1">1 jour</string>
     <string name="weather_source_accu_preference_days_5">5 jours</string>
     <string name="weather_source_accu_preference_days_10">10 jours</string>

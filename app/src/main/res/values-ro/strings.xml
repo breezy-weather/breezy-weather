@@ -221,7 +221,7 @@
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
     <string name="settings_widgets_live_wallpaper_title">Tapet dinamic (Live wallpaper)</string>
-    <string name="settings_providers_location_service">Serviciu locație</string>
+    <string name="settings_location_service">Serviciu locație</string>
     <string name="settings_appearance_dark_mode_title">Mod întunecat (Temă)</string>
     <string name="settings_appearance_icon_pack_title">Pachet de pictograme (icoane)</string>
     <string name="settings_appearance">Aspect interfață</string>
@@ -304,9 +304,7 @@
     <string name="unit_lpsqmph">L/m²/h</string>
     <string name="openmeteo_weather_text_freezing_drizzle_light_intensity">Burniță înghețată de intensitate mică</string>
     <string name="settings_widgets_week_icon_mode_title">Pictogramă de afișat în vizualizări săptămânale</string>
-    <string name="settings_provider_open_weather">OpenWeather</string>
-    <string name="settings_provider_open_weather_one_call_version">OpenWeather versiune OneCall</string>
-    <string name="settings_provider_mf">Météo Franţa</string>
+    <string name="settings_weather_provider_open_weather_one_call_version">OpenWeather versiune OneCall</string>
     <string name="settings_icon_providers_weather_adaptive_icon">Pictogramă vreme</string>
     <string name="unit_km">KM</string>
     <string name="unit_kelvin_short">K</string>
@@ -337,13 +335,12 @@
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="settings_items_drag_to_sort">Atingeți pentru a trage elementele din listă pentru a le sorta</string>
-    <string name="settings_provider_default_value">Implicit (neschimbat)</string>
-    <string name="settings_provider_accu_weather">AccuWeather</string>
-    <string name="settings_provider_accu_weather_key">Cheie AccuWeather</string>
-    <string name="settings_provider_mf_wsft_key">Météo Franţa cheie WSFT</string>
+    <string name="settings_weather_provider_default_value">Implicit (neschimbat)</string>
+    <string name="settings_weather_provider_accu_weather_key">Cheie AccuWeather</string>
+    <string name="settings_weather_provider_mf_wsft_key">Météo Franţa cheie WSFT</string>
     <string name="settings_icon_providers_check_details">Verificați detaliile</string>
-    <string name="settings_provider_baidu_ip_location_ak">Baidu Locație IP cheie API</string>
-    <string name="settings_provider_iqa_atmo_aura_key">cheie ATMO AURA</string>
+    <string name="settings_location_baidu_ip_location_ak">Baidu Locație IP cheie API</string>
+    <string name="settings_weather_provider_iqa_atmo_aura_key">cheie ATMO AURA</string>
     <string name="unit_kn">Nod</string>
     <string name="unit_kn_voice">Noduri</string>
     <string name="unit_cm_voice">Centimetri</string>
@@ -393,7 +390,6 @@
     <string name="unit_km_voice">Kilometri</string>
     <string name="unit_inhg_voice">Inci coloană de mercur</string>
     <string name="unit_cmph_voice">Centimetri pe oră</string>
-    <string name="settings_provider_baidu_ip_location">Baidu Locație IP</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Furtună cu grindină ușoară</string>
     <string name="unit_nmi_voice">Mile nautice</string>
     <string name="unit_in">in</string>
@@ -401,7 +397,7 @@
     <string name="widget_style_mini">Mini</string>
     <string name="widget_material_you_current">Material You - Actual</string>
     <string name="unit_mph">mph</string>
-    <string name="settings_provider_open_weather_key">Cheie OpenWeather</string>
+    <string name="settings_weather_provider_open_weather_key">Cheie OpenWeather</string>
     <string name="unit_hpa">hPa</string>
     <string name="unit_m">m</string>
     <string name="openmeteo_weather_text_clear_sky">Cer senin</string>
@@ -538,9 +534,7 @@
     <string name="settings_background_updates_worker_info_title">Informații despre lucrător</string>
     <string name="settings_main_background_animation_disabled">Dezactivat</string>
     <string name="settings_main_background_animation_enabled">Activat</string>
-    <string name="settings_providers">Furnizorii de date</string>
-    <string name="settings_providers_summary">Setări ale furnizorilor de vreme și ale serviciilor de localizare</string>
-    <string name="settings_providers_weather_provider_current_location">Furnizor de vreme pentru locația curentă</string>
+    <string name="settings_weather_providers_current_location">Furnizor de vreme pentru locația curentă</string>
     <string name="settings_icon_providers_title">Pachete de pictograme (icoane)</string>
     <string name="settings_icon_providers_weather_icon_light">Pictogramă luminoasă</string>
     <string name="settings_units_summary">Temperatură, precipitații, distanță, viteză, presiune…</string>

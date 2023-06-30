@@ -242,7 +242,7 @@
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
     <string name="settings_widgets_live_wallpaper_title">動態壁紙</string>
-    <string name="settings_providers_location_service">位置服務</string>
+    <string name="settings_location_service">位置服務</string>
     <string name="settings_appearance_dark_mode_title">暗色模式</string>
     <string name="settings_appearance">外觀</string>
     <string name="settings_appearance_icon_pack_title">圖標風格</string>

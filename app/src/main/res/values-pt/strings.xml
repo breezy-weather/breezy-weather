@@ -110,7 +110,7 @@
     <string name="widget_refreshing">aguardando</string>
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
-    <string name="settings_providers_location_service">Serviço de Localização</string>
+    <string name="settings_location_service">Serviço de Localização</string>
     <string name="settings_appearance_dark_mode_title">Modo Escuro</string>
     <string name="settings_appearance">Aparência</string>
     <string name="settings_main_gravity_sensor_switch">Sensor Open Gravity</string>

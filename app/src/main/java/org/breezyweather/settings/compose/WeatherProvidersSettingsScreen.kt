@@ -3,15 +3,9 @@ package org.breezyweather.settings.compose
 import android.content.Context
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.res.stringArrayResource
-import androidx.compose.ui.res.stringResource
-import org.breezyweather.BuildConfig
-import org.breezyweather.BreezyWeather
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.provider.LocationProvider
 import org.breezyweather.weather.openweather.preferences.OpenWeatherOneCallVersion
 import org.breezyweather.common.basic.models.options.provider.WeatherSource
-import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.db.repositories.LocationEntityRepository
 import org.breezyweather.db.repositories.WeatherEntityRepository
 import org.breezyweather.settings.SettingsManager
@@ -24,12 +18,12 @@ import org.breezyweather.weather.accu.preferences.AccuHoursPreference
 import org.breezyweather.weather.accu.preferences.AccuPortalPreference
 
 @Composable
-fun ServiceProviderSettingsScreen(
+fun WeatherProvidersSettingsScreen(
     context: Context,
     paddingValues: PaddingValues,
 ) = PreferenceScreen(paddingValues = paddingValues) {
-    sectionHeaderItem(R.string.settings_providers_section_general)
-    listPreferenceItem(R.string.settings_providers_weather_provider_current_location) { id ->
+    sectionHeaderItem(R.string.settings_weather_providers_section_general)
+    listPreferenceItem(R.string.settings_weather_providers_current_location) { id ->
         ListPreferenceView(
             titleId = id,
             valueArrayId = R.array.weather_source_values,
@@ -53,29 +47,9 @@ fun ServiceProviderSettingsScreen(
             }
         )
     }
-    listPreferenceItem(R.string.settings_providers_location_service) { id ->
-        ListPreferenceView(
-            titleId = id,
-            selectedKey = SettingsManager.getInstance(context).locationProvider.id,
-            valueArrayId = R.array.location_services,
-            nameArrayId = R.array.location_service_values,
-            onValueChanged = { sourceId ->
-                SettingsManager
-                    .getInstance(context)
-                    .locationProvider = LocationProvider.getInstance(sourceId)
+    sectionFooterItem(R.string.settings_weather_providers_section_general)
 
-                SnackbarHelper.showSnackbar(
-                    context.getString(R.string.settings_changes_apply_after_restart),
-                    context.getString(R.string.action_restart)
-                ) {
-                    BreezyWeather.instance.recreateAllActivities()
-                }
-            }
-        )
-    }
-    sectionFooterItem(R.string.settings_providers_section_general)
-
-    sectionHeaderItem(R.string.settings_provider_accu_weather)
+    sectionHeaderItem(R.string.weather_source_accuweather)
     listPreferenceItem(R.string.weather_source_accu_preference_portal) { id ->
         ListPreferenceView(
             titleId = id,
@@ -89,12 +63,12 @@ fun ServiceProviderSettingsScreen(
             },
         )
     }
-    editTextPreferenceItem(R.string.settings_provider_accu_weather_key) { id ->
+    editTextPreferenceItem(R.string.settings_weather_provider_accu_weather_key) { id ->
         EditTextPreferenceView(
             titleId = id,
             summary = { context, content ->
                 content.ifEmpty {
-                    context.getString(R.string.settings_provider_default_value)
+                    context.getString(R.string.settings_weather_provider_default_value)
                 }
             },
             content = SettingsManager.getInstance(context).customAccuWeatherKey,
@@ -129,15 +103,15 @@ fun ServiceProviderSettingsScreen(
             },
         )
     }
-    sectionFooterItem(R.string.settings_provider_accu_weather)
+    sectionFooterItem(R.string.weather_source_accuweather)
 
-    sectionHeaderItem(R.string.settings_provider_open_weather)
-    editTextPreferenceItem(R.string.settings_provider_open_weather_key) { id ->
+    sectionHeaderItem(R.string.weather_source_openweather)
+    editTextPreferenceItem(R.string.settings_weather_provider_open_weather_key) { id ->
         EditTextPreferenceView(
             titleId = id,
             summary = { context, content ->
                 content.ifEmpty {
-                    context.getString(R.string.settings_provider_default_value)
+                    context.getString(R.string.settings_weather_provider_default_value)
                 }
             },
             content = SettingsManager.getInstance(context).customOpenWeatherKey,
@@ -146,7 +120,7 @@ fun ServiceProviderSettingsScreen(
             }
         )
     }
-    listPreferenceItem(R.string.settings_provider_open_weather_one_call_version) { id ->
+    listPreferenceItem(R.string.settings_weather_provider_open_weather_one_call_version) { id ->
         ListPreferenceView(
             titleId = id,
             selectedKey = SettingsManager.getInstance(context).customOpenWeatherOneCallVersion.id,
@@ -159,32 +133,15 @@ fun ServiceProviderSettingsScreen(
             },
         )
     }
-    sectionFooterItem(R.string.settings_provider_open_weather)
+    sectionFooterItem(R.string.weather_source_openweather)
 
-    sectionHeaderItem(R.string.settings_provider_baidu_ip_location)
-    editTextPreferenceItem(R.string.settings_provider_baidu_ip_location) { id ->
+    sectionHeaderItem(R.string.weather_source_mf)
+    editTextPreferenceItem(R.string.settings_weather_provider_mf_wsft_key) { id ->
         EditTextPreferenceView(
             titleId = id,
             summary = { context, content ->
                 content.ifEmpty {
-                    context.getString(R.string.settings_provider_default_value)
-                }
-            },
-            content = SettingsManager.getInstance(context).customBaiduIpLocationAk,
-            onValueChanged = {
-                SettingsManager.getInstance(context).customBaiduIpLocationAk = it
-            }
-        )
-    }
-    sectionFooterItem(R.string.settings_provider_baidu_ip_location)
-
-    sectionHeaderItem(R.string.settings_provider_mf)
-    editTextPreferenceItem(R.string.settings_provider_mf_wsft_key) { id ->
-        EditTextPreferenceView(
-            titleId = id,
-            summary = { context, content ->
-                content.ifEmpty {
-                    context.getString(R.string.settings_provider_default_value)
+                    context.getString(R.string.settings_weather_provider_default_value)
                 }
             },
             content = SettingsManager.getInstance(context).customMfWsftKey,
@@ -193,12 +150,12 @@ fun ServiceProviderSettingsScreen(
             }
         )
     }
-    editTextPreferenceItem(R.string.settings_provider_iqa_atmo_aura_key) { id ->
+    editTextPreferenceItem(R.string.settings_weather_provider_iqa_atmo_aura_key) { id ->
         EditTextPreferenceView(
             titleId = id,
             summary = { context, content ->
                 content.ifEmpty {
-                    context.getString(R.string.settings_provider_default_value)
+                    context.getString(R.string.settings_weather_provider_default_value)
                 }
             },
             content = SettingsManager.getInstance(context).customIqaAtmoAuraKey,
@@ -207,7 +164,7 @@ fun ServiceProviderSettingsScreen(
             }
         )
     }
-    sectionFooterItem(R.string.settings_provider_mf)
+    sectionFooterItem(R.string.weather_source_mf)
 
     bottomInsetItem()
 }

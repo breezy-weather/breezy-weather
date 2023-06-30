@@ -209,7 +209,7 @@
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
     <string name="settings_widgets_live_wallpaper_title">Sfondo animato</string>
-    <string name="settings_providers_location_service">Servizio Localizzazione</string>
+    <string name="settings_location_service">Servizio Localizzazione</string>
     <string name="settings_appearance_dark_mode_title">Tema</string>
     <string name="settings_appearance_icon_pack_title">Stile icone</string>
     <string name="settings_appearance">Aspetto</string>
@@ -218,7 +218,7 @@
     <string name="settings_units">Unità di misura</string>
     <string name="settings_notifications_section_forecast">Previsioni</string>
     <string name="settings_widgets_notification_temp_icon_switch">Temperatura come icona della barra di stato</string>
-    <string name="settings_provider_default_value">Predefinito (invariato)</string>
+    <string name="settings_weather_provider_default_value">Predefinito (invariato)</string>
     <string name="settings_widgets_notification_feels_like_switch">Usa temperatura percepita</string>
     <string name="message_updated_in_background">Aggiornato in background</string>
     <string name="notification_precipitation_today">Oggi potrebbero verificarsi delle precipitazioni.</string>
@@ -359,8 +359,7 @@
     <string name="widget_style_nano">Nano</string>
     <string name="widget_style_pixel">Pixel</string>
     <string name="widget_clock_font_analog">Analog</string>
-    <string name="settings_provider_accu_weather_key">Chiave AccuWeather</string>
-    <string name="settings_provider_baidu_ip_location">Localizzazione IP Baidu</string>
+    <string name="settings_weather_provider_accu_weather_key">Chiave AccuWeather</string>
     <string name="weather_source_mf_voice">Météo France</string>
     <string name="uv_level_0_2">Basso</string>
     <string name="alerts_to_follow">Avvisi da seguire, tocca qui per visualizzarli.</string>
@@ -384,7 +383,6 @@
     <string name="weather_source_metno">MET Norway</string>
     <string name="weather_source_metno_voice">Istituto Meteorologico Norvegese</string>
     <string name="action_add_from_map">Aggiungi dalla mappa</string>
-    <string name="settings_provider_accu_weather">AccuWeather</string>
     <string name="weather_source_accu_preference_portal">Portale</string>
     <string name="weather_source_accu_preference_days">Giorni</string>
     <string name="weather_source_accu_preference_days_1">1 giorno</string>
@@ -405,9 +403,9 @@
     <string name="location_search_weather_provider">Provider meteo</string>
     <string name="locations">Località</string>
     <string name="location_search_change_weather_provider">Cambia provider meteo</string>
-    <string name="settings_provider_open_weather_key">Chiave OpenWeather</string>
-    <string name="settings_provider_open_weather_one_call_version">Versione OpenWeather OneCall</string>
-    <string name="settings_provider_iqa_atmo_aura_key">Chiave ATMO AURA</string>
+    <string name="settings_weather_provider_open_weather_key">Chiave OpenWeather</string>
+    <string name="settings_weather_provider_open_weather_one_call_version">Versione OpenWeather OneCall</string>
+    <string name="settings_weather_provider_iqa_atmo_aura_key">Chiave ATMO AURA</string>
     <string name="settings_appearance_summary">Lingua, modalità scura, stile icone, unità di misura…</string>
     <string name="settings_icon_providers_title">Pacchetti icone</string>
     <string name="settings_units_summary">Temperatura, precipitazione, distanza, velocità, pressione…</string>
@@ -428,9 +426,8 @@
     <string name="weather_source_openmeteo">Open-Meteo</string>
     <string name="weather_source_openmeteo_voice">Open Meteo</string>
     <string name="weather_source_accuweather_voice">ACCU weather.com</string>
-    <string name="settings_provider_baidu_ip_location_ak">Chiave API Localizzazione IP Baidu</string>
-    <string name="settings_provider_mf">Météo France</string>
-    <string name="settings_provider_mf_wsft_key">Chiave WSFT Météo France</string>
+    <string name="settings_location_baidu_ip_location_ak">Chiave API Localizzazione IP Baidu</string>
+    <string name="settings_weather_provider_mf_wsft_key">Chiave WSFT Météo France</string>
     <string name="action_choose_weather_provider">Scegli il provider meteo</string>
     <string name="widget_style_mini">Mini</string>
     <string name="location_message_permission_missing">Autorizzazione di accesso alla posizione mancante</string>
@@ -456,7 +453,6 @@
     <string name="weather_api_unauthorized_content">Per alcuni fornitori di servizi meteo, devi fornire la tua chiave API. Se ne hai già fornita una, ricontrolla la chiave API che hai fornito.</string>
     <string name="settings_background_updates_battery_optimization_disabled">L’ottimizzazione della batteria è già disabilitata.</string>
     <string name="settings_background_updates_methods_title">Modalità di aggiornamento</string>
-    <string name="settings_provider_open_weather">OpenWeather</string>
     <string name="settings_background_updates">Aggiornamenti in background</string>
     <string name="action_location_list">Elenco località</string>
     <string name="action_add_new_location">Aggiungi una nuova località</string>
@@ -474,8 +470,7 @@
     <string name="openmeteo_weather_text_freezing_drizzle_light_intensity">Pioviggine gelata di leggera intensità</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Nebbia con deposito di brina</string>
     <string name="openmeteo_weather_text_rain_slight_intensity">Pioggia di lieve intensità</string>
-    <string name="settings_providers_summary">Provider meteo e impostazioni dei servizi di localizzazione</string>
-    <string name="settings_providers_weather_provider_current_location">Provider meteo per la posizione corrente</string>
+    <string name="settings_weather_providers_current_location">Provider meteo per la posizione corrente</string>
     <string name="settings_main_summary">Ordine schede, elementi visualizzati, animazioni…</string>
     <string name="settings_main_section_displayed_data">Dati visualizzati</string>
     <string name="settings_main_cards_title">Schede</string>
@@ -542,7 +537,6 @@
     <string name="openmeteo_weather_text_clear_sky">Cielo sereno</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Istruzioni specifiche del produttore</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Alcuni produttori hanno restrizioni aggiuntive per le app che interrompono i servizi in background. Il sito web Don’t kill my app! ha informazioni su come risolvere il problema.</string>
-    <string name="settings_providers">Fornitori di dati</string>
     <string name="settings_notifications_forecast_time_today_title">Orario di notifica per le previsioni odierne</string>
     <string name="settings_widgets_summary">Imposta lo sfondo, configura i widget utilizzati, widget di notifica…</string>
     <string name="settings_widgets_week_icon_mode_title">Icona da visualizzare nelle viste settimanali</string>

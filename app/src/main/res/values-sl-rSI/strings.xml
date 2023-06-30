@@ -128,7 +128,7 @@
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
     <string name="settings_widgets_live_wallpaper_title">Živo ozadje</string>
-    <string name="settings_providers_location_service">Dejavnost lokacija</string>
+    <string name="settings_location_service">Dejavnost lokacija</string>
     <string name="settings_appearance_dark_mode_title">Temen način</string>
     <string name="settings_appearance_icon_pack_title">Paket ikon</string>
     <string name="settings_appearance">Izgled</string>

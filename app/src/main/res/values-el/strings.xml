@@ -206,7 +206,7 @@
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
     <string name="settings_widgets_live_wallpaper_title">Ζωντανή ταπετσαρία</string>
-    <string name="settings_providers_location_service">Υπηρεσία τοποθεσίας</string>
+    <string name="settings_location_service">Υπηρεσία τοποθεσίας</string>
     <string name="settings_appearance_dark_mode_title">Σκοτεινή λειτουργία</string>
     <string name="settings_appearance_icon_pack_title">Πακέτο εικονιδίων</string>
     <string name="settings_appearance">Εμφάνιση</string>

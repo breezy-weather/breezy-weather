@@ -255,7 +255,7 @@
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
     <string name="settings_widgets_live_wallpaper_title">Papel de parede animado</string>
-    <string name="settings_providers_location_service">Serviço de localização</string>
+    <string name="settings_location_service">Serviço de localização</string>
     <string name="settings_appearance_dark_mode_title">Modo escuro</string>
     <string name="settings_appearance_icon_pack_title">Pacote de ícones</string>
     <string name="settings_appearance">Aparência</string>
@@ -269,7 +269,7 @@
     <string name="settings_units_speed">Unidade de velocidade</string>
     <string name="settings_notifications_section_forecast">Previsão</string>
     <string name="settings_widgets_notification_temp_icon_switch">Temperatura como ícone da barra de status</string>
-    <string name="settings_provider_default_value">Padrão (inalterado)</string>
+    <string name="settings_weather_provider_default_value">Padrão (inalterado)</string>
     <string name="location_service_baidu_ip">Localização IP Baidu (apenas para China)</string>
     <string name="location_service_native">API nativa</string>
     <string name="settings_automatic">Automático</string>
@@ -363,7 +363,7 @@
     <string name="weather_api_unauthorized_content">Em alguns provedores de previsão do tempo, é necessário fornecer sua própria chave de API. Se você já forneceu uma, verifique novamente a chave de API que você forneceu.</string>
     <string name="notification_channel_alerts">Alertas</string>
     <string name="widget_material_you_current">Material You - Atual</string>
-    <string name="settings_provider_open_weather_key">Chave do OpenWeather</string>
+    <string name="settings_weather_provider_open_weather_key">Chave do OpenWeather</string>
     <string name="weather_air_quality_and_pollen_data_by">Dados de qualidade do ar e de pólen por $</string>
     <string name="weather_api_limit_reached_content">Para contornar o limite, adicione sua própria chave de API.</string>
     <string name="weather_api_key_required_missing_title">Chave de API necessária não encontrada</string>
@@ -388,7 +388,7 @@
     <string name="weather_api_limit_reached_title">Limite de solicitações à API atingido</string>
     <string name="action_add_new_location">Adicionar um novo local</string>
     <string name="widget_clock_font_analog">Analógico</string>
-    <string name="settings_provider_accu_weather_key">Chave do AccuWeather</string>
+    <string name="settings_weather_provider_accu_weather_key">Chave do AccuWeather</string>
     <string name="wind_direction_short_N">N</string>
     <string name="air_quality_level_1">Excelente</string>
     <string name="weather_data_by">Dados fornecidos por $</string>

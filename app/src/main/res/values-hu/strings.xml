@@ -205,7 +205,7 @@
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
     <string name="settings_widgets_live_wallpaper_title">Élő Háttérkép</string>
-    <string name="settings_providers_location_service">Helymeghatározó szolgáltatás</string>
+    <string name="settings_location_service">Helymeghatározó szolgáltatás</string>
     <string name="settings_appearance_dark_mode_title">Sötét Mód</string>
     <string name="settings_appearance_icon_pack_title">Ikonkészlet</string>
     <string name="settings_appearance">Kinézet</string>

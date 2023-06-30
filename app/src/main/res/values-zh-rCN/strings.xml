@@ -289,7 +289,7 @@
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
     <string name="settings_widgets_live_wallpaper_title">动态壁纸</string>
-    <string name="settings_providers_location_service">位置服务</string>
+    <string name="settings_location_service">位置服务</string>
     <string name="settings_appearance_dark_mode_title">暗色模式</string>
     <string name="settings_appearance">外观</string>
     <string name="settings_appearance_icon_pack_title">图标风格</string>
@@ -305,7 +305,7 @@
     <string name="settings_notifications_section_forecast">预报</string>
     <string name="settings_widgets_notification_temp_icon_switch">将温度作为通知小图标</string>
     <string name="settings_widgets_notification_feels_like_switch">使用体感温度作为小图标</string>
-    <string name="settings_provider_default_value">默认(未更改)</string>
+    <string name="settings_weather_provider_default_value">默认(未更改)</string>
     <string name="weather_source_accuweather_voice">ACCU天气</string>
     <string name="weather_source_openweather_voice">OPEN天气</string>
     <string name="weather_source_china">中国</string>
@@ -438,7 +438,7 @@
     <string name="widget_style_mini">Mini 风格</string>
     <string name="widget_style_nano">Nano 风格</string>
     <string name="widget_style_pixel">Pixel 风格</string>
-    <string name="settings_provider_open_weather_one_call_version">OpenWeather OneCall 版本</string>
+    <string name="settings_weather_provider_open_weather_one_call_version">OpenWeather OneCall 版本</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_celsius_short">°</string>
     <string name="notification_channel_alerts">警报</string>
@@ -456,12 +456,9 @@
     <string name="action_add_from_map">从地图中添加</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
-    <string name="settings_provider_accu_weather_key">AccuWeather 密钥</string>
-    <string name="settings_provider_open_weather">OpenWeather</string>
-    <string name="settings_provider_open_weather_key">OpenWeather 密钥</string>
-    <string name="settings_provider_baidu_ip_location">百度 IP 定位</string>
-    <string name="settings_provider_mf">Météo France</string>
-    <string name="settings_provider_iqa_atmo_aura_key">ATMO AURA 密钥</string>
+    <string name="settings_weather_provider_accu_weather_key">AccuWeather 密钥</string>
+    <string name="settings_weather_provider_open_weather_key">OpenWeather 密钥</string>
+    <string name="settings_weather_provider_iqa_atmo_aura_key">ATMO AURA 密钥</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_kelvin">K</string>
     <string name="about_contribution_WangDaYeeeeee">原始项目几何天气的开发者</string>
@@ -474,9 +471,8 @@
     <string name="action_add_new_location">添加一个新位置</string>
     <string name="action_choose_weather_provider">选择天气提供者</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
-    <string name="settings_provider_accu_weather">AccuWeather</string>
-    <string name="settings_provider_baidu_ip_location_ak">百度 IP 定位密钥</string>
-    <string name="settings_provider_mf_wsft_key">Météo France WSFT 密钥</string>
+    <string name="settings_location_baidu_ip_location_ak">百度 IP 定位密钥</string>
+    <string name="settings_weather_provider_mf_wsft_key">Météo France WSFT 密钥</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="about_source_code">源代码</string>
 </resources>

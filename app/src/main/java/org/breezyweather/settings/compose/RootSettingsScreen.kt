@@ -24,13 +24,22 @@ fun RootSettingsView(
                 navController.navigate(SettingsScreenRouter.BackgroundUpdates.route)
             }
         }
-        clickablePreferenceItem(R.string.settings_providers) { id ->
+        clickablePreferenceItem(R.string.settings_location) { id ->
+            PreferenceView(
+                titleId = id,
+                iconId = R.drawable.ic_location,
+                summaryId = R.string.settings_location_summary
+            ) {
+                navController.navigate(SettingsScreenRouter.Location.route)
+            }
+        }
+        clickablePreferenceItem(R.string.settings_weather_providers) { id ->
             PreferenceView(
                 titleId = id,
                 iconId = R.drawable.ic_factory,
-                summaryId = R.string.settings_providers_summary
+                summaryId = R.string.settings_weather_providers_summary
             ) {
-                navController.navigate(SettingsScreenRouter.DataProvider.route)
+                navController.navigate(SettingsScreenRouter.WeatherProviders.route)
             }
         }
         clickablePreferenceItem(R.string.settings_appearance) { id ->

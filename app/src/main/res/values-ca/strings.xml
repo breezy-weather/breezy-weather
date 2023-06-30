@@ -220,7 +220,7 @@
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
     <string name="settings_widgets_live_wallpaper_title">Fons de pantalla animat</string>
-    <string name="settings_providers_location_service">Servei d’ubicació</string>
+    <string name="settings_location_service">Servei d’ubicació</string>
     <string name="settings_appearance_dark_mode_title">Mode fosc</string>
     <string name="settings_appearance_icon_pack_title">Paquet d’icones</string>
     <string name="settings_appearance">Aparença</string>

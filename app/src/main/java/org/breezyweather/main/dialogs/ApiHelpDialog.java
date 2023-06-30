@@ -34,6 +34,6 @@ public class ApiHelpDialog {
     @SuppressLint("SetTextI18n")
     private static void initWidget(Activity activity, View view, AlertDialog dialog) {
         view.findViewById(R.id.dialog_location_help_providerContainer)
-                .setOnClickListener(v -> IntentHelper.startSelectProviderActivity(activity));
+                .setOnClickListener(v -> IntentHelper.startSelectWeatherProviderActivity(activity));
     }
 }

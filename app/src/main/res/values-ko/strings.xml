@@ -206,7 +206,7 @@
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
     <string name="settings_widgets_live_wallpaper_title">라이브 배경화면</string>
-    <string name="settings_providers_location_service">위치 서비스</string>
+    <string name="settings_location_service">위치 서비스</string>
     <string name="settings_appearance_dark_mode_title">어두운 모드</string>
     <string name="settings_appearance_icon_pack_title">아이콘 팩</string>
     <string name="settings_appearance">외관</string>

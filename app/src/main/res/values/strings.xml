@@ -392,22 +392,22 @@
     <string name="settings_background_updates_worker_info_enqueued" translatable="false">Enqueued</string>
     <string name="settings_background_updates_worker_info_finished" translatable="false">Finished</string>
     <string name="settings_background_updates_worker_info_running" translatable="false">Running</string>
-    <string name="settings_providers">Data providers</string>
-    <string name="settings_providers_summary">Weather providers and location services settings</string>
-    <string name="settings_providers_section_general" translatable="false">@string/settings_section_general</string>
-    <string name="settings_providers_weather_provider_current_location">Weather provider for current location</string>
-    <string name="settings_providers_location_service">Location service</string>
-    <string name="settings_provider_default_value">Default (unchanged)</string>
-    <string name="settings_provider_accu_weather">AccuWeather</string>
-    <string name="settings_provider_accu_weather_key">AccuWeather key</string>
-    <string name="settings_provider_open_weather">OpenWeather</string>
-    <string name="settings_provider_open_weather_key">OpenWeather key</string>
-    <string name="settings_provider_open_weather_one_call_version">OpenWeather OneCall version</string>
-    <string name="settings_provider_baidu_ip_location">Baidu IP Location</string>
-    <string name="settings_provider_baidu_ip_location_ak">Baidu IP Location API Key</string>
-    <string name="settings_provider_mf">Météo France</string>
-    <string name="settings_provider_mf_wsft_key">Météo France WSFT key</string>
-    <string name="settings_provider_iqa_atmo_aura_key">ATMO AURA key</string>
+    <!-- “Location” here means “Locating you”, check your Android settings to know the correct word -->
+    <string name="settings_location">Location</string>
+    <string name="settings_location_summary">Location providers settings</string>
+    <string name="settings_location_section_general" translatable="false">@string/settings_section_general</string>
+    <string name="settings_location_service">Location service</string>
+    <string name="settings_location_baidu_ip_location_ak">Baidu IP Location API Key</string>
+    <string name="settings_weather_providers">Weather providers</string>
+    <string name="settings_weather_providers_summary">Weather providers settings</string>
+    <string name="settings_weather_providers_section_general" translatable="false">@string/settings_section_general</string>
+    <string name="settings_weather_providers_current_location">Weather provider for current location</string>
+    <string name="settings_weather_provider_default_value">Default (unchanged)</string>
+    <string name="settings_weather_provider_accu_weather_key">AccuWeather key</string>
+    <string name="settings_weather_provider_open_weather_key">OpenWeather key</string>
+    <string name="settings_weather_provider_open_weather_one_call_version">OpenWeather OneCall version</string>
+    <string name="settings_weather_provider_mf_wsft_key">Météo France WSFT key</string>
+    <string name="settings_weather_provider_iqa_atmo_aura_key">ATMO AURA key</string>
     <string name="settings_appearance">Appearance</string>
     <string name="settings_appearance_summary">Language, dark mode, icon pack, units…</string>
     <string name="settings_appearance_language_title">Language</string>

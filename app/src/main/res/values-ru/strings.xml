@@ -203,7 +203,7 @@
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
     <string name="settings_widgets_live_wallpaper_title">Живые обои</string>
-    <string name="settings_providers_location_service">Провайдер местоположения</string>
+    <string name="settings_location_service">Провайдер местоположения</string>
     <string name="settings_appearance_dark_mode_title">Тёмная тема</string>
     <string name="settings_appearance_icon_pack_title">Иконки</string>
     <string name="settings_appearance">Вид</string>

@@ -16,11 +16,11 @@ import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.ui.widgets.Material3Scaffold
 import org.breezyweather.common.ui.widgets.generateCollapsedScrollBehavior
 import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
-import org.breezyweather.settings.compose.ServiceProviderSettingsScreen
+import org.breezyweather.settings.compose.WeatherProvidersSettingsScreen
 import org.breezyweather.settings.compose.SettingsScreenRouter
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 
-class SelectProviderActivity : GeoActivity() {
+class SelectLocationProviderActivity : GeoActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +40,7 @@ class SelectProviderActivity : GeoActivity() {
             modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
             topBar = {
                 FitStatusBarTopAppBar(
-                    title = stringResource(R.string.settings_providers),
+                    title = stringResource(R.string.settings_location),
                     onBackPressed = { finish() },
                     scrollBehavior = scrollBehavior,
                 )
@@ -49,11 +49,11 @@ class SelectProviderActivity : GeoActivity() {
             val navController = rememberNavController()
             NavHost(
                 navController = navController,
-                startDestination = SettingsScreenRouter.DataProvider.route
+                startDestination = SettingsScreenRouter.Location.route
             ) {
-                composable(SettingsScreenRouter.DataProvider.route) {
-                    ServiceProviderSettingsScreen(
-                        context = this@SelectProviderActivity,
+                composable(SettingsScreenRouter.Location.route) {
+                    WeatherProvidersSettingsScreen(
+                        context = this@SelectLocationProviderActivity,
                         paddingValues = paddings,
                     )
                 }

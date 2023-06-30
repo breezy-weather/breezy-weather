@@ -239,8 +239,14 @@ class SettingsActivity : GeoActivity() {
                         }
                     )
                 }
-                composable(SettingsScreenRouter.DataProvider.route) {
-                    ServiceProviderSettingsScreen(
+                composable(SettingsScreenRouter.Location.route) {
+                    LocationSettingsScreen(
+                        context = this@SettingsActivity,
+                        paddingValues = paddings,
+                    )
+                }
+                composable(SettingsScreenRouter.WeatherProviders.route) {
+                    WeatherProvidersSettingsScreen(
                         context = this@SettingsActivity,
                         paddingValues = paddings,
                     )
