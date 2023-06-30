@@ -10,7 +10,6 @@ import androidx.work.Configuration
 import dagger.hilt.android.HiltAndroidApp
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.utils.LanguageUtils
-import org.breezyweather.common.utils.NetworkUtils
 import org.breezyweather.db.ObjectBox
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.ThemeManager
@@ -190,8 +189,6 @@ class BreezyWeather : MultiDexApplication(),
         super.onCreate()
 
         ObjectBox.init(this)
-
-        NetworkUtils.registerNetworkCallback(applicationContext)
 
         instance = this
         LanguageUtils.setLanguage(

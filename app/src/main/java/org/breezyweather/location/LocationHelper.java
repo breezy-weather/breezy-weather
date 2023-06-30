@@ -17,11 +17,11 @@ import dagger.hilt.android.qualifiers.ApplicationContext;
 import org.breezyweather.common.basic.models.Location;
 import org.breezyweather.common.basic.models.options.provider.LocationProvider;
 import org.breezyweather.common.basic.models.options.provider.WeatherSource;
+import org.breezyweather.common.extensions.NetworkExtensionsKt;
 import org.breezyweather.db.repositories.LocationEntityRepository;
 import org.breezyweather.location.baiduip.BaiduIPLocationService;
 import org.breezyweather.main.utils.RequestErrorType;
 import org.breezyweather.settings.SettingsManager;
-import org.breezyweather.common.utils.NetworkUtils;
 import org.breezyweather.location.services.AndroidLocationService;
 import org.breezyweather.weather.WeatherServiceSet;
 import org.breezyweather.weather.WeatherService;
@@ -29,7 +29,6 @@ import org.breezyweather.weather.WeatherService;
 /**
  * Location helper.
  */
-
 public class LocationHelper {
 
     private final LocationService[] mLocationServices;
@@ -80,7 +79,7 @@ public class LocationHelper {
         final LocationProvider provider = SettingsManager.getInstance(context).getLocationProvider();
         final LocationService service = getLocationService(provider);
         if (service.getPermissions().length != 0) {
-            if (!NetworkUtils.isAvailable(context)) {
+            if (!NetworkExtensionsKt.isOnline(context)) {
                 usableCheckListener.requestLocationFailed(location, RequestErrorType.NETWORK_UNAVAILABLE);
                 return;
             }

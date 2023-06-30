@@ -5,10 +5,10 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.provider.WeatherSource
+import org.breezyweather.common.extensions.isOnline
 import org.breezyweather.common.rxjava.ApiObserver
 import org.breezyweather.common.rxjava.ObserverContainer
 import org.breezyweather.common.rxjava.SchedulerTransformer
-import org.breezyweather.common.utils.NetworkUtils
 import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.db.repositories.HistoryEntityRepository.readHistory
 import org.breezyweather.db.repositories.WeatherEntityRepository.readWeather
@@ -32,7 +32,7 @@ class WeatherHelper @Inject constructor(
 
     fun requestWeather(context: Context, location: Location, listener: OnRequestWeatherListener) {
         val service = mServiceSet[location.weatherSource]
-        if (!NetworkUtils.isAvailable(context)) {
+        if (!context.isOnline()) {
             listener.requestWeatherFailed(location, RequestErrorType.NETWORK_UNAVAILABLE)
             return
         } else if (!location.isUsable) {
