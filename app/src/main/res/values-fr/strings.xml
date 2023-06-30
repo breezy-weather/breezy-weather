@@ -293,6 +293,13 @@
     <string name="settings_weather_provider_accu_weather_key">Clé AccuWeather</string>
     <string name="settings_weather_provider_open_weather_key">Clé OpenWeather</string>
     <string name="settings_location_summary">Paramètres des services de localisation</string>
+    <string name="settings_location_section_access">Accès à la position</string>
+    <string name="settings_location_access_switch_title">Autoriser</string>
+    <string name="settings_location_access_switch_summary">Si désactivé, vous ne pourrez pas avoir de données météo pour votre position, mais vous pouvez toujours rechercher votre emplacement manuellement.</string>
+    <string name="settings_location_access_background_title">Toujours autoriser</string>
+    <string name="settings_location_access_background_summary">Si désactivé, vous ne pourrez pas avoir d’actualisation en arrière-plan pour votre position.</string>
+    <string name="settings_location_access_precise_title">Utiliser la position exacte</string>
+    <string name="settings_location_access_precise_summary">Si désactivé, l’application utilisera votre position approximative, ce qui est approprié et recommandé pour des prévisions météorologiques. La position exacte consomme plus de batterie.</string>
     <string name="settings_weather_providers">Fournisseurs météo</string>
     <string name="settings_weather_providers_summary">Paramètres des fournisseurs météo</string>
     <string name="settings_weather_provider_open_weather_one_call_version">Version d’OpenWeather OneCall</string>

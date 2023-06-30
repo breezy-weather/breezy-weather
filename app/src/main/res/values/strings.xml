@@ -181,7 +181,7 @@
     <string name="weather_source_accuweather_voice">ACCU weather.com</string>
     <string name="weather_source_accu_preference_portal">Portal</string>
     <string name="weather_source_accu_preference_portal_developer" translatable="false">Developer</string>
-    <string name="weather_source_accu_preference_portal_entreprise" translatable="false">Entreprise</string>
+    <string name="weather_source_accu_preference_portal_enterprise" translatable="false">Enterprise</string>
     <string name="weather_source_accu_preference_days">Days</string>
     <string name="weather_source_accu_preference_days_1">1 day</string>
     <string name="weather_source_accu_preference_days_5">5 days</string>
@@ -395,6 +395,13 @@
     <!-- “Location” here means “Locating you”, check your Android settings to know the correct word -->
     <string name="settings_location">Location</string>
     <string name="settings_location_summary">Location providers settings</string>
+    <string name="settings_location_section_access">Location access</string>
+    <string name="settings_location_access_switch_title">Allow</string>
+    <string name="settings_location_access_switch_summary">When off, you won’t be able to have weather data for your current location, but you can still search for your location manually.</string>
+    <string name="settings_location_access_background_title">Allow all the time</string>
+    <string name="settings_location_access_background_summary">When off, you won’t be able to have background refreshes for your current location.</string>
+    <string name="settings_location_access_precise_title">Use precise location</string>
+    <string name="settings_location_access_precise_summary">When off, app will use approximate location, which is suitable and recommended for weather forecast. Precise location uses more battery.</string>
     <string name="settings_location_section_general" translatable="false">@string/settings_section_general</string>
     <string name="settings_location_service">Location service</string>
     <string name="settings_location_baidu_ip_location_ak">Baidu IP Location API Key</string>

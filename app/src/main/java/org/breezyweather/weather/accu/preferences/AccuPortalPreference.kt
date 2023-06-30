@@ -11,7 +11,7 @@ enum class AccuPortalPreference(
 ): BaseEnum {
 
     DEVELOPER("developer", "https://dataservice.accuweather.com/"),
-    ENTREPRISE("entreprise", "https://api.accuweather.com/");
+    ENTERPRISE("enterprise", "https://api.accuweather.com/");
 
     companion object {
 
@@ -20,7 +20,7 @@ enum class AccuPortalPreference(
             value: String
         ) = when (value) {
             "developer" -> DEVELOPER
-            else -> ENTREPRISE
+            else -> ENTERPRISE
         }
     }
 

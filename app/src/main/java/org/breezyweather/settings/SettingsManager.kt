@@ -406,7 +406,7 @@ class SettingsManager private constructor(context: Context) {
             notifySettingsChanged()
         }
         get() = AccuPortalPreference.getInstance(
-            config.getString("provider_accu_portal", "entreprise") ?: ""
+            config.getString("provider_accu_portal", "enterprise") ?: ""
         )
 
     var customAccuWeatherKey: String

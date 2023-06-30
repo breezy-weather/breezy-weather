@@ -342,11 +342,11 @@
     <!-- Accu Weather preferences -->
     <string-array name="accu_preference_portal">
         <item>@string/weather_source_accu_preference_portal_developer</item>
-        <item>@string/weather_source_accu_preference_portal_entreprise</item>
+        <item>@string/weather_source_accu_preference_portal_enterprise</item>
     </string-array>
     <string-array name="accu_preference_portal_values">
         <item>developer</item>
-        <item>entreprise</item>
+        <item>enterprise</item>
     </string-array>
 
     <string-array name="accu_preference_days">
