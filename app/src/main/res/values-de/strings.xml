@@ -522,4 +522,6 @@
     <string name="settings_icon_providers_weather_icon_light">Helles Icon</string>
     <string name="settings_icon_providers_weather_icon_grey">Graues Icon</string>
     <string name="settings_weather_providers_summary">Einstellungen für Wetterdienste</string>
+    <string name="settings_widgets_section_notification_widget">Benachrichtigungs-Widget</string>
+    <string name="settings_widgets_notification_widget_title">Benachrichtigungs-Widget</string>
 </resources>
