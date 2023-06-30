@@ -515,4 +515,10 @@
     <string name="location_search_weather_provider">Wetterdienst</string>
     <string name="location_swipe_to_delete">Nach links wischen zum Löschen des Eintrags</string>
     <string name="location_service_baidu_ip">Baidu IP Standort (nur für China)</string>
+    <string name="settings_weather_providers">Wetterdienste</string>
+    <string name="settings_icon_providers_weather_adaptive_icon">Wettersymbol</string>
+    <string name="settings_icon_providers_weather_icon_dark">Dunkles Icon</string>
+    <string name="settings_icon_providers_weather_icon_light">Helles Icon</string>
+    <string name="settings_icon_providers_weather_icon_grey">Graues Icon</string>
+    <string name="settings_weather_providers_summary">Einstellungen für Wetterdienste</string>
 </resources>
