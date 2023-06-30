@@ -221,9 +221,7 @@
     <string name="settings_notifications_section_forecast">Πρόγνωση καιρού</string>
     <string name="settings_widgets_notification_temp_icon_switch">Προβολή θερμοκρασίας στη γραμμή κατάστασης</string>
     <string name="weather_source_china">Κίνα</string>
-    <string name="location_service_baidu">Τοποθεσία Baidu</string>
     <string name="location_service_baidu_ip">Τοποθεσία Baidu (Μόνο για Κίνα)</string>
-    <string name="location_service_amap">Τοποθεσία AMap</string>
     <string name="settings_automatic">Αυτόματο</string>
     <string name="settings_none">Χωρίς</string>
     <string name="settings_color_day_always">Πάντα μέρα</string>

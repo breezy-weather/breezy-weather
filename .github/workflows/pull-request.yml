@@ -35,9 +35,9 @@ jobs:
 
       - uses: gradle/gradle-command-action@v2
         with:
-          arguments: assembleFdroidDebug
+          arguments: assembleStandardDebug
 
       - uses: actions/upload-artifact@v3
         with:
-          name: BreezyWeather_fdroidDebug.apk
-          path: app/build/outputs/apk/fdroid/debug/app-fdroid-universal-debug.apk
+          name: BreezyWeather_standardDebug.apk
+          path: app/build/outputs/apk/standard/debug/app-standard-universal-debug.apk

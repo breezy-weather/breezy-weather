@@ -54,27 +54,11 @@ fun ServiceProviderSettingsScreen(
         )
     }
     listPreferenceItem(R.string.settings_providers_location_service) { id ->
-        // read configuration from data store.
-        var currentSelectedKey = SettingsManager.getInstance(context).locationProvider.id
-        var valueList = stringArrayResource(R.array.location_service_values)
-        var nameList = stringArrayResource(R.array.location_services)
-
-        // clear invalid config by build flavor.
-        if (BuildConfig.FLAVOR.contains("fdroid")
-            || BuildConfig.FLAVOR.contains("gplay")) {
-            valueList = arrayOf(valueList[1], valueList[3])
-            nameList = arrayOf(nameList[1], nameList[3])
-        }
-        if (!valueList.contains(currentSelectedKey)) {
-            currentSelectedKey = LocationProvider.NATIVE.id
-        }
-
         ListPreferenceView(
-            title = stringResource(id),
-            summary = { _, key -> nameList[valueList.indexOfFirst { it == key }] },
-            selectedKey = currentSelectedKey,
-            valueArray = valueList,
-            nameArray = nameList,
+            titleId = id,
+            selectedKey = SettingsManager.getInstance(context).locationProvider.id,
+            valueArrayId = R.array.location_services,
+            nameArrayId = R.array.location_service_values,
             onValueChanged = { sourceId ->
                 SettingsManager
                     .getInstance(context)

@@ -510,9 +510,7 @@
     <string name="weather_source_mf_voice">Météo France</string>
     <string name="weather_source_china">Chine</string>
     <string name="weather_source_china_voice">Chine</string>
-    <string name="location_service_baidu">Baidu Location</string>
     <string name="location_service_baidu_ip">Baidu IP Location (Chine uniquement)</string>
-    <string name="location_service_amap">AMap Location</string>
     <string name="location_service_native">API native</string>
     <string name="settings_automatic">Automatique</string>
     <string name="notification_style_native">Native</string>

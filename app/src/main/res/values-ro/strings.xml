@@ -235,9 +235,7 @@
     <string name="settings_units_speed">Unitatea Vitezei</string>
     <string name="settings_notifications_section_forecast">Prognoza meteo</string>
     <string name="settings_widgets_notification_temp_icon_switch">Temperatura în bara de stare</string>
-    <string name="location_service_baidu">Locație Baidu</string>
     <string name="location_service_baidu_ip">Locație Baidu IP (Exclusiv pentru China)</string>
-    <string name="location_service_amap">Locație AMap</string>
     <string name="location_service_native">API Nativ</string>
     <string name="notification_style_native">Sistem</string>
     <string name="notification_style_cities">Orașe</string>

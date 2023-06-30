@@ -22,19 +22,29 @@ It aims to add new features, providers, modernizing code, fixing bugs, updating 
 * Many non-visible improvements to the code
 </details>
 
+<details><summary>Unmaintained/Removed features</summary>
+
+Still in the source code but untested:
+* CyanogenMod Weather SDK (I no longer have a CyanogenMod device)
+
+Network Location Providers removed due to security concerns about outdated libraries (we need help on this! See [#49](https://github.com/breezy-weather/breezy-weather/issues/49) if you want to contribute):
+* AMap Location SDK
+* Baidu SDK (not Baidu IP Location)
+
+</details>
+
 <hr />
 
 ### Download app
 
-Versions 4.0.x-alpha available from:
+Currently available to download from:
 * [GitHub](https://github.com/breezy-weather/breezy-weather/releases)
 * [Obtainium](https://github.com/ImranR98/Obtainium) (enable “Include preleases” when adding it)
 
-Will be added to IzzyDroid soon, if possible.
-
-Upcoming versions 4.1.x-beta will be available on F-Droid if they agree.
-
-Upcoming versions 4.2.x will be released on Google Play Store once it is stable enough and is compliant with Google Play policy.
+Additional stores will be added as app gets more stable and once it complies with the policy of each store:
+- Starting from **4.1.x-beta**, on IzzyDroid.
+- Starting from **4.2.x**, on F-Droid.
+- Starting from **5.x**, on Google Play Store. This version will introduce extension system for weather providers.
 
 <hr />
 
@@ -42,9 +52,6 @@ Upcoming versions 4.2.x will be released on Google Play Store once it is stable 
 
 * [Homepage explanations](docs/HOMEPAGE.md)
 * [Weather providers comparison](docs/PROVIDERS.md)
-* [Update translation on Weblate](https://hosted.weblate.org/projects/breezy-weather/breezy-weather-android/#information)
-   * English regional variants must be updated on GitHub if they differ from the original English file
-   * French translation is maintained by repo maintainers
 
 <hr />
 
@@ -55,6 +62,17 @@ Upcoming versions 4.2.x will be released on Google Play Store once it is stable 
 
 <hr />
 
+
+### Translations
+
+Translation is done externally [on Weblate](https://hosted.weblate.org/projects/breezy-weather/breezy-weather-android/#information). Please read carefully project instructions if you want to help.
+
+[![Translation progress report](https://camo.githubusercontent.com/c651422c22fc5743a6bf2003b86ed171e1852a8b90030c2e3bae322e32b9f778/68747470733a2f2f686f737465642e7765626c6174652e6f72672f776964676574732f627265657a792d776561746865722f2d2f627265657a792d776561746865722d616e64726f69642f686f72697a6f6e74616c2d6175746f2e737667)](https://hosted.weblate.org/projects/breezy-weather/breezy-weather-android/#information)
+
+* English regional variants must be updated on GitHub if they differ from the original English file
+* French translation is maintained by repo maintainers
+
+
 ### Icon packs
 
 Breezy Weather is compatible with Chronus Weather icon packs and [Geometric Weather icon packs](https://github.com/breezy-weather/breezy-weather-icon-packs/blob/main/README.md).
@@ -63,16 +81,10 @@ Currently, there are no Breezy Weather icon packs, but you can create one by [fo
 
 <hr />
 
-### Build variants
+### Build variant
 
-Differences between build variants:
-
-| Variant                | fdroid | gplay | public |
-|------------------------|--------|-------|--------|
-| Instant App            | ❌      | ✅     | ✅      |
-| Google Play Services   | ❌      | ❌     | ✅      |
-| Baidu Location Service | ❌      | ❌     | ✅      |
-| AMAP                   | ❌      | ❌     | ✅      |
+A variant called gplay is available and will be distributed on Google Play Store once ready.
+It enables Instant App and bundles Google Network Location Provider (proprietary).
 
 <hr />
 

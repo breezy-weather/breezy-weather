@@ -280,9 +280,7 @@
     <string name="settings_provider_mf_wsft_key">Klíč WSFT Météo France</string>
     <string name="settings_provider_iqa_atmo_aura_key">Klíč ATMO AURA</string>
     <string name="weather_source_china">Čínu</string>
-    <string name="location_service_baidu">Poloha Baidu</string>
     <string name="location_service_baidu_ip">Poloha IP Baidu IP (pouze pro Čínu)</string>
-    <string name="location_service_amap">Poloha AMap</string>
     <string name="location_service_native">Nativní API</string>
     <string name="settings_automatic">Automaticky</string>
     <string name="settings_none">Žádný</string>

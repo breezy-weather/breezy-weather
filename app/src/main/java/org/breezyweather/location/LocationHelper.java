@@ -22,9 +22,7 @@ import org.breezyweather.location.baiduip.BaiduIPLocationService;
 import org.breezyweather.main.utils.RequestErrorType;
 import org.breezyweather.settings.SettingsManager;
 import org.breezyweather.common.utils.NetworkUtils;
-import org.breezyweather.location.services.AMapLocationService;
 import org.breezyweather.location.services.AndroidLocationService;
-import org.breezyweather.location.services.BaiduLocationService;
 import org.breezyweather.weather.WeatherServiceSet;
 import org.breezyweather.weather.WeatherService;
 
@@ -49,9 +47,7 @@ public class LocationHelper {
                           WeatherServiceSet weatherServiceSet) {
         mLocationServices = new LocationService[] {
                 new AndroidLocationService(),
-                new BaiduLocationService(context),
-                baiduIPService,
-                new AMapLocationService(context)
+                baiduIPService
         };
 
         mWeatherServiceSet = weatherServiceSet;
@@ -59,14 +55,8 @@ public class LocationHelper {
 
     private LocationService getLocationService(LocationProvider provider) {
         switch (provider) {
-            case BAIDU:
-                return mLocationServices[1];
-
             case BAIDU_IP:
-                return mLocationServices[2];
-
-            case AMAP:
-                return mLocationServices[3];
+                return mLocationServices[1];
 
             default: // NATIVE
                 return mLocationServices[0];

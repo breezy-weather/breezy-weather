@@ -223,7 +223,6 @@
     <string name="settings_notifications_section_forecast">Prognoza</string>
     <string name="settings_widgets_notification_temp_icon_switch">Temperatura jako ikona na pasku statusu</string>
     <string name="weather_source_china">Chin</string>
-    <string name="location_service_baidu">Lokalizacja Baidu</string>
     <string name="location_service_baidu_ip">Lokalizacja Baidu IP (tylko dla Chin)</string>
     <string name="settings_automatic">Automatyczny</string>
     <string name="settings_none">Brak</string>

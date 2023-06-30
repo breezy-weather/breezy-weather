@@ -221,9 +221,7 @@
     <string name="settings_notifications_section_forecast">오늘 예보</string>
     <string name="settings_widgets_notification_temp_icon_switch">상단 바에 온도 아이콘 표시하기</string>
     <string name="weather_source_china">중국</string>
-    <string name="location_service_baidu">바이두 위치</string>
     <string name="location_service_baidu_ip">바이두 IP 위치 (중국 내수용)</string>
-    <string name="location_service_amap">AMap 위치</string>
     <string name="location_service_native">현지 API</string>
     <string name="settings_automatic">자동</string>
     <string name="settings_none">없음</string>

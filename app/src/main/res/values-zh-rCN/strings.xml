@@ -310,9 +310,7 @@
     <string name="weather_source_openweather_voice">OPEN天气</string>
     <string name="weather_source_china">中国</string>
     <string name="weather_source_china_voice">中国</string>
-    <string name="location_service_baidu">百度定位</string>
     <string name="location_service_baidu_ip">百度IP定位（仅中国地区）</string>
-    <string name="location_service_amap">高德定位</string>
     <string name="location_service_native">原生接口</string>
     <string name="settings_automatic">自动</string>
     <string name="settings_none">无卡片</string>

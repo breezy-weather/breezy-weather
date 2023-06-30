@@ -16,13 +16,9 @@ android {
         versionCode 40006
         versionName "4.0.6-alpha"
         multiDexEnabled true
-        ndk {
-            abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
-        }
+        ndk.abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary true
-        }
+        vectorDrawables.useSupportLibrary true
     }
     buildFeatures {
         viewBinding true
@@ -43,7 +39,6 @@ android {
         release {
             minifyEnabled true
             shrinkResources true
-            zipAlignEnabled true
             debuggable false
             crunchPngs false // No need to do that, we already optimized them
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
@@ -71,17 +66,12 @@ android {
         it.buildConfigField "String", "OPEN_WEATHER_KEY", "\"${properties.getProperty("breezy.openweather.key") ?: ""}\""
     }
     sourceSets {
-        pub {
-            java.srcDirs = ["src/src_bugly", "src/src_baidu", "src/src_amap", "src/src_gplay"]
-            manifest.srcFile "manifest_pub/AndroidManifest.xml"
-            jniLibs.srcDir "libs"
+        standard {
+            java.srcDirs = ["src/src_nogplay"]
         }
         gplay {
-            java.srcDirs = ["src/src_nobugly", "src/src_nobaidu", "src/src_noamap", "src/src_nogplay"]
+            java.srcDirs = ["src/src_gplay"]
             manifest.srcFile "manifest_gplay/AndroidManifest.xml"
-        }
-        fdroid {
-            java.srcDirs = ["src/src_nobugly", "src/src_nobaidu", "src/src_noamap", "src/src_nogplay"]
         }
         test {
             java.srcDir "test"
@@ -109,24 +99,14 @@ android {
             unitTests.returnDefaultValues = true
         }
     }
-    flavorDimensions "store"
+    flavorDimensions = ["default"]
     productFlavors {
-        pub {
-            dimension "store"
-            versionNameSuffix "_pub"
+        standard {
+            dimension "default"
         }
         gplay {
-            dimension "store"
+            dimension "default"
             versionNameSuffix "_gplay"
-            repositories {
-                maven {
-                    url "https://dl.bintray.com/qichuan/maven/"
-                }
-            }
-        }
-        fdroid {
-            dimension "store"
-            versionNameSuffix "_fdroid"
         }
     }
     lint {
@@ -156,9 +136,6 @@ kapt {
 }
 
 dependencies {
-    pubImplementation fileTree(include: ["*.jar"], dir: "libs")
-    gplayImplementation fileTree(include: ["*.jar"], dir: "libs")
-
     // kotlin.
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
@@ -219,11 +196,7 @@ dependencies {
     kapt "androidx.hilt:hilt-compiler:1.0.0"
     annotationProcessor "androidx.hilt:hilt-compiler:1.0.0"
 
-    // a map.
-    pubImplementation "com.amap.api:location:6.3.0"
-
     // gms.
-    pubImplementation "com.google.android.gms:play-services-location:21.0.1"
     gplayImplementation "com.google.android.gms:play-services-location:21.0.1"
 
     // coil

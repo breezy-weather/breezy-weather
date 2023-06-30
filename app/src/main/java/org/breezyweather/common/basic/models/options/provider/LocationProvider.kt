@@ -9,9 +9,7 @@ enum class LocationProvider(
     override val id: String
 ): BaseEnum {
 
-    BAIDU("baidu"),
     BAIDU_IP("baidu_ip"),
-    AMAP("amap"),
     NATIVE("native");
 
     companion object {
@@ -21,8 +19,6 @@ enum class LocationProvider(
             value: String
         ) = when (value) {
             "baidu_ip" -> BAIDU_IP
-            "baidu" -> BAIDU
-            "amap" -> AMAP
             else -> NATIVE
         }
     }

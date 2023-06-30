@@ -137,9 +137,7 @@
     <string name="settings_units">Enote</string>
     <string name="settings_notifications_section_forecast">Vremenska napoved</string>
     <string name="settings_widgets_notification_temp_icon_switch">Temperatura kot ikona v statusni vrstici</string>
-    <string name="location_service_baidu">Baidu Lokacija</string>
     <string name="location_service_baidu_ip">Baidu IP Lokacija (samo za Kitajsko)</string>
-    <string name="location_service_amap">AMap Lokacija</string>
     <string name="location_service_native">Nativen API</string>
     <string name="settings_automatic">Avtomatsko</string>
     <string name="settings_none">Brez</string>

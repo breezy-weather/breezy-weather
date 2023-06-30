@@ -259,9 +259,7 @@
     <string name="settings_icon_providers_weather_icon_dark">Icona scura</string>
     <string name="settings_icon_providers_weather_icon_light">Icona chiara</string>
     <string name="settings_icon_providers_weather_adaptive_icon">Icona del meteo</string>
-    <string name="location_service_baidu">Localizzazione Baidu</string>
     <string name="location_service_baidu_ip">Localizzazione IP Baidu (Cina)</string>
-    <string name="location_service_amap">Localizzazione AMap</string>
     <string name="location_service_native">API nativa</string>
     <string name="settings_automatic">Automatico</string>
     <string name="settings_none">Nessuno</string>

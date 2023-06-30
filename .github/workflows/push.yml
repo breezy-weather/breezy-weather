@@ -44,7 +44,7 @@ jobs:
 
       - uses: gradle/gradle-command-action@v2
         with:
-          arguments: assembleFdroidRelease
+          arguments: assembleStandardRelease
 
       - name: Delete local.properties
         if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
@@ -62,7 +62,7 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
         uses: r0adkll/sign-android-release@v1
         with:
-          releaseDirectory: app/build/outputs/apk/fdroid/release
+          releaseDirectory: app/build/outputs/apk/standard/release
           signingKeyBase64: ${{ secrets.SIGNING_KEY }}
           alias: ${{ secrets.ALIAS }}
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
@@ -72,22 +72,22 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
         run: |
           set -e
-          mv app/build/outputs/apk/fdroid/release/app-fdroid-universal-release-unsigned-signed.apk breezy-weather-${{ env.VERSION_TAG }}.apk
+          mv app/build/outputs/apk/standard/release/app-standard-universal-release-unsigned-signed.apk breezy-weather-${{ env.VERSION_TAG }}.apk
           sha256=`sha256sum breezy-weather-${{ env.VERSION_TAG }}.apk | awk '{ print $1 }'`
           echo "APK_UNIVERSAL_SHA256=$sha256" >> $GITHUB_ENV
-          mv app/build/outputs/apk/fdroid/release/app-fdroid-arm64-v8a-release-unsigned-signed.apk breezy-weather-arm64-v8a-${{ env.VERSION_TAG }}.apk
+          mv app/build/outputs/apk/standard/release/app-standard-arm64-v8a-release-unsigned-signed.apk breezy-weather-arm64-v8a-${{ env.VERSION_TAG }}.apk
           sha256=`sha256sum breezy-weather-arm64-v8a-${{ env.VERSION_TAG }}.apk | awk '{ print $1 }'`
           echo "APK_ARM64_V8A_SHA256=$sha256" >> $GITHUB_ENV
-          mv app/build/outputs/apk/fdroid/release/app-fdroid-armeabi-v7a-release-unsigned-signed.apk breezy-weather-armeabi-v7a-${{ env.VERSION_TAG }}.apk
+          mv app/build/outputs/apk/standard/release/app-standard-armeabi-v7a-release-unsigned-signed.apk breezy-weather-armeabi-v7a-${{ env.VERSION_TAG }}.apk
           sha256=`sha256sum breezy-weather-armeabi-v7a-${{ env.VERSION_TAG }}.apk | awk '{ print $1 }'`
           echo "APK_ARMEABI_V7A_SHA256=$sha256" >> $GITHUB_ENV
-          mv app/build/outputs/apk/fdroid/release/app-fdroid-x86-release-unsigned-signed.apk breezy-weather-x86-${{ env.VERSION_TAG }}.apk
+          mv app/build/outputs/apk/standard/release/app-standard-x86-release-unsigned-signed.apk breezy-weather-x86-${{ env.VERSION_TAG }}.apk
           sha256=`sha256sum breezy-weather-x86-${{ env.VERSION_TAG }}.apk | awk '{ print $1 }'`
           echo "APK_X86_SHA256=$sha256" >> $GITHUB_ENV
-          mv app/build/outputs/apk/fdroid/release/app-fdroid-x86_64-release-unsigned-signed.apk breezy-weather-x86_64-${{ env.VERSION_TAG }}.apk
+          mv app/build/outputs/apk/standard/release/app-standard-x86_64-release-unsigned-signed.apk breezy-weather-x86_64-${{ env.VERSION_TAG }}.apk
           sha256=`sha256sum breezy-weather-x86_64-${{ env.VERSION_TAG }}.apk | awk '{ print $1 }'`
           echo "APK_X86_64_SHA256=$sha256" >> $GITHUB_ENV
-          tar -czvf mapping-${{ env.VERSION_TAG }}.tar.gz --directory=app/build/outputs/mapping/fdroidRelease/ mapping.txt
+          tar -czvf mapping-${{ env.VERSION_TAG }}.tar.gz --directory=app/build/outputs/mapping/standardRelease/ mapping.txt
 
       - name: Create release
         if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
@@ -98,7 +98,7 @@ jobs:
           body: |
             **IMPORTANT NOTE: This is a pre-release version. Migration of data is not guaranteed between alpha versions. If you experience issues after updating to a new alpha versions, please clean your app data and retry.**
 
-            *This release is based on a variant that does not contain proprietary blobs*
+            *Releases distributed on GitHub do not include proprietary Network Location Providers*
 
             ---
 

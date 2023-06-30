@@ -119,9 +119,7 @@
     <string name="settings_notifications_section_forecast">Previsão do clima</string>
     <string name="settings_appearance_icon_pack_title">Estilo do ícone</string>
     <string name="settings_widgets_notification_temp_icon_switch">Mini ícone de temperatura</string>
-    <string name="location_service_baidu">Localização Baidu</string>
     <string name="location_service_baidu_ip">Localização IP Baidu (China Somente)</string>
-    <string name="location_service_amap">Localização AMap</string>
     <string name="location_service_native">API Nativa</string>
     <string name="settings_automatic">Automático</string>
     <string name="settings_color_light">Claro</string>
