@@ -72,6 +72,7 @@ Translation is done externally [on Weblate](https://hosted.weblate.org/projects/
 * English regional variants must be updated on GitHub if they differ from the original English file
 * French translation is maintained by repo maintainers
 
+<hr />
 
 ### Icon packs
 
