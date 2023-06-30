@@ -564,7 +564,7 @@
     <string name="weather_api_limit_reached_title">Limita de solicitări API a fost atinsă</string>
     <string name="weather_api_limit_reached_content">Pentru a rezolva limita, adăugați propria cheie API.</string>
     <string name="weather_source_accu_preference_days_15">15 zile</string>
-    <string name="settings_background_updates_method_notification_dialog_content">Această metodă adaugă o notificare persistentă care poate fi ascunsă prin dezactivarea categoriei de notificare \"$” în setările aplicației dispozitivului.</string>
+    <string name="settings_background_updates_method_notification_dialog_content">Această metodă adaugă o notificare persistentă care poate fi ascunsă prin dezactivarea categoriei de notificare “$” în setările aplicației dispozitivului.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Instrucțiuni specifice ale producătorului</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Unii producători au restricții suplimentare pentru aplicații care distrug serviciile de fundal. Site-ul web Don’t kill my app! are informații despre cum să o remediați.</string>
     <string name="settings_main_section_displayed_data">Date afișate</string>
