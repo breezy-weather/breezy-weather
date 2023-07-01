@@ -437,9 +437,11 @@
     <string name="settings_background_updates_battery_optimization">Disabilita ottimizzazione batteria</string>
     <string name="settings_background_updates_battery_optimization_summary">Questa è la prima cosa da provare quando non ricevi notifiche o i widget non si aggiornano.</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Impossibile visualizzare le impostazioni del dispositivo.</string>
-    <string name="settings_background_updates_method_worker">Android Worker
+    <string name="settings_background_updates_method_worker">Android Worker</string>
+    <string name="settings_background_updates_method_description_worker">Android Worker
 \nModalità raccomandata. Prova a cambiare se non ricevi notifiche o i widget non si aggiornano.</string>
-    <string name="settings_background_updates_method_notification">Notifica persistente
+    <string name="settings_background_updates_method_notification">Notifica persistente</string>
+    <string name="settings_background_updates_method_description_notification">Notifica persistente
 \nMetodo più affidabile ma richiede che l’app rimanga attiva in background.</string>
     <string name="wind_direction_short_E">E</string>
     <string name="wind_direction_short_SE">SE</string>

@@ -288,9 +288,11 @@
     <string name="settings_background_updates_refresh_1h">1 tiếng</string>
     <string name="settings_background_updates_refresh_1h_30min">1 tiếng rưỡi</string>
     <string name="settings_background_updates_refresh_2h">2 tiếng</string>
-    <string name="settings_background_updates_method_worker">Android Worker
+    <string name="settings_background_updates_method_worker">Android Worker</string>
+    <string name="settings_background_updates_method_description_worker">Android Worker
 \nPhương pháp ưu tiên. Thử đổi nếu bạn không nhận được thông báo hoặc tiện ích không làm mới.</string>
-    <string name="settings_background_updates_method_notification">Persistent notification
+    <string name="settings_background_updates_method_notification">Persistent notification</string>
+    <string name="settings_background_updates_method_description_notification">Persistent notification
 \nPhương pháp đáng tinh cậy hơn nhưng yêu cầu app phải hoạt động dưới nền.</string>
     <string name="settings_background_updates_method_notification_dialog_title">Tắt danh mục thông báo</string>
     <string name="settings_background_updates_method_notification_dialog_content">Phương pháp này thêm một thông báo có thể bị ẩn đi bởi tắt mục thông báo “$” trong cài đặt ứng dụng.</string>

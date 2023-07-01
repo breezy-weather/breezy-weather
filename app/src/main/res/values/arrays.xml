@@ -122,6 +122,10 @@
         <item>@string/settings_background_updates_method_worker</item>
         <item>@string/settings_background_updates_method_notification</item>
     </string-array>
+    <string-array name="background_update_method_descriptions">
+        <item>@string/settings_background_updates_method_description_worker</item>
+        <item>@string/settings_background_updates_method_description_notification</item>
+    </string-array>
     <string-array name="background_update_method_values">
         <item>worker</item>
         <item>notification</item>

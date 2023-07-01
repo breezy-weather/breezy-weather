@@ -81,6 +81,7 @@ fun BackgroundSettingsScreen(
                 selectedKey = SettingsManager.getInstance(context).backgroundUpdateMethod.id,
                 valueArrayId = R.array.background_update_method_values,
                 nameArrayId = R.array.background_update_methods,
+                summaryArrayId = R.array.background_update_method_descriptions,
                 onValueChanged = {
                     val newBackgroundUpdateMethod = BackgroundUpdateMethod.getInstance(it)
                     SettingsManager.getInstance(context).backgroundUpdateMethod = newBackgroundUpdateMethod

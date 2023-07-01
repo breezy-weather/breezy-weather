@@ -41,15 +41,17 @@ fun ListPreferenceView(
     @StringRes titleId: Int,
     @ArrayRes valueArrayId: Int,
     @ArrayRes nameArrayId: Int,
+    @ArrayRes summaryArrayId: Int? = null,
     selectedKey: String,
     enabled: Boolean = true,
     onValueChanged: (String) -> Unit,
 ) {
     val values = stringArrayResource(valueArrayId)
     val names = stringArrayResource(nameArrayId)
+    val summaries = if (summaryArrayId == null) names else stringArrayResource(summaryArrayId)
     ListPreferenceView(
         title = stringResource(titleId),
-        summary = { _, value -> names[values.indexOfFirst { it == value }] },
+        summary = { _, value -> summaries[values.indexOfFirst { it == value }] },
         selectedKey = selectedKey,
         valueArray = values,
         nameArray = names,

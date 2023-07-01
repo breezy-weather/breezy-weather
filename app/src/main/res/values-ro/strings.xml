@@ -512,9 +512,11 @@
     <string name="settings_background_updates_battery_optimization_activity_not_found">Nu s-au putut deschide setările dispozitivului.</string>
     <string name="settings_background_updates_battery_optimization_disabled">Optimizarea bateriei este deja dezactivată.</string>
     <string name="settings_background_updates_methods_title">Metoda de actualizare</string>
-    <string name="settings_background_updates_method_worker">Android Worker
+    <string name="settings_background_updates_method_worker">Android Worker</string>
+    <string name="settings_background_updates_method_description_worker">Android Worker
 \nMetodă recomandată. Încercați să comutați dacă nu primiți notificări sau widget-urile nu se reîmprospătează.</string>
-    <string name="settings_background_updates_method_notification">Notificare persistentă
+    <string name="settings_background_updates_method_notification">Notificare persistentă</string>
+    <string name="settings_background_updates_method_description_notification">Notificare persistentă
 \nMetodă mai fiabilă, dar necesită ca aplicația să rămână activă în fundal.</string>
     <string name="settings_background_updates_method_notification_dialog_title">Dezactivați categoria de notificare</string>
     <string name="settings_widgets_monochrome_icons_title">Pictograme Monocrom</string>

@@ -379,8 +379,10 @@
     <string name="settings_background_updates_battery_optimization_disabled">Battery optimization is already disabled.</string>
     <string name="settings_background_updates_methods_title">Update method</string>
     <!-- Do not translate Android Worker -->
-    <string name="settings_background_updates_method_worker">Android Worker\nRecommended method. Try switching if you don’t receive notifications or widgets are not refreshing.</string>
-    <string name="settings_background_updates_method_notification">Persistent notification\nMore reliable method but requires app to stay active in the background.</string>
+    <string name="settings_background_updates_method_worker">Android Worker</string>
+    <string name="settings_background_updates_method_description_worker">Android Worker\nRecommended method. Try switching if you don’t receive notifications or widgets are not refreshing.</string>
+    <string name="settings_background_updates_method_notification">Persistent notification</string>
+    <string name="settings_background_updates_method_description_notification">Persistent notification\nMore reliable method but requires app to stay active in the background.</string>
     <string name="settings_background_updates_method_notification_dialog_title">Disable notification category</string>
     <!-- $ = @string/notification_channel_background_services, please change quotes according to your language -->
     <string name="settings_background_updates_method_notification_dialog_content">This method adds a persistent notification that can be hidden by disabling the “$” notification category in device app settings.</string>

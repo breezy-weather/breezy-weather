@@ -444,7 +444,8 @@
     <string name="unit_inph_voice">Zoll pro Stunde</string>
     <string name="message_network_unavailable">Netzwerk nicht verfügbar</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Herstellerspezifische Anweisungen</string>
-    <string name="settings_background_updates_method_notification">Permanente Benachrichtigung
+    <string name="settings_background_updates_method_notification">Permanente Benachrichtigung</string>
+    <string name="settings_background_updates_method_description_notification">Permanente Benachrichtigung
 \nZuverlässigere Methode, aber die Anwendung muss im Hintergrund aktiv bleiben.</string>
     <string name="settings_section_general">Allgemein</string>
     <string name="settings_background_updates_summary">Aktualisierungsrate, Fehlerbehebung…</string>
@@ -454,8 +455,9 @@
     <string name="settings_background_updates_section_troubleshoot">Fehlerbehebung</string>
     <string name="settings_background_updates_battery_optimization">Akkuoptimierung deaktivieren</string>
     <string name="settings_background_updates_refresh_title">Aktualisierungsrate</string>
-    <string name="settings_background_updates_method_worker">Android Worker
-\nEmpfohlene Methode. Ändern Sie die Einstellung, falls Sie keine Benachrichtigungen erhalten oder Widgets nicht aktualisiert werden.</string>
+    <string name="settings_background_updates_method_worker">Android Worker</string>
+    <string name="settings_background_updates_method_description_worker">Android Worker
+        \nEmpfohlene Methode. Ändern Sie die Einstellung, falls Sie keine Benachrichtigungen erhalten oder Widgets nicht aktualisiert werden.</string>
     <string name="settings_main_cards_fade_in_switch">Karten werden animiert eingeblendet</string>
     <string name="action_see_more">Mehr anzeigen</string>
     <string name="settings_weather_providers_current_location">Wetterdienst für aktuellen Standort</string>

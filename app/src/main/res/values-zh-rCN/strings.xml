@@ -509,7 +509,8 @@
     <string name="settings_background_updates_method_notification_dialog_content">这种方法添加了一个持久通知，可以通过在设备应用设置中禁用“$”通知类别来隐藏。</string>
     <string name="weather_api_key_required_missing_title">缺少必要的 API 密钥</string>
     <string name="settings_background_updates_summary">刷新频率、故障排除……</string>
-    <string name="settings_background_updates_method_notification">持久化通知
+    <string name="settings_background_updates_method_notification">持久化通知</string>
+    <string name="settings_background_updates_method_description_notification">持久化通知
 \n更可靠的方法，但是需要应用保持在前台。</string>
     <string name="settings_appearance_summary">语言、黑暗模式、图标包、单位……</string>
     <string name="settings_units_summary">温度、降水、距离、速度、压力……</string>
@@ -517,7 +518,8 @@
     <string name="settings_background_updates_battery_optimization_activity_not_found">无法打开设备设置。</string>
     <string name="settings_background_updates_battery_optimization_disabled">电池用量优化已关闭。</string>
     <string name="settings_background_updates_methods_title">更新方式</string>
-    <string name="settings_background_updates_method_worker">使用 Android Worker
+    <string name="settings_background_updates_method_worker">使用 Android Worker</string>
+    <string name="settings_background_updates_method_description_worker">使用 Android Worker
 \n推荐选项。如果收不到通知或者微件不更新，请尝试其他选项。</string>
     <string name="settings_location">定位</string>
     <string name="settings_location_summary">位置提供者设定</string>
