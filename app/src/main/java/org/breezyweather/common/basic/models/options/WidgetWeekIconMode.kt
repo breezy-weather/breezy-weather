@@ -15,7 +15,6 @@ enum class WidgetWeekIconMode(
 
     companion object {
 
-        @JvmStatic
         fun getInstance(
             value: String
         ) = when (value) {

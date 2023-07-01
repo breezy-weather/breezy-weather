@@ -23,7 +23,6 @@ enum class WeatherSource(
 
     companion object {
 
-        @JvmStatic
         fun getInstance(
             value: String?
         ): WeatherSource {

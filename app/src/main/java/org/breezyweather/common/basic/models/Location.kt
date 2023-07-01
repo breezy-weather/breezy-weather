@@ -51,8 +51,6 @@ class Location(
 
         const val CURRENT_POSITION_ID = "CURRENT_POSITION"
 
-        @JvmStatic
-        @JvmOverloads
         fun isDayLight(location: Location? = null): Boolean {
             val sunRiseProgress = Astro.getRiseProgress(
                 astro = location?.weather?.dailyForecast?.getOrNull(0)?.sun,
@@ -76,24 +74,6 @@ class Location(
                 isCurrentPosition = true,
                 isResidentPosition = false,
                 isChina = false
-            )
-        }
-
-        @JvmStatic
-        fun buildDefaultLocation(weatherSource: WeatherSource): Location {
-            return Location(
-                cityId = "101924",
-                latitude = 39.904000f,
-                longitude = 116.391000f,
-                timeZone = TimeZone.getTimeZone("Asia/Shanghai"),
-                country = "中国",
-                province = "直辖市",
-                city = "北京",
-                district = "",
-                weatherSource = weatherSource,
-                isCurrentPosition = false,
-                isResidentPosition = false,
-                isChina = true,
             )
         }
 
@@ -137,7 +117,6 @@ class Location(
             weather = weather
         )
 
-        @JvmStatic
         fun copy(
             src: Location,
             weatherSource: WeatherSource,

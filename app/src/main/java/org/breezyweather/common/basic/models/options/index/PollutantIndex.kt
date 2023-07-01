@@ -27,14 +27,12 @@ enum class PollutantIndex(
         @JvmStatic val indexHighPollution = aqiThresholds[3]
         @JvmStatic val indexExcessivePollution = aqiThresholds.last()
 
-        @JvmStatic
         fun getAqiToLevel(aqi: Int?): Int? {
             if (aqi == null) return null
             val level = aqiThresholds.indexOfLast { aqi >= it }
             return if (level >= 0) level else null
         }
 
-        @JvmStatic
         @ColorInt
         fun getAqiToColor(context: Context, aqi: Int?): Int {
             if (aqi == null) return Color.TRANSPARENT
@@ -44,7 +42,6 @@ enum class PollutantIndex(
             else Color.TRANSPARENT
         }
 
-        @JvmStatic
         fun getAqiToName(context: Context, aqi: Int?): String? {
             if (aqi == null) return null
             val level = getAqiToLevel(aqi)

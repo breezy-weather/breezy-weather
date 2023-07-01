@@ -19,7 +19,6 @@ enum class PrecipitationUnit(
 
     companion object {
 
-        @JvmStatic
         fun getInstance(
             value: String
         ) = when (value) {
@@ -94,7 +93,6 @@ enum class PrecipitationIntensityUnit(
 
     companion object {
 
-        @JvmStatic
         fun getInstance(
             value: String
         ) = when (value) {

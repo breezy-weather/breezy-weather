@@ -20,7 +20,6 @@ enum class SpeedUnit(
 
     companion object {
 
-        @JvmStatic
         fun getInstance(
             value: String
         ) = when (value) {

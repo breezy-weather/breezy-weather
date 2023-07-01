@@ -20,7 +20,6 @@ class Astro(
          * (0,    1) -> has risen, not yet set.
          * [1,  inf) -> has gone down.
          * */
-        @JvmStatic
         fun getRiseProgress(
             astro: Astro?,
             timeZone: TimeZone

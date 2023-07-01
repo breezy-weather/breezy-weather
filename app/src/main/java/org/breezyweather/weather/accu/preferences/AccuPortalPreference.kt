@@ -15,7 +15,6 @@ enum class AccuPortalPreference(
 
     companion object {
 
-        @JvmStatic
         fun getInstance(
             value: String
         ) = when (value) {

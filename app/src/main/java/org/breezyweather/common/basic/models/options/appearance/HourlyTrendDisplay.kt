@@ -18,7 +18,6 @@ enum class HourlyTrendDisplay(
 
     companion object {
 
-        @JvmStatic
         fun toHourlyTrendDisplayList(
             value: String?
         ) = if (value.isNullOrEmpty()) {
@@ -40,7 +39,6 @@ enum class HourlyTrendDisplay(
             ArrayList()
         }
 
-        @JvmStatic
         fun toValue(list: List<HourlyTrendDisplay>): String {
             val builder = StringBuilder()
             for (v in list) {
@@ -52,7 +50,6 @@ enum class HourlyTrendDisplay(
             return builder.toString()
         }
 
-        @JvmStatic
         fun getSummary(context: Context, list: List<HourlyTrendDisplay>): String {
             val builder = StringBuilder()
             for (item in list) {

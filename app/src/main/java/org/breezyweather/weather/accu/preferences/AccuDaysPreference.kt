@@ -16,7 +16,6 @@ enum class AccuDaysPreference(
 
     companion object {
 
-        @JvmStatic
         fun getInstance(
             value: String
         ) = when (value) {

@@ -20,7 +20,6 @@ class Temperature(
 ) : Serializable {
 
     companion object {
-        @JvmStatic
         fun getTemperature(context: Context, temperature: Int?, unit: TemperatureUnit): String? {
             return if (temperature == null) null else unit.getValueText(context, temperature)
         }
@@ -38,7 +37,6 @@ class Temperature(
             )
         }
 
-        @JvmStatic
         fun getTrendTemperature(context: Context, night: Int?, day: Int?, unit: TemperatureUnit, switchDayNight: Boolean): String? {
             if (night == null || day == null) {
                 return null

@@ -8,7 +8,6 @@ class EventBus private constructor() {
 
     companion object {
 
-        @JvmStatic
         val instance: EventBus by lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
             EventBus()
         }

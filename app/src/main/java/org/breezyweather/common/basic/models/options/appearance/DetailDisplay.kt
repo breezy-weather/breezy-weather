@@ -28,7 +28,6 @@ enum class DetailDisplay(
 
     companion object {
 
-        @JvmStatic
         fun toDetailDisplayList(
             value: String?
         ) = if (value.isNullOrEmpty()) {
@@ -55,7 +54,6 @@ enum class DetailDisplay(
             emptyList()
         }
 
-        @JvmStatic
         fun toDetailDisplayUnlisted(
             value: String?
         ) = if (value.isNullOrEmpty()) {
@@ -82,7 +80,6 @@ enum class DetailDisplay(
             DetailDisplay.values().toMutableList()
         }
 
-        @JvmStatic
         fun toValue(list: List<DetailDisplay>): String {
             val builder = StringBuilder()
             for (v in list) {
@@ -94,7 +91,6 @@ enum class DetailDisplay(
             return builder.toString()
         }
 
-        @JvmStatic
         fun getSummary(context: Context, list: List<DetailDisplay>): String {
             val builder = StringBuilder()
             for (item in list) {

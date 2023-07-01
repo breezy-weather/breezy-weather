@@ -22,7 +22,6 @@ enum class PressureUnit(
 
     companion object {
 
-        @JvmStatic
         fun getInstance(
             value: String
         ) = when (value) {

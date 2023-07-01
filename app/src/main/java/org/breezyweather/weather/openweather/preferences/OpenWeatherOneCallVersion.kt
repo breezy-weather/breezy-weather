@@ -14,7 +14,6 @@ enum class OpenWeatherOneCallVersion(
 
     companion object {
 
-        @JvmStatic
         fun getInstance(
             value: String
         ) = when (value) {

@@ -22,7 +22,6 @@ enum class UpdateInterval(
 
     companion object {
 
-        @JvmStatic
         fun getInstance(
             value: String
         ) = when (value) {

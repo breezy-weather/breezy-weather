@@ -62,7 +62,6 @@ class MainThemeColorProvider(
         @Volatile
         private var instance: MainThemeColorProvider? = null
 
-        @JvmStatic
         fun bind(mainActivity: MainActivity) {
             if (Looper.myLooper() != Looper.getMainLooper()) {
                 throw IllegalStateException("Cannot bind context provider on a background thread")
@@ -83,7 +82,6 @@ class MainThemeColorProvider(
             instance = provider
         }
 
-        @JvmStatic
         fun unbind() {
             if (Looper.myLooper() != Looper.getMainLooper()) {
                 throw IllegalStateException("Cannot unbind context provider on a background thread")
@@ -104,7 +102,6 @@ class MainThemeColorProvider(
             daylight = location.isDaylight,
         )
 
-        @JvmStatic
         private fun isLightTheme(
             context: Context,
             daylight: Boolean,
@@ -115,7 +112,6 @@ class MainThemeColorProvider(
             DarkMode.DARK -> false
         }
 
-        @JvmStatic
         fun getContext(
             lightTheme: Boolean
         ) = instance?.let {
@@ -126,7 +122,6 @@ class MainThemeColorProvider(
             }
         }
 
-        @JvmStatic
         fun getContext(
             location: Location
         ) = instance?.let {

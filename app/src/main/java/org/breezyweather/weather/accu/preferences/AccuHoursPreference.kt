@@ -17,7 +17,6 @@ enum class AccuHoursPreference(
 
     companion object {
 
-        @JvmStatic
         fun getInstance(
             value: String
         ) = when (value) {

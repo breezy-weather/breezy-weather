@@ -19,7 +19,6 @@ enum class CardDisplay(
 
     companion object {
 
-        @JvmStatic
         fun toCardDisplayList(
             value: String?
         ) = if (value.isNullOrEmpty()) {
@@ -43,7 +42,6 @@ enum class CardDisplay(
             emptyList()
         }
 
-        @JvmStatic
         fun toValue(list: List<CardDisplay>): String {
             val builder = StringBuilder()
             for (v in list) {
@@ -55,7 +53,6 @@ enum class CardDisplay(
             return builder.toString()
         }
 
-        @JvmStatic
         fun getSummary(context: Context, list: List<CardDisplay>): String {
             val builder = StringBuilder()
             for (item in list) {

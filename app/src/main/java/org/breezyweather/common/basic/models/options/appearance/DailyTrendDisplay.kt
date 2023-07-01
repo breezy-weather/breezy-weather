@@ -18,7 +18,6 @@ enum class DailyTrendDisplay(
 
     companion object {
 
-        @JvmStatic
         fun toDailyTrendDisplayList(
             value: String?
         ) = if (value.isNullOrEmpty()) {
@@ -40,7 +39,6 @@ enum class DailyTrendDisplay(
             ArrayList()
         }
 
-        @JvmStatic
         fun toValue(list: List<DailyTrendDisplay>): String {
             val builder = StringBuilder()
             for (v in list) {
@@ -52,7 +50,6 @@ enum class DailyTrendDisplay(
             return builder.toString()
         }
 
-        @JvmStatic
         fun getSummary(context: Context, list: List<DailyTrendDisplay>): String {
             val builder = StringBuilder()
             for (item in list) {

@@ -52,7 +52,6 @@ import org.breezyweather.theme.resource.providers.ResourceProvider
 class PushedManagementFragment: ManagementFragment() {
 
     companion object {
-        @JvmStatic
         fun getInstance() = PushedManagementFragment()
     }
 

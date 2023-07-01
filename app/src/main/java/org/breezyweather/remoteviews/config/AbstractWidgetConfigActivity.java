@@ -138,9 +138,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
             } else {
                 weatherHelper.requestWeather(
                         this,
-                        Location.buildDefaultLocation(
-                                SettingsManager.getInstance(this).getWeatherSource()
-                        ),
+                        Location.buildLocal(this),
                         this
                 );
             }

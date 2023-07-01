@@ -160,7 +160,6 @@ class TimeObserverService : Service() {
         const val KEY_TODAY_FORECAST_TIME = "today_forecast_time"
         const val KEY_TOMORROW_FORECAST_TIME = "tomorrow_forecast_time"
 
-        @JvmStatic
         fun getForegroundNotification(context: Context, setIcon: Boolean): Notification {
             return NotificationCompat.Builder(context, Notifications.CHANNEL_BACKGROUND).apply {
                 setSmallIcon(if (setIcon) R.drawable.ic_running_in_background else 0)
