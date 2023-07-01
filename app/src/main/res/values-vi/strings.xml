@@ -271,11 +271,9 @@
     <string name="widget_style_symmetry">Cân đối</string>
     <string name="widget_style_tile">Tấm lát</string>
     <string name="widget_style_mini">Nhỏ</string>
-    <string name="widget_style_nano"></string>
     <string name="widget_style_pixel">Điểm ảnh</string>
     <string name="widget_style_vertical">Dọc</string>
-    <string name="widget_style_oreo"></string>
-    <string name="widget_style_oreo_google_sans"></string>
+    <string name="widget_style_oreo_google_sans"/>
     <string name="widget_style_temperature">Nhiệt độ</string>
     <string name="widget_week_style_5_days">5 ngày</string>
     <string name="widget_week_style_3_days">3 ngày</string>
@@ -359,7 +357,6 @@
     <string name="temperature_wind_chill">Gió lạnh</string>
     <string name="temperature_wet_bulb">Bầu ướt</string>
     <string name="of_clock">:00</string>
-    <string name="temperature_real_feel"></string>
     <string name="temperature_apparent">Nhiệt độ rõ ràng</string>
     <string name="temperature_degree_day">Nhiệt độ ban ngày</string>
     <string name="precipitation">Mưa</string>
