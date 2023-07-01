@@ -15,7 +15,7 @@
     <string name="wind">Vânt</string>
     <string name="wind_direction">Direcția vântului</string>
     <string name="wind_speed">Viteza vântului</string>
-    <string name="wind_level">Vânt</string>
+    <string name="wind_level">Indicator de vânt</string>
     <string name="humidity">Umiditate</string>
     <string name="uv_index">Indice UV</string>
     <string name="hours_of_sun">Ore cu soare</string>
@@ -115,14 +115,14 @@
     <string name="date_format_widget_oreo_style">EEEE, d MMM│</string>
     <!-- feedback. -->
     <string name="notification_location_in_background">Localizare în fundal</string>
-    <string name="dialog_permissions_location_title">Accesare informații despre locație.</string>
+    <string name="dialog_permissions_location_title">Accesați informații despre locație</string>
     <string name="dialog_permissions_location_content">Breezy Weather are nevoie de informațiile despre locația dumenavoastră când rulează sau în fundal pentru a furniza datele meteo din locația in care vă aflați. Pentru aceasta sunt necesare câteva permisiuni. Informațiile despre locația dumenavoastră vor fi utilizate doar pentru a obține datele meteo pentru locația curentă. Dacă nu doriți permiterea accesului la informațiile despre locație, puteți respinge aceste cerințe și seta manual locația dorită în pagina de gestionare.</string>
-    <string name="dialog_permissions_location_background_title">Accesare locație în fundal.</string>
+    <string name="dialog_permissions_location_background_title">Accesați locația în fundal</string>
     <string name="dialog_permissions_location_background_content">Pentru a permite aplicației să acceseze informații despre locație în fundal, astfel încât să putem percepe modificări ale locației și să vă oferim date meteorologice in timp real, setați accesul la locație ca Permiteți tot timpul”.</string>
-    <string name="location_message_failed_to_locate">Localizarea a eșuat.</string>
-    <string name="weather_message_data_refresh_failed">Solicitarea datelor meteo a eșuat.</string>
+    <string name="location_message_failed_to_locate">Localizarea a eșuat</string>
+    <string name="weather_message_data_refresh_failed">Solicitarea datelor meteo a eșuat</string>
     <string name="location_dialog_failed_to_locate_title">Datele de localizare nu sunt corecte\?</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Verifică permisiunile de Localizare.</string>
+    <string name="location_dialog_failed_to_locate_action_check_permission">Verificați permisiunile pentru locație</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Activați informațiile despre locație</string>
     <string name="location_dialog_failed_to_locate_action_select_provider">Selectați furnizorul de servicii de localizare</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Adăugați locația manual și ștergeți “$”</string>
@@ -136,8 +136,9 @@
     <string name="widget_label_clock_font">Font ceas</string>
     <string name="widget_label_hide_lunar">Ascunde calendarul lunar</string>
     <string name="widget_label_align_end">Aliniați la sfârșit</string>
-    <string name="widget_custom_subtitle_explanation">Puteți introduce orice, dar vă rugăm să acordați atenție lungimii textului. Dacă doriți să citați datele meteo, vă rugăm să folosiți $ pentru a face referire la cuvântul cheie corespunzător.
-\ne exemplu, “Starea vremii = $cw$” va fi afișat ca “Starea vremii = cer senin”.</string>
+    <string name="widget_custom_subtitle_explanation">Puteți introduce orice, dar vă rugăm să fiți atenți la lungimea textului. Dacă doriți să citați date meteo, vă rugăm să utilizați $ pentru a face referire la cuvântul cheie corespunzător.
+\n
+\nDe exemplu, „Vremea actuală este: $cw$”. va fi afișat ca „Vremea curentă este: Zi senină”.</string>
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
     <string name="widget_custom_subtitle_keyword_cw_description">Starea vremii</string>
@@ -145,10 +146,10 @@
     <string name="widget_custom_subtitle_keyword_ctd_description">Temperatura curentă (°)</string>
     <string name="widget_custom_subtitle_keyword_at_description">Temp. resimțită (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Temp. resimțită (°)</string>
-    <string name="widget_custom_subtitle_keyword_cwd_description">Vânt</string>
+    <string name="widget_custom_subtitle_keyword_cwd_description">Vântul curent</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Index UV</string>
-    <string name="widget_custom_subtitle_keyword_ch_description">Umiditate</string>
-    <string name="widget_custom_subtitle_keyword_cps_description">Presiune atmosferică</string>
+    <string name="widget_custom_subtitle_keyword_ch_description">Umiditatea curentă</string>
+    <string name="widget_custom_subtitle_keyword_cps_description">Presiunea curentă</string>
     <string name="widget_custom_subtitle_keyword_cv_description">Vizibilitate</string>
     <string name="widget_custom_subtitle_keyword_cdp_description">Punct de rouă</string>
     <string name="widget_custom_subtitle_keyword_al_description">Alerte</string>
@@ -156,7 +157,7 @@
     <string name="widget_custom_subtitle_keyword_l_description">Locație</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Latitudine</string>
     <string name="widget_custom_subtitle_keyword_lon_description">Longitudine</string>
-    <string name="widget_custom_subtitle_keyword_ut_description">Oră actualizare</string>
+    <string name="widget_custom_subtitle_keyword_ut_description">Timpul de actualizare</string>
     <string name="widget_custom_subtitle_keyword_d_description">Data</string>
     <string name="widget_custom_subtitle_keyword_lc_description">Calendar lunar</string>
     <string name="widget_custom_subtitle_keyword_w_description">Săptămână</string>
@@ -190,11 +191,12 @@
     <string name="notification_running_in_background">Datele se actualizează în fundal</string>
     <string name="notification_updating_weather_data">Se actualizează datele meteo</string>
     <string name="message_updated_in_background">Date actualizate în fundal</string>
-    <string name="widget_live_wallpaper_cannot_start_activity">Pornirea previzualizării Tapetului dinamic (live wallpaper) a eșuat.</string>
-    <string name="notification_precipitation_today">Posibile precipitații in decursul zilei</string>
+    <string name="widget_live_wallpaper_cannot_start_activity">Nu se poate porni contextul de previzualizare a imaginii de fundal live</string>
+    <string name="notification_precipitation_today">Astăzi pot fi precipitații.</string>
     <string name="notification_precipitation_short_term">Posibile precipitații în următoarele ore.</string>
     <string name="location_resident_message">Selectat ca oraș de rezidență (Acasă)</string>
-    <string name="location_resident_dialog">"Breezy Weather va afișa și ascunde automat orașele de rezidență (Acasă) pe baza locației dvs. actuale.  nDe exemplu, vă puteți seta orașul natal ca oraș rezident. Puteți verifica vremea în orașul dvs. natal în timp ce călătoriți. Când ajungeți acasă, vremea din orașul dvs. natal va fi ascunsă și înlocuită de vremea pentru locația dvs. actuală."</string>
+    <string name="location_resident_dialog">Breezy Weather va afișa și ascunde automat orașele rezidente în funcție de locația dvs. curentă.
+\nDe exemplu, puteți seta orașul natal ca oraș rezident. Puteți verifica vremea în orașul natal în timp ce călătoriți. Când ajungi acasă, vremea din orașul tău natal va fi ascunsă și înlocuită cu vremea pentru locația ta actuală.</string>
     <string name="allergen_tap_to_see_more">Atingeți pentru mai multe informatii…</string>
     <string name="message_tap_again_to_exit">Repetați actiunea pentru a ieși</string>
     <!-- action -->
@@ -245,7 +247,7 @@
     <string name="settings_background_updates_refresh_3h">3 ore</string>
     <string name="settings_background_updates_refresh_6h">6 ore</string>
     <string name="settings_background_updates_refresh_12h">12 ore</string>
-    <string name="settings_background_updates_refresh_24h">24 ore</string>
+    <string name="settings_background_updates_refresh_24h">24 de ore</string>
     <string name="settings_automatic">Automat</string>
     <string name="settings_color_light_always">Luminos</string>
     <string name="settings_color_dark_always">Întunecat</string>
@@ -262,7 +264,7 @@
     <string name="widget_style_temperature">Temperatură</string>
     <string name="widget_week_style_5_days">5 zile</string>
     <string name="widget_week_style_3_days">3 zile</string>
-    <string name="widget_subtitle_data_time">Oră actualizare</string>
+    <string name="widget_subtitle_data_time">Timp de reîmprospătare</string>
     <string name="widget_subtitle_data_aqi">Calitatea aerului</string>
     <string name="widget_subtitle_data_wind">Vânt</string>
     <string name="widget_subtitle_data_feels_like">Temp. resimțită</string>
@@ -347,7 +349,7 @@
     <string name="unit_lpsqm_voice">Litri pe metru pătrat</string>
     <string name="unit_mmph">mm/h</string>
     <string name="unit_cmph">cm/h</string>
-    <string name="unit_inph">inch/h</string>
+    <string name="unit_inph">inci/h</string>
     <string name="unit_lpsqmph_voice">Litri pe metru pătrat pe oră</string>
     <string name="unit_mi">mi</string>
     <string name="unit_mi_voice">Mile</string>
@@ -410,9 +412,9 @@
     <string name="wind_direction_short_SW">SV</string>
     <string name="wind_direction_short_W">V</string>
     <string name="wind_direction_short_NW">NW</string>
-    <string name="uv_level_0_2">Slab</string>
+    <string name="uv_level_0_2">Scăzut</string>
     <string name="uv_level_3_5">Moderat</string>
-    <string name="air_quality_level_4_description">Efectele asupra sănătății pot fi resimțite imediat de grupurile sensibile. Persoanele sănătoase pot avea dificultăți de respirație și iritații ale gâtului la expunere prelungită. Limitați activitatea în aer liber.</string>
+    <string name="air_quality_level_4_description">Efectele asupra sănătăţii pot fi simţite imediat de către persoanele sensibile. Persoanele sănătoase pot experimenta dificultăţi în respiraţie sau iritarea gâtului la expunerea prelungită. Limitaţi activităţile în aer liber.</string>
     <string name="air_quality_level_5_description">Efectele asupra sănătății vor fi resimțite imediat de grupurile sensibile și ar trebui să evite activitățile în aer liber. Persoanele sănătoase pot avea dificultăți de respirație și iritații ale gâtului; luați în considerare să rămâneți în casă și să reprogramați activitățile în aer liber.</string>
     <string name="air_quality_level_6_description">Orice expunere la aer, chiar și pentru câteva minute, poate duce la efecte grave asupra sănătății asupra tuturor. Evitați activitățile în aer liber.</string>
     <string name="air_quality_level_6">Periculos</string>
@@ -436,7 +438,7 @@
     <string name="weather_source_accu_preference_hours_1">O oră</string>
     <string name="weather_source_accu_preference_hours_72">72 ore</string>
     <string name="weather_source_accu_preference_hours_120">120 ore</string>
-    <string name="weather_source_accu_preference_hours_24">24 ore</string>
+    <string name="weather_source_accu_preference_hours_24">24 de ore</string>
     <string name="location_search_change_weather_provider">Schimbă furnizorul de vreme</string>
     <string name="location_message_permission_background_missing">Permisiunea de acces de Locație în fundal lipsește</string>
     <string name="settings_widgets_notification_widget_title">Widget de notificare</string>
@@ -512,12 +514,13 @@
     <string name="settings_background_updates_methods_title">Metoda de actualizare</string>
     <string name="settings_background_updates_method_worker">Android Worker
 \nMetodă recomandată. Încercați să comutați dacă nu primiți notificări sau widget-urile nu se reîmprospătează.</string>
-    <string name="settings_background_updates_method_notification">Metodă mai fiabilă, dar necesită ca aplicația să rămână activă în fundal.</string>
+    <string name="settings_background_updates_method_notification">Notificare persistentă
+\nMetodă mai fiabilă, dar necesită ca aplicația să rămână activă în fundal.</string>
     <string name="settings_background_updates_method_notification_dialog_title">Dezactivați categoria de notificare</string>
     <string name="settings_widgets_monochrome_icons_title">Pictograme Monocrom</string>
     <string name="settings_widgets_day_night_temp_reversed_title">Inversați ordinea temperaturilor zi/noapte</string>
     <string name="settings_widgets_notification_persistent_switch">Persistent</string>
-    <string name="settings_widgets_notification_feels_like_switch">Utilizează (Se simte ca) temperatură</string>
+    <string name="settings_widgets_notification_feels_like_switch">Utilizează Se simte ca temperatură</string>
     <string name="settings_debug">Depanare</string>
     <string name="settings_debug_dump_crash_logs_summary">Salvează jurnalele de erori într-un fișier pentru a le partaja cu dezvoltatorii</string>
     <string name="unit_kph">km/h</string>
@@ -561,4 +564,19 @@
     <string name="settings_main_section_displayed_data">Date afișate</string>
     <string name="settings_notifications_precipitations_title">Notificări de precipitații</string>
     <string name="settings_widgets_summary">Setați imaginea de fundal, configurați widget-urile utilizate, widgetul de notificare…</string>
+    <string name="settings_location">Locație</string>
+    <string name="settings_location_summary">Setări ale furnizorilor de locație</string>
+    <string name="settings_location_access_switch_summaryOn">Permis. Puteți adăuga locația dvs. curentă ca locație.</string>
+    <string name="settings_location_access_background_title">Accesul la locație în fundal</string>
+    <string name="settings_location_access_background_summaryOn">Activat. Aplicația va putea reîmprospăta datele meteo pentru locația dvs. actuală în fundal.</string>
+    <string name="settings_location_access_background_summaryOff">Vă rog sa activați „Permiteți tot timpul” pentru a avea reîmprospătări de fundal pentru locația dvs. actuală.</string>
+    <string name="settings_location_access_precise_title">Utilizarea GPS-ului dispozitivului</string>
+    <string name="settings_weather_providers">Furnizorii de vreme</string>
+    <string name="settings_weather_providers_summary">Setările furnizorilor de vreme</string>
+    <string name="settings_location_access_permission_already_granted">Permisiunea a fost deja acordată</string>
+    <string name="settings_location_access_permission_revoked">Permisiune revocată</string>
+    <string name="settings_location_access_switch_title">Acces la locație</string>
+    <string name="settings_location_access_switch_summaryOff">Vă rugăm să permiteți dacă doriți să puteți adăuga locația dvs. actuală ca locație.</string>
+    <string name="settings_location_access_precise_summaryOn">Activat. Rețeaua dispozitivului și furnizorii de GPS sunt ambele utilizate.</string>
+    <string name="settings_location_access_precise_summaryOff">Activați „Utilizați locația precisă” dacă aveți probleme în obținerea unei locații.</string>
 </resources>
