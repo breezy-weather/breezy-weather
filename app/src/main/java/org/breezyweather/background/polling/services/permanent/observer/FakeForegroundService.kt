@@ -4,7 +4,6 @@ import android.app.Service
 import android.content.Intent
 import android.os.Build
 import android.os.IBinder
-import org.breezyweather.background.polling.services.permanent.observer.TimeObserverService
 import org.breezyweather.remoteviews.Notifications
 
 class FakeForegroundService : Service() {

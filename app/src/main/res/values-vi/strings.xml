@@ -57,12 +57,12 @@
     <string name="action_edit">Chỉnh sửa</string>
     <string name="dialog_permissions_location_background_title">Truy cập vị trí dưới nền</string>
     <string name="dialog_permissions_location_content">Breezy Weather cần thu thập thông tin địa điểm của bạn ở trên hoặc dưới nền để cung cấp dữ liệu thời tiết của địa điểm hiện tại của bạn. Vì chuyện này, chúng tôi sẽ yêu cầu xin phép. Thông tin địa điểm của bạn chỉ được sử dụng để lấy dữ liệu thời tiết ở vị trí hiện tại của bạn. Nếu bạn không muốn chia sẻ thông tin địa điểm của bạn, bạn có thể phủ nhận những yêu cầu đó và đặt vị trí của bạn ở trang quản lý.</string>
-    <string name="dialog_permissions_location_background_content">Để cho phép ứng dụng truy cập thông tin địa điểm, để chúng tôi có thể nhận thức được sự thay đổi vị trí và cung cấp cho bạn dữ liệu thời tiết hợp lệ, làm ơn đặt quyền vị trí thành \"Cho phép mọi lúc\".</string>
+    <string name="dialog_permissions_location_background_content">Để cho phép ứng dụng truy cập thông tin địa điểm, để chúng tôi có thể nhận thức được sự thay đổi vị trí và cung cấp cho bạn dữ liệu thời tiết hợp lệ, làm ơn đặt quyền vị trí thành “Cho phép mọi lúc”.</string>
     <string name="message_network_unavailable">Mạng không khả dụng</string>
     <string name="message_updated_in_background">Đã cập nhật dưới nền</string>
     <string name="widget_custom_subtitle_explanation">Bạn có thể nhập vào bất cứ thứ gì, nhưng hãy chú ý đến chiều dài của tin nhắn. Nếu bạn muốn trích dẫn dữ liệu thời tiết, hãy dùng $ để xem từ khóa tương ứng.
 \n
-\nVí dụ, \"Thời tiết hiện tại là: $cw$.\" sẽ được hiển thị như \"Thời tiết hiện tại là: Ngày Trong.\".</string>
+\nVí dụ, “Thời tiết hiện tại là: $cw$.” sẽ được hiển thị như “Thời tiết hiện tại là: Ngày Trong.”.</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Áp suất hiện tại</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Nhiệt độ hiện tại (°)</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Chỉ số cực tím hiện tại</string>
@@ -72,16 +72,16 @@
     <string name="widget_custom_subtitle_keyword_lc_description">Âm lịch</string>
     <string name="widget_custom_subtitle_keyword_d_description">Ngày</string>
     <string name="widget_custom_subtitle_keyword_ws_description">Tuần (Ngắn)</string>
-    <string name="widget_custom_subtitle_keyword_xnw_description">Thời tiết ban đêm của hôm nay, ngày mai, ..., 4 ngày sau</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">Nhiệt độ ban ngày của hôm nay, ngày mai, ..., 4 ngày sau (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_xdtd_description">Nhiệt độ ban ngày của hôm nay, ngày mai, ..., 4 ngày sau (°)</string>
-    <string name="widget_custom_subtitle_keyword_xnp_description">Lượng mưa ban đêm của hôm nay, ngày mai, ..., 4 ngày sau (%)</string>
-    <string name="widget_custom_subtitle_keyword_xdwd_description">Gió ban ngày của hôm nay, ngày mai, ..., 4 ngày sau</string>
-    <string name="widget_custom_subtitle_keyword_xnwd_description">Gió ban đêm của hôm nay, ngày mai, ..., 4 ngày sau</string>
-    <string name="widget_custom_subtitle_keyword_xsr_description">Thời gian mặt trời mọc của hôm nay, ngày mai, ..., 4 ngày sau</string>
-    <string name="widget_custom_subtitle_keyword_xss_description">Thời gian mặt trời lặn của hôm nay, ngày mai, ..., 4 ngày sau</string>
-    <string name="widget_custom_subtitle_keyword_xmr_description">Thời gian mặt trăng mọc của hôm nay, ngày mai, ..., 4 ngày sau</string>
-    <string name="widget_custom_subtitle_keyword_xms_description">Thời gian mặt trăng lặn của hôm nay, ngày mai, ..., 4 ngày sau</string>
+    <string name="widget_custom_subtitle_keyword_xnw_description">Thời tiết ban đêm của hôm nay, ngày mai, …, 4 ngày sau</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">Nhiệt độ ban ngày của hôm nay, ngày mai, …, 4 ngày sau (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xdtd_description">Nhiệt độ ban ngày của hôm nay, ngày mai, …, 4 ngày sau (°)</string>
+    <string name="widget_custom_subtitle_keyword_xnp_description">Lượng mưa ban đêm của hôm nay, ngày mai, …, 4 ngày sau (%)</string>
+    <string name="widget_custom_subtitle_keyword_xdwd_description">Gió ban ngày của hôm nay, ngày mai, …, 4 ngày sau</string>
+    <string name="widget_custom_subtitle_keyword_xnwd_description">Gió ban đêm của hôm nay, ngày mai, …, 4 ngày sau</string>
+    <string name="widget_custom_subtitle_keyword_xsr_description">Thời gian mặt trời mọc của hôm nay, ngày mai, …, 4 ngày sau</string>
+    <string name="widget_custom_subtitle_keyword_xss_description">Thời gian mặt trời lặn của hôm nay, ngày mai, …, 4 ngày sau</string>
+    <string name="widget_custom_subtitle_keyword_xmr_description">Thời gian mặt trăng mọc của hôm nay, ngày mai, …, 4 ngày sau</string>
+    <string name="widget_custom_subtitle_keyword_xms_description">Thời gian mặt trăng lặn của hôm nay, ngày mai, …, 4 ngày sau</string>
     <string name="action_app_store">Cửa hàng ứng dụng</string>
     <string name="action_see_more">Xem thêm</string>
     <string name="settings_background_updates_refresh_3h">3 tiếng</string>
@@ -94,8 +94,8 @@
     <string name="settings_background_updates_battery_optimization_activity_not_found">Không thể mở cài đặt thiết bị.</string>
     <string name="settings_background_updates_section_troubleshoot">Sửa lỗi</string>
     <string name="settings_background_updates_methods_title">Phương pháp cập nhật</string>
-    <string name="settings_location_access_background_summaryOff">Vui lòng bật \"Cho phép mọi lúc\" để có thể làm mới dưới nền cho vị trí hiện tại của bạn.</string>
-    <string name="settings_location_access_precise_summaryOff">Bật \"Sủ dụng vị trí chính xác\" nếu bạn gặp vấn đề lấy vị trí.</string>
+    <string name="settings_location_access_background_summaryOff">Vui lòng bật “Cho phép mọi lúc” để có thể làm mới dưới nền cho vị trí hiện tại của bạn.</string>
+    <string name="settings_location_access_precise_summaryOff">Bật “Sủ dụng vị trí chính xác” nếu bạn gặp vấn đề lấy vị trí.</string>
     <string name="settings_weather_provider_default_value">Gốc (Chưa thay đổi)</string>
     <string name="settings_weather_providers">Nhà cung cấp thời tiết</string>
     <string name="settings_icon_providers_weather_icon_dark">Biểu tượng tối</string>
@@ -194,7 +194,7 @@
     <string name="location_dialog_failed_to_locate_action_check_permission">Kiểm tra quyền vị trí</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Bật vị trí</string>
     <string name="location_dialog_failed_to_locate_action_select_provider">Chọn nhà cung cấp vị trí</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">Thêm vị trí thủ công và xóa \"$\"</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Thêm vị trí thủ công và xóa “$”</string>
     <string name="location_search_placeholder">Tìm một vị trí…</string>
     <string name="location_current_not_found_yet">Vị trí hiện tại chưa thể tìm…</string>
     <string name="location_resident_message">Chọn làm thành phố cư trú</string>
@@ -262,11 +262,11 @@
     <string name="widget_custom_subtitle_keyword_ut_description">Thời gian cập nhật</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Mô tả hàng giờ</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Hàng mới</string>
-    <string name="widget_custom_subtitle_keyword_xdw_description">Thời tiết ban ngày của hôm nay, ngày mai, ..., 4 ngày sau</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Nhiệt độ ban đêm của hôm nay, ngày mai, ... , 4 ngày sau (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_xntd_description">Nhiệt độ ban ngày của hôm nay, ngày mai, ..., 4 ngày sau (°)</string>
-    <string name="widget_custom_subtitle_keyword_xdp_description">Lượng mưa ban ngày của hôm nay, ngày mai, ..., 4 ngày sau (%)</string>
-    <string name="widget_custom_subtitle_keyword_xmp_description">Chu kỳ mặt trăng của hôm nay, ngày mai, ..., 4 ngày sau</string>
+    <string name="widget_custom_subtitle_keyword_xdw_description">Thời tiết ban ngày của hôm nay, ngày mai, …, 4 ngày sau</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Nhiệt độ ban đêm của hôm nay, ngày mai, … , 4 ngày sau (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xntd_description">Nhiệt độ ban ngày của hôm nay, ngày mai, …, 4 ngày sau (°)</string>
+    <string name="widget_custom_subtitle_keyword_xdp_description">Lượng mưa ban ngày của hôm nay, ngày mai, …, 4 ngày sau (%)</string>
+    <string name="widget_custom_subtitle_keyword_xmp_description">Chu kỳ mặt trăng của hôm nay, ngày mai, …, 4 ngày sau</string>
     <string name="widget_style_rectangle">Chữ nhật</string>
     <string name="widget_style_symmetry">Cân đối</string>
     <string name="widget_style_tile">Tấm lát</string>
@@ -293,7 +293,7 @@
     <string name="settings_background_updates_method_notification">Persistent notification
 \nPhương pháp đáng tinh cậy hơn nhưng yêu cầu app phải hoạt động dưới nền.</string>
     <string name="settings_background_updates_method_notification_dialog_title">Tắt danh mục thông báo</string>
-    <string name="settings_background_updates_method_notification_dialog_content">Phương pháp này thêm một thông báo có thể bị ẩn đi bởi tắt mục thông báo \"$\" trong cài đặt ứng dụng.</string>
+    <string name="settings_background_updates_method_notification_dialog_content">Phương pháp này thêm một thông báo có thể bị ẩn đi bởi tắt mục thông báo “$” trong cài đặt ứng dụng.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Chỉ dẫn cụ thể theo nhà sản xuất</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Một số nhà sản xuất thêm một sự ngăn cản làm dừng các dịch vụ chạy dưới nền. Website $ có thông tin về cách sửa nó.</string>
     <string name="settings_background_updates_worker_info_title">Thông tin tiến trình</string>
