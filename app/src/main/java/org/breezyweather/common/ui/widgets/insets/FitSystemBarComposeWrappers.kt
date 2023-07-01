@@ -56,7 +56,6 @@ internal fun ColorScheme.surfaceColorAtElevation(elevation: Dp): Color {
     return surfaceTint.copy(alpha = alpha).compositeOver(surface)
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FitStatusBarTopAppBar(
     title: @Composable () -> Unit,
@@ -82,7 +81,6 @@ fun FitStatusBarTopAppBar(
     scrollBehavior = scrollBehavior,
 )
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FitStatusBarTopAppBar(
     title: String,

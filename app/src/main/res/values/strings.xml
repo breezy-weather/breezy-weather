@@ -395,15 +395,19 @@
     <!-- “Location” here means “Locating you”, check your Android settings to know the correct word -->
     <string name="settings_location">Location</string>
     <string name="settings_location_summary">Location providers settings</string>
-    <string name="settings_location_section_access">Location access</string>
-    <string name="settings_location_access_switch_title">Allow</string>
-    <string name="settings_location_access_switch_summary">When off, you won’t be able to have weather data for your current location, but you can still search for your location manually.</string>
-    <string name="settings_location_access_background_title">Allow all the time</string>
-    <string name="settings_location_access_background_summary">When off, you won’t be able to have background refreshes for your current location.</string>
-    <string name="settings_location_access_precise_title">Use precise location</string>
-    <string name="settings_location_access_precise_summary">When off, app will use approximate location, which is suitable and recommended for weather forecast. Precise location uses more battery.</string>
     <string name="settings_location_section_general" translatable="false">@string/settings_section_general</string>
     <string name="settings_location_service">Location service</string>
+    <string name="settings_location_access_permission_already_granted">Permission already granted</string>
+    <string name="settings_location_access_permission_revoked">Permission revoked</string>
+    <string name="settings_location_access_switch_title">Location access</string>
+    <string name="settings_location_access_switch_summaryOn">Allowed. You can add your current location as a location.</string>
+    <string name="settings_location_access_switch_summaryOff">Please allow if you want to be able to add your current location as a location.</string>
+    <string name="settings_location_access_background_title">Location access in background</string>
+    <string name="settings_location_access_background_summaryOn">Enabled. App will be able to refresh weather data for your current location in background.</string>
+    <string name="settings_location_access_background_summaryOff">Please enable “Allow all the time” to have background refreshes for your current location.</string>
+    <string name="settings_location_access_precise_title">Device’s GPS usage</string>
+    <string name="settings_location_access_precise_summaryOn">Enabled. Device’s network and GPS providers are both used.</string>
+    <string name="settings_location_access_precise_summaryOff">Enable “Use precise location” if you have trouble getting a location.</string>
     <string name="settings_location_baidu_ip_location_ak">Baidu IP Location API Key</string>
     <string name="settings_weather_providers">Weather providers</string>
     <string name="settings_weather_providers_summary">Weather providers settings</string>

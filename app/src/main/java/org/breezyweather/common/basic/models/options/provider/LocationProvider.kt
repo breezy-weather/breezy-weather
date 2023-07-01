@@ -9,8 +9,8 @@ enum class LocationProvider(
     override val id: String
 ): BaseEnum {
 
-    BAIDU_IP("baidu_ip"),
-    NATIVE("native");
+    NATIVE("native"),
+    BAIDU_IP("baidu_ip");
 
     companion object {
 

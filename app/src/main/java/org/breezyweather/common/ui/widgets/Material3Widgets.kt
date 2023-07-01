@@ -46,7 +46,6 @@ fun getWidgetSurfaceColor(elevation: Dp): Color {
         .compositeOver(surface)
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun generateCollapsedScrollBehavior(): TopAppBarScrollBehavior {
     return TopAppBarDefaults.exitUntilCollapsedScrollBehavior()

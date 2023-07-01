@@ -87,7 +87,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
         freeCompilerArgs += [
-                "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api"
+                "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
+                "-opt-in=kotlinx.serialization.ExperimentalSerializationApi",
+                "-opt-in=com.google.accompanist.permissions.ExperimentalPermissionsApi"
         ]
     }
     composeOptions {
@@ -161,10 +163,10 @@ dependencies {
     implementation "androidx.compose.foundation:foundation:$compose_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1"
     //androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
-    implementation "com.google.accompanist:accompanist-appcompat-theme:0.30.1"
     implementation "androidx.compose.material3:material3:1.1.1"
     implementation "androidx.compose.material:material-icons-extended:$compose_version"
     implementation "androidx.navigation:navigation-compose:2.6.0"
+    implementation "com.google.accompanist:accompanist-permissions:0.30.1"
 
     // preference.
     implementation "androidx.preference:preference-ktx:1.2.0"

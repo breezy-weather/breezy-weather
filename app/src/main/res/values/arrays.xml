@@ -33,12 +33,12 @@
 
     <!-- Location service. -->
     <string-array name="location_services">
-        <item>@string/location_service_baidu_ip</item>
         <item>@string/location_service_native</item>
+        <item>@string/location_service_baidu_ip</item>
     </string-array>
     <string-array name="location_service_values">
-        <item>baidu_ip</item>
         <item>native</item>
+        <item>baidu_ip</item>
     </string-array>
 
     <!-- Dark mode. -->

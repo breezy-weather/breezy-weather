@@ -1,7 +1,10 @@
 package org.breezyweather.common.extensions
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.PowerManager
+import android.provider.Settings
 import androidx.core.content.PermissionChecker
 import androidx.core.content.getSystemService
 import java.io.File
@@ -31,4 +34,12 @@ fun Context.createFileInCacheDir(name: String): File {
     }
     file.createNewFile()
     return file
+}
+
+fun Context.openApplicationDetailsSettings() {
+    startActivity(
+        Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).setData(
+            Uri.fromParts("package", packageName, null)
+        )
+    )
 }

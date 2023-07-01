@@ -5,7 +5,6 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Converter
@@ -15,7 +14,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 @Module
 class KotlinModule {
-    @OptIn(ExperimentalSerializationApi::class)
     @Provides
     @Singleton
     fun provideKotlinxSerializationConverterFactory(): Converter.Factory {
