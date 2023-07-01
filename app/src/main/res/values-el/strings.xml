@@ -109,7 +109,6 @@
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
     <!-- feedback. -->
-    <string name="notification_channel_request_location">Τοποθεσία</string>
     <string name="notification_location_in_background">Εντοπισμός στο παρασκήνιο</string>
     <string name="location_message_failed_to_locate">Σφάλμα τοποθεσίας</string>
     <string name="weather_message_data_refresh_failed">Αποτυχία αποστολής μετεωρολογικών δεδομένων</string>

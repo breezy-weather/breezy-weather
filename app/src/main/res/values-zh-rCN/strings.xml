@@ -152,7 +152,6 @@
     <string name="date_format_widget_long">M月d日 EEEE</string>
     <string name="date_format_widget_oreo_style">M月d日EEEE │</string>
     <!-- feedback. -->
-    <string name="notification_channel_request_location">位置信息</string>
     <string name="notification_location_in_background">正在后台进行定位</string>
     <string name="dialog_permissions_location_title">获取位置信息</string>
     <string name="dialog_permissions_location_content">Breezy 天气需要在前台和后台获取您的位置信息以提供您所在位置的天气数据。为此，我们需要请求一些权限。您的位置信息将仅被用于获取天气数据。如果您不希望我们获取您的位置信息，可以拒绝这些权限请求并手动在管理页面中设置您的位置。</string>

@@ -115,7 +115,6 @@
     <string name="date_format_widget_long">EEEE, d\' de \'MMM</string>
     <string name="date_format_widget_oreo_style">EEEE, d\' de \'MMM｜</string>
     <!-- feedback. -->
-    <string name="notification_channel_request_location">Localização</string>
     <string name="notification_location_in_background">Localização em segundo plano</string>
     <string name="dialog_permissions_location_title">Acessar informações de localização</string>
     <string name="dialog_permissions_location_content">Breezy Weather precisa coletar suas informações de localização em primeiro plano ou em segundo plano para fornecer os dados meteorológicos da sua localização atual. Para isso, solicitaremos algumas permissões. Suas informações de localização serão usadas apenas para obter dados meteorológicos na sua localização atual. Se você não quiser que obtenhamos suas informações de localização, você pode negar esses requisitos e definir manualmente seu local na página de gerenciamento.</string>

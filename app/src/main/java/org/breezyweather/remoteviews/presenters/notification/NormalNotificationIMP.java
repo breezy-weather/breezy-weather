@@ -2,8 +2,6 @@ package org.breezyweather.remoteviews.presenters.notification;
 
 import android.Manifest;
 import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Icon;
@@ -18,7 +16,6 @@ import androidx.core.app.NotificationManagerCompat;
 import java.util.Date;
 import java.util.List;
 
-import org.breezyweather.BreezyWeather;
 import org.breezyweather.common.basic.models.Location;
 import org.breezyweather.common.basic.models.options.NotificationStyle;
 import org.breezyweather.common.basic.models.options.NotificationTextColor;
@@ -26,6 +23,7 @@ import org.breezyweather.common.basic.models.options.unit.TemperatureUnit;
 import org.breezyweather.common.basic.models.weather.Hourly;
 import org.breezyweather.common.basic.models.weather.Temperature;
 import org.breezyweather.common.basic.models.weather.Weather;
+import org.breezyweather.remoteviews.Notifications;
 import org.breezyweather.theme.resource.ResourceHelper;
 import org.breezyweather.theme.resource.ResourcesProviderFactory;
 import org.breezyweather.theme.resource.providers.ResourceProvider;
@@ -90,25 +88,11 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
 
         // build channel.
         NotificationManagerCompat manager = NotificationManagerCompat.from(context);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel(
-                    BreezyWeather.NOTIFICATION_CHANNEL_ID_NORMALLY,
-                    BreezyWeather.getNotificationChannelName(
-                            context,
-                            BreezyWeather.NOTIFICATION_CHANNEL_ID_NORMALLY
-                    ),
-                    NotificationManager.IMPORTANCE_LOW
-            );
-            channel.setShowBadge(false);
-            channel.setImportance(NotificationManager.IMPORTANCE_HIGH);
-            channel.setLockscreenVisibility(NotificationCompat.VISIBILITY_PUBLIC);
-            manager.createNotificationChannel(channel);
-        }
 
         // get manager & builder.
         NotificationCompat.Builder builder = new NotificationCompat.Builder(
                 context,
-                BreezyWeather.NOTIFICATION_CHANNEL_ID_NORMALLY
+                Notifications.CHANNEL_WIDGET
         );
 
         // set notification level.
@@ -145,7 +129,7 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
         );
 
         builder.setContentIntent(
-                getWeatherPendingIntent(context, null, BreezyWeather.NOTIFICATION_ID_NORMALLY)
+                getWeatherPendingIntent(context, null, Notifications.ID_WIDGET)
         );
 
         // build big view.
@@ -190,7 +174,7 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
                 context,
                 Manifest.permission.POST_NOTIFICATIONS
         ) == PackageManager.PERMISSION_GRANTED) {
-            manager.notify(BreezyWeather.NOTIFICATION_ID_NORMALLY, notification);
+            manager.notify(Notifications.ID_WIDGET, notification);
         }
     }
 
@@ -517,7 +501,7 @@ public class NormalNotificationIMP extends AbstractRemoteViewsPresenter {
     }
 
     public static void cancelNotification(Context context) {
-        NotificationManagerCompat.from(context).cancel(BreezyWeather.NOTIFICATION_ID_NORMALLY);
+        NotificationManagerCompat.from(context).cancel(Notifications.ID_WIDGET);
     }
 
     public static boolean isEnable(Context context) {

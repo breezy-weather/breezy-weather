@@ -115,7 +115,6 @@
     <string name="date_format_widget_long">EEEE d MMM</string>
     <string name="date_format_widget_oreo_style">EEEE d MMM│</string>
     <!-- feedback. -->
-    <string name="notification_channel_request_location">Poloha</string>
     <string name="notification_location_in_background">Zjišťování polohy na pozadí</string>
     <string name="dialog_permissions_location_title">Přístup k informacím o poloze</string>
     <string name="dialog_permissions_location_content">Aplikace Breezy Weather potřebuje sbírat na popředí nebo v pozadí informace o vaší poloze, aby mohla poskytnout údaje o počasí ve vaší současné lokaci. Z tohoto důvodu zažádáme o nějaká oprávnění. Informace o vaší poloze budou použity pouze k získání údajů o počasí ve vaší současné lokaci. Pokud nechcete, abychom sbírali informace o poloze, můžete tyto žádosti zamítnout a ručně nastavit vaší polohu na stránce nastavení.</string>

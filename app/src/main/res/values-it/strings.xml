@@ -111,7 +111,6 @@
     <string name="date_format_widget_long">EEEE, d MMM</string>
     <string name="date_format_widget_oreo_style">EEEE, d MMM │</string>
     <!-- feedback. -->
-    <string name="notification_channel_request_location">Localizzazione</string>
     <string name="notification_location_in_background">Localizzazione in corso</string>
     <string name="dialog_permissions_location_title">Accesso alle informazioni sulla posizione</string>
     <string name="dialog_permissions_location_content">Breezy Weather deve raccogliere le informazioni sulla posizione dell’utente in primo piano o in background per fornire i dati meteo della posizione corrente. A tal fine, verranno richieste alcune autorizzazioni. Le informazioni sulla posizione dell’utente saranno utilizzate solo per ottenere i dati meteo della sua posizione attuale. Se non si desidera che le informazioni sulla posizione vengano acquisite, è possibile negare questi requisiti e impostare manualmente la propria posizione nella pagina di gestione.</string>

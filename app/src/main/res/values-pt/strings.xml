@@ -71,7 +71,6 @@
     <string name="date_format_widget_long">EEEE, dd\' de \'MMM</string>
     <string name="date_format_widget_oreo_style">EEEE, dd\' de \'MMM │</string>
     <!-- feedback. -->
-    <string name="notification_channel_request_location">Localização</string>
     <string name="notification_location_in_background">Localização em segundo plano.</string>
     <string name="location_message_failed_to_locate">Localização falhou.</string>
     <string name="weather_message_data_refresh_failed">Atualização de clima falhou.</string>

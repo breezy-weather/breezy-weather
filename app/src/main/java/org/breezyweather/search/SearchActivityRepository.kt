@@ -4,7 +4,6 @@ import android.content.Context
 import dagger.hilt.android.qualifiers.ApplicationContext
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.provider.WeatherSource
-import org.breezyweather.common.basic.models.options.provider.WeatherSource.Companion.getInstance
 import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.main.utils.RequestErrorType
 import org.breezyweather.settings.ConfigStore
@@ -37,7 +36,7 @@ class SearchActivityRepository @Inject internal constructor(
     var lastSelectedWeatherSource: WeatherSource
         get() {
             val lastDefaultSource = mConfig.getString(KEY_LAST_DEFAULT_SOURCE, "")
-            return getInstance(lastDefaultSource)
+            return WeatherSource.getInstance(lastDefaultSource)
         }
         set(weatherSource) {
             mConfig.edit().putString(KEY_LAST_DEFAULT_SOURCE, weatherSource.id).apply()

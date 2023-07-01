@@ -116,7 +116,6 @@
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
     <!-- feedback. -->
-    <string name="notification_channel_request_location">Lokasi</string>
     <string name="notification_location_in_background">Menemukan di latar belakang</string>
     <string name="dialog_permissions_location_title">Akses informasi lokasi</string>
     <string name="dialog_permissions_location_content">Breezy Weather perlu mengumpulkan informasi lokasi Anda di latar depan atau latar belakang untuk menyediakan data cuaca di lokasi Anda saat ini. Untuk ini, kami akan meminta beberapa izin. Informasi lokasi Anda hanya akan digunakan untuk mendapatkan data cuaca di lokasi Anda saat ini. Jika Anda tidak ingin kami mendapatkan informasi lokasi Anda, Anda bisa menolak persyaratan itu dan mengatur lokasi Anda secara manual di halaman manajemen.</string>

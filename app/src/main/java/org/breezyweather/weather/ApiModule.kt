@@ -7,7 +7,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import org.breezyweather.BuildConfig
-import org.breezyweather.settings.SettingsManager.Companion.getInstance
+import org.breezyweather.settings.SettingsManager
 import org.breezyweather.weather.accu.AccuWeatherApi
 import org.breezyweather.weather.china.ChinaApi
 import org.breezyweather.weather.metno.MetNoApi
@@ -70,7 +70,7 @@ class ApiModule {
         converterFactory: Converter.Factory,
         callAdapterFactory: RxJava3CallAdapterFactory
     ): AccuWeatherApi = Retrofit.Builder()
-        .baseUrl(getInstance(app).customAccuPortal.url)
+        .baseUrl(SettingsManager.getInstance(app).customAccuPortal.url)
         .client(client)
         .addConverterFactory(converterFactory)
         .addCallAdapterFactory(callAdapterFactory)

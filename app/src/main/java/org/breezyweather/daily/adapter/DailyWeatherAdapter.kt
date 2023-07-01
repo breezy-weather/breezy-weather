@@ -14,7 +14,7 @@ import org.breezyweather.common.basic.models.weather.HalfDay
 import org.breezyweather.daily.adapter.holder.*
 import org.breezyweather.daily.adapter.model.*
 import org.breezyweather.databinding.ItemWeatherDailyPollenBinding
-import org.breezyweather.settings.SettingsManager.Companion.getInstance
+import org.breezyweather.settings.SettingsManager
 import java.util.*
 
 class DailyWeatherAdapter(context: Context, timeZone: TimeZone, daily: Daily, spanCount: Int) :
@@ -133,7 +133,7 @@ class DailyWeatherAdapter(context: Context, timeZone: TimeZone, daily: Daily, sp
         val list: MutableList<ViewModel> = ArrayList()
         // temperature.
         val temperature = halfDay.temperature
-        val temperatureUnit = getInstance(context).temperatureUnit
+        val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
         if (temperature?.feelsLikeTemperature != null) {
             list.add(Title(R.drawable.ic_device_thermostat, context.getString(R.string.temperature)))
             temperature.realFeelTemperature?.let {
@@ -189,7 +189,7 @@ class DailyWeatherAdapter(context: Context, timeZone: TimeZone, daily: Daily, sp
 
         // precipitation.
         val precipitation = halfDay.precipitation
-        val precipitationUnit = getInstance(context).precipitationUnit
+        val precipitationUnit = SettingsManager.getInstance(context).precipitationUnit
         if (precipitation?.total != null && precipitation.total > 0) {
             list.add(Title(R.drawable.ic_water, context.getString(R.string.precipitation)))
             list.add(

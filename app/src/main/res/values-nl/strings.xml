@@ -57,7 +57,6 @@
     <string name="date_format_widget_long">EEEE, d MMM</string>
     <string name="date_format_widget_oreo_style">EEEE, d MMM │</string>
     <!-- feedback. -->
-    <string name="notification_channel_request_location">Locatie</string>
     <string name="notification_location_in_background">Lokaliseren op de achtergrond.</string>
     <string name="location_message_failed_to_locate">Locatie gefaald.</string>
     <string name="weather_message_data_refresh_failed">Weerdata ophalen mislukt.</string>

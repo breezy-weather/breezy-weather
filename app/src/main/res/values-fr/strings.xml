@@ -183,7 +183,6 @@
     <string name="date_format_widget_oreo_style">EEEE d MMM│</string>
 
     <!-- feedback. -->
-    <string name="notification_channel_request_location">Localisation</string>
     <string name="notification_location_in_background">Localisation en arrière-plan</string>
 
     <string name="dialog_permissions_location_title">Accéder aux informations de localisation</string>

@@ -111,7 +111,6 @@
     <string name="date_format_widget_long">EEEE MMM dd日</string>
     <string name="date_format_widget_oreo_style">EEEE MMM dd日</string>
     <!-- feedback. -->
-    <string name="notification_channel_request_location">現在地</string>
     <string name="notification_location_in_background">Locating in background</string>
     <string name="location_message_failed_to_locate">位置情報を取得できませんでした。</string>
     <string name="weather_message_data_refresh_failed">気象データを取得できませんでした</string>

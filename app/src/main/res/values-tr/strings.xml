@@ -52,7 +52,6 @@
     <string name="about_app">HAKKINDA</string>
     <string name="about_translators">Çevirmenler</string>
     <!-- feedback. -->
-    <string name="notification_channel_request_location">Konum</string>
     <string name="location_message_failed_to_locate">Konum başarısız.</string>
     <string name="weather_message_data_refresh_failed">Hava Durumu isteği başarısız.</string>
     <string name="widget_label_view_style">Görüntüleme şekli.</string>

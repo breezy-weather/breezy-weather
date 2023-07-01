@@ -109,7 +109,6 @@
     <string name="date_format_widget_long">MMM d, EEEE</string>
     <string name="date_format_widget_oreo_style">MMM d, EEEE│</string>
     <!-- feedback. -->
-    <string name="notification_channel_request_location">위치</string>
     <string name="notification_location_in_background">백그라운드에 상주중</string>
     <string name="location_message_failed_to_locate">위치 실패</string>
     <string name="weather_message_data_refresh_failed">날씨 데이터 요청 실패</string>

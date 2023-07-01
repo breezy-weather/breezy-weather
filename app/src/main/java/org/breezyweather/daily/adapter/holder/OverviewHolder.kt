@@ -1,9 +1,7 @@
 package org.breezyweather.daily.adapter.holder
 
 import android.annotation.SuppressLint
-import android.text.TextUtils
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import org.breezyweather.R
@@ -11,7 +9,7 @@ import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.ui.widgets.AnimatableIconView
 import org.breezyweather.daily.adapter.DailyWeatherAdapter
 import org.breezyweather.daily.adapter.model.Overview
-import org.breezyweather.settings.SettingsManager.Companion.getInstance
+import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourcesProviderFactory
 import org.breezyweather.theme.resource.providers.ResourceProvider
 
@@ -22,7 +20,7 @@ class OverviewHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
     private val mIcon: AnimatableIconView = itemView.findViewById(R.id.item_weather_daily_overview_icon)
     private val mTitle: TextView = itemView.findViewById(R.id.item_weather_daily_overview_text)
     private val mProvider: ResourceProvider = ResourcesProviderFactory.getNewInstance()
-    private val mTemperatureUnit: TemperatureUnit = getInstance(parent.context).temperatureUnit
+    private val mTemperatureUnit: TemperatureUnit = SettingsManager.getInstance(parent.context).temperatureUnit
 
     init {
         itemView.setOnClickListener { mIcon.startAnimators() }

@@ -114,7 +114,6 @@
     <string name="date_format_widget_long">EEEE, d MMM</string>
     <string name="date_format_widget_oreo_style">EEEE, d MMM│</string>
     <!-- feedback. -->
-    <string name="notification_channel_request_location">Locație</string>
     <string name="notification_location_in_background">Localizare în fundal</string>
     <string name="dialog_permissions_location_title">Accesare informații despre locație.</string>
     <string name="dialog_permissions_location_content">Breezy Weather are nevoie de informațiile despre locația dumenavoastră când rulează sau în fundal pentru a furniza datele meteo din locația in care vă aflați. Pentru aceasta sunt necesare câteva permisiuni. Informațiile despre locația dumenavoastră vor fi utilizate doar pentru a obține datele meteo pentru locația curentă. Dacă nu doriți permiterea accesului la informațiile despre locație, puteți respinge aceste cerințe și seta manual locația dorită în pagina de gestionare.</string>

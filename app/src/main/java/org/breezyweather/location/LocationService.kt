@@ -1,18 +1,9 @@
 package org.breezyweather.location
 
 import android.Manifest
-import android.app.Notification
-import android.app.NotificationChannel
-import android.app.NotificationManager
 import android.content.Context
 import android.content.pm.PackageManager
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
-import androidx.core.app.NotificationCompat
-import androidx.core.content.ContextCompat
-import org.breezyweather.BreezyWeather
-import org.breezyweather.R
 
 abstract class LocationService {
 
@@ -53,35 +44,5 @@ abstract class LocationService {
             Manifest.permission.ACCESS_FINE_LOCATION
         ) == PackageManager.PERMISSION_GRANTED
         return coarseLocation || fineLocation
-    }
-
-    // notification.
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    fun getLocationNotificationChannel(context: Context): NotificationChannel {
-        val channel = NotificationChannel(
-            BreezyWeather.NOTIFICATION_CHANNEL_ID_LOCATION,
-            BreezyWeather.getNotificationChannelName(
-                context,
-                BreezyWeather.NOTIFICATION_CHANNEL_ID_LOCATION
-            ),
-            NotificationManager.IMPORTANCE_MIN
-        )
-        channel.setShowBadge(false)
-        channel.lightColor = ContextCompat.getColor(context, R.color.md_theme_primary)
-        return channel
-    }
-
-    fun getLocationNotification(context: Context): Notification {
-        return NotificationCompat
-            .Builder(context, BreezyWeather.NOTIFICATION_CHANNEL_ID_LOCATION)
-            .setSmallIcon(R.drawable.ic_location)
-            .setContentTitle(context.getString(R.string.notification_channel_request_location))
-            .setContentText(context.getString(R.string.notification_location_in_background))
-            .setBadgeIconType(NotificationCompat.BADGE_ICON_NONE)
-            .setPriority(NotificationCompat.PRIORITY_MIN)
-            .setAutoCancel(true)
-            .setProgress(0, 0, true)
-            .build()
     }
 }

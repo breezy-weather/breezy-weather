@@ -98,7 +98,6 @@
     <string name="about_app">О программе</string>
     <string name="about_translators">Переводчики</string>
     <!-- feedback. -->
-    <string name="notification_channel_request_location">Местоположение</string>
     <string name="notification_location_in_background">Запрос местоположения в фоне</string>
     <string name="location_message_failed_to_locate">Ошибка определения местоположения</string>
     <string name="weather_message_data_refresh_failed">Ошибка получения прогноза</string>

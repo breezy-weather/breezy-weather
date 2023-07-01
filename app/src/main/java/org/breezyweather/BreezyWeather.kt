@@ -1,6 +1,5 @@
 package org.breezyweather
 
-import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.os.Process
 import androidx.appcompat.app.AppCompatDelegate
@@ -10,7 +9,9 @@ import androidx.work.Configuration
 import dagger.hilt.android.HiltAndroidApp
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.utils.LanguageUtils
+import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.db.ObjectBox
+import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.ThemeManager
 import java.io.BufferedReader
@@ -28,29 +29,7 @@ class BreezyWeather : MultiDexApplication(),
         lateinit var instance: BreezyWeather
             private set
 
-        // notifications.
-        const val NOTIFICATION_CHANNEL_ID_NORMALLY = "normally"
-        const val NOTIFICATION_CHANNEL_ID_ALERT = "alert"
-        const val NOTIFICATION_CHANNEL_ID_FORECAST = "forecast"
-        const val NOTIFICATION_CHANNEL_ID_LOCATION = "location"
-        const val NOTIFICATION_CHANNEL_ID_BACKGROUND = "background"
-
-        const val NOTIFICATION_ID_NORMALLY = 1
-        const val NOTIFICATION_ID_TODAY_FORECAST = 2
-        const val NOTIFICATION_ID_TOMORROW_FORECAST = 3
-        const val NOTIFICATION_ID_LOCATION = 4
-        const val NOTIFICATION_ID_RUNNING_IN_BACKGROUND = 5
-        const val NOTIFICATION_ID_UPDATING_NORMALLY = 6
-        const val NOTIFICATION_ID_UPDATING_TODAY_FORECAST = 7
-        const val NOTIFICATION_ID_UPDATING_TOMORROW_FORECAST = 8
-        const val NOTIFICATION_ID_UPDATING_AWAKE = 9
-        const val NOTIFICATION_ID_ALERT_MIN = 1000
-        const val NOTIFICATION_ID_ALERT_MAX = 1999
-        const val NOTIFICATION_ID_ALERT_GROUP = 2000
-        const val NOTIFICATION_ID_PRECIPITATION = 3000
-
         // widgets.
-
         // day.
         const val WIDGET_DAY_PENDING_INTENT_CODE_WEATHER = 11
         const val WIDGET_DAY_PENDING_INTENT_CODE_CALENDAR = 13
@@ -143,33 +122,6 @@ class BreezyWeather : MultiDexApplication(),
 
             null
         }
-
-        @JvmStatic
-        fun getNotificationChannelName(context: Context, channelId: String): String {
-            return when (channelId) {
-                NOTIFICATION_CHANNEL_ID_ALERT -> (
-                        context.getString(R.string.breezy_weather)
-                                + " "
-                                + context.getString(R.string.notification_channel_alerts)
-                )
-                NOTIFICATION_CHANNEL_ID_FORECAST -> (
-                        context.getString(R.string.breezy_weather)
-                                + " "
-                                + context.getString(R.string.notification_channel_forecast)
-                )
-                NOTIFICATION_CHANNEL_ID_LOCATION -> (
-                        context.getString(R.string.breezy_weather)
-                                + " "
-                                + context.getString(R.string.notification_channel_request_location)
-                )
-                NOTIFICATION_CHANNEL_ID_BACKGROUND -> (
-                        context.getString(R.string.breezy_weather)
-                                + " "
-                                + context.getString(R.string.notification_channel_background_services)
-                )
-                else -> context.getString(R.string.breezy_weather)
-            }
-        }
     }
 
     private val activitySet: MutableSet<GeoActivity> by lazy {
@@ -188,13 +140,16 @@ class BreezyWeather : MultiDexApplication(),
     override fun onCreate() {
         super.onCreate()
 
+        instance = this
+
         ObjectBox.init(this)
 
-        instance = this
         LanguageUtils.setLanguage(
             this,
             SettingsManager.getInstance(this).language.locale
         )
+
+        setupNotificationChannels()
 
         if (getProcessName().equals(packageName)) {
             setDayNightMode()
@@ -219,6 +174,12 @@ class BreezyWeather : MultiDexApplication(),
         }
     }
 
+    fun recreateAllActivities() {
+        for (a in activitySet) {
+            a.recreate()
+        }
+    }
+
     private fun setDayNightMode() {
         AppCompatDelegate.setDefaultNightMode(
             ThemeManager.getInstance(this).uiMode.value!!
@@ -228,9 +189,11 @@ class BreezyWeather : MultiDexApplication(),
         }
     }
 
-    fun recreateAllActivities() {
-        for (a in activitySet) {
-            a.recreate()
+    private fun setupNotificationChannels() {
+        try {
+            Notifications.createChannels(this)
+        } catch (e: Exception) {
+            LogHelper.log(msg = "Failed to setup notification channels")
         }
     }
 

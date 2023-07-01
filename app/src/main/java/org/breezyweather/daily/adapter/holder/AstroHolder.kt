@@ -11,7 +11,7 @@ import org.breezyweather.R
 import org.breezyweather.common.ui.widgets.astro.MoonPhaseView
 import org.breezyweather.daily.adapter.DailyWeatherAdapter
 import org.breezyweather.daily.adapter.model.DailyAstro
-import org.breezyweather.theme.ThemeManager.Companion.getInstance
+import org.breezyweather.theme.ThemeManager
 
 class AstroHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
     LayoutInflater.from(parent.context)
@@ -65,7 +65,7 @@ class AstroHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
             mMoonPhaseIcon.setColor(
                 ContextCompat.getColor(context, R.color.colorTextLight2nd),
                 ContextCompat.getColor(context, R.color.colorTextDark2nd),
-                getInstance(context).getThemeColor(
+                ThemeManager.getInstance(context).getThemeColor(
                     context, R.attr.colorBodyText
                 )
             )

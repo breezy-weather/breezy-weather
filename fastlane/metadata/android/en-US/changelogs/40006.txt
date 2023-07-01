@@ -1,3 +1,4 @@
 <ul>
+<li>All notification channels are now declared on startup so you can disable them before receiving at least one notification.</li>
 <li>Fix crash in daily view when air quality is not available.</li>
 </ul>

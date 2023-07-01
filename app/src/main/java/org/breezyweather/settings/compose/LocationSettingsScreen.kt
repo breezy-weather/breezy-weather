@@ -1,6 +1,5 @@
 package org.breezyweather.settings.compose
 
-import android.content.Context
 import android.Manifest
 import android.app.Activity
 import android.os.Build

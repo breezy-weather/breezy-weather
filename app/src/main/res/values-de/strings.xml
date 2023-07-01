@@ -44,7 +44,6 @@
     <string name="location_dialog_failed_to_locate_title">Standort konnte nicht ermittelt werden!</string>
     <string name="location_message_list_cannot_be_empty">Ortsliste darf nicht leer sein</string>
     <string name="location_current_not_found_yet">Noch kein Ort…</string>
-    <string name="notification_channel_request_location">Standortermittlung</string>
     <string name="location_resident_message">Als Wohnort festlegen</string>
     <string name="location_resident_dialog">Abhängig von Ihrem aktuellen Standort zeigt und verbirgt Breezy Weather Ihre Wohnorte.
 \nSie können zum Beispiel Ihre Heimatstadt als Wohnort festlegen. Sie können das Wetter in Ihrer Heimatstadt überprüfen, während Sie auf Reisen sind. Wenn Sie nach Hause kommen, wird das Wetter in Ihrer Heimatstadt ausgeblendet und durch das Wetter für Ihren aktuellen Standort ersetzt.</string>

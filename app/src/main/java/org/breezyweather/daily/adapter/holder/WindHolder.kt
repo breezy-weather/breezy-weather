@@ -12,7 +12,7 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.daily.adapter.DailyWeatherAdapter
 import org.breezyweather.daily.adapter.model.DailyWind
-import org.breezyweather.settings.SettingsManager.Companion.getInstance
+import org.breezyweather.settings.SettingsManager
 
 class WindHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
     LayoutInflater.from(parent.context)
@@ -23,7 +23,7 @@ class WindHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
     private val mSpeed: LinearLayout = itemView.findViewById(R.id.item_weather_daily_wind_speed)
     private val mSpeedText: TextView = itemView.findViewById(R.id.item_weather_daily_wind_speedValue)
     private val mGaugeText: TextView = itemView.findViewById(R.id.item_weather_daily_wind_levelValue)
-    private val mSpeedUnit: SpeedUnit = getInstance(parent.context).speedUnit
+    private val mSpeedUnit: SpeedUnit = SettingsManager.getInstance(parent.context).speedUnit
 
     @SuppressLint("SetTextI18n", "RestrictedApi")
     override fun onBindView(model: DailyWeatherAdapter.ViewModel, position: Int) {

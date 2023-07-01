@@ -3,8 +3,6 @@ package org.breezyweather.remoteviews;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -15,7 +13,6 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -27,7 +24,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.breezyweather.BreezyWeather;
 import org.breezyweather.common.basic.models.Location;
 import org.breezyweather.common.basic.models.weather.Alert;
 import org.breezyweather.common.basic.models.weather.Weather;
@@ -55,22 +51,10 @@ public class NotificationHelper {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private static NotificationChannel getAlertNotificationChannel(Context context, @ColorInt int color) {
-        NotificationChannel channel = new NotificationChannel(
-                BreezyWeather.NOTIFICATION_CHANNEL_ID_ALERT,
-                BreezyWeather.getNotificationChannelName(
-                        context, BreezyWeather.NOTIFICATION_CHANNEL_ID_ALERT),
-                NotificationManager.IMPORTANCE_DEFAULT);
-        channel.setShowBadge(true);
-        channel.setLightColor(color);
-        return channel;
-    }
-
     private static NotificationCompat.Builder getNotificationBuilder(Context context, @DrawableRes int iconId,
                                                                      String title, String subtitle, String content,
                                                                      PendingIntent intent) {
-        return new NotificationCompat.Builder(context, BreezyWeather.NOTIFICATION_CHANNEL_ID_ALERT)
+        return new NotificationCompat.Builder(context, Notifications.CHANNEL_ALERT)
                 .setSmallIcon(iconId)
                 .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher))
                 .setContentTitle(title)
@@ -84,11 +68,9 @@ public class NotificationHelper {
 
     // alert.
     // FIXME: Duplicate issue, see #73
-    public static void checkAndSendAlert(Context context,
-                                         Location location, @Nullable Weather oldResult) {
+    public static void checkAndSendAlert(Context context, Location location, @Nullable Weather oldResult) {
         Weather weather = location.getWeather();
-        if (weather == null
-                || !SettingsManager.getInstance(context).isAlertPushEnabled()) {
+        if (weather == null || !SettingsManager.getInstance(context).isAlertPushEnabled()) {
             return;
         }
 
@@ -120,11 +102,6 @@ public class NotificationHelper {
     private static void sendAlertNotification(Context context,
                                               Location location, Alert alert, boolean inGroup) {
         NotificationManagerCompat manager = NotificationManagerCompat.from(context);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            manager.createNotificationChannel(
-                    getAlertNotificationChannel(context, getColor(context, location))
-            );
-        }
 
         if (ActivityCompat.checkSelfPermission(
                 context,
@@ -139,7 +116,7 @@ public class NotificationHelper {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && inGroup) {
                 manager.notify(
-                        BreezyWeather.NOTIFICATION_ID_ALERT_GROUP,
+                        Notifications.ID_ALERT_GROUP,
                         buildAlertGroupSummaryNotification(context, location, alert, notificationId)
                 );
             }
@@ -185,7 +162,7 @@ public class NotificationHelper {
                                                                    Location location,
                                                                    Alert alert,
                                                                    int notificationId) {
-        return new NotificationCompat.Builder(context, BreezyWeather.NOTIFICATION_CHANNEL_ID_ALERT)
+        return new NotificationCompat.Builder(context, Notifications.CHANNEL_ALERT)
                 .setSmallIcon(R.drawable.ic_alert)
                 .setContentTitle(alert.getDescription())
                 .setGroup(NOTIFICATION_GROUP_KEY)
@@ -205,10 +182,9 @@ public class NotificationHelper {
     private static int getAlertNotificationId(Context context) {
         ConfigStore config = new ConfigStore(context, PREFERENCE_NOTIFICATION);
 
-        int id = config.getInt(
-                KEY_NOTIFICATION_ID, BreezyWeather.NOTIFICATION_ID_ALERT_MIN) + 1;
-        if (id > BreezyWeather.NOTIFICATION_ID_ALERT_MAX) {
-            id = BreezyWeather.NOTIFICATION_ID_ALERT_MIN;
+        int id = config.getInt(KEY_NOTIFICATION_ID, Notifications.ID_ALERT_MIN) + 1;
+        if (id > Notifications.ID_ALERT_MAX) {
+            id = Notifications.ID_ALERT_MIN;
         }
 
         config.edit()
@@ -226,11 +202,6 @@ public class NotificationHelper {
             return;
         }
         NotificationManagerCompat manager = NotificationManagerCompat.from(context);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            manager.createNotificationChannel(
-                    getAlertNotificationChannel(context, getColor(context, location))
-            );
-        }
 
         Weather weather = location.getWeather();
 
@@ -248,7 +219,7 @@ public class NotificationHelper {
                     Manifest.permission.POST_NOTIFICATIONS
             ) == PackageManager.PERMISSION_GRANTED) {
                 manager.notify(
-                        BreezyWeather.NOTIFICATION_ID_PRECIPITATION,
+                        Notifications.ID_PRECIPITATION,
                         getNotificationBuilder(
                                 context,
                                 R.drawable.ic_precipitation,
@@ -263,7 +234,7 @@ public class NotificationHelper {
                                 ),
                                 PendingIntent.getActivity(
                                         context,
-                                        BreezyWeather.NOTIFICATION_ID_PRECIPITATION,
+                                        Notifications.ID_PRECIPITATION,
                                         IntentHelper.buildMainActivityIntent(location),
                                         PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
                                 )
@@ -279,13 +250,13 @@ public class NotificationHelper {
     }
 
     private static boolean isLiquidDay(Weather weather) {
-        return weather.getDailyForecast().get(0).getDay().getWeatherCode().isPrecipitation()
-                || weather.getDailyForecast().get(0).getNight().getWeatherCode().isPrecipitation();
+        return (weather.getDailyForecast().get(0).getDay() != null && weather.getDailyForecast().get(0).getDay().getWeatherCode() != null && weather.getDailyForecast().get(0).getDay().getWeatherCode().isPrecipitation())
+                || (weather.getDailyForecast().get(0).getNight() != null && weather.getDailyForecast().get(0).getNight().getWeatherCode() != null && weather.getDailyForecast().get(0).getNight().getWeatherCode().isPrecipitation());
     }
 
     private static boolean isShortTermLiquid(Weather weather) {
-        for (int i = 0; i < 4; i++) {
-            if (weather.getHourlyForecast().get(i).getWeatherCode().isPrecipitation()) {
+        for (int i = 0; i < Math.min(4, weather.getHourlyForecast().size()); i++) {
+            if (weather.getHourlyForecast().get(i).getWeatherCode() != null && weather.getHourlyForecast().get(i).getWeatherCode().isPrecipitation()) {
                 return true;
             }
         }
