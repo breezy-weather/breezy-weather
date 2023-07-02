@@ -231,12 +231,12 @@ class AboutActivity : GeoActivity() {
         ContributorItem(
             name = "Álvaro Martínez Majado",
             url = "https://github.com/alvaromartinezmajado",
-            flag = "\uD83C\uDFF4\uDB40\uDC65\uDB40\uDC73\uDB40\uDC63\uDB40\uDC74\uDB40\uDC7F",
+            flag = "🏴󠁥󠁳󠁣󠁴󠁿",
         ),
         ContributorItem(
             name = "MDP43140",
             url = "https://github.com/MDP43140",
-            flag = "\uD83C\uDDEE\uD83C\uDDE9",
+            flag = "🇮🇩",
         ),
         ContributorItem(
             name = "Coelacanthus",
@@ -271,7 +271,12 @@ class AboutActivity : GeoActivity() {
         ContributorItem(
             name = "minb",
             url = "https://hosted.weblate.org/user/minbe/",
-            flag = "\uD83C\uDDFB\uD83C\uDDF3",
+            flag = "🇻🇳",
+        ),
+        ContributorItem(
+            name = "Reza",
+            url = "https://github.com/rezaalmanda",
+            flag = "🇮🇩",
         ),
     )
 
