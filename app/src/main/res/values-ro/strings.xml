@@ -284,11 +284,11 @@
     <string name="weather_kind_thunderstorm">Furtună</string>
     <string name="weather_kind_wind">Vânt</string>
     <string name="location_search_weather_provider">Furnizor de vreme</string>
-    <string name="settings_background_updates_summary">Rata de reîmprospătare, depanare…</string>
+    <string name="settings_background_updates_summary">Rata de reîmprospătare, depanare</string>
     <string name="settings_section_general">General</string>
     <string name="settings_background_updates_refresh_title">Rată de reîmprospătare</string>
     <string name="settings_background_updates">Actualizări de fundal</string>
-    <string name="settings_appearance_summary">Limbă, mod întunecat, pachet de pictograme, unități…</string>
+    <string name="settings_appearance_summary">Limbă, mod întunecat, pachet de pictograme, unități</string>
     <string name="settings_notifications">Notificări</string>
     <string name="settings_main_section_animations">Animații</string>
     <string name="settings_main_background_animation_title">Animație de fundal</string>
@@ -543,7 +543,7 @@
     <string name="settings_icon_providers_weather_icon_light">Pictogramă luminoasă</string>
     <string name="settings_units_summary">Temperatură, precipitații, distanță, viteză, presiune…</string>
     <string name="settings_main">Ecran principal</string>
-    <string name="settings_main_summary">Ordinea cardurilor, articolele afișate, animații…</string>
+    <string name="settings_main_summary">Ordinea cardurilor, articolele afișate, animații</string>
     <string name="settings_main_cards_title">Carduri</string>
     <string name="settings_main_daily_trends_title">Tendințe zilnice</string>
     <string name="settings_main_hourly_trends_title">Tendințe la fiecare oră</string>
@@ -552,7 +552,7 @@
     <string name="settings_main_yesterday_alert_lines_in_trends">Ieri/Linii de alertă în tendințe</string>
     <string name="settings_main_cards_fade_in_switch">Cardurile se estompează</string>
     <string name="settings_main_cards_other_element_animations_switch">Alte elemente de animație</string>
-    <string name="settings_notifications_summary">Alerte meteo, precipitații, prognoză…</string>
+    <string name="settings_notifications_summary">Alerte meteo, precipitații, prognoză</string>
     <string name="settings_notifications_alerts_title">Notificări de alerte meteo</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Ora de notificare pentru prognoza pentru ziua următoare</string>
     <string name="settings_widgets">Widgeturi și imagini de fundal animate</string>
@@ -565,7 +565,9 @@
     <string name="settings_background_updates_dont_kill_my_app_summary">Unii producători au restricții suplimentare pentru aplicații care distrug serviciile de fundal. Site-ul web Don’t kill my app! are informații despre cum să o remediați.</string>
     <string name="settings_main_section_displayed_data">Date afișate</string>
     <string name="settings_notifications_precipitations_title">Notificări de precipitații</string>
-    <string name="settings_widgets_summary">Setați imaginea de fundal, configurați widget-urile utilizate, widgetul de notificare…</string>
+    <string name="settings_widgets_summary">Setați imaginea de fundal, configurați widget-urile utilizate, widgetul de
+        notificare
+    </string>
     <string name="settings_location">Locație</string>
     <string name="settings_location_summary">Setări ale furnizorilor de locație</string>
     <string name="settings_location_access_switch_summaryOn">Permis. Puteți adăuga locația dvs. curentă ca locație.</string>

@@ -448,7 +448,7 @@
     <string name="settings_background_updates_method_description_notification">Permanente Benachrichtigung
 \nZuverlässigere Methode, aber die Anwendung muss im Hintergrund aktiv bleiben.</string>
     <string name="settings_section_general">Allgemein</string>
-    <string name="settings_background_updates_summary">Aktualisierungsrate, Fehlerbehebung…</string>
+    <string name="settings_background_updates_summary">Aktualisierungsrate, Fehlerbehebung</string>
     <string name="settings_background_updates_methods_title">Aktualisierungsmethode</string>
     <string name="settings_background_updates">Hintergrundaktualisierungen</string>
     <string name="settings_background_updates_refresh_never">Nie</string>
@@ -464,7 +464,9 @@
     <string name="settings_units_summary">Temperatur, Niederschlag, Entfernung, Geschwindigkeit, Druck…</string>
     <string name="settings_main">Hauptbildschirm</string>
     <string name="settings_widgets">Widgets &amp; Live-Hintergrund</string>
-    <string name="settings_widgets_summary">Hintergrundbild festlegen, verwendete Widgets konfigurieren, Benachrichtigungs-Widget…</string>
+    <string name="settings_widgets_summary">Hintergrundbild festlegen, verwendete Widgets konfigurieren,
+        Benachrichtigungs-Widget
+    </string>
     <string name="action_share">Teilen</string>
     <string name="settings_main_header_details_title">Details im Header</string>
     <string name="settings_main_background_animation_enabled">Ein</string>
@@ -479,13 +481,13 @@
     <string name="settings_main_cards_title">Karten</string>
     <string name="settings_main_section_options">Optionen</string>
     <string name="settings_main_section_animations">Animationen</string>
-    <string name="settings_main_summary">Kartenreihenfolge, angezeigte Daten, Animationen…</string>
+    <string name="settings_main_summary">Kartenreihenfolge, angezeigte Daten, Animationen</string>
     <string name="settings_main_background_animation_disabled">Aus</string>
     <string name="settings_notifications">Benachrichtigungen</string>
     <string name="settings_main_cards_other_element_animations_switch">Animation weiterer Elemente</string>
     <string name="settings_widgets_day_night_temp_reversed_title">Reihenfolge der Tag-/Nachttemperaturen umkehren</string>
-    <string name="settings_appearance_summary">Sprache, Dunkelmodus, Icon Pack, Einheiten…</string>
-    <string name="settings_notifications_summary">Wetterwarnungen, Niederschlag, Vorhersage…</string>
+    <string name="settings_appearance_summary">Sprache, Dunkelmodus, Icon Pack, Einheiten</string>
+    <string name="settings_notifications_summary">Wetterwarnungen, Niederschlag, Vorhersage</string>
     <string name="settings_widgets_notification_feels_like_switch">Gefühlte Temperatur verwenden</string>
     <string name="settings_main_section_displayed_data">Angezeigte Daten</string>
     <string name="settings_widgets_live_wallpaper_summary">Wetteranimation als Hintergrundbild festlegen</string>

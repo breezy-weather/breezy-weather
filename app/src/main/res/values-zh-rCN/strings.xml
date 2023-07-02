@@ -508,11 +508,11 @@
     <string name="settings_background_updates_method_notification_dialog_title">关闭通知分类</string>
     <string name="settings_background_updates_method_notification_dialog_content">这种方法添加了一个持久通知，可以通过在设备应用设置中禁用“$”通知类别来隐藏。</string>
     <string name="weather_api_key_required_missing_title">缺少必要的 API 密钥</string>
-    <string name="settings_background_updates_summary">刷新频率、故障排除……</string>
+    <string name="settings_background_updates_summary">刷新频率、故障排除</string>
     <string name="settings_background_updates_method_notification">持久化通知</string>
     <string name="settings_background_updates_method_description_notification">持久化通知
 \n更可靠的方法，但是需要应用保持在前台。</string>
-    <string name="settings_appearance_summary">语言、黑暗模式、图标包、单位……</string>
+    <string name="settings_appearance_summary">语言、黑暗模式、图标包、单位</string>
     <string name="settings_units_summary">温度、降水、距离、速度、压力……</string>
     <string name="settings_main">主界面</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">无法打开设备设置。</string>
@@ -555,14 +555,14 @@
     <string name="settings_widgets_notification_persistent_switch">持久化</string>
     <string name="settings_debug">调试功能</string>
     <string name="settings_main_cards_title">卡片</string>
-    <string name="settings_main_summary">卡片顺序、显示的元素、动画……</string>
+    <string name="settings_main_summary">卡片顺序、显示的元素、动画</string>
     <string name="settings_main_section_displayed_data">显示的数据</string>
     <string name="settings_main_cards_other_element_animations_switch">其他动画</string>
     <string name="settings_notifications_alerts_title">天气警报</string>
     <string name="settings_notifications_forecast_today_title">每日天气预报</string>
     <string name="settings_notifications_forecast_tomorrow_title">明日天气预报</string>
-    <string name="settings_notifications_summary">天气警报、降水、天气预报……</string>
-    <string name="settings_widgets_summary">设置壁纸，设定使用的微件，通知微件……</string>
+    <string name="settings_notifications_summary">天气警报、降水、天气预报</string>
+    <string name="settings_widgets_summary">设置壁纸，设定使用的微件，通知微件</string>
     <string name="settings_notifications_forecast_time_today_title">当天天气预报的通知时间</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">明日天气预报通知时间</string>
     <string name="settings_widgets">微件与动态壁纸</string>

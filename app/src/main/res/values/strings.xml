@@ -251,6 +251,7 @@
     <string name="action_next">NEXT</string>
     <string name="action_done">DONE</string>
     <string name="action_cancel" tools:ignore="ButtonCase">CANCEL</string>
+    <string name="action_undo" tools:ignore="ButtonCase">UNDO</string>
     <string name="action_set">SET</string>
     <string name="action_help">HELP</string>
     <string name="action_learn_more">LEARN MORE</string>
@@ -360,7 +361,7 @@
     <!-- Settings (new design) -->
     <string name="settings_section_general">General</string>
     <string name="settings_background_updates">Background updates</string>
-    <string name="settings_background_updates_summary">Refresh rate, troubleshoot…</string>
+    <string name="settings_background_updates_summary">Refresh rate, troubleshoot</string>
     <string name="settings_background_updates_section_general" translatable="false">@string/settings_section_general</string>
     <string name="settings_background_updates_refresh_title">Refresh rate</string>
     <string name="settings_background_updates_refresh_never">Never</string>
@@ -422,7 +423,7 @@
     <string name="settings_weather_provider_mf_wsft_key">Météo France WSFT key</string>
     <string name="settings_weather_provider_iqa_atmo_aura_key">ATMO AURA key</string>
     <string name="settings_appearance">Appearance</string>
-    <string name="settings_appearance_summary">Language, dark mode, icon pack, units…</string>
+    <string name="settings_appearance_summary">Language, dark mode, icon pack, units</string>
     <string name="settings_appearance_language_title">Language</string>
     <string name="settings_appearance_dark_mode_title">Dark mode</string>
     <string name="settings_appearance_icon_pack_title">Icon pack</string>
@@ -444,7 +445,7 @@
     <string name="settings_units_speed">Speed unit</string>
     <string name="settings_units_pressure">Pressure unit</string>
     <string name="settings_main">Main screen</string>
-    <string name="settings_main_summary">Cards order, items displayed, animations…</string>
+    <string name="settings_main_summary">Cards order, items displayed, animations</string>
     <!-- Data is plural here -->
     <string name="settings_main_section_displayed_data">Displayed data</string>
     <string name="settings_main_cards_title">Cards</string>
@@ -462,7 +463,7 @@
     <!-- Elements = temperature in header, AQI, sun &amp; moon arc, etc -->
     <string name="settings_main_cards_other_element_animations_switch">Other element animations</string>
     <string name="settings_notifications">Notifications</string>
-    <string name="settings_notifications_summary">Weather alerts, precipitations, forecast…</string>
+    <string name="settings_notifications_summary">Weather alerts, precipitations, forecast</string>
     <string name="settings_notifications_section_general" translatable="false">@string/settings_section_general</string>
     <string name="settings_notifications_alerts_title">Notifications of weather alerts</string>
     <string name="settings_notifications_precipitations_title">Notifications of precipitations</string>
@@ -472,7 +473,7 @@
     <string name="settings_notifications_forecast_tomorrow_title">Notification for next-day forecast</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Notification time for next-day forecast</string>
     <string name="settings_widgets">Widgets &amp; Live wallpaper</string>
-    <string name="settings_widgets_summary">Set wallpaper, configure widgets used, notification widget…</string>
+    <string name="settings_widgets_summary">Set wallpaper, configure widgets used, notification widget</string>
     <string name="settings_widgets_section_general" translatable="false">@string/settings_section_general</string>
     <string name="settings_widgets_live_wallpaper_title">Live wallpaper</string>
     <string name="settings_widgets_live_wallpaper_summary">Set a weather animation as wallpaper</string>

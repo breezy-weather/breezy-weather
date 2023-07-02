@@ -348,7 +348,7 @@
     <string name="allergen_ragweed">Амброзия</string>
     <string name="ephemeris_sunrise_at">Восход солнца в $</string>
     <string name="settings_main">Главный экран</string>
-    <string name="settings_main_summary">Порядок карточек, отображаемые элементы, анимации…</string>
+    <string name="settings_main_summary">Порядок карточек, отображаемые элементы, анимации</string>
     <string name="settings_main_hourly_trends_title">Почасовой прогноз</string>
     <string name="settings_main_header_details_title">Детали в заголовке</string>
     <string name="settings_main_section_options">Опции</string>

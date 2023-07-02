@@ -281,7 +281,7 @@
     <string name="widget_live_wallpaper_cannot_start_activity">Không thể bắt đầu bản xem trước hình nền động</string>
     <string name="settings_section_general">Chung</string>
     <string name="settings_background_updates">Cập nhật dưới nền</string>
-    <string name="settings_background_updates_summary">Tỉ lệ làm mới, sửa lỗi…</string>
+    <string name="settings_background_updates_summary">Tỉ lệ làm mới, sửa lỗi</string>
     <string name="settings_background_updates_refresh_title">Tỉ lệ làm mới</string>
     <string name="settings_background_updates_refresh_never">Không bao giờ</string>
     <string name="settings_background_updates_refresh_30min">Nửa tiếng</string>
@@ -316,7 +316,7 @@
     <string name="settings_weather_provider_mf_wsft_key">Khóa Météo France WSFT</string>
     <string name="settings_weather_provider_iqa_atmo_aura_key">Khóa ATMO AURA</string>
     <string name="settings_appearance">Hiện diện</string>
-    <string name="settings_appearance_summary">Ngôn ngữ, chế độ tối, gói biểu tượng, đơn vị…</string>
+    <string name="settings_appearance_summary">Ngôn ngữ, chế độ tối, gói biểu tượng, đơn vị</string>
     <string name="settings_appearance_language_title">Ngôn ngữ</string>
     <string name="settings_appearance_dark_mode_title">Chế độ tối</string>
     <string name="settings_appearance_icon_pack_title">Gói biểu tượng</string>
@@ -332,7 +332,7 @@
     <string name="settings_units_speed">Đơn vị vận tốc</string>
     <string name="settings_units_pressure">Đơn vị áp suất</string>
     <string name="settings_main">Màn hình chính</string>
-    <string name="settings_main_summary">Thứ tự thẻ, vật hiển thị, hình động…</string>
+    <string name="settings_main_summary">Thứ tự thẻ, vật hiển thị, hình động</string>
     <string name="settings_main_section_displayed_data">Dữ liệu hiển thị</string>
     <string name="settings_main_cards_title">Thẻ</string>
     <string name="settings_main_daily_trends_title">Xu hướng ngày</string>
@@ -343,7 +343,7 @@
     <string name="settings_main_cards_fade_in_switch">Thẻ mờ dần</string>
     <string name="settings_main_cards_other_element_animations_switch">Hình động các thành phần khác</string>
     <string name="settings_notifications">Thông báo</string>
-    <string name="settings_notifications_summary">Cảnh báo thời tiết, lượng mưa, dự báo…</string>
+    <string name="settings_notifications_summary">Cảnh báo thời tiết, lượng mưa, dự báo</string>
     <string name="settings_notifications_alerts_title">Thông báo về cảnh báo thời tiết</string>
     <string name="short_yesterday">Hqua</string>
     <string name="short_monday">tHai</string>
@@ -390,7 +390,7 @@
     <string name="wind_level_4">Gió vừa phải</string>
     <string name="wind_level_5">Gió mạnh vừa phải</string>
     <string name="wind_level_6">Gió khá mạnh</string>
-    <string name="settings_widgets_summary">Đặt hình nền, thiết lập tiện ích đã sử dụng, tiện ích thông báo,…</string>
+    <string name="settings_widgets_summary">Đặt hình nền, thiết lập tiện ích đã sử dụng, tiện ích thông báo,</string>
     <string name="settings_widgets_week_icon_mode_title">Biểu tượng để hiển thị ở kiểu xem theo tuần</string>
     <string name="settings_widgets_monochrome_icons_title">Biểu tượng đơn sắc</string>
     <string name="settings_widgets_day_night_temp_reversed_title">Đảo ngược thứ tự nhiệt độ ngày/đêm</string>

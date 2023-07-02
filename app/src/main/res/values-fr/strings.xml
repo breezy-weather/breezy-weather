@@ -157,6 +157,7 @@
     <string name="action_next">SUIVANT</string>
     <string name="action_done">OK</string>
     <string name="action_cancel">ANNULER</string>
+    <string name="action_undo">ANNULER</string>
     <string name="settings_enabled">Actif</string>
     <string name="settings_disabled">Inactif</string>
     <string name="action_set">DÉFINIR</string>
@@ -361,7 +362,7 @@
     <!-- Settings (new design) -->
     <string name="settings_section_general">Général</string>
     <string name="settings_background_updates">Actualisations en arrière-plan</string>
-    <string name="settings_background_updates_summary">Fréquence de rafraîchissement, résolution de problèmes…</string>
+    <string name="settings_background_updates_summary">Fréquence de rafraîchissement, résolution de problèmes</string>
     <string name="settings_background_updates_refresh_title">Fréquence de rafraîchissement</string>
     <string name="settings_background_updates_refresh_never">Jamais</string>
     <string name="settings_background_updates_refresh_30min">30 minutes</string>
@@ -391,13 +392,13 @@
     <string name="settings_location">Localisation</string>
     <string name="settings_weather_providers_current_location">Fournisseur météo pour ma localisation</string>
     <string name="settings_appearance">Apparence</string>
-    <string name="settings_appearance_summary">Langue, mode sombre, pack d’icône, unités…</string>
+    <string name="settings_appearance_summary">Langue, mode sombre, pack d’icône, unités</string>
     <string name="settings_appearance_language_title">Langue</string>
     <string name="settings_appearance_dark_mode_title">Mode sombre</string>
     <string name="settings_appearance_icon_pack_title">Pack d’icônes</string>
     <string name="settings_icon_providers_title">Packs d’icônes</string>
     <string name="settings_main">Écran principal</string>
-    <string name="settings_main_summary">Ordre des cartes, éléments affichés, animations…</string>
+    <string name="settings_main_summary">Ordre des cartes, éléments affichés, animations</string>
     <string name="settings_main_section_displayed_data">Données affichées</string>
     <string name="settings_main_cards_title">Cartes</string>
     <string name="settings_main_daily_trends_title">Tendances quotidiennes</string>
@@ -416,7 +417,7 @@
     <string name="settings_units">Unités</string>
     <string name="settings_units_summary">Temperature, precipitation, distance, speed, pressure…</string>
     <string name="settings_notifications">Notifications</string>
-    <string name="settings_notifications_summary">Vigilances météo, précipitations, prévisions…</string>
+    <string name="settings_notifications_summary">Vigilances météo, précipitations, prévisions</string>
     <string name="settings_notifications_alerts_title">Notifications de vigilances</string>
     <string name="settings_notifications_precipitations_title">Notifications de précipitations</string>
     <string name="settings_notifications_section_forecast">Prévisions</string>
@@ -425,7 +426,9 @@
     <string name="settings_notifications_forecast_tomorrow_title">Notification pour les prévisions du lendemain</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Heure de notification pour les prévisions du lendemain</string>
     <string name="settings_widgets">Widgets &amp; Fond d’écran animé</string>
-    <string name="settings_widgets_summary">Définir le fond d’écran, configurer les widgets utilisés, notification widget…</string>
+    <string name="settings_widgets_summary">Définir le fond d’écran, configurer les widgets utilisés, notification
+        widget
+    </string>
     <string name="settings_widgets_live_wallpaper_title">Fond d’écran animé</string>
     <string name="settings_widgets_live_wallpaper_summary">Définir une animation météo comme fond d’écran</string>
     <string name="settings_widgets_week_icon_mode_title">Icône à afficher dans les vues hebdomadaires</string>

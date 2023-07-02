@@ -122,7 +122,7 @@ public class LocationItemTouchCallback extends SlidingItemTouchCallback {
                     location = mViewModel.deleteLocation(position);
                     SnackbarHelper.showSnackbar(
                             mActivity.getString(R.string.location_message_deleted),
-                            mActivity.getString(R.string.action_cancel),
+                            mActivity.getString(R.string.action_undo),
                             new CancelDeleteListener(location, position)
                     );
                 }

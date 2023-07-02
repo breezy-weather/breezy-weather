@@ -407,7 +407,7 @@
     <string name="settings_background_updates_refresh_never">Nunca</string>
     <string name="settings_main_background_animation_disabled">Desativado</string>
     <string name="settings_main_background_animation_enabled">Ativado</string>
-    <string name="settings_background_updates_summary">Taxa de atualização, solução de problemas…</string>
+    <string name="settings_background_updates_summary">Taxa de atualização, solução de problemas</string>
     <string name="settings_notifications_alerts_title">Notificações de alertas meteorológicos</string>
-    <string name="settings_appearance_summary">Idioma, modo escuro, pacote de ícones, unidades…</string>
+    <string name="settings_appearance_summary">Idioma, modo escuro, pacote de ícones, unidades</string>
 </resources>

@@ -278,6 +278,11 @@ class AboutActivity : GeoActivity() {
             url = "https://github.com/rezaalmanda",
             flag = "🇮🇩",
         ),
+        ContributorItem(
+            name = "Ettore Atalan",
+            url = "https://github.com/Atalanttore",
+            flag = "🇩🇪",
+        ),
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {

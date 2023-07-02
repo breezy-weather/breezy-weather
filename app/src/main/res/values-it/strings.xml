@@ -340,7 +340,7 @@
     <string name="wind_direction_short_S">S</string>
     <string name="wind_direction_short_SW">SO</string>
     <string name="widget_style_oreo">Oreo</string>
-    <string name="settings_background_updates_summary">Frequenza di aggiornamento, risoluzione problemi…</string>
+    <string name="settings_background_updates_summary">Frequenza di aggiornamento, risoluzione problemi</string>
     <string name="settings_section_general">Generale</string>
     <string name="settings_background_updates_refresh_never">Mai</string>
     <string name="weather_api_key_required_missing_title">Chiave API richiesta mancante</string>
@@ -405,7 +405,7 @@
     <string name="settings_weather_provider_open_weather_key">Chiave OpenWeather</string>
     <string name="settings_weather_provider_open_weather_one_call_version">Versione OpenWeather OneCall</string>
     <string name="settings_weather_provider_iqa_atmo_aura_key">Chiave ATMO AURA</string>
-    <string name="settings_appearance_summary">Lingua, modalità scura, stile icone, unità di misura…</string>
+    <string name="settings_appearance_summary">Lingua, modalità scura, stile icone, unità di misura</string>
     <string name="settings_icon_providers_title">Pacchetti icone</string>
     <string name="settings_units_summary">Temperatura, precipitazione, distanza, velocità, pressione…</string>
     <string name="settings_main">Schermata principale</string>
@@ -415,7 +415,7 @@
     <string name="settings_main_background_animation_enabled">Attivata</string>
     <string name="settings_main_background_animation_disabled">Disattivata</string>
     <string name="settings_notifications">Notifiche</string>
-    <string name="settings_notifications_summary">Allerte meteo, precipitazioni, previsioni…</string>
+    <string name="settings_notifications_summary">Allerte meteo, precipitazioni, previsioni</string>
     <string name="settings_notifications_alerts_title">Notifiche di allerte meteo</string>
     <string name="settings_notifications_precipitations_title">Notifiche di precipitazioni</string>
     <string name="settings_notifications_forecast_today_title">Notifica per le previsioni odierne</string>
@@ -472,7 +472,7 @@
     <string name="openmeteo_weather_text_depositing_rime_fog">Nebbia con deposito di brina</string>
     <string name="openmeteo_weather_text_rain_slight_intensity">Pioggia di lieve intensità</string>
     <string name="settings_weather_providers_current_location">Provider meteo per la posizione corrente</string>
-    <string name="settings_main_summary">Ordine schede, elementi visualizzati, animazioni…</string>
+    <string name="settings_main_summary">Ordine schede, elementi visualizzati, animazioni</string>
     <string name="settings_main_section_displayed_data">Dati visualizzati</string>
     <string name="settings_main_cards_title">Schede</string>
     <string name="settings_main_daily_trends_title">Tendenze giornaliere</string>
@@ -539,7 +539,7 @@
     <string name="settings_background_updates_dont_kill_my_app_title">Istruzioni specifiche del produttore</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Alcuni produttori hanno restrizioni aggiuntive per le app che interrompono i servizi in background. Il sito web Don’t kill my app! ha informazioni su come risolvere il problema.</string>
     <string name="settings_notifications_forecast_time_today_title">Orario di notifica per le previsioni odierne</string>
-    <string name="settings_widgets_summary">Imposta lo sfondo, configura i widget utilizzati, widget di notifica…</string>
+    <string name="settings_widgets_summary">Imposta lo sfondo, configura i widget utilizzati, widget di notifica</string>
     <string name="settings_widgets_week_icon_mode_title">Icona da visualizzare nelle viste settimanali</string>
     <string name="openmeteo_weather_text_drizzle_moderate_intensity">Pioviggine di moderata intensità</string>
 </resources>
