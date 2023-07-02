@@ -11,7 +11,7 @@
     <string name="allergen">Allergene</string>
     <string name="app_name">Wetter</string>
     <string name="temperature_apparent">Gefühlt</string>
-    <string name="action_cancel">Abbruch</string>
+    <string name="action_cancel">ABBRECHEN</string>
     <string name="ceiling">Wolkendecke</string>
     <string name="cloud_cover">Bewölkung</string>
     <string name="location_current">Aktueller Standort</string>
@@ -24,7 +24,7 @@
     <string name="daytime">Tag</string>
     <string name="temperature_degree_day">Gradtagzahl</string>
     <string name="dew_point">Taupunkt</string>
-    <string name="action_done">Erledigt</string>
+    <string name="action_done">ERLEDIGT</string>
     <string name="action_edit">Bearbeiten</string>
     <string name="widget_ellipsis">…</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Standort manuell hinzufügen und „$“ löschen</string>
@@ -43,7 +43,7 @@
     <string name="location_message_failed_to_locate">Aktueller Standort konnte nicht gefunden werden</string>
     <string name="location_dialog_failed_to_locate_title">Standort konnte nicht ermittelt werden!</string>
     <string name="location_message_list_cannot_be_empty">Ortsliste darf nicht leer sein</string>
-    <string name="location_current_not_found_yet">Noch kein Ort…</string>
+    <string name="location_current_not_found_yet">Aktueller Standort noch nicht gefunden…</string>
     <string name="location_resident_message">Als Wohnort festlegen</string>
     <string name="location_resident_dialog">Abhängig von Ihrem aktuellen Standort zeigt und verbirgt Breezy Weather Ihre Wohnorte.
 \nSie können zum Beispiel Ihre Heimatstadt als Wohnort festlegen. Sie können das Wetter in Ihrer Heimatstadt überprüfen, während Sie auf Reisen sind. Wenn Sie nach Hause kommen, wird das Wetter in Ihrer Heimatstadt ausgeblendet und durch das Wetter für Ihren aktuellen Standort ersetzt.</string>
@@ -63,22 +63,22 @@
     <string name="temperature_feels_like">Gefühlt</string>
     <string name="settings_follow_system">Systemstandard</string>
     <string name="notification_channel_forecast">Vorhersage</string>
-    <string name="settings_icon_providers_get_more">Mehr…</string>
+    <string name="settings_icon_providers_get_more">Mehr dazu</string>
     <string name="settings_icon_providers_get_more_github">Mehr von GitHub</string>
     <string name="settings_icon_providers_get_more_store">Mehr von Google Play</string>
-    <string name="action_set">Einstellen</string>
+    <string name="action_set">FESTLEGEN</string>
     <string name="allergen_grass">Gras</string>
-    <string name="action_help">Hilfe</string>
+    <string name="action_help">HILFE</string>
     <string name="hourly_forecast">Die nächsten Stunden</string>
     <string name="hours_of_sun">Sonnenstunden</string>
     <string name="humidity">Luftfeuchte</string>
     <string name="precipitation_ice">Eis</string>
-    <string name="action_learn_more">Mehr erfahren</string>
+    <string name="action_learn_more">MEHR ERFAHREN</string>
     <string name="details">Details</string>
     <string name="live">Jetzt</string>
     <string name="minutely_forecast">Die nächsten Minuten</string>
     <string name="allergen_mold">Schimmel</string>
-    <string name="action_next">Nächste</string>
+    <string name="action_next">WEITER</string>
     <string name="nighttime">Nacht</string>
     <string name="of_clock">:00</string>
     <string name="settings_disabled">Aus</string>
@@ -519,9 +519,9 @@
     <string name="location_service_baidu_ip">Baidu IP Standort (nur für China)</string>
     <string name="settings_weather_providers">Wetterdienste</string>
     <string name="settings_icon_providers_weather_adaptive_icon">Wettersymbol</string>
-    <string name="settings_icon_providers_weather_icon_dark">Dunkles Icon</string>
-    <string name="settings_icon_providers_weather_icon_light">Helles Icon</string>
-    <string name="settings_icon_providers_weather_icon_grey">Graues Icon</string>
+    <string name="settings_icon_providers_weather_icon_dark">Dunkles Symbol</string>
+    <string name="settings_icon_providers_weather_icon_light">Helles Symbol</string>
+    <string name="settings_icon_providers_weather_icon_grey">Graues Symbol</string>
     <string name="settings_weather_providers_summary">Einstellungen für Wetterdienste</string>
     <string name="settings_widgets_section_notification_widget">Benachrichtigungs-Widget</string>
     <string name="settings_widgets_notification_widget_title">Benachrichtigungs-Widget</string>
@@ -536,4 +536,12 @@
     <string name="settings_widgets_week_icon_mode_title">Symbol für die Anzeige in Wochenansichten</string>
     <string name="settings_widgets_monochrome_icons_title">Einfarbige Symbole</string>
     <string name="settings_background_updates_worker_info_title">Worker Info</string>
+    <string name="settings_location_access_permission_already_granted">Berechtigung bereits erteilt</string>
+    <string name="settings_location_access_permission_revoked">Berechtigung widerrufen</string>
+    <string name="location_message_search_failed">Ortssuche fehlgeschlagen</string>
+    <string name="action_choose_weather_provider">Wetteranbieter auswählen</string>
+    <string name="location_service_native">Native API</string>
+    <string name="action_location_list">Ortsliste</string>
+    <string name="settings_location">Standort</string>
+    <string name="settings_location_summary">Einstellungen der Standortanbieter</string>
 </resources>
