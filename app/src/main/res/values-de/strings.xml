@@ -40,7 +40,7 @@
     <string name="widget_label_hide_subtitle">Untertitel ausblenden</string>
     <string name="widget_live_wallpaper_day_night_type">Zeit</string>
     <string name="widget_live_wallpaper_weather_kind">Wetter</string>
-    <string name="location_message_failed_to_locate">Standortermittlung fehlgeschlagen!</string>
+    <string name="location_message_failed_to_locate">Aktueller Standort konnte nicht gefunden werden</string>
     <string name="location_dialog_failed_to_locate_title">Standort konnte nicht ermittelt werden!</string>
     <string name="location_message_list_cannot_be_empty">Ortsliste darf nicht leer sein</string>
     <string name="location_current_not_found_yet">Noch kein Ort…</string>
@@ -129,7 +129,7 @@
     <string name="precipitation_thunderstorm">Gewitter</string>
     <string name="short_today">Heute</string>
     <string name="short_tomorrow">Morgen</string>
-    <string name="precipitation_total">Total</string>
+    <string name="precipitation_total">Gesamt</string>
     <string name="about_translators">Übersetzung</string>
     <string name="allergen_tree">Baum</string>
     <string name="uv_index">UV Index</string>
@@ -142,7 +142,7 @@
     <string name="short_friday">Fr</string>
     <string name="short_saturday">Sa</string>
     <string name="short_sunday">So</string>
-    <string name="temperature_wet_bulb">Wet bulb</string>
+    <string name="temperature_wet_bulb">Feuchtkugeltemperatur</string>
     <string name="widget_clock_day_details">Uhr + Tage (Details)</string>
     <string name="widget_clock_day_horizontal">Uhr + Tage (Horizontal)</string>
     <string name="widget_clock_day_vertical">Uhr + Tage (Vertikal)</string>
@@ -475,7 +475,7 @@
     <string name="settings_weather_provider_mf_wsft_key">Météo France WSFT Schlüssel</string>
     <string name="settings_weather_provider_iqa_atmo_aura_key">ATMO AURA Schlüssel</string>
     <string name="action_continue">Weiter</string>
-    <string name="settings_icon_providers_title">Icon Packs</string>
+    <string name="settings_icon_providers_title">Symbolpakete</string>
     <string name="settings_main_cards_title">Karten</string>
     <string name="settings_main_section_options">Optionen</string>
     <string name="settings_main_section_animations">Animationen</string>
@@ -525,4 +525,15 @@
     <string name="settings_weather_providers_summary">Einstellungen für Wetterdienste</string>
     <string name="settings_widgets_section_notification_widget">Benachrichtigungs-Widget</string>
     <string name="settings_widgets_notification_widget_title">Benachrichtigungs-Widget</string>
+    <string name="notification_channel_widget">Widget</string>
+    <string name="settings_widgets_notification_persistent_switch">Permanent</string>
+    <string name="settings_background_updates_method_notification_dialog_content">Diese Methode fügt eine dauerhafte Benachrichtigung hinzu, die durch Deaktivieren der Benachrichtigungskategorie „$“ in den Benachrichtigungseinstellungen unter App-Info ausgeblendet werden kann.</string>
+    <string name="settings_widgets_notification_style_title">Stil</string>
+    <string name="unit_inph">Zoll/h</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">Einige Hersteller nutzen zusätzliche App-Einschränkungen, die Hintergrunddienste abschalten. Auf der Website Don\'t kill my app! finden Sie Informationen zur Deaktivierung dieser Einschränkungen.</string>
+    <string name="action_add_from_map">Von Karte hinzufügen</string>
+    <string name="widget_multi_city">Mehrere Orte</string>
+    <string name="settings_widgets_week_icon_mode_title">Symbol für die Anzeige in Wochenansichten</string>
+    <string name="settings_widgets_monochrome_icons_title">Einfarbige Symbole</string>
+    <string name="settings_background_updates_worker_info_title">Worker Info</string>
 </resources>
