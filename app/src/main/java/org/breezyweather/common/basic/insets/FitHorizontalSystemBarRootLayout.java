@@ -33,8 +33,7 @@ public class FitHorizontalSystemBarRootLayout extends FrameLayout {
                 insets.getSystemWindowInsetRight(),
                 insets.getSystemWindowInsetBottom()
         );
-        FitBothSideBarHelper.setRootInsetsCache(
-                new Rect(0, r.top, 0, mFitKeyboardExpanded ? 0 : r.bottom));
+        FitBothSideBarHelper.setRootInsetsCache(new Rect(0, r.top, 0, mFitKeyboardExpanded ? 0 : r.bottom));
         setPadding(r.left, 0, r.right, 0);
         return insets;
     }

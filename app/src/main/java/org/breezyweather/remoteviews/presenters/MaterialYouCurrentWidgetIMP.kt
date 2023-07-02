@@ -3,6 +3,7 @@ package org.breezyweather.remoteviews.presenters
 import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
+import android.view.View
 import android.widget.RemoteViews
 import androidx.annotation.LayoutRes
 import org.breezyweather.BreezyWeather
@@ -19,7 +20,7 @@ class MaterialYouCurrentWidgetIMP: AbstractRemoteViewsPresenter() {
     companion object {
 
         @JvmStatic
-        fun isEnable(context: Context): Boolean {
+        fun isEnabled(context: Context): Boolean {
             return AppWidgetManager.getInstance(
                 context
             ).getAppWidgetIds(
@@ -54,34 +55,30 @@ private fun buildRemoteViews(
     val weather = location.weather
     val dayTime = location.isDaylight
 
-    val provider = ResourcesProviderFactory.getNewInstance()
+    val provider = ResourcesProviderFactory.newInstance
 
     val settings = SettingsManager.getInstance(context)
     val temperatureUnit = settings.temperatureUnit
 
-    if (weather?.current == null) {
-        return views
-    }
-
     // current.
-    if (weather.current.weatherCode != null) {
+    weather?.current?.weatherCode?.let {
+        views.setViewVisibility(R.id.widget_material_you_current_currentIcon, View.VISIBLE)
         views.setImageViewUri(
             R.id.widget_material_you_current_currentIcon,
             ResourceHelper.getWidgetNotificationIconUri(
                 provider,
-                weather.current.weatherCode,
+                it,
                 dayTime,
                 false,
                 NotificationTextColor.LIGHT
             )
         )
-    }
-    if (weather.current.temperature?.temperature != null) {
-        views.setTextViewText(
-            R.id.widget_material_you_current_currentTemperature,
-            weather.current.temperature.getShortTemperature(context, temperatureUnit)
-        )
-    }
+    } ?: views.setViewVisibility(R.id.widget_material_you_current_currentIcon, View.INVISIBLE)
+
+    views.setTextViewText(
+        R.id.widget_material_you_current_currentTemperature,
+        weather?.current?.temperature?.getShortTemperature(context, temperatureUnit)
+    )
 
     // pending intent.
     views.setOnClickPendingIntent(

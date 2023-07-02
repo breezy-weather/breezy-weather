@@ -66,9 +66,7 @@ class MetNoWeatherService @Inject constructor(
             .subscribe(ObserverContainer(mCompositeDisposable, object : ApiObserver<WeatherResultWrapper>() {
                 override fun onSucceed(t: WeatherResultWrapper) {
                     if (t.result != null) {
-                        callback.requestWeatherSuccess(
-                            Location.copy(location, t.result)
-                        )
+                        callback.requestWeatherSuccess(location.copy(weather = t.result))
                     } else {
                         onFailed()
                     }
@@ -115,7 +113,7 @@ class MetNoWeatherService @Inject constructor(
         // TimeZone is initialized with the TimeZone from the phone (which is probably the same as the current position)
         // Hopefully, one day we will have a reverse geocoding API
         val locationList: MutableList<Location> = ArrayList()
-        locationList.add(location)
+        locationList.add(location.copy(cityId = location.latitude.toString() + "," + location.longitude))
         callback.requestLocationSuccess(
             location.latitude.toString() + "," + location.longitude,
             locationList

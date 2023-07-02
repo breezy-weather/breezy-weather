@@ -1,0 +1,116 @@
+package org.breezyweather.main.adapters.main
+
+import android.annotation.SuppressLint
+import android.content.res.ColorStateList
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.core.widget.ImageViewCompat
+import org.breezyweather.R
+import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.models.Location
+import org.breezyweather.common.utils.DisplayUtils
+import org.breezyweather.common.utils.helpers.IntentHelper
+import org.breezyweather.main.MainActivity
+import org.breezyweather.main.utils.MainThemeColorProvider
+
+@SuppressLint("InflateParams")
+class FirstCardHeaderController(private val mActivity: GeoActivity, location: Location) : View.OnClickListener {
+    private val mView: View = LayoutInflater.from(mActivity).inflate(R.layout.container_main_first_card_header, null)
+    private val mFormattedId: String = location.formattedId
+    private var mContainer: LinearLayout? = null
+
+    init {
+        if (location.weather != null && location.weather.alertList.isNotEmpty()) {
+            mView.visibility = View.VISIBLE
+            val alertIcon = mView.findViewById<AppCompatImageView>(R.id.container_main_first_card_header_alertIcon)
+            val alert = mView.findViewById<TextView>(R.id.container_main_first_card_header_alert)
+            val weather = location.weather
+            val currentAlertList = weather.currentAlertList
+            mView.setOnClickListener { (mActivity as MainActivity).setManagementFragmentVisibility(true) }
+            alertIcon.contentDescription = mActivity.getString(R.string.alerts_count)
+                .replace("$", "" + currentAlertList.size)
+            ImageViewCompat.setImageTintList(
+                alertIcon,
+                ColorStateList.valueOf(MainThemeColorProvider.getColor(location, R.attr.colorTitleText))
+            )
+            alertIcon.setOnClickListener(this)
+            if (currentAlertList.isEmpty()) {
+                alert.text = mActivity.getString(R.string.alerts_to_follow)
+            } else {
+                val builder = StringBuilder()
+                for (i in currentAlertList.indices) {
+                    builder.append(currentAlertList[i].description)
+                    if (currentAlertList[i].startDate != null) {
+                        val startDateDay = DisplayUtils.getFormattedDate(
+                            currentAlertList[i].startDate,
+                            location.timeZone,
+                            mActivity.getString(R.string.date_format_long)
+                        )
+                        builder.append(", ")
+                            .append(startDateDay)
+                            .append(", ")
+                            .append(
+                                DisplayUtils.getFormattedDate(
+                                    currentAlertList[i].startDate,
+                                    location.timeZone,
+                                    if (DisplayUtils.is12Hour(mActivity)) "h:mm aa" else "HH:mm"
+                                )
+                            )
+                        if (currentAlertList[i].endDate != null) {
+                            builder.append("-")
+                            val endDateDay = DisplayUtils.getFormattedDate(
+                                currentAlertList[i].endDate,
+                                location.timeZone,
+                                mActivity.getString(R.string.date_format_long)
+                            )
+                            if (startDateDay != endDateDay) {
+                                builder.append(endDateDay)
+                                    .append(", ")
+                            }
+                            builder.append(
+                                DisplayUtils.getFormattedDate(
+                                    currentAlertList[i].endDate,
+                                    location.timeZone,
+                                    if (DisplayUtils.is12Hour(mActivity)) "h:mm aa" else "HH:mm"
+                                )
+                            )
+                        }
+                    }
+                    if (i != currentAlertList.size - 1) {
+                        builder.append("\n")
+                    }
+                }
+                alert.text = builder.toString()
+            }
+            alert.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
+            alert.setOnClickListener(this)
+        } else {
+            mView.visibility = View.GONE
+        }
+    }
+
+    fun bind(firstCardContainer: LinearLayout?) {
+        mContainer = firstCardContainer
+        mContainer!!.addView(mView, 0)
+    }
+
+    fun unbind() {
+        mContainer?.let {
+            it.removeViewAt(0)
+            mContainer = null
+        }
+    }
+
+    // interface.
+    @SuppressLint("NonConstantResourceId")
+    override fun onClick(v: View) {
+        when (v.id) {
+            R.id.container_main_first_card_header_alertIcon, R.id.container_main_first_card_header_alert -> {
+                IntentHelper.startAlertActivity(mActivity, mFormattedId)
+            }
+        }
+    }
+}

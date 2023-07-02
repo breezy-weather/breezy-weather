@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
+import org.breezyweather.common.extensions.hasPermission
 
 abstract class LocationService {
 
@@ -17,7 +18,7 @@ abstract class LocationService {
         fun onCompleted(result: Result?)
     }
 
-    abstract fun requestLocation(context: Context, callback: LocationCallback)
+    abstract fun requestLocation(context: Context, callback: (Result?) -> Unit)
     abstract fun cancel()
 
     // permission.
@@ -26,23 +27,16 @@ abstract class LocationService {
     open fun hasPermissions(context: Context): Boolean {
         val permissions = permissions
         for (p in permissions) {
-            if (p == Manifest.permission.ACCESS_COARSE_LOCATION
-                || p == Manifest.permission.ACCESS_FINE_LOCATION) {
+            if (p == Manifest.permission.ACCESS_COARSE_LOCATION || p == Manifest.permission.ACCESS_FINE_LOCATION) {
                 continue
             }
-            if (ActivityCompat.checkSelfPermission(context, p) != PackageManager.PERMISSION_GRANTED) {
+            if (!context.hasPermission(p)) {
                 return false
             }
         }
 
-        val coarseLocation = ActivityCompat.checkSelfPermission(
-            context,
-            Manifest.permission.ACCESS_COARSE_LOCATION
-        ) == PackageManager.PERMISSION_GRANTED
-        val fineLocation = ActivityCompat.checkSelfPermission(
-            context,
-            Manifest.permission.ACCESS_FINE_LOCATION
-        ) == PackageManager.PERMISSION_GRANTED
+        val coarseLocation = context.hasPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
+        val fineLocation = context.hasPermission(Manifest.permission.ACCESS_FINE_LOCATION)
         return coarseLocation || fineLocation
     }
 }

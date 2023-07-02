@@ -7,10 +7,7 @@ import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.os.Build;
 
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.annotation.Size;
+import androidx.annotation.*;
 
 import org.breezyweather.common.basic.models.options.NotificationTextColor;
 import org.breezyweather.common.basic.models.weather.WeatherCode;
@@ -101,7 +98,10 @@ public class ResourceHelper {
     }
 
     @DrawableRes
-    public static int getDefaultMinimalXmlIconId(WeatherCode code, boolean daytime) {
+    public static int getDefaultMinimalXmlIconId(@Nullable WeatherCode code, boolean daytime) {
+        if (code == null) {
+            return R.drawable.weather_clear_day_mini_xml;
+        }
         int id = new DefaultResourceProvider().getMinimalXmlIconId(code, daytime);
         if (id == 0) {
             return R.drawable.weather_clear_day_mini_xml;

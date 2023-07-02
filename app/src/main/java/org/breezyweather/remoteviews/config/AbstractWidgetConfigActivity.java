@@ -517,175 +517,175 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
 
     private String getSubtitleCustomKeywords() {
         return getString(R.string.widget_custom_subtitle_keyword_cw) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) +
+                getString(R.string.colon_separator) +
                 getString(R.string.widget_custom_subtitle_keyword_cw_description) +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_ct) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) +
+                getString(R.string.colon_separator) +
                 getString(R.string.widget_custom_subtitle_keyword_ct_description) +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_ctd) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) +
+                getString(R.string.colon_separator) +
                 getString(R.string.widget_custom_subtitle_keyword_ctd_description) +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_at) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) +
+                getString(R.string.colon_separator) +
                 getString(R.string.widget_custom_subtitle_keyword_at_description) +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_atd) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) +
+                getString(R.string.colon_separator) +
                 getString(R.string.widget_custom_subtitle_keyword_atd_description) +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_cwd) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) +
+                getString(R.string.colon_separator) +
                 getString(R.string.widget_custom_subtitle_keyword_cwd_description) +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_cuv) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) +
+                getString(R.string.colon_separator) +
                 getString(R.string.widget_custom_subtitle_keyword_cuv_description) +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_ch) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) +
+                getString(R.string.colon_separator) +
                 getString(R.string.widget_custom_subtitle_keyword_ch_description) +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_cps) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) +
+                getString(R.string.colon_separator) +
                 getString(R.string.widget_custom_subtitle_keyword_cps_description) +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_cv) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) +
+                getString(R.string.colon_separator) +
                 getString(R.string.widget_custom_subtitle_keyword_cv_description) +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_cdp) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) +
+                getString(R.string.colon_separator) +
                 getString(R.string.widget_custom_subtitle_keyword_cdp_description) +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_al) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) +
+                getString(R.string.colon_separator) +
                 getString(R.string.widget_custom_subtitle_keyword_al_description) +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_als) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) +
+                getString(R.string.colon_separator) +
                 getString(R.string.widget_custom_subtitle_keyword_als_description) +
                 "\n" +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_l) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) +
+                getString(R.string.colon_separator) +
                 getString(R.string.widget_custom_subtitle_keyword_l_description) +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_lat) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) +
+                getString(R.string.colon_separator) +
                 getString(R.string.widget_custom_subtitle_keyword_lat_description) +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_lon) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) +
+                getString(R.string.colon_separator) +
                 getString(R.string.widget_custom_subtitle_keyword_lon_description) +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_ut) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) +
+                getString(R.string.colon_separator) +
                 getString(R.string.widget_custom_subtitle_keyword_ut_description) +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_d) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) +
+                getString(R.string.colon_separator) +
                 getString(R.string.widget_custom_subtitle_keyword_d_description) +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_lc) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) +
+                getString(R.string.colon_separator) +
                 getString(R.string.widget_custom_subtitle_keyword_lc_description) +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_w) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) +
+                getString(R.string.colon_separator) +
                 getString(R.string.widget_custom_subtitle_keyword_w_description) +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_ws) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) +
+                getString(R.string.colon_separator) +
                 getString(R.string.widget_custom_subtitle_keyword_ws_description) +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_dd) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) +
+                getString(R.string.colon_separator) +
                 getString(R.string.widget_custom_subtitle_keyword_dd_description) +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_hd) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) +
+                getString(R.string.colon_separator) +
                 getString(R.string.widget_custom_subtitle_keyword_hd_description) +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_enter) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) +
+                getString(R.string.colon_separator) +
                 getString(R.string.widget_custom_subtitle_keyword_enter_description) +
                 "\n" +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_xdw) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) + "\n" +
+                getString(R.string.colon_separator) + "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_xdw_description) +
                 "\n" +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_xnw) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) + "\n" +
+                getString(R.string.colon_separator) + "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_xnw_description) +
                 "\n" +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_xdt) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) + "\n" +
+                getString(R.string.colon_separator) + "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_xdt_description) +
                 "\n" +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_xnt) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) + "\n" +
+                getString(R.string.colon_separator) + "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_xnt_description) +
                 "\n" +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_xdtd) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) + "\n" +
+                getString(R.string.colon_separator) + "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_xdtd_description) +
                 "\n" +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_xntd) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) + "\n" +
+                getString(R.string.colon_separator) + "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_xntd_description) +
                 "\n" +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_xdp) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) + "\n" +
+                getString(R.string.colon_separator) + "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_xdp_description) +
                 "\n" +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_xnp) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) + "\n" +
+                getString(R.string.colon_separator) + "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_xnp_description) +
                 "\n" +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_xdwd) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) + "\n" +
+                getString(R.string.colon_separator) + "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_xdwd_description) +
                 "\n" +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_xnwd) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) + "\n" +
+                getString(R.string.colon_separator) + "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_xnwd_description) +
                 "\n" +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_xsr) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) + "\n" +
+                getString(R.string.colon_separator) + "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_xsr_description) +
                 "\n" +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_xss) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) + "\n" +
+                getString(R.string.colon_separator) + "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_xss_description) +
                 "\n" +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_xmr) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) + "\n" +
+                getString(R.string.colon_separator) + "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_xmr_description) +
                 "\n" +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_xms) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) + "\n" +
+                getString(R.string.colon_separator) + "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_xms_description) +
                 "\n" +
                 "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_xmp) +
-                getString(R.string.widget_custom_subtitle_keyword_separator) + "\n" +
+                getString(R.string.colon_separator) + "\n" +
                 getString(R.string.widget_custom_subtitle_keyword_xmp_description);
     }
 

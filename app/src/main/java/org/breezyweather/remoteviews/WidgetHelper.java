@@ -61,10 +61,10 @@ public class WidgetHelper {
         }
 
         // material you.
-        if (MaterialYouForecastWidgetIMP.isEnable(context)) {
+        if (MaterialYouForecastWidgetIMP.isEnabled(context)) {
             MaterialYouForecastWidgetIMP.updateWidgetView(context, location);
         }
-        if (MaterialYouCurrentWidgetIMP.isEnable(context)) {
+        if (MaterialYouCurrentWidgetIMP.isEnabled(context)) {
             MaterialYouCurrentWidgetIMP.updateWidgetView(context, location);
         }
     }

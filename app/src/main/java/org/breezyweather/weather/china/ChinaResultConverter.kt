@@ -377,14 +377,12 @@ private fun getWeatherCode(icon: String?): WeatherCode? {
     }
 }
 
-private fun getUVDescription(index: Int): String {
-    return when {
-        index <= 2 -> "最弱"
-        index <= 4 -> "弱"
-        index <= 6 -> "中等"
-        index <= 9 -> "强"
-        else -> "很强"
-    }
+private fun getUVDescription(index: Int): String = when {
+    index <= 2 -> "最弱"
+    index <= 4 -> "弱"
+    index <= 6 -> "中等"
+    index <= 9 -> "强"
+    else -> "很强"
 }
 
 @ColorInt

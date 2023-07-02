@@ -34,7 +34,7 @@ class PollingUpdateHelper(
             index: Int,
             total: Int
         )
-        fun onPollingCompleted(locationList: List<Location>?)
+        fun onPollingCompleted(locationList: List<Location>)
     }
 
     // control.

@@ -31,7 +31,7 @@ public class TodayForecastUpdateWorker extends AsyncUpdateWorker {
 
     @Override
     public void updateView(Context context, Location location) {
-        if (ForecastNotificationIMP.isEnable(context, true)) {
+        if (ForecastNotificationIMP.isEnabled(context, true)) {
             ForecastNotificationIMP.buildForecastAndSendIt(context, location, true);
         }
     }

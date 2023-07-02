@@ -117,13 +117,6 @@ class Location(
             weather = weather
         )
 
-        fun copy(
-            src: Location,
-            weatherSource: WeatherSource,
-        ) = src.copy(
-            weatherSource = weatherSource
-        )
-
         @JvmStatic
         fun copy(
             src: Location,
@@ -132,18 +125,6 @@ class Location(
         ) = src.copy(
             isCurrentPosition = currentPosition,
             isResidentPosition = residentPosition,
-        )
-
-        @JvmStatic
-        fun copy(
-            src: Location,
-            latitude: Float,
-            longitude: Float,
-            timeZone: TimeZone,
-        ) = src.copy(
-            latitude = latitude,
-            longitude = longitude,
-            timeZone = timeZone,
         )
 
         @JvmField
@@ -176,9 +157,7 @@ class Location(
         parcel.writeByte(if (isChina) 1 else 0)
     }
 
-    override fun describeContents(): Int {
-        return 0
-    }
+    override fun describeContents() = 0
 
     constructor(parcel: Parcel) : this(
         cityId = parcel.readString()!!,

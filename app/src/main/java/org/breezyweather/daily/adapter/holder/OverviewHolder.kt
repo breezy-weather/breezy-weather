@@ -19,7 +19,7 @@ class OverviewHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
 ) {
     private val mIcon: AnimatableIconView = itemView.findViewById(R.id.item_weather_daily_overview_icon)
     private val mTitle: TextView = itemView.findViewById(R.id.item_weather_daily_overview_text)
-    private val mProvider: ResourceProvider = ResourcesProviderFactory.getNewInstance()
+    private val mProvider: ResourceProvider = ResourcesProviderFactory.newInstance
     private val mTemperatureUnit: TemperatureUnit = SettingsManager.getInstance(parent.context).temperatureUnit
 
     init {

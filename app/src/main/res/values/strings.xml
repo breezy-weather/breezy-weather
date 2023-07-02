@@ -220,6 +220,7 @@
     <string name="location_message_failed_to_locate">Failed to find current location</string>
     <string name="location_message_permission_missing">Access location permission missing</string>
     <string name="location_message_permission_background_missing">Access location in background permission missing</string>
+    <string name="location_message_reverse_geocoding_failed">Weather provider failed to find a matching location</string>
     <string name="location_dialog_failed_to_locate_title">Cannot get location correctly?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Check location permissions</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Enable location information</string>
@@ -298,7 +299,6 @@
     <string name="widget_subtitle_data_custom">Custom</string>
     <!-- keep the “$cw$” part as is -->
     <string name="widget_custom_subtitle_explanation">You can input anything, but please pay attention to the length of the text. If you want to quote weather data, please use $ to reference the corresponding keyword.\n\nFor example, “Current weather is: $cw$.” will be displayed as “Current weather is: Clear Day.”.</string>
-    <string name="widget_custom_subtitle_keyword_separator" translatable="false">\u0020:\u0020</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Current Weather</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Current Temperature (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Current Temperature (°)</string>
@@ -692,4 +692,6 @@
     <string name="tag_precipitation" translatable="false">@string/precipitation</string>
     <string name="tag_aqi" translatable="false">@string/air_quality</string>
     <string name="tag_uv" translatable="false">@string/uv_index</string>
+
+    <string name="colon_separator" translatable="false">:\u0020</string>
 </resources>

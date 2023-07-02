@@ -203,7 +203,7 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
     @SuppressLint("Recycle")
     @Override
     public void onEnterScreen() {
-        if (itemAnimationEnabled && mWeather != null) {
+        if (getItemAnimationEnabled() && mWeather != null) {
             ValueAnimator timeDay = ValueAnimator.ofObject(new LongEvaluator(), mStartTimes[0], mCurrentTimes[0]);
             timeDay.addUpdateListener(animation -> {
                 mAnimCurrentTimes[0] = (Long) animation.getAnimatedValue();

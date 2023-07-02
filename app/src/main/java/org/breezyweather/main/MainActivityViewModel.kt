@@ -16,6 +16,7 @@ import org.breezyweather.common.basic.GeoViewModel
 import org.breezyweather.common.basic.livedata.BusLiveData
 import org.breezyweather.common.basic.livedata.EqualtableLiveData
 import org.breezyweather.common.basic.models.Location
+import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.main.utils.RequestErrorType
 import org.breezyweather.main.utils.StatementManager
 import org.breezyweather.settings.SettingsManager
@@ -235,9 +236,7 @@ class MainActivityViewModel @Inject constructor(
         // check permissions.
         val permissionList = repository
             .getLocatePermissionList(application)
-            .filter {
-                ActivityCompat.checkSelfPermission(application, it) != PackageManager.PERMISSION_GRANTED
-            }
+            .filter { !application.hasPermission(it) }
             .toMutableList()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
             && !statementManager.isPostNotificationRequired) {

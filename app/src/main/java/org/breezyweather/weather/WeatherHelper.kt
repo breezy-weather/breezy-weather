@@ -55,7 +55,7 @@ class WeatherHelper @Inject constructor(
 
             override fun requestWeatherFailed(requestLocation: Location, requestErrorType: RequestErrorType) {
                 listener.requestWeatherFailed(
-                    Location.copy(requestLocation, readWeather(requestLocation)),
+                    requestLocation.copy(weather = readWeather(requestLocation)),
                     requestErrorType
                 )
             }

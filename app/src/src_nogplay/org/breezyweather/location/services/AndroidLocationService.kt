@@ -66,11 +66,11 @@ open class AndroidLocationService : LocationService(), LocationListener {
     private var locationManager: LocationManager? = null
 
     private var currentProvider = ""
-    private var locationCallback: LocationCallback? = null
+    private var locationCallback: ((Result?) -> Unit)? = null
     private var lastKnownLocation: Location? = null
     private var gmsLastKnownLocation: Location? = null
 
-    override fun requestLocation(context: Context, callback: LocationCallback) {
+    override fun requestLocation(context: Context, callback: (Result?) -> Unit) {
         cancel()
 
         locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager?
@@ -78,7 +78,7 @@ open class AndroidLocationService : LocationService(), LocationListener {
             || !hasPermissions(context)
             || !isLocationEnabled(locationManager!!)
             || getBestProvider(locationManager!!).also { currentProvider = it }.isEmpty()) {
-            callback.onCompleted(null)
+            callback(null)
             return
         }
 
@@ -110,7 +110,7 @@ open class AndroidLocationService : LocationService(), LocationListener {
         )
 
     private fun handleLocation(location: Location?) {
-        locationCallback?.onCompleted(
+        locationCallback?.invoke(
             location?.let { buildResult(it) }
         )
     }

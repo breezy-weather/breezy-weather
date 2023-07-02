@@ -151,9 +151,7 @@ class MfWeatherService @Inject constructor(
             .subscribe(ObserverContainer(mCompositeDisposable, object : ApiObserver<WeatherResultWrapper>() {
                 override fun onSucceed(t: WeatherResultWrapper) {
                     if (t.result != null) {
-                        callback.requestWeatherSuccess(
-                            Location.copy(location, t.result)
-                        )
+                        callback.requestWeatherSuccess(location.copy(weather = t.result))
                     } else {
                         onFailed()
                     }
@@ -240,7 +238,7 @@ class MfWeatherService @Inject constructor(
                     } else {
                         callback.requestLocationFailed(
                             location.latitude.toString() + "," + location.longitude,
-                            RequestErrorType.LOCATION_FAILED
+                            RequestErrorType.REVERSE_GEOCODING_FAILED
                         )
                     }
                 }

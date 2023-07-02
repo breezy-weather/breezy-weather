@@ -20,21 +20,19 @@ enum class WeatherCode(val id: String) {
         @JvmStatic
         fun getInstance(
             value: String
-        ): WeatherCode {
-            return with (value) {
-                when {
-                    equals("partly_cloudy", ignoreCase = true) -> PARTLY_CLOUDY
-                    equals("cloudy", ignoreCase = true) -> CLOUDY
-                    equals("rain", ignoreCase = true) -> RAIN
-                    equals("snow", ignoreCase = true) -> SNOW
-                    equals("wind", ignoreCase = true) -> WIND
-                    equals("haze", ignoreCase = true) -> HAZE
-                    equals("sleet", ignoreCase = true) -> SLEET
-                    equals("hail", ignoreCase = true) -> HAIL
-                    equals("thunderstorm", ignoreCase = true) -> THUNDERSTORM
-                    equals("thunder", ignoreCase = true) -> THUNDER
-                    else -> CLEAR
-                }
+        ): WeatherCode = with (value) {
+            when {
+                equals("partly_cloudy", ignoreCase = true) -> PARTLY_CLOUDY
+                equals("cloudy", ignoreCase = true) -> CLOUDY
+                equals("rain", ignoreCase = true) -> RAIN
+                equals("snow", ignoreCase = true) -> SNOW
+                equals("wind", ignoreCase = true) -> WIND
+                equals("haze", ignoreCase = true) -> HAZE
+                equals("sleet", ignoreCase = true) -> SLEET
+                equals("hail", ignoreCase = true) -> HAIL
+                equals("thunderstorm", ignoreCase = true) -> THUNDERSTORM
+                equals("thunder", ignoreCase = true) -> THUNDER
+                else -> CLEAR
             }
         }
     }

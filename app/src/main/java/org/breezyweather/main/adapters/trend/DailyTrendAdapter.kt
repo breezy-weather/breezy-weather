@@ -28,7 +28,7 @@ class DailyTrendAdapter(
     private var selectedIndexCache = -1
 
     fun bindData(location: Location) {
-        val provider = ResourcesProviderFactory.getNewInstance()
+        val provider = ResourcesProviderFactory.newInstance
 
         adapters = SettingsManager.getInstance(activity).dailyTrendDisplayList.map {
             when (it) {
@@ -69,9 +69,7 @@ class DailyTrendAdapter(
         adapters[selectedIndex].onBindViewHolder(holder, position)
     }
 
-    override fun getItemCount(): Int {
-        return adapters.getOrNull(selectedIndex)?.itemCount ?: 0
-    }
+    override fun getItemCount() = adapters.getOrNull(selectedIndex)?.itemCount ?: 0
 
     override fun getItemViewType(position: Int): Int {
         if (selectedIndexCache != selectedIndex) {

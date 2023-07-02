@@ -3,5 +3,8 @@
 <li>Fix crash in daily view when air quality is not available.</li>
 <li>Fix readability for Update method setting.</li>
 <li>Fix Beijing sometimes being added as location.</li>
+<li>Fix semi colon spacing in Hourly dialog.</li>
+<li>Fix Today sometimes not showing on the right column in notification-widget</li>
+<li>Many null-safety checks added to avoid potential crashes</li>
 <li>Translation updates, Vietnamese added (thanks minb!).</li>
 </ul>

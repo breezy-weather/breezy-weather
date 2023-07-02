@@ -146,19 +146,13 @@ class HomeFragment : MainModuleFragment() {
         )
 
         binding.toolbar.setNavigationOnClickListener {
-            if (callback != null) {
-                callback!!.onManageIconClicked()
-            }
+            callback?.onManageIconClicked()
         }
         binding.toolbar.inflateMenu(R.menu.activity_main)
         binding.toolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.action_manage -> if (callback != null) {
-                    callback!!.onManageIconClicked()
-                }
-                R.id.action_settings -> if (callback != null) {
-                    callback!!.onSettingsIconClicked()
-                }
+                R.id.action_manage -> callback?.onManageIconClicked()
+                R.id.action_settings -> callback?.onSettingsIconClicked()
             }
             true
         }
@@ -313,7 +307,7 @@ class HomeFragment : MainModuleFragment() {
             .iconProvider
         if (resourceProvider == null
             || resourceProvider!!.packageName != iconProvider) {
-            resourceProvider = ResourcesProviderFactory.getNewInstance()
+            resourceProvider = ResourcesProviderFactory.newInstance
         }
     }
 

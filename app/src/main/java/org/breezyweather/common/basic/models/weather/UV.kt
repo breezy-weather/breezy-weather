@@ -26,8 +26,6 @@ class UV(
 
     val isValid: Boolean
         get() = index != null || level != null || description != null
-    val isValidIndex: Boolean
-        get() = index != null
 
     @get:SuppressLint("DefaultLocale")
     val uVDescription: String

@@ -1,0 +1,94 @@
+package org.breezyweather.main.widgets
+
+import android.annotation.SuppressLint
+import android.content.Context
+import android.util.AttributeSet
+import android.widget.RemoteViews.RemoteView
+import android.widget.TextView
+import org.breezyweather.common.utils.DisplayUtils
+import java.util.*
+
+/**
+ *
+ * `TextRelativeClock` can display the current relative time as a formatted string.
+ */
+@SuppressLint("AppCompatCustomView")
+@RemoteView
+class TextRelativeClock @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0,
+    defStyleRes: Int = 0
+) : TextView(
+    context,
+    attrs,
+    defStyleAttr,
+    defStyleRes
+) {
+    private var mShouldRunTicker = false
+    private var mDate = Date()
+    private val mTicker: Runnable = object : Runnable {
+        override fun run() {
+            removeCallbacks(this)
+            if (!mShouldRunTicker) {
+                return
+            }
+            onTimeChanged()
+
+            //Date now = new Date();
+            val millisUntilNextTick = (60 * 1000).toLong()
+            // It is currently refreshing every minute
+            // It's not precise (but enough for our use case) as it won't refresh on second 0 of next minute
+            // but rather on the same second on next minute
+            // Plus it's refreshing every minute when > 1 hour, which is not optimized
+            // TODO: We should optimize this function one day, for Green IT purposes
+            /*long secondsDifference = (now.time - mDate.time) / 1000;
+            if (secondsDifference <= 60 * 60) { // < 1 hour
+
+            } else if (secondsDifference <= 24 * 60 * 60) { // < 24 hours
+                // Calculate modulo for next hour
+            } else { // More than 24 hours
+
+            }*/
+            postDelayed(this, millisUntilNextTick)
+        }
+    }
+
+    init {
+        runTicker()
+    }
+
+    fun setDate(date: Date) {
+        mDate = date
+        onTimeChanged()
+    }
+
+    /**
+     * Run ticker if required
+     */
+    private fun runTicker() {
+        if (mShouldRunTicker) {
+            mTicker.run()
+        }
+    }
+
+    override fun onVisibilityAggregated(isVisible: Boolean) {
+        super.onVisibilityAggregated(isVisible)
+        if (!mShouldRunTicker && isVisible) {
+            mShouldRunTicker = true
+            mTicker.run()
+        } else if (mShouldRunTicker && !isVisible) {
+            mShouldRunTicker = false
+            removeCallbacks(mTicker)
+        }
+    }
+
+    /**
+     * Update the displayed time if this view and its ancestors and window is visible
+     */
+    private fun onTimeChanged() {
+        val relativeTimeFormatted = DisplayUtils.getRelativeTime(mDate)
+        text = relativeTimeFormatted
+        contentDescription = relativeTimeFormatted
+    }
+}

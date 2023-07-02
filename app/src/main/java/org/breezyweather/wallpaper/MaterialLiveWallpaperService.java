@@ -84,7 +84,7 @@ public class MaterialLiveWallpaperService extends WallpaperService {
             @Override
             public void run() {
 
-
+                // Commented because not updating on rotate otherwise
                 /*if (mIntervalComputer == null
                         || mImplementor == null
                         || mBackground == null

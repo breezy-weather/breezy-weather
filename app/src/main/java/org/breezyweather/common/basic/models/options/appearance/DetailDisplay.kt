@@ -108,32 +108,30 @@ enum class DetailDisplay(
 
     override fun getName(context: Context) = context.getString(nameId)
 
-    fun getCurrentValue(context: Context, current: Current, isDaylight: Boolean = true): String? {
-        return when(id) {
-            "feels_like" -> if (current.temperature?.feelsLikeTemperature != null) current.temperature.getFeelsLikeTemperature(context, SettingsManager.getInstance(context).temperatureUnit) else null
-            "wind" -> if (!current.wind?.getShortWindDescription(context, SettingsManager.getInstance(context).speedUnit).isNullOrEmpty()) current.wind?.getShortWindDescription(context, SettingsManager.getInstance(context).speedUnit) else null
-            "uv_index" -> if (current.uV?.index != null && (isDaylight || current.uV.index > 0)) current.uV.shortUVDescription else null
-            "humidity" -> if (current.relativeHumidity != null) RelativeHumidityUnit.PERCENT.getValueText(
-                context, current.relativeHumidity.toInt()
-            ) else null
-            "dew_point" -> if (current.dewPoint != null) SettingsManager.getInstance(context).temperatureUnit.getValueText(
-                context, current.dewPoint
-            ) else null
-            "pressure" -> if (current.pressure != null) SettingsManager.getInstance(context).pressureUnit.getValueText(
-                context, current.pressure
-            ) else null
-            "visibility" -> if (current.visibility != null) SettingsManager.getInstance(context).distanceUnit.getValueText(
-                context, current.visibility
-            ) else null
-            "cloud_cover" -> if (current.cloudCover != null) CloudCoverUnit.PERCENT.getValueText(
-                context,
-                current.cloudCover
-            ) else null
-            "ceiling" -> if (current.ceiling != null) SettingsManager.getInstance(context).distanceUnit.getValueText(
-                context,
-                current.ceiling
-            ) else null
-            else -> null
-        }
+    fun getCurrentValue(context: Context, current: Current, isDaylight: Boolean = true): String? = when(id) {
+        "feels_like" -> if (current.temperature?.feelsLikeTemperature != null) current.temperature.getFeelsLikeTemperature(context, SettingsManager.getInstance(context).temperatureUnit) else null
+        "wind" -> if (!current.wind?.getShortWindDescription(context, SettingsManager.getInstance(context).speedUnit).isNullOrEmpty()) current.wind?.getShortWindDescription(context, SettingsManager.getInstance(context).speedUnit) else null
+        "uv_index" -> if (current.uV?.index != null && (isDaylight || current.uV.index > 0)) current.uV.shortUVDescription else null
+        "humidity" -> if (current.relativeHumidity != null) RelativeHumidityUnit.PERCENT.getValueText(
+            context, current.relativeHumidity.toInt()
+        ) else null
+        "dew_point" -> if (current.dewPoint != null) SettingsManager.getInstance(context).temperatureUnit.getValueText(
+            context, current.dewPoint
+        ) else null
+        "pressure" -> if (current.pressure != null) SettingsManager.getInstance(context).pressureUnit.getValueText(
+            context, current.pressure
+        ) else null
+        "visibility" -> if (current.visibility != null) SettingsManager.getInstance(context).distanceUnit.getValueText(
+            context, current.visibility
+        ) else null
+        "cloud_cover" -> if (current.cloudCover != null) CloudCoverUnit.PERCENT.getValueText(
+            context,
+            current.cloudCover
+        ) else null
+        "ceiling" -> if (current.ceiling != null) SettingsManager.getInstance(context).distanceUnit.getValueText(
+            context,
+            current.ceiling
+        ) else null
+        else -> null
     }
 }

@@ -10,5 +10,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 @Module
 class RxModule {
     @Provides
-    fun provideCompositeDisposable() = CompositeDisposable()
+    fun provideCompositeDisposable(): CompositeDisposable {
+        return CompositeDisposable()
+    }
 }

@@ -309,7 +309,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
             .iconProvider
         if (resourceProvider == null
             || resourceProvider!!.packageName != iconProvider) {
-            resourceProvider = ResourcesProviderFactory.getNewInstance()
+            resourceProvider = ResourcesProviderFactory.newInstance
         }
     }
 }

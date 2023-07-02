@@ -40,10 +40,7 @@ class MainActivityRepository @Inject constructor(
             }
         }
 
-        list[index] = Location.copy(
-            src = list[index],
-            weather = WeatherEntityRepository.readWeather(list[index])
-        )
+        list[index] = list[index].copy(weather = WeatherEntityRepository.readWeather(list[index]))
         return list
     }
 
@@ -59,10 +56,7 @@ class MainActivityRepository @Inject constructor(
                     if (it.formattedId == ignoredFormattedId) {
                         it
                     } else {
-                        Location.copy(
-                            src = it,
-                            weather = WeatherEntityRepository.readWeather(it)
-                        )
+                        it.copy(weather = WeatherEntityRepository.readWeather(it))
                     }
                 },
                 true

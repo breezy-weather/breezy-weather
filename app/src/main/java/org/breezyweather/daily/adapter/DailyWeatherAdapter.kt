@@ -121,13 +121,9 @@ class DailyWeatherAdapter(context: Context, timeZone: TimeZone, daily: Daily, sp
         holder.onBindView(mModelList[position], position)
     }
 
-    override fun getItemViewType(position: Int): Int {
-        return mModelList[position].code
-    }
+    override fun getItemViewType(position: Int) = mModelList[position].code
 
-    override fun getItemCount(): Int {
-        return mModelList.size
-    }
+    override fun getItemCount() = mModelList.size
 
     private fun getHalfDayOptionalModelList(context: Context, halfDay: HalfDay): List<ViewModel> {
         val list: MutableList<ViewModel> = ArrayList()

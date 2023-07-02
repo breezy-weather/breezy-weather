@@ -361,11 +361,13 @@ fun debugConvert(
     }
 }
 
+// Sometimes used in dev to make some null-safety checks
+// TODO: Should be moved to its own DebugWeatherService
 fun debugConvert(
     context: Context,
     location: Location,
-    weatherResult: OpenMeteoWeatherResult/*,
-    airQualityResult: OpenMeteoAirQualityResult*/
+    weatherResult: OpenMeteoWeatherResult,
+    airQualityResult: OpenMeteoAirQualityResult
 ): WeatherResultWrapper {
     return try {
         val dailyList: MutableList<Daily> = ArrayList()

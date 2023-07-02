@@ -13,7 +13,7 @@ import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.remoteviews.config.*
 import org.breezyweather.remoteviews.presenters.*
-import org.breezyweather.remoteviews.presenters.notification.NormalNotificationIMP
+import org.breezyweather.remoteviews.presenters.notification.WidgetNotificationIMP
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.preference.*
 import org.breezyweather.settings.preference.composables.*
@@ -216,7 +216,7 @@ fun WidgetsSettingsScreen(
                         PollingManager.resetNormalBackgroundTask(context, true)
                     }
                 } else { // close notification.
-                    NormalNotificationIMP.cancelNotification(context)
+                    WidgetNotificationIMP.cancelNotification(context)
                     PollingManager.resetNormalBackgroundTask(context, false)
                 }
             }

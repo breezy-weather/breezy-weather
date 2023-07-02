@@ -29,9 +29,7 @@ open class HomePollenAdapter @JvmOverloads constructor(
         holder.onBindView(location, location.weather!!.dailyForecast[position], pollenUnit)
     }
 
-    override fun getItemCount(): Int {
-        return location.weather?.dailyForecast?.size ?: 0
-    }
+    override fun getItemCount() = location.weather?.dailyForecast?.size ?: 0
 }
 
 class HomePollenViewHolder internal constructor(

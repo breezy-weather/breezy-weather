@@ -8,7 +8,6 @@ import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.view.View
-import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.*
@@ -20,6 +19,7 @@ import org.breezyweather.background.polling.PollingManager
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.bus.EventBus
+import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.snackbar.SnackbarContainer
 import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.common.utils.helpers.AsyncHelper
@@ -224,10 +224,7 @@ class MainActivity : GeoActivity(),
                 viewModel.validLocationList.collect {
                     // update notification immediately.
                     AsyncHelper.runOnIO {
-                        NotificationHelper.updateNotificationIfNecessary(
-                            context,
-                            it.first
-                        )
+                        NotificationHelper.updateNotificationIfNecessary(context, it.first)
                     }
                     refreshBackgroundViews(
                         resetBackground = false,
@@ -279,16 +276,14 @@ class MainActivity : GeoActivity(),
         }
         viewModel.requestErrorType.observe(this) {
             it?.let { msg ->
-                if (msg.showDialogAction != null) {
+                msg.showDialogAction?.let { showDialogAction ->
                     SnackbarHelper.showSnackbar(
                         getString(msg.shortMessage),
                         getString(msg.actionButtonMessage)
                     ) {
-                        msg.showDialogAction?.let { showDialog -> showDialog(this) }
+                        showDialogAction(this)
                     }
-                } else {
-                    SnackbarHelper.showSnackbar(getString(msg.shortMessage))
-                }
+                } ?: SnackbarHelper.showSnackbar(getString(msg.shortMessage))
             }
         }
     }
@@ -327,10 +322,7 @@ class MainActivity : GeoActivity(),
         // check background location permissions.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
             && !viewModel.statementManager.isBackgroundLocationDeclared
-            && ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_BACKGROUND_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
+            && this.hasPermission(Manifest.permission.ACCESS_BACKGROUND_LOCATION)
         ) {
             MaterialAlertDialogBuilder(this)
                 .setTitle(R.string.dialog_permissions_location_background_title)
@@ -368,16 +360,11 @@ class MainActivity : GeoActivity(),
     }
 
     private val isLocationPermissionsGranted: Boolean
-        get() = ActivityCompat.checkSelfPermission(
-            this,
-            Manifest.permission.ACCESS_COARSE_LOCATION
-        ) == PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(
-            this,
-            Manifest.permission.ACCESS_FINE_LOCATION
-        ) == PackageManager.PERMISSION_GRANTED
+        get() = this.hasPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
+                    || this.hasPermission(Manifest.permission.ACCESS_FINE_LOCATION)
 
-    val isDaylight
-        get() = viewModel.currentLocation.value?.daylight
+    val isDaylight: Boolean
+        get() = viewModel.currentLocation.value?.daylight ?: true
 
     // control.
 

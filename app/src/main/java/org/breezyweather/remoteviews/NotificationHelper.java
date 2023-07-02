@@ -28,7 +28,7 @@ import org.breezyweather.common.basic.models.Location;
 import org.breezyweather.common.basic.models.weather.Alert;
 import org.breezyweather.common.basic.models.weather.Weather;
 import org.breezyweather.common.utils.helpers.IntentHelper;
-import org.breezyweather.remoteviews.presenters.notification.NormalNotificationIMP;
+import org.breezyweather.remoteviews.presenters.notification.WidgetNotificationIMP;
 import org.breezyweather.R;
 import org.breezyweather.settings.ConfigStore;
 import org.breezyweather.settings.SettingsManager;
@@ -46,8 +46,8 @@ public class NotificationHelper {
     // notification.
 
     public static void updateNotificationIfNecessary(Context context, @NonNull List<Location> locationList) {
-        if (NormalNotificationIMP.isEnable(context)) {
-            NormalNotificationIMP.buildNotificationAndSendIt(context, locationList);
+        if (WidgetNotificationIMP.isEnabled(context)) {
+            WidgetNotificationIMP.buildNotificationAndSendIt(context, locationList);
         }
     }
 

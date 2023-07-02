@@ -5,7 +5,6 @@ import android.os.Build
 import org.breezyweather.background.polling.services.permanent.PermanentServiceHelper.startPollingService
 import org.breezyweather.background.polling.services.permanent.PermanentServiceHelper.stopPollingService
 import org.breezyweather.background.polling.work.WorkerHelper
-import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.BackgroundUpdateMethod
 import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.common.utils.helpers.IntentHelper
@@ -150,10 +149,7 @@ object PollingManager {
             AsyncHelper.runOnIO {
                 val locationList = readLocationList(context)
                 for (i in locationList.indices) {
-                    locationList[i] = Location.copy(
-                        locationList[i],
-                        readWeather(locationList[i])
-                    )
+                    locationList[i] = locationList[i].copy(weather = readWeather(locationList[i]))
                 }
                 WidgetHelper.updateWidgetIfNecessary(context, locationList[0])
                 WidgetHelper.updateWidgetIfNecessary(context, locationList)

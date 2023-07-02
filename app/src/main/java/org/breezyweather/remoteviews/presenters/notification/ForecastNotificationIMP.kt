@@ -21,13 +21,12 @@ import org.breezyweather.theme.resource.ResourcesProviderFactory
  * Forecast notification utils.
  */
 object ForecastNotificationIMP : AbstractRemoteViewsPresenter() {
-
     @JvmStatic
     fun buildForecastAndSendIt(context: Context, location: Location, today: Boolean) {
         val weather = location.weather ?: return
         val daily = weather.dailyForecast.getOrNull(if (today) 0 else 1) ?: return
 
-        val provider = ResourcesProviderFactory.getNewInstance()
+        val provider = ResourcesProviderFactory.newInstance
         LanguageUtils.setLanguage(context, SettingsManager.getInstance(context).language.locale)
 
         val daytime: Boolean = if (today) location.isDaylight else true
@@ -45,8 +44,8 @@ object ForecastNotificationIMP : AbstractRemoteViewsPresenter() {
             setDefaults(Notification.DEFAULT_SOUND or Notification.DEFAULT_VIBRATE)
             setAutoCancel(true)
             setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
+            setSmallIcon(ResourceHelper.getDefaultMinimalXmlIconId(weatherCode, daytime))
             weatherCode?.let {
-                setSmallIcon(ResourceHelper.getDefaultMinimalXmlIconId(it, daytime))
                 setLargeIcon(drawableToBitmap(ResourceHelper.getWeatherIcon(provider, it, daytime)))
             }
             setContentTitle(
@@ -91,7 +90,7 @@ object ForecastNotificationIMP : AbstractRemoteViewsPresenter() {
     }
 
     @JvmStatic
-    fun isEnable(context: Context, today: Boolean): Boolean {
+    fun isEnabled(context: Context, today: Boolean): Boolean {
         return if (today) {
             SettingsManager.getInstance(context).isTodayForecastEnabled
         } else {

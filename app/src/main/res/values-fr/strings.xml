@@ -193,6 +193,7 @@
     <string name="location_message_search_failed">Échec de recherche d’emplacements</string>
     <string name="location_message_failed_to_locate">Échec de géolocalisation</string>
     <string name="location_message_permission_missing">Permission d’accéder à la position manquante</string>
+    <string name="location_message_reverse_geocoding_failed">Le fournisseur météo ne reconnaît pas votre emplacement</string>
     <string name="location_message_permission_background_missing">Permission d’accéder à la position en arrière-plan manquante</string>
     <string name="weather_message_data_refresh_failed">Échec d’actualisation des données météo</string>
     <string name="location_dialog_failed_to_locate_title">Vous ne parvenez pas à être localisé ?</string>
@@ -617,4 +618,6 @@
     <string name="notification_channel_alerts">Vigilances</string>
     <string name="about_matrix">Serveur Matrix</string>
     <string name="action_choose_weather_provider">Choisir le fournisseur météo</string>
+
+    <string name="colon_separator" translatable="false">\u0020:\u0020</string>
 </resources>

@@ -26,6 +26,7 @@ import com.google.accompanist.permissions.rememberPermissionState
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.bus.EventBus
+import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.ui.widgets.Material3Scaffold
 import org.breezyweather.common.ui.widgets.generateCollapsedScrollBehavior
 import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
@@ -182,10 +183,7 @@ class SettingsActivity : GeoActivity() {
                                 succeedCallback()
                                 return@BackgroundSettingsScreen
                             }
-                            if (ContextCompat.checkSelfPermission(
-                                    this@SettingsActivity,
-                                    Manifest.permission.POST_NOTIFICATIONS
-                                ) == PackageManager.PERMISSION_GRANTED) {
+                            if (this@SettingsActivity.hasPermission(Manifest.permission.POST_NOTIFICATIONS)) {
                                 return@BackgroundSettingsScreen
                             }
 
@@ -225,10 +223,7 @@ class SettingsActivity : GeoActivity() {
                                 succeedCallback()
                                 return@NotificationsSettingsScreen
                             }
-                            if (ContextCompat.checkSelfPermission(
-                                    this@SettingsActivity,
-                                    Manifest.permission.POST_NOTIFICATIONS
-                                ) == PackageManager.PERMISSION_GRANTED) {
+                            if (this@SettingsActivity.hasPermission(Manifest.permission.POST_NOTIFICATIONS)) {
                                 return@NotificationsSettingsScreen
                             }
 
@@ -272,10 +267,7 @@ class SettingsActivity : GeoActivity() {
                                 succeedCallback()
                                 return@WidgetsSettingsScreen
                             }
-                            if (ContextCompat.checkSelfPermission(
-                                    this@SettingsActivity,
-                                    Manifest.permission.POST_NOTIFICATIONS
-                                ) == PackageManager.PERMISSION_GRANTED) {
+                            if (this@SettingsActivity.hasPermission(Manifest.permission.POST_NOTIFICATIONS)) {
                                 return@WidgetsSettingsScreen
                             }
 

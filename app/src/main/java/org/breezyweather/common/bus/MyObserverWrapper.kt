@@ -12,13 +12,13 @@ internal class MyObserverWrapper<T> internal constructor(
 
     private val host = WeakReference(host)
 
-    override fun onChanged(t: T) {
+    override fun onChanged(value: T) {
         host.get()?.let {
             if (version >= it.version) {
                 return
             }
             version = it.version
-            observer.onChanged(t)
+            observer.onChanged(value)
         }
     }
 }

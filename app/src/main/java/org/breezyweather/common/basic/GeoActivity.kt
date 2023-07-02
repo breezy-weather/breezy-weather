@@ -19,9 +19,7 @@ abstract class GeoActivity : AppCompatActivity() {
 
     lateinit var fitHorizontalSystemBarRootLayout: FitHorizontalSystemBarRootLayout
 
-    private class KeyboardResizeBugWorkaround private constructor(
-        activity: GeoActivity
-    ) {
+    private class KeyboardResizeBugWorkaround private constructor(activity: GeoActivity) {
         private val root = activity.fitHorizontalSystemBarRootLayout
         private val rootParams: ViewGroup.LayoutParams
         private var usableHeightPrevious = 0

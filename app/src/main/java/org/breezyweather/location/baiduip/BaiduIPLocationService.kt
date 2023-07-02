@@ -14,10 +14,10 @@ class BaiduIPLocationService @Inject constructor(
     private val mApi: BaiduIPLocationApi,
     private val compositeDisposable: CompositeDisposable
 ) : LocationService() {
-    override fun requestLocation(context: Context, callback: LocationCallback) {
+    override fun requestLocation(context: Context, callback: (Result?) -> Unit) {
         val apiKey = SettingsManager.getInstance(context).providerBaiduIpLocationAk
         if (apiKey.isEmpty()) {
-            callback.onCompleted(null)
+            callback(null)
             return
         }
         mApi.getLocation(apiKey, "gcj02")
@@ -28,22 +28,22 @@ class BaiduIPLocationService @Inject constructor(
                         || t.content.point.y.isNullOrEmpty()
                         || t.content.point.x.isNullOrEmpty()
                     ) {
-                        callback.onCompleted(null)
+                        callback(null)
                     } else {
                         try {
                             val result = Result(
                                 t.content.point.y.toFloat(),
                                 t.content.point.x.toFloat()
                             )
-                            callback.onCompleted(result)
+                            callback(result)
                         } catch (ignore: Exception) {
-                            callback.onCompleted(null)
+                            callback(null)
                         }
                     }
                 }
 
                 override fun onFailed() {
-                    callback.onCompleted(null)
+                    callback(null)
                 }
             }))
     }

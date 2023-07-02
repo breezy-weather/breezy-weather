@@ -67,8 +67,7 @@ public class WorkerHelper {
         WorkManager.getInstance(context).cancelUniqueWork(WORK_NAME_NORMAL_VIEW);
     }
 
-    public static void setTodayForecastUpdateWork(Context context,
-                                                  String todayForecastTime, boolean nextDay) {
+    public static void setTodayForecastUpdateWork(Context context, String todayForecastTime, boolean nextDay) {
         OneTimeWorkRequest request = new OneTimeWorkRequest.Builder(TodayForecastUpdateWorker.class)
                 .setInitialDelay(
                         getForecastAlarmDelayInMinutes(todayForecastTime, nextDay),

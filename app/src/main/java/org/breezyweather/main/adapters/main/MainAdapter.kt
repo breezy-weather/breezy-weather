@@ -15,14 +15,14 @@ class MainAdapter(
     activity: GeoActivity, host: RecyclerView, weatherView: WeatherView, location: Location?,
     provider: ResourceProvider, listAnimationEnabled: Boolean, itemAnimationEnabled: Boolean
 ) : RecyclerView.Adapter<AbstractMainViewHolder?>() {
-    private var mActivity: GeoActivity? = null
+    private lateinit var mActivity: GeoActivity
     private var mHost: RecyclerView? = null
     private var mWeatherView: WeatherView? = null
     private var mLocation: Location? = null
     private var mProvider: ResourceProvider? = null
     private val mViewTypeList: MutableList<Int> = ArrayList()
     private var mFirstCardPosition: Int? = null
-    private var mPendingAnimatorList: List<Animator>? = null
+    private var mPendingAnimatorList: MutableList<Animator>? = null
     private var mHeaderCurrentTemperatureTextHeight = 0
     private var mListAnimationEnabled = false
     private var mItemAnimationEnabled = false
@@ -85,18 +85,16 @@ class MainAdapter(
         ensureFirstCard()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AbstractMainViewHolder {
-        return when (viewType) {
-            ViewType.REFRESH_TIME -> RefreshTimeViewHolder(parent, mWeatherView!!)
-            ViewType.HEADER -> HeaderViewHolder(parent, mWeatherView!!)
-            ViewType.DAILY -> DailyViewHolder(parent)
-            ViewType.HOURLY -> HourlyViewHolder(parent)
-            ViewType.AIR_QUALITY -> AirQualityViewHolder(parent)
-            ViewType.ALLERGEN -> AllergenViewHolder(parent)
-            ViewType.ASTRO -> AstroViewHolder(parent)
-            ViewType.LIVE -> DetailsViewHolder(parent)
-            else -> FooterViewHolder(parent)
-        }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AbstractMainViewHolder = when (viewType) {
+        ViewType.REFRESH_TIME -> RefreshTimeViewHolder(parent, mWeatherView!!)
+        ViewType.HEADER -> HeaderViewHolder(parent, mWeatherView!!)
+        ViewType.DAILY -> DailyViewHolder(parent)
+        ViewType.HOURLY -> HourlyViewHolder(parent)
+        ViewType.AIR_QUALITY -> AirQualityViewHolder(parent)
+        ViewType.ALLERGEN -> AllergenViewHolder(parent)
+        ViewType.ASTRO -> AstroViewHolder(parent)
+        ViewType.LIVE -> DetailsViewHolder(parent)
+        else -> FooterViewHolder(parent)
     }
 
     override fun onBindViewHolder(holder: AbstractMainViewHolder, position: Int) {
@@ -113,7 +111,7 @@ class MainAdapter(
             } else {
                 holder.onBindView(mActivity, mLocation!!, mProvider!!, mListAnimationEnabled, mItemAnimationEnabled)
             }
-            mHost!!.post { holder.checkEnterScreen(mHost, mPendingAnimatorList, mListAnimationEnabled) }
+            mHost!!.post { holder.checkEnterScreen(mHost!!, mPendingAnimatorList ?: ArrayList(), mListAnimationEnabled) }
         }
     }
 
@@ -121,13 +119,9 @@ class MainAdapter(
         holder.onRecycleView()
     }
 
-    override fun getItemCount(): Int {
-        return mViewTypeList.size
-    }
+    override fun getItemCount() = mViewTypeList.size
 
-    override fun getItemViewType(position: Int): Int {
-        return mViewTypeList[position]
-    }
+    override fun getItemViewType(position: Int) = mViewTypeList[position]
 
     private fun ensureFirstCard() {
         mFirstCardPosition = null
@@ -156,20 +150,18 @@ class MainAdapter(
         var holder: AbstractMainViewHolder?
         for (i in 0 until itemCount) {
             holder = mHost!!.findViewHolderForAdapterPosition(i) as AbstractMainViewHolder?
-            holder?.checkEnterScreen(mHost, mPendingAnimatorList, mListAnimationEnabled)
+            holder?.checkEnterScreen(mHost!!, mPendingAnimatorList ?: ArrayList(), mListAnimationEnabled)
         }
     }
 
     companion object {
-        private fun getViewType(cardDisplay: CardDisplay): Int {
-            return when (cardDisplay) {
-                CardDisplay.CARD_DAILY_OVERVIEW -> ViewType.DAILY
-                CardDisplay.CARD_HOURLY_OVERVIEW -> ViewType.HOURLY
-                CardDisplay.CARD_AIR_QUALITY -> ViewType.AIR_QUALITY
-                CardDisplay.CARD_ALLERGEN -> ViewType.ALLERGEN
-                CardDisplay.CARD_SUNRISE_SUNSET -> ViewType.ASTRO
-                else -> ViewType.LIVE
-            }
+        private fun getViewType(cardDisplay: CardDisplay): Int = when (cardDisplay) {
+            CardDisplay.CARD_DAILY_OVERVIEW -> ViewType.DAILY
+            CardDisplay.CARD_HOURLY_OVERVIEW -> ViewType.HOURLY
+            CardDisplay.CARD_AIR_QUALITY -> ViewType.AIR_QUALITY
+            CardDisplay.CARD_ALLERGEN -> ViewType.ALLERGEN
+            CardDisplay.CARD_SUNRISE_SUNSET -> ViewType.ASTRO
+            else -> ViewType.LIVE
         }
     }
 }

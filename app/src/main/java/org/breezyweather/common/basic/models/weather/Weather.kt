@@ -6,7 +6,7 @@ import java.util.*
 class Weather(
     val base: Base,
     val current: Current? = null,
-    var yesterday: History? = null,
+    var yesterday: History? = null, // FIXME: Should not be mutable
     val dailyForecast: List<Daily> = emptyList(),
     val hourlyForecast: List<Hourly> = emptyList(),
     val minutelyForecast: List<Minutely> = emptyList(),

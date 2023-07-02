@@ -67,22 +67,6 @@ public class DisplayUtils {
     public static void setSystemBarStyle(
             Context context,
             Window window,
-            boolean lightStatus,
-            boolean lightNavigation
-    ) {
-        setSystemBarStyle(
-                context,
-                window,
-                false,
-                lightStatus,
-                false,
-                lightNavigation
-        );
-    }
-
-    public static void setSystemBarStyle(
-            Context context,
-            Window window,
             boolean statusShader,
             boolean lightStatus,
             boolean navigationShader,

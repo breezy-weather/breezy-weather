@@ -54,7 +54,4 @@ class SearchViewModel @Inject constructor(
         super.onCleared()
         mRepository.cancel()
     }
-
-    val enabledSourceValue: WeatherSource
-        get() = enabledSource.value
 }

@@ -64,9 +64,7 @@ class ChinaWeatherService @Inject constructor(
             .subscribe(ObserverContainer(mCompositeDisposable, object : ApiObserver<WeatherResultWrapper>() {
                 override fun onSucceed(t: WeatherResultWrapper) {
                     if (t.result != null) {
-                        callback.requestWeatherSuccess(
-                            Location.copy(location, t.result)
-                        )
+                        callback.requestWeatherSuccess(location.copy(weather = t.result))
                     } else {
                         onFailed()
                     }
@@ -134,7 +132,7 @@ class ChinaWeatherService @Inject constructor(
                 }
 
                 override fun onFailed() {
-                    callback.requestLocationFailed(location.formattedId, RequestErrorType.LOCATION_FAILED)
+                    callback.requestLocationFailed(location.formattedId, RequestErrorType.REVERSE_GEOCODING_FAILED)
                 }
             }))
     }

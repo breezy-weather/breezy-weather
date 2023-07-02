@@ -24,8 +24,8 @@ public class LanguageUtils {
     private static final Map<Character, Character> T2S = new HashMap<>();
 
     static {
-        final char[] charS =UTF8S.toCharArray();
-        final char[] charT =UTF8T.toCharArray();
+        final char[] charS = UTF8S.toCharArray();
+        final char[] charT = UTF8T.toCharArray();
         for (int i = 0, n = Math.min(charT.length, charS.length); i < n; i++) {
             final Character cT = charT[i];
             final Character cS = charS[i];
@@ -33,9 +33,9 @@ public class LanguageUtils {
         }
     }
 
-    public static void setLanguage(Context c, Locale locale) {
-        if (!getCurrentLocale(c).equals(locale)) {
-            Resources resources = c.getResources();
+    public static void setLanguage(Context context, Locale locale) {
+        if (!getCurrentLocale(context).equals(locale)) {
+            Resources resources = context.getResources();
             Configuration configuration = resources.getConfiguration();
             DisplayMetrics metrics = resources.getDisplayMetrics();
             configuration.setLocale(locale);

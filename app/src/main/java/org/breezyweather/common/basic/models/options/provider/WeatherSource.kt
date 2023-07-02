@@ -25,17 +25,15 @@ enum class WeatherSource(
 
         fun getInstance(
             value: String?
-        ): WeatherSource {
-            return with (value) {
-                when {
-                    equals("openmeteo", ignoreCase = true) -> OPEN_METEO
-                    equals("accu", ignoreCase = true) -> ACCU
-                    equals("metno", ignoreCase = true) -> METNO
-                    equals("openweather", ignoreCase = true) -> OPEN_WEATHER
-                    equals("mf", ignoreCase = true) -> MF
-                    equals("china", ignoreCase = true) -> CHINA
-                    else -> ACCU
-                }
+        ): WeatherSource = with (value) {
+            when {
+                equals("openmeteo", ignoreCase = true) -> OPEN_METEO
+                equals("accu", ignoreCase = true) -> ACCU
+                equals("metno", ignoreCase = true) -> METNO
+                equals("openweather", ignoreCase = true) -> OPEN_WEATHER
+                equals("mf", ignoreCase = true) -> MF
+                equals("china", ignoreCase = true) -> CHINA
+                else -> ACCU
             }
         }
     }

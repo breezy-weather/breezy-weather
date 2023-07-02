@@ -251,7 +251,7 @@ public class IconPackResourcesProvider extends ResourceProvider {
     @NonNull
     public Drawable getWeatherIcon(WeatherCode code, boolean dayTime) {
         try {
-            if (mConfig.hasWeatherIcons) {
+            if (mConfig.getHasWeatherIcons()) {
                 return ResourceUtils.nonNull(
                         getDrawable(getWeatherIconName(code, dayTime))
                 );
@@ -266,7 +266,7 @@ public class IconPackResourcesProvider extends ResourceProvider {
     @NonNull
     @Override
     public Uri getWeatherIconUri(WeatherCode code, boolean dayTime) {
-        if (mConfig.hasWeatherIcons) {
+        if (mConfig.getHasWeatherIcons()) {
             String resName = getWeatherIconName(code, dayTime);
             int resId = getResId(mContext, resName, "drawable");
             if (resId != 0) {
@@ -280,8 +280,8 @@ public class IconPackResourcesProvider extends ResourceProvider {
     @Override
     @Size(3)
     public Drawable[] getWeatherIcons(WeatherCode code, boolean dayTime) {
-        if (mConfig.hasWeatherIcons) {
-            if (mConfig.hasWeatherAnimators) {
+        if (mConfig.getHasWeatherIcons()) {
+            if (mConfig.getHasWeatherAnimators()) {
                 return new Drawable[] {
                         getDrawable(getWeatherIconName(code, dayTime, 1)),
                         getDrawable(getWeatherIconName(code, dayTime, 2)),
@@ -333,8 +333,8 @@ public class IconPackResourcesProvider extends ResourceProvider {
     @Override
     @Size(3)
     public Animator[] getWeatherAnimators(WeatherCode code, boolean dayTime) {
-        if (mConfig.hasWeatherIcons) {
-            if (mConfig.hasWeatherAnimators) {
+        if (mConfig.getHasWeatherIcons()) {
+            if (mConfig.getHasWeatherAnimators()) {
                 return new Animator[] {
                         getAnimator(getWeatherAnimatorName(code, dayTime, 1)),
                         getAnimator(getWeatherAnimatorName(code, dayTime, 2)),
@@ -379,7 +379,7 @@ public class IconPackResourcesProvider extends ResourceProvider {
     @NonNull
     public Drawable getMinimalLightIcon(WeatherCode code, boolean dayTime) {
         try {
-            if (mConfig.hasMinimalIcons) {
+            if (mConfig.getHasMinimalIcons()) {
                 return ResourceUtils.nonNull(
                         getDrawable(getMiniLightIconName(code, dayTime))
                 );
@@ -394,7 +394,7 @@ public class IconPackResourcesProvider extends ResourceProvider {
     @NonNull
     @Override
     public Uri getMinimalLightIconUri(WeatherCode code, boolean dayTime) {
-        if (mConfig.hasMinimalIcons) {
+        if (mConfig.getHasMinimalIcons()) {
             String resName = getMiniLightIconName(code, dayTime);
             int resId = getResId(mContext, resName, "drawable");
             if (resId != 0) {
@@ -409,7 +409,7 @@ public class IconPackResourcesProvider extends ResourceProvider {
     @NonNull
     public Drawable getMinimalGreyIcon(WeatherCode code, boolean dayTime) {
         try {
-            if (mConfig.hasMinimalIcons) {
+            if (mConfig.getHasMinimalIcons()) {
                 return ResourceUtils.nonNull(
                         getDrawable(getMiniGreyIconName(code, dayTime))
                 );
@@ -424,7 +424,7 @@ public class IconPackResourcesProvider extends ResourceProvider {
     @NonNull
     @Override
     public Uri getMinimalGreyIconUri(WeatherCode code, boolean dayTime) {
-        if (mConfig.hasMinimalIcons) {
+        if (mConfig.getHasMinimalIcons()) {
             String resName = getMiniGreyIconName(code, dayTime);
             int resId = getResId(mContext, resName, "drawable");
             if (resId != 0) {
@@ -439,7 +439,7 @@ public class IconPackResourcesProvider extends ResourceProvider {
     @NonNull
     public Drawable getMinimalDarkIcon(WeatherCode code, boolean dayTime) {
         try {
-            if (mConfig.hasMinimalIcons) {
+            if (mConfig.getHasMinimalIcons()) {
                 return ResourceUtils.nonNull(
                         getDrawable(getMiniDarkIconName(code, dayTime))
                 );
@@ -454,7 +454,7 @@ public class IconPackResourcesProvider extends ResourceProvider {
     @NonNull
     @Override
     public Uri getMinimalDarkIconUri(WeatherCode code, boolean dayTime) {
-        if (mConfig.hasMinimalIcons) {
+        if (mConfig.getHasMinimalIcons()) {
             String resName = getMiniDarkIconName(code, dayTime);
             int resId = getResId(mContext, resName, "drawable");
             if (resId != 0) {
@@ -469,7 +469,7 @@ public class IconPackResourcesProvider extends ResourceProvider {
     @NonNull
     public Drawable getMinimalXmlIcon(WeatherCode code, boolean dayTime) {
         try {
-            if (mConfig.hasMinimalIcons) {
+            if (mConfig.getHasMinimalIcons()) {
                 return ResourceUtils.nonNull(
                         getDrawable(getMiniXmlIconName(code, dayTime))
                 );
@@ -486,7 +486,7 @@ public class IconPackResourcesProvider extends ResourceProvider {
     @Override
     public Icon getMinimalIcon(WeatherCode code, boolean dayTime) {
         try {
-            if (mConfig.hasMinimalIcons) {
+            if (mConfig.getHasMinimalIcons()) {
                 return ResourceUtils.nonNull(
                         Icon.createWithResource(
                                 mContext,
@@ -544,7 +544,7 @@ public class IconPackResourcesProvider extends ResourceProvider {
     @NonNull
     public Drawable getShortcutsIcon(WeatherCode code, boolean dayTime) {
         try {
-            if (mConfig.hasShortcutIcons) {
+            if (mConfig.getHasShortcutIcons()) {
                 return ResourceUtils.nonNull(
                         getDrawable(getShortcutsIconName(code, dayTime))
                 );
@@ -560,7 +560,7 @@ public class IconPackResourcesProvider extends ResourceProvider {
     @NonNull
     public Drawable getShortcutsForegroundIcon(WeatherCode code, boolean dayTime) {
         try {
-            if (mConfig.hasShortcutIcons) {
+            if (mConfig.getHasShortcutIcons()) {
                 return ResourceUtils.nonNull(
                         getDrawable(getShortcutsForegroundIconName(code, dayTime))
                 );
@@ -596,7 +596,7 @@ public class IconPackResourcesProvider extends ResourceProvider {
     @Override
     @NonNull
     public Drawable getSunDrawable() {
-        if (mConfig.hasSunMoonDrawables) {
+        if (mConfig.getHasSunMoonDrawables()) {
             try {
                 return ResourceUtils.nonNull(
                         getReflectDrawable(getSunDrawableClassName())
@@ -612,7 +612,7 @@ public class IconPackResourcesProvider extends ResourceProvider {
     @Override
     @NonNull
     public Drawable getMoonDrawable() {
-        if (mConfig.hasSunMoonDrawables) {
+        if (mConfig.getHasSunMoonDrawables()) {
             try {
                 return ResourceUtils.nonNull(
                         getReflectDrawable(getMoonDrawableClassName())

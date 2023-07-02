@@ -15,7 +15,7 @@ import org.breezyweather.remoteviews.presenters.notification.ForecastNotificatio
 @AndroidEntryPoint
 class ForegroundTomorrowForecastUpdateService : ForegroundUpdateService() {
     override fun updateView(context: Context, location: Location) {
-        if (ForecastNotificationIMP.isEnable(this, false)) {
+        if (ForecastNotificationIMP.isEnabled(this, false)) {
             ForecastNotificationIMP.buildForecastAndSendIt(context, location, false)
         }
     }

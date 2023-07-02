@@ -411,37 +411,31 @@ private fun getWarningsList(warningsResult: MfWarningsResult): List<Alert> {
     return alertList.sortedWith(compareBy({ it.priority }, { it.startDate }))
 }
 
-private fun getPrecipitationIntensity(rain: Int): Double {
-    return when (rain) {
-        4 -> 10.0
-        3 -> 5.5
-        2 -> 2.0
-        else -> 0.0
-    }
+private fun getPrecipitationIntensity(rain: Int): Double = when (rain) {
+    4 -> 10.0
+    3 -> 5.5
+    2 -> 2.0
+    else -> 0.0
 }
 
-private fun getWarningType(phemononId: String): String {
-    return when (phemononId) {
-        "1" -> "Vent"
-        "2" -> "Pluie-Inondation"
-        "3" -> "Orages"
-        "4" -> "Crues"
-        "5" -> "Neige-Verglas"
-        "6" -> "Canicule"
-        "7" -> "Grand Froid"
-        "8" -> "Avalanches"
-        "9" -> "Vagues-Submersion"
-        else -> "Divers"
-    }
+private fun getWarningType(phemononId: String): String = when (phemononId) {
+    "1" -> "Vent"
+    "2" -> "Pluie-Inondation"
+    "3" -> "Orages"
+    "4" -> "Crues"
+    "5" -> "Neige-Verglas"
+    "6" -> "Canicule"
+    "7" -> "Grand Froid"
+    "8" -> "Avalanches"
+    "9" -> "Vagues-Submersion"
+    else -> "Divers"
 }
 
-private fun getWarningText(colorId: Int): String {
-    return when (colorId) {
-        4 -> "Vigilance absolue"
-        3 -> "Soyez très vigilant"
-        2 -> "Soyez attentif"
-        else -> "Pas de vigilance particulière"
-    }
+private fun getWarningText(colorId: Int): String = when (colorId) {
+    4 -> "Vigilance absolue"
+    3 -> "Soyez très vigilant"
+    2 -> "Soyez attentif"
+    else -> "Pas de vigilance particulière"
 }
 
 private fun getWarningContent(phenomenonId: String, warningsResult: MfWarningsResult): String? {

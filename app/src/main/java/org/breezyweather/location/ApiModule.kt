@@ -19,11 +19,13 @@ class ApiModule {
         client: OkHttpClient,
         converterFactory: Converter.Factory,
         callAdapterFactory: RxJava3CallAdapterFactory
-    ): BaiduIPLocationApi = Retrofit.Builder()
-        .baseUrl(BuildConfig.BAIDU_IP_LOCATION_BASE_URL)
-        .client(client)
-        .addConverterFactory(converterFactory)
-        .addCallAdapterFactory(callAdapterFactory)
-        .build()
-        .create(BaiduIPLocationApi::class.java)
+    ): BaiduIPLocationApi {
+        return Retrofit.Builder()
+            .baseUrl(BuildConfig.BAIDU_IP_LOCATION_BASE_URL)
+            .client(client)
+            .addConverterFactory(converterFactory)
+            .addCallAdapterFactory(callAdapterFactory)
+            .build()
+            .create(BaiduIPLocationApi::class.java)
+    }
 }
