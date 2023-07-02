@@ -467,7 +467,7 @@
     <string name="settings_widgets_summary">Hintergrundbild festlegen, verwendete Widgets konfigurieren, Benachrichtigungs-Widget…</string>
     <string name="action_share">Teilen</string>
     <string name="settings_main_header_details_title">Details im Header</string>
-    <string name="settings_main_background_animation_enabled">@string/settings_enabled</string>
+    <string name="settings_main_background_animation_enabled">Ein</string>
     <string name="settings_widgets_configure_widget_summary">Widget konfigurieren</string>
     <string name="settings_widgets_section_widgets_in_use">Verwendete Widgets</string>
     <string name="weather_air_quality_and_pollen_data_by">Luftqualitäts- und Pollenflugdaten von $</string>
@@ -480,7 +480,7 @@
     <string name="settings_main_section_options">Optionen</string>
     <string name="settings_main_section_animations">Animationen</string>
     <string name="settings_main_summary">Kartenreihenfolge, angezeigte Daten, Animationen…</string>
-    <string name="settings_main_background_animation_disabled">@string/settings_disabled</string>
+    <string name="settings_main_background_animation_disabled">Aus</string>
     <string name="settings_notifications">Benachrichtigungen</string>
     <string name="settings_main_cards_other_element_animations_switch">Animation weiterer Elemente</string>
     <string name="settings_widgets_day_night_temp_reversed_title">Reihenfolge der Tag-/Nachttemperaturen umkehren</string>
