@@ -280,4 +280,18 @@
     <string name="settings_location_baidu_ip_location_ak">Lokasi IP AK Baidu</string>
     <string name="settings_weather_provider_mf_wsft_key">Kunci WSFT Météo France</string>
     <string name="settings_weather_provider_iqa_atmo_aura_key">Kunci ATMO AURA</string>
+    <string name="settings_background_updates_refresh_1h">1 jam</string>
+    <string name="settings_background_updates_refresh_1h_30min">1.5 jam</string>
+    <string name="settings_background_updates_refresh_never">Tidak pernah</string>
+    <string name="alerts_to_follow">Peringatan untuk diikuti, ketuk di sini untuk melihatnya.</string>
+    <string name="temperature_real_feel">RealFeel®</string>
+    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
+    <string name="wind_direction_short_variable">Variabel</string>
+    <string name="wind_direction_short_N">U</string>
+    <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Badai petir dengan hujan es lebat</string>
+    <string name="settings_background_updates_refresh_30min">Setengah jam</string>
+    <string name="settings_background_updates_refresh_2h">2 jam</string>
+    <string name="settings_background_updates_refresh_3h">3 jam</string>
+    <string name="settings_background_updates_refresh_6h">6 jam</string>
+    <string name="settings_background_updates_refresh_12h">12 jam</string>
 </resources>
