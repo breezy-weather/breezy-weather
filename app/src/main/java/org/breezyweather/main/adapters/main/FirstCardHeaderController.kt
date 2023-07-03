@@ -11,6 +11,9 @@ import androidx.core.widget.ImageViewCompat
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
+import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.getFormattedTime
+import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.main.MainActivity
@@ -44,38 +47,26 @@ class FirstCardHeaderController(private val mActivity: GeoActivity, location: Lo
                 for (i in currentAlertList.indices) {
                     builder.append(currentAlertList[i].description)
                     if (currentAlertList[i].startDate != null) {
-                        val startDateDay = DisplayUtils.getFormattedDate(
-                            currentAlertList[i].startDate,
-                            location.timeZone,
-                            mActivity.getString(R.string.date_format_long)
+                        val startDateDay = currentAlertList[i].startDate.getFormattedDate(
+                            location.timeZone, mActivity.getString(R.string.date_format_long)
                         )
                         builder.append(", ")
                             .append(startDateDay)
                             .append(", ")
                             .append(
-                                DisplayUtils.getFormattedDate(
-                                    currentAlertList[i].startDate,
-                                    location.timeZone,
-                                    if (DisplayUtils.is12Hour(mActivity)) "h:mm aa" else "HH:mm"
-                                )
+                                currentAlertList[i].startDate.getFormattedTime(location.timeZone, mActivity.is12Hour)
                             )
                         if (currentAlertList[i].endDate != null) {
                             builder.append("-")
-                            val endDateDay = DisplayUtils.getFormattedDate(
-                                currentAlertList[i].endDate,
-                                location.timeZone,
-                                mActivity.getString(R.string.date_format_long)
+                            val endDateDay = currentAlertList[i].endDate.getFormattedDate(
+                                location.timeZone, mActivity.getString(R.string.date_format_long)
                             )
                             if (startDateDay != endDateDay) {
                                 builder.append(endDateDay)
                                     .append(", ")
                             }
                             builder.append(
-                                DisplayUtils.getFormattedDate(
-                                    currentAlertList[i].endDate,
-                                    location.timeZone,
-                                    if (DisplayUtils.is12Hour(mActivity)) "h:mm aa" else "HH:mm"
-                                )
+                                currentAlertList[i].endDate.getFormattedTime(location.timeZone, mActivity.is12Hour)
                             )
                         }
                     }

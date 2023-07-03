@@ -5,8 +5,8 @@ import android.util.AttributeSet
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Recycler
+import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.ui.widgets.trend.TrendLayoutManager
-import org.breezyweather.common.utils.DisplayUtils
 import kotlin.math.abs
 import kotlin.math.max
 
@@ -26,8 +26,8 @@ class TrendHorizontalLinearLayoutManager @JvmOverloads constructor(
 
     override fun generateDefaultLayoutParams(): RecyclerView.LayoutParams {
         return if (mFillCount > 0) {
-            val minWidth = DisplayUtils.dpToPx(mContext, MIN_ITEM_WIDTH.toFloat()).toInt()
-            val minHeight = DisplayUtils.dpToPx(mContext, MIN_ITEM_HEIGHT.toFloat()).toInt()
+            val minWidth = mContext.dpToPx(MIN_ITEM_WIDTH.toFloat()).toInt()
+            val minHeight = mContext.dpToPx(MIN_ITEM_HEIGHT.toFloat()).toInt()
             RecyclerView.LayoutParams(
                 max(minWidth, width / mFillCount),
                 if (height > minHeight) ViewGroup.LayoutParams.MATCH_PARENT else minHeight

@@ -4,9 +4,7 @@ import android.content.Context
 import org.breezyweather.R
 import org.breezyweather.common.utils.helpers.LunarHelper
 import java.io.Serializable
-import java.util.Calendar
-import java.util.Date
-import java.util.TimeZone
+import java.util.*
 
 /**
  * Daily.
@@ -23,17 +21,6 @@ class Daily(
     val uV: UV? = null,
     val hoursOfSun: Float? = null
 ) : Serializable {
-    fun getLongDate(context: Context, timeZone: TimeZone): String {
-        return getDate(context.getString(R.string.date_format_long), timeZone)
-    }
-
-    fun getShortDate(context: Context, timeZone: TimeZone): String {
-        return getDate(context.getString(R.string.date_format_short), timeZone)
-    }
-
-    fun getDate(format: String?, timeZone: TimeZone): String {
-        return org.breezyweather.common.utils.DisplayUtils.getFormattedDate(date, timeZone, format)
-    }
 
     fun getWeek(context: Context, timeZone: TimeZone): String {
         val calendar = Calendar.getInstance(timeZone)

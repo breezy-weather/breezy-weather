@@ -189,7 +189,7 @@
                 tools:ignore="RtlHardcoded" />
 
             <TextView
-                android:id="@+id/widget_clock_day_sensibleTemp"
+                android:id="@+id/widget_clock_day_feelsLikeTemp"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="@dimen/little_margin"
                 android:layout_marginEnd="@dimen/large_margin"

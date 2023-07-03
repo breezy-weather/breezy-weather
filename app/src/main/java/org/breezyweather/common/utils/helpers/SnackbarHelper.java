@@ -52,7 +52,7 @@ public class SnackbarHelper {
 
         SnackbarContainer container = activity.provideSnackbarContainer();
 
-        Snackbar.make(container.container, content, Snackbar.LENGTH_LONG, container.cardStyle)
+        Snackbar.make(container.getContainer(), content, Snackbar.LENGTH_LONG, container.getCardStyle())
                 .setAction(action, l)
                 .setCallback(callback)
                 .show();

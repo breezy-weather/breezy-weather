@@ -27,6 +27,7 @@ import androidx.core.content.res.ResourcesCompat;
 import org.breezyweather.BreezyWeather;
 import org.breezyweather.common.basic.models.Location;
 import org.breezyweather.common.basic.models.weather.WeatherCode;
+import org.breezyweather.common.extensions.DisplayExtensionsKt;
 import org.breezyweather.db.repositories.LocationEntityRepository;
 import org.breezyweather.db.repositories.WeatherEntityRepository;
 import org.breezyweather.theme.weatherView.WeatherView;
@@ -35,7 +36,6 @@ import org.breezyweather.theme.weatherView.materialWeatherView.DelayRotateContro
 import org.breezyweather.theme.weatherView.materialWeatherView.IntervalComputer;
 import org.breezyweather.theme.weatherView.materialWeatherView.MaterialWeatherView;
 import org.breezyweather.theme.weatherView.materialWeatherView.WeatherImplementorFactory;
-import org.breezyweather.common.utils.DisplayUtils;
 import org.breezyweather.common.utils.helpers.AsyncHelper;
 import org.breezyweather.settings.SettingsManager;
 
@@ -110,7 +110,7 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                             mSizes[0] = canvas.getWidth();
                             mSizes[1] = canvas.getHeight();
 
-                            mAdaptiveSize[0] = DisplayUtils.getTabletListAdaptiveWidth(
+                            mAdaptiveSize[0] = DisplayExtensionsKt.getTabletListAdaptiveWidth(
                                     getApplicationContext(),
                                     mSizes[0]
                             );
@@ -220,7 +220,7 @@ public class MaterialLiveWallpaperService extends WallpaperService {
             }
 
             private DeviceOrientation getDeviceOrientation(int orientation) {
-                if (DisplayUtils.isLandscape(getApplicationContext())) {
+                if (DisplayExtensionsKt.isLandscape(getApplicationContext())) {
                     return (0 < orientation && orientation < 180)
                             ? DeviceOrientation.RIGHT : DeviceOrientation.LEFT;
                 } else {
@@ -300,7 +300,7 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                     mSizes[0] = width;
                     mSizes[1] = height;
 
-                    mAdaptiveSize[0] = DisplayUtils.getTabletListAdaptiveWidth(
+                    mAdaptiveSize[0] = DisplayExtensionsKt.getTabletListAdaptiveWidth(
                             getApplicationContext(),
                             mSizes[0]
                     );
@@ -313,7 +313,7 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                     boolean drawable = true;
                     switch (SettingsManager.getInstance(getApplicationContext()).getBackgroundAnimationMode()) {
                         case SYSTEM:
-                            drawable = !DisplayUtils.isMotionReduced(getApplicationContext());
+                            drawable = !DisplayExtensionsKt.isMotionReduced(getApplicationContext());
                             break;
 
                         case ENABLED:
@@ -356,7 +356,7 @@ public class MaterialLiveWallpaperService extends WallpaperService {
                     boolean drawable = true;
                     switch (SettingsManager.getInstance(getApplicationContext()).getBackgroundAnimationMode()) {
                         case SYSTEM:
-                            drawable = !DisplayUtils.isMotionReduced(getApplicationContext());
+                            drawable = !DisplayExtensionsKt.isMotionReduced(getApplicationContext());
                             break;
 
                         case ENABLED:

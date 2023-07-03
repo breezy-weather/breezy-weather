@@ -24,6 +24,8 @@ import org.breezyweather.common.basic.models.Location;
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit;
 import org.breezyweather.common.basic.models.weather.Daily;
 import org.breezyweather.common.basic.models.weather.Weather;
+import org.breezyweather.common.extensions.DateExtensionsKt;
+import org.breezyweather.common.extensions.DisplayExtensionsKt;
 import org.breezyweather.theme.ThemeManager;
 import org.breezyweather.theme.resource.ResourceHelper;
 import org.breezyweather.theme.resource.ResourcesProviderFactory;
@@ -31,7 +33,6 @@ import org.breezyweather.theme.resource.providers.ResourceProvider;
 import org.breezyweather.theme.weatherView.WeatherViewController;
 import org.breezyweather.R;
 import org.breezyweather.background.receiver.widget.WidgetTrendDailyProvider;
-import org.breezyweather.common.utils.DisplayUtils;
 import org.breezyweather.common.utils.helpers.AsyncHelper;
 import org.breezyweather.remoteviews.trend.TrendLinearLayout;
 import org.breezyweather.remoteviews.trend.WidgetItemView;
@@ -54,19 +55,19 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
                 context,
                 context.getString(R.string.sp_widget_daily_trend_setting)
         );
-        if (config.cardStyle.equals("none")) {
-            config.cardStyle = "light";
+        if (config.getCardStyle().equals("none")) {
+            config.setCardStyle("light");
         }
 
         AppWidgetManager.getInstance(context).updateAppWidget(
                 new ComponentName(context, WidgetTrendDailyProvider.class),
                 getRemoteViews(
                         context, location,
-                        DisplayUtils.getTabletListAdaptiveWidth(
+                        DisplayExtensionsKt.getTabletListAdaptiveWidth(
                                 context,
                                 context.getResources().getDisplayMetrics().widthPixels
                         ),
-                        config.cardStyle, config.cardAlpha
+                        config.getCardStyle(), config.getCardAlpha()
                 )
         );
     }
@@ -212,7 +213,7 @@ public class DailyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
                 items[i].setTitleText(daily.getWeek(context, location.getTimeZone()));
             }
 
-            items[i].setSubtitleText(daily.getShortDate(context, location.getTimeZone()));
+            items[i].setSubtitleText(DateExtensionsKt.getFormattedDate(daily.getDate(), location.getTimeZone(), context.getString(R.string.date_format_short)));
 
             if (daily.getDay() != null && daily.getDay().getWeatherCode() != null) {
                 items[i].setTopIconDrawable(

@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.view.Window
 import androidx.core.graphics.ColorUtils
 import org.breezyweather.R
+import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.theme.weatherView.WeatherThemeDelegate
 import org.breezyweather.theme.weatherView.WeatherView
@@ -128,7 +129,7 @@ class MaterialWeatherThemeDelegate: WeatherThemeDelegate {
         .getDimension(R.dimen.material3_card_list_item_corner_radius)
 
     override fun getHomeCardElevation(context: Context): Float =
-        DisplayUtils.dpToPx(context, 2f)
+        context.dpToPx(2f)
 
     override fun getHomeCardMargins(context: Context): Int = context
         .resources

@@ -2,8 +2,6 @@ package org.breezyweather.location
 
 import android.Manifest
 import android.content.Context
-import android.content.pm.PackageManager
-import androidx.core.app.ActivityCompat
 import org.breezyweather.common.extensions.hasPermission
 
 abstract class LocationService {

@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.Size;
 
 import org.breezyweather.R;
+import org.breezyweather.common.extensions.DisplayExtensionsKt;
 import org.breezyweather.common.utils.DisplayUtils;
 
 /**
@@ -69,12 +70,12 @@ public class DoubleHistogramView extends AbsChartItemView {
 
         setTextColors(Color.BLACK);
 
-        mMargins = (int) DisplayUtils.dpToPx(getContext(), MARGIN_DIP);
-        mMarginCenter = (int) DisplayUtils.dpToPx(getContext(), MARGIN_CENTER_DIP);
-        mHistogramWidth = (int) DisplayUtils.dpToPx(getContext(), HISTOGRAM_WIDTH_DIP);
-        mHistogramTextSize = (int) DisplayUtils.dpToPx(getContext(), HISTOGRAM_TEXT_SIZE_DIP);
-        mChartLineWith = (int) DisplayUtils.dpToPx(getContext(), CHART_LINE_SIZE_DIP);
-        mTextMargin = (int) DisplayUtils.dpToPx(getContext(), TEXT_MARGIN_DIP);
+        mMargins = (int) DisplayExtensionsKt.dpToPx(getContext(), MARGIN_DIP);
+        mMarginCenter = (int) DisplayExtensionsKt.dpToPx(getContext(), MARGIN_CENTER_DIP);
+        mHistogramWidth = (int) DisplayExtensionsKt.dpToPx(getContext(), HISTOGRAM_WIDTH_DIP);
+        mHistogramTextSize = (int) DisplayExtensionsKt.dpToPx(getContext(), HISTOGRAM_TEXT_SIZE_DIP);
+        mChartLineWith = (int) DisplayExtensionsKt.dpToPx(getContext(), CHART_LINE_SIZE_DIP);
+        mTextMargin = (int) DisplayExtensionsKt.dpToPx(getContext(), TEXT_MARGIN_DIP);
 
         mPaint = new Paint();
         mPaint.setStrokeCap(Paint.Cap.ROUND);

@@ -20,6 +20,7 @@ import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.bus.EventBus
 import org.breezyweather.common.extensions.hasPermission
+import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.snackbar.SnackbarContainer
 import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.common.utils.helpers.AsyncHelper
@@ -171,7 +172,7 @@ class MainActivity : GeoActivity(),
             .removeObserver(backgroundUpdateObserver)
     }
 
-    override val snackbarContainer: SnackbarContainer?
+    override val snackbarContainer: SnackbarContainer
         get() {
             if (binding.drawerLayout != null) {
                 return super.snackbarContainer
@@ -404,7 +405,7 @@ class MainActivity : GeoActivity(),
     private fun updateDayNightColors() {
         fitHorizontalSystemBarRootLayout.setBackgroundColor(
             MainThemeColorProvider.getColor(
-                lightTheme = !DisplayUtils.isDarkMode(this),
+                lightTheme = !this.isDarkMode,
                 id = android.R.attr.colorBackground
             )
         )

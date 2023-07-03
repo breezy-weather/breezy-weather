@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -13,10 +12,6 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.media.ThumbnailUtils;
 import android.os.Build;
-import android.provider.Settings;
-import android.text.TextUtils;
-import android.text.format.DateFormat;
-import android.text.format.DateUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.DecelerateInterpolator;
@@ -25,44 +20,17 @@ import android.view.animation.OvershootInterpolator;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
-import androidx.annotation.Px;
 import androidx.annotation.Size;
 import androidx.annotation.StyleRes;
 import androidx.core.graphics.ColorUtils;
 
 import com.google.android.material.resources.TextAppearance;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
-import java.util.TimeZone;
-
-import static android.text.format.DateUtils.FORMAT_ABBREV_RELATIVE;
-
 public class DisplayUtils {
 
-    public static final Interpolator FLOATING_DECELERATE_INTERPOLATOR
-            = new DecelerateInterpolator(1f);
-
-    private static final int MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_PHONE = 512;
-    private static final int MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_TABLET = 600;
+    public static final Interpolator FLOATING_DECELERATE_INTERPOLATOR = new DecelerateInterpolator(1f);
 
     public static final float DEFAULT_CARD_LIST_ITEM_ELEVATION_DP = 2f;
-
-    public static float dpToPx(Context context, float dp) {
-        return dp * (context.getResources().getDisplayMetrics().densityDpi / 160f);
-    }
-
-    public static float spToPx(Context context, int sp) {
-        return sp * (context.getResources().getDisplayMetrics().scaledDensity);
-    }
-
-    public static float pxToDp(Context context, @Px int px) {
-        return px / (context.getResources().getDisplayMetrics().densityDpi / 160f);
-    }
 
     public static void setSystemBarStyle(
             Context context,
@@ -123,34 +91,6 @@ public class DisplayUtils {
         }
     }
 
-    public static boolean isTabletDevice(Context context) {
-        return (context.getResources().getConfiguration().screenLayout
-                & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
-    }
-
-    public static boolean isLandscape(Context context) {
-        return context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
-    }
-
-    public static boolean isRtl(Context context) {
-        return context.getResources().getConfiguration().getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
-    }
-
-    public static boolean isDarkMode(Context context) {
-        return (context.getResources().getConfiguration().uiMode
-                & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
-    }
-
-    public static boolean isMotionReduced(@NotNull Context context) {
-        try {
-            return Settings.Global.getFloat(context.getContentResolver(), Settings.Global.ANIMATOR_DURATION_SCALE) == 0f
-                    && Settings.Global.getFloat(context.getContentResolver(), Settings.Global.TRANSITION_ANIMATION_SCALE) == 0f
-                    && Settings.Global.getFloat(context.getContentResolver(), Settings.Global.WINDOW_ANIMATION_SCALE) == 0f;
-        } catch (Settings.SettingNotFoundException e) {
-            return false;
-        }
-    }
-
     @NonNull
     public static Bitmap drawableToBitmap(@NonNull Drawable drawable) {
         Bitmap bitmap = Bitmap.createBitmap(
@@ -184,22 +124,6 @@ public class DisplayUtils {
         return grey > 0xffbdbdbd;
     }
 
-    @Px
-    public static int getTabletListAdaptiveWidth(Context context, @Px int width) {
-        if (!isTabletDevice(context) && !isLandscape(context)) {
-            return width;
-        }
-        return (int) Math.min(
-                width,
-                DisplayUtils.dpToPx(
-                        context,
-                        isTabletDevice(context)
-                                ? MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_TABLET
-                                : MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_PHONE
-                )
-        );
-    }
-
     @ColorInt
     public static int blendColor(@ColorInt int foreground, @ColorInt int background) {
         int scr = Color.red(foreground);
@@ -213,102 +137,6 @@ public class DisplayUtils {
         int color_g = dcg * (0xff - sa) / 0xff + scg * sa / 0xff;
         int color_b = dcb * (0xff - sa) / 0xff + scb * sa / 0xff;
         return ((color_r << 16) + (color_g << 8) + color_b) | (0xff000000);
-    }
-
-    public static boolean is12Hour(Context context) {
-        return !DateFormat.is24HourFormat(context);
-    }
-
-    public static Calendar toCalendarWithTimeZone(Date date, TimeZone zone) {
-        if (date == null) {
-            return null;
-        }
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        calendar.setTimeZone(zone);
-        return calendar;
-    }
-
-    /**
-     * Get a date at midnight on a specific timezone from a formatted date
-     * @param timeZone
-     * @param formattedDate in yyyy-MM-dd format
-     * @return Date
-     */
-    public static Date toDateNoHour(TimeZone timeZone, String formattedDate) {
-        if (timeZone == null || TextUtils.isEmpty(formattedDate) || formattedDate.length() != 10) {
-            return null;
-        }
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeZone(timeZone);
-        calendar.set(Calendar.YEAR, Integer.parseInt(formattedDate.substring(0, 4)));
-        calendar.set(Calendar.MONTH, Integer.parseInt(formattedDate.substring(5, 7)) - 1);
-        calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(formattedDate.substring(8, 10)));
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
-        return calendar.getTime();
-    }
-
-    public static Date toTimezone(Date date, TimeZone timeZone) {
-        if (timeZone == null) {
-            return date;
-        }
-        Calendar calendarWithTimeZone = toCalendarWithTimeZone(date, timeZone);
-        if (calendarWithTimeZone == null) {
-            return null;
-        } else {
-            return new Date(calendarWithTimeZone.get(Calendar.YEAR) - 1900,
-                    calendarWithTimeZone.get(Calendar.MONTH),
-                    calendarWithTimeZone.get(Calendar.DAY_OF_MONTH),
-                    calendarWithTimeZone.get(Calendar.HOUR_OF_DAY),
-                    calendarWithTimeZone.get(Calendar.MINUTE),
-                    calendarWithTimeZone.get(Calendar.SECOND));
-        }
-    }
-
-    public static Date toTimezoneNoHour(Date date, TimeZone timeZone) {
-        if (timeZone == null) {
-            return date;
-        }
-        Calendar calendarWithTimeZone = toCalendarWithTimeZone(date, timeZone);
-        if (calendarWithTimeZone == null) {
-            return null;
-        } else {
-            calendarWithTimeZone.set(Calendar.HOUR_OF_DAY, 0);
-            calendarWithTimeZone.set(Calendar.MINUTE, 0);
-            calendarWithTimeZone.set(Calendar.SECOND, 0);
-            return calendarWithTimeZone.getTime();
-        }
-    }
-
-    public static String getFormattedDate(Date date, TimeZone timeZone, String pattern) {
-        if (date == null) {
-            return "";
-        }
-        if (timeZone == null) {
-            timeZone = TimeZone.getDefault();
-        }
-        return new SimpleDateFormat(pattern, Locale.getDefault()).format(toTimezone(date, timeZone));
-    }
-
-    public static String getTime(Context context, Date date, TimeZone timeZone) {
-        return getTime(date, timeZone, DisplayUtils.is12Hour(context));
-    }
-
-    private static String getTime(Date date, TimeZone timeZone, Boolean twelveHour) {
-        if (twelveHour) {
-            return DisplayUtils.getFormattedDate(date, timeZone, "h:mm aa");
-        } else {
-            return DisplayUtils.getFormattedDate(date, timeZone, "HH:mm");
-        }
-    }
-
-    public static String getRelativeTime(Date date) {
-        // FIXME: Use phone locale instead of preference
-        // It doesn't seem possible to call with Locale and TimeZone parameters unfortunately
-        return (String) DateUtils.getRelativeTimeSpanString(
-                date.getTime(), (new Date()).getTime(), DateUtils.MINUTE_IN_MILLIS, FORMAT_ABBREV_RELATIVE);
     }
 
     // translationY, scaleX, scaleY

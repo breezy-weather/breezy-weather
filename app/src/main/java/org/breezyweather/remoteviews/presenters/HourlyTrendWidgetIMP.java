@@ -22,6 +22,7 @@ import org.breezyweather.common.basic.models.Location;
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit;
 import org.breezyweather.common.basic.models.weather.Hourly;
 import org.breezyweather.common.basic.models.weather.Weather;
+import org.breezyweather.common.extensions.DisplayExtensionsKt;
 import org.breezyweather.theme.ThemeManager;
 import org.breezyweather.theme.resource.ResourceHelper;
 import org.breezyweather.theme.resource.ResourcesProviderFactory;
@@ -29,7 +30,6 @@ import org.breezyweather.theme.resource.providers.ResourceProvider;
 import org.breezyweather.theme.weatherView.WeatherViewController;
 import org.breezyweather.R;
 import org.breezyweather.background.receiver.widget.WidgetTrendHourlyProvider;
-import org.breezyweather.common.utils.DisplayUtils;
 import org.breezyweather.common.utils.helpers.AsyncHelper;
 import org.breezyweather.remoteviews.trend.TrendLinearLayout;
 import org.breezyweather.remoteviews.trend.WidgetItemView;
@@ -52,19 +52,19 @@ public class HourlyTrendWidgetIMP extends AbstractRemoteViewsPresenter {
                 context,
                 context.getString(R.string.sp_widget_hourly_trend_setting)
         );
-        if (config.cardStyle.equals("none")) {
-            config.cardStyle = "light";
+        if (config.getCardStyle().equals("none")) {
+            config.setCardStyle("light");
         }
 
         AppWidgetManager.getInstance(context).updateAppWidget(
                 new ComponentName(context, WidgetTrendHourlyProvider.class),
                 getRemoteViews(
                         context, location,
-                        DisplayUtils.getTabletListAdaptiveWidth(
+                        DisplayExtensionsKt.getTabletListAdaptiveWidth(
                                 context,
                                 context.getResources().getDisplayMetrics().widthPixels
                         ),
-                        config.cardStyle, config.cardAlpha
+                        config.getCardStyle(), config.getCardAlpha()
                 )
         );
     }

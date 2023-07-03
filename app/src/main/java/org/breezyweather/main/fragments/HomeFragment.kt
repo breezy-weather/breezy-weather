@@ -19,6 +19,7 @@ import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.livedata.EqualtableLiveData
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimationMode
+import org.breezyweather.common.extensions.isMotionReduced
 import org.breezyweather.common.ui.widgets.SwipeSwitchLayout
 import org.breezyweather.common.ui.widgets.SwipeSwitchLayout.OnSwitchListener
 import org.breezyweather.common.utils.DisplayUtils
@@ -84,7 +85,7 @@ class HomeFragment : MainModuleFragment() {
     }
 
     private fun isBackgroundAnimationEnabled() = when (SettingsManager.getInstance(requireContext()).backgroundAnimationMode) {
-        BackgroundAnimationMode.SYSTEM -> !DisplayUtils.isMotionReduced(requireContext())
+        BackgroundAnimationMode.SYSTEM -> !requireContext().isMotionReduced
         BackgroundAnimationMode.ENABLED -> true
         BackgroundAnimationMode.DISABLED -> false
     }

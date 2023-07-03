@@ -6,13 +6,12 @@ import android.os.Build
 import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService
 import androidx.annotation.RequiresApi
-import org.breezyweather.common.basic.models.Location.Companion.copy
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.db.repositories.LocationEntityRepository.readLocationList
 import org.breezyweather.db.repositories.WeatherEntityRepository.readWeather
-import org.breezyweather.settings.SettingsManager.Companion.getInstance
+import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourceHelper
-import org.breezyweather.theme.resource.ResourcesProviderFactory.newInstance
+import org.breezyweather.theme.resource.ResourcesProviderFactory
 
 /**
  * Tile service.
@@ -58,13 +57,12 @@ class TileService : TileService() {
             if (locationRefreshed.weather?.current != null) {
                 tile.apply {
                     icon = ResourceHelper.getMinimalIcon(
-                        newInstance,
+                        ResourcesProviderFactory.newInstance,
                         locationRefreshed.weather.current.weatherCode,
                         locationRefreshed.isDaylight
                     )
                     tile.label = locationRefreshed.weather.current.temperature?.getTemperature(
-                        context,
-                        getInstance(context).temperatureUnit
+                        context, SettingsManager.getInstance(context).temperatureUnit
                     )
                     state = Tile.STATE_INACTIVE
                 }

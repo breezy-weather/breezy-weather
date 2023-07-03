@@ -10,6 +10,7 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
+import org.breezyweather.common.extensions.DisplayExtensionsKt;
 import org.breezyweather.common.ui.adapters.AnimationAdapterWrapper;
 import org.breezyweather.main.adapters.location.LocationAdapter;
 import org.breezyweather.main.adapters.location.LocationHolder;
@@ -36,8 +37,8 @@ public class LocationAdapterAnimWrapper
         mStartAnimation = false;
         mScrolled = false;
 
-        mDY = DisplayUtils.dpToPx(context, 256);
-        mDZ = DisplayUtils.dpToPx(context, 10);
+        mDY = DisplayExtensionsKt.dpToPx(context, 256);
+        mDZ = DisplayExtensionsKt.dpToPx(context, 10);
     }
 
     @Nullable

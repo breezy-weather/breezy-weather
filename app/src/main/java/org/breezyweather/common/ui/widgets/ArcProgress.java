@@ -18,6 +18,7 @@ import androidx.annotation.Size;
 import androidx.core.graphics.ColorUtils;
 
 import org.breezyweather.R;
+import org.breezyweather.common.extensions.DisplayExtensionsKt;
 import org.breezyweather.common.utils.DisplayUtils;
 
 public class ArcProgress extends View {
@@ -81,7 +82,7 @@ public class ArcProgress extends View {
         mMax = attributes.getInt(R.styleable.ArcProgress_max, 100);
         mArcAngle = attributes.getFloat(R.styleable.ArcProgress_arc_angle, 360 * 0.8f);
         mProgressWidth = attributes.getDimension(
-                R.styleable.ArcProgress_progress_width, DisplayUtils.dpToPx(getContext(), 8));
+                R.styleable.ArcProgress_progress_width, DisplayExtensionsKt.dpToPx(getContext(), 8));
         mProgressColor = attributes.getColor(R.styleable.ArcProgress_progress_color, Color.BLACK);
         mShadowColor = Color.argb((int) (0.2 * 255), 0, 0, 0);
         mShaderColor = Color.argb((int) (0.2 * 255), 0, 0, 0);
@@ -90,12 +91,12 @@ public class ArcProgress extends View {
 
         mText = attributes.getString(R.styleable.ArcProgress_text);
         mTextSize = attributes.getDimension(
-                R.styleable.ArcProgress_text_size, DisplayUtils.dpToPx(getContext(), 36));
+                R.styleable.ArcProgress_text_size, DisplayExtensionsKt.dpToPx(getContext(), 36));
         mTextColor = attributes.getColor(R.styleable.ArcProgress_text_color, Color.DKGRAY);
 
         mBottomText = attributes.getString(R.styleable.ArcProgress_bottom_text);
         mBottomTextSize = attributes.getDimension(
-                R.styleable.ArcProgress_bottom_text_size, DisplayUtils.dpToPx(getContext(), 14));
+                R.styleable.ArcProgress_bottom_text_size, DisplayExtensionsKt.dpToPx(getContext(), 14));
         mBottomTextColor = attributes.getColor(R.styleable.ArcProgress_bottom_text_color, Color.DKGRAY);
     }
 
@@ -216,19 +217,19 @@ public class ArcProgress extends View {
 
     @Override
     protected int getSuggestedMinimumHeight() {
-        return (int) DisplayUtils.dpToPx(getContext(), 100);
+        return (int) DisplayExtensionsKt.dpToPx(getContext(), 100);
     }
 
     @Override
     protected int getSuggestedMinimumWidth() {
-        return (int) DisplayUtils.dpToPx(getContext(), 100);
+        return (int) DisplayExtensionsKt.dpToPx(getContext(), 100);
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         setMeasuredDimension(widthMeasureSpec, heightMeasureSpec);
         int width = MeasureSpec.getSize(widthMeasureSpec);
-        int arcPadding = (int) DisplayUtils.dpToPx(getContext(), 4);
+        int arcPadding = (int) DisplayExtensionsKt.dpToPx(getContext(), 4);
         mRectF.set(
                 mProgressWidth / 2f + arcPadding,
                 mProgressWidth / 2f + arcPadding,

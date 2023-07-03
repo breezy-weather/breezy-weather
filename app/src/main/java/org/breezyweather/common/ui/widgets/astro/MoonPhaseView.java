@@ -10,7 +10,7 @@ import android.view.View;
 
 import androidx.annotation.ColorInt;
 
-import org.breezyweather.common.utils.DisplayUtils;
+import org.breezyweather.common.extensions.DisplayExtensionsKt;
 
 public class MoonPhaseView extends View {
 
@@ -46,7 +46,7 @@ public class MoonPhaseView extends View {
         mForegroundRectF = new RectF();
         mBackgroundRectF = new RectF();
 
-        LINE_WIDTH = DisplayUtils.dpToPx(getContext(), (int) LINE_WIDTH);
+        LINE_WIDTH = DisplayExtensionsKt.dpToPx(getContext(), (int) LINE_WIDTH);
     }
 
     private void initPaint() {
@@ -73,7 +73,7 @@ public class MoonPhaseView extends View {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         setMeasuredDimension(widthMeasureSpec, heightMeasureSpec);
-        int padding = (int) DisplayUtils.dpToPx(getContext(), 4);
+        int padding = (int) DisplayExtensionsKt.dpToPx(getContext(), 4);
         mBackgroundRectF.set(
                 padding,
                 padding,

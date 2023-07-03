@@ -5,7 +5,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.RemoteViews.RemoteView
 import android.widget.TextView
-import org.breezyweather.common.utils.DisplayUtils
+import org.breezyweather.common.extensions.relativeTime
 import java.util.*
 
 /**
@@ -87,7 +87,7 @@ class TextRelativeClock @JvmOverloads constructor(
      * Update the displayed time if this view and its ancestors and window is visible
      */
     private fun onTimeChanged() {
-        val relativeTimeFormatted = DisplayUtils.getRelativeTime(mDate)
+        val relativeTimeFormatted = mDate.relativeTime
         text = relativeTimeFormatted
         contentDescription = relativeTimeFormatted
     }

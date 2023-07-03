@@ -45,12 +45,12 @@ import javax.inject.Inject;
 
 import org.breezyweather.common.basic.GeoActivity;
 import org.breezyweather.common.basic.models.Location;
+import org.breezyweather.common.extensions.DisplayExtensionsKt;
 import org.breezyweather.common.ui.widgets.insets.FitSystemBarNestedScrollView;
 import org.breezyweather.db.repositories.LocationEntityRepository;
 import org.breezyweather.db.repositories.WeatherEntityRepository;
 import org.breezyweather.R;
 import org.breezyweather.background.polling.PollingManager;
-import org.breezyweather.common.utils.DisplayUtils;
 import org.breezyweather.common.utils.helpers.SnackbarHelper;
 import org.breezyweather.main.utils.RequestErrorType;
 import org.breezyweather.settings.ConfigStore;
@@ -279,7 +279,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
 
         mTopContainer = findViewById(R.id.activity_widget_config_top);
         int screenWidth = getResources().getDisplayMetrics().widthPixels;
-        int adaptiveWidth = DisplayUtils.getTabletListAdaptiveWidth(this, screenWidth);
+        int adaptiveWidth = DisplayExtensionsKt.getTabletListAdaptiveWidth(this, screenWidth);
         int paddingHorizontal = (screenWidth - adaptiveWidth) / 2;
         mTopContainer.setOnApplyWindowInsetsListener((v, insets) -> {
             mWidgetContainer.setPadding(paddingHorizontal, insets.getSystemWindowInsetTop(),
@@ -753,8 +753,7 @@ public abstract class AbstractWidgetConfigActivity extends GeoActivity
     private boolean checkPermissions(int requestCode) {
         if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(
-                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, requestCode);
+            requestPermissions(new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, requestCode);
             return false;
         }
         return true;

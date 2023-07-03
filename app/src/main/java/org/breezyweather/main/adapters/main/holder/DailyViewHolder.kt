@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
+import org.breezyweather.common.extensions.isLandscape
 import org.breezyweather.common.ui.adapters.TagAdapter
 import org.breezyweather.common.ui.decorations.GridMarginsDecoration
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
@@ -122,7 +123,7 @@ class DailyViewHolder(
         trendRecyclerView.layoutManager =
             TrendHorizontalLinearLayoutManager(
                 context,
-                if (DisplayUtils.isLandscape(context)) 7 else 5
+                if (context.isLandscape) 7 else 5
             )
         trendRecyclerView.setLineColor(MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline))
         trendRecyclerView.adapter = trendAdapter

@@ -10,7 +10,7 @@ import android.view.View;
 
 import androidx.annotation.ColorInt;
 
-import org.breezyweather.common.utils.DisplayUtils;
+import org.breezyweather.common.extensions.DisplayExtensionsKt;
 
 /**
  * Round progress.
@@ -92,7 +92,7 @@ public class RoundProgress extends View {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        int padding = (int) DisplayUtils.dpToPx(getContext(), 2);
+        int padding = (int) DisplayExtensionsKt.dpToPx(getContext(), 2);
         mBackgroundRectF.set(
                 padding,
                 padding,

@@ -7,6 +7,7 @@ import org.breezyweather.BreezyWeather
 import org.breezyweather.BuildConfig
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.provider.WeatherSource
+import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.rxjava.ApiObserver
 import org.breezyweather.common.rxjava.ObserverContainer
 import org.breezyweather.common.rxjava.SchedulerTransformer
@@ -43,7 +44,7 @@ class MetNoWeatherService @Inject constructor(
             location.latitude.toDouble(),
             location.longitude.toDouble()
         )
-        val formattedDate = DisplayUtils.getFormattedDate(Date(), location.timeZone, "yyyy-MM-dd")
+        val formattedDate = Date().getFormattedDate(location.timeZone, "yyyy-MM-dd")
         val ephemeris = mApi.getEphemeris(
             userAgent,
             formattedDate,

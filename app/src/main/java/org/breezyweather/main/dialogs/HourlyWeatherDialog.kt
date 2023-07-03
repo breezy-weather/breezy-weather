@@ -9,6 +9,7 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.unit.ProbabilityUnit
 import org.breezyweather.common.basic.models.weather.Hourly
+import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.ui.widgets.AnimatableIconView
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourceHelper
@@ -24,7 +25,7 @@ object HourlyWeatherDialog {
             .setTitle(
                 hourly.getHour(activity, location.timeZone)
                         + " - "
-                        + hourly.getLongDate(activity, location.timeZone)
+                        + hourly.date.getFormattedDate(location.timeZone, activity.getString(R.string.date_format_long))
             )
             .setView(view)
             .show()

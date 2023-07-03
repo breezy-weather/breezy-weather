@@ -4,6 +4,9 @@ import android.content.Context
 import org.breezyweather.BreezyWeather
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.*
+import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.toDateNoHour
+import org.breezyweather.common.extensions.toTimezoneNoHour
 import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.weather.*
 import org.breezyweather.weather.metno.json.MetNoForecastResult
@@ -72,24 +75,23 @@ fun convert(
             )
 
             // We shift by 6 hours the hourly date, otherwise nighttime (00:00 to 05:59) would be on the wrong day
-            val theDayAtMidnight = DisplayUtils.toTimezoneNoHour(
-                Date(hourlyForecast.time.time - (6 * 3600 * 1000)),
-                location.timeZone
-            )
-            val theDayFormatted =
-                DisplayUtils.getFormattedDate(theDayAtMidnight, location.timeZone, "yyyy-MM-dd")
-            if (!hourlyByHalfDay.containsKey(theDayFormatted)) {
-                hourlyByHalfDay[theDayFormatted] = hashMapOf(
-                    "day" to ArrayList(),
-                    "night" to ArrayList()
-                )
-            }
-            if (hourlyForecast.time.time < theDayAtMidnight.time + 18 * 3600 * 1000) {
-                // 06:00 to 17:59 is the day
-                hourlyByHalfDay[theDayFormatted]!!["day"]!!.add(hourly)
-            } else {
-                // 18:00 to 05:59 is the night
-                hourlyByHalfDay[theDayFormatted]!!["night"]!!.add(hourly)
+            val theDayAtMidnight = Date(hourlyForecast.time.time - (6 * 3600 * 1000))
+                .toTimezoneNoHour(location.timeZone)
+            val theDayFormatted = theDayAtMidnight?.getFormattedDate(location.timeZone, "yyyy-MM-dd")
+            if (theDayFormatted != null) {
+                if (!hourlyByHalfDay.containsKey(theDayFormatted)) {
+                    hourlyByHalfDay[theDayFormatted] = hashMapOf(
+                        "day" to ArrayList(),
+                        "night" to ArrayList()
+                    )
+                }
+                if (hourlyForecast.time.time < theDayAtMidnight.time + 18 * 3600 * 1000) {
+                    // 06:00 to 17:59 is the day
+                    hourlyByHalfDay[theDayFormatted]!!["day"]!!.add(hourly)
+                } else {
+                    // 18:00 to 05:59 is the night
+                    hourlyByHalfDay[theDayFormatted]!!["night"]!!.add(hourly)
+                }
             }
 
             // Add to the app only if starts in the current hour
@@ -151,9 +153,9 @@ private fun getDailyList(
     hourlyListByHalfDay: Map<String, Map<String, MutableList<Hourly>>>
 ): List<Daily> {
     val dailyList: MutableList<Daily> = ArrayList()
-    val hourlyListByDay = hourlyList.groupBy { DisplayUtils.getFormattedDate(it.date, timeZone, "yyyy-MM-dd") }
+    val hourlyListByDay = hourlyList.groupBy { it.date.getFormattedDate(timeZone, "yyyy-MM-dd") }
     for (day in hourlyListByDay.entries) {
-        val dayDate = DisplayUtils.toDateNoHour(timeZone, day.key)
+        val dayDate = day.key.toDateNoHour(timeZone) ?: continue
         val ephemerisInfo = ephemerisTimeResults?.firstOrNull { it.date == day.key }
 
         dailyList.add(

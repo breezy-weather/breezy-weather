@@ -5,6 +5,9 @@ import org.breezyweather.BreezyWeather
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.provider.WeatherSource
 import org.breezyweather.common.basic.models.weather.*
+import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.toCalendarWithTimeZone
+import org.breezyweather.common.extensions.toTimezoneNoHour
 import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.weather.*
 import org.breezyweather.weather.mf.json.atmoaura.AtmoAuraPointResult
@@ -117,24 +120,23 @@ fun convert(
             )
 
             // We shift by 6 hours the hourly date, otherwise nighttime (00:00 to 05:59) would be on the wrong day
-            val theDayAtMidnight = DisplayUtils.toTimezoneNoHour(
-                Date(hourlyForecast.time.time - (6 * 3600 * 1000)),
-                location.timeZone
-            )
-            val theDayFormatted =
-                DisplayUtils.getFormattedDate(theDayAtMidnight, location.timeZone, "yyyyMMdd")
-            if (!hourlyByHalfDay.containsKey(theDayFormatted)) {
-                hourlyByHalfDay[theDayFormatted] = hashMapOf(
-                    "day" to ArrayList(),
-                    "night" to ArrayList()
-                )
-            }
-            if (hourlyForecast.time.time < theDayAtMidnight.time + 18 * 3600 * 1000) {
-                // 06:00 to 17:59 is the day
-                hourlyByHalfDay[theDayFormatted]!!["day"]!!.add(hourly)
-            } else {
-                // 18:00 to 05:59 is the night
-                hourlyByHalfDay[theDayFormatted]!!["night"]!!.add(hourly)
+            val theDayAtMidnight = Date(hourlyForecast.time.time - (6 * 3600 * 1000))
+                .toTimezoneNoHour(location.timeZone)
+            val theDayFormatted = theDayAtMidnight?.getFormattedDate(location.timeZone, "yyyyMMdd")
+            if (theDayFormatted != null) {
+                if (!hourlyByHalfDay.containsKey(theDayFormatted)) {
+                    hourlyByHalfDay[theDayFormatted] = hashMapOf(
+                        "day" to ArrayList(),
+                        "night" to ArrayList()
+                    )
+                }
+                if (hourlyForecast.time.time < theDayAtMidnight.time + 18 * 3600 * 1000) {
+                    // 06:00 to 17:59 is the day
+                    hourlyByHalfDay[theDayFormatted]!!["day"]!!.add(hourly)
+                } else {
+                    // 18:00 to 05:59 is the night
+                    hourlyByHalfDay[theDayFormatted]!!["night"]!!.add(hourly)
+                }
             }
 
             // Add to the app only if starts in the current hour
@@ -196,19 +198,21 @@ private fun getDailyList(
     hourlyListByHalfDay: Map<String, Map<String, MutableList<Hourly>>>
 ): List<Daily> {
     val dailyList: MutableList<Daily> = ArrayList(dailyForecasts.size)
-    val hourlyListByDay = hourlyList.groupBy { DisplayUtils.getFormattedDate(it.date, timeZone, "yyyyMMdd") }
+    val hourlyListByDay = hourlyList.groupBy { it.date.getFormattedDate(timeZone, "yyyyMMdd") }
     for (dailyForecast in dailyForecasts) {
         // Given as UTC, we need to convert in the correct timezone at 00:00
-        val dayInUTCCalendar = DisplayUtils.toCalendarWithTimeZone(dailyForecast.time, TimeZone.getTimeZone("UTC"))
-        val dayInLocalCalendar = Calendar.getInstance(timeZone)
-        dayInLocalCalendar[Calendar.YEAR] = dayInUTCCalendar[Calendar.YEAR]
-        dayInLocalCalendar[Calendar.MONTH] = dayInUTCCalendar[Calendar.MONTH]
-        dayInLocalCalendar[Calendar.DAY_OF_MONTH] = dayInUTCCalendar[Calendar.DAY_OF_MONTH]
-        dayInLocalCalendar[Calendar.HOUR_OF_DAY] = 0
-        dayInLocalCalendar[Calendar.MINUTE] = 0
-        dayInLocalCalendar[Calendar.SECOND] = 0
+        val dayInUTCCalendar = dailyForecast.time.toCalendarWithTimeZone(TimeZone.getTimeZone("UTC"))
+        val dayInLocalCalendar = Calendar.getInstance(timeZone).apply {
+            set(Calendar.YEAR, dayInUTCCalendar[Calendar.YEAR])
+            set(Calendar.MONTH, dayInUTCCalendar[Calendar.MONTH])
+            set(Calendar.DAY_OF_MONTH, dayInUTCCalendar[Calendar.DAY_OF_MONTH])
+            set(Calendar.HOUR_OF_DAY, 0)
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
+        }
         val theDayInLocal = dayInLocalCalendar.time
-        val dailyDateFormatted = DisplayUtils.getFormattedDate(theDayInLocal, timeZone, "yyyyMMdd")
+        val dailyDateFormatted = theDayInLocal.getFormattedDate(timeZone, "yyyyMMdd")
         dailyList.add(
             Daily(
                 date = theDayInLocal,

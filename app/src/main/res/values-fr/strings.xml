@@ -26,6 +26,7 @@
     <string name="nighttime">Nuit</string>
     <string name="temperature_feels_like">Ressenti</string>
     <string name="settings_follow_system">Préférence système</string><!-- Littéralement "suivre les préférences système" -->
+    <string name="notification_channel_widget">Widget</string>
     <string name="notification_channel_background_services">Services en arrière-plan</string>
     <string name="pressure">Pression atmosphérique</string>
     <string name="visibility">Visibilité</string>
@@ -294,6 +295,8 @@
     <string name="settings_weather_provider_accu_weather_key">Clé AccuWeather</string>
     <string name="settings_weather_provider_open_weather_key">Clé OpenWeather</string>
     <string name="settings_location_summary">Paramètres des services de localisation</string>
+    <string name="settings_location_access_permission_already_granted">Permission déjà accordée</string>
+    <string name="settings_location_access_permission_revoked">Permission révoquée</string>
     <string name="settings_location_access_switch_title">Accès à la position</string>
     <string name="settings_location_access_switch_summaryOn">Autorisé. Vous pouvez ajouter votre position comme emplacement.</string>
     <string name="settings_location_access_switch_summaryOff">Veuillez autoriser si vous souhaitez ajouter votre position comme emplacement.</string>

@@ -12,6 +12,7 @@ import android.view.MotionEvent;
 import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
 
+import org.breezyweather.common.extensions.DisplayExtensionsKt;
 import org.breezyweather.common.ui.widgets.trend.chart.AbsChartItemView;
 import org.breezyweather.R;
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView;
@@ -97,7 +98,7 @@ public class HourlyTrendItemView extends AbsTrendItemView {
 
         setTextColor(Color.BLACK, Color.GRAY);
 
-        mIconSize = (int) DisplayUtils.dpToPx(getContext(), ICON_SIZE_DIP);
+        mIconSize = (int) DisplayExtensionsKt.dpToPx(getContext(), ICON_SIZE_DIP);
 
         mChartTop = 0;
         mChartBottom = 0;
@@ -109,8 +110,8 @@ public class HourlyTrendItemView extends AbsTrendItemView {
         int height = MeasureSpec.getSize(heightMeasureSpec);
 
         float y = 0;
-        float textMargin = DisplayUtils.dpToPx(getContext(), TEXT_MARGIN_DIP);
-        float iconMargin = DisplayUtils.dpToPx(getContext(), ICON_MARGIN_DIP);
+        float textMargin = DisplayExtensionsKt.dpToPx(getContext(), TEXT_MARGIN_DIP);
+        float iconMargin = DisplayExtensionsKt.dpToPx(getContext(), ICON_MARGIN_DIP);
 
         // hour text.
         Paint.FontMetrics fontMetrics = mHourTextPaint.getFontMetrics();
@@ -136,7 +137,7 @@ public class HourlyTrendItemView extends AbsTrendItemView {
         }
 
         // margin bottom.
-        float marginBottom = DisplayUtils.dpToPx(
+        float marginBottom = DisplayExtensionsKt.dpToPx(
                 getContext(), TrendRecyclerView.ITEM_MARGIN_BOTTOM_DIP);
 
         // chartItem item view.

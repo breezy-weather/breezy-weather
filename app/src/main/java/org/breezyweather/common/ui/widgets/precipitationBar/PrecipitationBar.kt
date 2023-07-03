@@ -14,6 +14,7 @@ import android.view.ViewConfiguration
 import android.view.ViewGroup
 import androidx.annotation.ColorInt
 import com.google.android.material.button.MaterialButton
+import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.utils.DisplayUtils
 import kotlin.math.abs
 
@@ -86,16 +87,16 @@ class PrecipitationBar @JvmOverloads constructor(
     }.also { addView(it) }
     private val backgroundView = PrecipitationBarBackgroundView(context).also { addView(it) }
     private val indicator = MaterialButton(context).apply {
-        setTextSize(TypedValue.COMPLEX_UNIT_PX, DisplayUtils.dpToPx(context, INDICATOR_TEXT_SIZE_DIP))
+        setTextSize(TypedValue.COMPLEX_UNIT_PX, context.dpToPx(INDICATOR_TEXT_SIZE_DIP))
         backgroundTintList = ColorStateList.valueOf(highlightColor)
         alpha = 0F
     }.also { addView(it) }
 
     // inner data.
 
-    private val indicatorHeight = DisplayUtils.dpToPx(context, INDICATOR_HEIGHT)
-    private val indicatorMargin = DisplayUtils.dpToPx(context, INDICATOR_MARGIN)
-    private val touchLineWidth = DisplayUtils.dpToPx(context, TOUCH_LINE_WIDTH)
+    private val indicatorHeight = context.dpToPx(INDICATOR_HEIGHT)
+    private val indicatorMargin = context.dpToPx(INDICATOR_MARGIN)
+    private val touchLineWidth = context.dpToPx(TOUCH_LINE_WIDTH)
 
     private var pointerId = -1
     private var initialX = 0F

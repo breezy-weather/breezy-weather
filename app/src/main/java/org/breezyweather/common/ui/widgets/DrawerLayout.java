@@ -13,7 +13,7 @@ import androidx.annotation.FloatRange;
 import androidx.annotation.Nullable;
 
 import org.breezyweather.R;
-import org.breezyweather.common.utils.DisplayUtils;
+import org.breezyweather.common.extensions.DisplayExtensionsKt;
 
 public class DrawerLayout extends ViewGroup {
 
@@ -73,12 +73,12 @@ public class DrawerLayout extends ViewGroup {
             int width = lp.width;
             if (width == LayoutParams.WRAP_CONTENT) {
                 width = getMeasuredWidth()
-                        - DisplayUtils.getTabletListAdaptiveWidth(getContext(), getMeasuredWidth());
+                        - DisplayExtensionsKt.getTabletListAdaptiveWidth(getContext(), getMeasuredWidth());
                 if (width == 0) {
                     width = LayoutParams.MATCH_PARENT;
                 } else {
-                    int minDrawerWidth = (int) DisplayUtils.dpToPx(getContext(), MIN_DRAWER_WIDTH_DP);
-                    int maxDrawerWidth = (int) DisplayUtils.dpToPx(getContext(), MAX_DRAWER_WIDTH_DP);
+                    int minDrawerWidth = (int) DisplayExtensionsKt.dpToPx(getContext(), MIN_DRAWER_WIDTH_DP);
+                    int maxDrawerWidth = (int) DisplayExtensionsKt.dpToPx(getContext(), MAX_DRAWER_WIDTH_DP);
                     width = Math.max(width, minDrawerWidth);
                     width = Math.min(width, maxDrawerWidth);
                 }
@@ -115,7 +115,7 @@ public class DrawerLayout extends ViewGroup {
             mContent = getChildAt(1);
         }
 
-        if (DisplayUtils.isRtl(getContext())) {
+        if (DisplayExtensionsKt.isRtl(getContext())) {
             if (mDrawer != null) {
                 mDrawer.layout(
                         (int) (getMeasuredWidth() - mDrawer.getMeasuredWidth() * mProgress),

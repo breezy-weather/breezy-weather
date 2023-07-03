@@ -15,6 +15,7 @@ import androidx.core.graphics.ColorUtils;
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit;
 import org.breezyweather.common.basic.models.weather.Temperature;
 import org.breezyweather.R;
+import org.breezyweather.common.extensions.DisplayExtensionsKt;
 import org.breezyweather.common.utils.DisplayUtils;
 
 /**
@@ -73,11 +74,11 @@ public class TrendLinearLayout extends LinearLayout {
 
         setColor(true);
 
-        TREND_MARGIN_TOP = DisplayUtils.dpToPx(getContext(), (int) TREND_MARGIN_TOP);
-        TREND_MARGIN_BOTTOM = DisplayUtils.dpToPx(getContext(), (int) TREND_MARGIN_BOTTOM);
-        TEXT_SIZE = DisplayUtils.dpToPx(getContext(), (int) TEXT_SIZE);
-        CHART_LINE_SIZE = DisplayUtils.dpToPx(getContext(), (int) CHART_LINE_SIZE);
-        MARGIN_TEXT = DisplayUtils.dpToPx(getContext(), (int) MARGIN_TEXT);
+        TREND_MARGIN_TOP = DisplayExtensionsKt.dpToPx(getContext(), (int) TREND_MARGIN_TOP);
+        TREND_MARGIN_BOTTOM = DisplayExtensionsKt.dpToPx(getContext(), (int) TREND_MARGIN_BOTTOM);
+        TEXT_SIZE = DisplayExtensionsKt.dpToPx(getContext(), (int) TEXT_SIZE);
+        CHART_LINE_SIZE = DisplayExtensionsKt.dpToPx(getContext(), (int) CHART_LINE_SIZE);
+        MARGIN_TEXT = DisplayExtensionsKt.dpToPx(getContext(), (int) MARGIN_TEXT);
     }
 
     @Override
@@ -156,18 +157,18 @@ public class TrendLinearLayout extends LinearLayout {
         mLowestTemp = lowestTemp;
         mTemperatureUnit = unit;
         if (daily) {
-            TREND_ITEM_HEIGHT = DisplayUtils.dpToPx(
+            TREND_ITEM_HEIGHT = DisplayExtensionsKt.dpToPx(
                     getContext(), WidgetItemView.TREND_VIEW_HEIGHT_DIP_2X);
-            BOTTOM_MARGIN = DisplayUtils.dpToPx(
+            BOTTOM_MARGIN = DisplayExtensionsKt.dpToPx(
                     getContext(),
                     WidgetItemView.ICON_SIZE_DIP
                             + WidgetItemView.ICON_MARGIN_DIP
                             + WidgetItemView.MARGIN_VERTICAL_DIP
             );
         } else {
-            TREND_ITEM_HEIGHT = DisplayUtils.dpToPx(
+            TREND_ITEM_HEIGHT = DisplayExtensionsKt.dpToPx(
                     getContext(), WidgetItemView.TREND_VIEW_HEIGHT_DIP_1X);
-            BOTTOM_MARGIN = DisplayUtils.dpToPx(
+            BOTTOM_MARGIN = DisplayExtensionsKt.dpToPx(
                     getContext(), WidgetItemView.MARGIN_VERTICAL_DIP);
         }
         invalidate();

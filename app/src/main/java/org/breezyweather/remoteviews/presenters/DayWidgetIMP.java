@@ -18,12 +18,12 @@ import org.breezyweather.common.basic.models.Location;
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit;
 import org.breezyweather.common.basic.models.weather.Temperature;
 import org.breezyweather.common.basic.models.weather.Weather;
+import org.breezyweather.common.extensions.DateExtensionsKt;
 import org.breezyweather.theme.resource.ResourceHelper;
 import org.breezyweather.theme.resource.ResourcesProviderFactory;
 import org.breezyweather.theme.resource.providers.ResourceProvider;
 import org.breezyweather.R;
 import org.breezyweather.background.receiver.widget.WidgetDayProvider;
-import org.breezyweather.common.utils.DisplayUtils;
 import org.breezyweather.common.utils.helpers.LunarHelper;
 import org.breezyweather.remoteviews.WidgetHelper;
 import org.breezyweather.settings.SettingsManager;
@@ -38,8 +38,8 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
 
         RemoteViews views = getRemoteViews(
                 context, location,
-                config.viewStyle, config.cardStyle, config.cardAlpha,
-                config.textColor, config.textSize, config.hideSubtitle, config.subtitleData
+                config.getViewStyle(), config.getCardStyle(), config.getCardAlpha(),
+                config.getTextColor(), config.getTextSize(), config.getHideSubtitle(), config.getSubtitleData()
         );
 
         AppWidgetManager.getInstance(context).updateAppWidget(
@@ -80,10 +80,10 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
             return views;
         }
 
-        if (color.showCard) {
+        if (color.getShowCard()) {
             views.setImageViewResource(
                     R.id.widget_day_card,
-                    getCardBackgroundId(color.cardColor)
+                    getCardBackgroundId(color.getCardColor())
             );
             views.setInt(
                     R.id.widget_day_card,
@@ -105,7 +105,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
                                                boolean hideSubtitle, String subtitleData) {
         RemoteViews views = new RemoteViews(
                 context.getPackageName(),
-                !color.showCard
+                !color.getShowCard()
                         ? R.layout.widget_day_symmetry
                         : R.layout.widget_day_symmetry_card
         );
@@ -113,7 +113,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
             case "rectangle":
                 views = new RemoteViews(
                         context.getPackageName(),
-                        !color.showCard
+                        !color.getShowCard()
                                 ? R.layout.widget_day_rectangle
                                 : R.layout.widget_day_rectangle_card
                 );
@@ -122,7 +122,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
             case "symmetry":
                 views = new RemoteViews(
                         context.getPackageName(),
-                        !color.showCard
+                        !color.getShowCard()
                                 ? R.layout.widget_day_symmetry
                                 : R.layout.widget_day_symmetry_card
                 );
@@ -131,7 +131,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
             case "tile":
                 views = new RemoteViews(
                         context.getPackageName(),
-                        !color.showCard
+                        !color.getShowCard()
                                 ? R.layout.widget_day_tile
                                 : R.layout.widget_day_tile_card
                 );
@@ -140,7 +140,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
             case "mini":
                 views = new RemoteViews(
                         context.getPackageName(),
-                        !color.showCard
+                        !color.getShowCard()
                                 ? R.layout.widget_day_mini
                                 : R.layout.widget_day_mini_card
                 );
@@ -149,7 +149,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
             case "nano":
                 views = new RemoteViews(
                         context.getPackageName(),
-                        !color.showCard
+                        !color.getShowCard()
                                 ? R.layout.widget_day_nano
                                 : R.layout.widget_day_nano_card
                 );
@@ -158,7 +158,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
             case "pixel":
                 views = new RemoteViews(
                         context.getPackageName(),
-                        !color.showCard
+                        !color.getShowCard()
                                 ? R.layout.widget_day_pixel
                                 : R.layout.widget_day_pixel_card
                         );
@@ -167,7 +167,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
             case "vertical":
                 views = new RemoteViews(
                         context.getPackageName(),
-                        !color.showCard
+                        !color.getShowCard()
                                 ? R.layout.widget_day_vertical
                                 : R.layout.widget_day_vertical_card
                 );
@@ -176,7 +176,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
             case "oreo":
                 views = new RemoteViews(
                         context.getPackageName(),
-                        !color.showCard
+                        !color.getShowCard()
                                 ? R.layout.widget_day_oreo
                                 : R.layout.widget_day_oreo_card
                 );
@@ -185,7 +185,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
             case "oreo_google_sans":
                 views = new RemoteViews(
                         context.getPackageName(),
-                        !color.showCard
+                        !color.getShowCard()
                                 ? R.layout.widget_day_oreo_google_sans
                                 : R.layout.widget_day_oreo_google_sans_card
                 );
@@ -194,7 +194,7 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
             case "temp":
                 views = new RemoteViews(
                         context.getPackageName(),
-                        !color.showCard
+                        !color.getShowCard()
                                 ? R.layout.widget_day_temp
                                 : R.layout.widget_day_temp_card
                 );
@@ -258,12 +258,12 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
             );
         }
 
-        if (color.textColor != Color.TRANSPARENT) {
-            views.setTextColor(R.id.widget_day_title, color.textColor);
-            views.setTextColor(R.id.widget_day_sign, color.textColor);
-            views.setTextColor(R.id.widget_day_symbol, color.textColor);
-            views.setTextColor(R.id.widget_day_subtitle, color.textColor);
-            views.setTextColor(R.id.widget_day_time, color.textColor);
+        if (color.getTextColor() != Color.TRANSPARENT) {
+            views.setTextColor(R.id.widget_day_title, color.getTextColor());
+            views.setTextColor(R.id.widget_day_sign, color.getTextColor());
+            views.setTextColor(R.id.widget_day_symbol, color.getTextColor());
+            views.setTextColor(R.id.widget_day_subtitle, color.getTextColor());
+            views.setTextColor(R.id.widget_day_time, color.getTextColor());
         }
 
         if (textSize != 100) {
@@ -449,19 +449,19 @@ public class DayWidgetIMP extends AbstractRemoteViewsPresenter {
                     case "rectangle":
                         return location.getCityName(context) 
                                 + " " 
-                                + DisplayUtils.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone());
+                                + DateExtensionsKt.getFormattedTime(weather.getBase().getUpdateDate(), location.getTimeZone(), DateExtensionsKt.is12Hour(context));
 
                     case "symmetry":
                         return WidgetHelper.getWeek(context, location.getTimeZone())
                                 + " " 
-                                + DisplayUtils.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone());
+                                + DateExtensionsKt.getFormattedTime(weather.getBase().getUpdateDate(), location.getTimeZone(), DateExtensionsKt.is12Hour(context));
 
                     case "tile":
                     case "mini":
                     case "vertical":
                         return location.getCityName(context)
                                 + " " + WidgetHelper.getWeek(context, location.getTimeZone())
-                                + " " + DisplayUtils.getTime(context, weather.getBase().getUpdateDate(), location.getTimeZone());
+                                + " " + DateExtensionsKt.getFormattedTime(weather.getBase().getUpdateDate(), location.getTimeZone(), DateExtensionsKt.is12Hour(context));
                 }
                 return null;
 

@@ -9,7 +9,8 @@ import notify
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
-import org.breezyweather.common.utils.DisplayUtils
+import org.breezyweather.common.extensions.getFormattedTime
+import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.utils.LanguageUtils
 import org.breezyweather.common.utils.helpers.LunarHelper
 import org.breezyweather.remoteviews.Notifications
@@ -45,7 +46,7 @@ object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
             subtitle.append(", ")
                 .append(context.getString(R.string.notification_refreshed_at))
                 .append(" ")
-                .append(DisplayUtils.getTime(context, location.weather.base.updateDate, location.timeZone))
+                .append(location.weather.base.updateDate.getFormattedTime(location.timeZone, context.is12Hour))
         }
 
         val contentTitle = StringBuilder()

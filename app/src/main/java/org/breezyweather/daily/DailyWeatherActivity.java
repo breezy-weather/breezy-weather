@@ -20,6 +20,8 @@ import java.util.TimeZone;
 import org.breezyweather.common.basic.models.Location;
 import org.breezyweather.common.basic.models.weather.Daily;
 import org.breezyweather.common.basic.models.weather.Weather;
+import org.breezyweather.common.extensions.DateExtensionsKt;
+import org.breezyweather.common.extensions.DisplayExtensionsKt;
 import org.breezyweather.common.ui.widgets.insets.FitSystemBarAppBarLayout;
 import org.breezyweather.common.ui.widgets.insets.FitSystemBarRecyclerView;
 import org.breezyweather.common.ui.widgets.insets.FitSystemBarViewPager;
@@ -141,7 +143,7 @@ public class DailyWeatherActivity extends GeoActivity {
 
             FitSystemBarViewPager pager = findViewById(R.id.activity_weather_daily_pager);
             pager.setAdapter(new FitSystemBarViewPager.FitBottomSystemBarPagerAdapter(pager, viewList, titleList));
-            pager.setPageMargin((int) DisplayUtils.dpToPx(this, 1));
+            pager.setPageMargin((int) DisplayExtensionsKt.dpToPx(this, 1));
             pager.setPageMarginDrawable(
                     new ColorDrawable(
                             ThemeManager.getInstance(this).getThemeColor(this, com.google.android.material.R.attr.colorOutline)
@@ -175,7 +177,7 @@ public class DailyWeatherActivity extends GeoActivity {
 
     @SuppressLint("SetTextI18n")
     private void selectPage(Daily daily, TimeZone timeZone, int position, int size) {
-        mTitle.setText(daily.getDate(getString(R.string.date_format_widget_long), timeZone));
+        mTitle.setText(DateExtensionsKt.getFormattedDate(daily.getDate(), timeZone, getString(R.string.date_format_widget_long)));
         mSubtitle.setText(daily.getLunar());
 
         mToolbar.setContentDescription(mTitle.getText() + ", " + mSubtitle.getText());

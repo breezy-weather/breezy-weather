@@ -176,9 +176,10 @@ class TimeObserverService : Service() {
             val splittedTime = time.split(":".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
             if (splittedTime.size != 2) return false
 
-            val calendar = Calendar.getInstance()
-            calendar[Calendar.HOUR_OF_DAY] = splittedTime[0].toInt()
-            calendar[Calendar.MINUTE] = splittedTime[1].toInt()
+            val calendar = Calendar.getInstance().apply {
+                set(Calendar.HOUR_OF_DAY, splittedTime[0].toInt())
+                set(Calendar.MINUTE, splittedTime[1].toInt())
+            }
             val configTime = calendar.timeInMillis
             val currentTime = System.currentTimeMillis()
             return configTime in (lastForecastTime + 1)..currentTime

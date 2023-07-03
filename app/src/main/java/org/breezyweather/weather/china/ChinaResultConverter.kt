@@ -5,6 +5,7 @@ import androidx.annotation.ColorInt
 import org.breezyweather.BreezyWeather
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.*
+import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.weather.getHoursOfDay
 import org.breezyweather.weather.getWindDirection
@@ -122,12 +123,13 @@ private fun getDailyList(
 
     val dailyList: MutableList<Daily> = ArrayList(dailyForecast.weather.value.size)
     dailyForecast.weather.value.forEachIndexed { index, weather ->
-        val calendar = DisplayUtils.toCalendarWithTimeZone(publishDate, timeZone)
-        calendar.add(Calendar.DATE, index) // FIXME: Wrong TimeZone for the first item
-        calendar[Calendar.HOUR_OF_DAY] = 0
-        calendar[Calendar.MINUTE] = 0
-        calendar[Calendar.SECOND] = 0
-        calendar[Calendar.MILLISECOND] = 0
+        val calendar = publishDate.toCalendarWithTimeZone(timeZone).apply {
+            add(Calendar.DATE, index) // FIXME: Wrong TimeZone for the first item
+            set(Calendar.HOUR_OF_DAY, 0)
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
+        }
         dailyList.add(
             Daily(
                 date = calendar.time,
@@ -203,11 +205,12 @@ private fun getHourlyList(
 
     val hourlyList: MutableList<Hourly> = ArrayList(hourlyForecast.weather.value.size)
     hourlyForecast.weather.value.forEachIndexed { index, weather ->
-        val calendar = DisplayUtils.toCalendarWithTimeZone(publishDate, timeZone)
-        calendar.add(Calendar.HOUR_OF_DAY, index) // FIXME: Wrong TimeZone for the first item
-        calendar[Calendar.MINUTE] = 0
-        calendar[Calendar.SECOND] = 0
-        calendar[Calendar.MILLISECOND] = 0
+        val calendar = publishDate.toCalendarWithTimeZone(timeZone).apply {
+            add(Calendar.HOUR_OF_DAY, index) // FIXME: Wrong TimeZone for the first item
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
+        }
         val date = calendar.time
         hourlyList.add(
             Hourly(
@@ -241,13 +244,14 @@ private fun getMinutelyList(
 ): List<Minutely> {
     if (minutelyResult.precipitation == null || minutelyResult.precipitation.value.isNullOrEmpty()) return emptyList()
 
-    val current = minutelyResult.precipitation.pubTime
+    val current = minutelyResult.precipitation.pubTime ?: return emptyList()
     val minutelyList: MutableList<Minutely> = ArrayList(minutelyResult.precipitation.value.size)
 
     minutelyResult.precipitation.value.forEach { precipitation ->
-        val calendar = DisplayUtils.toCalendarWithTimeZone(current, timeZone)
-        calendar[Calendar.SECOND] = 0
-        calendar[Calendar.MILLISECOND] = 0
+        val calendar = current.toCalendarWithTimeZone(timeZone).apply {
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
+        }
         minutelyList.add(
             Minutely(
                 calendar.time,

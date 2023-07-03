@@ -6,6 +6,7 @@ import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.provider.WeatherSource
 import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
 import org.breezyweather.common.basic.models.weather.*
+import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.weather.accu.json.*
@@ -140,10 +141,10 @@ private fun getDailyList(
     timeZone: TimeZone
 ): List<Daily> {
     val dailyList: MutableList<Daily> = ArrayList(dailyForecasts.size)
-    val hourlyListByDay = hourlyList.groupBy { DisplayUtils.getFormattedDate(it.date, timeZone, "yyyyMMdd") }
+    val hourlyListByDay = hourlyList.groupBy { it.date.getFormattedDate(timeZone, "yyyyMMdd") }
     for (forecasts in dailyForecasts) {
         val theDay = Date(forecasts.EpochDate.times(1000))
-        val dailyDateFormatted = DisplayUtils.getFormattedDate(theDay, timeZone, "yyyyMMdd")
+        val dailyDateFormatted = theDay.getFormattedDate(timeZone, "yyyyMMdd")
         dailyList.add(
             Daily(
                 date = theDay,

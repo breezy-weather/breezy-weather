@@ -1,7 +1,6 @@
 package org.breezyweather.common.basic.models.weather
 
-import android.content.Context
-import org.breezyweather.common.utils.DisplayUtils
+import org.breezyweather.common.extensions.toTimezone
 import java.io.Serializable
 import java.util.*
 
@@ -32,8 +31,8 @@ class Astro(
             val currentTime = (timezoneCalendar[Calendar.HOUR_OF_DAY]
                     * 60 + timezoneCalendar[Calendar.MINUTE]) * 60 * 1000
 
-            val riseTime = DisplayUtils.toTimezone(astro?.riseDate, timeZone)?.time
-            val setTime = DisplayUtils.toTimezone(astro?.setDate, timeZone)?.time
+            val riseTime = astro?.riseDate?.toTimezone(timeZone)?.time
+            val setTime = astro?.setDate?.toTimezone(timeZone)?.time
             if (riseTime == null || setTime == null) {
                 val riseHourMinuteTime = defaultRiseHour * milliSecondPerHour
                 val setHourMinuteTime = riseHourMinuteTime + defaultDurationHour * milliSecondPerHour
@@ -58,29 +57,5 @@ class Astro(
             return (currentTime - riseHourMinuteTime).toDouble() / (
                     setHourMinuteTime - riseHourMinuteTime).toDouble()
         }
-    }
-
-    // rise time.
-    fun getRiseTime(context: Context, timeZone: TimeZone): String? {
-        return getRiseTime(DisplayUtils.is12Hour(context), timeZone)
-    }
-
-    private fun getRiseTime(twelveHour: Boolean, timeZone: TimeZone): String? {
-        if (riseDate == null) {
-            return null
-        }
-        return DisplayUtils.getFormattedDate(riseDate, timeZone, if (twelveHour) "h:mm aa" else "HH:mm")
-    }
-
-    // set time.
-    fun getSetTime(context: Context, timeZone: TimeZone): String? {
-        return getSetTime(DisplayUtils.is12Hour(context), timeZone)
-    }
-
-    private fun getSetTime(twelveHour: Boolean, timeZone: TimeZone): String? {
-        if (setDate == null) {
-            return null
-        }
-        return DisplayUtils.getFormattedDate(setDate, timeZone, if (twelveHour) "h:mm aa" else "HH:mm")
     }
 }

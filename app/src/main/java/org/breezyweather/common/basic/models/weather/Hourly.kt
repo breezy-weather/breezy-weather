@@ -4,6 +4,10 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.text.BidiFormatter
 import org.breezyweather.R
+import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.is12Hour
+import org.breezyweather.common.extensions.isRtl
+import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.utils.DisplayUtils
 import java.io.Serializable
 import java.util.Calendar
@@ -27,23 +31,18 @@ class Hourly(
     val uV: UV? = null
 ) : Serializable {
 
-    fun getHourIn24Format(timeZone: TimeZone?): Int {
-        val calendar = DisplayUtils.toCalendarWithTimeZone(date, timeZone)
+    fun getHourIn24Format(timeZone: TimeZone): Int {
+        val calendar = date.toCalendarWithTimeZone(timeZone)
         return calendar[Calendar.HOUR_OF_DAY]
     }
 
     fun getHour(context: Context, timeZone: TimeZone): String {
-        return getHour(
-            context,
-            timeZone,
-            DisplayUtils.is12Hour(context),
-            DisplayUtils.isRtl(context)
-        )
+        return getHour(context, timeZone, context.is12Hour, context.isRtl)
     }
 
     @SuppressLint("DefaultLocale")
     private fun getHour(context: Context, timeZone: TimeZone, twelveHour: Boolean, rtl: Boolean): String {
-        val calendar = DisplayUtils.toCalendarWithTimeZone(date, timeZone)
+        val calendar = date.toCalendarWithTimeZone(timeZone)
         var hour: Int
         if (twelveHour) {
             hour = calendar[Calendar.HOUR]
@@ -59,18 +58,6 @@ class Hourly(
         } else {
             hour.toString() + context.getString(R.string.of_clock)
         }
-    }
-
-    fun getLongDate(context: Context, timeZone: TimeZone?): String {
-        return getDate(timeZone, context.getString(R.string.date_format_long))
-    }
-
-    fun getShortDate(context: Context, timeZone: TimeZone?): String {
-        return getDate(timeZone, context.getString(R.string.date_format_short))
-    }
-
-    fun getDate(timeZone: TimeZone?, format: String?): String {
-        return DisplayUtils.getFormattedDate(date, timeZone, format)
     }
 
     /**

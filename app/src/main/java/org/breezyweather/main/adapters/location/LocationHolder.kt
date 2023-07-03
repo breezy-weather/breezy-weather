@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.databinding.ItemLocationCardBinding
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.R
+import org.breezyweather.common.extensions.dpToPx
+import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.theme.resource.providers.ResourceProvider
 
@@ -21,7 +23,7 @@ class LocationHolder(
 ) : RecyclerView.ViewHolder(mBinding.root) {
     @SuppressLint("SetTextI18n", "ClickableViewAccessibility")
     fun onBindView(context: Context, model: LocationModel, resourceProvider: ResourceProvider) {
-        val lightTheme = !DisplayUtils.isDarkMode(context)
+        val lightTheme = !context.isDarkMode
         val elevatedSurfaceColor = DisplayUtils.getWidgetSurfaceColor(
             DisplayUtils.DEFAULT_CARD_LIST_ITEM_ELEVATION_DP,
             MainThemeColorProvider.getColor(lightTheme, androidx.appcompat.R.attr.colorPrimary),
@@ -29,7 +31,7 @@ class LocationHolder(
         )
         if (model.selected) {
             mBinding.root.apply {
-                strokeWidth = DisplayUtils.dpToPx(context, 4f).toInt()
+                strokeWidth = context.dpToPx(4f).toInt()
                 strokeColor = elevatedSurfaceColor
             }
         } else {

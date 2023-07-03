@@ -31,6 +31,7 @@ import kotlinx.coroutines.launch
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
+import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.ui.decorations.Material3ListItemDecoration
 import org.breezyweather.common.ui.widgets.Material3Scaffold
 import org.breezyweather.common.ui.widgets.generateCollapsedScrollBehavior
@@ -60,9 +61,9 @@ class PushedManagementFragment: ManagementFragment() {
             requireContext(),
             requireActivity().window,
             false,
-            !DisplayUtils.isDarkMode(requireContext()),
+            !requireContext().isDarkMode,
             true,
-            !DisplayUtils.isDarkMode(requireContext())
+            !requireContext().isDarkMode
         )
     }
 }
@@ -261,7 +262,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
     }
 
     private fun updateDayNightColors() {
-        val lightTheme = !DisplayUtils.isDarkMode(requireContext())
+        val lightTheme = !requireContext().isDarkMode
 
         updateAppBarColor()
 

@@ -4,7 +4,7 @@ import android.content.Context
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options._basic.UnitEnum
 import org.breezyweather.common.basic.models.options._basic.Utils
-import org.breezyweather.common.utils.DisplayUtils
+import org.breezyweather.common.extensions.isRtl
 
 // actual duration = duration(h) * factor.
 enum class DurationUnit(
@@ -32,7 +32,7 @@ enum class DurationUnit(
     override fun getValueText(
         context: Context,
         valueInDefaultUnit: Float
-    ) = getValueText(context, valueInDefaultUnit, DisplayUtils.isRtl(context))
+    ) = getValueText(context, valueInDefaultUnit, context.isRtl)
 
     override fun getValueText(
         context: Context,
@@ -49,7 +49,7 @@ enum class DurationUnit(
     override fun getValueVoice(
         context: Context,
         valueInDefaultUnit: Float
-    ) = getValueVoice(context, valueInDefaultUnit, DisplayUtils.isRtl(context))
+    ) = getValueVoice(context, valueInDefaultUnit, context.isRtl)
 
     override fun getValueVoice(
         context: Context,

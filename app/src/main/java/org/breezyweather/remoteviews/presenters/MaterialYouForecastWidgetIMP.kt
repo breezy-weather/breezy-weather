@@ -169,38 +169,34 @@ private fun buildRemoteViews(
             R.id.widget_material_you_forecast_aqiOrWind,
             context.getString(R.string.wind) + " - " + weather.current.wind.getShortWindDescription(context, speedUnit)
         )
-    } else {
-        views.setTextViewText(R.id.widget_material_you_forecast_aqiOrWind, null)
-    }
+    } else views.setTextViewText(R.id.widget_material_you_forecast_aqiOrWind, null)
 
     // Hourly
     val hourlyIds = arrayOf(
-        Triple(R.id.widget_material_you_forecast_hour_1, R.id.widget_material_you_forecast_hourlyIcon_1, R.id.widget_material_you_forecast_hourlyTemperature_1),
-        Triple(R.id.widget_material_you_forecast_hour_2, R.id.widget_material_you_forecast_hourlyIcon_2, R.id.widget_material_you_forecast_hourlyTemperature_2),
-        Triple(R.id.widget_material_you_forecast_hour_3, R.id.widget_material_you_forecast_hourlyIcon_3, R.id.widget_material_you_forecast_hourlyTemperature_3),
-        Triple(R.id.widget_material_you_forecast_hour_4, R.id.widget_material_you_forecast_hourlyIcon_4, R.id.widget_material_you_forecast_hourlyTemperature_4),
-        Triple(R.id.widget_material_you_forecast_hour_5, R.id.widget_material_you_forecast_hourlyIcon_5, R.id.widget_material_you_forecast_hourlyTemperature_5),
-        Triple(R.id.widget_material_you_forecast_hour_6, R.id.widget_material_you_forecast_hourlyIcon_6, R.id.widget_material_you_forecast_hourlyTemperature_6)
+        arrayOf(R.id.widget_material_you_forecast_hour_1, R.id.widget_material_you_forecast_hourlyIcon_1, R.id.widget_material_you_forecast_hourlyTemperature_1),
+        arrayOf(R.id.widget_material_you_forecast_hour_2, R.id.widget_material_you_forecast_hourlyIcon_2, R.id.widget_material_you_forecast_hourlyTemperature_2),
+        arrayOf(R.id.widget_material_you_forecast_hour_3, R.id.widget_material_you_forecast_hourlyIcon_3, R.id.widget_material_you_forecast_hourlyTemperature_3),
+        arrayOf(R.id.widget_material_you_forecast_hour_4, R.id.widget_material_you_forecast_hourlyIcon_4, R.id.widget_material_you_forecast_hourlyTemperature_4),
+        arrayOf(R.id.widget_material_you_forecast_hour_5, R.id.widget_material_you_forecast_hourlyIcon_5, R.id.widget_material_you_forecast_hourlyTemperature_5),
+        arrayOf(R.id.widget_material_you_forecast_hour_6, R.id.widget_material_you_forecast_hourlyIcon_6, R.id.widget_material_you_forecast_hourlyTemperature_6)
     )
     // Loop through next 6 hours
     hourlyIds.forEachIndexed { i, hourlyId ->
-        weather.hourlyForecast.getOrNull(i)?.let { hourly ->
-            views.setTextViewText(hourlyId.first, hourly.getHour(context, location.timeZone))
-            hourly.weatherCode?.let {
-                views.setViewVisibility(hourlyId.second, View.VISIBLE)
-                views.setImageViewUri(
-                    hourlyId.second,
-                    ResourceHelper.getWidgetNotificationIconUri(
-                        provider,
-                        hourly.weatherCode,
-                        hourly.isDaylight,
-                        false,
-                        NotificationTextColor.LIGHT
-                    )
+        views.setTextViewText(hourlyId[0], weather.hourlyForecast.getOrNull(i)?.getHour(context, location.timeZone))
+        weather.hourlyForecast.getOrNull(i)?.weatherCode?.let {
+            views.setViewVisibility(hourlyId[1], View.VISIBLE)
+            views.setImageViewUri(
+                hourlyId[1],
+                ResourceHelper.getWidgetNotificationIconUri(
+                    provider,
+                    it,
+                    weather.hourlyForecast.getOrNull(i)!!.isDaylight,
+                    false,
+                    NotificationTextColor.LIGHT
                 )
-            } ?: views.setViewVisibility(hourlyId.second, View.INVISIBLE)
-            views.setTextViewText(hourlyId.third, hourly.temperature?.getShortTemperature(context, temperatureUnit))
-        } ?: views.setViewVisibility(hourlyId.second, View.INVISIBLE)
+            )
+        } ?: views.setViewVisibility(hourlyId[1], View.INVISIBLE)
+        views.setTextViewText(hourlyId[2], weather.hourlyForecast.getOrNull(i)?.temperature?.getShortTemperature(context, temperatureUnit))
     }
 
 
@@ -251,51 +247,48 @@ private fun buildRemoteViews(
     )
     // Loop through 6 first days
     dailyIds.forEachIndexed { i, dailyId ->
-        weather.dailyForecast.getOrNull(i)?.let { daily ->
+        weather.dailyForecast.getOrNull(i)?.let {
             views.setTextViewText(
                 dailyId[0],
-                if (daily.isToday(location.timeZone)) {
+                if (it.isToday(location.timeZone)) {
                     context.getString(R.string.short_today)
-                } else daily.getWeek(context, location.timeZone)
+                } else it.getWeek(context, location.timeZone)
             )
-            daily.day?.weatherCode?.let {
-                views.setViewVisibility(dailyId[1], View.VISIBLE)
-                views.setImageViewUri(
-                    dailyId[1],
-                    ResourceHelper.getWidgetNotificationIconUri(
-                        provider,
-                        it,
-                        true,
-                        false,
-                        NotificationTextColor.LIGHT
-                    )
+        } ?: views.setTextViewText(dailyId[0], null)
+        weather.dailyForecast.getOrNull(i)?.day?.weatherCode?.let {
+            views.setViewVisibility(dailyId[1], View.VISIBLE)
+            views.setImageViewUri(
+                dailyId[1],
+                ResourceHelper.getWidgetNotificationIconUri(
+                    provider,
+                    it,
+                    true,
+                    false,
+                    NotificationTextColor.LIGHT
                 )
-            } ?: views.setViewVisibility(dailyId[1], View.INVISIBLE)
-            views.setTextViewText(
-                dailyId[2],
-                daily.day?.temperature?.getShortTemperature(context, temperatureUnit)
             )
-            views.setTextViewText(
-                dailyId[3],
-                daily.night?.temperature?.getShortTemperature(context, temperatureUnit)
-            )
-            daily.night?.weatherCode?.let {
-                views.setViewVisibility(dailyId[4], View.VISIBLE)
-                views.setImageViewUri(
-                    dailyId[4],
-                    ResourceHelper.getWidgetNotificationIconUri(
-                        provider,
-                        it,
-                        false,
-                        false,
-                        NotificationTextColor.LIGHT
-                    )
+        } ?: views.setViewVisibility(dailyId[1], View.INVISIBLE)
+        views.setTextViewText(
+            dailyId[2],
+            weather.dailyForecast.getOrNull(i)?.day?.temperature?.getShortTemperature(context, temperatureUnit)
+        )
+        views.setTextViewText(
+            dailyId[3],
+            weather.dailyForecast.getOrNull(i)?.night?.temperature?.getShortTemperature(context, temperatureUnit)
+        )
+        weather.dailyForecast.getOrNull(i)?.night?.weatherCode?.let {
+            views.setViewVisibility(dailyId[4], View.VISIBLE)
+            views.setImageViewUri(
+                dailyId[4],
+                ResourceHelper.getWidgetNotificationIconUri(
+                    provider,
+                    it,
+                    false,
+                    false,
+                    NotificationTextColor.LIGHT
                 )
-            } ?: views.setViewVisibility(dailyId[4], View.INVISIBLE)
-        } ?: run {
-            views.setViewVisibility(dailyId[1], View.INVISIBLE)
-            views.setViewVisibility(dailyId[4], View.INVISIBLE)
-        }
+            )
+        } ?: views.setViewVisibility(dailyId[4], View.INVISIBLE)
     }
 
     // pending intent.

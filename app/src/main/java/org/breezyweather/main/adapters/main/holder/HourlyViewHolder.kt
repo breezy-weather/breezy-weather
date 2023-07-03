@@ -10,6 +10,9 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.Minutely
+import org.breezyweather.common.extensions.getFormattedTime
+import org.breezyweather.common.extensions.is12Hour
+import org.breezyweather.common.extensions.isLandscape
 import org.breezyweather.common.ui.adapters.TagAdapter
 import org.breezyweather.common.ui.decorations.GridMarginsDecoration
 import org.breezyweather.common.ui.widgets.precipitationBar.PrecipitationBar
@@ -137,7 +140,7 @@ class HourlyViewHolder(
         trendRecyclerView.layoutManager =
             TrendHorizontalLinearLayoutManager(
                 context,
-                if (DisplayUtils.isLandscape(context)) 7 else 5
+                if (context.isLandscape) 7 else 5
             )
         trendRecyclerView.setLineColor(MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline))
         trendRecyclerView.adapter = trendAdapter
@@ -162,13 +165,13 @@ class HourlyViewHolder(
             }
 
             val size = minutelyList.size
-            minutelyStartText.text = DisplayUtils.getTime(context, minutelyList[0].date, location.timeZone)
-            minutelyCenterText.text = DisplayUtils.getTime(context, minutelyList[(size - 1) / 2].date, location.timeZone)
-            minutelyEndText.text = DisplayUtils.getTime(context, minutelyList[size - 1].date, location.timeZone)
+            minutelyStartText.text = minutelyList[0].date.getFormattedTime(location.timeZone, context.is12Hour)
+            minutelyCenterText.text = minutelyList[(size - 1) / 2].date.getFormattedTime(location.timeZone, context.is12Hour)
+            minutelyEndText.text = minutelyList[size - 1].date.getFormattedTime(location.timeZone, context.is12Hour)
             minutelyContainer.contentDescription =
                 activity.getString(R.string.precipitation_between_time)
-                    .replace("$1", DisplayUtils.getTime(context, minutelyList[0].date, location.timeZone))
-                    .replace("$2", DisplayUtils.getTime(context, minutelyList[size - 1].date, location.timeZone))
+                    .replace("$1", minutelyList[0].date.getFormattedTime(location.timeZone, context.is12Hour))
+                    .replace("$2", minutelyList[size - 1].date.getFormattedTime(location.timeZone, context.is12Hour))
         } else {
             minutelyContainer.visibility = View.GONE
         }

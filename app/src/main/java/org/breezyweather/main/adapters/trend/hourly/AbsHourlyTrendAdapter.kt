@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
+import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerViewAdapter
 import org.breezyweather.common.ui.widgets.trend.item.HourlyTrendItemView
@@ -25,10 +26,9 @@ abstract class AbsHourlyTrendAdapter(val activity: GeoActivity, location: Locati
             val context = itemView.context
             val weather = location.weather!!
             val hourly = weather.hourlyForecast[position]
-            talkBackBuilder.append(", ").append(hourly.getLongDate(context, location.timeZone))
-            hourlyItem.setDayText(hourly.getShortDate(context, location.timeZone))
+            hourlyItem.setDayText(hourly.date.getFormattedDate(location.timeZone, context.getString(R.string.date_format_short)))
             talkBackBuilder
-                .append(", ").append(hourly.getLongDate(activity, location.timeZone))
+                .append(", ").append(hourly.date.getFormattedDate(location.timeZone, context.getString(R.string.date_format_long)))
                 .append(", ").append(hourly.getHour(activity, location.timeZone))
             hourlyItem.setHourText(hourly.getHour(context, location.timeZone))
             val useAccentColorForDate = position == 0 || hourly.getHourIn24Format(location.timeZone) == 0

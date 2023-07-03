@@ -9,6 +9,7 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.unit.PollenUnit
 import org.breezyweather.common.basic.models.weather.Daily
+import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.databinding.ItemPollenDailyBinding
 import org.breezyweather.main.utils.MainThemeColorProvider
 
@@ -41,7 +42,7 @@ class HomePollenViewHolder internal constructor(
     fun onBindView(location: Location, daily: Daily, unit: PollenUnit) {
         val context = itemView.context
 
-        binding.title.text = daily.getDate(context.getString(R.string.date_format_widget_long), location.timeZone)
+        binding.title.text = daily.date.getFormattedDate(location.timeZone, context.getString(R.string.date_format_widget_long))
         binding.title.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorTitleText))
 
         daily.pollen?.let {

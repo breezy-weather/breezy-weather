@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import james.adaptiveicon.AdaptiveIcon
 import james.adaptiveicon.AdaptiveIconView
 import org.breezyweather.R
+import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.common.utils.helpers.load
@@ -68,7 +69,7 @@ class IconProviderAdapter // adapter.
             appStore.setOnClickListener { mListener.onAppStoreItemClicked("Geometric Weather Icon") }
             load(
                 gitHub,
-                if (DisplayUtils.isDarkMode(itemView.context)) R.drawable.ic_github_light else R.drawable.ic_github_dark
+                if (itemView.context.isDarkMode) R.drawable.ic_github_light else R.drawable.ic_github_dark
             )
             gitHub.setOnClickListener { mListener.onGitHubItemClicked("https://github.com/breezy-weather/breezy-weather-icon-packs/blob/main/README.md") }
             load(chronus, R.drawable.ic_chronus)

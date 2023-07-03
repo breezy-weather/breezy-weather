@@ -16,7 +16,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.core.widget.ImageViewCompat;
 
 import org.breezyweather.R;
-import org.breezyweather.common.utils.DisplayUtils;
+import org.breezyweather.common.extensions.DisplayExtensionsKt;
 
 public class SlidingItemContainerLayout extends FrameLayout {
 
@@ -47,8 +47,8 @@ public class SlidingItemContainerLayout extends FrameLayout {
     public SlidingItemContainerLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        int iconSize = (int) DisplayUtils.dpToPx(context, 56);
-        int iconPadding = (int) DisplayUtils.dpToPx(context, 16);
+        int iconSize = (int) DisplayExtensionsKt.dpToPx(context, 56);
+        int iconPadding = (int) DisplayExtensionsKt.dpToPx(context, 16);
 
         mIcon = new AppCompatImageView(context);
         mIcon.setPadding(iconPadding, iconPadding, iconPadding, iconPadding);
@@ -98,7 +98,7 @@ public class SlidingItemContainerLayout extends FrameLayout {
         if (totalX != 0) { // need to draw background and sliding icon.
             if (totalX * mSwipeX <= 0 || mUpdateFlag) { // need to set background and sliding icon.
                 mUpdateFlag = false;
-                if (DisplayUtils.isRtl(getContext())) {
+                if (DisplayExtensionsKt.isRtl(getContext())) {
                     mIcon.setImageResource(totalX < 0 ? mIconResStart : mIconResEnd);
                     mIcon.setImageTintList(ColorStateList.valueOf(totalX < 0 ? mTintColorStart : mTintColorEnd));
                     setBackgroundColor(totalX < 0 ? mBackgroundColorStart : mBackgroundColorEnd);

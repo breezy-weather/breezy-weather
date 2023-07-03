@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
+import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.common.utils.helpers.IntentHelper
@@ -53,7 +54,7 @@ object ProvidersPreviewerDialog {
         val listView = view.findViewById<RecyclerView>(R.id.dialog_providers_previewer_list)
         listView.layoutManager = LinearLayoutManager(activity)
         listView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            val elevation = DisplayUtils.dpToPx(activity, 2f)
+            val elevation = activity.dpToPx(2f)
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 if (!listView.canScrollVertically(-1)) {
                     listView.translationZ = 0f

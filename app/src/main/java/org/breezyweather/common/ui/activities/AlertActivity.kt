@@ -33,6 +33,9 @@ import org.breezyweather.theme.compose.DayNightTheme
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.weather.Alert
+import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.getFormattedTime
+import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.common.utils.helpers.AsyncHelper
 import java.util.*
@@ -56,38 +59,21 @@ class AlertActivity : GeoActivity() {
     private fun getAlertDate(context: Context, alert: Alert, timeZone: TimeZone): String {
         val builder = StringBuilder()
         if (alert.startDate != null) {
-            val startDateDay = DisplayUtils.getFormattedDate(
-                alert.startDate,
-                timeZone,
-                context.getString(R.string.date_format_long)
+            val startDateDay = alert.startDate.getFormattedDate(
+                timeZone, context.getString(R.string.date_format_long)
             )
             builder.append(startDateDay)
                 .append(", ")
-                .append(
-                    DisplayUtils.getFormattedDate(
-                        alert.startDate,
-                        timeZone,
-                        if (DisplayUtils.is12Hour(context)) "h:mm aa" else "HH:mm"
-                    )
-                )
+                .append(alert.startDate.getFormattedTime(timeZone, context.is12Hour))
             if (alert.endDate != null) {
                 builder.append(" — ")
-                val endDateDay = DisplayUtils.getFormattedDate(
-                    alert.endDate,
-                    timeZone,
-                    context.getString(R.string.date_format_long)
+                val endDateDay = alert.endDate.getFormattedDate(
+                    timeZone, context.getString(R.string.date_format_long)
                 )
                 if (startDateDay != endDateDay) {
-                    builder.append(endDateDay)
-                        .append(", ")
+                    builder.append(endDateDay).append(", ")
                 }
-                builder.append(
-                    DisplayUtils.getFormattedDate(
-                        alert.endDate,
-                        timeZone,
-                        if (DisplayUtils.is12Hour(context)) "h:mm aa" else "HH:mm"
-                    )
-                )
+                builder.append(alert.endDate.getFormattedTime(timeZone, context.is12Hour))
             }
         }
         return builder.toString()

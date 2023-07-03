@@ -27,6 +27,7 @@ import java.util.Set;
 import org.breezyweather.common.basic.models.Location;
 import org.breezyweather.common.basic.models.weather.Alert;
 import org.breezyweather.common.basic.models.weather.Weather;
+import org.breezyweather.common.extensions.DateExtensionsKt;
 import org.breezyweather.common.utils.helpers.IntentHelper;
 import org.breezyweather.remoteviews.presenters.notification.WidgetNotificationIMP;
 import org.breezyweather.R;
@@ -224,9 +225,11 @@ public class NotificationHelper {
                                 context,
                                 R.drawable.ic_precipitation,
                                 context.getString(R.string.precipitation_forecast),
-                                weather.getDailyForecast()
-                                        .get(0)
-                                        .getDate(context.getString(R.string.date_format_widget_long), location.getTimeZone()),
+                                DateExtensionsKt.getFormattedDate(
+                                        weather.getDailyForecast().get(0).getDate(),
+                                        location.getTimeZone(),
+                                        context.getString(R.string.date_format_widget_long)
+                                ),
                                 context.getString(
                                         isShortTermLiquid(weather)
                                                 ? R.string.notification_precipitation_short_term

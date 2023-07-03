@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.options.unit.PollenUnit
+import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.ui.widgets.Material3CardListItem
 import org.breezyweather.common.ui.widgets.Material3Scaffold
 import org.breezyweather.common.ui.widgets.generateCollapsedScrollBehavior
@@ -94,7 +95,7 @@ class AllergenActivity : GeoActivity() {
                             Column {
                                 Text(
                                     modifier = Modifier.padding(dimensionResource(R.dimen.normal_margin)),
-                                    text = daily.getDate(stringResource(R.string.date_format_widget_long), location.timeZone),
+                                    text = daily.date.getFormattedDate(location.timeZone, stringResource(R.string.date_format_widget_long)),
                                     color = DayNightTheme.colors.titleColor,
                                     fontWeight = FontWeight.Bold,
                                     style = MaterialTheme.typography.titleMedium,

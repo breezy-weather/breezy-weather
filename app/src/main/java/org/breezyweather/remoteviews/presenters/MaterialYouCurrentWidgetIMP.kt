@@ -21,13 +21,8 @@ class MaterialYouCurrentWidgetIMP: AbstractRemoteViewsPresenter() {
 
         @JvmStatic
         fun isEnabled(context: Context): Boolean {
-            return AppWidgetManager.getInstance(
-                context
-            ).getAppWidgetIds(
-                ComponentName(
-                    context,
-                    WidgetMaterialYouCurrentProvider::class.java
-                )
+            return AppWidgetManager.getInstance(context).getAppWidgetIds(
+                ComponentName(context, WidgetMaterialYouCurrentProvider::class.java)
             ).isNotEmpty()
         }
 
@@ -47,10 +42,7 @@ private fun buildRemoteViews(
     @LayoutRes layoutId: Int,
 ): RemoteViews {
 
-    val views = RemoteViews(
-        context.packageName,
-        layoutId
-    )
+    val views = RemoteViews(context.packageName, layoutId)
 
     val weather = location.weather
     val dayTime = location.isDaylight

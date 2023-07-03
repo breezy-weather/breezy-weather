@@ -37,6 +37,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import org.breezyweather.R
+import org.breezyweather.common.extensions.isRtl
 import org.breezyweather.common.utils.DisplayUtils
 import kotlin.math.ln
 
@@ -91,7 +92,7 @@ fun FitStatusBarTopAppBar(
     navigationIcon = {
         IconButton(onClick = onBackPressed) {
             Icon(
-                imageVector = if (DisplayUtils.isRtl(LocalContext.current)) Icons.Filled.ArrowForward else Icons.Filled.ArrowBack,
+                imageVector = if (LocalContext.current.isRtl) Icons.Filled.ArrowForward else Icons.Filled.ArrowBack,
                 contentDescription = stringResource(R.string.action_back),
                 tint = MaterialTheme.colorScheme.onPrimaryContainer,
             )

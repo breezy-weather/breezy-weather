@@ -33,33 +33,33 @@ import org.breezyweather.R;
 @RequiresApi(api = Build.VERSION_CODES.N_MR1)
 public class ShortcutsHelper {
 
-    public static void refreshShortcutsInNewThread(final Context c, List<Location> locationList) {
+    public static void refreshShortcutsInNewThread(final Context context, List<Location> locationList) {
         AsyncHelper.runOnIO(() -> {
-            ShortcutManager shortcutManager = c.getSystemService(ShortcutManager.class);
+            ShortcutManager shortcutManager = context.getSystemService(ShortcutManager.class);
             if (shortcutManager == null) {
                 return;
             }
 
-            List<Location> list = Location.excludeInvalidResidentLocation(c, locationList);
+            List<Location> list = Location.excludeInvalidResidentLocation(context, locationList);
             ResourceProvider provider = ResourcesProviderFactory.getNewInstance();
             List<ShortcutInfo> shortcutList = new ArrayList<>();
 
             // refresh button.
             Icon icon;
-            String title = c.getString(R.string.action_refresh);
+            String title = context.getString(R.string.action_refresh);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 icon = Icon.createWithAdaptiveBitmap(
                         drawableToBitmap(
                                 Objects.requireNonNull(
-                                        ContextCompat.getDrawable(c, R.drawable.shortcuts_refresh_foreground)
+                                        ContextCompat.getDrawable(context, R.drawable.shortcuts_refresh_foreground)
                                 )
                         )
                 );
             } else {
-                icon = Icon.createWithResource(c, R.drawable.shortcuts_refresh);
+                icon = Icon.createWithResource(context, R.drawable.shortcuts_refresh);
             }
             shortcutList.add(
-                    new ShortcutInfo.Builder(c, "refresh_data")
+                    new ShortcutInfo.Builder(context, "refresh_data")
                             .setIcon(icon)
                             .setShortLabel(title)
                             .setLongLabel(title)
@@ -92,10 +92,10 @@ public class ShortcutsHelper {
                     icon = getIcon(provider, WeatherCode.CLEAR, true);
                 }
 
-                title = list.get(i).isCurrentPosition() ? c.getString(R.string.location_current) : list.get(i).getCityName(c);
+                title = list.get(i).isCurrentPosition() ? context.getString(R.string.location_current) : list.get(i).getCityName(context);
 
                 shortcutList.add(
-                        new ShortcutInfo.Builder(c, list.get(i).getFormattedId())
+                        new ShortcutInfo.Builder(context, list.get(i).getFormattedId())
                                 .setIcon(icon)
                                 .setShortLabel(title)
                                 .setLongLabel(title)

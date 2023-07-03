@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import org.breezyweather.BreezyWeather
 import org.breezyweather.common.basic.insets.FitHorizontalSystemBarRootLayout
+import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.snackbar.SnackbarContainer
 import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.common.utils.LanguageUtils
@@ -83,9 +84,9 @@ abstract class GeoActivity : AppCompatActivity() {
             this,
             window,
             false,
-            !DisplayUtils.isDarkMode(this),
+            !this.isDarkMode,
             true,
-            !DisplayUtils.isDarkMode(this)
+            !this.isDarkMode
         )
     }
 
@@ -134,14 +135,14 @@ abstract class GeoActivity : AppCompatActivity() {
         BreezyWeather.instance.removeActivity(this)
     }
 
-    open val snackbarContainer: SnackbarContainer?
+    open val snackbarContainer: SnackbarContainer
         get() = SnackbarContainer(
             this,
             findViewById<ViewGroup>(R.id.content).getChildAt(0) as ViewGroup,
             true
         )
 
-    fun provideSnackbarContainer(): SnackbarContainer? = snackbarContainer
+    fun provideSnackbarContainer(): SnackbarContainer = snackbarContainer
 
     val isActivityCreated: Boolean
         get() = lifecycle.currentState.isAtLeast(Lifecycle.State.CREATED)

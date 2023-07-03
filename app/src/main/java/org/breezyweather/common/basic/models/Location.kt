@@ -110,22 +110,7 @@ class Location(
         }
 
         @JvmStatic
-        fun copy(
-            src: Location,
-            weather: Weather?,
-        ) = src.copy(
-            weather = weather
-        )
-
-        @JvmStatic
-        fun copy(
-            src: Location,
-            currentPosition: Boolean,
-            residentPosition: Boolean,
-        ) = src.copy(
-            isCurrentPosition = currentPosition,
-            isResidentPosition = residentPosition,
-        )
+        fun copy(src: Location, weather: Weather?) = src.copy(weather = weather)
 
         @JvmField
         val CREATOR = object : Parcelable.Creator<Location> {
@@ -183,7 +168,9 @@ class Location(
         longitude: Float? = null,
         timeZone: TimeZone? = null,
         country: String? = null,
+        countryCode: String? = null,
         province: String? = null,
+        provinceCode: String? = null,
         city: String? = null,
         district: String? = null,
         weather: Weather? = null,

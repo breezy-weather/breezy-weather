@@ -35,7 +35,7 @@ public class MultiCityWidgetIMP extends AbstractRemoteViewsPresenter {
 
         RemoteViews views = getRemoteViews(
                 context, locationList,
-                config.cardStyle, config.cardAlpha, config.textColor, config.textSize
+                config.getCardStyle(), config.getCardAlpha(), config.getTextColor(), config.getTextSize()
         );
 
         AppWidgetManager.getInstance(context).updateAppWidget(
@@ -62,7 +62,7 @@ public class MultiCityWidgetIMP extends AbstractRemoteViewsPresenter {
 
         RemoteViews views = new RemoteViews(
                 context.getPackageName(),
-                !color.showCard
+                !color.getShowCard()
                         ? R.layout.widget_multi_city_horizontal
                         : R.layout.widget_multi_city_horizontal_card
         );
@@ -233,13 +233,13 @@ public class MultiCityWidgetIMP extends AbstractRemoteViewsPresenter {
             views.setViewVisibility(R.id.widget_multi_city_horizontal_weather_3, View.GONE);
         }
 
-        if (color.textColor != Color.TRANSPARENT) {
-            views.setTextColor(R.id.widget_multi_city_horizontal_title_1, color.textColor);
-            views.setTextColor(R.id.widget_multi_city_horizontal_title_2, color.textColor);
-            views.setTextColor(R.id.widget_multi_city_horizontal_title_3, color.textColor);
-            views.setTextColor(R.id.widget_multi_city_horizontal_content_1, color.textColor);
-            views.setTextColor(R.id.widget_multi_city_horizontal_content_2, color.textColor);
-            views.setTextColor(R.id.widget_multi_city_horizontal_content_3, color.textColor);
+        if (color.getTextColor() != Color.TRANSPARENT) {
+            views.setTextColor(R.id.widget_multi_city_horizontal_title_1, color.getTextColor());
+            views.setTextColor(R.id.widget_multi_city_horizontal_title_2, color.getTextColor());
+            views.setTextColor(R.id.widget_multi_city_horizontal_title_3, color.getTextColor());
+            views.setTextColor(R.id.widget_multi_city_horizontal_content_1, color.getTextColor());
+            views.setTextColor(R.id.widget_multi_city_horizontal_content_2, color.getTextColor());
+            views.setTextColor(R.id.widget_multi_city_horizontal_content_3, color.getTextColor());
         }
 
         if (textSize != 100) {
@@ -256,10 +256,10 @@ public class MultiCityWidgetIMP extends AbstractRemoteViewsPresenter {
             views.setTextViewTextSize(R.id.widget_multi_city_horizontal_content_3, TypedValue.COMPLEX_UNIT_PX, contentSize);
         }
 
-        if (color.showCard) {
+        if (color.getShowCard()) {
             views.setImageViewResource(
                     R.id.widget_multi_city_horizontal_card,
-                    getCardBackgroundId(color.cardColor)
+                    getCardBackgroundId(color.getCardColor())
             );
             views.setInt(
                     R.id.widget_multi_city_horizontal_card,

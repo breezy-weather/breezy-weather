@@ -17,6 +17,7 @@ import androidx.annotation.Size;
 import androidx.core.graphics.ColorUtils;
 
 import org.breezyweather.R;
+import org.breezyweather.common.extensions.DisplayExtensionsKt;
 import org.breezyweather.common.ui.widgets.DayNightShaderWrapper;
 import org.breezyweather.common.utils.DisplayUtils;
 
@@ -97,14 +98,14 @@ public class PolylineAndHistogramView extends AbsChartItemView {
         setTextColors(Color.BLACK, Color.DKGRAY, Color.GRAY);
         setHistogramAlpha(0.33f);
 
-        mMarginTop = (int) DisplayUtils.dpToPx(getContext(), MARGIN_TOP_DIP);
-        mMarginBottom = (int) DisplayUtils.dpToPx(getContext(), MARGIN_BOTTOM_DIP);
-        mPolylineTextSize = (int) DisplayUtils.dpToPx(getContext(), POLYLINE_TEXT_SIZE_DIP);
-        mHistogramTextSize = (int) DisplayUtils.dpToPx(getContext(), HISTOGRAM_TEXT_SIZE_DIP);
-        mPolylineWidth = (int) DisplayUtils.dpToPx(getContext(), POLYLINE_SIZE_DIP);
-        mHistogramWidth = (int) DisplayUtils.dpToPx(getContext(), HISTOGRAM_WIDTH_DIP);
-        mChartLineWith = (int) DisplayUtils.dpToPx(getContext(), CHART_LINE_SIZE_DIP);
-        mTextMargin = (int) DisplayUtils.dpToPx(getContext(), TEXT_MARGIN_DIP);
+        mMarginTop = (int) DisplayExtensionsKt.dpToPx(getContext(), MARGIN_TOP_DIP);
+        mMarginBottom = (int) DisplayExtensionsKt.dpToPx(getContext(), MARGIN_BOTTOM_DIP);
+        mPolylineTextSize = (int) DisplayExtensionsKt.dpToPx(getContext(), POLYLINE_TEXT_SIZE_DIP);
+        mHistogramTextSize = (int) DisplayExtensionsKt.dpToPx(getContext(), HISTOGRAM_TEXT_SIZE_DIP);
+        mPolylineWidth = (int) DisplayExtensionsKt.dpToPx(getContext(), POLYLINE_SIZE_DIP);
+        mHistogramWidth = (int) DisplayExtensionsKt.dpToPx(getContext(), HISTOGRAM_WIDTH_DIP);
+        mChartLineWith = (int) DisplayExtensionsKt.dpToPx(getContext(), CHART_LINE_SIZE_DIP);
+        mTextMargin = (int) DisplayExtensionsKt.dpToPx(getContext(), TEXT_MARGIN_DIP);
 
         mPaint = new Paint();
         mPaint.setStrokeCap(Paint.Cap.ROUND);

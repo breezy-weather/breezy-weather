@@ -12,6 +12,8 @@ import org.breezyweather.BreezyWeather
 import org.breezyweather.BuildConfig
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.provider.WeatherSource
+import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.rxjava.ApiObserver
 import org.breezyweather.common.rxjava.ObserverContainer
 import org.breezyweather.common.rxjava.SchedulerTransformer
@@ -108,17 +110,18 @@ class MfWeatherService @Inject constructor(
                     || location.provinceCode == "63" || location.provinceCode == "69"
                     || location.provinceCode == "73" || location.provinceCode == "74")
         ) {
-            val c = DisplayUtils.toCalendarWithTimeZone(Date(), location.timeZone)
-            c.add(Calendar.DATE, 1)
-            c[Calendar.HOUR_OF_DAY] = 0
-            c[Calendar.MINUTE] = 0
-            c[Calendar.SECOND] = 0
-            c[Calendar.MILLISECOND] = 0
+            val calendar = Date().toCalendarWithTimeZone(location.timeZone).apply {
+                add(Calendar.DATE, 1)
+                set(Calendar.HOUR_OF_DAY, 0)
+                set(Calendar.MINUTE, 0)
+                set(Calendar.SECOND, 0)
+                set(Calendar.MILLISECOND, 0)
+            }
             mAtmoAuraApi.getPointDetails(
                 atmoAuraKey,
                 location.longitude.toDouble(),
                 location.latitude.toDouble(),  // Tomorrow because it gives access to D-1 and D+1
-                DisplayUtils.getFormattedDate(c.time, location.timeZone, "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+                calendar.time.getFormattedDate(location.timeZone, "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
             ).onErrorResumeNext {
                 Observable.create { emitter ->
                     emitter.onNext(AtmoAuraPointResult())

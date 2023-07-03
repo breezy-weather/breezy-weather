@@ -12,6 +12,7 @@ import android.view.MotionEvent;
 import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
 
+import org.breezyweather.common.extensions.DisplayExtensionsKt;
 import org.breezyweather.common.ui.widgets.trend.chart.AbsChartItemView;
 import org.breezyweather.R;
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView;
@@ -103,7 +104,7 @@ public class DailyTrendItemView extends AbsTrendItemView {
 
         setTextColor(Color.BLACK, Color.GRAY);
 
-        mIconSize = (int) DisplayUtils.dpToPx(getContext(), ICON_SIZE_DIP);
+        mIconSize = (int) DisplayExtensionsKt.dpToPx(getContext(), ICON_SIZE_DIP);
 
         mChartTop = 0;
         mChartBottom = 0;
@@ -116,8 +117,8 @@ public class DailyTrendItemView extends AbsTrendItemView {
 
         float y = 0;
         float consumedHeight;
-        float textMargin = DisplayUtils.dpToPx(getContext(), TEXT_MARGIN_DIP);
-        float iconMargin = DisplayUtils.dpToPx(getContext(), ICON_MARGIN_DIP);
+        float textMargin = DisplayExtensionsKt.dpToPx(getContext(), TEXT_MARGIN_DIP);
+        float iconMargin = DisplayExtensionsKt.dpToPx(getContext(), ICON_MARGIN_DIP);
 
         // week text.
         Paint.FontMetrics fontMetrics = mWeekTextPaint.getFontMetrics();
@@ -145,7 +146,7 @@ public class DailyTrendItemView extends AbsTrendItemView {
         consumedHeight = y;
 
         // margin bottom.
-        float marginBottom = DisplayUtils.dpToPx(
+        float marginBottom = DisplayExtensionsKt.dpToPx(
                 getContext(), TrendRecyclerView.ITEM_MARGIN_BOTTOM_DIP);
         consumedHeight += marginBottom;
 

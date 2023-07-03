@@ -182,6 +182,8 @@ public class WidgetHelper {
         }
     }
 
+    // TODO: Remove this function, see ClockDayWeekWidgetIMP, there is a simpler and more reliable way
+    // with daily.isToday(location.timeZone)
     public static String getDailyWeek(Context context, Weather weather, int index, TimeZone timeZone) {
         if (index > 1) {
             return weather.getDailyForecast().get(index).getWeek(context, timeZone);
@@ -217,10 +219,6 @@ public class WidgetHelper {
     }
 
     public static float getNonNullValue(Float value, float defaultValue) {
-        return value == null ? defaultValue : value;
-    }
-
-    public static int getNonNullValue(Integer value, int defaultValue) {
         return value == null ? defaultValue : value;
     }
 }

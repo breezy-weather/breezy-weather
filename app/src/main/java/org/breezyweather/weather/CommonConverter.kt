@@ -3,6 +3,7 @@ package org.breezyweather.weather
 import android.content.Context
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.weather.*
+import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.utils.DisplayUtils
 import java.util.*
 import kotlin.math.roundToInt
@@ -283,11 +284,11 @@ fun completeHourlyListFromDailyList(
 ): List<Hourly> {
     if (hourlyList.isEmpty() || dailyList.isEmpty()) return hourlyList
 
-    val dailyListByDate = dailyList.groupBy { DisplayUtils.getFormattedDate(it.date, timeZone, "yyyyMMdd") }
+    val dailyListByDate = dailyList.groupBy { it.date.getFormattedDate(timeZone, "yyyyMMdd") }
     val newHourlyList: MutableList<Hourly> = ArrayList(hourlyList.size)
     hourlyList.forEach { hourly ->
-        if (completeDaylight || (!completeDaylight && hourly.isDaylight)) {
-            val dateForHourFormatted = DisplayUtils.getFormattedDate(hourly.date, timeZone, "yyyyMMdd")
+        if (completeDaylight || hourly.isDaylight) {
+            val dateForHourFormatted = hourly.date.getFormattedDate(timeZone, "yyyyMMdd")
             dailyListByDate.getOrDefault(dateForHourFormatted, null)
                 ?.first()?.let { daily ->
                     if (daily.sun?.riseDate != null && daily.sun.setDate != null) {

@@ -10,6 +10,7 @@ import com.google.android.material.appbar.MaterialToolbar
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.weather.WeatherCode
+import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
 import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.common.utils.helpers.IntentHelper
@@ -78,7 +79,7 @@ class PreviewIconActivity : GeoActivity() {
         mItemList.add(WeatherIcon(mProvider!!, WeatherCode.HAZE, false))
         mItemList.add(WeatherIconAdapter.Line())
 
-        val darkMode = DisplayUtils.isDarkMode(this)
+        val darkMode = this.isDarkMode
         mItemList.add(WeatherIconAdapter.Title("Minimal " + getString(R.string.daytime)))
         mItemList.add(MinimalIcon(mProvider!!, WeatherCode.CLEAR, true, darkMode))
         mItemList.add(MinimalIcon(mProvider!!, WeatherCode.PARTLY_CLOUDY, true, darkMode))

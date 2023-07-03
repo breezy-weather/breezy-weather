@@ -26,6 +26,7 @@ import org.breezyweather.common.basic.GeoActivity;
 import org.breezyweather.common.basic.models.Location;
 import org.breezyweather.common.basic.models.weather.Daily;
 import org.breezyweather.common.basic.models.weather.Weather;
+import org.breezyweather.common.extensions.DateExtensionsKt;
 import org.breezyweather.common.ui.widgets.astro.MoonPhaseView;
 import org.breezyweather.common.ui.widgets.astro.SunMoonView;
 import org.breezyweather.theme.ThemeManager;
@@ -157,8 +158,8 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
         }
 
         if (mWeather.getDailyForecast().get(0).getSun() != null && mWeather.getDailyForecast().get(0).getSun().isValid()) {
-            String sunriseTime = mWeather.getDailyForecast().get(0).getSun().getRiseTime(context, mTimeZone);
-            String sunsetTime = mWeather.getDailyForecast().get(0).getSun().getSetTime(context, mTimeZone);
+            String sunriseTime = DateExtensionsKt.getFormattedTime(mWeather.getDailyForecast().get(0).getSun().getRiseDate(), mTimeZone, DateExtensionsKt.is12Hour(context));
+            String sunsetTime = DateExtensionsKt.getFormattedTime(mWeather.getDailyForecast().get(0).getSun().getSetDate(), mTimeZone, DateExtensionsKt.is12Hour(context));
 
             mSunContainer.setVisibility(View.VISIBLE);
             mSunTxt.setText(sunriseTime + "↑" + "\n" + sunsetTime + "↓");
@@ -173,8 +174,8 @@ public class AstroViewHolder extends AbstractMainCardViewHolder {
             mSunContainer.setVisibility(View.GONE);
         }
         if (mWeather.getDailyForecast().get(0).getMoon() != null && mWeather.getDailyForecast().get(0).getMoon().isValid()) {
-            String moonriseTime = mWeather.getDailyForecast().get(0).getMoon().getRiseTime(context, mTimeZone);
-            String moonsetTime = mWeather.getDailyForecast().get(0).getMoon().getSetTime(context, mTimeZone);
+            String moonriseTime = DateExtensionsKt.getFormattedTime(mWeather.getDailyForecast().get(0).getMoon().getRiseDate(), mTimeZone, DateExtensionsKt.is12Hour(context));
+            String moonsetTime = DateExtensionsKt.getFormattedTime(mWeather.getDailyForecast().get(0).getMoon().getSetDate(), mTimeZone, DateExtensionsKt.is12Hour(context));
 
             mMoonContainer.setVisibility(View.VISIBLE);
             mMoonTxt.setText(moonriseTime + "↑" + "\n" + moonsetTime + "↓");

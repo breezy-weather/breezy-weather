@@ -1,10 +1,12 @@
 <ul>
 <li>All notification channels are now declared on startup, so you can disable them before receiving at least one notification.</li>
+<li>Fix current location not working for some providers.</li>
 <li>Fix crash in daily view when air quality is not available.</li>
 <li>Fix readability for Update method setting.</li>
 <li>Fix Beijing sometimes being added as location.</li>
 <li>Fix semi colon spacing in Hourly dialog.</li>
 <li>Fix Today sometimes not showing on the right column in notification-widget</li>
-<li>Many null-safety checks added to avoid potential crashes</li>
+<li>Many null-safety checks added to avoid potential crashes, especially in widgets</li>
+<li>Fix tap on a day on week widget didn’t open day detail if view style was 5 days</li>
 <li>Translation updates, Vietnamese added (thanks minb!).</li>
 </ul>

@@ -6,6 +6,9 @@ import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.provider.WeatherSource
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.basic.models.weather.WeatherCode
+import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.getFormattedTime
+import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.utils.DisplayUtils
 
 class LocationModel(
@@ -44,39 +47,23 @@ class LocationModel(
                     }
                     builder.append(alert.description)
                     if (alert.startDate != null) {
-                        val startDateDay = DisplayUtils.getFormattedDate(
-                            alert.startDate,
-                            location.timeZone,
-                            context.getString(R.string.date_format_short)
+                        val startDateDay = alert.startDate.getFormattedDate(
+                            location.timeZone, context.getString(R.string.date_format_short)
                         )
                         builder.append(", ")
                             .append(startDateDay)
                             .append(", ")
-                            .append(
-                                DisplayUtils.getFormattedDate(
-                                    alert.startDate,
-                                    location.timeZone,
-                                    if (DisplayUtils.is12Hour(context)) "h:mm aa" else "HH:mm"
-                                )
-                            )
+                            .append(alert.startDate.getFormattedTime(location.timeZone, context.is12Hour))
                         if (alert.endDate != null) {
                             builder.append("-")
-                            val endDateDay = DisplayUtils.getFormattedDate(
-                                alert.endDate,
-                                location.timeZone,
-                                context.getString(R.string.date_format_short)
+                            val endDateDay = alert.endDate.getFormattedDate(
+                                location.timeZone, context.getString(R.string.date_format_short)
                             )
                             if (startDateDay != endDateDay) {
                                 builder.append(endDateDay)
                                     .append(", ")
                             }
-                            builder.append(
-                                DisplayUtils.getFormattedDate(
-                                    alert.endDate,
-                                    location.timeZone,
-                                    if (DisplayUtils.is12Hour(context)) "h:mm aa" else "HH:mm"
-                                )
-                            )
+                            builder.append(alert.endDate.getFormattedTime(location.timeZone, context.is12Hour))
                         }
                     }
                 }

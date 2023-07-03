@@ -11,6 +11,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
+import org.breezyweather.common.extensions.DisplayExtensionsKt;
 import org.breezyweather.common.ui.widgets.trend.chart.PolylineAndHistogramView;
 import org.breezyweather.R;
 import org.breezyweather.common.utils.DisplayUtils;
@@ -105,20 +106,20 @@ public class WidgetItemView extends ViewGroup {
 
         setColor(true);
 
-        mIconSize = (int) DisplayUtils.dpToPx(getContext(), ICON_SIZE_DIP);
+        mIconSize = (int) DisplayExtensionsKt.dpToPx(getContext(), ICON_SIZE_DIP);
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         float height = 0;
 
-        float textMargin = DisplayUtils.dpToPx(getContext(), TEXT_MARGIN_DIP);
-        float iconMargin = DisplayUtils.dpToPx(getContext(), ICON_MARGIN_DIP);
+        float textMargin = DisplayExtensionsKt.dpToPx(getContext(), TEXT_MARGIN_DIP);
+        float iconMargin = DisplayExtensionsKt.dpToPx(getContext(), ICON_MARGIN_DIP);
 
         // title text.
         if (mTitleText != null) {
             Paint.FontMetrics fontMetrics = mTitleTextPaint.getFontMetrics();
-            height += DisplayUtils.dpToPx(getContext(), MARGIN_VERTICAL_DIP);
+            height += DisplayExtensionsKt.dpToPx(getContext(), MARGIN_VERTICAL_DIP);
             mTitleTextBaseLine = height - fontMetrics.top;
             height += fontMetrics.bottom - fontMetrics.top;
             height += textMargin;
@@ -145,8 +146,8 @@ public class WidgetItemView extends ViewGroup {
         // trend item view.
         mTrendViewTop = height;
         int trendViewHeight = mBottomIconDrawable == null
-                ? (int) DisplayUtils.dpToPx(getContext(), TREND_VIEW_HEIGHT_DIP_1X)
-                : (int) DisplayUtils.dpToPx(getContext(), TREND_VIEW_HEIGHT_DIP_2X);
+                ? (int) DisplayExtensionsKt.dpToPx(getContext(), TREND_VIEW_HEIGHT_DIP_1X)
+                : (int) DisplayExtensionsKt.dpToPx(getContext(), TREND_VIEW_HEIGHT_DIP_2X);
         mTrend.measure(
                 MeasureSpec.makeMeasureSpec((int) mWidth, MeasureSpec.EXACTLY),
                 MeasureSpec.makeMeasureSpec(trendViewHeight, MeasureSpec.EXACTLY)
@@ -162,7 +163,7 @@ public class WidgetItemView extends ViewGroup {
         }
 
         // margin bottom.
-        height += (int) (DisplayUtils.dpToPx(getContext(), MARGIN_VERTICAL_DIP));
+        height += (int) (DisplayExtensionsKt.dpToPx(getContext(), MARGIN_VERTICAL_DIP));
 
         setMeasuredDimension((int) mWidth, (int) height);
     }

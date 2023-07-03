@@ -23,6 +23,7 @@ import androidx.annotation.Size;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.view.ViewCompat;
 
+import org.breezyweather.common.extensions.DisplayExtensionsKt;
 import org.breezyweather.common.ui.widgets.DayNightShaderWrapper;
 import org.breezyweather.common.utils.DisplayUtils;
 
@@ -103,11 +104,11 @@ public class SunMoonView extends View {
         mX2ShaderColors = new int[] {Color.BLACK, Color.WHITE};
         mRootColor = Color.WHITE;
 
-        mLineSize = DisplayUtils.dpToPx(getContext(), LINE_SIZE_DIP);
-        mDottedLineSize = DisplayUtils.dpToPx(getContext(), DOTTED_LINE_SIZE_DIP);
-        mMargin = DisplayUtils.dpToPx(getContext(), MARGIN_DIP);
+        mLineSize = DisplayExtensionsKt.dpToPx(getContext(), LINE_SIZE_DIP);
+        mDottedLineSize = DisplayExtensionsKt.dpToPx(getContext(), DOTTED_LINE_SIZE_DIP);
+        mMargin = DisplayExtensionsKt.dpToPx(getContext(), MARGIN_DIP);
 
-        iconSize = (int) DisplayUtils.dpToPx(getContext(), ICON_SIZE_DIP);
+        iconSize = (int) DisplayExtensionsKt.dpToPx(getContext(), ICON_SIZE_DIP);
 
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
@@ -119,8 +120,8 @@ public class SunMoonView extends View {
 
         mEffect = new DashPathEffect(
                 new float[] {
-                        DisplayUtils.dpToPx(getContext(), 3),
-                        2 * DisplayUtils.dpToPx(getContext(), 3)
+                        DisplayExtensionsKt.dpToPx(getContext(), 3),
+                        2 * DisplayExtensionsKt.dpToPx(getContext(), 3)
                 }, 0
         );
         mRectF = new RectF();

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
+import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerViewAdapter
 import org.breezyweather.common.ui.widgets.trend.item.DailyTrendItemView
@@ -35,8 +36,8 @@ abstract class AbsDailyTrendAdapter(val activity: GeoActivity, location: Locatio
                 talkBackBuilder.append(", ").append(daily.getWeek(context, location.timeZone))
                 dailyItem.setWeekText(daily.getWeek(context, location.timeZone))
             }
-            talkBackBuilder.append(", ").append(daily.getLongDate(context, location.timeZone))
-            dailyItem.setDateText(daily.getShortDate(context, location.timeZone))
+            talkBackBuilder.append(", ").append(daily.date.getFormattedDate(location.timeZone, context.getString(R.string.date_format_long)))
+            dailyItem.setDateText(daily.date.getFormattedDate(location.timeZone, context.getString(R.string.date_format_short)))
             dailyItem.setTextColor(
                 MainThemeColorProvider.getColor(location, R.attr.colorTitleText),
                 MainThemeColorProvider.getColor(location, R.attr.colorBodyText)
