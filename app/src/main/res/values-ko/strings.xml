@@ -261,7 +261,7 @@
     <string name="widget_clock_font_analog">아날로그</string>
     <!-- Weather kind -->
     <string name="weather_kind_clear">맑음</string>
-    <string name="weather_kind_partly_cloudy">약간 흐림</string>
+    <string name="weather_kind_partly_cloudy">구름 조금</string>
     <string name="weather_kind_cloudy">흐림</string>
     <string name="weather_kind_rain">비</string>
     <string name="weather_kind_snow">눈</string>
@@ -489,4 +489,20 @@
     <string name="settings_widgets_live_wallpaper_summary">날씨 애니메이션을 배경화면으로 설정</string>
     <string name="settings_widgets_section_notification_widget">알림 위젯</string>
     <string name="settings_widgets_notification_widget_title">알림 위젯</string>
+    <string name="air_quality_level_4_description">민감군에 즉각적인 영향을 미칠 수 있으며 건강한 사람들도 장시간 노출될 경우 호흡 곤란이나 목 자극 같은 증세를 보일 수 있습니다. 야외 활동을 자제하시기 바랍니다.</string>
+    <string name="air_quality_o3_voice">오존</string>
+    <string name="air_quality_co_voice">일산화탄소</string>
+    <string name="air_quality_level_1">완벽함</string>
+    <string name="air_quality_level_1_description">공기질이 대부분의 사람들에게 적합합니다. 일상적인 야외 활동을 하기에 좋습니다.</string>
+    <string name="air_quality_level_2">보통</string>
+    <string name="air_quality_level_2_description">공기질이 대부분의 사람들에게 대체로 적합합니다. 그러나 장시간 노출될 경우 민감군은 경미하거나 중간 수준의 관련 증상을 보일 수 있습니다.</string>
+    <string name="air_quality_level_3">나쁨</string>
+    <string name="air_quality_level_3_description">대기 오염이 심각한 상태이며 민감군에 유해합니다. 호흡 곤란이나 목 자극과 같은 증상이 발생할 경우 야외 활동 시간을 줄이시기 바랍니다.</string>
+    <string name="air_quality_level_4">건강에 해로움</string>
+    <string name="air_quality_level_6_description">건강 상태에 관계없이 모든 사람이 짧게라도 공기에 노출될 경우 심각한 영향을 받을 수 있습니다. 야외 활동을 피하시기 바랍니다.</string>
+    <string name="air_quality_so2_voice">이산화황</string>
+    <string name="air_quality_no2_voice">이산화질소</string>
+    <string name="air_quality_level_5">건강에 매우 해로움</string>
+    <string name="air_quality_level_5_description">민감군은 즉각적인 영향을 받을 수 있기 때문에 야외 활동을 피해야 합니다. 건강한 사람들도 호흡 곤란이나 목 자극 같은 증세를 보일 수 있습니다. 실내 활동을 하거나 야외 활동 시간을 조정하시기 바랍니다.</string>
+    <string name="air_quality_level_6">위험</string>
 </resources>
