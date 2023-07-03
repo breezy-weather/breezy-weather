@@ -93,7 +93,7 @@ android {
         ]
     }
     composeOptions {
-        kotlinCompilerExtensionVersion "1.4.7"
+        kotlinCompilerExtensionVersion "1.4.8"
     }
     testOptions {
         unitTests {
@@ -230,8 +230,8 @@ dependencies {
     implementation "io.reactivex.rxjava3:rxandroid:3.0.2"
 
     // ui.
-    implementation "com.github.papjul:BubbleSeekBar:v3.52"
-    implementation "com.github.papjul:AdaptiveIconView:v0.0.3"
+    implementation "com.github.breezy-weather:BubbleSeekBar:v3.52"
+    implementation "com.github.breezy-weather:AdaptiveIconView:v0.0.3"
     implementation "androidx.activity:activity-ktx:1.7.2"
     implementation 'com.github.giangpham96.expandable-text:expandable_text_compose:2.0.0'
 
