@@ -419,12 +419,12 @@
     <string name="settings_background_updates_method_description_notification">Notificação persistente
 \nMétodo mais confiável, mas requer que o aplicativo permaneça ativo em segundo plano.</string>
     <string name="settings_location_access_switch_summaryOff">Permita se quiser adicionar sua localização atual como um local.</string>
-    <string name="settings_location_access_background_summaryOff">Ative \"Permitir o tempo todo\" para ter atualizações em segundo plano para sua localização atual.</string>
-    <string name="settings_location_access_precise_summaryOff">Ative a opção \"Usar localização precisa\" se você tiver problemas para obter uma localização.</string>
+    <string name="settings_location_access_background_summaryOff">Ative “Permitir o tempo todo” para ter atualizações em segundo plano para sua localização atual.</string>
+    <string name="settings_location_access_precise_summaryOff">Ative a opção “Usar localização precisa” se você tiver problemas para obter uma localização.</string>
     <string name="settings_location_baidu_ip_location_ak">Chave da API do Baidu IP Location</string>
     <string name="settings_weather_providers">Provedor de dados metereológicos</string>
     <string name="settings_weather_provider_iqa_atmo_aura_key">Chave do ATMO AURA</string>
-    <string name="settings_units_summary">Temperatura, precipitação, distância, velocidade, pressão…</string>
+    <string name="settings_units_summary">Temperatura, precipitação, distância, velocidade, pressão</string>
     <string name="settings_main_background_animation_title">Animação de fundo</string>
     <string name="settings_main_header_details_title">Detalhes no cabeçalho</string>
     <string name="settings_main_section_animations">Animações</string>
@@ -487,7 +487,7 @@
     <string name="settings_debug">Depuração</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Instruções específicas do fabricante</string>
     <string name="settings_background_updates_method_notification_dialog_title">Desativar a categoria de notificação</string>
-    <string name="settings_background_updates_method_notification_dialog_content">Esse método adiciona uma notificação persistente que pode ser ocultada ao desativar a categoria de notificação \"$\" nas configurações do aplicativo no dispositivo.</string>
+    <string name="settings_background_updates_method_notification_dialog_content">Esse método adiciona uma notificação persistente que pode ser ocultada ao desativar a categoria de notificação “$” nas configurações do aplicativo no dispositivo.</string>
     <string name="weather_source_accu_preference_portal">Canal</string>
     <string name="weather_source_accu_preference_hours_24">24 horas</string>
     <string name="weather_source_accu_preference_hours_72">72 horas</string>

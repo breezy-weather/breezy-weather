@@ -325,7 +325,7 @@
     <string name="settings_icon_providers_weather_adaptive_icon">Biểu tượng thời tiết</string>
     <string name="settings_icon_providers_get_more_github">Lấy thêm từ GitHub</string>
     <string name="settings_units">Đơn vị</string>
-    <string name="settings_units_summary">Nhiệt độ, lượng mưa, khoảng cách, vận tốc, áp suất…</string>
+    <string name="settings_units_summary">Nhiệt độ, lượng mưa, khoảng cách, vận tốc, áp suất</string>
     <string name="settings_units_temperature">Đơn vị nhiệt độ</string>
     <string name="settings_units_precipitation">Đơn vị lượng mưa</string>
     <string name="settings_units_distance">Đơn vị khoảng cách</string>

@@ -438,7 +438,7 @@
     <string name="settings_icon_providers_get_more_store">Get more from app store</string>
     <string name="settings_icon_providers_get_more_github">Get more from GitHub</string>
     <string name="settings_units">Units</string>
-    <string name="settings_units_summary">Temperature, precipitation, distance, speed, pressure…</string>
+    <string name="settings_units_summary">Temperature, precipitation, distance, speed, pressure</string>
     <string name="settings_units_temperature">Temperature unit</string>
     <string name="settings_units_precipitation">Precipitation unit</string>
     <string name="settings_units_distance">Distance unit</string>

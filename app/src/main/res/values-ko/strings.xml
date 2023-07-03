@@ -309,7 +309,7 @@
     <string name="settings_weather_providers_current_location">현재 위치에 사용할 날씨 제공 업체</string>
     <string name="settings_weather_provider_accu_weather_key">AccuWeather 키</string>
     <string name="settings_weather_provider_iqa_atmo_aura_key">ATMO AURA 키</string>
-    <string name="settings_units_summary">온도, 강수, 거리, 속도, 기압…</string>
+    <string name="settings_units_summary">온도, 강수, 거리, 속도, 기압</string>
     <string name="settings_weather_provider_open_weather_one_call_version">OpenWeather OneCall 버전</string>
     <string name="settings_weather_provider_mf_wsft_key">Météo France WSFT 키</string>
     <string name="settings_background_updates_method_notification_dialog_content">이 방식은 지속 알림을 사용합니다. 기기 앱 설정의 알림 카테고리에서 “$” 를 끄면 알림을 숨길 수 있습니다.</string>

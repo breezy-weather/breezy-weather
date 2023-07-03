@@ -407,7 +407,7 @@
     <string name="settings_weather_provider_iqa_atmo_aura_key">Chiave ATMO AURA</string>
     <string name="settings_appearance_summary">Lingua, modalità scura, stile icone, unità di misura</string>
     <string name="settings_icon_providers_title">Pacchetti icone</string>
-    <string name="settings_units_summary">Temperatura, precipitazione, distanza, velocità, pressione…</string>
+    <string name="settings_units_summary">Temperatura, precipitazione, distanza, velocità, pressione</string>
     <string name="settings_main">Schermata principale</string>
     <string name="settings_main_section_options">Opzioni</string>
     <string name="settings_main_section_animations">Animazioni</string>

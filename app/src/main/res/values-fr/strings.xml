@@ -418,7 +418,7 @@
     <!-- Elements = temperature in header, AQI, sun &amp; moon arc, etc -->
     <string name="settings_main_cards_other_element_animations_switch">Autres animations d’éléments</string>
     <string name="settings_units">Unités</string>
-    <string name="settings_units_summary">Temperature, precipitation, distance, speed, pressure…</string>
+    <string name="settings_units_summary">Temperature, precipitation, distance, speed, pressure</string>
     <string name="settings_notifications">Notifications</string>
     <string name="settings_notifications_summary">Vigilances météo, précipitations, prévisions</string>
     <string name="settings_notifications_alerts_title">Notifications de vigilances</string>

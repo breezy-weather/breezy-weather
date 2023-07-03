@@ -513,7 +513,7 @@
     <string name="settings_background_updates_method_description_notification">持久化通知
 \n更可靠的方法，但是需要应用保持在前台。</string>
     <string name="settings_appearance_summary">语言、黑暗模式、图标包、单位</string>
-    <string name="settings_units_summary">温度、降水、距离、速度、压力……</string>
+    <string name="settings_units_summary">温度、降水、距离、速度、压力</string>
     <string name="settings_main">主界面</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">无法打开设备设置。</string>
     <string name="settings_background_updates_battery_optimization_disabled">电池用量优化已关闭。</string>

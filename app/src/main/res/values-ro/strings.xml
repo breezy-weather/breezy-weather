@@ -541,7 +541,7 @@
     <string name="settings_weather_providers_current_location">Furnizor de vreme pentru locația curentă</string>
     <string name="settings_icon_providers_title">Pachete de pictograme (icoane)</string>
     <string name="settings_icon_providers_weather_icon_light">Pictogramă luminoasă</string>
-    <string name="settings_units_summary">Temperatură, precipitații, distanță, viteză, presiune…</string>
+    <string name="settings_units_summary">Temperatură, precipitații, distanță, viteză, presiune</string>
     <string name="settings_main">Ecran principal</string>
     <string name="settings_main_summary">Ordinea cardurilor, articolele afișate, animații</string>
     <string name="settings_main_cards_title">Carduri</string>

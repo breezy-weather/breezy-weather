@@ -461,7 +461,7 @@
     <string name="settings_main_cards_fade_in_switch">Karten werden animiert eingeblendet</string>
     <string name="action_see_more">Mehr anzeigen</string>
     <string name="settings_weather_providers_current_location">Wetterdienst für aktuellen Standort</string>
-    <string name="settings_units_summary">Temperatur, Niederschlag, Entfernung, Geschwindigkeit, Druck…</string>
+    <string name="settings_units_summary">Temperatur, Niederschlag, Entfernung, Geschwindigkeit, Druck</string>
     <string name="settings_main">Hauptbildschirm</string>
     <string name="settings_widgets">Widgets &amp; Live-Hintergrund</string>
     <string name="settings_widgets_summary">Hintergrundbild festlegen, verwendete Widgets konfigurieren,
