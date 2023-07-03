@@ -58,7 +58,7 @@
     <string name="widget_label_text_size">Schriftgröße</string>
     <string name="notification_precipitation_today">Es kann Niederschlag auftreten.</string>
     <string name="message_updated_in_background">Im Hintergrund aktualisiert</string>
-    <string name="notification_updating_weather_data">Wetterdaten aktualisieren</string>
+    <string name="notification_updating_weather_data">Aktualisierung der Wetterdaten</string>
     <string name="widget_label_view_style">Ansicht</string>
     <string name="temperature_feels_like">Gefühlt</string>
     <string name="settings_follow_system">Systemstandard</string>
@@ -114,7 +114,7 @@
     <string name="settings_appearance_dark_mode_title">Dark Mode</string>
     <string name="settings_units_distance">Einheit Entfernung</string>
     <string name="settings_main_gravity_sensor_switch">Lagesensor</string>
-    <string name="settings_appearance_icon_pack_title">Symbolstil</string>
+    <string name="settings_appearance_icon_pack_title">Symbolpaket</string>
     <string name="settings_widgets_live_wallpaper_title">Live-Hintergrund</string>
     <string name="settings_location_service">Standortanbieter</string>
     <string name="settings_widgets_notification_temp_icon_switch">Temperatur in der Statusleiste anzeigen</string>
@@ -486,7 +486,7 @@
     <string name="settings_notifications">Benachrichtigungen</string>
     <string name="settings_main_cards_other_element_animations_switch">Animation weiterer Elemente</string>
     <string name="settings_widgets_day_night_temp_reversed_title">Reihenfolge der Tag-/Nachttemperaturen umkehren</string>
-    <string name="settings_appearance_summary">Sprache, Dunkelmodus, Icon Pack, Einheiten</string>
+    <string name="settings_appearance_summary">Sprache, Dunkelmodus, Symbolpaket, Einheiten</string>
     <string name="settings_notifications_summary">Wetterwarnungen, Niederschlag, Vorhersage</string>
     <string name="settings_widgets_notification_feels_like_switch">Gefühlte Temperatur verwenden</string>
     <string name="settings_main_section_displayed_data">Angezeigte Daten</string>
@@ -546,9 +546,9 @@
     <string name="action_location_list">Ortsliste</string>
     <string name="settings_location">Standort</string>
     <string name="settings_location_summary">Einstellungen der Standortanbieter</string>
-    <string name="action_undo" tools:ignore="ButtonCase">Rückgängig</string>
-    <string name="settings_location_access_switch_summaryOff">Bitte erlauben, wenn Sie Ihren aktuellen Standort als Standort hinzufügen möchten.</string>
-    <string name="settings_location_access_background_summaryOff">Bitte aktiviere „Immer zulassen“, um Hintergrundaktualisierungen den aktuellen Standort zu erhalten.</string>
+    <string name="action_undo" tools:ignore="ButtonCase">RÜCKGÄNGIG</string>
+    <string name="settings_location_access_switch_summaryOff">Bitte erlauben, wenn Sie Ihren aktuellen Standort als Ort hinzufügen möchten.</string>
+    <string name="settings_location_access_background_summaryOff">Bitte aktivieren Sie „Immer zulassen“, um Hintergrundaktualisierungen für Ihren aktuellen Standort zu erhalten.</string>
     <string name="settings_location_access_precise_title">GPS-Nutzung des Geräts</string>
     <string name="settings_location_access_precise_summaryOn">Aktiviert. Es werden sowohl das Netzwerk des Geräts als auch GPS-Anbieter verwendet.</string>
     <string name="settings_notifications_precipitations_title">Benachrichtigungen über Niederschläge</string>
@@ -556,9 +556,9 @@
     <string name="location_message_reverse_geocoding_failed">Wetterdienst konnte keinen passenden Ort finden</string>
     <string name="settings_location_access_switch_title">Standortzugriff</string>
     <string name="settings_location_access_background_summaryOn">Aktiviert. Die App kann die Wetterdaten für den aktuellen Standort im Hintergrund aktualisieren.</string>
-    <string name="settings_location_access_switch_summaryOn">Erlaubt. Der aktuelle Standort kann als Standort hinzufügen werden.</string>
+    <string name="settings_location_access_switch_summaryOn">Erlaubt. Der aktuelle Standort kann als Ort hinzufügen werden.</string>
     <string name="settings_location_access_background_title">Standortzugriff im Hintergrund</string>
-    <string name="settings_location_access_precise_summaryOff">Aktiviere „Genaue Position verwenden“, bei Problemen eine Position zu ermitteln.</string>
+    <string name="settings_location_access_precise_summaryOff">Aktivieren Sie „Genauen Standort verwenden“, wenn Sie Probleme bei der Standortermittlung haben.</string>
     <string name="settings_notifications_alerts_title">Benachrichtigungen über Wetterwarnungen</string>
     <string name="settings_notifications_forecast_today_title">Benachrichtigung über die Tagesprognose</string>
     <string name="settings_notifications_forecast_time_today_title">Benachrichtigungszeit für die Tagesprognose</string>
@@ -568,8 +568,8 @@
     <string name="settings_icon_providers_check_details">Details prüfen</string>
     <string name="settings_main_daily_trends_title">Tägliche Trends</string>
     <string name="settings_main_hourly_trends_title">Stündliche Trends</string>
-    <string name="settings_main_yesterday_alert_lines_in_trends">Gestern/Alarmlinien in Trends</string>
-    <string name="settings_items_drag_to_sort">Tippen und ziehen, um die Listenelemente zu Sortieren</string>
+    <string name="settings_main_yesterday_alert_lines_in_trends">Gestern/Warnlinien in Trends</string>
+    <string name="settings_items_drag_to_sort">Tippen und ziehen, um die Listenelemente zu sortieren</string>
     <string name="settings_item_delete">Diesen Eintrag löschen</string>
     <string name="notification_style_native">Nativ</string>
 </resources>
