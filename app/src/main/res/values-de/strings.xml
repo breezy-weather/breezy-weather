@@ -504,7 +504,7 @@
     <string name="weather_source_accu_preference_hours_24">24 Stunden</string>
     <string name="weather_source_accu_preference_hours_72">72 Stunden</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Geräteeinstellungen konnten nicht geöffnet werden.</string>
-    <string name="settings_background_updates_battery_optimization_summary">Der erste Schritt, der unternommen werden sollten, wenn Benachrichtigungen erhalten werden oder die Widgets nicht aktualisiert werden.</string>
+    <string name="settings_background_updates_battery_optimization_summary">Der erste Schritt, der unternommen werden sollte, wenn Sie keine Benachrichtigungen erhalten oder die Widgets nicht aktualisiert werden.</string>
     <string name="weather_api_key_required_missing_content">Um diesen Anbieter nutzen zu können, benötigen Sie einen API-Schlüssel.</string>
     <string name="weather_source_accu_preference_days_5">5 Tage</string>
     <string name="weather_source_accu_preference_days_1">1 Tag</string>
