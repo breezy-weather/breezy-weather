@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="about_app">Über</string>
     <string name="action_about">Über</string>
     <string name="alerts">Warnungen</string>
@@ -41,7 +41,7 @@
     <string name="widget_live_wallpaper_day_night_type">Zeit</string>
     <string name="widget_live_wallpaper_weather_kind">Wetter</string>
     <string name="location_message_failed_to_locate">Aktueller Standort konnte nicht gefunden werden</string>
-    <string name="location_dialog_failed_to_locate_title">Standort konnte nicht ermittelt werden!</string>
+    <string name="location_dialog_failed_to_locate_title">Standort kann nicht ermittelt werden\?</string>
     <string name="location_message_list_cannot_be_empty">Ortsliste darf nicht leer sein</string>
     <string name="location_current_not_found_yet">Aktueller Standort noch nicht gefunden…</string>
     <string name="location_resident_message">Als Wohnort festlegen</string>
@@ -504,7 +504,7 @@
     <string name="weather_source_accu_preference_hours_24">24 Stunden</string>
     <string name="weather_source_accu_preference_hours_72">72 Stunden</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Geräteeinstellungen konnten nicht geöffnet werden.</string>
-    <string name="settings_background_updates_battery_optimization_summary">Dies ist das Erste, was Sie versuchen sollten, wenn Sie keine Benachrichtigungen erhalten oder Widgets nicht aktualisiert werden.</string>
+    <string name="settings_background_updates_battery_optimization_summary">Der erste Schritt, der unternommen werden sollten, wenn Benachrichtigungen erhalten werden oder die Widgets nicht aktualisiert werden.</string>
     <string name="weather_api_key_required_missing_content">Um diesen Anbieter nutzen zu können, benötigen Sie einen API-Schlüssel.</string>
     <string name="weather_source_accu_preference_days_5">5 Tage</string>
     <string name="weather_source_accu_preference_days_1">1 Tag</string>
@@ -546,4 +546,30 @@
     <string name="action_location_list">Ortsliste</string>
     <string name="settings_location">Standort</string>
     <string name="settings_location_summary">Einstellungen der Standortanbieter</string>
+    <string name="action_undo" tools:ignore="ButtonCase">Rückgängig</string>
+    <string name="settings_location_access_switch_summaryOff">Bitte erlauben, wenn Sie Ihren aktuellen Standort als Standort hinzufügen möchten.</string>
+    <string name="settings_location_access_background_summaryOff">Bitte aktiviere „Immer zulassen“, um Hintergrundaktualisierungen den aktuellen Standort zu erhalten.</string>
+    <string name="settings_location_access_precise_title">GPS-Nutzung des Geräts</string>
+    <string name="settings_location_access_precise_summaryOn">Aktiviert. Es werden sowohl das Netzwerk des Geräts als auch GPS-Anbieter verwendet.</string>
+    <string name="settings_notifications_precipitations_title">Benachrichtigungen über Niederschläge</string>
+    <string name="settings_notifications_forecast_time_tomorrow_title">Benachrichtigungszeit für die Tagesprognose des nächsten Tages</string>
+    <string name="location_message_reverse_geocoding_failed">Wetterdienst konnte keinen passenden Ort finden</string>
+    <string name="settings_location_access_switch_title">Standortzugriff</string>
+    <string name="settings_location_access_background_summaryOn">Aktiviert. Die App kann die Wetterdaten für den aktuellen Standort im Hintergrund aktualisieren.</string>
+    <string name="settings_location_access_switch_summaryOn">Erlaubt. Der aktuelle Standort kann als Standort hinzufügen werden.</string>
+    <string name="settings_location_access_background_title">Standortzugriff im Hintergrund</string>
+    <string name="settings_location_access_precise_summaryOff">Aktiviere „Genaue Position verwenden“, bei Problemen eine Position zu ermitteln.</string>
+    <string name="settings_notifications_alerts_title">Benachrichtigungen über Wetterwarnungen</string>
+    <string name="settings_notifications_forecast_today_title">Benachrichtigung über die Tagesprognose</string>
+    <string name="settings_notifications_forecast_time_today_title">Benachrichtigungszeit für die Tagesprognose</string>
+    <string name="settings_notifications_forecast_tomorrow_title">Benachrichtigung für die Tagesprognose des nächsten Tages</string>
+    <string name="location_message_permission_missing">Standortberechtigung fehlt</string>
+    <string name="location_message_permission_background_missing">Berechtigung zum Zugriff auf Standort im Hintergrund fehlt</string>
+    <string name="settings_icon_providers_check_details">Details prüfen</string>
+    <string name="settings_main_daily_trends_title">Tägliche Trends</string>
+    <string name="settings_main_hourly_trends_title">Stündliche Trends</string>
+    <string name="settings_main_yesterday_alert_lines_in_trends">Gestern/Alarmlinien in Trends</string>
+    <string name="settings_items_drag_to_sort">Tippen und ziehen, um die Listenelemente zu Sortieren</string>
+    <string name="settings_item_delete">Diesen Eintrag löschen</string>
+    <string name="notification_style_native">Nativ</string>
 </resources>
