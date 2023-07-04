@@ -169,8 +169,8 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
     }
 
     override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {
-        if (enter && nextAnim != 0 && adapterAnimWrapper != null) {
-            adapterAnimWrapper!!.setLastPosition(-1)
+        if (enter && nextAnim != 0) {
+            adapterAnimWrapper?.setLastPosition(-1)
         }
         return super.onCreateAnimation(transit, enter, nextAnim)
     }

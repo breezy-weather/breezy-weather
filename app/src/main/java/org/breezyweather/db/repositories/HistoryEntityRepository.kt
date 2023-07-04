@@ -5,12 +5,11 @@ import org.breezyweather.common.basic.models.options.provider.WeatherSource
 import org.breezyweather.common.basic.models.weather.History
 import org.breezyweather.common.basic.models.weather.Weather
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
-import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.db.ObjectBox.boxStore
 import org.breezyweather.db.converters.WeatherSourceConverter
 import org.breezyweather.db.entities.HistoryEntity
 import org.breezyweather.db.entities.HistoryEntity_
-import org.breezyweather.db.generators.generate
+import org.breezyweather.db.generators.HistoryEntityGenerator
 import java.util.*
 
 object HistoryEntityRepository {
@@ -26,7 +25,7 @@ object HistoryEntityRepository {
 
     // select.
     fun readHistory(location: Location, weather: Weather): History? {
-        return generate(
+        return HistoryEntityGenerator.generate(
             selectYesterdayHistoryEntity(
                 location.cityId,
                 location.weatherSource,

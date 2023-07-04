@@ -22,7 +22,6 @@ import org.breezyweather.common.bus.EventBus
 import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.snackbar.SnackbarContainer
-import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.common.utils.helpers.ShortcutsHelper
@@ -33,8 +32,8 @@ import org.breezyweather.main.fragments.ManagementFragment
 import org.breezyweather.main.fragments.ModifyMainSystemBarMessage
 import org.breezyweather.main.fragments.PushedManagementFragment
 import org.breezyweather.main.utils.MainThemeColorProvider
-import org.breezyweather.remoteviews.NotificationHelper
-import org.breezyweather.remoteviews.WidgetHelper
+import org.breezyweather.remoteviews.Notifications
+import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.search.SearchActivity
 import org.breezyweather.settings.SettingsChangedMessage
 
@@ -114,7 +113,7 @@ class MainActivity : GeoActivity(),
 
             // update notification immediately.
             AsyncHelper.runOnIO {
-                NotificationHelper.updateNotificationIfNecessary(this, viewModel.validLocationList.value.first)
+                Notifications.updateNotificationIfNecessary(this, viewModel.validLocationList.value.first)
             }
             refreshBackgroundViews(
                 resetBackground = true,
@@ -225,7 +224,7 @@ class MainActivity : GeoActivity(),
                 viewModel.validLocationList.collect {
                     // update notification immediately.
                     AsyncHelper.runOnIO {
-                        NotificationHelper.updateNotificationIfNecessary(context, it.first)
+                        Notifications.updateNotificationIfNecessary(context, it.first)
                     }
                     refreshBackgroundViews(
                         resetBackground = false,
@@ -484,9 +483,9 @@ class MainActivity : GeoActivity(),
         locationList?.let {
             if (it.isNotEmpty()) {
                 AsyncHelper.delayRunOnIO({
-                    WidgetHelper.updateWidgetIfNecessary(this, it[0])
-                    NotificationHelper.updateNotificationIfNecessary(this, it)
-                    WidgetHelper.updateWidgetIfNecessary(this, it)
+                    Widgets.updateWidgetIfNecessary(this, it[0])
+                    Notifications.updateNotificationIfNecessary(this, it)
+                    Widgets.updateWidgetIfNecessary(this, it)
                 }, 1000)
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {

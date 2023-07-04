@@ -27,7 +27,7 @@ import org.breezyweather.theme.resource.providers.ResourceProvider
 import java.util.*
 
 object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
-    @JvmStatic
+
     fun buildNotificationAndSendIt(
         context: Context,
         locationList: List<Location>
@@ -169,7 +169,7 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
             if (current.airQuality != null && current.airQuality.isValid) {
                 setTextViewText(
                     R.id.notification_base_aqiAndWind,
-                    context.getString(R.string.air_quality) + " - " + current.airQuality.getName(context, null)
+                    context.getString(R.string.air_quality) + " - " + current.airQuality.getName(context)
                 )
             } else if (current.wind?.level != null) {
                 setTextViewText(
@@ -208,9 +208,7 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         )
 
         if (daily) {
-            val weekIconDaytime = isWeekIconDaytime(
-                SettingsManager.getInstance(context).widgetWeekIconMode, dayTime
-            )
+            val weekIconDaytime = isWeekIconDaytime(SettingsManager.getInstance(context).widgetWeekIconMode, dayTime)
 
             // Loop through 5 first days
             viewIds.forEachIndexed { i, viewId ->
@@ -279,7 +277,6 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         NotificationManagerCompat.from(context).cancel(Notifications.ID_WIDGET)
     }
 
-    @JvmStatic
     fun isEnabled(context: Context): Boolean {
         return SettingsManager.getInstance(context).isWidgetNotificationEnabled
     }

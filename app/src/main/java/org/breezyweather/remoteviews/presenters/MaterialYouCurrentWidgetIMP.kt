@@ -6,11 +6,11 @@ import android.content.Context
 import android.view.View
 import android.widget.RemoteViews
 import androidx.annotation.LayoutRes
-import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetMaterialYouCurrentProvider
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.NotificationTextColor
+import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.ResourcesProviderFactory
@@ -19,14 +19,12 @@ class MaterialYouCurrentWidgetIMP: AbstractRemoteViewsPresenter() {
 
     companion object {
 
-        @JvmStatic
         fun isEnabled(context: Context): Boolean {
             return AppWidgetManager.getInstance(context).getAppWidgetIds(
                 ComponentName(context, WidgetMaterialYouCurrentProvider::class.java)
             ).isNotEmpty()
         }
 
-        @JvmStatic
         fun updateWidgetView(context: Context, location: Location) {
             AppWidgetManager.getInstance(context).updateAppWidget(
                 ComponentName(context, WidgetMaterialYouCurrentProvider::class.java),
@@ -78,7 +76,7 @@ private fun buildRemoteViews(
         AbstractRemoteViewsPresenter.getWeatherPendingIntent(
             context,
             location,
-            BreezyWeather.WIDGET_MATERIAL_YOU_CURRENT_PENDING_INTENT_CODE_WEATHER
+            Widgets.MATERIAL_YOU_CURRENT_PENDING_INTENT_CODE_WEATHER
         )
     )
 

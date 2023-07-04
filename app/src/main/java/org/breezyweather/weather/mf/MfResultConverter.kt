@@ -1,6 +1,8 @@
 package org.breezyweather.weather.mf
 
 import android.content.Context
+import android.graphics.Color
+import androidx.annotation.ColorInt
 import org.breezyweather.BreezyWeather
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.provider.WeatherSource
@@ -8,22 +10,11 @@ import org.breezyweather.common.basic.models.weather.*
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toTimezoneNoHour
-import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.weather.*
-import org.breezyweather.weather.mf.json.atmoaura.AtmoAuraPointResult
-import org.breezyweather.weather.mf.json.MfCurrentResult
-import org.breezyweather.weather.mf.json.MfEphemeris
-import org.breezyweather.weather.mf.json.MfEphemerisResult
-import org.breezyweather.weather.mf.json.MfForecastResult
-import org.breezyweather.weather.mf.json.MfForecastDaily
-import org.breezyweather.weather.mf.json.MfForecastHourly
-import org.breezyweather.weather.mf.json.MfForecastProbability
-import org.breezyweather.weather.mf.json.MfRainResult
-import org.breezyweather.weather.mf.json.MfWarningsResult
 import org.breezyweather.weather.WeatherService.WeatherResultWrapper
-import java.util.Calendar
-import java.util.Date
-import java.util.TimeZone
+import org.breezyweather.weather.mf.json.*
+import org.breezyweather.weather.mf.json.atmoaura.AtmoAuraPointResult
+import java.util.*
 import kotlin.math.roundToInt
 
 fun convert(location: Location?, result: MfForecastResult): Location? {
@@ -374,15 +365,12 @@ private fun getMinutelyList(rainResult: MfRainResult?): List<Minutely> {
         minutelyList.add(
             Minutely(
                 rainForecast.time,
-                rainForecast.rainIntensityDescription,
-                if (rainForecast.rainIntensity != null && rainForecast.rainIntensity > 1) WeatherCode.RAIN else null,
                 if (i < rainResult.properties.rainForecasts.size - 1) {
                     ((rainResult.properties.rainForecasts[i + 1].time.time - rainForecast.time.time) / (60 * 1000)).toDouble()
                         .roundToInt()
                 } else ((rainForecast.time.time - rainResult.properties.rainForecasts[i - 1].time.time) / (60 * 1000)).toDouble()
                     .roundToInt(),
-                if (rainForecast.rainIntensity != null) getPrecipitationIntensity(rainForecast.rainIntensity) else null,
-                null
+                if (rainForecast.rainIntensity != null) getPrecipitationIntensity(rainForecast.rainIntensity) else null
             )
         )
     }
@@ -398,16 +386,15 @@ private fun getWarningsList(warningsResult: MfWarningsResult): List<Alert> {
                 alertList.add(
                     Alert(
                         // Create unique ID from alert type ID concatenated with start time
-                        (timelaps.phenomenonId + timelapsItem.beginTime.time.toString()).toLong(),
-                        timelapsItem.beginTime,
-                        timelapsItem.endTime,
-                        getWarningType(timelaps.phenomenonId) + " — " + getWarningText(timelapsItem.colorId),
-                        if (timelapsItem.colorId >= 3) getWarningContent(
-                            timelaps.phenomenonId,
-                            warningsResult
+                        alertId = (timelaps.phenomenonId + timelapsItem.beginTime.time.toString()).toLong(),
+                        startDate = timelapsItem.beginTime,
+                        endDate = timelapsItem.endTime,
+                        description = getWarningType(timelaps.phenomenonId) + " — " + getWarningText(timelapsItem.colorId),
+                        content = if (timelapsItem.colorId >= 3) getWarningContent(
+                            timelaps.phenomenonId, warningsResult
                         ) else null,
-                        getWarningType(timelaps.phenomenonId),
-                        timelapsItem.colorId.times(-1) // Reverse, as lower is better
+                        priority = timelapsItem.colorId.times(-1), // Reverse, as lower is better
+                        color = getWarningColor(timelapsItem.colorId)
                     )
                 )
             }
@@ -440,6 +427,15 @@ private fun getWarningText(colorId: Int): String = when (colorId) {
     3 -> "Soyez très vigilant"
     2 -> "Soyez attentif"
     else -> "Pas de vigilance particulière"
+}
+
+@ColorInt
+private fun getWarningColor(colorId: Int): Int? = when (colorId) {
+    4 -> Color.rgb(204, 0, 0)
+    3 -> Color.rgb(255, 184, 43)
+    2 -> Color.rgb(255, 246, 0)
+    1 -> Color.rgb(49, 170, 53)
+    else -> null
 }
 
 private fun getWarningContent(phenomenonId: String, warningsResult: MfWarningsResult): String? {

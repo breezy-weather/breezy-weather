@@ -21,12 +21,12 @@ class Temperature(
 
     companion object {
         fun getTemperature(context: Context, temperature: Int?, unit: TemperatureUnit): String? {
-            return if (temperature == null) null else unit.getValueText(context, temperature)
+            return temperature?.let { unit.getValueText(context, it) }
         }
 
         @JvmStatic
         fun getShortTemperature(context: Context, temperature: Int?, unit: TemperatureUnit): String? {
-            return if (temperature == null) null else unit.getShortValueText(context, temperature)
+            return temperature?.let { unit.getShortValueText(context, it) }
         }
 
         @JvmStatic
@@ -42,11 +42,9 @@ class Temperature(
                 return null
             }
             return if (switchDayNight) {
-                getShortTemperature(context, day, unit) + "/" +
-                        getShortTemperature(context, night, unit)
+                getShortTemperature(context, day, unit) + "/" + getShortTemperature(context, night, unit)
             } else {
-                getShortTemperature(context, night, unit) + "/" +
-                        getShortTemperature(context, day, unit)
+                getShortTemperature(context, night, unit) + "/" + getShortTemperature(context, day, unit)
             }
         }
     }

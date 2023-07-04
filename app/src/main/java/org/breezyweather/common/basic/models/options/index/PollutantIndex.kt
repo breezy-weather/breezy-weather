@@ -23,9 +23,9 @@ enum class PollutantIndex(
         val namesArrayId = R.array.air_quality_levels
         val colorsArrayId = R.array.air_quality_level_colors
 
-        @JvmStatic val indexFreshAir = aqiThresholds[1]
-        @JvmStatic val indexHighPollution = aqiThresholds[3]
-        @JvmStatic val indexExcessivePollution = aqiThresholds.last()
+        val indexFreshAir = aqiThresholds[1]
+        val indexHighPollution = aqiThresholds[3]
+        val indexExcessivePollution = aqiThresholds.last()
 
         fun getAqiToLevel(aqi: Int?): Int? {
             if (aqi == null) return null

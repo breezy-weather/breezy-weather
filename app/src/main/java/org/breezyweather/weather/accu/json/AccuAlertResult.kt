@@ -12,8 +12,8 @@ data class AccuAlertResult(
     val Category: String?,
     val Priority: Int,
     val Type: String?,
-    val TypeID: String?,
     val Level: String?,
+    val Color: AccuColor?,
     val Source: String?,
     val SourceId: Int,
     val Area: List<AccuAlertArea>?

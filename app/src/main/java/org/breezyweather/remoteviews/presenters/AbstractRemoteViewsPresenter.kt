@@ -108,7 +108,6 @@ abstract class AbstractRemoteViewsPresenter {
     companion object {
         private const val SUBTITLE_DAILY_ITEM_LENGTH = 5
 
-        @JvmStatic
         fun getWidgetConfig(context: Context, configStoreName: String): WidgetConfig {
             val widgetConfig = WidgetConfig()
             val configStore = ConfigStore(context, configStoreName)
@@ -155,7 +154,6 @@ abstract class AbstractRemoteViewsPresenter {
             return widgetConfig
         }
 
-        @JvmStatic
         @SuppressLint("MissingPermission")
         fun isLightWallpaper(context: Context): Boolean {
             return try {
@@ -172,7 +170,6 @@ abstract class AbstractRemoteViewsPresenter {
             }
         }
 
-        @JvmStatic
         @DrawableRes
         fun getCardBackgroundId(cardColor: WidgetColor.ColorType?): Int {
             return when (cardColor) {
@@ -182,7 +179,6 @@ abstract class AbstractRemoteViewsPresenter {
             }
         }
 
-        @JvmStatic
         fun isWeekIconDaytime(mode: WidgetWeekIconMode?, daytime: Boolean): Boolean {
             return when (mode) {
                 WidgetWeekIconMode.DAY -> true
@@ -191,7 +187,6 @@ abstract class AbstractRemoteViewsPresenter {
             }
         }
 
-        @JvmStatic
         @SuppressLint("InlinedApi")
         fun getWeatherPendingIntent(context: Context, location: Location?, requestCode: Int): PendingIntent {
             return PendingIntent.getActivity(
@@ -202,7 +197,6 @@ abstract class AbstractRemoteViewsPresenter {
             )
         }
 
-        @JvmStatic
         @SuppressLint("InlinedApi")
         fun getDailyForecastPendingIntent(
             context: Context, location: Location?, index: Int, requestCode: Int
@@ -215,7 +209,6 @@ abstract class AbstractRemoteViewsPresenter {
             )
         }
 
-        @JvmStatic
         @SuppressLint("InlinedApi")
         fun getAlarmPendingIntent(context: Context, requestCode: Int): PendingIntent {
             return PendingIntent.getActivity(
@@ -226,7 +219,6 @@ abstract class AbstractRemoteViewsPresenter {
             )
         }
 
-        @JvmStatic
         @SuppressLint("InlinedApi")
         fun getCalendarPendingIntent(context: Context, requestCode: Int): PendingIntent {
             val builder = CalendarContract.CONTENT_URI.buildUpon()
@@ -240,12 +232,10 @@ abstract class AbstractRemoteViewsPresenter {
             )
         }
 
-        @JvmStatic
         fun drawableToBitmap(drawable: Drawable): Bitmap {
             return DisplayUtils.drawableToBitmap(drawable)
         }
 
-        @JvmStatic
         fun getCustomSubtitle(
             context: Context, subtitleP: String?, location: Location, weather: Weather
         ): String {

@@ -1,5 +1,6 @@
 <ul>
 <li>All notification channels are now declared on startup, so you can disable them before receiving at least one notification.</li>
+<li>Add precipitations in next hour for China provider.</li>
 <li>Fix current location not working for some providers.</li>
 <li>Fix crash in daily view when air quality is not available.</li>
 <li>Fix readability for Update method setting.</li>

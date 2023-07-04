@@ -6,15 +6,15 @@ import android.content.Context
 import android.util.TypedValue
 import android.widget.RemoteViews
 import androidx.core.content.ContextCompat
-import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetTextProvider
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.extensions.spToPx
+import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.settings.SettingsManager
 
 object TextWidgetIMP : AbstractRemoteViewsPresenter() {
-    @JvmStatic
+
     fun updateWidgetView(context: Context, location: Location) {
         val config = getWidgetConfig(context, context.getString(R.string.sp_widget_text_setting))
         val views = getRemoteViews(context, location, config.textColor, config.textSize, config.alignEnd)
@@ -66,7 +66,6 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
         return views
     }
 
-    @JvmStatic
     fun isInUse(context: Context): Boolean {
         val widgetIds = AppWidgetManager.getInstance(context)
             .getAppWidgetIds(ComponentName(context, WidgetTextProvider::class.java))
@@ -78,7 +77,7 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
         views.setOnClickPendingIntent(
             R.id.widget_text_container,
             getWeatherPendingIntent(
-                context, location, BreezyWeather.WIDGET_TEXT_PENDING_INTENT_CODE_WEATHER
+                context, location, Widgets.TEXT_PENDING_INTENT_CODE_WEATHER
             )
         )
 
@@ -86,7 +85,7 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
         views.setOnClickPendingIntent(
             R.id.widget_text_date,
             getCalendarPendingIntent(
-                context, BreezyWeather.WIDGET_TEXT_PENDING_INTENT_CODE_CALENDAR
+                context, Widgets.TEXT_PENDING_INTENT_CODE_CALENDAR
             )
         )
     }

@@ -32,6 +32,7 @@ import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.resource.providers.ResourceProvider
 import org.breezyweather.theme.weatherView.WeatherView
 import kotlin.math.abs
+import kotlin.math.max
 
 class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMainViewHolder(
     LayoutInflater
@@ -71,7 +72,7 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
                 mTemperature.setEnableAnim(itemAnimationEnabled)
                 mTemperature.setDuration(
                     // no longer than 2 seconds.
-                    2000f.coerceAtMost(abs(mTemperatureCTo - mTemperatureCFrom) / 10f * 1000).toLong()
+                    max(2000f, abs(mTemperatureCTo - mTemperatureCFrom) / 10f * 1000).toLong()
                 )
                 mTemperatureUnitView.text = mTemperatureUnit!!.getName(context)
             }

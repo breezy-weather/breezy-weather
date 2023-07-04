@@ -41,9 +41,9 @@ class DailyAirQualityAdapter(activity: GeoActivity, location: Location) : AbsDai
             super.onBindView(activity, location, talkBackBuilder, position)
             val daily = location.weather!!.dailyForecast[position]
             daily.airQuality?.let { airQuality ->
-                val index = airQuality.getIndex(null)
+                val index = airQuality.getIndex()
                 talkBackBuilder.append(", ").append(index).append(", ")
-                    .append(airQuality.getName(itemView.context, null))
+                    .append(airQuality.getName(itemView.context))
                 mPolylineAndHistogramView.setData(
                     null, null,
                     null, null,

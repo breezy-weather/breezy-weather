@@ -70,8 +70,8 @@ class DailyTemperatureAdapter(
             daily.day?.weatherCode?.let {
                 dailyItem.setDayIconDrawable(ResourceHelper.getWeatherIcon(mResourceProvider, it, true))
             }
-            val daytimePrecipitationProbability: Float? = daily.day?.precipitationProbability?.total
-            val nighttimePrecipitationProbability: Float? = daily.night?.precipitationProbability?.total
+            val daytimePrecipitationProbability = daily.day?.precipitationProbability?.total
+            val nighttimePrecipitationProbability = daily.night?.precipitationProbability?.total
             var p: Float = max(
                 daytimePrecipitationProbability ?: 0f,
                 nighttimePrecipitationProbability ?: 0f
@@ -116,14 +116,8 @@ class DailyTemperatureAdapter(
                 MainThemeColorProvider.getColor(location, R.attr.colorPrecipitationProbability)
             )
             mPolylineAndHistogramView.setHistogramAlpha(if (lightTheme) 0.2f else 0.5f)
-            if (daily.night?.weatherCode != null) {
-                dailyItem.setNightIconDrawable(
-                    ResourceHelper.getWeatherIcon(
-                        mResourceProvider,
-                        daily.night.weatherCode,
-                        false
-                    )
-                )
+            daily.night?.weatherCode?.let {
+                dailyItem.setNightIconDrawable(ResourceHelper.getWeatherIcon(mResourceProvider, it, false))
             }
             dailyItem.contentDescription = talkBackBuilder.toString()
         }
@@ -191,19 +185,18 @@ class DailyTemperatureAdapter(
             mHighestTemperature = yesterday.daytimeTemperature
             mLowestTemperature = yesterday.nighttimeTemperature
         }
-        weather.dailyForecast
-            .forEach { daily ->
-                daily.day?.temperature?.temperature?.let {
-                    if (mHighestTemperature == null || it > mHighestTemperature!!) {
-                        mHighestTemperature = it
-                    }
-                }
-                daily.night?.temperature?.temperature?.let {
-                    if (mLowestTemperature == null || it < mLowestTemperature!!) {
-                        mLowestTemperature = it
-                    }
+        weather.dailyForecast.forEach { daily ->
+            daily.day?.temperature?.temperature?.let {
+                if (mHighestTemperature == null || it > mHighestTemperature!!) {
+                    mHighestTemperature = it
                 }
             }
+            daily.night?.temperature?.temperature?.let {
+                if (mLowestTemperature == null || it < mLowestTemperature!!) {
+                    mLowestTemperature = it
+                }
+            }
+        }
         mShowPrecipitationProbability = showPrecipitationProbability
     }
 

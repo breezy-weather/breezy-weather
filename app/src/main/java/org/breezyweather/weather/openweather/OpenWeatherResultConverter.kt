@@ -205,13 +205,10 @@ private fun getMinutelyList(minutelyResult: List<OpenWeatherOneCallMinutely>?): 
         minutelyList.add(
             Minutely(
                 Date(minutelyForecast.dt * 1000),
-                "",
-                if (minutelyForecast.precipitation != null && minutelyForecast.precipitation > 0) WeatherCode.RAIN else null,
                 if (i < minutelyResult.size - 1) {
                     ((minutelyResult[i + 1].dt - minutelyForecast.dt) / 60).toDouble().roundToInt()
                 } else ((minutelyForecast.dt - minutelyResult[i - 1].dt) / 60).toDouble().roundToInt(),
-                minutelyForecast.precipitation?.toDouble(),
-                null
+                minutelyForecast.precipitation?.toDouble()
             )
         )
     }
@@ -247,18 +244,16 @@ private fun getAlertList(resultList: List<OpenWeatherOneCallAlert>?): List<Alert
         for (result in resultList) {
             alertList.add(
                 Alert(
-                    result.start, // TODO: Avoid having the same ID for two different alerts starting at the same time
-                    Date(result.start.times(1000)),
-                    Date(result.end.times(1000)),
-                    result.event,
-                    result.description,
-                    result.event,
-                    1 // Does not exist
+                    // TODO: Avoid having the same ID for two different alerts starting at the same time
+                    alertId = result.start,
+                    startDate = Date(result.start.times(1000)),
+                    endDate = Date(result.end.times(1000)),
+                    description = result.event ?: "",
+                    content = result.description,
+                    priority = 1 // Does not exist
                 )
             )
         }
-        // TODO: Avoid doing that, if there are multiple alerts for the same type, they usually are for different times
-        //Alert.deduplication(alertList)
         alertList
     } else {
         emptyList()

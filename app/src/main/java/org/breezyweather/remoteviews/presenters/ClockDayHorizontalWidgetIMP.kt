@@ -7,11 +7,11 @@ import android.graphics.Color
 import android.util.TypedValue
 import android.view.View
 import android.widget.RemoteViews
-import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetClockDayHorizontalProvider
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.utils.helpers.LunarHelper
+import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.ResourcesProviderFactory
@@ -19,7 +19,6 @@ import java.util.*
 
 object ClockDayHorizontalWidgetIMP : AbstractRemoteViewsPresenter() {
 
-    @JvmStatic
     fun updateWidgetView(context: Context, location: Location) {
         val config = getWidgetConfig(context, context.getString(R.string.sp_widget_clock_day_horizontal_setting))
         val views = getRemoteViews(
@@ -129,12 +128,9 @@ object ClockDayHorizontalWidgetIMP : AbstractRemoteViewsPresenter() {
         return views
     }
 
-    @JvmStatic
     fun isInUse(context: Context): Boolean {
         val widgetIds = AppWidgetManager.getInstance(context)
-            .getAppWidgetIds(
-                ComponentName(context, WidgetClockDayHorizontalProvider::class.java)
-            )
+            .getAppWidgetIds(ComponentName(context, WidgetClockDayHorizontalProvider::class.java))
         return widgetIds != null && widgetIds.isNotEmpty()
     }
 
@@ -143,7 +139,7 @@ object ClockDayHorizontalWidgetIMP : AbstractRemoteViewsPresenter() {
         views.setOnClickPendingIntent(
             R.id.widget_clock_day_weather,
             getWeatherPendingIntent(
-                context, location,BreezyWeather.WIDGET_CLOCK_DAY_HORIZONTAL_PENDING_INTENT_CODE_WEATHER
+                context, location, Widgets.CLOCK_DAY_HORIZONTAL_PENDING_INTENT_CODE_WEATHER
             )
         )
 
@@ -151,19 +147,19 @@ object ClockDayHorizontalWidgetIMP : AbstractRemoteViewsPresenter() {
         views.setOnClickPendingIntent(
             R.id.widget_clock_day_clock_light,
             getAlarmPendingIntent(
-                context, BreezyWeather.WIDGET_CLOCK_DAY_HORIZONTAL_PENDING_INTENT_CODE_CLOCK_LIGHT
+                context, Widgets.CLOCK_DAY_HORIZONTAL_PENDING_INTENT_CODE_CLOCK_LIGHT
             )
         )
         views.setOnClickPendingIntent(
             R.id.widget_clock_day_clock_normal,
             getAlarmPendingIntent(
-                context, BreezyWeather.WIDGET_CLOCK_DAY_HORIZONTAL_PENDING_INTENT_CODE_CLOCK_NORMAL
+                context, Widgets.CLOCK_DAY_HORIZONTAL_PENDING_INTENT_CODE_CLOCK_NORMAL
             )
         )
         views.setOnClickPendingIntent(
             R.id.widget_clock_day_clock_black,
             getAlarmPendingIntent(
-                context, BreezyWeather.WIDGET_CLOCK_DAY_HORIZONTAL_PENDING_INTENT_CODE_CLOCK_BLACK
+                context, Widgets.CLOCK_DAY_HORIZONTAL_PENDING_INTENT_CODE_CLOCK_BLACK
             )
         )
 
@@ -171,7 +167,7 @@ object ClockDayHorizontalWidgetIMP : AbstractRemoteViewsPresenter() {
         views.setOnClickPendingIntent(
             R.id.widget_clock_day_title,
             getCalendarPendingIntent(
-                context, BreezyWeather.WIDGET_CLOCK_DAY_HORIZONTAL_PENDING_INTENT_CODE_CALENDAR
+                context, Widgets.CLOCK_DAY_HORIZONTAL_PENDING_INTENT_CODE_CALENDAR
             )
         )
     }

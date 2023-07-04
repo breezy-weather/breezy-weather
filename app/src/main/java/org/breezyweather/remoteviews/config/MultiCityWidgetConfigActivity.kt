@@ -14,7 +14,8 @@ import org.breezyweather.remoteviews.presenters.MultiCityWidgetIMP
  */
 @AndroidEntryPoint
 class MultiCityWidgetConfigActivity : AbstractWidgetConfigActivity() {
-    private var locationList: MutableList<Location>? = null
+    private var locationList = mutableListOf<Location>()
+
     override fun initData() {
         super.initData()
         locationList = readLocationList(this).map {

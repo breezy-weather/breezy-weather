@@ -10,12 +10,12 @@ import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.db.repositories.LocationEntityRepository.readLocationList
 import org.breezyweather.db.repositories.WeatherEntityRepository.readWeather
-import org.breezyweather.remoteviews.NotificationHelper
-import org.breezyweather.remoteviews.WidgetHelper
+import org.breezyweather.remoteviews.Notifications
+import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.settings.SettingsManager
 
 object PollingManager {
-    @JvmStatic
+
     fun resetAllBackgroundTask(context: Context, forceRefresh: Boolean) {
         val settings = SettingsManager.getInstance(context)
         if (forceRefresh) {
@@ -82,7 +82,6 @@ object PollingManager {
         }
     }
 
-    @JvmStatic
     fun resetTodayForecastBackgroundTask(context: Context, forceRefresh: Boolean, nextDay: Boolean) {
         val settings = SettingsManager.getInstance(context)
         if (forceRefresh) {
@@ -113,7 +112,6 @@ object PollingManager {
         }
     }
 
-    @JvmStatic
     fun resetTomorrowForecastBackgroundTask(context: Context, forceRefresh: Boolean, nextDay: Boolean) {
         val settings = SettingsManager.getInstance(context)
         if (forceRefresh) {
@@ -151,9 +149,9 @@ object PollingManager {
                 for (i in locationList.indices) {
                     locationList[i] = locationList[i].copy(weather = readWeather(locationList[i]))
                 }
-                WidgetHelper.updateWidgetIfNecessary(context, locationList[0])
-                WidgetHelper.updateWidgetIfNecessary(context, locationList)
-                NotificationHelper.updateNotificationIfNecessary(context, locationList)
+                Widgets.updateWidgetIfNecessary(context, locationList[0])
+                Widgets.updateWidgetIfNecessary(context, locationList)
+                Notifications.updateNotificationIfNecessary(context, locationList)
             }
             WorkerHelper.setExpeditedPollingWork(context)
         } else {

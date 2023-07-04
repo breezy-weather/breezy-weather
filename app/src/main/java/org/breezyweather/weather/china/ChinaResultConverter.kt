@@ -1,21 +1,21 @@
 package org.breezyweather.weather.china
 
 import android.content.Context
+import android.graphics.Color
 import androidx.annotation.ColorInt
 import org.breezyweather.BreezyWeather
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.*
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
-import org.breezyweather.common.utils.DisplayUtils
+import org.breezyweather.weather.WeatherService.WeatherResultWrapper
+import org.breezyweather.weather.china.json.ChinaForecastResult
+import org.breezyweather.weather.china.json.ChinaMinutelyResult
 import org.breezyweather.weather.getHoursOfDay
 import org.breezyweather.weather.getWindDirection
 import org.breezyweather.weather.getWindLevel
 import org.breezyweather.weather.isDaylight
-import org.breezyweather.weather.china.json.ChinaForecastResult
-import org.breezyweather.weather.china.json.ChinaMinutelyResult
-import org.breezyweather.weather.WeatherService.WeatherResultWrapper
 import java.util.*
-import kotlin.collections.ArrayList
+
 
 fun convert(
     context: Context, location: Location,
@@ -71,8 +71,6 @@ fun convert(
             ),
             minutelyForecast = getMinutelyList(
                 location.timeZone,
-                getWeatherText(forecastResult.current.weather),
-                getWeatherCode(forecastResult.current.weather),
                 minutelyResult
             ),
             alertList = getAlertList(forecastResult)
@@ -238,8 +236,6 @@ private fun getHourlyList(
 
 private fun getMinutelyList(
     timeZone: TimeZone,
-    currentWeatherText: String,
-    currentWeatherCode: WeatherCode?,
     minutelyResult: ChinaMinutelyResult
 ): List<Minutely> {
     if (minutelyResult.precipitation == null || minutelyResult.precipitation.value.isNullOrEmpty()) return emptyList()
@@ -247,58 +243,21 @@ private fun getMinutelyList(
     val current = minutelyResult.precipitation.pubTime ?: return emptyList()
     val minutelyList: MutableList<Minutely> = ArrayList(minutelyResult.precipitation.value.size)
 
-    minutelyResult.precipitation.value.forEach { precipitation ->
+    minutelyResult.precipitation.value.forEachIndexed { minute, precipitation ->
         val calendar = current.toCalendarWithTimeZone(timeZone).apply {
             set(Calendar.SECOND, 0)
             set(Calendar.MILLISECOND, 0)
+            add(Calendar.MINUTE, minute)
         }
         minutelyList.add(
             Minutely(
                 calendar.time,
-                getMinuteWeatherText(
-                    precipitation,
-                    currentWeatherText,
-                    currentWeatherCode
-                ),
-                getMinuteWeatherCode(
-                    precipitation,
-                    currentWeatherCode
-                ),
                 1,
-                null as Int?,
-                null
+                precipitation
             )
         )
     }
     return minutelyList
-}
-
-private fun getMinuteWeatherText(
-    precipitation: Double,
-    currentWeatherText: String,
-    currentWeatherCode: WeatherCode?
-): String {
-    return if (precipitation > 0) {
-        if (isPrecipitation(currentWeatherCode)) currentWeatherText else "阴"
-    } else {
-        if (isPrecipitation(currentWeatherCode)) "阴" else currentWeatherText
-    }
-}
-
-private fun getMinuteWeatherCode(
-    precipitation: Double,
-    currentWeatherCode: WeatherCode?
-): WeatherCode? {
-    return if (precipitation > 0) {
-        if (isPrecipitation(currentWeatherCode)) currentWeatherCode else WeatherCode.CLOUDY
-    } else {
-        if (isPrecipitation(currentWeatherCode)) WeatherCode.CLOUDY else currentWeatherCode
-    }
-}
-
-private fun isPrecipitation(code: WeatherCode?): Boolean {
-    return code !== null && (code === WeatherCode.RAIN || code === WeatherCode.SNOW || code === WeatherCode.HAIL
-            || code === WeatherCode.SLEET || code === WeatherCode.THUNDERSTORM)
 }
 
 private fun getAlertList(result: ChinaForecastResult): List<Alert> {
@@ -308,14 +267,13 @@ private fun getAlertList(result: ChinaForecastResult): List<Alert> {
     result.alerts.forEach { alert ->
         alertList.add(
             Alert(
-                alert.pubTime?.time
-                    ?: System.currentTimeMillis(), // TODO: Avoid having the same ID for two different alerts happening at the same time
-                alert.pubTime,
-                null,
-                alert.title,
-                alert.detail,
-                alert.type,
-                getAlertPriority(alert.level)
+                // TODO: Avoid having the same ID for two different alerts happening at the same time
+                alertId = alert.pubTime?.time ?: System.currentTimeMillis(),
+                startDate = alert.pubTime,
+                description = alert.title ?: "",
+                content = alert.detail,
+                priority = getAlertPriority(alert.level),
+                color = getAlertColor(alert.level)
             )
         )
     }
@@ -398,5 +356,17 @@ private fun getAlertPriority(color: String?): Int {
         "橙", "橙色", "橘", "橘色", "橘黄", "橘黄色" -> 3
         "红", "红色" -> 4
         else -> 0
+    }
+}
+
+@ColorInt
+private fun getAlertColor(color: String?): Int? {
+    if (color.isNullOrEmpty()) return null
+    return when (color) {
+        "蓝", "蓝色" -> Color.rgb(51, 100, 255)
+        "黄", "黄色" -> Color.rgb(250, 237, 36)
+        "橙", "橙色", "橘", "橘色", "橘黄", "橘黄色" -> Color.rgb(249, 138, 30)
+        "红", "红色" -> Color.rgb(215, 48, 42)
+        else -> null
     }
 }

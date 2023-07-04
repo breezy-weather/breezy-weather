@@ -1,0 +1,453 @@
+package org.breezyweather.remoteviews.presenters
+
+import android.appwidget.AppWidgetManager
+import android.content.ComponentName
+import android.content.Context
+import android.graphics.Color
+import android.util.TypedValue
+import android.view.View
+import android.widget.RemoteViews
+import org.breezyweather.R
+import org.breezyweather.background.receiver.widget.WidgetClockDayVerticalProvider
+import org.breezyweather.common.basic.models.Location
+import org.breezyweather.common.basic.models.options.unit.SpeedUnit
+import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
+import org.breezyweather.common.basic.models.weather.Temperature
+import org.breezyweather.common.basic.models.weather.Weather
+import org.breezyweather.common.extensions.getFormattedTime
+import org.breezyweather.common.extensions.is12Hour
+import org.breezyweather.common.extensions.spToPx
+import org.breezyweather.common.utils.helpers.LunarHelper
+import org.breezyweather.remoteviews.Widgets
+import org.breezyweather.settings.SettingsManager
+import org.breezyweather.theme.resource.ResourceHelper
+import org.breezyweather.theme.resource.ResourcesProviderFactory
+import java.util.*
+
+object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
+
+    fun updateWidgetView(context: Context, location: Location) {
+        val config = getWidgetConfig(context, context.getString(R.string.sp_widget_clock_day_vertical_setting))
+        val views = getRemoteViews(
+            context, location,
+            config.viewStyle, config.cardStyle, config.cardAlpha, config.textColor, config.textSize,
+            config.hideSubtitle, config.subtitleData, config.clockFont
+        )
+        AppWidgetManager.getInstance(context).updateAppWidget(
+            ComponentName(context, WidgetClockDayVerticalProvider::class.java),
+            views
+        )
+    }
+
+    fun getRemoteViews(
+        context: Context, location: Location,
+        viewStyle: String?, cardStyle: String?, cardAlpha: Int, textColor: String?, textSize: Int,
+        hideSubtitle: Boolean, subtitleData: String?, clockFont: String?
+    ): RemoteViews {
+        val dayTime = location.isDaylight
+        val settings = SettingsManager.getInstance(context)
+        val temperatureUnit = settings.temperatureUnit
+        val speedUnit = settings.speedUnit
+        val minimalIcon = settings.isWidgetUsingMonochromeIcons
+        val color = WidgetColor(context, cardStyle!!, textColor!!)
+        val views = buildWidgetViewDayPart(
+            context, location, temperatureUnit, speedUnit,
+            color, dayTime, textSize, minimalIcon, clockFont, viewStyle, hideSubtitle, subtitleData
+        )
+        if (color.showCard) {
+            views.setImageViewResource(R.id.widget_clock_day_card, getCardBackgroundId(color.cardColor))
+            views.setInt(R.id.widget_clock_day_card, "setImageAlpha", (cardAlpha / 100.0 * 255).toInt())
+        }
+        setOnClickPendingIntent(context, views, location, subtitleData)
+        return views
+    }
+
+    private fun buildWidgetViewDayPart(
+        context: Context, location: Location, temperatureUnit: TemperatureUnit, speedUnit: SpeedUnit,
+        color: WidgetColor, dayTime: Boolean, textSize: Int, minimalIcon: Boolean,
+        clockFont: String?, viewStyle: String?, hideSubtitle: Boolean, subtitleData: String?
+    ): RemoteViews {
+        val weather = location.weather
+        val views = RemoteViews(
+            context.packageName,
+            when (viewStyle) {
+                "rectangle" -> if (!color.showCard) R.layout.widget_clock_day_rectangle else R.layout.widget_clock_day_rectangle_card
+                "tile" -> if (!color.showCard) R.layout.widget_clock_day_tile else R.layout.widget_clock_day_tile_card
+                "mini" -> if (!color.showCard) R.layout.widget_clock_day_mini else R.layout.widget_clock_day_mini_card
+                "vertical" -> if (!color.showCard) R.layout.widget_clock_day_vertical else R.layout.widget_clock_day_vertical_card
+                "temp" -> if (!color.showCard) R.layout.widget_clock_day_temp else R.layout.widget_clock_day_temp_card
+                else -> if (!color.showCard) R.layout.widget_clock_day_symmetry else R.layout.widget_clock_day_symmetry_card
+            }
+        )
+        if (weather == null) return views
+
+        val provider = ResourcesProviderFactory.newInstance
+        weather.current?.weatherCode?.let {
+            views.setViewVisibility(R.id.widget_clock_day_icon, View.VISIBLE)
+            views.setImageViewUri(
+                R.id.widget_clock_day_icon,
+                ResourceHelper.getWidgetNotificationIconUri(
+                    provider, it, dayTime, minimalIcon, color.minimalIconColor
+                )
+            )
+        } ?: views.setViewVisibility(R.id.widget_clock_day_icon, View.INVISIBLE)
+
+        views.apply {
+            setTextViewText(
+                R.id.widget_clock_day_title,
+                getTitleText(context, location, viewStyle, temperatureUnit)
+            )
+            setTextViewText(
+                R.id.widget_clock_day_subtitle,
+                getSubtitleText(context, weather, viewStyle, temperatureUnit)
+            )
+            setTextViewText(
+                R.id.widget_clock_day_time,
+                getTimeText(context, location, viewStyle, subtitleData, temperatureUnit, speedUnit)
+            )
+        }
+
+        if (color.textColor != Color.TRANSPARENT) {
+            views.apply {
+                setTextColor(R.id.widget_clock_day_clock_light, color.textColor)
+                setTextColor(R.id.widget_clock_day_clock_normal, color.textColor)
+                setTextColor(R.id.widget_clock_day_clock_black, color.textColor)
+                setTextColor(R.id.widget_clock_day_clock_aa_light, color.textColor)
+                setTextColor(R.id.widget_clock_day_clock_aa_normal, color.textColor)
+                setTextColor(R.id.widget_clock_day_clock_aa_black, color.textColor)
+                setTextColor(R.id.widget_clock_day_clock_1_light, color.textColor)
+                setTextColor(R.id.widget_clock_day_clock_1_normal, color.textColor)
+                setTextColor(R.id.widget_clock_day_clock_1_black, color.textColor)
+                setTextColor(R.id.widget_clock_day_clock_2_light, color.textColor)
+                setTextColor(R.id.widget_clock_day_clock_2_normal, color.textColor)
+                setTextColor(R.id.widget_clock_day_clock_2_black, color.textColor)
+                setTextColor(R.id.widget_clock_day_date, color.textColor)
+                setTextColor(R.id.widget_clock_day_title, color.textColor)
+                setTextColor(R.id.widget_clock_day_subtitle, color.textColor)
+                setTextColor(R.id.widget_clock_day_time, color.textColor)
+            }
+        }
+        if (textSize != 100) {
+            val clockSize = context.resources.getDimensionPixelSize(R.dimen.widget_current_weather_icon_size)
+                .toFloat() * textSize / 100f
+            val clockAASize = context.resources.getDimensionPixelSize(R.dimen.widget_aa_text_size)
+                .toFloat() * textSize / 100f
+            val verticalClockSize = context.spToPx(64) * textSize / 100f
+            views.apply {
+                setTextViewTextSize(R.id.widget_clock_day_clock_light, TypedValue.COMPLEX_UNIT_PX, clockSize)
+                setTextViewTextSize(R.id.widget_clock_day_clock_normal, TypedValue.COMPLEX_UNIT_PX, clockSize)
+                setTextViewTextSize(R.id.widget_clock_day_clock_black, TypedValue.COMPLEX_UNIT_PX, clockSize)
+                setTextViewTextSize(R.id.widget_clock_day_clock_aa_light, TypedValue.COMPLEX_UNIT_PX, clockAASize)
+                setTextViewTextSize(R.id.widget_clock_day_clock_aa_normal, TypedValue.COMPLEX_UNIT_PX, clockAASize)
+                setTextViewTextSize(R.id.widget_clock_day_clock_aa_black, TypedValue.COMPLEX_UNIT_PX, clockAASize)
+                setTextViewTextSize(R.id.widget_clock_day_clock_1_light, TypedValue.COMPLEX_UNIT_PX, verticalClockSize)
+                setTextViewTextSize(R.id.widget_clock_day_clock_1_normal, TypedValue.COMPLEX_UNIT_PX, verticalClockSize)
+                setTextViewTextSize(R.id.widget_clock_day_clock_1_black, TypedValue.COMPLEX_UNIT_PX, verticalClockSize)
+                setTextViewTextSize(R.id.widget_clock_day_clock_2_light, TypedValue.COMPLEX_UNIT_PX, verticalClockSize)
+                setTextViewTextSize(R.id.widget_clock_day_clock_2_normal, TypedValue.COMPLEX_UNIT_PX, verticalClockSize)
+                setTextViewTextSize(R.id.widget_clock_day_clock_2_black, TypedValue.COMPLEX_UNIT_PX, verticalClockSize)
+                setTextViewTextSize(
+                    R.id.widget_clock_day_date, TypedValue.COMPLEX_UNIT_PX,
+                    getTitleSize(context, viewStyle) * textSize / 100f
+                )
+                setTextViewTextSize(
+                    R.id.widget_clock_day_title, TypedValue.COMPLEX_UNIT_PX,
+                    getTitleSize(context, viewStyle) * textSize / 100f
+                )
+                setTextViewTextSize(
+                    R.id.widget_clock_day_subtitle, TypedValue.COMPLEX_UNIT_PX,
+                    getSubtitleSize(context, viewStyle) * textSize / 100f
+                )
+                setTextViewTextSize(
+                    R.id.widget_clock_day_time, TypedValue.COMPLEX_UNIT_PX,
+                    getTimeSize(context, viewStyle) * textSize / 100f
+                )
+            }
+        }
+        views.setViewVisibility(R.id.widget_clock_day_time, if (hideSubtitle) View.GONE else View.VISIBLE)
+        when (clockFont) {
+            "normal" -> {
+                views.apply {
+                    setViewVisibility(R.id.widget_clock_day_clock_lightContainer, View.GONE)
+                    setViewVisibility(R.id.widget_clock_day_clock_normalContainer, View.VISIBLE)
+                    setViewVisibility(R.id.widget_clock_day_clock_blackContainer, View.GONE)
+                    setViewVisibility(R.id.widget_clock_day_clock_analogContainer_auto, View.GONE)
+                    setViewVisibility(R.id.widget_clock_day_clock_analogContainer_light, View.GONE)
+                    setViewVisibility(R.id.widget_clock_day_clock_analogContainer_dark, View.GONE)
+                }
+            }
+            "black" -> {
+                views.apply {
+                    setViewVisibility(R.id.widget_clock_day_clock_lightContainer, View.GONE)
+                    setViewVisibility(R.id.widget_clock_day_clock_normalContainer, View.GONE)
+                    setViewVisibility(R.id.widget_clock_day_clock_blackContainer, View.VISIBLE)
+                    setViewVisibility(R.id.widget_clock_day_clock_analogContainer_auto, View.GONE)
+                    setViewVisibility(R.id.widget_clock_day_clock_analogContainer_light, View.GONE)
+                    setViewVisibility(R.id.widget_clock_day_clock_analogContainer_dark, View.GONE)
+                }
+            }
+            "analog" -> {
+                views.apply {
+                    setViewVisibility(R.id.widget_clock_day_clock_lightContainer, View.GONE)
+                    setViewVisibility(R.id.widget_clock_day_clock_normalContainer, View.GONE)
+                    setViewVisibility(R.id.widget_clock_day_clock_blackContainer, View.GONE)
+                    setViewVisibility(
+                        R.id.widget_clock_day_clock_analogContainer_auto,
+                        if (color.showCard && color.cardColor === WidgetColor.ColorType.AUTO) View.VISIBLE else View.GONE
+                    )
+                    setViewVisibility(
+                        R.id.widget_clock_day_clock_analogContainer_light,
+                        if (color.showCard && color.cardColor === WidgetColor.ColorType.AUTO) View.GONE else if (color.darkText) View.GONE else View.VISIBLE
+                    )
+                    setViewVisibility(
+                        R.id.widget_clock_day_clock_analogContainer_dark,
+                        if (color.showCard && color.cardColor === WidgetColor.ColorType.AUTO) View.GONE else if (color.darkText) View.VISIBLE else View.GONE
+                    )
+                }
+            }
+            else -> {
+                views.apply {
+                    setViewVisibility(R.id.widget_clock_day_clock_lightContainer, View.VISIBLE)
+                    setViewVisibility(R.id.widget_clock_day_clock_normalContainer, View.GONE)
+                    setViewVisibility(R.id.widget_clock_day_clock_blackContainer, View.GONE)
+                    setViewVisibility(R.id.widget_clock_day_clock_analogContainer_auto, View.GONE)
+                    setViewVisibility(R.id.widget_clock_day_clock_analogContainer_light, View.GONE)
+                    setViewVisibility(R.id.widget_clock_day_clock_analogContainer_dark, View.GONE)
+                }
+            }
+        }
+        return views
+    }
+
+    fun isInUse(context: Context): Boolean {
+        val widgetIds = AppWidgetManager.getInstance(context)
+            .getAppWidgetIds(ComponentName(context, WidgetClockDayVerticalProvider::class.java))
+        return widgetIds != null && widgetIds.isNotEmpty()
+    }
+
+    private fun getTitleText(
+        context: Context, location: Location, viewStyle: String?, unit: TemperatureUnit
+    ): String? {
+        val weather = location.weather ?: return null
+        return when (viewStyle) {
+            "rectangle" -> Widgets.buildWidgetDayStyleText(context, weather, unit)[0]
+            "symmetry" -> {
+                val stringBuilder = StringBuilder()
+                stringBuilder.append(location.getCityName(context))
+                if (weather.current?.temperature?.temperature != null) {
+                    stringBuilder.append("\n")
+                        .append(weather.current.temperature.getTemperature(context, unit))
+                }
+                stringBuilder.toString()
+            }
+            "vertical", "tile" -> if (weather.current != null) {
+                val stringBuilder = StringBuilder()
+                if (!weather.current.weatherText.isNullOrEmpty()) {
+                    stringBuilder.append(weather.current.weatherText)
+                }
+                if (weather.current.temperature?.temperature != null) {
+                    if (stringBuilder.isNotEmpty()) {
+                        stringBuilder.append(" ")
+                    }
+                    stringBuilder.append(weather.current.temperature.getTemperature(context, unit))
+                }
+                stringBuilder.toString()
+            } else null
+            "mini" -> weather.current?.weatherText
+            "temp" -> weather.current?.temperature?.getShortTemperature(context, unit)
+            else -> null
+        }
+    }
+
+    private fun getSubtitleText(
+        context: Context, weather: Weather, viewStyle: String?, unit: TemperatureUnit
+    ): String? {
+        return when (viewStyle) {
+            "rectangle" -> Widgets.buildWidgetDayStyleText(context, weather, unit)[1]
+            "symmetry" -> if (weather.current != null) {
+                val stringBuilder = StringBuilder()
+                if (!weather.current.weatherText.isNullOrEmpty()) {
+                    stringBuilder.append(weather.current.weatherText)
+                }
+                if (weather.dailyForecast.isNotEmpty()
+                    && weather.dailyForecast.getOrNull(0)?.day?.temperature?.temperature != null
+                    && weather.dailyForecast.getOrNull(0)?.night?.temperature?.temperature != null) {
+                    if (stringBuilder.toString().isNotEmpty()) {
+                        stringBuilder.append(" ")
+                    }
+                    stringBuilder.append(
+                        Temperature.getTrendTemperature(
+                            context,
+                            weather.dailyForecast[0].night!!.temperature!!.temperature,
+                            weather.dailyForecast[0].day!!.temperature!!.temperature,
+                            unit
+                        )
+                    )
+                }
+                stringBuilder.toString()
+            } else null
+            "tile", "temp" -> Temperature.getTrendTemperature(
+                context,
+                weather.dailyForecast.getOrNull(0)?.night?.temperature?.temperature,
+                weather.dailyForecast.getOrNull(0)?.day?.temperature?.temperature,
+                unit
+            )
+            "mini" -> weather.current?.temperature?.getTemperature(context, unit)
+            else -> null
+        }
+    }
+
+    private fun getTimeText(
+        context: Context, location: Location, viewStyle: String?, subtitleData: String?,
+        temperatureUnit: TemperatureUnit, speedUnit: SpeedUnit
+    ): String? {
+        val weather = location.weather ?: return null
+        return when (subtitleData) {
+            "time" -> when (viewStyle) {
+                "rectangle" -> (location.getCityName(context)
+                        + " "
+                        + weather.base.updateDate.getFormattedTime(location.timeZone, context.is12Hour))
+
+                "symmetry" -> (Widgets.getWeek(context, location.timeZone)
+                        + " "
+                        + weather.base.updateDate.getFormattedTime(location.timeZone, context.is12Hour))
+
+                "tile", "vertical" -> (location.getCityName(context)
+                        + " " + Widgets.getWeek(context, location.timeZone)
+                        + " " + weather.base.updateDate.getFormattedTime(location.timeZone, context.is12Hour))
+
+                else -> null
+            }
+            "aqi" -> if (weather.current?.airQuality?.getIndex() != null
+                && weather.current.airQuality.getName(context) != null) {
+                (weather.current.airQuality.getName(context)
+                        + " ("
+                        + weather.current.airQuality.getIndex()
+                        + ")")
+            } else null
+            "wind" -> weather.current?.wind?.getShortWindDescription(context, speedUnit)
+            "lunar" -> when (viewStyle) {
+                "rectangle" -> (location.getCityName(context)
+                        + " "
+                        + LunarHelper.getLunarDate(Date()))
+
+                "symmetry" -> (Widgets.getWeek(context, location.timeZone)
+                        + " "
+                        + LunarHelper.getLunarDate(Date()))
+
+                "tile", "vertical" -> (location.getCityName(context)
+                        + " " + Widgets.getWeek(context, location.timeZone)
+                        + " " + LunarHelper.getLunarDate(Date()))
+
+                else -> null
+            }
+            "feels_like" -> if (weather.current?.temperature?.feelsLikeTemperature != null) {
+                (context.getString(R.string.temperature_feels_like)
+                        + " "
+                        + weather.current.temperature.getFeelsLikeTemperature(context, temperatureUnit))
+            } else null
+            else -> getCustomSubtitle(context, subtitleData, location, weather)
+        }
+    }
+
+    private fun getTitleSize(context: Context, viewStyle: String?): Float {
+        return when (viewStyle) {
+            "rectangle", "symmetry", "tile", "mini", "vertical" -> context.resources.getDimensionPixelSize(R.dimen.widget_content_text_size).toFloat()
+            "temp" -> context.resources.getDimensionPixelSize(R.dimen.widget_title_text_size).toFloat()
+            else -> 0f
+        }
+    }
+
+    private fun getSubtitleSize(context: Context, viewStyle: String?): Float {
+        return when (viewStyle) {
+            "rectangle", "symmetry", "tile", "mini" -> context.resources.getDimensionPixelSize(R.dimen.widget_content_text_size).toFloat()
+            "temp" -> context.resources.getDimensionPixelSize(R.dimen.widget_subtitle_text_size).toFloat()
+            else -> 0f
+        }
+    }
+
+    private fun getTimeSize(context: Context, viewStyle: String?): Float {
+        return when (viewStyle) {
+            "rectangle", "symmetry", "tile", "vertical", "mini" -> context.resources.getDimensionPixelSize(R.dimen.widget_time_text_size).toFloat()
+            else -> 0f
+        }
+    }
+
+    private fun setOnClickPendingIntent(
+        context: Context, views: RemoteViews, location: Location, subtitleData: String?
+    ) {
+        // weather.
+        views.setOnClickPendingIntent(
+            R.id.widget_clock_day_weather,
+            getWeatherPendingIntent(
+                context, location, Widgets.CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_WEATHER
+            )
+        )
+
+        // clock.
+        views.setOnClickPendingIntent(
+            R.id.widget_clock_day_clock_light,
+            getAlarmPendingIntent(
+                context, Widgets.CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_CLOCK_LIGHT
+            )
+        )
+        views.setOnClickPendingIntent(
+            R.id.widget_clock_day_clock_normal,
+            getAlarmPendingIntent(
+                context, Widgets.CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_CLOCK_NORMAL
+            )
+        )
+        views.setOnClickPendingIntent(
+            R.id.widget_clock_day_clock_black,
+            getAlarmPendingIntent(
+                context, Widgets.CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_CLOCK_BLACK
+            )
+        )
+        views.setOnClickPendingIntent(
+            R.id.widget_clock_day_clock_1_light,
+            getAlarmPendingIntent(
+                context, Widgets.CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_CLOCK_1_LIGHT
+            )
+        )
+        views.setOnClickPendingIntent(
+            R.id.widget_clock_day_clock_1_normal,
+            getAlarmPendingIntent(
+                context, Widgets.CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_CLOCK_1_NORMAL
+            )
+        )
+        views.setOnClickPendingIntent(
+            R.id.widget_clock_day_clock_1_black,
+            getAlarmPendingIntent(
+                context, Widgets.CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_CLOCK_1_BLACK
+            )
+        )
+        views.setOnClickPendingIntent(
+            R.id.widget_clock_day_clock_2_light,
+            getAlarmPendingIntent(
+                context, Widgets.CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_CLOCK_2_LIGHT
+            )
+        )
+        views.setOnClickPendingIntent(
+            R.id.widget_clock_day_clock_2_normal,
+            getAlarmPendingIntent(
+                context, Widgets.CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_CLOCK_2_NORMAL
+            )
+        )
+        views.setOnClickPendingIntent(
+            R.id.widget_clock_day_clock_2_black,
+            getAlarmPendingIntent(
+                context, Widgets.CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_CLOCK_2_BLACK
+            )
+        )
+
+        // time.
+        if (subtitleData == "lunar") {
+            views.setOnClickPendingIntent(
+                R.id.widget_clock_day_time,
+                getCalendarPendingIntent(
+                    context, Widgets.DAY_PENDING_INTENT_CODE_CALENDAR
+                )
+            )
+        }
+    }
+}

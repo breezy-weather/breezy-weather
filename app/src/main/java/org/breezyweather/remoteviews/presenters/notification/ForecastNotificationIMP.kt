@@ -21,7 +21,7 @@ import org.breezyweather.theme.resource.ResourcesProviderFactory
  * Forecast notification utils.
  */
 object ForecastNotificationIMP : AbstractRemoteViewsPresenter() {
-    @JvmStatic
+
     fun buildForecastAndSendIt(context: Context, location: Location, today: Boolean) {
         val weather = location.weather ?: return
         val daily = weather.dailyForecast.getOrNull(if (today) 0 else 1) ?: return
@@ -89,7 +89,6 @@ object ForecastNotificationIMP : AbstractRemoteViewsPresenter() {
         )
     }
 
-    @JvmStatic
     fun isEnabled(context: Context, today: Boolean): Boolean {
         return if (today) {
             SettingsManager.getInstance(context).isTodayForecastEnabled

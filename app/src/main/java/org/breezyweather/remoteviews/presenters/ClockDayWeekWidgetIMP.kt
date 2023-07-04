@@ -4,28 +4,22 @@ import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
 import android.graphics.Color
-import android.net.Uri
 import android.util.TypedValue
 import android.view.View
 import android.widget.RemoteViews
-import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetClockDayWeekProvider
 import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.options.NotificationTextColor
-import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.basic.models.weather.Temperature
-import org.breezyweather.common.basic.models.weather.Weather
 import org.breezyweather.common.utils.helpers.LunarHelper
-import org.breezyweather.remoteviews.WidgetHelper
+import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.ResourcesProviderFactory
-import org.breezyweather.theme.resource.providers.ResourceProvider
 import java.util.*
 
 object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
-    @JvmStatic
+
     fun updateWidgetView(context: Context, location: Location) {
         val config = getWidgetConfig(context, context.getString(R.string.sp_widget_clock_day_week_setting))
         val views = getRemoteViews(
@@ -73,8 +67,8 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
             builder.append(" ").append(weather.current.temperature.getTemperature(context, temperatureUnit))
         }
         views.setTextViewText(R.id.widget_clock_day_week_subtitle, builder.toString())
-        val weekIconDaytime = isWeekIconDaytime(weekIconMode, dayTime)
 
+        val weekIconDaytime = isWeekIconDaytime(weekIconMode, dayTime)
         val dailyIds = arrayOf(
             arrayOf(R.id.widget_clock_day_week_week_1, R.id.widget_clock_day_week_temp_1, R.id.widget_clock_day_week_icon_1),
             arrayOf(R.id.widget_clock_day_week_week_2, R.id.widget_clock_day_week_temp_2, R.id.widget_clock_day_week_icon_2),
@@ -100,15 +94,27 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
                     temperatureUnit
                 )
             )
-            weather.dailyForecast.getOrNull(i)?.day?.weatherCode?.let {
-                views.setViewVisibility(dailyId[2], View.VISIBLE)
-                views.setImageViewUri(
-                    dailyId[2],
-                    ResourceHelper.getWidgetNotificationIconUri(
-                        provider, it, weekIconDaytime, minimalIcon, color.minimalIconColor
+            if (weekIconDaytime) {
+                weather.dailyForecast.getOrNull(i)?.day?.weatherCode?.let {
+                    views.setViewVisibility(dailyId[2], View.VISIBLE)
+                    views.setImageViewUri(
+                        dailyId[2],
+                        ResourceHelper.getWidgetNotificationIconUri(
+                            provider, it, weekIconDaytime, minimalIcon, color.minimalIconColor
+                        )
                     )
-                )
-            } ?: views.setViewVisibility(dailyId[2], View.INVISIBLE)
+                } ?: views.setViewVisibility(dailyId[2], View.INVISIBLE)
+            } else {
+                weather.dailyForecast.getOrNull(i)?.night?.weatherCode?.let {
+                    views.setViewVisibility(dailyId[2], View.VISIBLE)
+                    views.setImageViewUri(
+                        dailyId[2],
+                        ResourceHelper.getWidgetNotificationIconUri(
+                            provider, it, weekIconDaytime, minimalIcon, color.minimalIconColor
+                        )
+                    )
+                } ?: views.setViewVisibility(dailyId[2], View.INVISIBLE)
+            }
         }
 
         if (color.textColor != Color.TRANSPARENT) {
@@ -195,7 +201,6 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
         return views
     }
 
-    @JvmStatic
     fun isInUse(context: Context?): Boolean {
         val widgetIds = AppWidgetManager.getInstance(context)
             .getAppWidgetIds(
@@ -210,7 +215,7 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
         views.setOnClickPendingIntent(
             R.id.widget_clock_day_week_weather,
             getWeatherPendingIntent(
-                context, location, BreezyWeather.WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_WEATHER
+                context, location, Widgets.CLOCK_DAY_WEEK_PENDING_INTENT_CODE_WEATHER
             )
         )
 
@@ -218,31 +223,31 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
         views.setOnClickPendingIntent(
             R.id.widget_clock_day_week_icon_1,
             getDailyForecastPendingIntent(
-                context, location, 0, BreezyWeather.WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_1
+                context, location, 0, Widgets.CLOCK_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_1
             )
         )
         views.setOnClickPendingIntent(
             R.id.widget_clock_day_week_icon_2,
             getDailyForecastPendingIntent(
-                context, location, 1, BreezyWeather.WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_2
+                context, location, 1, Widgets.CLOCK_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_2
             )
         )
         views.setOnClickPendingIntent(
             R.id.widget_clock_day_week_icon_3,
             getDailyForecastPendingIntent(
-                context, location, 2, BreezyWeather.WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_3
+                context, location, 2, Widgets.CLOCK_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_3
             )
         )
         views.setOnClickPendingIntent(
             R.id.widget_clock_day_week_icon_4,
             getDailyForecastPendingIntent(
-                context, location, 3, BreezyWeather.WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_4
+                context, location, 3, Widgets.CLOCK_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_4
             )
         )
         views.setOnClickPendingIntent(
             R.id.widget_clock_day_week_icon_5,
             getDailyForecastPendingIntent(
-                context, location,4, BreezyWeather.WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_5
+                context, location,4, Widgets.CLOCK_DAY_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_5
             )
         )
 
@@ -250,19 +255,19 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
         views.setOnClickPendingIntent(
             R.id.widget_clock_day_week_clock_light,
             getAlarmPendingIntent(
-                context, BreezyWeather.WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_CLOCK_LIGHT
+                context, Widgets.CLOCK_DAY_WEEK_PENDING_INTENT_CODE_CLOCK_LIGHT
             )
         )
         views.setOnClickPendingIntent(
             R.id.widget_clock_day_week_clock_normal,
             getAlarmPendingIntent(
-                context, BreezyWeather.WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_CLOCK_NORMAL
+                context, Widgets.CLOCK_DAY_WEEK_PENDING_INTENT_CODE_CLOCK_NORMAL
             )
         )
         views.setOnClickPendingIntent(
             R.id.widget_clock_day_week_clock_black,
             getAlarmPendingIntent(
-                context, BreezyWeather.WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_CLOCK_BLACK
+                context, Widgets.CLOCK_DAY_WEEK_PENDING_INTENT_CODE_CLOCK_BLACK
             )
         )
 
@@ -270,7 +275,7 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
         views.setOnClickPendingIntent(
             R.id.widget_clock_day_week_title,
             getCalendarPendingIntent(
-                context, BreezyWeather.WIDGET_CLOCK_DAY_WEEK_PENDING_INTENT_CODE_CALENDAR
+                context, Widgets.CLOCK_DAY_WEEK_PENDING_INTENT_CODE_CALENDAR
             )
         )
     }

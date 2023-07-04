@@ -8,11 +8,11 @@ import android.util.SizeF
 import android.view.View
 import android.widget.RemoteViews
 import androidx.annotation.LayoutRes
-import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetMaterialYouForecastProvider
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.NotificationTextColor
+import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.ResourcesProviderFactory
@@ -21,14 +21,12 @@ class MaterialYouForecastWidgetIMP: AbstractRemoteViewsPresenter() {
 
     companion object {
 
-        @JvmStatic
         fun isEnabled(context: Context): Boolean {
             return AppWidgetManager.getInstance(context).getAppWidgetIds(
                 ComponentName(context, WidgetMaterialYouForecastProvider::class.java)
             ).isNotEmpty()
         }
 
-        @JvmStatic
         fun updateWidgetView(context: Context, location: Location) {
             AppWidgetManager.getInstance(context).updateAppWidget(
                 ComponentName(context, WidgetMaterialYouForecastProvider::class.java),
@@ -45,54 +43,34 @@ private fun buildWeatherWidget(
     RemoteViews(
         mapOf(
             SizeF(1.0f, 1.0f) to buildRemoteViews(
-                context,
-                location,
-                R.layout.widget_material_you_forecast_1x1
+                context, location, R.layout.widget_material_you_forecast_1x1
             ),
             SizeF (120.0f, 120.0f) to buildRemoteViews(
-                context,
-                location,
-                R.layout.widget_material_you_forecast_2x1
+                context, location, R.layout.widget_material_you_forecast_2x1
             ),
             SizeF (156.0f, 156.0f) to buildRemoteViews(
-                context,
-                location,
-                R.layout.widget_material_you_forecast_2x2
+                context, location, R.layout.widget_material_you_forecast_2x2
             ),
             SizeF (192.0f, 98.0f) to buildRemoteViews(
-                context,
-                location,
-                R.layout.widget_material_you_forecast_3x1
+                context, location, R.layout.widget_material_you_forecast_3x1
             ),
             SizeF (148.0f, 198.0f) to buildRemoteViews(
-                context,
-                location,
-                R.layout.widget_material_you_forecast_3x2
+                context, location, R.layout.widget_material_you_forecast_3x2
             ),
             SizeF (256.0f, 100.0f) to buildRemoteViews(
-                context,
-                location,
-                R.layout.widget_material_you_forecast_4x1
+                context, location, R.layout.widget_material_you_forecast_4x1
             ),
             SizeF (256.0f, 198.0f) to buildRemoteViews(
-                context,
-                location,
-                R.layout.widget_material_you_forecast_4x2
+                context, location, R.layout.widget_material_you_forecast_4x2
             ),
             SizeF (256.0f, 312.0f) to buildRemoteViews(
-                context,
-                location,
-                R.layout.widget_material_you_forecast_4x3
+                context, location, R.layout.widget_material_you_forecast_4x3
             ),
             SizeF (298.0f, 198.0f) to buildRemoteViews(
-                context,
-                location,
-                R.layout.widget_material_you_forecast_5x2
+                context, location, R.layout.widget_material_you_forecast_5x2
             ),
             SizeF (298.0f, 312.0f) to buildRemoteViews(
-                context,
-                location,
-                R.layout.widget_material_you_forecast_5x3
+                context, location, R.layout.widget_material_you_forecast_5x3
             ),
         )
     )
@@ -131,11 +109,7 @@ private fun buildRemoteViews(
         views.setImageViewUri(
             R.id.widget_material_you_forecast_currentIcon,
             ResourceHelper.getWidgetNotificationIconUri(
-                provider,
-                it,
-                dayTime,
-                false,
-                NotificationTextColor.LIGHT
+                provider, it, dayTime, false, NotificationTextColor.LIGHT
             )
         )
     } ?: views.setViewVisibility(R.id.widget_material_you_forecast_currentIcon, View.INVISIBLE)
@@ -188,17 +162,12 @@ private fun buildRemoteViews(
             views.setImageViewUri(
                 hourlyId[1],
                 ResourceHelper.getWidgetNotificationIconUri(
-                    provider,
-                    it,
-                    weather.hourlyForecast.getOrNull(i)!!.isDaylight,
-                    false,
-                    NotificationTextColor.LIGHT
+                    provider, it, weather.hourlyForecast[i].isDaylight, false, NotificationTextColor.LIGHT
                 )
             )
         } ?: views.setViewVisibility(hourlyId[1], View.INVISIBLE)
         views.setTextViewText(hourlyId[2], weather.hourlyForecast.getOrNull(i)?.temperature?.getShortTemperature(context, temperatureUnit))
     }
-
 
     // Daily
     val dailyIds = arrayOf(
@@ -260,11 +229,7 @@ private fun buildRemoteViews(
             views.setImageViewUri(
                 dailyId[1],
                 ResourceHelper.getWidgetNotificationIconUri(
-                    provider,
-                    it,
-                    true,
-                    false,
-                    NotificationTextColor.LIGHT
+                    provider, it, true, false, NotificationTextColor.LIGHT
                 )
             )
         } ?: views.setViewVisibility(dailyId[1], View.INVISIBLE)
@@ -281,11 +246,7 @@ private fun buildRemoteViews(
             views.setImageViewUri(
                 dailyId[4],
                 ResourceHelper.getWidgetNotificationIconUri(
-                    provider,
-                    it,
-                    false,
-                    false,
-                    NotificationTextColor.LIGHT
+                    provider, it, false, false, NotificationTextColor.LIGHT
                 )
             )
         } ?: views.setViewVisibility(dailyId[4], View.INVISIBLE)
@@ -295,9 +256,7 @@ private fun buildRemoteViews(
     views.setOnClickPendingIntent(
         android.R.id.background,
         AbstractRemoteViewsPresenter.getWeatherPendingIntent(
-            context,
-            location,
-            BreezyWeather.WIDGET_MATERIAL_YOU_FORECAST_PENDING_INTENT_CODE_WEATHER
+            context, location, Widgets.MATERIAL_YOU_FORECAST_PENDING_INTENT_CODE_WEATHER
         )
     )
 

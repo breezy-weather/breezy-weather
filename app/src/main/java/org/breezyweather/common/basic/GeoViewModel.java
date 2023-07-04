@@ -5,6 +5,7 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 
+// TODO: Issue with getter on application when converted to Kotlin
 public class GeoViewModel extends AndroidViewModel {
 
     private boolean mNewInstance;

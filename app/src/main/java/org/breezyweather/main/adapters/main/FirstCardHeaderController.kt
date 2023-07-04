@@ -44,21 +44,24 @@ class FirstCardHeaderController(private val mActivity: GeoActivity, location: Lo
                 alert.text = mActivity.getString(R.string.alerts_to_follow)
             } else {
                 val builder = StringBuilder()
-                for (i in currentAlertList.indices) {
-                    builder.append(currentAlertList[i].description)
-                    if (currentAlertList[i].startDate != null) {
-                        val startDateDay = currentAlertList[i].startDate.getFormattedDate(
+                currentAlertList.forEach { currentAlert ->
+                    if (builder.toString().isNotEmpty()) {
+                        builder.append("\n")
+                    }
+                    builder.append(currentAlert.description)
+                    if (currentAlert.startDate != null) {
+                        val startDateDay = currentAlert.startDate.getFormattedDate(
                             location.timeZone, mActivity.getString(R.string.date_format_long)
                         )
                         builder.append(", ")
                             .append(startDateDay)
                             .append(", ")
                             .append(
-                                currentAlertList[i].startDate.getFormattedTime(location.timeZone, mActivity.is12Hour)
+                                currentAlert.startDate.getFormattedTime(location.timeZone, mActivity.is12Hour)
                             )
-                        if (currentAlertList[i].endDate != null) {
+                        if (currentAlert.endDate != null) {
                             builder.append("-")
-                            val endDateDay = currentAlertList[i].endDate.getFormattedDate(
+                            val endDateDay = currentAlert.endDate.getFormattedDate(
                                 location.timeZone, mActivity.getString(R.string.date_format_long)
                             )
                             if (startDateDay != endDateDay) {
@@ -66,12 +69,9 @@ class FirstCardHeaderController(private val mActivity: GeoActivity, location: Lo
                                     .append(", ")
                             }
                             builder.append(
-                                currentAlertList[i].endDate.getFormattedTime(location.timeZone, mActivity.is12Hour)
+                                currentAlert.endDate.getFormattedTime(location.timeZone, mActivity.is12Hour)
                             )
                         }
-                    }
-                    if (i != currentAlertList.size - 1) {
-                        builder.append("\n")
                     }
                 }
                 alert.text = builder.toString()

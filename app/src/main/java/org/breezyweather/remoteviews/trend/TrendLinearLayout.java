@@ -45,21 +45,15 @@ public class TrendLinearLayout extends LinearLayout {
     private float MARGIN_TEXT = 2;
 
     public TrendLinearLayout(Context context) {
-        super(context);
-        initialize();
+        this(context, null);
     }
 
     public TrendLinearLayout(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-        initialize();
+        this(context, attrs, 0);
     }
 
     public TrendLinearLayout(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        initialize();
-    }
-
-    private void initialize() {
         setWillNotDraw(false);
 
         mPaint = new Paint();

@@ -1,6 +1,7 @@
 package org.breezyweather.weather.accu
 
 import android.content.Context
+import android.graphics.Color
 import org.breezyweather.BreezyWeather
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.provider.WeatherSource
@@ -367,11 +368,8 @@ private fun getMinutelyList(minuteResult: AccuMinutelyResult?): List<Minutely> {
         minutelyList.add(
             Minutely(
                 Date(interval.StartEpochDateTime),
-                interval.ShortPhrase,
-                getWeatherCode(interval.IconCode),
                 interval.Minute,
-                interval.Dbz.roundToInt(),
-                interval.CloudCover
+                interval.Dbz.roundToInt()
             )
         )
     }
@@ -383,13 +381,13 @@ private fun getAlertList(resultList: List<AccuAlertResult>): List<Alert> {
     for (result in resultList) {
         alertList.add(
             Alert(
-                result.AlertID.toLong(),
-                if (result.Area?.getOrNull(0) != null) Date(result.Area[0].EpochStartTime.times(1000)) else null,
-                if (result.Area?.getOrNull(0) != null) Date(result.Area[0].EpochEndTime.times(1000)) else null,
-                result.Description?.Localized,
-                result.Area?.getOrNull(0)?.Text,
-                result.TypeID,
-                result.Priority
+                alertId = result.AlertID.toLong(),
+                startDate = result.Area?.getOrNull(0)?.let { Date(it.EpochStartTime.times(1000)) },
+                endDate = result.Area?.getOrNull(0)?.let { Date(it.EpochEndTime.times(1000)) },
+                description = result.Description?.Localized ?: "",
+                content = result.Area?.getOrNull(0)?.Text,
+                priority = result.Priority,
+                color = result.Color?.let { Color.rgb(it.Red, it.Green, it.Blue) }
             )
         )
     }

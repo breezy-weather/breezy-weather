@@ -12,7 +12,7 @@ import org.breezyweather.common.basic.models.weather.Weather
 import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.common.utils.helpers.ShortcutsHelper
 import org.breezyweather.location.LocationHelper
-import org.breezyweather.remoteviews.NotificationHelper
+import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.weather.WeatherHelper
 import javax.inject.Inject
 
@@ -73,8 +73,8 @@ abstract class UpdateService : Service(), OnPollingUpdateListener {
         if (index == 0) {
             updateView(this, location)
             if (succeed) {
-                NotificationHelper.checkAndSendAlert(this, location, old)
-                NotificationHelper.checkAndSendPrecipitationForecast(this, location)
+                Notifications.checkAndSendAlert(this, location, old)
+                Notifications.checkAndSendPrecipitationForecast(this, location)
             } else {
                 mFailed = true
             }

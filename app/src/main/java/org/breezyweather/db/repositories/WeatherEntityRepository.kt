@@ -7,26 +7,23 @@ import org.breezyweather.db.ObjectBox.boxStore
 import org.breezyweather.db.converters.WeatherSourceConverter
 import org.breezyweather.db.entities.WeatherEntity
 import org.breezyweather.db.entities.WeatherEntity_
-import org.breezyweather.db.generators.AlertEntityGenerator
-import org.breezyweather.db.generators.MinutelyEntityGenerator
-import org.breezyweather.db.generators.generate
-import org.breezyweather.db.generators.generateEntityList
+import org.breezyweather.db.generators.*
 
 object WeatherEntityRepository {
     // insert.
     fun writeWeather(location: Location, weather: Weather) {
         boxStore.callInTxNoException {
             deleteWeather(location)
-            insertWeatherEntity(generate(location, weather))
+            insertWeatherEntity(WeatherEntityGenerator.generate(location, weather))
             DailyEntityRepository.insertDailyList(
-                generate(
+                DailyEntityGenerator.generate(
                     location.cityId,
                     location.weatherSource,
                     weather.dailyForecast
                 )
             )
             HourlyEntityRepository.insertHourlyList(
-                generateEntityList(
+                HourlyEntityGenerator.generateEntityList(
                     location.cityId,
                     location.weatherSource,
                     weather.hourlyForecast
@@ -48,14 +45,14 @@ object WeatherEntityRepository {
             )
             if (weather.dailyForecast.isNotEmpty() && weather.dailyForecast[0].day?.temperature != null && weather.dailyForecast[0].night?.temperature != null) {
                 HistoryEntityRepository.insertHistoryEntity(
-                    generate(
+                    HistoryEntityGenerator.generate(
                         location.cityId, location.weatherSource, weather
                     )
                 )
             }
             if (weather.yesterday != null) {
                 HistoryEntityRepository.insertHistoryEntity(
-                    generate(
+                    HistoryEntityGenerator.generate(
                         location.cityId, location.weatherSource, weather.yesterday!!
                     )
                 )
@@ -121,7 +118,7 @@ object WeatherEntityRepository {
         val historyEntity = HistoryEntityRepository.selectYesterdayHistoryEntity(
             location.cityId, location.weatherSource, weatherEntity.publishDate, location.timeZone
         )
-        return generate(weatherEntity, historyEntity, boxStore)
+        return WeatherEntityGenerator.generate(weatherEntity, historyEntity, boxStore)
     }
 
     fun selectWeatherEntity(cityId: String, source: WeatherSource): WeatherEntity? {

@@ -36,7 +36,7 @@ However, when deciding about which provider you want to use, accuracy of data is
 | Hourly wind                 | ✅             | ✅           | ✅             | ✅           | ✅            | ✅       |
 | Hourly air quality          | ✅             | ✅           | *In progress* | ✅           | ✅            | ❌       |
 | Hourly UV                   | ✅             | ✅           | ✅             | ✅           | ✅            | ❌       |
-| Precipitations in next hour | ❌             | ✅           | *In progress* | ✅           | ✅            | ❌       |
+| Precipitations in next hour | ❌             | ✅           | *In progress* | ✅           | ✅            | ✅       |
 | Current air quality         | ✅             | ✅           | *In progress* | ✅           | ✅            | ✅       |
 | Daily pollen                | *In progress* | ✅           | ❌             | ❌           | ❌            | ❌       |
 | Sun, Moon & Moon phase      | Sun           | ✅           | ✅             | Sun, Moon   | ✅            | Sun     |
@@ -154,7 +154,7 @@ Legend:
 
 | Providers                       | Open-Meteo | AccuWeather | MET Norway    | OpenWeather | Météo-France | China |
 |---------------------------------|------------|-------------|---------------|-------------|--------------|-------|
-| Precipitations in next hour     | ❌          | ✅           | *In progress* | ✅           | ✅²           | ❌     |
+| Precipitations in next hour     | ❌          | ✅           | *In progress* | ✅           | ✅²           | ✅     |
 | Alerts                          | ❌          | ✅           | *In progress* | ✅¹          | ✅            | ✅     |
 | Yesterday daytime temperature   | ✅          | ✅           | ❌             | ❌           | ❌            | ✅     |
 | Yesterday nighttime temperature | ✅          | ✅           | ❌             | ❌           | ❌            | ✅     |

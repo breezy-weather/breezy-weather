@@ -2,11 +2,9 @@ package org.breezyweather.main
 
 import android.Manifest
 import android.app.Application
-import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
-import androidx.core.app.ActivityCompat
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel

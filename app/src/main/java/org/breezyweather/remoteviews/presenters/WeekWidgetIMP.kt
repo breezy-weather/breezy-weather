@@ -7,17 +7,17 @@ import android.graphics.Color
 import android.util.TypedValue
 import android.view.View
 import android.widget.RemoteViews
-import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetWeekProvider
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.Temperature
+import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.ResourcesProviderFactory
 
 object WeekWidgetIMP : AbstractRemoteViewsPresenter() {
-    @JvmStatic
+
     fun updateWidgetView(context: Context, location: Location) {
         val config = getWidgetConfig(context, context.getString(R.string.sp_widget_week_setting))
         val views = getRemoteViews(
@@ -92,15 +92,27 @@ object WeekWidgetIMP : AbstractRemoteViewsPresenter() {
                     temperatureUnit
                 )
             )
-            weather.dailyForecast.getOrNull(i)?.day?.weatherCode?.let {
-                views.setViewVisibility(dailyId[2], View.VISIBLE)
-                views.setImageViewUri(
-                    dailyId[2],
-                    ResourceHelper.getWidgetNotificationIconUri(
-                        provider, it, weekIconDaytime, minimalIcon, color.minimalIconColor
+            if (weekIconDaytime) {
+                weather.dailyForecast.getOrNull(i)?.day?.weatherCode?.let {
+                    views.setViewVisibility(dailyId[2], View.VISIBLE)
+                    views.setImageViewUri(
+                        dailyId[2],
+                        ResourceHelper.getWidgetNotificationIconUri(
+                            provider, it, weekIconDaytime, minimalIcon, color.minimalIconColor
+                        )
                     )
-                )
-            } ?: views.setViewVisibility(dailyId[2], View.INVISIBLE)
+                } ?: views.setViewVisibility(dailyId[2], View.INVISIBLE)
+            } else {
+                weather.dailyForecast.getOrNull(i)?.night?.weatherCode?.let {
+                    views.setViewVisibility(dailyId[2], View.VISIBLE)
+                    views.setImageViewUri(
+                        dailyId[2],
+                        ResourceHelper.getWidgetNotificationIconUri(
+                            provider, it, weekIconDaytime, minimalIcon, color.minimalIconColor
+                        )
+                    )
+                } ?: views.setViewVisibility(dailyId[2], View.INVISIBLE)
+            }
         }
 
         if (color.textColor != Color.TRANSPARENT) {
@@ -150,7 +162,6 @@ object WeekWidgetIMP : AbstractRemoteViewsPresenter() {
         return views
     }
 
-    @JvmStatic
     fun isInUse(context: Context): Boolean {
         val widgetIds = AppWidgetManager.getInstance(context)
             .getAppWidgetIds(ComponentName(context, WidgetWeekProvider::class.java))
@@ -163,39 +174,39 @@ object WeekWidgetIMP : AbstractRemoteViewsPresenter() {
         // weather.
         views.setOnClickPendingIntent(
             R.id.widget_week_weather,
-            getWeatherPendingIntent(context, location, BreezyWeather.WIDGET_WEEK_PENDING_INTENT_CODE_WEATHER)
+            getWeatherPendingIntent(context, location, Widgets.WEEK_PENDING_INTENT_CODE_WEATHER)
         )
 
         // daily forecast.
         views.setOnClickPendingIntent(
             R.id.widget_week_icon_1,
             getDailyForecastPendingIntent(
-                context, location, 0, BreezyWeather.WIDGET_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_1
+                context, location, 0, Widgets.WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_1
             )
         )
         views.setOnClickPendingIntent(
             R.id.widget_week_icon_2,
             getDailyForecastPendingIntent(
-                context, location, 1, BreezyWeather.WIDGET_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_2
+                context, location, 1, Widgets.WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_2
             )
         )
         views.setOnClickPendingIntent(
             R.id.widget_week_icon_3,
             getDailyForecastPendingIntent(
-                context, location, 2, BreezyWeather.WIDGET_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_3
+                context, location, 2, Widgets.WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_3
             )
         )
         if (viewType == "5_days") {
             views.setOnClickPendingIntent(
                 R.id.widget_week_icon_4,
                 getDailyForecastPendingIntent(
-                    context, location, 3, BreezyWeather.WIDGET_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_4
+                    context, location, 3, Widgets.WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_4
                 )
             )
             views.setOnClickPendingIntent(
                 R.id.widget_week_icon_5,
                 getDailyForecastPendingIntent(
-                    context, location, 4, BreezyWeather.WIDGET_WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_5
+                    context, location, 4, Widgets.WEEK_PENDING_INTENT_CODE_DAILY_FORECAST_5
                 )
             )
         }

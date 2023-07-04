@@ -395,7 +395,7 @@
     <string name="settings_location">Localisation</string>
     <string name="settings_weather_providers_current_location">Fournisseur météo pour ma localisation</string>
     <string name="settings_appearance">Apparence</string>
-    <string name="settings_appearance_summary">Langue, mode sombre, pack d’icône, unités</string>
+    <string name="settings_appearance_summary">Langue, mode sombre, pack d’icônes, unités</string>
     <string name="settings_appearance_language_title">Langue</string>
     <string name="settings_appearance_dark_mode_title">Mode sombre</string>
     <string name="settings_appearance_icon_pack_title">Pack d’icônes</string>
