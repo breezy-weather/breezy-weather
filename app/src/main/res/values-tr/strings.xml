@@ -86,4 +86,9 @@
     <string name="settings_color_light">Açık</string>
     <string name="settings_color_grey">Gri</string>
     <string name="settings_color_dark">Koyu</string>
+    <string name="minutely_forecast">Anlık tahmin</string>
+    <string name="precipitation_forecast">Yağış tahmini</string>
+    <string name="allergen">Alerjen</string>
+    <string name="alerts_count">$ hava durumu uyarıları</string>
+    <string name="alerts_to_follow">Takip edilecek uyarıları görmek için buraya dokunun.</string>
 </resources>
