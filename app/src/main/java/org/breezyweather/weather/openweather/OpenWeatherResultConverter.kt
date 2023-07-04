@@ -1,6 +1,7 @@
 package org.breezyweather.weather.openweather
 
 import android.content.Context
+import androidx.compose.ui.text.capitalize
 import org.breezyweather.BreezyWeather
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.*
@@ -32,7 +33,9 @@ fun convert(
             val hourly = Hourly(
                 date = Date(result.dt.times(1000)),
                 isDaylight = true,
-                weatherText = result.weather?.getOrNull(0)?.main,
+                weatherText = result.weather?.getOrNull(0)?.main?.replaceFirstChar {
+                    if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+                },
                 weatherCode = getWeatherCode(result.weather?.getOrNull(0)?.id),
                 temperature = Temperature(
                     temperature = result.temp?.roundToInt(),
@@ -90,7 +93,9 @@ fun convert(
                 publishDate = if (oneCallResult.current?.dt != null) Date(oneCallResult.current.dt.times(1000)) else Date()
             ),
             current = if (oneCallResult.current != null) Current(
-                weatherText = oneCallResult.current.weather?.getOrNull(0)?.description,
+                weatherText = oneCallResult.current.weather?.getOrNull(0)?.description?.replaceFirstChar {
+                    if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+                },
                 weatherCode = getWeatherCode(oneCallResult.current.weather?.getOrNull(0)?.id),
                 temperature = Temperature(
                     temperature = oneCallResult.current.temp?.roundToInt(),
@@ -145,7 +150,9 @@ private fun getDailyList(
                 day = completeHalfDayFromHourlyList(
                     dailyDate = theDay,
                     initialHalfDay = HalfDay(
-                        weatherText = dailyForecast.weather?.getOrNull(0)?.description,
+                        weatherText = dailyForecast.weather?.getOrNull(0)?.description?.replaceFirstChar {
+                            if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+                        },
                         weatherPhase = dailyForecast.weather?.getOrNull(0)?.description,
                         weatherCode = getWeatherCode(dailyForecast.weather?.getOrNull(0)?.id),
                         temperature = Temperature(
@@ -160,7 +167,9 @@ private fun getDailyList(
                 night = completeHalfDayFromHourlyList(
                     dailyDate = theDay,
                     initialHalfDay = HalfDay(
-                        weatherText = dailyForecast.weather?.getOrNull(0)?.description,
+                        weatherText = dailyForecast.weather?.getOrNull(0)?.description?.replaceFirstChar {
+                            if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+                        },
                         weatherPhase = dailyForecast.weather?.getOrNull(0)?.description,
                         weatherCode = getWeatherCode(dailyForecast.weather?.getOrNull(0)?.id),
                         temperature = Temperature(
