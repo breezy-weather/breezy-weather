@@ -388,7 +388,6 @@
     <string name="action_add_new_location">Adicionar um novo local</string>
     <string name="widget_clock_font_analog">Analógico</string>
     <string name="settings_weather_provider_accu_weather_key">Chave do AccuWeather</string>
-    <string name="wind_direction_short_N"></string>
     <string name="air_quality_level_1">Excelente</string>
     <string name="weather_data_by">Dados fornecidos por $</string>
     <string name="unit_in">polegada</string>
