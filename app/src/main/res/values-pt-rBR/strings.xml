@@ -354,7 +354,7 @@
     <string name="air_quality_level_2_description">A qualidade do ar geralmente é aceitável para a maioria das pessoas. No entanto, grupos sensíveis podem apresentar sintomas leves a moderados devido à exposição prolongada.</string>
     <string name="air_quality_level_5_description">Efeitos na saúde serão sentidos imediatamente por grupos sensíveis, que devem evitar atividades ao ar livre. Indivíduos saudáveis provavelmente sentirão dificuldade para respirar e irritação na garganta; considere permanecer em ambientes internos e reagendar atividades ao ar livre.</string>
     <string name="locations">Locais</string>
-    <string name="air_quality_level_4">Não saudável</string>
+    <string name="air_quality_level_4">Insalubre</string>
     <string name="location_message_search_failed">A busca de localização falhou</string>
     <string name="location_message_permission_missing">Permissão de acesso à localização ausente</string>
     <string name="air_quality_level_4_description">Efeitos na saúde podem ser sentidos imediatamente por grupos sensíveis. Indivíduos saudáveis podem sentir dificuldade para respirar e irritação na garganta com exposição prolongada. Limite a atividade ao ar livre.</string>
@@ -388,7 +388,7 @@
     <string name="action_add_new_location">Adicionar um novo local</string>
     <string name="widget_clock_font_analog">Analógico</string>
     <string name="settings_weather_provider_accu_weather_key">Chave do AccuWeather</string>
-    <string name="wind_direction_short_N">N</string>
+    <string name="wind_direction_short_N"></string>
     <string name="air_quality_level_1">Excelente</string>
     <string name="weather_data_by">Dados fornecidos por $</string>
     <string name="unit_in">polegada</string>
@@ -458,7 +458,7 @@
     <string name="settings_location_access_switch_title">Acesso à localização</string>
     <string name="settings_main_cards_fade_in_switch">Cartões se desvanecem</string>
     <string name="settings_debug_dump_crash_logs_title">Compartilhar registros de falhas</string>
-    <string name="air_quality_level_5">Muito prejudicial à saúde</string>
+    <string name="air_quality_level_5">Muito insalubre</string>
     <string name="weather_source_accu_preference_days_1">1 dia</string>
     <string name="weather_source_accu_preference_days">Dias</string>
     <string name="weather_source_accu_preference_days_5">5 dias</string>
@@ -497,4 +497,16 @@
     <string name="settings_location_summary">Configurações dos provedores de localização</string>
     <string name="settings_location">Localizando</string>
     <string name="settings_location_access_precise_title">Uso do GPS do dispositivo</string>
+    <string name="settings_section_general">Geral</string>
+    <string name="settings_icon_providers_title">Pacotes de ícones</string>
+    <string name="settings_notifications_forecast_today_title">Notificação sobre a previsão do dia</string>
+    <string name="openmeteo_weather_text_overcast">Nublado</string>
+    <string name="wind_direction_short_SW">SO</string>
+    <string name="wind_direction_short_E">L</string>
+    <string name="wind_direction_short_W">O</string>
+    <string name="wind_direction_short_NW">NO</string>
+    <string name="air_quality_level_2">Razoável</string>
+    <string name="settings_notifications_forecast_time_today_title">Horário de notificação para a previsão do dia</string>
+    <string name="settings_notifications_forecast_tomorrow_title">Notificação para a previsão do dia seguinte</string>
+    <string name="settings_notifications_forecast_time_tomorrow_title">Horário de notificação para a previsão do dia seguinte</string>
 </resources>
