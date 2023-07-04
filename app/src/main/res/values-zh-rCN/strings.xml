@@ -575,4 +575,6 @@
     <string name="settings_debug_dump_crash_logs_summary">将错误日志保存为文件，以便于发送给开发者</string>
     <string name="notification_channel_background_services">后台服务</string>
     <string name="settings_widgets_notification_style_title">风格</string>
+    <string name="location_message_reverse_geocoding_failed">天气数据提供商未找到符合的位置</string>
+    <string name="widget_clock_font_analog">Analog</string>
 </resources>
