@@ -32,7 +32,7 @@ class FirstCardHeaderController(private val mActivity: GeoActivity, location: Lo
             val alert = mView.findViewById<TextView>(R.id.container_main_first_card_header_alert)
             val weather = location.weather
             val currentAlertList = weather.currentAlertList
-            mView.setOnClickListener { (mActivity as MainActivity).setManagementFragmentVisibility(true) }
+            mView.setOnClickListener { IntentHelper.startAlertActivity(mActivity, mFormattedId) }
             alertIcon.contentDescription = mActivity.getString(R.string.alerts_count)
                 .replace("$", "" + currentAlertList.size)
             ImageViewCompat.setImageTintList(
@@ -98,10 +98,6 @@ class FirstCardHeaderController(private val mActivity: GeoActivity, location: Lo
     // interface.
     @SuppressLint("NonConstantResourceId")
     override fun onClick(v: View) {
-        when (v.id) {
-            R.id.container_main_first_card_header_alertIcon, R.id.container_main_first_card_header_alert -> {
-                IntentHelper.startAlertActivity(mActivity, mFormattedId)
-            }
-        }
+        IntentHelper.startAlertActivity(mActivity, mFormattedId)
     }
 }

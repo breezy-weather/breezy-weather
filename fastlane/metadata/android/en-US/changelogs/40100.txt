@@ -9,5 +9,6 @@
 <li>Fix Today sometimes not showing on the right column in notification-widget</li>
 <li>Many null-safety checks added to avoid potential crashes, especially in widgets</li>
 <li>Fix tap on a day on week widget didn’t open day detail if view style was 5 days</li>
+<li>Fix don’t open location list when tapping on alerts</li>
 <li>Translation updates, Vietnamese added (thanks minb!).</li>
 </ul>
