@@ -12,7 +12,6 @@ import com.google.android.material.appbar.MaterialToolbar
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.Location.Companion.copy
 import org.breezyweather.common.basic.models.weather.Daily
 import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.getFormattedDate
@@ -80,7 +79,7 @@ class DailyWeatherActivity : GeoActivity() {
                 location = LocationEntityRepository.readLocationList(context)[0]
             }
             emitter.send(
-                copy(location, WeatherEntityRepository.readWeather(location)),
+                location.copy(weather = WeatherEntityRepository.readWeather(location)),
                 true
             )
         }, AsyncHelper.Callback { location: Location?, _: Boolean ->

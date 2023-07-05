@@ -30,10 +30,8 @@ class MaterialWeatherThemeDelegate: WeatherThemeDelegate {
             daytime: Boolean
         ): Int = when (weatherKind) {
             WeatherView.WEATHER_KIND_CLEAR -> if (daytime) {
-                SunImplementor.getThemeColor()
-            } else {
-                MeteorShowerImplementor.getThemeColor()
-            }
+                SunImplementor.themeColor
+            } else MeteorShowerImplementor.themeColor
 
             WeatherView.WEATHER_KIND_CLOUDY ->
                 CloudImplementor.getThemeColor(context, CloudImplementor.TYPE_CLOUDY, daytime)

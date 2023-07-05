@@ -40,28 +40,25 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
     }
 
     fun getRemoteViews(
-        context: Context, location: Location,
+        context: Context, location: Location?,
         viewStyle: String?, cardStyle: String?, cardAlpha: Int,
         textColor: String?, textSize: Int, hideSubtitle: Boolean, subtitleData: String?
     ): RemoteViews {
         val provider = ResourcesProviderFactory.newInstance
-        val dayTime = location.isDaylight
         val settings = SettingsManager.getInstance(context)
         val temperatureUnit = settings.temperatureUnit
         val speedUnit = settings.speedUnit
         val weekIconMode = settings.widgetWeekIconMode
         val minimalIcon = settings.isWidgetUsingMonochromeIcons
         val color = WidgetColor(context, cardStyle!!, textColor!!)
-
-        // build day part.
         val views = buildWidgetViewDayPart(
             context, provider, location, temperatureUnit, speedUnit,
-            color, dayTime, textSize, minimalIcon, viewStyle, hideSubtitle, subtitleData
+            color, textSize, minimalIcon, viewStyle, hideSubtitle, subtitleData
         )
-        val weather = location.weather ?: return views
+        val weather = location?.weather ?: return views
 
         // set week part.
-        val weekIconDaytime = isWeekIconDaytime(weekIconMode, dayTime)
+        val weekIconDaytime = isWeekIconDaytime(weekIconMode, location.isDaylight)
         val dailyIds = arrayOf(
             arrayOf(R.id.widget_day_week_week_1, R.id.widget_day_week_temp_1, R.id.widget_day_week_icon_1),
             arrayOf(R.id.widget_day_week_week_2, R.id.widget_day_week_temp_2, R.id.widget_day_week_icon_2),
@@ -156,9 +153,9 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
     }
 
     private fun buildWidgetViewDayPart(
-        context: Context, helper: ResourceProvider, location: Location,
+        context: Context, helper: ResourceProvider, location: Location?,
         temperatureUnit: TemperatureUnit, speedUnit: SpeedUnit,
-        color: WidgetColor, dayTime: Boolean, textSize: Int, minimalIcon: Boolean,
+        color: WidgetColor, textSize: Int, minimalIcon: Boolean,
         viewStyle: String?, hideSubtitle: Boolean, subtitleData: String?
     ): RemoteViews {
         val views = RemoteViews(
@@ -169,13 +166,13 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
                 else -> if (!color.showCard) R.layout.widget_day_week_symmetry else R.layout.widget_day_week_symmetry_card
             }
         )
-        val weather = location.weather ?: return views
+        val weather = location?.weather ?: return views
         weather.current?.weatherCode?.let {
             views.setViewVisibility(R.id.widget_day_week_icon, View.VISIBLE)
             views.setImageViewUri(
                 R.id.widget_day_week_icon,
                 ResourceHelper.getWidgetNotificationIconUri(
-                    helper, it, dayTime, minimalIcon, color.minimalIconColor
+                    helper, it, location.isDaylight, minimalIcon, color.minimalIconColor
                 )
             )
         } ?: views.setViewVisibility(R.id.widget_day_week_icon, View.INVISIBLE)

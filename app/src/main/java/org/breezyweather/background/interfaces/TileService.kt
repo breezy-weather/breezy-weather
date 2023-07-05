@@ -7,9 +7,8 @@ import android.os.Build
 import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService
 import androidx.annotation.RequiresApi
-import org.breezyweather.common.utils.helpers.IntentHelper
-import org.breezyweather.db.repositories.LocationEntityRepository.readLocationList
-import org.breezyweather.db.repositories.WeatherEntityRepository.readWeather
+import org.breezyweather.db.repositories.LocationEntityRepository
+import org.breezyweather.db.repositories.WeatherEntityRepository
 import org.breezyweather.main.MainActivity
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourceHelper
@@ -49,8 +48,8 @@ class TileService : TileService() {
     companion object {
         private fun refreshTile(context: Context, tile: Tile?) {
             if (tile == null) return
-            val location = readLocationList(context).getOrNull(0) ?: return
-            val locationRefreshed = location.copy(weather = readWeather(location))
+            val location = LocationEntityRepository.readLocationList(context).getOrNull(0) ?: return
+            val locationRefreshed = location.copy(weather = WeatherEntityRepository.readWeather(location))
             if (locationRefreshed.weather?.current != null) {
                 tile.apply {
                     icon = ResourceHelper.getMinimalIcon(

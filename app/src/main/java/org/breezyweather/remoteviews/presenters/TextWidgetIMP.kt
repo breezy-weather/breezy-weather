@@ -25,15 +25,15 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
     }
 
     fun getRemoteViews(
-        context: Context, location: Location, textColor: String?, textSize: Int, alignEnd: Boolean
+        context: Context, location: Location?, textColor: String?, textSize: Int, alignEnd: Boolean
     ): RemoteViews {
-        val settings = SettingsManager.getInstance(context)
-        val temperatureUnit = settings.temperatureUnit
         val views = RemoteViews(
             context.packageName,
             if (alignEnd) R.layout.widget_text_end else R.layout.widget_text
         )
-        val weather = location.weather ?: return views
+        val weather = location?.weather ?: return views
+        val settings = SettingsManager.getInstance(context)
+        val temperatureUnit = settings.temperatureUnit
         val darkText = textColor == "dark" || textColor == "auto" && isLightWallpaper(context)
         val textColorInt: Int = ContextCompat.getColor(
             context, if (darkText) R.color.colorTextDark else R.color.colorTextLight

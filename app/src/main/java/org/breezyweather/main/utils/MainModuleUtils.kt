@@ -12,7 +12,6 @@ object MainModuleUtils {
 
     private const val BASE_ENTER_DURATION: Long = 500
 
-    @JvmStatic
     fun getEnterAnimator(view: View, pendingCount: Int): Animator {
         val animators = DisplayUtils.getFloatingOvershotEnterAnimators(
             view, 0.4f + 0.2f * pendingCount,

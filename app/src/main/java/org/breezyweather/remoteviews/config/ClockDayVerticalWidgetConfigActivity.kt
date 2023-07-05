@@ -36,25 +36,27 @@ class ClockDayVerticalWidgetConfigActivity : AbstractWidgetConfigActivity() {
 
     override fun initView() {
         super.initView()
-        mViewTypeContainer.visibility = View.VISIBLE
-        mCardStyleContainer.visibility = View.VISIBLE
-        mCardAlphaContainer.visibility = View.VISIBLE
-        mHideSubtitleContainer.visibility = View.VISIBLE
-        mSubtitleDataContainer.visibility = View.VISIBLE
-        mTextColorContainer.visibility = View.VISIBLE
-        mTextSizeContainer.visibility = View.VISIBLE
-        mClockFontContainer.visibility = View.VISIBLE
+        mViewTypeContainer?.visibility = View.VISIBLE
+        mCardStyleContainer?.visibility = View.VISIBLE
+        mCardAlphaContainer?.visibility = View.VISIBLE
+        mHideSubtitleContainer?.visibility = View.VISIBLE
+        mSubtitleDataContainer?.visibility = View.VISIBLE
+        mTextColorContainer?.visibility = View.VISIBLE
+        mTextSizeContainer?.visibility = View.VISIBLE
+        mClockFontContainer?.visibility = View.VISIBLE
     }
 
-    override fun getRemoteViews(): RemoteViews {
-        return ClockDayVerticalWidgetIMP.getRemoteViews(
-            this, getLocationNow(),
-            viewTypeValueNow, cardStyleValueNow, cardAlpha, textColorValueNow, textSize,
-            hideSubtitle, subtitleDataValueNow, clockFontValueNow
-        )
-    }
+    override val remoteViews: RemoteViews
+        get() {
+            return ClockDayVerticalWidgetIMP.getRemoteViews(
+                this, locationNow,
+                viewTypeValueNow, cardStyleValueNow, cardAlpha, textColorValueNow, textSize,
+                hideSubtitle, subtitleDataValueNow, clockFontValueNow
+            )
+        }
 
-    override fun getConfigStoreName(): String {
-        return getString(R.string.sp_widget_clock_day_vertical_setting)
-    }
+    override val configStoreName: String
+        get() {
+            return getString(R.string.sp_widget_clock_day_vertical_setting)
+        }
 }

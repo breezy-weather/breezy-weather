@@ -8,8 +8,8 @@ import org.breezyweather.background.polling.work.WorkerHelper
 import org.breezyweather.common.basic.models.options.BackgroundUpdateMethod
 import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.common.utils.helpers.IntentHelper
-import org.breezyweather.db.repositories.LocationEntityRepository.readLocationList
-import org.breezyweather.db.repositories.WeatherEntityRepository.readWeather
+import org.breezyweather.db.repositories.LocationEntityRepository
+import org.breezyweather.db.repositories.WeatherEntityRepository
 import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.settings.SettingsManager
@@ -54,7 +54,6 @@ object PollingManager {
         }
     }
 
-    @JvmStatic
     fun resetNormalBackgroundTask(context: Context, forceRefresh: Boolean) {
         val settings = SettingsManager.getInstance(context)
         if (forceRefresh) {
@@ -145,9 +144,9 @@ object PollingManager {
     private fun forceRefresh(context: Context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             AsyncHelper.runOnIO {
-                val locationList = readLocationList(context)
+                val locationList = LocationEntityRepository.readLocationList(context)
                 for (i in locationList.indices) {
-                    locationList[i] = locationList[i].copy(weather = readWeather(locationList[i]))
+                    locationList[i] = locationList[i].copy(weather = WeatherEntityRepository.readWeather(locationList[i]))
                 }
                 Widgets.updateWidgetIfNecessary(context, locationList[0])
                 Widgets.updateWidgetIfNecessary(context, locationList)

@@ -51,7 +51,8 @@ class DelayRotateController(initRotation: Double) : RotateController() {
         }
     }
 
-    override fun getRotation(): Double = mCurrentRotation
+    override val rotation: Double
+        get() = mCurrentRotation
 
     private fun getRotationInScope(rotationP: Double): Double {
         var rotation = rotationP

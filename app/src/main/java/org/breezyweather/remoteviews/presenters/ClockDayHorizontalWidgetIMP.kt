@@ -32,20 +32,20 @@ object ClockDayHorizontalWidgetIMP : AbstractRemoteViewsPresenter() {
     }
 
     fun getRemoteViews(
-        context: Context, location: Location,
+        context: Context, location: Location?,
         cardStyle: String?, cardAlpha: Int, textColor: String?, textSize: Int, clockFont: String?, hideLunar: Boolean
     ): RemoteViews {
-        val provider = ResourcesProviderFactory.newInstance
-        val dayTime = location.isDaylight
-        val settings = SettingsManager.getInstance(context)
-        val temperatureUnit = settings.temperatureUnit
-        val minimalIcon = settings.isWidgetUsingMonochromeIcons
         val color = WidgetColor(context, cardStyle!!, textColor!!)
         val views = RemoteViews(
             context.packageName,
             if (!color.showCard) R.layout.widget_clock_day_horizontal else R.layout.widget_clock_day_horizontal_card
         )
-        val weather = location.weather ?: return views
+        val weather = location?.weather ?: return views
+        val provider = ResourcesProviderFactory.newInstance
+        val dayTime = location.isDaylight
+        val settings = SettingsManager.getInstance(context)
+        val temperatureUnit = settings.temperatureUnit
+        val minimalIcon = settings.isWidgetUsingMonochromeIcons
         weather.current?.weatherCode?.let {
             views.setViewVisibility(R.id.widget_clock_day_icon, View.VISIBLE)
             views.setImageViewUri(

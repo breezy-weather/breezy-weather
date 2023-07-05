@@ -14,5 +14,6 @@
 <li>Fix first letter of weather text is not capitalized with OpenWeather provider.</li>
 <li>Fix wallpaper settings not opening in some cases.</li>
 <li>Fix tile not collapsing after being tapped on.</li>
+<li>Fix sensor was always queried regardless of gravity sensor preference.</li>
 <li>Translation updates, Vietnamese added (thanks minb!).</li>
 </ul>

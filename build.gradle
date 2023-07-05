@@ -19,13 +19,17 @@ buildscript {
     }
 }
 
-allprojects {
+subprojects {
     repositories {
         google()
         mavenCentral()
         maven {
             url "https://jitpack.io"
         }
+    }
+
+    tasks.withType(Test.class).each {
+        useJUnitPlatform()
     }
 }
 

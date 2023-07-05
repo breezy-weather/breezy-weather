@@ -32,11 +32,9 @@ object WeatherViewController {
         else -> WeatherCode.CLEAR
     }
 
-    @JvmStatic
     @WeatherKindRule
     fun getWeatherKind(weather: Weather?): Int = getWeatherKind(weather?.current?.weatherCode)
 
-    @JvmStatic
     @WeatherKindRule
     fun getWeatherKind(weatherCode: WeatherCode?): Int = when (weatherCode) {
         WeatherCode.CLEAR -> WeatherView.WEATHER_KIND_CLEAR

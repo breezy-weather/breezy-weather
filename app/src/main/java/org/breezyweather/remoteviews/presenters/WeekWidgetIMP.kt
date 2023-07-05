@@ -30,15 +30,9 @@ object WeekWidgetIMP : AbstractRemoteViewsPresenter() {
     }
 
     fun getRemoteViews(
-        context: Context, location: Location, viewStyle: String?,
+        context: Context, location: Location?, viewStyle: String?,
         cardStyle: String?, cardAlpha: Int, textColor: String?, textSize: Int
     ): RemoteViews {
-        val provider = ResourcesProviderFactory.newInstance
-        val dayTime = location.isDaylight
-        val settings = SettingsManager.getInstance(context)
-        val temperatureUnit = settings.temperatureUnit
-        val weekIconMode = settings.widgetWeekIconMode
-        val minimalIcon = settings.isWidgetUsingMonochromeIcons
         val color = WidgetColor(context, cardStyle!!, textColor!!)
         val views = RemoteViews(
             context.packageName,
@@ -48,7 +42,13 @@ object WeekWidgetIMP : AbstractRemoteViewsPresenter() {
                 if (!color.showCard) R.layout.widget_week else R.layout.widget_week_card
             }
         )
-        val weather = location.weather ?: return views
+        val weather = location?.weather ?: return views
+        val provider = ResourcesProviderFactory.newInstance
+        val dayTime = location.isDaylight
+        val settings = SettingsManager.getInstance(context)
+        val temperatureUnit = settings.temperatureUnit
+        val weekIconMode = settings.widgetWeekIconMode
+        val minimalIcon = settings.isWidgetUsingMonochromeIcons
 
         if (weather.current?.temperature?.temperature != null) {
             views.setTextViewText(

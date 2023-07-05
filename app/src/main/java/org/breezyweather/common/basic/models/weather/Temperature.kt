@@ -24,12 +24,10 @@ class Temperature(
             return temperature?.let { unit.getValueText(context, it) }
         }
 
-        @JvmStatic
         fun getShortTemperature(context: Context, temperature: Int?, unit: TemperatureUnit): String? {
             return temperature?.let { unit.getShortValueText(context, it) }
         }
 
-        @JvmStatic
         fun getTrendTemperature(context: Context, night: Int?, day: Int?, unit: TemperatureUnit): String? {
             return getTrendTemperature(
                 context, night, day, unit,

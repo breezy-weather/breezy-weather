@@ -61,14 +61,19 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
 
     @WorkerThread
     @SuppressLint("InflateParams", "WrongThread")
-    private fun getDrawableView(context: Context, location: Location, lightTheme: Boolean): View? {
-        val weather = location.weather ?: return null
+    private fun getDrawableView(context: Context, location: Location?, cardStyle: String?): View? {
+        val weather = location?.weather ?: return null
         val provider = ResourcesProviderFactory.newInstance
         val itemCount = min(5, weather.hourlyForecast.size)
         var highestTemperature: Int? = null
         var lowestTemperature: Int? = null
         val minimalIcon = SettingsManager.getInstance(context).isWidgetUsingMonochromeIcons
         val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
+        val lightTheme: Boolean = when (cardStyle) {
+            "light" -> true
+            "dark" -> false
+            else -> location.isDaylight
+        }
 
         // TODO: Redundant with HourlyTemperatureAdapter
         val temperatures: Array<Float?> = arrayOfNulls(max(0, itemCount * 2 - 1))
@@ -107,12 +112,13 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
 
         val drawableView = LayoutInflater.from(context)
             .inflate(R.layout.widget_trend_hourly, null, false)
-        if (weather.yesterday?.daytimeTemperature != null && weather.yesterday!!.nighttimeTemperature != null) {
+        if (weather.yesterday?.daytimeTemperature != null && weather.yesterday!!.nighttimeTemperature != null
+            && highestTemperature != null && lowestTemperature != null) {
             val trendParent = drawableView.findViewById<TrendLinearLayout>(R.id.widget_trend_hourly)
             trendParent.setData(
-                arrayOf(weather.yesterday!!.daytimeTemperature, weather.yesterday!!.nighttimeTemperature),
-                highestTemperature,
-                lowestTemperature,
+                arrayOf(weather.yesterday!!.daytimeTemperature!!, weather.yesterday!!.nighttimeTemperature!!),
+                highestTemperature!!,
+                lowestTemperature!!,
                 temperatureUnit,
                 false
             )
@@ -170,15 +176,13 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         return drawableView
     }
 
-    @SuppressLint("WrongThread")
     @WorkerThread
-    private fun getRemoteViews(
-        context: Context, drawableView: View?, location: Location, width: Int, cardAlpha: Int, cardStyle: String?
+    fun getRemoteViews(
+        context: Context, location: Location?, width: Int, cardStyle: String?, cardAlpha: Int
     ): RemoteViews {
         val views = RemoteViews(context.packageName, R.layout.widget_remote)
-        if (drawableView == null) {
-            return views
-        }
+        val drawableView = getDrawableView(context, location, cardStyle) ?: return views
+
         val items: Array<WidgetItemView> = arrayOf(
             drawableView.findViewById(R.id.widget_trend_hourly_item_1),
             drawableView.findViewById(R.id.widget_trend_hourly_item_2),
@@ -217,27 +221,13 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         views.setInt(
             R.id.widget_remote_card, "setImageAlpha", (cardAlpha / 100.0 * 255).toInt()
         )
-        setOnClickPendingIntent(context, views, location)
+        setOnClickPendingIntent(context, views, location!!)
         return views
     }
 
-    @WorkerThread
-    fun getRemoteViews(
-        context: Context, location: Location, width: Int, cardStyle: String?, cardAlpha: Int
-    ): RemoteViews {
-        val lightTheme: Boolean = when (cardStyle) {
-            "light" -> true
-            "dark" -> false
-            else -> location.isDaylight
-        }
-        return getRemoteViews(
-            context, getDrawableView(context, location, lightTheme), location, width, cardAlpha, cardStyle
-        )
-    }
-
-    fun isInUse(context: Context?): Boolean {
+    fun isInUse(context: Context): Boolean {
         val widgetIds = AppWidgetManager.getInstance(context)
-            .getAppWidgetIds(ComponentName(context!!, WidgetTrendHourlyProvider::class.java))
+            .getAppWidgetIds(ComponentName(context, WidgetTrendHourlyProvider::class.java))
         return widgetIds != null && widgetIds.isNotEmpty()
     }
 

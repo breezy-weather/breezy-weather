@@ -40,11 +40,10 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
     }
 
     fun getRemoteViews(
-        context: Context, location: Location,
+        context: Context, location: Location?,
         viewStyle: String?, cardStyle: String?, cardAlpha: Int, textColor: String?, textSize: Int,
         hideSubtitle: Boolean, subtitleData: String?
     ): RemoteViews {
-        val dayTime = location.isDaylight
         val settings = SettingsManager.getInstance(context)
         val temperatureUnit = settings.temperatureUnit
         val speedUnit = settings.speedUnit
@@ -58,19 +57,19 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
         )
         val views = buildWidgetView(
             context, location, temperatureUnit, speedUnit,
-            color, dayTime, minimalIcon, viewStyle, textSize, hideSubtitle, subtitleData
+            color, minimalIcon, viewStyle, textSize, hideSubtitle, subtitleData
         )
         if (color.showCard) {
             views.setImageViewResource(R.id.widget_day_card, getCardBackgroundId(color.cardColor))
             views.setInt(R.id.widget_day_card, "setImageAlpha", (cardAlpha / 100.0 * 255).toInt())
         }
-        setOnClickPendingIntent(context, views, location, viewStyle, subtitleData)
+        location?.let { setOnClickPendingIntent(context, views, it, viewStyle, subtitleData) }
         return views
     }
 
     private fun buildWidgetView(
-        context: Context, location: Location, temperatureUnit: TemperatureUnit, speedUnit: SpeedUnit,
-        color: WidgetColor, dayTime: Boolean, minimalIcon: Boolean, viewStyle: String?, textSize: Int,
+        context: Context, location: Location?, temperatureUnit: TemperatureUnit, speedUnit: SpeedUnit,
+        color: WidgetColor, minimalIcon: Boolean, viewStyle: String?, textSize: Int,
         hideSubtitle: Boolean, subtitleData: String?
     ): RemoteViews {
         val views = RemoteViews(
@@ -88,14 +87,14 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
                 else -> if (!color.showCard) R.layout.widget_day_symmetry else R.layout.widget_day_symmetry_card
             }
         )
-        val weather = location.weather ?: return views
+        val weather = location?.weather ?: return views
         val provider = ResourcesProviderFactory.newInstance
         weather.current?.weatherCode?.let {
             views.setViewVisibility(R.id.widget_day_icon, View.VISIBLE)
             views.setImageViewUri(
                 R.id.widget_day_icon,
                 ResourceHelper.getWidgetNotificationIconUri(
-                    provider, it, dayTime, minimalIcon, color.minimalIconColor
+                    provider, it, location.isDaylight, minimalIcon, color.minimalIconColor
                 )
             )
         } ?: views.setViewVisibility(R.id.widget_day_icon, View.INVISIBLE)

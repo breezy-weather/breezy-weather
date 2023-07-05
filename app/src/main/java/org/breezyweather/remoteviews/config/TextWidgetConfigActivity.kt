@@ -13,16 +13,18 @@ import org.breezyweather.remoteviews.presenters.TextWidgetIMP.getRemoteViews
 class TextWidgetConfigActivity : AbstractWidgetConfigActivity() {
     override fun initView() {
         super.initView()
-        mTextColorContainer.visibility = View.VISIBLE
-        mTextSizeContainer.visibility = View.VISIBLE
-        mAlignEndContainer.visibility = View.VISIBLE
+        mTextColorContainer?.visibility = View.VISIBLE
+        mTextSizeContainer?.visibility = View.VISIBLE
+        mAlignEndContainer?.visibility = View.VISIBLE
     }
 
-    override fun getRemoteViews(): RemoteViews {
-        return getRemoteViews(this, getLocationNow(), textColorValueNow, textSize, alignEnd)
-    }
+    override val remoteViews: RemoteViews
+        get() {
+            return getRemoteViews(this, locationNow, textColorValueNow, textSize, alignEnd)
+        }
 
-    override fun getConfigStoreName(): String {
-        return getString(R.string.sp_widget_text_setting)
-    }
+    override val configStoreName: String
+        get() {
+            return getString(R.string.sp_widget_text_setting)
+        }
 }

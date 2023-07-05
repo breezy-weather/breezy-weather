@@ -17,7 +17,6 @@ enum class WeatherCode(val id: String) {
 
     companion object {
 
-        @JvmStatic
         fun getInstance(
             value: String
         ): WeatherCode = with (value) {

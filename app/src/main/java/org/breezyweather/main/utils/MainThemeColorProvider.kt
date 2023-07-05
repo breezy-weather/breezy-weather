@@ -94,10 +94,9 @@ class MainThemeColorProvider(
             instance = null
         }
 
-        @JvmStatic
         fun isLightTheme(
             context: Context,
-            location: Location,
+            location: Location
         ) = isLightTheme(
             context = context,
             daylight = location.isDaylight,
@@ -131,7 +130,6 @@ class MainThemeColorProvider(
             )
         }
 
-        @JvmStatic
         fun getColor(
             lightTheme: Boolean,
             @AttrRes id: Int,
@@ -153,7 +151,6 @@ class MainThemeColorProvider(
             return@let color
         } ?: 0
 
-        @JvmStatic
         fun getColor(
             location: Location,
             @AttrRes id: Int,

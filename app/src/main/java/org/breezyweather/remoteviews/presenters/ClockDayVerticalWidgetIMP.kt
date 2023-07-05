@@ -40,34 +40,32 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
     }
 
     fun getRemoteViews(
-        context: Context, location: Location,
+        context: Context, location: Location?,
         viewStyle: String?, cardStyle: String?, cardAlpha: Int, textColor: String?, textSize: Int,
         hideSubtitle: Boolean, subtitleData: String?, clockFont: String?
     ): RemoteViews {
-        val dayTime = location.isDaylight
+        val color = WidgetColor(context, cardStyle!!, textColor!!)
         val settings = SettingsManager.getInstance(context)
         val temperatureUnit = settings.temperatureUnit
         val speedUnit = settings.speedUnit
         val minimalIcon = settings.isWidgetUsingMonochromeIcons
-        val color = WidgetColor(context, cardStyle!!, textColor!!)
         val views = buildWidgetViewDayPart(
             context, location, temperatureUnit, speedUnit,
-            color, dayTime, textSize, minimalIcon, clockFont, viewStyle, hideSubtitle, subtitleData
+            color, textSize, minimalIcon, clockFont, viewStyle, hideSubtitle, subtitleData
         )
         if (color.showCard) {
             views.setImageViewResource(R.id.widget_clock_day_card, getCardBackgroundId(color.cardColor))
             views.setInt(R.id.widget_clock_day_card, "setImageAlpha", (cardAlpha / 100.0 * 255).toInt())
         }
-        setOnClickPendingIntent(context, views, location, subtitleData)
+        location?.let { setOnClickPendingIntent(context, views, it, subtitleData) }
         return views
     }
 
     private fun buildWidgetViewDayPart(
-        context: Context, location: Location, temperatureUnit: TemperatureUnit, speedUnit: SpeedUnit,
-        color: WidgetColor, dayTime: Boolean, textSize: Int, minimalIcon: Boolean,
+        context: Context, location: Location?, temperatureUnit: TemperatureUnit, speedUnit: SpeedUnit,
+        color: WidgetColor, textSize: Int, minimalIcon: Boolean,
         clockFont: String?, viewStyle: String?, hideSubtitle: Boolean, subtitleData: String?
     ): RemoteViews {
-        val weather = location.weather
         val views = RemoteViews(
             context.packageName,
             when (viewStyle) {
@@ -79,7 +77,7 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
                 else -> if (!color.showCard) R.layout.widget_clock_day_symmetry else R.layout.widget_clock_day_symmetry_card
             }
         )
-        if (weather == null) return views
+        val weather = location?.weather ?: return views
 
         val provider = ResourcesProviderFactory.newInstance
         weather.current?.weatherCode?.let {
@@ -87,7 +85,7 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
             views.setImageViewUri(
                 R.id.widget_clock_day_icon,
                 ResourceHelper.getWidgetNotificationIconUri(
-                    provider, it, dayTime, minimalIcon, color.minimalIconColor
+                    provider, it, location.isDaylight, minimalIcon, color.minimalIconColor
                 )
             )
         } ?: views.setViewVisibility(R.id.widget_clock_day_icon, View.INVISIBLE)

@@ -22,21 +22,23 @@ class WeekWidgetConfigActivity : AbstractWidgetConfigActivity() {
 
     override fun initView() {
         super.initView()
-        mViewTypeContainer.visibility = View.VISIBLE
-        mCardStyleContainer.visibility = View.VISIBLE
-        mCardAlphaContainer.visibility = View.VISIBLE
-        mTextColorContainer.visibility = View.VISIBLE
-        mTextSizeContainer.visibility = View.VISIBLE
+        mViewTypeContainer?.visibility = View.VISIBLE
+        mCardStyleContainer?.visibility = View.VISIBLE
+        mCardAlphaContainer?.visibility = View.VISIBLE
+        mTextColorContainer?.visibility = View.VISIBLE
+        mTextSizeContainer?.visibility = View.VISIBLE
     }
 
-    override fun getRemoteViews(): RemoteViews {
-        return WeekWidgetIMP.getRemoteViews(
-            this, getLocationNow(),
-            viewTypeValueNow, cardStyleValueNow, cardAlpha, textColorValueNow, textSize
-        )
-    }
+    override val remoteViews: RemoteViews
+        get() {
+            return WeekWidgetIMP.getRemoteViews(
+                this, locationNow,
+                viewTypeValueNow, cardStyleValueNow, cardAlpha, textColorValueNow, textSize
+            )
+        }
 
-    override fun getConfigStoreName(): String {
-        return getString(R.string.sp_widget_week_setting)
-    }
+    override val configStoreName: String
+        get() {
+            return getString(R.string.sp_widget_week_setting)
+        }
 }

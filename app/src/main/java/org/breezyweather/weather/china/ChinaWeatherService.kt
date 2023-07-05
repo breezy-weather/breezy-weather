@@ -9,9 +9,7 @@ import org.breezyweather.common.rxjava.ApiObserver
 import org.breezyweather.common.rxjava.ObserverContainer
 import org.breezyweather.common.rxjava.SchedulerTransformer
 import org.breezyweather.common.utils.LanguageUtils
-import org.breezyweather.db.repositories.ChineseCityEntityRepository.ensureChineseCityList
-import org.breezyweather.db.repositories.ChineseCityEntityRepository.readChineseCity
-import org.breezyweather.db.repositories.ChineseCityEntityRepository.readChineseCityList
+import org.breezyweather.db.repositories.ChineseCityEntityRepository
 import org.breezyweather.main.utils.RequestErrorType
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.weather.WeatherService
@@ -80,9 +78,9 @@ class ChinaWeatherService @Inject constructor(
         if (!LanguageUtils.isChinese(query)) {
             return ArrayList()
         }
-        ensureChineseCityList(context)
+        ChineseCityEntityRepository.ensureChineseCityList(context)
         val locationList: MutableList<Location> = ArrayList()
-        val cityList = readChineseCityList(query)
+        val cityList = ChineseCityEntityRepository.readChineseCityList(query)
         for (c in cityList) {
             locationList.add(c.toLocation())
         }
@@ -97,10 +95,10 @@ class ChinaWeatherService @Inject constructor(
         val hasGeocodeInformation = location.hasGeocodeInformation()
         Observable.create(
             ObservableOnSubscribe<List<Location>> { emitter ->
-                ensureChineseCityList(context)
+                ChineseCityEntityRepository.ensureChineseCityList(context)
                 val locationList: MutableList<Location> = ArrayList()
                 if (hasGeocodeInformation) {
-                    val chineseCity = readChineseCity(
+                    val chineseCity = ChineseCityEntityRepository.readChineseCity(
                         formatLocationString(convertChinese(location.province)),
                         formatLocationString(convertChinese(location.city)),
                         formatLocationString(convertChinese(location.district))
@@ -113,7 +111,7 @@ class ChinaWeatherService @Inject constructor(
                     emitter.onNext(locationList)
                     return@ObservableOnSubscribe
                 }
-                val chineseCity = readChineseCity(
+                val chineseCity = ChineseCityEntityRepository.readChineseCity(
                     location.latitude, location.longitude
                 )
                 if (chineseCity != null) {

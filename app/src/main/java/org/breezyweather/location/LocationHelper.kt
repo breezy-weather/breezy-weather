@@ -8,7 +8,7 @@ import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.provider.LocationProvider
 import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.isOnline
-import org.breezyweather.db.repositories.LocationEntityRepository.writeLocation
+import org.breezyweather.db.repositories.LocationEntityRepository
 import org.breezyweather.location.baiduip.BaiduIPLocationService
 import org.breezyweather.location.services.AndroidLocationService
 import org.breezyweather.main.utils.RequestErrorType
@@ -115,7 +115,7 @@ class LocationHelper @Inject constructor(
                 if (locationList.isNotEmpty()) {
                     val src = locationList[0]
                     val result = src.copy(isCurrentPosition = true)
-                    writeLocation(result)
+                    LocationEntityRepository.writeLocation(result)
                     l.requestLocationSuccess(result)
                 } else {
                     requestLocationFailed(query, RequestErrorType.LOCATION_FAILED)

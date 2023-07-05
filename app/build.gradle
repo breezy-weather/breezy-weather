@@ -67,17 +67,11 @@ android {
     }
     sourceSets {
         standard {
-            java.srcDirs = ["src/src_nogplay"]
+            java.srcDirs("src/src_nogplay")
         }
         gplay {
-            java.srcDirs = ["src/src_gplay"]
+            java.srcDirs("src/src_gplay")
             manifest.srcFile "manifest_gplay/AndroidManifest.xml"
-        }
-        test {
-            java.srcDir "test"
-        }
-        androidTest {
-            java.srcDir "androidTest"
         }
     }
     compileOptions {
@@ -143,10 +137,9 @@ dependencies {
 
     // test.
     testImplementation "org.junit.jupiter:junit-jupiter-api:5.9.3"
-    testImplementation "androidx.test:core:1.5.0"
-    testImplementation "androidx.test:runner:1.5.2"
-    testImplementation "androidx.test:rules:1.5.0"
-    testImplementation "org.mockito:mockito-core:4.11.0" // 5+ requires JDK 11
+    testImplementation "io.kotest:kotest-assertions-core:5.6.2"
+    testImplementation "io.mockk:mockk:1.13.5"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.2"
 
     // material design.
     implementation "com.google.android.material:material:1.9.0"

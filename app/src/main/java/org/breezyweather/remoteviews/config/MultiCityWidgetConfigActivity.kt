@@ -5,8 +5,8 @@ import android.widget.RemoteViews
 import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
-import org.breezyweather.db.repositories.LocationEntityRepository.readLocationList
-import org.breezyweather.db.repositories.WeatherEntityRepository.readWeather
+import org.breezyweather.db.repositories.LocationEntityRepository
+import org.breezyweather.db.repositories.WeatherEntityRepository
 import org.breezyweather.remoteviews.presenters.MultiCityWidgetIMP
 
 /**
@@ -18,26 +18,28 @@ class MultiCityWidgetConfigActivity : AbstractWidgetConfigActivity() {
 
     override fun initData() {
         super.initData()
-        locationList = readLocationList(this).map {
-            it.copy(weather = readWeather(it))
+        locationList = LocationEntityRepository.readLocationList(this).map {
+            it.copy(weather = WeatherEntityRepository.readWeather(it))
         }.toMutableList()
     }
 
     override fun initView() {
         super.initView()
-        mCardStyleContainer.visibility = View.VISIBLE
-        mCardAlphaContainer.visibility = View.VISIBLE
-        mTextColorContainer.visibility = View.VISIBLE
-        mTextSizeContainer.visibility = View.VISIBLE
+        mCardStyleContainer?.visibility = View.VISIBLE
+        mCardAlphaContainer?.visibility = View.VISIBLE
+        mTextColorContainer?.visibility = View.VISIBLE
+        mTextSizeContainer?.visibility = View.VISIBLE
     }
 
-    override fun getRemoteViews(): RemoteViews {
-        return MultiCityWidgetIMP.getRemoteViews(
-            this, locationList, cardStyleValueNow, cardAlpha, textColorValueNow, textSize
-        )
-    }
+    override val remoteViews: RemoteViews
+        get() {
+            return MultiCityWidgetIMP.getRemoteViews(
+                this, locationList, cardStyleValueNow, cardAlpha, textColorValueNow, textSize
+            )
+        }
 
-    override fun getConfigStoreName(): String {
-        return getString(R.string.sp_widget_multi_city)
-    }
+    override val configStoreName: String
+        get() {
+            return getString(R.string.sp_widget_multi_city)
+        }
 }

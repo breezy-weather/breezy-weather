@@ -22,22 +22,24 @@ class ClockDayHorizontalWidgetConfigActivity : AbstractWidgetConfigActivity() {
 
     override fun initView() {
         super.initView()
-        mCardStyleContainer.visibility = View.VISIBLE
-        mCardAlphaContainer.visibility = View.VISIBLE
-        mTextColorContainer.visibility = View.VISIBLE
-        mTextSizeContainer.visibility = View.VISIBLE
-        mClockFontContainer.visibility = View.VISIBLE
-        mHideLunarContainer.visibility = isHideLunarContainerVisible()
+        mCardStyleContainer?.visibility = View.VISIBLE
+        mCardAlphaContainer?.visibility = View.VISIBLE
+        mTextColorContainer?.visibility = View.VISIBLE
+        mTextSizeContainer?.visibility = View.VISIBLE
+        mClockFontContainer?.visibility = View.VISIBLE
+        mHideLunarContainer?.visibility = isHideLunarContainerVisible
     }
 
-    override fun getRemoteViews(): RemoteViews {
-        return ClockDayHorizontalWidgetIMP.getRemoteViews(
-            this, getLocationNow(),
-            cardStyleValueNow, cardAlpha, textColorValueNow, textSize, clockFontValueNow, hideLunar
-        )
-    }
+    override val remoteViews: RemoteViews
+        get() {
+            return ClockDayHorizontalWidgetIMP.getRemoteViews(
+                this, locationNow,
+                cardStyleValueNow, cardAlpha, textColorValueNow, textSize, clockFontValueNow, hideLunar
+            )
+        }
 
-    override fun getConfigStoreName(): String {
-        return getString(R.string.sp_widget_clock_day_horizontal_setting)
-    }
+    override val configStoreName: String
+        get() {
+            return getString(R.string.sp_widget_clock_day_horizontal_setting)
+        }
 }

@@ -10,11 +10,10 @@ import org.breezyweather.theme.weatherView.materialWeatherView.implementor.*
 
 object WeatherImplementorFactory {
 
-    @JvmStatic
     fun getWeatherImplementor(
         @WeatherKindRule weatherKind: Int,
         daytime: Boolean,
-        @Size(2) sizes: IntArray?
+        @Size(2) sizes: IntArray
     ): WeatherAnimationImplementor? = when (weatherKind) {
         WeatherView.WEATHER_KIND_CLEAR -> if (daytime) {
             SunImplementor(
@@ -103,7 +102,6 @@ object WeatherImplementorFactory {
         else -> null
     }
 
-    @JvmStatic
     @DrawableRes
     fun getBackgroundId(
         @WeatherKindRule weatherKind: Int,

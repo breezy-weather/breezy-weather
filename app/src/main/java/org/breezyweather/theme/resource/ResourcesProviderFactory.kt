@@ -9,7 +9,6 @@ object ResourcesProviderFactory {
     @JvmStatic
     val newInstance: ResourceProvider = getNewInstance(SettingsManager.getInstance(BreezyWeather.instance).iconProvider)
 
-    @JvmStatic
     fun getNewInstance(packageName: String?): ResourceProvider {
         val context: Context = BreezyWeather.instance
         val defaultProvider = DefaultResourceProvider()
@@ -31,7 +30,6 @@ object ResourcesProviderFactory {
         )
     }
 
-    @JvmStatic
     fun getProviderList(context: Context): List<ResourceProvider> {
         val providerList: MutableList<ResourceProvider> = ArrayList()
         val defaultProvider = DefaultResourceProvider()

@@ -22,18 +22,20 @@ class HourlyTrendWidgetConfigActivity : AbstractWidgetConfigActivity() {
 
     override fun initView() {
         super.initView()
-        mCardStyleContainer.visibility = View.VISIBLE
-        mCardAlphaContainer.visibility = View.VISIBLE
+        mCardStyleContainer?.visibility = View.VISIBLE
+        mCardAlphaContainer?.visibility = View.VISIBLE
     }
 
-    override fun getRemoteViews(): RemoteViews {
-        return HourlyTrendWidgetIMP.getRemoteViews(
-            this, locationNow,
-            resources.displayMetrics.widthPixels, cardStyleValueNow, cardAlpha
-        )
-    }
+    override val remoteViews: RemoteViews
+        get() {
+            return HourlyTrendWidgetIMP.getRemoteViews(
+                this, locationNow,
+                resources.displayMetrics.widthPixels, cardStyleValueNow, cardAlpha
+            )
+        }
 
-    override fun getConfigStoreName(): String {
-        return getString(R.string.sp_widget_hourly_trend_setting)
-    }
+    override val configStoreName: String
+        get() {
+            return getString(R.string.sp_widget_hourly_trend_setting)
+        }
 }

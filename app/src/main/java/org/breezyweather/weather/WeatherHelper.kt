@@ -10,9 +10,8 @@ import org.breezyweather.common.rxjava.ApiObserver
 import org.breezyweather.common.rxjava.ObserverContainer
 import org.breezyweather.common.rxjava.SchedulerTransformer
 import org.breezyweather.common.utils.helpers.AsyncHelper
-import org.breezyweather.db.repositories.HistoryEntityRepository.readHistory
-import org.breezyweather.db.repositories.WeatherEntityRepository.readWeather
-import org.breezyweather.db.repositories.WeatherEntityRepository.writeWeather
+import org.breezyweather.db.repositories.HistoryEntityRepository
+import org.breezyweather.db.repositories.WeatherEntityRepository
 import org.breezyweather.main.utils.RequestErrorType
 import javax.inject.Inject
 
@@ -43,9 +42,9 @@ class WeatherHelper @Inject constructor(
             override fun requestWeatherSuccess(requestLocation: Location) {
                 val weather = requestLocation.weather
                 if (weather != null) {
-                    writeWeather(requestLocation, weather)
+                    WeatherEntityRepository.writeWeather(requestLocation, weather)
                     if (weather.yesterday == null) {
-                        weather.yesterday = readHistory(requestLocation, weather)
+                        weather.yesterday = HistoryEntityRepository.readHistory(requestLocation, weather)
                     }
                     listener.requestWeatherSuccess(requestLocation)
                 } else {
@@ -55,7 +54,7 @@ class WeatherHelper @Inject constructor(
 
             override fun requestWeatherFailed(requestLocation: Location, requestErrorType: RequestErrorType) {
                 listener.requestWeatherFailed(
-                    requestLocation.copy(weather = readWeather(requestLocation)),
+                    requestLocation.copy(weather = WeatherEntityRepository.readWeather(requestLocation)),
                     requestErrorType
                 )
             }

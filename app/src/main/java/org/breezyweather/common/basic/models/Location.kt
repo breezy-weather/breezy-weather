@@ -59,7 +59,6 @@ class Location(
             return 0 < sunRiseProgress && sunRiseProgress < 1
         }
 
-        @JvmStatic
         fun buildLocal(context: Context): Location {
             return Location(
                 cityId = NULL_ID,
@@ -109,7 +108,6 @@ class Location(
             return result
         }
 
-        @JvmStatic
         fun copy(src: Location, weather: Weather?) = src.copy(weather = weather)
 
         @JvmField

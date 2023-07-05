@@ -62,15 +62,20 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
     @WorkerThread
     @SuppressLint("InflateParams", "WrongThread")
     private fun getDrawableView(
-        context: Context, location: Location, lightTheme: Boolean
+        context: Context, location: Location?, cardStyle: String?
     ): View? {
-        val weather = location.weather ?: return null
+        val weather = location?.weather ?: return null
         val provider = ResourcesProviderFactory.newInstance
         val itemCount = min(5, weather.dailyForecast.size)
         var highestTemperature: Int? = null
         var lowestTemperature: Int? = null
         val minimalIcon = SettingsManager.getInstance(context).isWidgetUsingMonochromeIcons
         val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
+        val lightTheme = when (cardStyle) {
+            "light" -> true
+            "dark" -> false
+            else -> location.isDaylight
+        }
 
         // TODO: Redundant with DailyTemperatureAdapter
         val daytimeTemperatures: Array<Float?> = arrayOfNulls(max(0, itemCount * 2 - 1))
@@ -133,12 +138,13 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
 
         val drawableView = LayoutInflater.from(context)
             .inflate(R.layout.widget_trend_daily, null, false)
-        if (weather.yesterday?.daytimeTemperature != null && weather.yesterday!!.nighttimeTemperature != null) {
+        if (weather.yesterday?.daytimeTemperature != null && weather.yesterday!!.nighttimeTemperature != null
+            && highestTemperature != null && lowestTemperature != null) {
             val trendParent = drawableView.findViewById<TrendLinearLayout>(R.id.widget_trend_daily)
             trendParent.setData(
-                arrayOf(weather.yesterday!!.daytimeTemperature, weather.yesterday!!.nighttimeTemperature),
-                highestTemperature,
-                lowestTemperature,
+                arrayOf(weather.yesterday!!.daytimeTemperature!!, weather.yesterday!!.nighttimeTemperature!!),
+                highestTemperature!!,
+                lowestTemperature!!,
                 temperatureUnit,
                 true
             )
@@ -217,13 +223,14 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         return drawableView
     }
 
-    @SuppressLint("WrongThread")
     @WorkerThread
-    private fun getRemoteViews(
-        context: Context, drawableView: View?, location: Location, width: Int, cardAlpha: Int, cardStyle: String?
+    fun getRemoteViews(
+        context: Context, location: Location?,
+        width: Int, cardStyle: String?, cardAlpha: Int
     ): RemoteViews {
         val views = RemoteViews(context.packageName, R.layout.widget_remote)
-        if (drawableView == null) return views
+        val drawableView = getDrawableView(context, location, cardStyle) ?: return views
+
         val widgetItemViews: Array<WidgetItemView> = arrayOf(
             drawableView.findViewById(R.id.widget_trend_daily_item_1),
             drawableView.findViewById(R.id.widget_trend_daily_item_2),
@@ -262,23 +269,8 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         views.setInt(
             R.id.widget_remote_card, "setImageAlpha", (cardAlpha / 100.0 * 255).toInt()
         )
-        setOnClickPendingIntent(context, views, location)
+        setOnClickPendingIntent(context, views, location!!)
         return views
-    }
-
-    @WorkerThread
-    fun getRemoteViews(
-        context: Context, location: Location,
-        width: Int, cardStyle: String?, cardAlpha: Int
-    ): RemoteViews {
-        val lightTheme = when (cardStyle) {
-            "light" -> true
-            "dark" -> false
-            else -> location.isDaylight
-        }
-        return getRemoteViews(
-            context, getDrawableView(context, location, lightTheme), location, width, cardAlpha, cardStyle
-        )
     }
 
     fun isInUse(context: Context): Boolean {
