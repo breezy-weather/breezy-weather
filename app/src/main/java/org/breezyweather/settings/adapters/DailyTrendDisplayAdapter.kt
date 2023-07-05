@@ -15,16 +15,9 @@ import org.breezyweather.common.ui.widgets.slidingItem.SlidingItemContainerLayou
 
 class DailyTrendDisplayAdapter(
     private val mDailyTrendDisplayList: MutableList<DailyTrendDisplay>,
-    private val mRemoveListener: OnItemRemoveListener,
-    private val mDragListener: OnItemDragListener
+    private val mRemoveListener: (DailyTrendDisplay) -> Unit,
+    private val mDragListener: (ViewHolder) -> Unit
 ) : RecyclerView.Adapter<DailyTrendDisplayAdapter.ViewHolder>() {
-    interface OnItemRemoveListener {
-        fun onRemoved(dailyTrendDisplay: DailyTrendDisplay)
-    }
-
-    interface OnItemDragListener {
-        fun onDrag(holder: ViewHolder)
-    }
 
     inner class ViewHolder @SuppressLint("ClickableViewAccessibility") constructor(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
@@ -37,7 +30,7 @@ class DailyTrendDisplayAdapter(
         init {
             sortButton.setOnTouchListener { _: View, event: MotionEvent ->
                 if (event.action == MotionEvent.ACTION_DOWN) {
-                    mDragListener.onDrag(this)
+                    mDragListener(this)
                 }
                 false
             }
@@ -75,7 +68,7 @@ class DailyTrendDisplayAdapter(
     fun removeItem(adapterPosition: Int) {
         val dailyTrendDisplay = mDailyTrendDisplayList.removeAt(adapterPosition)
         notifyItemRemoved(adapterPosition)
-        mRemoveListener.onRemoved(dailyTrendDisplay)
+        mRemoveListener(dailyTrendDisplay)
     }
 
     fun moveItem(fromPosition: Int, toPosition: Int) {

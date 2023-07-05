@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_card_display_manage_container"
+    android:id="@+id/container"
     android:background="?attr/colorSurface"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -13,14 +13,14 @@
         android:layout_height="match_parent">
 
         <org.breezyweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
-            android:id="@+id/activity_card_display_manage_appBar"
+            android:id="@+id/appBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             style="@style/BreezyWeatherTheme.AppBarTheme">
 
             <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/activity_card_display_manage_toolbar"
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 style="@style/BreezyWeatherTheme.ToolbarTheme"
@@ -31,22 +31,22 @@
         </org.breezyweather.common.ui.widgets.insets.FitSystemBarAppBarLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/activity_card_display_manage_recyclerView"
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/activity_card_display_manage_appBar"
+            android:layout_below="@id/appBar"
             android:clipToPadding="false"
             android:paddingBottom="128dp" />
 
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/activity_card_display_manage_bottomBar"
+            android:id="@+id/bottomBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?android:attr/colorBackground"
             android:layout_alignParentBottom="true">
 
             <org.breezyweather.common.ui.widgets.insets.FitSystemBarRecyclerView
-                android:id="@+id/activity_card_display_manage_bottomRecyclerView"
+                android:id="@+id/bottomRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:rv_side="bottom"

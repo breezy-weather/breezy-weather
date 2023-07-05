@@ -197,15 +197,17 @@ internal abstract class BaseWeatherIcon(
     protected var weatherCode: WeatherCode,
     protected var daytime: Boolean
 ) : WeatherIconAdapter.WeatherIcon() {
-    override fun getContentDescription(): String {
-        val name = weatherCode.name.lowercase(Locale.getDefault()).replace("_", " ")
-        return name.substring(0, 1).uppercase(Locale.getDefault()) + name.substring(1)
-    }
+    override val contentDescription: String
+        get() {
+            val name = weatherCode.name.lowercase(Locale.getDefault()).replace("_", " ")
+            return name.substring(0, 1).uppercase(Locale.getDefault()) + name.substring(1)
+        }
 }
 
 internal class WeatherIcon(provider: ResourceProvider, weatherCode: WeatherCode, daytime: Boolean) :
     BaseWeatherIcon(provider, weatherCode, daytime) {
-    override fun getDrawable(): Drawable = ResourceHelper.getWeatherIcon(provider, weatherCode, daytime)
+    override val drawable: Drawable
+        get() = ResourceHelper.getWeatherIcon(provider, weatherCode, daytime)
 
     override fun onItemClicked(activity: GeoActivity) {
         AnimatableIconDialog.show(activity, weatherCode, daytime, provider)
@@ -218,9 +220,10 @@ internal class MinimalIcon(
     daytime: Boolean,
     private val mDarkMode: Boolean
 ) : BaseWeatherIcon(provider, weatherCode, daytime) {
-    override fun getDrawable(): Drawable = ResourceHelper.getWidgetNotificationIcon(
-        provider, weatherCode, daytime, true, !mDarkMode
-    )
+    override val drawable: Drawable
+        get() = ResourceHelper.getWidgetNotificationIcon(
+            provider, weatherCode, daytime, true, !mDarkMode
+        )
 
     override fun onItemClicked(activity: GeoActivity) {
         MinimalIconDialog.show(activity, weatherCode, daytime, provider)
@@ -229,7 +232,8 @@ internal class MinimalIcon(
 
 internal class ShortcutIcon(provider: ResourceProvider, weatherCode: WeatherCode, daytime: Boolean) :
     BaseWeatherIcon(provider, weatherCode, daytime) {
-    override fun getDrawable(): Drawable = ResourceHelper.getShortcutsIcon(provider, weatherCode, daytime)
+    override val drawable: Drawable
+        get() = ResourceHelper.getShortcutsIcon(provider, weatherCode, daytime)
 
     override fun onItemClicked(activity: GeoActivity) {
         AdaptiveIconDialog.show(activity, weatherCode, daytime, provider)
@@ -237,9 +241,11 @@ internal class ShortcutIcon(provider: ResourceProvider, weatherCode: WeatherCode
 }
 
 internal open class SunIcon(protected var provider: ResourceProvider) : WeatherIconAdapter.WeatherIcon() {
-    override fun getDrawable(): Drawable = ResourceHelper.getSunDrawable(provider)
+    override val drawable: Drawable
+        get() = ResourceHelper.getSunDrawable(provider)
 
-    override fun getContentDescription(): String = "Sun"
+    override val contentDescription: String
+        get() = "Sun"
 
     override fun onItemClicked(activity: GeoActivity) {
         // do nothing.
@@ -247,7 +253,9 @@ internal open class SunIcon(protected var provider: ResourceProvider) : WeatherI
 }
 
 internal class MoonIcon(provider: ResourceProvider) : SunIcon(provider) {
-    override fun getDrawable(): Drawable = ResourceHelper.getMoonDrawable(provider)
+    override val drawable: Drawable
+        get() = ResourceHelper.getMoonDrawable(provider)
 
-    override fun getContentDescription(): String = "Moon"
+    override val contentDescription: String
+        get() = "Moon"
 }

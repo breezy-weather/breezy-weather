@@ -15,16 +15,9 @@ import org.breezyweather.common.ui.widgets.slidingItem.SlidingItemContainerLayou
 
 class DetailDisplayAdapter(
     private val mDetailDisplayList: MutableList<DetailDisplay>,
-    private val mRemoveListener: OnItemRemoveListener,
-    private val mDragListener: OnItemDragListener
+    private val mRemoveListener: (DetailDisplay) -> Unit,
+    private val mDragListener: (ViewHolder) -> Unit
 ) : RecyclerView.Adapter<DetailDisplayAdapter.ViewHolder>() {
-    interface OnItemRemoveListener {
-        fun onRemoved(detailDisplay: DetailDisplay)
-    }
-
-    interface OnItemDragListener {
-        fun onDrag(holder: ViewHolder)
-    }
 
     inner class ViewHolder @SuppressLint("ClickableViewAccessibility") constructor(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
@@ -37,7 +30,7 @@ class DetailDisplayAdapter(
         init {
             sortButton.setOnTouchListener { _: View, event: MotionEvent ->
                 if (event.action == MotionEvent.ACTION_DOWN) {
-                    mDragListener.onDrag(this)
+                    mDragListener(this)
                 }
                 false
             }
@@ -74,7 +67,7 @@ class DetailDisplayAdapter(
     fun removeItem(adapterPosition: Int) {
         val detailDisplay = mDetailDisplayList.removeAt(adapterPosition)
         notifyItemRemoved(adapterPosition)
-        mRemoveListener.onRemoved(detailDisplay)
+        mRemoveListener(detailDisplay)
     }
 
     fun moveItem(fromPosition: Int, toPosition: Int) {
