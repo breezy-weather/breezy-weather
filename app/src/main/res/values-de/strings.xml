@@ -29,7 +29,6 @@
     <string name="widget_ellipsis">…</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Standort manuell hinzufügen und „$“ löschen</string>
     <string name="widget_label_black_text">Dunkler Text</string>
-    <string name="widget_live_wallpaper_cannot_start_activity">Vorschau für Live-Hintergrund kann nicht gestartet werden</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Standortberechtigungen prüfen</string>
     <string name="allergen_tap_to_see_more">Mehr…</string>
     <string name="widget_label_clock_font">Schriftfarbe</string>

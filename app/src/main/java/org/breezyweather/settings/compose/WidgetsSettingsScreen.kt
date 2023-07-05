@@ -1,5 +1,8 @@
 package org.breezyweather.settings.compose
 
+import android.app.WallpaperManager
+import android.content.ActivityNotFoundException
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import androidx.compose.foundation.layout.PaddingValues
@@ -11,12 +14,14 @@ import org.breezyweather.common.basic.models.options.NotificationStyle
 import org.breezyweather.common.basic.models.options.WidgetWeekIconMode
 import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.utils.helpers.IntentHelper
+import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.remoteviews.config.*
 import org.breezyweather.remoteviews.presenters.*
 import org.breezyweather.remoteviews.presenters.notification.WidgetNotificationIMP
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.preference.*
 import org.breezyweather.settings.preference.composables.*
+import org.breezyweather.wallpaper.MaterialLiveWallpaperService
 
 @Composable
 fun WidgetsSettingsScreen(
@@ -33,7 +38,20 @@ fun WidgetsSettingsScreen(
             titleId = id,
             summaryId = R.string.settings_widgets_live_wallpaper_summary
         ) {
-            IntentHelper.startLiveWallpaperActivity(context)
+            try {
+                context.startActivity(Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER)
+                    .putExtra(WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
+                        ComponentName(context, MaterialLiveWallpaperService::class.java)
+                    )
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+            } catch (e: ActivityNotFoundException) {
+                try {
+                    context.startActivity(Intent(WallpaperManager.ACTION_LIVE_WALLPAPER_CHOOSER)
+                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+                } catch (e2: ActivityNotFoundException) {
+                    SnackbarHelper.showSnackbar(context.getString(R.string.settings_widgets_live_wallpaper_error))
+                }
+            }
         }
     }
     listPreferenceItem(R.string.settings_widgets_week_icon_mode_title) { id ->

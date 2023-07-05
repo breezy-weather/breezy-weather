@@ -278,7 +278,6 @@
     <string name="widget_week_style_3_days">3 ngày</string>
     <string name="widget_live_wallpaper_weather_kind">Thời tiết</string>
     <string name="widget_live_wallpaper_day_night_type">Thời điểm</string>
-    <string name="widget_live_wallpaper_cannot_start_activity">Không thể bắt đầu bản xem trước hình nền động</string>
     <string name="settings_section_general">Chung</string>
     <string name="settings_background_updates">Cập nhật dưới nền</string>
     <string name="settings_background_updates_summary">Tỉ lệ làm mới, sửa lỗi</string>

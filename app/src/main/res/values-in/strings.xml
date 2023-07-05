@@ -196,7 +196,6 @@
     <string name="notification_running_in_background">Berjalan di latar belakang untuk terus memperbarui</string>
     <string name="notification_updating_weather_data">Memperbarui data cuaca</string>
     <string name="message_updated_in_background">Diperbarui dilatar-belakang</string>
-    <string name="widget_live_wallpaper_cannot_start_activity">Tidak dapat memulai konteks pratinjau wallpaper live</string>
     <string name="notification_precipitation_today">Mungkin ada presipitasi hari ini.</string>
     <string name="notification_precipitation_short_term">Curah hujan dapat terjadi dalam beberapa jam ke depan.</string>
     <string name="location_resident_message">Tetapkan sebagai kota penduduk</string>

@@ -192,7 +192,6 @@
     <string name="notification_running_in_background">Aplikace běží na pozadí pro zajištění aktualizace údajů</string>
     <string name="notification_updating_weather_data">Aktualizace údajů o počasí</string>
     <string name="message_updated_in_background">Aktualizováno na pozadí</string>
-    <string name="widget_live_wallpaper_cannot_start_activity">Nepodařilo se spustit náhled živého pozadí</string>
     <string name="notification_precipitation_today">Dnes může pršet.</string>
     <string name="notification_precipitation_short_term">V následujících hodinách mohou přijít srážky.</string>
     <string name="location_resident_message">Nastavit jako bydliště</string>

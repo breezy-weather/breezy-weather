@@ -2,6 +2,7 @@ package org.breezyweather.background.interfaces
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService
@@ -9,6 +10,7 @@ import androidx.annotation.RequiresApi
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.db.repositories.LocationEntityRepository.readLocationList
 import org.breezyweather.db.repositories.WeatherEntityRepository.readWeather
+import org.breezyweather.main.MainActivity
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.ResourcesProviderFactory
@@ -37,16 +39,11 @@ class TileService : TileService() {
 
     @SuppressLint("WrongConstant")
     override fun onClick() {
-        try {
-            val statusBarManager = getSystemService("statusbar")
-            statusBarManager
-                .javaClass
-                .getMethod("collapsePanels")
-                .invoke(statusBarManager)
-        } catch (ignored: Exception) {
-            // Not working anymore since API >= 31
-        }
-        IntentHelper.startMainActivity(this)
+        this.startActivityAndCollapse(
+            Intent(MainActivity.ACTION_MAIN)
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        )
     }
 
     companion object {

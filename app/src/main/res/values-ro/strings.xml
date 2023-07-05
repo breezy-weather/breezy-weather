@@ -191,7 +191,6 @@
     <string name="notification_running_in_background">Datele se actualizează în fundal</string>
     <string name="notification_updating_weather_data">Se actualizează datele meteo</string>
     <string name="message_updated_in_background">Date actualizate în fundal</string>
-    <string name="widget_live_wallpaper_cannot_start_activity">Nu se poate porni contextul de previzualizare a imaginii de fundal live</string>
     <string name="notification_precipitation_today">Astăzi pot fi precipitații.</string>
     <string name="notification_precipitation_short_term">Posibile precipitații în următoarele ore.</string>
     <string name="location_resident_message">Selectat ca oraș de rezidență (Acasă)</string>

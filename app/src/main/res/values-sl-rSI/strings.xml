@@ -104,7 +104,6 @@
     <string name="notification_running_in_background">Teče v ozadju za redne posodobitve</string>
     <string name="notification_updating_weather_data">Posodabljanje podatkov o vremenu</string>
     <string name="message_updated_in_background">Posodobljeno v ozadju</string>
-    <string name="widget_live_wallpaper_cannot_start_activity">Predogleda živega ozadja ni bilo mogoče začeti.</string>
     <!-- action -->
     <string name="alerts">Opozorilo</string>
     <string name="action_search">Išči</string>

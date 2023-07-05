@@ -136,7 +136,6 @@
     <string name="notification_running_in_background">التشغيل في الخلفية لإبقاء التطبيق محدثاً</string>
     <string name="notification_updating_weather_data">جارٍ تحديث بيانات الطقس</string>
     <string name="message_updated_in_background">تم التحديث في الخلفية</string>
-    <string name="widget_live_wallpaper_cannot_start_activity">غير قادر على معاينة الخلفية الحية.</string>
     <string name="notification_precipitation_today">هناك إحتمالية لهطول الأمطار اليوم</string>
     <string name="notification_precipitation_short_term">هناك إمكانية لهطول الأمطار في الساعات القليلة القادمة.</string>
     <string name="location_resident_message">تم التحديد كمدينة الإقامة</string>

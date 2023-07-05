@@ -188,7 +188,6 @@
     <string name="notification_running_in_background">l’actualització es continuarà produint en segon pla</string>
     <string name="notification_updating_weather_data">S’estan actualitzant les dades de l’oratge</string>
     <string name="message_updated_in_background">Actualitzat en segon pla</string>
-    <string name="widget_live_wallpaper_cannot_start_activity">No s’ha aconseguit iniciar el context de vista preliminar del fons de pantalla animat</string>
     <string name="notification_precipitation_today">Pot ser que avui hi hagi precipitations.</string>
     <string name="notification_precipitation_short_term">Pot ser que la precipitació ocorri en les properes hores.</string>
     <string name="location_resident_message">Estableix com a ciutat on residiu</string>

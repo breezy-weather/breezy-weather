@@ -278,8 +278,6 @@
     <string name="message_network_unavailable">Réseau non-disponible</string>
     <string name="message_updated_in_background">Actualisé en arrière-plan</string>
 
-    <string name="widget_live_wallpaper_cannot_start_activity">Impossible de démarrer la prévisualisation du fond d’écran animé</string>
-
     <string name="notification_precipitation_today">Des précipitations peuvent avoir lieu aujourd’hui.</string>
     <string name="notification_precipitation_short_term">Précipitations possibles dans les heures à venir.</string>
 
@@ -434,6 +432,7 @@
     </string>
     <string name="settings_widgets_live_wallpaper_title">Fond d’écran animé</string>
     <string name="settings_widgets_live_wallpaper_summary">Définir une animation météo comme fond d’écran</string>
+    <string name="settings_widgets_live_wallpaper_error">Impossible de lancer le sélecteur de fond d’écran. Vous pouvez toujours choisir le fond d’écran Breezy Weather en choisissant “Fond d’écran animé” depuis le sélecteur de fond d’écran de votre écran d’accueil.</string>
     <string name="settings_widgets_week_icon_mode_title">Icône à afficher dans les vues hebdomadaires</string>
     <string name="settings_widgets_monochrome_icons_title">Icônes monochromes</string>
     <string name="settings_widgets_day_night_temp_reversed_title">Inverse l’ordre des températures jour/nuit</string>
@@ -625,5 +624,6 @@
     <string name="about_matrix">Serveur Matrix</string>
     <string name="action_choose_weather_provider">Choisir le fournisseur météo</string>
 
+    <string name="null_data_text">N/A</string>
     <string name="colon_separator" translatable="false">\u0020:\u0020</string>
 </resources>

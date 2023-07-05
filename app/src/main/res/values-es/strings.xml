@@ -188,7 +188,6 @@
     <string name="notification_running_in_background">Corriendo en segundo plano para seguir actualizándose</string>
     <string name="notification_updating_weather_data">Actualizando datos del clima</string>
     <string name="message_updated_in_background">Actualizado en segundo plano</string>
-    <string name="widget_live_wallpaper_cannot_start_activity">No se logró iniciar el contexto de previsulización del fondo de pantalla animado</string>
     <string name="notification_precipitation_today">Puede que hoy haya precipitationes.</string>
     <string name="notification_precipitation_short_term">Puede que la precipitación ocurra en las próximas horas.</string>
     <string name="location_resident_message">Establecer como la ciudad residente</string>

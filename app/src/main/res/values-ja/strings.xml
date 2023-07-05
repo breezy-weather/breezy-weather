@@ -180,7 +180,6 @@
     <string name="notification_running_in_background">バックグラウンドで更新</string>
     <string name="notification_updating_weather_data">気象データの更新</string>
     <string name="message_updated_in_background">バックグラウンドで更新</string>
-    <string name="widget_live_wallpaper_cannot_start_activity">ライブ壁紙のプレビューを開始できません</string>
     <string name="notification_precipitation_today">今日は雨が降るかもしれません。</string>
     <string name="notification_precipitation_short_term">数時間後に雨が降る可能性があります。</string>
     <string name="location_resident_message">居住地として設定</string>

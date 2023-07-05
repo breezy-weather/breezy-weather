@@ -30,14 +30,6 @@ import org.breezyweather.wallpaper.MaterialLiveWallpaperService;
  **/
 public class IntentHelper {
 
-    public static void startMainActivity(Context context) {
-        context.startActivity(
-                new Intent(MainActivity.ACTION_MAIN)
-                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        );
-    }
-
     public static void startMainActivityForManagement(Activity activity) {
         activity.startActivity(
                 new Intent(MainActivity.ACTION_MANAGEMENT)
@@ -175,18 +167,6 @@ public class IntentHelper {
 
     public static void startLocationSettingsActivity(Context context) {
         context.startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-    }
-
-    public static void startLiveWallpaperActivity(Context context) {
-        Intent intent = new Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER).putExtra(
-                WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
-                new ComponentName(context, MaterialLiveWallpaperService.class)
-        );
-        if (isIntentAvailable(context, intent)) {
-            context.startActivity(intent);
-        } else {
-            SnackbarHelper.showSnackbar(context.getString(R.string.widget_live_wallpaper_cannot_start_activity));
-        }
     }
 
     public static void startAppStoreDetailsActivity(Context context) {

@@ -185,7 +185,6 @@
     <string name="settings_changes_apply_after_restart">Le modifiche avranno effetto dopo il riavvio</string>
     <string name="notification_running_in_background">Esecuzione in background degli aggiornamenti</string>
     <string name="notification_updating_weather_data">Aggiornamento dati meteo</string>
-    <string name="widget_live_wallpaper_cannot_start_activity">Impossibile creare un’anteprima per lo sfondo animato</string>
     <!-- action -->
     <string name="alerts">Allerte</string>
     <string name="action_search">Ricerca</string>
