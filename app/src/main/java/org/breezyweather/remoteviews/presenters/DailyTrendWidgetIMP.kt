@@ -29,7 +29,6 @@ import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.ResourcesProviderFactory
 import org.breezyweather.theme.weatherView.WeatherViewController.getWeatherKind
-import java.util.*
 import kotlin.math.max
 import kotlin.math.min
 

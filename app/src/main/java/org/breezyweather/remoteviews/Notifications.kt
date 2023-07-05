@@ -268,7 +268,7 @@ object Notifications {
                     ),
                     PendingIntent.getActivity(
                         context,
-                        Notifications.ID_PRECIPITATION,
+                        ID_PRECIPITATION,
                         IntentHelper.buildMainActivityIntent(location),
                         PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
                     )

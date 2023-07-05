@@ -11,7 +11,6 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.DarkMode
 import org.breezyweather.common.extensions.isDarkMode
-import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.main.MainActivity
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.ThemeManager

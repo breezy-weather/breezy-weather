@@ -14,7 +14,6 @@ import androidx.annotation.Size
 import androidx.core.content.res.ResourcesCompat
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
 import org.breezyweather.common.extensions.isLandscape
-import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.theme.weatherView.WeatherView.WeatherKindRule
 import kotlin.math.abs
 import kotlin.math.acos

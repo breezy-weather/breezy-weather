@@ -144,7 +144,7 @@ object PollingManager {
     private fun forceRefresh(context: Context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             AsyncHelper.runOnIO {
-                val locationList = LocationEntityRepository.readLocationList(context)
+                val locationList = LocationEntityRepository.readLocationList(context).toMutableList()
                 for (i in locationList.indices) {
                     locationList[i] = locationList[i].copy(weather = WeatherEntityRepository.readWeather(locationList[i]))
                 }

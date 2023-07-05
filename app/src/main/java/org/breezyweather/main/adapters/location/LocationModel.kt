@@ -9,7 +9,6 @@ import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
-import org.breezyweather.common.utils.DisplayUtils
 
 class LocationModel(
     context: Context,

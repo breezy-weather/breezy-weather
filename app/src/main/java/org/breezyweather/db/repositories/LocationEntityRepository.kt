@@ -35,7 +35,7 @@ object LocationEntityRepository {
         }
     }
 
-    fun writeLocationList(list: List<Location?>) {
+    fun writeLocationList(list: List<Location>) {
         boxStore.callInTxNoException {
             deleteLocationEntityList()
             insertLocationEntityList(LocationEntityGenerator.generateEntityList(list))
@@ -72,14 +72,12 @@ object LocationEntityRepository {
         return if (entity != null) LocationEntityGenerator.generate(entity) else null
     }
 
-    fun readLocationList(context: Context): MutableList<Location> {
+    fun readLocationList(context: Context): List<Location> {
         val entityList = selectLocationEntityList()
         if (entityList.size == 0) {
             synchronized(mWritingLock) {
                 if (countLocation() == 0) {
-                    val entity = LocationEntityGenerator.generate(
-                        Location.buildLocal(context)
-                    )
+                    val entity = LocationEntityGenerator.generate(Location.buildLocal(context))
                     entityList.add(entity)
                     insertLocationEntityList(entityList)
                     return LocationEntityGenerator.generateModuleList(entityList)

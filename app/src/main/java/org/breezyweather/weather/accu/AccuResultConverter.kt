@@ -8,7 +8,6 @@ import org.breezyweather.common.basic.models.options.provider.WeatherSource
 import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
 import org.breezyweather.common.basic.models.weather.*
 import org.breezyweather.common.extensions.getFormattedDate
-import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.weather.accu.json.*
 import org.breezyweather.weather.getDailyAirQualityFromHourlyList
@@ -16,7 +15,8 @@ import org.breezyweather.weather.getMoonPhaseAngle
 import org.breezyweather.weather.getUVLevel
 import org.breezyweather.weather.getWindLevel
 import org.breezyweather.weather.WeatherService.WeatherResultWrapper
-import java.util.*
+import java.util.Date
+import java.util.TimeZone
 import java.util.regex.Pattern
 import kotlin.math.roundToInt
 

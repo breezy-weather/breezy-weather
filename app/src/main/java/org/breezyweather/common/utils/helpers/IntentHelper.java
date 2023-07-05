@@ -2,8 +2,6 @@ package org.breezyweather.common.utils.helpers;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.WallpaperManager;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -18,12 +16,10 @@ import org.breezyweather.common.basic.models.Location;
 import org.breezyweather.common.ui.activities.AlertActivity;
 import org.breezyweather.main.MainActivity;
 import org.breezyweather.search.SearchActivity;
-import org.breezyweather.R;
 import org.breezyweather.background.polling.services.basic.AwakeForegroundUpdateService;
 import org.breezyweather.common.ui.activities.AllergenActivity;
 import org.breezyweather.daily.DailyWeatherActivity;
 import org.breezyweather.settings.activities.*;
-import org.breezyweather.wallpaper.MaterialLiveWallpaperService;
 
 /**
  * Intent helper.

@@ -4,11 +4,9 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.text.BidiFormatter
 import org.breezyweather.R
-import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.isRtl
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
-import org.breezyweather.common.utils.DisplayUtils
 import java.io.Serializable
 import java.util.Calendar
 import java.util.Date

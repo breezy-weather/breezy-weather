@@ -7,7 +7,6 @@ import org.breezyweather.common.basic.models.weather.*
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.common.extensions.toTimezoneNoHour
-import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.weather.*
 import org.breezyweather.weather.metno.json.MetNoForecastResult
 import org.breezyweather.weather.metno.json.MetNoEphemerisTime

@@ -131,9 +131,7 @@ object ChineseCityEntityRepository {
 
     fun selectChineseCityEntityList(name: String?): List<ChineseCityEntity> {
         if (name.isNullOrEmpty()) return emptyList()
-        val chineseCityEntityBox = boxStore.boxFor(
-            ChineseCityEntity::class.java
-        )
+        val chineseCityEntityBox = boxStore.boxFor(ChineseCityEntity::class.java)
         val query = chineseCityEntityBox.query(
             ChineseCityEntity_.district.contains(name)
                 .or(ChineseCityEntity_.city.contains(name))

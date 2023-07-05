@@ -11,7 +11,6 @@ import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.rxjava.ApiObserver
 import org.breezyweather.common.rxjava.ObserverContainer
 import org.breezyweather.common.rxjava.SchedulerTransformer
-import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.main.utils.RequestErrorType
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.weather.WeatherService

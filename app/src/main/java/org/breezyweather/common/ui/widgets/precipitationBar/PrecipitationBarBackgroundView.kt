@@ -10,7 +10,6 @@ import androidx.core.graphics.ColorUtils
 import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.isRtl
 import org.breezyweather.common.ui.widgets.DayNightShaderWrapper
-import org.breezyweather.common.utils.DisplayUtils
 
 private const val POLYLINE_SIZE_DIP = 3.5f
 private const val SHADOW_ALPHA_FACTOR_LIGHT = 0.2f

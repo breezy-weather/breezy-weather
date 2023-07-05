@@ -13,7 +13,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.common.extensions.dpToPx
-import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.settings.adapters.IconProviderAdapter

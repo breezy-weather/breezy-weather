@@ -1,17 +1,17 @@
 package org.breezyweather.weather.openweather
 
 import android.content.Context
-import androidx.compose.ui.text.capitalize
 import org.breezyweather.BreezyWeather
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.*
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toTimezoneNoHour
-import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.weather.*
 import org.breezyweather.weather.openweather.json.*
 import org.breezyweather.weather.WeatherService.WeatherResultWrapper
-import java.util.*
+import java.util.Date
+import java.util.Locale
+import java.util.TimeZone
 import kotlin.math.roundToInt
 
 fun convert(

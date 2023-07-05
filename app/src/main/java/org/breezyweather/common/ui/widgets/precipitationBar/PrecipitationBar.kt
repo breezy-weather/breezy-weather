@@ -15,7 +15,6 @@ import android.view.ViewGroup
 import androidx.annotation.ColorInt
 import com.google.android.material.button.MaterialButton
 import org.breezyweather.common.extensions.dpToPx
-import org.breezyweather.common.utils.DisplayUtils
 import kotlin.math.abs
 
 private const val INDICATOR_TEXT_SIZE_DIP = 12f

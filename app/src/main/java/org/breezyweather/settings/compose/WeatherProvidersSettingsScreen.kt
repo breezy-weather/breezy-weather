@@ -34,13 +34,13 @@ fun WeatherProvidersSettingsScreen(
                     .getInstance(context)
                     .weatherSource = WeatherSource.getInstance(sourceId)
 
-                val locationList = LocationEntityRepository.readLocationList(context)
+                val locationList = LocationEntityRepository.readLocationList(context).toMutableList()
                 val index = locationList.indexOfFirst { it.isCurrentPosition }
                 if (index >= 0) {
                     locationList[index] = locationList[index].copy(
                         weather = null,
                         weatherSource = SettingsManager.getInstance(context).weatherSource
-                    ).copy()
+                    )
                     WeatherEntityRepository.deleteWeather(locationList[index])
                     LocationEntityRepository.writeLocationList(locationList)
                 }

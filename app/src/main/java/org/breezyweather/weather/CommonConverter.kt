@@ -4,8 +4,10 @@ import android.content.Context
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.weather.*
 import org.breezyweather.common.extensions.getFormattedDate
-import org.breezyweather.common.utils.DisplayUtils
-import java.util.*
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
+import java.util.TimeZone
 import kotlin.math.roundToInt
 import kotlin.math.sin
 

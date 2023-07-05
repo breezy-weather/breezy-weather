@@ -8,7 +8,6 @@ import org.breezyweather.common.basic.models.options.provider.WeatherSource
 import org.breezyweather.common.basic.models.weather.*
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toTimezoneNoHour
-import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.weather.*
 import org.breezyweather.weather.openmeteo.json.OpenMeteoAirQualityResult
 import org.breezyweather.weather.openmeteo.json.OpenMeteoWeatherDaily

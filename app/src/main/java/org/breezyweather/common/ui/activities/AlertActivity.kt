@@ -36,9 +36,8 @@ import org.breezyweather.common.basic.models.weather.Alert
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
-import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.common.utils.helpers.AsyncHelper
-import java.util.*
+import java.util.TimeZone
 
 class AlertActivity : GeoActivity() {
 

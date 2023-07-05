@@ -38,7 +38,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import org.breezyweather.R
 import org.breezyweather.common.extensions.isRtl
-import org.breezyweather.common.utils.DisplayUtils
 import kotlin.math.ln
 
 private val topAppBarElevation = 6.dp

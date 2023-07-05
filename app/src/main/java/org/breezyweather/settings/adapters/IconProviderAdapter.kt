@@ -15,7 +15,6 @@ import james.adaptiveicon.AdaptiveIcon
 import james.adaptiveicon.AdaptiveIconView
 import org.breezyweather.R
 import org.breezyweather.common.extensions.isDarkMode
-import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.common.utils.helpers.load
 import org.breezyweather.theme.resource.providers.ResourceProvider

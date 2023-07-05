@@ -13,7 +13,6 @@ import org.breezyweather.background.polling.PollingManager
 import org.breezyweather.common.basic.models.options.NotificationStyle
 import org.breezyweather.common.basic.models.options.WidgetWeekIconMode
 import org.breezyweather.common.basic.models.weather.Temperature
-import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.remoteviews.config.*
 import org.breezyweather.remoteviews.presenters.*
