@@ -555,7 +555,7 @@
     <string name="location_message_reverse_geocoding_failed">Wetterdienst konnte keinen passenden Ort finden</string>
     <string name="settings_location_access_switch_title">Standortzugriff</string>
     <string name="settings_location_access_background_summaryOn">Aktiviert. Die App kann die Wetterdaten für den aktuellen Standort im Hintergrund aktualisieren.</string>
-    <string name="settings_location_access_switch_summaryOn">Erlaubt. Der aktuelle Standort kann als Ort hinzufügen werden.</string>
+    <string name="settings_location_access_switch_summaryOn">Erlaubt. Der aktuelle Standort kann als Ort hinzugefügt werden.</string>
     <string name="settings_location_access_background_title">Standortzugriff im Hintergrund</string>
     <string name="settings_location_access_precise_summaryOff">Aktivieren Sie „Genauen Standort verwenden“, wenn Sie Probleme bei der Standortermittlung haben.</string>
     <string name="settings_notifications_alerts_title">Benachrichtigungen über Wetterwarnungen</string>
@@ -571,4 +571,6 @@
     <string name="settings_items_drag_to_sort">Tippen und ziehen, um die Listenelemente zu sortieren</string>
     <string name="settings_item_delete">Diesen Eintrag löschen</string>
     <string name="notification_style_native">Nativ</string>
+    <string name="null_data_text">n. v.</string>
+    <string name="settings_widgets_live_wallpaper_error">Die Hintergrundbildauswahl konnte nicht gestartet werden. Sie können das Hintergrundbild von Breezy Weather weiterhin aktivieren, indem Sie in der Hintergrundbildauswahl Ihres Startbildschirms „Live-Hintergrund“ auswählen.</string>
 </resources>
