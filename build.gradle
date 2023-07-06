@@ -1,34 +1,5 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
-buildscript {
-    ext {
-        kotlin_version = "1.8.22"
-        compose_version = "1.4.3"
-        objectbox_version = "3.6.0"
-    }
-    dependencies {
-        classpath("com.android.tools.build:gradle:7.4.2")
-        classpath("io.objectbox:objectbox-gradle-plugin:$objectbox_version")
-        classpath("com.google.dagger:hilt-android-gradle-plugin:2.46.1")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
-        classpath("org.jetbrains.kotlin:kotlin-serialization:$kotlin_version")
-    }
-    repositories {
-        mavenCentral()
-        google()
-    }
-}
-
 subprojects {
-    repositories {
-        google()
-        mavenCentral()
-        maven {
-            url "https://jitpack.io"
-        }
-    }
-
-    tasks.withType(Test.class).each {
+    tasks.withType(Test).configureEach {
         useJUnitPlatform()
     }
 }

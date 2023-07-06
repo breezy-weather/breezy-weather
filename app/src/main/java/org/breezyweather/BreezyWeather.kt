@@ -1,10 +1,10 @@
 package org.breezyweather
 
+import android.app.Application
 import android.content.pm.ApplicationInfo
 import android.os.Process
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.hilt.work.HiltWorkerFactory
-import androidx.multidex.MultiDexApplication
 import androidx.work.Configuration
 import dagger.hilt.android.HiltAndroidApp
 import org.breezyweather.common.basic.GeoActivity
@@ -20,7 +20,7 @@ import java.io.FileReader
 import javax.inject.Inject
 
 @HiltAndroidApp
-class BreezyWeather : MultiDexApplication(),
+class BreezyWeather : Application(),
     Configuration.Provider {
 
     companion object {

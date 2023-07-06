@@ -1,29 +1,34 @@
 plugins {
-    id("com.android.application")
-    id("kotlin-android")
-    id("kotlin-kapt")
-    id("io.objectbox")
-    id("dagger.hilt.android.plugin")
-    id("org.jetbrains.kotlin.plugin.serialization")
+    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.kotlinKapt)
+    alias(libs.plugins.objectbox)
+    alias(libs.plugins.daggerHilt)
+    alias(libs.plugins.kotlinSerialization)
 }
 
 android {
+    namespace "org.breezyweather"
     compileSdk 33
+
     defaultConfig {
         applicationId "org.breezyweather"
         minSdkVersion 21
         targetSdkVersion 33
         versionCode 40100
         versionName "4.1.0-beta"
+
         multiDexEnabled true
         ndk.abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary true
     }
+
     buildFeatures {
         viewBinding true
         compose true
     }
+
     splits {
         abi {
             enable true
@@ -32,6 +37,7 @@ android {
             universalApk true
         }
     }
+
     buildTypes {
         debug {
             applicationIdSuffix ".debug"
@@ -44,6 +50,7 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
+
     Properties properties = new Properties()
     if (project.rootProject.file('local.properties').canRead()) {
         properties.load(project.rootProject.file('local.properties').newDataInputStream())
@@ -65,6 +72,7 @@ android {
         it.buildConfigField "String", "OPEN_WEATHER_BASE_URL", "\"${properties.getProperty("breezy.openweather.baseUrl") ?: "https://api.openweathermap.org/"}\""
         it.buildConfigField "String", "OPEN_WEATHER_KEY", "\"${properties.getProperty("breezy.openweather.key") ?: ""}\""
     }
+
     sourceSets {
         standard {
             java.srcDirs("src/src_nogplay")
@@ -74,10 +82,12 @@ android {
             manifest.srcFile "manifest_gplay/AndroidManifest.xml"
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
         freeCompilerArgs += [
@@ -86,15 +96,18 @@ android {
                 "-opt-in=com.google.accompanist.permissions.ExperimentalPermissionsApi"
         ]
     }
+
     composeOptions {
         kotlinCompilerExtensionVersion "1.4.8"
     }
+
     testOptions {
         unitTests {
             includeAndroidResources = true
             unitTests.returnDefaultValues = true
         }
     }
+
     flavorDimensions = ["default"]
     productFlavors {
         standard {
@@ -105,20 +118,10 @@ android {
             versionNameSuffix "_gplay"
         }
     }
+
     lint {
         abortOnError false
         checkReleaseBuilds false
-    }
-    namespace "org.breezyweather"
-}
-
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        maven {
-            url "https://jitpack.io"
-        }
     }
 }
 
@@ -131,100 +134,88 @@ kapt {
     correctErrorTypes true
 }
 
+// Workaround for https://youtrack.jetbrains.com/issue/KT-55947/Unable-to-set-kapt-jvm-target-version
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KaptGenerateStubs).configureEach {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
 dependencies {
-    // kotlin.
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation libs.core.ktx
+    implementation libs.appcompat
+    implementation libs.material
 
-    // test.
-    testImplementation "org.junit.jupiter:junit-jupiter-api:5.9.3"
-    testImplementation "io.kotest:kotest-assertions-core:5.6.2"
-    testImplementation "io.mockk:mockk:1.13.5"
-    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.2"
+    implementation libs.cardview
+    implementation libs.swiperefreshlayout
 
-    // material design.
-    implementation "com.google.android.material:material:1.9.0"
-    implementation "androidx.appcompat:appcompat:1.6.1"
-    implementation "androidx.cardview:cardview:1.0.0"
-    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+    implementation libs.activity.compose
+    implementation libs.compose.material.core
+    implementation libs.compose.animation
+    implementation libs.compose.ui.tooling
+    implementation libs.compose.ui.util
+    implementation libs.compose.foundation
+    implementation libs.compose.material3
+    implementation libs.compose.material.icons
+    implementation libs.navigation.compose
 
-    // compose.
-    implementation "androidx.activity:activity-compose:1.7.2"
-    implementation "androidx.compose.material:material:$compose_version"
-    implementation "androidx.compose.animation:animation:$compose_version"
-    implementation "androidx.compose.ui:ui-tooling:$compose_version"
-    implementation "androidx.compose.ui:ui-util:$compose_version"
-    implementation "androidx.compose.foundation:foundation:$compose_version"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1"
-    //androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
-    implementation "androidx.compose.material3:material3:1.1.1"
-    implementation "androidx.compose.material:material-icons-extended:$compose_version"
-    implementation "androidx.navigation:navigation-compose:2.6.0"
-    implementation "com.google.accompanist:accompanist-permissions:0.30.1"
+    implementation libs.accompanist.permissions
+
+    testImplementation libs.bundles.test
 
     // preference.
-    implementation "androidx.preference:preference-ktx:1.2.0"
+    implementation libs.preference.ktx
 
     // work.
-    implementation "androidx.core:core-ktx:1.10.1"
-    implementation "androidx.work:work-runtime:2.8.1"
+    implementation libs.work.runtime
 
     // lifecycle.
-    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.6.1"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.6.1"
-    implementation "androidx.lifecycle:lifecycle-common-java8:2.6.1"
-    implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:2.6.1"
-    implementation "androidx.recyclerview:recyclerview:1.3.0"
-
-    // multi dex.
-    implementation "androidx.multidex:multidex:2.0.1"
+    implementation libs.bundles.lifecycle
+    implementation libs.recyclerview
 
     // hilt.
-    implementation "com.google.dagger:hilt-android:2.46.1"
-    kapt "com.google.dagger:hilt-android-compiler:2.46.1"
-    implementation "androidx.hilt:hilt-work:1.0.0"
-    kapt "androidx.hilt:hilt-compiler:1.0.0"
+    implementation libs.dagger.hilt.core
+    kapt libs.dagger.hilt.compiler
+    implementation libs.hilt.work
+    kapt libs.hilt.compiler
 
     // gms.
-    gplayImplementation "com.google.android.gms:play-services-location:21.0.1"
+    gplayImplementation libs.gms.location
 
     // coil
-    implementation "io.coil-kt:coil:2.4.0"
+    implementation libs.coil
 
     // HTTP
-    implementation "com.squareup.retrofit2:retrofit:2.9.0"
-    implementation "com.squareup.retrofit2:adapter-rxjava3:2.9.0"
-    implementation "com.squareup.okhttp3:okhttp:4.11.0"
-    implementation "com.squareup.okhttp3:logging-interceptor:4.11.0"
-    implementation "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0"
-    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1"
+    implementation libs.bundles.retrofit
+    implementation libs.bundles.okhttp
+    implementation libs.kotlinx.serialization.retrofitconverter
+    implementation libs.kotlinx.serialization.json
 
     // data store
     // implementation "androidx.datastore:datastore-preferences:1.0.0"
 
     // jwt
-    implementation "io.jsonwebtoken:jjwt-api:0.11.5"
-    runtimeOnly "io.jsonwebtoken:jjwt-impl:0.11.5"
-    runtimeOnly("io.jsonwebtoken:jjwt-orgjson:0.11.5") {
+    implementation libs.jjwt.api
+    runtimeOnly libs.jjwt.impl
+    runtimeOnly(libs.jjwt.orgjson) {
         exclude group: "org.json", module: "json" //provided by Android natively
     }
 
     // cm.
-    implementation "org.cyanogenmod:platform.sdk:5.0"
+    implementation libs.cyanogenmod.sdk
 
     // rx java.
-    implementation "io.reactivex.rxjava3:rxjava:3.1.6"
-    implementation "io.reactivex.rxjava3:rxandroid:3.0.2"
+    implementation libs.rxjava
+    implementation libs.rxandroid
 
     // ui.
-    implementation "com.github.breezy-weather:BubbleSeekBar:v3.52"
-    implementation "com.github.breezy-weather:AdaptiveIconView:v0.0.3"
-    implementation "androidx.activity:activity-ktx:1.7.2"
-    implementation 'com.github.giangpham96.expandable-text:expandable_text_compose:2.0.0'
+    implementation libs.bubbleseekbar
+    implementation libs.adaptiveiconview
+    implementation libs.activity.ktx
+    implementation libs.expandabletextcompose
 
     // utils.
-    implementation "com.xhinliang:LunarCalendar:4.0.7"
+    implementation libs.lunarcalendar
 
     // debugImplementation because LeakCanary should only run in debug builds.
     //debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.11'
