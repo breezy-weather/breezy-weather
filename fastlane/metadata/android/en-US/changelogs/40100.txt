@@ -15,5 +15,6 @@
 <li>Fix wallpaper settings not opening in some cases.</li>
 <li>Fix tile not collapsing after being tapped on.</li>
 <li>Fix sensor was always queried regardless of gravity sensor preference.</li>
+<li>Fix weather data refresh when hourly temperature is partially available from API.</li>
 <li>Translation updates, Vietnamese added (thanks minb!).</li>
 </ul>

@@ -79,9 +79,9 @@ fun completeHalfDayFromHourlyList(
             val halfDayHourlyListTemperature = halfDayHourlyList.filter { it.temperature?.temperature != null }
             temperatureTemperature = if (halfDayHourlyListTemperature.isNotEmpty()) {
                 if (isDay) {
-                    halfDayHourlyList.maxOf { it.temperature!!.temperature!! }
+                    halfDayHourlyListTemperature.maxOf { it.temperature!!.temperature!! }
                 } else {
-                    halfDayHourlyList.minOf { it.temperature!!.temperature!! }
+                    halfDayHourlyListTemperature.minOf { it.temperature!!.temperature!! }
                 }
             } else null
         }
@@ -89,9 +89,9 @@ fun completeHalfDayFromHourlyList(
             val halfDayHourlyListWindChillTemperature = halfDayHourlyList.filter { it.temperature?.windChillTemperature != null }
             temperatureWindChillTemperature = if (halfDayHourlyListWindChillTemperature.isNotEmpty()) {
                 if (isDay) {
-                    halfDayHourlyList.maxOf { it.temperature!!.windChillTemperature!! }
+                    halfDayHourlyListWindChillTemperature.maxOf { it.temperature!!.windChillTemperature!! }
                 } else {
-                    halfDayHourlyList.minOf { it.temperature!!.windChillTemperature!! }
+                    halfDayHourlyListWindChillTemperature.minOf { it.temperature!!.windChillTemperature!! }
                 }
             } else null
         }
