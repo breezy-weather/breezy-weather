@@ -113,8 +113,8 @@ fun MainScreenSettingsScreen(
                         .backgroundAnimationMode = BackgroundAnimationMode.getInstance(it)
 
                     SnackbarHelper.showSnackbar(
-                        context.getString(R.string.settings_changes_apply_after_restart),
-                        context.getString(R.string.action_restart)
+                        content = context.getString(R.string.settings_changes_apply_after_restart),
+                        action = context.getString(R.string.action_restart)
                     ) {
                         BreezyWeather.instance.recreateAllActivities()
                     }
@@ -131,8 +131,8 @@ fun MainScreenSettingsScreen(
                     SettingsManager.getInstance(context).isGravitySensorEnabled = it
 
                     SnackbarHelper.showSnackbar(
-                        context.getString(R.string.settings_changes_apply_after_restart),
-                        context.getString(R.string.action_restart)
+                        content = context.getString(R.string.settings_changes_apply_after_restart),
+                        action = context.getString(R.string.action_restart)
                     ) {
                         BreezyWeather.instance.recreateAllActivities()
                     }

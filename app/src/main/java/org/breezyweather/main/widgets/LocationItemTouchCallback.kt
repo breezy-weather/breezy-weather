@@ -69,8 +69,8 @@ class LocationItemTouchCallback(
                     mViewModel.updateLocation(location)
                     if (location.isResidentPosition) {
                         SnackbarHelper.showSnackbar(
-                            mActivity.getString(R.string.location_resident_message),
-                            mActivity.getString(R.string.action_learn_more)
+                            content = mActivity.getString(R.string.location_resident_message),
+                            action = mActivity.getString(R.string.action_learn_more)
                         ) {
                             MaterialAlertDialogBuilder(mActivity)
                                 .setTitle(R.string.location_resident)
@@ -90,9 +90,9 @@ class LocationItemTouchCallback(
             } else {
                 location = mViewModel.deleteLocation(position)
                 SnackbarHelper.showSnackbar(
-                    mActivity.getString(R.string.location_message_deleted),
-                    mActivity.getString(R.string.action_undo),
-                    CancelDeleteListener(location, position)
+                    content = mActivity.getString(R.string.location_message_deleted),
+                    action = mActivity.getString(R.string.action_undo),
+                    listener = CancelDeleteListener(location, position)
                 )
             }
         }

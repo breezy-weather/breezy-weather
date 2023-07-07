@@ -86,7 +86,7 @@ object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
             setContentIntent(getWeatherPendingIntent(context, null, Notifications.ID_WIDGET))
         }.build()
 
-        if (!tempIcon && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (!tempIcon && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && current.weatherCode != null) {
             try {
                 notification.javaClass
                     .getMethod("setSmallIcon", Icon::class.java)

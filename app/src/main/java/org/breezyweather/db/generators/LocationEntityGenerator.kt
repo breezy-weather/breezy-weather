@@ -2,7 +2,6 @@ package org.breezyweather.db.generators
 
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.db.entities.LocationEntity
-import org.breezyweather.db.generators.GeneratorUtils.nonNull
 
 object LocationEntityGenerator {
     fun generate(location: Location): LocationEntity {

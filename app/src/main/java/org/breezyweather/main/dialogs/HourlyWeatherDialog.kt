@@ -38,10 +38,12 @@ object HourlyWeatherDialog {
             .setOnClickListener { weatherIcon.startAnimators() }
         val weatherCode = hourly.weatherCode
         val daytime = hourly.isDaylight
-        weatherIcon.setAnimatableIcon(
-            ResourceHelper.getWeatherIcons(provider, weatherCode, daytime),
-            ResourceHelper.getWeatherAnimators(provider, weatherCode, daytime)
-        )
+        if (weatherCode != null) {
+            weatherIcon.setAnimatableIcon(
+                ResourceHelper.getWeatherIcons(provider, weatherCode, daytime),
+                ResourceHelper.getWeatherAnimators(provider, weatherCode, daytime)
+            )
+        }
         val weatherText = view.findViewById<TextView>(R.id.dialog_weather_hourly_text)
         val settings = SettingsManager.getInstance(view.context)
         val temperatureUnit = settings.temperatureUnit

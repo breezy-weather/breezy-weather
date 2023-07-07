@@ -42,7 +42,7 @@ object ResourcesProviderFactory {
         // chronus icon pack.
         val chronusIconPackList = ChronusResourceProvider.getProviderList(
             context, defaultProvider
-        )
+        ).toMutableList()
         for (i in chronusIconPackList.indices.reversed()) {
             for (resourceProvider in providerList) {
                 if (chronusIconPackList[i] == resourceProvider) {

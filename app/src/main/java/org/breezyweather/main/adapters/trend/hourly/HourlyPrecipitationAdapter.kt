@@ -44,9 +44,9 @@ class HourlyPrecipitationAdapter(
             super.onBindView(activity, location, talkBackBuilder, position)
             val weather = location.weather!!
             val hourly = weather.hourlyForecast[position]
-            hourlyItem.setIconDrawable(
-                ResourceHelper.getWeatherIcon(mResourceProvider, hourly.weatherCode, hourly.isDaylight)
-            )
+            hourly.weatherCode?.let {
+                hourlyItem.setIconDrawable(ResourceHelper.getWeatherIcon(mResourceProvider, it, hourly.isDaylight))
+            }
             hourly.precipitation?.let {
                 val precipitation = hourly.precipitation.total ?: 0f
                 if (precipitation > 0f) {

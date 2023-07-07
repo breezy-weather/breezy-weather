@@ -50,8 +50,8 @@ fun AppearanceSettingsScreen(
                     SettingsManager.getInstance(context).language = Language.getInstance(it)
 
                     SnackbarHelper.showSnackbar(
-                        context.getString(R.string.settings_changes_apply_after_restart),
-                        context.getString(R.string.action_restart)
+                        content = context.getString(R.string.settings_changes_apply_after_restart),
+                        action = context.getString(R.string.action_restart)
                     ) {
                         BreezyWeather.instance.recreateAllActivities()
                     }

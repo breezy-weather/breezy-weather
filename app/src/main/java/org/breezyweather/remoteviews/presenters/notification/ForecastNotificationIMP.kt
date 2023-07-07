@@ -68,14 +68,14 @@ object ForecastNotificationIMP : AbstractRemoteViewsPresenter() {
         }.build()
 
         // TODO: Why?
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && weather.current?.weatherCode != null) {
             try {
                 notification.javaClass
                     .getMethod("setSmallIcon", Icon::class.java)
                     .invoke(
                         notification,
                         ResourceHelper.getMinimalIcon(
-                            provider, weather.current?.weatherCode, daytime
+                            provider, weather.current.weatherCode, daytime
                         )
                     )
             } catch (ignore: Exception) {

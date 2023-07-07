@@ -36,7 +36,7 @@ class Daily(
         }
     }
 
-    val lunar: String
+    val lunar: String?
         get() = LunarHelper.getLunarDate(date)
 
     fun isToday(timeZone: TimeZone): Boolean {

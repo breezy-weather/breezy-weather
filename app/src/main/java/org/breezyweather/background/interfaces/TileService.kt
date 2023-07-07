@@ -52,11 +52,13 @@ class TileService : TileService() {
             val locationRefreshed = location.copy(weather = WeatherEntityRepository.readWeather(location))
             if (locationRefreshed.weather?.current != null) {
                 tile.apply {
-                    icon = ResourceHelper.getMinimalIcon(
-                        ResourcesProviderFactory.newInstance,
-                        locationRefreshed.weather.current.weatherCode,
-                        locationRefreshed.isDaylight
-                    )
+                    locationRefreshed.weather.current.weatherCode?.let {
+                        icon = ResourceHelper.getMinimalIcon(
+                            ResourcesProviderFactory.newInstance,
+                            it,
+                            locationRefreshed.isDaylight
+                        )
+                    }
                     tile.label = locationRefreshed.weather.current.temperature?.getTemperature(
                         context, SettingsManager.getInstance(context).temperatureUnit
                     )

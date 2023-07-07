@@ -278,8 +278,8 @@ class MainActivity : GeoActivity(),
             it?.let { msg ->
                 msg.showDialogAction?.let { showDialogAction ->
                     SnackbarHelper.showSnackbar(
-                        getString(msg.shortMessage),
-                        getString(msg.actionButtonMessage)
+                        content = getString(msg.shortMessage),
+                        action = getString(msg.actionButtonMessage)
                     ) {
                         showDialogAction(this)
                     }

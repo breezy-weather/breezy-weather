@@ -7,6 +7,7 @@ import android.graphics.PorterDuffColorFilter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
@@ -46,11 +47,11 @@ class DailyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUni
                     .append(", ").append(activity.getString(R.string.daytime))
                     .append(" : ").append(wind.getWindDescription(activity, mSpeedUnit))
                 val dayIcon = if (wind.isValidSpeed) RotateDrawable(
-                    ContextCompat.getDrawable(
+                    AppCompatResources.getDrawable(
                         activity,
                         R.drawable.ic_navigation
                     )
-                ) else RotateDrawable(ContextCompat.getDrawable(activity, R.drawable.ic_circle_medium))
+                ) else RotateDrawable(AppCompatResources.getDrawable(activity, R.drawable.ic_circle_medium))
                 wind.degree?.degree?.let {
                     dayIcon.rotate(it + 180)
                 }
@@ -80,11 +81,11 @@ class DailyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUni
             }
             daily.night?.wind?.let { wind ->
                 val nightIcon = if (wind.isValidSpeed) RotateDrawable(
-                    ContextCompat.getDrawable(
+                    AppCompatResources.getDrawable(
                         activity,
                         R.drawable.ic_navigation
                     )
-                ) else RotateDrawable(ContextCompat.getDrawable(activity, R.drawable.ic_circle_medium))
+                ) else RotateDrawable(AppCompatResources.getDrawable(activity, R.drawable.ic_circle_medium))
                 wind.degree?.degree?.let {
                     nightIcon.rotate(it + 180)
                 }

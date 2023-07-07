@@ -58,7 +58,6 @@ class PushedManagementFragment: ManagementFragment() {
 
     override fun setSystemBarStyle() {
         DisplayUtils.setSystemBarStyle(
-            requireContext(),
             requireActivity().window,
             false,
             !requireContext().isDarkMode,

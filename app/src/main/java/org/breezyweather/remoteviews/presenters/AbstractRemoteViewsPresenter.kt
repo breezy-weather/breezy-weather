@@ -303,7 +303,7 @@ abstract class AbstractRemoteViewsPresenter {
                     Date().getFormattedDate(location.timeZone, context.getString(R.string.date_format_long))
                 ).replace(
                     "\$lc$",
-                    LunarHelper.getLunarDate(Date())
+                    LunarHelper.getLunarDate(Date()) ?: "N/A"
                 ).replace(
                     "\$w$",
                     Date().getFormattedDate(location.timeZone, "EEEE")

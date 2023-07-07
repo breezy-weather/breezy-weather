@@ -113,7 +113,6 @@ class MaterialWeatherThemeDelegate: WeatherThemeDelegate {
         lightNavigation: Boolean
     ) {
         DisplayUtils.setSystemBarStyle(
-            context,
             window,
             statusShader,
             lightNavigation,

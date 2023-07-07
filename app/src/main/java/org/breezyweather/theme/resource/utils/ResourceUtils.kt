@@ -36,25 +36,4 @@ object ResourceUtils {
             .appendPath(resName)
             .build()
     }
-
-    @JvmStatic
-    @Throws(NullException::class)
-    fun <T> nonNull(obj: T?): T {
-        if (obj == null) {
-            throw NullException()
-        }
-        return obj
-    }
-
-    @JvmStatic
-    @Throws(NullResourceIdException::class)
-    fun nonNull(resId: Int): Int {
-        if (resId == 0) {
-            throw NullResourceIdException()
-        }
-        return resId
-    }
-
-    class NullException : Exception("Null Object.")
-    class NullResourceIdException : Exception("Null Resource.")
 }

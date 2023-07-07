@@ -49,7 +49,7 @@ abstract class GeoActivity : AppCompatActivity() {
 
         private fun computeUsableHeight(): Int {
             val r = Rect()
-            DisplayUtils.getVisibleDisplayFrame(root, r)
+            root.getWindowVisibleDisplayFrame(r)
             return r.bottom // - r.top --> Do not reduce the height of status bar.
         }
 
@@ -81,7 +81,6 @@ abstract class GeoActivity : AppCompatActivity() {
         )
 
         DisplayUtils.setSystemBarStyle(
-            this,
             window,
             false,
             !this.isDarkMode,
