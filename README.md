@@ -22,10 +22,9 @@ It aims to add new features, providers, modernizing code, fixing bugs, updating 
 * Many non-visible improvements to the code
 </details>
 
-<details><summary>Unmaintained/Removed features</summary>
+<details><summary>Removed features</summary>
 
-Still in the source code but untested:
-* CyanogenMod Weather SDK (I no longer have a CyanogenMod device)
+* CyanogenMod Weather SDK (no longer maintained, only supported Android 5.0 anyway)
 
 Network Location Providers removed due to security concerns about outdated libraries (we need help on this! See [#49](https://github.com/breezy-weather/breezy-weather/issues/49) if you want to contribute):
 * AMap Location SDK

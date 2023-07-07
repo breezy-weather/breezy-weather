@@ -10,7 +10,6 @@ coil = "2.4.0"
 compose = "1.4.3"
 compose-material3 = "1.1.1"
 core-ktx = "1.10.1"
-cyanogenmod-sdk = "5.0"
 dagger = "2.46.1"
 expandabletextcompose = "2.0.0"
 gms-location = "21.0.1"
@@ -55,7 +54,6 @@ compose-material3 = { group = "androidx.compose.material3", name = "material3", 
 compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "compose" }
 compose-ui-util = { group = "androidx.compose.ui", name = "ui-util", version.ref = "compose" }
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
-cyanogenmod-sdk = { group = "org.cyanogenmod", name = "platform.sdk", version.ref = "cyanogenmod-sdk" }
 dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "dagger" }
 dagger-hilt-core = { group = "com.google.dagger", name = "hilt-android", version.ref = "dagger" }
 expandabletextcompose = { group = "com.github.giangpham96.expandable-text", name = "expandable_text_compose", version.ref = "expandabletextcompose" }

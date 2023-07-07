@@ -17,4 +17,5 @@
 <li>Fix sensor was always queried regardless of gravity sensor preference.</li>
 <li>Fix weather data refresh when hourly temperature is partially available from API.</li>
 <li>Translation updates, Vietnamese added (thanks minb!).</li>
+<li>Support for weather data on cLock on CyanogenMod 5.0 was removed (unmaintained dependency, I’m not even sure it still worked).</li>
 </ul>

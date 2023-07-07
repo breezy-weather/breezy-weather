@@ -201,9 +201,6 @@ dependencies {
         exclude group: "org.json", module: "json" //provided by Android natively
     }
 
-    // cm.
-    implementation libs.cyanogenmod.sdk
-
     // rx java.
     implementation libs.rxjava
     implementation libs.rxandroid
