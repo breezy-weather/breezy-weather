@@ -15,7 +15,7 @@
     <string name="wind">Vento</string>
     <string name="wind_direction">Direzione del vento</string>
     <string name="wind_speed">Velocità del vento</string>
-    <string name="wind_level">Calibro del vento</string>
+    <string name="wind_level">Anemometro</string>
     <string name="humidity">Umidità</string>
     <string name="uv_index">Indice UV</string>
     <string name="hours_of_sun">Ore di sole</string>
@@ -28,7 +28,7 @@
     <string name="visibility">Visibilità</string>
     <string name="dew_point">Punto di rugiada</string>
     <string name="cloud_cover">Copertura nuvolosa</string>
-    <string name="ceiling">Altezza della base delle nubi</string>
+    <string name="ceiling">Base delle nubi</string>
     <string name="settings_icon_providers_get_more">Altro…</string>
     <string name="settings_icon_providers_get_more_store">Prova altre app dallo Store</string>
     <string name="settings_icon_providers_get_more_github">Visita GitHub</string>
@@ -74,11 +74,11 @@
     <string name="precipitation_intensity_middle">Pioggia</string>
     <string name="precipitation_intensity_heavy">Pioggia torrenziale</string>
     <string name="precipitation_intensity_rainstorm">Temporale</string>
-    <string name="ephemeris_moon_phase_new">Nuova luna</string>
+    <string name="ephemeris_moon_phase_new">Luna nuova</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Luna crescente</string>
     <string name="ephemeris_moon_phase_first">Primo quarto</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">Gibbosa crescente</string>
-    <string name="ephemeris_moon_phase_full">Luna Piena</string>
+    <string name="ephemeris_moon_phase_full">Luna piena</string>
     <string name="ephemeris_moon_phase_waning_gibbous">Gibbosa calante</string>
     <string name="ephemeris_moon_phase_third">Ultimo quarto</string>
     <string name="ephemeris_moon_phase_waning_crescent">Luna calante</string>
@@ -224,7 +224,7 @@
     <string name="location_resident_message">Imposta come città residente</string>
     <string name="location_resident_dialog">Breezy Weather mostra e nasconde automaticamente le città residenti in base alla posizione attuale.
 \nAd esempio, è possibile impostare la propria città natale come città residente. È possibile controllare il meteo della propria città mentre si è in viaggio. Quando si torna a casa, il meteo della città natale viene nascosto e sostituito da quello della località in cui ci si trova.</string>
-    <string name="allergen_tap_to_see_more">Clicca per saperne di più…</string>
+    <string name="allergen_tap_to_see_more">Premi qui per saperne di più…</string>
     <string name="message_tap_again_to_exit">Clicca nuovamente per uscire</string>
     <string name="action_back">Indietro</string>
     <string name="settings_icon_providers_check_details">Controlla dettagli</string>
@@ -371,7 +371,7 @@
     <string name="air_quality_level_1_description">La qualità dell’aria è ideale per la maggior parte delle persone; goditi le tue normali attività all’aperto.</string>
     <string name="air_quality_level_1">Eccellente</string>
     <string name="air_quality_level_2">Discreta</string>
-    <string name="air_quality_level_2_description">La qualità dell’aria è generalmente accettabile per la maggior parte delle persone. Tuttavia, i gruppi sensibili possono manifestare sintomi da lievi a moderati a causa dell’esposizione a lungo termine.</string>
+    <string name="air_quality_level_2_description">La qualità dell’aria è generalmente accettabile per la maggior parte delle persone. Tuttavia, i gruppi sensibili possono manifestare sintomi da lievi a moderati con esposizione a lungo termine.</string>
     <string name="air_quality_level_3">Scadente</string>
     <string name="air_quality_level_3_description">L’aria ha raggiunto un alto livello di inquinamento ed è malsana per i gruppi sensibili. Riduci il tempo trascorso all’aperto se avverti sintomi come difficoltà respiratorie o irritazione alla gola.</string>
     <string name="air_quality_level_4">Malsana</string>
@@ -446,7 +446,7 @@
     <string name="wind_direction_short_SE">SE</string>
     <string name="wind_direction_short_W">O</string>
     <string name="wind_direction_short_NW">NO</string>
-    <string name="air_quality_level_5_description">Gli effetti sulla salute saranno immediatamente avvertiti dai gruppi sensibili e dovrebbero sconsigliare attività all’aperto. È probabile che le persone sane abbiano difficoltà respiratorie e irritazione alla gola; considera di rimanere in casa e riprogrammare le attività all’aperto.</string>
+    <string name="air_quality_level_5_description">Gli effetti sulla salute saranno immediatamente avvertiti dai gruppi sensibili ed è sconsigliata ogni attività all’aperto. È probabile che le persone sane abbiano difficoltà respiratorie e irritazione alla gola; considera di rimanere in casa e riprogrammare le attività all’aperto.</string>
     <string name="weather_api_unauthorized_title">Accesso API non autorizzato</string>
     <string name="weather_api_key_required_missing_content">Per utilizzare questo provider, devi fornire una chiave API.</string>
     <string name="weather_api_limit_reached_title">Limite di richieste API raggiunto</string>
@@ -541,4 +541,11 @@
     <string name="settings_widgets_summary">Imposta lo sfondo, configura i widget utilizzati, widget di notifica</string>
     <string name="settings_widgets_week_icon_mode_title">Icona da visualizzare nelle viste settimanali</string>
     <string name="openmeteo_weather_text_drizzle_moderate_intensity">Pioviggine di moderata intensità</string>
+    <string name="settings_location_access_background_title">Accesso alla propria posizione in background</string>
+    <string name="settings_location_access_permission_revoked">Autorizzazione revocata</string>
+    <string name="settings_location">Geolocalizzazione</string>
+    <string name="settings_location_access_permission_already_granted">Autorizzazione già fornita</string>
+    <string name="settings_location_access_background_summaryOff">Selezionare “Consenti sempre” per ottenere aggiornamenti relativi alla propria posizione corrente.</string>
+    <string name="settings_location_access_precise_summaryOff">Abilitare “Utilizza posizione esatta” se si hanno problemi nell\'ottenere la propria posizione.</string>
+    <string name="settings_background_updates_method_notification_dialog_content">Questo metodo aggiunge una notifica persistente che può essere nascosta disabilitando la categoria di notifiche “$” nelle impostazioni di sistema per l\'applicazione.</string>
 </resources>
