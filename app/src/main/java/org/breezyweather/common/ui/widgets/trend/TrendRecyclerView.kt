@@ -7,20 +7,24 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.R
 import org.breezyweather.common.extensions.dpToPx
+import org.breezyweather.common.extensions.getTypefaceFromTextAppearance
 import org.breezyweather.common.extensions.isDarkMode
-import org.breezyweather.common.ui.widgets.horizontal.HorizontalRecyclerView
-import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView.KeyLine.ContentPosition
 import org.breezyweather.common.ui.widgets.trend.item.AbsTrendItemView
 import org.breezyweather.common.utils.DisplayUtils
 
 /**
  * Trend recycler view.
  */
-class TrendRecyclerView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = 0) :
-    HorizontalRecyclerView(context, attrs, defStyle) {
-    private val mPaint: Paint
+class TrendRecyclerView @JvmOverloads constructor(
+    context: Context, attrs: AttributeSet? = null, defStyle: Int = 0
+) : RecyclerView(context, attrs, defStyle) {
+    private val mPaint = Paint().apply {
+        isAntiAlias = true
+        strokeCap = Paint.Cap.ROUND
+    }
 
     @ColorInt
     private var mLineColor = 0
@@ -48,11 +52,7 @@ class TrendRecyclerView @JvmOverloads constructor(context: Context, attrs: Attri
 
     init {
         setWillNotDraw(false)
-        mPaint = Paint().apply {
-            isAntiAlias = true
-            strokeCap = Paint.Cap.ROUND
-            typeface = DisplayUtils.getTypefaceFromTextAppearance(getContext(), R.style.subtitle_text)
-        }
+        mPaint.typeface = getContext().getTypefaceFromTextAppearance(R.style.subtitle_text)
         mTextSize = getContext().dpToPx(TEXT_SIZE_DIP.toFloat()).toInt()
         mTextMargin = getContext().dpToPx(TEXT_MARGIN_DIP.toFloat()).toInt()
         mLineWidth = getContext().dpToPx(LINE_WIDTH_DIP.toFloat()).toInt()
@@ -99,7 +99,7 @@ class TrendRecyclerView @JvmOverloads constructor(context: Context, attrs: Attri
                 } else ContextCompat.getColor(context, R.color.colorTextGrey2nd)
             }
             when (line.contentPosition) {
-                ContentPosition.ABOVE_LINE -> {
+                TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE -> {
                     if (!line.contentLeft.isNullOrEmpty()) {
                         mPaint.textAlign = Paint.Align.LEFT
                         canvas.drawText(
@@ -120,7 +120,7 @@ class TrendRecyclerView @JvmOverloads constructor(context: Context, attrs: Attri
                     }
                 }
 
-                ContentPosition.BELOW_LINE -> {
+                TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE -> {
                     if (!line.contentLeft.isNullOrEmpty()) {
                         mPaint.textAlign = Paint.Align.LEFT
                         canvas.drawText(

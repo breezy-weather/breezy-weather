@@ -8,7 +8,7 @@ import androidx.annotation.CallSuper
 import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.utils.helpers.AsyncHelper
-import org.breezyweather.main.utils.MainModuleUtils.getEnterAnimator
+import org.breezyweather.main.utils.MainModuleUtils
 import org.breezyweather.theme.resource.providers.ResourceProvider
 
 abstract class AbstractMainViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -72,7 +72,7 @@ abstract class AbstractMainViewHolder(view: View) : RecyclerView.ViewHolder(view
     }
 
     protected open fun getEnterAnimator(pendingAnimatorList: List<Animator>): Animator {
-        return getEnterAnimator(itemView, pendingAnimatorList.size)
+        return MainModuleUtils.getEnterAnimator(itemView, pendingAnimatorList.size)
     }
 
     open fun onEnterScreen() {

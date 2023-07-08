@@ -28,7 +28,6 @@ class SettingsManager private constructor(context: Context) {
         @Volatile
         private var instance: SettingsManager? = null
 
-        @JvmStatic
         fun getInstance(context: Context): SettingsManager {
             if (instance == null) {
                 synchronized(SettingsManager::class) {

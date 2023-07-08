@@ -86,7 +86,6 @@ class Location(
             }
         }
 
-        @JvmStatic
         fun excludeInvalidResidentLocation(context: Context, list: List<Location>): List<Location> {
             var currentLocation: Location? = null
             for (l in list) {
@@ -159,7 +158,6 @@ class Location(
         isChina = parcel.readByte() != 0.toByte()
     )
 
-    @JvmOverloads
     fun copy(
         cityId: String? = null,
         latitude: Float? = null,

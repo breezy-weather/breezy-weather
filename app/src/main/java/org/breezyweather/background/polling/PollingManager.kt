@@ -2,8 +2,7 @@ package org.breezyweather.background.polling
 
 import android.content.Context
 import android.os.Build
-import org.breezyweather.background.polling.services.permanent.PermanentServiceHelper.startPollingService
-import org.breezyweather.background.polling.services.permanent.PermanentServiceHelper.stopPollingService
+import org.breezyweather.background.polling.services.permanent.PermanentServiceHelper
 import org.breezyweather.background.polling.work.WorkerHelper
 import org.breezyweather.common.basic.models.options.BackgroundUpdateMethod
 import org.breezyweather.common.utils.helpers.AsyncHelper
@@ -32,12 +31,12 @@ object PollingManager {
                 || settings.isTodayForecastEnabled
                 || settings.isTomorrowForecastEnabled
             ) {
-                startPollingService(context)
+                PermanentServiceHelper.startPollingService(context)
             } else {
-                stopPollingService(context)
+                PermanentServiceHelper.stopPollingService(context)
             }
         } else {
-            stopPollingService(context)
+            PermanentServiceHelper.stopPollingService(context)
             settings.updateInterval.intervalInHour?.let {
                 WorkerHelper.setNormalPollingWork(context, it)
             } ?: WorkerHelper.cancelNormalPollingWork(context)
@@ -69,12 +68,12 @@ object PollingManager {
             if (settings.updateInterval.intervalInHour != null || settings.isTodayForecastEnabled
                 || settings.isTomorrowForecastEnabled
             ) {
-                startPollingService(context)
+                PermanentServiceHelper.startPollingService(context)
             } else {
-                stopPollingService(context)
+                PermanentServiceHelper.stopPollingService(context)
             }
         } else {
-            stopPollingService(context)
+            PermanentServiceHelper.stopPollingService(context)
             settings.updateInterval.intervalInHour?.let {
                 WorkerHelper.setNormalPollingWork(context, it)
             } ?: WorkerHelper.cancelNormalPollingWork(context)
@@ -97,12 +96,12 @@ object PollingManager {
                 || settings.isTodayForecastEnabled
                 || settings.isTomorrowForecastEnabled
             ) {
-                startPollingService(context)
+                PermanentServiceHelper.startPollingService(context)
             } else {
-                stopPollingService(context)
+                PermanentServiceHelper.stopPollingService(context)
             }
         } else {
-            stopPollingService(context)
+            PermanentServiceHelper.stopPollingService(context)
             if (settings.isTodayForecastEnabled) {
                 WorkerHelper.setTodayForecastUpdateWork(context, settings.todayForecastTime, nextDay)
             } else {
@@ -127,12 +126,12 @@ object PollingManager {
                 || settings.isTodayForecastEnabled
                 || settings.isTomorrowForecastEnabled
             ) {
-                startPollingService(context)
+                PermanentServiceHelper.startPollingService(context)
             } else {
-                stopPollingService(context)
+                PermanentServiceHelper.stopPollingService(context)
             }
         } else {
-            stopPollingService(context)
+            PermanentServiceHelper.stopPollingService(context)
             if (settings.isTomorrowForecastEnabled) {
                 WorkerHelper.setTomorrowForecastUpdateWork(context, settings.tomorrowForecastTime, nextDay)
             } else {

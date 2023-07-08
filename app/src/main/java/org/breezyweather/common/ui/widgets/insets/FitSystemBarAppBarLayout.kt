@@ -12,11 +12,8 @@ import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.theme.ThemeManager
 
 class FitSystemBarAppBarLayout @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
-) : AppBarLayout(context, attrs, defStyleAttr),
-    FitBothSideBarView {
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+) : AppBarLayout(context, attrs, defStyleAttr), FitBothSideBarView {
 
     private val mHelper: FitBothSideBarHelper
 
@@ -58,11 +55,9 @@ class FitSystemBarAppBarLayout @JvmOverloads constructor(
         mHelper.setFitSystemBarEnabled(top, bottom)
     }
 
-    override fun getTopWindowInset(): Int {
-        return mHelper.top()
-    }
+    override val topWindowInset: Int
+        get() = mHelper.top()
 
-    override fun getBottomWindowInset(): Int {
-        return 0
-    }
+    override val bottomWindowInset: Int
+        get() = 0
 }

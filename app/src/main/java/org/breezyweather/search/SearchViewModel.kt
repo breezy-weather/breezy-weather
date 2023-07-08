@@ -22,17 +22,16 @@ class SearchViewModel @Inject constructor(
     val enabledSource = _enabledSource.asStateFlow()
     private val mRepository: SearchActivityRepository = repository
 
-    @JvmOverloads
     fun requestLocationList(str: String) {
         mRepository.cancel()
         mRepository.searchLocationList(
-            application,
+            getApplication(),
             str,
             enabledSource.value
         ) { result: Pair<List<Location>?, RequestErrorType?>?, _: Boolean ->
             result?.second?.let {
                 // TODO: Also show actions
-                SnackbarHelper.showSnackbar(application.getString(it.shortMessage))
+                SnackbarHelper.showSnackbar((getApplication() as Application).getString(it.shortMessage))
                 _listResource.value = Pair(emptyList(), LoadableLocationStatus.ERROR)
             } ?: run {
                 result?.first?.let {

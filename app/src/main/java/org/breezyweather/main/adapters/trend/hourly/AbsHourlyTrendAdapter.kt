@@ -10,7 +10,7 @@ import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerViewAdapter
 import org.breezyweather.common.ui.widgets.trend.item.HourlyTrendItemView
-import org.breezyweather.main.dialogs.HourlyWeatherDialog.show
+import org.breezyweather.main.dialogs.HourlyWeatherDialog
 import org.breezyweather.main.utils.MainThemeColorProvider
 
 abstract class AbsHourlyTrendAdapter(val activity: GeoActivity, location: Location) :
@@ -58,7 +58,7 @@ abstract class AbsHourlyTrendAdapter(val activity: GeoActivity, location: Locati
             adapterPosition: Int
         ) {
             if (activity.isActivityResumed) {
-                show(
+                HourlyWeatherDialog.show(
                     activity,
                     location,
                     location.weather!!.hourlyForecast[adapterPosition]

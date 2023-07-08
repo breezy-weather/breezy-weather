@@ -29,7 +29,7 @@
             tools:text="星期日天气宜人"
             tools:ignore="RtlHardcoded" />
 
-        <org.breezyweather.common.ui.widgets.horizontal.HorizontalRecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/container_main_hourly_trend_card_tagView"
             android:layout_marginTop="@dimen/normal_margin"
             android:layout_width="match_parent"

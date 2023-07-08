@@ -40,9 +40,7 @@ class DailyTrendDisplayManageActivity : GeoActivity() {
     private inner class DailyTrendTag(
         var tag: DailyTrendDisplay
     ) : TagAdapter.Tag {
-        override fun getName(): String {
-            return tag.getName(this@DailyTrendDisplayManageActivity)
-        }
+        override val name = tag.getName(this@DailyTrendDisplayManageActivity)
     }
 
     private inner class CardDisplaySwipeCallback : SlidingItemTouchCallback() {
@@ -137,14 +135,15 @@ class DailyTrendDisplayManageActivity : GeoActivity() {
             colors[0],
             colors[1],
             colors[2],
-            colors[3]
-        ) { _: Boolean, _: Int, newPosition: Int ->
-            setResult(RESULT_OK)
-            val tag = mTagAdapter!!.removeItem(newPosition) as DailyTrendTag
-            mDailyTrendDisplayAdapter.insertItem(tag.tag)
-            resetBottomBarVisibility()
-            true
-        }
+            colors[3],
+            { _: Boolean, _: Int, newPosition: Int ->
+                setResult(RESULT_OK)
+                val tag = mTagAdapter!!.removeItem(newPosition) as DailyTrendTag
+                mDailyTrendDisplayAdapter.insertItem(tag.tag)
+                resetBottomBarVisibility()
+                true
+            }
+        )
         mBinding.bottomRecyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
         mBinding.bottomRecyclerView.addItemDecoration(
             GridMarginsDecoration(

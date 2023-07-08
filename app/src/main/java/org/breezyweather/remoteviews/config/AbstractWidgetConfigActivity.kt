@@ -26,7 +26,6 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.xw.repo.BubbleSeekBar
-import com.xw.repo.BubbleSeekBar.OnProgressChangedListenerAdapter
 import org.breezyweather.R
 import org.breezyweather.background.polling.PollingManager.resetNormalBackgroundTask
 import org.breezyweather.common.basic.GeoActivity
@@ -40,13 +39,12 @@ import org.breezyweather.main.utils.RequestErrorType
 import org.breezyweather.settings.ConfigStore
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.weather.WeatherHelper
-import org.breezyweather.weather.WeatherHelper.OnRequestWeatherListener
 import javax.inject.Inject
 
 /**
  * Abstract widget config activity.
  */
-abstract class AbstractWidgetConfigActivity : GeoActivity(), OnRequestWeatherListener {
+abstract class AbstractWidgetConfigActivity : GeoActivity(), WeatherHelper.OnRequestWeatherListener {
     protected var mTopContainer: FrameLayout? = null
     protected var mWallpaper: ImageView? = null
     protected var mWidgetContainer: FrameLayout? = null
@@ -680,7 +678,7 @@ abstract class AbstractWidgetConfigActivity : GeoActivity(), OnRequestWeatherLis
         }
     }
 
-    private inner class CardAlphaChangedListener : OnProgressChangedListenerAdapter() {
+    private inner class CardAlphaChangedListener : BubbleSeekBar.OnProgressChangedListenerAdapter() {
         override fun getProgressOnActionUp(bubbleSeekBar: BubbleSeekBar, progress: Int, progressFloat: Float) {
             if (cardAlpha != progress) {
                 cardAlpha = progress
@@ -689,7 +687,7 @@ abstract class AbstractWidgetConfigActivity : GeoActivity(), OnRequestWeatherLis
         }
     }
 
-    private inner class TextSizeChangedListener : OnProgressChangedListenerAdapter() {
+    private inner class TextSizeChangedListener : BubbleSeekBar.OnProgressChangedListenerAdapter() {
         override fun getProgressOnActionUp(bubbleSeekBar: BubbleSeekBar, progress: Int, progressFloat: Float) {
             if (textSize != progress) {
                 textSize = progress

@@ -1,11 +1,15 @@
 package org.breezyweather.common.extensions
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Configuration
+import android.graphics.Typeface
 import android.provider.Settings
 import android.provider.Settings.SettingNotFoundException
 import android.view.View
 import androidx.annotation.Px
+import androidx.annotation.StyleRes
+import com.google.android.material.resources.TextAppearance
 import kotlin.math.min
 
 private const val MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_PHONE = 512
@@ -57,4 +61,11 @@ fun Context.getTabletListAdaptiveWidth(@Px width: Int): Int {
             MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_TABLET
         } else MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_PHONE).toFloat())
     ).toInt()
+}
+
+@SuppressLint("RestrictedApi", "VisibleForTests")
+fun Context.getTypefaceFromTextAppearance(
+    @StyleRes textAppearanceId: Int
+): Typeface {
+    return TextAppearance(this, textAppearanceId).getFont(this)
 }

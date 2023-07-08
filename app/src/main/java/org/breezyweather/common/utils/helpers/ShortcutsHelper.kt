@@ -10,17 +10,13 @@ import android.graphics.drawable.Icon
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.core.content.ContextCompat
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.Location.Companion.excludeInvalidResidentLocation
 import org.breezyweather.common.basic.models.weather.WeatherCode
-import org.breezyweather.db.repositories.WeatherEntityRepository.readWeather
-import org.breezyweather.theme.resource.ResourceHelper.getShortcutsForegroundIcon
-import org.breezyweather.theme.resource.ResourceHelper.getShortcutsIcon
-import org.breezyweather.theme.resource.ResourcesProviderFactory.newInstance
+import org.breezyweather.db.repositories.WeatherEntityRepository
+import org.breezyweather.theme.resource.ResourceHelper
+import org.breezyweather.theme.resource.ResourcesProviderFactory
 import org.breezyweather.theme.resource.providers.ResourceProvider
-import java.util.Objects
 import kotlin.math.min
 
 /**
@@ -33,8 +29,8 @@ object ShortcutsHelper {
             val shortcutManager = context.getSystemService<ShortcutManager>(
                 ShortcutManager::class.java
             ) ?: return@runOnIO
-            val list = excludeInvalidResidentLocation(context, locationList)
-            val provider = newInstance
+            val list = Location.excludeInvalidResidentLocation(context, locationList)
+            val provider = ResourcesProviderFactory.newInstance
             val shortcutList: MutableList<ShortcutInfo> = ArrayList()
 
             // refresh button.
@@ -61,7 +57,7 @@ object ShortcutsHelper {
             // location list.
             val count = min(shortcutManager.maxShortcutCountPerActivity - 1, list.size)
             for (i in 0 until count) {
-                val weather = readWeather(list[i])
+                val weather = WeatherEntityRepository.readWeather(list[i])
                 icon =
                     if (weather?.current?.weatherCode != null) {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -120,7 +116,7 @@ object ShortcutsHelper {
     ): Icon {
         return Icon.createWithAdaptiveBitmap(
             drawableToBitmap(
-                getShortcutsForegroundIcon(provider, code, daytime)
+                ResourceHelper.getShortcutsForegroundIcon(provider, code, daytime)
             )
         )
     }
@@ -128,7 +124,7 @@ object ShortcutsHelper {
     private fun getIcon(provider: ResourceProvider, code: WeatherCode, daytime: Boolean): Icon {
         return Icon.createWithBitmap(
             drawableToBitmap(
-                getShortcutsIcon(provider, code, daytime)
+                ResourceHelper.getShortcutsIcon(provider, code, daytime)
             )
         )
     }

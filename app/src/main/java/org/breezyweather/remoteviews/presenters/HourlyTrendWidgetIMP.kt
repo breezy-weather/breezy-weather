@@ -26,7 +26,7 @@ import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.ResourcesProviderFactory
-import org.breezyweather.theme.weatherView.WeatherViewController.getWeatherKind
+import org.breezyweather.theme.weatherView.WeatherViewController
 import kotlin.math.max
 import kotlin.math.min
 
@@ -126,7 +126,7 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         }
 
         val colors = ThemeManager.getInstance(context).weatherThemeDelegate.getThemeColors(
-            context, getWeatherKind(weather), location.isDaylight
+            context, WeatherViewController.getWeatherKind(weather), location.isDaylight
         )
         val widgetItemViews: Array<WidgetItemView> = arrayOf(
             drawableView.findViewById(R.id.widget_trend_hourly_item_1),

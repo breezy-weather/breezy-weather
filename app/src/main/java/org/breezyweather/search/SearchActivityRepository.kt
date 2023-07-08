@@ -18,17 +18,17 @@ class SearchActivityRepository @Inject internal constructor(
 
     fun searchLocationList(
         context: Context, query: String, enabledSource: WeatherSource,
-        callback: AsyncHelper.Callback<Pair<List<Location>?, RequestErrorType?>?>
+        callback: (t: Pair<List<Location>?, RequestErrorType?>?, done: Boolean) -> Unit
     ) {
         mWeatherHelper.requestSearchLocations(
             context, query, enabledSource,
             object : WeatherHelper.OnRequestLocationListener {
                 override fun requestLocationSuccess(query: String, locationList: List<Location>) {
-                    callback.call(Pair<List<Location>, RequestErrorType?>(locationList, null), true)
+                    callback(Pair<List<Location>, RequestErrorType?>(locationList, null), true)
                 }
 
                 override fun requestLocationFailed(query: String, requestErrorType: RequestErrorType) {
-                    callback.call(Pair<List<Location>?, RequestErrorType>(null, requestErrorType), true)
+                    callback(Pair<List<Location>?, RequestErrorType>(null, requestErrorType), true)
                 }
             })
     }

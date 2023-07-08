@@ -14,7 +14,7 @@ import org.breezyweather.common.basic.models.options.NotificationTextColor
 import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.theme.resource.providers.DefaultResourceProvider
 import org.breezyweather.theme.resource.providers.ResourceProvider
-import org.breezyweather.theme.resource.utils.ResourceUtils.getResId
+import org.breezyweather.theme.resource.utils.ResourceUtils
 import kotlin.math.abs
 
 object ResourceHelper {
@@ -136,7 +136,7 @@ object ResourceHelper {
             builder.append("neg_")
         }
         builder.append(abs(temp))
-        val id = getResId(context, builder.toString(), "drawable")
+        val id = ResourceUtils.getResId(context, builder.toString(), "drawable")
         return if (id == 0) {
             R.drawable.notif_temp_0
         } else id

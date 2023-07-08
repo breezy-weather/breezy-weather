@@ -7,10 +7,11 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.viewpager.widget.ViewPager.OnPageChangeListener
+import androidx.viewpager.widget.ViewPager
 import com.google.android.material.appbar.MaterialToolbar
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.insets.FitBothSideBarView
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.Daily
 import org.breezyweather.common.extensions.dpToPx
@@ -18,7 +19,6 @@ import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
 import org.breezyweather.common.ui.widgets.insets.FitSystemBarRecyclerView
 import org.breezyweather.common.ui.widgets.insets.FitSystemBarViewPager
-import org.breezyweather.common.ui.widgets.insets.FitSystemBarViewPager.FitBottomSystemBarPagerAdapter
 import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.daily.adapter.DailyWeatherAdapter
@@ -82,15 +82,15 @@ class DailyWeatherActivity : GeoActivity() {
                 location.copy(weather = WeatherEntityRepository.readWeather(location)),
                 true
             )
-        }, AsyncHelper.Callback { location: Location?, _: Boolean ->
+        }, { location: Location?, _: Boolean ->
             if (location == null) {
                 finish()
-                return@Callback
+                return@runOnIO
             }
             val weather = location.weather
             if (weather == null) {
                 finish()
-                return@Callback
+                return@runOnIO
             }
             selectPage(
                 weather.dailyForecast[mPosition],
@@ -102,8 +102,8 @@ class DailyWeatherActivity : GeoActivity() {
             val titleList: MutableList<String> = ArrayList(weather.dailyForecast.size)
             weather.dailyForecast.forEachIndexed { i, daily ->
                 val rv = FitSystemBarRecyclerView(this)
-                rv.removeFitSide(FitSystemBarRecyclerView.SIDE_TOP)
-                rv.addFitSide(FitSystemBarRecyclerView.SIDE_BOTTOM)
+                rv.removeFitSide(FitBothSideBarView.SIDE_TOP)
+                rv.addFitSide(FitBothSideBarView.SIDE_BOTTOM)
                 rv.clipToPadding = false
                 val dailyWeatherAdapter = DailyWeatherAdapter(this, location.timeZone, daily, 3)
                 val gridLayoutManager = GridLayoutManager(this, 3)
@@ -114,7 +114,7 @@ class DailyWeatherActivity : GeoActivity() {
                 titleList.add((i + 1).toString())
             }
             val pager = findViewById<FitSystemBarViewPager>(R.id.activity_weather_daily_pager)
-            pager.adapter = FitBottomSystemBarPagerAdapter(pager, viewList, titleList)
+            pager.adapter = FitSystemBarViewPager.FitBottomSystemBarPagerAdapter(pager, viewList, titleList)
             pager.pageMargin = this.dpToPx(1f).toInt()
             pager.setPageMarginDrawable(
                 ColorDrawable(
@@ -123,7 +123,7 @@ class DailyWeatherActivity : GeoActivity() {
             )
             pager.currentItem = mPosition
             pager.clearOnPageChangeListeners()
-            pager.addOnPageChangeListener(object : OnPageChangeListener {
+            pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
                 override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
                     // do nothing.
                 }

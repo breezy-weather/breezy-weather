@@ -33,7 +33,6 @@ class CardDisplayManageActivity : GeoActivity() {
     private lateinit var mCardDisplayAdapter: CardDisplayAdapter
     private var mCardDisplayItemTouchHelper: ItemTouchHelper? = null
     private var mTagAdapter: TagAdapter? = null
-    private var mBottomBar: AppBarLayout? = null
     private var mBottomAnimator: AnimatorSet? = null
     private var mBottomBarVisibility: Boolean? = null
 
@@ -43,9 +42,7 @@ class CardDisplayManageActivity : GeoActivity() {
     private inner class CardTag(
         var tag: CardDisplay
     ) : TagAdapter.Tag {
-        override fun getName(): String {
-            return tag.getName(this@CardDisplayManageActivity)
-        }
+        override val name = tag.getName(this@CardDisplayManageActivity)
     }
 
     private inner class CardDisplaySwipeCallback : SlidingItemTouchCallback() {
@@ -140,14 +137,15 @@ class CardDisplayManageActivity : GeoActivity() {
             colors[0],
             colors[1],
             colors[2],
-            colors[3]
-        ) { _: Boolean, _: Int, newPosition: Int ->
-            setResult(RESULT_OK)
-            val tag = mTagAdapter!!.removeItem(newPosition) as CardTag
-            mCardDisplayAdapter.insertItem(tag.tag)
-            resetBottomBarVisibility()
-            true
-        }
+            colors[3],
+            { _: Boolean, _: Int, newPosition: Int ->
+                setResult(RESULT_OK)
+                val tag = mTagAdapter!!.removeItem(newPosition) as CardTag
+                mCardDisplayAdapter.insertItem(tag.tag)
+                resetBottomBarVisibility()
+                true
+            }
+        )
         mBinding.bottomRecyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
         mBinding.bottomRecyclerView.addItemDecoration(
             GridMarginsDecoration(
@@ -179,21 +177,20 @@ class CardDisplayManageActivity : GeoActivity() {
         if (mBottomBarVisibility == null || mBottomBarVisibility != visible) {
             mBottomBarVisibility = visible
             mBottomAnimator?.cancel()
-            mBottomAnimator = AnimatorSet()
-            mBottomAnimator!!.playTogether(
-                ObjectAnimator.ofFloat(
-                    mBottomBar, "alpha",
-                    mBottomBar!!.alpha, (if (visible) 1 else 0).toFloat()
-                ),
-                ObjectAnimator.ofFloat(
-                    mBottomBar, "translationY",
-                    mBottomBar!!.translationY, (if (visible) 0 else mBottomBar!!.measuredHeight).toFloat()
+            mBottomAnimator = AnimatorSet().apply {
+                playTogether(
+                    ObjectAnimator.ofFloat(
+                        mBinding.bottomBar, "alpha",
+                        mBinding.bottomBar.alpha, (if (visible) 1 else 0).toFloat()
+                    ),
+                    ObjectAnimator.ofFloat(
+                        mBinding.bottomBar, "translationY",
+                        mBinding.bottomBar.translationY, (if (visible) 0 else mBinding.bottomBar.measuredHeight).toFloat()
+                    )
                 )
-            )
-            mBottomAnimator!!.setDuration((if (visible) 350 else 150).toLong())
-            mBottomAnimator!!.interpolator =
-                if (visible) DecelerateInterpolator(2f) else AccelerateInterpolator(2f)
-            mBottomAnimator!!.start()
+                duration = (if (visible) 350 else 150).toLong()
+                interpolator = if (visible) DecelerateInterpolator(2f) else AccelerateInterpolator(2f)
+            }.also { it.start() }
         }
     }
 }

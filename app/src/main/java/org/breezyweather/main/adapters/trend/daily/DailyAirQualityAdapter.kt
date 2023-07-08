@@ -10,18 +10,17 @@ import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.index.PollutantIndex
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
-import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView.KeyLine
 import org.breezyweather.common.ui.widgets.trend.chart.PolylineAndHistogramView
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.theme.ThemeManager
-import org.breezyweather.theme.weatherView.WeatherViewController.getWeatherKind
+import org.breezyweather.theme.weatherView.WeatherViewController
 
 /**
  * Daily air quality adapter.
  */
-class DailyAirQualityAdapter(activity: GeoActivity, location: Location) : AbsDailyTrendAdapter(
-    activity, location
-) {
+class DailyAirQualityAdapter(
+    activity: GeoActivity, location: Location
+) : AbsDailyTrendAdapter(activity, location) {
     private var mHighestIndex: Int = 0
 
     inner class ViewHolder(itemView: View) : AbsDailyTrendAdapter.ViewHolder(itemView) {
@@ -61,7 +60,7 @@ class DailyAirQualityAdapter(activity: GeoActivity, location: Location) : AbsDai
                 .weatherThemeDelegate
                 .getThemeColors(
                     itemView.context,
-                    getWeatherKind(location.weather),
+                    WeatherViewController.getWeatherKind(location.weather),
                     location.isDaylight
                 )
             val lightTheme = MainThemeColorProvider.isLightTheme(itemView.context, location)
@@ -100,29 +99,29 @@ class DailyAirQualityAdapter(activity: GeoActivity, location: Location) : AbsDai
     override fun getDisplayName(context: Context) = context.getString(R.string.tag_aqi)
 
     override fun bindBackgroundForHost(host: TrendRecyclerView) {
-        val keyLineList: MutableList<KeyLine> = ArrayList()
+        val keyLineList: MutableList<TrendRecyclerView.KeyLine> = ArrayList()
         val goodPollutionLevel = PollutantIndex.indexFreshAir
         keyLineList.add(
-            KeyLine(
+            TrendRecyclerView.KeyLine(
                 goodPollutionLevel.toFloat(), goodPollutionLevel.toString(),
                 activity.resources.getStringArray(R.array.air_quality_levels)[1],
-                KeyLine.ContentPosition.ABOVE_LINE
+                TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
         )
         val moderatePollutionLevel = PollutantIndex.indexHighPollution
         keyLineList.add(
-            KeyLine(
+            TrendRecyclerView.KeyLine(
                 moderatePollutionLevel.toFloat(), moderatePollutionLevel.toString(),
                 activity.resources.getStringArray(R.array.air_quality_levels)[3],
-                KeyLine.ContentPosition.ABOVE_LINE
+                TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
         )
         val heavyPollutionLevel = PollutantIndex.indexExcessivePollution
         keyLineList.add(
-            KeyLine(
+            TrendRecyclerView.KeyLine(
                 heavyPollutionLevel.toFloat(), heavyPollutionLevel.toString(),
                 activity.resources.getStringArray(R.array.air_quality_levels)[5],
-                KeyLine.ContentPosition.ABOVE_LINE
+                TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
         )
         host.setData(keyLineList, mHighestIndex.toFloat(), 0f)

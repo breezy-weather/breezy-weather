@@ -12,7 +12,6 @@ import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
 import org.breezyweather.common.basic.models.weather.Precipitation
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
-import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView.KeyLine
 import org.breezyweather.common.ui.widgets.trend.chart.DoubleHistogramView
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.settings.SettingsManager
@@ -116,37 +115,37 @@ class DailyPrecipitationAdapter(
 
     override fun bindBackgroundForHost(host: TrendRecyclerView) {
         val unit = SettingsManager.getInstance(activity).precipitationUnit
-        val keyLineList: MutableList<KeyLine> = ArrayList()
+        val keyLineList: MutableList<TrendRecyclerView.KeyLine> = ArrayList()
         keyLineList.add(
-            KeyLine(
+            TrendRecyclerView.KeyLine(
                 Precipitation.PRECIPITATION_LIGHT,
                 unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_LIGHT),
                 activity.getString(R.string.precipitation_intensity_light),
-                KeyLine.ContentPosition.ABOVE_LINE
+                TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
         )
         keyLineList.add(
-            KeyLine(
+            TrendRecyclerView.KeyLine(
                 Precipitation.PRECIPITATION_HEAVY,
                 unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_HEAVY),
                 activity.getString(R.string.precipitation_intensity_heavy),
-                KeyLine.ContentPosition.ABOVE_LINE
+                TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
         )
         keyLineList.add(
-            KeyLine(
+            TrendRecyclerView.KeyLine(
                 -Precipitation.PRECIPITATION_LIGHT,
                 unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_LIGHT),
                 activity.getString(R.string.precipitation_intensity_light),
-                KeyLine.ContentPosition.BELOW_LINE
+                TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
             )
         )
         keyLineList.add(
-            KeyLine(
+            TrendRecyclerView.KeyLine(
                 -Precipitation.PRECIPITATION_HEAVY,
                 unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_HEAVY),
                 activity.getString(R.string.precipitation_intensity_heavy),
-                KeyLine.ContentPosition.BELOW_LINE
+                TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
             )
         )
         host.setData(keyLineList, mHighestPrecipitation, -mHighestPrecipitation)

@@ -67,7 +67,6 @@ object Constants {
     const val CONFIG_HAS_SHORTCUT_ICONS = "hasShortcutIcons"
     const val CONFIG_HAS_SUN_MOON_DRAWABLES = "hasSunMoonDrawables"
 
-    @JvmStatic
     fun getResourcesName(code: WeatherCode?): String = when (code) {
         WeatherCode.CLEAR -> RESOURCES_CLEAR
         WeatherCode.PARTLY_CLOUDY -> RESOURCES_PARTLY_CLOUDY
@@ -84,7 +83,6 @@ object Constants {
         else -> RESOURCES_CLOUDY
     }
 
-    @JvmStatic
     fun getShortcutsName(code: WeatherCode?): String = when (code) {
         WeatherCode.CLEAR -> SHORTCUTS_CLEAR
         WeatherCode.PARTLY_CLOUDY -> SHORTCUTS_PARTLY_CLOUDY

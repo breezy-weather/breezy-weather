@@ -74,7 +74,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
     private lateinit var layout: LinearLayoutManager
     private lateinit var adapter: LocationAdapter
     private lateinit var recyclerView: RecyclerView
-    private var adapterAnimWrapper: LocationAdapterAnimWrapper? = null
+    private lateinit var adapterAnimWrapper: LocationAdapterAnimWrapper
     private lateinit var itemTouchHelper: ItemTouchHelper
     private var resourceProvider: ResourceProvider? = null
 
@@ -121,9 +121,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                     actions = {
                         IconButton(
                             onClick = {
-                                if (callback != null) {
-                                    callback!!.onSearchBarClicked()
-                                }
+                                callback?.onSearchBarClicked()
                             }
                         ) {
                             Icon(
@@ -169,7 +167,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
 
     override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {
         if (enter && nextAnim != 0) {
-            adapterAnimWrapper?.setLastPosition(-1)
+            adapterAnimWrapper.setLastPosition(-1)
         }
         return super.onCreateAnimation(transit, enter, nextAnim)
     }
@@ -207,8 +205,9 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
         adapterAnimWrapper = LocationAdapterAnimWrapper(
             requireContext(),
             adapter
-        )
-        adapterAnimWrapper!!.setLastPosition(Int.MAX_VALUE)
+        ).apply {
+            setLastPosition(Int.MAX_VALUE)
+        }
         recyclerView = RecyclerView(requireContext())
         recyclerView.adapter = adapterAnimWrapper
         recyclerView.layoutManager = LinearLayoutManager(
@@ -230,7 +229,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                 updateAppBarColor()
 
                 if (dy != 0) {
-                    adapterAnimWrapper!!.setScrolled()
+                    adapterAnimWrapper.setScrolled()
                 }
             }
         })
@@ -298,17 +297,14 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
     }
 
     override fun startSelectProviderActivityBySwipe() {
-        if (callback != null) {
-            callback!!.onSelectProviderActivityStarted()
-        }
+        callback?.onSelectProviderActivityStarted()
     }
 
     private fun ensureResourceProvider() {
         val iconProvider = SettingsManager
             .getInstance(requireContext())
             .iconProvider
-        if (resourceProvider == null
-            || resourceProvider!!.packageName != iconProvider) {
+        if (resourceProvider == null || resourceProvider!!.packageName != iconProvider) {
             resourceProvider = ResourcesProviderFactory.newInstance
         }
     }

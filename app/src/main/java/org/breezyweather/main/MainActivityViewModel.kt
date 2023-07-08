@@ -58,7 +58,6 @@ class MainActivityViewModel @Inject constructor(
         repository.destroy()
     }
 
-    @JvmOverloads
     fun init(formattedId: String? = null) {
         onCleared()
 
@@ -66,10 +65,10 @@ class MainActivityViewModel @Inject constructor(
 
         // init live data.
         val totalList = repository.initLocations(
-            context = application,
+            context = getApplication(),
             formattedId = id ?: ""
         )
-        val validList = Location.excludeInvalidResidentLocation(application, totalList)
+        val validList = Location.excludeInvalidResidentLocation(getApplication(), totalList)
 
         id = formattedId ?: validList[0].formattedId
         val current = validList.first { item -> item.formattedId == id }
@@ -93,12 +92,11 @@ class MainActivityViewModel @Inject constructor(
 
         // read weather caches.
         repository.getWeatherCacheForLocations(
-            context = application,
             oldList = totalList,
             ignoredFormattedId = id,
         ) { newList, _ ->
             initCompleted = true
-            newList?.let { updateInnerData(it) }
+            if (newList.isNotEmpty()) { updateInnerData(newList) }
         }
     }
 
@@ -118,7 +116,7 @@ class MainActivityViewModel @Inject constructor(
     private fun updateInnerData(total: List<Location>) {
         // get valid locations and current index.
         val valid = Location.excludeInvalidResidentLocation(
-            application,
+            getApplication(),
             total,
         )
 
@@ -198,7 +196,7 @@ class MainActivityViewModel @Inject constructor(
     private fun currentLocationIsValid() =
         currentLocation.value?.location?.weather?.isValid(
             SettingsManager
-                .getInstance(application)
+                .getInstance(getApplication())
                 .updateInterval
                 .intervalInHour
         ) ?: false
@@ -223,7 +221,7 @@ class MainActivityViewModel @Inject constructor(
         ) {
             updating = true
             repository.getWeather(
-                application,
+                getApplication(),
                 currentLocation.value!!.location,
                 currentLocation.value!!.location.isCurrentPosition,
                 this
@@ -233,8 +231,8 @@ class MainActivityViewModel @Inject constructor(
 
         // check permissions.
         val permissionList = repository
-            .getLocatePermissionList(application)
-            .filter { !application.hasPermission(it) }
+            .getLocatePermissionList(getApplication())
+            .filter { !(getApplication() as Application).hasPermission(it) }
             .toMutableList()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
             && !statementManager.isPostNotificationRequired) {
@@ -245,7 +243,7 @@ class MainActivityViewModel @Inject constructor(
             // already got all permissions -> request data directly.
             updating = true
             repository.getWeather(
-                application,
+                getApplication(),
                 currentLocation.value!!.location,
                 true,
                 this
@@ -362,7 +360,7 @@ class MainActivityViewModel @Inject constructor(
         total.add(index ?: total.size, location)
 
         updateInnerData(total)
-        repository.writeLocationList(context = application, locationList = total)
+        repository.writeLocationList(locationList = total)
 
         return true
     }
@@ -385,7 +383,6 @@ class MainActivityViewModel @Inject constructor(
         updateInnerData(total)
 
         repository.writeLocationList(
-            context = application,
             locationList = totalLocationList.value.first
         )
     }
@@ -393,7 +390,6 @@ class MainActivityViewModel @Inject constructor(
     fun updateLocation(location: Location) {
         updateInnerData(location)
         repository.writeLocationList(
-            context = application,
             locationList = totalLocationList.value.first,
         )
     }
@@ -403,7 +399,7 @@ class MainActivityViewModel @Inject constructor(
         val location = total.removeAt(position)
 
         updateInnerData(total)
-        repository.deleteLocation(context = application, location = location)
+        repository.deleteLocation(location = location)
 
         return location
     }

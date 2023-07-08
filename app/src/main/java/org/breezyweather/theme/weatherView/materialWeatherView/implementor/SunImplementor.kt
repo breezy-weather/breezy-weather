@@ -12,7 +12,7 @@ import kotlin.math.sin
  * Clear day implementor.
  */
 class SunImplementor(@Size(2) canvasSizes: IntArray) : WeatherAnimationImplementor() {
-    private val mPaint: Paint = Paint().apply {
+    private val mPaint = Paint().apply {
         style = Paint.Style.FILL
         isAntiAlias = true
         color = Color.rgb(253, 84, 17)

@@ -9,7 +9,6 @@ import android.graphics.Rect
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
-import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -27,8 +26,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.ViewCompat
 import com.google.android.material.behavior.SwipeDismissBehavior
 import org.breezyweather.R
-import org.breezyweather.common.snackbar.Utils.consumeInsets
-import org.breezyweather.common.snackbar.Utils.getEnterAnimator
+import org.breezyweather.common.snackbar.Utils
 
 class Snackbar private constructor(
     private val mParent: ViewGroup,
@@ -208,7 +206,7 @@ class Snackbar private constructor(
 
     private fun animateViewIn() {
         mAnimator?.cancel()
-        mAnimator = getEnterAnimator(mView, mCardStyle).apply {
+        mAnimator = Utils.getEnterAnimator(mView, mCardStyle).apply {
             duration = ANIMATION_DURATION.toLong()
             addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationStart(animation: Animator) {
@@ -276,8 +274,7 @@ class Snackbar private constructor(
         }
 
     open class SnackbarLayout @JvmOverloads constructor(
-        context: Context,
-        attrs: AttributeSet? = null
+        context: Context, attrs: AttributeSet? = null
     ) : ViewGroup(context, attrs) {
         private val mWindowInsets: Rect = Rect()
         var messageView: TextView? = null
@@ -319,13 +316,13 @@ class Snackbar private constructor(
                 insets.systemWindowInsetRight,
                 insets.systemWindowInsetBottom
             )
-            consumeInsets(this, mWindowInsets)
+            Utils.consumeInsets(this, mWindowInsets)
             return insets
         }
 
         override fun fitSystemWindows(insets: Rect): Boolean {
             mWindowInsets.set(insets)
-            consumeInsets(this, mWindowInsets)
+            Utils.consumeInsets(this, mWindowInsets)
             return false
         }
 
@@ -529,8 +526,8 @@ class Snackbar private constructor(
             return make(view, view.resources.getText(resId), duration, cardStyle)
         }
 
-        private fun findSuitableParent(view: View): ViewGroup {
-            var view: View? = view
+        private fun findSuitableParent(viewP: View): ViewGroup {
+            var view: View? = viewP
             do {
                 if (view is CoordinatorLayout) {
                     // We've found a CoordinatorLayout, use it

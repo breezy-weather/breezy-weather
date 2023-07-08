@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
-import android.view.View.OnTouchListener
 import android.view.ViewGroup
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.graphics.ColorUtils
@@ -21,7 +20,6 @@ import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimationMode
 import org.breezyweather.common.extensions.isMotionReduced
 import org.breezyweather.common.ui.widgets.SwipeSwitchLayout
-import org.breezyweather.common.ui.widgets.SwipeSwitchLayout.OnSwitchListener
 import org.breezyweather.databinding.FragmentHomeBinding
 import org.breezyweather.main.MainActivityViewModel
 import org.breezyweather.main.adapters.main.MainAdapter
@@ -229,8 +227,6 @@ class HomeFragment : MainModuleFragment() {
     }
 
     // control.
-
-    @JvmOverloads
     fun updateViews(location: Location = viewModel.currentLocation.value!!.location) {
         ensureResourceProvider()
         updateContentViews(location = location)
@@ -243,8 +239,8 @@ class HomeFragment : MainModuleFragment() {
 
     @SuppressLint("ClickableViewAccessibility", "NotifyDataSetChanged")
     private fun updateContentViews(location: Location) {
-        if (recyclerViewAnimator != null) {
-            recyclerViewAnimator!!.cancel()
+        recyclerViewAnimator?.let {
+            it.cancel()
             recyclerViewAnimator = null
         }
 
@@ -353,7 +349,7 @@ class HomeFragment : MainModuleFragment() {
     // on touch listener.
 
     @SuppressLint("ClickableViewAccessibility")
-    private val indicatorStateListener = OnTouchListener { _, event ->
+    private val indicatorStateListener = View.OnTouchListener { _, event ->
         when (event.action) {
             MotionEvent.ACTION_MOVE ->
                 binding.indicator.setDisplayState(true)
@@ -365,7 +361,7 @@ class HomeFragment : MainModuleFragment() {
 
     // on swipe listener (swipe switch layout).
 
-    private val switchListener: OnSwitchListener = object : OnSwitchListener {
+    private val switchListener = object : SwipeSwitchLayout.OnSwitchListener {
 
         override fun onSwiped(swipeDirection: Int, progress: Float) {
             binding.indicator.setDisplayState(progress != 0f)

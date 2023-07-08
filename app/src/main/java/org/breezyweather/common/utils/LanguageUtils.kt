@@ -2,7 +2,6 @@ package org.breezyweather.common.utils
 
 import android.content.Context
 import android.os.Build
-import android.text.TextUtils
 import java.util.Locale
 import java.util.regex.Pattern
 import kotlin.math.min

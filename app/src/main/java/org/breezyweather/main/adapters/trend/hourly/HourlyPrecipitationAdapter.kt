@@ -10,14 +10,13 @@ import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
 import org.breezyweather.common.basic.models.weather.Precipitation
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
-import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView.KeyLine
 import org.breezyweather.common.ui.widgets.trend.chart.PolylineAndHistogramView
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.providers.ResourceProvider
-import org.breezyweather.theme.weatherView.WeatherViewController.getWeatherKind
+import org.breezyweather.theme.weatherView.WeatherViewController
 
 /**
  * Hourly precipitation adapter.
@@ -76,7 +75,7 @@ class HourlyPrecipitationAdapter(
                 .weatherThemeDelegate
                 .getThemeColors(
                     itemView.context,
-                    getWeatherKind(location.weather),
+                    WeatherViewController.getWeatherKind(location.weather),
                     location.isDaylight
                 )
             val lightTheme = MainThemeColorProvider.isLightTheme(itemView.context, location)
@@ -113,7 +112,6 @@ class HourlyPrecipitationAdapter(
     }
 
     override fun getItemCount(): Int {
-        assert(location.weather != null)
         return location.weather!!.hourlyForecast.size
     }
 
@@ -127,21 +125,21 @@ class HourlyPrecipitationAdapter(
 
     override fun bindBackgroundForHost(host: TrendRecyclerView) {
         val unit = SettingsManager.getInstance(activity).precipitationUnit
-        val keyLineList: MutableList<KeyLine> = ArrayList()
+        val keyLineList: MutableList<TrendRecyclerView.KeyLine> = ArrayList()
         keyLineList.add(
-            KeyLine(
+            TrendRecyclerView.KeyLine(
                 Precipitation.PRECIPITATION_LIGHT,
                 activity.getString(R.string.precipitation_intensity_light),
                 unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_LIGHT),
-                KeyLine.ContentPosition.ABOVE_LINE
+                TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
         )
         keyLineList.add(
-            KeyLine(
+            TrendRecyclerView.KeyLine(
                 Precipitation.PRECIPITATION_HEAVY,
                 activity.getString(R.string.precipitation_intensity_heavy),
                 unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_HEAVY),
-                KeyLine.ContentPosition.ABOVE_LINE
+                TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
         )
         host.setData(keyLineList, mHighestPrecipitation, 0f)

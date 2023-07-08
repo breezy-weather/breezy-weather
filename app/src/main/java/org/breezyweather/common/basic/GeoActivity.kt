@@ -1,6 +1,5 @@
 package org.breezyweather.common.basic
 
-import android.R
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
@@ -137,7 +136,7 @@ abstract class GeoActivity : AppCompatActivity() {
     open val snackbarContainer: SnackbarContainer
         get() = SnackbarContainer(
             this,
-            findViewById<ViewGroup>(R.id.content).getChildAt(0) as ViewGroup,
+            findViewById<ViewGroup>(android.R.id.content).getChildAt(0) as ViewGroup,
             true
         )
 

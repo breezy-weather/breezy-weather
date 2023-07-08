@@ -17,10 +17,7 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.theme.resource.utils.Config
 import org.breezyweather.theme.resource.utils.Constants
-import org.breezyweather.theme.resource.utils.Constants.getResourcesName
-import org.breezyweather.theme.resource.utils.Constants.getShortcutsName
-import org.breezyweather.theme.resource.utils.XmlHelper.getConfig
-import org.breezyweather.theme.resource.utils.XmlHelper.getFilterMap
+import org.breezyweather.theme.resource.utils.XmlHelper
 
 open class IconPackResourcesProvider(
     c: Context, pkgName: String,
@@ -47,60 +44,60 @@ open class IconPackResourcesProvider(
             val res = mContext.resources
             var resId = getMetaDataResource(Constants.META_DATA_PROVIDER_CONFIG)
             mConfig = if (resId != 0) {
-                getConfig(res.getXml(resId))
+                XmlHelper.getConfig(res.getXml(resId))
             } else {
                 val geometricResId =
                     getMetaDataResource(Constants.GEOMETRIC_META_DATA_PROVIDER_CONFIG)
                 if (geometricResId != 0) {
-                    getConfig(res.getXml(geometricResId))
+                    XmlHelper.getConfig(res.getXml(geometricResId))
                 } else {
                     Config()
                 }
             }
             resId = getMetaDataResource(Constants.META_DATA_DRAWABLE_FILTER)
             mDrawableFilter = if (resId != 0) {
-                getFilterMap(res.getXml(resId))
+                XmlHelper.getFilterMap(res.getXml(resId))
             } else {
                 val geometricResId =
                     getMetaDataResource(Constants.GEOMETRIC_META_DATA_DRAWABLE_FILTER)
                 if (geometricResId != 0) {
-                    getFilterMap(res.getXml(geometricResId))
+                    XmlHelper.getFilterMap(res.getXml(geometricResId))
                 } else {
                     HashMap()
                 }
             }
             resId = getMetaDataResource(Constants.META_DATA_ANIMATOR_FILTER)
             mAnimatorFilter = if (resId != 0) {
-                getFilterMap(res.getXml(resId))
+                XmlHelper.getFilterMap(res.getXml(resId))
             } else {
                 val geometricResId =
                     getMetaDataResource(Constants.GEOMETRIC_META_DATA_ANIMATOR_FILTER)
                 if (geometricResId != 0) {
-                    getFilterMap(res.getXml(geometricResId))
+                    XmlHelper.getFilterMap(res.getXml(geometricResId))
                 } else {
                     HashMap()
                 }
             }
             resId = getMetaDataResource(Constants.META_DATA_SHORTCUT_FILTER)
             mShortcutFilter = if (resId != 0) {
-                getFilterMap(res.getXml(resId))
+                XmlHelper.getFilterMap(res.getXml(resId))
             } else {
                 val geometricResId =
                     getMetaDataResource(Constants.GEOMETRIC_META_DATA_SHORTCUT_FILTER)
                 if (geometricResId != 0) {
-                    getFilterMap(res.getXml(geometricResId))
+                    XmlHelper.getFilterMap(res.getXml(geometricResId))
                 } else {
                     HashMap()
                 }
             }
             resId = getMetaDataResource(Constants.META_DATA_SUN_MOON_FILTER)
             mSunMoonFilter = if (resId != 0) {
-                getFilterMap(res.getXml(resId))
+                XmlHelper.getFilterMap(res.getXml(resId))
             } else {
                 val geometricResId =
                     getMetaDataResource(Constants.GEOMETRIC_META_DATA_SUN_MOON_FILTER)
                 if (geometricResId != 0) {
-                    getFilterMap(res.getXml(geometricResId))
+                    XmlHelper.getFilterMap(res.getXml(geometricResId))
                 } else {
                     HashMap()
                 }
@@ -116,11 +113,11 @@ open class IconPackResourcesProvider(
         mIconDrawable = mDefaultProvider.providerIcon
         val res = mContext.resources
         try {
-            mConfig = getConfig(res.getXml(R.xml.icon_provider_config))
-            mDrawableFilter = getFilterMap(res.getXml(R.xml.icon_provider_drawable_filter))
-            mAnimatorFilter = getFilterMap(res.getXml(R.xml.icon_provider_animator_filter))
-            mShortcutFilter = getFilterMap(res.getXml(R.xml.icon_provider_shortcut_filter))
-            mSunMoonFilter = getFilterMap(res.getXml(R.xml.icon_provider_sun_moon_filter))
+            mConfig = XmlHelper.getConfig(res.getXml(R.xml.icon_provider_config))
+            mDrawableFilter = XmlHelper.getFilterMap(res.getXml(R.xml.icon_provider_drawable_filter))
+            mAnimatorFilter = XmlHelper.getFilterMap(res.getXml(R.xml.icon_provider_animator_filter))
+            mShortcutFilter = XmlHelper.getFilterMap(res.getXml(R.xml.icon_provider_shortcut_filter))
+            mSunMoonFilter = XmlHelper.getFilterMap(res.getXml(R.xml.icon_provider_sun_moon_filter))
         } catch (e: Exception) {
             mConfig = Config()
             mDrawableFilter = HashMap()
@@ -496,12 +493,12 @@ open class IconPackResourcesProvider(
         }
 
         private fun innerGetWeatherIconName(code: WeatherCode?, daytime: Boolean): String {
-            return (getResourcesName(code)
+            return (Constants.getResourcesName(code)
                     + Constants.SEPARATOR + if (daytime) Constants.DAY else Constants.NIGHT)
         }
 
         private fun innerGetWeatherAnimatorName(code: WeatherCode?, daytime: Boolean): String {
-            return (getResourcesName(code)
+            return (Constants.getResourcesName(code)
                     + Constants.SEPARATOR + if (daytime) Constants.DAY else Constants.NIGHT)
         }
 
@@ -511,7 +508,7 @@ open class IconPackResourcesProvider(
         }
 
         private fun innerGetShortcutsIconName(code: WeatherCode?, daytime: Boolean): String {
-            return (getShortcutsName(code)
+            return (Constants.getShortcutsName(code)
                     + Constants.SEPARATOR + if (daytime) Constants.DAY else Constants.NIGHT)
         }
     }

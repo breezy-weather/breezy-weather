@@ -97,11 +97,11 @@ class HourlyViewHolder(
         val trendAdapter = HourlyTrendAdapter(activity, trendRecyclerView).apply {
             bindData(location)
         }
-        val tagList = trendAdapter.adapters.map {
-            TagAdapter.Tag {
-                it.getDisplayName(activity)
+        val tagList: MutableList<TagAdapter.Tag> = trendAdapter.adapters.map {
+            object : TagAdapter.Tag {
+                override val name = it.getDisplayName(activity)
             }
-        }
+        }.toMutableList()
 
         if (tagList.size < 2) {
             tagView.visibility = View.GONE

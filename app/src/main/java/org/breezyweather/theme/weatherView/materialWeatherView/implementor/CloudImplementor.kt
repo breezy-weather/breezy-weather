@@ -20,7 +20,7 @@ import kotlin.math.sqrt
 class CloudImplementor(
     @Size(2) canvasSizes: IntArray, @TypeRule type: Int, daylight: Boolean
 ) : WeatherAnimationImplementor() {
-    private var mPaint: Paint = Paint().apply {
+    private var mPaint = Paint().apply {
         style = Paint.Style.FILL
         isAntiAlias = true
     }

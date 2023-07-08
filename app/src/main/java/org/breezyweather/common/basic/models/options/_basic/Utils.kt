@@ -168,7 +168,6 @@ object Utils {
                 + getVoice(context, enum))
     }
 
-    @JvmOverloads
     fun formatFloat(value: Float, decimalNumber: Int = 2): String {
         val factor = 10.0.pow(decimalNumber.toDouble()).toFloat()
         return if (

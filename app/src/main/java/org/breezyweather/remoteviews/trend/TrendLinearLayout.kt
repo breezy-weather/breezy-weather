@@ -11,16 +11,18 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
-import org.breezyweather.common.basic.models.weather.Temperature.Companion.getShortTemperature
+import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.extensions.dpToPx
+import org.breezyweather.common.extensions.getTypefaceFromTextAppearance
 import org.breezyweather.common.utils.DisplayUtils
 
 /**
  * Trend linear layout.
  */
-class TrendLinearLayout @JvmOverloads constructor(context: Context?, attrs: AttributeSet? = null, defStyle: Int = 0) :
-    LinearLayout(context, attrs, defStyle) {
-    private val mPaint: Paint = Paint().apply {
+class TrendLinearLayout @JvmOverloads constructor(
+    context: Context, attrs: AttributeSet? = null, defStyle: Int = 0
+) : LinearLayout(context, attrs, defStyle) {
+    private val mPaint = Paint().apply {
         isAntiAlias = true
         strokeCap = Paint.Cap.ROUND
     }
@@ -45,7 +47,7 @@ class TrendLinearLayout @JvmOverloads constructor(context: Context?, attrs: Attr
 
     init {
         setWillNotDraw(false)
-        mPaint.setTypeface(DisplayUtils.getTypefaceFromTextAppearance(getContext(), R.style.subtitle_text))
+        mPaint.setTypeface(getContext().getTypefaceFromTextAppearance(R.style.subtitle_text))
         mPaint.textSize = TEXT_SIZE
         mTemperatureUnit = TemperatureUnit.C
         setColor(true)
@@ -79,13 +81,13 @@ class TrendLinearLayout @JvmOverloads constructor(context: Context?, attrs: Attr
         mPaint.textAlign = Paint.Align.LEFT
         mPaint.color = mTextColor
         canvas.drawText(
-            getShortTemperature(context, mHistoryTemps[0], mTemperatureUnit) ?: "",
+            Temperature.getShortTemperature(context, mHistoryTemps[0], mTemperatureUnit) ?: "",
             2 * MARGIN_TEXT,
             mHistoryTempYs[0] - mPaint.fontMetrics.bottom - MARGIN_TEXT,
             mPaint
         )
         canvas.drawText(
-            getShortTemperature(context, mHistoryTemps[1], mTemperatureUnit) ?: "",
+            Temperature.getShortTemperature(context, mHistoryTemps[1], mTemperatureUnit) ?: "",
             2 * MARGIN_TEXT,
             mHistoryTempYs[1] - mPaint.fontMetrics.top + MARGIN_TEXT,
             mPaint

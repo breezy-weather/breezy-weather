@@ -22,7 +22,7 @@ import org.breezyweather.main.adapters.AqiAdapter
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.resource.providers.ResourceProvider
-import org.breezyweather.theme.weatherView.WeatherViewController.getWeatherKind
+import org.breezyweather.theme.weatherView.WeatherViewController
 
 class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     LayoutInflater
@@ -56,7 +56,7 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                         .weatherThemeDelegate
                         .getThemeColors(
                             context,
-                            getWeatherKind(current.weatherCode),
+                            WeatherViewController.getWeatherKind(current.weatherCode),
                             location.isDaylight
                         )[0]
                 )

@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.core.content.ContextCompat
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
@@ -16,7 +15,6 @@ import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.weather.Wind
 import org.breezyweather.common.ui.images.RotateDrawable
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
-import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView.KeyLine
 import org.breezyweather.common.ui.widgets.trend.chart.PolylineAndHistogramView
 import org.breezyweather.main.utils.MainThemeColorProvider
 
@@ -111,37 +109,37 @@ class HourlyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUn
     }
 
     override fun bindBackgroundForHost(host: TrendRecyclerView) {
-        val keyLineList: MutableList<KeyLine> = ArrayList()
+        val keyLineList: MutableList<TrendRecyclerView.KeyLine> = ArrayList()
         keyLineList.add(
-            KeyLine(
+            TrendRecyclerView.KeyLine(
                 Wind.WIND_SPEED_3,
                 mSpeedUnit.getValueTextWithoutUnit(Wind.WIND_SPEED_3),
                 activity.getString(R.string.wind_level_3),
-                KeyLine.ContentPosition.ABOVE_LINE
+                TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
         )
         keyLineList.add(
-            KeyLine(
+            TrendRecyclerView.KeyLine(
                 Wind.WIND_SPEED_7,
                 mSpeedUnit.getValueTextWithoutUnit(Wind.WIND_SPEED_7),
                 activity.getString(R.string.wind_level_7),
-                KeyLine.ContentPosition.ABOVE_LINE
+                TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
         )
         keyLineList.add(
-            KeyLine(
+            TrendRecyclerView.KeyLine(
                 -Wind.WIND_SPEED_3,
                 mSpeedUnit.getValueTextWithoutUnit(Wind.WIND_SPEED_3),
                 activity.getString(R.string.wind_level_3),
-                KeyLine.ContentPosition.BELOW_LINE
+                TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
             )
         )
         keyLineList.add(
-            KeyLine(
+            TrendRecyclerView.KeyLine(
                 -Wind.WIND_SPEED_7,
                 mSpeedUnit.getValueTextWithoutUnit(Wind.WIND_SPEED_7),
                 activity.getString(R.string.wind_level_7),
-                KeyLine.ContentPosition.BELOW_LINE
+                TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
             )
         )
         host.setData(keyLineList, mHighestWindSpeed, 0f)

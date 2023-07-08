@@ -44,7 +44,7 @@
 
         </RelativeLayout>
 
-        <org.breezyweather.common.ui.widgets.horizontal.HorizontalViewPager2
+        <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/container_main_pollen_pager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

@@ -169,7 +169,6 @@ object IntentHelper {
         activity.startActivity(Intent(activity, AboutActivity::class.java))
     }
 
-    @JvmOverloads
     fun startApplicationDetailsActivity(context: Context, pkgName: String? = context.packageName) {
         context.startActivity(
             Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
@@ -182,7 +181,6 @@ object IntentHelper {
         context.startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
     }
 
-    @JvmOverloads
     fun startAppStoreDetailsActivity(context: Context, packageName: String = context.packageName) {
         val intent = Intent(
             Intent.ACTION_VIEW,

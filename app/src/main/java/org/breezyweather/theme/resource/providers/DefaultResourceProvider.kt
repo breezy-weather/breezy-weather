@@ -18,9 +18,7 @@ import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.common.ui.images.MoonDrawable
 import org.breezyweather.common.ui.images.SunDrawable
 import org.breezyweather.theme.resource.utils.Constants
-import org.breezyweather.theme.resource.utils.Constants.getResourcesName
-import org.breezyweather.theme.resource.utils.Constants.getShortcutsName
-import org.breezyweather.theme.resource.utils.XmlHelper.getFilterMap
+import org.breezyweather.theme.resource.utils.XmlHelper
 import java.util.Objects
 
 class DefaultResourceProvider : ResourceProvider() {
@@ -37,9 +35,9 @@ class DefaultResourceProvider : ResourceProvider() {
         providerIcon = mContext.applicationInfo.loadIcon(mContext.packageManager)
         val res = mContext.resources
         try {
-            mDrawableFilter = getFilterMap(res.getXml(R.xml.icon_provider_drawable_filter))
-            mAnimatorFilter = getFilterMap(res.getXml(R.xml.icon_provider_animator_filter))
-            mShortcutFilter = getFilterMap(res.getXml(R.xml.icon_provider_shortcut_filter))
+            mDrawableFilter = XmlHelper.getFilterMap(res.getXml(R.xml.icon_provider_drawable_filter))
+            mAnimatorFilter = XmlHelper.getFilterMap(res.getXml(R.xml.icon_provider_animator_filter))
+            mShortcutFilter = XmlHelper.getFilterMap(res.getXml(R.xml.icon_provider_shortcut_filter))
         } catch (e: Exception) {
             mDrawableFilter = HashMap()
             mAnimatorFilter = HashMap()
@@ -246,12 +244,12 @@ class DefaultResourceProvider : ResourceProvider() {
         }
 
         private fun innerGetWeatherIconName(code: WeatherCode?, daytime: Boolean): String {
-            return (getResourcesName(code)
+            return (Constants.getResourcesName(code)
                     + Constants.SEPARATOR + if (daytime) Constants.DAY else Constants.NIGHT)
         }
 
         private fun innerGetWeatherAnimatorName(code: WeatherCode?, daytime: Boolean): String {
-            return (getResourcesName(code)
+            return (Constants.getResourcesName(code)
                     + Constants.SEPARATOR + if (daytime) Constants.DAY else Constants.NIGHT)
         }
 
@@ -261,7 +259,7 @@ class DefaultResourceProvider : ResourceProvider() {
         }
 
         private fun innerGetShortcutsIconName(code: WeatherCode?, daytime: Boolean): String {
-            return (getShortcutsName(code)
+            return (Constants.getShortcutsName(code)
                     + Constants.SEPARATOR + if (daytime) Constants.DAY else Constants.NIGHT)
         }
     }

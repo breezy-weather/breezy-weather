@@ -15,7 +15,7 @@ import kotlin.math.sin
  * Hail implementor.
  */
 class HailImplementor(@Size(2) canvasSizes: IntArray, daylight: Boolean) : WeatherAnimationImplementor() {
-    private val mPaint: Paint = Paint().apply {
+    private val mPaint = Paint().apply {
         style = Paint.Style.FILL
         isAntiAlias = true
     }
@@ -75,7 +75,7 @@ class HailImplementor(@Size(2) canvasSizes: IntArray, daylight: Boolean) : Weath
             } else {
                 computeCenterPosition()
             }
-            rectF[cx - size * scale, cy - size * scale, cx + size * scale] = cy + size * scale
+            rectF.set(cx - size * scale, cy - size * scale, cx + size * scale, cy + size * scale)
         }
     }
 

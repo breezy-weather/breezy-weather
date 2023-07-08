@@ -2,12 +2,9 @@ package org.breezyweather.common.utils
 
 import android.animation.Animator
 import android.animation.ObjectAnimator
-import android.annotation.SuppressLint
-import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
-import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.media.ThumbnailUtils
 import android.os.Build
@@ -18,9 +15,7 @@ import android.view.animation.Interpolator
 import android.view.animation.OvershootInterpolator
 import androidx.annotation.ColorInt
 import androidx.annotation.Size
-import androidx.annotation.StyleRes
 import androidx.core.graphics.ColorUtils
-import com.google.android.material.resources.TextAppearance
 import kotlin.math.ln
 
 object DisplayUtils {
@@ -113,7 +108,6 @@ object DisplayUtils {
         return grey > -0x424243
     }
 
-    @JvmStatic
     @ColorInt
     fun blendColor(@ColorInt foreground: Int, @ColorInt background: Int): Int {
         val scr = Color.red(foreground)
@@ -164,15 +158,6 @@ object DisplayUtils {
         )
         scaleY.interpolator = FLOATING_DECELERATE_INTERPOLATOR
         return arrayOf(translation, scaleX, scaleY)
-    }
-
-    @JvmStatic
-    @SuppressLint("RestrictedApi", "VisibleForTests")
-    fun getTypefaceFromTextAppearance(
-        context: Context,
-        @StyleRes textAppearanceId: Int
-    ): Typeface {
-        return TextAppearance(context, textAppearanceId).getFont(context)
     }
 
     @ColorInt

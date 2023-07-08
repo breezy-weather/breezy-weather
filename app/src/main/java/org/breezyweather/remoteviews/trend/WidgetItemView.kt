@@ -10,6 +10,7 @@ import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
 import org.breezyweather.R
 import org.breezyweather.common.extensions.dpToPx
+import org.breezyweather.common.extensions.getTypefaceFromTextAppearance
 import org.breezyweather.common.ui.widgets.trend.chart.PolylineAndHistogramView
 import org.breezyweather.common.utils.DisplayUtils
 
@@ -17,7 +18,7 @@ import org.breezyweather.common.utils.DisplayUtils
  * Widget item view.
  */
 class WidgetItemView @JvmOverloads constructor(
-    context: Context?, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0
 ) : ViewGroup(context, attrs, defStyleAttr, defStyleRes) {
     val trendItemView: PolylineAndHistogramView
     private val mTitleTextPaint: Paint
@@ -49,13 +50,13 @@ class WidgetItemView @JvmOverloads constructor(
         mTitleTextPaint = Paint().apply {
             isAntiAlias = true
             textAlign = Paint.Align.CENTER
-            typeface = DisplayUtils.getTypefaceFromTextAppearance(getContext(), R.style.title_text)
+            typeface = getContext().getTypefaceFromTextAppearance(R.style.title_text)
             textSize = getContext().resources.getDimensionPixelSize(R.dimen.title_text_size).toFloat()
         }
         mSubtitleTextPaint = Paint().apply {
             isAntiAlias = true
             textAlign = Paint.Align.CENTER
-            typeface = DisplayUtils.getTypefaceFromTextAppearance(getContext(), R.style.content_text)
+            typeface = getContext().getTypefaceFromTextAppearance(R.style.content_text)
             textSize = getContext().resources.getDimensionPixelSize(R.dimen.content_text_size).toFloat()
         }
         setColor(true)

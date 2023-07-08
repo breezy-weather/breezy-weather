@@ -30,13 +30,11 @@ import org.breezyweather.db.repositories.WeatherEntityRepository
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.weatherView.WeatherView
 import org.breezyweather.theme.weatherView.WeatherView.WeatherKindRule
-import org.breezyweather.theme.weatherView.WeatherViewController.getWeatherKind
+import org.breezyweather.theme.weatherView.WeatherViewController
 import org.breezyweather.theme.weatherView.materialWeatherView.DelayRotateController
 import org.breezyweather.theme.weatherView.materialWeatherView.IntervalComputer
-import org.breezyweather.theme.weatherView.materialWeatherView.MaterialWeatherView.RotateController
-import org.breezyweather.theme.weatherView.materialWeatherView.MaterialWeatherView.WeatherAnimationImplementor
-import org.breezyweather.theme.weatherView.materialWeatherView.WeatherImplementorFactory.getBackgroundId
-import org.breezyweather.theme.weatherView.materialWeatherView.WeatherImplementorFactory.getWeatherImplementor
+import org.breezyweather.theme.weatherView.materialWeatherView.MaterialWeatherView
+import org.breezyweather.theme.weatherView.materialWeatherView.WeatherImplementorFactory
 import kotlin.math.*
 
 class MaterialLiveWallpaperService : WallpaperService() {
@@ -54,8 +52,8 @@ class MaterialLiveWallpaperService : WallpaperService() {
     private inner class WeatherEngine : Engine() {
         private var mHolder: SurfaceHolder? = null
         private var mIntervalComputer: IntervalComputer? = null
-        private var mRotators: Array<RotateController>? = null
-        private var mImplementor: WeatherAnimationImplementor? = null
+        private var mRotators: Array<MaterialWeatherView.RotateController>? = null
+        private var mImplementor: MaterialWeatherView.WeatherAnimationImplementor? = null
         private var mBackground: Drawable? = null
         private var mOpenGravitySensor = false
         private var mSensorManager: SensorManager? = null
@@ -190,7 +188,7 @@ class MaterialLiveWallpaperService : WallpaperService() {
         }
 
         private fun setWeatherImplementor() {
-            mImplementor = getWeatherImplementor(
+            mImplementor = WeatherImplementorFactory.getWeatherImplementor(
                 mWeatherKind,
                 mDaytime,
                 mAdaptiveSize
@@ -204,7 +202,7 @@ class MaterialLiveWallpaperService : WallpaperService() {
         private fun setWeatherBackgroundDrawable() {
             mBackground = ResourcesCompat.getDrawable(
                 resources,
-                getBackgroundId(mWeatherKind, mDaytime),
+                WeatherImplementorFactory.getBackgroundId(mWeatherKind, mDaytime),
                 null
             )
             mBackground?.let {
@@ -303,7 +301,7 @@ class MaterialLiveWallpaperService : WallpaperService() {
                         "night" -> daytime = false
                     }
                     if (!weatherKind.isNullOrEmpty()) {
-                        setWeather(getWeatherKind(WeatherCode.getInstance(weatherKind)), daytime)
+                        setWeather(WeatherViewController.getWeatherKind(WeatherCode.getInstance(weatherKind)), daytime)
                     }
                     if (drawable) {
                         setWeatherImplementor()

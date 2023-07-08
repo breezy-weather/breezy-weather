@@ -69,11 +69,10 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
             current.temperature?.temperature?.let {
                 mTemperatureCFrom = mTemperatureCTo
                 mTemperatureCTo = current.temperature.temperature
-                mTemperature.setEnableAnim(itemAnimationEnabled)
-                mTemperature.setDuration(
-                    // no longer than 2 seconds.
+                mTemperature.isAnimEnabled = itemAnimationEnabled
+                // no longer than 2 seconds.
+                mTemperature.duration =
                     max(2000f, abs(mTemperatureCTo - mTemperatureCFrom) / 10f * 1000).toLong()
-                )
                 mTemperatureUnitView.text = mTemperatureUnit!!.getName(context)
             }
             if (!current.weatherText.isNullOrEmpty()) {

@@ -10,18 +10,15 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import org.breezyweather.common.basic.insets.FitBothSideBarHelper
 import org.breezyweather.common.basic.insets.FitBothSideBarView
 import org.breezyweather.common.utils.DisplayUtils
-import org.breezyweather.common.utils.DisplayUtils.getFloatingOvershotEnterAnimators
 
 object Utils : AnimationUtils() {
-    @JvmStatic
     val FAST_OUT_SLOW_IN_INTERPOLATOR: Interpolator = FastOutSlowInInterpolator()
 
-    @JvmStatic
     fun getEnterAnimator(view: View, cardStyle: Boolean): Animator {
         view.translationY = view.height.toFloat()
         view.scaleX = if (cardStyle) 1.1f else 1f
         view.scaleY = if (cardStyle) 1.1f else 1f
-        val animators = getFloatingOvershotEnterAnimators(view)
+        val animators = DisplayUtils.getFloatingOvershotEnterAnimators(view)
         if (!cardStyle) {
             animators[0].interpolator = DisplayUtils.FLOATING_DECELERATE_INTERPOLATOR
         }
@@ -30,7 +27,6 @@ object Utils : AnimationUtils() {
         }
     }
 
-    @JvmStatic
     fun consumeInsets(view: View, insets: Rect) {
         val fitInsetsHelper = FitBothSideBarHelper(
             view, FitBothSideBarView.SIDE_BOTTOM

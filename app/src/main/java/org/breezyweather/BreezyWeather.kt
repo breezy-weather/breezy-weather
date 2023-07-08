@@ -25,7 +25,6 @@ class BreezyWeather : Application(),
 
     companion object {
 
-        @JvmStatic
         lateinit var instance: BreezyWeather
             private set
 

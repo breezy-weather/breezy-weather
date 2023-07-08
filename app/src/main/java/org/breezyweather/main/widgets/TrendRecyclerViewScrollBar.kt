@@ -11,10 +11,10 @@ import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.utils.DisplayUtils
-import org.breezyweather.main.utils.MainThemeColorProvider.Companion.getColor
+import org.breezyweather.main.utils.MainThemeColorProvider
 
 class TrendRecyclerViewScrollBar : ItemDecoration() {
-    private val mPaint: Paint = Paint().apply {
+    private val mPaint = Paint().apply {
         isAntiAlias = true
     }
     private var mScrollBarWidth = 0
@@ -28,15 +28,15 @@ class TrendRecyclerViewScrollBar : ItemDecoration() {
     private var mCenterColor = 0
     fun resetColor(location: Location) {
         mThemeChanged = true
-        mEndPointsColor = getColor(location, R.attr.colorMainCardBackground)
+        mEndPointsColor = MainThemeColorProvider.getColor(location, R.attr.colorMainCardBackground)
         mCenterColor = DisplayUtils.blendColor(
             //lightTheme
             //        ? Color.argb((int) (0.02 * 255), 0, 0, 0)
             //        : Color.argb((int) (0.08 * 255), 0, 0, 0),
             ColorUtils.setAlphaComponent(
-                getColor(location, androidx.appcompat.R.attr.colorPrimary), (0.05 * 255).toInt()
+                MainThemeColorProvider.getColor(location, androidx.appcompat.R.attr.colorPrimary), (0.05 * 255).toInt()
             ),
-            getColor(location, R.attr.colorMainCardBackground)
+            MainThemeColorProvider.getColor(location, R.attr.colorMainCardBackground)
         )
     }
 

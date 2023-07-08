@@ -6,7 +6,6 @@ import android.content.Intent
 import android.os.Build
 import android.os.IBinder
 import org.breezyweather.background.polling.PollingUpdateHelper
-import org.breezyweather.background.polling.PollingUpdateHelper.OnPollingUpdateListener
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.Weather
 import org.breezyweather.common.utils.helpers.AsyncHelper
@@ -16,7 +15,7 @@ import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.weather.WeatherHelper
 import javax.inject.Inject
 
-abstract class UpdateService : Service(), OnPollingUpdateListener {
+abstract class UpdateService : Service(), PollingUpdateHelper.OnPollingUpdateListener {
     private var mPollingHelper: PollingUpdateHelper? = null
 
     var mLocationHelper: LocationHelper? = null

@@ -40,9 +40,7 @@ class DetailDisplayManageActivity : GeoActivity() {
     private inner class DetailTag(
         var tag: DetailDisplay
     ) : TagAdapter.Tag {
-        override fun getName(): String {
-            return tag.getName(this@DetailDisplayManageActivity)
-        }
+        override val name = tag.getName(this@DetailDisplayManageActivity)
     }
 
     private inner class DetailDisplaySwipeCallback : SlidingItemTouchCallback() {
@@ -137,14 +135,15 @@ class DetailDisplayManageActivity : GeoActivity() {
             colors[0],
             colors[1],
             colors[2],
-            colors[3]
-        ) { _: Boolean, _: Int, newPosition: Int ->
-            setResult(RESULT_OK)
-            val tag = mTagAdapter!!.removeItem(newPosition) as DetailTag
-            mDetailDisplayAdapter.insertItem(tag.tag)
-            resetBottomBarVisibility()
-            true
-        }
+            colors[3],
+            { _: Boolean, _: Int, newPosition: Int ->
+                setResult(RESULT_OK)
+                val tag = mTagAdapter!!.removeItem(newPosition) as DetailTag
+                mDetailDisplayAdapter.insertItem(tag.tag)
+                resetBottomBarVisibility()
+                true
+            }
+        )
         mBinding.bottomRecyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
         mBinding.bottomRecyclerView.addItemDecoration(
             GridMarginsDecoration(

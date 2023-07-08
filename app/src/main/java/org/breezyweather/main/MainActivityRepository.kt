@@ -8,7 +8,6 @@ import org.breezyweather.db.repositories.WeatherEntityRepository
 import org.breezyweather.location.LocationHelper
 import org.breezyweather.main.utils.RequestErrorType
 import org.breezyweather.weather.WeatherHelper
-import org.breezyweather.weather.WeatherHelper.OnRequestWeatherListener
 import java.util.concurrent.Executors
 import javax.inject.Inject
 
@@ -45,10 +44,9 @@ class MainActivityRepository @Inject constructor(
     }
 
     fun getWeatherCacheForLocations(
-        context: Context,
         oldList: List<Location>,
         ignoredFormattedId: String,
-        callback: AsyncHelper.Callback<List<Location>>
+        callback: (t: List<Location>, done: Boolean) -> Unit
     ) {
         AsyncHelper.runOnExecutor({ emitter ->
             emitter.send(
@@ -64,13 +62,13 @@ class MainActivityRepository @Inject constructor(
         }, callback, singleThreadExecutor)
     }
 
-    fun writeLocationList(context: Context, locationList: List<Location>) {
+    fun writeLocationList(locationList: List<Location>) {
         AsyncHelper.runOnExecutor({
             LocationEntityRepository.writeLocationList(locationList)
         }, singleThreadExecutor)
     }
 
-    fun deleteLocation(context: Context, location: Location) {
+    fun deleteLocation(location: Location) {
         AsyncHelper.runOnExecutor({
             LocationEntityRepository.deleteLocation(location)
             WeatherEntityRepository.deleteWeather(location)
@@ -134,7 +132,7 @@ class MainActivityRepository @Inject constructor(
     ) = weatherHelper.requestWeather(
         context,
         location,
-        object : OnRequestWeatherListener {
+        object : WeatherHelper.OnRequestWeatherListener {
             override fun requestWeatherSuccess(requestLocation: Location) {
                 if (requestLocation.formattedId != location.formattedId) {
                     return

@@ -6,7 +6,6 @@ import org.xmlpull.v1.XmlPullParserException
 import java.io.IOException
 
 object XmlHelper {
-    @JvmStatic
     @Throws(XmlPullParserException::class, IOException::class)
     fun getFilterMap(parser: XmlResourceParser): Map<String, String> {
         val map: MutableMap<String, String> = HashMap()
@@ -21,7 +20,6 @@ object XmlHelper {
         return map
     }
 
-    @JvmStatic
     @Throws(XmlPullParserException::class, IOException::class)
     fun getConfig(parser: XmlResourceParser): Config {
         val config = Config()

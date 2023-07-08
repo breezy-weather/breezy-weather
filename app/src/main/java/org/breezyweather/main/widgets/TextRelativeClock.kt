@@ -15,16 +15,8 @@ import java.util.*
 @SuppressLint("AppCompatCustomView")
 @RemoteView
 class TextRelativeClock @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0,
-    defStyleRes: Int = 0
-) : TextView(
-    context,
-    attrs,
-    defStyleAttr,
-    defStyleRes
-) {
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0
+) : TextView(context, attrs, defStyleAttr, defStyleRes) {
     private var mShouldRunTicker = false
     private var mDate = Date()
     private val mTicker: Runnable = object : Runnable {

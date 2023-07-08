@@ -12,7 +12,6 @@ import org.breezyweather.db.repositories.WeatherEntityRepository
 import org.breezyweather.location.LocationHelper
 import org.breezyweather.main.utils.RequestErrorType
 import org.breezyweather.weather.WeatherHelper
-import org.breezyweather.weather.WeatherHelper.OnRequestWeatherListener
 
 class PollingUpdateHelper(
     private val context: Context,
@@ -132,7 +131,7 @@ class PollingUpdateHelper(
     private inner class RequestWeatherCallback(
         private val index: Int,
         private val total: Int
-    ) : OnRequestWeatherListener {
+    ) : WeatherHelper.OnRequestWeatherListener {
 
         override fun requestWeatherSuccess(requestLocation: Location) {
             val oldWeather = locationList[index].weather

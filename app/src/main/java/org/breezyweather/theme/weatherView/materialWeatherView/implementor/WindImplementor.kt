@@ -15,7 +15,7 @@ import kotlin.math.sin
 class WindImplementor(
     @Size(2) canvasSizes: IntArray, daylight: Boolean
 ) : WeatherAnimationImplementor() {
-    private val mPaint: Paint = Paint().apply {
+    private val mPaint = Paint().apply {
         style = Paint.Style.FILL
         isAntiAlias = true
         alpha = ((if (daylight) 1f else 0.33f) * 255).toInt()

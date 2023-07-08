@@ -10,7 +10,7 @@ import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.common.ui.images.pixel.PixelMoonDrawable
 import org.breezyweather.common.ui.images.pixel.PixelSunDrawable
 import org.breezyweather.theme.resource.utils.Constants
-import org.breezyweather.theme.resource.utils.ResourceUtils.getDrawableUri
+import org.breezyweather.theme.resource.utils.ResourceUtils
 
 class PixelResourcesProvider(defaultProvider: ResourceProvider) : IconPackResourcesProvider(
     BreezyWeather.instance,
@@ -18,7 +18,7 @@ class PixelResourcesProvider(defaultProvider: ResourceProvider) : IconPackResour
     defaultProvider
 ) {
     override fun getDrawableUri(resName: String): Uri {
-        return getDrawableUri(super.packageName, "drawable", resName)
+        return ResourceUtils.getDrawableUri(super.packageName, "drawable", resName)
     }
 
     override val packageName: String

@@ -6,7 +6,6 @@ import android.os.Build
 import androidx.work.WorkerParameters
 import androidx.work.impl.utils.futures.SettableFuture
 import org.breezyweather.background.polling.PollingUpdateHelper
-import org.breezyweather.background.polling.PollingUpdateHelper.OnPollingUpdateListener
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.Weather
 import org.breezyweather.common.utils.helpers.ShortcutsHelper
@@ -20,7 +19,7 @@ abstract class AsyncUpdateWorker(
     workerParams: WorkerParameters,
     locationHelper: LocationHelper,
     weatherHelper: WeatherHelper
-) : AsyncWorker(context, workerParams), OnPollingUpdateListener {
+) : AsyncWorker(context, workerParams), PollingUpdateHelper.OnPollingUpdateListener {
     private val mPollingUpdateHelper by lazy {
         PollingUpdateHelper(context, locationHelper, weatherHelper).also {
             it.setOnPollingUpdateListener(this)

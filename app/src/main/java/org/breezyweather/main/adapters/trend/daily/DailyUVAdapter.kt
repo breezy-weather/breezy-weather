@@ -10,11 +10,10 @@ import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.UV
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
-import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView.KeyLine
 import org.breezyweather.common.ui.widgets.trend.chart.PolylineAndHistogramView
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.theme.ThemeManager
-import org.breezyweather.theme.weatherView.WeatherViewController.getWeatherKind
+import org.breezyweather.theme.weatherView.WeatherViewController
 
 /**
  * Daily UV adapter.
@@ -57,7 +56,7 @@ class DailyUVAdapter(activity: GeoActivity, location: Location) : AbsDailyTrendA
                 .weatherThemeDelegate
                 .getThemeColors(
                     itemView.context,
-                    getWeatherKind(location.weather),
+                    WeatherViewController.getWeatherKind(location.weather),
                     location.isDaylight
                 )
             val lightTheme = MainThemeColorProvider.isLightTheme(itemView.context, location)
@@ -96,12 +95,12 @@ class DailyUVAdapter(activity: GeoActivity, location: Location) : AbsDailyTrendA
     override fun getDisplayName(context: Context) = context.getString(R.string.tag_uv)
 
     override fun bindBackgroundForHost(host: TrendRecyclerView) {
-        val keyLineList: MutableList<KeyLine> = ArrayList()
+        val keyLineList: MutableList<TrendRecyclerView.KeyLine> = ArrayList()
         keyLineList.add(
-            KeyLine(
+            TrendRecyclerView.KeyLine(
                 UV.UV_INDEX_HIGH.toFloat(), UV.UV_INDEX_HIGH.toString(),
                 activity.getString(R.string.uv_alert_level),
-                KeyLine.ContentPosition.ABOVE_LINE
+                TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
         )
         host.setData(keyLineList, mHighestIndex.toFloat(), 0f)

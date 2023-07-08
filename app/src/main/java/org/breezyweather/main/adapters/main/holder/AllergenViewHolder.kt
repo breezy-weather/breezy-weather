@@ -5,17 +5,17 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.viewpager2.widget.ViewPager2
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.ui.widgets.horizontal.HorizontalViewPager2
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.main.adapters.HomePollenAdapter
 import org.breezyweather.main.adapters.HomePollenViewHolder
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.resource.providers.ResourceProvider
-import org.breezyweather.theme.weatherView.WeatherViewController.getWeatherKind
+import org.breezyweather.theme.weatherView.WeatherViewController
 
 class AllergenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     LayoutInflater
@@ -25,7 +25,7 @@ class AllergenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     private val mTitle: TextView = itemView.findViewById(R.id.container_main_pollen_title)
     private val mSubtitle: TextView = itemView.findViewById(R.id.container_main_pollen_subtitle)
     private val mIndicator: TextView = itemView.findViewById(R.id.container_main_pollen_indicator)
-    private val mPager: HorizontalViewPager2 = itemView.findViewById(R.id.container_main_pollen_pager)
+    private val mPager: ViewPager2 = itemView.findViewById(R.id.container_main_pollen_pager)
     private var mCallback: DailyPollenPageChangeCallback? = null
 
     private class DailyPollenPagerAdapter(location: Location) : HomePollenAdapter(location) {
@@ -42,7 +42,7 @@ class AllergenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     private inner class DailyPollenPageChangeCallback(
         private val mContext: Context,
         private val mLocation: Location
-    ) : HorizontalViewPager2.OnPageChangeCallback() {
+    ) : ViewPager2.OnPageChangeCallback() {
         @SuppressLint("SetTextI18n")
         override fun onPageSelected(position: Int) {
             val timeZone = mLocation.timeZone
@@ -70,7 +70,7 @@ class AllergenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 .weatherThemeDelegate
                 .getThemeColors(
                     context,
-                    getWeatherKind(location.weather),
+                    WeatherViewController.getWeatherKind(location.weather),
                     location.isDaylight
                 )[0]
         )

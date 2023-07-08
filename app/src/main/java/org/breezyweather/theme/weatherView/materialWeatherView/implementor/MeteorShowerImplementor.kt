@@ -16,7 +16,7 @@ import kotlin.math.sin
  * Meteor shower implementor.
  */
 class MeteorShowerImplementor(@Size(2) canvasSizes: IntArray) : WeatherAnimationImplementor() {
-    private val mPaint: Paint = Paint().apply {
+    private val mPaint = Paint().apply {
         style = Paint.Style.STROKE
         strokeCap = Paint.Cap.ROUND
         isAntiAlias = true

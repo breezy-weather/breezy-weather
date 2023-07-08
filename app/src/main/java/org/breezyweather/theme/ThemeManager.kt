@@ -25,7 +25,6 @@ class ThemeManager private constructor(
         @Volatile
         private var instance: ThemeManager? = null
 
-        @JvmStatic
         fun getInstance(context: Context): ThemeManager {
             if (instance == null) {
                 synchronized(ThemeManager::class) {

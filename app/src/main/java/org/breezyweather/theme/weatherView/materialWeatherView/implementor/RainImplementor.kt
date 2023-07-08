@@ -22,7 +22,7 @@ import kotlin.math.sin
 class RainImplementor(
     @Size(2) canvasSizes: IntArray, @TypeRule type: Int, daylight: Boolean
 ) : WeatherAnimationImplementor() {
-    private val mPaint: Paint = Paint().apply {
+    private val mPaint = Paint().apply {
         style = Paint.Style.FILL
         isAntiAlias = true
     }
@@ -77,7 +77,7 @@ class RainImplementor(
         private fun buildRectF() {
             val x = (x - (mCanvasSize - mViewWidth) * 0.5).toFloat()
             val y = (y - (mCanvasSize - mViewHeight) * 0.5).toFloat()
-            rectF[x, y, x + width * scale] = y + height * scale
+            rectF.set(x, y, x + width * scale, y + height * scale)
         }
 
         fun move(interval: Long, deltaRotation3D: Float) {

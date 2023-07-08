@@ -16,7 +16,7 @@ class AnimatableIconView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
     @Size(3)
-    private lateinit var mIconImageViews: Array<AppCompatImageView>
+    private var mIconImageViews: Array<AppCompatImageView>
 
     @Size(3)
     private val mIconAnimators: Array<Animator?> = arrayOf(null, null, null)
@@ -24,11 +24,6 @@ class AnimatableIconView @JvmOverloads constructor(
     init {
         val attributes = context.theme
             .obtainStyledAttributes(attrs, R.styleable.AnimatableIconView, defStyleAttr, 0)
-        initialize(attributes)
-        attributes.recycle()
-    }
-
-    private fun initialize(attributes: TypedArray) {
         val innerMargin = attributes.getDimensionPixelSize(
             R.styleable.AnimatableIconView_inner_margins, 0
         )
@@ -44,6 +39,7 @@ class AnimatableIconView @JvmOverloads constructor(
         for (i in mIconImageViews.indices.reversed()) {
             addView(mIconImageViews[i], params)
         }
+        attributes.recycle()
     }
 
     fun setAnimatableIcon(

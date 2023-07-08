@@ -16,7 +16,6 @@ import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.settings.adapters.IconProviderAdapter
-import org.breezyweather.settings.adapters.IconProviderAdapter.OnItemClickedListener
 import org.breezyweather.theme.resource.ResourcesProviderFactory.getProviderList
 import org.breezyweather.theme.resource.providers.ResourceProvider
 
@@ -94,7 +93,7 @@ object ProvidersPreviewerDialog {
         listView.adapter = IconProviderAdapter(
             activity,
             providerList,
-            object : OnItemClickedListener {
+            object : IconProviderAdapter.OnItemClickedListener {
                 override fun onItemClicked(provider: ResourceProvider, adapterPosition: Int) {
                     callback(provider.packageName)
                     dialog.dismiss()

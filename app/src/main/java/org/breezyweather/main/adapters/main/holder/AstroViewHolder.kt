@@ -23,12 +23,11 @@ import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.ui.widgets.astro.MoonPhaseView
 import org.breezyweather.common.ui.widgets.astro.SunMoonView
-import org.breezyweather.main.utils.MainThemeColorProvider.Companion.getColor
-import org.breezyweather.main.utils.MainThemeColorProvider.Companion.isLightTheme
-import org.breezyweather.theme.ThemeManager.Companion.getInstance
+import org.breezyweather.main.utils.MainThemeColorProvider
+import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.providers.ResourceProvider
-import org.breezyweather.theme.weatherView.WeatherViewController.getWeatherKind
+import org.breezyweather.theme.weatherView.WeatherViewController
 import java.util.*
 import kotlin.math.max
 import kotlin.math.min
@@ -87,11 +86,11 @@ class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             listAnimationEnabled, itemAnimationEnabled, firstCard
         )
         mWeather = location.weather!!
-        val themeColors = getInstance(context)
+        val themeColors = ThemeManager.getInstance(context)
             .weatherThemeDelegate
             .getThemeColors(
                 context,
-                getWeatherKind(location.weather),
+                WeatherViewController.getWeatherKind(location.weather),
                 location.isDaylight
             )
         mTitle.setTextColor(themeColors[0])
@@ -102,11 +101,11 @@ class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             if (moonPhase.isValid) {
                 mPhaseText.visibility = View.VISIBLE
                 mPhaseView.visibility = View.VISIBLE
-                mPhaseText.setTextColor(getColor(location, R.attr.colorBodyText))
+                mPhaseText.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
                 mPhaseView.setColor(
                     ContextCompat.getColor(context, R.color.colorTextLight2nd),
                     ContextCompat.getColor(context, R.color.colorTextDark2nd),
-                    getColor(location, R.attr.colorBodyText)
+                    MainThemeColorProvider.getColor(location, R.attr.colorBodyText)
                 )
                 mPhaseText.text = moonPhase.getMoonPhase(context)
                 talkBackBuilder.append(", ").append(mPhaseText.text)
@@ -121,12 +120,12 @@ class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
 
         mSunMoonView.setSunDrawable(ResourceHelper.getSunDrawable(provider))
         mSunMoonView.setMoonDrawable(ResourceHelper.getMoonDrawable(provider))
-        if (isLightTheme(context, location)) {
+        if (MainThemeColorProvider.isLightTheme(context, location)) {
             mSunMoonView.setColors(
                 themeColors[0],
                 ColorUtils.setAlphaComponent(themeColors[1], (0.66 * 255).toInt()),
                 ColorUtils.setAlphaComponent(themeColors[1], (0.33 * 255).toInt()),
-                getColor(location, R.attr.colorMainCardBackground),
+                MainThemeColorProvider.getColor(location, R.attr.colorMainCardBackground),
                 true
             )
         } else {
@@ -134,7 +133,7 @@ class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 themeColors[2],
                 ColorUtils.setAlphaComponent(themeColors[2], (0.5 * 255).toInt()),
                 ColorUtils.setAlphaComponent(themeColors[2], (0.2 * 255).toInt()),
-                getColor(location, R.attr.colorMainCardBackground),
+                MainThemeColorProvider.getColor(location, R.attr.colorMainCardBackground),
                 false
             )
         }

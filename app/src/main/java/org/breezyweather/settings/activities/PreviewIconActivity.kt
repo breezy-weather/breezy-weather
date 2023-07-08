@@ -20,7 +20,7 @@ import org.breezyweather.settings.dialogs.AnimatableIconDialog
 import org.breezyweather.settings.dialogs.MinimalIconDialog
 import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.resource.ResourceHelper
-import org.breezyweather.theme.resource.ResourcesProviderFactory.getNewInstance
+import org.breezyweather.theme.resource.ResourcesProviderFactory
 import org.breezyweather.theme.resource.providers.DefaultResourceProvider
 import org.breezyweather.theme.resource.providers.PixelResourcesProvider
 import org.breezyweather.theme.resource.providers.ResourceProvider
@@ -43,7 +43,7 @@ class PreviewIconActivity : GeoActivity() {
     }
 
     private fun initData() {
-        mProvider = getNewInstance(
+        mProvider = ResourcesProviderFactory.getNewInstance(
             intent.getStringExtra(KEY_ICON_PREVIEW_ACTIVITY_PACKAGE_NAME)
         )
 

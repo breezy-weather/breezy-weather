@@ -6,12 +6,8 @@ import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
 import org.breezyweather.common.ui.widgets.insets.FitSystemBarRecyclerView
 
 class FitTabletRecyclerView @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
-): FitSystemBarRecyclerView(
-    context, attrs, defStyleAttr
-) {
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+): FitSystemBarRecyclerView(context, attrs, defStyleAttr) {
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)

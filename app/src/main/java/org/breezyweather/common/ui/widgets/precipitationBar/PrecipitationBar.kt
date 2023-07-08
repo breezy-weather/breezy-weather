@@ -25,9 +25,7 @@ private const val TOUCH_LINE_WIDTH = 2f
 private const val TAG = "PrecipitationBar"
 
 class PrecipitationBar @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : ViewGroup(context, attrs, defStyleAttr) {
 
     // public data.

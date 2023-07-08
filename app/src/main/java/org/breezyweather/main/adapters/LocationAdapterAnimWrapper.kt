@@ -53,21 +53,21 @@ class LocationAdapterAnimWrapper(
         for (a in animators) {
             a.setDuration(duration)
         }
-        val set = AnimatorSet()
         val z: Animator = ObjectAnimator.ofFloat(view, "translationZ", mDZ, 0f).setDuration(duration)
         z.interpolator = DisplayUtils.FLOATING_DECELERATE_INTERPOLATOR
-        set.playTogether(alpha, animators[0], animators[1], animators[2], z)
-        set.startDelay = delay
-        set.addListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationCancel(animation: Animator) {
-                setItemStateListAnimator(view, true)
-            }
+        return AnimatorSet().apply {
+            playTogether(alpha, animators[0], animators[1], animators[2], z)
+            startDelay = delay
+            addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationCancel(animation: Animator) {
+                    setItemStateListAnimator(view, true)
+                }
 
-            override fun onAnimationEnd(animation: Animator) {
-                setItemStateListAnimator(view, true)
-            }
-        })
-        return set
+                override fun onAnimationEnd(animation: Animator) {
+                    setItemStateListAnimator(view, true)
+                }
+            })
+        }
     }
 
     override fun setInitState(view: View) {

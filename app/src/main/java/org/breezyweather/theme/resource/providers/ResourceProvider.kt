@@ -10,11 +10,10 @@ import androidx.annotation.RequiresApi
 import androidx.annotation.Size
 import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.theme.resource.utils.ResourceUtils
-import org.breezyweather.theme.resource.utils.ResourceUtils.getDrawableUri
 
 abstract class ResourceProvider {
     protected open fun getDrawableUri(resName: String): Uri {
-        return getDrawableUri(packageName, "drawable", resName)
+        return ResourceUtils.getDrawableUri(packageName, "drawable", resName)
     }
 
     abstract val packageName: String
