@@ -10,12 +10,11 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.ContentAlpha
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
-import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -116,18 +115,14 @@ fun EditTextPreferenceView(
                     readOnly = false,
                     enabled = true,
                     singleLine = true,
-                    colors = TextFieldDefaults.outlinedTextFieldColors(
-                        textColor = MaterialTheme.colorScheme.onSurface,
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedTextColor = MaterialTheme.colorScheme.onSurface,
                         cursorColor = MaterialTheme.colorScheme.primary,
                         errorCursorColor = MaterialTheme.colorScheme.error,
-                        focusedBorderColor = MaterialTheme.colorScheme.primary.copy(
-                            alpha = ContentAlpha.high
-                        ),
-                        unfocusedBorderColor = MaterialTheme.colorScheme.onSurface.copy(
-                            alpha = ContentAlpha.disabled
-                        ),
+                        focusedBorderColor = MaterialTheme.colorScheme.onSurface,
+                        unfocusedBorderColor = MaterialTheme.colorScheme.onSurfaceVariant,
                         disabledBorderColor = MaterialTheme.colorScheme.onSurface.copy(
-                            alpha = ContentAlpha.disabled
+                            alpha = 0.38f
                         ),
                         errorBorderColor = MaterialTheme.colorScheme.error,
                     )

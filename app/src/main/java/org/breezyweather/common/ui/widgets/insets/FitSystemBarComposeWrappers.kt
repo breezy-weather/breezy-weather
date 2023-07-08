@@ -1,23 +1,13 @@
 package org.breezyweather.common.ui.widgets.insets
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBars
-import androidx.compose.foundation.layout.windowInsetsBottomHeight
 import androidx.compose.foundation.lazy.LazyListScope
-import androidx.compose.material.AppBarDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowForward
-import androidx.compose.material3.BottomAppBar
-import androidx.compose.material3.BottomAppBarDefaults
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -26,9 +16,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
-import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.compositeOver
@@ -100,36 +88,6 @@ fun FitStatusBarTopAppBar(
     actions = actions,
     scrollBehavior = scrollBehavior,
 )
-
-@Composable
-fun FitNavigationBarBottomAppBar(
-    modifier: Modifier = Modifier,
-    containerColor: Color = MaterialTheme.colorScheme.primaryContainer,
-    contentColor: Color = contentColorFor(containerColor),
-    tonalElevation: Dp = AppBarDefaults.BottomAppBarElevation,
-    contentPadding: PaddingValues = BottomAppBarDefaults.ContentPadding,
-    content: @Composable RowScope.() -> Unit
-) {
-    Box {
-        Column {
-            BottomAppBar(
-                modifier = modifier,
-                containerColor = containerColor,
-                contentColor = contentColor,
-                tonalElevation = tonalElevation,
-                contentPadding = contentPadding,
-                content = content,
-            )
-        }
-        Spacer(
-            modifier = Modifier
-                .background(containerColor)
-                .windowInsetsBottomHeight(WindowInsets.navigationBars)
-                .fillMaxWidth()
-                .align(Alignment.BottomCenter),
-        )
-    }
-}
 
 enum class BottomInsetKey { INSTANCE }
 fun LazyListScope.bottomInsetItem(

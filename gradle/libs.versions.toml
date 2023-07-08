@@ -46,7 +46,7 @@ cardview = { group = "androidx.cardview", name = "cardview", version.ref = "card
 coil = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
 compose-animation = { group = "androidx.compose.animation", name = "animation", version.ref = "compose" }
 compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "compose" }
-compose-material-core = { group = "androidx.compose.material", name = "material", version.ref = "compose" }
+compose-material-ripple = { group = "androidx.compose.material", name = "material-ripple", version.ref = "compose" }
 compose-material-icons = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "compose" }
 compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "compose-material3" }
 compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "compose" }
