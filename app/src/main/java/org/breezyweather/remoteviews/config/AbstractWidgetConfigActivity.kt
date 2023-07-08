@@ -12,7 +12,6 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
-import android.util.SparseArray
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowInsets
@@ -23,13 +22,14 @@ import androidx.appcompat.widget.AppCompatSpinner
 import androidx.core.widget.NestedScrollView
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.slider.Slider
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import com.xw.repo.BubbleSeekBar
 import org.breezyweather.R
 import org.breezyweather.background.polling.PollingManager.resetNormalBackgroundTask
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
+import org.breezyweather.common.basic.models.options.unit.ProbabilityUnit
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
 import org.breezyweather.common.ui.widgets.insets.FitSystemBarNestedScrollView
 import org.breezyweather.common.utils.helpers.SnackbarHelper
@@ -40,6 +40,9 @@ import org.breezyweather.settings.ConfigStore
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.weather.WeatherHelper
 import javax.inject.Inject
+import kotlin.math.max
+import kotlin.math.min
+import kotlin.math.roundToInt
 
 /**
  * Abstract widget config activity.
@@ -228,92 +231,123 @@ abstract class AbstractWidgetConfigActivity : GeoActivity(), WeatherHelper.OnReq
             }
         }
         mScrollView = findViewById(R.id.activity_widget_config_scrollView)
+
         mViewTypeContainer = findViewById<RelativeLayout>(R.id.activity_widget_config_viewStyleContainer).apply {
             visibility = View.GONE
         }
-        val viewTypeSpinner = findViewById<AppCompatSpinner>(R.id.activity_widget_config_styleSpinner)
-        viewTypeSpinner.onItemSelectedListener = ViewTypeSpinnerSelectedListener()
-        viewTypeSpinner.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, viewTypes)
-        viewTypeSpinner.setSelection(indexValue(viewTypeValues, viewTypeValueNow), true)
+        findViewById<AppCompatSpinner>(R.id.activity_widget_config_styleSpinner).also {
+            it.onItemSelectedListener = ViewTypeSpinnerSelectedListener()
+            it.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, viewTypes)
+            it.setSelection(indexValue(viewTypeValues, viewTypeValueNow), true)
+        }
+
         mCardStyleContainer = findViewById<RelativeLayout>(R.id.activity_widget_config_showCardContainer).apply {
             visibility = View.GONE
         }
-        val cardStyleSpinner = findViewById<AppCompatSpinner>(R.id.activity_widget_config_showCardSpinner)
-        cardStyleSpinner.onItemSelectedListener = CardStyleSpinnerSelectedListener()
-        cardStyleSpinner.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, cardStyles)
-        cardStyleSpinner.setSelection(indexValue(cardStyleValues, cardStyleValueNow), true)
+        findViewById<AppCompatSpinner>(R.id.activity_widget_config_showCardSpinner).also {
+            it.onItemSelectedListener = CardStyleSpinnerSelectedListener()
+            it.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, cardStyles)
+            it.setSelection(indexValue(cardStyleValues, cardStyleValueNow), true)
+        }
+
         mCardAlphaContainer = findViewById<RelativeLayout>(R.id.activity_widget_config_cardAlphaContainer).apply {
             visibility = View.GONE
         }
-        val cardAlphaSeekBar = findViewById<BubbleSeekBar>(R.id.activity_widget_config_cardAlphaSeekBar)
-        cardAlphaSeekBar.setCustomSectionTextArray { _: Int, array: SparseArray<String?> ->
-            array.clear()
-            array.put(0, "0%")
-            array.put(1, "20%")
-            array.put(2, "40%")
-            array.put(3, "60%")
-            array.put(4, "80%")
-            array.put(5, "100%")
-            array
+        findViewById<Slider>(R.id.activity_widget_config_cardAlphaSlider).apply {
+            valueFrom = 0f
+            stepSize = 10f
+            valueTo = 100f
+            value = ((cardAlpha.toDouble() / 10.0).roundToInt() * 10.0).toFloat()
+            setLabelFormatter { value: Float ->
+                ProbabilityUnit.PERCENT.getValueText(context, value.roundToInt())
+            }
+            addOnChangeListener { _, value, _ ->
+                if (cardAlpha != value.roundToInt()) {
+                    cardAlpha = value.roundToInt()
+                    updateHostView()
+                }
+            }
         }
-        cardAlphaSeekBar.onProgressChangedListener = CardAlphaChangedListener()
-        cardAlphaSeekBar.setProgress(cardAlpha.toFloat())
+
         mHideSubtitleContainer = findViewById<RelativeLayout>(R.id.activity_widget_config_hideSubtitleContainer).apply {
             visibility = View.GONE
         }
-        val hideSubtitleSwitch = findViewById<Switch>(R.id.activity_widget_config_hideSubtitleSwitch)
-        hideSubtitleSwitch.setOnCheckedChangeListener(HideSubtitleSwitchCheckListener())
-        hideSubtitleSwitch.isChecked = hideSubtitle
+        findViewById<Switch>(R.id.activity_widget_config_hideSubtitleSwitch).apply {
+            setOnCheckedChangeListener(HideSubtitleSwitchCheckListener())
+            isChecked = hideSubtitle
+        }
+
         mSubtitleDataContainer = findViewById<RelativeLayout>(R.id.activity_widget_config_subtitleDataContainer).apply {
             visibility = View.GONE
         }
-        val subtitleDataSpinner = findViewById<AppCompatSpinner>(R.id.activity_widget_config_subtitleDataSpinner)
-        subtitleDataSpinner.onItemSelectedListener = SubtitleDataSpinnerSelectedListener()
-        subtitleDataSpinner.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, subtitleData)
-        subtitleDataSpinner.setSelection(
-            indexValue(subtitleDataValues, if (isCustomSubtitle) "custom" else subtitleDataValueNow),
-            true
-        )
+        findViewById<AppCompatSpinner>(R.id.activity_widget_config_subtitleDataSpinner).also {
+            it.onItemSelectedListener = SubtitleDataSpinnerSelectedListener()
+            it.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, subtitleData)
+            it.setSelection(
+                indexValue(subtitleDataValues, if (isCustomSubtitle) "custom" else subtitleDataValueNow),
+                true
+            )
+        }
+
         mTextColorContainer = findViewById<RelativeLayout>(R.id.activity_widget_config_blackTextContainer).apply {
             visibility = View.GONE
         }
-        val textStyleSpinner = findViewById<AppCompatSpinner>(R.id.activity_widget_config_blackTextSpinner)
-        textStyleSpinner.onItemSelectedListener = TextColorSpinnerSelectedListener()
-        textStyleSpinner.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, textColors)
-        textStyleSpinner.setSelection(indexValue(textColorValues, textColorValueNow), true)
+        findViewById<AppCompatSpinner>(R.id.activity_widget_config_blackTextSpinner).also {
+            it.onItemSelectedListener = TextColorSpinnerSelectedListener()
+            it.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, textColors)
+            it.setSelection(indexValue(textColorValues, textColorValueNow), true)
+        }
+
         mTextSizeContainer = findViewById<RelativeLayout>(R.id.activity_widget_config_textSizeContainer).apply {
             visibility = View.GONE
         }
-        val textSizeSeekBar = findViewById<BubbleSeekBar>(R.id.activity_widget_config_textSizeSeekBar)
-        textSizeSeekBar.setCustomSectionTextArray { _: Int, array: SparseArray<String?> ->
-            array.clear()
-            array.put(0, "0%")
-            array.put(1, "100%")
-            array.put(2, "200%")
-            array.put(3, "300%")
-            array
+        findViewById<Slider>(R.id.activity_widget_config_textSizeSlider).apply {
+            valueFrom = 50f
+            stepSize = 10f
+            valueTo = 250f
+            value = max(
+                50f,
+                min(
+                    250f,
+                    ((((textSize - 50).toDouble() / 10.0).roundToInt() * 10.0) + 50.0).toFloat()
+                )
+            )
+            addOnChangeListener { _, value, _ ->
+                if (textSize != value.roundToInt()) {
+                    textSize = value.roundToInt()
+                    updateHostView()
+                }
+            }
+            setLabelFormatter { value: Float ->
+                ProbabilityUnit.PERCENT.getValueText(context, value.roundToInt())
+            }
         }
-        textSizeSeekBar.onProgressChangedListener = TextSizeChangedListener()
-        textSizeSeekBar.setProgress(textSize.toFloat())
+
         mClockFontContainer = findViewById<RelativeLayout>(R.id.activity_widget_config_clockFontContainer).apply {
             visibility = View.GONE
         }
-        val clockFontSpinner = findViewById<AppCompatSpinner>(R.id.activity_widget_config_clockFontSpinner)
-        clockFontSpinner.onItemSelectedListener = ClockFontSpinnerSelectedListener()
-        clockFontSpinner.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, clockFonts)
-        clockFontSpinner.setSelection(indexValue(clockFontValues, cardStyleValueNow), true)
+        findViewById<AppCompatSpinner>(R.id.activity_widget_config_clockFontSpinner).also {
+            it.onItemSelectedListener = ClockFontSpinnerSelectedListener()
+            it.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, clockFonts)
+            it.setSelection(indexValue(clockFontValues, cardStyleValueNow), true)
+        }
+
         mHideLunarContainer = findViewById<RelativeLayout>(R.id.activity_widget_config_hideLunarContainer).apply {
             visibility = View.GONE
         }
-        val hideLunarSwitch = findViewById<Switch>(R.id.activity_widget_config_hideLunarSwitch)
-        hideLunarSwitch.setOnCheckedChangeListener(HideLunarSwitchCheckListener())
-        hideLunarSwitch.isChecked = hideLunar
+        findViewById<Switch>(R.id.activity_widget_config_hideLunarSwitch).apply {
+            setOnCheckedChangeListener(HideLunarSwitchCheckListener())
+            isChecked = hideLunar
+        }
+
         mAlignEndContainer = findViewById<RelativeLayout>(R.id.activity_widget_config_alignEndContainer).apply {
             visibility = View.GONE
         }
-        val alignEndSwitch = findViewById<Switch>(R.id.activity_widget_config_alignEndSwitch)
-        alignEndSwitch.setOnCheckedChangeListener(AlignEndSwitchCheckListener())
-        alignEndSwitch.isChecked = alignEnd
+        findViewById<Switch>(R.id.activity_widget_config_alignEndSwitch).apply {
+            setOnCheckedChangeListener(AlignEndSwitchCheckListener())
+            isChecked = alignEnd
+        }
+
         val doneButton = findViewById<Button>(R.id.activity_widget_config_doneButton)
         doneButton.setOnClickListener {
             ConfigStore(this, configStoreName!!)
@@ -678,21 +712,15 @@ abstract class AbstractWidgetConfigActivity : GeoActivity(), WeatherHelper.OnReq
         }
     }
 
-    private inner class CardAlphaChangedListener : BubbleSeekBar.OnProgressChangedListenerAdapter() {
-        override fun getProgressOnActionUp(bubbleSeekBar: BubbleSeekBar, progress: Int, progressFloat: Float) {
+    private inner class CardAlphaChangedListener : SeekBar.OnSeekBarChangeListener {
+        override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
             if (cardAlpha != progress) {
                 cardAlpha = progress
                 updateHostView()
             }
         }
-    }
 
-    private inner class TextSizeChangedListener : BubbleSeekBar.OnProgressChangedListenerAdapter() {
-        override fun getProgressOnActionUp(bubbleSeekBar: BubbleSeekBar, progress: Int, progressFloat: Float) {
-            if (textSize != progress) {
-                textSize = progress
-                updateHostView()
-            }
-        }
+        override fun onStartTrackingTouch(seekBar: SeekBar) { }
+        override fun onStopTrackingTouch(seekBar: SeekBar) { }
     }
 }

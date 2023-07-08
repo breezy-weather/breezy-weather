@@ -206,7 +206,6 @@ dependencies {
     implementation libs.rxandroid
 
     // ui.
-    implementation libs.bubbleseekbar
     implementation libs.adaptiveiconview
     implementation libs.activity.ktx
     implementation libs.expandabletextcompose

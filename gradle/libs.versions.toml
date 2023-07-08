@@ -4,7 +4,6 @@ activity = "1.7.2"
 adaptiveiconview = "v0.0.3"
 agp = "8.0.2"
 appcompat = "1.6.1"
-bubbleseekbar = "v3.52"
 cardview = "1.0.0"
 coil = "2.4.0"
 compose = "1.4.3"
@@ -43,7 +42,6 @@ activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref
 accompanist-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "accompanist" }
 adaptiveiconview = { group = "com.github.breezy-weather", name = "AdaptiveIconView", version.ref = "adaptiveiconview" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
-bubbleseekbar = { group = "com.github.breezy-weather", name = "BubbleSeekBar", version.ref = "bubbleseekbar" }
 cardview = { group = "androidx.cardview", name = "cardview", version.ref = "cardview" }
 coil = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
 compose-animation = { group = "androidx.compose.animation", name = "animation", version.ref = "compose" }

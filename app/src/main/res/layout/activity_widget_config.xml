@@ -116,8 +116,8 @@
                         android:layout_alignParentStart="true"
                         style="@style/content_text" />
 
-                    <com.xw.repo.BubbleSeekBar
-                        android:id="@+id/activity_widget_config_cardAlphaSeekBar"
+                    <com.google.android.material.slider.Slider
+                        android:id="@+id/activity_widget_config_cardAlphaSlider"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_toEndOf="@id/activity_widget_config_cardAlphaTitle"
@@ -125,17 +125,6 @@
                         android:layout_centerVertical="true"
                         android:layout_marginStart="@dimen/normal_margin"
                         android:layout_marginEnd="@dimen/normal_margin"
-                        app:bsb_min="0"
-                        app:bsb_max="100"
-                        app:bsb_progress="100"
-                        app:bsb_section_count="5"
-                        app:bsb_second_track_color="?attr/colorPrimary"
-                        app:bsb_bubble_text_color="?android:attr/colorBackground"
-                        app:bsb_show_section_text="true"
-                        app:bsb_section_text_position="below_section_mark"
-                        app:bsb_section_text_color="?attr/colorCaptionText"
-                        app:bsb_section_text_size="@dimen/subtitle_text_size"
-                        app:bsb_show_thumb_text="true"
                         tools:ignore="RtlHardcoded" />
 
                 </RelativeLayout>
@@ -232,8 +221,8 @@
                         android:layout_alignParentStart="true"
                         style="@style/content_text" />
 
-                    <com.xw.repo.BubbleSeekBar
-                        android:id="@+id/activity_widget_config_textSizeSeekBar"
+                    <com.google.android.material.slider.Slider
+                        android:id="@+id/activity_widget_config_textSizeSlider"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_toEndOf="@id/activity_widget_config_textSizeTitle"
@@ -241,17 +230,6 @@
                         android:layout_centerVertical="true"
                         android:layout_marginStart="@dimen/normal_margin"
                         android:layout_marginEnd="@dimen/normal_margin"
-                        app:bsb_min="0"
-                        app:bsb_max="300"
-                        app:bsb_progress="100"
-                        app:bsb_section_count="3"
-                        app:bsb_second_track_color="?attr/colorPrimary"
-                        app:bsb_bubble_text_color="?android:attr/colorBackground"
-                        app:bsb_show_section_text="true"
-                        app:bsb_section_text_position="below_section_mark"
-                        app:bsb_section_text_color="?attr/colorCaptionText"
-                        app:bsb_section_text_size="@dimen/subtitle_text_size"
-                        app:bsb_show_thumb_text="true"
                         tools:ignore="RtlHardcoded" />
 
                 </RelativeLayout>
