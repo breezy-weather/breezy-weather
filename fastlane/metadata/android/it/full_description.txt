@@ -4,7 +4,7 @@ Nell'app troverete:<ul>
 <li>condizioni in tempo reale (temperatura, reale e percepita, vento, indice UV, umidità, punto di rugiada, pressione atmosferica, visibilità, copertura nuvolosa, base delle nubi)</li>
 <li>Previsioni orarie e giornaliere fino a 16 giorni (temperatura, qualità dell'aria, vento, indice UV, precipitazioni)</li>
 <li>Precipitazioni durante l'ora a venire</li>
-<li>Qualità dell'aria, allergeni e posizione sole e luna</li>
+<li>Qualità dell'aria, allergeni e dati sole e luna</li>
 <li>Avvisi di cattivo tempo e di precipitazioni</li></ul>
 
 L'app è fortemente incentrata sul design, con una UX semplice e pulita, animazioni fluide e Material Design, oltre a un'ampia possibilità di personalizzazione:<ul>
