@@ -1,13 +1,13 @@
-Breezy Weather è un'applicazione meteo per Android gratuita e open-source, forked from Geometric Weather, adding new features, providers, modernizing code, fixing bugs, updating dependencies for security reasons, etc., while keep having a smooth user and developer experience in mind.
+Breezy Weather è un'applicazione meteo per Android gratuita e open-source, un fork di Geometric Weather, che aggiunge nuove funzionalità, fonti di dati, modernizza il codice, risolve vari bug, aggiorna le dipendenze per ragioni di sicurezza, eccetera, continuando allo stesso tempo a perseguire l'obbiettivo di un'esperienza fluida per utenti e sviluppatori.
 
 Nell'app troverete:<ul>
-<li>Real-time conditions (Temperature, Feels like, Wind, UV index, Humidity, Dew point, Atmospheric pressure, Visibility, Cloud cover, Ceiling)</li>
-<li>Daily and hourly forecasts up to 16 days (Temperature, Air quality, Wind, UV index, Precipitation)</li>
-<li>Precipitations in the next hour</li>
-<li>Air quality, allergen and ephemeris information</li>
-<li>Avvisi di maltempo e precipitazioni</li></ul>
+<li>Condizioni in tempo reale (temperatura, reale e percepita, vento, indice UV, umidità, punto di rugiada, pressione atmosferica, visibilità, copertura nuvolosa, base delle nubi)</li>
+<li>Previsioni orarie e giornaliere fino a 16 giorni (temperatura, qualità dell'aria, vento, indice UV, precipitazioni)</li>
+<li>Precipitazioni durante l'ora a venire</li>
+<li>Qualità dell'aria, allergeni e dati sole e luna</li>
+<li>Avvisi di maltempo e di precipitazioni</li></ul>
 
-L'app è fortemente incentrata sul design, con una UX semplice e pulita, animazioni fluide e Material Design, oltre a un'ampia possibilità di personalizzazione.:<ul>
+L'app è fortemente incentrata sul design, con una UX semplice e pulita, animazioni fluide e Material Design, oltre a un'ampia possibilità di personalizzazione:<ul>
 <li>Tema scuro automatico</li>
 <li>Temi di icone personalizzati</li>
 <li>Ampia scelta di widget per la schermata iniziale, per avere informazioni immediate.</li>
@@ -19,7 +19,7 @@ I fornitori di meteo attualmente supportati:<ul>
 <li>MET Norway</li>
 <li>OpenWeatherMap</li>
 <li>Météo France</li>
-<li>Mixed China providers</li></ul>
+<li>Varie fonti per la Cina</li></ul>
 
 Questa applicazione richiede una serie di autorizzazioni, alcune obbligatorie, altre facoltative.
 
