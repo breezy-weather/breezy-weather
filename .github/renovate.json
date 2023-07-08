@@ -5,7 +5,7 @@
   ],
   "schedule": ["every saturday"],
   "ignoreDeps": [
-    "dagger.hilt.android.plugin:dagger.hilt.android.plugin.gradle.plugin",
-    "io.objectbox:io.objectbox.gradle.plugin"
+    "dagger.hilt.android.plugin",
+    "io.objectbox"
   ]
 }

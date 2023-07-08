@@ -38,10 +38,10 @@ Network Location Providers removed due to security concerns about outdated libra
 
 Currently available to download from:
 * [GitHub](https://github.com/breezy-weather/breezy-weather/releases)
-* [Obtainium](https://github.com/ImranR98/Obtainium) (enable “Include preleases” when adding it)
+* [Obtainium](https://github.com/ImranR98/Obtainium)
+* IzzyDroid, *in progress*
 
 Additional stores will be added as app gets more stable and once it complies with the policy of each store:
-- Starting from **4.1.x-beta**, on IzzyDroid.
 - Starting from **4.2.x**, on F-Droid.
 - Starting from **5.x**, on Google Play Store. This version will introduce extension system for weather providers.
 

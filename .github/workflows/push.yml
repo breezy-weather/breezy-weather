@@ -96,8 +96,6 @@ jobs:
           tag_name: ${{ env.VERSION_TAG }}
           name: Breezy Weather ${{ env.VERSION_TAG }}
           body: |
-            **IMPORTANT NOTE: This is a pre-release version. Migration of data is not guaranteed between alpha versions. If you experience issues after updating to a new alpha versions, please clean your app data and retry.**
-
             *Releases distributed on GitHub do not include proprietary Network Location Providers*
 
             ---
@@ -118,4 +116,4 @@ jobs:
             breezy-weather-x86_64-${{ env.VERSION_TAG }}.apk
             mapping-${{ env.VERSION_TAG }}.tar.gz
           draft: true
-          prerelease: true
+          prerelease: false
