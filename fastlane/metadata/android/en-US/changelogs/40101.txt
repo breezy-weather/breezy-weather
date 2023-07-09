@@ -1,4 +1,5 @@
 <ul>
 <li>Location list is now empty on first install and app only requires location permissions if user wants to add its current location</li>
 <li>Add a dialog box for notification permission request</li>
+<li>Fix systematic crash on opening app on Android below R.</li>
 </ul>

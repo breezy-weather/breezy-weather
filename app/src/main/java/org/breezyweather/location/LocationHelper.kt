@@ -137,7 +137,7 @@ class LocationHelper @Inject constructor(
         }
     }
 
-    fun getPermissions(context: Context): Array<String> {
+    fun getPermissions(context: Context): List<String> {
         // if IP:    none.
         // else:
         //      R:   foreground location. (set background location enabled manually)
@@ -145,16 +145,13 @@ class LocationHelper @Inject constructor(
         //      K-P: foreground location.
         val provider = SettingsManager.getInstance(context).locationProvider
         val service = getLocationService(provider)
-        val permissions: Array<String> = service.permissions
+        val permissions: MutableList<String> = service.permissions.toMutableList()
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q || permissions.isEmpty()) {
             // device has no background location permission or locate by IP.
             return permissions
         }
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
-            val qPermissions = ArrayList<String>(permissions.size + 1)
-            System.arraycopy(permissions, 0, qPermissions, 0, permissions.size)
-            qPermissions[qPermissions.size - 1] = Manifest.permission.ACCESS_BACKGROUND_LOCATION
-            return qPermissions.toTypedArray()
+            permissions.add(Manifest.permission.ACCESS_BACKGROUND_LOCATION)
         }
         return permissions
     }
