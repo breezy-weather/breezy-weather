@@ -531,7 +531,7 @@
     <string name="settings_background_updates_method_notification_dialog_content">Diese Methode fügt eine dauerhafte Benachrichtigung hinzu, die durch Deaktivieren der Benachrichtigungskategorie „$“ in den Benachrichtigungseinstellungen unter App-Info ausgeblendet werden kann.</string>
     <string name="settings_widgets_notification_style_title">Stil</string>
     <string name="unit_inph">Zoll/h</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">Einige Hersteller nutzen zusätzliche App-Einschränkungen, die Hintergrunddienste abschalten. Auf der Website Don\'t kill my app! finden Sie Informationen zur Deaktivierung dieser Einschränkungen.</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">Einige Hersteller nutzen zusätzliche App-Einschränkungen, die Hintergrunddienste abschalten. Auf der Website Don’t kill my app! finden Sie Informationen zur Deaktivierung dieser Einschränkungen.</string>
     <string name="action_add_from_map">Von Karte hinzufügen</string>
     <string name="widget_multi_city">Mehrere Orte</string>
     <string name="settings_widgets_week_icon_mode_title">Symbol für die Anzeige in Wochenansichten</string>

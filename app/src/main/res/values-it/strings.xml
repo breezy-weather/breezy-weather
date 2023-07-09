@@ -546,6 +546,6 @@
     <string name="settings_location">Geolocalizzazione</string>
     <string name="settings_location_access_permission_already_granted">Autorizzazione già fornita</string>
     <string name="settings_location_access_background_summaryOff">Selezionare “Consenti sempre” per ottenere aggiornamenti relativi alla propria posizione corrente.</string>
-    <string name="settings_location_access_precise_summaryOff">Abilitare “Utilizza posizione esatta” se si hanno problemi nell\'ottenere la propria posizione.</string>
-    <string name="settings_background_updates_method_notification_dialog_content">Questo metodo aggiunge una notifica persistente che può essere nascosta disabilitando la categoria di notifiche “$” nelle impostazioni di sistema per l\'applicazione.</string>
+    <string name="settings_location_access_precise_summaryOff">Abilitare “Utilizza posizione esatta” se si hanno problemi nell’ottenere la propria posizione.</string>
+    <string name="settings_background_updates_method_notification_dialog_content">Questo metodo aggiunge una notifica persistente che può essere nascosta disabilitando la categoria di notifiche “$” nelle impostazioni di sistema per l’applicazione.</string>
 </resources>

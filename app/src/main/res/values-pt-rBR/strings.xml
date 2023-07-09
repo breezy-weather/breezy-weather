@@ -434,7 +434,7 @@
     <string name="settings_background_updates_section_troubleshoot">Solução de problemas</string>
     <string name="settings_background_updates_battery_optimization_summary">Essa é a primeira coisa a tentar quando você não recebe notificações ou os widgets não estão sendo atualizados.</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Não foi possível abrir as configurações do dispositivo.</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">Alguns fabricantes têm restrições adicionais de aplicativos que eliminam os serviços em segundo plano. O site Don\'t kill my app! tem informações sobre como corrigir isso.</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">Alguns fabricantes têm restrições adicionais de aplicativos que eliminam os serviços em segundo plano. O site Don’t kill my app! tem informações sobre como corrigir isso.</string>
     <string name="settings_weather_providers_current_location">Provedor de tempo para a localização atual</string>
     <string name="settings_weather_provider_open_weather_one_call_version">Versão do OpenWeather OneCall</string>
     <string name="settings_weather_provider_mf_wsft_key">Chave do Météo France</string>
