@@ -30,16 +30,17 @@ class MainActivityViewModel @Inject constructor(
     MainActivityRepository.WeatherRequestCallback {
 
     // live data.
-    val currentLocation = EqualtableLiveData<DayNightLocation>()
-    private val _validLocationList = MutableStateFlow<Pair<List<Location>, String>>(Pair(emptyList(), ""))
+    val currentLocation = EqualtableLiveData<DayNightLocation?>()
+    private val _validLocationList = MutableStateFlow<Pair<List<Location>, String?>>(Pair(emptyList(), null))
     val validLocationList = _validLocationList.asStateFlow()
-    private val _totalLocationList = MutableStateFlow<Pair<List<Location>, String>>(Pair(emptyList(), ""))
+    private val _totalLocationList = MutableStateFlow<Pair<List<Location>, String?>>(Pair(emptyList(), null))
     val totalLocationList = _totalLocationList.asStateFlow()
 
     val loading = EqualtableLiveData<Boolean>()
     val indicator = EqualtableLiveData<Indicator>()
 
-    val permissionsRequest = MutableLiveData<PermissionsRequest?>()
+    val locationPermissionsRequest = MutableLiveData<PermissionsRequest?>()
+    val notificationPermissionsRequest = MutableLiveData<PermissionsRequest?>()
     val requestErrorType = BusLiveData<RequestErrorType?>(Handler(Looper.getMainLooper()))
 
     // inner data.
@@ -64,18 +65,17 @@ class MainActivityViewModel @Inject constructor(
         var id = formattedId ?: savedStateHandle[KEY_FORMATTED_ID]
 
         // init live data.
-        val totalList = repository.initLocations(
-            context = getApplication(),
-            formattedId = id ?: ""
-        )
+        val totalList = repository.initLocations(formattedId = id)
         val validList = Location.excludeInvalidResidentLocation(getApplication(), totalList)
 
-        id = formattedId ?: validList[0].formattedId
-        val current = validList.first { item -> item.formattedId == id }
+        id = formattedId ?: validList.getOrNull(0)?.formattedId
+        val current = validList.firstOrNull { item -> item.formattedId == id }
 
         initCompleted = false
 
-        currentLocation.setValue(DayNightLocation(location = current))
+        current?.let {
+            currentLocation.setValue(DayNightLocation(location = it))
+        }
         _validLocationList.value = Pair(validList, id)
         _totalLocationList.value = Pair(totalList, id)
 
@@ -87,7 +87,8 @@ class MainActivityViewModel @Inject constructor(
             )
         )
 
-        permissionsRequest.value = null
+        locationPermissionsRequest.value = null
+        notificationPermissionsRequest.value = null
         requestErrorType.setValue(null)
 
         // read weather caches.
@@ -135,10 +136,7 @@ class MainActivityViewModel @Inject constructor(
 
         // check difference in valid locations.
         val diffInValidLocations = validLocationList.value.first != valid
-        if (
-            diffInValidLocations
-            || validLocationList.value.second != valid[index].formattedId
-        ) {
+        if (diffInValidLocations || validLocationList.value.second != valid[index].formattedId) {
             _validLocationList.value = Pair(valid, valid[index].formattedId)
         }
 
@@ -171,7 +169,11 @@ class MainActivityViewModel @Inject constructor(
         // is not loading
         if (!updating) {
             // if already valid, just return.
-            if (currentLocationIsValid()) {
+            if (currentLocationIsValid()) return
+
+            // If we don't have any location yet, just return
+            if (currentLocation.value?.location == null) {
+                updating = false
                 return
             }
 
@@ -202,23 +204,20 @@ class MainActivityViewModel @Inject constructor(
         ) ?: false
 
     // update.
-
     fun updateWithUpdatingChecking(
         triggeredByUser: Boolean,
         checkPermissions: Boolean,
     ) {
-        if (updating) {
+        if (updating) return
+        if (currentLocation.value?.location == null) {
+            loading.setValue(true)
+            loading.setValue(false)
             return
         }
 
         loading.setValue(true)
 
-        // don't need to request any permission -> request data directly.
-        if (
-            Build.VERSION.SDK_INT < Build.VERSION_CODES.M
-            || currentLocation.value?.location?.isCurrentPosition == false
-            || !checkPermissions
-        ) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M || !checkPermissions) {
             updating = true
             repository.getWeather(
                 getApplication(),
@@ -230,34 +229,41 @@ class MainActivityViewModel @Inject constructor(
         }
 
         // check permissions.
-        val permissionList = repository
-            .getLocatePermissionList(getApplication())
-            .filter { !(getApplication() as Application).hasPermission(it) }
-            .toMutableList()
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
-            && !statementManager.isPostNotificationRequired) {
-            statementManager.setPostNotificationRequired()
-            permissionList.add(Manifest.permission.POST_NOTIFICATIONS)
+        val notificationPermissionList: MutableList<String> = mutableListOf()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            notificationPermissionList.add(Manifest.permission.POST_NOTIFICATIONS)
         }
-        if (permissionList.isEmpty()) {
+        val locationPermissionList: MutableList<String> = mutableListOf()
+        if (currentLocation.value!!.location.isCurrentPosition) {
+            locationPermissionList.addAll(repository
+                .getLocatePermissionList(getApplication())
+                .filter { !(getApplication() as Application).hasPermission(it) }
+                .toMutableList())
+        }
+        if (notificationPermissionList.isNotEmpty()) {
+            notificationPermissionsRequest.value = PermissionsRequest(
+                notificationPermissionList,
+                currentLocation.value!!.location,
+                triggeredByUser
+            )
+        }
+        if (locationPermissionList.isEmpty()) {
             // already got all permissions -> request data directly.
             updating = true
             repository.getWeather(
                 getApplication(),
                 currentLocation.value!!.location,
-                true,
+                currentLocation.value!!.location.isCurrentPosition,
                 this
             )
-            return
+        } else {
+            updating = false
+            locationPermissionsRequest.value = PermissionsRequest(
+                locationPermissionList,
+                currentLocation.value!!.location,
+                triggeredByUser
+            )
         }
-
-        // request permissions.
-        updating = false
-        permissionsRequest.value = PermissionsRequest(
-            permissionList,
-            currentLocation.value!!.location,
-            triggeredByUser
-        )
     }
 
     fun cancelRequest() {
@@ -405,9 +411,10 @@ class MainActivityViewModel @Inject constructor(
     }
 
     // MARK: - getter.
-    fun getValidLocation(offset: Int): Location {
+    fun getValidLocation(offset: Int?): Location? {
+        if (offset == null) return null
         // ensure current index.
-        var index = 0
+        var index: Int? = null
         validLocationList.value.first.let {
             for (i in it.indices) {
                 if (it[i].formattedId == currentLocation.value?.location?.formattedId) {
@@ -417,10 +424,9 @@ class MainActivityViewModel @Inject constructor(
             }
         }
 
-        // update index.
-        index = (index + offset + validLocationList.value.first.size) % (validLocationList.value.first.size)
-
-        return validLocationList.value.first[index]
+        return index?.let {
+            return validLocationList.value.first.getOrNull((it + offset + validLocationList.value.first.size) % validLocationList.value.first.size)
+        }
     }
 
     // impl.

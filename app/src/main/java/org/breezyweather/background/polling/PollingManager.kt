@@ -143,13 +143,15 @@ object PollingManager {
     private fun forceRefresh(context: Context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             AsyncHelper.runOnIO {
-                val locationList = LocationEntityRepository.readLocationList(context).toMutableList()
-                for (i in locationList.indices) {
-                    locationList[i] = locationList[i].copy(weather = WeatherEntityRepository.readWeather(locationList[i]))
+                val locationList = LocationEntityRepository.readLocationList().toMutableList()
+                if (locationList.isNotEmpty()) {
+                    for (i in locationList.indices) {
+                        locationList[i] = locationList[i].copy(weather = WeatherEntityRepository.readWeather(locationList[i]))
+                    }
+                    Widgets.updateWidgetIfNecessary(context, locationList[0])
+                    Widgets.updateWidgetIfNecessary(context, locationList)
+                    Notifications.updateNotificationIfNecessary(context, locationList)
                 }
-                Widgets.updateWidgetIfNecessary(context, locationList[0])
-                Widgets.updateWidgetIfNecessary(context, locationList)
-                Notifications.updateNotificationIfNecessary(context, locationList)
             }
             WorkerHelper.setExpeditedPollingWork(context)
         } else {

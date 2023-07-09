@@ -100,17 +100,16 @@ abstract class AbstractWidgetConfigActivity : GeoActivity(), WeatherHelper.OnReq
         readConfig()
         initView()
         updateHostView()
-        locationNow?.let { location ->
-            if (location.isCurrentPosition) {
-                if (location.isUsable) {
-                    weatherHelper!!.requestWeather(this, location, this)
-                } else {
-                    weatherHelper!!.requestWeather(this, Location.buildLocal(this), this)
-                }
-            } else {
+
+        // TODO onboarding
+        // FIXME: don't request weather here, it leads to duplicate alerts #73
+        // ~~Might help with refresh issues so don't remove it until we have a proper fix for #104~~
+        // Nevermind, it seems resetAllBackgroundTask is called anyway which may explain why we have duplicate calls
+        /*locationNow?.let { location ->
+            if (location.isUsable) {
                 weatherHelper!!.requestWeather(this, location, this)
             }
-        }
+        }*/
     }
 
     override fun onBackPressed() {
@@ -158,7 +157,7 @@ abstract class AbstractWidgetConfigActivity : GeoActivity(), WeatherHelper.OnReq
 
     @CallSuper
     open fun initData() {
-        val locationList = LocationEntityRepository.readLocationList(this)
+        val locationList = LocationEntityRepository.readLocationList()
         locationNow = locationList.getOrNull(0)?.copy(weather = WeatherEntityRepository.readWeather(locationList[0]))
         val res = resources
         viewTypeValueNow = "rectangle"

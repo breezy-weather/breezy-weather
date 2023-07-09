@@ -44,7 +44,7 @@ class LocationHelper @Inject constructor(
         }
     }
 
-    fun requestLocation(
+    fun requestCurrentLocation(
         context: Context, location: Location, background: Boolean,
         l: OnRequestLocationListener
     ) {

@@ -191,7 +191,7 @@ class HomeFragment : MainModuleFragment() {
         binding.recyclerView.setOnTouchListener(indicatorStateListener)
 
         viewModel.currentLocation.observe(viewLifecycleOwner) {
-            updateViews(it.location)
+            updateViews(it?.location)
         }
 
         viewModel.loading.observe(viewLifecycleOwner) { setRefreshing(it) }
@@ -220,14 +220,14 @@ class HomeFragment : MainModuleFragment() {
     private fun updateDayNightColors() {
         binding.refreshLayout.setProgressBackgroundColorSchemeColor(
             MainThemeColorProvider.getColor(
-                location = viewModel.currentLocation.value!!.location,
+                location = viewModel.currentLocation.value?.location,
                 id = com.google.android.material.R.attr.colorSurface
             )
         )
     }
 
     // control.
-    fun updateViews(location: Location = viewModel.currentLocation.value!!.location) {
+    fun updateViews(location: Location? = viewModel.currentLocation.value?.location) {
         ensureResourceProvider()
         updateContentViews(location = location)
         binding.root.post {
@@ -238,7 +238,7 @@ class HomeFragment : MainModuleFragment() {
     }
 
     @SuppressLint("ClickableViewAccessibility", "NotifyDataSetChanged")
-    private fun updateContentViews(location: Location) {
+    private fun updateContentViews(location: Location?) {
         recyclerViewAnimator?.let {
             it.cancel()
             recyclerViewAnimator = null
@@ -248,14 +248,13 @@ class HomeFragment : MainModuleFragment() {
 
         binding.switchLayout.reset()
 
-        if (location.weather == null) {
+        if (location?.weather == null) {
             adapter!!.setNullWeather()
             adapter!!.notifyDataSetChanged()
             binding.recyclerView.setOnTouchListener { _, event ->
                 if (event.action == MotionEvent.ACTION_DOWN
                     && !binding.refreshLayout.isRefreshing) {
-
-                        viewModel.updateWithUpdatingChecking(
+                    viewModel.updateWithUpdatingChecking(
                         triggeredByUser = true,
                         checkPermissions = true
                     )
@@ -308,15 +307,13 @@ class HomeFragment : MainModuleFragment() {
     }
 
     private fun updatePreviewSubviews() {
-        val location = viewModel.getValidLocation(
-            previewOffset.value!!
-        )
-        val daylight = location.isDaylight
+        val location = viewModel.getValidLocation(previewOffset.value)
+        val daylight = location?.isDaylight ?: true
+        val weatherKind = WeatherViewController.getWeatherKind(location?.weather)
 
-        binding.toolbar.title = location.getCityName(requireContext())
-        WeatherViewController.setWeatherCode(
-            weatherView,
-            location.weather,
+        binding.toolbar.title = location?.getCityName(requireContext())
+        weatherView.setWeather(
+            weatherKind,
             daylight,
             resourceProvider!!
         )
@@ -326,7 +323,7 @@ class HomeFragment : MainModuleFragment() {
                 .weatherThemeDelegate
                 .getThemeColors(
                     requireContext(),
-                    WeatherViewController.getWeatherKind(location.weather),
+                    weatherKind,
                     daylight
                 )[0]
         )

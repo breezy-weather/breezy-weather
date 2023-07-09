@@ -285,24 +285,24 @@ class MaterialLiveWallpaperService : WallpaperService() {
                     if (mOrientationListener.canDetectOrientation()) {
                         mOrientationListener.enable()
                     }
-                    var location = LocationEntityRepository.readLocationList(applicationContext)[0]
-                    location = location.copy(weather = WeatherEntityRepository.readWeather(location))
+                    var location = LocationEntityRepository.readLocationList().getOrNull(0)
+                    location = location?.copy(weather = WeatherEntityRepository.readWeather(location))
                     val configManager = LiveWallpaperConfigManager(
                         this@MaterialLiveWallpaperService
                     )
                     var weatherKind: String? = configManager.weatherKind
                     if (weatherKind == "auto") {
-                        weatherKind = location.weather?.current?.weatherCode?.id
+                        weatherKind = location?.weather?.current?.weatherCode?.id
                     }
                     val dayNightType = configManager.dayNightType
-                    var daytime = location.isDaylight
+                    var daytime = location?.isDaylight ?: true
                     when (dayNightType) {
                         "day" -> daytime = true
                         "night" -> daytime = false
                     }
-                    if (!weatherKind.isNullOrEmpty()) {
-                        setWeather(WeatherViewController.getWeatherKind(WeatherCode.getInstance(weatherKind)), daytime)
-                    }
+                    setWeather(WeatherViewController.getWeatherKind(
+                        weatherKind?.let { WeatherCode.getInstance(it) }
+                    ), daytime)
                     if (drawable) {
                         setWeatherImplementor()
                         setIntervalComputer()

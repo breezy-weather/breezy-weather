@@ -7,29 +7,29 @@ import javax.inject.Inject
 
 class StatementManager @Inject constructor(@ApplicationContext context: Context) {
     private val config: ConfigStore = ConfigStore(context, SP_STATEMENT_RECORD)
-    var isLocationPermissionDeclared: Boolean = config.getBoolean(KEY_LOCATION_PERMISSION_DECLARED, false)
+    var isLocationPermissionDialogAlreadyShown: Boolean = config.getBoolean(KEY_LOCATION_PERMISSION_DECLARED, false)
         private set
-    var isBackgroundLocationDeclared: Boolean = config.getBoolean(KEY_BACKGROUND_LOCATION_DECLARED, false)
+    var isBackgroundLocationPermissionDialogAlreadyShown: Boolean = config.getBoolean(KEY_BACKGROUND_LOCATION_DECLARED, false)
         private set
-    var isPostNotificationRequired: Boolean = config.getBoolean(KEY_POST_NOTIFICATION_REQUIRED, false)
+    var isPostNotificationDialogAlreadyShown: Boolean = config.getBoolean(KEY_POST_NOTIFICATION_REQUIRED, false)
         private set
 
-    fun setLocationPermissionDeclared() {
-        isLocationPermissionDeclared = true
+    fun setLocationPermissionDialogAlreadyShown() {
+        isLocationPermissionDialogAlreadyShown = true
         config.edit()
             .putBoolean(KEY_LOCATION_PERMISSION_DECLARED, true)
             .apply()
     }
 
-    fun setBackgroundLocationDeclared() {
-        isBackgroundLocationDeclared = true
+    fun setBackgroundLocationPermissionDialogAlreadyShown() {
+        isBackgroundLocationPermissionDialogAlreadyShown = true
         config.edit()
             .putBoolean(KEY_BACKGROUND_LOCATION_DECLARED, true)
             .apply()
     }
 
-    fun setPostNotificationRequired() {
-        isPostNotificationRequired = true
+    fun setPostNotificationDialogAlreadyShown() {
+        isPostNotificationDialogAlreadyShown = true
         config.edit()
             .putBoolean(KEY_POST_NOTIFICATION_REQUIRED, true)
             .apply()

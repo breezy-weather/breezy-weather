@@ -28,24 +28,27 @@ class MainActivityRepository @Inject constructor(
         cancelWeatherRequest()
     }
 
-    fun initLocations(context: Context, formattedId: String): List<Location> {
-        val list = LocationEntityRepository.readLocationList(context).toMutableList()
+    fun initLocations(formattedId: String?): List<Location> {
+        val list = LocationEntityRepository.readLocationList().toMutableList()
+        if (list.size == 0) return list
 
-        var index = 0
-        for (i in list.indices) {
-            if (list[i].formattedId == formattedId) {
-                index = i
-                break
+        if (formattedId != null) {
+            for (i in list.indices) {
+                if (list[i].formattedId == formattedId) {
+                    list[i] = list[i].copy(weather = WeatherEntityRepository.readWeather(list[i]))
+                    break
+                }
             }
+        } else {
+            list[0] = list[0].copy(weather = WeatherEntityRepository.readWeather(list[0]))
         }
 
-        list[index] = list[index].copy(weather = WeatherEntityRepository.readWeather(list[index]))
         return list
     }
 
     fun getWeatherCacheForLocations(
         oldList: List<Location>,
-        ignoredFormattedId: String,
+        ignoredFormattedId: String?,
         callback: (t: List<Location>, done: Boolean) -> Unit
     ) {
         AsyncHelper.runOnExecutor({ emitter ->
@@ -92,7 +95,7 @@ class MainActivityRepository @Inject constructor(
         context: Context,
         location: Location,
         callback: WeatherRequestCallback,
-    ) = locationHelper.requestLocation(
+    ) = locationHelper.requestCurrentLocation(
         context,
         location,
         false,

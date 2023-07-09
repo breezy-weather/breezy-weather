@@ -92,7 +92,7 @@ class AlertActivity : GeoActivity() {
             }
             if (location == null) {
                 // FIXME: doesn’t display alerts for current position for China provider if not in first position
-                location = LocationEntityRepository.readLocationList(context)[0]
+                location = LocationEntityRepository.readLocationList()[0]
             }
             val weather = WeatherEntityRepository.readWeather(location)
 

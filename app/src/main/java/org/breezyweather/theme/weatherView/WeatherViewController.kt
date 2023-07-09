@@ -6,14 +6,6 @@ import org.breezyweather.theme.resource.providers.ResourceProvider
 import org.breezyweather.theme.weatherView.WeatherView.WeatherKindRule
 
 object WeatherViewController {
-    fun setWeatherCode(
-        view: WeatherView,
-        weather: Weather?,
-        dayTime: Boolean,
-        provider: ResourceProvider
-    ) {
-        view.setWeather(getWeatherKind(weather), dayTime, provider)
-    }
 
     fun getWeatherCode(
         @WeatherKindRule weatherKind: Int

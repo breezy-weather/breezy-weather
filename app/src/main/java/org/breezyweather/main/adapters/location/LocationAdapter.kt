@@ -48,11 +48,11 @@ class LocationAdapter(
     }
 
     override fun onBindViewHolder(holder: LocationHolder, position: Int) {
-        holder.onBindView(mContext, getItem(position)!!, mResourceProvider)
+        holder.onBindView(mContext, getItem(position), mResourceProvider)
     }
 
     override fun onBindViewHolder(holder: LocationHolder, position: Int, payloads: List<Any>) {
-        holder.onBindView(mContext, getItem(position)!!, mResourceProvider)
+        holder.onBindView(mContext, getItem(position), mResourceProvider)
     }
 
     fun update(selectedId: String?) {
@@ -60,7 +60,7 @@ class LocationAdapter(
         for (model in currentList) {
             modelList.add(
                 LocationModel(
-                    mContext, model!!.location, mTemperatureUnit, model.location.formattedId == selectedId
+                    mContext, model.location, mTemperatureUnit, model.location.formattedId == selectedId
                 )
             )
         }

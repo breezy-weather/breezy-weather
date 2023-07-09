@@ -76,7 +76,7 @@ class DailyWeatherActivity : GeoActivity() {
                 location = LocationEntityRepository.readLocation(formattedId)
             }
             if (location == null) {
-                location = LocationEntityRepository.readLocationList(context)[0]
+                location = LocationEntityRepository.readLocationList()[0]
             }
             emitter.send(
                 location.copy(weather = WeatherEntityRepository.readWeather(location)),

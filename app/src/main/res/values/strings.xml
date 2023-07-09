@@ -205,6 +205,7 @@
     <string name="weather_source_china_voice">China</string>
     <!-- Location -->
     <string name="locations">Locations</string>
+    <string name="location_none_added_yet_instructions">No location added yet. Please tap on the search icon to manually add a location, or add your current location from the floating button.</string>
     <string name="location_current">Current location</string>
     <string name="location_resident">Resident location</string>
     <string name="location_search_weather_provider">Weather provider</string>
@@ -258,6 +259,8 @@
     <string name="action_continue">Continue</string>
     <string name="action_share">Share</string>
     <!-- Dialogs -->
+    <string name="dialog_permissions_notification_title">Allow notifications</string>
+    <string name="dialog_permissions_notification_content">To be able to send you alerts for your selected location, Breezy Weather needs to be able to send you notifications. Other types of notification can be enabled in settings. We recommend you allow notifications permission and then turn off individually notification categories you don’t want to receive in app settings.</string>
     <string name="dialog_permissions_location_title">Access location information</string>
     <string name="dialog_permissions_location_content">Breezy Weather needs to collect your location information in foreground or background to provide the weather data of your current location. For this, we will request some permissions. Your location information will only be used to obtain weather data at your current location. If you don’t want to share your location information, you can deny those requirements and manually set your location in the management page.</string>
     <string name="dialog_permissions_location_background_title">Access location in background</string>

@@ -12,17 +12,17 @@ import java.util.TimeZone
 import kotlin.math.abs
 
 class Location(
-    val cityId: String,
+    val cityId: String = NULL_ID,
 
-    val latitude: Float,
-    val longitude: Float,
-    val timeZone: TimeZone,
+    val latitude: Float = 0f,
+    val longitude: Float = 0f,
+    val timeZone: TimeZone = TimeZone.getDefault(),
 
-    val country: String,
+    val country: String = "",
     val countryCode: String? = null,
     val province: String? = null,
     val provinceCode: String? = null,
-    val city: String,
+    val city: String = "",
     val district: String? = null,
 
     val weather: Weather? = null,
@@ -30,7 +30,7 @@ class Location(
 
     val isCurrentPosition: Boolean = false,
     val isResidentPosition: Boolean = false,
-    val isChina: Boolean,
+    val isChina: Boolean = false, // TODO: Deprecate me
 ) : Parcelable {
 
     val formattedId: String
@@ -57,23 +57,6 @@ class Location(
                 timeZone = location?.timeZone ?: TimeZone.getDefault()
             )
             return 0 < sunRiseProgress && sunRiseProgress < 1
-        }
-
-        fun buildLocal(context: Context): Location {
-            return Location(
-                cityId = NULL_ID,
-                latitude = 0f,
-                longitude = 0f,
-                timeZone = TimeZone.getDefault(),
-                country = "",
-                province = "",
-                city = "",
-                district = "",
-                weatherSource = SettingsManager.getInstance(context).weatherSource,
-                isCurrentPosition = true,
-                isResidentPosition = false,
-                isChina = false
-            )
         }
 
         private fun isEquals(a: String?, b: String?): Boolean {
@@ -309,6 +292,7 @@ class Location(
         ) {
             true
         } else {
+            // Implement #58 for a better distance
             abs(latitude - location.latitude) < 0.8
                     && abs(longitude - location.longitude) < 0.8
         }

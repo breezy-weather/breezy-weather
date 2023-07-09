@@ -66,8 +66,7 @@ class DayNightLocation(
         }
 
         if (other is DayNightLocation) {
-            return location == other.location
-                    && daylight == other.daylight
+            return location == other.location && daylight == other.daylight
         }
 
         return false

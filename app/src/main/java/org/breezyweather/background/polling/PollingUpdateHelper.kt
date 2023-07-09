@@ -45,10 +45,11 @@ class PollingUpdateHelper(
         isUpdating = true
 
         ioController = AsyncHelper.runOnIO({ emitter ->
-            val list = LocationEntityRepository.readLocationList(context).map {
-                it.copy(weather = WeatherEntityRepository.readWeather(it))
+            val locationList = LocationEntityRepository.readLocationList().toMutableList()
+            for (i in locationList.indices) {
+                locationList[i] = locationList[i].copy(weather = WeatherEntityRepository.readWeather(locationList[i]))
             }
-            emitter.send(list, true)
+            emitter.send(locationList, true)
         }, { locations: List<Location>?, _: Boolean ->
             locations?.let {
                 locationList = it.toMutableList()
@@ -66,13 +67,15 @@ class PollingUpdateHelper(
     }
 
     private fun requestData(position: Int, located: Boolean) {
+        if (locationList.getOrNull(position) == null) return
+
         if (locationList[position].weather?.isValid(0.25f) == true) {
             RequestWeatherCallback(position, locationList.size).requestWeatherSuccess(locationList[position])
             return
         }
 
         if (locationList[position].isCurrentPosition && !located) {
-            locationHelper.requestLocation(
+            locationHelper.requestCurrentLocation(
                 context,
                 locationList[position],
                 true,

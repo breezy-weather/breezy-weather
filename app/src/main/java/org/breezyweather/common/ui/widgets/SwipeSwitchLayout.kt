@@ -217,10 +217,12 @@ class SwipeSwitchLayout @JvmOverloads constructor(
     // interface.
     fun setData(currentIndex: Int, pageCount: Int) {
         if (currentIndex < 0 || currentIndex >= pageCount) {
-            throw RuntimeException("Invalid current index.")
+            // Ignore, happens when location list is empty (initial install)
+            //throw RuntimeException("Invalid current index.")
+        } else {
+            mPosition = currentIndex
+            totalCount = pageCount
         }
-        mPosition = currentIndex
-        totalCount = pageCount
     }
 
     var position: Int

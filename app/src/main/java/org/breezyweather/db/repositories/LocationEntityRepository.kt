@@ -1,6 +1,5 @@
 package org.breezyweather.db.repositories
 
-import android.content.Context
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.db.ObjectBox.boxStore
 import org.breezyweather.db.entities.LocationEntity
@@ -72,19 +71,8 @@ object LocationEntityRepository {
         return if (entity != null) LocationEntityGenerator.generate(entity) else null
     }
 
-    fun readLocationList(context: Context): List<Location> {
-        val entityList = selectLocationEntityList()
-        if (entityList.size == 0) {
-            synchronized(mWritingLock) {
-                if (countLocation() == 0) {
-                    val entity = LocationEntityGenerator.generate(Location.buildLocal(context))
-                    entityList.add(entity)
-                    insertLocationEntityList(entityList)
-                    return LocationEntityGenerator.generateModuleList(entityList)
-                }
-            }
-        }
-        return LocationEntityGenerator.generateModuleList(entityList)
+    fun readLocationList(): List<Location> {
+        return LocationEntityGenerator.generateModuleList(selectLocationEntityList())
     }
 
     fun selectLocationEntity(formattedId: String): LocationEntity? {

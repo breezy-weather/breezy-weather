@@ -9,6 +9,7 @@ import org.breezyweather.db.repositories.LocationEntityRepository
 import org.breezyweather.db.repositories.WeatherEntityRepository
 import org.breezyweather.remoteviews.presenters.MultiCityWidgetIMP
 
+
 /**
  * Multi city widget config activity.
  */
@@ -18,9 +19,12 @@ class MultiCityWidgetConfigActivity : AbstractWidgetConfigActivity() {
 
     override fun initData() {
         super.initData()
-        locationList = LocationEntityRepository.readLocationList(this).map {
-            it.copy(weather = WeatherEntityRepository.readWeather(it))
-        }.toMutableList()
+        locationList = LocationEntityRepository.readLocationList().toMutableList()
+        for (i in locationList.indices) {
+            locationList[i] = locationList[i].copy(
+                weather = WeatherEntityRepository.readWeather(locationList[i])
+            )
+        }
     }
 
     override fun initView() {

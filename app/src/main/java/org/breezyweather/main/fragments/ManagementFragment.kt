@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.Lifecycle
@@ -32,6 +33,7 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.extensions.isDarkMode
+import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.ui.decorations.Material3ListItemDecoration
 import org.breezyweather.common.ui.widgets.Material3Scaffold
 import org.breezyweather.common.ui.widgets.generateCollapsedScrollBehavior
@@ -47,6 +49,7 @@ import org.breezyweather.main.widgets.LocationItemTouchCallback
 import org.breezyweather.main.widgets.LocationItemTouchCallback.TouchReactor
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.compose.BreezyWeatherTheme
+import org.breezyweather.theme.compose.DayNightTheme
 import org.breezyweather.theme.resource.ResourcesProviderFactory
 import org.breezyweather.theme.resource.providers.ResourceProvider
 
@@ -139,7 +142,14 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                     if (totalLocationListState.value.first.firstOrNull { it.isCurrentPosition } == null) {
                         FloatingActionButton(
                             onClick = {
-                                viewModel.addLocation(Location.buildLocal(requireContext()), null)
+                                viewModel.addLocation(
+                                    Location(
+                                        weatherSource = SettingsManager.getInstance(requireContext()).weatherSource,
+                                        isCurrentPosition = true,
+                                        isChina = false
+                                    ),
+                                    null
+                                )
                                 SnackbarHelper.showSnackbar(getString(R.string.location_message_added))
                             },
                         ) {
@@ -156,12 +166,26 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                 }
             }
         ) { paddings ->
-            AndroidView(
-                modifier = Modifier.padding(paddings),
-                factory = {
-                    recyclerView
+            if (totalLocationListState.value.first.isNotEmpty()) {
+                AndroidView(
+                    modifier = Modifier.padding(paddings),
+                    factory = {
+                        recyclerView
+                    }
+                )
+            } else {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(paddings + PaddingValues(horizontal = dimensionResource(R.dimen.normal_margin)))
+                ) {
+                    Text(
+                        text = stringResource(R.string.location_none_added_yet_instructions),
+                        color = DayNightTheme.colors.bodyColor,
+                        style = MaterialTheme.typography.bodyLarge
+                    )
                 }
-            )
+            }
         }
     }
 

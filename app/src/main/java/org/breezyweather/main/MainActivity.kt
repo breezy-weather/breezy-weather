@@ -190,9 +190,7 @@ class MainActivity : GeoActivity(),
 
     private fun initModel(newActivity: Boolean) {
         viewModel = ViewModelProvider(this)[MainActivityViewModel::class.java]
-        if (!viewModel.checkIsNewInstance()) {
-            return
-        }
+        if (!viewModel.checkIsNewInstance()) return
         if (newActivity) {
             viewModel.init(formattedId = getLocationId(intent))
         } else {
@@ -233,7 +231,16 @@ class MainActivity : GeoActivity(),
                 }
             }
         }
-        viewModel.permissionsRequest.observe(this) {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.totalLocationList.collect {
+                    if (it.first.isEmpty()) {
+                        setManagementFragmentVisibility(true)
+                    }
+                }
+            }
+        }
+        viewModel.locationPermissionsRequest.observe(this) {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M
                 || it == null
                 || it.permissionList.isEmpty()
@@ -242,23 +249,57 @@ class MainActivity : GeoActivity(),
             }
 
             // only show dialog if we need request basic location permissions.
-            var needShowDialog = false
+            var showLocationPermissionDialog = false
             for (permission in it.permissionList) {
                 if (isLocationPermission(permission)) {
-                    needShowDialog = true
+                    showLocationPermissionDialog = true
                     break
                 }
             }
-            if (needShowDialog && !viewModel.statementManager.isLocationPermissionDeclared) {
+
+            if (showLocationPermissionDialog && !viewModel.statementManager.isLocationPermissionDialogAlreadyShown) {
                 // only show dialog once.
                 MaterialAlertDialogBuilder(this)
                     .setTitle(R.string.dialog_permissions_location_title)
                     .setMessage(R.string.dialog_permissions_location_content)
                     .setPositiveButton(R.string.action_next) { _, _ ->
                         // mark declared.
-                        viewModel.statementManager.setLocationPermissionDeclared()
+                        viewModel.statementManager.setLocationPermissionDialogAlreadyShown()
 
-                        val request = viewModel.permissionsRequest.value
+                        val request = viewModel.locationPermissionsRequest.value
+                        if (request != null
+                            && request.permissionList.isNotEmpty()
+                            && request.target != null) {
+                            requestPermissions(
+                                request.permissionList.toTypedArray(),
+                                0
+                            )
+                        }
+                    }
+                    .setCancelable(false)
+                    .show()
+            } else {
+                requestPermissions(it.permissionList.toTypedArray(), 0)
+            }
+        }
+        viewModel.notificationPermissionsRequest.observe(this) {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU
+                || it == null
+                || it.permissionList.isEmpty()
+                || !it.consume()) {
+                return@observe
+            }
+
+            if (!viewModel.statementManager.isPostNotificationDialogAlreadyShown) {
+                // only show dialog once.
+                MaterialAlertDialogBuilder(this)
+                    .setTitle(R.string.dialog_permissions_notification_title)
+                    .setMessage(R.string.dialog_permissions_notification_content)
+                    .setPositiveButton(R.string.action_next) { _, _ ->
+                        // mark declared.
+                        viewModel.statementManager.setPostNotificationDialogAlreadyShown()
+
+                        val request = viewModel.notificationPermissionsRequest.value
                         if (request != null
                             && request.permissionList.isNotEmpty()
                             && request.target != null) {
@@ -295,7 +336,10 @@ class MainActivity : GeoActivity(),
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
-        val request = viewModel.permissionsRequest.value
+        // TODO: Should do something about post notifications, like turning off notifications
+        // preferences if denied permission
+
+        val request = viewModel.locationPermissionsRequest.value
         if (request == null
             || request.permissionList.isEmpty()
             || request.target == null) {
@@ -321,7 +365,7 @@ class MainActivity : GeoActivity(),
 
         // check background location permissions.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
-            && !viewModel.statementManager.isBackgroundLocationDeclared
+            && !viewModel.statementManager.isBackgroundLocationPermissionDialogAlreadyShown
             && this.hasPermission(Manifest.permission.ACCESS_BACKGROUND_LOCATION)
         ) {
             MaterialAlertDialogBuilder(this)
@@ -329,7 +373,7 @@ class MainActivity : GeoActivity(),
                 .setMessage(R.string.dialog_permissions_location_background_content)
                 .setPositiveButton(R.string.action_set) { _, _ ->
                     // mark background location permission declared.
-                    viewModel.statementManager.setBackgroundLocationDeclared()
+                    viewModel.statementManager.setBackgroundLocationPermissionDialogAlreadyShown()
                     // request background location permission.
                     requestPermissions(
                         arrayOf(Manifest.permission.ACCESS_BACKGROUND_LOCATION),
@@ -370,9 +414,7 @@ class MainActivity : GeoActivity(),
 
     private fun consumeIntentAction(intent: Intent) {
         val action = intent.action
-        if (action.isNullOrEmpty()) {
-            return
-        }
+        if (action.isNullOrEmpty()) return
         val formattedId = intent.getStringExtra(KEY_MAIN_ACTIVITY_LOCATION_FORMATTED_ID)
         if (ACTION_SHOW_ALERTS == action) {
             IntentHelper.startAlertActivity(this, formattedId)
@@ -426,9 +468,7 @@ class MainActivity : GeoActivity(),
             drawerLayout.isUnfold = visible
             return
         }
-        if (visible == isOrWillManagementFragmentVisible) {
-            return
-        }
+        if (visible == isOrWillManagementFragmentVisible) return
         if (!visible) {
             supportFragmentManager.popBackStack()
             return

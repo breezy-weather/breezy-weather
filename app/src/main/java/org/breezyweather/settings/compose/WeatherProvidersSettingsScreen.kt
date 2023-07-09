@@ -34,7 +34,7 @@ fun WeatherProvidersSettingsScreen(
                     .getInstance(context)
                     .weatherSource = WeatherSource.getInstance(sourceId)
 
-                val locationList = LocationEntityRepository.readLocationList(context).toMutableList()
+                val locationList = LocationEntityRepository.readLocationList().toMutableList()
                 val index = locationList.indexOfFirst { it.isCurrentPosition }
                 if (index >= 0) {
                     locationList[index] = locationList[index].copy(

@@ -48,7 +48,7 @@ class TileService : TileService() {
     companion object {
         private fun refreshTile(context: Context, tile: Tile?) {
             if (tile == null) return
-            val location = LocationEntityRepository.readLocationList(context).getOrNull(0) ?: return
+            val location = LocationEntityRepository.readLocationList().getOrNull(0) ?: return
             val locationRefreshed = location.copy(weather = WeatherEntityRepository.readWeather(location))
             if (locationRefreshed.weather?.current != null) {
                 tile.apply {
