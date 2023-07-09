@@ -95,7 +95,7 @@
     <string name="settings_background_updates_section_troubleshoot">Sửa lỗi</string>
     <string name="settings_background_updates_methods_title">Phương pháp cập nhật</string>
     <string name="settings_location_access_background_summaryOff">Vui lòng bật “Cho phép mọi lúc” để có thể làm mới dưới nền cho vị trí hiện tại của bạn.</string>
-    <string name="settings_location_access_precise_summaryOff">Bật “Sủ dụng vị trí chính xác” nếu bạn gặp vấn đề lấy vị trí.</string>
+    <string name="settings_location_access_precise_summaryOff">Bật “Sử dụng vị trí chính xác” nếu bạn gặp vấn đề lấy vị trí.</string>
     <string name="settings_weather_provider_default_value">Gốc (Chưa thay đổi)</string>
     <string name="settings_weather_providers">Nhà cung cấp thời tiết</string>
     <string name="settings_icon_providers_weather_icon_dark">Biểu tượng tối</string>
@@ -296,9 +296,9 @@
     <string name="settings_background_updates_method_notification_dialog_title">Tắt danh mục thông báo</string>
     <string name="settings_background_updates_method_notification_dialog_content">Phương pháp này thêm một thông báo có thể bị ẩn đi bởi tắt mục thông báo “$” trong cài đặt ứng dụng.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Chỉ dẫn cụ thể theo nhà sản xuất</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">Một số nhà sản xuất thêm một sự ngăn cản làm dừng các dịch vụ chạy dưới nền. Website $ có thông tin về cách sửa nó.</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">Một số nhà sản xuất thêm một sự ngăn cản làm dừng các dịch vụ chạy dưới nền. Website Don\'t kill my app! có thông tin về cách sửa nó.</string>
     <string name="settings_background_updates_worker_info_title">Thông tin tiến trình</string>
-    <string name="settings_location">Lấy vị trí</string>
+    <string name="settings_location">Vị trí</string>
     <string name="settings_location_summary">Cài đặt nhà cung cấp vị trí</string>
     <string name="settings_location_service">Dịch vụ vị trí</string>
     <string name="settings_location_access_permission_already_granted">Quyền đã được cấp</string>
@@ -504,4 +504,6 @@
     <string name="settings_widgets">Tiện ích &amp; Hình nền động</string>
     <string name="unit_mb_voice">Milibar</string>
     <string name="precipitation_total">Tổng cộng</string>
+    <string name="location_message_reverse_geocoding_failed">Nhà cung cấp thời tiết không tìm được vị trí chính xác</string>
+    <string name="action_undo" tools:ignore="ButtonCase">HOÀN TÁC</string>
 </resources>
