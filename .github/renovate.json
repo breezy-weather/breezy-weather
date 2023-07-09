@@ -7,5 +7,14 @@
   "ignoreDeps": [
     "dagger.hilt.android.plugin",
     "io.objectbox"
+  ],
+  "packageRules": [
+    {
+      "groupName": "Kotlin",
+      "matchPackagePrefixes": [
+        "androidx.compose.compiler",
+        "org.jetbrains.kotlin"
+      ]
+    }
   ]
 }
