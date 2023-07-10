@@ -541,7 +541,6 @@
     <string name="settings_widgets_week_icon_mode_title">Icona da visualizzare nelle viste settimanali</string>
     <string name="openmeteo_weather_text_drizzle_moderate_intensity">Pioviggine di moderata intensità</string>
     <string name="settings_location_access_background_title">Accesso alla propria posizione in background</string>
-    <string name="settings_location_access_permission_revoked">Autorizzazione revocata</string>
     <string name="settings_location">Geolocalizzazione</string>
     <string name="settings_location_access_permission_already_granted">Autorizzazione già fornita</string>
     <string name="settings_location_access_background_summaryOff">Selezionare “Consenti sempre” per ottenere aggiornamenti relativi alla propria posizione corrente.</string>

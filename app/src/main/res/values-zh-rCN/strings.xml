@@ -524,7 +524,6 @@
     <string name="settings_location_access_precise_title">设备 GPS 的使用情况</string>
     <string name="settings_location_access_precise_summaryOff">如果获取当前定位失败，请启用“使用确切位置”。</string>
     <string name="settings_weather_providers_summary">天气数据提供者设置</string>
-    <string name="settings_location_access_permission_revoked">权限已撤销</string>
     <string name="settings_location_access_switch_summaryOn">已允许。你可以添加当前定位作为位置。</string>
     <string name="settings_location_access_background_title">在后台访问位置信息</string>
     <string name="settings_location_access_background_summaryOn">已启用。应用将能够在后台更新你当前位置的天气数据。</string>

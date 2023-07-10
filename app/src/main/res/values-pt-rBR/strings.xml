@@ -444,7 +444,6 @@
     <string name="action_undo" tools:ignore="ButtonCase">DESFAZER</string>
     <string name="settings_location_access_permission_already_granted">Permissão já concedida</string>
     <string name="settings_background_updates_worker_info_title">Informações do Worker</string>
-    <string name="settings_location_access_permission_revoked">Permissão revogada</string>
     <string name="settings_location_access_switch_summaryOn">Permitido. Você pode adicionar sua localização atual como um local.</string>
     <string name="settings_location_access_background_title">Acesso ao local em segundo plano</string>
     <string name="settings_location_access_precise_summaryOn">Habilitado. A rede do dispositivo e os provedores de GPS são usados.</string>

@@ -61,12 +61,7 @@ fun LocationSettingsScreen(
                         context.openApplicationDetailsSettings()
                     }
                 } else {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                        context.revokeSelfPermissionOnKill(Manifest.permission.ACCESS_COARSE_LOCATION)
-                        SnackbarHelper.showSnackbar(context.getString(R.string.settings_location_access_permission_revoked))
-                    } else {
-                        SnackbarHelper.showSnackbar(context.getString(R.string.settings_location_access_permission_already_granted))
-                    }
+                    SnackbarHelper.showSnackbar(context.getString(R.string.settings_location_access_permission_already_granted))
                 }
             }
         )
@@ -85,12 +80,7 @@ fun LocationSettingsScreen(
                             context.openApplicationDetailsSettings()
                         }
                     } else {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                            context.revokeSelfPermissionOnKill(Manifest.permission.ACCESS_BACKGROUND_LOCATION)
-                            SnackbarHelper.showSnackbar(context.getString(R.string.settings_location_access_permission_revoked))
-                        } else {
-                            SnackbarHelper.showSnackbar(context.getString(R.string.settings_location_access_permission_already_granted))
-                        }
+                        SnackbarHelper.showSnackbar(context.getString(R.string.settings_location_access_permission_already_granted))
                     }
                 }
             )
@@ -109,12 +99,7 @@ fun LocationSettingsScreen(
                         context.openApplicationDetailsSettings()
                     }
                 } else {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                        context.revokeSelfPermissionOnKill(Manifest.permission.ACCESS_FINE_LOCATION)
-                        SnackbarHelper.showSnackbar(context.getString(R.string.settings_location_access_permission_revoked))
-                    } else {
-                        SnackbarHelper.showSnackbar(context.getString(R.string.settings_location_access_permission_already_granted))
-                    }
+                    SnackbarHelper.showSnackbar(context.getString(R.string.settings_location_access_permission_already_granted))
                 }
             }
         )

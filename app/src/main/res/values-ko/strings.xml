@@ -281,7 +281,6 @@
     <string name="settings_background_updates_method_notification_dialog_title">알림 카테고리 사용 안 함</string>
     <string name="settings_location_access_switch_title">위치 접근</string>
     <string name="settings_location_access_permission_already_granted">권한이 이미 허용됨</string>
-    <string name="settings_location_access_permission_revoked">권한 거부됨</string>
     <string name="settings_location_access_switch_summaryOff">알림 목록에 현재 위치를 추가하려면 권한을 허용해 주세요.</string>
     <string name="settings_location_access_background_title">백그라운드에서 위치 접근</string>
     <string name="settings_weather_provider_default_value">기본값</string>

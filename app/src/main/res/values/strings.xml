@@ -433,7 +433,6 @@
     <string name="settings_location_section_general" translatable="false">@string/settings_section_general</string>
     <string name="settings_location_service">Location service</string>
     <string name="settings_location_access_permission_already_granted">Permission already granted</string>
-    <string name="settings_location_access_permission_revoked">Permission revoked</string>
     <string name="settings_location_access_switch_title">Location access</string>
     <string name="settings_location_access_switch_summaryOn">Allowed. You can add your current location as a location.</string>
     <string name="settings_location_access_switch_summaryOff">Please allow if you want to be able to add your current location as a location.</string>

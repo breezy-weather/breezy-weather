@@ -537,7 +537,6 @@
     <string name="settings_widgets_monochrome_icons_title">Einfarbige Symbole</string>
     <string name="settings_background_updates_worker_info_title">Worker Info</string>
     <string name="settings_location_access_permission_already_granted">Berechtigung bereits erteilt</string>
-    <string name="settings_location_access_permission_revoked">Berechtigung widerrufen</string>
     <string name="location_message_search_failed">Ortssuche fehlgeschlagen</string>
     <string name="action_choose_weather_provider">Wetterdienst auswählen</string>
     <string name="location_service_native">Native API</string>

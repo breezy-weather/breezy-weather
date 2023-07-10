@@ -301,7 +301,6 @@
     <string name="settings_location_summary">Cài đặt nhà cung cấp vị trí</string>
     <string name="settings_location_service">Dịch vụ vị trí</string>
     <string name="settings_location_access_permission_already_granted">Quyền đã được cấp</string>
-    <string name="settings_location_access_permission_revoked">Quyền đã bị tước</string>
     <string name="settings_location_access_switch_title">Truy cập vị trí</string>
     <string name="settings_location_access_switch_summaryOn">Đã đồng ý. Bạn có thể thêm vị trí hiện tại làm một vị trí.</string>
     <string name="settings_location_access_switch_summaryOff">Vui lòng đồng ý nếu bạn muốn có thể thêm vị trí hiện tại làm vị trí.</string>

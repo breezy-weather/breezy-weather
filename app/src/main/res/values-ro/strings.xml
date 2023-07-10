@@ -576,7 +576,6 @@
     <string name="settings_weather_providers">Furnizorii de vreme</string>
     <string name="settings_weather_providers_summary">Setările furnizorilor de vreme</string>
     <string name="settings_location_access_permission_already_granted">Permisiunea a fost deja acordată</string>
-    <string name="settings_location_access_permission_revoked">Permisiune revocată</string>
     <string name="settings_location_access_switch_title">Acces la locație</string>
     <string name="settings_location_access_switch_summaryOff">Vă rugăm să permiteți dacă doriți să puteți adăuga locația dvs. actuală ca locație.</string>
     <string name="settings_location_access_precise_summaryOn">Activat. Rețeaua dispozitivului și furnizorii de GPS sunt ambele utilizate.</string>

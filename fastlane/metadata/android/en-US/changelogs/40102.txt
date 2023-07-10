@@ -3,4 +3,5 @@
 <li>Cards now show on top right at what time their data is valid</li>
 <li>Add additional settings from Android app info</li>
 <li>Fix Chronus icon packs not working</li>
+<li>Revert let Android 13 users revoke their permissions</li>
 </ul>
