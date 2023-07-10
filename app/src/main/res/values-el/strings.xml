@@ -5,7 +5,6 @@
     <!-- keyword. -->
     <string name="location_current">Τρέχουσα τοποθεσία</string>
     <string name="location_resident">Τοποθεσία διαμονής</string>
-    <string name="live">Ο καιρός τώρα</string>
     <string name="short_today">Σήμερα</string>
     <string name="notification_refreshed_at">Ενημερώθηκε:</string>
     <string name="precipitation">Βροχόπτωση</string>

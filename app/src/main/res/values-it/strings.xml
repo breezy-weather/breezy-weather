@@ -5,7 +5,6 @@
     <!-- keyword. -->
     <string name="location_current">Posizione automatica</string>
     <string name="location_resident">Posizione residente</string>
-    <string name="live">Attualmente</string>
     <string name="short_today">Oggi</string>
     <string name="notification_refreshed_at">Aggiornato il</string>
     <string name="precipitation">Precipitazioni</string>

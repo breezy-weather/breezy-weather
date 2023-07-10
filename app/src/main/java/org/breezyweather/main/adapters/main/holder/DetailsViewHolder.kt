@@ -21,6 +21,8 @@ import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.appearance.DetailDisplay
 import org.breezyweather.common.basic.models.weather.Current
+import org.breezyweather.common.extensions.getFormattedTime
+import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.ThemeManager
@@ -35,6 +37,7 @@ class DetailsViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         .inflate(R.layout.container_main_details, parent, false)
 ) {
     private val mTitle: TextView = itemView.findViewById(R.id.container_main_details_title)
+    private val mTime: TextView = itemView.findViewById(R.id.container_main_details_time)
     private val mDetailsList: ComposeView = itemView.findViewById(R.id.container_main_details_list)
 
     override fun onBindView(
@@ -55,6 +58,7 @@ class DetailsViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                         location.isDaylight
                     )[0]
             )
+            mTime.text = location.weather.base.updateDate.getFormattedTime(location.timeZone, context.is12Hour)
             mDetailsList.setContent {
                 BreezyWeatherTheme(lightTheme = !isSystemInDarkTheme()) {
                     ContentView(SettingsManager.getInstance(context).detailDisplayUnlisted, location.weather.current, location)

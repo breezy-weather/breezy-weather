@@ -5,7 +5,6 @@
     <!-- keyword. -->
     <string name="location_current">Lokasi saat ini</string>
     <string name="location_resident">Lokasi penduduk</string>
-    <string name="live">Langsung</string>
     <string name="short_today">Hari ini</string>
     <string name="notification_refreshed_at">Dimuat ulang pada</string>
     <string name="precipitation">Precipitation</string>

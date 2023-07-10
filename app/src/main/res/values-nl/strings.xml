@@ -4,7 +4,6 @@
     <string name="app_name">Weer</string>
     <!-- keyword. -->
     <string name="location_current">Huidige locatie</string>
-    <string name="live">Live</string>
     <string name="short_today">Vandaag</string>
     <string name="notification_refreshed_at">Vernieuwd om</string>
     <string name="precipitation">Neerslag</string>

@@ -5,7 +5,6 @@
     <!-- keyword. -->
     <string name="location_current">Současná lokace</string>
     <string name="location_resident">Bydliště</string>
-    <string name="live">Živě</string>
     <string name="short_today">Dnes</string>
     <string name="notification_refreshed_at">Aktualizováno</string>
     <string name="precipitation">Srážky</string>

@@ -28,4 +28,12 @@ class Weather(
                     || (it.startDate == null && it.endDate != null && Date() < it.endDate)
                     || (it.startDate != null && it.endDate == null && Date() > it.startDate)
         }
+
+    val validAirQuality: AirQuality?
+        get() = if (current?.airQuality != null && current.airQuality.isValid) {
+            current.airQuality
+        } else if (dailyForecast.getOrNull(0)?.airQuality != null &&
+            dailyForecast[0].airQuality!!.isValid) {
+            dailyForecast[0].airQuality
+        } else null
 }

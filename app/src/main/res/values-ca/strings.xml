@@ -5,7 +5,6 @@
     <!-- keyword. -->
     <string name="location_current">Ubicació actual</string>
     <string name="location_resident">Ubicació dels residents</string>
-    <string name="live">Ara mateix</string>
     <string name="short_today">Avui</string>
     <string name="notification_refreshed_at">Actualitzat a les</string>
     <string name="precipitation">Precipitació</string>

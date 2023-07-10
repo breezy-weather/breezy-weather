@@ -5,7 +5,6 @@
     <!-- keyword. -->
     <string name="location_current">현재 위치</string>
     <string name="location_resident">거주지</string>
-    <string name="live">현재</string>
     <string name="short_today">오늘</string>
     <string name="notification_refreshed_at">새로고침 시간:</string>
     <string name="precipitation">강수</string>

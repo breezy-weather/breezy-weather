@@ -5,7 +5,6 @@
     <!-- keyword. -->
     <string name="location_current">当前位置</string>
     <string name="location_resident">常驻位置</string>
-    <string name="live">实时</string>
     <string name="short_today">今日</string>
     <string name="notification_refreshed_at">更新于</string>
     <string name="precipitation">降水量</string>

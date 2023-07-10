@@ -5,7 +5,6 @@
     <!-- keyword. -->
     <string name="location_current">Locația curentă</string>
     <string name="location_resident">Acasă</string>
-    <string name="live">În prezent</string>
     <string name="short_today">Azi</string>
     <string name="notification_refreshed_at">Actualizat la</string>
     <string name="precipitation">Precipitaţii</string>

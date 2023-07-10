@@ -53,6 +53,14 @@ class AirQuality(
         }
     }
 
+    fun getDescription(context: Context, pollutant: PollutantIndex? = null): String? {
+        return if (pollutant == null) { // Air Quality
+            PollutantIndex.getAqiToDescription(context, getIndex())
+        } else { // Specific pollutant
+            pollutant.getDescription(context, getConcentration(pollutant)?.toDouble())
+        }
+    }
+
     @ColorInt
     fun getColor(context: Context, pollutant: PollutantIndex? = null): Int {
         return if (pollutant == null) {

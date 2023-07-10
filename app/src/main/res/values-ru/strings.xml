@@ -5,7 +5,6 @@
     <!-- keyword. -->
     <string name="location_current">Текущее местоположение</string>
     <string name="location_resident">Домашнее местоположение</string>
-    <string name="live">Сейчас</string>
     <string name="short_today">Сегодня</string>
     <string name="notification_refreshed_at">Обновлено в</string>
     <string name="precipitation">Осадки</string>

@@ -5,7 +5,6 @@
     <!-- keyword. -->
     <string name="location_current">الموقع الحالي</string>
     <string name="location_resident">موقع الإقامة</string>
-    <string name="live">الآن</string>
     <string name="short_today">اليوم</string>
     <string name="notification_refreshed_at">تم التحديث في</string>
     <string name="precipitation">الهطول</string>

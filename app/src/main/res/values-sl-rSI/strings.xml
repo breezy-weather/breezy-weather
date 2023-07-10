@@ -4,7 +4,6 @@
     <string name="app_name">Vreme</string>
     <!-- keyword. -->
     <string name="location_current">Sedanja lokacija</string>
-    <string name="live">Trenutno</string>
     <string name="short_today">Danes</string>
     <string name="notification_refreshed_at">Osveži ob</string>
     <string name="precipitation">Padavine</string>

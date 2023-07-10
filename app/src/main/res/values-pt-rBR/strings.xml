@@ -5,7 +5,6 @@
     <!-- keyword. -->
     <string name="location_current">Local atual</string>
     <string name="location_resident">Local de residência</string>
-    <string name="live">Agora</string>
     <string name="short_today">Hoje</string>
     <string name="notification_refreshed_at">Atualizado às</string>
     <string name="precipitation">Precipitação</string>

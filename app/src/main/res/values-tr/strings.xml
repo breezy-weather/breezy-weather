@@ -4,7 +4,6 @@
     <string name="app_name">Hava Durumu</string>
     <!-- keyword. -->
     <string name="location_current">Bulunduğunuz konumu</string>
-    <string name="live">Rüzgar</string>
     <string name="short_today">Bugün</string>
     <string name="notification_refreshed_at">Son güncelleme</string>
     <string name="precipitation">Yağış ihtimali</string>

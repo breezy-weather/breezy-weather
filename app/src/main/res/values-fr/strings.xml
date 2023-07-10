@@ -6,7 +6,6 @@
     <!-- mots-clés -->
     <string name="location_current">Ma position</string>
     <string name="location_resident">Mon domicile</string>
-    <string name="live">En ce moment</string>
     <string name="short_today">Auj.</string>
     <string name="notification_refreshed_at">Consulté à</string>
     <string name="alerts_to_follow">Vigilances à venir, appuyez pour voir.</string>
@@ -165,6 +164,7 @@
     <string name="action_help">AIDE</string>
     <string name="action_learn_more">EN SAVOIR PLUS</string>
     <string name="action_continue">Continue</string>
+    <string name="action_close">Fermer</string>
     <string name="action_share">Partager</string>
 
     <string name="locations">Emplacements</string>
@@ -312,12 +312,38 @@
     <string name="settings_weather_provider_iqa_atmo_aura_key">Clé ATMO AURA</string>
     <string name="settings_icon_providers_check_details">Plus de détails</string>
     <string name="alerts_count">$ vigilances météo</string> <!-- $ = alert count. -->
+    <string name="air_quality_pm25">PM2,5</string>
     <string name="air_quality_pm25_voice">PM deux point cinq</string>
+    <string name="air_quality_pm10">PM10</string>
     <string name="air_quality_pm10_voice">PM dix</string>
+    <string name="air_quality_so2">SO₂</string>
     <string name="air_quality_so2_voice">Dioxyde de soufre</string>
+    <string name="air_quality_no2">NO₂</string>
     <string name="air_quality_no2_voice">Dioxyde d’azote</string>
+    <string name="air_quality_o3">O₃</string>
     <string name="air_quality_o3_voice">Ozone</string>
+    <string name="air_quality_co">CO</string>
     <string name="air_quality_co_voice">Monoxyde de carbone</string>
+    <string name="air_quality_pm_info_title">Particules (PM2,5 &amp; PM10)</string>
+    <string name="air_quality_pm_explanations_introduction">Les particules ou matières particulaires atmosphériques sont des particules microscopiques de matière solide ou liquide en suspension dans l’air.</string>
+    <string name="air_quality_pm_explanations_origin">Certaines particules sont d’origine naturelle et proviennent des volcans, des tempêtes de poussière, des incendies de forêts et de prairies, de la végétation vivante et des embruns. Les activités humaines génèrent également des quantités importantes de particules, comme la circulation et les transports, les activités industrielles, les centrales électriques, les chantiers de construction, la combustion de déchets ou les exploitations agricoles.</string>
+    <string name="air_quality_pm_explanations_consequences">Les particules sont la forme la plus nocive de pollution atmosphérique en raison de leur capacité à pénétrer profondément dans les poumons et le cerveau à partir des flux sanguins, causant des problèmes de santé tels que des maladies cardiaques, des maladies pulmonaires et des décès prématurés.</string>
+    <string name="air_quality_o3_info_title">Ozone troposphérique (O₃)</string>
+    <string name="air_quality_o3_info_introduction">L’ozone troposphérique (O₃) est un composant majeur du smog. Bien qu’il s’agisse de la même molécule, l’ozone troposphérique peut être nocif pour la santé humaine, alors que l’ozone stratosphérique protège la terre de l’excès de rayonnement UV. </string>
+    <string name="air_quality_o3_info_origin">Il se forme à partir de réactions photochimiques avec des polluants tels que les composés organiques volatils, le monoxyde de carbone et les oxydes d’azote (NOx) émis par les véhicules et l’industrie. En raison de la nature photochimique de l’ozone, les niveaux les plus élevés d’ozone sont observés pendant les périodes ensoleillées.</string>
+    <string name="air_quality_o3_info_consequences">L’exposition à une quantité excessive d’ozone peut entraîner des problèmes respiratoires, déclencher de l’asthme, réduire la fonction pulmonaire et provoquer des maladies pulmonaires.</string>
+    <string name="air_quality_no2_info_title">Dioxyde d’azote (NO₂)</string>
+    <string name="air_quality_no2_info_introduction">Le dioxyde d’azote (NO₂) est un gaz brun-rouge toxique suffocant à l’odeur âcre et piquante caractéristique.</string>
+    <string name="air_quality_no2_info_origin">Les sources ambiantes de NO₂ résultent de la combustion à haute température de combustibles dans des processus tels que ceux utilisés pour le chauffage, le transport, l’industrie et la production d’électricité. Les sources domestiques d’oxydes d’azote (NOx) comprennent les équipements qui brûlent des combustibles tels que les fours, les cheminées et les cuisinières et fours à gaz.</string>
+    <string name="air_quality_no2_info_consequences">L’exposition au dioxyde d’azote peut irriter les voies respiratoires et aggraver les maladies respiratoires. En outre, le NO₂ est un important précurseur de l’ozone, un polluant étroitement lié à l’asthme et à d’autres affections respiratoires.</string>
+    <string name="air_quality_so2_info_title">Dioxyde de soufre (SO₂)</string>
+    <string name="air_quality_so2_info_introduction">Le dioxyde de soufre (SO₂) est un gaz toxique incolore qui donne son odeur aux allumettes brûlées.</string>
+    <string name="air_quality_so2_info_origin">Il est libéré naturellement par l’activité volcanique et provient principalement de la combustion de combustibles fossiles pour le chauffage domestique, l’industrie et la production d’électricité.</string>
+    <string name="air_quality_so2_info_consequences">L’exposition au SO₂ est associée à des hospitalisations pour asthme et à des visites aux urgences.</string>
+    <string name="air_quality_co_info_title">Monoxyde de carbone (CO)</string>
+    <string name="air_quality_co_info_introduction">Le monoxyde de carbone (CO) est un gaz toxique et inflammable, incolore, inodore, insipide et non irritant.</string>
+    <string name="air_quality_co_info_origin">Il est produit par la combustion incomplète de combustibles carbonés tels que le bois, l’essence, le charbon, le gaz naturel et le kérosène dans des poêles simples, des feux ouverts, des lampes à mèche, des fours et des cheminées. La principale source de monoxyde de carbone (CO) dans l’air ambiant provient des véhicules à moteur.</string>
+    <string name="air_quality_co_info_consequences">Le monoxyde de carbone se diffuse à travers les tissus pulmonaires et dans la circulation sanguine, empêchant les cellules de l’organisme de se lier à l’oxygène. Ce manque d’oxygène endommage les tissus et les cellules. L’exposition au monoxyde de carbone peut entraîner des difficultés respiratoires, de l’épuisement, des vertiges et d’autres symptômes semblables à ceux de la grippe. L’exposition à des niveaux élevés de monoxyde de carbone peut être mortelle.</string>
     <string name="ephemeris_sunrise_at">Lever de soleil à $</string> <!-- $ = time. -->
     <string name="ephemeris_sunset_at">Coucher de soleil à $</string> <!-- $ = time. -->
     <string name="ephemeris_moonrise_at">Lever de lune à $</string> <!-- $ = time. -->
@@ -459,6 +485,7 @@
     <string name="settings_weather_provider_default_value">Par défaut (inchangé)</string>
 
     <!-- Air quality -->
+    <string name="air_quality_index">Indice de Qualité de l’Air</string>
     <string name="air_quality_level_1">Excellent</string>
     <string name="air_quality_level_1_description">La qualité d’air est idéale pour la plupart des individus ; profitez de vos activités en extérieur habituelles.</string>
     <string name="air_quality_level_2">Correct</string>

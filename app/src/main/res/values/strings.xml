@@ -11,7 +11,7 @@
     <string name="air_quality">Air quality</string>
     <string name="allergen">Allergen</string>
     <string name="ephemeris">Sun &amp; moon</string>
-    <string name="live">Live</string>
+    <string name="details">Details</string>
     <!-- Alerts -->
     <string name="alerts">Alerts</string>
     <string name="alerts_count">$ weather alerts</string>
@@ -90,6 +90,7 @@
     <string name="uv_level_11">Extreme</string>
     <string name="uv_alert_level">Alert</string>
     <!-- Air quality -->
+    <string name="air_quality_index">Air Quality Index</string>
     <string name="air_quality_level_1">Excellent</string>
     <string name="air_quality_level_1_description">The air quality is ideal for most individuals; enjoy your normal outdoor activities.</string>
     <string name="air_quality_level_2">Fair</string>
@@ -102,12 +103,41 @@
     <string name="air_quality_level_5_description">Health effects will be immediately felt by sensitive groups and should avoid outdoor activity. Healthy individuals are likely to experience difficulty breathing and throat irritation; consider staying indoors and rescheduling outdoor activities.</string>
     <string name="air_quality_level_6">Dangerous</string>
     <string name="air_quality_level_6_description">Any exposure to the air, even for a few minutes, can lead to serious health effects on everybody. Avoid outdoor activities.</string>
+    <string name="air_quality_pm25">PM2.5</string>
     <string name="air_quality_pm25_voice">PM two point five</string>
+    <string name="air_quality_pm10">PM10</string>
     <string name="air_quality_pm10_voice">PM ten</string>
+    <string name="air_quality_so2">SO₂</string>
     <string name="air_quality_so2_voice">Sulfur dioxide</string>
+    <string name="air_quality_no2">NO₂</string>
     <string name="air_quality_no2_voice">Nitrogen dioxide</string>
+    <string name="air_quality_o3">O₃</string>
     <string name="air_quality_o3_voice">Ozone</string>
+    <string name="air_quality_co">CO</string>
     <string name="air_quality_co_voice">Carbon monoxide</string>
+    <string name="air_quality_pm_info_title">Particulates (PM2.5 &amp; PM10)</string>
+    <string name="air_quality_pm_explanations_introduction">Particulates or atmospheric particulate matter are microscopic particles of solid or liquid matter suspended in the air.</string>
+    <string name="air_quality_pm_explanations_origin">Some particulates occur naturally, originating from volcanoes, dust storms, forest and grassland fires, living vegetation and sea spray. Human activities also generate significant amounts of particulates, such as traffic and transportation, industrial activities, power plants, construction sites, waste burning or fields.</string>
+    <string name="air_quality_pm_explanations_consequences">Particulates are the most harmful form of air pollution due to their ability to penetrate deep into the lungs and brain from blood streams, causing health problems such as heart disease, lung disease, and premature death.</string>
+    <!-- Please keep the 3 in O₃ written this way -->
+    <string name="air_quality_o3_info_title">Ground-level ozone (O₃)</string>
+    <string name="air_quality_o3_info_introduction">Ground-level ozone (O₃) is a major component of smog. Although the same molecule, ground-level ozone can be harmful to human health, unlike stratospheric ozone that protects the earth from excess UV radiation.</string>
+    <string name="air_quality_o3_info_origin">It is formed from photochemical reactions with pollutants such volatile organic compounds, carbon monoxide and nitrogen oxides (NOₓ) emitted from vehicles, and industry. Due to the photochemical nature, the highest levels of ozone are seen during periods of sunny weather.</string>
+    <string name="air_quality_o3_info_consequences">Exposure to excessive ozone can cause problems breathing, trigger asthma, reduce lung function and lead to lung disease.</string>
+    <!-- Please keep the 2 in NO₂ written this way -->
+    <string name="air_quality_no2_info_title">Nitrogen dioxide (NO₂)</string>
+    <string name="air_quality_no2_info_introduction">Nitrogen dioxide (NO₂) is a suffocating, toxic reddish-brown gas with a characteristic pungent, acrid odor..</string>
+    <string name="air_quality_no2_info_origin">Ambient sources of NO₂ results from high temperature combustion of fuels in processes such as those used for heating, transportation, industry and power generation. Household sources of nitrogen oxides (NOₓ) include equipment that burn fuels such as furnaces, fireplaces and gas stoves and ovens.</string>
+    <string name="air_quality_no2_info_consequences">Exposure to nitrogen dioxide can irritate airways and aggravate respiratory diseases. Additionally, NO₂ is an important ozone precursor, a pollutant closely linked to asthma and other respiratory conditions.</string>
+    <!-- Please keep the 2 in SO₂ written this way -->
+    <string name="air_quality_so2_info_title">Sulfur dioxide (SO₂)</string>
+    <string name="air_quality_so2_info_introduction">Sulfur dioxide (SO₂) is a colourless toxic gas responsible for the odor of burnt matches.</string>
+    <string name="air_quality_so2_info_origin">It is released naturally by volcanic activity and predominantly derived from the combustion of fossil fuels for domestic heating, industries and power generation.</string>
+    <string name="air_quality_so2_info_consequences">Exposure to SO₂ is associated with asthma hospital admissions and emergency room visits.</string>
+    <string name="air_quality_co_info_title">Carbon monoxide (CO)</string>
+    <string name="air_quality_co_info_introduction">Carbon monoxide (CO) is a poisonous, flammable gas that is colorless, odorless, tasteless, and non irritant.</string>
+    <string name="air_quality_co_info_origin">It is produced by the incomplete combustion of carbonaceous fuels such as wood, petrol, coal, natural gas and kerosene in simple stoves, open fires, wick lamps, furnaces, fireplaces. The predominant source of carbon monoxide (CO) in ambient air is from motor vehicles.</string>
+    <string name="air_quality_co_info_consequences">Carbon monoxide diffuses across the lung tissues and into the bloodstream, making it difficult for the body’s cells to bind to oxygen. This lack of oxygen damages tissues and cells. Exposure to carbon monoxide can cause difficulties breathing, exhaustion, dizziness, and other flu-like symptoms. Exposure to high levels of carbon monoxide can be deadly.</string>
     <!-- Allergens -->
     <string name="allergen_grass">Grass</string>
     <string name="allergen_mold">Mold</string>
@@ -134,7 +164,6 @@
     <!-- Other weather details vocabulary -->
     <string name="daytime">Daytime</string>
     <string name="nighttime">Nighttime</string>
-    <string name="details">Details</string>
     <string name="hours_of_sun">Hours of sun</string>
     <string name="humidity">Humidity</string>
     <string name="pressure">Atmospheric pressure</string>
@@ -257,6 +286,7 @@
     <string name="action_help">HELP</string>
     <string name="action_learn_more">LEARN MORE</string>
     <string name="action_continue">Continue</string>
+    <string name="action_close">Close</string>
     <string name="action_share">Share</string>
     <!-- Dialogs -->
     <string name="dialog_permissions_notification_title">Allow notifications</string>

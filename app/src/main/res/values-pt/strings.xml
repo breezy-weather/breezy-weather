@@ -4,7 +4,6 @@
     <string name="app_name">Clima</string>
     <!-- keyword. -->
     <string name="location_current">localização atual</string>
-    <string name="live">Ao vivo</string>
     <string name="short_today">Hoje</string>
     <string name="notification_refreshed_at">Atualizado em</string>
     <string name="precipitation">Precipitação</string>

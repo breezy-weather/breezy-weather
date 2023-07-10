@@ -4,7 +4,6 @@
     <string name="app_name">Időjárás</string>
     <!-- keyword. -->
     <string name="location_current">Jelenlegi hely</string>
-    <string name="live">Élő</string>
     <string name="short_today">Ma</string>
     <string name="notification_refreshed_at">Frissítése ekkor</string>
     <string name="precipitation">Csapadék</string>

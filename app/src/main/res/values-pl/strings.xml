@@ -9,7 +9,6 @@
     <!-- keyword. -->
     <string name="location_current">Obecna lokalizacja</string>
     <string name="location_resident">Miejsce zamieszkania</string>
-    <string name="live">Obecnie</string>
     <string name="short_today">Dziś</string>
     <string name="notification_refreshed_at">Odświeżono</string>
     <string name="precipitation">Opad atmosferyczny</string>

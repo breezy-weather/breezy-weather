@@ -52,9 +52,7 @@ class MainAdapter(
             mViewTypeList.add(ViewType.REFRESH_TIME)
             mViewTypeList.add(ViewType.HEADER)
             for (c in cardDisplayList) {
-                if (c === CardDisplay.CARD_AIR_QUALITY
-                    && (weather.current?.airQuality == null || !weather.current.airQuality.isValid)
-                ) {
+                if (c === CardDisplay.CARD_AIR_QUALITY && weather.validAirQuality == null) {
                     continue
                 }
                 if (c === CardDisplay.CARD_ALLERGEN

@@ -9,18 +9,58 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
 import android.widget.TextView
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Icon
+import androidx.compose.material3.ListItem
+import androidx.compose.material3.ListItemDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.index.PollutantIndex
+import org.breezyweather.common.basic.models.weather.AirQuality
+import org.breezyweather.common.extensions.getFormattedTime
+import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.ui.widgets.ArcProgress
 import org.breezyweather.main.adapters.AqiAdapter
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.theme.ThemeManager
+import org.breezyweather.theme.compose.BreezyWeatherTheme
+import org.breezyweather.theme.compose.DayNightTheme
 import org.breezyweather.theme.resource.providers.ResourceProvider
 import org.breezyweather.theme.weatherView.WeatherViewController
 
@@ -30,12 +70,17 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         .inflate(R.layout.container_main_aqi, parent, false)
 ) {
     private val mTitle: TextView = itemView.findViewById(R.id.container_main_aqi_title)
+    private val mTime: TextView = itemView.findViewById(R.id.container_main_aqi_time)
     private val mProgress: ArcProgress = itemView.findViewById(R.id.container_main_aqi_progress)
     private val mRecyclerView: RecyclerView = itemView.findViewById(R.id.container_main_aqi_recyclerView)
+    private val mDialog: ComposeView = itemView.findViewById(R.id.container_main_aqi_dialog)
     private var mAdapter: AqiAdapter? = null
     private var mAqiIndex = 0
     private var mEnable = false
     private var mAttachAnimatorSet: AnimatorSet? = null
+
+    private val _dialogState: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val dialogState = _dialogState.asStateFlow()
 
     @SuppressLint("DefaultLocale")
     override fun onBindView(
@@ -47,42 +92,55 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             activity, location, provider,
             listAnimationEnabled, itemAnimationEnabled, firstCard
         )
-        location.weather!!.current?.let { current ->
-            current.airQuality?.let { airQuality ->
-                mAqiIndex = airQuality.getIndex() ?: 0
-                mEnable = true
-                mTitle.setTextColor(
-                    ThemeManager.getInstance(context)
-                        .weatherThemeDelegate
-                        .getThemeColors(
-                            context,
-                            WeatherViewController.getWeatherKind(current.weatherCode),
-                            location.isDaylight
-                        )[0]
-                )
-                if (itemAnimationEnabled) {
-                    mProgress.apply {
-                        progress = 0f
-                        setText(String.format("%d", 0))
-                        setProgressColor(ContextCompat.getColor(context, R.color.colorLevel_1), MainThemeColorProvider.isLightTheme(context, location))
-                        setArcBackgroundColor(MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline))
-                    }
-                } else {
-                    val aqiColor = airQuality.getColor(mProgress.context)
-                    mProgress.apply {
-                        progress = mAqiIndex.toFloat()
-                        setText(String.format("%d", mAqiIndex))
-                        setProgressColor(aqiColor, MainThemeColorProvider.isLightTheme(context, location))
-                        setArcBackgroundColor(ColorUtils.setAlphaComponent(aqiColor, (255 * 0.1).toInt()))
-                    }
-                }
+
+        val isDaily = (location.weather?.current?.airQuality == null || !location.weather.current.airQuality.isValid)
+        location.weather!!.validAirQuality?.let { airQuality ->
+            mAqiIndex = airQuality.getIndex() ?: 0
+            mEnable = true
+            mTitle.setTextColor(
+                ThemeManager.getInstance(context)
+                    .weatherThemeDelegate
+                    .getThemeColors(
+                        context,
+                        WeatherViewController.getWeatherKind(location.weather),
+                        location.isDaylight
+                    )[0]
+            )
+            mTime.text = if (isDaily) {
+                if (location.weather.dailyForecast[0].isToday(location.timeZone)) {
+                    context.getString(R.string.short_today)
+                } else location.weather.dailyForecast[0].getWeek(context, location.timeZone)
+            } else location.weather.base.updateDate.getFormattedTime(location.timeZone, context.is12Hour)
+            if (itemAnimationEnabled) {
                 mProgress.apply {
-                    setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorTitleText))
-                    setBottomText(airQuality.getName(context))
-                    setBottomTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
-                    contentDescription = mAqiIndex.toString() + ", " + airQuality.getName(context)
-                    max = PollutantIndex.indexExcessivePollution.toFloat()
+                    progress = 0f
+                    setText(String.format("%d", 0))
+                    setProgressColor(ContextCompat.getColor(context, R.color.colorLevel_1), MainThemeColorProvider.isLightTheme(context, location))
+                    setArcBackgroundColor(MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline))
                 }
+            } else {
+                val aqiColor = airQuality.getColor(mProgress.context)
+                mProgress.apply {
+                    progress = mAqiIndex.toFloat()
+                    setText(String.format("%d", mAqiIndex))
+                    setProgressColor(aqiColor, MainThemeColorProvider.isLightTheme(context, location))
+                    setArcBackgroundColor(ColorUtils.setAlphaComponent(aqiColor, (255 * 0.1).toInt()))
+                }
+            }
+            mProgress.apply {
+                setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorTitleText))
+                setBottomText(airQuality.getName(context))
+                setBottomTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
+                contentDescription = mAqiIndex.toString() + ", " + airQuality.getName(context)
+                max = PollutantIndex.indexExcessivePollution.toFloat()
+            }
+            mDialog.setContent {
+                BreezyWeatherTheme(lightTheme = !isSystemInDarkTheme()) {
+                    AirQualityDialogView(airQuality)
+                }
+            }
+            itemView.setOnClickListener {
+                _dialogState.value = true
             }
         }
         mAdapter = AqiAdapter(context, location, itemAnimationEnabled)
@@ -90,10 +148,70 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         mRecyclerView.layoutManager = LinearLayoutManager(context)
     }
 
+
+    @Composable
+    private fun AirQualityDialogView(airQuality: AirQuality) {
+        val dialogOpenState by dialogState.collectAsState()
+
+        if (dialogOpenState) {
+            AlertDialog(
+                onDismissRequest = { _dialogState.value = false },
+                title = {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Column(
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Text(
+                                text = stringResource(R.string.air_quality_index),
+                                color = MaterialTheme.colorScheme.onSurface,
+                                style = MaterialTheme.typography.headlineSmall
+                            )
+                        }
+                        Spacer(modifier = Modifier.width(dimensionResource(R.dimen.little_margin)))
+                        Text(
+                            text = mAqiIndex.toString(),
+                            color = Color(airQuality.getColor(mProgress.context)),
+                            style = MaterialTheme.typography.displaySmall
+                        )
+                    }
+                },
+                text = {
+                    Column {
+                        Text(
+                            text = airQuality.getName(context) ?: "",
+                            fontWeight = FontWeight.Bold
+                        )
+                        Text(
+                            text = airQuality.getDescription(context) ?: "",
+                            color = DayNightTheme.colors.bodyColor
+                        )
+                    }
+                },
+                confirmButton = {
+                    TextButton(
+                        onClick = {
+                            _dialogState.value = false
+                        }
+                    ) {
+                        Text(
+                            text = stringResource(R.string.action_close),
+                            color = MaterialTheme.colorScheme.primary,
+                            style = MaterialTheme.typography.labelLarge,
+                        )
+                    }
+                }
+            )
+        }
+    }
+
     @SuppressLint("DefaultLocale")
     override fun onEnterScreen() {
         if (itemAnimationEnabled && mEnable) {
-            mLocation?.weather?.current?.airQuality?.let { airQuality ->
+            mLocation!!.weather!!.validAirQuality?.let { airQuality ->
                 val aqiColor = airQuality.getColor(mProgress.context)
                 val progressColor = ValueAnimator.ofObject(
                     ArgbEvaluator(),

@@ -114,7 +114,6 @@
     <string name="minutely_forecast">Dự báo từng phút</string>
     <string name="hourly_forecast">Dự báo hàng giờ</string>
     <string name="air_quality">Chất lượng không khí</string>
-    <string name="live">Trực tiếp</string>
     <string name="alerts_count">$ cảnh báo thời tiết</string>
     <string name="app_name">Thời tiết</string>
     <string name="precipitation_forecast">Dự báo lượng mưa</string>

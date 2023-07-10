@@ -11,9 +11,28 @@ import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
 import android.widget.TextView
 import androidx.annotation.ColorInt
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.index.PollutantIndex
@@ -21,6 +40,8 @@ import org.breezyweather.common.basic.models.options.unit.AirQualityCOUnit
 import org.breezyweather.common.basic.models.options.unit.AirQualityUnit
 import org.breezyweather.common.ui.widgets.RoundProgress
 import org.breezyweather.main.utils.MainThemeColorProvider
+import org.breezyweather.theme.compose.BreezyWeatherTheme
+import org.breezyweather.theme.compose.DayNightTheme
 
 class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean) :
     RecyclerView.Adapter<AqiAdapter.ViewHolder>() {
@@ -29,6 +50,7 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
     private val mHolderList: MutableList<ViewHolder>
 
     class AqiItem(
+        val pollutantType: PollutantIndex,
         @field:ColorInt val color: Int,
         val progress: Float,
         val max: Float,
@@ -45,11 +67,16 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
         private var mAttachAnimatorSet: AnimatorSet? = null
         private val mTitle: TextView
         private val mContent: TextView
+        private val mDialog: ComposeView
         private val mProgress: RoundProgress
+
+        private val _dialogState: MutableStateFlow<Boolean> = MutableStateFlow(false)
+        val dialogState = _dialogState.asStateFlow()
 
         init {
             mTitle = itemView.findViewById(R.id.item_aqi_title)
             mContent = itemView.findViewById(R.id.item_aqi_content)
+            mDialog = itemView.findViewById(R.id.item_aqi_dialog)
             mProgress = itemView.findViewById(R.id.item_aqi_progress)
         }
 
@@ -63,6 +90,14 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
             mTitle.setTextColor(MainThemeColorProvider.getColor(lightTheme, R.attr.colorTitleText))
             mContent.text = item.content
             mContent.setTextColor(MainThemeColorProvider.getColor(lightTheme, R.attr.colorBodyText))
+            mDialog.setContent {
+                BreezyWeatherTheme(lightTheme = !isSystemInDarkTheme()) {
+                    PollutantInfoDialogView(item.pollutantType)
+                }
+            }
+            itemView.setOnClickListener {
+                _dialogState.value = true
+            }
             if (mExecuteAnimation) {
                 mProgress.apply {
                     progress = 0f
@@ -79,6 +114,61 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
                         ColorUtils.setAlphaComponent(item.color, (255 * 0.1).toInt())
                     )
                 }
+            }
+        }
+
+        @Composable
+        private fun PollutantInfoDialogView(pollutantType: PollutantIndex) {
+            val dialogOpenState by dialogState.collectAsState()
+
+            if (dialogOpenState) {
+                AlertDialog(
+                    onDismissRequest = { _dialogState.value = false },
+                    title = {
+                        Text(
+                            text = stringResource(airQualityInfo[pollutantType]!![0]),
+                            color = MaterialTheme.colorScheme.onSurface,
+                            style = MaterialTheme.typography.headlineSmall,
+                        )
+                    },
+                    text = {
+                        Column(
+                            modifier = Modifier
+                                .verticalScroll(rememberScrollState())
+                        ) {
+                            Text(
+                                text = stringResource(airQualityInfo[pollutantType]!![1]),
+                                color = DayNightTheme.colors.bodyColor,
+                                style = MaterialTheme.typography.bodyMedium,
+                            )
+                            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                            Text(
+                                text = stringResource(airQualityInfo[pollutantType]!![2]),
+                                color = DayNightTheme.colors.bodyColor,
+                                style = MaterialTheme.typography.bodyMedium,
+                            )
+                            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                            Text(
+                                text = stringResource(airQualityInfo[pollutantType]!![3]),
+                                color = DayNightTheme.colors.bodyColor,
+                                style = MaterialTheme.typography.bodyMedium,
+                            )
+                        }
+                    },
+                    confirmButton = {
+                        TextButton(
+                            onClick = {
+                                _dialogState.value = false
+                            }
+                        ) {
+                            Text(
+                                text = stringResource(R.string.action_close),
+                                color = MaterialTheme.colorScheme.primary,
+                                style = MaterialTheme.typography.labelLarge,
+                            )
+                        }
+                    }
+                )
             }
         }
 
@@ -120,21 +210,63 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
             }
             mAttachAnimatorSet = null
         }
+
+        companion object {
+
+            private val airQualityInfo = mapOf(
+                PollutantIndex.PM10 to arrayOf(
+                    R.string.air_quality_pm_info_title,
+                    R.string.air_quality_pm_explanations_introduction,
+                    R.string.air_quality_pm_explanations_origin,
+                    R.string.air_quality_pm_explanations_consequences
+                ),
+                PollutantIndex.PM25 to arrayOf(
+                    R.string.air_quality_pm_info_title,
+                    R.string.air_quality_pm_explanations_introduction,
+                    R.string.air_quality_pm_explanations_origin,
+                    R.string.air_quality_pm_explanations_consequences
+                ),
+                PollutantIndex.O3 to arrayOf(
+                    R.string.air_quality_o3_info_title,
+                    R.string.air_quality_o3_info_introduction,
+                    R.string.air_quality_o3_info_origin,
+                    R.string.air_quality_o3_info_consequences
+                ),
+                PollutantIndex.NO2 to arrayOf(
+                    R.string.air_quality_no2_info_title,
+                    R.string.air_quality_no2_info_introduction,
+                    R.string.air_quality_no2_info_origin,
+                    R.string.air_quality_no2_info_consequences
+                ),
+                PollutantIndex.SO2 to arrayOf(
+                    R.string.air_quality_so2_info_title,
+                    R.string.air_quality_so2_info_introduction,
+                    R.string.air_quality_so2_info_origin,
+                    R.string.air_quality_so2_info_consequences
+                ),
+                PollutantIndex.CO to arrayOf(
+                    R.string.air_quality_co_info_title,
+                    R.string.air_quality_co_info_introduction,
+                    R.string.air_quality_co_info_origin,
+                    R.string.air_quality_co_info_consequences
+                )
+            )
+        }
     }
 
     init {
         mLightTheme = MainThemeColorProvider.isLightTheme(context, location)
         mItemList = ArrayList()
-        if (location.weather?.current?.airQuality != null && location.weather.current.airQuality.isValid) {
-            val airQuality = location.weather.current.airQuality
+        location.weather?.validAirQuality?.let { airQuality ->
             // We use air quality index for the progress bar instead of concentration for more realistic bar
             if (airQuality.pM25 != null) {
                 mItemList.add(
                     AqiItem(
+                        PollutantIndex.PM25,
                         airQuality.getColor(context, PollutantIndex.PM25),
                         airQuality.getIndex(PollutantIndex.PM25)!!.toFloat(),
                         PollutantIndex.indexExcessivePollution.toFloat(),
-                        "PM2.5",
+                        context.getString(R.string.air_quality_pm25),
                         AirQualityUnit.MUGPCUM.getValueText(context, airQuality.pM25),
                         context.getString(R.string.air_quality_pm25_voice)
                                 + ", "
@@ -146,10 +278,11 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
             if (airQuality.pM10 != null) {
                 mItemList.add(
                     AqiItem(
+                        PollutantIndex.PM10,
                         airQuality.getColor(context, PollutantIndex.PM10),
                         airQuality.getIndex(PollutantIndex.PM10)!!.toFloat(),
                         PollutantIndex.indexExcessivePollution.toFloat(),
-                        "PM10",
+                        context.getString(R.string.air_quality_pm10),
                         AirQualityUnit.MUGPCUM.getValueText(context, airQuality.pM10),
                         context.getString(R.string.air_quality_pm10_voice)
                                 + ", " + AirQualityUnit.MUGPCUM.getValueVoice(context, airQuality.pM10),
@@ -160,10 +293,11 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
             if (airQuality.o3 != null) {
                 mItemList.add(
                     AqiItem(
+                        PollutantIndex.O3,
                         airQuality.getColor(context, PollutantIndex.O3),
                         airQuality.getIndex(PollutantIndex.O3)!!.toFloat(),
                         PollutantIndex.indexExcessivePollution.toFloat(),
-                        "O₃",
+                        context.getString(R.string.air_quality_o3),
                         AirQualityUnit.MUGPCUM.getValueText(context, airQuality.o3),
                         context.getString(R.string.air_quality_o3_voice)
                                 + ", " + AirQualityUnit.MUGPCUM.getValueVoice(context, airQuality.o3),
@@ -174,10 +308,11 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
             if (airQuality.nO2 != null) {
                 mItemList.add(
                     AqiItem(
+                        PollutantIndex.NO2,
                         airQuality.getColor(context, PollutantIndex.NO2),
                         airQuality.getIndex(PollutantIndex.NO2)!!.toFloat(),
                         PollutantIndex.indexExcessivePollution.toFloat(),
-                        "NO₂",
+                        context.getString(R.string.air_quality_no2),
                         AirQualityUnit.MUGPCUM.getValueText(context, airQuality.nO2),
                         context.getString(R.string.air_quality_no2_voice)
                                 + ", " + AirQualityUnit.MUGPCUM.getValueVoice(context, airQuality.nO2),
@@ -188,10 +323,11 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
             if (airQuality.sO2 != null && airQuality.sO2 > 0) {
                 mItemList.add(
                     AqiItem(
+                        PollutantIndex.SO2,
                         airQuality.getColor(context, PollutantIndex.SO2),
                         airQuality.getIndex(PollutantIndex.SO2)!!.toFloat(),
                         PollutantIndex.indexExcessivePollution.toFloat(),
-                        "SO₂",
+                        context.getString(R.string.air_quality_so2),
                         AirQualityUnit.MUGPCUM.getValueText(context, airQuality.sO2),
                         context.getString(R.string.air_quality_so2_voice)
                                 + ", " + AirQualityUnit.MUGPCUM.getValueVoice(context, airQuality.sO2),
@@ -202,10 +338,11 @@ class AqiAdapter(context: Context, location: Location, executeAnimation: Boolean
             if (airQuality.cO != null && airQuality.cO > 0) {
                 mItemList.add(
                     AqiItem(
+                        PollutantIndex.CO,
                         airQuality.getColor(context, PollutantIndex.CO),
                         airQuality.getIndex(PollutantIndex.CO)!!.toFloat(),
                         PollutantIndex.indexExcessivePollution.toFloat(),
-                        "CO",
+                        context.getString(R.string.air_quality_co),
                         AirQualityCOUnit.MGPCUM.getValueText(context, airQuality.cO),
                         context.getString(R.string.air_quality_co_voice)
                                 + ", " + AirQualityCOUnit.MGPCUM.getValueVoice(context, airQuality.cO),

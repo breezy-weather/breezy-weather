@@ -21,6 +21,7 @@ enum class PollutantIndex(
         // Plume 2023
         val aqiThresholds = listOf(0, 20, 50, 100, 150, 250)
         val namesArrayId = R.array.air_quality_levels
+        val descriptionsArrayId = R.array.air_quality_level_descriptions
         val colorsArrayId = R.array.air_quality_level_colors
 
         val indexFreshAir = aqiThresholds[1]
@@ -46,6 +47,12 @@ enum class PollutantIndex(
             if (aqi == null) return null
             val level = getAqiToLevel(aqi)
             return if (level != null) context.resources.getStringArray(namesArrayId).getOrNull(level) else null
+        }
+
+        fun getAqiToDescription(context: Context, aqi: Int?): String? {
+            if (aqi == null) return null
+            val level = getAqiToLevel(aqi)
+            return if (level != null) context.resources.getStringArray(descriptionsArrayId).getOrNull(level) else null
         }
     }
 
@@ -84,6 +91,7 @@ enum class PollutantIndex(
     val excessivePollution = thresholds.last()
 
     fun getName(context: Context, cp: Double?): String? = getAqiToName(context, getIndex(cp))
+    fun getDescription(context: Context, cp: Double?): String? = getAqiToDescription(context, getIndex(cp))
 
     @ColorInt
     fun getColor(context: Context, cp: Double?): Int = getAqiToColor(context, getIndex(cp))

@@ -5,7 +5,6 @@
     <!-- keyword. -->
     <string name="location_current">Nykyinen sijainti</string>
     <string name="location_resident">Asuinpaikka</string>
-    <string name="live">Nyt</string>
     <string name="short_today">Tänään</string>
     <string name="notification_refreshed_at">Päivitetty</string>
     <string name="precipitation">Sademäärä</string>

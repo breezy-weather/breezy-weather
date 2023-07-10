@@ -1,0 +1,5 @@
+<ul>
+<li>Add more info when tapping on air quality card or specific pollutant.</li>
+<li>Cards now show on top right at what time their data is valid</li>
+<li>Add additional settings from Android app info</li>
+</ul>

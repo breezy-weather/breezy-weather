@@ -4,7 +4,6 @@
     <string name="app_name">Време</string>
     <!-- keyword. -->
     <string name="location_current">Тренутну локацију</string>
-    <string name="live">Уживо</string>
     <string name="short_today">Данас</string>
     <string name="notification_refreshed_at">Oсвежи за</string>
     <string name="precipitation">Падавине</string>
