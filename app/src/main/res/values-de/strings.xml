@@ -109,7 +109,7 @@
     <string name="settings_notifications_section_forecast">Vorhersage</string>
     <string name="settings_appearance_language_title">Sprache</string>
     <string name="settings_appearance">Erscheinungsbild</string>
-    <string name="settings_appearance_dark_mode_title">Dark Mode</string>
+    <string name="settings_appearance_dark_mode_title">Dunkler Modus</string>
     <string name="settings_units_distance">Einheit Entfernung</string>
     <string name="settings_main_gravity_sensor_switch">Lagesensor</string>
     <string name="settings_appearance_icon_pack_title">Symbolpaket</string>
@@ -571,4 +571,5 @@
     <string name="notification_style_native">Nativ</string>
     <string name="null_data_text">n. v.</string>
     <string name="settings_widgets_live_wallpaper_error">Die Hintergrundbildauswahl konnte nicht gestartet werden. Sie können das Hintergrundbild von Breezy Weather weiterhin aktivieren, indem Sie in der Hintergrundbildauswahl Ihres Startbildschirms „Live-Hintergrund“ auswählen.</string>
+    <string name="dialog_permissions_notification_title">Benachrichtigungen zulassen</string>
 </resources>
