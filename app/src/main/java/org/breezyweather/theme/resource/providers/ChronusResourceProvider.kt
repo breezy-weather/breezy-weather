@@ -50,7 +50,7 @@ class ChronusResourceProvider(
     // weather icon.
     override fun getWeatherIcon(code: WeatherCode?, dayTime: Boolean): Drawable {
         try {
-            getDrawable(getWeatherIconName(code, dayTime))!!
+            return getDrawable(getWeatherIconName(code, dayTime))!!
         } catch (ignore: Exception) {
         }
         return mDefaultProvider.getWeatherIcon(code, dayTime)
