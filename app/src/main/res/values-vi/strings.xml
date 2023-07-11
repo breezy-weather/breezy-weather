@@ -2,7 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="short_today">Hnay</string>
     <string name="short_sunday">CN</string>
-    <string name="short_tuesday">tBa</string>
+    <string name="short_tuesday">Th 3</string>
     <string name="ephemeris">Mặt trời &amp; mặt trăng</string>
     <string name="allergen">Chất gây dị ứng</string>
     <string name="alerts">Cảnh báo</string>
@@ -289,7 +289,7 @@
     <string name="settings_background_updates_method_worker">Android Worker</string>
     <string name="settings_background_updates_method_description_worker">Android Worker
 \nPhương pháp ưu tiên. Thử đổi nếu bạn không nhận được thông báo hoặc tiện ích không làm mới.</string>
-    <string name="settings_background_updates_method_notification">Persistent notification</string>
+    <string name="settings_background_updates_method_notification">Thông báo liên tục</string>
     <string name="settings_background_updates_method_description_notification">Persistent notification
 \nPhương pháp đáng tinh cậy hơn nhưng yêu cầu app phải hoạt động dưới nền.</string>
     <string name="settings_background_updates_method_notification_dialog_title">Tắt danh mục thông báo</string>
@@ -343,13 +343,13 @@
     <string name="settings_notifications_summary">Cảnh báo thời tiết, lượng mưa, dự báo</string>
     <string name="settings_notifications_alerts_title">Thông báo về cảnh báo thời tiết</string>
     <string name="short_yesterday">Hqua</string>
-    <string name="short_monday">tHai</string>
+    <string name="short_monday">Th 2</string>
     <string name="daily_forecast">Dự báo hàng ngày</string>
     <string name="short_tomorrow">Nmai</string>
-    <string name="short_wednesday">tTư</string>
-    <string name="short_thursday">tNăm</string>
-    <string name="short_friday">tSáu</string>
-    <string name="short_saturday">tBảy</string>
+    <string name="short_wednesday">Th 4</string>
+    <string name="short_thursday">Th 5</string>
+    <string name="short_friday">Th 6</string>
+    <string name="short_saturday">Th 7</string>
     <string name="temperature">Nhiệt độ</string>
     <string name="temperature_feels_like">Cảm giác như</string>
     <string name="temperature_wind_chill">Gió lạnh</string>
@@ -504,4 +504,33 @@
     <string name="precipitation_total">Tổng cộng</string>
     <string name="location_message_reverse_geocoding_failed">Nhà cung cấp thời tiết không tìm được vị trí chính xác</string>
     <string name="action_undo" tools:ignore="ButtonCase">HOÀN TÁC</string>
+    <string name="notification_style_cities"></string>
+    <string name="openmeteo_weather_text_depositing_rime_fog">Sướng muối dạng lớp</string>
+    <string name="air_quality_pm_explanations_consequences">Các hạt là dạng ô nhiễm không khí có hại nhất do khả năng xâm nhập sâu vào phổi và não từ dòng máu, gây ra các vấn đề sức khỏe như bệnh tim, bệnh phổi và tử vong sớm.</string>
+    <string name="air_quality_o3_info_title">Ôzôn trên mặt đất (O₃)</string>
+    <string name="air_quality_o3_info_origin">Nó được hình thành từ các phản ứng quang hóa với các chất gây ô nhiễm như các hợp chất hữu cơ dễ bay hơi, cacbon monoxit và nitơ oxit (NOₓ) thải ra từ các phương tiện giao thông và công nghiệp. Do tính chất quang hóa, nồng độ ôzôn cao nhất được quan sát thấy trong thời kỳ nắng.</string>
+    <string name="air_quality_no2_info_title">Nitơ đioxit (NO₂)</string>
+    <string name="air_quality_no2_info_introduction">Nitơ đioxit (NO₂) là một loại khí màu nâu đỏ gây ngạt thở, độc hại với mùi hăng đặc trưng, gay gắt..</string>
+    <string name="air_quality_no2_info_origin">Các nguồn NO₂ xung quanh là kết quả của quá trình đốt cháy nhiên liệu ở nhiệt độ cao trong các quy trình như sử dụng để sưởi ấm, vận chuyển, công nghiệp và sản xuất điện. Các nguồn oxit nitơ (NOₓ) trong gia đình bao gồm các thiết bị đốt nhiên liệu như lò nung, lò sưởi, bếp gas và lò nướng.</string>
+    <string name="air_quality_so2_info_title">Lưu huỳnh đioxit (SO₂)</string>
+    <string name="air_quality_so2_info_origin">Nó được giải phóng tự nhiên bởi hoạt động núi lửa và chủ yếu có nguồn gốc từ quá trình đốt cháy nhiên liệu hóa thạch để sưởi ấm trong nước, công nghiệp và phát điện.</string>
+    <string name="air_quality_so2_info_consequences">Tiếp xúc với SO₂ có liên quan đến việc nhập viện do hen suyễn và đến phòng cấp cứu.</string>
+    <string name="air_quality_co_info_title">Cacbon monoxit (CO)</string>
+    <string name="location_none_added_yet_instructions">Chưa có vị trí nào được thêm vào. Vui lòng nhấn vào biểu tượng tìm kiếm để thêm vị trí theo cách thủ công hoặc thêm vị trí hiện tại của bạn từ nút nổi.</string>
+    <string name="air_quality_pm_info_title">Các hạt (PM2.5 &amp; PM10)</string>
+    <string name="air_quality_pm_explanations_introduction">Các hạt hoặc vật chất hạt trong khí quyển là các hạt cực nhỏ của chất rắn hoặc chất lỏng lơ lửng trong không khí.</string>
+    <string name="air_quality_o3_info_introduction">Ôzôn trên mặt đất (O₃) là thành phần chính của sương mù. Mặc dù cùng một phân tử, nhưng ôzôn trên mặt đất có thể gây hại cho sức khỏe con người, không giống như ôzôn ở tầng bình lưu bảo vệ trái đất khỏi bức xạ cực tím dư thừa.</string>
+    <string name="air_quality_pm_explanations_origin">Một số hạt xuất hiện tự nhiên, có nguồn gốc từ núi lửa, bão bụi, cháy rừng và đồng cỏ, thảm thực vật sống và bụi nước biển. Các hoạt động của con người cũng tạo ra một lượng đáng kể các hạt, chẳng hạn như giao thông và vận tải, hoạt động công nghiệp, nhà máy điện, công trường xây dựng, đốt chất thải hoặc đồng ruộng.</string>
+    <string name="air_quality_o3_info_consequences">Tiếp xúc với ozone quá mức có thể gây khó thở, gây bệnh hen suyễn, giảm chức năng phổi và dẫn đến bệnh phổi.</string>
+    <string name="air_quality_no2_info_consequences">Tiếp xúc với nitơ đioxit có thể gây kích ứng đường thở và làm trầm trọng thêm các bệnh về đường hô hấp. Ngoài ra, NO₂ là một tiền chất quan trọng của ôzôn, một chất gây ô nhiễm có liên quan mật thiết đến bệnh hen suyễn và các tình trạng hô hấp khác.</string>
+    <string name="air_quality_so2_info_introduction">Lưu huỳnh dioxit (SO₂) là một khí độc không màu gây ra mùi diêm cháy.</string>
+    <string name="air_quality_co_info_introduction">Cacbon monoxit (CO) là một loại khí độc, dễ cháy, không màu, không mùi, không vị và không gây kích ứng.</string>
+    <string name="air_quality_co_info_origin">Nó được tạo ra do quá trình đốt cháy không hoàn toàn các nhiên liệu có chứa carbon như gỗ, xăng, than, khí đốt tự nhiên và dầu hỏa trong bếp đơn giản, ngọn lửa mở, đèn bấc, lò nung, lò sưởi. Nguồn cacbon monoxit (CO) chủ yếu trong không khí xung quanh là từ các phương tiện cơ giới.</string>
+    <string name="dialog_permissions_notification_content">Để có thể gửi thông báo cho bạn về vị trí đã chọn, Breezy Weather cần có khả năng gửi thông báo cho bạn. Các loại thông báo khác có thể được bật trong cài đặt. Chúng tôi khuyên bạn nên cho phép thông báo và sau đó tắt các danh mục thông báo riêng lẻ mà bạn không muốn nhận trong cài đặt ứng dụng.</string>
+    <string name="air_quality_co_info_consequences">Cacbon monoxit khuếch tán qua các mô phổi và vào máu, khiến các tế bào của cơ thể khó liên kết với oxy. Sự thiếu oxy này làm hỏng các mô và tế bào. Tiếp xúc với carbon monoxide có thể gây khó thở, kiệt sức, chóng mặt và các triệu chứng giống như cúm khác. Tiếp xúc với nồng độ cacbon monoxit cao có thể gây chết người.</string>
+    <string name="dialog_permissions_notification_title">Cho phép thông báo</string>
+    <string name="action_close">Đóng</string>
+    <string name="settings_widgets_live_wallpaper_error">Không thể khởi chạy trình chọn hình nền. Bạn vẫn có thể bật hình nền Breezy Weather bằng cách chọn “Hình nền động” trong bộ chọn hình nền màn hình chính của bạn.</string>
+    <string name="weather_source_metno_voice">Viện Khí tượng Na Uy</string>
+    <string name="settings_location_baidu_ip_location_ak">Khóa IP Vị Trí Baidu</string>
 </resources>
