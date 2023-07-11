@@ -43,7 +43,7 @@
     <string name="location_dialog_failed_to_locate_title">Standort kann nicht ermittelt werden\?</string>
     <string name="location_message_list_cannot_be_empty">Ortsliste darf nicht leer sein</string>
     <string name="location_current_not_found_yet">Aktueller Standort noch nicht gefunden…</string>
-    <string name="location_resident_message">Als Wohnort festlegen</string>
+    <string name="location_resident_message">Als Wohnort festgelegt</string>
     <string name="location_resident_dialog">Abhängig von Ihrem aktuellen Standort zeigt und verbirgt Breezy Weather Ihre Wohnorte.
 \nSie können zum Beispiel Ihre Heimatstadt als Wohnort festlegen. Sie können das Wetter in Ihrer Heimatstadt überprüfen, während Sie auf Reisen sind. Wenn Sie nach Hause kommen, wird das Wetter in Ihrer Heimatstadt ausgeblendet und durch das Wetter für Ihren aktuellen Standort ersetzt.</string>
     <string name="settings_changes_apply_after_restart">Änderungen werden bei Neustart übernommen</string>
@@ -484,7 +484,7 @@
     <string name="settings_notifications">Benachrichtigungen</string>
     <string name="settings_main_cards_other_element_animations_switch">Animation weiterer Elemente</string>
     <string name="settings_widgets_day_night_temp_reversed_title">Reihenfolge der Tag-/Nachttemperaturen umkehren</string>
-    <string name="settings_appearance_summary">Sprache, Dunkelmodus, Symbolpaket, Einheiten</string>
+    <string name="settings_appearance_summary">Sprache, dunkler Modus, Symbolpaket, Einheiten</string>
     <string name="settings_notifications_summary">Wetterwarnungen, Niederschlag, Vorhersage</string>
     <string name="settings_widgets_notification_feels_like_switch">Gefühlte Temperatur verwenden</string>
     <string name="settings_main_section_displayed_data">Angezeigte Daten</string>
@@ -572,4 +572,18 @@
     <string name="null_data_text">n. v.</string>
     <string name="settings_widgets_live_wallpaper_error">Die Hintergrundbildauswahl konnte nicht gestartet werden. Sie können das Hintergrundbild von Breezy Weather weiterhin aktivieren, indem Sie in der Hintergrundbildauswahl Ihres Startbildschirms „Live-Hintergrund“ auswählen.</string>
     <string name="dialog_permissions_notification_title">Benachrichtigungen zulassen</string>
+    <string name="air_quality_index">Luftqualitätsindex</string>
+    <string name="air_quality_pm10">PM10</string>
+    <string name="air_quality_so2">SO₂</string>
+    <string name="air_quality_no2">NO₂</string>
+    <string name="air_quality_o3">O₃</string>
+    <string name="air_quality_co">CO</string>
+    <string name="air_quality_pm_info_title">Feinstaub (PM2.5 &amp; PM10)</string>
+    <string name="air_quality_no2_info_title">Stickstoffdioxid (NO₂)</string>
+    <string name="air_quality_so2_info_title">Schwefeldioxid (SO₂)</string>
+    <string name="air_quality_co_info_title">Kohlenstoffmonoxid (CO)</string>
+    <string name="action_close">Schließen</string>
+    <string name="air_quality_pm25">PM2.5</string>
+    <string name="air_quality_o3_info_title">Bodennahes Ozon (O₃)</string>
+    <string name="location_none_added_yet_instructions">Noch kein Ort hinzugefügt. Bitte tippen Sie auf das Suchsymbol, um einen Ort manuell hinzuzufügen, oder fügen Sie Ihren aktuellen Standort über die schwebende Schaltfläche hinzu.</string>
 </resources>
