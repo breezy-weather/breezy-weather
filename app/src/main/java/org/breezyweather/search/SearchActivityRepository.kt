@@ -4,7 +4,6 @@ import android.content.Context
 import dagger.hilt.android.qualifiers.ApplicationContext
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.provider.WeatherSource
-import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.main.utils.RequestErrorType
 import org.breezyweather.settings.ConfigStore
 import org.breezyweather.weather.WeatherHelper

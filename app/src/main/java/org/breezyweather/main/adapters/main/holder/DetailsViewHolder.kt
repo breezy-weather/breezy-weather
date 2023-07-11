@@ -69,6 +69,7 @@ class DetailsViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
 
     @Composable
     private fun ContentView(detailDisplayList: List<DetailDisplay>, current: Current, location: Location) {
+        // TODO: Lazy
         Column {
             availableDetails(LocalContext.current, detailDisplayList, current, location.isDaylight).forEach { detailDisplay ->
                 ListItem(

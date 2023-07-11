@@ -15,6 +15,6 @@ data class HistoryEntity(
     var cityId: String,
     var weatherSource: String,
     var date: Date,
-    var daytimeTemperature: Int? = null,
-    var nighttimeTemperature: Int? = null
+    var daytimeTemperature: Float? = null,
+    var nighttimeTemperature: Float? = null
 )

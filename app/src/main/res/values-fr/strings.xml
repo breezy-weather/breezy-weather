@@ -188,6 +188,8 @@
     <!-- feedback. -->
     <string name="notification_location_in_background">Localisation en arrière-plan</string>
 
+    <string name="dialog_permissions_notification_title">Restez informés</string>
+    <string name="dialog_permissions_notification_content">Appuyez ici pour activer les notifications de vigilances météo, ou décidez plus tard depuis les paramètres.</string>
     <string name="dialog_permissions_location_title">Accéder aux informations de localisation</string>
     <string name="dialog_permissions_location_content">Breezy Weather a besoin de récupérer vos informations de localisation quand l’application est utilisée ou en arrière-plan pour fournir les données météo de votre position actuelle. Pour cela, nous avons besoin de certaines permissions. Ces informations ne seront utilisées que pour obtenir les données météo de votre position actuelle. Si vous ne souhaitez pas partager vos informations de localisation, vous pouvez toujours refuser et définir manuellement un emplacement depuis la recherche.</string>
     <string name="dialog_permissions_location_background_title">Accéder à la localisation en arrière-plan</string>
@@ -271,6 +273,8 @@
 
     <string name="location_search_placeholder">Rechercher une localisation…</string>
     <string name="location_current_not_found_yet">Pas encore localisé…</string>
+    <string name="location_search_no_results">$1 n’a pu trouver aucun résultat pour $2</string>
+    <string name="location_search_no_results_advice">Vérifiez l’orthographe de votre requête, et que celle-ci n’est pas trop spécifique. Alternativement, vous pouvez essayer un autre fournisseur météo qui peut produire des résultats de recherche d’emplacements différents.</string>
 
     <string name="settings_changes_apply_after_restart">Les modifications seront appliquées après un redémarrage</string>
 

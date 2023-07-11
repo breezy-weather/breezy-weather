@@ -37,26 +37,26 @@ fun convert(
                 weatherText = getWeatherText(forecastResult.current.weather),
                 weatherCode = getWeatherCode(forecastResult.current.weather),
                 temperature = Temperature(
-                    temperature = forecastResult.current.temperature?.value?.toInt(),
-                    apparentTemperature = forecastResult.current.feelsLike?.value?.toInt()
+                    temperature = forecastResult.current.temperature?.value?.toFloatOrNull(),
+                    apparentTemperature = forecastResult.current.feelsLike?.value?.toFloatOrNull()
                 ),
                 wind = if (forecastResult.current.wind != null) Wind(
-                    direction = getWindDirection(context, forecastResult.current.wind.direction?.value?.toFloat()),
+                    direction = getWindDirection(context, forecastResult.current.wind.direction?.value?.toFloatOrNull()),
                     degree = WindDegree(
-                        degree = forecastResult.current.wind.direction?.value?.toFloat(),
+                        degree = forecastResult.current.wind.direction?.value?.toFloatOrNull(),
                         isNoDirection = false
                     ),
-                    speed = forecastResult.current.wind.speed?.value?.toFloat(),
-                    level = getWindLevel(context, forecastResult.current.wind.speed?.value?.toFloat())
+                    speed = forecastResult.current.wind.speed?.value?.toFloatOrNull(),
+                    level = getWindLevel(context, forecastResult.current.wind.speed?.value?.toFloatOrNull())
                 ) else null,
                 uV = if (forecastResult.current.uvIndex != null) UV(
-                    index = forecastResult.current.uvIndex.toInt(),
+                    index = forecastResult.current.uvIndex.toFloatOrNull(),
                     description = getUVDescription(forecastResult.current.uvIndex.toInt())
                 ) else null,
                 airQuality = getAirQuality(forecastResult),
-                relativeHumidity = if (!forecastResult.current.humidity?.value.isNullOrEmpty()) forecastResult.current.humidity!!.value!!.toFloat() else null,
+                relativeHumidity = if (!forecastResult.current.humidity?.value.isNullOrEmpty()) forecastResult.current.humidity!!.value!!.toFloatOrNull() else null,
                 pressure = if (!forecastResult.current.pressure?.value.isNullOrEmpty()) forecastResult.current.pressure!!.value!!.toFloat() else null,
-                visibility = if (!forecastResult.current.visibility?.value.isNullOrEmpty()) forecastResult.current.visibility!!.value!!.toFloat() else null,
+                visibility = if (!forecastResult.current.visibility?.value.isNullOrEmpty()) forecastResult.current.visibility!!.value!!.toFloatOrNull() else null,
                 hourlyForecast = if (minutelyResult.precipitation != null) minutelyResult.precipitation.description else null
             ),
             yesterday = getYesterday(forecastResult),
@@ -103,8 +103,8 @@ private fun getYesterday(result: ChinaForecastResult): History? {
     return try {
         History(
             date = Date(result.updateTime - 24 * 60 * 60 * 1000),
-            daytimeTemperature = if (!result.yesterday.tempMax.isNullOrEmpty()) result.yesterday.tempMax.toInt() else null,
-            nighttimeTemperature = if (!result.yesterday.tempMin.isNullOrEmpty()) result.yesterday.tempMin.toInt() else null,
+            daytimeTemperature = result.yesterday.tempMax?.toFloatOrNull(),
+            nighttimeTemperature = result.yesterday.tempMin?.toFloatOrNull(),
         )
     } catch (ignore: Exception) {
         null
@@ -136,19 +136,19 @@ private fun getDailyList(
                     weatherPhase = getWeatherText(weather.from),
                     weatherCode = getWeatherCode(weather.from),
                     temperature = Temperature(
-                        temperature = dailyForecast.temperature?.value?.getOrNull(index)?.from?.toInt()
+                        temperature = dailyForecast.temperature?.value?.getOrNull(index)?.from?.toFloatOrNull()
                     ),
                     precipitationProbability = PrecipitationProbability(
                         total = getPrecipitationProbability(dailyForecast, index)
                     ),
                     wind = if (dailyForecast.wind != null) Wind(
-                        direction = getWindDirection(context, dailyForecast.wind.direction?.value?.getOrNull(index)?.from?.toFloat()),
+                        direction = getWindDirection(context, dailyForecast.wind.direction?.value?.getOrNull(index)?.from?.toFloatOrNull()),
                         degree = WindDegree(
-                            degree = dailyForecast.wind.direction?.value?.getOrNull(index)?.from?.toFloat(),
+                            degree = dailyForecast.wind.direction?.value?.getOrNull(index)?.from?.toFloatOrNull(),
                             isNoDirection = false
                         ),
-                        speed = dailyForecast.wind.speed?.value?.getOrNull(index)?.from?.toFloat(),
-                        level = getWindLevel(context, dailyForecast.wind.speed?.value?.getOrNull(index)?.from?.toFloat())
+                        speed = dailyForecast.wind.speed?.value?.getOrNull(index)?.from?.toFloatOrNull(),
+                        level = getWindLevel(context, dailyForecast.wind.speed?.value?.getOrNull(index)?.from?.toFloatOrNull())
                     ) else null
                 ),
                 night = HalfDay(
@@ -156,19 +156,19 @@ private fun getDailyList(
                     weatherPhase = getWeatherText(weather.to),
                     weatherCode = getWeatherCode(weather.to),
                     temperature = Temperature(
-                        temperature = dailyForecast.temperature?.value?.getOrNull(index)?.to?.toInt()
+                        temperature = dailyForecast.temperature?.value?.getOrNull(index)?.to?.toFloatOrNull()
                     ),
                     precipitationProbability = PrecipitationProbability(
                         total = getPrecipitationProbability(dailyForecast, index)
                     ),
                     wind = if (dailyForecast.wind != null) Wind(
-                        direction = getWindDirection(context, dailyForecast.wind.direction?.value?.getOrNull(index)?.to?.toFloat()),
+                        direction = getWindDirection(context, dailyForecast.wind.direction?.value?.getOrNull(index)?.to?.toFloatOrNull()),
                         degree = WindDegree(
-                            degree = dailyForecast.wind.direction?.value?.getOrNull(index)?.to?.toFloat(),
+                            degree = dailyForecast.wind.direction?.value?.getOrNull(index)?.to?.toFloatOrNull(),
                             isNoDirection = false
                         ),
-                        speed = dailyForecast.wind.speed?.value?.getOrNull(index)?.to?.toFloat(),
-                        level = getWindLevel(context, dailyForecast.wind.speed?.value?.getOrNull(index)?.to?.toFloat())
+                        speed = dailyForecast.wind.speed?.value?.getOrNull(index)?.to?.toFloatOrNull(),
+                        level = getWindLevel(context, dailyForecast.wind.speed?.value?.getOrNull(index)?.to?.toFloatOrNull())
                     ) else null
                 ),
                 sun = Astro(
@@ -186,11 +186,7 @@ private fun getPrecipitationProbability(forecast: org.breezyweather.weather.chin
     if (forecast.precipitationProbability == null
         || forecast.precipitationProbability.value.isNullOrEmpty()) return null
 
-    return try {
-        forecast.precipitationProbability.value.getOrNull(index)?.toFloat()
-    } catch (ignore: Exception) {
-        null
-    }
+    return forecast.precipitationProbability.value.getOrNull(index)?.toFloatOrNull()
 }
 
 private fun getHourlyList(
@@ -217,7 +213,7 @@ private fun getHourlyList(
                 weatherText = getWeatherText(weather.toString()),
                 weatherCode = getWeatherCode(weather.toString()),
                 temperature = Temperature(
-                    temperature = hourlyForecast.temperature?.value?.getOrNull(index)
+                    temperature = hourlyForecast.temperature?.value?.getOrNull(index)?.toFloat()
                 ),
                 wind = if (hourlyForecast.wind != null) Wind(
                     direction = getWindDirection(context, hourlyForecast.wind.value?.getOrNull(index)?.direction?.toFloat()),

@@ -11,7 +11,6 @@ import androidx.annotation.Size
 import org.breezyweather.R
 import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.getTypefaceFromTextAppearance
-import org.breezyweather.common.utils.DisplayUtils
 
 /**
  * Double histogram view.

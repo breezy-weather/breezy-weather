@@ -16,7 +16,6 @@ import androidx.core.graphics.ColorUtils
 import org.breezyweather.R
 import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.getTypefaceFromTextAppearance
-import org.breezyweather.common.utils.DisplayUtils
 import kotlin.math.cos
 
 class ArcProgress @JvmOverloads constructor(

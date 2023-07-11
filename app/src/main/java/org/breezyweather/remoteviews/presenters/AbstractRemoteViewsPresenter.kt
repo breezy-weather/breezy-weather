@@ -252,7 +252,7 @@ abstract class AbstractRemoteViewsPresenter {
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$ct$",
-                    weather.current?.temperature?.getTemperature(context, temperatureUnit)
+                    weather.current?.temperature?.getTemperature(context, temperatureUnit, 0)
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$ctd$",
@@ -260,7 +260,7 @@ abstract class AbstractRemoteViewsPresenter {
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$at$",
-                    weather.current?.temperature?.getFeelsLikeTemperature(context, temperatureUnit)
+                    weather.current?.temperature?.getFeelsLikeTemperature(context, temperatureUnit, 0)
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$atd$",
@@ -292,7 +292,7 @@ abstract class AbstractRemoteViewsPresenter {
                 ).replace(
                     "\$cdp$",
                     weather.current?.dewPoint?.let {
-                        temperatureUnit.getValueText(context, it)
+                        temperatureUnit.getValueText(context, it, 0)
                     } ?: context.getString(R.string.null_data_text)
                 ).replace("\$l$", location.getCityName(context))
                 .replace("\$lat$", location.latitude.toString())
@@ -381,11 +381,11 @@ abstract class AbstractRemoteViewsPresenter {
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "dt$",
-                    weather.dailyForecast.getOrNull(i)?.day?.temperature?.getTemperature(context, temperatureUnit)
+                    weather.dailyForecast.getOrNull(i)?.day?.temperature?.getTemperature(context, temperatureUnit, 0)
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "nt$",
-                    weather.dailyForecast.getOrNull(i)?.night?.temperature?.getTemperature(context, temperatureUnit)
+                    weather.dailyForecast.getOrNull(i)?.night?.temperature?.getTemperature(context, temperatureUnit, 0)
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "dtd$",

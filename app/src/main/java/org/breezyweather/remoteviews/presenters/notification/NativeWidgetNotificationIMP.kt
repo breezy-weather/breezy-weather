@@ -19,6 +19,7 @@ import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.ResourcesProviderFactory
 import java.util.*
+import kotlin.math.roundToInt
 
 object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
     fun buildNotificationAndSendIt(
@@ -63,7 +64,7 @@ object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
             setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             setSmallIcon(
                 if (temperature != null) {
-                    ResourceHelper.getTempIconId(context, temperatureUnit.getValueWithoutUnit(temperature))
+                    ResourceHelper.getTempIconId(context, temperatureUnit.getValueWithoutUnit(temperature).roundToInt())
                 } else ResourceHelper.getDefaultMinimalXmlIconId(current.weatherCode, daytime)
             )
             if (current.weatherCode != null) setLargeIcon(

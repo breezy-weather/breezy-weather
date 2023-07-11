@@ -64,7 +64,7 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
         val builder = StringBuilder()
         builder.append(location.getCityName(context))
         if (weather.current?.temperature?.temperature != null) {
-            builder.append(" ").append(weather.current.temperature.getTemperature(context, temperatureUnit))
+            builder.append(" ").append(weather.current.temperature.getTemperature(context, temperatureUnit, 0))
         }
         views.setTextViewText(R.id.widget_clock_day_week_subtitle, builder.toString())
 

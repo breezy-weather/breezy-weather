@@ -27,13 +27,13 @@ data class HourlyEntity(
         dbType = String::class
     ) var weatherCode: WeatherCode? = null,
 
-    var temperature: Int? = null,
-    var realFeelTemperature: Int? = null,
-    var realFeelShaderTemperature: Int? = null,
-    var apparentTemperature: Int? = null,
-    var windChillTemperature: Int? = null,
-    var wetBulbTemperature: Int? = null,
-    var degreeDayTemperature: Int? = null,
+    var temperature: Float? = null,
+    var realFeelTemperature: Float? = null,
+    var realFeelShaderTemperature: Float? = null,
+    var apparentTemperature: Float? = null,
+    var windChillTemperature: Float? = null,
+    var wetBulbTemperature: Float? = null,
+    var degreeDayTemperature: Float? = null,
 
     var totalPrecipitation: Float? = null,
     var thunderstormPrecipitation: Float? = null,
@@ -77,7 +77,7 @@ data class HourlyEntity(
     var treeDescription: String? = null,
 
     // uv.
-    var uvIndex: Int? = null,
+    var uvIndex: Float? = null,
     var uvLevel: String? = null,
     var uvDescription: String? = null
 )

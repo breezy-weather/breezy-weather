@@ -8,8 +8,8 @@ In the app, you'll find:<ul>
 <li>Severe weather and precipitation alerts</li></ul>
 
 The app has a strong focus on design, with a simple, clean UX, smooth animations, and Material Design all over, plus lots of customizability:<ul>
-<li>Automatic dark theme</li>
-<li>Custom icon themes</li>
+<li>Automatic dark mode</li>
+<li>Custom icon packs</li>
 <li>Large selection of home screen widgets for at-a-glance information</li>
 <li>Live wallpaper</li></ul>
 

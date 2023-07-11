@@ -8,6 +8,6 @@ import java.util.Date
  */
 class History(
     val date: Date,
-    val daytimeTemperature: Int? = null,
-    val nighttimeTemperature: Int? = null
+    val daytimeTemperature: Float? = null,
+    val nighttimeTemperature: Float? = null
 ) : Serializable

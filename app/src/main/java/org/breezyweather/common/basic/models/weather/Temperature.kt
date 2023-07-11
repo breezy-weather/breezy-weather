@@ -10,32 +10,32 @@ import java.io.Serializable
  * default unit : [TemperatureUnit.C]
  */
 class Temperature(
-    val temperature: Int? = null,
-    val realFeelTemperature: Int? = null,
-    val realFeelShaderTemperature: Int? = null,
-    val apparentTemperature: Int? = null,
-    val windChillTemperature: Int? = null,
-    val wetBulbTemperature: Int? = null,
-    val degreeDayTemperature: Int? = null
+    val temperature: Float? = null,
+    val realFeelTemperature: Float? = null,
+    val realFeelShaderTemperature: Float? = null,
+    val apparentTemperature: Float? = null,
+    val windChillTemperature: Float? = null,
+    val wetBulbTemperature: Float? = null,
+    val degreeDayTemperature: Float? = null
 ) : Serializable {
 
     companion object {
-        fun getTemperature(context: Context, temperature: Int?, unit: TemperatureUnit): String? {
-            return temperature?.let { unit.getValueText(context, it) }
+        fun getTemperature(context: Context, temperature: Float?, unit: TemperatureUnit, decimals: Int = 1): String? {
+            return temperature?.let { unit.getValueText(context, it, decimals) }
         }
 
-        fun getShortTemperature(context: Context, temperature: Int?, unit: TemperatureUnit): String? {
+        fun getShortTemperature(context: Context, temperature: Float?, unit: TemperatureUnit): String? {
             return temperature?.let { unit.getShortValueText(context, it) }
         }
 
-        fun getTrendTemperature(context: Context, night: Int?, day: Int?, unit: TemperatureUnit): String? {
+        fun getTrendTemperature(context: Context, night: Float?, day: Float?, unit: TemperatureUnit): String? {
             return getTrendTemperature(
                 context, night, day, unit,
                 SettingsManager.getInstance(context).isDayNightTempOrderReversed
             )
         }
 
-        fun getTrendTemperature(context: Context, night: Int?, day: Int?, unit: TemperatureUnit, switchDayNight: Boolean): String? {
+        fun getTrendTemperature(context: Context, night: Float?, day: Float?, unit: TemperatureUnit, switchDayNight: Boolean): String? {
             if (night == null || day == null) {
                 return null
             }
@@ -47,19 +47,19 @@ class Temperature(
         }
     }
 
-    val feelsLikeTemperature: Int? = realFeelTemperature ?: realFeelShaderTemperature ?: apparentTemperature
+    val feelsLikeTemperature: Float? = realFeelTemperature ?: realFeelShaderTemperature ?: apparentTemperature
         ?: windChillTemperature ?: wetBulbTemperature ?: degreeDayTemperature
 
-    fun getTemperature(context: Context, unit: TemperatureUnit): String? {
-        return getTemperature(context, temperature, unit)
+    fun getTemperature(context: Context, unit: TemperatureUnit, decimals: Int = 1): String? {
+        return getTemperature(context, temperature, unit, decimals)
     }
 
     fun getShortTemperature(context: Context, unit: TemperatureUnit): String? {
         return getShortTemperature(context, temperature, unit)
     }
 
-    fun getFeelsLikeTemperature(context: Context, unit: TemperatureUnit): String? {
-        return getTemperature(context, feelsLikeTemperature, unit)
+    fun getFeelsLikeTemperature(context: Context, unit: TemperatureUnit, decimals: Int = 1): String? {
+        return getTemperature(context, feelsLikeTemperature, unit, decimals)
     }
 
     fun getShortFeelsLikeTemperature(context: Context, unit: TemperatureUnit): String? {

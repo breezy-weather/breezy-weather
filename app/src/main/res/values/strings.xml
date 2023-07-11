@@ -257,6 +257,9 @@
     <string name="location_dialog_failed_to_locate_action_select_provider">Select location provider</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Add location manually and delete “$”</string>
     <string name="location_search_placeholder">Search for a location…</string>
+    <!-- Example: AccuWeather can’t find djglidfjg -->
+    <string name="location_search_no_results">$1 can’t find $2</string>
+    <string name="location_search_no_results_advice">Make sure your search is spelled correctly and not too specific. Alternatively, you can try another weather provider which may produce different location search results.</string>
     <string name="location_current_not_found_yet">Current location not found yet…</string>
     <string name="location_resident_message">Set as a resident city</string>
     <string name="location_resident_dialog">Breezy Weather will automatically show and hide resident cities based on your current location.\nFor example, you can set your hometown as a resident city. You can check the weather in your hometown while you are traveling. When you get home, the weather in your hometown will be hidden and replaced by the weather for your current location.</string>
@@ -289,8 +292,8 @@
     <string name="action_close">Close</string>
     <string name="action_share">Share</string>
     <!-- Dialogs -->
-    <string name="dialog_permissions_notification_title">Allow notifications</string>
-    <string name="dialog_permissions_notification_content">To be able to send you alerts for your selected location, Breezy Weather needs to be able to send you notifications. Other types of notification can be enabled in settings. We recommend you allow notifications permission and then turn off individually notification categories you don’t want to receive in app settings.</string>
+    <string name="dialog_permissions_notification_title">Stay informed</string>
+    <string name="dialog_permissions_notification_content">Tap here to enable notifications about weather alerts, or decide later in Settings.</string>
     <string name="dialog_permissions_location_title">Access location information</string>
     <string name="dialog_permissions_location_content">Breezy Weather needs to collect your location information in foreground or background to provide the weather data of your current location. For this, we will request some permissions. Your location information will only be used to obtain weather data at your current location. If you don’t want to share your location information, you can deny those requirements and manually set your location in the management page.</string>
     <string name="dialog_permissions_location_background_title">Access location in background</string>

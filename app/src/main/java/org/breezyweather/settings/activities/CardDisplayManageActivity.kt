@@ -12,14 +12,12 @@ import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.appbar.AppBarLayout
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.options.appearance.CardDisplay
 import org.breezyweather.common.ui.adapters.TagAdapter
 import org.breezyweather.common.ui.decorations.GridMarginsDecoration
 import org.breezyweather.common.ui.decorations.ListDecoration
-import org.breezyweather.common.ui.widgets.insets.FitSystemBarRecyclerView
 import org.breezyweather.common.ui.widgets.slidingItem.SlidingItemTouchCallback
 import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.databinding.ActivityCardDisplayManageBinding

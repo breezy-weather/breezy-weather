@@ -2,7 +2,6 @@ package org.breezyweather.theme.weatherView
 
 import org.breezyweather.common.basic.models.weather.Weather
 import org.breezyweather.common.basic.models.weather.WeatherCode
-import org.breezyweather.theme.resource.providers.ResourceProvider
 import org.breezyweather.theme.weatherView.WeatherView.WeatherKindRule
 
 object WeatherViewController {

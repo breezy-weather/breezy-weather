@@ -154,7 +154,7 @@ class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 val sunriseTime = sun.riseDate!!.getFormattedTime(location.timeZone, context.is12Hour)
                 val sunsetTime = sun.setDate!!.getFormattedTime(location.timeZone, context.is12Hour)
                 mSunContainer.visibility = View.VISIBLE
-                mSunTxt.text = sunriseTime + "↑" + "\n" + sunsetTime + "↓";
+                mSunTxt.text = sunriseTime + "↑" + "\n" + sunsetTime + "↓"
                 talkBackBuilder
                     .append(", ")
                     .append(activity.getString(R.string.ephemeris_sunrise_at).replace("$", sunriseTime))
@@ -172,7 +172,7 @@ class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 val moonriseTime = moon.riseDate!!.getFormattedTime(location.timeZone, context.is12Hour)
                 val moonsetTime = moon.setDate!!.getFormattedTime(location.timeZone, context.is12Hour)
                 mMoonContainer.visibility = View.VISIBLE
-                mMoonTxt.text = moonriseTime + "↑" + "\n" + moonsetTime + "↓";
+                mMoonTxt.text = moonriseTime + "↑" + "\n" + moonsetTime + "↓"
                 talkBackBuilder
                     .append(", ")
                     .append(activity.getString(R.string.ephemeris_moonrise_at).replace("$", moonriseTime))

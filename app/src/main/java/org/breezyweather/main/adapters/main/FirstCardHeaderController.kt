@@ -1,13 +1,26 @@
 package org.breezyweather.main.adapters.main
 
 import android.annotation.SuppressLint
-import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
-import android.widget.TextView
-import androidx.appcompat.widget.AppCompatImageView
-import androidx.core.widget.ImageViewCompat
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.Icon
+import androidx.compose.material3.ListItem
+import androidx.compose.material3.ListItemDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.ViewCompositionStrategy
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
@@ -16,9 +29,14 @@ import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.main.utils.MainThemeColorProvider
+import org.breezyweather.theme.compose.BreezyWeatherTheme
+import org.breezyweather.theme.compose.DayNightTheme
+import org.breezyweather.theme.compose.rememberThemeRipple
 
 @SuppressLint("InflateParams")
-class FirstCardHeaderController(private val mActivity: GeoActivity, location: Location) : View.OnClickListener {
+class FirstCardHeaderController(
+    private val mActivity: GeoActivity, location: Location
+) : View.OnClickListener {
     private val mView: View = LayoutInflater.from(mActivity).inflate(R.layout.container_main_first_card_header, null)
     private val mFormattedId: String = location.formattedId
     private var mContainer: LinearLayout? = null
@@ -26,58 +44,116 @@ class FirstCardHeaderController(private val mActivity: GeoActivity, location: Lo
     init {
         if (location.weather != null && location.weather.alertList.isNotEmpty()) {
             mView.visibility = View.VISIBLE
-            val alertIcon = mView.findViewById<AppCompatImageView>(R.id.container_main_first_card_header_alertIcon)
-            val alert = mView.findViewById<TextView>(R.id.container_main_first_card_header_alert)
-            val weather = location.weather
-            val currentAlertList = weather.currentAlertList
-            mView.setOnClickListener { IntentHelper.startAlertActivity(mActivity, mFormattedId) }
-            alertIcon.contentDescription = mActivity.getString(R.string.alerts_count)
-                .replace("$", "" + currentAlertList.size)
-            ImageViewCompat.setImageTintList(
-                alertIcon,
-                ColorStateList.valueOf(MainThemeColorProvider.getColor(location, R.attr.colorTitleText))
-            )
-            alertIcon.setOnClickListener(this)
-            if (currentAlertList.isEmpty()) {
-                alert.text = mActivity.getString(R.string.alerts_to_follow)
-            } else {
-                val builder = StringBuilder()
-                currentAlertList.forEach { currentAlert ->
-                    if (builder.toString().isNotEmpty()) {
-                        builder.append("\n")
-                    }
-                    builder.append(currentAlert.description)
-                    if (currentAlert.startDate != null) {
-                        val startDateDay = currentAlert.startDate.getFormattedDate(
-                            location.timeZone, mActivity.getString(R.string.date_format_long)
-                        )
-                        builder.append(", ")
-                            .append(startDateDay)
-                            .append(", ")
-                            .append(
-                                currentAlert.startDate.getFormattedTime(location.timeZone, mActivity.is12Hour)
-                            )
-                        if (currentAlert.endDate != null) {
-                            builder.append("-")
-                            val endDateDay = currentAlert.endDate.getFormattedDate(
-                                location.timeZone, mActivity.getString(R.string.date_format_long)
-                            )
-                            if (startDateDay != endDateDay) {
-                                builder.append(endDateDay)
-                                    .append(", ")
-                            }
-                            builder.append(
-                                currentAlert.endDate.getFormattedTime(location.timeZone, mActivity.is12Hour)
-                            )
-                        }
+            mView.setOnClickListener {
+                IntentHelper.startAlertActivity(mActivity, mFormattedId)
+            }
+            mView.findViewById<ComposeView>(R.id.container_main_first_card_alert_list).apply {
+                // Dispose of the Composition when the view's LifecycleOwner
+                // is destroyed
+                setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
+                setContent {
+                    BreezyWeatherTheme(lightTheme = !isSystemInDarkTheme()) {
+                        ContentView(location)
                     }
                 }
-                alert.text = builder.toString()
             }
-            alert.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
-            alert.setOnClickListener(this)
         } else {
             mView.visibility = View.GONE
+        }
+    }
+
+    @Composable
+    fun ContentView(location: Location) {
+        if (location.weather!!.currentAlertList.isEmpty()) {
+            ListItem(
+                colors = ListItemDefaults.colors(
+                    containerColor = Color.Transparent
+                ),
+                headlineContent = {
+                    Text(
+                        stringResource(R.string.alerts_to_follow),
+                        color = Color(MainThemeColorProvider.getColor(location, R.attr.colorTitleText)),
+                        style = MaterialTheme.typography.titleMedium
+                    )
+                },
+                leadingContent = {
+                    Icon(
+                        painterResource(R.drawable.ic_alert),
+                        contentDescription = stringResource(R.string.alerts_to_follow),
+                        tint = Color(MainThemeColorProvider.getColor(location, R.attr.colorTitleText))
+                    )
+                }
+            )
+        } else {
+            // TODO: Lazy
+            Column {
+                location.weather.currentAlertList.forEach { currentAlert ->
+                    ListItem(
+                        modifier = Modifier
+                            .clickable(
+                                interactionSource = remember { MutableInteractionSource() },
+                                indication = rememberThemeRipple(),
+                                onClick = {
+                                    IntentHelper.startAlertActivity(mActivity, mFormattedId)
+                                }
+                            ),
+                        colors = ListItemDefaults.colors(
+                            containerColor = Color.Transparent
+                        ),
+                        headlineContent = {
+                            Text(
+                                currentAlert.description,
+                                color = Color(MainThemeColorProvider.getColor(location, R.attr.colorTitleText)),
+                                style = MaterialTheme.typography.titleMedium
+                            )
+                        },
+                        supportingContent = if (currentAlert.startDate != null) {
+                            {
+                                val builder = StringBuilder()
+                                val startDateDay = currentAlert.startDate.getFormattedDate(
+                                    location.timeZone, mActivity.getString(R.string.date_format_long)
+                                )
+                                builder.append(startDateDay)
+                                    .append(", ")
+                                    .append(
+                                        currentAlert.startDate.getFormattedTime(
+                                            location.timeZone,
+                                            mActivity.is12Hour
+                                        )
+                                    )
+                                if (currentAlert.endDate != null) {
+                                    builder.append(" — ")
+                                    val endDateDay = currentAlert.endDate.getFormattedDate(
+                                        location.timeZone,
+                                        mActivity.getString(R.string.date_format_long)
+                                    )
+                                    if (startDateDay != endDateDay) {
+                                        builder.append(endDateDay)
+                                            .append(", ")
+                                    }
+                                    builder.append(
+                                        currentAlert.endDate.getFormattedTime(
+                                            location.timeZone,
+                                            mActivity.is12Hour
+                                        )
+                                    )
+                                }
+                                Text(
+                                    builder.toString(),
+                                    color = DayNightTheme.colors.bodyColor
+                                )
+                            }
+                        } else null,
+                        leadingContent = {
+                            Icon(
+                                painterResource(R.drawable.ic_alert),
+                                contentDescription = stringResource(R.string.alerts_to_follow),
+                                tint = Color(currentAlert.color)
+                            )
+                        }
+                    )
+                }
+            }
         }
     }
 

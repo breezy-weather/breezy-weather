@@ -2,13 +2,20 @@ package org.breezyweather.weather
 
 import android.content.Context
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.weather.*
+import org.breezyweather.common.basic.models.weather.AirQuality
+import org.breezyweather.common.basic.models.weather.Daily
+import org.breezyweather.common.basic.models.weather.HalfDay
+import org.breezyweather.common.basic.models.weather.Hourly
+import org.breezyweather.common.basic.models.weather.Precipitation
+import org.breezyweather.common.basic.models.weather.PrecipitationProbability
+import org.breezyweather.common.basic.models.weather.Temperature
+import org.breezyweather.common.basic.models.weather.UV
+import org.breezyweather.common.basic.models.weather.Wind
 import org.breezyweather.common.extensions.getFormattedDate
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
-import kotlin.math.roundToInt
 import kotlin.math.sin
 
 /**
@@ -25,7 +32,7 @@ import kotlin.math.sin
  *
  * @param dailyDate a Date initialized at 00:00 the day of interest
  * @param initialHalfDay the half day to be completed or null
- * @param hourlyList a List<Hourly> containing only hourlys from 06:00 to 17:59 for day, and 18:00 to 05:59 for night
+ * @param halfDayHourlyList a List<Hourly> containing only hourlys from 06:00 to 17:59 for day, and 18:00 to 05:59 for night
  * @param isDay true if you want day, false if you want night
  * @return a new List<Daily>, the initial dailyList passed as 1st parameter can be freed after
  */
@@ -373,15 +380,15 @@ fun getMoonPhaseAngle(phase: String?): Int? {
     }
 }
 
-fun getUVLevel(context: Context, uvIndex: Int?): String? {
+fun getUVLevel(context: Context, uvIndex: Float?): String? {
     return if (uvIndex == null) {
         null
     } else when (uvIndex) {
-        in 0..UV.UV_INDEX_LOW -> context.getString(R.string.uv_level_0_2)
+        in 0f..UV.UV_INDEX_LOW -> context.getString(R.string.uv_level_0_2)
         in UV.UV_INDEX_LOW..UV.UV_INDEX_MIDDLE -> context.getString(R.string.uv_level_3_5)
         in UV.UV_INDEX_MIDDLE..UV.UV_INDEX_HIGH -> context.getString(R.string.uv_level_6_7)
         in UV.UV_INDEX_HIGH..UV.UV_INDEX_EXCESSIVE -> context.getString(R.string.uv_level_8_10)
-        in UV.UV_INDEX_EXCESSIVE..Int.MAX_VALUE -> context.getString(R.string.uv_level_11)
+        in UV.UV_INDEX_EXCESSIVE..Float.MAX_VALUE -> context.getString(R.string.uv_level_11)
         else -> null
     }
 }
@@ -405,7 +412,7 @@ fun isDaylight(sunrise: Date?, sunset: Date?, current: Date?, timeZone: TimeZone
 
 fun getCurrentUV(
     context: Context,
-    dayMaxUV: Int?,
+    dayMaxUV: Float?,
     currentDate: Date?,
     sunriseDate: Date?,
     sunsetDate: Date?,
@@ -431,9 +438,9 @@ fun getCurrentUV(
     val sunlightDuration = sunSetTime - sunRiseTime // d in desmos graph
     val sunRiseOffset = -Math.PI.toFloat() * sunRiseTime / sunlightDuration // o in desmos graph
     val currentUV =
-        dayMaxUV * sin(Math.PI / sunlightDuration * currentTime + sunRiseOffset) // dayMaxUV = a in desmos graph
+        dayMaxUV * sin(Math.PI.toFloat() / sunlightDuration * currentTime + sunRiseOffset) // dayMaxUV = a in desmos graph
 
-    val indexUV = if (currentUV.roundToInt() < 0) 0 else currentUV.roundToInt()
+    val indexUV = if (currentUV < 0) 0f else currentUV
 
     return UV(
         index = indexUV,

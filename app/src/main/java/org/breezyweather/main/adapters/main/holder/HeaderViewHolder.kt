@@ -33,6 +33,7 @@ import org.breezyweather.theme.resource.providers.ResourceProvider
 import org.breezyweather.theme.weatherView.WeatherView
 import kotlin.math.abs
 import kotlin.math.max
+import kotlin.math.roundToInt
 
 class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMainViewHolder(
     LayoutInflater
@@ -43,8 +44,8 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
     private val mTemperature: NumberAnimTextView = itemView.findViewById(R.id.container_main_header_temperature_value)
     private val mTemperatureUnitView: TextView = itemView.findViewById(R.id.container_main_header_temperature_unit)
     private val mWeatherText: TextView = itemView.findViewById(R.id.container_main_header_weather_text)
-    private var mTemperatureCFrom = 0
-    private var mTemperatureCTo = 0
+    private var mTemperatureCFrom = 0f
+    private var mTemperatureCTo = 0f
     private var mTemperatureUnit: TemperatureUnit? = null
 
     init {
@@ -68,7 +69,7 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
         location.weather?.current?.let { current ->
             current.temperature?.temperature?.let {
                 mTemperatureCFrom = mTemperatureCTo
-                mTemperatureCTo = current.temperature.temperature
+                mTemperatureCTo = it
                 mTemperature.isAnimEnabled = itemAnimationEnabled
                 // no longer than 2 seconds.
                 mTemperature.duration =
@@ -151,8 +152,8 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
     override fun onEnterScreen() {
         super.onEnterScreen()
         mTemperature.setNumberString(
-            String.format("%d", mTemperatureUnit!!.getValueWithoutUnit(mTemperatureCFrom)),
-            String.format("%d", mTemperatureUnit!!.getValueWithoutUnit(mTemperatureCTo))
+            String.format("%d", mTemperatureUnit!!.getValueWithoutUnit(mTemperatureCFrom).roundToInt()),
+            String.format("%d", mTemperatureUnit!!.getValueWithoutUnit(mTemperatureCTo).roundToInt())
         )
     }
 

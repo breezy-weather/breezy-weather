@@ -710,16 +710,4 @@ abstract class AbstractWidgetConfigActivity : GeoActivity(), WeatherHelper.OnReq
             // do nothing.
         }
     }
-
-    private inner class CardAlphaChangedListener : SeekBar.OnSeekBarChangeListener {
-        override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
-            if (cardAlpha != progress) {
-                cardAlpha = progress
-                updateHostView()
-            }
-        }
-
-        override fun onStartTrackingTouch(seekBar: SeekBar) { }
-        override fun onStopTrackingTouch(seekBar: SeekBar) { }
-    }
 }

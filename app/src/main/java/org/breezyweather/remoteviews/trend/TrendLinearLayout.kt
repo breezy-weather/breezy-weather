@@ -14,7 +14,6 @@ import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.getTypefaceFromTextAppearance
-import org.breezyweather.common.utils.DisplayUtils
 
 /**
  * Trend linear layout.
@@ -26,10 +25,10 @@ class TrendLinearLayout @JvmOverloads constructor(
         isAntiAlias = true
         strokeCap = Paint.Cap.ROUND
     }
-    private var mHistoryTemps: Array<Int> = emptyArray()
-    private var mHistoryTempYs: Array<Int> = emptyArray()
-    private var mHighestTemp: Int? = null
-    private var mLowestTemp: Int? = null
+    private var mHistoryTemps: Array<Float> = emptyArray()
+    private var mHistoryTempYs: Array<Float> = emptyArray()
+    private var mHighestTemp: Float? = null
+    private var mLowestTemp: Float? = null
     private var mTemperatureUnit: TemperatureUnit
 
     @ColorInt
@@ -67,13 +66,13 @@ class TrendLinearLayout @JvmOverloads constructor(
         mPaint.strokeWidth = CHART_LINE_SIZE
         mPaint.color = mLineColor
         canvas.drawLine(
-            0f, mHistoryTempYs[0].toFloat(),
-            measuredWidth.toFloat(), mHistoryTempYs[0].toFloat(),
+            0f, mHistoryTempYs[0],
+            measuredWidth.toFloat(), mHistoryTempYs[0],
             mPaint
         )
         canvas.drawLine(
-            0f, mHistoryTempYs[1].toFloat(),
-            measuredWidth.toFloat(), mHistoryTempYs[1].toFloat(),
+            0f, mHistoryTempYs[1],
+            measuredWidth.toFloat(), mHistoryTempYs[1],
             mPaint
         )
         mPaint.style = Paint.Style.FILL
@@ -119,7 +118,7 @@ class TrendLinearLayout @JvmOverloads constructor(
     }
 
     fun setData(
-        historyTemps: Array<Int>, highestTemp: Int, lowestTemp: Int, unit: TemperatureUnit, daily: Boolean
+        historyTemps: Array<Float>, highestTemp: Float, lowestTemp: Float, unit: TemperatureUnit, daily: Boolean
     ) {
         mHistoryTemps = historyTemps
         mHighestTemp = highestTemp
@@ -142,14 +141,14 @@ class TrendLinearLayout @JvmOverloads constructor(
     private fun computeCoordinates() {
         mHistoryTempYs = if (mHighestTemp != null && mLowestTemp != null) {
             arrayOf(
-                computeSingleCoordinate(mHistoryTemps[0].toFloat(), mHighestTemp!!.toFloat(), mLowestTemp!!.toFloat()),
-                computeSingleCoordinate(mHistoryTemps[1].toFloat(), mHighestTemp!!.toFloat(), mLowestTemp!!.toFloat())
+                computeSingleCoordinate(mHistoryTemps[0], mHighestTemp!!, mLowestTemp!!),
+                computeSingleCoordinate(mHistoryTemps[1], mHighestTemp!!, mLowestTemp!!)
             )
         } else emptyArray()
     }
 
-    private fun computeSingleCoordinate(value: Float, max: Float, min: Float): Int {
+    private fun computeSingleCoordinate(value: Float, max: Float, min: Float): Float {
         val canvasHeight = TREND_ITEM_HEIGHT - TREND_MARGIN_TOP - TREND_MARGIN_BOTTOM
-        return (measuredHeight - BOTTOM_MARGIN - TREND_MARGIN_BOTTOM - canvasHeight * (value - min) / (max - min)).toInt()
+        return (measuredHeight - BOTTOM_MARGIN - TREND_MARGIN_BOTTOM - canvasHeight * (value - min) / (max - min))
     }
 }

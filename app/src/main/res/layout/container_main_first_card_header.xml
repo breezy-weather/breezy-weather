@@ -1,44 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container_main_first_card_header"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/selectable_item_background">
 
-    <LinearLayout
-        android:orientation="horizontal"
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/container_main_first_card_alert_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/container_main_first_card_header_alertIcon"
-            android:layout_width="@dimen/standard_weather_icon_size"
-            android:layout_height="@dimen/standard_weather_icon_size"
-            android:padding="@dimen/normal_margin"
-            android:src="@drawable/ic_alert"
-            android:tint="?attr/colorTitleText"
-            android:background="@drawable/selectable_item_background"
-            tools:ignore="ContentDescription,RtlHardcoded" />
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/normal_margin"
-            android:layout_marginBottom="@dimen/normal_margin">
-
-            <TextView
-                android:id="@+id/container_main_first_card_header_alert"
-                android:lineSpacingMultiplier="1.1"
-                style="@style/subtitle_text"
-                tools:text="大雾黄色预警, 发布于2018-07-10 02:32" />
-
-        </LinearLayout>
-
-    </LinearLayout>
+        android:layout_height="wrap_content" />
 
     <View
         android:id="@+id/container_main_first_card_header_line"

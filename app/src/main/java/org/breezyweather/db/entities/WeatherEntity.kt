@@ -17,24 +17,29 @@ import java.util.*
  */
 @Entity
 class WeatherEntity(
-    @field:Id var id: Long = 0, // base.
+    @field:Id var id: Long = 0,
+
+    // base.
     var cityId: String,
     var weatherSource: String,
     var publishDate: Date,
     var updateDate: Date,
+
     // current.
     var weatherText: String? = null,
     @field:Convert(
         converter = WeatherCodeConverter::class,
         dbType = String::class
     ) var weatherCode: WeatherCode? = null,
-    var temperature: Int? = null,
-    var realFeelTemperature: Int? = null,
-    var realFeelShaderTemperature: Int? = null,
-    var apparentTemperature: Int? = null,
-    var windChillTemperature: Int? = null,
-    var wetBulbTemperature: Int? = null,
-    var degreeDayTemperature: Int? = null,
+
+    var temperature: Float? = null,
+    var realFeelTemperature: Float? = null,
+    var realFeelShaderTemperature: Float? = null,
+    var apparentTemperature: Float? = null,
+    var windChillTemperature: Float? = null,
+    var wetBulbTemperature: Float? = null,
+    var degreeDayTemperature: Float? = null,
+
     var windDirection: String? = null,
     @field:Convert(
         converter = WindDegreeConverter::class,
@@ -42,19 +47,22 @@ class WeatherEntity(
     ) var windDegree: WindDegree? = null,
     var windSpeed: Float? = null,
     var windLevel: String? = null,
-    var uvIndex: Int? = null,
+
+    var uvIndex: Float? = null,
     var uvLevel: String? = null,
     var uvDescription: String? = null,
+
     var pm25: Float? = null,
     var pm10: Float? = null,
     var so2: Float? = null,
     var no2: Float? = null,
     var o3: Float? = null,
     var co: Float? = null,
+
     var relativeHumidity: Float? = null,
     var pressure: Float? = null,
     var visibility: Float? = null,
-    var dewPoint: Int? = null,
+    var dewPoint: Float? = null,
     var cloudCover: Int? = null,
     var ceiling: Float? = null,
     var dailyForecast: String? = null,

@@ -7,6 +7,8 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.widget.ImageViewCompat
 import org.breezyweather.R
+import org.breezyweather.common.basic.models.weather.UV
+import org.breezyweather.common.extensions.roundDecimals
 import org.breezyweather.daily.adapter.DailyWeatherAdapter
 import org.breezyweather.daily.adapter.model.DailyUV
 
@@ -20,7 +22,10 @@ class UVHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
     override fun onBindView(model: DailyWeatherAdapter.ViewModel, position: Int) {
         val context = itemView.context
         val uv = (model as DailyUV).uv
-        ImageViewCompat.setImageTintList(mIcon, ColorStateList.valueOf(uv.getUVColor(context)))
+        ImageViewCompat.setImageTintList(
+            mIcon,
+            ColorStateList.valueOf(UV.getUVColor(uv.index?.roundDecimals(1), context))
+        )
         mTitle.text = uv.uVDescription
         itemView.contentDescription = context.getString(R.string.uv_index) + ", " + mTitle.text
     }

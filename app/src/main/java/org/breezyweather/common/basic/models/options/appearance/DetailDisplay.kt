@@ -109,14 +109,14 @@ enum class DetailDisplay(
     override fun getName(context: Context) = context.getString(nameId)
 
     fun getCurrentValue(context: Context, current: Current, isDaylight: Boolean = true): String? = when(id) {
-        "feels_like" -> if (current.temperature?.feelsLikeTemperature != null) current.temperature.getFeelsLikeTemperature(context, SettingsManager.getInstance(context).temperatureUnit) else null
+        "feels_like" -> if (current.temperature?.feelsLikeTemperature != null) current.temperature.getFeelsLikeTemperature(context, SettingsManager.getInstance(context).temperatureUnit, 0) else null
         "wind" -> if (!current.wind?.getShortWindDescription(context, SettingsManager.getInstance(context).speedUnit).isNullOrEmpty()) current.wind?.getShortWindDescription(context, SettingsManager.getInstance(context).speedUnit) else null
         "uv_index" -> if (current.uV?.index != null && (isDaylight || current.uV.index > 0)) current.uV.shortUVDescription else null
         "humidity" -> if (current.relativeHumidity != null) RelativeHumidityUnit.PERCENT.getValueText(
             context, current.relativeHumidity.toInt()
         ) else null
         "dew_point" -> if (current.dewPoint != null) SettingsManager.getInstance(context).temperatureUnit.getValueText(
-            context, current.dewPoint
+            context, current.dewPoint, 0
         ) else null
         "pressure" -> if (current.pressure != null) SettingsManager.getInstance(context).pressureUnit.getValueText(
             context, current.pressure

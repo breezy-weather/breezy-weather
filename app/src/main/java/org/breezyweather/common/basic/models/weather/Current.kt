@@ -21,7 +21,7 @@ class Current(
     val relativeHumidity: Float? = null,
     val pressure: Float? = null,
     val visibility: Float? = null,
-    val dewPoint: Int? = null,
+    val dewPoint: Float? = null,
     val cloudCover: Int? = null,
     val ceiling: Float? = null,
     val dailyForecast: String? = null,

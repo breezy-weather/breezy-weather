@@ -5,14 +5,20 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -44,10 +50,14 @@ fun PreferenceView(
     summary: String? = null,
     @DrawableRes iconId: Int? = null,
     enabled: Boolean = true,
+    onClose: (() -> Unit)? = null,
     onClick: () -> Unit,
 ) = Material3CardListItem(
     elevation = if (enabled) defaultCardListItemElevation else 0.dp
 ) {
+    val paddingValues = if (onClose == null) {
+        PaddingValues(vertical = 8.dp)
+    } else PaddingValues(bottom = 8.dp)
     ListItem(
         tonalElevation = if (enabled) defaultCardListItemElevation else 0.dp,
         modifier = Modifier
@@ -59,7 +69,7 @@ fun PreferenceView(
                 onClick = onClick,
                 enabled = enabled,
             )
-            .padding(vertical = 8.dp),
+            .padding(paddingValues),
         leadingContent = if (iconId != null) {
             {
                 Icon(
@@ -71,21 +81,47 @@ fun PreferenceView(
             }
         } else null,
         headlineContent = {
-            Text(
-                text = title,
-                color = DayNightTheme.colors.titleColor,
-                style = MaterialTheme.typography.titleMedium,
-            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column(
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Text(
+                        text = title,
+                        color = DayNightTheme.colors.titleColor,
+                        style = MaterialTheme.typography.titleMedium,
+                    )
+                }
+                if (onClose != null) {
+                    Spacer(modifier = Modifier.width(dimensionResource(R.dimen.little_margin)))
+                    IconButton(
+                        onClick = {
+                            onClose()
+                        },
+                        modifier = Modifier.clip(CircleShape)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Close,
+                            contentDescription = stringResource(R.string.action_close),
+                            tint = DayNightTheme.colors.bodyColor
+                        )
+                    }
+                }
+            }
         },
         supportingContent = if (summary?.isNotEmpty() == true) {
             {
-                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                if (onClose == null) { // We already have spacing from close button
+                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                }
                 Text(
                     text = summary,
                     color = DayNightTheme.colors.bodyColor,
                     style = MaterialTheme.typography.bodyMedium,
                 )
             }
-        } else null,
+        } else null
     )
 }

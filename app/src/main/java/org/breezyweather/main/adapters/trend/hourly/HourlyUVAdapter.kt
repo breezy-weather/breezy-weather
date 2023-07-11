@@ -9,6 +9,8 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.UV
+import org.breezyweather.common.extensions.format
+import org.breezyweather.common.extensions.roundDecimals
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.ui.widgets.trend.chart.PolylineAndHistogramView
 import org.breezyweather.main.utils.MainThemeColorProvider
@@ -21,7 +23,7 @@ import org.breezyweather.theme.weatherView.WeatherViewController
 class HourlyUVAdapter(activity: GeoActivity, location: Location) : AbsHourlyTrendAdapter(
     activity, location
 ) {
-    private var mHighestIndex: Int = 0
+    private var mHighestIndex: Float = 0f
 
     inner class ViewHolder(itemView: View) : AbsHourlyTrendAdapter.ViewHolder(itemView) {
         private val mPolylineAndHistogramView = PolylineAndHistogramView(itemView.context)
@@ -36,18 +38,18 @@ class HourlyUVAdapter(activity: GeoActivity, location: Location) : AbsHourlyTren
             super.onBindView(activity, location, talkBackBuilder, position)
             val hourly = location.weather!!.hourlyForecast[position]
             hourly.uV?.let { uV ->
-                val index = uV.index
+                val index = uV.index ?: 0f
                 talkBackBuilder.append(", ").append(index).append(", ").append(uV.level)
                 mPolylineAndHistogramView.setData(
                     null, null,
                     null, null,
                     null, null,
-                    (index ?: 0).toFloat(), String.format("%d", index ?: 0), mHighestIndex.toFloat(),
-                    0f
+                    index.roundDecimals(0), index.format(0),
+                    mHighestIndex, 0f
                 )
                 mPolylineAndHistogramView.setLineColors(
-                    uV.getUVColor(activity),
-                    uV.getUVColor(activity),
+                    UV.getUVColor(index.roundDecimals(0), activity),
+                    UV.getUVColor(index.roundDecimals(0), activity),
                     MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
                 )
             }
@@ -101,11 +103,11 @@ class HourlyUVAdapter(activity: GeoActivity, location: Location) : AbsHourlyTren
         val keyLineList: MutableList<TrendRecyclerView.KeyLine> = ArrayList()
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                UV.UV_INDEX_HIGH.toFloat(), UV.UV_INDEX_HIGH.toString(),
+                UV.UV_INDEX_HIGH, UV.UV_INDEX_HIGH.toString(),
                 activity.getString(R.string.uv_alert_level),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
         )
-        host.setData(keyLineList, mHighestIndex.toFloat(), 0f)
+        host.setData(keyLineList, mHighestIndex, 0f)
     }
 }

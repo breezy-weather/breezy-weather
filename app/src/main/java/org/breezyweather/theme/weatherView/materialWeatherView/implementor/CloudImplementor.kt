@@ -97,7 +97,7 @@ class CloudImplementor(
         }
     }
 
-    private class Thunder() {
+    private class Thunder {
         var r = 81
         var g = 67
         var b = 168

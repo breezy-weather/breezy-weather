@@ -38,8 +38,8 @@ fun convert(
                 },
                 weatherCode = getWeatherCode(result.weather?.getOrNull(0)?.id),
                 temperature = Temperature(
-                    temperature = result.temp?.roundToInt(),
-                    apparentTemperature = result.feelsLike?.roundToInt()
+                    temperature = result.temp,
+                    apparentTemperature = result.feelsLike
                 ),
                 precipitation = Precipitation(
                     total = getTotalPrecipitation(result.rain?.cumul1h, result.snow?.cumul1h),
@@ -55,8 +55,8 @@ fun convert(
                 ),
                 airQuality = getAirQuality(result.dt, airPollutionResult),
                 uV = UV(
-                    index = result.uvi?.roundToInt(),
-                    level = getUVLevel(context, result.uvi?.roundToInt())
+                    index = result.uvi,
+                    level = getUVLevel(context, result.uvi)
                 )
             )
 
@@ -98,8 +98,8 @@ fun convert(
                 },
                 weatherCode = getWeatherCode(oneCallResult.current.weather?.getOrNull(0)?.id),
                 temperature = Temperature(
-                    temperature = oneCallResult.current.temp?.roundToInt(),
-                    apparentTemperature = oneCallResult.current.feelsLike?.roundToInt()
+                    temperature = oneCallResult.current.temp,
+                    apparentTemperature = oneCallResult.current.feelsLike
                 ),
                 wind = Wind(
                     direction = getWindDirection(context, oneCallResult.current.windDeg?.toFloat()),
@@ -108,14 +108,14 @@ fun convert(
                     level = getWindLevel(context, oneCallResult.current.windSpeed?.times(3.6f))
                 ),
                 uV = UV(
-                    index = oneCallResult.current.uvi?.roundToInt(),
-                    level = getUVLevel(context, oneCallResult.current.uvi?.roundToInt())
+                    index = oneCallResult.current.uvi,
+                    level = getUVLevel(context, oneCallResult.current.uvi)
                 ),
                 airQuality = hourlyList.getOrNull(1)?.airQuality,
                 relativeHumidity = oneCallResult.current.humidity?.toFloat(),
                 pressure = oneCallResult.current.pressure?.toFloat(),
                 visibility = (oneCallResult.current.visibility?.div(1000))?.toFloat(),
-                dewPoint = oneCallResult.current.dewPoint?.roundToInt(),
+                dewPoint = oneCallResult.current.dewPoint,
                 cloudCover = oneCallResult.current.clouds
             ) else Current(airQuality = hourlyList.getOrNull(1)?.airQuality),
             dailyForecast = dailyList,
@@ -156,8 +156,8 @@ private fun getDailyList(
                         weatherPhase = dailyForecast.weather?.getOrNull(0)?.description,
                         weatherCode = getWeatherCode(dailyForecast.weather?.getOrNull(0)?.id),
                         temperature = Temperature(
-                            temperature = dailyForecast.temp?.day?.roundToInt(),
-                            apparentTemperature = dailyForecast.feelsLike?.day?.roundToInt()
+                            temperature = dailyForecast.temp?.day,
+                            apparentTemperature = dailyForecast.feelsLike?.day
                         )
                         // TODO cloudCover with hourly data
                     ),
@@ -173,8 +173,8 @@ private fun getDailyList(
                         weatherPhase = dailyForecast.weather?.getOrNull(0)?.description,
                         weatherCode = getWeatherCode(dailyForecast.weather?.getOrNull(0)?.id),
                         temperature = Temperature(
-                            temperature = dailyForecast.temp?.night?.roundToInt(),
-                            apparentTemperature = dailyForecast.feelsLike?.night?.roundToInt()
+                            temperature = dailyForecast.temp?.night,
+                            apparentTemperature = dailyForecast.feelsLike?.night
                         )
                         // TODO cloudCover with hourly data
                     ),
@@ -190,7 +190,7 @@ private fun getDailyList(
                     setDate = if (dailyForecast.moonset != null) Date(dailyForecast.moonset.times(1000)) else null
                 ),
                 airQuality = getDailyAirQualityFromHourlyList(hourlyListByDay.getOrDefault(dailyDateFormatted, null)),
-                uV = UV(dailyForecast.uvi?.roundToInt(), getUVLevel(context, dailyForecast.uvi?.roundToInt()), null),
+                uV = UV(dailyForecast.uvi, getUVLevel(context, dailyForecast.uvi), null),
                 hoursOfSun = if (dailyForecast.sunrise != null && dailyForecast.sunset != null) getHoursOfDay(Date(dailyForecast.sunrise.times(1000)), Date(dailyForecast.sunset.times(1000))) else null
             )
         )

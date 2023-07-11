@@ -15,9 +15,8 @@ import org.breezyweather.main.utils.RequestErrorType
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.weather.WeatherService
 import org.breezyweather.weather.WeatherServiceSet
-import java.util.*
+import java.util.TimeZone
 import javax.inject.Inject
-import kotlin.collections.ArrayList
 
 /**
  * Location helper.

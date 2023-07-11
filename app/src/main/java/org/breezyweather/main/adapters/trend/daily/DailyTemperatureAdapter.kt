@@ -36,8 +36,8 @@ class DailyTemperatureAdapter(
     private val mTemperatureUnit: TemperatureUnit = unit
     private val mDaytimeTemperatures: Array<Float?>
     private val mNighttimeTemperatures: Array<Float?>
-    private var mHighestTemperature: Int? = null
-    private var mLowestTemperature: Int? = null
+    private var mHighestTemperature: Float? = null
+    private var mLowestTemperature: Float? = null
     private val mShowPrecipitationProbability: Boolean
 
     inner class ViewHolder(itemView: View) : AbsDailyTrendAdapter.ViewHolder(itemView) {
@@ -83,8 +83,8 @@ class DailyTemperatureAdapter(
                 buildTemperatureArrayForItem(mNighttimeTemperatures, position),
                 daily.day?.temperature?.getShortTemperature(activity, mTemperatureUnit),
                 daily.night?.temperature?.getShortTemperature(activity, mTemperatureUnit),
-                mHighestTemperature?.toFloat(),
-                mLowestTemperature?.toFloat(),
+                mHighestTemperature,
+                mLowestTemperature,
                 if (p < 5) null else p,
                 if (p < 5) null else ProbabilityUnit.PERCENT.getValueText(activity, p.toInt()),
                 100f,
@@ -145,7 +145,7 @@ class DailyTemperatureAdapter(
         run {
             var i = 0
             while (i < mDaytimeTemperatures.size) {
-                mDaytimeTemperatures[i] = weather.dailyForecast.getOrNull(i / 2)?.day?.temperature?.temperature?.toFloat()
+                mDaytimeTemperatures[i] = weather.dailyForecast.getOrNull(i / 2)?.day?.temperature?.temperature
                 i += 2
             }
         }
@@ -164,7 +164,7 @@ class DailyTemperatureAdapter(
         run {
             var i = 0
             while (i < mNighttimeTemperatures.size) {
-                mNighttimeTemperatures[i] = weather.dailyForecast.getOrNull(i / 2)?.night?.temperature?.temperature?.toFloat()
+                mNighttimeTemperatures[i] = weather.dailyForecast.getOrNull(i / 2)?.night?.temperature?.temperature
                 i += 2
             }
         }
@@ -224,7 +224,7 @@ class DailyTemperatureAdapter(
             val keyLineList: MutableList<TrendRecyclerView.KeyLine> = ArrayList()
             keyLineList.add(
                 TrendRecyclerView.KeyLine(
-                    weather.yesterday!!.daytimeTemperature!!.toFloat(),
+                    weather.yesterday!!.daytimeTemperature!!,
                     Temperature.getShortTemperature(
                         activity,
                         weather.yesterday!!.daytimeTemperature,
@@ -236,7 +236,7 @@ class DailyTemperatureAdapter(
             )
             keyLineList.add(
                 TrendRecyclerView.KeyLine(
-                    weather.yesterday!!.nighttimeTemperature!!.toFloat(),
+                    weather.yesterday!!.nighttimeTemperature!!,
                     Temperature.getShortTemperature(
                         activity,
                         weather.yesterday!!.nighttimeTemperature,
@@ -246,7 +246,7 @@ class DailyTemperatureAdapter(
                     TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
                 )
             )
-            host.setData(keyLineList, mHighestTemperature!!.toFloat(), mLowestTemperature!!.toFloat())
+            host.setData(keyLineList, mHighestTemperature!!, mLowestTemperature!!)
         }
     }
 }

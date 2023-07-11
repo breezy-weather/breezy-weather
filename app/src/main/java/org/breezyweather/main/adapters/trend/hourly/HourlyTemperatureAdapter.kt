@@ -34,8 +34,8 @@ class HourlyTemperatureAdapter(
     private val mResourceProvider: ResourceProvider = provider
     private val mTemperatureUnit: TemperatureUnit = unit
     private val mTemperatures: Array<Float?>
-    private var mHighestTemperature: Int? = null
-    private var mLowestTemperature: Int? = null
+    private var mHighestTemperature: Float? = null
+    private var mLowestTemperature: Float? = null
     private val mShowPrecipitationProbability: Boolean
 
     inner class ViewHolder(itemView: View) : AbsHourlyTrendAdapter.ViewHolder(itemView) {
@@ -69,8 +69,8 @@ class HourlyTemperatureAdapter(
                 null,
                 hourly.temperature?.getShortTemperature(activity, mTemperatureUnit),
                 null,
-                mHighestTemperature?.toFloat(),
-                mLowestTemperature?.toFloat(),
+                mHighestTemperature,
+                mLowestTemperature,
                 if (p < 5) null else p,
                 if (p < 5) null else ProbabilityUnit.PERCENT.getValueText(activity, p.toInt()),
                 100f,
@@ -128,7 +128,7 @@ class HourlyTemperatureAdapter(
         run {
             var i = 0
             while (i < mTemperatures.size) {
-                mTemperatures[i] = weather.hourlyForecast.getOrNull(i / 2)?.temperature?.temperature?.toFloat()
+                mTemperatures[i] = weather.hourlyForecast.getOrNull(i / 2)?.temperature?.temperature
                 i += 2
             }
         }
@@ -186,7 +186,7 @@ class HourlyTemperatureAdapter(
             val keyLineList: MutableList<TrendRecyclerView.KeyLine> = ArrayList()
             keyLineList.add(
                 TrendRecyclerView.KeyLine(
-                    weather.yesterday!!.daytimeTemperature!!.toFloat(),
+                    weather.yesterday!!.daytimeTemperature!!,
                     Temperature.getShortTemperature(
                         activity,
                         weather.yesterday!!.daytimeTemperature,
@@ -198,7 +198,7 @@ class HourlyTemperatureAdapter(
             )
             keyLineList.add(
                 TrendRecyclerView.KeyLine(
-                    weather.yesterday!!.nighttimeTemperature!!.toFloat(),
+                    weather.yesterday!!.nighttimeTemperature!!,
                     Temperature.getShortTemperature(
                         activity,
                         weather.yesterday!!.nighttimeTemperature,
@@ -208,7 +208,7 @@ class HourlyTemperatureAdapter(
                     TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
                 )
             )
-            host.setData(keyLineList, mHighestTemperature!!.toFloat(), mLowestTemperature!!.toFloat())
+            host.setData(keyLineList, mHighestTemperature!!, mLowestTemperature!!)
         }
     }
 }

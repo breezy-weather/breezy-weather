@@ -90,8 +90,8 @@ fun convert(
                 weatherText = hourlyForecast.weatherDescription,
                 weatherCode = getWeatherCode(hourlyForecast.weatherIcon),
                 temperature = Temperature(
-                    temperature = hourlyForecast.t?.roundToInt(),
-                    windChillTemperature = hourlyForecast.tWindchill?.roundToInt()
+                    temperature = hourlyForecast.t,
+                    windChillTemperature = hourlyForecast.tWindchill
                 ),
                 precipitation = getHourlyPrecipitation(hourlyForecast),
                 precipitationProbability = if (forecastResult.properties.probabilityForecast != null) getHourlyPrecipitationProbability(
@@ -145,7 +145,7 @@ fun convert(
                 weatherText = currentResult.properties?.gridded?.weatherDescription,
                 weatherCode = getWeatherCode(currentResult.properties?.gridded?.weatherIcon),
                 temperature = Temperature(
-                    temperature = currentResult.properties?.gridded?.temperature?.roundToInt() ?: hourlyList.getOrNull(1)?.temperature?.temperature
+                    temperature = currentResult.properties?.gridded?.temperature ?: hourlyList.getOrNull(1)?.temperature?.temperature
                 ),
                 wind = if (currentResult.properties?.gridded != null) Wind(
                     direction = currentResult.properties.gridded.windIcon,
@@ -214,7 +214,7 @@ private fun getDailyList(
                         weatherText = dailyForecast.dailyWeatherDescription,
                         weatherPhase = dailyForecast.dailyWeatherDescription,
                         weatherCode = getWeatherCode(dailyForecast.dailyWeatherIcon),
-                        temperature = Temperature(temperature = dailyForecast.tMax?.roundToInt())
+                        temperature = Temperature(temperature = dailyForecast.tMax)
                         // TODO cloudCover with hourly data
                     ),
                     halfDayHourlyList = hourlyListByHalfDay.getOrDefault(dailyDateFormatted, null)?.get("day"),
@@ -226,7 +226,7 @@ private fun getDailyList(
                         weatherText = dailyForecast.dailyWeatherDescription,
                         weatherPhase = dailyForecast.dailyWeatherDescription,
                         weatherCode = getWeatherCode(dailyForecast.dailyWeatherIcon),
-                        temperature = Temperature(temperature = dailyForecast.tMin?.roundToInt())
+                        temperature = Temperature(temperature = dailyForecast.tMin)
                         // TODO cloudCover with hourly data
                     ),
                     halfDayHourlyList = hourlyListByHalfDay.getOrDefault(dailyDateFormatted, null)?.get("night"),
@@ -246,8 +246,8 @@ private fun getDailyList(
                 ),
                 airQuality = getDailyAirQualityFromHourlyList(hourlyListByDay.getOrDefault(dailyDateFormatted, null)),
                 uV = UV(
-                    index = dailyForecast.uvIndex,
-                    level = getUVLevel(context, dailyForecast.uvIndex)
+                    index = dailyForecast.uvIndex?.toFloat(),
+                    level = getUVLevel(context, dailyForecast.uvIndex?.toFloat())
                 ),
                 hoursOfSun = getHoursOfDay(dailyForecast.sunriseTime, dailyForecast.sunsetTime)
             )

@@ -17,6 +17,6 @@ class Material3ListItemDecoration(context: Context) : ItemDecoration() {
         parent: RecyclerView, state: RecyclerView.State
     ) {
         super.getItemOffsets(outRect, view, parent, state)
-        outRect.set(margins, 0, margins, margins);
+        outRect.set(margins, 0, margins, margins)
     }
 }

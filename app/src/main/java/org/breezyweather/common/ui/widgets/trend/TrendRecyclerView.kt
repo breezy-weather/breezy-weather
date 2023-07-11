@@ -13,7 +13,6 @@ import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.getTypefaceFromTextAppearance
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.ui.widgets.trend.item.AbsTrendItemView
-import org.breezyweather.common.utils.DisplayUtils
 
 /**
  * Trend recycler view.

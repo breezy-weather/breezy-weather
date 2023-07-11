@@ -51,12 +51,12 @@ object ForecastNotificationIMP : AbstractRemoteViewsPresenter() {
             setContentTitle(
                 context.getString(R.string.daytime)
                         + " " + daily.day?.weatherText
-                        + " " + daily.day?.temperature?.getTemperature(context, temperatureUnit)
+                        + " " + daily.day?.temperature?.getTemperature(context, temperatureUnit, 0)
             )
             setContentText(
                 context.getString(R.string.nighttime)
                         + " " + daily.night?.weatherText
-                        + " " + daily.night?.temperature?.getTemperature(context, temperatureUnit)
+                        + " " + daily.night?.temperature?.getTemperature(context, temperatureUnit, 0)
             )
             setContentIntent(
                 getWeatherPendingIntent(

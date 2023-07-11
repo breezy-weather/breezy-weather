@@ -89,12 +89,12 @@ fun convert(
                 weatherText = currentResult.WeatherText,
                 weatherCode = getWeatherCode(currentResult.WeatherIcon),
                 temperature = Temperature(
-                    temperature = currentResult.Temperature?.Metric?.Value?.roundToInt(),
-                    realFeelTemperature = currentResult.RealFeelTemperature?.Metric?.Value?.roundToInt(),
-                    realFeelShaderTemperature = currentResult.RealFeelTemperatureShade?.Metric?.Value?.roundToInt(),
-                    apparentTemperature = currentResult.ApparentTemperature?.Metric?.Value?.roundToInt(),
-                    windChillTemperature = currentResult.WindChillTemperature?.Metric?.Value?.roundToInt(),
-                    wetBulbTemperature = currentResult.WetBulbTemperature?.Metric?.Value?.roundToInt()
+                    temperature = currentResult.Temperature?.Metric?.Value?.toFloat(),
+                    realFeelTemperature = currentResult.RealFeelTemperature?.Metric?.Value?.toFloat(),
+                    realFeelShaderTemperature = currentResult.RealFeelTemperatureShade?.Metric?.Value?.toFloat(),
+                    apparentTemperature = currentResult.ApparentTemperature?.Metric?.Value?.toFloat(),
+                    windChillTemperature = currentResult.WindChillTemperature?.Metric?.Value?.toFloat(),
+                    wetBulbTemperature = currentResult.WetBulbTemperature?.Metric?.Value?.toFloat()
                 ),
                 wind = Wind(
                     direction = currentResult.Wind?.Direction?.Localized,
@@ -103,14 +103,14 @@ fun convert(
                     level = getWindLevel(context, currentResult.Wind?.Speed?.Metric?.Value?.toFloat())
                 ),
                 uV = UV(
-                    index = currentResult.UVIndex,
-                    level = getUVLevel(context, currentResult.UVIndex)
+                    index = currentResult.UVIndex?.toFloat(),
+                    level = getUVLevel(context, currentResult.UVIndex?.toFloat())
                 ),
                 airQuality = if (airQualityHourlyResult.data?.getOrNull(0) != null) getAirQualityForHour(airQualityHourlyResult.data[0].epochDate, airQualityHourlyResult.data) else null,
                 relativeHumidity = currentResult.RelativeHumidity?.toFloat(),
                 pressure = currentResult.Pressure?.Metric?.Value?.toFloat(),
                 visibility = currentResult.Visibility?.Metric?.Value?.toFloat(),
-                dewPoint = currentResult.DewPoint?.Metric?.Value?.roundToInt(),
+                dewPoint = currentResult.DewPoint?.Metric?.Value?.toFloat(),
                 cloudCover = currentResult.CloudCover,
                 ceiling = (currentResult.Ceiling?.Metric?.Value?.div(1000.0))?.toFloat(),
                 dailyForecast = convertUnit(context, dailyResult.Headline?.Text),
@@ -118,8 +118,8 @@ fun convert(
             ),
             yesterday = History(
                 date = Date((currentResult.EpochTime - 24 * 60 * 60).times(1000)),
-                daytimeTemperature = currentResult.TemperatureSummary?.Past24HourRange?.Maximum?.Metric?.Value?.roundToInt(),
-                nighttimeTemperature = currentResult.TemperatureSummary?.Past24HourRange?.Minimum?.Metric?.Value?.roundToInt()
+                daytimeTemperature = currentResult.TemperatureSummary?.Past24HourRange?.Maximum?.Metric?.Value?.toFloat(),
+                nighttimeTemperature = currentResult.TemperatureSummary?.Past24HourRange?.Minimum?.Metric?.Value?.toFloat()
             ),
             dailyForecast = getDailyList(context, dailyResult.DailyForecasts, hourlyList, location.timeZone),
             hourlyForecast = hourlyList,
@@ -154,10 +154,10 @@ private fun getDailyList(
                     weatherPhase = forecasts.Day?.ShortPhrase,
                     weatherCode = getWeatherCode(forecasts.Day?.Icon),
                     temperature = Temperature(
-                        temperature = forecasts.Temperature?.Maximum?.Value?.roundToInt(),
-                        realFeelTemperature = forecasts.RealFeelTemperature?.Maximum?.Value?.roundToInt(),
-                        realFeelShaderTemperature = forecasts.RealFeelTemperatureShade?.Maximum?.Value?.roundToInt(),
-                        degreeDayTemperature = forecasts.DegreeDaySummary?.Heating?.Value?.roundToInt()
+                        temperature = forecasts.Temperature?.Maximum?.Value?.toFloat(),
+                        realFeelTemperature = forecasts.RealFeelTemperature?.Maximum?.Value?.toFloat(),
+                        realFeelShaderTemperature = forecasts.RealFeelTemperatureShade?.Maximum?.Value?.toFloat(),
+                        degreeDayTemperature = forecasts.DegreeDaySummary?.Heating?.Value?.toFloat()
                     ),
                     precipitation = Precipitation(
                         total = forecasts.Day?.TotalLiquid?.Value?.toFloat(),
@@ -191,10 +191,10 @@ private fun getDailyList(
                     weatherPhase = forecasts.Night?.ShortPhrase,
                     weatherCode = getWeatherCode(forecasts.Night?.Icon),
                     temperature = Temperature(
-                        temperature = forecasts.Temperature?.Minimum?.Value?.roundToInt(),
-                        realFeelTemperature = forecasts.RealFeelTemperature?.Minimum?.Value?.roundToInt(),
-                        realFeelShaderTemperature = forecasts.RealFeelTemperatureShade?.Minimum?.Value?.roundToInt(),
-                        degreeDayTemperature = forecasts.DegreeDaySummary?.Cooling?.Value?.roundToInt()
+                        temperature = forecasts.Temperature?.Minimum?.Value?.toFloat(),
+                        realFeelTemperature = forecasts.RealFeelTemperature?.Minimum?.Value?.toFloat(),
+                        realFeelShaderTemperature = forecasts.RealFeelTemperatureShade?.Minimum?.Value?.toFloat(),
+                        degreeDayTemperature = forecasts.DegreeDaySummary?.Cooling?.Value?.toFloat()
                     ),
                     precipitation = Precipitation(
                         total = forecasts.Night?.TotalLiquid?.Value?.toFloat(),
@@ -273,7 +273,7 @@ private fun getDailyUV(list: List<AccuForecastAirAndPollen>?): UV? {
 
     val uv = list.firstOrNull { it.Name == "UVIndex" }
     return UV(
-        index = uv?.Value,
+        index = uv?.Value?.toFloat(),
         level = uv?.Category
     )
 }
@@ -292,10 +292,10 @@ private fun getHourlyList(
                 weatherText = result.IconPhrase,
                 weatherCode = getWeatherCode(result.WeatherIcon),
                 temperature = Temperature(
-                    temperature = result.Temperature?.Value?.roundToInt(),
-                    realFeelTemperature = result.RealFeelTemperature?.Value?.roundToInt(),
-                    realFeelShaderTemperature = result.RealFeelTemperatureShade?.Value?.roundToInt(),
-                    wetBulbTemperature = result.WetBulbTemperature?.Value?.roundToInt()
+                    temperature = result.Temperature?.Value?.toFloat(),
+                    realFeelTemperature = result.RealFeelTemperature?.Value?.toFloat(),
+                    realFeelShaderTemperature = result.RealFeelTemperatureShade?.Value?.toFloat(),
+                    wetBulbTemperature = result.WetBulbTemperature?.Value?.toFloat()
                 ),
                 precipitation = Precipitation(
                     total = result.TotalLiquid?.Value?.toFloat(),
@@ -318,8 +318,8 @@ private fun getHourlyList(
                 ),
                 airQuality = getAirQualityForHour(result.EpochDateTime, airQualityData),
                 uV = UV(
-                    index = result.UVIndex,
-                    level = getUVLevel(context, result.UVIndex),
+                    index = result.UVIndex?.toFloat(),
+                    level = getUVLevel(context, result.UVIndex?.toFloat()),
                     description = result.UVIndexText
                 )
             )

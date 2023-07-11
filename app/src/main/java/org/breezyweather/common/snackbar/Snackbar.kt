@@ -26,7 +26,6 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.ViewCompat
 import com.google.android.material.behavior.SwipeDismissBehavior
 import org.breezyweather.R
-import org.breezyweather.common.snackbar.Utils
 
 class Snackbar private constructor(
     private val mParent: ViewGroup,

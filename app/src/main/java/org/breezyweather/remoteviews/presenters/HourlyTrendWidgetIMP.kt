@@ -65,8 +65,8 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         val weather = location?.weather ?: return null
         val provider = ResourcesProviderFactory.newInstance
         val itemCount = min(5, weather.hourlyForecast.size)
-        var highestTemperature: Int? = null
-        var lowestTemperature: Int? = null
+        var highestTemperature: Float? = null
+        var lowestTemperature: Float? = null
         val minimalIcon = SettingsManager.getInstance(context).isWidgetUsingMonochromeIcons
         val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
         val lightTheme: Boolean = when (cardStyle) {
@@ -80,7 +80,7 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         run {
             var i = 0
             while (i < temperatures.size) {
-                temperatures[i] = weather.hourlyForecast.getOrNull(i / 2)?.temperature?.temperature?.toFloat()
+                temperatures[i] = weather.hourlyForecast.getOrNull(i / 2)?.temperature?.temperature
                 i += 2
             }
         }
@@ -151,8 +151,8 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
                     null,
                     hourly.temperature?.getShortTemperature(context, temperatureUnit),
                     null,
-                    highestTemperature?.toFloat(),
-                    lowestTemperature?.toFloat(),
+                    highestTemperature,
+                    lowestTemperature,
                     null, null, null, null
                 )
                 widgetItemView.trendItemView.setLineColors(

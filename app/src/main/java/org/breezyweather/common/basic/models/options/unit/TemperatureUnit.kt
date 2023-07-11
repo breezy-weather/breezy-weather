@@ -10,32 +10,29 @@ import org.breezyweather.common.extensions.isRtl
 enum class TemperatureUnit(
     override val id: String,
     override val unitFactor: Float
-): UnitEnum<Int> {
+): UnitEnum<Float> {
 
     C("c", 1f) {
-
-        override fun getValueWithoutUnit(valueInDefaultUnit: Int) = valueInDefaultUnit
-        override fun getValueInDefaultUnit(valueInCurrentUnit: Int) = valueInCurrentUnit
+        override fun getValueWithoutUnit(valueInDefaultUnit: Float) = valueInDefaultUnit
+        override fun getValueInDefaultUnit(valueInCurrentUnit: Float) = valueInCurrentUnit
     },
     F("f", 1f) {
-
         override fun getValueWithoutUnit(
-            valueInDefaultUnit: Int
-        ) = (32 + valueInDefaultUnit * 1.8f).toInt()
+            valueInDefaultUnit: Float
+        ) = (32 + valueInDefaultUnit * 1.8).toFloat()
 
         override fun getValueInDefaultUnit(
-            valueInCurrentUnit: Int
-        ) = ((valueInCurrentUnit - 32) / 1.8).toInt()
+            valueInCurrentUnit: Float
+        ) = ((valueInCurrentUnit - 32) / 1.8).toFloat()
     },
     K("k", 1f) {
-
         override fun getValueWithoutUnit(
-            valueInDefaultUnit: Int
-        ) = (273.15 + valueInDefaultUnit).toInt()
+            valueInDefaultUnit: Float
+        ) = (273.15 + valueInDefaultUnit).toFloat()
 
         override fun getValueInDefaultUnit(
-            valueInCurrentUnit: Int
-        ) = (valueInCurrentUnit - 273.15).toInt()
+            valueInCurrentUnit: Float
+        ) = (valueInCurrentUnit - 273.15).toFloat()
     };
 
     companion object {
@@ -65,61 +62,82 @@ enum class TemperatureUnit(
     )!!
 
     override fun getValueTextWithoutUnit(
-        valueInDefaultUnit: Int
-    ) = Utils.getValueTextWithoutUnit(this, valueInDefaultUnit)!!
+        valueInDefaultUnit: Float
+    ) = Utils.getValueTextWithoutUnit(this, valueInDefaultUnit, 0)!!
 
     override fun getVoice(context: Context) = Utils.getVoice(context, this)
 
     override fun getValueText(
         context: Context,
-        valueInDefaultUnit: Int
+        valueInDefaultUnit: Float,
     ) = getValueText(context, valueInDefaultUnit, context.isRtl)
+
+    fun getValueText(
+        context: Context,
+        valueInDefaultUnit: Float,
+        decimalNumber: Int = 1
+    ) = Utils.getValueText(
+        context = context,
+        enum = this,
+        valueInDefaultUnit = valueInDefaultUnit,
+        decimalNumber = decimalNumber,
+        rtl = context.isRtl
+    )
 
     override fun getValueText(
         context: Context,
-        valueInDefaultUnit: Int,
+        valueInDefaultUnit: Float,
         rtl: Boolean
     ) = Utils.getValueText(
         context = context,
         enum = this,
         valueInDefaultUnit = valueInDefaultUnit,
+        decimalNumber = 1,
         rtl = rtl
     )
 
     fun getShortValueText(
         context: Context,
-        valueInDefaultUnit: Int
-    ) = getShortValueText(context, valueInDefaultUnit, context.isRtl)
+        valueInDefaultUnit: Float
+    ) = getShortValueText(context, valueInDefaultUnit, 0, context.isRtl)
 
     fun getShortValueText(
         context: Context,
-        valueInDefaultUnit: Int,
+        valueInDefaultUnit: Float,
+        decimalNumber: Int,
         rtl: Boolean
     ) = if (rtl) {
         (BidiFormatter
             .getInstance()
             .unicodeWrap(
-                Utils.formatInt(getValueWithoutUnit(valueInDefaultUnit))
+                Utils.formatFloat(
+                    getValueWithoutUnit(valueInDefaultUnit),
+                    decimalNumber
+                )
             )
                 + getShortName(context))
     } else {
-        (Utils.formatInt(getValueWithoutUnit(valueInDefaultUnit))
+        (Utils.formatFloat(
+            getValueWithoutUnit(valueInDefaultUnit),
+            decimalNumber
+        )
                 + getShortName(context))
     }
 
     override fun getValueVoice(
         context: Context,
-        valueInDefaultUnit: Int
+        valueInDefaultUnit: Float
     ) = getValueVoice(context, valueInDefaultUnit, context.isRtl)
 
     override fun getValueVoice(
         context: Context,
-        valueInDefaultUnit: Int,
+        valueInDefaultUnit: Float,
         rtl: Boolean
     ) = Utils.getVoiceText(
         context = context,
         enum = this,
         valueInDefaultUnit = valueInDefaultUnit,
+        decimalNumber = 0,
         rtl = rtl
     )
 }

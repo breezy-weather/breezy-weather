@@ -8,6 +8,7 @@ import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -87,6 +88,26 @@ fun FitStatusBarTopAppBar(
     },
     actions = actions,
     scrollBehavior = scrollBehavior,
+)
+
+
+@Composable
+fun BWCenterAlignedTopAppBar(
+    title: String,
+    onBackPressed: () -> Unit,
+    actions: @Composable RowScope.() -> Unit = {}
+) = CenterAlignedTopAppBar(
+    title = { Text(text = title) },
+    navigationIcon = {
+        IconButton(onClick = onBackPressed) {
+            Icon(
+                imageVector = if (LocalContext.current.isRtl) Icons.Filled.ArrowForward else Icons.Filled.ArrowBack,
+                contentDescription = stringResource(R.string.action_back),
+                tint = MaterialTheme.colorScheme.onPrimaryContainer,
+            )
+        }
+    },
+    actions = actions
 )
 
 enum class BottomInsetKey { INSTANCE }

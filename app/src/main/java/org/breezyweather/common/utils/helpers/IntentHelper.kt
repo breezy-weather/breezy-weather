@@ -13,7 +13,6 @@ import org.breezyweather.background.polling.services.basic.AwakeForegroundUpdate
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.ui.activities.AlertActivity
 import org.breezyweather.common.ui.activities.AllergenActivity
-import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.daily.DailyWeatherActivity
 import org.breezyweather.main.MainActivity
 import org.breezyweather.search.SearchActivity

@@ -3,7 +3,6 @@ package org.breezyweather.common.snackbar
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
-import org.breezyweather.common.bus.EventBus
 
 internal class SnackbarManager private constructor() {
     private val mLock: Any = Any()

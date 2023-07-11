@@ -78,8 +78,4 @@ class LocationAdapter(
     fun update(from: Int, to: Int) {
         submitMove(from, to)
     }
-
-    override fun submitList(newList: List<LocationModel>) {
-        super.submitList(newList)
-    }
 }

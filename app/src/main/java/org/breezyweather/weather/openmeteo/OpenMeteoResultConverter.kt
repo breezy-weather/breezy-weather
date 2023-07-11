@@ -5,19 +5,39 @@ import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.provider.WeatherSource
-import org.breezyweather.common.basic.models.weather.*
+import org.breezyweather.common.basic.models.weather.AirQuality
+import org.breezyweather.common.basic.models.weather.Astro
+import org.breezyweather.common.basic.models.weather.Base
+import org.breezyweather.common.basic.models.weather.Current
+import org.breezyweather.common.basic.models.weather.Daily
+import org.breezyweather.common.basic.models.weather.HalfDay
+import org.breezyweather.common.basic.models.weather.History
+import org.breezyweather.common.basic.models.weather.Hourly
+import org.breezyweather.common.basic.models.weather.Precipitation
+import org.breezyweather.common.basic.models.weather.PrecipitationProbability
+import org.breezyweather.common.basic.models.weather.Temperature
+import org.breezyweather.common.basic.models.weather.UV
+import org.breezyweather.common.basic.models.weather.Weather
+import org.breezyweather.common.basic.models.weather.WeatherCode
+import org.breezyweather.common.basic.models.weather.Wind
+import org.breezyweather.common.basic.models.weather.WindDegree
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toTimezoneNoHour
-import org.breezyweather.weather.*
-import org.breezyweather.weather.openmeteo.json.OpenMeteoAirQualityResult
-import org.breezyweather.weather.openmeteo.json.OpenMeteoWeatherDaily
-import org.breezyweather.weather.openmeteo.json.OpenMeteoLocationResult
-import org.breezyweather.weather.openmeteo.json.OpenMeteoWeatherResult
-import org.breezyweather.weather.mf.getFrenchDepartmentCode
 import org.breezyweather.weather.WeatherService.WeatherResultWrapper
+import org.breezyweather.weather.completeHalfDayFromHourlyList
+import org.breezyweather.weather.getCurrentUV
+import org.breezyweather.weather.getDailyAirQualityFromHourlyList
+import org.breezyweather.weather.getHoursOfDay
+import org.breezyweather.weather.getUVLevel
+import org.breezyweather.weather.getWindDirection
+import org.breezyweather.weather.getWindLevel
+import org.breezyweather.weather.mf.getFrenchDepartmentCode
+import org.breezyweather.weather.openmeteo.json.OpenMeteoAirQualityResult
+import org.breezyweather.weather.openmeteo.json.OpenMeteoLocationResult
+import org.breezyweather.weather.openmeteo.json.OpenMeteoWeatherDaily
+import org.breezyweather.weather.openmeteo.json.OpenMeteoWeatherResult
 import java.util.Date
 import java.util.TimeZone
-import kotlin.math.roundToInt
 
 fun convert(
     location: Location?,
@@ -96,8 +116,8 @@ fun convert(
                 weatherText = getWeatherText(context, weatherResult.hourly.weatherCode?.getOrNull(i)),
                 weatherCode = getWeatherCode(weatherResult.hourly.weatherCode?.getOrNull(i)),
                 temperature = Temperature(
-                    temperature = weatherResult.hourly.temperature?.getOrNull(i)?.roundToInt(),
-                    apparentTemperature = weatherResult.hourly.apparentTemperature?.getOrNull(i)?.roundToInt()
+                    temperature = weatherResult.hourly.temperature?.getOrNull(i),
+                    apparentTemperature = weatherResult.hourly.apparentTemperature?.getOrNull(i)
                 ),
                 precipitation = Precipitation(
                     // TODO: It’s not clear why the sum of rain + showers + snowfall is sometimes < precipitation
@@ -124,8 +144,8 @@ fun convert(
                 ) else null,
                 // pollen = TODO
                 uV = UV(
-                    index = weatherResult.hourly.uvIndex?.getOrNull(i)?.roundToInt(),
-                    level = getUVLevel(context, weatherResult.hourly.uvIndex?.getOrNull(i)?.roundToInt())
+                    index = weatherResult.hourly.uvIndex?.getOrNull(i),
+                    level = getUVLevel(context, weatherResult.hourly.uvIndex?.getOrNull(i))
                 )
             )
 
@@ -164,7 +184,7 @@ fun convert(
             current = Current(
                 weatherText = getWeatherText(context, weatherResult.currentWeather?.weatherCode),
                 weatherCode = getWeatherCode(weatherResult.currentWeather?.weatherCode),
-                temperature = Temperature(temperature = weatherResult.currentWeather?.temperature?.roundToInt()),
+                temperature = Temperature(temperature = weatherResult.currentWeather?.temperature),
                 wind = Wind(
                     direction = if (weatherResult.currentWeather?.windDirection != null) getWindDirection(
                         context, weatherResult.currentWeather.windDirection.toFloat()
@@ -187,13 +207,13 @@ fun convert(
                 relativeHumidity = if (currentI != null) weatherResult.hourly.relativeHumidity?.getOrNull(currentI)?.toFloat() else null,
                 pressure = if (currentI != null) weatherResult.hourly.surfacePressure?.getOrNull(currentI) else null,
                 visibility = if (currentI != null) weatherResult.hourly.visibility?.getOrNull(currentI)?.div(1000) else null,
-                dewPoint = if (currentI != null) weatherResult.hourly.dewPoint?.getOrNull(currentI)?.roundToInt() else null,
+                dewPoint = if (currentI != null) weatherResult.hourly.dewPoint?.getOrNull(currentI) else null,
                 cloudCover = if (currentI != null) weatherResult.hourly.cloudCover?.getOrNull(currentI) else null
             ),
             yesterday = History(
                 date = Date(weatherResult.daily.time[0].times(1000)),
-                daytimeTemperature = weatherResult.daily.temperatureMax?.getOrNull(0)?.roundToInt(),
-                nighttimeTemperature = weatherResult.daily.temperatureMin?.getOrNull(0)?.roundToInt(),
+                daytimeTemperature = weatherResult.daily.temperatureMax?.getOrNull(0),
+                nighttimeTemperature = weatherResult.daily.temperatureMin?.getOrNull(0),
             ),
             dailyForecast = dailyList,
             hourlyForecast = hourlyList
@@ -225,8 +245,8 @@ private fun getDailyList(
                 dailyDate = theDay,
                 initialHalfDay = HalfDay(
                     temperature = Temperature(
-                        temperature = dailyResult.temperatureMax?.getOrNull(i)?.roundToInt(),
-                        apparentTemperature = dailyResult.apparentTemperatureMax?.getOrNull(i)?.roundToInt()
+                        temperature = dailyResult.temperatureMax?.getOrNull(i),
+                        apparentTemperature = dailyResult.apparentTemperatureMax?.getOrNull(i)
                     ),
                 ),
                 halfDayHourlyList = hourlyByDate.getOrDefault(dailyDateFormatted, null)?.get("day"),
@@ -237,8 +257,8 @@ private fun getDailyList(
                 initialHalfDay = HalfDay(
                     temperature = Temperature(
                         // For night temperature, we take the minTemperature from the following day
-                        temperature = dailyResult.temperatureMin?.getOrNull(i + 1)?.roundToInt(),
-                        apparentTemperature = dailyResult.apparentTemperatureMin?.getOrNull(i + 1)?.roundToInt()
+                        temperature = dailyResult.temperatureMin?.getOrNull(i + 1),
+                        apparentTemperature = dailyResult.apparentTemperatureMin?.getOrNull(i + 1)
                     ),
                 ),
                 halfDayHourlyList = hourlyByDate.getOrDefault(dailyDateFormatted, null)?.get("night"),
@@ -251,8 +271,8 @@ private fun getDailyList(
             airQuality = getDailyAirQualityFromHourlyList(hourlyListByDay.getOrDefault(dailyDateFormatted, null)),
             // pollen = TODO
             uV = UV(
-                index = dailyResult.uvIndexMax?.getOrNull(i)?.roundToInt(),
-                level = getUVLevel(context, dailyResult.uvIndexMax?.getOrNull(i)?.roundToInt())
+                index = dailyResult.uvIndexMax?.getOrNull(i),
+                level = getUVLevel(context, dailyResult.uvIndexMax?.getOrNull(i))
             ),
             hoursOfSun = if (dailyResult.sunrise?.getOrNull(i) != null && dailyResult.sunset?.getOrNull(i) != null) getHoursOfDay(
                 Date(dailyResult.sunrise[i]!!.times(1000)), Date(dailyResult.sunset[i]!!.times(1000))

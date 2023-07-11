@@ -1,21 +1,38 @@
 package org.breezyweather.main.fragments
 
+import android.Manifest
 import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.MyLocation
 import androidx.compose.material.icons.outlined.Search
-import androidx.compose.material3.*
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.res.dimensionResource
@@ -34,10 +51,10 @@ import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.extensions.plus
+import org.breezyweather.common.ui.composables.NotificationCard
 import org.breezyweather.common.ui.decorations.Material3ListItemDecoration
 import org.breezyweather.common.ui.widgets.Material3Scaffold
-import org.breezyweather.common.ui.widgets.generateCollapsedScrollBehavior
-import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
+import org.breezyweather.common.ui.widgets.insets.BWCenterAlignedTopAppBar
 import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.main.MainActivity
@@ -53,7 +70,7 @@ import org.breezyweather.theme.compose.DayNightTheme
 import org.breezyweather.theme.resource.ResourcesProviderFactory
 import org.breezyweather.theme.resource.providers.ResourceProvider
 
-class PushedManagementFragment: ManagementFragment() {
+class PushedManagementFragment : ManagementFragment() {
 
     companion object {
         fun getInstance() = PushedManagementFragment()
@@ -110,13 +127,18 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
     @Composable
     private fun ContentView() {
         ensureResourceProvider()
-        val scrollBehavior = generateCollapsedScrollBehavior()
 
         val totalLocationListState = viewModel.totalLocationList.collectAsState()
+        var notificationDismissed by remember { mutableStateOf(false) }
+        /*
+         * We should add a scroll behavior to make the top bar change color when scrolling, but
+         * as we mix ComposeView and XML views, this leads to stuttering in scrolling.
+         * Implement it later once we replace the RecyclerView as a LazyList. It’s not an easy
+         * task as we need to implement drag & drop and swipe left/right
+         */
         Material3Scaffold(
-            modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
             topBar = {
-                FitStatusBarTopAppBar(
+                BWCenterAlignedTopAppBar(
                     title = stringResource(R.string.locations),
                     onBackPressed = {
                         (requireActivity() as MainActivity).setManagementFragmentVisibility(false)
@@ -133,8 +155,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                                 tint = MaterialTheme.colorScheme.onPrimaryContainer
                             )
                         }
-                    },
-                    scrollBehavior = scrollBehavior,
+                    }
                 )
             },
             floatingActionButton = {
@@ -153,7 +174,10 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                                 SnackbarHelper.showSnackbar(getString(R.string.location_message_added))
                             },
                         ) {
-                            Icon(Icons.Outlined.MyLocation, stringResource(R.string.action_add_current_location))
+                            Icon(
+                                Icons.Outlined.MyLocation,
+                                stringResource(R.string.action_add_current_location)
+                            )
                         }
                         //Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
                     }
@@ -167,17 +191,59 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
             }
         ) { paddings ->
             if (totalLocationListState.value.first.isNotEmpty()) {
-                AndroidView(
-                    modifier = Modifier.padding(paddings),
-                    factory = {
-                        recyclerView
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .fillMaxHeight()
+                        .padding(paddings)
+                ) {
+                    if (!viewModel.statementManager.isPostNotificationDialogAlreadyShown
+                        && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
+                        && !notificationDismissed
+                    ) {
+                        NotificationCard(
+                            title = stringResource(R.string.dialog_permissions_notification_title),
+                            summary = stringResource(R.string.dialog_permissions_notification_content),
+                            onClick = {
+                                viewModel.statementManager.setPostNotificationDialogAlreadyShown()
+                                notificationDismissed = true
+                                requireActivity().requestPermissions(
+                                    arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+                                    0
+                                )
+                            },
+                            onClose = {
+                                viewModel.statementManager.setPostNotificationDialogAlreadyShown()
+                                notificationDismissed = true
+                                /*
+                                 * We could turn off alert notification from SettingsManager, but
+                                 * it’s best not to, as the user can still enable notification
+                                 * permission again from Android settings, and there is a
+                                 * permission check before sending any notification even if
+                                 * preference is enabled.
+                                 */
+                            }
+                        )
+                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
                     }
-                )
+                    AndroidView(
+                        modifier = Modifier
+                            .fillMaxHeight()
+                            .clipToBounds(),
+                        factory = {
+                            recyclerView
+                        }
+                    )
+                }
             } else {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(paddings + PaddingValues(horizontal = dimensionResource(R.dimen.normal_margin)))
+                        .padding(
+                    paddings
+                            + PaddingValues(horizontal = dimensionResource(R.dimen.normal_margin))
+                            + PaddingValues(top = dimensionResource(R.dimen.large_margin))
+                        ),
                 ) {
                     Text(
                         text = stringResource(R.string.location_none_added_yet_instructions),

@@ -229,7 +229,7 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
                 stringBuilder.append(location.getCityName(context))
                 if (weather.current?.temperature?.temperature != null) {
                     stringBuilder.append("\n")
-                        .append(weather.current.temperature.getTemperature(context, unit))
+                        .append(weather.current.temperature.getTemperature(context, unit, 0))
                 }
                 stringBuilder.toString()
             }
@@ -242,7 +242,7 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
                     if (stringBuilder.isNotEmpty()) {
                         stringBuilder.append(" ")
                     }
-                    stringBuilder.append(weather.current.temperature.getTemperature(context, unit))
+                    stringBuilder.append(weather.current.temperature.getTemperature(context, unit, 0))
                 }
                 return stringBuilder.toString()
             } else null
@@ -336,7 +336,7 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
             "feels_like" -> if (weather.current?.temperature?.feelsLikeTemperature != null) {
                 (context.getString(R.string.temperature_feels_like)
                         + " "
-                        + weather.current.temperature.getFeelsLikeTemperature(context, temperatureUnit))
+                        + weather.current.temperature.getFeelsLikeTemperature(context, temperatureUnit, 0))
             } else null
             else -> getCustomSubtitle(context, subtitleData, location, weather)
         }

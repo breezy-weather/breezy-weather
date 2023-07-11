@@ -7,7 +7,6 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.provider.WeatherSource
 import org.breezyweather.common.basic.models.weather.Astro
 import org.breezyweather.common.basic.models.weather.Weather
-import org.breezyweather.settings.SettingsManager
 import java.util.TimeZone
 import kotlin.math.abs
 

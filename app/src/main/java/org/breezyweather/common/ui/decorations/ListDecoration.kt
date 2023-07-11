@@ -43,7 +43,7 @@ class ListDecoration(context: Context, @ColorInt colorP: Int) : ItemDecoration()
     }
 
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
-        outRect.set(0, 0, 0, mDividerDistance);
+        outRect.set(0, 0, 0, mDividerDistance)
     }
 
     @get:ColorInt

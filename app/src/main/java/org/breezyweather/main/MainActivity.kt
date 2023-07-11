@@ -282,39 +282,6 @@ class MainActivity : GeoActivity(),
                 requestPermissions(it.permissionList.toTypedArray(), 0)
             }
         }
-        viewModel.notificationPermissionsRequest.observe(this) {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU
-                || it == null
-                || it.permissionList.isEmpty()
-                || !it.consume()) {
-                return@observe
-            }
-
-            if (!viewModel.statementManager.isPostNotificationDialogAlreadyShown) {
-                // only show dialog once.
-                MaterialAlertDialogBuilder(this)
-                    .setTitle(R.string.dialog_permissions_notification_title)
-                    .setMessage(R.string.dialog_permissions_notification_content)
-                    .setPositiveButton(R.string.action_next) { _, _ ->
-                        // mark declared.
-                        viewModel.statementManager.setPostNotificationDialogAlreadyShown()
-
-                        val request = viewModel.notificationPermissionsRequest.value
-                        if (request != null
-                            && request.permissionList.isNotEmpty()
-                            && request.target != null) {
-                            requestPermissions(
-                                request.permissionList.toTypedArray(),
-                                0
-                            )
-                        }
-                    }
-                    .setCancelable(false)
-                    .show()
-            } else {
-                requestPermissions(it.permissionList.toTypedArray(), 0)
-            }
-        }
         viewModel.requestErrorType.observe(this) {
             it?.let { msg ->
                 msg.showDialogAction?.let { showDialogAction ->
@@ -335,9 +302,6 @@ class MainActivity : GeoActivity(),
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-
-        // TODO: Should do something about post notifications, like turning off notifications
-        // preferences if denied permission
 
         val request = viewModel.locationPermissionsRequest.value
         if (request == null

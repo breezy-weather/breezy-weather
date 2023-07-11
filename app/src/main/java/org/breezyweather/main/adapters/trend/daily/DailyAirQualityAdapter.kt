@@ -47,8 +47,8 @@ class DailyAirQualityAdapter(
                     null, null,
                     null, null,
                     null, null,
-                    (index ?: 0).toFloat(), String.format("%d", index ?: 0), mHighestIndex.toFloat(),
-                    0f
+                    (index ?: 0).toFloat(), String.format("%d", index ?: 0),
+                    mHighestIndex.toFloat(), 0f
                 )
                 mPolylineAndHistogramView.setLineColors(
                     airQuality.getColor(activity),

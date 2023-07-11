@@ -1,6 +1,5 @@
 package org.breezyweather.main
 
-import android.Manifest
 import android.app.Application
 import android.os.Build
 import android.os.Handler
@@ -40,7 +39,6 @@ class MainActivityViewModel @Inject constructor(
     val indicator = EqualtableLiveData<Indicator>()
 
     val locationPermissionsRequest = MutableLiveData<PermissionsRequest?>()
-    val notificationPermissionsRequest = MutableLiveData<PermissionsRequest?>()
     val requestErrorType = BusLiveData<RequestErrorType?>(Handler(Looper.getMainLooper()))
 
     // inner data.
@@ -88,7 +86,6 @@ class MainActivityViewModel @Inject constructor(
         )
 
         locationPermissionsRequest.value = null
-        notificationPermissionsRequest.value = null
         requestErrorType.setValue(null)
 
         // read weather caches.
@@ -229,23 +226,12 @@ class MainActivityViewModel @Inject constructor(
         }
 
         // check permissions.
-        val notificationPermissionList: MutableList<String> = mutableListOf()
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            notificationPermissionList.add(Manifest.permission.POST_NOTIFICATIONS)
-        }
         val locationPermissionList: MutableList<String> = mutableListOf()
         if (currentLocation.value!!.location.isCurrentPosition) {
             locationPermissionList.addAll(repository
                 .getLocatePermissionList(getApplication())
                 .filter { !(getApplication() as Application).hasPermission(it) }
                 .toMutableList())
-        }
-        if (notificationPermissionList.isNotEmpty()) {
-            notificationPermissionsRequest.value = PermissionsRequest(
-                notificationPermissionList,
-                currentLocation.value!!.location,
-                triggeredByUser
-            )
         }
         if (locationPermissionList.isEmpty()) {
             // already got all permissions -> request data directly.

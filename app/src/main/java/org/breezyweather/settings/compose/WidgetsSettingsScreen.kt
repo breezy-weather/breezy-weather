@@ -85,8 +85,8 @@ fun WidgetsSettingsScreen(
             summary = { context, it ->
                 Temperature.getTrendTemperature(
                     context,
-                    3,
-                    7,
+                    3f,
+                    7f,
                     SettingsManager.getInstance(context).temperatureUnit,
                     it
                 )

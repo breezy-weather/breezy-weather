@@ -22,6 +22,7 @@ import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.ResourcesProviderFactory
 import org.breezyweather.theme.resource.providers.ResourceProvider
 import java.util.*
+import kotlin.math.roundToInt
 
 object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
     fun buildNotificationAndSendIt(
@@ -46,7 +47,7 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
             setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             setSmallIcon(
                 if (temperature != null) {
-                    ResourceHelper.getTempIconId(context, temperatureUnit.getValueWithoutUnit(temperature))
+                    ResourceHelper.getTempIconId(context, temperatureUnit.getValueWithoutUnit(temperature).roundToInt())
                 } else ResourceHelper.getDefaultMinimalXmlIconId(current.weatherCode, dayTime)
             )
             setContent(

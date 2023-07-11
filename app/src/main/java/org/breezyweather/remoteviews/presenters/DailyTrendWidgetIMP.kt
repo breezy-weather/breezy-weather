@@ -66,8 +66,8 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         val weather = location?.weather ?: return null
         val provider = ResourcesProviderFactory.newInstance
         val itemCount = min(5, weather.dailyForecast.size)
-        var highestTemperature: Int? = null
-        var lowestTemperature: Int? = null
+        var highestTemperature: Float? = null
+        var lowestTemperature: Float? = null
         val minimalIcon = SettingsManager.getInstance(context).isWidgetUsingMonochromeIcons
         val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
         val lightTheme = when (cardStyle) {
@@ -81,7 +81,7 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         run {
             var i = 0
             while (i < daytimeTemperatures.size) {
-                daytimeTemperatures[i] = weather.dailyForecast.getOrNull(i / 2)?.day?.temperature?.temperature?.toFloat()
+                daytimeTemperatures[i] = weather.dailyForecast.getOrNull(i / 2)?.day?.temperature?.temperature
                 i += 2
             }
         }
@@ -101,7 +101,7 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         run {
             var i = 0
             while (i < nighttimeTemperatures.size) {
-                nighttimeTemperatures[i] = weather.dailyForecast.getOrNull(i / 2)?.night?.temperature?.temperature?.toFloat()
+                nighttimeTemperatures[i] = weather.dailyForecast.getOrNull(i / 2)?.night?.temperature?.temperature
                 i += 2
             }
         }
@@ -188,8 +188,8 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
                     buildTemperatureArrayForItem(nighttimeTemperatures, i),
                     daily.day?.temperature?.getShortTemperature(context, temperatureUnit),
                     daily.night?.temperature?.getShortTemperature(context, temperatureUnit),
-                    highestTemperature?.toFloat(),
-                    lowestTemperature?.toFloat(),
+                    highestTemperature,
+                    lowestTemperature,
                     if (p < 5) null else p,
                     if (p < 5) null else ProbabilityUnit.PERCENT.getValueText(context, p.toInt()),
                     100f,

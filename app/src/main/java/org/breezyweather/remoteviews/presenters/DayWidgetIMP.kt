@@ -23,6 +23,7 @@ import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.ResourcesProviderFactory
 import java.util.*
 import kotlin.math.abs
+import kotlin.math.roundToInt
 
 object DayWidgetIMP : AbstractRemoteViewsPresenter() {
 
@@ -168,7 +169,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
                 stringBuilder.append(location.getCityName(context))
                 if (weather.current?.temperature?.temperature != null) {
                     stringBuilder.append("\n")
-                        .append(weather.current.temperature.getTemperature(context, unit))
+                        .append(weather.current.temperature.getTemperature(context, unit, 0))
                 }
                 stringBuilder.toString()
             }
@@ -181,14 +182,14 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
                     if (stringBuilder.toString().isNotEmpty()) {
                         stringBuilder.append(" ")
                     }
-                    stringBuilder.append(weather.current.temperature.getTemperature(context, unit))
+                    stringBuilder.append(weather.current.temperature.getTemperature(context, unit, 0))
                 }
                 stringBuilder.toString()
             } else null
-            "nano", "pixel" -> weather.current?.temperature?.getTemperature(context, unit)
+            "nano", "pixel" -> weather.current?.temperature?.getTemperature(context, unit, 0)
             "temp" -> weather.current?.temperature?.getShortTemperature(context, unit)
             "vertical" -> weather.current?.temperature?.temperature?.let {
-                abs(unit.getValueWithoutUnit(it)).toString()
+                abs(unit.getValueWithoutUnit(it).roundToInt()).toString()
             }
             else -> null
         }
@@ -227,9 +228,9 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
                 }
                 stringBuilder.toString()
             } else null
-            "oreo" -> weather.current?.temperature?.getTemperature(context, unit)
+            "oreo" -> weather.current?.temperature?.getTemperature(context, unit, 0)
             "oreo_google_sans" -> weather.current?.temperature?.temperature?.let {
-                unit.getValueText(context, it)
+                unit.getValueText(context, it, 0)
             }
             else -> null
         }
@@ -282,7 +283,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
                 return if (weather.current?.temperature?.feelsLikeTemperature != null) {
                     (context.getString(R.string.temperature_feels_like)
                             + " "
-                            + weather.current.temperature.getFeelsLikeTemperature(context, temperatureUnit))
+                            + weather.current.temperature.getFeelsLikeTemperature(context, temperatureUnit, 0))
                 } else null
             }
             else -> getCustomSubtitle(context, subtitleData, location, weather)

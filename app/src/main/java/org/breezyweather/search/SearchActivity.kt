@@ -53,6 +53,7 @@ class SearchActivity : GeoActivity() {
     private fun ContentView() {
         val dialogOpenState = remember { mutableStateOf(false) }
         var text by rememberSaveable { mutableStateOf("") }
+        var latestTextSearch by rememberSaveable { mutableStateOf("") }
         val enabledSourceState = viewModel.enabledSource.collectAsState()
 
         Material3Scaffold(
@@ -109,6 +110,7 @@ class SearchActivity : GeoActivity() {
                             if (it.isNotEmpty()) {
                                 hideKeyboard()
                                 viewModel.requestLocationList(it)
+                                latestTextSearch = it
                             }
                         },
                         onQueryChange = { text = it },
@@ -124,18 +126,45 @@ class SearchActivity : GeoActivity() {
                     if (listResourceState.value.second == LoadableLocationStatus.LOADING) {
                         LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
                     }
-                    LazyColumn(
-                        modifier = Modifier.fillMaxWidth().fillMaxHeight(),
-                        verticalArrangement = Arrangement.spacedBy(4.dp)
-                    ) {
-                        items(listResourceState.value.first) { location ->
-                            ListItem(
-                                headlineContent = { Text(location.place()) },
-                                supportingContent = { Text(location.administrationLevels()) },
-                                modifier = Modifier.clickable {
-                                    finishSelf(location)
-                                }
-                            )
+                    if (listResourceState.value.first.isNotEmpty()) {
+                        LazyColumn(
+                            modifier = Modifier.fillMaxWidth().fillMaxHeight(),
+                            verticalArrangement = Arrangement.spacedBy(4.dp)
+                        ) {
+                            items(listResourceState.value.first) { location ->
+                                ListItem(
+                                    headlineContent = { Text(location.place()) },
+                                    supportingContent = { Text(location.administrationLevels()) },
+                                    modifier = Modifier.clickable {
+                                        finishSelf(location)
+                                    }
+                                )
+                            }
+                        }
+                    } else {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .fillMaxHeight()
+                                .padding(dimensionResource(R.dimen.normal_margin))
+                        ) {
+                            if (latestTextSearch.isNotEmpty()
+                                && listResourceState.value.second == LoadableLocationStatus.SUCCESS
+                            ) {
+                                Text(
+                                    text = stringResource(R.string.location_search_no_results)
+                                        .replace("$1", enabledSourceState.value.locationProvider ?: enabledSourceState.value.getName(LocalContext.current))
+                                        .replace("$2", latestTextSearch),
+                                    style = MaterialTheme.typography.titleMedium,
+                                    color = DayNightTheme.colors.titleColor
+                                )
+                                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                                Text(
+                                    text = stringResource(R.string.location_search_no_results_advice),
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    color = DayNightTheme.colors.bodyColor
+                                )
+                            }
                         }
                     }
                 }

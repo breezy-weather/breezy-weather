@@ -45,7 +45,7 @@ fun convert(
                 weatherText = null, // TODO
                 weatherCode = getWeatherCode(symbolCode),
                 temperature = Temperature(
-                    temperature = hourlyForecast.data?.instant?.details?.airTemperature?.roundToInt(),
+                    temperature = hourlyForecast.data?.instant?.details?.airTemperature,
                 ),
                 precipitation = Precipitation(
                     total = hourlyForecast.data?.next1Hours?.details?.precipitationAmount
@@ -68,8 +68,8 @@ fun convert(
                 ),
                 // airQuality = TODO
                 uV = UV(
-                    index = hourlyForecast.data?.instant?.details?.ultravioletIndexClearSky?.roundToInt(),
-                    level = getUVLevel(context, hourlyForecast.data?.instant?.details?.ultravioletIndexClearSky?.roundToInt())
+                    index = hourlyForecast.data?.instant?.details?.ultravioletIndexClearSky,
+                    level = getUVLevel(context, hourlyForecast.data?.instant?.details?.ultravioletIndexClearSky)
                 )
             )
 
@@ -129,7 +129,7 @@ fun convert(
                     forecastResult.properties.timeseries.getOrNull(currentI)?.data?.instant?.details?.airPressureAtSeaLevel
                 else null,
                 dewPoint = if (currentI != null)
-                    forecastResult.properties.timeseries.getOrNull(currentI)?.data?.instant?.details?.dewPointTemperature?.roundToInt()
+                    forecastResult.properties.timeseries.getOrNull(currentI)?.data?.instant?.details?.dewPointTemperature
                 else null
             ),
             dailyForecast = dailyList,

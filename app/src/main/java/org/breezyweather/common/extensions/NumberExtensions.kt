@@ -6,6 +6,20 @@ import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.platform.LocalLayoutDirection
+import java.math.RoundingMode
+import java.text.DecimalFormat
+
+fun Float.roundDecimals(decimals: Int): Float {
+    return this.toBigDecimal().setScale(decimals, RoundingMode.HALF_EVEN).toFloat()
+}
+
+fun Float.format(decimals: Int): String {
+    val df = DecimalFormat("0").apply {
+        maximumFractionDigits = decimals
+    }
+
+    return df.format(this)
+}
 
 /**
  * Taken from Tachiyomi

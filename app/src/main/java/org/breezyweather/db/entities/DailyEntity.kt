@@ -30,13 +30,13 @@ data class DailyEntity(
         dbType = String::class
     ) var daytimeWeatherCode: WeatherCode? = null,
 
-    var daytimeTemperature: Int? = null,
-    var daytimeRealFeelTemperature: Int? = null,
-    var daytimeRealFeelShaderTemperature: Int? = null,
-    var daytimeApparentTemperature: Int? = null,
-    var daytimeWindChillTemperature: Int? = null,
-    var daytimeWetBulbTemperature: Int? = null,
-    var daytimeDegreeDayTemperature: Int? = null,
+    var daytimeTemperature: Float? = null,
+    var daytimeRealFeelTemperature: Float? = null,
+    var daytimeRealFeelShaderTemperature: Float? = null,
+    var daytimeApparentTemperature: Float? = null,
+    var daytimeWindChillTemperature: Float? = null,
+    var daytimeWetBulbTemperature: Float? = null,
+    var daytimeDegreeDayTemperature: Float? = null,
 
     var daytimeTotalPrecipitation: Float? = null,
     var daytimeThunderstormPrecipitation: Float? = null,
@@ -74,13 +74,13 @@ data class DailyEntity(
         dbType = String::class
     ) var nighttimeWeatherCode: WeatherCode? = null,
 
-    var nighttimeTemperature: Int? = null,
-    var nighttimeRealFeelTemperature: Int? = null,
-    var nighttimeRealFeelShaderTemperature: Int? = null,
-    var nighttimeApparentTemperature: Int? = null,
-    var nighttimeWindChillTemperature: Int? = null,
-    var nighttimeWetBulbTemperature: Int? = null,
-    var nighttimeDegreeDayTemperature: Int? = null,
+    var nighttimeTemperature: Float? = null,
+    var nighttimeRealFeelTemperature: Float? = null,
+    var nighttimeRealFeelShaderTemperature: Float? = null,
+    var nighttimeApparentTemperature: Float? = null,
+    var nighttimeWindChillTemperature: Float? = null,
+    var nighttimeWetBulbTemperature: Float? = null,
+    var nighttimeDegreeDayTemperature: Float? = null,
 
     var nighttimeTotalPrecipitation: Float? = null,
     var nighttimeThunderstormPrecipitation: Float? = null,
@@ -145,7 +145,7 @@ data class DailyEntity(
     var treeDescription: String? = null,
 
     // uv.
-    var uvIndex: Int? = null,
+    var uvIndex: Float? = null,
     var uvLevel: String? = null,
     var uvDescription: String? = null,
 

@@ -1,68 +1,107 @@
-# Breezy Weather
+<div align="center">
+<br />
+<img src="fastlane/metadata/android/en-US/images/icon.png" width="200" />
+</div>
 
-<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/01.png?raw=true" alt="" style="width: 300px" />
+<h1 align="center">Breezy Weather</h1>
 
-Breezy Weather is a fork of [GeometricWeather](https://github.com/WangDaYeeeeee/GeometricWeather) (LGPL-v3 license), currently no longer updated.
+<br />
 
-It aims to add new features, providers, modernizing code, fixing bugs, updating dependencies for security reasons, etc., while keep having a smooth user and developer experience in mind.
+<div align="center">
+  <img alt="API" src="https://img.shields.io/badge/Api%2021+-50f270?logo=android&logoColor=black&style=for-the-badge"/>
+  <img alt="Kotlin" src="https://img.shields.io/badge/Kotlin-a503fc?logo=kotlin&logoColor=white&style=for-the-badge"/>
+  <img alt="Jetpack Compose" src="https://img.shields.io/static/v1?style=for-the-badge&message=Jetpack+Compose&color=4285F4&logo=Jetpack+Compose&logoColor=FFFFFF&label="/>
+  <img alt="material" src="https://custom-icon-badges.demolab.com/badge/material%20you-lightblue?style=for-the-badge&logoColor=333&logo=material-you"/>
+  <br />
+  <img src="https://img.shields.io/github/license/breezy-weather/breezy-weather?style=for-the-badge" alt="Licence LGPL-3.0" />
+  <img src="https://img.shields.io/github/languages/code-size/breezy-weather/breezy-weather?style=for-the-badge" alt="GitHub code size in bytes" />
+  <br /><br />
+  <a href="https://github.com/breezy-weather/breezy-weather/releases/latest">
+      <img src="https://img.shields.io/github/v/release/breezy-weather/breezy-weather?color=purple&include_prereleases&logo=github&style=for-the-badge" alt="Download from GitHub" />
+  </a>
+  <a href="https://apt.izzysoft.de/fdroid/index/apk/org.breezyweather/">
+      <img src="https://img.shields.io/endpoint?url=https://apt.izzysoft.de/fdroid/api/v1/shield/org.breezyweather?color=purple&include_prereleases&logo=FDROID&style=for-the-badge" alt="Download from IzzyOnDroid repo" />
+  </a>
+</div>
 
-<details><summary>Additions already available</summary>
 
-* New providers (Open-Meteo, MET Norway)
-* Additional data for other providers
-* New header design for homepage
-* New organization for settings
-* More Material 3 components
-* Add hourly air quality
-* Add Plume AQI scale for air quality widget
-* Allow to disable background animation
-* Documentation
-* Translation updates via Weblate
-* Tons of fixes
-* Many non-visible improvements to the code
-</details>
-
-<details><summary>Removed features</summary>
-
-* CyanogenMod Weather SDK (no longer maintained, only supported Android 5.0 anyway)
-
-Network Location Providers removed due to security concerns about outdated libraries (we need help on this! See [#49](https://github.com/breezy-weather/breezy-weather/issues/49) if you want to contribute):
-* AMap Location SDK
-* Baidu SDK (not Baidu IP Location)
-
-</details>
+<h4 align="center">Breezy Weather is a weather app with a strong focus on design, with a simple, clean UX, smooth animations, and Material Design all over, plus lots of customizability.</h4>
 
 <hr />
 
-### Download app
+<div align="center">
+    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/01.png" alt="" style="width: 300px" />
+</div>
 
-Currently available to download from:
-* [GitHub](https://github.com/breezy-weather/breezy-weather/releases)
-* [Obtainium](https://github.com/ImranR98/Obtainium)
-* IzzyDroid, *in progress*
 
-Additional stores will be added as app gets more stable and once it complies with the policy of each store:
-- Starting from **4.2.x**, on F-Droid.
-- Starting from **5.x**, on Google Play Store. This version will introduce extension system for weather providers.
+<div align="center">
 
-<hr />
+# Download
 
-### Help
+*F-Droid and Google Play will be added as app gets more stable.*
+
+<a href="https://apt.izzysoft.de/fdroid/index/apk/org.breezyweather/">
+<img src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png"
+alt="Get it on IzzyOnDroid" align="center" height="80" />
+</a>
+
+<a href="https://github.com/breezy-weather/breezy-weather/releases">
+<img src="https://user-images.githubusercontent.com/69304392/148696068-0cfea65d-b18f-4685-82b5-329a330b1c0d.png"
+alt="Get it on GitHub" align="center" height="80" />
+</a>
+</div>
+
+# Features
+
+- Weather data
+    - Daily and hourly forecasts up to 16 days
+      - Temperature
+      - Air quality
+      - Wind
+      - UV index
+      - Precipitation
+    - Precipitations in the next hour
+    - Air quality
+    - Allergen
+    - Ephemeris (Sun & Moon)
+    - Severe weather and precipitation alerts
+    - Real-time weather conditions
+      - Temperature
+      - Feels like
+      - Wind
+      - UV index
+      - Humidity
+      - Dew point
+      - Atmospheric pressure
+      - Visibility
+      - Cloud cover
+      - Ceiling
+
+- <details><summary>Multiple weather providers (<a href="docs/PROVIDERS.md">comparison</a>)</summary>
+
+  - Open-Meteo
+  - AccuWeather
+  - MET Norway
+  - OpenWeatherMap
+  - Météo France
+  - Mixed China providers
+</details>
+
+- Large selection of home screen widgets for at-a-glance information
+- Live wallpaper
+- Custom icon packs
+  - [Geometric Weather icon packs](https://github.com/breezy-weather/breezy-weather-icon-packs/blob/main/README.md)
+  - Chronus Weather icon packs
+- Automatic dark mode
+
+
+# Help
 
 * [Homepage explanations](docs/HOMEPAGE.md)
 * [Weather providers comparison](docs/PROVIDERS.md)
 
-<hr />
 
-### Contact us
-
-* Matrix server: `#breezy-weather:matrix.org`
-* GitHub discussions or issues
-
-<hr />
-
-
-### Translations
+# Translations
 
 Translation is done externally [on Weblate](https://hosted.weblate.org/projects/breezy-weather/breezy-weather-android/#information). Please read carefully project instructions if you want to help.
 
@@ -71,23 +110,20 @@ Translation is done externally [on Weblate](https://hosted.weblate.org/projects/
 * English regional variants must be updated on GitHub if they differ from the original English file
 * French translation is maintained by repo maintainers
 
-<hr />
 
-### Icon packs
+# Contact us
 
-Breezy Weather is compatible with Chronus Weather icon packs and [Geometric Weather icon packs](https://github.com/breezy-weather/breezy-weather-icon-packs/blob/main/README.md).
+* Matrix server: `#breezy-weather:matrix.org`
+* GitHub discussions or issues
 
-Currently, there are no Breezy Weather icon packs, but you can create one by [following instructions here](https://github.com/breezy-weather/breezy-weather-icon-packs/blob/main/INSTRUCTIONS.md)
 
-<hr />
+# Build variant
 
-### Build variant
-
-A variant called gplay is available and will be distributed on Google Play Store once ready.
+A variant called `gplay` is available and will be distributed on Google Play Store once ready.
 It enables Instant App and bundles Google Network Location Provider (proprietary).
 
-<hr />
 
-### License
+# License
 
 * [GNU Lesser General Public License v3.0](/LICENSE)
+* [Forked from Geometric Weather](https://github.com/WangDaYeeeeee/GeometricWeather)

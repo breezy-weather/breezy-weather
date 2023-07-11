@@ -21,7 +21,6 @@ import androidx.core.view.ViewCompat
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import org.breezyweather.R
 import org.breezyweather.common.extensions.getTypefaceFromTextAppearance
-import org.breezyweather.common.utils.DisplayUtils
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
