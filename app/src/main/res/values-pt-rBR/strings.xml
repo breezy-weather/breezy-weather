@@ -434,7 +434,7 @@
     <string name="settings_background_updates_battery_optimization_summary">Essa é a primeira coisa a tentar quando você não recebe notificações ou os widgets não estão sendo atualizados.</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Não foi possível abrir as configurações do dispositivo.</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Alguns fabricantes têm restrições adicionais de aplicativos que eliminam os serviços em segundo plano. O site Don’t kill my app! tem informações sobre como corrigir isso.</string>
-    <string name="settings_weather_providers_current_location">Provedor de tempo para a localização atual</string>
+    <string name="settings_weather_providers_current_location">Provedor metereológico para a localização atual</string>
     <string name="settings_weather_provider_open_weather_one_call_version">Versão do OpenWeather OneCall</string>
     <string name="settings_weather_provider_mf_wsft_key">Chave do Météo France</string>
     <string name="settings_main_cards_other_element_animations_switch">Animações de outros elementos</string>
@@ -491,7 +491,7 @@
     <string name="location_search_weather_provider">Provedor metereológico</string>
     <string name="location_search_change_weather_provider">Mudar provedor metereológico</string>
     <string name="settings_location_summary">Configurações dos provedores de localização</string>
-    <string name="settings_location">Localizando</string>
+    <string name="settings_location">Localização</string>
     <string name="settings_location_access_precise_title">Uso do GPS do dispositivo</string>
     <string name="settings_section_general">Geral</string>
     <string name="settings_icon_providers_title">Pacotes de ícones</string>
@@ -505,4 +505,6 @@
     <string name="settings_notifications_forecast_time_today_title">Horário de notificação para a previsão do dia</string>
     <string name="settings_notifications_forecast_tomorrow_title">Notificação para a previsão do dia seguinte</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Horário de notificação para a previsão do dia seguinte</string>
+    <string name="action_close">Fechar</string>
+    <string name="location_none_added_yet_instructions">Nenhum local foi adicionado ainda. Toque no ícone de pesquisa para adicionar manualmente um local ou adicione seu local atual a partir do botão flutuante.</string>
 </resources>
