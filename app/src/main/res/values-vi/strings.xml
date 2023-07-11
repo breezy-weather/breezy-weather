@@ -295,7 +295,7 @@
     <string name="settings_background_updates_method_notification_dialog_title">Tắt danh mục thông báo</string>
     <string name="settings_background_updates_method_notification_dialog_content">Phương pháp này thêm một thông báo có thể bị ẩn đi bởi tắt mục thông báo “$” trong cài đặt ứng dụng.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Chỉ dẫn cụ thể theo nhà sản xuất</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">Một số nhà sản xuất thêm một sự ngăn cản làm dừng các dịch vụ chạy dưới nền. Website Don\'t kill my app! có thông tin về cách sửa nó.</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">Một số nhà sản xuất thêm một sự ngăn cản làm dừng các dịch vụ chạy dưới nền. Website Don’t kill my app! có thông tin về cách sửa nó.</string>
     <string name="settings_background_updates_worker_info_title">Thông tin tiến trình</string>
     <string name="settings_location">Vị trí</string>
     <string name="settings_location_summary">Cài đặt nhà cung cấp vị trí</string>
@@ -525,9 +525,7 @@
     <string name="air_quality_so2_info_introduction">Lưu huỳnh dioxit (SO₂) là một khí độc không màu gây ra mùi diêm cháy.</string>
     <string name="air_quality_co_info_introduction">Cacbon monoxit (CO) là một loại khí độc, dễ cháy, không màu, không mùi, không vị và không gây kích ứng.</string>
     <string name="air_quality_co_info_origin">Nó được tạo ra do quá trình đốt cháy không hoàn toàn các nhiên liệu có chứa carbon như gỗ, xăng, than, khí đốt tự nhiên và dầu hỏa trong bếp đơn giản, ngọn lửa mở, đèn bấc, lò nung, lò sưởi. Nguồn cacbon monoxit (CO) chủ yếu trong không khí xung quanh là từ các phương tiện cơ giới.</string>
-    <string name="dialog_permissions_notification_content">Để có thể gửi thông báo cho bạn về vị trí đã chọn, Breezy Weather cần có khả năng gửi thông báo cho bạn. Các loại thông báo khác có thể được bật trong cài đặt. Chúng tôi khuyên bạn nên cho phép thông báo và sau đó tắt các danh mục thông báo riêng lẻ mà bạn không muốn nhận trong cài đặt ứng dụng.</string>
     <string name="air_quality_co_info_consequences">Cacbon monoxit khuếch tán qua các mô phổi và vào máu, khiến các tế bào của cơ thể khó liên kết với oxy. Sự thiếu oxy này làm hỏng các mô và tế bào. Tiếp xúc với carbon monoxide có thể gây khó thở, kiệt sức, chóng mặt và các triệu chứng giống như cúm khác. Tiếp xúc với nồng độ cacbon monoxit cao có thể gây chết người.</string>
-    <string name="dialog_permissions_notification_title">Cho phép thông báo</string>
     <string name="action_close">Đóng</string>
     <string name="settings_widgets_live_wallpaper_error">Không thể khởi chạy trình chọn hình nền. Bạn vẫn có thể bật hình nền Breezy Weather bằng cách chọn “Hình nền động” trong bộ chọn hình nền màn hình chính của bạn.</string>
     <string name="weather_source_metno_voice">Viện Khí tượng Na Uy</string>
