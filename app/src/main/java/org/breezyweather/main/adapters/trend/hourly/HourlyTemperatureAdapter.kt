@@ -56,9 +56,12 @@ class HourlyTemperatureAdapter(
             if (hourly.temperature?.temperature != null) {
                 talkBackBuilder.append(", ").append(hourly.temperature.getTemperature(activity, mTemperatureUnit))
             }
-            hourly.weatherCode?.let {
-                hourlyItem.setIconDrawable(ResourceHelper.getWeatherIcon(mResourceProvider, it, hourly.isDaylight))
-            }
+            hourlyItem.setIconDrawable(
+                hourly.weatherCode?.let {
+                    ResourceHelper.getWeatherIcon(mResourceProvider, it, hourly.isDaylight)
+                },
+                missingIconVisibility = View.INVISIBLE
+            )
             val precipitationProbability = hourly.precipitationProbability?.total
             var p: Float = precipitationProbability ?: 0f
             if (!mShowPrecipitationProbability) {

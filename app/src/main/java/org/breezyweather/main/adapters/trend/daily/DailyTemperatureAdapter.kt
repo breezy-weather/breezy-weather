@@ -66,9 +66,10 @@ class DailyTemperatureAdapter(
                     talkBackBuilder.append(night.temperature.getTemperature(activity, mTemperatureUnit))
                 }
             }
-            daily.day?.weatherCode?.let {
-                dailyItem.setDayIconDrawable(ResourceHelper.getWeatherIcon(mResourceProvider, it, true))
-            }
+            dailyItem.setDayIconDrawable(
+                daily.day?.weatherCode?.let { ResourceHelper.getWeatherIcon(mResourceProvider, it, true) },
+                missingIconVisibility = View.INVISIBLE
+            )
             val daytimePrecipitationProbability = daily.day?.precipitationProbability?.total
             val nighttimePrecipitationProbability = daily.night?.precipitationProbability?.total
             var p: Float = max(
@@ -115,9 +116,10 @@ class DailyTemperatureAdapter(
                 MainThemeColorProvider.getColor(location, R.attr.colorPrecipitationProbability)
             )
             mPolylineAndHistogramView.setHistogramAlpha(if (lightTheme) 0.2f else 0.5f)
-            daily.night?.weatherCode?.let {
-                dailyItem.setNightIconDrawable(ResourceHelper.getWeatherIcon(mResourceProvider, it, false))
-            }
+            dailyItem.setNightIconDrawable(
+                daily.night?.weatherCode?.let { ResourceHelper.getWeatherIcon(mResourceProvider, it, true) },
+                missingIconVisibility = View.INVISIBLE
+            )
             dailyItem.contentDescription = talkBackBuilder.toString()
         }
 

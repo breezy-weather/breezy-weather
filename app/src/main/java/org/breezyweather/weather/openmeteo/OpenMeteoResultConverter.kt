@@ -134,7 +134,7 @@ fun convert(
                     speed = weatherResult.hourly.windSpeed?.getOrNull(i),
                     level = getWindLevel(context, weatherResult.hourly.windSpeed?.getOrNull(i))
                 ),
-                airQuality = if (airQualityIndex != null) AirQuality(
+                airQuality = if (airQualityIndex != null && airQualityIndex != -1) AirQuality(
                     pM25 = airQualityResult.hourly.pm25?.getOrNull(airQualityIndex),
                     pM10 = airQualityResult.hourly.pm10?.getOrNull(airQualityIndex),
                     sO2 = airQualityResult.hourly.sulphurDioxide?.getOrNull(airQualityIndex),

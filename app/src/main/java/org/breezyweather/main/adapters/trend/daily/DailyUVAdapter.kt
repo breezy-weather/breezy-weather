@@ -2,6 +2,7 @@ package org.breezyweather.main.adapters.trend.daily
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,22 +39,24 @@ class DailyUVAdapter(activity: GeoActivity, location: Location) : AbsDailyTrendA
             super.onBindView(activity, location, talkBackBuilder, position)
             val weather = location.weather!!
             val daily = weather.dailyForecast[position]
-            daily.uV?.let { uV ->
-                val index = uV.index ?: 0f
-                talkBackBuilder.append(", ").append(index).append(", ").append(uV.level)
-                mPolylineAndHistogramView.setData(
-                    null, null,
-                    null, null,
-                    null, null,
-                    index.roundDecimals(0), index.format(0),
-                    mHighestIndex, 0f
-                )
-                mPolylineAndHistogramView.setLineColors(
-                    UV.getUVColor(index.roundDecimals(0), activity),
-                    UV.getUVColor(index.roundDecimals(0), activity),
-                    MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
-                )
+
+            val index = daily.uV?.index
+            if (index != null) {
+                talkBackBuilder.append(", ").append(index).append(", ").append(daily.uV.level)
             }
+            mPolylineAndHistogramView.setData(
+                null, null,
+                null, null,
+                null, null,
+                index?.roundDecimals(0) ?: 0f, index?.format(0),
+                mHighestIndex, 0f
+            )
+            mPolylineAndHistogramView.setLineColors(
+                if (index != null) UV.getUVColor(index.roundDecimals(0), activity) else Color.TRANSPARENT,
+                if (index != null) UV.getUVColor(index.roundDecimals(0), activity) else Color.TRANSPARENT,
+                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+            )
+
             val themeColors = ThemeManager.getInstance(itemView.context)
                 .weatherThemeDelegate
                 .getThemeColors(
@@ -100,7 +103,7 @@ class DailyUVAdapter(activity: GeoActivity, location: Location) : AbsDailyTrendA
         val keyLineList: MutableList<TrendRecyclerView.KeyLine> = ArrayList()
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                UV.UV_INDEX_HIGH, UV.UV_INDEX_HIGH.toString(),
+                UV.UV_INDEX_HIGH, UV.UV_INDEX_HIGH.format(0),
                 activity.getString(R.string.uv_alert_level),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )

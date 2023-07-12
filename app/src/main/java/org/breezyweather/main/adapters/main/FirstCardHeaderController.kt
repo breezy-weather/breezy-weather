@@ -66,6 +66,14 @@ class FirstCardHeaderController(
     fun ContentView(location: Location) {
         if (location.weather!!.currentAlertList.isEmpty()) {
             ListItem(
+                modifier = Modifier
+                    .clickable(
+                        interactionSource = remember { MutableInteractionSource() },
+                        indication = rememberThemeRipple(),
+                        onClick = {
+                            IntentHelper.startAlertActivity(mActivity, mFormattedId)
+                        }
+                    ),
                 colors = ListItemDefaults.colors(
                     containerColor = Color.Transparent
                 ),

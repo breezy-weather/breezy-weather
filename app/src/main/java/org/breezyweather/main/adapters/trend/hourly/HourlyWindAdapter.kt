@@ -2,6 +2,7 @@ package org.breezyweather.main.adapters.trend.hourly
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import android.view.LayoutInflater
@@ -39,36 +40,39 @@ class HourlyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUn
             val talkBackBuilder = StringBuilder(activity.getString(R.string.tag_wind))
             super.onBindView(activity, location, talkBackBuilder, position)
             val hourly = location.weather!!.hourlyForecast[position]
-            hourly.wind?.let { wind ->
+
+            if (hourly.wind != null && hourly.wind.isValidSpeed) {
                 talkBackBuilder
                     .append(", ").append(activity.getString(R.string.tag_wind))
-                    .append(" : ").append(wind.getWindDescription(activity, mSpeedUnit))
-                val windColor = wind.getWindColor(activity)
-                val dayIcon = if (wind.isValidSpeed) RotateDrawable(
-                    AppCompatResources.getDrawable(
-                        activity,
-                        R.drawable.ic_navigation
-                    )
-                ) else RotateDrawable(AppCompatResources.getDrawable(activity, R.drawable.ic_circle_medium))
-                wind.degree?.degree?.let {
-                    dayIcon.rotate(it + 180)
-                }
-                dayIcon.colorFilter = PorterDuffColorFilter(windColor, PorterDuff.Mode.SRC_ATOP)
-                hourlyItem.setIconDrawable(dayIcon)
-                mPolylineAndHistogramView.setData(
-                    null, null,
-                    null, null,
-                    null, null,
-                    wind.speed,
-                    mSpeedUnit.getValueTextWithoutUnit(wind.speed ?: 0f),
-                    mHighestWindSpeed, 0f
-                )
-                mPolylineAndHistogramView.setLineColors(
-                    windColor,
-                    windColor,
-                    MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
-                )
+                    .append(" : ").append(hourly.wind.getWindDescription(activity, mSpeedUnit))
             }
+            val windColor = hourly.wind?.getWindColor(activity) ?: Color.TRANSPARENT
+            val hourlyIcon = if (hourly.wind?.degree?.degree != null) {
+                RotateDrawable(
+                    AppCompatResources.getDrawable(activity, R.drawable.ic_navigation)
+                ).apply {
+                    rotate(hourly.wind.degree.degree)
+                }
+            } else if (hourly.wind?.degree != null && hourly.wind.degree.isNoDirection) {
+                AppCompatResources.getDrawable(activity, R.drawable.ic_replay)
+            } else null
+            hourlyIcon?.colorFilter = PorterDuffColorFilter(windColor, PorterDuff.Mode.SRC_ATOP)
+            hourlyItem.setIconDrawable(hourlyIcon, missingIconVisibility = View.INVISIBLE)
+
+            mPolylineAndHistogramView.setData(
+                null, null,
+                null, null,
+                null, null,
+                hourly.wind?.speed,
+                hourly.wind?.speed?.let { mSpeedUnit.getValueTextWithoutUnit(it) },
+                mHighestWindSpeed, 0f
+            )
+            mPolylineAndHistogramView.setLineColors(
+                windColor,
+                windColor,
+                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+            )
+
             mPolylineAndHistogramView.setTextColors(
                 MainThemeColorProvider.getColor(location, R.attr.colorTitleText),
                 MainThemeColorProvider.getColor(location, R.attr.colorBodyText),

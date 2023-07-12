@@ -14,14 +14,16 @@ import org.breezyweather.common.rxjava.SchedulerTransformer
 import org.breezyweather.main.utils.RequestErrorType
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.weather.WeatherService
-import org.breezyweather.weather.metno.json.MetNoEphemerisResult
+import org.breezyweather.weather.metno.json.MetNoAirQualityResult
+import org.breezyweather.weather.metno.json.MetNoSunResult
 import org.breezyweather.weather.metno.json.MetNoForecastResult
+import org.breezyweather.weather.metno.json.MetNoMoonResult
+import org.breezyweather.weather.metno.json.MetNoNowcastResult
 import org.breezyweather.weather.openmeteo.OpenMeteoGeocodingApi
 import org.breezyweather.weather.openmeteo.convert
 import org.breezyweather.weather.openmeteo.json.OpenMeteoLocationResults
 import java.util.*
 import javax.inject.Inject
-import kotlin.math.abs
 
 class MetNoWeatherService @Inject constructor(
     private val mApi: MetNoApi,
@@ -43,24 +45,74 @@ class MetNoWeatherService @Inject constructor(
             location.latitude.toDouble(),
             location.longitude.toDouble()
         )
+
         val formattedDate = Date().getFormattedDate(location.timeZone, "yyyy-MM-dd")
-        val ephemeris = mApi.getEphemeris(
+        val sun = mApi.getSun(
             userAgent,
-            formattedDate,
-            days = 15,
             location.latitude.toDouble(),
             location.longitude.toDouble(),
-            getTimezoneOffset(location.timeZone)
+            formattedDate
         )
-        Observable.zip(forecast, ephemeris) {
+        val moon = mApi.getMoon(
+            userAgent,
+            location.latitude.toDouble(),
+            location.longitude.toDouble(),
+            formattedDate
+        )
+
+        // Nowcast only for Norway, Sweden, Finland and Denmark
+        // Covered area is slightly larger as per https://api.met.no/doc/nowcast/datamodel
+        // but safer to limit to guaranteed countries
+        val nowcast = if (!location.countryCode.isNullOrEmpty()
+            && location.countryCode in arrayOf("NO", "SE", "FI", "DK")) {
+            mApi.getNowcast(
+                userAgent,
+                location.latitude.toDouble(),
+                location.longitude.toDouble()
+            ).onErrorResumeNext {
+                Observable.create { emitter ->
+                    emitter.onNext(MetNoNowcastResult())
+                }
+            }
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(MetNoNowcastResult())
+            }
+        }
+
+        // Air quality only for Norway
+        val airQuality = if (!location.countryCode.isNullOrEmpty()
+            && location.countryCode == "NO") {
+            mApi.getAirQuality(
+                userAgent,
+                location.latitude.toDouble(),
+                location.longitude.toDouble()
+            ).onErrorResumeNext {
+                Observable.create { emitter ->
+                    emitter.onNext(MetNoAirQualityResult())
+                }
+            }
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(MetNoAirQualityResult())
+            }
+        }
+
+        Observable.zip(forecast, sun, moon, nowcast, airQuality) {
             metNoForecast: MetNoForecastResult,
-            metNoEphemeris: MetNoEphemerisResult
+            metNoSun: MetNoSunResult,
+            metNoMoon: MetNoMoonResult,
+            metNoNowcast: MetNoNowcastResult,
+            metNoAirQuality: MetNoAirQualityResult
             ->
             convert(
                 context,
                 location,
                 metNoForecast,
-                metNoEphemeris
+                metNoSun,
+                metNoMoon,
+                metNoNowcast,
+                metNoAirQuality
             )
         }.compose(SchedulerTransformer.create())
             .subscribe(ObserverContainer(mCompositeDisposable, object : ApiObserver<WeatherResultWrapper>() {
@@ -122,19 +174,5 @@ class MetNoWeatherService @Inject constructor(
 
     override fun cancel() {
         mCompositeDisposable.clear()
-    }
-
-    companion object {
-        protected fun getTimezoneOffset(tz: TimeZone): String {
-            val cal = GregorianCalendar.getInstance(tz)
-            val offsetInMillis = tz.getOffset(cal.timeInMillis)
-            var offset = String.format(
-                "%02d:%02d",
-                abs(offsetInMillis / 3600000),
-                abs(offsetInMillis / 60000 % 60)
-            )
-            offset = (if (offsetInMillis >= 0) "+" else "-") + offset
-            return offset
-        }
     }
 }

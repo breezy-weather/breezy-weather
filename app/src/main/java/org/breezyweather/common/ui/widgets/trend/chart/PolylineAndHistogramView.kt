@@ -247,7 +247,7 @@ class PolylineAndHistogramView @JvmOverloads constructor(
             setShadowLayer(2f, 0f, 1f, mTextShadowColor)
         }
         canvas.drawText(
-            mHighPolylineValueStr!!,
+            mHighPolylineValueStr ?: "",
             getRTLCompactX((measuredWidth / 2.0).toFloat()),
             mHighPolylineY[1] - mPaint.fontMetrics.bottom - mTextMargin,
             mPaint
@@ -318,7 +318,7 @@ class PolylineAndHistogramView @JvmOverloads constructor(
             setShadowLayer(2f, 0f, 1f, mTextShadowColor)
         }
         canvas.drawText(
-            mLowPolylineValueStr!!,
+            mLowPolylineValueStr ?: "",
             getRTLCompactX((measuredWidth / 2.0).toFloat()),
             mLowPolylineY[1] - mPaint.fontMetrics.top + mTextMargin,
             mPaint
@@ -350,7 +350,7 @@ class PolylineAndHistogramView @JvmOverloads constructor(
             textSize = mHistogramTextSize.toFloat()
         }
         canvas.drawText(
-            mHistogramValueStr!!,
+            mHistogramValueStr ?: "",
             (measuredWidth / 2.0).toFloat(),
             ((measuredHeight - marginBottom - mPaint.fontMetrics.top)
                     + 2.0 * mTextMargin + mPolylineTextSize).toFloat(),

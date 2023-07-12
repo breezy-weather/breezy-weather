@@ -2,6 +2,7 @@ package org.breezyweather.main.adapters.trend.daily
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import android.view.LayoutInflater
@@ -40,56 +41,59 @@ class DailyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUni
             val talkBackBuilder = StringBuilder(activity.getString(R.string.tag_wind))
             super.onBindView(activity, location, talkBackBuilder, position)
             val daily = location.weather!!.dailyForecast[position]
-            daily.day?.wind?.let { wind ->
+
+            if (daily.day?.wind != null && daily.day.wind.isValidSpeed) {
                 talkBackBuilder
                     .append(", ").append(activity.getString(R.string.daytime))
-                    .append(" : ").append(wind.getWindDescription(activity, mSpeedUnit))
-                val dayIcon = if (wind.isValidSpeed) RotateDrawable(
-                    AppCompatResources.getDrawable(
-                        activity,
-                        R.drawable.ic_navigation
-                    )
-                ) else RotateDrawable(AppCompatResources.getDrawable(activity, R.drawable.ic_circle_medium))
-                wind.degree?.degree?.let {
-                    dayIcon.rotate(it + 180)
-                }
-                dayIcon.colorFilter = PorterDuffColorFilter(wind.getWindColor(activity), PorterDuff.Mode.SRC_ATOP)
-                dailyItem.setDayIconDrawable(dayIcon)
+                    .append(" : ").append(daily.day.wind.getWindDescription(activity, mSpeedUnit))
             }
-            daily.night?.wind?.let {
+            val dayWindColor = daily.day?.wind?.getWindColor(activity) ?: Color.TRANSPARENT
+            val dayIcon = if (daily.day?.wind?.degree?.degree != null) {
+                RotateDrawable(
+                    AppCompatResources.getDrawable(activity, R.drawable.ic_navigation)
+                ).apply {
+                    rotate(daily.day.wind.degree.degree)
+                }
+            } else if (daily.day?.wind?.degree != null && daily.day.wind.degree.isNoDirection) {
+                AppCompatResources.getDrawable(activity, R.drawable.ic_replay)
+            } else null
+            dayIcon?.colorFilter = PorterDuffColorFilter(dayWindColor, PorterDuff.Mode.SRC_ATOP)
+            dailyItem.setDayIconDrawable(dayIcon, missingIconVisibility = View.INVISIBLE)
+
+            val nightWindColor = daily.night?.wind?.getWindColor(activity) ?: Color.TRANSPARENT
+
+            mDoubleHistogramView.setData(
+                daily.day?.wind?.speed ?: 0f,
+                daily.night?.wind?.speed ?: 0f,
+                daily.day?.wind?.speed?.let { mSpeedUnit.getValueTextWithoutUnit(it) },
+                daily.night?.wind?.speed?.let { mSpeedUnit.getValueTextWithoutUnit(it) },
+                mHighestWindSpeed
+            )
+            mDoubleHistogramView.setLineColors(
+                dayWindColor,
+                nightWindColor,
+                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+            )
+            mDoubleHistogramView.setTextColors(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
+            mDoubleHistogramView.setHistogramAlphas(1f, 0.5f)
+
+            if (daily.night?.wind != null && daily.night.wind.isValidSpeed) {
                 talkBackBuilder
                     .append(", ").append(activity.getString(R.string.nighttime))
-                    .append(" : ").append(it.getWindDescription(activity, mSpeedUnit))
+                    .append(" : ").append(daily.night.wind.getWindDescription(activity, mSpeedUnit))
             }
-            if (daily.day?.wind != null && daily.night?.wind != null) {
-                mDoubleHistogramView.setData(
-                    daily.day.wind.speed,
-                    daily.night.wind.speed,
-                    mSpeedUnit.getValueTextWithoutUnit(daily.day.wind.speed ?: 0f),
-                    mSpeedUnit.getValueTextWithoutUnit(daily.night.wind.speed ?: 0f),
-                    mHighestWindSpeed
-                )
-                mDoubleHistogramView.setLineColors(
-                    daily.day.wind.getWindColor(activity),
-                    daily.night.wind.getWindColor(activity),
-                    MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
-                )
-                mDoubleHistogramView.setTextColors(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
-                mDoubleHistogramView.setHistogramAlphas(1f, 0.5f)
-            }
-            daily.night?.wind?.let { wind ->
-                val nightIcon = if (wind.isValidSpeed) RotateDrawable(
-                    AppCompatResources.getDrawable(
-                        activity,
-                        R.drawable.ic_navigation
-                    )
-                ) else RotateDrawable(AppCompatResources.getDrawable(activity, R.drawable.ic_circle_medium))
-                wind.degree?.degree?.let {
-                    nightIcon.rotate(it + 180)
+            val nightIcon = if (daily.night?.wind?.degree?.degree != null) {
+                RotateDrawable(
+                    AppCompatResources.getDrawable(activity, R.drawable.ic_navigation)
+                ).apply {
+                    rotate(daily.night.wind.degree.degree)
                 }
-                nightIcon.colorFilter = PorterDuffColorFilter(wind.getWindColor(activity), PorterDuff.Mode.SRC_ATOP)
-                dailyItem.setNightIconDrawable(nightIcon)
-            }
+            } else if (daily.night?.wind?.degree != null && daily.night.wind.degree.isNoDirection) {
+                AppCompatResources.getDrawable(activity, R.drawable.ic_replay)
+            } else null
+            nightIcon?.colorFilter = PorterDuffColorFilter(nightWindColor, PorterDuff.Mode.SRC_ATOP)
+            dailyItem.setNightIconDrawable(nightIcon, missingIconVisibility = View.INVISIBLE)
+
             dailyItem.contentDescription = talkBackBuilder.toString()
         }
     }

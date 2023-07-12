@@ -102,12 +102,7 @@ class MfWeatherService @Inject constructor(
         val aqiAtmoAura = if (
             (atmoAuraKey.isNotEmpty() && !location.countryCode.isNullOrEmpty() && location.countryCode == "FR")
              && !location.provinceCode.isNullOrEmpty()
-             && (location.provinceCode == "01" || location.provinceCode == "03"
-                    || location.provinceCode == "07" || location.provinceCode == "15"
-                    || location.provinceCode == "26" || location.provinceCode == "38"
-                    || location.provinceCode == "42" || location.provinceCode == "43"
-                    || location.provinceCode == "63" || location.provinceCode == "69"
-                    || location.provinceCode == "73" || location.provinceCode == "74")
+             && location.provinceCode in arrayOf("01", "03", "07", "15", "26", "38", "42", "43", "63", "69", "73", "74")
         ) {
             val calendar = Date().toCalendarWithTimeZone(location.timeZone).apply {
                 add(Calendar.DATE, 1)

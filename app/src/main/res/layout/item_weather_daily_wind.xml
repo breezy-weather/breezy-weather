@@ -81,7 +81,7 @@
                 android:textStyle="bold"
                 android:importantForAccessibility="no"
                 style="@style/title_text"
-                tools:text="三级" />
+                tools:text="Gentle breeze" />
 
         </LinearLayout>
 

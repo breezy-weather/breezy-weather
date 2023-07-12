@@ -20,15 +20,6 @@ interface AccuWeatherApi {
         @Query("alias") alias: String
     ): Call<List<AccuLocationResult>>
 
-    @GET("locations/v1/translate")
-    fun getWeatherLocation(
-        @Query("apikey") apikey: String,
-        @Query("q") q: String,
-        @Query("language") language: String,
-        @Query("details") details: Boolean,
-        @Query("alias") alias: String
-    ): Observable<List<AccuLocationResult>>
-
     @GET("locations/v1/cities/geoposition/search")
     fun getWeatherLocationByGeoPosition(
         @Query("apikey") apikey: String,

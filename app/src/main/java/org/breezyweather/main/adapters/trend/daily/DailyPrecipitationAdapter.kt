@@ -45,29 +45,35 @@ class DailyPrecipitationAdapter(
             super.onBindView(activity, location, talkBackBuilder, position)
             val weather = location.weather!!
             val daily = weather.dailyForecast[position]
-            val daytimePrecipitation = daily.day?.precipitation?.total ?: 0f
-            val nighttimePrecipitation = daily.night?.precipitation?.total ?: 0f
-            if (daytimePrecipitation > 0f || nighttimePrecipitation > 0f) {
+            val daytimePrecipitation = daily.day?.precipitation?.total
+            val nighttimePrecipitation = daily.night?.precipitation?.total
+            if ((daytimePrecipitation != null && daytimePrecipitation > 0f)
+                || (nighttimePrecipitation != null && nighttimePrecipitation > 0f)) {
                 talkBackBuilder.append(", ")
                     .append(activity.getString(R.string.daytime))
                     .append(" : ")
-                    .append(if (daytimePrecipitation > 0f) activity.getString(R.string.precipitation_none) else mPrecipitationUnit.getValueVoice(activity, daytimePrecipitation))
+                    .append(if (daytimePrecipitation != null && daytimePrecipitation > 0f) {
+                        mPrecipitationUnit.getValueVoice(activity, daytimePrecipitation)
+                    } else activity.getString(R.string.precipitation_none))
                 talkBackBuilder.append(", ")
                     .append(activity.getString(R.string.nighttime))
                     .append(" : ")
-                    .append(if (nighttimePrecipitation > 0f) activity.getString(R.string.precipitation_none) else mPrecipitationUnit.getValueVoice(activity, nighttimePrecipitation))
+                    .append(if (nighttimePrecipitation != null && nighttimePrecipitation > 0f) {
+                        mPrecipitationUnit.getValueVoice(activity, nighttimePrecipitation)
+                    } else activity.getString(R.string.precipitation_none))
             } else {
                 talkBackBuilder.append(", ")
                     .append(activity.getString(R.string.precipitation_none))
             }
-            daily.day?.weatherCode?.let {
-                dailyItem.setDayIconDrawable(ResourceHelper.getWeatherIcon(mResourceProvider, it, true))
-            }
+            dailyItem.setDayIconDrawable(
+                daily.day?.weatherCode?.let { ResourceHelper.getWeatherIcon(mResourceProvider, it, true) },
+                missingIconVisibility = View.INVISIBLE
+            )
             mDoubleHistogramView.setData(
                 daily.day?.precipitation?.total,
                 daily.night?.precipitation?.total,
-                mPrecipitationUnit.getValueTextWithoutUnit(daytimePrecipitation),
-                mPrecipitationUnit.getValueTextWithoutUnit(nighttimePrecipitation),
+                daytimePrecipitation?.let { mPrecipitationUnit.getValueTextWithoutUnit(it) },
+                nighttimePrecipitation?.let { mPrecipitationUnit.getValueTextWithoutUnit(it) },
                 mHighestPrecipitation
             )
             mDoubleHistogramView.setLineColors(
@@ -79,9 +85,10 @@ class DailyPrecipitationAdapter(
                 MainThemeColorProvider.getColor(location, R.attr.colorBodyText)
             )
             mDoubleHistogramView.setHistogramAlphas(1f, 0.5f)
-            daily.night?.weatherCode?.let {
-                dailyItem.setNightIconDrawable(ResourceHelper.getWeatherIcon(mResourceProvider, it, false))
-            }
+            dailyItem.setNightIconDrawable(
+                daily.night?.weatherCode?.let { ResourceHelper.getWeatherIcon(mResourceProvider, it, true) },
+                missingIconVisibility = View.INVISIBLE
+            )
             dailyItem.contentDescription = talkBackBuilder.toString()
         }
     }

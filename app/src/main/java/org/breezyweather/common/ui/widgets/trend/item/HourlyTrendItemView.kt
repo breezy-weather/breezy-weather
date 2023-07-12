@@ -8,12 +8,15 @@ import android.graphics.Paint
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.MotionEvent
+import android.view.View
 import androidx.annotation.ColorInt
+import androidx.annotation.IntDef
 import org.breezyweather.R
 import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.getTypefaceFromTextAppearance
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.ui.widgets.trend.chart.AbsChartItemView
+import org.breezyweather.theme.weatherView.materialWeatherView.implementor.CloudImplementor
 
 /**
  * Hourly trend item view.
@@ -33,6 +36,12 @@ class HourlyTrendItemView @JvmOverloads constructor(
     private var mClickListener: OnClickListener? = null
     private var mHourText: String? = null
     private var mDayText: String? = null
+
+    @IntDef(View.INVISIBLE, View.GONE)
+    internal annotation class IconVisibility
+
+    @IconVisibility
+    private var mMissingIconVisibility: Int = View.GONE
     private var mIconDrawable: Drawable? = null
 
     @ColorInt
@@ -88,8 +97,8 @@ class HourlyTrendItemView @JvmOverloads constructor(
         y += fontMetrics.bottom - fontMetrics.top
         y += textMargin
 
-        // day icon.
-        if (mIconDrawable != null) {
+        // hourly icon.
+        if (mIconDrawable != null || mMissingIconVisibility == View.INVISIBLE) {
             y += iconMargin
             mIconLeft = (width - mIconSize) / 2f
             mIconTop = y
@@ -128,22 +137,22 @@ class HourlyTrendItemView @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas) {
         // hour text.
-        if (mHourText != null) {
+        mHourText?.let {
             mHourTextPaint.color = mContentColor
-            canvas.drawText(mHourText!!, measuredWidth / 2f, mHourTextBaseLine, mHourTextPaint)
+            canvas.drawText(it, measuredWidth / 2f, mHourTextBaseLine, mHourTextPaint)
         }
 
         // day text.
-        if (mDayText != null) {
+        mDayText?.let {
             mDateTextPaint.color = mSubTitleColor
-            canvas.drawText(mDayText!!, measuredWidth / 2f, mDayTextBaseLine, mDateTextPaint)
+            canvas.drawText(it, measuredWidth / 2f, mDayTextBaseLine, mDateTextPaint)
         }
 
         // day icon.
-        if (mIconDrawable != null) {
+        mIconDrawable?.let {
             val restoreCount = canvas.save()
             canvas.translate(mIconLeft, mIconTop)
-            mIconDrawable!!.draw(canvas)
+            it.draw(canvas)
             canvas.restoreToCount(restoreCount)
         }
     }
@@ -172,9 +181,10 @@ class HourlyTrendItemView @JvmOverloads constructor(
         invalidate()
     }
 
-    fun setIconDrawable(d: Drawable?) {
+    fun setIconDrawable(d: Drawable?, @IconVisibility missingIconVisibility: Int) {
         val nullDrawable = mIconDrawable == null
         mIconDrawable = d
+        mMissingIconVisibility = missingIconVisibility
         if (d != null) {
             d.setVisible(true, true)
             d.callback = this

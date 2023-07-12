@@ -23,7 +23,120 @@ If you don’t, it will still work (for example, Open-Meteo will work), but othe
 1) Run tests and make release in local to check that everything looks good.
 2) Update versionCode and versionName in `app/build.gradle`.
 3) Write changelog in `fastlane/`.
-4) Commit `Release v4.1.1-beta`.
+4) Commit all changes.
 5) Tag version beginning with a `v` (example: `git tag v4.1.1-beta -m "Version 4.1.1-beta"`).
-6) GitHub action will run and sign the release.
-7) Update GitHub release notes draft and publish.
+6) Push with `git push --tags`
+7) GitHub action will run and sign the release.
+8) Update GitHub release notes draft and publish.
+
+
+# Weather providers API
+
+Weather providers API can change: some versions may become deprecated, new endpoints may be added, new countries may be supported (when documented, we filter countries in app to avoid unnecessary calls on unsupported countries).
+
+This section keep track of endpoints and when they were last checked.
+
+## Open-Meteo
+
+*Last checked: 2023-07-12*
+
+| Endpoint            | Version  | Notes                                                                                                                                                                                                                              |
+|---------------------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Geocoding — Search  | v1       | Partial support for Postal code, see [open-meteo/geocoding-api#8](https://github.com/open-meteo/geocoding-api/issues/8), missing admin codes, see [open-meteo/open-meteo#355](https://github.com/open-meteo/open-meteo/issues/355) |
+| Weather — Forecast  | v1       |                                                                                                                                                                                                                                    |
+| Air quality         | v1       |                                                                                                                                                                                                                                    |
+
+Future additional endpoints/improvements for existing endpoints:
+- Reverse geocoding, see [open-meteo/geocoding-api#6](https://github.com/open-meteo/geocoding-api/issues/6)
+- Additional current conditions, see [open-meteo/open-meteo#312](https://github.com/open-meteo/open-meteo/issues/312)
+- Alerts, see [open-meteo/open-meteo#351](https://github.com/open-meteo/open-meteo/issues/351)
+- Moon rise, set and phases, see [open-meteo/open-meteo#87](https://github.com/open-meteo/open-meteo/issues/87)
+- Normals, see [open-meteo/open-meteo#361](https://github.com/open-meteo/open-meteo/issues/361)
+
+
+## AccuWeather
+
+*Last checked: 2023-07-12*
+
+| Endpoint               | Version | Notes              |
+|------------------------|---------|--------------------|
+| Location — Translate   | v1      |                    |
+| Location — Geoposition | v1      |                    |
+| Current conditions     | v1      |                    |
+| Daily                  | v1      | Up to 15 days      |
+| Hourly                 | v1      | Up to 120 hours    |
+| Minutely               | v1      | 1 minute precision |
+| Alerts by geoposition  | v1      |                    |
+| Air quality            | v2      | Up to 96 hours     |
+
+Not yet implemented in app:
+
+| Endpoint | Version |
+|----------|---------|
+| Climo    | v1      |
+
+
+## MET Norway
+
+*Last checked: 2023-07-12*
+
+| Endpoint          | Version | Notes                                                                                                     |
+|-------------------|---------|-----------------------------------------------------------------------------------------------------------|
+| Location forecast | 2.0     |                                                                                                           |
+| Sunrise           | 3.0     | It is technically feasible to retrieve data for future days, but requires two calls for each, so we avoid |
+| Nowcast           | 2.0     | Norway, Sweden, Finland and Denmark only                                                                  |
+
+Not yet implemented in app:
+
+| Endpoint    | Version | Notes                                              |
+|-------------|---------|----------------------------------------------------|
+| Air quality | 0.1     | Norway only                                        |
+| MET alerts  | 1.1     | Norway only by country code, requires a XML parser |
+
+
+No location search endpoint exists, it uses Open-Meteo instead.
+
+
+## OpenWeather
+
+*Last checked: 2023-07-12*
+
+| Endpoint      | Version | Notes                 |
+|---------------|---------|-----------------------|
+| OneCall       | 3.0     | 2.5 is also supported |
+| Air pollution | 2.5     |                       |
+
+Not used:
+
+| Endpoint    | Version | Notes                                 |
+|-------------|---------|---------------------------------------|
+| Geo         | 1.0     | Doesn’t have mandatory timezone field |
+| Reverse geo | 1.0     | Doesn’t have mandatory timezone field |
+
+Uses Open-Meteo for location search.
+
+
+## Météo-France
+
+*Last checked: 2023-07-12*
+
+| Endpoint    | Version |
+|-------------|---------|
+| Forecast    | v2      |
+| Observation | v2      |
+| Nowcast     | v3      |
+| Ephemeris   | None    |
+| Warning     | v3      |
+
+Not used:
+
+| Endpoint | Version | Notes                                                                                |
+|----------|---------|--------------------------------------------------------------------------------------|
+| Places   | None    | Doesn’t have mandatory timezone field, miss many data on countries other than France |
+
+Uses Open-Meteo for location search.
+
+
+## China
+
+*Undocumented*

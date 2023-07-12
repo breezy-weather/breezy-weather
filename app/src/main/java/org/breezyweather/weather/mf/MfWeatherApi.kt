@@ -11,23 +11,6 @@ import org.breezyweather.weather.mf.json.*
  * API Météo France
  */
 interface MfWeatherApi {
-    @GET("places")
-    fun callWeatherLocation(
-        @Header("User-Agent") userAgent: String,
-        @Query("q") q: String,
-        @Query("lat") lat: Double,
-        @Query("lon") lon: Double,
-        @Query("token") token: String
-    ): Call<List<MfLocationResult>>
-
-    @GET("places")
-    fun getWeatherLocation(
-        @Header("User-Agent") userAgent: String,
-        @Query("q") q: String,
-        @Query("lat") lat: Double,
-        @Query("lon") lon: Double,
-        @Query("token") token: String
-    ): Observable<List<MfLocationResult>>
 
     @GET("v2/forecast")
     fun getForecast(

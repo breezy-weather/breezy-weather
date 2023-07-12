@@ -8,7 +8,9 @@ import android.graphics.Paint
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.MotionEvent
+import android.view.View
 import androidx.annotation.ColorInt
+import androidx.annotation.IntDef
 import org.breezyweather.R
 import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.getTypefaceFromTextAppearance
@@ -33,7 +35,16 @@ class DailyTrendItemView @JvmOverloads constructor(
     private var mClickListener: OnClickListener? = null
     private var mWeekText: String? = null
     private var mDateText: String? = null
+
+    @IntDef(View.INVISIBLE, View.GONE)
+    internal annotation class IconVisibility
+
+    @IconVisibility
+    private var mMissingDayIconVisibility: Int = View.GONE
     private var mDayIconDrawable: Drawable? = null
+
+    @IconVisibility
+    private var mMissingNightIconVisibility: Int = View.GONE
     private var mNightIconDrawable: Drawable? = null
 
     @ColorInt
@@ -92,7 +103,7 @@ class DailyTrendItemView @JvmOverloads constructor(
         y += textMargin
 
         // day icon.
-        if (mDayIconDrawable != null) {
+        if (mDayIconDrawable != null || mMissingDayIconVisibility == View.INVISIBLE) {
             y += iconMargin
             mDayIconLeft = (width - mIconSize) / 2f
             mDayIconTop = y
@@ -106,7 +117,7 @@ class DailyTrendItemView @JvmOverloads constructor(
         consumedHeight += marginBottom
 
         // night icon.
-        if (mNightIconDrawable != null) {
+        if (mNightIconDrawable != null || mMissingNightIconVisibility == View.INVISIBLE) {
             mNightIconLeft = (width - mIconSize) / 2f
             mNightIconTop = height - marginBottom - iconMargin - mIconSize
             consumedHeight += mIconSize + 2 * iconMargin
@@ -134,31 +145,31 @@ class DailyTrendItemView @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas) {
         // week text.
-        if (mWeekText != null) {
+        mWeekText?.let {
             mWeekTextPaint.color = mContentColor
-            canvas.drawText(mWeekText!!, measuredWidth / 2f, mWeekTextBaseLine, mWeekTextPaint)
+            canvas.drawText(it, measuredWidth / 2f, mWeekTextBaseLine, mWeekTextPaint)
         }
 
         // date text.
-        if (mDateText != null) {
+        mDateText?.let {
             mDateTextPaint.color = mSubTitleColor
-            canvas.drawText(mDateText!!, measuredWidth / 2f, mDateTextBaseLine, mDateTextPaint)
+            canvas.drawText(it, measuredWidth / 2f, mDateTextBaseLine, mDateTextPaint)
         }
         var restoreCount: Int
 
         // day icon.
-        if (mDayIconDrawable != null) {
+        mDayIconDrawable?.let {
             restoreCount = canvas.save()
             canvas.translate(mDayIconLeft, mDayIconTop)
-            mDayIconDrawable!!.draw(canvas)
+            it.draw(canvas)
             canvas.restoreToCount(restoreCount)
         }
 
         // night icon.
-        if (mNightIconDrawable != null) {
+        mNightIconDrawable?.let {
             restoreCount = canvas.save()
             canvas.translate(mNightIconLeft, mNightIconTop)
-            mNightIconDrawable!!.draw(canvas)
+            it.draw(canvas)
             canvas.restoreToCount(restoreCount)
         }
     }
@@ -187,9 +198,10 @@ class DailyTrendItemView @JvmOverloads constructor(
         invalidate()
     }
 
-    fun setDayIconDrawable(d: Drawable?) {
+    fun setDayIconDrawable(d: Drawable?, @IconVisibility missingIconVisibility: Int) {
         val nullDrawable = mDayIconDrawable == null
         mDayIconDrawable = d
+        mMissingDayIconVisibility = missingIconVisibility
         if (d != null) {
             d.setVisible(true, true)
             d.callback = this
@@ -202,9 +214,10 @@ class DailyTrendItemView @JvmOverloads constructor(
         }
     }
 
-    fun setNightIconDrawable(d: Drawable?) {
+    fun setNightIconDrawable(d: Drawable?, @IconVisibility missingIconVisibility: Int) {
         val nullDrawable = mNightIconDrawable == null
         mNightIconDrawable = d
+        mMissingNightIconVisibility = missingIconVisibility
         if (d != null) {
             d.setVisible(true, true)
             d.callback = this

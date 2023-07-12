@@ -1,0 +1,12 @@
+<ul>
+<li>Add Nowcast for Nordic Area on MET No provider</li>
+<li>Add Air Quality for Norway on MET No provider</li>
+<li>Fix "Tap here to see alerts" not working</li>
+<li>Migrate to new sunrise API version for MET No, fix weather not being able to refresh when there were two moon rise during the same day</li>
+<li>Fix incorrect data being displayed in daily/hourly trends when data was unavailable (data from previous hours/days was being redrawn)</li>
+<li>Daily/Hourly trends will no longer show 0 when data is unavailable</li>
+<li>Fix lines being disconnected when weather icon is missing in daily/hourly trends</li>
+<li>Add "No direction" icon for wind on daily/hourly trends</li>
+<li>Keep moonrise/set and phase only for first day on Météo-France, instead of reusing data from first day on all days</li>
+<li>Fix precipitation talkback was always saying "No precipitation" in Daily precipitation trend</li>
+</ul>

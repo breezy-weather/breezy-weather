@@ -8,6 +8,7 @@ data class MetNoForecastDataDetails(
     @SerialName("air_pressure_at_sea_level") val airPressureAtSeaLevel: Float?,
     @SerialName("air_temperature") val airTemperature: Float?,
     @SerialName("dew_point_temperature") val dewPointTemperature: Float?,
+    @SerialName("precipitation_rate") val precipitationRate: Float?,
     @SerialName("precipitation_amount") val precipitationAmount: Float?,
     @SerialName("probability_of_precipitation") val probabilityOfPrecipitation: Float?,
     @SerialName("probability_of_thunder") val probabilityOfThunder: Float?,

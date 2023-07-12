@@ -117,7 +117,7 @@ class DoubleHistogramView @JvmOverloads constructor(
             setShadowLayer(2f, 0f, 1f, mTextShadowColor)
         }
         canvas.drawText(
-            mHighHistogramValueStr!!,
+            mHighHistogramValueStr ?: "",
             cx,
             mHighHistogramY - mPaint.fontMetrics.bottom - mTextMargin,
             mPaint
@@ -158,7 +158,7 @@ class DoubleHistogramView @JvmOverloads constructor(
             setShadowLayer(2f, 0f, 1f, mTextShadowColor)
         }
         canvas.drawText(
-            mLowHistogramValueStr!!,
+            mLowHistogramValueStr ?: "",
             cx,
             mLowHistogramY - mPaint.fontMetrics.top + mTextMargin,
             mPaint

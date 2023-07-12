@@ -2,6 +2,7 @@ package org.breezyweather.main.adapters.trend.daily
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,23 +40,25 @@ class DailyAirQualityAdapter(
             val talkBackBuilder = StringBuilder(activity.getString(R.string.tag_aqi))
             super.onBindView(activity, location, talkBackBuilder, position)
             val daily = location.weather!!.dailyForecast[position]
-            daily.airQuality?.let { airQuality ->
-                val index = airQuality.getIndex()
+
+            val index = daily.airQuality?.getIndex()
+            if (index != null) {
                 talkBackBuilder.append(", ").append(index).append(", ")
-                    .append(airQuality.getName(itemView.context))
-                mPolylineAndHistogramView.setData(
-                    null, null,
-                    null, null,
-                    null, null,
-                    (index ?: 0).toFloat(), String.format("%d", index ?: 0),
-                    mHighestIndex.toFloat(), 0f
-                )
-                mPolylineAndHistogramView.setLineColors(
-                    airQuality.getColor(activity),
-                    airQuality.getColor(activity),
-                    MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
-                )
+                    .append(daily.airQuality.getName(itemView.context))
             }
+            mPolylineAndHistogramView.setData(
+                null, null,
+                null, null,
+                null, null,
+                index?.toFloat(), if (index != null) String.format("%d", index) else null,
+                mHighestIndex.toFloat(), 0f
+            )
+            mPolylineAndHistogramView.setLineColors(
+                if (index != null) daily.airQuality.getColor(activity) else Color.TRANSPARENT,
+                if (index != null) daily.airQuality.getColor(activity) else Color.TRANSPARENT,
+                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+            )
+
             val themeColors = ThemeManager.getInstance(itemView.context)
                 .weatherThemeDelegate
                 .getThemeColors(

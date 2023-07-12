@@ -190,7 +190,7 @@ private fun getDailyList(
 ): List<Daily> {
     val dailyList: MutableList<Daily> = ArrayList(dailyForecasts.size)
     val hourlyListByDay = hourlyList.groupBy { it.date.getFormattedDate(timeZone, "yyyyMMdd") }
-    for (dailyForecast in dailyForecasts) {
+    dailyForecasts.forEachIndexed { i, dailyForecast ->
         // Given as UTC, we need to convert in the correct timezone at 00:00
         val dayInUTCCalendar = dailyForecast.time.toCalendarWithTimeZone(TimeZone.getTimeZone("UTC"))
         val dayInLocalCalendar = Calendar.getInstance(timeZone).apply {
@@ -236,14 +236,14 @@ private fun getDailyList(
                     riseDate = dailyForecast.sunriseTime,
                     setDate = dailyForecast.sunsetTime
                 ),
-                moon = Astro( // FIXME: It's valid only for the first day
+                moon = if (i == 0) Astro(
                     riseDate = ephemerisResult?.moonriseTime,
                     setDate = ephemerisResult?.moonsetTime
-                ),
-                moonPhase = MoonPhase( // FIXME: It's valid only for the first day
+                ) else null,
+                moonPhase = if (i == 0) MoonPhase(
                     angle = getMoonPhaseAngle(ephemerisResult?.moonPhaseDescription),
                     description = ephemerisResult?.moonPhaseDescription
-                ),
+                ) else null,
                 airQuality = getDailyAirQualityFromHourlyList(hourlyListByDay.getOrDefault(dailyDateFormatted, null)),
                 uV = UV(
                     index = dailyForecast.uvIndex?.toFloat(),

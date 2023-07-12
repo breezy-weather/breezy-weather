@@ -9,9 +9,14 @@ import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.common.extensions.toTimezoneNoHour
 import org.breezyweather.weather.*
 import org.breezyweather.weather.metno.json.MetNoForecastResult
-import org.breezyweather.weather.metno.json.MetNoEphemerisTime
-import org.breezyweather.weather.metno.json.MetNoEphemerisResult
+import org.breezyweather.weather.metno.json.MetNoSunResult
 import org.breezyweather.weather.WeatherService.WeatherResultWrapper
+import org.breezyweather.weather.metno.json.MetNoAirQualityResult
+import org.breezyweather.weather.metno.json.MetNoForecastTimeseries
+import org.breezyweather.weather.metno.json.MetNoMoonProperties
+import org.breezyweather.weather.metno.json.MetNoMoonResult
+import org.breezyweather.weather.metno.json.MetNoNowcastResult
+import org.breezyweather.weather.metno.json.MetNoSunProperties
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
@@ -21,7 +26,10 @@ fun convert(
     context: Context,
     location: Location,
     forecastResult: MetNoForecastResult,
-    ephemerisResult: MetNoEphemerisResult
+    sunResult: MetNoSunResult,
+    moonResult: MetNoMoonResult,
+    nowcastResult: MetNoNowcastResult,
+    airQualityResult: MetNoAirQualityResult
 ): WeatherResultWrapper {
     // If the API doesn’t return hourly, consider data as garbage and keep cached data
     if (forecastResult.properties == null
@@ -36,14 +44,13 @@ fun convert(
 
         for (i in forecastResult.properties.timeseries.indices) {
             val hourlyForecast = forecastResult.properties.timeseries[i]
-            val symbolCode = hourlyForecast.data?.next1Hours?.summary?.symbolCode
-                ?: hourlyForecast.data?.next6Hours?.summary?.symbolCode
-                ?: hourlyForecast.data?.next12Hours?.summary?.symbolCode
+            val airQualityIndex = airQualityResult.data?.time?.indexOfFirst { it.from.time == hourlyForecast.time.time }
+
             val hourly = Hourly(
                 date = hourlyForecast.time,
                 isDaylight = true, // Will be completed later with daily sunrise/set
-                weatherText = null, // TODO
-                weatherCode = getWeatherCode(symbolCode),
+                weatherText = null, // TODO: From symbolCode
+                weatherCode = getWeatherCode(hourlyForecast.data?.symbolCode),
                 temperature = Temperature(
                     temperature = hourlyForecast.data?.instant?.details?.airTemperature,
                 ),
@@ -60,13 +67,19 @@ fun convert(
                         ?: hourlyForecast.data?.next6Hours?.details?.probabilityOfThunder
                         ?: hourlyForecast.data?.next12Hours?.details?.probabilityOfThunder
                 ),
-                wind = if (hourlyForecast.data?.instant?.details == null) null else Wind(
+                wind = if (hourlyForecast.data?.instant?.details != null) Wind(
                     direction = getWindDirection(context, hourlyForecast.data.instant.details.windFromDirection),
                     degree = WindDegree(hourlyForecast.data.instant.details.windFromDirection, false),
                     speed = hourlyForecast.data.instant.details.windSpeed?.times(3.6f),
                     level = getWindLevel(context, hourlyForecast.data.instant.details.windSpeed?.times(3.6f))
-                ),
-                // airQuality = TODO
+                ) else null,
+                airQuality = if (airQualityIndex != null && airQualityIndex != -1) AirQuality(
+                    pM25 = airQualityResult.data.time.getOrNull(airQualityIndex)?.variables?.pm25Concentration?.value,
+                    pM10 = airQualityResult.data.time.getOrNull(airQualityIndex)?.variables?.pm10Concentration?.value,
+                    sO2 = airQualityResult.data.time.getOrNull(airQualityIndex)?.variables?.so2Concentration?.value,
+                    nO2 = airQualityResult.data.time.getOrNull(airQualityIndex)?.variables?.no2Concentration?.value,
+                    o3 = airQualityResult.data.time.getOrNull(airQualityIndex)?.variables?.o3Concentration?.value
+                ) else null,
                 uV = UV(
                     index = hourlyForecast.data?.instant?.details?.ultravioletIndexClearSky,
                     level = getUVLevel(context, hourlyForecast.data?.instant?.details?.ultravioletIndexClearSky)
@@ -102,17 +115,29 @@ fun convert(
             }
         }
 
-        val dailyList = getDailyList(context, location.timeZone, ephemerisResult.location?.time, hourlyList, hourlyByHalfDay)
+        val dailyList = getDailyList(context, location.timeZone, sunResult.properties, moonResult.properties, hourlyList, hourlyByHalfDay)
+
+        val currentTimeseries = nowcastResult.properties?.timeseries?.getOrNull(0)?.data
+            ?: (if (currentI != null) forecastResult.properties.timeseries.getOrNull(currentI)?.data else null)
+
         val weather = Weather(
             base = Base(
                 cityId = location.cityId,
+                // TODO: Use nowcast updatedAt if available
                 publishDate = forecastResult.properties.meta?.updatedAt ?: Date()
             ),
             current = Current(
-                weatherText = hourlyList.getOrNull(1)?.weatherText,
-                weatherCode = hourlyList.getOrNull(1)?.weatherCode,
-                temperature = hourlyList.getOrNull(1)?.temperature,
-                wind = hourlyList.getOrNull(1)?.wind,
+                weatherText = null, // TODO: From symbolCode
+                weatherCode = getWeatherCode(currentTimeseries?.symbolCode),
+                temperature = Temperature(
+                    temperature = currentTimeseries?.instant?.details?.airTemperature,
+                ),
+                wind = if (currentTimeseries?.instant?.details != null) Wind(
+                    direction = getWindDirection(context, currentTimeseries.instant.details.windFromDirection),
+                    degree = WindDegree(currentTimeseries.instant.details.windFromDirection, false),
+                    speed = currentTimeseries.instant.details.windSpeed?.times(3.6f),
+                    level = getWindLevel(context, currentTimeseries.instant.details.windSpeed?.times(3.6f))
+                ) else null,
                 uV = getCurrentUV(
                     context,
                     dailyList.getOrNull(0)?.uV?.index,
@@ -121,10 +146,8 @@ fun convert(
                     dailyList.getOrNull(0)?.sun?.setDate,
                     location.timeZone
                 ),
-                // airQuality = TODO,
-                relativeHumidity = if (currentI != null)
-                    forecastResult.properties.timeseries.getOrNull(currentI)?.data?.instant?.details?.relativeHumidity
-                else null,
+                airQuality = hourlyList.getOrNull(1)?.airQuality,
+                relativeHumidity = currentTimeseries?.instant?.details?.relativeHumidity,
                 pressure = if (currentI != null)
                     forecastResult.properties.timeseries.getOrNull(currentI)?.data?.instant?.details?.airPressureAtSeaLevel
                 else null,
@@ -133,7 +156,8 @@ fun convert(
                 else null
             ),
             dailyForecast = dailyList,
-            hourlyForecast = completeHourlyListFromDailyList(context, hourlyList, dailyList, location.timeZone, completeDaylight = true)
+            hourlyForecast = completeHourlyListFromDailyList(context, hourlyList, dailyList, location.timeZone, completeDaylight = true),
+            minutelyForecast = getMinutelyList(nowcastResult.properties?.timeseries)
         )
         WeatherResultWrapper(weather)
     } catch (e: Exception) {
@@ -147,50 +171,71 @@ fun convert(
 private fun getDailyList(
     context: Context,
     timeZone: TimeZone,
-    ephemerisTimeResults: List<MetNoEphemerisTime>?,
+    sunResult: MetNoSunProperties?,
+    moonResult: MetNoMoonProperties?,
     hourlyList: List<Hourly>,
     hourlyListByHalfDay: Map<String, Map<String, MutableList<Hourly>>>
 ): List<Daily> {
     val dailyList: MutableList<Daily> = ArrayList()
     val hourlyListByDay = hourlyList.groupBy { it.date.getFormattedDate(timeZone, "yyyy-MM-dd") }
-    for (day in hourlyListByDay.entries) {
-        val dayDate = day.key.toDateNoHour(timeZone) ?: continue
-        val ephemerisInfo = ephemerisTimeResults?.firstOrNull { it.date == day.key }
+    hourlyListByDay.entries.forEachIndexed { i, day ->
+        val dayDate = day.key.toDateNoHour(timeZone)
+        if (dayDate != null) {
+            dailyList.add(
+                Daily(
+                    date = dayDate,
+                    day = completeHalfDayFromHourlyList(
+                        dailyDate = dayDate,
+                        initialHalfDay = null,
+                        halfDayHourlyList = hourlyListByHalfDay.getOrDefault(day.key, null)?.get("day"),
+                        isDay = true
+                    ),
+                    night = completeHalfDayFromHourlyList(
+                        dailyDate = dayDate,
+                        initialHalfDay = null,
+                        halfDayHourlyList = hourlyListByHalfDay.getOrDefault(day.key, null)?.get("night"),
+                        isDay = false
+                    ),
+                    sun = if (i == 0) Astro(
+                        riseDate = sunResult?.sunrise?.time,
+                        setDate = sunResult?.sunset?.time,
+                    ) else null,
+                    moon = if (i == 0) Astro(
+                        riseDate = moonResult?.moonrise?.time,
+                        setDate = moonResult?.moonset?.time,
+                    ) else null,
+                    moonPhase = if (i == 0) MoonPhase(
+                        angle = moonResult?.moonphase?.roundToInt()
+                    ) else null,
+                    airQuality = getDailyAirQualityFromHourlyList(hourlyListByDay.getOrDefault(day.key, null)),
+                    uV = getDailyUVFromHourlyList(context, day.value),
+                    hoursOfSun = if (i == 0) getHoursOfDay(sunResult?.sunrise?.time, sunResult?.sunset?.time) else null
+                )
+            )
+        }
+    }
+    return dailyList
+}
 
-        dailyList.add(
-            Daily(
-                date = dayDate,
-                day = completeHalfDayFromHourlyList(
-                    dailyDate = dayDate,
-                    initialHalfDay = null,
-                    halfDayHourlyList = hourlyListByHalfDay.getOrDefault(day.key, null)?.get("day"),
-                    isDay = true
-                ),
-                night = completeHalfDayFromHourlyList(
-                    dailyDate = dayDate,
-                    initialHalfDay = null,
-                    halfDayHourlyList = hourlyListByHalfDay.getOrDefault(day.key, null)?.get("night"),
-                    isDay = false
-                ),
-                sun = Astro(
-                    riseDate = ephemerisInfo?.sunrise?.time,
-                    setDate = ephemerisInfo?.sunset?.time,
-                ),
-                moon = Astro(
-                    riseDate = ephemerisInfo?.moonrise?.time,
-                    setDate = ephemerisInfo?.moonset?.time,
-                ),
-                moonPhase = MoonPhase(
-                    angle = ephemerisInfo?.moonposition?.phase?.roundToInt(),
-                    description = ephemerisInfo?.moonposition?.desc
-                ),
-                //airQuality = TODO,
-                uV = getDailyUVFromHourlyList(context, day.value),
-                hoursOfSun = getHoursOfDay(ephemerisInfo?.sunrise?.time, ephemerisInfo?.sunset?.time)
+private fun getMinutelyList(nowcastTimeseries: List<MetNoForecastTimeseries>?): List<Minutely> {
+    val minutelyList: MutableList<Minutely> = arrayListOf()
+    if (nowcastTimeseries.isNullOrEmpty()) return minutelyList
+
+    nowcastTimeseries.forEachIndexed { i, nowcastForecast ->
+        minutelyList.add(
+            Minutely(
+                nowcastForecast.time,
+                if (i < nowcastTimeseries.size - 1) {
+                    ((nowcastTimeseries[i + 1].time.time - nowcastForecast.time.time) / (60 * 1000)).toDouble()
+                        .roundToInt()
+                } else ((nowcastForecast.time.time - nowcastTimeseries[i - 1].time.time) / (60 * 1000)).toDouble()
+                    .roundToInt(),
+                nowcastForecast.data?.instant?.details?.precipitationRate?.toDouble()
             )
         )
     }
-    return dailyList
+
+    return minutelyList
 }
 
 private fun getWeatherCode(icon: String?): WeatherCode? {

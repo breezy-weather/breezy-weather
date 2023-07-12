@@ -1,6 +1,7 @@
 package org.breezyweather.main.adapters.trend.hourly
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,33 +44,37 @@ class HourlyPrecipitationAdapter(
             super.onBindView(activity, location, talkBackBuilder, position)
             val weather = location.weather!!
             val hourly = weather.hourlyForecast[position]
-            hourly.weatherCode?.let {
-                hourlyItem.setIconDrawable(ResourceHelper.getWeatherIcon(mResourceProvider, it, hourly.isDaylight))
+
+            hourlyItem.setIconDrawable(
+                hourly.weatherCode?.let {
+                    ResourceHelper.getWeatherIcon(mResourceProvider, it, hourly.isDaylight)
+                },
+                missingIconVisibility = View.INVISIBLE
+            )
+
+            val precipitation = hourly.precipitation?.total
+            if (precipitation != null && precipitation > 0f) {
+                talkBackBuilder.append(", ")
+                    .append(mPrecipitationUnit.getValueVoice(activity, precipitation))
+            } else {
+                talkBackBuilder.append(", ")
+                    .append(activity.getString(R.string.precipitation_none))
             }
-            hourly.precipitation?.let {
-                val precipitation = hourly.precipitation.total ?: 0f
-                if (precipitation > 0f) {
-                    talkBackBuilder.append(", ")
-                        .append(mPrecipitationUnit.getValueVoice(activity, precipitation))
-                } else {
-                    talkBackBuilder.append(", ")
-                        .append(activity.getString(R.string.precipitation_none))
-                }
-                mPolylineAndHistogramView.setData(
-                    null, null,
-                    null, null,
-                    null, null,
-                    precipitation,
-                    mPrecipitationUnit.getValueTextWithoutUnit(precipitation),
-                    mHighestPrecipitation,
-                    0f
-                )
-                mPolylineAndHistogramView.setLineColors(
-                    hourly.precipitation.getPrecipitationColor(activity),
-                    hourly.precipitation.getPrecipitationColor(activity),
-                    MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
-                )
-            }
+            mPolylineAndHistogramView.setData(
+                null, null,
+                null, null,
+                null, null,
+                precipitation ?: 0f,
+                precipitation?.let { mPrecipitationUnit.getValueTextWithoutUnit(it) },
+                mHighestPrecipitation,
+                0f
+            )
+            mPolylineAndHistogramView.setLineColors(
+                if (precipitation != null) hourly.precipitation.getPrecipitationColor(activity) else Color.TRANSPARENT,
+                if (precipitation != null) hourly.precipitation.getPrecipitationColor(activity) else Color.TRANSPARENT,
+                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+            )
+
             val themeColors = ThemeManager
                 .getInstance(itemView.context)
                 .weatherThemeDelegate
