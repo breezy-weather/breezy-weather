@@ -197,7 +197,7 @@
     <string name="settings_background_updates_refresh_12h">كل 12 ساعات</string>
     <string name="settings_background_updates_refresh_24h">كل 24 ساعات</string>
     <string name="widget_subtitle_data_time">وقت آخر تحديث للطقس</string>
-    <string name="widget_subtitle_data_aqi">مؤشر جودة الهواء</string>
+    <string name="widget_subtitle_data_aqi">جودة الهواء</string>
     <string name="widget_subtitle_data_wind">الرياح</string>
     <string name="widget_subtitle_data_feels_like">درجة الحرارة المحسوسة</string>
     <string name="widget_subtitle_data_lunar">تقويم قمري</string>
@@ -217,7 +217,7 @@
     <string name="weather_kind_wind">رياح</string>
     <string name="unit_kph">كم/س</string>
     <string name="unit_mps">م/س</string>
-    <string name="unit_kn">عقدة</string>
+    <string name="unit_kn">عق</string>
     <string name="unit_mph">ميل/س</string>
     <string name="unit_ftps">قدم/س</string>
     <string name="unit_mm">ملم</string>
@@ -234,7 +234,7 @@
     <string name="unit_mi">ميل</string>
     <string name="unit_nmi">ميل بحري</string>
     <string name="unit_ft">قدم</string>
-    <string name="unit_mb">ملي بار</string>
+    <string name="unit_mb">م ب</string>
     <string name="unit_kpa">كيلو باسكال</string>
     <string name="unit_hpa">هيكتوباسكال</string>
     <string name="unit_atm">ضغط جوي</string>
@@ -386,7 +386,7 @@
     <string name="widget_custom_subtitle_keyword_enter_description">خط جديد</string>
     <string name="settings_item_delete">حذف هذا العنصر</string>
     <string name="alerts_to_follow">تنبيهات لمتابعتها، اضغط هنا لعرضها.</string>
-    <string name="wind_direction_short_N">ش</string>
+    <string name="wind_direction_short_N">شم</string>
     <string name="wind_direction_short_NE">ش ش</string>
     <string name="wind_direction_short_E">ش</string>
     <string name="wind_direction_short_S">ج</string>
