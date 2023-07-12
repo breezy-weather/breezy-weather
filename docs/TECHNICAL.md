@@ -85,12 +85,12 @@ Not yet implemented in app:
 | Location forecast | 2.0     |                                                                                                           |
 | Sunrise           | 3.0     | It is technically feasible to retrieve data for future days, but requires two calls for each, so we avoid |
 | Nowcast           | 2.0     | Norway, Sweden, Finland and Denmark only                                                                  |
+| Air quality       | 0.1     | Norway only                                                                                               |
 
 Not yet implemented in app:
 
 | Endpoint    | Version | Notes                                              |
 |-------------|---------|----------------------------------------------------|
-| Air quality | 0.1     | Norway only                                        |
 | MET alerts  | 1.1     | Norway only by country code, requires a XML parser |
 
 

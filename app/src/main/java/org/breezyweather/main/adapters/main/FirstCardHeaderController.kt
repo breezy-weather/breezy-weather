@@ -27,6 +27,7 @@ import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
+import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.theme.compose.BreezyWeatherTheme
@@ -156,7 +157,7 @@ class FirstCardHeaderController(
                             Icon(
                                 painterResource(R.drawable.ic_alert),
                                 contentDescription = stringResource(R.string.alerts_to_follow),
-                                tint = Color(currentAlert.color)
+                                tint = Color(DisplayUtils.getDarkerColor(currentAlert.color))
                             )
                         }
                     )

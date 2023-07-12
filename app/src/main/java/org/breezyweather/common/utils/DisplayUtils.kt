@@ -108,6 +108,14 @@ object DisplayUtils {
         return grey > -0x424243
     }
 
+    fun getDarkerColor(@ColorInt color: Int): Int {
+        val hsv = FloatArray(3)
+        Color.colorToHSV(color, hsv)
+        hsv[1] = hsv[1] + 0.15f
+        hsv[2] = hsv[2] - 0.15f
+        return Color.HSVToColor(hsv)
+    }
+
     @ColorInt
     fun blendColor(@ColorInt foreground: Int, @ColorInt background: Int): Int {
         val scr = Color.red(foreground)

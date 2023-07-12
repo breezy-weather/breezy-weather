@@ -2,6 +2,7 @@
 <li>Add Nowcast for Nordic Area on MET No provider</li>
 <li>Add Air Quality for Norway on MET No provider</li>
 <li>Fix "Tap here to see alerts" not working</li>
+<li>Fix alert colors sometimes having low contrast</li>
 <li>Migrate to new sunrise API version for MET No, fix weather not being able to refresh when there were two moon rise during the same day</li>
 <li>Fix incorrect data being displayed in daily/hourly trends when data was unavailable (data from previous hours/days was being redrawn)</li>
 <li>Daily/Hourly trends will no longer show 0 when data is unavailable</li>
