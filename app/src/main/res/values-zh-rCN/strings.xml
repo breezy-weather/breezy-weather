@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- app. -->
     <string name="app_name">天气</string>
     <!-- keyword. -->
@@ -575,4 +575,41 @@
     <string name="settings_widgets_notification_style_title">风格</string>
     <string name="location_message_reverse_geocoding_failed">天气数据提供商未找到符合的位置</string>
     <string name="widget_clock_font_analog">Analog</string>
+    <string name="action_undo" tools:ignore="ButtonCase">撤消</string>
+    <string name="notification_channel_widget">微件</string>
+    <string name="settings_widgets_live_wallpaper_error">无法启动壁纸选择器。您仍然可以通过在主屏幕壁纸选择器中选择动态壁纸来启用微风天气壁纸。</string>
+    <string name="air_quality_index">空气质量指数</string>
+    <string name="air_quality_pm25">PM2.5</string>
+    <string name="air_quality_pm10">PM10</string>
+    <string name="air_quality_so2">SO₂</string>
+    <string name="air_quality_no2">NO₂</string>
+    <string name="air_quality_o3">O₃</string>
+    <string name="air_quality_co">CO</string>
+    <string name="air_quality_pm_info_title">颗粒物（PM2.5 和 PM10）</string>
+    <string name="air_quality_pm_explanations_origin">有些颗粒物是自然产生的，源自火山、沙尘暴、森林和草原火灾、植被和海浪。人类活动也会产生大量颗粒物，例如交通和运输、工业活动、发电厂、建筑工地、垃圾焚烧或农田。</string>
+    <string name="air_quality_o3_info_title">地面臭氧 (O₃)</string>
+    <string name="air_quality_o3_info_introduction">地面臭氧（O₃）是烟雾的主要成分。尽管是相同的分子，但与保护地球免受过量紫外线辐射的平流层臭氧不同，地面臭氧可能会危害人类健康。</string>
+    <string name="air_quality_o3_info_consequences">接触过量的臭氧会导致呼吸问题、引发哮喘、降低肺功能并导致肺部疾病。</string>
+    <string name="air_quality_no2_info_title">二氧化氮 (NO₂)</string>
+    <string name="air_quality_no2_info_introduction">二氧化氮（NO₂）是一种令人窒息的有毒红棕色气体，具有特有的刺激性气味。</string>
+    <string name="air_quality_no2_info_consequences">接触二氧化氮会刺激呼吸道并加重呼吸道疾病。此外，二氧化氮是一种重要的臭氧前体，是一种与哮喘和其他呼吸系统疾病密切相关的污染物。</string>
+    <string name="air_quality_so2_info_title">二氧化硫 (SO₂)</string>
+    <string name="air_quality_so2_info_introduction">二氧化硫 （SO₂） 是一种无色有毒气体，会产生烧焦火柴的气味。</string>
+    <string name="air_quality_co_info_title">一氧化碳 (CO)</string>
+    <string name="air_quality_co_info_introduction">一氧化碳（CO）是一种无色、无臭、无味、无刺激性的有毒易燃气体。</string>
+    <string name="air_quality_co_info_origin">一氧化碳是由木柴、汽油、煤炭、天然气和煤油等碳质燃料在简易炉灶、明火、灯芯、火炉和壁炉中不完全燃烧产生的。在环境空气中，一氧化碳的主要来源是机动车辆。</string>
+    <string name="air_quality_co_info_consequences">一氧化碳扩散到肺组织并进入血液，使红细胞难以与氧气结合。缺氧会损害组织和细胞。接触一氧化碳会导致呼吸困难、疲惫、头晕和其他流感样症状。暴露于高浓度的一氧化碳可能致命。</string>
+    <string name="location_none_added_yet_instructions">尚未添加位置。请点击搜索图标手动添加位置，或通过浮动按钮添加您当前的位置。</string>
+    <string name="action_close">关闭</string>
+    <string name="dialog_permissions_notification_content">点击此处启用有关天气警报的通知，或稍后在设置中决定。</string>
+    <string name="dialog_permissions_notification_title">随时了解情况</string>
+    <string name="null_data_text">N/A</string>
+    <string name="air_quality_pm_explanations_introduction">颗粒物或大气颗粒物是悬浮在空气中的固体或液体物质的微小颗粒。</string>
+    <string name="air_quality_pm_explanations_consequences">颗粒物是危害最大的大气污染形式，因为它们能够从血液深入肺部和大脑，导致诸如心脏病、肺病和过早死亡等健康问题。</string>
+    <string name="air_quality_o3_info_origin">它是由车辆和工业排放的挥发性有机化合物、一氧化碳和氮氧化物（NOₓ）等污染物发生光化学反应而形成的。由于其光化学性质，臭氧含量在晴朗天气期间达到最高水平。</string>
+    <string name="air_quality_no2_info_origin">环境中的二氧化氮来源于供暖、运输、工业和发电等过程中燃料的高温燃烧。家庭氮氧化物（NOₓ）来源包括燃烧燃料的设备，如火炉、壁炉、煤气炉和烤箱。</string>
+    <string name="air_quality_so2_info_consequences">接触二氧化硫与哮喘患者住院和急诊就诊有关。</string>
+    <string name="air_quality_so2_info_origin">它由火山活动自然释放，以及主要来自用于家庭供暖、工业和发电的化石燃料燃烧。</string>
+    <string name="location_search_no_results_advice">确保您的搜索拼写正确并且不要太具体。或者您可以尝试其他天气提供商，这可能会产生不同的位置搜索结果。</string>
+    <string name="location_search_no_results">$1 找不到 $2</string>
 </resources>
