@@ -575,7 +575,7 @@
     <string name="settings_location_access_switch_title">Доступ к местоположению</string>
     <string name="settings_location_access_switch_summaryOff">Пожалуйста, разрешите, если вы хотите иметь возможность добавить ваше текущее местоположение в качестве местоположения.</string>
     <string name="settings_location_access_precise_summaryOff">Включите «Использовать точное местоположение», если у вас возникли проблемы с определением местоположения.</string>
-    <string name="settings_widgets_notification_feels_like_switch">Использовать темперутуру \"По ощущениям\"</string>
+    <string name="settings_widgets_notification_feels_like_switch">Использовать темперутуру “По ощущениям”</string>
     <string name="unit_lpsqmph_voice">Литров на квадратный метр в час</string>
     <string name="unit_kelvin_short">K</string>
     <string name="unit_nmi_voice">Морские мили</string>
@@ -604,7 +604,7 @@
     <string name="dialog_permissions_location_title">Доступ к информации о местоположении</string>
     <string name="widget_style_pixel">Pixel</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Инструкции для определенного производителя</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">У некоторых производителей есть дополнительные ограничения приложений, которые отключают фоновые службы. На сайте Don\'t kill my app! есть информация как это исправить.</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">У некоторых производителей есть дополнительные ограничения приложений, которые отключают фоновые службы. На сайте Don’t kill my app! есть информация как это исправить.</string>
     <string name="settings_background_updates_worker_info_title">Информация о процессе</string>
     <string name="settings_location">Местоположение</string>
     <string name="settings_location_summary">Настройки поставщика местоположение</string>

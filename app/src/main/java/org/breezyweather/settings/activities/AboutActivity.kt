@@ -307,7 +307,27 @@ class AboutActivity : GeoActivity() {
             name = "Lorenzo J. Lucchini",
             url = "https://github.com/LuccoJ",
             flag = "🇮🇹",
-        )
+        ),
+        ContributorItem(
+            name = "kilimov25",
+            url = "https://github.com/kilimov25",
+            flag = "🇷🇺",
+        ),
+        ContributorItem(
+            name = "mf",
+            url = "https://hosted.weblate.org/user/marfS2/",
+            flag = "🇧🇷",
+        ),
+        ContributorItem(
+            name = "Rex_sa",
+            url = "https://github.com/rex07",
+            flag = "",
+        ),
+        ContributorItem(
+            name = "Meiru",
+            url = "https://hosted.weblate.org/user/Tenbin/",
+            flag = "🇯🇵",
+        ),
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {

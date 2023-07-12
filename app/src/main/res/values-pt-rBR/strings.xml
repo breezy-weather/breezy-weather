@@ -616,7 +616,7 @@
     <string name="air_quality_co_info_origin">Ele é produzido pela combustão incompleta de combustíveis carbonáceos, como madeira, gasolina, carvão, gás natural e querosene em fogões simples, fogueiras, lâmpadas de pavio, fornos e lareiras. A fonte predominante de monóxido de carbono (CO) no ar ambiente é proveniente de veículos automotores.</string>
     <string name="dialog_permissions_notification_content">Toque aqui para ativar as notificações sobre alertas meteorológicos ou decida mais tarde em Configurações.</string>
     <string name="dialog_permissions_notification_title">Mantenha-se informado</string>
-    <string name="settings_widgets_live_wallpaper_error">Não foi possível iniciar o seletor de papéis de parede. Você ainda pode ativar o papel de parede Breezy Weather escolhendo \"Live Wallpaper\" no seletor de papéis de parede da tela inicial.</string>
+    <string name="settings_widgets_live_wallpaper_error">Não foi possível iniciar o seletor de papéis de parede. Você ainda pode ativar o papel de parede Breezy Weather escolhendo “Live Wallpaper” no seletor de papéis de parede da tela inicial.</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Névoa depositante de geada</string>
     <string name="openmeteo_weather_text_drizzle_light_intensity">Garoa de baixa intensidade</string>
     <string name="openmeteo_weather_text_drizzle_dense_intensity">Garoa de grande intensidade</string>

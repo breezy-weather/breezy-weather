@@ -252,14 +252,14 @@
     <string name="widget_multi_city">متعدد المدن</string>
     <string name="widget_custom_subtitle_explanation">يمكنك إدخال أي شيء ، ولكن يرجى الانتباه إلى طول النص. إذا كنت تريد اقتباس بيانات الطقس ، فيرجى استخدام $ للإشارة إلى الكلمة الرئيسية المقابلة.
 \n
-\nعلى سبيل المثال ، سيتم عرض \"الطقس الحالي هو: $cw$.\" ك \"الطقس الحالي هو: يوم صاف.\".</string>
+\nعلى سبيل المثال ، سيتم عرض “الطقس الحالي هو: $cw$.” ك “الطقس الحالي هو: يوم صاف.”.</string>
     <string name="widget_custom_subtitle_keyword_w_description">أسبوع</string>
     <string name="widget_custom_subtitle_keyword_lc_description">تقويم قمري</string>
     <string name="widget_custom_subtitle_keyword_dd_description">الوصف اليومي</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">الطقس ليلا اليوم ، غدا ،… ، بعد 4 أيام</string>
     <string name="widget_style_nano">نانو</string>
     <string name="widget_style_vertical">عمودي</string>
-    <string name="widget_custom_subtitle_keyword_xdw_description">طقس النهار اليوم وغدا ... بعد 4 أيام</string>
+    <string name="widget_custom_subtitle_keyword_xdw_description">طقس النهار اليوم وغدا … بعد 4 أيام</string>
     <string name="widget_style_mini">صغير</string>
     <string name="settings_background_updates">تحديثات الخلفية</string>
     <string name="settings_background_updates_battery_optimization">تعطيل تحسين البطارية</string>
@@ -272,8 +272,8 @@
     <string name="settings_location_access_switch_title">الوصول إلى الموقع</string>
     <string name="settings_location_access_switch_summaryOn">مسموح. يمكنك إضافة موقعك الحالي كموقع.</string>
     <string name="settings_location_access_background_summaryOn">ممكن. سيكون التطبيق قادرًا على تحديث بيانات الطقس لموقعك الحالي في الخلفية.</string>
-    <string name="settings_location_access_background_summaryOff">يرجى تمكين \"السماح طوال الوقت\" للحصول على تحديثات خلفية حية لموقعك الحالي.</string>
-    <string name="settings_location_access_precise_summaryOff">قم بتمكين \"استخدام الموقع الدقيق\" إذا كنت تواجه مشكلة في الحصول على موقع.</string>
+    <string name="settings_location_access_background_summaryOff">يرجى تمكين ”السماح طوال الوقت“ للحصول على تحديثات خلفية حية لموقعك الحالي.</string>
+    <string name="settings_location_access_precise_summaryOff">قم بتمكين ”استخدام الموقع الدقيق“ إذا كنت تواجه مشكلة في الحصول على موقع.</string>
     <string name="settings_weather_provider_default_value">افتراضي (بدون تغيير)</string>
     <string name="settings_weather_providers_current_location">مزود الطقس للموقع الحالي</string>
     <string name="settings_weather_provider_accu_weather_key">مفتاح طقس أكيو</string>
@@ -412,10 +412,10 @@
     <string name="weather_source_openweather_version_2_5">الإصدار 2.5</string>
     <string name="weather_source_china">الصين</string>
     <string name="weather_source_china_voice">الصين</string>
-    <string name="widget_custom_subtitle_keyword_xdp_description">هطول الأمطار خلال النهار اليوم, غدا, ..., بعد 4 أيام (٪)</string>
-    <string name="widget_custom_subtitle_keyword_xnp_description">هطول الأمطار ليلا اليوم, غدا, ..., بعد 4 أيام (٪)</string>
-    <string name="widget_custom_subtitle_keyword_xdwd_description">رياح النهار اليوم ، غدا ، ... ، بعد 4 أيام</string>
-    <string name="widget_custom_subtitle_keyword_xnwd_description">رياح اليل اليوم ، غدا ، ... ، بعد 4 أيام</string>
+    <string name="widget_custom_subtitle_keyword_xdp_description">هطول الأمطار خلال النهار اليوم, غدا, …, بعد 4 أيام (٪)</string>
+    <string name="widget_custom_subtitle_keyword_xnp_description">هطول الأمطار ليلا اليوم, غدا, …, بعد 4 أيام (٪)</string>
+    <string name="widget_custom_subtitle_keyword_xdwd_description">رياح النهار اليوم ، غدا ، … ، بعد 4 أيام</string>
+    <string name="widget_custom_subtitle_keyword_xnwd_description">رياح اليل اليوم ، غدا ، … ، بعد 4 أيام</string>
     <string name="widget_week_style_5_days">5 أيام</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="widget_clock_font_analog">التناظريه</string>
@@ -433,7 +433,7 @@
     <string name="widget_custom_subtitle_keyword_l_description">الموقع</string>
     <string name="widget_custom_subtitle_keyword_lat_description">العرض</string>
     <string name="widget_custom_subtitle_keyword_lon_description">الطول</string>
-    <string name="widget_custom_subtitle_keyword_xsr_description">شروق الشمس اليوم ، غدا ، ... ، بعد 4 أيام</string>
+    <string name="widget_custom_subtitle_keyword_xsr_description">شروق الشمس اليوم ، غدا ، … ، بعد 4 أيام</string>
     <string name="settings_icon_providers_weather_icon_light">رمز فاتح</string>
     <string name="unit_ft_voice">أقدام</string>
     <string name="unit_nmi_voice">الأميال البحرية</string>
@@ -520,13 +520,13 @@
     <string name="precipitation_none">لاتوجد احتمالية هطول</string>
     <string name="air_quality_o3">O₃</string>
     <string name="settings_background_updates_battery_optimization_summary">هذا هو أول شيء يجب تجربته عندما لا تتلقى إشعارات أو لا يتم تحديث الأدوات.</string>
-    <string name="settings_background_updates_method_notification_dialog_content">تضيف هذه الطريقة إشعارا مستمرا يمكن إخفاؤه عن طريق تعطيل فئة الإشعارات \"$\" في إعدادات تطبيق الجهاز.</string>
+    <string name="settings_background_updates_method_notification_dialog_content">تضيف هذه الطريقة إشعارا مستمرا يمكن إخفاؤه عن طريق تعطيل فئة الإشعارات ”$“ في إعدادات تطبيق الجهاز.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">تعليمات خاصة بالشركة المصنعة</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">تفرض بعض الشركات المصنعة قيودا إضافية على التطبيقات تقتل خدمات الخلفية. لا تقتل تطبيقي! يحتوي موقع الويب على معلومات حول كيفية إصلاحه.</string>
     <string name="settings_location_access_switch_summaryOff">يرجى السماح إذا كنت تريد أن تكون قادرًا على إضافة موقعك الحالي كموقع.</string>
     <string name="settings_location_access_background_title">الوصول إلى الموقع في الخلفية</string>
     <string name="settings_location_access_precise_summaryOn">تمكين. يتم استخدام كل من شبكة الجهاز وموفري GPS.</string>
-    <string name="settings_widgets_live_wallpaper_error">تعذر تشغيل منتقي ورق الحائط. لا يزال بإمكانك تمكين خلفية Breezy Weather عن طريق اختيار \"Live Wallpaper\" في منتقي خلفية الشاشة الرئيسية.</string>
+    <string name="settings_widgets_live_wallpaper_error">تعذر تشغيل منتقي ورق الحائط. لا يزال بإمكانك تمكين خلفية Breezy Weather عن طريق اختيار ”Live Wallpaper“ في منتقي خلفية الشاشة الرئيسية.</string>
     <string name="action_add_from_map">أضف من الخريطة</string>
     <string name="action_see_more">انظر أكثر</string>
     <string name="location_service_native">واجهة برمجة التطبيقات الأصلية</string>
@@ -594,17 +594,17 @@
     <string name="action_continue">أستمرار</string>
     <string name="action_share">مشاركة</string>
     <string name="dialog_permissions_location_content">يحتاج Breezy Weather إلى جمع معلومات موقعك في المقدمة أو الخلفية لتوفير بيانات الطقس لموقعك الحالي. لهذا ، سوف نطلب بعض الأذونات. سيتم استخدام معلومات موقعك فقط للحصول على بيانات الطقس في موقعك الحالي. إذا كنت لا تريد مشاركة معلومات موقعك، يمكنك رفض هذه المتطلبات وتعيين موقعك يدويا في صفحة الإدارة.</string>
-    <string name="dialog_permissions_location_background_content">من أجل السماح للتطبيق بالوصول إلى معلومات الموقع في الخلفية ، حتى نتمكن من إدراك التغييرات في الموقع وتزويدك ببيانات الطقس الصالحة ، يرجى تعيين الوصول إلى الموقع على أنه \"السماح طوال الوقت\".</string>
+    <string name="dialog_permissions_location_background_content">من أجل السماح للتطبيق بالوصول إلى معلومات الموقع في الخلفية ، حتى نتمكن من إدراك التغييرات في الموقع وتزويدك ببيانات الطقس الصالحة ، يرجى تعيين الوصول إلى الموقع على أنه ”السماح طوال الوقت“.</string>
     <string name="message_tap_again_to_exit">انقر مرة أخرى للخروج</string>
-    <string name="widget_custom_subtitle_keyword_xdt_description">درجة حرارة النهار اليوم ، غدا ، ... ، بعد 4 أيام (℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">درجة حرارة الليل اليوم وغدا ... وبعد 4 أيام (℃/℉)</string>
-    <string name="widget_custom_subtitle_keyword_xdtd_description">درجة حرارة النهار اليوم ، غدا ، ... ، بعد 4 أيام (°)</string>
-    <string name="widget_custom_subtitle_keyword_xntd_description">درجة حرارة الليل اليوم ، غدا ، ... ، بعد 4 أيام (°)</string>
-    <string name="widget_custom_subtitle_keyword_xss_description">غروب الشمس اليوم ، غدا ، ... ، بعد 4 أيام</string>
-    <string name="widget_custom_subtitle_keyword_xmr_description">طلوع القمر اليوم ، غدا ، ... ، بعد 4 أيام</string>
-    <string name="widget_custom_subtitle_keyword_xmp_description">مرحلة القمر اليوم ، غدا ، ... ، بعد 4 أيام</string>
+    <string name="widget_custom_subtitle_keyword_xdt_description">درجة حرارة النهار اليوم ، غدا ، … ، بعد 4 أيام (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">درجة حرارة الليل اليوم وغدا … وبعد 4 أيام (℃/℉)</string>
+    <string name="widget_custom_subtitle_keyword_xdtd_description">درجة حرارة النهار اليوم ، غدا ، … ، بعد 4 أيام (°)</string>
+    <string name="widget_custom_subtitle_keyword_xntd_description">درجة حرارة الليل اليوم ، غدا ، … ، بعد 4 أيام (°)</string>
+    <string name="widget_custom_subtitle_keyword_xss_description">غروب الشمس اليوم ، غدا ، … ، بعد 4 أيام</string>
+    <string name="widget_custom_subtitle_keyword_xmr_description">طلوع القمر اليوم ، غدا ، … ، بعد 4 أيام</string>
+    <string name="widget_custom_subtitle_keyword_xmp_description">مرحلة القمر اليوم ، غدا ، … ، بعد 4 أيام</string>
     <string name="widget_style_tile">البلاط</string>
-    <string name="widget_custom_subtitle_keyword_xms_description">غروب القمر اليوم ، غدا ، ... ، بعد 4 أيام</string>
+    <string name="widget_custom_subtitle_keyword_xms_description">غروب القمر اليوم ، غدا ، … ، بعد 4 أيام</string>
     <string name="settings_appearance_summary">اللغة ، الوضع المظلم ، حزمة الرموز ، الوحدات</string>
     <string name="settings_location">الموقع</string>
     <string name="settings_location_summary">إعدادات موفري الموقع</string>
