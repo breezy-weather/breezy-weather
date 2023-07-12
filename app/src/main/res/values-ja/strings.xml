@@ -182,7 +182,8 @@
     <string name="notification_precipitation_today">今日は雨が降るかもしれません。</string>
     <string name="notification_precipitation_short_term">数時間後に雨が降る可能性があります。</string>
     <string name="location_resident_message">居住地として設定</string>
-    <string name="location_resident_dialog">Breezy Weatherは、現在地を基準にして自動的に居住地を表示・非表示にします。例えば、自分の出身地を居住地に設定することで、旅行中に居住地の天気を確認することができます。帰宅すると、居住地の天気が現在地の天気に切り替わります。</string>
+    <string name="location_resident_dialog">Breezy Weatherは、現在地を基準にして自動的に居住地を表示・非表示にします。
+\n例えば、自分の出身地を居住地に設定することで、旅行中に居住地の天気を確認することができます。帰宅すると、居住地の天気が現在地の天気に切り替わります。</string>
     <string name="allergen_tap_to_see_more">Click to get more…</string>
     <!-- action -->
     <string name="alerts">警告</string>
@@ -269,4 +270,11 @@
     <string name="weather_kind_thunder">雷</string>
     <string name="weather_kind_thunderstorm">雷雨</string>
     <string name="weather_kind_wind">風</string>
+    <string name="weather_source_accu_preference_days">日数</string>
+    <string name="settings_background_updates_battery_optimization">電池の最適化を無効にする</string>
+    <string name="settings_background_updates_battery_optimization_summary">通知を受信しない、またはウィジェットが更新されない場合にお試しください。</string>
+    <string name="weather_source_accu_preference_days_1">1日</string>
+    <string name="weather_source_accu_preference_days_5">5日</string>
+    <string name="weather_source_accu_preference_days_10">10日</string>
+    <string name="weather_source_accu_preference_days_15">15日</string>
 </resources>
