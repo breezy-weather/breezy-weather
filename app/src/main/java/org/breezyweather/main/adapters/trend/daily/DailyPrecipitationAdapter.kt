@@ -86,7 +86,7 @@ class DailyPrecipitationAdapter(
             )
             mDoubleHistogramView.setHistogramAlphas(1f, 0.5f)
             dailyItem.setNightIconDrawable(
-                daily.night?.weatherCode?.let { ResourceHelper.getWeatherIcon(mResourceProvider, it, true) },
+                daily.night?.weatherCode?.let { ResourceHelper.getWeatherIcon(mResourceProvider, it, false) },
                 missingIconVisibility = View.INVISIBLE
             )
             dailyItem.contentDescription = talkBackBuilder.toString()
