@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/fragment_root"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/fragment_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <org.breezyweather.common.ui.widgets.SwipeSwitchLayout
         android:id="@+id/switch_layout"
@@ -46,6 +46,20 @@
             app:navigationIconTint="@android:color/white"
             app:titleTextColor="@android:color/white"
             app:titleTextAppearance="?attr/textAppearanceHeadline6" />
+
+        <org.breezyweather.main.widgets.TextRelativeClock
+            android:id="@+id/refreshTimeText"
+            android:textSize="@dimen/content_text_size"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:drawablePadding="6dp"
+            android:gravity="center_vertical"
+            android:drawableTint="#fff"
+            android:drawableStart="@drawable/ic_time"
+            android:layout_marginStart="@dimen/normal_margin"
+            style="@style/large_title_text"
+            tools:text="1 minute ago"
+            tools:ignore="RelativeOverlap,RtlHardcoded" />
 
     </org.breezyweather.common.ui.widgets.insets.FitSystemBarAppBarLayout>
 

@@ -268,7 +268,7 @@ class MaterialLiveWallpaperService : WallpaperService() {
                 mGravitySensor = it.getDefaultSensor(Sensor.TYPE_GRAVITY)
             }
             mVisible = false
-            setWeather(WeatherView.WEATHER_KING_NULL, true)
+            setWeather(WeatherView.WEATHER_KIND_NULL, true)
         }
 
         override fun onVisibilityChanged(visible: Boolean) {

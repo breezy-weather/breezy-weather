@@ -10,5 +10,7 @@
 <li>Add "No direction" icon for wind on daily/hourly trends</li>
 <li>Keep moonrise/set and phase only for first day on Météo-France, instead of reusing data from first day on all days</li>
 <li>Fix precipitation talkback was always saying "No precipitation" in Daily precipitation trend</li>
+<li>Restore scroll behavior from Geometric Weather on main screen</li>
+<li>Fix display of refresh time on main screen on tablets</li>
 <li>Updated translations</li>
 </ul>

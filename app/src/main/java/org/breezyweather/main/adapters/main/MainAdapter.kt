@@ -49,7 +49,6 @@ class MainAdapter(
         if (location?.weather != null) {
             val weather = location.weather
             val cardDisplayList = SettingsManager.getInstance(activity).cardDisplayList
-            mViewTypeList.add(ViewType.REFRESH_TIME)
             mViewTypeList.add(ViewType.HEADER)
             for (c in cardDisplayList) {
                 if (c === CardDisplay.CARD_AIR_QUALITY && weather.validAirQuality == null) {
@@ -84,7 +83,6 @@ class MainAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AbstractMainViewHolder = when (viewType) {
-        ViewType.REFRESH_TIME -> RefreshTimeViewHolder(parent, mWeatherView!!)
         ViewType.HEADER -> HeaderViewHolder(parent, mWeatherView!!)
         ViewType.DAILY -> DailyViewHolder(parent)
         ViewType.HOURLY -> HourlyViewHolder(parent)
@@ -133,12 +131,12 @@ class MainAdapter(
         }
     }
 
-    val currentTemperatureTextHeight: Int
+    val headerTop: Int
         get() {
             if (mHeaderCurrentTemperatureTextHeight <= 0 && itemCount > 0) {
                 val holder = mHost!!.findViewHolderForAdapterPosition(0) as AbstractMainViewHolder?
                 if (holder is HeaderViewHolder) {
-                    mHeaderCurrentTemperatureTextHeight = holder.currentTemperatureHeight
+                    mHeaderCurrentTemperatureTextHeight = holder.headerTop
                 }
             }
             return mHeaderCurrentTemperatureTextHeight

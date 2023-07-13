@@ -81,11 +81,12 @@ class HomeFragment : MainModuleFragment() {
         return binding.root
     }
 
-    private fun isBackgroundAnimationEnabled() = when (SettingsManager.getInstance(requireContext()).backgroundAnimationMode) {
-        BackgroundAnimationMode.SYSTEM -> !requireContext().isMotionReduced
-        BackgroundAnimationMode.ENABLED -> true
-        BackgroundAnimationMode.DISABLED -> false
-    }
+    private fun isBackgroundAnimationEnabled() =
+        when (SettingsManager.getInstance(requireContext()).backgroundAnimationMode) {
+            BackgroundAnimationMode.SYSTEM -> !requireContext().isMotionReduced
+            BackgroundAnimationMode.ENABLED -> true
+            BackgroundAnimationMode.DISABLED -> false
+        }
 
     override fun onResume() {
         super.onResume()
@@ -200,7 +201,8 @@ class HomeFragment : MainModuleFragment() {
             binding.switchLayout.isEnabled = it.total > 1
 
             if (binding.switchLayout.totalCount != it.total
-                || binding.switchLayout.position != it.index) {
+                || binding.switchLayout.position != it.index
+            ) {
                 binding.switchLayout.setData(it.index, it.total)
                 binding.indicator.setSwitchView(binding.switchLayout)
             }
@@ -253,7 +255,8 @@ class HomeFragment : MainModuleFragment() {
             adapter!!.notifyDataSetChanged()
             binding.recyclerView.setOnTouchListener { _, event ->
                 if (event.action == MotionEvent.ACTION_DOWN
-                    && !binding.refreshLayout.isRefreshing) {
+                    && !binding.refreshLayout.isRefreshing
+                ) {
                     viewModel.updateWithUpdatingChecking(
                         triggeredByUser = true,
                         checkPermissions = true
@@ -290,9 +293,9 @@ class HomeFragment : MainModuleFragment() {
             recyclerViewAnimator = MainModuleUtils.getEnterAnimator(
                 binding.recyclerView,
                 0
-            )
-            recyclerViewAnimator!!.startDelay = 150
-            recyclerViewAnimator!!.start()
+            ).apply {
+                startDelay = 150
+            }.also { it.start() }
         }
     }
 
@@ -300,8 +303,7 @@ class HomeFragment : MainModuleFragment() {
         val iconProvider = SettingsManager
             .getInstance(requireContext())
             .iconProvider
-        if (resourceProvider == null
-            || resourceProvider!!.packageName != iconProvider) {
+        if (resourceProvider == null || resourceProvider!!.packageName != iconProvider) {
             resourceProvider = ResourcesProviderFactory.newInstance
         }
     }
@@ -312,6 +314,18 @@ class HomeFragment : MainModuleFragment() {
         val weatherKind = WeatherViewController.getWeatherKind(location?.weather)
 
         binding.toolbar.title = location?.getCityName(requireContext())
+
+        val textColor = ThemeManager.getInstance(requireContext())
+            .weatherThemeDelegate
+            .getHeaderTextColor(requireContext())
+        binding.refreshTimeText.setTextColor(textColor)
+        location?.weather?.base?.updateDate?.let {
+            binding.refreshTimeText.visibility = View.VISIBLE
+            binding.refreshTimeText.setDate(it)
+        } ?: run {
+            binding.refreshTimeText.visibility = View.GONE
+        }
+
         weatherView.setWeather(
             weatherKind,
             daylight,
@@ -350,6 +364,7 @@ class HomeFragment : MainModuleFragment() {
         when (event.action) {
             MotionEvent.ACTION_MOVE ->
                 binding.indicator.setDisplayState(true)
+
             MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL ->
                 binding.indicator.setDisplayState(false)
         }
@@ -408,43 +423,30 @@ class HomeFragment : MainModuleFragment() {
 
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             mFirstCardMarginTop = if (recyclerView.childCount > 0) {
-                recyclerView.getChildAt(0).measuredHeight
-            } else {
-                -1
-            }
+                recyclerView.getChildAt(0).top
+            } else -1
 
             mScrollY = recyclerView.computeVerticalScrollOffset()
             mLastAppBarTranslationY = binding.appBar.translationY
             weatherView.onScroll(mScrollY)
 
-            if (adapter != null) {
-                adapter!!.onScroll()
-            }
+            adapter?.onScroll()
 
             // set translation y of toolbar.
             if (adapter != null && mFirstCardMarginTop > 0) {
-                if (mFirstCardMarginTop >= binding.appBar.measuredHeight
-                    + adapter!!.currentTemperatureTextHeight) {
-                    when {
-                        mScrollY < (mFirstCardMarginTop
-                                - binding.appBar.measuredHeight
-                                - adapter!!.currentTemperatureTextHeight) -> {
-                            binding.appBar.translationY = 0f
-                        }
-                        mScrollY > mFirstCardMarginTop - binding.appBar.y -> {
-                            binding.appBar.translationY = -binding.appBar.measuredHeight.toFloat()
-                        }
-                        else -> {
-                            binding.appBar.translationY = (
-                                    mFirstCardMarginTop
-                                            - adapter!!.currentTemperatureTextHeight
-                                            - mScrollY
-                                            - binding.appBar.measuredHeight
+                if (mScrollY < (adapter!!.headerTop - binding.appBar.measuredHeight)) {
+                    // Keep app bar on top until we reach top of temperature
+                    binding.appBar.translationY = 0f
+                } else if (mScrollY < adapter!!.headerTop) {
+                    // Make the app bar disappear when we reached top of temperature
+                    binding.appBar.translationY = (
+                            adapter!!.headerTop
+                                    - binding.appBar.measuredHeight
+                                    - mScrollY
                             ).toFloat()
-                        }
-                    }
                 } else {
-                    binding.appBar.translationY = -mScrollY.toFloat()
+                    // Make appbar completely disappear in other cases
+                    binding.appBar.translationY = -binding.appBar.measuredHeight.toFloat()
                 }
             }
 

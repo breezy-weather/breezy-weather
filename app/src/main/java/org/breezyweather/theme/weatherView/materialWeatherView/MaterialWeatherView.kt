@@ -53,14 +53,14 @@ class MaterialWeatherView(context: Context) : ViewGroup(context), WeatherView {
     }
 
     init {
-        setWeather(WeatherView.WEATHER_KING_NULL, true, null)
+        setWeather(WeatherView.WEATHER_KIND_NULL, true, null)
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
 
-        // FIXME: It's no longer 0.66, see HeaderViewHolder.onBindView
-        mFirstCardMarginTop = (resources.displayMetrics.heightPixels * 0.66).toInt()
+        // At what position will animations disappear
+        mFirstCardMarginTop = (resources.displayMetrics.heightPixels * 0.3).toInt() // 0.66
         for (index in 0 until childCount) {
             val child = getChildAt(index)
             child.measure(

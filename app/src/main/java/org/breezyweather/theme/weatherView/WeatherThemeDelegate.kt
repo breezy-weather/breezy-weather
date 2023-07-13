@@ -34,7 +34,7 @@ interface WeatherThemeDelegate {
     ): Int
 
     @Px
-    fun getHeaderHeight(context: Context): Int
+    fun getHeaderTopMargin(context: Context): Int
 
     @ColorInt
     fun getHeaderTextColor(context: Context): Int

@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -83,18 +84,19 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
                 mWeatherText.visibility = View.GONE
             }
 
-            itemView.findViewById<ComposeView>(R.id.container_main_header_details).setContent {
-                HeaderDetails(SettingsManager.getInstance(context).detailDisplayList, current, location.isDaylight)
+            itemView.findViewById<ComposeView>(R.id.container_main_header_details).apply {
+                setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
+                setContent {
+                    HeaderDetails(SettingsManager.getInstance(context).detailDisplayList, current, location.isDaylight)
+                }
             }
         }
-        /*val params = mContainer.layoutParams as ViewGroup.MarginLayoutParams
-        params.height = ThemeManager
+        val params = mContainer.layoutParams as ViewGroup.MarginLayoutParams
+        params.topMargin = ThemeManager
             .getInstance(context)
             .weatherThemeDelegate
-            .getHeaderHeight(context)
-        if (params.height > mContainer.measuredHeight) {
-            mContainer.layoutParams = params
-        }*/
+            .getHeaderTopMargin(context)
+        mContainer.layoutParams = params
     }
 
     @Composable
@@ -157,5 +159,8 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
         )
     }
 
-    val currentTemperatureHeight: Int = mContainer.measuredHeight - mTemperature.top
+    val headerTop: Int
+        get() {
+            return mContainer.top
+        }
 }

@@ -10,7 +10,7 @@ import org.breezyweather.theme.resource.providers.ResourceProvider
  */
 interface WeatherView {
     @IntDef(
-        WEATHER_KING_NULL,
+        WEATHER_KIND_NULL,
         WEATHER_KIND_CLEAR,
         WEATHER_KIND_CLOUD,
         WEATHER_KIND_CLOUDY,
@@ -37,7 +37,7 @@ interface WeatherView {
     fun setGravitySensorEnabled(enabled: Boolean)
 
     companion object {
-        const val WEATHER_KING_NULL = 0
+        const val WEATHER_KIND_NULL = 0
         const val WEATHER_KIND_CLEAR = 1
         const val WEATHER_KIND_CLOUD = 2
         const val WEATHER_KIND_CLOUDY = 3
