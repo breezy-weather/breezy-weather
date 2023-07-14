@@ -42,6 +42,7 @@ import org.breezyweather.common.ui.widgets.getCardListItemMarginDp
 import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.common.ui.widgets.insets.bottomInsetItem
 import org.breezyweather.common.utils.helpers.IntentHelper
+import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.compose.DayNightTheme
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 import org.breezyweather.theme.compose.rememberThemeRipple
@@ -54,9 +55,14 @@ private class AboutAppLinkItem(
 
 private class ContributorItem(
     val name: String,
-    val contribution: String? = null,
     val url: String,
-    val flag: String,
+    @StringRes val contribution: Int? = null
+)
+
+private class TranslatorItem(
+    val lang: Array<String> = emptyArray(),
+    val name: String,
+    val url: String
 )
 
 class AboutActivity : GeoActivity() {
@@ -81,346 +87,79 @@ class AboutActivity : GeoActivity() {
             )
         },
     )
-    private lateinit var contributors: Array<ContributorItem>
+    private val contributors: Array<ContributorItem> = arrayOf(
+        ContributorItem("Julien Papasian", "https://github.com/papjul"),
+        ContributorItem("WangDaYeeeeee", "https://github.com/WangDaYeeeeee", R.string.about_contribution_WangDaYeeeeee),
+        ContributorItem("Romain Théry", "https://github.com/rthery"),
+        ContributorItem("majjejjam", "https://github.com/majjejjam"),
+        ContributorItem("Mark Bestavros", "https://github.com/mbestavros")
+    )
+    // Please keep them ordered by the main language translated so that we can easily sort translators by % contributed
+    // Here, we want to sort by language code, which is a different order than in Language.kt
     private val translators = arrayOf(
-        ContributorItem(
-            name = "Mehmet Saygin Yilmaz",
-            url = "mailto:memcos@gmail.com",
-            flag = "🇹🇷",
-        ),
-        ContributorItem(
-            name = "Ali D.",
-            url = "mailto:siyaha@gmail.com",
-            flag = "🇹🇷",
-        ),
-        ContributorItem(
-            name = "Benjamin Tourrel",
-            url = "mailto:polo_naref@hotmail.fr",
-            flag = "🇫🇷",
-        ),
-        ContributorItem(
-            name = "Roman Adadurov",
-            url = "mailto:orelars53@gmail.com",
-            flag = "🇷🇺",
-        ),
-        ContributorItem(
-            name = "Denio",
-            url = "mailto:deniosens@yandex.ru",
-            flag = "🇷🇺",
-        ),
-        ContributorItem(
-            name = "Ken Berns",
-            url = "mailto:ken.berns@yahoo.de",
-            flag = "🇩🇪",
-        ),
-        ContributorItem(
-            name = "Milan Andrejić",
-            url = "mailto:amikia@hotmail.com",
-            flag = "🇷🇸",
-        ),
-        ContributorItem(
-            name = "Miguel Torrijos",
-            url = "mailto:migueltg352340@gmail.com",
-            flag = "🇪🇸",
-        ),
-        ContributorItem(
-            name = "Julio Martínez Ródenas",
-            url = "https://github.com/juliomartinezrodenas",
-            flag = "🇪🇸",
-        ),
-        ContributorItem(
-            name = "Andrea Carulli",
-            url = "mailto:rctandrew100@gmail.com",
-            flag = "🇮🇹",
-        ),
-        ContributorItem(
-            name = "Jurre Tas",
-            url = "mailto:jurretas@gmail.com",
-            flag = "🇳🇱",
-        ),
-        ContributorItem(
-            name = "Jörg Meinhardt",
-            url = "mailto:jorime@web.de",
-            flag = "🇩🇪",
-        ),
-        ContributorItem(
-            name = "Olivér Paróczai",
-            url = "mailto:oliver.paroczai@gmail.com",
-            flag = "🇭🇺",
-        ),
-        ContributorItem(
-            name = "Fabio Raitz",
-            url = "mailto:fabioraitz@outlook.com",
-            flag = "🇧🇷",
-        ),
-        ContributorItem(
-            name = "Gregor",
-            url = "mailto:glakner@gmail.com",
-            flag = "🇸🇮",
-        ),
-        ContributorItem(
-            name = "Paróczai Olivér",
-            url = "https://github.com/OliverParoczai",
-            flag = "🇭🇺",
-        ),
-        ContributorItem(
-            name = "sodqe muhammad",
-            url = "mailto:sodqe.younes@gmail.com",
-            flag = "🇦🇪",
-        ),
-        ContributorItem(
-           name = "Thorsten Eckerlein",
-           url = "mailto:thorsten.eckerlein@gmx.de",
-           flag = "🇩🇪",
-        ),
-        ContributorItem(
-            name = "Jiří Král",
-            url = "mailto:jirkakral978@gmail.com",
-           flag = "🇨🇿",
-        ),
-        ContributorItem(
-            name = "Kamil",
-            url = "mailto:invisiblehype@gmail.com",
-            flag = "🇵🇱",
-        ),
-        ContributorItem(
-            name = "Μιχάλης Καζώνης",
-            url = "mailto:istrios@gmail.com",
-            flag = "🇬🇷",
-        ),
-        ContributorItem(
-            name = "이서경",
-            url = "mailto:ng0972@naver.com",
-            flag = "🇰🇷",
-        ),
-        ContributorItem(
-            name = "rikupin1105",
-            url = "https://github.com/rikupin1105",
-            flag = "🇯🇵",
-        ),
-        ContributorItem(
-            name = "Julien Papasian",
-            url = "https://github.com/papjul",
-            flag = "🇫🇷",
-        ),
-        ContributorItem(
-            name = "alexandru l",
-            url = "mailto:sandu.lulu@gmail.com",
-            flag = "🇷🇴",
-        ),
-        ContributorItem(
-            name = "Pascal Dietrich",
-            url = "https://github.com/Cameo007",
-            flag = "🇩🇪",
-        ),
-        ContributorItem(
-            name = "Kostas Giapis",
-            url = "https://github.com/tsiflimagas",
-            flag = "🇬🇷",
-        ),
-        ContributorItem(
-            name = "Giovanni Donisi",
-            url = "https://github.com/gdonisi",
-            flag = "🇮🇹",
-        ),
-        ContributorItem(
-            name = "nid",
-            url = "https://github.com/nidmb",
-            flag = "🇵🇱",
-        ),
-        ContributorItem(
-            name = "Álvaro Martínez Majado",
-            url = "https://github.com/alvaromartinezmajado",
-            flag = "🏴󠁥󠁳󠁣󠁴󠁿",
-        ),
-        ContributorItem(
-            name = "MDP43140",
-            url = "https://github.com/MDP43140",
-            flag = "🇮🇩",
-        ),
-        ContributorItem(
-            name = "Coelacanthus",
-            url = "https://github.com/CoelacanthusHex",
-            flag = "🇨🇳",
-        ),
-        ContributorItem(
-            name = "min7-i",
-            url = "https://github.com/min7-i",
-            flag = "🇩🇪",
-        ),
-        ContributorItem(
-            name = "Washington Luiz Candido dos Santos Neto",
-            url = "https://hosted.weblate.org/user/Netocon/",
-            flag = "🇧🇷",
-        ),
-        ContributorItem(
-            name = "Henry The Mole",
-            url = "https://hosted.weblate.org/user/htmole/",
-            flag = "🇮🇹",
-        ),
-        ContributorItem(
-            name = "sas",
-            url = "https://hosted.weblate.org/user/sas33/",
-            flag = "🇷🇴",
-        ),
-        ContributorItem(
-            name = "Егор Ермаков",
-            url = "https://hosted.weblate.org/user/creepen/",
-            flag = "🇷🇺",
-        ),
-        ContributorItem(
-            name = "minb",
-            url = "https://hosted.weblate.org/user/minbe/",
-            flag = "🇻🇳",
-        ),
-        ContributorItem(
-            name = "Reza",
-            url = "https://github.com/rezaalmanda",
-            flag = "🇮🇩",
-        ),
-        ContributorItem(
-            name = "Ettore Atalan",
-            url = "https://github.com/Atalanttore",
-            flag = "🇩🇪",
-        ),
-        ContributorItem(
-            name = "FineFindus",
-            url = "https://github.com/FineFindus",
-            flag = "🇩🇪",
-        ),
-        ContributorItem(
-            name = "Yurical",
-            url = "https://github.com/yurical",
-            flag = "🇰🇷",
-        ),
-        ContributorItem(
-            name = "metezd",
-            url = "https://hosted.weblate.org/user/metezd/",
-            flag = "🇹🇷",
-        ),
-        ContributorItem(
-            name = "御坂13766号",
-            url = "https://github.com/misaka-13766",
-            flag = "🇨🇳",
-        ),
-        ContributorItem(
-            name = "Lorenzo J. Lucchini",
-            url = "https://github.com/LuccoJ",
-            flag = "🇮🇹",
-        ),
-        ContributorItem(
-            name = "kilimov25",
-            url = "https://github.com/kilimov25",
-            flag = "🇷🇺",
-        ),
-        ContributorItem(
-            name = "mf",
-            url = "https://hosted.weblate.org/user/marfS2/",
-            flag = "🇧🇷",
-        ),
-        ContributorItem(
-            name = "Rex_sa",
-            url = "https://github.com/rex07",
-            flag = "",
-        ),
-        ContributorItem(
-            name = "Meiru",
-            url = "https://hosted.weblate.org/user/Tenbin/",
-            flag = "🇯🇵",
-        ),
-        ContributorItem(
-            name = "elgratea",
-            url = "https://hosted.weblate.org/user/flantito/",
-            flag = "🇧🇬",
-        ),
-        ContributorItem(
-            name = "Hin Weisner",
-            url = "https://hosted.weblate.org/user/Hinweis/",
-            flag = "🇪🇸",
-        ),
-        ContributorItem(
-            name = "elea11",
-            url = "https://github.com/elea11",
-            flag = "🇩🇪",
-        ),
-        ContributorItem(
-            name = "Eryk Michalak",
-            url = "https://github.com/gnu-ewm",
-            flag = "🇵🇱",
-        ),
+        TranslatorItem(arrayOf("ar"), "sodqe muhammad", "mailto:sodqe.younes@gmail.com"),
+        TranslatorItem(arrayOf("ar"), "Rex_sa", "https://github.com/rex07"),
+        TranslatorItem(arrayOf("bg"), "elgratea", "https://hosted.weblate.org/user/flantito/"),
+        TranslatorItem(arrayOf("ca"), "Álvaro Martínez Majado", "https://github.com/alvaromartinezmajado"),
+        TranslatorItem(arrayOf("cs"), "Jiří Král", "mailto:jirkakral978@gmail.com"),
+        TranslatorItem(arrayOf("de"), "Ken Berns", "mailto:ken.berns@yahoo.de"),
+        TranslatorItem(arrayOf("de"), "Jörg Meinhardt", "mailto:jorime@web.de"),
+        TranslatorItem(arrayOf("de"), "Thorsten Eckerlein", "mailto:thorsten.eckerlein@gmx.de"),
+        TranslatorItem(arrayOf("de"), "Pascal Dietrich", "https://github.com/Cameo007"),
+        TranslatorItem(arrayOf("de"), "min7-i", "https://github.com/min7-i"),
+        TranslatorItem(arrayOf("de"), "Ettore Atalan", "https://github.com/Atalanttore"),
+        TranslatorItem(arrayOf("de"), "FineFindus", "https://github.com/FineFindus"),
+        TranslatorItem(arrayOf("de"), "elea11", "https://github.com/elea11"),
+        TranslatorItem(arrayOf("el"), "Μιχάλης Καζώνης", "mailto:istrios@gmail.com"),
+        TranslatorItem(arrayOf("el"), "Kostas Giapis", "https://github.com/tsiflimagas"),
+        TranslatorItem(arrayOf("el"), "giwrgosmant", "https://github.com/giwrgosmant"),
+        TranslatorItem(arrayOf("es"), "dylan", "https://github.com/d-l-n"),
+        TranslatorItem(arrayOf("es"), "Miguel Torrijos", "mailto:migueltg352340@gmail.com"),
+        TranslatorItem(arrayOf("es"), "Julio Martínez Ródenas", "https://github.com/juliomartinezrodenas"),
+        TranslatorItem(arrayOf("es"), "Hin Weisner", "https://hosted.weblate.org/user/Hinweis/"),
+        TranslatorItem(arrayOf("fr", "en"), "Julien Papasian", "https://github.com/papjul"),
+        TranslatorItem(arrayOf("fr"), "Benjamin Tourrel", "mailto:polo_naref@hotmail.fr"),
+        TranslatorItem(arrayOf("fr"), "Nam", "https://github.com/ldmpub"),
+        TranslatorItem(arrayOf("fi"), "huuhaa", "https://github.com/huuhaa"),
+        TranslatorItem(arrayOf("hu"), "Olivér Paróczai", "mailto:oliver.paroczai@gmail.com"),
+        TranslatorItem(arrayOf("hu"), "Paróczai Olivér", "https://github.com/OliverParoczai"),
+        TranslatorItem(arrayOf("in"), "MDP43140", "https://github.com/MDP43140"),
+        TranslatorItem(arrayOf("in"), "Reza", "https://github.com/rezaalmanda"),
+        TranslatorItem(arrayOf("it"), "Andrea Carulli", "mailto:rctandrew100@gmail.com"),
+        TranslatorItem(arrayOf("it"), "Giovanni Donisi", "https://github.com/gdonisi"),
+        TranslatorItem(arrayOf("it"), "Henry The Mole", "https://hosted.weblate.org/user/htmole/"),
+        TranslatorItem(arrayOf("it"), "Lorenzo J. Lucchini", "https://github.com/LuccoJ"),
+        TranslatorItem(arrayOf("ja"), "rikupin1105", "https://github.com/rikupin1105"),
+        TranslatorItem(arrayOf("ja"), "Meiru", "https://hosted.weblate.org/user/Tenbin/"),
+        TranslatorItem(arrayOf("ko"), "이서경", "mailto:ng0972@naver.com"),
+        TranslatorItem(arrayOf("ko"), "Yurical", "https://github.com/yurical"),
+        TranslatorItem(arrayOf("nl"), "Jurre Tas", "mailto:jurretas@gmail.com"),
+        TranslatorItem(arrayOf("pl"), "Kamil", "mailto:invisiblehype@gmail.com"),
+        TranslatorItem(arrayOf("pl"), "nid", "https://github.com/nidmb"),
+        TranslatorItem(arrayOf("pl"), "Eryk Michalak", "https://github.com/gnu-ewm"),
+        TranslatorItem(arrayOf("pt_rBR"), "Fabio Raitz", "mailto:fabioraitz@outlook.com"),
+        TranslatorItem(arrayOf("pt_rBR"), "Washington Luiz Candido dos Santos Neto", "https://hosted.weblate.org/user/Netocon/"),
+        TranslatorItem(arrayOf("pt_rBR"), "mf", "https://hosted.weblate.org/user/marfS2/"),
+        TranslatorItem(arrayOf("ro"), "Igor Sorocean", "https://github.com/ygorigor"),
+        TranslatorItem(arrayOf("ro"), "alexandru l", "mailto:sandu.lulu@gmail.com"),
+        TranslatorItem(arrayOf("ro"), "sas", "https://hosted.weblate.org/user/sas33/"),
+        TranslatorItem(arrayOf("ru"), "Roman Adadurov", "mailto:orelars53@gmail.com"),
+        TranslatorItem(arrayOf("ru"), "Denio", "mailto:deniosens@yandex.ru"),
+        TranslatorItem(arrayOf("ru"), "Егор Ермаков", "https://hosted.weblate.org/user/creepen/"),
+        TranslatorItem(arrayOf("ru"), "kilimov25", "https://github.com/kilimov25"),
+        TranslatorItem(arrayOf("sl_rSI"), "Gregor", "mailto:glakner@gmail.com"),
+        TranslatorItem(arrayOf("sr"), "Milan Andrejić", "mailto:amikia@hotmail.com"),
+        TranslatorItem(arrayOf("tr"), "Mehmet Saygin Yilmaz", "mailto:memcos@gmail.com"),
+        TranslatorItem(arrayOf("tr"), "Ali D.", "mailto:siyaha@gmail.com"),
+        TranslatorItem(arrayOf("tr"), "metezd", "https://hosted.weblate.org/user/metezd/"),
+        TranslatorItem(arrayOf("vi"), "minb", "https://hosted.weblate.org/user/minbe/"),
+        TranslatorItem(arrayOf("zh_rCN", "zh_rHK", "zh_rTW", "en"), "WangDaYeeeeee", "https://github.com/WangDaYeeeeee"),
+        TranslatorItem(arrayOf("zh_rCN"), "Coelacanthus", "https://github.com/CoelacanthusHex"),
+        TranslatorItem(arrayOf("zh_rCN"), "御坂13766号", "https://github.com/misaka-13766"),
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        contributors = arrayOf(
-            ContributorItem(
-                name = "Julien Papasian",
-                url = "https://github.com/papjul",
-                flag = "🇫🇷",
-            ),
-            ContributorItem(
-                name = "WangDaYeeeeee",
-                contribution = this.getString(R.string.about_contribution_WangDaYeeeeee),
-                url = "https://github.com/WangDaYeeeeee",
-                flag = "🇨🇳",
-            ),
-            ContributorItem(
-                name = "dylan",
-                url = "https://github.com/d-l-n",
-                flag = "🇦🇷",
-            ),
-            ContributorItem(
-                name = "Nam",
-                url = "https://github.com/ldmpub",
-                flag = "",
-            ),
-            ContributorItem(
-                name = "Igor Sorocean",
-                url = "https://github.com/ygorigor",
-                flag = "🇲🇩",
-            ),
-            ContributorItem(
-                name = "EmberHeartshine",
-                url = "https://github.com/EmberHeartshine",
-                flag = "",
-            ),
-            ContributorItem(
-                name = "majjejjam",
-                url = "https://github.com/majjejjam",
-                flag = "",
-            ),
-            ContributorItem(
-                name = "Poussinou",
-                url = "https://github.com/Poussinou",
-                flag = "",
-            ),
-            ContributorItem(
-                name = "Dominik",
-                url = "https://github.com/Domi04151309",
-                flag = "🇩🇪",
-            ),
-            ContributorItem(
-                name = "Mark Bestavros",
-                url = "https://github.com/mbestavros",
-                flag = "🇺🇸",
-            ),
-            ContributorItem(
-                name = "giwrgosmant",
-                url = "https://github.com/giwrgosmant",
-                flag = "🇬🇷",
-            ),
-            ContributorItem(
-                name = "Romain Théry",
-                url = "https://github.com/rthery",
-                flag = "🇫🇷",
-            ),
-            ContributorItem(
-                name = "Kyler",
-                url = "https://github.com/HiFiiDev",
-                flag = "🇺🇸",
-            )
-        )
 
         setContent {
             BreezyWeatherTheme(lightTheme = !isSystemInDarkTheme()) {
@@ -432,6 +171,15 @@ class AboutActivity : GeoActivity() {
     @Composable
     private fun ContentView() {
         val scrollBehavior = generateCollapsedScrollBehavior()
+
+        val locale = SettingsManager.getInstance(this).language.locale
+        val language = locale.language
+        val languageWithCountry = locale.language + (if(!locale.country.isNullOrEmpty()) "_r" + locale.country else "")
+        var filteredTranslators = translators.filter { it.lang.contains(language) || it.lang.contains(languageWithCountry) }
+        if (filteredTranslators.isEmpty()) {
+            // No translators found? Language doesn’t exist, so defaulting to English
+            filteredTranslators = translators.filter { it.lang.contains("en") }
+        }
 
         Material3Scaffold(
             modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -461,12 +209,12 @@ class AboutActivity : GeoActivity() {
 
                 item { SectionTitle(stringResource(R.string.about_contributors)) }
                 items(contributors) { item ->
-                    Translator(name = item.name, contribution = item.contribution, url = item.url, flag = item.flag)
+                    ContributorView(name = item.name, contribution = item.contribution, url = item.url)
                 }
 
                 item { SectionTitle(stringResource(R.string.about_translators)) }
-                items(translators) { item ->
-                    Translator(name = item.name, url = item.url, flag = item.flag)
+                items(filteredTranslators) { item ->
+                    ContributorView(name = item.name, url = item.url)
                 }
 
                 bottomInsetItem(
@@ -549,7 +297,7 @@ class AboutActivity : GeoActivity() {
     }
 
     @Composable
-    private fun Translator(name: String, contribution: String? = null, url: String, flag: String) {
+    private fun ContributorView(name: String, @StringRes contribution: Int? = null, url: String, flag: String? = null) {
         Material3CardListItem {
             Column(
                 modifier = Modifier
@@ -569,15 +317,17 @@ class AboutActivity : GeoActivity() {
                         color = DayNightTheme.colors.titleColor,
                         style = MaterialTheme.typography.titleMedium,
                     )
-                    Spacer(modifier = Modifier.width(dimensionResource(R.dimen.little_margin)))
-                    Text(
-                        text = flag,
-                        style = MaterialTheme.typography.titleMedium,
-                    )
+                    if (flag != null) {
+                        Spacer(modifier = Modifier.width(dimensionResource(R.dimen.little_margin)))
+                        Text(
+                            text = flag,
+                            style = MaterialTheme.typography.titleMedium,
+                        )
+                    }
                 }
                 if (contribution != null) {
                     Text(
-                        text = contribution,
+                        text = stringResource(contribution),
                         style = MaterialTheme.typography.bodyMedium,
                     )
                 }
