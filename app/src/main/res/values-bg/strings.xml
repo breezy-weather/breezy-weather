@@ -49,4 +49,27 @@
     <string name="short_today">Днес</string>
     <string name="short_tomorrow">Утре</string>
     <string name="app_name">Време</string>
+    <string name="wind_direction_short_N">С</string>
+    <string name="wind_direction_short_NE">СИ</string>
+    <string name="wind_direction_short_E">И</string>
+    <string name="wind_direction_short_W">З</string>
+    <string name="wind_level">Ветромер</string>
+    <string name="wind_level_0">Спокоен</string>
+    <string name="wind_level_2">Лек ветрец</string>
+    <string name="wind_level_3">Нежен бриз</string>
+    <string name="wind_level_6">Силен бриз</string>
+    <string name="wind_level_8">Вихър</string>
+    <string name="wind_level_12">Ураган</string>
+    <string name="uv_index">UV индекс</string>
+    <string name="wind_level_1">Лек вятър</string>
+    <string name="wind_level_7">Умерен вихър</string>
+    <string name="wind_level_9">Силен вихър</string>
+    <string name="wind_direction_short_SE">ЮИ</string>
+    <string name="wind_direction_short_S">Ю</string>
+    <string name="wind_direction_short_SW">ЮЗ</string>
+    <string name="wind_direction_short_NW">СЗ</string>
+    <string name="wind_level_10">Буря</string>
+    <string name="wind_level_11">Силна буря</string>
+    <string name="wind_level_4">Умерен бриз</string>
+    <string name="wind_level_5">Свеж бриз</string>
 </resources>
