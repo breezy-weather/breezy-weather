@@ -1,2 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="precipitation_forecast">Прогноза за валежи</string>
+    <string name="air_quality">Качество на въздуха</string>
+    <string name="allergen">Алергени</string>
+    <string name="alerts_to_follow">Сигнали, които да следвате, докоснете тук, за да ги видите.</string>
+    <string name="short_yesterday">Вчера</string>
+    <string name="short_monday">Пн</string>
+    <string name="short_tuesday">Вт</string>
+    <string name="short_wednesday">Ср</string>
+    <string name="short_thursday">Чт</string>
+    <string name="short_friday">Пт</string>
+    <string name="short_saturday">Сб</string>
+    <string name="short_sunday">Нд</string>
+    <string name="of_clock">:00</string>
+    <string name="temperature">Температура</string>
+    <string name="temperature_feels_like">Усеща се като</string>
+    <string name="temperature_real_feel">РеаленУсет®</string>
+    <string name="temperature_real_feel_shade">РеаленУсет Сянка™</string>
+    <string name="temperature_apparent">Видима</string>
+    <string name="temperature_wind_chill">Хладен вятър</string>
+    <string name="temperature_wet_bulb">Мокра крушка</string>
+    <string name="temperature_degree_day">Топъл ден</string>
+    <string name="precipitation">Валежи</string>
+    <string name="precipitation_probability">Вероятност за валежи</string>
+    <string name="precipitation_duration">Продължителност на валежите</string>
+    <string name="precipitation_total">Общо</string>
+    <string name="precipitation_thunderstorm">Гръмотевична буря</string>
+    <string name="precipitation_rain">Дъжд</string>
+    <string name="precipitation_snow">Сняг</string>
+    <string name="precipitation_ice">Лед</string>
+    <string name="precipitation_intensity_light">Ръмеж</string>
+    <string name="precipitation_intensity_middle">Дъжд</string>
+    <string name="precipitation_intensity_heavy">Проливен дъжд</string>
+    <string name="precipitation_intensity_rainstorm">Дъждовна буря</string>
+    <string name="precipitation_none">Без валежи</string>
+    <string name="precipitation_between_time">Валежи между $1 и $2</string>
+    <string name="wind">Вятър</string>
+    <string name="wind_speed">Скоростта на вятъра</string>
+    <string name="wind_direction">Посока на вятъра</string>
+    <string name="wind_direction_short_variable">Променливо</string>
+    <string name="daily_forecast">Дневна прогноза</string>
+    <string name="hourly_forecast">Часова прогноза</string>
+    <string name="minutely_forecast">Минутна прогноза</string>
+    <string name="ephemeris">Слънце &amp; Луна</string>
+    <string name="details">Подробности</string>
+    <string name="alerts">Сигнали</string>
+    <string name="alerts_count">$ сигнали за времето</string>
+    <string name="short_today">Днес</string>
+    <string name="short_tomorrow">Утре</string>
+    <string name="app_name">Време</string>
+</resources>
