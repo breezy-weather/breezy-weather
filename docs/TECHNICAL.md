@@ -40,7 +40,7 @@ When translations are updated from Weblate, if there are new contributors, add t
 
 If someone adds a new language in Weblate, there a couple of things to do in app.
 
-First of all, go to Android settings to know the alphabetical order of the language and the name of the language. If you can’t write the name of the language with your keyboard (non-latin usually), please check Wikipedia list of languages, it will be easy to copy/paste from there.
+Please check on Wikipedia the name of the language in the language, and copy/paste it for later. Then, go to Android settings to know the alphabetical order of the language to add it in the same order in Breezy Weather.
 
 Then add it to `app/src/main/res/values/arrays.xml` in `languages` and a technical name in English in `language_values`.
 

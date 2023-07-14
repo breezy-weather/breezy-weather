@@ -42,6 +42,7 @@ enum class Language(
     VIETNAMESE("vietnamese", Locale("vi")),
     TURKISH("turkish", Locale("tr")),
     GREEK("greek", Locale("el")),
+    BULGARIAN("bulgarian", Locale("bg")),
     RUSSIAN("russian", Locale("ru")),
     SERBIAN("serbian", Locale("sr")),
     ARABIC("arabic", Locale("ar")),
@@ -93,6 +94,7 @@ enum class Language(
             "vietnamese" -> VIETNAMESE
             "turkish" -> TURKISH
             "greek" -> GREEK
+            "bulgarian" -> BULGARIAN
             "russian" -> RUSSIAN
             "serbian" -> SERBIAN
             "arabic" -> ARABIC

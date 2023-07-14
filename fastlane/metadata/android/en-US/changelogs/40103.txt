@@ -13,5 +13,6 @@
 <li>Restore scroll behavior from Geometric Weather on main screen</li>
 <li>Fix display of refresh time on main screen on tablets</li>
 <li>Fix Vietnamese language was not showing</li>
+<li>Added Bulgarian translation (thanks elgratea!)</li>
 <li>Updated translations</li>
 </ul>
