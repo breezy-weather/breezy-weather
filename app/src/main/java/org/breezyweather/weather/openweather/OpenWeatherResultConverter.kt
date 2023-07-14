@@ -141,7 +141,7 @@ private fun getDailyList(
 ): List<Daily> {
     val dailyList: MutableList<Daily> = ArrayList(dailyResult.size)
     val hourlyListByDay = hourlyList.groupBy { it.date.getFormattedDate(timeZone, "yyyyMMdd") }
-    for (dailyForecast in dailyResult) {
+    dailyResult.forEachIndexed { i, dailyForecast ->
         val theDay = Date(dailyForecast.dt.times(1000))
         val dailyDateFormatted = theDay.getFormattedDate(timeZone, "yyyyMMdd")
         dailyList.add(
@@ -172,9 +172,11 @@ private fun getDailyList(
                         },
                         weatherPhase = dailyForecast.weather?.getOrNull(0)?.description,
                         weatherCode = getWeatherCode(dailyForecast.weather?.getOrNull(0)?.id),
+                        // night temperature is actually from previous night,
+                        // so we try to get night from next day if available
                         temperature = Temperature(
-                            temperature = dailyForecast.temp?.night,
-                            apparentTemperature = dailyForecast.feelsLike?.night
+                            temperature = dailyResult.getOrNull(i + 1)?.temp?.night,
+                            apparentTemperature = dailyResult.getOrNull(i + 1)?.feelsLike?.night
                         )
                         // TODO cloudCover with hourly data
                     ),

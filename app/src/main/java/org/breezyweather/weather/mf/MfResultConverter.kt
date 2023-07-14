@@ -226,7 +226,9 @@ private fun getDailyList(
                         weatherText = dailyForecast.dailyWeatherDescription,
                         weatherPhase = dailyForecast.dailyWeatherDescription,
                         weatherCode = getWeatherCode(dailyForecast.dailyWeatherIcon),
-                        temperature = Temperature(temperature = dailyForecast.tMin)
+                        // tMin is for current day, so it actually takes the previous night,
+                        // so we try to get tMin from next day if available
+                        temperature = Temperature(temperature = dailyForecasts.getOrNull(i + 1)?.tMin)
                         // TODO cloudCover with hourly data
                     ),
                     halfDayHourlyList = hourlyListByHalfDay.getOrDefault(dailyDateFormatted, null)?.get("night"),
