@@ -30,6 +30,23 @@ If you don’t, it will still work (for example, Open-Meteo will work), but othe
 8) Update GitHub release notes draft and publish.
 
 
+# Translations
+
+## Updated translations
+
+When translations are updated from Weblate, if there are new contributors, add them in `app/src/main/java/org/breezyweather/settings/activities/AboutActivity.kt`.
+
+## New language
+
+If someone adds a new language in Weblate, there a couple of things to do in app.
+
+First of all, go to Android settings to know the alphabetical order of the language and the name of the language. If you can’t write the name of the language with your keyboard (non-latin usually), please check Wikipedia list of languages, it will be easy to copy/paste from there.
+
+Then add it to `app/src/main/res/values/arrays.xml` in `languages` and a technical name in English in `language_values`.
+
+Add the new enum and language technical name in `app/src/main/java/org/breezyweather/common/basic/models/options/appearance/Language.kt`. You will need to find a matching Locale in Android. For example, if the new language is `pt_rBR`, it will translate as `Locale("pt", "BR")`. The second parameter is optional, as you can see with other languages.
+
+
 # Weather providers API
 
 Weather providers API can change: some versions may become deprecated, new endpoints may be added, new countries may be supported (when documented, we filter countries in app to avoid unnecessary calls on unsupported countries).
