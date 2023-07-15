@@ -521,4 +521,8 @@
     <string name="settings_widgets_live_wallpaper_error">Không thể khởi chạy trình chọn hình nền. Bạn vẫn có thể bật hình nền Breezy Weather bằng cách chọn “Hình nền động” trong bộ chọn hình nền màn hình chính của bạn.</string>
     <string name="weather_source_metno_voice">Viện Khí tượng Na Uy</string>
     <string name="settings_location_baidu_ip_location_ak">Khóa IP Vị Trí Baidu</string>
+    <string name="air_quality_index">Chỉ số chất lượng không khí</string>
+    <string name="location_search_no_results_advice">Hãy chắc rằng tìm kiếm của bạn được đánh vần đúng và không quá cụ thể. Thay vào đó, bạn có thể thử một nhà cung cấp thời tiết khác có thể cho ra kết quả tìm kiếm địa điểm khác nhau.</string>
+    <string name="dialog_permissions_notification_title">Theo kịp thông tin</string>
+    <string name="dialog_permissions_notification_content">Bấm vào đây để bật thông báo về cảnh báo thời tiết, hoặc quyết định sau trong Cài đặt.</string>
 </resources>
