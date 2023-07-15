@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- app. -->
-    <string name="app_name">Weather</string>
+    <string name="app_name">Погода</string>
     <!-- keyword. -->
     <string name="location_current">Текущее местоположение</string>
     <string name="location_resident">Домашнее местоположение</string>
@@ -359,7 +359,7 @@
     <string name="weather_api_unauthorized_title">Неавторизованный доступ к API</string>
     <string name="weather_api_key_required_missing_title">Отсутствует API-ключ</string>
     <string name="weather_api_key_required_missing_content">Чтобы воспользоваться этим сервисом, добавьте свой API-ключ.</string>
-    <string name="weather_source_accu_preference_portal">Портал</string>
+    <string name="weather_source_accu_preference_portal">Канал</string>
     <string name="weather_source_accu_preference_days_1">1 день</string>
     <string name="weather_source_accu_preference_days_5">5 дней</string>
     <string name="weather_source_accu_preference_days_15">15 дней</string>
@@ -383,7 +383,7 @@
     <string name="settings_background_updates_battery_optimization">Отключить оптимизацию батареи</string>
     <string name="settings_background_updates_section_troubleshoot">Отладка</string>
     <string name="location_message_reverse_geocoding_failed">Провайдеру погоды не удалось найти подходящее местоположение</string>
-    <string name="settings_section_general">Главная</string>
+    <string name="settings_section_general">Основное</string>
     <string name="settings_background_updates">Фоновые обновления</string>
     <string name="settings_background_updates_summary">Частота обновления, отладка</string>
     <string name="settings_location_access_permission_already_granted">Разрешение уже предоставлено</string>
@@ -400,7 +400,7 @@
     <string name="settings_widgets_monochrome_icons_title">Монохромные иконки</string>
     <string name="settings_widgets_day_night_temp_reversed_title">Обратный порядок дневных и ночных температур</string>
     <string name="settings_widgets_section_widgets_in_use">Используемые виджеты</string>
-    <string name="settings_debug">Дебаг</string>
+    <string name="settings_debug">Отладка</string>
     <string name="settings_debug_dump_crash_logs_summary">Сохраняет логи с ошибками в файл для отправки разработчикам</string>
     <string name="openmeteo_weather_text_snow_heavy_intensity">Сильный снег</string>
     <string name="null_data_text">Недоступно</string>
@@ -422,7 +422,7 @@
     <string name="settings_widgets_week_icon_mode_title">Иконки для отображения в недельных просмотрах</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Иней с туманом</string>
     <string name="settings_weather_provider_open_weather_one_call_version">Версия OneCall для OpenWeather</string>
-    <string name="settings_weather_providers_summary">Настройка провайдеров погоды</string>
+    <string name="settings_weather_providers_summary">Настройки провайдеров погоды</string>
     <string name="settings_weather_provider_open_weather_key">Ключ OpenWeather</string>
     <string name="settings_main_background_animation_disabled">Выключено</string>
     <string name="settings_widgets">Виджеты и живые обои</string>
@@ -531,8 +531,8 @@
     <string name="settings_main_background_animation_enabled">Включено</string>
     <string name="settings_widgets_notification_persistent_switch">Постоянное уведомление</string>
     <string name="settings_widgets_notification_style_title">Стиль</string>
-    <string name="settings_debug_summary">Краш-логи</string>
-    <string name="settings_debug_dump_crash_logs_title">Поделиться краш-логами</string>
+    <string name="settings_debug_summary">Журналы ошибок</string>
+    <string name="settings_debug_dump_crash_logs_title">Поделиться журналами ошибок</string>
     <string name="unit_lpsqm_voice">Литров на квадратный метр</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_h_voice">часы</string>
@@ -598,6 +598,6 @@
     <string name="settings_background_updates_dont_kill_my_app_summary">У некоторых производителей есть дополнительные ограничения приложений, которые отключают фоновые службы. На сайте Don’t kill my app! есть информация как это исправить.</string>
     <string name="settings_background_updates_worker_info_title">Информация о процессе</string>
     <string name="settings_location">Местоположение</string>
-    <string name="settings_location_summary">Настройки поставщика местоположение</string>
+    <string name="settings_location_summary">Настройки провайдеров местоположения</string>
     <string name="settings_weather_providers">Провайдеры погоды</string>
 </resources>
