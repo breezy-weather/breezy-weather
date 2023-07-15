@@ -8,4 +8,6 @@ Background updates logic was entirely rewritten in this version.
 <li>Today and tomorrow forecast notifications are now sent even if network is not available at requested time</li>
 <li>Fix alert notification logic being executed multiple times resulting in same alert being sent multiple times (this doesn’t fix duplicate alerts emitted as different alerts by AccuWeather).</li>
 <li>Fix app bar was not completely disappearing on main screen when scrolling fast</li>
+<li>Added Lithuanian translation (thanks Deividas Paukštė!)</li>
+<li>Updated translations</li>
 </ul>
