@@ -97,4 +97,20 @@
     <string name="air_quality_pm10_voice">PM десет</string>
     <string name="air_quality_so2">SO₂</string>
     <string name="air_quality_so2_voice">Серен диоксид</string>
+    <string name="air_quality_no2">NO₂</string>
+    <string name="air_quality_o3">O₃</string>
+    <string name="air_quality_co">CO</string>
+    <string name="air_quality_co_voice">Въглероден окис</string>
+    <string name="air_quality_pm_explanations_introduction">Частиците или атмосферните прахови частици са микроскопични частици от твърдо или течно вещество, отложени във въздуха.</string>
+    <string name="air_quality_pm_explanations_origin">Някои частици се срещат естествено, произхождащи от вулкани, прашни бури, горски и тревни пожари, жива растителност и морски пръски. Човешките дейности също генерират значителни количества частици, като трафик и транспорт, промишлени дейности, електроцентрали, строителни площадки, изгаряне на отпадъци или полета.</string>
+    <string name="air_quality_pm_explanations_consequences">Праховите частици са най-вредната форма на замърсяване на въздуха поради способността им да проникват дълбоко в белите дробове и мозъка от кръвните потоци, причинявайки здравословни проблеми като сърдечни заболявания, белодробни заболявания и преждевременна смърт.</string>
+    <string name="air_quality_no2_info_introduction">Азотният диоксид (NO₂) е задушлив, токсичен червеникаво-кафяв газ с характерна лютива, парлива миризма.</string>
+    <string name="air_quality_no2_voice">Азотен диоксид</string>
+    <string name="air_quality_o3_voice">Озон</string>
+    <string name="air_quality_pm_info_title">Прахови частици (PM2.5 &amp; PM10)</string>
+    <string name="air_quality_o3_info_title">Земен озон (O₃)</string>
+    <string name="air_quality_o3_info_introduction">Земният озон (O₃) е основен компонент на смога. Въпреки че е същата молекула, земният озон може да бъде вреден за човешкото здраве, за разлика от стратосферния озон, който предпазва земята от излишната UV радиация.</string>
+    <string name="air_quality_o3_info_origin">Образува се от фотохимични реакции със замърсители като летливи органични съединения, въглероден оксид и азотни оксиди (NOₓ), отделяни от превозни средства и индустрията. Поради фотохимичния характер, най-високите нива на озон се наблюдават по време на периоди на слънчево време.</string>
+    <string name="air_quality_o3_info_consequences">Излагането на прекомерен озон може да причини проблеми с дишането, да причини астма, да намали белодробната функция и да доведе до белодробно заболяване.</string>
+    <string name="air_quality_no2_info_title">Азотен диоксид (NO₂)</string>
 </resources>
