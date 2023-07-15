@@ -6,9 +6,12 @@ import android.os.Handler
 import android.os.Looper
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 import org.breezyweather.common.basic.GeoViewModel
 import org.breezyweather.common.basic.livedata.BusLiveData
 import org.breezyweather.common.basic.livedata.EqualtableLiveData
@@ -126,7 +129,7 @@ class MainActivityViewModel @Inject constructor(
             }
         }
 
-        indicator.setValue(Indicator(total = valid.size, index = index))
+        indicator.postValue(Indicator(total = valid.size, index = index))
 
         // update current location.
         setCurrentLocation(valid[index])
@@ -142,23 +145,26 @@ class MainActivityViewModel @Inject constructor(
     }
 
     private fun setCurrentLocation(location: Location) {
-        currentLocation.setValue(DayNightLocation(location = location))
+        currentLocation.postValue(DayNightLocation(location = location))
         savedStateHandle[KEY_FORMATTED_ID] = location.formattedId
 
         checkToUpdateCurrentLocation()
     }
 
+    /**
+     * Called on background thread
+     */
     private fun onUpdateResult(
         location: Location,
         requestErrorTypeResult: RequestErrorType?
     ) {
         if (requestErrorTypeResult != null) {
-            requestErrorType.setValue(requestErrorTypeResult)
+            requestErrorType.postValue(requestErrorTypeResult)
         }
 
         updateInnerData(location)
 
-        loading.setValue(false)
+        loading.postValue(false)
         updating = false
     }
 
@@ -183,7 +189,7 @@ class MainActivityViewModel @Inject constructor(
                     checkPermissions = true,
                 )
             } else {
-                loading.setValue(true)
+                loading.postValue(true)
                 updating = false
             }
             return
@@ -207,21 +213,23 @@ class MainActivityViewModel @Inject constructor(
     ) {
         if (updating) return
         if (currentLocation.value?.location == null) {
-            loading.setValue(true)
-            loading.setValue(false)
+            loading.postValue(true)
+            loading.postValue(false)
             return
         }
 
-        loading.setValue(true)
+        loading.postValue(true)
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M || !checkPermissions) {
             updating = true
-            repository.getWeather(
-                getApplication(),
-                currentLocation.value!!.location,
-                currentLocation.value!!.location.isCurrentPosition,
-                this
-            )
+            viewModelScope.launch(Dispatchers.IO) {
+                repository.getWeather(
+                    getApplication(),
+                    currentLocation.value!!.location,
+                    currentLocation.value!!.location.isCurrentPosition,
+                    this@MainActivityViewModel
+                )
+            }
             return
         }
 
@@ -236,12 +244,14 @@ class MainActivityViewModel @Inject constructor(
         if (locationPermissionList.isEmpty()) {
             // already got all permissions -> request data directly.
             updating = true
-            repository.getWeather(
-                getApplication(),
-                currentLocation.value!!.location,
-                currentLocation.value!!.location.isCurrentPosition,
-                this
-            )
+            viewModelScope.launch(Dispatchers.IO) {
+                repository.getWeather(
+                    getApplication(),
+                    currentLocation.value!!.location,
+                    currentLocation.value!!.location.isCurrentPosition,
+                    this@MainActivityViewModel
+                )
+            }
         } else {
             updating = false
             locationPermissionsRequest.value = PermissionsRequest(
@@ -254,7 +264,7 @@ class MainActivityViewModel @Inject constructor(
 
     fun cancelRequest() {
         updating = false
-        loading.setValue(false)
+        loading.postValue(false)
         repository.cancelWeatherRequest()
     }
 
@@ -292,7 +302,7 @@ class MainActivityViewModel @Inject constructor(
 
                 setCurrentLocation(it[i])
 
-                indicator.setValue(Indicator(total = it.size, index = i))
+                indicator.postValue(Indicator(total = it.size, index = i))
 
                 _totalLocationList.value = Pair(totalLocationList.value.first, formattedId)
                 _validLocationList.value = Pair(validLocationList.value.first, formattedId)
@@ -324,7 +334,7 @@ class MainActivityViewModel @Inject constructor(
         // update location.
         setCurrentLocation(validLocationList.value.first[index])
 
-        indicator.setValue(
+        indicator.postValue(
             Indicator(total = validLocationList.value.first.size, index = index)
         )
 

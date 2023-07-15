@@ -3,7 +3,7 @@ package org.breezyweather.background.receiver
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import org.breezyweather.background.polling.PollingManager.resetAllBackgroundTask
+import org.breezyweather.background.weather.WeatherUpdateJob
 
 /**
  * Main receiver.
@@ -13,7 +13,7 @@ class MainReceiver : BroadcastReceiver() {
         val action = intent.action
         if (action.isNullOrEmpty()) return
         when (action) {
-            Intent.ACTION_BOOT_COMPLETED, Intent.ACTION_WALLPAPER_CHANGED -> resetAllBackgroundTask(context, true)
+            Intent.ACTION_BOOT_COMPLETED, Intent.ACTION_WALLPAPER_CHANGED -> WeatherUpdateJob.startNow(context)
         }
     }
 }

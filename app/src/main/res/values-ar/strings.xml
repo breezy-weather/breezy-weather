@@ -133,7 +133,7 @@
     <string name="location_current_not_found_yet">لم يتم تحديد الموقع بعد…</string>
     <string name="settings_changes_apply_after_restart">سيتم تطبيق التغييرات عند إعادة تشغيل الطبيق</string>
     <string name="notification_running_in_background">التشغيل في الخلفية لإبقاء التطبيق محدثاً</string>
-    <string name="notification_updating_weather_data">جارٍ تحديث بيانات الطقس</string>
+    <string name="notification_updating_weather_data">(%2$d\%1$d) جارٍ تحديث بيانات الطقس</string>
     <string name="message_updated_in_background">تم التحديث في الخلفية</string>
     <string name="notification_precipitation_today">هناك إحتمالية لهطول الأمطار اليوم.</string>
     <string name="notification_precipitation_short_term">هناك إمكانية لهطول الأمطار في الساعات القليلة القادمة.</string>
@@ -241,8 +241,6 @@
     <string name="unit_mmhg">ملي متر زئبق</string>
     <string name="unit_inhg">بوصة من الزئبق</string>
     <string name="unit_kgfpsqcm">كغم قوة/سم²</string>
-    <string name="settings_background_updates_method_description_worker">عامل أندرويد
-\nالطريقة الموصى بها. حاول التبديل إذا لم تتلق إشعارات أو إذا كانت الأدوات غير محدثة.</string>
     <string name="settings_main_cards_title">البطاقات</string>
     <string name="widget_custom_subtitle_keyword_d_description">التاريخ</string>
     <string name="widget_custom_subtitle_keyword_ct_description">درجة الحرارة الحالية (°C / °F)</string>
@@ -265,9 +263,6 @@
     <string name="settings_background_updates_battery_optimization">تعطيل تحسين البطارية</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">تعذر فتح إعدادات الجهاز.</string>
     <string name="settings_background_updates_battery_optimization_disabled">تم تعطيل تحسين البطارية بالفعل.</string>
-    <string name="settings_background_updates_methods_title">طريقة التحديث</string>
-    <string name="settings_background_updates_method_worker">عامل أندرويد</string>
-    <string name="settings_background_updates_method_notification">الإخطار المستمر</string>
     <string name="settings_background_updates_worker_info_title">معلومات العامل</string>
     <string name="settings_location_access_switch_title">الوصول إلى الموقع</string>
     <string name="settings_location_access_switch_summaryOn">مسموح. يمكنك إضافة موقعك الحالي كموقع.</string>
@@ -485,8 +480,6 @@
     <string name="settings_section_general">عام</string>
     <string name="settings_background_updates_refresh_title">معدل التحديث</string>
     <string name="settings_background_updates_refresh_never">أبدا</string>
-    <string name="settings_background_updates_method_description_notification">الإخطار المستمر
-\nطريقة أكثر موثوقية ولكنها تتطلب أن يظل التطبيق نشطا في الخلفية.</string>
     <string name="settings_location_access_permission_already_granted">تم منح الإذن بالفعل</string>
     <string name="settings_location_access_precise_title">استخدام نظام تحديد المواقع العالمي (GPS) للجهاز</string>
     <string name="settings_location_baidu_ip_location_ak">مفتاح واجهة برمجة تطبيقات موقع Baidu IP</string>
@@ -520,7 +513,6 @@
     <string name="precipitation_none">لاتوجد احتمالية هطول</string>
     <string name="air_quality_o3">O₃</string>
     <string name="settings_background_updates_battery_optimization_summary">هذا هو أول شيء يجب تجربته عندما لا تتلقى إشعارات أو لا يتم تحديث الأدوات.</string>
-    <string name="settings_background_updates_method_notification_dialog_content">تضيف هذه الطريقة إشعارا مستمرا يمكن إخفاؤه عن طريق تعطيل فئة الإشعارات ”$“ في إعدادات تطبيق الجهاز.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">تعليمات خاصة بالشركة المصنعة</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">تفرض بعض الشركات المصنعة قيودا إضافية على التطبيقات تقتل خدمات الخلفية. لا تقتل تطبيقي! يحتوي موقع الويب على معلومات حول كيفية إصلاحه.</string>
     <string name="settings_location_access_switch_summaryOff">يرجى السماح إذا كنت تريد أن تكون قادرًا على إضافة موقعك الحالي كموقع.</string>
@@ -576,7 +568,6 @@
     <string name="notification_channel_background_services">خدمات الخلفية</string>
     <string name="about_contribution_WangDaYeeeeee">مطور المشروع الأصلي الطقس الهندسي</string>
     <string name="openmeteo_weather_text_mainly_clear">واضح بشكل أساسي</string>
-    <string name="settings_background_updates_method_notification_dialog_title">تعطيل فئة الإخطارات</string>
     <string name="weather_source_openweather_voice">الطقس المفتوح</string>
     <string name="weather_source_openweather_version_3_0">الإصدار 3.0</string>
     <string name="weather_source_mf_voice">ميتيو فرنسا</string>

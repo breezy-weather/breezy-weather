@@ -66,16 +66,14 @@ class SettingsManager private constructor(context: Context) {
 
     private val config = ConfigStore(context)
 
-    // basic.
-    var backgroundUpdateMethod: BackgroundUpdateMethod
+    var lastVersionCode: Int
         set(value) {
-            config.edit().putString("background_update_method", value.id).apply()
+            config.edit().putInt("last_version_code", value).apply()
             notifySettingsChanged()
         }
-        get() = BackgroundUpdateMethod.getInstance(
-            config.getString("background_update_method", "worker") ?: ""
-        )
+        get() = config.getInt("last_version_code", 0)
 
+    // basic.
     var isAlertPushEnabled: Boolean
         set(value) {
             config.edit().putBoolean("alert_notification_switch", value).apply()
@@ -98,6 +96,13 @@ class SettingsManager private constructor(context: Context) {
         get() = UpdateInterval.getInstance(
             config.getString("refresh_rate", "1:30") ?: ""
         )
+
+    var ignoreUpdatesWhenBatteryLow: Boolean
+        set(value) {
+            config.edit().putBoolean("refresh_ignore_battery_low", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config.getBoolean("refresh_ignore_battery_low", false)
 
     var darkMode: DarkMode
         set(value) {

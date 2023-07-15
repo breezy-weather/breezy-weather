@@ -2,6 +2,7 @@ package org.breezyweather.location
 
 import android.Manifest
 import android.content.Context
+import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.extensions.hasPermission
 
 abstract class LocationService {
@@ -12,11 +13,8 @@ abstract class LocationService {
         val latitude: Float,
         val longitude: Float
     )
-    interface LocationCallback {
-        fun onCompleted(result: Result?)
-    }
 
-    abstract fun requestLocation(context: Context, callback: (Result?) -> Unit)
+    abstract fun requestLocation(context: Context): Observable<Result>
     abstract fun cancel()
 
     // permission.

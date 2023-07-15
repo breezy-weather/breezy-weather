@@ -189,7 +189,7 @@
     <string name="location_current_not_found_yet">Nenhum local ainda…</string>
     <string name="settings_changes_apply_after_restart">As alterações terão efeito após reiniciar</string>
     <string name="notification_running_in_background">Executando em segundo plano para continuar atualizando</string>
-    <string name="notification_updating_weather_data">Atualizando dados meteorológicos</string>
+    <string name="notification_updating_weather_data">Atualizando dados meteorológicos (%1$d/%2$d)</string>
     <string name="message_updated_in_background">Atualizado em segundo plano</string>
     <string name="notification_precipitation_today">Pode haver precipitação hoje.</string>
     <string name="notification_precipitation_short_term">Precipitação pode ocorrer nas próximas horas.</string>
@@ -410,11 +410,6 @@
     <string name="settings_main_hourly_trends_title">Tendências horárias</string>
     <string name="settings_background_updates_battery_optimization">Desativar otimização de bateria</string>
     <string name="settings_background_updates_battery_optimization_disabled">A otimização da bateria já está desativada.</string>
-    <string name="settings_background_updates_method_description_worker">Android Worker
-\nMétodo recomendado. Tente alternar se você não estiver recebendo notificações ou os widgets não estiverem sendo atualizados.</string>
-    <string name="settings_background_updates_method_notification">Notificação persistente</string>
-    <string name="settings_background_updates_method_description_notification">Notificação persistente
-\nMétodo mais confiável, mas requer que o aplicativo permaneça ativo em segundo plano.</string>
     <string name="settings_location_access_switch_summaryOff">Permita se quiser adicionar sua localização atual como um local.</string>
     <string name="settings_location_access_background_summaryOff">Ative “Permitir o tempo todo” para ter atualizações em segundo plano para sua localização atual.</string>
     <string name="settings_location_access_precise_summaryOff">Ative a opção “Usar localização precisa” se você tiver problemas para obter uma localização.</string>
@@ -466,7 +461,6 @@
     <string name="action_continue">Continuar</string>
     <string name="action_share">Compartilhar</string>
     <string name="settings_background_updates_refresh_title">Intervalo de atualização</string>
-    <string name="settings_background_updates_methods_title">Método de atualização</string>
     <string name="settings_notifications">Notificações</string>
     <string name="settings_widgets_summary">Definir papel de parede, configurar widgets usados, widget de notificação</string>
     <string name="settings_widgets">Widgets &amp; Papel de parede animado</string>
@@ -482,8 +476,6 @@
     <string name="settings_debug_dump_crash_logs_summary">Salva os registros de erros em um arquivo para compartilhamento com os desenvolvedores</string>
     <string name="settings_debug">Depuração</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Instruções específicas do fabricante</string>
-    <string name="settings_background_updates_method_notification_dialog_title">Desativar a categoria de notificação</string>
-    <string name="settings_background_updates_method_notification_dialog_content">Esse método adiciona uma notificação persistente que pode ser ocultada ao desativar a categoria de notificação “$” nas configurações do aplicativo no dispositivo.</string>
     <string name="weather_source_accu_preference_portal">Canal</string>
     <string name="weather_source_accu_preference_hours_24">24 horas</string>
     <string name="weather_source_accu_preference_hours_72">72 horas</string>
@@ -565,7 +557,6 @@
     <string name="air_quality_co">CO</string>
     <string name="weather_source_accuweather">AccuWeather</string>
     <string name="weather_source_openmeteo_voice">Open Meteo</string>
-    <string name="settings_background_updates_method_worker">Android Worker</string>
     <string name="unit_lpsqm">L/m²</string>
     <string name="unit_mb">mb</string>
     <string name="unit_kgfpsqcm">kgf/cm²</string>

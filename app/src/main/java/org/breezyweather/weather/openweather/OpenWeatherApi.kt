@@ -1,12 +1,11 @@
 package org.breezyweather.weather.openweather
 
 import io.reactivex.rxjava3.core.Observable
-import retrofit2.Call
+import org.breezyweather.weather.openweather.json.OpenWeatherAirPollutionResult
+import org.breezyweather.weather.openweather.json.OpenWeatherOneCallResult
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
-import org.breezyweather.weather.openweather.json.OpenWeatherAirPollutionResult
-import org.breezyweather.weather.openweather.json.OpenWeatherOneCallResult
 
 /**
  * OpenWeather API.

@@ -171,7 +171,7 @@
     <string name="location_current_not_found_yet">Még nincs meghatározva a hely…</string>
     <string name="settings_changes_apply_after_restart">Akkor lép életbe, amikor újraindítja az appot.</string>
     <string name="notification_running_in_background">A háttérben fut az adatok frissítésének folytatásához.</string>
-    <string name="notification_updating_weather_data">Adatok frissítése.</string>
+    <string name="notification_updating_weather_data">Adatok frissítése (%1$d/%2$d)</string>
     <string name="message_updated_in_background">Frissítve a háttérben</string>
     <string name="notification_precipitation_today">Lehetséges csapadék a mai napon.</string>
     <string name="notification_precipitation_short_term">Lehetséges csapadék a következő néhány órában.</string>

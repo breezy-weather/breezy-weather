@@ -93,7 +93,6 @@
     <string name="settings_background_updates_battery_optimization_summary">Đây là điều đầu tiên để thử khi bạn không nhận được thông báo hoặc tiện ích không làm mới.</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Không thể mở cài đặt thiết bị.</string>
     <string name="settings_background_updates_section_troubleshoot">Sửa lỗi</string>
-    <string name="settings_background_updates_methods_title">Phương pháp cập nhật</string>
     <string name="settings_location_access_background_summaryOff">Vui lòng bật “Cho phép mọi lúc” để có thể làm mới dưới nền cho vị trí hiện tại của bạn.</string>
     <string name="settings_location_access_precise_summaryOff">Bật “Sử dụng vị trí chính xác” nếu bạn gặp vấn đề lấy vị trí.</string>
     <string name="settings_weather_provider_default_value">Gốc (Chưa thay đổi)</string>
@@ -286,14 +285,6 @@
     <string name="settings_background_updates_refresh_1h">1 tiếng</string>
     <string name="settings_background_updates_refresh_1h_30min">1 tiếng rưỡi</string>
     <string name="settings_background_updates_refresh_2h">2 tiếng</string>
-    <string name="settings_background_updates_method_worker">Android Worker</string>
-    <string name="settings_background_updates_method_description_worker">Android Worker
-\nPhương pháp ưu tiên. Thử đổi nếu bạn không nhận được thông báo hoặc tiện ích không làm mới.</string>
-    <string name="settings_background_updates_method_notification">Thông báo liên tục</string>
-    <string name="settings_background_updates_method_description_notification">Persistent notification
-\nPhương pháp đáng tinh cậy hơn nhưng yêu cầu app phải hoạt động dưới nền.</string>
-    <string name="settings_background_updates_method_notification_dialog_title">Tắt danh mục thông báo</string>
-    <string name="settings_background_updates_method_notification_dialog_content">Phương pháp này thêm một thông báo có thể bị ẩn đi bởi tắt mục thông báo “$” trong cài đặt ứng dụng.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Chỉ dẫn cụ thể theo nhà sản xuất</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Một số nhà sản xuất thêm một sự ngăn cản làm dừng các dịch vụ chạy dưới nền. Website Don’t kill my app! có thông tin về cách sửa nó.</string>
     <string name="settings_background_updates_worker_info_title">Thông tin tiến trình</string>
@@ -478,7 +469,7 @@
     <string name="notification_precipitation_short_term">Mưa có thể diễn ra trong vài giờ tiếp theo.</string>
     <string name="about_source_code">Mã nguồn</string>
     <string name="notification_channel_forecast">Dự báo</string>
-    <string name="notification_updating_weather_data">Đang cập nhật dữ liệu thời tiết</string>
+    <string name="notification_updating_weather_data">Đang cập nhật dữ liệu thời tiết (%1$d/%2$d)</string>
     <string name="notification_channel_widget">Tiện ích</string>
     <string name="notification_precipitation_today">Có thể sẽ có mưa vào hôm nay.</string>
     <string name="openmeteo_weather_text_drizzle_moderate_intensity">Mưa phùn vừa</string>

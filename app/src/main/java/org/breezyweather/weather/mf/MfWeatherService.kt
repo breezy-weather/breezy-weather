@@ -10,6 +10,7 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import org.breezyweather.BreezyWeather
 import org.breezyweather.BuildConfig
+import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.provider.WeatherSource
 import org.breezyweather.common.extensions.getFormattedDate
@@ -41,10 +42,11 @@ class MfWeatherService @Inject constructor(
 
     override fun isConfigured(context: Context) = getToken(context).isNotEmpty()
 
-    override fun requestWeather(context: Context, location: Location, callback: RequestWeatherCallback) {
+    override fun requestWeather(
+        context: Context, location: Location
+    ): Observable<WeatherResultWrapper> {
         if (!isConfigured(context)) {
-            callback.requestWeatherFailed(location, RequestErrorType.API_KEY_REQUIRED_MISSING)
-            return
+            return Observable.error(Exception(context.getString(R.string.weather_api_key_required_missing_title)))
         }
         val languageCode = SettingsManager.getInstance(context).language.code
         val token = getToken(context)
@@ -101,8 +103,8 @@ class MfWeatherService @Inject constructor(
         val atmoAuraKey = SettingsManager.getInstance(context).providerIqaAtmoAuraKey
         val aqiAtmoAura = if (
             (atmoAuraKey.isNotEmpty() && !location.countryCode.isNullOrEmpty() && location.countryCode == "FR")
-             && !location.provinceCode.isNullOrEmpty()
-             && location.provinceCode in arrayOf("01", "03", "07", "15", "26", "38", "42", "43", "63", "69", "73", "74")
+            && !location.provinceCode.isNullOrEmpty()
+            && location.provinceCode in arrayOf("01", "03", "07", "15", "26", "38", "42", "43", "63", "69", "73", "74")
         ) {
             val calendar = Date().toCalendarWithTimeZone(location.timeZone).apply {
                 add(Calendar.DATE, 1)
@@ -126,13 +128,13 @@ class MfWeatherService @Inject constructor(
                 emitter.onNext(AtmoAuraPointResult())
             }
         }
-        Observable.zip(current, forecast, ephemeris, rain, warnings, aqiAtmoAura) {
-            mfCurrentResult: MfCurrentResult,
-            mfForecastResult: MfForecastResult,
-            mfEphemerisResult: MfEphemerisResult,
-            mfRainResult: MfRainResult,
-            mfWarningResults: MfWarningsResult,
-            aqiAtmoAuraResult: AtmoAuraPointResult
+        return Observable.zip(current, forecast, ephemeris, rain, warnings, aqiAtmoAura) {
+                mfCurrentResult: MfCurrentResult,
+                mfForecastResult: MfForecastResult,
+                mfEphemerisResult: MfEphemerisResult,
+                mfRainResult: MfRainResult,
+                mfWarningResults: MfWarningsResult,
+                aqiAtmoAuraResult: AtmoAuraPointResult
             ->
             convert(
                 context,
@@ -144,26 +146,7 @@ class MfWeatherService @Inject constructor(
                 mfWarningResults,
                 aqiAtmoAuraResult
             )
-        }.compose(SchedulerTransformer.create())
-            .subscribe(ObserverContainer(mCompositeDisposable, object : ApiObserver<WeatherResultWrapper>() {
-                override fun onSucceed(t: WeatherResultWrapper) {
-                    if (t.result != null) {
-                        callback.requestWeatherSuccess(location.copy(weather = t.result))
-                    } else {
-                        onFailed()
-                    }
-                }
-
-                override fun onFailed() {
-                    if (isApiLimitReached) {
-                        callback.requestWeatherFailed(location, RequestErrorType.API_LIMIT_REACHED)
-                    } else if (isApiUnauthorized) {
-                        callback.requestWeatherFailed(location, RequestErrorType.API_UNAUTHORIZED)
-                    } else {
-                        callback.requestWeatherFailed(location, RequestErrorType.WEATHER_REQ_FAILED)
-                    }
-                }
-            }))
+        }
     }
 
     override fun requestLocationSearch(
@@ -187,59 +170,29 @@ class MfWeatherService @Inject constructor(
         } ?: emptyList()
     }
 
-    override fun requestReverseLocationSearch(
+    override fun requestReverseGeocodingLocation(
         context: Context,
-        location: Location,
-        callback: RequestLocationCallback
-    ) {
+        location: Location
+    ): Observable<List<Location>> {
         if (!isConfigured(context)) {
-            callback.requestLocationFailed(
-                location.latitude.toString() + "," + location.longitude,
-                RequestErrorType.API_KEY_REQUIRED_MISSING
-            )
-            return
+            return Observable.error(Exception(context.getString(R.string.weather_api_key_required_missing_title)))
         }
-        mMfApi.getForecast(
+        return mMfApi.getForecast(
             userAgent,
             location.latitude.toDouble(),
             location.longitude.toDouble(),
             "iso",
             getToken(context)
-        ).compose(SchedulerTransformer.create())
-            .subscribe(ObserverContainer(mCompositeDisposable, object : ApiObserver<MfForecastResult>() {
-                override fun onSucceed(t: MfForecastResult) {
-                    val locationList: MutableList<Location> = ArrayList()
-                    val locationConverted = convert(null, t)
-                    if (locationConverted != null) {
-                        locationList.add(locationConverted)
-                        callback.requestLocationSuccess(
-                            location.latitude.toString() + "," + location.longitude,
-                            locationList
-                        )
-                    } else {
-                        onFailed()
-                    }
-                }
-
-                override fun onFailed() {
-                    if (isApiLimitReached) {
-                        callback.requestLocationFailed(
-                            location.latitude.toString() + "," + location.longitude,
-                            RequestErrorType.API_LIMIT_REACHED
-                        )
-                    } else if (isApiUnauthorized) {
-                        callback.requestLocationFailed(
-                            location.latitude.toString() + "," + location.longitude,
-                            RequestErrorType.API_UNAUTHORIZED
-                        )
-                    } else {
-                        callback.requestLocationFailed(
-                            location.latitude.toString() + "," + location.longitude,
-                            RequestErrorType.REVERSE_GEOCODING_FAILED
-                        )
-                    }
-                }
-            }))
+        ).map {
+            val locationList: MutableList<Location> = ArrayList()
+            val locationConverted = convert(null, it)
+            if (locationConverted != null) {
+                locationList.add(locationConverted)
+                locationList
+            } else {
+                throw Exception(context.getString(R.string.location_message_reverse_geocoding_failed))
+            }
+        }
     }
 
     override fun cancel() {

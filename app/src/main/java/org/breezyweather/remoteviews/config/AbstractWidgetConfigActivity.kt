@@ -26,7 +26,7 @@ import com.google.android.material.slider.Slider
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import org.breezyweather.R
-import org.breezyweather.background.polling.PollingManager.resetNormalBackgroundTask
+import org.breezyweather.background.weather.WeatherUpdateJob
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.unit.ProbabilityUnit
@@ -35,7 +35,6 @@ import org.breezyweather.common.ui.widgets.insets.FitSystemBarNestedScrollView
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.db.repositories.LocationEntityRepository
 import org.breezyweather.db.repositories.WeatherEntityRepository
-import org.breezyweather.main.utils.RequestErrorType
 import org.breezyweather.settings.ConfigStore
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.weather.WeatherHelper
@@ -47,7 +46,7 @@ import kotlin.math.roundToInt
 /**
  * Abstract widget config activity.
  */
-abstract class AbstractWidgetConfigActivity : GeoActivity(), WeatherHelper.OnRequestWeatherListener {
+abstract class AbstractWidgetConfigActivity : GeoActivity() {
     protected var mTopContainer: FrameLayout? = null
     protected var mWallpaper: ImageView? = null
     protected var mWidgetContainer: FrameLayout? = null
@@ -100,16 +99,6 @@ abstract class AbstractWidgetConfigActivity : GeoActivity(), WeatherHelper.OnReq
         readConfig()
         initView()
         updateHostView()
-
-        // TODO onboarding
-        // FIXME: don't request weather here, it leads to duplicate alerts #73
-        // ~~Might help with refresh issues so don't remove it until we have a proper fix for #104~~
-        // Nevermind, it seems resetAllBackgroundTask is called anyway which may explain why we have duplicate calls
-        /*locationNow?.let { location ->
-            if (location.isUsable) {
-                weatherHelper!!.requestWeather(this, location, this)
-            }
-        }*/
     }
 
     override fun onBackPressed() {
@@ -374,7 +363,7 @@ abstract class AbstractWidgetConfigActivity : GeoActivity(), WeatherHelper.OnReq
             val resultValue = Intent()
             resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
             setResult(RESULT_OK, resultValue)
-            resetNormalBackgroundTask(this, true)
+            WeatherUpdateJob.startNow(this)
             finish()
         }
         mBottomSheetScrollView = findViewById(R.id.activity_widget_config_custom_scrollView)
@@ -532,29 +521,6 @@ abstract class AbstractWidgetConfigActivity : GeoActivity(), WeatherHelper.OnReq
             """.trimIndent()
     protected val isHideLunarContainerVisible: Int
         get() = if (SettingsManager.getInstance(this).language.isChinese) View.VISIBLE else View.GONE
-
-    // interface.
-    // on request weather listener.
-    override fun requestWeatherSuccess(requestLocation: Location) {
-        if (destroyed) {
-            return
-        }
-        locationNow = requestLocation
-        if (requestLocation.weather == null) {
-            requestWeatherFailed(requestLocation, RequestErrorType.WEATHER_REQ_FAILED)
-        } else {
-            updateHostView()
-        }
-    }
-
-    override fun requestWeatherFailed(requestLocation: Location, requestErrorType: RequestErrorType) {
-        if (destroyed) {
-            return
-        }
-        locationNow = requestLocation
-        updateHostView()
-        SnackbarHelper.showSnackbar(getString(requestErrorType.shortMessage))
-    }
 
     @SuppressLint("MissingPermission")
     private fun bindWallpaper(checkPermissions: Boolean) {

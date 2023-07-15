@@ -183,7 +183,7 @@
     <string name="location_current_not_found_yet">Nessuna località…</string>
     <string name="settings_changes_apply_after_restart">Le modifiche avranno effetto dopo il riavvio</string>
     <string name="notification_running_in_background">Esecuzione in background degli aggiornamenti</string>
-    <string name="notification_updating_weather_data">Aggiornamento dati meteo</string>
+    <string name="notification_updating_weather_data">Aggiornamento dati meteo (%1$d/%2$d)</string>
     <!-- action -->
     <string name="alerts">Allerte</string>
     <string name="action_search">Ricerca</string>
@@ -435,12 +435,6 @@
     <string name="settings_background_updates_battery_optimization">Disabilita ottimizzazione batteria</string>
     <string name="settings_background_updates_battery_optimization_summary">Questa è la prima cosa da provare quando non ricevi notifiche o i widget non si aggiornano.</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Impossibile visualizzare le impostazioni del dispositivo.</string>
-    <string name="settings_background_updates_method_worker">Android Worker</string>
-    <string name="settings_background_updates_method_description_worker">Android Worker
-\nModalità raccomandata. Prova a cambiare se non ricevi notifiche o i widget non si aggiornano.</string>
-    <string name="settings_background_updates_method_notification">Notifica persistente</string>
-    <string name="settings_background_updates_method_description_notification">Notifica persistente
-\nMetodo più affidabile ma richiede che l’app rimanga attiva in background.</string>
     <string name="wind_direction_short_E">E</string>
     <string name="wind_direction_short_SE">SE</string>
     <string name="wind_direction_short_W">O</string>
@@ -451,7 +445,6 @@
     <string name="weather_api_limit_reached_title">Limite di richieste API raggiunto</string>
     <string name="weather_api_unauthorized_content">Per alcuni fornitori di servizi meteo, devi fornire la tua chiave API. Se ne hai già fornita una, ricontrolla la chiave API che hai fornito.</string>
     <string name="settings_background_updates_battery_optimization_disabled">L’ottimizzazione della batteria è già disabilitata.</string>
-    <string name="settings_background_updates_methods_title">Modalità di aggiornamento</string>
     <string name="settings_background_updates">Aggiornamenti in background</string>
     <string name="action_location_list">Elenco località</string>
     <string name="action_add_new_location">Aggiungi una nuova località</string>
@@ -545,5 +538,4 @@
     <string name="settings_location_access_permission_already_granted">Autorizzazione già fornita</string>
     <string name="settings_location_access_background_summaryOff">Selezionare “Consenti sempre” per ottenere aggiornamenti relativi alla propria posizione corrente.</string>
     <string name="settings_location_access_precise_summaryOff">Abilitare “Utilizza posizione esatta” se si hanno problemi nell’ottenere la propria posizione.</string>
-    <string name="settings_background_updates_method_notification_dialog_content">Questo metodo aggiunge una notifica persistente che può essere nascosta disabilitando la categoria di notifiche “$” nelle impostazioni di sistema per l’applicazione.</string>
 </resources>

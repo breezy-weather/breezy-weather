@@ -2,16 +2,13 @@ package org.breezyweather.weather.metno
 
 import android.content.Context
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.ObservableOnSubscribe
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import org.breezyweather.BreezyWeather
 import org.breezyweather.BuildConfig
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.provider.WeatherSource
 import org.breezyweather.common.extensions.getFormattedDate
-import org.breezyweather.common.rxjava.ApiObserver
-import org.breezyweather.common.rxjava.ObserverContainer
-import org.breezyweather.common.rxjava.SchedulerTransformer
-import org.breezyweather.main.utils.RequestErrorType
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.weather.WeatherService
 import org.breezyweather.weather.metno.json.MetNoAirQualityResult
@@ -37,9 +34,8 @@ class MetNoWeatherService @Inject constructor(
 
     override fun requestWeather(
         context: Context,
-        location: Location,
-        callback: RequestWeatherCallback
-    ) {
+        location: Location
+    ): Observable<WeatherResultWrapper> {
         val forecast = mApi.getForecast(
             userAgent,
             location.latitude.toDouble(),
@@ -98,12 +94,12 @@ class MetNoWeatherService @Inject constructor(
             }
         }
 
-        Observable.zip(forecast, sun, moon, nowcast, airQuality) {
-            metNoForecast: MetNoForecastResult,
-            metNoSun: MetNoSunResult,
-            metNoMoon: MetNoMoonResult,
-            metNoNowcast: MetNoNowcastResult,
-            metNoAirQuality: MetNoAirQualityResult
+        return Observable.zip(forecast, sun, moon, nowcast, airQuality) {
+                metNoForecast: MetNoForecastResult,
+                metNoSun: MetNoSunResult,
+                metNoMoon: MetNoMoonResult,
+                metNoNowcast: MetNoNowcastResult,
+                metNoAirQuality: MetNoAirQualityResult
             ->
             convert(
                 context,
@@ -114,25 +110,9 @@ class MetNoWeatherService @Inject constructor(
                 metNoNowcast,
                 metNoAirQuality
             )
-        }.compose(SchedulerTransformer.create())
-            .subscribe(ObserverContainer(mCompositeDisposable, object : ApiObserver<WeatherResultWrapper>() {
-                override fun onSucceed(t: WeatherResultWrapper) {
-                    if (t.result != null) {
-                        callback.requestWeatherSuccess(location.copy(weather = t.result))
-                    } else {
-                        onFailed()
-                    }
-                }
-
-                override fun onFailed() {
-                    if (isApiLimitReached) {
-                        callback.requestWeatherFailed(location, RequestErrorType.API_LIMIT_REACHED)
-                    } else {
-                        callback.requestWeatherFailed(location, RequestErrorType.WEATHER_REQ_FAILED)
-                    }
-                }
-            }))
+        }
     }
+
 
     override fun requestLocationSearch(
         context: Context,
@@ -156,20 +136,18 @@ class MetNoWeatherService @Inject constructor(
         } ?: emptyList()
     }
 
-    override fun requestReverseLocationSearch(
+    override fun requestReverseGeocodingLocation(
         context: Context,
-        location: Location,
-        callback: RequestLocationCallback
-    ) {
+        location: Location
+    ): Observable<List<Location>> {
         // Currently there is no reverse geocoding, so we just return the same location
         // TimeZone is initialized with the TimeZone from the phone (which is probably the same as the current position)
         // Hopefully, one day we will have a reverse geocoding API
-        val locationList: MutableList<Location> = ArrayList()
-        locationList.add(location.copy(cityId = location.latitude.toString() + "," + location.longitude))
-        callback.requestLocationSuccess(
-            location.latitude.toString() + "," + location.longitude,
-            locationList
-        )
+        return Observable.create { emitter ->
+            val locationList: MutableList<Location> = ArrayList()
+            locationList.add(location.copy(cityId = location.latitude.toString() + "," + location.longitude))
+            emitter.onNext(locationList)
+        }
     }
 
     override fun cancel() {

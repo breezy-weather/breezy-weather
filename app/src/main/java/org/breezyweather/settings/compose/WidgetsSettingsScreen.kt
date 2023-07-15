@@ -9,11 +9,12 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import org.breezyweather.R
-import org.breezyweather.background.polling.PollingManager
 import org.breezyweather.common.basic.models.options.NotificationStyle
 import org.breezyweather.common.basic.models.options.WidgetWeekIconMode
 import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.utils.helpers.SnackbarHelper
+import org.breezyweather.remoteviews.Notifications
+import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.remoteviews.config.*
 import org.breezyweather.remoteviews.presenters.*
 import org.breezyweather.remoteviews.presenters.notification.WidgetNotificationIMP
@@ -63,7 +64,7 @@ fun WidgetsSettingsScreen(
                 SettingsManager
                     .getInstance(context)
                     .widgetWeekIconMode = WidgetWeekIconMode.getInstance(it)
-                PollingManager.resetNormalBackgroundTask(context, true)
+                Widgets.updateWidgetIfNecessary(context)
             },
         )
     }
@@ -75,7 +76,7 @@ fun WidgetsSettingsScreen(
             checked = SettingsManager.getInstance(context).isWidgetUsingMonochromeIcons,
             onValueChanged = {
                 SettingsManager.getInstance(context).isWidgetUsingMonochromeIcons = it
-                PollingManager.resetNormalBackgroundTask(context, true)
+                Widgets.updateWidgetIfNecessary(context)
             },
         )
     }
@@ -230,11 +231,10 @@ fun WidgetsSettingsScreen(
                 SettingsManager.getInstance(context).isWidgetNotificationEnabled = it
                 if (it) { // open notification.
                     postNotificationPermissionEnsurer {
-                        PollingManager.resetNormalBackgroundTask(context, true)
+                        Notifications.updateNotificationIfNecessary(context)
                     }
                 } else { // close notification.
                     WidgetNotificationIMP.cancelNotification(context)
-                    PollingManager.resetNormalBackgroundTask(context, false)
                 }
             }
         )
@@ -252,7 +252,7 @@ fun WidgetsSettingsScreen(
                 SettingsManager
                     .getInstance(context)
                     .isWidgetNotificationPersistent = it
-                PollingManager.resetNormalBackgroundTask(context, true)
+                Notifications.updateNotificationIfNecessary(context)
             }
         )
     }
@@ -267,7 +267,7 @@ fun WidgetsSettingsScreen(
                 SettingsManager
                     .getInstance(context)
                     .widgetNotificationStyle = NotificationStyle.getInstance(it)
-                PollingManager.resetNormalBackgroundTask(context, true)
+                Notifications.updateNotificationIfNecessary(context)
             },
         )
     }
@@ -284,7 +284,7 @@ fun WidgetsSettingsScreen(
                 SettingsManager
                     .getInstance(context)
                     .isWidgetNotificationTemperatureIconEnabled = it
-                PollingManager.resetNormalBackgroundTask(context, true)
+                Notifications.updateNotificationIfNecessary(context)
             }
         )
     }
@@ -301,7 +301,7 @@ fun WidgetsSettingsScreen(
                 SettingsManager
                     .getInstance(context)
                     .isWidgetNotificationUsingFeelsLike = it
-                PollingManager.resetNormalBackgroundTask(context, true)
+                Notifications.updateNotificationIfNecessary(context)
             }
         )
     }

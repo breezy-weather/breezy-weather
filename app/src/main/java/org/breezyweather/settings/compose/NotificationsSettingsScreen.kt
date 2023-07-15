@@ -4,7 +4,8 @@ import android.content.Context
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import org.breezyweather.R
-import org.breezyweather.background.polling.PollingManager
+import org.breezyweather.background.forecast.TodayForecastNotificationJob
+import org.breezyweather.background.forecast.TomorrowForecastNotificationJob
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.preference.*
 import org.breezyweather.settings.preference.composables.*
@@ -28,7 +29,7 @@ fun NotificationsSettingsScreen(
                 SettingsManager.getInstance(context).isAlertPushEnabled = it
                 if (it) {
                     postNotificationPermissionEnsurer {
-                        PollingManager.resetNormalBackgroundTask(context, false)
+                        // Do nothing
                     }
                 }
             },
@@ -44,7 +45,7 @@ fun NotificationsSettingsScreen(
                 SettingsManager.getInstance(context).isPrecipitationPushEnabled = it
                 if (it) {
                     postNotificationPermissionEnsurer {
-                        PollingManager.resetNormalBackgroundTask(context, false)
+                        // Do nothing
                     }
                 }
             },
@@ -62,7 +63,7 @@ fun NotificationsSettingsScreen(
             checked = todayForecastEnabled,
             onValueChanged = {
                 SettingsManager.getInstance(context).isTodayForecastEnabled = it
-                PollingManager.resetNormalBackgroundTask(context, false)
+                TodayForecastNotificationJob.setupTask(context, false)
             },
         )
     }
@@ -73,11 +74,7 @@ fun NotificationsSettingsScreen(
             enabled = todayForecastEnabled,
             onValueChanged = {
                 SettingsManager.getInstance(context).todayForecastTime = it
-                PollingManager.resetTodayForecastBackgroundTask(
-                    context,
-                    false,
-                    false
-                )
+                TodayForecastNotificationJob.setupTask(context, false)
             },
         )
     }
@@ -89,7 +86,7 @@ fun NotificationsSettingsScreen(
             checked = tomorrowForecastEnabled,
             onValueChanged = {
                 SettingsManager.getInstance(context).isTomorrowForecastEnabled = it
-                PollingManager.resetNormalBackgroundTask(context, false)
+                TomorrowForecastNotificationJob.setupTask(context, false)
             },
         )
     }
@@ -100,11 +97,7 @@ fun NotificationsSettingsScreen(
             enabled = tomorrowForecastEnabled,
             onValueChanged = {
                 SettingsManager.getInstance(context).tomorrowForecastTime = it
-                PollingManager.resetTomorrowForecastBackgroundTask(
-                    context,
-                    false,
-                    false
-                )
+                TomorrowForecastNotificationJob.setupTask(context, false)
             },
         )
     }

@@ -6,8 +6,9 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.basic.models.weather.Weather
+import org.breezyweather.db.repositories.LocationEntityRepository
+import org.breezyweather.db.repositories.WeatherEntityRepository
 import org.breezyweather.remoteviews.presenters.*
-import org.breezyweather.remoteviews.presenters.MultiCityWidgetIMP.updateWidgetView
 import java.util.*
 
 object Widgets {
@@ -90,6 +91,17 @@ object Widgets {
     const val MATERIAL_YOU_FORECAST_PENDING_INTENT_CODE_WEATHER = 131
     const val MATERIAL_YOU_CURRENT_PENDING_INTENT_CODE_WEATHER = 132
 
+    fun updateWidgetIfNecessary(context: Context) {
+        val locationList = LocationEntityRepository.readLocationList().toMutableList()
+        if (locationList.isNotEmpty()) {
+            for (i in locationList.indices) {
+                locationList[i] = locationList[i].copy(weather = WeatherEntityRepository.readWeather(locationList[i]))
+            }
+            updateWidgetIfNecessary(context, locationList[0])
+            updateWidgetIfNecessary(context, locationList)
+        }
+    }
+
     fun updateWidgetIfNecessary(context: Context, location: Location) {
         if (DayWidgetIMP.isInUse(context)) {
             DayWidgetIMP.updateWidgetView(context, location)
@@ -131,7 +143,7 @@ object Widgets {
 
     fun updateWidgetIfNecessary(context: Context, locationList: List<Location>) {
         if (MultiCityWidgetIMP.isInUse(context)) {
-            updateWidgetView(context, Location.excludeInvalidResidentLocation(context, locationList))
+            MultiCityWidgetIMP.updateWidgetView(context, Location.excludeInvalidResidentLocation(context, locationList))
         }
     }
 

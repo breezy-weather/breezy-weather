@@ -8,8 +8,6 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.provider.Settings
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import org.breezyweather.background.polling.services.basic.AwakeForegroundUpdateService
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.ui.activities.AlertActivity
 import org.breezyweather.common.ui.activities.AllergenActivity
@@ -211,17 +209,6 @@ object IntentHelper {
         } else {
             SnackbarHelper.showSnackbar("Unavailable internet browser.")
         }
-    }
-
-    fun startAwakeForegroundUpdateService(context: Context) {
-        ContextCompat.startForegroundService(
-            context,
-            getAwakeForegroundUpdateServiceIntent(context)
-        )
-    }
-
-    fun getAwakeForegroundUpdateServiceIntent(context: Context): Intent {
-        return Intent(context, AwakeForegroundUpdateService::class.java)
     }
 
     @SuppressLint("WrongConstant")

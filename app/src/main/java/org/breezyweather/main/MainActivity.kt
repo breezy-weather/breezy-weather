@@ -14,8 +14,9 @@ import androidx.lifecycle.*
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import org.breezyweather.Migrations
 import org.breezyweather.R
-import org.breezyweather.background.polling.PollingManager
+import org.breezyweather.background.weather.WeatherUpdateJob
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.bus.EventBus
@@ -89,7 +90,14 @@ class MainActivity : GeoActivity(),
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val isLaunch = savedInstanceState == null
+
         super.onCreate(savedInstanceState)
+
+        if (isLaunch) {
+            Migrations.upgrade(applicationContext)
+        }
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         supportFragmentManager.registerFragmentLifecycleCallbacks(
             fragmentsLifecycleCallback, false
@@ -479,9 +487,8 @@ class MainActivity : GeoActivity(),
     private fun refreshBackgroundViews(resetBackground: Boolean, locationList: List<Location>?) {
         if (resetBackground) {
             AsyncHelper.delayRunOnIO({
-                PollingManager.resetAllBackgroundTask(
-                    this, false
-                )
+                // Refresh all data when settings changed
+                WeatherUpdateJob.startNow(this)
             }, 1000)
         }
         locationList?.let {

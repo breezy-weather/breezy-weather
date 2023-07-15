@@ -24,6 +24,8 @@ import org.breezyweather.common.basic.models.weather.Alert
 import org.breezyweather.common.basic.models.weather.Weather
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.utils.helpers.IntentHelper
+import org.breezyweather.db.repositories.LocationEntityRepository
+import org.breezyweather.db.repositories.WeatherEntityRepository
 import org.breezyweather.remoteviews.presenters.notification.WidgetNotificationIMP
 import org.breezyweather.settings.ConfigStore
 import org.breezyweather.settings.SettingsManager
@@ -55,6 +57,8 @@ object Notifications {
     const val CHANNEL_BACKGROUND = "background"
     const val ID_RUNNING_IN_BACKGROUND = 5
     const val ID_UPDATING_AWAKE = 9
+    const val ID_WEATHER_PROGRESS = -101
+    const val ID_WEATHER_ERROR = -102
 
     private const val ALERT_GROUP_KEY = "breezy_weather_alert_notification_group"
     private const val PREFERENCE_NOTIFICATION = "NOTIFICATION_PREFERENCE"
@@ -106,6 +110,16 @@ object Notifications {
                 },
             )
         )
+    }
+
+    fun updateNotificationIfNecessary(context: Context) {
+        if (WidgetNotificationIMP.isEnabled(context)) {
+            val locationList = LocationEntityRepository.readLocationList().toMutableList()
+            for (i in locationList.indices) {
+                locationList[i] = locationList[i].copy(weather = WeatherEntityRepository.readWeather(locationList[i]))
+            }
+            updateNotificationIfNecessary(context, locationList)
+        }
     }
 
     fun updateNotificationIfNecessary(context: Context, locationList: List<Location>) {

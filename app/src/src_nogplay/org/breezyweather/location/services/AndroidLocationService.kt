@@ -11,7 +11,9 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import androidx.annotation.WorkerThread
+import io.reactivex.rxjava3.core.Observable
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.rx3.rxObservable
 import org.breezyweather.location.LocationService
 
 // static.
@@ -67,35 +69,38 @@ open class AndroidLocationService : LocationService(), LocationListener {
 
     private var currentProvider = ""
     private var locationCallback: ((Result?) -> Unit)? = null
-    private var lastKnownLocation: Location? = null
-    private var gmsLastKnownLocation: Location? = null
 
-    override fun requestLocation(context: Context, callback: (Result?) -> Unit) {
-        cancel()
-
-        locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager?
-        if (locationManager == null
-            || !hasPermissions(context)
-            || !isLocationEnabled(locationManager!!)
-            || getBestProvider(locationManager!!).also { currentProvider = it }.isEmpty()) {
-            callback(null)
-            return
-        }
-
-        locationCallback = callback
-        lastKnownLocation = getLastKnownLocation(locationManager!!)
-
-        locationManager!!.requestLocationUpdates(
-            currentProvider,
-            0L,
-            0F,
-            this,
-            Looper.getMainLooper()
-        )
-        timer.postDelayed({
+    override fun requestLocation(context: Context): Observable<Result> {
+        return rxObservable {
             cancel()
-            handleLocation(gmsLastKnownLocation ?: lastKnownLocation)
-        }, TIMEOUT_MILLIS)
+
+            locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager?
+            if (locationManager == null
+                || !hasPermissions(context)
+                || !isLocationEnabled(locationManager!!)
+                || getBestProvider(locationManager!!).also { currentProvider = it }.isEmpty()
+            ) {
+                throw Exception("Location manager not ready, no permissions, no location enabled or no provider available")
+            }
+
+            getLastKnownLocation(locationManager!!)
+
+            locationManager!!.requestLocationUpdates(
+                currentProvider,
+                0L,
+                0F,
+                this@AndroidLocationService,
+                Looper.getMainLooper()
+            )
+
+            delay(TIMEOUT_MILLIS)
+            cancel()
+            getLastKnownLocation(locationManager!!)?.let {
+                send(Result(it.latitude.toFloat(), it.longitude.toFloat()))
+            } ?: run {
+                throw Exception("Timeout")
+            }
+        }
     }
 
     override fun cancel() {
@@ -109,25 +114,11 @@ open class AndroidLocationService : LocationService(), LocationListener {
             Manifest.permission.ACCESS_FINE_LOCATION
         )
 
-    private fun handleLocation(location: Location?) {
-        locationCallback?.invoke(
-            location?.let { buildResult(it) }
-        )
-    }
-
-    @WorkerThread
-    private fun buildResult(location: Location): Result {
-        return Result(
-            location.latitude.toFloat(),
-            location.longitude.toFloat()
-        )
-    }
 
     // location listener.
-
     override fun onLocationChanged(location: Location) {
         cancel()
-        handleLocation(location)
+        // do nothing.
     }
 
     @Deprecated("Deprecated in Java")

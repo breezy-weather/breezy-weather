@@ -6,15 +6,12 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import org.breezyweather.BreezyWeather
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.provider.WeatherSource
-import org.breezyweather.common.rxjava.ApiObserver
-import org.breezyweather.common.rxjava.ObserverContainer
-import org.breezyweather.common.rxjava.SchedulerTransformer
-import org.breezyweather.main.utils.RequestErrorType
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.weather.WeatherService
 import org.breezyweather.weather.openmeteo.json.OpenMeteoAirQualityResult
 import org.breezyweather.weather.openmeteo.json.OpenMeteoLocationResults
 import org.breezyweather.weather.openmeteo.json.OpenMeteoWeatherResult
+import java.util.ArrayList
 import javax.inject.Inject
 
 class OpenMeteoWeatherService @Inject constructor(
@@ -25,7 +22,7 @@ class OpenMeteoWeatherService @Inject constructor(
 ) : WeatherService() {
     override fun isConfigured(context: Context) = true
 
-    override fun requestWeather(context: Context, location: Location, callback: RequestWeatherCallback) {
+    override fun requestWeather(context: Context, location: Location): Observable<WeatherResultWrapper> {
         val daily = arrayOf(
             "temperature_2m_max",
             "temperature_2m_min",
@@ -78,9 +75,9 @@ class OpenMeteoWeatherService @Inject constructor(
             location.longitude.toDouble(),
             airQualityHourly.joinToString(",")
         )
-        Observable.zip(weather, aqi) {
-            openMeteoWeatherResult: OpenMeteoWeatherResult,
-            openMeteoAirQualityResult: OpenMeteoAirQualityResult
+        return Observable.zip(weather, aqi) {
+                openMeteoWeatherResult: OpenMeteoWeatherResult,
+                openMeteoAirQualityResult: OpenMeteoAirQualityResult
             ->
             convert(
                 context,
@@ -88,20 +85,7 @@ class OpenMeteoWeatherService @Inject constructor(
                 openMeteoWeatherResult,
                 openMeteoAirQualityResult
             )
-        }.compose(SchedulerTransformer.create())
-            .subscribe(ObserverContainer(mCompositeDisposable, object : ApiObserver<WeatherResultWrapper>() {
-                override fun onSucceed(t: WeatherResultWrapper) {
-                    if (t.result != null) {
-                        callback.requestWeatherSuccess(location.copy(weather = t.result))
-                    } else {
-                        onFailed()
-                    }
-                }
-
-                override fun onFailed() {
-                    callback.requestWeatherFailed(location, RequestErrorType.WEATHER_REQ_FAILED)
-                }
-            }))
+        }
     }
 
     override fun requestLocationSearch(
@@ -126,20 +110,18 @@ class OpenMeteoWeatherService @Inject constructor(
         } ?: emptyList()
     }
 
-    override fun requestReverseLocationSearch(
+    override fun requestReverseGeocodingLocation(
         context: Context,
-        location: Location,
-        callback: RequestLocationCallback
-    ) {
+        location: Location
+    ): Observable<List<Location>> {
         // Currently there is no reverse geocoding, so we just return the same location
         // TimeZone is initialized with the TimeZone from the phone (which is probably the same as the current position)
         // Hopefully, one day we will have a reverse geocoding API
-        val locationList: MutableList<Location> = ArrayList()
-        locationList.add(location.copy(cityId = location.latitude.toString() + "," + location.longitude))
-        callback.requestLocationSuccess(
-            location.latitude.toString() + "," + location.longitude,
-            locationList
-        )
+        return Observable.create { emitter ->
+            val locationList: MutableList<Location> = ArrayList()
+            locationList.add(location.copy(cityId = location.latitude.toString() + "," + location.longitude))
+            emitter.onNext(locationList)
+        }
     }
 
     override fun cancel() {

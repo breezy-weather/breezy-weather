@@ -57,7 +57,7 @@
     <string name="widget_label_text_size">Schriftgröße</string>
     <string name="notification_precipitation_today">Es kann Niederschlag auftreten.</string>
     <string name="message_updated_in_background">Im Hintergrund aktualisiert</string>
-    <string name="notification_updating_weather_data">Aktualisierung der Wetterdaten</string>
+    <string name="notification_updating_weather_data">Aktualisierung der Wetterdaten (%1$d/%2$d)</string>
     <string name="widget_label_view_style">Ansicht</string>
     <string name="temperature_feels_like">Gefühlt</string>
     <string name="settings_follow_system">Systemstandard</string>
@@ -442,20 +442,13 @@
     <string name="unit_inph_voice">Zoll pro Stunde</string>
     <string name="message_network_unavailable">Netzwerk nicht verfügbar</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Herstellerspezifische Anweisungen</string>
-    <string name="settings_background_updates_method_notification">Permanente Benachrichtigung</string>
-    <string name="settings_background_updates_method_description_notification">Permanente Benachrichtigung
-\nZuverlässigere Methode, aber die Anwendung muss im Hintergrund aktiv bleiben.</string>
     <string name="settings_section_general">Allgemein</string>
     <string name="settings_background_updates_summary">Aktualisierungsrate, Fehlerbehebung</string>
-    <string name="settings_background_updates_methods_title">Aktualisierungsmethode</string>
     <string name="settings_background_updates">Hintergrundaktualisierungen</string>
     <string name="settings_background_updates_refresh_never">Nie</string>
     <string name="settings_background_updates_section_troubleshoot">Fehlerbehebung</string>
     <string name="settings_background_updates_battery_optimization">Akkuoptimierung deaktivieren</string>
     <string name="settings_background_updates_refresh_title">Aktualisierungsrate</string>
-    <string name="settings_background_updates_method_worker">Android Worker</string>
-    <string name="settings_background_updates_method_description_worker">Android Worker
-        \nEmpfohlene Methode. Ändern Sie die Einstellung, falls Sie keine Benachrichtigungen erhalten oder Widgets nicht aktualisiert werden.</string>
     <string name="settings_main_cards_fade_in_switch">Karten werden animiert eingeblendet</string>
     <string name="action_see_more">Mehr anzeigen</string>
     <string name="settings_weather_providers_current_location">Wetterdienst für aktuellen Standort</string>
@@ -506,7 +499,6 @@
     <string name="weather_api_key_required_missing_content">Um diesen Anbieter nutzen zu können, benötigen Sie einen API-Schlüssel.</string>
     <string name="weather_source_accu_preference_days_5">5 Tage</string>
     <string name="weather_source_accu_preference_days_1">1 Tag</string>
-    <string name="settings_background_updates_method_notification_dialog_title">Benachrichtigungskategorie deaktivieren</string>
     <string name="settings_debug_summary">Absturzprotokolle</string>
     <string name="settings_debug_dump_crash_logs_title">Absturzprotokolle teilen</string>
     <string name="settings_debug_dump_crash_logs_summary">Speichert Absturzprotokolle in einer Datei, um sie mit den Entwicklern zu teilen</string>
@@ -527,7 +519,6 @@
     <string name="settings_widgets_notification_widget_title">Benachrichtigungs-Widget</string>
     <string name="notification_channel_widget">Widget</string>
     <string name="settings_widgets_notification_persistent_switch">Permanent</string>
-    <string name="settings_background_updates_method_notification_dialog_content">Diese Methode fügt eine dauerhafte Benachrichtigung hinzu, die durch Deaktivieren der Benachrichtigungskategorie „$“ in den Benachrichtigungseinstellungen unter App-Info ausgeblendet werden kann.</string>
     <string name="settings_widgets_notification_style_title">Stil</string>
     <string name="unit_inph">Zoll/h</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Einige Hersteller nutzen zusätzliche App-Einschränkungen, die Hintergrunddienste abschalten. Auf der Website Don’t kill my app! finden Sie Informationen zur Deaktivierung dieser Einschränkungen.</string>

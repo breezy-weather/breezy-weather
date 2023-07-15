@@ -198,6 +198,7 @@
     <string name="weather_air_quality_and_pollen_data_by">Air quality and pollen data by $</string>
     <!-- $ = weather data provider -->
     <string name="weather_message_data_refresh_failed">Weather data refresh failed</string>
+    <string name="weather_refresh_skipped_already_recently_updated">Already recently updated</string>
     <string name="weather_api_limit_reached_title">API requests limit reached</string>
     <string name="weather_api_limit_reached_content">To workaround the limit, add your own API key.</string>
     <string name="weather_api_unauthorized_title">API access unauthorized</string>
@@ -291,6 +292,7 @@
     <string name="action_continue">Continue</string>
     <string name="action_close">Close</string>
     <string name="action_share">Share</string>
+    <string name="action_show_errors">Tap to see details</string>
     <!-- Dialogs -->
     <string name="dialog_permissions_notification_title">Stay informed</string>
     <string name="dialog_permissions_notification_content">Tap here to enable notifications about weather alerts, or decide later in Settings.</string>
@@ -408,20 +410,12 @@
     <string name="settings_background_updates_refresh_6h">6 hours</string>
     <string name="settings_background_updates_refresh_12h">12 hours</string>
     <string name="settings_background_updates_refresh_24h">24 hours</string>
+    <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignore when battery is low</string>
     <string name="settings_background_updates_section_troubleshoot">Troubleshoot</string>
     <string name="settings_background_updates_battery_optimization">Disable battery optimization</string>
     <string name="settings_background_updates_battery_optimization_summary">This is the first thing to try when you don’t receive notifications or widgets are not refreshing.</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Couldn’t open device settings.</string>
     <string name="settings_background_updates_battery_optimization_disabled">Battery optimization is already disabled.</string>
-    <string name="settings_background_updates_methods_title">Update method</string>
-    <!-- Do not translate Android Worker -->
-    <string name="settings_background_updates_method_worker">Android Worker</string>
-    <string name="settings_background_updates_method_description_worker">Android Worker\nRecommended method. Try switching if you don’t receive notifications or widgets are not refreshing.</string>
-    <string name="settings_background_updates_method_notification">Persistent notification</string>
-    <string name="settings_background_updates_method_description_notification">Persistent notification\nMore reliable method but requires app to stay active in the background.</string>
-    <string name="settings_background_updates_method_notification_dialog_title">Disable notification category</string>
-    <!-- $ = @string/notification_channel_background_services, please change quotes according to your language -->
-    <string name="settings_background_updates_method_notification_dialog_content">This method adds a persistent notification that can be hidden by disabling the “$” notification category in device app settings.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Manufacturer specific instructions</string>
     <!-- $ = Don’t kill my app! -->
     <string name="settings_background_updates_dont_kill_my_app_summary">Some manufacturers have additional app restrictions that kill background services. The Don’t kill my app! website has info on how to fix it.</string>
@@ -527,6 +521,7 @@
     <string name="settings_debug_summary">Crash logs</string>
     <string name="settings_debug_dump_crash_logs_title">Share crash logs</string>
     <string name="settings_debug_dump_crash_logs_summary">Saves error logs to a file for sharing with the developers</string>
+    <string name="settings_debug_force_weather_update" translatable="false">Force weather update</string>
     <string name="settings_changes_apply_after_restart">Changes will take effect after restart</string>
     <string name="settings_items_drag_to_sort">Tap to drag the list items to sort</string>
     <string name="settings_item_delete">Delete this item</string>
@@ -616,7 +611,8 @@
     <string name="notification_channel_background_services">Background services</string>
     <string name="notification_location_in_background">Locating in background</string>
     <string name="notification_running_in_background">Running in background to keep updating</string>
-    <string name="notification_updating_weather_data">Updating weather data</string>
+    <string name="notification_updating_weather_data">Updating weather data (%1$d/%2$d)</string>
+    <string name="notification_update_error">%1$d update(s) failed</string>
     <string name="notification_precipitation_today">There may be precipitation today.</string>
     <string name="notification_precipitation_short_term">Precipitation may occur in the next few hours.</string>
     <string name="notification_style_native">Native</string>

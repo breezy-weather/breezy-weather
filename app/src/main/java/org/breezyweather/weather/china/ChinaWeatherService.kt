@@ -5,12 +5,8 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.ObservableOnSubscribe
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.rxjava.ApiObserver
-import org.breezyweather.common.rxjava.ObserverContainer
-import org.breezyweather.common.rxjava.SchedulerTransformer
 import org.breezyweather.common.utils.LanguageUtils
 import org.breezyweather.db.repositories.ChineseCityEntityRepository
-import org.breezyweather.main.utils.RequestErrorType
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.weather.WeatherService
 import org.breezyweather.weather.china.json.ChinaForecastResult
@@ -25,9 +21,8 @@ class ChinaWeatherService @Inject constructor(
 
     override fun requestWeather(
         context: Context,
-        location: Location,
-        callback: RequestWeatherCallback
-    ) {
+        location: Location
+    ): Observable<WeatherResultWrapper> {
         val mainly = mApi.getForecastWeather(
             location.latitude.toDouble(),
             location.longitude.toDouble(),
@@ -48,9 +43,9 @@ class ChinaWeatherService @Inject constructor(
             locationKey = "weathercn%3A" + location.cityId,
             sign = "zUFJoAR2ZVrDy1vF3D07"
         )
-        Observable.zip(mainly, forecast) {
-            mainlyResult: ChinaForecastResult,
-            forecastResult: ChinaMinutelyResult
+        return Observable.zip(mainly, forecast) {
+                mainlyResult: ChinaForecastResult,
+                forecastResult: ChinaMinutelyResult
             ->
             convert(
                 context,
@@ -58,20 +53,7 @@ class ChinaWeatherService @Inject constructor(
                 mainlyResult,
                 forecastResult
             )
-        }.compose(SchedulerTransformer.create())
-            .subscribe(ObserverContainer(mCompositeDisposable, object : ApiObserver<WeatherResultWrapper>() {
-                override fun onSucceed(t: WeatherResultWrapper) {
-                    if (t.result != null) {
-                        callback.requestWeatherSuccess(location.copy(weather = t.result))
-                    } else {
-                        onFailed()
-                    }
-                }
-
-                override fun onFailed() {
-                    callback.requestWeatherFailed(location, RequestErrorType.WEATHER_REQ_FAILED)
-                }
-            }))
+        }
     }
 
     override fun requestLocationSearch(context: Context, query: String): List<Location> {
@@ -87,14 +69,13 @@ class ChinaWeatherService @Inject constructor(
         return locationList
     }
 
-    override fun requestReverseLocationSearch(
+    override fun requestReverseGeocodingLocation(
         context: Context,
-        location: Location,
-        callback: RequestLocationCallback
-    ) {
+        location: Location
+    ): Observable<List<Location>> {
         val hasGeocodeInformation = location.hasGeocodeInformation()
-        Observable.create(
-            ObservableOnSubscribe<List<Location>> { emitter ->
+        return Observable.create(
+            ObservableOnSubscribe { emitter ->
                 ChineseCityEntityRepository.ensureChineseCityList(context)
                 val locationList: MutableList<Location> = ArrayList()
                 if (hasGeocodeInformation) {
@@ -119,20 +100,7 @@ class ChinaWeatherService @Inject constructor(
                 }
                 emitter.onNext(locationList)
             }
-        ).compose(SchedulerTransformer.create())
-            .subscribe(ObserverContainer(mCompositeDisposable, object : ApiObserver<List<Location>>() {
-                override fun onSucceed(t: List<Location>) {
-                    if (t.isNotEmpty()) {
-                        callback.requestLocationSuccess(location.formattedId, t)
-                    } else {
-                        onFailed()
-                    }
-                }
-
-                override fun onFailed() {
-                    callback.requestLocationFailed(location.formattedId, RequestErrorType.REVERSE_GEOCODING_FAILED)
-                }
-            }))
+        )
     }
 
     override fun cancel() {

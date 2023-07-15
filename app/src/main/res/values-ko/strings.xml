@@ -173,7 +173,7 @@
     <string name="location_current_not_found_yet">아직 현재 위치를 찾지 못했습니다…</string>
     <string name="settings_changes_apply_after_restart">변경 사항은 재시작 후에 적용됩니다</string>
     <string name="notification_running_in_background">날씨를 계속 업데이트하기 위해 백그라운드에서 실행 중</string>
-    <string name="notification_updating_weather_data">날씨 데이터 업데이트 중</string>
+    <string name="notification_updating_weather_data">날씨 데이터 업데이트 중 (%1$d/%2$d)</string>
     <string name="message_updated_in_background">백그라운드에서 업데이트했습니다</string>
     <string name="notification_precipitation_today">오늘 비나 눈이 올 수 있어요.</string>
     <string name="notification_precipitation_short_term">몇 시간 뒤에 비나 눈이 올 수 있어요.</string>
@@ -276,9 +276,6 @@
     <string name="settings_background_updates_battery_optimization">배터리 최적화 끄기</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">기기 설정을 열 수 없습니다.</string>
     <string name="settings_background_updates_battery_optimization_disabled">배터리 최적화가 이미 꺼져 있습니다.</string>
-    <string name="settings_background_updates_method_description_worker">Android Worker
-\n권장하는 방식입니다. 알림을 받지 못하거나 위젯이 새로고침되지 않을 때 방식을 바꿔 보세요.</string>
-    <string name="settings_background_updates_method_notification_dialog_title">알림 카테고리 사용 안 함</string>
     <string name="settings_location_access_switch_title">위치 접근</string>
     <string name="settings_location_access_permission_already_granted">권한이 이미 허용됨</string>
     <string name="settings_location_access_switch_summaryOff">알림 목록에 현재 위치를 추가하려면 권한을 허용해 주세요.</string>
@@ -309,9 +306,6 @@
     <string name="settings_units_summary">온도, 강수, 거리, 속도, 기압</string>
     <string name="settings_weather_provider_open_weather_one_call_version">OpenWeather OneCall 버전</string>
     <string name="settings_weather_provider_mf_wsft_key">Météo France WSFT 키</string>
-    <string name="settings_background_updates_method_notification_dialog_content">이 방식은 지속 알림을 사용합니다. 기기 앱 설정의 알림 카테고리에서 “$” 를 끄면 알림을 숨길 수 있습니다.</string>
-    <string name="settings_background_updates_method_description_notification">지속 알림
-\n더 안정적인 방식이지만 앱이 백그라운드에서 계속 켜져 있어야 합니다.</string>
     <string name="notification_channel_background_services">백그라운드 서비스</string>
     <string name="settings_location_access_switch_summaryOn">허용되었습니다. 이제 위치 목록에 현재 위치를 추가할 수 있습니다.</string>
     <string name="settings_main_cards_title">카드</string>
@@ -323,8 +317,6 @@
     <string name="location_search_change_weather_provider">날씨 제공 업체 변경</string>
     <string name="location_message_search_failed">위치 검색 실패</string>
     <string name="settings_section_general">일반</string>
-    <string name="settings_background_updates_methods_title">업데이트 방식</string>
-    <string name="settings_background_updates_method_worker">Android Worker</string>
     <string name="settings_appearance_summary">언어, 다크 모드, 아이콘 팩, 단위</string>
     <string name="settings_main_summary">카드 순서, 표시 항목, 애니메이션</string>
     <string name="settings_main">메인 화면</string>
@@ -464,7 +456,6 @@
     <string name="dialog_permissions_location_content">Breezy Weather는 현재 위치의 날씨 데이터를 제공하기 위해 포그라운드 또는 백그라운드에서 위치 정보를 수집합니다. 따라서 몇 가지 권한을 요청할 것입니다. 위치 정보는 현재 위치의 날씨 데이터를 받아오기 위해서만 사용합니다. 위치 정보를 공유하고 싶지 않다면, 요청하는 권한을 거부하고 관리 페이지에서 직접 위치를 추가할 수 있습니다.</string>
     <string name="dialog_permissions_location_background_title">백그라운드에서 위치 접근</string>
     <string name="widget_multi_city">여러 위치</string>
-    <string name="settings_background_updates_method_notification">지속 알림</string>
     <string name="settings_main_section_animations">애니메이션</string>
     <string name="weather_api_unauthorized_content">일부 날씨 제공 업체를 사용하려면 API 키를 직접 추가해야 합니다. 이미 API 키를 추가했다면, 추가한 API 키를 한 번 더 확인하세요.</string>
     <string name="weather_source_openmeteo">Open-Meteo</string>

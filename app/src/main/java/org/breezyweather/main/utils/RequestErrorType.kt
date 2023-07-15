@@ -60,7 +60,7 @@ enum class RequestErrorType(
         //showDialogAction = { } // TODO
     ),
     REVERSE_GEOCODING_FAILED(
-        shortMessage = R.string.location_message_permission_background_missing,
+        shortMessage = R.string.location_message_reverse_geocoding_failed,
     ),
 
     // Location search-specific

@@ -16,7 +16,6 @@ import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.getTypefaceFromTextAppearance
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
 import org.breezyweather.common.ui.widgets.trend.chart.AbsChartItemView
-import org.breezyweather.theme.weatherView.materialWeatherView.implementor.CloudImplementor
 
 /**
  * Hourly trend item view.

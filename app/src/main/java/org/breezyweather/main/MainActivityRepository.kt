@@ -1,6 +1,9 @@
 package org.breezyweather.main
 
 import android.content.Context
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.rx3.awaitSingle
+import kotlinx.coroutines.withContext
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.db.repositories.LocationEntityRepository
@@ -78,79 +81,36 @@ class MainActivityRepository @Inject constructor(
         }, singleThreadExecutor)
     }
 
-    fun getWeather(
+    suspend fun getWeather(
         context: Context,
         location: Location,
         locate: Boolean,
         callback: WeatherRequestCallback,
     ) {
-        if (locate) {
-            ensureValidLocationInformation(context, location, callback)
-        } else {
-            getWeatherWithValidLocationInformation(context, location, null, callback)
+        try {
+            val locationToProcess = if (locate) {
+                locationHelper.getCurrentLocationWithReverseGeocoding(
+                    context,
+                    location,
+                    false
+                )
+            } else location
+
+            try {
+                val requestWeather = weatherHelper.requestWeather(
+                    context,
+                    locationToProcess
+                ).awaitSingle()
+                callback.onCompleted(locationToProcess.copy(weather = requestWeather), null)
+            } catch (e: Throwable) {
+                e.printStackTrace()
+                callback.onCompleted(location, RequestErrorType.WEATHER_REQ_FAILED)
+            }
+        } catch (e: Throwable) {
+            e.printStackTrace()
+            callback.onCompleted(location, RequestErrorType.LOCATION_FAILED)
         }
     }
-
-    private fun ensureValidLocationInformation(
-        context: Context,
-        location: Location,
-        callback: WeatherRequestCallback,
-    ) = locationHelper.requestCurrentLocation(
-        context,
-        location,
-        false,
-        object : LocationHelper.OnRequestLocationListener {
-
-            override fun requestLocationSuccess(requestLocation: Location) {
-                if (requestLocation.formattedId != location.formattedId) {
-                    return
-                }
-                getWeatherWithValidLocationInformation(
-                    context,
-                    requestLocation,
-                    null,
-                    callback
-                )
-            }
-
-            override fun requestLocationFailed(requestLocation: Location, requestErrorType: RequestErrorType) {
-                if (requestLocation.formattedId != location.formattedId) {
-                    return
-                }
-                getWeatherWithValidLocationInformation(
-                    context,
-                    requestLocation,
-                    requestErrorType,
-                    callback
-                )
-            }
-        }
-    )
-
-    private fun getWeatherWithValidLocationInformation(
-        context: Context,
-        location: Location,
-        requestErrorType: RequestErrorType?,
-        callback: WeatherRequestCallback,
-    ) = weatherHelper.requestWeather(
-        context,
-        location,
-        object : WeatherHelper.OnRequestWeatherListener {
-            override fun requestWeatherSuccess(requestLocation: Location) {
-                if (requestLocation.formattedId != location.formattedId) {
-                    return
-                }
-                callback.onCompleted(requestLocation, requestErrorType)
-            }
-
-            override fun requestWeatherFailed(requestLocation: Location, requestErrorType: RequestErrorType) {
-                if (requestLocation.formattedId != location.formattedId) {
-                    return
-                }
-                callback.onCompleted(requestLocation, requestErrorType)
-            }
-        }
-    )
 
     fun getLocatePermissionList(context: Context) = locationHelper.getPermissions(context)
 

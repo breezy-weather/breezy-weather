@@ -121,20 +121,6 @@
         <item>unsimplified_chinese</item>
     </string-array>
 
-    <!-- background update methods -->
-    <string-array name="background_update_methods">
-        <item>@string/settings_background_updates_method_worker</item>
-        <item>@string/settings_background_updates_method_notification</item>
-    </string-array>
-    <string-array name="background_update_method_descriptions">
-        <item>@string/settings_background_updates_method_description_worker</item>
-        <item>@string/settings_background_updates_method_description_notification</item>
-    </string-array>
-    <string-array name="background_update_method_values">
-        <item>worker</item>
-        <item>notification</item>
-    </string-array>
-
     <!-- automatic refresh rate. -->
     <string-array name="automatic_refresh_rates">
         <item>@string/settings_background_updates_refresh_never</item>

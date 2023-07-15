@@ -185,16 +185,6 @@
             android:screenOrientation="user" />
 
         <activity
-            android:name=".common.ui.activities.AwakeUpdateActivity"
-            android:launchMode="singleInstance"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="org.breezyweather.UPDATE" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity
             android:name=".wallpaper.LiveWallpaperConfigActivity"
             android:label="@string/settings_widgets_live_wallpaper_title"
             android:theme="@style/BreezyWeatherTheme"
@@ -315,25 +305,6 @@
 
         <!-- service -->
         <service
-            android:name=".background.polling.services.basic.AwakeForegroundUpdateService"
-            android:foregroundServiceType="location" />
-
-        <service
-            android:name=".background.polling.services.permanent.observer.TimeObserverService"
-            android:process=":polling" />
-        <service android:name=".background.polling.services.permanent.observer.FakeForegroundService" />
-
-        <service
-            android:name=".background.polling.services.permanent.update.ForegroundNormalUpdateService"
-            android:foregroundServiceType="location" />
-        <service
-            android:name=".background.polling.services.permanent.update.ForegroundTodayForecastUpdateService"
-            android:foregroundServiceType="location" />
-        <service
-            android:name=".background.polling.services.permanent.update.ForegroundTomorrowForecastUpdateService"
-            android:foregroundServiceType="location" />
-
-        <service
             android:name=".background.interfaces.TileService"
             android:label="@string/breezy_weather"
             android:icon="@drawable/weather_clear_day_mini_light"
@@ -366,6 +337,10 @@
                 <action android:name="android.intent.action.WALLPAPER_CHANGED" />
             </intent-filter>
         </receiver>
+
+        <receiver
+            android:name=".background.receiver.NotificationReceiver"
+            android:exported="false" />
 
         <!-- widget -->
         <receiver

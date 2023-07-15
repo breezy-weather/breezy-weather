@@ -21,7 +21,7 @@ class SearchActivityRepository @Inject internal constructor(
     ) {
         mWeatherHelper.requestSearchLocations(
             context, query, enabledSource,
-            object : WeatherHelper.OnRequestLocationListener {
+            object : WeatherHelper.OnRequestSearchLocationsListener {
                 override fun requestLocationSuccess(query: String, locationList: List<Location>) {
                     callback(Pair<List<Location>, RequestErrorType?>(locationList, null), true)
                 }

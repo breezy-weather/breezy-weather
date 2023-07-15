@@ -279,7 +279,7 @@
     <string name="settings_changes_apply_after_restart">Les modifications seront appliquées après un redémarrage</string>
 
     <string name="notification_running_in_background">Fonctionnement en arrière-plan pour permettre l’actualisation</string>
-    <string name="notification_updating_weather_data">Actualisation des données météo</string>
+    <string name="notification_updating_weather_data">Actualisation des données météo (%1$d/%2$d)</string>
     <string name="message_network_unavailable">Réseau non-disponible</string>
     <string name="message_updated_in_background">Actualisé en arrière-plan</string>
 
@@ -404,19 +404,15 @@
     <string name="settings_background_updates_refresh_6h">6 heures</string>
     <string name="settings_background_updates_refresh_12h">12 heures</string>
     <string name="settings_background_updates_refresh_24h">24 heures</string>
+    <string name="weather_refresh_skipped_already_recently_updated">Déjà mis à jour récemment</string>
+    <string name="action_show_errors">Appuyez pour voir les détails</string>
+    <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignorer quand la batterie est faible</string>
     <string name="settings_background_updates_section_troubleshoot">Résolution de problèmes</string>
     <string name="settings_background_updates_battery_optimization">Désactiver l’optimisation de la batterie</string>
     <string name="settings_background_updates_battery_optimization_summary">C’est la première chose à essayer si vous ne recevez pas les notifications ou que les widgets ne s’actualisent pas.</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Impossible d’ouvrir les paramètres de l’appareil.</string>
     <string name="settings_background_updates_battery_optimization_disabled">L’optimisation de la batterie est déjà désactivée.</string>
-    <string name="settings_background_updates_methods_title">Méthode d’actualisation</string>
-    <string name="settings_background_updates_method_worker">Android Worker</string>
-    <string name="settings_background_updates_method_description_worker">Android Worker\nMéthode recommandée. Essayez de changer cette option si vous ne recevez pas de notifications ou si les widgets ne se rafraîchissent pas.</string>
-    <string name="settings_background_updates_method_notification">Notification persistante</string>
-    <string name="settings_background_updates_method_description_notification">Notification persistante\nMéthode plus fiable mais qui nécessite de garder l’application active en arrière-plan.</string>
-    <string name="settings_background_updates_method_notification_dialog_title">Désactiver la catégorie de notifications</string>
     <!-- $ = @string/notification_channel_background_services -->
-    <string name="settings_background_updates_method_notification_dialog_content">Cette méthode ajoute une notification persistante qui peut être masquée en désactivant la catégorie de notifications « $ » dans les paramètres de l’appareil pour l’application.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Instructions spécifiques selon fabricant</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Certains fabricants ont mis en place des restrictions supplémentaires sur les applications qui tuent les services en arrière-plan. Le site web Don’t kill my app! contient des informations pour résoudre ce problème.</string>
     <string name="settings_background_updates_worker_info_title">Informations sur les processsus</string>
@@ -657,4 +653,5 @@
 
     <string name="null_data_text">N/A</string>
     <string name="colon_separator" translatable="false">\u0020:\u0020</string>
+    <string name="notification_update_error">%1$d mise(s) à jour en échec</string>
 </resources>

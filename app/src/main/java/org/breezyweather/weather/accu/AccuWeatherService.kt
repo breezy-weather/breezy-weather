@@ -4,11 +4,8 @@ import android.content.Context
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import org.breezyweather.BreezyWeather
+import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.rxjava.ApiObserver
-import org.breezyweather.common.rxjava.ObserverContainer
-import org.breezyweather.common.rxjava.SchedulerTransformer
-import org.breezyweather.main.utils.RequestErrorType
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.weather.WeatherService
 import org.breezyweather.weather.accu.json.*
@@ -22,10 +19,11 @@ class AccuWeatherService @Inject constructor(
 
     override fun isConfigured(context: Context) = getApiKey(context).isNotEmpty()
 
-    override fun requestWeather(context: Context, location: Location, callback: RequestWeatherCallback) {
+    override fun requestWeather(
+        context: Context, location: Location
+    ): Observable<WeatherResultWrapper> {
         if (!isConfigured(context)) {
-            callback.requestWeatherFailed(location, RequestErrorType.API_KEY_REQUIRED_MISSING)
-            return
+            return Observable.error(Exception(context.getString(R.string.weather_api_key_required_missing_title)))
         }
         val apiKey = getApiKey(context)
         val settings = SettingsManager.getInstance(context)
@@ -81,13 +79,13 @@ class AccuWeatherService @Inject constructor(
                 emitter.onNext(AccuAirQualityResult())
             }
         }
-        Observable.zip(current, daily, hourly, minute, alert, airQuality) {
-            accuRealtimeResults: List<AccuCurrentResult>,
-            accuDailyResult: AccuForecastDailyResult,
-            accuHourlyResults: List<AccuForecastHourlyResult>,
-            accuMinutelyResult: AccuMinutelyResult,
-            accuAlertResults: List<AccuAlertResult>,
-            accuAirQualityResult: AccuAirQualityResult
+        return Observable.zip(current, daily, hourly, minute, alert, airQuality) {
+                accuRealtimeResults: List<AccuCurrentResult>,
+                accuDailyResult: AccuForecastDailyResult,
+                accuHourlyResults: List<AccuForecastHourlyResult>,
+                accuMinutelyResult: AccuMinutelyResult,
+                accuAlertResults: List<AccuAlertResult>,
+                accuAirQualityResult: AccuAirQualityResult
             ->
             convert(
                 context,
@@ -99,26 +97,7 @@ class AccuWeatherService @Inject constructor(
                 accuAlertResults,
                 accuAirQualityResult
             )
-        }.compose(SchedulerTransformer.create())
-            .subscribe(ObserverContainer(mCompositeDisposable, object : ApiObserver<WeatherResultWrapper>() {
-                override fun onSucceed(t: WeatherResultWrapper) {
-                    if (t.result != null) {
-                        callback.requestWeatherSuccess(location.copy(weather = t.result))
-                    } else {
-                        onFailed()
-                    }
-                }
-
-                override fun onFailed() {
-                    if (isApiLimitReached) {
-                        callback.requestWeatherFailed(location, RequestErrorType.API_LIMIT_REACHED)
-                    } else if (isApiUnauthorized) {
-                        callback.requestWeatherFailed(location, RequestErrorType.API_UNAUTHORIZED)
-                    } else {
-                        callback.requestWeatherFailed(location, RequestErrorType.WEATHER_REQ_FAILED)
-                    }
-                }
-            }))
+        }
     }
 
     override fun requestLocationSearch(
@@ -151,55 +130,25 @@ class AccuWeatherService @Inject constructor(
         } ?: emptyList()
     }
 
-    override fun requestReverseLocationSearch(
+    override fun requestReverseGeocodingLocation(
         context: Context,
-        location: Location,
-        callback: RequestLocationCallback
-    ) {
+        location: Location
+    ): Observable<List<Location>> {
         if (!isConfigured(context)) {
-            callback.requestLocationFailed(
-                location.latitude.toString() + "," + location.longitude,
-                RequestErrorType.API_KEY_REQUIRED_MISSING
-            )
-            return
+            return Observable.error(Exception(context.getString(R.string.weather_api_key_required_missing_title)))
         }
         val apiKey = getApiKey(context)
         val languageCode = SettingsManager.getInstance(context).language.code
-        mApi.getWeatherLocationByGeoPosition(
+        return mApi.getWeatherLocationByGeoPosition(
             apiKey,
             languageCode,
             details = false,
             location.latitude.toString() + "," + location.longitude
-        ).compose(SchedulerTransformer.create())
-            .subscribe(ObserverContainer(mCompositeDisposable, object : ApiObserver<AccuLocationResult>() {
-                override fun onSucceed(t: AccuLocationResult) {
-                    val locationList: MutableList<Location> = ArrayList()
-                    locationList.add(convert(location, t, null))
-                    callback.requestLocationSuccess(
-                        location.latitude.toString() + "," + location.longitude,
-                        locationList
-                    )
-                }
-
-                override fun onFailed() {
-                    if (isApiLimitReached) {
-                        callback.requestLocationFailed(
-                            location.latitude.toString() + "," + location.longitude,
-                            RequestErrorType.API_LIMIT_REACHED
-                        )
-                    } else if (isApiUnauthorized) {
-                        callback.requestLocationFailed(
-                            location.latitude.toString() + "," + location.longitude,
-                            RequestErrorType.API_UNAUTHORIZED
-                        )
-                    } else {
-                        callback.requestLocationFailed(
-                            location.latitude.toString() + "," + location.longitude,
-                            RequestErrorType.REVERSE_GEOCODING_FAILED
-                        )
-                    }
-                }
-            }))
+        ).map {
+            val locationList: MutableList<Location> = ArrayList()
+            locationList.add(convert(location, it, null))
+            locationList
+        }
     }
 
     override fun cancel() {

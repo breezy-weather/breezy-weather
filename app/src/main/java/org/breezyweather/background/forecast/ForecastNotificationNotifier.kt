@@ -1,10 +1,11 @@
-package org.breezyweather.remoteviews.presenters.notification
+package org.breezyweather.background.forecast
 
 import android.app.Notification
 import android.content.Context
 import android.graphics.drawable.Icon
 import android.os.Build
 import androidx.core.app.NotificationCompat
+import cancelNotification
 import notificationBuilder
 import notify
 import org.breezyweather.R
@@ -17,13 +18,40 @@ import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.ResourcesProviderFactory
 
-/**
- * Forecast notification utils.
- */
-object ForecastNotificationIMP : AbstractRemoteViewsPresenter() {
+class ForecastNotificationNotifier(private val context: Context) {
 
-    fun buildForecastAndSendIt(context: Context, location: Location, today: Boolean) {
+    private val progressNotificationBuilder = context.notificationBuilder(Notifications.CHANNEL_FORECAST) {
+        setSmallIcon(R.drawable.ic_running_in_background)
+        setAutoCancel(false)
+        setOngoing(true)
+        setOnlyAlertOnce(true)
+    }
+
+    private val completeNotificationBuilder = context.notificationBuilder(Notifications.CHANNEL_FORECAST) {
+        setAutoCancel(false)
+    }
+
+    private fun NotificationCompat.Builder.show(id: Int) {
+        context.notify(id, build())
+    }
+
+    fun showProgress(today: Boolean): NotificationCompat.Builder {
+        val builder = with(progressNotificationBuilder) {
+            setContentTitle(context.getString(R.string.notification_running_in_background))
+
+            setProgress(0, 0, true)
+        }
+
+        builder.show(if (today) Notifications.ID_UPDATING_TODAY_FORECAST else Notifications.ID_UPDATING_TOMORROW_FORECAST)
+
+        return builder
+    }
+
+    fun showComplete(location: Location, today: Boolean) {
+        context.cancelNotification(if (today) Notifications.ID_UPDATING_TODAY_FORECAST else Notifications.ID_UPDATING_TOMORROW_FORECAST)
+
         val weather = location.weather ?: return
+        // TODO: Probably not safe if requested at 00:00 or 23:59, we should filter on date instead
         val daily = weather.dailyForecast.getOrNull(if (today) 0 else 1) ?: return
 
         val provider = ResourcesProviderFactory.newInstance
@@ -37,7 +65,7 @@ object ForecastNotificationIMP : AbstractRemoteViewsPresenter() {
         }
         val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
 
-        val notification: Notification = context.notificationBuilder(Notifications.CHANNEL_FORECAST).apply {
+        val notification: Notification = with(completeNotificationBuilder) {
             priority = NotificationCompat.PRIORITY_MAX
             setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             setSubText(if (today) context.getString(R.string.short_today) else context.getString(R.string.short_tomorrow))
@@ -46,7 +74,15 @@ object ForecastNotificationIMP : AbstractRemoteViewsPresenter() {
             setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
             setSmallIcon(ResourceHelper.getDefaultMinimalXmlIconId(weatherCode, daytime))
             weatherCode?.let {
-                setLargeIcon(drawableToBitmap(ResourceHelper.getWeatherIcon(provider, it, daytime)))
+                setLargeIcon(
+                    AbstractRemoteViewsPresenter.drawableToBitmap(
+                        ResourceHelper.getWeatherIcon(
+                            provider,
+                            it,
+                            daytime
+                        )
+                    )
+                )
             }
             setContentTitle(
                 context.getString(R.string.daytime)
@@ -59,7 +95,7 @@ object ForecastNotificationIMP : AbstractRemoteViewsPresenter() {
                         + " " + daily.night?.temperature?.getTemperature(context, temperatureUnit, 0)
             )
             setContentIntent(
-                getWeatherPendingIntent(
+                AbstractRemoteViewsPresenter.getWeatherPendingIntent(
                     context,
                     null,
                     if (today) Notifications.ID_TODAY_FORECAST else Notifications.ID_TOMORROW_FORECAST
@@ -67,7 +103,6 @@ object ForecastNotificationIMP : AbstractRemoteViewsPresenter() {
             )
         }.build()
 
-        // TODO: Why?
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && weather.current?.weatherCode != null) {
             try {
                 notification.javaClass
@@ -87,13 +122,5 @@ object ForecastNotificationIMP : AbstractRemoteViewsPresenter() {
             if (today) Notifications.ID_TODAY_FORECAST else Notifications.ID_TOMORROW_FORECAST,
             notification
         )
-    }
-
-    fun isEnabled(context: Context, today: Boolean): Boolean {
-        return if (today) {
-            SettingsManager.getInstance(context).isTodayForecastEnabled
-        } else {
-            SettingsManager.getInstance(context).isTomorrowForecastEnabled
-        }
     }
 }

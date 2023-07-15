@@ -166,7 +166,7 @@
     <string name="location_current_not_found_yet">Местоположение не задано…</string>
     <string name="settings_changes_apply_after_restart">Изменения вступят в силу после перезапуска</string>
     <string name="notification_running_in_background">Запущено в фоне для постоянного обновления</string>
-    <string name="notification_updating_weather_data">Обновление погодных данных</string>
+    <string name="notification_updating_weather_data">Обновление погодных данных (%1$d/%2$d)</string>
     <string name="message_updated_in_background">Обновлено в фоне</string>
     <string name="notification_precipitation_today">Сегодня возможны осадки.</string>
     <string name="notification_precipitation_short_term">В ближайшее время возможны осадки.</string>
@@ -386,10 +386,6 @@
     <string name="settings_section_general">Главная</string>
     <string name="settings_background_updates">Фоновые обновления</string>
     <string name="settings_background_updates_summary">Частота обновления, отладка</string>
-    <string name="settings_background_updates_method_worker">Android Worker</string>
-    <string name="settings_background_updates_method_notification">Постоянное уведомление</string>
-    <string name="settings_background_updates_method_description_notification">Постоянное уведомление
-\n Более надежный метод, но требует, чтобы приложение оставалось активным в фоновом режиме.</string>
     <string name="settings_location_access_permission_already_granted">Разрешение уже предоставлено</string>
     <string name="settings_location_access_switch_summaryOn">Разрешено. Вы можете добавить свое текущее местоположение в качестве местоположения.</string>
     <string name="settings_location_access_background_summaryOff">Пожалуйста, включите «Разрешить в фоне», чтобы иметь фоновое обновление для вашего текущего местоположения.</string>
@@ -443,7 +439,6 @@
     <string name="unit_ft_voice">Футы</string>
     <string name="unit_kgfpsqcm_voice">Килограммовая сила на квадратный сантиметр</string>
     <string name="unit_mgpcum_voice">Миллиграммы на кубический метр</string>
-    <string name="settings_background_updates_methods_title">Метод обновления</string>
     <string name="notification_channel_background_services">Фоновые сервисы</string>
     <string name="weather_source_accuweather_voice">ACCU weather.com</string>
     <string name="location_results_by">Результаты местоположения по $</string>
@@ -570,8 +565,6 @@
     <string name="dialog_permissions_location_content">Breezy Weather необходимо собирать информацию о вашем местоположении на сейчас или в фоне, чтобы предоставлять данные о погоде для вашего текущего местоположения. Для этого мы запросим некоторые разрешения. Информация о вашем местоположении будет использоваться только для получения данных о погоде в вашем текущем местоположении. Если вы не хотите делиться информацией о своем местоположении, вы можете отклонить эти требования и вручную указать свое местоположение в панели управления.</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="settings_background_updates_refresh_never">Никогда</string>
-    <string name="settings_background_updates_method_description_worker">Android Worker
-\n Рекомендуемый метод. Попробуйте переключиться, если вы не получаете уведомления или виджеты не обновляются.</string>
     <string name="settings_location_access_switch_title">Доступ к местоположению</string>
     <string name="settings_location_access_switch_summaryOff">Пожалуйста, разрешите, если вы хотите иметь возможность добавить ваше текущее местоположение в качестве местоположения.</string>
     <string name="settings_location_access_precise_summaryOff">Включите «Использовать точное местоположение», если у вас возникли проблемы с определением местоположения.</string>
@@ -594,8 +587,6 @@
     <string name="action_location_list">Список местоположений</string>
     <string name="action_choose_weather_provider">Выберите провайдера погоды</string>
     <string name="action_add_new_location">Добавить новое местоположение</string>
-    <string name="settings_background_updates_method_notification_dialog_title">Отключить категорию уведомлений</string>
-    <string name="settings_background_updates_method_notification_dialog_content">Этот метод добавляет постоянное уведомление, которое можно скрыть, отключив категорию уведомлений «$» в настройках приложения для устройства.</string>
     <string name="settings_background_updates_battery_optimization_summary">Это первое, что нужно попробовать, если вы не получаете уведомления или виджеты не обновляются.</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Не удалось открыть настройки устройства.</string>
     <string name="settings_background_updates_battery_optimization_disabled">Оптимизация батареи уже отключена.</string>

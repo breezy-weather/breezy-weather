@@ -182,7 +182,7 @@
     <string name="location_current_not_found_yet">尚未進行定位…</string>
     <string name="settings_changes_apply_after_restart">重啟後生效</string>
     <string name="notification_running_in_background">正在後台運行以保持更新數據</string>
-    <string name="notification_updating_weather_data">正在更新天氣數據</string>
+    <string name="notification_updating_weather_data">正在更新天氣數據 (%1$d/%2$d)</string>
     <string name="message_updated_in_background">已在後台完成更新</string>
     <string name="notification_precipitation_today">今日可能出現降水</string>
     <string name="notification_precipitation_short_term">未來幾小時内可能出現降水</string>

@@ -15,8 +15,8 @@ android {
         applicationId "org.breezyweather"
         minSdkVersion 21
         targetSdkVersion 33
-        versionCode 40103
-        versionName "4.1.3-beta"
+        versionCode 40200
+        versionName "4.2.0-beta"
 
         multiDexEnabled true
         ndk.abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
@@ -167,7 +167,7 @@ dependencies {
     implementation libs.preference.ktx
 
     // work.
-    implementation libs.work.runtime
+    implementation libs.work.runtime.ktx
 
     // lifecycle.
     implementation libs.bundles.lifecycle
@@ -204,6 +204,7 @@ dependencies {
     // rx java.
     implementation libs.rxjava
     implementation libs.rxandroid
+    implementation libs.kotlinx.coroutines.rx3
 
     // ui.
     implementation libs.adaptiveiconview

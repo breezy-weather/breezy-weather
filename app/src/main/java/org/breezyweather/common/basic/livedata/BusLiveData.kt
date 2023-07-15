@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import org.breezyweather.common.bus.MyObserverWrapper
 
-class BusLiveData<T> constructor(
+class BusLiveData<T>(
     private val mainHandler: Handler
 ) : MutableLiveData<T>() {
 

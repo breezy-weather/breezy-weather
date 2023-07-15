@@ -6,15 +6,12 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.provider.Settings
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.core.net.toUri
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.breezyweather.R
-import org.breezyweather.background.polling.PollingManager
-import org.breezyweather.common.basic.models.options.BackgroundUpdateMethod
+import org.breezyweather.background.weather.WeatherUpdateJob
 import org.breezyweather.common.basic.models.options.UpdateInterval
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.settings.SettingsManager
@@ -24,12 +21,13 @@ import org.breezyweather.settings.preference.composables.ListPreferenceView
 import org.breezyweather.settings.preference.composables.PreferenceScreen
 import org.breezyweather.settings.preference.composables.PreferenceView
 import org.breezyweather.common.extensions.powerManager
+import org.breezyweather.settings.preference.composables.SwitchPreferenceView
 
 @Composable
 fun BackgroundSettingsScreen(
     context: Context,
-    paddingValues: PaddingValues,
-    postNotificationPermissionEnsurer: (succeedCallback: () -> Unit) -> Unit,
+    updateInterval: UpdateInterval,
+    paddingValues: PaddingValues
 ) {
     val uriHandler = LocalUriHandler.current
     PreferenceScreen(paddingValues = paddingValues) {
@@ -37,13 +35,27 @@ fun BackgroundSettingsScreen(
         listPreferenceItem(R.string.settings_background_updates_refresh_title) { id ->
             ListPreferenceView(
                 titleId = id,
-                selectedKey = SettingsManager.getInstance(context).updateInterval.id,
+                selectedKey = updateInterval.id,
                 valueArrayId = R.array.automatic_refresh_rate_values,
                 nameArrayId = R.array.automatic_refresh_rates,
                 onValueChanged = {
                     SettingsManager
                         .getInstance(context)
                         .updateInterval = UpdateInterval.getInstance(it)
+                    WeatherUpdateJob.setupTask(context)
+                },
+            )
+        }
+        switchPreferenceItem(R.string.settings_background_updates_refresh_ignore_when_battery_low) { id ->
+            SwitchPreferenceView(
+                titleId = id,
+                summaryOnId = R.string.settings_enabled,
+                summaryOffId = R.string.settings_disabled,
+                checked = SettingsManager.getInstance(context).ignoreUpdatesWhenBatteryLow,
+                enabled = updateInterval != UpdateInterval.INTERVAL_NEVER,
+                onValueChanged = {
+                    SettingsManager.getInstance(context).ignoreUpdatesWhenBatteryLow = it
+                    WeatherUpdateJob.setupTask(context)
                 },
             )
         }
@@ -75,30 +87,6 @@ fun BackgroundSettingsScreen(
                 }
             }
         }
-        switchPreferenceItem(R.string.settings_background_updates_methods_title) { id ->
-            ListPreferenceView(
-                titleId = id,
-                selectedKey = SettingsManager.getInstance(context).backgroundUpdateMethod.id,
-                valueArrayId = R.array.background_update_method_values,
-                nameArrayId = R.array.background_update_methods,
-                summaryArrayId = R.array.background_update_method_descriptions,
-                onValueChanged = {
-                    val newBackgroundUpdateMethod = BackgroundUpdateMethod.getInstance(it)
-                    SettingsManager.getInstance(context).backgroundUpdateMethod = newBackgroundUpdateMethod
-                    if (newBackgroundUpdateMethod == BackgroundUpdateMethod.NOTIFICATION) {
-                        postNotificationPermissionEnsurer {
-                            PollingManager.resetNormalBackgroundTask(context, false)
-
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                showDisableNotificationChannelDialog(context)
-                            }
-                        }
-                    } else {
-                        PollingManager.resetNormalBackgroundTask(context, false)
-                    }
-                },
-            )
-        }
         clickablePreferenceItem(R.string.settings_background_updates_dont_kill_my_app_title) { id ->
             PreferenceView(
                 titleId = id,
@@ -118,20 +106,4 @@ fun BackgroundSettingsScreen(
 
         bottomInsetItem()
     }
-}
-
-@RequiresApi(api = Build.VERSION_CODES.O)
-private fun showDisableNotificationChannelDialog(context: Context) {
-    MaterialAlertDialogBuilder(context)
-        .setTitle(R.string.settings_background_updates_method_notification_dialog_title)
-        .setMessage(context.getString(R.string.settings_background_updates_method_notification_dialog_content).replace("$", context.getString(R.string.notification_channel_background_services)))
-        .setPositiveButton(R.string.action_continue) { _, _ ->
-            val intent = Intent().apply {
-                action = Settings.ACTION_APP_NOTIFICATION_SETTINGS
-                putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName)
-            }
-            context.startActivity(intent)
-        }
-        .setCancelable(true)
-        .show()
 }

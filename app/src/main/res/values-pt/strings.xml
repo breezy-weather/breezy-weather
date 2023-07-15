@@ -90,7 +90,7 @@
     <string name="location_current_not_found_yet">Ainda não localizado…</string>
     <string name="settings_changes_apply_after_restart">Terá efeito quando reiniciar.</string>
     <string name="notification_running_in_background">Rodando em segundo plano para manter atualizado.</string>
-    <string name="notification_updating_weather_data">Atualizando dados de clima.</string>
+    <string name="notification_updating_weather_data">Atualizando dados de clima (%1$d/%2$d)</string>
     <!-- action -->
     <string name="alerts">Alerta</string>
     <string name="action_search">Pesquisa</string>

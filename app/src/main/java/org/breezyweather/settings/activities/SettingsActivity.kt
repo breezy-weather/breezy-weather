@@ -39,6 +39,9 @@ private const val PERMISSION_CODE_POST_NOTIFICATION = 0
 
 class SettingsActivity : GeoActivity() {
 
+    private val updateIntervalState = mutableStateOf(
+        SettingsManager.getInstance(this).updateInterval
+    )
     private val cardDisplayState = mutableStateOf(
         SettingsManager.getInstance(this).cardDisplayList
     )
@@ -76,6 +79,11 @@ class SettingsActivity : GeoActivity() {
         }
 
         EventBus.instance.with(SettingsChangedMessage::class.java).observe(this) {
+            val updateInterval = SettingsManager.getInstance(this).updateInterval
+            if (updateIntervalState.value != updateInterval) {
+                updateIntervalState.value = updateInterval
+            }
+
             val cardDisplayList = SettingsManager.getInstance(this).cardDisplayList
             if (cardDisplayState.value != cardDisplayList) {
                 cardDisplayState.value = cardDisplayList
@@ -176,22 +184,8 @@ class SettingsActivity : GeoActivity() {
                 composable(SettingsScreenRouter.BackgroundUpdates.route) {
                     BackgroundSettingsScreen(
                         context = this@SettingsActivity,
-                        paddingValues = paddings,
-                        postNotificationPermissionEnsurer = { succeedCallback ->
-                            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
-                                succeedCallback()
-                                return@BackgroundSettingsScreen
-                            }
-                            if (this@SettingsActivity.hasPermission(Manifest.permission.POST_NOTIFICATIONS)) {
-                                return@BackgroundSettingsScreen
-                            }
-
-                            requestPostNotificationPermissionSucceedCallback = succeedCallback
-                            requestPermissions(
-                                arrayOf(Manifest.permission.POST_NOTIFICATIONS),
-                                PERMISSION_CODE_POST_NOTIFICATION
-                            )
-                        }
+                        updateInterval = remember { updateIntervalState }.value,
+                        paddingValues = paddings
                     )
                 }
                 composable(SettingsScreenRouter.Appearance.route) {

@@ -11,13 +11,16 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import androidx.annotation.WorkerThread
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
 import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
+import io.reactivex.rxjava3.core.Observable
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.rx3.rxObservable
 import org.breezyweather.location.LocationService
 
 // static.
@@ -90,53 +93,61 @@ open class AndroidLocationService : LocationService(), LocationListener {
     private var fusedLocationClient: FusedLocationProviderClient? = null
 
     private var currentProvider = ""
-    private var locationCallback: ((Result?) -> Unit)? = null
     private var lastKnownLocation: Location? = null
     private var gmsLastKnownLocation: Location? = null
 
-    override fun requestLocation(context: Context, callback: (Result?) -> Unit) {
-        cancel()
+    override fun requestLocation(context: Context): Observable<Result> {
+        return rxObservable {
+            cancel()
 
-        locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager?
-        fusedLocationClient = if (isGMSEnabled(context)) {
-            LocationServices.getFusedLocationProviderClient(context)
-        } else null
+            locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager?
+            fusedLocationClient = if (isGMSEnabled(context)) {
+                LocationServices.getFusedLocationProviderClient(context)
+            } else null
+            if (locationManager == null
+                || !hasPermissions(context)
+                || !isLocationEnabled(locationManager!!)
+                || getBestProvider(locationManager!!).also { currentProvider = it }
+                    .isEmpty()
+            ) {
+                throw Exception("Location manager not ready, no permissions, no location enabled or no provider available")
+            }
 
-        if (locationManager == null
-            || !hasPermissions(context)
-            || !isLocationEnabled(locationManager!!)
-            || getBestProvider(locationManager!!).also { currentProvider = it }.isEmpty()) {
-            callback(null)
-            return
-        }
+            lastKnownLocation = getLastKnownLocation(locationManager!!)
 
-        locationCallback = callback
-        lastKnownLocation = getLastKnownLocation(locationManager!!)
-
-        locationManager!!.requestLocationUpdates(
-            currentProvider,
-            0,
-            0f,
-            this,
-            Looper.getMainLooper()
-        )
-        fusedLocationClient?.let { client ->
-            client.requestLocationUpdates(
-                LocationRequest
-                    .create()
-                    .setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY)
-                    .setNumUpdates(1),
-                gmsLocationCallback,
+            locationManager!!.requestLocationUpdates(
+                currentProvider,
+                0L,
+                0F,
+                this@AndroidLocationService,
                 Looper.getMainLooper()
             )
-            client.lastLocation.addOnSuccessListener {
-                gmsLastKnownLocation = it
+            fusedLocationClient?.let { client ->
+                client.requestLocationUpdates(
+                    LocationRequest
+                        .create()
+                        .setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY)
+                        .setNumUpdates(1),
+                    gmsLocationCallback,
+                    Looper.getMainLooper()
+                )
+                client.lastLocation.addOnSuccessListener {
+                    gmsLastKnownLocation = it
+                }
+            }
+
+            delay(TIMEOUT_MILLIS)
+
+            gmsLastKnownLocation?.let {
+                send(Result(it.latitude.toFloat(), it.longitude.toFloat()))
+            } ?: run {
+                getLastKnownLocation(locationManager!!)?.let {
+                    send(Result(it.latitude.toFloat(), it.longitude.toFloat()))
+                } ?: run {
+                    throw Exception("Timeout")
+                }
             }
         }
-        timer.postDelayed({
-            cancel()
-            handleLocation(gmsLastKnownLocation ?: lastKnownLocation)
-        }, TIMEOUT_MILLIS)
     }
 
     override fun cancel() {
@@ -151,25 +162,10 @@ open class AndroidLocationService : LocationService(), LocationListener {
             Manifest.permission.ACCESS_FINE_LOCATION
         )
 
-    private fun handleLocation(location: Location?) {
-        locationCallback?.invoke(
-            location?.let { buildResult(it) }
-        )
-    }
-
-    @WorkerThread
-    private fun buildResult(location: Location): Result {
-        return Result(
-            location.latitude.toFloat(),
-            location.longitude.toFloat()
-        )
-    }
-
     // location listener.
-
     override fun onLocationChanged(location: Location) {
         cancel()
-        handleLocation(location)
+        // do nothing.
     }
 
     override fun onStatusChanged(provider: String, status: Int, extras: Bundle) {
@@ -185,12 +181,11 @@ open class AndroidLocationService : LocationService(), LocationListener {
     }
 
     // location callback.
-
-    private val gmsLocationCallback = object: com.google.android.gms.location.LocationCallback() {
+    private val gmsLocationCallback = object: LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult) {
             if (locationResult.locations.isNotEmpty()) {
                 cancel()
-                handleLocation(locationResult.locations[0])
+                // do nothing.
             }
         }
     }

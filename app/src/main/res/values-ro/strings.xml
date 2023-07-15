@@ -188,7 +188,7 @@
     <string name="location_current_not_found_yet">Fără locații momentan…</string>
     <string name="settings_changes_apply_after_restart">Modificările vor fi vizibile după repornirea aplicației</string>
     <string name="notification_running_in_background">Datele se actualizează în fundal</string>
-    <string name="notification_updating_weather_data">Se actualizează datele meteo</string>
+    <string name="notification_updating_weather_data">Se actualizează datele meteo (%1$d/%2$d)</string>
     <string name="message_updated_in_background">Date actualizate în fundal</string>
     <string name="notification_precipitation_today">Astăzi pot fi precipitații.</string>
     <string name="notification_precipitation_short_term">Posibile precipitații în următoarele ore.</string>
@@ -509,14 +509,6 @@
     <string name="settings_background_updates_battery_optimization_summary">Acesta este primul lucru pe care trebuie să-l încercați când nu primiți notificări sau widget-urile nu se reîmprospătează.</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Nu s-au putut deschide setările dispozitivului.</string>
     <string name="settings_background_updates_battery_optimization_disabled">Optimizarea bateriei este deja dezactivată.</string>
-    <string name="settings_background_updates_methods_title">Metoda de actualizare</string>
-    <string name="settings_background_updates_method_worker">Android Worker</string>
-    <string name="settings_background_updates_method_description_worker">Android Worker
-\nMetodă recomandată. Încercați să comutați dacă nu primiți notificări sau widget-urile nu se reîmprospătează.</string>
-    <string name="settings_background_updates_method_notification">Notificare persistentă</string>
-    <string name="settings_background_updates_method_description_notification">Notificare persistentă
-\nMetodă mai fiabilă, dar necesită ca aplicația să rămână activă în fundal.</string>
-    <string name="settings_background_updates_method_notification_dialog_title">Dezactivați categoria de notificare</string>
     <string name="settings_widgets_monochrome_icons_title">Pictograme Monocrom</string>
     <string name="settings_widgets_day_night_temp_reversed_title">Inversați ordinea temperaturilor zi/noapte</string>
     <string name="settings_widgets_notification_persistent_switch">Persistent</string>
@@ -558,7 +550,6 @@
     <string name="weather_api_limit_reached_title">Limita de solicitări API a fost atinsă</string>
     <string name="weather_api_limit_reached_content">Pentru a rezolva limita, adăugați propria cheie API.</string>
     <string name="weather_source_accu_preference_days_15">15 zile</string>
-    <string name="settings_background_updates_method_notification_dialog_content">Această metodă adaugă o notificare persistentă care poate fi ascunsă prin dezactivarea categoriei de notificare “$” în setările aplicației dispozitivului.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Instrucțiuni specifice ale producătorului</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Unii producători au restricții suplimentare pentru aplicații care distrug serviciile de fundal. Site-ul web Don’t kill my app! are informații despre cum să o remediați.</string>
     <string name="settings_main_section_displayed_data">Date afișate</string>

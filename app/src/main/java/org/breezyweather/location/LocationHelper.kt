@@ -4,6 +4,9 @@ import android.Manifest
 import android.content.Context
 import android.os.Build
 import dagger.hilt.android.qualifiers.ApplicationContext
+import io.reactivex.rxjava3.core.Observable
+import kotlinx.coroutines.rx3.awaitSingle
+import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.provider.LocationProvider
 import org.breezyweather.common.extensions.hasPermission
@@ -11,9 +14,7 @@ import org.breezyweather.common.extensions.isOnline
 import org.breezyweather.db.repositories.LocationEntityRepository
 import org.breezyweather.location.baiduip.BaiduIPLocationService
 import org.breezyweather.location.services.AndroidLocationService
-import org.breezyweather.main.utils.RequestErrorType
 import org.breezyweather.settings.SettingsManager
-import org.breezyweather.weather.WeatherService
 import org.breezyweather.weather.WeatherServiceSet
 import java.util.TimeZone
 import javax.inject.Inject
@@ -31,11 +32,6 @@ class LocationHelper @Inject constructor(
         baiduIPService
     )
 
-    interface OnRequestLocationListener {
-        fun requestLocationSuccess(requestLocation: Location)
-        fun requestLocationFailed(requestLocation: Location, requestErrorType: RequestErrorType)
-    }
-
     private fun getLocationService(provider: LocationProvider): LocationService {
         return when (provider) {
             LocationProvider.BAIDU_IP -> mLocationServices[1]
@@ -43,88 +39,57 @@ class LocationHelper @Inject constructor(
         }
     }
 
-    fun requestCurrentLocation(
-        context: Context, location: Location, background: Boolean,
-        l: OnRequestLocationListener
-    ) {
-        val usableCheckListener: OnRequestLocationListener = object : OnRequestLocationListener {
-            override fun requestLocationSuccess(requestLocation: Location) {
-                l.requestLocationSuccess(requestLocation)
+    suspend fun getCurrentLocationWithReverseGeocoding(
+        context: Context, location: Location, background: Boolean
+    ): Location {
+        val currentLocation = requestCurrentLocation(context, location, background).awaitSingle()
+        val source = SettingsManager.getInstance(context).weatherSource
+        val weatherService = mWeatherServiceSet[source]
+        return weatherService.requestReverseGeocodingLocation(context, currentLocation).map { locationList ->
+            if (locationList.isNotEmpty()) {
+                val src = locationList[0]
+                val locationWithGeocodeInfo = src.copy(isCurrentPosition = true)
+                LocationEntityRepository.writeLocation(locationWithGeocodeInfo)
+                locationWithGeocodeInfo
+            } else {
+                throw Exception(context.getString(R.string.location_message_reverse_geocoding_failed))
             }
+        }.awaitSingle()
+    }
 
-            override fun requestLocationFailed(requestLocation: Location, requestErrorType: RequestErrorType) {
-                l.requestLocationFailed(requestLocation, requestErrorType)
-            }
-        }
+    fun requestCurrentLocation(
+        context: Context, location: Location, background: Boolean
+    ): Observable<Location> {
         val provider = SettingsManager.getInstance(context).locationProvider
-        val service = getLocationService(provider)
-        if (service.permissions.isNotEmpty()) {
+        val locationService = getLocationService(provider)
+        if (locationService.permissions.isNotEmpty()) {
             if (!context.isOnline()) {
-                usableCheckListener.requestLocationFailed(location, RequestErrorType.NETWORK_UNAVAILABLE)
-                return
+                return Observable.error(Exception(context.getString(R.string.message_network_unavailable)))
             }
             // if needs any location permission.
             if (!context.hasPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
                 && !context.hasPermission(Manifest.permission.ACCESS_FINE_LOCATION)
             ) {
-                usableCheckListener.requestLocationFailed(location, RequestErrorType.ACCESS_LOCATION_PERMISSION_MISSING)
-                return
+                return Observable.error(Exception(context.getString(R.string.location_message_permission_missing)))
             }
             if (background) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
                     && !context.hasPermission(Manifest.permission.ACCESS_BACKGROUND_LOCATION)
                 ) {
-                    usableCheckListener.requestLocationFailed(
-                        location,
-                        RequestErrorType.ACCESS_BACKGROUND_LOCATION_PERMISSION_MISSING
-                    )
-                    return
+                    return Observable.error(Exception(context.getString(R.string.location_message_permission_background_missing)))
                 }
             }
         }
 
-        // 1. get location by location service.
-        // 2. get available location by weather service.
-        service.requestLocation(context) { result: LocationService.Result? ->
-            if (result == null) {
-                usableCheckListener.requestLocationFailed(location, RequestErrorType.LOCATION_FAILED)
-                return@requestLocation
-            }
-            requestAvailableWeatherLocation(
-                context,
+        return locationService
+            .requestLocation(context)
+            .map { result ->
                 location.copy(
                     latitude = result.latitude,
                     longitude = result.longitude,
                     timeZone = TimeZone.getDefault()
-                ),
-                usableCheckListener
-            )
-        }
-    }
-
-    private fun requestAvailableWeatherLocation(
-        context: Context,
-        location: Location,
-        l: OnRequestLocationListener
-    ) {
-        val source = SettingsManager.getInstance(context).weatherSource
-        val service = mWeatherServiceSet[source]
-        service.requestReverseLocationSearch(context, location, object : WeatherService.RequestLocationCallback {
-            override fun requestLocationSuccess(query: String, locationList: List<Location>) {
-                if (locationList.isNotEmpty()) {
-                    val src = locationList[0]
-                    val result = src.copy(isCurrentPosition = true)
-                    LocationEntityRepository.writeLocation(result)
-                    l.requestLocationSuccess(result)
-                } else {
-                    requestLocationFailed(query, RequestErrorType.LOCATION_FAILED)
-                }
+                )
             }
-
-            override fun requestLocationFailed(query: String, requestErrorType: RequestErrorType) {
-                l.requestLocationFailed(location, requestErrorType)
-            }
-        })
     }
 
     fun cancel() {
