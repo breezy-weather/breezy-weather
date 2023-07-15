@@ -20,6 +20,7 @@ import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimationMode
 import org.breezyweather.common.extensions.isMotionReduced
 import org.breezyweather.common.ui.widgets.SwipeSwitchLayout
+import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.databinding.FragmentHomeBinding
 import org.breezyweather.main.MainActivityViewModel
 import org.breezyweather.main.adapters.main.MainAdapter
@@ -433,7 +434,7 @@ class HomeFragment : MainModuleFragment() {
             adapter?.onScroll()
 
             // set translation y of toolbar.
-            if (adapter != null && mFirstCardMarginTop > 0) {
+            if (adapter != null) {
                 if (mScrollY < (adapter!!.headerTop - binding.appBar.measuredHeight)) {
                     // Keep app bar on top until we reach top of temperature
                     binding.appBar.translationY = 0f
