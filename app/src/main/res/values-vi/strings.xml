@@ -524,4 +524,11 @@
     <string name="location_search_no_results_advice">Hãy chắc rằng tìm kiếm của bạn được đánh vần đúng và không quá cụ thể. Thay vào đó, bạn có thể thử một nhà cung cấp thời tiết khác có thể cho ra kết quả tìm kiếm địa điểm khác nhau.</string>
     <string name="dialog_permissions_notification_title">Theo kịp thông tin</string>
     <string name="dialog_permissions_notification_content">Bấm vào đây để bật thông báo về cảnh báo thời tiết, hoặc quyết định sau trong Cài đặt.</string>
+    <string name="notification_style_native">Thuần</string>
+    <string name="notification_style_cities">Các thành phố</string>
+    <string name="location_search_no_results">$1 không thể tìm $2</string>
+    <string name="settings_background_updates_refresh_ignore_when_battery_low">Bỏ qua khi pin yếu</string>
+    <string name="action_show_errors">Bấm để xem chi tiết</string>
+    <string name="wind_strength">Sức gió</string>
+    <string name="notification_update_error">%1$d cập nhật thất bại</string>
 </resources>
