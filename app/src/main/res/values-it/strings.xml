@@ -537,4 +537,17 @@
     <string name="settings_location_access_permission_already_granted">Autorizzazione già fornita</string>
     <string name="settings_location_access_background_summaryOff">Selezionare “Consenti sempre” per ottenere aggiornamenti relativi alla propria posizione corrente.</string>
     <string name="settings_location_access_precise_summaryOff">Abilitare “Utilizza posizione esatta” se si hanno problemi nell’ottenere la propria posizione.</string>
+    <string name="settings_location_access_switch_title">Accesso alla posizione</string>
+    <string name="settings_location_access_precise_title">Uso GPS del dispositivo</string>
+    <string name="settings_weather_providers">Fornitori meteo</string>
+    <string name="air_quality_pm_info_title">Particolati (PM2.5 &amp; PM10)</string>
+    <string name="notification_channel_widget">Widget</string>
+    <string name="weather_refresh_skipped_already_recently_updated">Già aggiornato di recente</string>
+    <string name="air_quality_index">Indice Qualità dell\'Aria</string>
+    <string name="air_quality_co">CO</string>
+    <string name="air_quality_o3">O₃</string>
+    <string name="air_quality_no2">NO₂</string>
+    <string name="air_quality_so2">SO₂</string>
+    <string name="air_quality_pm25">PM2.5</string>
+    <string name="air_quality_pm10">PM10</string>
 </resources>
