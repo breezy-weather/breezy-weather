@@ -22,7 +22,7 @@ class WindHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
     private val mDirectionText: TextView = itemView.findViewById(R.id.item_weather_daily_wind_directionValue)
     private val mSpeed: LinearLayout = itemView.findViewById(R.id.item_weather_daily_wind_speed)
     private val mSpeedText: TextView = itemView.findViewById(R.id.item_weather_daily_wind_speedValue)
-    private val mGaugeText: TextView = itemView.findViewById(R.id.item_weather_daily_wind_levelValue)
+    private val mStrengthText: TextView = itemView.findViewById(R.id.item_weather_daily_wind_strengthValue)
     private val mSpeedUnit: SpeedUnit = SettingsManager.getInstance(parent.context).speedUnit
 
     @SuppressLint("SetTextI18n", "RestrictedApi")
@@ -52,7 +52,7 @@ class WindHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
                 mSpeed.visibility = View.GONE
             }
             talkBackBuilder.append(", ").append(wind.level)
-            mGaugeText.text = wind.level
+            mStrengthText.text = wind.level
             itemView.contentDescription = talkBackBuilder.toString()
         } else {
             // TODO: Hide

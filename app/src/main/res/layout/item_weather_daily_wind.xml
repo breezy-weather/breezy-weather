@@ -65,19 +65,19 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/item_weather_daily_wind_level"
+            android:id="@+id/item_weather_daily_wind_strength"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/little_margin"
             android:orientation="vertical">
 
             <TextView
-                android:text="@string/wind_level"
+                android:text="@string/wind_strength"
                 android:importantForAccessibility="no"
                 style="@style/subtitle_text" />
 
             <TextView
-                android:id="@+id/item_weather_daily_wind_levelValue"
+                android:id="@+id/item_weather_daily_wind_strengthValue"
                 android:textStyle="bold"
                 android:importantForAccessibility="no"
                 style="@style/title_text"

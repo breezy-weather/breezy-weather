@@ -118,7 +118,7 @@ class HourlyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUn
             TrendRecyclerView.KeyLine(
                 Wind.WIND_SPEED_3,
                 mSpeedUnit.getValueTextWithoutUnit(Wind.WIND_SPEED_3),
-                activity.getString(R.string.wind_level_3),
+                activity.getString(R.string.wind_strength_3),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
         )
@@ -126,7 +126,7 @@ class HourlyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUn
             TrendRecyclerView.KeyLine(
                 Wind.WIND_SPEED_7,
                 mSpeedUnit.getValueTextWithoutUnit(Wind.WIND_SPEED_7),
-                activity.getString(R.string.wind_level_7),
+                activity.getString(R.string.wind_strength_7),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
         )
@@ -134,7 +134,7 @@ class HourlyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUn
             TrendRecyclerView.KeyLine(
                 -Wind.WIND_SPEED_3,
                 mSpeedUnit.getValueTextWithoutUnit(Wind.WIND_SPEED_3),
-                activity.getString(R.string.wind_level_3),
+                activity.getString(R.string.wind_strength_3),
                 TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
             )
         )
@@ -142,7 +142,7 @@ class HourlyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUn
             TrendRecyclerView.KeyLine(
                 -Wind.WIND_SPEED_7,
                 mSpeedUnit.getValueTextWithoutUnit(Wind.WIND_SPEED_7),
-                activity.getString(R.string.wind_level_7),
+                activity.getString(R.string.wind_strength_7),
                 TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
             )
         )

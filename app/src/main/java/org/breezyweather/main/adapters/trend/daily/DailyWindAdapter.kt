@@ -132,7 +132,7 @@ class DailyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUni
             TrendRecyclerView.KeyLine(
                 Wind.WIND_SPEED_3,
                 unit.getValueTextWithoutUnit(Wind.WIND_SPEED_3),
-                activity.getString(R.string.wind_level_3),
+                activity.getString(R.string.wind_strength_3),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
         )
@@ -140,7 +140,7 @@ class DailyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUni
             TrendRecyclerView.KeyLine(
                 Wind.WIND_SPEED_7,
                 unit.getValueTextWithoutUnit(Wind.WIND_SPEED_7),
-                activity.getString(R.string.wind_level_7),
+                activity.getString(R.string.wind_strength_7),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
         )
@@ -148,7 +148,7 @@ class DailyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUni
             TrendRecyclerView.KeyLine(
                 -Wind.WIND_SPEED_3,
                 unit.getValueTextWithoutUnit(Wind.WIND_SPEED_3),
-                activity.getString(R.string.wind_level_3),
+                activity.getString(R.string.wind_strength_3),
                 TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
             )
         )
@@ -156,7 +156,7 @@ class DailyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUni
             TrendRecyclerView.KeyLine(
                 -Wind.WIND_SPEED_7,
                 unit.getValueTextWithoutUnit(Wind.WIND_SPEED_7),
-                activity.getString(R.string.wind_level_7),
+                activity.getString(R.string.wind_strength_7),
                 TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
             )
         )

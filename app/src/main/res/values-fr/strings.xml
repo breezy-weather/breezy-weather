@@ -16,7 +16,7 @@
     <string name="wind">Vent</string>
     <string name="wind_direction">Direction du vent</string>
     <string name="wind_speed">Vitesse du vent</string>
-    <string name="wind_level">Force du vent</string><!-- Selon l’échelle de Beaufort -->
+    <!-- Selon l’échelle de Beaufort -->
     <string name="humidity">Humidité</string>
     <string name="uv_index">Indice UV</string>
     <string name="hours_of_sun">Heures d’ensoleillement</string>
@@ -65,19 +65,20 @@
     <string name="precipitation_snow">Neige</string>
     <string name="precipitation_ice">Verglas</string>
 
-    <string name="wind_level_0">Calme</string>
-    <string name="wind_level_1">Très légère brise</string>
-    <string name="wind_level_2">Légère brise</string>
-    <string name="wind_level_3">Petite brise</string>
-    <string name="wind_level_4">Jolie brise</string>
-    <string name="wind_level_5">Bonne brise</string>
-    <string name="wind_level_6">Vent frais</string>
-    <string name="wind_level_7">Grand frais</string>
-    <string name="wind_level_8">Coup de vent</string>
-    <string name="wind_level_9">Fort coup de vent</string>
-    <string name="wind_level_10">Tempête</string>
-    <string name="wind_level_11">Violente tempête</string>
-    <string name="wind_level_12">Ouragan</string>
+    <string name="wind_strength">Force du vent</string>
+    <string name="wind_strength_0">Calme</string>
+    <string name="wind_strength_1">Très légère brise</string>
+    <string name="wind_strength_2">Légère brise</string>
+    <string name="wind_strength_3">Petite brise</string>
+    <string name="wind_strength_4">Jolie brise</string>
+    <string name="wind_strength_5">Bonne brise</string>
+    <string name="wind_strength_6">Vent frais</string>
+    <string name="wind_strength_7">Grand frais</string>
+    <string name="wind_strength_8">Coup de vent</string>
+    <string name="wind_strength_9">Fort coup de vent</string>
+    <string name="wind_strength_10">Tempête</string>
+    <string name="wind_strength_11">Violente tempête</string>
+    <string name="wind_strength_12">Ouragan</string>
 
     <string name="wind_direction_short_variable">Variable</string>
     <string name="wind_direction_short_N">N</string>
@@ -109,11 +110,11 @@
     <string name="allergen_tree">Arbres</string>
 
     <!-- UV levels -->
-    <string name="uv_level_0_2">Faible</string>
-    <string name="uv_level_3_5">Modéré</string>
-    <string name="uv_level_6_7">Élevé</string>
-    <string name="uv_level_8_10">Très élevé</string>
-    <string name="uv_level_11">Extrême</string>
+    <string name="uv_index_0_2">Faible</string>
+    <string name="uv_index_3_5">Modéré</string>
+    <string name="uv_index_6_7">Élevé</string>
+    <string name="uv_index_8_10">Très élevé</string>
+    <string name="uv_index_11">Extrême</string>
 
     <string name="daily_forecast">Prévisions quotidiennes</string>
     <string name="hourly_forecast">Prévisions heure par heure</string>
@@ -356,7 +357,7 @@
     <string name="action_add_current_location">Ajouter ma position actuelle</string>
     <string name="settings_items_drag_to_sort">Maintenez puis déplacez les éléments de la liste pour les ordonner</string>
     <string name="settings_item_delete">Supprimer cet élément</string>
-    <string name="location_swipe_to_delete">Vous pouvez glisser vers la gauche pour supprimer cet élément</string>
+    <string name="location_swipe_to_delete">Vous pouvez balayer vers la gauche pour supprimer cet élément</string>
     <string name="weather_data_by">Données par $</string> <!-- $ = weather source. -->
     <string name="weather_air_quality_and_pollen_data_by">Données de qualité de l’air et de pollen par $</string>
     <string name="location_results_by">Résultats d’emplacement par $</string> <!-- $ = location provider -->
