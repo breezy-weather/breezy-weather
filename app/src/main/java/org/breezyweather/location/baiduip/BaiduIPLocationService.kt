@@ -4,6 +4,8 @@ import android.content.Context
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import org.breezyweather.R
+import org.breezyweather.common.exceptions.ApiKeyMissingException
+import org.breezyweather.common.exceptions.LocationException
 import org.breezyweather.common.rxjava.SchedulerTransformer
 import org.breezyweather.location.LocationService
 import org.breezyweather.settings.SettingsManager
@@ -17,7 +19,7 @@ class BaiduIPLocationService @Inject constructor(
     override fun requestLocation(context: Context): Observable<Result> {
         val apiKey = SettingsManager.getInstance(context).providerBaiduIpLocationAk
         if (apiKey.isEmpty()) {
-            return Observable.error(Exception(context.getString(R.string.weather_api_key_required_missing_title)))
+            return Observable.error(ApiKeyMissingException())
         }
         return mApi.getLocation(apiKey, "gcj02")
             .compose(SchedulerTransformer.create())
@@ -26,7 +28,7 @@ class BaiduIPLocationService @Inject constructor(
                     || t.content.point.y.isNullOrEmpty()
                     || t.content.point.x.isNullOrEmpty()
                 ) {
-                    throw Exception(context.getString(R.string.location_message_failed_to_locate))
+                    throw LocationException()
                 } else {
                     try {
                         Result(
@@ -34,7 +36,7 @@ class BaiduIPLocationService @Inject constructor(
                             t.content.point.x.toFloat()
                         )
                     } catch (ignore: Exception) {
-                        throw Exception(context.getString(R.string.location_message_failed_to_locate))
+                        throw LocationException()
                     }
                 }
             }

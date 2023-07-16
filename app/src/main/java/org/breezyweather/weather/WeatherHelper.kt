@@ -8,6 +8,9 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.provider.WeatherSource
 import org.breezyweather.common.basic.models.weather.Weather
+import org.breezyweather.common.exceptions.LocationException
+import org.breezyweather.common.exceptions.NoNetworkException
+import org.breezyweather.common.exceptions.ParsingException
 import org.breezyweather.common.extensions.isOnline
 import org.breezyweather.common.rxjava.ApiObserver
 import org.breezyweather.common.rxjava.ObserverContainer
@@ -37,9 +40,9 @@ class WeatherHelper @Inject constructor(
     ): Observable<Weather> {
         val service = mServiceSet[location.weatherSource]
         if (!context.isOnline()) {
-            return Observable.error(Exception(context.getString(R.string.message_network_unavailable)))
+            return Observable.error(NoNetworkException())
         } else if (!location.isUsable) {
-            return Observable.error(Exception(context.getString(R.string.location_message_failed_to_locate)))
+            return Observable.error(LocationException())
         }
 
         return service
@@ -52,7 +55,7 @@ class WeatherHelper @Inject constructor(
                     }
                     t.result
                 } else {
-                    throw Exception(context.getString(R.string.weather_message_data_refresh_failed))
+                    throw ParsingException()
                 }
             }
     }

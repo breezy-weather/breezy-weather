@@ -13,6 +13,8 @@ import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.provider.WeatherSource
+import org.breezyweather.common.exceptions.ApiKeyMissingException
+import org.breezyweather.common.exceptions.ReverseGeocodingException
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.rxjava.ApiObserver
@@ -46,7 +48,7 @@ class MfWeatherService @Inject constructor(
         context: Context, location: Location
     ): Observable<WeatherResultWrapper> {
         if (!isConfigured(context)) {
-            return Observable.error(Exception(context.getString(R.string.weather_api_key_required_missing_title)))
+            return Observable.error(ApiKeyMissingException())
         }
         val languageCode = SettingsManager.getInstance(context).language.code
         val token = getToken(context)
@@ -175,7 +177,7 @@ class MfWeatherService @Inject constructor(
         location: Location
     ): Observable<List<Location>> {
         if (!isConfigured(context)) {
-            return Observable.error(Exception(context.getString(R.string.weather_api_key_required_missing_title)))
+            return Observable.error(ApiKeyMissingException())
         }
         return mMfApi.getForecast(
             userAgent,
@@ -190,7 +192,7 @@ class MfWeatherService @Inject constructor(
                 locationList.add(locationConverted)
                 locationList
             } else {
-                throw Exception(context.getString(R.string.location_message_reverse_geocoding_failed))
+                throw ReverseGeocodingException()
             }
         }
     }

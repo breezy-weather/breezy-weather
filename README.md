@@ -101,6 +101,13 @@ alt="Get it on GitHub" align="center" height="80" />
 * [Weather providers comparison](docs/PROVIDERS.md)
 
 
+# Contribute
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+* [Create a new weather provider guide](CONTRIBUTE.md)
+
+
 # Translations
 
 Translation is done externally [on Weblate](https://hosted.weblate.org/projects/breezy-weather/breezy-weather-android/#information). Please read carefully project instructions if you want to help.

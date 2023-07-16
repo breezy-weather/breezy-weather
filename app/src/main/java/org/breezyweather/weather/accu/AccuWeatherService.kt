@@ -6,6 +6,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
+import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.weather.WeatherService
 import org.breezyweather.weather.accu.json.*
@@ -23,7 +24,7 @@ class AccuWeatherService @Inject constructor(
         context: Context, location: Location
     ): Observable<WeatherResultWrapper> {
         if (!isConfigured(context)) {
-            return Observable.error(Exception(context.getString(R.string.weather_api_key_required_missing_title)))
+            return Observable.error(ApiKeyMissingException())
         }
         val apiKey = getApiKey(context)
         val settings = SettingsManager.getInstance(context)
@@ -135,7 +136,7 @@ class AccuWeatherService @Inject constructor(
         location: Location
     ): Observable<List<Location>> {
         if (!isConfigured(context)) {
-            return Observable.error(Exception(context.getString(R.string.weather_api_key_required_missing_title)))
+            return Observable.error(ApiKeyMissingException())
         }
         val apiKey = getApiKey(context)
         val languageCode = SettingsManager.getInstance(context).language.code

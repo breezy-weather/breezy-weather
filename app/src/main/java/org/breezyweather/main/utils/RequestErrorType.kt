@@ -15,6 +15,9 @@ enum class RequestErrorType(
     NETWORK_UNAVAILABLE(
         shortMessage = R.string.message_network_unavailable
     ),
+    SERVER_TIMEOUT(
+        shortMessage = R.string.message_server_timeout
+    ),
     API_KEY_REQUIRED_MISSING(
         shortMessage = R.string.weather_api_key_required_missing_title,
         showDialogAction = {
@@ -44,6 +47,16 @@ enum class RequestErrorType(
                 R.string.weather_api_unauthorized_content
             )
         }
+    ),
+    PARSING_ERROR(
+        shortMessage = R.string.message_parsing_error_title,
+        /*showDialogAction = { TODO
+            ParsingErrorHelpDialog.show(
+                it,
+                R.string.message_parsing_error_title,
+                R.string.message_parsing_error_content
+            )
+        }*/
     ),
 
     // Location-specific

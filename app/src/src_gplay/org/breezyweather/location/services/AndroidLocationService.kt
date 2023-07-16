@@ -21,6 +21,8 @@ import com.google.android.gms.location.LocationServices
 import io.reactivex.rxjava3.core.Observable
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.rx3.rxObservable
+import org.breezyweather.common.exceptions.LocationException
+import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.location.LocationService
 
 // static.
@@ -110,7 +112,8 @@ open class AndroidLocationService : LocationService(), LocationListener {
                 || getBestProvider(locationManager!!).also { currentProvider = it }
                     .isEmpty()
             ) {
-                throw Exception("Location manager not ready, no permissions, no location enabled or no provider available")
+                LogHelper.log(msg = "Location manager not ready, no permissions, no location enabled or no provider available")
+                throw LocationException()
             }
 
             lastKnownLocation = getLastKnownLocation(locationManager!!)
@@ -144,7 +147,7 @@ open class AndroidLocationService : LocationService(), LocationListener {
                 getLastKnownLocation(locationManager!!)?.let {
                     send(Result(it.latitude.toFloat(), it.longitude.toFloat()))
                 } ?: run {
-                    throw Exception("Timeout")
+                    throw LocationException()
                 }
             }
         }

@@ -9,6 +9,10 @@ import kotlinx.coroutines.rx3.awaitSingle
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.provider.LocationProvider
+import org.breezyweather.common.exceptions.MissingPermissionLocationBackgroundException
+import org.breezyweather.common.exceptions.MissingPermissionLocationException
+import org.breezyweather.common.exceptions.NoNetworkException
+import org.breezyweather.common.exceptions.ReverseGeocodingException
 import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.isOnline
 import org.breezyweather.db.repositories.LocationEntityRepository
@@ -52,7 +56,7 @@ class LocationHelper @Inject constructor(
                 LocationEntityRepository.writeLocation(locationWithGeocodeInfo)
                 locationWithGeocodeInfo
             } else {
-                throw Exception(context.getString(R.string.location_message_reverse_geocoding_failed))
+                throw ReverseGeocodingException()
             }
         }.awaitSingle()
     }
@@ -64,19 +68,19 @@ class LocationHelper @Inject constructor(
         val locationService = getLocationService(provider)
         if (locationService.permissions.isNotEmpty()) {
             if (!context.isOnline()) {
-                return Observable.error(Exception(context.getString(R.string.message_network_unavailable)))
+                return Observable.error(NoNetworkException())
             }
             // if needs any location permission.
             if (!context.hasPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
                 && !context.hasPermission(Manifest.permission.ACCESS_FINE_LOCATION)
             ) {
-                return Observable.error(Exception(context.getString(R.string.location_message_permission_missing)))
+                return Observable.error(MissingPermissionLocationException())
             }
             if (background) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
                     && !context.hasPermission(Manifest.permission.ACCESS_BACKGROUND_LOCATION)
                 ) {
-                    return Observable.error(Exception(context.getString(R.string.location_message_permission_background_missing)))
+                    return Observable.error(MissingPermissionLocationBackgroundException())
                 }
             }
         }

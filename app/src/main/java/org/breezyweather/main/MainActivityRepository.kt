@@ -1,16 +1,26 @@
 package org.breezyweather.main
 
 import android.content.Context
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.rx3.awaitSingle
-import kotlinx.coroutines.withContext
+import kotlinx.serialization.MissingFieldException
+import kotlinx.serialization.SerializationException
+import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
+import org.breezyweather.common.exceptions.ApiKeyMissingException
+import org.breezyweather.common.exceptions.LocationException
+import org.breezyweather.common.exceptions.MissingPermissionLocationBackgroundException
+import org.breezyweather.common.exceptions.MissingPermissionLocationException
+import org.breezyweather.common.exceptions.NoNetworkException
+import org.breezyweather.common.exceptions.ParsingException
+import org.breezyweather.common.exceptions.ReverseGeocodingException
 import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.db.repositories.LocationEntityRepository
 import org.breezyweather.db.repositories.WeatherEntityRepository
 import org.breezyweather.location.LocationHelper
 import org.breezyweather.main.utils.RequestErrorType
 import org.breezyweather.weather.WeatherHelper
+import retrofit2.HttpException
+import java.net.SocketTimeoutException
 import java.util.concurrent.Executors
 import javax.inject.Inject
 
@@ -96,19 +106,41 @@ class MainActivityRepository @Inject constructor(
                 )
             } else location
 
-            try {
-                val requestWeather = weatherHelper.requestWeather(
-                    context,
-                    locationToProcess
-                ).awaitSingle()
-                callback.onCompleted(locationToProcess.copy(weather = requestWeather), null)
-            } catch (e: Throwable) {
-                e.printStackTrace()
-                callback.onCompleted(location, RequestErrorType.WEATHER_REQ_FAILED)
-            }
+            val requestWeather = weatherHelper.requestWeather(
+                context,
+                locationToProcess
+            ).awaitSingle()
+            callback.onCompleted(locationToProcess.copy(weather = requestWeather), null)
         } catch (e: Throwable) {
-            e.printStackTrace()
-            callback.onCompleted(location, RequestErrorType.LOCATION_FAILED)
+            val requestErrorType = when (e) {
+                is NoNetworkException -> RequestErrorType.NETWORK_UNAVAILABLE
+                is HttpException -> {
+                    when (e.code()) {
+                        401, 403 -> RequestErrorType.API_UNAUTHORIZED
+                        409, 429 -> RequestErrorType.API_LIMIT_REACHED
+                        else -> {
+                            e.printStackTrace()
+                            RequestErrorType.WEATHER_REQ_FAILED
+                        }
+                    }
+                }
+                is SocketTimeoutException -> RequestErrorType.SERVER_TIMEOUT
+                is ApiKeyMissingException -> RequestErrorType.API_KEY_REQUIRED_MISSING
+                is LocationException -> RequestErrorType.LOCATION_FAILED
+                is MissingPermissionLocationException -> RequestErrorType.ACCESS_LOCATION_PERMISSION_MISSING
+                // Should never happen, we are not in background, but just in case:
+                is MissingPermissionLocationBackgroundException -> RequestErrorType.ACCESS_BACKGROUND_LOCATION_PERMISSION_MISSING
+                is ReverseGeocodingException -> RequestErrorType.REVERSE_GEOCODING_FAILED
+                is MissingFieldException, is SerializationException, is ParsingException -> {
+                    e.printStackTrace()
+                    RequestErrorType.PARSING_ERROR
+                }
+                else -> {
+                    e.printStackTrace()
+                    RequestErrorType.WEATHER_REQ_FAILED
+                }
+            }
+            callback.onCompleted(location, requestErrorType)
         }
     }
 

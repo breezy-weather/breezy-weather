@@ -7,6 +7,7 @@ import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.provider.WeatherSource
+import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.weather.WeatherService
 import org.breezyweather.weather.openmeteo.OpenMeteoGeocodingApi
@@ -30,7 +31,7 @@ class OpenWeatherWeatherService @Inject constructor(
         context: Context, location: Location
     ): Observable<WeatherResultWrapper> {
         if (!isConfigured(context)) {
-            return Observable.error(Exception(context.getString(R.string.weather_api_key_required_missing_title)))
+            return Observable.error(ApiKeyMissingException())
         }
         val apiKey = getApiKey(context)
         val languageCode = SettingsManager.getInstance(context).language.code

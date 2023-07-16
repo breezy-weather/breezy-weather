@@ -29,22 +29,34 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withPermit
+import kotlinx.serialization.MissingFieldException
+import kotlinx.serialization.SerializationException
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.Weather
 import org.breezyweather.common.bus.EventBus
+import org.breezyweather.common.exceptions.ApiKeyMissingException
+import org.breezyweather.common.exceptions.LocationException
+import org.breezyweather.common.exceptions.MissingPermissionLocationBackgroundException
+import org.breezyweather.common.exceptions.MissingPermissionLocationException
+import org.breezyweather.common.exceptions.NoNetworkException
+import org.breezyweather.common.exceptions.ParsingException
+import org.breezyweather.common.exceptions.ReverseGeocodingException
 import org.breezyweather.common.extensions.withIOContext
 import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.common.utils.helpers.ShortcutsHelper
 import org.breezyweather.db.repositories.LocationEntityRepository
 import org.breezyweather.db.repositories.WeatherEntityRepository
 import org.breezyweather.location.LocationHelper
+import org.breezyweather.main.utils.RequestErrorType
 import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.weather.WeatherHelper
+import retrofit2.HttpException
 import java.io.File
+import java.net.SocketTimeoutException
 import java.util.concurrent.CopyOnWriteArrayList
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicInteger
@@ -180,12 +192,40 @@ class WeatherUpdateJob @AssistedInject constructor(
                                         val weather = updateWeather(locationToProceed)
                                         newUpdates.add(location to locationToProceed.copy(weather = weather))
                                     } catch (e: Throwable) {
-                                        val errorMessage = /*when (e) {
-                                            is NoChaptersException -> context.getString(R.string.no_chapters_error)
-                                            // failedUpdates will already have the source, don't need to copy it into the message
-                                            is SourceNotInstalledException -> context.getString(R.string.loader_not_implemented_error)
-                                            else ->*/ e.message
-                                        //}
+                                        val errorMessage = when (e) {
+                                            is NoNetworkException -> context.getString(RequestErrorType.NETWORK_UNAVAILABLE.shortMessage)
+                                            is HttpException -> {
+                                                when (e.code()) {
+                                                    401, 403 -> context.getString(RequestErrorType.API_UNAUTHORIZED.shortMessage)
+                                                    409, 429 -> context.getString(RequestErrorType.API_LIMIT_REACHED.shortMessage)
+                                                    else -> {
+                                                        e.printStackTrace()
+                                                        if (e.message.isNullOrEmpty()) {
+                                                            context.getString(RequestErrorType.WEATHER_REQ_FAILED.shortMessage)
+                                                        } else e.message
+                                                    }
+                                                }
+                                            }
+                                            is SocketTimeoutException -> context.getString(RequestErrorType.SERVER_TIMEOUT.shortMessage)
+                                            is ApiKeyMissingException -> context.getString(RequestErrorType.API_KEY_REQUIRED_MISSING.shortMessage)
+                                            is LocationException -> context.getString(RequestErrorType.LOCATION_FAILED.shortMessage)
+                                            is MissingPermissionLocationException -> context.getString(RequestErrorType.ACCESS_LOCATION_PERMISSION_MISSING.shortMessage)
+                                            is MissingPermissionLocationBackgroundException -> context.getString(RequestErrorType.ACCESS_BACKGROUND_LOCATION_PERMISSION_MISSING.shortMessage)
+                                            is ReverseGeocodingException -> context.getString(RequestErrorType.REVERSE_GEOCODING_FAILED.shortMessage)
+                                            is MissingFieldException, is SerializationException, is ParsingException -> {
+                                                e.printStackTrace()
+                                                if (e.message.isNullOrEmpty()) {
+                                                    context.getString(RequestErrorType.PARSING_ERROR.shortMessage)
+                                                } else e.message
+                                            }
+                                            else -> {
+                                                e.printStackTrace()
+                                                if (e.message.isNullOrEmpty()) {
+                                                    context.getString(RequestErrorType.WEATHER_REQ_FAILED.shortMessage)
+                                                } else e.message
+                                            }
+                                        }
+
                                         failedUpdates.add(location to errorMessage)
                                     }
                                 }
