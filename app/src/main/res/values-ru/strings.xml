@@ -28,8 +28,8 @@
     <string name="cloud_cover">Облачность</string>
     <string name="ceiling">Высота облачного покрова</string>
     <string name="settings_icon_providers_get_more">Ещё</string>
-    <string name="settings_icon_providers_get_more_store">Дополнительно в App Store</string>
-    <string name="settings_icon_providers_get_more_github">Дополнительно на GitHub</string>
+    <string name="settings_icon_providers_get_more_store">Получите больше в маркете</string>
+    <string name="settings_icon_providers_get_more_github">Получите больше на GitHub</string>
     <string name="action_refresh">Обновить</string>
     <string name="action_restart">Перезапуск</string>
     <string name="action_edit">Редактировать</string>
@@ -117,7 +117,7 @@
     <string name="widget_label_hide_lunar">Скрыть лунный календарь</string>
     <string name="widget_custom_subtitle_explanation">Вы можете ввести что угодно, но, пожалуйста, обратите внимание на длину текста. Если Вы хотите чтобы отображались погодные данные, пожалуйста используйте $ для ссылки на соответствующее ключевое слово.
 \n
-\nНапример, “погода сейчас = $cw$” будет показана как “Погода сейчас = Ясный День”.</string>
+\nНапример, “Погода сейчас: $cw$” будет показана как “Погода сейчас: Ясный День”.</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Погода сейчас</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Текущая температура (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Текущая температура (°)</string>
@@ -150,12 +150,12 @@
     <string name="widget_custom_subtitle_keyword_xdp_description">Осадки днём, завтра, …, на 4 дня (%)</string>
     <string name="widget_custom_subtitle_keyword_xnp_description">Осадки ночью, завтра, …, на 4 дня (%)</string>
     <string name="widget_custom_subtitle_keyword_xdwd_description">Ветер днём, завтра, …, на 4 дня</string>
-    <string name="widget_custom_subtitle_keyword_xnwd_description">Ветер ночью, завтра, …, 4 на 4 дня</string>
-    <string name="widget_custom_subtitle_keyword_xsr_description">Восход, завтра, …, на 4 дня</string>
-    <string name="widget_custom_subtitle_keyword_xss_description">Закат, завтра, …, на 4 дня</string>
-    <string name="widget_custom_subtitle_keyword_xmr_description">Восход Луны, …, на 4 дня</string>
-    <string name="widget_custom_subtitle_keyword_xms_description">Закат Луны, завтра, …, на 4 дня</string>
-    <string name="widget_custom_subtitle_keyword_xmp_description">Фаза Луны, завтра, …, на 4 дня</string>
+    <string name="widget_custom_subtitle_keyword_xnwd_description">Ветер ночью, завтра, …, на 4 дня</string>
+    <string name="widget_custom_subtitle_keyword_xsr_description">Восход сегодня, завтра, …, на 4 дня</string>
+    <string name="widget_custom_subtitle_keyword_xss_description">Закат сегодня, завтра, …, на 4 дня</string>
+    <string name="widget_custom_subtitle_keyword_xmr_description">Восход Луны сегодня, завтра, …, на 4 дня</string>
+    <string name="widget_custom_subtitle_keyword_xms_description">Заход Луны сегодня, завтра, …, на 4 дня</string>
+    <string name="widget_custom_subtitle_keyword_xmp_description">Фаза Луны сегодня, завтра, …, на 4 дня</string>
     <string name="widget_live_wallpaper_weather_kind">Погода</string>
     <string name="widget_live_wallpaper_day_night_type">Время</string>
     <string name="location_message_added">Место добавлено успешно</string>
@@ -218,13 +218,13 @@
     <string name="location_service_native">Системный API</string>
     <string name="settings_automatic">Автоматически</string>
     <string name="settings_none">Нет</string>
-    <string name="settings_color_day_night">день / ночь</string>
+    <string name="settings_color_day_night">День / Ночь</string>
     <string name="settings_color_day_always">Всегда день</string>
     <string name="settings_color_night_always">Всегда ночь</string>
-    <string name="settings_color_light">Светлый</string>
+    <string name="settings_color_light">Светлая</string>
     <string name="settings_color_light_always">Всегда светлая</string>
-    <string name="settings_color_grey">Серый</string>
-    <string name="settings_color_dark">Тёмный</string>
+    <string name="settings_color_grey">Серая</string>
+    <string name="settings_color_dark">Тёмная</string>
     <string name="settings_color_dark_always">Всегда тёмная</string>
     <string name="settings_background_updates_refresh_30min">Полчаса</string>
     <string name="settings_background_updates_refresh_1h">1 час</string>
@@ -279,9 +279,9 @@
     <string name="unit_nmi">мор. мили</string>
     <string name="unit_ft">футы</string>
     <string name="unit_mb">миллибар</string>
-    <string name="unit_kpa">килопаскаль</string>
-    <string name="unit_hpa">гектопаскаль</string>
-    <string name="unit_atm">атмосфер</string>
+    <string name="unit_kpa">кПа</string>
+    <string name="unit_hpa">гПа</string>
+    <string name="unit_atm">атм</string>
     <string name="unit_mmhg">мм рт. ст.</string>
     <string name="unit_inhg">дюйм рт. ст.</string>
     <string name="unit_kgfpsqcm">кгс/cм²</string>
@@ -391,7 +391,7 @@
     <string name="settings_location_access_background_summaryOn">Включено. Приложение сможет обновлять данные о погоде для вашего текущего местоположения в фоновом режиме.</string>
     <string name="settings_location_access_precise_title">Использование GPS устройством</string>
     <string name="settings_location_access_precise_summaryOn">Включено. Используются как сеть устройства, так и провайдеры GPS.</string>
-    <string name="settings_weather_provider_default_value">Стандартно</string>
+    <string name="settings_weather_provider_default_value">По умолчанию</string>
     <string name="settings_weather_provider_accu_weather_key">Ключ AccuWeather</string>
     <string name="settings_weather_providers_current_location">Провайдер погоды для текущего местоположения</string>
     <string name="settings_notifications_forecast_tomorrow_title">Уведомление о прогнозе на следующий день</string>
@@ -415,9 +415,9 @@
     <string name="unit_atm_voice">Атмосферы</string>
     <string name="about_contribution_WangDaYeeeeee">Разработчик оригинального проекта Geometric Weather</string>
     <string name="openmeteo_weather_text_mainly_clear">В основном ясно</string>
-    <string name="openmeteo_weather_text_snow_slight_intensity">Небольшой снег</string>
+    <string name="openmeteo_weather_text_snow_slight_intensity">Слабый снег</string>
     <string name="openmeteo_weather_text_rain_showers_moderate">Умеренные ливни</string>
-    <string name="openmeteo_weather_text_snow_moderate_intensity">Умеренный снег</string>
+    <string name="openmeteo_weather_text_snow_moderate_intensity">Снег</string>
     <string name="settings_widgets_week_icon_mode_title">Иконки для отображения в недельных просмотрах</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Иней с туманом</string>
     <string name="settings_weather_provider_open_weather_one_call_version">Версия OneCall для OpenWeather</string>
@@ -433,7 +433,7 @@
     <string name="unit_mps_voice">Метров в секунду</string>
     <string name="unit_mph_voice">Миль в час</string>
     <string name="unit_ftps_voice">Футов в секунду</string>
-    <string name="unit_in_voice">Инчи</string>
+    <string name="unit_in_voice">Дюймов</string>
     <string name="unit_celsius_short">°</string>
     <string name="unit_ft_voice">Футы</string>
     <string name="unit_kgfpsqcm_voice">Килограммовая сила на квадратный сантиметр</string>
@@ -463,7 +463,7 @@
     <string name="unit_mugpcum_voice">Микрограммы на кубический метр</string>
     <string name="unit_mgpcum">мг/м³</string>
     <string name="openmeteo_weather_text_overcast">Пасмурно</string>
-    <string name="openmeteo_weather_text_drizzle_moderate_intensity">Дождь</string>
+    <string name="openmeteo_weather_text_drizzle_moderate_intensity">Изморось</string>
     <string name="openmeteo_weather_text_rain_showers_slight">Кратковременные ливни</string>
     <string name="openmeteo_weather_text_clear_sky">Ясно</string>
     <string name="unit_cmph_voice">Сантиметров в час</string>
@@ -473,13 +473,13 @@
     <string name="unit_m_voice">Метры</string>
     <string name="unit_mi_voice">Мили</string>
     <string name="unit_mmhg_voice">Миллиметров ртути</string>
-    <string name="unit_inhg_voice">Инчей ртути</string>
+    <string name="unit_inhg_voice">Дюймов ртути</string>
     <string name="notification_channel_alerts">Оповещения</string>
     <string name="openmeteo_weather_text_fog">Туман</string>
     <string name="openmeteo_weather_text_freezing_rain_light_intensity">Сильный дождь со снегом</string>
     <string name="alerts_count">Оповещения о погоде</string>
     <string name="settings_icon_providers_title">Наборы иконок</string>
-    <string name="settings_main_yesterday_alert_lines_in_trends">Вчера/Оповещающие линии в трендах</string>
+    <string name="settings_main_yesterday_alert_lines_in_trends">Вчера/Оповещения в прогнозе</string>
     <string name="settings_notifications">Уведомления</string>
     <string name="settings_main_section_animations">Анимации</string>
     <string name="settings_notifications_summary">Оповещения о погоде, осадки, прогноз</string>
@@ -489,7 +489,7 @@
     <string name="settings_notifications_forecast_time_today_title">Время уведомления для дневного прогноза</string>
     <string name="settings_widgets_summary">Установить обои, настроить используемые виджеты, виджет уведомлений</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Время уведомления для прогноза на следующий день</string>
-    <string name="unit_inph_voice">Инчей в час</string>
+    <string name="unit_inph_voice">Дюймов в час</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_mmph_voice">Миллиметров в час</string>
     <string name="about_contributors">Участники</string>
@@ -522,7 +522,7 @@
     <string name="dialog_permissions_notification_content">Нажмите здесь, чтобы включить уведомления о погоде, или примите решение позже в настройках.</string>
     <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="settings_location_access_background_title">Доступ к местоположению в фоновом режиме</string>
-    <string name="settings_location_baidu_ip_location_ak">Ключ API Baidu IP</string>
+    <string name="settings_location_baidu_ip_location_ak">API-ключ Baidu IP Location</string>
     <string name="settings_weather_provider_mf_wsft_key">Ключ WSFT для Météo France</string>
     <string name="settings_weather_provider_iqa_atmo_aura_key">Ключ ATMO AURA</string>
     <string name="settings_icon_providers_check_details">Проверить детали</string>
@@ -538,9 +538,9 @@
     <string name="unit_ppcm_voice">На кубический метр</string>
     <string name="notification_channel_widget">Виджет</string>
     <string name="openmeteo_weather_text_partly_cloudy">Переменная облачность</string>
-    <string name="openmeteo_weather_text_drizzle_light_intensity">Лёгкий моросящий дождик</string>
-    <string name="openmeteo_weather_text_drizzle_dense_intensity">Сильный дождь</string>
-    <string name="openmeteo_weather_text_freezing_drizzle_dense_intensity">Дождь со снегом</string>
+    <string name="openmeteo_weather_text_drizzle_light_intensity">Слабая изморось</string>
+    <string name="openmeteo_weather_text_drizzle_dense_intensity">Сильная изморось</string>
+    <string name="openmeteo_weather_text_freezing_drizzle_dense_intensity">Переохлаждённая изморось</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Гроза с сильным градом</string>
     <string name="air_quality_index">Индекс качества воздуха</string>
     <string name="air_quality_pm25">PM2.5</string>
@@ -576,11 +576,11 @@
     <string name="unit_hpa_voice">Гектопаскали</string>
     <string name="about_matrix">Сервер Matrix</string>
     <string name="about_source_code">Исходный код</string>
-    <string name="openmeteo_weather_text_rain_slight_intensity">Умеренный дождь</string>
-    <string name="openmeteo_weather_text_rain_moderate_intensity">Ливень</string>
-    <string name="openmeteo_weather_text_freezing_rain_heavy_intensity">Ливень и обледенения</string>
-    <string name="openmeteo_weather_text_rain_heavy_intensity">Сильный ливень</string>
-    <string name="openmeteo_weather_text_freezing_drizzle_light_intensity">Небольшой дождь со снегом</string>
+    <string name="openmeteo_weather_text_rain_slight_intensity">Слабый дождь</string>
+    <string name="openmeteo_weather_text_rain_moderate_intensity">Дождь</string>
+    <string name="openmeteo_weather_text_freezing_rain_heavy_intensity">Сильный ледяной дождь</string>
+    <string name="openmeteo_weather_text_rain_heavy_intensity">Сильный дождь</string>
+    <string name="openmeteo_weather_text_freezing_drizzle_light_intensity">Слабая переохлаждённая изморось</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Гроза со слабым градом</string>
     <string name="settings_icon_providers_weather_icon_light">Светлая иконка</string>
     <string name="action_location_list">Список местоположений</string>
