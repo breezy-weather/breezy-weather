@@ -419,7 +419,7 @@
     <string name="settings_main_background_animation_title">Animação de fundo</string>
     <string name="settings_main_header_details_title">Detalhes no cabeçalho</string>
     <string name="settings_main_section_animations">Animações</string>
-    <string name="settings_main_yesterday_alert_lines_in_trends">Linhas de alerta em tendências</string>
+    <string name="settings_main_yesterday_alert_lines_in_trends">Ontem/Linhas de alerta em tendências</string>
     <string name="settings_notifications_summary">Alertas metereológicos, precipitações, previsões</string>
     <string name="settings_widgets_notification_style_title">Estilo</string>
     <string name="notification_channel_background_services">Serviços em segundo plano</string>
@@ -608,7 +608,7 @@
     <string name="dialog_permissions_notification_title">Mantenha-se informado</string>
     <string name="settings_widgets_live_wallpaper_error">Não foi possível iniciar o seletor de papéis de parede. Você ainda pode ativar o papel de parede Breezy Weather escolhendo “Live Wallpaper” no seletor de papéis de parede da tela inicial.</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Névoa depositante de geada</string>
-    <string name="openmeteo_weather_text_drizzle_light_intensity">Garoa de baixa intensidade</string>
+    <string name="openmeteo_weather_text_drizzle_light_intensity">Garoa de intensidade baixa</string>
     <string name="openmeteo_weather_text_drizzle_dense_intensity">Garoa de grande intensidade</string>
     <string name="openmeteo_weather_text_drizzle_moderate_intensity">Garoa de intensidade moderada</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Tempestade com granizo pesado</string>
