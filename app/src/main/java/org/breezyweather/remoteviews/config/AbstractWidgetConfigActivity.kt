@@ -26,7 +26,6 @@ import com.google.android.material.slider.Slider
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import org.breezyweather.R
-import org.breezyweather.background.weather.WeatherUpdateJob
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.unit.ProbabilityUnit
@@ -35,6 +34,7 @@ import org.breezyweather.common.ui.widgets.insets.FitSystemBarNestedScrollView
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.db.repositories.LocationEntityRepository
 import org.breezyweather.db.repositories.WeatherEntityRepository
+import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.settings.ConfigStore
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.weather.WeatherHelper
@@ -363,7 +363,7 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
             val resultValue = Intent()
             resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
             setResult(RESULT_OK, resultValue)
-            WeatherUpdateJob.startNow(this)
+            Widgets.updateWidgetIfNecessary(this)
             finish()
         }
         mBottomSheetScrollView = findViewById(R.id.activity_widget_config_custom_scrollView)

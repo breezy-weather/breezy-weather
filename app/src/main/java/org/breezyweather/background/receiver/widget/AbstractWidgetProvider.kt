@@ -3,7 +3,7 @@ package org.breezyweather.background.receiver.widget
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
-import org.breezyweather.background.weather.WeatherUpdateJob
+import org.breezyweather.remoteviews.Widgets
 
 /**
  * Abstract widget provider.
@@ -11,6 +11,6 @@ import org.breezyweather.background.weather.WeatherUpdateJob
 abstract class AbstractWidgetProvider : AppWidgetProvider() {
     override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
         super.onUpdate(context, appWidgetManager, appWidgetIds)
-        WeatherUpdateJob.startNow(context)
+        Widgets.updateWidgetIfNecessary(context)
     }
 }

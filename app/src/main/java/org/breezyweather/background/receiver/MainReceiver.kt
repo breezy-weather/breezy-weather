@@ -13,6 +13,7 @@ class MainReceiver : BroadcastReceiver() {
         val action = intent.action
         if (action.isNullOrEmpty()) return
         when (action) {
+            // TODO: Do we really need this?
             Intent.ACTION_BOOT_COMPLETED, Intent.ACTION_WALLPAPER_CHANGED -> WeatherUpdateJob.startNow(context)
         }
     }

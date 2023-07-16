@@ -22,7 +22,7 @@ object Migrations {
             SettingsManager.getInstance(context).lastVersionCode = BuildConfig.VERSION_CODE
 
             // Always set up background tasks to ensure they're running
-            WeatherUpdateJob.setupTask(context)
+            WeatherUpdateJob.setupTask(context) // This will also refresh data immediately
             TodayForecastNotificationJob.setupTask(context, false)
             TomorrowForecastNotificationJob.setupTask(context, false)
 

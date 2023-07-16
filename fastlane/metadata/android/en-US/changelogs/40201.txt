@@ -1,5 +1,7 @@
 <ul>
 <li>Bring back detailed error (API key missing, API limit reached, no network, etc) on refresh failure instead of just “Weather failed”</li>
 <li>Added more errors (server timeout, failed to find location within reasonable time, parsing error, etc)</li>
+<li>Fix widgets were force refreshing weather data</li>
+<li>Fix issue when adding widgets</li>
 <li>Updated translations</li>
 </ul>
