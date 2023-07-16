@@ -421,7 +421,7 @@
     <string name="settings_widgets_week_icon_mode_title">Иконки для отображения в недельных просмотрах</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Иней с туманом</string>
     <string name="settings_weather_provider_open_weather_one_call_version">Версия OneCall для OpenWeather</string>
-    <string name="settings_weather_providers_summary">Настройки провайдеров погоды</string>
+    <string name="settings_weather_providers_summary">Настройки провайдера погоды</string>
     <string name="settings_weather_provider_open_weather_key">Ключ OpenWeather</string>
     <string name="settings_main_background_animation_disabled">Выключено</string>
     <string name="settings_widgets">Виджеты и живые обои</string>
@@ -597,8 +597,8 @@
     <string name="settings_background_updates_dont_kill_my_app_summary">У некоторых производителей есть дополнительные ограничения приложений, которые отключают фоновые службы. На сайте Don’t kill my app! есть информация как это исправить.</string>
     <string name="settings_background_updates_worker_info_title">Информация о процессе</string>
     <string name="settings_location">Местоположение</string>
-    <string name="settings_location_summary">Настройки провайдеров местоположения</string>
-    <string name="settings_weather_providers">Провайдеры погоды</string>
+    <string name="settings_location_summary">Настройки провайдера местоположения</string>
+    <string name="settings_weather_providers">Провайдер погоды</string>
     <string name="weather_refresh_skipped_already_recently_updated">Уже недавно обновлено</string>
     <string name="action_show_errors">Нажмите, чтобы увидеть детали</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Игнорировать, когда батарея разряжена</string>
