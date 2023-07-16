@@ -3,7 +3,6 @@ package org.breezyweather.location.baiduip
 import android.content.Context
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
-import org.breezyweather.R
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.LocationException
 import org.breezyweather.common.rxjava.SchedulerTransformer

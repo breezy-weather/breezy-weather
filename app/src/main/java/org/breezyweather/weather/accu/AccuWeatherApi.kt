@@ -1,7 +1,6 @@
 package org.breezyweather.weather.accu
 
 import io.reactivex.rxjava3.core.Observable
-import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -12,13 +11,13 @@ import org.breezyweather.weather.accu.json.*
  */
 interface AccuWeatherApi {
     @GET("locations/v1/translate")
-    fun callWeatherLocation(
+    fun getWeatherLocation(
         @Query("apikey") apikey: String,
         @Query("q") q: String,
         @Query("language") language: String,
         @Query("details") details: Boolean,
         @Query("alias") alias: String
-    ): Call<List<AccuLocationResult>>
+    ): Observable<List<AccuLocationResult>>
 
     @GET("locations/v1/cities/geoposition/search")
     fun getWeatherLocationByGeoPosition(

@@ -6,6 +6,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import org.breezyweather.BreezyWeather
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.provider.WeatherSource
+import org.breezyweather.common.exceptions.LocationSearchException
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.weather.WeatherService
 import org.breezyweather.weather.openmeteo.json.OpenMeteoAirQualityResult
@@ -91,23 +92,22 @@ class OpenMeteoWeatherService @Inject constructor(
     override fun requestLocationSearch(
         context: Context,
         query: String
-    ): List<Location> {
+    ): Observable<List<Location>> {
         val languageCode = SettingsManager.getInstance(context).language.code
-        var apiResults: OpenMeteoLocationResults? = null
-        try {
-            apiResults = mGeocodingApi.callWeatherLocation(
-                query,
-                count = 20,
-                languageCode
-            ).execute().body()
-        } catch (e: Exception) {
-            if (BreezyWeather.instance.debugMode) {
-                e.printStackTrace()
+
+        return mGeocodingApi.getWeatherLocation(
+            query,
+            count = 20,
+            languageCode
+        ).map { results ->
+            if (results.results == null) {
+                throw LocationSearchException()
+            }
+
+            results.results.map {
+                convert(null, it, WeatherSource.OPEN_METEO)
             }
         }
-        return apiResults?.results?.map {
-            convert(null, it, WeatherSource.OPEN_METEO)
-        } ?: emptyList()
     }
 
     override fun requestReverseGeocodingLocation(

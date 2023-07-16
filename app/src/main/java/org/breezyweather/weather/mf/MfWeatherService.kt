@@ -8,26 +8,20 @@ import io.jsonwebtoken.SignatureAlgorithm
 import io.jsonwebtoken.security.Keys
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
-import org.breezyweather.BreezyWeather
 import org.breezyweather.BuildConfig
-import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.provider.WeatherSource
 import org.breezyweather.common.exceptions.ApiKeyMissingException
+import org.breezyweather.common.exceptions.LocationSearchException
 import org.breezyweather.common.exceptions.ReverseGeocodingException
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
-import org.breezyweather.common.rxjava.ApiObserver
-import org.breezyweather.common.rxjava.ObserverContainer
-import org.breezyweather.common.rxjava.SchedulerTransformer
-import org.breezyweather.main.utils.RequestErrorType
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.weather.WeatherService
 import org.breezyweather.weather.mf.json.*
 import org.breezyweather.weather.mf.json.atmoaura.AtmoAuraPointResult
 import org.breezyweather.weather.openmeteo.OpenMeteoGeocodingApi
 import org.breezyweather.weather.openmeteo.convert
-import org.breezyweather.weather.openmeteo.json.OpenMeteoLocationResults
 import java.nio.charset.StandardCharsets
 import java.util.*
 import javax.inject.Inject
@@ -154,22 +148,20 @@ class MfWeatherService @Inject constructor(
     override fun requestLocationSearch(
         context: Context,
         query: String
-    ): List<Location> {
-        var apiResults: OpenMeteoLocationResults? = null
-        try {
-            apiResults = mGeocodingApi.callWeatherLocation(
-                query,
-                count = 20,
-                "fr"
-            ).execute().body()
-        } catch (e: Exception) {
-            if (BreezyWeather.instance.debugMode) {
-                e.printStackTrace()
+    ): Observable<List<Location>> {
+        return mGeocodingApi.getWeatherLocation(
+            query,
+            count = 20,
+            "fr" // We need to force French for département mapping for alerts
+        ).map { results ->
+            if (results.results == null) {
+                throw LocationSearchException()
+            }
+
+            results.results.map {
+                convert(null, it, WeatherSource.MF)
             }
         }
-        return apiResults?.results?.map {
-            convert(null, it, WeatherSource.MF)
-        } ?: emptyList()
     }
 
     override fun requestReverseGeocodingLocation(

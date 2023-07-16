@@ -70,7 +70,6 @@ open class AndroidLocationService : LocationService(), LocationListener {
     private var locationManager: LocationManager? = null
 
     private var currentProvider = ""
-    private var locationCallback: ((Result?) -> Unit)? = null
 
     override fun requestLocation(context: Context): Observable<Result> {
         return rxObservable {

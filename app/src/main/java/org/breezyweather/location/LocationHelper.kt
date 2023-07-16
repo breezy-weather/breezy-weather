@@ -6,7 +6,6 @@ import android.os.Build
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import kotlinx.coroutines.rx3.awaitSingle
-import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.provider.LocationProvider
 import org.breezyweather.common.exceptions.MissingPermissionLocationBackgroundException

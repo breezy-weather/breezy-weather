@@ -20,7 +20,6 @@ import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimationMode
 import org.breezyweather.common.extensions.isMotionReduced
 import org.breezyweather.common.ui.widgets.SwipeSwitchLayout
-import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.databinding.FragmentHomeBinding
 import org.breezyweather.main.MainActivityViewModel
 import org.breezyweather.main.adapters.main.MainAdapter

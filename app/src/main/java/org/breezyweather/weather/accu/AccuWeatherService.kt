@@ -3,8 +3,6 @@ package org.breezyweather.weather.accu
 import android.content.Context
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
-import org.breezyweather.BreezyWeather
-import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.settings.SettingsManager
@@ -104,31 +102,26 @@ class AccuWeatherService @Inject constructor(
     override fun requestLocationSearch(
         context: Context,
         query: String
-    ): List<Location> {
+    ): Observable<List<Location>> {
         if (!isConfigured(context)) {
-            return emptyList()
+            return Observable.error(ApiKeyMissingException())
         }
         val apiKey = getApiKey(context)
         val languageCode = SettingsManager.getInstance(context).language.code
-        var resultList: List<AccuLocationResult>? = null
-        try {
-            resultList = mApi.callWeatherLocation(
-                apiKey,
-                query,
-                languageCode,
-                details = false,
-                alias = "Always"
-            ).execute().body()
-        } catch (e: Exception) {
-            if (BreezyWeather.instance.debugMode) {
-                e.printStackTrace()
+        return mApi.getWeatherLocation(
+            apiKey,
+            query,
+            languageCode,
+            details = false,
+            alias = "Always"
+        ).map { results ->
+            // TODO: Why? This will use searched terms as zip code even if the zip code is incomplete
+            val zipCode = if (query.matches("[a-zA-Z0-9]*".toRegex())) query else null
+
+            results.map {
+                convert(null, it, zipCode)
             }
         }
-        // TODO: Why? This will use searched terms as zip code even if the zip code is incomplete
-        val zipCode = if (query.matches("[a-zA-Z0-9]*".toRegex())) query else null
-        return resultList?.map {
-            convert(null, it, zipCode)
-        } ?: emptyList()
     }
 
     override fun requestReverseGeocodingLocation(

@@ -5,6 +5,7 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.ObservableOnSubscribe
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import org.breezyweather.common.basic.models.Location
+import org.breezyweather.common.exceptions.LocationSearchException
 import org.breezyweather.common.utils.LanguageUtils
 import org.breezyweather.db.repositories.ChineseCityEntityRepository
 import org.breezyweather.settings.SettingsManager
@@ -56,17 +57,23 @@ class ChinaWeatherService @Inject constructor(
         }
     }
 
-    override fun requestLocationSearch(context: Context, query: String): List<Location> {
+    override fun requestLocationSearch(
+        context: Context, query: String
+    ): Observable<List<Location>> {
         if (!LanguageUtils.isChinese(query)) {
-            return ArrayList()
+            // TODO: We should probably be more precise, but since this provider must be rewritten
+            // to use API search, this check won’t be necessary anymore
+            return Observable.error(LocationSearchException())
         }
-        ChineseCityEntityRepository.ensureChineseCityList(context)
-        val locationList: MutableList<Location> = ArrayList()
-        val cityList = ChineseCityEntityRepository.readChineseCityList(query)
-        for (c in cityList) {
-            locationList.add(c.toLocation())
+        return Observable.create { emitter ->
+            ChineseCityEntityRepository.ensureChineseCityList(context)
+            val locationList: MutableList<Location> = ArrayList()
+            val cityList = ChineseCityEntityRepository.readChineseCityList(query)
+            for (c in cityList) {
+                locationList.add(c.toLocation())
+            }
+            emitter.onNext(locationList)
         }
-        return locationList
     }
 
     override fun requestReverseGeocodingLocation(

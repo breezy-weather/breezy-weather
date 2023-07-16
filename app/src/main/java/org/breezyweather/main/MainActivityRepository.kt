@@ -4,7 +4,6 @@ import android.content.Context
 import kotlinx.coroutines.rx3.awaitSingle
 import kotlinx.serialization.MissingFieldException
 import kotlinx.serialization.SerializationException
-import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.LocationException
