@@ -571,7 +571,7 @@
     <string name="openmeteo_weather_text_freezing_rain_light_intensity">Chuva congelante de baixa intensidade</string>
     <string name="openmeteo_weather_text_snow_grains">Grãos de neve</string>
     <string name="openmeteo_weather_text_rain_showers_slight">Chuvas leves</string>
-    <string name="openmeteo_weather_text_snow_heavy_intensity">Neve de forte intensidade</string>
+    <string name="openmeteo_weather_text_snow_heavy_intensity">Neve de alta intensidade</string>
     <string name="openmeteo_weather_text_rain_showers_violent">Chuvas violentas</string>
     <string name="openmeteo_weather_text_snow_showers_slight">Chuvas de neve leves</string>
     <string name="openmeteo_weather_text_snow_showers_heavy">Chuvas de neve pesadas</string>
@@ -608,5 +608,13 @@
     <string name="openmeteo_weather_text_drizzle_dense_intensity">Garoa de grande intensidade</string>
     <string name="openmeteo_weather_text_drizzle_moderate_intensity">Garoa de intensidade moderada</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Tempestade com granizo pesado</string>
-    <string name="openmeteo_weather_text_freezing_drizzle_dense_intensity">Chuvisco congelante de grande intensidade</string>
+    <string name="openmeteo_weather_text_freezing_drizzle_dense_intensity">Garoa congelante de alta intensidade</string>
+    <string name="weather_refresh_skipped_already_recently_updated">Já atualizado recentemente</string>
+    <string name="action_show_errors">Toque para ver detalhes</string>
+    <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignorar quando a bateria estiver baixa</string>
+    <string name="message_parsing_error_title">Falha ao analisar dados meteorológicos</string>
+    <string name="notification_update_error">%1$d falha na(s) atualização(ões)</string>
+    <string name="wind_strength">Força do vento</string>
+    <string name="message_server_timeout">Solicitação expirou</string>
+    <string name="message_parsing_error_content">Certifique-se de atualizar para a versão mais recente do aplicativo. O servidor pode estar temporariamente indisponível, nesse caso, tente novamente mais tarde. Se o problema persistir, faça um relatório de crash a partir das configurações de depuração e relate o problema no GitHub.</string>
 </resources>
