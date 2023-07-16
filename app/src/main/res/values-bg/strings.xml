@@ -45,7 +45,7 @@
     <string name="ephemeris">Слънце и луна</string>
     <string name="details">Подробности</string>
     <string name="alerts">Сигнали</string>
-    <string name="alerts_count">$ сигнали за времето</string>
+    <string name="alerts_count">$ сигнала за времето</string>
     <string name="short_today">Днес</string>
     <string name="short_tomorrow">Утре</string>
     <string name="app_name">Време</string>
@@ -109,7 +109,7 @@
     <string name="air_quality_pm_info_title">Прахови частици (PM2.5 &amp; PM10)</string>
     <string name="air_quality_o3_info_title">Земен озон (O₃)</string>
     <string name="air_quality_o3_info_introduction">Земният озон (O₃) е основен компонент на смога. Въпреки че е същата молекула, земният озон може да бъде вреден за човешкото здраве, за разлика от стратосферния озон, който предпазва земята от излишната UV радиация.</string>
-    <string name="air_quality_o3_info_origin">Образува се от фотохимични реакции със замърсители като летливи органични съединения, въглероден оксид и азотни оксиди (NOₓ), отделяни от превозни средства и индустрията. Поради фотохимичния характер, най-високите нива на озон се наблюдават по време на периоди на слънчево време.</string>
+    <string name="air_quality_o3_info_origin">Образува се от фотохимични реакции със замърсители като летливи органични съединения, въглероден оксид и азотни оксиди (NOₓ), отделяни от превозните средства и индустрията. Поради фотохимичния характер, най-високите нива на озон се наблюдават по време на периоди на слънчево време.</string>
     <string name="air_quality_o3_info_consequences">Излагането на прекомерен озон може да причини проблеми с дишането, да причини астма, да намали белодробната функция и да доведе до белодробно заболяване.</string>
     <string name="air_quality_no2_info_title">Азотен диоксид (NO₂)</string>
     <string name="weather_api_limit_reached_title">Лимитът на API заявки е достигнат</string>
@@ -385,7 +385,7 @@
     <string name="settings_background_updates_refresh_never">Никога</string>
     <string name="settings_background_updates_refresh_2h">2 часа</string>
     <string name="settings_background_updates_refresh_12h">12 часа</string>
-    <string name="settings_background_updates_battery_optimization">Деактивирай оптимизацията на батерията</string>
+    <string name="settings_background_updates_battery_optimization">Изключване на оптимизацията на батерията</string>
     <string name="settings_background_updates_battery_optimization_summary">Това е първото нещо, което трябва да опитате, когато не получавате известия или приспособленията не се опресняват.</string>
     <string name="settings_background_updates_battery_optimization_disabled">Оптимизацията на батерията вече е деактивирана.</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Някои производители имат допълнителни ограничения за приложения, които убиват фоновите услуги. Уебсайтът The Don’t kill my app! има информация как да го оправите.</string>
