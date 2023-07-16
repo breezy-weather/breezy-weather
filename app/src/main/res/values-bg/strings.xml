@@ -452,4 +452,5 @@
     <string name="settings_notifications_forecast_time_tomorrow_title">Време за известяване за прогноза за следващия ден</string>
     <string name="settings_icon_providers_check_details">Провери подробностите</string>
     <string name="settings_icon_providers_weather_adaptive_icon">Икона за времето</string>
+    <string name="settings_widgets">Приспособления и Живи тапети</string>
 </resources>
