@@ -550,4 +550,23 @@
     <string name="air_quality_so2">SO₂</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="air_quality_pm10">PM10</string>
+    <string name="location_message_reverse_geocoding_failed">Il fornitore meteo non ha trovato nessuna posizione corrispondente</string>
+    <string name="settings_location_summary">Impostazioni fornitori posizione</string>
+    <string name="settings_location_access_switch_summaryOn">Concessa. Puoi aggiungere la posizione corrente come posizione.</string>
+    <string name="settings_weather_providers_summary">Impostazioni fornitori meteo</string>
+    <string name="action_show_errors">Tocca per dettagli</string>
+    <string name="dialog_permissions_notification_title">Rimani informato</string>
+    <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignora quando la batteria è bassa</string>
+    <string name="air_quality_so2_info_title">Biossido di zolfo (SO₂)</string>
+    <string name="air_quality_pm_explanations_origin">Alcuni particolati sono generati naturalmente, provenienti da vulcani, tempeste di polvere, incendi boschivi e praterie, vegetazione vivente e spray marino. Le attività umane generano anche quantità significative di particolati, come il traffico e il trasporto, le attività industriali, le centrali elettriche, i cantieri, la combustione dei rifiuti o i campi.</string>
+    <string name="location_search_no_results">$1 non è riuscito a trovare $2</string>
+    <string name="air_quality_o3_info_consequences">L\'esposizione eccessiva all\'ozono può causare problemi respiratori, asma, ridurre la funzionalità polmonare e portare a malattie polmonari.</string>
+    <string name="air_quality_no2_info_title">Biossido di azoto (NO₂)</string>
+    <string name="action_close">Chiudi</string>
+    <string name="settings_location_access_switch_summaryOff">Concedi se vuoi aggiungere la posizione corrente come una posizione.</string>
+    <string name="air_quality_pm_explanations_introduction">I particolati o materia particolata atmosferica sono particelle microscopiche di materia solida o liquida sospese nell\'aria.</string>
+    <string name="air_quality_pm_explanations_consequences">I particolati sono la forma più dannosa dell\'inquinamento atmosferico dovuto alla loro capacità di penetrare in profondità nei polmoni e nel cervello dai flussi di sangue, causando problemi di salute come malattie cardiache, polmonari e morte prematura.</string>
+    <string name="air_quality_co_info_title">Monossido di carbonio (CO)</string>
+    <string name="air_quality_co_info_introduction">Il monossido di carbonio (CO) è un gas velenoso, infiammabile che è incolore, inodore, insapore e non irritante.</string>
+    <string name="settings_background_updates_worker_info_title">Info processo</string>
 </resources>
