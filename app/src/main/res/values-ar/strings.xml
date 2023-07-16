@@ -603,4 +603,5 @@
     <string name="notification_update_error">%1$d فشل التحديث</string>
     <string name="weather_refresh_skipped_already_recently_updated">تم تحديثه مؤخرا بالفعل</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">تجاهل عندما تكون البطارية منخفضة</string>
+    <string name="wind_strength">طاقة الرياح</string>
 </resources>
