@@ -59,7 +59,7 @@
     <string name="wind_strength_6">Силен бриз</string>
     <string name="wind_strength_8">Вихър</string>
     <string name="wind_strength_12">Ураган</string>
-    <string name="uv_index">Индекс на УВ</string>
+    <string name="uv_index">UV индекс</string>
     <string name="wind_strength_1">Лек вятър</string>
     <string name="wind_strength_7">Умерен вихър</string>
     <string name="wind_strength_9">Силен вихър</string>
@@ -158,7 +158,7 @@
     <string name="action_add_from_map">Добавяне от картата</string>
     <string name="action_settings">Настройки</string>
     <string name="action_about">Относно</string>
-    <string name="action_refresh">Опресняване</string>
+    <string name="action_refresh">Опресни</string>
     <string name="action_restart">Рестартиране</string>
     <string name="action_see_more">Виж повече</string>
     <string name="action_edit">Редактиране</string>
@@ -295,4 +295,7 @@
     <string name="widget_custom_subtitle_keyword_ch_description">Текуща влажност</string>
     <string name="settings_units_pressure">Единица за налягане</string>
     <string name="widget_custom_subtitle_keyword_cdp_description">Текуща температура на оросяване</string>
+    <string name="message_server_timeout">Времето за изчакване на заявката изтече</string>
+    <string name="wind_strength">Сила на вятъра</string>
+    <string name="message_parsing_error_title">Неуспешно анализиране на данните за времето</string>
 </resources>
