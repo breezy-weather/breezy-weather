@@ -147,7 +147,7 @@
     <string name="location_dialog_failed_to_locate_title">Не можете да получите правилно местоположението\?</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Активиране на информация за местоположение</string>
     <string name="location_dialog_failed_to_locate_action_select_provider">Изберете доставчик на местоположение</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">Добавяне на местоположение ръчно и изтриване на \"$\"</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Добавяне на местоположение ръчно и изтриване на “$”</string>
     <string name="location_search_placeholder">Търсене на местоположение…</string>
     <string name="location_current_not_found_yet">Текущото местоположение все още не е намерено…</string>
     <string name="location_resident_message">Задаване като град на пребиваване</string>
@@ -227,7 +227,7 @@
     <string name="location_search_no_results">$1 не може да намери $2</string>
     <string name="location_search_no_results_advice">Уверете се, че вашето търсене е изписано правилно и не е твърде конкретно. Като алтернатива можете да опитате друг доставчик на прогноза за времето, който може да доведе до различни резултати от търсенето на местоположение.</string>
     <string name="dialog_permissions_location_content">Breezy Weather трябва да събере информация за вашето местоположение на преден или заден план, за да предостави метеорологичните данни за текущото ви местоположение. За целта ще поискаме някои разрешения. Информацията за вашето местоположение ще се използва само за получаване на данни за времето на вашето текущо местоположение. Ако не искате да споделяте информацията за местоположението си, можете да откажете тези изисквания и ръчно да зададете местоположението си в страницата за управление.</string>
-    <string name="dialog_permissions_location_background_content">За да разрешите на приложението достъп до информация за местоположението във фонов режим, така че да можем да възприемаме промените в местоположението и да ви предоставяме валидни данни за времето, моля, задайте достъп до местоположение като \"Разрешаване през цялото време\".</string>
+    <string name="dialog_permissions_location_background_content">За да разрешите на приложението достъп до информация за местоположението във фонов режим, така че да можем да възприемаме промените в местоположението и да ви предоставяме валидни данни за времето, моля, задайте достъп до местоположение като “Разрешаване през цялото време”.</string>
     <string name="message_updated_in_background">Актуализиран във фонов режим</string>
     <string name="widget_clock_day_horizontal">Часовник + Ежедневно (хоризонтален стил)</string>
     <string name="widget_clock_day_vertical">Часовник + Ежедневно (вертикален стил)</string>
@@ -338,7 +338,7 @@
     <string name="message_parsing_error_content">Уверете се, че сте актуализирали до най-новата версия на приложението. Сървърът може да е временно недостъпен, в такъв случай, моля, опитайте отново по-късно. Ако проблемът продължава, моля, копирайте лога за сривовете от настройките за отстраняване на грешки и докладвайте за проблем в GitHub.</string>
     <string name="widget_custom_subtitle_explanation">Можете да въведете всичко, но моля, обърнете внимание на дължината на текста. Ако искате да цитирате данни за времето, моля, използвайте $ за препратка към съответната ключова дума.
 \n
-\nНапример \"Текущото време е: $cw$.\" ще се покаже като \"Текущото време е: Ясен ден.\".</string>
+\nНапример “Текущото време е: $cw$.” ще се покаже като “Текущото време е: Ясен ден.”.</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Текущо време</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Текуща температура (°)</string>
     <string name="widget_custom_subtitle_keyword_cv_description">Текуща видимост</string>
@@ -398,8 +398,8 @@
     <string name="settings_location_access_switch_summaryOff">Моля, позволете, ако искате да можете да добавите текущото си местоположение като местоположение.</string>
     <string name="settings_location_access_switch_title">Достъп до местоположение</string>
     <string name="settings_location_access_precise_summaryOn">Активирано. Използват се както мрежата на устройството, така и GPS доставчиците.</string>
-    <string name="settings_location_access_precise_summaryOff">Активирайте \"Използване на точно местоположение\", ако имате проблеми с получаването на местоположение.</string>
-    <string name="settings_location_access_background_summaryOff">Моля, активирайте \"Разрешаване през цялото време\", за работи фоновото опресняване за текущото ви местоположение.</string>
+    <string name="settings_location_access_precise_summaryOff">Активирайте “Използване на точно местоположение”, ако имате проблеми с получаването на местоположение.</string>
+    <string name="settings_location_access_background_summaryOff">Моля, активирайте “Разрешаване през цялото време”, за работи фоновото опресняване за текущото ви местоположение.</string>
     <string name="settings_weather_providers_summary">Настройки на доставчиците на прогноза за времето</string>
     <string name="settings_weather_providers_current_location">Доставчик на прогноза за текущото местоположение</string>
     <string name="settings_weather_provider_open_weather_one_call_version">OpenWeather OneCall версия</string>
