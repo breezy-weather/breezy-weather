@@ -132,7 +132,7 @@
     <string name="location_current_not_found_yet">لم يتم تحديد الموقع بعد…</string>
     <string name="settings_changes_apply_after_restart">سيتم تطبيق التغييرات عند إعادة تشغيل الطبيق</string>
     <string name="notification_running_in_background">التشغيل في الخلفية لإبقاء التطبيق محدثاً</string>
-    <string name="notification_updating_weather_data">تحديث بيانات الطقس (%1$d/%2$d)</string>
+    <string name="notification_updating_weather_data">جارٍ تحديث بيانات الطقس (%1$d من %2$d)</string>
     <string name="message_updated_in_background">تم التحديث في الخلفية</string>
     <string name="notification_precipitation_today">هناك إحتمالية لهطول الأمطار اليوم.</string>
     <string name="notification_precipitation_short_term">هناك إمكانية لهطول الأمطار في الساعات القليلة القادمة.</string>
