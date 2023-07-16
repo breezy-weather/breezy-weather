@@ -42,7 +42,7 @@
     <string name="daily_forecast">Дневна прогноза</string>
     <string name="hourly_forecast">Часова прогноза</string>
     <string name="minutely_forecast">Минутна прогноза</string>
-    <string name="ephemeris">Слънце &amp; Луна</string>
+    <string name="ephemeris">Слънце и луна</string>
     <string name="details">Подробности</string>
     <string name="alerts">Сигнали</string>
     <string name="alerts_count">$ сигнали за времето</string>
@@ -59,7 +59,7 @@
     <string name="wind_strength_6">Силен бриз</string>
     <string name="wind_strength_8">Вихър</string>
     <string name="wind_strength_12">Ураган</string>
-    <string name="uv_index">UV индекс</string>
+    <string name="uv_index">Индекс на УВ</string>
     <string name="wind_strength_1">Лек вятър</string>
     <string name="wind_strength_7">Умерен вихър</string>
     <string name="wind_strength_9">Силен вихър</string>
@@ -74,11 +74,11 @@
     <string name="air_quality_level_2_description">Качеството на въздуха е добро за повечето хора. Чувствителните групи обаче могат да изпитат незначителни до умерени симптоми от дългосрочно изложение.</string>
     <string name="air_quality_level_6">Опасно</string>
     <string name="air_quality_level_6_description">Всяко излагане на въздух, дори за няколко минути, може да доведе до сериозни последици за здравето на всеки. Избягвайте дейности на открито.</string>
-    <string name="uv_index_0_2">Слабо</string>
-    <string name="uv_index_3_5">Умерено</string>
-    <string name="uv_index_6_7">Силно</string>
-    <string name="uv_index_8_10">Много силно</string>
-    <string name="uv_index_11">Екстремно</string>
+    <string name="uv_index_0_2">Нисък</string>
+    <string name="uv_index_3_5">Умерен</string>
+    <string name="uv_index_6_7">Висок</string>
+    <string name="uv_index_8_10">Много висок</string>
+    <string name="uv_index_11">Изключително висок</string>
     <string name="uv_alert_level">Тревога</string>
     <string name="air_quality_index">Индекс за качество на въздуха</string>
     <string name="air_quality_level_1">Отлично</string>
@@ -290,4 +290,9 @@
     <string name="weather_data_by">Данни от $</string>
     <string name="weather_air_quality_and_pollen_data_by">Данни за качеството на въздуха и праха от $</string>
     <string name="weather_message_data_refresh_failed">Опресняването на данните за времето неуспешно</string>
+    <string name="widget_custom_subtitle_keyword_cps_description">Текущо налягане</string>
+    <string name="settings_units_summary">Температура, валежи, разстояние, скорост, налягане</string>
+    <string name="widget_custom_subtitle_keyword_ch_description">Текуща влажност</string>
+    <string name="settings_units_pressure">Единица за налягане</string>
+    <string name="widget_custom_subtitle_keyword_cdp_description">Текуща температура на оросяване</string>
 </resources>
