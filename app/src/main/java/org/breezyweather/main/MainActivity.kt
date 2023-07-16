@@ -123,10 +123,7 @@ class MainActivity : GeoActivity(),
             AsyncHelper.runOnIO {
                 Notifications.updateNotificationIfNecessary(this, viewModel.validLocationList.value.first)
             }
-            refreshBackgroundViews(
-                resetBackground = true,
-                locationList = viewModel.validLocationList.value.first,
-            )
+            refreshBackgroundViews(viewModel.validLocationList.value.first)
         }
         EventBus.instance.with(ModifyMainSystemBarMessage::class.java).observe(this) {
             updateSystemBarStyle()
@@ -232,10 +229,7 @@ class MainActivity : GeoActivity(),
                     AsyncHelper.runOnIO {
                         Notifications.updateNotificationIfNecessary(context, it.first)
                     }
-                    refreshBackgroundViews(
-                        resetBackground = false,
-                        locationList = it.first,
-                    )
+                    refreshBackgroundViews(it.first)
                 }
             }
         }
@@ -484,13 +478,7 @@ class MainActivity : GeoActivity(),
         }
     }
 
-    private fun refreshBackgroundViews(resetBackground: Boolean, locationList: List<Location>?) {
-        if (resetBackground) {
-            AsyncHelper.delayRunOnIO({
-                // Refresh all data when settings changed
-                WeatherUpdateJob.startNow(this)
-            }, 1000)
-        }
+    private fun refreshBackgroundViews(locationList: List<Location>?) {
         locationList?.let {
             if (it.isNotEmpty()) {
                 AsyncHelper.delayRunOnIO({
@@ -509,7 +497,6 @@ class MainActivity : GeoActivity(),
     // interface.
 
     // main fragment callback.
-
     override fun onManageIconClicked() {
         setManagementFragmentVisibility(!isOrWillManagementFragmentVisible)
     }

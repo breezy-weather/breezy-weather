@@ -14,6 +14,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
+import org.breezyweather.background.weather.WeatherUpdateJob
 import org.breezyweather.common.basic.models.options.DarkMode
 import org.breezyweather.common.basic.models.options.appearance.*
 import org.breezyweather.common.utils.helpers.AsyncHelper
@@ -48,6 +49,9 @@ fun AppearanceSettingsScreen(
                 selectedKey = SettingsManager.getInstance(context).language.id,
                 onValueChanged = {
                     SettingsManager.getInstance(context).language = Language.getInstance(it)
+
+                    // Trigger a refresh of all weather data to have texts in the correct language
+                    WeatherUpdateJob.startNow(context)
 
                     SnackbarHelper.showSnackbar(
                         content = context.getString(R.string.settings_changes_apply_after_restart),

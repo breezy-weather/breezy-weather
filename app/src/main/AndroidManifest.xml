@@ -328,16 +328,6 @@
                 android:resource="@xml/live_wallpaper" />
         </service>
 
-        <!-- receiver -->
-        <receiver
-            android:name=".background.receiver.MainReceiver"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.intent.action.WALLPAPER_CHANGED" />
-            </intent-filter>
-        </receiver>
-
         <receiver
             android:name=".background.receiver.NotificationReceiver"
             android:exported="false" />

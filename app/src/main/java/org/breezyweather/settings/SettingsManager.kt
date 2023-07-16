@@ -69,7 +69,6 @@ class SettingsManager private constructor(context: Context) {
     var lastVersionCode: Int
         set(value) {
             config.edit().putInt("last_version_code", value).apply()
-            notifySettingsChanged()
         }
         get() = config.getInt("last_version_code", 0)
 

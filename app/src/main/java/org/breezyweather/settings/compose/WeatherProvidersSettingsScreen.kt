@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import org.breezyweather.R
+import org.breezyweather.background.weather.WeatherUpdateJob
 import org.breezyweather.weather.openweather.preferences.OpenWeatherOneCallVersion
 import org.breezyweather.common.basic.models.options.provider.WeatherSource
 import org.breezyweather.db.repositories.LocationEntityRepository
@@ -43,6 +44,8 @@ fun WeatherProvidersSettingsScreen(
                     )
                     WeatherEntityRepository.deleteWeather(locationList[index])
                     LocationEntityRepository.writeLocationList(locationList)
+                    // Trigger refresh of the current location
+                    WeatherUpdateJob.startNow(context, locationList[index])
                 }
             }
         )
