@@ -455,7 +455,7 @@
     <string name="weather_source_accu_preference_days_10">10 dias</string>
     <string name="weather_source_accu_preference_days_15">15 dias</string>
     <string name="weather_source_accu_preference_hours">Horas</string>
-    <string name="weather_source_accu_preference_hours_1">1 hora</string>
+    <string name="weather_source_accu_preference_hours_1">1 hora</string>
     <string name="weather_source_accu_preference_hours_12">12 horas</string>
     <string name="action_continue">Continuar</string>
     <string name="action_share">Compartilhar</string>
@@ -577,7 +577,7 @@
     <string name="openmeteo_weather_text_rain_showers_slight">Chuvas leves</string>
     <string name="openmeteo_weather_text_snow_heavy_intensity">Neve de alta intensidade</string>
     <string name="openmeteo_weather_text_rain_showers_violent">Chuvas violentas</string>
-    <string name="openmeteo_weather_text_snow_showers_slight">Chuvas de neve leves</string>
+    <string name="openmeteo_weather_text_snow_showers_slight">Leve chuvas de neve</string>
     <string name="openmeteo_weather_text_snow_showers_heavy">Chuvas de neve pesadas</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Tempestade leve ou moderada</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Tempestade com granizo leve</string>
