@@ -282,6 +282,9 @@
     <string name="notification_running_in_background">Fonctionnement en arrière-plan pour permettre l’actualisation</string>
     <string name="notification_updating_weather_data">Actualisation des données météo (%1$d/%2$d)</string>
     <string name="message_network_unavailable">Réseau non-disponible</string>
+    <string name="message_server_timeout">Délai imparti dépassé</string>
+    <string name="message_parsing_error_title">Échec d’analyse des données météo</string>
+    <string name="message_parsing_error_content">Assurez-vous d’avoir mis à jour vers la dernière version de l’application. Le serveur peut être temporairement indisponible, dans ce cas, réessayez plus tard. Si le problème persiste, merci de récupérer un journal d’incident à partir des paramètres de débogage, et signaler le problème sur GitHub.</string>
     <string name="message_updated_in_background">Actualisé en arrière-plan</string>
 
     <string name="notification_precipitation_today">Des précipitations peuvent avoir lieu aujourd’hui.</string>
@@ -472,9 +475,9 @@
     <string name="settings_widgets_notification_temp_icon_switch">Température dans la barre de statut</string>
     <string name="settings_widgets_notification_feels_like_switch">Utiliser la température ressentie</string>
     <string name="settings_debug">Débogage</string>
-    <string name="settings_debug_summary">Rapports de plantage</string>
-    <string name="settings_debug_dump_crash_logs_title">Exporter les rapports de plantage</string>
-    <string name="settings_debug_dump_crash_logs_summary">Enregistre les rapports de plantage dans un fichier pour les partager avec les développeurs</string>
+    <string name="settings_debug_summary">Journaux d’incident</string>
+    <string name="settings_debug_dump_crash_logs_title">Exporter les journaux d’incident</string>
+    <string name="settings_debug_dump_crash_logs_summary">Enregistre les journaux d’incident dans un fichier pour les partager avec les développeurs</string>
     <string name="settings_location_service">Service de localisation</string>
     <string name="settings_units_temperature">Unité de température</string>
     <string name="settings_units_distance">Unité de distance</string>

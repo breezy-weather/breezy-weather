@@ -303,8 +303,8 @@
     <!-- Miscellaneous messages -->
     <string name="message_network_unavailable">Network unavailable</string>
     <string name="message_server_timeout">Request timed out</string>
-    <string name="message_parsing_error_title">Invalid response from server</string>
-    <string name="message_parsing_error_content">Make sure you updated to latest version of the app. Server may be temporarily unavailable. If problem persists, please dump a crash log from debug settings, and report an issue on GitHub.</string>
+    <string name="message_parsing_error_title">Failed to parse weather data</string>
+    <string name="message_parsing_error_content">Make sure you updated to latest version of the app. Server may be temporarily unavailable, in that case, please try again later. If problem persists, please dump a crash log from debug settings, and report an issue on GitHub.</string>
     <string name="message_updated_in_background">Updated in background</string>
     <string name="message_tap_again_to_exit">Tap again to exit</string>
     <!-- Widgets -->
