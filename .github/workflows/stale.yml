@@ -1,0 +1,27 @@
+name: Close stale issues
+
+on:
+  # Daily
+  schedule:
+    - cron: '0 0 * * *'
+  # Manual trigger
+  workflow_dispatch:
+    inputs:
+
+jobs:
+  lock:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v4
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          stale-issue-message: |
+            The Breezy Weather project highly values your report and would love to see it addressed. However, this issue has been left in “Needs more info” mode for the last 7 days and is being automatically marked as “Stale”. If you would like to continue with this issue, please provide any missing information or answer any open questions. If you could resolve the issue yourself meanwhile, please leave a note for future readers with the same problem and close the issue.
+            In case you should have any uncertainty, please leave a comment and we will be happy to help you proceed with this issue.
+            If there is no further activity on this issue, it will be closed in a week.
+          stale-issue-label: 'Stale'
+          close-issue-message: |
+            This issue has been automatically closed due to inactivity. If you are still experiencing problems, please open a new issue.
+          only-labels: 'Needs more info'
+          days-before-stale: 7
+          days-before-close: 7
