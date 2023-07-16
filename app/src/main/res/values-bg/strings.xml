@@ -267,7 +267,7 @@
     <string name="humidity">Влажност</string>
     <string name="pressure">Атмосферно налягане</string>
     <string name="visibility">Видимост</string>
-    <string name="dew_point">Точка на оросяване</string>
+    <string name="dew_point">Температура на оросяване</string>
     <string name="cloud_cover">Облачно покритие</string>
     <string name="ceiling">Облъчен Таван</string>
     <string name="weather_kind_clear">Ясно</string>
