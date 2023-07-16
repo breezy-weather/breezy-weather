@@ -105,7 +105,7 @@
     <string name="location_dialog_failed_to_locate_action_select_provider">Выбрать источник определения местоположения</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Добавить местоположение и удалить “$”</string>
     <string name="dialog_permissions_location_background_title">Доступ к местоположению в фоне</string>
-    <string name="dialog_permissions_location_background_content">Чтобы разрешить программе доступ к местоположению в фоне, включите доступ к местоположению “Разрешить всегда”.</string>
+    <string name="dialog_permissions_location_background_content">Чтобы разрешить приложению доступ к местоположению в фоне, чтобы мы могли следить за изменениями местоположения и предоставлять актуальный прогноз погоды, включите доступ к местоположению “Разрешить в любом режиме”.</string>
     <string name="widget_label_view_style">Стиль внешнего вида</string>
     <string name="widget_label_show_widget_card">Цвет фона</string>
     <string name="widget_label_show_widget_card_alpha">Прозрачность</string>
@@ -190,12 +190,12 @@
     <string name="widget_clock_day_vertical">Время + День (Вертикальный)</string>
     <string name="widget_clock_day_week">Время + День + Неделя</string>
     <string name="widget_text">Текст</string>
-    <string name="widget_trend_daily">Дневной тренд</string>
-    <string name="widget_trend_hourly">Часовой тренд</string>
+    <string name="widget_trend_daily">Ежедневный прогноз</string>
+    <string name="widget_trend_hourly">Почасовой прогноз</string>
     <string name="widget_multi_city">Несколько городов</string>
     <string name="widget_material_you_forecast">Material You - Прогноз</string>
     <string name="widget_material_you_current">Material You - Текущая</string>
-    <string name="widget_refreshing">Ждите</string>
+    <string name="widget_refreshing">Обновление</string>
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
     <string name="settings_widgets_live_wallpaper_title">Живые обои</string>
@@ -596,7 +596,7 @@
     <string name="settings_location_summary">Настройки провайдеров местоположения</string>
     <string name="settings_weather_providers">Провайдеры погоды</string>
     <string name="weather_refresh_skipped_already_recently_updated">Уже недавно обновлено</string>
-    <string name="action_show_errors">Нажмите чтобы увидеть детали</string>
+    <string name="action_show_errors">Нажмите, чтобы увидеть детали</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Игнорировать, когда батарея разряжена</string>
     <string name="message_server_timeout">Истекло время запроса</string>
     <string name="message_parsing_error_title">Не удалось проанализировать данные о погоде</string>
