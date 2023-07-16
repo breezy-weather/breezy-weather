@@ -603,8 +603,8 @@
     <string name="action_show_errors">Нажмите чтобы увидеть детали</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Игнорировать, когда батарея разряжена</string>
     <string name="message_server_timeout">Истекло время запроса</string>
-    <string name="message_parsing_error_title">Неверный ответ от сервера</string>
+    <string name="message_parsing_error_title">Не удалось проанализировать данные о погоде</string>
     <string name="wind_strength">Сила ветра</string>
-    <string name="message_parsing_error_content">Убедитесь, что вы обновили приложение до последней версии. Сервер может быть временно недоступен. Если проблема не устранена, создайте дамп журнала сбоев из настроек отладки и сообщите о проблеме на GitHub.</string>
+    <string name="message_parsing_error_content">Убедитесь, что вы обновили приложение до последней версии. Сервер может быть временно недоступен, в этом случае повторите попытку позже. Если проблема не устранена, создайте дамп журнала сбоев из настроек отладки и сообщите о проблеме на GitHub.</string>
     <string name="notification_update_error">%1$d обновление(ий) не удалось</string>
 </resources>
