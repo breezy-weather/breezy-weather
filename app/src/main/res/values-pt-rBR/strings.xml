@@ -228,7 +228,7 @@
     <string name="settings_icon_providers_weather_icon_grey">Ícone cinza</string>
     <string name="settings_icon_providers_weather_icon_dark">Ícone escuro</string>
     <!-- action -->
-    <string name="alerts">Alerta</string>
+    <string name="alerts">Alertas</string>
     <string name="action_search">Pesquisar</string>
     <string name="action_settings">Configurações</string>
     <string name="action_preview">Visualização</string>
@@ -444,7 +444,7 @@
     <string name="settings_location_access_switch_title">Acesso à localização</string>
     <string name="settings_main_cards_fade_in_switch">Cartões se desvanecem</string>
     <string name="settings_debug_dump_crash_logs_title">Compartilhar registros de falhas</string>
-    <string name="air_quality_level_5">Muito insalubre</string>
+    <string name="air_quality_level_5">Nada saudável</string>
     <string name="weather_source_accu_preference_days_1">1 dia</string>
     <string name="weather_source_accu_preference_days">Dias</string>
     <string name="weather_source_accu_preference_days_5">5 dias</string>
