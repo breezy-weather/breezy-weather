@@ -599,4 +599,7 @@
     <string name="weather_refresh_skipped_already_recently_updated">تم تحديثه مؤخرا بالفعل</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">تجاهل عندما تكون البطارية منخفضة</string>
     <string name="wind_strength">طاقة الرياح</string>
+    <string name="message_parsing_error_title">فشل تحليل بيانات الطقس</string>
+    <string name="message_server_timeout">انتهت مهلة الطلب</string>
+    <string name="message_parsing_error_content">تأكد من تحديثك إلى أحدث إصدار من التطبيق. قد يكون الخادم غير متاح مؤقتًا ، وفي هذه الحالة ، يرجى المحاولة مرة أخرى لاحقًا. إذا استمرت المشكلة ، يرجى تفريغ سجل التعطل من إعدادات التصحيح ، والإبلاغ عن مشكلة على GitHub.</string>
 </resources>
