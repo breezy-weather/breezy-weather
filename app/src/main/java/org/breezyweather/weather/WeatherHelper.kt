@@ -56,7 +56,11 @@ class WeatherHelper @Inject constructor(
     ): Observable<List<Location>> {
         return if (enabledSource == null) {
             Observable.error(LocationSearchException())
-        } else mServiceSet[enabledSource].requestLocationSearch(context, query)
+        } else if (!context.isOnline()) {
+            Observable.error(NoNetworkException())
+        } else {
+            mServiceSet[enabledSource].requestLocationSearch(context, query)
+        }
     }
 
     fun cancel() {
