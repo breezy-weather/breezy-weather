@@ -449,4 +449,26 @@
     <string name="settings_icon_providers_check_details">Провери подробностите</string>
     <string name="settings_icon_providers_weather_adaptive_icon">Икона за времето</string>
     <string name="settings_widgets">Приспособления и Живи тапети</string>
+    <string name="settings_widgets_live_wallpaper_title">Жив тапет</string>
+    <string name="settings_widgets_live_wallpaper_summary">Задай анимация за времето като тапет</string>
+    <string name="settings_widgets_summary">Задаване на тапет, конфигуриране на използвани приспособления, приспособление за известия</string>
+    <string name="settings_widgets_week_icon_mode_title">Икона за показване в седмични изгледи</string>
+    <string name="settings_widgets_monochrome_icons_title">Едноцветни икони</string>
+    <string name="settings_widgets_day_night_temp_reversed_title">Обратен ред на температурите за ден/нощ</string>
+    <string name="settings_item_delete">Изтрий този елемент</string>
+    <string name="settings_widgets_live_wallpaper_error">Неуспешно стартиране на инструмента за избор на тапет. Все още можете да активирате тапет Breezy Weather, като изберете \"Живи тапети\" в инструмента за избор на тапети на началния екран.</string>
+    <string name="settings_widgets_section_widgets_in_use">Приспособления в употреба</string>
+    <string name="settings_widgets_notification_widget_title">Приспособление в известията</string>
+    <string name="settings_widgets_configure_widget_summary">Конфигурирай това приспособление</string>
+    <string name="settings_widgets_section_notification_widget">Приспособление в известията</string>
+    <string name="settings_widgets_notification_feels_like_switch">Използвай Усеща се като температура</string>
+    <string name="settings_widgets_notification_temp_icon_switch">Температура като икона в лентата на състоянието</string>
+    <string name="settings_widgets_notification_persistent_switch">Постоянно</string>
+    <string name="settings_debug">Отстраняване на грешки</string>
+    <string name="settings_widgets_notification_style_title">Стил</string>
+    <string name="settings_debug_summary">Логове на сривовете</string>
+    <string name="settings_debug_dump_crash_logs_title">Сподели логовете на сривовете</string>
+    <string name="settings_debug_dump_crash_logs_summary">Записва логовете за грешки във файл за споделяне с разработчиците</string>
+    <string name="settings_changes_apply_after_restart">Промените ще влязат в сила след рестартиране</string>
+    <string name="settings_items_drag_to_sort">Докоснете, за да плъзнете елементите от списъка за да сортирате</string>
 </resources>
