@@ -9,6 +9,7 @@ import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.ui.adapters.SyncListAdapter
 import org.breezyweather.databinding.ItemLocationCardBinding
 import org.breezyweather.settings.SettingsManager
+import org.breezyweather.sources.SourceManager
 import org.breezyweather.theme.resource.ResourcesProviderFactory
 import org.breezyweather.theme.resource.providers.ResourceProvider
 
@@ -19,6 +20,7 @@ class LocationAdapter(
     private val mContext: Context,
     locationList: List<Location>,
     selectedId: String?,
+    private val sourceManager: SourceManager,
     private val mClickListener: (String) -> Unit,
     private val mDragListener: (LocationHolder) -> Unit
 ) : SyncListAdapter<LocationModel, LocationHolder>(
@@ -60,7 +62,7 @@ class LocationAdapter(
         for (model in currentList) {
             modelList.add(
                 LocationModel(
-                    mContext, model.location, mTemperatureUnit, model.location.formattedId == selectedId
+                    mContext, model.location, sourceManager.getWeatherSource(model.location.weatherSource), mTemperatureUnit, model.location.formattedId == selectedId
                 )
             )
         }
@@ -70,7 +72,7 @@ class LocationAdapter(
     fun update(newList: List<Location>, selectedId: String?) {
         val modelList: MutableList<LocationModel> = ArrayList(newList.size)
         for (l in newList) {
-            modelList.add(LocationModel(mContext, l, mTemperatureUnit, l.formattedId == selectedId))
+            modelList.add(LocationModel(mContext, l, sourceManager.getWeatherSource(l.weatherSource), mTemperatureUnit, l.formattedId == selectedId))
         }
         submitList(modelList)
     }

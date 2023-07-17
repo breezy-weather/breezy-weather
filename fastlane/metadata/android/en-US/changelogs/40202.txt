@@ -1,3 +1,4 @@
 <ul>
 <li>Add no network error on location search</li>
+<li>Throw error when trying to locate outside China when using Baidu IP location, instead of positioning on 0, 0</li>
 </ul>

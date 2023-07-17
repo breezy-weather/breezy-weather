@@ -1,7 +1,6 @@
 package org.breezyweather.common.basic.models
 
 import kotlinx.serialization.Serializable
-import org.breezyweather.common.basic.models.options.provider.WeatherSource
 import java.util.TimeZone
 
 @Serializable
@@ -23,7 +22,7 @@ data class ChineseCity(
         city = city,
         district = if (district == "无") "" else district,
         weather = null,
-        weatherSource = WeatherSource.CHINA,
+        weatherSource = "china",
         isCurrentPosition = false,
         isResidentPosition = false,
         isChina = true

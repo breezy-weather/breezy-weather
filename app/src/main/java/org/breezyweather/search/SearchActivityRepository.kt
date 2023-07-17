@@ -7,7 +7,6 @@ import io.reactivex.rxjava3.observers.DisposableObserver
 import kotlinx.serialization.MissingFieldException
 import kotlinx.serialization.SerializationException
 import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.options.provider.WeatherSource
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.LocationSearchException
 import org.breezyweather.common.exceptions.NoNetworkException
@@ -16,7 +15,7 @@ import org.breezyweather.common.rxjava.ObserverContainer
 import org.breezyweather.common.rxjava.SchedulerTransformer
 import org.breezyweather.main.utils.RequestErrorType
 import org.breezyweather.settings.ConfigStore
-import org.breezyweather.weather.WeatherHelper
+import org.breezyweather.sources.WeatherHelper
 import retrofit2.HttpException
 import java.net.SocketTimeoutException
 import javax.inject.Inject
@@ -29,7 +28,7 @@ class SearchActivityRepository @Inject internal constructor(
     private val mConfig: ConfigStore = ConfigStore(context, PREFERENCE_SEARCH_CONFIG)
 
     fun searchLocationList(
-        context: Context, query: String, enabledSource: WeatherSource,
+        context: Context, query: String, enabledSource: String,
         callback: (t: Pair<List<Location>?, RequestErrorType?>?, done: Boolean) -> Unit
     ) {
         mWeatherHelper
@@ -77,14 +76,11 @@ class SearchActivityRepository @Inject internal constructor(
             }))
     }
 
-    var lastSelectedWeatherSource: WeatherSource
-        get() {
-            val lastDefaultSource = mConfig.getString(KEY_LAST_DEFAULT_SOURCE, "")
-            return WeatherSource.getInstance(lastDefaultSource)
+    var lastSelectedWeatherSource: String
+        set(value) {
+            mConfig.edit().putString(KEY_LAST_DEFAULT_SOURCE, value).apply()
         }
-        set(weatherSource) {
-            mConfig.edit().putString(KEY_LAST_DEFAULT_SOURCE, weatherSource.id).apply()
-        }
+        get() = mConfig.getString(KEY_LAST_DEFAULT_SOURCE, "accu") ?: ""
 
     fun cancel() {
         mCompositeDisposable.clear()

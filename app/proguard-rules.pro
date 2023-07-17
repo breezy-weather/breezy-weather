@@ -22,10 +22,8 @@
 
 -keep class org.breezyweather.common.basic.models.** { *; }
 -keep class org.breezyweather.db.entities.** { *; }
--keep class org.breezyweather.location.apis.** { *; }
--keep class org.breezyweather.location.json.** { *; }
--keep interface org.breezyweather.weather.**.* { *; }
--keep class org.breezyweather.weather.**.json.** { *; }
+-keep interface org.breezyweather.sources.**.* { *; }
+-keep class org.breezyweather.sources.**.json.** { *; }
 
 -keep public class * extends android.app.Service
 -keep public class * extends android.content.BroadcastReceiver

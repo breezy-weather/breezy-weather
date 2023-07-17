@@ -44,10 +44,6 @@ class LocationHolder(
         if (talkBackBuilder.toString().isNotEmpty()) {
             talkBackBuilder.append(", ")
         }
-        talkBackBuilder.append(
-        context.getString(R.string.weather_data_by)
-            .replace("$", model.weatherSource.getVoice(context))
-        )
         mBinding.container.apply {
             swipe(0f)
             iconResStart = R.drawable.ic_delete
@@ -118,8 +114,8 @@ class LocationHolder(
         }
 
         // source.
-        mBinding.source.text = context.getString(R.string.weather_data_by).replace("$", model.weatherSource.sourceUrl)
-        mBinding.source.setTextColor(model.weatherSource.sourceColor)
+        mBinding.source.text = context.getString(R.string.weather_data_by).replace("$", model.weatherSource?.weatherAttribution ?: context.getString(R.string.null_data_text))
+        mBinding.source.setTextColor(model.weatherSource?.color ?: MainThemeColorProvider.getColor(lightTheme, R.attr.colorBodyText))
         mBinding.container.setOnClickListener { mClickListener(model.location.formattedId) }
         // TODO
         mBinding.sortButton.setOnTouchListener { _: View?, event: MotionEvent ->

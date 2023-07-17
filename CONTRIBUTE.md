@@ -2,35 +2,23 @@
 
 At each step, have a look at what already exists for other providers if you don’t know what to do.
 
-### Add parameters
-
-Declare new variables in `app/build.gradle`. At minimum, you will need a base URL.
-If required, an API key can be added in `local.properties`. Name it that way: `breezy.<providershortid>.key`
-
-*TODO: describe how to add a new parameter in settings for API key*
+*Note: Weather converters are currently being rewritten so that you don’t have to call the `CommonConverter` anymore.*
 
 
-### Add WeatherSource
-In `app/src/main/java/org/breezyweather/common/basic/models/options/provider/WeatherSource.kt`, add a new entry:
-- First parameter is a technical name, keep it alphabetical lowercase only.
-- Color is reversed, basically 00 becomes FF and FF becomes 00. You can use this tool to help you: https://www.calculator.net/hex-calculator.html?number1=FF&c2op=-&number2=50&calctype=op&x=0&y=0
-- Source URL will be displayed at the bottom of each location. It’s the mandatory attribution for data.
+### API key (optional)
 
-Don’t forget to add your new WeatherSource in the `getInstance()` function below.
+If you need an API key or any kind of secret, you will to need declare it in `app/build.gradle` as `breezy.<yourproviderid>.key`.
+Then declare the value in `local.properties` which is private and will not be committed.
 
-
-### Translations
-Please edit `R.array.weather_sources` to add the technical name (first parameter of your `WeatherSource`);
-
-Add an entry in the same position as `R.array.weather_sources` for `R.array.weather_source_values` and `R.array.weather_source_voices` for each language that requires it (put it in English if you don't speak that language, usually no translation is needed).
+*TODO: describe how to add a new parameter in settings for custom API key*
 
 
 ### API
-Copy the `app/src/main/java/org/breezyweather/weather/openweather/` folder as a base.
+Copy the `app/src/main/java/org/breezyweather/sources/openweather/` folder as a base.
 
 Let’s edit the API interface, and only implement the forecast API as a starting point.
 
-In `app/src/main/java/org/breezyweather/weather/<yourprovider>/json/<technicalname>`, add the data class that will be constructed from the json returned by the API.
+In `app/src/main/java/org/breezyweather/source/<yourproviderid>/json/<technicalname>`, add the data class that will be constructed from the json returned by the API.
 
 Use @SerialName when the name of the field is not the same as what is in the json returned by the API.
 Example:
@@ -40,20 +28,15 @@ Example:
 
 As in the example, make as many fields as possible nullable so that in case the API doesn’t return some fields for some locations, it doesn’t fail. The serializer is configured to make nullable fields null in case the field is not in the JSON response, so you don’t need to declare `= null` as default value.
 
-Add the API class as a provider in `app/src/main/java/org/breezyweather/weather/ApiModule.java` (copy an existing function).
-
 
 ### Service and converter
-Copy `OpenMeteoWeatherService` from `app/src/main/java/org/breezyweather/weather/openweather/` and replace the OpenWeatherWeatherService copied earlier.
+Rename `OpenWeatherService` with your provider name.
+As a starting point, inject your weather API for the weather data.
 
-In the constructor, you can inject as many providers as you need.
-As a starting point, inject your weather API for the weather data, and `OpenMeteoGeocodingApi` for the geocoding part.
-You can still implement it your own geocoding later, but to get a running example, we will skip this part for now.
-**Exception**: if your weather provider doesn’t accept latitude and longitude for the forecast API, but only a city ID for example, you will need to implement the geocoding part.
+If you need location search support and reverse geocoding, check other providers.
+**Exception**: if your weather provider doesn’t accept latitude and longitude for the forecast API, but only a city ID for example, this step will be mandatory.
 
-Replace `WeatherSource.OPEN_METEO` with your `WeatherSource` in the `requestLocationSearch` function.
-
-Then focus on the `requestWeather()` function. You will need to create a converter class.
+But let’s focus on the `requestWeather()` function first. You will need to create a converter class.
 The goal of a converter class is to normalize the data we received into Breezy Weather data objects.
 
 Here is the minimum code you need to put in your converter:
@@ -78,7 +61,7 @@ fun convert(
 }
 ```
 
-Add your service in the `WeatherServiceSet` class.
+Add your service in the constructor of the `SourceManager` class.
 
 You’re done!
 

@@ -9,6 +9,10 @@ import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.breezyweather.BreezyWeather
+import org.breezyweather.BuildConfig
+import org.breezyweather.sources.baiduip.BaiduIPLocationApi
+import retrofit2.Converter
+import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import java.io.File
 import java.util.concurrent.TimeUnit
@@ -46,5 +50,19 @@ class RetrofitModule {
         return HttpLoggingInterceptor().apply {
             level = if (BreezyWeather.instance.debugMode) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
         }
+    }
+
+    @Provides
+    fun provideRetrofitBuilder(
+        client: OkHttpClient,
+        converterFactory: Converter.Factory,
+        callAdapterFactory: RxJava3CallAdapterFactory
+    ): Retrofit.Builder {
+        return Retrofit.Builder()
+            .client(client)
+            .addConverterFactory(converterFactory)
+            // TODO: We should probably migrate to suspend
+            // https://github.com/square/retrofit/blob/master/CHANGELOG.md#version-260-2019-06-05
+            .addCallAdapterFactory(callAdapterFactory)
     }
 }

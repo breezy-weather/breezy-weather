@@ -3,22 +3,22 @@ package org.breezyweather.main.adapters.location
 import android.content.Context
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.options.provider.WeatherSource
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
+import org.breezyweather.common.source.WeatherSource
 
 class LocationModel(
     context: Context,
     val location: Location,
-    unit: TemperatureUnit,
+    val weatherSource: WeatherSource?,
+    unit: TemperatureUnit, // TODO: Add back temperature
     var selected: Boolean
 ) {
     var weatherCode: WeatherCode? = null
     var weatherText: String? = null
-    val weatherSource: WeatherSource = location.weatherSource
     val currentPosition: Boolean = location.isCurrentPosition
     val residentPosition: Boolean = location.isResidentPosition
     val title: String = if (location.isCurrentPosition) context.getString(R.string.location_current) else location.place()
@@ -26,7 +26,6 @@ class LocationModel(
     var alerts: String? = null
 
     init {
-        // TODO: Use current instead
         if (location.weather != null) {
             if (location.weather.dailyForecast.isNotEmpty()) {
                 if (location.isDaylight && location.weather.dailyForecast[0].day?.weatherCode != null) {

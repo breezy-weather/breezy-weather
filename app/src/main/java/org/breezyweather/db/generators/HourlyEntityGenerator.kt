@@ -1,6 +1,5 @@
 package org.breezyweather.db.generators
 
-import org.breezyweather.common.basic.models.options.provider.WeatherSource
 import org.breezyweather.common.basic.models.weather.AirQuality
 import org.breezyweather.common.basic.models.weather.Hourly
 import org.breezyweather.common.basic.models.weather.Pollen
@@ -9,14 +8,13 @@ import org.breezyweather.common.basic.models.weather.PrecipitationProbability
 import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.basic.models.weather.UV
 import org.breezyweather.common.basic.models.weather.Wind
-import org.breezyweather.db.converters.WeatherSourceConverter
 import org.breezyweather.db.entities.HourlyEntity
 
 object HourlyEntityGenerator {
-    fun generate(cityId: String, source: WeatherSource, hourly: Hourly): HourlyEntity {
+    fun generate(cityId: String, source: String, hourly: Hourly): HourlyEntity {
         return HourlyEntity(
             cityId = cityId,
-            weatherSource = WeatherSourceConverter().convertToDatabaseValue(source),
+            weatherSource = source,
             date = hourly.date,
             daylight = hourly.isDaylight,
             weatherCode = hourly.weatherCode,
@@ -78,7 +76,7 @@ object HourlyEntityGenerator {
         )
     }
 
-    fun generateEntityList(cityId: String, source: WeatherSource, hourlyList: List<Hourly>): List<HourlyEntity> {
+    fun generateEntityList(cityId: String, source: String, hourlyList: List<Hourly>): List<HourlyEntity> {
         val entityList: MutableList<HourlyEntity> = ArrayList(hourlyList.size)
         for (hourly in hourlyList) {
             entityList.add(generate(cityId, source, hourly))

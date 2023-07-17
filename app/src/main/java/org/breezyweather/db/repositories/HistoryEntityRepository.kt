@@ -1,12 +1,10 @@
 package org.breezyweather.db.repositories
 
 import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.options.provider.WeatherSource
 import org.breezyweather.common.basic.models.weather.History
 import org.breezyweather.common.basic.models.weather.Weather
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.db.ObjectBox.boxStore
-import org.breezyweather.db.converters.WeatherSourceConverter
 import org.breezyweather.db.entities.HistoryEntity
 import org.breezyweather.db.entities.HistoryEntity_
 import org.breezyweather.db.generators.HistoryEntityGenerator
@@ -37,7 +35,7 @@ object HistoryEntityRepository {
 
     fun selectYesterdayHistoryEntity(
         cityId: String,
-        source: WeatherSource,
+        source: String,
         currentDate: Date,
         timeZone: TimeZone
     ): HistoryEntity? {
@@ -51,11 +49,7 @@ object HistoryEntityRepository {
                     HistoryEntity_.date.greaterOrEqual(yesterday)
                         .and(HistoryEntity_.date.less(today))
                         .and(HistoryEntity_.cityId.equal(cityId))
-                        .and(
-                            HistoryEntity_.weatherSource.equal(
-                                WeatherSourceConverter().convertToDatabaseValue(source)
-                            )
-                        )
+                        .and(HistoryEntity_.weatherSource.equal(source))
                 ).build()
             val entityList = query.find()
             query.close()
@@ -68,7 +62,7 @@ object HistoryEntityRepository {
 
     private fun selectTodayHistoryEntity(
         cityId: String,
-        source: WeatherSource,
+        source: String,
         currentDate: Date,
         timeZone: TimeZone
     ): HistoryEntity? {
@@ -82,11 +76,7 @@ object HistoryEntityRepository {
                     HistoryEntity_.date.greaterOrEqual(today)
                         .and(HistoryEntity_.date.less(tomorrow))
                         .and(HistoryEntity_.cityId.equal(cityId))
-                        .and(
-                            HistoryEntity_.weatherSource.equal(
-                                WeatherSourceConverter().convertToDatabaseValue(source)
-                            )
-                        )
+                        .and(HistoryEntity_.weatherSource.equal(source))
                 ).build()
             val entityList = query.find()
             query.close()
@@ -99,16 +89,12 @@ object HistoryEntityRepository {
 
     fun selectHistoryEntityList(
         cityId: String,
-        source: WeatherSource
+        source: String
     ): List<HistoryEntity> {
         val query = boxStore.boxFor(HistoryEntity::class.java)
             .query(
                 HistoryEntity_.cityId.equal(cityId)
-                    .and(
-                        HistoryEntity_.weatherSource.equal(
-                            WeatherSourceConverter().convertToDatabaseValue(source)
-                        )
-                    )
+                    .and(HistoryEntity_.weatherSource.equal(source))
             ).build()
         val results = query.find()
         query.close()

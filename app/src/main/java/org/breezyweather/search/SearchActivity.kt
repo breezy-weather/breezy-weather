@@ -22,21 +22,23 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
 import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.options.provider.WeatherSource
+import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.ui.widgets.Material3Scaffold
 import org.breezyweather.common.ui.widgets.Material3SearchBarInputField
 import org.breezyweather.settings.preference.composables.RadioButton
+import org.breezyweather.sources.SourceManager
 import org.breezyweather.theme.compose.DayNightTheme
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class SearchActivity : GeoActivity() {
     private lateinit var viewModel: SearchViewModel
+    @Inject lateinit var sourceManager: SourceManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +57,10 @@ class SearchActivity : GeoActivity() {
         var text by rememberSaveable { mutableStateOf("") }
         var latestTextSearch by rememberSaveable { mutableStateOf("") }
         val enabledSourceState = viewModel.enabledSource.collectAsState()
+        val weatherSource = sourceManager.getWeatherSourceOrDefault(enabledSourceState.value)
+        val locationSearchSource = if (weatherSource !is LocationSearchSource) {
+            sourceManager.getDefaultLocationSearchSource()
+        } else weatherSource
 
         Material3Scaffold(
             bottomBar = {
@@ -66,14 +72,14 @@ class SearchActivity : GeoActivity() {
                         ) {
                             Column {
                                 Text(
-                                    text = stringResource(R.string.weather_data_by).replace("$", enabledSourceState.value.getName(LocalContext.current)),
+                                    text = stringResource(R.string.weather_data_by).replace("$", weatherSource.name),
                                     style = MaterialTheme.typography.titleSmall,
-                                    color = Color(enabledSourceState.value.sourceColor)
+                                    color = Color(weatherSource.color)
                                 )
-                                if (!enabledSourceState.value.locationProvider.isNullOrEmpty()) {
+                                if (locationSearchSource.locationSearchAttribution != weatherSource.name) {
                                     Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
                                     Text(
-                                        text = stringResource(R.string.location_results_by).replace("$", enabledSourceState.value.locationProvider!!),
+                                        text = stringResource(R.string.location_results_by).replace("$", locationSearchSource.locationSearchAttribution),
                                         style = MaterialTheme.typography.bodySmall,
                                         color = DayNightTheme.colors.bodyColor
                                     )
@@ -153,7 +159,7 @@ class SearchActivity : GeoActivity() {
                             ) {
                                 Text(
                                     text = stringResource(R.string.location_search_no_results)
-                                        .replace("$1", enabledSourceState.value.locationProvider ?: enabledSourceState.value.getName(LocalContext.current))
+                                        .replace("$1", locationSearchSource.name)
                                         .replace("$2", latestTextSearch),
                                     style = MaterialTheme.typography.titleMedium,
                                     color = DayNightTheme.colors.titleColor
@@ -185,17 +191,17 @@ class SearchActivity : GeoActivity() {
                     LazyColumn(
                         modifier = Modifier.fillMaxWidth(),
                     ) {
-                        items(WeatherSource.values()) {
+                        items(sourceManager.getWeatherSources()) {
                             RadioButton(
-                                selected = enabledSourceState.value.id == it.id,
+                                selected = weatherSource.id == it.id,
                                 onClick = {
                                     dialogOpenState.value = false
-                                    viewModel.setEnabledSource(it)
+                                    viewModel.setEnabledSource(it.id)
                                     if (text.isNotEmpty()) {
                                         viewModel.requestLocationList(text)
                                     }
                                 },
-                                text = it.getName(LocalContext.current)
+                                text = it.name
                             )
                         }
                     }

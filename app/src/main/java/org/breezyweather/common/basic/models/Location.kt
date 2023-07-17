@@ -4,9 +4,9 @@ import android.content.Context
 import android.os.Parcel
 import android.os.Parcelable
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.provider.WeatherSource
 import org.breezyweather.common.basic.models.weather.Astro
 import org.breezyweather.common.basic.models.weather.Weather
+import org.breezyweather.sources.SourceManager
 import java.util.TimeZone
 import kotlin.math.abs
 
@@ -25,7 +25,7 @@ class Location(
     val district: String? = null,
 
     val weather: Weather? = null,
-    val weatherSource: WeatherSource,
+    val weatherSource: String = SourceManager.DEFAULT_WEATHER_SOURCE,
 
     val isCurrentPosition: Boolean = false,
     val isResidentPosition: Boolean = false,
@@ -36,7 +36,7 @@ class Location(
         get() = if (isCurrentPosition) {
             CURRENT_POSITION_ID
         } else {
-            cityId + "&" + weatherSource.name
+            cityId + "&" + weatherSource
         }
 
     val isDaylight: Boolean
@@ -115,7 +115,7 @@ class Location(
         parcel.writeString(provinceCode)
         parcel.writeString(city)
         parcel.writeString(district)
-        parcel.writeInt(weatherSource.ordinal)
+        parcel.writeString(weatherSource)
         parcel.writeByte(if (isCurrentPosition) 1 else 0)
         parcel.writeByte(if (isResidentPosition) 1 else 0)
         parcel.writeByte(if (isChina) 1 else 0)
@@ -134,7 +134,7 @@ class Location(
         provinceCode = parcel.readString(),
         city = parcel.readString()!!,
         district = parcel.readString(),
-        weatherSource = WeatherSource.values()[parcel.readInt()],
+        weatherSource = parcel.readString()!!,
         isCurrentPosition = parcel.readByte() != 0.toByte(),
         isResidentPosition = parcel.readByte() != 0.toByte(),
         isChina = parcel.readByte() != 0.toByte()
@@ -152,7 +152,7 @@ class Location(
         city: String? = null,
         district: String? = null,
         weather: Weather? = null,
-        weatherSource: WeatherSource? = null,
+        weatherSource: String? = null,
         isCurrentPosition: Boolean? = null,
         isResidentPosition: Boolean? = null,
         isChina: Boolean? = null,

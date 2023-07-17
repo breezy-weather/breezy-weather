@@ -285,6 +285,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                 requireActivity(),
                 ArrayList(),
                 null,
+                (requireActivity() as MainActivity).sourceManager,
                 { formattedId ->  // on click.
                     viewModel.setLocation(formattedId)
                     parentFragmentManager.popBackStack()

@@ -8,10 +8,9 @@ import androidx.compose.runtime.Composable
 import androidx.core.app.ActivityCompat
 import com.google.accompanist.permissions.PermissionState
 import com.google.accompanist.permissions.PermissionStatus
-import org.breezyweather.BreezyWeather
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.provider.LocationProvider
 import org.breezyweather.common.extensions.openApplicationDetailsSettings
+import org.breezyweather.common.source.LocationSource
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.preference.*
@@ -20,6 +19,7 @@ import org.breezyweather.settings.preference.composables.*
 @Composable
 fun LocationSettingsScreen(
     context: Activity,
+    locationSources: List<LocationSource>,
     accessCoarseLocationPermissionState: PermissionState,
     accessFineLocationPermissionState: PermissionState,
     accessBackgroundLocationPermissionState: PermissionState,
@@ -28,21 +28,13 @@ fun LocationSettingsScreen(
     sectionHeaderItem(R.string.settings_location_section_general)
     listPreferenceItem(R.string.settings_location_service) { id ->
         ListPreferenceView(
-            titleId = id,
-            selectedKey = SettingsManager.getInstance(context).locationProvider.id,
-            valueArrayId = R.array.location_service_values,
-            nameArrayId = R.array.location_services,
+            title = context.getString(id),
+            selectedKey = SettingsManager.getInstance(context).locationProvider,
+            valueArray = locationSources.map { it.id }.toTypedArray(),
+            nameArray = locationSources.map { it.name }.toTypedArray(),
+            summary = { _, value -> locationSources.firstOrNull { it.id == value }?.name },
             onValueChanged = { sourceId ->
-                SettingsManager
-                    .getInstance(context)
-                    .locationProvider = LocationProvider.getInstance(sourceId)
-
-                SnackbarHelper.showSnackbar(
-                    content = context.getString(R.string.settings_changes_apply_after_restart),
-                    action = context.getString(R.string.action_restart)
-                ) {
-                    BreezyWeather.instance.recreateAllActivities()
-                }
+                SettingsManager.getInstance(context).locationProvider = sourceId
             }
         )
     }

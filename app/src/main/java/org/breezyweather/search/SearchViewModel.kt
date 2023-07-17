@@ -5,10 +5,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import org.breezyweather.BreezyWeather
-import org.breezyweather.R
 import org.breezyweather.common.basic.GeoViewModel
 import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.options.provider.WeatherSource
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.main.utils.RequestErrorType
 import javax.inject.Inject
@@ -20,7 +18,7 @@ class SearchViewModel @Inject constructor(
 ) : GeoViewModel(application!!) {
     private val _listResource = MutableStateFlow<Pair<List<Location>, LoadableLocationStatus>>(Pair(emptyList(), LoadableLocationStatus.SUCCESS))
     val listResource = _listResource.asStateFlow()
-    private val _enabledSource: MutableStateFlow<WeatherSource> = MutableStateFlow(repository.lastSelectedWeatherSource)
+    private val _enabledSource: MutableStateFlow<String> = MutableStateFlow(repository.lastSelectedWeatherSource)
     val enabledSource = _enabledSource.asStateFlow()
     private val mRepository: SearchActivityRepository = repository
 
@@ -54,7 +52,7 @@ class SearchViewModel @Inject constructor(
         _listResource.value = Pair(emptyList(), LoadableLocationStatus.LOADING)
     }
 
-    fun setEnabledSource(weatherSource: WeatherSource) {
+    fun setEnabledSource(weatherSource: String) {
         mRepository.lastSelectedWeatherSource = weatherSource
         _enabledSource.value = weatherSource
     }

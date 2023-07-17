@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.ViewGroup.MarginLayoutParams
 import android.widget.Button
+import androidx.annotation.CallSuper
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.clickable
 import androidx.compose.runtime.*
@@ -20,7 +21,8 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import io.github.giangpham96.expandable_text_compose.ExpandableText
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.options.provider.WeatherSource
+import org.breezyweather.common.source.AirQualityPollenSource
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.theme.ThemeManager
 import org.breezyweather.theme.resource.providers.ResourceProvider
@@ -34,9 +36,11 @@ class FooterViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
     private val mEditButton: Button = itemView.findViewById(R.id.container_main_footer_editButton)
 
     @SuppressLint("SetTextI18n")
-    override fun onBindView(
+    @CallSuper
+    fun onBindView(
         context: Context, location: Location, provider: ResourceProvider,
-        listAnimationEnabled: Boolean, itemAnimationEnabled: Boolean
+        listAnimationEnabled: Boolean, itemAnimationEnabled: Boolean,
+        weatherSource: WeatherSource?
     ) {
         super.onBindView(context, location, provider, listAnimationEnabled, itemAnimationEnabled)
         val cardMarginsVertical = ThemeManager.getInstance(context)
@@ -49,7 +53,7 @@ class FooterViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
         itemView.layoutParams = params
 
         mCredits.setContent {
-            CreditsText(location.weatherSource)
+            CreditsText(weatherSource)
         }
 
         mEditButton.setTextColor(
@@ -61,19 +65,20 @@ class FooterViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
     }
 
     @Composable
-    fun CreditsText(weatherSource: WeatherSource) {
+    fun CreditsText(weatherSource: WeatherSource?) {
         var expand by remember { mutableStateOf(false) }
 
         val creditsText = StringBuilder()
         creditsText.append(
             context.getString(R.string.weather_data_by)
-                .replace("$", weatherSource.sourceUrl)
+                .replace("$", weatherSource?.weatherAttribution ?: stringResource(R.string.null_data_text))
         )
-        if (weatherSource.airQualityPollenSource != null) {
+        if (weatherSource is AirQualityPollenSource
+            && weatherSource.weatherAttribution != weatherSource.airQualityPollenAttribution) {
             creditsText.append("\n")
                 .append(
                     context.getString(R.string.weather_air_quality_and_pollen_data_by)
-                        .replace("$", weatherSource.airQualityPollenSource)
+                        .replace("$", weatherSource.airQualityPollenAttribution)
                 )
         }
         ExpandableText(
@@ -90,10 +95,10 @@ class FooterViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
     }
 
     override fun getEnterAnimator(pendingAnimatorList: List<Animator>): Animator {
-        val a: Animator = ObjectAnimator.ofFloat(itemView, "alpha", 0f, 1f)
-        a.setDuration(450)
-        a.interpolator = FastOutSlowInInterpolator()
-        a.startDelay = pendingAnimatorList.size * 150L
-        return a
+        return ObjectAnimator.ofFloat(itemView, "alpha", 0f, 1f).apply {
+            duration = 450
+            interpolator = FastOutSlowInInterpolator()
+            startDelay = pendingAnimatorList.size * 150L
+        }
     }
 }

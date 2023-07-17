@@ -16,7 +16,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import org.breezyweather.Migrations
 import org.breezyweather.R
-import org.breezyweather.background.weather.WeatherUpdateJob
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.bus.EventBus
@@ -37,12 +36,16 @@ import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.search.SearchActivity
 import org.breezyweather.settings.SettingsChangedMessage
+import org.breezyweather.sources.SourceManager
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : GeoActivity(),
     HomeFragment.Callback,
     ManagementFragment.Callback {
 
+    @Inject
+    lateinit var sourceManager: SourceManager
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainActivityViewModel
 

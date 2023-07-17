@@ -2,18 +2,15 @@ package org.breezyweather.remoteviews.config
 
 import android.view.View
 import android.widget.RemoteViews
-import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.db.repositories.LocationEntityRepository
 import org.breezyweather.db.repositories.WeatherEntityRepository
 import org.breezyweather.remoteviews.presenters.MultiCityWidgetIMP
 
-
 /**
  * Multi city widget config activity.
  */
-@AndroidEntryPoint
 class MultiCityWidgetConfigActivity : AbstractWidgetConfigActivity() {
     private var locationList = mutableListOf<Location>()
 

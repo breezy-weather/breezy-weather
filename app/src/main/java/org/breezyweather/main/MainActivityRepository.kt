@@ -12,12 +12,13 @@ import org.breezyweather.common.exceptions.MissingPermissionLocationException
 import org.breezyweather.common.exceptions.NoNetworkException
 import org.breezyweather.common.exceptions.ParsingException
 import org.breezyweather.common.exceptions.ReverseGeocodingException
+import org.breezyweather.common.exceptions.SourceNotInstalledException
 import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.db.repositories.LocationEntityRepository
 import org.breezyweather.db.repositories.WeatherEntityRepository
-import org.breezyweather.location.LocationHelper
+import org.breezyweather.sources.LocationHelper
 import org.breezyweather.main.utils.RequestErrorType
-import org.breezyweather.weather.WeatherHelper
+import org.breezyweather.sources.WeatherHelper
 import retrofit2.HttpException
 import java.net.SocketTimeoutException
 import java.util.concurrent.Executors
@@ -34,10 +35,6 @@ class MainActivityRepository @Inject constructor(
             location: Location,
             requestErrorType: RequestErrorType?
         )
-    }
-
-    fun destroy() {
-        cancelWeatherRequest()
     }
 
     fun initLocations(formattedId: String?): List<Location> {
@@ -134,6 +131,7 @@ class MainActivityRepository @Inject constructor(
                     e.printStackTrace()
                     RequestErrorType.PARSING_ERROR
                 }
+                is SourceNotInstalledException -> RequestErrorType.SOURCE_NOT_INSTALLED
                 else -> {
                     e.printStackTrace()
                     RequestErrorType.WEATHER_REQ_FAILED
@@ -144,9 +142,4 @@ class MainActivityRepository @Inject constructor(
     }
 
     fun getLocatePermissionList(context: Context) = locationHelper.getPermissions(context)
-
-    fun cancelWeatherRequest() {
-        locationHelper.cancel()
-        weatherHelper.cancel()
-    }
 }

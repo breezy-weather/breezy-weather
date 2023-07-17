@@ -1,22 +1,20 @@
 package org.breezyweather.db.generators
 
-import org.breezyweather.common.basic.models.options.provider.WeatherSource
 import org.breezyweather.common.basic.models.weather.Minutely
-import org.breezyweather.db.converters.WeatherSourceConverter
 import org.breezyweather.db.entities.MinutelyEntity
 
 object MinutelyEntityGenerator {
-    fun generate(cityId: String, source: WeatherSource, minutely: Minutely): MinutelyEntity {
+    fun generate(cityId: String, source: String, minutely: Minutely): MinutelyEntity {
         return MinutelyEntity(
             cityId = cityId,
-            weatherSource = WeatherSourceConverter().convertToDatabaseValue(source),
+            weatherSource = source,
             date = minutely.date,
             minuteInterval = minutely.minuteInterval,
             dbz = minutely.dbz
         )
     }
 
-    fun generate(cityId: String, source: WeatherSource, minutelyList: List<Minutely>): List<MinutelyEntity> {
+    fun generate(cityId: String, source: String, minutelyList: List<Minutely>): List<MinutelyEntity> {
         val entityList: MutableList<MinutelyEntity> = ArrayList(minutelyList.size)
         for (minutely in minutelyList) {
             entityList.add(generate(cityId, source, minutely))

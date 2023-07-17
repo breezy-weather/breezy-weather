@@ -57,7 +57,6 @@ class MainActivityViewModel @Inject constructor(
 
     override fun onCleared() {
         super.onCleared()
-        repository.destroy()
     }
 
     fun init(formattedId: String? = null) {
@@ -265,7 +264,6 @@ class MainActivityViewModel @Inject constructor(
     fun cancelRequest() {
         updating = false
         loading.postValue(false)
-        repository.cancelWeatherRequest()
     }
 
     fun checkToUpdate() {

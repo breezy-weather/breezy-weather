@@ -1,5 +1,6 @@
 package org.breezyweather.settings.activities
 
+import android.Manifest
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -11,16 +12,23 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.permissions.rememberPermissionState
+import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.ui.widgets.Material3Scaffold
 import org.breezyweather.common.ui.widgets.generateCollapsedScrollBehavior
 import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
-import org.breezyweather.settings.compose.WeatherProvidersSettingsScreen
+import org.breezyweather.settings.compose.LocationSettingsScreen
 import org.breezyweather.settings.compose.SettingsScreenRouter
+import org.breezyweather.sources.SourceManager
 import org.breezyweather.theme.compose.BreezyWeatherTheme
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class SelectLocationProviderActivity : GeoActivity() {
+
+    @Inject lateinit var sourceManager: SourceManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,8 +60,13 @@ class SelectLocationProviderActivity : GeoActivity() {
                 startDestination = SettingsScreenRouter.Location.route
             ) {
                 composable(SettingsScreenRouter.Location.route) {
-                    WeatherProvidersSettingsScreen(
+                    LocationSettingsScreen(
                         context = this@SelectLocationProviderActivity,
+                        locationSources = sourceManager.getLocationSources(),
+                        accessCoarseLocationPermissionState = rememberPermissionState(permission = Manifest.permission.ACCESS_COARSE_LOCATION),
+                        accessFineLocationPermissionState = rememberPermissionState(permission = Manifest.permission.ACCESS_FINE_LOCATION),
+                        // TODO: What happens on Android < Q? Why is it not underlined when initializing from SettingsActivity??
+                        accessBackgroundLocationPermissionState = rememberPermissionState(permission = Manifest.permission.ACCESS_BACKGROUND_LOCATION),
                         paddingValues = paddings,
                     )
                 }

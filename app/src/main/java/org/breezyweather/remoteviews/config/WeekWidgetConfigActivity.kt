@@ -2,14 +2,12 @@ package org.breezyweather.remoteviews.config
 
 import android.view.View
 import android.widget.RemoteViews
-import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.R
 import org.breezyweather.remoteviews.presenters.WeekWidgetIMP
 
 /**
  * Week widget config activity.
  */
-@AndroidEntryPoint
 class WeekWidgetConfigActivity : AbstractWidgetConfigActivity() {
     override fun initData() {
         super.initData()

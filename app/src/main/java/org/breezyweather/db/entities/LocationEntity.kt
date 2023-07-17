@@ -3,9 +3,7 @@ package org.breezyweather.db.entities
 import io.objectbox.annotation.Convert
 import io.objectbox.annotation.Entity
 import io.objectbox.annotation.Id
-import org.breezyweather.common.basic.models.options.provider.WeatherSource
 import org.breezyweather.db.converters.TimeZoneConverter
-import org.breezyweather.db.converters.WeatherSourceConverter
 import java.util.*
 
 /**
@@ -31,10 +29,7 @@ data class LocationEntity(
     var provinceCode: String? = null,
     var city: String,
     var district: String? = null,
-    @field:Convert(
-        converter = WeatherSourceConverter::class,
-        dbType = String::class
-    ) var weatherSource: WeatherSource,
+    var weatherSource: String,
     var currentPosition: Boolean = false,
     var residentPosition: Boolean = false,
     var china: Boolean = false

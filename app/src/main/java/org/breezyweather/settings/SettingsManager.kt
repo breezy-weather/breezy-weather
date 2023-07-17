@@ -5,9 +5,7 @@ import org.breezyweather.BuildConfig
 import org.breezyweather.BreezyWeather
 import org.breezyweather.common.basic.models.options.*
 import org.breezyweather.common.basic.models.options.appearance.*
-import org.breezyweather.common.basic.models.options.provider.LocationProvider
-import org.breezyweather.weather.openweather.preferences.OpenWeatherOneCallVersion
-import org.breezyweather.common.basic.models.options.provider.WeatherSource
+import org.breezyweather.sources.openweather.preferences.OpenWeatherOneCallVersion
 import org.breezyweather.common.basic.models.options.unit.DistanceUnit
 import org.breezyweather.common.basic.models.options.unit.PrecipitationIntensityUnit
 import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
@@ -15,9 +13,9 @@ import org.breezyweather.common.basic.models.options.unit.PressureUnit
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.bus.EventBus
-import org.breezyweather.weather.accu.preferences.AccuDaysPreference
-import org.breezyweather.weather.accu.preferences.AccuHoursPreference
-import org.breezyweather.weather.accu.preferences.AccuPortalPreference
+import org.breezyweather.sources.accu.preferences.AccuDaysPreference
+import org.breezyweather.sources.accu.preferences.AccuHoursPreference
+import org.breezyweather.sources.accu.preferences.AccuPortalPreference
 
 class SettingsChangedMessage
 
@@ -114,26 +112,21 @@ class SettingsManager private constructor(context: Context) {
 
     // service providers.
 
-    var weatherSource: WeatherSource
+    var weatherSource: String
         set(value) {
-            config.edit().putString("weather_source", value.id).apply()
+            config.edit().putString("weather_source", value).apply()
             notifySettingsChanged()
         }
-        get() = WeatherSource.getInstance(
-            config.getString("weather_source", "accu") ?: ""
-        )
+        get() = config.getString("weather_source", "accu") ?: ""
 
-    var locationProvider: LocationProvider
+    var locationProvider: String
         set(value) {
-            config.edit().putString("location_service", value.id).apply()
+            config.edit().putString("location_service", value).apply()
             notifySettingsChanged()
         }
-        get() = LocationProvider.getInstance(
-            config.getString("location_service", "native") ?: ""
-        )
+        get() = config.getString("location_service", "android") ?: ""
 
     // unit.
-
     var temperatureUnit: TemperatureUnit
         set(value) {
             config.edit().putString("temperature_unit", value.id).apply()

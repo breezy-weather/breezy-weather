@@ -21,6 +21,7 @@ import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimat
 import org.breezyweather.common.extensions.isMotionReduced
 import org.breezyweather.common.ui.widgets.SwipeSwitchLayout
 import org.breezyweather.databinding.FragmentHomeBinding
+import org.breezyweather.main.MainActivity
 import org.breezyweather.main.MainActivityViewModel
 import org.breezyweather.main.adapters.main.MainAdapter
 import org.breezyweather.main.layouts.MainLayoutManager
@@ -182,6 +183,7 @@ class HomeFragment : MainModuleFragment() {
             binding.recyclerView,
             weatherView,
             null,
+            (requireActivity() as MainActivity).sourceManager,
             resourceProvider!!,
             listAnimationEnabled,
             itemAnimationEnabled

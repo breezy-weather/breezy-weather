@@ -1,10 +1,8 @@
 package org.breezyweather.db.repositories
 
 import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.options.provider.WeatherSource
 import org.breezyweather.common.basic.models.weather.Weather
 import org.breezyweather.db.ObjectBox.boxStore
-import org.breezyweather.db.converters.WeatherSourceConverter
 import org.breezyweather.db.entities.WeatherEntity
 import org.breezyweather.db.entities.WeatherEntity_
 import org.breezyweather.db.generators.*
@@ -121,20 +119,16 @@ object WeatherEntityRepository {
         return WeatherEntityGenerator.generate(weatherEntity, historyEntity, boxStore)
     }
 
-    fun selectWeatherEntity(cityId: String, source: WeatherSource): WeatherEntity? {
+    fun selectWeatherEntity(cityId: String, source: String): WeatherEntity? {
         val entityList = selectWeatherEntityList(cityId, source)
         return if (entityList.isEmpty()) null else entityList[0]
     }
 
-    fun selectWeatherEntityList(cityId: String, source: WeatherSource): List<WeatherEntity> {
+    fun selectWeatherEntityList(cityId: String, source: String): List<WeatherEntity> {
         val query = boxStore.boxFor(WeatherEntity::class.java)
             .query(
                 WeatherEntity_.cityId.equal(cityId)
-                    .and(
-                        WeatherEntity_.weatherSource.equal(
-                            WeatherSourceConverter().convertToDatabaseValue(source)
-                        )
-                    )
+                    .and(WeatherEntity_.weatherSource.equal(source))
             ).build()
         val results = query.find()
         query.close()

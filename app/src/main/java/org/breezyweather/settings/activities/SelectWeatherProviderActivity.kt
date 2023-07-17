@@ -11,6 +11,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.ui.widgets.Material3Scaffold
@@ -18,9 +19,14 @@ import org.breezyweather.common.ui.widgets.generateCollapsedScrollBehavior
 import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.settings.compose.WeatherProvidersSettingsScreen
 import org.breezyweather.settings.compose.SettingsScreenRouter
+import org.breezyweather.sources.SourceManager
 import org.breezyweather.theme.compose.BreezyWeatherTheme
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class SelectWeatherProviderActivity : GeoActivity() {
+
+    @Inject lateinit var sourceManager: SourceManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +60,7 @@ class SelectWeatherProviderActivity : GeoActivity() {
                 composable(SettingsScreenRouter.WeatherProviders.route) {
                     WeatherProvidersSettingsScreen(
                         context = this@SelectWeatherProviderActivity,
+                        weatherSources = sourceManager.getWeatherSources(),
                         paddingValues = paddings,
                     )
                 }

@@ -9,7 +9,6 @@ import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.basic.models.weather.UV
 import org.breezyweather.common.basic.models.weather.Weather
 import org.breezyweather.common.basic.models.weather.Wind
-import org.breezyweather.db.converters.WeatherSourceConverter
 import org.breezyweather.db.entities.HistoryEntity
 import org.breezyweather.db.entities.WeatherEntity
 
@@ -19,7 +18,7 @@ object WeatherEntityGenerator {
 
             // base.
             cityId = weather.base.cityId,
-            weatherSource = WeatherSourceConverter().convertToDatabaseValue(location.weatherSource),
+            weatherSource = location.weatherSource,
             publishDate = weather.base.publishDate,
             updateDate = weather.base.updateDate,
 

@@ -58,6 +58,16 @@ enum class RequestErrorType(
             )
         }*/
     ),
+    SOURCE_NOT_INSTALLED(
+        shortMessage = R.string.message_source_not_installed_error_title,
+        /*showDialogAction = { TODO
+            ParsingErrorHelpDialog.show(
+                it,
+                R.string.message_source_not_installed_error_title,
+                R.string.message_source_not_installed_error_content
+            )
+        }*/
+    ),
 
     // Location-specific
     LOCATION_FAILED(

@@ -22,6 +22,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.permissions.rememberPermissionState
+import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.bus.EventBus
@@ -33,11 +34,16 @@ import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.settings.SettingsChangedMessage
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.compose.*
+import org.breezyweather.sources.SourceManager
 import org.breezyweather.theme.compose.BreezyWeatherTheme
+import javax.inject.Inject
 
 private const val PERMISSION_CODE_POST_NOTIFICATION = 0
 
+@AndroidEntryPoint
 class SettingsActivity : GeoActivity() {
+
+    @Inject lateinit var sourceManager: SourceManager
 
     private val updateIntervalState = mutableStateOf(
         SettingsManager.getInstance(this).updateInterval
@@ -231,6 +237,7 @@ class SettingsActivity : GeoActivity() {
                 composable(SettingsScreenRouter.Location.route) {
                     LocationSettingsScreen(
                         context = this@SettingsActivity,
+                        locationSources = sourceManager.getLocationSources(),
                         accessCoarseLocationPermissionState = rememberPermissionState(permission = Manifest.permission.ACCESS_COARSE_LOCATION),
                         accessFineLocationPermissionState = rememberPermissionState(permission = Manifest.permission.ACCESS_FINE_LOCATION),
                         accessBackgroundLocationPermissionState = rememberPermissionState(permission = Manifest.permission.ACCESS_BACKGROUND_LOCATION),
@@ -240,6 +247,7 @@ class SettingsActivity : GeoActivity() {
                 composable(SettingsScreenRouter.WeatherProviders.route) {
                     WeatherProvidersSettingsScreen(
                         context = this@SettingsActivity,
+                        weatherSources = sourceManager.getWeatherSources(),
                         paddingValues = paddings,
                     )
                 }
@@ -282,11 +290,11 @@ class SettingsActivity : GeoActivity() {
         }
     }
 
-    @Preview
+    /*@Preview
     @Composable
     private fun DefaultPreview() {
         BreezyWeatherTheme(lightTheme = isSystemInDarkTheme()) {
             ContentView()
         }
-    }
+    }*/
 }

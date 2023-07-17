@@ -1,8 +1,6 @@
 package org.breezyweather.db.repositories
 
-import org.breezyweather.common.basic.models.options.provider.WeatherSource
 import org.breezyweather.db.ObjectBox.boxStore
-import org.breezyweather.db.converters.WeatherSourceConverter
 import org.breezyweather.db.entities.HourlyEntity
 import org.breezyweather.db.entities.HourlyEntity_
 
@@ -18,15 +16,11 @@ object HourlyEntityRepository {
     }
 
     // select.
-    fun selectHourlyEntityList(cityId: String, source: WeatherSource): List<HourlyEntity> {
+    fun selectHourlyEntityList(cityId: String, source: String): List<HourlyEntity> {
         val query = boxStore.boxFor(HourlyEntity::class.java)
             .query(
                 HourlyEntity_.cityId.equal(cityId)
-                    .and(
-                        HourlyEntity_.weatherSource.equal(
-                            WeatherSourceConverter().convertToDatabaseValue(source)
-                        )
-                    )
+                    .and(HourlyEntity_.weatherSource.equal(source))
             ).build()
         val results = query.find()
         query.close()

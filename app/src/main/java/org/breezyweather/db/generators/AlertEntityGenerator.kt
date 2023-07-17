@@ -1,15 +1,13 @@
 package org.breezyweather.db.generators
 
-import org.breezyweather.common.basic.models.options.provider.WeatherSource
 import org.breezyweather.common.basic.models.weather.Alert
-import org.breezyweather.db.converters.WeatherSourceConverter
 import org.breezyweather.db.entities.AlertEntity
 
 object AlertEntityGenerator {
-    fun generate(cityId: String, source: WeatherSource, alert: Alert): AlertEntity {
+    fun generate(cityId: String, source: String, alert: Alert): AlertEntity {
         return AlertEntity(
             cityId = cityId,
-            weatherSource = WeatherSourceConverter().convertToDatabaseValue(source),
+            weatherSource = source,
             alertId = alert.alertId,
             startDate = alert.startDate,
             endDate = alert.endDate,
@@ -20,7 +18,7 @@ object AlertEntityGenerator {
         )
     }
 
-    fun generate(cityId: String, source: WeatherSource, alertList: List<Alert>): List<AlertEntity> {
+    fun generate(cityId: String, source: String, alertList: List<Alert>): List<AlertEntity> {
         val entityList: MutableList<AlertEntity> = ArrayList(alertList.size)
         for (alert in alertList) {
             entityList.add(generate(cityId, source, alert))

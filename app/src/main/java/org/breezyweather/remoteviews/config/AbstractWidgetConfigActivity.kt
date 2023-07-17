@@ -37,8 +37,6 @@ import org.breezyweather.db.repositories.WeatherEntityRepository
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.settings.ConfigStore
 import org.breezyweather.settings.SettingsManager
-import org.breezyweather.weather.WeatherHelper
-import javax.inject.Inject
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt
@@ -68,8 +66,6 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
     var locationNow: Location? = null
         protected set
 
-    var weatherHelper: WeatherHelper? = null
-        @Inject set
     protected var destroyed = false
     protected var viewTypeValueNow: String? = null
     protected var viewTypes: Array<String> = emptyArray()
@@ -136,7 +132,6 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
     override fun onDestroy() {
         super.onDestroy()
         destroyed = true
-        weatherHelper!!.cancel()
     }
 
     @SuppressLint("MissingSuperCall")

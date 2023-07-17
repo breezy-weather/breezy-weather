@@ -1,6 +1,5 @@
 package org.breezyweather.db.generators
 
-import org.breezyweather.common.basic.models.options.provider.WeatherSource
 import org.breezyweather.common.basic.models.weather.AirQuality
 import org.breezyweather.common.basic.models.weather.Astro
 import org.breezyweather.common.basic.models.weather.Daily
@@ -13,14 +12,13 @@ import org.breezyweather.common.basic.models.weather.PrecipitationProbability
 import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.basic.models.weather.UV
 import org.breezyweather.common.basic.models.weather.Wind
-import org.breezyweather.db.converters.WeatherSourceConverter
 import org.breezyweather.db.entities.DailyEntity
 
 object DailyEntityGenerator {
-    fun generate(cityId: String, source: WeatherSource, daily: Daily): DailyEntity {
+    fun generate(cityId: String, source: String, daily: Daily): DailyEntity {
         return DailyEntity(
             cityId = cityId,
-            weatherSource = WeatherSourceConverter().convertToDatabaseValue(source),
+            weatherSource = source,
             date = daily.date,
 
             // daytime.
@@ -144,7 +142,7 @@ object DailyEntityGenerator {
         )
     }
 
-    fun generate(cityId: String, source: WeatherSource, dailyList: List<Daily>): List<DailyEntity> {
+    fun generate(cityId: String, source: String, dailyList: List<Daily>): List<DailyEntity> {
         val entityList: MutableList<DailyEntity> = ArrayList(dailyList.size)
         for (daily in dailyList) {
             entityList.add(generate(cityId, source, daily))

@@ -43,17 +43,18 @@ import org.breezyweather.common.exceptions.MissingPermissionLocationException
 import org.breezyweather.common.exceptions.NoNetworkException
 import org.breezyweather.common.exceptions.ParsingException
 import org.breezyweather.common.exceptions.ReverseGeocodingException
+import org.breezyweather.common.exceptions.SourceNotInstalledException
 import org.breezyweather.common.extensions.withIOContext
 import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.common.utils.helpers.ShortcutsHelper
 import org.breezyweather.db.repositories.LocationEntityRepository
 import org.breezyweather.db.repositories.WeatherEntityRepository
-import org.breezyweather.location.LocationHelper
+import org.breezyweather.sources.LocationHelper
 import org.breezyweather.main.utils.RequestErrorType
 import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.settings.SettingsManager
-import org.breezyweather.weather.WeatherHelper
+import org.breezyweather.sources.WeatherHelper
 import retrofit2.HttpException
 import java.io.File
 import java.net.SocketTimeoutException
@@ -218,6 +219,7 @@ class WeatherUpdateJob @AssistedInject constructor(
                                                     context.getString(RequestErrorType.PARSING_ERROR.shortMessage)
                                                 } else e.message
                                             }
+                                            is SourceNotInstalledException -> context.getString(RequestErrorType.SOURCE_NOT_INSTALLED.shortMessage)
                                             else -> {
                                                 e.printStackTrace()
                                                 if (e.message.isNullOrEmpty()) {

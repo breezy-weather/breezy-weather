@@ -8,11 +8,13 @@ import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.appearance.CardDisplay
 import org.breezyweather.main.adapters.main.holder.*
 import org.breezyweather.settings.SettingsManager
+import org.breezyweather.sources.SourceManager
 import org.breezyweather.theme.resource.providers.ResourceProvider
 import org.breezyweather.theme.weatherView.WeatherView
 
 class MainAdapter(
     activity: GeoActivity, host: RecyclerView, weatherView: WeatherView, location: Location?,
+    private val sourceManager: SourceManager,
     provider: ResourceProvider, listAnimationEnabled: Boolean, itemAnimationEnabled: Boolean
 ) : RecyclerView.Adapter<AbstractMainViewHolder?>() {
     private lateinit var mActivity: GeoActivity
@@ -103,6 +105,15 @@ class MainAdapter(
                     mListAnimationEnabled,
                     mItemAnimationEnabled,
                     mFirstCardPosition != null && mFirstCardPosition == position
+                )
+            } else if (holder is FooterViewHolder) {
+                holder.onBindView(
+                    mActivity,
+                    mLocation!!,
+                    mProvider!!,
+                    mListAnimationEnabled,
+                    mItemAnimationEnabled,
+                    sourceManager.getWeatherSource(mLocation!!.weatherSource)
                 )
             } else {
                 holder.onBindView(mActivity, mLocation!!, mProvider!!, mListAnimationEnabled, mItemAnimationEnabled)

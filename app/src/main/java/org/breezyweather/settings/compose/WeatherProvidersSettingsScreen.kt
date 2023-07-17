@@ -5,8 +5,8 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import org.breezyweather.R
 import org.breezyweather.background.weather.WeatherUpdateJob
-import org.breezyweather.weather.openweather.preferences.OpenWeatherOneCallVersion
-import org.breezyweather.common.basic.models.options.provider.WeatherSource
+import org.breezyweather.sources.openweather.preferences.OpenWeatherOneCallVersion
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.db.repositories.LocationEntityRepository
 import org.breezyweather.db.repositories.WeatherEntityRepository
 import org.breezyweather.settings.SettingsManager
@@ -14,33 +14,33 @@ import org.breezyweather.settings.preference.*
 import org.breezyweather.settings.preference.composables.EditTextPreferenceView
 import org.breezyweather.settings.preference.composables.ListPreferenceView
 import org.breezyweather.settings.preference.composables.PreferenceScreen
-import org.breezyweather.weather.accu.preferences.AccuDaysPreference
-import org.breezyweather.weather.accu.preferences.AccuHoursPreference
-import org.breezyweather.weather.accu.preferences.AccuPortalPreference
+import org.breezyweather.sources.accu.preferences.AccuDaysPreference
+import org.breezyweather.sources.accu.preferences.AccuHoursPreference
+import org.breezyweather.sources.accu.preferences.AccuPortalPreference
 
 @Composable
 fun WeatherProvidersSettingsScreen(
     context: Context,
+    weatherSources: List<WeatherSource>,
     paddingValues: PaddingValues,
 ) = PreferenceScreen(paddingValues = paddingValues) {
     sectionHeaderItem(R.string.settings_weather_providers_section_general)
     listPreferenceItem(R.string.settings_weather_providers_current_location) { id ->
         ListPreferenceView(
-            titleId = id,
-            valueArrayId = R.array.weather_source_values,
-            nameArrayId = R.array.weather_sources,
-            selectedKey = SettingsManager.getInstance(context).weatherSource.id,
+            title = context.getString(id),
+            selectedKey = SettingsManager.getInstance(context).weatherSource,
+            valueArray = weatherSources.map { it.id }.toTypedArray(),
+            nameArray = weatherSources.map { it.name }.toTypedArray(),
+            summary = { _, value -> weatherSources.firstOrNull { it.id == value }?.name },
             onValueChanged = { sourceId ->
-                SettingsManager
-                    .getInstance(context)
-                    .weatherSource = WeatherSource.getInstance(sourceId)
+                SettingsManager.getInstance(context).weatherSource = sourceId
 
                 val locationList = LocationEntityRepository.readLocationList().toMutableList()
                 val index = locationList.indexOfFirst { it.isCurrentPosition }
                 if (index >= 0) {
                     locationList[index] = locationList[index].copy(
                         weather = null,
-                        weatherSource = SettingsManager.getInstance(context).weatherSource
+                        weatherSource = sourceId
                     )
                     WeatherEntityRepository.deleteWeather(locationList[index])
                     LocationEntityRepository.writeLocationList(locationList)
