@@ -1,8 +1,0 @@
-<ul>
-<li>Translation available from Weblate</li>
-<li>Make dividers thinner on homepage</li>
-<li>Fix vertical alignment of refresh time on homepage</li>
-<li>Fix monochrome icon</li>
-<li>Optimize new icons</li>
-<li>Require a restart when changing "Background animation" or "Gravity sensor" settings</li>
-</ul>

@@ -1,6 +1,0 @@
-<ul>
-<li>Add current, hourly and daily air quality for AccuWeather.</li>
-<li>Add more detailed error messages.</li>
-<li>Fix icon color in light mode.</li>
-<li>Fix details not showing when all details were removed from header.</li>
-</ul>
