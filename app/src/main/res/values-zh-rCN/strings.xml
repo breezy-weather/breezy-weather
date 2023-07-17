@@ -598,4 +598,12 @@
     <string name="air_quality_so2_info_origin">它由火山活动自然释放，以及主要来自用于家庭供暖、工业和发电的化石燃料燃烧。</string>
     <string name="location_search_no_results_advice">确保您的搜索拼写正确并且不要太具体。或者您可以尝试其他天气提供商，这可能会产生不同的位置搜索结果。</string>
     <string name="location_search_no_results">$1 找不到 $2</string>
+    <string name="action_show_errors">点击以查看详情</string>
+    <string name="weather_refresh_skipped_already_recently_updated">最近已更新</string>
+    <string name="notification_update_error">%1$d 更新失败</string>
+    <string name="message_parsing_error_content">请确保您已更新到最新版本。 服务器可能暂时不可用，请稍后重试。 如果问题仍然存在，请按以下操作：设置 - 调试功能 - 分享崩溃日志，并在 GitHub - Issues中 报告问题。</string>
+    <string name="wind_strength">风力强度</string>
+    <string name="message_server_timeout">请求超时</string>
+    <string name="message_parsing_error_title">天气数据解析失败</string>
+    <string name="settings_background_updates_refresh_ignore_when_battery_low">电池电量低时停用刷新</string>
 </resources>
