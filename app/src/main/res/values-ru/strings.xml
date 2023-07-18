@@ -353,11 +353,14 @@
     <string name="weather_source_mf">Météo France</string>
     <string name="weather_source_metno_voice">Норвежский метеорологический институт</string>
     <string name="weather_source_mf_voice">Météo France</string>
+    <string name="weather_source_accu_preference_hours">Количество часов</string>
     <string name="weather_source_accu_preference_hours_72">72 часа</string>
     <string name="weather_source_accu_preference_hours_120">120 часов</string>
     <string name="weather_api_unauthorized_title">Неавторизованный доступ к API</string>
     <string name="weather_api_key_required_missing_title">Отсутствует API-ключ</string>
     <string name="weather_api_key_required_missing_content">Чтобы воспользоваться этим сервисом, добавьте свой API-ключ.</string>
+    <string name="weather_source_accu_preference_portal">Канал</string>
+    <string name="weather_source_accu_preference_days">Количество дней</string>
     <string name="weather_source_accu_preference_days_1">1 день</string>
     <string name="weather_source_accu_preference_days_5">5 дней</string>
     <string name="weather_source_accu_preference_days_15">15 дней</string>

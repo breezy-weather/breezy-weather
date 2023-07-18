@@ -4,6 +4,7 @@
 
 - Add no network error on location search
 - Throw error when trying to locate outside China when using Baidu IP location, instead of positioning on 0, 0
+- Update resident feature to work with a 20 km radius instead of relying on 0.8 degrees.
 - [Technical] Many improvements to providers implementation for developers
 - Added Kurdish Sorani translation (thanks anyone00!)
 - Updated translations

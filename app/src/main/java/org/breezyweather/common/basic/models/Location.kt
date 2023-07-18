@@ -8,7 +8,11 @@ import org.breezyweather.common.basic.models.weather.Astro
 import org.breezyweather.common.basic.models.weather.Weather
 import org.breezyweather.sources.SourceManager
 import java.util.TimeZone
-import kotlin.math.abs
+import kotlin.math.atan2
+import kotlin.math.cos
+import kotlin.math.pow
+import kotlin.math.sin
+import kotlin.math.sqrt
 
 data class Location(
     val cityId: String = NULL_ID,
@@ -44,63 +48,6 @@ data class Location(
 
     val isUsable: Boolean
         get() = cityId != NULL_ID
-
-    companion object {
-        private const val NULL_ID = "NULL_ID"
-
-        const val CURRENT_POSITION_ID = "CURRENT_POSITION"
-
-        fun isDayLight(location: Location? = null): Boolean {
-            val sunRiseProgress = Astro.getRiseProgress(
-                astro = location?.weather?.dailyForecast?.getOrNull(0)?.sun,
-                timeZone = location?.timeZone ?: TimeZone.getDefault()
-            )
-            return 0 < sunRiseProgress && sunRiseProgress < 1
-        }
-
-        private fun isEquals(a: String?, b: String?): Boolean {
-            return if (a.isNullOrEmpty() && b.isNullOrEmpty()) {
-                true
-            } else if (!a.isNullOrEmpty() && !b.isNullOrEmpty()) {
-                a == b
-            } else {
-                false
-            }
-        }
-
-        fun excludeInvalidResidentLocation(context: Context, list: List<Location>): List<Location> {
-            var currentLocation: Location? = null
-            for (l in list) {
-                if (l.isCurrentPosition) {
-                    currentLocation = l
-                    break
-                }
-            }
-            val result = ArrayList<Location>(list.size)
-            if (currentLocation == null) {
-                result.addAll(list)
-            } else {
-                for (l in list) {
-                    if (!l.isResidentPosition || !l.isCloseTo(context, currentLocation)) {
-                        result.add(l)
-                    }
-                }
-            }
-            return result
-        }
-
-        @JvmField
-        val CREATOR = object : Parcelable.Creator<Location> {
-
-            override fun createFromParcel(parcel: Parcel): Location {
-                return Location(parcel)
-            }
-
-            override fun newArray(size: Int): Array<Location?> {
-                return arrayOfNulls(size)
-            }
-        }
-    }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(cityId)
@@ -255,9 +202,99 @@ data class Location(
         ) {
             true
         } else {
-            // Implement #58 for a better distance
-            abs(latitude - location.latitude) < 0.8
-                    && abs(longitude - location.longitude) < 0.8
+            distance(this, location) < (20 * 1000)
+        }
+    }
+
+    companion object {
+
+        private const val NULL_ID = "NULL_ID"
+
+        const val CURRENT_POSITION_ID = "CURRENT_POSITION"
+
+        fun isDayLight(location: Location? = null): Boolean {
+            val sunRiseProgress = Astro.getRiseProgress(
+                astro = location?.weather?.dailyForecast?.getOrNull(0)?.sun,
+                timeZone = location?.timeZone ?: TimeZone.getDefault()
+            )
+            return 0 < sunRiseProgress && sunRiseProgress < 1
+        }
+
+        private fun isEquals(a: String?, b: String?): Boolean {
+            return if (a.isNullOrEmpty() && b.isNullOrEmpty()) {
+                true
+            } else if (!a.isNullOrEmpty() && !b.isNullOrEmpty()) {
+                a == b
+            } else {
+                false
+            }
+        }
+
+        fun excludeInvalidResidentLocation(context: Context, list: List<Location>): List<Location> {
+            var currentLocation: Location? = null
+            for (l in list) {
+                if (l.isCurrentPosition) {
+                    currentLocation = l
+                    break
+                }
+            }
+            val result = ArrayList<Location>(list.size)
+            if (currentLocation == null) {
+                result.addAll(list)
+            } else {
+                for (l in list) {
+                    if (!l.isResidentPosition || !l.isCloseTo(context, currentLocation)) {
+                        result.add(l)
+                    }
+                }
+            }
+            return result
+        }
+
+        @JvmField
+        val CREATOR = object : Parcelable.Creator<Location> {
+
+            override fun createFromParcel(parcel: Parcel): Location {
+                return Location(parcel)
+            }
+
+            override fun newArray(size: Int): Array<Location?> {
+                return arrayOfNulls(size)
+            }
+        }
+
+        fun distance(location1: Location, location2: Location): Double {
+            return distance(
+                location1.latitude.toDouble(), location1.longitude.toDouble(),
+                location2.latitude.toDouble(), location2.longitude.toDouble()
+            )
+        }
+
+        /**
+         * Adapted from https://stackoverflow.com/questions/3694380/calculating-distance-between-two-points-using-latitude-longitude
+         *
+         * Calculate distance between two points in latitude and longitude taking
+         * into account height difference. Uses Haversine method as its base.
+         *
+         * @returns Distance in Meters
+         */
+        fun distance(
+            lat1: Double, lon1: Double,
+            lat2: Double, lon2: Double
+        ): Double {
+            val R = 6371 // Radius of the earth
+
+            val latDistance = Math.toRadians(lat2 - lat1)
+            val lonDistance = Math.toRadians(lon2 - lon1)
+            val a = (sin(latDistance / 2) * sin(latDistance / 2)
+                    + (cos(Math.toRadians(lat1)) * cos(Math.toRadians(lat2))
+                    * sin(lonDistance / 2) * sin(lonDistance / 2)))
+            val c = 2 * atan2(sqrt(a), sqrt(1 - a))
+            var distance = R * c * 1000 // convert to meters
+
+            distance = distance.pow(2.0)
+
+            return sqrt(distance)
         }
     }
 }
