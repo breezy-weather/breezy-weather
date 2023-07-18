@@ -23,11 +23,6 @@ If you need an API key or any kind of secret, you will to need declare it in `ap
 Then declare the value in `local.properties` which is private and will not be committed.
 
 
-### Preferences
-
-*TODO: describe how to add a new parameter in settings for custom API key*
-
-
 ### API
 
 Let’s edit the API interface, and only implement the forecast API as a starting point.
