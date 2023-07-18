@@ -590,4 +590,12 @@
     <string name="air_quality_co_info_consequences">Kohlenmonoxid gelangt über die Lungenbläschen in den Blutkreislauf und erschwert es den Zellen, Sauerstoff zu binden. Dieser Sauerstoffmangel schädigt Gewebe und Zellen. Der Kontakt mit Kohlenmonoxid kann Atembeschwerden, Erschöpfung, Schwindel und grippeähnliche Symptome hervorrufen. Hohe Kohlenmonoxid-Konzentrationen können tödlich sein.</string>
     <string name="location_search_no_results">$1 kann $2 nicht finden</string>
     <string name="location_search_no_results_advice">Stelle sicher, dass Dein Suchbegriff richtig geschrieben und nicht zu spezifisch ist. Alternativ kannst Du einen anderen Wetteranbieter ausprobieren, der möglicherweise andere Ergebnisse bei der Standortsuche anbietet.</string>
+    <string name="message_source_not_installed_error_title">Quelle nicht mehr verfügbar</string>
+    <string name="action_show_errors">Antippen, um Details anzuzeigen</string>
+    <string name="message_parsing_error_content">Stellen Sie sicher, dass Sie auf die neueste Version der App aktualisiert haben. Der Server kann vorübergehend nicht verfügbar sein. In diesem Fall versuchen Sie es bitte später erneut. Wenn das Problem weiterhin besteht, erstellen Sie bitte ein Absturzprotokoll in den Debugging-Einstellungen und melden Sie den Fehler auf GitHub.</string>
+    <string name="weather_refresh_skipped_already_recently_updated">Bereits kürzlich aktualisiert</string>
+    <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignorieren, wenn Akku niedrig ist</string>
+    <string name="wind_strength">Windstärke</string>
+    <string name="message_server_timeout">Zeitüberschreitung bei Anforderung</string>
+    <string name="message_parsing_error_title">Wetterdaten konnten nicht ausgewertet werden</string>
 </resources>
