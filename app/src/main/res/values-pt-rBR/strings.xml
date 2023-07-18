@@ -445,10 +445,13 @@
     <string name="settings_main_cards_fade_in_switch">Cartões se desvanecem</string>
     <string name="settings_debug_dump_crash_logs_title">Compartilhar registros de falhas</string>
     <string name="air_quality_level_5">Nada saudável</string>
+    <string name="weather_source_accu_preference_portal">Canal</string>
+    <string name="weather_source_accu_preference_days">Dias</string>
     <string name="weather_source_accu_preference_days_1">1 dia</string>
     <string name="weather_source_accu_preference_days_5">5 dias</string>
     <string name="weather_source_accu_preference_days_10">10 dias</string>
     <string name="weather_source_accu_preference_days_15">15 dias</string>
+    <string name="weather_source_accu_preference_hours">Horas</string>
     <string name="weather_source_accu_preference_hours_1">1 hora</string>
     <string name="weather_source_accu_preference_hours_12">12 horas</string>
     <string name="action_continue">Continuar</string>
