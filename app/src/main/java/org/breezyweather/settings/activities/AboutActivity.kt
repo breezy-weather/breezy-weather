@@ -102,7 +102,9 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("bg"), "elgratea", "https://hosted.weblate.org/user/flantito/"),
         TranslatorItem(arrayOf("bg"), "StoyanDimitrov", "https://github.com/StoyanDimitrov"),
         TranslatorItem(arrayOf("ca"), "Álvaro Martínez Majado", "https://github.com/alvaromartinezmajado"),
+        TranslatorItem(arrayOf("ckb", "ar"), "anyone00", "https://hosted.weblate.org/user/anyone00/"),
         TranslatorItem(arrayOf("cs"), "Jiří Král", "mailto:jirkakral978@gmail.com"),
+        TranslatorItem(arrayOf("cs"), "ikanakova", "https://github.com/ikanakova"),
         TranslatorItem(arrayOf("de"), "Ken Berns", "mailto:ken.berns@yahoo.de"),
         TranslatorItem(arrayOf("de"), "Jörg Meinhardt", "mailto:jorime@web.de"),
         TranslatorItem(arrayOf("de"), "Thorsten Eckerlein", "mailto:thorsten.eckerlein@gmx.de"),
@@ -143,6 +145,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("pt_rBR"), "Fabio Raitz", "mailto:fabioraitz@outlook.com"),
         TranslatorItem(arrayOf("pt_rBR"), "Washington Luiz Candido dos Santos Neto", "https://hosted.weblate.org/user/Netocon/"),
         TranslatorItem(arrayOf("pt_rBR"), "mf", "https://hosted.weblate.org/user/marfS2/"),
+        TranslatorItem(arrayOf("pt_rBR"), "jucasagr", "https://github.com/jucasagr"),
         TranslatorItem(arrayOf("ro"), "Igor Sorocean", "https://github.com/ygorigor"),
         TranslatorItem(arrayOf("ro"), "alexandru l", "mailto:sandu.lulu@gmail.com"),
         TranslatorItem(arrayOf("ro"), "sas", "https://hosted.weblate.org/user/sas33/"),
@@ -156,9 +159,11 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("tr"), "Ali D.", "mailto:siyaha@gmail.com"),
         TranslatorItem(arrayOf("tr"), "metezd", "https://hosted.weblate.org/user/metezd/"),
         TranslatorItem(arrayOf("vi"), "minb", "https://hosted.weblate.org/user/minbe/"),
+        TranslatorItem(arrayOf("vi"), "Fairy", "https://hosted.weblate.org/user/Fairy/"),
         TranslatorItem(arrayOf("zh_rCN", "zh_rHK", "zh_rTW", "en"), "WangDaYeeeeee", "https://github.com/WangDaYeeeeee"),
         TranslatorItem(arrayOf("zh_rCN"), "Coelacanthus", "https://github.com/CoelacanthusHex"),
         TranslatorItem(arrayOf("zh_rCN"), "御坂13766号", "https://github.com/misaka-13766"),
+        TranslatorItem(arrayOf("zh_rCN"), "losky2987", "https://github.com/losky2987"),
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -604,7 +604,7 @@
     <string name="settings_notifications_alerts_title">Upozornění na meteorologické výstrahy</string>
     <string name="unit_cm">cm</string>
     <string name="message_network_unavailable">Síť není k dispozici</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">Někteří výrobci mají další omezení aplikací, která ruší služby na pozadí. Na webu Don\'t kill my app! najdete informace o tom, jak to napravit.</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">Někteří výrobci mají další omezení aplikací, která ruší služby na pozadí. Na webu Don’t kill my app! najdete informace o tom, jak to napravit.</string>
     <string name="widget_style_mini">Mini</string>
     <string name="widget_style_oreo">Oreo</string>
     <string name="widget_style_oreo_google_sans">Oreo (bez Google)</string>

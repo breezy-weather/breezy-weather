@@ -5,6 +5,8 @@
 - Add no network error on location search
 - Throw error when trying to locate outside China when using Baidu IP location, instead of positioning on 0, 0
 - [Technical] Many improvements to providers implementation for developers
+- Added Kurdish Sorani translation (thanks anyone00!)
+- Updated translations
 
 # Version 4.2.1-beta
 

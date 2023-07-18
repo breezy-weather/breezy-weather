@@ -47,6 +47,7 @@ enum class Language(
     RUSSIAN("russian", Locale("ru")),
     SERBIAN("serbian", Locale("sr")),
     ARABIC("arabic", Locale("ar")),
+    KURDISH_SORANI("kurdish_sorani", Locale("ckb")),
     KOREAN("korean", Locale("ko")),
     JAPANESE("japanese", Locale("ja")),
     CHINESE("chinese", Locale("zh", "CN")),
@@ -100,6 +101,7 @@ enum class Language(
             "russian" -> RUSSIAN
             "serbian" -> SERBIAN
             "arabic" -> ARABIC
+            "kurdish_sorani" -> KURDISH_SORANI
             "korean" -> KOREAN
             "japanese" -> JAPANESE
             "chinese" -> CHINESE
