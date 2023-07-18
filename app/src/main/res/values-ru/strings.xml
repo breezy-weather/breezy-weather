@@ -358,13 +358,10 @@
     <string name="weather_api_unauthorized_title">Неавторизованный доступ к API</string>
     <string name="weather_api_key_required_missing_title">Отсутствует API-ключ</string>
     <string name="weather_api_key_required_missing_content">Чтобы воспользоваться этим сервисом, добавьте свой API-ключ.</string>
-    <string name="weather_source_accu_preference_portal">Канал</string>
     <string name="weather_source_accu_preference_days_1">1 день</string>
     <string name="weather_source_accu_preference_days_5">5 дней</string>
     <string name="weather_source_accu_preference_days_15">15 дней</string>
-    <string name="weather_source_accu_preference_hours">Количество часов</string>
     <string name="weather_source_accu_preference_hours_1">1 час</string>
-    <string name="weather_source_accu_preference_days">Количество дней</string>
     <string name="weather_source_accu_preference_days_10">10 дней</string>
     <string name="weather_api_limit_reached_content">Чтобы обойти ограничение, используйте свой API-ключ.</string>
     <string name="air_quality_no2_voice">Диоксид азота</string>
