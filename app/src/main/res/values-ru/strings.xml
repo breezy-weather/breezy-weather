@@ -603,4 +603,6 @@
     <string name="wind_strength">Сила ветра</string>
     <string name="message_parsing_error_content">Убедитесь, что вы обновили приложение до последней версии. Сервер может быть временно недоступен, в этом случае повторите попытку позже. Если проблема не устранена, создайте дамп журнала сбоев из настроек отладки и сообщите о проблеме на GitHub.</string>
     <string name="notification_update_error">%1$d обновление(ий) не удалось</string>
+    <string name="message_source_not_installed_error_title">Источник больше не доступен</string>
+    <string name="message_source_not_installed_error_content">Этот источник больше не доступен. Удалите местоположение и создайте его заново из другого источника.</string>
 </resources>
