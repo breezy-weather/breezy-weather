@@ -45,8 +45,8 @@
     <string name="short_sunday">الأحد</string>
     <string name="temperature_real_feel">الشعور الحقيقي</string>
     <string name="temperature_real_feel_shade">االشعور الحقيقي في الظل</string>
-    <string name="temperature_apparent">الظاهرة</string>
-    <string name="temperature_wind_chill">هواء بارد</string>
+    <string name="temperature_apparent">ظاهر</string>
+    <string name="temperature_wind_chill">رياح باردة</string>
     <string name="temperature_wet_bulb">هواء رطب</string>
     <string name="temperature_degree_day">درجة اليوم</string>
     <string name="precipitation_total">المجموع</string>
@@ -83,13 +83,13 @@
     <string name="allergen_mold">العفن</string>
     <string name="allergen_ragweed">حبوب لقاح الأعشاب الضارة</string>
     <string name="allergen_tree">حبوب لقاح الشجر</string>
-    <string name="daily_forecast">توقعات يومية</string>
+    <string name="daily_forecast">التوقعات اليومية</string>
     <string name="hourly_forecast">توقعات كل ساعة</string>
     <string name="minutely_forecast">توقعات كل دقيقة</string>
     <string name="precipitation_forecast">توقعات الهطول</string>
     <string name="air_quality">جودة الهواء</string>
-    <string name="allergen">أنواع الحساسية</string>
-    <string name="details">المزيد</string>
+    <string name="allergen">مسببات الحساسية</string>
+    <string name="details">تفاصيل</string>
     <string name="ephemeris">الشمس والقمر</string>
     <string name="action_next">التالي</string>
     <string name="action_done">تم</string>
@@ -141,7 +141,7 @@
 \nعلى سبيل المثال، يمكنك إختيار مسقط رأسك كمدينة الإقامة. يمكنك تفقد أحوال الطقس في مسقط رأسك بينما أنت مسافر. عند عودتك إلى منزلك، سيتم إخفاء الطقس في مسقط رأسك وإستبداله بطقس موقعك الحالي.</string>
     <string name="allergen_tap_to_see_more">أنقر للمزيد…</string>
     <!-- action -->
-    <string name="alerts">منبه</string>
+    <string name="alerts">تنبيهات</string>
     <string name="action_search">بحث</string>
     <string name="action_settings">الإعدادات</string>
     <string name="action_preview">عرض</string>
