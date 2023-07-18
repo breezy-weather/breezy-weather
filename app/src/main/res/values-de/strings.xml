@@ -598,4 +598,8 @@
     <string name="wind_strength">Windstärke</string>
     <string name="message_server_timeout">Zeitüberschreitung bei Anforderung</string>
     <string name="message_parsing_error_title">Wetterdaten konnten nicht ausgewertet werden</string>
+    <string name="temperature_degree_day_cooling">Kühlgradtag</string>
+    <string name="settings_provider_api_key">API-Schlüssel</string>
+    <string name="temperature_degree_day_heating">Heizgradtag</string>
+    <string name="notification_update_error">%1$d Aktualisierung(en) fehlgeschlagen</string>
 </resources>
