@@ -1,6 +1,7 @@
 package org.breezyweather.sources.mf
 
 import android.content.Context
+import dagger.hilt.android.qualifiers.ApplicationContext
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Header
 import io.jsonwebtoken.Jwts
@@ -8,6 +9,7 @@ import io.jsonwebtoken.SignatureAlgorithm
 import io.jsonwebtoken.security.Keys
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
+import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.ReverseGeocodingException
@@ -15,9 +17,13 @@ import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.WeatherResultWrapper
+import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
+import org.breezyweather.common.preference.EditTextPreference
+import org.breezyweather.common.preference.Preference
+import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.common.source.WeatherSource
+import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.sources.mf.json.*
 import org.breezyweather.sources.mf.json.atmoaura.AtmoAuraPointResult
 import retrofit2.Retrofit
@@ -29,8 +35,9 @@ import javax.inject.Inject
  * Mf weather service.
  */
 class MfService @Inject constructor(
+    @ApplicationContext context: Context,
     client: Retrofit.Builder
-) : HttpSource(), WeatherSource, ReverseGeocodingSource {
+) : HttpSource(), WeatherSource, ReverseGeocodingSource, ConfigurableSource {
 
     override val id = "mf"
     override val name = "Météo-France"
@@ -53,16 +60,14 @@ class MfService @Inject constructor(
             .create(AtmoAuraIqaApi::class.java)
     }
 
-    private fun isConfigured(context: Context) = getToken(context).isNotEmpty()
-
     override fun requestWeather(
         context: Context, location: Location
     ): Observable<WeatherResultWrapper> {
-        if (!isConfigured(context)) {
+        if (!isConfigured()) {
             return Observable.error(ApiKeyMissingException())
         }
         val languageCode = SettingsManager.getInstance(context).language.code
-        val token = getToken(context)
+        val token = getToken()
         val current = mMfApi.getCurrent(
             userAgent,
             location.latitude.toDouble(),
@@ -113,7 +118,7 @@ class MfService @Inject constructor(
             }
         }
 
-        val atmoAuraKey = SettingsManager.getInstance(context).providerIqaAtmoAuraKey
+        val atmoAuraKey = getAtmoAuraKeyOrDefault()
         val aqiAtmoAura = if (
             (atmoAuraKey.isNotEmpty() && !location.countryCode.isNullOrEmpty() && location.countryCode == "FR")
             && !location.provinceCode.isNullOrEmpty()
@@ -166,7 +171,7 @@ class MfService @Inject constructor(
         context: Context,
         location: Location
     ): Observable<List<Location>> {
-        if (!isConfigured(context)) {
+        if (!isConfigured()) {
             return Observable.error(ApiKeyMissingException())
         }
         return mMfApi.getForecast(
@@ -174,7 +179,7 @@ class MfService @Inject constructor(
             location.latitude.toDouble(),
             location.longitude.toDouble(),
             "iso",
-            getToken(context)
+            getToken()
         ).map {
             val locationList: MutableList<Location> = ArrayList()
             val locationConverted = convert(null, it)
@@ -187,10 +192,27 @@ class MfService @Inject constructor(
         }
     }
 
-    protected fun getToken(context: Context): String {
-        return if (SettingsManager.getInstance(context).providerMfWsftKey != BuildConfig.MF_WSFT_KEY) {
-            SettingsManager.getInstance(context).providerMfWsftKey
+    // CONFIG
+    private val config = SourceConfigStore(context, id)
+    private var wsftKey: String
+        set(value) {
+            config.edit().putString("wsft_key", value).apply()
+        }
+        get() = config.getString("wsft_key", null) ?: ""
+    private var atmoAuraKey: String
+        set(value) {
+            config.edit().putString("atmo_aura_apikey", value).apply()
+        }
+        get() = config.getString("atmo_aura_apikey", null) ?: ""
+    private fun getWsftKeyOrDefault() = wsftKey.ifEmpty { BuildConfig.MF_WSFT_KEY }
+    private fun getAtmoAuraKeyOrDefault() = atmoAuraKey.ifEmpty { BuildConfig.IQA_ATMO_AURA_KEY }
+    private fun isConfigured() = getToken().isNotEmpty()
+    private fun getToken(): String {
+        return if (getWsftKeyOrDefault() != BuildConfig.MF_WSFT_KEY) {
+            // If default key was changed, we want to use it
+            getWsftKeyOrDefault()
         } else {
+            // Otherwise, we try first a JWT key, otherwise fallback on regular API key
             try {
                 Jwts.builder().apply {
                     setHeaderParam(Header.TYPE, Header.JWT_TYPE)
@@ -205,6 +227,35 @@ class MfService @Inject constructor(
                 BuildConfig.MF_WSFT_KEY
             }
         }
+    }
+
+    override fun getPreferences(context: Context): List<Preference> {
+        return listOf(
+            EditTextPreference(
+                titleId = R.string.settings_weather_provider_mf_api_key,
+                summary = { c, content ->
+                    content.ifEmpty {
+                        c.getString(R.string.settings_weather_provider_default_value)
+                    }
+                },
+                content = wsftKey,
+                onValueChanged = {
+                    wsftKey = it
+                }
+            ),
+            EditTextPreference(
+                titleId = R.string.settings_weather_provider_iqa_atmo_aura_key,
+                summary = { c, content ->
+                    content.ifEmpty {
+                        c.getString(R.string.settings_weather_provider_default_value)
+                    }
+                },
+                content = atmoAuraKey,
+                onValueChanged = {
+                    atmoAuraKey = it
+                }
+            )
+        )
     }
 
     companion object {

@@ -26,7 +26,6 @@ object HourlyEntityGenerator {
             apparentTemperature = hourly.temperature?.apparentTemperature,
             windChillTemperature = hourly.temperature?.windChillTemperature,
             wetBulbTemperature = hourly.temperature?.wetBulbTemperature,
-            degreeDayTemperature = hourly.temperature?.degreeDayTemperature,
 
             totalPrecipitation = hourly.precipitation?.total,
             thunderstormPrecipitation = hourly.precipitation?.thunderstorm,
@@ -94,8 +93,7 @@ object HourlyEntityGenerator {
                 entity.realFeelShaderTemperature,
                 entity.apparentTemperature,
                 entity.windChillTemperature,
-                entity.wetBulbTemperature,
-                entity.degreeDayTemperature
+                entity.wetBulbTemperature
             ),
             Precipitation(
                 entity.totalPrecipitation,

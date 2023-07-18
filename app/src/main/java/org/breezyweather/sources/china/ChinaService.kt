@@ -8,7 +8,7 @@ import org.breezyweather.common.exceptions.LocationSearchException
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.WeatherResultWrapper
+import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
 import org.breezyweather.common.utils.LanguageUtils
 import org.breezyweather.db.repositories.ChineseCityEntityRepository
 import org.breezyweather.settings.SettingsManager

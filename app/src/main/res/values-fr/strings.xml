@@ -58,6 +58,8 @@
     <string name="temperature_wind_chill">Refroidissement éolien</string>
     <string name="temperature_wet_bulb">Thermomètre-globe mouillé</string>
     <string name="temperature_degree_day">Degré jour unifié</string>
+    <string name="temperature_degree_day_heating">Degré-jour de chauffe</string>
+    <string name="temperature_degree_day_cooling">Degré-jour froid</string>
 
     <string name="precipitation_total">Total</string>
     <string name="precipitation_thunderstorm">Orage</string>
@@ -300,9 +302,7 @@
 
     <!-- content description -->
     <string name="action_back">Retour</string>
-    <string name="settings_location_baidu_ip_location_ak">Clé API Baidu IP Location</string>
-    <string name="settings_weather_provider_accu_weather_key">Clé AccuWeather</string>
-    <string name="settings_weather_provider_open_weather_key">Clé OpenWeather</string>
+    <string name="settings_provider_api_key">Clé API</string>
     <string name="settings_location_summary">Paramètres des services de localisation</string>
     <string name="settings_location_access_permission_already_granted">Permission déjà accordée</string>
     <string name="settings_location_access_switch_title">Accès à la position</string>
@@ -316,8 +316,7 @@
     <string name="settings_location_access_precise_summaryOff">Activez “Utiliser la position exacte” si vous rencontrez des difficultés à obtenir votre position.</string>
     <string name="settings_weather_providers">Fournisseurs météo</string>
     <string name="settings_weather_providers_summary">Paramètres des fournisseurs météo</string>
-    <string name="settings_weather_provider_open_weather_one_call_version">Version d’OpenWeather OneCall</string>
-    <string name="settings_weather_provider_mf_wsft_key">Clé Météo France WSFT</string>
+    <string name="settings_weather_provider_open_weather_one_call_version">Version de OneCall</string>
     <string name="settings_weather_provider_iqa_atmo_aura_key">Clé ATMO AURA</string>
     <string name="settings_icon_providers_check_details">Plus de détails</string>
     <string name="alerts_count">$ vigilances météo</string> <!-- $ = alert count. -->
@@ -536,13 +535,13 @@
     <string name="weather_source_openmeteo_voice">Open Meteo</string>
     <string name="weather_source_accuweather">AccuWeather</string>
     <string name="weather_source_accuweather_voice">ACCU weather.com</string>
-    <string name="weather_source_accu_preference_days">Jours</string>
-    <string name="weather_source_accu_preference_portal">Portail</string>
+    <string name="setting_weather_provider_accu_days">Jours</string>
+    <string name="settings_weather_provider_portal">Portail</string>
     <string name="weather_source_accu_preference_days_1">1 jour</string>
     <string name="weather_source_accu_preference_days_5">5 jours</string>
     <string name="weather_source_accu_preference_days_10">10 jours</string>
     <string name="weather_source_accu_preference_days_15">15 jours</string>
-    <string name="weather_source_accu_preference_hours">Heures</string>
+    <string name="setting_weather_provider_accu_hours">Heures</string>
     <string name="weather_source_accu_preference_hours_1">1 heure</string>
     <string name="weather_source_accu_preference_hours_12">12 heures</string>
     <string name="weather_source_accu_preference_hours_24">24 heures</string>

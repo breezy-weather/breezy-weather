@@ -15,8 +15,7 @@ class Temperature(
     val realFeelShaderTemperature: Float? = null,
     val apparentTemperature: Float? = null,
     val windChillTemperature: Float? = null,
-    val wetBulbTemperature: Float? = null,
-    val degreeDayTemperature: Float? = null
+    val wetBulbTemperature: Float? = null
 ) : Serializable {
 
     companion object {
@@ -47,8 +46,8 @@ class Temperature(
         }
     }
 
-    val feelsLikeTemperature: Float? = realFeelTemperature ?: realFeelShaderTemperature ?: apparentTemperature
-        ?: windChillTemperature ?: wetBulbTemperature ?: degreeDayTemperature
+    val feelsLikeTemperature: Float? = realFeelTemperature ?: realFeelShaderTemperature
+        ?: apparentTemperature ?: windChillTemperature ?: wetBulbTemperature
 
     fun getTemperature(context: Context, unit: TemperatureUnit, decimals: Int = 1): String? {
         return getTemperature(context, temperature, unit, decimals)

@@ -38,7 +38,6 @@ class WeatherEntity(
     var apparentTemperature: Float? = null,
     var windChillTemperature: Float? = null,
     var wetBulbTemperature: Float? = null,
-    var degreeDayTemperature: Float? = null,
 
     var windDirection: String? = null,
     @field:Convert(

@@ -46,9 +46,12 @@ class WeatherHelper @Inject constructor(
                 if (t.result != null) {
                     WeatherEntityRepository.writeWeather(location, t.result)
                     if (t.result.yesterday == null) {
-                        t.result.yesterday = HistoryEntityRepository.readHistory(location, t.result)
+                        t.result.copy(
+                            yesterday = HistoryEntityRepository.readHistory(location, t.result)
+                        )
+                    } else {
+                        t.result
                     }
-                    t.result
                 } else {
                     throw ParsingException()
                 }

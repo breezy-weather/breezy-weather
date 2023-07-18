@@ -10,7 +10,7 @@ import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toTimezoneNoHour
 import org.breezyweather.sources.*
-import org.breezyweather.common.source.WeatherResultWrapper
+import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
 import org.breezyweather.sources.mf.json.*
 import org.breezyweather.sources.mf.json.atmoaura.AtmoAuraPointResult
 import java.util.*

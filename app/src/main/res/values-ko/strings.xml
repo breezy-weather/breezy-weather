@@ -280,7 +280,6 @@
     <string name="settings_location_access_switch_summaryOff">알림 목록에 현재 위치를 추가하려면 권한을 허용해 주세요.</string>
     <string name="settings_location_access_background_title">백그라운드에서 위치 접근</string>
     <string name="settings_weather_provider_default_value">기본값</string>
-    <string name="settings_weather_provider_open_weather_key">OpenWeather 키</string>
     <string name="settings_icon_providers_title">아이콘 팩</string>
     <string name="settings_main_background_animation_enabled">켜짐</string>
     <string name="settings_notifications_precipitations_title">강수 알림</string>
@@ -297,14 +296,11 @@
     <string name="settings_weather_providers_summary">날씨 제공 업체 설정</string>
     <string name="settings_background_updates_battery_optimization_summary">알림을 받지 못하거나 위젯이 새로고침되지 않을 때 가장 먼저 시도해 보세요.</string>
     <string name="settings_background_updates_worker_info_title">Worker 정보</string>
-    <string name="settings_location_baidu_ip_location_ak">Baidu IP 위치 API 키</string>
     <string name="settings_weather_providers">날씨 제공 업체</string>
     <string name="settings_weather_providers_current_location">현재 위치에 사용할 날씨 제공 업체</string>
-    <string name="settings_weather_provider_accu_weather_key">AccuWeather 키</string>
     <string name="settings_weather_provider_iqa_atmo_aura_key">ATMO AURA 키</string>
     <string name="settings_units_summary">온도, 강수, 거리, 속도, 기압</string>
-    <string name="settings_weather_provider_open_weather_one_call_version">OpenWeather OneCall 버전</string>
-    <string name="settings_weather_provider_mf_wsft_key">Météo France WSFT 키</string>
+    <string name="settings_weather_provider_open_weather_one_call_version">OneCall 버전</string>
     <string name="notification_channel_background_services">백그라운드 서비스</string>
     <string name="settings_location_access_switch_summaryOn">허용되었습니다. 이제 위치 목록에 현재 위치를 추가할 수 있습니다.</string>
     <string name="settings_main_cards_title">카드</string>
@@ -369,7 +365,7 @@
     <string name="unit_nmi">nmi</string>
     <string name="unit_nmi_voice">해리</string>
     <string name="unit_ft">ft</string>
-    <string name="weather_source_accu_preference_days">일수</string>
+    <string name="setting_weather_provider_accu_days">일수</string>
     <string name="weather_source_accu_preference_days_1">1일</string>
     <string name="weather_source_accu_preference_days_5">5일</string>
     <string name="weather_source_accu_preference_days_10">10일</string>
@@ -460,10 +456,10 @@
     <string name="weather_source_openmeteo">Open-Meteo</string>
     <string name="weather_source_openmeteo_voice">Open Meteo</string>
     <string name="weather_source_accuweather">AccuWeather</string>
-    <string name="weather_source_accu_preference_portal">Portal</string>
+    <string name="settings_weather_provider_portal">Portal</string>
     <string name="weather_api_key_required_missing_content">이 날씨 제공 업체를 이용하려면 API 키를 직접 추가해야 합니다.</string>
     <string name="weather_api_key_required_missing_title">API 키 필요</string>
-    <string name="weather_source_accu_preference_hours">시간</string>
+    <string name="setting_weather_provider_accu_hours">시간</string>
     <string name="weather_source_accu_preference_hours_1">1시간</string>
     <string name="action_add_current_location">현재 위치 추가</string>
     <string name="action_add_new_location">새 위치 추가</string>

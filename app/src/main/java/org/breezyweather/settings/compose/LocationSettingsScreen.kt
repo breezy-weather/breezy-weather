@@ -10,6 +10,9 @@ import com.google.accompanist.permissions.PermissionState
 import com.google.accompanist.permissions.PermissionStatus
 import org.breezyweather.R
 import org.breezyweather.common.extensions.openApplicationDetailsSettings
+import org.breezyweather.common.preference.EditTextPreference
+import org.breezyweather.common.preference.ListPreference
+import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.LocationSource
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.settings.SettingsManager
@@ -98,22 +101,40 @@ fun LocationSettingsScreen(
     }
     sectionFooterItem(R.string.location_service_native)
 
-    sectionHeaderItem(R.string.location_service_baidu_ip)
-    editTextPreferenceItem(R.string.settings_location_baidu_ip_location_ak) { id ->
-        EditTextPreferenceView(
-            titleId = id,
-            summary = { context, content ->
-                content.ifEmpty {
-                    context.getString(R.string.settings_weather_provider_default_value)
+    // TODO: Duplicate code from weather sources
+    locationSources.filterIsInstance<ConfigurableSource>().forEach { preferenceSource ->
+        item(key = "header_${preferenceSource.id}") {
+            SectionHeader(title = preferenceSource.name)
+        }
+        preferenceSource.getPreferences(context).forEach { preference ->
+            when (preference) {
+                is ListPreference -> {
+                    listPreferenceItem(preference.titleId) { id ->
+                        ListPreferenceView(
+                            titleId = id,
+                            selectedKey = preference.selectedKey,
+                            valueArrayId = preference.valueArrayId,
+                            nameArrayId = preference.nameArrayId,
+                            onValueChanged = preference.onValueChanged,
+                        )
+                    }
                 }
-            },
-            content = SettingsManager.getInstance(context).customBaiduIpLocationAk,
-            onValueChanged = {
-                SettingsManager.getInstance(context).customBaiduIpLocationAk = it
+                is EditTextPreference -> {
+                    editTextPreferenceItem(preference.titleId) { id ->
+                        EditTextPreferenceView(
+                            titleId = id,
+                            summary = preference.summary,
+                            content = preference.content,
+                            onValueChanged = preference.onValueChanged
+                        )
+                    }
+                }
             }
-        )
+        }
+        item(key = "footer_${preferenceSource.id}") {
+            SectionFooter()
+        }
     }
-    sectionFooterItem(R.string.location_service_baidu_ip)
 
     bottomInsetItem()
 }

@@ -22,7 +22,7 @@ import org.breezyweather.common.basic.models.weather.Wind
 import org.breezyweather.common.basic.models.weather.WindDegree
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toTimezoneNoHour
-import org.breezyweather.common.source.WeatherResultWrapper
+import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
 import org.breezyweather.sources.completeHalfDayFromHourlyList
 import org.breezyweather.sources.getCurrentUV
 import org.breezyweather.sources.getDailyAirQualityFromHourlyList

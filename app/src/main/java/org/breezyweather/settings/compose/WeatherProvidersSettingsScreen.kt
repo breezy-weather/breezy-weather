@@ -5,7 +5,9 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import org.breezyweather.R
 import org.breezyweather.background.weather.WeatherUpdateJob
-import org.breezyweather.sources.openweather.preferences.OpenWeatherOneCallVersion
+import org.breezyweather.common.preference.EditTextPreference
+import org.breezyweather.common.preference.ListPreference
+import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.db.repositories.LocationEntityRepository
 import org.breezyweather.db.repositories.WeatherEntityRepository
@@ -14,9 +16,8 @@ import org.breezyweather.settings.preference.*
 import org.breezyweather.settings.preference.composables.EditTextPreferenceView
 import org.breezyweather.settings.preference.composables.ListPreferenceView
 import org.breezyweather.settings.preference.composables.PreferenceScreen
-import org.breezyweather.sources.accu.preferences.AccuDaysPreference
-import org.breezyweather.sources.accu.preferences.AccuHoursPreference
-import org.breezyweather.sources.accu.preferences.AccuPortalPreference
+import org.breezyweather.settings.preference.composables.SectionFooter
+import org.breezyweather.settings.preference.composables.SectionHeader
 
 @Composable
 fun WeatherProvidersSettingsScreen(
@@ -40,6 +41,7 @@ fun WeatherProvidersSettingsScreen(
                 if (index >= 0) {
                     locationList[index] = locationList[index].copy(
                         weather = null,
+                        // FIXME: This won't work as it will keep older version if null, however as we delete in database, this shouldn’t change anything
                         weatherSource = sourceId
                     )
                     WeatherEntityRepository.deleteWeather(locationList[index])
@@ -52,122 +54,39 @@ fun WeatherProvidersSettingsScreen(
     }
     sectionFooterItem(R.string.settings_weather_providers_section_general)
 
-    sectionHeaderItem(R.string.weather_source_accuweather)
-    listPreferenceItem(R.string.weather_source_accu_preference_portal) { id ->
-        ListPreferenceView(
-            titleId = id,
-            selectedKey = SettingsManager.getInstance(context).customAccuPortal.id,
-            valueArrayId = R.array.accu_preference_portal_values,
-            nameArrayId = R.array.accu_preference_portal,
-            onValueChanged = {
-                SettingsManager
-                    .getInstance(context)
-                    .customAccuPortal = AccuPortalPreference.getInstance(it)
-            },
-        )
-    }
-    editTextPreferenceItem(R.string.settings_weather_provider_accu_weather_key) { id ->
-        EditTextPreferenceView(
-            titleId = id,
-            summary = { context, content ->
-                content.ifEmpty {
-                    context.getString(R.string.settings_weather_provider_default_value)
+    weatherSources.filterIsInstance<ConfigurableSource>().forEach { preferenceSource ->
+        item(key = "header_${preferenceSource.id}") {
+            SectionHeader(title = preferenceSource.name)
+        }
+        preferenceSource.getPreferences(context).forEach { preference ->
+            when (preference) {
+                is ListPreference -> {
+                    listPreferenceItem(preference.titleId) { id ->
+                        ListPreferenceView(
+                            titleId = id,
+                            selectedKey = preference.selectedKey,
+                            valueArrayId = preference.valueArrayId,
+                            nameArrayId = preference.nameArrayId,
+                            onValueChanged = preference.onValueChanged,
+                        )
+                    }
                 }
-            },
-            content = SettingsManager.getInstance(context).customAccuWeatherKey,
-            onValueChanged = {
-                SettingsManager.getInstance(context).customAccuWeatherKey = it
-            }
-        )
-    }
-    listPreferenceItem(R.string.weather_source_accu_preference_days) { id ->
-        ListPreferenceView(
-            titleId = id,
-            selectedKey = SettingsManager.getInstance(context).customAccuDays.id,
-            valueArrayId = R.array.accu_preference_day_values,
-            nameArrayId = R.array.accu_preference_days,
-            onValueChanged = {
-                SettingsManager
-                    .getInstance(context)
-                    .customAccuDays = AccuDaysPreference.getInstance(it)
-            },
-        )
-    }
-    listPreferenceItem(R.string.weather_source_accu_preference_hours) { id ->
-        ListPreferenceView(
-            titleId = id,
-            selectedKey = SettingsManager.getInstance(context).customAccuHours.id,
-            valueArrayId = R.array.accu_preference_hour_values,
-            nameArrayId = R.array.accu_preference_hours,
-            onValueChanged = {
-                SettingsManager
-                    .getInstance(context)
-                    .customAccuHours = AccuHoursPreference.getInstance(it)
-            },
-        )
-    }
-    sectionFooterItem(R.string.weather_source_accuweather)
-
-    sectionHeaderItem(R.string.weather_source_openweather)
-    editTextPreferenceItem(R.string.settings_weather_provider_open_weather_key) { id ->
-        EditTextPreferenceView(
-            titleId = id,
-            summary = { context, content ->
-                content.ifEmpty {
-                    context.getString(R.string.settings_weather_provider_default_value)
+                is EditTextPreference -> {
+                    editTextPreferenceItem(preference.titleId) { id ->
+                        EditTextPreferenceView(
+                            titleId = id,
+                            summary = preference.summary,
+                            content = preference.content,
+                            onValueChanged = preference.onValueChanged
+                        )
+                    }
                 }
-            },
-            content = SettingsManager.getInstance(context).customOpenWeatherKey,
-            onValueChanged = {
-                SettingsManager.getInstance(context).customOpenWeatherKey = it
             }
-        )
+        }
+        item(key = "footer_${preferenceSource.id}") {
+            SectionFooter()
+        }
     }
-    listPreferenceItem(R.string.settings_weather_provider_open_weather_one_call_version) { id ->
-        ListPreferenceView(
-            titleId = id,
-            selectedKey = SettingsManager.getInstance(context).customOpenWeatherOneCallVersion.id,
-            valueArrayId = R.array.open_weather_one_call_version_values,
-            nameArrayId = R.array.open_weather_one_call_version,
-            onValueChanged = {
-                SettingsManager
-                    .getInstance(context)
-                    .customOpenWeatherOneCallVersion = OpenWeatherOneCallVersion.getInstance(it)
-            },
-        )
-    }
-    sectionFooterItem(R.string.weather_source_openweather)
-
-    sectionHeaderItem(R.string.weather_source_mf)
-    editTextPreferenceItem(R.string.settings_weather_provider_mf_wsft_key) { id ->
-        EditTextPreferenceView(
-            titleId = id,
-            summary = { context, content ->
-                content.ifEmpty {
-                    context.getString(R.string.settings_weather_provider_default_value)
-                }
-            },
-            content = SettingsManager.getInstance(context).customMfWsftKey,
-            onValueChanged = {
-                SettingsManager.getInstance(context).customMfWsftKey = it
-            }
-        )
-    }
-    editTextPreferenceItem(R.string.settings_weather_provider_iqa_atmo_aura_key) { id ->
-        EditTextPreferenceView(
-            titleId = id,
-            summary = { context, content ->
-                content.ifEmpty {
-                    context.getString(R.string.settings_weather_provider_default_value)
-                }
-            },
-            content = SettingsManager.getInstance(context).customIqaAtmoAuraKey,
-            onValueChanged = {
-                SettingsManager.getInstance(context).customIqaAtmoAuraKey = it
-            }
-        )
-    }
-    sectionFooterItem(R.string.weather_source_mf)
 
     bottomInsetItem()
 }

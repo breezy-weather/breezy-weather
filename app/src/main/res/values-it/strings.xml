@@ -355,7 +355,6 @@
     <string name="widget_style_nano">Nano</string>
     <string name="widget_style_pixel">Pixel</string>
     <string name="widget_clock_font_analog">Analog</string>
-    <string name="settings_weather_provider_accu_weather_key">Chiave AccuWeather</string>
     <string name="weather_source_mf_voice">Météo France</string>
     <string name="uv_index_0_2">Basso</string>
     <string name="alerts_to_follow">Avvisi da seguire, tocca qui per visualizzarli.</string>
@@ -379,12 +378,12 @@
     <string name="weather_source_metno">MET Norway</string>
     <string name="weather_source_metno_voice">Istituto Meteorologico Norvegese</string>
     <string name="action_add_from_map">Aggiungi dalla mappa</string>
-    <string name="weather_source_accu_preference_portal">Portale</string>
-    <string name="weather_source_accu_preference_days">Giorni</string>
+    <string name="settings_weather_provider_portal">Portale</string>
+    <string name="setting_weather_provider_accu_days">Giorni</string>
     <string name="weather_source_accu_preference_days_1">1 giorno</string>
     <string name="weather_source_accu_preference_days_5">5 giorni</string>
     <string name="weather_source_accu_preference_days_15">15 giorni</string>
-    <string name="weather_source_accu_preference_hours">Ore</string>
+    <string name="setting_weather_provider_accu_hours">Ore</string>
     <string name="weather_source_accu_preference_days_10">10 giorni</string>
     <string name="weather_source_accu_preference_hours_1">1 ora</string>
     <string name="weather_source_accu_preference_hours_12">12 ore</string>
@@ -399,8 +398,7 @@
     <string name="location_search_weather_provider">Provider meteo</string>
     <string name="locations">Località</string>
     <string name="location_search_change_weather_provider">Cambia provider meteo</string>
-    <string name="settings_weather_provider_open_weather_key">Chiave OpenWeather</string>
-    <string name="settings_weather_provider_open_weather_one_call_version">Versione OpenWeather OneCall</string>
+    <string name="settings_weather_provider_open_weather_one_call_version">Versione OneCall</string>
     <string name="settings_weather_provider_iqa_atmo_aura_key">Chiave ATMO AURA</string>
     <string name="settings_appearance_summary">Lingua, modalità scura, stile icone, unità di misura</string>
     <string name="settings_icon_providers_title">Pacchetti icone</string>
@@ -422,8 +420,6 @@
     <string name="weather_source_openmeteo">Open-Meteo</string>
     <string name="weather_source_openmeteo_voice">Open Meteo</string>
     <string name="weather_source_accuweather_voice">ACCU weather.com</string>
-    <string name="settings_location_baidu_ip_location_ak">Chiave API Localizzazione IP Baidu</string>
-    <string name="settings_weather_provider_mf_wsft_key">Chiave WSFT Météo France</string>
     <string name="action_choose_weather_provider">Scegli il provider meteo</string>
     <string name="widget_style_mini">Mini</string>
     <string name="location_message_permission_missing">Autorizzazione di accesso alla posizione mancante</string>

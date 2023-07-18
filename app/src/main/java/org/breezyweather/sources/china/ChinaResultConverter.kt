@@ -7,7 +7,7 @@ import org.breezyweather.BreezyWeather
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.*
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
-import org.breezyweather.common.source.WeatherResultWrapper
+import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
 import org.breezyweather.sources.china.json.ChinaForecastResult
 import org.breezyweather.sources.china.json.ChinaMinutelyResult
 import org.breezyweather.sources.getHoursOfDay

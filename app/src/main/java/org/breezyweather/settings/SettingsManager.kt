@@ -1,11 +1,9 @@
 package org.breezyweather.settings
 
 import android.content.Context
-import org.breezyweather.BuildConfig
 import org.breezyweather.BreezyWeather
 import org.breezyweather.common.basic.models.options.*
 import org.breezyweather.common.basic.models.options.appearance.*
-import org.breezyweather.sources.openweather.preferences.OpenWeatherOneCallVersion
 import org.breezyweather.common.basic.models.options.unit.DistanceUnit
 import org.breezyweather.common.basic.models.options.unit.PrecipitationIntensityUnit
 import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
@@ -13,9 +11,6 @@ import org.breezyweather.common.basic.models.options.unit.PressureUnit
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.bus.EventBus
-import org.breezyweather.sources.accu.preferences.AccuDaysPreference
-import org.breezyweather.sources.accu.preferences.AccuHoursPreference
-import org.breezyweather.sources.accu.preferences.AccuPortalPreference
 
 class SettingsChangedMessage
 
@@ -394,113 +389,6 @@ class SettingsManager private constructor(context: Context) {
             notifySettingsChanged()
         }
         get() = config.getBoolean("notification_widget_feelslike", false)
-
-    // service provider advanced
-    var customAccuPortal: AccuPortalPreference
-        set(value) {
-            config.edit().putString("provider_accu_portal", value.id).apply()
-            notifySettingsChanged()
-        }
-        get() = AccuPortalPreference.getInstance(
-            config.getString("provider_accu_portal", "enterprise") ?: ""
-        )
-
-    var customAccuWeatherKey: String
-        set(value) {
-            config.edit().putString("provider_accu_weather_key", value).apply()
-            notifySettingsChanged()
-        }
-        get() = config.getString("provider_accu_weather_key", "") ?: ""
-
-    var customAccuDays: AccuDaysPreference
-        set(value) {
-            config.edit().putString("provider_accu_days", value.id).apply()
-            notifySettingsChanged()
-        }
-        get() = AccuDaysPreference.getInstance(
-            config.getString("provider_accu_days", "15") ?: ""
-        )
-
-    var customAccuHours: AccuHoursPreference
-        set(value) {
-            config.edit().putString("provider_accu_hours", value.id).apply()
-            notifySettingsChanged()
-        }
-        get() = AccuHoursPreference.getInstance(
-            config.getString("provider_accu_hours", "120") ?: ""
-        )
-
-    var customOpenWeatherKey: String
-        set(value) {
-            config.edit().putString("provider_open_weather_key", value).apply()
-            notifySettingsChanged()
-        }
-        get() = config.getString("provider_open_weather_key", "") ?: ""
-
-    var customOpenWeatherOneCallVersion: OpenWeatherOneCallVersion
-        set(value) {
-            config.edit().putString("provider_open_weather_one_call_version", value.id).apply()
-            notifySettingsChanged()
-        }
-        get() = OpenWeatherOneCallVersion.getInstance(
-            config.getString("provider_open_weather_one_call_version", "2.5") ?: ""
-        )
-
-    var customBaiduIpLocationAk: String
-        set(value) {
-            config.edit().putString("provider_baidu_ip_location_ak", value).apply()
-            notifySettingsChanged()
-        }
-        get() = config.getString("provider_baidu_ip_location_ak", "") ?: ""
-
-    var customMfWsftKey: String
-        set(value) {
-            config.edit().putString("provider_mf_wsft_key", value).apply()
-            notifySettingsChanged()
-        }
-        get() = config.getString("provider_mf_wsft_key", "") ?: ""
-
-    var customIqaAtmoAuraKey: String
-        set(value) {
-            config.edit().putString("provider_iqa_atmo_aura_key", value).apply()
-            notifySettingsChanged()
-        }
-        get() = config.getString("provider_iqa_atmo_aura_key", "") ?: ""
-
-    val providerAccuWeatherKey: String
-        get() = getProviderSettingValue(
-            customValue = customAccuWeatherKey,
-            defaultValue = BuildConfig.ACCU_WEATHER_KEY,
-        )
-
-    val providerOpenWeatherKey: String
-        get() = getProviderSettingValue(
-            customValue = customOpenWeatherKey,
-            defaultValue = BuildConfig.OPEN_WEATHER_KEY,
-        )
-
-    val providerBaiduIpLocationAk: String
-        get() = getProviderSettingValue(
-            customValue = customBaiduIpLocationAk,
-            defaultValue = BuildConfig.BAIDU_IP_LOCATION_AK,
-        )
-
-    val providerMfWsftKey: String
-        get() = getProviderSettingValue(
-            customValue = customMfWsftKey,
-            defaultValue = BuildConfig.MF_WSFT_KEY,
-        )
-
-    val providerIqaAtmoAuraKey: String
-        get() = getProviderSettingValue(
-            customValue = customIqaAtmoAuraKey,
-            defaultValue = BuildConfig.IQA_ATMO_AURA_KEY,
-        )
-
-    private fun getProviderSettingValue(
-        customValue: String,
-        defaultValue: String,
-    ) = customValue.ifEmpty { defaultValue }
 
     private fun notifySettingsChanged() {
         EventBus

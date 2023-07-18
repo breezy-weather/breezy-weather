@@ -1,16 +1,17 @@
 package org.breezyweather.common.di
 
 import android.app.Application
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.serialization.json.Json
 import okhttp3.Cache
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.breezyweather.BreezyWeather
-import org.breezyweather.BuildConfig
-import org.breezyweather.sources.baiduip.BaiduIPLocationApi
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
@@ -50,6 +51,18 @@ class RetrofitModule {
         return HttpLoggingInterceptor().apply {
             level = if (BreezyWeather.instance.debugMode) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
         }
+    }
+
+    @Provides
+    @Singleton
+    fun provideKotlinxSerializationConverterFactory(): Converter.Factory {
+        val contentType = "application/json".toMediaType()
+        val json = Json {
+            ignoreUnknownKeys = true
+            explicitNulls = false
+            isLenient = !BreezyWeather.instance.debugMode
+        }
+        return json.asConverterFactory(contentType)
     }
 
     @Provides

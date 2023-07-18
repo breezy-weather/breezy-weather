@@ -271,8 +271,6 @@
     <string name="settings_background_updates_section_troubleshoot">Ka</string>
     <string name="settings_weather_providers">Dostawca usług pogodowych</string>
     <string name="settings_weather_provider_default_value">Domyślne (bez zmian)</string>
-    <string name="settings_weather_provider_accu_weather_key">Klucz AccuWeather</string>
-    <string name="settings_weather_provider_open_weather_key">Klucz OpenWeather</string>
     <string name="settings_main">Główny ekran</string>
     <string name="settings_widgets_monochrome_icons_title">Ikony monochromatyczne</string>
     <string name="unit_cmph">cm/h</string>
@@ -351,8 +349,8 @@
     <string name="weather_source_accu_preference_days_5">5 dni</string>
     <string name="weather_source_accu_preference_days_10">10 dni</string>
     <string name="weather_source_accu_preference_days_15">15 dni</string>
-    <string name="weather_source_accu_preference_portal">Portal</string>
-    <string name="weather_source_accu_preference_days">Dni</string>
+    <string name="settings_weather_provider_portal">Portal</string>
+    <string name="setting_weather_provider_accu_days">Dni</string>
     <string name="weather_source_accu_preference_days_1">1 dzień</string>
     <string name="weather_source_accu_preference_hours_12">12 godzin</string>
     <string name="weather_source_accu_preference_hours_24">24 godziny</string>
@@ -430,7 +428,7 @@
     <string name="settings_icon_providers_weather_adaptive_icon">Ikona pogody</string>
     <string name="message_network_unavailable">Sieć niedostępna</string>
     <string name="weather_source_china_voice">Chiny</string>
-    <string name="weather_source_accu_preference_hours">Godziny</string>
+    <string name="setting_weather_provider_accu_hours">Godziny</string>
     <string name="weather_source_openweather_voice">Open Weather</string>
     <string name="weather_source_accu_preference_hours_1">1 godzina</string>
     <string name="settings_icon_providers_weather_icon_grey">Szara ikona</string>

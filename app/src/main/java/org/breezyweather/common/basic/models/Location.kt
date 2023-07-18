@@ -10,7 +10,7 @@ import org.breezyweather.sources.SourceManager
 import java.util.TimeZone
 import kotlin.math.abs
 
-class Location(
+data class Location(
     val cityId: String = NULL_ID,
 
     val latitude: Float = 0f,
@@ -89,8 +89,6 @@ class Location(
             return result
         }
 
-        fun copy(src: Location, weather: Weather?) = src.copy(weather = weather)
-
         @JvmField
         val CREATOR = object : Parcelable.Creator<Location> {
 
@@ -138,40 +136,6 @@ class Location(
         isCurrentPosition = parcel.readByte() != 0.toByte(),
         isResidentPosition = parcel.readByte() != 0.toByte(),
         isChina = parcel.readByte() != 0.toByte()
-    )
-
-    fun copy(
-        cityId: String? = null,
-        latitude: Float? = null,
-        longitude: Float? = null,
-        timeZone: TimeZone? = null,
-        country: String? = null,
-        countryCode: String? = null,
-        province: String? = null,
-        provinceCode: String? = null,
-        city: String? = null,
-        district: String? = null,
-        weather: Weather? = null,
-        weatherSource: String? = null,
-        isCurrentPosition: Boolean? = null,
-        isResidentPosition: Boolean? = null,
-        isChina: Boolean? = null,
-    ) = Location(
-        cityId = cityId ?: this.cityId,
-        latitude = latitude ?: this.latitude,
-        longitude = longitude ?: this.longitude,
-        timeZone = timeZone ?: this.timeZone,
-        country = country ?: this.country,
-        countryCode = countryCode ?: this.countryCode,
-        province = province ?: this.province,
-        provinceCode = provinceCode ?: this.provinceCode,
-        city = city ?: this.city,
-        district = district ?: this.district,
-        weather = weather ?: this.weather,
-        weatherSource = weatherSource ?: this.weatherSource,
-        isCurrentPosition = isCurrentPosition ?: this.isCurrentPosition,
-        isResidentPosition = isResidentPosition ?: this.isResidentPosition,
-        isChina = isChina ?: this.isChina
     )
 
     override fun equals(other: Any?): Boolean {

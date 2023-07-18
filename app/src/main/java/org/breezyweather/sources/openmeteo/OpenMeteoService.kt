@@ -6,7 +6,7 @@ import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.exceptions.LocationSearchException
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationSearchSource
-import org.breezyweather.common.source.WeatherResultWrapper
+import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
 import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.sources.openmeteo.json.OpenMeteoAirQualityResult

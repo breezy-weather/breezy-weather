@@ -32,7 +32,6 @@ object WeatherEntityGenerator {
             apparentTemperature = weather.current?.temperature?.apparentTemperature,
             windChillTemperature = weather.current?.temperature?.windChillTemperature,
             wetBulbTemperature = weather.current?.temperature?.wetBulbTemperature,
-            degreeDayTemperature = weather.current?.temperature?.degreeDayTemperature,
 
             windDirection = weather.current?.wind?.direction,
             windDegree = if (weather.current?.wind?.degree != null
@@ -85,8 +84,7 @@ object WeatherEntityGenerator {
                     weatherEntity.realFeelShaderTemperature,
                     weatherEntity.apparentTemperature,
                     weatherEntity.windChillTemperature,
-                    weatherEntity.wetBulbTemperature,
-                    weatherEntity.degreeDayTemperature
+                    weatherEntity.wetBulbTemperature
                 ),
                 Wind(
                     weatherEntity.windDirection,

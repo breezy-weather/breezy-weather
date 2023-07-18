@@ -217,8 +217,7 @@
     <string name="weather_kind_sleet">Schneeregen</string>
     <string name="weather_kind_haze">Dunst</string>
     <string name="precipitation_between_time">Niederschlag zwischen $1 und $2</string>
-    <string name="settings_weather_provider_accu_weather_key">AccuWeather API-Schlüssel</string>
-    <string name="settings_weather_provider_open_weather_one_call_version">OpenWeather OneCall Version</string>
+    <string name="settings_weather_provider_open_weather_one_call_version">OneCall Version</string>
     <string name="unit_mps">m/s</string>
     <string name="unit_kn">kn</string>
     <string name="unit_mm">mm</string>
@@ -307,7 +306,6 @@
     <string name="unit_kn_voice">Knoten</string>
     <string name="notification_location_in_background">Ortung im Hintergrund</string>
     <string name="about_contribution_WangDaYeeeeee">Entwickler des ursprünglichen Projekts Geometric Weather</string>
-    <string name="settings_weather_provider_open_weather_key">OpenWeather API-Schlüssel</string>
     <string name="air_quality_level_2">Mäßig</string>
     <string name="unit_inhg">inHg</string>
     <string name="unit_mmhg_voice">Millimeter-Quecksilbersäule</string>
@@ -463,8 +461,6 @@
     <string name="settings_widgets_configure_widget_summary">Widget konfigurieren</string>
     <string name="settings_widgets_section_widgets_in_use">Verwendete Widgets</string>
     <string name="weather_air_quality_and_pollen_data_by">Luftqualitäts- und Pollenflugdaten von $</string>
-    <string name="settings_location_baidu_ip_location_ak">Baidu IP Standort API-Schlüssel</string>
-    <string name="settings_weather_provider_mf_wsft_key">Météo France WSFT Schlüssel</string>
     <string name="settings_weather_provider_iqa_atmo_aura_key">ATMO AURA Schlüssel</string>
     <string name="action_continue">Weiter</string>
     <string name="settings_icon_providers_title">Symbolpakete</string>
@@ -485,10 +481,10 @@
     <string name="weather_source_accu_preference_hours_120">120 Stunden</string>
     <string name="weather_source_accu_preference_days_10">10 Tage</string>
     <string name="weather_api_key_required_missing_title">Erforderlicher API-Schlüssel fehlt</string>
-    <string name="weather_source_accu_preference_days">Tage</string>
-    <string name="weather_source_accu_preference_portal">Portal</string>
+    <string name="setting_weather_provider_accu_days">Tage</string>
+    <string name="settings_weather_provider_portal">Portal</string>
     <string name="weather_source_accu_preference_days_15">15 Tage</string>
-    <string name="weather_source_accu_preference_hours">Stunden</string>
+    <string name="setting_weather_provider_accu_hours">Stunden</string>
     <string name="weather_source_accu_preference_hours_1">1 Stunde</string>
     <string name="weather_source_accu_preference_hours_12">12 Stunden</string>
     <string name="weather_source_accu_preference_hours_24">24 Stunden</string>

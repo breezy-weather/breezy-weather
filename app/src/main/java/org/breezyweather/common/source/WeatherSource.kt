@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.annotation.ColorInt
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.basic.models.Location
+import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
 
 /**
  * Weather service.

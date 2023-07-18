@@ -302,7 +302,7 @@
     <string name="unit_lpsqmph">L/m²/h</string>
     <string name="openmeteo_weather_text_freezing_drizzle_light_intensity">Burniță înghețată de intensitate mică</string>
     <string name="settings_widgets_week_icon_mode_title">Pictogramă de afișat în vizualizări săptămânale</string>
-    <string name="settings_weather_provider_open_weather_one_call_version">OpenWeather versiune OneCall</string>
+    <string name="settings_weather_provider_open_weather_one_call_version">Versiune OneCall</string>
     <string name="settings_icon_providers_weather_adaptive_icon">Pictogramă vreme</string>
     <string name="unit_km">KM</string>
     <string name="unit_kelvin_short">K</string>
@@ -334,10 +334,7 @@
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="settings_items_drag_to_sort">Atingeți pentru a trage elementele din listă pentru a le sorta</string>
     <string name="settings_weather_provider_default_value">Implicit (neschimbat)</string>
-    <string name="settings_weather_provider_accu_weather_key">Cheie AccuWeather</string>
-    <string name="settings_weather_provider_mf_wsft_key">Météo Franţa cheie WSFT</string>
     <string name="settings_icon_providers_check_details">Verificați detaliile</string>
-    <string name="settings_location_baidu_ip_location_ak">Baidu Locație IP cheie API</string>
     <string name="settings_weather_provider_iqa_atmo_aura_key">cheie ATMO AURA</string>
     <string name="unit_kn">Nod</string>
     <string name="unit_kn_voice">Noduri</string>
@@ -395,7 +392,6 @@
     <string name="widget_style_mini">Mini</string>
     <string name="widget_material_you_current">Material You - Actual</string>
     <string name="unit_mph">mph</string>
-    <string name="settings_weather_provider_open_weather_key">Cheie OpenWeather</string>
     <string name="unit_hpa">hPa</string>
     <string name="unit_m">m</string>
     <string name="openmeteo_weather_text_clear_sky">Cer senin</string>
@@ -427,9 +423,9 @@
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Furtună cu grindină intensă</string>
     <string name="unit_in_voice">Inci</string>
     <string name="unit_celsius_short">°</string>
-    <string name="weather_source_accu_preference_portal">Portal</string>
+    <string name="settings_weather_provider_portal">Portal</string>
     <string name="weather_source_accu_preference_days_5">5 zile</string>
-    <string name="weather_source_accu_preference_days">Zile</string>
+    <string name="setting_weather_provider_accu_days">Zile</string>
     <string name="weather_source_accu_preference_days_1">O zi</string>
     <string name="weather_source_accu_preference_hours_12">12 ore</string>
     <string name="weather_source_accu_preference_hours_1">O oră</string>
@@ -520,7 +516,7 @@
     <string name="unit_mph_voice">Mile pe oră</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="openmeteo_weather_text_drizzle_dense_intensity">Burniță de intensitate densă</string>
-    <string name="weather_source_accu_preference_hours">Ore</string>
+    <string name="setting_weather_provider_accu_hours">Ore</string>
     <string name="action_location_list">Lista locațiilor</string>
     <string name="action_back">Înapoi</string>
     <string name="widget_style_pixel">Pixel</string>

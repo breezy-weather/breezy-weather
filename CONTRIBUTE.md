@@ -1,8 +1,20 @@
 ## Create a new Weather provider
 
-At each step, have a look at what already exists for other providers if you don’t know what to do.
+Choose a unique identifier for your weather provider, with only lowercase letters. Examples:
+- AccuWeather becomes `accu`
+- Open-Meteo becomes `openmeteo`
 
-*Note: Weather converters are currently being rewritten so that you don’t have to call the `CommonConverter` anymore.*
+Copy:
+```
+app/src/main/java/org/breezyweather/sources/openweather/
+```
+to:
+```
+app/src/main/java/org/breezyweather/sources/<yourproviderid>/
+```
+
+We will use OpenWeather as a base as it is the most “apply to most situations” provider, without having too many specific code that most providers don’t need.
+But at each step, you can have a look at what already exists for this provider if you feel like something you want to implement might already have been done on other providers.
 
 
 ### API key (optional)
@@ -10,17 +22,19 @@ At each step, have a look at what already exists for other providers if you don�
 If you need an API key or any kind of secret, you will to need declare it in `app/build.gradle` as `breezy.<yourproviderid>.key`.
 Then declare the value in `local.properties` which is private and will not be committed.
 
+
+### Preferences
+
 *TODO: describe how to add a new parameter in settings for custom API key*
 
 
 ### API
-Copy the `app/src/main/java/org/breezyweather/sources/openweather/` folder as a base.
 
 Let’s edit the API interface, and only implement the forecast API as a starting point.
 
 In `app/src/main/java/org/breezyweather/source/<yourproviderid>/json/<technicalname>`, add the data class that will be constructed from the json returned by the API.
 
-Use @SerialName when the name of the field is not the same as what is in the json returned by the API.
+Use `@SerialName` when the name of the field is not the same as what is in the json returned by the API.
 Example:
 ```kotlin
 @SerialName("is_day") val isDay: Boolean?
@@ -30,13 +44,20 @@ As in the example, make as many fields as possible nullable so that in case the 
 
 
 ### Service and converter
-Rename `OpenWeatherService` with your provider name.
-As a starting point, inject your weather API for the weather data.
 
-If you need location search support and reverse geocoding, check other providers.
-**Exception**: if your weather provider doesn’t accept latitude and longitude for the forecast API, but only a city ID for example, this step will be mandatory.
+Rename `OpenWeatherService` with your provider name and completes basic information.
 
-But let’s focus on the `requestWeather()` function first. You will need to create a converter class.
+As a starting point, we will only implement weather part, but here is the full list of interfaces/classes you can implement:
+
+| Class/Interface          | Use case                                                                                                                                                                                                                                       |
+|--------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `HttpSource()`           | Currently does nothing except requiring to provide a link to privacy policy, which will be mandatory to accept in the future                                                                                                                   |
+| `WeatherSource`          | Your provider can provide hourly forecast for a given lon/lat. If your provider doesn’t accept lon/lat but cities-only, you will have to implement `LocationSearchSource` and `ReverseGeocodingSource`                                         |
+| `LocationSearchSource`   | Your provider is able to return a list of `Location` object from a query, containing at least the TimeZone of the location. If your provider doesn’t include TimeZone, don’t implement it, and this will default to Open-Meteo location search |
+| `ReverseGeocodingSource` | Your provider is able to return one `Location` (you can pick the first one if you have many) from lon/lat. If you don’t have this feature available, don’t implement it and locations created with your provider will only have lon/lat        |     
+| `ConfigurableSource`     | You want to allow your user to change preferences, for example API key.                                                                                                                                                                        |
+
+Let’s focus on the `requestWeather()` function now. You will need to adapt the existing converter class.
 The goal of a converter class is to normalize the data we received into Breezy Weather data objects.
 
 Here is the minimum code you need to put in your converter:
@@ -60,6 +81,8 @@ fun convert(
     }
 }
 ```
+
+*Note: Weather converters are currently being rewritten so that you don’t have to call the `CommonConverter` anymore.*
 
 Add your service in the constructor of the `SourceManager` class.
 

@@ -7,7 +7,7 @@ import android.content.Context
  * and only give main app write access
  * TODO: Should we migrate to Android DataStore?
  */
-class ConfigStore(
+open class ConfigStore(
     context: Context,
     name: String = context.packageName + "_preferences"
 ) {

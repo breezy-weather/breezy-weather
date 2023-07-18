@@ -3,10 +3,10 @@ package org.breezyweather.common.basic.models.weather
 import java.io.Serializable
 import java.util.*
 
-class Weather(
+data class Weather(
     val base: Base,
     val current: Current? = null,
-    var yesterday: History? = null, // FIXME: Should not be mutable
+    val yesterday: History? = null, // FIXME: Should not be mutable
     val dailyForecast: List<Daily> = emptyList(),
     val hourlyForecast: List<Hourly> = emptyList(),
     val minutelyForecast: List<Minutely> = emptyList(),

@@ -1,5 +1,7 @@
 # Next version
 
+/!\ Custom API keys were reset in this version, following a move to a separate config store from the main app /!\
+
 - Add no network error on location search
 - Throw error when trying to locate outside China when using Baidu IP location, instead of positioning on 0, 0
 - [Technical] Many improvements to providers implementation for developers

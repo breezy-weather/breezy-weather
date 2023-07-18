@@ -38,6 +38,8 @@
     <string name="temperature_wind_chill">Wind chill</string>
     <string name="temperature_wet_bulb">Wet bulb</string>
     <string name="temperature_degree_day">Degree day</string>
+    <string name="temperature_degree_day_heating">Heating degree day</string>
+    <string name="temperature_degree_day_cooling">Cooling degree day</string>
     <!-- Precipitation -->
     <string name="precipitation">Precipitation</string>
     <string name="precipitation_probability">Precipitation probability</string>
@@ -209,15 +211,15 @@
     <string name="weather_source_openmeteo_voice">Open Meteo</string>
     <string name="weather_source_accuweather">AccuWeather</string>
     <string name="weather_source_accuweather_voice">ACCU weather.com</string>
-    <string name="weather_source_accu_preference_portal">Portal</string>
+    <string name="settings_weather_provider_portal">Portal</string>
     <string name="weather_source_accu_preference_portal_developer" translatable="false">Developer</string>
     <string name="weather_source_accu_preference_portal_enterprise" translatable="false">Enterprise</string>
-    <string name="weather_source_accu_preference_days">Days</string>
+    <string name="setting_weather_provider_accu_days">Days</string>
     <string name="weather_source_accu_preference_days_1">1 day</string>
     <string name="weather_source_accu_preference_days_5">5 days</string>
     <string name="weather_source_accu_preference_days_10">10 days</string>
     <string name="weather_source_accu_preference_days_15">15 days</string>
-    <string name="weather_source_accu_preference_hours">Hours</string>
+    <string name="setting_weather_provider_accu_hours">Hours</string>
     <string name="weather_source_accu_preference_hours_1">1 hour</string>
     <string name="weather_source_accu_preference_hours_12">12 hours</string>
     <string name="weather_source_accu_preference_hours_24">24 hours</string>
@@ -444,16 +446,17 @@
     <string name="settings_location_access_precise_title">Device’s GPS usage</string>
     <string name="settings_location_access_precise_summaryOn">Enabled. Device’s network and GPS providers are both used.</string>
     <string name="settings_location_access_precise_summaryOff">Enable “Use precise location” if you have trouble getting a location.</string>
-    <string name="settings_location_baidu_ip_location_ak">Baidu IP Location API Key</string>
     <string name="settings_weather_providers">Weather providers</string>
     <string name="settings_weather_providers_summary">Weather providers settings</string>
     <string name="settings_weather_providers_section_general" translatable="false">@string/settings_section_general</string>
     <string name="settings_weather_providers_current_location">Weather provider for current location</string>
     <string name="settings_weather_provider_default_value">Default (unchanged)</string>
-    <string name="settings_weather_provider_accu_weather_key">AccuWeather key</string>
-    <string name="settings_weather_provider_open_weather_key">OpenWeather key</string>
-    <string name="settings_weather_provider_open_weather_one_call_version">OpenWeather OneCall version</string>
-    <string name="settings_weather_provider_mf_wsft_key">Météo France WSFT key</string>
+    <string name="settings_provider_api_key">API key</string>
+    <string name="settings_location_provider_baidu_ip_api_key" translatable="false">@string/settings_provider_api_key</string>
+    <string name="settings_weather_provider_accu_api_key" translatable="false">@string/settings_provider_api_key</string>
+    <string name="settings_weather_provider_open_weather_api_key" translatable="false">@string/settings_provider_api_key</string>
+    <string name="settings_weather_provider_mf_api_key" translatable="false">@string/settings_provider_api_key</string>
+    <string name="settings_weather_provider_open_weather_one_call_version">OneCall version</string>
     <string name="settings_weather_provider_iqa_atmo_aura_key">ATMO AURA key</string>
     <string name="settings_appearance">Appearance</string>
     <string name="settings_appearance_summary">Language, dark mode, icon pack, units</string>

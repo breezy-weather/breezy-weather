@@ -358,13 +358,13 @@
     <string name="weather_api_unauthorized_title">Неавторизованный доступ к API</string>
     <string name="weather_api_key_required_missing_title">Отсутствует API-ключ</string>
     <string name="weather_api_key_required_missing_content">Чтобы воспользоваться этим сервисом, добавьте свой API-ключ.</string>
-    <string name="weather_source_accu_preference_portal">Канал</string>
+    <string name="settings_weather_provider_portal">Канал</string>
     <string name="weather_source_accu_preference_days_1">1 день</string>
     <string name="weather_source_accu_preference_days_5">5 дней</string>
     <string name="weather_source_accu_preference_days_15">15 дней</string>
-    <string name="weather_source_accu_preference_hours">Количество часов</string>
+    <string name="setting_weather_provider_accu_hours">Количество часов</string>
     <string name="weather_source_accu_preference_hours_1">1 час</string>
-    <string name="weather_source_accu_preference_days">Количество дней</string>
+    <string name="setting_weather_provider_accu_days">Количество дней</string>
     <string name="weather_source_accu_preference_days_10">10 дней</string>
     <string name="weather_api_limit_reached_content">Чтобы обойти ограничение, используйте свой API-ключ.</string>
     <string name="air_quality_no2_voice">Диоксид азота</string>
@@ -392,7 +392,6 @@
     <string name="settings_location_access_precise_title">Использование GPS устройством</string>
     <string name="settings_location_access_precise_summaryOn">Включено. Используются как сеть устройства, так и провайдеры GPS.</string>
     <string name="settings_weather_provider_default_value">Стандартно</string>
-    <string name="settings_weather_provider_accu_weather_key">Ключ AccuWeather</string>
     <string name="settings_weather_providers_current_location">Провайдер погоды для текущего местоположения</string>
     <string name="settings_notifications_forecast_tomorrow_title">Уведомление о прогнозе на следующий день</string>
     <string name="settings_widgets_live_wallpaper_summary">Установите анимацию погоды в качестве обоев</string>
@@ -420,9 +419,8 @@
     <string name="openmeteo_weather_text_snow_moderate_intensity">Умеренный снег</string>
     <string name="settings_widgets_week_icon_mode_title">Иконки для отображения в недельных просмотрах</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Иней с туманом</string>
-    <string name="settings_weather_provider_open_weather_one_call_version">Версия OneCall для OpenWeather</string>
+    <string name="settings_weather_provider_open_weather_one_call_version">Версия OneCall</string>
     <string name="settings_weather_providers_summary">Настройки провайдеров погоды</string>
-    <string name="settings_weather_provider_open_weather_key">Ключ OpenWeather</string>
     <string name="settings_main_background_animation_disabled">Выключено</string>
     <string name="settings_widgets">Виджеты и живые обои</string>
     <string name="settings_widgets_live_wallpaper_error">Не удалось запустить средство выбора обоев. Вы по-прежнему можете включить обои Breezy Weather, выбрав «Живые обои» в меню выбора обоев на главном экране.</string>
@@ -522,8 +520,6 @@
     <string name="dialog_permissions_notification_content">Нажмите здесь, чтобы включить уведомления о погоде, или примите решение позже в настройках.</string>
     <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="settings_location_access_background_title">Доступ к местоположению в фоновом режиме</string>
-    <string name="settings_location_baidu_ip_location_ak">Ключ API Baidu IP</string>
-    <string name="settings_weather_provider_mf_wsft_key">Ключ WSFT для Météo France</string>
     <string name="settings_weather_provider_iqa_atmo_aura_key">Ключ ATMO AURA</string>
     <string name="settings_icon_providers_check_details">Проверить детали</string>
     <string name="settings_icon_providers_weather_icon_dark">Тёмная иконка</string>

@@ -58,6 +58,10 @@ class DailyWeatherAdapter(context: Context, timeZone: TimeZone, daily: Daily, sp
             mModelList.addAll(getHalfDayOptionalModelList(context, daily.night))
         }
         mModelList.add(Line())
+        if (daily.degreeDay?.heating != null || daily.degreeDay?.cooling != null) {
+            mModelList.add(LargeTitle(context.getString(R.string.temperature_degree_day)))
+            mModelList.add(DailyDegreeDay(context, daily.degreeDay))
+        }
         mModelList.add(LargeTitle(context.getString(R.string.details)))
         if (daily.sun != null || daily.moon != null || daily.moonPhase != null) {
             mModelList.add(DailyAstro(timeZone, daily.sun, daily.moon, daily.moonPhase))
@@ -99,6 +103,8 @@ class DailyWeatherAdapter(context: Context, timeZone: TimeZone, daily: Daily, sp
             return ValueHolder(parent)
         } else if (Title.isCode(viewType)) {
             return TitleHolder(parent)
+        } else if (DailyDegreeDay.isCode(viewType)) {
+            return DegreeDayHolder(parent)
         } else if (DailyAirQuality.isCode(viewType)) {
             return AirQualityHolder(parent)
         } else if (DailyAstro.isCode(viewType)) {
@@ -168,14 +174,6 @@ class DailyWeatherAdapter(context: Context, timeZone: TimeZone, daily: Daily, sp
                 list.add(
                     Value(
                         context.getString(R.string.temperature_wet_bulb),
-                        temperatureUnit.getValueText(context, it)
-                    )
-                )
-            }
-            temperature.degreeDayTemperature?.let {
-                list.add(
-                    Value(
-                        context.getString(R.string.temperature_degree_day),
                         temperatureUnit.getValueText(context, it)
                     )
                 )

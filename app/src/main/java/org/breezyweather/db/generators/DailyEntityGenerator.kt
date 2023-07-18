@@ -3,6 +3,7 @@ package org.breezyweather.db.generators
 import org.breezyweather.common.basic.models.weather.AirQuality
 import org.breezyweather.common.basic.models.weather.Astro
 import org.breezyweather.common.basic.models.weather.Daily
+import org.breezyweather.common.basic.models.weather.DegreeDay
 import org.breezyweather.common.basic.models.weather.HalfDay
 import org.breezyweather.common.basic.models.weather.MoonPhase
 import org.breezyweather.common.basic.models.weather.Pollen
@@ -32,7 +33,6 @@ object DailyEntityGenerator {
             daytimeApparentTemperature = daily.day?.temperature?.apparentTemperature,
             daytimeWindChillTemperature = daily.day?.temperature?.windChillTemperature,
             daytimeWetBulbTemperature = daily.day?.temperature?.wetBulbTemperature,
-            daytimeDegreeDayTemperature = daily.day?.temperature?.degreeDayTemperature,
 
             daytimeTotalPrecipitation = daily.day?.precipitation?.total,
             daytimeThunderstormPrecipitation = daily.day?.precipitation?.thunderstorm,
@@ -72,7 +72,6 @@ object DailyEntityGenerator {
             nighttimeApparentTemperature = daily.night?.temperature?.apparentTemperature,
             nighttimeWindChillTemperature = daily.night?.temperature?.windChillTemperature,
             nighttimeWetBulbTemperature = daily.night?.temperature?.wetBulbTemperature,
-            nighttimeDegreeDayTemperature = daily.night?.temperature?.degreeDayTemperature,
 
             nighttimeTotalPrecipitation = daily.night?.precipitation?.total,
             nighttimeThunderstormPrecipitation = daily.night?.precipitation?.thunderstorm,
@@ -98,6 +97,9 @@ object DailyEntityGenerator {
             nighttimeWindLevel = daily.night?.wind?.level,
 
             nighttimeCloudCover = daily.night?.cloudCover,
+
+            degreeDayHeating = daily.degreeDay?.heating,
+            degreeDayCooling = daily.degreeDay?.cooling,
 
             // sun.
             sunRiseDate = daily.sun?.riseDate,
@@ -161,8 +163,7 @@ object DailyEntityGenerator {
                     entity.daytimeRealFeelShaderTemperature,
                     entity.daytimeApparentTemperature,
                     entity.daytimeWindChillTemperature,
-                    entity.daytimeWetBulbTemperature,
-                    entity.daytimeDegreeDayTemperature
+                    entity.daytimeWetBulbTemperature
                 ),
                 Precipitation(
                     entity.daytimeTotalPrecipitation,
@@ -203,8 +204,7 @@ object DailyEntityGenerator {
                     entity.nighttimeRealFeelShaderTemperature,
                     entity.nighttimeApparentTemperature,
                     entity.nighttimeWindChillTemperature,
-                    entity.nighttimeWetBulbTemperature,
-                    entity.nighttimeDegreeDayTemperature
+                    entity.nighttimeWetBulbTemperature
                 ),
                 Precipitation(
                     entity.nighttimeTotalPrecipitation,
@@ -235,6 +235,7 @@ object DailyEntityGenerator {
                 ),
                 entity.nighttimeCloudCover
             ),
+            DegreeDay(entity.degreeDayHeating, entity.degreeDayCooling),
             Astro(entity.sunRiseDate, entity.sunSetDate),
             Astro(entity.moonRiseDate, entity.moonSetDate),
             MoonPhase(entity.moonPhaseAngle, entity.moonPhaseDescription),

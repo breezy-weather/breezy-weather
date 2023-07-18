@@ -36,7 +36,6 @@ data class DailyEntity(
     var daytimeApparentTemperature: Float? = null,
     var daytimeWindChillTemperature: Float? = null,
     var daytimeWetBulbTemperature: Float? = null,
-    var daytimeDegreeDayTemperature: Float? = null,
 
     var daytimeTotalPrecipitation: Float? = null,
     var daytimeThunderstormPrecipitation: Float? = null,
@@ -80,7 +79,6 @@ data class DailyEntity(
     var nighttimeApparentTemperature: Float? = null,
     var nighttimeWindChillTemperature: Float? = null,
     var nighttimeWetBulbTemperature: Float? = null,
-    var nighttimeDegreeDayTemperature: Float? = null,
 
     var nighttimeTotalPrecipitation: Float? = null,
     var nighttimeThunderstormPrecipitation: Float? = null,
@@ -109,6 +107,9 @@ data class DailyEntity(
     var nighttimeWindLevel: String? = null,
 
     var nighttimeCloudCover: Int? = null,
+
+    var degreeDayHeating: Float? = null,
+    var degreeDayCooling: Float? = null,
 
     // sun.
     var sunRiseDate: Date? = null,

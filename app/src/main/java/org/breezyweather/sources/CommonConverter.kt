@@ -80,7 +80,6 @@ fun completeHalfDayFromHourlyList(
         val temperatureApparentTemperature = halfDayTemperature?.apparentTemperature
         var temperatureWindChillTemperature = halfDayTemperature?.windChillTemperature
         val temperatureWetBulbTemperature = halfDayTemperature?.wetBulbTemperature
-        val temperatureDegreeDayTemperature = halfDayTemperature?.degreeDayTemperature
 
         if (temperatureTemperature == null) {
             val halfDayHourlyListTemperature = halfDayHourlyList.filter { it.temperature?.temperature != null }
@@ -108,8 +107,7 @@ fun completeHalfDayFromHourlyList(
             realFeelShaderTemperature = temperatureRealFeelShaderTemperature,
             apparentTemperature = temperatureApparentTemperature,
             windChillTemperature = temperatureWindChillTemperature,
-            wetBulbTemperature = temperatureWetBulbTemperature,
-            degreeDayTemperature = temperatureDegreeDayTemperature
+            wetBulbTemperature = temperatureWetBulbTemperature
         )
     }
 

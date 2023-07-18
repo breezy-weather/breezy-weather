@@ -49,7 +49,7 @@
     <string name="weather_source_accu_preference_days_5">5 ngày</string>
     <string name="weather_source_accu_preference_days_10">10 ngày</string>
     <string name="weather_source_accu_preference_days_15">15 ngày</string>
-    <string name="weather_source_accu_preference_hours">Giờ</string>
+    <string name="setting_weather_provider_accu_hours">Giờ</string>
     <string name="weather_source_accu_preference_hours_12">12 tiếng</string>
     <string name="action_add_new_location">Thêm vị trí mới</string>
     <string name="action_settings">Cài đặt</string>
@@ -100,9 +100,7 @@
     <string name="settings_icon_providers_weather_icon_dark">Biểu tượng tối</string>
     <string name="settings_icon_providers_get_more">Lấy thêm</string>
     <string name="settings_weather_providers_summary">Cài đặt nhà cung cấp thời tiết</string>
-    <string name="settings_weather_provider_accu_weather_key">Khóa AccuWeather</string>
     <string name="settings_icon_providers_weather_icon_grey">Biểu tượng xám</string>
-    <string name="settings_weather_provider_open_weather_key">Khóa OpenWeather</string>
     <string name="settings_icon_providers_weather_icon_light">Biểu tượng sáng</string>
     <string name="settings_icon_providers_get_more_store">Lấy thêm từ cửa hàng ứng dụng</string>
     <string name="settings_main_section_options">Tùy chọn</string>
@@ -172,7 +170,7 @@
     <string name="weather_api_limit_reached_content">Để giải quyết vấn đề giới hạn, thêm khóa API của bạn.</string>
     <string name="weather_api_unauthorized_title">Không thể cấp phép truy cập API</string>
     <string name="weather_api_key_required_missing_content">Để sử dụng nhà cung cấp này, bạn cần phải cung cấp một khóa API.</string>
-    <string name="weather_source_accu_preference_days">Ngày</string>
+    <string name="setting_weather_provider_accu_days">Ngày</string>
     <string name="weather_source_accu_preference_hours_24">24 tiếng</string>
     <string name="weather_source_accu_preference_hours_72">72 tiếng</string>
     <string name="weather_source_accu_preference_hours_120">120 tiếng</string>
@@ -300,8 +298,6 @@
     <string name="settings_location_access_precise_title">Sử dụng GPS của thiết bị</string>
     <string name="settings_location_access_precise_summaryOn">Đã bật. Mạng của thiết bị và nhà cung cấp GPS đều đã được sử dụng.</string>
     <string name="settings_weather_providers_current_location">Nhà cung cấp thời tiết cho vị trí hiện tại</string>
-    <string name="settings_weather_provider_open_weather_one_call_version">Khóa OpenWeather phiên bản OneCall</string>
-    <string name="settings_weather_provider_mf_wsft_key">Khóa Météo France WSFT</string>
     <string name="settings_weather_provider_iqa_atmo_aura_key">Khóa ATMO AURA</string>
     <string name="settings_appearance">Hiện diện</string>
     <string name="settings_appearance_summary">Ngôn ngữ, chế độ tối, gói biểu tượng, đơn vị</string>
@@ -519,7 +515,6 @@
     <string name="action_close">Đóng</string>
     <string name="settings_widgets_live_wallpaper_error">Không thể khởi chạy trình chọn hình nền. Bạn vẫn có thể bật hình nền Breezy Weather bằng cách chọn “Hình nền động” trong bộ chọn hình nền màn hình chính của bạn.</string>
     <string name="weather_source_metno_voice">Viện Khí tượng Na Uy</string>
-    <string name="settings_location_baidu_ip_location_ak">Khóa IP Vị Trí Baidu</string>
     <string name="air_quality_index">Chỉ số chất lượng không khí</string>
     <string name="location_search_no_results_advice">Hãy chắc rằng tìm kiếm của bạn được đánh vần đúng và không quá cụ thể. Thay vào đó, bạn có thể thử một nhà cung cấp thời tiết khác có thể cho ra kết quả tìm kiếm địa điểm khác nhau.</string>
     <string name="dialog_permissions_notification_title">Theo kịp thông tin</string>

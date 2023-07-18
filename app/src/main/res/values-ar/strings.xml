@@ -270,9 +270,6 @@
     <string name="settings_location_access_precise_summaryOff">قم بتمكين ”استخدام الموقع الدقيق“ إذا كنت تواجه مشكلة في الحصول على موقع.</string>
     <string name="settings_weather_provider_default_value">افتراضي (بدون تغيير)</string>
     <string name="settings_weather_providers_current_location">مزود الطقس للموقع الحالي</string>
-    <string name="settings_weather_provider_accu_weather_key">مفتاح طقس أكيو</string>
-    <string name="settings_weather_provider_open_weather_one_call_version">أوبن ويذر إصدار OneCall</string>
-    <string name="settings_weather_provider_open_weather_key">مفتاح أوبن ويذر</string>
     <string name="settings_icon_providers_weather_adaptive_icon">أيقونة الطقس</string>
     <string name="settings_icon_providers_weather_icon_grey">رمز رمادي</string>
     <string name="settings_weather_provider_iqa_atmo_aura_key">مفتاح ATMO AURA</string>
@@ -466,7 +463,7 @@
     <string name="weather_api_key_required_missing_title">مفتاح API المطلوب مفقود</string>
     <string name="weather_api_key_required_missing_content">لاستخدام هذا الموفر ، تحتاج إلى توفير مفتاح API.</string>
     <string name="weather_source_openmeteo">الأرصاد الجوية المفتوحة</string>
-    <string name="weather_source_accu_preference_portal">منفذ</string>
+    <string name="settings_weather_provider_portal">منفذ</string>
     <string name="location_none_added_yet_instructions">لم تتم إضافة موقع حتى الآن. يرجى النقر على أيقونة البحث لإضافة موقع يدويا ، أو إضافة موقعك الحالي من الزر العائم.</string>
     <string name="location_message_reverse_geocoding_failed">فشل مزود الطقس في العثور على موقع مطابق</string>
     <string name="action_close">اغلاق</string>
@@ -481,9 +478,7 @@
     <string name="settings_background_updates_refresh_never">أبدا</string>
     <string name="settings_location_access_permission_already_granted">تم منح الإذن بالفعل</string>
     <string name="settings_location_access_precise_title">استخدام نظام تحديد المواقع العالمي (GPS) للجهاز</string>
-    <string name="settings_location_baidu_ip_location_ak">مفتاح واجهة برمجة تطبيقات موقع Baidu IP</string>
     <string name="settings_weather_providers_summary">إعدادات موفري الطقس</string>
-    <string name="settings_weather_provider_mf_wsft_key">مفتاح ميتيو فرانس WSFT</string>
     <string name="settings_widgets_live_wallpaper_summary">تعيين حركة الطقس كخلفية</string>
     <string name="unit_lpsqm_voice">لتر لكل متر مربع</string>
     <string name="openmeteo_weather_text_partly_cloudy">غائم جزئياً</string>
@@ -571,12 +566,12 @@
     <string name="weather_source_openweather_version_3_0">الإصدار 3.0</string>
     <string name="weather_source_mf_voice">ميتيو فرنسا</string>
     <string name="location_message_permission_missing">إذن الوصول إلى الموقع مفقود</string>
-    <string name="weather_source_accu_preference_days">الأيام</string>
+    <string name="setting_weather_provider_accu_days">الأيام</string>
     <string name="weather_source_accu_preference_days_1">يوم 1</string>
     <string name="weather_source_accu_preference_days_5">5 أيام</string>
     <string name="weather_source_accu_preference_days_10">10 أيام</string>
     <string name="weather_source_accu_preference_days_15">15 يوما</string>
-    <string name="weather_source_accu_preference_hours">ساعات</string>
+    <string name="setting_weather_provider_accu_hours">ساعات</string>
     <string name="weather_source_accu_preference_hours_12">12 ساعة</string>
     <string name="weather_source_accu_preference_hours_24">24 ساعة</string>
     <string name="weather_source_accu_preference_hours_72">72 ساعات</string>

@@ -33,7 +33,6 @@ data class HourlyEntity(
     var apparentTemperature: Float? = null,
     var windChillTemperature: Float? = null,
     var wetBulbTemperature: Float? = null,
-    var degreeDayTemperature: Float? = null,
 
     var totalPrecipitation: Float? = null,
     var thunderstormPrecipitation: Float? = null,

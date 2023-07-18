@@ -10,7 +10,7 @@ import org.breezyweather.common.extensions.toTimezoneNoHour
 import org.breezyweather.sources.*
 import org.breezyweather.sources.metno.json.MetNoForecastResult
 import org.breezyweather.sources.metno.json.MetNoSunResult
-import org.breezyweather.common.source.WeatherResultWrapper
+import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
 import org.breezyweather.sources.metno.json.MetNoAirQualityResult
 import org.breezyweather.sources.metno.json.MetNoForecastTimeseries
 import org.breezyweather.sources.metno.json.MetNoMoonProperties

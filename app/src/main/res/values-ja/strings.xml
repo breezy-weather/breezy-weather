@@ -269,7 +269,7 @@
     <string name="weather_kind_thunder">雷</string>
     <string name="weather_kind_thunderstorm">雷雨</string>
     <string name="weather_kind_wind">風</string>
-    <string name="weather_source_accu_preference_days">日数</string>
+    <string name="setting_weather_provider_accu_days">日数</string>
     <string name="settings_background_updates_battery_optimization">電池の最適化を無効にする</string>
     <string name="settings_background_updates_battery_optimization_summary">通知を受信しない、またはウィジェットが更新されない場合にお試しください。</string>
     <string name="weather_source_accu_preference_days_1">1日</string>

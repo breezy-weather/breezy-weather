@@ -359,7 +359,6 @@
     <string name="weather_api_unauthorized_content">Em alguns provedores de previsão do tempo, é necessário fornecer sua própria chave de API. Se você já forneceu uma, verifique novamente a chave de API que você forneceu.</string>
     <string name="notification_channel_alerts">Alertas</string>
     <string name="widget_material_you_current">Material You - Atual</string>
-    <string name="settings_weather_provider_open_weather_key">Chave do OpenWeather</string>
     <string name="weather_air_quality_and_pollen_data_by">Dados de qualidade do ar e de pólen por $</string>
     <string name="weather_api_limit_reached_content">Para contornar o limite, adicione sua própria chave de API.</string>
     <string name="weather_api_key_required_missing_title">Chave de API necessária não encontrada</string>
@@ -384,7 +383,6 @@
     <string name="weather_api_limit_reached_title">Limite de solicitações à API atingido</string>
     <string name="action_add_new_location">Adicionar um novo local</string>
     <string name="widget_clock_font_analog">Analógico</string>
-    <string name="settings_weather_provider_accu_weather_key">Chave do AccuWeather</string>
     <string name="air_quality_level_1">Excelente</string>
     <string name="weather_data_by">Dados fornecidos por $</string>
     <string name="unit_in">polegada</string>
@@ -412,7 +410,6 @@
     <string name="settings_location_access_switch_summaryOff">Permita se quiser adicionar sua localização atual como um local.</string>
     <string name="settings_location_access_background_summaryOff">Ative “Permitir o tempo todo” para ter atualizações em segundo plano para sua localização atual.</string>
     <string name="settings_location_access_precise_summaryOff">Ative a opção “Usar localização precisa” se você tiver problemas para obter uma localização.</string>
-    <string name="settings_location_baidu_ip_location_ak">Chave da API do Baidu IP Location</string>
     <string name="settings_weather_providers">Provedor de dados metereológicos</string>
     <string name="settings_weather_provider_iqa_atmo_aura_key">Chave do ATMO AURA</string>
     <string name="settings_units_summary">Temperatura, precipitação, distância, velocidade, pressão</string>
@@ -429,8 +426,7 @@
     <string name="settings_background_updates_battery_optimization_activity_not_found">Não foi possível abrir as configurações do dispositivo.</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Alguns fabricantes têm restrições adicionais de aplicativos que eliminam os serviços em segundo plano. O site Don’t kill my app! tem informações sobre como corrigir isso.</string>
     <string name="settings_weather_providers_current_location">Provedor metereológico para a localização atual</string>
-    <string name="settings_weather_provider_open_weather_one_call_version">Versão do OpenWeather OneCall</string>
-    <string name="settings_weather_provider_mf_wsft_key">Chave do Météo France</string>
+    <string name="settings_weather_provider_open_weather_one_call_version">Versão do OneCall</string>
     <string name="settings_main_cards_other_element_animations_switch">Animações de outros elementos</string>
     <string name="settings_main_summary">Ordem dos cartões, itens exibidos, animações</string>
     <string name="settings_widgets_notification_feels_like_switch">Usar sensação térmica</string>
@@ -450,11 +446,11 @@
     <string name="settings_debug_dump_crash_logs_title">Compartilhar registros de falhas</string>
     <string name="air_quality_level_5">Muito insalubre</string>
     <string name="weather_source_accu_preference_days_1">1 dia</string>
-    <string name="weather_source_accu_preference_days">Dias</string>
+    <string name="setting_weather_provider_accu_days">Dias</string>
     <string name="weather_source_accu_preference_days_5">5 dias</string>
     <string name="weather_source_accu_preference_days_10">10 dias</string>
     <string name="weather_source_accu_preference_days_15">15 dias</string>
-    <string name="weather_source_accu_preference_hours">Horas</string>
+    <string name="setting_weather_provider_accu_hours">Horas</string>
     <string name="weather_source_accu_preference_hours_1">1 hora</string>
     <string name="weather_source_accu_preference_hours_12">12 horas</string>
     <string name="action_continue">Continuar</string>
@@ -475,7 +471,7 @@
     <string name="settings_debug_dump_crash_logs_summary">Salva os registros de erros em um arquivo para compartilhamento com os desenvolvedores</string>
     <string name="settings_debug">Depuração</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Instruções específicas do fabricante</string>
-    <string name="weather_source_accu_preference_portal">Canal</string>
+    <string name="settings_weather_provider_portal">Canal</string>
     <string name="weather_source_accu_preference_hours_24">24 horas</string>
     <string name="weather_source_accu_preference_hours_72">72 horas</string>
     <string name="weather_source_accu_preference_hours_120">120 horas</string>

@@ -13,6 +13,7 @@ class Daily(
     val date: Date,
     val day: HalfDay? = null,
     val night: HalfDay? = null,
+    val degreeDay: DegreeDay? = null,
     val sun: Astro? = null,
     val moon: Astro? = null,
     val moonPhase: MoonPhase? = null,

@@ -8,7 +8,7 @@ import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toTimezoneNoHour
 import org.breezyweather.sources.*
 import org.breezyweather.sources.openweather.json.*
-import org.breezyweather.common.source.WeatherResultWrapper
+import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
 import java.util.Date
 import java.util.Locale
 import java.util.TimeZone

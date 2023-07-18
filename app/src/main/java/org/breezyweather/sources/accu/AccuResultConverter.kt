@@ -13,7 +13,7 @@ import org.breezyweather.sources.getDailyAirQualityFromHourlyList
 import org.breezyweather.sources.getMoonPhaseAngle
 import org.breezyweather.sources.getUVLevel
 import org.breezyweather.sources.getWindLevel
-import org.breezyweather.common.source.WeatherResultWrapper
+import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
 import java.util.Date
 import java.util.TimeZone
 import java.util.regex.Pattern
@@ -155,8 +155,7 @@ private fun getDailyList(
                     temperature = Temperature(
                         temperature = forecasts.Temperature?.Maximum?.Value?.toFloat(),
                         realFeelTemperature = forecasts.RealFeelTemperature?.Maximum?.Value?.toFloat(),
-                        realFeelShaderTemperature = forecasts.RealFeelTemperatureShade?.Maximum?.Value?.toFloat(),
-                        degreeDayTemperature = forecasts.DegreeDaySummary?.Heating?.Value?.toFloat()
+                        realFeelShaderTemperature = forecasts.RealFeelTemperatureShade?.Maximum?.Value?.toFloat()
                     ),
                     precipitation = Precipitation(
                         total = forecasts.Day?.TotalLiquid?.Value?.toFloat(),
@@ -192,8 +191,7 @@ private fun getDailyList(
                     temperature = Temperature(
                         temperature = forecasts.Temperature?.Minimum?.Value?.toFloat(),
                         realFeelTemperature = forecasts.RealFeelTemperature?.Minimum?.Value?.toFloat(),
-                        realFeelShaderTemperature = forecasts.RealFeelTemperatureShade?.Minimum?.Value?.toFloat(),
-                        degreeDayTemperature = forecasts.DegreeDaySummary?.Cooling?.Value?.toFloat()
+                        realFeelShaderTemperature = forecasts.RealFeelTemperatureShade?.Minimum?.Value?.toFloat()
                     ),
                     precipitation = Precipitation(
                         total = forecasts.Night?.TotalLiquid?.Value?.toFloat(),
@@ -222,13 +220,17 @@ private fun getDailyList(
                     ),
                     cloudCover = forecasts.Night?.CloudCover
                 ),
+                degreeDay = DegreeDay(
+                    heating = forecasts.DegreeDaySummary?.Heating?.Value?.toFloat(),
+                    cooling = forecasts.DegreeDaySummary?.Cooling?.Value?.toFloat()
+                ),
                 sun = Astro(
-                    riseDate = if(forecasts.Sun?.EpochRise != null) Date(forecasts.Sun.EpochRise.times(1000)) else null,
-                    setDate = if(forecasts.Sun?.EpochSet != null) Date(forecasts.Sun.EpochSet.times(1000)) else null
+                    riseDate = if (forecasts.Sun?.EpochRise != null) Date(forecasts.Sun.EpochRise.times(1000)) else null,
+                    setDate = if (forecasts.Sun?.EpochSet != null) Date(forecasts.Sun.EpochSet.times(1000)) else null
                 ),
                 moon = Astro(
-                    riseDate = if(forecasts.Moon?.EpochRise != null) Date(forecasts.Moon.EpochRise.times(1000)) else null,
-                    setDate = if(forecasts.Moon?.EpochSet != null) Date(forecasts.Moon.EpochSet.times(1000)) else null
+                    riseDate = if (forecasts.Moon?.EpochRise != null) Date(forecasts.Moon.EpochRise.times(1000)) else null,
+                    setDate = if (forecasts.Moon?.EpochSet != null) Date(forecasts.Moon.EpochSet.times(1000)) else null
                 ),
                 moonPhase = MoonPhase(
                     angle = getMoonPhaseAngle(forecasts.Moon?.Phase),
