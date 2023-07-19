@@ -596,4 +596,9 @@
     <string name="openmeteo_weather_text_rain_showers_slight">Слаби валежи от дъжд</string>
     <string name="openmeteo_weather_text_rain_showers_violent">Бурни валежи от дъжд</string>
     <string name="null_data_text">N/A</string>
+    <string name="settings_provider_api_key">API ключ</string>
+    <string name="temperature_degree_day_heating">Градус отопление на ден</string>
+    <string name="temperature_degree_day_cooling">Градус охлаждане на ден</string>
+    <string name="message_source_not_installed_error_title">Източникът вече не е наличен</string>
+    <string name="message_source_not_installed_error_content">Този източник вече не е наличен, моля, изтрийте местоположението и го създайте отново от друг източник.</string>
 </resources>
