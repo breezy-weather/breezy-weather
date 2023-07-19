@@ -602,4 +602,5 @@
     <string name="settings_provider_api_key">API-Schlüssel</string>
     <string name="temperature_degree_day_heating">Heizgradtag</string>
     <string name="notification_update_error">%1$d Aktualisierung(en) fehlgeschlagen</string>
+    <string name="message_source_not_installed_error_content">Diese Quelle ist nicht mehr verfügbar, bitte löschen Sie den Ort und erstellen Sie ihn erneut über eine andere Quelle.</string>
 </resources>
