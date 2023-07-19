@@ -1,12 +1,12 @@
-name: Feature request
-description: Suggest a feature to improve app
-labels: [Feature request]
+name: Idea
+description: Suggest something to improve app
+labels: [Idea]
 body:
   - type: textarea
     id: feature-description
     attributes:
-      label: Describe your suggested feature
-      description: How can Breezy Weather be improved?
+      label: Describe your idea
+      description: How can Breezy Weather be improved for the community?
       placeholder: |
         Example:
           "Here is how it should work: …"
