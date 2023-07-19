@@ -521,13 +521,10 @@
     <string name="unit_atm">atm</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="openmeteo_weather_text_rain_slight_intensity">Déšť mírné intenzity</string>
-    <string name="weather_source_accu_preference_portal">Portál</string>
-    <string name="weather_source_accu_preference_days">Dny</string>
     <string name="weather_source_accu_preference_days_1">1 den</string>
     <string name="weather_source_accu_preference_days_5">5 dní</string>
     <string name="weather_source_accu_preference_days_10">10 dní</string>
     <string name="weather_source_accu_preference_days_15">15 dní</string>
-    <string name="weather_source_accu_preference_hours">Hodiny</string>
     <string name="weather_source_accu_preference_hours_1">1 hodina</string>
     <string name="weather_source_accu_preference_hours_12">12 hodin</string>
     <string name="weather_source_accu_preference_hours_24">24 hodin</string>
