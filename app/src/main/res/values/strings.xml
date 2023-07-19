@@ -429,6 +429,8 @@
     <string name="settings_background_updates_dont_kill_my_app_summary">Some manufacturers have additional app restrictions that kill background services. The Don’t kill my app! website has info on how to fix it.</string>
     <!-- Worker is a technical term, you can switch to “Process” if that makes more sense in your language -->
     <string name="settings_background_updates_worker_info_title">Worker info</string>
+    <!-- $ is a date, when the last worker job ran -->
+    <string name="settings_background_updates_worker_info_summary">Last run: $</string>
     <string name="settings_background_updates_worker_info_enqueued" translatable="false">Enqueued</string>
     <string name="settings_background_updates_worker_info_finished" translatable="false">Finished</string>
     <string name="settings_background_updates_worker_info_running" translatable="false">Running</string>

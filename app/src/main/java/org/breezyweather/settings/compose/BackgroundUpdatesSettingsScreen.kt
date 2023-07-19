@@ -13,6 +13,7 @@ import androidx.core.net.toUri
 import org.breezyweather.R
 import org.breezyweather.background.weather.WeatherUpdateJob
 import org.breezyweather.common.basic.models.options.UpdateInterval
+import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.activities.WorkerInfoActivity
@@ -22,6 +23,7 @@ import org.breezyweather.settings.preference.composables.PreferenceScreen
 import org.breezyweather.settings.preference.composables.PreferenceView
 import org.breezyweather.common.extensions.powerManager
 import org.breezyweather.settings.preference.composables.SwitchPreferenceView
+import java.util.Date
 
 @Composable
 fun BackgroundSettingsScreen(
@@ -97,7 +99,11 @@ fun BackgroundSettingsScreen(
         }
         clickablePreferenceItem(R.string.settings_background_updates_worker_info_title) { id ->
             PreferenceView(
-                titleId = id
+                title = context.getString(id),
+                summary = if (SettingsManager.getInstance(context).weatherUpdateLastTimestamp > 0) {
+                    context.getString(R.string.settings_background_updates_worker_info_summary)
+                        .replace("$", Date(SettingsManager.getInstance(context).weatherUpdateLastTimestamp).getFormattedDate(pattern = "yyyy-MM-dd HH:mm"))
+                } else null
             ) {
                 context.startActivity(Intent(context, WorkerInfoActivity::class.java))
             }

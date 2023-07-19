@@ -421,6 +421,7 @@
     <string name="settings_background_updates_dont_kill_my_app_title">Instructions spécifiques selon fabricant</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Certains fabricants ont mis en place des restrictions supplémentaires sur les applications qui tuent les services en arrière-plan. Le site web Don’t kill my app! contient des informations pour résoudre ce problème.</string>
     <string name="settings_background_updates_worker_info_title">Informations sur les processsus</string>
+    <string name="settings_background_updates_worker_info_summary">Dernière exécution : $</string>
     <string name="settings_location">Localisation</string>
     <string name="settings_weather_providers_current_location">Fournisseur météo pour ma localisation</string>
     <string name="settings_appearance">Apparence</string>

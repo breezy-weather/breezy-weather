@@ -58,6 +58,7 @@ import org.breezyweather.sources.WeatherHelper
 import retrofit2.HttpException
 import java.io.File
 import java.net.SocketTimeoutException
+import java.util.Date
 import java.util.concurrent.CopyOnWriteArrayList
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicInteger
@@ -94,8 +95,8 @@ class WeatherUpdateJob @AssistedInject constructor(
             LogHelper.log(msg = "Not allowed to set foreground job")
         }
 
-        // TODO: Set the last update time to now
-        // preferences.weatherUpdateLastTimestamp().set(Date().time)
+        // Set the last update time to now
+        SettingsManager.getInstance(context).weatherUpdateLastTimestamp = Date().time
 
         val locationFormattedId = inputData.getString(KEY_LOCATION)
         addLocationToQueue(locationFormattedId)
