@@ -37,11 +37,7 @@ fun convert(
             province = location.province,
             city = location.city,
             district = location.district + if (zipCode != null) " ($zipCode)" else "",
-            weatherSource = "accu",
-            isChina = !result.Country.ID.isNullOrEmpty()
-                    && (result.Country.ID.equals("cn", ignoreCase = true)
-                    || result.Country.ID.equals("hk", ignoreCase = true)
-                    || result.Country.ID.equals("tw", ignoreCase = true))
+            weatherSource = "accu"
         )
     } else {
         Location(
@@ -52,11 +48,7 @@ fun convert(
             country = result.Country.LocalizedName,
             province = result.AdministrativeArea?.LocalizedName ?: "",
             city = result.LocalizedName + if (zipCode != null) " ($zipCode)" else "",
-            weatherSource = "accu",
-            isChina = !result.Country.ID.isNullOrEmpty()
-                    && (result.Country.ID.equals("cn", ignoreCase = true)
-                    || result.Country.ID.equals("hk", ignoreCase = true)
-                    || result.Country.ID.equals("tw", ignoreCase = true))
+            weatherSource = "accu"
         )
     }
 }

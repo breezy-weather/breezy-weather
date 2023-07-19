@@ -16,7 +16,6 @@ import androidx.core.graphics.ColorUtils
 import org.breezyweather.R
 import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.getTypefaceFromTextAppearance
-import org.breezyweather.common.utils.DisplayUtils
 import kotlin.math.cos
 
 class ArcProgress @JvmOverloads constructor(
@@ -134,7 +133,7 @@ class ArcProgress @JvmOverloads constructor(
 
     fun setProgressColor(@ColorInt progressColor: Int, lightTheme: Boolean) {
         mProgressColor = progressColor
-        mShadowColor = DisplayUtils.getDarkerColor(progressColor)
+        mShadowColor = org.breezyweather.common.utils.ColorUtils.getDarkerColor(progressColor)
         mShaderColor = ColorUtils.setAlphaComponent(
             progressColor,
             (255 * if (lightTheme) SHADOW_ALPHA_FACTOR_LIGHT else SHADOW_ALPHA_FACTOR_DARK).toInt()

@@ -32,8 +32,7 @@ data class Location(
     val weatherSource: String = SourceManager.DEFAULT_WEATHER_SOURCE,
 
     val isCurrentPosition: Boolean = false,
-    val isResidentPosition: Boolean = false,
-    val isChina: Boolean = false, // TODO: Deprecate me
+    val isResidentPosition: Boolean = false
 ) : Parcelable {
 
     val formattedId: String
@@ -63,7 +62,6 @@ data class Location(
         parcel.writeString(weatherSource)
         parcel.writeByte(if (isCurrentPosition) 1 else 0)
         parcel.writeByte(if (isResidentPosition) 1 else 0)
-        parcel.writeByte(if (isChina) 1 else 0)
     }
 
     override fun describeContents() = 0
@@ -81,8 +79,7 @@ data class Location(
         district = parcel.readString(),
         weatherSource = parcel.readString()!!,
         isCurrentPosition = parcel.readByte() != 0.toByte(),
-        isResidentPosition = parcel.readByte() != 0.toByte(),
-        isChina = parcel.readByte() != 0.toByte()
+        isResidentPosition = parcel.readByte() != 0.toByte()
     )
 
     override fun equals(other: Any?): Boolean {
@@ -183,11 +180,6 @@ data class Location(
         return builder.toString()
     }
 
-    fun hasGeocodeInformation(): Boolean {
-        return (country.isNotEmpty() || !province.isNullOrEmpty()
-                || city.isNotEmpty() || !district.isNullOrEmpty())
-    }
-
     private fun isCloseTo(c: Context, location: Location): Boolean {
         if (cityId == location.cityId) {
             return true
@@ -231,24 +223,11 @@ data class Location(
         }
 
         fun excludeInvalidResidentLocation(context: Context, list: List<Location>): List<Location> {
-            var currentLocation: Location? = null
-            for (l in list) {
-                if (l.isCurrentPosition) {
-                    currentLocation = l
-                    break
-                }
+            val currentLocation: Location = list.firstOrNull { it.isCurrentPosition } ?: return list
+
+            return list.filter {
+                !it.isResidentPosition || !it.isCloseTo(context, currentLocation)
             }
-            val result = ArrayList<Location>(list.size)
-            if (currentLocation == null) {
-                result.addAll(list)
-            } else {
-                for (l in list) {
-                    if (!l.isResidentPosition || !l.isCloseTo(context, currentLocation)) {
-                        result.add(l)
-                    }
-                }
-            }
-            return result
         }
 
         @JvmField

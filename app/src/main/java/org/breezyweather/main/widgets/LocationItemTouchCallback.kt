@@ -27,7 +27,6 @@ class LocationItemTouchCallback(
     interface TouchReactor {
         fun resetViewHolderAt(position: Int)
         fun reorderByDrag(from: Int, to: Int)
-        fun startSelectProviderActivityBySwipe()
     }
 
     override fun onSelectedChanged(viewHolder: RecyclerView.ViewHolder?, actionState: Int) {
@@ -62,8 +61,7 @@ class LocationItemTouchCallback(
         when (direction) {
             ItemTouchHelper.START -> {
                 if (location.isCurrentPosition) {
-                    mReactor.startSelectProviderActivityBySwipe()
-                    mReactor.resetViewHolderAt(position)
+                    mViewModel.openChooseCurrentLocationWeatherSourceDialog()
                 } else {
                     location = location.copy(isResidentPosition = !location.isResidentPosition)
                     mViewModel.updateLocation(location)

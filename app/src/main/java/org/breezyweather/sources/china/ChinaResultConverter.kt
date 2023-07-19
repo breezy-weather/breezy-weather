@@ -9,6 +9,7 @@ import org.breezyweather.common.basic.models.weather.*
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
 import org.breezyweather.sources.china.json.ChinaForecastResult
+import org.breezyweather.sources.china.json.ChinaLocationResult
 import org.breezyweather.sources.china.json.ChinaMinutelyResult
 import org.breezyweather.sources.getHoursOfDay
 import org.breezyweather.sources.getWindDirection
@@ -16,7 +17,18 @@ import org.breezyweather.sources.getWindLevel
 import org.breezyweather.sources.isDaylight
 import java.util.*
 
-
+fun convert(location: Location?, result: ChinaLocationResult): Location {
+    return Location(
+        cityId = result.locationKey!!.replace("weathercn:", ""),
+        latitude = location?.latitude ?: result.latitude!!.toFloat(),
+        longitude = location?.longitude ?: result.longitude!!.toFloat(),
+        timeZone = TimeZone.getTimeZone("Asia/Shanghai"),
+        country = "",
+        province = result.affiliation,
+        city = result.name!!,
+        weatherSource = "china"
+    )
+}
 fun convert(
     context: Context, location: Location,
     forecastResult: ChinaForecastResult,

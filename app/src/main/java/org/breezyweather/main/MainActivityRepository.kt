@@ -87,6 +87,9 @@ class MainActivityRepository @Inject constructor(
         }, singleThreadExecutor)
     }
 
+    /**
+     * TODO: Optimize this function, too many duplicated code
+     */
     suspend fun getWeather(
         context: Context,
         location: Location,
@@ -94,19 +97,63 @@ class MainActivityRepository @Inject constructor(
         callback: WeatherRequestCallback,
     ) {
         try {
+            var locationThrowable: Throwable? = null
             val locationToProcess = if (locate) {
-                locationHelper.getCurrentLocationWithReverseGeocoding(
-                    context,
-                    location,
-                    false
-                )
+                try {
+                    locationHelper.getCurrentLocationWithReverseGeocoding(
+                        context,
+                        location,
+                        false
+                    )
+                } catch (e: Throwable) {
+                    // If we failed to locate, throw an error later
+                    // but still refresh with latest known position
+                    if (location.isUsable) {
+                        locationThrowable = e
+                        location
+                    } else throw e
+                }
             } else location
 
             val requestWeather = weatherHelper.requestWeather(
                 context,
                 locationToProcess
             ).awaitSingle()
-            callback.onCompleted(locationToProcess.copy(weather = requestWeather), null)
+
+            locationThrowable?.let { e ->
+                val requestErrorType = when (e) {
+                    is NoNetworkException -> RequestErrorType.NETWORK_UNAVAILABLE
+                    is HttpException -> {
+                        when (e.code()) {
+                            401, 403 -> RequestErrorType.API_UNAUTHORIZED
+                            409, 429 -> RequestErrorType.API_LIMIT_REACHED
+                            else -> {
+                                e.printStackTrace()
+                                RequestErrorType.LOCATION_FAILED
+                            }
+                        }
+                    }
+                    is SocketTimeoutException -> RequestErrorType.SERVER_TIMEOUT
+                    is ApiKeyMissingException -> RequestErrorType.API_KEY_REQUIRED_MISSING
+                    is LocationException -> RequestErrorType.LOCATION_FAILED
+                    is MissingPermissionLocationException -> RequestErrorType.ACCESS_LOCATION_PERMISSION_MISSING
+                    // Should never happen, we are not in background, but just in case:
+                    is MissingPermissionLocationBackgroundException -> RequestErrorType.ACCESS_BACKGROUND_LOCATION_PERMISSION_MISSING
+                    is ReverseGeocodingException -> RequestErrorType.REVERSE_GEOCODING_FAILED
+                    is MissingFieldException, is SerializationException, is ParsingException -> {
+                        e.printStackTrace()
+                        RequestErrorType.PARSING_ERROR
+                    }
+                    is SourceNotInstalledException -> RequestErrorType.SOURCE_NOT_INSTALLED
+                    else -> {
+                        e.printStackTrace()
+                        RequestErrorType.LOCATION_FAILED
+                    }
+                }
+                callback.onCompleted(locationToProcess.copy(weather = requestWeather), requestErrorType)
+            } ?: run {
+                callback.onCompleted(locationToProcess.copy(weather = requestWeather), null)
+            }
         } catch (e: Throwable) {
             val requestErrorType = when (e) {
                 is NoNetworkException -> RequestErrorType.NETWORK_UNAVAILABLE

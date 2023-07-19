@@ -513,8 +513,4 @@ class MainActivity : GeoActivity(),
     override fun onSearchBarClicked() {
         IntentHelper.startSearchActivityForResult(this, SEARCH_ACTIVITY)
     }
-
-    override fun onSelectProviderActivityStarted() {
-        IntentHelper.startSelectWeatherProviderActivity(this)
-    }
 }

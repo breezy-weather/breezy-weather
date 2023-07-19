@@ -19,7 +19,7 @@ import org.breezyweather.common.ui.adapters.TagAdapter
 import org.breezyweather.common.ui.decorations.GridMarginsDecoration
 import org.breezyweather.common.ui.decorations.ListDecoration
 import org.breezyweather.common.ui.widgets.slidingItem.SlidingItemTouchCallback
-import org.breezyweather.common.utils.DisplayUtils
+import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.databinding.ActivityHourlyTrendDisplayManageBinding
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.adapters.HourlyTrendDisplayAdapter
@@ -79,7 +79,7 @@ class HourlyTrendDisplayManageActivity : GeoActivity() {
         mElevation = resources.getDimensionPixelSize(R.dimen.touch_rise_z)
         mBinding.appBar.injectDefaultSurfaceTintColor()
         mBinding.toolbar.setBackgroundColor(
-            DisplayUtils.getWidgetSurfaceColor(
+            ColorUtils.getWidgetSurfaceColor(
                 6f,
                 ThemeManager.getInstance(this).getThemeColor(this, androidx.appcompat.R.attr.colorPrimary),
                 ThemeManager.getInstance(this).getThemeColor(this, com.google.android.material.R.attr.colorSurface)

@@ -11,8 +11,8 @@ import org.breezyweather.BreezyWeather
 import org.breezyweather.common.basic.insets.FitHorizontalSystemBarRootLayout
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.snackbar.SnackbarContainer
-import org.breezyweather.common.utils.DisplayUtils
-import org.breezyweather.common.utils.LanguageUtils
+import org.breezyweather.common.extensions.setLanguage
+import org.breezyweather.common.extensions.setSystemBarStyle
 import org.breezyweather.settings.SettingsManager
 
 abstract class GeoActivity : AppCompatActivity() {
@@ -74,13 +74,9 @@ abstract class GeoActivity : AppCompatActivity() {
 
         BreezyWeather.instance.addActivity(this)
 
-        LanguageUtils.setLanguage(
-            this,
-            SettingsManager.getInstance(this).language.locale
-        )
+        this.setLanguage(SettingsManager.getInstance(this).language.locale)
 
-        DisplayUtils.setSystemBarStyle(
-            window,
+        window.setSystemBarStyle(
             false,
             !this.isDarkMode,
             true,

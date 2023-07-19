@@ -9,11 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
+import org.breezyweather.common.extensions.DEFAULT_CARD_LIST_ITEM_ELEVATION_DP
 import org.breezyweather.common.extensions.isLandscape
 import org.breezyweather.common.ui.adapters.TagAdapter
 import org.breezyweather.common.ui.decorations.GridMarginsDecoration
 import org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
-import org.breezyweather.common.utils.DisplayUtils
+import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.main.adapters.trend.DailyTrendAdapter
 import org.breezyweather.main.layouts.TrendHorizontalLinearLayoutManager
 import org.breezyweather.main.utils.MainThemeColorProvider
@@ -108,8 +109,8 @@ class DailyViewHolder(
                 MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOnPrimary),
                 MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOnSurface),
                 MainThemeColorProvider.getColor(location, androidx.appcompat.R.attr.colorPrimary),
-                DisplayUtils.getWidgetSurfaceColor(
-                    DisplayUtils.DEFAULT_CARD_LIST_ITEM_ELEVATION_DP,
+                ColorUtils.getWidgetSurfaceColor(
+                    DEFAULT_CARD_LIST_ITEM_ELEVATION_DP,
                     MainThemeColorProvider.getColor(location, androidx.appcompat.R.attr.colorPrimary),
                     MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorSurface)
                 ),

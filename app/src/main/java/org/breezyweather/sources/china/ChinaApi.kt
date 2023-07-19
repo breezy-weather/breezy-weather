@@ -4,9 +4,23 @@ import io.reactivex.rxjava3.core.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
 import org.breezyweather.sources.china.json.ChinaForecastResult
+import org.breezyweather.sources.china.json.ChinaLocationResult
 import org.breezyweather.sources.china.json.ChinaMinutelyResult
 
 interface ChinaApi {
+    @GET("location/city/search")
+    fun getLocationSearch(
+        @Query("name") name: String,
+        @Query("locale") locale: String
+    ): Observable<List<ChinaLocationResult>>
+
+    @GET("location/city/geo")
+    fun getLocationByGeoPosition(
+        @Query("latitude") latitude: Double,
+        @Query("longitude") longitude: Double,
+        @Query("locale") locale: String
+    ): Observable<List<ChinaLocationResult>>
+
     @GET("weather/all")
     fun getForecastWeather(
         @Query("latitude") latitude: Double,

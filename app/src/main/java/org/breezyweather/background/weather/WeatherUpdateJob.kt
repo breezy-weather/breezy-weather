@@ -187,7 +187,13 @@ class WeatherUpdateJob @AssistedInject constructor(
                                 } else {
                                     try {
                                         val locationToProceed = if (location.isCurrentPosition) {
-                                            updateLocation(location)
+                                            try {
+                                                updateLocation(location)
+                                            } catch (e: Throwable) {
+                                                // If we failed to locate, let this silently fail
+                                                // and refresh weather with latest known position
+                                                if (location.isUsable) location else throw e
+                                            }
                                         } else location
 
                                         val weather = updateWeather(locationToProceed)

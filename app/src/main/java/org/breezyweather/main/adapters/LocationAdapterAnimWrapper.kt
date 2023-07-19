@@ -4,9 +4,10 @@ import android.animation.*
 import android.content.Context
 import android.view.View
 import org.breezyweather.R
+import org.breezyweather.common.extensions.FLOATING_DECELERATE_INTERPOLATOR
 import org.breezyweather.common.extensions.dpToPx
+import org.breezyweather.common.extensions.getFloatingOvershotEnterAnimators
 import org.breezyweather.common.ui.adapters.AnimationAdapterWrapper
-import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.main.adapters.location.LocationAdapter
 import org.breezyweather.main.adapters.location.LocationHolder
 import kotlin.math.max
@@ -45,16 +46,15 @@ class LocationAdapterAnimWrapper(
         )
         val alpha: Animator = ObjectAnimator
             .ofFloat(view, "alpha", 0f, 1f).setDuration(duration / 4 * 3)
-        alpha.interpolator = DisplayUtils.FLOATING_DECELERATE_INTERPOLATOR
-        val animators = DisplayUtils.getFloatingOvershotEnterAnimators(
-            view, overShootTensor,
-            mDY, 1.1f, 1.1f
+        alpha.interpolator = FLOATING_DECELERATE_INTERPOLATOR
+        val animators = view.getFloatingOvershotEnterAnimators(
+            overShootTensor, mDY, 1.1f, 1.1f
         )
         for (a in animators) {
             a.setDuration(duration)
         }
         val z: Animator = ObjectAnimator.ofFloat(view, "translationZ", mDZ, 0f).setDuration(duration)
-        z.interpolator = DisplayUtils.FLOATING_DECELERATE_INTERPOLATOR
+        z.interpolator = FLOATING_DECELERATE_INTERPOLATOR
         return AnimatorSet().apply {
             playTogether(alpha, animators[0], animators[1], animators[2], z)
             startDelay = delay

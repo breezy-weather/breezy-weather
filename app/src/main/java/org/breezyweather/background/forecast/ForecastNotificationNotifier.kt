@@ -11,7 +11,8 @@ import notify
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.WeatherCode
-import org.breezyweather.common.utils.LanguageUtils
+import org.breezyweather.common.extensions.setLanguage
+import org.breezyweather.common.extensions.toBitmap
 import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.remoteviews.presenters.AbstractRemoteViewsPresenter
 import org.breezyweather.settings.SettingsManager
@@ -55,7 +56,7 @@ class ForecastNotificationNotifier(private val context: Context) {
         val daily = weather.dailyForecast.getOrNull(if (today) 0 else 1) ?: return
 
         val provider = ResourcesProviderFactory.newInstance
-        LanguageUtils.setLanguage(context, SettingsManager.getInstance(context).language.locale)
+        context.setLanguage(SettingsManager.getInstance(context).language.locale)
 
         val daytime: Boolean = if (today) location.isDaylight else true
         val weatherCode: WeatherCode? = if (today) {
@@ -75,13 +76,11 @@ class ForecastNotificationNotifier(private val context: Context) {
             setSmallIcon(ResourceHelper.getDefaultMinimalXmlIconId(weatherCode, daytime))
             weatherCode?.let {
                 setLargeIcon(
-                    AbstractRemoteViewsPresenter.drawableToBitmap(
-                        ResourceHelper.getWeatherIcon(
-                            provider,
-                            it,
-                            daytime
-                        )
-                    )
+                    ResourceHelper.getWeatherIcon(
+                        provider,
+                        it,
+                        daytime
+                    ).toBitmap()
                 )
             }
             setContentTitle(

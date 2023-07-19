@@ -56,11 +56,7 @@ fun convert(
             province = location.province,
             provinceCode = location.provinceCode,
             city = location.city,
-            weatherSource = "openmeteo",
-            isChina = result.countryCode.isNotEmpty()
-                    && (result.countryCode.equals("cn", ignoreCase = true)
-                    || result.countryCode.equals("hk", ignoreCase = true)
-                    || result.countryCode.equals("tw", ignoreCase = true))
+            weatherSource = "openmeteo"
         )
     } else {
         Location(
@@ -80,11 +76,7 @@ fun convert(
             // Province code is mandatory for MF provider to have alerts/air quality, and MF provider uses Open-Meteo search
             provinceCode = if (result.countryCode == "FR") getFrenchDepartmentCode(result.admin2 ?: "") else null,
             city = result.name,
-            weatherSource = "openmeteo",
-            isChina = result.countryCode.isNotEmpty()
-                    && (result.countryCode.equals("cn", ignoreCase = true)
-                    || result.countryCode.equals("hk", ignoreCase = true)
-                    || result.countryCode.equals("tw", ignoreCase = true))
+            weatherSource = "openmeteo"
         )
     }
 }
@@ -356,11 +348,7 @@ fun debugConvert(
             timeZone = TimeZone.getTimeZone(result.timezone),
             country = if (!result.country.isNullOrEmpty()) result.country else result.countryCode,
             city = location.city,
-            weatherSource = "openmeteo",
-            isChina = result.countryCode.isNotEmpty()
-                    && (result.countryCode.equals("cn", ignoreCase = true)
-                    || result.countryCode.equals("hk", ignoreCase = true)
-                    || result.countryCode.equals("tw", ignoreCase = true))
+            weatherSource = "openmeteo"
         )
     } else {
         Location(
@@ -370,11 +358,7 @@ fun debugConvert(
             timeZone = TimeZone.getTimeZone(result.timezone),
             country = if (!result.country.isNullOrEmpty()) result.country else result.countryCode,
             city = result.name,
-            weatherSource = "openmeteo",
-            isChina = result.countryCode.isNotEmpty()
-                    && (result.countryCode.equals("cn", ignoreCase = true)
-                    || result.countryCode.equals("hk", ignoreCase = true)
-                    || result.countryCode.equals("tw", ignoreCase = true))
+            weatherSource = "openmeteo"
         )
     }
 }

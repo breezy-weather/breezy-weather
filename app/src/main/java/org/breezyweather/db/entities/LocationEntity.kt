@@ -31,6 +31,5 @@ data class LocationEntity(
     var district: String? = null,
     var weatherSource: String,
     var currentPosition: Boolean = false,
-    var residentPosition: Boolean = false,
-    var china: Boolean = false
+    var residentPosition: Boolean = false
 )

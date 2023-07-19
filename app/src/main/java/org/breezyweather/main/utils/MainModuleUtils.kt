@@ -5,7 +5,7 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.view.View
 import org.breezyweather.common.extensions.dpToPx
-import org.breezyweather.common.utils.DisplayUtils
+import org.breezyweather.common.extensions.getFloatingOvershotEnterAnimators
 import kotlin.math.max
 
 object MainModuleUtils {
@@ -13,9 +13,8 @@ object MainModuleUtils {
     private const val BASE_ENTER_DURATION: Long = 500
 
     fun getEnterAnimator(view: View, pendingCount: Int): Animator {
-        val animators = DisplayUtils.getFloatingOvershotEnterAnimators(
-            view, 0.4f + 0.2f * pendingCount,
-            view.context.dpToPx(120f), 1.025f, 1.025f
+        val animators = view.getFloatingOvershotEnterAnimators(
+            0.4f + 0.2f * pendingCount, view.context.dpToPx(120f), 1.025f, 1.025f
         )
         return AnimatorSet().apply {
             playTogether(

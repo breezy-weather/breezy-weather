@@ -7,10 +7,8 @@ import android.app.WallpaperManager
 import android.content.ContentUris
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
 import android.provider.AlarmClock
 import android.provider.CalendarContract
 import androidx.annotation.ColorInt
@@ -29,7 +27,7 @@ import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.is12Hour
-import org.breezyweather.common.utils.DisplayUtils
+import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.common.utils.helpers.LunarHelper
 import org.breezyweather.settings.ConfigStore
@@ -162,8 +160,8 @@ abstract class AbstractRemoteViewsPresenter {
                 val drawable = manager.drawable
                 if (drawable !is BitmapDrawable) {
                     false
-                } else DisplayUtils.isLightColor(
-                    DisplayUtils.bitmapToColorInt(drawable.bitmap)
+                } else ColorUtils.isLightColor(
+                    ColorUtils.bitmapToColorInt(drawable.bitmap)
                 )
             } catch (ignore: Exception) {
                 false
@@ -230,10 +228,6 @@ abstract class AbstractRemoteViewsPresenter {
                 Intent(Intent.ACTION_VIEW).setData(builder.build()),
                 PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
             )
-        }
-
-        fun drawableToBitmap(drawable: Drawable): Bitmap {
-            return DisplayUtils.drawableToBitmap(drawable)
         }
 
         fun getCustomSubtitle(

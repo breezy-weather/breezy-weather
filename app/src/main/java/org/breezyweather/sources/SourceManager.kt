@@ -17,6 +17,7 @@ import org.breezyweather.sources.openweather.OpenWeatherService
 import javax.inject.Inject
 
 class SourceManager @Inject constructor(
+    androidLocationSource: AndroidLocationSource,
     baiduIPService: BaiduIPLocationService,
     openMeteoService: OpenMeteoService,
     accuService: AccuService,
@@ -29,7 +30,7 @@ class SourceManager @Inject constructor(
     // TODO: Initialize lazily
     private val sourceList: List<Source> = listOf(
         // Location sources
-        AndroidLocationSource(),
+        androidLocationSource,
         baiduIPService,
 
         // Weather sources
@@ -69,7 +70,7 @@ class SourceManager @Inject constructor(
     companion object {
         // TODO: At least this one should be configurable, F-Droid probably wants "openmeteo"
         const val DEFAULT_WEATHER_SOURCE = "accu"
-        private const val DEFAULT_LOCATION_SOURCE = "android"
+        private const val DEFAULT_LOCATION_SOURCE = "native"
         private const val DEFAULT_LOCATION_SEARCH_SOURCE = "openmeteo"
         private const val DEFAULT_REVERSE_GEOCODING_SOURCE = "noreversegeocoding"
     }

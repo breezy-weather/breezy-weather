@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.databinding.ItemLocationCardBinding
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.R
+import org.breezyweather.common.extensions.DEFAULT_CARD_LIST_ITEM_ELEVATION_DP
 import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.isDarkMode
-import org.breezyweather.common.utils.DisplayUtils
 import org.breezyweather.theme.resource.providers.ResourceProvider
 
 class LocationHolder(
@@ -24,8 +24,8 @@ class LocationHolder(
     @SuppressLint("SetTextI18n", "ClickableViewAccessibility")
     fun onBindView(context: Context, model: LocationModel, resourceProvider: ResourceProvider) {
         val lightTheme = !context.isDarkMode
-        val elevatedSurfaceColor = DisplayUtils.getWidgetSurfaceColor(
-            DisplayUtils.DEFAULT_CARD_LIST_ITEM_ELEVATION_DP,
+        val elevatedSurfaceColor = org.breezyweather.common.utils.ColorUtils.getWidgetSurfaceColor(
+            DEFAULT_CARD_LIST_ITEM_ELEVATION_DP,
             MainThemeColorProvider.getColor(lightTheme, androidx.appcompat.R.attr.colorPrimary),
             MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorSurface)
         )
@@ -69,7 +69,7 @@ class LocationHolder(
             ) else MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorOnSecondaryContainer)
         }
         mBinding.item.setBackgroundColor(
-            if (model.selected) DisplayUtils.blendColor(
+            if (model.selected) org.breezyweather.common.utils.ColorUtils.blendColor(
                 ColorUtils.setAlphaComponent(elevatedSurfaceColor, (255 * 0.5).toInt()),
                 MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorSurfaceVariant)
             ) else elevatedSurfaceColor

@@ -12,7 +12,7 @@ import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
-import org.breezyweather.common.utils.DisplayUtils
+import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.settings.adapters.WeatherIconAdapter
 import org.breezyweather.settings.dialogs.AdaptiveIconDialog
@@ -173,7 +173,7 @@ class PreviewIconActivity : GeoActivity() {
             true
         }
         toolbar.setBackgroundColor(
-            DisplayUtils.getWidgetSurfaceColor(
+            ColorUtils.getWidgetSurfaceColor(
                 6f,
                 ThemeManager.getInstance(this).getThemeColor(this, androidx.appcompat.R.attr.colorPrimary),
                 ThemeManager.getInstance(this).getThemeColor(this, com.google.android.material.R.attr.colorSurface)

@@ -38,6 +38,9 @@ class MainActivityViewModel @Inject constructor(
     private val _totalLocationList = MutableStateFlow<Pair<List<Location>, String?>>(Pair(emptyList(), null))
     val totalLocationList = _totalLocationList.asStateFlow()
 
+    private val _dialogChooseCurrentLocationWeatherSourceOpen = MutableStateFlow(false)
+    val dialogChooseCurrentLocationWeatherSourceOpen = _dialogChooseCurrentLocationWeatherSourceOpen.asStateFlow()
+
     val loading = EqualtableLiveData<Boolean>()
     val indicator = EqualtableLiveData<Indicator>()
 
@@ -111,6 +114,14 @@ class MainActivityViewModel @Inject constructor(
         }
 
         updateInnerData(total)
+    }
+
+    fun openChooseCurrentLocationWeatherSourceDialog() {
+        _dialogChooseCurrentLocationWeatherSourceOpen.value = true
+    }
+
+    fun closeChooseCurrentLocationWeatherSourceDialog() {
+        _dialogChooseCurrentLocationWeatherSourceOpen.value = false
     }
 
     private fun updateInnerData(total: List<Location>) {
@@ -292,19 +303,16 @@ class MainActivityViewModel @Inject constructor(
     fun setLocation(formattedId: String) {
         cancelRequest()
 
-        validLocationList.value.first.let {
-            for (i in it.indices) {
-                if (it[i].formattedId != formattedId) {
-                    continue
-                }
+        validLocationList.value.first.let { locationList ->
+            val index = locationList.indexOfFirst { it.formattedId == formattedId }
 
-                setCurrentLocation(it[i])
+            if (index >= 0) {
+                setCurrentLocation(locationList[index])
 
-                indicator.postValue(Indicator(total = it.size, index = i))
+                indicator.setValue(Indicator(total = locationList.size, index = index))
 
                 _totalLocationList.value = Pair(totalLocationList.value.first, formattedId)
                 _validLocationList.value = Pair(validLocationList.value.first, formattedId)
-                break
             }
         }
     }
@@ -349,9 +357,9 @@ class MainActivityViewModel @Inject constructor(
         location: Location,
         index: Int? = null,
     ): Boolean {
-        // do not add an existed location.
+        // do not add an existing location.
         if (totalLocationList.value.first.firstOrNull {
-                it.formattedId == location.formattedId
+            it.formattedId == location.formattedId
         } != null) {
             return false
         }

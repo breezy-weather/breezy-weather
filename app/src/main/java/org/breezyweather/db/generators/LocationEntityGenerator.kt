@@ -19,8 +19,7 @@ object LocationEntityGenerator {
             district = location.district,
             weatherSource = location.weatherSource,
             currentPosition = location.isCurrentPosition,
-            residentPosition = location.isResidentPosition,
-            china = location.isChina
+            residentPosition = location.isResidentPosition
         )
     }
 
@@ -47,8 +46,7 @@ object LocationEntityGenerator {
             weather = null,
             entity.weatherSource,
             entity.currentPosition,
-            entity.residentPosition,
-            entity.china
+            entity.residentPosition
         )
     }
 

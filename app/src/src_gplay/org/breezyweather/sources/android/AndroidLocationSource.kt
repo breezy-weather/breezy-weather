@@ -24,6 +24,7 @@ import org.breezyweather.common.exceptions.LocationException
 import org.breezyweather.common.source.LocationPositionWrapper
 import org.breezyweather.common.source.LocationSource
 import org.breezyweather.common.utils.helpers.LogHelper
+import javax.inject.Inject
 
 // static.
 
@@ -87,7 +88,7 @@ private fun getLastKnownLocation(locationManager: LocationManager): Location? {
 // interface.
 
 @SuppressLint("MissingPermission")
-open class AndroidLocationSource : LocationSource, LocationListener {
+open class AndroidLocationSource @Inject constructor() : LocationSource, LocationListener {
 
     override val id = "native"
     override val name = "Android"

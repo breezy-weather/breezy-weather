@@ -1,7 +1,6 @@
 package org.breezyweather.daily.adapter.model
 
 import android.content.Context
-import org.breezyweather.common.basic.models.weather.AirQuality
 import org.breezyweather.common.basic.models.weather.DegreeDay
 import org.breezyweather.daily.adapter.DailyWeatherAdapter
 

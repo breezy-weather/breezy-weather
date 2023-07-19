@@ -35,11 +35,7 @@ fun convert(location: Location?, result: MfForecastResult): Location? {
             provinceCode = location.provinceCode, // Département
             city = location.city,
             district = location.district,
-            weatherSource = "mf",
-            isChina = result.properties.country.isNotEmpty()
-                    && (result.properties.country.startsWith("cn", ignoreCase = true)
-                    || result.properties.country.startsWith("hk", ignoreCase = true)
-                    || result.properties.country.startsWith("tw", ignoreCase = true))
+            weatherSource = "mf"
         )
     } else {
         Location(
@@ -53,11 +49,7 @@ fun convert(location: Location?, result: MfForecastResult): Location? {
                 getFrenchDepartmentName(result.properties.frenchDepartment) else null, // Département
             provinceCode = result.properties.frenchDepartment, // Département
             city = result.properties.name,
-            weatherSource = "mf",
-            isChina = result.properties.country.isNotEmpty()
-                    && (result.properties.country.startsWith("cn", ignoreCase = true)
-                    || result.properties.country.startsWith("hk", ignoreCase = true)
-                    || result.properties.country.startsWith("tw", ignoreCase = true))
+            weatherSource = "mf"
         )
     }
 }

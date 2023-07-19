@@ -8,7 +8,7 @@ import notificationBuilder
 import notify
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.utils.chop
+import org.breezyweather.common.extensions.chop
 import org.breezyweather.background.receiver.NotificationReceiver
 import org.breezyweather.remoteviews.Notifications
 

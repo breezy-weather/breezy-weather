@@ -8,7 +8,7 @@ import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
 import dagger.hilt.android.HiltAndroidApp
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.utils.LanguageUtils
+import org.breezyweather.common.extensions.setLanguage
 import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.db.ObjectBox
 import org.breezyweather.remoteviews.Notifications
@@ -64,10 +64,7 @@ class BreezyWeather : Application(),
 
         ObjectBox.init(this)
 
-        LanguageUtils.setLanguage(
-            this,
-            SettingsManager.getInstance(this).language.locale
-        )
+        this.setLanguage(SettingsManager.getInstance(this).language.locale)
 
         setupNotificationChannels()
 

@@ -19,7 +19,7 @@ import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
 import org.breezyweather.common.ui.widgets.insets.FitSystemBarRecyclerView
 import org.breezyweather.common.ui.widgets.insets.FitSystemBarViewPager
-import org.breezyweather.common.utils.DisplayUtils
+import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.daily.adapter.DailyWeatherAdapter
 import org.breezyweather.db.repositories.LocationEntityRepository
@@ -55,7 +55,7 @@ class DailyWeatherActivity : GeoActivity() {
         appBarLayout.injectDefaultSurfaceTintColor()
         mToolbar = findViewById<MaterialToolbar>(R.id.activity_weather_daily_toolbar).also {
             it.setBackgroundColor(
-                DisplayUtils.getWidgetSurfaceColor(
+                ColorUtils.getWidgetSurfaceColor(
                     6f,
                     ThemeManager.getInstance(this).getThemeColor(this, androidx.appcompat.R.attr.colorPrimary),
                     ThemeManager.getInstance(this).getThemeColor(this, com.google.android.material.R.attr.colorSurface)

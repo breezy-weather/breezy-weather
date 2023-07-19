@@ -11,7 +11,8 @@ import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
-import org.breezyweather.common.utils.LanguageUtils
+import org.breezyweather.common.extensions.setLanguage
+import org.breezyweather.common.extensions.toBitmap
 import org.breezyweather.common.utils.helpers.LunarHelper
 import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.remoteviews.presenters.AbstractRemoteViewsPresenter
@@ -32,7 +33,7 @@ object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
     ) {
         val current = location.weather?.current ?: return
         val provider = ResourcesProviderFactory.newInstance
-        LanguageUtils.setLanguage(context, SettingsManager.getInstance(context).language.locale)
+        context.setLanguage(SettingsManager.getInstance(context).language.locale)
 
         val tempFeelsLikeOrAir = if (SettingsManager.getInstance(context).isWidgetNotificationUsingFeelsLike) {
             current.temperature?.feelsLikeTemperature ?: current.temperature?.temperature
@@ -68,12 +69,10 @@ object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                 } else ResourceHelper.getDefaultMinimalXmlIconId(current.weatherCode, daytime)
             )
             if (current.weatherCode != null) setLargeIcon(
-                drawableToBitmap(
-                    ResourceHelper.getWidgetNotificationIcon(
-                        provider, current.weatherCode,
-                        daytime, false, false
-                    )
-                )
+                ResourceHelper.getWidgetNotificationIcon(
+                    provider, current.weatherCode,
+                    daytime, false, false
+                ).toBitmap()
             )
             setSubText(subtitle.toString())
             setContentTitle(contentTitle.toString())

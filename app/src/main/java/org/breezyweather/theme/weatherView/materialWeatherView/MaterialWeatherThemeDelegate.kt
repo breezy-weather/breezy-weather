@@ -6,7 +6,7 @@ import android.view.Window
 import androidx.core.graphics.ColorUtils
 import org.breezyweather.R
 import org.breezyweather.common.extensions.dpToPx
-import org.breezyweather.common.utils.DisplayUtils
+import org.breezyweather.common.extensions.setSystemBarStyle
 import org.breezyweather.theme.weatherView.WeatherThemeDelegate
 import org.breezyweather.theme.weatherView.WeatherView
 import org.breezyweather.theme.weatherView.WeatherView.WeatherKindRule
@@ -112,8 +112,7 @@ class MaterialWeatherThemeDelegate: WeatherThemeDelegate {
         navigationShader: Boolean,
         lightNavigation: Boolean
     ) {
-        DisplayUtils.setSystemBarStyle(
-            window,
+        window.setSystemBarStyle(
             statusShader,
             lightNavigation,
             navigationShader,

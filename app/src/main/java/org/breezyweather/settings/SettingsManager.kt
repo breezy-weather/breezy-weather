@@ -106,20 +106,12 @@ class SettingsManager private constructor(context: Context) {
         )
 
     // service providers.
-
-    var weatherSource: String
-        set(value) {
-            config.edit().putString("weather_source", value).apply()
-            notifySettingsChanged()
-        }
-        get() = config.getString("weather_source", "accu") ?: ""
-
     var locationProvider: String
         set(value) {
             config.edit().putString("location_service", value).apply()
             notifySettingsChanged()
         }
-        get() = config.getString("location_service", "android") ?: ""
+        get() = config.getString("location_service", "native") ?: ""
 
     // unit.
     var temperatureUnit: TemperatureUnit

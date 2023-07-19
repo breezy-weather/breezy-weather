@@ -8,7 +8,7 @@ import com.google.android.material.appbar.AppBarLayout
 import org.breezyweather.common.basic.insets.FitBothSideBarHelper
 import org.breezyweather.common.basic.insets.FitBothSideBarView
 import org.breezyweather.common.basic.insets.FitBothSideBarView.FitSide
-import org.breezyweather.common.utils.DisplayUtils
+import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.theme.ThemeManager
 
 class FitSystemBarAppBarLayout @JvmOverloads constructor(
@@ -27,7 +27,7 @@ class FitSystemBarAppBarLayout @JvmOverloads constructor(
 
     fun injectDefaultSurfaceTintColor() {
         setBackgroundColor(
-            DisplayUtils.getWidgetSurfaceColor(
+            ColorUtils.getWidgetSurfaceColor(
                 6f,
                 ThemeManager.getInstance(context).getThemeColor(context, androidx.appcompat.R.attr.colorPrimary),
                 ThemeManager.getInstance(context).getThemeColor(context, com.google.android.material.R.attr.colorSurface)

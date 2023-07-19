@@ -27,7 +27,7 @@ class LocationHelper @Inject constructor(
         context: Context, location: Location, background: Boolean
     ): Location {
         val currentLocation = requestCurrentLocation(context, location, background).awaitSingle()
-        val source = SettingsManager.getInstance(context).weatherSource
+        val source = location.weatherSource
         val weatherService = sourceManager.getReverseGeocodingSourceOrDefault(source)
         return weatherService.requestReverseGeocodingLocation(context, currentLocation).map { locationList ->
             if (locationList.isNotEmpty()) {

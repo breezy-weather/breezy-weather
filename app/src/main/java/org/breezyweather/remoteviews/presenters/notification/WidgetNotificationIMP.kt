@@ -14,7 +14,7 @@ import org.breezyweather.common.basic.models.options.NotificationStyle
 import org.breezyweather.common.basic.models.options.NotificationTextColor
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.basic.models.weather.Temperature
-import org.breezyweather.common.utils.LanguageUtils
+import org.breezyweather.common.extensions.setLanguage
 import org.breezyweather.common.utils.helpers.LunarHelper
 import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.remoteviews.presenters.AbstractRemoteViewsPresenter
@@ -36,7 +36,7 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         val location = locationList.getOrNull(0)
         val current = location?.weather?.current ?: return
         val provider = ResourcesProviderFactory.newInstance
-        LanguageUtils.setLanguage(context, SettingsManager.getInstance(context).language.locale)
+        context.setLanguage(SettingsManager.getInstance(context).language.locale)
 
         // get sp & realTimeWeather.
         val settings = SettingsManager.getInstance(context)

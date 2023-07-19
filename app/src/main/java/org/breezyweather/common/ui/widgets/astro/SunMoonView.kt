@@ -21,7 +21,6 @@ import androidx.core.graphics.ColorUtils
 import androidx.core.view.ViewCompat
 import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.ui.widgets.DayNightShaderWrapper
-import org.breezyweather.common.utils.DisplayUtils
 import kotlin.math.abs
 import kotlin.math.cos
 import kotlin.math.max
@@ -142,9 +141,9 @@ class SunMoonView @JvmOverloads constructor(
             sunLineColor,
             (255 * SHADOW_ALPHA_FACTOR_LIGHT).toInt()
         ) else ColorUtils.setAlphaComponent(moonLineColor, (255 * SHADOW_ALPHA_FACTOR_DARK).toInt())
-        mX1ShaderColors[0] = DisplayUtils.blendColor(lineShadowShader, rootColor)
+        mX1ShaderColors[0] = org.breezyweather.common.utils.ColorUtils.blendColor(lineShadowShader, rootColor)
         mX1ShaderColors[1] = rootColor
-        mX2ShaderColors[0] = DisplayUtils.blendColor(lineShadowShader, mX1ShaderColors[0])
+        mX2ShaderColors[0] = org.breezyweather.common.utils.ColorUtils.blendColor(lineShadowShader, mX1ShaderColors[0])
         mX2ShaderColors[1] = rootColor
         mRootColor = rootColor
         if (mX1ShaderWrapper.isDifferent(measuredWidth, measuredHeight, lightTheme, mX1ShaderColors)) {

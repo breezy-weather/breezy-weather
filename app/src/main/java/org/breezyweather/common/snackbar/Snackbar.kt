@@ -205,7 +205,7 @@ class Snackbar private constructor(
 
     private fun animateViewIn() {
         mAnimator?.cancel()
-        mAnimator = Utils.getEnterAnimator(mView, mCardStyle).apply {
+        mAnimator = SnackbarAnimationUtils.getEnterAnimator(mView, mCardStyle).apply {
             duration = ANIMATION_DURATION.toLong()
             addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationStart(animation: Animator) {
@@ -230,7 +230,7 @@ class Snackbar private constructor(
                 .toFloat()
         ).apply {
             duration = ANIMATION_DURATION.toLong()
-            interpolator = Utils.FAST_OUT_SLOW_IN_INTERPOLATOR
+            interpolator = SnackbarAnimationUtils.FAST_OUT_SLOW_IN_INTERPOLATOR
             addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationStart(animation: Animator) {
                     mView.animateChildrenOut(0, ANIMATION_FADE_DURATION)
@@ -315,13 +315,13 @@ class Snackbar private constructor(
                 insets.systemWindowInsetRight,
                 insets.systemWindowInsetBottom
             )
-            Utils.consumeInsets(this, mWindowInsets)
+            SnackbarAnimationUtils.consumeInsets(this, mWindowInsets)
             return insets
         }
 
         override fun fitSystemWindows(insets: Rect): Boolean {
             mWindowInsets.set(insets)
-            Utils.consumeInsets(this, mWindowInsets)
+            SnackbarAnimationUtils.consumeInsets(this, mWindowInsets)
             return false
         }
 
