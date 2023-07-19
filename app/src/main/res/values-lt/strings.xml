@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="hourly_forecast">Orai artimiausiomis valandomis</string>
     <string name="minutely_forecast">Orai artimiausiomis minutėmis</string>
     <string name="air_quality">Oro kokybė</string>
@@ -215,4 +215,64 @@
     <string name="weather_source_accu_preference_hours_1">1 valanda</string>
     <string name="weather_source_accu_preference_hours_72">72 valandos</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Patikrinkite ar programa turi prieigą prie jūsų dabartinės vietos</string>
+    <string name="action_preview">Peržiūra</string>
+    <string name="action_refresh">Atnaujinti</string>
+    <string name="action_restart">Perkrauti</string>
+    <string name="action_edit">Redaguoti</string>
+    <string name="action_back">Atgal</string>
+    <string name="action_next">KITAS</string>
+    <string name="action_undo" tools:ignore="ButtonCase">ANULIUOTI</string>
+    <string name="action_set">NUSTATYTI</string>
+    <string name="action_help">PAGALBA</string>
+    <string name="action_continue">Tęsti</string>
+    <string name="action_close">Uždaryti</string>
+    <string name="action_share">Dalintis</string>
+    <string name="action_show_errors">Bakstelėkite, kad pamatytumėte išsamią informaciją</string>
+    <string name="dialog_permissions_notification_title">Būkite informuoti</string>
+    <string name="message_parsing_error_title">Nepavyko išanalizuoti orų duomenų</string>
+    <string name="widget_trend_daily">Dienos tendencija</string>
+    <string name="wind_strength">Vėjo stiprumas</string>
+    <string name="location_search_no_results_advice">Įsitikinkite, kad paieška parašyta teisingai ir nėra pernelyg konkreti. Arba galite išbandyti kitą orų paslaugų teikėją, kuris gali pateikti kitokius vietovės paieškos rezultatus.</string>
+    <string name="location_current_not_found_yet">Dabartinė buvimo vieta dar nerasta…</string>
+    <string name="location_resident_message">Nustatyti kaip gyvenamąją vietą</string>
+    <string name="location_resident_dialog">Breezy Weather automatiškai parodys ir paslėps gyvenamąją vietą pagal jūsų dabartinę buvimo vietą.
+\nPavyzdžiui, galite nustatyti savo gimtąjį miestą kaip gyvenamąją vietą. Keliaudami galėsite patikrinti orus gimtajame mieste. Grįžus namo, gimtojo miesto orai bus paslėpti ir pakeisti dabartinės jūsų buvimo vietos orais.</string>
+    <string name="action_done">ATLIKTA</string>
+    <string name="action_about">Apie</string>
+    <string name="action_cancel" tools:ignore="ButtonCase">ATŠAUKTI</string>
+    <string name="message_source_not_installed_error_content">Šis šaltinis nebėra prieinamas, ištrinkite vietą ir atkurkite ją iš kito šaltinio.</string>
+    <string name="message_source_not_installed_error_title">Šaltinis nebeprieinamas</string>
+    <string name="weather_refresh_skipped_already_recently_updated">Jau neseniai atnaujinta</string>
+    <string name="location_search_no_results">$1 negali rasti $2</string>
+    <string name="location_service_baidu_ip">Baidu IP Vietovė (tik Kinijoje)</string>
+    <string name="action_search">Paieška</string>
+    <string name="action_add_current_location">Pridėti dabartinę vietovę</string>
+    <string name="action_add_from_map">Pridėti iš žemėlapio</string>
+    <string name="action_location_list">Vietovių sąrašas</string>
+    <string name="action_choose_weather_provider">Pasirinkti orų tiekėją</string>
+    <string name="action_settings">Nustatymai</string>
+    <string name="action_add_new_location">Pridėti naują vietovę</string>
+    <string name="action_see_more">Žiūrėti daugiau</string>
+    <string name="action_learn_more">SUŽINOTI DAUGIAU</string>
+    <string name="dialog_permissions_notification_content">Bakstelėkite čia, kad įjungtumėte pranešimus apie orų perspėjimus, arba nuspręskite vėliau Nustatymuose.</string>
+    <string name="dialog_permissions_location_title">Prieiga prie vietos informacijos</string>
+    <string name="message_network_unavailable">Tinklas nepasiekiamas</string>
+    <string name="message_server_timeout">Užklausos laikas baigėsi</string>
+    <string name="message_tap_again_to_exit">Bakstelėkite dar kartą, kad išeitumėte</string>
+    <string name="widget_day">Dienos</string>
+    <string name="message_updated_in_background">Atnaujinta fone</string>
+    <string name="widget_day_week">Dienos + Savaitės</string>
+    <string name="widget_week">Savaitės</string>
+    <string name="widget_clock_day_horizontal">Laikrodis + Dienos (Horizontalus stilius)</string>
+    <string name="widget_clock_day_details">Laikrodis + Dienos (Išsamiau)</string>
+    <string name="widget_clock_day_vertical">Laikrodis + Dienos (Vertikalus stilius)</string>
+    <string name="widget_clock_day_week">Laikrodis + Dienos + Savaitės</string>
+    <string name="widget_text">Tekstas</string>
+    <string name="temperature_wind_chill">Šaltas vėjas</string>
+    <string name="temperature_wet_bulb">Drėgnasis termometras</string>
+    <string name="temperature_degree_day">Laipsnio diena</string>
+    <string name="location_dialog_failed_to_locate_action_enable_information">Įjungti vietos informaciją</string>
+    <string name="location_dialog_failed_to_locate_action_select_provider">Pasirinkite vietovės teikėją</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Pridėti vietą rankiniu būdu ir ištrinti „$“</string>
+    <string name="location_search_placeholder">Ieškoti vietovės…</string>
 </resources>
