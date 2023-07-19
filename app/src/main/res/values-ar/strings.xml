@@ -604,4 +604,8 @@
     <string name="message_parsing_error_content">تأكد من تحديثك إلى أحدث إصدار من التطبيق. قد يكون الخادم غير متاح مؤقتًا ، وفي هذه الحالة ، يرجى المحاولة مرة أخرى لاحقًا. إذا استمرت المشكلة ، يرجى تفريغ سجل التعطل من إعدادات التصحيح ، والإبلاغ عن مشكلة على GitHub.</string>
     <string name="message_source_not_installed_error_title">المصدر لم يعد متوفرا</string>
     <string name="message_source_not_installed_error_content">لم يعد هذا المصدر متاحا ، يرجى حذف الموقع وإعادة إنشائه من مصدر آخر.</string>
+    <string name="settings_provider_api_key">مفتاح API</string>
+    <string name="temperature_degree_day_cooling">يوم درجة البرودة</string>
+    <string name="temperature_degree_day_heating">يوم درجة الحرارة</string>
+    <string name="settings_weather_provider_open_weather_one_call_version">إصدار OneCall</string>
 </resources>
