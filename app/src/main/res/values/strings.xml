@@ -37,6 +37,7 @@
     <string name="temperature_apparent">Apparent</string>
     <string name="temperature_wind_chill">Wind chill</string>
     <string name="temperature_wet_bulb">Wet bulb</string>
+    <!-- You might want to read https://en.wikipedia.org/wiki/Heating_degree_day -->
     <string name="temperature_degree_day">Degree day</string>
     <string name="temperature_degree_day_heating">Heating degree day</string>
     <string name="temperature_degree_day_cooling">Cooling degree day</string>

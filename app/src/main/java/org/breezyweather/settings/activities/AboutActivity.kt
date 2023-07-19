@@ -138,6 +138,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("ko"), "이서경", "mailto:ng0972@naver.com"),
         TranslatorItem(arrayOf("ko"), "Yurical", "https://github.com/yurical"),
         TranslatorItem(arrayOf("lt"), "Deividas Paukštė", "https://hosted.weblate.org/user/RustyOperator/"),
+        TranslatorItem(arrayOf("lt"), "D221", "https://github.com/D221"),
         TranslatorItem(arrayOf("nl"), "Jurre Tas", "mailto:jurretas@gmail.com"),
         TranslatorItem(arrayOf("pl"), "Kamil", "mailto:invisiblehype@gmail.com"),
         TranslatorItem(arrayOf("pl"), "nid", "https://github.com/nidmb"),
