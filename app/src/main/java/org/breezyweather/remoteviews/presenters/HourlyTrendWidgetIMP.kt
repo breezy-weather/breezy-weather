@@ -99,7 +99,7 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
             highestTemperature = yesterday.daytimeTemperature
             lowestTemperature = yesterday.nighttimeTemperature
         }
-        for (i in 0 until itemCount) {
+        for (i in 0..<itemCount) {
             weather.hourlyForecast[i].temperature?.temperature?.let {
                 if (highestTemperature == null || it > highestTemperature!!) {
                     highestTemperature = it

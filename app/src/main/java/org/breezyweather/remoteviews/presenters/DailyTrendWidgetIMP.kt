@@ -122,7 +122,7 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
             lowestTemperature = yesterday.nighttimeTemperature
         }
 
-        for (i in 0 until itemCount) {
+        for (i in 0..<itemCount) {
             weather.dailyForecast[i].day?.temperature?.temperature?.let {
                 if (highestTemperature == null || it > highestTemperature!!) {
                     highestTemperature = it

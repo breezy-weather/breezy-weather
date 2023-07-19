@@ -109,7 +109,7 @@ class HourlyTrendDisplayManageActivity : GeoActivity() {
         mHourlyTrendDisplayItemTouchHelper = ItemTouchHelper(CardDisplaySwipeCallback()).apply {
             attachToRecyclerView(mBinding.recyclerView)
         }
-        val otherTags = HourlyTrendDisplay.values().toMutableList()
+        val otherTags = HourlyTrendDisplay.entries.toMutableList()
         for (i in otherTags.indices.reversed()) {
             for (displayTag in displayTags) {
                 if (otherTags[i] === displayTag) {

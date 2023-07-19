@@ -57,9 +57,9 @@ enum class DetailDisplay(
         fun toDetailDisplayUnlisted(
             value: String?
         ) = if (value.isNullOrEmpty()) {
-            DetailDisplay.values().toMutableList()
+            DetailDisplay.entries.toMutableList()
         } else try {
-            val list = DetailDisplay.values().toMutableList()
+            val list = DetailDisplay.entries.toMutableList()
             val details = value.split("&").toTypedArray()
             for (detail in details) {
                 when (detail) {
@@ -77,7 +77,7 @@ enum class DetailDisplay(
 
             list
         } catch (e: Exception) {
-            DetailDisplay.values().toMutableList()
+            DetailDisplay.entries.toMutableList()
         }
 
         fun toValue(list: List<DetailDisplay>): String {

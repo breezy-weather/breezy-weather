@@ -53,7 +53,7 @@ class MainLayoutManager : RecyclerView.LayoutManager() {
         }
         var childHeight: Int
         var params: MarginLayoutParams
-        for (i in 0 until itemCount) {
+        for (i in 0..<itemCount) {
             val child = recycler.getViewForPosition(i)
             addView(child)
             measureChildWithMargins(child, 0, 0)

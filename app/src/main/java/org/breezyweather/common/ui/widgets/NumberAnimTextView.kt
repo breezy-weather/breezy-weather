@@ -157,7 +157,7 @@ class NumberAnimTextView @JvmOverloads constructor(
             pattern.append("#,##0")
             if (length > 0) {
                 pattern.append(".")
-                for (i in 0 until length) {
+                for (i in 0..<length) {
                     pattern.append("0")
                 }
             }

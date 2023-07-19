@@ -109,7 +109,7 @@ class DailyTrendDisplayManageActivity : GeoActivity() {
         mDailyTrendDisplayItemTouchHelper = ItemTouchHelper(CardDisplaySwipeCallback()).apply {
             attachToRecyclerView(mBinding.recyclerView)
         }
-        val otherTags = DailyTrendDisplay.values().toMutableList()
+        val otherTags = DailyTrendDisplay.entries.toMutableList()
         for (i in otherTags.indices.reversed()) {
             for (displayTag in displayTags) {
                 if (otherTags[i] === displayTag) {

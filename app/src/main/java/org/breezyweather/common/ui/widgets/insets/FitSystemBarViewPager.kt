@@ -48,7 +48,7 @@ class FitSystemBarViewPager @JvmOverloads constructor(
             setWindowInsets(view, insets)
             if (view is ViewGroup) {
                 val count = view.childCount
-                for (i in 0 until count) {
+                for (i in 0..<count) {
                     setWindowInsetsForViewTree(view.getChildAt(i), insets)
                 }
             }

@@ -346,7 +346,7 @@ object ISO8601Utils {
      * Returns the index of the first character in the string that is not a digit, starting at offset.
      */
     private fun indexOfNonDigit(string: String?, offset: Int): Int {
-        for (i in offset until string!!.length) {
+        for (i in offset..<string!!.length) {
             val c = string[i]
             if (c < '0' || c > '9') return i
         }

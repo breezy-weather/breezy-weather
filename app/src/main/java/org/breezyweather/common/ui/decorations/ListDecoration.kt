@@ -30,7 +30,7 @@ class ListDecoration(context: Context, @ColorInt colorP: Int) : ItemDecoration()
     }
 
     override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
-        for (i in 0 until parent.childCount) {
+        for (i in 0..<parent.childCount) {
             val child = parent.getChildAt(i)
             c.drawLine(
                 child.left.toFloat(),

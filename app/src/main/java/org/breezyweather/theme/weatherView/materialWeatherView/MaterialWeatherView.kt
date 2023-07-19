@@ -61,7 +61,7 @@ class MaterialWeatherView(context: Context) : ViewGroup(context), WeatherView {
 
         // At what position will animations disappear
         mFirstCardMarginTop = (resources.displayMetrics.heightPixels * 0.3).toInt() // 0.66
-        for (index in 0 until childCount) {
+        for (index in 0..<childCount) {
             val child = getChildAt(index)
             child.measure(
                 MeasureSpec.makeMeasureSpec(measuredWidth, MeasureSpec.EXACTLY),
@@ -71,7 +71,7 @@ class MaterialWeatherView(context: Context) : ViewGroup(context), WeatherView {
     }
 
     override fun onLayout(b: Boolean, i: Int, i1: Int, i2: Int, i3: Int) {
-        for (index in 0 until childCount) {
+        for (index in 0..<childCount) {
             val child = getChildAt(index)
             child.layout(
                 0,

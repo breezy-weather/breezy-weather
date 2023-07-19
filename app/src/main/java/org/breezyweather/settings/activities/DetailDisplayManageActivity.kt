@@ -109,7 +109,7 @@ class DetailDisplayManageActivity : GeoActivity() {
         mDetailDisplayItemTouchHelper = ItemTouchHelper(DetailDisplaySwipeCallback()).apply {
             attachToRecyclerView(mBinding.recyclerView)
         }
-        val otherTags = DetailDisplay.values().toMutableList()
+        val otherTags = DetailDisplay.entries.toMutableList()
         for (i in otherTags.indices.reversed()) {
             for (displayTag in displayTags) {
                 if (otherTags[i] === displayTag) {

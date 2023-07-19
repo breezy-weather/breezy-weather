@@ -109,7 +109,7 @@ class CardDisplayManageActivity : GeoActivity() {
         mCardDisplayItemTouchHelper = ItemTouchHelper(CardDisplaySwipeCallback()).apply {
             attachToRecyclerView(mBinding.recyclerView)
         }
-        val otherTags = CardDisplay.values().toMutableList()
+        val otherTags = CardDisplay.entries.toMutableList()
         for (i in otherTags.indices.reversed()) {
             for (displayCard in displayTags) {
                 if (otherTags[i] === displayCard) {

@@ -364,7 +364,7 @@ abstract class AbstractRemoteViewsPresenter {
             temperatureUnit: TemperatureUnit, speedUnit: SpeedUnit
         ): String {
             var subtitle = subtitleP
-            for (i in 0 until SUBTITLE_DAILY_ITEM_LENGTH) {
+            for (i in 0..<SUBTITLE_DAILY_ITEM_LENGTH) {
                 subtitle = subtitle.replace(
                     "$" + i + "dw$",
                     weather.dailyForecast.getOrNull(i)?.day?.weatherText
