@@ -6,9 +6,12 @@ import android.os.Process
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
+import androidx.work.WorkInfo
+import androidx.work.WorkQuery
 import dagger.hilt.android.HiltAndroidApp
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.extensions.setLanguage
+import org.breezyweather.common.extensions.workManager
 import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.db.ObjectBox
 import org.breezyweather.remoteviews.Notifications
@@ -71,6 +74,12 @@ class BreezyWeather : Application(),
         if (getProcessName().equals(packageName)) {
             setDayNightMode()
         }
+
+        /**
+         * We don’t use the return value, but querying the work manager might help bringing back
+         * scheduled workers after the app has been killed/shutdown on some devices
+         */
+        this.workManager.getWorkInfosLiveData(WorkQuery.fromStates(WorkInfo.State.ENQUEUED))
     }
 
     fun addActivity(a: GeoActivity) {
