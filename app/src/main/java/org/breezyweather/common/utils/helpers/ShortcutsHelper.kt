@@ -56,7 +56,7 @@ object ShortcutsHelper {
 
             // location list.
             val count = min(shortcutManager.maxShortcutCountPerActivity - 1, list.size)
-            for (i in 0..<count) {
+            for (i in 0 until count) {
                 val weather = WeatherEntityRepository.readWeather(list[i])
                 icon =
                     if (weather?.current?.weatherCode != null) {

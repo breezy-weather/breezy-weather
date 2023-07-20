@@ -222,7 +222,8 @@ class MainActivityViewModel @Inject constructor(
         checkPermissions: Boolean,
     ) {
         if (updating) return
-        if (currentLocation.value?.location == null) {
+        val locationToCheck = currentLocation.value?.location
+        if (locationToCheck == null) {
             loading.postValue(true)
             loading.postValue(false)
             return
@@ -232,11 +233,11 @@ class MainActivityViewModel @Inject constructor(
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M || !checkPermissions) {
             updating = true
-            viewModelScope.launch(Dispatchers.IO) {
+            viewModelScope.launch {
                 repository.getWeather(
                     getApplication(),
-                    currentLocation.value!!.location,
-                    currentLocation.value!!.location.isCurrentPosition,
+                    locationToCheck,
+                    locationToCheck.isCurrentPosition,
                     this@MainActivityViewModel
                 )
             }
@@ -245,7 +246,7 @@ class MainActivityViewModel @Inject constructor(
 
         // check permissions.
         val locationPermissionList: MutableList<String> = mutableListOf()
-        if (currentLocation.value!!.location.isCurrentPosition) {
+        if (locationToCheck.isCurrentPosition) {
             locationPermissionList.addAll(repository
                 .getLocatePermissionList(getApplication())
                 .filter { !(getApplication() as Application).hasPermission(it) }
@@ -257,8 +258,8 @@ class MainActivityViewModel @Inject constructor(
             viewModelScope.launch(Dispatchers.IO) {
                 repository.getWeather(
                     getApplication(),
-                    currentLocation.value!!.location,
-                    currentLocation.value!!.location.isCurrentPosition,
+                    locationToCheck,
+                    locationToCheck.isCurrentPosition,
                     this@MainActivityViewModel
                 )
             }
@@ -266,7 +267,7 @@ class MainActivityViewModel @Inject constructor(
             updating = false
             locationPermissionsRequest.value = PermissionsRequest(
                 locationPermissionList,
-                currentLocation.value!!.location,
+                locationToCheck,
                 triggeredByUser
             )
         }

@@ -1,7 +1,7 @@
 package org.breezyweather.main
 
 import android.content.Context
-import kotlinx.coroutines.rx3.awaitSingle
+import kotlinx.coroutines.rx3.awaitFirstOrElse
 import kotlinx.serialization.MissingFieldException
 import kotlinx.serialization.SerializationException
 import org.breezyweather.common.basic.models.Location
@@ -13,6 +13,7 @@ import org.breezyweather.common.exceptions.NoNetworkException
 import org.breezyweather.common.exceptions.ParsingException
 import org.breezyweather.common.exceptions.ReverseGeocodingException
 import org.breezyweather.common.exceptions.SourceNotInstalledException
+import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.db.repositories.LocationEntityRepository
 import org.breezyweather.db.repositories.WeatherEntityRepository
@@ -118,7 +119,9 @@ class MainActivityRepository @Inject constructor(
             val requestWeather = weatherHelper.requestWeather(
                 context,
                 locationToProcess
-            ).awaitSingle()
+            ).awaitFirstOrElse {
+                throw WeatherException()
+            }
 
             locationThrowable?.let { e ->
                 val requestErrorType = when (e) {

@@ -2,7 +2,9 @@
 
 /!\ Custom API keys were reset in this version, following a move to a separate config store from the main app /!\
 
+- [Regression fix] Sometimes, app would get stuck refreshing. It should no longer happen now.
 - [Regression fix] If app fails to find current location, it will now refresh weather data for latest known position. In background, it will silently ignore error, while on main screen, it will show a snackbar to let user know that while it was refreshed, there was a problem finding current position.
+- Add “start on boot” workaround for non-standard devices (such as MIUI) which didn’t have background workers resume after reboot
 - Weather source for current location can now be chosen directly from the location list instead of going to settings, which was unintuitive and could be confusing.
 - Add no network error on location search
 - Throw error when trying to locate outside China when using Baidu IP location, instead of positioning on 0, 0

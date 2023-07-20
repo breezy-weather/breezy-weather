@@ -55,7 +55,7 @@ abstract class SlidingItemTouchCallback : ItemTouchHelper.Callback() {
         private fun findMaxElevation(recyclerView: RecyclerView, itemView: View): Float {
             val childCount = recyclerView.childCount
             var max = 0.0f
-            for (i in 0..<childCount) {
+            for (i in 0 until childCount) {
                 val child = recyclerView.getChildAt(i)
                 if (child !== itemView) {
                     val elevation = ViewCompat.getElevation(child)

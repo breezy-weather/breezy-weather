@@ -51,7 +51,7 @@ object WeatherEntityRepository {
             if (weather.yesterday != null) {
                 HistoryEntityRepository.insertHistoryEntity(
                     HistoryEntityGenerator.generate(
-                        location.cityId, location.weatherSource, weather.yesterday!!
+                        location.cityId, location.weatherSource, weather.yesterday
                     )
                 )
             }

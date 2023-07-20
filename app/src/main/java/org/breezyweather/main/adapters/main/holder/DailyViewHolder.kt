@@ -92,7 +92,7 @@ class DailyViewHolder(
         } else {
             tagView.visibility = View.VISIBLE
             val decorCount = tagView.itemDecorationCount
-            for (i in 0..<decorCount) {
+            for (i in 0 until decorCount) {
                 tagView.removeItemDecorationAt(0)
             }
             tagView.addItemDecoration(

@@ -2,13 +2,14 @@ package org.breezyweather.sources
 
 import android.content.Context
 import io.reactivex.rxjava3.core.Observable
-import kotlinx.coroutines.rx3.awaitSingle
+import kotlinx.coroutines.rx3.awaitFirstOrElse
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.Weather
 import org.breezyweather.common.exceptions.LocationException
 import org.breezyweather.common.exceptions.NoNetworkException
 import org.breezyweather.common.exceptions.ParsingException
 import org.breezyweather.common.exceptions.SourceNotInstalledException
+import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.isOnline
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationSearchSource
@@ -20,7 +21,9 @@ class WeatherHelper @Inject constructor(
     private val mSourceManager: SourceManager
 ) {
     suspend fun getWeather(context: Context, location: Location): Weather {
-        return requestWeather(context, location).awaitSingle()
+        return requestWeather(context, location).awaitFirstOrElse {
+            throw WeatherException()
+        }
     }
 
     fun requestWeather(

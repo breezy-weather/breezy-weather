@@ -132,7 +132,7 @@ class MainAdapter(
 
     private fun ensureFirstCard() {
         mFirstCardPosition = null
-        for (i in 0..<itemCount) {
+        for (i in 0 until itemCount) {
             val type = getItemViewType(i)
             if (type == ViewType.DAILY || type == ViewType.HOURLY || type == ViewType.AIR_QUALITY
                 || type == ViewType.ALLERGEN || type == ViewType.ASTRO || type == ViewType.LIVE) {
@@ -155,7 +155,7 @@ class MainAdapter(
 
     fun onScroll() {
         var holder: AbstractMainViewHolder?
-        for (i in 0..<itemCount) {
+        for (i in 0 until itemCount) {
             holder = mHost!!.findViewHolderForAdapterPosition(i) as AbstractMainViewHolder?
             holder?.checkEnterScreen(mHost!!, mPendingAnimatorList ?: ArrayList(), mListAnimationEnabled)
         }

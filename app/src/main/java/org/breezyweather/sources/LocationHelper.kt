@@ -4,8 +4,9 @@ import android.Manifest
 import android.content.Context
 import android.os.Build
 import io.reactivex.rxjava3.core.Observable
-import kotlinx.coroutines.rx3.awaitSingle
+import kotlinx.coroutines.rx3.awaitFirstOrElse
 import org.breezyweather.common.basic.models.Location
+import org.breezyweather.common.exceptions.LocationException
 import org.breezyweather.common.exceptions.MissingPermissionLocationBackgroundException
 import org.breezyweather.common.exceptions.MissingPermissionLocationException
 import org.breezyweather.common.exceptions.NoNetworkException
@@ -26,7 +27,9 @@ class LocationHelper @Inject constructor(
     suspend fun getCurrentLocationWithReverseGeocoding(
         context: Context, location: Location, background: Boolean
     ): Location {
-        val currentLocation = requestCurrentLocation(context, location, background).awaitSingle()
+        val currentLocation = requestCurrentLocation(context, location, background).awaitFirstOrElse {
+            throw LocationException()
+        }
         val source = location.weatherSource
         val weatherService = sourceManager.getReverseGeocodingSourceOrDefault(source)
         return weatherService.requestReverseGeocodingLocation(context, currentLocation).map { locationList ->
@@ -38,7 +41,9 @@ class LocationHelper @Inject constructor(
             } else {
                 throw ReverseGeocodingException()
             }
-        }.awaitSingle()
+        }.awaitFirstOrElse {
+            throw ReverseGeocodingException()
+        }
     }
 
     fun requestCurrentLocation(

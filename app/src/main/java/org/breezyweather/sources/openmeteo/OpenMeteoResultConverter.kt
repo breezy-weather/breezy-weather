@@ -226,7 +226,7 @@ private fun getDailyList(
 ): List<Daily> {
     val dailyList: MutableList<Daily> = ArrayList(dailyResult.time.size - 1)
     val hourlyListByDay = hourlyList.groupBy { it.date.getFormattedDate(timeZone, "yyyyMMdd") }
-    for (i in 1..<dailyResult.time.size) {
+    for (i in 1 until dailyResult.time.size) {
         val theDay = Date(dailyResult.time[i].times(1000))
         val dailyDateFormatted = theDay.getFormattedDate(timeZone, "yyyyMMdd")
         val daily = Daily(
@@ -374,7 +374,7 @@ fun debugConvert(
     return try {
         val dailyList: MutableList<Daily> = ArrayList()
         if (weatherResult.daily != null) {
-            for (i in 1..<weatherResult.daily.time.size) {
+            for (i in 1 until weatherResult.daily.time.size) {
                 val daily = Daily(date = Date(weatherResult.daily.time[i].times(1000)))
                 dailyList.add(daily)
             }

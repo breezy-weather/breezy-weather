@@ -102,7 +102,7 @@ class SlidingItemContainerLayout @JvmOverloads constructor(
             return
         }
         if (mChild == null) {
-            for (i in 0..<childCount) {
+            for (i in 0 until childCount) {
                 val v = getChildAt(i)
                 if (v !== mIcon) {
                     mChild = v

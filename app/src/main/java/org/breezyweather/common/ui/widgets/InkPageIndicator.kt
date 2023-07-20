@@ -332,7 +332,7 @@ class InkPageIndicator @JvmOverloads constructor(
         mCombinedUnselectedPath.rewind()
 
         // draw any settled, revealing or joining dots
-        for (page in 0..<mPageCount) {
+        for (page in 0 until mPageCount) {
             val nextXIndex = if (page == mPageCount - 1) page else page + 1
             val unselectedPath = getUnselectedPath(
                 page,
@@ -579,7 +579,7 @@ class InkPageIndicator @JvmOverloads constructor(
         val steps = abs(now - mPreviousPage)
         if (steps > 1) {
             if (now > mPreviousPage) {
-                for (i in 0..<steps) {
+                for (i in 0 until steps) {
                     setJoiningFraction(mPreviousPage + i, 1f)
                 }
             } else {

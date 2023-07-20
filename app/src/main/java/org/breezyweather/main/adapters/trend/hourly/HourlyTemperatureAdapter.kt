@@ -183,16 +183,16 @@ class HourlyTemperatureAdapter(
 
     override fun bindBackgroundForHost(host: TrendRecyclerView) {
         val weather = location.weather ?: return
-        if (weather.yesterday?.daytimeTemperature == null || weather.yesterday!!.nighttimeTemperature == null) {
+        if (weather.yesterday?.daytimeTemperature == null || weather.yesterday.nighttimeTemperature == null) {
             host.setData(null, 0f, 0f)
         } else {
             val keyLineList: MutableList<TrendRecyclerView.KeyLine> = ArrayList()
             keyLineList.add(
                 TrendRecyclerView.KeyLine(
-                    weather.yesterday!!.daytimeTemperature!!,
+                    weather.yesterday.daytimeTemperature,
                     Temperature.getShortTemperature(
                         activity,
-                        weather.yesterday!!.daytimeTemperature,
+                        weather.yesterday.daytimeTemperature,
                         SettingsManager.getInstance(activity).temperatureUnit
                     ),
                     activity.getString(R.string.short_yesterday),
@@ -201,10 +201,10 @@ class HourlyTemperatureAdapter(
             )
             keyLineList.add(
                 TrendRecyclerView.KeyLine(
-                    weather.yesterday!!.nighttimeTemperature!!,
+                    weather.yesterday.nighttimeTemperature,
                     Temperature.getShortTemperature(
                         activity,
-                        weather.yesterday!!.nighttimeTemperature,
+                        weather.yesterday.nighttimeTemperature,
                         SettingsManager.getInstance(activity).temperatureUnit
                     ),
                     activity.getString(R.string.short_yesterday),

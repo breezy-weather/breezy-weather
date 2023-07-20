@@ -139,7 +139,7 @@ class PrecipitationBarBackgroundView(context: Context) : View(context) {
             polylinePath.moveTo(polylineKeyPoints[0].originCenterX, polylineKeyPoints[0].originTopY)
             shadowPath.moveTo(polylineKeyPoints[0].originCenterX, polylineKeyPoints[0].originTopY)
 
-            polylineKeyPoints.slice(1..<polylineKeyPoints.size).forEach {
+            polylineKeyPoints.slice(1 until polylineKeyPoints.size).forEach {
                 polylinePath.lineTo(it.originCenterX, it.originTopY)
                 shadowPath.lineTo(it.originCenterX, it.originTopY)
             }
