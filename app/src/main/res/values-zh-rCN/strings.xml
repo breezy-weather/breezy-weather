@@ -457,7 +457,7 @@
     <string name="unit_kelvin">K</string>
     <string name="about_contribution_WangDaYeeeeee">原始项目几何天气的开发者</string>
     <string name="settings_main_background_animation_disabled">关闭</string>
-    <string name="weather_source_openmeteo_voice">Open Meteo</string>
+    <string name="weather_source_openmeteo_voice">开放式气象</string>
     <string name="alerts_to_follow">有需要关注的警报，点此查看。</string>
     <string name="weather_source_metno_voice">挪威气象研究所</string>
     <string name="weather_source_accuweather">AccuWeather</string>
@@ -606,4 +606,10 @@
     <string name="message_server_timeout">请求超时</string>
     <string name="message_parsing_error_title">天气数据解析失败</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">电池电量低时停用刷新</string>
+    <string name="message_source_not_installed_error_content">此来源不再可用，请删除该位置并从其他来源重新创建。</string>
+    <string name="temperature_degree_day_heating">采暖度日</string>
+    <string name="settings_background_updates_worker_info_summary">最后运行：$</string>
+    <string name="settings_provider_api_key">API密钥</string>
+    <string name="temperature_degree_day_cooling">制冷度日</string>
+    <string name="message_source_not_installed_error_title">来源不再可用</string>
 </resources>
