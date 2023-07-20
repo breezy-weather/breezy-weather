@@ -608,4 +608,5 @@
     <string name="temperature_degree_day_cooling">يوم درجة البرودة</string>
     <string name="temperature_degree_day_heating">يوم درجة الحرارة</string>
     <string name="settings_weather_provider_open_weather_one_call_version">إصدار OneCall</string>
+    <string name="settings_background_updates_worker_info_summary">آخر تشغيل: $</string>
 </resources>
