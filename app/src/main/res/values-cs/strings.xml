@@ -92,14 +92,14 @@
     <string name="allergen">Alergeny</string>
     <string name="details">Podrobnosti</string>
     <string name="ephemeris">Slunce a měsíc</string>
-    <string name="action_next">DALŠÍ</string>
-    <string name="action_done">HOTOVO</string>
-    <string name="action_cancel" tools:ignore="ButtonCase">ZRUŠIT</string>
+    <string name="action_next">DalŠÍ</string>
+    <string name="action_done">Hotovo</string>
+    <string name="action_cancel" tools:ignore="ButtonCase">ZruŠit</string>
     <string name="settings_enabled">Povoleno</string>
     <string name="settings_disabled">Zakázáno</string>
-    <string name="action_set">NASTAVIT</string>
-    <string name="action_help">NÁPOVĚDA</string>
-    <string name="action_learn_more">ZJISTIT VÍCE</string>
+    <string name="action_set">Nastavit</string>
+    <string name="action_help">NápovĚda</string>
+    <string name="action_learn_more">Zjistit více</string>
     <string name="about_app">O aplikaci</string>
     <string name="about_contributors">Přispěvatelé</string>
     <string name="about_translators">Překladatelé</string>
@@ -394,7 +394,7 @@
     <string name="weather_source_mf_voice">Météo France</string>
     <string name="weather_source_china_voice">Čína</string>
     <string name="location_search_no_results">$1 nemůže najít $2</string>
-    <string name="action_undo" tools:ignore="ButtonCase">VRÁTIT ZPĚT</string>
+    <string name="action_undo" tools:ignore="ButtonCase">Vrátit zpĚt</string>
     <string name="action_close">Zavřít</string>
     <string name="action_show_errors">Klepnutím zobrazíte podrobnosti</string>
     <string name="widget_subtitle_data_aqi">Kvalita ovzduší</string>

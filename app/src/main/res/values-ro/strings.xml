@@ -92,14 +92,14 @@
     <string name="allergen">Alergeni</string>
     <string name="details">Detalii</string>
     <string name="ephemeris">Soare și Lună</string>
-    <string name="action_next">MAI DEPARTE</string>
-    <string name="action_done">TERMINAT</string>
-    <string name="action_cancel" tools:ignore="ButtonCase">ANULARE</string>
+    <string name="action_next">Mai departe</string>
+    <string name="action_done">Terminat</string>
+    <string name="action_cancel" tools:ignore="ButtonCase">Anulare</string>
     <string name="settings_enabled">Activat</string>
     <string name="settings_disabled">Dezactivat</string>
-    <string name="action_set">ACCEPTĂ</string>
-    <string name="action_help">AJUTOR</string>
-    <string name="action_learn_more">AFLĂ MAI MULTE</string>
+    <string name="action_set">AcceptĂ</string>
+    <string name="action_help">Ajutor</string>
+    <string name="action_learn_more">AflĂ mai multe</string>
     <string name="about_app">Despre aplicație</string>
     <string name="about_translators">Traducători</string>
     <!-- Date format strings. -->
@@ -568,7 +568,7 @@
     <string name="settings_location_access_precise_summaryOff">Activați „Utilizați locația precisă” dacă aveți probleme în obținerea unei locații.</string>
     <string name="notification_channel_widget">Widget</string>
     <string name="location_message_reverse_geocoding_failed">Furnizorul de vreme nu a găsit o locație potrivită</string>
-    <string name="action_undo" tools:ignore="ButtonCase">ANULEAZĂ</string>
+    <string name="action_undo" tools:ignore="ButtonCase">AnuleazĂ</string>
     <string name="settings_widgets_live_wallpaper_error">Nu s-a putut lansa selectorul de imagini de fundal. Puteți activa în continuare imaginea de fundal Breezy Weather alegând „Imagine de fundal animată” în selectorul de imagini de fundal pentru ecranul de pornire.</string>
     <string name="null_data_text">N/A</string>
     <string name="location_none_added_yet_instructions">Nicio locație adăugată încă. Vă rugăm să atingeți pictograma de căutare pentru a adăuga manual o locație sau adăugați locația dvs. curentă din butonul plutitor.</string>

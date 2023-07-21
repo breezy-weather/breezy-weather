@@ -90,14 +90,14 @@
     <string name="allergen">Allergén</string>
     <string name="details">Részletek</string>
     <string name="ephemeris">Nap &amp; Hold</string>
-    <string name="action_next">KÖVETKEZŐ</string>
-    <string name="action_done">KÉSZ</string>
-    <string name="action_cancel" tools:ignore="ButtonCase">MÉGSE</string>
+    <string name="action_next">KövetkezŐ</string>
+    <string name="action_done">Kész</string>
+    <string name="action_cancel" tools:ignore="ButtonCase">Mégse</string>
     <string name="settings_enabled">BE</string>
     <string name="settings_disabled">KI</string>
-    <string name="action_set">BEÁLLÍT</string>
-    <string name="action_help">SEGÍTSÉG</string>
-    <string name="action_learn_more">TUDJON MEG TÖBBET</string>
+    <string name="action_set">Beállít</string>
+    <string name="action_help">Segítség</string>
+    <string name="action_learn_more">Tudjon meg többet</string>
     <string name="about_app">App Névjegye</string>
     <string name="about_translators">Fordítók</string>
     <string name="date_format_short">M-d</string>

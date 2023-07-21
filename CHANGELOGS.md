@@ -2,6 +2,7 @@
 
 - Make hourly trends less compressed
 - Add a “Help me choose” button on weather selection dialogs.
+- Updated translations.
 
 
 # Version 4.3.0-beta

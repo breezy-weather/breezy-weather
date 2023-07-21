@@ -92,14 +92,14 @@
     <string name="allergen">Allergeenit</string>
     <string name="details">Lisätietoja</string>
     <string name="ephemeris">Aurinko &amp; kuu</string>
-    <string name="action_next">SEURAAVA</string>
-    <string name="action_done">VALMIS</string>
-    <string name="action_cancel" tools:ignore="ButtonCase">PERUUTA</string>
+    <string name="action_next">Seuraava</string>
+    <string name="action_done">Valmis</string>
+    <string name="action_cancel" tools:ignore="ButtonCase">Peruuta</string>
     <string name="settings_enabled">Käytössä</string>
     <string name="settings_disabled">Ei käytössä</string>
-    <string name="action_set">ASETA</string>
-    <string name="action_help">OHJE</string>
-    <string name="action_learn_more">LUE LISÄÄ</string>
+    <string name="action_set">Aseta</string>
+    <string name="action_help">Ohje</string>
+    <string name="action_learn_more">Lue lisää</string>
     <string name="about_app">TIETOJA SOVELLUKSESTA</string>
     <string name="about_translators">Kääntäjät</string>
     <!-- Date format strings. -->

@@ -92,14 +92,14 @@
     <string name="allergen">Allergene</string>
     <string name="details">Dettagli</string>
     <string name="ephemeris">Sole e Luna</string>
-    <string name="action_next">AVANTI</string>
-    <string name="action_done">FINE</string>
-    <string name="action_cancel" tools:ignore="ButtonCase">ANNULLA</string>
+    <string name="action_next">Avanti</string>
+    <string name="action_done">Fine</string>
+    <string name="action_cancel" tools:ignore="ButtonCase">Annulla</string>
     <string name="settings_enabled">Attivato</string>
     <string name="settings_disabled">Disattivato</string>
-    <string name="action_set">IMPOSTA</string>
-    <string name="action_help">AIUTO</string>
-    <string name="action_learn_more">ALTRE INFORMAZIONI</string>
+    <string name="action_set">Imposta</string>
+    <string name="action_help">Aiuto</string>
+    <string name="action_learn_more">Altre informazioni</string>
     <string name="about_app">Info sull’app</string>
     <string name="about_contributors">Contributori</string>
     <string name="about_translators">Traduttori</string>

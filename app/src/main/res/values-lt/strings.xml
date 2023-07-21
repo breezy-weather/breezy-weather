@@ -220,10 +220,10 @@
     <string name="action_restart">Perkrauti</string>
     <string name="action_edit">Redaguoti</string>
     <string name="action_back">Atgal</string>
-    <string name="action_next">KITAS</string>
-    <string name="action_undo" tools:ignore="ButtonCase">ANULIUOTI</string>
-    <string name="action_set">NUSTATYTI</string>
-    <string name="action_help">PAGALBA</string>
+    <string name="action_next">Kitas</string>
+    <string name="action_undo" tools:ignore="ButtonCase">Anuliuoti</string>
+    <string name="action_set">Nustatyti</string>
+    <string name="action_help">Pagalba</string>
     <string name="action_continue">Tęsti</string>
     <string name="action_close">Uždaryti</string>
     <string name="action_share">Dalintis</string>
@@ -237,9 +237,9 @@
     <string name="location_resident_message">Nustatyti kaip gyvenamąją vietą</string>
     <string name="location_resident_dialog">Breezy Weather automatiškai parodys ir paslėps gyvenamąją vietą pagal jūsų dabartinę buvimo vietą.
 \nPavyzdžiui, galite nustatyti savo gimtąjį miestą kaip gyvenamąją vietą. Keliaudami galėsite patikrinti orus gimtajame mieste. Grįžus namo, gimtojo miesto orai bus paslėpti ir pakeisti dabartinės jūsų buvimo vietos orais.</string>
-    <string name="action_done">ATLIKTA</string>
+    <string name="action_done">Atlikta</string>
     <string name="action_about">Apie</string>
-    <string name="action_cancel" tools:ignore="ButtonCase">ATŠAUKTI</string>
+    <string name="action_cancel" tools:ignore="ButtonCase">AtŠaukti</string>
     <string name="message_source_not_installed_error_content">Šis šaltinis nebėra prieinamas, ištrinkite vietą ir atkurkite ją iš kito šaltinio.</string>
     <string name="message_source_not_installed_error_title">Šaltinis nebeprieinamas</string>
     <string name="weather_refresh_skipped_already_recently_updated">Jau neseniai atnaujinta</string>
@@ -253,7 +253,7 @@
     <string name="action_settings">Nustatymai</string>
     <string name="action_add_new_location">Pridėti naują vietovę</string>
     <string name="action_see_more">Žiūrėti daugiau</string>
-    <string name="action_learn_more">SUŽINOTI DAUGIAU</string>
+    <string name="action_learn_more">SuŽinoti daugiau</string>
     <string name="dialog_permissions_notification_content">Bakstelėkite čia, kad įjungtumėte pranešimus apie orų perspėjimus, arba nuspręskite vėliau Nustatymuose.</string>
     <string name="dialog_permissions_location_title">Prieiga prie vietos informacijos</string>
     <string name="message_network_unavailable">Tinklas nepasiekiamas</string>

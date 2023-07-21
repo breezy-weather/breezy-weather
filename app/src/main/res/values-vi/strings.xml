@@ -203,12 +203,12 @@
     <string name="action_refresh">Làm mới</string>
     <string name="action_restart">Khởi động lại</string>
     <string name="action_back">Quay lại</string>
-    <string name="action_next">TIẾP</string>
-    <string name="action_done">XONG</string>
+    <string name="action_next">Tiếp</string>
+    <string name="action_done">Xong</string>
     <string name="action_cancel" tools:ignore="ButtonCase">HỦY</string>
     <string name="action_set">ĐẶT</string>
-    <string name="action_help">TRỢ GIÚP</string>
-    <string name="action_learn_more">BIẾT THÊM</string>
+    <string name="action_help">TrỢ giÚp</string>
+    <string name="action_learn_more">Biết thÊm</string>
     <string name="action_continue">Tiếp tục</string>
     <string name="action_share">Chia sẻ</string>
     <string name="dialog_permissions_location_title">Truy cập thông tin vị trí</string>
@@ -489,7 +489,7 @@
     <string name="unit_mb_voice">Milibar</string>
     <string name="precipitation_total">Tổng cộng</string>
     <string name="location_message_reverse_geocoding_failed">Nhà cung cấp thời tiết không tìm được vị trí chính xác</string>
-    <string name="action_undo" tools:ignore="ButtonCase">HOÀN TÁC</string>
+    <string name="action_undo" tools:ignore="ButtonCase">Hoàn tác</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Sướng muối dạng lớp</string>
     <string name="air_quality_pm_explanations_consequences">Các hạt là dạng ô nhiễm không khí có hại nhất do khả năng xâm nhập sâu vào phổi và não từ dòng máu, gây ra các vấn đề sức khỏe như bệnh tim, bệnh phổi và tử vong sớm.</string>
     <string name="air_quality_o3_info_title">Ôzôn trên mặt đất (O₃)</string>

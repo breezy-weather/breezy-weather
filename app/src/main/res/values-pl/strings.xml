@@ -264,7 +264,7 @@
     <string name="weather_kind_wind">Wiatr</string>
     <string name="settings_location_access_switch_title">Dostęp do lokalizacji</string>
     <string name="action_continue">Kontynuuj</string>
-    <string name="action_undo" tools:ignore="ButtonCase">COFNIJ</string>
+    <string name="action_undo" tools:ignore="ButtonCase">Cofnij</string>
     <string name="widget_style_pixel">Piksel</string>
     <string name="settings_section_general">Ogólne</string>
     <string name="widget_week_style_3_days">3 dni</string>

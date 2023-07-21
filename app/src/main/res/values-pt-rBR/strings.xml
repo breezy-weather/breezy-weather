@@ -92,14 +92,14 @@
     <string name="allergen">Alergias</string>
     <string name="details">Detalhes</string>
     <string name="ephemeris">Sol e lua</string>
-    <string name="action_next">PRÓXIMO</string>
-    <string name="action_done">CONCLUÍDO</string>
-    <string name="action_cancel" tools:ignore="ButtonCase">CANCELAR</string>
+    <string name="action_next">Próximo</string>
+    <string name="action_done">Concluído</string>
+    <string name="action_cancel" tools:ignore="ButtonCase">Cancelar</string>
     <string name="settings_enabled">Ativado</string>
     <string name="settings_disabled">Desativado</string>
-    <string name="action_set">DEFINIR</string>
-    <string name="action_help">AJUDA</string>
-    <string name="action_learn_more">SAIBA MAIS</string>
+    <string name="action_set">Definir</string>
+    <string name="action_help">Ajuda</string>
+    <string name="action_learn_more">Saiba mais</string>
     <string name="about_app">Sobre o aplicativo</string>
     <string name="about_contributors">Contribuidores</string>
     <string name="about_translators">Tradutores</string>
@@ -431,7 +431,7 @@
     <string name="settings_main_summary">Ordem dos cartões, itens exibidos, animações</string>
     <string name="settings_widgets_notification_feels_like_switch">Usar sensação térmica</string>
     <string name="location_message_reverse_geocoding_failed">O provedor de meteorologia não conseguiu encontrar um local correspondente</string>
-    <string name="action_undo" tools:ignore="ButtonCase">DESFAZER</string>
+    <string name="action_undo" tools:ignore="ButtonCase">Desfazer</string>
     <string name="settings_location_access_permission_already_granted">Permissão já concedida</string>
     <string name="settings_background_updates_worker_info_title">Informações do Worker</string>
     <string name="settings_location_access_switch_summaryOn">Permitido. Você pode adicionar sua localização atual como um local.</string>

@@ -93,14 +93,14 @@
     <string name="allergen">Allergen</string>
     <string name="details">Detail</string>
     <string name="ephemeris">Matahari &amp; bulan</string>
-    <string name="action_next">BERIKUTNYA</string>
-    <string name="action_done">SELESAI</string>
-    <string name="action_cancel" tools:ignore="ButtonCase">BATAL</string>
+    <string name="action_next">Berikutnya</string>
+    <string name="action_done">Selesai</string>
+    <string name="action_cancel" tools:ignore="ButtonCase">Batal</string>
     <string name="settings_enabled">Diaktifkan</string>
     <string name="settings_disabled">Dimatikan</string>
-    <string name="action_set">SETEL</string>
-    <string name="action_help">BANTUAN</string>
-    <string name="action_learn_more">PELAJARI LEBIH LANJUT</string>
+    <string name="action_set">Setel</string>
+    <string name="action_help">Bantuan</string>
+    <string name="action_learn_more">Pelajari lebih lanjut</string>
     <string name="about_app">Tentang aplikasi</string>
     <string name="about_contributors">Kontributor</string>
     <string name="about_translators">Translator</string>

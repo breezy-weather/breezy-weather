@@ -157,15 +157,15 @@
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Orage avec légère grêle</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Orage avec forte grêle</string>
 
-    <string name="action_next">SUIVANT</string>
+    <string name="action_next">Suivant</string>
     <string name="action_done">OK</string>
-    <string name="action_cancel">ANNULER</string>
-    <string name="action_undo">ANNULER</string>
+    <string name="action_cancel">Annuler</string>
+    <string name="action_undo">Annuler</string>
     <string name="settings_enabled">Actif</string>
     <string name="settings_disabled">Inactif</string>
-    <string name="action_set">DÉFINIR</string>
-    <string name="action_help">AIDE</string>
-    <string name="action_learn_more">EN SAVOIR PLUS</string>
+    <string name="action_set">Définir</string>
+    <string name="action_help">Aide</string>
+    <string name="action_learn_more">En savoir plus</string>
     <string name="action_continue">Continue</string>
     <string name="action_close">Fermer</string>
     <string name="action_share">Partager</string>

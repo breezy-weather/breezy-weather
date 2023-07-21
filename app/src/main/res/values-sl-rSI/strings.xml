@@ -58,14 +58,14 @@
     <string name="air_quality">Kvaliteta zraka</string>
     <string name="details">Podrobnosti</string>
     <string name="ephemeris">Sonce &amp; luna</string>
-    <string name="action_next">NASLEDNJI</string>
-    <string name="action_done">KONČNANO</string>
-    <string name="action_cancel" tools:ignore="ButtonCase">PREKLIČI</string>
+    <string name="action_next">Naslednji</string>
+    <string name="action_done">KonČnano</string>
+    <string name="action_cancel" tools:ignore="ButtonCase">PrekliČi</string>
     <string name="settings_enabled">Omogočeno</string>
     <string name="settings_disabled">Onemogočeno</string>
-    <string name="action_set">NASTAVI</string>
-    <string name="action_help">POMOČ</string>
-    <string name="action_learn_more">NAUČI SE VEČ</string>
+    <string name="action_set">Nastavi</string>
+    <string name="action_help">PomoČ</string>
+    <string name="action_learn_more">NauČi se veČ</string>
     <string name="about_app">O applikaciji</string>
     <string name="about_translators">Prevajalci</string>
     <string name="date_format_short">M-d</string>

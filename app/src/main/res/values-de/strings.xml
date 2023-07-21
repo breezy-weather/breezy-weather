@@ -11,7 +11,7 @@
     <string name="allergen">Allergene</string>
     <string name="app_name">Wetter</string>
     <string name="temperature_apparent">Gefühlt</string>
-    <string name="action_cancel">ABBRECHEN</string>
+    <string name="action_cancel">Abbrechen</string>
     <string name="ceiling">Wolkendecke</string>
     <string name="cloud_cover">Bewölkung</string>
     <string name="location_current">Aktueller Standort</string>
@@ -24,7 +24,7 @@
     <string name="daytime">Tag</string>
     <string name="temperature_degree_day">Gradtagzahl</string>
     <string name="dew_point">Taupunkt</string>
-    <string name="action_done">ERLEDIGT</string>
+    <string name="action_done">Erledigt</string>
     <string name="action_edit">Bearbeiten</string>
     <string name="widget_ellipsis">…</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Standort manuell hinzufügen und „$“ löschen</string>
@@ -65,18 +65,18 @@
     <string name="settings_icon_providers_get_more">Mehr dazu</string>
     <string name="settings_icon_providers_get_more_github">Mehr von GitHub</string>
     <string name="settings_icon_providers_get_more_store">Mehr von Google Play</string>
-    <string name="action_set">FESTLEGEN</string>
+    <string name="action_set">Festlegen</string>
     <string name="allergen_grass">Gras</string>
-    <string name="action_help">HILFE</string>
+    <string name="action_help">Hilfe</string>
     <string name="hourly_forecast">Die nächsten Stunden</string>
     <string name="hours_of_sun">Sonnenstunden</string>
     <string name="humidity">Luftfeuchte</string>
     <string name="precipitation_ice">Eis</string>
-    <string name="action_learn_more">MEHR ERFAHREN</string>
+    <string name="action_learn_more">Mehr erfahren</string>
     <string name="details">Details</string>
     <string name="minutely_forecast">Die nächsten Minuten</string>
     <string name="allergen_mold">Schimmel</string>
-    <string name="action_next">WEITER</string>
+    <string name="action_next">Weiter</string>
     <string name="nighttime">Nacht</string>
     <string name="of_clock">:00</string>
     <string name="settings_disabled">Aus</string>
@@ -529,7 +529,7 @@
     <string name="action_location_list">Ortsliste</string>
     <string name="settings_location">Standort</string>
     <string name="settings_location_summary">Einstellungen der Standortanbieter</string>
-    <string name="action_undo" tools:ignore="ButtonCase">RÜCKGÄNGIG</string>
+    <string name="action_undo" tools:ignore="ButtonCase">Rückgängig</string>
     <string name="settings_location_access_switch_summaryOff">Bitte erlauben, wenn Sie Ihren aktuellen Standort als Ort hinzufügen möchten.</string>
     <string name="settings_location_access_background_summaryOff">Bitte aktivieren Sie „Immer zulassen“, um Hintergrundaktualisierungen für Ihren aktuellen Standort zu erhalten.</string>
     <string name="settings_location_access_precise_title">GPS-Nutzung des Geräts</string>
