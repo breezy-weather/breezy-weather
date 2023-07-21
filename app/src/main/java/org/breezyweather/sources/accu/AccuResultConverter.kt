@@ -2,10 +2,10 @@ package org.breezyweather.sources.accu
 
 import android.content.Context
 import android.graphics.Color
-import org.breezyweather.BreezyWeather
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
 import org.breezyweather.common.basic.models.weather.*
+import org.breezyweather.common.basic.wrappers.HourlyWrapper
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.sources.accu.json.*
@@ -14,6 +14,7 @@ import org.breezyweather.sources.getMoonPhaseAngle
 import org.breezyweather.sources.getUVLevel
 import org.breezyweather.sources.getWindLevel
 import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
+import org.breezyweather.common.exceptions.WeatherException
 import java.util.Date
 import java.util.TimeZone
 import java.util.regex.Pattern
@@ -65,71 +66,62 @@ fun convert(
 ): WeatherResultWrapper {
     // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
     if (dailyResult.DailyForecasts == null || dailyResult.DailyForecasts.isEmpty() || hourlyResultList.isEmpty()) {
-        return WeatherResultWrapper(null)
+        throw WeatherException()
     }
 
-    return try {
-        val hourlyList = getHourlyList(context, hourlyResultList, airQualityHourlyResult.data)
+    val hourlyList = getHourlyList(context, hourlyResultList, airQualityHourlyResult.data)
 
-        val weather = Weather(
-            base = Base(
-                cityId = location.cityId,
-                publishDate = Date(currentResult.EpochTime.times(1000)),
+    return WeatherResultWrapper(
+        base = Base(
+            publishDate = Date(currentResult.EpochTime.times(1000)),
+        ),
+        current = Current(
+            weatherText = currentResult.WeatherText,
+            weatherCode = getWeatherCode(currentResult.WeatherIcon),
+            temperature = Temperature(
+                temperature = currentResult.Temperature?.Metric?.Value?.toFloat(),
+                realFeelTemperature = currentResult.RealFeelTemperature?.Metric?.Value?.toFloat(),
+                realFeelShaderTemperature = currentResult.RealFeelTemperatureShade?.Metric?.Value?.toFloat(),
+                apparentTemperature = currentResult.ApparentTemperature?.Metric?.Value?.toFloat(),
+                windChillTemperature = currentResult.WindChillTemperature?.Metric?.Value?.toFloat(),
+                wetBulbTemperature = currentResult.WetBulbTemperature?.Metric?.Value?.toFloat()
             ),
-            current = Current(
-                weatherText = currentResult.WeatherText,
-                weatherCode = getWeatherCode(currentResult.WeatherIcon),
-                temperature = Temperature(
-                    temperature = currentResult.Temperature?.Metric?.Value?.toFloat(),
-                    realFeelTemperature = currentResult.RealFeelTemperature?.Metric?.Value?.toFloat(),
-                    realFeelShaderTemperature = currentResult.RealFeelTemperatureShade?.Metric?.Value?.toFloat(),
-                    apparentTemperature = currentResult.ApparentTemperature?.Metric?.Value?.toFloat(),
-                    windChillTemperature = currentResult.WindChillTemperature?.Metric?.Value?.toFloat(),
-                    wetBulbTemperature = currentResult.WetBulbTemperature?.Metric?.Value?.toFloat()
-                ),
-                wind = Wind(
-                    direction = currentResult.Wind?.Direction?.Localized,
-                    degree = WindDegree(currentResult.Wind?.Direction?.Degrees?.toFloat(), false),
-                    speed = currentResult.Wind?.Speed?.Metric?.Value?.toFloat(),
-                    level = getWindLevel(context, currentResult.Wind?.Speed?.Metric?.Value?.toFloat())
-                ),
-                uV = UV(
-                    index = currentResult.UVIndex?.toFloat(),
-                    level = getUVLevel(context, currentResult.UVIndex?.toFloat())
-                ),
-                airQuality = if (airQualityHourlyResult.data?.getOrNull(0) != null) getAirQualityForHour(airQualityHourlyResult.data[0].epochDate, airQualityHourlyResult.data) else null,
-                relativeHumidity = currentResult.RelativeHumidity?.toFloat(),
-                pressure = currentResult.Pressure?.Metric?.Value?.toFloat(),
-                visibility = currentResult.Visibility?.Metric?.Value?.toFloat(),
-                dewPoint = currentResult.DewPoint?.Metric?.Value?.toFloat(),
-                cloudCover = currentResult.CloudCover,
-                ceiling = (currentResult.Ceiling?.Metric?.Value?.div(1000.0))?.toFloat(),
-                dailyForecast = convertUnit(context, dailyResult.Headline?.Text),
-                hourlyForecast = convertUnit(context, minuteResult?.Summary?.LongPhrase)
+            wind = Wind(
+                direction = currentResult.Wind?.Direction?.Localized,
+                degree = WindDegree(currentResult.Wind?.Direction?.Degrees?.toFloat(), false),
+                speed = currentResult.Wind?.Speed?.Metric?.Value?.toFloat(),
+                level = getWindLevel(context, currentResult.Wind?.Speed?.Metric?.Value?.toFloat())
             ),
-            yesterday = History(
-                date = Date((currentResult.EpochTime - 24 * 60 * 60).times(1000)),
-                daytimeTemperature = currentResult.TemperatureSummary?.Past24HourRange?.Maximum?.Metric?.Value?.toFloat(),
-                nighttimeTemperature = currentResult.TemperatureSummary?.Past24HourRange?.Minimum?.Metric?.Value?.toFloat()
+            uV = UV(
+                index = currentResult.UVIndex?.toFloat(),
+                level = getUVLevel(context, currentResult.UVIndex?.toFloat())
             ),
-            dailyForecast = getDailyList(context, dailyResult.DailyForecasts, hourlyList, location.timeZone),
-            hourlyForecast = hourlyList,
-            minutelyForecast = getMinutelyList(minuteResult),
-            alertList = getAlertList(alertResultList)
-        )
-        WeatherResultWrapper(weather)
-    } catch (e: Exception) {
-        if (BreezyWeather.instance.debugMode) {
-            e.printStackTrace()
-        }
-        WeatherResultWrapper(null)
-    }
+            airQuality = if (airQualityHourlyResult.data?.getOrNull(0) != null) getAirQualityForHour(airQualityHourlyResult.data[0].epochDate, airQualityHourlyResult.data) else null,
+            relativeHumidity = currentResult.RelativeHumidity?.toFloat(),
+            pressure = currentResult.Pressure?.Metric?.Value?.toFloat(),
+            visibility = currentResult.Visibility?.Metric?.Value?.toFloat(),
+            dewPoint = currentResult.DewPoint?.Metric?.Value?.toFloat(),
+            cloudCover = currentResult.CloudCover,
+            ceiling = (currentResult.Ceiling?.Metric?.Value?.div(1000.0))?.toFloat(),
+            dailyForecast = convertUnit(context, dailyResult.Headline?.Text),
+            hourlyForecast = convertUnit(context, minuteResult?.Summary?.LongPhrase)
+        ),
+        yesterday = History(
+            date = Date((currentResult.EpochTime - 24 * 60 * 60).times(1000)),
+            daytimeTemperature = currentResult.TemperatureSummary?.Past24HourRange?.Maximum?.Metric?.Value?.toFloat(),
+            nighttimeTemperature = currentResult.TemperatureSummary?.Past24HourRange?.Minimum?.Metric?.Value?.toFloat()
+        ),
+        dailyForecast = getDailyList(context, dailyResult.DailyForecasts, hourlyList, location.timeZone),
+        hourlyForecast = hourlyList,
+        minutelyForecast = getMinutelyList(minuteResult),
+        alertList = getAlertList(alertResultList)
+    )
 }
 
 private fun getDailyList(
     context: Context,
     dailyForecasts: List<AccuForecastDailyForecast>,
-    hourlyList: List<Hourly>,
+    hourlyList: List<HourlyWrapper>,
     timeZone: TimeZone
 ): List<Daily> {
     val dailyList: MutableList<Daily> = ArrayList(dailyForecasts.size)
@@ -275,11 +267,11 @@ private fun getHourlyList(
     context: Context,
     resultList: List<AccuForecastHourlyResult>,
     airQualityData: List<AccuAirQualityData>?
-): List<Hourly> {
-    val hourlyList: MutableList<Hourly> = ArrayList(resultList.size)
+): List<HourlyWrapper> {
+    val hourlyList: MutableList<HourlyWrapper> = ArrayList(resultList.size)
     for (result in resultList) {
         hourlyList.add(
-            Hourly(
+            HourlyWrapper(
                 date = Date(result.EpochDateTime.times(1000)),
                 isDaylight = result.IsDaylight,
                 weatherText = result.IconPhrase,

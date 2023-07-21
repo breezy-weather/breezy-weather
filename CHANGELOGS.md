@@ -2,6 +2,7 @@
 
 - Make hourly trends less compressed
 - Add a “Help me choose” button on weather selection dialogs.
+- Fix OpenWeather icons being always daytime.
 - Updated translations.
 
 

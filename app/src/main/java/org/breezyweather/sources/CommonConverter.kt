@@ -11,6 +11,7 @@ import org.breezyweather.common.basic.models.weather.PrecipitationProbability
 import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.basic.models.weather.UV
 import org.breezyweather.common.basic.models.weather.Wind
+import org.breezyweather.common.basic.wrappers.HourlyWrapper
 import org.breezyweather.common.extensions.getFormattedDate
 import java.util.Calendar
 import java.util.Date
@@ -39,7 +40,7 @@ import kotlin.math.sin
 fun completeHalfDayFromHourlyList(
     dailyDate: Date,
     initialHalfDay: HalfDay? = null,
-    halfDayHourlyList: List<Hourly>? = null,
+    halfDayHourlyList: List<HourlyWrapper>? = null,
     isDay: Boolean
 ): HalfDay? {
     if (halfDayHourlyList.isNullOrEmpty()) return initialHalfDay
@@ -246,7 +247,7 @@ fun completeHalfDayFromHourlyList(
  * Returns an AirQuality object calculated from a List of Hourly for the day
  * (at least 18 non-null Hourly.AirQuality required)
  */
-fun getDailyAirQualityFromHourlyList(hourlyList: List<Hourly>? = null): AirQuality? {
+fun getDailyAirQualityFromHourlyList(hourlyList: List<HourlyWrapper>? = null): AirQuality? {
     // We need at least 18 hours for a signification estimation
     if (hourlyList.isNullOrEmpty() || hourlyList.size < 18) return null
     val hourlyListWithAirQuality = hourlyList.filter { it.airQuality != null }
@@ -266,7 +267,7 @@ fun getDailyAirQualityFromHourlyList(hourlyList: List<Hourly>? = null): AirQuali
  * Returns an AirQuality object calculated from a List of Hourly for the day
  * (at least 18 non-null Hourly.AirQuality required)
  */
-fun getDailyUVFromHourlyList(context: Context, hourlyList: List<Hourly>? = null): UV? {
+fun getDailyUVFromHourlyList(context: Context, hourlyList: List<HourlyWrapper>? = null): UV? {
     if (hourlyList.isNullOrEmpty()) return null
     val hourlyListWithUV = hourlyList.filter { it.uV?.index != null }
     if (hourlyListWithUV.isEmpty()) return null
@@ -284,42 +285,37 @@ fun getDailyUVFromHourlyList(context: Context, hourlyList: List<Hourly>? = null)
  */
 fun completeHourlyListFromDailyList(
     context: Context,
-    hourlyList: List<Hourly>,
+    hourlyList: List<HourlyWrapper>,
     dailyList: List<Daily>,
-    timeZone: TimeZone,
-    completeDaylight: Boolean = false
+    timeZone: TimeZone
 ): List<Hourly> {
-    if (hourlyList.isEmpty() || dailyList.isEmpty()) return hourlyList
-
     val dailyListByDate = dailyList.groupBy { it.date.getFormattedDate(timeZone, "yyyyMMdd") }
     val newHourlyList: MutableList<Hourly> = ArrayList(hourlyList.size)
     hourlyList.forEach { hourly ->
-        if (completeDaylight || hourly.isDaylight) {
-            val dateForHourFormatted = hourly.date.getFormattedDate(timeZone, "yyyyMMdd")
-            dailyListByDate.getOrDefault(dateForHourFormatted, null)
-                ?.first()?.let { daily ->
-                    if (daily.sun?.riseDate != null && daily.sun.setDate != null) {
-                        if (hourly.uV?.index == null && daily.uV?.index != null) {
-                            newHourlyList.add(if (completeDaylight) hourly.copy(
-                                isDaylight = isDaylight(daily.sun.riseDate, daily.sun.setDate, hourly.date, timeZone),
-                                uV = getCurrentUV(context, daily.uV.index, hourly.date, daily.sun.riseDate, daily.sun.setDate, timeZone)
-                            ) else hourly.copy(
-                                uV = getCurrentUV(context, daily.uV.index, hourly.date, daily.sun.riseDate, daily.sun.setDate, timeZone)
+        val dateForHourFormatted = hourly.date.getFormattedDate(timeZone, "yyyyMMdd")
+        dailyListByDate.getOrDefault(dateForHourFormatted, null)
+            ?.first()?.let { daily ->
+                if (daily.sun?.riseDate != null && daily.sun.setDate != null) {
+                    if (hourly.uV?.index == null && daily.uV?.index != null) {
+                        newHourlyList.add(if (hourly.isDaylight == null) hourly.copyToHourly(
+                            isDaylight = isDaylight(daily.sun.riseDate, daily.sun.setDate, hourly.date, timeZone),
+                            uV = getCurrentUV(context, daily.uV.index, hourly.date, daily.sun.riseDate, daily.sun.setDate, timeZone)
+                        ) else hourly.copyToHourly(
+                            uV = getCurrentUV(context, daily.uV.index, hourly.date, daily.sun.riseDate, daily.sun.setDate, timeZone)
+                        ))
+                        return@forEach // continue to next item
+                    } else if (hourly.isDaylight == null) {
+                        val isDaylight = isDaylight(daily.sun.riseDate, daily.sun.setDate, hourly.date, timeZone)
+                        if (hourly.isDaylight != isDaylight) {
+                            newHourlyList.add(hourly.copyToHourly(
+                                isDaylight = isDaylight
                             ))
                             return@forEach // continue to next item
-                        } else if (completeDaylight) {
-                            val isDaylight = isDaylight(daily.sun.riseDate, daily.sun.setDate, hourly.date, timeZone)
-                            if (hourly.isDaylight != isDaylight) {
-                                newHourlyList.add(hourly.copy(
-                                    isDaylight = isDaylight
-                                ))
-                                return@forEach // continue to next item
-                            }
                         }
                     }
                 }
-        }
-        newHourlyList.add(hourly)
+            }
+        newHourlyList.add(hourly.copyToHourly())
     }
 
     return newHourlyList

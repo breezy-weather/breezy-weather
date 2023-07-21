@@ -4,9 +4,9 @@ import java.io.Serializable
 import java.util.*
 
 data class Weather(
-    val base: Base,
+    val base: Base = Base(),
     val current: Current? = null,
-    val yesterday: History? = null, // FIXME: Should not be mutable
+    val yesterday: History? = null,
     val dailyForecast: List<Daily> = emptyList(),
     val hourlyForecast: List<Hourly> = emptyList(),
     val minutelyForecast: List<Minutely> = emptyList(),

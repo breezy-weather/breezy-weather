@@ -4,10 +4,10 @@ import android.content.Context
 import io.reactivex.rxjava3.core.Observable
 import kotlinx.coroutines.rx3.awaitFirstOrElse
 import org.breezyweather.common.basic.models.Location
+import org.breezyweather.common.basic.models.weather.Base
 import org.breezyweather.common.basic.models.weather.Weather
 import org.breezyweather.common.exceptions.LocationException
 import org.breezyweather.common.exceptions.NoNetworkException
-import org.breezyweather.common.exceptions.ParsingException
 import org.breezyweather.common.exceptions.SourceNotInstalledException
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.isOnline
@@ -15,6 +15,7 @@ import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.db.repositories.HistoryEntityRepository
 import org.breezyweather.db.repositories.WeatherEntityRepository
+import java.util.Date
 import javax.inject.Inject
 
 class WeatherHelper @Inject constructor(
@@ -46,18 +47,19 @@ class WeatherHelper @Inject constructor(
         return service
             .requestWeather(context, location.copy())
             .map { t ->
-                if (t.result != null) {
-                    WeatherEntityRepository.writeWeather(location, t.result)
-                    if (t.result.yesterday == null) {
-                        t.result.copy(
-                            yesterday = HistoryEntityRepository.readHistory(location, t.result)
-                        )
-                    } else {
-                        t.result
-                    }
-                } else {
-                    throw ParsingException()
-                }
+                val weather = Weather(
+                    base = t.base ?: Base(),
+                    current = t.current,
+                    yesterday = t.yesterday,
+                    dailyForecast = t.dailyForecast ?: emptyList(),
+                    hourlyForecast = completeHourlyListFromDailyList(context, t.hourlyForecast ?: emptyList(), t.dailyForecast ?: emptyList(), location.timeZone),
+                    minutelyForecast = t.minutelyForecast ?: emptyList(),
+                    alertList = t.alertList ?: emptyList()
+                )
+                WeatherEntityRepository.writeWeather(location, weather)
+                if (weather.yesterday == null) {
+                    weather.copy(yesterday = HistoryEntityRepository.readHistory(location, t.base?.publishDate ?: Date()))
+                } else weather
             }
     }
 

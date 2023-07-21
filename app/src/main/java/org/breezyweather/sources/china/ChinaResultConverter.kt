@@ -3,11 +3,13 @@ package org.breezyweather.sources.china
 import android.content.Context
 import android.graphics.Color
 import androidx.annotation.ColorInt
-import org.breezyweather.BreezyWeather
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.*
+import org.breezyweather.common.basic.wrappers.HourlyWrapper
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
+import org.breezyweather.common.exceptions.WeatherException
+import org.breezyweather.sources.china.json.ChinaForecastHourly
 import org.breezyweather.sources.china.json.ChinaForecastResult
 import org.breezyweather.sources.china.json.ChinaLocationResult
 import org.breezyweather.sources.china.json.ChinaMinutelyResult
@@ -36,64 +38,55 @@ fun convert(
 ): WeatherResultWrapper {
     // If the API doesn’t return current, hourly or daily, consider data as garbage and keep cached data
     if (forecastResult.current == null || forecastResult.forecastDaily == null || forecastResult.forecastHourly == null) {
-        return WeatherResultWrapper(null)
+        throw WeatherException()
     }
 
-    return try {
-        val weather = Weather(
-            base = Base(
-                cityId = location.cityId,
-                publishDate = forecastResult.current.pubTime
+    return WeatherResultWrapper(
+        base = Base(
+            publishDate = forecastResult.current.pubTime
+        ),
+        current = Current(
+            weatherText = getWeatherText(forecastResult.current.weather),
+            weatherCode = getWeatherCode(forecastResult.current.weather),
+            temperature = Temperature(
+                temperature = forecastResult.current.temperature?.value?.toFloatOrNull(),
+                apparentTemperature = forecastResult.current.feelsLike?.value?.toFloatOrNull()
             ),
-            current = Current(
-                weatherText = getWeatherText(forecastResult.current.weather),
-                weatherCode = getWeatherCode(forecastResult.current.weather),
-                temperature = Temperature(
-                    temperature = forecastResult.current.temperature?.value?.toFloatOrNull(),
-                    apparentTemperature = forecastResult.current.feelsLike?.value?.toFloatOrNull()
+            wind = if (forecastResult.current.wind != null) Wind(
+                direction = getWindDirection(context, forecastResult.current.wind.direction?.value?.toFloatOrNull()),
+                degree = WindDegree(
+                    degree = forecastResult.current.wind.direction?.value?.toFloatOrNull(),
+                    isNoDirection = false
                 ),
-                wind = if (forecastResult.current.wind != null) Wind(
-                    direction = getWindDirection(context, forecastResult.current.wind.direction?.value?.toFloatOrNull()),
-                    degree = WindDegree(
-                        degree = forecastResult.current.wind.direction?.value?.toFloatOrNull(),
-                        isNoDirection = false
-                    ),
-                    speed = forecastResult.current.wind.speed?.value?.toFloatOrNull(),
-                    level = getWindLevel(context, forecastResult.current.wind.speed?.value?.toFloatOrNull())
-                ) else null,
-                uV = if (forecastResult.current.uvIndex != null) UV(
-                    index = forecastResult.current.uvIndex.toFloatOrNull(),
-                    description = getUVDescription(forecastResult.current.uvIndex.toInt())
-                ) else null,
-                airQuality = getAirQuality(forecastResult),
-                relativeHumidity = if (!forecastResult.current.humidity?.value.isNullOrEmpty()) forecastResult.current.humidity!!.value!!.toFloatOrNull() else null,
-                pressure = if (!forecastResult.current.pressure?.value.isNullOrEmpty()) forecastResult.current.pressure!!.value!!.toFloat() else null,
-                visibility = if (!forecastResult.current.visibility?.value.isNullOrEmpty()) forecastResult.current.visibility!!.value!!.toFloatOrNull() else null,
-                hourlyForecast = if (minutelyResult.precipitation != null) minutelyResult.precipitation.description else null
-            ),
-            yesterday = getYesterday(forecastResult),
-            dailyForecast = getDailyList(context, forecastResult.current.pubTime, location.timeZone, forecastResult.forecastDaily),
-            hourlyForecast = getHourlyList(
-                context,
-                forecastResult.current.pubTime,
-                location.timeZone,
-                forecastResult.forecastDaily.sunRiseSet?.value?.getOrNull(0)?.from,
-                forecastResult.forecastDaily.sunRiseSet?.value?.getOrNull(0)?.to,
-                forecastResult.forecastHourly
-            ),
-            minutelyForecast = getMinutelyList(
-                location.timeZone,
-                minutelyResult
-            ),
-            alertList = getAlertList(forecastResult)
-        )
-        WeatherResultWrapper(weather)
-    } catch (e: Exception) {
-        if (BreezyWeather.instance.debugMode) {
-            e.printStackTrace()
-        }
-        WeatherResultWrapper(null)
-    }
+                speed = forecastResult.current.wind.speed?.value?.toFloatOrNull(),
+                level = getWindLevel(context, forecastResult.current.wind.speed?.value?.toFloatOrNull())
+            ) else null,
+            uV = if (forecastResult.current.uvIndex != null) UV(
+                index = forecastResult.current.uvIndex.toFloatOrNull(),
+                description = getUVDescription(forecastResult.current.uvIndex.toInt())
+            ) else null,
+            airQuality = getAirQuality(forecastResult),
+            relativeHumidity = if (!forecastResult.current.humidity?.value.isNullOrEmpty()) forecastResult.current.humidity!!.value!!.toFloatOrNull() else null,
+            pressure = if (!forecastResult.current.pressure?.value.isNullOrEmpty()) forecastResult.current.pressure!!.value!!.toFloat() else null,
+            visibility = if (!forecastResult.current.visibility?.value.isNullOrEmpty()) forecastResult.current.visibility!!.value!!.toFloatOrNull() else null,
+            hourlyForecast = if (minutelyResult.precipitation != null) minutelyResult.precipitation.description else null
+        ),
+        yesterday = getYesterday(forecastResult),
+        dailyForecast = getDailyList(context, forecastResult.current.pubTime, location.timeZone, forecastResult.forecastDaily),
+        hourlyForecast = getHourlyList(
+            context,
+            forecastResult.current.pubTime,
+            location.timeZone,
+            forecastResult.forecastDaily.sunRiseSet?.value?.getOrNull(0)?.from,
+            forecastResult.forecastDaily.sunRiseSet?.value?.getOrNull(0)?.to,
+            forecastResult.forecastHourly
+        ),
+        minutelyForecast = getMinutelyList(
+            location.timeZone,
+            minutelyResult
+        ),
+        alertList = getAlertList(forecastResult)
+    )
 }
 
 private fun getAirQuality(result: ChinaForecastResult): AirQuality? {
@@ -205,11 +198,11 @@ private fun getHourlyList(
     context: Context, publishDate: Date,
     timeZone: TimeZone,
     sunrise: Date?, sunset: Date?,
-    hourlyForecast: org.breezyweather.sources.china.json.ChinaForecastHourly
-): List<Hourly> {
+    hourlyForecast: ChinaForecastHourly
+): List<HourlyWrapper> {
     if (hourlyForecast.weather == null || hourlyForecast.weather.value.isNullOrEmpty()) return emptyList()
 
-    val hourlyList: MutableList<Hourly> = ArrayList(hourlyForecast.weather.value.size)
+    val hourlyList: MutableList<HourlyWrapper> = ArrayList(hourlyForecast.weather.value.size)
     hourlyForecast.weather.value.forEachIndexed { index, weather ->
         val calendar = publishDate.toCalendarWithTimeZone(timeZone).apply {
             add(Calendar.HOUR_OF_DAY, index) // FIXME: Wrong TimeZone for the first item
@@ -219,7 +212,7 @@ private fun getHourlyList(
         }
         val date = calendar.time
         hourlyList.add(
-            Hourly(
+            HourlyWrapper(
                 date = date,
                 isDaylight = isDaylight(sunrise, sunset, date, timeZone),
                 weatherText = getWeatherText(weather.toString()),

@@ -15,7 +15,7 @@ import java.util.TimeZone
 /**
  * Hourly.
  */
-class Hourly(
+data class Hourly(
     val date: Date,
     val isDaylight: Boolean = true,
     val weatherText: String? = null,
@@ -57,24 +57,4 @@ class Hourly(
             hour.toString() + context.getString(R.string.of_clock)
         }
     }
-
-    /**
-     * Only contains UV at the moment but feel free to add other parameters if required
-     */
-    fun copy(
-        isDaylight: Boolean? = null,
-        uV: UV? = null
-    ) = Hourly(
-        date = this.date,
-        isDaylight = isDaylight ?: this.isDaylight,
-        weatherText = this.weatherText,
-        weatherCode = this.weatherCode,
-        temperature = this.temperature,
-        precipitation = this.precipitation,
-        precipitationProbability = this.precipitationProbability,
-        wind = this.wind,
-        airQuality = this.airQuality,
-        pollen = this.pollen,
-        uV = uV ?: this.uV
-    )
 }

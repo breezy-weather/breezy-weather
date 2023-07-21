@@ -2,7 +2,6 @@ package org.breezyweather.db.repositories
 
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.History
-import org.breezyweather.common.basic.models.weather.Weather
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.db.ObjectBox.boxStore
 import org.breezyweather.db.entities.HistoryEntity
@@ -22,12 +21,12 @@ object HistoryEntityRepository {
     }
 
     // select.
-    fun readHistory(location: Location, weather: Weather): History? {
+    fun readHistory(location: Location, publishDate: Date): History? {
         return HistoryEntityGenerator.generate(
             selectYesterdayHistoryEntity(
                 location.cityId,
                 location.weatherSource,
-                weather.base.publishDate,
+                publishDate,
                 location.timeZone
             )
         )

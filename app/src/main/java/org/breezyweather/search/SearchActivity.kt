@@ -22,7 +22,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
@@ -32,7 +31,6 @@ import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.ui.widgets.Material3Scaffold
 import org.breezyweather.common.ui.widgets.Material3SearchBarInputField
-import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.settings.preference.composables.RadioButton
 import org.breezyweather.sources.SourceManager
 import org.breezyweather.theme.compose.DayNightTheme
