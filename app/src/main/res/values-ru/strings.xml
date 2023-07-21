@@ -608,4 +608,5 @@
     <string name="settings_weather_provider_portal">Канал</string>
     <string name="setting_weather_provider_accu_days">Дни</string>
     <string name="settings_provider_api_key">Ключ API</string>
+    <string name="settings_background_updates_worker_info_summary">Последний запуск: $</string>
 </resources>
