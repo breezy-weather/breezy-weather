@@ -296,6 +296,8 @@
     <string name="action_close">Close</string>
     <string name="action_share">Share</string>
     <string name="action_show_errors">Tap to see details</string>
+    <!-- Button shown in the weather selection dialog -->
+    <string name="action_help_me_choose">Help me choose</string>
     <!-- Dialogs -->
     <string name="dialog_permissions_notification_title">Stay informed</string>
     <string name="dialog_permissions_notification_content">Tap here to enable notifications about weather alerts, or decide later in Settings.</string>

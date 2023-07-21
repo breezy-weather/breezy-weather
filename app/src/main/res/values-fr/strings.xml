@@ -411,6 +411,7 @@
     <string name="settings_background_updates_refresh_24h">24 heures</string>
     <string name="weather_refresh_skipped_already_recently_updated">Déjà mis à jour récemment</string>
     <string name="action_show_errors">Appuyez pour voir les détails</string>
+    <string name="action_help_me_choose">Aidez-moi à choisir</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignorer quand la batterie est faible</string>
     <string name="settings_background_updates_section_troubleshoot">Résolution de problèmes</string>
     <string name="settings_background_updates_battery_optimization">Désactiver l’optimisation de la batterie</string>

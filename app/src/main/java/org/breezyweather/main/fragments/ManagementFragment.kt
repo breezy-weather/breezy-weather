@@ -38,6 +38,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
@@ -253,6 +254,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
         }
 
         if (dialogCurrentLocationProviderOpenState.value) {
+            val uriHandler = LocalUriHandler.current
             AlertDialog(
                 onDismissRequest = { viewModel.closeChooseCurrentLocationWeatherSourceDialog() },
                 title = {
@@ -305,6 +307,17 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                     ) {
                         Text(
                             text = stringResource(R.string.action_cancel),
+                            color = MaterialTheme.colorScheme.primary,
+                            style = MaterialTheme.typography.labelLarge,
+                        )
+                    }
+                },
+                dismissButton = {
+                    TextButton(
+                        onClick = { uriHandler.openUri("https://github.com/breezy-weather/breezy-weather/blob/main/docs/PROVIDERS.md") }
+                    ) {
+                        Text(
+                            text = stringResource(R.string.action_help_me_choose),
                             color = MaterialTheme.colorScheme.primary,
                             style = MaterialTheme.typography.labelLarge,
                         )
