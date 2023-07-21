@@ -1,6 +1,6 @@
 # Next version
 
-
+- Make hourly trends less compressed
 
 
 # Version 4.3.0-beta
