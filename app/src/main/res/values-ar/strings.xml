@@ -92,13 +92,13 @@
     <string name="details">تفاصيل</string>
     <string name="ephemeris">الشمس والقمر</string>
     <string name="action_next">التالي</string>
-    <string name="action_done">تم</string>
+    <string name="action_done">إنتهى</string>
     <string name="action_cancel" tools:ignore="ButtonCase">إلغاء</string>
     <string name="settings_enabled">ممكّن</string>
     <string name="settings_disabled">مُعطل</string>
-    <string name="action_set">ضبط</string>
+    <string name="action_set">تعيين</string>
     <string name="action_help">مساعدة</string>
-    <string name="action_learn_more">تعرف على المزيد</string>
+    <string name="action_learn_more">التعرف على المزيد</string>
     <string name="about_app">حول التطبيق</string>
     <string name="about_translators">المترجمون</string>
     <string name="date_format_short">M-d</string>
@@ -610,4 +610,5 @@
     <string name="temperature_degree_day_heating">يوم درجة الحرارة</string>
     <string name="settings_weather_source_open_weather_one_call_version">إصدار OneCall</string>
     <string name="settings_background_updates_worker_info_summary">آخر تشغيل: $</string>
+    <string name="action_help_me_choose">ساعدني في الاختيار</string>
 </resources>
