@@ -1,3 +1,8 @@
+# Next version
+
+
+
+
 # Version 4.3.0-beta
 
 /!\ Custom API keys were reset in this version, following a move to a separate config store from the main app /!\
