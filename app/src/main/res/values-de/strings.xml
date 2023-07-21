@@ -604,4 +604,6 @@
     <string name="temperature_degree_day_heating">Heizgradtag</string>
     <string name="notification_update_error">%1$d Aktualisierung(en) fehlgeschlagen</string>
     <string name="message_source_not_installed_error_content">Diese Quelle ist nicht mehr verfügbar, bitte löschen Sie den Ort und erstellen Sie ihn erneut über eine andere Quelle.</string>
+    <string name="action_help_me_choose">Auswahlhilfe</string>
+    <string name="settings_background_updates_worker_info_summary">Letzte Ausführung: $</string>
 </resources>
