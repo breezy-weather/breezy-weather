@@ -263,7 +263,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
                             + weather.current.airQuality.getIndex(null)
                             + ")")
                 } else null
-            "wind" -> weather.current?.wind?.getShortWindDescription(context, speedUnit)
+            "wind" -> weather.current?.wind?.getShortDescription(context, speedUnit)
             "lunar" -> when (viewStyle) {
                 "rectangle" -> (location.getCityName(context)
                         + " "

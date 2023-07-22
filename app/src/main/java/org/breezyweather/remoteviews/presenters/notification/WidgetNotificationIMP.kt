@@ -172,10 +172,10 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                     R.id.notification_base_aqiAndWind,
                     context.getString(R.string.air_quality) + " - " + current.airQuality.getName(context)
                 )
-            } else if (current.wind?.level != null) {
+            } else if (current.wind?.getStrength(context) != null) {
                 setTextViewText(
                     R.id.notification_base_aqiAndWind,
-                    context.getString(R.string.wind) + " - " + current.wind.level
+                    context.getString(R.string.wind) + " - " + current.wind.getStrength(context)
                 )
             }
             if (!current.weatherText.isNullOrEmpty()) {

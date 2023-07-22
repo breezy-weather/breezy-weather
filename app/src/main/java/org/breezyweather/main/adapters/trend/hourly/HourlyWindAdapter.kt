@@ -41,20 +41,20 @@ class HourlyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUn
             super.onBindView(activity, location, talkBackBuilder, position)
             val hourly = location.weather!!.hourlyForecast[position]
 
-            if (hourly.wind != null && hourly.wind.isValidSpeed) {
+            if (hourly.wind != null && hourly.wind.isValid) {
                 talkBackBuilder
                     .append(", ").append(activity.getString(R.string.tag_wind))
-                    .append(" : ").append(hourly.wind.getWindDescription(activity, mSpeedUnit))
+                    .append(" : ").append(hourly.wind.getDescription(activity, mSpeedUnit))
             }
-            val windColor = hourly.wind?.getWindColor(activity) ?: Color.TRANSPARENT
-            val hourlyIcon = if (hourly.wind?.degree?.degree != null) {
+            val windColor = hourly.wind?.getColor(activity) ?: Color.TRANSPARENT
+            val hourlyIcon = if (hourly.wind?.degree == -1f) {
+                AppCompatResources.getDrawable(activity, R.drawable.ic_replay)
+            } else if (hourly.wind?.degree != null) {
                 RotateDrawable(
                     AppCompatResources.getDrawable(activity, R.drawable.ic_navigation)
                 ).apply {
-                    rotate(hourly.wind.degree.degree)
+                    rotate(hourly.wind.degree)
                 }
-            } else if (hourly.wind?.degree != null && hourly.wind.degree.isNoDirection) {
-                AppCompatResources.getDrawable(activity, R.drawable.ic_replay)
             } else null
             hourlyIcon?.colorFilter = PorterDuffColorFilter(windColor, PorterDuff.Mode.SRC_ATOP)
             hourlyItem.setIconDrawable(hourlyIcon, missingIconVisibility = View.INVISIBLE)

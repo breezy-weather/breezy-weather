@@ -138,10 +138,10 @@ private fun buildRemoteViews(
             R.id.widget_material_you_forecast_aqiOrWind,
             context.getString(R.string.air_quality) + " - " + weather.current.airQuality.getName(context)
         )
-    } else if (weather.current?.wind != null && weather.current.wind.getShortWindDescription(context, speedUnit).isNotEmpty()) {
+    } else if (weather.current?.wind != null && weather.current.wind.getShortDescription(context, speedUnit).isNotEmpty()) {
         views.setTextViewText(
             R.id.widget_material_you_forecast_aqiOrWind,
-            context.getString(R.string.wind) + " - " + weather.current.wind.getShortWindDescription(context, speedUnit)
+            context.getString(R.string.wind) + " - " + weather.current.wind.getShortDescription(context, speedUnit)
         )
     } else views.setTextViewText(R.id.widget_material_you_forecast_aqiOrWind, null)
 

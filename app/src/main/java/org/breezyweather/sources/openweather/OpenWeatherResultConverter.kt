@@ -10,6 +10,7 @@ import org.breezyweather.sources.*
 import org.breezyweather.sources.openweather.json.*
 import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
 import org.breezyweather.common.exceptions.WeatherException
+import org.breezyweather.common.extensions.toDate
 import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
@@ -47,10 +48,8 @@ fun convert(
             ),
             precipitationProbability = PrecipitationProbability(total = result.pop),
             wind = Wind(
-                direction = getWindDirection(context, result.windDeg?.toFloat()),
-                degree = WindDegree(result.windDeg?.toFloat(), false),
-                speed = result.windSpeed?.times(3.6f),
-                level = getWindLevel(context, result.windSpeed?.times(3.6f))
+                degree = result.windDeg?.toFloat(),
+                speed = result.windSpeed?.times(3.6f)
             ),
             airQuality = getAirQuality(result.dt, airPollutionResult),
             uV = UV(index = result.uvi)
@@ -82,10 +81,15 @@ fun convert(
         }
     }
 
-    val dailyList = getDailyList(context, location.timeZone, oneCallResult.daily, hourlyList, hourlyByHalfDay)
+    val dailyList = getDailyList(
+        location.timeZone,
+        oneCallResult.daily,
+        hourlyList,
+        hourlyByHalfDay
+    )
     return WeatherResultWrapper(
         base = Base(
-            publishDate = if (oneCallResult.current?.dt != null) Date(oneCallResult.current.dt.times(1000)) else Date()
+            publishDate = oneCallResult.current?.dt?.times(1000)?.toDate() ?: Date()
         ),
         current = if (oneCallResult.current != null) Current(
             weatherText = oneCallResult.current.weather?.getOrNull(0)?.description?.replaceFirstChar {
@@ -97,10 +101,8 @@ fun convert(
                 apparentTemperature = oneCallResult.current.feelsLike
             ),
             wind = Wind(
-                direction = getWindDirection(context, oneCallResult.current.windDeg?.toFloat()),
-                degree = WindDegree(oneCallResult.current.windDeg?.toFloat(), false),
-                speed = oneCallResult.current.windSpeed?.times(3.6f),
-                level = getWindLevel(context, oneCallResult.current.windSpeed?.times(3.6f))
+                degree = oneCallResult.current.windDeg?.toFloat(),
+                speed = oneCallResult.current.windSpeed?.times(3.6f)
             ),
             uV = UV(index = oneCallResult.current.uvi),
             airQuality = hourlyList.getOrNull(1)?.airQuality,
@@ -118,7 +120,6 @@ fun convert(
 }
 
 private fun getDailyList(
-    context: Context,
     timeZone: TimeZone,
     dailyResult: List<OpenWeatherOneCallDaily>,
     hourlyList: List<HourlyWrapper>,
@@ -169,16 +170,19 @@ private fun getDailyList(
                     isDay = false
                 ),
                 sun = Astro(
-                    riseDate = if (dailyForecast.sunrise != null) Date(dailyForecast.sunrise.times(1000)) else null,
-                    setDate = if (dailyForecast.sunset != null) Date(dailyForecast.sunset.times(1000)) else null
+                    riseDate = dailyForecast.sunrise?.times(1000)?.toDate(),
+                    setDate = dailyForecast.sunset?.times(1000)?.toDate()
                 ),
                 moon = Astro(
-                    riseDate = if (dailyForecast.moonrise != null) Date(dailyForecast.moonrise.times(1000)) else null,
-                    setDate = if (dailyForecast.moonset != null) Date(dailyForecast.moonset.times(1000)) else null
+                    riseDate = dailyForecast.moonrise?.times(1000)?.toDate(),
+                    setDate = dailyForecast.moonset?.times(1000)?.toDate()
                 ),
                 airQuality = getDailyAirQualityFromHourlyList(hourlyListByDay.getOrDefault(dailyDateFormatted, null)),
                 uV = UV(index = dailyForecast.uvi),
-                hoursOfSun = if (dailyForecast.sunrise != null && dailyForecast.sunset != null) getHoursOfDay(Date(dailyForecast.sunrise.times(1000)), Date(dailyForecast.sunset.times(1000))) else null
+                hoursOfSun = getHoursOfDay(
+                    dailyForecast.sunrise?.times(1000)?.toDate(),
+                    dailyForecast.sunset?.times(1000)?.toDate()
+                )
             )
         )
     }

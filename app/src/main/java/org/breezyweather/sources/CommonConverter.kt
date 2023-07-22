@@ -1,7 +1,6 @@
 package org.breezyweather.sources
 
 import android.content.Context
-import org.breezyweather.R
 import org.breezyweather.common.basic.models.weather.AirQuality
 import org.breezyweather.common.basic.models.weather.Daily
 import org.breezyweather.common.basic.models.weather.HalfDay
@@ -10,7 +9,6 @@ import org.breezyweather.common.basic.models.weather.Precipitation
 import org.breezyweather.common.basic.models.weather.PrecipitationProbability
 import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.basic.models.weather.UV
-import org.breezyweather.common.basic.models.weather.Wind
 import org.breezyweather.common.basic.wrappers.HourlyWrapper
 import org.breezyweather.common.extensions.getFormattedDate
 import java.util.Calendar
@@ -329,44 +327,6 @@ fun completeHourlyListFromDailyList(
     return newHourlyList
 }
 
-fun getWindLevel(context: Context, speed: Float?): String? {
-    return if (speed == null) {
-        null
-    } else when (speed) {
-        in 0f..Wind.WIND_SPEED_0 -> context.getString(R.string.wind_strength_0)
-        in Wind.WIND_SPEED_0..Wind.WIND_SPEED_1 -> context.getString(R.string.wind_strength_1)
-        in Wind.WIND_SPEED_1..Wind.WIND_SPEED_2 -> context.getString(R.string.wind_strength_2)
-        in Wind.WIND_SPEED_2..Wind.WIND_SPEED_3 -> context.getString(R.string.wind_strength_3)
-        in Wind.WIND_SPEED_3..Wind.WIND_SPEED_4 -> context.getString(R.string.wind_strength_4)
-        in Wind.WIND_SPEED_4..Wind.WIND_SPEED_5 -> context.getString(R.string.wind_strength_5)
-        in Wind.WIND_SPEED_5..Wind.WIND_SPEED_6 -> context.getString(R.string.wind_strength_6)
-        in Wind.WIND_SPEED_6..Wind.WIND_SPEED_7 -> context.getString(R.string.wind_strength_7)
-        in Wind.WIND_SPEED_7..Wind.WIND_SPEED_8 -> context.getString(R.string.wind_strength_8)
-        in Wind.WIND_SPEED_8..Wind.WIND_SPEED_9 -> context.getString(R.string.wind_strength_9)
-        in Wind.WIND_SPEED_9..Wind.WIND_SPEED_10 -> context.getString(R.string.wind_strength_10)
-        in Wind.WIND_SPEED_10..Wind.WIND_SPEED_11 -> context.getString(R.string.wind_strength_11)
-        in Wind.WIND_SPEED_11..Float.MAX_VALUE -> context.getString(R.string.wind_strength_12)
-        else -> null
-    }
-}
-
-fun getWindDirection(context: Context, degree: Float?): String? {
-    return if (degree == null) {
-        null
-    } else when(degree) {
-        in 0f..22.5f -> context.getString(R.string.wind_direction_short_N)
-        in 22.5f..67.5f -> context.getString(R.string.wind_direction_short_NE)
-        in 67.5f..112.5f -> context.getString(R.string.wind_direction_short_E)
-        in 112.5f..157.5f -> context.getString(R.string.wind_direction_short_SE)
-        in 157.5f..202.5f -> context.getString(R.string.wind_direction_short_S)
-        in 202.5f..247.5f -> context.getString(R.string.wind_direction_short_SW)
-        in 247.5f..292.5f -> context.getString(R.string.wind_direction_short_W)
-        in 292.5f..337.5f -> context.getString(R.string.wind_direction_short_NW)
-        in 337.5f..360f -> context.getString(R.string.wind_direction_short_N)
-        else -> context.getString(R.string.wind_direction_short_variable)
-    }
-}
-
 fun getMoonPhaseAngle(phase: String?): Int? {
     return if (phase.isNullOrEmpty()) {
         null
@@ -379,19 +339,6 @@ fun getMoonPhaseAngle(phase: String?): Int? {
         "third", "thirdquarter", "third quarter", "last", "lastquarter", "last quarter" -> 270
         "waningcrescent", "waning crescent" -> 315
         else -> 360
-    }
-}
-
-fun getUVLevel(context: Context, uvIndex: Float?): String? {
-    return if (uvIndex == null) {
-        null
-    } else when (uvIndex) {
-        in 0f..UV.UV_INDEX_LOW -> context.getString(R.string.uv_index_0_2)
-        in UV.UV_INDEX_LOW..UV.UV_INDEX_MIDDLE -> context.getString(R.string.uv_index_3_5)
-        in UV.UV_INDEX_MIDDLE..UV.UV_INDEX_HIGH -> context.getString(R.string.uv_index_6_7)
-        in UV.UV_INDEX_HIGH..UV.UV_INDEX_EXCESSIVE -> context.getString(R.string.uv_index_8_10)
-        in UV.UV_INDEX_EXCESSIVE..Float.MAX_VALUE -> context.getString(R.string.uv_index_11)
-        else -> null
     }
 }
 

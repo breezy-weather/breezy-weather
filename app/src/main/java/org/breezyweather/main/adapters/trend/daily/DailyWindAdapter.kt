@@ -42,25 +42,25 @@ class DailyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUni
             super.onBindView(activity, location, talkBackBuilder, position)
             val daily = location.weather!!.dailyForecast[position]
 
-            if (daily.day?.wind != null && daily.day.wind.isValidSpeed) {
+            if (daily.day?.wind != null && daily.day.wind.isValid) {
                 talkBackBuilder
                     .append(", ").append(activity.getString(R.string.daytime))
-                    .append(" : ").append(daily.day.wind.getWindDescription(activity, mSpeedUnit))
+                    .append(" : ").append(daily.day.wind.getDescription(activity, mSpeedUnit))
             }
-            val dayWindColor = daily.day?.wind?.getWindColor(activity) ?: Color.TRANSPARENT
-            val dayIcon = if (daily.day?.wind?.degree?.degree != null) {
+            val dayWindColor = daily.day?.wind?.getColor(activity) ?: Color.TRANSPARENT
+            val dayIcon = if (daily.day?.wind?.degree == -1f) {
+                AppCompatResources.getDrawable(activity, R.drawable.ic_replay)
+            } else if (daily.day?.wind?.degree != null) {
                 RotateDrawable(
                     AppCompatResources.getDrawable(activity, R.drawable.ic_navigation)
                 ).apply {
-                    rotate(daily.day.wind.degree.degree)
+                    rotate(daily.day.wind.degree)
                 }
-            } else if (daily.day?.wind?.degree != null && daily.day.wind.degree.isNoDirection) {
-                AppCompatResources.getDrawable(activity, R.drawable.ic_replay)
             } else null
             dayIcon?.colorFilter = PorterDuffColorFilter(dayWindColor, PorterDuff.Mode.SRC_ATOP)
             dailyItem.setDayIconDrawable(dayIcon, missingIconVisibility = View.INVISIBLE)
 
-            val nightWindColor = daily.night?.wind?.getWindColor(activity) ?: Color.TRANSPARENT
+            val nightWindColor = daily.night?.wind?.getColor(activity) ?: Color.TRANSPARENT
 
             mDoubleHistogramView.setData(
                 daily.day?.wind?.speed ?: 0f,
@@ -77,19 +77,19 @@ class DailyWindAdapter(activity: GeoActivity, location: Location, unit: SpeedUni
             mDoubleHistogramView.setTextColors(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
             mDoubleHistogramView.setHistogramAlphas(1f, 0.5f)
 
-            if (daily.night?.wind != null && daily.night.wind.isValidSpeed) {
+            if (daily.night?.wind != null && daily.night.wind.isValid) {
                 talkBackBuilder
                     .append(", ").append(activity.getString(R.string.nighttime))
-                    .append(" : ").append(daily.night.wind.getWindDescription(activity, mSpeedUnit))
+                    .append(" : ").append(daily.night.wind.getDescription(activity, mSpeedUnit))
             }
-            val nightIcon = if (daily.night?.wind?.degree?.degree != null) {
+            val nightIcon = if (daily.night?.wind?.degree == -1f) {
+                AppCompatResources.getDrawable(activity, R.drawable.ic_replay)
+            } else if (daily.night?.wind?.degree != null) {
                 RotateDrawable(
                     AppCompatResources.getDrawable(activity, R.drawable.ic_navigation)
                 ).apply {
-                    rotate(daily.night.wind.degree.degree)
+                    rotate(daily.night.wind.degree)
                 }
-            } else if (daily.night?.wind?.degree != null && daily.night.wind.degree.isNoDirection) {
-                AppCompatResources.getDrawable(activity, R.drawable.ic_replay)
             } else null
             nightIcon?.colorFilter = PorterDuffColorFilter(nightWindColor, PorterDuff.Mode.SRC_ATOP)
             dailyItem.setNightIconDrawable(nightIcon, missingIconVisibility = View.INVISIBLE)

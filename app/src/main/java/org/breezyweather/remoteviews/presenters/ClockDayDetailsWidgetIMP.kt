@@ -89,10 +89,10 @@ object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
         views.setTextViewText(R.id.widget_clock_day_aqiHumidity, getAQIHumidityTempText(context, weather))
         if (weather.current?.wind != null) {
             val speedUnit = settings.speedUnit
-            if (weather.current.wind.getShortWindDescription(context, speedUnit).isNotEmpty()) {
+            if (weather.current.wind.getShortDescription(context, speedUnit).isNotEmpty()) {
                 views.setTextViewText(
                     R.id.widget_clock_day_wind,
-                    weather.current.wind.getShortWindDescription(context, speedUnit)
+                    weather.current.wind.getShortDescription(context, speedUnit)
                 )
             } else views.setTextViewText(R.id.widget_clock_day_wind, null)
         }

@@ -90,13 +90,8 @@ fun convert(
                 hourlyForecast.time
             ) else null,
             wind = Wind(
-                direction = hourlyForecast.windIcon,
-                degree = if (hourlyForecast.windDirection != null) WindDegree(
-                    hourlyForecast.windDirection.toFloat(),
-                    hourlyForecast.windDirection == -1
-                ) else null,
-                speed = hourlyForecast.windSpeed?.times(3.6f),
-                level = getWindLevel(context, hourlyForecast.windSpeed?.times(3.6f))
+                degree = hourlyForecast.windDirection?.toFloat(),
+                speed = hourlyForecast.windSpeed?.times(3.6f)
             ),
             airQuality = getAirQuality(hourlyForecast.time, aqiAtmoAuraResult)
         )
@@ -138,13 +133,8 @@ fun convert(
                 temperature = currentResult.properties?.gridded?.temperature ?: hourlyList.getOrNull(1)?.temperature?.temperature
             ),
             wind = if (currentResult.properties?.gridded != null) Wind(
-                direction = currentResult.properties.gridded.windIcon,
-                degree = WindDegree(
-                    degree = currentResult.properties.gridded.windDirection?.toFloat(),
-                    isNoDirection = currentResult.properties.gridded.windDirection == -1
-                ),
-                speed = currentResult.properties.gridded.windSpeed?.times(3.6f),
-                level = getWindLevel(context, currentResult.properties.gridded.windSpeed?.times(3.6f))
+                degree = currentResult.properties.gridded.windDirection?.toFloat(),
+                speed = currentResult.properties.gridded.windSpeed?.times(3.6f)
             ) else null,
             uV = getCurrentUV(
                 dailyList.getOrNull(0)?.uV?.index,

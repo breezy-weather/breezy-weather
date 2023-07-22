@@ -6,9 +6,7 @@ import io.objectbox.annotation.Entity
 import io.objectbox.annotation.Id
 import io.objectbox.annotation.Transient
 import org.breezyweather.common.basic.models.weather.WeatherCode
-import org.breezyweather.common.basic.models.weather.WindDegree
 import org.breezyweather.db.converters.WeatherCodeConverter
-import org.breezyweather.db.converters.WindDegreeConverter
 import java.util.*
 
 /**
@@ -39,13 +37,8 @@ class WeatherEntity(
     var windChillTemperature: Float? = null,
     var wetBulbTemperature: Float? = null,
 
-    var windDirection: String? = null,
-    @field:Convert(
-        converter = WindDegreeConverter::class,
-        dbType = Float::class
-    ) var windDegree: WindDegree? = null,
+    var windDegree: Float? = null,
     var windSpeed: Float? = null,
-    var windLevel: String? = null,
 
     var uvIndex: Float? = null,
 

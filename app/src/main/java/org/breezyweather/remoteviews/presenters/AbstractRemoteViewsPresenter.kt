@@ -262,7 +262,7 @@ abstract class AbstractRemoteViewsPresenter {
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$cwd$",
-                    weather.current?.wind?.getShortWindDescription(context, speedUnit)
+                    weather.current?.wind?.getShortDescription(context, speedUnit)
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$cuv$",
@@ -401,11 +401,11 @@ abstract class AbstractRemoteViewsPresenter {
                     } ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "dwd$",
-                    weather.dailyForecast.getOrNull(i)?.day?.wind?.getShortWindDescription(context, speedUnit)
+                    weather.dailyForecast.getOrNull(i)?.day?.wind?.getShortDescription(context, speedUnit)
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "nwd$",
-                    weather.dailyForecast.getOrNull(i)?.night?.wind?.getShortWindDescription(context, speedUnit)
+                    weather.dailyForecast.getOrNull(i)?.night?.wind?.getShortDescription(context, speedUnit)
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "sr$",

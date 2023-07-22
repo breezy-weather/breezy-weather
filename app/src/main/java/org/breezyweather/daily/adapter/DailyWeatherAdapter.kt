@@ -43,7 +43,7 @@ class DailyWeatherAdapter(context: Context, timeZone: TimeZone, daily: Daily, sp
         if (daily.day != null) {
             mModelList.add(LargeTitle(context.getString(R.string.daytime)))
             mModelList.add(Overview(daily.day, true))
-            if (daily.day.wind != null && daily.day.wind.isValidSpeed) {
+            if (daily.day.wind != null && daily.day.wind.isValid) {
                 mModelList.add(DailyWind(daily.day.wind))
             }
             mModelList.addAll(getHalfDayOptionalModelList(context, daily.day))
@@ -52,7 +52,7 @@ class DailyWeatherAdapter(context: Context, timeZone: TimeZone, daily: Daily, sp
             mModelList.add(Line())
             mModelList.add(LargeTitle(context.getString(R.string.nighttime)))
             mModelList.add(Overview(daily.night, false))
-            if (daily.night.wind != null && daily.night.wind.isValidSpeed) {
+            if (daily.night.wind != null && daily.night.wind.isValid) {
                 mModelList.add(DailyWind(daily.night.wind))
             }
             mModelList.addAll(getHalfDayOptionalModelList(context, daily.night))

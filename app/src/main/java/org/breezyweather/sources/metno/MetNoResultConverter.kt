@@ -67,10 +67,8 @@ fun convert(
                     ?: hourlyForecast.data?.next12Hours?.details?.probabilityOfThunder
             ),
             wind = if (hourlyForecast.data?.instant?.details != null) Wind(
-                direction = getWindDirection(context, hourlyForecast.data.instant.details.windFromDirection),
-                degree = WindDegree(hourlyForecast.data.instant.details.windFromDirection, false),
-                speed = hourlyForecast.data.instant.details.windSpeed?.times(3.6f),
-                level = getWindLevel(context, hourlyForecast.data.instant.details.windSpeed?.times(3.6f))
+                degree = hourlyForecast.data.instant.details.windFromDirection,
+                speed = hourlyForecast.data.instant.details.windSpeed?.times(3.6f)
             ) else null,
             airQuality = if (airQualityIndex != null && airQualityIndex != -1) AirQuality(
                 pM25 = airQualityResult.data.time.getOrNull(airQualityIndex)?.variables?.pm25Concentration?.value,
@@ -128,10 +126,8 @@ fun convert(
                 temperature = currentTimeseries?.instant?.details?.airTemperature,
             ),
             wind = if (currentTimeseries?.instant?.details != null) Wind(
-                direction = getWindDirection(context, currentTimeseries.instant.details.windFromDirection),
-                degree = WindDegree(currentTimeseries.instant.details.windFromDirection, false),
-                speed = currentTimeseries.instant.details.windSpeed?.times(3.6f),
-                level = getWindLevel(context, currentTimeseries.instant.details.windSpeed?.times(3.6f))
+                degree = currentTimeseries.instant.details.windFromDirection,
+                speed = currentTimeseries.instant.details.windSpeed?.times(3.6f)
             ) else null,
             uV = getCurrentUV(
                 dailyList.getOrNull(0)?.uV?.index,

@@ -1,6 +1,5 @@
 package org.breezyweather.common.basic.models.weather
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import androidx.annotation.ColorInt

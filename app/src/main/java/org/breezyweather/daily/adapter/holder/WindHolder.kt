@@ -28,22 +28,24 @@ class WindHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
     @SuppressLint("SetTextI18n", "RestrictedApi")
     override fun onBindView(model: DailyWeatherAdapter.ViewModel, position: Int) {
         val wind = (model as DailyWind).wind
-        if (wind.direction != null || wind.speed != null) {
+        if (wind.speed != null) {
             val talkBackBuilder = StringBuilder(
                 itemView.context.getString(R.string.wind)
             )
-            mIcon.supportImageTintList = ColorStateList.valueOf(wind.getWindColor(itemView.context))
-            if (wind.degree?.degree != null) {
-                mIcon.rotation = wind.degree.degree + 180
+            mIcon.supportImageTintList = ColorStateList.valueOf(wind.getColor(itemView.context))
+            if (wind.degree != null) {
+                if (wind.degree != -1f) {
+                    mIcon.rotation = wind.degree + 180
+                }
+                talkBackBuilder.append(", ").append(wind.getDirection(itemView.context))
+                if (wind.degree == -1f || wind.degree % 45 == 0f) {
+                    mDirectionText.text = wind.getDirection(itemView.context)
+                } else {
+                    mDirectionText.text = (wind.getDirection(itemView.context)
+                            + " (" + (wind.degree % 360).toInt() + "°)")
+                }
             }
-            talkBackBuilder.append(", ").append(wind.direction)
-            if (wind.degree!!.isNoDirection || wind.degree.degree!! % 45 == 0f) {
-                mDirectionText.text = wind.direction
-            } else {
-                mDirectionText.text = (wind.direction
-                        + " (" + (wind.degree.degree % 360).toInt() + "°)")
-            }
-            if (wind.speed != null && wind.speed > 0) {
+            if (wind.speed > 0) {
                 talkBackBuilder.append(", ")
                     .append(mSpeedUnit.getValueText(mSpeedText.context, wind.speed))
                 mSpeed.visibility = View.VISIBLE
@@ -51,10 +53,11 @@ class WindHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
             } else {
                 mSpeed.visibility = View.GONE
             }
-            talkBackBuilder.append(", ").append(wind.level)
-            mStrengthText.text = wind.level
+            talkBackBuilder.append(", ").append(wind.getStrength(mSpeedText.context))
+            mStrengthText.text = wind.getStrength(mSpeedText.context)
             itemView.contentDescription = talkBackBuilder.toString()
         } else {
+            mSpeed.visibility = View.GONE
             // TODO: Hide
         }
     }

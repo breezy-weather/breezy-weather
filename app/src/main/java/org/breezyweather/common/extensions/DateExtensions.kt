@@ -79,3 +79,8 @@ fun Date.getFormattedTime(timeZone: TimeZone, twelveHour: Boolean): String {
         this.getFormattedDate(timeZone, "HH:mm")
     }
 }
+
+// Makes the code more readable by not having to do a null check condition
+fun Long.toDate(): Date {
+    return Date(this)
+}

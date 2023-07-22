@@ -52,12 +52,8 @@ object DailyEntityGenerator {
             daytimeSnowPrecipitationDuration = daily.day?.precipitationDuration?.snow,
             daytimeIcePrecipitationDuration = daily.day?.precipitationDuration?.ice,
 
-            daytimeWindDirection = daily.day?.wind?.direction,
-            daytimeWindDegree = if (daily.day?.wind?.degree != null
-                && (daily.day.wind.degree.degree == null || daily.day.wind.degree.degree !in 0F..360F)
-                && !daily.day.wind.degree.isNoDirection) null else daily.day?.wind?.degree,
+            daytimeWindDegree = daily.day?.wind?.degree,
             daytimeWindSpeed = daily.day?.wind?.speed,
-            daytimeWindLevel = daily.day?.wind?.level,
 
             daytimeCloudCover = daily.day?.cloudCover,
 
@@ -91,10 +87,8 @@ object DailyEntityGenerator {
             nighttimeSnowPrecipitationDuration = daily.night?.precipitationDuration?.snow,
             nighttimeIcePrecipitationDuration = daily.night?.precipitationDuration?.ice,
 
-            nighttimeWindDirection = daily.night?.wind?.direction,
             nighttimeWindDegree = daily.night?.wind?.degree,
             nighttimeWindSpeed = daily.night?.wind?.speed,
-            nighttimeWindLevel = daily.night?.wind?.level,
 
             nighttimeCloudCover = daily.night?.cloudCover,
 
@@ -185,10 +179,8 @@ object DailyEntityGenerator {
                     entity.daytimeIcePrecipitationDuration
                 ),
                 Wind(
-                    entity.daytimeWindDirection,
                     entity.daytimeWindDegree,
-                    entity.daytimeWindSpeed,
-                    entity.daytimeWindLevel
+                    entity.daytimeWindSpeed
                 ),
                 entity.daytimeCloudCover
             ),
@@ -226,10 +218,8 @@ object DailyEntityGenerator {
                     entity.nighttimeIcePrecipitationDuration
                 ),
                 Wind(
-                    entity.nighttimeWindDirection,
                     entity.nighttimeWindDegree,
-                    entity.nighttimeWindSpeed,
-                    entity.nighttimeWindLevel
+                    entity.nighttimeWindSpeed
                 ),
                 entity.nighttimeCloudCover
             ),

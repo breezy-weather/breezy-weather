@@ -39,12 +39,8 @@ object HourlyEntityGenerator {
             snowPrecipitationProbability = hourly.precipitationProbability?.snow,
             icePrecipitationProbability = hourly.precipitationProbability?.ice,
 
-            windDirection = hourly.wind?.direction,
-            windDegree = if (hourly.wind?.degree != null
-                && (hourly.wind.degree.degree == null || hourly.wind.degree.degree !in 0F..360F)
-                && !hourly.wind.degree.isNoDirection) null else hourly.wind?.degree,
+            windDegree = hourly.wind?.degree,
             windSpeed = hourly.wind?.speed,
-            windLevel = hourly.wind?.level,
 
             // aqi.
             pm25 = hourly.airQuality?.pM25,
@@ -108,10 +104,8 @@ object HourlyEntityGenerator {
                 entity.icePrecipitationProbability
             ),
             Wind(
-                entity.windDirection,
                 entity.windDegree,
-                entity.windSpeed,
-                entity.windLevel
+                entity.windSpeed
             ),
             AirQuality(
                 entity.pm25,

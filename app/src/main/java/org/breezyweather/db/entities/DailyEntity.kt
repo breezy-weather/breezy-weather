@@ -4,9 +4,7 @@ import io.objectbox.annotation.Convert
 import io.objectbox.annotation.Entity
 import io.objectbox.annotation.Id
 import org.breezyweather.common.basic.models.weather.WeatherCode
-import org.breezyweather.common.basic.models.weather.WindDegree
 import org.breezyweather.db.converters.WeatherCodeConverter
-import org.breezyweather.db.converters.WindDegreeConverter
 import java.util.Date
 
 /**
@@ -55,13 +53,8 @@ data class DailyEntity(
     var daytimeSnowPrecipitationDuration: Float? = null,
     var daytimeIcePrecipitationDuration: Float? = null,
 
-    var daytimeWindDirection: String? = null,
-    @field:Convert(
-        converter = WindDegreeConverter::class,
-        dbType = Float::class
-    ) var daytimeWindDegree: WindDegree? = null,
+    var daytimeWindDegree: Float? = null,
     var daytimeWindSpeed: Float? = null,
-    var daytimeWindLevel: String? = null,
 
     var daytimeCloudCover: Int? = null,
 
@@ -98,13 +91,8 @@ data class DailyEntity(
     var nighttimeSnowPrecipitationDuration: Float? = null,
     var nighttimeIcePrecipitationDuration: Float? = null,
 
-    var nighttimeWindDirection: String? = null,
-    @field:Convert(
-        converter = WindDegreeConverter::class,
-        dbType = Float::class
-    ) var nighttimeWindDegree: WindDegree? = null,
+    var nighttimeWindDegree: Float? = null,
     var nighttimeWindSpeed: Float? = null,
-    var nighttimeWindLevel: String? = null,
 
     var nighttimeCloudCover: Int? = null,
 

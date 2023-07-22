@@ -11,10 +11,9 @@ import org.breezyweather.settings.SettingsManager
 import org.breezyweather.sources.accu.json.*
 import org.breezyweather.sources.getDailyAirQualityFromHourlyList
 import org.breezyweather.sources.getMoonPhaseAngle
-import org.breezyweather.sources.getUVLevel
-import org.breezyweather.sources.getWindLevel
 import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
 import org.breezyweather.common.exceptions.WeatherException
+import org.breezyweather.common.extensions.toDate
 import java.util.Date
 import java.util.TimeZone
 import java.util.regex.Pattern
@@ -87,10 +86,8 @@ fun convert(
                 wetBulbTemperature = currentResult.WetBulbTemperature?.Metric?.Value?.toFloat()
             ),
             wind = Wind(
-                direction = currentResult.Wind?.Direction?.Localized,
-                degree = WindDegree(currentResult.Wind?.Direction?.Degrees?.toFloat(), false),
-                speed = currentResult.Wind?.Speed?.Metric?.Value?.toFloat(),
-                level = getWindLevel(context, currentResult.Wind?.Speed?.Metric?.Value?.toFloat())
+                degree = currentResult.Wind?.Direction?.Degrees?.toFloat(),
+                speed = currentResult.Wind?.Speed?.Metric?.Value?.toFloat()
             ),
             uV = UV(index = currentResult.UVIndex?.toFloat()),
             airQuality = if (airQualityHourlyResult.data?.getOrNull(0) != null) getAirQualityForHour(airQualityHourlyResult.data[0].epochDate, airQualityHourlyResult.data) else null,
@@ -158,10 +155,8 @@ private fun getDailyList(
                         ice = forecasts.Day?.HoursOfIce?.toFloat()
                     ),
                     wind = Wind(
-                        direction = forecasts.Day?.Wind?.Direction?.Localized,
-                        degree = WindDegree(forecasts.Day?.Wind?.Direction?.Degrees?.toFloat(), false),
-                        speed = forecasts.Day?.Wind?.Speed?.Value?.toFloat(),
-                        level = getWindLevel(context, forecasts.Day?.Wind?.Speed?.Value?.toFloat())
+                        degree = forecasts.Day?.Wind?.Direction?.Degrees?.toFloat(),
+                        speed = forecasts.Day?.Wind?.Speed?.Value?.toFloat()
                     ),
                     cloudCover = forecasts.Day?.CloudCover
                 ),
@@ -194,10 +189,8 @@ private fun getDailyList(
                         ice = forecasts.Night?.HoursOfIce?.toFloat()
                     ),
                     wind = Wind(
-                        direction = forecasts.Night?.Wind?.Direction?.Localized,
-                        degree = WindDegree(forecasts.Night?.Wind?.Direction?.Degrees?.toFloat(), false),
-                        speed = forecasts.Night?.Wind?.Speed?.Value?.toFloat(),
-                        level = getWindLevel(context, forecasts.Night?.Wind?.Speed?.Value?.toFloat())
+                        degree = forecasts.Night?.Wind?.Direction?.Degrees?.toFloat(),
+                        speed = forecasts.Night?.Wind?.Speed?.Value?.toFloat()
                     ),
                     cloudCover = forecasts.Night?.CloudCover
                 ),
@@ -206,12 +199,12 @@ private fun getDailyList(
                     cooling = forecasts.DegreeDaySummary?.Cooling?.Value?.toFloat()
                 ),
                 sun = Astro(
-                    riseDate = if (forecasts.Sun?.EpochRise != null) Date(forecasts.Sun.EpochRise.times(1000)) else null,
-                    setDate = if (forecasts.Sun?.EpochSet != null) Date(forecasts.Sun.EpochSet.times(1000)) else null
+                    riseDate = forecasts.Sun?.EpochRise?.times(1000)?.toDate(),
+                    setDate = forecasts.Sun?.EpochSet?.times(1000)?.toDate()
                 ),
                 moon = Astro(
-                    riseDate = if (forecasts.Moon?.EpochRise != null) Date(forecasts.Moon.EpochRise.times(1000)) else null,
-                    setDate = if (forecasts.Moon?.EpochSet != null) Date(forecasts.Moon.EpochSet.times(1000)) else null
+                    riseDate = forecasts.Moon?.EpochRise?.times(1000)?.toDate(),
+                    setDate = forecasts.Moon?.EpochSet?.times(1000)?.toDate()
                 ),
                 moonPhase = MoonPhase(
                     angle = getMoonPhaseAngle(forecasts.Moon?.Phase),
@@ -290,10 +283,8 @@ private fun getHourlyList(
                     ice = result.IceProbability?.toFloat()
                 ),
                 wind = Wind(
-                    direction = result.Wind?.Direction?.Localized,
-                    degree = WindDegree(result.Wind?.Direction?.Degrees?.toFloat(), false),
-                    speed = result.Wind?.Speed?.Value?.toFloat(),
-                    level = getWindLevel(context, result.Wind?.Speed?.Value?.toFloat())
+                    degree = result.Wind?.Direction?.Degrees?.toFloat(),
+                    speed = result.Wind?.Speed?.Value?.toFloat()
                 ),
                 airQuality = getAirQualityForHour(result.EpochDateTime, airQualityData),
                 uV = UV(index = result.UVIndex?.toFloat())

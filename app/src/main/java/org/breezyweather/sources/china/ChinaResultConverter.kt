@@ -14,8 +14,6 @@ import org.breezyweather.sources.china.json.ChinaForecastResult
 import org.breezyweather.sources.china.json.ChinaLocationResult
 import org.breezyweather.sources.china.json.ChinaMinutelyResult
 import org.breezyweather.sources.getHoursOfDay
-import org.breezyweather.sources.getWindDirection
-import org.breezyweather.sources.getWindLevel
 import org.breezyweather.sources.isDaylight
 import java.util.*
 
@@ -53,13 +51,8 @@ fun convert(
                 apparentTemperature = forecastResult.current.feelsLike?.value?.toFloatOrNull()
             ),
             wind = if (forecastResult.current.wind != null) Wind(
-                direction = getWindDirection(context, forecastResult.current.wind.direction?.value?.toFloatOrNull()),
-                degree = WindDegree(
-                    degree = forecastResult.current.wind.direction?.value?.toFloatOrNull(),
-                    isNoDirection = false
-                ),
-                speed = forecastResult.current.wind.speed?.value?.toFloatOrNull(),
-                level = getWindLevel(context, forecastResult.current.wind.speed?.value?.toFloatOrNull())
+                degree = forecastResult.current.wind.direction?.value?.toFloatOrNull(),
+                speed = forecastResult.current.wind.speed?.value?.toFloatOrNull()
             ) else null,
             uV = if (forecastResult.current.uvIndex != null) {
                 UV(index = forecastResult.current.uvIndex.toFloatOrNull())
@@ -146,13 +139,8 @@ private fun getDailyList(
                         total = getPrecipitationProbability(dailyForecast, index)
                     ),
                     wind = if (dailyForecast.wind != null) Wind(
-                        direction = getWindDirection(context, dailyForecast.wind.direction?.value?.getOrNull(index)?.from?.toFloatOrNull()),
-                        degree = WindDegree(
-                            degree = dailyForecast.wind.direction?.value?.getOrNull(index)?.from?.toFloatOrNull(),
-                            isNoDirection = false
-                        ),
-                        speed = dailyForecast.wind.speed?.value?.getOrNull(index)?.from?.toFloatOrNull(),
-                        level = getWindLevel(context, dailyForecast.wind.speed?.value?.getOrNull(index)?.from?.toFloatOrNull())
+                        degree = dailyForecast.wind.direction?.value?.getOrNull(index)?.from?.toFloatOrNull(),
+                        speed = dailyForecast.wind.speed?.value?.getOrNull(index)?.from?.toFloatOrNull()
                     ) else null
                 ),
                 night = HalfDay(
@@ -166,20 +154,18 @@ private fun getDailyList(
                         total = getPrecipitationProbability(dailyForecast, index)
                     ),
                     wind = if (dailyForecast.wind != null) Wind(
-                        direction = getWindDirection(context, dailyForecast.wind.direction?.value?.getOrNull(index)?.to?.toFloatOrNull()),
-                        degree = WindDegree(
-                            degree = dailyForecast.wind.direction?.value?.getOrNull(index)?.to?.toFloatOrNull(),
-                            isNoDirection = false
-                        ),
-                        speed = dailyForecast.wind.speed?.value?.getOrNull(index)?.to?.toFloatOrNull(),
-                        level = getWindLevel(context, dailyForecast.wind.speed?.value?.getOrNull(index)?.to?.toFloatOrNull())
+                        degree = dailyForecast.wind.direction?.value?.getOrNull(index)?.to?.toFloatOrNull(),
+                        speed = dailyForecast.wind.speed?.value?.getOrNull(index)?.to?.toFloatOrNull()
                     ) else null
                 ),
                 sun = Astro(
                     riseDate = dailyForecast.sunRiseSet?.value?.getOrNull(index)?.from,
                     setDate = dailyForecast.sunRiseSet?.value?.getOrNull(index)?.to
                 ),
-                hoursOfSun = getHoursOfDay(dailyForecast.sunRiseSet?.value?.getOrNull(index)?.from, dailyForecast.sunRiseSet?.value?.getOrNull(index)?.to)
+                hoursOfSun = getHoursOfDay(
+                    dailyForecast.sunRiseSet?.value?.getOrNull(index)?.from,
+                    dailyForecast.sunRiseSet?.value?.getOrNull(index)?.to
+                )
             )
         )
     }
@@ -220,13 +206,8 @@ private fun getHourlyList(
                     temperature = hourlyForecast.temperature?.value?.getOrNull(index)?.toFloat()
                 ),
                 wind = if (hourlyForecast.wind != null) Wind(
-                    direction = getWindDirection(context, hourlyForecast.wind.value?.getOrNull(index)?.direction?.toFloat()),
-                    degree = WindDegree(
-                        degree = hourlyForecast.wind.value?.getOrNull(index)?.direction?.toFloat(),
-                        isNoDirection = false
-                    ),
-                    speed = hourlyForecast.wind.value?.getOrNull(index)?.speed?.toFloat(),
-                    level = getWindLevel(context, hourlyForecast.wind.value?.getOrNull(index)?.speed?.toFloat())
+                    degree = hourlyForecast.wind.value?.getOrNull(index)?.direction?.toFloat(),
+                    speed = hourlyForecast.wind.value?.getOrNull(index)?.speed?.toFloat()
                 ) else null
             )
         )

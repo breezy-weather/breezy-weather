@@ -33,12 +33,8 @@ object WeatherEntityGenerator {
             windChillTemperature = weather.current?.temperature?.windChillTemperature,
             wetBulbTemperature = weather.current?.temperature?.wetBulbTemperature,
 
-            windDirection = weather.current?.wind?.direction,
-            windDegree = if (weather.current?.wind?.degree != null
-                && (weather.current.wind.degree.degree == null || weather.current.wind.degree.degree !in 0F..360F)
-                && !weather.current.wind.degree.isNoDirection) null else weather.current?.wind?.degree,
+            windDegree = weather.current?.wind?.degree,
             windSpeed = weather.current?.wind?.speed,
-            windLevel = weather.current?.wind?.level,
 
             uvIndex = weather.current?.uV?.index,
 
@@ -84,10 +80,8 @@ object WeatherEntityGenerator {
                     weatherEntity.wetBulbTemperature
                 ),
                 Wind(
-                    weatherEntity.windDirection,
                     weatherEntity.windDegree,
-                    weatherEntity.windSpeed,
-                    weatherEntity.windLevel
+                    weatherEntity.windSpeed
                 ),
                 UV(weatherEntity.uvIndex),
                 AirQuality(
