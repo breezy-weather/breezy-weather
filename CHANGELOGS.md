@@ -3,6 +3,7 @@
 - Make hourly trends less compressed
 - Add a “Help me choose” button on weather selection dialogs.
 - Fix OpenWeather icons being always daytime.
+- Revert swipe when trying to delete an existing location or cancelling a weather source update on current location.
 - Updated translations.
 
 

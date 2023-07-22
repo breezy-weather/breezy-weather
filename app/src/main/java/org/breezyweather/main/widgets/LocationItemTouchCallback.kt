@@ -61,6 +61,7 @@ class LocationItemTouchCallback(
         when (direction) {
             ItemTouchHelper.START -> {
                 if (location.isCurrentPosition) {
+                    viewHolder.bindingAdapter!!.notifyItemChanged(position)
                     mViewModel.openChooseCurrentLocationWeatherSourceDialog()
                 } else {
                     location = location.copy(isResidentPosition = !location.isResidentPosition)
@@ -80,8 +81,7 @@ class LocationItemTouchCallback(
             }
 
             ItemTouchHelper.END -> if (mViewModel.totalLocationList.value.first.size <= 1) {
-                // TODO: force update.
-                mViewModel.updateLocation(location)
+                viewHolder.bindingAdapter!!.notifyItemChanged(position)
                 SnackbarHelper.showSnackbar(
                     mActivity.getString(R.string.location_message_list_cannot_be_empty)
                 )
