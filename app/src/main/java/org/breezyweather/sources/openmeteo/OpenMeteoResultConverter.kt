@@ -18,6 +18,7 @@ import org.breezyweather.common.basic.models.weather.Wind
 import org.breezyweather.common.basic.wrappers.HourlyWrapper
 import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
 import org.breezyweather.common.exceptions.WeatherException
+import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.sources.mf.getFrenchDepartmentCode
 import org.breezyweather.sources.openmeteo.json.OpenMeteoAirQualityResult
@@ -154,10 +155,8 @@ private fun getHourlyList(
                     apparentTemperature = hourlyResult.apparentTemperature?.getOrNull(i)
                 ),
                 precipitation = Precipitation(
-                    // TODO: It’s not clear why the sum of rain + showers + snowfall is sometimes < precipitation
-                    // Note: Seems fixed now as per some discussion on Open-Meteo GitHub issues
                     total = hourlyResult.precipitation?.getOrNull(i),
-                    rain = hourlyResult.rain?.getOrNull(i), // TODO: Add showers.getOrNull(i)
+                    rain = hourlyResult.rain?.getOrNull(i) + hourlyResult.showers?.getOrNull(i),
                     snow = hourlyResult.snowfall?.getOrNull(i)
                 ),
                 precipitationProbability = PrecipitationProbability(

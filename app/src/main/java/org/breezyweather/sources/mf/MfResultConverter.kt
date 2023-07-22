@@ -21,6 +21,7 @@ import org.breezyweather.common.basic.models.weather.Wind
 import org.breezyweather.common.basic.wrappers.HourlyWrapper
 import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
 import org.breezyweather.common.exceptions.WeatherException
+import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.sources.getMoonPhaseAngle
 import org.breezyweather.sources.mf.json.MfCurrentResult
@@ -246,9 +247,8 @@ private fun getHourlyPrecipitation(hourlyForecast: MfForecastHourly): Precipitat
     val snowCumul = with (hourlyForecast) {
         snow1h ?: snow3h ?: snow6h ?: snow12h ?: snow24h
     }
-    val cumul: List<Float> = listOfNotNull(rainCumul, snowCumul)
     return Precipitation(
-        total = if (cumul.isNotEmpty()) cumul.sum() else null,
+        total = rainCumul + snowCumul,
         rain = rainCumul,
         snow = snowCumul
     )

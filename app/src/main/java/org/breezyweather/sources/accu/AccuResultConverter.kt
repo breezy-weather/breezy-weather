@@ -302,6 +302,7 @@ private fun getHourlyList(
             relativeHumidity = result.RelativeHumidity?.toFloat(),
             dewPoint = result.DewPoint?.Value?.toFloat(),
             cloudCover = result.CloudCover,
+            visibility = result.Visibility?.Value?.toFloat()
         )
     }
 }

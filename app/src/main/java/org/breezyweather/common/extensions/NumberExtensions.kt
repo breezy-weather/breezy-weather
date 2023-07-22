@@ -9,6 +9,14 @@ import androidx.compose.ui.platform.LocalLayoutDirection
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
+operator fun Int?.plus(other: Int?): Int? = if (this != null || other != null) {
+    (this ?: 0) + (other ?: 0)
+} else null
+
+operator fun Float?.plus(other: Float?): Float? = if (this != null || other != null) {
+    (this ?: 0f) + (other ?: 0f)
+} else null
+
 fun Float.roundDecimals(decimals: Int): Float {
     return this.toBigDecimal().setScale(decimals, RoundingMode.HALF_EVEN).toFloat()
 }

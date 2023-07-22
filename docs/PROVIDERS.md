@@ -2,19 +2,19 @@
 
 This is a user-end guide to weather providers available in Breezy Weather. If you are a developer looking to add a new provider in Breezy Weather, have a look at [contribute](../CONTRIBUTE.md).
 
-**AccuWeather** is the most complete provider.
+**AccuWeather** is the most complete provider, although you may not need so much completeness (not many people cares about ceiling, for example).
 
-**Open-Meteo** is the only free and open source provider on this list, and probably also the most privacy-friendly. It is nearly as complete as **AccuWeather**, however lacks major features (reverse geocoding, alerts and realtime precipitations). Pollen is available and remains to be implemented.
+**Open-Meteo** is the only free and open source provider on this list, and probably also the most privacy-friendly. It is nearly as complete as **AccuWeather**, however lacks major features (alerts, realtime precipitations and reverse geocoding). Pollen is available and remains to be implemented.
 
 When deciding about which provider you want to use, accuracy of data is probably the most important criteria, however only you can know which one is the best for your country.
 
+
 ## Status
 
-| Providers                    | Open-Meteo                           | AccuWeather | MET Norway                             | OpenWeather               | Météo-France              | China⁵ |
-|------------------------------|--------------------------------------|-------------|----------------------------------------|---------------------------|---------------------------|--------|
-| **API features implemented** | All but daily pollen and cloud cover | All         | All but weather text and Norway alerts | All but daily cloud cover | All but daily cloud cover | All    |
-| **API key**                  | None                                 | Optional    | None                                   | Optional¹                 | Optional                  | None   |
-| **Countries**                | Worldwide²                           | Worldwide²  | Worldwide³                             | Worldwide²                | Worldwide⁴                | China  |
+| Providers     | Open-Meteo | AccuWeather | MET Norway | OpenWeather | Météo-France | China⁵ |
+|---------------|------------|-------------|------------|-------------|--------------|--------|
+| **API key**   | None       | Optional    | None       | Optional¹   | Optional     | None   |
+| **Countries** | Worldwide² | Worldwide²  | Worldwide³ | Worldwide²  | Worldwide⁴   | China  |
 
 * ¹ Bundled API key is often rate-limited. You can configure your own API key, however OpenWeather asks for credit card information even if you only want to use the free-tier.
 * ² Some features not available everywhere.
@@ -23,29 +23,25 @@ When deciding about which provider you want to use, accuracy of data is probably
 * ⁵ Aggregated data from Beijing Meteorological Service, ColorfulClouds (Caiyun) and CNEMC
 * ⁶ Except daily cloud cover
 
+
 ## Availability of main features
 
-| Providers                       | Open-Meteo    | AccuWeather | MET Norway    | OpenWeather | Météo-France | China   |
-|---------------------------------|---------------|-------------|---------------|-------------|--------------|---------|
-| **Daily weather/temperature**   | ✅             | ✅           | ✅             | ✅           | ✅            | ✅       |
-| **Daily precipitation**         | *In progress* | ✅           | ✅             | ✅           | ✅            | ❌       | 
-| **Daily wind**                  | ✅             | ✅           | ✅             | ✅           | ✅            | ✅       |
-| **Daily air quality**           | ✅             | ✅           | ✅             | ✅           | ✅            | ❌       |
-| **Daily UV**                    | ✅             | ✅           | ✅             | ✅           | ✅            | ❌       |
-| **Hourly weather/temperature**  | ✅             | ✅           | ✅             | ✅           | ✅            | ✅       |
-| **Hourly precipitation**        | *In progress* | ✅           | ✅             | ✅           | ✅            | Partial |
-| **Hourly wind**                 | ✅             | ✅           | ✅             | ✅           | ✅            | ✅       |
-| **Hourly air quality**          | ✅             | ✅           | ✅             | ✅           | ✅            | ❌       |
-| **Hourly UV**                   | ✅             | ✅           | ✅             | ✅           | ✅            | ❌       |
-| **Precipitations in next hour** | ❌             | ✅           | ✅             | ✅           | ✅            | ✅       |
-| **Current air quality**         | ✅             | ✅           | ✅             | ✅           | ✅            | ✅       |
-| **Daily pollen**                | *In progress* | ✅           | ❌             | ❌           | ❌            | ❌       |
-| **Sun, Moon & Moon phase**      | Sun           | ✅           | ✅             | Sun, Moon   | ✅            | Sun     |
-| **Alerts**                      | ❌             | ✅           | *In progress* | ✅           | ✅            | ✅       |
+| Providers                       | Open-Meteo    | AccuWeather | MET Norway    | OpenWeather | Météo-France | China           |
+|---------------------------------|---------------|-------------|---------------|-------------|--------------|-----------------|
+| **Weather/temperature**         | ✅             | ✅           | ✅             | ✅           | ✅            | ✅               |
+| **Precipitation**               | ✅             | ✅           | ✅             | ✅           | ✅            | Daily (partial) | 
+| **Wind**                        | ✅             | ✅           | ✅             | ✅           | ✅            | ✅               |
+| **Air quality**                 | ✅             | ✅           | ✅             | ✅           | ✅            | Current         |
+| **Pollen**                      | *In progress* | Daily       | ❌             | ❌           | ❌            | ❌               |
+| **UV**                          | ✅             | ✅           | ✅             | ✅           | ✅            | ❌               |
+| **Precipitations in next hour** | ❌             | ✅           | ✅             | ✅           | ✅            | ✅               |
+| **Sun, Moon & Moon phase**      | Sun           | ✅           | ✅             | Sun, Moon   | ✅            | Sun             |
+| **Alerts**                      | ❌             | ✅           | *In progress* | ✅           | ✅            | ✅               |
 
 Some features may not be available in some countries.
 
 Ultimate goal of the app would be to modularize as to have a main weather provider, and then being able to complete “precipitations in next hour” and “alerts” from one or more providers.
+
 
 ## Detailed available data
 
@@ -67,7 +63,7 @@ Ultimate goal of the app would be to modularize as to have a main weather provid
 | **Days**                      | 16            | 15          | ~10        | 7 or 8      | 15           | 15    |
 | **Weather**                   | ✅³            | ✅           | Partial³⁵  | ✅⁴          | ✅⁴           | ✅     |
 | **Temperature**               | ✅             | ✅           | ✅¹         | ✅           | ✅            | ✅     |
-| **Precipitation**             | *In progress* | ✅ (RSI)     | ✅¹         | ✅¹ (RS)     | ✅¹ (RS)      | ❌     |
+| **Precipitation**             | ✅¹            | ✅ (RSI)     | ✅¹         | ✅¹ (RS)     | ✅¹ (RS)      | ❌     |
 | **Precipitation probability** | ✅¹            | ✅ (TRSI)    | ✅¹ (T)     | ✅¹          | ✅¹ (RSI)     | ✅     |
 | **Precipitation duration**    | ❌             | ✅ (RSI)     | ❌          | ❌           | ❌            | ❌     |
 | **Wind**                      | ✅¹            | ✅           | ✅¹         | ✅¹          | ✅¹           | ✅     |
@@ -104,12 +100,22 @@ Legend:
 | **Days**                      | 16            | 5           | ~10¹       | 2           | 15²          | 1     |
 | **Weather**                   | ✅             | ✅           | Partial³   | ✅           | ✅            | ✅     |
 | **Temperature**               | ✅             | ✅           | ✅          | ✅           | ✅            | ✅     |
-| **Precipitation**             | *In progress* | ✅ (RSI)     | ✅          | ✅ (RS)      | ✅ (RS)       | ❌     |
+| **Precipitation**             | ✅             | ✅ (RSI)     | ✅          | ✅ (RS)      | ✅ (RS)       | ❌     |
 | **Precipitation probability** | ✅             | ✅ (TRSI)    | ✅ (T)      | ✅           | ✅ (RSI)      | ❌     |
 | **Wind**                      | ✅             | ✅           | ✅          | ✅           | ✅            | ✅     |
 | **Air quality**               | ✅             | ✅           | ✅          | ✅           | ✅            | ❌     |
 | **Pollen**                    | *In progress* | ❌           | ❌          | ❌           | ❌            | ❌     |
 | **UV**                        | ✅             | ✅           | ✅          | ✅           | ✅⁴           | ❌     |
+
+Not yet displayed in app:
+
+| Providers       | Open-Meteo | AccuWeather | MET Norway | OpenWeather | Météo-France | China |
+|-----------------|------------|-------------|------------|-------------|--------------|-------|
+| **Humidity**    | ✅          | ✅           | ✅          | ✅           | ✅            | ❌     |
+| **Dew point**   | ✅          | ✅           | ✅          | ✅           | ❌            | ❌     |
+| **Pressure**    | ✅          | ❌           | ✅          | ✅           | ✅            | ❌     |
+| **Cloud cover** | ✅          | ✅           | ❌          | ✅           | ✅            | ❌     |
+| **Visibility**  | ✅          | ✅           | ❌          | ✅           | ❌            | ❌     |
 
 * ¹ Every 6 hours after 3~4 days
 * ² Every 3 hours after 2 days, every 6 hours after 4 days
@@ -135,11 +141,11 @@ Legend:
 | **Wind**        | ✅          | ✅           | ✅²         | ✅           | ✅¹           | ✅     |
 | **UV**          | ✅⁵         | ✅           | ✅²         | ✅           | ✅⁵           | ✅     |
 | **Air quality** | ✅¹         | ✅¹          | ✅¹         | ✅           | ✅⁴           | ✅     |
-| **Humidity**    | ✅¹         | ✅           | ✅²         | ✅           | ❌            | ✅     |
-| **Pressure**    | ✅¹         | ✅           | ✅¹         | ✅           | ❌            | ✅     |
-| **Visibility**  | ✅¹         | ✅           | ❌          | ✅           | ❌            | ✅     |
+| **Humidity**    | ✅¹         | ✅           | ✅²         | ✅           | ✅¹           | ✅     |
 | **Dew point**   | ✅¹         | ✅           | ✅¹         | ✅           | ❌            | ❌     |
-| **Cloud cover** | ✅¹         | ✅           | ❌          | ✅           | ❌            | ❌     |
+| **Pressure**    | ✅¹         | ✅           | ✅¹         | ✅           | ✅¹           | ✅     |
+| **Cloud cover** | ✅¹         | ✅           | ❌          | ✅           | ✅¹           | ❌     |
+| **Visibility**  | ✅¹         | ✅           | ❌          | ✅           | ❌            | ✅     |
 | **Ceiling**     | ❌          | ✅           | ❌          | ❌           | ❌            | ❌     |
 
 *In progress* means data is available in the API (or can be extrapolated) and can be implemented.

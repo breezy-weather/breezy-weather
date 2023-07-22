@@ -5,7 +5,7 @@ import java.io.Serializable
 /**
  * Half day.
  */
-class HalfDay(
+data class HalfDay(
     val weatherText: String? = null,
     val weatherPhase: String? = null,
     val weatherCode: WeatherCode? = null,

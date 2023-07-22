@@ -9,6 +9,7 @@ import org.breezyweather.common.basic.models.weather.Precipitation
 import org.breezyweather.common.basic.models.weather.PrecipitationProbability
 import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.basic.models.weather.UV
+import org.breezyweather.common.basic.models.weather.Wind
 import org.breezyweather.common.basic.wrappers.HourlyWrapper
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toTimezoneNoHour
@@ -20,6 +21,24 @@ import kotlin.math.roundToInt
 import kotlin.math.sin
 
 /**
+ * Functions used directly in weather sources
+ */
+fun getMoonPhaseAngle(phase: String?): Int? {
+    return if (phase.isNullOrEmpty()) {
+        null
+    } else when (phase.lowercase(Locale.getDefault())) {
+        "waxingcrescent", "waxing crescent" -> 45
+        "first", "firstquarter", "first quarter" -> 90
+        "waxinggibbous", "waxing gibbous" -> 135
+        "full", "fullmoon", "full moon" -> 180
+        "waninggibbous", "waning gibbous" -> 225
+        "third", "thirdquarter", "third quarter", "last", "lastquarter", "last quarter" -> 270
+        "waningcrescent", "waning crescent" -> 315
+        else -> 360
+    }
+}
+
+/**
  * DAILY FROM HOURLY
  */
 
@@ -29,7 +48,9 @@ import kotlin.math.sin
  * - Air quality
  * - UV
  * - Hours of sun
+ * TODO: Calculate sun & moon & moon phase https://github.com/shred/commons-suncalc
  * TODO: Calculate degree day
+ * TODO: Calculate dewpoint from humidity
  *
  * @param dailyList daily data
  * @param hourlyList hourly data
@@ -78,7 +99,7 @@ fun completeDailyListFromHourlyList(
     return newDailyList
 }
 
-fun getHourlyListByHalfDay(
+private fun getHourlyListByHalfDay(
     hourlyList: List<HourlyWrapper>,
     timeZone: TimeZone
 ): MutableMap<String, Map<String, MutableList<HourlyWrapper>>> {
@@ -115,13 +136,11 @@ fun getHourlyListByHalfDay(
  * Currently helps completing:
  * - Weather code (at 12:00 for day, at 00:00 for night)
  * - Weather text/phase (at 12:00 for day, at 00:00 for night)
- * - Temperature (temperature, windChill and wetBulb, can be expanded if required)
+ * - Temperature (temperature, apparent, windChill and wetBulb)
  * - Precipitation (if Precipitation or Precipitation.total is null)
  * - PrecipitationProbability (if PrecipitationProbability or PrecipitationProbability.total is null)
  * - Wind (if Wind or Wind.speed is null)
  * - CloudCover (average)
- * You can expand it to other fields if you need it.
- * TODO: Split into subfunctions
  *
  * @param dailyDate a Date initialized at 00:00 the day of interest
  * @param initialHalfDay the half day to be completed or null
@@ -129,7 +148,7 @@ fun getHourlyListByHalfDay(
  * @param isDay true if you want day, false if you want night
  * @return a new List<Daily>, the initial dailyList passed as 1st parameter can be freed after
  */
-fun completeHalfDayFromHourlyList(
+private fun completeHalfDayFromHourlyList(
     dailyDate: Date,
     initialHalfDay: HalfDay? = null,
     halfDayHourlyList: List<HourlyWrapper>? = null,
@@ -137,15 +156,11 @@ fun completeHalfDayFromHourlyList(
 ): HalfDay? {
     if (halfDayHourlyList.isNullOrEmpty()) return initialHalfDay
 
-    var halfDayWeatherText = initialHalfDay?.weatherText
-    var halfDayWeatherPhase = initialHalfDay?.weatherPhase
-    var halfDayWeatherCode = initialHalfDay?.weatherCode
-    var halfDayTemperature = initialHalfDay?.temperature
-    var halfDayPrecipitation = initialHalfDay?.precipitation
-    var halfDayPrecipitationProbability = initialHalfDay?.precipitationProbability
-    val halfDayPrecipitationDuration = initialHalfDay?.precipitationDuration
-    var halfDayWind = initialHalfDay?.wind
-    var halfDayCloudCover = initialHalfDay?.cloudCover
+    val newHalfDay = initialHalfDay ?: HalfDay()
+
+    var halfDayWeatherText = newHalfDay.weatherText
+    var halfDayWeatherPhase = newHalfDay.weatherPhase
+    var halfDayWeatherCode = newHalfDay.weatherCode
 
     // Weather code + Weather text
     if (halfDayWeatherCode == null || halfDayWeatherText == null) {
@@ -165,203 +180,195 @@ fun completeHalfDayFromHourlyList(
         }
     }
 
-    // Temperature
-    if (halfDayTemperature?.temperature == null
-        || halfDayTemperature.windChillTemperature == null
-        || halfDayTemperature.wetBulbTemperature == null) {
-        var temperatureTemperature = halfDayTemperature?.temperature
-        val temperatureRealFeelTemperature = halfDayTemperature?.realFeelTemperature
-        val temperatureRealFeelShaderTemperature = halfDayTemperature?.realFeelShaderTemperature
-        val temperatureApparentTemperature = halfDayTemperature?.apparentTemperature
-        var temperatureWindChillTemperature = halfDayTemperature?.windChillTemperature
-        var temperatureWetBulbTemperature = halfDayTemperature?.wetBulbTemperature
-
-        if (temperatureTemperature == null) {
-            val halfDayHourlyListTemperature = halfDayHourlyList.filter { it.temperature?.temperature != null }
-            temperatureTemperature = if (halfDayHourlyListTemperature.isNotEmpty()) {
-                if (isDay) {
-                    halfDayHourlyListTemperature.maxOf { it.temperature!!.temperature!! }
-                } else {
-                    halfDayHourlyListTemperature.minOf { it.temperature!!.temperature!! }
-                }
-            } else null
-        }
-        if (temperatureWindChillTemperature == null) {
-            val halfDayHourlyListWindChillTemperature = halfDayHourlyList.filter { it.temperature?.windChillTemperature != null }
-            temperatureWindChillTemperature = if (halfDayHourlyListWindChillTemperature.isNotEmpty()) {
-                if (isDay) {
-                    halfDayHourlyListWindChillTemperature.maxOf { it.temperature!!.windChillTemperature!! }
-                } else {
-                    halfDayHourlyListWindChillTemperature.minOf { it.temperature!!.windChillTemperature!! }
-                }
-            } else null
-        }
-        if (temperatureWetBulbTemperature == null) {
-            val halfDayHourlyListWetBulbTemperature = halfDayHourlyList.filter { it.temperature?.wetBulbTemperature != null }
-            temperatureWetBulbTemperature = if (halfDayHourlyListWetBulbTemperature.isNotEmpty()) {
-                if (isDay) {
-                    halfDayHourlyListWetBulbTemperature.maxOf { it.temperature!!.wetBulbTemperature!! }
-                } else {
-                    halfDayHourlyListWetBulbTemperature.minOf { it.temperature!!.wetBulbTemperature!! }
-                }
-            } else null
-        }
-        halfDayTemperature = Temperature(
-            temperature = temperatureTemperature,
-            realFeelTemperature = temperatureRealFeelTemperature,
-            realFeelShaderTemperature = temperatureRealFeelShaderTemperature,
-            apparentTemperature = temperatureApparentTemperature,
-            windChillTemperature = temperatureWindChillTemperature,
-            wetBulbTemperature = temperatureWetBulbTemperature
-        )
-    }
-
-    // Precipitation
-    if (halfDayPrecipitation?.total == null) {
-        val halfDayHourlyListPrecipitationTotal = halfDayHourlyList
-            .filter { it.precipitation?.total != null }
-        val precipitationTotal = if (halfDayHourlyListPrecipitationTotal.isNotEmpty()) {
-            halfDayHourlyListPrecipitationTotal
-                .map { it.precipitation!!.total!!.toDouble() }
-                .sumOf { it }
-        } else null
-
-        val halfDayHourlyListPrecipitationThunderstorm = halfDayHourlyList
-            .filter { it.precipitation?.thunderstorm != null }
-        val precipitationThunderstorm =
-            if (halfDayHourlyListPrecipitationThunderstorm.isNotEmpty()) {
-                halfDayHourlyListPrecipitationThunderstorm
-                    .map { it.precipitation!!.thunderstorm!!.toDouble() }
-                    .sumOf { it }
-            } else null
-
-        val halfDayHourlyListPrecipitationRain = halfDayHourlyList
-            .filter { it.precipitation?.rain != null }
-        val precipitationRain = if (halfDayHourlyListPrecipitationRain.isNotEmpty()) {
-            halfDayHourlyListPrecipitationRain
-                .map { it.precipitation!!.rain!!.toDouble() }
-                .sumOf { it }
-        } else null
-
-        val halfDayHourlyListPrecipitationSnow = halfDayHourlyList
-            .filter { it.precipitation?.snow != null }
-        val precipitationSnow = if (halfDayHourlyListPrecipitationSnow.isNotEmpty()) {
-            halfDayHourlyListPrecipitationSnow
-                .map { it.precipitation!!.snow!!.toDouble() }
-                .sumOf { it }
-        } else null
-
-        val halfDayHourlyListPrecipitationIce = halfDayHourlyList
-            .filter { it.precipitation?.ice != null }
-        val precipitationIce = if (halfDayHourlyListPrecipitationIce.isNotEmpty()) {
-            halfDayHourlyListPrecipitationIce
-                .map { it.precipitation!!.ice!!.toDouble() }
-                .sumOf { it }
-        } else null
-
-        halfDayPrecipitation = Precipitation(
-            total = precipitationTotal?.toFloat(),
-            thunderstorm = precipitationThunderstorm?.toFloat(),
-            rain = precipitationRain?.toFloat(),
-            snow = precipitationSnow?.toFloat(),
-            ice = precipitationIce?.toFloat(),
-        )
-    }
-
-    // Precipitation probability
-    if (halfDayPrecipitationProbability?.total == null) {
-        val halfDayHourlyListPrecipitationProbabilityTotal = halfDayHourlyList
-            .filter { it.precipitationProbability?.total != null }
-        val precipitationProbabilityTotal =
-            if (halfDayHourlyListPrecipitationProbabilityTotal.isNotEmpty()) {
-                halfDayHourlyListPrecipitationProbabilityTotal
-                    .map { it.precipitationProbability!!.total!!.toDouble() }
-                    .maxOf { it }
-            } else null
-
-        val halfDayHourlyListPrecipitationProbabilityThunderstorm = halfDayHourlyList
-            .filter { it.precipitationProbability?.thunderstorm != null }
-        val precipitationProbabilityThunderstorm =
-            if (halfDayHourlyListPrecipitationProbabilityThunderstorm.isNotEmpty()) {
-                halfDayHourlyListPrecipitationProbabilityThunderstorm
-                    .map { it.precipitationProbability!!.thunderstorm!!.toDouble() }
-                    .maxOf { it }
-            } else null
-
-        val halfDayHourlyListPrecipitationProbabilityRain = halfDayHourlyList
-            .filter { it.precipitationProbability?.rain != null }
-        val precipitationProbabilityRain =
-            if (halfDayHourlyListPrecipitationProbabilityRain.isNotEmpty()) {
-                halfDayHourlyListPrecipitationProbabilityRain
-                    .map { it.precipitationProbability!!.rain!!.toDouble() }
-                    .maxOf { it }
-            } else null
-
-        val halfDayHourlyListPrecipitationProbabilitySnow = halfDayHourlyList
-            .filter { it.precipitationProbability?.snow != null }
-        val precipitationProbabilitySnow =
-            if (halfDayHourlyListPrecipitationProbabilitySnow.isNotEmpty()) {
-                halfDayHourlyListPrecipitationProbabilitySnow
-                    .map { it.precipitationProbability!!.snow!!.toDouble() }
-                    .maxOf { it }
-            } else null
-
-        val halfDayHourlyListPrecipitationProbabilityIce = halfDayHourlyList
-            .filter { it.precipitationProbability?.ice != null }
-        val precipitationProbabilityIce =
-            if (halfDayHourlyListPrecipitationProbabilityIce.isNotEmpty()) {
-                halfDayHourlyListPrecipitationProbabilityIce
-                    .map { it.precipitationProbability!!.ice!!.toDouble() }
-                    .maxOf { it }
-            } else null
-
-        halfDayPrecipitationProbability = PrecipitationProbability(
-            total = precipitationProbabilityTotal?.toFloat(),
-            thunderstorm = precipitationProbabilityThunderstorm?.toFloat(),
-            rain = precipitationProbabilityRain?.toFloat(),
-            snow = precipitationProbabilitySnow?.toFloat(),
-            ice = precipitationProbabilityIce?.toFloat(),
-        )
-    }
-
-    // Wind
-    if (halfDayWind?.speed == null) {
-        halfDayHourlyList
-            .filter { it.wind?.speed != null }
-            .maxByOrNull { it.wind!!.speed!! }
-            ?.let {
-                halfDayWind = it.wind
-            }
-    }
-
-    if (halfDayCloudCover == null) {
-        val halfDayHourlyListCloudCover = halfDayHourlyList
-            .filter { it.cloudCover != null }
-            .map { it.cloudCover!! }
-
-        if (halfDayHourlyListCloudCover.isNotEmpty()) {
-            halfDayCloudCover = halfDayHourlyListCloudCover.average().roundToInt()
-        }
-    }
-
-    return HalfDay(
+    return newHalfDay.copy(
         weatherText = halfDayWeatherText,
         weatherPhase = halfDayWeatherPhase,
         weatherCode = halfDayWeatherCode,
-        temperature = halfDayTemperature,
-        precipitation = halfDayPrecipitation,
-        precipitationProbability = halfDayPrecipitationProbability,
-        precipitationDuration = halfDayPrecipitationDuration,
-        wind = halfDayWind,
-        cloudCover = halfDayCloudCover
+        temperature = if (newHalfDay.temperature?.temperature == null
+            || newHalfDay.temperature.apparentTemperature == null
+            || newHalfDay.temperature.windChillTemperature == null
+            || newHalfDay.temperature.wetBulbTemperature == null) {
+            getHalfDayTemperatureFromHourlyList(newHalfDay.temperature, halfDayHourlyList, isDay)
+        } else newHalfDay.temperature,
+        precipitation = if (newHalfDay.precipitation?.total == null) {
+            getHalfDayPrecipitationFromHourlyList(halfDayHourlyList)
+        } else newHalfDay.precipitation,
+        precipitationProbability = if (newHalfDay.precipitationProbability?.total == null) {
+           getHalfDayPrecipitationProbabilityFromHourlyList(halfDayHourlyList)
+        } else newHalfDay.precipitationProbability,
+        wind = if (newHalfDay.wind?.speed == null) {
+           getHalfDayWindFromHourlyList(halfDayHourlyList)
+        } else newHalfDay.wind,
+        cloudCover = newHalfDay.cloudCover ?: getHalfDayCloudCoverFromHourlyList(halfDayHourlyList)
     )
+}
+
+/**
+ * We complete everything except RealFeel and RealFeelShade which are AccuWeather-specific
+ * and that we know is already completed
+ */
+private fun getHalfDayTemperatureFromHourlyList(
+    initialTemperature: Temperature?,
+    halfDayHourlyList: List<HourlyWrapper>,
+    isDay: Boolean
+): Temperature {
+    val newTemperature = initialTemperature ?: Temperature()
+
+    var temperatureTemperature = newTemperature.temperature
+    var temperatureApparentTemperature = newTemperature.apparentTemperature
+    var temperatureWindChillTemperature = newTemperature.windChillTemperature
+    var temperatureWetBulbTemperature = newTemperature.wetBulbTemperature
+
+    if (temperatureTemperature == null) {
+        val halfDayHourlyListTemperature = halfDayHourlyList.filter { it.temperature?.temperature != null }
+        temperatureTemperature = if (halfDayHourlyListTemperature.isNotEmpty()) {
+            if (isDay) {
+                halfDayHourlyListTemperature.maxOf { it.temperature!!.temperature!! }
+            } else {
+                halfDayHourlyListTemperature.minOf { it.temperature!!.temperature!! }
+            }
+        } else null
+    }
+    if (temperatureApparentTemperature == null) {
+        val halfDayHourlyListApparentTemperature = halfDayHourlyList.filter { it.temperature?.apparentTemperature != null }
+        temperatureApparentTemperature = if (halfDayHourlyListApparentTemperature.isNotEmpty()) {
+            if (isDay) {
+                halfDayHourlyListApparentTemperature.maxOf { it.temperature!!.apparentTemperature!! }
+            } else {
+                halfDayHourlyListApparentTemperature.minOf { it.temperature!!.apparentTemperature!! }
+            }
+        } else null
+    }
+    if (temperatureWindChillTemperature == null) {
+        val halfDayHourlyListWindChillTemperature = halfDayHourlyList.filter { it.temperature?.windChillTemperature != null }
+        temperatureWindChillTemperature = if (halfDayHourlyListWindChillTemperature.isNotEmpty()) {
+            if (isDay) {
+                halfDayHourlyListWindChillTemperature.maxOf { it.temperature!!.windChillTemperature!! }
+            } else {
+                halfDayHourlyListWindChillTemperature.minOf { it.temperature!!.windChillTemperature!! }
+            }
+        } else null
+    }
+    if (temperatureWetBulbTemperature == null) {
+        val halfDayHourlyListWetBulbTemperature = halfDayHourlyList.filter { it.temperature?.wetBulbTemperature != null }
+        temperatureWetBulbTemperature = if (halfDayHourlyListWetBulbTemperature.isNotEmpty()) {
+            if (isDay) {
+                halfDayHourlyListWetBulbTemperature.maxOf { it.temperature!!.wetBulbTemperature!! }
+            } else {
+                halfDayHourlyListWetBulbTemperature.minOf { it.temperature!!.wetBulbTemperature!! }
+            }
+        } else null
+    }
+    return newTemperature.copy(
+        temperature = temperatureTemperature,
+        apparentTemperature = temperatureApparentTemperature,
+        windChillTemperature = temperatureWindChillTemperature,
+        wetBulbTemperature = temperatureWetBulbTemperature
+    )
+}
+
+private fun getHalfDayPrecipitationFromHourlyList(
+    halfDayHourlyList: List<HourlyWrapper>
+): Precipitation {
+    val halfDayHourlyListPrecipitationTotal = halfDayHourlyList
+        .filter { it.precipitation?.total != null }
+        .map { it.precipitation!!.total!!.toDouble() }
+    val halfDayHourlyListPrecipitationThunderstorm = halfDayHourlyList
+        .filter { it.precipitation?.thunderstorm != null }
+        .map { it.precipitation!!.thunderstorm!!.toDouble() }
+    val halfDayHourlyListPrecipitationRain = halfDayHourlyList
+        .filter { it.precipitation?.rain != null }
+        .map { it.precipitation!!.rain!!.toDouble() }
+    val halfDayHourlyListPrecipitationSnow = halfDayHourlyList
+        .filter { it.precipitation?.snow != null }
+        .map { it.precipitation!!.snow!!.toDouble() }
+    val halfDayHourlyListPrecipitationIce = halfDayHourlyList
+        .filter { it.precipitation?.ice != null }
+        .map { it.precipitation!!.ice!!.toDouble() }
+
+    return Precipitation(
+        total = if (halfDayHourlyListPrecipitationTotal.isNotEmpty()) {
+            halfDayHourlyListPrecipitationTotal.sumOf { it }.toFloat()
+        } else null,
+        thunderstorm = if (halfDayHourlyListPrecipitationThunderstorm.isNotEmpty()) {
+            halfDayHourlyListPrecipitationThunderstorm.sumOf { it }.toFloat()
+        } else null,
+        rain = if (halfDayHourlyListPrecipitationRain.isNotEmpty()) {
+            halfDayHourlyListPrecipitationRain.sumOf { it }.toFloat()
+        } else null,
+        snow = if (halfDayHourlyListPrecipitationSnow.isNotEmpty()) {
+            halfDayHourlyListPrecipitationSnow.sumOf { it }.toFloat()
+        } else null,
+        ice = if (halfDayHourlyListPrecipitationIce.isNotEmpty()) {
+            halfDayHourlyListPrecipitationIce.sumOf { it }.toFloat()
+        } else null
+    )
+}
+
+private fun getHalfDayPrecipitationProbabilityFromHourlyList(
+    halfDayHourlyList: List<HourlyWrapper>
+): PrecipitationProbability {
+    val halfDayHourlyListPrecipitationProbabilityTotal = halfDayHourlyList
+        .filter { it.precipitationProbability?.total != null }
+        .map { it.precipitationProbability!!.total!!.toDouble() }
+    val halfDayHourlyListPrecipitationProbabilityThunderstorm = halfDayHourlyList
+        .filter { it.precipitationProbability?.thunderstorm != null }
+        .map { it.precipitationProbability!!.thunderstorm!!.toDouble() }
+    val halfDayHourlyListPrecipitationProbabilityRain = halfDayHourlyList
+        .filter { it.precipitationProbability?.rain != null }
+        .map { it.precipitationProbability!!.rain!!.toDouble() }
+    val halfDayHourlyListPrecipitationProbabilitySnow = halfDayHourlyList
+        .filter { it.precipitationProbability?.snow != null }
+        .map { it.precipitationProbability!!.snow!!.toDouble() }
+    val halfDayHourlyListPrecipitationProbabilityIce = halfDayHourlyList
+        .filter { it.precipitationProbability?.ice != null }
+        .map { it.precipitationProbability!!.ice!!.toDouble() }
+
+    return PrecipitationProbability(
+        total = if (halfDayHourlyListPrecipitationProbabilityTotal.isNotEmpty()) {
+            halfDayHourlyListPrecipitationProbabilityTotal.maxOf { it }.toFloat()
+        } else null,
+        thunderstorm = if (halfDayHourlyListPrecipitationProbabilityThunderstorm.isNotEmpty()) {
+            halfDayHourlyListPrecipitationProbabilityThunderstorm.maxOf { it }.toFloat()
+        } else null,
+        rain = if (halfDayHourlyListPrecipitationProbabilityRain.isNotEmpty()) {
+            halfDayHourlyListPrecipitationProbabilityRain.maxOf { it }.toFloat()
+        } else null,
+        snow = if (halfDayHourlyListPrecipitationProbabilitySnow.isNotEmpty()) {
+            halfDayHourlyListPrecipitationProbabilitySnow.maxOf { it }.toFloat()
+        } else null,
+        ice = if (halfDayHourlyListPrecipitationProbabilityIce.isNotEmpty()) {
+            halfDayHourlyListPrecipitationProbabilityIce.maxOf { it }.toFloat()
+        } else null,
+    )
+}
+
+private fun getHalfDayWindFromHourlyList(
+    halfDayHourlyList: List<HourlyWrapper>
+): Wind? {
+    return halfDayHourlyList
+        .filter { it.wind?.speed != null }
+        .maxByOrNull { it.wind!!.speed!! }
+        ?.wind
+}
+
+private fun getHalfDayCloudCoverFromHourlyList(
+    halfDayHourlyList: List<HourlyWrapper>
+): Int? {
+    val halfDayHourlyListCloudCover = halfDayHourlyList
+        .filter { it.cloudCover != null }
+        .map { it.cloudCover!! }
+
+    return if (halfDayHourlyListCloudCover.isNotEmpty()) {
+        halfDayHourlyListCloudCover.average().roundToInt()
+    } else null
 }
 
 /**
  * Returns an AirQuality object calculated from a List of Hourly for the day
  * (at least 18 non-null Hourly.AirQuality required)
  */
-fun getDailyAirQualityFromHourlyList(hourlyList: List<HourlyWrapper>? = null): AirQuality? {
+private fun getDailyAirQualityFromHourlyList(hourlyList: List<HourlyWrapper>? = null): AirQuality? {
     // We need at least 18 hours for a signification estimation
     if (hourlyList.isNullOrEmpty() || hourlyList.size < 18) return null
     val hourlyListWithAirQuality = hourlyList.filter { it.airQuality != null }
@@ -380,7 +387,7 @@ fun getDailyAirQualityFromHourlyList(hourlyList: List<HourlyWrapper>? = null): A
 /**
  * Returns the max UV for the day from a list of hourly
  */
-fun getDailyUVFromHourlyList(hourlyList: List<HourlyWrapper>? = null): UV? {
+private fun getDailyUVFromHourlyList(hourlyList: List<HourlyWrapper>? = null): UV? {
     if (hourlyList.isNullOrEmpty()) return null
     val hourlyListWithUV = hourlyList.filter { it.uV?.index != null }
     if (hourlyListWithUV.isEmpty()) return null
@@ -388,22 +395,7 @@ fun getDailyUVFromHourlyList(hourlyList: List<HourlyWrapper>? = null): UV? {
     return UV(index = hourlyListWithUV.maxOf { it.uV!!.index!! })
 }
 
-fun getMoonPhaseAngle(phase: String?): Int? {
-    return if (phase.isNullOrEmpty()) {
-        null
-    } else when (phase.lowercase(Locale.getDefault())) {
-        "waxingcrescent", "waxing crescent" -> 45
-        "first", "firstquarter", "first quarter" -> 90
-        "waxinggibbous", "waxing gibbous" -> 135
-        "full", "fullmoon", "full moon" -> 180
-        "waninggibbous", "waning gibbous" -> 225
-        "third", "thirdquarter", "third quarter", "last", "lastquarter", "last quarter" -> 270
-        "waningcrescent", "waning crescent" -> 315
-        else -> 360
-    }
-}
-
-fun getHoursOfDay(sunrise: Date?, sunset: Date?): Float? {
+private fun getHoursOfDay(sunrise: Date?, sunset: Date?): Float? {
     return if (sunrise == null || sunset == null || sunrise.after(sunset)) {
         null
     } else {
@@ -423,6 +415,7 @@ fun getHoursOfDay(sunrise: Date?, sunset: Date?): Float? {
  * Completes hourly data from daily data:
  * - isDaylight
  * - UV field
+ * TODO: Calculate dewpoint from humidity
  *
  * Also removes hourlys in the past (30 min margin)
  *
@@ -483,7 +476,7 @@ private fun isDaylight(sunrise: Date?, sunset: Date?, current: Date?): Boolean {
 /**
  * Returns an estimated UV index for current time from max UV of the day
  */
-fun getCurrentUVFromDayMax(
+private fun getCurrentUVFromDayMax(
     dayMaxUV: Float?,
     currentDate: Date?,
     sunriseDate: Date?,
@@ -581,7 +574,7 @@ fun completeCurrentFromTodayDailyAndHourly(
     )
 }
 
-fun completeCurrentTemperatureFromHourly(
+private fun completeCurrentTemperatureFromHourly(
     initialTemperature: Temperature?,
     hourlyTemperature: Temperature?
 ): Temperature? {
