@@ -61,10 +61,9 @@ fun convert(
                 speed = forecastResult.current.wind.speed?.value?.toFloatOrNull(),
                 level = getWindLevel(context, forecastResult.current.wind.speed?.value?.toFloatOrNull())
             ) else null,
-            uV = if (forecastResult.current.uvIndex != null) UV(
-                index = forecastResult.current.uvIndex.toFloatOrNull(),
-                description = getUVDescription(forecastResult.current.uvIndex.toInt())
-            ) else null,
+            uV = if (forecastResult.current.uvIndex != null) {
+                UV(index = forecastResult.current.uvIndex.toFloatOrNull())
+            } else null,
             airQuality = getAirQuality(forecastResult),
             relativeHumidity = if (!forecastResult.current.humidity?.value.isNullOrEmpty()) forecastResult.current.humidity!!.value!!.toFloatOrNull() else null,
             pressure = if (!forecastResult.current.pressure?.value.isNullOrEmpty()) forecastResult.current.pressure!!.value!!.toFloat() else null,

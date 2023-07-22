@@ -76,7 +76,5 @@ data class HourlyEntity(
     var treeDescription: String? = null,
 
     // uv.
-    var uvIndex: Float? = null,
-    var uvLevel: String? = null,
-    var uvDescription: String? = null
+    var uvIndex: Float? = null
 )

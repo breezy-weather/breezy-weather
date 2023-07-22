@@ -266,7 +266,7 @@ abstract class AbstractRemoteViewsPresenter {
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$cuv$",
-                    weather.current?.uV?.shortUVDescription
+                    weather.current?.uV?.getShortUVDescription(context)
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$ch$",

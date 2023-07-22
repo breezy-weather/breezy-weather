@@ -13,43 +13,45 @@ import java.io.Serializable
  * UV.
  */
 class UV(
-    val index: Float? = null,
-    val level: String? = null,
-    val description: String? = null
+    val index: Float? = null
 ) : Serializable {
 
     val isValid: Boolean
-        get() = index != null || level != null || description != null
+        get() = index != null
 
-    @get:SuppressLint("DefaultLocale")
-    val uVDescription: String
-        get() {
-            val builder = StringBuilder()
-            index?.let {
-                builder.append(it.format(1))
-            }
-            level?.let {
-                if (builder.toString().isNotEmpty()) builder.append(" ")
-                builder.append(it)
-            }
-            description?.let {
-                if (builder.toString().isNotEmpty()) builder.append("\n")
-                builder.append(it)
-            }
-            return builder.toString()
+    fun getLevel(context: Context) = when (index) {
+        null -> null
+        in 0f..UV_INDEX_LOW -> context.getString(R.string.uv_index_0_2)
+        in UV_INDEX_LOW..UV.UV_INDEX_MIDDLE -> context.getString(R.string.uv_index_3_5)
+        in UV_INDEX_MIDDLE..UV.UV_INDEX_HIGH -> context.getString(R.string.uv_index_6_7)
+        in UV_INDEX_HIGH..UV.UV_INDEX_EXCESSIVE -> context.getString(R.string.uv_index_8_10)
+        in UV_INDEX_EXCESSIVE..Float.MAX_VALUE -> context.getString(R.string.uv_index_11)
+        else -> null
+    }
+
+    fun getUVDescription(context: Context): String {
+        val builder = StringBuilder()
+        index?.let {
+            builder.append(it.format(1))
         }
-    val shortUVDescription: String
-        get() {
-            val builder = StringBuilder()
-            index?.let {
-                builder.append(it.format(0))
-            }
-            level?.let {
-                if (builder.toString().isNotEmpty()) builder.append(" ")
-                builder.append(it)
-            }
-            return builder.toString()
+        getLevel(context)?.let {
+            if (builder.toString().isNotEmpty()) builder.append(" ")
+            builder.append(it)
         }
+        return builder.toString()
+    }
+
+    fun getShortUVDescription(context: Context): String {
+        val builder = StringBuilder()
+        index?.let {
+            builder.append(it.format(0))
+        }
+        getLevel(context)?.let {
+            if (builder.toString().isNotEmpty()) builder.append(" ")
+            builder.append(it)
+        }
+        return builder.toString()
+    }
 
     companion object {
         const val UV_INDEX_LOW = 2f

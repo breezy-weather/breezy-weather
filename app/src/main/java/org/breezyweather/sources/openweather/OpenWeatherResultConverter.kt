@@ -53,10 +53,7 @@ fun convert(
                 level = getWindLevel(context, result.windSpeed?.times(3.6f))
             ),
             airQuality = getAirQuality(result.dt, airPollutionResult),
-            uV = UV(
-                index = result.uvi,
-                level = getUVLevel(context, result.uvi)
-            )
+            uV = UV(index = result.uvi)
         )
 
         // We shift by 6 hours the hourly date, otherwise nighttime (00:00 to 05:59) would be on the wrong day
@@ -105,10 +102,7 @@ fun convert(
                 speed = oneCallResult.current.windSpeed?.times(3.6f),
                 level = getWindLevel(context, oneCallResult.current.windSpeed?.times(3.6f))
             ),
-            uV = UV(
-                index = oneCallResult.current.uvi,
-                level = getUVLevel(context, oneCallResult.current.uvi)
-            ),
+            uV = UV(index = oneCallResult.current.uvi),
             airQuality = hourlyList.getOrNull(1)?.airQuality,
             relativeHumidity = oneCallResult.current.humidity?.toFloat(),
             pressure = oneCallResult.current.pressure?.toFloat(),
@@ -183,7 +177,7 @@ private fun getDailyList(
                     setDate = if (dailyForecast.moonset != null) Date(dailyForecast.moonset.times(1000)) else null
                 ),
                 airQuality = getDailyAirQualityFromHourlyList(hourlyListByDay.getOrDefault(dailyDateFormatted, null)),
-                uV = UV(dailyForecast.uvi, getUVLevel(context, dailyForecast.uvi), null),
+                uV = UV(index = dailyForecast.uvi),
                 hoursOfSun = if (dailyForecast.sunrise != null && dailyForecast.sunset != null) getHoursOfDay(Date(dailyForecast.sunrise.times(1000)), Date(dailyForecast.sunset.times(1000))) else null
             )
         )

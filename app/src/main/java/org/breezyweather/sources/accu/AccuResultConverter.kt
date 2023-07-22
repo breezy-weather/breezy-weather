@@ -92,10 +92,7 @@ fun convert(
                 speed = currentResult.Wind?.Speed?.Metric?.Value?.toFloat(),
                 level = getWindLevel(context, currentResult.Wind?.Speed?.Metric?.Value?.toFloat())
             ),
-            uV = UV(
-                index = currentResult.UVIndex?.toFloat(),
-                level = getUVLevel(context, currentResult.UVIndex?.toFloat())
-            ),
+            uV = UV(index = currentResult.UVIndex?.toFloat()),
             airQuality = if (airQualityHourlyResult.data?.getOrNull(0) != null) getAirQualityForHour(airQualityHourlyResult.data[0].epochDate, airQualityHourlyResult.data) else null,
             relativeHumidity = currentResult.RelativeHumidity?.toFloat(),
             pressure = currentResult.Pressure?.Metric?.Value?.toFloat(),
@@ -257,10 +254,7 @@ private fun getDailyUV(list: List<AccuForecastAirAndPollen>?): UV? {
     if (list == null) return null
 
     val uv = list.firstOrNull { it.Name == "UVIndex" }
-    return UV(
-        index = uv?.Value?.toFloat(),
-        level = uv?.Category
-    )
+    return UV(index = uv?.Value?.toFloat())
 }
 
 private fun getHourlyList(
@@ -302,11 +296,7 @@ private fun getHourlyList(
                     level = getWindLevel(context, result.Wind?.Speed?.Value?.toFloat())
                 ),
                 airQuality = getAirQualityForHour(result.EpochDateTime, airQualityData),
-                uV = UV(
-                    index = result.UVIndex?.toFloat(),
-                    level = getUVLevel(context, result.UVIndex?.toFloat()),
-                    description = result.UVIndexText
-                )
+                uV = UV(index = result.UVIndex?.toFloat())
             )
         )
     }

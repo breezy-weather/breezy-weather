@@ -130,10 +130,7 @@ fun convert(
                 cO = airQualityResult.hourly.carbonMonoxide?.getOrNull(airQualityIndex)?.div(1000),
             ) else null,
             // pollen = TODO
-            uV = UV(
-                index = weatherResult.hourly.uvIndex?.getOrNull(i),
-                level = getUVLevel(context, weatherResult.hourly.uvIndex?.getOrNull(i))
-            )
+            uV = UV(index = weatherResult.hourly.uvIndex?.getOrNull(i))
         )
 
         // We shift by 6 hours the hourly date, otherwise nighttime (00:00 to 05:59) would be on the wrong day
@@ -182,7 +179,6 @@ fun convert(
                 level = getWindLevel(context, weatherResult.currentWeather?.windSpeed)
             ),
             uV = getCurrentUV(
-                context,
                 dailyList.getOrNull(0)?.uV?.index,
                 Date(),
                 dailyList.getOrNull(0)?.sun?.riseDate,
@@ -249,10 +245,7 @@ private fun getDailyList(
             ),
             airQuality = getDailyAirQualityFromHourlyList(hourlyListByDay.getOrDefault(dailyDateFormatted, null)),
             // pollen = TODO
-            uV = UV(
-                index = dailyResult.uvIndexMax?.getOrNull(i),
-                level = getUVLevel(context, dailyResult.uvIndexMax?.getOrNull(i))
-            ),
+            uV = UV(index = dailyResult.uvIndexMax?.getOrNull(i)),
             hoursOfSun = if (dailyResult.sunrise?.getOrNull(i) != null && dailyResult.sunset?.getOrNull(i) != null) getHoursOfDay(
                 Date(dailyResult.sunrise[i]!!.times(1000)), Date(dailyResult.sunset[i]!!.times(1000))
             ) else null

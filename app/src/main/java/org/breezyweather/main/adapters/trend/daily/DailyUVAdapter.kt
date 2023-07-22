@@ -42,7 +42,7 @@ class DailyUVAdapter(activity: GeoActivity, location: Location) : AbsDailyTrendA
 
             val index = daily.uV?.index
             if (index != null) {
-                talkBackBuilder.append(", ").append(index).append(", ").append(daily.uV.level)
+                talkBackBuilder.append(", ").append(index).append(", ").append(daily.uV.getLevel(activity))
             }
             mPolylineAndHistogramView.setData(
                 null, null,

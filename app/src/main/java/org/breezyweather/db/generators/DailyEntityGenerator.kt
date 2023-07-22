@@ -137,8 +137,6 @@ object DailyEntityGenerator {
 
             // uv.
             uvIndex = daily.uV?.index,
-            uvLevel = daily.uV?.level,
-            uvDescription = daily.uV?.description,
 
             hoursOfSun = daily.hoursOfSun
         )
@@ -253,7 +251,7 @@ object DailyEntityGenerator {
                 entity.ragweedIndex, entity.ragweedLevel, entity.ragweedDescription,
                 entity.treeIndex, entity.treeLevel, entity.treeDescription
             ),
-            UV(entity.uvIndex, entity.uvLevel, entity.uvDescription),
+            UV(entity.uvIndex),
             entity.hoursOfSun
         )
     }

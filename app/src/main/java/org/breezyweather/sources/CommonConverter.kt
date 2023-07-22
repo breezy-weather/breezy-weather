@@ -267,16 +267,12 @@ fun getDailyAirQualityFromHourlyList(hourlyList: List<HourlyWrapper>? = null): A
  * Returns an AirQuality object calculated from a List of Hourly for the day
  * (at least 18 non-null Hourly.AirQuality required)
  */
-fun getDailyUVFromHourlyList(context: Context, hourlyList: List<HourlyWrapper>? = null): UV? {
+fun getDailyUVFromHourlyList(hourlyList: List<HourlyWrapper>? = null): UV? {
     if (hourlyList.isNullOrEmpty()) return null
     val hourlyListWithUV = hourlyList.filter { it.uV?.index != null }
     if (hourlyListWithUV.isEmpty()) return null
 
-    val maxUV = hourlyListWithUV.maxOf { it.uV!!.index!! }
-    return UV(
-        index = maxUV,
-        level = getUVLevel(context, maxUV)
-    )
+    return UV(index = hourlyListWithUV.maxOf { it.uV!!.index!! })
 }
 
 /**
@@ -299,9 +295,21 @@ fun completeHourlyListFromDailyList(
                     if (hourly.uV?.index == null && daily.uV?.index != null) {
                         newHourlyList.add(if (hourly.isDaylight == null) hourly.copyToHourly(
                             isDaylight = isDaylight(daily.sun.riseDate, daily.sun.setDate, hourly.date, timeZone),
-                            uV = getCurrentUV(context, daily.uV.index, hourly.date, daily.sun.riseDate, daily.sun.setDate, timeZone)
+                            uV = getCurrentUV(
+                                daily.uV.index,
+                                hourly.date,
+                                daily.sun.riseDate,
+                                daily.sun.setDate,
+                                timeZone
+                            )
                         ) else hourly.copyToHourly(
-                            uV = getCurrentUV(context, daily.uV.index, hourly.date, daily.sun.riseDate, daily.sun.setDate, timeZone)
+                            uV = getCurrentUV(
+                                daily.uV.index,
+                                hourly.date,
+                                daily.sun.riseDate,
+                                daily.sun.setDate,
+                                timeZone
+                            )
                         ))
                         return@forEach // continue to next item
                     } else if (hourly.isDaylight == null) {
@@ -405,7 +413,6 @@ fun isDaylight(sunrise: Date?, sunset: Date?, current: Date?, timeZone: TimeZone
 }
 
 fun getCurrentUV(
-    context: Context,
     dayMaxUV: Float?,
     currentDate: Date?,
     sunriseDate: Date?,
@@ -436,10 +443,7 @@ fun getCurrentUV(
 
     val indexUV = if (currentUV < 0) 0f else currentUV
 
-    return UV(
-        index = indexUV,
-        level = getUVLevel(context, indexUV)
-    )
+    return UV(index = indexUV)
 }
 
 fun getHoursOfDay(sunrise: Date?, sunset: Date?): Float? {

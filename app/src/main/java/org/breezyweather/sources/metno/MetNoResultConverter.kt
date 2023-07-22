@@ -79,10 +79,7 @@ fun convert(
                 nO2 = airQualityResult.data.time.getOrNull(airQualityIndex)?.variables?.no2Concentration?.value,
                 o3 = airQualityResult.data.time.getOrNull(airQualityIndex)?.variables?.o3Concentration?.value
             ) else null,
-            uV = UV(
-                index = hourlyForecast.data?.instant?.details?.ultravioletIndexClearSky,
-                level = getUVLevel(context, hourlyForecast.data?.instant?.details?.ultravioletIndexClearSky)
-            )
+            uV = UV(index = hourlyForecast.data?.instant?.details?.ultravioletIndexClearSky)
         )
 
         // We shift by 6 hours the hourly date, otherwise nighttime (00:00 to 05:59) would be on the wrong day
@@ -137,7 +134,6 @@ fun convert(
                 level = getWindLevel(context, currentTimeseries.instant.details.windSpeed?.times(3.6f))
             ) else null,
             uV = getCurrentUV(
-                context,
                 dailyList.getOrNull(0)?.uV?.index,
                 Date(),
                 dailyList.getOrNull(0)?.sun?.riseDate,
@@ -199,7 +195,7 @@ private fun getDailyList(
                         angle = moonResult?.moonphase?.roundToInt()
                     ) else null,
                     airQuality = getDailyAirQualityFromHourlyList(hourlyListByDay.getOrDefault(day.key, null)),
-                    uV = getDailyUVFromHourlyList(context, day.value),
+                    uV = getDailyUVFromHourlyList(day.value),
                     hoursOfSun = if (i == 0) getHoursOfDay(sunResult?.sunrise?.time, sunResult?.sunset?.time) else null
                 )
             )

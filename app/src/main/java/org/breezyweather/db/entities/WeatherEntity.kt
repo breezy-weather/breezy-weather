@@ -48,8 +48,6 @@ class WeatherEntity(
     var windLevel: String? = null,
 
     var uvIndex: Float? = null,
-    var uvLevel: String? = null,
-    var uvDescription: String? = null,
 
     var pm25: Float? = null,
     var pm10: Float? = null,

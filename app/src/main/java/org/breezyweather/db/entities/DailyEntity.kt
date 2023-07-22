@@ -147,8 +147,6 @@ data class DailyEntity(
 
     // uv.
     var uvIndex: Float? = null,
-    var uvLevel: String? = null,
-    var uvDescription: String? = null,
 
     var hoursOfSun: Float? = null
 )

@@ -26,7 +26,7 @@ class UVHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
             mIcon,
             ColorStateList.valueOf(UV.getUVColor(uv.index?.roundDecimals(1), context))
         )
-        mTitle.text = uv.uVDescription
+        mTitle.text = uv.getUVDescription(context)
         itemView.contentDescription = context.getString(R.string.uv_index) + ", " + mTitle.text
     }
 }

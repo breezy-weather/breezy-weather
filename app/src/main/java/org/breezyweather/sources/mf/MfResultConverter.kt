@@ -147,7 +147,6 @@ fun convert(
                 level = getWindLevel(context, currentResult.properties.gridded.windSpeed?.times(3.6f))
             ) else null,
             uV = getCurrentUV(
-                context,
                 dailyList.getOrNull(0)?.uV?.index,
                 Date(),
                 dailyList.getOrNull(0)?.sun?.riseDate,
@@ -230,10 +229,7 @@ private fun getDailyList(
                     description = ephemerisResult?.moonPhaseDescription
                 ) else null,
                 airQuality = getDailyAirQualityFromHourlyList(hourlyListByDay.getOrDefault(dailyDateFormatted, null)),
-                uV = UV(
-                    index = dailyForecast.uvIndex?.toFloat(),
-                    level = getUVLevel(context, dailyForecast.uvIndex?.toFloat())
-                ),
+                uV = UV(index = dailyForecast.uvIndex?.toFloat()),
                 hoursOfSun = getHoursOfDay(dailyForecast.sunriseTime, dailyForecast.sunsetTime)
             )
         )

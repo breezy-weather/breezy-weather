@@ -41,8 +41,6 @@ object WeatherEntityGenerator {
             windLevel = weather.current?.wind?.level,
 
             uvIndex = weather.current?.uV?.index,
-            uvLevel = weather.current?.uV?.level,
-            uvDescription = weather.current?.uV?.description,
 
             pm25 = weather.current?.airQuality?.pM25,
             pm10 = weather.current?.airQuality?.pM10,
@@ -91,11 +89,7 @@ object WeatherEntityGenerator {
                     weatherEntity.windSpeed,
                     weatherEntity.windLevel
                 ),
-                UV(
-                    weatherEntity.uvIndex,
-                    weatherEntity.uvLevel,
-                    weatherEntity.uvDescription
-                ),
+                UV(weatherEntity.uvIndex),
                 AirQuality(
                     weatherEntity.pm25,
                     weatherEntity.pm10,
