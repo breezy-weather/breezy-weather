@@ -221,7 +221,7 @@ class SearchActivity : GeoActivity() {
                 },
                 dismissButton = {
                     TextButton(
-                        onClick = { uriHandler.openUri("https://github.com/breezy-weather/breezy-weather/blob/main/docs/PROVIDERS.md") }
+                        onClick = { uriHandler.openUri("https://github.com/breezy-weather/breezy-weather/blob/main/docs/SOURCES.md") }
                     ) {
                         Text(
                             text = stringResource(R.string.action_help_me_choose),
