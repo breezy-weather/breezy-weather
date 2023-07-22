@@ -206,10 +206,10 @@
     <string name="action_back">Quay lại</string>
     <string name="action_next">Tiếp</string>
     <string name="action_done">Xong</string>
-    <string name="action_cancel" tools:ignore="ButtonCase">HỦY</string>
-    <string name="action_set">ĐẶT</string>
-    <string name="action_help">TrỢ giÚp</string>
-    <string name="action_learn_more">Biết thÊm</string>
+    <string name="action_cancel" tools:ignore="ButtonCase">Hủy</string>
+    <string name="action_set">Đặt</string>
+    <string name="action_help">Trợ giúp</string>
+    <string name="action_learn_more">Biết thêm</string>
     <string name="action_continue">Tiếp tục</string>
     <string name="action_share">Chia sẻ</string>
     <string name="dialog_permissions_location_title">Truy cập thông tin vị trí</string>
