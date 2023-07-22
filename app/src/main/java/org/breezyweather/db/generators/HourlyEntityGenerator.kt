@@ -65,7 +65,14 @@ object HourlyEntityGenerator {
             treeDescription = hourly.pollen?.treeDescription,
 
             // uv.
-            uvIndex = hourly.uV?.index
+            uvIndex = hourly.uV?.index,
+
+            // details
+            relativeHumidity = hourly.relativeHumidity,
+            dewPoint = hourly.dewPoint,
+            pressure = hourly.pressure,
+            cloudCover = hourly.cloudCover,
+            visibility = hourly.visibility
         )
     }
 
@@ -121,7 +128,12 @@ object HourlyEntityGenerator {
                 entity.ragweedIndex, entity.ragweedLevel, entity.ragweedDescription,
                 entity.treeIndex, entity.treeLevel, entity.treeDescription
             ),
-            UV(entity.uvIndex)
+            UV(entity.uvIndex),
+            entity.relativeHumidity,
+            entity.dewPoint,
+            entity.pressure,
+            entity.cloudCover,
+            entity.visibility
         )
     }
 

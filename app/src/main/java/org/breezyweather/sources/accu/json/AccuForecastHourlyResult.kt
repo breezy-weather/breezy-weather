@@ -27,5 +27,8 @@ data class AccuForecastHourlyResult(
     val TotalLiquid: AccuValue?,
     val Rain: AccuValue?,
     val Snow: AccuValue?,
-    val Ice: AccuValue?
+    val Ice: AccuValue?,
+    val RelativeHumidity: Int?,
+    val DewPoint: AccuValue?,
+    val CloudCover: Int?
 )

@@ -47,12 +47,28 @@ class WeatherHelper @Inject constructor(
         return service
             .requestWeather(context, location.copy())
             .map { t ->
+                val dailyForecast = completeDailyListFromHourlyList(
+                    t.dailyForecast ?: emptyList(),
+                    t.hourlyForecast ?: emptyList(),
+                    location.timeZone
+                )
+                val hourlyForecast = completeHourlyListFromDailyList(
+                    t.hourlyForecast ?: emptyList(),
+                    t.dailyForecast ?: emptyList(),
+                    location.timeZone
+                )
+
                 val weather = Weather(
                     base = t.base ?: Base(),
-                    current = t.current,
+                    current = completeCurrentFromTodayDailyAndHourly(
+                        t.current,
+                        hourlyForecast.getOrNull(0),
+                        dailyForecast.getOrNull(0),
+                        location.timeZone
+                    ),
                     yesterday = t.yesterday,
-                    dailyForecast = t.dailyForecast ?: emptyList(),
-                    hourlyForecast = completeHourlyListFromDailyList(context, t.hourlyForecast ?: emptyList(), t.dailyForecast ?: emptyList(), location.timeZone),
+                    dailyForecast = dailyForecast,
+                    hourlyForecast = hourlyForecast,
                     minutelyForecast = t.minutelyForecast ?: emptyList(),
                     alertList = t.alertList ?: emptyList()
                 )

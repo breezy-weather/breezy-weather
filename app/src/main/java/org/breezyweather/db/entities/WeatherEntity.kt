@@ -50,9 +50,9 @@ class WeatherEntity(
     var co: Float? = null,
 
     var relativeHumidity: Float? = null,
+    var dewPoint: Float? = null,
     var pressure: Float? = null,
     var visibility: Float? = null,
-    var dewPoint: Float? = null,
     var cloudCover: Int? = null,
     var ceiling: Float? = null,
     var dailyForecast: String? = null,

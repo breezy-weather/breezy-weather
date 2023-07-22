@@ -46,10 +46,10 @@ object WeatherEntityGenerator {
             co = weather.current?.airQuality?.cO,
 
             relativeHumidity = weather.current?.relativeHumidity,
-            pressure = weather.current?.pressure,
-            visibility = weather.current?.visibility,
             dewPoint = weather.current?.dewPoint,
+            pressure = weather.current?.pressure,
             cloudCover = weather.current?.cloudCover,
+            visibility = weather.current?.visibility,
             ceiling = weather.current?.ceiling,
             dailyForecast = weather.current?.dailyForecast,
             hourlyForecast = weather.current?.hourlyForecast
@@ -93,10 +93,10 @@ object WeatherEntityGenerator {
                     weatherEntity.co
                 ),
                 weatherEntity.relativeHumidity,
-                weatherEntity.pressure,
-                weatherEntity.visibility,
                 weatherEntity.dewPoint,
+                weatherEntity.pressure,
                 weatherEntity.cloudCover,
+                weatherEntity.visibility,
                 weatherEntity.ceiling,
                 weatherEntity.dailyForecast,
                 weatherEntity.hourlyForecast

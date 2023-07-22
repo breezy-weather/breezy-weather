@@ -1,5 +1,11 @@
-# Next version
+# Version 4.4.0-beta (next version)
 
+This version brings new logic that automatically completes missing data (for example, uses hourly data to extrapolate daily value for this data). This logic which was initially implemented per provider is now transparently implemented for all providers. This means that even novice developers that want to add new providers will now be able to do it without having to care about that, making this task easier than ever.
+
+If you notice any data that was available on v4.3.0-beta for a provider and is now missing on v4.4.0-beta, please report it in a GitHub issue.
+
+- When current details are missing from a provider, app will now pick the closest hour forecast. Following this change, some providers will now have more current details.
+- Fix day and night temperature for OpenWeather which was completely broken and could show higher temperature at night than during the day.
 - Make hourly trends less compressed
 - Add a “Help me choose” button on weather selection dialogs.
 - Fix OpenWeather icons being always daytime.

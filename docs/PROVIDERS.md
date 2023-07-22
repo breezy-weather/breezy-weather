@@ -10,11 +10,11 @@ When deciding about which provider you want to use, accuracy of data is probably
 
 ## Status
 
-| Providers                    | Open-Meteo                           | AccuWeather | MET Norway                             | OpenWeather               | Météo-France              | China⁵    |
-|------------------------------|--------------------------------------|-------------|----------------------------------------|---------------------------|---------------------------|-----------|
-| **API features implemented** | All but daily pollen and cloud cover | All         | All but weather text and Norway alerts | All but daily cloud cover | All but daily cloud cover | Completed |
-| **API key**                  | None                                 | Optional    | None                                   | Optional¹                 | Optional                  | None      |
-| **Countries**                | Worldwide²                           | Worldwide²  | Worldwide³                             | Worldwide²                | Worldwide⁴                | China     |
+| Providers                    | Open-Meteo                           | AccuWeather | MET Norway                             | OpenWeather               | Météo-France              | China⁵ |
+|------------------------------|--------------------------------------|-------------|----------------------------------------|---------------------------|---------------------------|--------|
+| **API features implemented** | All but daily pollen and cloud cover | All         | All but weather text and Norway alerts | All but daily cloud cover | All but daily cloud cover | All    |
+| **API key**                  | None                                 | Optional    | None                                   | Optional¹                 | Optional                  | None   |
+| **Countries**                | Worldwide²                           | Worldwide²  | Worldwide³                             | Worldwide²                | Worldwide⁴                | China  |
 
 * ¹ Bundled API key is often rate-limited. You can configure your own API key, however OpenWeather asks for credit card information even if you only want to use the free-tier.
 * ² Some features not available everywhere.
@@ -62,23 +62,23 @@ Ultimate goal of the app would be to modularize as to have a main weather provid
 
 ### Daily forecast
 
-| Providers                     | Open-Meteo    | AccuWeather | MET Norway | OpenWeather   | Météo-France  | China |
-|-------------------------------|---------------|-------------|------------|---------------|---------------|-------|
-| **Days**                      | 16            | 15          | ~10        | 7 or 8        | 15            | 15    |
-| **Weather**                   | ✅³            | ✅           | Partial³⁵  | ✅⁴            | ✅⁴            | ✅     |
-| **Temperature**               | ✅             | ✅           | ✅¹         | ✅             | ✅             | ✅     |
-| **Precipitation**             | *In progress* | ✅ (RSI)     | ✅¹         | ✅¹ (RS)       | ✅¹ (RS)       | ❌     |
-| **Precipitation probability** | ✅¹            | ✅ (TRSI)    | ✅¹ (T)     | ✅¹            | ✅¹ (RSI)      | ✅     |
-| **Precipitation duration**    | ❌             | ✅ (RSI)     | ❌          | ❌             | ❌             | ❌     |
-| **Wind**                      | ✅¹            | ✅           | ✅¹         | ✅¹            | ✅¹            | ✅     |
-| **Cloud cover**               | *In progress* | ✅           | ❌          | *In progress* | *In progress* | ❌     |
-| **Sunset/sunrise**            | ✅             | ✅           | ✅⁶         | ✅             | ✅             | ✅     |
-| **Moonset/moonrise**          | ❌             | ✅           | ✅⁶         | ✅             | ✅⁶            | ❌     |
-| **Moon phase**                | ❌             | ✅           | ✅⁶         | ❌             | ✅⁶            | ❌     |
-| **Air quality**               | ✅¹            | ✅¹          | ✅¹         | ✅¹            | ✅¹            | ❌     |
-| **Pollen**                    | *In progress* | ✅           | ❌          | ❌             | ❌             | ❌     |
-| **UV**                        | ✅             | ✅           | ✅¹         | ✅             | ✅             | ❌     |
-| **Hours of sun**              | ✅²            | ✅           | ✅²         | ✅²            | ✅²            | ✅²    |
+| Providers                     | Open-Meteo    | AccuWeather | MET Norway | OpenWeather | Météo-France | China |
+|-------------------------------|---------------|-------------|------------|-------------|--------------|-------|
+| **Days**                      | 16            | 15          | ~10        | 7 or 8      | 15           | 15    |
+| **Weather**                   | ✅³            | ✅           | Partial³⁵  | ✅⁴          | ✅⁴           | ✅     |
+| **Temperature**               | ✅             | ✅           | ✅¹         | ✅           | ✅            | ✅     |
+| **Precipitation**             | *In progress* | ✅ (RSI)     | ✅¹         | ✅¹ (RS)     | ✅¹ (RS)      | ❌     |
+| **Precipitation probability** | ✅¹            | ✅ (TRSI)    | ✅¹ (T)     | ✅¹          | ✅¹ (RSI)     | ✅     |
+| **Precipitation duration**    | ❌             | ✅ (RSI)     | ❌          | ❌           | ❌            | ❌     |
+| **Wind**                      | ✅¹            | ✅           | ✅¹         | ✅¹          | ✅¹           | ✅     |
+| **Cloud cover**               | ✅¹            | ✅           | ❌          | ✅¹          | ✅¹           | ❌     |
+| **Sunset/sunrise**            | ✅             | ✅           | ✅⁶         | ✅           | ✅            | ✅     |
+| **Moonset/moonrise**          | ❌             | ✅           | ✅⁶         | ✅           | ✅⁶           | ❌     |
+| **Moon phase**                | ❌             | ✅           | ✅⁶         | ❌           | ✅⁶           | ❌     |
+| **Air quality**               | ✅¹            | ✅¹          | ✅¹         | ✅¹          | ✅¹           | ❌     |
+| **Pollen**                    | *In progress* | ✅           | ❌          | ❌           | ❌            | ❌     |
+| **UV**                        | ✅             | ✅           | ✅¹         | ✅           | ✅            | ❌     |
+| **Hours of sun**              | ✅²            | ✅           | ✅²         | ✅²          | ✅²           | ✅²    |
 
 * ¹ Extrapolated from hourly forecast
 * ² Extrapolated from sunrise/sunset

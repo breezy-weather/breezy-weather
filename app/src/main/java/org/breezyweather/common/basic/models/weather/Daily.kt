@@ -9,7 +9,10 @@ import java.util.*
 /**
  * Daily.
  */
-class Daily(
+data class Daily(
+    /**
+     * Daily date initialized at 00:00 in the TimeZone of the location
+     */
     val date: Date,
     val day: HalfDay? = null,
     val night: HalfDay? = null,

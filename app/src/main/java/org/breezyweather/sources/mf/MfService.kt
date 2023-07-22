@@ -155,7 +155,6 @@ class MfService @Inject constructor(
                 aqiAtmoAuraResult: AtmoAuraPointResult
             ->
             convert(
-                context,
                 location,
                 mfCurrentResult,
                 mfForecastResult,

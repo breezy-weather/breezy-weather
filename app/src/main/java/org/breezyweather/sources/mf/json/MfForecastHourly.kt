@@ -22,6 +22,7 @@ data class MfForecastHourly(
     @SerialName("rain_12h") val rain12h: Float?,
     @SerialName("rain_24h") val rain24h: Float?,
     @SerialName("relative_humidity") val relativeHumidity: Int?,
+    @SerialName("P_sea") val pSea: Float?,
     @SerialName("snow_1h") val snow1h: Float?,
     @SerialName("snow_3h") val snow3h: Float?,
     @SerialName("snow_6h") val snow6h: Float?,

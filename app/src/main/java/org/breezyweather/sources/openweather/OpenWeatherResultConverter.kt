@@ -1,24 +1,34 @@
 package org.breezyweather.sources.openweather
 
-import android.content.Context
-import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.models.weather.*
+import org.breezyweather.common.basic.models.weather.AirQuality
+import org.breezyweather.common.basic.models.weather.Alert
+import org.breezyweather.common.basic.models.weather.Astro
+import org.breezyweather.common.basic.models.weather.Base
+import org.breezyweather.common.basic.models.weather.Current
+import org.breezyweather.common.basic.models.weather.Daily
+import org.breezyweather.common.basic.models.weather.HalfDay
+import org.breezyweather.common.basic.models.weather.Minutely
+import org.breezyweather.common.basic.models.weather.Precipitation
+import org.breezyweather.common.basic.models.weather.PrecipitationProbability
+import org.breezyweather.common.basic.models.weather.Temperature
+import org.breezyweather.common.basic.models.weather.UV
+import org.breezyweather.common.basic.models.weather.WeatherCode
+import org.breezyweather.common.basic.models.weather.Wind
 import org.breezyweather.common.basic.wrappers.HourlyWrapper
-import org.breezyweather.common.extensions.getFormattedDate
-import org.breezyweather.common.extensions.toTimezoneNoHour
-import org.breezyweather.sources.*
-import org.breezyweather.sources.openweather.json.*
 import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.toDate
+import org.breezyweather.sources.openweather.json.OpenWeatherAirPollutionResult
+import org.breezyweather.sources.openweather.json.OpenWeatherOneCallAlert
+import org.breezyweather.sources.openweather.json.OpenWeatherOneCallDaily
+import org.breezyweather.sources.openweather.json.OpenWeatherOneCallHourly
+import org.breezyweather.sources.openweather.json.OpenWeatherOneCallMinutely
+import org.breezyweather.sources.openweather.json.OpenWeatherOneCallResult
 import java.util.Date
 import java.util.Locale
-import java.util.TimeZone
 import kotlin.math.roundToInt
 
 fun convert(
-    context: Context,
-    location: Location,
     oneCallResult: OpenWeatherOneCallResult,
     airPollutionResult: OpenWeatherAirPollutionResult?
 ): WeatherResultWrapper {
@@ -27,11 +37,92 @@ fun convert(
         throw WeatherException()
     }
 
-    val hourlyByHalfDay: MutableMap<String, Map<String, MutableList<HourlyWrapper>>> = HashMap()
-    val hourlyList: MutableList<HourlyWrapper> = mutableListOf()
+    return WeatherResultWrapper(
+        base = Base(
+            publishDate = oneCallResult.current?.dt?.times(1000)?.toDate() ?: Date()
+        ),
+        current = if (oneCallResult.current != null) Current(
+            weatherText = oneCallResult.current.weather?.getOrNull(0)?.description?.replaceFirstChar {
+                if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+            },
+            weatherCode = getWeatherCode(oneCallResult.current.weather?.getOrNull(0)?.id),
+            temperature = Temperature(
+                temperature = oneCallResult.current.temp,
+                apparentTemperature = oneCallResult.current.feelsLike
+            ),
+            wind = Wind(
+                degree = oneCallResult.current.windDeg?.toFloat(),
+                speed = oneCallResult.current.windSpeed?.times(3.6f)
+            ),
+            uV = UV(index = oneCallResult.current.uvi),
+            relativeHumidity = oneCallResult.current.humidity?.toFloat(),
+            dewPoint = oneCallResult.current.dewPoint,
+            pressure = oneCallResult.current.pressure?.toFloat(),
+            cloudCover = oneCallResult.current.clouds,
+            visibility = (oneCallResult.current.visibility?.div(1000.0))?.toFloat()
+        ) else null,
+        dailyForecast = getDailyList(oneCallResult.daily),
+        hourlyForecast = getHourlyList(oneCallResult.hourly, airPollutionResult),
+        minutelyForecast = getMinutelyList(oneCallResult.minutely),
+        alertList = getAlertList(oneCallResult.alerts)
+    )
+}
 
-    for (result in oneCallResult.hourly) {
-        val hourly = HourlyWrapper(
+private fun getDailyList(
+    dailyResult: List<OpenWeatherOneCallDaily>
+): List<Daily> {
+    val dailyList: MutableList<Daily> = ArrayList(dailyResult.size)
+    dailyResult.forEachIndexed { i, dailyForecast ->
+        val theDay = Date(dailyForecast.dt.times(1000))
+        dailyList.add(
+            Daily(
+                date = theDay,
+                day = HalfDay(
+                    weatherText = dailyForecast.weather?.getOrNull(0)?.description?.replaceFirstChar {
+                        if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+                    },
+                    weatherPhase = dailyForecast.weather?.getOrNull(0)?.description,
+                    weatherCode = getWeatherCode(dailyForecast.weather?.getOrNull(0)?.id),
+                    temperature = Temperature(
+                        temperature = dailyForecast.temp?.max,
+                        apparentTemperature = dailyForecast.feelsLike?.eve
+                    )
+                ),
+                night = HalfDay(
+                    weatherText = dailyForecast.weather?.getOrNull(0)?.description?.replaceFirstChar {
+                        if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+                    },
+                    weatherPhase = dailyForecast.weather?.getOrNull(0)?.description,
+                    weatherCode = getWeatherCode(dailyForecast.weather?.getOrNull(0)?.id),
+                    // night temperature is actually from previous night,
+                    // so we try to get night from next day if available
+                    temperature = Temperature(
+                        temperature = dailyResult.getOrNull(i + 1)?.temp?.min,
+                        apparentTemperature = dailyResult.getOrNull(i + 1)?.feelsLike?.morn
+                    )
+                ),
+                sun = Astro(
+                    riseDate = dailyForecast.sunrise?.times(1000)?.toDate(),
+                    setDate = dailyForecast.sunset?.times(1000)?.toDate()
+                ),
+                moon = Astro(
+                    riseDate = dailyForecast.moonrise?.times(1000)?.toDate(),
+                    setDate = dailyForecast.moonset?.times(1000)?.toDate()
+                ),
+                uV = UV(index = dailyForecast.uvi)
+            )
+        )
+    }
+    return dailyList
+}
+
+
+private fun getHourlyList(
+    hourlyResult: List<OpenWeatherOneCallHourly>,
+    airPollutionResult: OpenWeatherAirPollutionResult?
+): List<HourlyWrapper> {
+    return hourlyResult.map { result ->
+        HourlyWrapper(
             date = Date(result.dt.times(1000)),
             weatherText = result.weather?.getOrNull(0)?.main?.replaceFirstChar {
                 if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
@@ -52,141 +143,14 @@ fun convert(
                 speed = result.windSpeed?.times(3.6f)
             ),
             airQuality = getAirQuality(result.dt, airPollutionResult),
-            uV = UV(index = result.uvi)
-        )
-
-        // We shift by 6 hours the hourly date, otherwise nighttime (00:00 to 05:59) would be on the wrong day
-        val theDayAtMidnight = Date((result.dt - 6 * 3600) * 1000)
-            .toTimezoneNoHour(location.timeZone)
-        val theDayFormatted = theDayAtMidnight?.getFormattedDate(location.timeZone, "yyyyMMdd")
-        if (theDayFormatted != null) {
-            if (!hourlyByHalfDay.containsKey(theDayFormatted)) {
-                hourlyByHalfDay[theDayFormatted] = hashMapOf(
-                    "day" to ArrayList(),
-                    "night" to ArrayList()
-                )
-            }
-            if (result.dt < theDayAtMidnight.time / 1000 + 18 * 3600) {
-                // 06:00 to 17:59 is the day
-                hourlyByHalfDay[theDayFormatted]!!["day"]!!.add(hourly)
-            } else {
-                // 18:00 to 05:59 is the night
-                hourlyByHalfDay[theDayFormatted]!!["night"]!!.add(hourly)
-            }
-        }
-
-        // Add to the app only if starts in the current hour
-        if (result.dt >= System.currentTimeMillis() / 1000 - 3600) {
-            hourlyList.add(hourly)
-        }
-    }
-
-    val dailyList = getDailyList(
-        location.timeZone,
-        oneCallResult.daily,
-        hourlyList,
-        hourlyByHalfDay
-    )
-    return WeatherResultWrapper(
-        base = Base(
-            publishDate = oneCallResult.current?.dt?.times(1000)?.toDate() ?: Date()
-        ),
-        current = if (oneCallResult.current != null) Current(
-            weatherText = oneCallResult.current.weather?.getOrNull(0)?.description?.replaceFirstChar {
-                if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
-            },
-            weatherCode = getWeatherCode(oneCallResult.current.weather?.getOrNull(0)?.id),
-            temperature = Temperature(
-                temperature = oneCallResult.current.temp,
-                apparentTemperature = oneCallResult.current.feelsLike
-            ),
-            wind = Wind(
-                degree = oneCallResult.current.windDeg?.toFloat(),
-                speed = oneCallResult.current.windSpeed?.times(3.6f)
-            ),
-            uV = UV(index = oneCallResult.current.uvi),
-            airQuality = hourlyList.getOrNull(1)?.airQuality,
-            relativeHumidity = oneCallResult.current.humidity?.toFloat(),
-            pressure = oneCallResult.current.pressure?.toFloat(),
-            visibility = (oneCallResult.current.visibility?.div(1000))?.toFloat(),
-            dewPoint = oneCallResult.current.dewPoint,
-            cloudCover = oneCallResult.current.clouds
-        ) else Current(airQuality = hourlyList.getOrNull(1)?.airQuality),
-        dailyForecast = dailyList,
-        hourlyForecast = hourlyList,
-        minutelyForecast = getMinutelyList(oneCallResult.minutely),
-        alertList = getAlertList(oneCallResult.alerts)
-    )
-}
-
-private fun getDailyList(
-    timeZone: TimeZone,
-    dailyResult: List<OpenWeatherOneCallDaily>,
-    hourlyList: List<HourlyWrapper>,
-    hourlyListByHalfDay: Map<String, Map<String, MutableList<HourlyWrapper>>>
-): List<Daily> {
-    val dailyList: MutableList<Daily> = ArrayList(dailyResult.size)
-    val hourlyListByDay = hourlyList.groupBy { it.date.getFormattedDate(timeZone, "yyyyMMdd") }
-    dailyResult.forEachIndexed { i, dailyForecast ->
-        val theDay = Date(dailyForecast.dt.times(1000))
-        val dailyDateFormatted = theDay.getFormattedDate(timeZone, "yyyyMMdd")
-        dailyList.add(
-            Daily(
-                date = theDay,
-                day = completeHalfDayFromHourlyList(
-                    dailyDate = theDay,
-                    initialHalfDay = HalfDay(
-                        weatherText = dailyForecast.weather?.getOrNull(0)?.description?.replaceFirstChar {
-                            if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
-                        },
-                        weatherPhase = dailyForecast.weather?.getOrNull(0)?.description,
-                        weatherCode = getWeatherCode(dailyForecast.weather?.getOrNull(0)?.id),
-                        temperature = Temperature(
-                            temperature = dailyForecast.temp?.day,
-                            apparentTemperature = dailyForecast.feelsLike?.day
-                        )
-                        // TODO cloudCover with hourly data
-                    ),
-                    halfDayHourlyList = hourlyListByHalfDay.getOrDefault(dailyDateFormatted, null)?.get("day"),
-                    isDay = true
-                ),
-                night = completeHalfDayFromHourlyList(
-                    dailyDate = theDay,
-                    initialHalfDay = HalfDay(
-                        weatherText = dailyForecast.weather?.getOrNull(0)?.description?.replaceFirstChar {
-                            if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
-                        },
-                        weatherPhase = dailyForecast.weather?.getOrNull(0)?.description,
-                        weatherCode = getWeatherCode(dailyForecast.weather?.getOrNull(0)?.id),
-                        // night temperature is actually from previous night,
-                        // so we try to get night from next day if available
-                        temperature = Temperature(
-                            temperature = dailyResult.getOrNull(i + 1)?.temp?.night,
-                            apparentTemperature = dailyResult.getOrNull(i + 1)?.feelsLike?.night
-                        )
-                        // TODO cloudCover with hourly data
-                    ),
-                    halfDayHourlyList = hourlyListByHalfDay.getOrDefault(dailyDateFormatted, null)?.get("night"),
-                    isDay = false
-                ),
-                sun = Astro(
-                    riseDate = dailyForecast.sunrise?.times(1000)?.toDate(),
-                    setDate = dailyForecast.sunset?.times(1000)?.toDate()
-                ),
-                moon = Astro(
-                    riseDate = dailyForecast.moonrise?.times(1000)?.toDate(),
-                    setDate = dailyForecast.moonset?.times(1000)?.toDate()
-                ),
-                airQuality = getDailyAirQualityFromHourlyList(hourlyListByDay.getOrDefault(dailyDateFormatted, null)),
-                uV = UV(index = dailyForecast.uvi),
-                hoursOfSun = getHoursOfDay(
-                    dailyForecast.sunrise?.times(1000)?.toDate(),
-                    dailyForecast.sunset?.times(1000)?.toDate()
-                )
-            )
+            uV = UV(index = result.uvi),
+            relativeHumidity = result.humidity?.toFloat(),
+            dewPoint = result.dewPoint,
+            pressure = result.pressure?.toFloat(),
+            cloudCover = result.clouds,
+            visibility = result.visibility?.toFloat()
         )
     }
-    return dailyList
 }
 
 // Function that checks for null before sum up
@@ -225,7 +189,7 @@ private fun getAirQuality(requestedTime: Long, ownAirPollutionResult: OpenWeathe
     val so2: Float? = matchingAirQualityForecast.components?.so2
     val no2: Float? = matchingAirQualityForecast.components?.no2
     val o3: Float? = matchingAirQualityForecast.components?.o3
-    val co: Float? = matchingAirQualityForecast.components?.co?.div(1000)
+    val co: Float? = matchingAirQualityForecast.components?.co?.div(1000.0)?.toFloat()
 
     // Return null instead of an object initialized with null values to ease the filtering later when aggregating for daily
     return if (pm25 != null || pm10 != null || so2 != null || no2 != null || o3 != null || co != null) AirQuality(
@@ -240,29 +204,25 @@ private fun getAirQuality(requestedTime: Long, ownAirPollutionResult: OpenWeathe
 
 private fun getAlertList(resultList: List<OpenWeatherOneCallAlert>?): List<Alert> {
     return if (resultList != null) {
-        val alertList: MutableList<Alert> = ArrayList(resultList.size)
-        for (result in resultList) {
-            alertList.add(
-                Alert(
-                    // TODO: Avoid having the same ID for two different alerts starting at the same time
-                    alertId = result.start,
-                    startDate = Date(result.start.times(1000)),
-                    endDate = Date(result.end.times(1000)),
-                    description = result.event ?: "",
-                    content = result.description,
-                    priority = 1 // Does not exist
-                )
+        return resultList.map { result ->
+            Alert(
+                // TODO: Avoid having the same ID for two different alerts starting at the same time
+                alertId = result.start,
+                startDate = Date(result.start.times(1000)),
+                endDate = Date(result.end.times(1000)),
+                description = result.event ?: "",
+                content = result.description,
+                priority = 1 // Does not exist
             )
         }
-        alertList
     } else {
         emptyList()
     }
 }
 
 private fun getWeatherCode(icon: Int?): WeatherCode? {
-    if (icon == null) { return null }
     return when (icon) {
+        null -> null
         200, 201, 202 -> WeatherCode.THUNDERSTORM
         210, 211, 212 -> WeatherCode.THUNDER
         221, 230, 231, 232 -> WeatherCode.THUNDERSTORM

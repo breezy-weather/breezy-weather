@@ -105,7 +105,6 @@ class MetNoService @Inject constructor(
                 metNoAirQuality: MetNoAirQualityResult
             ->
             convert(
-                context,
                 location,
                 metNoForecast,
                 metNoSun,

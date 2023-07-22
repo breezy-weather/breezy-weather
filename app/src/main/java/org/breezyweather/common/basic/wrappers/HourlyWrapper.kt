@@ -25,7 +25,12 @@ data class HourlyWrapper(
     val wind: Wind? = null,
     val airQuality: AirQuality? = null,
     val pollen: Pollen? = null,
-    val uV: UV? = null
+    val uV: UV? = null,
+    val relativeHumidity: Float? = null,
+    val dewPoint: Float? = null,
+    val pressure: Float? = null,
+    val cloudCover: Int? = null,
+    val visibility: Float? = null
 ) {
     fun copyToHourly(
         isDaylight: Boolean? = null,
@@ -41,6 +46,11 @@ data class HourlyWrapper(
         wind = this.wind,
         airQuality = this.airQuality,
         pollen = this.pollen,
-        uV = uV ?: this.uV
+        uV = uV ?: this.uV,
+        relativeHumidity = this.relativeHumidity,
+        dewPoint = this.dewPoint,
+        pressure = this.pressure,
+        cloudCover = this.cloudCover,
+        visibility = this.visibility
     )
 }

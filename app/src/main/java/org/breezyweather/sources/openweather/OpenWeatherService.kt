@@ -71,8 +71,6 @@ class OpenWeatherService @Inject constructor(
                 openWeatherAirPollutionResult: OpenWeatherAirPollutionResult
             ->
             convert(
-                context,
-                location,
                 openWeatherOneCallResult,
                 openWeatherAirPollutionResult
             )

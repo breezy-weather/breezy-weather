@@ -14,7 +14,7 @@ import java.io.Serializable
  * default unit:
  * [.speed] : [SpeedUnit.KPH]
  */
-class Wind(
+data class Wind(
     /**
      * Between 0 and 360, or -1 if variable
      */

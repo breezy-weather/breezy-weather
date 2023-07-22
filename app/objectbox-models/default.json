@@ -586,7 +586,7 @@
     },
     {
       "id": "5:3341053428256525637",
-      "lastPropertyId": "61:1670589340446555118",
+      "lastPropertyId": "66:2075134406603337120",
       "name": "HourlyEntity",
       "properties": [
         {
@@ -808,6 +808,31 @@
         {
           "id": "61:1670589340446555118",
           "name": "temperature",
+          "type": 7
+        },
+        {
+          "id": "62:5649485511105408134",
+          "name": "relativeHumidity",
+          "type": 7
+        },
+        {
+          "id": "63:8068205409518524491",
+          "name": "dewPoint",
+          "type": 7
+        },
+        {
+          "id": "64:4488620988501384679",
+          "name": "pressure",
+          "type": 7
+        },
+        {
+          "id": "65:3217179754829601323",
+          "name": "cloudCover",
+          "type": 5
+        },
+        {
+          "id": "66:2075134406603337120",
+          "name": "visibility",
           "type": 7
         }
       ],

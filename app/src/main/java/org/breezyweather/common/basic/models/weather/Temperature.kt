@@ -9,7 +9,7 @@ import java.io.Serializable
  * Temperature.
  * default unit : [TemperatureUnit.C]
  */
-class Temperature(
+data class Temperature(
     val temperature: Float? = null,
     val realFeelTemperature: Float? = null,
     val realFeelShaderTemperature: Float? = null,

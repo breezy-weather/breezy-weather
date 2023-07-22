@@ -26,7 +26,12 @@ data class Hourly(
     val wind: Wind? = null,
     val airQuality: AirQuality? = null,
     val pollen: Pollen? = null,
-    val uV: UV? = null
+    val uV: UV? = null,
+    val relativeHumidity: Float? = null,
+    val dewPoint: Float? = null,
+    val pressure: Float? = null,
+    val cloudCover: Int? = null,
+    val visibility: Float? = null
 ) : Serializable {
 
     fun getHourIn24Format(timeZone: TimeZone): Int {

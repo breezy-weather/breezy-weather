@@ -1,7 +1,7 @@
 package org.breezyweather.sources
 
-import android.content.Context
 import org.breezyweather.common.basic.models.weather.AirQuality
+import org.breezyweather.common.basic.models.weather.Current
 import org.breezyweather.common.basic.models.weather.Daily
 import org.breezyweather.common.basic.models.weather.HalfDay
 import org.breezyweather.common.basic.models.weather.Hourly
@@ -11,11 +11,103 @@ import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.basic.models.weather.UV
 import org.breezyweather.common.basic.wrappers.HourlyWrapper
 import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.toTimezoneNoHour
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
+import kotlin.math.roundToInt
 import kotlin.math.sin
+
+/**
+ * DAILY FROM HOURLY
+ */
+
+/**
+ * Completes daily data from hourly data:
+ * - HalfDay (day and night)
+ * - Air quality
+ * - UV
+ * - Hours of sun
+ * TODO: Calculate degree day
+ *
+ * @param dailyList daily data
+ * @param hourlyList hourly data
+ * @param timeZone timeZone of the location
+ */
+fun completeDailyListFromHourlyList(
+    dailyList: List<Daily>,
+    hourlyList: List<HourlyWrapper>,
+    timeZone: TimeZone
+): List<Daily> {
+    if (dailyList.isEmpty() || hourlyList.isEmpty()) return dailyList
+
+    val newDailyList = mutableListOf<Daily>()
+    val hourlyListByHalfDay = getHourlyListByHalfDay(hourlyList, timeZone)
+    val hourlyListByDay = hourlyList.groupBy { it.date.getFormattedDate(timeZone, "yyyy-MM-dd") }
+    dailyList.forEach { daily ->
+        val theDayFormatted = daily.date.getFormattedDate(timeZone, "yyyy-MM-dd")
+        newDailyList.add(
+            daily.copy(
+                day = completeHalfDayFromHourlyList(
+                    dailyDate = daily.date,
+                    initialHalfDay = daily.day,
+                    halfDayHourlyList = hourlyListByHalfDay.getOrDefault(theDayFormatted, null)?.get("day"),
+                    isDay = true
+                ),
+                night = completeHalfDayFromHourlyList(
+                    dailyDate = daily.date,
+                    initialHalfDay = daily.night,
+                    halfDayHourlyList = hourlyListByHalfDay.getOrDefault(theDayFormatted, null)?.get("night"),
+                    isDay = false
+                ),
+                airQuality = daily.airQuality ?: getDailyAirQualityFromHourlyList(
+                    hourlyListByDay.getOrDefault(theDayFormatted, null)
+                ),
+                uV = if (daily.uV?.index != null) daily.uV else getDailyUVFromHourlyList(
+                    hourlyListByDay.getOrDefault(theDayFormatted, null)
+                ),
+                hoursOfSun = daily.hoursOfSun ?: getHoursOfDay(
+                    daily.sun?.riseDate,
+                    daily.sun?.setDate
+                )
+            )
+        )
+    }
+
+    return newDailyList
+}
+
+fun getHourlyListByHalfDay(
+    hourlyList: List<HourlyWrapper>,
+    timeZone: TimeZone
+): MutableMap<String, Map<String, MutableList<HourlyWrapper>>> {
+    val hourlyByHalfDay: MutableMap<String, Map<String, MutableList<HourlyWrapper>>> = HashMap()
+
+    hourlyList.forEach { hourly ->
+        // We shift by 6 hours the hourly date, otherwise nighttime (00:00 to 05:59) would be on the wrong day
+        val theDayAtMidnight = Date(hourly.date.time - (6 * 3600 * 1000))
+            .toTimezoneNoHour(timeZone)
+        val theDayFormatted = theDayAtMidnight?.getFormattedDate(timeZone, "yyyy-MM-dd")
+        if (theDayFormatted != null) {
+            if (!hourlyByHalfDay.containsKey(theDayFormatted)) {
+                hourlyByHalfDay[theDayFormatted] = hashMapOf(
+                    "day" to ArrayList(),
+                    "night" to ArrayList()
+                )
+            }
+            if (hourly.date.time < theDayAtMidnight.time + 18 * 3600 * 1000) {
+                // 06:00 to 17:59 is the day
+                hourlyByHalfDay[theDayFormatted]!!["day"]!!.add(hourly)
+            } else {
+                // 18:00 to 05:59 is the night
+                hourlyByHalfDay[theDayFormatted]!!["night"]!!.add(hourly)
+            }
+        }
+    }
+
+    return hourlyByHalfDay
+}
 
 /**
  * Helps complete a half day with information from hourly list.
@@ -23,11 +115,13 @@ import kotlin.math.sin
  * Currently helps completing:
  * - Weather code (at 12:00 for day, at 00:00 for night)
  * - Weather text/phase (at 12:00 for day, at 00:00 for night)
- * - Temperature (temperature and windChill, can be expanded if required)
+ * - Temperature (temperature, windChill and wetBulb, can be expanded if required)
  * - Precipitation (if Precipitation or Precipitation.total is null)
  * - PrecipitationProbability (if PrecipitationProbability or PrecipitationProbability.total is null)
  * - Wind (if Wind or Wind.speed is null)
+ * - CloudCover (average)
  * You can expand it to other fields if you need it.
+ * TODO: Split into subfunctions
  *
  * @param dailyDate a Date initialized at 00:00 the day of interest
  * @param initialHalfDay the half day to be completed or null
@@ -51,7 +145,7 @@ fun completeHalfDayFromHourlyList(
     var halfDayPrecipitationProbability = initialHalfDay?.precipitationProbability
     val halfDayPrecipitationDuration = initialHalfDay?.precipitationDuration
     var halfDayWind = initialHalfDay?.wind
-    val halfDayCloudCover = initialHalfDay?.cloudCover
+    var halfDayCloudCover = initialHalfDay?.cloudCover
 
     // Weather code + Weather text
     if (halfDayWeatherCode == null || halfDayWeatherText == null) {
@@ -72,13 +166,15 @@ fun completeHalfDayFromHourlyList(
     }
 
     // Temperature
-    if (halfDayTemperature?.temperature == null || halfDayTemperature.windChillTemperature == null) {
+    if (halfDayTemperature?.temperature == null
+        || halfDayTemperature.windChillTemperature == null
+        || halfDayTemperature.wetBulbTemperature == null) {
         var temperatureTemperature = halfDayTemperature?.temperature
         val temperatureRealFeelTemperature = halfDayTemperature?.realFeelTemperature
         val temperatureRealFeelShaderTemperature = halfDayTemperature?.realFeelShaderTemperature
         val temperatureApparentTemperature = halfDayTemperature?.apparentTemperature
         var temperatureWindChillTemperature = halfDayTemperature?.windChillTemperature
-        val temperatureWetBulbTemperature = halfDayTemperature?.wetBulbTemperature
+        var temperatureWetBulbTemperature = halfDayTemperature?.wetBulbTemperature
 
         if (temperatureTemperature == null) {
             val halfDayHourlyListTemperature = halfDayHourlyList.filter { it.temperature?.temperature != null }
@@ -97,6 +193,16 @@ fun completeHalfDayFromHourlyList(
                     halfDayHourlyListWindChillTemperature.maxOf { it.temperature!!.windChillTemperature!! }
                 } else {
                     halfDayHourlyListWindChillTemperature.minOf { it.temperature!!.windChillTemperature!! }
+                }
+            } else null
+        }
+        if (temperatureWetBulbTemperature == null) {
+            val halfDayHourlyListWetBulbTemperature = halfDayHourlyList.filter { it.temperature?.wetBulbTemperature != null }
+            temperatureWetBulbTemperature = if (halfDayHourlyListWetBulbTemperature.isNotEmpty()) {
+                if (isDay) {
+                    halfDayHourlyListWetBulbTemperature.maxOf { it.temperature!!.wetBulbTemperature!! }
+                } else {
+                    halfDayHourlyListWetBulbTemperature.minOf { it.temperature!!.wetBulbTemperature!! }
                 }
             } else null
         }
@@ -228,6 +334,16 @@ fun completeHalfDayFromHourlyList(
             }
     }
 
+    if (halfDayCloudCover == null) {
+        val halfDayHourlyListCloudCover = halfDayHourlyList
+            .filter { it.cloudCover != null }
+            .map { it.cloudCover!! }
+
+        if (halfDayHourlyListCloudCover.isNotEmpty()) {
+            halfDayCloudCover = halfDayHourlyListCloudCover.average().roundToInt()
+        }
+    }
+
     return HalfDay(
         weatherText = halfDayWeatherText,
         weatherPhase = halfDayWeatherPhase,
@@ -262,8 +378,7 @@ fun getDailyAirQualityFromHourlyList(hourlyList: List<HourlyWrapper>? = null): A
 }
 
 /**
- * Returns an AirQuality object calculated from a List of Hourly for the day
- * (at least 18 non-null Hourly.AirQuality required)
+ * Returns the max UV for the day from a list of hourly
  */
 fun getDailyUVFromHourlyList(hourlyList: List<HourlyWrapper>? = null): UV? {
     if (hourlyList.isNullOrEmpty()) return null
@@ -271,60 +386,6 @@ fun getDailyUVFromHourlyList(hourlyList: List<HourlyWrapper>? = null): UV? {
     if (hourlyListWithUV.isEmpty()) return null
 
     return UV(index = hourlyListWithUV.maxOf { it.uV!!.index!! })
-}
-
-/**
- * Completes the isDaylight and/or UV field from a List<Hourly> with the List<Daily>
- * Possible improvement: handle cloud covers as well but doesn't exist in Hourly at the moment
- */
-fun completeHourlyListFromDailyList(
-    context: Context,
-    hourlyList: List<HourlyWrapper>,
-    dailyList: List<Daily>,
-    timeZone: TimeZone
-): List<Hourly> {
-    val dailyListByDate = dailyList.groupBy { it.date.getFormattedDate(timeZone, "yyyyMMdd") }
-    val newHourlyList: MutableList<Hourly> = ArrayList(hourlyList.size)
-    hourlyList.forEach { hourly ->
-        val dateForHourFormatted = hourly.date.getFormattedDate(timeZone, "yyyyMMdd")
-        dailyListByDate.getOrDefault(dateForHourFormatted, null)
-            ?.first()?.let { daily ->
-                if (daily.sun?.riseDate != null && daily.sun.setDate != null) {
-                    if (hourly.uV?.index == null && daily.uV?.index != null) {
-                        newHourlyList.add(if (hourly.isDaylight == null) hourly.copyToHourly(
-                            isDaylight = isDaylight(daily.sun.riseDate, daily.sun.setDate, hourly.date, timeZone),
-                            uV = getCurrentUV(
-                                daily.uV.index,
-                                hourly.date,
-                                daily.sun.riseDate,
-                                daily.sun.setDate,
-                                timeZone
-                            )
-                        ) else hourly.copyToHourly(
-                            uV = getCurrentUV(
-                                daily.uV.index,
-                                hourly.date,
-                                daily.sun.riseDate,
-                                daily.sun.setDate,
-                                timeZone
-                            )
-                        ))
-                        return@forEach // continue to next item
-                    } else if (hourly.isDaylight == null) {
-                        val isDaylight = isDaylight(daily.sun.riseDate, daily.sun.setDate, hourly.date, timeZone)
-                        if (hourly.isDaylight != isDaylight) {
-                            newHourlyList.add(hourly.copyToHourly(
-                                isDaylight = isDaylight
-                            ))
-                            return@forEach // continue to next item
-                        }
-                    }
-                }
-            }
-        newHourlyList.add(hourly.copyToHourly())
-    }
-
-    return newHourlyList
 }
 
 fun getMoonPhaseAngle(phase: String?): Int? {
@@ -342,24 +403,87 @@ fun getMoonPhaseAngle(phase: String?): Int? {
     }
 }
 
-fun isDaylight(sunrise: Date?, sunset: Date?, current: Date?, timeZone: TimeZone): Boolean {
-    if (sunrise == null || sunset == null || current == null || sunrise.after(sunset)) return true
-
-    val calendar = Calendar.getInstance(timeZone)
-
-    calendar.time = sunrise
-    val sunriseTime = calendar[Calendar.HOUR_OF_DAY] * 60 + calendar[Calendar.MINUTE]
-
-    calendar.time = sunset
-    val sunsetTime = calendar[Calendar.HOUR_OF_DAY] * 60 + calendar[Calendar.MINUTE]
-
-    calendar.time = current
-    val currentTime = calendar[Calendar.HOUR_OF_DAY] * 60 + calendar[Calendar.MINUTE]
-
-    return currentTime in sunriseTime until sunsetTime
+fun getHoursOfDay(sunrise: Date?, sunset: Date?): Float? {
+    return if (sunrise == null || sunset == null || sunrise.after(sunset)) {
+        null
+    } else {
+        ((sunset.time - sunrise.time) // get delta millisecond.
+                / 1000 // second.
+                / 60 // minutes.
+                / 60.0 // hours.
+                ).toFloat()
+    }
 }
 
-fun getCurrentUV(
+/**
+ * HOURLY FROM DAILY
+ */
+
+/**
+ * Completes hourly data from daily data:
+ * - isDaylight
+ * - UV field
+ *
+ * Also removes hourlys in the past (30 min margin)
+ *
+ * @param hourlyList hourly data
+ * @param dailyList daily data
+ * @param timeZone timeZone of the location
+ */
+fun completeHourlyListFromDailyList(
+    hourlyList: List<HourlyWrapper>,
+    dailyList: List<Daily>,
+    timeZone: TimeZone
+): List<Hourly> {
+    val dailyListByDate = dailyList.groupBy { it.date.getFormattedDate(timeZone, "yyyyMMdd") }
+    val newHourlyList: MutableList<Hourly> = ArrayList(hourlyList.size)
+    hourlyList.forEach { hourly ->
+        // Only keep hours in the future with a 30 min margin
+        // Example: 15:29 -> starts at 15:00, 15:31 -> starts at 16:00
+        if (hourly.date.time >= System.currentTimeMillis() - (30 * 60 * 1000)) {
+            val dateForHourFormatted = hourly.date.getFormattedDate(timeZone, "yyyyMMdd")
+            dailyListByDate.getOrDefault(dateForHourFormatted, null)
+                ?.first()?.let { daily ->
+                    val isDaylight = hourly.isDaylight ?: isDaylight(
+                        daily.sun?.riseDate,
+                        daily.sun?.setDate,
+                        hourly.date
+                    )
+                    newHourlyList.add(
+                        hourly.copyToHourly(
+                            isDaylight = isDaylight,
+                            uV = if (hourly.uV?.index != null) hourly.uV else getCurrentUVFromDayMax(
+                                daily.uV?.index,
+                                hourly.date,
+                                daily.sun?.riseDate,
+                                daily.sun?.setDate,
+                                timeZone
+                            )
+                        )
+                    )
+                    return@forEach // continue to next item
+                }
+            newHourlyList.add(hourly.copyToHourly())
+        }
+    }
+
+    return newHourlyList
+}
+
+/**
+ * From sunrise and sunset times, returns true if current time is daytime
+ * Will return true if any data is incoherent
+ */
+private fun isDaylight(sunrise: Date?, sunset: Date?, current: Date?): Boolean {
+    if (sunrise == null || sunset == null || current == null || sunrise.after(sunset)) return true
+
+    return current.time in sunrise.time until sunset.time
+}
+
+/**
+ * Returns an estimated UV index for current time from max UV of the day
+ */
+fun getCurrentUVFromDayMax(
     dayMaxUV: Float?,
     currentDate: Date?,
     sunriseDate: Date?,
@@ -393,14 +517,83 @@ fun getCurrentUV(
     return UV(index = indexUV)
 }
 
-fun getHoursOfDay(sunrise: Date?, sunset: Date?): Float? {
-    return if (sunrise == null || sunset == null || sunrise.after(sunset)) {
-        null
-    } else {
-        ((sunset.time - sunrise.time) // get delta millisecond.
-                / 1000 // second.
-                / 60 // minutes.
-                / 60.0 // hours.
-                ).toFloat()
+/**
+ * CURRENT FROM DAILY AND HOURLY LIST
+ */
+
+/**
+ * Completes Current object from today daily and hourly data:
+ * - Weather text
+ * - Weather code
+ * - Temperature
+ * - Wind
+ * - UV
+ * - Air quality
+ * - Relative humidity
+ * - Dew point
+ * - Pressure
+ * - Cloud cover
+ * - Visibility
+ *
+ * @param hourly hourly data for the first hour
+ * @param todayDaily daily for today
+ * @param timeZone timeZone of the location
+ */
+fun completeCurrentFromTodayDailyAndHourly(
+    initialCurrent: Current?,
+    hourly: Hourly?,
+    todayDaily: Daily?,
+    timeZone: TimeZone
+): Current {
+    val newCurrent = initialCurrent ?: Current()
+    if (hourly == null) {
+        return newCurrent.copy(
+            uV = if (newCurrent.uV?.index == null && todayDaily != null) getCurrentUVFromDayMax(
+                todayDaily.uV?.index,
+                Date(),
+                todayDaily.sun?.riseDate,
+                todayDaily.sun?.setDate,
+                timeZone
+            ) else newCurrent.uV
+        )
     }
+
+    return newCurrent.copy(
+        weatherText = newCurrent.weatherText ?: hourly.weatherText,
+        weatherCode = newCurrent.weatherCode ?: hourly.weatherCode,
+        temperature = completeCurrentTemperatureFromHourly(newCurrent.temperature, hourly.temperature),
+        wind = if (newCurrent.wind?.speed != null || hourly.wind?.speed == null) {
+            newCurrent.wind
+        } else hourly.wind,
+        uV = if (newCurrent.uV?.index == null && todayDaily != null) getCurrentUVFromDayMax(
+            todayDaily.uV?.index,
+            Date(),
+            todayDaily.sun?.riseDate,
+            todayDaily.sun?.setDate,
+            timeZone
+        ) else newCurrent.uV,
+        airQuality = newCurrent.airQuality ?: hourly.airQuality,
+        relativeHumidity = newCurrent.relativeHumidity ?: hourly.relativeHumidity,
+        dewPoint = newCurrent.dewPoint ?: hourly.dewPoint,
+        pressure = newCurrent.pressure ?: hourly.pressure,
+        cloudCover = newCurrent.cloudCover ?: hourly.cloudCover,
+        visibility = newCurrent.visibility ?: hourly.visibility
+    )
+}
+
+fun completeCurrentTemperatureFromHourly(
+    initialTemperature: Temperature?,
+    hourlyTemperature: Temperature?
+): Temperature? {
+    if (hourlyTemperature == null) return initialTemperature
+    val newTemperature = initialTemperature ?: Temperature()
+
+    return newTemperature.copy(
+        temperature = newTemperature.temperature ?: hourlyTemperature.temperature,
+        realFeelTemperature = newTemperature.realFeelTemperature ?: hourlyTemperature.realFeelTemperature,
+        realFeelShaderTemperature = newTemperature.realFeelShaderTemperature ?: hourlyTemperature.realFeelShaderTemperature,
+        apparentTemperature = newTemperature.apparentTemperature ?: hourlyTemperature.apparentTemperature,
+        windChillTemperature = newTemperature.windChillTemperature ?: hourlyTemperature.windChillTemperature,
+        wetBulbTemperature = newTemperature.wetBulbTemperature ?: hourlyTemperature.wetBulbTemperature,
+    )
 }

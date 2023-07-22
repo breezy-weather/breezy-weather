@@ -58,29 +58,24 @@ The goal of a converter class is to normalize the data we received into Breezy W
 Here is the minimum code you need to put in your converter:
 ```kotlin
 fun convert(
-    context: Context,
     location: Location,
     weatherResult: MyProviderWeatherResult
-): WeatherResultWrapper {
-    return try {
-        val weather = Weather(
-            base = Base(cityId = location.cityId)
-            /* Complete other parameters one bit at a time */
-        )
-        WeatherResultWrapper(weather)
-    } catch (e: Exception) {
-        if (BreezyWeather.instance.debugMode) {
-            e.printStackTrace()
-        }
-        WeatherResultWrapper(null)
-    }
+): WeatherWrapper {
+    return WeatherWrapper()
 }
 ```
 
-*Note: Weather converters are currently being rewritten so that you don’t have to call the `CommonConverter` anymore.*
+Yes, of course, you won’t have any data that way, but it’s just to show you that all data is non-mandatory. You can have a look at the non-mandatory parameters of the WeatherResultWrapper object and complete bit by bit the data as you feel.
 
 Add your service in the constructor of the `SourceManager` class.
 
-You’re done!
+You’re done, you can try building the app and test that you have empty data.
 
-Try build the app, fix errors and complete weather data one bit at a time.
+**IMPORTANT**: please don’t try to “calculate” missing data. For example, if you have hourly air quality available in your provider, but not daily air quality, don’t try to calculate the daily air quality from hourly data! The app already takes care of completing any missing data for you. And if you feel that something that could be completed is not, please open an issue and we will improve the app to do so for all providers.
+
+**Additional note**: the Daily object expects two half days, which most providers don’t provide.
+As explained in other documents, the daytime halfday is expected from 06:00 to 17:59 and the nighttime halfday is expected from 18:00 to 05:59 (or 29:59 to keep current day notation).
+- If your provider has half days with different hours, please follow their recommendations (for example, ColorfulClouds uses 08:00 to 19:59 and 20:00 to 07:59 (or 31:59)).
+- If your provider has no half day, a typical mistake you can make is to put the minimum temperature of the day as temperature of the night. However, your provider probably gives you the minimum temperature from the past overnight, not from the night to come, so make sure to pick the correct data!
+
+Once your provider is complete (you use all available data from the API and available in Breezy Weather), please rebase and submit it as a pull request. Please allow Breezy Weather maintainers to make adjustments (but we won’t write the provider for you, you will have to make significant implementation).

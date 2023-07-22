@@ -62,7 +62,6 @@ class ChinaService @Inject constructor(
                 forecastResult: ChinaMinutelyResult
             ->
             convert(
-                context,
                 location,
                 mainlyResult,
                 forecastResult

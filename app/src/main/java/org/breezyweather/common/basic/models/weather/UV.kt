@@ -21,9 +21,9 @@ class UV(
     fun getLevel(context: Context) = when (index) {
         null -> null
         in 0f..UV_INDEX_LOW -> context.getString(R.string.uv_index_0_2)
-        in UV_INDEX_LOW..UV.UV_INDEX_MIDDLE -> context.getString(R.string.uv_index_3_5)
-        in UV_INDEX_MIDDLE..UV.UV_INDEX_HIGH -> context.getString(R.string.uv_index_6_7)
-        in UV_INDEX_HIGH..UV.UV_INDEX_EXCESSIVE -> context.getString(R.string.uv_index_8_10)
+        in UV_INDEX_LOW..UV_INDEX_MIDDLE -> context.getString(R.string.uv_index_3_5)
+        in UV_INDEX_MIDDLE..UV_INDEX_HIGH -> context.getString(R.string.uv_index_6_7)
+        in UV_INDEX_HIGH..UV_INDEX_EXCESSIVE -> context.getString(R.string.uv_index_8_10)
         in UV_INDEX_EXCESSIVE..Float.MAX_VALUE -> context.getString(R.string.uv_index_11)
         else -> null
     }

@@ -11,7 +11,7 @@ import java.io.Serializable
  * [.visibility] : [DistanceUnit.KM]
  * [.ceiling] : [DistanceUnit.KM]
  */
-class Current(
+data class Current(
     val weatherText: String? = null,
     val weatherCode: WeatherCode? = null,
     val temperature: Temperature? = null,
@@ -19,10 +19,10 @@ class Current(
     val uV: UV? = null,
     val airQuality: AirQuality? = null,
     val relativeHumidity: Float? = null,
-    val pressure: Float? = null,
-    val visibility: Float? = null,
     val dewPoint: Float? = null,
+    val pressure: Float? = null,
     val cloudCover: Int? = null,
+    val visibility: Float? = null,
     val ceiling: Float? = null,
     val dailyForecast: String? = null,
     val hourlyForecast: String? = null
