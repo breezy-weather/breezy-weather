@@ -133,8 +133,9 @@
     <string name="weather_api_key_required_missing_content">Jei ketinate naudoti šį tiekėją, jūs turite įvesti API raktą.</string>
     <string name="weather_source_openmeteo_voice">Open Meteo</string>
     <string name="weather_source_accuweather">AccuWeather</string>
-    <string name="settings_weather_provider_portal">Portalas</string>
+    <string name="settings_weather_source_portal">Portalas</string>
     <string name="weather_source_accu_preference_hours_120">120 valandų</string>
+    <string name="weather_source_accu_preference_hours_240">240 valandų</string>
     <string name="weather_source_metno">MET Norway</string>
     <string name="weather_source_metno_voice">Norvegijos Meteorologijos Institutas</string>
     <string name="weather_source_openweather">OpenWeather</string>
@@ -147,8 +148,8 @@
     <string name="weather_source_china_voice">Kinija</string>
     <string name="location_current">Dabartinė buvimo vieta</string>
     <string name="location_resident">Gyvenamoji vieta</string>
-    <string name="location_search_weather_provider">Orų duomenų tiekėjas</string>
-    <string name="location_search_change_weather_provider">Pakeisti orų duomenų tiekėją</string>
+    <string name="location_search_weather_source">Orų duomenų tiekėjas</string>
+    <string name="location_search_change_weather_source">Pakeisti orų duomenų tiekėją</string>
     <string name="location_results_by">Vietovių rezultatai iš $</string>
     <string name="location_none_added_yet_instructions">Dar nepridėjote jokios vietovės. Jei norite pridėti vietovę patys, spauskite ieškojimo ikoną. Norėdami pridėti savo dabartinę buvimo vietą spauskite ant plaukiojančio mygtuko.</string>
     <string name="location_message_added">Vietovė pridėta</string>
@@ -205,12 +206,12 @@
     <string name="weather_api_limit_reached_content">Jei norite padidinti limitą, pridėkite savo API raktą.</string>
     <string name="weather_source_openmeteo">Open-Meteo</string>
     <string name="weather_source_accuweather_voice">ACCU weather.com</string>
-    <string name="setting_weather_provider_accu_days">Dienos</string>
+    <string name="setting_weather_source_accu_days">Dienos</string>
     <string name="weather_source_accu_preference_days_5">5 dienos</string>
     <string name="weather_source_accu_preference_days_1">1 diena</string>
     <string name="weather_source_accu_preference_days_10">10 dienų</string>
     <string name="weather_source_accu_preference_days_15">15 dienų</string>
-    <string name="setting_weather_provider_accu_hours">Valandos</string>
+    <string name="setting_weather_source_accu_hours">Valandos</string>
     <string name="weather_source_accu_preference_hours_24">24 valandos</string>
     <string name="weather_source_accu_preference_hours_1">1 valanda</string>
     <string name="weather_source_accu_preference_hours_72">72 valandos</string>
@@ -249,7 +250,7 @@
     <string name="action_add_current_location">Pridėti dabartinę vietovę</string>
     <string name="action_add_from_map">Pridėti iš žemėlapio</string>
     <string name="action_location_list">Vietovių sąrašas</string>
-    <string name="action_choose_weather_provider">Pasirinkti orų tiekėją</string>
+    <string name="action_choose_weather_source">Pasirinkti orų tiekėją</string>
     <string name="action_settings">Nustatymai</string>
     <string name="action_add_new_location">Pridėti naują vietovę</string>
     <string name="action_see_more">Žiūrėti daugiau</string>
@@ -272,7 +273,7 @@
     <string name="temperature_wet_bulb">Drėgnasis termometras</string>
     <string name="temperature_degree_day">Laipsnio diena</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Įjungti vietos informaciją</string>
-    <string name="location_dialog_failed_to_locate_action_select_provider">Pasirinkite vietovės teikėją</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Pasirinkite vietovės teikėją</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Pridėti vietą rankiniu būdu ir ištrinti „$“</string>
     <string name="location_search_placeholder">Ieškoti vietovės…</string>
 </resources>

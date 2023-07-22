@@ -32,12 +32,12 @@ fun LocationSettingsScreen(
     listPreferenceItem(R.string.settings_location_service) { id ->
         ListPreferenceView(
             title = context.getString(id),
-            selectedKey = SettingsManager.getInstance(context).locationProvider,
+            selectedKey = SettingsManager.getInstance(context).locationSource,
             valueArray = locationSources.map { it.id }.toTypedArray(),
             nameArray = locationSources.map { it.name }.toTypedArray(),
             summary = { _, value -> locationSources.firstOrNull { it.id == value }?.name },
             onValueChanged = { sourceId ->
-                SettingsManager.getInstance(context).locationProvider = sourceId
+                SettingsManager.getInstance(context).locationSource = sourceId
             }
         )
     }

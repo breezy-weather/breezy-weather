@@ -27,9 +27,9 @@
     <string name="dew_point">露点</string>
     <string name="cloud_cover">云量</string>
     <string name="ceiling">云高</string>
-    <string name="settings_icon_providers_get_more">获取更多</string>
-    <string name="settings_icon_providers_get_more_store">从应用商店获取更多</string>
-    <string name="settings_icon_providers_get_more_github">从 GitHub 获取更多</string>
+    <string name="settings_icon_packs_get_more">获取更多</string>
+    <string name="settings_icon_packs_get_more_store">从应用商店获取更多</string>
+    <string name="settings_icon_packs_get_more_github">从 GitHub 获取更多</string>
     <string name="action_refresh">刷新数据</string>
     <string name="action_restart">重启</string>
     <string name="action_edit">编辑</string>
@@ -160,7 +160,7 @@
     <string name="location_dialog_failed_to_locate_title">无法正常进行定位？</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">检查位置权限</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">开启位置信息</string>
-    <string name="location_dialog_failed_to_locate_action_select_provider">选择位置信息提供商</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">选择位置信息提供商</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">手动添加城市并删除“$”</string>
     <string name="weather_api_limit_reached_title">达到 API 请求次数上限</string>
     <string name="weather_api_limit_reached_content">要绕过此限制，请添加你自己的 API 密钥。</string>
@@ -238,7 +238,7 @@
     <!-- content description -->
     <string name="message_tap_again_to_exit">再次点击以退出</string>
     <string name="action_back">返回</string>
-    <string name="settings_icon_providers_check_details">查看详情</string>
+    <string name="settings_icon_packs_check_details">查看详情</string>
     <string name="alerts_count">$条天气预警</string>
     <string name="air_quality_pm25_voice">PM二点五</string>
     <string name="air_quality_pm10_voice">PM十</string>
@@ -256,10 +256,10 @@
     <string name="settings_items_drag_to_sort">轻触以对列表项进行拖拽排序</string>
     <string name="settings_item_delete">删除此项</string>
     <string name="location_swipe_to_delete">你可以向左滑动以删除该项</string>
-    <string name="settings_icon_providers_weather_adaptive_icon">天气图标</string>
-    <string name="settings_icon_providers_weather_icon_light">亮色图标</string>
-    <string name="settings_icon_providers_weather_icon_grey">灰色图标</string>
-    <string name="settings_icon_providers_weather_icon_dark">暗色图标</string>
+    <string name="settings_icon_packs_weather_adaptive_icon">天气图标</string>
+    <string name="settings_icon_packs_weather_icon_light">亮色图标</string>
+    <string name="settings_icon_packs_weather_icon_grey">灰色图标</string>
+    <string name="settings_icon_packs_weather_icon_dark">暗色图标</string>
     <!-- action -->
     <string name="alerts">预警</string>
     <string name="action_search">搜索</string>
@@ -301,7 +301,7 @@
     <string name="settings_notifications_section_forecast">天气预报</string>
     <string name="settings_widgets_notification_temp_icon_switch">将温度作为通知小图标</string>
     <string name="settings_widgets_notification_feels_like_switch">使用体感温度作为小图标</string>
-    <string name="settings_weather_provider_default_value">默认(未更改)</string>
+    <string name="settings_source_default_value">默认(未更改)</string>
     <string name="weather_source_accuweather_voice">ACCU天气</string>
     <string name="weather_source_openweather_voice">OPEN天气</string>
     <string name="weather_source_china">中国</string>
@@ -434,7 +434,7 @@
     <string name="widget_style_mini">Mini 风格</string>
     <string name="widget_style_nano">Nano 风格</string>
     <string name="widget_style_pixel">Pixel 风格</string>
-    <string name="settings_weather_provider_open_weather_one_call_version">OneCall 版本</string>
+    <string name="settings_weather_source_open_weather_one_call_version">OneCall 版本</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_celsius_short">°</string>
     <string name="notification_channel_alerts">警报</string>
@@ -452,7 +452,7 @@
     <string name="action_add_from_map">从地图中添加</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
-    <string name="settings_weather_provider_iqa_atmo_aura_key">ATMO AURA 密钥</string>
+    <string name="settings_weather_source_iqa_atmo_aura_key">ATMO AURA 密钥</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_kelvin">K</string>
     <string name="about_contribution_WangDaYeeeeee">原始项目几何天气的开发者</string>
@@ -463,22 +463,22 @@
     <string name="weather_source_accuweather">AccuWeather</string>
     <string name="weather_source_openweather">OpenWeather</string>
     <string name="action_add_new_location">添加一个新位置</string>
-    <string name="action_choose_weather_provider">选择天气提供者</string>
+    <string name="action_choose_weather_source">选择天气提供者</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="about_source_code">源代码</string>
     <string name="action_continue">继续</string>
-    <string name="settings_weather_providers_current_location">当前位置使用的天气数据提供者</string>
-    <string name="location_search_weather_provider">天气数据提供者</string>
+    <string name="settings_weather_sources_current_location">当前位置使用的天气数据提供者</string>
+    <string name="location_search_weather_source">天气数据提供者</string>
     <string name="location_message_permission_missing">缺少访问位置的权限</string>
-    <string name="settings_icon_providers_title">图标包</string>
+    <string name="settings_icon_packs_title">图标包</string>
     <string name="settings_background_updates_refresh_title">刷新频率</string>
     <string name="settings_background_updates_section_troubleshoot">故障排除</string>
     <string name="settings_background_updates_battery_optimization">关闭电池用量优化</string>
     <string name="settings_location_access_switch_title">访问位置信息</string>
     <string name="weather_source_accu_preference_days_5">五天</string>
     <string name="weather_source_accu_preference_days_15">十五天</string>
-    <string name="setting_weather_provider_accu_hours">小时数</string>
+    <string name="setting_weather_source_accu_hours">小时数</string>
     <string name="weather_source_accu_preference_hours_1">一小时</string>
     <string name="weather_source_accu_preference_hours_120">一百二十小时</string>
     <string name="weather_source_accu_preference_hours_12">十二小时</string>
@@ -492,8 +492,8 @@
     <string name="location_message_permission_background_missing">缺少在后台访问位置的权限</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">某些制造商有额外的应用限制，可以终止后台服务。Don’t kill my app! 网站有关于如何修复它的信息。</string>
     <string name="settings_background_updates_worker_info_title">进程信息</string>
-    <string name="settings_weather_provider_portal">门户</string>
-    <string name="setting_weather_provider_accu_days">天数</string>
+    <string name="settings_weather_source_portal">门户</string>
+    <string name="setting_weather_source_accu_days">天数</string>
     <string name="weather_api_key_required_missing_content">要使用这个数据提供者，您需要提供一个 API 密钥。</string>
     <string name="weather_source_accu_preference_days_1">一天</string>
     <string name="action_see_more">查看更多</string>
@@ -509,16 +509,16 @@
     <string name="settings_location_summary">位置提供者设定</string>
     <string name="settings_location_access_precise_title">设备 GPS 的使用情况</string>
     <string name="settings_location_access_precise_summaryOff">如果获取当前定位失败，请启用“使用确切位置”。</string>
-    <string name="settings_weather_providers_summary">天气数据提供者设置</string>
+    <string name="settings_weather_sources_summary">天气数据提供者设置</string>
     <string name="settings_location_access_switch_summaryOn">已允许。你可以添加当前定位作为位置。</string>
     <string name="settings_location_access_background_title">在后台访问位置信息</string>
     <string name="settings_location_access_background_summaryOn">已启用。应用将能够在后台更新你当前位置的天气数据。</string>
     <string name="settings_location_access_background_summaryOff">请设置为“始终允许”来启用后台更新当前位置的功能。</string>
     <string name="settings_location_access_precise_summaryOn">启用。同时使用设备的网络和 GPS 定位。</string>
-    <string name="settings_weather_providers">天气数据提供者</string>
+    <string name="settings_weather_sources">天气数据提供者</string>
     <string name="weather_source_accu_preference_days_10">十天</string>
     <string name="settings_location_access_switch_summaryOff">如果你想要将当前定位作为一个位置的话，请允许该权限。</string>
-    <string name="location_search_change_weather_provider">更改天气数据提供者</string>
+    <string name="location_search_change_weather_source">更改天气数据提供者</string>
     <string name="settings_section_general">一般选项</string>
     <string name="settings_background_updates_battery_optimization_summary">当你收不到通知或者微件不更新的时候，这是首先要尝试的事。</string>
     <string name="settings_location_access_permission_already_granted">已获得权限</string>
@@ -609,7 +609,7 @@
     <string name="message_source_not_installed_error_content">此来源不再可用，请删除该位置并从其他来源重新创建。</string>
     <string name="temperature_degree_day_heating">采暖度日</string>
     <string name="settings_background_updates_worker_info_summary">最后运行：$</string>
-    <string name="settings_provider_api_key">API密钥</string>
+    <string name="settings_source_api_key">API密钥</string>
     <string name="temperature_degree_day_cooling">制冷度日</string>
     <string name="message_source_not_installed_error_title">来源不再可用</string>
 </resources>

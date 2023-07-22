@@ -49,8 +49,8 @@ class LocationHelper @Inject constructor(
     fun requestCurrentLocation(
         context: Context, location: Location, background: Boolean
     ): Observable<Location> {
-        val provider = SettingsManager.getInstance(context).locationProvider
-        val locationService = sourceManager.getLocationSourceOrDefault(provider)
+        val locationSource = SettingsManager.getInstance(context).locationSource
+        val locationService = sourceManager.getLocationSourceOrDefault(locationSource)
         if (locationService.permissions.isNotEmpty()) {
             if (!context.isOnline()) {
                 return Observable.error(NoNetworkException())
@@ -87,8 +87,8 @@ class LocationHelper @Inject constructor(
         //      R:   foreground location. (set background location enabled manually)
         //      Q:   foreground location + background location.
         //      K-P: foreground location.
-        val provider = SettingsManager.getInstance(context).locationProvider
-        val service = sourceManager.getLocationSourceOrDefault(provider)
+        val locationSource = SettingsManager.getInstance(context).locationSource
+        val service = sourceManager.getLocationSourceOrDefault(locationSource)
         val permissions: MutableList<String> = service.permissions.toMutableList()
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q || permissions.isEmpty()) {
             // device has no background location permission or locate by IP.

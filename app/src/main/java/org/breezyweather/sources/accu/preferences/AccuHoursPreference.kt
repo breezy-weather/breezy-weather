@@ -13,7 +13,8 @@ enum class AccuHoursPreference(
     TWELVE("12"),
     TWENTY_FOUR("24"),
     SEVENTY_TWO("72"),
-    HUNDRED_TWENTY("120");
+    HUNDRED_TWENTY("120"),
+    TWO_HUNDRED_FORTY("240");
 
     companion object {
 
@@ -24,7 +25,8 @@ enum class AccuHoursPreference(
             "12" -> TWELVE
             "24" -> TWENTY_FOUR
             "72" -> SEVENTY_TWO
-            else -> HUNDRED_TWENTY
+            "120" -> HUNDRED_TWENTY
+            else -> TWO_HUNDRED_FORTY
         }
     }
 

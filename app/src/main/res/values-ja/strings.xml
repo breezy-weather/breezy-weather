@@ -26,9 +26,9 @@
     <string name="dew_point">露点</string>
     <string name="cloud_cover">雲量</string>
     <string name="ceiling">雲低高度</string>
-    <string name="settings_icon_providers_get_more">追加する</string>
-    <string name="settings_icon_providers_get_more_store">アプリストアから追加する</string>
-    <string name="settings_icon_providers_get_more_github">GitHub から追加する</string>
+    <string name="settings_icon_packs_get_more">追加する</string>
+    <string name="settings_icon_packs_get_more_store">アプリストアから追加する</string>
+    <string name="settings_icon_packs_get_more_github">GitHub から追加する</string>
     <string name="action_refresh">更新</string>
     <string name="action_restart">再起動</string>
     <string name="action_edit">編集</string>
@@ -115,7 +115,7 @@
     <string name="location_dialog_failed_to_locate_title">位置情報が正しくありませんか？</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Check location permissions</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Enable Location Information</string>
-    <string name="location_dialog_failed_to_locate_action_select_provider">位置情報サービスを選択</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">位置情報サービスを選択</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">手動でロケーションを追加し、“$”を削除</string>
     <string name="widget_label_view_style">View style</string>
     <string name="widget_label_show_widget_card">背景色</string>
@@ -269,7 +269,7 @@
     <string name="weather_kind_thunder">雷</string>
     <string name="weather_kind_thunderstorm">雷雨</string>
     <string name="weather_kind_wind">風</string>
-    <string name="setting_weather_provider_accu_days">日数</string>
+    <string name="setting_weather_source_accu_days">日数</string>
     <string name="settings_background_updates_battery_optimization">電池の最適化を無効にする</string>
     <string name="settings_background_updates_battery_optimization_summary">通知を受信しない、またはウィジェットが更新されない場合にお試しください。</string>
     <string name="weather_source_accu_preference_days_1">1日</string>

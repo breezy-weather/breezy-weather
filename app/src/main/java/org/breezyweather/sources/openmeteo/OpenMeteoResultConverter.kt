@@ -64,7 +64,7 @@ fun convert(
                     } else result.admin3
                 } else result.admin1
             } else result.admin2,
-            // Province code is mandatory for MF provider to have alerts/air quality, and MF provider uses Open-Meteo search
+            // Province code is mandatory for MF source to have alerts/air quality, and MF source uses Open-Meteo search
             provinceCode = if (result.countryCode == "FR") getFrenchDepartmentCode(result.admin2 ?: "") else null,
             city = result.name,
             weatherSource = "openmeteo"

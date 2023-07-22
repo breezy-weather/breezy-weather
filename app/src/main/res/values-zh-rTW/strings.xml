@@ -27,9 +27,9 @@
     <string name="dew_point">露點</string>
     <string name="cloud_cover">雲量</string>
     <string name="ceiling">雲高</string>
-    <string name="settings_icon_providers_get_more">獲取更多</string>
-    <string name="settings_icon_providers_get_more_store">從應用商店獲取更多</string>
-    <string name="settings_icon_providers_get_more_github">從GitHub獲取更多</string>
+    <string name="settings_icon_packs_get_more">獲取更多</string>
+    <string name="settings_icon_packs_get_more_store">從應用商店獲取更多</string>
+    <string name="settings_icon_packs_get_more_github">從GitHub獲取更多</string>
     <string name="action_refresh">刷新數據</string>
     <string name="action_restart">重啟</string>
     <string name="action_edit">編輯</string>
@@ -118,7 +118,7 @@
     <string name="location_dialog_failed_to_locate_title">無法正常進行定位？</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">檢查位置權限</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">開啟位置信息</string>
-    <string name="location_dialog_failed_to_locate_action_select_provider">選擇位置信息提供商</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">選擇位置信息提供商</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">手動添加城市並刪除“$”</string>
     <string name="widget_label_view_style">界面風格</string>
     <string name="widget_label_show_widget_card">卡片背景</string>
@@ -191,7 +191,7 @@
     <string name="allergen_tap_to_see_more">點擊可獲取更多…</string>
     <!-- content description -->
     <string name="action_back">回退</string>
-    <string name="settings_icon_providers_check_details">視檢詳情</string>
+    <string name="settings_icon_packs_check_details">視檢詳情</string>
     <string name="alerts_count">$條天氣預警</string>
     <string name="air_quality_pm25_voice">PM二點五</string>
     <string name="air_quality_pm10_voice">PM十</string>
@@ -209,10 +209,10 @@
     <string name="settings_items_drag_to_sort">輕觸以對列表進行拖拽排序</string>
     <string name="settings_item_delete">刪除此項</string>
     <string name="location_swipe_to_delete">你可以向左滑動以刪除該項</string>
-    <string name="settings_icon_providers_weather_adaptive_icon">天氣圖標</string>
-    <string name="settings_icon_providers_weather_icon_light">亮色圖標</string>
-    <string name="settings_icon_providers_weather_icon_grey">灰色圖標</string>
-    <string name="settings_icon_providers_weather_icon_dark">暗色圖標</string>
+    <string name="settings_icon_packs_weather_adaptive_icon">天氣圖標</string>
+    <string name="settings_icon_packs_weather_icon_light">亮色圖標</string>
+    <string name="settings_icon_packs_weather_icon_grey">灰色圖標</string>
+    <string name="settings_icon_packs_weather_icon_dark">暗色圖標</string>
     <!-- action -->
     <string name="alerts">預警</string>
     <string name="action_search">搜索</string>

@@ -30,7 +30,7 @@ body:
   - type: input
     id: development
     attributes:
-      label: Are you going to develop yourself the new provider for the app?
+      label: Are you going to develop yourself the new source for the app?
       description: Developers of the app don’t have the time to implement all sources that exist in the world. If you don’t plan on doing it yourself, a tag “open to contributions” will be added to your issue, and you will have to wait for someone to pick it up.
       placeholder: |
         Example: "Yes, but I am a novice so I might need help"

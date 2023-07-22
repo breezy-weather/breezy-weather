@@ -1,0 +1,82 @@
+# Weather sources
+
+This is a user-end guide to weather sources available in Breezy Weather. If you are a developer looking to add a new source in Breezy Weather, have a look at [contribute](../CONTRIBUTE.md).
+
+**AccuWeather** is the most complete source, although you may not need so much completeness (not many people cares about ceiling, for example).
+
+**Open-Meteo** is the only free and open source weather source on this list, and probably also the most privacy-friendly. It is nearly as complete as **AccuWeather**, however lacks major features (alerts, realtime precipitations and reverse geocoding). Pollen is available and remains to be implemented.
+
+When deciding about which source you want to use, accuracy of data is probably the most important criteria, however only you can know which one is the best for your country.
+
+
+## Status
+
+| Sources       | Open-Meteo | AccuWeather | MET Norway | OpenWeather | Météo-France | China³ |
+|---------------|------------|-------------|------------|-------------|--------------|--------|
+| **API key**   | None       | Optional    | None       | Optional¹   | Optional     | None   |
+| **Countries** | Worldwide² | Worldwide²  | Worldwide² | Worldwide²  | Worldwide²   | China  |
+
+* ¹ Bundled API key is often rate-limited. You can configure your own API key, however OpenWeather asks for credit card information even if you only want to use the free-tier.
+* ² Some features may not be available everywhere.
+* ³ Aggregated data from Beijing Meteorological Service, ColorfulClouds (Caiyun) and CNEMC
+
+
+## Main features
+
+| Sources                         | Open-Meteo    | AccuWeather | MET Norway         | OpenWeather | Météo-France  | China   |
+|---------------------------------|---------------|-------------|--------------------|-------------|---------------|---------|
+| **Daily (days)**                | 16            | 15          | ~10                | 7 or 8      | 15            | 15      |
+| **Hourly (days)**               | 16            | 10          | ~10                | 2           | 15            | 1       |
+| **Weather**                     | ✅             | ✅           | *Text in progress* | ✅           | ✅             | ✅       |
+| **Temperature**                 | ✅             | ✅           | ✅                  | ✅           | ✅             | ✅       |
+| **Precipitation**               | ✅             | ✅ (RSI)     | ✅                  | ✅ (RS)      | ✅ (RS)        | ❌       |
+| **Precipitation probability**   | ✅             | ✅ (TRSI)    | ✅ (T)              | ✅           | ✅ (RSI)       | Daily   |
+| **Wind**                        | ✅             | ✅           | ✅                  | ✅           | ✅             | ✅       |
+| **Air quality**                 | ✅             | ✅           | ✅                  | ✅           | France (AURA) | Current |
+| **Pollen**                      | *In progress* | Daily (US)  | ❌                  | ❌           | ❌             | ❌       |
+| **UV**                          | ✅             | ✅           | ✅                  | ✅           | ✅             | ❌       |
+| **Precipitations in next hour** | ❌             | ✅           | Nordic area        | ✅           | France        | ✅       |
+| **Sun**                         | ✅             | ✅           | First day          | ✅           | ✅             | ✅       |
+| **Moon**                        | ❌             | ✅           | First day          | ✅           | First day     | ❌       |
+| **Moon phase**                  | ❌             | ✅           | First day          | ❌           | First day     | ❌       |
+| **Alerts**                      | ❌             | ✅           | *In progress*      | ✅¹          | ✅             | ✅       |
+
+* ¹ List of available countries: https://openweathermap.org/api/push-weather-alerts#listsource
+
+Legend:
+
+| Letter | Meaning      |
+|--------|--------------|
+| R      | Rain         |
+| T      | Thunderstorm |
+| S      | Snow         |
+| I      | Ice          |
+
+Ultimate goal of the app would be to modularize as to have a main weather source, and then being able to complete “precipitations in next hour” and “alerts” from one or more sources.
+
+
+## Other weather data
+
+| Sources                    | Open-Meteo | AccuWeather | MET Norway | OpenWeather | Météo-France | China   |
+|----------------------------|------------|-------------|------------|-------------|--------------|---------|
+| **Precipitation duration** | ❌          | ✅ (RSI)     | ❌          | ❌           | ❌            | ❌       |
+| **Cloud cover**            | ✅          | ✅           | ❌          | ✅           | ✅            | ❌       |
+| **Hours of sun**           | ✅          | ✅           | ✅          | ✅           | ✅            | ✅       |
+| **Humidity**               | ✅          | ✅           | ✅          | ✅           | ✅            | Current |
+| **Dew point**              | ✅          | ✅           | ✅          | ✅           | ❌            | ❌       |
+| **Pressure**               | ✅          | Current     | ✅          | ✅           | ✅            | ❌       |
+| **Cloud cover**            | ✅          | ✅           | ❌          | ✅           | ✅            | ❌       |
+| **Visibility**             | ✅          | ✅           | ❌          | ✅           | ❌            | Current |
+| **Ceiling**                | ❌          | ✅           | ❌          | ❌           | ❌            | ❌       |
+| **Yesterday temperature**  | ✅          | ✅           | ❌          | ❌           | ❌            | ✅       |
+
+
+## Location
+
+| Sources               | Open-Meteo | AccuWeather | MET Norway     | OpenWeather    | Météo-France   | China |
+|-----------------------|------------|-------------|----------------|----------------|----------------|-------|
+| **Search**            | ✅          | ✅           | ✅ (Open-Meteo) | ✅ (Open-Meteo) | ✅ (Open-Meteo) | ✅¹    |
+| **Reverse geocoding** | ❌²         | ✅           | ❌²             | ❌²             | ✅²             | ✅¹    |
+
+* ¹ TimeZone is assumed to be China
+* ² TimeZone is assumed to be the same as device

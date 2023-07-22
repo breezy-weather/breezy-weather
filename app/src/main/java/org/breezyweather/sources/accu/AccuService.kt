@@ -235,7 +235,7 @@ class AccuService @Inject constructor(
             config.edit().putString("hours", value.id).apply()
         }
         get() = AccuHoursPreference.getInstance(
-            config.getString("hours", null) ?: "120"
+            config.getString("hours", null) ?: "240"
         )
 
     private fun getApiKeyOrDefault() = apikey.ifEmpty { BuildConfig.ACCU_WEATHER_KEY }
@@ -244,7 +244,7 @@ class AccuService @Inject constructor(
     override fun getPreferences(context: Context): List<Preference> {
         return listOf(
             ListPreference(
-                titleId = R.string.settings_weather_provider_portal,
+                titleId = R.string.settings_weather_source_portal,
                 selectedKey = portal.id,
                 valueArrayId = R.array.accu_preference_portal_values,
                 nameArrayId = R.array.accu_preference_portal,
@@ -256,7 +256,7 @@ class AccuService @Inject constructor(
                 titleId = R.string.settings_weather_provider_accu_api_key,
                 summary = { c, content ->
                     content.ifEmpty {
-                        c.getString(R.string.settings_weather_provider_default_value)
+                        c.getString(R.string.settings_source_default_value)
                     }
                 },
                 content = apikey,
@@ -265,7 +265,7 @@ class AccuService @Inject constructor(
                 }
             ),
             ListPreference(
-                titleId = R.string.setting_weather_provider_accu_days,
+                titleId = R.string.setting_weather_source_accu_days,
                 selectedKey = days.id,
                 valueArrayId = R.array.accu_preference_day_values,
                 nameArrayId = R.array.accu_preference_days,
@@ -274,7 +274,7 @@ class AccuService @Inject constructor(
                 },
             ),
             ListPreference(
-                titleId = R.string.setting_weather_provider_accu_hours,
+                titleId = R.string.setting_weather_source_accu_hours,
                 selectedKey = hours.id,
                 valueArrayId = R.array.accu_preference_hour_values,
                 nameArrayId = R.array.accu_preference_hours,

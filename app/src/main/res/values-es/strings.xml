@@ -27,9 +27,9 @@
     <string name="dew_point">Punto de rocío</string>
     <string name="cloud_cover">Cubierta de nubes</string>
     <string name="ceiling">Techo</string>
-    <string name="settings_icon_providers_get_more">Obtener más</string>
-    <string name="settings_icon_providers_get_more_store">Obtener más en la tienda</string>
-    <string name="settings_icon_providers_get_more_github">Obtener más en GitHub</string>
+    <string name="settings_icon_packs_get_more">Obtener más</string>
+    <string name="settings_icon_packs_get_more_store">Obtener más en la tienda</string>
+    <string name="settings_icon_packs_get_more_github">Obtener más en GitHub</string>
     <string name="action_refresh">Refrescar</string>
     <string name="action_restart">Reiniciar</string>
     <string name="action_edit">Editar</string>
@@ -118,7 +118,7 @@
     <string name="location_dialog_failed_to_locate_title">No se pudo obtener la ubicación correctamente\?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Verifica los permisos de acceso a la ubicación</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Habilitar Información de la Ubicación</string>
-    <string name="location_dialog_failed_to_locate_action_select_provider">Seleccione un proveedor de ubicación</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Seleccione un proveedor de ubicación</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Agrega la ubicación manualmente y borra “$”</string>
     <string name="dialog_permissions_location_background_title">Acceso a la ubicación en segundo plano</string>
     <string name="dialog_permissions_location_background_content">Para permitirle a la app el acceso a la ubicación en segundo plano, por favor selecciona el acceso a la ubicación “Todo el tiempo”.</string>

@@ -27,9 +27,9 @@
     <string name="dew_point">Точка росы</string>
     <string name="cloud_cover">Облачность</string>
     <string name="ceiling">Высота облачного покрова</string>
-    <string name="settings_icon_providers_get_more">Ещё</string>
-    <string name="settings_icon_providers_get_more_store">Получите больше в маркете</string>
-    <string name="settings_icon_providers_get_more_github">Получите больше на GitHub</string>
+    <string name="settings_icon_packs_get_more">Ещё</string>
+    <string name="settings_icon_packs_get_more_store">Получите больше в маркете</string>
+    <string name="settings_icon_packs_get_more_github">Получите больше на GitHub</string>
     <string name="action_refresh">Обновить</string>
     <string name="action_restart">Перезапуск</string>
     <string name="action_edit">Редактировать</string>
@@ -102,7 +102,7 @@
     <string name="location_dialog_failed_to_locate_title">Невозможно правильно определить местоположение\?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Проверка разрешений местоположения</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Включить информацию местоположения</string>
-    <string name="location_dialog_failed_to_locate_action_select_provider">Выбрать источник определения местоположения</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Выбрать источник определения местоположения</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Добавить местоположение и удалить “$”</string>
     <string name="dialog_permissions_location_background_title">Доступ к местоположению в фоне</string>
     <string name="dialog_permissions_location_background_content">Чтобы разрешить приложению доступ к местоположению в фоне, чтобы мы могли следить за изменениями местоположения и предоставлять актуальный прогноз погоды, включите доступ к местоположению “Разрешить в любом режиме”.</string>
@@ -288,8 +288,8 @@
     <string name="unit_mugpcum">мкг/м³</string>
     <string name="unit_h">ч</string>
     <string name="unit_ppcm">/м³</string>
-    <string name="location_search_weather_provider">Провайдер погоды</string>
-    <string name="location_search_change_weather_provider">Сменить провайдера погоды</string>
+    <string name="location_search_weather_source">Провайдер погоды</string>
+    <string name="location_search_change_weather_source">Сменить провайдера погоды</string>
     <string name="weather_air_quality_and_pollen_data_by">Данные о качестве воздуха от $</string>
     <string name="weather_source_openmeteo_voice">Open Meteo</string>
     <string name="weather_source_metno">MET Norway</string>
@@ -355,6 +355,7 @@
     <string name="weather_source_mf_voice">Météo France</string>
     <string name="weather_source_accu_preference_hours_72">72 часа</string>
     <string name="weather_source_accu_preference_hours_120">120 часов</string>
+    <string name="weather_source_accu_preference_hours_240">240 часов</string>
     <string name="weather_api_unauthorized_title">Неавторизованный доступ к API</string>
     <string name="weather_api_key_required_missing_title">Отсутствует API-ключ</string>
     <string name="weather_api_key_required_missing_content">Чтобы воспользоваться этим сервисом, добавьте свой API-ключ.</string>
@@ -388,8 +389,8 @@
     <string name="settings_location_access_background_summaryOn">Включено. Приложение сможет обновлять данные о погоде для вашего текущего местоположения в фоновом режиме.</string>
     <string name="settings_location_access_precise_title">Использование GPS устройством</string>
     <string name="settings_location_access_precise_summaryOn">Включено. Используются как сеть устройства, так и провайдеры GPS.</string>
-    <string name="settings_weather_provider_default_value">По умолчанию</string>
-    <string name="settings_weather_providers_current_location">Провайдер погоды для текущего местоположения</string>
+    <string name="settings_source_default_value">По умолчанию</string>
+    <string name="settings_weather_sources_current_location">Провайдер погоды для текущего местоположения</string>
     <string name="settings_notifications_forecast_tomorrow_title">Уведомление о прогнозе на следующий день</string>
     <string name="settings_widgets_live_wallpaper_summary">Установите анимацию погоды в качестве обоев</string>
     <string name="settings_widgets_monochrome_icons_title">Монохромные иконки</string>
@@ -416,14 +417,14 @@
     <string name="openmeteo_weather_text_snow_moderate_intensity">Снег</string>
     <string name="settings_widgets_week_icon_mode_title">Иконки для отображения в недельных просмотрах</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Иней с туманом</string>
-    <string name="settings_weather_provider_open_weather_one_call_version">Версия OneCall</string>
-    <string name="settings_weather_providers_summary">Настройки провайдера погоды</string>
+    <string name="settings_weather_source_open_weather_one_call_version">Версия OneCall</string>
+    <string name="settings_weather_sources_summary">Настройки провайдера погоды</string>
     <string name="settings_main_background_animation_disabled">Выключено</string>
     <string name="settings_widgets">Виджеты и живые обои</string>
     <string name="settings_widgets_live_wallpaper_error">Не удалось запустить средство выбора обоев. Вы по-прежнему можете включить обои Breezy Weather, выбрав «Живые обои» в меню выбора обоев на главном экране.</string>
     <string name="settings_item_delete">Удалить этот элемент</string>
     <string name="settings_items_drag_to_sort">Нажмите, чтобы перетащить элементы списка для сортировки</string>
-    <string name="settings_icon_providers_weather_icon_grey">Серая иконка</string>
+    <string name="settings_icon_packs_weather_icon_grey">Серая иконка</string>
     <string name="unit_kph_voice">Километров в час</string>
     <string name="unit_mps_voice">Метров в секунду</string>
     <string name="unit_mph_voice">Миль в час</string>
@@ -464,7 +465,7 @@
     <string name="unit_cmph_voice">Сантиметров в час</string>
     <string name="alerts_to_follow">Подписаться на объявления о погоде.</string>
     <string name="wind_direction_short_variable">Значение</string>
-    <string name="settings_icon_providers_weather_adaptive_icon">Иконка погоды</string>
+    <string name="settings_icon_packs_weather_adaptive_icon">Иконка погоды</string>
     <string name="unit_m_voice">Метры</string>
     <string name="unit_mi_voice">Мили</string>
     <string name="unit_mmhg_voice">Миллиметров ртути</string>
@@ -473,7 +474,7 @@
     <string name="openmeteo_weather_text_fog">Туман</string>
     <string name="openmeteo_weather_text_freezing_rain_light_intensity">Сильный дождь со снегом</string>
     <string name="alerts_count">Оповещения о погоде</string>
-    <string name="settings_icon_providers_title">Наборы иконок</string>
+    <string name="settings_icon_packs_title">Наборы иконок</string>
     <string name="settings_main_yesterday_alert_lines_in_trends">Вчера/Оповещения в прогнозе</string>
     <string name="settings_notifications">Уведомления</string>
     <string name="settings_main_section_animations">Анимации</string>
@@ -517,9 +518,9 @@
     <string name="dialog_permissions_notification_content">Нажмите здесь, чтобы включить уведомления о погоде, или примите решение позже в настройках.</string>
     <string name="widget_style_oreo_google_sans">Oreo (Google Sans)</string>
     <string name="settings_location_access_background_title">Доступ к местоположению в фоновом режиме</string>
-    <string name="settings_weather_provider_iqa_atmo_aura_key">Ключ ATMO AURA</string>
-    <string name="settings_icon_providers_check_details">Проверить детали</string>
-    <string name="settings_icon_providers_weather_icon_dark">Тёмная иконка</string>
+    <string name="settings_weather_source_iqa_atmo_aura_key">Ключ ATMO AURA</string>
+    <string name="settings_icon_packs_check_details">Проверить детали</string>
+    <string name="settings_icon_packs_weather_icon_dark">Тёмная иконка</string>
     <string name="settings_main_background_animation_enabled">Включено</string>
     <string name="settings_widgets_notification_persistent_switch">Постоянное уведомление</string>
     <string name="settings_widgets_notification_style_title">Стиль</string>
@@ -575,9 +576,9 @@
     <string name="openmeteo_weather_text_rain_heavy_intensity">Сильный дождь</string>
     <string name="openmeteo_weather_text_freezing_drizzle_light_intensity">Слабая переохлаждённая изморось</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Гроза со слабым градом</string>
-    <string name="settings_icon_providers_weather_icon_light">Светлая иконка</string>
+    <string name="settings_icon_packs_weather_icon_light">Светлая иконка</string>
     <string name="action_location_list">Список местоположений</string>
-    <string name="action_choose_weather_provider">Выберите провайдера погоды</string>
+    <string name="action_choose_weather_source">Выберите провайдера погоды</string>
     <string name="action_add_new_location">Добавить новое местоположение</string>
     <string name="settings_background_updates_battery_optimization_summary">Это первое, что нужно попробовать, если вы не получаете уведомления или виджеты не обновляются.</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Не удалось открыть настройки устройства.</string>
@@ -591,7 +592,7 @@
     <string name="settings_background_updates_worker_info_title">Информация о процессе</string>
     <string name="settings_location">Местоположение</string>
     <string name="settings_location_summary">Настройки провайдера местоположения</string>
-    <string name="settings_weather_providers">Провайдер погоды</string>
+    <string name="settings_weather_sources">Провайдер погоды</string>
     <string name="weather_refresh_skipped_already_recently_updated">Уже недавно обновлено</string>
     <string name="action_show_errors">Нажмите, чтобы увидеть детали</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Игнорировать, когда батарея разряжена</string>
@@ -603,10 +604,10 @@
     <string name="message_source_not_installed_error_title">Источник больше не доступен</string>
     <string name="message_source_not_installed_error_content">Этот источник больше не доступен. Удалите местоположение и создайте его заново из другого источника.</string>
     <string name="temperature_degree_day_cooling">Градусо-день охлодительного сезона</string>
-    <string name="setting_weather_provider_accu_hours">Часы</string>
+    <string name="setting_weather_source_accu_hours">Часы</string>
     <string name="temperature_degree_day_heating">Градусо-день отопительного периода</string>
-    <string name="settings_weather_provider_portal">Канал</string>
-    <string name="setting_weather_provider_accu_days">Дни</string>
-    <string name="settings_provider_api_key">Ключ API</string>
+    <string name="settings_weather_source_portal">Канал</string>
+    <string name="setting_weather_source_accu_days">Дни</string>
+    <string name="settings_source_api_key">Ключ API</string>
     <string name="settings_background_updates_worker_info_summary">Последний запуск: $</string>
 </resources>

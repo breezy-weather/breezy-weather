@@ -37,9 +37,9 @@ body:
       required: true
 
   - type: input
-    id: weather-provider
+    id: weather-source
     attributes:
-      label: Weather provider used
+      label: Weather source used
       description: You can find it on bottom of homepage, or in location list.
       placeholder: |
         Example: "AccuWeather"

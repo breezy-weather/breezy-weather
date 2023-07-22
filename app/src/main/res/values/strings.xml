@@ -212,20 +212,21 @@
     <string name="weather_source_openmeteo_voice">Open Meteo</string>
     <string name="weather_source_accuweather">AccuWeather</string>
     <string name="weather_source_accuweather_voice">ACCU weather.com</string>
-    <string name="settings_weather_provider_portal">Portal</string>
+    <string name="settings_weather_source_portal">Portal</string>
     <string name="weather_source_accu_preference_portal_developer" translatable="false">Developer</string>
     <string name="weather_source_accu_preference_portal_enterprise" translatable="false">Enterprise</string>
-    <string name="setting_weather_provider_accu_days">Days</string>
+    <string name="setting_weather_source_accu_days">Days</string>
     <string name="weather_source_accu_preference_days_1">1 day</string>
     <string name="weather_source_accu_preference_days_5">5 days</string>
     <string name="weather_source_accu_preference_days_10">10 days</string>
     <string name="weather_source_accu_preference_days_15">15 days</string>
-    <string name="setting_weather_provider_accu_hours">Hours</string>
+    <string name="setting_weather_source_accu_hours">Hours</string>
     <string name="weather_source_accu_preference_hours_1">1 hour</string>
     <string name="weather_source_accu_preference_hours_12">12 hours</string>
     <string name="weather_source_accu_preference_hours_24">24 hours</string>
     <string name="weather_source_accu_preference_hours_72">72 hours</string>
     <string name="weather_source_accu_preference_hours_120">120 hours</string>
+    <string name="weather_source_accu_preference_hours_240">240 hours</string>
     <string name="weather_source_metno">MET Norway</string>
     <string name="weather_source_metno_voice">The Norwegian Meteorological Institute</string>
     <string name="weather_source_openweather">OpenWeather</string>
@@ -241,8 +242,8 @@
     <string name="location_none_added_yet_instructions">No location added yet. Please tap on the search icon to manually add a location, or add your current location from the floating button.</string>
     <string name="location_current">Current location</string>
     <string name="location_resident">Resident location</string>
-    <string name="location_search_weather_provider">Weather provider</string>
-    <string name="location_search_change_weather_provider">Change weather provider</string>
+    <string name="location_search_weather_source">Weather provider</string>
+    <string name="location_search_change_weather_source">Change weather provider</string>
     <string name="location_results_by">Location results by $</string>
     <!-- $ = location provider -->
     <string name="location_message_added">Location added</string>
@@ -258,7 +259,7 @@
     <string name="location_dialog_failed_to_locate_title">Cannot get location correctly?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Check location permissions</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Enable location information</string>
-    <string name="location_dialog_failed_to_locate_action_select_provider">Select location provider</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Select location provider</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Add location manually and delete “$”</string>
     <string name="location_search_placeholder">Search for a location…</string>
     <!-- Example: AccuWeather can’t find djglidfjg -->
@@ -272,7 +273,7 @@
     <!-- Actions -->
     <string name="action_location_list">Location list</string>
     <string name="action_search">Search</string>
-    <string name="action_choose_weather_provider">Choose weather provider</string>
+    <string name="action_choose_weather_source">Choose weather provider</string>
     <string name="action_add_current_location">Add current location</string>
     <string name="action_add_from_map">Add from map</string>
     <string name="action_add_new_location">Add a new location</string>
@@ -451,33 +452,33 @@
     <string name="settings_location_access_precise_title">Device’s GPS usage</string>
     <string name="settings_location_access_precise_summaryOn">Enabled. Device’s network and GPS providers are both used.</string>
     <string name="settings_location_access_precise_summaryOff">Enable “Use precise location” if you have trouble getting a location.</string>
-    <string name="settings_weather_providers">Weather providers</string>
-    <string name="settings_weather_providers_summary">Weather providers settings</string>
+    <string name="settings_weather_sources">Weather providers</string>
+    <string name="settings_weather_sources_summary">Weather providers settings</string>
     <string name="settings_weather_providers_section_general" translatable="false">@string/settings_section_general</string>
-    <string name="settings_weather_providers_current_location">Weather provider for current location</string>
-    <string name="settings_weather_provider_default_value">Default (unchanged)</string>
-    <string name="settings_provider_api_key">API key</string>
-    <string name="settings_location_provider_baidu_ip_api_key" translatable="false">@string/settings_provider_api_key</string>
-    <string name="settings_weather_provider_accu_api_key" translatable="false">@string/settings_provider_api_key</string>
-    <string name="settings_weather_provider_open_weather_api_key" translatable="false">@string/settings_provider_api_key</string>
-    <string name="settings_weather_provider_mf_api_key" translatable="false">@string/settings_provider_api_key</string>
-    <string name="settings_weather_provider_open_weather_one_call_version">OneCall version</string>
-    <string name="settings_weather_provider_iqa_atmo_aura_key">ATMO AURA key</string>
+    <string name="settings_weather_sources_current_location">Weather provider for current location</string>
+    <string name="settings_source_default_value">Default (unchanged)</string>
+    <string name="settings_source_api_key">API key</string>
+    <string name="settings_location_provider_baidu_ip_api_key" translatable="false">@string/settings_source_api_key</string>
+    <string name="settings_weather_provider_accu_api_key" translatable="false">@string/settings_source_api_key</string>
+    <string name="settings_weather_provider_open_weather_api_key" translatable="false">@string/settings_source_api_key</string>
+    <string name="settings_weather_provider_mf_api_key" translatable="false">@string/settings_source_api_key</string>
+    <string name="settings_weather_source_open_weather_one_call_version">OneCall version</string>
+    <string name="settings_weather_source_iqa_atmo_aura_key">ATMO AURA key</string>
     <string name="settings_appearance">Appearance</string>
     <string name="settings_appearance_summary">Language, dark mode, icon pack, units</string>
     <string name="settings_appearance_language_title">Language</string>
     <string name="settings_appearance_dark_mode_title">Dark mode</string>
     <string name="settings_appearance_icon_pack_title">Icon pack</string>
-    <string name="settings_icon_providers_title">Icon packs</string>
-    <string name="settings_icon_providers_check_details">Check details</string>
-    <string name="settings_icon_providers_weather_adaptive_icon">Weather icon</string>
-    <string name="settings_icon_providers_weather_icon_light">Light icon</string>
-    <string name="settings_icon_providers_weather_icon_grey">Grey icon</string>
-    <string name="settings_icon_providers_weather_icon_dark">Dark icon</string>
-    <string name="settings_icon_providers_get_more">Get more</string>
+    <string name="settings_icon_packs_title">Icon packs</string>
+    <string name="settings_icon_packs_check_details">Check details</string>
+    <string name="settings_icon_packs_weather_adaptive_icon">Weather icon</string>
+    <string name="settings_icon_packs_weather_icon_light">Light icon</string>
+    <string name="settings_icon_packs_weather_icon_grey">Grey icon</string>
+    <string name="settings_icon_packs_weather_icon_dark">Dark icon</string>
+    <string name="settings_icon_packs_get_more">Get more</string>
     <string name="settings_icon_providers_app_store" translatable="false">@string/action_app_store</string>
-    <string name="settings_icon_providers_get_more_store">Get more from app store</string>
-    <string name="settings_icon_providers_get_more_github">Get more from GitHub</string>
+    <string name="settings_icon_packs_get_more_store">Get more from app store</string>
+    <string name="settings_icon_packs_get_more_github">Get more from GitHub</string>
     <string name="settings_units">Units</string>
     <string name="settings_units_summary">Temperature, precipitation, distance, speed, pressure</string>
     <string name="settings_units_temperature">Temperature unit</string>

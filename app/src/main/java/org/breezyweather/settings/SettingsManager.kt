@@ -112,7 +112,7 @@ class SettingsManager private constructor(context: Context) {
         )
 
     // service providers.
-    var locationProvider: String
+    var locationSource: String
         set(value) {
             config.edit().putString("location_service", value).apply()
             notifySettingsChanged()

@@ -77,14 +77,14 @@ alt="Get it on GitHub" align="center" height="80" />
       - Cloud cover
       - Ceiling
 
-- <details><summary>Multiple weather providers (<a href="docs/PROVIDERS.md">comparison</a>)</summary>
+- <details><summary>Multiple weather sources (<a href="docs/SOURCES.md">comparison</a>)</summary>
 
   - Open-Meteo
   - AccuWeather
   - MET Norway
   - OpenWeatherMap
   - Météo France
-  - Mixed China providers
+  - Mixed China sources
 </details>
 
 - Large selection of home screen widgets for at-a-glance information
@@ -98,14 +98,14 @@ alt="Get it on GitHub" align="center" height="80" />
 # Help
 
 * [Homepage explanations](docs/HOMEPAGE.md)
-* [Weather providers comparison](docs/PROVIDERS.md)
+* [Weather sources comparison](docs/SOURCES.md)
 
 
 # Contribute
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-* [Create a new weather provider guide](CONTRIBUTE.md)
+* [Create a new weather source guide](CONTRIBUTE.md)
 
 
 # Translations

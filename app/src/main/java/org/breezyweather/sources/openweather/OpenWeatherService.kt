@@ -102,7 +102,7 @@ class OpenWeatherService @Inject constructor(
                 titleId = R.string.settings_weather_provider_open_weather_api_key,
                 summary = { c, content ->
                     content.ifEmpty {
-                        c.getString(R.string.settings_weather_provider_default_value)
+                        c.getString(R.string.settings_source_default_value)
                     }
                 },
                 content = apikey,
@@ -111,7 +111,7 @@ class OpenWeatherService @Inject constructor(
                 }
             ),
             ListPreference(
-                titleId = R.string.settings_weather_provider_open_weather_one_call_version,
+                titleId = R.string.settings_weather_source_open_weather_one_call_version,
                 selectedKey = oneCallVersion.id,
                 valueArrayId = R.array.open_weather_one_call_version_values,
                 nameArrayId = R.array.open_weather_one_call_version,

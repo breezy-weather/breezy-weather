@@ -52,7 +52,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
 import org.breezyweather.R
-import org.breezyweather.background.weather.WeatherUpdateJob
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.extensions.isDarkMode
@@ -259,7 +258,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                 onDismissRequest = { viewModel.closeChooseCurrentLocationWeatherSourceDialog() },
                 title = {
                     Text(
-                        text = stringResource(R.string.settings_weather_providers_current_location),
+                        text = stringResource(R.string.settings_weather_sources_current_location),
                         color = MaterialTheme.colorScheme.onSurface,
                         style = MaterialTheme.typography.headlineSmall,
                     )

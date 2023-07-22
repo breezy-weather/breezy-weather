@@ -163,7 +163,7 @@
 
         <activity
             android:name=".settings.activities.SelectWeatherProviderActivity"
-            android:label="@string/settings_weather_providers_summary"
+            android:label="@string/settings_weather_sources_summary"
             android:theme="@style/BreezyWeatherTheme"
             android:screenOrientation="user" />
 

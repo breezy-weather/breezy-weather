@@ -26,9 +26,9 @@
     <string name="dew_point">Harmatpont</string>
     <string name="cloud_cover">Felhőtakaró</string>
     <string name="ceiling">Felhőalap</string>
-    <string name="settings_icon_providers_get_more">Szerezzen többet</string>
-    <string name="settings_icon_providers_get_more_store">Szerezzen többet az app áruházból</string>
-    <string name="settings_icon_providers_get_more_github">Szerezzen többet a GitHub-ról</string>
+    <string name="settings_icon_packs_get_more">Szerezzen többet</string>
+    <string name="settings_icon_packs_get_more_store">Szerezzen többet az app áruházból</string>
+    <string name="settings_icon_packs_get_more_github">Szerezzen többet a GitHub-ról</string>
     <string name="action_refresh">Frissítés</string>
     <string name="action_restart">Újraindítás</string>
     <string name="action_edit">Szerkesztés</string>
@@ -112,7 +112,7 @@
     <string name="location_dialog_failed_to_locate_title">Nem megfelelő a helymeghatározás\?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Ellenőrizze a helymeghatározási engedélyeket</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Engedélyezze a helymeghatározási információkat</string>
-    <string name="location_dialog_failed_to_locate_action_select_provider">Válassza ki a helymeghatározás szolgáltatóját</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Válassza ki a helymeghatározás szolgáltatóját</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Adja hozzá a helyet manuálisan vagy törölje ezt: “$”</string>
     <string name="dialog_permissions_location_background_title">Helymeghatározás a háttérben</string>
     <string name="dialog_permissions_location_background_content">Ahhoz, hogy az alkalmazásnak a háttérben is legyen helymeghatározási hozzáférése, kérjük állítsa be a helyelérési jogosultságokat “Mindig engedélyezettre”.</string>

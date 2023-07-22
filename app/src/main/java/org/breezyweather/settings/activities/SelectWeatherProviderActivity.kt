@@ -46,7 +46,7 @@ class SelectWeatherProviderActivity : GeoActivity() {
             modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
             topBar = {
                 FitStatusBarTopAppBar(
-                    title = stringResource(R.string.settings_weather_providers),
+                    title = stringResource(R.string.settings_weather_sources),
                     onBackPressed = { finish() },
                     scrollBehavior = scrollBehavior,
                 )

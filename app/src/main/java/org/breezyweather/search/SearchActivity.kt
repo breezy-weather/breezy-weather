@@ -94,7 +94,7 @@ class SearchActivity : GeoActivity() {
                             containerColor = BottomAppBarDefaults.bottomAppBarFabColor,
                             elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation()
                         ) {
-                            Icon(Icons.Filled.Tune, stringResource(R.string.location_search_change_weather_provider))
+                            Icon(Icons.Filled.Tune, stringResource(R.string.location_search_change_weather_source))
                         }
                     }
                 )
@@ -184,7 +184,7 @@ class SearchActivity : GeoActivity() {
                 onDismissRequest = { dialogOpenState.value = false },
                 title = {
                     Text(
-                        text = stringResource(R.string.location_search_weather_provider),
+                        text = stringResource(R.string.location_search_weather_source),
                         color = MaterialTheme.colorScheme.onSurface,
                         style = MaterialTheme.typography.headlineSmall,
                     )

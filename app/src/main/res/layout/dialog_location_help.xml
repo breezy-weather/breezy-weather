@@ -80,7 +80,7 @@
 
         <TextView
             android:id="@+id/dialog_location_help_providerTitle"
-            android:text="@string/location_dialog_failed_to_locate_action_select_provider"
+            android:text="@string/location_dialog_failed_to_locate_action_select_source"
             android:layout_marginTop="@dimen/normal_margin"
             android:layout_marginBottom="@dimen/normal_margin"
             android:layout_marginEnd="@dimen/normal_margin"

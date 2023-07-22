@@ -34,7 +34,7 @@ object ProvidersPreviewerDialog {
             activity,
             view,
             MaterialAlertDialogBuilder(activity)
-                .setTitle(R.string.settings_icon_providers_title)
+                .setTitle(R.string.settings_icon_packs_title)
                 .setView(view)
                 .show(),
             callback

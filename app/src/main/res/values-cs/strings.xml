@@ -27,9 +27,9 @@
     <string name="dew_point">Rosný bod</string>
     <string name="cloud_cover">Oblačnost</string>
     <string name="ceiling">Výška mraků</string>
-    <string name="settings_icon_providers_get_more">Získat další</string>
-    <string name="settings_icon_providers_get_more_store">Získat další z obchodu s aplikacemi</string>
-    <string name="settings_icon_providers_get_more_github">Získat další z GitHubu</string>
+    <string name="settings_icon_packs_get_more">Získat další</string>
+    <string name="settings_icon_packs_get_more_store">Získat další z obchodu s aplikacemi</string>
+    <string name="settings_icon_packs_get_more_github">Získat další z GitHubu</string>
     <string name="action_refresh">Obnovit</string>
     <string name="action_restart">Restartovat</string>
     <string name="action_edit">Upravit</string>
@@ -123,7 +123,7 @@
     <string name="location_dialog_failed_to_locate_title">Ukazuje aplikace nesprávnou polohu\?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Zkontrolujte oprávnění polohy</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Povolte přístup k informacím o poloze</string>
-    <string name="location_dialog_failed_to_locate_action_select_provider">Vyberte poskytovatele polohy</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Vyberte poskytovatele polohy</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Ručně přidat polohu a odstranit “$”</string>
     <string name="widget_label_view_style">Zobrazit styl</string>
     <string name="widget_label_show_widget_card">Barva pozadí</string>
@@ -199,7 +199,7 @@
     <string name="message_tap_again_to_exit">Klepněte znovu pro opuštění</string>
     <!-- content description -->
     <string name="action_back">Zpět</string>
-    <string name="settings_icon_providers_check_details">Zkontrolovat podrobnosti</string>
+    <string name="settings_icon_packs_check_details">Zkontrolovat podrobnosti</string>
     <string name="alerts_count">$ varování o počasí</string>
     <!-- $ = alert count. -->
     <string name="air_quality_pm25_voice">PM dvě celé pět</string>
@@ -223,10 +223,10 @@
     <string name="settings_items_drag_to_sort">Klepněte pro tažení položkami v seznamu pro seřazení</string>
     <string name="settings_item_delete">Odstranit tuto položku</string>
     <string name="location_swipe_to_delete">Pro odstranění této položky přejeďte prstem doleva</string>
-    <string name="settings_icon_providers_weather_adaptive_icon">Ikona počasí</string>
-    <string name="settings_icon_providers_weather_icon_light">Světlá ikona</string>
-    <string name="settings_icon_providers_weather_icon_grey">Šedá ikona</string>
-    <string name="settings_icon_providers_weather_icon_dark">Tmavá ikona</string>
+    <string name="settings_icon_packs_weather_adaptive_icon">Ikona počasí</string>
+    <string name="settings_icon_packs_weather_icon_light">Světlá ikona</string>
+    <string name="settings_icon_packs_weather_icon_grey">Šedá ikona</string>
+    <string name="settings_icon_packs_weather_icon_dark">Tmavá ikona</string>
     <!-- action -->
     <string name="alerts">Upozornění</string>
     <string name="action_search">Hledat</string>
@@ -265,8 +265,8 @@
     <string name="settings_units_speed">Jednotka rychlosti</string>
     <string name="settings_notifications_section_forecast">Přepověď</string>
     <string name="settings_widgets_notification_temp_icon_switch">Teplota jako ikona v liště</string>
-    <string name="settings_weather_provider_default_value">Výchozí (nezměněné)</string>
-    <string name="settings_weather_provider_iqa_atmo_aura_key">Klíč ATMO AURA</string>
+    <string name="settings_source_default_value">Výchozí (nezměněné)</string>
+    <string name="settings_weather_source_iqa_atmo_aura_key">Klíč ATMO AURA</string>
     <string name="weather_source_china">Čínu</string>
     <string name="location_service_baidu_ip">Poloha IP Baidu IP (pouze pro Čínu)</string>
     <string name="location_service_native">Nativní API</string>
@@ -346,17 +346,17 @@
     <string name="settings_location_access_switch_summaryOff">Pokud chcete mít možnost přidat svou aktuální polohu jako polohu, povolte to.</string>
     <string name="settings_location_access_background_title">Přístup k poloze na pozadí</string>
     <string name="settings_location_access_switch_summaryOn">Povoleno. Jako umístění můžete přidat svou aktuální polohu.</string>
-    <string name="settings_weather_providers">Poskytovatelé počasí</string>
-    <string name="settings_weather_providers_summary">Nastavení poskytovatelů počasí</string>
-    <string name="settings_weather_providers_current_location">Poskytovatel počasí pro aktuální polohu</string>
+    <string name="settings_weather_sources">Poskytovatelé počasí</string>
+    <string name="settings_weather_sources_summary">Nastavení poskytovatelů počasí</string>
+    <string name="settings_weather_sources_current_location">Poskytovatel počasí pro aktuální polohu</string>
     <string name="settings_location_access_background_summaryOn">Povoleno. Aplikace bude moci na pozadí obnovovat údaje o počasí pro vaši aktuální polohu.</string>
     <string name="settings_location_access_background_summaryOff">Povolte možnost „Povolit po celou dobu“, chcete-li mít aktualizace na pozadí pro aktuální polohu.</string>
     <string name="settings_location_access_precise_title">Použití zařízení GPS</string>
     <string name="settings_location_access_precise_summaryOn">Povoleno. Používá se síť zařízení i poskytovatelé GPS.</string>
     <string name="settings_location_access_precise_summaryOff">Pokud máte potíže s určením polohy, povolte možnost „Použít přesnou polohu“.</string>
-    <string name="settings_weather_provider_open_weather_one_call_version">Verze OpenWeather OneCall</string>
+    <string name="settings_weather_source_open_weather_one_call_version">Verze OpenWeather OneCall</string>
     <string name="settings_appearance_summary">Jazyk, tmavý režim, balíček ikon, jednotky</string>
-    <string name="settings_icon_providers_title">Balíčky ikon</string>
+    <string name="settings_icon_packs_title">Balíčky ikon</string>
     <string name="settings_main_hourly_trends_title">Hodinové trendy</string>
     <string name="settings_widgets_notification_feels_like_switch">Použití Pocitové teploty</string>
     <string name="settings_main_background_animation_title">Animace na pozadí</string>
@@ -368,8 +368,8 @@
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Bouřka se silným krupobitím</string>
     <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="settings_units_summary">Teplota, srážky, vzdálenost, rychlost, tlak</string>
-    <string name="location_search_weather_provider">Poskytovatel počasí</string>
-    <string name="location_search_change_weather_provider">Změna poskytovatele počasí</string>
+    <string name="location_search_weather_source">Poskytovatel počasí</string>
+    <string name="location_search_change_weather_source">Změna poskytovatele počasí</string>
     <string name="location_message_search_failed">Vyhledávání polohy se nezdařilo</string>
     <string name="location_message_permission_background_missing">Chybějící oprávnění k přístupu k poloze na pozadí</string>
     <string name="settings_background_updates_refresh_never">Nikdy</string>
@@ -530,6 +530,7 @@
     <string name="weather_source_accu_preference_hours_24">24 hodin</string>
     <string name="weather_source_accu_preference_hours_72">72 hodin</string>
     <string name="weather_source_accu_preference_hours_120">120 hodin</string>
+    <string name="weather_source_accu_preference_hours_240">240 hodin</string>
     <string name="weather_source_metno">MET Norway</string>
     <string name="weather_source_metno_voice">Norský meteorologický institut</string>
     <string name="weather_source_openweather">OpenWeather</string>
@@ -594,7 +595,7 @@
     <string name="settings_location_access_switch_title">Přístup k poloze</string>
     <string name="settings_debug_summary">Protokoly o pádu</string>
     <string name="null_data_text">N/A</string>
-    <string name="action_choose_weather_provider">Výběr poskytovatele počasí</string>
+    <string name="action_choose_weather_source">Výběr poskytovatele počasí</string>
     <string name="action_see_more">Zobrazit více</string>
     <string name="settings_main_background_animation_disabled">Zakázano</string>
     <string name="settings_notifications_summary">Výstrahy, srážky, předpověď počasí</string>

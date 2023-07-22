@@ -27,9 +27,9 @@
     <string name="dew_point">Ponto de orvalho</string>
     <string name="cloud_cover">Nebulosidade</string>
     <string name="ceiling">Teto de nuvens</string>
-    <string name="settings_icon_providers_get_more">Obter mais</string>
-    <string name="settings_icon_providers_get_more_store">Obtenha mais na Play Store</string>
-    <string name="settings_icon_providers_get_more_github">Obtenha mais no GitHub</string>
+    <string name="settings_icon_packs_get_more">Obter mais</string>
+    <string name="settings_icon_packs_get_more_store">Obtenha mais na Play Store</string>
+    <string name="settings_icon_packs_get_more_github">Obtenha mais no GitHub</string>
     <string name="action_refresh">Atualizar</string>
     <string name="action_restart">Reiniciar</string>
     <string name="action_edit">Editar</string>
@@ -123,7 +123,7 @@
     <string name="location_dialog_failed_to_locate_title">Não consegue obter a localização corretamente\?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Verifique as permissões de localização</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Ativar informações de localização</string>
-    <string name="location_dialog_failed_to_locate_action_select_provider">Selecione o provedor de localização</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Selecione o provedor de localização</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Adicionar local manualmente e remover “$”</string>
     <string name="widget_label_view_style">Estilo de exibição</string>
     <string name="widget_label_show_widget_card">Cor de fundo</string>
@@ -199,7 +199,7 @@
     <string name="message_tap_again_to_exit">Clique novamente para sair</string>
     <!-- content description -->
     <string name="action_back">Voltar</string>
-    <string name="settings_icon_providers_check_details">Verificar detalhes</string>
+    <string name="settings_icon_packs_check_details">Verificar detalhes</string>
     <string name="alerts_count">$ alertas meteorológicos</string>
     <!-- $ = alert count. -->
     <string name="air_quality_pm25_voice">PM dois ponto cinco</string>
@@ -223,10 +223,10 @@
     <string name="settings_items_drag_to_sort">Toque para arrastar os itens da lista para classificar</string>
     <string name="settings_item_delete">Remover este item</string>
     <string name="location_swipe_to_delete">Você pode deslizar para a esquerda para remover este item</string>
-    <string name="settings_icon_providers_weather_adaptive_icon">Ícone de clima</string>
-    <string name="settings_icon_providers_weather_icon_light">Ícone claro</string>
-    <string name="settings_icon_providers_weather_icon_grey">Ícone cinza</string>
-    <string name="settings_icon_providers_weather_icon_dark">Ícone escuro</string>
+    <string name="settings_icon_packs_weather_adaptive_icon">Ícone de clima</string>
+    <string name="settings_icon_packs_weather_icon_light">Ícone claro</string>
+    <string name="settings_icon_packs_weather_icon_grey">Ícone cinza</string>
+    <string name="settings_icon_packs_weather_icon_dark">Ícone escuro</string>
     <!-- action -->
     <string name="alerts">Alertas</string>
     <string name="action_search">Pesquisar</string>
@@ -265,7 +265,7 @@
     <string name="settings_units_speed">Unidade de velocidade</string>
     <string name="settings_notifications_section_forecast">Previsão</string>
     <string name="settings_widgets_notification_temp_icon_switch">Temperatura como ícone da barra de status</string>
-    <string name="settings_weather_provider_default_value">Padrão (inalterado)</string>
+    <string name="settings_source_default_value">Padrão (inalterado)</string>
     <string name="location_service_baidu_ip">Localização IP Baidu (apenas para China)</string>
     <string name="location_service_native">API nativa</string>
     <string name="settings_automatic">Automático</string>
@@ -375,7 +375,7 @@
     <string name="openmeteo_weather_text_partly_cloudy">Parcialmente nublado</string>
     <string name="openmeteo_weather_text_fog">Neblina</string>
     <string name="uv_index_3_5">Moderado</string>
-    <string name="action_choose_weather_provider">Escolha um provedor metereológico</string>
+    <string name="action_choose_weather_source">Escolha um provedor metereológico</string>
     <string name="air_quality_level_6">Perigoso</string>
     <string name="about_source_code">Código fonte</string>
     <string name="uv_index_0_2">Baixo</string>
@@ -410,8 +410,8 @@
     <string name="settings_location_access_switch_summaryOff">Permita se quiser adicionar sua localização atual como um local.</string>
     <string name="settings_location_access_background_summaryOff">Ative “Permitir o tempo todo” para ter atualizações em segundo plano para sua localização atual.</string>
     <string name="settings_location_access_precise_summaryOff">Ative a opção “Usar localização precisa” se você tiver problemas para obter uma localização.</string>
-    <string name="settings_weather_providers">Provedor de dados metereológicos</string>
-    <string name="settings_weather_provider_iqa_atmo_aura_key">Chave do ATMO AURA</string>
+    <string name="settings_weather_sources">Provedor de dados metereológicos</string>
+    <string name="settings_weather_source_iqa_atmo_aura_key">Chave do ATMO AURA</string>
     <string name="settings_units_summary">Temperatura, precipitação, distância, velocidade, pressão</string>
     <string name="settings_main_background_animation_title">Animação de fundo</string>
     <string name="settings_main_header_details_title">Detalhes no cabeçalho</string>
@@ -425,8 +425,8 @@
     <string name="settings_background_updates_battery_optimization_summary">Essa é a primeira coisa a tentar quando você não recebe notificações ou os widgets não estão sendo atualizados.</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Não foi possível abrir as configurações do dispositivo.</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Alguns fabricantes têm restrições adicionais de aplicativos que eliminam os serviços em segundo plano. O site Don’t kill my app! tem informações sobre como corrigir isso.</string>
-    <string name="settings_weather_providers_current_location">Provedor metereológico para a localização atual</string>
-    <string name="settings_weather_provider_open_weather_one_call_version">Versão do OneCall</string>
+    <string name="settings_weather_sources_current_location">Provedor metereológico para a localização atual</string>
+    <string name="settings_weather_source_open_weather_one_call_version">Versão do OneCall</string>
     <string name="settings_main_cards_other_element_animations_switch">Animações de outros elementos</string>
     <string name="settings_main_summary">Ordem dos cartões, itens exibidos, animações</string>
     <string name="settings_widgets_notification_feels_like_switch">Usar sensação térmica</string>
@@ -438,7 +438,7 @@
     <string name="settings_location_access_background_title">Acesso ao local em segundo plano</string>
     <string name="settings_location_access_precise_summaryOn">Habilitado. A rede do dispositivo e os provedores de GPS são usados.</string>
     <string name="settings_location_access_background_summaryOn">Habilitado. O aplicativo poderá atualizar os dados meteorológicos de sua localização atual em segundo plano.</string>
-    <string name="settings_weather_providers_summary">Configurações dos provedores de dados metereológicos</string>
+    <string name="settings_weather_sources_summary">Configurações dos provedores de dados metereológicos</string>
     <string name="settings_main_section_displayed_data">Dados exibidos</string>
     <string name="settings_widgets_notification_persistent_switch">Persistente</string>
     <string name="settings_location_access_switch_title">Acesso à localização</string>
@@ -472,13 +472,14 @@
     <string name="weather_source_accu_preference_hours_24">24 horas</string>
     <string name="weather_source_accu_preference_hours_72">72 horas</string>
     <string name="weather_source_accu_preference_hours_120">120 horas</string>
-    <string name="location_search_weather_provider">Provedor metereológico</string>
-    <string name="location_search_change_weather_provider">Mudar provedor metereológico</string>
+    <string name="weather_source_accu_preference_hours_240">240 horas</string>
+    <string name="location_search_weather_source">Provedor metereológico</string>
+    <string name="location_search_change_weather_source">Mudar provedor metereológico</string>
     <string name="settings_location_summary">Configurações dos provedores de localização</string>
     <string name="settings_location">Localização</string>
     <string name="settings_location_access_precise_title">Uso do GPS do dispositivo</string>
     <string name="settings_section_general">Geral</string>
-    <string name="settings_icon_providers_title">Pacotes de ícones</string>
+    <string name="settings_icon_packs_title">Pacotes de ícones</string>
     <string name="settings_notifications_forecast_today_title">Notificação sobre a previsão do dia</string>
     <string name="openmeteo_weather_text_overcast">Nublado</string>
     <string name="wind_direction_short_SW">SO</string>

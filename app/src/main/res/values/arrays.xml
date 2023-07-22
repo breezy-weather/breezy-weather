@@ -366,6 +366,7 @@
         <item>@string/weather_source_accu_preference_hours_24</item>
         <item>@string/weather_source_accu_preference_hours_72</item>
         <item>@string/weather_source_accu_preference_hours_120</item>
+        <item>@string/weather_source_accu_preference_hours_240</item>
     </string-array>
     <string-array name="accu_preference_hour_values">
         <item>1</item>
@@ -373,6 +374,7 @@
         <item>24</item>
         <item>72</item>
         <item>120</item>
+        <item>240</item>
     </string-array>
 
     <!-- Open Weather Map One Call version -->

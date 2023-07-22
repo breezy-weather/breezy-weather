@@ -22,7 +22,7 @@ Followed by default by the following current details:
 
 Details shown in header can be configured in the settings (Appearance). Details not shown there will be shown in the Current details card.
 
-In the footer, you have credits and acknowledgment for the weather provider used for this location. You also have an Edit button that allow you to change the order of cards or remove some of them. This will apply to all locations.
+In the footer, you have credits and acknowledgment for the weather source used for this location. You also have an Edit button that allow you to change the order of cards or remove some of them. This will apply to all locations.
 
 
 ## Cards
@@ -35,14 +35,14 @@ By default, cards are configured to display in this order and are all enabled:
 - Ephemeris (Sun & Moon)
 - Current details
 
-Some cards may not show with some providers if the data is not available. Check [providers](PROVIDERS.md) for more info.
+Some cards may not show with some sources if the data is not available. Check [sources](SOURCES.md) for more info.
 
 On top of the first card, you have all current alerts listed with their starting time and ending time, if they are restricted to a period. If there are no alerts currently, but there are some scheduled for the future, it will be written, and you will be able to tap on the text to see the details of these future alerts.
 
 
 ### Daily forecast
 
-Each day starts at 06:00 and ends at 29:59 (05:59 the day after). Days are split into two moments: daytime (06:00 to 17:59) and nighttime (18:00 to 29:59). *Some providers might use slightly different hours, such as China from 10:00 to 19:59 and from 20:00 to 31:59.*
+Each day starts at 06:00 and ends at 29:59 (05:59 the day after). Days are split into two moments: daytime (06:00 to 17:59) and nighttime (18:00 to 29:59). *Some sources might use slightly different hours, such as China from 10:00 to 19:59 and from 20:00 to 31:59.*
 
 Daily forecast is made of multiple tabs called trends. Order of daily trends can be changed in settings.
 
@@ -58,7 +58,7 @@ From top to bottom:
 - Weather condition of nighttime (icon)
 - Maximum precipitation probability for the whole day (bar + text)
 
-If weather provider has yesterday data, it will show two lines with maximum daytime temperature and minimum nighttime temperature of yesterday. It can be disabled in the settings (Appearance).
+If weather source has yesterday data, it will show two lines with maximum daytime temperature and minimum nighttime temperature of yesterday. It can be disabled in the settings (Appearance).
 
 
 #### Air quality trends

@@ -234,7 +234,7 @@ class MfService @Inject constructor(
                 titleId = R.string.settings_weather_provider_mf_api_key,
                 summary = { c, content ->
                     content.ifEmpty {
-                        c.getString(R.string.settings_weather_provider_default_value)
+                        c.getString(R.string.settings_source_default_value)
                     }
                 },
                 content = wsftKey,
@@ -243,10 +243,10 @@ class MfService @Inject constructor(
                 }
             ),
             EditTextPreference(
-                titleId = R.string.settings_weather_provider_iqa_atmo_aura_key,
+                titleId = R.string.settings_weather_source_iqa_atmo_aura_key,
                 summary = { c, content ->
                     content.ifEmpty {
-                        c.getString(R.string.settings_weather_provider_default_value)
+                        c.getString(R.string.settings_source_default_value)
                     }
                 },
                 content = atmoAuraKey,

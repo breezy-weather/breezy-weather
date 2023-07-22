@@ -33,11 +33,11 @@ fun RootSettingsView(
                 navController.navigate(SettingsScreenRouter.Location.route)
             }
         }
-        clickablePreferenceItem(R.string.settings_weather_providers) { id ->
+        clickablePreferenceItem(R.string.settings_weather_sources) { id ->
             PreferenceView(
                 titleId = id,
                 iconId = R.drawable.ic_factory,
-                summaryId = R.string.settings_weather_providers_summary
+                summaryId = R.string.settings_weather_sources_summary
             ) {
                 navController.navigate(SettingsScreenRouter.WeatherProviders.route)
             }

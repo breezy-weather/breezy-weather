@@ -18,9 +18,9 @@
     <string name="pressure">Atmosferski tlak</string>
     <string name="visibility">Vidnost</string>
     <string name="dew_point">Točka rose</string>
-    <string name="settings_icon_providers_get_more">Več</string>
-    <string name="settings_icon_providers_get_more_store">Več iz trgovine</string>
-    <string name="settings_icon_providers_get_more_github">Več iz GitHuba</string>
+    <string name="settings_icon_packs_get_more">Več</string>
+    <string name="settings_icon_packs_get_more_store">Več iz trgovine</string>
+    <string name="settings_icon_packs_get_more_github">Več iz GitHuba</string>
     <string name="action_refresh">Osveži</string>
     <string name="of_clock">:00</string>
     <string name="short_yesterday">Včr</string>
@@ -80,7 +80,7 @@
     <string name="location_dialog_failed_to_locate_title">Ni moč najti natančne lokacije\?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Preverite dovoljenja lokacije</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Omogočite dovoljenja lokacije</string>
-    <string name="location_dialog_failed_to_locate_action_select_provider">Izberite način pridobivanja lokacije</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Izberite način pridobivanja lokacije</string>
     <string name="widget_label_view_style">Način pogleda</string>
     <string name="widget_label_show_widget_card">Barva ozadja</string>
     <string name="widget_label_show_widget_card_alpha">Transparentnost</string>

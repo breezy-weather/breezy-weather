@@ -1,6 +1,6 @@
 # API keys
 
-GitHub releases contain default API keys of the project that make all weather providers work by default (until API limits are reached).
+GitHub releases contain default API keys of the project that make all weather sources work by default (until API limits are reached).
 
 If you want to self-build, you will need to add your own API keys in `local.properties` if you want the same behaviour:
 ```properties
@@ -13,7 +13,7 @@ breezy.openweather.key=myapikey
 breezy.openweather.oneCallVersion=3.0
 ```
 
-If you don’t, it will still work (for example, Open-Meteo will work), but other providers won’t work by default and user will need to input API key in settings.
+If you don’t, it will still work (for example, Open-Meteo will work), but other sources won’t work by default and user will need to input API key in settings.
 
 
 # Release management
@@ -47,9 +47,9 @@ Then add it to `app/src/main/res/values/arrays.xml` in `languages` and a technic
 Add the new enum and language technical name in `app/src/main/java/org/breezyweather/common/basic/models/options/appearance/Language.kt`. You will need to find a matching Locale in Android. For example, if the new language is `pt_rBR`, it will translate as `Locale("pt", "BR")`. The second parameter is optional, as you can see with other languages.
 
 
-# Weather providers API
+# Weather sources API
 
-Weather providers API can change: some versions may become deprecated, new endpoints may be added, new countries may be supported (when documented, we filter countries in app to avoid unnecessary calls on unsupported countries).
+Weather sources API can change: some versions may become deprecated, new endpoints may be added, new countries may be supported (when documented, we filter countries in app to avoid unnecessary calls on unsupported countries).
 
 This section keep track of endpoints and when they were last checked.
 
@@ -75,16 +75,16 @@ Future additional endpoints/improvements for existing endpoints:
 
 *Last checked: 2023-07-12*
 
-| Endpoint               | Version | Notes              |
-|------------------------|---------|--------------------|
-| Location — Translate   | v1      |                    |
-| Location — Geoposition | v1      |                    |
-| Current conditions     | v1      |                    |
-| Daily                  | v1      | Up to 15 days      |
-| Hourly                 | v1      | Up to 120 hours    |
-| Minutely               | v1      | 1 minute precision |
-| Alerts by geoposition  | v1      |                    |
-| Air quality            | v2      | Up to 96 hours     |
+| Endpoint               | Version | Notes                      |
+|------------------------|---------|----------------------------|
+| Location — Translate   | v1      |                            |
+| Location — Geoposition | v1      |                            |
+| Current conditions     | v1      |                            |
+| Daily                  | v1      | Up to 45 days, but useless |
+| Hourly                 | v1      | Up to 240 hours            |
+| Minutely               | v1      | 1 minute precision         |
+| Alerts by geoposition  | v1      |                            |
+| Air quality            | v2      | Up to 96 hours             |
 
 Not yet implemented in app:
 

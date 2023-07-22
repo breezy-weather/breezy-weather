@@ -86,7 +86,7 @@ class BaiduIPLocationService @Inject constructor(
                 titleId = R.string.settings_location_provider_baidu_ip_api_key,
                 summary = { c, content ->
                     content.ifEmpty {
-                        c.getString(R.string.settings_weather_provider_default_value)
+                        c.getString(R.string.settings_source_default_value)
                     }
                 },
                 content = apikey,
