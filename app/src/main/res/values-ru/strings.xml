@@ -85,14 +85,14 @@
     <string name="allergen">Аллерген</string>
     <string name="details">Подробно</string>
     <string name="ephemeris">Восход и закат</string>
-    <string name="action_next">ДАЛЕЕ</string>
+    <string name="action_next">Далее</string>
     <string name="action_done">ОК</string>
-    <string name="action_cancel" tools:ignore="ButtonCase">ОТМЕНА</string>
+    <string name="action_cancel" tools:ignore="ButtonCase">Отмена</string>
     <string name="settings_enabled">Вкл</string>
     <string name="settings_disabled">Выкл</string>
     <string name="action_set">Установить</string>
-    <string name="action_help">ПОМОЩЬ</string>
-    <string name="action_learn_more">ЕЩЁ</string>
+    <string name="action_help">Помощь</string>
+    <string name="action_learn_more">Узнать больше</string>
     <string name="about_app">О программе</string>
     <string name="about_translators">Переводчики</string>
     <!-- feedback. -->
@@ -512,7 +512,7 @@
     <string name="location_message_permission_background_missing">Доступ к местоположению в фоновом режиме отсутствует</string>
     <string name="action_add_from_map">Добавить с карты</string>
     <string name="action_back">Назад</string>
-    <string name="action_undo" tools:ignore="ButtonCase">ОТМЕНИТЬ</string>
+    <string name="action_undo" tools:ignore="ButtonCase">Отменить</string>
     <string name="action_close">Закрыть</string>
     <string name="dialog_permissions_notification_title">Оставаться проинформированным</string>
     <string name="dialog_permissions_notification_content">Нажмите здесь, чтобы включить уведомления о погоде, или примите решение позже в настройках.</string>
@@ -610,4 +610,5 @@
     <string name="setting_weather_source_accu_days">Дни</string>
     <string name="settings_source_api_key">Ключ API</string>
     <string name="settings_background_updates_worker_info_summary">Последний запуск: $</string>
+    <string name="action_help_me_choose">Помогите мне выбрать</string>
 </resources>
