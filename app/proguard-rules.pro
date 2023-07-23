@@ -63,11 +63,10 @@
     public static int e(...);
 }
 
-# Cyanogenmod
--keep class cyanogenmod.** { *; }
--dontwarn cyanogenmod.**
-
 # Retrofit (TODO: Fixed in v2.10.0, remove when released)
 # R8 full mode strips generic signatures from return types if not kept.
 -if interface * { @retrofit2.http.* public *** *(...); }
 -keep,allowoptimization,allowshrinking,allowobfuscation class <3>
+
+# suncalc
+-dontwarn edu.umd.cs.findbugs.annotations.Nullable

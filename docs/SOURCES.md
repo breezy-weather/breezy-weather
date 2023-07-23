@@ -62,7 +62,7 @@ Ultimate goal of the app would be to modularize as to have a main weather source
 | **Cloud cover**            | ✅          | ✅           | ❌          | ✅           | ✅            | ❌       |
 | **Hours of sun**           | ✅          | ✅           | ✅          | ✅           | ✅            | ✅       |
 | **Humidity**               | ✅          | ✅           | ✅          | ✅           | ✅            | Current |
-| **Dew point**              | ✅          | ✅           | ✅          | ✅           | ❌            | ❌       |
+| **Dew point**              | ✅          | ✅           | ✅          | ✅           | ✅            | Current |
 | **Pressure**               | ✅          | Current     | ✅          | ✅           | ✅            | ❌       |
 | **Cloud cover**            | ✅          | ✅           | ❌          | ✅           | ✅            | ❌       |
 | **Visibility**             | ✅          | ✅           | ❌          | ✅           | ❌            | Current |
