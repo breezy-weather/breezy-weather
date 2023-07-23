@@ -97,6 +97,7 @@ alt="Get it on GitHub" align="center" height="80" />
 
 # Help
 
+* [Frequently Asked Questions / Help](HELP.md)
 * [Homepage explanations](docs/HOMEPAGE.md)
 * [Weather sources comparison](docs/SOURCES.md)
 
