@@ -547,4 +547,8 @@
     <string name="widget_clock_font_sans_serif_black">Sans Serif Đen</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Nhẹ</string>
     <string name="temperature_real_feel_shade">Cảm giác thật trong bóng râm</string>
+    <string name="settings_background_updates_worker_info_summary">Lần chạy cuối cùng: $</string>
+    <string name="action_help_me_choose">Giúp tôi chọn</string>
+    <string name="settings_source_api_key">Khóa API</string>
+    <string name="settings_weather_source_open_weather_one_call_version">Phiên bản OneCall</string>
 </resources>
