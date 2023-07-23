@@ -151,12 +151,12 @@
     <string name="action_restart">Рестартиране</string>
     <string name="action_see_more">Виж повече</string>
     <string name="action_edit">Редактиране</string>
-    <string name="action_next">СЛЕДВАЩ</string>
-    <string name="action_done">ГОТОВО</string>
-    <string name="action_undo">ОТМЕНЯНЕ</string>
-    <string name="action_cancel">ОТКАЗ</string>
-    <string name="action_set">СЛОЖИ</string>
-    <string name="action_learn_more">НАУЧЕТЕ ПОВЕЧЕ</string>
+    <string name="action_next">Следващ</string>
+    <string name="action_done">Готово</string>
+    <string name="action_undo">Отмени</string>
+    <string name="action_cancel">Отказ</string>
+    <string name="action_set">Сложи</string>
+    <string name="action_learn_more">Научете Повече</string>
     <string name="action_continue">Продължи</string>
     <string name="action_close">Затвори</string>
     <string name="action_share">Сподели</string>
@@ -188,7 +188,7 @@
     <string name="action_preview">Преглед</string>
     <string name="action_app_store">Магазин за приложения</string>
     <string name="action_back">Назад</string>
-    <string name="action_help">ПОМОЩ</string>
+    <string name="action_help">Помощ</string>
     <string name="action_show_errors">Докосни за подробности</string>
     <string name="dialog_permissions_notification_content">Докоснете тук, за да активирате известия за сигнали за времето, или решете по-късно в Настройки.</string>
     <string name="allergen_grass">Трева</string>
@@ -257,7 +257,7 @@
     <string name="visibility">Видимост</string>
     <string name="dew_point">Точка на оросяване</string>
     <string name="cloud_cover">Облачно покритие</string>
-    <string name="ceiling">Облъчен Таван</string>
+    <string name="ceiling">Облачен Таван</string>
     <string name="weather_kind_clear">Ясно</string>
     <string name="weather_kind_partly_cloudy">Променлива облачност</string>
     <string name="weather_kind_cloudy">Облачно</string>
@@ -589,4 +589,6 @@
     <string name="temperature_degree_day_cooling">Градус охлаждане на ден</string>
     <string name="message_source_not_installed_error_title">Източникът вече не е наличен</string>
     <string name="message_source_not_installed_error_content">Този източник вече не е наличен, моля, изтрийте местоположението и го създайте отново от друг източник.</string>
+    <string name="action_help_me_choose">Помогни ми да избера</string>
+    <string name="settings_background_updates_worker_info_summary">Последно изпълнение: $</string>
 </resources>
