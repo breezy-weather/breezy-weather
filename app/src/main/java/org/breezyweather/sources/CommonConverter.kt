@@ -23,9 +23,49 @@ import org.shredzone.commons.suncalc.SunTimes
 import java.util.Calendar
 import java.util.Date
 import java.util.TimeZone
+import kotlin.math.ln
 import kotlin.math.roundToInt
 import kotlin.math.sin
 
+
+/**
+ * COMPUTE MISSING HOURLY DATA
+ */
+
+/**
+ * Completes a List<HourlyWrapper> with the following data than can be computed:
+ * - Dew point
+ * - TODO: Apparent temperature
+ * - TODO: Wind chill temperature
+ */
+fun computeMissingHourlyData(
+    hourlyList: List<HourlyWrapper>
+): List<HourlyWrapper> {
+    return hourlyList.map { hourly ->
+        if (hourly.dewPoint == null || hourly.temperature?.windChillTemperature == null
+            || hourly.temperature.apparentTemperature == null) {
+            hourly.copy(
+                dewPoint = hourly.dewPoint ?: computeDewPoint(hourly.temperature?.temperature, hourly.relativeHumidity),
+//                temperature = completeTemperatureWithComputedData(hourly.temperature)
+            )
+        } else hourly
+    }
+}
+
+/**
+ * Compute dew point from temperature and relative humidity
+ * Uses Magnus approximation with Arden Buck best variable set
+ * TODO: Unit test
+ */
+private fun computeDewPoint(temperature: Float?, relativeHumidity: Float?): Float? {
+    if (temperature == null || relativeHumidity == null) return null
+
+    val b = if (temperature < 0) 17.966 else 17.368
+    val c = if (temperature < 0) 227.15 else 238.88 //°C
+
+    val magnus = ln(relativeHumidity / 100) + (b * temperature) / (c + temperature)
+    return ((c * magnus) / (b - magnus)).toFloat()
+}
 
 /**
  * DAILY FROM HOURLY
@@ -51,10 +91,9 @@ fun completeDailyListFromHourlyList(
 ): List<Daily> {
     if (dailyList.isEmpty() || hourlyList.isEmpty()) return dailyList
 
-    val newDailyList = mutableListOf<Daily>()
     val hourlyListByHalfDay = getHourlyListByHalfDay(hourlyList, location.timeZone)
     val hourlyListByDay = hourlyList.groupBy { it.date.getFormattedDate(location.timeZone, "yyyy-MM-dd") }
-    dailyList.forEach { daily ->
+    return dailyList.map { daily ->
         val theDayFormatted = daily.date.getFormattedDate(location.timeZone, "yyyy-MM-dd")
         val newDay = completeHalfDayFromHourlyList(
             dailyDate = daily.date,
@@ -77,35 +116,32 @@ fun completeDailyListFromHourlyList(
         val newSun = if (daily.sun != null && daily.sun.isValid) daily.sun else {
             getCalculatedAstroSun(daily.date, location.longitude.toDouble(), location.latitude.toDouble())
         }
-        newDailyList.add(
-            daily.copy(
-                day = newDay,
-                night = newNight,
-                degreeDay = if (daily.degreeDay?.cooling == null || daily.degreeDay.heating == null) {
-                    getDegreeDay(
-                        minTemp = newDay?.temperature?.temperature?.toDouble(),
-                        maxTemp = newNight?.temperature?.temperature?.toDouble()
-                    )
-                } else daily.degreeDay,
-                sun = newSun,
-                moon = if (daily.moon != null && daily.moon.isValid) daily.moon else {
-                    getCalculatedAstroMoon(daily.date, location.longitude.toDouble(), location.latitude.toDouble())
-                },
-                moonPhase = if (daily.moonPhase?.angle != null) daily.moonPhase else {
-                    getCalculatedMoonPhase(daily.date)
-                },
-                airQuality = daily.airQuality ?: getDailyAirQualityFromHourlyList(
-                    hourlyListByDay.getOrDefault(theDayFormatted, null)
-                ),
-                uV = if (daily.uV?.index != null) daily.uV else getDailyUVFromHourlyList(
-                    hourlyListByDay.getOrDefault(theDayFormatted, null)
-                ),
-                hoursOfSun = daily.hoursOfSun ?: getHoursOfDay(newSun.riseDate, newSun.setDate)
-            )
+
+        daily.copy(
+            day = newDay,
+            night = newNight,
+            degreeDay = if (daily.degreeDay?.cooling == null || daily.degreeDay.heating == null) {
+                getDegreeDay(
+                    minTemp = newDay?.temperature?.temperature?.toDouble(),
+                    maxTemp = newNight?.temperature?.temperature?.toDouble()
+                )
+            } else daily.degreeDay,
+            sun = newSun,
+            moon = if (daily.moon != null && daily.moon.isValid) daily.moon else {
+                getCalculatedAstroMoon(daily.date, location.longitude.toDouble(), location.latitude.toDouble())
+            },
+            moonPhase = if (daily.moonPhase?.angle != null) daily.moonPhase else {
+                getCalculatedMoonPhase(daily.date)
+            },
+            airQuality = daily.airQuality ?: getDailyAirQualityFromHourlyList(
+                hourlyListByDay.getOrDefault(theDayFormatted, null)
+            ),
+            uV = if (daily.uV?.index != null) daily.uV else getDailyUVFromHourlyList(
+                hourlyListByDay.getOrDefault(theDayFormatted, null)
+            ),
+            hoursOfSun = daily.hoursOfSun ?: getHoursOfDay(newSun.riseDate, newSun.setDate)
         )
     }
-
-    return newDailyList
 }
 
 const val HEATING_DEGREE_DAY_BASE_TEMPERATURE = 18.0
@@ -672,10 +708,17 @@ fun completeCurrentFromTodayDailyAndHourly(
         )
     }
 
+    val newTemperature = completeCurrentTemperatureFromHourly(newCurrent.temperature, hourly.temperature)
+    val newRelativeHumidity = newCurrent.relativeHumidity ?: hourly.relativeHumidity
+    val newDewPoint = newCurrent.dewPoint ?: if (newCurrent.relativeHumidity != null
+        || newCurrent.temperature?.temperature != null) {
+        // If current data is available, we compute this over hourly dewpoint
+        computeDewPoint(newTemperature?.temperature, newRelativeHumidity)
+    } else hourly.dewPoint // Already calculated earlier
     return newCurrent.copy(
         weatherText = newCurrent.weatherText ?: hourly.weatherText,
         weatherCode = newCurrent.weatherCode ?: hourly.weatherCode,
-        temperature = completeCurrentTemperatureFromHourly(newCurrent.temperature, hourly.temperature),
+        temperature = newTemperature,
         wind = if (newCurrent.wind?.speed != null || hourly.wind?.speed == null) {
             newCurrent.wind
         } else hourly.wind,
@@ -687,8 +730,8 @@ fun completeCurrentFromTodayDailyAndHourly(
             timeZone
         ) else newCurrent.uV,
         airQuality = newCurrent.airQuality ?: hourly.airQuality,
-        relativeHumidity = newCurrent.relativeHumidity ?: hourly.relativeHumidity,
-        dewPoint = newCurrent.dewPoint ?: hourly.dewPoint,
+        relativeHumidity = newRelativeHumidity,
+        dewPoint = newDewPoint,
         pressure = newCurrent.pressure ?: hourly.pressure,
         cloudCover = newCurrent.cloudCover ?: hourly.cloudCover,
         visibility = newCurrent.visibility ?: hourly.visibility

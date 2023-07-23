@@ -47,14 +47,17 @@ class WeatherHelper @Inject constructor(
         return service
             .requestWeather(context, location.copy())
             .map { t ->
+                val hourlyMissingComputed = computeMissingHourlyData(
+                    t.hourlyForecast ?: emptyList()
+                )
                 val dailyForecast = completeDailyListFromHourlyList(
                     t.dailyForecast ?: emptyList(),
-                    t.hourlyForecast ?: emptyList(),
+                    hourlyMissingComputed,
                     location
                 )
                 val hourlyForecast = completeHourlyListFromDailyList(
-                    t.hourlyForecast ?: emptyList(),
-                    t.dailyForecast ?: emptyList(),
+                    hourlyMissingComputed,
+                    dailyForecast,
                     location.timeZone
                 )
 
