@@ -72,13 +72,13 @@
     <string name="precipitation_intensity_middle">Lluvia</string>
     <string name="precipitation_intensity_heavy">Lluvia intensa</string>
     <string name="precipitation_intensity_rainstorm">Aguacero</string>
-    <string name="ephemeris_moon_phase_new">Luna nueva</string>
+    <string name="ephemeris_moon_phase_new_moon">Luna nueva</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Creciente cóncava</string>
-    <string name="ephemeris_moon_phase_first">Cuarto creciente</string>
+    <string name="ephemeris_moon_phase_first_quarter">Cuarto creciente</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">Creciente convexa</string>
-    <string name="ephemeris_moon_phase_full">Luna llena</string>
+    <string name="ephemeris_moon_phase_full_moon">Luna llena</string>
     <string name="ephemeris_moon_phase_waning_gibbous">Menguante convexa</string>
-    <string name="ephemeris_moon_phase_third">Cuarto menguante</string>
+    <string name="ephemeris_moon_phase_last_quarter">Cuarto menguante</string>
     <string name="ephemeris_moon_phase_waning_crescent">Menguante cóncava</string>
     <string name="allergen_grass">Pasto</string>
     <string name="allergen_mold">Moho</string>

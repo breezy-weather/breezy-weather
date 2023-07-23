@@ -193,7 +193,7 @@
     <string name="dialog_permissions_notification_content">Докоснете тук, за да активирате известия за сигнали за времето, или решете по-късно в Настройки.</string>
     <string name="allergen_grass">Трева</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Нарастващ полумесец</string>
-    <string name="ephemeris_moon_phase_first">Първа четвърт</string>
+    <string name="ephemeris_moon_phase_first_quarter">Първа четвърт</string>
     <string name="air_quality_so2_info_consequences">Излагането на SO₂ е свързано с приемането в болница за астма и посещенията в спешното отделение.</string>
     <string name="weather_refresh_skipped_already_recently_updated">Вече наскоро актуализиран</string>
     <string name="weather_api_limit_reached_content">За да заобиколите ограничението, добавете свой собствен API ключ.</string>
@@ -239,11 +239,11 @@
     <string name="allergen_ragweed">Амброзия</string>
     <string name="allergen_tree">Дърво</string>
     <string name="allergen_tap_to_see_more">Докосни за повече…</string>
-    <string name="ephemeris_moon_phase_new">Новолуние</string>
+    <string name="ephemeris_moon_phase_new_moon">Новолуние</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">Растяща луна</string>
-    <string name="ephemeris_moon_phase_full">Пълнолуние</string>
+    <string name="ephemeris_moon_phase_full_moon">Пълнолуние</string>
     <string name="ephemeris_moon_phase_waning_gibbous">Намаляваща луна</string>
-    <string name="ephemeris_moon_phase_third">Трета четвърт</string>
+    <string name="ephemeris_moon_phase_last_quarter">Трета четвърт</string>
     <string name="ephemeris_moon_phase_waning_crescent">Залязващ полумесец</string>
     <string name="ephemeris_sunrise_at">Изгрев в $</string>
     <string name="ephemeris_sunset_at">Залез в $</string>

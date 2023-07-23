@@ -33,6 +33,7 @@ recyclerview = "1.3.0"
 retrofit = "2.9.0"
 rxandroid = "3.0.2"
 rxjava = "3.1.6"
+suncalc = "2.14"
 swiperefreshlayout = "1.1.0"
 work-runtime = "2.8.1"
 
@@ -86,6 +87,7 @@ retrofit-adapter-rxjava3 = { group = "com.squareup.retrofit2", name = "adapter-r
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 rxandroid = { group = "io.reactivex.rxjava3", name = "rxandroid", version.ref = "rxandroid" }
 rxjava = { group = "io.reactivex.rxjava3", name = "rxjava", version.ref = "rxjava" }
+suncalc = { group = "org.shredzone.commons", name = "commons-suncalc", version.ref = "suncalc" }
 swiperefreshlayout = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "swiperefreshlayout" }
 work-runtime-ktx = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "work-runtime" }
 

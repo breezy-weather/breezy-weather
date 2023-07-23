@@ -45,13 +45,13 @@
     <string name="wind_strength_10">Nevihta</string>
     <string name="wind_strength_11">Silovita nevihta</string>
     <string name="wind_strength_12">Hurikan/Tajfun</string>
-    <string name="ephemeris_moon_phase_new">Mlada luna</string>
+    <string name="ephemeris_moon_phase_new_moon">Mlada luna</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Nastajajoči polmesec</string>
-    <string name="ephemeris_moon_phase_first">Prva četrina</string>
+    <string name="ephemeris_moon_phase_first_quarter">Prva četrina</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">Nastajajoča polna luna</string>
-    <string name="ephemeris_moon_phase_full">Polna luna</string>
+    <string name="ephemeris_moon_phase_full_moon">Polna luna</string>
     <string name="ephemeris_moon_phase_waning_gibbous">Izginjajoča polna luna</string>
-    <string name="ephemeris_moon_phase_third">Tretja četrtina</string>
+    <string name="ephemeris_moon_phase_last_quarter">Tretja četrtina</string>
     <string name="ephemeris_moon_phase_waning_crescent">Izginjajoči polmesec</string>
     <string name="daily_forecast">Dnevna napoved</string>
     <string name="hourly_forecast">Urna napoved</string>

@@ -72,13 +72,13 @@
     <string name="precipitation_intensity_middle">Pluja</string>
     <string name="precipitation_intensity_heavy">Xàfec</string>
     <string name="precipitation_intensity_rainstorm">Aiguat</string>
-    <string name="ephemeris_moon_phase_new">Lluna nova</string>
+    <string name="ephemeris_moon_phase_new_moon">Lluna nova</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Gibosa creixent</string>
-    <string name="ephemeris_moon_phase_first">Quart creixent</string>
+    <string name="ephemeris_moon_phase_first_quarter">Quart creixent</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">Creixent</string>
-    <string name="ephemeris_moon_phase_full">Lluna plena</string>
+    <string name="ephemeris_moon_phase_full_moon">Lluna plena</string>
     <string name="ephemeris_moon_phase_waning_gibbous">Gibosa minvant</string>
-    <string name="ephemeris_moon_phase_third">Quart minvant</string>
+    <string name="ephemeris_moon_phase_last_quarter">Quart minvant</string>
     <string name="ephemeris_moon_phase_waning_crescent">Minvant</string>
     <string name="allergen_grass">Gramínies</string>
     <string name="allergen_mold">Floridura</string>

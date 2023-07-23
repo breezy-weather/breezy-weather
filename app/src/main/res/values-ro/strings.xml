@@ -72,13 +72,13 @@
     <string name="precipitation_intensity_middle">Ploi moderate</string>
     <string name="precipitation_intensity_heavy">Ploi intense</string>
     <string name="precipitation_intensity_rainstorm">Ploi violente (Furtună)</string>
-    <string name="ephemeris_moon_phase_new">Lună nouă</string>
+    <string name="ephemeris_moon_phase_new_moon">Lună nouă</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Semilună în creștere</string>
-    <string name="ephemeris_moon_phase_first">Primul pătrar</string>
+    <string name="ephemeris_moon_phase_first_quarter">Primul pătrar</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">Lună în creștere</string>
-    <string name="ephemeris_moon_phase_full">Lună plină</string>
+    <string name="ephemeris_moon_phase_full_moon">Lună plină</string>
     <string name="ephemeris_moon_phase_waning_gibbous">Lună în descreștere</string>
-    <string name="ephemeris_moon_phase_third">Ultimul pătrar</string>
+    <string name="ephemeris_moon_phase_last_quarter">Ultimul pătrar</string>
     <string name="ephemeris_moon_phase_waning_crescent">Semilună în descreștere</string>
     <string name="allergen_grass">Iarbă</string>
     <string name="allergen_mold">Mucegai</string>

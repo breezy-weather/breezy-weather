@@ -27,6 +27,7 @@ import org.breezyweather.common.basic.wrappers.HourlyWrapper
 import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.toDate
+import org.breezyweather.common.extensions.toTimezoneNoHour
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.sources.accu.json.AccuAirQualityData
 import org.breezyweather.sources.accu.json.AccuAirQualityResult
@@ -38,7 +39,6 @@ import org.breezyweather.sources.accu.json.AccuForecastDailyResult
 import org.breezyweather.sources.accu.json.AccuForecastHourlyResult
 import org.breezyweather.sources.accu.json.AccuLocationResult
 import org.breezyweather.sources.accu.json.AccuMinutelyResult
-import org.breezyweather.sources.getMoonPhaseAngle
 import java.util.Date
 import java.util.TimeZone
 import java.util.regex.Pattern
@@ -80,6 +80,7 @@ fun convert(
 
 fun convert(
     context: Context,
+    location: Location,
     currentResult: AccuCurrentResult,
     dailyResult: AccuForecastDailyResult,
     hourlyResultList: List<AccuForecastHourlyResult>,
@@ -126,7 +127,7 @@ fun convert(
             daytimeTemperature = currentResult.TemperatureSummary?.Past24HourRange?.Maximum?.Metric?.Value?.toFloat(),
             nighttimeTemperature = currentResult.TemperatureSummary?.Past24HourRange?.Minimum?.Metric?.Value?.toFloat()
         ),
-        dailyForecast = getDailyList(context, dailyResult.DailyForecasts),
+        dailyForecast = getDailyList(context, dailyResult.DailyForecasts, location.timeZone),
         hourlyForecast = getHourlyList(hourlyResultList, airQualityHourlyResult.data),
         minutelyForecast = getMinutelyList(minuteResult),
         alertList = getAlertList(alertResultList)
@@ -135,10 +136,11 @@ fun convert(
 
 private fun getDailyList(
     context: Context,
-    dailyForecasts: List<AccuForecastDailyForecast>
+    dailyForecasts: List<AccuForecastDailyForecast>,
+    timeZone: TimeZone
 ): List<Daily> {
     return dailyForecasts.map { forecasts ->
-        val theDay = Date(forecasts.EpochDate.times(1000))
+        val theDay = Date(forecasts.EpochDate.times(1000)).toTimezoneNoHour(timeZone)!!
         Daily(
             date = theDay,
             day = HalfDay(
@@ -222,8 +224,7 @@ private fun getDailyList(
                 setDate = forecasts.Moon?.EpochSet?.times(1000)?.toDate()
             ),
             moonPhase = MoonPhase(
-                angle = getMoonPhaseAngle(forecasts.Moon?.Phase),
-                description = forecasts.Moon?.Phase
+                angle = MoonPhase.getAngleFromEnglishDescription(forecasts.Moon?.Phase)
             ),
             pollen = getDailyPollen(forecasts.AirAndPollen),
             uV = getDailyUV(forecasts.AirAndPollen),

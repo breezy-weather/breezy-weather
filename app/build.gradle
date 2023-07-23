@@ -203,6 +203,7 @@ dependencies {
     implementation libs.expandabletextcompose
 
     // utils.
+    implementation libs.suncalc
     implementation libs.lunarcalendar
 
     // debugImplementation because LeakCanary should only run in debug builds.

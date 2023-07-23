@@ -50,7 +50,7 @@ class WeatherHelper @Inject constructor(
                 val dailyForecast = completeDailyListFromHourlyList(
                     t.dailyForecast ?: emptyList(),
                     t.hourlyForecast ?: emptyList(),
-                    location.timeZone
+                    location
                 )
                 val hourlyForecast = completeHourlyListFromDailyList(
                     t.hourlyForecast ?: emptyList(),

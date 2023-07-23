@@ -60,9 +60,9 @@
     <string name="allergen_mold">مۆڵد</string>
     <string name="allergen_ragweed">گژوگیا</string>
     <string name="allergen_tree">درەخت</string>
-    <string name="ephemeris_moon_phase_full">مانگی تەواو</string>
+    <string name="ephemeris_moon_phase_full_moon">مانگی تەواو</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">سێ چارەکی مانگ</string>
-    <string name="ephemeris_moon_phase_third">چارەکی سێیەم</string>
+    <string name="ephemeris_moon_phase_last_quarter">چارەکی سێیەم</string>
     <string name="ephemeris_moon_phase_waning_gibbous">مانگی تەواوی کەمکردوو</string>
     <string name="ephemeris_moonset_at">مانگ ئاوابوون لە $</string>
     <string name="nighttime">کاتی شەو</string>
@@ -157,9 +157,9 @@
     <string name="air_quality_co_info_introduction">یەکە ئۆکسیدی کاربۆن (CO) گازێکی ژەهراوی و سووتێنەرە کە بێ ڕەنگ و بۆن و بێ تام و بێزارکەر نییە.</string>
     <string name="air_quality_co_info_origin">بەرهەم دەهێنرێت لەلایەن سووتانی ناتەواوی سووتەمەنییە کاربۆنییەکان وەک دار و بەنزین و خەڵوز و گازی سروشتی و نەوتی سپی لە سۆبەی سادە و ئاگری کراوە و چرای فتیڵ و کوورە و ئاگر و شووشەدا بەرهەم دێت. سەرچاوەی سەرەکی یەکە ئۆکسیدی کاربۆن (CO) لە هەوای دەوروبەر لە ئۆتۆمبێلی بزوێنەرەوەیە.</string>
     <string name="allergen_tap_to_see_more">کلیک بکە بۆ بینینی زیاتر…</string>
-    <string name="ephemeris_moon_phase_new">مانگی نوێ</string>
+    <string name="ephemeris_moon_phase_new_moon">مانگی نوێ</string>
     <string name="ephemeris_moon_phase_waxing_crescent">مانگی چەماوە</string>
-    <string name="ephemeris_moon_phase_first">چارەکی یەکەم</string>
+    <string name="ephemeris_moon_phase_first_quarter">چارەکی یەکەم</string>
     <string name="ephemeris_moon_phase_waning_crescent">چەماوەی کۆتایی مانگ</string>
     <string name="ephemeris_moonrise_at">مانگ هەڵاتن لە $</string>
     <string name="ephemeris_sunset_at">خۆر ئاوابوون لە $</string>

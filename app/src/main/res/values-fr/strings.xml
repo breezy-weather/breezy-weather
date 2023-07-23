@@ -97,13 +97,13 @@
     <string name="precipitation_intensity_heavy">Forte</string>
     <string name="precipitation_intensity_rainstorm">Torentielle</string>
 
-    <string name="ephemeris_moon_phase_new">Nouvelle lune</string>
+    <string name="ephemeris_moon_phase_new_moon">Nouvelle lune</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Premier croissant</string>
-    <string name="ephemeris_moon_phase_first">Premier quartier</string>
+    <string name="ephemeris_moon_phase_first_quarter">Premier quartier</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">Lune gibbeuse croissante</string>
-    <string name="ephemeris_moon_phase_full">Pleine lune</string>
+    <string name="ephemeris_moon_phase_full_moon">Pleine lune</string>
     <string name="ephemeris_moon_phase_waning_gibbous">Lune gibbeuse décroissante</string>
-    <string name="ephemeris_moon_phase_third">Dernier quartier</string>
+    <string name="ephemeris_moon_phase_last_quarter">Dernier quartier</string>
     <string name="ephemeris_moon_phase_waning_crescent">Dernier croissant</string>
 
     <string name="allergen_grass">Graminées</string>

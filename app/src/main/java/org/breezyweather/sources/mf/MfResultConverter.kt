@@ -23,7 +23,6 @@ import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
-import org.breezyweather.sources.getMoonPhaseAngle
 import org.breezyweather.sources.mf.json.MfCurrentResult
 import org.breezyweather.sources.mf.json.MfEphemeris
 import org.breezyweather.sources.mf.json.MfEphemerisResult
@@ -168,8 +167,7 @@ private fun getDailyList(
                     setDate = ephemerisResult?.moonsetTime
                 ) else null,
                 moonPhase = if (i == 0) MoonPhase(
-                    angle = getMoonPhaseAngle(ephemerisResult?.moonPhaseDescription),
-                    description = ephemerisResult?.moonPhaseDescription
+                    angle = MoonPhase.getAngleFromEnglishDescription(ephemerisResult?.moonPhaseDescription)
                 ) else null,
                 uV = UV(index = dailyForecast.uvIndex?.toFloat())
             )

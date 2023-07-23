@@ -36,12 +36,11 @@ When deciding about which source you want to use, accuracy of data is probably t
 | **Pollen**                      | *In progress* | Daily (US)  | ❌                  | ❌           | ❌             | ❌       |
 | **UV**                          | ✅             | ✅           | ✅                  | ✅           | ✅             | ❌       |
 | **Precipitations in next hour** | ❌             | ✅           | Nordic area        | ✅           | France        | ✅       |
-| **Sun**                         | ✅             | ✅           | First day          | ✅           | ✅             | ✅       |
-| **Moon**                        | ❌             | ✅           | First day          | ✅           | First day     | ❌       |
-| **Moon phase**                  | ❌             | ✅           | First day          | ❌           | First day     | ❌       |
+| **Sun & Moon & Moon phase**     | ✅             | ✅           | ✅                  | ✅           | ✅             | ✅       |
 | **Alerts**                      | ❌             | ✅           | *In progress*      | ✅¹          | ✅             | ✅       |
 
 * ¹ List of available countries: https://openweathermap.org/api/push-weather-alerts#listsource
+
 
 Legend:
 

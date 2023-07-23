@@ -148,6 +148,7 @@ class AccuService @Inject constructor(
             ->
             convert(
                 context,
+                location,
                 accuRealtimeResults[0],
                 accuDailyResult,
                 accuHourlyResults,

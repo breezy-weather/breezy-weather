@@ -71,13 +71,13 @@
     <string name="precipitation_intensity_middle">مطر</string>
     <string name="precipitation_intensity_heavy">مطر غزير</string>
     <string name="precipitation_intensity_rainstorm">عاصفة مطرية</string>
-    <string name="ephemeris_moon_phase_new">مُحاق</string>
+    <string name="ephemeris_moon_phase_new_moon">مُحاق</string>
     <string name="ephemeris_moon_phase_waxing_crescent">هلال أول الشهر</string>
-    <string name="ephemeris_moon_phase_first">تربيع أول</string>
+    <string name="ephemeris_moon_phase_first_quarter">تربيع أول</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">أحدب متزايد</string>
-    <string name="ephemeris_moon_phase_full">بدر</string>
+    <string name="ephemeris_moon_phase_full_moon">بدر</string>
     <string name="ephemeris_moon_phase_waning_gibbous">أحدب متناقص</string>
-    <string name="ephemeris_moon_phase_third">تربيع ثاني</string>
+    <string name="ephemeris_moon_phase_last_quarter">تربيع ثاني</string>
     <string name="ephemeris_moon_phase_waning_crescent">هلال آخر الشهر</string>
     <string name="allergen_grass">حبوب لقاح العشب</string>
     <string name="allergen_mold">العفن</string>

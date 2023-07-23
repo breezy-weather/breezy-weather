@@ -27,7 +27,7 @@
     <string name="air_quality_level_4">Có hại</string>
     <string name="allergen_tap_to_see_more">Bấm để xem thêm…</string>
     <string name="ephemeris_sunset_at">Mặt trời lặn lúc $</string>
-    <string name="ephemeris_moon_phase_new">Trăng non</string>
+    <string name="ephemeris_moon_phase_new_moon">Trăng non</string>
     <string name="ephemeris_sunrise_at">Mặt trời mọc lúc $</string>
     <string name="action_preview">Xem trước</string>
     <string name="location_swipe_to_delete">Bạn có thể vuốt sang phải để xóa vị trí này</string>
@@ -36,8 +36,8 @@
 \nVí dụ, bạn có thể đặt quê hương làm thành phố cư trú. Bạn có thể kiểm tra thời tiết ở quê nhà trong khi bạn đi du lịch. Khi bạn về nhà, thời tiết ở quê nhà của bạn sẽ được giấu và thay thế bởi thời tiết cho vị trí hiện tại của bạn.</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">Trăng khuyết đầu tháng</string>
     <string name="ephemeris_moon_phase_waning_gibbous">Trăng khuyết cuối tháng</string>
-    <string name="ephemeris_moon_phase_third">Trăng bán nguyệt cuối tháng</string>
-    <string name="ephemeris_moon_phase_full">Trăng tròn</string>
+    <string name="ephemeris_moon_phase_last_quarter">Trăng bán nguyệt cuối tháng</string>
+    <string name="ephemeris_moon_phase_full_moon">Trăng tròn</string>
     <string name="ephemeris_moon_phase_waning_crescent">Trăng lưỡi liềm cuối tháng</string>
     <string name="date_format_short">d/M</string>
     <string name="location_message_deleted">Đã xóa vị trí</string>
@@ -136,7 +136,7 @@
     <string name="allergen_ragweed">Cỏ phấn hương</string>
     <string name="allergen_tree">Cây</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Trăng lưỡi liềm</string>
-    <string name="ephemeris_moon_phase_first">Trăng bán nguyệt đầu</string>
+    <string name="ephemeris_moon_phase_first_quarter">Trăng bán nguyệt đầu</string>
     <string name="ephemeris_moonrise_at">Mặt trăng mọc lúc $</string>
     <string name="ephemeris_moonset_at">Mặt trăng lặn lúc $</string>
     <string name="daytime">Ban ngày</string>

@@ -148,13 +148,13 @@
     <string name="allergen_tree">Tree</string>
     <string name="allergen_tap_to_see_more">Tap to see more…</string>
     <!-- Ephemeris -->
-    <string name="ephemeris_moon_phase_new">New moon</string>
+    <string name="ephemeris_moon_phase_new_moon">New moon</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Waxing crescent</string>
-    <string name="ephemeris_moon_phase_first">First quarter</string>
+    <string name="ephemeris_moon_phase_first_quarter">First quarter</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">Waxing gibbous</string>
-    <string name="ephemeris_moon_phase_full">Full moon</string>
+    <string name="ephemeris_moon_phase_full_moon">Full moon</string>
     <string name="ephemeris_moon_phase_waning_gibbous">Waning gibbous</string>
-    <string name="ephemeris_moon_phase_third">Third quarter</string>
+    <string name="ephemeris_moon_phase_last_quarter">Last quarter</string>
     <string name="ephemeris_moon_phase_waning_crescent">Waning crescent</string>
     <string name="ephemeris_sunrise_at">Sunrise at $</string>
     <!-- $ = time. -->

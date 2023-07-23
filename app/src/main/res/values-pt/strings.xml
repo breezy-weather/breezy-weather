@@ -42,13 +42,13 @@
     <string name="wind_strength_10">Tempestade</string>
     <string name="wind_strength_11">Tempestade Violenta</string>
     <string name="wind_strength_12">Furacão/Tufão</string>
-    <string name="ephemeris_moon_phase_new">Nova</string>
+    <string name="ephemeris_moon_phase_new_moon">Nova</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Crescente</string>
-    <string name="ephemeris_moon_phase_first">Quarto Crescente</string>
+    <string name="ephemeris_moon_phase_first_quarter">Quarto Crescente</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">Gibosa</string>
-    <string name="ephemeris_moon_phase_full">Cheia</string>
+    <string name="ephemeris_moon_phase_full_moon">Cheia</string>
     <string name="ephemeris_moon_phase_waning_gibbous">Balsâmica</string>
-    <string name="ephemeris_moon_phase_third">Quarto Minguante</string>
+    <string name="ephemeris_moon_phase_last_quarter">Quarto Minguante</string>
     <string name="ephemeris_moon_phase_waning_crescent">Minguante</string>
     <string name="daily_forecast">Diário</string>
     <string name="hourly_forecast">Previsão horária</string>

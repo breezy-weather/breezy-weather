@@ -72,13 +72,13 @@
     <string name="precipitation_intensity_middle">Déšť</string>
     <string name="precipitation_intensity_heavy">Silný déšť</string>
     <string name="precipitation_intensity_rainstorm">Bouřka</string>
-    <string name="ephemeris_moon_phase_new">Nový měsíc</string>
+    <string name="ephemeris_moon_phase_new_moon">Nový měsíc</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Dorustající čtvrtina</string>
-    <string name="ephemeris_moon_phase_first">Dorůstající polovina</string>
+    <string name="ephemeris_moon_phase_first_quarter">Dorůstající polovina</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">Dorůstající tři čtvrtiny</string>
-    <string name="ephemeris_moon_phase_full">Úplněk</string>
+    <string name="ephemeris_moon_phase_full_moon">Úplněk</string>
     <string name="ephemeris_moon_phase_waning_gibbous">Ubývající tři čtvrtiny</string>
-    <string name="ephemeris_moon_phase_third">Ubývající polovina</string>
+    <string name="ephemeris_moon_phase_last_quarter">Ubývající polovina</string>
     <string name="ephemeris_moon_phase_waning_crescent">Ubývající čtvrtina</string>
     <string name="allergen_grass">Tráva</string>
     <string name="allergen_mold">Plísňe</string>

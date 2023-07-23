@@ -425,7 +425,7 @@ abstract class AbstractRemoteViewsPresenter {
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "mp$",
-                    weather.dailyForecast.getOrNull(i)?.moonPhase?.getMoonPhase(context)
+                    weather.dailyForecast.getOrNull(i)?.moonPhase?.getDescription(context)
                         ?: context.getString(R.string.null_data_text)
                 )
             }

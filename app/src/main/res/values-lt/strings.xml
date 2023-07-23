@@ -91,11 +91,11 @@
     <string name="allergen_ragweed">Ambrozijos</string>
     <string name="allergen_tree">Medžių</string>
     <string name="allergen_tap_to_see_more">Norėdami daugiau pamatyti spauskite čia…</string>
-    <string name="ephemeris_moon_phase_new">Jaunatis</string>
-    <string name="ephemeris_moon_phase_first">Priešpilnis</string>
+    <string name="ephemeris_moon_phase_new_moon">Jaunatis</string>
+    <string name="ephemeris_moon_phase_first_quarter">Priešpilnis</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Jaunatis</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">Priešpilnis</string>
-    <string name="ephemeris_moon_phase_third">Delčia</string>
+    <string name="ephemeris_moon_phase_last_quarter">Delčia</string>
     <string name="ephemeris_moon_phase_waning_crescent">Delčia</string>
     <string name="ephemeris_sunrise_at">Saulėtekis $</string>
     <string name="ephemeris_sunset_at">Saulėlydis $</string>
@@ -186,7 +186,7 @@
     <string name="air_quality_co_info_consequences">Anglies monoksidas per plaučių audinius patenka į kraują ir trukdo deguonies įsisavinimui, todėl organizmo ląstelėms sunku prisijungti deguonį. Šis deguonies trūkumas pažeidžia audinius ir ląsteles. Anglies monoksido poveikis gali sukelti kvėpavimo sutrikimus, išsekimą, galvos svaigimą ir kitus į gripą panašius simptomus. Didelis anglies monoksido kiekis kraujyje gali būti mirtinas.</string>
     <string name="allergen_grass">Žolių</string>
     <string name="allergen_mold">Grybeliniai</string>
-    <string name="ephemeris_moon_phase_full">Pilnatis</string>
+    <string name="ephemeris_moon_phase_full_moon">Pilnatis</string>
     <string name="ephemeris_moon_phase_waning_gibbous">Pilnatis</string>
     <string name="ephemeris_moonset_at">Mėnulio nusileidimas $</string>
     <string name="daytime">Diena</string>

@@ -70,13 +70,13 @@
     <string name="precipitation_intensity_middle">Eső</string>
     <string name="precipitation_intensity_heavy">Zápor</string>
     <string name="precipitation_intensity_rainstorm">Felhőszakadás</string>
-    <string name="ephemeris_moon_phase_new">Újhold</string>
+    <string name="ephemeris_moon_phase_new_moon">Újhold</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Növekvő Holdsarló</string>
-    <string name="ephemeris_moon_phase_first">Első Negyed</string>
+    <string name="ephemeris_moon_phase_first_quarter">Első Negyed</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">Növő Telihold</string>
-    <string name="ephemeris_moon_phase_full">Telihold</string>
+    <string name="ephemeris_moon_phase_full_moon">Telihold</string>
     <string name="ephemeris_moon_phase_waning_gibbous">Apadó Hold</string>
-    <string name="ephemeris_moon_phase_third">Utolsó Negyed</string>
+    <string name="ephemeris_moon_phase_last_quarter">Utolsó Negyed</string>
     <string name="ephemeris_moon_phase_waning_crescent">Csökkenő Sarló</string>
     <string name="allergen_grass">Fű</string>
     <string name="allergen_mold">Penész</string>

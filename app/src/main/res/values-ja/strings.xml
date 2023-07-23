@@ -69,13 +69,13 @@
     <string name="precipitation_intensity_middle">雨</string>
     <string name="precipitation_intensity_heavy">大雨</string>
     <string name="precipitation_intensity_rainstorm">暴風雨</string>
-    <string name="ephemeris_moon_phase_new">新月</string>
+    <string name="ephemeris_moon_phase_new_moon">新月</string>
     <string name="ephemeris_moon_phase_waxing_crescent">三日月</string>
-    <string name="ephemeris_moon_phase_first">上弦</string>
+    <string name="ephemeris_moon_phase_first_quarter">上弦</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">十三夜</string>
-    <string name="ephemeris_moon_phase_full">満月</string>
+    <string name="ephemeris_moon_phase_full_moon">満月</string>
     <string name="ephemeris_moon_phase_waning_gibbous">十八夜</string>
-    <string name="ephemeris_moon_phase_third">下弦</string>
+    <string name="ephemeris_moon_phase_last_quarter">下弦</string>
     <string name="ephemeris_moon_phase_waning_crescent">二十六夜</string>
     <string name="allergen_grass">草</string>
     <string name="allergen_mold">カビ</string>

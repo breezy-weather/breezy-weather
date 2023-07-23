@@ -107,7 +107,7 @@ class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                     ContextCompat.getColor(context, R.color.colorTextDark2nd),
                     MainThemeColorProvider.getColor(location, R.attr.colorBodyText)
                 )
-                mPhaseText.text = moonPhase.getMoonPhase(context)
+                mPhaseText.text = moonPhase.getDescription(context)
                 talkBackBuilder.append(", ").append(mPhaseText.text)
             } else {
                 mPhaseText.visibility = View.GONE

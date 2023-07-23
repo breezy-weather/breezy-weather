@@ -71,13 +71,13 @@
     <string name="precipitation_intensity_middle">Βροχή</string>
     <string name="precipitation_intensity_heavy">Δυνατή βροχή</string>
     <string name="precipitation_intensity_rainstorm">Νεροποντή</string>
-    <string name="ephemeris_moon_phase_new">Νέα Σελήνη</string>
+    <string name="ephemeris_moon_phase_new_moon">Νέα Σελήνη</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Αύξων μηνίσκος</string>
-    <string name="ephemeris_moon_phase_first">Πρώτο τέταρτο</string>
+    <string name="ephemeris_moon_phase_first_quarter">Πρώτο τέταρτο</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">Αύξων ύβος</string>
-    <string name="ephemeris_moon_phase_full">Πανσέληνος</string>
+    <string name="ephemeris_moon_phase_full_moon">Πανσέληνος</string>
     <string name="ephemeris_moon_phase_waning_gibbous">Φθίνων ύβος</string>
-    <string name="ephemeris_moon_phase_third">Τρίτο τέταρτο</string>
+    <string name="ephemeris_moon_phase_last_quarter">Τρίτο τέταρτο</string>
     <string name="ephemeris_moon_phase_waning_crescent">Φθίνων μηνίσκος</string>
     <string name="allergen_grass">Γρασίδι</string>
     <string name="allergen_mold">Μούχλα</string>

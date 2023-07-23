@@ -5,6 +5,9 @@ This version brings new logic that automatically completes missing data (for exa
 If you notice any data that was available on v4.3.0-beta for a source and is now missing on v4.4.0-beta, please report it in a GitHub issue.
 
 - When current details are missing from a source, app will now pick the closest hour forecast. Following this change, some sources will now have more current details.
+- Sun & Moon & Moon phase is now available for all sources, it will be computed if data is missing from source.
+- This fixes an issue with MET Norway where icons were always daytime on days 2+ due to missing sun info
+- This also fixes many errors with midnight sun and polar night.
 - Fix day and night temperature for OpenWeather which was completely broken and could show higher temperature at night than during the day.
 - Make hourly trends less compressed
 - Add a “Help me choose” button on weather selection dialogs.

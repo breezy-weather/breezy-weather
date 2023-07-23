@@ -73,13 +73,13 @@
     <string name="precipitation_intensity_middle">Hujan</string>
     <string name="precipitation_intensity_heavy">Hujan deras</string>
     <string name="precipitation_intensity_rainstorm">Hujan badai</string>
-    <string name="ephemeris_moon_phase_new">Bulan Baru</string>
+    <string name="ephemeris_moon_phase_new_moon">Bulan Baru</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Waxing crescent</string>
-    <string name="ephemeris_moon_phase_first">Kuarter pertama</string>
+    <string name="ephemeris_moon_phase_first_quarter">Kuarter pertama</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">Waxing gibbous</string>
-    <string name="ephemeris_moon_phase_full">Bulan purnama</string>
+    <string name="ephemeris_moon_phase_full_moon">Bulan purnama</string>
     <string name="ephemeris_moon_phase_waning_gibbous">Waning gibbous</string>
-    <string name="ephemeris_moon_phase_third">Third quarter</string>
+    <string name="ephemeris_moon_phase_last_quarter">Third quarter</string>
     <string name="ephemeris_moon_phase_waning_crescent">Waning crescent</string>
     <string name="allergen_grass">Rumput</string>
     <string name="allergen_mold">Lubang</string>

@@ -73,13 +73,13 @@
     <string name="precipitation_intensity_middle">Deszcz</string>
     <string name="precipitation_intensity_heavy">Mocny deszcz</string>
     <string name="precipitation_intensity_rainstorm">Ulewa</string>
-    <string name="ephemeris_moon_phase_new">Nów</string>
+    <string name="ephemeris_moon_phase_new_moon">Nów</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Sierp</string>
-    <string name="ephemeris_moon_phase_first">Pierwsza kwadra</string>
+    <string name="ephemeris_moon_phase_first_quarter">Pierwsza kwadra</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">Księżyc garbowaty</string>
-    <string name="ephemeris_moon_phase_full">Pełnia</string>
+    <string name="ephemeris_moon_phase_full_moon">Pełnia</string>
     <string name="ephemeris_moon_phase_waning_gibbous">Księżyc garbowaty</string>
-    <string name="ephemeris_moon_phase_third">Trzecia kwadra</string>
+    <string name="ephemeris_moon_phase_last_quarter">Trzecia kwadra</string>
     <string name="ephemeris_moon_phase_waning_crescent">Sierp</string>
     <string name="allergen_grass">Trawa</string>
     <string name="allergen_mold">Pleśń</string>

@@ -105,7 +105,6 @@ object DailyEntityGenerator {
 
             // moon phase.
             moonPhaseAngle = daily.moonPhase?.angle,
-            moonPhaseDescription = daily.moonPhase?.description,
 
             // aqi.
             pm25 = daily.airQuality?.pM25,
@@ -226,7 +225,7 @@ object DailyEntityGenerator {
             DegreeDay(entity.degreeDayHeating, entity.degreeDayCooling),
             Astro(entity.sunRiseDate, entity.sunSetDate),
             Astro(entity.moonRiseDate, entity.moonSetDate),
-            MoonPhase(entity.moonPhaseAngle, entity.moonPhaseDescription),
+            MoonPhase(entity.moonPhaseAngle),
             AirQuality(
                 entity.pm25,
                 entity.pm10,

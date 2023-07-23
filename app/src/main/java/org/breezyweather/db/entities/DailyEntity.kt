@@ -109,7 +109,6 @@ data class DailyEntity(
 
     // moon phase.
     var moonPhaseAngle: Int? = null,
-    var moonPhaseDescription: String? = null,
 
     // aqi.
     var pm25: Float? = null,

@@ -69,13 +69,13 @@
     <string name="precipitation_intensity_middle">Дождь</string>
     <string name="precipitation_intensity_heavy">Ливень</string>
     <string name="precipitation_intensity_rainstorm">Штормовой дождь</string>
-    <string name="ephemeris_moon_phase_new">Новолуние</string>
+    <string name="ephemeris_moon_phase_new_moon">Новолуние</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Молодая луна</string>
-    <string name="ephemeris_moon_phase_first">Первая четверть</string>
+    <string name="ephemeris_moon_phase_first_quarter">Первая четверть</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">Прибывающая луна</string>
-    <string name="ephemeris_moon_phase_full">Полнолуние</string>
+    <string name="ephemeris_moon_phase_full_moon">Полнолуние</string>
     <string name="ephemeris_moon_phase_waning_gibbous">Убывающая луна</string>
-    <string name="ephemeris_moon_phase_third">Последняя четверть</string>
+    <string name="ephemeris_moon_phase_last_quarter">Последняя четверть</string>
     <string name="ephemeris_moon_phase_waning_crescent">Старая луна</string>
     <string name="daily_forecast">Ежедневный</string>
     <string name="hourly_forecast">Почасовой</string>

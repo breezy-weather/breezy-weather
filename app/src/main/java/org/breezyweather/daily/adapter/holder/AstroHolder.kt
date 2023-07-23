@@ -67,7 +67,7 @@ class AstroHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
             mMoon.visibility = View.GONE
         }
         if (model.moonPhase != null && model.moonPhase.isValid) {
-            talkBackBuilder.append(", ").append(model.moonPhase.getMoonPhase(context))
+            talkBackBuilder.append(", ").append(model.moonPhase.getDescription(context))
             mMoonPhase.visibility = View.VISIBLE
             mMoonPhaseIcon.setSurfaceAngle(model.moonPhase.angle!!.toFloat())
             mMoonPhaseIcon.setColor(
@@ -77,7 +77,7 @@ class AstroHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
                     context, R.attr.colorBodyText
                 )
             )
-            mMoonPhaseText.text = model.moonPhase.getMoonPhase(context)
+            mMoonPhaseText.text = model.moonPhase.getDescription(context)
         } else {
             mMoonPhase.visibility = View.GONE
         }

@@ -1,10 +1,13 @@
 package org.breezyweather.sources
 
+import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.AirQuality
+import org.breezyweather.common.basic.models.weather.Astro
 import org.breezyweather.common.basic.models.weather.Current
 import org.breezyweather.common.basic.models.weather.Daily
 import org.breezyweather.common.basic.models.weather.HalfDay
 import org.breezyweather.common.basic.models.weather.Hourly
+import org.breezyweather.common.basic.models.weather.MoonPhase
 import org.breezyweather.common.basic.models.weather.Precipitation
 import org.breezyweather.common.basic.models.weather.PrecipitationProbability
 import org.breezyweather.common.basic.models.weather.Temperature
@@ -13,30 +16,15 @@ import org.breezyweather.common.basic.models.weather.Wind
 import org.breezyweather.common.basic.wrappers.HourlyWrapper
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toTimezoneNoHour
+import org.shredzone.commons.suncalc.MoonIllumination
+import org.shredzone.commons.suncalc.MoonTimes
+import org.shredzone.commons.suncalc.SunTimes
 import java.util.Calendar
 import java.util.Date
-import java.util.Locale
 import java.util.TimeZone
 import kotlin.math.roundToInt
 import kotlin.math.sin
 
-/**
- * Functions used directly in weather sources
- */
-fun getMoonPhaseAngle(phase: String?): Int? {
-    return if (phase.isNullOrEmpty()) {
-        null
-    } else when (phase.lowercase(Locale.getDefault())) {
-        "waxingcrescent", "waxing crescent" -> 45
-        "first", "firstquarter", "first quarter" -> 90
-        "waxinggibbous", "waxing gibbous" -> 135
-        "full", "fullmoon", "full moon" -> 180
-        "waninggibbous", "waning gibbous" -> 225
-        "third", "thirdquarter", "third quarter", "last", "lastquarter", "last quarter" -> 270
-        "waningcrescent", "waning crescent" -> 315
-        else -> 360
-    }
-}
 
 /**
  * DAILY FROM HOURLY
@@ -45,29 +33,39 @@ fun getMoonPhaseAngle(phase: String?): Int? {
 /**
  * Completes daily data from hourly data:
  * - HalfDay (day and night)
+ * - Sunrise/set
  * - Air quality
  * - UV
  * - Hours of sun
- * TODO: Calculate sun & moon & moon phase https://github.com/shred/commons-suncalc
+ * TODO: Calculate moon & moon phase
  * TODO: Calculate degree day
  * TODO: Calculate dewpoint from humidity
  *
  * @param dailyList daily data
  * @param hourlyList hourly data
- * @param timeZone timeZone of the location
+ * @param location for timeZone and calculation of sunrise/set according to lon/lat purposes
  */
 fun completeDailyListFromHourlyList(
     dailyList: List<Daily>,
     hourlyList: List<HourlyWrapper>,
-    timeZone: TimeZone
+    location: Location
 ): List<Daily> {
     if (dailyList.isEmpty() || hourlyList.isEmpty()) return dailyList
 
     val newDailyList = mutableListOf<Daily>()
-    val hourlyListByHalfDay = getHourlyListByHalfDay(hourlyList, timeZone)
-    val hourlyListByDay = hourlyList.groupBy { it.date.getFormattedDate(timeZone, "yyyy-MM-dd") }
+    val hourlyListByHalfDay = getHourlyListByHalfDay(hourlyList, location.timeZone)
+    val hourlyListByDay = hourlyList.groupBy { it.date.getFormattedDate(location.timeZone, "yyyy-MM-dd") }
     dailyList.forEach { daily ->
-        val theDayFormatted = daily.date.getFormattedDate(timeZone, "yyyy-MM-dd")
+        val theDayFormatted = daily.date.getFormattedDate(location.timeZone, "yyyy-MM-dd")
+        /**
+         * Most sources will return null data both on midnight sun and polar night
+         * because the sun never rises in both cases
+         * So we recalculate even in that case, and if it’s always up, we set up fake dates for
+         * the whole 24-hour period to avoid having nighttime all the time
+         */
+        val newSun = if (daily.sun != null && daily.sun.isValid) daily.sun else {
+            getCalculatedAstroSun(daily.date, location.longitude.toDouble(), location.latitude.toDouble())
+        }
         newDailyList.add(
             daily.copy(
                 day = completeHalfDayFromHourlyList(
@@ -82,21 +80,113 @@ fun completeDailyListFromHourlyList(
                     halfDayHourlyList = hourlyListByHalfDay.getOrDefault(theDayFormatted, null)?.get("night"),
                     isDay = false
                 ),
+                sun = newSun,
+                moon = if (daily.moon != null && daily.moon.isValid) daily.moon else {
+                    getCalculatedAstroMoon(daily.date, location.longitude.toDouble(), location.latitude.toDouble())
+                },
+                moonPhase = if (daily.moonPhase?.angle != null) daily.moonPhase else {
+                    getCalculatedMoonPhase(daily.date)
+                },
                 airQuality = daily.airQuality ?: getDailyAirQualityFromHourlyList(
                     hourlyListByDay.getOrDefault(theDayFormatted, null)
                 ),
                 uV = if (daily.uV?.index != null) daily.uV else getDailyUVFromHourlyList(
                     hourlyListByDay.getOrDefault(theDayFormatted, null)
                 ),
-                hoursOfSun = daily.hoursOfSun ?: getHoursOfDay(
-                    daily.sun?.riseDate,
-                    daily.sun?.setDate
-                )
+                hoursOfSun = daily.hoursOfSun ?: getHoursOfDay(newSun.riseDate, newSun.setDate)
             )
         )
     }
 
     return newDailyList
+}
+
+/**
+ * Return 00:00:00.00 to 23:59:59.999 if sun is always up (assuming date parameter is at 00:00)
+ * Takes 5 to 40 ms to execute on my device
+ * Means that for a 15-day forecast, take between 0.1 and 0.6 sec
+ * Given it is only called on missing data, it’s efficiently-safe
+ */
+private fun getCalculatedAstroSun(date: Date, longitude: Double, latitude: Double): Astro {
+    val times = SunTimes.compute().on(date).at(latitude, longitude).execute()
+
+    if (times.isAlwaysUp) {
+        return Astro(
+            riseDate = date,
+            setDate = Date(date.time + (24 * 3600 * 1000) - 1)
+        )
+    }
+
+    // If we miss the rise time, it means we are leaving midnight sun season
+    if (times.rise == null && times.set != null) {
+        return Astro(
+            riseDate = date, // Setting 00:00 as rise date
+            setDate = times.set
+        )
+    }
+
+    // If we miss the set time, redo a calculation that takes more computing power
+    // Should not happen very often so avoid doing full cycle everytime
+    if (times.rise != null && times.set == null) {
+        val times2 = SunTimes.compute().fullCycle().on(date).at(latitude, longitude).execute()
+        return Astro(
+            riseDate = times2.rise,
+            setDate = times2.set
+        )
+    }
+
+    return Astro(
+        riseDate = times.rise,
+        setDate = times.set
+    )
+}
+
+private fun getCalculatedAstroMoon(date: Date, longitude: Double, latitude: Double): Astro {
+    val times = MoonTimes.compute().on(date).at(latitude, longitude).execute()
+
+    if (times.isAlwaysUp) {
+        return Astro(
+            riseDate = date,
+            setDate = Date(date.time + (24 * 3600 * 1000) - 1)
+        )
+    }
+
+    // If we miss the rise time, it means moon was already up before 00:00
+    if (times.rise == null && times.set != null) {
+        return Astro(
+            riseDate = date, // Setting 00:00 as rise date
+            setDate = times.set
+        )
+    }
+
+    // If we miss the set time, redo a calculation that takes more computing power
+    // Should not happen very often so avoid doing full cycle everytime
+    if (times.rise != null && times.set == null) {
+        val times2 = MoonTimes.compute().fullCycle().on(date).at(latitude, longitude).execute()
+        return Astro(
+            riseDate = times2.rise,
+            setDate = times2.set
+        )
+    }
+
+    return Astro(
+        riseDate = times.rise,
+        setDate = times.set
+    )
+}
+
+/**
+ * From a date initialized at 00:00, returns the moon phase angle at 12:00
+ */
+private fun getCalculatedMoonPhase(date: Date): MoonPhase {
+    val illumination = MoonIllumination.compute()
+        // Let’s take the middle of the day
+        .on(Date(date.time + (12 * 3600 * 1000)))
+        .execute()
+
+    return MoonPhase(
+        angle = (illumination.phase + 180).roundToInt()
+    )
 }
 
 private fun getHourlyListByHalfDay(
@@ -396,7 +486,10 @@ private fun getDailyUVFromHourlyList(hourlyList: List<HourlyWrapper>? = null): U
 }
 
 private fun getHoursOfDay(sunrise: Date?, sunset: Date?): Float? {
-    return if (sunrise == null || sunset == null || sunrise.after(sunset)) {
+    return if (sunrise == null || sunset == null) {
+        // Polar night
+        0f
+    } else if (sunrise.after(sunset)) {
         null
     } else {
         ((sunset.time - sunrise.time) // get delta millisecond.
@@ -465,10 +558,12 @@ fun completeHourlyListFromDailyList(
 
 /**
  * From sunrise and sunset times, returns true if current time is daytime
- * Will return true if any data is incoherent
+ * Returns false if no sunrise or sunset (polar night)
+ * If sunrise after sunset (should not happen), returns true
  */
-private fun isDaylight(sunrise: Date?, sunset: Date?, current: Date?): Boolean {
-    if (sunrise == null || sunset == null || current == null || sunrise.after(sunset)) return true
+private fun isDaylight(sunrise: Date?, sunset: Date?, current: Date): Boolean {
+    if (sunrise == null || sunset == null) return false
+    if (sunrise.after(sunset)) return true
 
     return current.time in sunrise.time until sunset.time
 }

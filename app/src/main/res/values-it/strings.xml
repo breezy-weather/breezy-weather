@@ -72,13 +72,13 @@
     <string name="precipitation_intensity_middle">Pioggia</string>
     <string name="precipitation_intensity_heavy">Pioggia torrenziale</string>
     <string name="precipitation_intensity_rainstorm">Temporale</string>
-    <string name="ephemeris_moon_phase_new">Luna nuova</string>
+    <string name="ephemeris_moon_phase_new_moon">Luna nuova</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Luna crescente</string>
-    <string name="ephemeris_moon_phase_first">Primo quarto</string>
+    <string name="ephemeris_moon_phase_first_quarter">Primo quarto</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">Gibbosa crescente</string>
-    <string name="ephemeris_moon_phase_full">Luna piena</string>
+    <string name="ephemeris_moon_phase_full_moon">Luna piena</string>
     <string name="ephemeris_moon_phase_waning_gibbous">Gibbosa calante</string>
-    <string name="ephemeris_moon_phase_third">Ultimo quarto</string>
+    <string name="ephemeris_moon_phase_last_quarter">Ultimo quarto</string>
     <string name="ephemeris_moon_phase_waning_crescent">Luna calante</string>
     <string name="allergen_grass">Erba</string>
     <string name="allergen_mold">Muffa</string>
