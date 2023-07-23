@@ -25,7 +25,7 @@ When deciding about which source you want to use, accuracy of data is probably t
 
 | Sources                         | Open-Meteo    | AccuWeather | MET Norway         | OpenWeather | Météo-France  | China   |
 |---------------------------------|---------------|-------------|--------------------|-------------|---------------|---------|
-| **Daily (days)**                | 16            | 15          | ~10                | 7 or 8      | 15            | 15      |
+| **Daily (days)**                | 15            | 15          | ~10                | 7 or 8      | 14            | 15      |
 | **Hourly (days)**               | 16            | 10          | ~10                | 2           | 15            | 1       |
 | **Weather**                     | ✅             | ✅           | *Text in progress* | ✅           | ✅             | ✅       |
 | **Temperature**                 | ✅             | ✅           | ✅                  | ✅           | ✅             | ✅       |

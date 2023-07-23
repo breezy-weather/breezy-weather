@@ -72,7 +72,8 @@ private fun getDailyList(
     dailyResult: List<OpenWeatherOneCallDaily>
 ): List<Daily> {
     val dailyList: MutableList<Daily> = ArrayList(dailyResult.size)
-    dailyResult.forEachIndexed { i, dailyForecast ->
+    for (i in 0 until dailyResult.size - 1) {
+        val dailyForecast = dailyResult[i]
         val theDay = Date(dailyForecast.dt.times(1000))
         dailyList.add(
             Daily(
@@ -97,8 +98,8 @@ private fun getDailyList(
                     // night temperature is actually from previous night,
                     // so we try to get night from next day if available
                     temperature = Temperature(
-                        temperature = dailyResult.getOrNull(i + 1)?.temp?.min,
-                        apparentTemperature = dailyResult.getOrNull(i + 1)?.feelsLike?.morn
+                        temperature = dailyResult[i + 1].temp?.min,
+                        apparentTemperature = dailyResult[i + 1].feelsLike?.morn
                     )
                 ),
                 sun = Astro(

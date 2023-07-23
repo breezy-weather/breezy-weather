@@ -133,8 +133,8 @@ private fun getDailyList(
 ): List<Daily> {
     val dailyList: MutableList<Daily> = ArrayList()
     val hourlyListByDay = forecastTimeseries.groupBy { it.time.getFormattedDate(timeZone, "yyyy-MM-dd") }
-    hourlyListByDay.entries.forEachIndexed { i, day ->
-        val dayDate = day.key.toDateNoHour(timeZone)
+    for (i in 0 until hourlyListByDay.entries.size - 1) {
+        val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(timeZone)
         if (dayDate != null) {
             dailyList.add(
                 Daily(

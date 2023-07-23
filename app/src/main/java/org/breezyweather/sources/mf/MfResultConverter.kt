@@ -127,7 +127,8 @@ private fun getDailyList(
     ephemerisResult: MfEphemeris?
 ): List<Daily> {
     val dailyList: MutableList<Daily> = ArrayList(dailyForecasts.size)
-    dailyForecasts.forEachIndexed { i, dailyForecast ->
+    for (i in 0 until dailyForecasts.size - 1) {
+        val dailyForecast = dailyForecasts[i]
         // Given as UTC, we need to convert in the correct timezone at 00:00
         val dayInUTCCalendar = dailyForecast.time.toCalendarWithTimeZone(TimeZone.getTimeZone("UTC"))
         val dayInLocalCalendar = Calendar.getInstance(timeZone).apply {
