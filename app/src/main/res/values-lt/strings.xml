@@ -277,7 +277,7 @@
     <string name="widget_custom_subtitle_keyword_ws_description">Savaitė (Trumpa)</string>
     <string name="widget_clock_font_analog">Analoginis</string>
     <string name="widget_live_wallpaper_weather_kind">Orai</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">Kai kurie gamintojai taiko papildomus programėlių apribojimus, kurie išjungia fono paslaugas. Svetainėje Don\'t kill my app! rasite informacijos, kaip tai ištaisyti.</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">Kai kurie gamintojai taiko papildomus programėlių apribojimus, kurie išjungia fono paslaugas. Svetainėje Don’t kill my app! rasite informacijos, kaip tai ištaisyti.</string>
     <string name="settings_background_updates_worker_info_title">Proceso informacija</string>
     <string name="dialog_permissions_location_background_title">Prieiga prie vietos fone</string>
     <string name="widget_ellipsis">…</string>
@@ -333,7 +333,7 @@
     <string name="widget_style_pixel">Pixel</string>
     <string name="widget_style_vertical">Vertikalus</string>
     <string name="action_help_me_choose">Padėkite man išsirinkti</string>
-    <string name="dialog_permissions_location_background_content">Jei norite, kad programėlė fone galėtų pasiekti vietos informaciją, kad galėtume keisti buvimo vietos informaciją ir pateikti jums tinkamus orų duomenis, nustatykite prieigą prie vietos kaip \"Leisti visą laiką\".</string>
+    <string name="dialog_permissions_location_background_content">Jei norite, kad programėlė fone galėtų pasiekti vietos informaciją, kad galėtume keisti buvimo vietos informaciją ir pateikti jums tinkamus orų duomenis, nustatykite prieigą prie vietos kaip “Leisti visą laiką”.</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Dabartinis drėgnumas</string>
     <string name="dialog_permissions_location_content">Breezy Weather turi rinkti informaciją apie jūsų buvimo vietą plane arba fone, kad galėtų pateikti dabartinės jūsų buvimo vietos orų duomenis. Todėl paprašysime tam tikrų leidimų. Informacija apie buvimo vietą bus naudojama tik dabartinės buvimo vietos orų duomenims gauti. Jei nenorite dalytis savo buvimo vietos informacija, galite atsisakyti šių reikalavimų ir rankiniu būdu nustatyti savo buvimo vietą valdymo puslapyje.</string>
     <string name="widget_label_show_widget_card">Fono spalva</string>
@@ -343,7 +343,7 @@
     <string name="widget_subtitle_data_time">Atnaujinimo laikas</string>
     <string name="widget_custom_subtitle_explanation">Galite įvesti bet ką, tačiau atkreipkite dėmesį į teksto ilgį. Jei norite pacituoti orų duomenis, naudokite $, kad pateiktumėte nuorodą į atitinkamą raktažodį.
 \n
-\nPavyzdžiui, \"Dabartinis oras yra: $cw$.\" bus rodomas kaip \"Dabartinis oras yra: Giedra diena.\".</string>
+\nPavyzdžiui, “Dabartinis oras yra: $cw$.” bus rodomas kaip “Dabartinis oras yra: Giedra diena.”.</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Dabartinė temperatūra (℃/℉)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Dabartinė temperatūra (°)</string>
     <string name="widget_custom_subtitle_keyword_at_description">Tariamoji temperatūra (℃/℉)</string>
