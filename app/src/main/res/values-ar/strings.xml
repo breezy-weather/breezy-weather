@@ -607,7 +607,7 @@
     <string name="message_source_not_installed_error_content">لم يعد هذا المصدر متاحا ، يرجى حذف الموقع وإعادة إنشائه من مصدر آخر.</string>
     <string name="settings_source_api_key">مفتاح API</string>
     <string name="temperature_degree_day_cooling">يوم درجة البرودة</string>
-    <string name="temperature_degree_day_heating">يوم درجة الحرارة</string>
+    <string name="temperature_degree_day_heating">درجة الحرارة لتسخين منزلك</string>
     <string name="settings_weather_source_open_weather_one_call_version">إصدار OneCall</string>
     <string name="settings_background_updates_worker_info_summary">آخر تشغيل: $</string>
     <string name="action_help_me_choose">ساعدني في الاختيار</string>
