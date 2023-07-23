@@ -7,6 +7,6 @@ import org.breezyweather.common.serializer.DateSerializer
 
 @Serializable
 data class ChinaSunRiseSetValue(
-    @Serializable(DateSerializer::class) val from: Date,
-    @Serializable(DateSerializer::class) val to: Date
+    @Serializable(DateSerializer::class) val from: Date?,
+    @Serializable(DateSerializer::class) val to: Date?
 )
