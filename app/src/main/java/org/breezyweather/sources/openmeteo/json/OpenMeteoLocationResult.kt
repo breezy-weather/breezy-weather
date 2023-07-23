@@ -13,7 +13,7 @@ data class OpenMeteoLocationResult(
     val latitude: Float,
     val longitude: Float,
     val timezone: String,
-    @SerialName("country_code") val countryCode: String,
+    @SerialName("country_code") val countryCode: String?,
     val country: String?,
     val admin1: String?,
     val admin2: String?,

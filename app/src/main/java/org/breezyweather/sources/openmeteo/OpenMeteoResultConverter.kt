@@ -42,7 +42,7 @@ fun convert(
             latitude = result.latitude,
             longitude = result.longitude,
             timeZone = TimeZone.getTimeZone(result.timezone),
-            country = if (!result.country.isNullOrEmpty()) result.country else result.countryCode,
+            country = if (!result.country.isNullOrEmpty()) result.country else result.countryCode ?: "",
             countryCode = result.countryCode,
             province = location.province,
             provinceCode = location.provinceCode,
@@ -55,7 +55,7 @@ fun convert(
             latitude = result.latitude,
             longitude = result.longitude,
             timeZone = TimeZone.getTimeZone(result.timezone),
-            country = if (!result.country.isNullOrEmpty()) result.country else result.countryCode,
+            country = if (!result.country.isNullOrEmpty()) result.country else result.countryCode ?: "",
             countryCode = result.countryCode,
             province = if (result.admin2.isNullOrEmpty()) {
                 if (result.admin1.isNullOrEmpty()) {
@@ -258,7 +258,7 @@ fun debugConvert(
             latitude = result.latitude,
             longitude = result.longitude,
             timeZone = TimeZone.getTimeZone(result.timezone),
-            country = if (!result.country.isNullOrEmpty()) result.country else result.countryCode,
+            country = if (!result.country.isNullOrEmpty()) result.country else result.countryCode ?: "",
             city = location.city,
             weatherSource = "openmeteo"
         )
@@ -268,7 +268,7 @@ fun debugConvert(
             latitude = result.latitude,
             longitude = result.longitude,
             timeZone = TimeZone.getTimeZone(result.timezone),
-            country = if (!result.country.isNullOrEmpty()) result.country else result.countryCode,
+            country = if (!result.country.isNullOrEmpty()) result.country else result.countryCode ?: "",
             city = result.name,
             weatherSource = "openmeteo"
         )

@@ -24,6 +24,7 @@ import java.util.Calendar
 import java.util.Date
 import java.util.TimeZone
 import kotlin.math.ln
+import kotlin.math.pow
 import kotlin.math.roundToInt
 import kotlin.math.sin
 
@@ -35,18 +36,16 @@ import kotlin.math.sin
 /**
  * Completes a List<HourlyWrapper> with the following data than can be computed:
  * - Dew point
- * - TODO: Apparent temperature
- * - TODO: Wind chill temperature
+ * - Wind chill temperature
  */
 fun computeMissingHourlyData(
     hourlyList: List<HourlyWrapper>
 ): List<HourlyWrapper> {
     return hourlyList.map { hourly ->
-        if (hourly.dewPoint == null || hourly.temperature?.windChillTemperature == null
-            || hourly.temperature.apparentTemperature == null) {
+        if (hourly.dewPoint == null || hourly.temperature?.windChillTemperature == null) {
             hourly.copy(
-                dewPoint = hourly.dewPoint ?: computeDewPoint(hourly.temperature?.temperature, hourly.relativeHumidity),
-//                temperature = completeTemperatureWithComputedData(hourly.temperature)
+                dewPoint = hourly.dewPoint ?: computeDewPoint(hourly.temperature?.temperature?.toDouble(), hourly.relativeHumidity?.toDouble()),
+                temperature = completeTemperatureWithComputedData(hourly.temperature, hourly.wind?.speed)
             )
         } else hourly
     }
@@ -56,8 +55,11 @@ fun computeMissingHourlyData(
  * Compute dew point from temperature and relative humidity
  * Uses Magnus approximation with Arden Buck best variable set
  * TODO: Unit test
+ *
+ * @param temperature in °C
+ * @param relativeHumidity in %
  */
-private fun computeDewPoint(temperature: Float?, relativeHumidity: Float?): Float? {
+private fun computeDewPoint(temperature: Double?, relativeHumidity: Double?): Float? {
     if (temperature == null || relativeHumidity == null) return null
 
     val b = if (temperature < 0) 17.966 else 17.368
@@ -65,6 +67,32 @@ private fun computeDewPoint(temperature: Float?, relativeHumidity: Float?): Floa
 
     val magnus = ln(relativeHumidity / 100) + (b * temperature) / (c + temperature)
     return ((c * magnus) / (b - magnus)).toFloat()
+}
+
+fun completeTemperatureWithComputedData(
+    temperature: Temperature?,
+    windSpeed: Float?
+): Temperature? {
+    if (temperature?.temperature == null || temperature.windChillTemperature != null || windSpeed == null) return temperature
+
+    return temperature.copy(
+        windChillTemperature = computeWindChillTemperature(temperature.temperature.toDouble(), windSpeed.toDouble()),
+    )
+}
+
+/**
+ * Compute wind chill from temperature and wind speed
+ * Uses Environment Canada methodology
+ * Only valid for temperatures at or below 10 °C and wind speeds above 4.8 km/h
+ * TODO: Unit test
+ *
+ * @param temperature in °C
+ * @param windSpeed in km/h
+ */
+private fun computeWindChillTemperature(temperature: Double?, windSpeed: Double?): Float? {
+    if (temperature == null || windSpeed == null || temperature > 10 || windSpeed <= 4.8) return null
+
+    return (13.12 + (0.6215 * temperature) - (11.37 * windSpeed.pow(0.16)) + (0.3965 * temperature * windSpeed.pow(0.16))).toFloat()
 }
 
 /**
@@ -708,20 +736,25 @@ fun completeCurrentFromTodayDailyAndHourly(
         )
     }
 
-    val newTemperature = completeCurrentTemperatureFromHourly(newCurrent.temperature, hourly.temperature)
+    val newWind = if (newCurrent.wind?.speed != null || hourly.wind?.speed == null) {
+        newCurrent.wind
+    } else hourly.wind
     val newRelativeHumidity = newCurrent.relativeHumidity ?: hourly.relativeHumidity
+    val newTemperature = completeCurrentTemperatureFromHourly(
+        newCurrent.temperature,
+        hourly.temperature,
+        newWind?.speed
+    )
     val newDewPoint = newCurrent.dewPoint ?: if (newCurrent.relativeHumidity != null
         || newCurrent.temperature?.temperature != null) {
         // If current data is available, we compute this over hourly dewpoint
-        computeDewPoint(newTemperature?.temperature, newRelativeHumidity)
+        computeDewPoint(newTemperature?.temperature?.toDouble(), newRelativeHumidity?.toDouble())
     } else hourly.dewPoint // Already calculated earlier
     return newCurrent.copy(
         weatherText = newCurrent.weatherText ?: hourly.weatherText,
         weatherCode = newCurrent.weatherCode ?: hourly.weatherCode,
         temperature = newTemperature,
-        wind = if (newCurrent.wind?.speed != null || hourly.wind?.speed == null) {
-            newCurrent.wind
-        } else hourly.wind,
+        wind = newWind,
         uV = if (newCurrent.uV?.index == null && todayDaily != null) getCurrentUVFromDayMax(
             todayDaily.uV?.index,
             Date(),
@@ -740,17 +773,22 @@ fun completeCurrentFromTodayDailyAndHourly(
 
 private fun completeCurrentTemperatureFromHourly(
     initialTemperature: Temperature?,
-    hourlyTemperature: Temperature?
+    hourlyTemperature: Temperature?,
+    windSpeed: Float?
 ): Temperature? {
     if (hourlyTemperature == null) return initialTemperature
     val newTemperature = initialTemperature ?: Temperature()
 
+    val newWindChill = newTemperature.windChillTemperature ?: if (newTemperature.temperature != null) {
+        // If current data is available, we compute this over hourly windChill
+        computeWindChillTemperature(newTemperature.temperature.toDouble(), windSpeed?.toDouble())
+    } else hourlyTemperature.windChillTemperature
     return newTemperature.copy(
         temperature = newTemperature.temperature ?: hourlyTemperature.temperature,
         realFeelTemperature = newTemperature.realFeelTemperature ?: hourlyTemperature.realFeelTemperature,
         realFeelShaderTemperature = newTemperature.realFeelShaderTemperature ?: hourlyTemperature.realFeelShaderTemperature,
         apparentTemperature = newTemperature.apparentTemperature ?: hourlyTemperature.apparentTemperature,
-        windChillTemperature = newTemperature.windChillTemperature ?: hourlyTemperature.windChillTemperature,
+        windChillTemperature = newWindChill,
         wetBulbTemperature = newTemperature.wetBulbTemperature ?: hourlyTemperature.wetBulbTemperature,
     )
 }

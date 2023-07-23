@@ -12,11 +12,13 @@ If you notice any data that was available on v4.3.0-beta for a source and is now
 - When dew point is missing and relative humidity and air temperature are available, it will be automatically computed.
 - When degree day is missing, it will be calculated according to EU formula (check [Day details documentation](docs/DAY_DETAILS.md) for more info).
 - When degree day is 0, it will no longer be shown.
+- When temperature < 10 °C and wind speed > 4.8 km/h, and wind chill temperature is missing, it will be automatically computed.
 - Make hourly trends less compressed.
 - Add a “Help me choose” button on weather selection dialogs.
 - Fix OpenWeather icons being always daytime.
 - Revert swipe when trying to make the location list empty or cancelling a weather source update on current location.
 - Remove clunky last daily forecast on Open-Meteo, MF, MET No, OpenWeather to avoid showing incomplete/incorrect data
+- Fix search failure on Open-Meteo / GeoNames when country code was empty (Antarctica, for example)
 - Updated translations.
 
 
