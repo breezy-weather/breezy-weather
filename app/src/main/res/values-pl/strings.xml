@@ -95,7 +95,7 @@
     <string name="ephemeris">Słońce i księżyc</string>
     <string name="action_next">Następny</string>
     <string name="action_done">Gotowe</string>
-    <string name="action_cancel" tools:ignore="ButtonCase">Anuluj</string>
+    <string name="action_cancel">Anuluj</string>
     <string name="settings_enabled">Włączony</string>
     <string name="settings_disabled">Wyłączony</string>
     <string name="action_set">Ustaw</string>
@@ -218,8 +218,6 @@
     <string name="settings_units_speed">Jednostka prędkości</string>
     <string name="settings_notifications_section_forecast">Prognoza</string>
     <string name="settings_widgets_notification_temp_icon_switch">Temperatura jako ikona na pasku statusu</string>
-    <string name="weather_source_china">Chin</string>
-    <string name="location_service_baidu_ip">Lokalizacja Baidu IP (tylko dla Chin)</string>
     <string name="settings_automatic">Automatyczny</string>
     <string name="settings_none">Brak</string>
     <string name="settings_color_day_night">Dzień / Noc</string>
@@ -264,7 +262,7 @@
     <string name="weather_kind_wind">Wiatr</string>
     <string name="settings_location_access_switch_title">Dostęp do lokalizacji</string>
     <string name="action_continue">Kontynuuj</string>
-    <string name="action_undo" tools:ignore="ButtonCase">Cofnij</string>
+    <string name="action_undo">Cofnij</string>
     <string name="widget_style_pixel">Piksel</string>
     <string name="settings_section_general">Ogólne</string>
     <string name="widget_week_style_3_days">3 dni</string>
@@ -294,13 +292,8 @@
     <string name="unit_h_voice">godziny</string>
     <string name="settings_widgets_notification_persistent_switch">Trwałe</string>
     <string name="action_share">Udostępnij</string>
-    <string name="weather_source_metno">MET Norway</string>
-    <string name="weather_source_openweather">OpenWeather</string>
-    <string name="weather_source_openmeteo">Open-Meteo</string>
     <string name="weather_source_openweather_version_2_5">Wersja 2.5</string>
     <string name="weather_source_openweather_version_3_0">Wersja 3.0</string>
-    <string name="weather_source_mf">Météo France</string>
-    <string name="weather_source_mf_voice">Météo France</string>
     <string name="locations">Lokalizacje</string>
     <string name="widget_style_mini">Mini</string>
     <string name="widget_style_oreo">Oreo</string>
@@ -366,7 +359,6 @@
     <string name="wind_direction_short_N">N</string>
     <string name="wind_direction_short_NE">NE</string>
     <string name="air_quality_level_6">Groźna</string>
-    <string name="weather_source_openmeteo_voice">Open Meteo</string>
     <string name="action_back">Wstecz</string>
     <string name="widget_multi_city">Wiele miast</string>
     <string name="widget_label_align_end">Wyrównaj koniec</string>
@@ -385,9 +377,7 @@
     <string name="air_quality_pm10_voice">PM dziesięć</string>
     <string name="air_quality_so2_voice">Dwutlenek siarki</string>
     <string name="air_quality_no2_voice">Dwutlenek azotu</string>
-    <string name="weather_source_accuweather">AccuWeather</string>
     <string name="action_close">Zamknij</string>
-    <string name="weather_source_accuweather_voice">ACCU weather.com</string>
     <string name="dialog_permissions_notification_title">Bądź na bieżąco</string>
     <string name="settings_debug_summary">Dzienniki awarii</string>
     <string name="notification_channel_alerts">Alerty</string>
@@ -428,9 +418,7 @@
     <string name="settings_icon_packs_title">Paczki ikon</string>
     <string name="settings_icon_packs_weather_adaptive_icon">Ikona pogody</string>
     <string name="message_network_unavailable">Sieć niedostępna</string>
-    <string name="weather_source_china_voice">Chiny</string>
     <string name="setting_weather_source_accu_hours">Godziny</string>
-    <string name="weather_source_openweather_voice">Open Weather</string>
     <string name="weather_source_accu_preference_hours_1">1 godzina</string>
     <string name="settings_icon_packs_weather_icon_grey">Szara ikona</string>
     <string name="settings_icon_packs_weather_icon_dark">Ciemna ikona</string>

@@ -131,21 +131,11 @@
     <string name="weather_api_unauthorized_content">Kai kuriems orų duomenų tiekėjams yra reikalingas nuosavas API raktas. Jei jau pridėjote savo API raktą, prašome pasitikrinti ar jis yra teisingas.</string>
     <string name="weather_api_key_required_missing_title">Trūksta reikalingo API rakto</string>
     <string name="weather_api_key_required_missing_content">Jei ketinate naudoti šį tiekėją, jūs turite įvesti API raktą.</string>
-    <string name="weather_source_openmeteo_voice">Open Meteo</string>
-    <string name="weather_source_accuweather">AccuWeather</string>
     <string name="settings_weather_source_portal">Portalas</string>
     <string name="weather_source_accu_preference_hours_120">120 valandų</string>
     <string name="weather_source_accu_preference_hours_240">240 valandų</string>
-    <string name="weather_source_metno">MET Norway</string>
-    <string name="weather_source_metno_voice">Norvegijos Meteorologijos Institutas</string>
-    <string name="weather_source_openweather">OpenWeather</string>
-    <string name="weather_source_openweather_voice">Open Weather</string>
     <string name="weather_source_openweather_version_2_5">2,5 versija</string>
     <string name="weather_source_openweather_version_3_0">3,0 versija</string>
-    <string name="weather_source_mf">Météo France</string>
-    <string name="weather_source_mf_voice">Météo France</string>
-    <string name="weather_source_china">Kinija</string>
-    <string name="weather_source_china_voice">Kinija</string>
     <string name="location_current">Dabartinė buvimo vieta</string>
     <string name="location_resident">Gyvenamoji vieta</string>
     <string name="location_search_weather_source">Orų duomenų tiekėjas</string>
@@ -204,8 +194,6 @@
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
     <string name="weather_source_accu_preference_hours_12">12 valandų</string>
     <string name="weather_api_limit_reached_content">Jei norite padidinti limitą, pridėkite savo API raktą.</string>
-    <string name="weather_source_openmeteo">Open-Meteo</string>
-    <string name="weather_source_accuweather_voice">ACCU weather.com</string>
     <string name="setting_weather_source_accu_days">Dienos</string>
     <string name="weather_source_accu_preference_days_5">5 dienos</string>
     <string name="weather_source_accu_preference_days_1">1 diena</string>
@@ -222,7 +210,7 @@
     <string name="action_edit">Redaguoti</string>
     <string name="action_back">Atgal</string>
     <string name="action_next">Kitas</string>
-    <string name="action_undo" tools:ignore="ButtonCase">Anuliuoti</string>
+    <string name="action_undo">Anuliuoti</string>
     <string name="action_set">Nustatyti</string>
     <string name="action_help">Pagalba</string>
     <string name="action_continue">Tęsti</string>
@@ -240,12 +228,11 @@
 \nPavyzdžiui, galite nustatyti savo gimtąjį miestą kaip gyvenamąją vietą. Keliaudami galėsite patikrinti orus gimtajame mieste. Grįžus namo, gimtojo miesto orai bus paslėpti ir pakeisti dabartinės jūsų buvimo vietos orais.</string>
     <string name="action_done">Atlikta</string>
     <string name="action_about">Apie</string>
-    <string name="action_cancel" tools:ignore="ButtonCase">AtŠaukti</string>
+    <string name="action_cancel">AtŠaukti</string>
     <string name="message_source_not_installed_error_content">Šis šaltinis nebėra prieinamas, ištrinkite vietą ir atkurkite ją iš kito šaltinio.</string>
     <string name="message_source_not_installed_error_title">Šaltinis nebeprieinamas</string>
     <string name="weather_refresh_skipped_already_recently_updated">Jau neseniai atnaujinta</string>
     <string name="location_search_no_results">$1 negali rasti $2</string>
-    <string name="location_service_baidu_ip">Baidu IP Vietovė (tik Kinijoje)</string>
     <string name="action_search">Paieška</string>
     <string name="action_add_current_location">Pridėti dabartinę vietovę</string>
     <string name="action_add_from_map">Pridėti iš žemėlapio</string>

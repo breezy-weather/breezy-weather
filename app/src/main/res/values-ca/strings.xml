@@ -230,8 +230,6 @@
     <string name="settings_units_speed">Unitat de velocitat</string>
     <string name="settings_notifications_section_forecast">Pronòstic</string>
     <string name="settings_widgets_notification_temp_icon_switch">Temperatura com a icona en la barra d’estat</string>
-    <string name="weather_source_china">Xina</string>
-    <string name="location_service_baidu_ip">Baidu IP Location (només per la Xina)</string>
     <string name="location_service_native">API nativa</string>
     <string name="settings_automatic">Automàtic</string>
     <string name="settings_color_light_always">Sempre clar</string>

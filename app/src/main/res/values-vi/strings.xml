@@ -206,7 +206,7 @@
     <string name="action_back">Quay lại</string>
     <string name="action_next">Tiếp</string>
     <string name="action_done">Xong</string>
-    <string name="action_cancel" tools:ignore="ButtonCase">Hủy</string>
+    <string name="action_cancel">Hủy</string>
     <string name="action_set">Đặt</string>
     <string name="action_help">Trợ giúp</string>
     <string name="action_learn_more">Biết thêm</string>
@@ -480,7 +480,6 @@
     <string name="openmeteo_weather_text_snow_grains">Hạt tuyết</string>
     <string name="openmeteo_weather_text_snow_heavy_intensity">Tuyết rơi nặng</string>
     <string name="openmeteo_weather_text_rain_showers_moderate">Mưa rào vừa</string>
-    <string name="location_service_baidu_ip">Vị trí IP Baidu (chỉ ở Trung Quốc)</string>
     <string name="widget_label_align_end">Căn chỉnh cuối</string>
     <string name="settings_notifications_section_forecast">Dự báo</string>
     <string name="settings_notifications_precipitations_title">Thông báo về lượng mưa</string>
@@ -490,7 +489,7 @@
     <string name="unit_mb_voice">Milibar</string>
     <string name="precipitation_total">Tổng cộng</string>
     <string name="location_message_reverse_geocoding_failed">Nhà cung cấp thời tiết không tìm được vị trí chính xác</string>
-    <string name="action_undo" tools:ignore="ButtonCase">Hoàn tác</string>
+    <string name="action_undo">Hoàn tác</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Sướng muối dạng lớp</string>
     <string name="air_quality_pm_explanations_consequences">Các hạt là dạng ô nhiễm không khí có hại nhất do khả năng xâm nhập sâu vào phổi và não từ dòng máu, gây ra các vấn đề sức khỏe như bệnh tim, bệnh phổi và tử vong sớm.</string>
     <string name="air_quality_o3_info_title">Ôzôn trên mặt đất (O₃)</string>
@@ -515,7 +514,6 @@
     <string name="air_quality_co_info_consequences">Cacbon monoxit khuếch tán qua các mô phổi và vào máu, khiến các tế bào của cơ thể khó liên kết với oxy. Sự thiếu oxy này làm hỏng các mô và tế bào. Tiếp xúc với carbon monoxide có thể gây khó thở, kiệt sức, chóng mặt và các triệu chứng giống như cúm khác. Tiếp xúc với nồng độ cacbon monoxit cao có thể gây chết người.</string>
     <string name="action_close">Đóng</string>
     <string name="settings_widgets_live_wallpaper_error">Không thể khởi chạy trình chọn hình nền. Bạn vẫn có thể bật hình nền Breezy Weather bằng cách chọn “Hình nền động” trong bộ chọn hình nền màn hình chính của bạn.</string>
-    <string name="weather_source_metno_voice">Viện Khí tượng Na Uy</string>
     <string name="air_quality_index">Chỉ số chất lượng không khí</string>
     <string name="location_search_no_results_advice">Hãy chắc rằng tìm kiếm của bạn được đánh vần đúng và không quá cụ thể. Thay vào đó, bạn có thể thử một nhà cung cấp thời tiết khác có thể cho ra kết quả tìm kiếm địa điểm khác nhau.</string>
     <string name="dialog_permissions_notification_title">Theo kịp thông tin</string>

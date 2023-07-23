@@ -45,7 +45,7 @@
     <string name="ephemeris">Сунце &amp; месец</string>
     <string name="action_next">СЛЕДЕЋЕ</string>
     <string name="action_done">ГОТОВО</string>
-    <string name="action_cancel" tools:ignore="ButtonCase">ОДУСТАНИ</string>
+    <string name="action_cancel">ОДУСТАНИ</string>
     <string name="settings_enabled">УПАЉЕНО</string>
     <string name="settings_disabled">УГАШЕНО</string>
     <string name="about_app">О AПЛИКАЦИЈИ</string>

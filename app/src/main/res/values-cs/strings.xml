@@ -94,7 +94,7 @@
     <string name="ephemeris">Slunce a měsíc</string>
     <string name="action_next">DalŠÍ</string>
     <string name="action_done">Hotovo</string>
-    <string name="action_cancel" tools:ignore="ButtonCase">ZruŠit</string>
+    <string name="action_cancel">ZruŠit</string>
     <string name="settings_enabled">Povoleno</string>
     <string name="settings_disabled">Zakázáno</string>
     <string name="action_set">Nastavit</string>
@@ -267,8 +267,6 @@
     <string name="settings_widgets_notification_temp_icon_switch">Teplota jako ikona v liště</string>
     <string name="settings_source_default_value">Výchozí (nezměněné)</string>
     <string name="settings_weather_source_iqa_atmo_aura_key">Klíč ATMO AURA</string>
-    <string name="weather_source_china">Čínu</string>
-    <string name="location_service_baidu_ip">Poloha IP Baidu IP (pouze pro Čínu)</string>
     <string name="location_service_native">Nativní API</string>
     <string name="settings_automatic">Automaticky</string>
     <string name="settings_none">Žádný</string>
@@ -388,13 +386,10 @@
     <string name="weather_refresh_skipped_already_recently_updated">Nedávno aktualizováno</string>
     <string name="weather_api_unauthorized_content">U některých poskytovatelů počasí je třeba zadat vlastní klíč API. Pokud jste ho již poskytli, překontrolujte zadaný klíč API.</string>
     <string name="weather_api_key_required_missing_content">Chcete-li použít tohoto poskytovatele, musíte zadat klíč API.</string>
-    <string name="weather_source_openweather_voice">Open Weather</string>
     <string name="weather_source_openweather_version_2_5">Verze 2.5</string>
     <string name="weather_source_openweather_version_3_0">Verze 3.0</string>
-    <string name="weather_source_mf_voice">Météo France</string>
-    <string name="weather_source_china_voice">Čína</string>
     <string name="location_search_no_results">$1 nemůže najít $2</string>
-    <string name="action_undo" tools:ignore="ButtonCase">Vrátit zpĚt</string>
+    <string name="action_undo">Vrátit zpĚt</string>
     <string name="action_close">Zavřít</string>
     <string name="action_show_errors">Klepnutím zobrazíte podrobnosti</string>
     <string name="widget_subtitle_data_aqi">Kvalita ovzduší</string>
@@ -428,9 +423,6 @@
     <string name="settings_widgets_configure_widget_summary">Konfigurace tohoto widgetu</string>
     <string name="settings_widgets_day_night_temp_reversed_title">Obrácené pořadí denních/nočních teplot</string>
     <string name="settings_debug">Ladění</string>
-    <string name="weather_source_openmeteo">Open-Meteo</string>
-    <string name="weather_source_openmeteo_voice">Open Meteo</string>
-    <string name="weather_source_accuweather">AccuWeather</string>
     <string name="locations">Polohy</string>
     <string name="location_message_permission_missing">Chybí oprávnění k přístupu k poloze</string>
     <string name="widget_style_nano">Nano</string>
@@ -467,7 +459,6 @@
     <string name="settings_main_section_animations">Animace</string>
     <string name="openmeteo_weather_text_drizzle_moderate_intensity">Mrholení střední intenzity</string>
     <string name="openmeteo_weather_text_fog">Mlha</string>
-    <string name="weather_source_mf">Météo France</string>
     <string name="settings_widgets_live_wallpaper_error">Nelze spustit nástroj pro výběr tapet. Tapetu Breezy Weather můžete stále povolit výběrem možnosti „Živé tapety“ ve výběru tapet na domovské obrazovce.</string>
     <string name="unit_lpsqmph_voice">Litry na metr čtvereční za hodinu</string>
     <string name="unit_celsius">°C</string>
@@ -488,7 +479,6 @@
     <string name="unit_mi">mi</string>
     <string name="about_source_code">Zdrojový kód</string>
     <string name="air_quality_level_6_description">Každé působení vzduchu, i na pár minut, může způsobit závažné zdravotní účinky na každého. Vyvarujte se venkovních činností.</string>
-    <string name="weather_source_accuweather_voice">ACCU weather.com</string>
     <string name="unit_mmhg">mmHg</string>
     <string name="action_location_list">Seznam poloh</string>
     <string name="wind_direction_short_SE">JV</string>
@@ -531,9 +521,6 @@
     <string name="weather_source_accu_preference_hours_72">72 hodin</string>
     <string name="weather_source_accu_preference_hours_120">120 hodin</string>
     <string name="weather_source_accu_preference_hours_240">240 hodin</string>
-    <string name="weather_source_metno">MET Norway</string>
-    <string name="weather_source_metno_voice">Norský meteorologický institut</string>
-    <string name="weather_source_openweather">OpenWeather</string>
     <string name="action_continue">Pokračovat</string>
     <string name="settings_section_general">Obecné</string>
     <string name="settings_background_updates">Aktualizace na pozadí</string>

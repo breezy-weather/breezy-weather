@@ -94,7 +94,7 @@
     <string name="ephemeris">Sol e lua</string>
     <string name="action_next">Próximo</string>
     <string name="action_done">Concluído</string>
-    <string name="action_cancel" tools:ignore="ButtonCase">Cancelar</string>
+    <string name="action_cancel">Cancelar</string>
     <string name="settings_enabled">Ativado</string>
     <string name="settings_disabled">Desativado</string>
     <string name="action_set">Definir</string>
@@ -266,7 +266,6 @@
     <string name="settings_notifications_section_forecast">Previsão</string>
     <string name="settings_widgets_notification_temp_icon_switch">Temperatura como ícone da barra de status</string>
     <string name="settings_source_default_value">Padrão (inalterado)</string>
-    <string name="location_service_baidu_ip">Localização IP Baidu (apenas para China)</string>
     <string name="location_service_native">API nativa</string>
     <string name="settings_automatic">Automático</string>
     <string name="settings_none">Nenhum</string>
@@ -363,7 +362,6 @@
     <string name="weather_api_limit_reached_content">Para contornar o limite, adicione sua própria chave de API.</string>
     <string name="weather_api_key_required_missing_title">Chave de API necessária não encontrada</string>
     <string name="weather_api_key_required_missing_content">Para utilizar esse provedor, é necessário fornecer uma chave de API.</string>
-    <string name="weather_source_metno_voice">O Instituto Meteorológico da Noruega</string>
     <string name="weather_source_openweather_version_2_5">Versão 2.5</string>
     <string name="weather_source_openweather_version_3_0">Versão 3.0</string>
     <string name="location_message_permission_background_missing">Permissão de acesso à localização em segundo plano ausente</string>
@@ -431,7 +429,7 @@
     <string name="settings_main_summary">Ordem dos cartões, itens exibidos, animações</string>
     <string name="settings_widgets_notification_feels_like_switch">Usar sensação térmica</string>
     <string name="location_message_reverse_geocoding_failed">O provedor de meteorologia não conseguiu encontrar um local correspondente</string>
-    <string name="action_undo" tools:ignore="ButtonCase">Desfazer</string>
+    <string name="action_undo">Desfazer</string>
     <string name="settings_location_access_permission_already_granted">Permissão já concedida</string>
     <string name="settings_background_updates_worker_info_title">Informações do Worker</string>
     <string name="settings_location_access_switch_summaryOn">Permitido. Você pode adicionar sua localização atual como um local.</string>
@@ -499,18 +497,12 @@
     <string name="null_data_text">N/A</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="unit_ft">ft</string>
-    <string name="weather_source_accuweather_voice">ACCU weather.com</string>
-    <string name="weather_source_metno">MET Norway</string>
-    <string name="weather_source_openweather">OpenWeather</string>
-    <string name="weather_source_mf_voice">Météo France</string>
-    <string name="weather_source_mf">Météo France</string>
     <string name="unit_mmhg">mmHg</string>
     <string name="wind_direction_short_S">S</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="unit_mps">m/s</string>
     <string name="wind_direction_short_NE">NE</string>
     <string name="wind_direction_short_SE">SE</string>
-    <string name="weather_source_openmeteo">Open-Meteo</string>
     <string name="widget_style_nano">Nano</string>
     <string name="widget_style_pixel">Pixel</string>
     <string name="widget_style_vertical">Vertical</string>
@@ -523,8 +515,6 @@
     <string name="unit_hpa">hPa</string>
     <string name="wind_direction_short_N">N</string>
     <string name="widget_style_mini">Mini</string>
-    <string name="weather_source_openweather_voice">Open Weather</string>
-    <string name="weather_source_china">China</string>
     <string name="unit_kph">km/h</string>
     <string name="unit_kn">kn</string>
     <string name="unit_mph">mph</string>
@@ -548,15 +538,12 @@
     <string name="air_quality_no2">NO₂</string>
     <string name="air_quality_o3">O₃</string>
     <string name="air_quality_co">CO</string>
-    <string name="weather_source_accuweather">AccuWeather</string>
-    <string name="weather_source_openmeteo_voice">Open Meteo</string>
     <string name="unit_lpsqm">L/m²</string>
     <string name="unit_mb">mb</string>
     <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="unit_cmph">cm/h</string>
     <string name="unit_celsius">°C</string>
-    <string name="weather_source_china_voice">China</string>
     <string name="unit_kpa">kPa</string>
     <string name="openmeteo_weather_text_rain_slight_intensity">Chuva de leve intensidade</string>
     <string name="openmeteo_weather_text_rain_showers_moderate">Chuvas moderadas</string>

@@ -87,7 +87,7 @@
     <string name="ephemeris">Восход и закат</string>
     <string name="action_next">Далее</string>
     <string name="action_done">ОК</string>
-    <string name="action_cancel" tools:ignore="ButtonCase">Отмена</string>
+    <string name="action_cancel">Отмена</string>
     <string name="settings_enabled">Вкл</string>
     <string name="settings_disabled">Выкл</string>
     <string name="action_set">Установить</string>
@@ -213,8 +213,6 @@
     <string name="settings_units_speed">Единица измерения скорости</string>
     <string name="settings_notifications_section_forecast">Прогноз погоды</string>
     <string name="settings_widgets_notification_temp_icon_switch">Показывать температуру в строке состояния</string>
-    <string name="weather_source_china">Китай</string>
-    <string name="location_service_baidu_ip">Baidu IP Location (Только для Китая)</string>
     <string name="location_service_native">Системный API</string>
     <string name="settings_automatic">Автоматически</string>
     <string name="settings_none">Нет</string>
@@ -291,10 +289,6 @@
     <string name="location_search_weather_source">Провайдер погоды</string>
     <string name="location_search_change_weather_source">Сменить провайдера погоды</string>
     <string name="weather_air_quality_and_pollen_data_by">Данные о качестве воздуха от $</string>
-    <string name="weather_source_openmeteo_voice">Open Meteo</string>
-    <string name="weather_source_metno">MET Norway</string>
-    <string name="weather_source_openweather">OpenWeather</string>
-    <string name="weather_source_openweather_voice">Open Weather</string>
     <string name="weather_source_openweather_version_2_5">Версия 2.5</string>
     <string name="locations">Местоположения</string>
     <string name="air_quality_level_5">Очень вредно</string>
@@ -303,9 +297,7 @@
     <string name="air_quality_level_1">Отлично</string>
     <string name="weather_source_openweather_version_3_0">Версия 3.0</string>
     <string name="allergen_grass">Трава</string>
-    <string name="weather_source_accuweather">AccuWeather</string>
     <string name="uv_index_8_10">Очень высокий</string>
-    <string name="weather_source_openmeteo">Open-Meteo</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="precipitation_none">Без осадков</string>
@@ -350,9 +342,6 @@
     <string name="settings_main_header_details_title">Детали в заголовке</string>
     <string name="settings_main_section_options">Опции</string>
     <string name="settings_main_daily_trends_title">Ежедневный прогноз</string>
-    <string name="weather_source_mf">Météo France</string>
-    <string name="weather_source_metno_voice">Норвежский метеорологический институт</string>
-    <string name="weather_source_mf_voice">Météo France</string>
     <string name="weather_source_accu_preference_hours_72">72 часа</string>
     <string name="weather_source_accu_preference_hours_120">120 часов</string>
     <string name="weather_source_accu_preference_hours_240">240 часов</string>
@@ -435,7 +424,6 @@
     <string name="unit_kgfpsqcm_voice">Килограммовая сила на квадратный сантиметр</string>
     <string name="unit_mgpcum_voice">Миллиграммы на кубический метр</string>
     <string name="notification_channel_background_services">Фоновые сервисы</string>
-    <string name="weather_source_accuweather_voice">ACCU weather.com</string>
     <string name="location_results_by">Результаты местоположения по $</string>
     <string name="location_swipe_to_delete">Вы можете смахнуть влево, чтобы удалить этот элемент</string>
     <string name="location_message_permission_missing">Отсутствует разрешение на доступ к местоположению</string>
@@ -491,7 +479,6 @@
     <string name="about_contributors">Участники</string>
     <string name="openmeteo_weather_text_rain_showers_violent">Сильные ливни</string>
     <string name="openmeteo_weather_text_snow_grains">Снежная крупа</string>
-    <string name="weather_source_china_voice">Китай</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Средняя гроза</string>
     <string name="openmeteo_weather_text_snow_showers_slight">Снегопад</string>
     <string name="openmeteo_weather_text_snow_showers_heavy">Сильный снегопад</string>
@@ -512,7 +499,7 @@
     <string name="location_message_permission_background_missing">Доступ к местоположению в фоновом режиме отсутствует</string>
     <string name="action_add_from_map">Добавить с карты</string>
     <string name="action_back">Назад</string>
-    <string name="action_undo" tools:ignore="ButtonCase">Отменить</string>
+    <string name="action_undo">Отменить</string>
     <string name="action_close">Закрыть</string>
     <string name="dialog_permissions_notification_title">Оставаться проинформированным</string>
     <string name="dialog_permissions_notification_content">Нажмите здесь, чтобы включить уведомления о погоде, или примите решение позже в настройках.</string>

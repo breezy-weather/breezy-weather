@@ -162,6 +162,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("tr"), "metezd", "https://hosted.weblate.org/user/metezd/"),
         TranslatorItem(arrayOf("vi"), "minb", "https://hosted.weblate.org/user/minbe/"),
         TranslatorItem(arrayOf("vi"), "Fairy", "https://hosted.weblate.org/user/Fairy/"),
+        TranslatorItem(arrayOf("vi"), "ngocanhtve", "https://github.com/ngocanhtve"),
         TranslatorItem(arrayOf("zh_rCN", "zh_rHK", "zh_rTW", "en"), "WangDaYeeeeee", "https://github.com/WangDaYeeeeee"),
         TranslatorItem(arrayOf("zh_rCN"), "Coelacanthus", "https://github.com/CoelacanthusHex"),
         TranslatorItem(arrayOf("zh_rCN"), "御坂13766号", "https://github.com/misaka-13766"),

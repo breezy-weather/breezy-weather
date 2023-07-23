@@ -94,7 +94,7 @@
     <string name="ephemeris">Sole e Luna</string>
     <string name="action_next">Avanti</string>
     <string name="action_done">Fine</string>
-    <string name="action_cancel" tools:ignore="ButtonCase">Annulla</string>
+    <string name="action_cancel">Annulla</string>
     <string name="settings_enabled">Attivato</string>
     <string name="settings_disabled">Disattivato</string>
     <string name="action_set">Imposta</string>
@@ -255,7 +255,6 @@
     <string name="settings_icon_packs_weather_icon_dark">Icona scura</string>
     <string name="settings_icon_packs_weather_icon_light">Icona chiara</string>
     <string name="settings_icon_packs_weather_adaptive_icon">Icona del meteo</string>
-    <string name="location_service_baidu_ip">Localizzazione IP Baidu (Cina)</string>
     <string name="location_service_native">API nativa</string>
     <string name="settings_automatic">Automatico</string>
     <string name="settings_none">Nessuno</string>
@@ -346,8 +345,6 @@
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="widget_style_oreo_google_sans">Oreo (Google sans)</string>
     <string name="weather_air_quality_and_pollen_data_by">Dati su qualità dell’aria e polline da $</string>
-    <string name="weather_source_china">Cina</string>
-    <string name="weather_source_mf">Météo France</string>
     <string name="location_results_by">Risultati localizzazione di $</string>
     <string name="location_message_search_failed">Ricerca posizione fallita</string>
     <string name="location_message_permission_background_missing">Autorizzazione di accesso alla posizione in background mancante</string>
@@ -355,7 +352,6 @@
     <string name="widget_style_nano">Nano</string>
     <string name="widget_style_pixel">Pixel</string>
     <string name="widget_clock_font_analog">Analog</string>
-    <string name="weather_source_mf_voice">Météo France</string>
     <string name="uv_index_0_2">Basso</string>
     <string name="alerts_to_follow">Avvisi da seguire, tocca qui per visualizzarli.</string>
     <string name="wind_direction_short_variable">Variabile</string>
@@ -375,8 +371,6 @@
     <string name="air_quality_level_4_description">Gli effetti sulla salute possono essere immediatamente percepiti dai gruppi sensibili. Individui sani possono avere difficoltà respiratorie e irritazioni alla gola in caso di esposizione prolungata. Limita l’attività all’aperto.</string>
     <string name="air_quality_level_6">Pericolosa</string>
     <string name="air_quality_level_6_description">Qualsiasi esposizione all’aria, anche per pochi minuti, può portare a gravi effetti sulla salute di tutti. Evita le attività all’aperto.</string>
-    <string name="weather_source_metno">MET Norway</string>
-    <string name="weather_source_metno_voice">Istituto Meteorologico Norvegese</string>
     <string name="action_add_from_map">Aggiungi dalla mappa</string>
     <string name="settings_weather_source_portal">Portale</string>
     <string name="setting_weather_source_accu_days">Giorni</string>
@@ -391,11 +385,8 @@
     <string name="weather_source_accu_preference_hours_72">72 ore</string>
     <string name="weather_source_accu_preference_hours_120">120 ore</string>
     <string name="weather_source_accu_preference_hours_240">240 ore</string>
-    <string name="weather_source_openweather">OpenWeather</string>
-    <string name="weather_source_openweather_voice">Open Weather</string>
     <string name="weather_source_openweather_version_2_5">Versione 2.5</string>
     <string name="weather_source_openweather_version_3_0">Versione 3.0</string>
-    <string name="weather_source_china_voice">Cina</string>
     <string name="location_search_weather_source">Provider meteo</string>
     <string name="locations">Località</string>
     <string name="location_search_change_weather_source">Cambia provider meteo</string>
@@ -417,10 +408,6 @@
     <string name="settings_notifications_forecast_today_title">Notifica per le previsioni odierne</string>
     <string name="air_quality_level_5">Molto malsana</string>
     <string name="weather_data_by">Dati da $</string>
-    <string name="weather_source_accuweather">AccuWeather</string>
-    <string name="weather_source_openmeteo">Open-Meteo</string>
-    <string name="weather_source_openmeteo_voice">Open Meteo</string>
-    <string name="weather_source_accuweather_voice">ACCU weather.com</string>
     <string name="action_choose_weather_source">Scegli il provider meteo</string>
     <string name="widget_style_mini">Mini</string>
     <string name="location_message_permission_missing">Autorizzazione di accesso alla posizione mancante</string>

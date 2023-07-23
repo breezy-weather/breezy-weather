@@ -302,11 +302,6 @@
     <string name="settings_widgets_notification_temp_icon_switch">将温度作为通知小图标</string>
     <string name="settings_widgets_notification_feels_like_switch">使用体感温度作为小图标</string>
     <string name="settings_source_default_value">默认(未更改)</string>
-    <string name="weather_source_accuweather_voice">ACCU天气</string>
-    <string name="weather_source_openweather_voice">OPEN天气</string>
-    <string name="weather_source_china">中国</string>
-    <string name="weather_source_china_voice">中国</string>
-    <string name="location_service_baidu_ip">百度IP定位（仅中国地区）</string>
     <string name="location_service_native">原生接口</string>
     <string name="settings_automatic">自动</string>
     <string name="settings_none">无卡片</string>
@@ -439,14 +434,10 @@
     <string name="unit_celsius_short">°</string>
     <string name="notification_channel_alerts">警报</string>
     <string name="about_matrix">Matrix 服务器</string>
-    <string name="weather_source_mf_voice">Météo France</string>
     <string name="unit_kelvin_short">K</string>
     <string name="weather_data_by">由 $ 提供数据</string>
-    <string name="weather_source_openmeteo">Open-Meteo</string>
-    <string name="weather_source_metno">MET Norway</string>
     <string name="weather_source_openweather_version_2_5">2.5 版本</string>
     <string name="weather_source_openweather_version_3_0">3.0 版本</string>
-    <string name="weather_source_mf">Météo France</string>
     <string name="locations">位置</string>
     <string name="location_results_by">位置由 $ 提供</string>
     <string name="action_add_from_map">从地图中添加</string>
@@ -457,11 +448,7 @@
     <string name="unit_kelvin">K</string>
     <string name="about_contribution_WangDaYeeeeee">原始项目几何天气的开发者</string>
     <string name="settings_main_background_animation_disabled">关闭</string>
-    <string name="weather_source_openmeteo_voice">开放式气象</string>
     <string name="alerts_to_follow">有需要关注的警报，点此查看。</string>
-    <string name="weather_source_metno_voice">挪威气象研究所</string>
-    <string name="weather_source_accuweather">AccuWeather</string>
-    <string name="weather_source_openweather">OpenWeather</string>
     <string name="action_add_new_location">添加一个新位置</string>
     <string name="action_choose_weather_source">选择天气提供者</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
@@ -561,7 +548,7 @@
     <string name="settings_widgets_notification_style_title">风格</string>
     <string name="location_message_reverse_geocoding_failed">天气数据提供商未找到符合的位置</string>
     <string name="widget_clock_font_analog">Analog</string>
-    <string name="action_undo" tools:ignore="ButtonCase">撤消</string>
+    <string name="action_undo">撤消</string>
     <string name="notification_channel_widget">微件</string>
     <string name="settings_widgets_live_wallpaper_error">无法启动壁纸选择器。您仍然可以通过在主屏幕壁纸选择器中选择动态壁纸来启用微风天气壁纸。</string>
     <string name="air_quality_index">空气质量指数</string>

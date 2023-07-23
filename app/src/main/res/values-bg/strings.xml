@@ -114,10 +114,6 @@
     <string name="air_quality_no2_info_title">Азотен диоксид (NO₂)</string>
     <string name="weather_api_limit_reached_title">Лимитът на API заявки е достигнат</string>
     <string name="weather_api_unauthorized_title">API достъпът е неупълномощен</string>
-    <string name="weather_source_openmeteo">Open-Meteo</string>
-    <string name="weather_source_openmeteo_voice">Open Meteo</string>
-    <string name="weather_source_accuweather">AccuWeather</string>
-    <string name="weather_source_accuweather_voice">ACCU weather.com</string>
     <string name="settings_weather_source_portal">Портал</string>
     <string name="setting_weather_source_accu_days">Дни</string>
     <string name="weather_source_accu_preference_days_1">1 ден</string>
@@ -127,15 +123,8 @@
     <string name="weather_source_accu_preference_hours_72">72 часа</string>
     <string name="weather_source_accu_preference_hours_120">120 часа</string>
     <string name="weather_source_accu_preference_hours_240">240 часа</string>
-    <string name="weather_source_metno">MET Norway</string>
-    <string name="weather_source_metno_voice">Норвежкият метеорологичен институт</string>
-    <string name="weather_source_openweather_voice">Open Weather</string>
     <string name="weather_source_openweather_version_2_5">Версия 2.5</string>
     <string name="weather_source_openweather_version_3_0">Версия 3.0</string>
-    <string name="weather_source_mf">Météo France</string>
-    <string name="weather_source_mf_voice">Météo France</string>
-    <string name="weather_source_china">Китай</string>
-    <string name="weather_source_china_voice">Китай</string>
     <string name="locations">Местоположения</string>
     <string name="location_current">Текущо местонахождение</string>
     <string name="location_resident">Местоположение на жител</string>
@@ -152,7 +141,6 @@
     <string name="location_search_placeholder">Търсене на местоположение…</string>
     <string name="location_current_not_found_yet">Текущото местоположение все още не е намерено…</string>
     <string name="location_resident_message">Задаване като град на пребиваване</string>
-    <string name="location_service_baidu_ip">Baidu IP местоположение (само за Китай)</string>
     <string name="action_location_list">Списък с местоположения</string>
     <string name="action_search">Търсене</string>
     <string name="action_add_current_location">Добавяне на текущо местоположение</string>
@@ -165,8 +153,8 @@
     <string name="action_edit">Редактиране</string>
     <string name="action_next">СЛЕДВАЩ</string>
     <string name="action_done">ГОТОВО</string>
-    <string name="action_undo" tools:ignore="ButtonCase">ОТМЕНЯНЕ</string>
-    <string name="action_cancel" tools:ignore="ButtonCase">ОТКАЗ</string>
+    <string name="action_undo">ОТМЕНЯНЕ</string>
+    <string name="action_cancel">ОТКАЗ</string>
     <string name="action_set">СЛОЖИ</string>
     <string name="action_learn_more">НАУЧЕТЕ ПОВЕЧЕ</string>
     <string name="action_continue">Продължи</string>
@@ -213,7 +201,6 @@
     <string name="weather_api_key_required_missing_title">Липсва необходимият API ключ</string>
     <string name="weather_api_key_required_missing_content">За да използвате този доставчик, трябва да предоставите API ключ.</string>
     <string name="weather_source_accu_preference_days_5">5 дена</string>
-    <string name="weather_source_openweather">OpenWeather</string>
     <string name="weather_source_accu_preference_days_10">10 дена</string>
     <string name="weather_source_accu_preference_hours_12">12 часа</string>
     <string name="weather_source_accu_preference_hours_24">24 часа</string>

@@ -93,7 +93,7 @@
     <string name="ephemeris">해와 달</string>
     <string name="action_next">다음</string>
     <string name="action_done">완료</string>
-    <string name="action_cancel" tools:ignore="ButtonCase">취소</string>
+    <string name="action_cancel">취소</string>
     <string name="settings_enabled">켜짐</string>
     <string name="settings_disabled">꺼짐</string>
     <string name="action_set">설정</string>
@@ -216,8 +216,6 @@
     <string name="settings_units_speed">속도 단위</string>
     <string name="settings_notifications_section_forecast">예보</string>
     <string name="settings_widgets_notification_temp_icon_switch">기온을 상태 표시줄 아이콘으로 사용</string>
-    <string name="weather_source_china">중국</string>
-    <string name="location_service_baidu_ip">Baidu IP 위치 (중국 한정)</string>
     <string name="location_service_native">네이티브 API</string>
     <string name="settings_automatic">자동</string>
     <string name="settings_none">없음</string>
@@ -269,7 +267,7 @@
     <string name="weather_kind_thunder">번개</string>
     <string name="weather_kind_thunderstorm">뇌우</string>
     <string name="weather_kind_wind">바람</string>
-    <string name="action_undo" tools:ignore="ButtonCase">실행 취소</string>
+    <string name="action_undo">실행 취소</string>
     <string name="widget_label_hide_lunar">음력 숨기기</string>
     <string name="settings_background_updates_refresh_never">없음</string>
     <string name="settings_background_updates_battery_optimization">배터리 최적화 끄기</string>
@@ -323,8 +321,6 @@
     <string name="unit_ppcm">/m³</string>
     <string name="settings_item_delete">이 항목 삭제</string>
     <string name="weather_air_quality_and_pollen_data_by">대기질 및 꽃가루 정보 $ 제공</string>
-    <string name="weather_source_accuweather_voice">ACCU weather.com</string>
-    <string name="weather_source_metno">MET Norway</string>
     <string name="action_location_list">위치 목록</string>
     <string name="action_choose_weather_source">날씨 제공 업체 선택</string>
     <string name="action_add_from_map">지도에서 추가</string>
@@ -390,14 +386,8 @@
     <string name="ephemeris_moonrise_at">$에 월출</string>
     <string name="ephemeris_moonset_at">$에 월몰</string>
     <string name="weather_data_by">$ 제공</string>
-    <string name="weather_source_metno_voice">노르웨이 기상청</string>
-    <string name="weather_source_openweather">OpenWeather</string>
-    <string name="weather_source_openweather_voice">Open Weather</string>
     <string name="weather_source_openweather_version_2_5">버전 2.5</string>
     <string name="weather_source_openweather_version_3_0">버전 3.0</string>
-    <string name="weather_source_mf">Météo France</string>
-    <string name="weather_source_mf_voice">Météo France</string>
-    <string name="weather_source_china_voice">중국</string>
     <string name="locations">위치</string>
     <string name="dialog_permissions_location_title">위치 정보 접근</string>
     <string name="message_tap_again_to_exit">한 번 더 누르면 앱을 종료합니다.</string>
@@ -454,9 +444,6 @@
     <string name="widget_multi_city">여러 위치</string>
     <string name="settings_main_section_animations">애니메이션</string>
     <string name="weather_api_unauthorized_content">일부 날씨 제공 업체를 사용하려면 API 키를 직접 추가해야 합니다. 이미 API 키를 추가했다면, 추가한 API 키를 한 번 더 확인하세요.</string>
-    <string name="weather_source_openmeteo">Open-Meteo</string>
-    <string name="weather_source_openmeteo_voice">Open Meteo</string>
-    <string name="weather_source_accuweather">AccuWeather</string>
     <string name="settings_weather_source_portal">Portal</string>
     <string name="weather_api_key_required_missing_content">이 날씨 제공 업체를 이용하려면 API 키를 직접 추가해야 합니다.</string>
     <string name="weather_api_key_required_missing_title">API 키 필요</string>

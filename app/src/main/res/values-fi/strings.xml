@@ -94,7 +94,7 @@
     <string name="ephemeris">Aurinko &amp; kuu</string>
     <string name="action_next">Seuraava</string>
     <string name="action_done">Valmis</string>
-    <string name="action_cancel" tools:ignore="ButtonCase">Peruuta</string>
+    <string name="action_cancel">Peruuta</string>
     <string name="settings_enabled">Käytössä</string>
     <string name="settings_disabled">Ei käytössä</string>
     <string name="action_set">Aseta</string>
@@ -265,8 +265,6 @@
     <string name="settings_widgets_notification_temp_icon_switch">Lämpötila tilarivin kuvakkeena</string>
     <string name="settings_source_default_value">Oletus (ei muutoksia)</string>
     <string name="settings_weather_source_iqa_atmo_aura_key">ATMO AURA avain</string>
-    <string name="weather_source_china">Kiinassa</string>
-    <string name="location_service_baidu_ip">Baidu IP Location (vain Kiinassa)</string>
     <string name="settings_automatic">Automaattinen</string>
     <string name="settings_none">Ei mitään</string>
     <string name="settings_color_day_night">Päivä-/yöti</string>

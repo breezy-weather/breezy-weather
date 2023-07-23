@@ -5,42 +5,6 @@
     <!-- Do not translate this file -->
     <!-- If you need to translate something not available as a string, please open an issue -->
 
-    <!-- Weather sources -->
-    <string-array name="weather_sources">
-        <item>@string/weather_source_openmeteo</item>
-        <item>@string/weather_source_accuweather</item>
-        <item>@string/weather_source_metno</item>
-        <item>@string/weather_source_openweather</item>
-        <item>@string/weather_source_mf</item>
-        <item>@string/weather_source_china</item>
-    </string-array>
-    <string-array name="weather_source_voices">
-        <item>@string/weather_source_openmeteo_voice</item>
-        <item>@string/weather_source_accuweather_voice</item>
-        <item>@string/weather_source_metno_voice</item>
-        <item>@string/weather_source_openweather_voice</item>
-        <item>@string/weather_source_mf_voice</item>
-        <item>@string/weather_source_china_voice</item>
-    </string-array>
-    <string-array name="weather_source_values">
-        <item>openmeteo</item>
-        <item>accu</item>
-        <item>metno</item>
-        <item>openweather</item>
-        <item>mf</item>
-        <item>china</item>
-    </string-array>
-
-    <!-- Location service. -->
-    <string-array name="location_services">
-        <item>@string/location_service_native</item>
-        <item>@string/location_service_baidu_ip</item>
-    </string-array>
-    <string-array name="location_service_values">
-        <item>native</item>
-        <item>baidu_ip</item>
-    </string-array>
-
     <!-- Dark mode. -->
     <string-array name="dark_modes">
         <item>@string/settings_color_day_night</item>

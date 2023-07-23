@@ -93,7 +93,7 @@
     <string name="ephemeris">الشمس والقمر</string>
     <string name="action_next">التالي</string>
     <string name="action_done">إنتهى</string>
-    <string name="action_cancel" tools:ignore="ButtonCase">إلغاء</string>
+    <string name="action_cancel">إلغاء</string>
     <string name="settings_enabled">ممكّن</string>
     <string name="settings_disabled">مُعطل</string>
     <string name="action_set">تعيين</string>
@@ -176,7 +176,6 @@
     <string name="settings_units_speed">السرعة</string>
     <string name="settings_notifications_section_forecast">توقعات الطقس لأوقات معينة</string>
     <string name="settings_widgets_notification_temp_icon_switch">درجة الحرارة كرمز في شريط الحالة</string>
-    <string name="location_service_baidu_ip">Baidu IP Location (متاح للصين فقط)</string>
     <string name="settings_automatic">تلقائي</string>
     <string name="settings_none">لا شيء</string>
     <string name="settings_color_day_night">الوضع التلقائي</string>
@@ -243,7 +242,7 @@
     <string name="settings_main_cards_title">البطاقات</string>
     <string name="widget_custom_subtitle_keyword_d_description">التاريخ</string>
     <string name="widget_custom_subtitle_keyword_ct_description">درجة الحرارة الحالية (°C / °F)</string>
-    <string name="action_undo" tools:ignore="ButtonCase">تراجع</string>
+    <string name="action_undo">تراجع</string>
     <string name="message_network_unavailable">الشبكة غير متوفرة</string>
     <string name="widget_material_you_current">المادة أنت - الحالي</string>
     <string name="widget_multi_city">متعدد المدن</string>
@@ -308,10 +307,6 @@
     <string name="openmeteo_weather_text_freezing_rain_heavy_intensity">أمطار متجمدة غزيرة</string>
     <string name="openmeteo_weather_text_freezing_rain_light_intensity">شدة ضوء المطر المتجمد</string>
     <string name="openmeteo_weather_text_snow_slight_intensity">كثافة الثلوج طفيفة</string>
-    <string name="weather_source_accuweather_voice">أكيو weather.com</string>
-    <string name="weather_source_metno">الأرصاد الجوية النرويجية</string>
-    <string name="weather_source_openmeteo_voice">الأرصاد الجوية المفتوحة</string>
-    <string name="weather_source_metno_voice">المعهد النرويجي للأرصاد الجوية</string>
     <string name="locations">المواقع</string>
     <string name="location_message_search_failed">فشل البحث عن الموقع</string>
     <string name="location_message_permission_background_missing">إذن الوصول إلى الموقع في الخلفية مفقود</string>
@@ -340,7 +335,6 @@
     <string name="unit_lpsqmph_voice">لتر لكل متر مربع في الساعة</string>
     <string name="uv_index_11">الأقصى</string>
     <string name="unit_mgpcum_voice">ملليغرام لكل متر مكعب</string>
-    <string name="weather_source_mf">ميتيو فرنسا</string>
     <string name="precipitation_between_time">هطول الأمطار بين $1 و $2</string>
     <string name="widget_style_temperature">الحرارة</string>
     <string name="widget_style_rectangle">مستطيل</string>
@@ -350,13 +344,11 @@
     <string name="unit_cm_voice">السنتيمترات</string>
     <string name="location_swipe_to_delete">يمكنك التمرير إلى اليسار لحذف هذا العنصر</string>
     <string name="wind_direction_short_variable">متغير</string>
-    <string name="weather_source_openweather">الطقس المفتوح</string>
     <string name="air_quality_level_2">عادل</string>
     <string name="widget_week_style_3_days">3 أيام</string>
     <string name="unit_lpsqmph">لتر / م² / ساعة</string>
     <string name="unit_cm">سم</string>
     <string name="openmeteo_weather_text_snow_heavy_intensity">كثافة كبيرة من الثلج</string>
-    <string name="weather_source_accuweather">طقس أكيو</string>
     <string name="openmeteo_weather_text_rain_slight_intensity">كثافة المطر طفيفة</string>
     <string name="unit_mgpcum">ملغم / متر مكعب</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">درجة الحرارة الحالية (°)</string>
@@ -401,8 +393,6 @@
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">عاصفة رعدية مع برد كثيف</string>
     <string name="weather_source_accu_preference_hours_1">1 ساعة</string>
     <string name="weather_source_openweather_version_2_5">الإصدار 2.5</string>
-    <string name="weather_source_china">الصين</string>
-    <string name="weather_source_china_voice">الصين</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">هطول الأمطار خلال النهار اليوم, غدا, …, بعد 4 أيام (٪)</string>
     <string name="widget_custom_subtitle_keyword_xnp_description">هطول الأمطار ليلا اليوم, غدا, …, بعد 4 أيام (٪)</string>
     <string name="widget_custom_subtitle_keyword_xdwd_description">رياح النهار اليوم ، غدا ، … ، بعد 4 أيام</string>
@@ -462,7 +452,6 @@
     <string name="weather_api_unauthorized_title">الوصول إلى واجهة برمجة التطبيقات غير مصرح به</string>
     <string name="weather_api_key_required_missing_title">مفتاح API المطلوب مفقود</string>
     <string name="weather_api_key_required_missing_content">لاستخدام هذا الموفر ، تحتاج إلى توفير مفتاح API.</string>
-    <string name="weather_source_openmeteo">الأرصاد الجوية المفتوحة</string>
     <string name="settings_weather_source_portal">منفذ</string>
     <string name="location_none_added_yet_instructions">لم تتم إضافة موقع حتى الآن. يرجى النقر على أيقونة البحث لإضافة موقع يدويا ، أو إضافة موقعك الحالي من الزر العائم.</string>
     <string name="location_message_reverse_geocoding_failed">فشل مزود الطقس في العثور على موقع مطابق</string>
@@ -562,9 +551,7 @@
     <string name="notification_channel_background_services">خدمات الخلفية</string>
     <string name="about_contribution_WangDaYeeeeee">مطور المشروع الأصلي الطقس الهندسي</string>
     <string name="openmeteo_weather_text_mainly_clear">واضح بشكل أساسي</string>
-    <string name="weather_source_openweather_voice">الطقس المفتوح</string>
     <string name="weather_source_openweather_version_3_0">الإصدار 3.0</string>
-    <string name="weather_source_mf_voice">ميتيو فرنسا</string>
     <string name="location_message_permission_missing">إذن الوصول إلى الموقع مفقود</string>
     <string name="setting_weather_source_accu_days">الأيام</string>
     <string name="weather_source_accu_preference_days_1">يوم 1</string>

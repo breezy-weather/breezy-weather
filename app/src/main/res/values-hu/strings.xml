@@ -92,7 +92,7 @@
     <string name="ephemeris">Nap &amp; Hold</string>
     <string name="action_next">KövetkezŐ</string>
     <string name="action_done">Kész</string>
-    <string name="action_cancel" tools:ignore="ButtonCase">Mégse</string>
+    <string name="action_cancel">Mégse</string>
     <string name="settings_enabled">BE</string>
     <string name="settings_disabled">KI</string>
     <string name="action_set">Beállít</string>

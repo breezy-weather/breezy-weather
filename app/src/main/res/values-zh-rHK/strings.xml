@@ -253,11 +253,6 @@
     <string name="settings_notifications_section_forecast">預報</string>
     <string name="settings_widgets_notification_temp_icon_switch">將溫度作為通知小圖標</string>
     <string name="settings_widgets_notification_feels_like_switch">使用體感溫度作為小圖標</string>
-    <string name="weather_source_accuweather_voice">ACCU天氣</string>
-    <string name="weather_source_openweather_voice">OPEN天氣</string>
-    <string name="weather_source_china">中國</string>
-    <string name="weather_source_china_voice">中國</string>
-    <string name="location_service_baidu_ip">百度IP定位（僅中國地區）</string>
     <string name="location_service_native">原生接口</string>
     <string name="settings_automatic">自動</string>
     <string name="settings_none">無卡片</string>

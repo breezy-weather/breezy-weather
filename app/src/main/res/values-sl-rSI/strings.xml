@@ -60,7 +60,7 @@
     <string name="ephemeris">Sonce &amp; luna</string>
     <string name="action_next">Naslednji</string>
     <string name="action_done">KonČnano</string>
-    <string name="action_cancel" tools:ignore="ButtonCase">PrekliČi</string>
+    <string name="action_cancel">PrekliČi</string>
     <string name="settings_enabled">Omogočeno</string>
     <string name="settings_disabled">Onemogočeno</string>
     <string name="action_set">Nastavi</string>
@@ -134,7 +134,6 @@
     <string name="settings_units">Enote</string>
     <string name="settings_notifications_section_forecast">Vremenska napoved</string>
     <string name="settings_widgets_notification_temp_icon_switch">Temperatura kot ikona v statusni vrstici</string>
-    <string name="location_service_baidu_ip">Baidu IP Lokacija (samo za Kitajsko)</string>
     <string name="location_service_native">Nativen API</string>
     <string name="settings_automatic">Avtomatsko</string>
     <string name="settings_none">Brez</string>

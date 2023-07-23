@@ -208,10 +208,6 @@
     <string name="weather_api_unauthorized_content">On some weather providers, you need to provide your own API key. If you already provided one, please double-check the API key you provided.</string>
     <string name="weather_api_key_required_missing_title">Required API key missing</string>
     <string name="weather_api_key_required_missing_content">To use this provider, you need to provide an API key.</string>
-    <string name="weather_source_openmeteo">Open-Meteo</string>
-    <string name="weather_source_openmeteo_voice">Open Meteo</string>
-    <string name="weather_source_accuweather">AccuWeather</string>
-    <string name="weather_source_accuweather_voice">ACCU weather.com</string>
     <string name="settings_weather_source_portal">Portal</string>
     <string name="weather_source_accu_preference_portal_developer" translatable="false">Developer</string>
     <string name="weather_source_accu_preference_portal_enterprise" translatable="false">Enterprise</string>
@@ -227,16 +223,8 @@
     <string name="weather_source_accu_preference_hours_72">72 hours</string>
     <string name="weather_source_accu_preference_hours_120">120 hours</string>
     <string name="weather_source_accu_preference_hours_240">240 hours</string>
-    <string name="weather_source_metno">MET Norway</string>
-    <string name="weather_source_metno_voice">The Norwegian Meteorological Institute</string>
-    <string name="weather_source_openweather">OpenWeather</string>
-    <string name="weather_source_openweather_voice">Open Weather</string>
     <string name="weather_source_openweather_version_2_5">Version 2.5</string>
     <string name="weather_source_openweather_version_3_0">Version 3.0</string>
-    <string name="weather_source_mf">Météo France</string>
-    <string name="weather_source_mf_voice">Météo France</string>
-    <string name="weather_source_china">China</string>
-    <string name="weather_source_china_voice">China</string>
     <!-- Location -->
     <string name="locations">Locations</string>
     <string name="location_none_added_yet_instructions">No location added yet. Please tap on the search icon to manually add a location, or add your current location from the floating button.</string>
@@ -268,7 +256,6 @@
     <string name="location_current_not_found_yet">Current location not found yet…</string>
     <string name="location_resident_message">Set as a resident city</string>
     <string name="location_resident_dialog">Breezy Weather will automatically show and hide resident cities based on your current location.\nFor example, you can set your hometown as a resident city. You can check the weather in your hometown while you are traveling. When you get home, the weather in your hometown will be hidden and replaced by the weather for your current location.</string>
-    <string name="location_service_baidu_ip">Baidu IP Location (only for China)</string>
     <string name="location_service_native">Native API</string>
     <!-- Actions -->
     <string name="action_location_list">Location list</string>

@@ -45,7 +45,7 @@
     <string name="ephemeris">Güneş &amp; ay</string>
     <string name="action_next">SONRAKİ</string>
     <string name="action_done">BİTTİ</string>
-    <string name="action_cancel" tools:ignore="ButtonCase">İPTAL</string>
+    <string name="action_cancel">İPTAL</string>
     <string name="settings_enabled">AÇ</string>
     <string name="settings_disabled">KAPAT</string>
     <string name="about_app">HAKKINDA</string>

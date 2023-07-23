@@ -93,7 +93,7 @@
     <string name="ephemeris">Ανατολή και δύση ηλίου</string>
     <string name="action_next">Επόμενο</string>
     <string name="action_done">Τέλος</string>
-    <string name="action_cancel" tools:ignore="ButtonCase">Ακύρωση</string>
+    <string name="action_cancel">Ακύρωση</string>
     <string name="settings_enabled">Ενεργό</string>
     <string name="settings_disabled">Ανενεργό</string>
     <string name="action_set">Ορισμός</string>
@@ -216,8 +216,6 @@
     <string name="settings_units_speed">Μονάδα ταχύτητας</string>
     <string name="settings_notifications_section_forecast">Πρόγνωση καιρού</string>
     <string name="settings_widgets_notification_temp_icon_switch">Προβολή θερμοκρασίας στη γραμμή κατάστασης</string>
-    <string name="weather_source_china">Κίνα</string>
-    <string name="location_service_baidu_ip">Τοποθεσία Baidu (Μόνο για Κίνα)</string>
     <string name="settings_automatic">Αυτόματο</string>
     <string name="settings_none">Χωρίς</string>
     <string name="settings_color_day_always">Πάντα μέρα</string>
