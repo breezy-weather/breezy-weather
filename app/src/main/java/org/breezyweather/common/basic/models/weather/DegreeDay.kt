@@ -10,4 +10,7 @@ import java.io.Serializable
 class DegreeDay(
     val heating: Float? = null,
     val cooling: Float? = null,
-) : Serializable
+) : Serializable {
+
+    val isValid = (heating != null && heating > 0) || (cooling != null && cooling > 0)
+}

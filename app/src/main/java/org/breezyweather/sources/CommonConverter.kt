@@ -5,6 +5,7 @@ import org.breezyweather.common.basic.models.weather.AirQuality
 import org.breezyweather.common.basic.models.weather.Astro
 import org.breezyweather.common.basic.models.weather.Current
 import org.breezyweather.common.basic.models.weather.Daily
+import org.breezyweather.common.basic.models.weather.DegreeDay
 import org.breezyweather.common.basic.models.weather.HalfDay
 import org.breezyweather.common.basic.models.weather.Hourly
 import org.breezyweather.common.basic.models.weather.MoonPhase
@@ -33,13 +34,11 @@ import kotlin.math.sin
 /**
  * Completes daily data from hourly data:
  * - HalfDay (day and night)
+ * - Degree day
  * - Sunrise/set
  * - Air quality
  * - UV
  * - Hours of sun
- * TODO: Calculate moon & moon phase
- * TODO: Calculate degree day
- * TODO: Calculate dewpoint from humidity
  *
  * @param dailyList daily data
  * @param hourlyList hourly data
@@ -57,6 +56,18 @@ fun completeDailyListFromHourlyList(
     val hourlyListByDay = hourlyList.groupBy { it.date.getFormattedDate(location.timeZone, "yyyy-MM-dd") }
     dailyList.forEach { daily ->
         val theDayFormatted = daily.date.getFormattedDate(location.timeZone, "yyyy-MM-dd")
+        val newDay = completeHalfDayFromHourlyList(
+            dailyDate = daily.date,
+            initialHalfDay = daily.day,
+            halfDayHourlyList = hourlyListByHalfDay.getOrDefault(theDayFormatted, null)?.get("day"),
+            isDay = true
+        )
+        val newNight = completeHalfDayFromHourlyList(
+            dailyDate = daily.date,
+            initialHalfDay = daily.night,
+            halfDayHourlyList = hourlyListByHalfDay.getOrDefault(theDayFormatted, null)?.get("night"),
+            isDay = false
+        )
         /**
          * Most sources will return null data both on midnight sun and polar night
          * because the sun never rises in both cases
@@ -68,18 +79,14 @@ fun completeDailyListFromHourlyList(
         }
         newDailyList.add(
             daily.copy(
-                day = completeHalfDayFromHourlyList(
-                    dailyDate = daily.date,
-                    initialHalfDay = daily.day,
-                    halfDayHourlyList = hourlyListByHalfDay.getOrDefault(theDayFormatted, null)?.get("day"),
-                    isDay = true
-                ),
-                night = completeHalfDayFromHourlyList(
-                    dailyDate = daily.date,
-                    initialHalfDay = daily.night,
-                    halfDayHourlyList = hourlyListByHalfDay.getOrDefault(theDayFormatted, null)?.get("night"),
-                    isDay = false
-                ),
+                day = newDay,
+                night = newNight,
+                degreeDay = if (daily.degreeDay?.cooling == null || daily.degreeDay.heating == null) {
+                    getDegreeDay(
+                        minTemp = newDay?.temperature?.temperature?.toDouble(),
+                        maxTemp = newNight?.temperature?.temperature?.toDouble()
+                    )
+                } else daily.degreeDay,
                 sun = newSun,
                 moon = if (daily.moon != null && daily.moon.isValid) daily.moon else {
                     getCalculatedAstroMoon(daily.date, location.longitude.toDouble(), location.latitude.toDouble())
@@ -99,6 +106,25 @@ fun completeDailyListFromHourlyList(
     }
 
     return newDailyList
+}
+
+const val HEATING_DEGREE_DAY_BASE_TEMPERATURE = 18.0
+const val COOLING_DEGREE_DAY_BASE_TEMPERATURE = 21.0
+const val DEGREE_DAY_TEMPERATURE_MARGIN = 3.0
+
+private fun getDegreeDay(minTemp: Double?, maxTemp: Double?): DegreeDay? {
+    if (minTemp == null || maxTemp == null) return null
+
+    val meanTemp = (minTemp + maxTemp) / 2
+    if (meanTemp in (HEATING_DEGREE_DAY_BASE_TEMPERATURE - DEGREE_DAY_TEMPERATURE_MARGIN)..(COOLING_DEGREE_DAY_BASE_TEMPERATURE + DEGREE_DAY_TEMPERATURE_MARGIN)) {
+        return DegreeDay(heating = 0f, cooling = 0f)
+    }
+
+    return if (meanTemp < HEATING_DEGREE_DAY_BASE_TEMPERATURE) {
+        DegreeDay(heating = (HEATING_DEGREE_DAY_BASE_TEMPERATURE - meanTemp).toFloat(), cooling = 0f)
+    } else {
+        DegreeDay(heating = 0f, cooling = (meanTemp - COOLING_DEGREE_DAY_BASE_TEMPERATURE).toFloat())
+    }
 }
 
 /**

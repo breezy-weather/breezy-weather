@@ -25,7 +25,7 @@ class DegreeDayHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
         val context = itemView.context
         val talkBackBuilder = StringBuilder(context.getString(R.string.temperature_degree_day))
         val temperatureUnit = SettingsManager.getInstance((model as DailyDegreeDay).context).temperatureUnit
-        if (model.degreeDay.heating != null) {
+        if (model.degreeDay.heating != null && model.degreeDay.heating > 0) {
             val heatingText = temperatureUnit.getValueText(model.context, model.degreeDay.heating)
             talkBackBuilder
                 .append(", ")
@@ -36,11 +36,11 @@ class DegreeDayHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
         } else {
             mHeating.visibility = View.GONE
         }
-        if (model.degreeDay.cooling != null) {
+        if (model.degreeDay.cooling != null && model.degreeDay.cooling > 0) {
             val coolingText = temperatureUnit.getValueText(model.context, model.degreeDay.cooling)
             talkBackBuilder
                 .append(", ")
-                .append(context.getString(R.string.ephemeris_moonrise_at))
+                .append(context.getString(R.string.temperature_degree_day_cooling))
                 .append(coolingText)
             mCooling.visibility = View.VISIBLE
             mCoolingText.text = temperatureUnit.getValueText(model.context, model.degreeDay.cooling)
