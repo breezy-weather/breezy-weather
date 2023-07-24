@@ -201,6 +201,12 @@ class SettingsActivity : GeoActivity() {
                         paddingValues = paddings,
                     )
                 }
+                composable(SettingsScreenRouter.Unit.route) {
+                    UnitSettingsScreen(
+                        context = this@SettingsActivity,
+                        paddingValues = paddings,
+                    )
+                }
                 composable(SettingsScreenRouter.MainScreen.route) {
                     MainScreenSettingsScreen(
                         context = this@SettingsActivity,
@@ -234,29 +240,6 @@ class SettingsActivity : GeoActivity() {
                         }
                     )
                 }
-                composable(SettingsScreenRouter.Location.route) {
-                    LocationSettingsScreen(
-                        context = this@SettingsActivity,
-                        locationSources = sourceManager.getLocationSources(),
-                        accessCoarseLocationPermissionState = rememberPermissionState(permission = Manifest.permission.ACCESS_COARSE_LOCATION),
-                        accessFineLocationPermissionState = rememberPermissionState(permission = Manifest.permission.ACCESS_FINE_LOCATION),
-                        accessBackgroundLocationPermissionState = rememberPermissionState(permission = Manifest.permission.ACCESS_BACKGROUND_LOCATION),
-                        paddingValues = paddings,
-                    )
-                }
-                composable(SettingsScreenRouter.WeatherProviders.route) {
-                    WeatherProvidersSettingsScreen(
-                        context = this@SettingsActivity,
-                        weatherSources = sourceManager.getWeatherSources(),
-                        paddingValues = paddings,
-                    )
-                }
-                composable(SettingsScreenRouter.Unit.route) {
-                    UnitSettingsScreen(
-                        context = this@SettingsActivity,
-                        paddingValues = paddings,
-                    )
-                }
                 composable(SettingsScreenRouter.Widgets.route) {
                     WidgetsSettingsScreen(
                         context = this@SettingsActivity,
@@ -278,6 +261,23 @@ class SettingsActivity : GeoActivity() {
                                 PERMISSION_CODE_POST_NOTIFICATION
                             )
                         }
+                    )
+                }
+                composable(SettingsScreenRouter.Location.route) {
+                    LocationSettingsScreen(
+                        context = this@SettingsActivity,
+                        locationSources = sourceManager.getLocationSources(),
+                        accessCoarseLocationPermissionState = rememberPermissionState(permission = Manifest.permission.ACCESS_COARSE_LOCATION),
+                        accessFineLocationPermissionState = rememberPermissionState(permission = Manifest.permission.ACCESS_FINE_LOCATION),
+                        accessBackgroundLocationPermissionState = rememberPermissionState(permission = Manifest.permission.ACCESS_BACKGROUND_LOCATION),
+                        paddingValues = paddings,
+                    )
+                }
+                composable(SettingsScreenRouter.WeatherProviders.route) {
+                    WeatherProvidersSettingsScreen(
+                        context = this@SettingsActivity,
+                        weatherSources = sourceManager.getWeatherSources(),
+                        paddingValues = paddings,
                     )
                 }
                 composable(SettingsScreenRouter.Debug.route) {

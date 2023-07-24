@@ -24,24 +24,6 @@ fun RootSettingsView(
                 navController.navigate(SettingsScreenRouter.BackgroundUpdates.route)
             }
         }
-        clickablePreferenceItem(R.string.settings_location) { id ->
-            PreferenceView(
-                titleId = id,
-                iconId = R.drawable.ic_location,
-                summaryId = R.string.settings_location_summary
-            ) {
-                navController.navigate(SettingsScreenRouter.Location.route)
-            }
-        }
-        clickablePreferenceItem(R.string.settings_weather_sources) { id ->
-            PreferenceView(
-                titleId = id,
-                iconId = R.drawable.ic_factory,
-                summaryId = R.string.settings_weather_sources_summary
-            ) {
-                navController.navigate(SettingsScreenRouter.WeatherProviders.route)
-            }
-        }
         clickablePreferenceItem(R.string.settings_appearance) { id ->
             PreferenceView(
                 titleId = id,
@@ -76,6 +58,24 @@ fun RootSettingsView(
                 summaryId = R.string.settings_widgets_summary
             ) {
                 navController.navigate(SettingsScreenRouter.Widgets.route)
+            }
+        }
+        clickablePreferenceItem(R.string.settings_location) { id ->
+            PreferenceView(
+                titleId = id,
+                iconId = R.drawable.ic_location,
+                summaryId = R.string.settings_location_summary
+            ) {
+                navController.navigate(SettingsScreenRouter.Location.route)
+            }
+        }
+        clickablePreferenceItem(R.string.settings_weather_sources) { id ->
+            PreferenceView(
+                titleId = id,
+                iconId = R.drawable.ic_factory,
+                summaryId = R.string.settings_weather_sources_summary
+            ) {
+                navController.navigate(SettingsScreenRouter.WeatherProviders.route)
             }
         }
         clickablePreferenceItem(R.string.settings_debug) { id ->
