@@ -166,79 +166,81 @@ class WeatherUpdateJob @AssistedInject constructor(
         val failedUpdates = CopyOnWriteArrayList<Pair<Location, String?>>()
 
         coroutineScope {
-            locationsToUpdate
-                .map { location ->
+            locationsToUpdate.groupBy { it.weatherSource }.values
+                .map { locationInSource ->
                     async {
                         semaphore.withPermit {
-                            ensureActive()
+                            locationInSource.forEach { location ->
+                                ensureActive()
 
-                            withUpdateNotification(
-                                currentlyUpdatingLocation,
-                                progressCount,
-                                location,
-                            ) {
-                                // TODO: Implement this, it’s a good idea
-                                /*if (location.updateStrategy != UpdateStrategy.ALWAYS_UPDATE) {
-                                    skippedUpdates.add(location to context.getString(R.string.skipped_reason_not_always_update))
-                                } else {*/
-                                // Don’t refresh if we still have data from less than 15 minutes
-                                // Allow a by-pass when in debug mode to be able to debug test
-                                if (location.weather?.isValid(0.25f) == true && !BreezyWeather.instance.debugMode) {
-                                    skippedUpdates.add(location to context.getString(R.string.weather_refresh_skipped_already_recently_updated))
-                                } else {
-                                    try {
-                                        val locationToProceed = if (location.isCurrentPosition) {
-                                            try {
-                                                updateLocation(location)
-                                            } catch (e: Throwable) {
-                                                // If we failed to locate, let this silently fail
-                                                // and refresh weather with latest known position
-                                                if (location.isUsable) location else throw e
-                                            }
-                                        } else location
+                                withUpdateNotification(
+                                    currentlyUpdatingLocation,
+                                    progressCount,
+                                    location,
+                                ) {
+                                    // TODO: Implement this, it’s a good idea
+                                    /*if (location.updateStrategy != UpdateStrategy.ALWAYS_UPDATE) {
+                                        skippedUpdates.add(location to context.getString(R.string.skipped_reason_not_always_update))
+                                    } else {*/
+                                    // Don’t refresh if we still have data from less than 15 minutes
+                                    // Allow a by-pass when in debug mode to be able to debug test
+                                    if (location.weather?.isValid(0.25f) == true && !BreezyWeather.instance.debugMode) {
+                                        skippedUpdates.add(location to context.getString(R.string.weather_refresh_skipped_already_recently_updated))
+                                    } else {
+                                        try {
+                                            val locationToProceed = if (location.isCurrentPosition) {
+                                                try {
+                                                    updateLocation(location)
+                                                } catch (e: Throwable) {
+                                                    // If we failed to locate, let this silently fail
+                                                    // and refresh weather with latest known position
+                                                    if (location.isUsable) location else throw e
+                                                }
+                                            } else location
 
-                                        val weather = updateWeather(locationToProceed)
-                                        newUpdates.add(location to locationToProceed.copy(weather = weather))
-                                    } catch (e: Throwable) {
-                                        val errorMessage = when (e) {
-                                            is NoNetworkException -> context.getString(RequestErrorType.NETWORK_UNAVAILABLE.shortMessage)
-                                            is HttpException -> {
-                                                when (e.code()) {
-                                                    401, 403 -> context.getString(RequestErrorType.API_UNAUTHORIZED.shortMessage)
-                                                    409, 429 -> context.getString(RequestErrorType.API_LIMIT_REACHED.shortMessage)
-                                                    else -> {
-                                                        e.printStackTrace()
-                                                        if (e.message.isNullOrEmpty()) {
-                                                            context.getString(RequestErrorType.WEATHER_REQ_FAILED.shortMessage)
-                                                        } else e.message
+                                            val weather = updateWeather(locationToProceed)
+                                            newUpdates.add(location to locationToProceed.copy(weather = weather))
+                                        } catch (e: Throwable) {
+                                            val errorMessage = when (e) {
+                                                is NoNetworkException -> context.getString(RequestErrorType.NETWORK_UNAVAILABLE.shortMessage)
+                                                is HttpException -> {
+                                                    when (e.code()) {
+                                                        401, 403 -> context.getString(RequestErrorType.API_UNAUTHORIZED.shortMessage)
+                                                        409, 429 -> context.getString(RequestErrorType.API_LIMIT_REACHED.shortMessage)
+                                                        else -> {
+                                                            e.printStackTrace()
+                                                            if (e.message.isNullOrEmpty()) {
+                                                                context.getString(RequestErrorType.WEATHER_REQ_FAILED.shortMessage)
+                                                            } else e.message
+                                                        }
                                                     }
                                                 }
+                                                is SocketTimeoutException -> context.getString(RequestErrorType.SERVER_TIMEOUT.shortMessage)
+                                                is ApiKeyMissingException -> context.getString(RequestErrorType.API_KEY_REQUIRED_MISSING.shortMessage)
+                                                is LocationException -> context.getString(RequestErrorType.LOCATION_FAILED.shortMessage)
+                                                is MissingPermissionLocationException -> context.getString(RequestErrorType.ACCESS_LOCATION_PERMISSION_MISSING.shortMessage)
+                                                is MissingPermissionLocationBackgroundException -> context.getString(RequestErrorType.ACCESS_BACKGROUND_LOCATION_PERMISSION_MISSING.shortMessage)
+                                                is ReverseGeocodingException -> context.getString(RequestErrorType.REVERSE_GEOCODING_FAILED.shortMessage)
+                                                is MissingFieldException, is SerializationException, is ParsingException -> {
+                                                    e.printStackTrace()
+                                                    if (e.message.isNullOrEmpty()) {
+                                                        context.getString(RequestErrorType.PARSING_ERROR.shortMessage)
+                                                    } else e.message
+                                                }
+                                                is SourceNotInstalledException -> context.getString(RequestErrorType.SOURCE_NOT_INSTALLED.shortMessage)
+                                                else -> {
+                                                    e.printStackTrace()
+                                                    if (e.message.isNullOrEmpty()) {
+                                                        context.getString(RequestErrorType.WEATHER_REQ_FAILED.shortMessage)
+                                                    } else e.message
+                                                }
                                             }
-                                            is SocketTimeoutException -> context.getString(RequestErrorType.SERVER_TIMEOUT.shortMessage)
-                                            is ApiKeyMissingException -> context.getString(RequestErrorType.API_KEY_REQUIRED_MISSING.shortMessage)
-                                            is LocationException -> context.getString(RequestErrorType.LOCATION_FAILED.shortMessage)
-                                            is MissingPermissionLocationException -> context.getString(RequestErrorType.ACCESS_LOCATION_PERMISSION_MISSING.shortMessage)
-                                            is MissingPermissionLocationBackgroundException -> context.getString(RequestErrorType.ACCESS_BACKGROUND_LOCATION_PERMISSION_MISSING.shortMessage)
-                                            is ReverseGeocodingException -> context.getString(RequestErrorType.REVERSE_GEOCODING_FAILED.shortMessage)
-                                            is MissingFieldException, is SerializationException, is ParsingException -> {
-                                                e.printStackTrace()
-                                                if (e.message.isNullOrEmpty()) {
-                                                    context.getString(RequestErrorType.PARSING_ERROR.shortMessage)
-                                                } else e.message
-                                            }
-                                            is SourceNotInstalledException -> context.getString(RequestErrorType.SOURCE_NOT_INSTALLED.shortMessage)
-                                            else -> {
-                                                e.printStackTrace()
-                                                if (e.message.isNullOrEmpty()) {
-                                                    context.getString(RequestErrorType.WEATHER_REQ_FAILED.shortMessage)
-                                                } else e.message
-                                            }
-                                        }
 
-                                        failedUpdates.add(location to errorMessage)
+                                            failedUpdates.add(location to errorMessage)
+                                        }
                                     }
+                                    //}
                                 }
-                                //}
                             }
                         }
                     }
