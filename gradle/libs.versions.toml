@@ -79,6 +79,8 @@ lunarcalendar = { group = "com.xhinliang", name = "LunarCalendar", version.ref =
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation-compose" }
+objectbox-android = { group = "io.objectbox", name = "objectbox-android", version.ref = "objectbox" }
+objectbox-androidobjectbrowser = { group = "io.objectbox", name = "objectbox-android-objectbrowser", version.ref = "objectbox" }
 okhttp-core = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
 okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 preference-ktx = { group = "androidx.preference", name = "preference-ktx", version.ref = "preference-ktx" }

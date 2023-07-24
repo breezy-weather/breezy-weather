@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.kotlinKapt)
-    alias(libs.plugins.objectbox)
+    alias(libs.plugins.objectbox).apply(false)
     alias(libs.plugins.daggerHilt)
     alias(libs.plugins.kotlinSerialization)
 }
@@ -157,6 +157,10 @@ dependencies {
     // preference.
     implementation libs.preference.ktx
 
+    // db
+    debugImplementation libs.objectbox.androidobjectbrowser
+    releaseImplementation libs.objectbox.android
+
     // work.
     implementation libs.work.runtime.ktx
 
@@ -209,3 +213,6 @@ dependencies {
     // debugImplementation because LeakCanary should only run in debug builds.
     //debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.11'
 }
+
+// Apply last to be able to have ObjectBrowser
+apply plugin: 'io.objectbox'
