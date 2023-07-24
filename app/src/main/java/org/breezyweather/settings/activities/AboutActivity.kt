@@ -144,6 +144,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("pl"), "Kamil", "mailto:invisiblehype@gmail.com"),
         TranslatorItem(arrayOf("pl"), "nid", "https://github.com/nidmb"),
         TranslatorItem(arrayOf("pl"), "Eryk Michalak", "https://github.com/gnu-ewm"),
+        TranslatorItem(arrayOf("pl"), "HackZy01", "https://github.com/HackZy01"),
         TranslatorItem(arrayOf("pt_rBR"), "Fabio Raitz", "mailto:fabioraitz@outlook.com"),
         TranslatorItem(arrayOf("pt_rBR"), "Washington Luiz Candido dos Santos Neto", "https://hosted.weblate.org/user/Netocon/"),
         TranslatorItem(arrayOf("pt_rBR"), "mf", "https://hosted.weblate.org/user/marfS2/"),
