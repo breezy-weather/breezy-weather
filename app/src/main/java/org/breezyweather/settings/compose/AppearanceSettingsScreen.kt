@@ -50,9 +50,6 @@ fun AppearanceSettingsScreen(
                 onValueChanged = {
                     SettingsManager.getInstance(context).language = Language.getInstance(it)
 
-                    // Trigger a refresh of all weather data to have texts in the correct language
-                    WeatherUpdateJob.startNow(context)
-
                     SnackbarHelper.showSnackbar(
                         content = context.getString(R.string.settings_changes_apply_after_restart),
                         action = context.getString(R.string.action_restart)
