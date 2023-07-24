@@ -614,9 +614,9 @@ fun completeHourlyListFromDailyList(
     val dailyListByDate = dailyList.groupBy { it.date.getFormattedDate(timeZone, "yyyyMMdd") }
     val newHourlyList: MutableList<Hourly> = ArrayList(hourlyList.size)
     hourlyList.forEach { hourly ->
-        // Only keep hours in the future with a 30 min margin
-        // Example: 15:29 -> starts at 15:00, 15:31 -> starts at 16:00
-        if (hourly.date.time >= System.currentTimeMillis() - (30 * 60 * 1000)) {
+        // Only keep hours in the future except for the forecast of the current hour
+        // Example: 15:01 -> starts at 15:00, 15:59 -> starts at 15:00
+        if (hourly.date.time >= System.currentTimeMillis() - (3600 * 1000)) {
             val dateForHourFormatted = hourly.date.getFormattedDate(timeZone, "yyyyMMdd")
             dailyListByDate.getOrDefault(dateForHourFormatted, null)
                 ?.first()?.let { daily ->
