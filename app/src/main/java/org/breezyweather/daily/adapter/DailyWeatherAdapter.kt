@@ -58,10 +58,6 @@ class DailyWeatherAdapter(context: Context, timeZone: TimeZone, daily: Daily, sp
             mModelList.addAll(getHalfDayOptionalModelList(context, daily.night))
         }
         mModelList.add(Line())
-        if (daily.sun != null || daily.moon != null || daily.moonPhase != null) {
-            mModelList.add(LargeTitle(context.getString(R.string.ephemeris)))
-            mModelList.add(DailyAstro(timeZone, daily.sun, daily.moon, daily.moonPhase))
-        }
         if (daily.airQuality != null && daily.airQuality.isValid) {
             mModelList.add(Title(R.drawable.weather_haze_mini_xml, context.getString(R.string.air_quality)))
             mModelList.add(DailyAirQuality(daily.airQuality))
@@ -74,25 +70,43 @@ class DailyWeatherAdapter(context: Context, timeZone: TimeZone, daily: Daily, sp
             mModelList.add(Title(R.drawable.ic_uv, context.getString(R.string.uv_index)))
             mModelList.add(DailyUV(daily.uV))
         }
-        if (daily.degreeDay?.isValid == true) {
-            mModelList.add(Title(
-                if (daily.degreeDay.heating != null && daily.degreeDay.heating > 0) {
-                    R.drawable.ic_mode_heat
-                } else R.drawable.ic_mode_cool,
-                context.getString(if (daily.degreeDay.heating != null && daily.degreeDay.heating > 0) {
-                    R.string.temperature_degree_day_heating
-                } else R.string.temperature_degree_day_cooling)
-            ))
-            mModelList.add(DailyDegreeDay(context, daily.degreeDay))
+        if (daily.sun != null || daily.moon != null || daily.moonPhase != null) {
+            mModelList.add(LargeTitle(context.getString(R.string.ephemeris)))
+            mModelList.add(DailyAstro(timeZone, daily.sun, daily.moon, daily.moonPhase))
         }
-        if (daily.hoursOfSun != null) {
+        if (daily.degreeDay?.isValid == true || daily.hoursOfSun != null) {
             mModelList.add(Line())
-            mModelList.add(
-                Value(
-                    context.getString(R.string.hours_of_sun),
-                    DurationUnit.H.getValueText(context, daily.hoursOfSun)
+            mModelList.add(LargeTitle(context.getString(R.string.details)))
+            if (daily.degreeDay?.isValid == true) {
+                val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
+                if (daily.degreeDay.heating != null && daily.degreeDay.heating > 0) {
+                    mModelList.add(
+                        ValueIcon(
+                            context.getString(R.string.temperature_degree_day_heating),
+                            temperatureUnit.getValueText(context, daily.degreeDay.heating),
+                            R.drawable.ic_mode_heat
+                        )
+                    )
+                } else if (daily.degreeDay.cooling != null && daily.degreeDay.cooling > 0) {
+                    mModelList.add(
+                        ValueIcon(
+                            context.getString(R.string.temperature_degree_day_cooling),
+                            temperatureUnit.getValueText(context, daily.degreeDay.cooling),
+                            R.drawable.ic_mode_cool
+                        )
+                    )
+                }
+            }
+            if (daily.hoursOfSun != null) {
+                mModelList.add(
+                    ValueIcon(
+                        context.getString(R.string.hours_of_sun),
+                        DurationUnit.H.getValueText(context, daily.hoursOfSun),
+                        R.drawable.ic_hours_of_sun
+
+                    )
                 )
-            )
+            }
         }
         mModelList.add(Margin())
     }
@@ -108,10 +122,12 @@ class DailyWeatherAdapter(context: Context, timeZone: TimeZone, daily: Daily, sp
             return MarginHolder(parent)
         } else if (Value.isCode(viewType)) {
             return ValueHolder(parent)
+        } else if (ValueIcon.isCode(viewType)) {
+            return ValueIconHolder(parent)
         } else if (Title.isCode(viewType)) {
             return TitleHolder(parent)
-        } else if (DailyDegreeDay.isCode(viewType)) {
-            return DegreeDayHolder(parent)
+        } else if (ValueIcon.isCode(viewType)) {
+            return ValueIconHolder(parent)
         } else if (DailyAirQuality.isCode(viewType)) {
             return AirQualityHolder(parent)
         } else if (DailyAstro.isCode(viewType)) {
