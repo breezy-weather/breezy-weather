@@ -69,6 +69,12 @@ class PrecipitationBar @JvmOverloads constructor(
             )
         }
 
+    @ColorInt var textColor = Color.WHITE
+        set(value) {
+            field = value
+            indicator.setTextColor(ColorStateList.valueOf(value))
+        }
+
     interface IndicatorGenerator {
         fun getIndicatorContent(precipitation: Double): String
     }

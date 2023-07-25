@@ -18,6 +18,7 @@ If you notice any data that was available on v4.3.0-beta for a source and is now
 - Fix OpenWeather icons being always daytime.
 - Revert swipe when trying to make the location list empty or cancelling a weather source update on current location.
 - Remove clunky last daily forecast on Open-Meteo, MF, MET No, OpenWeather to avoid showing incomplete/incorrect data
+- Fix contrast issue with next hour precipitation graph in light theme
 - Fix search failure on Open-Meteo / GeoNames when country code was empty (Antarctica, for example)
 - Updated translations.
 
