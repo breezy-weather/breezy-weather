@@ -569,8 +569,8 @@
     <string name="air_quality_so2_info_introduction">Schwefeldioxid (SO₂) ist ein farbloses, giftiges Gas, das für den Geruch entzündeter Streichhölzer verantwortlich ist.</string>
     <string name="air_quality_so2_info_origin">In der Natur entsteht es bei vulkanischer Aktivität, durch menschliche Aktivität bei der Verbrennung fossiler Energieträger zur Wärme-und Stromerzeugung sowie in der Industrie.</string>
     <string name="air_quality_so2_info_consequences">SO₂-Exposition wird mit klinischer und ambulanter Behandlung asthmatischer Beschwerden in Verbindung gebracht.</string>
-    <string name="dialog_permissions_notification_content">Hier tippen, um Benachrichtigungen zu Wetterwarnungen zu gewähren. Oder entscheide später in den Einstellungen.</string>
-    <string name="dialog_permissions_notification_title">Bleibe informiert</string>
+    <string name="dialog_permissions_notification_content">Hier tippen, um Benachrichtigungen über Wetterwarnungen zu aktivieren, oder entscheiden Sie dies später in den Einstellungen.</string>
+    <string name="dialog_permissions_notification_title">Informiert bleiben</string>
     <string name="air_quality_o3_info_origin">Es wird bei photochemischen Reaktionen von organischen Stoffen, Kohlenmonoxid und Stickoxiden (NOₓ) freigesetzt, die von Fahrzeugen und der Industrie ausgestoßen werden. Bedingt durch den photochemischen Prozess entstehen die höchsten Ozon-Konzentrationen bei sonnigem Wetter.</string>
     <string name="air_quality_no2_info_consequences">Stickstoffdioxid-Exposition kann die Atemwege reizen und Atemwegserkrankungen verschlimmern. Zudem ist NO₂ ein bedeutender Ausgangsbestandteil von Ozon, einem Schadstoff im Zusammenhang mit Asthma und Atembeschwerden.</string>
     <string name="air_quality_co_info_origin">Es entsteht bei unvollständiger Verbrennung kohlenstoffhaltiger Energieträger wie Holz, Benzin, Kohle, Erdgas und Kerosin im einfachen Öfen, offenem Feuer, Lampen und Feuerstellen. Die überwiegende Quelle von Kohlenmonoxid (CO) in der Umgebungsluft sind Kraftfahrzeuge.</string>
