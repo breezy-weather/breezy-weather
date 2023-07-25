@@ -169,6 +169,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("zh_rCN"), "Coelacanthus", "https://github.com/CoelacanthusHex"),
         TranslatorItem(arrayOf("zh_rCN"), "御坂13766号", "https://github.com/misaka-13766"),
         TranslatorItem(arrayOf("zh_rCN"), "losky2987", "https://github.com/losky2987"),
+        TranslatorItem(arrayOf("zh_rCN"), "thdcloud", "https://github.com/thdcloud"),
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
