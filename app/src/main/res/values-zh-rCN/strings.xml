@@ -33,7 +33,7 @@
     <string name="action_refresh">刷新数据</string>
     <string name="action_restart">重启</string>
     <string name="action_edit">编辑</string>
-    <string name="of_clock">时</string>
+    <string name="of_clock">:00</string>
     <string name="short_yesterday">昨日</string>
     <string name="short_tomorrow">明日</string>
     <string name="short_monday">周一</string>
@@ -43,10 +43,10 @@
     <string name="short_friday">周五</string>
     <string name="short_saturday">周六</string>
     <string name="short_sunday">周日</string>
-    <string name="temperature_real_feel">体感温度</string>
-    <string name="temperature_real_feel_shade">阴面体感温度</string>
+    <string name="temperature_real_feel">体感温度®</string>
+    <string name="temperature_real_feel_shade">阴面体感温度™</string>
     <string name="temperature_apparent">地表温度</string>
-    <string name="temperature_wind_chill">风寒温度</string>
+    <string name="temperature_wind_chill">风寒系数</string>
     <string name="temperature_wet_bulb">湿球温度</string>
     <string name="temperature_degree_day">度日温度</string>
     <string name="precipitation_total">总量</string>
@@ -97,10 +97,10 @@
     <string name="uv_index_6_7">三级(中等)</string>
     <string name="uv_index_8_10">四级(强)</string>
     <string name="uv_index_11">五级(很强)</string>
-    <string name="daily_forecast">每日概览</string>
-    <string name="hourly_forecast">小时概览</string>
-    <string name="minutely_forecast">分钟概览</string>
-    <string name="precipitation_forecast">降水概览</string>
+    <string name="daily_forecast">每日趋势</string>
+    <string name="hourly_forecast">小时趋势</string>
+    <string name="minutely_forecast">分钟趋势</string>
+    <string name="precipitation_forecast">降水趋势</string>
     <string name="air_quality">空气质量</string>
     <string name="allergen">过敏原</string>
     <string name="details">详情数据</string>
@@ -448,7 +448,7 @@
     <string name="unit_kelvin">K</string>
     <string name="about_contribution_WangDaYeeeeee">原始项目几何天气的开发者</string>
     <string name="settings_main_background_animation_disabled">关闭</string>
-    <string name="alerts_to_follow">有需要关注的警报，点此查看。</string>
+    <string name="alerts_to_follow">有需要关注的警报，点击此处查看。</string>
     <string name="action_add_new_location">添加一个新位置</string>
     <string name="action_choose_weather_source">选择天气提供者</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
@@ -599,4 +599,6 @@
     <string name="settings_source_api_key">API密钥</string>
     <string name="temperature_degree_day_cooling">制冷度日</string>
     <string name="message_source_not_installed_error_title">来源不再可用</string>
+    <string name="weather_source_accu_preference_hours_240">240 小时</string>
+    <string name="action_help_me_choose">帮助我选择</string>
 </resources>
