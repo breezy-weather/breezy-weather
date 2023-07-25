@@ -436,11 +436,11 @@ class HomeFragment : MainModuleFragment() {
 
             // set translation y of toolbar.
             if (adapter != null) {
-                if (mScrollY < (adapter!!.headerTop - binding.appBar.measuredHeight)) {
+                if (adapter!!.headerTop == -1 || mScrollY < (adapter!!.headerTop - binding.appBar.measuredHeight)) {
                     // Keep app bar on top until we reach top of temperature
                     binding.appBar.translationY = 0f
                 } else if (mScrollY < adapter!!.headerTop) {
-                    // Make the app bar disappear when we reached top of temperature
+                    // Make the app bar disappear when we reach top of temperature
                     binding.appBar.translationY = (
                             adapter!!.headerTop
                                     - binding.appBar.measuredHeight
@@ -453,13 +453,10 @@ class HomeFragment : MainModuleFragment() {
             }
 
             // set system bar style.
-            if (mFirstCardMarginTop <= 0) {
-                mTopChanged = true
-                topOverlap = false
-            } else {
-                mTopChanged = (binding.appBar.translationY != 0f) != (mLastAppBarTranslationY != 0f)
-                topOverlap = binding.appBar.translationY != 0f
-            }
+            mTopChanged = if (mFirstCardMarginTop <= 0) {
+                (binding.appBar.translationY != 0f) != (mLastAppBarTranslationY != 0f)
+            } else true
+            topOverlap = binding.appBar.translationY != 0f
             if (mTopChanged!!) {
                 checkToSetSystemBarStyle()
             }

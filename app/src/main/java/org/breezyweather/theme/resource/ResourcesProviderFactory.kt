@@ -6,7 +6,8 @@ import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.resource.providers.*
 
 object ResourcesProviderFactory {
-    val newInstance: ResourceProvider = getNewInstance(SettingsManager.getInstance(BreezyWeather.instance).iconProvider)
+    val newInstance: ResourceProvider
+        get() = getNewInstance(SettingsManager.getInstance(BreezyWeather.instance).iconProvider)
 
     fun getNewInstance(packageName: String?): ResourceProvider {
         val context: Context = BreezyWeather.instance

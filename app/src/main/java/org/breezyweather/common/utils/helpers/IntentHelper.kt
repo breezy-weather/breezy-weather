@@ -49,7 +49,7 @@ object IntentHelper {
         }
     }
 
-    fun buildMainActivityShowAlertsIntent(location: Location?): Intent {
+    fun buildMainActivityShowAlertsIntent(location: Location?, alertId: Long? = null): Intent {
         var formattedId: String? = null
         if (location != null) {
             formattedId = location.formattedId
@@ -58,6 +58,9 @@ object IntentHelper {
             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             putExtra(MainActivity.KEY_MAIN_ACTIVITY_LOCATION_FORMATTED_ID, formattedId)
+            if (alertId != null) {
+                putExtra(MainActivity.KEY_MAIN_ACTIVITY_ALERT_ID, alertId)
+            }
         }
     }
 
@@ -95,10 +98,13 @@ object IntentHelper {
         )
     }
 
-    fun startAlertActivity(activity: Activity, formattedId: String?) {
+    fun startAlertActivity(activity: Activity, formattedId: String?, alertId: Long? = null) {
         activity.startActivity(
             Intent(activity, AlertActivity::class.java).apply {
                 putExtra(AlertActivity.KEY_FORMATTED_ID, formattedId)
+                if (alertId != null) {
+                    putExtra(AlertActivity.KEY_ALERT_ID, alertId)
+                }
             }
         )
     }

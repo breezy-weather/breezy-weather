@@ -33,6 +33,7 @@ import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 import org.breezyweather.theme.compose.DayNightTheme
 import org.breezyweather.theme.compose.rememberThemeRipple
+import java.util.Date
 
 @SuppressLint("InflateParams")
 class FirstCardHeaderController(
@@ -43,7 +44,8 @@ class FirstCardHeaderController(
     private var mContainer: LinearLayout? = null
 
     init {
-        if (location.weather != null && location.weather.alertList.isNotEmpty()) {
+        // Don’t show if alertList only contains alerts in the past
+        if (location.weather != null && location.weather.alertList.any { it.endDate == null || it.endDate.time > Date().time }) {
             mView.visibility = View.VISIBLE
             mView.setOnClickListener {
                 IntentHelper.startAlertActivity(mActivity, mFormattedId)
@@ -103,7 +105,7 @@ class FirstCardHeaderController(
                                 interactionSource = remember { MutableInteractionSource() },
                                 indication = rememberThemeRipple(),
                                 onClick = {
-                                    IntentHelper.startAlertActivity(mActivity, mFormattedId)
+                                    IntentHelper.startAlertActivity(mActivity, mFormattedId, currentAlert.alertId)
                                 }
                             ),
                         colors = ListItemDefaults.colors(

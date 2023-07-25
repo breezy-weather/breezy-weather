@@ -207,7 +207,7 @@ object Notifications {
             PendingIntent.getActivity(
                 context,
                 notificationId,
-                IntentHelper.buildMainActivityShowAlertsIntent(location),
+                IntentHelper.buildMainActivityShowAlertsIntent(location, alert.alertId),
                 PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
             )
         ).setStyle(
@@ -237,7 +237,7 @@ object Notifications {
                 PendingIntent.getActivity(
                     context,
                     notificationId,
-                    IntentHelper.buildMainActivityShowAlertsIntent(location),
+                    IntentHelper.buildMainActivityShowAlertsIntent(location, alert.alertId),
                     PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
                 )
             )

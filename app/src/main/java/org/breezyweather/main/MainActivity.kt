@@ -54,6 +54,7 @@ class MainActivity : GeoActivity(),
 
         const val ACTION_MAIN = "org.breezyweather.Main"
         const val KEY_MAIN_ACTIVITY_LOCATION_FORMATTED_ID = "MAIN_ACTIVITY_LOCATION_FORMATTED_ID"
+        const val KEY_MAIN_ACTIVITY_ALERT_ID = "MAIN_ACTIVITY_ALERT_ID"
 
         const val ACTION_MANAGEMENT = "org.breezyweather.ACTION_MANAGEMENT"
         const val ACTION_SHOW_ALERTS = "org.breezyweather.ACTION_SHOW_ALERTS"
@@ -386,7 +387,12 @@ class MainActivity : GeoActivity(),
         if (action.isNullOrEmpty()) return
         val formattedId = intent.getStringExtra(KEY_MAIN_ACTIVITY_LOCATION_FORMATTED_ID)
         if (ACTION_SHOW_ALERTS == action) {
-            IntentHelper.startAlertActivity(this, formattedId)
+            val alertId = intent.getLongExtra(KEY_MAIN_ACTIVITY_ALERT_ID, -1L)
+            if (alertId != -1L) {
+                IntentHelper.startAlertActivity(this, formattedId, alertId)
+            } else {
+                IntentHelper.startAlertActivity(this, formattedId)
+            }
             return
         }
         if (ACTION_SHOW_DAILY_FORECAST == action) {

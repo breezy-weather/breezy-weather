@@ -73,7 +73,8 @@ class WeatherHelper @Inject constructor(
                     dailyForecast = dailyForecast,
                     hourlyForecast = hourlyForecast,
                     minutelyForecast = t.minutelyForecast ?: emptyList(),
-                    alertList = t.alertList ?: emptyList()
+                    // Don’t save past alerts in database
+                    alertList = t.alertList?.filter { it.endDate == null || it.endDate.time > Date().time } ?: emptyList()
                 )
                 WeatherEntityRepository.writeWeather(location, weather)
                 if (weather.yesterday == null) {

@@ -522,7 +522,9 @@
     <string name="settings_debug_summary">Crash logs</string>
     <string name="settings_debug_dump_crash_logs_title">Share crash logs</string>
     <string name="settings_debug_dump_crash_logs_summary">Saves error logs to a file for sharing with the developers</string>
+    <!-- Only shown in debug builds, so we don’t need translations -->
     <string name="settings_debug_force_weather_update" translatable="false">Force weather update</string>
+    <string name="settings_debug_start_objectbox_admin" translatable="false">Start ObjectBox Admin</string>
     <string name="settings_changes_apply_after_restart">Changes will take effect after restart</string>
     <string name="settings_items_drag_to_sort">Tap to drag the list items to sort</string>
     <string name="settings_item_delete">Delete this item</string>

@@ -32,7 +32,7 @@ When deciding about which source you want to use, accuracy of data is probably t
 | **Precipitation**               | ✅             | ✅ (RSI)     | ✅                  | ✅ (RS)      | ✅ (RS)        | ❌       |
 | **Precipitation probability**   | ✅             | ✅ (TRSI)    | ✅ (T)              | ✅           | ✅ (RSI)       | Daily   |
 | **Wind**                        | ✅             | ✅           | ✅                  | ✅           | ✅             | ✅       |
-| **Air quality**                 | ✅             | ✅           | ✅                  | ✅           | France (AURA) | Current |
+| **Air quality**                 | ✅             | ✅           | Norway             | ✅           | France (AURA) | Current |
 | **Pollen**                      | *In progress* | Daily (US)  | ❌                  | ❌           | ❌             | ❌       |
 | **UV**                          | ✅             | ✅           | ✅                  | ✅           | ✅             | ❌       |
 | **Precipitations in next hour** | ❌             | ✅           | Nordic area        | ✅           | France        | ✅       |

@@ -20,7 +20,6 @@ object ObjectBox {
 
         if (BuildConfig.DEBUG) {
             LogHelper.log(msg = "Using ObjectBox ${BoxStore.getVersion()} (${BoxStore.getVersionNative()})")
-            Admin(boxStore).start(context.applicationContext)
         }
     }
 

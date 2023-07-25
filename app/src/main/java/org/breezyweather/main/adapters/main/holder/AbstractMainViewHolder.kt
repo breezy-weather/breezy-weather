@@ -34,7 +34,8 @@ abstract class AbstractMainViewHolder(view: View) : RecyclerView.ViewHolder(view
         }
     }
 
-    val top = itemView.top
+    val top
+        get() = itemView.top
 
     fun checkEnterScreen(
         host: RecyclerView,
