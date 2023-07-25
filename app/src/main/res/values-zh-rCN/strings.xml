@@ -46,7 +46,7 @@
     <string name="temperature_real_feel">体感温度®</string>
     <string name="temperature_real_feel_shade">阴面体感温度™</string>
     <string name="temperature_apparent">地表温度</string>
-    <string name="temperature_wind_chill">风寒温度</string>
+    <string name="temperature_wind_chill">风寒指数</string>
     <string name="temperature_wet_bulb">湿球温度</string>
     <string name="temperature_degree_day">度日温度</string>
     <string name="precipitation_total">总量</string>
