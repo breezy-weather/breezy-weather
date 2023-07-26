@@ -602,4 +602,13 @@
     <string name="wind_strength">Força do vento</string>
     <string name="message_server_timeout">Solicitação expirou</string>
     <string name="message_parsing_error_content">Certifique-se de atualizar para a versão mais recente do aplicativo. O servidor pode estar temporariamente indisponível, nesse caso, tente novamente mais tarde. Se o problema persistir, faça um relatório de crash a partir das configurações de depuração e relate o problema no GitHub.</string>
+    <string name="temperature_degree_day_heating">Dia de grau de aquecimento</string>
+    <string name="setting_weather_source_accu_hours">Horas</string>
+    <string name="settings_source_api_key">Chave de API</string>
+    <string name="setting_weather_source_accu_days">Dias</string>
+    <string name="message_source_not_installed_error_title">Fonte não disponível</string>
+    <string name="settings_background_updates_worker_info_summary">Última execução: $</string>
+    <string name="temperature_degree_day_cooling">Dia de grau de resfriamento</string>
+    <string name="action_help_me_choose">Ajude-me a escolher</string>
+    <string name="message_source_not_installed_error_content">Esta fonte não está mais disponível, apague a localização e a recrie de outra fonte.</string>
 </resources>
