@@ -142,10 +142,22 @@
     <string name="air_quality_co_info_origin">It is produced by the incomplete combustion of carbonaceous fuels such as wood, petrol, coal, natural gas and kerosene in simple stoves, open fires, wick lamps, furnaces, fireplaces. The predominant source of carbon monoxide (CO) in ambient air is from motor vehicles.</string>
     <string name="air_quality_co_info_consequences">Carbon monoxide diffuses across the lung tissues and into the bloodstream, making it difficult for the body’s cells to bind to oxygen. This lack of oxygen damages tissues and cells. Exposure to carbon monoxide can cause difficulties breathing, exhaustion, dizziness, and other flu-like symptoms. Exposure to high levels of carbon monoxide can be deadly.</string>
     <!-- Allergens -->
-    <string name="allergen_grass">Grass</string>
-    <string name="allergen_mold">Mold</string>
-    <string name="allergen_ragweed">Ragweed</string>
+    <!-- You can find some translations on the bottom of https://www.pollens.fr/le-reseau/les-pollens -->
     <string name="allergen_tree">Tree</string>
+    <string name="allergen_alder">Alder</string>
+    <string name="allergen_birch">Birch</string>
+    <string name="allergen_grass">Grass</string>
+    <string name="allergen_mugwort">Mugwort</string>
+    <string name="allergen_olive">Olive</string>
+    <string name="allergen_ragweed">Ragweed</string>
+    <string name="allergen_mold">Mold</string>
+    <!-- Allergen level means “Potential risk of allergy” -->
+    <string name="allergen_level_0">None</string>
+    <string name="allergen_level_1">Very low</string>
+    <string name="allergen_level_2">Low</string>
+    <string name="allergen_level_3">Moderate</string>
+    <string name="allergen_level_4">High</string>
+    <string name="allergen_level_5">Very high</string>
     <string name="allergen_tap_to_see_more">Tap to see more…</string>
     <!-- Ephemeris -->
     <string name="ephemeris_moon_phase_new_moon">New moon</string>

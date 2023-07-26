@@ -15,7 +15,7 @@ import org.breezyweather.common.basic.models.weather.HalfDay
 import org.breezyweather.common.basic.models.weather.History
 import org.breezyweather.common.basic.models.weather.Minutely
 import org.breezyweather.common.basic.models.weather.MoonPhase
-import org.breezyweather.common.basic.models.weather.Pollen
+import org.breezyweather.common.basic.models.weather.Allergen
 import org.breezyweather.common.basic.models.weather.Precipitation
 import org.breezyweather.common.basic.models.weather.PrecipitationDuration
 import org.breezyweather.common.basic.models.weather.PrecipitationProbability
@@ -226,33 +226,25 @@ private fun getDailyList(
             moonPhase = MoonPhase(
                 angle = MoonPhase.getAngleFromEnglishDescription(forecasts.Moon?.Phase)
             ),
-            pollen = getDailyPollen(forecasts.AirAndPollen),
+            allergen = getDailyPollen(forecasts.AirAndPollen),
             uV = getDailyUV(forecasts.AirAndPollen),
             hoursOfSun = forecasts.HoursOfSun?.toFloat()
         )
     }
 }
 
-private fun getDailyPollen(list: List<AccuForecastAirAndPollen>?): Pollen? {
+private fun getDailyPollen(list: List<AccuForecastAirAndPollen>?): Allergen? {
     if (list == null) return null
 
-    val grass = list.firstOrNull { it.Name == "Grass" }
-    val mold = list.firstOrNull { it.Name == "Mold" }
-    val ragweed = list.firstOrNull { it.Name == "Ragweed" }
     val tree = list.firstOrNull { it.Name == "Tree" }
-    return Pollen(
-        grassIndex = grass?.Value,
-        grassLevel = grass?.CategoryValue,
-        grassDescription = grass?.Category,
-        moldIndex = mold?.Value,
-        moldLevel = mold?.CategoryValue,
-        moldDescription = mold?.Category,
-        ragweedIndex = ragweed?.Value,
-        ragweedLevel = ragweed?.CategoryValue,
-        ragweedDescription = ragweed?.Category,
-        treeIndex = tree?.Value,
-        treeLevel = tree?.CategoryValue,
-        treeDescription = tree?.Category
+    val grass = list.firstOrNull { it.Name == "Grass" }
+    val ragweed = list.firstOrNull { it.Name == "Ragweed" }
+    val mold = list.firstOrNull { it.Name == "Mold" }
+    return Allergen(
+        tree = tree?.Value,
+        grass = grass?.Value,
+        ragweed = ragweed?.Value,
+        mold = mold?.Value,
     )
 }
 

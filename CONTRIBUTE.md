@@ -1,3 +1,22 @@
+# Contributions
+
+## Git setup for pull requests
+
+Fork the project on GitHub.
+
+Clone the project locally, then add our repository as `upstream` remote:
+```
+git remote add upstream https://github.com/breezy-weather/breezy-weather
+```
+
+Create a new branch for your pull request, for example:
+```
+git checkout -B mynewprovider
+```
+
+You can start working on it!
+
+
 ## Create a new Weather source
 
 Choose a unique identifier for your weather source, with only lowercase letters. Examples:
@@ -44,13 +63,13 @@ Rename `OpenWeatherService` with your source name and completes basic informatio
 
 As a starting point, we will only implement weather part, but here is the full list of interfaces/classes you can implement:
 
-| Class/Interface          | Use case                                                                                                                                                                                                                                       |
-|--------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `HttpSource()`           | Currently does nothing except requiring to provide a link to privacy policy, which will be mandatory to accept in the future                                                                                                                   |
+| Class/Interface          | Use case                                                                                                                                                                                                                                   |
+|--------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `HttpSource()`           | Currently does nothing except requiring to provide a link to privacy policy, which will be mandatory to accept in the future                                                                                                               |
 | `WeatherSource`          | Your source can provide hourly forecast for a given lon/lat. If your source doesn’t accept lon/lat but cities-only, you will have to implement `LocationSearchSource` and `ReverseGeocodingSource`                                         |
 | `LocationSearchSource`   | Your source is able to return a list of `Location` object from a query, containing at least the TimeZone of the location. If your source doesn’t include TimeZone, don’t implement it, and this will default to Open-Meteo location search |
 | `ReverseGeocodingSource` | Your source is able to return one `Location` (you can pick the first one if you have many) from lon/lat. If you don’t have this feature available, don’t implement it and locations created with your source will only have lon/lat        |     
-| `ConfigurableSource`     | You want to allow your user to change preferences, for example API key.                                                                                                                                                                        |
+| `ConfigurableSource`     | You want to allow your user to change preferences, for example API key.                                                                                                                                                                    |
 
 Let’s focus on the `requestWeather()` function now. You will need to adapt the existing converter class.
 The goal of a converter class is to normalize the data we received into Breezy Weather data objects.
@@ -78,4 +97,26 @@ As explained in other documents, the daytime halfday is expected from 06:00 to 1
 - If your source has half days with different hours, please follow their recommendations (for example, ColorfulClouds uses 08:00 to 19:59 and 20:00 to 07:59 (or 31:59)).
 - If your source has no half day, a typical mistake you can make is to put the minimum temperature of the day as temperature of the night. However, your source probably gives you the minimum temperature from the past overnight, not from the night to come, so make sure to pick the correct data!
 
-Once your source is complete (you use all available data from the API and available in Breezy Weather), please rebase and submit it as a pull request. Please allow Breezy Weather maintainers to make adjustments (but we won’t write the source for you, you will have to make significant implementation).
+Once your source is complete (you use all available data from the API and available in Breezy Weather), please rebase and submit it as a pull request (see instructions below). Please allow Breezy Weather maintainers to make adjustments (but we won’t write the source for you, you will have to make significant implementation).
+
+
+## Submit a pull request
+
+Since you started working on your pull request, many commits might have been added, so you will need to rebase:
+```
+git fetch upstream
+git rebase upstream main
+```
+
+(it it can’t find `upstream`, check instructions at the top of this document)
+
+If you are working on a new provider, you will usually not have any conflict, unless a new provider was added in the meantime in `SourceManager`, but in that case, you will find it easy to fix the conflict.
+
+Then, you can push (with `--force` argument as you are rewriting history).
+
+Please test your changes and if it works and you made multiple commits, please stash them as it makes reviewing easier. For example, if you made 2 commits, you can use:
+```
+git reset --soft HEAD~2
+```
+
+You can make a new commit, and once again, push your changes adding the `--force` argument.

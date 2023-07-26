@@ -4,6 +4,7 @@ import android.content.Context
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.AirQuality
+import org.breezyweather.common.basic.models.weather.Allergen
 import org.breezyweather.common.basic.models.weather.Astro
 import org.breezyweather.common.basic.models.weather.Current
 import org.breezyweather.common.basic.models.weather.Daily
@@ -28,6 +29,7 @@ import org.breezyweather.sources.openmeteo.json.OpenMeteoWeatherHourly
 import org.breezyweather.sources.openmeteo.json.OpenMeteoWeatherResult
 import java.util.Date
 import java.util.TimeZone
+import kotlin.math.roundToInt
 
 fun convert(
     location: Location?,
@@ -127,7 +129,6 @@ private fun getDailyList(
                 riseDate = dailyResult.sunrise?.getOrNull(i)?.times(1000)?.toDate(),
                 setDate = dailyResult.sunset?.getOrNull(i)?.times(1000)?.toDate()
             ),
-            // pollen = TODO
             uV = UV(index = dailyResult.uvIndexMax?.getOrNull(i))
         )
         dailyList.add(daily)
@@ -174,7 +175,14 @@ private fun getHourlyList(
                     o3 = airQualityResult.hourly.ozone?.getOrNull(airQualityIndex),
                     cO = airQualityResult.hourly.carbonMonoxide?.getOrNull(airQualityIndex)?.div(1000.0)?.toFloat(),
                 ) else null,
-                // pollen = TODO
+                allergen = if (airQualityIndex != null && airQualityIndex != -1) Allergen(
+                    alder = airQualityResult.hourly.alderPollen?.getOrNull(airQualityIndex)?.roundToInt(),
+                    birch = airQualityResult.hourly.birchPollen?.getOrNull(airQualityIndex)?.roundToInt(),
+                    grass = airQualityResult.hourly.grassPollen?.getOrNull(airQualityIndex)?.roundToInt(),
+                    mugwort = airQualityResult.hourly.mugwortPollen?.getOrNull(airQualityIndex)?.roundToInt(),
+                    olive = airQualityResult.hourly.olivePollen?.getOrNull(airQualityIndex)?.roundToInt(),
+                    ragweed = airQualityResult.hourly.ragweedPollen?.getOrNull(airQualityIndex)?.roundToInt(),
+                ) else null,
                 uV = UV(index = hourlyResult.uvIndex?.getOrNull(i)),
                 relativeHumidity = hourlyResult.relativeHumidity?.getOrNull(i)?.toFloat(),
                 dewPoint = hourlyResult.dewPoint?.getOrNull(i),

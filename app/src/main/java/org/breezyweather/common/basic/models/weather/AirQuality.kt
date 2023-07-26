@@ -30,7 +30,7 @@ class AirQuality(
                 getIndex(PollutantIndex.PM10),
                 getIndex(PollutantIndex.PM25)
             )
-            return if (pollutantsAqi.isNotEmpty()) pollutantsAqi.max() else null
+            if (pollutantsAqi.isNotEmpty()) pollutantsAqi.max() else null
         } else { // Specific pollutant
             pollutant.getIndex(getConcentration(pollutant)?.toDouble())
         }

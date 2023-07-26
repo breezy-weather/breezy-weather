@@ -106,10 +106,21 @@
     <string name="ephemeris_moon_phase_last_quarter">Dernier quartier</string>
     <string name="ephemeris_moon_phase_waning_crescent">Dernier croissant</string>
 
-    <string name="allergen_grass">Graminées</string>
-    <string name="allergen_mold">Moisissure</string>
-    <string name="allergen_ragweed">Ambroisie</string>
     <string name="allergen_tree">Arbres</string>
+    <string name="allergen_alder">Aulne</string>
+    <string name="allergen_birch">Bouleau</string>
+    <string name="allergen_grass">Graminées</string>
+    <string name="allergen_mugwort">Armoises</string>
+    <string name="allergen_olive">Olivier</string>
+    <string name="allergen_ragweed">Ambroisie</string>
+    <string name="allergen_mold">Moisissure</string>
+    <!-- Allergen level means “Potential risk of allergy” -->
+    <string name="allergen_level_0">Aucun</string>
+    <string name="allergen_level_1">Négligeable</string>
+    <string name="allergen_level_2">Faible</string>
+    <string name="allergen_level_3">Modéré</string>
+    <string name="allergen_level_4">Fort</string>
+    <string name="allergen_level_5">Très fort</string>
 
     <!-- UV levels -->
     <string name="uv_index_0_2">Faible</string>

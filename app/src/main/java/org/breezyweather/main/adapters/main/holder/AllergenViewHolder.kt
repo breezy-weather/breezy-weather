@@ -50,7 +50,7 @@ class AllergenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             if (daily.isToday(timeZone)) {
                 mIndicator.text = mContext.getString(R.string.short_today)
             } else {
-                mIndicator.text = (position + 1).toString() + "/" + mLocation.weather.dailyForecast.size
+                mIndicator.text = (position + 1).toString() + "/" + mLocation.weather.dailyForecast.filter { it.allergen?.isValid == true }.size
             }
         }
     }

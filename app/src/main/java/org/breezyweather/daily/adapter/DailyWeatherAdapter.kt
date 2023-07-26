@@ -62,15 +62,15 @@ class DailyWeatherAdapter(context: Context, timeZone: TimeZone, daily: Daily, sp
             mModelList.add(Title(R.drawable.weather_haze_mini_xml, context.getString(R.string.air_quality)))
             mModelList.add(DailyAirQuality(daily.airQuality))
         }
-        if (daily.pollen != null && daily.pollen.isValid) {
+        if (daily.allergen?.isValid == true) {
             mModelList.add(Title(R.drawable.ic_allergy, context.getString(R.string.allergen)))
-            mModelList.add(DailyPollen(daily.pollen))
+            mModelList.add(DailyPollen(daily.allergen))
         }
-        if (daily.uV != null && daily.uV.isValid) {
+        if (daily.uV?.isValid == true) {
             mModelList.add(Title(R.drawable.ic_uv, context.getString(R.string.uv_index)))
             mModelList.add(DailyUV(daily.uV))
         }
-        if (daily.sun != null || daily.moon != null || daily.moonPhase != null) {
+        if (daily.sun?.isValid == true || daily.moon?.isValid == true || daily.moonPhase?.isValid == true) {
             mModelList.add(LargeTitle(context.getString(R.string.ephemeris)))
             mModelList.add(DailyAstro(timeZone, daily.sun, daily.moon, daily.moonPhase))
         }
@@ -133,7 +133,7 @@ class DailyWeatherAdapter(context: Context, timeZone: TimeZone, daily: Daily, sp
         } else if (DailyAstro.isCode(viewType)) {
             return AstroHolder(parent)
         } else if (DailyPollen.isCode(viewType)) {
-            return PollenHolder(
+            return AllergenHolder(
                 ItemWeatherDailyPollenBinding.inflate(
                     LayoutInflater.from(parent.context)
                 )

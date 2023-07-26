@@ -4,7 +4,7 @@ This is a user-end guide to weather sources available in Breezy Weather. If you 
 
 **AccuWeather** is the most complete source, although you may not need so much completeness (not many people cares about ceiling, for example).
 
-**Open-Meteo** is the only free and open source weather source on this list, and probably also the most privacy-friendly. It is nearly as complete as **AccuWeather**, however lacks major features (alerts, realtime precipitations and reverse geocoding). Pollen is available and remains to be implemented.
+**Open-Meteo** is the only free and open source weather source on this list, and probably also the most privacy-friendly. It is nearly as complete as **AccuWeather**, however lacks major features (alerts, realtime precipitations and reverse geocoding).
 
 When deciding about which source you want to use, accuracy of data is probably the most important criteria, however only you can know which one is the best for your country.
 
@@ -23,21 +23,21 @@ When deciding about which source you want to use, accuracy of data is probably t
 
 ## Main features
 
-| Sources                         | Open-Meteo    | AccuWeather | MET Norway         | OpenWeather | Météo-France  | China   |
-|---------------------------------|---------------|-------------|--------------------|-------------|---------------|---------|
-| **Daily (days)**                | 15            | 15          | ~10                | 7 or 8      | 14            | 15      |
-| **Hourly (days)**               | 16            | 10          | ~10                | 2           | 15            | 1       |
-| **Weather**                     | ✅             | ✅           | *Text in progress* | ✅           | ✅             | ✅       |
-| **Temperature**                 | ✅             | ✅           | ✅                  | ✅           | ✅             | ✅       |
-| **Precipitation**               | ✅             | ✅ (RSI)     | ✅                  | ✅ (RS)      | ✅ (RS)        | ❌       |
-| **Precipitation probability**   | ✅             | ✅ (TRSI)    | ✅ (T)              | ✅           | ✅ (RSI)       | Daily   |
-| **Wind**                        | ✅             | ✅           | ✅                  | ✅           | ✅             | ✅       |
-| **Air quality**                 | ✅             | ✅           | Norway             | ✅           | France (AURA) | Current |
-| **Pollen**                      | *In progress* | Daily (US)  | ❌                  | ❌           | ❌             | ❌       |
-| **UV**                          | ✅             | ✅           | ✅                  | ✅           | ✅             | ❌       |
-| **Precipitations in next hour** | ❌             | ✅           | Nordic area        | ✅           | France        | ✅       |
-| **Sun & Moon & Moon phase**     | ✅             | ✅           | ✅                  | ✅           | ✅             | ✅       |
-| **Alerts**                      | ❌             | ✅           | *In progress*      | ✅¹          | ✅             | ✅       |
+| Sources                         | Open-Meteo | AccuWeather   | MET Norway         | OpenWeather | Météo-France  | China   |
+|---------------------------------|------------|---------------|--------------------|-------------|---------------|---------|
+| **Daily (days)**                | 15         | 15            | ~10                | 7 or 8      | 14            | 15      |
+| **Hourly (days)**               | 16         | 10            | ~10                | 2           | 15            | 1       |
+| **Weather**                     | ✅          | ✅             | *Text in progress* | ✅           | ✅             | ✅       |
+| **Temperature**                 | ✅          | ✅             | ✅                  | ✅           | ✅             | ✅       |
+| **Precipitation**               | ✅          | ✅ (RSI)       | ✅                  | ✅ (RS)      | ✅ (RS)        | ❌       |
+| **Precipitation probability**   | ✅          | ✅ (TRSI)      | ✅ (T)              | ✅           | ✅ (RSI)       | Daily   |
+| **Wind**                        | ✅          | ✅             | ✅                  | ✅           | ✅             | ✅       |
+| **Air quality**                 | ✅          | ✅             | Norway             | ✅           | France (AURA) | Current |
+| **Allergens**                   | Europe     | North America | ❌                  | ❌           | ❌             | ❌       |
+| **UV**                          | ✅          | ✅             | ✅                  | ✅           | ✅             | ❌       |
+| **Precipitations in next hour** | ❌          | ✅             | Nordic area        | ✅           | France        | ✅       |
+| **Sun & Moon & Moon phase**     | ✅          | ✅             | ✅                  | ✅           | ✅             | ✅       |
+| **Alerts**                      | ❌          | ✅             | *In progress*      | ✅¹          | ✅             | ✅       |
 
 * ¹ List of available countries: https://openweathermap.org/api/push-weather-alerts#listsource
 

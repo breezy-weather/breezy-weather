@@ -2,7 +2,6 @@ package org.breezyweather.db.generators
 
 import org.breezyweather.common.basic.models.weather.AirQuality
 import org.breezyweather.common.basic.models.weather.Hourly
-import org.breezyweather.common.basic.models.weather.Pollen
 import org.breezyweather.common.basic.models.weather.Precipitation
 import org.breezyweather.common.basic.models.weather.PrecipitationProbability
 import org.breezyweather.common.basic.models.weather.Temperature
@@ -49,20 +48,6 @@ object HourlyEntityGenerator {
             no2 = hourly.airQuality?.nO2,
             o3 = hourly.airQuality?.o3,
             co = hourly.airQuality?.cO,
-
-            // pollen?.
-            grassIndex = hourly.pollen?.grassIndex,
-            grassLevel = hourly.pollen?.grassLevel,
-            grassDescription = hourly.pollen?.grassDescription,
-            moldIndex = hourly.pollen?.moldIndex,
-            moldLevel = hourly.pollen?.moldLevel,
-            moldDescription = hourly.pollen?.moldDescription,
-            ragweedIndex = hourly.pollen?.ragweedIndex,
-            ragweedLevel = hourly.pollen?.ragweedLevel,
-            ragweedDescription = hourly.pollen?.ragweedDescription,
-            treeIndex = hourly.pollen?.treeIndex,
-            treeLevel = hourly.pollen?.treeLevel,
-            treeDescription = hourly.pollen?.treeDescription,
 
             // uv.
             uvIndex = hourly.uV?.index,
@@ -121,12 +106,6 @@ object HourlyEntityGenerator {
                 entity.no2,
                 entity.o3,
                 entity.co
-            ),
-            Pollen(
-                entity.grassIndex, entity.grassLevel, entity.grassDescription,
-                entity.moldIndex, entity.moldLevel, entity.moldDescription,
-                entity.ragweedIndex, entity.ragweedLevel, entity.ragweedDescription,
-                entity.treeIndex, entity.treeLevel, entity.treeDescription
             ),
             UV(entity.uvIndex),
             entity.relativeHumidity,

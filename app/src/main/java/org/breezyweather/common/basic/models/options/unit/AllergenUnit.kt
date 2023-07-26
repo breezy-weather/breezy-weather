@@ -6,7 +6,7 @@ import org.breezyweather.common.basic.models.options._basic.UnitEnum
 import org.breezyweather.common.basic.models.options._basic.Utils
 import org.breezyweather.common.extensions.isRtl
 
-enum class PollenUnit(
+enum class AllergenUnit(
     override val id: String,
     override val unitFactor: Float
 ): UnitEnum<Int> {

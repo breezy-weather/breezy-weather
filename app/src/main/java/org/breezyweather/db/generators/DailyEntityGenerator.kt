@@ -6,7 +6,7 @@ import org.breezyweather.common.basic.models.weather.Daily
 import org.breezyweather.common.basic.models.weather.DegreeDay
 import org.breezyweather.common.basic.models.weather.HalfDay
 import org.breezyweather.common.basic.models.weather.MoonPhase
-import org.breezyweather.common.basic.models.weather.Pollen
+import org.breezyweather.common.basic.models.weather.Allergen
 import org.breezyweather.common.basic.models.weather.Precipitation
 import org.breezyweather.common.basic.models.weather.PrecipitationDuration
 import org.breezyweather.common.basic.models.weather.PrecipitationProbability
@@ -115,18 +115,14 @@ object DailyEntityGenerator {
             co = daily.airQuality?.cO,
 
             // pollen.
-            grassIndex = daily.pollen?.grassIndex,
-            grassLevel = daily.pollen?.grassLevel,
-            grassDescription = daily.pollen?.grassDescription,
-            moldIndex = daily.pollen?.moldIndex,
-            moldLevel = daily.pollen?.moldLevel,
-            moldDescription = daily.pollen?.moldDescription,
-            ragweedIndex = daily.pollen?.ragweedIndex,
-            ragweedLevel = daily.pollen?.ragweedLevel,
-            ragweedDescription = daily.pollen?.ragweedDescription,
-            treeIndex = daily.pollen?.treeIndex,
-            treeLevel = daily.pollen?.treeLevel,
-            treeDescription = daily.pollen?.treeDescription,
+            tree = daily.allergen?.tree,
+            alder = daily.allergen?.alder,
+            birch = daily.allergen?.birch,
+            grass = daily.allergen?.grass,
+            olive = daily.allergen?.olive,
+            ragweed = daily.allergen?.ragweed,
+            mugwort = daily.allergen?.mugwort,
+            mold = daily.allergen?.mold,
 
             // uv.
             uvIndex = daily.uV?.index,
@@ -234,11 +230,15 @@ object DailyEntityGenerator {
                 entity.o3,
                 entity.co
             ),
-            Pollen(
-                entity.grassIndex, entity.grassLevel, entity.grassDescription,
-                entity.moldIndex, entity.moldLevel, entity.moldDescription,
-                entity.ragweedIndex, entity.ragweedLevel, entity.ragweedDescription,
-                entity.treeIndex, entity.treeLevel, entity.treeDescription
+            Allergen(
+                entity.tree,
+                entity.alder,
+                entity.birch,
+                entity.grass,
+                entity.olive,
+                entity.ragweed,
+                entity.mugwort,
+                entity.mold
             ),
             UV(entity.uvIndex),
             entity.hoursOfSun

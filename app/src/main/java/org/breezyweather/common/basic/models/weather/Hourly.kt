@@ -25,7 +25,6 @@ data class Hourly(
     val precipitationProbability: PrecipitationProbability? = null,
     val wind: Wind? = null,
     val airQuality: AirQuality? = null,
-    val pollen: Pollen? = null,
     val uV: UV? = null,
     val relativeHumidity: Float? = null,
     val dewPoint: Float? = null,

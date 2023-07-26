@@ -2,7 +2,7 @@ package org.breezyweather.common.basic.wrappers
 
 import org.breezyweather.common.basic.models.weather.AirQuality
 import org.breezyweather.common.basic.models.weather.Hourly
-import org.breezyweather.common.basic.models.weather.Pollen
+import org.breezyweather.common.basic.models.weather.Allergen
 import org.breezyweather.common.basic.models.weather.Precipitation
 import org.breezyweather.common.basic.models.weather.PrecipitationProbability
 import org.breezyweather.common.basic.models.weather.Temperature
@@ -24,7 +24,7 @@ data class HourlyWrapper(
     val precipitationProbability: PrecipitationProbability? = null,
     val wind: Wind? = null,
     val airQuality: AirQuality? = null,
-    val pollen: Pollen? = null,
+    val allergen: Allergen? = null, // Not used in Hourly but may be needed for daily calculation
     val uV: UV? = null,
     val relativeHumidity: Float? = null,
     val dewPoint: Float? = null,
@@ -45,7 +45,6 @@ data class HourlyWrapper(
         precipitationProbability = this.precipitationProbability,
         wind = this.wind,
         airQuality = this.airQuality,
-        pollen = this.pollen,
         uV = uV ?: this.uV,
         relativeHumidity = this.relativeHumidity,
         dewPoint = this.dewPoint,

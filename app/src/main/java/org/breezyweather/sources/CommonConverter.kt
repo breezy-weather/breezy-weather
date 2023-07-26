@@ -2,6 +2,7 @@ package org.breezyweather.sources
 
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.AirQuality
+import org.breezyweather.common.basic.models.weather.Allergen
 import org.breezyweather.common.basic.models.weather.Astro
 import org.breezyweather.common.basic.models.weather.Current
 import org.breezyweather.common.basic.models.weather.Daily
@@ -105,6 +106,7 @@ private fun computeWindChillTemperature(temperature: Double?, windSpeed: Double?
  * - Degree day
  * - Sunrise/set
  * - Air quality
+ * - Allergen
  * - UV
  * - Hours of sun
  *
@@ -162,6 +164,9 @@ fun completeDailyListFromHourlyList(
                 getCalculatedMoonPhase(daily.date)
             },
             airQuality = daily.airQuality ?: getDailyAirQualityFromHourlyList(
+                hourlyListByDay.getOrDefault(theDayFormatted, null)
+            ),
+            allergen = daily.allergen ?: getDailyAllergenFromHourlyList(
                 hourlyListByDay.getOrDefault(theDayFormatted, null)
             ),
             uV = if (daily.uV?.index != null) daily.uV else getDailyUVFromHourlyList(
@@ -561,6 +566,28 @@ private fun getDailyAirQualityFromHourlyList(hourlyList: List<HourlyWrapper>? = 
         nO2 = hourlyListWithAirQuality.filter { it.airQuality!!.nO2 != null }.map { it.airQuality!!.nO2!! }.average().toFloat(),
         o3 = hourlyListWithAirQuality.filter { it.airQuality!!.o3 != null }.map { it.airQuality!!.o3!! }.average().toFloat(),
         cO = hourlyListWithAirQuality.filter { it.airQuality!!.cO != null }.map { it.airQuality!!.cO!! }.average().toFloat()
+    )
+}
+
+/**
+ * Returns an Allergen object calculated from a List of Hourly for the day
+ * (at least 18 non-null Hourly.Allergen required)
+ */
+private fun getDailyAllergenFromHourlyList(hourlyList: List<HourlyWrapper>? = null): Allergen? {
+    // We need at least 18 hours for a signification estimation
+    if (hourlyList.isNullOrEmpty() || hourlyList.size < 18) return null
+    val hourlyListWithAllergen = hourlyList.filter { it.allergen != null }
+    if (hourlyListWithAllergen.size < 18) return null
+
+    return Allergen(
+        tree = hourlyListWithAllergen.filter { it.allergen!!.tree != null }.let { hl -> if (hl.isNotEmpty()) hl.maxOf { it.allergen!!.tree!! } else null },
+        alder = hourlyListWithAllergen.filter { it.allergen!!.alder != null }.let { hl -> if (hl.isNotEmpty()) hl.maxOf { it.allergen!!.alder!! } else null },
+        birch = hourlyListWithAllergen.filter { it.allergen!!.birch != null }.let { hl -> if (hl.isNotEmpty()) hl.maxOf { it.allergen!!.birch!! } else null },
+        grass = hourlyListWithAllergen.filter { it.allergen!!.grass != null }.let { hl -> if (hl.isNotEmpty()) hl.maxOf { it.allergen!!.grass!! } else null },
+        olive = hourlyListWithAllergen.filter { it.allergen!!.olive != null }.let { hl -> if (hl.isNotEmpty()) hl.maxOf { it.allergen!!.olive!! } else null },
+        ragweed = hourlyListWithAllergen.filter { it.allergen!!.ragweed != null }.let { hl -> if (hl.isNotEmpty()) hl.maxOf { it.allergen!!.ragweed!! } else null },
+        mugwort = hourlyListWithAllergen.filter { it.allergen!!.mugwort != null }.let { hl -> if (hl.isNotEmpty()) hl.maxOf { it.allergen!!.mugwort!! } else null },
+        mold = hourlyListWithAllergen.filter { it.allergen!!.mold != null }.let { hl -> if (hl.isNotEmpty()) hl.maxOf { it.allergen!!.mold!! } else null },
     )
 }
 

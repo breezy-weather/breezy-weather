@@ -1,9 +1,6 @@
 package org.breezyweather.daily.adapter.model
 
-import android.content.Context
-import android.graphics.drawable.Drawable
 import androidx.annotation.DrawableRes
-import org.breezyweather.common.basic.models.weather.DegreeDay
 import org.breezyweather.daily.adapter.DailyWeatherAdapter
 
 class ValueIcon(

@@ -21,7 +21,7 @@ data class Daily(
     val moon: Astro? = null,
     val moonPhase: MoonPhase? = null,
     val airQuality: AirQuality? = null,
-    val pollen: Pollen? = null,
+    val allergen: Allergen? = null,
     val uV: UV? = null,
     val hoursOfSun: Float? = null
 ) : Serializable {

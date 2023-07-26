@@ -2,7 +2,6 @@ package org.breezyweather.db
 
 import android.content.Context
 import io.objectbox.BoxStore
-import io.objectbox.android.Admin
 import org.breezyweather.BuildConfig
 import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.db.entities.MyObjectBox

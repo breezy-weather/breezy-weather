@@ -1,4 +1,11 @@
-# Version 4.4.0-beta (next version)
+# Next version
+
+- Add Allergens support for Open-Meteo source (Europe only at the moment). Allergens are different than AccuWeather ones (North America only).
+- Uses universal scale for all allergens, regardless of weather sources
+- Allergens are now sorted by name
+
+
+# Version 4.4.0-beta
 
 This version brings new logic that automatically completes missing data (for example, uses hourly data to extrapolate daily value for this data). This logic which was initially implemented per source is now transparently implemented for all sources. This means that even novice developers that want to add new sources will now be able to do it without having to care about that, making this task easier than ever.
 

@@ -119,18 +119,14 @@ data class DailyEntity(
     var co: Float? = null,
 
     // pollen.
-    var grassIndex: Int? = null,
-    var grassLevel: Int? = null,
-    var grassDescription: String? = null,
-    var moldIndex: Int? = null,
-    var moldLevel: Int? = null,
-    var moldDescription: String? = null,
-    var ragweedIndex: Int? = null,
-    var ragweedLevel: Int? = null,
-    var ragweedDescription: String? = null,
-    var treeIndex: Int? = null,
-    var treeLevel: Int? = null,
-    var treeDescription: String? = null,
+    var tree: Int? = null,
+    var alder: Int? = null,
+    var birch: Int? = null,
+    var grass: Int? = null,
+    var olive: Int? = null,
+    var ragweed: Int? = null,
+    var mugwort: Int? = null,
+    var mold: Int? = null,
 
     // uv.
     var uvIndex: Float? = null,

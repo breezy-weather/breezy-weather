@@ -14,7 +14,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
-import org.breezyweather.background.weather.WeatherUpdateJob
 import org.breezyweather.common.basic.models.options.DarkMode
 import org.breezyweather.common.basic.models.options.appearance.*
 import org.breezyweather.common.utils.helpers.AsyncHelper
