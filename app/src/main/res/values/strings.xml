@@ -460,6 +460,7 @@
     <string name="settings_location_provider_baidu_ip_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_weather_provider_accu_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_weather_provider_open_weather_api_key" translatable="false">@string/settings_source_api_key</string>
+    <string name="settings_weather_provider_pirate_weather_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_weather_provider_mf_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_weather_source_open_weather_one_call_version">OneCall version</string>
     <string name="settings_weather_source_iqa_atmo_aura_key">ATMO AURA key</string>
