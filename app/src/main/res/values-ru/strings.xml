@@ -598,4 +598,14 @@
     <string name="settings_source_api_key">Ключ API</string>
     <string name="settings_background_updates_worker_info_summary">Последний запуск: $</string>
     <string name="action_help_me_choose">Помогите мне выбрать</string>
+    <string name="allergen_level_0">Нет</string>
+    <string name="allergen_level_4">Высокий</string>
+    <string name="allergen_level_5">Очень высокий</string>
+    <string name="allergen_mugwort">Полынь</string>
+    <string name="allergen_olive">Олива</string>
+    <string name="allergen_alder">Ольха</string>
+    <string name="allergen_level_1">Очень низкий</string>
+    <string name="allergen_level_2">Низкий</string>
+    <string name="allergen_birch">Берёза</string>
+    <string name="allergen_level_3">Средний</string>
 </resources>
