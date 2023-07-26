@@ -70,7 +70,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginStart="@dimen/normal_margin"
                         android:layout_marginEnd="@dimen/normal_margin"
-                        app:theme="@style/spinner_item"
+                        android:theme="@style/spinner_item"
                         tools:ignore="RtlHardcoded" />
 
                 </RelativeLayout>
@@ -98,7 +98,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginStart="@dimen/normal_margin"
                         android:layout_marginEnd="@dimen/normal_margin"
-                        app:theme="@style/spinner_item"
+                        android:theme="@style/spinner_item"
                         tools:ignore="RtlHardcoded" />
 
                 </RelativeLayout>
@@ -175,7 +175,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginStart="@dimen/normal_margin"
                         android:layout_marginEnd="@dimen/normal_margin"
-                        app:theme="@style/spinner_item"
+                        android:theme="@style/spinner_item"
                         tools:ignore="RtlHardcoded" />
 
                 </RelativeLayout>
@@ -203,7 +203,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginStart="@dimen/normal_margin"
                         android:layout_marginEnd="@dimen/normal_margin"
-                        app:theme="@style/spinner_item"
+                        android:theme="@style/spinner_item"
                         tools:ignore="RtlHardcoded" />
 
                 </RelativeLayout>
@@ -257,7 +257,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginStart="@dimen/normal_margin"
                         android:layout_marginEnd="@dimen/normal_margin"
-                        app:theme="@style/spinner_item"
+                        android:theme="@style/spinner_item"
                         tools:ignore="RtlHardcoded" />
 
                 </RelativeLayout>
