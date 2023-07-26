@@ -14,6 +14,7 @@ import org.breezyweather.sources.mf.MfService
 import org.breezyweather.sources.noreversegeocoding.NoReverseGeocodingService
 import org.breezyweather.sources.openmeteo.OpenMeteoService
 import org.breezyweather.sources.openweather.OpenWeatherService
+import org.breezyweather.sources.pirateweather.PirateWeatherService
 import javax.inject.Inject
 
 class SourceManager @Inject constructor(
@@ -23,6 +24,7 @@ class SourceManager @Inject constructor(
     accuService: AccuService,
     metNoService: MetNoService,
     openWeatherService: OpenWeatherService,
+    pirateWeatherService: PirateWeatherService,
     mfService: MfService,
     chinaService: ChinaService,
     noReverseGeocodingService: NoReverseGeocodingService
@@ -38,6 +40,7 @@ class SourceManager @Inject constructor(
         accuService,
         metNoService,
         openWeatherService,
+        pirateWeatherService,
         mfService,
         chinaService,
 
