@@ -598,4 +598,14 @@
     <string name="settings_weather_source_open_weather_one_call_version">إصدار OneCall</string>
     <string name="settings_background_updates_worker_info_summary">آخر تشغيل: $</string>
     <string name="action_help_me_choose">ساعدني في الاختيار</string>
+    <string name="allergen_alder">ألدر</string>
+    <string name="allergen_birch">البتولا</string>
+    <string name="allergen_mugwort">عشبة النار</string>
+    <string name="allergen_level_3">معتدل</string>
+    <string name="allergen_level_4">عالية</string>
+    <string name="allergen_level_5">عالي جدا</string>
+    <string name="allergen_level_1">منخفض جدا</string>
+    <string name="allergen_olive">زيتون</string>
+    <string name="allergen_level_0">لاشيء</string>
+    <string name="allergen_level_2">منخفض</string>
 </resources>
