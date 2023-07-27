@@ -102,7 +102,7 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
             detailDisplayList.forEach { detailDisplay ->
                 detailDisplay.getCurrentValue(LocalContext.current, current, isDaylight)?.let {
                     if (!firstItem) {
-                        Divider(color = Color.White, thickness = 0.5.dp)
+                        Divider(color = Color.White.copy(alpha = 0.5f), thickness = 0.5.dp)
                     } else {
                         firstItem = false
                     }
