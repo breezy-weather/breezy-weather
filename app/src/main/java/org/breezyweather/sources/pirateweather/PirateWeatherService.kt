@@ -1,8 +1,10 @@
 package org.breezyweather.sources.pirateweather
 
 import android.content.Context
+import android.graphics.Color
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
+import org.breezyweather.BreezyWeather
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
@@ -27,12 +29,12 @@ class PirateWeatherService @Inject constructor(
     override val name = "PirateWeather"
     override val privacyPolicyUrl = "https://pirate-weather.apiable.io/privacy"
 
-    override val color = -0xff6e42
+    override val color = Color.rgb(113, 129, 145)
     override val weatherAttribution = "PirateWeather"
 
     private val mApi by lazy {
         client
-            .baseUrl(PIRATE_WEATHER_BASE_URL)
+            .baseUrl(if (BreezyWeather.instance.debugMode) PIRATE_WEATHER_DEV_BASE_URL else PIRATE_WEATHER_BASE_URL)
             .build()
             .create(PirateWeatherApi::class.java)
     }
@@ -86,5 +88,6 @@ class PirateWeatherService @Inject constructor(
 
     companion object {
         private const val PIRATE_WEATHER_BASE_URL = "https://api.pirateweather.net/"
+        private const val PIRATE_WEATHER_DEV_BASE_URL = "https://dev.pirateweather.net/"
     }
 }

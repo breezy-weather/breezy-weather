@@ -11,5 +11,5 @@ data class PirateWeatherAlert (
     val description: String?,
     val regions: List<String>?,
     val severity: String?,
-    val uri: String?,
+    val uri: String?
 )

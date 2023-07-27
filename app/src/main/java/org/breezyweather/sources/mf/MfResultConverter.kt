@@ -318,13 +318,13 @@ private fun getMinutelyList(rainResult: MfRainResult?): List<Minutely> {
     rainResult?.properties?.rainForecasts?.forEachIndexed { i, rainForecast ->
         minutelyList.add(
             Minutely(
-                rainForecast.time,
-                if (i < rainResult.properties.rainForecasts.size - 1) {
+                date = rainForecast.time,
+                minuteInterval = if (i < rainResult.properties.rainForecasts.size - 1) {
                     ((rainResult.properties.rainForecasts[i + 1].time.time - rainForecast.time.time) / (60 * 1000)).toDouble()
                         .roundToInt()
                 } else ((rainForecast.time.time - rainResult.properties.rainForecasts[i - 1].time.time) / (60 * 1000)).toDouble()
                     .roundToInt(),
-                if (rainForecast.rainIntensity != null) getPrecipitationIntensity(rainForecast.rainIntensity) else null
+                precipitationIntensity = if (rainForecast.rainIntensity != null) getPrecipitationIntensity(rainForecast.rainIntensity) else null
             )
         )
     }

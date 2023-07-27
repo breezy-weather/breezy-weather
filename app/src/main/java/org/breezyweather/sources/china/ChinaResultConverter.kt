@@ -242,9 +242,9 @@ private fun getMinutelyList(
         }
         minutelyList.add(
             Minutely(
-                calendar.time,
-                1,
-                precipitation
+                date = calendar.time,
+                minuteInterval = 1,
+                precipitationIntensity = precipitation
             )
         )
     }

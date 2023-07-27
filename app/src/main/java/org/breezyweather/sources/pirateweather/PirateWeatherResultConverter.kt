@@ -21,9 +21,9 @@ import org.breezyweather.common.extensions.toDate
 import org.breezyweather.sources.pirateweather.json.PirateWeatherAlert
 import org.breezyweather.sources.pirateweather.json.PirateWeatherCurrently
 import org.breezyweather.sources.pirateweather.json.PirateWeatherDaily
+import org.breezyweather.sources.pirateweather.json.PirateWeatherForecastResult
 import org.breezyweather.sources.pirateweather.json.PirateWeatherHourly
 import org.breezyweather.sources.pirateweather.json.PirateWeatherMinutely
-import org.breezyweather.sources.pirateweather.json.PirateWeatherForecastResult
 import java.util.Date
 import kotlin.math.roundToInt
 
@@ -34,14 +34,19 @@ import kotlin.math.roundToInt
 fun convert(
     forecastResult: PirateWeatherForecastResult
 ): WeatherResultWrapper {
+    // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
+    if (forecastResult.daily?.data.isNullOrEmpty() || forecastResult.hourly?.data.isNullOrEmpty()) {
+        throw WeatherException()
+    }
+
     return WeatherResultWrapper(
         base = Base(
             publishDate = forecastResult.currently?.time?.times(1000)?.toDate() ?: Date()
         ),
-        current = forecastResult.currently?.let { getCurrentForecast(it) },
-        dailyForecast = forecastResult.daily.data.let { getDailyForecast(it) },
-        hourlyForecast = forecastResult.hourly.data.let { getHourlyForecast(it) },
-        minutelyForecast = forecastResult.minutely.data.let {getMinutelyForecast(it) },
+        current = getCurrentForecast(forecastResult.currently),
+        dailyForecast = getDailyForecast(forecastResult.daily!!.data!!),
+        hourlyForecast = getHourlyForecast(forecastResult.hourly!!.data!!),
+        minutelyForecast = getMinutelyForecast(forecastResult.minutely?.data),
         alertList = getAlertList(forecastResult.alerts)
     )
 }
@@ -49,7 +54,8 @@ fun convert(
 /**
  * Returns current weather forecast
  */
-private fun getCurrentForecast(result: PirateWeatherCurrently): Current {
+private fun getCurrentForecast(result: PirateWeatherCurrently?): Current? {
+    if (result == null) return null
     return Current(
         weatherText = result.summary,
         weatherCode = getWeatherCode(result.icon),
@@ -82,21 +88,7 @@ private fun getDailyForecast(
                 temperature = Temperature(
                     temperature = result.temperatureHigh,
                     apparentTemperature = result.apparentTemperatureHigh,
-                ),
-                // see https://docs.pirateweather.net/en/latest/API/#preciptype
-                precipitation = Precipitation(
-                    total = result.precipAccumulation,
-                    rain = if (result.precipType.equals("rain")) result.precipIntensity else null,
-                    snow = if (result.precipType.equals("snow")) result.precipIntensity else null,
-                ),
-                precipitationProbability = PrecipitationProbability(
-                    total = result.precipProbability,
-                ),
-                wind = Wind(
-                    degree = result.windBearing,
-                    speed = result.windSpeed?.times(3.6f),
-                ),
-                cloudCover = result.cloudCover?.times(100)?.roundToInt(), // 0-1 -> 0-100
+                )
             ),
             night = HalfDay(
                 weatherText = result.summary,
@@ -166,17 +158,19 @@ private fun getHourlyForecast(
  * Returns minutely forecast
  * Copied from openweather implementation
  */
-private fun getMinutelyForecast(minutelyResult: List<PirateWeatherMinutely>?): List<Minutely> {
+private fun getMinutelyForecast(minutelyResult: List<PirateWeatherMinutely>?): List<Minutely>? {
+    if (minutelyResult.isNullOrEmpty()) return null
     val minutelyList: MutableList<Minutely> = arrayListOf()
-    minutelyResult?.forEachIndexed { i, minutelyForecast ->
+    minutelyResult.forEachIndexed { i, minutelyForecast ->
         minutelyList.add(
             Minutely(
-                Date(minutelyForecast.time * 1000),
-                if (i < minutelyResult.size - 1) {
-                    ((minutelyResult[i + 1].time - minutelyForecast.time) / 60).toDouble().roundToInt()
+                date = Date(minutelyForecast.time * 1000),
+                minuteInterval = if (i < minutelyResult.size - 1) {
+                    ((minutelyResult[i + 1].time - minutelyForecast.time) / 60).toDouble()
+                        .roundToInt()
                 } else ((minutelyForecast.time - minutelyResult[i - 1].time) / 60).toDouble()
                     .roundToInt(),
-                minutelyForecast.precipIntensity?.toDouble()
+                precipitationIntensity = minutelyForecast.precipIntensity?.toDouble()
             )
         )
     }
@@ -186,14 +180,15 @@ private fun getMinutelyForecast(minutelyResult: List<PirateWeatherMinutely>?): L
 /**
  * Returns alerts
  */
-private fun getAlertList(alertList: List<PirateWeatherAlert>): List<Alert> {
+private fun getAlertList(alertList: List<PirateWeatherAlert>?): List<Alert>? {
+    if (alertList.isNullOrEmpty()) return null
     return alertList.map { alert ->
         Alert(
             // TODO: Avoid having the same ID for two different alerts starting at the same time
             alertId = alert.start + alert.end,
             startDate = Date(alert.start.times(1000)),
             endDate = Date(alert.end.times(1000)),
-            description = alert.title ?: "Unnamed alert",
+            description = alert.title ?: "",
             content = alert.description,
             // TODO: Add more refined priority states (not evident from PirateWeather docs)
             priority = when (alert.severity) {

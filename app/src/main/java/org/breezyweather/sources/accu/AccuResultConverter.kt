@@ -342,9 +342,9 @@ private fun getMinutelyList(
     if (minuteResult == null || minuteResult.Intervals.isNullOrEmpty()) return emptyList()
     return minuteResult.Intervals.map { interval ->
         Minutely(
-            Date(interval.StartEpochDateTime),
-            interval.Minute,
-            interval.Dbz.roundToInt()
+            date = Date(interval.StartEpochDateTime),
+            minuteInterval = interval.Minute,
+            dbz = interval.Dbz.roundToInt()
         )
     }
 }

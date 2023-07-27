@@ -169,11 +169,11 @@ private fun getMinutelyList(minutelyResult: List<OpenWeatherOneCallMinutely>?): 
     minutelyResult?.forEachIndexed { i, minutelyForecast ->
         minutelyList.add(
             Minutely(
-                Date(minutelyForecast.dt * 1000),
-                if (i < minutelyResult.size - 1) {
+                date = Date(minutelyForecast.dt * 1000),
+                minuteInterval = if (i < minutelyResult.size - 1) {
                     ((minutelyResult[i + 1].dt - minutelyForecast.dt) / 60).toDouble().roundToInt()
                 } else ((minutelyForecast.dt - minutelyResult[i - 1].dt) / 60).toDouble().roundToInt(),
-                minutelyForecast.precipitation?.toDouble()
+                precipitationIntensity = minutelyForecast.precipitation?.toDouble()
             )
         )
     }

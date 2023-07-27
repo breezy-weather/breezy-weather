@@ -25,7 +25,5 @@ data class PirateWeatherHourly(
     val windBearing: Float?,
     val uvIndex: Float?,
     val cloudCover: Float?,
-    val visibility: Float?,
-
-    val ozone: Float?
+    val visibility: Float?
 )

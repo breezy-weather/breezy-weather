@@ -164,13 +164,13 @@ private fun getMinutelyList(nowcastTimeseries: List<MetNoForecastTimeseries>?): 
     nowcastTimeseries.forEachIndexed { i, nowcastForecast ->
         minutelyList.add(
             Minutely(
-                nowcastForecast.time,
-                if (i < nowcastTimeseries.size - 1) {
+                date = nowcastForecast.time,
+                minuteInterval = if (i < nowcastTimeseries.size - 1) {
                     ((nowcastTimeseries[i + 1].time.time - nowcastForecast.time.time) / (60 * 1000)).toDouble()
                         .roundToInt()
                 } else ((nowcastForecast.time.time - nowcastTimeseries[i - 1].time.time) / (60 * 1000)).toDouble()
                     .roundToInt(),
-                nowcastForecast.data?.instant?.details?.precipitationRate?.toDouble()
+                precipitationIntensity = nowcastForecast.data?.instant?.details?.precipitationRate?.toDouble()
             )
         )
     }

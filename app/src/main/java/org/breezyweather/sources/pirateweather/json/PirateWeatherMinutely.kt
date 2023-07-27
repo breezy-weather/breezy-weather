@@ -8,5 +8,5 @@ data class PirateWeatherMinutely(
     val precipType: String?,
     val precipIntensity: Float?,
     val precipProbability: Float?,
-    val precipIntensityError: Float?,
+    val precipIntensityError: Float?
 )

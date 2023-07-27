@@ -90,6 +90,7 @@ class AboutActivity : GeoActivity() {
     private val contributors: Array<ContributorItem> = arrayOf(
         ContributorItem("Julien Papasian", "https://github.com/papjul"),
         ContributorItem("WangDaYeeeeee", "https://github.com/WangDaYeeeeee", R.string.about_contribution_WangDaYeeeeee),
+        ContributorItem("Cod3d.", "https://github.com/Cod3dDOT", R.string.about_contribution_weather_source),
         ContributorItem("Romain Théry", "https://github.com/rthery"),
         ContributorItem("majjejjam", "https://github.com/majjejjam"),
         ContributorItem("Mark Bestavros", "https://github.com/mbestavros")

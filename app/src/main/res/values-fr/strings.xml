@@ -543,6 +543,7 @@
     <string name="about_source_code">Code source</string>
     <string name="about_contributors">Contributeurs</string>
     <string name="about_contribution_WangDaYeeeeee">Développeur du projet d’origine Geometric Weather</string>
+    <string name="about_contribution_weather_source">A ajouté le support de nouvelle(s) source(s) météo</string>
     <string name="action_location_list">Liste des emplacements</string>
     <string name="setting_weather_source_accu_days">Jours</string>
     <string name="settings_weather_source_portal">Portail</string>

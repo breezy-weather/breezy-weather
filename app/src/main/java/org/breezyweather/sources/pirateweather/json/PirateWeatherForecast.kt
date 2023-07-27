@@ -7,5 +7,5 @@ import kotlinx.serialization.Serializable
 data class PirateWeatherForecast<T>(
     val summary: String?,
     val icon: String?,
-    val data: List<T>,
+    val data: List<T>?
 )

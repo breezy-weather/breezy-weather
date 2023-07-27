@@ -48,5 +48,5 @@ data class PirateWeatherDaily(
     val cloudCover: Float?,
     val uvIndex: Float?,
     val uvIndexTime: Long?,
-    val visibility: Float?,
+    val visibility: Float?
 )

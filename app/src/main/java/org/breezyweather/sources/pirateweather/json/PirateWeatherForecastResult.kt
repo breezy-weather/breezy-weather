@@ -10,9 +10,8 @@ data class PirateWeatherForecastResult(
     val offset: Float?,
     val elevation: Int?,
     val currently: PirateWeatherCurrently?,
-    val minutely: PirateWeatherForecast<PirateWeatherMinutely>,
-    val hourly: PirateWeatherForecast<PirateWeatherHourly>,
-    val daily: PirateWeatherForecast<PirateWeatherDaily>,
-    val alerts: List<PirateWeatherAlert>,
-    val flags: PirateWeatherFlags,
+    val minutely: PirateWeatherForecast<PirateWeatherMinutely>?,
+    val hourly: PirateWeatherForecast<PirateWeatherHourly>?,
+    val daily: PirateWeatherForecast<PirateWeatherDaily>?,
+    val alerts: List<PirateWeatherAlert>?
 )

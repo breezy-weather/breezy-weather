@@ -28,6 +28,5 @@ data class PirateWeatherCurrently(
     val windBearing: Float?,
     val cloudCover: Float?,
     val uvIndex: Float?,
-    val visibility: Float?,
-    val ozone: Float?
+    val visibility: Float?
 )
