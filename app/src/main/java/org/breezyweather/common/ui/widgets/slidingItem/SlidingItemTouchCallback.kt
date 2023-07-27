@@ -34,13 +34,13 @@ abstract class SlidingItemTouchCallback : ItemTouchHelper.Callback() {
         val slidingContainer = findSlidingContainer(viewHolder)
         if (isCurrentlyActive) {
             var originalElevation =
-                slidingContainer.getTag(androidx.viewpager2.R.id.item_touch_helper_previous_elevation)
+                slidingContainer.getTag(androidx.recyclerview.R.id.item_touch_helper_previous_elevation)
             if (originalElevation == null) {
                 originalElevation = ViewCompat.getElevation(slidingContainer)
                 val newElevation = 1.0f + findMaxElevation(recyclerView, slidingContainer)
                 ViewCompat.setElevation(slidingContainer, newElevation)
                 slidingContainer.setTag(
-                    androidx.viewpager2.R.id.item_touch_helper_previous_elevation,
+                    androidx.recyclerview.R.id.item_touch_helper_previous_elevation,
                     originalElevation
                 )
             }

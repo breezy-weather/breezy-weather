@@ -18,7 +18,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
-import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import org.breezyweather.R
@@ -50,14 +49,9 @@ class FirstCardHeaderController(
             mView.setOnClickListener {
                 IntentHelper.startAlertActivity(mActivity, mFormattedId)
             }
-            mView.findViewById<ComposeView>(R.id.container_main_first_card_alert_list).apply {
-                // Dispose of the Composition when the view's LifecycleOwner
-                // is destroyed
-                setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
-                setContent {
-                    BreezyWeatherTheme(lightTheme = !isSystemInDarkTheme()) {
-                        ContentView(location)
-                    }
+            mView.findViewById<ComposeView>(R.id.container_main_first_card_alert_list).setContent {
+                BreezyWeatherTheme(lightTheme = !isSystemInDarkTheme()) {
+                    ContentView(location)
                 }
             }
         } else {
