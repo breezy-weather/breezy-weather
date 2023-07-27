@@ -608,4 +608,5 @@
     <string name="allergen_level_2">Низкий</string>
     <string name="allergen_birch">Берёза</string>
     <string name="allergen_level_3">Средний</string>
+    <string name="about_contribution_weather_source">Добавлена поддержка нового(ых) источника(ов) погоды</string>
 </resources>
