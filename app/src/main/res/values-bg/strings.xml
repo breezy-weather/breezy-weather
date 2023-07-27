@@ -591,4 +591,14 @@
     <string name="message_source_not_installed_error_content">Този източник вече не е наличен, моля, изтрийте местоположението и го създайте отново от друг източник.</string>
     <string name="action_help_me_choose">Помогни ми да избера</string>
     <string name="settings_background_updates_worker_info_summary">Последно изпълнение: $</string>
+    <string name="allergen_birch">Бреза</string>
+    <string name="allergen_mugwort">Пелин</string>
+    <string name="allergen_olive">Маслина</string>
+    <string name="allergen_level_2">Ниско</string>
+    <string name="allergen_level_3">Средно</string>
+    <string name="allergen_level_0">Няма</string>
+    <string name="allergen_alder">Елша</string>
+    <string name="allergen_level_1">Много ниско</string>
+    <string name="allergen_level_4">Високо</string>
+    <string name="allergen_level_5">Много високо</string>
 </resources>
