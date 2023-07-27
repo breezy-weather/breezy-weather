@@ -66,7 +66,7 @@
     <string name="settings_icon_packs_get_more_github">Mehr von GitHub</string>
     <string name="settings_icon_packs_get_more_store">Mehr von Google Play</string>
     <string name="action_set">Festlegen</string>
-    <string name="allergen_grass">Gras</string>
+    <string name="allergen_grass">Gräser</string>
     <string name="action_help">Hilfe</string>
     <string name="hourly_forecast">Die nächsten Stunden</string>
     <string name="hours_of_sun">Sonnenstunden</string>
@@ -593,4 +593,5 @@
     <string name="message_source_not_installed_error_content">Diese Quelle ist nicht mehr verfügbar, bitte löschen Sie den Ort und erstellen Sie ihn erneut über eine andere Quelle.</string>
     <string name="action_help_me_choose">Auswahlhilfe</string>
     <string name="settings_background_updates_worker_info_summary">Letzte Ausführung: $</string>
+    <string name="allergen_mugwort">Beifuß</string>
 </resources>
