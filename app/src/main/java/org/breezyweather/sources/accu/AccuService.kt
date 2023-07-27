@@ -1,6 +1,7 @@
 package org.breezyweather.sources.accu
 
 import android.content.Context
+import android.graphics.Color
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
@@ -34,7 +35,7 @@ class AccuService @Inject constructor(
     override val name = "AccuWeather"
     override val privacyPolicyUrl = "https://www.accuweather.com/en/privacy"
 
-    override val color = -0x10a7dd
+    override val color = Color.rgb(240, 85, 20)
     override val weatherAttribution = "AccuWeather"
     override val locationSearchAttribution = weatherAttribution
 

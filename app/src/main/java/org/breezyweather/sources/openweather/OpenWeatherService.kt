@@ -1,6 +1,7 @@
 package org.breezyweather.sources.openweather
 
 import android.content.Context
+import android.graphics.Color
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
@@ -31,7 +32,7 @@ class OpenWeatherService @Inject constructor(
     override val name = "OpenWeather"
     override val privacyPolicyUrl = "https://openweather.co.uk/privacy-policy"
 
-    override val color = -0x1491b5
+    override val color = Color.rgb(235, 110, 75)
     override val weatherAttribution = "OpenWeather"
 
     private val mApi by lazy {

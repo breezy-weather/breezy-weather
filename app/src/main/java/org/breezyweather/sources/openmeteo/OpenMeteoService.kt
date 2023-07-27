@@ -1,6 +1,7 @@
 package org.breezyweather.sources.openmeteo
 
 import android.content.Context
+import android.graphics.Color
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.exceptions.LocationSearchException
@@ -22,7 +23,7 @@ class OpenMeteoService @Inject constructor(
     override val name = "Open-Meteo"
     override val privacyPolicyUrl = "https://open-meteo.com/en/terms#privacy"
 
-    override val color = -0x0077ff
+    override val color = Color.rgb(255, 136, 0)
     override val weatherAttribution = "Open-Meteo CC BY 4.0"
     override val locationSearchAttribution = "Open-Meteo CC BY 4.0 / GeoNames"
 

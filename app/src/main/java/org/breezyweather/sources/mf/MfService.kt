@@ -1,6 +1,7 @@
 package org.breezyweather.sources.mf
 
 import android.content.Context
+import android.graphics.Color
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Header
@@ -43,7 +44,7 @@ class MfService @Inject constructor(
     override val name = "Météo-France"
     override val privacyPolicyUrl = "https://meteofrance.com/application-meteo-france-politique-de-confidentialite"
 
-    override val color = -0xffa76e
+    override val color = Color.rgb(0, 87, 147)
     override val weatherAttribution = "Météo-France" // Etalab license for free usages
 
     private val mMfApi by lazy {

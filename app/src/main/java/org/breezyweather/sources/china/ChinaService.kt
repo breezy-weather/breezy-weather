@@ -1,6 +1,7 @@
 package org.breezyweather.sources.china
 
 import android.content.Context
+import android.graphics.Color
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.source.HttpSource
@@ -22,7 +23,7 @@ class ChinaService @Inject constructor(
     override val name = "中国"
     override val privacyPolicyUrl = "https://privacy.mi.com/all/zh_CN"
 
-    override val color = -0xa14472
+    override val color = Color.rgb(255, 105, 0)
     override val weatherAttribution = "北京天气、彩云天气、中国环境监测总站"
     override val locationSearchAttribution = "北京天气、彩云天气、中国环境监测总站"
 
