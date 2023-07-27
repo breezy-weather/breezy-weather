@@ -595,4 +595,5 @@
     <string name="settings_background_updates_worker_info_summary">Letzte Ausführung: $</string>
     <string name="allergen_mugwort">Beifuß</string>
     <string name="allergen_alder">Erle</string>
+    <string name="about_contribution_weather_source">Unterstützung für neue Wetterquelle(n) hinzugefügt</string>
 </resources>
