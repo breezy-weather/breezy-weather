@@ -594,4 +594,5 @@
     <string name="action_help_me_choose">Auswahlhilfe</string>
     <string name="settings_background_updates_worker_info_summary">Letzte Ausführung: $</string>
     <string name="allergen_mugwort">Beifuß</string>
+    <string name="allergen_alder">Erle</string>
 </resources>
