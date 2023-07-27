@@ -239,7 +239,7 @@ class DefaultResourceProvider : ResourceProvider() {
         }
 
         private fun getFilterResource(filter: Map<String, String>?, key: String): String {
-            val value = filter?.getOrDefault(key, null)
+            val value = filter?.getOrElse(key) { null }
             return if (value.isNullOrEmpty()) key else value
         }
 

@@ -128,13 +128,13 @@ fun completeDailyListFromHourlyList(
         val newDay = completeHalfDayFromHourlyList(
             dailyDate = daily.date,
             initialHalfDay = daily.day,
-            halfDayHourlyList = hourlyListByHalfDay.getOrDefault(theDayFormatted, null)?.get("day"),
+            halfDayHourlyList = hourlyListByHalfDay.getOrElse(theDayFormatted) { null }?.get("day"),
             isDay = true
         )
         val newNight = completeHalfDayFromHourlyList(
             dailyDate = daily.date,
             initialHalfDay = daily.night,
-            halfDayHourlyList = hourlyListByHalfDay.getOrDefault(theDayFormatted, null)?.get("night"),
+            halfDayHourlyList = hourlyListByHalfDay.getOrElse(theDayFormatted) { null }?.get("night"),
             isDay = false
         )
         /**
@@ -164,13 +164,13 @@ fun completeDailyListFromHourlyList(
                 getCalculatedMoonPhase(daily.date)
             },
             airQuality = daily.airQuality ?: getDailyAirQualityFromHourlyList(
-                hourlyListByDay.getOrDefault(theDayFormatted, null)
+                hourlyListByDay.getOrElse(theDayFormatted) { null }
             ),
             allergen = daily.allergen ?: getDailyAllergenFromHourlyList(
-                hourlyListByDay.getOrDefault(theDayFormatted, null)
+                hourlyListByDay.getOrElse(theDayFormatted) { null }
             ),
             uV = if (daily.uV?.index != null) daily.uV else getDailyUVFromHourlyList(
-                hourlyListByDay.getOrDefault(theDayFormatted, null)
+                hourlyListByDay.getOrElse(theDayFormatted) { null }
             ),
             hoursOfSun = daily.hoursOfSun ?: getHoursOfDay(newSun.riseDate, newSun.setDate)
         )
@@ -645,7 +645,7 @@ fun completeHourlyListFromDailyList(
         // Example: 15:01 -> starts at 15:00, 15:59 -> starts at 15:00
         if (hourly.date.time >= System.currentTimeMillis() - (3600 * 1000)) {
             val dateForHourFormatted = hourly.date.getFormattedDate(timeZone, "yyyyMMdd")
-            dailyListByDate.getOrDefault(dateForHourFormatted, null)
+            dailyListByDate.getOrElse(dateForHourFormatted) { null }
                 ?.first()?.let { daily ->
                     val isDaylight = hourly.isDaylight ?: isDaylight(
                         daily.sun?.riseDate,

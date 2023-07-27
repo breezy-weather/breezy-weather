@@ -427,9 +427,9 @@ open class IconPackResourcesProvider(
     }
 
     open val sunDrawableClassName: String?
-        get() = mSunMoonFilter?.getOrDefault(Constants.RESOURCES_SUN, null)
+        get() = mSunMoonFilter?.getOrElse(Constants.RESOURCES_SUN) { null }
     open val moonDrawableClassName: String?
-        get() = mSunMoonFilter?.getOrDefault(Constants.RESOURCES_MOON, null)
+        get() = mSunMoonFilter?.getOrElse(Constants.RESOURCES_MOON) { null }
 
     companion object {
         fun getProviderList(
@@ -489,7 +489,7 @@ open class IconPackResourcesProvider(
         }
 
         private fun getFilterResource(filter: Map<String, String>?, key: String): String {
-            return filter?.getOrDefault(key, null) ?: key
+            return filter?.getOrElse(key) { null } ?: key
         }
 
         private fun innerGetWeatherIconName(code: WeatherCode?, daytime: Boolean): String {

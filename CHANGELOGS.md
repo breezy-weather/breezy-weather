@@ -3,6 +3,7 @@
 - Add Allergens support for Open-Meteo source (Europe only at the moment). Allergens are different than AccuWeather ones (North America only).
 - Uses universal scale for all allergens, regardless of weather sources
 - Allergens are now sorted by name
+- Fix crash on Android < 7.0
 
 
 # Version 4.4.0-beta
