@@ -609,4 +609,9 @@
     <string name="allergen_birch">Берёза</string>
     <string name="allergen_level_3">Средний</string>
     <string name="about_contribution_weather_source">Добавлена поддержка нового(ых) источника(ов) погоды</string>
+    <string name="location_resident_location">Местоположение места жительства</string>
+    <string name="settings_weather_source">Провайдер погоды</string>
+    <string name="location_resident_location_summaryOn">Включено. Отображается, если находится в пределах 20 км от текущего местоположения, в противном случае скрыт.</string>
+    <string name="location_resident_location_summaryOff">Выключено. Местоположение всегда доступно.</string>
+    <string name="action_delete">Удалить</string>
 </resources>
