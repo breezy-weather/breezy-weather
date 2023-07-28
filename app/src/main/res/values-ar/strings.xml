@@ -136,7 +136,7 @@
     <string name="message_updated_in_background">تم التحديث في الخلفية</string>
     <string name="notification_precipitation_today">هناك إحتمالية لهطول الأمطار اليوم.</string>
     <string name="notification_precipitation_short_term">هناك إمكانية لهطول الأمطار في الساعات القليلة القادمة.</string>
-    <string name="location_resident_message">تم التحديد كمدينة الإقامة</string>
+    <string name="location_resident_message">تعيين كمدينة الإقامة</string>
     <string name="location_resident_dialog">سيقوم التطبيق تلقائياً بعرض وإخفاء أماكن الإقامة بناءً على موقعك الحالي.
 \nعلى سبيل المثال، يمكنك إختيار مسقط رأسك كمدينة الإقامة. يمكنك تفقد أحوال الطقس في مسقط رأسك بينما أنت مسافر. عند عودتك إلى منزلك، سيتم إخفاء الطقس في مسقط رأسك وإستبداله بطقس موقعك الحالي.</string>
     <string name="allergen_tap_to_see_more">أنقر للمزيد…</string>
@@ -609,4 +609,9 @@
     <string name="allergen_level_0">لاشيء</string>
     <string name="allergen_level_2">منخفض</string>
     <string name="about_contribution_weather_source">تمت إضافة دعم لمصدر/مصادر الطقس الجديدة</string>
+    <string name="location_resident_location">موقع الإقامة</string>
+    <string name="location_resident_location_summaryOn">ممكن. تظهر في نطاق 20 كم من الموقع الحالي ، مخفية بخلاف ذلك.</string>
+    <string name="location_resident_location_summaryOff">معطل. الموقع متاح دائمًا.</string>
+    <string name="action_delete">حذف</string>
+    <string name="settings_weather_source">مزود الطقس</string>
 </resources>
