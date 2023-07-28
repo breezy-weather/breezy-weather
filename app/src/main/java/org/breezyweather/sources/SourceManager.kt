@@ -9,6 +9,7 @@ import org.breezyweather.sources.accu.AccuService
 import org.breezyweather.sources.android.AndroidLocationSource
 import org.breezyweather.sources.baiduip.BaiduIPLocationService
 import org.breezyweather.sources.china.ChinaService
+import org.breezyweather.sources.here.HereService
 import org.breezyweather.sources.metno.MetNoService
 import org.breezyweather.sources.mf.MfService
 import org.breezyweather.sources.noreversegeocoding.NoReverseGeocodingService
@@ -25,6 +26,7 @@ class SourceManager @Inject constructor(
     metNoService: MetNoService,
     openWeatherService: OpenWeatherService,
     pirateWeatherService: PirateWeatherService,
+    hereService: HereService,
     mfService: MfService,
     chinaService: ChinaService,
     noReverseGeocodingService: NoReverseGeocodingService
@@ -41,6 +43,7 @@ class SourceManager @Inject constructor(
         metNoService,
         openWeatherService,
         pirateWeatherService,
+        hereService,
         mfService,
         chinaService,
 
