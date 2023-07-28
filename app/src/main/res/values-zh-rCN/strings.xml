@@ -611,4 +611,5 @@
     <string name="allergen_level_4">高</string>
     <string name="allergen_level_5">非常高</string>
     <string name="allergen_level_3">中</string>
+    <string name="about_contribution_weather_source">添加了对新天气源的支持</string>
 </resources>
