@@ -2,6 +2,7 @@ package org.breezyweather.main.adapters.main
 
 import android.animation.Animator
 import android.view.ViewGroup
+import androidx.compose.ui.platform.ComposeView
 import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
@@ -92,7 +93,8 @@ class MainAdapter(
         ViewType.ALLERGEN -> AllergenViewHolder(parent)
         ViewType.ASTRO -> AstroViewHolder(parent)
         ViewType.LIVE -> DetailsViewHolder(parent)
-        else -> FooterViewHolder(parent)
+        ViewType.FOOTER -> FooterViewHolder(ComposeView(parent.context))
+        else -> FooterViewHolder(ComposeView(parent.context))
     }
 
     override fun onBindViewHolder(holder: AbstractMainViewHolder, position: Int) {

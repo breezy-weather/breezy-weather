@@ -294,7 +294,7 @@ class AboutActivity : GeoActivity() {
                         onClick = onClick,
                     )
                     .padding(dimensionResource(R.dimen.normal_margin)),
-                verticalAlignment = Alignment.CenterVertically,
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(
                     painter = painterResource(iconId),

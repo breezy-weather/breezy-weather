@@ -2,20 +2,24 @@ package org.breezyweather.settings.preference.composables
 
 import android.content.Context
 import androidx.annotation.ArrayRes
+import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Icon
+import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -27,6 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -39,6 +44,7 @@ import org.breezyweather.theme.compose.rememberThemeRipple
 @Composable
 fun ListPreferenceView(
     @StringRes titleId: Int,
+    @DrawableRes iconId: Int? = null,
     @ArrayRes valueArrayId: Int,
     @ArrayRes nameArrayId: Int,
     @ArrayRes summaryArrayId: Int? = null,
@@ -51,6 +57,7 @@ fun ListPreferenceView(
     val summaries = if (summaryArrayId == null) names else stringArrayResource(summaryArrayId)
     ListPreferenceView(
         title = stringResource(titleId),
+        iconId = iconId,
         summary = { _, value -> summaries[values.indexOfFirst { it == value }] },
         selectedKey = selectedKey,
         valueArray = values,
@@ -63,20 +70,78 @@ fun ListPreferenceView(
 @Composable
 fun ListPreferenceView(
     title: String,
+    @DrawableRes iconId: Int? = null,
     summary: (Context, String) -> String?, // value -> summary.
     selectedKey: String,
     valueArray: Array<String>,
     nameArray: Array<String>,
     enabled: Boolean = true,
+    card: Boolean = true,
+    dismissButton: @Composable (() -> Unit)? = null,
     onValueChanged: (String) -> Unit,
 ) {
     val listSelectedState = remember { mutableStateOf(selectedKey) }
     val dialogOpenState = remember { mutableStateOf(false) }
+    val currentSummary = summary(LocalContext.current, listSelectedState.value)
 
-    Material3CardListItem(
-        elevation = if (enabled) defaultCardListItemElevation else 0.dp
-    ) {
-        Column(
+    // TODO: Redundancy
+    if (card) {
+        Material3CardListItem(
+            elevation = if (enabled) defaultCardListItemElevation else 0.dp
+        ) {
+            ListItem(
+                tonalElevation = if (enabled) defaultCardListItemElevation else 0.dp,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .alpha(if (enabled) 1f else 0.5f)
+                    .clickable(
+                        interactionSource = remember { MutableInteractionSource() },
+                        indication = rememberThemeRipple(),
+                        onClick = { dialogOpenState.value = true },
+                        enabled = enabled,
+                    )
+                    .padding(PaddingValues(vertical = 8.dp)),
+                leadingContent = if (iconId != null) {
+                    {
+                        Icon(
+                            painter = painterResource(iconId),
+                            tint = DayNightTheme.colors.titleColor,
+                            contentDescription = null,
+                            modifier = Modifier.size(24.dp),
+                        )
+                    }
+                } else null,
+                headlineContent = {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Column(
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Text(
+                                text = title,
+                                color = DayNightTheme.colors.titleColor,
+                                style = MaterialTheme.typography.titleMedium,
+                            )
+                        }
+                    }
+                },
+                supportingContent = if (currentSummary?.isNotEmpty() == true) {
+                    {
+                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                        Text(
+                            text = currentSummary,
+                            color = DayNightTheme.colors.bodyColor,
+                            style = MaterialTheme.typography.bodyMedium,
+                        )
+                    }
+                } else null
+            )
+        }
+    } else {
+        ListItem(
+            tonalElevation = 0.dp,
             modifier = Modifier
                 .fillMaxWidth()
                 .alpha(if (enabled) 1f else 0.5f)
@@ -86,17 +151,35 @@ fun ListPreferenceView(
                     onClick = { dialogOpenState.value = true },
                     enabled = enabled,
                 )
-                .padding(dimensionResource(R.dimen.normal_margin)),
-            verticalArrangement = Arrangement.Center,
-        ) {
-            Column {
-                Text(
-                    text = title,
-                    color = DayNightTheme.colors.titleColor,
-                    style = MaterialTheme.typography.titleMedium,
-                )
-                val currentSummary = summary(LocalContext.current, listSelectedState.value)
-                if (currentSummary?.isNotEmpty() == true) {
+                .padding(PaddingValues(vertical = 8.dp)),
+            leadingContent = if (iconId != null) {
+                {
+                    Icon(
+                        painter = painterResource(iconId),
+                        tint = DayNightTheme.colors.titleColor,
+                        contentDescription = null,
+                        modifier = Modifier.size(24.dp),
+                    )
+                }
+            } else null,
+            headlineContent = {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Column(
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text(
+                            text = title,
+                            color = DayNightTheme.colors.titleColor,
+                            style = MaterialTheme.typography.titleMedium,
+                        )
+                    }
+                }
+            },
+            supportingContent = if (currentSummary?.isNotEmpty() == true) {
+                {
                     Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
                     Text(
                         text = currentSummary,
@@ -104,8 +187,8 @@ fun ListPreferenceView(
                         style = MaterialTheme.typography.bodyMedium,
                     )
                 }
-            }
-        }
+            } else null
+        )
     }
 
     if (dialogOpenState.value) {
@@ -145,7 +228,8 @@ fun ListPreferenceView(
                         style = MaterialTheme.typography.labelLarge,
                     )
                 }
-            }
+            },
+            dismissButton = dismissButton
         )
     }
 }

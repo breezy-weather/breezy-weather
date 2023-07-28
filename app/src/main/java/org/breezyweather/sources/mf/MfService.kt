@@ -45,7 +45,7 @@ class MfService @Inject constructor(
     override val privacyPolicyUrl = "https://meteofrance.com/application-meteo-france-politique-de-confidentialite"
 
     override val color = Color.rgb(0, 87, 147)
-    override val weatherAttribution = "Météo-France" // Etalab license for free usages
+    override val weatherAttribution = "Météo-France (Etalab)"
 
     private val mMfApi by lazy {
         client

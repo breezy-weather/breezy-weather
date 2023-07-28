@@ -2,6 +2,7 @@
 
 - Add Allergens support for Open-Meteo source (Europe only at the moment). Allergens are different than AccuWeather ones (North America only).
 - Uses universal scale for all allergens, regardless of weather sources
+- New per-location settings dialog (will be improved in next versions)
 - Allergens are now sorted by name
 - Add support for Pirate Weather (thanks Cod3d.!)
 - Fix crash on Android < 7.0

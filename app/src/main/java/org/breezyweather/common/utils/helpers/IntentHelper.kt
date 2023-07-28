@@ -19,6 +19,7 @@ import org.breezyweather.settings.activities.CardDisplayManageActivity
 import org.breezyweather.settings.activities.DailyTrendDisplayManageActivity
 import org.breezyweather.settings.activities.DetailDisplayManageActivity
 import org.breezyweather.settings.activities.HourlyTrendDisplayManageActivity
+import org.breezyweather.settings.activities.MainScreenSettingsActivity
 import org.breezyweather.settings.activities.PreviewIconActivity
 import org.breezyweather.settings.activities.SelectLocationProviderActivity
 import org.breezyweather.settings.activities.SelectWeatherProviderActivity
@@ -147,6 +148,10 @@ object IntentHelper {
 
     fun startDetailDisplayManageActivity(activity: Activity) {
         activity.startActivity(Intent(activity, DetailDisplayManageActivity::class.java))
+    }
+
+    fun startMainScreenSettingsActivity(activity: Activity) {
+        activity.startActivity(Intent(activity, MainScreenSettingsActivity::class.java))
     }
 
     fun startSelectLocationProviderActivity(activity: Activity) {

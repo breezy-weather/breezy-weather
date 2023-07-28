@@ -119,7 +119,8 @@ class MainActivity : GeoActivity(),
             .with(Location::class.java)
             .observeForever(backgroundUpdateObserver)
         EventBus.instance.with(SettingsChangedMessage::class.java).observe(this) {
-            viewModel.init()
+            // Force refresh but with latest location used
+            viewModel.init(viewModel.currentLocation.value?.location?.formattedId)
 
             findHomeFragment()?.updateViews()
 

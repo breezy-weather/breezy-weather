@@ -3,37 +3,43 @@ package org.breezyweather.main.adapters.main.holder
 import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Context
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import android.view.ViewGroup.MarginLayoutParams
-import android.widget.Button
 import androidx.annotation.CallSuper
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import io.github.giangpham96.expandable_text_compose.ExpandableText
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.source.AirQualityPollenSource
 import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.common.utils.helpers.IntentHelper
+import org.breezyweather.common.ui.composables.LocationPreference
+import org.breezyweather.main.MainActivity
 import org.breezyweather.theme.ThemeManager
+import org.breezyweather.theme.compose.BreezyWeatherTheme
 import org.breezyweather.theme.resource.providers.ResourceProvider
 
-class FooterViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
-    LayoutInflater
-        .from(parent.context)
-        .inflate(R.layout.container_main_footer, parent, false)
-) {
-    private val mCredits: ComposeView = itemView.findViewById(R.id.container_main_footer_credits)
-    private val mEditButton: Button = itemView.findViewById(R.id.container_main_footer_editButton)
+class FooterViewHolder(
+    private val composeView: ComposeView
+) : AbstractMainViewHolder(composeView) {
 
     @SuppressLint("SetTextI18n")
     @CallSuper
@@ -43,35 +49,15 @@ class FooterViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
         weatherSource: WeatherSource?
     ) {
         super.onBindView(context, location, provider, listAnimationEnabled, itemAnimationEnabled)
+
         val cardMarginsVertical = ThemeManager.getInstance(context)
             .weatherThemeDelegate
             .getHomeCardMargins(context).toFloat()
-        val params = itemView.layoutParams as MarginLayoutParams
-        if (cardMarginsVertical != 0f) {
-            params.setMargins(0, -cardMarginsVertical.toInt(), 0, 0)
-        }
-        itemView.layoutParams = params
-
-        mCredits.setContent {
-            CreditsText(weatherSource)
-        }
-
-        mEditButton.setTextColor(
-            ThemeManager.getInstance(context)
-                .weatherThemeDelegate
-                .getHeaderTextColor(mCredits.context)
-        )
-        mEditButton.setOnClickListener { IntentHelper.startCardDisplayManageActivity(context as Activity) }
-    }
-
-    @Composable
-    fun CreditsText(weatherSource: WeatherSource?) {
-        var expand by remember { mutableStateOf(false) }
 
         val creditsText = StringBuilder()
         creditsText.append(
             context.getString(R.string.weather_data_by)
-                .replace("$", weatherSource?.weatherAttribution ?: stringResource(R.string.null_data_text))
+                .replace("$", weatherSource?.weatherAttribution ?: context.getString(R.string.null_data_text))
         )
         if (weatherSource is AirQualityPollenSource
             && weatherSource.weatherAttribution != weatherSource.airQualityPollenAttribution) {
@@ -81,17 +67,107 @@ class FooterViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
                         .replace("$", weatherSource.airQualityPollenAttribution)
                 )
         }
-        ExpandableText(
-            originalText = creditsText.toString(),
-            expandAction = stringResource(R.string.action_see_more),
-            expand = expand,
-            color = Color.White,
-            expandActionColor = Color.White,
-            limitedMaxLines = 3,
-            animationSpec = spring(),
+
+        composeView.setContent {
+            BreezyWeatherTheme(lightTheme = !isSystemInDarkTheme()) {
+                ComposeView((context as MainActivity), location, creditsText.toString(), cardMarginsVertical.toInt())
+            }
+        }
+    }
+
+    @Composable
+    fun ComposeView(activity: MainActivity, location: Location, creditsText: String, cardMarginsVertical: Int) {
+        var expand by remember { mutableStateOf(false) }
+        var dialogOpenState by remember { mutableStateOf(false) }
+
+        val paddingTop = dimensionResource(R.dimen.little_margin) - cardMarginsVertical.dp
+        Row(
             modifier = Modifier
-                .clickable { expand = !expand },
-        )
+                .padding(
+                    PaddingValues(
+                        start = dimensionResource(R.dimen.normal_margin),
+                        top = if (paddingTop > 0.dp) paddingTop else 0.dp,
+                        end = dimensionResource(R.dimen.normal_margin),
+                        bottom = dimensionResource(R.dimen.little_margin)
+                    )
+                )
+                .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            ExpandableText(
+                originalText = creditsText,
+                expandAction = stringResource(R.string.action_see_more),
+                expand = expand,
+                color = Color.White,
+                expandActionColor = Color.White,
+                limitedMaxLines = 3,
+                animationSpec = spring(),
+                modifier = Modifier
+                    .weight(1f)
+                    .clickable { expand = !expand }
+            )
+            TextButton(
+                onClick = {
+                    dialogOpenState = true
+                }
+            ) {
+                Text(
+                    text = stringResource(R.string.action_edit),
+                    color = Color.White,
+                    fontSize = dimensionResource(id = R.dimen.content_text_size).value.sp
+                )
+            }
+        }
+
+        if (dialogOpenState) {
+            AlertDialog(
+                onDismissRequest = { dialogOpenState = false },
+                title = {
+                    Text(
+                        text = stringResource(R.string.action_settings),
+                        color = MaterialTheme.colorScheme.onSurface,
+                        style = MaterialTheme.typography.headlineSmall,
+                    )
+                },
+                text = {
+                    LocationPreference(activity, location, true) {
+                        dialogOpenState = false
+                    }
+                },
+                confirmButton = {
+                    TextButton(
+                        onClick = {
+                            dialogOpenState = false
+                        }
+                    ) {
+                        Text(
+                            text = stringResource(R.string.action_close),
+                            color = MaterialTheme.colorScheme.primary,
+                            style = MaterialTheme.typography.labelLarge,
+                        )
+                    }
+                }/*,
+                dismissButton = if (true) { // If location list size > 1
+                    {
+                        Button(
+                            onClick = {
+                                //dialogOpenState = false
+                            },
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = MaterialTheme.colorScheme.error,
+                                contentColor = MaterialTheme.colorScheme.onError,
+                            ),
+                        ) {
+                            Text(
+                                text = stringResource(R.string.action_delete),
+                                color = MaterialTheme.colorScheme.onError,
+                                style = MaterialTheme.typography.labelLarge,
+                            )
+                        }
+                    }
+                } else null*/
+            )
+        }
     }
 
     override fun getEnterAnimator(pendingAnimatorList: List<Animator>): Animator {

@@ -27,7 +27,7 @@ class MetNoService @Inject constructor(
     override val privacyPolicyUrl = "https://www.met.no/en/About-us/privacy"
 
     override val color = Color.rgb(11, 69, 94)
-    override val weatherAttribution = "MET Norway, Norwegian license for public data (NLOD) / Creative Commons 4.0 BY International"
+    override val weatherAttribution = "MET Norway (NLOD / CC BY 4.0)"
 
     private val mApi by lazy {
         client

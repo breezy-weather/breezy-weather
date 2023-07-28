@@ -35,12 +35,14 @@ fun PreferenceView(
     @StringRes summaryId: Int? = null,
     @DrawableRes iconId: Int? = null,
     enabled: Boolean = true,
+    card: Boolean = true,
     onClick: () -> Unit,
 ) = PreferenceView(
     title = stringResource(titleId),
     summary = if (summaryId != null) stringResource(summaryId) else null,
     iconId = iconId,
     enabled = enabled,
+    card = card,
     onClick = onClick
 )
 
@@ -50,78 +52,151 @@ fun PreferenceView(
     summary: String? = null,
     @DrawableRes iconId: Int? = null,
     enabled: Boolean = true,
+    card: Boolean = true,
     onClose: (() -> Unit)? = null,
     onClick: () -> Unit,
-) = Material3CardListItem(
-    elevation = if (enabled) defaultCardListItemElevation else 0.dp
 ) {
     val paddingValues = if (onClose == null) {
         PaddingValues(vertical = 8.dp)
     } else PaddingValues(bottom = 8.dp)
-    ListItem(
-        tonalElevation = if (enabled) defaultCardListItemElevation else 0.dp,
-        modifier = Modifier
-            .fillMaxWidth()
-            .alpha(if (enabled) 1f else 0.5f)
-            .clickable(
-                interactionSource = remember { MutableInteractionSource() },
-                indication = rememberThemeRipple(),
-                onClick = onClick,
-                enabled = enabled,
-            )
-            .padding(paddingValues),
-        leadingContent = if (iconId != null) {
-            {
-                Icon(
-                    painter = painterResource(iconId),
-                    tint = DayNightTheme.colors.titleColor,
-                    contentDescription = null,
-                    modifier = Modifier.size(24.dp),
-                )
-            }
-        } else null,
-        headlineContent = {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Column(
-                    modifier = Modifier.weight(1f)
-                ) {
-                    Text(
-                        text = title,
-                        color = DayNightTheme.colors.titleColor,
-                        style = MaterialTheme.typography.titleMedium,
+    // TODO: Redundant
+    if (card) {
+        Material3CardListItem(
+            elevation = if (enabled) defaultCardListItemElevation else 0.dp
+        ) {
+            ListItem(
+                tonalElevation = if (enabled) defaultCardListItemElevation else 0.dp,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .alpha(if (enabled) 1f else 0.5f)
+                    .clickable(
+                        interactionSource = remember { MutableInteractionSource() },
+                        indication = rememberThemeRipple(),
+                        onClick = onClick,
+                        enabled = enabled,
                     )
-                }
-                if (onClose != null) {
-                    Spacer(modifier = Modifier.width(dimensionResource(R.dimen.little_margin)))
-                    IconButton(
-                        onClick = {
-                            onClose()
-                        },
-                        modifier = Modifier.clip(CircleShape)
-                    ) {
+                    .padding(paddingValues),
+                leadingContent = if (iconId != null) {
+                    {
                         Icon(
-                            imageVector = Icons.Default.Close,
-                            contentDescription = stringResource(R.string.action_close),
-                            tint = DayNightTheme.colors.bodyColor
+                            painter = painterResource(iconId),
+                            tint = DayNightTheme.colors.titleColor,
+                            contentDescription = null,
+                            modifier = Modifier.size(24.dp),
                         )
                     }
-                }
-            }
-        },
-        supportingContent = if (summary?.isNotEmpty() == true) {
-            {
-                if (onClose == null) { // We already have spacing from close button
-                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
-                }
-                Text(
-                    text = summary,
-                    color = DayNightTheme.colors.bodyColor,
-                    style = MaterialTheme.typography.bodyMedium,
+                } else null,
+                headlineContent = {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Column(
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Text(
+                                text = title,
+                                color = DayNightTheme.colors.titleColor,
+                                style = MaterialTheme.typography.titleMedium,
+                            )
+                        }
+                        if (onClose != null) {
+                            Spacer(modifier = Modifier.width(dimensionResource(R.dimen.little_margin)))
+                            IconButton(
+                                onClick = {
+                                    onClose()
+                                },
+                                modifier = Modifier.clip(CircleShape)
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.Close,
+                                    contentDescription = stringResource(R.string.action_close),
+                                    tint = DayNightTheme.colors.bodyColor
+                                )
+                            }
+                        }
+                    }
+                },
+                supportingContent = if (summary?.isNotEmpty() == true) {
+                    {
+                        if (onClose == null) { // We already have spacing from close button
+                            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                        }
+                        Text(
+                            text = summary,
+                            color = DayNightTheme.colors.bodyColor,
+                            style = MaterialTheme.typography.bodyMedium,
+                        )
+                    }
+                } else null
+            )
+        }
+    } else {
+        ListItem(
+            tonalElevation = 0.dp,
+            modifier = Modifier
+                .fillMaxWidth()
+                .alpha(if (enabled) 1f else 0.5f)
+                .clickable(
+                    interactionSource = remember { MutableInteractionSource() },
+                    indication = rememberThemeRipple(),
+                    onClick = onClick,
+                    enabled = enabled,
                 )
-            }
-        } else null
-    )
+                .padding(paddingValues),
+            leadingContent = if (iconId != null) {
+                {
+                    Icon(
+                        painter = painterResource(iconId),
+                        tint = DayNightTheme.colors.titleColor,
+                        contentDescription = null,
+                        modifier = Modifier.size(24.dp),
+                    )
+                }
+            } else null,
+            headlineContent = {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Column(
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text(
+                            text = title,
+                            color = DayNightTheme.colors.titleColor,
+                            style = MaterialTheme.typography.titleMedium,
+                        )
+                    }
+                    if (onClose != null) {
+                        Spacer(modifier = Modifier.width(dimensionResource(R.dimen.little_margin)))
+                        IconButton(
+                            onClick = {
+                                onClose()
+                            },
+                            modifier = Modifier.clip(CircleShape)
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Close,
+                                contentDescription = stringResource(R.string.action_close),
+                                tint = DayNightTheme.colors.bodyColor
+                            )
+                        }
+                    }
+                }
+            },
+            supportingContent = if (summary?.isNotEmpty() == true) {
+                {
+                    if (onClose == null) { // We already have spacing from close button
+                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                    }
+                    Text(
+                        text = summary,
+                        color = DayNightTheme.colors.bodyColor,
+                        style = MaterialTheme.typography.bodyMedium,
+                    )
+                }
+            } else null
+        )
+    }
 }

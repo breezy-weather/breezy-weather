@@ -156,14 +156,20 @@
             android:screenOrientation="user" />
 
         <activity
+            android:name=".settings.activities.MainScreenSettingsActivity"
+            android:label="@string/settings_main"
+            android:theme="@style/BreezyWeatherTheme"
+            android:screenOrientation="user" />
+
+        <activity
             android:name=".settings.activities.SelectLocationProviderActivity"
-            android:label="@string/settings_location_summary"
+            android:label="@string/settings_location"
             android:theme="@style/BreezyWeatherTheme"
             android:screenOrientation="user" />
 
         <activity
             android:name=".settings.activities.SelectWeatherProviderActivity"
-            android:label="@string/settings_weather_sources_summary"
+            android:label="@string/settings_weather_sources"
             android:theme="@style/BreezyWeatherTheme"
             android:screenOrientation="user" />
 

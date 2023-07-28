@@ -305,7 +305,10 @@
     <string name="notification_precipitation_today">Des précipitations peuvent avoir lieu aujourd’hui.</string>
     <string name="notification_precipitation_short_term">Précipitations possibles dans les heures à venir.</string>
 
-    <string name="location_resident_message">Définir en tant que ville de résidence</string>
+    <string name="location_resident_location">Emplacement de résidence</string>
+    <string name="location_resident_location_summaryOn">Actif. Affiché si dans un rayon de 20 km de l’emplacement actuel, masqué autrement.</string>
+    <string name="location_resident_location_summaryOff">Inactif. Emplacement toujours disponible.</string>
+    <string name="location_resident_message">Défini en tant que ville de résidence</string>
     <string name="location_resident_dialog">Breezy Weather affichera ou masquera automatiquement votre ville de résidence selon votre position.\nPar exemple, vous pouvez définir votre domicile comme ville de résidence. En déplacement, vous pourrez vérifier la météo pour ce lieu. De retour chez vous, la météo « ville de résidence » sera masquée et remplacée par celle de votre position.</string>
 
     <string name="allergen_tap_to_see_more">Appuyez pour en voir plus…</string>
@@ -325,6 +328,7 @@
     <string name="settings_location_access_precise_title">Usage du GPS de l’appareil</string>
     <string name="settings_location_access_precise_summaryOn">Activé. Le service de géolocalisation et le GPS de l’appareil sont tous les deux utilisés.</string>
     <string name="settings_location_access_precise_summaryOff">Activez “Utiliser la position exacte” si vous rencontrez des difficultés à obtenir votre position.</string>
+    <string name="settings_weather_source">Fournisseur météo</string>
     <string name="settings_weather_sources">Fournisseurs météo</string>
     <string name="settings_weather_sources_summary">Paramètres des fournisseurs météo</string>
     <string name="settings_weather_source_open_weather_one_call_version">Version de OneCall</string>

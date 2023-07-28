@@ -19,7 +19,7 @@ interface WeatherSource : Source {
     /**
      * Credits and acknowledgments that will be shown at the bottom of main screen
      * Please check terms of the source to be sure to put the correct term here
-     * Example: MyGreatApi CC BY 4.0
+     * Example: MyGreatApi (CC BY 4.0)
      */
     val weatherAttribution: String
 

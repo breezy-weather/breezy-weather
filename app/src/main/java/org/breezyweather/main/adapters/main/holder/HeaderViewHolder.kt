@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -29,6 +30,7 @@ import org.breezyweather.common.basic.models.weather.Current
 import org.breezyweather.common.ui.widgets.NumberAnimTextView
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.theme.ThemeManager
+import org.breezyweather.theme.compose.BreezyWeatherTheme
 import org.breezyweather.theme.resource.providers.ResourceProvider
 import org.breezyweather.theme.weatherView.WeatherView
 import kotlin.math.abs
@@ -84,7 +86,13 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
             }
 
             itemView.findViewById<ComposeView>(R.id.container_main_header_details).setContent {
-                HeaderDetails(SettingsManager.getInstance(context).detailDisplayList, current, location.isDaylight)
+                BreezyWeatherTheme(lightTheme = !isSystemInDarkTheme()) {
+                    HeaderDetails(
+                        SettingsManager.getInstance(context).detailDisplayList,
+                        current,
+                        location.isDaylight
+                    )
+                }
             }
         }
         val params = mContainer.layoutParams as ViewGroup.MarginLayoutParams
