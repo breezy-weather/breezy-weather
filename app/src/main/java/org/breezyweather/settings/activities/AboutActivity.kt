@@ -114,6 +114,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("de"), "Ettore Atalan", "https://github.com/Atalanttore"),
         TranslatorItem(arrayOf("de"), "FineFindus", "https://github.com/FineFindus"),
         TranslatorItem(arrayOf("de"), "elea11", "https://github.com/elea11"),
+        TranslatorItem(arrayOf("de"), "Ulion", "https://hosted.weblate.org/user/ulion/"),
         TranslatorItem(arrayOf("el"), "Μιχάλης Καζώνης", "mailto:istrios@gmail.com"),
         TranslatorItem(arrayOf("el"), "Kostas Giapis", "https://github.com/tsiflimagas"),
         TranslatorItem(arrayOf("el"), "giwrgosmant", "https://github.com/giwrgosmant"),

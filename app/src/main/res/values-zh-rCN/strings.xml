@@ -92,11 +92,11 @@
     <string name="allergen_mold">霉菌</string>
     <string name="allergen_ragweed">豚草花粉</string>
     <string name="allergen_tree">树木花粉</string>
-    <string name="uv_index_0_2">弱</string>
-    <string name="uv_index_3_5">中等</string>
-    <string name="uv_index_6_7">强</string>
-    <string name="uv_index_8_10">非常强</string>
-    <string name="uv_index_11">极强</string>
+    <string name="uv_index_0_2">低</string>
+    <string name="uv_index_3_5">中</string>
+    <string name="uv_index_6_7">高</string>
+    <string name="uv_index_8_10">甚高</string>
+    <string name="uv_index_11">极高</string>
     <string name="daily_forecast">每日预报</string>
     <string name="hourly_forecast">小时预报</string>
     <string name="minutely_forecast">分钟预报</string>

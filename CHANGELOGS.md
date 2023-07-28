@@ -6,6 +6,7 @@
 - Allergens are now sorted by name
 - Add support for Pirate Weather (thanks Cod3d.!)
 - Fix crash on Android < 7.0
+- Updated translations
 
 
 # Version 4.4.0-beta
