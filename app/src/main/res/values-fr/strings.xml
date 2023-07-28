@@ -315,6 +315,7 @@
     <string name="message_tap_again_to_exit">Appuyez à nouveau pour quitter</string>
 
     <!-- content description -->
+    <string name="action_delete">Supprimer</string>
     <string name="action_back">Retour</string>
     <string name="settings_source_api_key">Clé API</string>
     <string name="settings_location_summary">Paramètres des services de localisation</string>
