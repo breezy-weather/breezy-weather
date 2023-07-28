@@ -608,4 +608,5 @@
     <string name="allergen_olive">زيتون</string>
     <string name="allergen_level_0">لاشيء</string>
     <string name="allergen_level_2">منخفض</string>
+    <string name="about_contribution_weather_source">تمت إضافة دعم لمصدر/مصادر الطقس الجديدة</string>
 </resources>
