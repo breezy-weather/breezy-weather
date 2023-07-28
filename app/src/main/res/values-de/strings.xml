@@ -597,4 +597,14 @@
     <string name="allergen_alder">Erle</string>
     <string name="about_contribution_weather_source">Unterstützung für neue Wetterquelle(n) hinzugefügt</string>
     <string name="allergen_birch">Birke</string>
+    <string name="allergen_olive">Olive</string>
+    <string name="allergen_level_1">Sehr niedrig</string>
+    <string name="allergen_level_2">Niedrig</string>
+    <string name="allergen_level_3">Mäßig</string>
+    <string name="allergen_level_4">Hoch</string>
+    <string name="allergen_level_5">Sehr hoch</string>
+    <string name="settings_weather_source">Wetterdienst</string>
+    <string name="location_resident_location">Wohnort</string>
+    <string name="location_resident_location_summaryOff">Deaktiviert. Ort ist immer verfügbar.</string>
+    <string name="action_delete">Löschen</string>
 </resources>
