@@ -596,4 +596,5 @@
     <string name="allergen_mugwort">Beifuß</string>
     <string name="allergen_alder">Erle</string>
     <string name="about_contribution_weather_source">Unterstützung für neue Wetterquelle(n) hinzugefügt</string>
+    <string name="allergen_birch">Birke</string>
 </resources>
