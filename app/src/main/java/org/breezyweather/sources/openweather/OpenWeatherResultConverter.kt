@@ -138,7 +138,7 @@ private fun getHourlyList(
                 rain = result.rain?.cumul1h,
                 snow = result.snow?.cumul1h
             ),
-            precipitationProbability = PrecipitationProbability(total = result.pop),
+            precipitationProbability = PrecipitationProbability(total = result.pop?.times(100f)),
             wind = Wind(
                 degree = result.windDeg?.toFloat(),
                 speed = result.windSpeed?.times(3.6f)
@@ -172,7 +172,8 @@ private fun getMinutelyList(minutelyResult: List<OpenWeatherOneCallMinutely>?): 
                 date = Date(minutelyForecast.dt * 1000),
                 minuteInterval = if (i < minutelyResult.size - 1) {
                     ((minutelyResult[i + 1].dt - minutelyForecast.dt) / 60).toDouble().roundToInt()
-                } else ((minutelyForecast.dt - minutelyResult[i - 1].dt) / 60).toDouble().roundToInt(),
+                } else ((minutelyForecast.dt - minutelyResult[i - 1].dt) / 60).toDouble()
+                    .roundToInt(),
                 precipitationIntensity = minutelyForecast.precipitation?.toDouble()
             )
         )
@@ -180,10 +181,14 @@ private fun getMinutelyList(minutelyResult: List<OpenWeatherOneCallMinutely>?): 
     return minutelyList
 }
 
-private fun getAirQuality(requestedTime: Long, ownAirPollutionResult: OpenWeatherAirPollutionResult?): AirQuality? {
+private fun getAirQuality(
+    requestedTime: Long,
+    ownAirPollutionResult: OpenWeatherAirPollutionResult?
+): AirQuality? {
     if (ownAirPollutionResult == null) return null
 
-    val matchingAirQualityForecast = ownAirPollutionResult.list?.firstOrNull { it.dt == requestedTime } ?: return null
+    val matchingAirQualityForecast =
+        ownAirPollutionResult.list?.firstOrNull { it.dt == requestedTime } ?: return null
 
     val pm25: Float? = matchingAirQualityForecast.components?.pm2_5
     val pm10: Float? = matchingAirQualityForecast.components?.pm10
