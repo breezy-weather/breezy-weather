@@ -614,4 +614,10 @@
     <string name="location_resident_location_summaryOff">معطل. الموقع متاح دائمًا.</string>
     <string name="action_delete">حذف</string>
     <string name="settings_weather_source">مزود الطقس</string>
+    <string name="weather_air_quality_data_by">بيانات جودة الهواء $</string>
+    <string name="weather_allergen_data_by">بيانات مسببات الحساسية بمقدار $</string>
+    <string name="weather_minutely_data_by">بيانات الترسبات الدقيقة حسب $</string>
+    <string name="weather_message_invalid_location">الموقع غير صالح ، يرجى حذفه وإعادة إضافته</string>
+    <string name="weather_alert_data_by">بيانات التنبيه حسب $</string>
+    <string name="weather_message_secondary_data_refresh_failed">فشل تحديث بيانات الطقس لمصدر طقس ثانوي</string>
 </resources>
