@@ -15,7 +15,7 @@ import org.breezyweather.common.basic.models.weather.UV
 import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.common.basic.models.weather.Wind
 import org.breezyweather.common.basic.wrappers.HourlyWrapper
-import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
+import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.sources.pirateweather.json.PirateWeatherAlert
@@ -33,13 +33,13 @@ import kotlin.math.roundToInt
  */
 fun convert(
     forecastResult: PirateWeatherForecastResult
-): WeatherResultWrapper {
+): WeatherWrapper {
     // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
     if (forecastResult.daily?.data.isNullOrEmpty() || forecastResult.hourly?.data.isNullOrEmpty()) {
         throw WeatherException()
     }
 
-    return WeatherResultWrapper(
+    return WeatherWrapper(
         base = Base(
             publishDate = forecastResult.currently?.time?.times(1000)?.toDate() ?: Date()
         ),

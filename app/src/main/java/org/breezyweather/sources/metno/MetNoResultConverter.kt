@@ -15,7 +15,7 @@ import org.breezyweather.common.basic.models.weather.UV
 import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.common.basic.models.weather.Wind
 import org.breezyweather.common.basic.wrappers.HourlyWrapper
-import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
+import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toDateNoHour
@@ -38,7 +38,7 @@ fun convert(
     moonResult: MetNoMoonResult,
     nowcastResult: MetNoNowcastResult,
     airQualityResult: MetNoAirQualityResult
-): WeatherResultWrapper {
+): WeatherWrapper {
     // If the API doesn’t return hourly, consider data as garbage and keep cached data
     if (forecastResult.properties == null
         || forecastResult.properties.timeseries.isNullOrEmpty()) {
@@ -46,7 +46,7 @@ fun convert(
     }
 
     val currentTimeseries = nowcastResult.properties?.timeseries?.getOrNull(0)?.data
-    return WeatherResultWrapper(
+    return WeatherWrapper(
         base = Base(
             // TODO: Use nowcast updatedAt if available
             publishDate = forecastResult.properties.meta?.updatedAt ?: Date()

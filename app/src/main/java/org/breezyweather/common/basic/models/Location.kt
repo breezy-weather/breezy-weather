@@ -31,6 +31,10 @@ data class Location(
 
     val weather: Weather? = null,
     val weatherSource: String = SourceManager.DEFAULT_WEATHER_SOURCE,
+    val airQualitySource: String? = null,
+    val allergenSource: String? = null,
+    val minutelySource: String? = null,
+    val alertSource: String? = null,
 
     val isCurrentPosition: Boolean = false,
     val isResidentPosition: Boolean = false
@@ -64,6 +68,10 @@ data class Location(
         parcel.writeString(city)
         parcel.writeString(district)
         parcel.writeString(weatherSource)
+        parcel.writeString(airQualitySource)
+        parcel.writeString(allergenSource)
+        parcel.writeString(minutelySource)
+        parcel.writeString(alertSource)
         parcel.writeByte(if (isCurrentPosition) 1 else 0)
         parcel.writeByte(if (isResidentPosition) 1 else 0)
     }
@@ -82,6 +90,10 @@ data class Location(
         city = parcel.readString()!!,
         district = parcel.readString(),
         weatherSource = parcel.readString()!!,
+        airQualitySource = parcel.readString(),
+        allergenSource = parcel.readString(),
+        minutelySource = parcel.readString(),
+        alertSource = parcel.readString(),
         isCurrentPosition = parcel.readByte() != 0.toByte(),
         isResidentPosition = parcel.readByte() != 0.toByte()
     )

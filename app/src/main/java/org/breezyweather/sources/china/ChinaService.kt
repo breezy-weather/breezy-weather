@@ -7,9 +7,9 @@ import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
+import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.settings.SettingsManager
-import org.breezyweather.common.source.WeatherSource
+import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.sources.china.json.ChinaForecastResult
 import org.breezyweather.sources.china.json.ChinaMinutelyResult
 import retrofit2.Retrofit
@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 class ChinaService @Inject constructor(
     client: Retrofit.Builder
-) : HttpSource(), WeatherSource, LocationSearchSource, ReverseGeocodingSource {
+) : HttpSource(), MainWeatherSource, LocationSearchSource, ReverseGeocodingSource {
 
     override val id = "china"
     override val name = "中国"
@@ -37,7 +37,7 @@ class ChinaService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location
-    ): Observable<WeatherResultWrapper> {
+    ): Observable<WeatherWrapper> {
         val mainly = mApi.getForecastWeather(
             location.latitude.toDouble(),
             location.longitude.toDouble(),

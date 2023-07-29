@@ -16,8 +16,12 @@ import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.basic.models.weather.UV
 import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.common.basic.models.weather.Wind
+import org.breezyweather.common.basic.wrappers.AirQualityWrapper
+import org.breezyweather.common.basic.wrappers.AllergenWrapper
 import org.breezyweather.common.basic.wrappers.HourlyWrapper
-import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
+import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
+import org.breezyweather.common.basic.wrappers.WeatherWrapper
+import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.toDate
@@ -49,7 +53,11 @@ fun convert(
             province = location.province,
             provinceCode = location.provinceCode,
             city = location.city,
-            weatherSource = "openmeteo"
+            weatherSource = "openmeteo",
+            airQualitySource = location.airQualitySource,
+            allergenSource = location.allergenSource,
+            minutelySource = location.minutelySource,
+            alertSource = location.alertSource
         )
     } else {
         Location(
@@ -69,7 +77,11 @@ fun convert(
             // Province code is mandatory for MF source to have alerts/air quality, and MF source uses Open-Meteo search
             provinceCode = if (result.countryCode == "FR") getFrenchDepartmentCode(result.admin2 ?: "") else null,
             city = result.name,
-            weatherSource = "openmeteo"
+            weatherSource = "openmeteo",
+            airQualitySource = location?.airQualitySource,
+            allergenSource = location?.allergenSource,
+            minutelySource = location?.minutelySource,
+            alertSource = location?.alertSource
         )
     }
 }
@@ -78,13 +90,13 @@ fun convert(
     context: Context,
     weatherResult: OpenMeteoWeatherResult,
     airQualityResult: OpenMeteoAirQualityResult
-): WeatherResultWrapper {
+): WeatherWrapper {
     // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
     if (weatherResult.hourly == null || weatherResult.daily == null) {
         throw WeatherException()
     }
 
-    return WeatherResultWrapper(
+    return WeatherWrapper(
         current = Current(
             weatherText = getWeatherText(context, weatherResult.currentWeather?.weatherCode),
             weatherCode = getWeatherCode(weatherResult.currentWeather?.weatherCode),
@@ -251,6 +263,47 @@ private fun getWeatherCode(icon: Int?): WeatherCode? {
 }
 
 /**
+ * Secondary convert
+ */
+
+fun convertSecondary(
+    airQualityResult: OpenMeteoAirQualityResult
+): SecondaryWeatherWrapper {
+    // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
+    if (airQualityResult.hourly == null) {
+        throw SecondaryWeatherException()
+    }
+
+    val airQualityHourly: MutableMap<Date, AirQuality> = mutableMapOf()
+    val allergenHourly: MutableMap<Date, Allergen> = mutableMapOf()
+
+    for (i in airQualityResult.hourly.time.indices) {
+        airQualityHourly[airQualityResult.hourly.time[i].toDate()] = AirQuality(
+            pM25 = airQualityResult.hourly.pm25?.getOrNull(i),
+            pM10 = airQualityResult.hourly.pm10?.getOrNull(i),
+            sO2 = airQualityResult.hourly.sulphurDioxide?.getOrNull(i),
+            nO2 = airQualityResult.hourly.nitrogenDioxide?.getOrNull(i),
+            o3 = airQualityResult.hourly.ozone?.getOrNull(i),
+            cO = airQualityResult.hourly.carbonMonoxide?.getOrNull(i)?.div(1000.0)?.toFloat(),
+        )
+        allergenHourly[airQualityResult.hourly.time[i].toDate()] = Allergen(
+            alder = airQualityResult.hourly.alderPollen?.getOrNull(i)?.roundToInt(),
+            birch = airQualityResult.hourly.birchPollen?.getOrNull(i)?.roundToInt(),
+            grass = airQualityResult.hourly.grassPollen?.getOrNull(i)?.roundToInt(),
+            mugwort = airQualityResult.hourly.mugwortPollen?.getOrNull(i)?.roundToInt(),
+            olive = airQualityResult.hourly.olivePollen?.getOrNull(i)?.roundToInt(),
+            ragweed = airQualityResult.hourly.ragweedPollen?.getOrNull(i)?.roundToInt(),
+        )
+    }
+
+
+    return SecondaryWeatherWrapper(
+        airQuality = AirQualityWrapper(hourlyForecast = airQualityHourly),
+        allergen = AllergenWrapper(hourlyForecast = allergenHourly)
+    )
+}
+
+/**
  * Functions for debugging purposes (tracking NPE)
  */
 fun debugConvert(
@@ -268,7 +321,11 @@ fun debugConvert(
             timeZone = TimeZone.getTimeZone(result.timezone),
             country = if (!result.country.isNullOrEmpty()) result.country else result.countryCode ?: "",
             city = location.city,
-            weatherSource = "openmeteo"
+            weatherSource = "openmeteo",
+            airQualitySource = location.airQualitySource,
+            allergenSource = location.allergenSource,
+            minutelySource = location.minutelySource,
+            alertSource = location.alertSource
         )
     } else {
         Location(
@@ -278,7 +335,11 @@ fun debugConvert(
             timeZone = TimeZone.getTimeZone(result.timezone),
             country = if (!result.country.isNullOrEmpty()) result.country else result.countryCode ?: "",
             city = result.name,
-            weatherSource = "openmeteo"
+            weatherSource = "openmeteo",
+            airQualitySource = location?.airQualitySource,
+            allergenSource = location?.allergenSource,
+            minutelySource = location?.minutelySource,
+            alertSource = location?.alertSource
         )
     }
 }
@@ -289,7 +350,7 @@ fun debugConvert(
     context: Context,
     weatherResult: OpenMeteoWeatherResult,
     airQualityResult: OpenMeteoAirQualityResult
-): WeatherResultWrapper {
+): WeatherWrapper {
     val dailyList: MutableList<Daily> = ArrayList()
     if (weatherResult.daily != null) {
         for (i in 1 until weatherResult.daily.time.size) {
@@ -308,7 +369,7 @@ fun debugConvert(
         }
     }
 
-    return WeatherResultWrapper(
+    return WeatherWrapper(
         dailyForecast = dailyList,
         hourlyForecast = hourlyList
     )

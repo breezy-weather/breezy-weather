@@ -213,6 +213,7 @@
     <string name="weather_air_quality_and_pollen_data_by">Air quality and pollen data by $</string>
     <!-- $ = weather data provider -->
     <string name="weather_message_data_refresh_failed">Weather data refresh failed</string>
+    <string name="weather_message_secondary_data_refresh_failed">Weather data refresh for a secondary weather source failed</string>
     <string name="weather_message_invalid_location">Invalid location, please delete it and re-add</string>
     <string name="weather_refresh_skipped_already_recently_updated">Already recently updated</string>
     <string name="weather_api_limit_reached_title">API requests limit reached</string>

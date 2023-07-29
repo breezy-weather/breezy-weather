@@ -18,6 +18,10 @@ object LocationEntityGenerator {
             city = location.city,
             district = location.district,
             weatherSource = location.weatherSource,
+            airQualitySource = location.airQualitySource,
+            allergenSource = location.allergenSource,
+            minutelySource = location.minutelySource,
+            alertSource = location.alertSource,
             currentPosition = location.isCurrentPosition,
             residentPosition = location.isResidentPosition
         )
@@ -45,6 +49,10 @@ object LocationEntityGenerator {
             entity.district,
             weather = null,
             entity.weatherSource,
+            entity.airQualitySource,
+            entity.allergenSource,
+            entity.minutelySource,
+            entity.alertSource,
             entity.currentPosition,
             entity.residentPosition
         )

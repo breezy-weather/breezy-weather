@@ -11,14 +11,14 @@ import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
+import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.ListPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.settings.SettingsManager
-import org.breezyweather.common.source.WeatherSource
+import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.sources.accu.json.*
 import org.breezyweather.sources.accu.preferences.AccuDaysPreference
@@ -30,7 +30,7 @@ import javax.inject.Inject
 class AccuService @Inject constructor(
     @ApplicationContext context: Context,
     client: Retrofit.Builder
-) : HttpSource(), WeatherSource, LocationSearchSource, ReverseGeocodingSource, ConfigurableSource {
+) : HttpSource(), MainWeatherSource, LocationSearchSource, ReverseGeocodingSource, ConfigurableSource {
 
     override val id = "accu"
     override val name = "AccuWeather"
@@ -55,7 +55,7 @@ class AccuService @Inject constructor(
 
     override fun requestWeather(
         context: Context, location: Location
-    ): Observable<WeatherResultWrapper> {
+    ): Observable<WeatherWrapper> {
         if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())
         }

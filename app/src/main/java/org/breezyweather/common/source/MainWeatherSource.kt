@@ -4,12 +4,12 @@ import android.content.Context
 import androidx.annotation.ColorInt
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
+import org.breezyweather.common.basic.wrappers.WeatherWrapper
 
 /**
  * Weather service.
  */
-interface WeatherSource : Source {
+interface MainWeatherSource : Source {
     /**
      * Official color used by the source
      */
@@ -26,6 +26,6 @@ interface WeatherSource : Source {
     /**
      * Returns weather converted to Breezy Weather Weather object
      */
-    fun requestWeather(context: Context, location: Location): Observable<WeatherResultWrapper>
+    fun requestWeather(context: Context, location: Location): Observable<WeatherWrapper>
 
 }

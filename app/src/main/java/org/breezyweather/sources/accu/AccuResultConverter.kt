@@ -24,7 +24,7 @@ import org.breezyweather.common.basic.models.weather.UV
 import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.common.basic.models.weather.Wind
 import org.breezyweather.common.basic.wrappers.HourlyWrapper
-import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
+import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.extensions.toTimezoneNoHour
@@ -62,7 +62,11 @@ fun convert(
             province = location.province,
             city = location.city,
             district = location.district + if (zipCode != null) " ($zipCode)" else "",
-            weatherSource = "accu"
+            weatherSource = "accu",
+            airQualitySource = location.airQualitySource,
+            allergenSource = location.allergenSource,
+            minutelySource = location.minutelySource,
+            alertSource = location.alertSource
         )
     } else {
         Location(
@@ -73,7 +77,11 @@ fun convert(
             country = result.Country.LocalizedName,
             province = result.AdministrativeArea?.LocalizedName ?: "",
             city = result.LocalizedName + if (zipCode != null) " ($zipCode)" else "",
-            weatherSource = "accu"
+            weatherSource = "accu",
+            airQualitySource = location?.airQualitySource,
+            allergenSource = location?.allergenSource,
+            minutelySource = location?.minutelySource,
+            alertSource = location?.alertSource
         )
     }
 }
@@ -87,13 +95,13 @@ fun convert(
     minuteResult: AccuMinutelyResult?,
     alertResultList: List<AccuAlertResult>,
     airQualityHourlyResult: AccuAirQualityResult
-): WeatherResultWrapper {
+): WeatherWrapper {
     // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
     if (dailyResult.DailyForecasts == null || dailyResult.DailyForecasts.isEmpty() || hourlyResultList.isEmpty()) {
         throw WeatherException()
     }
 
-    return WeatherResultWrapper(
+    return WeatherWrapper(
         base = Base(
             publishDate = Date(currentResult.EpochTime.times(1000)),
         ),

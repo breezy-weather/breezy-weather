@@ -18,7 +18,7 @@ import org.breezyweather.common.basic.models.weather.UV
 import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.common.basic.models.weather.Wind
 import org.breezyweather.common.basic.wrappers.HourlyWrapper
-import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
+import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.sources.china.json.ChinaForecastDaily
@@ -39,20 +39,24 @@ fun convert(location: Location?, result: ChinaLocationResult): Location {
         country = "",
         province = result.affiliation,
         city = result.name!!,
-        weatherSource = "china"
+        weatherSource = "china",
+        airQualitySource = location?.airQualitySource,
+        allergenSource = location?.allergenSource,
+        minutelySource = location?.minutelySource,
+        alertSource = location?.alertSource
     )
 }
 fun convert(
     location: Location,
     forecastResult: ChinaForecastResult,
     minutelyResult: ChinaMinutelyResult
-): WeatherResultWrapper {
+): WeatherWrapper {
     // If the API doesn’t return current, hourly or daily, consider data as garbage and keep cached data
     if (forecastResult.current == null || forecastResult.forecastDaily == null || forecastResult.forecastHourly == null) {
         throw WeatherException()
     }
 
-    return WeatherResultWrapper(
+    return WeatherWrapper(
         base = Base(
             publishDate = forecastResult.current.pubTime
         ),

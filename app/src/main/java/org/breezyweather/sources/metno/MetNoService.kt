@@ -7,8 +7,8 @@ import org.breezyweather.BuildConfig
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
-import org.breezyweather.common.source.WeatherSource
+import org.breezyweather.common.basic.wrappers.WeatherWrapper
+import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.sources.metno.json.MetNoAirQualityResult
 import org.breezyweather.sources.metno.json.MetNoSunResult
 import org.breezyweather.sources.metno.json.MetNoForecastResult
@@ -20,7 +20,7 @@ import javax.inject.Inject
 
 class MetNoService @Inject constructor(
     client: Retrofit.Builder
-) : HttpSource(), WeatherSource {
+) : HttpSource(), MainWeatherSource {
 
     override val id = "metno"
     override val name = "MET Norway"
@@ -39,7 +39,7 @@ class MetNoService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location
-    ): Observable<WeatherResultWrapper> {
+    ): Observable<WeatherWrapper> {
         val forecast = mApi.getForecast(
             userAgent,
             location.latitude.toDouble(),

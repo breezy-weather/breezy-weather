@@ -15,7 +15,7 @@ import org.breezyweather.common.basic.models.weather.UV
 import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.common.basic.models.weather.Wind
 import org.breezyweather.common.basic.wrappers.HourlyWrapper
-import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
+import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.sources.openweather.json.OpenWeatherAirPollutionResult
@@ -31,13 +31,13 @@ import kotlin.math.roundToInt
 fun convert(
     oneCallResult: OpenWeatherOneCallResult,
     airPollutionResult: OpenWeatherAirPollutionResult?
-): WeatherResultWrapper {
+): WeatherWrapper {
     // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
     if (oneCallResult.hourly.isNullOrEmpty() || oneCallResult.daily.isNullOrEmpty()) {
         throw WeatherException()
     }
 
-    return WeatherResultWrapper(
+    return WeatherWrapper(
         base = Base(
             publishDate = oneCallResult.current?.dt?.times(1000)?.toDate() ?: Date()
         ),

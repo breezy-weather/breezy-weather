@@ -13,6 +13,7 @@ import org.breezyweather.common.exceptions.MissingPermissionLocationException
 import org.breezyweather.common.exceptions.NoNetworkException
 import org.breezyweather.common.exceptions.ParsingException
 import org.breezyweather.common.exceptions.ReverseGeocodingException
+import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.exceptions.SourceNotInstalledException
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.utils.helpers.AsyncHelper
@@ -179,6 +180,7 @@ class MainActivityRepository @Inject constructor(
                 // Should never happen, we are not in background, but just in case:
                 is MissingPermissionLocationBackgroundException -> RequestErrorType.ACCESS_BACKGROUND_LOCATION_PERMISSION_MISSING
                 is ReverseGeocodingException -> RequestErrorType.REVERSE_GEOCODING_FAILED
+                is SecondaryWeatherException -> RequestErrorType.SECONDARY_WEATHER_FAILED
                 is MissingFieldException, is SerializationException, is ParsingException -> {
                     e.printStackTrace()
                     RequestErrorType.PARSING_ERROR

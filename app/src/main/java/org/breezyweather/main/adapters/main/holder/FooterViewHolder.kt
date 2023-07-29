@@ -29,8 +29,8 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import io.github.giangpham96.expandable_text_compose.ExpandableText
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.source.AirQualityPollenSource
-import org.breezyweather.common.source.WeatherSource
+import org.breezyweather.common.source.SecondaryWeatherSource
+import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.ui.composables.LocationPreference
 import org.breezyweather.main.MainActivity
 import org.breezyweather.theme.ThemeManager
@@ -46,7 +46,7 @@ class FooterViewHolder(
     fun onBindView(
         context: Context, location: Location, provider: ResourceProvider,
         listAnimationEnabled: Boolean, itemAnimationEnabled: Boolean,
-        weatherSource: WeatherSource?
+        mainWeatherSource: MainWeatherSource?
     ) {
         super.onBindView(context, location, provider, listAnimationEnabled, itemAnimationEnabled)
 
@@ -57,14 +57,14 @@ class FooterViewHolder(
         val creditsText = StringBuilder()
         creditsText.append(
             context.getString(R.string.weather_data_by)
-                .replace("$", weatherSource?.weatherAttribution ?: context.getString(R.string.null_data_text))
+                .replace("$", mainWeatherSource?.weatherAttribution ?: context.getString(R.string.null_data_text))
         )
-        if (weatherSource is AirQualityPollenSource
-            && weatherSource.weatherAttribution != weatherSource.airQualityPollenAttribution) {
+        if (mainWeatherSource is SecondaryWeatherSource
+            && mainWeatherSource.weatherAttribution != mainWeatherSource.allergenAttribution) {
             creditsText.append("\n")
                 .append(
                     context.getString(R.string.weather_air_quality_and_pollen_data_by)
-                        .replace("$", weatherSource.airQualityPollenAttribution)
+                        .replace("$", mainWeatherSource.allergenAttribution)
                 )
         }
 

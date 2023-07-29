@@ -5,7 +5,7 @@ import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.LocationSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.Source
-import org.breezyweather.common.source.WeatherSource
+import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.sources.accu.AccuService
 import org.breezyweather.sources.android.AndroidLocationSource
 import org.breezyweather.sources.baiduip.BaiduIPLocationService
@@ -53,10 +53,10 @@ class SourceManager @Inject constructor(
     fun getLocationSourceOrDefault(id: String): LocationSource = getLocationSource(id) ?: getLocationSource(DEFAULT_LOCATION_SOURCE)!!
 
     // Weather
-    fun getWeatherSources(): List<WeatherSource> = sourceList.filterIsInstance<WeatherSource>()
-    fun getWeatherSource(id: String): WeatherSource? = getWeatherSources().firstOrNull { it.id == id }
-    fun getWeatherSourceOrDefault(id: String): WeatherSource = getWeatherSource(id) ?: getWeatherSource(DEFAULT_WEATHER_SOURCE)!!
-    fun getConfiguredWeatherSources(): List<WeatherSource> = getWeatherSources().filter {
+    fun getWeatherSources(): List<MainWeatherSource> = sourceList.filterIsInstance<MainWeatherSource>()
+    fun getWeatherSource(id: String): MainWeatherSource? = getWeatherSources().firstOrNull { it.id == id }
+    fun getWeatherSourceOrDefault(id: String): MainWeatherSource = getWeatherSource(id) ?: getWeatherSource(DEFAULT_WEATHER_SOURCE)!!
+    fun getConfiguredWeatherSources(): List<MainWeatherSource> = getWeatherSources().filter {
         it !is ConfigurableSource || it.isConfigured
     }
 

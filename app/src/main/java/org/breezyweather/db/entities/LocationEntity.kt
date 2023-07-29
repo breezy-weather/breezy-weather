@@ -29,7 +29,14 @@ data class LocationEntity(
     var provinceCode: String? = null,
     var city: String,
     var district: String? = null,
+
+    // Sources
     var weatherSource: String,
+    var airQualitySource: String? = null,
+    var allergenSource: String? = null,
+    var minutelySource: String? = null,
+    var alertSource: String? = null,
+
     var currentPosition: Boolean = false,
     var residentPosition: Boolean = false
 )

@@ -18,12 +18,12 @@ import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
+import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.settings.SettingsManager
-import org.breezyweather.common.source.WeatherSource
+import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.sources.mf.json.*
 import org.breezyweather.sources.mf.json.atmoaura.AtmoAuraPointResult
@@ -38,7 +38,7 @@ import javax.inject.Inject
 class MfService @Inject constructor(
     @ApplicationContext context: Context,
     client: Retrofit.Builder
-) : HttpSource(), WeatherSource, ReverseGeocodingSource, ConfigurableSource {
+) : HttpSource(), MainWeatherSource, ReverseGeocodingSource, ConfigurableSource {
 
     override val id = "mf"
     override val name = "Météo-France"
@@ -63,7 +63,7 @@ class MfService @Inject constructor(
 
     override fun requestWeather(
         context: Context, location: Location
-    ): Observable<WeatherResultWrapper> {
+    ): Observable<WeatherWrapper> {
         if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())
         }

@@ -19,7 +19,7 @@ import org.breezyweather.common.basic.models.weather.UV
 import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.common.basic.models.weather.Wind
 import org.breezyweather.common.basic.wrappers.HourlyWrapper
-import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
+import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
@@ -57,7 +57,11 @@ fun convert(location: Location?, result: MfForecastResult): Location? {
             provinceCode = location.provinceCode, // Département
             city = location.city,
             district = location.district,
-            weatherSource = "mf"
+            weatherSource = "mf",
+            airQualitySource = location.airQualitySource,
+            allergenSource = location.allergenSource,
+            minutelySource = location.minutelySource,
+            alertSource = location.alertSource
         )
     } else {
         Location(
@@ -71,7 +75,11 @@ fun convert(location: Location?, result: MfForecastResult): Location? {
                 getFrenchDepartmentName(result.properties.frenchDepartment) else null, // Département
             provinceCode = result.properties.frenchDepartment, // Département
             city = result.properties.name,
-            weatherSource = "mf"
+            weatherSource = "mf",
+            airQualitySource = location?.airQualitySource,
+            allergenSource = location?.allergenSource,
+            minutelySource = location?.minutelySource,
+            alertSource = location?.alertSource
         )
     }
 }
@@ -84,14 +92,14 @@ fun convert(
     rainResult: MfRainResult?,
     warningsResult: MfWarningsResult,
     aqiAtmoAuraResult: AtmoAuraPointResult?
-): WeatherResultWrapper {
+): WeatherWrapper {
     // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
     if (forecastResult.properties == null || forecastResult.properties.forecast.isNullOrEmpty()
         || forecastResult.properties.dailyForecast.isNullOrEmpty()) {
         throw WeatherException()
     }
 
-    return WeatherResultWrapper(
+    return WeatherWrapper(
         base = Base(
             publishDate = forecastResult.updateTime ?: Date()
         ),

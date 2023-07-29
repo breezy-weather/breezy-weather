@@ -44,6 +44,7 @@ import org.breezyweather.common.exceptions.MissingPermissionLocationException
 import org.breezyweather.common.exceptions.NoNetworkException
 import org.breezyweather.common.exceptions.ParsingException
 import org.breezyweather.common.exceptions.ReverseGeocodingException
+import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.exceptions.SourceNotInstalledException
 import org.breezyweather.common.extensions.withIOContext
 import org.breezyweather.common.utils.helpers.LogHelper
@@ -223,6 +224,7 @@ class WeatherUpdateJob @AssistedInject constructor(
                                                 is MissingPermissionLocationException -> context.getString(RequestErrorType.ACCESS_LOCATION_PERMISSION_MISSING.shortMessage)
                                                 is MissingPermissionLocationBackgroundException -> context.getString(RequestErrorType.ACCESS_BACKGROUND_LOCATION_PERMISSION_MISSING.shortMessage)
                                                 is ReverseGeocodingException -> context.getString(RequestErrorType.REVERSE_GEOCODING_FAILED.shortMessage)
+                                                is SecondaryWeatherException -> context.getString(RequestErrorType.SECONDARY_WEATHER_FAILED.shortMessage)
                                                 is MissingFieldException, is SerializationException, is ParsingException -> {
                                                     e.printStackTrace()
                                                     if (e.message.isNullOrEmpty()) {

@@ -8,15 +8,11 @@ import org.breezyweather.common.basic.models.weather.History
 import org.breezyweather.common.basic.models.weather.Minutely
 
 /**
- * Wrapper very similar to the object in database.
- * Helps the transition process and computing of missing data.
+ * Wrapper to help with secondary data.
  */
-data class WeatherWrapper(
-    val base: Base? = null,
-    val current: Current? = null,
-    val yesterday: History? = null,
-    val dailyForecast: List<Daily>? = null,
-    val hourlyForecast: List<HourlyWrapper>? = null,
+data class SecondaryWeatherWrapper(
+    val airQuality: AirQualityWrapper? = null,
+    val allergen: AllergenWrapper? = null,
     val minutelyForecast: List<Minutely>? = null,
     val alertList: List<Alert>? = null
 )

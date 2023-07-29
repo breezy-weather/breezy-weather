@@ -8,13 +8,13 @@ import org.breezyweather.BreezyWeather
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
+import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.WeatherSource
+import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.SourceConfigStore
 import retrofit2.Retrofit
@@ -23,7 +23,7 @@ import javax.inject.Inject
 class PirateWeatherService @Inject constructor(
     @ApplicationContext context: Context,
     client: Retrofit.Builder
-) : HttpSource(), WeatherSource, ConfigurableSource {
+) : HttpSource(), MainWeatherSource, ConfigurableSource {
 
     override val id = "pirateweather"
     override val name = "PirateWeather"
@@ -41,7 +41,7 @@ class PirateWeatherService @Inject constructor(
 
     override fun requestWeather(
         context: Context, location: Location
-    ): Observable<WeatherResultWrapper> {
+    ): Observable<WeatherWrapper> {
         if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())
         }

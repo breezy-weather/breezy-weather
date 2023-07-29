@@ -8,15 +8,17 @@ import org.breezyweather.BreezyWeather
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
-import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
+import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.ApiKeyMissingException
+import org.breezyweather.common.exceptions.LocationSearchException
+import org.breezyweather.common.exceptions.ReverseGeocodingException
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.WeatherSource
+import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.SourceConfigStore
 import retrofit2.Retrofit
@@ -25,7 +27,7 @@ import javax.inject.Inject
 class HereService @Inject constructor(
     @ApplicationContext context: Context,
     client: Retrofit.Builder
-) : HttpSource(), WeatherSource, LocationSearchSource, ReverseGeocodingSource, ConfigurableSource {
+) : HttpSource(), MainWeatherSource, LocationSearchSource, ReverseGeocodingSource, ConfigurableSource {
     override val id = "here"
     override val name = "HERE"
     override val privacyPolicyUrl = "https://legal.here.com/privacy/policy"
@@ -60,7 +62,7 @@ class HereService @Inject constructor(
      */
     override fun requestWeather(
         context: Context, location: Location
-    ): Observable<WeatherResultWrapper> {
+    ): Observable<WeatherWrapper> {
         if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())
         }
@@ -109,7 +111,13 @@ class HereService @Inject constructor(
             show = "tz" // we need timezone info
         )
 
-        return locationResult.map { convert(it) }
+        return locationResult.map {
+            if (it.items == null) {
+                throw LocationSearchException()
+            } else {
+                convert(null, it.items)
+            }
+        }
     }
 
     /**
@@ -135,7 +143,13 @@ class HereService @Inject constructor(
             show = "tz"
         )
 
-        return locationResult.map { convert(it) }
+        return locationResult.map {
+            if (it.items == null) {
+                throw ReverseGeocodingException()
+            } else {
+                convert(location, it.items)
+            }
+        }
     }
 
     // CONFIG

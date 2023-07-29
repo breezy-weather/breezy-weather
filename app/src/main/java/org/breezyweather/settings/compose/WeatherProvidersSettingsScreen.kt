@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.ListPreference
 import org.breezyweather.common.source.ConfigurableSource
-import org.breezyweather.common.source.WeatherSource
+import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.settings.preference.*
 import org.breezyweather.settings.preference.composables.EditTextPreferenceView
 import org.breezyweather.settings.preference.composables.ListPreferenceView
@@ -17,10 +17,10 @@ import org.breezyweather.settings.preference.composables.SectionHeader
 @Composable
 fun WeatherProvidersSettingsScreen(
     context: Context,
-    weatherSources: List<WeatherSource>,
+    mainWeatherSources: List<MainWeatherSource>,
     paddingValues: PaddingValues,
 ) = PreferenceScreen(paddingValues = paddingValues) {
-    weatherSources.filterIsInstance<ConfigurableSource>().forEach { preferenceSource ->
+    mainWeatherSources.filterIsInstance<ConfigurableSource>().forEach { preferenceSource ->
         item(key = "header_${preferenceSource.id}") {
             SectionHeader(title = preferenceSource.name)
         }

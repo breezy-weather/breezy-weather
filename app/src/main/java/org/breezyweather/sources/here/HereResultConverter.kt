@@ -14,10 +14,11 @@ import org.breezyweather.common.basic.models.weather.UV
 import org.breezyweather.common.basic.models.weather.WeatherCode
 import org.breezyweather.common.basic.models.weather.Wind
 import org.breezyweather.common.basic.wrappers.HourlyWrapper
-import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
+import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.LocationSearchException
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.plus
+import org.breezyweather.sources.here.json.HereGeocodingData
 import org.breezyweather.sources.here.json.HereGeocodingResult
 import org.breezyweather.sources.here.json.HereWeatherAstronomy
 import org.breezyweather.sources.here.json.HereWeatherData
@@ -31,13 +32,10 @@ import kotlin.math.roundToInt
  * Converts here.com geocoding result into a list of locations
  */
 fun convert(
-    result: HereGeocodingResult
+    location: Location?,
+    results: List<HereGeocodingData>
 ): List<Location> {
-    if (result.items == null) {
-        throw LocationSearchException()
-    }
-
-    return result.items.map { item ->
+    return results.map { item ->
         Location(
             cityId = item.id,
             latitude = item.position.lat,
@@ -49,7 +47,11 @@ fun convert(
             provinceCode = item.address.stateCode,
             district = item.address.county,
             city = item.address.city,
-            weatherSource = "here"
+            weatherSource = "here",
+            airQualitySource = location?.airQualitySource,
+            allergenSource = location?.allergenSource,
+            minutelySource = location?.minutelySource,
+            alertSource = location?.alertSource
         )
     }
 }
@@ -59,7 +61,7 @@ fun convert(
  */
 fun convert(
     hereWeatherForecastResult: HereWeatherForecastResult
-): WeatherResultWrapper {
+): WeatherWrapper {
     if (hereWeatherForecastResult.places.isNullOrEmpty()) {
         throw WeatherException()
     }
@@ -83,7 +85,7 @@ fun convert(
     }
     val nwsAlerts = hereWeatherForecastResult.places.firstNotNullOfOrNull { it.nwsAlerts }
 
-    return WeatherResultWrapper(
+    return WeatherWrapper(
         base = Base(
             publishDate = currentForecast?.time ?: Date()
         ),

@@ -46,6 +46,7 @@ Then add it to `app/src/main/res/values/arrays.xml` in `languages` and a technic
 
 Add the new enum and language technical name in `app/src/main/java/org/breezyweather/common/basic/models/options/appearance/Language.kt`. You will need to find a matching Locale in Android. For example, if the new language is `pt_rBR`, it will translate as `Locale("pt", "BR")`. The second parameter is optional, as you can see with other languages.
 
+____
 
 # Weather sources API
 
@@ -133,6 +134,16 @@ Not used:
 Uses Open-Meteo for location search.
 
 
+## Pirate Weather
+
+*TODO*
+
+
+## HERE
+
+*TODO*
+
+
 ## Météo-France
 
 *Last checked: 2023-07-12*
@@ -157,3 +168,23 @@ Uses Open-Meteo for location search.
 ## China
 
 *Undocumented*
+
+
+# Combinable sources
+
+In v4.5.0, we will add the ability to complete one source with another.
+
+This table helps keeping track of what was implemented and what remains to do. Priority will be given to feature supported worldwide.
+
+| Sources         | Open-Meteo    | AccuWeather | MET Norway  | OpenWeather | Pirate Weather | HERE | Météo-France | China³ |
+|-----------------|---------------|-------------|-------------|-------------|----------------|------|--------------|--------|
+| **Air quality** | *In progress* | Enterprise  | Norway      | ❌¹          | ❌              | ❌    | ❌³           | ❌      |
+| **Allergens**   | *In progress* | ❌           | ❌           | ❌           | ❌              | ❌    | ❌            | ❌      |
+| **Alerts**      | ❌             | Enterprise  | ❌           | *TODO*      | *TODO*         | ❌²   | France       | ❌      |
+| **Minutely**    | ❌             | Enterprise  | Nordic area | *TODO*      | *TODO*         | ❌    | France       | China  |
+
+❌ means that it’s either not supported or doesn’t support longitude/latitude.
+
+¹ Not enough data to make it useful as a combinable source
+² Only supports NWS alerts, but has many duplicate issues, so not worth implementing
+³ Support for AURA will be removed and recommendation will be to use a secondary source.
