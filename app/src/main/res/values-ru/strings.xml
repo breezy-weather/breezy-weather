@@ -614,4 +614,10 @@
     <string name="location_resident_location_summaryOn">Включено. Отображается, если находится в пределах 20 км от текущего местоположения, в противном случае скрыт.</string>
     <string name="location_resident_location_summaryOff">Выключено. Местоположение всегда доступно.</string>
     <string name="action_delete">Удалить</string>
+    <string name="weather_allergen_data_by">Информация об аллергенах предоставлена $</string>
+    <string name="weather_alert_data_by">Оповещения о погоде предоставлены $</string>
+    <string name="weather_message_invalid_location">Неверное местоположение, удалите его и добавьте заново</string>
+    <string name="weather_air_quality_data_by">Информация о качестве воздуха предоставлена $</string>
+    <string name="weather_message_secondary_data_refresh_failed">Не удалось обновить данные о погоде для дополнительного источника погоды</string>
+    <string name="weather_minutely_data_by">Поминутные данные об осадках предоставлены $</string>
 </resources>
