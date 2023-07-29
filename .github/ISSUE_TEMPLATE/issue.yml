@@ -93,7 +93,7 @@ body:
           required: true
         - label: I have written a short but informative title.
           required: true
-        - label: I read the [Help](https://github.com/breezy-weather/breezy-weather/blob/main/HELP.md) documentation.
+        - label: I read the [Frequently Asked Questions](https://github.com/breezy-weather/breezy-weather/blob/main/HELP.md) document and followed instructions if relevant.
           required: true
         - label: I have updated the app to **[latest version](https://github.com/breezy-weather/breezy-weather/releases/latest)**.
           required: true

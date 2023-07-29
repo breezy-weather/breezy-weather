@@ -22,8 +22,6 @@ Followed by default by the following current details:
 
 Details shown in header can be configured in the settings (Appearance). Details not shown there will be shown in the Current details card.
 
-In the footer, you have credits and acknowledgment for the weather source used for this location. You also have an Edit button that allow you to change the order of cards or remove some of them. This will apply to all locations.
-
 
 ## Cards
 
@@ -256,3 +254,16 @@ The following details for the current weather will be shown if they are availabl
 - [Ceiling](https://en.wikipedia.org/wiki/Ceiling_(cloud))
 
 Details already shown in the header will not be shown again.
+
+
+### Footer
+
+In the footer, you have credits and acknowledgment for the weather source used for this location.
+
+You also have an Edit button that lets you access different options, such as:
+- Reorganize main screen (applies to all locations)
+- (Current location only) Change location service
+- (Current location only) Change weather source
+- (Manually added locations only) Set location as resident city
+
+Note that at the moment you can’t change the weather source for an existing manually added location, you will have to add a new location from the location list and then delete the old one.
