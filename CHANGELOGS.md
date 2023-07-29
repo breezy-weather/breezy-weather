@@ -1,6 +1,7 @@
 # Next version
 
-- Add support for HERE (thanks Cod3d.!)
+- Add support for HERE (@Cod3dDOT)
+- Fix precipitation probability on OpenWeather (@Cod3dDOT)
 
 
 # Version 4.4.1-beta
