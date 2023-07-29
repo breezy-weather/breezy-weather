@@ -67,6 +67,18 @@ enum class Language(
             }
         }
 
+    val codeWithCountry: String
+        get() {
+            val locale = locale
+            val language = locale.language
+            val country = locale.country
+            return if (!country.isNullOrEmpty()) {
+                language.lowercase() + "-" + country.lowercase()
+            } else {
+                language.lowercase()
+            }
+        }
+
     val isChinese: Boolean
         get() = code.startsWith("zh")
 

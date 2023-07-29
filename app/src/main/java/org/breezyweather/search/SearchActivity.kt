@@ -193,7 +193,7 @@ class SearchActivity : GeoActivity() {
                     LazyColumn(
                         modifier = Modifier.fillMaxWidth(),
                     ) {
-                        items(sourceManager.getWeatherSources()) {
+                        items(sourceManager.getConfiguredWeatherSources()) {
                             RadioButton(
                                 selected = weatherSource.id == it.id,
                                 onClick = {

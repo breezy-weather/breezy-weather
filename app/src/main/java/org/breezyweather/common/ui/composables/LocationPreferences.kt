@@ -39,7 +39,7 @@ fun LocationPreference(
         }
         if (location.isCurrentPosition) {
             val locationSources = activity.sourceManager.getLocationSources()
-            val weatherSources = activity.sourceManager.getWeatherSources()
+            val weatherSources = activity.sourceManager.getConfiguredWeatherSources()
             val uriHandler = LocalUriHandler.current
             ListPreferenceView(
                 title = stringResource(R.string.settings_location_service),

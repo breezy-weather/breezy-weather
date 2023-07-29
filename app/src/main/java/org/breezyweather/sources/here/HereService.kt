@@ -19,8 +19,6 @@ import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.SourceConfigStore
-import org.breezyweather.sources.here.json.HereWeatherForecastResult
-import org.breezyweather.sources.here.json.HereWeatherStatusResult
 import retrofit2.Retrofit
 import javax.inject.Inject
 
@@ -29,12 +27,12 @@ class HereService @Inject constructor(
     client: Retrofit.Builder
 ) : HttpSource(), WeatherSource, LocationSearchSource, ReverseGeocodingSource, ConfigurableSource {
     override val id = "here"
-    override val name = "Here.com"
+    override val name = "HERE"
     override val privacyPolicyUrl = "https://legal.here.com/privacy/policy"
 
-    override val color = Color.rgb(0, 175, 170)
-    override val weatherAttribution = "Here.com"        // can't find
-    override val locationSearchAttribution = "Here.com" // can't find
+    override val color = Color.rgb(72, 218, 208)
+    override val weatherAttribution = "HERE"
+    override val locationSearchAttribution = "HERE"
 
     private val mWeatherApi by lazy {
         client
@@ -63,48 +61,29 @@ class HereService @Inject constructor(
     override fun requestWeather(
         context: Context, location: Location
     ): Observable<WeatherResultWrapper> {
-        if (!isConfigured()) {
+        if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())
         }
 
         val apiKey = getApiKeyOrDefault()
-        val languageCode = SettingsManager.getInstance(context).language.code
+        val languageCode = SettingsManager.getInstance(context).language.codeWithCountry
         val products = listOf(
             "observation",
-            "forecast7days",
             "forecast7daysSimple",
             "forecastHourly",
             "forecastAstronomy",
-            "alerts",
             "nwsAlerts",
         )
         val forecast = mWeatherApi.getForecast(
             apiKey,
             products.joinToString(separator = ","),
-            listOf(
-                location.latitude.toDouble(),
-                location.longitude.toDouble(),
-            ).joinToString(separator = ","),
+            "${location.latitude},${location.longitude}",
             "metric",
-            if (languageCode == "en") "en-US" else languageCode, //errors when lang=en
+            languageCode,
             oneObservation = true
         )
 
-        val status = mWeatherApi.getStatus(
-            apiKey
-        )
-
-        return Observable.zip(
-            forecast,
-            status
-        ) { hereWeatherForecastResult: HereWeatherForecastResult,
-            hereWeatherStatusResult: HereWeatherStatusResult
-            ->
-            convert(
-                hereWeatherForecastResult,
-                hereWeatherStatusResult
-            )
-        }
+        return forecast.map { convert(it) }
     }
 
     /**
@@ -114,7 +93,7 @@ class HereService @Inject constructor(
         context: Context,
         query: String
     ): Observable<List<Location>> {
-        if (!isConfigured()) {
+        if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())
         }
 
@@ -125,9 +104,9 @@ class HereService @Inject constructor(
             apiKey,
             query,
             types = "city",
-            limit = 20,     // default api value
+            limit = 20,
             languageCode,
-            show = "tz"     // adds timezone info
+            show = "tz" // we need timezone info
         )
 
         return locationResult.map { convert(it) }
@@ -140,19 +119,16 @@ class HereService @Inject constructor(
         context: Context,
         location: Location
     ): Observable<List<Location>> {
-        if (!isConfigured()) {
+        if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())
         }
 
         val apiKey = getApiKeyOrDefault()
-        val languageCode = SettingsManager.getInstance(context).language.code
+        val languageCode = SettingsManager.getInstance(context).language.codeWithCountry
 
         val locationResult = mRevGeocodingApi.revGeoCode(
             apiKey,
-            listOf(
-                location.latitude.toDouble(),
-                location.longitude.toDouble(),
-            ).joinToString(separator = ","),
+            "${location.latitude},${location.longitude}",
             types = "city",
             limit = 20,
             languageCode,
@@ -170,8 +146,11 @@ class HereService @Inject constructor(
         }
         get() = config.getString("apikey", null) ?: ""
 
-    private fun getApiKeyOrDefault() = apikey.ifEmpty { BuildConfig.HERE_KEY }
-    private fun isConfigured() = getApiKeyOrDefault().isNotEmpty()
+    private fun getApiKeyOrDefault(): String {
+        return apikey.ifEmpty { BuildConfig.HERE_KEY }
+    }
+    override val isConfigured
+        get() = getApiKeyOrDefault().isNotEmpty()
 
     override fun getPreferences(context: Context): List<Preference> {
         return listOf(

@@ -8,6 +8,8 @@ This is a user-end guide to weather sources available in Breezy Weather. If you 
 
 When deciding about which source you want to use, accuracy of data is probably the most important criteria, however only you can know which one is the best for your country.
 
+Additional sources are available to configure but requires an API key. You can find them at the bottom of this page.
+
 
 ## Status
 
@@ -78,3 +80,33 @@ Ultimate goal of the app would be to modularize as to have a main weather source
 
 * ¹ TimeZone is assumed to be China
 * ² TimeZone is assumed to be the same as device
+
+
+# Additional sources with mandatory API key
+
+| Sources                         | HERE     |
+|---------------------------------|----------|
+| **Daily (days)**                | 6        |
+| **Hourly (days)**               | 6        |
+| **Weather**                     | ✅        |
+| **Temperature**                 | ✅        |
+| **Precipitation**               | ✅        |
+| **Precipitation probability**   | ✅        |
+| **Wind**                        | ✅        |
+| **Air quality**                 | ❌        |
+| **Allergens**                   | ❌        |
+| **UV**                          | ✅        |
+| **Precipitations in next hour** | ❌        |
+| **Sun & Moon & Moon phase**     | ✅        |
+| **Alerts**                      | US (NWS) |
+| **Humidity**                    | ✅        |
+| **Dew point**                   | ✅        |
+| **Pressure**                    | ✅        |
+| **Cloud cover**                 | ❌        |
+| **Visibility**                  | ✅        |
+| **Ceiling**                     | ❌        |
+| **Precipitation duration**      | ❌        |
+| **Hours of sun**                | ✅        |
+| **Yesterday temperature**       | ❌        |
+| **Search**                      | ✅        |
+| **Reverse geocoding**           | ✅        |

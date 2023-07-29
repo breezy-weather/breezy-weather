@@ -1,5 +1,6 @@
 package org.breezyweather.sources
 
+import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.LocationSource
 import org.breezyweather.common.source.ReverseGeocodingSource
@@ -60,6 +61,9 @@ class SourceManager @Inject constructor(
     fun getWeatherSources(): List<WeatherSource> = sourceList.filterIsInstance<WeatherSource>()
     fun getWeatherSource(id: String): WeatherSource? = getWeatherSources().firstOrNull { it.id == id }
     fun getWeatherSourceOrDefault(id: String): WeatherSource = getWeatherSource(id) ?: getWeatherSource(DEFAULT_WEATHER_SOURCE)!!
+    fun getConfiguredWeatherSources(): List<WeatherSource> = getWeatherSources().filter {
+        it !is ConfigurableSource || it.isConfigured
+    }
 
     // Location search
     fun getLocationSearchSources(): List<LocationSearchSource> = sourceList.filterIsInstance<LocationSearchSource>()

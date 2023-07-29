@@ -64,7 +64,7 @@ class MfService @Inject constructor(
     override fun requestWeather(
         context: Context, location: Location
     ): Observable<WeatherResultWrapper> {
-        if (!isConfigured()) {
+        if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())
         }
         val languageCode = SettingsManager.getInstance(context).language.code
@@ -171,7 +171,7 @@ class MfService @Inject constructor(
         context: Context,
         location: Location
     ): Observable<List<Location>> {
-        if (!isConfigured()) {
+        if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())
         }
         return mMfApi.getForecast(
@@ -204,9 +204,15 @@ class MfService @Inject constructor(
             config.edit().putString("atmo_aura_apikey", value).apply()
         }
         get() = config.getString("atmo_aura_apikey", null) ?: ""
-    private fun getWsftKeyOrDefault() = wsftKey.ifEmpty { BuildConfig.MF_WSFT_KEY }
-    private fun getAtmoAuraKeyOrDefault() = atmoAuraKey.ifEmpty { BuildConfig.IQA_ATMO_AURA_KEY }
-    private fun isConfigured() = getToken().isNotEmpty()
+    private fun getWsftKeyOrDefault(): String {
+        return wsftKey.ifEmpty { BuildConfig.MF_WSFT_KEY }
+    }
+    private fun getAtmoAuraKeyOrDefault(): String {
+        return atmoAuraKey.ifEmpty { BuildConfig.IQA_ATMO_AURA_KEY }
+    }
+    override val isConfigured
+        get() = getToken().isNotEmpty()
+
     private fun getToken(): String {
         return if (getWsftKeyOrDefault() != BuildConfig.MF_WSFT_KEY) {
             // If default key was changed, we want to use it

@@ -1,3 +1,8 @@
+# Next version
+
+- Add support for HERE (thanks Cod3d.!)
+
+
 # Version 4.4.1-beta
 
 - Add Allergens support for Open-Meteo source (Europe only at the moment). Allergens are different than AccuWeather ones (North America only).

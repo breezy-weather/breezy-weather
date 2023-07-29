@@ -1,13 +1,15 @@
 package org.breezyweather.sources.here.json
 
 import kotlinx.serialization.Serializable
+import org.breezyweather.common.serializer.DateSerializer
+import java.util.Date
 
+/**
+ * Don’t include sunrise/sunset, moonrise/moonset, they only have hours which is known to cause
+ * issues when on different days (midnight solar)
+ */
 @Serializable
 data class HereWeatherAstronomy(
-    val time: String?,
-    val sunRise: String?,
-    val sunSet: String?,
-    val moonRise: String?,
-    val moonSet: String?,
+    @Serializable(DateSerializer::class) val time: Date?,
     val moonPhase: Float?
 )

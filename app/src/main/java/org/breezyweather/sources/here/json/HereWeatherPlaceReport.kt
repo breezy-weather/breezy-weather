@@ -9,11 +9,9 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class HereWeatherPlaceReport(
-    @SerialName("observations") val currentForecasts: List<HereWeatherData>?,
-    val extendedDailyForecasts: List<HereWeatherForecasts<HereWeatherData>>?,
+    val observations: List<HereWeatherData>?,
     val dailyForecasts: List<HereWeatherForecasts<HereWeatherData>>?,
     val hourlyForecasts: List<HereWeatherForecasts<HereWeatherData>>?,
     val astronomyForecasts: List<HereWeatherForecasts<HereWeatherAstronomy>>?,
-    val alerts: List<HereWeatherAlert>?,
     val nwsAlerts: HereWeatherNWSAlerts?
 )

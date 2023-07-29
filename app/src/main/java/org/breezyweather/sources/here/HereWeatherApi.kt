@@ -2,7 +2,6 @@ package org.breezyweather.sources.here
 
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.sources.here.json.HereWeatherForecastResult
-import org.breezyweather.sources.here.json.HereWeatherStatusResult
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -19,9 +18,4 @@ interface HereWeatherApi {
         @Query("lang") lang: String,
         @Query("oneObservation") oneObservation: Boolean,
     ): Observable<HereWeatherForecastResult>
-
-    @GET("v3/health")
-    fun getStatus(
-        @Query("apiKey") apikey: String,
-    ): Observable<HereWeatherStatusResult>
 }

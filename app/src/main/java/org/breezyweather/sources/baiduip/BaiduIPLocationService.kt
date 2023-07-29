@@ -35,7 +35,7 @@ class BaiduIPLocationService @Inject constructor(
     }
 
     override fun requestLocation(context: Context): Observable<LocationPositionWrapper> {
-        if (!isConfigured()) {
+        if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())
         }
         return mApi.getLocation(apikey, "gcj02")
@@ -77,8 +77,11 @@ class BaiduIPLocationService @Inject constructor(
         }
         get() = config.getString("apikey", null) ?: ""
 
-    private fun getApiKeyOrDefault() = apikey.ifEmpty { BuildConfig.BAIDU_IP_LOCATION_AK }
-    private fun isConfigured() = getApiKeyOrDefault().isNotEmpty()
+    private fun getApiKeyOrDefault(): String {
+        return apikey.ifEmpty { BuildConfig.BAIDU_IP_LOCATION_AK }
+    }
+    override val isConfigured
+        get() = getApiKeyOrDefault().isNotEmpty()
 
     override fun getPreferences(context: Context): List<Preference> {
         return listOf(

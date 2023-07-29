@@ -45,7 +45,7 @@ class OpenWeatherService @Inject constructor(
     override fun requestWeather(
         context: Context, location: Location
     ): Observable<WeatherResultWrapper> {
-        if (!isConfigured()) {
+        if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())
         }
         val apiKey = getApiKeyOrDefault()
@@ -94,8 +94,11 @@ class OpenWeatherService @Inject constructor(
             config.getString("one_call_version", null) ?: "2.5"
         )
 
-    private fun getApiKeyOrDefault() = apikey.ifEmpty { BuildConfig.OPEN_WEATHER_KEY }
-    private fun isConfigured() = getApiKeyOrDefault().isNotEmpty()
+    private fun getApiKeyOrDefault(): String {
+        return apikey.ifEmpty { BuildConfig.OPEN_WEATHER_KEY }
+    }
+    override val isConfigured
+        get() = getApiKeyOrDefault().isNotEmpty()
 
     override fun getPreferences(context: Context): List<Preference> {
         return listOf(

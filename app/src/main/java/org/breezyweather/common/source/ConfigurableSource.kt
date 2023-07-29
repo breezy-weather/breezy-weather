@@ -8,5 +8,7 @@ import org.breezyweather.common.preference.Preference
  */
 interface ConfigurableSource : Source {
 
+    val isConfigured: Boolean
+
     fun getPreferences(context: Context): List<Preference>
 }

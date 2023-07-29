@@ -1,6 +1,5 @@
 package org.breezyweather.sources.here.json
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
@@ -9,5 +8,5 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class HereWeatherForecastResult(
-    @SerialName("places") val dataList: List<HereWeatherPlaceReport?>,
+    val places: List<HereWeatherPlaceReport>?,
 )

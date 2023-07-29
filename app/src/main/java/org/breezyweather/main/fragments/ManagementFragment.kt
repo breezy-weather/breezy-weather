@@ -267,7 +267,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                     ) {
                         val currentLocation = totalLocationListState.value.first
                             .firstOrNull { it.isCurrentPosition }
-                        items((requireActivity() as MainActivity).sourceManager.getWeatherSources()) { source ->
+                        items((requireActivity() as MainActivity).sourceManager.getConfiguredWeatherSources()) { source ->
                             RadioButton(
                                 selected = if (currentLocation != null) source.id == currentLocation.weatherSource else false,
                                 onClick = {

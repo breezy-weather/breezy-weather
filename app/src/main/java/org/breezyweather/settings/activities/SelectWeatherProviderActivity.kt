@@ -60,7 +60,7 @@ class SelectWeatherProviderActivity : GeoActivity() {
                 composable(SettingsScreenRouter.WeatherProviders.route) {
                     WeatherProvidersSettingsScreen(
                         context = this@SelectWeatherProviderActivity,
-                        weatherSources = sourceManager.getWeatherSources(),
+                        weatherSources = sourceManager.getConfiguredWeatherSources(),
                         paddingValues = paddings,
                     )
                 }

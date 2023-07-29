@@ -2,7 +2,6 @@ package org.breezyweather.sources.here
 
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.basic.models.weather.Alert
-import org.breezyweather.common.basic.models.weather.Astro
 import org.breezyweather.common.basic.models.weather.Base
 import org.breezyweather.common.basic.models.weather.Current
 import org.breezyweather.common.basic.models.weather.Daily
@@ -18,27 +17,15 @@ import org.breezyweather.common.basic.wrappers.HourlyWrapper
 import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
 import org.breezyweather.common.exceptions.LocationSearchException
 import org.breezyweather.common.exceptions.WeatherException
-import org.breezyweather.common.extensions.toDate
-import org.breezyweather.common.extensions.toDateNoHour
-import org.breezyweather.common.extensions.toTimezoneNoHour
+import org.breezyweather.common.extensions.plus
 import org.breezyweather.sources.here.json.HereGeocodingResult
-import org.breezyweather.sources.here.json.HereWeatherAlert
-import org.breezyweather.sources.here.json.HereWeatherAlertTimeSegment
 import org.breezyweather.sources.here.json.HereWeatherAstronomy
 import org.breezyweather.sources.here.json.HereWeatherData
 import org.breezyweather.sources.here.json.HereWeatherForecastResult
 import org.breezyweather.sources.here.json.HereWeatherNWSAlerts
-import org.breezyweather.sources.here.json.HereWeatherStatusResult
-import java.text.SimpleDateFormat
 import java.util.Date
-import java.util.Locale
 import java.util.TimeZone
-import java.util.UUID
 import kotlin.math.roundToInt
-import kotlin.time.Duration.Companion.hours
-
-private val DATEFORMAT = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.US)
-private val ASTRODATEFORMAT = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", Locale.US)
 
 /**
  * Converts here.com geocoding result into a list of locations
@@ -71,95 +58,62 @@ fun convert(
  * Converts here.com weather result into a forecast
  */
 fun convert(
-    hereWeatherForecastResult: HereWeatherForecastResult,
-    hereWeatherStatusResult: HereWeatherStatusResult,
+    hereWeatherForecastResult: HereWeatherForecastResult
 ): WeatherResultWrapper {
-    if (!hereWeatherStatusResult.status.equals("ok")) {
+    if (hereWeatherForecastResult.places.isNullOrEmpty()) {
         throw WeatherException()
     }
 
-    // Indexes changed several times while testing, so had to resort to this
-    // There is 100% a way to make it nicer
-    val currentForecasts =
-        hereWeatherForecastResult.dataList.find { it?.currentForecasts != null }?.currentForecasts
-    val hourlyForecasts =
-        hereWeatherForecastResult.dataList.find { it?.hourlyForecasts != null }?.hourlyForecasts
+    val dailySimpleForecasts = hereWeatherForecastResult.places.firstNotNullOfOrNull {
+        it.dailyForecasts?.getOrNull(0)?.forecasts
+    }
+    val hourlyForecasts = hereWeatherForecastResult.places.firstNotNullOfOrNull {
+        it.hourlyForecasts?.getOrNull(0)?.forecasts
+    }
 
-    val dailyExtendedForecasts =
-        hereWeatherForecastResult.dataList.find { it?.extendedDailyForecasts != null }?.extendedDailyForecasts
-    val dailySimpleForecasts =
-        hereWeatherForecastResult.dataList.find { it?.dailyForecasts != null }?.dailyForecasts
-    val astronomyForecasts =
-        hereWeatherForecastResult.dataList.find { it?.astronomyForecasts != null }?.astronomyForecasts
+    if (dailySimpleForecasts.isNullOrEmpty() || hourlyForecasts.isNullOrEmpty()) {
+        throw WeatherException()
+    }
 
-    val alerts = hereWeatherForecastResult.dataList.find { it?.alerts != null }?.alerts
-    val nwsAlerts = hereWeatherForecastResult.dataList.find { it?.nwsAlerts != null }?.nwsAlerts
+    val currentForecast = hereWeatherForecastResult.places.firstNotNullOfOrNull {
+        it.observations?.getOrNull(0)
+    }
+    val astronomyForecasts = hereWeatherForecastResult.places.firstNotNullOfOrNull {
+        it.astronomyForecasts?.getOrNull(0)?.forecasts
+    }
+    val nwsAlerts = hereWeatherForecastResult.places.firstNotNullOfOrNull { it.nwsAlerts }
 
     return WeatherResultWrapper(
         base = Base(
-            publishDate = currentForecasts?.get(0)?.time?.toDateNoHour() ?: Date()
+            publishDate = currentForecast?.time ?: Date()
         ),
-        current = currentForecasts?.get(0)?.let { getCurrentForecast(it) },
-        dailyForecast = getDailyForecast(
-            dailySimpleForecasts?.get(0)?.forecasts,
-            dailyExtendedForecasts?.get(0)?.forecasts,
-            astronomyForecasts?.get(0)?.forecasts
-        ),
-        hourlyForecast = hourlyForecasts?.get(0)?.forecasts?.let { getHourlyForecast(it) },
-        alertList = getAlertList(
-            alerts, nwsAlerts, getTimeZone(currentForecasts?.get(0)?.time)
-        )
+        current = getCurrentForecast(currentForecast),
+        dailyForecast = getDailyForecast(dailySimpleForecasts, astronomyForecasts),
+        hourlyForecast = getHourlyForecast(hourlyForecasts),
+        alertList = getAlertList(nwsAlerts)
     )
-}
-
-/**
- * Parses time from String
- */
-private fun getDate(time: String?): Date? {
-    return time?.let { DATEFORMAT.parse(it) }
-}
-
-/**
- * Parses time for astro events
- */
-private fun getAstroDate(date: String?, time: String?): Date? {
-    if (date == null || time == null) return null
-    val withTime = date.replace("00:00:00", time) // bad, API21 forced my hand
-    return withTime.let { ASTRODATEFORMAT.parse(it) }
-}
-
-/**
- * Retrieves timezone from Date string
- */
-private fun getTimeZone(time: String?): TimeZone? {
-    if (time == null || getDate(time) == null) return null
-    val regex = Regex("([-+][01][0-9]:[0-9][0-9])$")
-    val capture = regex.find(time)?.value
-    if (capture.isNullOrEmpty()) return TimeZone.getDefault()
-
-    return TimeZone.getTimeZone("GMT${capture}")
 }
 
 /**
  * Returns current forecast
  */
-private fun getCurrentForecast(result: HereWeatherData): Current {
+private fun getCurrentForecast(result: HereWeatherData?): Current? {
+    if (result == null) return null
     return Current(
         weatherText = result.skyDesc,
         weatherCode = getWeatherCode(result.iconId),
         temperature = Temperature(
             temperature = result.temperature,
-            apparentTemperature = result.apparentTemperature?.toFloat()
+            apparentTemperature = result.comfort?.toFloat()
         ),
         wind = Wind(
-            degree = result.windDirection, speed = result.windSpeed
+            degree = result.windDirection,
+            speed = result.windSpeed
         ),
-        uV = UV(
-            index = result.uvIndex?.toFloat()
-        ),
+        uV = UV(index = result.uvIndex?.toFloat()),
         relativeHumidity = result.humidity?.toFloat(),
         dewPoint = result.dewPoint,
-        pressure = result.pressure,
+        pressure = result.barometerPressure,
         visibility = result.visibility,
     )
 }
@@ -168,66 +122,39 @@ private fun getCurrentForecast(result: HereWeatherData): Current {
  * Returns daily forecast
  */
 private fun getDailyForecast(
-    dailySimpleForecasts: List<HereWeatherData>?,
-    dailyExtendedForecasts: List<HereWeatherData>?,
+    dailySimpleForecasts: List<HereWeatherData>,
     astroForecasts: List<HereWeatherAstronomy>?
-): List<Daily>? {
-    if (dailyExtendedForecasts == null) {
-        return null
-    }
-
-    val dailyList = arrayListOf<Daily>()
-
-    var currentDay = 0
-    for ((index, nightSegment) in dailyExtendedForecasts.withIndex()) {
-        if (nightSegment.timeOfDay != "night") {
-            continue
-        }
-        currentDay++
-
-        val daySegment = if (index >= 2) dailyExtendedForecasts[index - 2] else null
-        val fullDay = dailySimpleForecasts?.get(currentDay - 1)
-        val astro = astroForecasts?.get(currentDay - 1)
+): List<Daily> {
+    val dailyList: MutableList<Daily> = ArrayList(dailySimpleForecasts.size)
+    for (i in 0 until dailySimpleForecasts.size - 1) { // Skip last day
+        val dailyForecast = dailySimpleForecasts[i]
+        val astro = astroForecasts?.firstOrNull { astro -> astro.time == dailyForecast.time }
 
         dailyList.add(
             Daily(
-                date = getDate(daySegment?.time) ?: Date(),
-                // Use day segment if available
-                day = daySegment?.let {
-                    HalfDay(
-                        weatherText = it.skyDesc,
-                        weatherCode = getWeatherCode(it.iconId),
-                        temperature = Temperature(
-                            temperature = it.temperature,
-                            apparentTemperature = it.apparentTemperature?.toFloat()
-                        ),
-                        precipitation = Precipitation(
-                            total = it.precipitation12H ?: getTotalPrecipFallback(it),
-                            rain = it.rainFall,
-                            snow = it.snowFall,
-                        ),
-                        precipitationProbability = PrecipitationProbability(
-                            total = it.precipitationProbability?.toFloat()
-                        )
-                    )
-                }, night = HalfDay(
-                    weatherText = nightSegment.skyDesc,
-                    weatherCode = getWeatherCode(nightSegment.iconId),
+                date = dailyForecast.time,
+                day = HalfDay(
+                    weatherText = dailyForecast.skyDesc,
+                    weatherCode = getWeatherCode(dailyForecast.iconId),
                     temperature = Temperature(
-                        temperature = nightSegment.temperature,
-                        apparentTemperature = nightSegment.apparentTemperature?.toFloat()
+                        temperature = if (!dailyForecast.highTemperature.isNullOrEmpty()) {
+                            dailyForecast.highTemperature.toFloat()
+                        } else null
                     )
-                ), sun = Astro(
-                    riseDate = getAstroDate(astro?.time, astro?.sunRise),
-                    setDate = getAstroDate(astro?.time, astro?.sunSet)
-                ), moon = Astro(
-                    riseDate = getAstroDate(astro?.time, astro?.moonRise),
-                    setDate = getAstroDate(astro?.time, astro?.moonSet)
-                ), moonPhase = MoonPhase(
-                    angle = astro?.moonPhase?.times(360f)?.roundToInt()
-                ), uV = UV(
-                    index = fullDay?.uvIndex?.toFloat()
-                )
+                ),
+                night = HalfDay(
+                    weatherText = dailyForecast.skyDesc,
+                    weatherCode = getWeatherCode(dailyForecast.iconId),
+                    // low temperature is actually from previous night,
+                    // so we try to get low temp from next day if available
+                    temperature = Temperature(
+                        temperature = if (!dailySimpleForecasts.getOrNull(i + 1)?.lowTemperature.isNullOrEmpty()) {
+                            dailySimpleForecasts[i + 1].lowTemperature!!.toFloat()
+                        } else null
+                    )
+                ),
+                moonPhase = MoonPhase(angle = astro?.moonPhase?.times(360f)?.roundToInt()),
+                uV = UV(index = dailyForecast.uvIndex?.toFloat())
             )
         )
     }
@@ -242,15 +169,15 @@ private fun getHourlyForecast(
 ): List<HourlyWrapper> {
     return hourlyResult.map { result ->
         HourlyWrapper(
-            date = getDate(result.time) ?: Date(),
+            date = result.time,
             weatherText = result.skyDesc,
             weatherCode = getWeatherCode(result.iconId),
             temperature = Temperature(
                 temperature = result.temperature,
-                apparentTemperature = result.apparentTemperature?.toFloat()
+                apparentTemperature = result.comfort?.toFloat()
             ),
             precipitation = Precipitation(
-                total = result.precipitation1H ?: getTotalPrecipFallback(result),
+                total = result.precipitation1H ?: (result.rainFall + result.snowFall),
                 rain = result.rainFall,
                 snow = result.snowFall,
             ),
@@ -258,83 +185,41 @@ private fun getHourlyForecast(
                 total = result.precipitationProbability?.toFloat()
             ),
             wind = Wind(
-                degree = result.windDirection, speed = result.windSpeed
+                degree = result.windDirection,
+                speed = result.windSpeed
             ),
-            uV = UV(
-                index = result.uvIndex?.toFloat()
-            ),
+            uV = UV(index = result.uvIndex?.toFloat()),
             relativeHumidity = result.humidity?.toFloat(),
             dewPoint = result.dewPoint,
-            pressure = result.pressure,
+            pressure = result.barometerPressure,
             visibility = result.visibility
         )
     }
 }
 
-/**
- * Fallback total precipitation calculation
- * Sums up snow and rain values
- */
-private fun getTotalPrecipFallback(weatherData: HereWeatherData): Float {
-    return (weatherData.rainFall ?: 0f).plus(weatherData.snowFall ?: 0f)
-}
-
-/**
- * Returns a list of alerts, combined from
- * general alerts forecasted for next 24 hours and
- * NWS warnings and watches
- *
- * TODO: Smarter deduplication
- */
 private fun getAlertList(
-    alerts: List<HereWeatherAlert>?, nwsAlerts: HereWeatherNWSAlerts?, tz: TimeZone?
+    nwsAlerts: HereWeatherNWSAlerts?
 ): List<Alert> {
     val converted = arrayListOf<Alert>()
-
-    alerts?.let {
-        for (alert in it) {
-            if (alert.timeSegments.isNullOrEmpty()) {
-                continue
-            }
-
-            for (timeSegment in alert.timeSegments) {
-                converted.add(
-                    Alert(
-                        // see https://stackoverflow.com/questions/15184820/how-to-generate-unique-positive-long-using-uuid
-                        alertId = UUID.randomUUID().mostSignificantBits and Long.MAX_VALUE,
-                        startDate = getForecastedAlertStart(timeSegment, tz),
-                        endDate = getForecastedAlertEnd(timeSegment, tz),
-                        description = alert.description?.substringBefore(" - ")
-                            ?: alert.description
-                            ?: "",
-                        content = alert.description?.substringAfter(" - "),
-                        priority = getForecastedAlertPriority(alert)
-                    )
-                )
-            }
-        }
-    }
 
     val nwsAlertsCombined = (nwsAlerts?.warnings ?: listOf()) + (nwsAlerts?.watches ?: listOf())
     for (alert in nwsAlertsCombined) {
         val description = alert.description ?: ""
-        val startDate = getDate(alert.start) ?: Date()
-        val endDate = getDate(alert.end) ?: Date()
 
         // try to deduplicate
         if (converted.find {
                 it.description == description &&
-                        it.startDate == startDate &&
-                        it.endDate == endDate
+                        it.startDate == alert.validFromTimeLocal &&
+                        it.endDate == alert.validUntilTimeLocal
             } != null) {
             continue
         }
 
         converted.add(
             Alert(
-                alertId = UUID.randomUUID().mostSignificantBits and Long.MAX_VALUE,
-                startDate = startDate,
-                endDate = endDate,
+                alertId = (alert.validFromTimeLocal?.time ?: 0) + (alert.validUntilTimeLocal?.time ?: 0),
+                startDate = alert.validFromTimeLocal,
+                endDate = alert.validUntilTimeLocal,
                 description = description,
                 content = alert.message,
                 priority = alert.severity ?: 1
@@ -343,63 +228,6 @@ private fun getAlertList(
     }
 
     return converted
-}
-
-/**
- * Returns forecasted alert start time
- * manually inferred from time of day in HereAlertTimeSegment
- *
- * TODO: Alerts are forecasted for next 24 hours
- *  Right now each alert is set to today regardless of dayOfWeek,
- *  but it is possible that the alert is for tomorrow
- */
-private fun getForecastedAlertStart(
-    timeSegment: HereWeatherAlertTimeSegment, tz: TimeZone?
-): Date {
-    val dayStart = tz?.let { Date().toTimezoneNoHour(it) } ?: Date()
-
-    val alertStart = when (timeSegment.timeOfDay) {
-        "morning" -> 2
-        "afternoon" -> 10
-        "evening" -> 16
-        "night" -> 20
-        else -> 0
-    }
-    return dayStart.time.plus(alertStart.hours.inWholeMilliseconds).toDate()
-}
-
-/**
- * Returns forecasted alert end time
- * manually inferred from time of day in HereAlertTimeSegment
- */
-private fun getForecastedAlertEnd(
-    timeSegment: HereWeatherAlertTimeSegment, tz: TimeZone?
-): Date {
-    val dayStart = tz?.let { Date().toTimezoneNoHour(it) } ?: Date()
-    val alertEnd = when (timeSegment.timeOfDay) {
-        "morning" -> 10
-        "afternoon" -> 16
-        "evening" -> 20
-        "night" -> 24
-        else -> 0
-    }
-    return dayStart.time.plus(alertEnd.hours.inWholeMilliseconds).toDate()
-}
-
-/**
- * Returns forecasted alert priority
- * manually inferred from alert's description.
- *
- * See https://developer.here.com/documentation/destination-weather/api-reference-v3.html
- * ApiInformation for details
- */
-private fun getForecastedAlertPriority(alert: HereWeatherAlert): Int {
-    return when (alert.type) {
-        1, 4, 7, 8, 10, 11, 13, 14, 15, 17, 18, 20, 22, 30, 32, 35 -> 3
-        2, 5, 9, 16, 19, 21, 33, 34 -> 2
-        3, 6, 12, 31 -> 1
-        else -> 1
-    }
 }
 
 /**

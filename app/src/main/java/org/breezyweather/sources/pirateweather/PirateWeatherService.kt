@@ -42,7 +42,7 @@ class PirateWeatherService @Inject constructor(
     override fun requestWeather(
         context: Context, location: Location
     ): Observable<WeatherResultWrapper> {
-        if (!isConfigured()) {
+        if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())
         }
         val apiKey = getApiKeyOrDefault()
@@ -66,8 +66,11 @@ class PirateWeatherService @Inject constructor(
         }
         get() = config.getString("apikey", null) ?: ""
 
-    private fun getApiKeyOrDefault() = apikey.ifEmpty { BuildConfig.PIRATE_WEATHER_KEY }
-    private fun isConfigured() = getApiKeyOrDefault().isNotEmpty()
+    private fun getApiKeyOrDefault(): String {
+        return apikey.ifEmpty { BuildConfig.PIRATE_WEATHER_KEY }
+    }
+    override val isConfigured
+        get() = getApiKeyOrDefault().isNotEmpty()
 
     override fun getPreferences(context: Context): List<Preference> {
         return listOf(
