@@ -17,8 +17,7 @@ object WeatherEntityGenerator {
         return WeatherEntity(
 
             // base.
-            cityId = location.cityId,
-            weatherSource = location.weatherSource,
+            formattedId = location.formattedId,
             publishDate = weather.base.publishDate,
             updateDate = weather.base.updateDate,
 

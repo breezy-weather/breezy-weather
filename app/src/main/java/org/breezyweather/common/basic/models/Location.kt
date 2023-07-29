@@ -7,6 +7,7 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.models.weather.Astro
 import org.breezyweather.common.basic.models.weather.Weather
 import org.breezyweather.sources.SourceManager
+import java.util.Locale
 import java.util.TimeZone
 import kotlin.math.atan2
 import kotlin.math.cos
@@ -15,7 +16,7 @@ import kotlin.math.sin
 import kotlin.math.sqrt
 
 data class Location(
-    val cityId: String = NULL_ID,
+    val cityId: String? = null,
 
     val latitude: Float = 0f,
     val longitude: Float = 0f,
@@ -39,14 +40,17 @@ data class Location(
         get() = if (isCurrentPosition) {
             CURRENT_POSITION_ID
         } else {
-            cityId + "&" + weatherSource
+            String.format(Locale.US, "%f", latitude) + "&" +
+                    String.format(Locale.US, "%f", longitude) + "&" +
+                    weatherSource
         }
 
     val isDaylight: Boolean
         get() = isDayLight(this)
 
     val isUsable: Boolean
-        get() = cityId != NULL_ID
+        // Sorry people living exactly at 0,0
+        get() = latitude != 0f || longitude != 0f
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(cityId)
@@ -67,7 +71,7 @@ data class Location(
     override fun describeContents() = 0
 
     constructor(parcel: Parcel) : this(
-        cityId = parcel.readString()!!,
+        cityId = parcel.readString(),
         latitude = parcel.readFloat(),
         longitude = parcel.readFloat(),
         timeZone = parcel.readSerializable()!! as TimeZone,
@@ -199,8 +203,6 @@ data class Location(
     }
 
     companion object {
-
-        private const val NULL_ID = "NULL_ID"
 
         const val CURRENT_POSITION_ID = "CURRENT_POSITION"
 

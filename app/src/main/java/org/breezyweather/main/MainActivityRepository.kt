@@ -6,6 +6,7 @@ import kotlinx.serialization.MissingFieldException
 import kotlinx.serialization.SerializationException
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.exceptions.ApiKeyMissingException
+import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.LocationException
 import org.breezyweather.common.exceptions.MissingPermissionLocationBackgroundException
 import org.breezyweather.common.exceptions.MissingPermissionLocationException
@@ -172,6 +173,7 @@ class MainActivityRepository @Inject constructor(
                 }
                 is SocketTimeoutException -> RequestErrorType.SERVER_TIMEOUT
                 is ApiKeyMissingException -> RequestErrorType.API_KEY_REQUIRED_MISSING
+                is InvalidLocationException -> RequestErrorType.INVALID_LOCATION
                 is LocationException -> RequestErrorType.LOCATION_FAILED
                 is MissingPermissionLocationException -> RequestErrorType.ACCESS_LOCATION_PERMISSION_MISSING
                 // Should never happen, we are not in background, but just in case:

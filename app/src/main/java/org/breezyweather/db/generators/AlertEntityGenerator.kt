@@ -4,10 +4,9 @@ import org.breezyweather.common.basic.models.weather.Alert
 import org.breezyweather.db.entities.AlertEntity
 
 object AlertEntityGenerator {
-    fun generate(cityId: String, source: String, alert: Alert): AlertEntity {
+    fun generate(formattedId: String, alert: Alert): AlertEntity {
         return AlertEntity(
-            cityId = cityId,
-            weatherSource = source,
+            formattedId = formattedId,
             alertId = alert.alertId,
             startDate = alert.startDate,
             endDate = alert.endDate,
@@ -18,10 +17,10 @@ object AlertEntityGenerator {
         )
     }
 
-    fun generate(cityId: String, source: String, alertList: List<Alert>): List<AlertEntity> {
+    fun generate(formattedId: String, alertList: List<Alert>): List<AlertEntity> {
         val entityList: MutableList<AlertEntity> = ArrayList(alertList.size)
         for (alert in alertList) {
-            entityList.add(generate(cityId, source, alert))
+            entityList.add(generate(formattedId, alert))
         }
         return entityList
     }

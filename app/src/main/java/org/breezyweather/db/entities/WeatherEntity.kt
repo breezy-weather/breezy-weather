@@ -18,8 +18,7 @@ class WeatherEntity(
     @field:Id var id: Long = 0,
 
     // base.
-    var cityId: String,
-    var weatherSource: String,
+    var formattedId: String,
     var publishDate: Date,
     var updateDate: Date,
 
@@ -78,12 +77,7 @@ class WeatherEntity(
     fun getDailyEntityList(boxStore: BoxStore): List<DailyEntity> {
         if (dailyEntityList == null) {
             val dailyEntityBox = boxStore.boxFor(DailyEntity::class.java)
-            val query = dailyEntityBox.query(
-                DailyEntity_.cityId.equal(cityId)
-                    .and(
-                        DailyEntity_.weatherSource.equal(weatherSource)
-                    )
-            )
+            val query = dailyEntityBox.query(DailyEntity_.formattedId.equal(formattedId))
                 .order(DailyEntity_.date)
                 .build()
             val dailyEntityListNew = query.find()
@@ -104,12 +98,7 @@ class WeatherEntity(
     fun getHourlyEntityList(boxStore: BoxStore): List<HourlyEntity> {
         if (hourlyEntityList == null) {
             val hourlyEntityBox = boxStore.boxFor(HourlyEntity::class.java)
-            val query = hourlyEntityBox.query(
-                HourlyEntity_.cityId.equal(cityId)
-                    .and(
-                        HourlyEntity_.weatherSource.equal(weatherSource)
-                    )
-            )
+            val query = hourlyEntityBox.query(HourlyEntity_.formattedId.equal(formattedId))
                 .order(HourlyEntity_.date)
                 .build()
             val hourlyEntityListNew = query.find()
@@ -130,12 +119,7 @@ class WeatherEntity(
     fun getMinutelyEntityList(boxStore: BoxStore): List<MinutelyEntity> {
         if (minutelyEntityList == null) {
             val minutelyEntityBox = boxStore.boxFor(MinutelyEntity::class.java)
-            val query = minutelyEntityBox.query(
-                MinutelyEntity_.cityId.equal(cityId)
-                    .and(
-                        MinutelyEntity_.weatherSource.equal(weatherSource)
-                    )
-            )
+            val query = minutelyEntityBox.query(MinutelyEntity_.formattedId.equal(formattedId))
                 .order(MinutelyEntity_.date)
                 .build()
             val minutelyEntityListNew = query.find()
@@ -156,12 +140,7 @@ class WeatherEntity(
     fun getAlertEntityList(boxStore: BoxStore): List<AlertEntity> {
         if (alertEntityList == null) {
             val alertEntityBox = boxStore.boxFor(AlertEntity::class.java)
-            val query = alertEntityBox.query(
-                AlertEntity_.cityId.equal(cityId)
-                    .and(
-                        AlertEntity_.weatherSource.equal(weatherSource)
-                    )
-            )
+            val query = alertEntityBox.query(AlertEntity_.formattedId.equal(formattedId))
                 .order(AlertEntity_.priority)
                 .order(AlertEntity_.startDate)
                 .build()

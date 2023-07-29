@@ -16,10 +16,9 @@ import org.breezyweather.common.basic.models.weather.Wind
 import org.breezyweather.db.entities.DailyEntity
 
 object DailyEntityGenerator {
-    fun generate(cityId: String, source: String, daily: Daily): DailyEntity {
+    fun generate(formattedId: String, daily: Daily): DailyEntity {
         return DailyEntity(
-            cityId = cityId,
-            weatherSource = source,
+            formattedId = formattedId,
             date = daily.date,
 
             // daytime.
@@ -131,10 +130,10 @@ object DailyEntityGenerator {
         )
     }
 
-    fun generate(cityId: String, source: String, dailyList: List<Daily>): List<DailyEntity> {
+    fun generate(formattedId: String, dailyList: List<Daily>): List<DailyEntity> {
         val entityList: MutableList<DailyEntity> = ArrayList(dailyList.size)
         for (daily in dailyList) {
-            entityList.add(generate(cityId, source, daily))
+            entityList.add(generate(formattedId, daily))
         }
         return entityList
     }

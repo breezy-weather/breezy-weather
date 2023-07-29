@@ -1,4 +1,6 @@
-# Next version
+# Version 4.5.0-beta (next version)
+
+This version contains a major rewriting of the database to fix long-time issues that were already there in Geometric Weather, such as app size growing every time the current location changed (because it kept old data). Your existing locations will be preserved but all cached weather data will be deleted and refreshed on update.
 
 - Add support for HERE (@Cod3dDOT)
 - Fix precipitation probability on OpenWeather (@Cod3dDOT)

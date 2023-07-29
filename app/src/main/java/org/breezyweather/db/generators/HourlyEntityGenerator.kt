@@ -10,10 +10,9 @@ import org.breezyweather.common.basic.models.weather.Wind
 import org.breezyweather.db.entities.HourlyEntity
 
 object HourlyEntityGenerator {
-    fun generate(cityId: String, source: String, hourly: Hourly): HourlyEntity {
+    fun generate(formattedId: String, hourly: Hourly): HourlyEntity {
         return HourlyEntity(
-            cityId = cityId,
-            weatherSource = source,
+            formattedId = formattedId,
             date = hourly.date,
             daylight = hourly.isDaylight,
             weatherCode = hourly.weatherCode,
@@ -61,10 +60,10 @@ object HourlyEntityGenerator {
         )
     }
 
-    fun generateEntityList(cityId: String, source: String, hourlyList: List<Hourly>): List<HourlyEntity> {
+    fun generateEntityList(formattedId: String, hourlyList: List<Hourly>): List<HourlyEntity> {
         val entityList: MutableList<HourlyEntity> = ArrayList(hourlyList.size)
         for (hourly in hourlyList) {
-            entityList.add(generate(cityId, source, hourly))
+            entityList.add(generate(formattedId, hourly))
         }
         return entityList
     }

@@ -31,18 +31,22 @@ class LocationHelper @Inject constructor(
             throw LocationException()
         }
         val source = location.weatherSource
-        val weatherService = sourceManager.getReverseGeocodingSourceOrDefault(source)
-        return weatherService.requestReverseGeocodingLocation(context, currentLocation).map { locationList ->
-            if (locationList.isNotEmpty()) {
-                val src = locationList[0]
-                val locationWithGeocodeInfo = src.copy(isCurrentPosition = true)
-                LocationEntityRepository.writeLocation(locationWithGeocodeInfo)
-                locationWithGeocodeInfo
-            } else {
+        val weatherService = sourceManager.getReverseGeocodingSource(source)
+        return if (weatherService != null) {
+            weatherService.requestReverseGeocodingLocation(context, currentLocation).map { locationList ->
+                if (locationList.isNotEmpty()) {
+                    val src = locationList[0]
+                    val locationWithGeocodeInfo = src.copy(isCurrentPosition = true)
+                    LocationEntityRepository.writeLocation(locationWithGeocodeInfo)
+                    locationWithGeocodeInfo
+                } else {
+                    throw ReverseGeocodingException()
+                }
+            }.awaitFirstOrElse {
                 throw ReverseGeocodingException()
             }
-        }.awaitFirstOrElse {
-            throw ReverseGeocodingException()
+        } else {
+            location // returned as-is if no reverse geocoding source
         }
     }
 

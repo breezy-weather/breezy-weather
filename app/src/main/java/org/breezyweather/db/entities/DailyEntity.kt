@@ -16,8 +16,7 @@ import java.util.Date
 data class DailyEntity(
     @field:Id var id: Long = 0,
 
-    var cityId: String,
-    var weatherSource: String,
+    var formattedId: String,
     var date: Date,
 
     // daytime.

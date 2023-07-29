@@ -16,12 +16,9 @@ object DailyEntityRepository {
     }
 
     // select.
-    fun selectDailyEntityList(cityId: String, source: String): List<DailyEntity> {
+    fun selectDailyEntityList(formattedId: String): List<DailyEntity> {
         val query = boxStore.boxFor(DailyEntity::class.java)
-            .query(
-                DailyEntity_.cityId.equal(cityId)
-                    .and(DailyEntity_.weatherSource.equal(source))
-            ).build()
+            .query(DailyEntity_.formattedId.equal(formattedId)).build()
         val results = query.find()
         query.close()
         return results

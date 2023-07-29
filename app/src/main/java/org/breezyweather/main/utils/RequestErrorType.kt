@@ -92,6 +92,9 @@ enum class RequestErrorType(
     ),
 
     // Weather-specific
+    INVALID_LOCATION(
+        shortMessage = R.string.weather_message_invalid_location
+    ),
     WEATHER_REQ_FAILED(
         shortMessage = R.string.weather_message_data_refresh_failed
     );

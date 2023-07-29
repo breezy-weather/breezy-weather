@@ -16,7 +16,7 @@ data class LocationEntity(
     @field:Id var id: Long = 0,
 
     var formattedId: String,
-    var cityId: String,
+    var cityId: String?,
     var latitude: Float,
     var longitude: Float,
     @field:Convert(

@@ -16,12 +16,9 @@ object HourlyEntityRepository {
     }
 
     // select.
-    fun selectHourlyEntityList(cityId: String, source: String): List<HourlyEntity> {
+    fun selectHourlyEntityList(formattedId: String): List<HourlyEntity> {
         val query = boxStore.boxFor(HourlyEntity::class.java)
-            .query(
-                HourlyEntity_.cityId.equal(cityId)
-                    .and(HourlyEntity_.weatherSource.equal(source))
-            ).build()
+            .query(HourlyEntity_.formattedId.equal(formattedId)).build()
         val results = query.find()
         query.close()
         return results

@@ -47,7 +47,7 @@ fun convert(location: Location?, result: MfForecastResult): Location? {
         && !location.district.isNullOrEmpty()
     ) {
         Location(
-            cityId = result.geometry.coordinates[1].toString() + "," + result.geometry.coordinates[0],
+            cityId = null,
             latitude = result.geometry.coordinates[1],
             longitude = result.geometry.coordinates[0],
             timeZone = TimeZone.getTimeZone(result.properties.timezone),
@@ -61,7 +61,7 @@ fun convert(location: Location?, result: MfForecastResult): Location? {
         )
     } else {
         Location(
-            cityId = result.geometry.coordinates[1].toString() + "," + result.geometry.coordinates[0],
+            cityId = null,
             latitude = result.geometry.coordinates[1],
             longitude = result.geometry.coordinates[0],
             timeZone = TimeZone.getTimeZone(result.properties.timezone),

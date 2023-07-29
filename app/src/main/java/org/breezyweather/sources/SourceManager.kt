@@ -13,7 +13,6 @@ import org.breezyweather.sources.china.ChinaService
 import org.breezyweather.sources.here.HereService
 import org.breezyweather.sources.metno.MetNoService
 import org.breezyweather.sources.mf.MfService
-import org.breezyweather.sources.noreversegeocoding.NoReverseGeocodingService
 import org.breezyweather.sources.openmeteo.OpenMeteoService
 import org.breezyweather.sources.openweather.OpenWeatherService
 import org.breezyweather.sources.pirateweather.PirateWeatherService
@@ -29,8 +28,7 @@ class SourceManager @Inject constructor(
     pirateWeatherService: PirateWeatherService,
     hereService: HereService,
     mfService: MfService,
-    chinaService: ChinaService,
-    noReverseGeocodingService: NoReverseGeocodingService
+    chinaService: ChinaService
 ) {
     // TODO: Initialize lazily
     private val sourceList: List<Source> = listOf(
@@ -46,10 +44,7 @@ class SourceManager @Inject constructor(
         pirateWeatherService,
         hereService,
         mfService,
-        chinaService,
-
-        // Reverse geocoding
-        noReverseGeocodingService
+        chinaService
     )
 
     // Location
@@ -74,7 +69,6 @@ class SourceManager @Inject constructor(
     // Reverse geocoding
     fun getReverseGeocodingSources(): List<ReverseGeocodingSource> = sourceList.filterIsInstance<ReverseGeocodingSource>()
     fun getReverseGeocodingSource(id: String): ReverseGeocodingSource? = getReverseGeocodingSources().firstOrNull { it.id == id }
-    fun getReverseGeocodingSourceOrDefault(id: String): ReverseGeocodingSource = getReverseGeocodingSource(id) ?: getReverseGeocodingSource(DEFAULT_REVERSE_GEOCODING_SOURCE)!!
 
 
     companion object {
@@ -82,6 +76,5 @@ class SourceManager @Inject constructor(
         const val DEFAULT_WEATHER_SOURCE = "accu"
         private const val DEFAULT_LOCATION_SOURCE = "native"
         private const val DEFAULT_LOCATION_SEARCH_SOURCE = "openmeteo"
-        private const val DEFAULT_REVERSE_GEOCODING_SOURCE = "noreversegeocoding"
     }
 }

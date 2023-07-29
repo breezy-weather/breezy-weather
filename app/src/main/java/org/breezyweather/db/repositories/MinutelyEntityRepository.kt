@@ -16,12 +16,9 @@ object MinutelyEntityRepository {
     }
 
     // select.
-    fun selectMinutelyEntityList(cityId: String, source: String): List<MinutelyEntity> {
+    fun selectMinutelyEntityList(formattedId: String): List<MinutelyEntity> {
         val query = boxStore.boxFor(MinutelyEntity::class.java)
-            .query(
-                MinutelyEntity_.cityId.equal(cityId)
-                    .and(MinutelyEntity_.weatherSource.equal(source))
-            ).build()
+            .query(MinutelyEntity_.formattedId.equal(formattedId)).build()
         val results = query.find()
         query.close()
         return results

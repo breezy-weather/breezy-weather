@@ -16,12 +16,9 @@ object AlertEntityRepository {
     }
 
     // search.
-    fun selectLocationAlertEntity(cityId: String, source: String): List<AlertEntity> {
+    fun selectLocationAlertEntity(formattedId: String): List<AlertEntity> {
         val query = boxStore.boxFor(AlertEntity::class.java)
-            .query(
-                AlertEntity_.cityId.equal(cityId)
-                    .and(AlertEntity_.weatherSource.equal(source))
-            ).build()
+            .query(AlertEntity_.formattedId.equal(formattedId)).build()
         val results = query.find()
         query.close()
         return results

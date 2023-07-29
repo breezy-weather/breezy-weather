@@ -15,8 +15,7 @@ import java.util.Date
 data class HourlyEntity(
     @field:Id var id: Long = 0,
 
-    var cityId: String,
-    var weatherSource: String,
+    var formattedId: String,
     var date: Date,
     var daylight: Boolean = true,
     var weatherText: String? = null,

@@ -24,8 +24,7 @@ object HistoryEntityRepository {
     fun readHistory(location: Location, publishDate: Date): History? {
         return HistoryEntityGenerator.generate(
             selectYesterdayHistoryEntity(
-                location.cityId,
-                location.weatherSource,
+                location.formattedId,
                 publishDate,
                 location.timeZone
             )
@@ -33,8 +32,7 @@ object HistoryEntityRepository {
     }
 
     fun selectYesterdayHistoryEntity(
-        cityId: String,
-        source: String,
+        formattedId: String,
         currentDate: Date,
         timeZone: TimeZone
     ): HistoryEntity? {
@@ -47,8 +45,7 @@ object HistoryEntityRepository {
                 .query(
                     HistoryEntity_.date.greaterOrEqual(yesterday)
                         .and(HistoryEntity_.date.less(today))
-                        .and(HistoryEntity_.cityId.equal(cityId))
-                        .and(HistoryEntity_.weatherSource.equal(source))
+                        .and(HistoryEntity_.formattedId.equal(formattedId))
                 ).build()
             val entityList = query.find()
             query.close()
@@ -60,8 +57,7 @@ object HistoryEntityRepository {
     }
 
     private fun selectTodayHistoryEntity(
-        cityId: String,
-        source: String,
+        formattedId: String,
         currentDate: Date,
         timeZone: TimeZone
     ): HistoryEntity? {
@@ -74,8 +70,7 @@ object HistoryEntityRepository {
                 .query(
                     HistoryEntity_.date.greaterOrEqual(today)
                         .and(HistoryEntity_.date.less(tomorrow))
-                        .and(HistoryEntity_.cityId.equal(cityId))
-                        .and(HistoryEntity_.weatherSource.equal(source))
+                        .and(HistoryEntity_.formattedId.equal(formattedId))
                 ).build()
             val entityList = query.find()
             query.close()
@@ -87,14 +82,10 @@ object HistoryEntityRepository {
     }
 
     fun selectHistoryEntityList(
-        cityId: String,
-        source: String
+        formattedId: String
     ): List<HistoryEntity> {
         val query = boxStore.boxFor(HistoryEntity::class.java)
-            .query(
-                HistoryEntity_.cityId.equal(cityId)
-                    .and(HistoryEntity_.weatherSource.equal(source))
-            ).build()
+            .query(HistoryEntity_.formattedId.equal(formattedId)).build()
         val results = query.find()
         query.close()
         return results

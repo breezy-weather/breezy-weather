@@ -4,6 +4,9 @@ import android.content.Context
 import org.breezyweather.background.forecast.TodayForecastNotificationJob
 import org.breezyweather.background.forecast.TomorrowForecastNotificationJob
 import org.breezyweather.background.weather.WeatherUpdateJob
+import org.breezyweather.db.entities.LocationEntity
+import org.breezyweather.db.repositories.LocationEntityRepository
+import org.breezyweather.db.repositories.WeatherEntityRepository
 import org.breezyweather.settings.SettingsManager
 
 object Migrations {
@@ -19,6 +22,16 @@ object Migrations {
         val lastVersionCode = SettingsManager.getInstance(context).lastVersionCode
         val oldVersion = lastVersionCode
         if (oldVersion < BuildConfig.VERSION_CODE) {
+            if (oldVersion > 0) { // Not fresh install
+                if (oldVersion < 40500) {
+                    // Clean up all weather data due to:
+                    // - formattedId change
+                    // - old current location weather data that was kept
+                    LocationEntityRepository.regenerateAllFormattedId()
+                    WeatherEntityRepository.deleteAllWeather()
+                }
+            }
+
             SettingsManager.getInstance(context).lastVersionCode = BuildConfig.VERSION_CODE
 
             // Always set up background tasks to ensure they're running
@@ -26,17 +39,7 @@ object Migrations {
             TodayForecastNotificationJob.setupTask(context, false)
             TomorrowForecastNotificationJob.setupTask(context, false)
 
-            // Fresh install
-            if (oldVersion == 0) {
-                return false
-            }
-
-            // We don’t have migrations yet, but they should be added here in the future
-            /*if (oldVersion < 40200) {
-
-            }*/
-
-            return true
+            return oldVersion != 0
         }
 
         return false

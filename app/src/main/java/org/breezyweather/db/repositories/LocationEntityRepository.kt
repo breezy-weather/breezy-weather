@@ -5,6 +5,7 @@ import org.breezyweather.db.ObjectBox.boxStore
 import org.breezyweather.db.entities.LocationEntity
 import org.breezyweather.db.entities.LocationEntity_
 import org.breezyweather.db.generators.LocationEntityGenerator
+import java.util.Locale
 
 object LocationEntityRepository {
     private val mWritingLock: Any = Any()
@@ -96,5 +97,26 @@ object LocationEntityRepository {
         val count = query.count()
         query.close()
         return count.toInt()
+    }
+
+    fun regenerateAllFormattedId() {
+        val locationEntityList = selectLocationEntityList()
+        boxStore.callInTxNoException {
+            locationEntityList.forEach { entity ->
+                entity.formattedId = if (entity.currentPosition) {
+                    Location.CURRENT_POSITION_ID
+                } else {
+                    String.format(Locale.US, "%f", entity.latitude) + "&" +
+                            String.format(Locale.US, "%f", entity.longitude) + "&" +
+                            entity.weatherSource
+                }
+                // Also clean up cityId containing "lon,lat"
+                if (entity.cityId?.contains(",") == true) {
+                    entity.cityId = null
+                }
+                updateLocationEntity(entity)
+            }
+            true
+        }
     }
 }

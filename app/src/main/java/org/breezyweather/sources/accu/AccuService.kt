@@ -12,6 +12,7 @@ import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.basic.wrappers.WeatherResultWrapper
+import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.ListPreference
 import org.breezyweather.common.preference.Preference
@@ -57,6 +58,9 @@ class AccuService @Inject constructor(
     ): Observable<WeatherResultWrapper> {
         if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())
+        }
+        if (location.cityId.isNullOrEmpty()) {
+            return Observable.error(InvalidLocationException())
         }
 
         val apiKey = getApiKeyOrDefault()

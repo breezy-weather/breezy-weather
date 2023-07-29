@@ -4,20 +4,19 @@ import org.breezyweather.common.basic.models.weather.Minutely
 import org.breezyweather.db.entities.MinutelyEntity
 
 object MinutelyEntityGenerator {
-    fun generate(cityId: String, source: String, minutely: Minutely): MinutelyEntity {
+    fun generate(formattedId: String, minutely: Minutely): MinutelyEntity {
         return MinutelyEntity(
-            cityId = cityId,
-            weatherSource = source,
+            formattedId = formattedId,
             date = minutely.date,
             minuteInterval = minutely.minuteInterval,
             dbz = minutely.dbz
         )
     }
 
-    fun generate(cityId: String, source: String, minutelyList: List<Minutely>): List<MinutelyEntity> {
+    fun generate(formattedId: String, minutelyList: List<Minutely>): List<MinutelyEntity> {
         val entityList: MutableList<MinutelyEntity> = ArrayList(minutelyList.size)
         for (minutely in minutelyList) {
-            entityList.add(generate(cityId, source, minutely))
+            entityList.add(generate(formattedId, minutely))
         }
         return entityList
     }
