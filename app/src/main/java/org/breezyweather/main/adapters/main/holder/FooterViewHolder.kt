@@ -46,7 +46,7 @@ class FooterViewHolder(
     fun onBindView(
         context: Context, location: Location, provider: ResourceProvider,
         listAnimationEnabled: Boolean, itemAnimationEnabled: Boolean,
-        mainWeatherSource: MainWeatherSource?
+        mainWeatherSource: MainWeatherSource? // TODO: Pass list of credits as parameter instead of making the ViewHolder calculate everything
     ) {
         super.onBindView(context, location, provider, listAnimationEnabled, itemAnimationEnabled)
 
@@ -59,13 +59,20 @@ class FooterViewHolder(
             context.getString(R.string.weather_data_by)
                 .replace("$", mainWeatherSource?.weatherAttribution ?: context.getString(R.string.null_data_text))
         )
-        if (mainWeatherSource is SecondaryWeatherSource
-            && mainWeatherSource.weatherAttribution != mainWeatherSource.allergenAttribution) {
-            creditsText.append("\n")
-                .append(
-                    context.getString(R.string.weather_air_quality_and_pollen_data_by)
-                        .replace("$", mainWeatherSource.allergenAttribution)
-                )
+        if (location.airQualitySource.isNullOrEmpty()) {
+            if (mainWeatherSource is SecondaryWeatherSource
+                && mainWeatherSource.weatherAttribution != mainWeatherSource.allergenAttribution
+            ) {
+                mainWeatherSource.allergenAttribution?.let {
+                    creditsText.append("\n")
+                        .append(
+                            context.getString(R.string.weather_air_quality_and_allergen_data_by)
+                                .replace("$", it)
+                        )
+                }
+            }
+        } else {
+            // TODO
         }
 
         composeView.setContent {

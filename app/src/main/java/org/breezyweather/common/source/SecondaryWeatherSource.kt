@@ -12,13 +12,9 @@ import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
 interface SecondaryWeatherSource : Source {
 
     val isAirQualitySupported: Boolean
-        get() = false
     val isAllergenSupported: Boolean
-        get() = false
     val isMinutelySupported: Boolean
-        get() = false
-    val isAlertsSupported: Boolean
-        get() = false
+    val isAlertSupported: Boolean
 
     fun isAirQualitySupportedForLocation(location: Location): Boolean = true
     fun isAllergenSupportedForLocation(location: Location): Boolean = true
@@ -26,13 +22,9 @@ interface SecondaryWeatherSource : Source {
     fun isAlertsSupportedForLocation(location: Location): Boolean = true
 
     val airQualityAttribution: String?
-        get() = null
     val allergenAttribution: String?
-        get() = null
     val minutelyAttribution: String?
-        get() = null
-    val alertsAttribution: String?
-        get() = null
+    val alertAttribution: String?
 
     /**
      * Returns secondary weather converted to Breezy Weather Weather object

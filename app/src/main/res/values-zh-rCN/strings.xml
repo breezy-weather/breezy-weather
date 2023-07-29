@@ -474,7 +474,7 @@
     <string name="weather_source_accu_preference_hours_72">七十二小时</string>
     <string name="settings_background_updates">后台更新</string>
     <string name="settings_background_updates_dont_kill_my_app_title">制造商特定的说明</string>
-    <string name="weather_air_quality_and_pollen_data_by">由 $ 提供空气质量和大气污染数据</string>
+    <string name="weather_air_quality_and_allergen_data_by">由 $ 提供空气质量和大气污染数据</string>
     <string name="location_message_search_failed">搜索位置失败</string>
     <string name="location_message_permission_background_missing">缺少在后台访问位置的权限</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">某些制造商有额外的应用限制，可以终止后台服务。Don’t kill my app! 网站有关于如何修复它的信息。</string>

@@ -276,7 +276,7 @@
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
     <string name="weather_data_by">Данни от $</string>
-    <string name="weather_air_quality_and_pollen_data_by">Данни за качеството на въздуха и праха от $</string>
+    <string name="weather_air_quality_and_allergen_data_by">Данни за качеството на въздуха и праха от $</string>
     <string name="weather_message_data_refresh_failed">Опресняването на данните за времето неуспешно</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Текущо налягане</string>
     <string name="settings_units_summary">Температура, валежи, разстояние, скорост, налягане</string>

@@ -358,7 +358,7 @@
     <string name="weather_api_unauthorized_content">Em alguns provedores de previsão do tempo, é necessário fornecer sua própria chave de API. Se você já forneceu uma, verifique novamente a chave de API que você forneceu.</string>
     <string name="notification_channel_alerts">Alertas</string>
     <string name="widget_material_you_current">Material You - Atual</string>
-    <string name="weather_air_quality_and_pollen_data_by">Dados de qualidade do ar e de pólen por $</string>
+    <string name="weather_air_quality_and_allergen_data_by">Dados de qualidade do ar e de pólen por $</string>
     <string name="weather_api_limit_reached_content">Para contornar o limite, adicione sua própria chave de API.</string>
     <string name="weather_api_key_required_missing_title">Chave de API necessária não encontrada</string>
     <string name="weather_api_key_required_missing_content">Para utilizar esse provedor, é necessário fornecer uma chave de API.</string>

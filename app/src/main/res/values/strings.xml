@@ -210,7 +210,11 @@
     <string name="date_format_widget_oreo_style">EEEE, MMM d│</string>
     <!-- Weather providers -->
     <string name="weather_data_by">Data by $</string>
-    <string name="weather_air_quality_and_pollen_data_by">Air quality and pollen data by $</string>
+    <string name="weather_air_quality_data_by">Air quality data by $</string>
+    <string name="weather_allergen_data_by">Allergen data by $</string>
+    <string name="weather_air_quality_and_allergen_data_by">Air quality and allergen data by $</string>
+    <string name="weather_minutely_data_by">Minutely precipitations data by $</string>
+    <string name="weather_alert_data_by">Alert data by $</string>
     <!-- $ = weather data provider -->
     <string name="weather_message_data_refresh_failed">Weather data refresh failed</string>
     <string name="weather_message_secondary_data_refresh_failed">Weather data refresh for a secondary weather source failed</string>

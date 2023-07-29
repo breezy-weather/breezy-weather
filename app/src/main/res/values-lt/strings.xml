@@ -124,7 +124,7 @@
     <string name="date_format_widget_short">EEE, MMM d</string>
     <string name="date_format_widget_long">EEEE, MMM d</string>
     <string name="weather_data_by">Duomenys iš $</string>
-    <string name="weather_air_quality_and_pollen_data_by">Oro kokybės ir žiedadulkių duomenys iš $</string>
+    <string name="weather_air_quality_and_allergen_data_by">Oro kokybės ir žiedadulkių duomenys iš $</string>
     <string name="weather_message_data_refresh_failed">Orų duomenų atnaujinimas nepavyko</string>
     <string name="weather_api_limit_reached_title">Pasiektas API prašymų limitas</string>
     <string name="weather_api_unauthorized_title">Prieiga prie API neleista</string>

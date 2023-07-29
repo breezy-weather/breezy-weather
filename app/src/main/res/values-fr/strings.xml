@@ -381,7 +381,11 @@
     <string name="settings_item_delete">Supprimer cet élément</string>
     <string name="location_swipe_to_delete">Vous pouvez balayer vers la gauche pour supprimer cet élément</string>
     <string name="weather_data_by">Données par $</string> <!-- $ = weather source. -->
-    <string name="weather_air_quality_and_pollen_data_by">Données de qualité de l’air et de pollen par $</string>
+    <string name="weather_air_quality_data_by">Données de qualité de l’air par $</string>
+    <string name="weather_allergen_data_by">Données d’allergènes par $</string>
+    <string name="weather_air_quality_and_allergen_data_by">Données de qualité de l’air et d’allergènes par $</string>
+    <string name="weather_minutely_data_by">Données de précipitations détaillées par $</string>
+    <string name="weather_alert_data_by">Données d’alertes par $</string>
     <string name="location_results_by">Résultats d’emplacement par $</string> <!-- $ = location source -->
     <string name="settings_icon_packs_weather_adaptive_icon">Icône météo</string>
     <string name="settings_icon_packs_weather_icon_light">Icône claire</string>

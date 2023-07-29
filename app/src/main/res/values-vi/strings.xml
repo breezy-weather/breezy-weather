@@ -164,7 +164,7 @@
     <string name="date_format_long">d MMM</string>
     <string name="date_format_widget_short">EEE, d MMM</string>
     <string name="date_format_widget_long">EEEE, d MMM</string>
-    <string name="weather_air_quality_and_pollen_data_by">Dữ liệu chất lượng không khí và ô nhiễm từ $</string>
+    <string name="weather_air_quality_and_allergen_data_by">Dữ liệu chất lượng không khí và ô nhiễm từ $</string>
     <string name="weather_message_data_refresh_failed">Làm mới dữ liệu thời tiết thất bại</string>
     <string name="weather_api_limit_reached_title">Đã đạt giới hạn gọi API</string>
     <string name="weather_api_limit_reached_content">Để giải quyết vấn đề giới hạn, thêm khóa API của bạn.</string>

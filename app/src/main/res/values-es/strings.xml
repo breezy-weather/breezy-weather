@@ -402,7 +402,7 @@
     <string name="settings_location_access_permission_already_granted">Permiso ya concedido</string>
     <string name="message_parsing_error_title">Error al analizar los datos meteorológicos</string>
     <string name="settings_background_updates_battery_optimization_disabled">La optimización de batería ya está deshabilitada.</string>
-    <string name="weather_air_quality_and_pollen_data_by">Calidad de aire y datos de polen por $</string>
+    <string name="weather_air_quality_and_allergen_data_by">Calidad de aire y datos de polen por $</string>
     <string name="weather_source_openweather_version_2_5">Versión 2.5</string>
     <string name="location_results_by">Resultados de ubicación según $</string>
     <string name="action_add_from_map">Añadir desde mapa</string>

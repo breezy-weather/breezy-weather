@@ -315,7 +315,7 @@
     <string name="openmeteo_weather_text_fog">Ceaţă</string>
     <string name="openmeteo_weather_text_snow_heavy_intensity">Ninsoare intensă</string>
     <string name="openmeteo_weather_text_rain_heavy_intensity">Ploaie intensă</string>
-    <string name="weather_air_quality_and_pollen_data_by">Calitatea aerului și datele polenului furnizate de $</string>
+    <string name="weather_air_quality_and_allergen_data_by">Calitatea aerului și datele polenului furnizate de $</string>
     <string name="location_message_search_failed">Căutarea locației a eșuat</string>
     <string name="action_see_more">Vezi mai mult</string>
     <string name="message_network_unavailable">Rețea indisponibilă</string>

@@ -288,7 +288,7 @@
     <string name="unit_ppcm">/м³</string>
     <string name="location_search_weather_source">Провайдер погоды</string>
     <string name="location_search_change_weather_source">Сменить провайдера погоды</string>
-    <string name="weather_air_quality_and_pollen_data_by">Данные о качестве воздуха от $</string>
+    <string name="weather_air_quality_and_allergen_data_by">Данные о качестве воздуха от $</string>
     <string name="weather_source_openweather_version_2_5">Версия 2.5</string>
     <string name="locations">Местоположения</string>
     <string name="air_quality_level_5">Очень вредно</string>

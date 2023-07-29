@@ -446,7 +446,7 @@
     <string name="air_quality_co_info_title">أول أكسيد الكربون (CO)</string>
     <string name="air_quality_co_info_introduction">أول أكسيد الكربون (CO) هو غاز سام قابل للاشتعال عديم اللون والرائحة والطعم وغير مهيج.</string>
     <string name="ephemeris_moonset_at">غروب القمر في $</string>
-    <string name="weather_air_quality_and_pollen_data_by">جودة الهواء وبيانات حبوب اللقاح بواسطة $</string>
+    <string name="weather_air_quality_and_allergen_data_by">جودة الهواء وبيانات حبوب اللقاح بواسطة $</string>
     <string name="weather_api_limit_reached_title">تم الوصول إلى الحد الأقصى لطلبات واجهة برمجة التطبيقات</string>
     <string name="weather_api_limit_reached_content">للتغلب على الحد ، أضف مفتاح API الخاص بك.</string>
     <string name="weather_api_unauthorized_title">الوصول إلى واجهة برمجة التطبيقات غير مصرح به</string>

@@ -571,7 +571,7 @@
     <string name="air_quality_so2_info_origin">Uvolňuje se přirozeně vulkanickou činností a převážně vzniká spalováním fosilních paliv pro vytápění domácností, průmyslu a výroby energie.</string>
     <string name="air_quality_so2_info_consequences">Vystavení SO₂ je spojeno s hospitalizacemi kvůli astmatu a návštěvami pohotovostí.</string>
     <string name="air_quality_co_info_introduction">Oxid uhelnatý (CO) je jedovatý hořlavý plyn, který je bezbarvý, bez zápachu a chuti a není dráždivý.</string>
-    <string name="weather_air_quality_and_pollen_data_by">Údaje o kvalitě ovzduší a pylu dle $</string>
+    <string name="weather_air_quality_and_allergen_data_by">Údaje o kvalitě ovzduší a pylu dle $</string>
     <string name="weather_api_limit_reached_title">Dosažení limitu požadavků API</string>
     <string name="weather_api_key_required_missing_title">Chybí požadovaný klíč API</string>
     <string name="dialog_permissions_notification_title">Zůstaňte informováni</string>

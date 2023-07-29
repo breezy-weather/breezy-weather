@@ -344,7 +344,7 @@
     <string name="action_continue">Continua</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="widget_style_oreo_google_sans">Oreo (Google sans)</string>
-    <string name="weather_air_quality_and_pollen_data_by">Dati su qualità dell’aria e polline da $</string>
+    <string name="weather_air_quality_and_allergen_data_by">Dati su qualità dell’aria e polline da $</string>
     <string name="location_results_by">Risultati localizzazione di $</string>
     <string name="location_message_search_failed">Ricerca posizione fallita</string>
     <string name="location_message_permission_background_missing">Autorizzazione di accesso alla posizione in background mancante</string>
