@@ -5,6 +5,7 @@ This version contains a major rewriting of the database to fix long-time issues 
 - Add support for HERE (@Cod3dDOT)
 - Fix precipitation probability on OpenWeather (@Cod3dDOT)
 - Reduce meteor spawning on clear night condition (@Cod3dDOT)
+- Fix contrast issue on Main screen Allergen card in some cases
 
 
 # Version 4.4.1-beta

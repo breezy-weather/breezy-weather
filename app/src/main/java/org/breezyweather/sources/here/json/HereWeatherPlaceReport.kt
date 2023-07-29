@@ -1,6 +1,5 @@
 package org.breezyweather.sources.here.json
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**

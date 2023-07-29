@@ -25,7 +25,8 @@ import org.breezyweather.theme.compose.DayNightTheme
 
 @Composable
 fun AllergenGrid(
-    allergen: Allergen
+    allergen: Allergen,
+    titleColor: Color = DayNightTheme.colors.titleColor
 ) {
     val context = LocalContext.current
     val unit = AllergenUnit.PPCM
@@ -38,6 +39,7 @@ fun AllergenGrid(
                 PollenItem(
                     modifier = Modifier.fillMaxWidth(0.5f),
                     title = stringResource(validAllergen.allergenName),
+                    titleColor = titleColor,
                     subtitle = unit.getValueText(
                         context,
                         allergen.getConcentration(validAllergen) ?: 0
@@ -54,6 +56,7 @@ fun AllergenGrid(
 private fun PollenItem(
     modifier: Modifier = Modifier,
     title: String,
+    titleColor: Color,
     subtitle: String,
     tintColor: Color,
 ) = Row(
@@ -77,7 +80,7 @@ private fun PollenItem(
     ) {
         Text(
             text = title,
-            color = DayNightTheme.colors.titleColor,
+            color = titleColor,
             style = MaterialTheme.typography.titleMedium,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.ui.graphics.Color
 import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.Location
@@ -15,7 +16,7 @@ import org.breezyweather.databinding.ItemPollenDailyBinding
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 
-open class HomePollenAdapter @JvmOverloads constructor(
+open class HomeAllergenAdapter @JvmOverloads constructor(
     private val location: Location,
     private val allergenUnit: AllergenUnit = AllergenUnit.PPCM,
 ) : RecyclerView.Adapter<HomePollenViewHolder>() {
@@ -50,7 +51,10 @@ class HomePollenViewHolder internal constructor(
         daily.allergen?.let {
             binding.composeView.setContent {
                 BreezyWeatherTheme(lightTheme = !isSystemInDarkTheme()) {
-                    AllergenGrid(allergen = it)
+                    AllergenGrid(
+                        allergen = it,
+                        titleColor = Color(MainThemeColorProvider.getColor(location, R.attr.colorTitleText))
+                    )
                 }
             }
         }

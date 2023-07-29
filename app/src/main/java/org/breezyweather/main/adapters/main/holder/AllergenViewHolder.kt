@@ -10,7 +10,7 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.Location
 import org.breezyweather.common.utils.helpers.IntentHelper
-import org.breezyweather.main.adapters.HomePollenAdapter
+import org.breezyweather.main.adapters.HomeAllergenAdapter
 import org.breezyweather.main.adapters.HomePollenViewHolder
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.theme.ThemeManager
@@ -28,7 +28,7 @@ class AllergenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     private val mPager: ViewPager2 = itemView.findViewById(R.id.container_main_pollen_pager)
     private var mCallback: DailyPollenPageChangeCallback? = null
 
-    private class DailyPollenPagerAdapter(location: Location) : HomePollenAdapter(location) {
+    private class DailyAllergenPagerAdapter(location: Location) : HomeAllergenAdapter(location) {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomePollenViewHolder {
             val holder = super.onCreateViewHolder(parent, viewType)
             holder.itemView.layoutParams = ViewGroup.LayoutParams(
@@ -75,7 +75,7 @@ class AllergenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 )[0]
         )
         mSubtitle.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorCaptionText))
-        mPager.adapter = DailyPollenPagerAdapter(location)
+        mPager.adapter = DailyAllergenPagerAdapter(location)
         mPager.currentItem = 0
         mCallback = DailyPollenPageChangeCallback(activity, location)
         mPager.registerOnPageChangeCallback(mCallback!!)

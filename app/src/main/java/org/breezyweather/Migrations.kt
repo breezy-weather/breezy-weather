@@ -4,7 +4,6 @@ import android.content.Context
 import org.breezyweather.background.forecast.TodayForecastNotificationJob
 import org.breezyweather.background.forecast.TomorrowForecastNotificationJob
 import org.breezyweather.background.weather.WeatherUpdateJob
-import org.breezyweather.db.entities.LocationEntity
 import org.breezyweather.db.repositories.LocationEntityRepository
 import org.breezyweather.db.repositories.WeatherEntityRepository
 import org.breezyweather.settings.SettingsManager
