@@ -15,6 +15,7 @@ import org.breezyweather.sources.noreversegeocoding.NoReverseGeocodingService
 import org.breezyweather.sources.openmeteo.OpenMeteoService
 import org.breezyweather.sources.openweather.OpenWeatherService
 import org.breezyweather.sources.pirateweather.PirateWeatherService
+import org.breezyweather.sources.weatherbit.WeatherbitService
 import javax.inject.Inject
 
 class SourceManager @Inject constructor(
@@ -25,6 +26,7 @@ class SourceManager @Inject constructor(
     metNoService: MetNoService,
     openWeatherService: OpenWeatherService,
     pirateWeatherService: PirateWeatherService,
+    weatherbitService: WeatherbitService,
     mfService: MfService,
     chinaService: ChinaService,
     noReverseGeocodingService: NoReverseGeocodingService
@@ -41,6 +43,7 @@ class SourceManager @Inject constructor(
         metNoService,
         openWeatherService,
         pirateWeatherService,
+        weatherbitService,
         mfService,
         chinaService,
 
@@ -50,24 +53,43 @@ class SourceManager @Inject constructor(
 
     // Location
     fun getLocationSources(): List<LocationSource> = sourceList.filterIsInstance<LocationSource>()
-    fun getLocationSource(id: String): LocationSource? = getLocationSources().firstOrNull { it.id == id }
-    fun getLocationSourceOrDefault(id: String): LocationSource = getLocationSource(id) ?: getLocationSource(DEFAULT_LOCATION_SOURCE)!!
+    fun getLocationSource(id: String): LocationSource? =
+        getLocationSources().firstOrNull { it.id == id }
+
+    fun getLocationSourceOrDefault(id: String): LocationSource =
+        getLocationSource(id) ?: getLocationSource(DEFAULT_LOCATION_SOURCE)!!
 
     // Weather
     fun getWeatherSources(): List<WeatherSource> = sourceList.filterIsInstance<WeatherSource>()
-    fun getWeatherSource(id: String): WeatherSource? = getWeatherSources().firstOrNull { it.id == id }
-    fun getWeatherSourceOrDefault(id: String): WeatherSource = getWeatherSource(id) ?: getWeatherSource(DEFAULT_WEATHER_SOURCE)!!
+    fun getWeatherSource(id: String): WeatherSource? =
+        getWeatherSources().firstOrNull { it.id == id }
+
+    fun getWeatherSourceOrDefault(id: String): WeatherSource =
+        getWeatherSource(id) ?: getWeatherSource(DEFAULT_WEATHER_SOURCE)!!
 
     // Location search
-    fun getLocationSearchSources(): List<LocationSearchSource> = sourceList.filterIsInstance<LocationSearchSource>()
-    fun getLocationSearchSource(id: String): LocationSearchSource? = getLocationSearchSources().firstOrNull { it.id == id }
-    fun getLocationSearchSourceOrDefault(id: String): LocationSearchSource = getLocationSearchSource(id) ?: getLocationSearchSource(DEFAULT_LOCATION_SEARCH_SOURCE)!!
-    fun getDefaultLocationSearchSource(): LocationSearchSource = getLocationSearchSources().firstOrNull { it.id == DEFAULT_LOCATION_SEARCH_SOURCE }!!
+    fun getLocationSearchSources(): List<LocationSearchSource> =
+        sourceList.filterIsInstance<LocationSearchSource>()
+
+    fun getLocationSearchSource(id: String): LocationSearchSource? =
+        getLocationSearchSources().firstOrNull { it.id == id }
+
+    fun getLocationSearchSourceOrDefault(id: String): LocationSearchSource =
+        getLocationSearchSource(id) ?: getLocationSearchSource(DEFAULT_LOCATION_SEARCH_SOURCE)!!
+
+    fun getDefaultLocationSearchSource(): LocationSearchSource =
+        getLocationSearchSources().firstOrNull { it.id == DEFAULT_LOCATION_SEARCH_SOURCE }!!
 
     // Reverse geocoding
-    fun getReverseGeocodingSources(): List<ReverseGeocodingSource> = sourceList.filterIsInstance<ReverseGeocodingSource>()
-    fun getReverseGeocodingSource(id: String): ReverseGeocodingSource? = getReverseGeocodingSources().firstOrNull { it.id == id }
-    fun getReverseGeocodingSourceOrDefault(id: String): ReverseGeocodingSource = getReverseGeocodingSource(id) ?: getReverseGeocodingSource(DEFAULT_REVERSE_GEOCODING_SOURCE)!!
+    fun getReverseGeocodingSources(): List<ReverseGeocodingSource> =
+        sourceList.filterIsInstance<ReverseGeocodingSource>()
+
+    fun getReverseGeocodingSource(id: String): ReverseGeocodingSource? =
+        getReverseGeocodingSources().firstOrNull { it.id == id }
+
+    fun getReverseGeocodingSourceOrDefault(id: String): ReverseGeocodingSource =
+        getReverseGeocodingSource(id)
+            ?: getReverseGeocodingSource(DEFAULT_REVERSE_GEOCODING_SOURCE)!!
 
 
     companion object {
