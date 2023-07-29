@@ -153,8 +153,8 @@ class MeteorShowerImplementor(@Size(2) canvasSizes: IntArray) : WeatherAnimation
             (viewWidth.toDouble().pow(2.0) + viewHeight.toDouble().pow(2.0)).pow(0.5).toInt()
         val width = (1.0 * canvasSize).toInt()
         val height = ((canvasSize - viewHeight) * 0.5 + viewWidth * 1.1111).toInt()
-        val radius = (0.002 * canvasSize * (0.5 + random.nextFloat())).toFloat()
-        mStars = Array(50) { i ->
+        val radius = (0.00125 * canvasSize * (0.5 + random.nextFloat())).toFloat()
+        mStars = Array(70) { i ->
             val x = (random.nextInt(width) - 0.5 * (canvasSize - viewWidth)).toInt()
             val y = (random.nextInt(height) - 0.5 * (canvasSize - viewHeight)).toInt()
             val duration = (2500 + random.nextFloat() * 2500).toLong()

@@ -2,6 +2,7 @@
 
 - Add support for HERE (@Cod3dDOT)
 - Fix precipitation probability on OpenWeather (@Cod3dDOT)
+- Reduce meteor spawning on clear night condition (@Cod3dDOT)
 
 
 # Version 4.4.1-beta
