@@ -1,5 +1,12 @@
 # Contributions
 
+## Rules for inclusion of new weather sources
+
+To be candidate for inclusion in the project, a weather source must have a free-tier available with hourly forecast at minimum.
+
+Examples of weather sources that don’t fit: Apple WeatherKit (no free-tier), Weatherbit (free-tier doesn’t have hourly).
+
+
 ## Git setup for pull requests
 
 Fork the project on GitHub.

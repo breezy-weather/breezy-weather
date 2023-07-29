@@ -54,6 +54,8 @@ body:
       label: Acknowledgements
       description: Your issue will be closed if you don’t read this carefully.
       options:
+        - label: This weather source has a free-tier available with hourly forecast
+          required: true
         - label: I have searched the existing issues and this is a new ticket, **NOT** a duplicate or related to another open or closed issue.
           required: true
         - label: I have written the name of the source as the title of this issue.
