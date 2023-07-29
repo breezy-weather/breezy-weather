@@ -231,7 +231,7 @@
     <string name="message_updated_in_background">已在后台完成更新</string>
     <string name="notification_precipitation_today">今日可能出现降水。</string>
     <string name="notification_precipitation_short_term">未来几小时内可能出现降水。</string>
-    <string name="location_resident_message">设为常驻城市</string>
+    <string name="location_resident_message">设置为常驻城市</string>
     <string name="location_resident_dialog">常驻城市的天气将会根据您当前的位置来进行显示和隐藏。
 \n例如将家乡设置为常驻城市后，可以在旅途中查看家乡天气，而在回家后，家乡的天气数据将被当前位置替代并进行隐藏。</string>
     <string name="allergen_tap_to_see_more">点击查看更多…</string>
@@ -612,4 +612,15 @@
     <string name="allergen_level_5">非常高</string>
     <string name="allergen_level_3">中</string>
     <string name="about_contribution_weather_source">添加了对新天气源的支持</string>
+    <string name="location_resident_location">常驻位置</string>
+    <string name="location_resident_location_summaryOn">已启用。 如果距离当前位置 20 公里以内则显示，否则隐藏。</string>
+    <string name="settings_weather_source">天气数据提供方</string>
+    <string name="action_delete">删除</string>
+    <string name="weather_air_quality_data_by">空气质量数据由 $ 提供</string>
+    <string name="weather_minutely_data_by">每分钟降水量数据由 $ 提供</string>
+    <string name="weather_allergen_data_by">过敏原数据由 $ 提供</string>
+    <string name="weather_alert_data_by">警报数据由 $ 提供</string>
+    <string name="weather_message_secondary_data_refresh_failed">备用天气源的天气数据刷新失败</string>
+    <string name="weather_message_invalid_location">位置无效，请删除并重新添加</string>
+    <string name="location_resident_location_summaryOff">已禁用。位置始终可用。</string>
 </resources>
