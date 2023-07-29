@@ -127,7 +127,7 @@
     <string name="weather_source_openweather_version_3_0">Версия 3.0</string>
     <string name="locations">Местоположения</string>
     <string name="location_current">Текущо местонахождение</string>
-    <string name="location_resident">Местоположение на жител</string>
+    <string name="location_resident">Местоположение на пребиваване</string>
     <string name="location_results_by">Резултати за местоположение по $</string>
     <string name="location_message_deleted">Местоположението е изтрито</string>
     <string name="location_message_list_cannot_be_empty">Списъкът с местоположения не може да бъде празен</string>
@@ -601,4 +601,11 @@
     <string name="allergen_level_1">Много ниско</string>
     <string name="allergen_level_4">Високо</string>
     <string name="allergen_level_5">Много високо</string>
+    <string name="location_resident_location_summaryOn">Активирано. Показва се, ако е в рамките на 20 км от текущото местоположение, в противен случай е скрито.</string>
+    <string name="location_resident_location">Местоположение на пребиваване</string>
+    <string name="location_resident_location_summaryOff">Деактивирано. Местоположението е винаги налично.</string>
+    <string name="settings_weather_source">Доставчик на времето</string>
+    <string name="weather_message_invalid_location">Невалидно местоположение, моля, изтрийте го и добавете отново</string>
+    <string name="action_delete">Изтрий</string>
+    <string name="about_contribution_weather_source">Добавена е поддръжка за нови източници на времето</string>
 </resources>
