@@ -609,4 +609,11 @@
     <string name="action_delete">Löschen</string>
     <string name="allergen_level_0">Keine</string>
     <string name="location_resident_location_summaryOn">Aktiviert. Wird angezeigt, falls im 20 km-Umkreis um den aktuellen Standort, sonst ausgeblendet.</string>
+    <string name="weather_message_secondary_data_refresh_failed">Aktualisierung der Wetterdaten für sekundäre Wetterquelle fehlgeschlagen</string>
+    <string name="weather_message_invalid_location">Ungültiger Ort, bitte löschen und erneut hinzufügen</string>
+    <string name="wind_gusts">Windböen</string>
+    <string name="weather_allergen_data_by">Allergendaten von $</string>
+    <string name="weather_minutely_data_by">Minutengenaue Niederschlagsdaten von $</string>
+    <string name="weather_alert_data_by">Warndaten von $</string>
+    <string name="weather_air_quality_data_by">Luftqualitätsdaten von $</string>
 </resources>
