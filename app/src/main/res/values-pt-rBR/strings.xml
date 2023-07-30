@@ -192,7 +192,7 @@
     <string name="message_updated_in_background">Atualizado em segundo plano</string>
     <string name="notification_precipitation_today">Pode haver precipitação hoje.</string>
     <string name="notification_precipitation_short_term">Precipitação pode ocorrer nas próximas horas.</string>
-    <string name="location_resident_message">Definir como uma cidade residente</string>
+    <string name="location_resident_message">Definido como uma cidade residente</string>
     <string name="location_resident_dialog">Breezy Weather mostrará e ocultará automaticamente as cidades residentes com base na sua localização atual.
 \nPor exemplo, você pode definir sua cidade natal como uma cidade residente. Você pode verificar o clima em sua cidade natal enquanto estiver viajando. Quando você chegar em casa, o clima da sua cidade natal será ocultado e substituído pelo clima da sua localização atual.</string>
     <string name="allergen_tap_to_see_more">Clique para ver mais…</string>
@@ -202,8 +202,8 @@
     <string name="settings_icon_packs_check_details">Verificar detalhes</string>
     <string name="alerts_count">$ alertas meteorológicos</string>
     <!-- $ = alert count. -->
-    <string name="air_quality_pm25_voice">PM dois ponto cinco</string>
-    <string name="air_quality_pm10_voice">PM dez</string>
+    <string name="air_quality_pm25_voice">MP dois ponto cinco</string>
+    <string name="air_quality_pm10_voice">MP dez</string>
     <string name="air_quality_so2_voice">Dióxido de enxofre</string>
     <string name="air_quality_no2_voice">Dióxido de nitrogênio</string>
     <string name="air_quality_o3_voice">Ozônio</string>
@@ -569,7 +569,7 @@
     <string name="air_quality_pm_explanations_consequences">Os particulados são a forma mais prejudicial de poluição do ar devido à sua capacidade de penetrar profundamente nos pulmões e no cérebro a partir das correntes sanguíneas, causando problemas de saúde como doenças cardíacas, pulmonares e morte prematura.</string>
     <string name="air_quality_o3_info_title">Ozônio no nível do solo (O₃)</string>
     <string name="air_quality_o3_info_introduction">O ozônio no nível do solo (O₃) é um dos principais componentes da fumaça. Embora seja a mesma molécula, o ozônio no nível do solo pode ser prejudicial à saúde humana, ao contrário do ozônio estratosférico que protege a Terra do excesso de radiação UV.</string>
-    <string name="air_quality_pm_info_title">Partículados (PM2,5 e PM10)</string>
+    <string name="air_quality_pm_info_title">Particulados (MP2,5 e MP10)</string>
     <string name="air_quality_o3_info_origin">Ele é formado a partir de reações fotoquímicas com poluentes como compostos orgânicos voláteis, monóxido de carbono e óxidos de nitrogênio (NOₓ) emitidos por veículos e pela indústria. Devido à natureza fotoquímica, os níveis mais altos de ozônio são observados durante períodos de tempo ensolarado.</string>
     <string name="location_search_no_results_advice">Certifique-se de que sua pesquisa esteja escrita corretamente e não seja muito específica. Como alternativa, você pode tentar outro provedor de meteorologia, que pode produzir resultados de pesquisa de local diferentes.</string>
     <string name="air_quality_o3_info_consequences">A exposição ao excesso de ozônio pode causar problemas respiratórios, desencadear asma, reduzir a função pulmonar e levar a doenças pulmonares.</string>
@@ -611,4 +611,27 @@
     <string name="temperature_degree_day_cooling">Dia de grau de resfriamento</string>
     <string name="action_help_me_choose">Ajude-me a escolher</string>
     <string name="message_source_not_installed_error_content">Esta fonte não está mais disponível, apague a localização e a recrie de outra fonte.</string>
+    <string name="settings_weather_source_portal">Canal</string>
+    <string name="allergen_alder">Amieiro</string>
+    <string name="allergen_birch">Bétula</string>
+    <string name="allergen_mugwort">Artemísia</string>
+    <string name="allergen_olive">Oliveira</string>
+    <string name="allergen_level_1">Muito baixo</string>
+    <string name="allergen_level_0">Nenhum</string>
+    <string name="allergen_level_2">Baixo</string>
+    <string name="allergen_level_3">Moderado</string>
+    <string name="allergen_level_4">Alto</string>
+    <string name="allergen_level_5">Muito alto</string>
+    <string name="location_resident_location">Local de residência</string>
+    <string name="location_resident_location_summaryOn">Habilitado. Mostrado se estiver dentro de 20 km da localização atual, oculto caso contrário.</string>
+    <string name="location_resident_location_summaryOff">Desabilitado. Localização sempre disponível.</string>
+    <string name="action_delete">Excluir</string>
+    <string name="weather_air_quality_data_by">Dados de qualidade do ar por $</string>
+    <string name="weather_allergen_data_by">Dados de alergênicos por $</string>
+    <string name="weather_minutely_data_by">Dados de precipitação por minuto por $</string>
+    <string name="weather_alert_data_by">Dados de alerta por $</string>
+    <string name="weather_message_invalid_location">Localização inválida, exclua-a e adicione-a novamente</string>
+    <string name="weather_message_secondary_data_refresh_failed">Falha na atualização de dados meteorológicos para uma fonte meteorológica secundária</string>
+    <string name="about_contribution_weather_source">Adicionado suporte para novas fontes meteorológicas</string>
+    <string name="settings_weather_source">Provedor metereológico</string>
 </resources>
