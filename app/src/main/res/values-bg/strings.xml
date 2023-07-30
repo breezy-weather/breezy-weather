@@ -608,4 +608,9 @@
     <string name="weather_message_invalid_location">Невалидно местоположение, моля, изтрийте го и добавете отново</string>
     <string name="action_delete">Изтрий</string>
     <string name="about_contribution_weather_source">Добавена е поддръжка за нови източници на времето</string>
+    <string name="weather_message_secondary_data_refresh_failed">Опресняването на метеорологичните данни за вторичен метеорологичен източник не бе успешно</string>
+    <string name="weather_air_quality_data_by">Данни за качеството на въздуха от $</string>
+    <string name="weather_allergen_data_by">Данни за алергените от $</string>
+    <string name="weather_minutely_data_by">Поминутни данни за валежите от $</string>
+    <string name="weather_alert_data_by">Данни за предупредителните сигнали от $</string>
 </resources>
