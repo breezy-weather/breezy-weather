@@ -105,7 +105,8 @@ class OpenMeteoService @Inject constructor(
             hourly.joinToString(","),
             forecastDays = 16,
             pastDays = 1,
-            currentWeather = true
+            currentWeather = true,
+            windspeedUnit = "ms"
         )
 
         val airQualityAllergenHourly = airQualityHourly + allergenHourly

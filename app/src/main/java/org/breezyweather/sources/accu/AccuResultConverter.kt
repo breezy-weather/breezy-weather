@@ -118,7 +118,7 @@ fun convert(
             ),
             wind = Wind(
                 degree = currentResult.Wind?.Direction?.Degrees?.toFloat(),
-                speed = currentResult.Wind?.Speed?.Metric?.Value?.toFloat()
+                speed = currentResult.Wind?.Speed?.Metric?.Value?.div(3.6)?.toFloat()
             ),
             uV = UV(index = currentResult.UVIndex?.toFloat()),
             relativeHumidity = currentResult.RelativeHumidity?.toFloat(),
@@ -181,7 +181,7 @@ private fun getDailyList(
                 ),
                 wind = Wind(
                     degree = forecasts.Day?.Wind?.Direction?.Degrees?.toFloat(),
-                    speed = forecasts.Day?.Wind?.Speed?.Value?.toFloat()
+                    speed = forecasts.Day?.Wind?.Speed?.Value?.div(3.6)?.toFloat()
                 ),
                 cloudCover = forecasts.Day?.CloudCover
             ),
@@ -215,7 +215,7 @@ private fun getDailyList(
                 ),
                 wind = Wind(
                     degree = forecasts.Night?.Wind?.Direction?.Degrees?.toFloat(),
-                    speed = forecasts.Night?.Wind?.Speed?.Value?.toFloat()
+                    speed = forecasts.Night?.Wind?.Speed?.Value?.div(3.6)?.toFloat()
                 ),
                 cloudCover = forecasts.Night?.CloudCover
             ),
@@ -296,7 +296,7 @@ private fun getHourlyList(
             ),
             wind = Wind(
                 degree = result.Wind?.Direction?.Degrees?.toFloat(),
-                speed = result.Wind?.Speed?.Value?.toFloat()
+                speed = result.Wind?.Speed?.Value?.div(3.6)?.toFloat()
             ),
             airQuality = getAirQualityForHour(result.EpochDateTime, airQualityData),
             uV = UV(index = result.UVIndex?.toFloat()),

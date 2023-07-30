@@ -59,7 +59,7 @@ fun convert(
             ),
             wind = if (currentTimeseries.instant?.details != null) Wind(
                 degree = currentTimeseries.instant.details.windFromDirection,
-                speed = currentTimeseries.instant.details.windSpeed?.times(3.6f)
+                speed = currentTimeseries.instant.details.windSpeed
             ) else null,
             relativeHumidity = currentTimeseries.instant?.details?.relativeHumidity,
             dewPoint = currentTimeseries.instant?.details?.dewPointTemperature,
@@ -108,7 +108,7 @@ private fun getHourlyList(
             ),
             wind = if (hourlyForecast.data?.instant?.details != null) Wind(
                 degree = hourlyForecast.data.instant.details.windFromDirection,
-                speed = hourlyForecast.data.instant.details.windSpeed?.times(3.6f)
+                speed = hourlyForecast.data.instant.details.windSpeed
             ) else null,
             airQuality = if (airQualityDataResult != null) AirQuality(
                 pM25 = airQualityDataResult.variables?.pm25Concentration?.value,

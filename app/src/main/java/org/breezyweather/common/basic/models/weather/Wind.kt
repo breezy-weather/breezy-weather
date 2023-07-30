@@ -12,7 +12,7 @@ import java.io.Serializable
  * DailyWind.
  *
  * default unit:
- * [.speed] : [SpeedUnit.KPH]
+ * [.speed] : [SpeedUnit.MPS]
  */
 data class Wind(
     /**

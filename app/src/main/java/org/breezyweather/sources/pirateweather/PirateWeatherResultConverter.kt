@@ -65,7 +65,7 @@ private fun getCurrentForecast(result: PirateWeatherCurrently?): Current? {
         ),
         wind = Wind(
             degree = result.windBearing,
-            speed = result.windSpeed?.times(3.6f),
+            speed = result.windSpeed,
         ),
         uV = UV(index = result.uvIndex),
         relativeHumidity = result.humidity?.times(100),
@@ -139,7 +139,7 @@ private fun getHourlyForecast(
             ),
             wind = Wind(
                 degree = result.windBearing,
-                speed = result.windSpeed?.times(3.6f),
+                speed = result.windSpeed,
             ),
             uV = UV(
                 index = result.uvIndex,

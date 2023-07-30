@@ -111,7 +111,7 @@ fun convert(
             ),
             wind = if (currentResult.properties?.gridded != null) Wind(
                 degree = currentResult.properties.gridded.windDirection?.toFloat(),
-                speed = currentResult.properties.gridded.windSpeed?.times(3.6f)
+                speed = currentResult.properties.gridded.windSpeed
             ) else null
         ),
         dailyForecast = getDailyList(
@@ -207,7 +207,7 @@ private fun getHourlyList(
             ),
             wind = Wind(
                 degree = hourlyForecast.windDirection?.toFloat(),
-                speed = hourlyForecast.windSpeed?.times(3.6f)
+                speed = hourlyForecast.windSpeed?.toFloat()
             ),
             airQuality = getAirQuality(hourlyForecast.time, aqiAtmoAuraResult),
             relativeHumidity = hourlyForecast.relativeHumidity?.toFloat(),

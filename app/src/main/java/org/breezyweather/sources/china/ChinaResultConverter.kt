@@ -69,7 +69,7 @@ fun convert(
             ),
             wind = if (forecastResult.current.wind != null) Wind(
                 degree = forecastResult.current.wind.direction?.value?.toFloatOrNull(),
-                speed = forecastResult.current.wind.speed?.value?.toFloatOrNull()
+                speed = forecastResult.current.wind.speed?.value?.toDoubleOrNull()?.div(3.6)?.toFloat()
             ) else null,
             uV = if (forecastResult.current.uvIndex != null) {
                 UV(index = forecastResult.current.uvIndex.toFloatOrNull())
@@ -161,7 +161,7 @@ private fun getDailyList(
                     ),
                     wind = if (dailyForecast.wind != null) Wind(
                         degree = dailyForecast.wind.direction?.value?.getOrNull(index)?.from?.toFloatOrNull(),
-                        speed = dailyForecast.wind.speed?.value?.getOrNull(index)?.from?.toFloatOrNull()
+                        speed = dailyForecast.wind.speed?.value?.getOrNull(index)?.from?.toDoubleOrNull()?.div(3.6)?.toFloat()
                     ) else null
                 ),
                 night = HalfDay(
@@ -176,7 +176,7 @@ private fun getDailyList(
                     ),
                     wind = if (dailyForecast.wind != null) Wind(
                         degree = dailyForecast.wind.direction?.value?.getOrNull(index)?.to?.toFloatOrNull(),
-                        speed = dailyForecast.wind.speed?.value?.getOrNull(index)?.to?.toFloatOrNull()
+                        speed = dailyForecast.wind.speed?.value?.getOrNull(index)?.to?.toDoubleOrNull()?.div(3.6)?.toFloat()
                     ) else null
                 ),
                 sun = Astro(
@@ -220,8 +220,8 @@ private fun getHourlyList(
                     temperature = hourlyForecast.temperature?.value?.getOrNull(index)?.toFloat()
                 ),
                 wind = if (hourlyForecast.wind != null) Wind(
-                    degree = hourlyForecast.wind.value?.getOrNull(index)?.direction?.toFloat(),
-                    speed = hourlyForecast.wind.value?.getOrNull(index)?.speed?.toFloat()
+                    degree = hourlyForecast.wind.value?.getOrNull(index)?.direction?.toFloatOrNull(),
+                    speed = hourlyForecast.wind.value?.getOrNull(index)?.speed?.toDoubleOrNull()?.div(3.6)?.toFloat()
                 ) else null
             )
         )

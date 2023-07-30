@@ -17,6 +17,7 @@ interface OpenMeteoWeatherApi {
         @Query("hourly") hourly: String,
         @Query("forecast_days") forecastDays: Int,
         @Query("past_days") pastDays: Int,
-        @Query("current_weather") currentWeather: Boolean
+        @Query("current_weather") currentWeather: Boolean,
+        @Query("windspeed_unit") windspeedUnit: String,
     ): Observable<OpenMeteoWeatherResult>
 }

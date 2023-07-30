@@ -12,22 +12,22 @@ enum class SpeedUnit(
     override val unitFactor: Float
 ): UnitEnum<Float> {
 
-    KPH("kph", 1f),
-    MPS("mps", 1f / 3.6f),
-    KN("kn", 1f / 1.852f),
-    MPH("mph", 1f / 1.609f),
-    FTPS("ftps", 0.9113f);
+    MPS("mps", 1f),
+    KPH("kph", 3.6f),
+    KN("kn", 1.94385f),
+    MPH("mph", 2.23694f),
+    FTPS("ftps", 3.28084f);
 
     companion object {
 
         fun getInstance(
             value: String
         ) = when (value) {
-            "mps" -> MPS
+            "kph" -> KPH
             "kn" -> KN
             "mph" -> MPH
             "ftps" -> FTPS
-            else -> KPH
+            else -> MPS
         }
     }
 

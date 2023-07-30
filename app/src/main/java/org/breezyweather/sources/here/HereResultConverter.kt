@@ -110,7 +110,7 @@ private fun getCurrentForecast(result: HereWeatherData?): Current? {
         ),
         wind = Wind(
             degree = result.windDirection,
-            speed = result.windSpeed
+            speed = result.windSpeed?.div(3.6f)
         ),
         uV = UV(index = result.uvIndex?.toFloat()),
         relativeHumidity = result.humidity?.toFloat(),
@@ -188,7 +188,7 @@ private fun getHourlyForecast(
             ),
             wind = Wind(
                 degree = result.windDirection,
-                speed = result.windSpeed
+                speed = result.windSpeed?.div(3.6f)
             ),
             uV = UV(index = result.uvIndex?.toFloat()),
             relativeHumidity = result.humidity?.toFloat(),
