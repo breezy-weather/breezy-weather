@@ -6,6 +6,7 @@ import org.breezyweather.common.source.LocationSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.Source
 import org.breezyweather.common.source.MainWeatherSource
+import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.sources.accu.AccuService
 import org.breezyweather.sources.android.AndroidLocationSource
 import org.breezyweather.sources.baiduip.BaiduIPLocationService
@@ -59,6 +60,10 @@ class SourceManager @Inject constructor(
     fun getConfiguredWeatherSources(): List<MainWeatherSource> = getWeatherSources().filter {
         it !is ConfigurableSource || it.isConfigured
     }
+
+    // Secondary weather
+    fun getSecondaryWeatherSources(): List<SecondaryWeatherSource> = sourceList.filterIsInstance<SecondaryWeatherSource>()
+    fun getSecondaryWeatherSource(id: String): SecondaryWeatherSource? = getSecondaryWeatherSources().firstOrNull { it.id == id }
 
     // Location search
     fun getLocationSearchSources(): List<LocationSearchSource> = sourceList.filterIsInstance<LocationSearchSource>()

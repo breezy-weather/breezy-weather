@@ -25,6 +25,7 @@ import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.toDate
+import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.sources.mf.getFrenchDepartmentCode
 import org.breezyweather.sources.openmeteo.json.OpenMeteoAirQualityResult
 import org.breezyweather.sources.openmeteo.json.OpenMeteoLocationResult
@@ -121,7 +122,7 @@ private fun getDailyList(
 ): List<Daily> {
     val dailyList: MutableList<Daily> = ArrayList(dailyResult.time.size - 2)
     for (i in 1 until dailyResult.time.size - 1) {
-        val theDay = Date(dailyResult.time[i].times(1000))
+        val theDay = dailyResult.time[i].times(1000).toDate()
         val daily = Daily(
             date = theDay,
             day = HalfDay(
@@ -159,7 +160,7 @@ private fun getHourlyList(
 
         hourlyList.add(
             HourlyWrapper(
-                date = Date(hourlyResult.time[i].times(1000)),
+                date = hourlyResult.time[i].times(1000).toDate(),
                 isDaylight = if (hourlyResult.isDay?.getOrNull(i) != null) hourlyResult.isDay[i] > 0 else null,
                 weatherText = getWeatherText(context, hourlyResult.weatherCode?.getOrNull(i)),
                 weatherCode = getWeatherCode(hourlyResult.weatherCode?.getOrNull(i)),
@@ -267,7 +268,8 @@ private fun getWeatherCode(icon: Int?): WeatherCode? {
  */
 
 fun convertSecondary(
-    airQualityResult: OpenMeteoAirQualityResult
+    airQualityResult: OpenMeteoAirQualityResult,
+    requestedFeatures: List<SecondaryWeatherSourceFeature>
 ): SecondaryWeatherWrapper {
     // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
     if (airQualityResult.hourly == null) {
@@ -278,28 +280,36 @@ fun convertSecondary(
     val allergenHourly: MutableMap<Date, Allergen> = mutableMapOf()
 
     for (i in airQualityResult.hourly.time.indices) {
-        airQualityHourly[airQualityResult.hourly.time[i].toDate()] = AirQuality(
-            pM25 = airQualityResult.hourly.pm25?.getOrNull(i),
-            pM10 = airQualityResult.hourly.pm10?.getOrNull(i),
-            sO2 = airQualityResult.hourly.sulphurDioxide?.getOrNull(i),
-            nO2 = airQualityResult.hourly.nitrogenDioxide?.getOrNull(i),
-            o3 = airQualityResult.hourly.ozone?.getOrNull(i),
-            cO = airQualityResult.hourly.carbonMonoxide?.getOrNull(i)?.div(1000.0)?.toFloat(),
-        )
-        allergenHourly[airQualityResult.hourly.time[i].toDate()] = Allergen(
-            alder = airQualityResult.hourly.alderPollen?.getOrNull(i)?.roundToInt(),
-            birch = airQualityResult.hourly.birchPollen?.getOrNull(i)?.roundToInt(),
-            grass = airQualityResult.hourly.grassPollen?.getOrNull(i)?.roundToInt(),
-            mugwort = airQualityResult.hourly.mugwortPollen?.getOrNull(i)?.roundToInt(),
-            olive = airQualityResult.hourly.olivePollen?.getOrNull(i)?.roundToInt(),
-            ragweed = airQualityResult.hourly.ragweedPollen?.getOrNull(i)?.roundToInt(),
-        )
+        if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+            airQualityHourly[airQualityResult.hourly.time[i].times(1000).toDate()] = AirQuality(
+                pM25 = airQualityResult.hourly.pm25?.getOrNull(i),
+                pM10 = airQualityResult.hourly.pm10?.getOrNull(i),
+                sO2 = airQualityResult.hourly.sulphurDioxide?.getOrNull(i),
+                nO2 = airQualityResult.hourly.nitrogenDioxide?.getOrNull(i),
+                o3 = airQualityResult.hourly.ozone?.getOrNull(i),
+                cO = airQualityResult.hourly.carbonMonoxide?.getOrNull(i)?.div(1000.0)?.toFloat(),
+            )
+        }
+        if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALLERGEN)) {
+            allergenHourly[airQualityResult.hourly.time[i].times(1000).toDate()] = Allergen(
+                alder = airQualityResult.hourly.alderPollen?.getOrNull(i)?.roundToInt(),
+                birch = airQualityResult.hourly.birchPollen?.getOrNull(i)?.roundToInt(),
+                grass = airQualityResult.hourly.grassPollen?.getOrNull(i)?.roundToInt(),
+                mugwort = airQualityResult.hourly.mugwortPollen?.getOrNull(i)?.roundToInt(),
+                olive = airQualityResult.hourly.olivePollen?.getOrNull(i)?.roundToInt(),
+                ragweed = airQualityResult.hourly.ragweedPollen?.getOrNull(i)?.roundToInt(),
+            )
+        }
     }
 
 
     return SecondaryWeatherWrapper(
-        airQuality = AirQualityWrapper(hourlyForecast = airQualityHourly),
-        allergen = AllergenWrapper(hourlyForecast = allergenHourly)
+        airQuality = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+            AirQualityWrapper(hourlyForecast = airQualityHourly)
+        } else null,
+        allergen = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALLERGEN)) {
+            AllergenWrapper(hourlyForecast = allergenHourly)
+        } else null
     )
 }
 

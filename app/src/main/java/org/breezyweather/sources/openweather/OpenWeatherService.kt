@@ -16,6 +16,7 @@ import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.common.source.MainWeatherSource
+import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.sources.openweather.json.OpenWeatherAirPollutionResult
 import org.breezyweather.sources.openweather.json.OpenWeatherOneCallResult
@@ -43,7 +44,8 @@ class OpenWeatherService @Inject constructor(
     }
 
     override fun requestWeather(
-        context: Context, location: Location
+        context: Context, location: Location,
+        ignoreFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<WeatherWrapper> {
         if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())

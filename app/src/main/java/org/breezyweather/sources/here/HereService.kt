@@ -19,6 +19,7 @@ import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.MainWeatherSource
+import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.SourceConfigStore
 import retrofit2.Retrofit
@@ -61,7 +62,8 @@ class HereService @Inject constructor(
      * Returns weather
      */
     override fun requestWeather(
-        context: Context, location: Location
+        context: Context, location: Location,
+        ignoreFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<WeatherWrapper> {
         if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())

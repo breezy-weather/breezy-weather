@@ -10,6 +10,7 @@ import org.breezyweather.common.basic.wrappers.WeatherWrapper
  * Weather service.
  */
 interface MainWeatherSource : Source {
+
     /**
      * Official color used by the source
      */
@@ -25,7 +26,14 @@ interface MainWeatherSource : Source {
 
     /**
      * Returns weather converted to Breezy Weather Weather object
+     * @param ignoreFeatures List of features we request later to a secondary source. If your
+     * weather source support them, you should ignore them (for example, not call an
+     * additional API endpoint), as they will be overwritten later anyway
+     * TODO: Implement "ignore" on existing main weather sources
      */
-    fun requestWeather(context: Context, location: Location): Observable<WeatherWrapper>
+    fun requestWeather(
+        context: Context, location: Location,
+        ignoreFeatures: List<SecondaryWeatherSourceFeature>
+    ): Observable<WeatherWrapper>
 
 }

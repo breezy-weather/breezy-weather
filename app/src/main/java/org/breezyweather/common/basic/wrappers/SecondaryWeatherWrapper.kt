@@ -1,10 +1,6 @@
 package org.breezyweather.common.basic.wrappers
 
 import org.breezyweather.common.basic.models.weather.Alert
-import org.breezyweather.common.basic.models.weather.Base
-import org.breezyweather.common.basic.models.weather.Current
-import org.breezyweather.common.basic.models.weather.Daily
-import org.breezyweather.common.basic.models.weather.History
 import org.breezyweather.common.basic.models.weather.Minutely
 
 /**

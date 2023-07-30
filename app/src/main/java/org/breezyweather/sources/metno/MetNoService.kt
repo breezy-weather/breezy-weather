@@ -9,6 +9,7 @@ import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.source.MainWeatherSource
+import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.sources.metno.json.MetNoAirQualityResult
 import org.breezyweather.sources.metno.json.MetNoSunResult
 import org.breezyweather.sources.metno.json.MetNoForecastResult
@@ -37,8 +38,8 @@ class MetNoService @Inject constructor(
     }
 
     override fun requestWeather(
-        context: Context,
-        location: Location
+        context: Context, location: Location,
+        ignoreFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<WeatherWrapper> {
         val forecast = mApi.getForecast(
             userAgent,

@@ -16,7 +16,9 @@ import org.breezyweather.common.basic.models.weather.Temperature
 import org.breezyweather.common.basic.models.weather.UV
 import org.breezyweather.common.basic.models.weather.Wind
 import org.breezyweather.common.basic.wrappers.HourlyWrapper
+import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
 import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.common.extensions.toTimezoneNoHour
 import org.shredzone.commons.suncalc.MoonIllumination
 import org.shredzone.commons.suncalc.MoonTimes
@@ -29,6 +31,163 @@ import kotlin.math.pow
 import kotlin.math.roundToInt
 import kotlin.math.sin
 
+
+/**
+ * MERGE MAIN WEATHER DATA WITH SECONDARY WEATHER DATA
+ */
+
+/**
+ * Complete daily data missing on SecondaryWeatherWrapper early
+ * to avoid being unable to do it later
+ */
+fun completeMissingSecondaryWeatherDailyData(
+    initialSecondaryWeatherWrapper: SecondaryWeatherWrapper?,
+    timeZone: TimeZone
+): SecondaryWeatherWrapper? {
+    if (initialSecondaryWeatherWrapper == null) return null
+
+    return if ((!initialSecondaryWeatherWrapper.airQuality?.hourlyForecast.isNullOrEmpty()
+        && initialSecondaryWeatherWrapper.airQuality?.dailyForecast.isNullOrEmpty())
+        || (!initialSecondaryWeatherWrapper.allergen?.hourlyForecast.isNullOrEmpty()
+                && initialSecondaryWeatherWrapper.allergen?.dailyForecast.isNullOrEmpty())) {
+        val dailyAirQuality: Map<Date, AirQuality>? = if (initialSecondaryWeatherWrapper.airQuality?.dailyForecast.isNullOrEmpty()) {
+            val dailyAirQualityMap: MutableMap<Date, AirQuality> = mutableMapOf()
+            initialSecondaryWeatherWrapper.airQuality?.hourlyForecast?.entries?.groupBy {
+                it.key.getFormattedDate(timeZone, "yyyy-MM-dd")
+            }?.forEach { entry ->
+                val airQuality = getDailyAirQualityFromSecondaryHourlyList(entry.value)
+                if (airQuality != null) {
+                    dailyAirQualityMap[entry.key.toDateNoHour(timeZone)!!] = airQuality
+                }
+            }
+            dailyAirQualityMap
+        } else initialSecondaryWeatherWrapper.airQuality!!.dailyForecast
+
+        val dailyAllergen: Map<Date, Allergen>? = if (initialSecondaryWeatherWrapper.allergen?.dailyForecast.isNullOrEmpty()) {
+            val dailyAllergenMap: MutableMap<Date, Allergen> = mutableMapOf()
+            initialSecondaryWeatherWrapper.allergen?.hourlyForecast?.entries?.groupBy {
+                it.key.getFormattedDate(timeZone, "yyyy-MM-dd")
+            }?.forEach { entry ->
+                val allergen = getDailyAllergenFromSecondaryHourlyList(entry.value)
+                if (allergen != null) {
+                    dailyAllergenMap[entry.key.toDateNoHour(timeZone)!!] = allergen
+                }
+            }
+            dailyAllergenMap
+        } else initialSecondaryWeatherWrapper.allergen!!.dailyForecast
+
+        initialSecondaryWeatherWrapper.copy(
+            airQuality = initialSecondaryWeatherWrapper.airQuality?.copy(
+                dailyForecast = dailyAirQuality
+            ),
+            allergen = initialSecondaryWeatherWrapper.allergen?.copy(
+                dailyForecast = dailyAllergen
+            )
+        )
+    } else {
+        initialSecondaryWeatherWrapper
+    }
+}
+
+private fun getDailyAirQualityFromSecondaryHourlyList(
+    hourlyList: List<Map.Entry<Date, AirQuality>>
+): AirQuality? {
+    // We need at least 18 hours for a signification estimation
+    if (hourlyList.isEmpty() || hourlyList.size < 18) return null
+
+    return AirQuality(
+        pM25 = hourlyList.filter { it.value.pM25 != null }.map { it.value.pM25!! }.average().toFloat(),
+        pM10 = hourlyList.filter { it.value.pM10 != null }.map { it.value.pM10!! }.average().toFloat(),
+        sO2 = hourlyList.filter { it.value.sO2 != null }.map { it.value.sO2!! }.average().toFloat(),
+        nO2 = hourlyList.filter { it.value.nO2 != null }.map { it.value.nO2!! }.average().toFloat(),
+        o3 = hourlyList.filter { it.value.o3 != null }.map { it.value.o3!! }.average().toFloat(),
+        cO = hourlyList.filter { it.value.cO != null }.map { it.value.cO!! }.average().toFloat()
+    )
+}
+
+/**
+ * Returns an Allergen object calculated from a List of Hourly for the day
+ * (at least 18 non-null Hourly.Allergen required)
+ */
+private fun getDailyAllergenFromSecondaryHourlyList(
+    hourlyList: List<Map.Entry<Date, Allergen>>
+): Allergen? {
+    // We need at least 18 hours for a signification estimation
+    if (hourlyList.isEmpty() || hourlyList.size < 18) return null
+
+    return Allergen(
+        tree = hourlyList.filter { it.value.tree != null }.let { hl -> if (hl.isNotEmpty()) hl.maxOf { it.value.tree!! } else null },
+        alder = hourlyList.filter { it.value.alder != null }.let { hl -> if (hl.isNotEmpty()) hl.maxOf { it.value.alder!! } else null },
+        birch = hourlyList.filter { it.value.birch != null }.let { hl -> if (hl.isNotEmpty()) hl.maxOf { it.value.birch!! } else null },
+        grass = hourlyList.filter { it.value.grass != null }.let { hl -> if (hl.isNotEmpty()) hl.maxOf { it.value.grass!! } else null },
+        olive = hourlyList.filter { it.value.olive != null }.let { hl -> if (hl.isNotEmpty()) hl.maxOf { it.value.olive!! } else null },
+        ragweed = hourlyList.filter { it.value.ragweed != null }.let { hl -> if (hl.isNotEmpty()) hl.maxOf { it.value.ragweed!! } else null },
+        mugwort = hourlyList.filter { it.value.mugwort != null }.let { hl -> if (hl.isNotEmpty()) hl.maxOf { it.value.mugwort!! } else null },
+        mold = hourlyList.filter { it.value.mold != null }.let { hl -> if (hl.isNotEmpty()) hl.maxOf { it.value.mold!! } else null },
+    )
+}
+
+/**
+ * Completes a List<HourlyWrapper> with data from a SecondaryWeatherWrapper
+ * If a data is present in SecondaryWeatherWrapper, it will be used in priority, so don’t send
+ * data you don’t want to use in it!
+ * Process:
+ * - Hourly air quality
+ * - Hourly allergen
+ */
+fun mergeSecondaryWeatherDataIntoHourlyWrapperList(
+    mainHourlyList: List<HourlyWrapper>?,
+    secondaryWeatherWrapper: SecondaryWeatherWrapper?
+): List<HourlyWrapper> {
+    if (mainHourlyList.isNullOrEmpty() || secondaryWeatherWrapper == null
+        || (secondaryWeatherWrapper.airQuality?.hourlyForecast.isNullOrEmpty()
+        && secondaryWeatherWrapper.allergen?.hourlyForecast.isNullOrEmpty())) {
+        return mainHourlyList ?: emptyList()
+    }
+
+    return mainHourlyList.map { mainHourly ->
+        val airQuality = secondaryWeatherWrapper.airQuality?.hourlyForecast?.getOrElse(mainHourly.date) { null }
+        val allergen = secondaryWeatherWrapper.allergen?.hourlyForecast?.getOrElse(mainHourly.date) { null }
+
+        if (airQuality != null || allergen != null) {
+            mainHourly.copy(
+                airQuality = airQuality,
+                allergen = allergen
+            )
+        } else mainHourly
+    }
+}
+
+/**
+ * Completes a List<HourlyWrapper> with data from a SecondaryWeatherWrapper
+ * If a data is present in SecondaryWeatherWrapper, it will be used in priority, so don’t send
+ * data you don’t want to use in it!
+ * Process:
+ * - Hourly air quality
+ * - Hourly allergen
+ */
+fun mergeSecondaryWeatherDataIntoDailyList(
+    mainDailyList: List<Daily>?,
+    secondaryWeatherWrapper: SecondaryWeatherWrapper?
+): List<Daily> {
+    if (mainDailyList.isNullOrEmpty() || secondaryWeatherWrapper == null
+        || (secondaryWeatherWrapper.airQuality?.dailyForecast.isNullOrEmpty()
+                && secondaryWeatherWrapper.allergen?.dailyForecast.isNullOrEmpty())) {
+        return mainDailyList ?: emptyList()
+    }
+
+    return mainDailyList.map { mainDaily ->
+        val airQuality = secondaryWeatherWrapper.airQuality?.dailyForecast?.getOrElse(mainDaily.date) { null }
+        val allergen = secondaryWeatherWrapper.allergen?.dailyForecast?.getOrElse(mainDaily.date) { null }
+
+        if (airQuality != null || allergen != null) {
+            mainDaily.copy(
+                airQuality = airQuality,
+                allergen = allergen
+            )
+        } else mainDaily
+    }
+}
 
 /**
  * COMPUTE MISSING HOURLY DATA

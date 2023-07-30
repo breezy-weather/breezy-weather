@@ -11,6 +11,7 @@ import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.MainWeatherSource
+import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.sources.openmeteo.json.OpenMeteoAirQualityResult
 import org.breezyweather.sources.openmeteo.json.OpenMeteoWeatherResult
@@ -65,7 +66,10 @@ class OpenMeteoService @Inject constructor(
         "ragweed_pollen"
     )
 
-    override fun requestWeather(context: Context, location: Location): Observable<WeatherWrapper> {
+    override fun requestWeather(
+        context: Context, location: Location,
+        ignoreFeatures: List<SecondaryWeatherSourceFeature>
+    ): Observable<WeatherWrapper> {
         val daily = arrayOf(
             "temperature_2m_max",
             "temperature_2m_min",
@@ -123,27 +127,24 @@ class OpenMeteoService @Inject constructor(
     }
 
     // SECONDARY WEATHER SOURCE
-    override val isAirQualitySupported = true
-    override val isAllergenSupported = true
-    override val isMinutelySupported = false
-    override val isAlertSupported = false
+    override val supportedFeatures = listOf(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY, SecondaryWeatherSourceFeature.FEATURE_ALLERGEN)
     override val airQualityAttribution = "Open-Meteo (CC BY 4.0) / METEO FRANCE, Institut national de l'environnement industriel et des risques (Ineris), Aarhus University, Norwegian Meteorological Institute (MET Norway), Jülich Institut für Energie- und Klimaforschung (IEK), Institute of Environmental Protection – National Research Institute (IEP-NRI), Koninklijk Nederlands Meteorologisch Instituut (KNMI), Nederlandse Organisatie voor toegepast-natuurwetenschappelijk onderzoek (TNO), Swedish Meteorological and Hydrological Institute (SMHI), Finnish Meteorological Institute (FMI), Italian National Agency for New Technologies, Energy and Sustainable Economic Development (ENEA) and Barcelona Supercomputing Center (BSC) (2022): CAMS European air quality forecasts, ENSEMBLE data. Copernicus Atmosphere Monitoring Service (CAMS) Atmosphere Data Store (ADS). (Updated twice daily)."
-    override val allergenAttribution = "Open-Meteo (CC BY 4.0) / METEO FRANCE, Institut national de l'environnement industriel et des risques (Ineris), Aarhus University, Norwegian Meteorological Institute (MET Norway), Jülich Institut für Energie- und Klimaforschung (IEK), Institute of Environmental Protection – National Research Institute (IEP-NRI), Koninklijk Nederlands Meteorologisch Instituut (KNMI), Nederlandse Organisatie voor toegepast-natuurwetenschappelijk onderzoek (TNO), Swedish Meteorological and Hydrological Institute (SMHI), Finnish Meteorological Institute (FMI), Italian National Agency for New Technologies, Energy and Sustainable Economic Development (ENEA) and Barcelona Supercomputing Center (BSC) (2022): CAMS European air quality forecasts, ENSEMBLE data. Copernicus Atmosphere Monitoring Service (CAMS) Atmosphere Data Store (ADS). (Updated twice daily)."
+    override val allergenAttribution = airQualityAttribution
     override val minutelyAttribution = null
     override val alertAttribution = null
 
     override fun requestSecondaryWeather(
         context: Context, location: Location,
-        airQuality: Boolean, allergen: Boolean, minutely: Boolean, alerts: Boolean
+        requestedFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<SecondaryWeatherWrapper> {
-        val airQualityAllergenHourly = (if (airQuality) airQualityHourly else emptyArray()) +
-                (if (allergen) allergenHourly else emptyArray())
+        val airQualityAllergenHourly = (if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) airQualityHourly else emptyArray()) +
+                (if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALLERGEN)) allergenHourly else emptyArray())
         return mAirQualityApi.getAirQuality(
             location.latitude.toDouble(),
             location.longitude.toDouble(),
             airQualityAllergenHourly.joinToString(",")
         ).map {
-            convertSecondary(it)
+            convertSecondary(it, requestedFeatures)
         }
     }
 

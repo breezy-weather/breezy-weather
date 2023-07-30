@@ -11,16 +11,11 @@ import org.breezyweather.common.basic.wrappers.SecondaryWeatherWrapper
  */
 interface SecondaryWeatherSource : Source {
 
-    val isAirQualitySupported: Boolean
-    val isAllergenSupported: Boolean
-    val isMinutelySupported: Boolean
-    val isAlertSupported: Boolean
+    val supportedFeatures: List<SecondaryWeatherSourceFeature>
 
-    fun isAirQualitySupportedForLocation(location: Location): Boolean = true
-    fun isAllergenSupportedForLocation(location: Location): Boolean = true
-    fun isMinutelySupportedForLocation(location: Location): Boolean = true
-    fun isAlertsSupportedForLocation(location: Location): Boolean = true
+    fun isFeatureSupportedForLocation(feature: SecondaryWeatherSourceFeature, location: Location): Boolean = true
 
+    // TODO: Improve
     val airQualityAttribution: String?
     val allergenAttribution: String?
     val minutelyAttribution: String?
@@ -29,21 +24,14 @@ interface SecondaryWeatherSource : Source {
     /**
      * Returns secondary weather converted to Breezy Weather Weather object
      * For efficiency reasons, we have one single functions, but don’t worry, you will never
-     * be asked to provide allergen if you defined isAllergenSupported as false
+     * be asked to provide allergen if you don’t support allergen
      * Only process things you are asked to process and that you support
-     * @param airQuality don’t return airQuality data if false
-     * @param allergen don’t return allergen data if false
-     * @param minutely don’t return minutely data if false
-     * @param alerts don’t return alerts data if false
      * @return an Observable of the Secondary Weather wrapper containing elements asked
      */
     fun requestSecondaryWeather(
         context: Context,
         location: Location,
-        airQuality: Boolean,
-        allergen: Boolean,
-        minutely: Boolean,
-        alerts: Boolean
+        requestedFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<SecondaryWeatherWrapper>
 
 }

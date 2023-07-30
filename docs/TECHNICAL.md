@@ -176,12 +176,12 @@ In v4.5.0, we will add the ability to complete one source with another.
 
 This table helps keeping track of what was implemented and what remains to do. Priority will be given to feature supported worldwide.
 
-| Sources         | Open-Meteo    | AccuWeather | MET Norway  | OpenWeather | Pirate Weather | HERE | Météo-France | China³ |
-|-----------------|---------------|-------------|-------------|-------------|----------------|------|--------------|--------|
-| **Air quality** | *In progress* | Enterprise  | Norway      | ❌¹          | ❌              | ❌    | ❌³           | ❌      |
-| **Allergens**   | *In progress* | ❌           | ❌           | ❌           | ❌              | ❌    | ❌            | ❌      |
-| **Alerts**      | ❌             | Enterprise  | ❌           | *TODO*      | *TODO*         | ❌²   | France       | ❌      |
-| **Minutely**    | ❌             | Enterprise  | Nordic area | *TODO*      | *TODO*         | ❌    | France       | China  |
+| Sources         | Open-Meteo | AccuWeather | MET Norway  | OpenWeather | Pirate Weather | HERE | Météo-France | China³ |
+|-----------------|------------|-------------|-------------|-------------|----------------|------|--------------|--------|
+| **Air quality** | ✅          | Enterprise  | Norway      | ❌¹          | ❌              | ❌    | ❌³           | ❌      |
+| **Allergens**   | ✅          | ❌           | ❌           | ❌           | ❌              | ❌    | ❌            | ❌      |
+| **Alerts**      | ❌          | Enterprise  | ❌           | *TODO*      | *TODO*         | ❌²   | France       | ❌      |
+| **Minutely**    | ❌          | Enterprise  | Nordic area | *TODO*      | *TODO*         | ❌    | France       | China  |
 
 ❌ means that it’s either not supported or doesn’t support longitude/latitude.
 

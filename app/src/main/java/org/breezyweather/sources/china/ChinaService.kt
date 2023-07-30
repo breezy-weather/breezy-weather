@@ -10,6 +10,7 @@ import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.basic.wrappers.WeatherWrapper
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.common.source.MainWeatherSource
+import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.sources.china.json.ChinaForecastResult
 import org.breezyweather.sources.china.json.ChinaMinutelyResult
 import retrofit2.Retrofit
@@ -35,8 +36,8 @@ class ChinaService @Inject constructor(
     }
 
     override fun requestWeather(
-        context: Context,
-        location: Location
+        context: Context, location: Location,
+        ignoreFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<WeatherWrapper> {
         val mainly = mApi.getForecastWeather(
             location.latitude.toDouble(),

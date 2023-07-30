@@ -19,6 +19,7 @@ import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.common.source.MainWeatherSource
+import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.sources.accu.json.*
 import org.breezyweather.sources.accu.preferences.AccuDaysPreference
@@ -54,7 +55,8 @@ class AccuService @Inject constructor(
     }
 
     override fun requestWeather(
-        context: Context, location: Location
+        context: Context, location: Location,
+        ignoreFeatures: List<SecondaryWeatherSourceFeature>
     ): Observable<WeatherWrapper> {
         if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())
