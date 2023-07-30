@@ -620,4 +620,5 @@
     <string name="weather_air_quality_data_by">Информация о качестве воздуха предоставлена $</string>
     <string name="weather_message_secondary_data_refresh_failed">Не удалось обновить данные о погоде для дополнительного источника погоды</string>
     <string name="weather_minutely_data_by">Поминутные данные об осадках предоставлены $</string>
+    <string name="wind_gusts">Порывы ветра</string>
 </resources>
