@@ -60,6 +60,7 @@
     <!-- Wind -->
     <string name="wind">Wind</string>
     <string name="wind_speed">Wind speed</string>
+    <string name="wind_gusts">Wind gusts</string>
     <string name="wind_direction">Wind direction</string>
     <string name="wind_direction_short_variable">Variable</string>
     <string name="wind_direction_short_N">N</string>

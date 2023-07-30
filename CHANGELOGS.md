@@ -6,6 +6,9 @@ Due to a technical change, cached weather data will be cleared on update.
 - Add support for HERE (@Cod3dDOT)
 - Fix precipitation probability on OpenWeather (@Cod3dDOT)
 
+**Data**
+- Initial implementation of wind gusts on compatible weather sources. Display only in daily details at the moment.
+
 **Animations**
 - Reduce meteor spawning on clear night condition (@Cod3dDOT)
 - Fix sensor stuttering (@Cod3dDOT)

@@ -178,7 +178,8 @@ private fun getHourlyList(
                 ),
                 wind = Wind(
                     degree = hourlyResult.windDirection?.getOrNull(i)?.toFloat(),
-                    speed = hourlyResult.windSpeed?.getOrNull(i)
+                    speed = hourlyResult.windSpeed?.getOrNull(i),
+                    gusts = hourlyResult.windGusts?.getOrNull(i)
                 ),
                 airQuality = if (airQualityIndex != null && airQualityIndex != -1) AirQuality(
                     pM25 = airQualityResult.hourly.pm25?.getOrNull(airQualityIndex),

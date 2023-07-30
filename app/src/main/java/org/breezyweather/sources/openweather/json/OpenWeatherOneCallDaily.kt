@@ -17,6 +17,7 @@ data class OpenWeatherOneCallDaily(
     @SerialName("dew_point") val dewPoint: Float?,
     @SerialName("wind_speed") val windSpeed: Float?,
     @SerialName("wind_deg") val windDeg: Int?,
+    @SerialName("wind_gust") val windGust: Float?,
     val weather: List<OpenWeatherOneCallWeather>?,
     val clouds: Int?,
     val pop: Float?,

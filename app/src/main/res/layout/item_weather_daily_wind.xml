@@ -60,7 +60,7 @@
                 android:textStyle="bold"
                 android:importantForAccessibility="no"
                 style="@style/title_text"
-                tools:text="12m/s" />
+                tools:text="12 m/s" />
 
         </LinearLayout>
 
@@ -82,6 +82,27 @@
                 android:importantForAccessibility="no"
                 style="@style/title_text"
                 tools:text="Gentle breeze" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/item_weather_daily_wind_gusts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/little_margin"
+            android:orientation="vertical">
+
+            <TextView
+                android:text="@string/wind_gusts"
+                android:importantForAccessibility="no"
+                style="@style/subtitle_text" />
+
+            <TextView
+                android:id="@+id/item_weather_daily_wind_gustsValue"
+                android:textStyle="bold"
+                android:importantForAccessibility="no"
+                style="@style/title_text"
+                tools:text="16 m/s" />
 
         </LinearLayout>
 

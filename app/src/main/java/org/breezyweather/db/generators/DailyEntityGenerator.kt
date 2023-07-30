@@ -53,6 +53,7 @@ object DailyEntityGenerator {
 
             daytimeWindDegree = daily.day?.wind?.degree,
             daytimeWindSpeed = daily.day?.wind?.speed,
+            daytimeWindGusts = daily.day?.wind?.gusts,
 
             daytimeCloudCover = daily.day?.cloudCover,
 
@@ -88,6 +89,7 @@ object DailyEntityGenerator {
 
             nighttimeWindDegree = daily.night?.wind?.degree,
             nighttimeWindSpeed = daily.night?.wind?.speed,
+            nighttimeWindGusts = daily.night?.wind?.gusts,
 
             nighttimeCloudCover = daily.night?.cloudCover,
 
@@ -174,7 +176,8 @@ object DailyEntityGenerator {
                 ),
                 Wind(
                     entity.daytimeWindDegree,
-                    entity.daytimeWindSpeed
+                    entity.daytimeWindSpeed,
+                    entity.daytimeWindGusts
                 ),
                 entity.daytimeCloudCover
             ),
@@ -213,7 +216,8 @@ object DailyEntityGenerator {
                 ),
                 Wind(
                     entity.nighttimeWindDegree,
-                    entity.nighttimeWindSpeed
+                    entity.nighttimeWindSpeed,
+                    entity.nighttimeWindGusts
                 ),
                 entity.nighttimeCloudCover
             ),

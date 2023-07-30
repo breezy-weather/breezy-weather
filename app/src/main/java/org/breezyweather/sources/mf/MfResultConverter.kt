@@ -207,7 +207,8 @@ private fun getHourlyList(
             ),
             wind = Wind(
                 degree = hourlyForecast.windDirection?.toFloat(),
-                speed = hourlyForecast.windSpeed?.toFloat()
+                speed = hourlyForecast.windSpeed?.toFloat(),
+                gusts = hourlyForecast.windSpeedGust?.toFloat() // Seems to be always 0? Or not available in low wind speeds maybe
             ),
             airQuality = getAirQuality(hourlyForecast.time, aqiAtmoAuraResult),
             relativeHumidity = hourlyForecast.relativeHumidity?.toFloat(),

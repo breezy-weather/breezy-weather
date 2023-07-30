@@ -13,6 +13,7 @@ import java.io.Serializable
  *
  * default unit:
  * [.speed] : [SpeedUnit.MPS]
+ * [.gust] : [SpeedUnit.MPS]
  */
 data class Wind(
     /**
@@ -22,7 +23,11 @@ data class Wind(
     /**
      * In m/s
      */
-    val speed: Float? = null
+    val speed: Float? = null,
+    /**
+     * In m/s
+     */
+    val gusts: Float? = null
 ) : Serializable {
 
     val isValid: Boolean

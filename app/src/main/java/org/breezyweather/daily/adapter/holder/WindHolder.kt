@@ -24,6 +24,8 @@ class WindHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
     private val mSpeedText: TextView = itemView.findViewById(R.id.item_weather_daily_wind_speedValue)
     private val mStrengthText: TextView = itemView.findViewById(R.id.item_weather_daily_wind_strengthValue)
     private val mSpeedUnit: SpeedUnit = SettingsManager.getInstance(parent.context).speedUnit
+    private val mGusts: LinearLayout = itemView.findViewById(R.id.item_weather_daily_wind_gusts)
+    private val mGustsText: TextView = itemView.findViewById(R.id.item_weather_daily_wind_gustsValue)
 
     @SuppressLint("SetTextI18n", "RestrictedApi")
     override fun onBindView(model: DailyWeatherAdapter.ViewModel, position: Int) {
@@ -56,6 +58,14 @@ class WindHolder(parent: ViewGroup) : DailyWeatherAdapter.ViewHolder(
             talkBackBuilder.append(", ").append(wind.getStrength(mSpeedText.context))
             mStrengthText.text = wind.getStrength(mSpeedText.context)
             itemView.contentDescription = talkBackBuilder.toString()
+            if (wind.gusts != null && wind.gusts > 0) {
+                talkBackBuilder.append(", ")
+                    .append(mSpeedUnit.getValueText(mGustsText.context, wind.gusts))
+                mGusts.visibility = View.VISIBLE
+                mGustsText.text = mSpeedUnit.getValueText(mGustsText.context, wind.gusts)
+            } else {
+                mGusts.visibility = View.GONE
+            }
         } else {
             mSpeed.visibility = View.GONE
             // TODO: Hide

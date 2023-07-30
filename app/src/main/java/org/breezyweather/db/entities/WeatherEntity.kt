@@ -38,6 +38,7 @@ class WeatherEntity(
 
     var windDegree: Float? = null,
     var windSpeed: Float? = null,
+    var windGusts: Float? = null,
 
     var uvIndex: Float? = null,
 

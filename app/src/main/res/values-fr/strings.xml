@@ -16,6 +16,7 @@
     <string name="wind">Vent</string>
     <string name="wind_direction">Direction du vent</string>
     <string name="wind_speed">Vitesse du vent</string>
+    <string name="wind_gusts">Rafales de vent</string>
     <!-- Selon l’échelle de Beaufort -->
     <string name="humidity">Humidité</string>
     <string name="uv_index">Indice UV</string>

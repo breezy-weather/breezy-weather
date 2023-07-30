@@ -52,7 +52,8 @@ fun convert(
             ),
             wind = Wind(
                 degree = oneCallResult.current.windDeg?.toFloat(),
-                speed = oneCallResult.current.windSpeed
+                speed = oneCallResult.current.windSpeed,
+                gusts = oneCallResult.current.windGust
             ),
             uV = UV(index = oneCallResult.current.uvi),
             relativeHumidity = oneCallResult.current.humidity?.toFloat(),
@@ -141,7 +142,8 @@ private fun getHourlyList(
             precipitationProbability = PrecipitationProbability(total = result.pop?.times(100f)),
             wind = Wind(
                 degree = result.windDeg?.toFloat(),
-                speed = result.windSpeed
+                speed = result.windSpeed,
+                gusts = result.windGust
             ),
             airQuality = getAirQuality(result.dt, airPollutionResult),
             uV = UV(index = result.uvi),

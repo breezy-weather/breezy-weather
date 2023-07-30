@@ -18,6 +18,7 @@ data class OpenWeatherOneCallCurrent(
     val visibility: Int?,
     @SerialName("wind_speed") val windSpeed: Float?,
     @SerialName("wind_deg") val windDeg: Int?,
+    @SerialName("wind_gust") val windGust: Float?,
     val weather: List<OpenWeatherOneCallWeather>?,
     val rain: OpenWeatherOneCallPrecipitation?,
     val snow: OpenWeatherOneCallPrecipitation?

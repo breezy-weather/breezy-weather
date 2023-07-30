@@ -16,6 +16,7 @@ data class OpenMeteoWeatherHourly(
     @SerialName("weathercode") val weatherCode: Array<Int?>?,
     @SerialName("windspeed_10m") val windSpeed: Array<Float?>?,
     @SerialName("winddirection_10m") val windDirection: Array<Int?>?,
+    @SerialName("windgusts_10m") val windGusts: Array<Float?>?,
     @SerialName("uv_index") val uvIndex: Array<Float?>?,
     @SerialName("is_day") val isDay: IntArray?, /* Should be a boolean (true or false) but API returns an integer */
     // Below are used in current only

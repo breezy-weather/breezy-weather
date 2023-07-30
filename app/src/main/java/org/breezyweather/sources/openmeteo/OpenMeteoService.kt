@@ -90,6 +90,7 @@ class OpenMeteoService @Inject constructor(
             "weathercode",
             "windspeed_10m",
             "winddirection_10m",
+            "windgusts_10m",
             "uv_index",
             "is_day", // Used by current only
             "relativehumidity_2m",

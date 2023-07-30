@@ -54,6 +54,7 @@ data class DailyEntity(
 
     var daytimeWindDegree: Float? = null,
     var daytimeWindSpeed: Float? = null,
+    var daytimeWindGusts: Float? = null,
 
     var daytimeCloudCover: Int? = null,
 
@@ -92,6 +93,7 @@ data class DailyEntity(
 
     var nighttimeWindDegree: Float? = null,
     var nighttimeWindSpeed: Float? = null,
+    var nighttimeWindGusts: Float? = null,
 
     var nighttimeCloudCover: Int? = null,
 

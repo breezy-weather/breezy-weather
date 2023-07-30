@@ -59,7 +59,7 @@
     },
     {
       "id": "3:6071481804946854566",
-      "lastPropertyId": "124:4161867563561466650",
+      "lastPropertyId": "126:2458187023245513750",
       "name": "DailyEntity",
       "properties": [
         {
@@ -462,6 +462,16 @@
           "id": "124:4161867563561466650",
           "name": "formattedId",
           "type": 9
+        },
+        {
+          "id": "125:2273140214896481488",
+          "name": "daytimeWindGusts",
+          "type": 7
+        },
+        {
+          "id": "126:2458187023245513750",
+          "name": "nighttimeWindGusts",
+          "type": 7
         }
       ],
       "relations": []
@@ -502,7 +512,7 @@
     },
     {
       "id": "5:3341053428256525637",
-      "lastPropertyId": "67:4352520189708947854",
+      "lastPropertyId": "68:1836299625609765158",
       "name": "HourlyEntity",
       "properties": [
         {
@@ -685,6 +695,11 @@
           "id": "67:4352520189708947854",
           "name": "formattedId",
           "type": 9
+        },
+        {
+          "id": "68:1836299625609765158",
+          "name": "windGusts",
+          "type": 7
         }
       ],
       "relations": []
@@ -829,7 +844,7 @@
     },
     {
       "id": "8:2083452952355791661",
-      "lastPropertyId": "54:932335648915355654",
+      "lastPropertyId": "55:524989558090468092",
       "name": "WeatherEntity",
       "properties": [
         {
@@ -977,6 +992,11 @@
           "id": "54:932335648915355654",
           "name": "formattedId",
           "type": 9
+        },
+        {
+          "id": "55:524989558090468092",
+          "name": "windGusts",
+          "type": 7
         }
       ],
       "relations": []

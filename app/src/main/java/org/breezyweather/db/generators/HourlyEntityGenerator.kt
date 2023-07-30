@@ -39,6 +39,7 @@ object HourlyEntityGenerator {
 
             windDegree = hourly.wind?.degree,
             windSpeed = hourly.wind?.speed,
+            windGusts = hourly.wind?.gusts,
 
             // aqi.
             pm25 = hourly.airQuality?.pM25,
@@ -96,7 +97,8 @@ object HourlyEntityGenerator {
             ),
             Wind(
                 entity.windDegree,
-                entity.windSpeed
+                entity.windSpeed,
+                entity.windGusts
             ),
             AirQuality(
                 entity.pm25,
