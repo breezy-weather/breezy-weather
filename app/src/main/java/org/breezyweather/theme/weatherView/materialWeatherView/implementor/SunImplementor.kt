@@ -11,7 +11,11 @@ import kotlin.math.sin
 /**
  * Clear day implementor.
  */
-class SunImplementor(@Size(2) canvasSizes: IntArray) : WeatherAnimationImplementor() {
+class SunImplementor(
+    @Size(2) canvasSizes: IntArray,
+    animate: Boolean
+) : WeatherAnimationImplementor() {
+    private val mAnimate = animate
     private val mPaint = Paint().apply {
         style = Paint.Style.FILL
         isAntiAlias = true

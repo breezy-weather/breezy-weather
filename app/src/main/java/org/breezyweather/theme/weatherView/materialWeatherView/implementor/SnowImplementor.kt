@@ -13,7 +13,12 @@ import kotlin.math.sin
 /**
  * Snow implementor.
  */
-class SnowImplementor(@Size(2) canvasSizes: IntArray, daylight: Boolean) : WeatherAnimationImplementor() {
+class SnowImplementor(
+    @Size(2) canvasSizes: IntArray,
+    animate: Boolean,
+    daylight: Boolean
+) : WeatherAnimationImplementor() {
+    private val mAnimate = animate
     private val mPaint = Paint().apply {
         style = Paint.Style.FILL
         isAntiAlias = true

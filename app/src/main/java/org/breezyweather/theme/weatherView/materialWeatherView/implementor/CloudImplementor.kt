@@ -18,8 +18,12 @@ import kotlin.math.sqrt
 
 @SuppressLint("SwitchIntDef")
 class CloudImplementor(
-    @Size(2) canvasSizes: IntArray, @TypeRule type: Int, daylight: Boolean
+    @Size(2) canvasSizes: IntArray,
+    animate: Boolean,
+    @TypeRule type: Int,
+    daylight: Boolean
 ) : WeatherAnimationImplementor() {
+    private val mAnimate = animate
     private var mPaint = Paint().apply {
         style = Paint.Style.FILL
         isAntiAlias = true

@@ -91,7 +91,7 @@ class HomeFragment : MainModuleFragment() {
 
     override fun onResume() {
         super.onResume()
-        weatherView.setDrawable(isBackgroundAnimationEnabled() && !isHidden)
+        weatherView.setDrawable(!isHidden)
     }
 
     override fun onPause() {
@@ -108,7 +108,7 @@ class HomeFragment : MainModuleFragment() {
 
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
-        weatherView.setDrawable(isBackgroundAnimationEnabled() && !hidden)
+        weatherView.setDrawable(!hidden)
     }
 
     override fun setSystemBarStyle() {
@@ -143,6 +143,10 @@ class HomeFragment : MainModuleFragment() {
 
         weatherView.setGravitySensorEnabled(
             SettingsManager.getInstance(requireContext()).isGravitySensorEnabled
+        )
+
+        weatherView.setAnimatable(
+            isBackgroundAnimationEnabled()
         )
 
         binding.toolbar.setNavigationOnClickListener {

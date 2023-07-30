@@ -30,6 +30,7 @@ class MaterialPainterView(
     currentScrollRate: Float,
 
     var gravitySensorEnabled: Boolean,
+    var animatable: Boolean
 ) : View(context) {
 
     private var intervalComputer: IntervalComputer? = null
@@ -47,33 +48,38 @@ class MaterialPainterView(
 
     @FloatRange(from = 0.0)
     private var lastScrollRate = 0f
+
     @FloatRange(from = 0.0)
     var scrollRate = 0f
-    set(value) {
-        field = value
+        set(value) {
+            field = value
 
-        if (lastScrollRate >= 1 && field < 1) {
-            postInvalidate()
+            if (lastScrollRate >= 1 && field < 1) {
+                postInvalidate()
+            }
         }
-    }
 
     var drawable = false
-    set(value) {
-        if (field == value) {
-            return
-        }
-        field = value
+        set(value) {
+            if (field == value) {
+                return
+            }
+            field = value
 
-        if (value) {
-            resetDrawer()
-            return
+            if (value) {
+                resetDrawer()
+                return
+            }
+
+            sensorManager?.unregisterListener(mGravityListener, gravitySensor)
+            orientationListener.disable()
         }
 
-        sensorManager?.unregisterListener(mGravityListener, gravitySensor)
-        orientationListener.disable()
-    }
+    private var drawnFrames = 0
+    private val drawFramesLimit = 50
 
     private var mDeviceOrientation: DeviceOrientation? = null
+
     private enum class DeviceOrientation {
         TOP, LEFT, BOTTOM, RIGHT
     }
@@ -112,12 +118,15 @@ class MaterialPainterView(
                     DeviceOrientation.TOP -> {
                         // do nothing.
                     }
+
                     DeviceOrientation.LEFT -> {
                         rotation2D -= 90f
                     }
+
                     DeviceOrientation.RIGHT -> {
                         rotation2D += 90f
                     }
+
                     DeviceOrientation.BOTTOM -> {
                         if (rotation2D > 0) {
                             rotation2D -= 180f
@@ -125,6 +134,7 @@ class MaterialPainterView(
                             rotation2D += 180f
                         }
                     }
+
                     else -> {
                         // do nothing.
                     }
@@ -189,10 +199,12 @@ class MaterialPainterView(
         @WeatherKindRule weatherKind: Int,
         daylight: Boolean,
         gravitySensorEnabled: Boolean,
+        animate: Boolean
     ) {
         this.weatherKind = weatherKind
         this.daylight = daylight
         this.gravitySensorEnabled = gravitySensorEnabled
+        this.animatable = animate
 
         if (drawable) {
             setWeatherImplementor()
@@ -218,12 +230,16 @@ class MaterialPainterView(
         }
     }
 
+    // this is inefficient for cases when animations are disabled,
+    // as basic view clears canvas on each call, forcing us to redraw with same data
+    // maybe use TextureView/SurfaceView or save to bitmap?
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
         if (intervalComputer == null
             || rotators == null
-            || impl == null) {
+            || impl == null
+        ) {
             return
         }
 
@@ -231,9 +247,15 @@ class MaterialPainterView(
         rotators!![0].updateRotation(rotation2D.toDouble(), intervalComputer!!.interval)
         rotators!![1].updateRotation(rotation3D.toDouble(), intervalComputer!!.interval)
 
+        var interval = intervalComputer!!.interval
+        if (!animatable) {
+            interval -= drawnFrames.toDouble() / drawFramesLimit * interval
+            if (drawnFrames < drawFramesLimit) drawnFrames += 1
+        }
+
         impl!!.updateData(
             canvasSize,
-            intervalComputer!!.interval.toLong(),
+            interval.toLong(),
             rotators!![0].rotation.toFloat(),
             rotators!![1].rotation.toFloat()
         )
@@ -296,10 +318,12 @@ class MaterialPainterView(
     )
 
     private fun setWeatherImplementor() {
+        drawnFrames = 0
         impl = WeatherImplementorFactory.getWeatherImplementor(
             weatherKind,
             daylight,
-            canvasSize
+            canvasSize,
+            animatable
         )
         rotators = arrayOf(
             DelayRotateController(
