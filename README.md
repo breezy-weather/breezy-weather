@@ -121,8 +121,9 @@ Translation is done externally [on Weblate](https://hosted.weblate.org/projects/
 
 # Contact us
 
-* Matrix server: `#breezy-weather:matrix.org`
-* GitHub discussions or issues
+* If you'd like to report a bug or suggest a new feature, GitHub discussions or issues are best for organization.
+* We've also created a Matrix/Element space with a number of different channels for more general discussion: [`#breezy-weather-space:matrix.org`](https://matrix.to/#/#breezy-weather-space:matrix.org)
+* If you'd prefer a direct channel link instead of a space link, here's the main Breezy Weather Matrix channel: [`#breezy-weather:matrix.org`](https://matrix.to/#/#breezy-weather:matrix.org)
 
 
 # Build variant
