@@ -623,4 +623,5 @@
     <string name="weather_message_secondary_data_refresh_failed">备用天气源的天气数据刷新失败</string>
     <string name="weather_message_invalid_location">位置无效，请删除并重新添加</string>
     <string name="location_resident_location_summaryOff">已禁用。位置始终可用。</string>
+    <string name="wind_gusts">阵风</string>
 </resources>
