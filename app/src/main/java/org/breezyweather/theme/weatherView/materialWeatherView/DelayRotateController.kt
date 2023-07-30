@@ -15,39 +15,43 @@ class DelayRotateController(initRotation: Double) : RotateController() {
 
     override fun updateRotation(rotation: Double, interval: Double) {
         mTargetRotation = getRotationInScope(rotation)
-        if (mTargetRotation == mCurrentRotation) {
-            // no need to move.
+        val rotationDiff = mTargetRotation - mCurrentRotation
+
+        // no need to move
+        if (rotationDiff == 0.0) {
             mAcceleration = 0.0
             mVelocity = 0.0
             return
         }
-        val d: Double
-        if (mVelocity == 0.0 || (mTargetRotation - mCurrentRotation) * mVelocity < 0) {
+
+        val accelSign = when (mTargetRotation > mCurrentRotation) {
+            true -> 1
+            false -> -1
+        }
+        val oldVelocity = mVelocity
+
+        if (mVelocity == 0.0 || rotationDiff * mVelocity < 0) {
             // start or turn around.
-            mAcceleration = (if (mTargetRotation > mCurrentRotation) 1 else -1) * DEFAULT_ABS_ACCELERATION
-            d = mAcceleration * interval.pow(2.0) / 2.0
+            mAcceleration = accelSign * DEFAULT_ABS_ACCELERATION
             mVelocity = mAcceleration * interval
-        } else if (abs(mVelocity).pow(2.0) / (2 * DEFAULT_ABS_ACCELERATION)
-            < abs(mTargetRotation - mCurrentRotation)
-        ) {
-            // speed up.
-            mAcceleration = (if (mTargetRotation > mCurrentRotation) 1 else -1) * DEFAULT_ABS_ACCELERATION
-            d = mVelocity * interval + mAcceleration * interval.pow(2.0) / 2.0
+        } else if (mVelocity.pow(2.0) / (2.0 * DEFAULT_ABS_ACCELERATION) < abs(rotationDiff)) {
+            // speed up
+            mAcceleration = accelSign * DEFAULT_ABS_ACCELERATION
             mVelocity += mAcceleration * interval
         } else {
-            // slow down.
-            mAcceleration = if (mTargetRotation > mCurrentRotation) -1.0 else {
-                1 * mVelocity.pow(2.0) / (2.0 * abs(mTargetRotation - mCurrentRotation))
-            }
-            d = mVelocity * interval + mAcceleration * interval.pow(2.0) / 2.0
+            // slow down
+            mAcceleration = -1 * accelSign * mVelocity.pow(2.0) / (2.0 * abs(rotationDiff))
             mVelocity += mAcceleration * interval
         }
-        if (abs(d) > abs(mTargetRotation - mCurrentRotation)) {
+
+        val distance = oldVelocity * interval + mAcceleration * interval.pow(2.0) / 2.0
+
+        if (abs(distance) > abs(rotationDiff)) {
             mAcceleration = 0.0
             mCurrentRotation = mTargetRotation
             mVelocity = 0.0
         } else {
-            mCurrentRotation += d
+            mCurrentRotation += distance
         }
     }
 
