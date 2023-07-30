@@ -1,11 +1,20 @@
 # Version 4.5.0-beta (next version)
 
-This version contains a major rewriting of the database to fix long-time issues that were already there in Geometric Weather, such as app size growing every time the current location changed (because it kept old data). Your existing locations will be preserved but all cached weather data will be deleted and refreshed on update.
+Due to a technical change, cached weather data will be cleared on update.
 
+**Weather sources**
 - Add support for HERE (@Cod3dDOT)
 - Fix precipitation probability on OpenWeather (@Cod3dDOT)
+
+**Animations**
 - Reduce meteor spawning on clear night condition (@Cod3dDOT)
+- Fix sensor stuttering (@Cod3dDOT)
+- Fix Fog condition always showing Clear instead
+
+**Other fixes**
 - Fix contrast issue on Main screen Allergen card in some cases
+- Fix database keeping old "current location" weather data, making app data size grow
+- Fix overwrite of weather data when "current location" and a manually added city shared the same city and weather source (issue particularly noticeable with AccuWeather)
 
 
 # Version 4.4.1-beta
